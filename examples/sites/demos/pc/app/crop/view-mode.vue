@@ -2,7 +2,13 @@
   <div>
     <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
     <tiny-button text="切换模式" @click="changeMode"></tiny-button>
-    <tiny-crop :cropvisible="visible" @update:cropvisible="visible = $event" :src="imgUrl" :view-mode="num"></tiny-crop>
+    <tiny-crop
+      :cropvisible="visible"
+      @update:cropvisible="visible = $event"
+      :src="imgUrl"
+      :view-mode="num"
+      :key="num"
+    ></tiny-crop>
   </div>
 </template>
 
@@ -23,7 +29,7 @@ export default {
   },
   methods: {
     changeMode() {
-      this.num = Math.ceil(Math.random() * 3)
+      this.num = (this.num + 1) % 4
       Modal.message({ message: '模式:' + this.num })
     }
   }

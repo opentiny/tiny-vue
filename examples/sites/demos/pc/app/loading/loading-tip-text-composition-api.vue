@@ -9,7 +9,8 @@ import { Loading } from '@opentiny/vue'
 onMounted(() => {
   Loading.service({
     text: '加载中',
-    target: document.getElementById('tiny-demo-loading-tip-text')
+    target: document.getElementById('tiny-demo-loading-tip-text'),
+    size: 'large'
   })
 })
 </script>

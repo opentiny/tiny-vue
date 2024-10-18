@@ -1,4 +1,7 @@
 export default {
+  options: {
+    isCloseIconHide: true
+  },
   renderless: (props, hooks, { emit, nextTick }, api) => {
     const state = api.state
 

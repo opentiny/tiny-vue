@@ -10,6 +10,6 @@ test('测试表单标签文本插槽', async ({ page }) => {
 
   await expect(formItem.first().locator('.tiny-form-item__label')).toHaveText('必填')
   await expect(formItem.nth(1).locator('.tiny-form-item__label')).toHaveText('日期')
-  await expect(formItem.nth(2).locator('.tiny-form-item__label')).toHaveText('URL')
+  await expect(formItem.nth(2).locator('.tiny-form-item__label')).toHaveText('超过两行文字，省略显示')
   await expect(formItem.nth(3).locator('.tiny-form-item__label')).toHaveText('等级')
 })

@@ -69,10 +69,10 @@
           <div class="img-option">
             <div class="img-item">
               <input @change="handleChange" id="img-btn" type="file" accept="image/*, video/*" />
-              <label for="img-btn">本地资源</label>
+              <label for="img-btn">{{ t('ui.richTextEditor.localResources') }}</label>
             </div>
             <div @click.stop="handleChange(null)" class="img-item">
-              <div>资源链接</div>
+              <div>{{ t('ui.richTextEditor.resourceLink') }}</div>
             </div>
           </div>
         </button>

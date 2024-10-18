@@ -18,7 +18,7 @@
 @top-box-prefix-cls: ~'@{css-prefix}top-box';
 
 .@{top-box-prefix-cls} {
-  .component-css-vars-top-box();
+  .inject-TopBox-vars();
 
   position: fixed;
   top: 20px;
@@ -26,7 +26,7 @@
   transform: translateX(-50%);
   width: 400px;
   max-height: 600px;
-  background: var(--ti-top-box-bg-color);
+  background: var(--tv-TopBox-bg-color);
   padding: 24px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   transition:
@@ -35,7 +35,7 @@
     top 0.4s;
 
   & &__icon {
-    font-size: var(--ti-top-box-icon-font-size, 24px);
+    font-size: var(--tv-TopBox-icon-font-size);
     vertical-align: middle;
   }
 
@@ -74,23 +74,23 @@
   }
 
   &--success &__icon {
-    fill: var(--ti-top-box-success-icon-color);
+    fill: var(--tv-TopBox-success-icon-color);
   }
 
   &--error &__icon {
-    fill: var(--ti-top-box-error-icon-color);
+    fill: var(--tv-TopBox-error-icon-color);
   }
 
   &--warning &__icon {
-    fill: var(--ti-top-box-warning-icon-color);
+    fill: var(--tv-TopBox-warning-icon-color);
   }
 
   &--help &__icon {
-    fill: var(--ti-top-box-help-icon-color);
+    fill: var(--tv-TopBox-help-icon-color);
   }
 
   &--info &__icon {
-    fill: var(--ti-top-box-info-icon-color);
+    fill: var(--tv-TopBox-info-icon-color);
   }
 
   &-fade-enter,

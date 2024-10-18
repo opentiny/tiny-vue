@@ -105,8 +105,8 @@
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          '[&_[class=tiny-autocomplete]]:w-full',
-          '[&_[class=tiny-cascader]]:w-full',
+          '[&_[class^=tiny-autocomplete]]:w-full',
+          '[&_[class^=tiny-cascader]]:w-full',
           state.isDisplayOnly
             ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''

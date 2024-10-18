@@ -89,6 +89,7 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
       ref: 'customWrapper'
     },
     [
+      // TODO: 此处应使用图标按钮，但saas主题图标按钮样式有问题。
       h('div', { class: 'tiny-grid-custom__setting-btn', on: settingsBtnOns }, [
         setting?.simple
           ? h('tiny-grid-custom-select', {

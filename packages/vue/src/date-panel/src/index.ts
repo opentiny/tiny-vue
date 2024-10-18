@@ -17,7 +17,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    nowClick: {
+      type: Function
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

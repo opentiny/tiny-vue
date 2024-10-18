@@ -430,7 +430,7 @@
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -455,7 +455,7 @@
                 !remote
               "
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'
@@ -540,8 +540,6 @@ import {
   IconEllipsis,
   IconChevronUp
 } from '@opentiny/vue-icon'
-import Grid from '@opentiny/vue-grid'
-import Tree from '@opentiny/vue-tree'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
 import RecycleScroller from '@opentiny/vue-recycle-scroller'
@@ -593,8 +591,6 @@ export default defineComponent({
     TinyTag,
     TinyInput,
     TinyOption,
-    TinyGrid: Grid,
-    TinyTree: Tree,
     TinyButton,
     IconClose: IconClose(),
     TinyScrollbar,

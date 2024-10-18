@@ -22,7 +22,7 @@ export const $constants = {
   ICON_MAP: {
     success: 'icon-success',
     error: 'icon-error',
-    info: 'icon-info-solid',
+    info: 'icon-help',
     warning: 'icon-warning'
   }
 }

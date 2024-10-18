@@ -28,6 +28,19 @@ export default {
       codeFiles: ['clearable.vue']
     },
     {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 <code>disabled</code> 属性设置输入框的禁用状态。</p>',
+        'en-US':
+          '<p>You can set the <code>clearable</code> attribute to display the clear icon button in the text box </p>'
+      },
+      codeFiles: ['disabled.vue']
+    },
+    {
       demoId: 'show-password',
       name: {
         'zh-CN': '密码框',
@@ -259,6 +272,18 @@ export default {
           'The <code>popup-more</code> attribute is added to enable the text field to exceed the display of more buttons. You can click more buttons to view details.'
       },
       codeFiles: ['display-only-popup-more.vue']
+    },
+    {
+      demoId: 'input-box-type',
+      name: {
+        'zh-CN': '边框模式',
+        'en-US': 'Box type'
+      },
+      desc: {
+        'zh-CN': '通过 <code>input-box-type</code>属性，设置边框模式,可取值为 <code>"normal" | "underline"</code> 。',
+        'en-US': 'Set the border mode through the input-box-type attribute. The value can be "normal"|"underline".'
+      },
+      codeFiles: ['input-box-type.vue']
     },
     {
       demoId: 'event',

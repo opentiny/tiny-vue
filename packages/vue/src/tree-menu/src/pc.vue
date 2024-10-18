@@ -60,6 +60,7 @@
       :allow-drag="allowDrag"
       :props="props"
       :allow-drop="allowDrop"
+      :highlight-query="highlightQuery"
       :expand-on-click-node="expandOnClickNode"
       :only-check-children="onlyCheckChildren"
       @node-drag-start="nodeDragStart"
@@ -211,6 +212,10 @@ export default defineComponent({
       default: false
     },
     clearable: {
+      type: Boolean,
+      default: false
+    },
+    highlightQuery: {
       type: Boolean,
       default: false
     }

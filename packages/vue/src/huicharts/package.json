@@ -1,0 +1,52 @@
+{
+  "name": "@opentiny/vue-huicharts",
+  "version": "3.18.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "files": [
+    "index.js",
+    "lib",
+    "index.d.ts",
+    "src"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-huicharts-bar": "workspace:~",
+    "@opentiny/vue-huicharts-core": "workspace:~",
+    "@opentiny/vue-huicharts-histogram": "workspace:~",
+    "@opentiny/vue-huicharts-line": "workspace:~",
+    "@opentiny/vue-huicharts-pie": "workspace:~",
+    "@opentiny/vue-huicharts-radar": "workspace:~",
+    "@opentiny/vue-huicharts-ring": "workspace:~",
+    "@opentiny/vue-huicharts-waterfall": "workspace:~",
+    "@opentiny/vue-huicharts-funnel": "workspace:~",
+    "@opentiny/vue-huicharts-gauge": "workspace:~",
+    "@opentiny/vue-huicharts-scatter": "workspace:~",
+    "@opentiny/vue-huicharts-tree": "workspace:~",
+    "@opentiny/vue-huicharts-sankey": "workspace:~",
+    "@opentiny/vue-huicharts-candle": "workspace:~",
+    "@opentiny/vue-huicharts-heatmap": "workspace:~",
+    "@opentiny/vue-huicharts-liquidfill": "workspace:~",
+    "@opentiny/vue-huicharts-wordcloud": "workspace:~",
+    "@opentiny/vue-huicharts-map": "workspace:~",
+    "@opentiny/vue-huicharts-boxplot": "workspace:~",
+    "@opentiny/vue-huicharts-amap": "workspace:~",
+    "@opentiny/vue-huicharts-bmap": "workspace:~",
+    "@opentiny/vue-huicharts-graph": "workspace:~",
+    "@opentiny/vue-huicharts-sunburst": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "license": "MIT"
+}

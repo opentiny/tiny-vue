@@ -1,6 +1,9 @@
 <template>
   <div>
+    <tiny-button @click="getAllSelection">获取所有选中项</tiny-button>
+    <br /><br />
     <tiny-grid
+      ref="gridRef"
       :fetch-data="fetchData"
       row-id="id"
       seq-serial
@@ -8,8 +11,7 @@
       @select-change="selectedDevices"
       :select-config="tableSelectConfigData"
     >
-      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址"></tiny-grid-column>
@@ -20,7 +22,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager, Notify } from '@opentiny/vue'
+import {
+  Grid as TinyGrid,
+  GridColumn as TinyGridColumn,
+  Pager,
+  Notify,
+  Modal,
+  Button as TinyButton
+} from '@opentiny/vue'
 
 const tableSelectConfigData = ref({
   // 翻页时记住选择项，必须同时配置row-id
@@ -37,12 +46,19 @@ const pagerConfig = ref({
     pageSize: 5,
     pageSizes: [5, 10],
     total: 0,
-    layout: 'total, prev, pager, next, jumper, sizes'
+    layout: 'total, sizes, prev, pager, next, jumper'
   }
 })
 const fetchData = ref({
   api: getData
 })
+
+const gridRef = ref()
+
+function getAllSelection() {
+  const selection = gridRef.value.getAllSelection()
+  Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
+}
 
 function getTableData() {
   return [
@@ -142,3 +158,19 @@ function selectedDevices({ $table }) {
   })
 }
 </script>
+
+<style scoped lang="less">
+:deep(.tiny-grid) {
+  &-header__column,
+  &-body__column {
+    &.col__selection,
+    &.col__radio {
+      padding: 0 8px 0 16px;
+      & + th,
+      + td {
+        padding-left: 0;
+      }
+    }
+  }
+}
+</style>

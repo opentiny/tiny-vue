@@ -188,12 +188,15 @@
       :step="step"
       :show-week-number="showWeekNumber"
       :format-weeks="formatWeeks"
+      :now-click="nowClick"
       ref="picker"
       :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
-    ></component>
+    >
+      <slot name="now"></slot>
+    </component>
     <!-- 小屏 - 日期面板 -->
     <tiny-date-picker-mobile
       v-if="state.isMobileMode && state.isDateMobileComponent"

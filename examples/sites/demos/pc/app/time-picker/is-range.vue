@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-time-picker v-model="value1" is-range range-separator="至"></tiny-time-picker>
+    <tiny-time-picker v-model="value1" is-range></tiny-time-picker>
   </div>
 </template>
 

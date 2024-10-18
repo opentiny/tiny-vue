@@ -440,7 +440,7 @@ interface IPagerOp {
     currentPage: number
     pageSize: number
     pageSizes: number[]
-    layout: string   // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
+    layout: string   // 分页组件布局默认值：'total, prev, pager, next, jumper'
   }
 }
       `

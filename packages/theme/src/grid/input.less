@@ -18,7 +18,7 @@
 // input
 .@{grid-input-prefix-cls}__wrapper {
   font-size: var(--ti-common-font-size-base);
-  font-size: var(--ti-grid-font-size, 12px);
+  font-size: var(--tv-Grid-font-size);
   display: inline-block;
 
   &.type__textarea {
@@ -31,17 +31,17 @@
     outline: 0;
     padding: 4px 8px;
     width: 100%;
-    color: var(--ti-grid-text-color);
-    border: 1px solid var(--ti-grid-border-color);
+    color: var(--tv-Grid-text-color);
+    border: 1px solid var(--tv-Grid-divider-color);
     background-color: #fff;
 
     &:focus {
-      border: 1px solid var(--ti-grid-primary-color);
+      border: 1px solid var(--tv-Grid-border-color-active);
     }
 
     &[disabled] {
       cursor: not-allowed;
-      background-color: var(--ti-grid-input-disabled-bg-color);
+      background-color: var(--tv-Grid-bg-color-disabled);
     }
   }
 

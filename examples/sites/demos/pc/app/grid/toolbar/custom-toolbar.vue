@@ -11,38 +11,53 @@
         <tiny-grid-toolbar>
           <template #buttons>
             <div>
-              <tiny-input class="w-200" v-model="text" placeholder="请输入公司名称"></tiny-input>
-              <tiny-button class="ml-8" @click="search">搜索</tiny-button>
+              <tiny-button @click="$refs.basicGrid.setAllSelection(true)">全选</tiny-button>
+              <tiny-button @click="$refs.basicGrid.clearSelection()">取消全选</tiny-button>
+              <tiny-button @click="$refs.basicGrid.revertData()">重置</tiny-button>
+            </div>
+          </template>
+        </tiny-grid-toolbar>
+        <tiny-grid-toolbar class="search-toolbar" setting full-screen>
+          <template #buttons>
+            <div>
+              <tiny-search class="w-200" v-model="text" placeholder="请输入公司名称" @search="search"></tiny-search>
+              <!-- <tiny-button class="ml-8" @click="search">搜索</tiny-button> -->
             </div>
           </template>
         </tiny-grid-toolbar>
       </template>
-      <tiny-grid-column type="selection" width="50"></tiny-grid-column>
-      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
       <tiny-grid-column
         field="name"
         show-overflow
         title="名称"
+        :show-icon="false"
         :editor="{ component: 'input', autoselect: true }"
       ></tiny-grid-column>
       <tiny-grid-column
         field="area"
         title="区域"
+        :show-icon="false"
         sortable
         :editor="{ component: 'select', options }"
       ></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址" :editor="{ component: 'input', attrs: {} }"></tiny-grid-column>
+      <tiny-grid-column
+        field="address"
+        title="地址"
+        :show-icon="false"
+        :editor="{ component: 'input', attrs: {} }"
+      ></tiny-grid-column>
       <tiny-grid-column field="introduction" show-overflow title="公司简介"></tiny-grid-column>
     </tiny-grid>
   </div>
 </template>
 
 <script lang="jsx">
-import { Pager, Input, Button, Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { Pager, Search, Button, Grid, GridColumn, GridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input,
+    TinySearch: Search,
     TinyButton: Button,
     TinyGrid: Grid,
     TinyGridColumn: GridColumn,
@@ -56,7 +71,7 @@ export default {
           currentPage: 1,
           pageSize: 10,
           total: 0,
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       options: [
@@ -163,11 +178,25 @@ export default {
 }
 </script>
 
-<style scoped>
-.w-200 {
-  width: 200px;
+<style scoped lang="less">
+.search-toolbar {
+  display: flex;
+  :deep(.tiny-grid-button__wrapper) {
+    flex: 1;
+    padding-right: 4px;
+  }
 }
-.ml-8 {
-  margin-left: 8px;
+:deep(.tiny-grid) {
+  &-header__column,
+  &-body__column {
+    &.col__selection,
+    &.col__radio {
+      padding: 0 8px 0 16px;
+      & + th,
+      + td {
+        padding-left: 0;
+      }
+    }
+  }
 }
 </style>

@@ -38,7 +38,6 @@
       border-bottom-right-radius: 10px;
       left: 2px;
       @apply w-full;
-      background-color: var(--ti-anchor-link-mask-bg-color);
     }
 
     .@{anchor-prefix-cls}-orbit {
@@ -69,16 +68,16 @@
 
   &-link {
     @apply ml-4;
-    cursor: pointer;
+    @apply cursor-pointer;
     @apply leading-9;
 
     &-title {
-      display: block;
+      @apply block;
       @apply max-w-full;
       padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right)
         var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
@@ -94,7 +93,7 @@
     @apply w-50;
 
     .@{anchor-prefix-cls} {
-      padding: 0 16px;
+      @apply px-4;
     }
 
     .@{anchor-prefix-cls}-link {

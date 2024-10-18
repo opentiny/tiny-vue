@@ -12,7 +12,7 @@
 
 <template>
   <div class="tiny-wizard">
-    <div class="tiny-wizard__nomarl" v-if="!vertical">
+    <div class="tiny-wizard__normal" v-if="!vertical">
       <ul class="tiny-wizard__steps">
         <li
           class="tiny-wizard__steps-item"

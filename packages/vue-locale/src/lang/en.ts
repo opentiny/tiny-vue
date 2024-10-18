@@ -122,8 +122,15 @@ export default {
       empty: 'Empty'
     },
     crop: {
-      cropImage: 'crop image',
-      croppedImage: 'Post-Crop Image'
+      choose: 'choose image',
+      zoomOut: 'zoom out 10%',
+      zoomIn: 'zoom in 10%',
+      rotate_45: 'rotate -45°',
+      rotate45: 'rotate 45°',
+      closeCropArea: 'hide selection',
+      reset: 'reset',
+      closeCrop: 'exit crop',
+      cropImage: 'select area'
     },
     datepicker: {
       clear: 'Clear',
@@ -217,7 +224,9 @@ export default {
       img: 'img',
       color: 'color',
       table: 'table',
-      backgroundColor: 'backgroundColor'
+      backgroundColor: 'backgroundColor',
+      localResources: 'Local resources',
+      resourceLink: 'Resource Link'
     },
     calendar: {
       showType: {
@@ -289,7 +298,7 @@ export default {
       calcHash: 'Document is calculating encryption',
       uploadFile: 'Upload file',
       downloadAll: 'Download all',
-      onlySupport: 'Only support {type} file',
+      onlySupport: 'Support {type} file',
       fileNotLessThan: 'The size of single file cannot be less than ',
       fileNotMoreThan: 'The size of single file cannot be more than ',
       fileSizeRange: 'The size of a single file must range from {moreThan} to {lessThan}.',
@@ -768,6 +777,11 @@ export default {
     },
     dialogSelect: {
       treeSearch: 'Enter a keyword and press Enter'
+    },
+    loadList: {
+      errorText: 'Something went wrong.',
+      loadingText: 'Loading...',
+      finishedText: "There's no more."
     }
   },
   validation: {

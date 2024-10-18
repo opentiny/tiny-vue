@@ -8,7 +8,14 @@
     <tiny-button @click="editNode">编辑节点</tiny-button>
     <tiny-button @click="saveNode">5s后保存节点</tiny-button> <br />
     <br />
-    <tiny-tree ref="treeRef" node-key="id" :data="data" current-node-key="1" default-expand-all></tiny-tree>
+    <tiny-tree
+      ref="treeRef"
+      show-checkbox
+      node-key="id"
+      :data="data"
+      current-node-key="1"
+      default-expand-all
+    ></tiny-tree>
   </div>
 </template>
 
@@ -20,6 +27,7 @@ const data = ref([
   {
     id: '1',
     label: '数据 1',
+    disabled: true,
     children: [
       { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
       { id: '1-2', label: '数据 1-2' }

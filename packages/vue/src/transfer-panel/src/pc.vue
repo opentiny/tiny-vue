@@ -32,12 +32,15 @@
         v-model="state.query"
         size="small"
         :placeholder="placeholder"
+        clearable
+        :inputBoxType="state.inputBoxType"
+        @clear="clearQuery"
         @mouseenter="state.inputHover = true"
         @mouseleave="state.inputHover = false"
         v-if="filterable"
       >
-        <template #prefix>
-          <i :class="['tiny-input__icon', 'tiny-icon-' + state.inputIcon]" @click="clearQuery"></i>
+        <template #prefix v-if="state.showInputSearch">
+          <icon-search></icon-search>
         </template>
       </tiny-input>
       <div
@@ -67,9 +70,10 @@
             <span class="tiny-checkbox__inner">
               <icon-check
                 v-if="!(state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1)"
-                class="tiny-svg-size"
+                class="tiny-svg-size icon-no-checked"
+                style="fill: transparent"
               />
-              <icon-checked-sur v-else class="tiny-svg-size" />
+              <icon-checked-sur v-else class="tiny-svg-size icon-checked-sur" />
             </span>
             <input
               type="checkbox"
@@ -126,7 +130,7 @@ import { renderless, api } from '@opentiny/vue-renderless/transfer-panel/vue'
 import Checkbox from '@opentiny/vue-checkbox'
 import Input from '@opentiny/vue-input'
 import Pager from '@opentiny/vue-pager'
-import { iconArrowUp, iconArrowDown, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
+import { iconArrowUp, iconArrowDown, iconYes, iconSearch } from '@opentiny/vue-icon'
 
 export const transferPanelProps = {
   columns: Array,
@@ -169,8 +173,9 @@ export default defineComponent({
     TinyPager: Pager,
     IconArrowDown: iconArrowDown(),
     IconArrowUp: iconArrowUp(),
-    IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck(),
+    IconCheckedSur: iconYes(),
+    IconCheck: iconYes(),
+    IconSearch: iconSearch(),
     OptionContent: {
       props: {
         option: [Object, Array]

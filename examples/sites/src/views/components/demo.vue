@@ -247,13 +247,13 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .is-current {
-  padding: var(--ti-common-space-5x) var(--ti-common-space-6x);
+  padding: 20px 24px;
 }
 
 .demo-desc {
   font-size: 16px;
   line-height: 1.7em;
-  margin: var(--ti-common-space-2x) 0 var(--ti-common-space-6x);
+  margin: 8px 0 24px;
 
   :deep(code) {
     color: #476582;
@@ -310,10 +310,11 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   background: #fafafa;
-  padding: var(--ti-common-space-8x) var(--ti-common-space-6x) calc(var(--ti-common-space-base) * 12);
+  padding: 26px 18px 42px;
 
   .pc-demo {
     flex: 1;
+    padding: 6px;
   }
 }
 
@@ -327,17 +328,17 @@ export default defineComponent({
   }
 
   .demo-desc {
-    margin-bottom: var(--ti-common-size-4x);
-    font-size: var(--ti-common-font-size-1);
+    margin-bottom: 16px;
+    font-size: 14px;
     color: #595959;
     line-height: 30px;
   }
 
   .demo-options {
-    height: var(--ti-common-size-4x);
+    height: 16px;
     position: absolute;
-    right: var(--ti-common-space-8x);
-    bottom: var(--ti-common-space-4x);
+    right: 32px;
+    bottom: 16px;
   }
 }
 

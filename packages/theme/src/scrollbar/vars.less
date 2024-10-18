@@ -22,15 +22,15 @@
 *
 */
 
-.component-css-vars-scrollbar() {
+.inject-Scrollbar-vars() {
   // 垂直滚动条距离右侧距离
-  --ti-scrollbar-vertical-right: 2px;
+  --tv-Scrollbar-vertical-right: var(--tv-space-sm);
   // 垂直滚动条宽度
-  --ti-scrollbar-vertical-width: 6px;
+  --tv-Scrollbar-vertical-width: var(--tv-space-md);
   // 垂直滚动条滑块背景色
-  --ti-scrollbar-thumb-bg-color: rgba(144, 147, 153, 0.3);
+  --tv-Scrollbar-thumb-bg-color: var(--tv-color-bg-scrollbar-thumb);
   // 垂直滚动条滑块悬浮时背景色
-  --ti-scrollbar-thumb-hover-bg-color: rgba(144, 147, 153, 0.5);
+  --tv-Scrollbar-thumb-hover-bg-color: var(--tv-color-bg-scrollbar-thumb-hover);
   // 垂直滚动条滑块圆角
-  --ti-scrollbar-thumb-border-radius: inherit;
+  --tv-Scrollbar-thumb-border-radius: var(--tv-border-radius-scrollbar-thumb);
 }

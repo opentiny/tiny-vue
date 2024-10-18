@@ -62,17 +62,17 @@ const dataArr = ref([
   {
     title: 'TinyVue',
     content: '^15.0.01',
-    imageSrc: ''
+    imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyvue.svg'
   },
   {
     title: 'TinyNG',
     content: '^16.0.01',
-    imageSrc: ''
+    imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyng.svg'
   },
   {
     title: 'TinyEngine',
     content: '^14.0.01',
-    imageSrc: '',
+    imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyengine.svg',
     selectVal: 'TinyVue',
     options: [
       { value: 'TinyVue', label: 'TinyVue' },
@@ -128,6 +128,9 @@ const dataArr = ref([
   display: block;
   width: 40px;
   height: 40px;
+  background-color: #2f5bea;
+  border-radius: 4px;
+  padding: 4px;
 }
 .card-text {
   margin-left: 16px;

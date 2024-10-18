@@ -246,6 +246,19 @@ export default {
       codeFiles: ['validate-event.vue']
     },
     {
+      demoId: 'now',
+      name: {
+        'zh-CN': ' “此刻”逻辑定制',
+        'en-US': '"At the moment" logic customization'
+      },
+      desc: {
+        'zh-CN':
+          '<p>“此刻”配置的时间与用户本地时间设置相关，为保证部分逻辑对服务器时间的要求，组件提供 <code>nowClick</code >函数和 <code>now</code> 插槽两种定制方式，用户可以自定义“此刻”配置的时间。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['now.vue']
+    },
+    {
       demoId: 'events',
       name: {
         'zh-CN': '事件',

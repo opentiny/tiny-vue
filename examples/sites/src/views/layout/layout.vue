@@ -16,7 +16,9 @@
         >
           <template #default="{ data }">
             <div class="node-name-container">
-              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="absolute-tag">多端</tiny-tag>
+              <tiny-tag v-if="data?.mode?.includes('mobile-first')" size="mini" effect="plain" class="absolute-tag"
+                >多端</tiny-tag
+              >
               <!-- 分类图标 -->
               <component
                 v-if="data.type === 'overview' || data.children"
@@ -24,9 +26,15 @@
                 class="menu-type-icon"
               ></component>
               <span class="node-name-label">{{ data.label }}</span>
-              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="light" :type="data.mark?.type">
-                {{ data.mark.text }}
-              </tiny-tag>
+              <version-tip
+                class="node-float-tip"
+                v-if="data.meta || data.versionTipOption"
+                :meta="data.meta"
+                v-bind="data.versionTipOption"
+                render-type="tag"
+                :is-from-menu="true"
+              >
+              </version-tip>
             </div>
           </template>
         </tiny-tree-menu>
@@ -42,19 +50,20 @@
       </div>
     </div>
 
-    <float-settings></float-settings>
+    <float-settings v-if="!isThemeSaas"></float-settings>
   </div>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
-import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
 import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import FloatSettings from '@/views/components/float-settings'
+import FloatSettings from '@/views/components/float-settings.vue'
+import VersionTip from '../components/VersionTip.vue'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -67,7 +76,8 @@ export default defineComponent({
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
     TinyButton: Button,
-    FloatSettings
+    FloatSettings,
+    VersionTip
   },
   props: [],
   setup() {
@@ -86,9 +96,12 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
+    const route = useRoute()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
+
+    const isThemeSaas = import.meta.env.VITE_TINY_THEME === 'saas'
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -97,7 +110,7 @@ export default defineComponent({
     const searchMenu = (value, data) => {
       if (!value) return true
       const trimValue = value.trim().toLowerCase()
-      const isGird = (trimValue === 'grid' || trimValue === '表格') && data.key?.startsWith('grid-')
+      const isGird = (trimValue === 'grid' || trimValue === '表格') && data.key?.startsWith('grid')
       return data.label.toLowerCase().includes(value.toLowerCase()) || isGird
     }
 
@@ -115,6 +128,19 @@ export default defineComponent({
       state.isCollapsed = isCollapsed
     }
     let routerCbDestroy = null
+
+    watch(
+      () => route.path,
+      (currentVal) => {
+        // 监听路由变化，反作用与左侧列表菜单展开对应的列表
+        const list = currentVal.split('/')
+        if (list && list[list.length - 1]) {
+          const key = list[list.length - 1]
+          state.expandKeys = [key]
+          state.treeMenuRef.setCurrentKey(key)
+        }
+      }
+    )
 
     onMounted(async () => {
       // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
@@ -154,7 +180,8 @@ export default defineComponent({
       apiModeFn,
       templateModeState,
       getWord,
-      i18nByKey
+      i18nByKey,
+      isThemeSaas
     }
   }
 })
@@ -163,7 +190,7 @@ export default defineComponent({
 <style lang="less">
 .content-layout {
   display: flex;
-  --layout-tree-menu-input-height: var(--ti-common-space-8x);
+  --layout-tree-menu-input-height: 32px;
   --layout-content-main-min-width: 600px;
   --layout-content-main-max-width: 1000px;
 }
@@ -202,11 +229,11 @@ export default defineComponent({
 }
 
 .main-menu.tiny-tree-menu {
-  --ti-tree-menu-node-current-text-color: var(--ti-common-color-primary-normal);
+  --ti-tree-menu-node-current-text-color: #191919;
 
   height: 100%;
   padding-top: 30px;
-  padding-left: var(--ti-common-space-10);
+  padding-left: 10px;
 
   &::before {
     display: none;
@@ -216,13 +243,13 @@ export default defineComponent({
     padding-bottom: 30px;
 
     .tiny-tree-node__wrapper {
-      padding-right: var(--ti-common-space-10);
+      padding-right: 10px;
     }
 
     .tiny-tree-node {
       &.is-current > .tiny-tree-node__content,
       .tiny-tree-node__content:hover {
-        border-radius: var(--ti-common-space-5x);
+        border-radius: 20px;
       }
 
       &.is-current {
@@ -231,7 +258,7 @@ export default defineComponent({
         }
 
         .menu-type-icon {
-          fill: var(--ti-common-color-primary-normal);
+          fill: #191919;
         }
       }
     }
@@ -252,12 +279,12 @@ export default defineComponent({
   }
 
   .tiny-input {
-    margin: 0 var(--ti-common-space-10) var(--ti-common-space-3x);
+    margin: 0 10px 12px;
     width: auto;
 
     .tiny-input__inner {
       width: 100%;
-      border: 1px solid var(--ti-tree-menu-border-color);
+      border: 1px solid #f0f0f0;
     }
   }
 
@@ -271,7 +298,7 @@ export default defineComponent({
   .absolute-tag {
     position: absolute;
     right: 4px;
-    top: 12px;
+    top: 18px;
   }
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -295,8 +322,8 @@ export default defineComponent({
       }
 
       .menu-type-icon {
-        width: var(--ti-common-size-3x);
-        height: var(--ti-common-size-3x);
+        width: 12px;
+        height: 12px;
         display: inline-block;
       }
     }
@@ -321,8 +348,8 @@ export default defineComponent({
 
 .api-type-box {
   overflow: hidden;
-  border-bottom: 1px solid var(--ti-common-color-line-dividing);
-  border-right: 1px solid var(--ti-common-color-line-dividing);
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
   transition: width 0.5s;
   width: 100%;
   position: relative;
@@ -350,7 +377,7 @@ export default defineComponent({
     & > .tiny-svg {
       font-size: 18px;
       margin-left: 8px;
-      fill: var(--ti-common-color-bg-emphasize);
+      fill: #191919;
     }
   }
 }
@@ -358,7 +385,7 @@ export default defineComponent({
 #layoutSider {
   background: #fff;
   height: calc(100vh - 60px);
-  border-right: 1px solid var(--ti-common-color-line-dividing);
+  border-right: 1px solid #f0f0f0;
 
   &.saas-border {
     border-right: 1px solid #ddd;

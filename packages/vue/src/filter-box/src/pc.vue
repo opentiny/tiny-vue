@@ -10,7 +10,11 @@
       {{ value || value === 0 ? value : placeholder }}
     </p>
     <icon-error v-if="value && showClose && !disabled" class="filter-icon-close" @click.stop="handleClear"></icon-error>
-    <icon-arrow-bottom v-else :class="['filter-box-icon', dropDownVisible && 'is-reverse']"></icon-arrow-bottom>
+    <component
+      v-else
+      :is="state.expandButtonIcon"
+      :class="['filter-box-icon', dropDownVisible && 'is-reverse']"
+    ></component>
   </div>
 </template>
 

@@ -291,7 +291,7 @@
               state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
               hoverExpand && 'relative left-0 max-w-full leading-normal line-clamp-1',
               autosize
-                ? 'left-0 max-w-full absolute break-words  whitespace-pre-line leading-normal'
+                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-normal'
                 : 'left-0 max-w-full text-ellipsis overflow-hidden break-words whitespace-pre-wrap line-clamp-5'
             ]"
             @click="state.showDisplayOnlyBox = true"
@@ -426,8 +426,7 @@ export default defineComponent({
     'popupMore',
     'showTooltip',
     'frontClearIcon',
-    'hoverExpand',
-    'showTooltip'
+    'hoverExpand'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

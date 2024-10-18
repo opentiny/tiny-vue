@@ -6,6 +6,6 @@ test('空数据插槽', async ({ page }) => {
 
   const demo = page.locator('#slot-empty')
   const emptySlot = demo.locator('.tiny-button-group .tiny-button-group--empty')
-  await expect(emptySlot.first()).toHaveCSS('color', 'rgb(173, 176, 184)')
+  await expect(emptySlot.first()).toHaveCSS('color', 'rgb(128, 128, 128)')
   await expect(demo.locator('.tiny-button-group .custom-empty')).toHaveCSS('color', 'rgb(250, 194, 10)')
 })

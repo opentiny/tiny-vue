@@ -1,8 +1,8 @@
 /** 把图标打包为 css, 参考：https://antfu.me/posts/icons-in-pure-css-zh */
-const gulp = require('gulp')
-const transform = require('gulp-transform')
-const concat = require('gulp-concat')
-const svgo = require('svgo')
+import gulp from 'gulp'
+import transform from 'gulp-transform'
+import concat from 'gulp-concat'
+import svgo from 'svgo'
 
 // svg的明文替换
 function encodeSvg(svg) {
@@ -80,4 +80,4 @@ function buildSvg(cb) {
   cb()
 }
 
-module.exports = { buildSvg }
+export { buildSvg }

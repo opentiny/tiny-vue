@@ -29,7 +29,6 @@ const split2 = ref(0.25)
 <style scoped>
 .split-nest {
   height: 300px;
-  border: 1px solid #d9d9d9;
 }
 
 .split-content {

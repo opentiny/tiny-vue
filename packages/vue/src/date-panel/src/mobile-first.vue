@@ -206,16 +206,18 @@
       </div>
 
       <div data-tag="tiny-picker-panel__footer" :class="gcls('footer')" v-show="state.isShowFooter">
-        <tiny-button
-          size="mini"
-          type="text"
-          data-tag="tiny-picker-panel__link-btn"
-          :class="gcls('link-btn')"
-          @click="changeToNow"
-          v-show="!['dates', 'years'].includes(state.selectionMode)"
-        >
-          {{ t('ui.datepicker.now') }}
-        </tiny-button>
+        <slot>
+          <tiny-button
+            size="mini"
+            type="text"
+            data-tag="tiny-picker-panel__link-btn"
+            :class="gcls('link-btn')"
+            @click="changeToNow"
+            v-show="!['dates', 'years'].includes(state.selectionMode)"
+          >
+            {{ t('ui.datepicker.now') }}
+          </tiny-button>
+        </slot>
         <tiny-button
           type="primary"
           size="mini"
@@ -282,7 +284,10 @@ export default {
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    nowClick: {
+      type: Function
+    }
   },
   emits: ['pick', 'select-change', 'dodestroy'],
   setup(props, context) {

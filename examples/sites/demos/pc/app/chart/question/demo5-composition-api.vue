@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ChartLine as TinyLine, Button as TinyButton } from '@opentiny/vue'
+import { HuichartsLine as TinyLine, Button as TinyButton } from '@opentiny/vue'
 
 const options = ref({
   padding: [50, 30, 50, 20],

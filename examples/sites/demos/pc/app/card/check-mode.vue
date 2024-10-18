@@ -69,12 +69,12 @@ export default {
         {
           title: 'TinyVue',
           content: '^15.0.01',
-          imageSrc: ''
+          imageSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`
         },
         {
           title: 'TinyNG',
           content: '^16.0.01',
-          imageSrc: ''
+          imageSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet2.jpg`
         }
       ]
     }

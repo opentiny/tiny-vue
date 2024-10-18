@@ -132,6 +132,23 @@ const itemStep = (item, state, deepCopy, index, Shepherd) => {
         const currentStep = Shepherd.activeTour && Shepherd.activeTour.getCurrentStep()
         const currentStepElement = currentStep && currentStep.getElement()
         const footer = currentStepElement && currentStepElement.querySelector('.shepherd-footer')
+        const cancelIcon =
+          currentStepElement && currentStepElement.querySelector('.shepherd-header .shepherd-cancel-icon span')
+        const cloesIcon = `<?xml version="1.0" encoding="utf-8"?>
+          <!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+          <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:none;}
+            .st1{fill-rule:evenodd;clip-rule:evenodd;}
+          </style>
+          <polygon id="Fill-1" class="st0" points="0,16 16,16 16,0 0,0 "/>
+          <path id="形状结合" class="st1" d="M4.25,3.4L8,7.15l3.75-3.75c0.23-0.23,0.61-0.23,0.85,0c0.23,0.23,0.23,0.62,0,0.85L8.85,8
+            l3.75,3.75c0.23,0.24,0.23,0.62,0,0.85c-0.23,0.23-0.61,0.23-0.85,0L8,8.85L4.25,12.6c-0.23,0.23-0.61,0.23-0.85,0
+            c-0.24-0.23-0.24-0.61,0-0.85L7.15,8L3.4,4.25c-0.23-0.23-0.23-0.61,0-0.85C3.64,3.17,4.02,3.17,4.25,3.4z"/>
+          </svg>`
+
+        cancelIcon.innerHTML = cloesIcon
         const progress = document.createElement('span')
         progress.classList.add('progress-style')
         progress.innerText = `${Shepherd.activeTour && Shepherd.activeTour.steps.indexOf(currentStep) + 1}/${

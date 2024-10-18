@@ -10,74 +10,71 @@
 *
 */
 
-.component-css-vars-tooltip() {
-  // 弹框箭头的尺寸,(hide)
-  --ti-tooltip-popper-border-width: 6px;
-  // 弹框箭头的负尺寸,用于偏移(hide)
-  --ti-tooltip-popper-neg-border-width: calc(var(--ti-tooltip-popper-border-width) * -1);
-  // 弹框字体行高(hide)
-  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-3, 18px);
-  // 弹框字体(hide)
-  --ti-tooltip-popper-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
-  // 悬浮弹出框圆角
-  --ti-tooltip-popper-border-radius: var(--ti-common-border-radius-1, 4px);
-  // 悬浮弹出框字号
-  --ti-tooltip-popper-font-size: var(--ti-common-font-size-base, 12px);
+.inject-Tooltip-vars() {
   // 弹框三角默认边框色
-  --ti-tooltip-popper-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
-  // 正常背景色 (hide)
-  --ti-tooltip-popper-normal-bg-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --tv-Tooltip-popper-border-color: var(--tv-color-border-active);
+  // 弹框字体行高
+  --tv-Tooltip-popper-font-line-height: var(--tv-line-height-number);
+  // 悬浮弹出框圆角
+  --tv-Tooltip-popper-border-radius: var(--tv-border-radius-lg);
+  // 悬浮弹出框字号
+  --tv-Tooltip-popper-font-size: var(--tv-font-size-md);
+
+  // 正常背景色
+  --tv-Tooltip-popper-normal-bg-color: var(--tv-color-bg-secondary);
   // 文字提示正常文本色(hide)
-  --ti-tooltip-popper-normal-text-color: var(--ti-tooltip-popper-dark-text-color);
+  --tv-Tooltip-popper-normal-text-color: var(--tv-color-text);
   // 弹框正常边框色 (hide)
-  --ti-tooltip-popper-normal-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --tv-Tooltip-popper-normal-border-color: var(--tv-Tooltip-popper-normal-bg-color);
 
   // info类型弹框背景色
-  --ti-tooltip-popper-info-bg-color: var(--ti-common-color-prompt-border, #beccfa);
+  --tv-Tooltip-popper-info-bg-color: var(--tv-color-info-bg);
   // info类型弹框文本色
-  --ti-tooltip-popper-info-text-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-info-text-color: var(--tv-color-info-text-white);
   // info类型弹框三角边框色
-  --ti-tooltip-popper-info-border-color: var(--ti-common-color-prompt-border, #beccfa);
+  --tv-Tooltip-popper-info-border-color: var(--tv-color-info-border);
 
   // error类型弹框背景色
-  --ti-tooltip-popper-error-bg-color: var(--ti-common-color-danger-normal, #c7000b);
+  --tv-Tooltip-popper-error-bg-color: var(--tv-color-error-bg);
   // error类型弹框文本色
-  --ti-tooltip-popper-error-text-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-error-text-color: var(--tv-color-error-text-white);
   // error类型弹框三角边框色
-  --ti-tooltip-popper-error-border-color: var(--ti-common-color-danger-normal, #c7000b);
+  --tv-Tooltip-popper-error-border-color: var(--tv-color-error-border);
 
   // warning类型弹框背景色
-  --ti-tooltip-popper-warning-bg-color: var(--ti-common-color-warning-normal, #fa9841);
+  --tv-Tooltip-popper-warning-bg-color: var(--tv-color-warn-bg);
   // warning类型弹框文本色
-  --ti-tooltip-popper-warning-text-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-warning-text-color: var(--tv-color-warn-text-white);
   // warning类型弹框三角边框色
-  --ti-tooltip-popper-warning-border-color: var(--ti-common-color-warning-normal, #fa9841);
+  --tv-Tooltip-popper-warning-border-color: var(--tv-color-warn-border);
 
   // success类型弹框背景色
-  --ti-tooltip-popper-success-bg-color: var(--ti-common-color-success-normal, #50d4ab);
+  --tv-Tooltip-popper-success-bg-color: var(--tv-color-success-bg);
   // success类型弹框文本色
-  --ti-tooltip-popper-success-text-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-success-text-color: var(--tv-color-success-text-white);
   // success类型弹框三角边框色
-  --ti-tooltip-popper-success-border-color: var(--ti-common-color-success-normal, #50d4ab);
+  --tv-Tooltip-popper-success-border-color: var(--tv-color-success-border);
 
   // dark主题弹框背景色
-  --ti-tooltip-popper-dark-bg-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --tv-Tooltip-popper-dark-bg-color: var(--tv-color-bg-primary);
   // dark主题弹框文本色
-  --ti-tooltip-popper-dark-text-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-dark-text-color: var(--tv-color-text-white);
   // light主题弹框背景色
-  --ti-tooltip-popper-light-bg-color: var(--ti-common-color-light, #fff);
+  --tv-Tooltip-popper-light-bg-color: var(--tv-color-bg-secondary);
 
   // light主题|禁用弹框文本色
-  --ti-tooltip-popper-light-text-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --tv-Tooltip-popper-light-text-color: var(--tv-color-text);
   // light主题|禁用时弹框边框色
-  --ti-tooltip-popper-light-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --tv-Tooltip-popper-light-border-color: var(--tv-Tooltip-popper-light-bg-color);
 
   // 弹框阴影
-  --ti-tooltip-box-shadow: var(--ti-common-shadow-3-down, 0 4px 16px 0 rgba(0, 0, 0, 0.2));
+  --tv-Tooltip-box-shadow: var(--tv-shadow-2-down);
   // 弹框垂直内边距
-  --ti-tooltip-padding-vertical: var(--ti-common-space-3x, 12px);
+  --tv-Tooltip-padding-y: 12px;
   // 弹框水平内边距
-  --ti-tooltip-padding-horizontal: var(--ti-common-space-4x, 16px);
+  --tv-Tooltip-padding-x: 16px;
   // 文字提示错误图标色
-  --ti-tooltip-validate-icon-color: var(--ti-common-color-error, #f66f6a);
+  --tv-Tooltip-validate-icon-color: var(--tv-color-error-icon);
+  // 文本内容容器最大高度
+  --tv-Tooltip-content-max-height: 50vh;
 }

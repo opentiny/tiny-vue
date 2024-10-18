@@ -1,17 +1,17 @@
 <template>
   <tiny-popeditor v-model="value" :grid-op="gridOp" text-field="name" value-field="id" :conditions="conditions">
     <template #search="slotScope">
-      <div class="item" style="text-align: center">
-        公司名：<input type="text" v-model="params.name" /> 城市：<input type="text" v-model="params.city" />
+      <div class="list">
+        <div class="item">
+          <span>公司名：</span>{{ params.name }}
+          <tiny-input type="text" v-model="params.name"></tiny-input>
+        </div>
+        <div class="item">
+          <span> 城市：</span>
+          <tiny-input type="text" v-model="params.city"></tiny-input>
+        </div>
       </div>
-      <div class="item" style="margin-top: 10px; text-align: center">
-        公司名：<tiny-input type="text" v-model="params.name" style="width: 30%"></tiny-input> 城市：<tiny-input
-          type="text"
-          v-model="params.city"
-          style="width: 30%"
-        ></tiny-input>
-      </div>
-      <div class="item" style="margin-top: 10px; text-align: center">
+      <div class="buttons">
         <tiny-button type="primary" @click="slotScope.searchOp.doSearch(params)">Search</tiny-button>
         <tiny-button @click="slotScope.searchOp.doClear(params)">Clear</tiny-button>
       </div>
@@ -130,3 +130,29 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-popeditor__dialog-box {
+  .tiny-popeditor-top .list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    line-height: 1.5;
+
+    .item {
+      width: 50%;
+
+      &:nth-child(2n + 1) {
+        padding-right: 16px;
+      }
+    }
+  }
+  .buttons {
+    margin-top: 12px;
+    text-align: right;
+  }
+}
+</style>

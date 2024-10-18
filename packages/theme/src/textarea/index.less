@@ -20,89 +20,123 @@
 @input-prefix-cls: ~'@{css-prefix}input';
 
 .@{textarea-prefix-cls} {
-  .component-css-vars-textarea();
+  .inject-Textarea-vars();
 
   position: relative;
   display: inline-block;
   width: 100%;
   vertical-align: bottom;
-  font-size: var(--ti-textarea-font-size);
+  font-size: var(--tv-Textarea-font-size);
+
+  &:before {
+    content: '';
+    width: calc(100% - 20px);
+    height: 8px;
+    position: absolute;
+    left: 2px;
+    top: 1px;
+    z-index: 1;
+    background: #fff;
+    border-radius: var(--tv-Textarea-border-radius);
+  }
+
+  &:after {
+    content: '';
+    width: calc(100% - 20px);
+    height: 16px;
+    position: absolute;
+    left: 2px;
+    bottom: 1px;
+    z-index: 1;
+    background: #fff;
+    border-radius: var(--tv-Textarea-border-radius);
+  }
 
   &.is-disabled &__inner {
-    background-color: var(--ti-textarea-disabled-bg-color);
-    border-color: var(--ti-textarea-border-color);
-    color: var(--ti-textarea-disabled-text-color);
+    background-color: var(--tv-Textarea-disabled-bg-color);
+    border-color: var(--tv-Textarea-border-color);
+    color: var(--tv-Textarea-disabled-text-color);
     cursor: not-allowed;
-    .placeholder(@color: var(--ti-textarea-placeholder-text-color));
+    .placeholder(@color: var(--tv-Textarea-placeholder-text-color));
   }
 
   &.is-disabled {
-    background-color: var(--ti-textarea-disabled-bg-color);
+    background-color: var(--tv-Textarea-disabled-bg-color);
+
+    &:before {
+      background-color: var(--tv-Textarea-disabled-bg-color);
+    }
+
+    &:after {
+      background-color: var(--tv-Textarea-disabled-bg-color);
+    }
+
     &:hover {
-      border-color: var(--ti-textarea-border-color);
+      border-color: var(--tv-Textarea-border-color);
     }
   }
 
   &.is-exceed {
     .@{textarea-prefix-cls}__inner {
-      border-color: var(--ti-textarea-exceed-text-color);
+      border-color: var(--tv-Textarea-exceed-text-color);
     }
 
     .@{input-prefix-cls}__count {
-      color: var(--ti-textarea-exceed-text-color);
+      color: var(--tv-Textarea-exceed-text-color);
+
       &-text-length {
-        color: var(--ti-textarea-exceed-text-color);
+        color: var(--tv-Textarea-exceed-text-color);
       }
     }
   }
 
   .@{input-prefix-cls}__count {
-    color: var(--ti-textarea-count-color);
-    background: var(--ti-textarea-bg-color);
-    font-size: var(--ti-textarea-count-font-size);
+    color: var(--tv-Textarea-count-color);
+    background: var(--tv-Textarea-bg-color);
+    font-size: var(--tv-Textarea-count-font-size);
     text-align: right;
     position: absolute;
-    bottom: var(--ti-textarea-count-bottom);
-    right: var(--ti-textarea-count-right);
-    width: var(--ti-textarea-count-width);
-    border-bottom-left-radius: var(--ti-textarea-count-border-radius);
-    padding-right: var(--ti-textarea-count-padding-right);
-    line-height: var(--ti-textarea-count-line-height);
+    z-index: 2;
+    line-height: 1.5;
+    bottom: 1px;
+    right: var(--tv-Textarea-count-right);
+    width: calc(100% - 17px);
+    border-bottom-left-radius: var(--tv-Textarea-count-border-radius);
+    padding-right: var(--tv-Textarea-count-padding-right);
 
     &-text-length {
-      color: var(--ti-textarea-count-text-length-color);
+      color: var(--tv-Textarea-count-text-length-color);
     }
   }
 
   &__inner {
     display: block;
-    width: var(--ti-textarea-inner-width);
+    width: 100%;
     min-height: 60px;
-    min-height: calc(var(--ti-textarea-height, 30px) * 2);
-    color: var(--ti-textarea-text-color);
-    border: 1px solid var(--ti-textarea-border-color);
-    border-radius: var(--ti-textarea-border-radius);
-    background: var(--ti-textarea-bg-color);
-    padding: var(--ti-textarea-padding-vertical) var(--ti-textarea-padding-horizontal);
-    padding-right: var(--ti-textarea-padding-right);
-    padding-bottom: var(--ti-textarea-padding-bottom);
+    min-height: calc(var(--tv-Textarea-height, 30px) * 2);
+    color: var(--tv-Textarea-text-color);
+    border: 1px solid var(--tv-Textarea-border-color);
+    border-radius: var(--tv-Textarea-border-radius);
+    background: var(--tv-Textarea-bg-color);
+    padding: var(--tv-Textarea-padding-y) var(--tv-Textarea-padding-x);
+    padding-bottom: var(--tv-Textarea-padding-bottom);
     line-height: 1.5;
-    font-size: var(--ti-textarea-font-size);
-    font-family: var(--ti-textarea-font-family);
+    font-size: var(--tv-Textarea-font-size);
     resize: vertical;
     box-sizing: border-box;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    .placeholder(@color: var(--ti-textarea-placeholder-text-color));
+    .placeholder(@color: var(--tv-Textarea-placeholder-text-color));
 
     &:hover {
-      border-color: var(--ti-textarea-inner-hover-border-color);
+      border-color: var(--tv-Textarea-inner-hover-border-color);
     }
+
     &:focus {
-      border-color: var(--ti-textarea-inner-active-border-color);
+      border-color: var(--tv-Textarea-inner-active-border-color);
     }
 
     .@{textarea-prefix-cls}:has(&:focus) {
-      border-color: var(--ti-textarea-active-border-color);
+      border-color: var(--tv-Textarea-active-border-color);
     }
 
     &:hover,
@@ -121,16 +155,13 @@
 
   .@{textarea-prefix-cls}__inner {
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 16px;
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
+      border-radius: 8px;
       background-clip: content-box;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
-      border-top: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border: 4px solid transparent;
     }
   }
 
@@ -168,6 +199,14 @@
       line-height: 1.5;
     }
 
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      display: none;
+    }
+
     .@{textarea-prefix-cls}__inner-con {
       height: auto;
 
@@ -192,8 +231,9 @@
         overflow: hidden;
         word-wrap: break-word;
         white-space: pre-wrap;
+        line-height: 1.5;
 
-        &::before {
+        &:before {
           content: '';
           float: right;
           height: 100%;
@@ -203,7 +243,7 @@
         .more-btn {
           float: right;
           clear: both;
-          color: #1890ff;
+          color: var(--tv-Textarea-more-btn-text-color);
           font-size: 12px;
           line-height: 12px;
           cursor: pointer;

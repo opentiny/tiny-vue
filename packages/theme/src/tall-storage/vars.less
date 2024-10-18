@@ -10,9 +10,15 @@
 *
 */
 
-.component-css-vars-tall-storage() {
-  --ti-tall-storage-bg-color: var(--ti-common-color-light, #fff);
-  --ti-tall-storage-border-radius: var(--ti-common-border-radius-normal, 2px);
-  --ti-tall-storage-item-height: var(--ti-common-size-height-normal, 28px);
-  --ti-tall-storage-item-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
+.inject-TallStorage-vars() {
+  // 背景颜色
+  --tv-TallStorage-bg-color: var(--tv-color-bg-secondary);
+  // 圆角
+  --tv-TallStorage-border-radius: var(--tv-border-radius-md);
+  // 选项高度
+  --tv-TallStorage-item-height: var(--tv-size-height-md);
+  // 选项背景颜色
+  --tv-TallStorage-item-bg-color: var(--tv-color-bg);
+  // 阴影
+  --tv-TallStorage-box-shadow: var(--tv-shadow-2-down);
 }

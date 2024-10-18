@@ -69,7 +69,7 @@ export default {
         },
         {
           name: 'customIcon',
-          type: 'VueComponent',
+          type: 'Component',
           defaultValue: '',
           desc: {
             'zh-CN': '设置带图标树形菜单',
@@ -77,6 +77,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'show-expand'
+        },
+        {
+          name: 'placeholder',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当数据为空时的占位符',
+            'en-US': 'Placeholder when data is empty'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         },
         {
           name: 'data',
@@ -397,6 +408,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'clearable'
+        },
+        {
+          name: 'highlight-query',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。<br>',
+            'en-US': 'Indicates whether to highlight the search text in the matched node.'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'show-filter'
         }
       ],
       events: [

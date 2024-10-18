@@ -44,6 +44,11 @@
     "type": "module",
     "exclude": false
   },
+  "Hooks": {
+    "path": "vue-hooks/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "FormItemLabelWrap": {
     "path": "vue/src/form-item/src/label-wrap.ts",
     "type": "template",

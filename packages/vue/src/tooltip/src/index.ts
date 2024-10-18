@@ -84,6 +84,9 @@ export const tooltipProps = {
   zIndex: {
     type: String,
     default: () => 'next'
+  },
+  contentMaxHeight: {
+    type: String
   }
 }
 export default defineComponent({

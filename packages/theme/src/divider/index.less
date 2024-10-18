@@ -4,15 +4,13 @@
 @divider-prefix-cls: ~'@{css-prefix}divider';
 
 .@{divider-prefix-cls} {
-  .component-css-vars-divider();
+  .inject-Divider-vars();
   position: relative;
 
   &&--horizontal {
     display: block;
-    height: 1px;
     margin: 24px 0;
-    border-top: var(--ti-divider-dividing-line);
-    opacity: var(--ti-divider-horizontal-opacity);
+    border-top: 1px solid var(--tv-Divider-dividing-line);
   }
 
   &&--vertical {
@@ -21,17 +19,15 @@
     height: 1em;
     margin: 0 8px;
     vertical-align: middle;
-    border-left: var(--ti-divider-dividing-line);
-    opacity: var(--ti-divider-vertical-opacity);
+    border-left: 1px solid var(--tv-Divider-dividing-line);
   }
 
   &__text {
     position: absolute;
-    padding: 0 20px;
     font-size: 14px;
     font-weight: 500;
-    color: var(--ti-divider-text-color);
-    background-color: var(--ti-divider-text-bg-color);
+    color: var(--tv-Divider-text-color);
+    background-color: var(--tv-Divider-text-bg-color);
 
     &.is-left {
       left: 20px;

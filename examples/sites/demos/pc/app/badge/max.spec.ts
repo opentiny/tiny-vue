@@ -5,7 +5,7 @@ test('计数最大值', async ({ page }) => {
   await page.goto('badge#max')
 
   const demo = page.locator('#max')
-  const badge = demo.locator('.tiny-badge')
+  const badge = demo.locator('.tiny-badge').first()
 
-  await expect(badge).toContainText('2+')
+  await expect(badge).toContainText('9+')
 })

@@ -65,8 +65,8 @@ export const renderless = (props, { reactive, provide, onMounted, onBeforeUnmoun
   })
 
   onBeforeUnmount(() => {
-    mutationObserver?.disconnect()
-    intersectionObserver?.disconnect()
+    state.mutationObserver?.disconnect()
+    state.intersectionObserver?.disconnect()
   })
 
   watch(

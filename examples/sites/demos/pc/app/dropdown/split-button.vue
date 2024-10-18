@@ -44,10 +44,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.demo-drop .tiny-dropdown .tiny-dropdown__trigger.tiny-dropdown__caret-button {
-  padding-left: 14px;
-  padding-right: 14px;
-}
-</style>

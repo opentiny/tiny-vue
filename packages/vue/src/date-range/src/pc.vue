@@ -214,12 +214,11 @@
         </div>
       </div>
       <div class="tiny-picker-panel__footer" v-if="state.showTime">
-        <tiny-button size="mini" type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
+        <tiny-button type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
           {{ t('ui.datepicker.clear') }}
         </tiny-button>
         <tiny-button
           :plain="state.confirmButtonProps.plain"
-          size="mini"
           :type="state.confirmButtonProps.type"
           class="tiny-picker-panel__link-btn"
           :disabled="state.btnDisabled"

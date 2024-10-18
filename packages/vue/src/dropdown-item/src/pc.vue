@@ -14,13 +14,15 @@
   <!-- TINY-TODO:  tiny-dropdown-menu__item命名不规范，后续统一有个迭代去掉 -->
   <li
     v-auto-tip="getTip ? { always: true, content: getTip, effect, placement: tipPosition } : false"
-    class="tiny-dropdown-item tiny-dropdown-menu__item"
-    :class="{
-      'is-disabled': disabled,
-      'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
-      'tiny-dropdown-item--check-status': state.checkedStatus && selected,
-      'has-children': itemData.children && itemData.children.length
-    }"
+    :class="[
+      'tiny-dropdown-item',
+      'tiny-dropdown-menu__item',
+      state.sizeClass,
+      disabled ? 'is-disabled' : '',
+      divided ? 'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided' : '',
+      state.checkedStatus && selected ? 'tiny-dropdown-item--check-status' : '',
+      itemData.children && itemData.children.length ? 'has-children' : ''
+    ]"
     ref="dropdownItem"
     @click.stop="handleClick"
     @mousedown.stop
@@ -35,7 +37,8 @@
         <component :is="state.getIcon"></component>
       </span>
       <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
-        <component v-if="icon" :is="icon" class="tiny-svg-size"></component>
+        <!-- TODO: 评估没什么用的话去掉 tiny-svg-size -->
+        <component v-if="icon" :is="icon" class="tiny-svg-size tiny-dropdown-item__pre-icon"></component>
         <span class="tiny-dropdown-item__label">
           <slot :item-data="itemData">
             <span>{{ label }}</span>

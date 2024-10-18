@@ -16,7 +16,16 @@ import type {
   ISharedRenderlessParamHooks,
   IMilestoneRenderlessParamUtils
 } from '@/types'
-import { handleClick, flagOperate, getMileIcon, getMileContent, getLineColor, handleFlagClick } from './index'
+import {
+  handleClick,
+  flagOperate,
+  getMileIcon,
+  getMileContent,
+  getLineColor,
+  handleFlagClick,
+  hexToRgb,
+  getFlagStyle
+} from './index'
 
 export const api = [
   'state',
@@ -28,7 +37,9 @@ export const api = [
   'getMileContent',
   'getMileFlagStyle',
   'getLineColor',
-  'getStatus'
+  'getStatus',
+  'hexToRgb',
+  'getFlagStyle'
 ]
 
 export const renderless = (
@@ -47,7 +58,9 @@ export const renderless = (
     handleFlagClick: handleFlagClick(emit),
     handleClick: handleClick({ emit }),
     getMileIcon: getMileIcon({ constants, props }),
-    flagOperate: flagOperate({ constants, refs, state })
+    flagOperate: flagOperate({ constants, refs, state }),
+    hexToRgb,
+    getFlagStyle: getFlagStyle(props)
   }
 
   return api

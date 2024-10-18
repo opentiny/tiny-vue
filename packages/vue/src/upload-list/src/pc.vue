@@ -209,7 +209,7 @@
               :title="t('ui.fileUpload.reUploadFile')"
               @click="$emit('reUpload', file)"
             >
-              <icon-refres class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refres>
+              <icon-refresh class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refresh>
             </span>
             <span
               v-if="!disabled && listOption.showDel"
@@ -330,7 +330,7 @@ import {
   iconFileCloudupload,
   iconDownload,
   iconCueL,
-  iconRefres,
+  iconRefresh,
   iconOperationfaild,
   iconFullscreenLeft,
   iconRight,
@@ -369,7 +369,7 @@ export default defineComponent({
     IconFileCloudupload: iconFileCloudupload(),
     IconDownload: iconDownload(),
     IconCueL: iconCueL(),
-    IconRefres: iconRefres(),
+    IconRefresh: iconRefresh(),
     IconOperationfaild: iconOperationfaild(),
     IconFullscreenLeft: iconFullscreenLeft(),
     IconRight: iconRight(),

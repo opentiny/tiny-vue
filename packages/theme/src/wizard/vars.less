@@ -10,19 +10,123 @@
 *
 */
 
-.component-css-vars-wizard() {
+.inject-Wizard-vars() {
   // 横向流程图默认字号(不含基础插槽)
-  --ti-wizard-font-size: var(--ti-common-font-size-base, 12px);
+  --tv-Wizard-font-size: var(--tv-font-size-md, 14px);
   // 节点文本色|图标色
-  --ti-wizard-icon-color: var(--ti-common-color-light, #fff);
+  --tv-Wizard-icon-color: var(--tv-color-icon-hover, #191919);
+  // 未完成节点文本色|图标色
+  --tv-Wizard-normal-icon-color: var(--tv-color-text-disabled, #c2c2c2);
   // 时间线流程图节点两侧文本色
-  --ti-wizard-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --tv-Wizard-text-color: var(--tv-color-text, #191919);
   // 时间线流程图节点右侧文字悬浮圆角
-  --ti-wizard-detail-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-Wizard-detail-border-radius: var(--tv-border-radius-md, 6px);
   // 时间线流程图节点右侧文字悬浮背景色
-  --ti-wizard-detail-bg-color: var(--ti-common-color-warning-normal, #fa9841);
+  --tv-Wizard-detail-bg-color: var(--tv-color-warn-bg, #ff8800);
   // 已完成的节点和线条背景色
-  --ti-wizard-icon-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  --tv-Wizard-icon-bg-color: var(--tv-color-bg-secondary, #ffffff);
+  // 已完成的节点边框色
+  --tv-Wizard-icon-border-color: var(--tv-color-border-active, #191919);
+  // 节点下方文本色
+  --tv-Wizard-node-text-color: var(--tv-color-text, #191919);
+  // 节点尺寸
+  --tv-Wizard-node-size: var(--tv-font-size-heading-xl, 32px);
+  // 节点线宽度
+  --tv-Wizard-lines-width: 30px;
+  // 节点线左右外边距
+  --tv-Wizard-lines-margin-horizontal: var(--tv-space-base, 4px);
+  // 第一条节点线颜色
+  --tv-Wizard-first-lines-bg-color: transparent;
+  // 节点线颜色
+  --tv-Wizard-lines-bg-color: var(--tv-color-bg-primary, #191919);
+  // 未完成节点线背景色
+  --tv-Wizard-lines-normal-bg-color: var(--tv-color-bg-disabled-control-checked, #dbdbdb);
+  // 时间线节点线颜色
+  --tv-Wizard-time-lines-bg-color: var(--tv-color-bg-primary, #191919);
+  // 时间线最后一条节点线颜色
+  --tv-Wizard-time-last-lines-bg-color: var(--tv-color-bg-primary, #191919);
+  // 最后一条节点线颜色
+  --tv-Wizard-last-lines-bg-color: transparent;
   // 未完成的节点背景色
-  --ti-wizard-chart-icon-bg-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --tv-Wizard-chart-icon-bg-color: var(--tv-color-bg-header, #f0f0f0);
+  // doing节点右侧线背景色
+  --tv-Wizard-right-lines-doing-bg-color: var(--tv-color-bg-disabled-control-checked, #dbdbdb);
+  // doing节点下方字重
+  --tv-Wizard-node-doing-font-weight: var(--tv-font-weight-bold, 600);
+  // 未完成节点边框色
+  --tv-Wizard-lines-normal-border-color: var(--tv-color-border-disabled, #dbdbdb);
+  // 未完成节点边框厚度
+  --tv-Wizard-lines-normal-border-weight: var(--tv-border-width, 1px);
+  // 节点标题上外边距
+  --tv-Wizard-node-title-margin-top: var(--tv-space-base, 4px);
+  // 页向导模式按钮组上外边距
+  --tv-Wizard-button-group-margin-top: calc(var(--tv-space-base, 4px) * 9);
+  // 页向导模式按钮左外边距
+  --tv-Wizard-button-margin-left: var(--tv-space-lg, 12px);
+  // 垂直模式线条宽度
+  --tv-Wizard-vertical-line-width: var(--tv-border-width, 1px);
+  // 垂直模式线条高度
+  --tv-Wizard-vertical-line-height: 60px;
+  // 垂直模式图标定位模式(hide)
+  --tv-Wizard-vertical-icon-position: absolute;
+  // 垂直模式文本外边距(hide)
+  --tv-Wizard-vertical-line-position-top: 54px;
+  // 垂直模式文件外边距(hide)
+  --tv-Wizard-vertical-icon-position-top: -40px;
+  // 垂直模式节点部分整体高度
+  --tv-Wizard-vertical-node-box-height: calc(var(--tv-Wizard-vertical-line-height) + var(--tv-Wizard-node-size) + 16px);
+  // 垂直模式节点文字左外边距
+  --tv-Wizard-vertical-text-margin-left: 21.5px;
+  // 垂直模式节点描述文字上外边距
+  --tv-Wizard-vertical-desc-margin-top: 0px;
+  // 垂直模式节点标题文字行高
+  --tv-Wizard-vertical-title-line-height: var(--tv-line-height-number, 1.5);
+  // 垂直模式节点标题字号
+  --tv-Wizard-vertical-title-font-size: var(--tv-font-size-md, 14px);
+  // 垂直模式节点描述字号
+  --tv-Wizard-vertical-desc-font-size: var(--tv-font-size-sm, 12px);
+  // 垂直模式节点描述文本色
+  --tv-Wizard-vertical-desc-text-color: var(--tv-color-text-weaken, #808080);
+  // 垂直模式未完成节点描述文本色
+  --tv-Wizard-vertical-wait-desc-text-color: var(--tv-color-text, #191919);
+  // 时间线节点尺寸
+  --tv-Wizard-time-node-size: var(--tv-font-size-heading-xl, 32px);
+  // 时间线节点边框厚度
+  --tv-Wizard-time-node-border-weight: 0;
+  // 时间线节点内图标宽度
+  --tv-Wizard-time-node-icon-width: var(--tv-font-size-heading-xl, 32px);
+  // 时间线节点内图标高度
+  --tv-Wizard-time-node-icon-height: var(--tv-font-size-heading-xl, 32px);
+  // 时间线节点内图标色
+  --tv-Wizard-time-node-icon-color: var(--tv-color-icon-hover, #191919);
+  // 时间线节点内图标背景色
+  --tv-Wizard-time-node-bg-color: var(--tv-color-bg-secondary, #ffffff);
+  // 时间线节点左侧日期最小宽度
+  --tv-Wizard-time-left-min-width: 120px;
+  // 时间线节点左侧日期右外边距
+  --tv-Wizard-time-left-margin-right: var(--tv-space-md, 8px);
+  // 时间线节点左侧日期top定位(hide)
+  --tv-Wizard-time-left-position-top: -28px;
+  // 时间线节点左侧时间top定位(hide)
+  --tv-Wizard-time-left-point-position-top: -15px;
+  // 时间线节点左侧展开图标右外边距
+  --tv-Wizard-time-left-icon-margin-right: 10px;
+  // 时间线节点左侧展开图标色
+  --tv-Wizard-time-left-icon-color: var(--tv-color-icon, #808080);
+  // 时间线节点左侧日期图标左外边距
+  --tv-Wizard-time-left-icon-margin-left: var(--tv-space-md, 8px);
+  // 时间线节点左侧日期图标尺寸
+  --tv-Wizard-time-left-icon-size: var(--tv-font-size-heading-xs, 16px);
+  // 时间线节点左侧文字行高
+  --tv-Wizard-time-left-line-height: var(--tv-line-height-number, 1.5);
+  // 时间线节点小圆点尺寸
+  --tv-Wizard-time-dot-size: var(--tv-font-size-sm, 12px);
+  // 时间线节点右侧文字对齐方式(hide)
+  --tv-Wizard-time-right-text-align: left;
+  // 时间线节点右侧文字左外边距
+  --tv-Wizard-time-right-margin-left: 15.5px;
+  // 时间线节点右侧文字垂直内边距
+  --tv-Wizard-time-right-padding-vertical: 0px;
+  // 时间线节点右侧标题底部外边距
+  --tv-Wizard-time-right-title-margin-bottom: 0px;
 }

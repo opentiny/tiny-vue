@@ -10,7 +10,7 @@ const baseURL = `${origin}/tiny-vue/zh-CN/os-theme/components/`
 const devServerCommon = 'pnpm run -w site'
 
 export default Config({
-  testDir: '../sites/demos',
+  testDir: '../sites/demos/pc',
   baseURL,
   storageState: {
     origins: [

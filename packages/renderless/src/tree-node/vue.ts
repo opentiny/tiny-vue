@@ -62,7 +62,7 @@ export const api = [
   'handleCheckChange'
 ]
 
-const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api, computed }) => {
+const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api, TreeAdapter, computed }) => {
   const state = reactive({
     tree: treeRoot,
     expanded: false,
@@ -80,6 +80,9 @@ const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api
     parentEmitter: $parentEmitter,
     isSaaSTheme: (props.theme || vm.theme) === 'saas',
     props: treeRoot.props,
+    renderedChildNodes: computed(() => {
+      return props.node.childNodes.filter((childNode) => (TreeAdapter ? TreeAdapter.shouldRender(childNode) : true))
+    }),
     computedExpandIcon: computed(() => api.computedExpandIcon(treeRoot, state)),
     computedIndent: computed(() => api.computedIndent(props, state))
   })
@@ -140,7 +143,8 @@ export const renderless = (
   const api = {}
   const treeRoot = inject('TreeRoot')
   const $parentEmitter = inject('parentEmitter')
-  const state = initState({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api, computed })
+  const TreeAdapter = inject('TreeAdapter', null)
+  const state = initState({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api, TreeAdapter, computed })
 
   if (state.tree.accordion) {
     state.parentEmitter.on('sibling-node-toggle-expand', (event) => api.onSiblingToggleExpand(event))

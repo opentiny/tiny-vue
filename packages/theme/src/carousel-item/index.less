@@ -16,7 +16,7 @@
 @carousel-prefix-cls: ~'@{css-prefix}carousel';
 
 .@{carousel-prefix-cls} {
-  .component-css-vars-carousel-item();
+  .inject-CarouselItem-vars();
 
   &__item,
   &__mask {
@@ -35,16 +35,17 @@
     .item-title {
       position: absolute;
       bottom: 0;
-      height: var(--ti-carousel-item-title-height);
+      height: var(--tv-CarouselItem-title-height);
       width: 100%;
-      line-height: var(--ti-carousel-item-title-height);
-      color: var(--ti-carousel-item-title-text-color, #fff);
+      line-height: var(--tv-CarouselItem-title-height);
+      color: var(--tv-CarouselItem-title-text-color);
       text-align: left;
-      background: var(--ti-carousel-item-title-bg-color);
+      background: var(--tv-CarouselItem-title-bg-color);
+      opacity: 0.3;
 
       span {
-        padding: 0 12px;
-        font-size: var(--ti-carousel-item-title-span-font-size);
+        padding: 0 16px;
+        font-size: var(--tv-CarouselItem-title-span-font-size);
         width: 80%;
         display: inline-block;
         text-overflow: ellipsis;
@@ -85,7 +86,7 @@
 
   &__mask {
     width: 100%;
-    background-color: var(--ti-carousel-mask-bg-color);
+    background-color: var(--tv-CarouselItem-mask-bg-color);
     opacity: 0.24;
     transition: 0.2s;
   }

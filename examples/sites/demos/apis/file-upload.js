@@ -567,6 +567,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'prompt-tip',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置提示是否为 tip 类型，悬浮图标时显示 tip 提示',
+            'en-US': 'Set whether the prompt is of the tip type. The tip is displayed when the icon is suspended.'
+          },
+          metaData: {
+            new: '3.19.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'prompt-tip',
+          pcDemo: 'prompt-tip'
+        },
+        {
           name: 're-upload-tip',
           type: '(count: number) => string',
           defaultValue: '',

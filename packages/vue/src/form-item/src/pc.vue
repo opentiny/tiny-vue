@@ -25,6 +25,7 @@ import {
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
+import { iconError } from '@opentiny/vue-icon'
 import type { IFormItemApi, IFormItemInstance } from '@opentiny/vue-renderless/types/form-item.type'
 
 const $constants = {
@@ -37,7 +38,8 @@ export default defineComponent({
   componentName: 'FormItem',
   components: {
     LabelWrap,
-    Tooltip
+    Tooltip,
+    IconError: iconError()
   },
   props: {
     ...$props,

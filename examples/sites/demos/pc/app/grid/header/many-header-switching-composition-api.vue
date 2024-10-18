@@ -6,7 +6,7 @@
     <tiny-grid :data="tableData" resizable :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <tiny-grid-column title="操作" header-align="center">
         <tiny-grid-column type="index" width="60"></tiny-grid-column>
-        <tiny-grid-column type="selection" width="40" v-if="flag"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="48" v-if="flag"></tiny-grid-column>
         <tiny-grid-column :renderer="rendererCellOperate" width="100" v-if="flag"></tiny-grid-column>
       </tiny-grid-column>
       <tiny-grid-column :title="renderHeaderDescription" header-align="center">

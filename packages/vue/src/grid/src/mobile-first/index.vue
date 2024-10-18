@@ -1,5 +1,12 @@
 <template>
-  <div data-tag="tiny-table-wrapper" class="scrollbar-size-0" :class="wrapperClass" :style="wrapperStyle">
+  <div
+    ref="warpperElem"
+    data-tag="tiny-table-wrapper"
+    class="scrollbar-size-0"
+    :class="wrapperClass"
+    :style="wrapperStyle"
+    @scroll="scrollEvent"
+  >
     <exception
       tiny_mode="mobile-first"
       tiny_mode_root
@@ -304,6 +311,10 @@ export default defineComponent({
       }
 
       emitEvent.call(this, 'card-click', [row, e])
+    },
+    scrollEvent(event) {
+      const { scrolLeft, scrollTop } = this.$refs.warpperElem
+      this.emitEvent('scroll', [{ type: 'body', $table: this.config?.tableVm, scrolLeft, scrollTop }, event])
     },
     cfg(row: Object): Datas {
       const { config, cardView, selectionColumn, slotLink, primaryColumn } = this as any
