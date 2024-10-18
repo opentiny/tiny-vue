@@ -11,6 +11,8 @@
 */
 .inject-Modal-vars() {
   //---------------------------------------------------- 弹窗场景
+  // 弹窗的遮罩层色
+  --tv-Modal-mask-bg-color: var(--tv-color-bg-mask);
 
   // --------------------------------------- box 全局
   // 弹窗的默认宽度
@@ -32,47 +34,59 @@
 
   // 弹窗头部状态图标的大小
   --tv-Modal-box-status-icon-font-size: 21px;
-  // 弹窗头部状态图标的颜色
-  --tv-Modal-box-status-icon-color: var(--xxxxxx); // 待扩充
+  // 成功状态时，弹窗头部状态图标的颜色
+  --tv-Modal-box-status-icon-color-success: var(--tv-color-success-icon);
+  // 错误状态时，弹窗头部状态图标的颜色
+  --tv-Modal-box-status-icon-color-error: var(--tv-color-error-icon);
+  // 警告状态时，弹窗头部状态图标的颜色
+  --tv-Modal-box-status-icon-color-warning: var(--tv-color-warn-icon);
+  // 信息状态时，弹窗头部状态图标的颜色
+  --tv-Modal-box-status-icon-color-info: var(--tv-color-info-icon);
+  // 询问状态时，弹窗头部状态图标的颜色
+  --tv-Modal-box-status-icon-color-question: var(--tv-color-icon-control);
+  // // 成功状态时，弹窗头部状态图标的颜色
+  // --tv-Modal-box-status-icon-color-loading: var(--tv-color-icon-hover); // 没有标准色，修改图标为loading
   // 弹窗头部状态图标的右外边距
   --tv-Modal-box-status-icon-margin-right: var(--tv-space-md);
 
-  // 弹窗头部标题的字体大小
-  --tv-Modal-box-title-font-size: var(--xxxxxx);
   // 弹窗头部标题的字体颜色
-  --tv-Modal-box-title-text-color: var(--xxxxxx);
+  --tv-Modal-box-title-text-color: var(--tv-color-text);
+  // 弹窗头部标题的字体大小
+  --tv-Modal-box-title-font-size: var(--tv-font-size-xxl);
   // 弹窗头部标题的字重
-  --tv-Modal-box-title-font-weight: var(--xxxxxx);
+  --tv-Modal-box-title-font-weight: var(--tv-font-weight-bold);
 
   // 弹窗头部关闭按钮的顶部距离
-  --tv-Modal-box-close-icon-top: var(--xxxxxx);
+  --tv-Modal-box-close-icon-top: 20px;
   // 弹窗头部关闭按钮的右边距离
-  --tv-Modal-box-close-icon-right: var(--xxxxxx);
+  --tv-Modal-box-close-icon-right: 20px;
   // 弹窗头部关闭按钮的大小
-  --tv-Modal-box-close-icon-size: var(--xxxxxx);
+  --tv-Modal-box-close-icon-size: 24px;
   // 弹窗头部关闭按钮的颜色
-  --tv-Modal-box-close-icon-color: var(--xxxxxx);
+  --tv-Modal-box-close-icon-color: var(--tv-color-icon);
   // 弹窗头部关闭按钮的悬浮颜色
-  --tv-Modal-box-close-icon-color-hover: var(--xxxxxx);
+  --tv-Modal-box-close-icon-color-hover: var(--tv-color-icon-hover);
+
+  // 弹窗头部zoom按钮的右边距离
+  --tv-Modal-box-zoom-icon-right: 48px;
   // -----------------------------------------body
   // 弹窗内容区的水平内边距
-  --tv-Modal-box-body-padding-x: var(--xxxxxx);
+  --tv-Modal-box-body-padding-x: 32px;
   // 弹窗内容区的垂直内边距
-  --tv-Modal-box-body-padding-y: var(--xxxxxx);
+  --tv-Modal-box-body-padding-y: 0;
   // 弹窗内容区的消息文本字体大小
-  --tv-Modal-box-body-text-font-size: var(--xxxxxx);
+  --tv-Modal-box-body-text-font-size: var(--tv-font-size-m);
   // 弹窗内容区的消息文本字体颜色
-  --tv-Modal-box-body-text-text-color: var(--xxxxxx);
+  --tv-Modal-box-body-text-text-color: var(--tv-color-text-secondary);
   // ------------------------------------------footer
   // 弹窗底部的水平内边距
-  --tv-Modal-box-footer-padding-x: var(--xxxxxx);
-  // 弹窗底部的垂直内边距
-  --tv-Modal-box-footer-padding-y: var(--xxxxxx);
+  --tv-Modal-box-footer-padding-x: 32px;
+  // 弹窗底部的上内边距
+  --tv-Modal-box-footer-padding-top: 24px;
+  // 弹窗底部的下内边距
+  --tv-Modal-box-footer-padding-bottom: 32px;
   // 弹窗底部的按钮的最小宽度
-  --tv-Modal-box-footerbtn-min-width: var(--xxxxxx);
-  // 弹窗底部的按钮的圆角
-  --tv-Modal-box-footerbtn-border-radius: var(--xxxxxx);
-  // -----------------------------------------header 可拖动, border可resize
+  --tv-Modal-box-footerbtn-min-width: 96px;
 
   //-----------------------------------------动画
 

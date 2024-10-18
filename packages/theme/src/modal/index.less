@@ -29,23 +29,222 @@
     left: 0;
     width: 100%;
     height: 100%;
+    line-height: 1.5;
 
     &.active {
       display: block;
     }
 
-    // alert, confirm 的弹窗场景
-    &.type_alert,
-    &.type_confirm {
+    // ----------------------------------------------------  alert, confirm 的弹窗场景
+    &.type__alert,
+    &.type__confirm {
       .@{modal-prefix-cls}__box {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 50%;
+        top: 15vh;
+        width: var(--tv-Modal-box-width);
+        background-color: var(--tv-Modal-box-bg-color);
+        border-radius: var(--tv-Modal-box-border-radius);
+        box-shadow: var(--tv-shadow-4-down);
+
+        .@{modal-prefix-cls}__header {
+          display: flex;
+          align-items: center;
+          padding: var(--tv-Modal-box-header-padding-top) var(--tv-Modal-box-header-padding-x)
+            var(--tv-Modal-box-header-padding-bottom) var(--tv-Modal-box-header-padding-x);
+
+          .@{modal-prefix-cls}__status-wrapper {
+            font-size: var(--tv-Modal-box-status-icon-font-size);
+            margin-right: var(--tv-Modal-box-status-icon-margin-right);
+          }
+          .@{modal-prefix-cls}__title {
+            color: var(--tv-Modal-box-title-text-color);
+            font-size: var(--tv-Modal-box-title-font-size);
+            font-weight: var(--tv-Modal-box-title-font-weight);
+          }
+          .@{modal-prefix-cls}__zoom-btn,
+          .@{modal-prefix-cls}__close-btn {
+            position: absolute;
+            top: var(--tv-Modal-box-close-icon-top);
+            fill: var(--tv-Modal-box-close-icon-color);
+            font-size: var(--tv-Modal-box-close-icon-size);
+            cursor: pointer;
+
+            &:hover {
+              fill: var(--tv-Modal-box-close-icon-color-hover);
+            }
+          }
+          .@{modal-prefix-cls}__close-btn {
+            right: var(--tv-Modal-box-close-icon-right);
+          }
+          .@{modal-prefix-cls}__zoom-btn {
+            right: var(--tv-Modal-box-zoom-icon-right);
+          }
+        }
+
+        .@{modal-prefix-cls}__body {
+          display: flex;
+          flex-grow: 1;
+          padding: var(--tv-Modal-box-body-padding-y) var(--tv-Modal-box-body-padding-x);
+
+          .@{modal-prefix-cls}__text {
+            font-size: var(--tv-Modal-box-body-text-font-size);
+            color: var(--tv-Modal-box-body-text-text-color);
+          }
+        }
+
+        .@{modal-prefix-cls}__footer {
+          text-align: right;
+          padding: var(--tv-Modal-box-footer-padding-top) var(--tv-Modal-box-footer-padding-x)
+            var(--tv-Modal-box-footer-padding-bottom) var(--tv-Modal-box-footer-padding-x);
+        }
+      }
+
+      // status图标色
+      &.status__success .@{modal-prefix-cls}__status-wrapper svg {
+        fill: var(--tv-Modal-box-status-icon-color-success);
+      }
+      &.status__warning .@{modal-prefix-cls}__status-wrapper svg {
+        fill: var(--tv-Modal-box-status-icon-color-warning);
+      }
+      &.status__error .@{modal-prefix-cls}__status-wrapper svg {
+        fill: var(--tv-Modal-box-status-icon-color-error);
+      }
+      &.status__info .@{modal-prefix-cls}__status-wrapper svg {
+        fill: var(--tv-Modal-box-status-icon-color-info);
+      }
+      &.status__question .@{modal-prefix-cls}__status-wrapper svg {
+        fill: var(--tv-Modal-box-status-icon-color-question);
+      }
+
+      // header,footer 可拖动, border可resize, 4个角可以resize
+      .@{modal-prefix-cls}__box.is__drag,
+      .@{modal-prefix-cls}__header,
+      .@{modal-prefix-cls}__footer-move {
+        cursor: move;
+      }
+
+      .@{modal-prefix-cls}__resize {
+        @SpaceSize: 8px;
+
+        .wl-resize,
+        .wr-resize,
+        .swst-resize,
+        .sest-resize,
+        .st-resize,
+        .swlb-resize,
+        .selb-resize,
+        .sb-resize {
+          position: absolute;
+          z-index: 100;
+        }
+
+        .wl-resize,
+        .wr-resize {
+          width: @SpaceSize;
+          height: 100%;
+          top: 0;
+          cursor: w-resize;
+        }
+
+        .wl-resize {
+          left: -@SpaceSize * 0.5 + 1;
+        }
+
+        .wr-resize {
+          right: -@SpaceSize * 0.5 + 1;
+        }
+
+        .swst-resize,
+        .sest-resize,
+        .swlb-resize,
+        .selb-resize {
+          width: @SpaceSize + 2;
+          height: @SpaceSize + 2;
+          z-index: 101;
+        }
+
+        .swst-resize,
+        .sest-resize {
+          top: -@SpaceSize;
+        }
+
+        .swlb-resize,
+        .selb-resize {
+          bottom: -@SpaceSize;
+        }
+
+        .sest-resize,
+        .swlb-resize {
+          cursor: sw-resize;
+        }
+
+        .swst-resize,
+        .selb-resize {
+          cursor: se-resize;
+        }
+
+        .swst-resize,
+        .swlb-resize {
+          left: -@SpaceSize;
+        }
+
+        .sest-resize,
+        .selb-resize {
+          right: -@SpaceSize;
+        }
+
+        .st-resize,
+        .sb-resize {
+          width: 100%;
+          height: @SpaceSize;
+          left: 0;
+          cursor: s-resize;
+        }
+
+        .st-resize {
+          top: -@SpaceSize * 0.5 + 1;
+        }
+
+        .sb-resize {
+          bottom: -@SpaceSize * 0.5 + 1;
+        }
       }
     }
+    // 最大化时,resize display=none
+    &.is__maximize .@{modal-prefix-cls}__resize {
+      display: none;
+    }
 
-    // message 的消息场景
-    &.type_alert,
-    &.type_confirm {
+    // 锁定的场景
+    &.lock__scroll {
+      overflow: hidden;
+    }
+
+    &:not(.lock__scroll) {
+      overflow: auto;
+    }
+
+    .@{modal-prefix-cls}__box {
+      pointer-events: all;
+    }
+
+    &:not(.lock__view) {
+      pointer-events: none;
+    }
+    // 遮罩层
+    &.is__mask {
+      background-color: var(--tv-Modal-mask-bg-color);
+    }
+    // --------------------------------------------------------  message 的消息场景
+    &.type__message {
       .@{modal-prefix-cls}__box {
       }
     }
   }
 }
+
+// vSize属性，文件未体现，且新规范不包含，本期整改不要了
+// box的渐现动画消息了

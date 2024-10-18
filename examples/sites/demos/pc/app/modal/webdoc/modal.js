@@ -177,7 +177,8 @@ export default {
           通过<code>lock-scroll</code>属性,设置是否锁住滚动条，不允许页面滚动。默认值为<code>false</code><br>
           通过<code>lock-view</code>属性,设置是否锁住页面，不允许窗口之外的任何操作。默认值为<code>true</code><br>
           <div class="tip custom-block">
-            <code>锁住滚动条</code> 是指锁定<code>body</code>元素上的滚动条，仅当<code>body</code>有滚动条时，才有效果。
+            <code>锁住滚动条</code> 是指锁定<code>body</code>元素上的滚动条，仅当<code>body</code>有滚动条时，才有效果。<br>
+            <code>锁住页面</code> 是指鼠标不能操作蒙层下面的元素。<br>
           </div>
         `,
         'en-US': `
@@ -185,6 +186,7 @@ export default {
           Using the <code>lock-view</code> property, you can set whether to lock the page and not allow any operations outside the window. The default value is <code>true</code><br>
           <div class="tip custom-block">
             <code> locks the scrollbar </code> means to lock the scrollbar on the <code>body</code> element. This only works if the <code>body</code> has a scrollbar.
+            <code> Locks the page </code> means that the mouse cannot manipulate the elements below the mask. <br>
           </div>
         `
       },
@@ -299,8 +301,8 @@ export default {
         'en-US': 'Position from top'
       },
       desc: {
-        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置,单位为px,默认值为<code>80</code>',
-        'en-US': `Use the <code>top</code> property to set the distance from the top of the message in units of px. The default value is <code>80</code>`
+        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置,单位为px',
+        'en-US': `Use the <code>top</code> property to set the distance from the top of the message in units of px. `
       },
       codeFiles: ['message-top.vue']
     },
