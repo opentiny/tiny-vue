@@ -10,40 +10,94 @@
 *
 */
 
-.component-css-vars-calendar-view() {
-    // header下边距
-    --ti-calendar-view-header-margin-bottom: var(--ti-common-space-8x, 32px);
-    // 占位
-    --ti-calendar-view-tool-first-display: flex;
-    --ti-calendar-view-tool-display: none;
-    // radio 填充
-    --ti-calendar-view-radio-active-fill: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-radio-active-inner: var(--ti-common-color-bg-white-normal, #ffffff);
-    --ti-calendar-view-radio-active-inner-hover: var(--ti-common-color-bg-white-normal, #ffffff);
-    --ti-calendar-view-radio-button-inner: #ebebeb;
-    --ti-calendar-view-header-main-text-color: var(--ti-common-color-text-weaken, #808080);
-    //选中
-    --ti-calendar-view-day-selected-border-radius: unset;
-    --ti-calendar-view-day-selected-svg-right: unset;
-    --ti-calendar-view-day-selected-svg-top: unset;
-    // 提示
-    --ti-calendar-view-tooltip-title-font-size: var(--ti-common-font-size-2, 16px);
-    --ti-calendar-view-tooltip-title-font-weight: var(--ti-common-font-weight-bold, 600);
-    --ti-calendar-view-tooltip-date-text-color: var(--ti-common-color-text-secondary, #595959);
-    --ti-calendar-view-tooltip-content-text-color: var(--ti-common-color-text-primary, #191919);
-    // 箭头
-    --ti-calendar-view-header-left-svg-fill: #D8D8D8;
-    --ti-calendar-view-header-right-svg-fill: #D8D8D8;
+.inject-CalendarView-vars() {
+    // 视图容器、背景色
+    --tv-CalendarView-bg: var(--tv-color-bg-secondary);
+    // picker右边距
+    --tv-CalendarView-picker-right-bottom: var(--tv-space-md);
+    // radio 文本色、背景色、悬浮色
+    --tv-CalendarView-radio-font-size: var(--tv-font-size-lg);
+    --tv-CalendarView-radio-icon-fill: var(--tv-color-icon);
+    --tv-CalendarView-radio-active-fill: var(--tv-color-icon-active);
+    --tv-CalendarView-radio-active-inner-bg: var(--tv-color-icon-white);
+    --tv-CalendarView-radio-active-border-color: var(--tv-color-border-active);
+    --tv-CalendarView-header-main-text-size: var(--tv-font-size-md);
+    --tv-CalendarView-header-main-text-color: var(--tv-color-text-weaken);
+    // main 间距、
+    --tv-CalendarView-main-margin-top: var(--tv-space-xs);
+    // 日期字号、间距、颜色、背景色
+    --tv-CalendarView-main-li-size: var(--tv-font-size-md);
+    --tv-CalendarView-date-margin-left: var(--tv-space-xl);
+    --tv-CalendarView-date-text-color: var(--tv-color-text);
+    --tv-CalendarView-date-weaken-text-color: var(--tv-color-text-weaken);
+    --tv-CalendarView-main-li-space: var(--tv-space-xs);
+    --tv-CalendarView-main-li-bg: var(--tv-color-bg-secondary);
+    // 日期选中背景色，悬浮色
+    --tv-CalendarView-date-selected-text-color: var(--tv-color-text-active);
+    --tv-CalendarView-li-selected-bg: var(--tv-color-bg-active-emphasize-light);
+    // 选中
+    --tv-CalendarView-selected-hover-color: var(--tv-color-bg-active-control);
+    --tv-CalendarView-selected-svg-color: var(--tv-color-icon-control-active);
+    --tv-CalendarView-selected-svg-size: var(--tv-font-size-lg);
+    // 未选中
+    --tv-CalendarView-not-selected-hover-color: var(--tv-color-bg-active-emphasize-light);
+    // 箭头间距颜色
+    --tv-CalendarView-header-svg-space: var(--tv-space-lg);
+    --tv-CalendarView-header-svg-fill: var(--tv-color-icon);
     // 日程
-    --ti-calendar-view-events-item-font-size: var(--ti-common-font-size-1, 14px);
-    --ti-calendar-view-events-item-font-weight: var(--ti-common-font-weight-bold, 600);
-    --ti-calendar-view-events-blue-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-green-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-red-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-yellow-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-purple-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-cyan-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-events-grey-item-color: var(--ti-common-color-text-primary, #191919);
-    --ti-calendar-view-is-selected-hover-color: rgba(240,248,255,0.7);
-    --ti-calendar-view-not-selected-hover-color: rgba(240,248,255,0.5);
+    --tv-CalendarView-events-item-font-size: var(--tv-font-size-md);
+    --tv-CalendarView-events-item-font-weight: var(--tv-font-weight-bold);
+    --tv-CalendarView-events-item-color: var(--tv-color-text);
+    // 提示字号、字重、颜色
+    --tv-CalendarView-tooltip-main-padding: var(--tv-space-xl);
+    --tv-CalendarView-tooltip-title-font-size: var(--tv-font-size-lg);
+    --tv-CalendarView-tooltip-title-font-weight: var(--tv-font-weight-bold);
+    --tv-CalendarView-tooltip-date-text-color: var(--tv-color-text-secondary);
+    // 禁用文字颜色
+    --tv-CalendarView-text-disabled-color: var(--tv-color-text-disabled);
+    // events日程版型
+    --tv-CalendarView-event-container-margin-bottom: var(--tv-space-xs);
+    --tv-CalendarView-event-start-padding: var(--tv-space-xs);
+    // events 内容样式
+    --tv-CalendarView-event-title-font-size: var(--tv-font-size-sm);
+    --tv-CalendarView-event-title--text-color: var(--tv-color-text);
+    // week模式date样式
+    --tv-CalendarView-week-date-font-size: var(--tv-font-size-lg);
+    --tv-CalendarView-week-date-text-color: var(--tv-color-text);
+    --tv-CalendarView-week-date-today-text-color: var(--tv-color-text-active);
+    --tv-CalendarView-week-day-font-size: var(--tv-font-size-md);
+    // mark标记样式
+    --tv-CalendarView-mark-color: var(--tv-color-error-bg);
+    --tv-CalendarView-mark-left: var(--tv-space-xs);
+    --tv-CalendarView-mark-border-radius: var(--tv-border-radius-round);
+    --tv-CalendarView-mark-digit-left: var(--tv-space-md);
+    // 时间线样式
+    --tv-CalendarView-timeline-margin-top: var(--tv-space-sm);
+    --tv-CalendarView-timeline-li-border-width: var(--tv-border-width);
+    --tv-CalendarView-timeline-span-font-size: var(--tv-font-size-md);
+    --tv-CalendarView-timeline-span-text-color: var(--tv-color-text);
+    // 时间线 event-list样式
+    --tv-CalendarView-events-list-height: var(--tv-space-xl);
+    --tv-CalendarView-events-list-padding: var(--tv-space-xs);
+    // 周次模式样式
+    --tv-CalendarView-week-li-padding-v: var(--tv-space-lg);
+    --tv-CalendarView-week-li-padding-h: var(--tv-space-xl);
+    // title样式
+    --tv-CalendarView-week-title-font-size: var(--tv-font-size-md);
+    --tv-CalendarView-week-title-font-weight: var(--tv-font-weight-bold);
+    --tv-CalendarView-week-content-font-size: var(--tv-font-size-sm);
+    --tv-CalendarView-week-content-font-weight: var(--tv-font-weight-regular);
+    // day-events样式
+    --tv-CalendarView-week-day-font-size: var(--tv-font-size-sm);
+    --tv-CalendarView-week-day-border-radius: var(--tv-border-radius-sm);
+    --tv-CalendarView-week-day-margin-bottom: var(--tv-space-md);
+    // day-events内容样式
+    --tv-CalendarView-week-date-padding-h: var(--tv-space-md);
+    --tv-CalendarView-week-date-text-color: var(--tv-color-text-weaken);
+    --tv-CalendarView-week-content-padding-h: var(--tv-space-md);
+    // schedule间距圆角
+    --tv-CalendarView-week-schedule-margin-top: var(--tv-space-md);
+    --tv-CalendarView-week-schedule-border-radius: var(--tv-border-radius-sm);
+    --tv-CalendarView-week-schedule-icon-size: var(--tv-icon-size);
+    --tv-CalendarView-schedule-span-margin-left: var(--tv-space-sm);
 }
