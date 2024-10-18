@@ -4,7 +4,7 @@
     <div class="content">
       <tiny-button @click="btnClick">自定义弹窗标题</tiny-button>
     </div>
-    <h2>函数式调用</h2>
+    <h2>标签式调用</h2>
     <div class="content">
       <tiny-button @click="openModal">自定义弹窗标题</tiny-button>
       <tiny-modal v-model="show" title="自定义弹窗标题" message="窗口内容" show-header show-footer> </tiny-modal>
