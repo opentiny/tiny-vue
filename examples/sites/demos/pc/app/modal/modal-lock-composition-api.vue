@@ -70,6 +70,7 @@ function openModal() {
 h2 {
   font-size: 16px;
   font-weight: bold;
+  margin: 20px 0 12px;
 }
 .content {
   margin: 8px;
