@@ -19,14 +19,14 @@
 @alert-prefix-cls: ~'@{css-prefix}alert';
 
 .@{popupload__modal-prefix-cls} {
-  .component-css-vars-pop-upload();
+  .inject-PopUpload-vars();
 }
 
 .@{popupload-prefix-cls} {
-  .component-css-vars-pop-upload();
+  .inject-PopUpload-vars();
   display: flex;
   align-items: center;
-  font-size: var(--ti-popupload-font-size);
+  font-size: var(--tv-PopUpload-font-size);
 
   &__dialog {
     width: 100%;
@@ -36,12 +36,12 @@
 
   &__dialog-header {
     .@{alert-prefix-cls} {
-      margin-bottom: var(--ti-popupload-dialog-header-alert-margin-bottom);
+      margin-bottom: 10px;
     }
   }
 
   &__dialog-body {
-    padding-bottom: var(--ti-popupload-dialog-table-body-padding-bottom);
+    padding-bottom: 10px;
 
     .@{upload-list-prefix-cls} {
       display: none;
@@ -53,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: var(--ti-popupload-dialog-footer-padding-bottom);
+    padding-bottom: 24px;
   }
 
   &__dialog-tips {
@@ -67,17 +67,16 @@
   }
 
   &__dialog-table {
-    font-size: var(--ti-popupload-dialog-table-font-size);
-    height: var(--ti-popupload-dialog-table-height);
+    font-size: var(--tv-PopUpload-dialog-table-font-size);
+    height: var(--tv-PopUpload-dialog-table-height);
     width: 100%;
-    margin-top: var(--ti-popupload-dialog-margin-top);
+    margin-top: 10px;
 
     .header-col {
       position: relative;
-      padding: var(--ti-popupload-table-header-col-padding-vertical)
-        var(--ti-popupload-table-header-col-padding-horizontal);
+      padding: 0 12px;
 
-      &:not(:last-child)::after {
+      &:not(:last-child):after {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -85,15 +84,15 @@
         display: inline-block;
         content: '';
         width: 1px;
-        height: var(--ti-popupload-dialog-table-line-height);
-        background-color: var(--ti-popupload-dialog-table-line-bg-color);
+        height: var(--tv-PopUpload-dialog-table-line-height);
+        background-color: transparent;
       }
     }
 
     .body-col {
-      padding: var(--ti-popupload-table-body-col-padding-vertical) var(--ti-popupload-table-body-col-padding-horizontal);
-      margin: var(--ti-popupload-table-body-col-margin-vertical) var(--ti-popupload-table-body-col-margin-horizontal);
-      line-height: var(--ti-popupload-table-body-col-line-height);
+      padding: 8px 12px;
+      margin: 0;
+      line-height: var(--tv-PopUpload-table-body-col-line-height);
     }
 
     .col1 {
@@ -114,22 +113,20 @@
   }
 
   &__dialog-table-header {
-    height: var(--ti-popupload-dialog-table-header-height);
+    height: var(--tv-PopUpload-dialog-table-header-height);
     width: 100%;
-    color: var(--ti-popupload-dialog-table-header-text-color);
-    font-weight: var(--ti-popupload-dialog-table-header-font-weight);
+    color: var(--tv-PopUpload-dialog-table-header-text-color);
+    font-weight: var(--tv-PopUpload-dialog-table-header-font-weight);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--ti-popupload-dialog-table-header-bg-color);
-    border-bottom: 1px solid var(--ti-popupload-dialog-table-border-color);
+    background: var(--tv-PopUpload-dialog-table-header-bg-color);
   }
 
   &__dialog-table-body {
     width: 100%;
-    height: calc(100% - var(--ti-popupload-dialog-table-header-height));
+    height: calc(100% - var(--tv-PopUpload-dialog-table-header-height));
     overflow-y: auto;
-    border-bottom: 1px solid var(--ti-popupload-dialog-table-border-color);
   }
 
   &__dialog-table-list {
@@ -139,7 +136,7 @@
       margin-top: 12px;
 
       & > .footer-error-tip {
-        color: var(--ti-popupload-status-fail-icon-color);
+        color: var(--tv-PopUpload-status-fail-icon-color);
       }
     }
   }
@@ -149,14 +146,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--ti-popupload-table-item-border-color);
 
     &:nth-child(even) {
-      background: var(--ti-popupload-table-item-even-bg-color);
+      background: var(--tv-PopUpload-table-item-even-bg-color);
     }
 
     .del-col {
-      color: var(--ti-popupload-dialog-delete-text-color);
+      color: var(--tv-PopUpload-dialog-delete-text-color);
       width: 100%;
       cursor: pointer;
     }
@@ -184,15 +180,15 @@
     margin-right: 7px;
     height: 8px;
     width: 8px;
-    border: 2px solid var(--ti-popupload-status-icon-color);
+    border: 2px solid var(--tv-PopUpload-status-icon-border-color);
     border-radius: 50%;
 
     &&-success {
-      border-color: var(--ti-popupload-status-success-icon-color);
+      border-color: var(--tv-PopUpload-status-success-icon-border-color);
     }
 
     &&-fail {
-      border-color: var(--ti-popupload-status-fail-icon-color);
+      border-color: var(--tv-PopUpload-status-fail-icon-color);
     }
   }
 }
