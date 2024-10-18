@@ -45,7 +45,7 @@
     flex-shrink: 0;
     .tiny-radio-button__inner {
       height: 32px;
-      background-color: rgba(0, 0, 0, 0.05);
+      background-color: #ededed;
       svg {
         width: var(--tv-CalendarView-radio-font-size);
         height: var(--tv-CalendarView-radio-font-size);;
@@ -352,7 +352,7 @@
         .date{
           position: relative;
           margin-right: 10px;
-          font-size: var(--tv-CalendarView-week-date-font-szie);
+          font-size: var(--tv-CalendarView-week-date-font-size);
           color: var(--tv-CalendarView-week-date-text-color);
 
           &.is-today{
@@ -402,7 +402,7 @@
         }
         
         .week-day{
-          font-size: var(--tv-CalendarView-week-day-font-szie);
+          font-size: var(--tv-CalendarView-week-day-font-size);
           color: #8d959e;
 
           &.is-today{
@@ -542,7 +542,7 @@
 
       >li{
         height: 100%;
-        padding: var(--tv-CalendarView-week-li-padding-vertical) var(--tv-CalendarView-week-li-padding-horizontal);
+        padding: var(--tv-CalendarView-week-li-padding-v) var(--tv-CalendarView-week-li-padding-h);
 
         .title {
           font-size: var(--tv-CalendarView-week-title-font-size);
@@ -575,12 +575,12 @@
 
       .date{
         margin-bottom: 6px;
-        padding: 0 var(--tv-CalendarView-week-date-padding-horizontal);
+        padding: 0 var(--tv-CalendarView-week-date-padding-h);
         color: var(--tv-CalendarView-week-date-text-color);
       }
 
       .content{
-        padding: 0 var(--tv-CalendarView-week-content-padding-horizontal);
+        padding: 0 var(--tv-CalendarView-week-content-padding-h);
         color: #8d959e;
         overflow : hidden;
         text-overflow: ellipsis;
