@@ -18,12 +18,16 @@
 .@{tag-prefix-cls} {
   .inject-Tag-vars();
 
-  line-height: var(--tv-Tag-line-height);
-  border: 1px solid;
-  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+  height: fit-content; // 避免 flex时，高度拉伸
+  line-height: var(--tv-Tag-line-height);
+  border: 1px solid;
+  max-width: 200px; // 新增约束，避免太长的标签
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   /** size 场景 */
   .size-mixin(@size) {

@@ -114,9 +114,7 @@
             :label="node.id"
             :disabled="!!node.disabled"
           ></tiny-radio>
-          <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
-          </svg>
+          <icon-loading v-if="node.loading" class="tiny-tree-node__loading" />
           <slot name="prefix" :node="node"></slot>
           <template v-if="action.type === 'edit' && action.node && action.node === node">
             <tiny-input
@@ -242,7 +240,7 @@ import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import {
   iconChevronRight,
-  iconLoading,
+  iconLoadingShadow,
   iconArrowBottom,
   iconEdit,
   iconDel,
@@ -327,7 +325,7 @@ export default defineComponent({
     TinyRadio: Radio,
     TinyInput: Input,
     IconChevronRight: iconChevronRight(),
-    IconLoading: iconLoading(),
+    IconLoading: iconLoadingShadow(),
     IconArrowBottom: iconArrowBottom(),
     IconEdit: iconEdit(),
     IconDel: iconDel(),
