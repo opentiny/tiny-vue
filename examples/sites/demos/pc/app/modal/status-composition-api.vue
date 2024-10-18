@@ -16,7 +16,7 @@
       <tiny-button @click="errorClick(2)">错误提示图标</tiny-button>
       <tiny-button @click="loadingClick(2)">加载提示图标</tiny-button>
     </div>
-    <h2>标签式状态：</h2>
+    <h2>标签式调用：</h2>
     <div class="content">
       <tiny-button @click="infoClick(3)">信息提示图标</tiny-button>
       <tiny-button @click="successClick(3)">成功提示图标</tiny-button>
