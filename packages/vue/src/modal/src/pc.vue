@@ -20,8 +20,8 @@ import {
   iconSuccess,
   iconError,
   iconInfoSolid,
-  iconLoading,
-  iconWarning,
+  iconLoadingShadow,
+  iconWarningTriangle,
   iconClose,
   iconFullscreenLeft,
   iconMinscreenLeft
@@ -61,7 +61,6 @@ export default defineComponent({
     'vSize',
     'width',
     'zIndex',
-    'showClose',
     'messageClosable',
     'confirmContent',
     'cancelContent',
@@ -112,9 +111,9 @@ export default defineComponent({
       QUESTION: iconHelpSolid(),
       INFO: iconInfoSolid(),
       SUCCESS: iconSuccess(),
-      WARNING: iconWarning(),
+      WARNING: iconWarningTriangle(),
       ERROR: iconError(),
-      LOADING: iconLoading()
+      LOADING: iconLoadingShadow()
     }
 
     return h(
