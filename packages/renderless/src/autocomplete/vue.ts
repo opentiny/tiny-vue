@@ -39,7 +39,6 @@ import type {
 
 export const api = [
   'state',
-  'select',
   'suggestionState',
   'getInput',
   'handleChange',
@@ -125,7 +124,7 @@ const initApi = ({
     mounted: mounted({ vm, state, suggestionState }),
     highlight: highlight({ constants, vm, state }),
     handleClear: handleClear({ emit, state }),
-    select: select({ emit, nextTick, props, state }),
+    select: select({ emit, nextTick, props, state, dispatch }),
     watchVisible: watchVisible({ suggestionState, vm }),
     handleChange: handleChange({ api, emit, state, props, dispatch }),
     handleFocus: handleFocus({ api, emit, props, state }),
