@@ -1,10 +1,10 @@
 <template>
   <tiny-floatbar class="custom">
     <ul>
-      <li><a>Default-A</a></li>
-      <li><a>B</a></li>
-      <li><a>C</a></li>
-      <li><a>D</a></li>
+      <li><a>本地引入</a></li>
+      <li><a>按需引入</a></li>
+      <li><a>搜索引入</a></li>
+      <li><a>完整引入</a></li>
     </ul>
   </tiny-floatbar>
 </template>
@@ -22,10 +22,10 @@ export default {
 <style scoped>
 .custom {
   position: static;
-  width: 200px;
-  background-color: rgb(222, 184, 135);
+  width: 120px;
+  background-color: #dbdbdb;
 }
-.custom li:hover a {
-  color: #fff;
+.custom li:hover {
+  background: #fff;
 }
 </style>
