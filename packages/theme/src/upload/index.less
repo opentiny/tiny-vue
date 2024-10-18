@@ -18,7 +18,7 @@
 @upload-cover-prefix-cls: ~'@{css-prefix}upload-cover';
 
 .@{file-upload-prefix-cls} {
-  .component-css-vars-upload();
+  .inject-Upload-vars();
 }
 
 .@{upload-prefix-cls} {
@@ -32,35 +32,35 @@
   }
 
   &__tip {
-    font-size: var(--ti-upload-tip-font-size);
-    color: var(--ti-upload-tip-text-color);
+    font-size: var(--tv-Upload-tip-font-size);
+    color: var(--tv-Upload-tip-text-color);
     margin-top: 8px;
   }
 
   &--picture-card {
-    width: var(--ti-upload-picture-card-width);
-    height: var(--ti-upload-picture-card-height);
-    line-height: calc(var(--ti-upload-picture-card-height) - 2px);
-    background-color: var(--ti-upload-picture-card-bg-color);
-    border: 1px dashed var(--ti-upload-picture-card-border-color);
-    border-radius: var(--ti-upload-picture-card-border-radius);
+    width: var(--tv-Upload-picture-card-width);
+    height: var(--tv-Upload-picture-card-height);
+    line-height: calc(var(--tv-Upload-picture-card-height) - 2px);
+    background-color: var(--tv-Upload-picture-card-bg-color);
+    border: 1px dashed var(--tv-Upload-picture-card-border-color);
+    border-radius: var(--tv-Upload-picture-card-border-radius);
     box-sizing: border-box;
     vertical-align: top;
 
     svg {
-      font-size: var(--ti-upload-picture-card-icon-font-size);
-      fill: var(--ti-upload-picture-card-icon-color);
+      font-size: var(--tv-Upload-picture-card-icon-font-size);
+      fill: var(--tv-Upload-picture-card-icon-color);
     }
   }
 
   &--picture-card:hover,
   &:focus {
-    border-color: var(--ti-upload-picture-card-hover-border-color);
-    color: var(--ti-upload-picture-card-hover-border-color);
+    border-color: var(--tv-Upload-picture-card-hover-border-color);
+    color: var(--tv-Upload-picture-card-hover-border-color);
   }
 
   &:focus &-dragger {
-    border-color: var(--ti-upload-picture-card-hover-border-color);
+    border-color: var(--tv-Upload-picture-card-hover-border-color);
   }
 
   &-cover__title,
@@ -236,7 +236,7 @@
     .btn {
       display: inline-block;
       color: #fff;
-      font-size: var(--ti-common-font-size-1);
+      font-size: var(--tv-Upload-tip-font-size);
       cursor: pointer;
       vertical-align: middle;
       transition:
@@ -282,7 +282,7 @@
     font-weight: 400;
     padding: 0 10px;
     margin: 0;
-    font-size: var(--ti-common-font-size-1);
+    font-size: var(--tv-Upload-tip-font-size);
     color: #303133;
     text-align: left;
   }
