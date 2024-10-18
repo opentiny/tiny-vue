@@ -1,3 +1,4 @@
+/* stylelint-disable no-duplicate-selectors */
 /**
 * Copyright (c) 2022 - present TinyVue Authors.
 * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -33,6 +34,23 @@
 
     &.active {
       display: block;
+    }
+
+    // status图标色  弹窗和消息的颜色一致，共用以下颜色
+    &.status__success .@{modal-prefix-cls}__status-wrapper svg {
+      fill: var(--tv-Modal-box-status-icon-color-success);
+    }
+    &.status__warning .@{modal-prefix-cls}__status-wrapper svg {
+      fill: var(--tv-Modal-box-status-icon-color-warning);
+    }
+    &.status__error .@{modal-prefix-cls}__status-wrapper svg {
+      fill: var(--tv-Modal-box-status-icon-color-error);
+    }
+    &.status__info .@{modal-prefix-cls}__status-wrapper svg {
+      fill: var(--tv-Modal-box-status-icon-color-info);
+    }
+    &.status__question .@{modal-prefix-cls}__status-wrapper svg {
+      fill: var(--tv-Modal-box-status-icon-color-question);
     }
 
     // ----------------------------------------------------  alert, confirm 的弹窗场景
@@ -88,6 +106,8 @@
           display: flex;
           flex-grow: 1;
           padding: var(--tv-Modal-box-body-padding-y) var(--tv-Modal-box-body-padding-x);
+          white-space: normal;
+          word-break: break-word;
 
           .@{modal-prefix-cls}__text {
             font-size: var(--tv-Modal-box-body-text-font-size);
@@ -102,30 +122,14 @@
         }
       }
 
-      // status图标色
-      &.status__success .@{modal-prefix-cls}__status-wrapper svg {
-        fill: var(--tv-Modal-box-status-icon-color-success);
-      }
-      &.status__warning .@{modal-prefix-cls}__status-wrapper svg {
-        fill: var(--tv-Modal-box-status-icon-color-warning);
-      }
-      &.status__error .@{modal-prefix-cls}__status-wrapper svg {
-        fill: var(--tv-Modal-box-status-icon-color-error);
-      }
-      &.status__info .@{modal-prefix-cls}__status-wrapper svg {
-        fill: var(--tv-Modal-box-status-icon-color-info);
-      }
-      &.status__question .@{modal-prefix-cls}__status-wrapper svg {
-        fill: var(--tv-Modal-box-status-icon-color-question);
-      }
-
-      // header,footer 可拖动, border可resize, 4个角可以resize
+      // header,footer 可拖动,
       .@{modal-prefix-cls}__box.is__drag,
       .@{modal-prefix-cls}__header,
       .@{modal-prefix-cls}__footer-move {
         cursor: move;
       }
 
+      // border可resize, 4个角可以resize
       .@{modal-prefix-cls}__resize {
         @SpaceSize: 8px;
 
@@ -238,13 +242,92 @@
     &.is__mask {
       background-color: var(--tv-Modal-mask-bg-color);
     }
-    // --------------------------------------------------------  message 的消息场景
-    &.type__message {
+
+    // 弹窗的渐显动画
+    &.type__alert,
+    &.type__confirm {
       .@{modal-prefix-cls}__box {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      &.is__visible.is__visible {
+        .@{modal-prefix-cls}__box {
+          opacity: 1;
+        }
       }
     }
+
+    // --------------------------------------------------------  message 的消息场景
+    &.type__message {
+      text-align: center;
+
+      .@{modal-prefix-cls}__box {
+        display: inline-block;
+        background-color: var(--tv-Modal-msg-box-bg-color);
+        border-radius: var(--tv-Modal-msg-box-border-radius);
+        box-shadow: var(--tv-Modal-msg-box-box-shadow);
+        padding: var(--tv-Modal-msg-box-box-padding-y) var(--tv-Modal-msg-box-box-padding-x);
+        text-align: left;
+
+        .@{modal-prefix-cls}__body {
+          display: flex;
+          white-space: normal;
+          word-break: break-word;
+
+          .@{modal-prefix-cls}__status-wrapper {
+            display: flex;
+            align-items: center;
+            margin-right: var(--tv-Modal-msg-box-status-icon-margin-right);
+
+            svg {
+              font-size: var(--tv-Modal-msg-box-status-icon-size);
+            }
+          }
+          .@{modal-prefix-cls}__content {
+            width: 100%;
+            max-width: 800px;
+            flex-grow: 1;
+
+            .@{modal-prefix-cls}__text {
+              color: var(--tv-Modal-msg-box-text-color);
+              font-size: var(--tv-Modal-msg-box-font-size);
+              font-weight: var(--tv-Modal-msg-box-font-weight);
+            }
+          }
+          .@{modal-prefix-cls}__close-wrapper {
+            svg {
+              margin-left: var(--tv-Modal-msg-box-close-icon-margin-left);
+              fill: var(--tv-Modal-msg-box-close-icon-color);
+              font-size: var(--tv-Modal-msg-box-close-icon-size);
+              cursor: pointer;
+
+              &:hover {
+                fill: var(--tv-Modal-msg-box-close-icon-color-hover);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 消息动画
+    transition: top 0.4s; // 修改最外层的top值形成的动画
+
+    // &.is__animat.type__message {
+    //   .@{modal-prefix-cls}__box {
+    //     transform: translateY(-10%);
+    //     transition: all 0.2s ease-out;
+    //   }
+
+    //   &.is__visible {
+    //     .@{modal-prefix-cls}__box {
+    //       transform: translateY(0);
+    //     }
+    //   }
+    // }
   }
 }
 
-// vSize属性，文件未体现，且新规范不包含，本期整改不要了
+// vSize属性，文档未体现，且新规范不包含，本期整改不要了
 // box的渐现动画消息了
