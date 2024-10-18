@@ -1,10 +1,10 @@
 <template>
   <div class="tiny-demo-tag-group-effect">
-    <div>深色标签 </div>
+    <div>深色标签</div>
     <tiny-tag-group :data="items" effect="dark"> </tiny-tag-group>
-    <div>浅色标签 </div>
+    <div>浅色标签</div>
     <tiny-tag-group :data="items" effect="light"> </tiny-tag-group>
-    <div>朴素标签 </div>
+    <div>朴素标签</div>
     <tiny-tag-group :data="items" effect="plain"> </tiny-tag-group>
   </div>
 </template>
