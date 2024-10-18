@@ -15,5 +15,5 @@ test('菜单可折叠', async ({ page }) => {
   await expect(treeMenu).toHaveCSS('width', '0px')
   await toggleBtn.click()
   await expect(treeMenu).not.toHaveClass(/is-collapsed/)
-  await expect(treeMenu).toHaveCSS('width', '270px')
+  await expect(treeMenu).toHaveCSS('width', '220px')
 })

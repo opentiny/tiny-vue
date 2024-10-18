@@ -10,45 +10,51 @@
 *
 */
 
-.component-css-vars-tree-menu() {
+.inject-TreeMenu-vars() {
   // 宽度
-  --ti-tree-menu-width: calc(var(--ti-common-space-10, 10px) * 27);
+  --tv-TreeMenu-width: 220px;
   // 节点高度
-  --ti-tree-menu-node-height: var(--ti-common-size-10x, 40px);
+  --tv-TreeMenu-node-height: var(--tv-size-height-md);
+  // 节点高度直接距离
+  --tv-TreeMenu-node-margin-bottom: var(--tv-space-base);
   // 空数据显示文本字号(hide)
-  --ti-tree-menu-font-size: var(--ti-common-font-size-base, 14px);
+  --tv-TreeMenu-font-size: var(--tv-font-size-md);
   // 边框色
-  --ti-tree-menu-border-color: var(--ti-common-color-light, #ffffff);
+  --tv-TreeMenu-border-color: var(--tv-color-border-divider);
   // 节点水平内边距
-  --ti-tree-menu-node-body-text-padding-horizontal: 0;
+  --tv-TreeMenu-node-body-text-padding-x: 0;
   // 选中节点的背景色
-  --ti-tree-menu-node-selected-bg-color: var(--ti-common-color-bg-normal, #f5f5f5);
+  --tv-TreeMenu-node-selected-bg-color: var(--tv-color-bg-active);
   // 选中节点文本色
-  --ti-tree-menu-node-current-text-color: var(--ti-common-color-text-primary, #191919);
+  --tv-TreeMenu-node-current-text-color: var(--tv-color-act-primary-text-active);
   // 选中节点左边框色
-  --ti-tree-menu-square-left-border-color: var(--ti-common-color-icon-active, #191919);
+  --tv-TreeMenu-square-left-border-color: var(--tv-color-border-active);
   // 未选中节点文本色
-  --ti-tree-menu-node-body-text-color: var(--ti-common-color-text-primary, #191919);
+  --tv-TreeMenu-node-body-text-color: var(--tv-color-act-primary-text-active);
   // 节点悬浮背景色
-  --ti-tree-menu-node-hover-bg-color: var(--ti-common-color-hover-background, #f5f5f5);
+  --tv-TreeMenu-node-hover-bg-color: var(--tv-color-bg-hover);
   // 折叠图标颜色
-  --ti-tree-menu-collapse-icon-fill-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-TreeMenu-collapse-icon-fill-color: var(--tv-color-icon);
   // 底部折叠按钮
-  --ti-tree-menu-collapse-icon-hover-color: var(--ti-common-bg-color-focus, #0067d1);
+  --tv-TreeMenu-collapse-icon-hover-color: var(--tv-color-icon-hover);
   // 折叠图标右边距
-  --ti-tree-menu-collapse-icon-margin-right: var(--ti-common-size-5x, 20px);
+  --tv-TreeMenu-collapse-icon-margin-right: 20px;
   // 输入框下面的线
-  --ti-tree-menu-border-top-color: var(--ti-common-color-light, #ffffff);
+  --tv-TreeMenu-border-top-color: var(--tv-color-border-divider);
+  // 输入框距离左边的距离
+  --tv-TreeMenu-padding-left: var(--tv-space-xl);
   // 节点序号字号
-  --ti-tree-menu-node-number-font-size: var(--ti-common-font-size-0, 12px);
+  --tv-TreeMenu-node-number-font-size: var(--tv-font-size-sm);
   // 活跃节点竖线与文本的间距
-  --ti-tree-menu-node-vertical-line-margin-right: var(--ti-common-size-4x, 16px);
+  --tv-TreeMenu-node-vertical-line-margin-right: var(--tv-space-xl);
   // 输入框与文本的间距
-  --ti-tree-menu-padding-top: var(--ti-common-size-2x, 8px);
+  --tv-TreeMenu-padding-top: var(--tv-space-xl);
   // 前缀图标右边距
-  --ti-tree-menu-prefix-icon-margin-right: var(--ti-common-size-2x, 8px);
+  --tv-TreeMenu-prefix-icon-margin-right: var(--tv-space-md);
   // 禁用文本色
-  --ti-tree-menu-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
+  --tv-TreeMenu-disabled-text-color: var(--tv-color-text-disabled);
+  // 切换图标大小
+  --tv-TreeMenu-expand-icon-size: 14px;
   // 数字文本色
-  --ti-tree-menu-node-number-color: var(--ti-common-color-text-weaken, #808080);
+  --tv-TreeMenu-node-number-color: var(--tv-color-text-weaken);
 }

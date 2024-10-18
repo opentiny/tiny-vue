@@ -1,5 +1,6 @@
 <template>
   <tiny-tree-menu
+    class="demo-tree-menu"
     node-key="id"
     :data="treeData"
     :default-checked-keys="expandeArr"
@@ -170,8 +171,8 @@ const treeData = ref([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 </style>

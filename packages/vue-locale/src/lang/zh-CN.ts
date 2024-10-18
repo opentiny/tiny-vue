@@ -584,7 +584,7 @@ export default {
       placeholder: '请输入内容进行筛选'
     },
     treeMenu: {
-      placeholder: '请输入内容进行筛选'
+      placeholder: '输入关键字搜索'
     },
     transfer: {
       filterPlaceholder: '请输入搜索内容',
