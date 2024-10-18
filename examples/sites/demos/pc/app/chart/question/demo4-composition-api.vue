@@ -38,9 +38,10 @@ const options = ref({
 })
 
 function addData() {
-  chartData.value.rows.push({
-    日期: `1月${chartData.value.rows.length + 1}日`,
-    value: Math.ceil(10000 * Math.random())
+  options.value.data.push({
+    'Day': `1月${options.value.data.length + 1}日`,
+    'Domestics': Math.ceil(50 * Math.random()),
+    'Abroad': Math.ceil(50 * Math.random())
   })
 }
 </script>
