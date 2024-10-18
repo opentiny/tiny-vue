@@ -17,14 +17,14 @@
 
 .@{scroll-text-prefix-cls} {
   &__wrapper {
-    .component-css-vars-scroll-text();
+    .inject-ScrollText-vars();
   }
 
   width: 300px;
-  height: var(--ti-scroll-text-height);
-  line-height: var(--ti-scroll-text-height);
-  background: var(--ti-scroll-text-bg-color);
-  margin: var(--ti-scroll-text-margin-vertical) var(--ti-scroll-text-margin-horizontal);
+  height: var(--tv-ScrollText-height);
+  line-height: var(--tv-ScrollText-height);
+  background: var(--tv-ScrollText-bg-color);
+  margin: 0 auto;
   overflow: hidden;
 
   & &__content {
@@ -49,16 +49,6 @@
       animation-iteration-count: infinite;
       animation-timing-function: linear;
       justify-content: center;
-
-      // 兼容ie10-ie11
-      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        display: inline-block;
-      }
-
-      // 兼容edge
-      @supports (-ms-ime-align: auto) {
-        display: inline-block;
-      }
 
       &.left {
         animation-name: moveLeft;
@@ -106,12 +96,12 @@
       width: fit-content;
       min-width: 100%;
 
-      >div.left {
+      > div.left {
         min-width: 100%;
         animation-name: moveLeftWidthAdapt;
       }
 
-      >div.right {
+      > div.right {
         min-width: 100%;
         animation-name: moveRightWidthAdapt;
       }
@@ -163,25 +153,25 @@
   0% {
     transform: translateX(100%);
   }
- 
+
   50% {
     transform: translateX(0);
   }
- 
+
   100% {
     transform: translateX(-100%);
   }
 }
- 
+
 @keyframes moveRightWidthAdapt {
   0% {
     transform: translateX(-100%);
   }
- 
+
   50% {
     transform: translateX(0);
   }
- 
+
   100% {
     transform: translateX(100%);
   }
