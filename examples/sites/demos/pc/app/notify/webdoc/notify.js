@@ -51,9 +51,10 @@ export default {
         'en-US': 'Automatic shutdown delay'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>duration</code>  属性设置自动关闭的延迟时间，默认值：4500ms 。</p>\n',
+        'zh-CN':
+          '通过 <code>duration</code>  属性设置自动关闭的延迟时间， 默认情况， <code>success  info </code> 延时5秒 <code> warning  error </code> 延时10秒自动关闭。',
         'en-US':
-          '<p>You can set the delay for automatic shutdown through the <code>duration</code> attribute. The default value is 4500 ms. </p>\n'
+          'Use the <code>duration</code> property to set the automatic shutdown delay. By default, <code>success info </code> delays the shutdown by 5 seconds. <code> warning error </code> delays the shutdown by 10 seconds.'
       },
       codeFiles: ['duration.vue']
     },
