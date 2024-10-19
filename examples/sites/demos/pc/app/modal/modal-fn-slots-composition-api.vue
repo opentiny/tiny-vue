@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="jsx">
 import { Button as TinyButton, Modal, Link } from '@opentiny/vue'
 import { ref } from 'vue'
 
