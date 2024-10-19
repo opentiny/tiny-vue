@@ -59,7 +59,7 @@ export default {
             'en-US': 'Notification message text, which can be customized using JSX.'
           },
           mode: ['pc'],
-          pcDemo: 'message'
+          pcDemo: 'basic-usage'
         },
         {
           name: 'position',
@@ -115,7 +115,7 @@ export default {
             'en-US': 'Notification message title, which can be customized by JSX.'
           },
           mode: ['pc'],
-          pcDemo: 'title'
+          pcDemo: 'basic-usage'
         },
         {
           name: 'type',
