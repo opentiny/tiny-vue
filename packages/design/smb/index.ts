@@ -1,5 +1,5 @@
 import Alert from './src/alert'
-import ActionMenu from './src/action-menu'
+
 import Popconfirm from './src/popconfirm'
 import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
@@ -23,7 +23,6 @@ export default {
   version,
   components: {
     Alert,
-    ActionMenu,
     Popconfirm,
     Drawer,
     Dropdown,
