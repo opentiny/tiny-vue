@@ -13,7 +13,6 @@ test('幽灵按钮', async ({ page }) => {
   await expect(getGhostBtn(0)).toHaveCSS('border-bottom-color', 'rgb(89, 89, 89)')
 
   // 次要幽灵按钮
-  await page.waitForTimeout(1000)
   await expect(getGhostBtn(1)).toHaveCSS('color', 'rgb(89, 89, 89)')
   await expect(getGhostBtn(1)).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
   await expect(getGhostBtn(1)).toHaveCSS('border-bottom-color', 'rgb(128, 128, 128)')
