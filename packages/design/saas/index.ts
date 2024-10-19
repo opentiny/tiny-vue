@@ -10,9 +10,10 @@ import FilterBox from './src/filter-box'
 import Form from './src/form'
 import Guide from './src/guide'
 import Grid from './src/grid'
+import Popconfirm from './src/popconfirm'
+import Popover from './src/popover'
 import Switch from './src/switch'
 import Select from './src/select'
-import Popover from './src/popover'
 import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
@@ -38,15 +39,16 @@ export default {
     Form,
     Guide,
     Grid,
+    Pager,
+    Popconfirm,
+    Popeditor,
+    Popover,
     Switch,
     Select,
-    Popover,
     Loading,
     Input,
     DateRange,
-    Pager,
     DialogBox,
-    Popeditor,
     DatePanel
   }
 }

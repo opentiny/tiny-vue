@@ -55,7 +55,7 @@ import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popconfirm/vue'
 import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
-import { iconError, iconHelp, iconWarning, iconSuccess } from '@opentiny/vue-icon'
+import { iconError, iconHelp, iconWarningTriangle, iconSuccess } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/popconfirm/index.less'
 
 export default defineComponent({
@@ -65,7 +65,7 @@ export default defineComponent({
     TinyButton: Button,
     IconSuccess: iconSuccess(),
     IconHelp: iconHelp(),
-    IconWarning: iconWarning(),
+    IconWarningTriangle: iconWarningTriangle(),
     IconError: iconError()
   },
   props: {

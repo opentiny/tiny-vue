@@ -23,7 +23,7 @@ export const $constants = {
     success: 'icon-success',
     error: 'icon-error',
     info: 'icon-help',
-    warning: 'icon-warning'
+    warning: 'icon-warning-triangle'
   }
 }
 
