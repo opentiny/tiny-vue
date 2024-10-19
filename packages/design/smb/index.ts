@@ -1,4 +1,3 @@
-import Select from './src/select'
 import TreeNode from './src/tree-node'
 import TimeSpinner from './src/time-spinner'
 import TimeRange from './src/time-range'
@@ -13,7 +12,6 @@ export default {
   name: 'smb',
   version,
   components: {
-    Select,
     TreeNode,
     TimeSpinner,
     TimeRange,

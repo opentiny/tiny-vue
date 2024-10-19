@@ -597,8 +597,7 @@ export const resetInputHeight =
         api.calcCollapseTags()
       }
 
-      const sizeInMap =
-        designConfig?.state.initialInputHeight || state.initialInputHeight || (state.isSaaSTheme ? 28 : 30)
+      const sizeInMap = designConfig?.state.initialInputHeight || state.initialInputHeight || 32
       const noSelected = state.selected.length === 0
       // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
       const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
@@ -1697,7 +1696,7 @@ export const mounted =
     state.completed = true
 
     // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 28, mini: 24, small: 32, medium: 40 }
+    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
