@@ -429,19 +429,9 @@
     text-overflow: ellipsis;
   }
 
-  &__loading.circular {
+  &__loading {
     margin-right: 4px;
     margin-left: var(--ti-tree-node-label-margin-left);
-    font-size: var(--ti-tree-node-icon-font-size);
-
-    .path {
-      animation: loading-dash 1.5s ease-in-out infinite;
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: 0;
-      stroke-width: 2;
-      stroke: var(--ti-tree-node-loading-icon-color);
-      stroke-linecap: round;
-    }
   }
 
   & > &__children {
