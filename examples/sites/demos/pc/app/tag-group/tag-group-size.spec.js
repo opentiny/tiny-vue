@@ -13,6 +13,6 @@ test('TagGroup 尺寸', async ({ page }) => {
   await expect(smallTag).toHaveCSS('line-height', '18px')
 
   const miniTag = page.locator('.tiny-demo-tag-group-size .tiny-tag-group .tiny-tag.tiny-tag--mini').nth(0)
-  await expect(miniTag).toHaveCSS('height', '17px')
+  await expect(miniTag).toHaveCSS('height', '18px')
   await expect(miniTag).toHaveCSS('line-height', '15px')
 })
