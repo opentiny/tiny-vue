@@ -23,8 +23,7 @@ export default {
         { type: 'info', name: '标签二' },
         { type: 'success', name: '标签三' },
         { type: 'warning', name: '标签四' },
-        { type: 'danger', name: '标签五' },
-        { name: '标签六' }
+        { type: 'danger', name: '标签五' }
       ]
     }
   }
