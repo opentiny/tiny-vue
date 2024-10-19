@@ -1,5 +1,4 @@
 import Popconfirm from './src/popconfirm'
-import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import FilterBox from './src/filter-box'
 import Guide from './src/guide'
@@ -19,7 +18,6 @@ export default {
   version,
   components: {
     Popconfirm,
-    Dropdown,
     DropdownItem,
     FilterBox,
     Guide,
