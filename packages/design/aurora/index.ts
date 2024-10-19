@@ -9,6 +9,7 @@ import FilterBox from './src/filter-box'
 import Form from './src/form'
 import Guide from './src/guide'
 import Grid from './src/grid'
+import Milestone from './src/milestone'
 import Popconfirm from './src/popconfirm'
 import Popover from './src/popover'
 import Switch from './src/switch'
@@ -43,6 +44,7 @@ export default {
     Form,
     Guide,
     Grid,
+    Milestone,
     Popconfirm,
     Popover,
     Switch,
