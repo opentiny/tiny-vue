@@ -14,6 +14,7 @@ import Popconfirm from './src/popconfirm'
 import Popover from './src/popover'
 import Switch from './src/switch'
 import Select from './src/select'
+import Split from './src/split'
 import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
@@ -45,6 +46,7 @@ export default {
     Popover,
     Switch,
     Select,
+    Split,
     Loading,
     Input,
     DateRange,
