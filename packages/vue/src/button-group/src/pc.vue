@@ -53,9 +53,9 @@
             :key="index"
             :class="{ active: state.value === node[valueField] }"
           >
-            <tiny-button :class="getItemClass(node)" @click="handleClick(node)">
+            <button :class="getItemClass(node)" @click="handleClick(node)">
               {{ node[textField] }}
-            </tiny-button>
+            </button>
 
             <span
               v-if="node.sup"
@@ -78,7 +78,7 @@
           <li v-if="data.length > showMore" class="tiny-group-item__more">
             <tiny-popover :visible-arrow="false" popper-class="tiny-group-item__more-popover">
               <template #reference>
-                <tiny-button class="more-button">
+                <tiny-button :reset-time="0" class="more-button">
                   <icon-popup></icon-popup>
                 </tiny-button>
               </template>
