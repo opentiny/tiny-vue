@@ -8,6 +8,7 @@ import DropdownMenu from './src/dropdown-menu'
 import DropdownItem from './src/dropdown-item'
 import FilterBox from './src/filter-box'
 import Form from './src/form'
+import Guide from './src/guide'
 import Grid from './src/grid'
 import Switch from './src/switch'
 import Select from './src/select'
@@ -35,6 +36,7 @@ export default {
     DropdownItem,
     FilterBox,
     Form,
+    Guide,
     Grid,
     Switch,
     Select,

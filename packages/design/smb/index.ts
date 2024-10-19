@@ -1,6 +1,4 @@
 import Popconfirm from './src/popconfirm'
-
-import Guide from './src/guide'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
 import TimeSpinner from './src/time-spinner'
@@ -17,7 +15,6 @@ export default {
   version,
   components: {
     Popconfirm,
-    Guide,
     Select,
     TreeNode,
     TimeSpinner,
