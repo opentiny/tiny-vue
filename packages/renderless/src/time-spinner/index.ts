@@ -279,6 +279,6 @@ export const amPm = (props) => (hour) => {
 export const typeItemHeight =
   ({ vm, designConfig }) =>
   (type) =>
-    vm.$refs[type].$el.querySelector(DATEPICKER.Qurtyli).offsetHeight + (designConfig?.itemMarginSpace || 0)
+    vm.$refs[type].$el.querySelector(DATEPICKER.Qurtyli).offsetHeight + (designConfig?.itemMarginSpace ?? 12)
 
 export const scrollBarHeight = (vm) => (type) => vm.$refs[type].$el.offsetHeight

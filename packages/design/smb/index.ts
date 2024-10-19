@@ -1,7 +1,5 @@
 import TreeNode from './src/tree-node'
-import TimeSpinner from './src/time-spinner'
 
-import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import Milestone from './src/milestone'
 import TransferPanel from './src/transfer-panel'
@@ -12,8 +10,6 @@ export default {
   version,
   components: {
     TreeNode,
-    TimeSpinner,
-    Time,
     UploadList,
     Milestone,
     TransferPanel
