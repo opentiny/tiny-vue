@@ -14,8 +14,8 @@ test('三种状态是否正常显示', async ({ page }) => {
   await expect(icons).toHaveCount(3)
   for (let i = 0; i < 3; i++) {
     const { width, height } = await icons.nth(i).boundingBox()
-    await expect(width).toBeGreaterThanOrEqual(20)
-    await expect(height).toBeGreaterThanOrEqual(20)
+    await expect(width).toBeGreaterThanOrEqual(16)
+    await expect(height).toBeGreaterThanOrEqual(16)
   }
   await button.click()
   await expect(success).toHaveAttribute('aria-valuenow', '100')

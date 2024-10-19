@@ -1,11 +1,11 @@
 <template>
   <div>
     <tiny-button @click="add" class="mb10"> 点击增加改变颜色 </tiny-button>
-    <tiny-progress :percentage="value" :color="customColor" :stroke-width="24"></tiny-progress>
+    <tiny-progress :percentage="value" :color="customColor" :stroke-width="12"></tiny-progress>
     <br />
-    <tiny-progress :percentage="value" :color="customColorMethod" :stroke-width="24"></tiny-progress>
+    <tiny-progress :percentage="value" :color="customColorMethod" :stroke-width="12"></tiny-progress>
     <br />
-    <tiny-progress :percentage="value" :color="customColors" :stroke-width="24"></tiny-progress>
+    <tiny-progress :percentage="value" :color="customColors" :stroke-width="12"></tiny-progress>
   </div>
 </template>
 
@@ -51,3 +51,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-progress :deep(.tiny-progress__text) {
+  font-size: 14px !important;
+}
+</style>

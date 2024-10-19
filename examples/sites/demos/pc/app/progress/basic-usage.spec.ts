@@ -12,9 +12,9 @@ test('基础用法，是否可动态控制进度条', async ({ page }) => {
   await expect(progress1).toBeVisible()
   await expect(progress2).toBeVisible()
   await expect(progress1).toHaveCSS('height', '4px')
-  await expect(progress2).toHaveCSS('height', '24px')
+  await expect(progress2).toHaveCSS('height', '12px')
   await expect(progress1).toHaveCSS('border-radius', '2px')
-  await expect(progress2).toHaveCSS('border-radius', '12px')
+  await expect(progress2).toHaveCSS('border-radius', '6px')
   await expect(page.getByText('90%')).toHaveCount(2)
   await expect(page.getByText('努力加载中，请稍后...')).toBeVisible()
 
