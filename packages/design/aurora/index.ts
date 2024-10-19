@@ -1,4 +1,5 @@
 import Alert from './src/alert'
+import BreadcrumbItem from './src/breadcrumb-item'
 import CollapseItem from './src/collapse-item'
 import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
@@ -23,6 +24,7 @@ export default {
   version,
   components: {
     Alert,
+    BreadcrumbItem,
     CollapseItem,
     Drawer,
     Dropdown,

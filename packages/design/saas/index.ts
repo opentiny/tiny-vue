@@ -1,5 +1,6 @@
 import Alert from './src/alert'
 import Badge from './src/badge'
+import BreadcrumbItem from './src/breadcrumb-item'
 import CollapseItem from './src/collapse-item'
 import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
@@ -25,6 +26,7 @@ export default {
   components: {
     Alert,
     Badge,
+    BreadcrumbItem,
     CollapseItem,
     Drawer,
     Dropdown,
