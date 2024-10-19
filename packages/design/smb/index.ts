@@ -1,6 +1,5 @@
 import Popconfirm from './src/popconfirm'
 
-import FilterBox from './src/filter-box'
 import Guide from './src/guide'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
@@ -18,7 +17,6 @@ export default {
   version,
   components: {
     Popconfirm,
-    FilterBox,
     Guide,
     Select,
     TreeNode,

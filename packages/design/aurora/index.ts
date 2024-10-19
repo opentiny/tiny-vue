@@ -5,6 +5,7 @@ import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownMenu from './src/dropdown-menu'
 import DropdownItem from './src/dropdown-item'
+import FilterBox from './src/filter-box'
 import Form from './src/form'
 import Grid from './src/grid'
 import Switch from './src/switch'
@@ -30,6 +31,7 @@ export default {
     Dropdown,
     DropdownMenu,
     DropdownItem,
+    FilterBox,
     Form,
     Grid,
     Switch,
