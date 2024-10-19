@@ -23,7 +23,7 @@ import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 
 const percentageText = ref(60)
-const testInside = ref(true)
+const testInside = ref(false)
 const showTest = ref(true)
 
 function formatText() {

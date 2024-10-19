@@ -35,7 +35,7 @@ export default {
     return {
       showTest: true,
       percentageText: 60,
-      testInside: true
+      testInside: false
     }
   }
 }
