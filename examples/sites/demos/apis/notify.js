@@ -41,10 +41,12 @@ export default {
         {
           name: 'duration',
           type: 'number',
-          defaultValue: '4500',
+          defaultValue: '',
           desc: {
-            'zh-CN': '自动关闭延时毫秒数',
-            'en-US': 'Automatic shutdown delay in milliseconds'
+            'zh-CN':
+              '通知自动关闭时间，单位毫秒数。 默认情况， <code>success  info </code> 延时5秒 <code> warning  error </code> 延时10秒自动关闭 ',
+            'en-US':
+              'Automatic notification shutdown time, in milliseconds. By default, <code>success info </code> Delay is 5 seconds. <code> warning error </code> Delay is 10 seconds'
           },
           mode: ['pc'],
           pcDemo: 'duration'
@@ -63,7 +65,7 @@ export default {
         },
         {
           name: 'position',
-          type: "'top-right' | 'bottom-right'",
+          type: "'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'",
           defaultValue: "'bottom-right'",
           desc: {
             'zh-CN': '通知显示位置',
