@@ -23,7 +23,6 @@ export interface IDrawerState {
   height: number
   dragEvent: { x: number; y: number; isDrag: boolean; offsetWidth: number; offsetHeight: number }
   computedWidth: string
-  btnOrderReversed: boolean
 }
 
 export type IDrawerProps = ExtractPropTypes<typeof drawerProps>

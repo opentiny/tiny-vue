@@ -98,18 +98,12 @@
               <slot-wrapper v-if="customSlots?.footer" :node="customSlots.footer"></slot-wrapper>
 
               <template v-else>
-                <tiny-button
-                  type="primary"
-                  :class="['tiny-drawer__confirm-btn', { reverse: state.btnOrderReversed }]"
-                  @click="handleClose('confirm')"
-                  >{{ t('ui.button.confirm') }}</tiny-button
-                >
-                <tiny-button
-                  plain
-                  :class="['tiny-drawer__cancel-btn', { reverse: state.btnOrderReversed }]"
-                  @click="handleClose('cancel')"
-                  >{{ t('ui.button.cancel') }}</tiny-button
-                >
+                <tiny-button plain class="tiny-drawer__cancel-btn" @click="handleClose('cancel')">{{
+                  t('ui.button.cancel')
+                }}</tiny-button>
+                <tiny-button type="primary" class="tiny-drawer__confirm-btn" @click="handleClose('confirm')">{{
+                  t('ui.button.confirm')
+                }}</tiny-button>
               </template>
             </slot>
           </div>
