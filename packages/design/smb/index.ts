@@ -1,6 +1,6 @@
 import TreeNode from './src/tree-node'
 import TimeSpinner from './src/time-spinner'
-import TimeRange from './src/time-range'
+
 import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import Milestone from './src/milestone'
@@ -13,7 +13,6 @@ export default {
   components: {
     TreeNode,
     TimeSpinner,
-    TimeRange,
     Time,
     UploadList,
     Milestone,

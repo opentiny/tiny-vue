@@ -15,6 +15,7 @@ import Popover from './src/popover'
 import Switch from './src/switch'
 import Select from './src/select'
 import Split from './src/split'
+import TimeRange from './src/time-range'
 import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
@@ -47,6 +48,7 @@ export default {
     Switch,
     Select,
     Split,
+    TimeRange,
     Loading,
     Input,
     DateRange,
