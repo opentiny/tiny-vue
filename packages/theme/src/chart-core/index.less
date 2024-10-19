@@ -21,7 +21,7 @@
 }
 
 .@{chart-prefix-cls} {
-  .component-css-vars-chart-core();
+  .inject-ChartCore-vars();
 
   &-data-empty {
     position: absolute;
@@ -32,9 +32,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--ti-chart-core-data-empty-bg-color);
-    color: var(--ti-chart-core-data-empty-text-color);
-    font-size: var(--ti-chart-core-data-empty-font-size);
+    background-color: var(--tv-ChartCore-data-empty-bg-color);
+    color: var(--tv-ChartCore-data-empty-text-color);
+    font-size: var(--tv-ChartCore-data-empty-font-size);
   }
 
   &-component-loading {
@@ -46,7 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--ti-chart-core-data-empty-bg-color);
+    background-color: var(--tv-ChartCore-data-empty-bg-color);
 
     .circular {
       width: 42px;
