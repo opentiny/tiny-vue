@@ -18,6 +18,7 @@ import Time from './src/time'
 import TimeRange from './src/time-range'
 import TimeSpinner from './src/time-spinner'
 import TransferPanel from './src/transfer-panel'
+import UploadList from './src/upload-list'
 import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
@@ -51,6 +52,7 @@ export default {
     TimeRange,
     TimeSpinner,
     TransferPanel,
+    UploadList,
     Loading,
     Input,
     DateRange,
