@@ -70,8 +70,8 @@ const initState = ({ reactive, props, parent, computed, api, slots, designConfig
     hasFooter: computed(() => (!!parent.slots['left-footer'] || !!parent.slots['right-footer']) && !!slots.default),
     renderType: computed(() => props.render && props.render.plugin.name),
     expanded: [],
-    inputBoxType: designConfig?.inputBoxType || 'normal',
-    showInputSearch: designConfig?.showInputSearch
+    inputBoxType: designConfig?.inputBoxType || 'underline',
+    showInputSearch: designConfig?.showInputSearch ?? true
   })
 
   return state
