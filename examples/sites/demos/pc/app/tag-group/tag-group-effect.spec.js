@@ -6,66 +6,66 @@ test('TagGroup 主题', async ({ page }) => {
 
   const tagGroupsLocator = page.locator('.tiny-demo-tag-group-effect .tiny-tag-group')
 
+  // 深色
   const darkTag1 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--dark').filter({ hasText: '标签一' })
-  await expect(darkTag1).toHaveCSS('background-color', 'rgb(94, 124, 224)')
+  await expect(darkTag1).toHaveCSS('background-color', 'rgb(25, 25, 25)')
   await expect(darkTag1).toHaveCSS('color', 'rgb(255, 255, 255)')
 
   const darkTag2 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--dark').filter({ hasText: '标签二' })
-  await expect(darkTag2).toHaveCSS('background-color', 'rgb(37, 43, 58)')
+  await expect(darkTag2).toHaveCSS('background-color', 'rgb(20, 118, 255)')
   await expect(darkTag2).toHaveCSS('color', 'rgb(255, 255, 255)')
 
   const darkTag3 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--dark').filter({ hasText: '标签三' })
-  await expect(darkTag3).toHaveCSS('background-color', 'rgb(80, 212, 171)')
+  await expect(darkTag3).toHaveCSS('background-color', 'rgb(92, 179, 0)')
   await expect(darkTag3).toHaveCSS('color', 'rgb(255, 255, 255)')
 
   const darkTag4 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--dark').filter({ hasText: '标签四' })
-  await expect(darkTag4).toHaveCSS('background-color', 'rgb(250, 152, 65)')
+  await expect(darkTag4).toHaveCSS('background-color', 'rgb(255, 136, 0)')
   await expect(darkTag4).toHaveCSS('color', 'rgb(255, 255, 255)')
 
   const darkTag5 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--dark').filter({ hasText: '标签五' })
-  await expect(darkTag5).toHaveCSS('background-color', 'rgb(246, 111, 106)')
+  await expect(darkTag5).toHaveCSS('background-color', 'rgb(242, 48, 48)')
   await expect(darkTag5).toHaveCSS('color', 'rgb(255, 255, 255)')
 
-
+  // 浅色
   const lightTag1 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--light').filter({ hasText: '标签一' })
-  await expect(lightTag1).toHaveCSS('background-color', 'rgb(238, 240, 245)')
-  await expect(lightTag1).toHaveCSS('color', 'rgb(87, 93, 108)')
+  await expect(lightTag1).toHaveCSS('background-color', 'rgb(245, 245, 245)')
+  await expect(lightTag1).toHaveCSS('color', 'rgb(25, 25, 25)')
 
   const lightTag2 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--light').filter({ hasText: '标签二' })
-  await expect(lightTag2).toHaveCSS('background-color', 'rgba(51, 51, 51, 0.06)')
-  await expect(lightTag2).toHaveCSS('color', 'rgb(37, 43, 58)')
+  await expect(lightTag2).toHaveCSS('background-color', 'rgb(222, 236, 255)')
+  await expect(lightTag2).toHaveCSS('color', 'rgb(20, 118, 255)')
 
   const lightTag3 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--light').filter({ hasText: '标签三' })
-  await expect(lightTag3).toHaveCSS('background-color', 'rgb(237, 255, 249)')
-  await expect(lightTag3).toHaveCSS('color', 'rgb(58, 194, 149)')
+  await expect(lightTag3).toHaveCSS('background-color', 'rgb(230, 242, 213)')
+  await expect(lightTag3).toHaveCSS('color', 'rgb(92, 179, 0)')
 
   const lightTag4 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--light').filter({ hasText: '标签四' })
-  await expect(lightTag4).toHaveCSS('background-color', 'rgb(255, 243, 232)')
-  await expect(lightTag4).toHaveCSS('color', 'rgb(227, 125, 41)')
+  await expect(lightTag4).toHaveCSS('background-color', 'rgb(255, 235, 209)')
+  await expect(lightTag4).toHaveCSS('color', 'rgb(255, 136, 0)')
 
   const lightTag5 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--light').filter({ hasText: '标签五' })
-  await expect(lightTag5).toHaveCSS('background-color', 'rgb(255, 238, 237)')
-  await expect(lightTag5).toHaveCSS('color', 'rgb(222, 80, 78)')
+  await expect(lightTag5).toHaveCSS('background-color', 'rgb(252, 227, 225)')
+  await expect(lightTag5).toHaveCSS('color', 'rgb(242, 48, 48)')
 
-
+  // plain
   const plainTag1 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--plain').filter({ hasText: '标签一' })
   await expect(plainTag1).toHaveCSS('background-color', 'rgb(255, 255, 255)')
-  await expect(plainTag1).toHaveCSS('color', 'rgb(94, 124, 224)')
+  await expect(plainTag1).toHaveCSS('color', 'rgb(25, 25, 25)')
 
   const plainTag2 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--plain').filter({ hasText: '标签二' })
   await expect(plainTag2).toHaveCSS('background-color', 'rgb(255, 255, 255)')
-  await expect(plainTag2).toHaveCSS('color', 'rgb(37, 43, 58)')
+  await expect(plainTag2).toHaveCSS('color', 'rgb(20, 118, 255)')
 
   const plainTag3 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--plain').filter({ hasText: '标签三' })
   await expect(plainTag3).toHaveCSS('background-color', 'rgb(255, 255, 255)')
-  await expect(plainTag3).toHaveCSS('color', 'rgb(80, 212, 171)')
+  await expect(plainTag3).toHaveCSS('color', 'rgb(92, 179, 0)')
 
   const plainTag4 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--plain').filter({ hasText: '标签四' })
   await expect(plainTag4).toHaveCSS('background-color', 'rgb(255, 255, 255)')
-  await expect(plainTag4).toHaveCSS('color', 'rgb(250, 152, 65)')
+  await expect(plainTag4).toHaveCSS('color', 'rgb(255, 136, 0)')
 
   const plainTag5 = tagGroupsLocator.locator('.tiny-tag.tiny-tag--plain').filter({ hasText: '标签五' })
   await expect(plainTag5).toHaveCSS('background-color', 'rgb(255, 255, 255)')
-  await expect(plainTag5).toHaveCSS('color', 'rgb(246, 111, 106)')
-
+  await expect(plainTag5).toHaveCSS('color', 'rgb(242, 48, 48)')
 })
