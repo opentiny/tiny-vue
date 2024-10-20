@@ -4,7 +4,9 @@ import type { Editor } from '@tiptap/core'
 import TiptapSubscript from '@tiptap/extension-subscript'
 import { IconRichTextSubscript } from '@opentiny/vue-icon'
 
-const Subscript = TiptapSubscript.extend<ExtensionOptions & SubscriptExtensionOptions>({
+const Subscript = TiptapSubscript.extend<
+  ExtensionOptions & SubscriptExtensionOptions
+>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -12,6 +14,7 @@ const Subscript = TiptapSubscript.extend<ExtensionOptions & SubscriptExtensionOp
         return [
           {
             key: 'subscript',
+            title: '下标',
             icon: IconRichTextSubscript(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +25,12 @@ const Subscript = TiptapSubscript.extend<ExtensionOptions & SubscriptExtensionOp
               return () => {
                 return editor.isActive(Subscript.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Subscript

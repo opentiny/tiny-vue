@@ -5,7 +5,9 @@ import TiptapOrderedList from '@tiptap/extension-ordered-list'
 import ListItem from '@tiptap/extension-list-item'
 import { iconRichTextListOrdered } from '@opentiny/vue-icon'
 
-const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptions>({
+const OrderedList = TiptapOrderedList.extend<
+  ExtensionOptions & OrderedListOptions
+>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -13,6 +15,7 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
         return [
           {
             key: 'orderedlist',
+            title: '有序列表',
             icon: iconRichTextListOrdered(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -23,8 +26,8 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
               return () => {
                 return editor.isActive(OrderedList.name)
               }
-            }
-          }
+            },
+          },
         ]
       },
       getSlashMenus() {
@@ -35,9 +38,14 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
             title: '有序列表',
             keywords: ['orderedlist', 'youxuliebiao'],
             command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).toggleOrderedList().run()
-            }
-          }
+              editor
+                .chain()
+                .focus()
+                .deleteRange(range)
+                .toggleOrderedList()
+                .run()
+            },
+          },
         ]
       },
       getFloatMenus() {
@@ -47,16 +55,16 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
             icon: iconRichTextListOrdered(),
             action: ({ editor }: { editor: Editor }) => {
               return () => editor.chain().focus().toggleOrderedList().run()
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
   },
 
   addExtensions() {
     return [ListItem]
-  }
+  },
 })
 
 export default OrderedList

@@ -18,6 +18,18 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'bubble-menu-usage',
+      name: {
+        'zh-CN': '气泡菜单用法',
+        'en-US': 'Bubble Menu Usage'
+      },
+      desc: {
+        'zh-CN': '详细用法参考如下示例',
+        'en-US': 'For details, see the following example.'
+      },
+      codeFiles: ['bubble-menu-usage.vue']
+    },
+    {
       demoId: 'slash-menu-usage',
       name: {
         'zh-CN': '斜杠菜单',

@@ -12,27 +12,19 @@ const Link = TiptapLink.extend<ExtensionOptions & LinkOptions>({
         return [
           {
             key: 'link',
+            title: '链接',
             icon: IconRichTextLink(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
                 // TODO 优化 link 的输入方式
                 setLink(editor)()
               }
-            }
+            },
           },
-          {
-            key: 'unlink',
-            icon: IconRichTextLinkUnlink(),
-            action: ({ editor }: { editor: Editor }) => {
-              return () => {
-                editor.chain().focus().unsetLink().run()
-              }
-            }
-          }
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 function setLink(editor: Editor) {

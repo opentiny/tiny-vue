@@ -9,11 +9,14 @@ import {
   IconRichTextAlignLeft,
   IconRichTextAlignCenter,
   IconRichTextAlignRight,
-  IconRichTextFormatClear
+  IconRichTextFormatClear,
 } from '@opentiny/vue-icon'
 import TiptapText from '@tiptap/extension-text'
 
-const IGNORE_BUBBLE_TYPES = ['table']
+import CodeBlock from '../code-block'
+import Table from '../table'
+
+const IGNORE_BUBBLE_TYPES = [Table.name, CodeBlock.name]
 
 const Text = TiptapText.extend<ExtensionOptions>({
   addOptions() {
@@ -23,6 +26,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
         return [
           {
             key: 'left',
+            title: '左对齐',
             icon: IconRichTextAlignLeft(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -33,10 +37,11 @@ const Text = TiptapText.extend<ExtensionOptions>({
               return () => {
                 return editor.isActive({ textAlign: 'left' })
               }
-            }
+            },
           },
           {
             key: 'center',
+            title: '居中对齐',
             icon: IconRichTextAlignCenter(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -47,10 +52,11 @@ const Text = TiptapText.extend<ExtensionOptions>({
               return () => {
                 return editor.isActive({ textAlign: 'center' })
               }
-            }
+            },
           },
           {
             key: 'right',
+            title: '右对齐',
             icon: IconRichTextAlignRight(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -61,17 +67,18 @@ const Text = TiptapText.extend<ExtensionOptions>({
               return () => {
                 return editor.isActive({ textAlign: 'right' })
               }
-            }
+            },
           },
           {
             key: 'formatClear',
+            title: '清除格式',
             icon: IconRichTextFormatClear(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
                 editor.chain().focus().unsetAllMarks().run()
               }
-            }
-          }
+            },
+          },
         ]
       },
       getBubbleMenu() {
@@ -88,7 +95,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
             }
 
             // 避免其他类型激活时出现气泡菜单
-            if (IGNORE_BUBBLE_TYPES.some((type) => isActive(state, type))) {
+            if (IGNORE_BUBBLE_TYPES.some(type => isActive(state, type))) {
               return false
             }
 
@@ -103,7 +110,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleBold().run()
-              }
+              },
             },
             {
               icon: iconRichTextStrikeThrough(),
@@ -113,7 +120,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleStrike().run()
-              }
+              },
             },
             {
               icon: iconRichTextItalic(),
@@ -123,7 +130,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleItalic().run()
-              }
+              },
             },
             {
               icon: iconRichTextUnderline(),
@@ -133,13 +140,13 @@ const Text = TiptapText.extend<ExtensionOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleUnderline().run()
-              }
-            }
-          ]
+              },
+            },
+          ],
         }
-      }
+      },
     }
-  }
+  },
 })
 
 export default Text

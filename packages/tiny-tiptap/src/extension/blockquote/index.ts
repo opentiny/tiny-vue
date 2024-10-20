@@ -4,7 +4,9 @@ import type { BlockquoteOptions } from '@tiptap/extension-blockquote'
 import TiptapBlockquote from '@tiptap/extension-blockquote'
 import { iconRichTextQuoteText } from '@opentiny/vue-icon'
 
-const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>({
+const Blockquote = TiptapBlockquote.extend<
+  ExtensionOptions & BlockquoteOptions
+>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -12,6 +14,7 @@ const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>
         return [
           {
             key: 'quote',
+            title: '引用',
             icon: iconRichTextQuoteText(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,8 +25,8 @@ const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>
               return () => {
                 return editor.isActive(Blockquote.name)
               }
-            }
-          }
+            },
+          },
         ]
       },
       getSlashMenus() {
@@ -35,12 +38,12 @@ const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>
             keywords: ['quote', 'neirongyinyong'],
             command: ({ editor, range }: { editor: Editor; range: Range }) => {
               editor.chain().focus().deleteRange(range).toggleBlockquote().run()
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Blockquote

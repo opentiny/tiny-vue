@@ -12,6 +12,7 @@ const Italic = TiptapItalic.extend<ExtensionOptions & ItalicOptions>({
         return [
           {
             key: 'italic',
+            title: '斜体',
             icon: iconRichTextItalic(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +23,12 @@ const Italic = TiptapItalic.extend<ExtensionOptions & ItalicOptions>({
               return () => {
                 return editor.isActive(Italic.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Italic

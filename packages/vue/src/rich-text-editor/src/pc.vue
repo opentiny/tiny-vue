@@ -58,7 +58,7 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@opentiny/tiny-tiptap/vue'
+import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@opentiny/tiny-tiptap/src/vue-3'
 import TinyTiptap from '@opentiny/tiny-tiptap'
 
 import { extensionViewMap } from './extensions'
@@ -107,7 +107,7 @@ export const richTextEditorProps = {
   },
   bubbleMenuView: {
     type: [Object, Boolean],
-    default: true
+    default: false
   }
 }
 

@@ -12,6 +12,7 @@ const Strike = TiptapStrike.extend<ExtensionOptions & StrikeOptions>({
         return [
           {
             key: 'strike',
+            title: '删除线',
             icon: iconRichTextStrikeThrough(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +23,12 @@ const Strike = TiptapStrike.extend<ExtensionOptions & StrikeOptions>({
               return () => {
                 return editor.isActive(Strike.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Strike

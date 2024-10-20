@@ -53,31 +53,32 @@ export const extensions = [
   ExtensionParagraph,
   ExtensionText,
   ExtensionTable.configure({
-    resizable: true
+    resizable: true,
   }),
   ExtensionStrike,
   ExtensionCode,
   ExtensionCodeBlock.configure({
-    lowlight
+    lowlight,
   }),
   ExtensionSubscript,
   ExtensionSupscript,
   ExtensionOrderedList,
   ExtensionPlaceholder.configure({
-    placeholder: '输入 / 来使用斜杠菜单'
+    placeholder: '输入 / 来使用斜杠菜单',
   }),
   ExtensionBulletList,
   ExtensionTaskList,
   ExtensionTextAlign.configure({
-    types: ['heading', 'paragraph']
+    types: ['heading', 'paragraph'],
   }),
+  ExtensionTextStyle,
   ExtensionLink,
   ExtensionColor,
   ExtensionHighlight,
   ExtensionHeading,
   ExtensionBlockquote,
   ExtensionHistory,
-  ExtensionImage
+  ExtensionImage,
 ]
 
 export {
@@ -124,5 +125,5 @@ export {
   ExtensionTextStyle,
   ExtensionTypography,
   ExtensionUnderline,
-  ExtensionYoutube
+  ExtensionYoutube,
 }
