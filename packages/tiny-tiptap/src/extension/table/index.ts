@@ -1,5 +1,5 @@
 import type { ExtensionOptions } from '@/types'
-import { type Editor, type Range } from '@tiptap/core'
+import { isActive, type Editor, type Range } from '@tiptap/core'
 import type { TableOptions } from '@tiptap/extension-table'
 import TiptapTable from '@tiptap/extension-table'
 import TableHeader from '../table-header'
@@ -16,7 +16,7 @@ import {
   iconRichTextHeading,
   iconRichTextMergeCells,
   iconRichTextTable,
-  IconRichTextHighLight
+  IconRichTextHighLight,
 } from '@opentiny/vue-icon'
 
 const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
@@ -30,14 +30,19 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
         return [
           {
             key: 'table',
+            title: '表格',
             icon: iconRichTextTable(),
             action: ({ editor }: { editor: Editor }) => {
               return ({ row, col }) => {
-                editor.chain().focus().insertTable({ rows: row, cols: col }).run()
+                editor
+                  .chain()
+                  .focus()
+                  .insertTable({ rows: row, cols: col })
+                  .run()
               }
             },
-            config: { withTable: true }
-          }
+            config: { withTable: true },
+          },
         ]
       },
       getSlashMenus() {
@@ -48,16 +53,21 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
             title: '表格',
             keywords: ['table', 'biaoge'],
             command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).insertTable({ rows: 3, cols: 3 }).run()
-            }
-          }
+              editor
+                .chain()
+                .focus()
+                .deleteRange(range)
+                .insertTable({ rows: 3, cols: 3 })
+                .run()
+            },
+          },
         ]
       },
       getBubbleMenu() {
         return {
           pluginKey: 'tableBubbleMenu',
-          shouldShow: ({ editor }) => {
-            return editor.isActive('table')
+          shouldShow: ({ state, from, to }) => {
+            return isActive(state, Table.name)
           },
           items: [
             {
@@ -68,7 +78,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().addColumnBefore().run()
-              }
+              },
             },
             {
               icon: iconRichTextAddColumnAfter(),
@@ -78,7 +88,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().addColumnAfter().run()
-              }
+              },
             },
             {
               icon: iconRichTextDeleteColumn(),
@@ -88,7 +98,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().deleteColumn().run()
-              }
+              },
             },
             {
               icon: iconRichTextAddRowBefore(),
@@ -98,7 +108,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().addRowBefore().run()
-              }
+              },
             },
             {
               icon: iconRichTextAddRowAfter(),
@@ -108,7 +118,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().addRowAfter().run()
-              }
+              },
             },
             {
               icon: iconRichTextDeleteRow(),
@@ -118,7 +128,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().deleteRow().run()
-              }
+              },
             },
             {
               icon: iconRichTextDeleteTable(),
@@ -128,7 +138,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().deleteTable().run()
-              }
+              },
             },
             {
               icon: iconRichTextHeading(),
@@ -141,7 +151,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleHeaderCell().run()
-              }
+              },
             },
             {
               icon: iconRichTextMergeCells(),
@@ -151,7 +161,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().mergeOrSplit().run()
-              }
+              },
             },
             {
               icon: IconRichTextHighLight(),
@@ -160,9 +170,13 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
                 return () => !editor.can().toggleHeaderCell()
               },
               action: ({ editor }: { editor: Editor }) => {
-                return (info) => {
+                return info => {
                   const color = info.backgroundColor
-                  editor.chain().focus().setCellAttribute('backgroundColor', color).run()
+                  editor
+                    .chain()
+                    .focus()
+                    .setCellAttribute('backgroundColor', color)
+                    .run()
                 }
               },
               input: {
@@ -171,18 +185,21 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
                   return (e: InputEvent) => {
                     const color = e.target?.value
                     if (color) {
-                      editor.chain().focus().setCellAttribute('backgroundColor', color).run()
-                      // editor.chain().focus().setCellAttribute('colspan', 2).run()
+                      editor
+                        .chain()
+                        .focus()
+                        .setCellAttribute('backgroundColor', color)
+                        .run()
                     }
                   }
-                }
-              }
-            }
-          ]
+                },
+              },
+            },
+          ],
         }
-      }
+      },
     }
-  }
+  },
 })
 
 export default Table

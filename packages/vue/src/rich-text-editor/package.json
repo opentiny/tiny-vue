@@ -16,7 +16,7 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@probius/tiny-tiptap": "0.0.1"
+    "@opentiny/tiny-tiptap": "workspace:~"
   },
   "devDependencies": {
     "@tiptap/core": "~2.1.16",

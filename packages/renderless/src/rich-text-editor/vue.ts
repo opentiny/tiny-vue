@@ -8,10 +8,13 @@ export const renderless = (
   { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashMenuView, floatMenuView, bubbleMenuView }
 ) => {
   let defaultToolBar = [
+    'undo',
+    'redo',
+    'formatClear',
     'bold',
     'italic',
-    'underline',
     'strike',
+    'underline',
     'quote',
     'code',
     'codeBlock',
@@ -20,20 +23,16 @@ export const renderless = (
     'taskList',
     'subscript',
     'superscript',
-    'undo',
-    'redo',
     'left',
     'center',
     'right',
-    'formatClear',
-    'link',
     'h-box', //
     'font-size', //
     'line-height', //
     'highlight',
     'color', //
     'backgroundColor', //
-    'unlink', //
+    'link',
     'img', //
     'table' //
   ]

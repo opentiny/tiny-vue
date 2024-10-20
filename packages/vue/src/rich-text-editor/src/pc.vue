@@ -58,8 +58,8 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@probius/tiny-tiptap/src/vue-3'
-import TinyTiptap from '@probius/tiny-tiptap'
+import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@opentiny/tiny-tiptap/src/vue-3'
+import TinyTiptap from '@opentiny/tiny-tiptap'
 
 import { extensionViewMap } from './extensions'
 import toolbarMenuView from './components/toolbar-menu'

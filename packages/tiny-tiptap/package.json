@@ -1,6 +1,7 @@
 {
-  "name": "@probius/tiny-tiptap",
-  "version": "0.0.1",
+  "name": "@opentiny/tiny-tiptap",
+  "private": "true",
+  "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
   "sideEffects": false,

@@ -39,12 +39,11 @@ export default class TiptapEditor {
 
     this.initMiscOptions(config)
 
-    // TODO 合并用户传入的 options
     this.options = {
       ...options,
       ...{
-        extensions: this.extensions
-      }
+        extensions: this.extensions,
+      },
     }
 
     this.editor = this.createEditor(editorClass, this.options)
@@ -83,7 +82,9 @@ export default class TiptapEditor {
   private initExtensionViews(viewMap: Map<string, any>, render: any) {
     // 根据传入的视图构建 重新继承扩展并重新 configure
     viewMap.forEach((view, key) => {
-      const extensionIndex = this.extensions.findIndex((extension) => extension.name === key)
+      const extensionIndex = this.extensions.findIndex(
+        extension => extension.name === key,
+      )
       const extension = this.extensions.at(extensionIndex)
       if (extension) {
         const originOption = extension.options
@@ -91,7 +92,7 @@ export default class TiptapEditor {
           .extend({
             addNodeView() {
               return render(view)
-            }
+            },
           })
           .configure({ ...originOption })
         this.extensions[extensionIndex] = newExtension
@@ -102,7 +103,10 @@ export default class TiptapEditor {
   private initSlashMenu(renderer, view) {
     const slashMenu = generateSlashMenuExtension(renderer, view)
     // 热更新会重复添加 slashMenu 此处用于 fix
-    if (this.extensions.findIndex((extension) => extension.name === 'slashMenu') === -1) {
+    if (
+      this.extensions.findIndex(extension => extension.name === 'slashMenu') ===
+      -1
+    ) {
       this.extensions.push(slashMenu)
     }
   }
@@ -121,11 +125,13 @@ export default class TiptapEditor {
 
   private initMiscOptions(config) {
     const { placeholder } = config
-    const placeholderIndex = this.extensions.findIndex((extension) => extension.name === 'placeholder')
+    const placeholderIndex = this.extensions.findIndex(
+      extension => extension.name === 'placeholder',
+    )
     const placeholderExtension = this.extensions[placeholderIndex]
     if (placeholderExtension) {
       this.extensions[placeholderIndex] = placeholderExtension.configure({
-        placeholder
+        placeholder,
       })
     }
   }
@@ -138,7 +144,7 @@ export default class TiptapEditor {
       .focus()
       .updateUser({
         name: username,
-        color: getRandomColor()
+        color: getRandomColor(),
       })
       .run()
   }

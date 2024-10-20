@@ -8,7 +8,7 @@ import {
   iconRichTextAlignLeft,
   iconRichTextAlignCenter,
   iconRichTextAlignRight,
-  IconRichTextImage
+  IconRichTextImage,
 } from '@opentiny/vue-icon'
 
 const IGNORE_BUBBLE_TYPES = ['table']
@@ -24,34 +24,34 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
     return {
       ...this.parent?.(),
       type: {
-        default: 'img'
+        default: 'img',
       },
       width: {
-        default: 500,
         parseHTML(element) {
-          const width = element.style.width || element.getAttribute('width')
+          const width =
+            element.getAttribute('width') || element.style.width || null
           return width
         },
-        renderHTML: (attributes) => {
+        renderHTML: attributes => {
           const { width } = attributes
           return {
-            width
+            width,
           }
-        }
+        },
       },
       height: {
-        default: 500,
         parseHTML(element) {
-          const height = element.style.height || element.getAttribute('height')
+          const height =
+            element.getAttribute('height') || element.style.height || null
           return height
         },
-        renderHTML: (attributes) => {
+        renderHTML: attributes => {
           const { height } = attributes
           return {
-            height
+            height,
           }
-        }
-      }
+        },
+      },
     }
   },
   addOptions() {
@@ -61,6 +61,7 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
         return [
           {
             key: 'img',
+            title: '图片',
             icon: IconRichTextImage(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -74,18 +75,20 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
                   const input = document.createElement('input')
                   input.setAttribute('type', 'file')
                   input.setAttribute('accept', 'image/*, video/*')
-                  input.onchange = handleFileChange(editor, () => input.remove())
+                  input.onchange = handleFileChange(editor, () =>
+                    input.remove(),
+                  )
                   input.click()
-                }
+                },
               },
               {
                 text: '资源链接',
                 action: () => {
                   handleFileChange(editor)(null)
-                }
-              }
-            ]
-          }
+                },
+              },
+            ],
+          },
         ]
       },
       getBubbleMenu() {
@@ -93,7 +96,7 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
           pluginKey: 'imageBubbleMenu',
           shouldShow: ({ state, from, to }) => {
             // 避免其他类型激活时出现气泡菜单
-            if (IGNORE_BUBBLE_TYPES.some((type) => isActive(state, type))) {
+            if (IGNORE_BUBBLE_TYPES.some(type => isActive(state, type))) {
               return false
             }
             return isActive(state, Image.name)
@@ -107,7 +110,7 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().setTextAlign('left').run()
-              }
+              },
             },
             {
               icon: iconRichTextAlignCenter(),
@@ -117,7 +120,7 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().setTextAlign('center').run()
-              }
+              },
             },
             {
               icon: iconRichTextAlignRight(),
@@ -127,16 +130,20 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().setTextAlign('right').run()
-              }
-            }
-          ]
+              },
+            },
+          ],
         }
-      }
+      },
     }
   },
   renderHTML({ node, HTMLAttributes }) {
     if (node.attrs.type === 'video') {
-      return ['div', { class: 'img-button' }, ['video', mergeAttributes({ controls: true }, HTMLAttributes)]]
+      return [
+        'div',
+        { class: 'img-button' },
+        ['video', mergeAttributes({ controls: true }, HTMLAttributes)],
+      ]
     } else {
       return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
     }
@@ -144,19 +151,27 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
   parseHTML() {
     return [
       {
-        tag: 'img[src]'
-      }
+        tag: 'img[src]',
+      },
     ]
-  }
+  },
 })
 
 function handleFileChange(editor: Editor, effectFn?: () => void) {
-  return (event) => {
+  return event => {
     if (!event) {
       // TODO 优化输入形式
       const url = window.prompt('URL')
       let type = 'image'
-      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']
+      const imageExtensions = [
+        'jpg',
+        'jpeg',
+        'png',
+        'gif',
+        'bmp',
+        'webp',
+        'svg',
+      ]
       const videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'mpeg', '3gp', 'mkv']
 
       const imageRegex = new RegExp(`\\.(${imageExtensions.join('|')})$`, 'i')
@@ -182,7 +197,7 @@ function handleFileChange(editor: Editor, effectFn?: () => void) {
       type = 'video'
     }
     const reader = new FileReader()
-    reader.onload = (e) => {
+    reader.onload = e => {
       editor.chain().focus().setImage({ src: e.target?.result, type }).run()
     }
     reader.readAsDataURL(file)

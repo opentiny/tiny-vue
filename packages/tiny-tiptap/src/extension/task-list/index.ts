@@ -13,6 +13,7 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
         return [
           {
             key: 'taskList',
+            title: '任务列表',
             icon: iconRichTextTaskList(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -23,8 +24,8 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
               return () => {
                 return editor.isActive(TaskList.name)
               }
-            }
-          }
+            },
+          },
         ]
       },
       getSlashMenus() {
@@ -36,8 +37,8 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
             keywords: ['tasklist', 'renwuliebiao'],
             command: ({ editor, range }: { editor: Editor; range: Range }) => {
               editor.chain().focus().deleteRange(range).toggleTaskList().run()
-            }
-          }
+            },
+          },
         ]
       },
       getFloatMenus() {
@@ -47,15 +48,15 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
             icon: iconRichTextTaskList(),
             action: ({ editor }: { editor: Editor }) => {
               return () => editor.chain().focus().toggleTaskList().run()
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
   },
   addExtensions() {
     return [TaskItem]
-  }
+  },
 })
 
 export default TaskList

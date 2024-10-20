@@ -4,7 +4,9 @@ import type { Editor } from '@tiptap/core'
 import TiptapSupscript from '@tiptap/extension-superscript'
 import { IconRichTextSuperscript } from '@opentiny/vue-icon'
 
-const Supscript = TiptapSupscript.extend<ExtensionOptions & SuperscriptExtensionOptions>({
+const Supscript = TiptapSupscript.extend<
+  ExtensionOptions & SuperscriptExtensionOptions
+>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -12,6 +14,7 @@ const Supscript = TiptapSupscript.extend<ExtensionOptions & SuperscriptExtension
         return [
           {
             key: 'superscript',
+            title: '上标',
             icon: IconRichTextSuperscript(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +25,12 @@ const Supscript = TiptapSupscript.extend<ExtensionOptions & SuperscriptExtension
               return () => {
                 return editor.isActive(Supscript.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Supscript

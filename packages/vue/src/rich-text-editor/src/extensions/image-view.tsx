@@ -1,5 +1,5 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
-import { NodeViewWrapper, nodeViewProps } from '@probius/tiny-tiptap/src/vue-3'
+import { NodeViewWrapper, nodeViewProps } from '@opentiny/tiny-tiptap/src/vue-3'
 
 export default defineComponent({
   name: $prefix + 'ImageView',
@@ -133,8 +133,31 @@ export default defineComponent({
       }
     }
 
-    hooks.onMounted(() => {
+    const onImageLoaded = (e) => {
+      let { width, height } = imgRef.value
+      // 将 node attrs 的值初始化为图片的值 并将其限制在一定范围
+
+      const { width: maxWidth } = editor.view.dom.getBoundingClientRect()
+      // 限制图片长宽须在此范围内
+      const maxLimit = 0.8 * maxWidth
+      const minLimit = 0.2 * maxLimit
+      if (width > maxLimit) {
+        const ratio = maxLimit / width
+        width = maxLimit
+        height *= ratio
+      }
+      if (width < minLimit) {
+        const ratio = minLimit / width
+        width = minLimit
+        height *= ratio
+      }
+
+      node.attrs.width = width
+      node.attrs.height = height
       initResizerState()
+    }
+
+    hooks.onMounted(() => {
       resizeObserver.observe(editor.view.dom)
     })
 
@@ -154,6 +177,7 @@ export default defineComponent({
             width={width.value}
             height={height.value}
             onClick={() => handleSelectImg()}
+            onLoad={onImageLoaded}
           />
 
           {editor.isEditable && selectedVal && (
