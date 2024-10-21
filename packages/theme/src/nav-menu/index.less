@@ -129,6 +129,9 @@
     max-height: calc(100vh - var(--tv-NavMenu-height));
     overflow-y: auto;
     left: 0;
+    margin-top: 2px;
+    border-bottom-left-radius: var(--tv-NavMenu-popmenu-box-radius);
+    border-bottom-right-radius: var(--tv-NavMenu-popmenu-box-radius);
 
     > .more-menu {
       float: left;
@@ -218,7 +221,7 @@
 
       &.full-width {
         width: 100%;
-        padding: 0 82px;
+        padding: 32px 82px;
       }
 
       > ul {
@@ -227,18 +230,16 @@
 
         .group {
           list-style: none;
-
-          &:first-child {
-            margin-top: 36px;
-          }
+          margin-left: 10px;
 
           > .@{nav-menu-prefix-cls}__sub-menu-title {
             padding-bottom: 0;
             color: var(--tv-NavMenu-popmenu-text-color);
             font-size: var(--tv-NavMenu-popmenu-node-title-font-size);
             font-weight: bold;
-            margin: 0 32px 18px 0;
             word-break: break-all;
+            height: var(--tv-NavMenu-popmenu-text-height);
+            line-height: var(--tv-NavMenu-popmenu-text-height);
             display: flex;
 
             > a,
@@ -261,7 +262,9 @@
 
           .sub-item {
             font-size: var(--tv-NavMenu-popmenu-node-item-font-size);
-            padding: 0 0 14px;
+            height: var(--tv-NavMenu-popmenu-text-height);
+            line-height: var(--tv-NavMenu-popmenu-text-height);
+            margin-top: 4px;
 
             &.third-title {
               > a,
@@ -276,17 +279,19 @@
             }
 
             &:hover {
+              color: var(--tv-NavMenu-popmenu-text-color);
               text-decoration: underline;
             }
 
             &.active,
             &:active {
+              color: var(--tv-NavMenu-popmenu-text-color);
               background: var(--tv-NavMenu-popmenu-more-item-active-bg-color);
             }
 
             > span,
             > a {
-              color: var(--tv-NavMenu-popmenu-text-color);
+              color: var(--tv-NavMenu-popmenu-text-color-normal);
               white-space: normal;
               word-break: break-all;
               text-decoration: none;
@@ -295,7 +300,6 @@
 
               &.selected {
                 color: var(--tv-NavMenu-popmenu-selected-text-color);
-                font-weight: var(--tv-NavMenu-popmenu-selected-font-weight);
                 position: relative;
 
                 &:after {
@@ -308,6 +312,15 @@
                   background: var(--tv-NavMenu-item-selected-underline-bg-color);
                   z-index: 1;
                 }
+              }
+
+              &:hover {
+                color: var(--tv-NavMenu-popmenu-text-color);
+              }
+
+              &.active,
+              &:active {
+                color: var(--tv-NavMenu-popmenu-text-color);
               }
             }
 
