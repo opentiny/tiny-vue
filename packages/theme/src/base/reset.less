@@ -52,7 +52,7 @@
 
 // 高亮节点
 .tiny-hl-query-node {
-  color: var(--ti-common-color-text-highlight) !important;
+  color: var(----tv-color-text-active) !important;
 }
 
 [class*=~'@{css-prefix}'] {
@@ -184,30 +184,30 @@
 
   @media (min-width: 768px) {
     ::-webkit-scrollbar {
-      width: var(--ti-common-scrollbar-width);
-      height: var(--ti-common-scrollbar-height);
+      width: var(--tv-size-scrollbar-width);
+      height: var(--tv-size-scrollbar-height);
     }
 
     ::-webkit-scrollbar-track-piece {
-      background: var(--ti-common-scrollbar-track-piece-bg-color);
+      background: var(--tv-color-bg-scrollbar-track);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--ti-common-scrollbar-thumb-bg-color);
-      border-radius: var(--ti-common-scrollbar-thumb-border-radius);
+      background: var(--tv-color-bg-scrollbar-thumb);
+      border-radius: var(--tv-border-radius-scrollbar-thumb);
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--ti-common-scrollbar-thumb-hover-bg-color);
+      background: var(--tv-color-bg-scrollbar-thumb-hover);
     }
 
     ::-webkit-scrollbar-thumb:active {
-      background: var(--ti-common-scrollbar-thumb-active-bg-color);
+      background: var(--tv-color-bg-scrollbar-thumb-active);
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: var(--tv-size-scrollbar-width);
+      height: var(--tv-size-scrollbar-height);
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar-track-piece {
@@ -216,16 +216,16 @@
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar-thumb {
-      background: #bfbfbf;
-      border-radius: 4px;
+      background: var(--tv-color-bg-scrollbar-thumb);
+      border-radius: var(--tv-border-radius-scrollbar-thumb);
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #999999;
+      background: var(--tv-color-bg-scrollbar-thumb-hover);
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:active {
-      background: #999999;
+      background: var(--tv-color-bg-scrollbar-thumb-active);
     }
 
     .@{css-prefix}min-scrollbar::-webkit-scrollbar {
@@ -239,16 +239,16 @@
     }
 
     .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb {
-      background: #bfbfbf;
+      background: var(--tv-color-bg-scrollbar-thumb);
       border-radius: 2px;
     }
 
     .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #999999;
+      background: var(--tv-color-bg-scrollbar-thumb-hover);
     }
 
     .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:active {
-      background: #999999;
+      background: var(--tv-color-bg-scrollbar-thumb-active);
     }
   }
 }
