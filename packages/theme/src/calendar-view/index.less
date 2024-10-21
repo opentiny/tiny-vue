@@ -17,80 +17,68 @@
 @calendar-view-prefix-cls: ~'@{css-prefix}calendar-view';
 
 .@{calendar-view-prefix-cls} {
-  .component-css-vars-calendar-view();
-
+  .inject-CalendarView-vars();
   width: 100%;
   height: auto;
+  padding-top: 32px;
+  border: 1px solid #EBEBEB;
+  background-color: var(--tv-CalendarView-bg);
 
   &__header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--ti-calendar-view-header-margin-bottom);
+    margin-bottom: 18px;
+    padding: 0 32px;
+  }
+  &__header div:first-child {
+    flex-grow: 1;
   }
 
   &__picker {
-    margin-left: 20px;
     flex-shrink: 0;
-    margin-right: 7px;
+    margin-right: var(--tv-CalendarView-picker-right-bottom);
   }
 
-  &__tool-first {
-    display: var(--ti-calendar-view-tool-first-display);
-    font-size: 12px;
-    flex: 1;
-    margin: 0 20px;
-  }
-
-  &__tool {
-    display: var(--ti-calendar-view-tool-display);
-    font-size: 12px;
-    flex: 1;
-    margin: 0 20px;
-  }
 
   &__radio {
     flex-shrink: 0;
-
-    .fill-brand{
-      fill:#fff;
+    .tiny-radio-button__inner {
+      height: 32px;
+      background-color: #ededed;
+      svg {
+        width: var(--tv-CalendarView-radio-font-size);
+        height: var(--tv-CalendarView-radio-font-size);;
+        fill:var(--tv-CalendarView-radio-icon-fill);
+      }
     }
     .is-active{
-      .fill-brand{
-        fill: var(--ti-calendar-view-radio-active-fill);
-      }
       .tiny-radio-button__inner {
-        background-color: var(--ti-calendar-view-radio-active-inner);
+        background-color: var(--tv-CalendarView-radio-active-inner-bg);
+        border: 1px solid var(--tv-CalendarView-radio-active-border-color);
+        svg{
+          fill: var(--tv-CalendarView-radio-active-fill);
+        }
       }
-      .tiny-radio-button__inner:hover {
-        background-color: var(--ti-calendar-view-radio-active-inner-hover);
-      }
-    }
-    .tiny-radio-button__inner {
-      background-color: var(--ti-calendar-view-radio-button-inner);
     }
   }
 
   .@{calendar-view-prefix-cls}-month {
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
-
     &__header {
     display: flex;
     position: relative;
     justify-content: space-around;
     height: 40px;
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
-
       .header-left{
+        height: 100%;
+        display: flex;
+        align-items: center;
         position: absolute;
-        left: 12px;
-        top: 10px;
+        left: 32px;
         cursor: pointer;
 
         >svg{
-          height: 16px;
-          width: 16px;
-          fill: var(--ti-calendar-view-header-left-svg-fill);
+          fill: var(--tv-CalendarView-header-svg-fill);
         }
       }
 
@@ -104,22 +92,22 @@
           line-height: 40px;
 
           >span{
-            font-size: 14px;
-            color: var(--ti-calendar-view-header-main-text-color);
+            font-size: var(--tv-CalendarView-header-main-text-size);
+            color: var(--tv-CalendarView-header-main-text-color);
           }
         }
       }
 
       .header-right{
+        height: 100%;
+        display: flex;
+        align-items: center;
         position: absolute;
-        right: 12px;
-        top: 10px;
+        right: 32px;
         cursor: pointer;
 
         >svg{
-          height: 16px;
-          width: 16px;
-          fill: var(--ti-calendar-view-header-right-svg-fill);
+          fill: var(--tv-CalendarView-header-svg-fill);
         }
       }
     }
@@ -127,43 +115,35 @@
     &__main {
       width: 100%;
       overflow: hidden;
+      border-top: 1px solid #EBEBEB;
 
       .main-container{
         width: 100%;
-        margin-top: 2px;
+        
+        margin-top: var(--tv-CalendarView-main-margin-top);;
         
         >ul{
           width: 100%;
           display: flex;
           justify-content: space-around;
-          border-bottom: 1px solid #f5f6f8;
+          border-bottom: 1px solid #EBEBEB;
 
           >li{
-            font-size: 12px;
-            padding: 2px 0;
+            font-size: var(--tv-CalendarView-main-li-size);
+            padding: var(--tv-CalendarView-main-li-space) 0;
             position: relative;
             height: 80px;
             overflow: hidden;
-            border-right: 1px solid #f5f6f8;
-            background-color: #fff;
-
-            &.is-weekends {
-              background-color: rgba(245,246,248,0.5);
-            }
+            border-right: 1px solid #EBEBEB;
+            background-color: var(--tv-CalendarView-main-li-bg);
 
             &.is-selected{
-              background-color: rgba(0,103,209,0.1);
-
-              &:hover{
-                background-color: var(--ti-calendar-view-is-selected-hover-color);
-              }
+              background-color: var(--tv-CalendarView-li-selected-bg);
             }
 
-            &.not-selected{
-              &:hover{
-                background-color: var(--ti-calendar-view-not-selected-hover-color);
+            &.not-selected:hover {
+                background-color: var(--tv-CalendarView-not-selected-hover-color);
               }
-            }
 
             &.bg-blue {
               background-color: rgba(0,103,209,0.1);
@@ -192,10 +172,6 @@
             &.bg-grey {
               background-color: rgba(141,149,158,0.3);
             }
-
-            &.bg-white{
-              background-color:#fff;
-            }
           }
         }
 
@@ -203,37 +179,28 @@
           position: absolute;
           top: 0;
           right: 0;
-          background-color: #1890ff;
-          height: 16px;
-          width: 16px;
-          overflow: hidden;
-          border-bottom-left-radius: var(--ti-calendar-view-day-selected-border-radius);
+          background-color: var(--tv-CalendarView-selected-hover-color);
 
           >svg{
-            width: 16px;
-            height: 16px;
-            fill: #1890ff;
+            width: var(--tv-CalendarView-selected-svg-size);
+            height: var(--tv-CalendarView-selected-svg-size);
+            fill: var(--tv-CalendarView-selected-svg-color);
             position: relative;
-            right: var(--ti-calendar-view-day-selected-svg-right);
-            top: var(--ti-calendar-view-day-selected-svg-top);
           }
         }
 
         .date{
-          padding: 6px 0 6px 8px;
-          color: #161e26;
+          margin-left: var(--tv-CalendarView-date-margin-left);
+          color: var(--tv-CalendarView-date-text-color);;
 
           &.is-next-or-last{
-            color: #161e26;
-            opacity: 0.3;
+            color: var(--tv-CalendarView-date-weaken-text-color);
           }
-
           &.is-selected{
-            color: #1890ff;
+            color: var(--tv-CalendarView-date-selected-text-color);
           }
-
           &.is-disabled{
-            color: #b5bbc1;
+            color: var(--tv-CalendarView-text-disabled-color);
           }
         }
 
@@ -247,11 +214,11 @@
           }
 
           .events-container{
-            margin-bottom: 2px;
+            margin-bottom: var(--tv-CalendarView-event-container-margin-bottom);
           }
 
           .events-start{
-            padding: 0 2px;
+            padding: 0 var(--tv-CalendarView-event-start-padding);
 
             &.multi-day{
               padding-right: 0;
@@ -259,53 +226,47 @@
           }
 
           .events-title{
-            padding: 0 6px;
-            display: inline-block;
-            border-radius:2px;
-            line-height: 20px;
             width: 100%;
+            display: inline-block;
+            font-size: var(--tv-CalendarView-event-title-font-size);
+            line-height: 17px;
+            color: var(--tv-CalendarView-event-title--text-color);
+            padding: 0 10px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
 
             &.theme-blue {
-              color: #1890ff;
               border-left: 2px solid #1890ff;
               background-color: rgba(0,103,209,0.1);
             }
 
             &.theme-green {
-              color: #00A874;
               border-left: 2px solid #00A874;
               background-color: rgba(0,168,116,0.1);
             }
 
             &.theme-red {
-              color: #EB171F;
               border-left: 2px solid #EB171F;
               background-color: rgba(235,23,31,0.1);
             }
 
             &.theme-yellow {
-              color: #F36900;
               border-left: 2px solid #F36900;
               background-color: rgba(243,105,0,0.1);
             }
 
             &.theme-purple {
-              color: #745EF7;
               border-left: 2px solid #745EF7;
               background-color: rgba(116,94,246,0.1);
             }
 
             &.theme-cyan {
-              color: #00A2B5;
               border-left: 2px solid #00A2B5;
               background-color: rgba(0,162,181,0.1);
             }
 
             &.theme-grey {
-              color: #8D959E;
               border-left: 2px solid #8D959E;
               background-color: rgba(141,149,158,0.3);
             }
@@ -314,11 +275,6 @@
           .events-end{
             height: 20px;
             line-height: 20px;
-            margin-right: 0;
-
-            &.is-end{
-              margin-right: 2px;
-            }
 
             &.bg-blue {
               background-color: rgba(0,103,209,0.1);
@@ -348,9 +304,6 @@
               background-color: rgba(141,149,158,0.3);
             }
 
-            &.bg-white{
-              background-color:#fff;
-            }
           }
         }
       }
@@ -358,26 +311,32 @@
   }
 
   .@{calendar-view-prefix-cls}-week {
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
 
     &__header {
       display: flex;
       justify-content: space-around;
       align-items: center;
       height: 40px;
-      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
     }
 
     .header-left{
-      width: 28px;
+      margin-left: 32px;
       flex-shrink: 0;
       text-align: right;
       cursor: pointer;
 
       >svg{
-        height: 16px;
-        width: 16px;
-        fill: var(--ti-calendar-view-header-left-svg-fill);
+        fill: var(--tv-CalendarView-header-svg-fill);
+      }
+    }
+    .header-right{
+      margin-right: 32px;
+      flex-shrink: 0;
+      text-align: left;
+      cursor: pointer;
+
+      >svg{
+        fill: var(--tv-CalendarView-header-svg-fill);
       }
     }
 
@@ -393,11 +352,11 @@
         .date{
           position: relative;
           margin-right: 10px;
-          font-size: 16px;
-          color: #161e26;
+          font-size: var(--tv-CalendarView-week-date-font-size);
+          color: var(--tv-CalendarView-week-date-text-color);
 
           &.is-today{
-            color: #1890ff;
+            color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
         
@@ -406,11 +365,11 @@
           height: 6px;
           position: absolute;
           bottom: -8px;
-          left: 2px;
-          border-radius: 9999px;
+          left: var(--tv-CalendarView-mark-left);
+          border-radius: var(--tv-CalendarView-mark-border-radius);
 
           &.is-two-digit{
-            left: 8px;
+            left: var(--tv-CalendarView-mark-digit-left);
           }
 
           &.mark-blue {
@@ -422,7 +381,7 @@
           }
 
           &.mark-red {
-            background-color: #EB171F;
+            background-color: var(--tv-CalendarView-mark-color);  
           }
 
           &.mark-yellow {
@@ -443,7 +402,7 @@
         }
         
         .week-day{
-          font-size: 14px;
+          font-size: var(--tv-CalendarView-week-day-font-size);
           color: #8d959e;
 
           &.is-today{
@@ -453,18 +412,7 @@
       }
     }
 
-    .header-right{
-      width: 28px;
-      flex-shrink: 0;
-      text-align: left;
-      cursor: pointer;
-
-      >svg{
-        height: 16px;
-        width: 16px;
-        fill: var(--ti-calendar-view-header-right-svg-fill);
-      }
-    }
+    
   }
 
   .@{calendar-view-prefix-cls}-week__timeline {
@@ -472,15 +420,16 @@
       height: 448px;
       display: flex;
       overflow-y: auto;
-      margin-top: 4px;
+      margin-top: var(--tv-CalendarView-timeline-margin-top);
 
       .day-times{
-        width: 48px;
+        width: 36px;
+        margin-left: 21px;
 
         ul>li{
           height: 20px;
-          text-align: center;
-          border-bottom-width: 1px;
+          text-align: left;
+          border-bottom-width: var(--tv-CalendarView-timeline-li-border-width);
           border-bottom-style: solid;
           border-bottom-color: #fff;
 
@@ -489,8 +438,8 @@
           }
 
           span{
-            font-size: 14px;
-            color: #161e26;
+            font-size: var(--tv-CalendarView-timeline-span-font-size);
+            color: var(--tv-CalendarView-timeline-span-text-color);
           }
         }
       }
@@ -515,8 +464,8 @@
         .events-list{
           >li{
             position: relative;
-            height: 16px;
-            padding: 2px;
+            height: var(--tv-CalendarView-events-list-height);
+            padding: var(--tv-CalendarView-events-list-padding);;
             list-style-type: none;
             border-bottom-width: 1px;
             border-bottom-style: solid;
@@ -528,8 +477,8 @@
           }
 
           .events-item{
-            font-size: var(--ti-calendar-view-events-item-font-size);
-            font-weight: var(--ti-calendar-view-events-item-font-weight);
+            font-size: var(--tv-CalendarView-events-item-font-size);
+            font-weight: var(--tv-CalendarView-events-item-font-weight);
             width: 92%;
             display: flex;
             align-items: center;
@@ -540,45 +489,39 @@
             z-index: 10;
             line-height: 1.5;
             border-radius: 2px;
+            color: var(--tv-CalendarView-events-item-color);
 
             &.theme-blue {
-              color: var(--ti-calendar-view-events-blue-item-color);
               border-left: 2px solid #1890ff;
               background-color: rgba(0,103,209,0.1);
             }
 
             &.theme-green {
-              color: var(--ti-calendar-view-events-green-item-color);
               border-left: 2px solid #00A874;
               background-color: rgba(0,168,116,0.1);
             }
 
             &.theme-red {
-              color: var(--ti-calendar-view-events-red-item-color);
               border-left: 2px solid #EB171F;
               background-color: rgba(235,23,31,0.1);
             }
 
             &.theme-yellow {
-              color: var(--ti-calendar-view-events-yellow-item-color);
               border-left: 2px solid #F36900;
               background-color: rgba(243,105,0,0.1);
             }
 
             &.theme-purple {
-              color: var(--ti-calendar-view-events-purple-item-color);
               border-left: 2px solid #745EF7;
               background-color: rgba(116,94,246,0.1);
             }
 
             &.theme-cyan {
-              color: var(--ti-calendar-view-events-cyan-item-color);
               border-left: 2px solid #00A2B5;
               background-color: rgba(0,162,181,0.1);
             }
 
             &.theme-grey {
-              color: var(--ti-calendar-view-events-grey-item-color);
               border-left: 2px solid #8D959E;
               background-color: rgba(141,149,158,0.3);
             }
@@ -599,17 +542,28 @@
 
       >li{
         height: 100%;
-        padding: 12px 8px;
+        padding: var(--tv-CalendarView-week-li-padding-v) var(--tv-CalendarView-week-li-padding-h);
+
+        .title {
+          font-size: var(--tv-CalendarView-week-title-font-size);
+          font-weight: var(--tv-CalendarView-week-title-font-weight);
+          line-height: 20px;
+        }
+        .content {
+          font-size: var(--tv-CalendarView-week-content-font-size);
+          font-weight: var(--tv-CalendarView-week-content-font-weight);
+          line-height: 22px;
+        }
       }
     }
 
     .day-events{
-      font-size: 12px;
+      font-size: var(--tv-CalendarView-week-day-font-size);
       padding: 6px 0;
       height: auto;
       border: 1px solid #e8ebef;
-      border-radius: 4px;
-      margin-bottom: 8px;
+      border-radius: var(--tv-CalendarView-week-day-border-radius);
+      margin-bottom: var(--tv-CalendarView-week-day-margin-bottom);;
       box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
 
       .title{
@@ -621,12 +575,12 @@
 
       .date{
         margin-bottom: 6px;
-        padding: 0 8px;
-        color: #8d959e;
+        padding: 0 var(--tv-CalendarView-week-date-padding-h);
+        color: var(--tv-CalendarView-week-date-text-color);
       }
 
       .content{
-        padding: 0 8px;
+        padding: 0 var(--tv-CalendarView-week-content-padding-h);
         color: #8d959e;
         overflow : hidden;
         text-overflow: ellipsis;
@@ -642,51 +596,39 @@
       text-align: center;
       line-height: 32px;
       width: 100%;
-      margin-top: 8px;
+      margin-top: var(--tv-CalendarView-week-schedule-margin-top);
       border: 1px solid #e8ebef;
-      border-radius: 4px;
+      border-radius: var(--tv-CalendarView-week-schedule-border-radius);
       cursor: pointer;
 
       >svg{
-        width: 16px;
-        height: 16px;
+        width: var(--tv-CalendarView-week-schedule-icon-size);
+        height: var(--tv-CalendarView-week-schedule-icon-size);
         vertical-align: sub;
         fill:#8d959e;
       }
 
       >span{
-        margin-left: 4px;
+        margin-left: var(--tv-CalendarView-schedule-span-margin-left);
         color: #8d959e;
       }
     }
   }
 }
 
-.@{calendar-view-prefix-cls}-tooltip{
+.@{calendar-view-prefix-cls}-tooltip {
+  .inject-CalendarView-vars();
   position: absolute;
   max-width: 320px;
-
   .tooltip-main{
-    padding: 8px;
-
+    padding: var(--tv-CalendarView-tooltip-title-font-size);
     .title{
-      font-size: var(--ti-calendar-view-tooltip-title-font-size);
-      padding: 0 6px;
-      margin-bottom: 6px;
-      border-left-width: 2px;
-      border-left-color: #1890ff;
-      font-weight: var(--ti-calendar-view-tooltip-title-font-weight);
+      font-size: var(--tv-CalendarView-tooltip-title-font-size);
+      font-weight: var(--tv-CalendarView-tooltip-title-font-weight);
     }
-
     .date{
-      margin-bottom: 6px;
-      padding: 0 8px;
-      color: var(--ti-calendar-view-tooltip-date-text-color, #8d959e);
-    }
-
-    .content{
-      padding: 0 8px;
-      color: var(--ti-calendar-view-tooltip-content-text-color, #8d959e);
+      margin: 6px 0;
+      color: var(--tv-CalendarView-tooltip-date-text-color);
     }
   }
 }
