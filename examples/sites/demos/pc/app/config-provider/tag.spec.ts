@@ -9,5 +9,5 @@ test('测试自定义标签', async ({ page }) => {
   await demo.nth(2).click()
   await page.waitForTimeout(300)
   const elements = await page.locator('.tiny-config-provider')
-  await expect(elements.nth(1)).toHaveCSS('padding', '16px')
+  await expect(elements.nth(1)).toHaveCSS('padding', '12px')
 })

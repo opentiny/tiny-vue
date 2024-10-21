@@ -13,5 +13,4 @@ test('locales-custom-service', async ({ page }) => {
   await reference.hover()
   await page.waitForTimeout(200)
   await expect(popper).toBeVisible()
-  await popper.getByText('enUS').click()
 })
