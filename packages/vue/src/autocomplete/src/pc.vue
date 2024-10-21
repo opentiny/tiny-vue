@@ -24,10 +24,10 @@
       ref="input"
       v-bind="f($props, $attrs)"
       front-clear-icon
+      v-clickoutside="handleBlur"
       @update:modelValue="handleChange"
       :validate-event="false"
       @focus="handleFocus"
-      @blur="handleBlur"
       @clear="handleClear"
       @keydown.up.prevent="highlight(state.highlightedIndex - 1)"
       @keydown.down.prevent="highlight(state.highlightedIndex + 1)"
