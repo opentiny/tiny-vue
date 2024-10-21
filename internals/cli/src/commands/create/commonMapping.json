@@ -24,11 +24,6 @@
     "type": "module",
     "exclude": false
   },
-  "DesignSmb": {
-    "path": "design/smb/index.ts",
-    "type": "module",
-    "exclude": false
-  },
   "DesignAurora": {
     "path": "design/aurora/index.ts",
     "type": "module",
