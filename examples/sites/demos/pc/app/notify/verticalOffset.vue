@@ -15,7 +15,7 @@ export default {
     handleClick() {
       Notify({
         type: 'info',
-        title: (h, params) => <h4>通知消息的标题</h4>,
+        title: '通知消息的标题',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right',
         customClass: 'my-custom-cls',
