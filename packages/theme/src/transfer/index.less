@@ -27,82 +27,82 @@
 @tree-prefix-cls: ~'@{css-prefix}tree';
 
 .@{transfer-prefix-cls} {
-  .component-css-vars-transfer();
+  .inject-Transfer-vars();
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: var(--ti-transfer-font-size);
+  font-size: var(--tv-Transfer-font-size);
 
   &__buttons {
-    padding-left: var(--ti-transfer-buttons-padding-left);
-    padding-right: var(--ti-transfer-buttons-padding-right);
-    padding-top: var(--ti-transfer-buttons-padding-top);
-    padding-bottom: var(--ti-transfer-buttons-padding-bottom);
+    padding-left: var(--tv-Transfer-buttons-padding-left);
+    padding-right: var(--tv-Transfer-buttons-padding-right);
+    padding-top: var(--tv-Transfer-buttons-padding-top);
+    padding-bottom: var(--tv-Transfer-buttons-padding-bottom);
 
     .defaultButton {
       display: flex;
       flex-direction: column;
 
       .@{button-prefix-cls} + .@{button-prefix-cls} {
-        margin-left: var(--ti-transfer-buttons-defaultButton-margin-left);
+        margin-left: var(--tv-Transfer-buttons-defaultButton-margin-left);
       }
 
       & + .@{button-prefix-cls} {
-        margin-right: var(--ti-transfer-buttons-defaultButton-margin-right);
-        margin-top: var(--ti-transfer-buttons-defaultButton-margin-top);
-        margin-bottom: var(--ti-transfer-buttons-defaultButton-margin-bottom);
+        margin-right: var(--tv-Transfer-buttons-defaultButton-margin-right);
+        margin-top: var(--tv-Transfer-buttons-defaultButton-margin-top);
+        margin-bottom: var(--tv-Transfer-buttons-defaultButton-margin-bottom);
       }
     }
 
     .@{button-prefix-cls} {
       min-width: auto;
-      margin-left: var(--ti-transfer-buttons-margin-left);
-      margin-right: var(--ti-transfer-buttons-margin-right);
-      margin-top: var(--ti-transfer-buttons-margin-top);
-      margin-bottom: var(--ti-transfer-buttons-margin-bottom);
+      margin-left: var(--tv-Transfer-buttons-margin-left);
+      margin-right: var(--tv-Transfer-buttons-margin-right);
+      margin-top: var(--tv-Transfer-buttons-margin-top);
+      margin-bottom: var(--tv-Transfer-buttons-margin-bottom);
     }
   }
 
   &__button {
     display: block;
-    margin-left: var(--ti-transfer-button-margin-left);
-    margin-right: var(--ti-transfer-button-margin-right);
-    margin-top: var(--ti-transfer-button-margin-top);
-    margin-bottom: var(--ti-transfer-button-margin-bottom);
+    margin-left: var(--tv-Transfer-button-margin-left);
+    margin-right: var(--tv-Transfer-button-margin-right);
+    margin-top: var(--tv-Transfer-button-margin-top);
+    margin-bottom: var(--tv-Transfer-button-margin-bottom);
 
     &:not(.is-disabled) {
-      border-color: var(--ti-transfer-button-bg-color) !important;
+      border-color: var(--tv-Transfer-button-bg-color) !important;
     }
 
-    background-color: var(--ti-transfer-button-bg-color);
-    width: var(--ti-transfer-button-width);
-    height: var(--ti-transfer-button-height);
-    border-radius: var(--ti-transfer-button-border-radius);
+    background-color: var(--tv-Transfer-button-bg-color);
+    width: var(--tv-Transfer-button-width);
+    height: var(--tv-Transfer-button-height);
+    border-radius: var(--tv-Transfer-button-border-radius);
     line-height: normal;
-    padding-left: var(--ti-transfer-button-padding-left);
-    padding-right: var(--ti-transfer-button-padding-right);
-    padding-top: var(--ti-transfer-button-padding-top);
-    padding-bottom: var(--ti-transfer-button-padding-bottom);
+    padding-left: var(--tv-Transfer-button-padding-left);
+    padding-right: var(--tv-Transfer-button-padding-right);
+    padding-top: var(--tv-Transfer-button-padding-top);
+    padding-bottom: var(--tv-Transfer-button-padding-bottom);
     // 避免 button中的svg字体变大后，产生的省略号
     text-overflow: clip;
 
     &.is-with-texts {
-      border-radius: var(--ti-transfer-button-border-radius);
+      border-radius: var(--tv-Transfer-button-border-radius);
       min-width: 60px;
     }
 
     &.@{button-prefix-cls}:not(.is-circle) .@{svg-prefix-cls} {
-      font-size: var(--ti-transfer-svg-font-size);
+      font-size: var(--tv-Transfer-svg-font-size);
       margin-right: 0;
     }
 
     &.@{button-prefix-cls}:not(.is-disabled) {
-      background-color: var(--ti-transfer-button-bg-color);
+      background-color: var(--tv-Transfer-button-bg-color);
     }
 
     &:first-child {
-      margin-bottom: var(--ti-transfer-first-button-margin-bottom);
+      margin-bottom: var(--tv-Transfer-first-button-margin-bottom);
     }
 
     &:nth-child(2) {
@@ -111,7 +111,7 @@
 
     i,
     span {
-      font-size: var(--ti-transfer-font-size);
+      font-size: var(--tv-Transfer-font-size);
       transform: translateY(-3px); // 适配 xdesign, 让span居中
       display: inline-block;
     }
@@ -124,24 +124,24 @@
   & &__button {
     &.is-disabled,
     &.is-disabled:hover {
-      border: 1px solid var(--ti-transfer-button-disabled-border-color);
-      background-color: var(--ti-transfer-button-disabled-bg-color);
-      color: var(--ti-transfer-button-disabled-text-color);
-      line-height: var(--ti-transfer-button-disabled-line-height);
+      border: 1px solid var(--tv-Transfer-button-disabled-border-color);
+      background-color: var(--tv-Transfer-button-disabled-bg-color);
+      color: var(--tv-Transfer-button-disabled-text-color);
+      line-height: var(--tv-Transfer-button-disabled-line-height);
 
       .@{svg-prefix-cls} {
-        fill: var(--ti-transfer-button-disabled-text-color);
+        fill: var(--tv-Transfer-button-disabled-text-color);
       }
     }
   }
 }
 
 .@{transfer-panel-prefix-cls} {
-  border: 1px solid var(--ti-transfer-panel-border-color);
-  border-radius: var(--ti-transfer-panel-border-radius);
+  border: 1px solid var(--tv-Transfer-panel-border-color);
+  border-radius: var(--tv-Transfer-panel-border-radius);
   overflow: hidden;
-  background: var(--ti-transfer-panel-bg-color);
-  width: var(--ti-transfer-panel-width);
+  background: var(--tv-Transfer-panel-bg-color);
+  width: var(--tv-Transfer-panel-width);
   max-height: 100%;
   vertical-align: middle;
   box-sizing: border-box;
@@ -149,42 +149,42 @@
 
   &__body {
     position: relative;
-    height: var(--ti-transfer-panel-body-height);
+    height: var(--tv-Transfer-panel-body-height);
     text-align: left;
-    padding-right: var(--ti-transfer-panel-body-padding-right);
-    padding-left: var(--ti-transfer-panel-body-padding-left);
+    padding-right: var(--tv-Transfer-panel-body-padding-right);
+    padding-left: var(--tv-Transfer-panel-body-padding-left);
 
     &.is-with-footer {
-      padding-bottom: var(--ti-transfer-panel-body-footer-padding-bottom);
-      height: var(--ti-transfer-panel-body-footer-height);
+      padding-bottom: var(--tv-Transfer-panel-body-footer-padding-bottom);
+      height: var(--tv-Transfer-panel-body-footer-height);
     }
 
     .@{tree-prefix-cls} {
-      height: var(--ti-transfer-panel-body-tree-height);
-      padding-left: var(--ti-transfer-panel-body-tree-padding-left);
-      padding-right: var(--ti-transfer-panel-body-tree-padding-right);
-      padding-top: var(--ti-transfer-panel-body-tree-padding-top);
-      padding-bottom: var(--ti-transfer-panel-body-tree-padding-bottom);
+      height: var(--tv-Transfer-panel-body-tree-height);
+      padding-left: var(--tv-Transfer-panel-body-tree-padding-left);
+      padding-right: var(--tv-Transfer-panel-body-tree-padding-right);
+      padding-top: var(--tv-Transfer-panel-body-tree-padding-top);
+      padding-bottom: var(--tv-Transfer-panel-body-tree-padding-bottom);
       overflow: auto;
       .transfer-scrollbar(8px);
     }
 
     .@{transfer-panel-prefix-cls}__filter ~ .@{tree-prefix-cls} {
-      height: var(--ti-transfer-panel-body-tree-filter-height);
+      height: var(--tv-Transfer-panel-body-tree-filter-height);
     }
   }
 
   &__list {
-    margin-left: var(--ti-transfer-panel-body-list-margin-left);
-    margin-right: var(--ti-transfer-panel-body-list-margin-right);
-    margin-top: var(--ti-transfer-panel-body-list-margin-top);
-    margin-bottom: var(--ti-transfer-panel-body-list-margin-bottom);
-    padding-left: var(--ti-transfer-panel-body-list-padding-left);
-    padding-right: var(--ti-transfer-panel-body-list-padding-right);
-    padding-top: var(--ti-transfer-panel-body-list-padding-top);
-    padding-bottom: var(--ti-transfer-panel-body-list-padding-bottom);
+    margin-left: var(--tv-Transfer-panel-body-list-margin-left);
+    margin-right: var(--tv-Transfer-panel-body-list-margin-right);
+    margin-top: var(--tv-Transfer-panel-body-list-margin-top);
+    margin-bottom: var(--tv-Transfer-panel-body-list-margin-bottom);
+    padding-left: var(--tv-Transfer-panel-body-list-padding-left);
+    padding-right: var(--tv-Transfer-panel-body-list-padding-right);
+    padding-top: var(--tv-Transfer-panel-body-list-padding-top);
+    padding-bottom: var(--tv-Transfer-panel-body-list-padding-bottom);
     list-style: none;
-    height: var(--ti-transfer-panel-body-height);
+    height: var(--tv-Transfer-panel-body-height);
     overflow: auto;
     box-sizing: border-box;
     display: block;
@@ -194,8 +194,8 @@
     }
 
     &.is-filterable {
-      height: var(--ti-transfer-panel-body-filter-height);
-      padding-top: var(--ti-transfer-panel-body-filter-padding-top);
+      height: var(--tv-Transfer-panel-body-filter-height);
+      padding-top: var(--tv-Transfer-panel-body-filter-padding-top);
       display: flex;
       flex-direction: column;
 
@@ -212,8 +212,8 @@
   }
 
   &__item {
-    line-height: var(--ti-transfer-panel-item-height);
-    padding-left: var(--ti-transfer-panel-item-padding-left);
+    line-height: var(--tv-Transfer-panel-item-height);
+    padding-left: var(--tv-Transfer-panel-item-padding-left);
     display: flex;
     transition: all 0.5s;
 
@@ -223,8 +223,8 @@
     }
 
     &.@{checkbox-prefix-cls} {
-      color: var(--ti-transfer-panel-item-text-color);
-      line-height: var(--ti-transfer-panel-item-height);
+      color: var(--tv-Transfer-panel-item-text-color);
+      line-height: var(--tv-Transfer-panel-item-height);
       margin: 0;
       display: flex;
 
@@ -235,8 +235,8 @@
         white-space: nowrap;
         display: block;
         box-sizing: border-box;
-        padding-left: var(--ti-transfer-panel-item-checkbox-padding-left);
-        line-height: var(--ti-transfer-panel-item-height);
+        padding-left: var(--tv-Transfer-panel-item-checkbox-padding-left);
+        line-height: var(--tv-Transfer-panel-item-height);
       }
 
       .@{checkbox-prefix-cls}__input {
@@ -245,8 +245,8 @@
     }
 
     &:hover {
-      background: var(--ti-transfer-panel-item-hover-bg-color);
-      color: var(--ti-transfer-panel-item-hover-text-color);
+      background: var(--tv-Transfer-panel-item-hover-bg-color);
+      color: var(--tv-Transfer-panel-item-hover-text-color);
     }
 
     &.is-disabled:hover {
@@ -263,22 +263,22 @@
     text-align: center;
     // 从padding-left改为 margin-left.  原因是 当前dom是tiny-input的根元素， input的prefix,suffix插槽是绝对定位的
     // 如果使用padding, 会影响插槽与边框的距离，贴在一起。 所以要改为margin 保证不影响插槽。
-    margin-left: var(--ti-transfer-panel-filter-padding-left);
-    margin-right: var(--ti-transfer-panel-filter-padding-right);
-    margin-top: var(--ti-transfer-panel-filter-padding-top);
-    margin-bottom: var(--ti-transfer-panel-filter-padding-bottom);
+    margin-left: var(--tv-Transfer-panel-filter-padding-left);
+    margin-right: var(--tv-Transfer-panel-filter-padding-right);
+    margin-top: var(--tv-Transfer-panel-filter-padding-top);
+    margin-bottom: var(--tv-Transfer-panel-filter-padding-bottom);
     box-sizing: border-box;
     display: block;
     width: auto;
 
     .@{input-prefix-cls}__inner {
-      height: var(--ti-transfer-panel-filter-height);
-      line-height: var(--ti-transfer-panel-filter-height);
+      height: var(--tv-Transfer-panel-filter-height);
+      line-height: var(--tv-Transfer-panel-filter-height);
       width: 100%;
-      font-size: var(--ti-transfer-panel-filter-font-size);
+      font-size: var(--tv-Transfer-panel-filter-font-size);
       display: inline-block;
       box-sizing: border-box;
-      border-radius: var(--ti-transfer-panel-filter-border-radius);
+      border-radius: var(--tv-Transfer-panel-filter-border-radius);
       border-bottom-color: #f0f0f0 !important;
       padding-left: 24px;
       padding-right: 0;
@@ -293,20 +293,20 @@
   }
 
   & &__header {
-    height: var(--ti-transfer-header-height);
-    line-height: var(--ti-transfer-header-height);
-    background: var(--ti-transfer-header-bg-color);
-    margin-left: var(--ti-transfer-header-margin-left);
-    margin-right: var(--ti-transfer-header-margin-right);
-    margin-top: var(--ti-transfer-header-margin-top);
-    margin-bottom: var(--ti-transfer-header-margin-bottom);
-    padding-left: var(--ti-transfer-header-padding-left);
-    padding-right: var(--ti-transfer-header-padding-right);
-    padding-top: var(--ti-transfer-header-padding-top);
-    padding-bottom: var(--ti-transfer-header-padding-bottom);
-    border-bottom: 1px solid var(--ti-transfer-header-border-color);
+    height: var(--tv-Transfer-header-height);
+    line-height: var(--tv-Transfer-header-height);
+    background: var(--tv-Transfer-header-bg-color);
+    margin-left: var(--tv-Transfer-header-margin-left);
+    margin-right: var(--tv-Transfer-header-margin-right);
+    margin-top: var(--tv-Transfer-header-margin-top);
+    margin-bottom: var(--tv-Transfer-header-margin-bottom);
+    padding-left: var(--tv-Transfer-header-padding-left);
+    padding-right: var(--tv-Transfer-header-padding-right);
+    padding-top: var(--tv-Transfer-header-padding-top);
+    padding-bottom: var(--tv-Transfer-header-padding-bottom);
+    border-bottom: 1px solid var(--tv-Transfer-header-border-color);
     box-sizing: border-box;
-    color: var(--ti-transfer-header-text-color);
+    color: var(--tv-Transfer-header-text-color);
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -318,8 +318,8 @@
       text-align: left;
 
       .@{checkbox-prefix-cls}__label {
-        font-size: var(--ti-transfer-header-font-size);
-        color: var(--ti-transfer-header-text-color);
+        font-size: var(--tv-Transfer-header-font-size);
+        color: var(--tv-Transfer-header-text-color);
         font-weight: 400;
         width: calc(100% - 38px);
         overflow: hidden;
@@ -329,9 +329,9 @@
         span {
           position: absolute;
           right: 0;
-          color: var(--ti-transfer-header-span-text-color);
-          font-size: var(--ti-transfer-header-font-size);
-          font-weight: var(--ti-transfer-header-span-font-weight);
+          color: var(--tv-Transfer-header-span-text-color);
+          font-size: var(--tv-Transfer-header-font-size);
+          font-weight: var(--tv-Transfer-header-span-font-weight);
         }
       }
     }
@@ -343,20 +343,20 @@
       transform: translateY(-50%);
 
       div {
-        width: var(--ti-transfer-header-sort-width);
-        height: var(--ti-transfer-header-sort-width);
-        line-height: var(--ti-transfer-header-sort-width);
-        margin-right: var(--ti-transfer-header-sort-margin-right);
+        width: var(--tv-Transfer-header-sort-width);
+        height: var(--tv-Transfer-header-sort-width);
+        line-height: var(--tv-Transfer-header-sort-width);
+        margin-right: var(--tv-Transfer-header-sort-margin-right);
         text-align: center;
         border: 1px solid;
-        border-radius: var(--ti-transfer-header-sort-border-radius);
-        color: var(--ti-transfer-header-sort-text-color);
+        border-radius: var(--tv-Transfer-header-sort-border-radius);
+        color: var(--tv-Transfer-header-sort-text-color);
         display: inline-block;
         cursor: pointer;
 
         i {
-          width: calc(var(--ti-transfer-header-sort-width) - 2px);
-          height: calc(var(--ti-transfer-header-sort-width) - 2px);
+          width: calc(var(--tv-Transfer-header-sort-width) - 2px);
+          height: calc(var(--tv-Transfer-header-sort-width) - 2px);
           display: block;
         }
       }
@@ -364,17 +364,17 @@
   }
 
   & &__footer {
-    height: var(--ti-transfer-footer-height);
-    background: var(--ti-transfer-footer-bg-color);
-    margin-left: var(--ti-transfer-footer-margin-left);
-    margin-right: var(--ti-transfer-footer-margin-right);
-    margin-top: var(--ti-transfer-footer-margin-top);
-    margin-bottom: var(--ti-transfer-footer-margin-bottom);
-    padding-left: var(--ti-transfer-footer-padding-left);
-    padding-right: var(--ti-transfer-footer-padding-right);
-    padding-top: var(--ti-transfer-footer-padding-top);
-    padding-bottom: var(--ti-transfer-footer-padding-bottom);
-    border-top: 1px solid var(--ti-transfer-footer-border-color);
+    height: var(--tv-Transfer-footer-height);
+    background: var(--tv-Transfer-footer-bg-color);
+    margin-left: var(--tv-Transfer-footer-margin-left);
+    margin-right: var(--tv-Transfer-footer-margin-right);
+    margin-top: var(--tv-Transfer-footer-margin-top);
+    margin-bottom: var(--tv-Transfer-footer-margin-bottom);
+    padding-left: var(--tv-Transfer-footer-padding-left);
+    padding-right: var(--tv-Transfer-footer-padding-right);
+    padding-top: var(--tv-Transfer-footer-padding-top);
+    padding-bottom: var(--tv-Transfer-footer-padding-bottom);
+    border-top: 1px solid var(--tv-Transfer-footer-border-color);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -389,7 +389,7 @@
     }
 
     .@{checkbox-prefix-cls} {
-      padding-left: var(--ti-transfer-footer-checkbox-padding-left);
+      padding-left: var(--tv-Transfer-footer-checkbox-padding-left);
     }
   }
 
@@ -398,13 +398,13 @@
     width: 100%;
     top: calc(50% - 33px);
     margin: 0;
-    height: var(--ti-transfer-empty-height);
-    line-height: var(--ti-transfer-empty-height);
-    padding-left: var(--ti-transfer-empty-padding-left);
-    padding-right: var(--ti-transfer-empty-padding-right);
-    padding-top: var(--ti-transfer-empty-padding-top);
-    padding-bottom: var(--ti-transfer-empty-padding-bottom);
-    color: var(--ti-transfer-empty-text-color);
+    height: var(--tv-Transfer-empty-height);
+    line-height: var(--tv-Transfer-empty-height);
+    padding-left: var(--tv-Transfer-empty-padding-left);
+    padding-right: var(--tv-Transfer-empty-padding-right);
+    padding-top: var(--tv-Transfer-empty-padding-top);
+    padding-bottom: var(--tv-Transfer-empty-padding-bottom);
+    color: var(--tv-Transfer-empty-text-color);
     text-align: center;
   }
 
@@ -417,10 +417,10 @@
 
     .@{table-prefix-cls}.simple {
       width: 100%;
-      padding-left: var(--ti-transfer-table-padding-left);
-      padding-right: var(--ti-transfer-table-padding-right);
-      padding-top: var(--ti-transfer-table-padding-top);
-      padding-bottom: var(--ti-transfer-table-padding-bottom);
+      padding-left: var(--tv-Transfer-table-padding-left);
+      padding-right: var(--tv-Transfer-table-padding-right);
+      padding-top: var(--tv-Transfer-table-padding-top);
+      padding-bottom: var(--tv-Transfer-table-padding-bottom);
       height: 400px;
       overflow-y: auto;
 
@@ -430,14 +430,14 @@
     }
 
     .@{pager-prefix-cls} {
-      padding-left: var(--ti-transfer-pager-padding-left);
-      padding-top: var(--ti-transfer-pager-padding-top);
-      padding-bottom: var(--ti-transfer-pager-padding-bottom);
-      padding-right: var(--ti-transfer-pager-padding-right);
+      padding-left: var(--tv-Transfer-pager-padding-left);
+      padding-top: var(--tv-Transfer-pager-padding-top);
+      padding-bottom: var(--tv-Transfer-pager-padding-bottom);
+      padding-right: var(--tv-Transfer-pager-padding-right);
     }
   }
 
   .@{checkbox-prefix-cls}__label {
-    padding-left: var(--ti-transfer-checkbox-label-padding-left);
+    padding-left: var(--tv-Transfer-checkbox-label-padding-left);
   }
 }
