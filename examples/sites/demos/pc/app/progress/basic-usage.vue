@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      percentage: 90,
+      percentage: 45,
       IconMinus: iconMinus(),
       IconPlus: iconPlus()
     }
