@@ -18,7 +18,7 @@
       @mouseup="useMouseEventUp"
       @mousedown="useMouseEventDown"
     >
-      <transition :name="dialogTransition">
+      <transition :name="dialogTransition" :duration="3000">
         <div
           ref="dialog"
           v-show="visible"
