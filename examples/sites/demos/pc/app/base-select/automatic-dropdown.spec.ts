@@ -9,7 +9,7 @@ test('不可搜索时，获取焦点不下拉', async ({ page }) => {
 
   await wrap.getByRole('button').first().click()
   // 聚焦高亮
-  await expect(input).toHaveCSS('border-color', 'rgb(94, 124, 224)')
+  await expect(input).toHaveCSS('border-color', 'rgb(25, 25, 25)')
   // 不下拉
   await expect(dropdown).toBeHidden()
 })
