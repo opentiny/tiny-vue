@@ -20,7 +20,7 @@
 @popper-prefix-cls: ~'@{css-prefix}popper';
 
 .@{calendar-prefix-cls} {
-  .injiect-Calendar-vars();
+  .inject-Calendar-vars();
 
   background: var(--tv-Calendar-bg-color);
   overflow: hidden;
@@ -93,7 +93,7 @@
       &:active,
       &.active,
       &[active] {
-        border: 1px solid #191919;
+        border: 1px solid var(--tv-Calendar-input-hover-border-color);
       }
 
       &[readonly] {
