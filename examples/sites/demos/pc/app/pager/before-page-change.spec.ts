@@ -28,7 +28,7 @@ test('分页变更前置处理', async ({ page }) => {
   await expect(tipModal).toBeVisible()
   await confirmBtn.click()
   await expect(tipModal).not.toBeVisible()
-  await pager.locator('.tiny-pager__goto input').fill('100')
+  await pager.locator('.tiny-pager__goto input').fill('2')
   await page.waitForTimeout(200)
   await pager.locator('.tiny-pager__goto input').press('Enter')
   await expect(tipModal).toBeVisible()
