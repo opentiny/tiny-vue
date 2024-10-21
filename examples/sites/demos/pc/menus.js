@@ -104,7 +104,6 @@ export const cmpMenus = [
       { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
       { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
       { 'nameCn': '下拉菜单', 'name': 'Dropdown', 'key': 'dropdown' },
-      { 'nameCn': '收藏夹菜单', 'name': 'LinkMenu', 'key': 'link-menu' },
       { 'nameCn': '导航菜单', 'name': 'NavMenu', 'key': 'nav-menu' },
       { 'nameCn': '分页', 'name': 'Pager', 'key': 'pager' },
       { 'nameCn': '步骤条', 'name': 'Steps', 'key': 'steps' },
