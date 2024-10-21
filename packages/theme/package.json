@@ -3,6 +3,7 @@
   "version": "3.18.3",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
+  "type": "module",
   "license": "MIT",
   "homepage": "https://opentiny.design/tiny-vue",
   "repository": {
