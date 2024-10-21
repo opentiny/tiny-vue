@@ -32,20 +32,22 @@
               </button>
               <div>{{ state.leftLabel }}</div>
             </div>
-            <year-table
-              ref="leftYearTable"
-              :selection-mode="state.selectionMode"
-              :date="state.leftDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              :start-year="state.leftStartYear"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </year-table>
+            <div class="tiny-date-range-picker__table">
+              <year-table
+                ref="leftYearTable"
+                :selection-mode="state.selectionMode"
+                :date="state.leftDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :start-year="state.leftStartYear"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </year-table>
+            </div>
           </div>
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-right">
             <div class="tiny-date-range-picker__header">
@@ -54,20 +56,22 @@
               </button>
               <div>{{ state.rightLabel }}</div>
             </div>
-            <year-table
-              ref="rightRearTable"
-              :selection-mode="state.selectionMode"
-              :date="state.rightDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              :start-year="state.rightStartYear"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </year-table>
+            <div class="tiny-date-range-picker__table">
+              <year-table
+                ref="rightRearTable"
+                :selection-mode="state.selectionMode"
+                :date="state.rightDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :start-year="state.rightStartYear"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </year-table>
+            </div>
           </div>
         </div>
       </div>

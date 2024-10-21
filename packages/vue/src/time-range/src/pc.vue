@@ -12,7 +12,11 @@
 
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
-    <div v-show="state.visible" class="tiny-time-range-picker tiny-picker-panel tiny-popper" :class="state.popperClass">
+    <div
+      v-show="state.visible"
+      class="tiny-time-range tiny-time-range-picker tiny-picker-panel tiny-popper"
+      :class="state.popperClass"
+    >
       <div class="tiny-time-range-picker__content">
         <div class="tiny-time-range-picker__cell">
           <div class="tiny-time-range-picker__header">

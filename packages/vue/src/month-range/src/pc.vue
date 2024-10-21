@@ -13,7 +13,7 @@
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
     <div
       v-show="state.visible"
-      class="tiny-picker-panel tiny-date-range-picker tiny-popper"
+      class="tiny-month-range tiny-picker-panel tiny-date-range-picker tiny-popper"
       :class="[
         {
           'has-sidebar': slots.sidebar || state.shortcuts
@@ -53,18 +53,20 @@
               </button>
               <div>{{ state.leftLabel }}</div>
             </div>
-            <month-table
-              selection-mode="range"
-              :date="state.leftDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </month-table>
+            <div class="tiny-date-range-picker__table">
+              <month-table
+                selection-mode="range"
+                :date="state.leftDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </month-table>
+            </div>
           </div>
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-right">
             <div class="tiny-date-range-picker__header">
@@ -83,18 +85,20 @@
               </button>
               <div>{{ state.rightLabel }}</div>
             </div>
-            <month-table
-              selection-mode="range"
-              :date="state.rightDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </month-table>
+            <div class="tiny-date-range-picker__table">
+              <month-table
+                selection-mode="range"
+                :date="state.rightDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </month-table>
+            </div>
           </div>
         </div>
       </div>

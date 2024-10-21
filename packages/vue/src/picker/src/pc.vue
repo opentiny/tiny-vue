@@ -1,5 +1,6 @@
 <template>
-  <div ref="reference" class="tiny-date-container">
+  <!-- TODO: 后续去掉 tiny-date-container -->
+  <div ref="reference" class="tiny-picker tiny-date-container">
     <tiny-filter-box
       v-if="shape === 'filter'"
       v-clickoutside.mousedown="handleClose"
