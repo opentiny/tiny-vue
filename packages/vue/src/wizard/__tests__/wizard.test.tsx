@@ -94,12 +94,12 @@ describe('PC Mode', () => {
 
   test('base-flow 基本流程图模式', async () => {
     const wrapper = mount(() => <Wizard data={dataSet} base-flow></Wizard>)
-    expect(wrapper.find('.tiny-wizard__nomarl').exists()).toBeTruthy()
+    expect(wrapper.find('.tiny-wizard__normal').exists()).toBeTruthy()
   })
 
   test('page-guide 页向导流程图', async () => {
     const wrapper = mount(() => <Wizard data={dataSet} page-guide></Wizard>)
-    expect(wrapper.find('.tiny-wizard__nomarl').exists()).toBeTruthy()
+    expect(wrapper.find('.tiny-wizard__normal').exists()).toBeTruthy()
     expect(wrapper.find('.tiny-wizard__button').exists()).toBeTruthy()
   })
 

@@ -27,6 +27,10 @@
   text-align: left;
   box-sizing: border-box;
 
+  &:has(> ul.disabled) {
+    cursor: not-allowed;
+  }
+
   &__input {
     position: relative;
     width: 100%;
@@ -48,7 +52,6 @@
     .placeholder(@color: var(--tv-IpAddress-normal-disabled-text-color)); //placeholder属性兼容处理
 
     &:hover {
-      cursor: pointer;
       border: 1px solid var(--tv-IpAddress-border-color-hover);
       color: var(--tv-IpAddress-normal-text-color);
       .placeholder(@color: var(--tv-IpAddress-normal-disabled-text-color));
@@ -106,7 +109,6 @@
         }
 
         &:hover {
-          cursor: pointer;
           color: var(--tv-IpAddress-normal-text-color);
         }
 

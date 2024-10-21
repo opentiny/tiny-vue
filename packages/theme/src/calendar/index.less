@@ -20,9 +20,9 @@
 @popper-prefix-cls: ~'@{css-prefix}popper';
 
 .@{calendar-prefix-cls} {
-  .component-css-vars-calendar();
+  .inject-Calendar-vars();
 
-  background: var(--ti-calendar-bg-color);
+  background: var(--tv-Calendar-bg-color);
   overflow: hidden;
   margin: 10px;
 
@@ -37,12 +37,12 @@
   }
 
   & &__selected {
-    border: 1px solid var(--ti-calendar-text-color-primary);
-    background: var(--ti-calendar-background-color-primary);
+    border: 1px solid var(--tv-Calendar-text-color-primary);
+    background: var(--tv-Calendar-day-selected-bg);
     padding: 8px;
-    color: var(--ti-calendar-text-color-info);
+    color: var(--tv-Calendar-text-color-info);
     line-height: 140%;
-    border-radius: var(--ti-calendar-selected-border-radius);
+    border-radius: var(--tv-Calendar-selected-border-radius);
     margin-bottom: 8px;
   }
 
@@ -68,19 +68,19 @@
   }
 
   & &__input {
-    width: var(--ti-calendar-tool-width);
+    width: 104px;
     position: relative;
     outline: 0;
 
     > input {
       width: 100%;
-      height: var(--ti-calendar-input-height, 28px);
-      line-height: var(--ti-calendar-input-height, 28px);
-      border: 1px solid var(--ti-calendar-border-color);
-      color: var(--ti-calendar-text-color-info);
-      border-radius: var(--ti-calendar-input-border-radius);
-      background: var(--ti-calendar-bg-color);
-      font-size: var(--ti-calendar-input-font-size);
+      height: 32px;
+      line-height: 32px;
+      border: 1px solid #999999;
+      color: var(--tv-Calendar-text-color-info);
+      border-radius: var(--tv-Calendar-input-border-radius);
+      background: var(--tv-Calendar-bg-color);
+      font-size: var(--tv-Calendar-input-font-size);
       padding: 0 30px 0 8px;
       display: block;
       white-space: nowrap;
@@ -93,7 +93,7 @@
       &:active,
       &.active,
       &[active] {
-        border: 1px solid var(--ti-calendar-text-color-primary);
+        border: 1px solid var(--tv-Calendar-input-hover-border-color);
       }
 
       &[readonly] {
@@ -111,16 +111,16 @@
     box-sizing: border-box;
     text-align: center;
     overflow: hidden;
-    font-size: var(--ti-common-font-size-base);
+    font-size: 14px;
     display: flex;
     align-items: center;
     cursor: pointer;
 
     svg {
-      fill: var(--ti-calendar-text-color-primary);
+      fill: var(--tv-Calendar-text-color-primary);
 
       &:hover {
-        fill: var(--ti-calendar-hover-text-color);
+        fill: var(--tv-Calendar-hover-text-color);
       }
     }
   }
@@ -132,14 +132,14 @@
     > li {
       position: relative;
       float: left;
-      width: calc(var(--ti-calendar-tool-width) / 2);
-      height: var(--ti-calendar-input-height, 28px);
-      line-height: var(--ti-calendar-input-height, 28px);
-      border: 1px solid var(--ti-calendar-border-color);
+      width: 52px;
+      height: 32px;
+      line-height: 32px;
+      border: 1px solid #999999;
       text-align: center;
-      font-size: var(--ti-calendar-input-font-size);
+      font-size: var(--tv-Calendar-input-font-size);
       font-weight: 500;
-      color: var(--ti-calendar-text-color-info);
+      color: var(--tv-Calendar-text-color-info);
       cursor: pointer;
 
       &:first-child {
@@ -152,13 +152,13 @@
       }
 
       &:hover {
-        color: var(--ti-calendar-text-color-primary);
+        color: var(--tv-Calendar-text-color-primary);
       }
     }
 
     > .active {
-      color: var(--ti-calendar-text-color-primary);
-      border: 1px solid var(--ti-calendar-text-color-primary);
+      color: var(--tv-Calendar-text-color-primary);
+      border: 1px solid var(--tv-Calendar-text-color-primary);
       z-index: 1;
     }
   }
@@ -174,7 +174,7 @@
         > th {
           line-height: 18px;
           padding: 0 10px 5px 10px;
-          font-size: var(--ti-calendar-content-heard-font-size);
+          font-size: var(--tv-Calendar-content-heard-font-size);
           text-align: right;
           width: 100% / 7;
         }
@@ -192,46 +192,46 @@
   }
 
   & &__day {
-    border-top: 3px solid var(--ti-calendar-border-color);
+    border-top: 3px solid #999999;
     margin: 0 3px 5px 3px;
     height: 100px;
     padding: 5px;
 
     &.selected {
-      background: var(--ti-calendar-background-color-primary);
+      background: var(--tv-Calendar-day-selected-bg);
 
       .label {
-        color: var(--ti-calendar-text-color-primary);
+        color: var(--tv-Calendar-day-selected-text-color);
       }
     }
 
     &:hover {
-      background: var(--ti-calendar-background-color-primary);
+      background: var(--tv-Calendar-day-hover-bg);
     }
 
     &.disable {
-      color: var(--ti-calendar-disabled-text-color);
+      color: var(--tv-Calendar-disabled-text-color);
 
       .info:before {
-        background: var(--ti-calendar-disabled-info-bg-color);
+        background: var(--tv-Calendar-disabled-info-bg-color);
       }
 
       .success:before {
-        background: var(--ti-calendar-disabled-success-bg-color);
+        background: var(--tv-Calendar-disabled-success-bg-color);
       }
 
       .warning:before {
-        background: var(--ti-calendar-disabled-warning-bg-color);
+        background: var(--tv-Calendar-disabled-warning-bg-color);
       }
 
       .error:before {
-        background: var(--ti-calendar-disabled-error-bg-color);
+        background: var(--tv-Calendar-disabled-error-bg-color);
       }
     }
 
     &.this-month,
     &.today {
-      border-color: var(--ti-calendar-text-color-primary);
+      border-color: var(--tv-Calendar-text-color-primary);
     }
   }
 
@@ -255,19 +255,19 @@
     }
 
     .info:before {
-      background: var(--ti-calendar-text-color-info);
+      background: var(--tv-Calendar-text-color-info);
     }
 
     .success:before {
-      background: var(--ti-calendar-bg-color-success);
+      background: var(--tv-Calendar-bg-color-success);
     }
 
     .warning:before {
-      background: var(--ti-calendar-bg-color-warning);
+      background: var(--tv-Calendar-bg-color-warning);
     }
 
     .error:before {
-      background: var(--ti-calendar-bg-color-danger);
+      background: var(--tv-Calendar-bg-color-danger);
     }
   }
 
@@ -279,7 +279,7 @@
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       padding: 5px 0;
-      font-size: var(--ti-calendar-content-heard-font-size);
+      font-size: var(--tv-Calendar-content-heard-font-size);
     }
 
     &-year {
@@ -297,30 +297,30 @@
   }
 
   & &__selector {
-    width: var(--ti-calendar-tool-width);
+    width: 104px;
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
   & &__list-item {
-    min-height: var(--ti-calendar-list-item-height);
-    line-height: var(--ti-calendar-list-item-height);
+    min-height: 32px;
+    line-height: 32px;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 0 8px;
-    color: var(--ti-calendar-text-color-info);
+    color: var(--tv-Calendar-text-color-info);
 
     &:hover {
       cursor: pointer;
-      background: var(--ti-calendar-list-item-hover-bg-color);
+      background: var(--tv-Calendar-list-item-hover-bg-color);
     }
 
     &.is-selected {
-      background: var(--ti-calendar-list-item-selected-bg-color);
-      color: var(--ti-calendar-list-item-selected-text-color);
+      background: var(--tv-Calendar-list-item-selected-bg-color);
+      color: var(--tv-Calendar-list-item-selected-text-color);
     }
   }
 }

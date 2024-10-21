@@ -37,7 +37,7 @@ import {
   getItemStyle,
   handleClick,
   computedGetIcon,
-  getTip
+  computedTip
 } from './index'
 
 export const api = [
@@ -55,7 +55,7 @@ export const api = [
   'close',
   'closed',
   'handleClick',
-  'getTip'
+  'computedTip'
 ]
 
 const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm, dropdownVm }) => {
@@ -80,7 +80,8 @@ const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm, dro
     popperClass: dropdownMenuVm?.popperClass || '',
     sizeClass: dropdownVm?.size ? `tiny-dropdown-item--${dropdownVm?.size}` : '',
     getIcon: computed(() => api.computedGetIcon()),
-    children: []
+    children: [],
+    computedTip: computed(() => api.computedTip())
   })
 
   return state
@@ -107,7 +108,7 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
     confirm: confirm({ emit, props, state }),
     handleClick: handleClick({ state, props, dispatch, vm, emit }),
     computedGetIcon: computedGetIcon({ constants, designConfig }),
-    getTip: getTip({ props, vm })
+    computedTip: computedTip({ props, vm })
   })
 }
 

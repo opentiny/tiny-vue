@@ -9,26 +9,17 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>name</code> 属性设置对应标签名。</br>通过 <code>type</code> 属性可以为标签设置相应的类型，可选值 <code>(success / warning / info / danger  )</code>。</p>',
-        'en-US':
-          'Set the name of the corresponding tag through the <code>name</code> attribute.</br>You can set the type of a tag through the <code>type</code> attribute. The value can be <code>(success / warning / info / danger)</code>. <code>info</code>. '
+        'zh-CN': `通过 <code>data</code> 属性设置标签组的数组数据。 <br>
+          每一项标签数据，可以通过标签数据的<code>name</code> 属性设置对应标签名；<br>
+          通过标签数据的 <code>type</code> 属性可以为标签设置相应的类型，可选值 <code>(success / warning / info / danger  )</code>；<br>
+         `,
+        'en-US': `
+          Set the array data of the tag group with the <code>data</code> property. <br>
+          For each item of label data, you can set the corresponding label name through the <code>name</code> attribute of the label data. <br>
+          The <code>type</code> attribute of the tag data can set the corresponding type for the tag. The optional value is <code>(success/warning/info/danger)</code>. <br>
+        `
       },
       codeFiles: ['basic-usage.vue']
-    },
-    {
-      demoId: 'tag-group-size',
-      name: {
-        'zh-CN': '尺寸',
-        'en-US': 'size'
-      },
-      desc: {
-        'zh-CN':
-          '<p>可通过 <code>size</code> 设置标签组标签大小，可选值 <code>medium / small / mini</code>，默认值为 <code>medium</code>。</p>',
-        'en-US':
-          'You can use <code>size</code> to set the label size of a label group. The options are <code>medium / small / mini</code>. The default value is <code>medium</code>. '
-      },
-      codeFiles: ['tag-group-size.vue']
     },
     {
       demoId: 'tag-group-effect',
@@ -45,10 +36,37 @@ export default {
       codeFiles: ['tag-group-effect.vue']
     },
     {
+      demoId: 'tag-group-size',
+      name: {
+        'zh-CN': '尺寸',
+        'en-US': 'size'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过 <code>size</code> 设置标签组标签大小，可选值 <code>medium / small / mini</code>，默认值为 <code>medium</code>。</p>',
+        'en-US':
+          'You can use <code>size</code> to set the label size of a label group. The options are <code>medium / small / mini</code>. The default value is <code>medium</code>. '
+      },
+      codeFiles: ['tag-group-size.vue']
+    },
+    {
+      demoId: 'more',
+      name: {
+        'zh-CN': '显示更多',
+        'en-US': 'More'
+      },
+      desc: {
+        'zh-CN': '标签组会自动识别子项的长度，当子项超出一行显示时，未尾自动显示更多的图标，鼠标悬浮会提示剩余子项。',
+        'en-US':
+          'The label group automatically identifies the length of the subitem. When the subitem is displayed in more than one row, more ICONS are displayed automatically. The mouse hover displays the remaining subitems'
+      },
+      codeFiles: ['more.vue']
+    },
+    {
       demoId: 'tag-group-event',
       name: {
-        'zh-CN': 'Click 事件',
-        'en-US': 'click event'
+        'zh-CN': '事件',
+        'en-US': 'event'
       },
       desc: {
         'zh-CN':

@@ -9,7 +9,7 @@
       <tiny-progress
         class="progress"
         :show-text="showTest"
-        :stroke-width="24"
+        :stroke-width="12"
         :format="formatText"
         :text-inside="testInside"
         :percentage="percentageText"
@@ -34,8 +34,8 @@ export default {
   data() {
     return {
       showTest: true,
-      percentageText: 60,
-      testInside: true
+      percentageText: 45,
+      testInside: false
     }
   }
 }
@@ -45,5 +45,8 @@ export default {
 .progress-container {
   display: inline-block;
   width: 70%;
+}
+.tiny-progress :deep(.tiny-progress__text) {
+  font-size: 14px !important;
 }
 </style>

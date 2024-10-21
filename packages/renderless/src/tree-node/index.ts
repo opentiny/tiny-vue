@@ -360,8 +360,8 @@ export const computedExpandIcon =
 
     // tiny 新增的判断。 显示线时强制切换图标，仅smb定制了
     if (treeRoot.showLine) {
-      const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
-      const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
+      const expandIcon = designConfig?.icons?.expanded || 'icon-expand'
+      const collapseIcon = designConfig?.icons?.collapse || 'icon-put-away'
       return state.expanded ? expandIcon : collapseIcon
     }
 

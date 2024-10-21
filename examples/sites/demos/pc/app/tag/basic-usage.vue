@@ -1,25 +1,23 @@
 <template>
-  <div class="tiny-tag-demo">
-    <tiny-tag size="medium"> 中等标签 </tiny-tag>
-    <tiny-tag> 默认标签 </tiny-tag>
-    <tiny-tag size="small"> 小型标签 </tiny-tag>
-    <tiny-tag size="mini"> 超小标签 </tiny-tag>
-  </div>
+  <tiny-tag type="success" only-icon><tiny-icon-heartempty /> </tiny-tag>
+  <tiny-tag type="success"><tiny-icon-heartempty /> 默认标签 </tiny-tag>
+  <tiny-tag type="info" value="配置式标签"></tiny-tag>
 </template>
 
-<script lang="jsx">
+<script>
 import { Tag } from '@opentiny/vue'
+import { IconHeartempty } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTag: Tag
+    TinyTag: Tag,
+    TinyIconHeartempty: IconHeartempty()
   }
 }
 </script>
 
-<style>
-.tiny-tag-demo .tiny-tag {
-  margin-right: 10px;
-  margin-bottom: 10px;
+<style scoped>
+.tiny-tag {
+  margin-right: 16px;
 }
 </style>

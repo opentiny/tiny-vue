@@ -82,7 +82,7 @@
       <div class="tiny-time-range-picker__footer">
         <tiny-button
           v-if="!state.showTimePickerRangeButton"
-          class="tiny-time-range-picker__btn"
+          class="tiny-time-range-picker__btn cancel"
           @click="handleCancel()"
         >
           {{ t('ui.datepicker.cancel') }}

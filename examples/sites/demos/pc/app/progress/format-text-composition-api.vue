@@ -9,7 +9,7 @@
       <tiny-progress
         class="progress"
         :show-text="showTest"
-        :stroke-width="24"
+        :stroke-width="12"
         :format="formatText"
         :text-inside="testInside"
         :percentage="percentageText"
@@ -22,8 +22,8 @@
 import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 
-const percentageText = ref(60)
-const testInside = ref(true)
+const percentageText = ref(45)
+const testInside = ref(false)
 const showTest = ref(true)
 
 function formatText() {
@@ -35,5 +35,8 @@ function formatText() {
 .progress-container {
   display: inline-block;
   width: 70%;
+}
+.tiny-progress :deep(.tiny-progress__text) {
+  font-size: 14px !important;
 }
 </style>

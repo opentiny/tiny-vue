@@ -71,9 +71,10 @@ const createImportMap = (version) => {
     '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless${versionDelimiter}${version}/${fileDelimiter}`,
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
-  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] =
-      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+  if (['aurora', 'saas'].includes(tinyTheme)) {
+    imports[
+      `@opentiny/vue-design-${tinyTheme}`
+    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
@@ -88,12 +89,11 @@ const getTinyTheme = (version) => {
     return `${getRuntime(version)}tailwind.css`
   }
   let theme = tinyTheme
-  if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
+  if (!['aurora', 'saas'].includes(theme)) {
     theme = 'default'
   }
   const tinyThemeMap = {
     default: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
-    smb: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
     aurora: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
     saas: `${cdnHost}/@opentiny/vue-theme-saas${versionDelimiter}${version}/${fileDelimiter}index.css`
   }
@@ -132,8 +132,7 @@ const state = reactive({
 
 const designThemeMap = {
   aurora: 'tinyAuroraTheme',
-  infinity: 'tinyInfinityTheme',
-  smb: 'tinySmbTheme'
+  infinity: 'tinyInfinityTheme'
 }
 
 function setTinyDesign() {
@@ -144,13 +143,13 @@ function setTinyDesign() {
     useCode += 'app.provide("TinyMode", "mobile-first");\n'
   }
 
-  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
+  if (['aurora', 'saas'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig);\n'
   }
 
-  if (['aurora', 'infinity', 'smb'].includes(tinyTheme)) {
+  if (['aurora', 'infinity'].includes(tinyTheme)) {
     const designTheme = designThemeMap[tinyTheme]
     importCode += `import TinyThemeTool from '@opentiny/vue-theme/theme-tool';
       import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`

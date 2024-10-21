@@ -243,3 +243,28 @@ vue3的动画状态类：  v-enter-from  v-enter-to  v-leave-from v-leave-to 以
 .tiny-transition-alert-fade-leave-active {
   transition: opacity 0.3s ease-in;
 }
+
+// modal 的动画
+@keyframes modal-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes modal-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}

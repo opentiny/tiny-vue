@@ -32,7 +32,6 @@
   }
 
   &-link {
-    margin: 0 0 0 var(--tv-Anchor-link-margin-left);
     line-height: 22px;
     cursor: pointer;
 
@@ -43,13 +42,13 @@
     &-title {
       display: block;
       max-width: 100%;
-      padding: 1px var(--tv-Anchor-link-title-padding-right) 1px 10px;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       color: var(--tv-Anchor-text-color);
+
       &&--active {
         color: var(--tv-Anchor-link-text-color-active);
       }
@@ -61,10 +60,32 @@
       margin-top: 0.5em;
     }
 
+    .@{anchor-prefix-cls} {
+      & > .@{anchor-prefix-cls}-link {
+        margin-left: var(--tv-Anchor-link-margin-left);
+
+        & > .@{anchor-prefix-cls}-link {
+          & > .@{anchor-prefix-cls}-link-title {
+            padding-left: 32px;
+          }
+        }
+      }
+
+      &-link-title {
+        padding: 7px 8px 7px 16px;
+        font-size: 12px;
+        line-height: 1.5;
+
+        &--active {
+          background-color: var(--tv-Anchor-link-bg-color-active);
+        }
+      }
+    }
+
     .@{anchor-prefix-cls}-link-mask {
       position: absolute;
       max-width: 0;
-      left: var(--tv-Anchor-orbit-width / 2);
+      left: calc(var(--tv-Anchor-orbit-width) / 2);
       width: 100%;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -77,7 +98,6 @@
       top: 0;
       bottom: 0;
       width: var(--tv-Anchor-orbit-width);
-      border-radius: calc(var(--tv-Anchor-orbit-width / 2));
       background-color: var(--tv-Anchor-orbit-bg-color);
       &-skid {
         position: absolute;
@@ -85,7 +105,7 @@
         width: var(--tv-Anchor-orbit-skid-width);
         background-color: var(--tv-Anchor-orbit-bg-color);
         &--active {
-          background-color: var(--tv-Anchor-link-bg-color-active);
+          background-color: var(--tv-Anchor-link-skid-bg-color-active);
         }
       }
     }
@@ -102,11 +122,11 @@
       position: relative;
       padding-left: 10px;
       margin-bottom: 16px;
+      margin-left: 8px;
     }
 
     .@{anchor-prefix-cls}-link-title {
-      padding-left: 16px;
-      padding-right: 0;
+      padding: 1px 0 1px 16px;
       -webkit-line-clamp: 2;
 
       &:before {

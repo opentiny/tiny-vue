@@ -10,7 +10,6 @@ test('基本用法', async ({ page }) => {
   const chartCount = 5
   const itemStatus = [/is-ready/, /is-doing/]
   const descs = ['出差信息填写', '项目信息填写', '主管审批', '权签人审批', '完成申请']
-  const readyColor = 'rgb(94, 124, 224)'
 
   await expect(charts).toHaveCount(chartCount)
   for (let i = 0; i < chartCount; i++) {
@@ -20,21 +19,24 @@ test('基本用法', async ({ page }) => {
     const middle = itemList.nth(1)
     const last = itemList.nth(2)
 
-    await expect(items).toHaveCSS('width', '120px')
-    await expect(items).toHaveCSS('height', '20px')
+    await expect(items).toHaveCSS('width', '100px')
+    await expect(items).toHaveCSS('height', '32px')
     await expect(first).toHaveClass('tiny-wizard__chart-line')
     await expect(middle).toHaveClass(/tiny-wizard__chart-icon/)
     await expect(middle).toHaveText(String(i + 1))
     await expect(last).toHaveClass('tiny-wizard__chart-line')
     await expect(names.nth(i)).toHaveText(descs[i])
 
-    if (i < 2) {
+    if (i < 1) {
       await expect(stepItems.nth(i)).toHaveClass(itemStatus[i])
-      await expect(first).toHaveCSS('background-color', readyColor)
-      await expect(middle).toHaveCSS('background-color', readyColor)
+      await expect(first).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
+      await expect(middle).toHaveCSS('background-color', 'rgb(255, 255, 255)')
+    } else if (i === 1) {
+      await expect(first).toHaveCSS('background-color', 'rgb(25, 25, 25)')
+      await expect(middle).toHaveCSS('background-color', 'rgb(255, 255, 255)')
     } else {
-      await expect(first).toHaveCSS('background-color', 'rgb(194, 196, 199)')
-      await expect(middle).toHaveCSS('background-color', 'rgb(223, 225, 230)')
+      await expect(first).toHaveCSS('background-color', 'rgb(219, 219, 219)')
+      await expect(middle).toHaveCSS('background-color', 'rgb(240, 240, 240)')
     }
   }
 })

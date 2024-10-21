@@ -10,7 +10,6 @@
       text-split="@"
     ></tiny-popeditor>
     <tiny-popeditor
-      size="small"
       v-model="value"
       :grid-op="gridOp"
       text-field="name"
@@ -19,6 +18,7 @@
       text-split="@"
     ></tiny-popeditor>
     <tiny-popeditor
+      size="small"
       v-model="value"
       :grid-op="gridOp"
       text-field="name"

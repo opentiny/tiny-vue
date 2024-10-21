@@ -52,7 +52,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opentiny/vue-icon'
+import { iconClose, iconSuccess, iconError, iconHelp, iconWarning, iconWarningTriangle } from '@opentiny/vue-icon'
 import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme/alert/index.less'
 
@@ -75,7 +75,8 @@ export default defineComponent({
     IconSuccess: iconSuccess(),
     IconError: iconError(),
     IconHelp: iconHelp(),
-    IconWarning: iconWarning()
+    IconWarning: iconWarning(),
+    IconWarningTriangle: iconWarningTriangle()
   },
   emits: ['close'],
   setup(props, context) {

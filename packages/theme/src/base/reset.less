@@ -13,27 +13,6 @@
 @import '../custom.less';
 @import './basic-var.less';
 
-// 为了防止这些图标失去默认值，需要全局设置默认值 todo:以下是否有必要保留？
-.tiny-icon-success {
-  fill: #5cb300;
-}
-
-.tiny-icon-error {
-  fill: #f23030;
-}
-
-.tiny-icon-warning-triangle {
-  fill: #ff8800;
-}
-
-.tiny-icon-prompt {
-  fill: #1476ff;
-}
-
-.tiny-icon-text-type {
-  fill: #9185f0;
-}
-
 // .tiny-icon-loading 类名的动画效果。 它出现在多个组件中，故抽取到一起。
 .@{css-prefix-iconfont}-loading {
   line-height: 1;
@@ -52,7 +31,7 @@
 
 // 高亮节点
 .tiny-hl-query-node {
-  color: var(--ti-common-color-text-highlight) !important;
+  color: var(--tv-color-text-active) !important;
 }
 
 [class*=~'@{css-prefix}'] {
@@ -184,71 +163,25 @@
 
   @media (min-width: 768px) {
     ::-webkit-scrollbar {
-      width: var(--ti-common-scrollbar-width);
-      height: var(--ti-common-scrollbar-height);
+      width: var(--tv-size-scrollbar-width);
+      height: var(--tv-size-scrollbar-height);
     }
 
     ::-webkit-scrollbar-track-piece {
-      background: var(--ti-common-scrollbar-track-piece-bg-color);
+      background: var(--tv-color-bg-scrollbar-track);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--ti-common-scrollbar-thumb-bg-color);
-      border-radius: var(--ti-common-scrollbar-thumb-border-radius);
+      background: var(--tv-color-bg-scrollbar-thumb);
+      border-radius: var(--tv-border-radius-scrollbar-thumb);
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--ti-common-scrollbar-thumb-hover-bg-color);
+      background: var(--tv-color-bg-scrollbar-thumb-hover);
     }
 
     ::-webkit-scrollbar-thumb:active {
-      background: var(--ti-common-scrollbar-thumb-active-bg-color);
-    }
-
-    .@{css-prefix}scrollbar::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    .@{css-prefix}scrollbar::-webkit-scrollbar-track-piece {
-      background: transparent;
-      border: 0;
-    }
-
-    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb {
-      background: #bfbfbf;
-      border-radius: 4px;
-    }
-
-    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #999999;
-    }
-
-    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:active {
-      background: #999999;
-    }
-
-    .@{css-prefix}min-scrollbar::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
-
-    .@{css-prefix}min-scrollbar::-webkit-scrollbar-track-piece {
-      background: transparent;
-      border: 0;
-    }
-
-    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb {
-      background: #bfbfbf;
-      border-radius: 2px;
-    }
-
-    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #999999;
-    }
-
-    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:active {
-      background: #999999;
+      background: var(--tv-color-bg-scrollbar-thumb-active);
     }
   }
 }

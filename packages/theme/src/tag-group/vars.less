@@ -10,9 +10,17 @@
 *
 */
 
-.component-css-vars-tag-group() {
-  // 标签组右内边距
-  --ti-tag-group-padding-right: var(--ti-common-space-8x, 32px);
-  // 标签组省略图标色
-  --ti-tag-group-ellipsis-icon-color: var(--ti-common-color-primary-normal, #191919);
+.inject-TagGroup-vars() {
+  // -----------------------------------------------排列布局场景
+  // 标签组的底部外间距
+  --tv-TagGroup-margin-bottom: var(--tv-space-lg);
+  // 标签组的子项的间距
+  --tv-TagGroup-item-margin-right: var(--tv-space-md);
+  // 标签组的子项的间距
+  --tv-TagGroup-item-margin-bottom: var(--tv-space-md);
+
+  // -----------------------------------------------更多的场景
+
+  // 标签组有省略图标时，标签子项到右边的安全距离
+  --tv-TagGroup-more-icon-safe-space: 32px;
 }

@@ -22,7 +22,7 @@
 @select-svg-cls: ~'@{css-prefix}svg';
 
 .@{pager-prefix-cls} {
-  .component-css-vars-pager();
+  .inject-Pager-vars();
 
   text-align: left;
   padding: var(--tv-Pager-padding-y) 0;
@@ -251,7 +251,7 @@
   }
 
   &__selector {
-    .component-css-vars-pager();
+    .inject-Pager-vars();
 
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
       border: 0;

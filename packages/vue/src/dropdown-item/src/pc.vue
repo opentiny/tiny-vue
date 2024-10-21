@@ -13,7 +13,9 @@
 <template>
   <!-- TINY-TODO:  tiny-dropdown-menu__item命名不规范，后续统一有个迭代去掉 -->
   <li
-    v-auto-tip="getTip ? { always: true, content: getTip, effect, placement: tipPosition } : false"
+    v-auto-tip="
+      state.computedTip ? { always: true, content: state.computedTip, effect, placement: tipPosition } : false
+    "
     :class="[
       'tiny-dropdown-item',
       'tiny-dropdown-menu__item',
@@ -70,7 +72,7 @@
 <script lang="ts">
 import { props, setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/vue'
-import { iconDeltaLeft } from '@opentiny/vue-icon'
+import { iconLeftWardArrow } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/dropdown-item/index.less'
 import { AutoTip } from '@opentiny/vue-directive'
 import type { IDropdownItemApi } from '@opentiny/vue-renderless/types/dropdown-item.type'
@@ -103,7 +105,7 @@ export default defineComponent({
     'effect'
   ],
   components: {
-    IconDeltaLeft: iconDeltaLeft()
+    IconLeftWardArrow: iconLeftWardArrow()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IDropdownItemApi
