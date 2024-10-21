@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       showTest: true,
-      percentageText: 60,
+      percentageText: 45,
       testInside: false
     }
   }
