@@ -1,16 +1,24 @@
 <template>
   <div class="scrollTo-demo">
     <div class="footer">
-      <tiny-button type="primary" plain @click="scrollToItem">滚动到</tiny-button>
-      <tiny-input type="number" v-model.number="scrollto" :min="1" :max="showData.length"></tiny-input>
+      <span> 滚动到：</span>
+      <tiny-numeric
+        v-model="scrollto"
+        :step="step"
+        :min="1"
+        :max="showData.length"
+        circulate
+        size="mini"
+        @change="scrollToItem"
+      ></tiny-numeric>
     </div>
     <div class="main">
       <TinyVirtualScroll
         ref="scroller"
         :data="showData"
-        :itemSize="50"
-        itemIndex="key"
-        :visibleSize="300"
+        :item-size="50"
+        item-index="key"
+        :visible-size="300"
         class="tiny-virtual-scroll"
         direction="vertical"
       >
@@ -24,9 +32,9 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { Button as TinyButton, Input as TinyInput, VirtualScroll as TinyVirtualScroll } from '@opentiny/vue'
+import { Numeric as TinyNumeric, VirtualScroll as TinyVirtualScroll } from '@opentiny/vue'
 
 const showData = ref([])
 const scrollto = ref(1)
@@ -53,17 +61,16 @@ showData.value = Array.from(Array(1000), (v, k) => {
   overflow: hidden;
 }
 
-.footer {
-  margin-bottom: 10px;
+.scrollTo-demo .footer {
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.scrollTo-demo .footer.tiny-button {
-  display: inline-block;
-  width: 60px;
-}
-
-.scrollTo-demo .footer .tiny-input {
-  width: 250px;
+.scrollTo-demo .footer .tiny-numeric {
+  width: 200px;
 }
 
 .scrollTo-demo .main .tiny-virtual-scroll .tiny-virtual-scroll-item {

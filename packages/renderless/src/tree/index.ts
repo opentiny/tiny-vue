@@ -101,7 +101,6 @@ export const dragStart =
     emit('node-drag-start', treeNode.node, event)
   }
 
-
 const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
   let dropType
   const targetPosition = dropNode.$el.getBoundingClientRect()
@@ -229,7 +228,7 @@ export const dragEnd =
   (event) => {
     const dragState = state.dragState
     const { draggingNode, dropType, dropNode } = dragState
-
+    
     event.preventDefault()
 
     if (!event.dataTransfer) {
@@ -441,8 +440,8 @@ export const filter =
     if (!props.filterNodeMethod) {
       throw new Error('[Tree] filterNodeMethod is required when filter')
     }
-
     state.store.filter(value)
+    api.updateFlattenedTreeData()
     // tiny 新增： 移除了watch,所以要手动调用一下该方法
     if (props.willChangeView) {
       api.initPlainNodeStore()
@@ -485,7 +484,8 @@ export const getCheckedKeys = (state) => (leafOnly) => state.store.getCheckedKey
 
 export const getCurrentNode = (state) => () => {
   const currentNode = state.store.getCurrentNode()
-
+  console.log('当前',currentNode);
+  
   return currentNode ? currentNode.data : null
 }
 
@@ -556,7 +556,8 @@ export const setCurrentKey =
 export const getNode = (state) => (data) => state.store.getNode(data)
 
 export const remove = (state) => (data, isSaveChildNode, isNode) => {
-  state.store.remove(data, isSaveChildNode, isNode)
+  state.store.remove(data, isSaveChildNode, isNode);
+  console.log('the state', state.store);
 }
 
 export const append = (state) => (data, parentNode) => {
@@ -1056,9 +1057,12 @@ export const computedFlattenedTreeData = () => (props, state) => {
   const newData: TreeNode[] = []
   while (stack.length) {
     const node = stack.pop()!
+    if (!node.visible) continue
     newData.push(node)
+    console.log('aaaa',node);
+
     if (!node.expanded) continue
-    stack.push(...(node.childNodes || []).reverse().filter((v) => v.expanded))
+    stack.push(...(node.childNodes.slice() || []).reverse().filter((v) => v.expanded || v.visible))
   }
   return newData
 }
