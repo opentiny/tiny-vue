@@ -22,7 +22,6 @@
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
-    "@opentiny/vue-design-smb": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

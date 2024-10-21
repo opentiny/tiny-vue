@@ -20,7 +20,7 @@
   .component-css-vars-card-template();
 
   border-radius: 0;
-  background-color: var(--ti-card-bg-color);
+  background-color: var(--tv-CardTemplate-bg-color);
   overflow: hidden;
   position: relative;
   box-shadow: none;
@@ -28,19 +28,19 @@
 
   & &__header {
     padding: 0 24px;
-    height: var(--ti-card-header-height);
-    line-height: var(--ti-card-header-height);
+    height: var(--tv-CardTemplate-header-height);
+    line-height: var(--tv-CardTemplate-header-height);
 
     &.is-line {
-      border-bottom: 1px solid var(--ti-card-header-border-color);
+      border-bottom: 1px solid var(--tv-CardTemplate-header-border-color);
     }
   }
 
   & &__title {
-    font-weight: var(--ti-card-header-title-font-weight);
-    font-size: var(--ti-card-header-title-font-size);
+    font-weight: var(--tv-CardTemplate-header-title-font-weight);
+    font-size: var(--tv-CardTemplate-header-title-font-size);
     color: #333;
-    color: var(--ti-card-header-title-text-color);
+    color: var(--tv-CardTemplate-header-title-text-color);
     float: left;
   }
 
@@ -48,7 +48,7 @@
     .clearfix();
 
     .@{css-prefix-iconfont} {
-      font-size: var(--ti-card-tool-icon-size);
+      font-size: var(--tv-CardTemplate-tool-icon-size);
       cursor: pointer;
     }
   }
@@ -58,26 +58,26 @@
     float: right;
 
     > li {
-      height: var(--ti-card-header-height);
-      line-height: var(--ti-card-header-height);
+      height: var(--tv-CardTemplate-header-height);
+      line-height: var(--tv-CardTemplate-header-height);
       float: left;
       font-size: var(--ti-common-font-size-2);
       margin: 0 12px 0 0;
 
       svg {
-        fill: var(--ti-card-tool-icon-color);
+        fill: var(--tv-CardTemplate-tool-icon-color);
         cursor: pointer;
       }
 
       .@{css-prefix-iconfont} {
-        color: var(--ti-card-tool-icon-color);
+        color: var(--tv-CardTemplate-tool-icon-color);
 
         &:hover {
-          color: var(--ti-card-tool-hover-icon-color);
+          color: var(--tv-CardTemplate-tool-hover-icon-color);
         }
 
         &:active {
-          color: var(--ti-card-tool-active-icon-color);
+          color: var(--tv-CardTemplate-tool-active-icon-color);
         }
       }
 
@@ -89,14 +89,14 @@
 
   & &__more {
     position: absolute;
-    top: calc(var(--ti-card-header-height, 45px) - 1 * 1px);
+    top: calc(var(--tv-CardTemplate-header-height, 45px) - 1 * 1px);
     right: 5px;
-    border: 1px solid var(--ti-card-header-border-color);
+    border: 1px solid var(--tv-CardTemplate-header-border-color);
     border-radius: 2px;
     box-shadow: var(--ti-common-shadow-2-down);
-    background: var(--ti-card-bg-color);
+    background: var(--tv-CardTemplate-bg-color);
     color: #333;
-    color: var(--ti-card-tool-selector-text-color);
+    color: var(--tv-CardTemplate-tool-selector-text-color);
     margin-top: 2px;
 
     &:before {
@@ -116,15 +116,15 @@
 
     > ul {
       > li {
-        height: var(--ti-card-tool-selector-height);
-        line-height: var(--ti-card-tool-selector-height);
+        height: var(--tv-CardTemplate-tool-selector-height);
+        line-height: var(--tv-CardTemplate-tool-selector-height);
         padding: 0 18px;
-        color: var(--ti-card-tool-selector-text-color);
+        color: var(--tv-CardTemplate-tool-selector-text-color);
         display: flex;
         align-items: center;
 
         .@{css-prefix-iconfont} {
-          color: var(--ti-card-tool-icon-color);
+          color: var(--tv-CardTemplate-tool-icon-color);
           margin-right: 10px;
         }
 
@@ -134,20 +134,20 @@
 
         &:hover {
           cursor: pointer;
-          color: var(--ti-card-tool-selector-hover-text-color);
-          background: var(--ti-card-tool-selector-hover-bg-color);
+          color: var(--tv-CardTemplate-tool-selector-hover-text-color);
+          background: var(--tv-CardTemplate-tool-selector-hover-bg-color);
 
           .@{css-prefix-iconfont} {
-            color: var(--ti-card-tool-hover-icon-color);
+            color: var(--tv-CardTemplate-tool-hover-icon-color);
           }
         }
 
         &:active {
-          color: var(--ti-card-tool-selector-active-text-color);
-          background: var(--ti-card-tool-selector-active-bg-color);
+          color: var(--tv-CardTemplate-tool-selector-active-text-color);
+          background: var(--tv-CardTemplate-tool-selector-active-bg-color);
 
           .@{css-prefix-iconfont} {
-            color: var(--ti-card-tool-active-icon-color);
+            color: var(--tv-CardTemplate-tool-active-icon-color);
           }
         }
       }
