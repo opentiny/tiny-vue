@@ -22,7 +22,7 @@ function handleClick() {
 function handleClickJxs() {
   Notify({
     type: 'info',
-    title: () => <h4>通知消息的标题</h4>,
+    title: () => <h4 style="margin:0">通知消息的标题</h4>,
     message: () => (
       <span>通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文</span>
     ),
