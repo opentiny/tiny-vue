@@ -49,6 +49,7 @@ export const modalProps = {
   animat: { type: Boolean, default: () => true },
   beforeClose: Function,
   duration: { type: [Number, String], default: () => 3000 },
+  messageClosable: Boolean,
   escClosable: Boolean,
   events: Object,
   fullscreen: Boolean,
@@ -80,19 +81,19 @@ export const modalProps = {
   vSize: String,
   width: [Number, String],
   zIndex: [Number, String],
-  description: String,
-  options: Array,
-  showClose: { type: Boolean, default: true },
+  description: String, // mf 属性
+  options: Array, // mf 属性
+  showClose: { type: Boolean, default: true }, // mf 属性
   confirmContent: String,
   cancelContent: String,
   position: {
-    type: String,
+    type: String, // mf 属性
     default: '',
     validator(val: string) {
       return ['', 'bottom-right'].includes(val)
     }
   },
-  customClass: String,
+  customClass: String, // mf 属性
   confirmBtnProps: { type: Object, default: () => ({}) },
   cancelBtnProps: { type: Object, default: () => ({}) },
   footerDragable: Boolean,

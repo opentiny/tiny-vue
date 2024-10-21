@@ -1,10 +1,10 @@
 <template>
   <div>
     <p>场景1：默认点击文字展开菜单</p>
-    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData"></tiny-tree-menu>
     <br /><br />
     <p>场景2：点击展开按钮才可展开菜单</p>
-    <tiny-tree-menu :data="treeData" :expand-on-click-node="false"></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" :expand-on-click-node="false"></tiny-tree-menu>
   </div>
 </template>
 
@@ -169,8 +169,8 @@ const treeData = ref([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

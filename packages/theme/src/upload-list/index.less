@@ -22,7 +22,7 @@
 @tooltip-prefix-cls: ~'@{css-prefix}tooltip';
 
 .@{file-upload-prefix-cls} {
-  .component-css-vars-upload-list();
+  .inject-UploadList-vars();
 
   &.@{tooltip-prefix-cls} {
     margin-bottom: 7px;
@@ -40,17 +40,17 @@
 
   a:hover {
     color: #333;
-    text-decoration: var(--ti-upload-list-item-hover-text-decoration);
+    text-decoration: none;
   }
 
   // 提高优先级覆盖ul.li样式
   &--text {
     li:first-of-type > .@{upload-list-prefix-cls}__item {
-      margin-top: calc(var(--ti-upload-list-item-margin-top) + 4px);
+      margin-top: calc(var(--tv-UploadList-item-margin-top) + 4px);
     }
 
     li:not(:first-of-type) > .@{upload-list-prefix-cls}__item {
-      margin-top: var(--ti-upload-list-item-margin-top);
+      margin-top: var(--tv-UploadList-item-margin-top);
     }
 
     li:last-of-type {
@@ -67,26 +67,27 @@
 
   &__item.is-fail {
     .@{upload-list-prefix-cls}__item-name {
-      color: var(--ti-upload-list-item-fail-text-color);
+      color: var(--tv-UploadList-item-fail-text-color);
+
       & .tiny-svg {
-        fill: var(--ti-upload-list-item-fail-text-color);
+        fill: var(--tv-UploadList-item-fail-text-color);
       }
     }
   }
 
   &__item {
     transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-    font-size: var(--ti-upload-list-item-font-size);
-    color: var(--ti-upload-list-item-text-color);
-    line-height: var(--ti-upload-list-item-line-height);
+    font-size: var(--tv-UploadList-item-font-size);
+    color: var(--tv-UploadList-item-text-color);
+    line-height: var(--tv-UploadList-item-line-height);
     position: relative;
     box-sizing: border-box;
-    border-radius: var(--ti-upload-list-item-border-radius);
+    border-radius: var(--tv-UploadList-item-border-radius);
     width: 100%;
     outline: none;
 
     &:hover {
-      background-color: var(--ti-upload-list-item-hover-background-color);
+      background-color: var(--tv-UploadList-item-hover-background-color);
 
       .@{svg-prefix-cls}.icon-close,
       .@{svg-prefix-cls}.icon-refres {
@@ -105,7 +106,7 @@
 
       .@{upload-list-prefix-cls}__item-name:focus,
       .@{upload-list-prefix-cls}__item-name:hover {
-        color: var(--ti-upload-list-item-hover-text-color);
+        color: var(--tv-UploadList-item-hover-text-color);
         cursor: pointer;
         text-decoration: none;
       }
@@ -191,7 +192,7 @@
 
     .@{progress-prefix-cls} {
       position: absolute;
-      top: var(--ti-upload-list-item-progress-top);
+      top: 26px;
       width: 100%;
     }
 
@@ -210,25 +211,25 @@
       > .@{upload-list-prefix-cls}__item-actions
       > &-delete
       > .@{svg-prefix-cls}.@{svg-prefix-cls}-size.icon-delete {
-      fill: var(--ti-upload-list-svg-close-icon-color);
+      fill: var(--tv-UploadList-svg-close-icon-color);
 
       &:hover {
-        fill: var(--ti-upload-list-svg-close-hover-icon-color);
+        fill: var(--tv-UploadList-svg-close-hover-icon-color);
       }
     }
 
     .@{svg-prefix-cls} {
       &.icon-successful {
-        font-size: var(--ti-upload-list-successful-icon-font-size);
-        fill: var(--ti-upload-list-successful-status-bg-color);
+        font-size: var(--tv-UploadList-successful-icon-font-size);
+        fill: var(--tv-UploadList-successful-status-bg-color);
       }
 
       &.icon-close {
-        right: var(--ti-upload-list-svg-close-position-right);
+        right: 8px;
       }
 
       &.icon-refres {
-        right: var(--ti-upload-list-svg-refresh-position-right);
+        right: 32px;
       }
 
       &.icon-close,
@@ -237,13 +238,13 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        fill: var(--ti-upload-list-svg-close-icon-color);
-        font-size: var(--ti-upload-list-svg-icon-font-size);
+        fill: var(--tv-UploadList-svg-close-icon-color);
+        font-size: var(--tv-UploadList-svg-icon-font-size);
         opacity: 0.75;
         cursor: pointer;
 
         &:hover {
-          fill: var(--ti-upload-list-svg-close-hover-icon-color);
+          fill: var(--tv-UploadList-svg-close-hover-icon-color);
           opacity: 1;
         }
       }
@@ -254,10 +255,10 @@
       position: absolute;
       top: 5px;
       right: 5px;
-      font-size: var(--ti-upload-list-svg-icon-font-size);
+      font-size: var(--tv-UploadList-svg-icon-font-size);
       cursor: pointer;
       opacity: 1;
-      color: var(--ti-upload-list-item-hover-text-color);
+      color: var(--tv-UploadList-item-hover-text-color);
     }
   }
 
@@ -286,7 +287,7 @@
     font-size: 14px;
     height: 22px;
     line-height: 22px;
-    color: var(--ti-upload-list-item-fail-text-color);
+    color: var(--tv-UploadList-item-fail-text-color);
   }
 
   &__icon-operationfaild {
@@ -303,16 +304,16 @@
   }
 
   &__item-name {
-    color: var(--ti-upload-list-item-text-color);
+    color: var(--tv-UploadList-item-text-color);
     display: block;
     margin-right: 40px;
     padding-left: 4px;
     transition: color 0.3s;
 
     .@{svg-prefix-cls} {
-      font-size: var(--ti-upload-list-item-name-icon-font-size);
+      font-size: var(--tv-UploadList-item-name-icon-font-size);
       margin-right: 4px;
-      fill: var(--ti-upload-list-item-name-icon-color);
+      fill: var(--tv-UploadList-item-name-icon-color);
     }
   }
 
@@ -328,12 +329,12 @@
     position: absolute;
     right: 10px;
     top: 0;
-    font-size: var(--ti-upload-list-svg-icon-font-size);
-    color: var(--ti-upload-list-svg-close-icon-color);
+    font-size: var(--tv-UploadList-svg-icon-font-size);
+    color: var(--tv-UploadList-svg-close-icon-color);
     display: none;
 
     &:hover {
-      color: var(--ti-upload-list-item-hover-text-color);
+      color: var(--tv-UploadList-item-hover-text-color);
     }
   }
 
@@ -353,7 +354,7 @@
       display: inline-block;
 
       .is-fail {
-        color: var(--ti-upload-list-item-fail-text-color);
+        color: var(--tv-UploadList-item-fail-text-color);
       }
 
       &-title:not(.is-fail) {
@@ -364,7 +365,7 @@
         margin-top: -4px;
         text-align: center;
         line-height: 1.5;
-        width: var(--ti-upload-list-picture-card-width);
+        width: var(--tv-UploadList-picture-card-width);
         height: 18px;
         font-size: 12px;
         overflow: hidden;
@@ -375,36 +376,35 @@
 
     .@{upload-list-prefix-cls}__item {
       overflow: hidden;
-      background-color: var(--ti-upload-list-picture-card-item-bg-color);
-      border: 1px var(--ti-upload-list-picture-card-loading-border-color)
-        var(--ti-upload-list-picture-card-item-border-color);
-      border-radius: var(--ti-upload-list-item-border-radius);
+      background-color: var(--tv-UploadList-picture-card-item-bg-color);
+      border: 1px dashed var(--tv-UploadList-picture-card-item-border-color);
+      border-radius: var(--tv-UploadList-item-border-radius);
       box-sizing: border-box;
-      width: var(--ti-upload-list-picture-card-width);
-      height: var(--ti-upload-list-picture-card-height);
-      margin: 0 var(--ti-upload-list-picture-card-item-margin-right) 8px 0;
+      width: var(--tv-UploadList-picture-card-width);
+      height: var(--tv-UploadList-picture-card-height);
+      margin: 0 16px 8px 0;
       display: inline-block;
 
       &.is-success {
-        border-width: var(--ti-upload-list-picture-success-border-weight);
+        border-width: 0;
       }
 
       &.is-fail {
         border-style: solid;
-        border-color: var(--ti-upload-list-item-fail-text-color);
+        border-color: var(--tv-UploadList-item-fail-text-color);
         background-color: #fce3e1;
 
         .@{upload-list-prefix-cls}__item-actions:hover {
           background-color: #fce3e1;
 
           & span .tiny-svg {
-            fill: var(--ti-upload-list-svg-close-hover-icon-color);
+            fill: var(--tv-UploadList-svg-close-hover-icon-color);
           }
         }
       }
 
       .@{icon-check-prefix-cls} {
-        fill: var(--ti-upload-list-picture-card-item-text-color);
+        fill: var(--tv-UploadList-picture-card-item-icon-color);
       }
 
       .@{svg-prefix-cls}.icon-close,
@@ -433,13 +433,13 @@
       top: -6px;
       width: 40px;
       height: 24px;
-      background: var(--ti-upload-list-successful-status-bg-color);
+      background: var(--tv-UploadList-successful-status-bg-color);
       text-align: center;
       transform: rotate(45deg);
       box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
 
       .@{svg-prefix-cls} {
-        font-size: var(--ti-upload-list-svg-icon-font-size, 12px);
+        font-size: var(--tv-UploadList-svg-icon-font-size);
         margin-top: 11px;
         transform: rotate(-45deg);
       }
@@ -453,13 +453,13 @@
       top: 0;
       cursor: default;
       text-align: center;
-      fill: var(--ti-upload-list-picture-card-item-icon-color);
+      fill: var(--tv-UploadList-picture-card-item-icon-color);
       opacity: 0;
       font-size: var(--ti-common-font-size-4);
-      background-color: var(--ti-upload-list-picture-card-item-hover-bg-color);
+      background-color: transparent;
       transition: opacity 0.3s;
 
-      &::after {
+      &:after {
         display: inline-block;
         content: '';
         height: 100%;
@@ -502,7 +502,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       bottom: auto;
-      width: var(--ti-upload-list-picture-card-progress-size);
+      width: var(--tv-UploadList-picture-card-progress-size);
 
       .@{progress-prefix-cls}__text {
         top: 50%;
@@ -527,13 +527,13 @@
   &--picture &__item {
     overflow: hidden;
     z-index: 0;
-    background-color: var(--ti-upload-list-picture-card-item-bg-color);
+    background-color: var(--tv-UploadList-picture-card-item-bg-color);
     box-sizing: border-box;
     margin-top: 8px;
     outline: 0;
 
     .@{icon-check-prefix-cls} {
-      fill: var(--ti-upload-list-picture-card-item-text-color);
+      fill: var(--tv-UploadList-picture-card-item-icon-color);
     }
 
     &:hover {
@@ -564,8 +564,8 @@
   &--picture &__item-thumbnail {
     width: 56px;
     height: 56px;
-    border: 1px solid var(--ti-upload-list-picture-card-item-border-color);
-    border-radius: var(--ti-upload-list-item-border-radius);
+    border: 1px solid var(--tv-UploadList-picture-card-item-border-color);
+    border-radius: var(--tv-UploadList-item-border-radius);
     float: left;
     position: relative;
     z-index: 1;
@@ -588,13 +588,13 @@
     top: -7px;
     width: 46px;
     height: 26px;
-    background: var(--ti-upload-list-successful-status-bg-color);
+    background: var(--tv-UploadList-successful-status-bg-color);
     text-align: center;
     transform: rotate(45deg);
     box-shadow: 0 1px 1px #ccc;
 
     .@{svg-prefix-cls} {
-      font-size: var(--ti-upload-list-svg-icon-font-size);
+      font-size: var(--tv-UploadList-svg-icon-font-size);
       margin-top: 12px;
       transform: rotate(-45deg);
     }

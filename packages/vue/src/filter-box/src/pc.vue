@@ -21,16 +21,16 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/filter-box/vue'
 import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { IconArrowBottom, IconError, IconHelpCircle } from '@opentiny/vue-icon'
+import { iconDownWard, iconError, iconHelpCircle } from '@opentiny/vue-icon'
 import TinyTooltip from '@opentiny/vue-tooltip'
 
 export default defineComponent({
   name: $prefix + 'FilterBox',
   emits: ['click', 'handle-clear'],
   components: {
-    IconArrowBottom: IconArrowBottom(),
-    IconError: IconError(),
-    IconHelpCircle: IconHelpCircle(),
+    IconDownWard: iconDownWard(),
+    IconError: iconError(),
+    IconHelpCircle: iconHelpCircle(),
     TinyTooltip
   },
   props: {

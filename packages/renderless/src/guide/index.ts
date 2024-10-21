@@ -81,7 +81,7 @@ const getItemCopy = (props, tour, result) => {
 
 const newTour = (state, Shepherd, offset, designConfig) => {
   const tour = new Shepherd.Tour({
-    useModalOverlay: !designConfig?.state?.isUseModalOverlay,
+    useModalOverlay: designConfig?.state?.isUseModalOverlay ?? false,
     defaultStepOptions: {
       modalOverlayOpeningPadding: state.modalOverlayOpeningPadding,
       modalOverlayOpeningRadius: state.modalOverlayOpeningRadius,

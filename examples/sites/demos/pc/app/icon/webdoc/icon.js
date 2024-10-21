@@ -16,19 +16,6 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
-      demoId: 'show-title',
-      name: {
-        'zh-CN': '显示 Title',
-        'en-US': 'Display Title'
-      },
-      desc: {
-        'zh-CN': '通过其父元素的 <code>title</code> 属性，实现给图标增加 <code>Title</code> 的功能。',
-        'en-US':
-          'By using the <code>title</code> attribute of its parent element, the function of adding <code>Title</code> to the icon is implemented.'
-      },
-      codeFiles: ['show-title.vue']
-    },
-    {
       demoId: 'list',
       name: {
         'zh-CN': '图标集合',

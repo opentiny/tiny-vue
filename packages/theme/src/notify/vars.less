@@ -10,79 +10,61 @@
 *
 */
 
-.component-css-vars-notify() {
-  // 通知背景色
-  --ti-notify-bg-color: var(--ti-common-color-prompt-bg, #deecff);
-  // info类型弹框背景色
-  --ti-notify-info-bg-color: var(--ti-common-color-bg-navigation, #ffffff);
-  // info类型弹框左侧图标色
-  --ti-notify-info-icon-color: var(--ti-common-color-prompt, #1476ff);
-  // warning类型弹框背景色
-  --ti-notify-warning-bg-color: var(--ti-common-color-bg-navigation, #ffffff);
-  // warning类型弹框左侧图标色
-  --ti-notify-warning-icon-color: var(--ti-common-color-warn, #ff8800);
-  // error类型弹框背景色
-  --ti-notify-error-bg-color: var(--ti-common-color-bg-navigation, #ffffff);
-  // error类型弹框左侧图标色
-  --ti-notify-error-icon-color: var(--ti-common-color-error, #f23030);
-  // success类型弹框背景色
-  --ti-notify-success-bg-color: var(--ti-common-color-bg-navigation, #ffffff);
-  // success类型弹框左侧图标色
-  --ti-notify-success-icon-color: var(--ti-common-color-success, #5cb300);
-  // 通知文本色（没有效果）
-  --ti-notify-text-color: var(--ti-common-color-bg-emphasize, #191919);
-  // 弹框圆角
-  --ti-notify-border-radius: var(--ti-common-border-radius-4, 8px);
-  // 弹框文本色
-  --ti-notify-title-text-color: var(--ti-common-color-info-normal, #191919);
-  // 内容文本色
-  --ti-notify-content-text-color: var(--ti-common-color-text-secondary, #595959);
-  // 弹框标题字号
-  --ti-notify-title-font-size: var(--ti-common-font-size-2, 16px);
-  // 通知标题字重（没有效果）
-  --ti-notify-title-font-weight: 600;
-  // 弹框标题顶部外边距
-  --ti-notify-title-margin-top: var(--ti-common-space-0, 0px);
-  // 弹框标题水平外边距
-  --ti-notify-title-margin-horizontal: var(--ti-common-space-0, 0px);
-  // 弹框标题底部外边距
-  --ti-notify-title-margin-bottom: var(--ti-common-space-2x, 8px);
-  // 弹框标题换行(hide)
-  --ti-notify-title-white-space: normal;
-  // 弹框内容字号(没有效果，优先级被覆盖)
-  --ti-notify-content-font-size: var(--ti-common-font-size-1, 14px);
-  // 弹框文字顶部外边距
-  --ti-notify-message-margin-top: var(--ti-common-space-0, 0px);
-  // 弹框文字底部外边距
-  --ti-notify-message-margin-bottom: var(--ti-common-space-0, 0px);
-  // 弹框文字右外边距
-  --ti-notify-message-margin-right: var(--ti-common-space-3x, 12px);
-  // 弹框文字左外边距
-  --ti-notify-message-margin-left: var(--ti-common-space-2x, 8px);
-  // 弹框左侧图标尺寸
-  --ti-notify-icon-size: var(--ti-common-font-size-5, 24px);
-  // 弹框关闭图标色
-  --ti-notify-close-icon-color: var(--ti-common-color-icon-normal, #808080);
-  // 弹框最大宽度
-  --ti-notify-max-width: 340px;
-  // 弹框阴影
-  --ti-notify-box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
-  // 弹框垂直方向内边距
-  --ti-notify-padding-vertical: var(--ti-common-space-4x, 16px);
-  // 弹框水平方向内边距
-  --ti-notify-padding-horizontal: var(--ti-common-space-4x, 16px);
-  // 关闭图标大小
-  --ti-notify-close-icon-font-size: var(--ti-common-font-size-4, 20px);
-  // 关闭图标悬浮时颜色
-  --ti-notify-close-hover-icon-color: var(--ti-common-color-icon-hover, #191919);
-  // 弹框为top-left方向时左边距
-  --ti-notify-position-top-left: var(--ti-common-space-6x, 24px);
-  // 弹框为bottom-left方向时左边距
-  --ti-notify-position-bottom-left: var(--ti-common-space-6x, 24px);
-  // 弹框为top-right方向时右边距
-  --ti-notify-position-top-right: var(--ti-common-space-6x, 24px);
-  // 弹框为bottom-right方向时右边距
-  --ti-notify-position-bottom-right: var(--ti-common-space-6x, 24px);
-  // 关闭图标位移
-  --ti-notify-icon-transform: translate(0,-1px);
+.inject-Notify-vars() {
+  //---------------------------------------------------------------- 全局场景
+  // 通知的行高
+  --tv-Notify-max-width: 340px;
+  // 通知的行高
+  --tv-Notify-line-height: var(--tv-line-height-number);
+  // 通知的背景色
+  --tv-Notify-bg-color: var(--tv-color-bg-secondary);
+  // 通知的圆角
+  --tv-Notify-border-radius: var(--tv-border-radius-lg);
+  // 通知的外阴影
+  --tv-Notify-box-shadow: var(--tv-shadow-2-down);
+  // 通知的水平内边距
+  --tv-Notify-padding-x: var(--tv-space-xl);
+  // 通知的垂直内边距
+  --tv-Notify-padding-y: var(--tv-space-xl);
+  // ----------------------------------------------------------------状态图标
+  // 状态图标的大小
+  --tv-Notify-status-icon-font-size: 24px;
+  // 消息状态图标的右外边距
+  --tv-Notify-status-icon-margin-right: var(--tv-space-md);
+  // 成功状态时，图标的颜色
+  --tv-Notify-status-icon-color-success: var(--tv-color-success-icon);
+  // 错误状态时，图标的颜色
+  --tv-Notify-status-icon-color-error: var(--tv-color-error-icon);
+  // 警告状态时，图标的颜色
+  --tv-Notify-status-icon-color-warning: var(--tv-color-warn-icon);
+  // 信息状态时，图标的颜色
+  --tv-Notify-status-icon-color-info: var(--tv-color-info-icon);
+
+  // ----------------------------------------------------------------消息区  title+message
+  // 通知消息区的水平外边距
+  --tv-Notify-msg-margin-x: var(--tv-space-md);
+
+  // 通知标题的字体颜色
+  --tv-Notify-title-text-color: var(--tv-color-text);
+  // 通知标题的字体大小
+  --tv-Notify-title-font-size: var(--tv-font-size-lg);
+  // 通知标题的字重
+  --tv-Notify-title-font-weight: var(--tv-font-weight-bold);
+  // 通知标题的下边距外边距
+  --tv-Notify-title-margin-bottom: var(--tv-space-md);
+
+  // 通知内容的字体颜色
+  --tv-Notify-msg-text-color: var(--tv-color-text-secondary);
+  // 通知内容的字体大小
+  --tv-Notify-msg-font-size: var(--tv-font-size-md);
+  // 通知内容的最大高度
+  --tv-Notify-msg-max-height: 96px;
+
+  // ----------------------------------------------------------------关闭图标
+  // 关闭图标的大小
+  --tv-Notify-close-icon-font-size: 20px;
+  // 关闭图标的颜色
+  --tv-Notify-close-icon-color: var(--tv-color-icon);
+  // 关闭图标的悬浮
+  --tv-Notify-close-icon-color-hover: var(--tv-color-icon-hover);
 }

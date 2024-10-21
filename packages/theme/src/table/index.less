@@ -36,10 +36,6 @@
           color: var(--ti-table-text-color);
           background: var(--ti-table-bg-color);
 
-          &:nth-child(odd) {
-            background: var(--ti-table-odd-bg-color);
-          }
-
           &:hover {
             background: var(--ti-table-hover-bg-color);
           }
@@ -47,6 +43,7 @@
           &.is-disabled {
             background: var(--ti-table-disabled-bg-color);
             color: var(--ti-table-disabled-text-color);
+            cursor: not-allowed;
           }
         }
 
@@ -68,12 +65,14 @@
       th {
         padding: 2px 0 2px 8px;
         height: var(--ti-table-td-height);
+        vertical-align: middle;
         border-left: none;
       }
 
       td {
         padding: 2px 0 2px 8px;
         height: var(--ti-table-td-height);
+        vertical-align: middle;
         font-size: var(--ti-table-td-font-size);
 
         .overflow {
@@ -115,7 +114,6 @@
 
     .@{table-cell-prefix-cls} {
       .@{svg-prefix-cls} {
-        font-size: var(--ti-common-font-size-2);
         font-size: var(--ti-table-icon-font-size);
         fill: var(--ti-table-border-color);
 

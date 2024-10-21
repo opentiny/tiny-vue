@@ -17,21 +17,21 @@
 
 .@{filter-panel-prefix-cls} {
   &__popover {
-    .component-css-vars-filter-panel();
+    .inject-FilterPanel-vars();
   }
 
   &__popover.tiny-popover.tiny-popper {
     min-width: 200px;
-    padding: var(--ti-filter-panel-padding-vertical) var(--ti-filter-panel-padding-horizontal);
+    padding: var(--tv-FilterPanel-padding-y) var(--tv-FilterPanel-padding-x);
 
     &[x-placement^='bottom'] {
-      margin-top: var(--ti-filter-panel-margin-top);
-      box-shadow: var(--ti-filter-panel-bottom-box-shadow);
+      margin-top: var(--tv-FilterPanel-margin-top);
+      box-shadow: var(--tv-FilterPanel-bottom-box-shadow);
     }
 
     &[x-placement^='top'] {
       margin-bottom: 4px;
-      box-shadow: var(--ti-filter-panel-top-box-shadow);
+      box-shadow: var(--tv-FilterPanel-top-box-shadow);
     }
   }
 }

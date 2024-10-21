@@ -15,7 +15,8 @@ test('文件列表', async ({ page }) => {
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(width).toBeGreaterThanOrEqual(height)
-  await expect(height).toBeGreaterThanOrEqual(22, 0)
+  // 行高取1.5，计算结果是21
+  await expect(height).toBeGreaterThanOrEqual(21, 0)
   await expect(items).toHaveCount(2)
   await expect(items).toHaveText([/test1/, /test2/])
   await fileChooser.setFiles(currentPath)

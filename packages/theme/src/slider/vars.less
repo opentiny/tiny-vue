@@ -10,116 +10,76 @@
 *
 */
 
-.component-css-vars-slider() {
+.inject-Slider-vars() {
   // 滑块线条默认背景色
-  --ti-slider-bg-color: var(--ti-common-color-bg-normal, #f5f5f5);
+  --tv-Slider-bg-color: var(--tv-color-bg);
   // 滑块线条禁用背景色
-  --ti-slider-bg-color-disabled: var(--ti-common-color-bg-disabled, #f0f0f0);
+  --tv-Slider-bg-color-disabled: var(--tv-color-bg-disabled);
   // 滑块线条高度
-  --ti-slider-height: var(--ti-common-space-2x, 8px);
+  --tv-Slider-height: 8px;
   // 滑块线条圆角
-  --ti-slider-border-radius: var(--ti-common-border-radius-2, 4px);
+  --tv-Slider-border-radius: var(--tv-border-radius-sm);
 
   // 滑块进度条已完成部分的高度
-  --ti-slider-range-height: var(--ti-common-space-2x, 8px);
+  --tv-Slider-range-height: 8px;
   // 横向滑块进度条圆角
-  --ti-slider-range-border-radius: var(--ti-common-border-radius-2, 4px);
+  --tv-Slider-range-border-radius: var(--tv-border-radius-sm);
   // 滑块进度条背景色
-  --ti-slider-range-bg-color: var(--ti-common-color-data-1, #1476ff);
+  --tv-Slider-range-bg-color: var(--tv-color-bg-active-control);
   // 滑块进度条悬浮背景色
-  --ti-slider-range-hover-bg-color: var(--ti-common-color-data-1, #1476ff);
+  --tv-Slider-range-hover-bg-color: var(--tv-color-bg-active-control);
   // 滑块提示框top
-  --ti-slider-range-top: calc(-1 * var(--ti-common-space-base));
-  // 滑块进度条顶部外边距
-  --ti-slider-range-margin-top: 0;
+  --tv-Slider-range-top: -4px;
   // 滑块进度条禁用时背景色
-  --ti-slider-range-disabled-bg-color: var(--ti-common-color-bg-secondary, #c2c2c2);
+  --tv-Slider-range-disabled-bg-color: var(--tv-color-icon-disabled);
 
   // 滑块点宽度
-  --ti-slider-handle-width: var(--ti-common-space-6x, 24px);
+  --tv-Slider-handle-width: 24px;
   // 滑块点高度
-  --ti-slider-handle-height: var(--ti-common-space-6x, 24px);
+  --tv-Slider-handle-height: 24px;
   // 滑块点背景色
-  --ti-slider-handle-bg-color: var(--ti-common-color-bg-white-normal, #ffffff);
+  --tv-Slider-handle-bg-color: var(--tv-color-bg-secondary);
   // 滑块点边框色
-  --ti-slider-handle-border-color: var(--ti-common-color-line-disabled, #dbdbdb);
+  --tv-Slider-handle-border-color: var(--tv-color-border-disabled);
   // 滑块点圆角
-  --ti-slider-handle-border-radius: var(--ti-common-border-radius-5, 12px);
+  --tv-Slider-handle-border-radius: var(--tv-border-radius-round);
 
   // 滑块点悬浮文本色
-  --ti-slider-handle-text-color-hover: var(--ti-common-color-bg-hover, #595959);
+  --tv-Slider-handle-text-color-hover: var(--tv-color-text-secondary);
   // 滑块点悬浮边框色
-  --ti-slider-handle-border-color-hover: var(--ti-common-color-data-1, #1476ff);
+  --tv-Slider-handle-border-color-hover: var(--tv-color-border-active-control);
   // 滑块点阴影
-  --ti-slider-handle-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
-  // 滑块点top
-  --ti-slider-handle-top: calc(-1 * var(--ti-common-space-base));
-  // 滑块点边框厚度
-  --ti-slider-handle-border-weight: var(--ti-common-border-weight-normal, 1px);
-  // 滑块点边框悬浮厚度
-  --ti-slider-handle-border-weight-hover: var(--ti-common-border-weight-1, 2px);
-  // 滑块点图标的display(hide)
-  --ti-slider-handle-icon-display: none;
-  // 滑块点图标色
-  --ti-slider-handle-icon-fill-color: var(--ti-common-color-data-1, #1476ff);
-  // 滑块点图标悬浮色
-  --ti-slider-handle-icon-fill-color-hover: var(--ti-common-color-bg-hover, #595959);
-  // 滑块点的缩放值(hide)
-  --ti-slider-handle-transform: scale(1);
-  // 滑块点顶部外边距
-  --ti-slider-handle-margin-top: calc(var(--ti-common-space-2x, 8px) * -1);
-  // 滑块点水平外边距
-  --ti-slider-handle-margin-horizontal: calc(var(--ti-common-space-2x, 8px) * -1);
-  // 滑块点底部外边距
-  --ti-slider-handle-margin-bottom: var(--ti-common-space-0, 0px);
-  // 滑块点禁用时图标颜色
-  --ti-slider-handle-icon-disabled-fill-color: var(--ti-common-color-icon-disabled, #c2c2c2);
+  --tv-Slider-handle-box-shadow: var(--tv-shadow-1-down);
   // 滑块点禁用时边框颜色
-  --ti-slider-handle-disabled-border-color: var(--ti-common-color-icon-disabled, #c2c2c2);
+  --tv-Slider-handle-disabled-border-color: var(--tv-color-border);
 
   // 滑块输入框高度
-  --ti-slider-input-height: var(--ti-common-size-height-normal, 32px);
+  --tv-Slider-input-height: var(--tv-size-height-md);
   // 滑块输入框宽度
-  --ti-slider-input-width: calc(var(--ti-common-space-10x, 40px) * 2);
+  --tv-Slider-input-width: 80px;
   // 滑块输入框边框圆角
-  --ti-slider-input-border-radius: calc(var(--ti-common-border-radius-normal, 6px) + 2px);
+  --tv-Slider-input-border-radius: var(--tv-border-radius-lg);
   // 滑块输入框边框色
-  --ti-slider-input-border-color: var(--ti-common-color-border, #999999);
+  --tv-Slider-input-border-color: var(--tv-color-border);
   // 滑块输入框文本色
-  --ti-slider-input-text-color: var(--ti-common-color-info-normal, #191919);
+  --tv-Slider-input-text-color: var(--tv-color-text);
   // 滑块输入框背景色
-  --ti-slider-input-bg-color: var(--ti-common-color-light, #ffffff);
+  --tv-Slider-input-bg-color: var(--tv-color-bg-secondary);
   // 滑块输入框左边外间距
-  --ti-slider-input-margin-left: var(--ti-common-space-4x, 16px);
+  --tv-Slider-input-margin-left: var(--tv-space-xl);
   // 滑块输入框单位左边padding
-  --ti-slider-input-unit-margin-left: var(--ti-common-space-base, 4px);
+  --tv-Slider-input-unit-margin-left: var(--tv-space-sm);
   // 滑块输入框单位文本色
-  --ti-slider-input-unit-text-color: var(--ti-common-color-text-primary, #191919);
+  --tv-Slider-input-unit-text-color: var(--tv-color-text);
   // 滑块输入框单位禁用文本色
-  --ti-slider-input-unit-text-color-disabled: var(--ti-common-color-text-disabled, #c2c2c2);
-  // 滑块输入框单位文字对齐方式(hide)
-  --ti-slider-input-text-align: left;
+  --tv-Slider-input-unit-text-color-disabled: var(--tv-color-text-disabled);
 
-  // 滑块刻度的宽度，竖向模式时作为滑块刻度的高度
-  --ti-slider-mark-point-width: calc(var(--ti-common-space-base, 4px) / 2);
   // 滑块刻度背景色
-  --ti-slider-mark-point-bg-color: var(--ti-common-color-light, #ffffff);
-  // 滑块刻度的label的顶部间距，竖向模式时作为左间距
-  --ti-slider-mark-label-margin-top: calc(var(--ti-common-space-base, 4px) * 2 + var(--ti-slider-height));
-
+  --tv-Slider-mark-point-bg-color: var(--tv-color-bg-secondary);
   // 滑块活动时提示框背景色
-  --ti-slider-tips-bg-color: var(--ti-common-color-bg-dark-normal, #ffffff);
+  --tv-Slider-tips-bg-color: var(--tv-color-bg-secondary);
   // 滑块活动时提示框边框色
-  --ti-slider-tips-border-color: var(--ti-common-color-bg-dark-normal, #ffffff);
+  --tv-Slider-tips-border-color: var(--tv-Slider-tips-bg-color);
   // 滑块活动时提示框文本色
-  --ti-slider-tips-text-color: var(--ti-common-color-dark, #000);
-  // 滑块活动时提示框左外边距
-  --ti-slider-tips-margin-left: calc(var(--ti-common-space-6, 6px) / 2);
-
-  // 竖向滑块进度条顶部外边距
-  --ti-slider-margin-vertical: calc(var(--ti-common-space-2x, 8px) * -1);
-  // 竖向滑块右外边距
-  --ti-slider-margin-right: var(--ti-common-space-0, 0px);
-  // 竖向滑块左外边距
-  --ti-slider-margin-left: calc(var(--ti-common-space-base, 4px) * -1);
+  --tv-Slider-tips-text-color: var(--tv-color-text);
 }

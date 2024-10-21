@@ -20,7 +20,7 @@ import {
   iconSuccess,
   iconError,
   iconInfoSolid,
-  iconLoading,
+  iconLoadingShadow,
   iconWarning,
   iconClose,
   iconFullscreenLeft,
@@ -61,7 +61,6 @@ export default defineComponent({
     'vSize',
     'width',
     'zIndex',
-    'showClose',
     'messageClosable',
     'confirmContent',
     'cancelContent',
@@ -114,7 +113,7 @@ export default defineComponent({
       SUCCESS: iconSuccess(),
       WARNING: iconWarning(),
       ERROR: iconError(),
-      LOADING: iconLoading()
+      LOADING: iconLoadingShadow()
     }
 
     return h(

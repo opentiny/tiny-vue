@@ -7,7 +7,7 @@
     <br />
     <tiny-progress class="progress-first" :stroke-width="4" :percentage="percentage"></tiny-progress>
     <br />
-    <tiny-progress class="progress-second" :stroke-width="24" :percentage="percentage"></tiny-progress>
+    <tiny-progress class="progress-second" :stroke-width="12" :percentage="percentage"></tiny-progress>
     <div class="tip" v-if="percentage !== 100">努力加载中，请稍后...</div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 
-const percentage = ref(90)
+const percentage = ref(45)
 const IconMinus = iconMinus()
 const IconPlus = iconPlus()
 
