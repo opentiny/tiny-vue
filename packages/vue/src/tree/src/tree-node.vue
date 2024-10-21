@@ -245,7 +245,9 @@ import {
   iconEdit,
   iconDel,
   iconPlusSquare,
-  iconFinish
+  iconFinish,
+  iconExpand,
+  iconPutAway
 } from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
@@ -331,6 +333,8 @@ export default defineComponent({
     IconDel: iconDel(),
     IconPlusSquare: iconPlusSquare(),
     IconFinish: iconFinish(),
+    IconExpand: iconExpand(),
+    IconPutAway: iconPutAway(),
     MenuContext: {
       props: {
         node: {

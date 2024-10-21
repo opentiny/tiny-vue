@@ -50,8 +50,8 @@
         multiple && !state.selectDisabled && state.selected.length
           ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
           : !multiple && state.selectDisabled
-            ? state.selectedLabel
-            : ''
+          ? state.selectedLabel
+          : ''
       "
     >
       <slot name="reference">
@@ -612,17 +612,17 @@ import TinySelectDropdown from '@opentiny/vue-select-dropdown'
 import TinyButton from '@opentiny/vue-button'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import {
-  IconClose,
-  IconHalfselect,
-  IconCheck,
-  IconCheckedSur,
-  IconCopy,
-  IconDeltaDown,
-  IconSearch,
-  IconEllipsis,
-  IconChevronUp,
-  IconAddCircle,
-  IconLoadingShadow
+  iconClose,
+  iconHalfselect,
+  iconCheck,
+  iconCheckedSur,
+  iconCopy,
+  iconDownWard,
+  iconSearch,
+  iconEllipsis,
+  iconChevronUp,
+  iconAddCircle,
+  iconLoadingShadow
 } from '@opentiny/vue-icon'
 import Grid from '@opentiny/vue-grid'
 import Tree from '@opentiny/vue-tree'
@@ -675,23 +675,23 @@ export default defineComponent({
     TinyGrid: Grid,
     TinyTree: Tree,
     TinyButton,
-    IconClose: IconClose(),
+    IconClose: iconClose(),
     TinyScrollbar,
-    IconCopy: IconCopy(),
-    IconAddCircle: IconAddCircle(),
-    IconLoadingShadow: IconLoadingShadow(),
+    IconCopy: iconCopy(),
+    IconAddCircle: iconAddCircle(),
+    IconLoadingShadow: iconLoadingShadow(),
     TinySelectDropdown,
-    IconHalfselect: IconHalfselect(),
-    IconCheck: IconCheck(),
-    IconCheckedSur: IconCheckedSur(),
+    IconHalfselect: iconHalfselect(),
+    IconCheck: iconCheck(),
+    IconCheckedSur: iconCheckedSur(),
     TinyFilterBox: FilterBox,
     TinyTooltip,
     TinyRecycleScroller: RecycleScroller,
     // tiny 新增，
-    IconSearch: IconSearch(),
-    IconDeltaDown: IconDeltaDown(), // 默认下拉图标
-    IconEllipsis: IconEllipsis(),
-    IconChevronUp: IconChevronUp()
+    IconSearch: iconSearch(),
+    IconDownWard: iconDownWard(), // 默认下拉图标
+    IconEllipsis: iconEllipsis(),
+    IconChevronUp: iconChevronUp()
   },
   props: [
     ...props,
