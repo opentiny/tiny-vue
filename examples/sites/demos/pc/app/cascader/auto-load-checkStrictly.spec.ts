@@ -12,6 +12,6 @@ test('动态加载且父子级不相关联 lazyload & checkStrictly', async ({ p
   await page.waitForTimeout(100)
   await page.getByRole('menuitem', { name: '选项2' }).getByRole('radio').nth(0).click()
   await page.getByRole('textbox', { name: '请选择' }).click()
-  const light = page.getByRole('menuitem', { name: '选项2' }).getByRole('radio')
+  const light = page.getByRole('menuitem', { name: '选项2' }).getByRole('radio').nth(0)
   await expect(light).toHaveClass('tiny-radio is-checked')
 })

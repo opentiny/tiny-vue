@@ -6,6 +6,6 @@ test('父子级不相关联', async ({ page }) => {
   await page.getByRole('textbox', { name: '请选择' }).click()
   await page.getByRole('menuitem', { name: '开发' }).getByRole('radio').nth(0).click()
   await page.getByRole('textbox', { name: '请选择' }).click()
-  const light = page.getByRole('menuitem', { name: '开发' }).getByRole('radio')
-  await expect(light).nth(0).toHaveClass('tiny-radio is-checked')
+  const light = page.getByRole('menuitem', { name: '开发' }).getByRole('radio').nth(0)
+  await expect(light).toHaveClass('tiny-radio is-checked')
 })
