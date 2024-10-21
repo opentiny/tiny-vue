@@ -15,7 +15,7 @@
           @collapse-change="collapseChange"
         >
           <template #default="{ data }">
-            <div class="node-name-container">
+            <a @click="clickMenuLink" :href="getMenuLink(data)" class="node-name-container">
               <tiny-tag v-if="data?.mode?.includes('mobile-first')" size="mini" effect="plain" class="absolute-tag"
                 >多端</tiny-tag
               >
@@ -35,7 +35,7 @@
                 :is-from-menu="true"
               >
               </version-tip>
-            </div>
+            </a>
           </template>
         </tiny-tree-menu>
       </div>
@@ -124,6 +124,16 @@ export default defineComponent({
       }
     }
 
+    const getMenuLink = (menu) => {
+      if (menu.type === 'overview') {
+        return `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/overview`
+      } else if (menu.type === 'docs') {
+        return getTo('docs/', menu.key)
+      } else if (menu.type === 'components') {
+        return getTo('components/', menu.key)
+      }
+    }
+
     const collapseChange = (isCollapsed) => {
       state.isCollapsed = isCollapsed
     }
@@ -168,6 +178,10 @@ export default defineComponent({
       routerCbDestroy()
     })
 
+    const clickMenuLink = (e) => {
+      e.preventDefault()
+    }
+
     return {
       ...toRefs(state),
       appData,
@@ -179,6 +193,8 @@ export default defineComponent({
       apiModeState,
       apiModeFn,
       templateModeState,
+      getMenuLink,
+      clickMenuLink,
       getWord,
       i18nByKey,
       isThemeSaas
@@ -299,6 +315,7 @@ export default defineComponent({
     line-height: 1.5;
 
     .node-name-container {
+      color: #191919;
       display: flex;
       align-items: center;
       flex-wrap: nowrap;
