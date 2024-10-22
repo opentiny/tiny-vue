@@ -1,11 +1,6 @@
 <template>
   <div>
     <tiny-button type="primary" loading>加载中</tiny-button>
-    <tiny-button loading>加载中</tiny-button>
-    <tiny-button type="success" loading>加载中</tiny-button>
-    <tiny-button type="info" loading>加载中</tiny-button>
-    <tiny-button type="warning" loading>加载中</tiny-button>
-    <tiny-button type="danger" loading>加载中</tiny-button>
   </div>
 </template>
 
@@ -18,11 +13,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.tiny-button {
-  margin-bottom: 10px;
-  margin-left: 0;
-  margin-right: 24px;
-}
-</style>

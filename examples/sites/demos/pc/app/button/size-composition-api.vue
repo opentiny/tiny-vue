@@ -10,49 +10,43 @@
     </tiny-row>
 
     <tiny-row>
-      <div class="title">朴素按钮尺寸：</div>
-      <tiny-button type="primary" size="large" plain> 超大按钮 </tiny-button>
-      <tiny-button type="primary" size="medium" plain> 中等按钮 </tiny-button>
-      <tiny-button type="primary" plain> 默认按钮 </tiny-button>
-      <tiny-button type="primary" size="small" plain> 小型按钮 </tiny-button>
-      <tiny-button type="primary" size="mini" plain> 超小按钮 </tiny-button>
-    </tiny-row>
-
-    <tiny-row>
-      <div class="title">圆角按钮尺寸：</div>
-      <tiny-button type="success" size="large" round> 超大按钮 </tiny-button>
-      <tiny-button type="success" size="medium" round> 中等按钮 </tiny-button>
-      <tiny-button type="success" round> 默认按钮 </tiny-button>
-      <tiny-button type="success" size="small" round> 小型按钮 </tiny-button>
-      <tiny-button type="success" size="mini" round> 超小按钮 </tiny-button>
+      <div class="title">图标按钮尺寸：</div>
+      <tiny-button type="success" size="large" :icon="IconEdit"> 超大按钮 </tiny-button>
+      <tiny-button type="success" size="medium" :icon="IconSearch"> 中等按钮 </tiny-button>
+      <tiny-button type="success" :icon="IconYes"> 默认按钮 </tiny-button>
+      <tiny-button type="success" size="small" :icon="IconMail"> 小型按钮 </tiny-button>
+      <tiny-button type="success" size="mini" :icon="IconDel"> 超小按钮 </tiny-button>
     </tiny-row>
 
     <tiny-row>
       <div class="title">圆形按钮尺寸：</div>
-      <tiny-button type="warning" size="large" :icon="TinyIconEdit" circle> </tiny-button>
-      <tiny-button type="warning" size="medium" :icon="TinyIconEdit" circle> </tiny-button>
-      <tiny-button type="warning" :icon="TinyIconEdit" circle></tiny-button>
-      <tiny-button type="warning" size="small" :icon="TinyIconEdit" circle> </tiny-button>
-      <tiny-button type="warning" size="mini" :icon="TinyIconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="large" :icon="IconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="medium" :icon="IconEdit" circle> </tiny-button>
+      <tiny-button type="warning" :icon="IconEdit" circle></tiny-button>
+      <tiny-button type="warning" size="small" :icon="IconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="mini" :icon="IconEdit" circle> </tiny-button>
     </tiny-row>
 
     <tiny-row>
       <div class="title">纯图标按钮尺寸：</div>
-      <tiny-button :icon="TinyIconDel" type="text" size="large" />
-      <tiny-button :icon="TinyIconDel" type="text" size="medium" />
-      <tiny-button :icon="TinyIconDel" type="text" />
-      <tiny-button :icon="TinyIconDel" type="text" size="small" />
-      <tiny-button :icon="TinyIconDel" type="text" size="mini" />
+      <tiny-button :icon="IconDel" type="text" size="large" />
+      <tiny-button :icon="IconDel" type="text" size="medium" />
+      <tiny-button :icon="IconDel" type="text" />
+      <tiny-button :icon="IconDel" type="text" size="small" />
+      <tiny-button :icon="IconDel" type="text" size="mini" />
     </tiny-row>
   </tiny-layout>
 </template>
 
 <script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
-import { iconDel, iconEdit } from '@opentiny/vue-icon'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
+import { iconDel, iconYes, iconEdit, iconMail, iconSearch } from '@opentiny/vue-icon'
 
-const TinyIconDel = iconDel()
-const TinyIconEdit = iconEdit()
+const IconDel = iconDel()
+const IconEdit = iconEdit()
+const IconYes = iconYes()
+const IconMail = iconMail()
+const IconSearch = iconSearch()
 </script>
 
 <style scoped>
