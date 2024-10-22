@@ -34,6 +34,15 @@
   color: var(--tv-color-text-active) !important;
 }
 
+// 图标的默认样式
+.@{svg-prefix-cls} {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  overflow: hidden;
+  display: inline-block;
+}
+
 [class*=~'@{css-prefix}'] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -121,12 +130,6 @@
   legend {
     border: 0;
     padding: 0;
-  }
-
-  // 清除IE
-  input::-ms-clear,
-  input::-ms-reveal {
-    display: none;
   }
 
   button::-moz-focus-inner,
