@@ -27,7 +27,7 @@
     font-size: var(--tv-Grid-font-size);
     background-color: #fff;
     box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2);
-    padding: 0 1px;
+    padding: 8px 0;
     color: var(--tv-Grid-text-color);
     overflow: visible;
     .user-select(none);
@@ -39,38 +39,25 @@
     .@{grid-menu-prefix-cls}__option-wrapper,
     .@{grid-menu-prefix-cls}__clild-wrapper {
       margin: 0;
-      padding: 0;
       list-style-type: none;
       border-bottom: 1px solid var(--tv-Grid-divider-color);
 
+      &:last-child {
+        border: 0;
+      }
+
       li {
         position: relative;
-        margin: 1px 0;
-        border: 1px solid transparent;
-
-        &:last-child {
-          border: 0;
-        }
 
         &.link__active {
-          color: #2b2b2b;
-          background-color: #c5c5c5;
-          border-color: #c5c5c5;
+          color: var(--tv-Grid-text-color);
+          background-color: var(--tv-Grid-bg-color-active);
         }
 
         &.link__disabled {
           .@{grid-menu-prefix-cls}__link {
-            color: var(--tv-Grid-text-color);
-            cursor: initial;
-          }
-
-          &.link__active {
-            border-color: #c0c1c2;
-            background-color: #eeeeee;
-
-            &:hover {
-              background-color: inherit;
-            }
+            color: var(--tv-Grid-text-color-disabled);
+            cursor: not-allowed;
           }
         }
       }
