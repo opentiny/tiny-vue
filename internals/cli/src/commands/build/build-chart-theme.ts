@@ -3,14 +3,14 @@ import path from 'node:path'
 
 const changeTheme = () => {
   const THEMES = {
-    dark: 'DARK',
-    light: 'LIGHT',
-    bpit: 'BPIT_LIGHT',
-    bpit_dark: 'BPIT_DARK',
-    cloud_dark: 'CLOUD_DARK',
-    cloud: 'CLOUD_LIGHT',
-    hdesign: 'HDESIGN_LIGHT',
-    hdesign_dark: 'HDESIGN_DARK'
+    dark: 'dark',
+    light: 'light',
+    bpit: 'bpit_light',
+    bpit_dark: 'bpit_dark',
+    cloud_dark: 'cloud_dark',
+    cloud: 'cloud_light',
+    hdesign: 'hdesign',
+    hdesign_dark: 'hdesign_dark'
   }
 
   // 获取命令行参数
@@ -22,18 +22,16 @@ const changeTheme = () => {
   }
 
   // 你想要替换的文件
-  const filePath = path.join(
-    __dirname,
-    '../../../../../packages/vue/src/chart/chart-core/base/feature/token/constants.ts'
-  )
+  const filePath = path.join(__dirname, '../../../../../packages/vue/src/huicharts/huicharts-core/src/chart-core.ts')
 
   // 读取文件内容
   let content = fs.readFileSync(filePath, 'utf-8')
 
   // 替换 process.env.VAR_NAME 为对应主题的值
   content = content.replace(
-    /const\sDEFAULT_THEME_NAME\s=\sTHEMES\.[a-zA-Z_]+/g,
-    `const DEFAULT_THEME_NAME = THEMES.${theme}`
+    // /const\sDEFAULT_THEME_NAME\s=\sTHEMES\.[a-zA-Z_]+/g,
+    /option\.theme\s=\s'[a-zA-Z_]+'/g,
+    `option.theme = '${theme}'`
   )
 
   // 写入新内容到文件
