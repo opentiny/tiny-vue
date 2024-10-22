@@ -14,140 +14,128 @@
 @import '../custom.less';
 @import './vars.less';
 @import '../transition/timepicker.less';
-@import '../date-picker/vars.less';
 
-@date-container-prefix-cls: ~'@{css-prefix}date-container';
+@picker-prefix-cls: ~'@{css-prefix}picker';
 @date-editor-prefix-cls: ~'@{css-prefix}date-editor';
 @range-editor-prefix-cls: ~'@{css-prefix}range-editor';
 @range-prefix-cls: ~'@{css-prefix}range';
 
-.@{date-container-prefix-cls} {
+.@{picker-prefix-cls} {
   position: relative;
-}
 
-.@{date-editor-prefix-cls} {
-  .component-css-vars-picker();
-  .component-css-vars-date-picker();
+  .@{date-editor-prefix-cls} {
+    .component-css-vars-picker();
 
-  position: relative;
-  display: inline-block;
-  text-align: left;
+    position: relative;
+    display: inline-block;
+    text-align: left;
 
-  &.@{input-prefix-cls},
-  &.@{input-prefix-cls}__inner {
-    width: 100%;
-  }
-
-  &--dates {
-    .@{input-prefix-cls}__inner {
-      .text-overflow();
+    .tiny-svg {
+      font-size: var(--tv-Picker-icon-size);
+      fill: var(--tv-Picker-icon-color);
     }
-  }
 
-  &.show-auto-width {
     &.@{input-prefix-cls},
     &.@{input-prefix-cls}__inner {
       width: 100%;
     }
-  }
 
-  .@{input-prefix-cls}__label {
-    color: #8d959e;
-    font-size: 12px;
-    margin-right: 8px;
-    max-width: 100px;
-    display: inline-block;
-    text-align: left;
-    .text-overflow();
-  }
-
-  .@{input-prefix-cls}__icon-container {
-    width: initial;
-    cursor: pointer;
-    color: var(--ti-date-editor-input-icon-color-fill);
-    position: absolute;
-    right: 0;
-
-    .baseClearicon {
-      position: absolute;
-      fill: #808080;
-      background-color: #FFFFFF;
-
-      &:hover {
-        fill: var(--ti-input-clear-text-color-hover);
+    &--dates {
+      .@{input-prefix-cls}__inner {
+        .text-overflow();
       }
     }
 
-    &:not(.@{range-prefix-cls}__icon) {
-      display: flex;
+    &.show-auto-width {
+      &.@{input-prefix-cls},
+      &.@{input-prefix-cls}__inner {
+        width: 100%;
+      }
+    }
+
+    .@{input-prefix-cls}__label {
+      color: var(--tv-Picker-label-text-color);
+      font-size: 12px;
+      margin-right: 8px;
+      max-width: 100px;
+      display: inline-block;
+      text-align: left;
+      .text-overflow();
+    }
+
+    .@{input-prefix-cls}__icon-container {
+      width: initial;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+
+      .baseClearicon {
+        position: absolute;
+        background-color: #ffffff;
+
+        &:hover {
+          fill: var(--tv-Picker-icon-color-hover);
+        }
+      }
+
+      &:not(.@{range-prefix-cls}__icon) {
+        display: flex;
+      }
+    }
+
+    .@{range-prefix-cls}__icon {
+      margin-top: -1px;
+    }
+
+    .@{range-prefix-cls}-input,
+    .@{range-prefix-cls}-separator {
+      font-size: var(--tv-Picker-font-size);
+      height: 100%;
+      margin: 0;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .@{range-prefix-cls}-input {
+      text-align: left;
+      appearance: none;
+      border: none;
+      outline: 0;
+      padding: 0;
+      width: 39%;
+      color: var(--tv-Picker-text-color);
+      .text-overflow();
+      .placeholder();
+    }
+
+    .@{range-prefix-cls}-separator {
+      padding: 0 5px;
+      line-height: 22px;
+      width: 12%;
+    }
+
+    .@{range-prefix-cls}__close-box {
+      height: 16px;
+      z-index: 5;
+      position: relative;
+    }
+
+    .@{range-prefix-cls}__close-icon {
+      width: 20px;
+      height: 18px;
+      position: absolute;
+      right: -20px;
+      background-color: #ffffff;
+      margin-top: -1px;
+
+      &,
+      &:hover {
+        fill: var(--tv-Picker-icon-color-hover);
+      }
     }
   }
-  
-  .@{range-prefix-cls}__icon {
-    width: 14px;
-    color: var(--ti-date-editor-input-icon-color-fill);
-    margin-top: -2px;
-  }
-
-  .@{range-prefix-cls}-input,
-  .@{range-prefix-cls}-separator {
-    font-size: var(--ti-date-picker-font-size);
-    height: 100%;
-    margin: 0;
-    text-align: center;
-    display: inline-block;
-  }
-
-  .@{range-prefix-cls}-input {
-    text-align: left;
-    appearance: none;
-    border: none;
-    outline: 0;
-    padding: 0;
-    width: 39%;
-    color: var(--ti-date-picker-text-color);
-    .text-overflow();
-    .placeholder();
-  }
-
-  .@{range-prefix-cls}-separator {
-    padding: 0 5px;
-    line-height: 22px;
-    width: 12%;
-    color: #808080;
-  }
-  .@{range-prefix-cls}__close-box {
-    height: 16px;
-    z-index: 5;
-    position: relative;
-  }
-
-  .@{range-prefix-cls}__close-icon {
-    font-size: var(--ti-date-picker-icon-font-size);
-    width: 20px;
-    height: 18px;
-    position: absolute;
-    right: -20px;
-    background-color: #FFFFFF;
-    margin-top: -1px;
-
-    &,
-    &:hover {
-      fill: var(--ti-input-icon-close-text-color);
-    }
-  }
-  
 }
-&:not(.is-display-only).is-disabled.@{date-editor-prefix-cls} {
-  .baseClearicon {
-    background-color: #F0F0F0;
-  }
-}
-&:not(.is-display-only).is-disabled.@{range-editor-prefix-cls} {
-  .@{range-prefix-cls}__close-icon {
-    background-color: #F0F0F0;
-  }
-}
+
 .@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
   width: 360px;
 }
@@ -165,53 +153,51 @@
 
   &:not(.is-display-only).is-active,
   &:not(.is-display-only).is-active:hover {
-    border-color: var(--ti-date-editor-input-border-color);
+    border-color: var(--tv-Picker-border-color-active);
   }
 
   &--medium:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: var(--ti-date-editor-input-medium-height);
+      height: var(--tv-Picker-height-medium);
     }
 
     .@{range-prefix-cls}-separator {
       line-height: 34px;
-      font-size: var(--ti-common-font-size-1);
+      font-size: var(--tv-Picker-font-size);
     }
 
     .@{range-prefix-cls}-input {
-      font-size: var(--ti-common-font-size-1);
+      font-size: var(--tv-Picker-font-size);
     }
-
   }
 
   &--small:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: var(--ti-date-editor-input-small-height);
+      height: var(--tv-Picker-height-small);
     }
 
     .@{range-prefix-cls}-separator {
       line-height: 28px;
-      font-size: var(--ti-common-font-size-1);
+      font-size: var(--tv-Picker-font-size);
     }
 
     .@{range-prefix-cls}-input {
-      font-size: var(--ti-common-font-size-1);
+      font-size: var(--tv-Picker-font-size);
     }
-
   }
 
   &--mini:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: 24px;
+      height: var(--tv-Picker-height-mini);
     }
 
     .@{range-prefix-cls}-separator {
       line-height: 16px;
-      font-size: var(--ti-common-font-size-base);
+      font-size: var(--tv-Picker-font-size-sm);
     }
 
     .@{range-prefix-cls}-input {
-      font-size: var(--ti-common-font-size-base);
+      font-size: var(--tv-Picker-font-size-sm);
     }
 
     .@{range-prefix-cls}__close-icon,
@@ -222,28 +208,29 @@
   }
 
   &:not(.is-display-only).is-disabled {
-    background-color: var(--ti-date-picker-disabled-bg-color);
-    border-color: var(--ti-date-picker-border-color);
-    color: var(--ti-date-picker-disabled-text-color);
+    background-color: var(--tv-Picker-bg-color-disabled);
+    border-color: transparent;
+    color: var(--tv-Picker-text-color-disabled);
     cursor: not-allowed;
 
     &:focus,
     &:hover {
-      border-color: var(--ti-date-picker-border-color);
+      border-color: transparent;
     }
 
     input {
-      color: var(--ti-date-picker-disabled-text-color);
-      background-color: var(--ti-date-picker-disabled-bg-color);
+      color: var(--tv-Picker-text-color-disabled);
+      background-color: var(--tv-Picker-bg-color-disabled);
       cursor: not-allowed;
       .placeholder();
     }
 
     .@{range-prefix-cls}-separator {
-      color: var(--ti-date-picker-disabled-text-color);
+      color: var(--tv-Picker-text-color-disabled);
     }
   }
 }
+
 .@{range-editor-prefix-cls}.is-display-only {
   position: relative;
   border-width: 0px;
@@ -265,6 +252,7 @@
   }
 }
 
+// TODO: 评估滚动条是否有用上，没有的话删掉
 .@{scrollbar-prefix-cls} {
   overflow: hidden;
   position: relative;

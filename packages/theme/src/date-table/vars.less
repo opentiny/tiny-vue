@@ -11,45 +11,75 @@
 */
 
 .component-css-vars-date-table() {
-  --ti-date-table-td-width: 36px;
-  --ti-date-table-td-height: 34px;
-  --ti-date-table-td-padding-vertical: 4px;
-  --ti-date-table-td-padding-horizontal: 0;
-  --ti-date-table-td-span-width: 28px;
-  --ti-date-table-td-span-height: 28px;
-  --ti-date-table-th-text-color: var(--ti-base-color-common-2, #808080);
-  --ti-date-table-td-border-radius: 14px;
-  --ti-date-table-td-pre-month-text-color: var(--ti-base-color-common-2, #808080);
-  // 选中日期文本色
-  --ti-date-table-td-normal-text-color: var(--ti-common-color-light, #ffffff);
-  --ti-date-table-td-range-bg-color: #f2f6fc;
-  --ti-date-table-td-today-border-color: transparent;
-  --ti-date-table-td-today-text-color: var(--ti-common-color-info-normal, #191919);
-  --ti-date-table-week-bg-color-current-select: var(--ti-base-color-brand-8, #deecff);
-  --ti-date-table-week-bg-color-current-hover: var(--ti-base-color-brand-8, #deecff);
-  --ti-date-table-font-size: var(--ti-common-font-size-base, 14px);
-  --ti-date-table-hover-bg-color: var(--ti-base-color-brand-8, #deecff);
-  --ti-date-table-current-border-color: var(--ti-base-color-brand-6, #191919);
-  --ti-date-table-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
-  --ti-date-table-disabled-bg-color: var(--ti-common-color-bg-disabled, #f0f0f0);
-  --ti-date-table-range-bg-color: var(--ti-base-color-brand-8, #deecff);
-  --ti-date-table-range-hover-bg-color: var(--ti-base-color-brand-8, #deecff);
-  --ti-date-table-bg-color-current-select: var(--ti-base-color-brand-2, #1476ff);
-  --ti-date-table-text-color: var(--ti-common-color-info-normal, #191919);
-  --ti-date-table-border-radius-current-select: 14px;
-  --ti-date-table-td-today-width: calc(var(--ti-common-size-width-mini, 24px) + 4px);
-  --ti-date-table-td-today-height: calc(var(--ti-common-size-height-mini, 24px) + 4px);
-  --ti-date-table-td-today-border-radius: 13px;
-  --ti-date-table-td-today-circle-border-color: var(--ti-base-color-brand, #191919);
-  --ti-date-table-td-today-circle-border-width: 1px;
+  // 文本色
+  --tv-DateTable-text-color: var(--tv-color-text, #191919);
+  // 字号
+  --tv-DateTable-font-size: var(--ti-common-font-size-base, 14px);
+  // 文本色
+  --tv-DateTable-text-color: var(--tv-color-text, #191919);
+  // 禁用文本色
+  --tv-DateTable-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
 
-  --ti-date-table-td-div-height: 28px;
-  --ti-date-table-td-div-width: 28px;
-  --ti-date-table-td-span-top: 3px;
-  --ti-date-table-start-date-border-radius: 14px;
-  --ti-date-table-cell-selected-border-radius: 14px;
-  --ti-date-table-tr-line-height: var(--ti-common-line-height-1, 22px);
-  --ti-date-table-td-disabled-border-radius: 50%;
-  --ti-date-table-td-row-disabled-border-radius: unset;
-  --ti-date-table-week-height: var(--ti-common-size-height-normal, 32px);
+  // 单元格内间距
+  --tv-DateTable-td-padding: var(--tv-space-sm, 4px) 0;
+  // 单元格宽
+  --tv-DateTable-td-width: 36px;
+  // 单元格高
+  --tv-DateTable-td-height: 34px;
+  // 单元格 span 宽
+  --tv-DateTable-td-span-width: 28px;
+  // 单元格 span 宽
+  --tv-DateTable-td-span-height: 28px;
+  // 表头文本色
+  --tv-DateTable-th-text-color: var(--tv-color-text-weaken, #808080);
+  // 单元格圆角
+  --tv-DateTable-td-border-radius: var(--tv-border-radius-round, 999px);
+  // 选中项的圆角
+  --tv-DateTable-border-radius-current-select: var(--tv-border-radius-round, 999px);
+  // 上个月文本色
+  --tv-DateTable-td-pre-month-text-color: var(--tv-color-text-weaken, #808080);
+  // 选中日期文本色
+  --tv-DateTable-td-normal-text-color: var(--tv-color-text-white, #ffffff);
+  // 范围单元格选中背景色
+  --tv-DateTable-td-bg-color-range-selected: var(--tv-color-bg-active-emphasize, #deecff);
+  // 星期当前选中背景色
+  --tv-DateTable-week-bg-color-current-select: var(--tv-color-bg-active-emphasize, #deecff);
+  // 星期悬浮背景色
+  --tv-DateTable-week-bg-color-current-hover: var(--tv-color-bg-hover-1, #deecff);
+  // 悬浮背景色
+  --tv-DateTable-hover-bg-color: var(--tv-color-bg-hover-1, #deecff);
+  // 禁用背景色
+  --tv-DateTable-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
+  // 选中范围背景色
+  --tv-DateTable-range-bg-color: var(--tv-color-bg-active-emphasize, #deecff);
+  // 选中范围悬浮色
+  --tv-DateTable-range-hover-bg-color: var(--tv-color-bg-hover-1, #deecff);
+  // 选中项背景色
+  --tv-DateTable-bg-color-current-select: var(--tv-color-bg-active-control, #1476ff);
+
+  // 今天的宽度
+  --tv-DateTable-td-today-width: var(--tv-size-height-sm, 28px);
+  // 今天的高度
+  --tv-DateTable-td-today-height: var(--tv-size-height-sm, 28px);
+  // 今天的圆角
+  --tv-DateTable-td-today-border-radius: var(--tv-border-radius-round, 999px);
+  // 今天的边框色
+  --tv-DateTable-td-today-circle-border-color: var(--tv-color-border-active, #191919);
+
+  // 单元格高度
+  --tv-DateTable-td-div-height: var(--tv-size-height-sm, 28px);
+  // 单元格宽度度
+  --tv-DateTable-td-div-width: 28px;
+  // 单元格顶部间距
+  --tv-DateTable-td-span-top: 3px;
+  // 开始日期圆角
+  --tv-DateTable-start-date-border-radius: var(--tv-border-radius-round, 999px);
+  // 选中日期圆角
+  --tv-DateTable-cell-border-radius-selected: var(--tv-border-radius-round, 999px);
+  // 行高
+  --tv-DateTable-tr-line-height: var(--tv-line-height-number, 1.5);
+  // 禁用单元格圆角
+  --tv-DateTable-td-border-radius-disabled: var(--tv-border-radius-round, 999px);
+  // 星期行高
+  --tv-DateTable-week-height: var(--tv-size-height-md, 32px);
 }

@@ -14,20 +14,69 @@
 @import './vars.less';
 
 @picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
-@button-primary-prefix-cls: ~'@{css-prefix}button--primary';
+@date-picker-prefix-cls: ~'@{css-prefix}date-picker';
 
 .@{picker-panel-prefix-cls} {
   .component-css-vars-picker-panel();
 
-  color: var(--ti-picker-panel-text-color);
-  font-size: var(--ti-picker-panel-font-size);
-  border: 1px solid var(--ti-picker-panel-border-color);
-  box-shadow: var(--ti-picker-panel-box-shadow);
-  background: var(--ti-picker-panel-bg-color);
-  border-radius: var(--ti-common-border-radius-normal);
-  line-height: var(--ti-picker-panel-line-height);
-  margin: var(--ti-common-dropdown-gap) 0;
+  color: var(--tv-DatePanel-text-color);
+  font-size: var(--tv-DatePanel-font-size);
+  box-shadow: var(--tv-DatePanel-box-shadow);
+  background: var(--tv-DatePanel-bg-color);
+  border-radius: var(--tv-DatePanel-border-radius);
+  line-height: var(--tv-DatePanel-line-height);
+  margin: var(--tv-DatePanel-margin);
+  width: var(--tv-DatePanel-width);
 
+  &.has-sidebar.has-time {
+    width: 434px;
+  }
+
+  &.has-sidebar {
+    width: 398px;
+  }
+
+  &.has-time {
+    .@{picker-panel-prefix-cls}__body-wrapper {
+      position: relative;
+    }
+  }
+
+  // 快捷选项
+  [slot='sidebar'],
+  &__sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 110px;
+    border-right: 1px solid var(--tv-DatePanel-border-color-divider);
+    padding-top: var(--tv-DatePanel-sidebar-padding-top);
+    overflow: auto;
+
+    .@{picker-panel-prefix-cls}__shortcut {
+      display: block;
+      width: 100%;
+      border: 0;
+      background-color: transparent;
+      line-height: var(--tv-DatePanel-line-height);
+      font-size: var(--tv-DatePanel-font-size);
+      color: var(--tv-DatePanel-text-color);
+      padding: var(--tv-DatePanel-shortcut-padding);
+      text-align: left;
+      outline: 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--tv-DatePanel-bg-color-hover);
+      }
+    }
+
+    & + .@{picker-panel-prefix-cls}__body {
+      margin-left: 110px;
+    }
+  }
+
+  // 面板主体
   &__body-wrapper::after,
   &__body::after {
     content: '';
@@ -37,20 +86,100 @@
 
   &__body {
     padding-bottom: 8px;
+
+    // 头部-时间选择输入框
+    .@{date-picker-prefix-cls}__time-header {
+      padding: var(--tv-DatePanel-time-header-padding);
+      position: relative;
+      display: table;
+      width: 100%;
+
+      .@{date-picker-prefix-cls}__editor-wrap {
+        position: relative;
+        display: table-cell;
+
+        &:first-child {
+          padding-right: var(--tv-DatePanel-editor-wrap-padding-right);
+        }
+      }
+    }
+
+    // 头部-年月选择
+    .@{date-picker-prefix-cls}__header {
+      padding: var(--tv-DatePanel-header-padding);
+      text-align: center;
+
+      .@{date-picker-prefix-cls}__prev-btn {
+        float: left;
+      }
+
+      .@{date-picker-prefix-cls}__next-btn {
+        float: right;
+      }
+
+      &-label {
+        padding: var(--tv-DatePanel-header-label-padding);
+        cursor: pointer;
+
+        &.active,
+        &:hover {
+          color: var(--tv-DatePanel-text-color-heightlight);
+        }
+      }
+    }
+
+    //
+    .@{picker-panel-prefix-cls}__content {
+      position: relative;
+      border-top: solid 1px var(--tv-DatePanel-border-color-divider);
+      padding: var(--tv-DatePanel-content-padding);
+
+      table {
+        table-layout: fixed;
+        width: 100%;
+      }
+    }
   }
 
-  &__content {
-    position: relative;
-    border-top: solid 1px var(--ti-picker-panel-content-border-color);
-    padding-top: var(--ti-picker-panel-content-padding-top);
-    padding-left: var(--ti-picker-panel-content-padding-left);
-    padding-right: var(--ti-picker-panel-content-padding-right);
+  // 时区选择
+  &__timezone {
+    margin-bottom: 8px;
+    padding: 8px 0;
+
+    .@{picker-panel-prefix-cls}__tzlist {
+      z-index: 10;
+      overflow-y: hidden;
+
+      &-li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: var(--tv-DatePanel-timezone-li-padding);
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--tv-DatePanel-bg-color-hover);
+        }
+      }
+
+      .@{css-prefix}popup {
+        position: absolute;
+        width: 238px;
+        bottom: 77px;
+        max-height: 260px;
+        box-shadow: var(--tv-DatePanel-box-shadow);
+      }
+    }
+
+    .@{input-prefix-cls} {
+      position: relative;
+    }
   }
 
+  // 底部
   &__footer {
-    border-top: 1px solid var(--ti-picker-panel-border-color);
-    padding: var(--ti-picker-panel-footer-padding-verticals) 16px;
-    background-color: var(--ti-picker-panel-bg-color);
+    border-top: 1px solid var(--tv-DatePanel-border-color-divider);
+    padding: var(--tv-DatePanel-footer-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,127 +197,27 @@
     }
   }
 
-  &__shortcut {
-    display: block;
-    width: 100%;
+  /*  公共样式 */
+  // 头部按钮
+  .@{picker-panel-prefix-cls}__icon-btn {
+    height: var(--tv-DatePanel-header-btn-height);
+    padding: var(--tv-DatePanel-header-btn-padding);
     border: 0;
-    background-color: transparent;
-    line-height: 28px;
-    font-size: var(--ti-picker-panel-shortcut-font-size);
-    color: var(--ti-picker-panel-text-color);
-    padding-left: 12px;
-    text-align: left;
-    outline: 0;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--ti-picker-panel-hover-bg-color);
-    }
-
-    &.active {
-      background-color: var(--ti-picker-panel-selected-bg-color);
-    }
-  }
-
-  &__shortcut-selected[type='button'] {
-    color: var(--ti-picker-panel-shortcut-selected-text-color);
-    background-color: var(--ti-picker-panel-shortcut-selected-bg-color);
-  }
-
-  &__btn {
-    color: var(--ti-picker-panel-text-color);
-    border: 1px solid var(--ti-picker-panel-border-color);
-    font-size: var(--ti-picker-panel-font-size);
-    line-height: 24px;
-    border-radius: var(--ti-picker-panel-border-radius);
-    padding: 0 20px;
-    cursor: pointer;
-    outline: 0;
-    background-color: transparent;
-
-    [disabled] {
-      color: var(--ti-picker-panel-disabled-text-color);
-      cursor: not-allowed;
-    }
-  }
-
-  &__icon-btn {
-    font-size: var(--ti-picker-panel-font-size);
-    line-height: var(--ti-picker-panel-icon-btn-line-height);
-    fill: var(--ti-picker-panel-icon-color-btn);
-    border: 0;
-    background: 0 0;
+    background: unset;
     cursor: pointer;
     outline: 0;
 
-    svg {
-      fill: var(--ti-picker-panel-svg-fill);
-    }
-
-    svg:hover {
-      fill: var(--ti--picker-panel-svg-hover-fill)
-    }
-
-    &:hover {
-      fill: var(--ti-picker-panel-icon-color-btn-hover);
-    }
-
-    &.is-disabled {
-      color: var(--ti-picker-panel-icon-color-btn-disabled);
+    .tiny-svg {
+      font-size: var(--tv-DatePanel-icon-size);
+      fill: var(--tv-DatePanel-icon-color);
 
       &:hover {
-        cursor: not-allowed;
+        fill: var(--tv-DatePanel-icon-color-hover);
       }
     }
   }
 
-
-  [slot='sidebar'],
-  &__sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 110px;
-    border-right: 1px solid var(--ti-picker-panel-border-color);
-    box-sizing: border-box;
-    padding-top: 6px;
-    background-color: var(--ti-picker-panel-bg-color);
-    overflow: auto;
-
-    & + .@{picker-panel-prefix-cls}__body {
-      margin-left: 110px;
-    }
-  }
-
-  &__timezone {
-    margin-bottom: 10px;
-
-    .@{picker-panel-prefix-cls}__tzlist {
-      z-index: 10;
-      overflow-y: hidden;
-
-      &-li {
-        height: 30px;
-        line-height: 30px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 0 10px;
-        border: 1px solid #f4f0f0;
-        cursor: pointer;
-      }
-
-      .@{css-prefix}popup {
-        position: absolute;
-        width: 238px;
-        bottom: 77px;
-        max-height: 260px;
-        box-shadow: 0 -1px 2px 0 rgba(53, 29, 29, 0.5);
-      }
-    }
-
-    .@{input-prefix-cls} {
-      position: relative;
-    }
+  .tiny-picker-panel__table {
+    padding: 0 16px;
   }
 }
