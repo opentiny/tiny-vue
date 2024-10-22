@@ -286,7 +286,9 @@ export const iconGroups = {
     'IconUser',
     'IconVersiontree',
     'IconWebPlus',
-    'IconJs'
+    'IconJs',
+    'IconLeftFrozen',
+    'IconRightFrozen'
   ],
   Clock: ['IconClockWork', 'IconProcessing', 'IconTime'],
   Email: ['IconEmailAdd', 'IconEmailCircle', 'IconMailContent', 'IconMail', 'IconReplies', 'IconSent', 'IconUnsent'],
@@ -416,7 +418,6 @@ export const iconGroups = {
     'IconJusitfySpaceAround',
     'IconJusitfySpaceBetween',
     'IconJustitfyFlexStart',
-    'IconLeftFrozen',
     'IconLineHeight',
     'IconLineThrought',
     'IconLink',
@@ -425,7 +426,6 @@ export const iconGroups = {
     'IconPagelink',
     'IconPushpin',
     'IconRenew',
-    'IconRightFrozen',
     'IconRichTextNodeDelete',
     'IconSandwichCollapse',
     'IconSandwichExpand',
