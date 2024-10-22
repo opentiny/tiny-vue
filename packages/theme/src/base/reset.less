@@ -11,7 +11,7 @@
 */
 
 @import '../custom.less';
-@import './basic-var.less';
+@import './vars.less';
 
 // .tiny-icon-loading 类名的动画效果。 它出现在多个组件中，故抽取到一起。
 .@{css-prefix-iconfont}-loading {
@@ -32,6 +32,15 @@
 // 高亮节点
 .tiny-hl-query-node {
   color: var(--tv-color-text-active) !important;
+}
+
+// 图标的默认样式
+.@{svg-prefix-cls} {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  overflow: hidden;
+  display: inline-block;
 }
 
 [class*=~'@{css-prefix}'] {
@@ -121,12 +130,6 @@
   legend {
     border: 0;
     padding: 0;
-  }
-
-  // 清除IE
-  input::-ms-clear,
-  input::-ms-reveal {
-    display: none;
   }
 
   button::-moz-focus-inner,

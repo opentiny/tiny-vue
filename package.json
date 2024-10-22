@@ -65,7 +65,6 @@
     "build:theme": "pnpm -C packages/theme build:fast",
     "build:themeSaas": "pnpm -C packages/theme-saas build:fast",
     "build:themeMobile": "pnpm -C packages/theme-mobile build:fast",
-    "build:themejson": "gulp themeJson",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
     "build:vite-import": "pnpm --filter @opentiny/vue-vite-import build",
     "build:virtual-template": "pnpm --filter @opentiny-internal/unplugin-virtual-template build",

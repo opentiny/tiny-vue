@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
 const TinyIconDel = iconDel()
