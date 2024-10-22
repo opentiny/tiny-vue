@@ -68,6 +68,8 @@ export const fluentEditorProps = {
   }
 }
 
+export { defaultToolbar } from '@opentiny/vue-renderless/fluent-editor/options'
+
 export default defineComponent({
   name: $prefix + 'FluentEditor',
   props: fluentEditorProps,

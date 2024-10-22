@@ -57,33 +57,35 @@ const betterTable = {
   }
 }
 
-const toolbar = () => {
-  const underline = ['bold', 'italic', 'underline', 'strike']
-  const list = [{ list: 'ordered' }, { list: 'bullet' }]
-  const script = [{ script: 'sub' }, { script: 'super' }]
+const underline = ['bold', 'italic', 'underline', 'strike']
+const list = [{ list: 'ordered' }, { list: 'bullet' }]
+const script = [{ script: 'sub' }, { script: 'super' }]
 
+export const defaultToolbar = [
+  ['undo', 'redo', 'clean'],
+  [
+    { font: fontFamilyConfig },
+    { size: fontSizeConfig },
+    { lineheight: lineHeightConfig },
+    { header: [1, 2, 3, 4, 5, 6, false] }
+  ],
+  underline,
+  ['blockquote', 'code-block'],
+  [{ header: 1 }, { header: 2 }],
+  list,
+  script,
+  [{ indent: '-1' }, { indent: '+1' }],
+  [{ direction: 'rtl' }],
+  [{ color: [] }, { background: [] }],
+  [{ align: [] }],
+  ['link', 'image'],
+  ['better-table'],
+  ['fullscreen']
+]
+
+const toolbar = () => {
   return {
-    container: [
-      ['undo', 'redo', 'clean'],
-      [
-        { font: fontFamilyConfig },
-        { size: fontSizeConfig },
-        { lineheight: lineHeightConfig },
-        { header: [1, 2, 3, 4, 5, 6, false] }
-      ],
-      underline,
-      ['blockquote', 'code-block'],
-      [{ header: 1 }, { header: 2 }],
-      list,
-      script,
-      [{ indent: '-1' }, { indent: '+1' }],
-      [{ direction: 'rtl' }],
-      [{ color: [] }, { background: [] }],
-      [{ align: [] }],
-      ['link', 'image'],
-      ['better-table'],
-      ['fullscreen']
-    ]
+    container: defaultToolbar
   }
 }
 
