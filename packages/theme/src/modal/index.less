@@ -110,9 +110,14 @@
           white-space: normal;
           word-break: break-word;
 
-          .@{modal-prefix-cls}__text {
-            font-size: var(--tv-Modal-box-body-text-font-size);
-            color: var(--tv-Modal-box-body-text-text-color);
+          .@{modal-prefix-cls}__content {
+            width: 100%;
+            flex-grow: 1;
+
+            .@{modal-prefix-cls}__text {
+              font-size: var(--tv-Modal-box-body-text-font-size);
+              color: var(--tv-Modal-box-body-text-text-color);
+            }
           }
         }
 
