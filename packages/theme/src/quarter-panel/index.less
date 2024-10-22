@@ -7,7 +7,7 @@
 @quarter-panel-prefix-cls: ~'@{css-prefix}quarter-panel';
 
 .@{quarter-panel-prefix-cls} {
-  .component-css-vars-quarter-panel();
+  .inject-QuarterPanel-vars();
 
   table {
     table-layout: fixed;
@@ -31,8 +31,8 @@
   }
 
   &__table {
-    .component-css-vars-month-table();
-    .component-css-vars-date-table();
+    .inject-MonthTable-vars();
+    .inject-DateTable-vars();
 
     .month-table();
   }

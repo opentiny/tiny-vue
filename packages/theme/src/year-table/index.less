@@ -19,9 +19,9 @@
 @year-table-prefix-cls: ~'@{css-prefix}year-table';
 
 .@{year-table-prefix-cls} {
-  .component-css-vars-year-table();
-  .component-css-vars-date-table();
-  .component-css-vars-month-table();
+  .inject-YearTable-vars();
+  .inject-DateTable-vars();
+  .inject-MonthTable-vars();
 
   .month-table();
 }

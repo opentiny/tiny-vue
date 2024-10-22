@@ -343,12 +343,15 @@
 
   // 混排有边框： 图标大小随文字即可，只添加中间的margin
   &.is-icon {
+    display: inline-flex;
+    align-items: center;
+
     .tiny-svg {
       margin-right: var(--tv-Button-margin-right-isicon-svg);
     }
   }
 
-  // 混排无边框： 设计稿的margin2.5不合适， 统一4px吧。
+  // 混排无边框： 注意，这里会默认混入了 【混排有边框】的样式
   &.@{button-prefix-cls}--text.is-icon {
     border: none;
     border-radius: 0;
@@ -361,10 +364,6 @@
 
     &:hover {
       text-decoration: underline;
-    }
-
-    .tiny-svg {
-      margin-right: var(--tv-Button-margin-right-isicon-svg);
     }
 
     &.is-disabled.is-disabled.is-disabled.is-disabled,

@@ -17,8 +17,8 @@
 @month-table-prefix-cls: ~'@{css-prefix}month-table';
 
 .@{month-table-prefix-cls} {
-  .component-css-vars-month-table();
-  .component-css-vars-date-table();
+  .inject-MonthTable-vars();
+  .inject-DateTable-vars();
 
   .month-table();
 }

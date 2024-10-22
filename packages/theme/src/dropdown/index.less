@@ -18,7 +18,7 @@
 @button-prefix-cls: ~'@{css-prefix}button';
 
 .@{dropdown-prefix-cls} {
-  .component-css-vars-dropdown();
+  .inject-Dropdown-vars();
 
   display: inline-block;
   position: relative;
@@ -74,6 +74,7 @@
     .@{dropdown-prefix-cls}__title-button {
       padding: var(--tv-Dropdown-title-button-padding);
       border-right: none;
+      border-radius: var(--tv-Dropdown-title-button-border-radius);
     }
 
     .@{dropdown-prefix-cls}__caret-button {
@@ -81,6 +82,8 @@
       position: relative;
       border-left: none;
       min-width: 24px;
+      border-radius: var(--tv-Dropdown-caret-button-border-radius);
+      margin-left: 0;
     }
 
     .@{css-prefix}button {
