@@ -18,7 +18,7 @@
 @tooltip-prefix-cls: ~'@{css-prefix}tooltip';
 
 .@{form-prefix-cls} {
-  .component-css-vars-form();
+  .inject-Form-vars();
 
   width: 100%;
 
@@ -32,7 +32,7 @@
 }
 
 .@{form-prefix-cls}__valid {
-  .component-css-vars-form();
+  .inject-Form-vars();
   &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
     .tooltip-validate-icon {
       fill: var(--tv-Form-icon-color-error);
