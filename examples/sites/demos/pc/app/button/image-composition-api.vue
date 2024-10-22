@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { Button as TinyButton } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 
 const image = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/button-image.png`
 </script>

@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { Button as TinyButton } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 </script>
 
 <style scoped>
