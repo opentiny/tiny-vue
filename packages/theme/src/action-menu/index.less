@@ -37,6 +37,8 @@
       // 默认
       &.@{action-menu-prefix-cls}__item-visable {
         .@{dropdown-item-prefix-cls} {
+          padding: 0;
+
           .@{dropdown-item-prefix-cls}__wrap {
             color: var(--tv-ActionMenu-text-color);
             margin: 0px;
@@ -50,8 +52,12 @@
 
         // 悬浮
         &:not(.is-disabled):hover {
-          .@{dropdown-item-prefix-cls}__wrap {
-            text-decoration: underline;
+          .@{dropdown-item-prefix-cls} {
+            background-color: unset;
+
+            .@{dropdown-item-prefix-cls}__wrap {
+              text-decoration: underline;
+            }
           }
         }
 
