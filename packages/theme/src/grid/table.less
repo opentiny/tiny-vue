@@ -98,7 +98,7 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      .DefaultTdPadding();
+      .SmallTdPadding();
     }
 
     .@{grid-prefix-cls}-body__column,
@@ -907,7 +907,7 @@
       .DefaultTdPadding();
 
       &.col__actived {
-        .DefaultTdPadding();
+        padding: 0 var(--tv-Grid-cell-padding-x);
       }
 
       // 可编辑表格showStatus为true时,左上角的角标

@@ -1049,11 +1049,11 @@ export default {
         },
         {
           name: 'tooltip-config',
-          type: 'IToolTipConfig',
-          typeAnchorName: 'IToolTipConfig',
+          linkTo: 'tooltip#tooltip--props',
+          type: 'Tooltip.Props',
           defaultValue: '',
           desc: {
-            'zh-CN': 'Grid 内置 tooltip 配置项，请参考 Tooltip 组件属性说明',
+            'zh-CN': 'Grid 内置 tooltip 配置项，配置项将透传至 Tooltip，请参考 Tooltip 组件属性说明',
             'en-US':
               'Configuration item of the built-in tooltip of the Grid. For details, see the Tooltip Attribute Description.'
           },
