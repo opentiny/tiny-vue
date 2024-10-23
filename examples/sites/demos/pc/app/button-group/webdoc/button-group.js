@@ -18,8 +18,8 @@ export default {
     {
       demoId: 'size',
       name: {
-        'zh-CN': '组件尺寸大小',
-        'en-US': 'Set Component Size'
+        'zh-CN': '组件尺寸',
+        'en-US': 'Component Size'
       },
       desc: {
         'zh-CN':
@@ -131,8 +131,7 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>data</code> 的 <code>sup</code> 属性配置选块角标，详见 <a href="IButtonGroupData">IButtonGroupData</a> 。</p>',
+        'zh-CN': '<p>通过 <code>data</code> 的 <code>sup</code> 属性配置选块角标。</p>',
         'en-US': ''
       },
       codeFiles: ['sup.vue']
