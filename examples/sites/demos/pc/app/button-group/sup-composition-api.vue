@@ -11,7 +11,7 @@
         </template>
       </tiny-button-group>
     </div>
-    <p>插槽引用tag角标</p>
+    <p>插槽引用 tag 角标</p>
     <div class="tag">
       <tiny-button-group :data="groupDataTag" v-model="checkedVal">
         <template #btn="{ sup }">
@@ -136,7 +136,10 @@ const groupDataTag = ref([
 .demo-button .tag li:first-child button {
   width: 100px;
 }
-.tiny-only-icon {
+.demo-button .tag .tiny-group-item__sup {
+  line-height: 12px;
+}
+.demo-button .tag .tiny-only-icon {
   border-radius: 0px 6px;
 }
 </style>
