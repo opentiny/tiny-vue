@@ -6,10 +6,6 @@ interface ThemeData {
 }
 
 export default class TinyThemeTool {
-  currentTheme: string
-  contentElement: HTMLElement
-  styleSheetId: string
-  defaultTheme: object
   changeTheme: (theme: ThemeData) => void
-  constructor(theme: ThemeData, styleSheetId: string)
+  constructor(theme: ThemeData)
 }
