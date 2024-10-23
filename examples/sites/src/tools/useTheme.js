@@ -81,7 +81,8 @@ watch(
   () => currentThemeKey.value,
   (newVal) => {
     localStorage.setItem(CURRENT_THEME_KEY, newVal)
-    theme.changeTheme(themeMap[newVal])
+    // 先屏蔽，等themeTool重构完成
+    // theme.changeTheme(themeMap[newVal])
   }
 )
 
