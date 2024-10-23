@@ -28,7 +28,7 @@ const changeTheme = () => {
   let content = fs.readFileSync(filePath, 'utf-8')
 
   // 替换 process.env.VAR_NAME 为对应主题的值
-  content = content.replace(/option\.theme\s=\s'[a-zA-Z_]+'/g, `option.theme = '${theme}'`)
+  content = content.replace(/option\.theme\s=\s'[a-zA-Z_-]+'/g, `option.theme = '${theme}'`)
 
   // 写入新内容到文件
   fs.writeFileSync(filePath, content, 'utf-8')
