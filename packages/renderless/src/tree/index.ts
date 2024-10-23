@@ -13,6 +13,7 @@
 import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
 import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
+import type TreeNode from '../common/deps/tree-model/node'
 import { addClass, removeClass } from '../common/deps/dom'
 import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
@@ -100,7 +101,7 @@ export const dragStart =
     emit('node-drag-start', treeNode.node, event)
   }
 
-// 移动时，判断释放在目标元素的前，后，或inner。 刚移动未离开拖动元素时，为none。
+
 const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
   let dropType
   const targetPosition = dropNode.$el.getBoundingClientRect()
@@ -447,7 +448,10 @@ export const filter =
     }
   }
 
-export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
+export const getNodeKey = (props) => (node) => {
+  return innerGetNodekey(props.nodekey, node.data)
+}
+
 
 export const getNodePath =
   ({ props, state }) =>
