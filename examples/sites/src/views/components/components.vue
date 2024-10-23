@@ -130,7 +130,7 @@
                 </template>
               </div>
             </tiny-tab-item>
-            <tiny-tab-item v-if="showApiTab && !isRunningTest" title="API" name="api">
+            <tiny-tab-item v-if="showApiTab && !isRunningTest && currJson.apis?.length" title="API" name="api">
               <!-- api文档 -->
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
@@ -680,6 +680,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 切换组件时tabs激活页变成demos
+          state.activeTab = 'demos'
           // 每次切换组件都需要让锚点组件重新刷新
           anchorRefreshKey.value++
         }
