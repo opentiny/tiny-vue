@@ -20,4 +20,6 @@ if (process.env.BUILD_TARGET === 'runtime') {
   }
 }
 
+export { defaultToolbar } from '@opentiny/vue-renderless/fluent-editor/options'
+
 export default FluentEditor
