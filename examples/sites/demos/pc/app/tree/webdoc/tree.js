@@ -492,8 +492,6 @@ export default {
           `
       },
       codeFiles: ['other.vue']
-<<<<<<< Updated upstream
-=======
     },
     {
       demoId: 'virtual-tree',
@@ -542,7 +540,6 @@ export default {
         'en-US': 'Drag-and-drop nodes for tree data with large amount of data.'
       },
       codeFiles: ['virtual-drag-node.vue']
->>>>>>> Stashed changes
     }
   ]
 }
