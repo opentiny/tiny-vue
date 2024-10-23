@@ -18,11 +18,21 @@
 
 ## Installation
 
+Install @opentiny/vue and @opentiny/nuxt dependencies.
+
+```ts
+pnpm i @opentiny/vue @opentiny/nuxt -D
+```
+
+Configure the "@opentiny/nuxt" module in nuxt.config.ts file.
+
 ```ts
 export default defineNuxtConfig({
   modules: ['@opentiny/nuxt']
 })
 ```
+
+Now you can use Tinyvue components in your nuxt-app.
 
 ## Usage
 
@@ -41,6 +51,8 @@ export default defineNuxtConfig({
   </tiny-layout>
 </template>
 ```
+
+Refer to the [Nuxt documentation](https://nuxt.com/docs/guide/directory-structure/components) use.
 
 ## Development
 

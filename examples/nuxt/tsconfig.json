@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "baseUrl": ".",
+      "paths": {
+          "*": ["node_modules/*"]
+      }
+    }
+  }
+  
