@@ -24,7 +24,6 @@ import oceanicIcon from '@/assets/images/oceanic-icon.png'
 
 import starrySky from '@/assets/images/starry-sky.png'
 import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
-import { OldTheme } from '@opentiny/vue-theme/theme-tool'
 
 const themeMap = {
   [DEFAULT_THEME]: null,
@@ -74,8 +73,6 @@ const designConfigMap = {
 }
 
 const theme = new TinyThemeTool()
-window.tt = theme
-window.OldTheme = OldTheme
 
 const defaultThemeKey = DEFAULT_THEME
 const currentThemeKey = hooks.ref(defaultThemeKey)
