@@ -174,8 +174,13 @@
         }
       }
 
-      & > .@{anchor-prefix-cls}-link:last-child > .@{anchor-prefix-cls}-link-title:after {
-        display: none;
+      & > .@{anchor-prefix-cls}-link:last-child {
+        & > .@{anchor-prefix-cls}-link:last-child,
+        &:not(:first-child) {
+          & > .@{anchor-prefix-cls}-link-title:after {
+            display: none;
+          }
+        }
       }
     }
   }
