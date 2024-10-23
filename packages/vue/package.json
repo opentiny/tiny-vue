@@ -218,7 +218,6 @@
     "@opentiny/vue-statistic": "workspace:~",
     "@opentiny/vue-steps": "workspace:~",
     "@opentiny/vue-sticky": "workspace:~",
-    "@opentiny/vue-svg-icon": "workspace:~",
     "@opentiny/vue-switch": "workspace:~",
     "@opentiny/vue-tab-item": "workspace:~",
     "@opentiny/vue-tabbar": "workspace:~",

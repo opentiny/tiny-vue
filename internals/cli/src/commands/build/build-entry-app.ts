@@ -114,7 +114,6 @@ const notSimpleComponents = [
   'RichText',
   'RichTextEditor',
   'River',
-  'SvgIcon',
   'TextPopup',
   'ToggleMenu',
   'User',
