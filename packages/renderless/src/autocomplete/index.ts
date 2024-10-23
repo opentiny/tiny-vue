@@ -109,9 +109,9 @@ export const handleFocus =
 
 export const handleBlur =
   ({ emit, state, dispatch, props }: Pick<IAutoCompleteRenderlessParams, 'emit' | 'state' | 'dispatch' | 'props'>) =>
-  (event) => {
+  () => {
     state.suggestionDisabled = true
-    emit('blur', event)
+    emit('blur')
     if (state.validateEvent) {
       dispatch(FORM_ITEM, FORM_EVENT.blur, [props.modelValue])
     }
@@ -165,7 +165,8 @@ export const select =
     emit,
     nextTick,
     props,
-    state
+    state,
+    dispatch
   }: {
     emit: IAutoCompleteRenderlessParamUtils['emit']
     nextTick: IAutoCompleteRenderlessParamUtils['nextTick']
@@ -173,9 +174,13 @@ export const select =
     state: IAutoCompleteState
   }) =>
   (item) => {
-    emit('update:modelValue', item[props.valueKey])
+    const value = item[props.valueKey]
+    emit('update:modelValue', value)
     emit('select', item)
 
+    if (state.validateEvent) {
+      dispatch(FORM_ITEM, FORM_EVENT.change, [value])
+    }
     nextTick(() => {
       state.activated = false
       state.suggestions = []
