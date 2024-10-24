@@ -4,8 +4,15 @@
       <tiny-button type="primary" plain @click="showScroll = !showScroll">切换可见性</tiny-button>
     </div>
     <div class="context" v-show="showScroll">
-      <TinyVirtualScroll ref="scroller" :data="showData" :itemSize="50" itemIndex="key" class="tiny-virtual-scroll"
-        direction="vertical">
+      <TinyVirtualScroll
+        ref="scroller"
+        :data="showData"
+        :itemSize="50"
+        itemIndex="key"
+        :visibleSize="400"
+        class="tiny-virtual-scroll"
+        direction="vertical"
+      >
         <template #default="props">
           <div class="tiny-virtual-scroll-item">
             {{ props.item.value }}
@@ -48,10 +55,6 @@ showData.value = Array.from(Array(1000), (v, k) => {
   width: 150px;
 
   text-align: center;
-}
-
-.scrollTo-demo .context .tiny-virtual-scroll {
-  height: 300px;
 }
 
 .scrollTo-demo .context .tiny-virtual-scroll .tiny-virtual-scroll-item {
