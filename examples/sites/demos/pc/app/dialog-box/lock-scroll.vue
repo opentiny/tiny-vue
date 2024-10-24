@@ -36,20 +36,20 @@ export default {
       if (isScroll) {
         document.body.style.overflow = 'auto'
         document.body.style.height = '130vh'
-        visible1.value = true
+        this.visible1 = true
       } else {
         document.body.style.overflow = 'hidden'
         document.body.style.height = '100vh'
-        visible2.value = true
+        this.visible2 = true
       }
     },
     closeDlg(isScroll) {
       if (isScroll) {
         document.body.style.overflow = 'hidden'
         document.body.style.height = '100vh'
-        visible1.value = false
+        this.visible1 = false
       } else {
-        visible2.value = false
+        this.visible2 = false
       }
     }
   }
