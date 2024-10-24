@@ -41,11 +41,17 @@
     @h: %('var(--tv-Button-height%a)', @size);
     @p: %('var(--tv-Button-padding-x%a)', @size);
     @mw: %('var(--tv-Button-min-width%a)', @size);
+    @iconSize: %('var(--tv-Button-size-icon-font-size%a)', @size);
 
     font-size: e(@fs);
     height: e(@h);
     padding: 0 e(@p);
     min-width: e(@mw);
+
+    // 仅图标时，图标的大小
+    &.is-only-icon .@{svg-prefix-cls} {
+      font-size: e(@iconSize);
+    }
   }
 
   .size-mixin(e('')); // 默认尺寸  3
