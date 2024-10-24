@@ -273,6 +273,14 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
     (value) => (state.action.addDisabled = value || []),
     { immediate: true }
   )
+
+  watch(
+    () => state.flattenedTreeData.filter((n) => n.expanded).length,
+    (v, oldV) => {
+      if (oldV?.length && v?.filter((n) => n.expanded) === oldV?.filter((n) => n.expanded)) return
+    },
+    { deep: true }
+  )
 }
 
 export const renderless = (
@@ -323,7 +331,9 @@ export const renderless = (
   state.flattenedTreeData = api.computedFlattenedTreeData(props, state)
   initWatcher({ watch, props, api, state, isVue2 })
 
-  onMounted(api.wrapMounted)
+  onMounted(() => {
+    api.wrapMounted()
+  })
 
   onUpdated(api.updated)
 
