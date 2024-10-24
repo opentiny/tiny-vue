@@ -36,8 +36,7 @@ export default {
 
 <style scoped>
 .my-header {
-  padding: 0 32px;
-  border-bottom: 1px solid #ccc;
+  padding: 32px 32px 24px;
 }
 
 .my-header h3 {
