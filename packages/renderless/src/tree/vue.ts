@@ -231,7 +231,6 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
   setCheckedByNodeKey: setCheckedByNodeKey({ props, state }),
   computedFlattenedTreeData: computedFlattenedTreeData(props)
 })
-// 注释
 const initWatcher = ({ watch, props, api, state, isVue2 }) => {
   watch(() => props.defaultCheckedKeys, api.watchDefaultCheckedKeys)
 
