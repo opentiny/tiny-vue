@@ -38,17 +38,12 @@
 
   &__header-input {
     margin: var(--tv-TimePanel-header-margin);
-
-    input {
-      height: 28px;
-    }
   }
 
   &__header-title {
     display: flex;
     justify-content: space-around;
     color: var(--tv-TimePanel-header-text-color);
-    margin-top: 8px;
     align-items: center;
   }
 
@@ -56,6 +51,7 @@
     font-size: 0;
     position: relative;
     overflow: hidden;
+    padding-bottom: var(--tv-TimePanel-content-padding-bottom);
 
     &:after,
     &:before {
