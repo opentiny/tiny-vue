@@ -50,7 +50,7 @@ Vite
 // vite.config.ts
 
 import Components from 'unplugin-vue-components/vite'
-import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+import { TinyVueResolver } from '@opentiny/unplugin-tiny-vue'
 
 export default {
   plugins: [
