@@ -47,10 +47,8 @@ export default {
         'en-US': 'Icon Button'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>icon</code> 设置按钮展示图标， 接收一个图标组件。</p><div class="tip custom-block"><p class="custom-block-title"><code>Icon</code> 图标用法</p><p>先从 <code>@opentiny/vue-icon</code> 中导入需要的<code>Icon</code>，执行<code>Icon</code>函数得到<code>Icon</code>组件。然后在模板中通过 <code>icon</code> 属性进行引用。</p>',
-        'en-US':
-          '<p>Display icons and receive an icon component through the <code>icon</code> settings button</ p> <div class="tip custom block"><p class="custom block title">Icon icon usage</p><p>First, import the required <code>Icon</code> from <code>@ opentiny/vue icon</code> , and execute the <code>Icon</code> function to obtain the <code>Icon</code> component. Then refer to it in the template through the <code>icon</code> attribute.</p>'
+        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。',
+        'en-US': 'Display icons and receive an icon component through the <code>icon</code> settings button'
       },
       codeFiles: ['icon.vue']
     },
