@@ -14,7 +14,9 @@
 @import './vars.less';
 
 @popupload-prefix-cls: ~'@{css-prefix}popupload';
+@file-upload-prefix-cls: ~'@{css-prefix}file-upload';
 @upload-list-prefix-cls: ~'@{css-prefix}upload-list';
+@popconfirm-prefix-cls: ~'@{css-prefix}popconfirm';
 @popupload__modal-prefix-cls: ~'@{css-prefix}popupload__modal';
 @alert-prefix-cls: ~'@{css-prefix}alert';
 
@@ -36,7 +38,7 @@
 
   &__dialog-header {
     .@{alert-prefix-cls} {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
   }
 
@@ -70,7 +72,7 @@
     font-size: var(--tv-PopUpload-dialog-table-font-size);
     height: var(--tv-PopUpload-dialog-table-height);
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
 
     .header-col {
       position: relative;
@@ -163,14 +165,18 @@
       overflow-y: auto;
     }
 
-    .tiny-file-upload .tiny-upload-list__text-title {
+    .@{file-upload-prefix-cls} .@{upload-list-prefix-cls}__text-title {
       display: none;
+    }
+
+    .@{popupload-prefix-cls}__dialog-footer {
+      justify-content: flex-end;
     }
   }
 
   // 新规范适配
   &__pop-confirm {
-    .tiny-popconfirm-popover__title {
+    .@{popconfirm-prefix-cls}-popover__title {
       white-space: nowrap;
     }
   }
