@@ -484,8 +484,6 @@ export const getCheckedKeys = (state) => (leafOnly) => state.store.getCheckedKey
 
 export const getCurrentNode = (state) => () => {
   const currentNode = state.store.getCurrentNode()
-  console.log('当前',currentNode);
-  
   return currentNode ? currentNode.data : null
 }
 
@@ -556,8 +554,7 @@ export const setCurrentKey =
 export const getNode = (state) => (data) => state.store.getNode(data)
 
 export const remove = (state) => (data, isSaveChildNode, isNode) => {
-  state.store.remove(data, isSaveChildNode, isNode);
-  console.log('the state', state.store);
+  state.store.remove(data, isSaveChildNode, isNode)
 }
 
 export const append = (state) => (data, parentNode) => {
@@ -1059,8 +1056,6 @@ export const computedFlattenedTreeData = () => (props, state) => {
     const node = stack.pop()!
     if (!node.visible) continue
     newData.push(node)
-    console.log('aaaa',node);
-
     if (!node.expanded) continue
     stack.push(...(node.childNodes.slice() || []).reverse().filter((v) => v.expanded || v.visible))
   }

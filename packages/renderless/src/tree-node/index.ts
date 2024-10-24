@@ -100,7 +100,6 @@ export const handleClick =
     }
 
     state.tree.currentNode = vm
-    console.log('dianji', vm, state.tree.currentNode)
 
     if (state.tree.checkOnClickNode && !props.node.disabled) {
       e.target.checked = !props.node.checked

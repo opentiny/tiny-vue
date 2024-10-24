@@ -13,7 +13,6 @@
       class="virtual-scroll-context"
       :style="direction === 'vertical' ? { 'height': `${state.totalSize}px` } : { 'width': `${state.totalSize}px` }"
     ></div>
-    {{ console.log('总高度', state.totalSize) }}
     <div
       class="virtual-scroll-wrapper"
       :style="

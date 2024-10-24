@@ -191,7 +191,6 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
     (func: (...psa: any[]) => (...psb: any[]) => any, ...psa) =>
     (...params: any[]) => {
       try {
-        console.log('called', params)
         return func(...psa)(...params)
       } finally {
         state.flattenedTreeData = computedFlattenedTreeData()(props, state)
