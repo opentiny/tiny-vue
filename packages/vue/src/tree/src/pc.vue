@@ -27,7 +27,7 @@
         v-if="nodeHeight"
         :data="state.flattenedTreeData"
         :item-size="nodeHeight"
-        :visible-size="treeHeight"l
+        :visible-size="treeHeight"
         direction="vertical"
         ref="scrollRef"
       >

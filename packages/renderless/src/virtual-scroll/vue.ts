@@ -85,7 +85,6 @@ export const renderless = (props, { reactive, nextTick, watch, onMounted, ref, c
     () => props.data,
     (newData) => {
       state.data = newData
-      console.log('newData', newData.length)
       nextTick(api.handleScroll)
     },
     { deep: true }
