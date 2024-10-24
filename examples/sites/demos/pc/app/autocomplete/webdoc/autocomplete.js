@@ -29,11 +29,11 @@ export default {
     {
       demoId: 'size',
       name: {
-        'zh-CN': '输入框大小',
+        'zh-CN': '尺寸',
         'en-US': 'Text box size'
       },
       desc: {
-        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code>。</p>',
+        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code>，不传递就是默认值尺寸。</p>',
         'en-US': '<p>The value can be <code>medium</code>, <code>small</code>, or <code>mini</code>.</p>'
       },
       codeFiles: ['size.vue']
