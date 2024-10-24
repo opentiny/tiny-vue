@@ -130,7 +130,7 @@
                 </template>
               </div>
             </tiny-tab-item>
-            <tiny-tab-item v-if="showApiTab && !isRunningTest" title="API" name="api">
+            <tiny-tab-item v-if="showApiTab && !isRunningTest && currJson.apis?.length" title="API" name="api">
               <!-- api文档 -->
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
@@ -248,6 +248,7 @@
 
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
@@ -279,6 +280,8 @@ export default defineComponent({
     const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
     const anchorRefreshKey = ref(0)
     const apiTableRef = ref()
+    const route = useRoute()
+
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: getWord('zh-CN', 'en-US'),
@@ -310,7 +313,7 @@ export default defineComponent({
       currAnchorLinks: computed(() => (state.activeTab === 'demos' ? state.demoAnchorLinks : state.apiAnchorLinks)),
       // 单demo显示时
       singleDemo: null,
-      activeTab: 'demos',
+      activeTab: route.hash === '#api' ? 'api' : 'demos',
       tableData: {},
       currApiTypes: [],
       showApiTab: computed(() => state.currApiTypes.length),
@@ -616,7 +619,8 @@ export default defineComponent({
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
-      onTabsClick: () => {
+      onTabsClick: (data) => {
+        router.push(`#${data.name}`)
         scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
@@ -676,6 +680,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 切换组件时tabs激活页变成demos
+          state.activeTab = 'demos'
           // 每次切换组件都需要让锚点组件重新刷新
           anchorRefreshKey.value++
         }
