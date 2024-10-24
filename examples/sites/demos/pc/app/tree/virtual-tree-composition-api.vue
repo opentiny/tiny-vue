@@ -2,8 +2,8 @@
   <div>
     <tiny-tree
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       :show-line="showLine === 'show'"
       default-expand-all
       class="tiny-tree"
@@ -25,13 +25,13 @@ const generateTreeData = (num) => {
       children.push({
         label: `数据 ${i}-${j}`,
         children: [],
-        id: i.toString()
+        id: `${i}-${j}`
       })
     }
     data.push({
       label: `数据 ${i}`,
       children,
-      id: i.toString()
+      id: `${i}`
     })
   }
   return data

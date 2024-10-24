@@ -2,8 +2,8 @@
   <div>
     <tiny-tree
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       :show-line="false"
       default-expand-all
       @node-click="nodeClick"
@@ -34,13 +34,13 @@ export default {
           children.push({
             label: `数据 ${i}-${j}`,
             children: [], // 子节点可以继续递归生成,
-            id: i.toString()
+            id: `${i}-${j}`
           })
         }
         data.push({
           label: `数据 ${i}`,
           children,
-          id: i.toString()
+          id: `${i}`
         })
       }
       return data

@@ -10,8 +10,8 @@
     <tiny-tree
       ref="treeRef"
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       node-key="id"
       default-expand-all
       :current-node-key="currentNodeKey"

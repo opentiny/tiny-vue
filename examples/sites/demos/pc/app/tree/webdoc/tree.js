@@ -492,8 +492,6 @@ export default {
           `
       },
       codeFiles: ['other.vue']
-<<<<<<< Updated upstream
-=======
     },
     {
       demoId: 'virtual-tree',
@@ -502,8 +500,10 @@ export default {
         'en-US': 'virtual tree-nested node'
       },
       desc: {
-        'zh-CN': '数据量大时可以保持流畅使用',
-        'en-US': 'Maintains smooth use with large amounts of data'
+        'zh-CN': `通过<code>data</code>属性设置数据源，默认通过<code>label</code>,<code>children</code>,<code>id</code>展示属性。<br>
+                  通过<code>tree-height</code>属性设置虚拟滚动显示的区域高度，<code>node-height</code>属性设置每个树节点的高度，同时设置它们可以触发Tree组件的虚拟滚动功能的触发。`,
+        'en-US': `The data source is set using the <code>data</code> property. By default, the properties are displayed using <code>label</code>,<code>children</code>, and <code>id</code>. <br>
+                  The <code>tree-height</code> property sets the height of the area displayed by the virtual scroll. The <code>node-height</code> property sets the height of each tree node and sets them to trigger the virtual scroll function of the Tree component.`
       },
       codeFiles: ['virtual-tree.vue']
     },
@@ -526,8 +526,8 @@ export default {
         'en-US': 'virtual tree-Add, delete and change nodes'
       },
       desc: {
-        'zh-CN': '实现大量数据下的树形数据的增删改',
-        'en-US': 'Realize the addition, deletion, and modification of tree data under a large amount of data.'
+        'zh-CN': '实现大量数据下的树形数据的增删改功能',
+        'en-US': 'Realize the function of adding, deleting and changing the tree data under a large amount of data.'
       },
       codeFiles: ['virtual-node-op.vue']
     },
@@ -538,11 +538,10 @@ export default {
         'en-US': 'virtual tree-drag node'
       },
       desc: {
-        'zh-CN': '实现大量数据下的树形数据的拖拽节点',
-        'en-US': 'Drag-and-drop nodes for tree data with large amount of data.'
+        'zh-CN': '实现大量数据下的树形数据的拖拽节点功能',
+        'en-US': 'Drag-and-drop node function for tree data with large amount of data.'
       },
       codeFiles: ['virtual-drag-node.vue']
->>>>>>> Stashed changes
     }
   ]
 }

@@ -14,8 +14,8 @@
     </div>
     <tiny-tree
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       draggable
       :allow-drag="allowDrag"
       :allow-drop="allowDrop"
