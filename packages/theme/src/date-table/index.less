@@ -228,7 +228,6 @@
       div {
         margin-left: 4px;
         margin-right: 4px;
-        background-color: var(--tv-DateTable-td-bg-color-range-selected);
       }
 
       span {
@@ -241,6 +240,9 @@
       &.available:hover span {
         background-color: var(--tv-DateTable-bg-color-current-select);
       }
+    }
+    &.selected.in-range {
+      background-color: var(--tv-DateTable-td-bg-color-range-selected);
     }
 
     &.week {

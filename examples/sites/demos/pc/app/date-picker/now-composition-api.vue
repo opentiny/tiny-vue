@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="width: 400px">
+    <div class="demo-date-picker">
       <div class="title">插槽式：</div>
       <tiny-date-picker v-model="value1" type="datetime">
         <template #now>
@@ -9,7 +9,7 @@
       </tiny-date-picker>
     </div>
 
-    <div style="width: 400px">
+    <div class="demo-date-picker">
       <div class="title">函数式：</div>
       <tiny-date-picker v-model="value2" type="datetime" :now-click="nowClick"> </tiny-date-picker>
     </div>
@@ -37,6 +37,9 @@ const now = () => {
 </script>
 
 <style scoped>
+.demo-date-picker {
+  width: 280px;
+}
 .nowclass {
   display: inline-flex;
   height: 28px;
