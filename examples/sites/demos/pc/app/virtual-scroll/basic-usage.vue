@@ -1,7 +1,12 @@
 <template>
   <div class="virtual-scroll-demo">
-    <!-- Vue2的选项式API -->
-    <TinyVirtualScroll :data="showData" :itemSize="50" itemIndex="key" :visibleSize="300" class="tiny-virtual-scroll">
+    <TinyVirtualScroll
+      :data="showData"
+      :item-size="50"
+      item-index="key"
+      :visible-size="300"
+      class="tiny-virtual-scroll"
+    >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
           {{ props.item.value }}
@@ -35,18 +40,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
-  /* display: flex; */
 }
 
-/* .tiny-virtual-scroll {
-  height: 300px;
-} */
-
-.tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
   align-content: center;

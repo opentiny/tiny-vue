@@ -7,9 +7,9 @@
       <TinyVirtualScroll
         ref="scroller"
         :data="showData"
-        :itemSize="50"
-        itemIndex="key"
-        :visibleSize="400"
+        :item-size="50"
+        item-index="key"
+        :visible-size="400"
         class="tiny-virtual-scroll"
         direction="vertical"
       >
@@ -67,10 +67,6 @@ export default {
 
   text-align: center;
 }
-
-/* .scrollTo-demo .context .tiny-virtual-scroll {
-  height: 300px;
-} */
 
 .scrollTo-demo .context .tiny-virtual-scroll .tiny-virtual-scroll-item {
   padding: 10px;

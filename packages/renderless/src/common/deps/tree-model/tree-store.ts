@@ -88,7 +88,6 @@ export default class TreeStore {
     }
 
     const nodeKey = typeof data !== 'object' ? data : getNodeKey(this.key, data)
-
     return this.nodesMap[nodeKey] || null
   }
 

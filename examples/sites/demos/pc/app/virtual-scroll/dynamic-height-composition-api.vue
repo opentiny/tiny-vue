@@ -2,9 +2,9 @@
   <div class="virtual-scroll-demo">
     <TinyVirtualScroll
       :data="showData"
-      :estimatedItemSize="50"
-      itemIndex="id"
-      :visibleSize="300"
+      :estimated-item-size="50"
+      item-index="id"
+      :visible-size="300"
       class="tiny-virtual-scroll"
       direction="vertical"
       :buffer="0.5"
@@ -28,7 +28,7 @@ const showData = ref([])
 for (let i = 1; i <= 10000; i++) {
   showData.value.push({
     id: i,
-    value: `${i}字符内容`.repeat(Math.ceil(Math.random() * 30)) // 动态文本内容
+    value: `${i}字符内容`.repeat(Math.ceil(Math.random() * 30))
   })
 }
 </script>
@@ -37,14 +37,13 @@ for (let i = 1; i <= 10000; i++) {
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
-  /* width: 600px; */
 }
 
-.tiny-virtual-scroll {
+.virtual-scroll-demo .tiny-virtual-scroll {
   width: 100%;
 }
 
-.tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
 }
