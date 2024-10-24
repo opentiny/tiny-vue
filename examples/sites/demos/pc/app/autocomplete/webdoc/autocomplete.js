@@ -33,7 +33,8 @@ export default {
         'en-US': 'Text box size'
       },
       desc: {
-        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code>，不传递就是默认值尺寸。</p>',
+        'zh-CN':
+          '<p>可选择值为<code>medium</code>，<code>default</code>，<code>small</code>，<code>mini</code>，不传递就是默认尺寸。</p>',
         'en-US': '<p>The value can be <code>medium</code>, <code>small</code>, or <code>mini</code>.</p>'
       },
       codeFiles: ['size.vue']
