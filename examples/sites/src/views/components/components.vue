@@ -158,7 +158,12 @@
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
                             <template #default="{ row }">
-                              <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                              <async-highlight v-if="chartCode" :code="row.code.trim()" types="html"></async-highlight>
+                              <async-highlight
+                                v-else-if="row.code"
+                                :code="row.code.trim()"
+                                types="ts"
+                              ></async-highlight>
                               <div v-if="row.depTypes">
                                 <async-highlight
                                   v-for="(k, i) in row.depTypes"
@@ -316,6 +321,7 @@ export default defineComponent({
       showApiTab: computed(() => state.currApiTypes.length),
       columnWidth: {
         props: ['15%', '20%', '15%'],
+        options: ['15%', '20%', '15%'],
         events: ['15%', '25%', 0],
         methods: ['15%', '20%', 0],
         slots: ['15%', 0, 0],
@@ -329,7 +335,8 @@ export default defineComponent({
         activeMethod: (row) => row.typeAnchorName,
         showIcon: true // 配置是否显示展开图标
       },
-      contributors: [] // 贡献者
+      contributors: [], // 贡献者
+      chartCode: false
     })
 
     const { apiModeState } = useApiMode()
@@ -447,10 +454,7 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log('querySelector has special character:', err)
-          }
+          } catch (err) {}
           if (scrollTarget && !isRunningTest) {
             document.getElementById('doc-layout').scrollTo({
               top: scrollTarget.offsetTop,
@@ -459,7 +463,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -489,6 +493,9 @@ export default defineComponent({
           `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
         )
       ]
+
+      state.chartCode = getWebdocPath(state.cmpId) === 'chart'
+
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
         state.activeTab = 'apis'

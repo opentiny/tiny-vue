@@ -37,7 +37,9 @@ export default defineComponent({
       () => {
         setTimeout(() => {
           // highlight和其他同步任务叠加容易形成长任务，改成异步消除长任务。
-          if (props.types && props.types === 'ts') {
+          if (props.types && props.types === 'html') {
+            highlightCode.value = props.code
+          } else if (props.types && props.types === 'ts') {
             highlightCode.value = getFormatCodes(props.types)
           } else {
             highlightCode.value = hljs.highlightAuto(props.code).value

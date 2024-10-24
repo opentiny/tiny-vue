@@ -1,0 +1,208 @@
+// .main-editor{
+.default-theme {
+  color: var(--ti-base-color-common-6);
+
+  img {
+    border: none;
+    padding: 0;
+  }
+
+  p {
+    line-height: 2rem;
+    padding: 0;
+  }
+
+  pre *,
+  code * {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+  }
+
+  table {
+    width: 100%;
+
+    tr {
+      th {
+        color: var(--ti-base-color-common-2);
+        font-weight: normal;
+
+        &:not(:last-child) {
+          border-right-color: transparent;
+        }
+      }
+
+      td {
+        color: var(--ti-common-color-info-normal);
+
+        &:nth-child(2) {
+          color: #bf2a5c;
+        }
+
+        &:first-child {
+          font-weight: 600;
+        }
+
+        &:not(:last-child) {
+          border-right-color: transparent;
+        }
+      }
+
+      th,
+      td {
+        border: 1px solid var(--ti-common-color-line-dividing);
+      }
+
+    }
+
+    thead tr {
+      background: var(--ti-base-color-bg-1);
+    }
+
+    tbody {
+
+      tr,
+      tr:nth-child(2n) {
+        background: var(--ti-common-color-bg-white-normal);
+
+        &:hover {
+          background-color: var(--ti-base-color-bg-1);
+        }
+      }
+    }
+  }
+}
+
+.md-editor-preview {
+  font-size: 14px;
+
+  &-wrapper {
+    padding: 0;
+  }
+
+  p+pre {
+    margin-top: 0.5rem;
+  }
+}
+
+// &.md-editor-previewOnly{
+//   background: var(--ti-base-color-bg-1);
+//   color: var(--ti-base-color-common-5);
+// }
+
+// &.api-table{
+//   background: none;
+p.ev_expand_title {
+  // background-color: var(--ti-base-color-brand-1);
+  padding-top: 12px;
+  padding-bottom: 8px;
+  border-top: 1px solid #dfe1e6;
+  margin-top: 44px;
+  padding-left: 48px !important;
+  color: #c0341d;
+  font-weight: 700;
+  font-size: 16px;
+
+  &>span.ev_expand_type,
+  &>span.ev_expand_defaults,
+  &>span.ev_expand_required {
+    color: #000;
+    padding: 1px 16px;
+    margin-top: 5px;
+    margin-left: 24px;
+    min-width: 72px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 12px;
+    float: right;
+    height: 21px;
+    line-height: 21px;
+    background-color: var(--ti-base-color-bg-1);
+    font-weight: 400;
+  }
+
+  &>.ev_expand_required {
+    margin-right: 48px;
+  }
+}
+
+// 子级p标签说明、默认值等样式
+p.ev_expand_introduce {
+  margin-left: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+// }
+
+.default-theme h1,
+.default-theme h2,
+.default-theme h3,
+.default-theme h4,
+.default-theme h5,
+.default-theme h6 {
+  margin: 0;
+  color: var(--ti-base-color-common-7);
+}
+
+.default-theme h2,
+.default-theme h3,
+.default-theme h4,
+.default-theme h5,
+.default-theme h6 {
+  color: var(--ti-base-color-common-7);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.default-theme code {
+  padding: 2px 6px;
+  color: #c0341d;
+  background: #fbe5e1;
+  border-radius: 4px;
+  line-height: 1.25;
+}
+
+.default-theme pre {
+  box-shadow: none;
+
+  &::before {
+    height: 0;
+  }
+
+  .copy-button {
+    display: none;
+  }
+
+  code {
+    &[language]:before {
+      content: '';
+    }
+
+    font-size: 14px;
+    max-width: initial;
+    overflow: initial;
+    line-height: 2;
+    word-wrap: normal;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--ti-base-color-common-1);
+    background: var(--ti-base-color-white);
+    color: #dd4a68;
+
+    &.language-d {
+      border: none;
+    }
+
+    &.language-css {
+      border: none;
+      padding: 4px 16px;
+      background-color: #fff;
+      margin: 0 48px;
+      color: #f50505;
+    }
+  }
+}
+
+// }

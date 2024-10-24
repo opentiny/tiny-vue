@@ -1,0 +1,128 @@
+.github-markdown-body {
+  font-size: 14px;
+  color: var(--ti-base-color-common-5);
+
+  p {
+    line-height: 2rem;
+    color: var(--ti-base-color-common-5);
+  }
+
+  a {
+    color: #007dff;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  hr {
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+
+    &::before {
+      display: table;
+      content: '';
+    }
+
+    &:after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }
+
+  h1 {
+    color: var(--ti-base-color-common-7);
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--ti-base-color-common-7);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 1.1;
+  }
+
+  blockquote {
+    margin-bottom: 1rem;
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  ul {
+    list-style: decimal;
+    padding-left: 25px;
+
+    li {
+      list-style: disc;
+      color: var(--ti-base-color-common-6);
+      margin: 5px 0;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    padding-left: 25px;
+
+    li {
+      color: var(--ti-base-color-common-2);
+      margin: 5px 0;
+      list-style: decimal;
+    }
+  }
+
+  table {
+    color: var(--ti-base-color-common-2);
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+    margin: 0;
+    padding: 2px 6px;
+    color: #c0341d;
+    background: #fbe5e1;
+    border-radius: 4px
+  }
+
+  pre {
+    code {
+      font-size: 14px;
+      max-width: initial;
+      overflow: initial;
+      line-height: 2;
+      word-wrap: normal;
+      display: block;
+      overflow-x: auto;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--ti-base-color-common-1);
+      background: var(--ti-base-color-white);
+      color: #dd4a68;
+
+      &>.hljs-number {
+        color: blue;
+      }
+
+      &>.hljs-string {
+        color: green;
+      }
+    }
+  }
+
+  .v-md-hljs-css code {
+    margin: 0 3rem;
+  }
+}
+
+// 子级标题样式
