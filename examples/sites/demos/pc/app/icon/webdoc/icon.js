@@ -11,7 +11,7 @@ export default {
       desc: {
         'zh-CN': `
           从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数。图标函数执行后生成一个有效的 <code> Vue </code> 图标组件，可以在模板中使用。<br>
-          通过修改图标的 <code>font-size</code> 样式，指定图标的大小，通过修改<code>fill</code> 指定图标的颜色。
+          通过修改图标的 <code>font-size</code> 的样式，指定图标的大小，通过修改<code>fill</code> 的样式指定图标的颜色。
           <div class="tip custom-block">
             <p class="custom block title"> 常见的图标使用方式 </p>
             以 <code>Shared</code>图标组件为例：<br>
