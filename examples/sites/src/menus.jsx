@@ -1,4 +1,4 @@
-import { cmpMenus } from '@menu/menus.js'
+import { docMenus, cmpMenus } from '@menu/menus.js'
 import { appData, $split } from './tools'
 
 /**
@@ -26,6 +26,16 @@ function genMenus() {
     }
   ]
 
+  const docOptions = docMenus.map((menu) => ({
+    ...menu,
+    label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
+    children: menu.children.map((page) => ({
+      ...page,
+      id: page.key,
+      label: appData.lang === 'zhCN' ? page.title : page.titleEn,
+      type: 'docs'
+    }))
+  }))
   const cmpOptions = cmpMenus.map((menu) => ({
     ...menu,
     label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
@@ -36,7 +46,7 @@ function genMenus() {
       type: 'components'
     }))
   }))
-  return [...standaloneOptions, ...cmpOptions]
+  return [...standaloneOptions, ...docOptions, ...cmpOptions]
 }
 
 // 获取菜单的类别图标

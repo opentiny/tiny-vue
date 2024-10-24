@@ -84,7 +84,14 @@ module.exports = defineConfig({
 
 ### 多组件引入
 
-多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `Button` 和 `Alert` 组件为例）：
+<div class="tip custom-block">
+<br />
+温馨提示：带有Tiny前缀的组件导出自3.17.0开始支持。若使用之前版本，需使用别名。
+<br />
+<p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+</div>
+
+多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `TinyButton` 和 `TinyAlert` 组件为例）：
 
 ```html
 <template>
@@ -95,12 +102,12 @@ module.exports = defineConfig({
 </template>
 
 <script>
-  import { Button, Alert } from '@opentiny/vue'
+  import { TinyButton, TinyAlert } from '@opentiny/vue'
 
   export default {
     components: {
-      TinyButton: Button,
-      TinyAlert: Alert
+      TinyButton,
+      TinyAlert
     }
   }
 </script>
