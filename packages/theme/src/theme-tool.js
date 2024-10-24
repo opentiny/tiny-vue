@@ -2,16 +2,23 @@ import OldTheme from './old-theme-index.js'
 
 export { OldTheme }
 
+/**
+ * 动态切换文档或影子根节点的样式类
+ */
 export default class TinyThemeTool {
   constructor(theme) {
+    this.loaded = {} // 缓存已加载的样式
     if (theme) {
       this.changeTheme(theme)
     }
   }
 
-  changeTheme(theme) {
-    if (this._loadedSheet) {
-      document.adoptedStyleSheets = document.adoptedStyleSheets.filter((t) => t !== this._loadedSheet)
+  changeTheme(theme, target = document) {
+    let loadedSheet = this.loaded[target]
+    if (!loadedSheet) {
+      loadedSheet = new CSSStyleSheet()
+      target.adoptedStyleSheets = [...target.adoptedStyleSheets, loadedSheet]
+      this.loaded[target] = loadedSheet
     }
 
     if (theme && (theme.data || theme.css)) {
@@ -27,11 +34,7 @@ export default class TinyThemeTool {
         cssContent += theme.css
       }
 
-      const sheet = new CSSStyleSheet()
-      sheet.replaceSync(cssContent)
-
-      document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
-      this._loadedSheet = sheet
+      loadedSheet.replaceSync(cssContent)
     }
   }
 }
