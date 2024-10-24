@@ -107,6 +107,7 @@
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
+                      @mounted="demoMounted"
                     />
                   </div>
                   <div v-else>
@@ -224,6 +225,7 @@
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
             id="anchor"
+            :top-offset="156"
             :links="currAnchorLinks"
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
@@ -337,6 +339,26 @@ export default defineComponent({
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+
+    let finishNum = 0
+    let isAllMounted = false
+    let demoMountedResolve
+    const demoMounted = () => {
+      finishNum++
+      if (finishNum === state.currJson.demos.length) {
+        isAllMounted = true
+        demoMountedResolve(true)
+      }
+    }
+
+    const allDemoMounted = async () => {
+      if (isAllMounted) {
+        return isAllMounted
+      }
+      return new Promise((resolve) => {
+        demoMountedResolve = resolve
+      })
+    }
 
     const getApiAnchorLinks = () => {
       if (!state.currJson.apis?.length) {
@@ -569,11 +591,9 @@ export default defineComponent({
 
           // F5刷新加载时，跳到当前示例
           // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          return allDemoMounted().then(() => {
+            scrollByHash(hash)
+          })
         })
         .finally(() => {
           // 获取组件贡献者
@@ -616,6 +636,7 @@ export default defineComponent({
     }
 
     const fn = {
+      demoMounted,
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
