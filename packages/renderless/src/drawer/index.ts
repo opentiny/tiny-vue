@@ -33,7 +33,7 @@ export const computedHeight =
 
 export const close =
   ({ api }: { api: IDrawerApi }) =>
-  (force = false) => {
+  (force = true) => {
     api.handleClose('close', typeof force === 'boolean' ? force : false)
   }
 
