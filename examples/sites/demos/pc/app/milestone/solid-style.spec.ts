@@ -23,12 +23,12 @@ test('实心显示', async ({ page }) => {
   const iconStyles = [
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(0, 0, 0)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(0, 0, 0)',
       'box-shadow': 'none'
     },
     {
@@ -98,6 +98,6 @@ test('实心显示', async ({ page }) => {
   await button.click()
 
   for (let i = 0; i < 2; i++) {
-    await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(25, 25, 25)')
+    await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
   }
 })
