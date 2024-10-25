@@ -11,7 +11,7 @@
       :placement="placement"
       v-model:visible="visible"
     >
-      <div style="padding: 32px">left或者right内容区域</div>
+      <div>left或者right内容区域</div>
     </tiny-drawer>
 
     <tiny-drawer
@@ -21,7 +21,7 @@
       v-model:visible="visible"
       height="400px"
     >
-      <div style="padding: 32px">top或者bottom区域</div>
+      <div>top或者bottom区域</div>
     </tiny-drawer>
   </div>
 </template>

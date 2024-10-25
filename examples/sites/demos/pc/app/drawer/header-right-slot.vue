@@ -7,7 +7,7 @@
           <span>自定义头部右侧</span>
         </div>
       </template>
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
     </tiny-drawer>
   </div>
 </template>

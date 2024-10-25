@@ -33,7 +33,7 @@ export default {
         // 通过属性 customSlots 设置插槽, 插槽内容可以是 string | VNode | ({h, $drawer}) => VNode
         customSlots: {
           // 使用 h 函数
-          default: (h) => h('p', { class: 'drawer-content' }, '抽屉主体内容。'),
+          default: (h) => h('p', { class: '' }, '抽屉主体内容。'),
           // 返回 VNode 节点的方法, 可通过参数中 $drawer 访问到组件实例
           headerRight: () => <IconHelp></IconHelp>,
           // 直接赋值 VNode
@@ -52,9 +52,3 @@ export default {
   }
 }
 </script>
-
-<style scope>
-.drawer-content {
-  padding: 20px 0;
-}
-</style>

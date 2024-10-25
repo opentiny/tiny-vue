@@ -15,7 +15,7 @@
       </tiny-col>
     </tiny-row>
     <tiny-row>
-      <tiny-col :span="12">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">onPick:</label>
         <tiny-date-picker v-model="valueOnPick" type="daterange" :picker-options="pickerOptions"></tiny-date-picker>
       </tiny-col>
