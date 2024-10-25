@@ -47,7 +47,7 @@
         :true-value="trueLabel"
         :false-value="falseLabel"
         v-model="state.model"
-        @change="handleChange"
+        @change.stop="handleChange"
         @focus="state.focus = true"
         @blur="state.focus = false"
         @click.stop
@@ -62,7 +62,7 @@
         :value="label"
         :name="name"
         v-model="state.model"
-        @change="handleChange"
+        @change.stop="handleChange"
         @focus="state.focus = true"
         @blur="state.focus = false"
         @click.stop
