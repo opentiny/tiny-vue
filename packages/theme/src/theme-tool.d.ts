@@ -1,6 +1,9 @@
 interface ThemeData {
+  /** 主题的ID */
   id?: string
+  /** 主题的名称 */
   name?: string
+  /** 主题的中文名称 */
   cnName?: string
   /**
    * 需要追加的全局css变量的对象。
