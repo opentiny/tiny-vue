@@ -17,6 +17,8 @@ import './style.css'
 // 覆盖默认的github markdown样式
 import './assets/custom-markdown.css'
 import './assets/custom-block.less'
+import './assets/markdown.less'
+import './assets/md-preview.less'
 
 import { i18n } from './i18n/index'
 import { router } from './router'
