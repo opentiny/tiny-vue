@@ -39,6 +39,7 @@ const yearValue = ref('')
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
+  width: 360px;
   & > * {
     margin-top: 12px;
   }
