@@ -1,7 +1,6 @@
 <template>
   <div class="demo-drawer">
     <tiny-button type="primary" @click="showDrawer"> 点击打开抽屉 </tiny-button>
-    <p>{{ visible }}</p>
     <tiny-drawer
       title="事件示例"
       :show-footer="true"
@@ -11,7 +10,7 @@
       @close="onClose"
       @confirm="onConfirm"
     >
-      <div class="content">
+      <div>
         <span>内容区域</span>
       </div>
     </tiny-drawer>
@@ -47,9 +46,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.content {
-  padding: 20px 0;
-}
-</style>
