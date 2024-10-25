@@ -21,7 +21,7 @@ let cssStr = fs.readFileSync(path.resolve(root, 'dist/old-theme-index.css'), 'ut
 
 jsStr = jsStr.replace('#CSS#', cssStr)
 fs.writeFileSync(path.resolve(root, 'src/old-theme-index.js'), jsStr) // 供开发时(pnpm site)， 可以访问到最新的定制主题变量
-fs.writeFileSync(path.resolve(root, 'dist/old-theme-index.js'), jsStr)
+fs.writeFileSync(path.resolve(root, 'dist/old-theme-index.js'), jsStr) // 打包发布用
 
 // 3、复制 package.json
 const content = fs.readFileSync(path.resolve(root, 'package.json'), 'utf8')

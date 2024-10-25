@@ -42,7 +42,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '图标组件自身上指定 <code>title</code> 属性无效，需要通过给其父元素的 <code>title</code> 属性实现提示功能。',
+          '图标组件自身上指定 <code>title</code> 属性无效，需要通过其父元素的 <code>title</code> 属性实现提示功能。',
         'en-US':
           'The <code>title</code> attribute specified on the icon component is invalid. You need to give the <code>title</code> attribute of its parent element to realize the prompt function.'
       },
