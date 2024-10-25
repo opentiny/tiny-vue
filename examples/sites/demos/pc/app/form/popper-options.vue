@@ -50,10 +50,11 @@ export default {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 420px;
 }
 .scroll-parent {
   height: 200px;
   overflow: auto;
+  padding-right: 40px;
 }
 </style>

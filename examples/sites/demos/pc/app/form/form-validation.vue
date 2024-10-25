@@ -19,7 +19,7 @@
       <tiny-form-item label="邮件" prop="email">
         <tiny-input v-model="createData.email"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="Numeric字段" prop="num1">
+      <tiny-form-item label="数字" prop="num1">
         <tiny-numeric v-model="createData.num1"></tiny-numeric>
       </tiny-form-item>
       <tiny-form-item label="IP字段" prop="ip">
