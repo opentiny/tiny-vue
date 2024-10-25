@@ -17,7 +17,7 @@ function manualCloseClick() {
     position: 'top-right',
     showClose: false
   })
-  console.log(instance)
+
   setTimeout(() => {
     instance.close()
   }, 4000)
