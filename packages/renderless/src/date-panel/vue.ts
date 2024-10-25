@@ -135,7 +135,7 @@ const initState = ({ reactive, computed, api, i18n, designConfig }) => {
     isShowTz: computed(() => state.showTimezone && state.showTime),
     isShowFooter: computed(() => state.footerVisible && [DATEPICKER.Date, DATEPICKER.Year].includes(state.currentView)),
     buttonType: designConfig?.state?.buttonType || 'default',
-    buttonSize: designConfig?.state?.buttonSize || 'default'
+    buttonSize: designConfig?.state?.buttonSize || ''
   })
 
   state.needChangeTimezoneData = true // 控制重新渲染时区列表
