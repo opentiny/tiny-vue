@@ -232,7 +232,13 @@ const createTheme = (callbackFn) => {
         .replace(/\, \/\//g, '; //')
         .replace('{', '') + ';\n}'
 
-    newDataStr = baseContent.replace('}', newDataStr)
+    newDataStr = baseContent.replace('}', newDataStr).replace(
+      ':root',
+      `@import '../../base/reset.less';
+@import '../../base/transition.less';
+@import '../../svg/index.less';
+:root`
+    )
 
     writeFile(buildThemePathMap[fileDir] + '/index.less', newDataStr)
   }
