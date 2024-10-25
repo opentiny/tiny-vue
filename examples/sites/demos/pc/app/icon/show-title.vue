@@ -1,10 +1,10 @@
 <template>
   <div class="icon-demo">
-    <div title="可见复制">
+    <div title="可见提示">
       <tiny-icon-copy></tiny-icon-copy>
     </div>
 
-    <tiny-icon-copy title="不可见复制"></tiny-icon-copy>
+    <tiny-icon-copy title="不可见提示"></tiny-icon-copy>
   </div>
 </template>
 
