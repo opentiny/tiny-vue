@@ -32,6 +32,10 @@ export const anchorProps = {
   type: {
     type: String,
     default: 'line'
+  },
+  topOffset: {
+    type: Number,
+    default: 0
   }
 }
 
