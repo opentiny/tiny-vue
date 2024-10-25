@@ -1,6 +1,5 @@
 // .main-editor{
 .default-theme {
-  color: var(--ti-base-color-common-6);
 
   img {
     border: none;
@@ -22,7 +21,6 @@
 
     tr {
       th {
-        color: var(--ti-base-color-common-2);
         font-weight: normal;
 
         &:not(:last-child) {
@@ -31,7 +29,6 @@
       }
 
       td {
-        color: var(--ti-common-color-info-normal);
 
         &:nth-child(2) {
           color: #bf2a5c;
@@ -46,27 +43,6 @@
         }
       }
 
-      th,
-      td {
-        border: 1px solid var(--ti-common-color-line-dividing);
-      }
-
-    }
-
-    thead tr {
-      background: var(--ti-base-color-bg-1);
-    }
-
-    tbody {
-
-      tr,
-      tr:nth-child(2n) {
-        background: var(--ti-common-color-bg-white-normal);
-
-        &:hover {
-          background-color: var(--ti-base-color-bg-1);
-        }
-      }
     }
   }
 }
@@ -83,15 +59,8 @@
   }
 }
 
-// &.md-editor-previewOnly{
-//   background: var(--ti-base-color-bg-1);
-//   color: var(--ti-base-color-common-5);
-// }
 
-// &.api-table{
-//   background: none;
 p.ev_expand_title {
-  // background-color: var(--ti-base-color-brand-1);
   padding-top: 12px;
   padding-bottom: 8px;
   border-top: 1px solid #dfe1e6;
@@ -115,7 +84,7 @@ p.ev_expand_title {
     float: right;
     height: 21px;
     line-height: 21px;
-    background-color: var(--ti-base-color-bg-1);
+    background-color: #fff;
     font-weight: 400;
   }
 
@@ -140,7 +109,6 @@ p.ev_expand_introduce {
 .default-theme h5,
 .default-theme h6 {
   margin: 0;
-  color: var(--ti-base-color-common-7);
 }
 
 .default-theme h2,
@@ -148,7 +116,6 @@ p.ev_expand_introduce {
 .default-theme h4,
 .default-theme h5,
 .default-theme h6 {
-  color: var(--ti-base-color-common-7);
   margin-top: 15px;
   margin-bottom: 15px;
   line-height: 1.1;
@@ -187,8 +154,6 @@ p.ev_expand_introduce {
     overflow-x: auto;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
-    border: 1px solid var(--ti-base-color-common-1);
-    background: var(--ti-base-color-white);
     color: #dd4a68;
 
     &.language-d {
