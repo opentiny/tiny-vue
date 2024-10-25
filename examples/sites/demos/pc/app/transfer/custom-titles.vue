@@ -2,7 +2,7 @@
   <tiny-transfer
     v-model="value"
     :data="data"
-    :titles="['所有数据列表', '已选数据列表']"
+    :titles="['数据列表', '已选列表']"
     :format="{
       noChecked: '未勾选 / 共${total}',
       hasChecked: '已选择${checked} / 共${total}'

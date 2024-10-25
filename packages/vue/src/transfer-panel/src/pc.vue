@@ -50,7 +50,6 @@
         class="tiny-checkbox-group tiny-transfer-panel__list"
         :class="{ 'is-filterable': filterable }"
       >
-        <!-- v-model="state.allChecked" @change="handleAllCheckedChange" :indeterminate="state.isIndeterminate" -->
         <tiny-checkbox
           v-for="item in state.filteredData"
           :key="item[state.keyProp]"
