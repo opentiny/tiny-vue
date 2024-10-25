@@ -5,14 +5,14 @@ test('拦截弹窗关闭', async ({ page }) => {
   await page.goto('drawer#before-close')
 
   const drawer = page.locator('.tiny-drawer__main')
-  const message = page.locator('.tiny-modal.type__message')
+  const message = page.locator('.tiny-modal__text')
 
   await page.getByRole('button', { name: '点击展开 Drawer' }).click()
   await expect(drawer).toBeVisible()
 
   // 点击关闭按钮
   await page.getByRole('button', { name: 'Close' }).click()
-  await expect(message.nth(1)).toContainText('close')
+  await expect(message).toContainText('close')
   await expect(drawer).toBeVisible()
 
   // 点击遮罩层

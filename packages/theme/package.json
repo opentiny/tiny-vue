@@ -29,11 +29,11 @@
   },
   "main": "index.css",
   "scripts": {
-    "clean": "rimraf dist src/aurora-theme src/smb-theme",
+    "clean": "rimraf dist",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme",
-    "release": "node build/release.js",
     "build:fast": "npm run build && npm run release",
+    "release": "node build/release.js",
     "build:copy-remote": "npm run build:theme && cp-cli dist ../tiny-vue/node_modules/@opentiny/vue-theme",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "postversion": "pnpm build",

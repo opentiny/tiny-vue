@@ -25,27 +25,27 @@ test('基本用法', async ({ page }) => {
   const iconStyles = [
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(24, 144, 255)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(24, 144, 255)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(158, 197, 145)',
+      'background-color': 'rgb(126, 183, 252)',
       'color': 'rgb(255, 255, 255)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(217, 217, 217)',
+      'color': 'rgb(252, 226, 224)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(151, 167, 219)',
+      'color': 'rgb(255, 136, 0)',
       'box-shadow': 'none'
     },
     {
@@ -56,7 +56,7 @@ test('基本用法', async ({ page }) => {
   ]
   const titles = ['completed 状态', 'completed 状态', 'doing 状态', 'cancel 状态', 'back 状态', 'end 状态']
   const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
-  const flagLineColors = ['rgb(151, 167, 219)', 'rgb(151, 167, 219)', 'rgb(158, 197, 145)', 'rgb(217, 217, 217)']
+  const flagLineColors = ['rgb(255, 136, 0)', 'rgb(255, 136, 0)', 'rgb(126, 183, 252)', 'rgb(252, 226, 224)']
 
   await expect(nodes).toHaveCount(nodeCount)
   await expect(nodeLines).toHaveCount(nodeCount)

@@ -19,7 +19,7 @@ test('基本用法', async ({ page }) => {
     const middle = itemList.nth(1)
     const last = itemList.nth(2)
 
-    await expect(items).toHaveCSS('width', '100px')
+    await expect(items).toHaveCSS('width', '168px')
     await expect(items).toHaveCSS('height', '32px')
     await expect(first).toHaveClass('tiny-wizard__chart-line')
     await expect(middle).toHaveClass(/tiny-wizard__chart-icon/)
