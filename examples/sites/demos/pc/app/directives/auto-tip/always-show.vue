@@ -8,14 +8,14 @@
         is_disabled: item.disabled,
         list: true
       }"
-      v-auto-tip="item.disabled ? { always: true, content: item.tip } : false"
+      v-auto-tip="item.disabled ? { always: true, content: item.disabledReason, effect: 'dark' } : false"
     >
       {{ item.text }}
     </div>
   </div>
 </template>
 
-<script>
+<script lang="jsx">
 import { AutoTip } from '@opentiny/vue-directive'
 
 export default {
@@ -24,7 +24,19 @@ export default {
     return {
       options: [
         { text: '去游泳馆游泳', disabled: false },
-        { text: '去羽毛球馆打羽毛球', disabled: true, tip: '自定义提示内容' }
+        { text: '去羽毛球馆打羽毛球', disabled: true, disabledReason: '羽毛球拍坏了' },
+        {
+          text: '去爬山/海边沙滩',
+          disabled: true,
+          disabledReason: (
+            <span>
+              还没有选择项目，现在去
+              <a href="javascript:void(0)" style="color:#f80">
+                选择
+              </a>
+            </span>
+          )
+        }
       ]
     }
   }
@@ -46,5 +58,6 @@ export default {
 }
 .is_disabled {
   cursor: not-allowed;
+  text-decoration: line-through;
 }
 </style>
