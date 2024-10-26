@@ -13,7 +13,9 @@ b, strong {
   --docs-tabs-header-zindex: 100;
   --docs-float-settings-zindex: 999;
   --docs-header-zindex: 200;
+  --docs-header-zindex-highlight: 2002;
   --docs-layout-sider-zindex: 201;
+  --docs-layout-sider-zindex-highlight: 2001;
 }
 
 .tinyui-design-header {
