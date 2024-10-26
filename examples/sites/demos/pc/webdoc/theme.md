@@ -1,10 +1,12 @@
 ## 主题配置
 
-<div class="tip custom-block">
+<div class="warning custom-block">
   本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
 </div>
 
-在 `TinyVue` 组件库中定义了一组全局 `CSS 变量`，用于统一主题风格，比如字体，颜色，间距，圆角等值，每个组件内部也定义了组件级的`CSS 变量`。 从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格，更适配企业级应用场景和后台管理应用等场景。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
+从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格，更适配企业级应用场景和后台管理应用等场景。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
+
+在 `TinyVue` 组件库中定义了一组全局 `CSS 变量`，用于统一主题风格，比如字体，颜色，间距，圆角等值，每个组件内部也定义了组件级的`CSS 变量`。
 
 - 全局 `CSS 变量`位于主题包的`base`目录：[base/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/vars.less)
 - 组件级的`CSS 变量` 在每个组件的主题根目录，比如 [button/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less)
@@ -68,10 +70,10 @@ themeTool.changeTheme({
 })
 ```
 
-<div class="info custom-block">
+<div class="tip custom-block">
 在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式，这些样式就会散落在各个组件里。在组件库后续版本升级时，可能会调整组件结构或类名，造成样式覆盖失效，不建议这样做。 <br><br>
 
-我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样CSS规则会集中在一起，方便后续维护。用户还可以引入 `CSS文件` 来覆盖样式，但要保证其中的样式优先级高于组件库的优先级。
+我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样CSS规则会集中在一起，方便后续维护。除此之外，用户也可以将自定义样式统一写在一个 `CSS文件` 中并引入项目，但要保证其中的样式优先级高于组件库的优先级。
 
 </div>
 
