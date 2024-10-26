@@ -1,7 +1,7 @@
 ## 主题配置
 
 <div class="tip custom-block">
-  本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>归档信息</a>
+  本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>归档信息</a>
 </div>
 
 在 `TinyVue` 组件库中定义了一组全局 `CSS 变量`，用于统一主题风格，比如字体，颜色，间距，圆角等值，每个组件内部也定义了组件级的`CSS 变量`。 从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格，更适配企业级应用场景和后台管理应用等场景。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
@@ -26,12 +26,12 @@ interface ThemeData {
   /** 主题的中文名称 */
   cnName?: string
   /**
-   * 需要追加的全局css变量的对象。
+   * 需要追加的全局css变量的对象
    * 比如： { 'tv-base-color-brand' : '#1476ff' } 会追加到 :root { --tv-base....... }
    * */
   data?: Record<string, string>
   /**
-   * 需要追加的样式规则, 以覆盖或扩充组件的样式。
+   * 需要追加的样式规则, 以覆盖或扩充组件的样式
    * 比如： .tiny-button { border:none;  }
    * */
   css?: string
@@ -68,6 +68,13 @@ themeTool.changeTheme({
 })
 ```
 
+<div class="info custom-block">
+在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式。这些样式会散落在各个组件里。在组件库后续版本升级时，可能调整组件结构或类名，造成覆盖失效，不建议这样做。 <br><br>
+
+我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样CSS规则会集中在一起，方便后续维护。用户还可以引入 `CSS文件` 来覆盖样式，但要保证其中的样式优先级高于组件库的优先级。
+
+</div>
+
 ### 微前端场景
 
 默认情况下,`themeTool.changeTheme` 方法，会将自定义样式挂载到当前`document`下。但是在微前端框架中，通常会有样式隔离的机制，比如无界微前端会封闭一个 `Web Component` 组件挂载子应用。如果自定义这种场景下的主题时，就必须将样式挂载到子应用的`ShadowRoot`上。
@@ -88,16 +95,9 @@ themeTool.changeTheme(
     },
     css: `....`
   },
-  target
-) // ----- 挂载点
+  target // ----- 挂载点
+)
 ```
-
-<div class="info custom-block">
-  在很多历史项目中，许多开发者会在编写组件的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式。这些样式会散落在各个组件里。在组件库后续版本升级时，可能调整组件结构或类名，造成覆盖失效。 <br><br>
-
-建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样修改的CSS规则会集中在一起，方便后续维护。用户还可以引入 `CSS文件` 来覆盖样式，但要保证其中的样式优先级高于组件库的优先级。
-
-</div>
 
 ## OLD主题配置
 
@@ -112,7 +112,7 @@ const themeTool = new TinyThemeTool(OldTheme)
 ```
 
 <div class="warning custom-block">
-   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈。也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本，我们将继续维护一段时间。
+   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本，我们将继续维护一段时间。
 </div>
 
 ## 历史版本的主题配置
