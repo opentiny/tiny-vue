@@ -5,6 +5,7 @@
       ref="theGridRef"
       :data="tableData"
       seq-serial
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'manual', mode: 'cell', autoClear: false }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -118,10 +119,12 @@ const saveRowEvent = () => {
   })
 }
 
-const cancelRowEvent = () => {
-  theGridRef.value.clearActived().then(() => {
-    getActiveRow()
-  })
+const cancelRowEvent = (row) => {
+  const grid = theGridRef.value
+  grid
+    .clearActived()
+    .then(() => grid.revertData(row))
+    .then(getActiveRow)
 }
 </script>
 

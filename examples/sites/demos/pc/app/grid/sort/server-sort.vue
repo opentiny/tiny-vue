@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     sortChangeEvent({ order }) {
-      Modal.message({ message: `${order}`, status: 'info' })
+      Modal.message({ message: `${order || '取消排序'}`, status: 'info' })
     },
     getData({ page, filters }) {
       return new Promise((resolve) => {

@@ -6,7 +6,6 @@
           <template #dropdown>
             <tiny-dropdown-menu placement="bottom">
               <tiny-dropdown-item :item-data="{ name: 'selectCurPage' }"> 选择本页数据 </tiny-dropdown-item>
-              <tiny-dropdown-item :item-data="{ name: 'selectAllPage' }"> 选择全部数据 </tiny-dropdown-item>
               <tiny-dropdown-item :item-data="{ name: 'clearCurPage' }"> 取消选择 </tiny-dropdown-item>
             </tiny-dropdown-menu>
           </template>
