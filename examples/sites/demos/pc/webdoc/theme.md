@@ -77,7 +77,7 @@ themeTool.changeTheme({
 
 ### 微前端场景
 
-默认情况下,`themeTool.changeTheme` 方法，会将自定义样式挂载到当前`document`下。但是在微前端框架中，通常会有样式隔离的机制，比如无界微前端会封闭一个 `Web Component` 组件挂载子应用。如果自定义这种场景下的主题时，就必须将样式挂载到子应用的`ShadowRoot`上。
+默认情况下,`themeTool.changeTheme` 方法，会将自定义样式挂载到当前`document`下。但是在微前端框架中，通常会有样式隔离的机制，比如无界微前端会封装一个 `Web Component` 组件挂载子应用。如果自定义这种场景下的主题时，就必须将样式挂载到子应用的`ShadowRoot`上。
 
 ```ts
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
