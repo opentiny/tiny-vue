@@ -4,7 +4,7 @@
   本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
 </div>
 
-从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格，更适配企业级应用场景和后台管理应用等场景。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
+为了给开发者带来更好的用户体验，从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
 
 在 `TinyVue` 组件库中定义了一组全局 `CSS 变量`，用于统一主题风格，比如字体，颜色，间距，圆角等值，每个组件内部也定义了组件级的`CSS 变量`。
 
@@ -106,15 +106,15 @@ themeTool.changeTheme(
 我们不建议用户继续使用旧主题，但对于历史项目，我们提供一组旧主题的`CSS变量`,需要用户在工程中适配。
 
 ```ts
-import TinyThemeTool, { OldTheme } from '@opentiny/vue-theme/theme-tool'
+import TinyThemeTool, { tinyOldTheme } from '@opentiny/vue-theme/theme-tool'
 
-const themeTool = new TinyThemeTool(OldTheme)
+const themeTool = new TinyThemeTool(tinyOldTheme)
 
-// themeTool.changeTheme(OldTheme)  // 效果同上
+// themeTool.changeTheme(tinyOldTheme)  // 效果同上
 ```
 
 <div class="warning custom-block">
-   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本，我们将继续维护一段时间。
+   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本。
 </div>
 
 ## 历史版本的主题配置
