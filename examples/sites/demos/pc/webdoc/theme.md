@@ -69,7 +69,7 @@ themeTool.changeTheme({
 ```
 
 <div class="info custom-block">
-在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式。这些样式会散落在各个组件里。在组件库后续版本升级时，可能调整组件结构或类名，造成覆盖失效，不建议这样做。 <br><br>
+在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式，这些样式就会散落在各个组件里。在组件库后续版本升级时，可能会调整组件结构或类名，造成样式覆盖失效，不建议这样做。 <br><br>
 
 我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样CSS规则会集中在一起，方便后续维护。用户还可以引入 `CSS文件` 来覆盖样式，但要保证其中的样式优先级高于组件库的优先级。
 
@@ -77,7 +77,7 @@ themeTool.changeTheme({
 
 ### 微前端场景
 
-默认情况下,`themeTool.changeTheme` 方法，会将自定义样式挂载到当前`document`下。但是在微前端框架中，通常会有样式隔离的机制，比如无界微前端会封装一个 `Web Component` 组件挂载子应用。如果自定义这种场景下的主题时，就必须将样式挂载到子应用的`ShadowRoot`上。
+默认情况下,`themeTool.changeTheme` 方法，会将自定义样式挂载到当前`document`下。但是在微前端框架中，通常会有样式隔离的机制，比如无界微前端会封装一个 `Web Component` 组件挂载子应用。如果自定义这种场景下的主题时，就必须将样式挂载到子应用的`ShadowRoot`上，用法如下：
 
 ```ts
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
