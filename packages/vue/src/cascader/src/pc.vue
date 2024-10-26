@@ -83,15 +83,15 @@
         <tiny-tag
           v-if="hoverExpand"
           :class="['tiny-cascader__tags-collapse', { 'is-hidden': state.isHidden }]"
-          type="info"
+          :type="state.tagTypeWhenMultiple"
           :closable="false"
           :size="state.tagSize"
-          >+ {{ state.collapseTagsLength }}</tiny-tag
-        >
+          >+ {{ state.collapseTagsLength }}
+        </tiny-tag>
         <tiny-tag
           v-for="(tag, index) in state.presentTags"
           :key="tag.key"
-          type="info"
+          :type="state.tagTypeWhenMultiple"
           :size="state.tagSize"
           :hit="tag.hitState"
           :closable="tag.closable"

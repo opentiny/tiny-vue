@@ -29,6 +29,7 @@ import DialogBox from './src/dialog-box'
 import Popeditor from './src/popeditor'
 import { version } from './package.json'
 import DatePanel from './src/date-panel'
+import Cascader from './src/cascader'
 
 export default {
   name: 'saas',
@@ -63,6 +64,7 @@ export default {
     Input,
     DateRange,
     DialogBox,
-    DatePanel
+    DatePanel,
+    Cascader
   }
 }
