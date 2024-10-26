@@ -176,7 +176,7 @@
 
       & > .@{anchor-prefix-cls}-link:last-child {
         & > .@{anchor-prefix-cls}-link:last-child,
-        &:not(:first-child) {
+        &:not(:has(> .@{anchor-prefix-cls}-link)) {
           & > .@{anchor-prefix-cls}-link-title:after {
             display: none;
           }
