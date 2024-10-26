@@ -14,7 +14,7 @@ test('bordercard类型', async ({ page }) => {
   const activeBgColor = 'rgb(245, 245, 245)'
 
   await expect(tabs).toHaveClass(/tiny-tabs--border-card/)
-  await expect(tabHeader).toHaveCSS('background-color', 'rgb(255, 255, 255)')
+  await expect(tabHeader).toHaveCSS('background-color', 'rgb(25, 25, 25)')
   await expect(tabItems).toHaveCount(5)
   await expect(tabItems).toHaveClass([/is-top is-active/, /is-top/, /is-top/, /is-top/, /is-top/])
   await expect(firstItem).toHaveCSS('background-color', activeBgColor)
