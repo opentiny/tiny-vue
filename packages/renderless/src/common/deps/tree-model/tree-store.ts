@@ -88,10 +88,7 @@ export default class TreeStore {
     }
 
     const nodeKey = typeof data !== 'object' ? data : getNodeKey(this.key, data)
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     return this.nodesMap[nodeKey] || null
   }
 
