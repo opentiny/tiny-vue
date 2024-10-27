@@ -1,12 +1,11 @@
 <template>
   <div>
-    <!-- vue3 -->
     <TinyVirtualScroll
       :data="showData"
-      :itemSize="50"
-      itemIndex="key"
+      :item-size="50"
+      item-index="key"
       class="tiny-virtual-scroll"
-      :visibleSize="300"
+      :visible-size="300"
       direction="vertical"
     >
       <template #default="props">
@@ -33,14 +32,13 @@ showData.value = Array.from(Array(1000), (v, k) => {
 })
 </script>
 
-<style>
+<style scoped>
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
-  /* display: flex; */
 }
 
-.tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
   align-content: center;
