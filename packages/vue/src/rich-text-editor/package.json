@@ -13,9 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/tiny-tiptap": "workspace:~"
   },
   "devDependencies": {

@@ -12,6 +12,7 @@ const Underline = TiptapUnderline.extend<ExtensionOptions & UnderlineOptions>({
         return [
           {
             key: 'underline',
+            title: '下划线',
             icon: iconRichTextUnderline(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +23,12 @@ const Underline = TiptapUnderline.extend<ExtensionOptions & UnderlineOptions>({
               return () => {
                 return editor.isActive(Underline.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Underline

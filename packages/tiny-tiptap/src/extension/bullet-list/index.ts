@@ -4,7 +4,9 @@ import type { BulletListOptions } from '@tiptap/extension-bullet-list'
 import TiptapBulletList from '@tiptap/extension-bullet-list'
 import { iconRichTextListUnordered } from '@opentiny/vue-icon'
 
-const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>({
+const BulletList = TiptapBulletList.extend<
+  ExtensionOptions & BulletListOptions
+>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -12,6 +14,7 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
         return [
           {
             key: 'unorderedlist',
+            title: '无序列表',
             icon: iconRichTextListUnordered(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,8 +25,8 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
               return () => {
                 return editor.isActive(BulletList.name)
               }
-            }
-          }
+            },
+          },
         ]
       },
       getSlashMenus() {
@@ -35,8 +38,8 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
             keywords: ['bulletlist', 'wuxuliebiao'],
             command: ({ editor, range }: { editor: Editor; range: Range }) => {
               editor.chain().focus().deleteRange(range).toggleBulletList().run()
-            }
-          }
+            },
+          },
         ]
       },
       getFloatMenus() {
@@ -46,12 +49,12 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
             icon: iconRichTextListUnordered(),
             action: ({ editor }: { editor: Editor }) => {
               return () => editor.chain().focus().toggleBulletList().run()
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default BulletList

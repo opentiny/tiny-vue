@@ -332,7 +332,7 @@
 
     ul,
     ol {
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
 
     ol {
@@ -376,6 +376,7 @@
     code {
       background-color: rgba(#616161, 0.1);
       color: #616161;
+      padding: 3px 9px;
     }
 
     img {
@@ -452,7 +453,7 @@
         bottom: -2px;
         width: 4px;
         background-color: #adf;
-        pointer-events: none;
+        cursor: ew-resize;
       }
 
       p {
@@ -500,6 +501,16 @@
         border: 0;
         background: gray;
         border-radius: 4px;
+
+        // TODO
+        option {
+          border: 1px solid #ccc;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      code {
+        line-height: 1.6;
       }
     }
 
@@ -610,6 +621,13 @@
       border: 1px solid transparent;
       display: inline-block;
       max-width: 100%;
+
+      &:focus,
+      &:hover {
+        .tiny-image__resize {
+          display: initial;
+        }
+      }
     }
 
     &__handle {
@@ -621,6 +639,7 @@
     }
 
     &__resize {
+      display: none;
       border: 2px solid var(--ti-base-color-brand-7);
       left: 0;
       position: absolute;
