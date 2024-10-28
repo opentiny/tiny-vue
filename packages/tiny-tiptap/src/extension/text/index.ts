@@ -10,8 +10,20 @@ import {
   IconRichTextAlignCenter,
   IconRichTextAlignRight,
   IconRichTextFormatClear,
+  iconRichTextQuoteText,
+  iconRichTextCodeView,
+  IconRichTextSubscript,
+  IconRichTextSuperscript,
 } from '@opentiny/vue-icon'
 import TiptapText from '@tiptap/extension-text'
+import Bold from '../bold'
+import Strike from '../strike'
+import Underline from '../underline'
+import Italic from '../italic'
+import Blockquote from '../blockquote'
+import Code from '../code'
+import Subscript from '../subscript'
+import Supscript from '../supscript'
 
 import CodeBlock from '../code-block'
 import Table from '../table'
@@ -106,7 +118,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               icon: iconRichTextBold(),
               priority: 10,
               isActive: ({ editor }: { editor: Editor }) => {
-                return () => editor.isActive('bold')
+                return () => editor.isActive(Bold.name)
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleBold().run()
@@ -116,7 +128,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               icon: iconRichTextStrikeThrough(),
               priority: 20,
               isActive: ({ editor }: { editor: Editor }) => {
-                return () => editor.isActive('strike')
+                return () => editor.isActive(Strike.name)
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleStrike().run()
@@ -126,7 +138,7 @@ const Text = TiptapText.extend<ExtensionOptions>({
               icon: iconRichTextItalic(),
               priority: 20,
               isActive: ({ editor }: { editor: Editor }) => {
-                return () => editor.isActive('italic')
+                return () => editor.isActive(Italic.name)
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleItalic().run()
@@ -136,10 +148,57 @@ const Text = TiptapText.extend<ExtensionOptions>({
               icon: iconRichTextUnderline(),
               priority: 30,
               isActive: ({ editor }: { editor: Editor }) => {
-                return () => editor.isActive('underline')
+                return () => editor.isActive(Underline.name)
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().toggleUnderline().run()
+              },
+            },
+            {
+              icon: iconRichTextQuoteText(),
+              priority: 40,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive(Blockquote.name)
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().toggleBlockquote().run()
+              },
+            },
+            {
+              icon: iconRichTextCodeView(),
+              priority: 50,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive(Code.name)
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().toggleCode().run()
+              },
+            },
+            {
+              icon: IconRichTextSubscript(),
+              priority: 60,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive(Subscript.name)
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().toggleSubscript().run()
+              },
+            },
+            {
+              icon: IconRichTextSuperscript(),
+              priority: 70,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive(Supscript.name)
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().toggleSuperscript().run()
+              },
+            },
+            {
+              icon: IconRichTextFormatClear(),
+              priority: 0,
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().unsetAllMarks().run()
               },
             },
           ],
