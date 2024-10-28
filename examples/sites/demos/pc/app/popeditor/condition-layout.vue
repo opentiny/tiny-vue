@@ -27,7 +27,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -51,16 +51,11 @@ export default {
       },
       conditions: [
         {
-          label: '公司名',
-          field: 'name',
-          span: 12,
-          labelWidth: '160px',
-          attrs: { clearable: true }
-        },
-        {
           label: '城市',
           field: 'city',
+          labelWidth: '50px',
           component: hooks.markRaw(Select),
+          labelPosition: 'left',
           attrs: {
             options: [
               { label: '福州', value: 'fz' },
@@ -69,7 +64,13 @@ export default {
           },
           span: 6
         },
-        { label: '员工', field: 'employees', component: hooks.markRaw(Numeric) }
+        {
+          label: '员工',
+          field: 'employees',
+          span: 6,
+          labelWidth: '50px',
+          component: hooks.markRaw(Numeric)
+        }
       ]
     }
   },

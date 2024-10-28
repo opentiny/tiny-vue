@@ -19,7 +19,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
