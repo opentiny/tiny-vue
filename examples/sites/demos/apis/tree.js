@@ -324,6 +324,17 @@ export default {
           pcDemo: 'node-hl'
         },
         {
+          name: 'node-height',
+          type: 'nunmber',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '触发树的虚拟滚动功能所需的节点高度，单位为像素',
+            'en-US': 'Node height in pixels required to trigger the virtual scrolling function of the tree'
+          },
+          mode: ['pc'],
+          pcDemo: 'virtual-tree'
+        },
+        {
           name: 'only-check-children',
           type: 'Boolean',
           defaultValue: 'false',
@@ -467,6 +478,18 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'tree-height',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '实现虚拟滚动功能的树组件需要显式设置高度属性',
+            'en-US':
+              'Tree components that implement virtual scrolling require the height property to be explicitly set.'
+          },
+          mode: ['pc'],
+          pcDemo: 'virtual-tree'
         },
         {
           name: 'view-type',
