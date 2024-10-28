@@ -119,7 +119,7 @@ export default {
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'Show bottom or not',
+          pcDemo: 'footer-slot',
           mfDemo: ''
         },
         {

@@ -27,6 +27,7 @@ export default {
   methods: {
     openDrawer0() {
       this.visible = true
+      this.width = '900px'
     },
     openDrawer1() {
       this.width = '700px'

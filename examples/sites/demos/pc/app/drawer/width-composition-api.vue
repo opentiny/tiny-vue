@@ -19,6 +19,7 @@ const width = ref('900px')
 
 function openDrawer0() {
   visible.value = true
+  width.value = '900px'
 }
 
 function openDrawer1() {
