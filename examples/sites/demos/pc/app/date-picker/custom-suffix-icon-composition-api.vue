@@ -19,6 +19,6 @@ const IconMinus = iconMinus()
 }
 
 .my-date-picker {
-  background: #ddd;
+  background: #f0f0f0;
 }
 </style>
