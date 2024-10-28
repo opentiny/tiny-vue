@@ -6,19 +6,18 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'customToolBar',
-          type: 'Array',
+          name: 'custom-tool-bar',
+          type: `(bold | italic | underline | strike | quote | code | codeBlock | unorderedlist | orderedlist | taskList | subscript | superscript | undo | redo | left | center | right | h-box | font-size | line-height | highlight | color | backgroundColor | formatClear | link | unlink | img | table)[]`,
           defaultValue: '[]',
           desc: {
-            'zh-CN':
-              "传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。可配置的项目有：'bold','italic', 'underline', 'strike', 'quote', 'code', 'codeBlock', 'unorderedlist', 'orderedlist', 'taskList', 'subscript', 'superscript', 'undo', 'redo', 'left', 'center', 'right', 'h-box', 'font-size', 'line-height', 'highlight', 'color', 'backgroundColor', 'formatClear', 'link', 'unlink', 'img', 'table'",
+            'zh-CN': '传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。',
             'en-US': 'Pass in the toolbar button configuration that needs to be displayed, and customize the use'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
         },
         {
-          name: 'modelValue',
+          name: 'model-value',
           type: 'string',
           defaultValue: '',
           desc: {
@@ -41,7 +40,7 @@ export default {
         },
         {
           name: 'placeholder',
-          type: 'Stirng',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '占位符，在v-model为空时展示',
@@ -53,7 +52,7 @@ export default {
       ],
       events: [
         {
-          name: 'beforeCreate',
+          name: 'before-create',
           defaultValue: '',
           desc: {
             'zh-CN': '当编辑器视图创造之前，将会触发该事件',
@@ -103,7 +102,7 @@ export default {
           pcDemo: 'base'
         },
         {
-          name: 'selectionUpdate',
+          name: 'selection-update',
           defaultValue: '',
           desc: {
             'zh-CN': '当编辑器选区改变，将会触发该事件',
@@ -136,11 +135,11 @@ export default {
       methods: [],
       slots: [
         {
-          name: 'toolBar',
+          name: 'tool-bar',
           defaultValue: '',
           desc: {
-            'zh-CN': 'toolBar添加按钮,会传出editor实例，详情见tiptap',
-            'en-US': 'toolBar Add Button'
+            'zh-CN': 'tool-bar 添加按钮,会传出 editor 实例，详情见 tiptap',
+            'en-US': 'tool-bar Add Button'
           },
           mode: ['pc'],
           pcDemo: 'custom-search-types'
