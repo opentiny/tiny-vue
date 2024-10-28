@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal
+    TinyButton,
+    TinyModal
   },
   data() {
     return {
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '窗口内容', title: '自定义弹窗标题', showHeader: true, showFooter: true })
+      TinyModal.alert({ message: '窗口内容', title: '自定义弹窗标题', showHeader: true, showFooter: true })
     },
     openModal() {
       this.show = true

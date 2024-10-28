@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { DialogSelect as TinyDialogSelect, Button as TinyButton } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import Sortable from 'sortablejs'
 

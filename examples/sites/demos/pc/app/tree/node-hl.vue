@@ -17,12 +17,12 @@
 </template>
 
 <script lang="jsx">
-import { Tree, Button } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyButton: Button
+    TinyTree,
+    TinyButton
   },
   data() {
     return {

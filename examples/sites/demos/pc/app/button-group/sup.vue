@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import { ButtonGroup } from '@opentiny/vue'
-import { Tag } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 import { iconSearch, iconPlusCircle } from '@opentiny/vue-icon'
 
 const IconPlusCircle = iconPlusCircle()
 export default {
   components: {
-    TinyTag: Tag,
-    TinyButtonGroup: ButtonGroup,
+    TinyTag,
+    TinyButtonGroup,
     IconPlusCircle
   },
   data() {

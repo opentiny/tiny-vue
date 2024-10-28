@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsRing } from '@opentiny/vue'
+import { TinyHuichartsRing } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRing: HuichartsRing
+    TinyRing: TinyHuichartsRing
   },
   data() {
     return {

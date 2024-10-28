@@ -36,7 +36,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree, RadioGroup as TinyRadioGroup, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyTree, TinyRadioGroup, TinyRadio } from '@opentiny/vue'
 
 const showLine = ref('hide')
 const size = ref('medium')

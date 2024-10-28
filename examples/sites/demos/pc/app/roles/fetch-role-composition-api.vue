@@ -4,14 +4,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Roles as TinyRoles, Modal } from '@opentiny/vue'
+import { TinyRoles, TinyModal } from '@opentiny/vue'
 
 const roleId = ref('')
 const env = ref({})
 const services = ref({
   fetchRole: handleFetchRole,
-  getEnvInfoSync: getEnvInfoSync,
-  getCustomized: getCustomized
+  getEnvInfoSync,
+  getCustomized
 })
 
 function handleFetchRole() {
@@ -166,6 +166,6 @@ function changeRole(roleIdNumber) {
   /* 选中值发生变化时触发 */
   roleId.value = roleIdNumber
 
-  Modal.message(`当前选中的角色id是${roleIdNumber}`)
+  TinyModal.message(`当前选中的角色id是${roleIdNumber}`)
 }
 </script>

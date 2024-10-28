@@ -44,12 +44,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import {
-  DialogSelect as TinyDialogSelect,
-  Button as TinyButton,
-  Search as TinySearch,
-  Select as TinySelect
-} from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 // 模拟服务侧数据
@@ -112,8 +107,7 @@ const state = reactive({
       { field: 'province', title: '省份', width: 80 },
       { field: 'city', title: '城市', width: 80 }
     ],
-    data: [],
-    // 多选时生效
+    data: [], // 多选时生效
     selectConfig: {
       reserve: true,
       checkRowKeys: ['1', '6']

@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { Link } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 import { iconEdit } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyLink: Link
+    TinyLink
   },
   data() {
     return {

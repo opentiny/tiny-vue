@@ -15,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem, Modal } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyModal } from '@opentiny/vue'
 
 const Tabs = ref([
   {
@@ -32,7 +32,7 @@ const Tabs = ref([
 const tabIndex = ref(2)
 
 function handleAdd() {
-  Modal.message({
+  TinyModal.message({
     message: '动态增加 Tab ++',
     status: 'success'
   })

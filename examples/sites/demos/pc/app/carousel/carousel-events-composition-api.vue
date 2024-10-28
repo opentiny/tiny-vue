@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem } from '@opentiny/vue'
 
 const curValue = ref(0)
 const preValue = ref(0)

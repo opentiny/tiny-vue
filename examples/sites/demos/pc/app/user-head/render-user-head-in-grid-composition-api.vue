@@ -23,7 +23,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, UserHead } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyUserHead } from '@opentiny/vue'
 
 const mockData = [
   {
@@ -91,6 +91,7 @@ const mockData = [
     employees: 540
   }
 ]
+
 const tableData = ref(mockData)
 
 function checkboxEdit(h, { row, column }) {
@@ -106,7 +107,7 @@ function checkboxEdit(h, { row, column }) {
 }
 
 function renderUserHead(h, { row }) {
-  const UserHeadImg = UserHead
+  const UserHeadImg = TinyUserHead
 
   return (
     <span>

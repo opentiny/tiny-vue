@@ -21,13 +21,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Modal as TinyModal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     const validRules = {

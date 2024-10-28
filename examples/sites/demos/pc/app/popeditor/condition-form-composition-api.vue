@@ -41,14 +41,14 @@
 <script setup>
 import { ref } from 'vue'
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  Modal,
-  CheckboxGroup as TinyCheckboxGroup,
-  Popeditor as TinyPopeditor
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyCheckboxGroup,
+  TinyPopeditor
 } from '@opentiny/vue'
 
 const dataset = [
@@ -113,6 +113,7 @@ const dataset = [
     city: '深圳'
   }
 ]
+
 const options = ref([
   { label: '45', text: '很好' },
   { label: '46', text: '一般' }
@@ -171,7 +172,7 @@ function reset() {
 function handleSubmit() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.alert('提交成功')
+      TinyModal.alert('提交成功')
     }
   })
 }

@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect, Option as TinyOption, Modal } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 const options = ref([
   { value: '选项1', label: '北京' },
@@ -49,49 +49,49 @@ const value1 = ref('')
 const value2 = ref([])
 
 const change = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 change 事件',
     status: 'info'
   })
 }
 
 const clear = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 clear 事件',
     status: 'info'
   })
 }
 
 const focus = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 focus 事件',
     status: 'info'
   })
 }
 
 const blur = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 blur 事件',
     status: 'info'
   })
 }
 
 const removeTag = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 remove-tag 事件',
     status: 'info'
   })
 }
 
 const visibleChange = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 visible-change 事件',
     status: 'info'
   })
 }
 
 const dropdownClick = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 dropdown-click 事件',
     status: 'info'
   })

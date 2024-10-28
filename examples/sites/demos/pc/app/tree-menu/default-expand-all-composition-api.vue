@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const expandeArr = ref([302])
 const treeData = ref([

@@ -16,7 +16,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -66,7 +66,7 @@ const tableData = ref([
 function beforeOpenFullScreen() {
   let doAction = true
 
-  Modal.message({
+  TinyModal.message({
     message: doAction ? '不阻止全屏' : '阻止全屏',
     status: 'info'
   })
@@ -77,7 +77,7 @@ function beforeOpenFullScreen() {
 function beforeCloseFullScreen() {
   let doAction = true
 
-  Modal.message({
+  TinyModal.message({
     message: doAction ? '不阻止退出全屏' : '阻止退出全屏',
     status: 'info'
   })
@@ -86,7 +86,7 @@ function beforeCloseFullScreen() {
 }
 
 function onFullscreen(isFull) {
-  Modal.message({
+  TinyModal.message({
     message: isFull ? '全屏了' : '关闭全屏了',
     status: 'info'
   })

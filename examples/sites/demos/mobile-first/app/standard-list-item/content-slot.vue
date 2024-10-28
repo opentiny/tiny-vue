@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { StandardListItem } from '@opentiny/vue'
+import { TinyStandardListItem } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyStandardListItem: StandardListItem
+    TinyStandardListItem
   },
   data() {
     return {

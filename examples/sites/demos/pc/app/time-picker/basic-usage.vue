@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { TimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker
+    TinyTimePicker
   },
   data() {
     return {

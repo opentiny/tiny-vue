@@ -31,13 +31,13 @@
 
 <script>
 import { HighlightQuery } from '@opentiny/vue-directive'
-import { Input, Button } from '@opentiny/vue'
+import { TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   directives: { HighlightQuery },
   components: {
-    TinyInput: Input,
-    TinyButton: Button
+    TinyInput,
+    TinyButton
   },
   data() {
     return {

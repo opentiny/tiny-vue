@@ -7,11 +7,11 @@
 </template>
 
 <script lang="jsx">
-import { Locales } from '@opentiny/vue'
+import { TinyLocales } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLocales: Locales
+    TinyLocales
   },
   methods: {
     getLocale() {

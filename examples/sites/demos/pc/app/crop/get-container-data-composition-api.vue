@@ -8,14 +8,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Crop as TinyCrop, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function getContainerData() {
-  Modal.message({
+  TinyModal.message({
     message: `容器数据：${JSON.stringify(cropRef.value.getContainerData())}`,
     status: 'info'
   })

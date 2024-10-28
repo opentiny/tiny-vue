@@ -101,12 +101,12 @@
 </template>
 
 <script lang="jsx">
-import { Exception, Button } from '@opentiny/vue'
+import { TinyException, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyException: Exception
+    TinyButton,
+    TinyException
   },
   data() {
     return {

@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import { Steps, Popover } from '@opentiny/vue'
+import { TinySteps, TinyPopover } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinySteps: Steps
+    TinyPopover,
+    TinySteps
   },
   data() {
     return {

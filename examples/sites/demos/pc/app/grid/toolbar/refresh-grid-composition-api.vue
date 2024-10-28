@@ -17,20 +17,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Pager,
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  GridToolbar as TinyGridToolbar,
-  Button as TinyButton
-} from '@opentiny/vue'
+import { TinyPager, TinyGrid, TinyGridColumn, TinyGridToolbar, TinyButton } from '@opentiny/vue'
 
 const loading = ref(true)
 
 const grid = ref('grid')
 
 const pagerConfig = {
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 5,

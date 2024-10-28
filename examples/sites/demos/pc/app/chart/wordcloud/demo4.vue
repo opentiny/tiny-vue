@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsWordcloud } from '@opentiny/vue'
+import { TinyHuichartsWordcloud } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWordcloud: HuichartsWordcloud
+    TinyWordcloud: TinyHuichartsWordcloud
   },
   data() {
     return {
@@ -19,7 +19,6 @@ export default {
 
         // 字体大小范围，默认值[16,64]
         sizeRange: [14, 60],
-
         // 文字旋转角度范围，默认[0,0]
         rotationStep: 45,
         data: [

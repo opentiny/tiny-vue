@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete, Modal } from '@opentiny/vue'
+import { TinyAutocomplete, TinyModal } from '@opentiny/vue'
 
 const restaurants = ref([])
 const value = ref('')
@@ -64,7 +64,7 @@ function loadAll() {
 function handleSelect(item) {
   if (item instanceof Event) return
 
-  Modal.message({
+  TinyModal.message({
     message: `当前选择：${JSON.stringify(item)}`,
     status: 'info'
   })

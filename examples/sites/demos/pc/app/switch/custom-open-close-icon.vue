@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Switch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 import { IconArrowLeft, IconArrowRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySwitch: Switch,
+    TinySwitch,
     TinyIconArrowLeft: IconArrowLeft(),
     TinyIconArrowRight: IconArrowRight()
   }

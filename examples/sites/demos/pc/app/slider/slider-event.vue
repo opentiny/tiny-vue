@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Slider, Notify } from '@opentiny/vue'
+import { TinySlider, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySlider: Slider
+    TinySlider
   },
   data() {
     return {
@@ -16,21 +16,21 @@ export default {
   },
   methods: {
     start(val) {
-      Notify({
+      TinyNotify({
         title: '触发开始滑动事件',
         message: `${JSON.stringify(val)}`,
         offset: 100
       })
     },
     change(val) {
-      Notify({
+      TinyNotify({
         title: '触发change事件',
         message: `改变值为${val}`,
         offset: 100
       })
     },
     stop(val) {
-      Notify({
+      TinyNotify({
         title: '触发停止滑动事件',
         message: `停止后值为${val}`,
         offset: 150

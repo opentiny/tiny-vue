@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { Cascader } from '@opentiny/vue'
+import { TinyCascader } from '@opentiny/vue'
 import { iconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCascader: Cascader,
+    TinyCascader,
     TinyIconFilletExternalLink: iconFilletExternalLink()
   },
   data() {

@@ -14,11 +14,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Currency as TinyCurrency, Modal } from '@opentiny/vue'
+import { TinyCurrency, TinyModal } from '@opentiny/vue'
 
 const value = ref('CNY')
 
 const change = (value) => {
-  Modal.message({ message: `当前值为 ${value}`, status: 'info' })
+  TinyModal.message({ message: `当前值为 ${value}`, status: 'info' })
 }
 </script>

@@ -16,12 +16,12 @@
 </template>
 
 <script lang="jsx">
-import { Floatbar, Button } from '@opentiny/vue'
+import { TinyFloatbar, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFloatbar: Floatbar,
-    TinyButton: Button
+    TinyFloatbar,
+    TinyButton
   },
   data() {
     return {

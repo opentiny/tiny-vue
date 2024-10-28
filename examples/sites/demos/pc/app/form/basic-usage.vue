@@ -31,29 +31,29 @@
 
 <script>
 import {
-  Form,
-  FormItem,
-  Numeric,
-  Radio,
-  DatePicker,
-  DropTimes,
-  Tooltip,
-  Input,
-  Button,
-  Modal as TinyModal
+  TinyForm,
+  TinyFormItem,
+  TinyNumeric,
+  TinyRadio,
+  TinyDatePicker,
+  TinyDropTimes,
+  TinyTooltip,
+  TinyInput,
+  TinyButton,
+  TinyModal
 } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio,
-    TinyDatePicker: DatePicker,
-    TinyDropTimes: DropTimes,
-    TinyTooltip: Tooltip,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyNumeric,
+    TinyRadio,
+    TinyDatePicker,
+    TinyDropTimes,
+    TinyTooltip,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {

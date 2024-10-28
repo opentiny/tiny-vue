@@ -21,13 +21,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import { IconDel, IconCopy } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -55,6 +55,7 @@ export default {
           }
         ]
       ],
+
       tableData: [
         {
           id: '1',
@@ -165,13 +166,13 @@ export default {
       return true
     },
     cellContextMenuEvent({ row }) {
-      Modal.message({ message: `${row.id}`, status: 'info' })
+      TinyModal.message({ message: `${row.id}`, status: 'info' })
     },
     contextMenuClickEvent({ menu, row, column }) {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            Modal.message({ message: `${row.id}`, status: 'info' })
+            TinyModal.message({ message: `${row.id}`, status: 'info' })
           }
           break
         default:

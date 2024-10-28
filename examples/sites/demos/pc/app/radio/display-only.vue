@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { Radio, RadioGroup } from '@opentiny/vue'
+import { TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const validRules = {
   name: [
@@ -51,8 +51,8 @@ const validRules = {
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     asteriskMethod({ column }) {

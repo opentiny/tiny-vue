@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsLiquidfill } from '@opentiny/vue'
+import { TinyHuichartsLiquidfill } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLiquidfill: HuichartsLiquidfill
+    TinyLiquidfill: TinyHuichartsLiquidfill
   },
   data() {
     return {

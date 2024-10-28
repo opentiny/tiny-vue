@@ -9,12 +9,12 @@
 </template>
 
 <script lang="jsx">
-import { Milestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 import { IconShare, IconYes, IconDel, IconAscending, IconWriting } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
+    TinyMilestone,
     IconShare: IconShare(),
     IconYes: IconYes(),
     IconDel: IconDel(),

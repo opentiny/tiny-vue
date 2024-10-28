@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 function btnClick() {
-  Modal.confirm({
+  TinyModal.confirm({
     status: 'info',
     message: '自定义消息的内容可关闭,5s 后得自动关闭',
     messageClosable: true,

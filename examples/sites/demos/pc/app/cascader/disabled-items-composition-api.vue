@@ -4,9 +4,10 @@
     <tiny-cascader :options="optionsDis" disabled></tiny-cascader>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue'
-import { Cascader as TinyCascader } from '@opentiny/vue'
+import { TinyCascader } from '@opentiny/vue'
 
 const optionsDis = ref([
   {

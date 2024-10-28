@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 const selectConfig = ref({
   checkMethod({ rowIndex }) {

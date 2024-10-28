@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-unused-vars -->
 <template>
   <div class="slot-demo">
     <div>
@@ -41,15 +40,15 @@
 </template>
 
 <script lang="jsx">
-import { Tree, Link, Button } from '@opentiny/vue'
+import { TinyTree, TinyLink, TinyButton } from '@opentiny/vue'
 import { iconPlusSquare } from '@opentiny/vue-icon'
 
 const TinyIconPlusSquare = iconPlusSquare()
 export default {
   components: {
-    TinyTree: Tree,
-    TinyLink: Link,
-    TinyButton: Button
+    TinyTree,
+    TinyLink,
+    TinyButton
   },
   data() {
     return {

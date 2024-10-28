@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const text = ref('')
 const password = ref('')
@@ -38,7 +38,6 @@ const datetime = ref('')
 const time = ref('')
 const file = ref('')
 const range = ref('')
-
 </script>
 
 <style scoped>

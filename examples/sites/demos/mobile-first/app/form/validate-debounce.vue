@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -44,12 +44,12 @@ export default {
     handleSubmit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          Modal.message('提交成功')
+          TinyModal.message('提交成功')
         }
       })
     },
     validateUser(rule, value, callback) {
-      Modal.message('开始校验')
+      TinyModal.message('开始校验')
       /**
        * 模拟异步校验
        * 如果validate-debounce为false，在连续输入的情况下，这里会创建很多校验请求
@@ -57,10 +57,10 @@ export default {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           if (value && value.length > 30) {
-            Modal.message('校验成功')
+            TinyModal.message('校验成功')
             resolve()
           } else {
-            Modal.message('校验失败')
+            TinyModal.message('校验失败')
             reject(new Error('The length must be greater than 30 characters.'))
           }
         }, 300)

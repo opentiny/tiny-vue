@@ -37,16 +37,16 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Select } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Select,
+      TinySelect,
       options: [
         { name: '华中区', id: '1' },
         { name: '华东区', id: '2' },

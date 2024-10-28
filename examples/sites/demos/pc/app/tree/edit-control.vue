@@ -26,12 +26,12 @@
 </template>
 
 <script>
-import { Tree, Button, Modal } from '@opentiny/vue'
+import { TinyTree, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyButton: Button
+    TinyTree,
+    TinyButton
   },
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
 
       // 方式 2：返回 Promise 异步
       return new Promise((resolve) => {
-        Modal.confirm({
+        TinyModal.confirm({
           title: 'deleteNodeMethod 钩子函数',
           status: 'info',
           message: '您确定要删除数据吗？',

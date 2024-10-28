@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Popeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     return {
@@ -120,6 +120,7 @@ export default {
           city: '深圳'
         }
       ]
+
       this.gridOp.data = dataset
     }
   }

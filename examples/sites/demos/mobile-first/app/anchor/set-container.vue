@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import { Anchor, Row, Col } from '@opentiny/vue'
+import { TinyAnchor, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAnchor: Anchor,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyAnchor,
+    TinyRow,
+    TinyCol
   },
   data() {
     return {

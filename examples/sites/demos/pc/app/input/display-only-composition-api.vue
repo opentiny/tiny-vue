@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const input = ref('value 的内容')
 const input1 = ref('value 的内容')

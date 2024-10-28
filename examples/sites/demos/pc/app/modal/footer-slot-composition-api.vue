@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Button as TinyButton, Modal as TinyModal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 </script>

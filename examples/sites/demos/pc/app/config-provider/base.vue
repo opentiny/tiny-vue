@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import { ConfigProvider, Alert, Modal } from '@opentiny/vue'
+import { TinyConfigProvider, TinyAlert, TinyModal } from '@opentiny/vue'
 import { iconWarningTriangle } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyConfigProvider: ConfigProvider,
-    TinyAlert: Alert
+    TinyConfigProvider,
+    TinyAlert
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
         name: 'smb', // 设计规范名称
         version: '1.0.0', // 设计规范版本号
         components: {
-          Alert: {
+          TinyAlert: {
             icons: {
               warning: iconWarningTriangle()
             },
@@ -37,7 +37,7 @@ export default {
               return {
                 handleClose() {
                   state.show = false
-                  Modal.message('触发自定方法')
+                  TinyModal.message('触发自定方法')
                   emit('close')
                 }
               }
@@ -49,5 +49,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

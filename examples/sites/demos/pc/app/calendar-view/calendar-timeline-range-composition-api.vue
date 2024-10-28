@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CalendarView as TinyCalendarView } from '@opentiny/vue'
+import { TinyCalendarView } from '@opentiny/vue'
 
 const eventslist = ref([
   {

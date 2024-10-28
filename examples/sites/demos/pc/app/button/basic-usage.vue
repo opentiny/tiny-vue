@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import { Button, Layout, Row } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
 import { IconDeleteL, IconYes, IconEditor, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyLayout: Layout,
-    TinyRow: Row
+    TinyButton,
+    TinyLayout,
+    TinyRow
   },
   data() {
     return {

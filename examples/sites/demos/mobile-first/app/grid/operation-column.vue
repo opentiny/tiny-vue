@@ -15,22 +15,22 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal, Radio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyRadio } from '@opentiny/vue'
 import { IconAreaChart, IconBarChart, IconDotChart, IconLineChart, IconPieChart } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio
   },
   methods: {
     clickHandler(e, { row, buttonConfig }) {
-      Modal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
+      TinyModal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
       row.flag = !row.flag
     },
     clickHandler2(e, { row, buttonConfig }) {
-      Modal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
+      TinyModal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
     }
   },
   data() {

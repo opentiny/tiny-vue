@@ -25,12 +25,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
         isTab: true, // 是否开启 Tab 键功能，默认false
         isEdit: true, // 是否开启任意键进入编辑（功能键除外），默认false
         editMethod({ seq }) {
-          Modal.message({ message: `seq: ${seq}`, status: 'info' })
+          TinyModal.message({ message: `seq: ${seq}`, status: 'info' })
         }
       },
       options: [

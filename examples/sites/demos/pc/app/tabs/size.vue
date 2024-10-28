@@ -13,24 +13,24 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName: '1',
-      Tabs: []
+      TinyTabs: []
     }
   },
   created() {
     // 创建tabs
     for (let i = 1; i < 5; i++) {
       const title = `Tab ${i}`
-      this.Tabs.push({
+      this.TinyTabs.push({
         title,
         name: i + '',
         content: `${title} content `

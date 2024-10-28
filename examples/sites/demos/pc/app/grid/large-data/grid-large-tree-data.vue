@@ -125,7 +125,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, DatePicker } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDatePicker } from '@opentiny/vue'
 
 const template = {
   id: '0',
@@ -195,12 +195,12 @@ const buildDatas = () => {
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      DatePicker,
+      TinyDatePicker,
       tableData: buildDatas()
     }
   },

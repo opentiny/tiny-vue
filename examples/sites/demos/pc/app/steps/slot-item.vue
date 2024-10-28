@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { Steps } from '@opentiny/vue'
+import { TinySteps } from '@opentiny/vue'
 import { IconYes, IconClose } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySteps: Steps
+    TinySteps
   },
   data() {
     return {

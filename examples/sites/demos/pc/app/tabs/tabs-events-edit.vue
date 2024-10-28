@@ -7,17 +7,17 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName: 'first',
-      Tabs: [
+      TinyTabs: [
         {
           title: '表单组件',
           name: 'first',

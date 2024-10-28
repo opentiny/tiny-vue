@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsSankey } from '@opentiny/vue'
+import { TinyHuichartsSankey } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySankey: HuichartsSankey
+    TinySankey: TinyHuichartsSankey
   },
   data() {
     return {
@@ -19,7 +19,6 @@ export default {
 
         // widthSpace, 自定义节点矩形宽度及每列间距, 默认[10, 30]
         widthSpace: [10, 30],
-
         // value: 传递的数据值,与连接带的高度大小正相关
         sortType: 'unset', // 设置数据的排序方式 ascend decline
         emptyStatus: 'node', // 空节点的展示状态 churnBar

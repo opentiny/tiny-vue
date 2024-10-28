@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyAnchor, TinySwitch } from '@opentiny/vue'
 
 const isAffix = ref(false)
 const links = ref([

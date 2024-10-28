@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 
 const fetchData = ref({
   api: getData

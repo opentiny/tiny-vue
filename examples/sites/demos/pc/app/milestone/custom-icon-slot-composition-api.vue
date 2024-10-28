@@ -10,7 +10,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 import { iconShare, iconYes, iconDel, iconAscending, iconWriting } from '@opentiny/vue-icon'
 
 // 里程碑样式

@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const radioValue = ref(false)

@@ -52,14 +52,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Select as TinySelect,
-  Option as TinyOption,
-  Input as TinyInput,
-  Button as TinyButton,
-  DialogBox as TinyDialogBox,
-  Modal
-} from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyInput, TinyButton, TinyDialogBox, TinyModal } from '@opentiny/vue'
 
 const options = ref([
   { value: '选项1', label: '北京' },
@@ -83,7 +76,7 @@ const handleAddOption = () => {
 
 const handleConfirm = () => {
   if (!optionLabel.value || !optionValue.value) {
-    Modal.message({ message: '选项不能为空！', status: 'warning' })
+    TinyModal.message({ message: '选项不能为空！', status: 'warning' })
     return
   }
   boxVisibility.value = false

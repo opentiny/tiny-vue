@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
       activeName: 'f1',
       activeName2: 'ss1',
       showTab: true,
-      Tabs: [
+      TinyTabs: [
         {
           title: '表单组件',
           name: 'f1',
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     close(name) {
-      this.Tabs = this.Tabs.filter((tab) => {
+      this.TinyTabs = this.TinyTabs.filter((tab) => {
         return tab.name !== name
       })
     }

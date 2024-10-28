@@ -7,12 +7,12 @@
 </template>
 
 <script lang="jsx">
-import { Checkbox, CheckboxGroup } from '@opentiny/vue'
+import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckbox: Checkbox,
-    TinyCheckboxGroup: CheckboxGroup
+    TinyCheckbox,
+    TinyCheckboxGroup
   },
   data() {
     return {

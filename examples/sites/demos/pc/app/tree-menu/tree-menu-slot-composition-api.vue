@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 import { iconApp, iconCustom, iconText, iconTotal } from '@opentiny/vue-icon'
 
 const icons = ref({

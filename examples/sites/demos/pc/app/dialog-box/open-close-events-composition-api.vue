@@ -25,14 +25,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Button as TinyButton,
-  DialogBox as TinyDialogBox,
-  Notify,
-  Input as TinyInput,
-  Form as TinyForm,
-  FormItem as TinyFormItem
-} from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyNotify, TinyInput, TinyForm, TinyFormItem } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
 
@@ -41,7 +34,7 @@ const createData = ref({
 })
 
 function open() {
-  Notify({
+  TinyNotify({
     title: '窗口弹出',
     message: getTime(new Date()),
     offset: 0
@@ -49,7 +42,7 @@ function open() {
 }
 
 function opened() {
-  Notify({
+  TinyNotify({
     title: '窗口弹出动画完成',
     message: getTime(new Date()),
     offset: 0
@@ -57,7 +50,7 @@ function opened() {
 }
 
 function close() {
-  Notify({
+  TinyNotify({
     title: '窗口关闭',
     message: getTime(new Date()),
     offset: 0
@@ -65,7 +58,7 @@ function close() {
 }
 
 function closed() {
-  Notify({
+  TinyNotify({
     title: '窗口关闭动画完成',
     message: getTime(new Date()),
     offset: 0

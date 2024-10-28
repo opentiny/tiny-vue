@@ -6,20 +6,20 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker, Modal } from '@opentiny/vue'
+import { TinyTimePicker, TinyModal } from '@opentiny/vue'
 
 const value1 = ref(new Date(2016, 9, 10, 18, 40))
 
 function blur() {
-  Modal.message({ message: 'blur事件', status: 'info' })
+  TinyModal.message({ message: 'blur事件', status: 'info' })
 }
 
 function change() {
-  Modal.message({ message: 'change事件', status: 'info' })
+  TinyModal.message({ message: 'change事件', status: 'info' })
 }
 
 function focus() {
-  Modal.message({ message: 'focus事件', status: 'info' })
+  TinyModal.message({ message: 'focus事件', status: 'info' })
 }
 </script>
 

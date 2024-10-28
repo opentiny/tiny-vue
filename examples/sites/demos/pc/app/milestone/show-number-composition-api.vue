@@ -14,7 +14,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone, Button as TinyButton } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 const showNum = ref(true)
 const statusMap = ref({

@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import { Grid, GridColumn, GridToolbar, Tabs, TabItem } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar,
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar,
+    TinyTabs,
+    TinyTabItem
   },
   provide() {
-    return { 'TinyMode': 'mobile-first' }
+    return { TinyMode: 'mobile-first' }
   },
   data() {
     return {

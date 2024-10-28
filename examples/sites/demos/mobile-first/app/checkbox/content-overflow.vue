@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { Checkbox, Tooltip } from '@opentiny/vue'
+import { TinyCheckbox, TinyTooltip } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckbox: Checkbox,
-    TinyTooltip: Tooltip
+    TinyCheckbox,
+    TinyTooltip
   },
   data() {
     return {

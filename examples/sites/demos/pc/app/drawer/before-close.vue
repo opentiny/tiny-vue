@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
       this.$refs.drawer.close(true)
     },
     onBeforeClose(type) {
-      Modal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
+      TinyModal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
       return false
     }
   }

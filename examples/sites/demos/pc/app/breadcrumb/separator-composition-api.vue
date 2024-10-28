@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem } from '@opentiny/vue'
 import { iconBoat } from '@opentiny/vue-icon'
 
 const IconBoat = iconBoat()

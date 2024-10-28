@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-import { Alert as TinyAlert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue'
 </script>

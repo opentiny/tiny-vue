@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.message({
+      TinyModal.message({
         status: 'info',
         message: '自定义消息具有唯一 id，所以不会重复出现',
         id: 'unique'

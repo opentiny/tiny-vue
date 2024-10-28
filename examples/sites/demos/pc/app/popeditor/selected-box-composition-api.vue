@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const dataset = [

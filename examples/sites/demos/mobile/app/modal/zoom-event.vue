@@ -10,12 +10,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal
+    TinyButton,
+    TinyModal
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     zoomClick() {
-      Modal.message({ message: '窗口缩放时触发事件', tiny_mode: 'mobile' })
+      TinyModal.message({ message: '窗口缩放时触发事件', tiny_mode: 'mobile' })
     }
   }
 }

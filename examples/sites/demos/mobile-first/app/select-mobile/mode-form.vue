@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { SelectMobile } from '@opentiny/vue'
+import { TinySelectMobile } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelectMobile: SelectMobile
+    TinySelectMobile
   },
   data() {
     const list = [

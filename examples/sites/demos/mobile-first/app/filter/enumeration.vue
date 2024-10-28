@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Filter, Button } from '@opentiny/vue'
+import { TinyFilter, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFilter: Filter,
-    TinyButton: Button
+    TinyFilter,
+    TinyButton
   },
   data() {
     return {

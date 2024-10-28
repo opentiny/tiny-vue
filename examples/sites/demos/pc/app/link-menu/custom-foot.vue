@@ -10,12 +10,12 @@
 </template>
 
 <script lang="jsx">
-import { LinkMenu, Button } from '@opentiny/vue'
+import { TinyLinkMenu, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLinkMenu: LinkMenu,
-    TinyButton: Button
+    TinyLinkMenu,
+    TinyButton
   },
   data() {
     return {

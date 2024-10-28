@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Input, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyRadio } from '@opentiny/vue'
 
 const size = ref('')
 const validRules = ref({

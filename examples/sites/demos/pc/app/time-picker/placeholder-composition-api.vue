@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 const value = ref('')
 const rangeValue = ref(['', ''])

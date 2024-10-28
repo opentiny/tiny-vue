@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Select, Option } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
 
 const MemorizeInstance = new Memorize({ key: 'test456' })
@@ -44,8 +44,8 @@ const options = MemorizeInstance.assemble([
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {

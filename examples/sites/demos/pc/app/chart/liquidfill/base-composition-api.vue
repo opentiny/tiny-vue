@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsLiquidfill as TinyChartLiquidfill } from '@opentiny/vue'
+import { TinyHuichartsLiquidfill as TinyChartLiquidfill } from '@opentiny/vue'
 
 const options = ref({
   label: {

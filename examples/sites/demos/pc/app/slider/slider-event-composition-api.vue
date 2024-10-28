@@ -4,12 +4,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Slider as TinySlider, Notify } from '@opentiny/vue'
+import { TinySlider, TinyNotify } from '@opentiny/vue'
 
 const value = ref(40)
 
 function start(val) {
-  Notify({
+  TinyNotify({
     title: '触发开始滑动事件',
     message: `${JSON.stringify(val)}`,
     offset: 100
@@ -17,7 +17,7 @@ function start(val) {
 }
 
 function change(val) {
-  Notify({
+  TinyNotify({
     title: '触发change事件',
     message: `改变值为${val}`,
     offset: 100
@@ -25,7 +25,7 @@ function change(val) {
 }
 
 function stop(val) {
-  Notify({
+  TinyNotify({
     title: '触发停止滑动事件',
     message: `停止后值为${val}`,
     offset: 150

@@ -13,7 +13,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { FallMenu as TinyFallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 import { iconLeft, iconRight } from '@opentiny/vue-icon'
 
 const dataset = ref([

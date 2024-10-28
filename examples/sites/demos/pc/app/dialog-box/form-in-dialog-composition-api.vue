@@ -48,18 +48,18 @@
 <script setup lang="jsx">
 import { ref, computed } from 'vue'
 import {
-  Button as TinyButton,
-  DialogBox as TinyDialogBox,
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Radio as TinyRadio,
-  RadioGroup as TinyRadioGroup,
-  Checkbox as TinyCheckbox,
-  CheckboxGroup as TinyCheckboxGroup,
-  Notify,
-  Option as TinyOption,
-  Select as TinySelect
+  TinyButton,
+  TinyDialogBox,
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyRadio,
+  TinyRadioGroup,
+  TinyCheckbox,
+  TinyCheckboxGroup,
+  TinyNotify,
+  TinyOption,
+  TinySelect
 } from '@opentiny/vue'
 
 const options = ref([
@@ -108,7 +108,7 @@ function handleSubmit() {
     if (response.status === 200) {
       btnSubmit.value.loading = false
       boxVisibility.value = false
-      Notify({
+      TinyNotify({
         title: '成功',
         message: '表单已成功提交！',
         offset: 0

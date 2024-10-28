@@ -29,7 +29,7 @@
 
 <script setup lang="jsx">
 import { ref, onMounted } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Popeditor } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopeditor } from '@opentiny/vue'
 
 const popeditOptions = ref([])
 const tableData = ref([

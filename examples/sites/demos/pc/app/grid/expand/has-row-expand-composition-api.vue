@@ -33,7 +33,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -73,7 +73,7 @@ const expandGridRef = ref()
 
 function handleExpand({ row, rowIndex }) {
   if (expandGridRef.value.hasRowExpand(row)) {
-    Modal.message({
+    TinyModal.message({
       message: `当前展开行：${JSON.stringify(rowIndex + 1)}`,
       status: 'info'
     })

@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import { Guide, Alert, Button, Divider } from '@opentiny/vue'
+import { TinyGuide, TinyAlert, TinyButton, TinyDivider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGuide: Guide,
-    TinyAlert: Alert,
-    TinyButton: Button,
-    TinyDivider: Divider
+    TinyGuide,
+    TinyAlert,
+    TinyButton,
+    TinyDivider
   },
   data() {
     return {

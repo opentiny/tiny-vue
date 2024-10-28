@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyButton,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

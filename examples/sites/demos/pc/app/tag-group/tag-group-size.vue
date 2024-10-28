@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { TagGroup } from '@opentiny/vue'
+import { TinyTagGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTagGroup: TagGroup
+    TinyTagGroup
   },
   data() {
     return {

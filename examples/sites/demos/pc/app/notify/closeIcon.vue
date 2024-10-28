@@ -5,16 +5,16 @@
 </template>
 
 <script>
-import { Button, Notify } from '@opentiny/vue'
+import { TinyButton, TinyNotify } from '@opentiny/vue'
 import { IconCloseSquare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     baseClick() {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: '通知',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { FileUpload } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue'
 import { iconFileupload } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
+    TinyFileUpload,
     IconFileupload: iconFileupload()
   }
 }

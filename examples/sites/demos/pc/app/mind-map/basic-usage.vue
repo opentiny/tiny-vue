@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { MindMap } from '@opentiny/vue'
+import { TinyMindMap } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMindMap: MindMap
+    TinyMindMap
   }
 }
 </script>

@@ -6,11 +6,11 @@
 </template>
 
 <script lang="jsx">
-import { Currency, Modal } from '@opentiny/vue'
+import { TinyCurrency, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCurrency: Currency
+    TinyCurrency
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     change(value) {
-      Modal.message({ message: `当前值为 ${value}`, status: 'info' })
+      TinyModal.message({ message: `当前值为 ${value}`, status: 'info' })
     }
   }
 }

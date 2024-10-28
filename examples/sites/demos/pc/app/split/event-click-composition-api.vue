@@ -20,15 +20,15 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Split as TinySplit, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 const split1 = ref(0.5)
 
 function leftTopClick() {
-  Modal.message('点击事件1')
+  TinyModal.message('点击事件1')
 }
 function rightBottomClick() {
-  Modal.message('点击事件2')
+  TinyModal.message('点击事件2')
 }
 </script>
 

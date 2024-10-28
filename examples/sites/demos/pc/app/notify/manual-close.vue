@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import { Button, Notify } from '@opentiny/vue'
+import { TinyButton, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     manualCloseClick() {
-      const instance = Notify({
+      const instance = TinyNotify({
         type: 'info',
         title: '通知',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
@@ -28,7 +28,7 @@ export default {
       }, 4000)
     },
     closebyIdClick() {
-      const instance = Notify({
+      const instance = TinyNotify({
         type: 'info',
         title: '通知',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
@@ -37,12 +37,12 @@ export default {
       })
 
       setTimeout(() => {
-        Notify.close(instance.id, () => console.log(`即将关闭 id=${instance.id} 的通知`))
+        TinyNotify.close(instance.id, () => console.log(`即将关闭 id=${instance.id} 的通知`))
       }, 4000)
     },
     closeAllClick() {
       for (let i = 1; i <= 3; i++) {
-        Notify({
+        TinyNotify({
           type: 'info',
           title: '通知' + i,
           message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
@@ -52,7 +52,7 @@ export default {
       }
 
       setTimeout(() => {
-        Notify.closeAll()
+        TinyNotify.closeAll()
       }, 4000)
     }
   }

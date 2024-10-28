@@ -10,11 +10,11 @@
 </template>
 
 <script lang="jsx">
-import { Wizard, Modal } from '@opentiny/vue'
+import { TinyWizard, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWizard: Wizard
+    TinyWizard
   },
   data() {
     return {
@@ -44,16 +44,16 @@ export default {
   },
   methods: {
     handlePrev(datas) {
-      Modal.message('btn-prev' + JSON.stringify(datas))
+      TinyModal.message('btn-prev' + JSON.stringify(datas))
     },
     handleNext(datas) {
-      Modal.message('btn-next' + JSON.stringify(datas))
+      TinyModal.message('btn-next' + JSON.stringify(datas))
     },
     handleSave(datas) {
-      Modal.message('btn-save' + JSON.stringify(datas))
+      TinyModal.message('btn-save' + JSON.stringify(datas))
     },
     handleSubmit(datas) {
-      Modal.message('btn-submit' + JSON.stringify(datas))
+      TinyModal.message('btn-submit' + JSON.stringify(datas))
     }
   }
 }

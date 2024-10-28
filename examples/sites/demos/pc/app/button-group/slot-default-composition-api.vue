@@ -7,5 +7,5 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
+import { TinyButton, TinyButtonGroup } from '@opentiny/vue'
 </script>

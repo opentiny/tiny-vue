@@ -22,19 +22,29 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem, Layout, Form, FormItem, Row, Col, Input, Numeric } from '@opentiny/vue'
+import {
+  TinyCollapse,
+  TinyCollapseItem,
+  TinyLayout,
+  TinyForm,
+  TinyFormItem,
+  TinyRow,
+  TinyCol,
+  TinyInput,
+  TinyNumeric
+} from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem,
-    TinyLayout: Layout,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyInput: Input,
-    TinyNumeric: Numeric
+    TinyCollapse,
+    TinyCollapseItem,
+    TinyLayout,
+    TinyForm,
+    TinyFormItem,
+    TinyRow,
+    TinyCol,
+    TinyInput,
+    TinyNumeric
   },
   data() {
     return {

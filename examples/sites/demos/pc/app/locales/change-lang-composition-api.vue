@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { getCurrentInstance } from 'vue'
-import { Locales as TinyLocales } from '@opentiny/vue'
+import { TinyLocales } from '@opentiny/vue'
 
 const instance = getCurrentInstance()
 const i18n = instance.appContext.config.globalProperties.$i18n

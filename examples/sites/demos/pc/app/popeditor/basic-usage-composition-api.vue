@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 const dataset = [
   {
@@ -74,6 +74,7 @@ const dataset = [
     city: '深圳'
   }
 ]
+
 const value = ref('')
 const gridOp = ref({
   columns: [

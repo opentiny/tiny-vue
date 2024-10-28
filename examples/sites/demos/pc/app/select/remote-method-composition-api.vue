@@ -104,7 +104,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Select as TinySelect, Option as TinyOption, Button as TinyButton } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyButton } from '@opentiny/vue'
 
 const loading1 = ref(false)
 const loading2 = ref(false)

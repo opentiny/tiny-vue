@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 import { iconShare } from '@opentiny/vue-icon'
 
 const options = ref([

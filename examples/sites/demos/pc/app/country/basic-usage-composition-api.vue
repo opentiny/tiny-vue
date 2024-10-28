@@ -7,12 +7,12 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Country as TinyCountry, Modal } from '@opentiny/vue'
+import { TinyCountry, TinyModal } from '@opentiny/vue'
 
 const value = ref('')
 
 function change(value) {
-  Modal.message({ message: '当前选中国家：' + value, status: 'info' })
+  TinyModal.message({ message: '当前选中国家：' + value, status: 'info' })
 }
 </script>
 

@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Breadcrumb as TinyBreadcrumb, Notify } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyNotify } from '@opentiny/vue'
 
 const options = ref([
   {
@@ -39,7 +39,7 @@ const options1 = ref([
 ])
 
 function itemClick(value) {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: '触发选择面包屑事件',
     message: JSON.stringify(value),

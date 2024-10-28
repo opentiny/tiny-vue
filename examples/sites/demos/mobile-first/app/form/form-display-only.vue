@@ -83,38 +83,38 @@
 
 <script>
 import {
-  Form,
-  FormItem,
-  Switch,
-  Checkbox,
-  Numeric,
-  Radio,
-  Rate,
-  Input,
-  Button,
-  CheckboxGroup,
-  RadioGroup,
-  SelectMobile,
-  DatePickerMobileFirst,
-  Cell
+  TinyForm,
+  TinyFormItem,
+  TinySwitch,
+  TinyCheckbox,
+  TinyNumeric,
+  TinyRadio,
+  TinyRate,
+  TinyInput,
+  TinyButton,
+  TinyCheckboxGroup,
+  TinyRadioGroup,
+  TinySelectMobile,
+  TinyDatePickerMobileFirst,
+  TinyCell
 } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePickerMobile: DatePickerMobileFirst,
-    TinySelectMobile: SelectMobile,
-    TinyCell: Cell,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyCheckbox: Checkbox,
-    TinySwitch: Switch,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio,
-    TinyRate: Rate,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyCheckboxGroup: CheckboxGroup,
-    TinyRadioGroup: RadioGroup
+    TinyDatePickerMobile: TinyDatePickerMobileFirst,
+    TinySelectMobile,
+    TinyCell,
+    TinyForm,
+    TinyFormItem,
+    TinyCheckbox,
+    TinySwitch,
+    TinyNumeric,
+    TinyRadio,
+    TinyRate,
+    TinyInput,
+    TinyButton,
+    TinyCheckboxGroup,
+    TinyRadioGroup
   },
   data() {
     const list = [
@@ -136,6 +136,7 @@ export default {
           '已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期'
       }
     ]
+
     return {
       displayOnly: true,
       top: false,

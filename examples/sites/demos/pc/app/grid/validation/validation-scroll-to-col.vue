@@ -25,13 +25,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Input, Modal as TinyModal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     const validRules = {
@@ -62,7 +62,7 @@ export default {
     }
     return {
       validRules,
-      Input,
+      TinyInput,
       toolbarButtons: [
         {
           code: 'save',

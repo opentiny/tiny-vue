@@ -44,13 +44,13 @@
 </template>
 
 <script>
-import { ColumnListItem, ColumnListGroup, Checkbox } from '@opentiny/vue'
+import { TinyColumnListItem, TinyColumnListGroup, TinyCheckbox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColumnListItem: ColumnListItem,
-    TinyColumnListGroup: ColumnListGroup,
-    TinyCheckbox: Checkbox
+    TinyColumnListItem,
+    TinyColumnListGroup,
+    TinyCheckbox
   },
   data() {
     return {

@@ -20,14 +20,14 @@
 </template>
 
 <script lang="jsx">
-import { Collapse, CollapseItem, Grid, GridColumn } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyCollapse,
+    TinyCollapseItem,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

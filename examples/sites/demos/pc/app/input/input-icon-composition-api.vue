@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { iconCalendar } from '@opentiny/vue-icon'
 
 const TinyIconCalendar = iconCalendar()
@@ -20,4 +20,3 @@ const value = ref('')
   margin: 0 5px;
 }
 </style>
-  

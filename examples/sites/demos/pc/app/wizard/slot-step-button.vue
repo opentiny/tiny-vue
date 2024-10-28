@@ -9,12 +9,12 @@
 </template>
 
 <script lang="jsx">
-import { Wizard, Button, Modal } from '@opentiny/vue'
+import { TinyWizard, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWizard: Wizard,
-    TinyButton: Button
+    TinyWizard,
+    TinyButton
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     btnClick(arg) {
-      Modal.message(`步骤${arg}`)
+      TinyModal.message(`步骤${arg}`)
     }
   }
 }

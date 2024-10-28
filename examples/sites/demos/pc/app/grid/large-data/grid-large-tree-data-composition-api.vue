@@ -126,7 +126,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, DatePicker } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDatePicker } from '@opentiny/vue'
 
 const template = {
   id: '0',

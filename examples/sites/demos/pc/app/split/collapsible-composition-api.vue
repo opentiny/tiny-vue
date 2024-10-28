@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Split as TinySplit } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 const split1 = ref(0.5)
 const split2 = ref(0.5)

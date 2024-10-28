@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 import { iconLocalePanel, iconFeedback, iconSynchronize, iconAgency } from '@opentiny/vue-icon'
 
 const active = ref(1)

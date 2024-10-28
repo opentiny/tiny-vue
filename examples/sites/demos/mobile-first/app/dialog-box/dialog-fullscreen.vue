@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { DialogBox, Button } from '@opentiny/vue'
+import { TinyDialogBox, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDialogBox: DialogBox,
-    TinyButton: Button
+    TinyDialogBox,
+    TinyButton
   },
   data() {
     return {

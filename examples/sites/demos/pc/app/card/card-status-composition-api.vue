@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 </script>
 
 <style scoped>

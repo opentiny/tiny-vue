@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ColorPicker as TinyColorPicker, Notify } from '@opentiny/vue'
+import { TinyColorPicker, TinyNotify } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const color = ref('#66ccff')
@@ -12,7 +12,7 @@ const color = ref('#66ccff')
  * @param {string} hex #rrggbb
  */
 const onConfirm = (hex) => {
-  Notify({
+  TinyNotify({
     type: 'success',
     position: 'top-right',
     title: '用户点击了选择',
@@ -21,7 +21,7 @@ const onConfirm = (hex) => {
 }
 
 const onCancel = () => {
-  Notify({
+  TinyNotify({
     type: 'warning',
     position: 'top-right',
     title: '用户选择了取消'

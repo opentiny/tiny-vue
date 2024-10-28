@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 const value = ref([20, 25])
 const gridOp = ref({

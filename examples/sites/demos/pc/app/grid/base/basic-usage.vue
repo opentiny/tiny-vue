@@ -16,12 +16,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const tableData = [
@@ -90,6 +90,7 @@ export default {
         employees: 540
       }
     ]
+
     return {
       op: {
         editConfig: {

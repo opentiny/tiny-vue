@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { FloatButton as TinyFloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 </script>
 
 <style scoped>

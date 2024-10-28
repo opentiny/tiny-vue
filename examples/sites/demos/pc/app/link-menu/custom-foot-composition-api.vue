@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { LinkMenu as TinyLinkMenu, Button as TinyButton } from '@opentiny/vue'
+import { TinyLinkMenu, TinyButton } from '@opentiny/vue'
 
 const datas = ref([
   {

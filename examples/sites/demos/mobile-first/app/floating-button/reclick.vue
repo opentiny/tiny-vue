@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { FloatingButton, Modal } from '@opentiny/vue'
+import { TinyFloatingButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFloatingButton: FloatingButton
+    TinyFloatingButton
   },
   methods: {
     touchstartHandler() {
-      Modal.message('click')
+      TinyModal.message('click')
     }
   }
 }

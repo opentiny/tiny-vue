@@ -28,14 +28,14 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip, Link } from '@opentiny/vue'
+import { TinyTooltip, TinyLink } from '@opentiny/vue'
 import { iconOperationfaild } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
+    TinyTooltip,
     IconOperationfaild: iconOperationfaild(),
-    TinyLink: Link
+    TinyLink
   },
   methods: {
     renderContent(h, content) {

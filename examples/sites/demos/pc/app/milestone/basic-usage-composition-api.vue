@@ -18,7 +18,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 
 // statusMap 对应 milestoneData的status；显示的背景色样式（可以是旗，可以是步骤条）
 const statusMap = ref({

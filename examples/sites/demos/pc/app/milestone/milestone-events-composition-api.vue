@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone, Notify } from '@opentiny/vue'
+import { TinyMilestone, TinyNotify } from '@opentiny/vue'
 
 const timeActive1 = ref(1)
 const normalActive = ref(2)
@@ -79,7 +79,7 @@ const milestoneData = ref([
 ])
 
 function nodeClick() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '节点的点击事件',
     offset: 0
@@ -87,7 +87,7 @@ function nodeClick() {
 }
 
 function flagClick() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '活动旗子的点击事件',
     offset: 0

@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Rate, Modal } from '@opentiny/vue'
+import { TinyRate, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRate: Rate
+    TinyRate
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     onchange(v) {
-      Modal.message({ message: `选中的值是${v}`, status: 'info' })
+      TinyModal.message({ message: `选中的值是${v}`, status: 'info' })
     }
   }
 }

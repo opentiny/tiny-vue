@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Input, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     input() {
-      Modal.message('input')
+      TinyModal.message('input')
     }
   }
 }

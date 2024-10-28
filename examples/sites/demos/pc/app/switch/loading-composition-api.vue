@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Switch as TinySwitch, Button as TinyButton } from '@opentiny/vue'
+import { TinySwitch, TinyButton } from '@opentiny/vue'
 
 const value = ref(true)
 const value2 = ref(false)

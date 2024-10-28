@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { BulletinBoard as TinyBulletinBoard } from '@opentiny/vue'
+import { TinyBulletinBoard } from '@opentiny/vue'
 
 const tabTitle = ref(['页面跳转'])
 const data = ref([

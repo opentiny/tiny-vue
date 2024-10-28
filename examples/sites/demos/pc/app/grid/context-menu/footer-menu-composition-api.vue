@@ -23,7 +23,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const bodyMenus = ref([
   [
@@ -193,11 +193,11 @@ function contextMenuClickEvent({ menu, row, column }) {
   switch (menu.code) {
     case 'copy':
       if (row && column) {
-        Modal.message({ message: `${row.id}`, status: 'info' })
+        TinyModal.message({ message: `${row.id}`, status: 'info' })
       }
       break
     default:
-      Modal.alert(`点击了 ${menu.name} 选项`)
+      TinyModal.alert(`点击了 ${menu.name} 选项`)
   }
 }
 </script>

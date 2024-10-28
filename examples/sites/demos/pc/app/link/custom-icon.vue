@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { Link } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 import { IconEditor, IconSearch, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyLink: Link,
+    TinyLink,
     IconSearch: IconSearch(),
     IconDel: IconDeleteL(),
     IconFilletExternalLink: IconFilletExternalLink()

@@ -39,22 +39,22 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  Modal,
-  RadioGroup as TinyRadioGroup,
-  Numeric as TinyNumeric,
-  IpAddress as TinyIpAddress,
-  ButtonGroup as TinyButtonGroup
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyRadioGroup,
+  TinyNumeric,
+  TinyIpAddress,
+  TinyButtonGroup
 } from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
 const ruleFormRef = ref()
 function handleClick() {
-  Modal.message({ message: 'click', status: 'info' })
+  TinyModal.message({ message: 'click', status: 'info' })
 }
 const validateIcon = ref(iconWarning())
 const validType = ref('promise')
@@ -96,9 +96,9 @@ const rules = ref({
 function handleSubmit() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.alert('回调用法：提交成功')
+      TinyModal.alert('回调用法：提交成功')
     } else {
-      Modal.alert('回调用法：提交失败')
+      TinyModal.alert('回调用法：提交失败')
     }
   })
 }
@@ -107,10 +107,10 @@ function handleSubmitPromise() {
   ruleFormRef.value
     .validate()
     .then(() => {
-      Modal.alert('promise用法:提交成功')
+      TinyModal.alert('promise用法:提交成功')
     })
     .catch(() => {
-      Modal.alert('promise用法:提交失败')
+      TinyModal.alert('promise用法:提交失败')
     })
 }
 

@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import { PullRefresh } from '@opentiny/vue'
+import { TinyPullRefresh } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPullRefresh: PullRefresh
+    TinyPullRefresh
   },
   data() {
     return {

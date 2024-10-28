@@ -6,11 +6,11 @@
 </template>
 
 <script lang="jsx">
-import { Logout, Modal } from '@opentiny/vue'
+import { TinyLogout, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLogout: Logout
+    TinyLogout
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   methods: {
     beforeLogout() {
       // 注销前的回调函数
-      Modal.message({ message: '注销前的回调函数', status: 'info' })
+      TinyModal.message({ message: '注销前的回调函数', status: 'info' })
     },
     getLogoutUrl() {
       return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ export default {
     },
     showLogin() {
       /* 此处为用户的自定义登录逻辑 */
-      Modal.confirm('模拟登录且登录成功').then(() => {
+      TinyModal.confirm('模拟登录且登录成功').then(() => {
         window.localStorage.setItem('isLogin', true)
         window.location.reload()
       })

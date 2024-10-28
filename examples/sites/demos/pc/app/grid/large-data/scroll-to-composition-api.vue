@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyButton } from '@opentiny/vue'
 
 const tinyGridRef = ref()
 

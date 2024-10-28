@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Tag, Modal } from '@opentiny/vue'
+import { TinyTag, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTag: Tag
+    TinyTag
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
   methods: {
     handleClose1(tag) {
       this.tags.splice(this.tags.indexOf(tag), 1)
-      Modal.message('close 事件')
+      TinyModal.message('close 事件')
     }
   }
 }

@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Search, Modal } from '@opentiny/vue'
+import { TinySearch, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search
+    TinySearch
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     select(value) {
-      Modal.message({ message: `${value.text}`, status: 'info' })
+      TinyModal.message({ message: `${value.text}`, status: 'info' })
     }
   }
 }

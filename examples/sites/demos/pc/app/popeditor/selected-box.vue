@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { Popeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     const dataset = [

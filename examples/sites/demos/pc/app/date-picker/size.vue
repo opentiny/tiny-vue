@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { DatePicker, RadioGroup, RadioButton } from '@opentiny/vue'
+import { TinyDatePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker,
-    TinyRadioGroup: RadioGroup,
-    TinyRadioButton: RadioButton
+    TinyDatePicker,
+    TinyRadioGroup,
+    TinyRadioButton
   },
   data() {
     return {

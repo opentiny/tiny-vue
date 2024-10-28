@@ -7,12 +7,12 @@
 </template>
 
 <script setup>
-import { Sticky as TinySticky, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinySticky, TinyButton, TinyModal } from '@opentiny/vue'
 
 let isShowNumber = 0
 
 const change = (isFixed) => {
-  Modal.message({
+  TinyModal.message({
     message: `触发 change 事件，当前isFixed为：${isFixed}`,
     status: 'info'
   })

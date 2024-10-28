@@ -54,7 +54,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
 const options1 = ref([

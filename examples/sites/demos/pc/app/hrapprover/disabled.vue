@@ -11,12 +11,12 @@
 </template>
 
 <script lang="jsx">
-import { Hrapprover, Button } from '@opentiny/vue'
+import { TinyHrapprover, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHrapprover: Hrapprover,
-    TinyButton: Button
+    TinyHrapprover,
+    TinyButton
   },
   data() {
     return {

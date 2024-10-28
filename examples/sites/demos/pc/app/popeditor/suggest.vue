@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Popeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 const dataset = [
   {
@@ -83,7 +83,7 @@ const dataset = [
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     return {

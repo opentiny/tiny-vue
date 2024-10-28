@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import { Badge } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBadge: Badge
+    TinyBadge
   }
 }
 </script>

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const data = [
   {
@@ -171,22 +171,3 @@ const data = [
   }
 ]
 </script>
-
-<!-- <template>
-  <tiny-tree-menu ></tiny-tree-menu>
-</template>
-
-<script>
-
-
-export default {
-  components: {
-    TinyTreeMenu: TreeMenu
-  },
-  data() {
-    return {
-      treeData: 
-    }
-  }
-}
-</script> -->

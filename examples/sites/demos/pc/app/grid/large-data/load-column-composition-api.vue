@@ -9,7 +9,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Grid as TinyGrid } from '@opentiny/vue'
+import { TinyButton, TinyGrid } from '@opentiny/vue'
 
 const columns = []
 const tableData = []

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const codePointA = 'A'.codePointAt(0)
 const areas = ['华东区', '华南区', '华中区', '西南区']
@@ -78,8 +78,8 @@ const rows = Array(total)
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

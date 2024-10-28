@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Dept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   data() {
     return {
@@ -16,10 +16,10 @@ export default {
   },
   methods: {
     open() {
-      Modal.message('打开弹出框')
+      TinyModal.message('打开弹出框')
     },
     change(value) {
-      Modal.message({ message: '改变的部门值: ' + value, status: 'info' })
+      TinyModal.message({ message: '改变的部门值: ' + value, status: 'info' })
     }
   }
 }

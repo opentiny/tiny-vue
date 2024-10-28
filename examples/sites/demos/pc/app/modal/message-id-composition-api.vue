@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 function btnClick() {
-  Modal.confirm({
+  TinyModal.confirm({
     status: 'info',
     message: '自定义消息具有唯一 id，所以不会重复出现',
     id: 'unique'

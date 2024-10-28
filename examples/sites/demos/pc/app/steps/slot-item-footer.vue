@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import { Button, Steps, Link } from '@opentiny/vue'
+import { TinyButton, TinySteps, TinyLink } from '@opentiny/vue'
 import { IconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinySteps: Steps,
-    TinyLink: Link
+    TinyButton,
+    TinySteps,
+    TinyLink
   },
   data() {
     return {

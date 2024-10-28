@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Switch, Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinySwitch, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const tableData = ref([
   {

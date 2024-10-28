@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import { Layout, Row, Col, Button } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyButton: Button
+    TinyLayout,
+    TinyRow,
+    TinyCol,
+    TinyButton
   },
   data() {
     return {

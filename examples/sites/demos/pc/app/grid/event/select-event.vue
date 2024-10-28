@@ -11,22 +11,22 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     selectAll() {
-      Modal.message({
+      TinyModal.message({
         message: '触发全选事件',
         status: 'info'
       })
     },
     selectChange() {
-      Modal.message({
+      TinyModal.message({
         message: '选项改变了',
         status: 'info'
       })

@@ -14,16 +14,16 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, Modal } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
-      Tabs: [
+      TinyTabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -40,12 +40,12 @@ export default {
   },
   methods: {
     handleAdd() {
-      Modal.message({
+      TinyModal.message({
         message: '动态增加 Tab ++',
         status: 'success'
       })
 
-      this.Tabs.push({
+      this.TinyTabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加tabitem'

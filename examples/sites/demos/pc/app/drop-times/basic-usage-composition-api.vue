@@ -8,12 +8,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DropTimes as TinyDropTimes, Modal } from '@opentiny/vue'
+import { TinyDropTimes, TinyModal } from '@opentiny/vue'
 
 const value = ref('')
 
 function change(value) {
-  Modal.message({ message: 'change 事件，当前值为 ' + value })
+  TinyModal.message({ message: 'change 事件，当前值为 ' + value })
 }
 </script>
 

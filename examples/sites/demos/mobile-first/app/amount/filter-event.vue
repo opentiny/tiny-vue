@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Amount, Modal } from '@opentiny/vue'
+import { TinyAmount, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAmount: Amount
+    TinyAmount
   },
   data() {
     return {
@@ -24,10 +24,10 @@ export default {
   },
   methods: {
     clearHander() {
-      Modal.message({ message: '清除 事件', status: 'info' })
+      TinyModal.message({ message: '清除 事件', status: 'info' })
     },
     changeHander(label) {
-      Modal.message({ message: 'change 事件' + label, status: 'info' })
+      TinyModal.message({ message: 'change 事件' + label, status: 'info' })
     }
   }
 }

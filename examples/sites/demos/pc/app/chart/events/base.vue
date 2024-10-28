@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsPie, Modal as TinyModal } from '@opentiny/vue'
+import { TinyHuichartsPie, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPie: HuichartsPie
+    TinyPie: TinyHuichartsPie
   },
   data() {
     return {

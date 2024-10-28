@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-template-shadow -->
 <template>
   <div>
     <tiny-tree
@@ -21,7 +20,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 
 const data = ref([
   {

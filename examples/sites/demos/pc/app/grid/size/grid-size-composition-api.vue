@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('medium')
 

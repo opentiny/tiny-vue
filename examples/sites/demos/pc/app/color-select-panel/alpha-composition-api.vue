@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ColorSelectPanel as TinyColorSelectPanel, Button } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton } from '@opentiny/vue'
 
 const color = ref('#66ccff')
 const visible = ref(false)

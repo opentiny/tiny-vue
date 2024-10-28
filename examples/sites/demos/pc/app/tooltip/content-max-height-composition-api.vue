@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { Tooltip as TinyTooltip } from '@opentiny/vue'
+import { TinyTooltip } from '@opentiny/vue'
 
 const content = Array(1000).fill('这是很长很长的文本').join('，')
 </script>

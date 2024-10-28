@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { UserAccount, Modal } from '@opentiny/vue'
+import { TinyUserAccount, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserAccount: UserAccount
+    TinyUserAccount
   },
   data() {
     return {
@@ -61,7 +61,7 @@ export default {
     },
     showLogin() {
       /* 此处为用户的自定义登录逻辑 */
-      Modal.confirm('模拟登录且登录成功').then(() => {
+      TinyModal.confirm('模拟登录且登录成功').then(() => {
         window.localStorage.setItem('isLogin', true)
         window.location.reload()
       })

@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { Alert, Switch, Toast } from '@opentiny/vue'
+import { TinyAlert, TinySwitch, TinyToast } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinySwitch: Switch
+    TinyAlert,
+    TinySwitch
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     close() {
-      Toast.service({
+      TinyToast.service({
         text: 'close事件!',
         time: 100000
       })

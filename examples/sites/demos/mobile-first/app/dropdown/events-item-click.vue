@@ -14,17 +14,17 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem, Modal } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   methods: {
     itemClick(itemData) {
-      Modal.message({ message: `点击菜单项触发的事件回调，当前为第${itemData}个菜单项`, status: 'info' })
+      TinyModal.message({ message: `点击菜单项触发的事件回调，当前为第${itemData}个菜单项`, status: 'info' })
     }
   }
 }

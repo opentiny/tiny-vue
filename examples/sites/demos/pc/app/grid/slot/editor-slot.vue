@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Input, TimePicker, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyTimePicker, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyInput: Input,
-    TinyTimePicker: TimePicker
+    TinyGrid,
+    TinyGridColumn,
+    TinyInput,
+    TinyTimePicker
   },
   data() {
     return {
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({ message: '下班时间编辑完成', status: 'info' })
+      TinyModal.message({ message: '下班时间编辑完成', status: 'info' })
     }
   }
 }

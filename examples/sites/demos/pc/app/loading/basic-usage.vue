@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { Loading, Button } from '@opentiny/vue'
+import { TinyLoading, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
     }
   },
   mounted() {
-    this.loadingInstance = Loading.service({
+    this.loadingInstance = TinyLoading.service({
       target: document.getElementById('tiny-basic-loading1')
     })
   },

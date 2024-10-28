@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const input = ref(
   '表单文本域开启只读模式，文本内容超过5行自动隐藏。表单文本域开启只读模式，文本内容超过5行自动隐藏。表单文本域开启只读模式，文本内容超过5行自动隐藏。表单文本域开启只读模式，文本内容超过5行自动隐藏。表单文本域开启只读模式，文本内容超过5行自动隐藏'

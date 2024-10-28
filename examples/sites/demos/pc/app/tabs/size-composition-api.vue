@@ -14,7 +14,7 @@
 
 <script setup lang="jsx">
 import { ref, reactive } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('1')
 const Tabs = reactive([])

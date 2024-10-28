@@ -7,11 +7,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Switch as TinySwitch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 
 const value1 = ref(true)
 const value2 = ref(false)
 </script>
+
 <style scoped>
 .switch-demo .tiny-switch + .tiny-switch {
   margin-left: 20px;

@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popconfirm as TinyPopconfirm, Button as TinyButton } from '@opentiny/vue'
+import { TinyPopconfirm, TinyButton } from '@opentiny/vue'
 
 const title = ref('确定要删除该安全组规则吗?')
 </script>

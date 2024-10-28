@@ -10,12 +10,12 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, Notify } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     beforeLeave() {
-      Notify({
+      TinyNotify({
         message: '触发切换标签之前事件',
         position: 'top-right'
       })

@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { SliderButtonGroup, Modal } from '@opentiny/vue'
+import { TinySliderButtonGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySliderButtonGroup: SliderButtonGroup
+    TinySliderButtonGroup
   },
   data() {
     return {
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message({ message: 'click' })
+      TinyModal.message({ message: 'click' })
     }
   }
 }

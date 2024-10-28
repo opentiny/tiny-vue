@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { LoadList, PullRefresh } from '@opentiny/vue'
+import { TinyLoadList, TinyPullRefresh } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLoadList: LoadList,
-    TinyPullRefresh: PullRefresh
+    TinyLoadList,
+    TinyPullRefresh
   },
   data() {
     return {

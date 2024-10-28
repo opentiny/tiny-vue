@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -60,14 +60,14 @@ const tableData = ref([
 ])
 
 const selectAll = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发全选事件',
     status: 'info'
   })
 }
 
 const selectChange = () => {
-  Modal.message({
+  TinyModal.message({
     message: '选项改变了',
     status: 'info'
   })

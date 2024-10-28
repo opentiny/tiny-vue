@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Button as TinyButton, Steps as TinySteps, Link as TinyLink } from '@opentiny/vue'
+import { TinyButton, TinySteps, TinyLink } from '@opentiny/vue'
 import { IconFilletExternalLink } from '@opentiny/vue-icon'
 
 const stepsData = ref([

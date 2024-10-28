@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const input = ref('')
 const textarea = ref('')

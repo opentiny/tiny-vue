@@ -15,11 +15,11 @@
 </template>
 
 <script lang="jsx">
-import { FallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    FallMenu
+    TinyFallMenu
   },
   data() {
     return {

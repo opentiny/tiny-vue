@@ -7,7 +7,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TextPopup as TinyTextPopup } from '@opentiny/vue'
+import { TinyTextPopup } from '@opentiny/vue'
 
 const value = ref('我是 TextPopup 组件')
 </script>

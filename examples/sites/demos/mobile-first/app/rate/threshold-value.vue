@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { Rate } from '@opentiny/vue'
+import { TinyRate } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRate: Rate
+    TinyRate
   },
   data() {
     return {

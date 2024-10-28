@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts">
-import { RichTextEditor, Notify } from '@opentiny/vue'
+import { TinyRichTextEditor, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRichTextEditor: RichTextEditor
+    TinyRichTextEditor
   },
   methods: {
     beforeCreate(editor) {
@@ -35,7 +35,7 @@ export default {
     },
     update(editor) {
       console.log('update')
-    },
-  },
+    }
+  }
 }
 </script>

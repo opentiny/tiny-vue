@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 import { iconCalendar, iconDoubleRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {

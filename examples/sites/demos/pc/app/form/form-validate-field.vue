@@ -20,15 +20,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
       if (errArray.length > 0) {
         // empty
       } else {
-        Modal.alert('日期和url通过校验')
+        TinyModal.alert('日期和url通过校验')
       }
     },
     clearValidate() {

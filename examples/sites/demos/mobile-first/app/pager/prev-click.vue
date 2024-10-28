@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Pager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     prevClick(val) {
-      Modal.message({
+      TinyModal.message({
         message: `prev-click 事件，当前页: ${val}`,
         status: 'info'
       })

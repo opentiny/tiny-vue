@@ -74,6 +74,8 @@ const addPrefix = async (code) => {
   let newCode
 
   newCode = generate.default(ast, { retainLines: true }).code || ''
+  // json中的数组会自动添加新行，特殊处理一下
+  newCode = newCode.replaceAll('],\n', '],')
   const formatCode = await prettier.format(newCode, {
     semi: false,
     parser: 'typescript',

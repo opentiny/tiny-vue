@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { TimeLine as TinyTimeLine, Button as TinyButton } from '@opentiny/vue'
+import { TinyTimeLine, TinyButton } from '@opentiny/vue'
 
 const data = reactive([
   { name: '已下单', time: '2019-11-11 00:01:30' },

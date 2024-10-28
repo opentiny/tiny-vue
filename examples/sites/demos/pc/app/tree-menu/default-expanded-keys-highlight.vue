@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { TreeMenu, Button } from '@opentiny/vue'
+import { TinyTreeMenu, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu,
-    TinyButton: Button
+    TinyTreeMenu,
+    TinyButton
   },
   data() {
     return {

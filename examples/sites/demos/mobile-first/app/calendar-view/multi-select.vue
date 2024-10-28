@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import { CalendarView, Modal } from '@opentiny/vue'
+import { TinyCalendarView, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendarView: CalendarView
+    TinyCalendarView
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     selectedDateChange(date) {
-      Modal.message({ message: `当前选择${JSON.stringify(date)}`, status: 'info' })
+      TinyModal.message({ message: `当前选择${JSON.stringify(date)}`, status: 'info' })
     }
   }
 }

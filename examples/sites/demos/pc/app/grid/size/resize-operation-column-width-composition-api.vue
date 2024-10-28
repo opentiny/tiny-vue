@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const tableData = ref([
   { id: '1', name: 'GFD科技有限公司', area: '华东区', address: '福州' },

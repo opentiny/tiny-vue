@@ -24,17 +24,17 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Input, Radio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio
   },
   data() {
     return {
-      Input,
+      TinyInput,
       size: '',
       validRules: {
         name: [

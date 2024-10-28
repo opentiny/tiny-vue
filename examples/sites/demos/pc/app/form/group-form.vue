@@ -35,16 +35,16 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal, Radio } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal, TinyRadio } from '@opentiny/vue'
 import { IconHelpCircle } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyRadio: Radio,
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinyRadio,
     IconHelpCircle: IconHelpCircle()
   },
   data() {
@@ -75,7 +75,7 @@ export default {
       Promise.all([this.validForm(this.$refs.groupForm1Ref), this.validForm(this.$refs.groupForm2Ref)]).then((res) => {
         const [valid1, valid2] = res
         if (valid1 && valid2) {
-          Modal.alert('提交成功！')
+          TinyModal.alert('提交成功！')
         }
       })
     },

@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { reactive } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
 const Tabs = reactive([])

@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { Switch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySwitch: Switch
+    TinySwitch
   },
   data() {
     return {
@@ -27,6 +27,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .switch-demo .tiny-switch + .tiny-switch {
   margin-left: 20px;

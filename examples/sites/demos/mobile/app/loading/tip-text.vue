@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   mounted() {
-    Loading.service({
+    TinyLoading.service({
       text: '加载中...',
       tiny_mode: 'mobile',
       target: document.getElementById('demo-loading')

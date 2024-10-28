@@ -37,7 +37,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager as TinyPager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 
 const custPager = ref({
   currentPage: 1,

@@ -12,12 +12,12 @@
 </template>
 
 <script lang="jsx">
-import { FallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 import { IconLeft, IconRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    FallMenu,
+    TinyFallMenu,
     IconLeft: IconLeft(),
     IconRight: IconRight()
   },

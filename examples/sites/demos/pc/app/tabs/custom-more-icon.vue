@@ -10,25 +10,25 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
+    TinyTabs,
+    TinyTabItem,
     TinyIconPopup: iconPopup()
   },
   data() {
     return {
-      Tabs: []
+      TinyTabs: []
     }
   },
   created() {
     // 创建tabs
     for (let i = 1; i < 9; i++) {
       const title = `Tab ${i}`
-      this.Tabs.push({
+      this.TinyTabs.push({
         title,
         name: i + '',
         content: `${title} content `

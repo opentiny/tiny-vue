@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsTree } from '@opentiny/vue'
+import { TinyHuichartsTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeChart: HuichartsTree
+    TinyTreeChart: TinyHuichartsTree
   },
   data() {
     return {
@@ -19,7 +19,6 @@ export default {
 
         // padding控制图表距离容器的上、右、下、左padding值
         padding: [20, 80, 20, 80],
-
         // 图元的大小，默认值10
         symbolSize: 15,
 

@@ -24,7 +24,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { PopUpload as TinyPopUpload, Alert as TinyAlert, Link as TinyLink } from '@opentiny/vue'
+import { TinyPopUpload, TinyAlert, TinyLink } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const limit = ref(500)

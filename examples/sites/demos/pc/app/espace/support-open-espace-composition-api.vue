@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { UserContact as TinyUserContact } from '@opentiny/vue'
+import { TinyUserContact } from '@opentiny/vue'
 
 const data = ref({
   imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,

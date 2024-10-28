@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { TimeSelect, Modal } from '@opentiny/vue'
+import { TinyTimeSelect, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeSelect: TimeSelect
+    TinyTimeSelect
   },
   data() {
     return {
@@ -24,13 +24,13 @@ export default {
   },
   methods: {
     bulr() {
-      Modal.message({ message: 'blur事件', status: 'info' })
+      TinyModal.message({ message: 'blur事件', status: 'info' })
     },
     change(value) {
-      Modal.message({ message: value, status: 'info' })
+      TinyModal.message({ message: value, status: 'info' })
     },
     focus() {
-      Modal.message({ message: 'focus事件', status: 'info' })
+      TinyModal.message({ message: 'focus事件', status: 'info' })
     }
   }
 }

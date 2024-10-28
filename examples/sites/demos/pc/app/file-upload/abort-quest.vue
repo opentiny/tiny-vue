@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     cancelUpload() {
-      Modal.message({ message: '手动取消上传', status: 'info' })
+      TinyModal.message({ message: '手动取消上传', status: 'info' })
       this.$refs.upload.abort()
     }
   }

@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Logout } from '@opentiny/vue'
+import { TinyLogout } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLogout: Logout
+    TinyLogout
   },
   data() {
     return {

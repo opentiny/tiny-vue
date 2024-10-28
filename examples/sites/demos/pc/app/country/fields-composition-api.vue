@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Country as TinyCountry } from '@opentiny/vue'
+import { TinyCountry } from '@opentiny/vue'
 
 const value = ref('')
 const fields = ref({

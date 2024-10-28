@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Select, Button } from '@opentiny/vue'
+import { TinySelect, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyButton: Button
+    TinySelect,
+    TinyButton
   },
   data() {
     return {

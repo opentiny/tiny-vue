@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { QrCode } from '@opentiny/vue'
+import { TinyQrCode } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyQrCode: QrCode
+    TinyQrCode
   },
   data() {
     return {

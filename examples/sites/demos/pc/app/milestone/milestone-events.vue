@@ -10,11 +10,11 @@
 </template>
 
 <script lang="jsx">
-import { Milestone, Notify } from '@opentiny/vue'
+import { TinyMilestone, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone
+    TinyMilestone
   },
   data() {
     return {
@@ -86,14 +86,14 @@ export default {
   },
   methods: {
     nodeClick() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '节点的点击事件',
         offset: 0
       })
     },
     flagClick() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '活动旗子的点击事件',
         offset: 0

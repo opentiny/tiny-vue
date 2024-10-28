@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Menu } from '@opentiny/vue'
+import { TinyMenu } from '@opentiny/vue'
 import { IconPlusCircle, IconPlusSquare, IconPreChecked, IconNode, IconNew } from '@opentiny/vue-icon'
 export default {
   components: {
-    TinyMenu: Menu
+    TinyMenu
   },
   data() {
     return {

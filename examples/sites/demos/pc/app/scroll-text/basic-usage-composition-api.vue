@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="jsx">
-import { ScrollText as TinyScrollText } from '@opentiny/vue'
+import { TinyScrollText } from '@opentiny/vue'
 </script>

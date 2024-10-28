@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyTree, TinyButton, TinyModal } from '@opentiny/vue'
 
 const data = ref([
   {
@@ -91,7 +91,7 @@ function deleteNodeMethod() {
 
   // 方式 2：返回 Promise 异步
   return new Promise((resolve) => {
-    Modal.confirm({
+    TinyModal.confirm({
       title: 'deleteNodeMethod 钩子函数',
       status: 'info',
       message: '您确定要删除数据吗？',

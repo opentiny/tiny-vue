@@ -33,18 +33,18 @@
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName1: 'first',
       activeName2: 'second',
-      Tabs: [
+      TinyTabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     handleadd() {
-      this.Tabs.push({
+      this.TinyTabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加tabitem'

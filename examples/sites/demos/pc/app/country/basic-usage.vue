@@ -6,11 +6,11 @@
 </template>
 
 <script lang="jsx">
-import { Country, Modal } from '@opentiny/vue'
+import { TinyCountry, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCountry: Country
+    TinyCountry
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     change(value) {
-      Modal.message({ message: '当前选中国家：' + value, status: 'info' })
+      TinyModal.message({ message: '当前选中国家：' + value, status: 'info' })
     }
   }
 }

@@ -14,7 +14,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Crop as TinyCrop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
@@ -25,6 +25,6 @@ function destroy() {
 }
 
 function ready() {
-  Modal.message('触发 ready 事件')
+  TinyModal.message('触发 ready 事件')
 }
 </script>

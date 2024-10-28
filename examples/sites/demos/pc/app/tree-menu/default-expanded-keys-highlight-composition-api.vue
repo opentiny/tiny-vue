@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu, Button as TinyButton } from '@opentiny/vue'
+import { TinyTreeMenu, TinyButton } from '@opentiny/vue'
 
 let expandeArr = reactive([30101])
 const highlight = ref(30101)

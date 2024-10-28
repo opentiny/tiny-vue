@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Modal } from '@opentiny/vue'
+import { TinyPopeditor, TinyModal } from '@opentiny/vue'
 
 const dataset = [
   {
@@ -107,6 +107,6 @@ const conditions = ref([
 ])
 
 function beforeReset() {
-  Modal.message({ message: '重置前的钩子函数', status: 'info' })
+  TinyModal.message({ message: '重置前的钩子函数', status: 'info' })
 }
 </script>

@@ -11,11 +11,11 @@
 </template>
 
 <script lang="jsx">
-import { ToggleMenu, Notify } from '@opentiny/vue'
+import { TinyToggleMenu, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyToggleMenu: ToggleMenu
+    TinyToggleMenu
   },
   data() {
     return {
@@ -98,31 +98,31 @@ export default {
   },
   methods: {
     nodeDragStart() {
-      Notify({
+      TinyNotify({
         message: '拖拽节点后的事件',
         position: 'top-right'
       })
     },
     nodeDragEnter() {
-      Notify({
+      TinyNotify({
         message: '拖拽进入某个节点（包含自身节点）时触发的事件',
         position: 'top-right'
       })
     },
     nodeDragOver() {
-      Notify({
+      TinyNotify({
         message: '拖拽经过某个节点（包含自身节点）时触发的事件',
         position: 'top-right'
       })
     },
     nodeDragLeave() {
-      Notify({
+      TinyNotify({
         message: '拖拽离开某个节点（包含自身节点）时触发的事件',
         position: 'top-right'
       })
     },
     nodeDragEnd() {
-      Notify({
+      TinyNotify({
         message: '拖拽结束时触发的事件',
         position: 'top-right'
       })

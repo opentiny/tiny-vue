@@ -13,17 +13,17 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName: 'first',
-      Tabs: [
+      TinyTabs: [
         {
           title: '表单组件',
           name: 'first',
@@ -64,7 +64,7 @@ export default {
         message: '关闭 ' + name + ' 页签'
       })
 
-      this.Tabs = this.Tabs.filter((tab) => {
+      this.TinyTabs = this.TinyTabs.filter((tab) => {
         return tab.name !== name
       })
     }

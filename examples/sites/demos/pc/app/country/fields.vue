@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Country } from '@opentiny/vue'
+import { TinyCountry } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCountry: Country
+    TinyCountry
   },
   data() {
     return {

@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 
 const value = ref(new Date('2023-05-24'))

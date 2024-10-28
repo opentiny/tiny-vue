@@ -25,16 +25,16 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal, RadioGroup, Cascader } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal, TinyRadioGroup, TinyCascader } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyRadioGroup: RadioGroup,
-    TinyCascader: Cascader
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinyRadioGroup,
+    TinyCascader
   },
   data() {
     return {
@@ -85,7 +85,7 @@ export default {
     handleSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          TinyModal.alert('提交成功')
         }
       })
     }

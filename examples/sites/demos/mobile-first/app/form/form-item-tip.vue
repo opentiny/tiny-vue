@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     validate(val) {
-      Modal.message({
+      TinyModal.message({
         message: `表单项被校验后触发的事件,所校验字段为:${val}`,
         status: 'info'
       })
@@ -54,7 +54,7 @@ export default {
     handleSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          Modal.alert('校验通过，开始注册！')
+          TinyModal.alert('校验通过，开始注册！')
         } else {
           return false
         }

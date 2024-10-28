@@ -13,11 +13,11 @@
 </template>
 
 <script lang="jsx">
-import { Company, Modal } from '@opentiny/vue'
+import { TinyCompany, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCompany: Company
+    TinyCompany
   },
   data() {
     return {
@@ -52,10 +52,10 @@ export default {
       })
     },
     clear() {
-      Modal.message({ message: 'clear:触发了', status: 'info' })
+      TinyModal.message({ message: 'clear:触发了', status: 'info' })
     },
     change(value) {
-      Modal.message({ message: `change:${value}`, status: 'info' })
+      TinyModal.message({ message: `change:${value}`, status: 'info' })
     }
   }
 }

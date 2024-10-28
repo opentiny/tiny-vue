@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
       dropConfig: {
         plugin: Sortable
       },
-      Tabs: [
+      TinyTabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -62,15 +62,15 @@ export default {
     },
     handleEnd(event) {
       const { oldDraggableIndex, newDraggableIndex } = event
-      const tab = this.Tabs.splice(oldDraggableIndex, 1)[0]
-      this.Tabs.splice(newDraggableIndex, 0, tab)
+      const tab = this.TinyTabs.splice(oldDraggableIndex, 1)[0]
+      this.TinyTabs.splice(newDraggableIndex, 0, tab)
 
-      console.log(this.Tabs)
+      console.log(this.TinyTabs)
     },
     handleAdd() {
-      this.Tabs.push({
-        title: 'Tab ' + String(this.Tabs.length + 1),
-        name: String(this.Tabs.length + 1),
+      this.TinyTabs.push({
+        title: 'Tab ' + String(this.TinyTabs.length + 1),
+        name: String(this.TinyTabs.length + 1),
         content: '动态增加tabitem'
       })
     }

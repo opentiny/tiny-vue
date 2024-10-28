@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ColorPicker, Button } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 
 const color = ref('#66ccff')
 const history = ref(['#66ccff'])

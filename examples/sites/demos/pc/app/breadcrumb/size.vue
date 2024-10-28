@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import { Breadcrumb, BreadcrumbItem, Notify } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBreadcrumb: Breadcrumb,
-    TinyBreadcrumbItem: BreadcrumbItem
+    TinyBreadcrumb,
+    TinyBreadcrumbItem
   },
   methods: {
     breadcrumbClick: (value) => {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: 'tiny-breadcrumb 触发选择面包屑事件',
         message: JSON.stringify(value),
@@ -27,7 +27,7 @@ export default {
       })
     },
     breadcrumbItemClick: (value) => {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: 'tiny-breadcrumb-item 触发选择面包屑事件',
         message: JSON.stringify(value),

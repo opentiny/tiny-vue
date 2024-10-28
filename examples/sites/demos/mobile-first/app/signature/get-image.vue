@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import { Signature, Image, Button } from '@opentiny/vue'
+import { TinySignature, TinyImage, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySignature: Signature,
-    TinyImage: Image,
-    TinyButton: Button
+    TinySignature,
+    TinyImage,
+    TinyButton
   },
   data() {
     return {

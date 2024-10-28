@@ -10,11 +10,9 @@
 </template>
 
 <script setup>
-import { Switch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 import { IconArrowLeft, IconArrowRight } from '@opentiny/vue-icon'
 
 const TinyIconArrowLeft = IconArrowLeft()
 const TinyIconArrowRight = IconArrowRight()
-
-const TinySwitch = Switch
 </script>

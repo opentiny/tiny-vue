@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import { LoadList } from '@opentiny/vue'
+import { TinyLoadList } from '@opentiny/vue'
 
 const fetchSomething = () => Promise.reject('请求失败，点击重新加载')
 
 export default {
   components: {
-    TinyLoadList: LoadList
+    TinyLoadList
   },
   data() {
     return {

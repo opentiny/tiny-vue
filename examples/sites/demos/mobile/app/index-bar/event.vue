@@ -13,12 +13,12 @@
 </template>
 
 <script lang="jsx">
-import { IndexBar, IndexBarAnchor, Modal } from '@opentiny/vue'
+import { TinyIndexBar, TinyIndexBarAnchor, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyIndexBar: IndexBar,
-    TinyIndexBarAnchor: IndexBarAnchor
+    TinyIndexBar,
+    TinyIndexBarAnchor
   },
   data() {
     return {
@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     indexChange(value) {
-      Modal.message({ message: 'change事件:' + value })
+      TinyModal.message({ message: 'change事件:' + value })
     },
     selectIndex(value) {
-      Modal.message({ message: 'select事件:' + value })
+      TinyModal.message({ message: 'select事件:' + value })
     }
   }
 }

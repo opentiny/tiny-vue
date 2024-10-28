@@ -26,13 +26,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  GridToolbar as TinyGridToolbar,
-  Input,
-  Modal as TinyModal
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyInput, TinyModal } from '@opentiny/vue'
 
 const validRules = {
   name: [

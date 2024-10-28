@@ -44,17 +44,17 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Row, Col } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyRow,
+    TinyCol
   },
   data() {
     return {

@@ -22,7 +22,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Transfer as TinyTransfer } from '@opentiny/vue'
+import { TinyTransfer } from '@opentiny/vue'
 
 const generateData = () => {
   const data = []

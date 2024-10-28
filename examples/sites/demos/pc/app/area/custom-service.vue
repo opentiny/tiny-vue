@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Area } from '@opentiny/vue'
+import { TinyArea } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyArea: Area
+    TinyArea
   },
   data() {
     return {

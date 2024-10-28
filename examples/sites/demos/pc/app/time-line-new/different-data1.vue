@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { TimeLineNew } from '@opentiny/vue'
+import { TinyTimeLineNew } from '@opentiny/vue'
 
 export default {
   components: {
-    AuiTimeLine: TimeLineNew
+    AuiTimeLine: TinyTimeLineNew
   },
   data() {
     return {

@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsGraph as TinyChartGraph } from '@opentiny/vue'
+import { TinyHuichartsGraph as TinyChartGraph } from '@opentiny/vue'
 
 const options = ref({
   animationDurationUpdate: 1600,

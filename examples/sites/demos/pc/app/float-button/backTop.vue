@@ -16,7 +16,7 @@
 
 <script>
 import { iconDel } from '@opentiny/vue-icon'
-import { FloatButton as TinyFloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 
 export default {
   components: {

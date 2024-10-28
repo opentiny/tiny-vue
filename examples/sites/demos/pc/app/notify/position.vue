@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import { Notify, Button } from '@opentiny/vue'
+import { TinyNotify, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     handleClick(pos) {
-      Notify({
+      TinyNotify({
         title: '通知消息的标题',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: pos

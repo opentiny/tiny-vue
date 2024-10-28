@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { Popeditor, Button } from '@opentiny/vue'
+import { TinyPopeditor, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor,
-    TinyButton: Button
+    TinyPopeditor,
+    TinyButton
   },
   data() {
     const dataset = [
@@ -78,6 +78,7 @@ export default {
         city: '深圳'
       }
     ]
+
     return {
       value: '',
       gridOp: {

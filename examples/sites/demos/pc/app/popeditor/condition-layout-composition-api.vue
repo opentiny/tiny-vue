@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Select, Numeric } from '@opentiny/vue'
+import { TinyPopeditor, TinySelect, TinyNumeric } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
 const value = ref(5)
@@ -49,7 +49,7 @@ const conditions = ref([
     label: '城市',
     field: 'city',
     labelWidth: '50px',
-    component: hooks.markRaw(Select),
+    component: hooks.markRaw(TinySelect),
     labelPosition: 'left',
     attrs: {
       options: [
@@ -64,7 +64,7 @@ const conditions = ref([
     field: 'employees',
     span: 6,
     labelWidth: '50px',
-    component: hooks.markRaw(Numeric)
+    component: hooks.markRaw(TinyNumeric)
   }
 ])
 

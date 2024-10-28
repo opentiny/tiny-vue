@@ -14,7 +14,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { VirtualTree as TinyVirtualTree, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyVirtualTree, TinyButton, TinyModal } from '@opentiny/vue'
 
 const defaultProps = { children: 'children', label: 'label' }
 const data5 = ref([])
@@ -53,7 +53,7 @@ const onClick = () => {
 }
 
 const handleNodeClick = (data) => {
-  Modal.message({ message: `${data.label}`, status: 'info' })
+  TinyModal.message({ message: `${data.label}`, status: 'info' })
 }
 
 const treeOp = computed(() => ({

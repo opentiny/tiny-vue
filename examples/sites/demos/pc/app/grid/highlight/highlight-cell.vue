@@ -33,13 +33,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     currentChange({ row }) {
-      Modal.message({ message: `${row.name}`, status: 'info' })
+      TinyModal.message({ message: `${row.name}`, status: 'info' })
     },
     toolbarButtonClickEvent({ code, $grid }) {
       switch (code) {

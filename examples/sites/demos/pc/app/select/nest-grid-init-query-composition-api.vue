@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 const allData = ref([])
 const radioValue1 = ref('001')

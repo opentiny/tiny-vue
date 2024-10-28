@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { Pager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal } from '@opentiny/vue'
 
 function debounce(fn, delay = 50) {
   let timer
@@ -29,35 +29,35 @@ function debounce(fn, delay = 50) {
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   },
   methods: {
     handleCurrentChange(val) {
-      Modal.message({
+      TinyModal.message({
         message: `current-change 事件，当前页: ${val}`,
         status: 'info'
       })
     },
     handleSizeChange(val) {
-      Modal.message({
+      TinyModal.message({
         message: `size-change 事件，每页条目数: ${val}`,
         status: 'info'
       })
     },
     prevClick(val) {
-      Modal.message({
+      TinyModal.message({
         message: `prev-click 事件，当前页: ${val}`,
         status: 'info'
       })
     },
     nextClick(val) {
-      Modal.message({
+      TinyModal.message({
         message: `next-click 事件，当前页: ${val}`,
         status: 'info'
       })
     },
     fetchData: debounce(() => {
-      Modal.message({
+      TinyModal.message({
         message: '模拟后台拉取数据',
         status: 'info'
       })

@@ -13,13 +13,13 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, Switch } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinySwitch: Switch
+    TinyTabs,
+    TinyTabItem,
+    TinySwitch
   },
   data() {
     return {

@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 const value = ref('')
 const gridOp = ref({
@@ -112,6 +112,7 @@ function handlePageChange() {
       city: '深圳'
     }
   ]
+
   gridOp.value.data = dataset
 }
 </script>

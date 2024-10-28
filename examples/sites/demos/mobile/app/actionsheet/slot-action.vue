@@ -17,12 +17,12 @@
 </template>
 
 <script lang="jsx">
-import { ActionSheet, Button } from '@opentiny/vue'
+import { TinyActionSheet, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionSheet: ActionSheet,
-    TinyButton: Button
+    TinyActionSheet,
+    TinyButton
   },
   data() {
     return {

@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsSunburst as TinyChartSunburst } from '@opentiny/vue'
+import { TinyHuichartsSunburst as TinyChartSunburst } from '@opentiny/vue'
 
 const options = ref({
   data: [

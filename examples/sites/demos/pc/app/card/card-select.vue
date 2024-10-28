@@ -53,13 +53,13 @@
 </template>
 
 <script>
-import { Card, CardGroup, Select } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup, TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCard: Card,
-    TinyCardGroup: CardGroup,
-    TinySelect: Select
+    TinyCard,
+    TinyCardGroup,
+    TinySelect
   },
   data() {
     return {

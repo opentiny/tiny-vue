@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { reactive } from 'vue'
-import { Search as TinySearch } from '@opentiny/vue'
+import { TinySearch } from '@opentiny/vue'
 
 const searchTypes = reactive([
   {

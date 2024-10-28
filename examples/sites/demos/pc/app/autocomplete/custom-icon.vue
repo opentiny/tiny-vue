@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { Autocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 import { iconEdit, iconApp } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyAutocomplete: Autocomplete
+    TinyAutocomplete
   },
   data() {
     return {

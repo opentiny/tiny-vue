@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, DialogBox as TinyDialogBox } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 
 const boxVisibility = ref(false)

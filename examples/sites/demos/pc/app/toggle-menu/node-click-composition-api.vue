@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ToggleMenu as TinyToggleMenu, Modal } from '@opentiny/vue'
+import { TinyToggleMenu, TinyModal } from '@opentiny/vue'
 
 const datas = ref([
   {
@@ -83,6 +83,6 @@ const datas = ref([
 ])
 
 function nodeClick() {
-  Modal.message('点击节点后的事件')
+  TinyModal.message('点击节点后的事件')
 }
 </script>

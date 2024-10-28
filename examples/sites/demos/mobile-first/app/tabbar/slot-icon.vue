@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem } from '@opentiny/vue'
+import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue'
 import { IconMail, IconMarkOn, IconUser } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabbar: Tabbar,
-    TinyTabbarItem: TabbarItem
+    TinyTabbar,
+    TinyTabbarItem
   },
   data() {
     return {

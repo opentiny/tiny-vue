@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import { FloatingButton, Modal, Button } from '@opentiny/vue'
+import { TinyFloatingButton, TinyModal, TinyButton } from '@opentiny/vue'
 import { IconCopy } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFloatingButton: FloatingButton,
-    TinyButton: Button
+    TinyFloatingButton,
+    TinyButton
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     touchstartHandler(event, index) {
-      Modal.message('按钮--' + index)
+      TinyModal.message('按钮--' + index)
     },
     clickHander1() {
       this.showExpand = false

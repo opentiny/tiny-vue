@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
 
         img.src = base64
         img.onload = function () {
-          Modal.message({
+          TinyModal.message({
             message: '宽：' + img.naturalWidth + ' 高：' + img.naturalHeight,
             status: 'info'
           })

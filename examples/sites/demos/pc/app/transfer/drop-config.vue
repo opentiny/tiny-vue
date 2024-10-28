@@ -3,12 +3,12 @@
 </template>
 
 <script lang="jsx">
-import { Transfer } from '@opentiny/vue'
+import { TinyTransfer } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer
   },
   data() {
     const generateData = () => {

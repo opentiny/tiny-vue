@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Image, Modal } from '@opentiny/vue'
+import { TinyImage, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImage: Image
+    TinyImage
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     changeIndex(index) {
-      Modal.message({ message: `图片切换事件触发，当前 index： ${index}`, status: 'info' })
+      TinyModal.message({ message: `图片切换事件触发，当前 index： ${index}`, status: 'info' })
     }
   }
 }

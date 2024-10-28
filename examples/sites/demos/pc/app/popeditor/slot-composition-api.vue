@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyPopeditor, TinyInput, TinyButton } from '@opentiny/vue'
 
 const dataset = [
   {

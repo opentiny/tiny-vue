@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { Pager, RadioButton, RadioGroup } from '@opentiny/vue'
+import { TinyPager, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager,
-    TinyRadioButton: RadioButton,
-    TinyRadioGroup: RadioGroup
+    TinyPager,
+    TinyRadioButton,
+    TinyRadioGroup
   },
   data() {
     return {

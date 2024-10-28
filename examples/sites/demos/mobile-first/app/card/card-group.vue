@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import { Card, CardGroup } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCard: Card,
-    TinyCardGroup: CardGroup
+    TinyCard,
+    TinyCardGroup
   },
   data() {
     return {

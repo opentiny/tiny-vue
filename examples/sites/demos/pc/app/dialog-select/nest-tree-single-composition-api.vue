@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { DialogSelect as TinyDialogSelect, Button as TinyButton } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [

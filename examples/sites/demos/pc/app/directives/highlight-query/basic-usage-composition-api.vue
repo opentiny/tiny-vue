@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { HighlightQuery } from '@opentiny/vue-directive'
 
 const vHighlightQuery = HighlightQuery

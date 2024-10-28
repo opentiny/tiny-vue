@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsHeatmap as TinyChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap as TinyChartHeatmap } from '@opentiny/vue'
 
 const options = ref({
   // 图表类型(矩形热力图)
@@ -14,7 +14,6 @@ const options = ref({
 
   // padding控制图表距离容器的上，右，下，左padding值
   padding: [50, 120, 20, 20],
-
   // 矩形的颜色，默认值'#1F55B5'
   color: '#745ef7',
 

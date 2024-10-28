@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Skeleton } from '@opentiny/vue'
+import { TinySkeleton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySkeleton: Skeleton
+    TinySkeleton
   }
 }
 </script>

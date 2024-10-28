@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, CardGroup as TinyCardGroup, Select as TinySelect } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup, TinySelect } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const radioValue = ref('TinyVue')

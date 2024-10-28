@@ -12,11 +12,11 @@
 </template>
 
 <script lang="jsx">
-import { Split, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySplit: Split
+    TinySplit
   },
   data() {
     return {
@@ -26,13 +26,13 @@ export default {
   },
   methods: {
     movestart() {
-      Modal.message({ message: '拖拽开始', status: 'info' })
+      TinyModal.message({ message: '拖拽开始', status: 'info' })
     },
     moving() {
-      Modal.message({ message: '正在拖拽...', status: 'info' })
+      TinyModal.message({ message: '正在拖拽...', status: 'info' })
     },
     moveend() {
-      Modal.message({ message: '拖拽结束', status: 'info' })
+      TinyModal.message({ message: '拖拽结束', status: 'info' })
     }
   }
 }

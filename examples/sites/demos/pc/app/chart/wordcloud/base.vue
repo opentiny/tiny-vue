@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsWordcloud } from '@opentiny/vue'
+import { TinyHuichartsWordcloud } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWordcloud: HuichartsWordcloud
+    TinyWordcloud: TinyHuichartsWordcloud
   },
   data() {
     return {

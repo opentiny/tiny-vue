@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-unused-vars -->
 <template>
   <div class="slot-demo">
     <div>
@@ -42,7 +41,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton, Link as TinyLink } from '@opentiny/vue'
+import { TinyTree, TinyButton, TinyLink } from '@opentiny/vue'
 import { iconPlusSquare } from '@opentiny/vue-icon'
 
 const TinyIconPlusSquare = iconPlusSquare()

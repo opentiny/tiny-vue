@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Numeric as TinyNumeric } from '@opentiny/vue'
+import { TinyNumeric } from '@opentiny/vue'
 
 const value1 = ref(1)
 const value2 = ref(0)

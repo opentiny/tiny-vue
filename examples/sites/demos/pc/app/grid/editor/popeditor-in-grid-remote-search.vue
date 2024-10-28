@@ -28,16 +28,16 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Popeditor } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopeditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Popeditor,
+      TinyPopeditor,
       popeditOptions: [],
       tableData: [
         {

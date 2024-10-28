@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Modal, Popover } from '@opentiny/vue'
+import { TinyModal, TinyPopover } from '@opentiny/vue'
 import Flowchart from '@opentiny/vue-flowchart'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 
@@ -117,7 +117,7 @@ const HandlerList = {
     TinyIconDown: iconChevronDown(),
     TinyIconUp: iconChevronUp(),
     HandlerDropdown,
-    TinyPopover: Popover
+    TinyPopover
   },
   props: {
     params: Object
@@ -229,15 +229,15 @@ function toggleStatus() {
 }
 
 function onClickNode(_afterNode, _e) {
-  Modal.message('click-node')
+  TinyModal.message('click-node')
 }
 
 function onClickLink(_afterLink, _e) {
-  Modal.message('click-link')
+  TinyModal.message('click-link')
 }
 
 function onClickBlank(_param, _e) {
-  Modal.message('click-blank')
+  TinyModal.message('click-blank')
 }
 </script>
 

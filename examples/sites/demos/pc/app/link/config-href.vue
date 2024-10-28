@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Link } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLink: Link
+    TinyLink
   }
 }
 </script>

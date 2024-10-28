@@ -8,11 +8,11 @@
 </template>
 
 <script lang="jsx">
-import { Dept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   setup() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     confirm() {
-      Modal.message({ message: 'Dept部门 confirm 事件' })
+      TinyModal.message({ message: 'Dept部门 confirm 事件' })
     }
   }
 }

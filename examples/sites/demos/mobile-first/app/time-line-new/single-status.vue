@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { TimeLineNew } from '@opentiny/vue'
+import { TinyTimeLineNew } from '@opentiny/vue'
 import { IconCopy, IconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLineNew,
+    TinyTimeLine: TinyTimeLineNew,
     IconCopy: IconCopy()
   },
   data() {

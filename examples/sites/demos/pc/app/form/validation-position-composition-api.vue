@@ -16,13 +16,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 

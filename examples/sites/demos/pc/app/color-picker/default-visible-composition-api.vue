@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ColorPicker as TinyColorPicker } from '@opentiny/vue'
+import { TinyColorPicker } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const color = ref('#66ccff')

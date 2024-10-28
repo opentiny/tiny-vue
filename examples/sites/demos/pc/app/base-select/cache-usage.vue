@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { BaseSelect } from '@opentiny/vue'
+import { TinyBaseSelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect
+    TinyBaseSelect
   },
   data() {
     return {

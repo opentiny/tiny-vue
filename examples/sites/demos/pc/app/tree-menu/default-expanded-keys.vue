@@ -4,11 +4,11 @@
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {

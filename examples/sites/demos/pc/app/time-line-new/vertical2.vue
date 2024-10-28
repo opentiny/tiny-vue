@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { TimeLineNew, Modal } from '@opentiny/vue'
+import { TinyTimeLineNew, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    AuiTimeLine: TimeLineNew
+    AuiTimeLine: TinyTimeLineNew
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     click(index) {
-      Modal.message({ message: `触发了click事件：${index}`, status: 'info' })
+      TinyModal.message({ message: `触发了click事件：${index}`, status: 'info' })
       this.active = index
     }
   }

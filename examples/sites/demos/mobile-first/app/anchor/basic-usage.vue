@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { Anchor, Switch } from '@opentiny/vue'
+import { TinyAnchor, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAnchor: Anchor,
-    TinySwitch: Switch
+    TinyAnchor,
+    TinySwitch
   },
   data() {
     return {

@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const tabName = ref('2')

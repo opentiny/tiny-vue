@@ -22,12 +22,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyModal } from '@opentiny/vue'
 
 const activeName = ref('1')
 
 function beforeClose(item, activeNames) {
-  Modal.message({ message: '阻止面板切换，当前点击面板：' + item.name, status: 'error' })
+  TinyModal.message({ message: '阻止面板切换，当前点击面板：' + item.name, status: 'error' })
   return false
 }
 </script>

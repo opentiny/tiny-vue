@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue'
 
 const value = ref(20)
 const customColor = ref('#5cb300')

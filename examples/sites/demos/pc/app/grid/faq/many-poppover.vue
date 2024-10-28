@@ -36,13 +36,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Popover } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopover } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyPopover: Popover
+    TinyGrid,
+    TinyGridColumn,
+    TinyPopover
   },
   data() {
     return {

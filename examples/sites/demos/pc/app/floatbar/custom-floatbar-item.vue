@@ -13,11 +13,11 @@
 </template>
 
 <script lang="jsx">
-import { Floatbar } from '@opentiny/vue'
+import { TinyFloatbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFloatbar: Floatbar
+    TinyFloatbar
   }
 }
 </script>
