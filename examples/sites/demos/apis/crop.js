@@ -80,7 +80,7 @@ export default {
             'en-US': 'Set whether the cropping dialog box is visible'
           },
           mode: ['pc'],
-          pcDemo: 'min-crop-box-width-height'
+          pcDemo: 'basic-usage'
         },
         {
           name: 'drag-mode',
@@ -214,7 +214,7 @@ export default {
             'en-US': 'Default cropped source image'
           },
           mode: ['pc'],
-          pcDemo: 'no-background'
+          pcDemo: 'basic-usage'
         },
         {
           name: 'view-mode',
