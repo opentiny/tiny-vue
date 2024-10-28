@@ -1,18 +1,18 @@
 <template>
   <div class="tiny-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   <tiny-file-upload drag :action="action" multiple accept=".png,.jpeg,.jpg" @drop-error="dropErrorHandler">
-    <tiny-icon-fileupload-pro class="tiny-svg-size icon-fileupload"></tiny-icon-fileupload-pro>
+    <tiny-icon-picture class="tiny-svg-size icon-fileupload"></tiny-icon-picture>
   </tiny-file-upload>
 </template>
 
 <script>
 import { FileUpload, Modal } from '@opentiny/vue'
-import { IconFileuploadPro } from '@opentiny/vue-icon'
+import { iconPicture } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyFileUpload: FileUpload,
-    TinyIconFileuploadPro: IconFileuploadPro()
+    TinyIconPicture: iconPicture()
   },
   data() {
     return {

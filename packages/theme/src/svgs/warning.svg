@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	viewBox="0 0 24 24" xml:space="preserve">
-<g id="Icon">
-	<g transform="translate(-412.000000, -929.000000)">
-		<g transform="translate(100.000000, 761.000000)">
-			<g id="Warning" transform="translate(312.000000, 168.000000)">
-				<path class="st0" d="M12,24C5.4,24,0,18.6,0,12S5.4,0,12,0s12,5.4,12,12S18.6,24,12,24z M12,5
-					c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1s1-0.4,1-1V6C13,5.4,12.6,5,12,5z M12,18c0.6,0,1-0.4,1-1s-0.4-1-1-1s-1,0.4-1,1
-					S11.4,18,12,18z"/>
-			</g>
-		</g>
-	</g>
-</g>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<rect id="矩形备份-5" class="st0"/>
+<path id="形状结合" class="st1" d="M8.45,1.61C8.62,1.7,8.75,1.83,8.84,2l6.05,11.13c0.25,0.46,0.07,1.02-0.39,1.27
+	c-0.14,0.07-0.29,0.11-0.45,0.11H1.95C1.43,14.5,1,14.08,1,13.56c0-0.15,0.04-0.31,0.11-0.44L7.16,2C7.41,1.54,7.98,1.37,8.45,1.61z
+	 M8,11c-0.41,0-0.75,0.34-0.75,0.75S7.59,12.5,8,12.5s0.75-0.34,0.75-0.75S8.41,11,8,11z M8,5.5C7.72,5.5,7.5,5.72,7.5,6l0,0v3.5
+	C7.5,9.78,7.72,10,8,10c0.28,0,0.5-0.22,0.5-0.5l0,0V6C8.5,5.72,8.28,5.5,8,5.5z"/>
 </svg>

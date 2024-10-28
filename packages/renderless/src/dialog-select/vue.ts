@@ -23,7 +23,11 @@ import {
   multiTreeRadio,
   multiGridRadioChange,
   watchMulti,
-  clearStatus
+  clearStatus,
+  setGridSelection,
+  setTreeSelection,
+  setSelection,
+  getSelection
 } from './index'
 
 export const api = [
@@ -45,10 +49,12 @@ export const api = [
   'onFooterConfirm',
   'multiTreeRadio',
   'multiGridRadioChange',
-  'clearStatus'
+  'clearStatus',
+  'setSelection',
+  'getSelection'
 ]
 
-export const renderless = (props, { reactive, computed, watch }, { vm, nextTick, emit }) => {
+export const renderless = (props, { reactive, computed, watch }, { vm, nextTick, emit, constants, designConfig }) => {
   const state = reactive({
     splitValue: 0,
     gridColumns: computed(() => api.computedGridColumns()),
@@ -72,7 +78,15 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
     lookupStore: {
       datas: []
     },
-    theme: vm.theme
+    theme: vm.theme,
+    isBorder: computed(() => {
+      if (typeof props.gridOp.border === 'boolean') {
+        return props.gridOp.border
+      } else {
+        return vm.theme !== 'saas'
+      }
+    }),
+    constants: designConfig?.constants || constants
   })
 
   state.temporary = {}
@@ -106,12 +120,20 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
     setChecked: setChecked({ api, props, state }),
     multiTreeRadio: multiTreeRadio({ api, props }),
     watchMulti: watchMulti({ api, state, props }),
-    clearStatus: clearStatus(api)
+    clearStatus: clearStatus(api),
+    setSelection: setSelection({ api, props }),
+    getSelection: getSelection({ state }),
+    setTreeSelection: setTreeSelection({ api, state, vm, props }),
+    setGridSelection: setGridSelection({ api, state, vm })
   })
 
   watch(
     () => props.visible,
-    (value) => value && !state.multiGridStore.inited && api.queryGridData()
+    (value) => {
+      if (value && !state.multiGridStore.inited) {
+        api.queryGridData()
+      }
+    }
   )
 
   watch(

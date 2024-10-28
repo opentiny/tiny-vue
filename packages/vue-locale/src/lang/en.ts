@@ -11,7 +11,7 @@
  */
 export default {
   'en-US': 'English',
-  'zh-CN': '中文',
+  'zh-CN': 'Chinese',
   'zh-TW': '中国台湾',
   hello: 'Hello {name}',
   code: 'en-US',
@@ -26,12 +26,12 @@ export default {
     numeric: {
       equalTo: 'Equal to',
       notEqualTo: 'Not equal to',
-      moreThan: 'More than',
-      moreThanOrEqualTo: 'More than or equal to',
+      moreThan: 'Greater than',
+      moreThanOrEqualTo: 'Greater than or equal to',
       lessThan: 'Less than',
       lessThanOrEqualTo: 'Less than or equal to',
-      empty: 'Empty',
-      nonEmpty: 'Non-empty'
+      empty: 'Null',
+      nonEmpty: 'Not null'
     },
     queryBuilder: {
       addItem: 'Add Rule',
@@ -39,16 +39,16 @@ export default {
       removeGroup: 'Del Rule Group'
     },
     wizard: {
-      previousStep: 'LastStep',
-      nextStep: 'NextStep',
+      previousStep: 'Previous',
+      nextStep: 'Next',
       save: 'Save',
       submit: 'Submit'
     },
     linkMenu: {
-      title: 'news',
-      placeholder: 'Please enter keywords to filter...',
-      sure: 'Determine',
-      cancel: 'cancel'
+      title: '',
+      placeholder: 'Enter a keyword.',
+      sure: 'OK',
+      cancel: 'Cancel'
     },
     todoList: {
       add: 'Add',
@@ -56,9 +56,9 @@ export default {
     },
     alert: {
       error: 'Error',
-      info: 'Info',
+      info: 'Information',
       success: 'Success',
-      title: 'Message notification',
+      title: 'Information',
       warning: 'Warning'
     },
     amount: {
@@ -73,6 +73,9 @@ export default {
       lessThanOrEqualTo: 'Less than or equal to',
       empty: 'Empty',
       nonEmpty: 'Non-empty'
+    },
+    actionMenu: {
+      moreText: 'More'
     },
     base: {
       all: 'All',
@@ -97,13 +100,13 @@ export default {
       confirm: 'Confirm'
     },
     cell: {
-      placeholder: 'Select'
+      placeholder: '--Select--'
     },
     cascader: {
-      noMatch: 'No matching data',
+      noMatch: 'No matches',
       loading: 'Loading',
-      placeholder: 'Select',
-      noData: 'No data'
+      placeholder: '--Select--',
+      noData: 'No data available.'
     },
     chart: {
       auxiliary: 'Auxiliary',
@@ -115,11 +118,11 @@ export default {
       value: 'Value'
     },
     colorSelectPanel: {
-      confirm: 'Ok',
+      confirm: 'Select',
       cancel: 'Cancel',
-      predefine: 'Predefine Color',
-      history: 'History',
-      empty: 'Empty'
+      predefine: 'Default Colors',
+      history: 'Recent Colors',
+      empty: 'None'
     },
     crop: {
       choose: 'choose image',
@@ -129,15 +132,15 @@ export default {
       rotate45: 'rotate 45°',
       closeCropArea: 'hide selection',
       reset: 'reset',
-      closeCrop: 'exit crop',
-      cropImage: 'select area'
+      cropImage: 'crop image',
+      croppedImage: 'Target image'
     },
     datepicker: {
       clear: 'Clear',
       cancel: 'Cancel',
       endDate: 'End Date',
       confirm: 'OK',
-      month: 'month',
+      month: 'Month',
       endTime: 'End Time',
       month2: 'February',
       month1: 'January',
@@ -165,16 +168,16 @@ export default {
         dec: 'Dec',
         nov: 'Nov'
       },
-      nextYear: 'Next Year',
+      nextYear: 'Next year',
       nextMonth: 'Next Month',
       prevMonth: 'Previous Month',
       now: 'Now',
-      selectDate: 'Select date',
-      prevYear: 'Previous Year',
+      selectDate: 'Select a date.',
+      prevYear: 'Previous year',
       startDate: 'Start Date',
-      selectTime: 'Select time',
+      selectTime: 'Select a time.',
       today: 'Today',
-      currentMonth: 'Current Month',
+      currentMonth: 'This Month',
       startTime: 'Start Time',
       week: 'week',
       weeks: {
@@ -186,14 +189,14 @@ export default {
         sat: 'Sat',
         fri: 'Fri'
       },
-      timezone: 'selecting a timezone',
-      year: '',
+      timezone: 'Select a time zone.',
+      year: 'Year',
       hour: 'hour',
       minute: 'minute',
       second: 'second',
-      to: 'to',
-      yearMonth: '{year} / {month}',
-      yearMonthDay: '{year} / {month} / {day}'
+      to: '',
+      yearMonth: '{month} {year}',
+      yearMonthDay: '{month} {day}, {year}'
     },
     richTextEditor: {
       bold: 'bold',
@@ -298,7 +301,7 @@ export default {
       calcHash: 'Document is calculating encryption',
       uploadFile: 'Upload file',
       downloadAll: 'Download all',
-      onlySupport: 'Support {type} file',
+      onlySupport: 'Only support {type} file',
       fileNotLessThan: 'The size of single file cannot be less than ',
       fileNotMoreThan: 'The size of single file cannot be more than ',
       fileSizeRange: 'The size of a single file must range from {moreThan} to {lessThan}.',
@@ -343,21 +346,14 @@ export default {
       deleteSelectRecord: 'Are you sure you want to delete the selected record?',
       emptyText: 'No Data',
       error: {
-        cellEditRender: 'The renderer cell-render and edit-render cannot be used together.',
-        delGetAllRecords: 'The function getAllRecords is deprecated, please use getRecordset.',
-        delGetRecords: 'The function getRecords is deprecated, please use getData.',
-        delLabel: 'The property label is deprecated, please use title.',
-        delProp: 'The property prop is deprecated, please use field.',
         delRevert: 'The function revert is deprecated, please use revertData.',
         groupFixed: 'If grouping headers are used, fixed columns must be on the left and right sides.',
         notDelete: 'delete method not exist.',
-        notMouse: 'Horizontal virtual scrolling does not support mouse-config.',
         notQuery: 'query method not exist.',
         notResizable: 'Horizontal virtual scrolling does not support resizable.',
         notSave: 'save method not exist.',
         reqModule: 'require {{name}} module.',
         rowIdEmpty: 'The property row-id is not allowed to be empty.',
-        scrollOriginal: 'Virtual scrolling can only export source data, please set original=true.',
         scrollYHeight: 'You must set the height or max-height to enable virtual scrolling.',
         toolbarId: 'Toolbar must have a unique id',
         treeFixedExpand: 'The fixed columns of the tree structure conflict with the expanded row.',
@@ -378,7 +374,6 @@ export default {
         clipboardWriteError: 'clipboard write error'
       },
       filter: {
-        allFilter: 'All',
         allSelect: '(All)',
         endDate: 'End Date',
         startDate: 'Start Date',
@@ -610,10 +605,7 @@ export default {
     usercard: {
       address: 'Address',
       collapse: 'Collapse',
-      department: 'Department',
       email: 'email',
-      employeeId: 'Employee ID',
-      'employee_id': 'Employee ID',
       empno: 'Employee Number',
       expand: 'Expand',
       fax: 'Fax',
@@ -623,10 +615,8 @@ export default {
       other: 'Other',
       phone: 'Telephone',
       timezone: 'Time zone',
-      title: 'User information: {0}',
       travelcode: 'Travel code',
-      viop: 'VIOP',
-      zipcode: 'Postal Code'
+      viop: 'VIOP'
     },
     richText: {
       bold: 'Bold',
@@ -721,7 +711,15 @@ export default {
       chooseCurrency: 'Choose currency'
     },
     calendarBar: {
-      week: { 0: 'SUN', 1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5: 'FRI', 6: 'SAT' },
+      week: {
+        0: 'SUN',
+        1: 'MON',
+        2: 'TUE',
+        3: 'WED',
+        4: 'THU',
+        5: 'FRI',
+        6: 'SAT'
+      },
       year: 'Year %s',
       yearMonth: '%m %y',
       month: {
@@ -754,8 +752,24 @@ export default {
       }
     },
     calendarView: {
-      week: { 0: 'SUN', 1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5: 'FRI', 6: 'SAT' },
-      weekDays: { 0: 'SUN', 1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5: 'FRI', 6: 'SAT' },
+      week: {
+        0: 'SUN',
+        1: 'MON',
+        2: 'TUE',
+        3: 'WED',
+        4: 'THU',
+        5: 'FRI',
+        6: 'SAT'
+      },
+      weekDays: {
+        0: 'SUN',
+        1: 'MON',
+        2: 'TUE',
+        3: 'WED',
+        4: 'THU',
+        5: 'FRI',
+        6: 'SAT'
+      },
       backToday: 'back to today',
       new: 'New',
       noSchedule: 'No Schedule',
@@ -766,7 +780,8 @@ export default {
     selectedBox: {
       select: 'Selected (%s)',
       allSelect: 'All selected (%s)',
-      clear: 'Clear'
+      clear: 'Clear',
+      noData: 'No data'
     },
     record: {
       record: 'Record',

@@ -3,7 +3,7 @@
     <div>点击图片预览大图</div>
     <br />
     <div class="demo-image__preview">
-      <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index></tiny-image>
+      <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index :appendToBody="false"></tiny-image>
     </div>
   </div>
 </template>

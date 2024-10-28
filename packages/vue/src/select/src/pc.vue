@@ -50,8 +50,8 @@
         multiple && !state.selectDisabled && state.selected.length
           ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
           : !multiple && state.selectDisabled
-          ? state.selectedLabel
-          : ''
+            ? state.selectedLabel
+            : ''
       "
     >
       <slot name="reference">

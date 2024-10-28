@@ -15,7 +15,7 @@ import { isObject, typeOf as getType, isNull } from '../../common/type'
 import _debounce from '../../common/deps/debounce'
 import _numerify from './numerify'
 import { escapeHtml } from '../../common/string'
-import { xss } from '../../common'
+import { xss } from '../../common/xss'
 
 export { setObj as set, getObj as get, isEqual } from '../../common/object'
 

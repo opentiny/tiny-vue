@@ -13,55 +13,60 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
+export const userContactProps = {
+  ...$props,
+  showName: {
+    type: Boolean,
+    default: true
+  },
+  showArrow: {
+    type: Boolean,
+    default: false
+  },
+
+  /**
+   * 是否显示 roleNumber, colType 为 false 时生效
+   */
+  showNumber: {
+    type: Boolean,
+    default: true
+  },
+
+  /**
+   * 是否显示 头像
+   */
+  showImg: {
+    type: Boolean,
+    default: true
+  },
+  placement: String,
+  /**
+   * 数据
+   */
+  data: {
+    type: Object as PropType<{
+      userName: string
+      imgUrl: string
+      roleNumber: string
+      tools?: any
+      values: undefined | { text: string; value: string }[]
+    }>
+  },
+  espace: Array,
+  popperClass: String,
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  },
+  isNewImMode: {
+    type: Boolean,
+    default: true
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'UserContact',
-  props: {
-    ...$props,
-    showName: {
-      type: Boolean,
-      default: true
-    },
-    showArrow: {
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     *  是否显示 roleNumber, colType 为 false 时生效
-     */
-    showNumber: {
-      type: Boolean,
-      default: true
-    },
-
-    /**
-     * 是否显示 头像
-     */
-    showImg: {
-      type: Boolean,
-      default: true
-    },
-
-    /**
-     * 数据
-     */
-    data: {
-      type: Object,
-      validator: (value: any) =>
-        typeof value.userName === 'string' && value.imgUrl
-          ? typeof value.imgUrl === 'string'
-          : true && typeof value.userDescription === 'string' && (!value.values || Array.isArray(value.values))
-    },
-    popperClass: String,
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
-    isNewImMode: {
-      type: Boolean,
-      default: true
-    }
-  },
+  props: userContactProps,
   setup(props, context) {
     return $setup({
       context,

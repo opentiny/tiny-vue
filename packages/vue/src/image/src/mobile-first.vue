@@ -37,7 +37,7 @@
         showHover ? 'block' : 'hidden'
       ]"
     ></div>
-    <teleport to="body">
+    <teleport :disabled="!appendToBody" to="body">
       <image-viewer
         :z-index="zIndex"
         v-if="state.getPreview && state.showViewer"
@@ -81,7 +81,8 @@ export default defineComponent({
     'previewVisible',
     'round',
     'imageSize',
-    'keepStyle'
+    'keepStyle',
+    'appendToBody'
   ],
   setup(props, context): any {
     return setup({

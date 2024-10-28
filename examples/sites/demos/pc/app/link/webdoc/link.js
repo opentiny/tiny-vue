@@ -9,8 +9,14 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>value</code> 或者默认插槽设置链接显示内容。</p>',
-        'en-US': '<p>Set the link to display content via <code>value</code> or the default slot. </p></p>'
+        'zh-CN': `
+          通过 <code>value</code> 或者默认插槽设置链接显示内容。<br>
+          绑定 <code>click</code> 事件监听点击。 当禁用或配置 <code>href</code> 属性时， 不会触发<code>click</code>事件！
+        `,
+        'en-US': `
+          Set the link to display content via <code>value</code> or the default slot. 
+          Bind the click event to listen for clicks.The click event is not triggered when the href attribute is disabled or configured!
+          `
       },
       codeFiles: ['basic-usage.vue']
     },

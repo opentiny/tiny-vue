@@ -536,12 +536,6 @@ export const Cell = {
     checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
     treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
     options.domProps = { checked: ~$table.selection.indexOf(row) }
-    options.on = {
-      change(event) {
-        $table.triggerCheckRowEvent(event, params, event.target.checked)
-        $table.showSelectToolbar()
-      }
-    }
 
     let { twcls } = params
     let labelCls = [
@@ -565,7 +559,31 @@ export const Cell = {
       options.class = inputCls
     }
 
-    let vnode = h('label', { class: labelCls, key: random() }, [
+    /** 之前版本通过监听input的change事件切换选中状态，
+     * 当同时配置了单选和多选时，且单选的trigger为row时：
+     * 点击后由于先触发了单元格点击事件，切换了行单元状态，导致行重渲染，input的change事件无法触发，导致多选无法选中问题
+     * 3.19.0将选切换提前至点击事件，从而支持单选和多选同时配置。
+     */
+    const checkboxEvent = {
+      click(event) {
+        // 忽略label特性触发的input点击冒泡
+        if (event?.target?.tagName.toLowerCase() === 'input') {
+          return
+        }
+        const isChecked = $table.selection.includes(row)
+        /** triggerCheckRowEvent会修改dom，导致事件冒泡处理时，依靠dom的逻辑判断有误。
+         * 例如：onClickSelectColumn方法中，会使用event.target向上查找父元素判断是否点击复现框，从而避免重复处理选中逻辑。
+         * 修改dom后，原本复选框已被移出document，因此需要使用setTimeout宏任务来将修改dom的操作延迟到所有事件冒泡处理完毕。
+         */
+        setTimeout(() => {
+          $table.triggerCheckRowEvent(event, params, !isChecked)
+          // TODO: 多选工具栏，貌似没什么用，待梳理后去除。
+          $table.showSelectToolbar()
+        }, 0)
+      }
+    }
+
+    let vnode = h('label', { class: labelCls, key: random(), on: checkboxEvent }, [
       h('input', options),
       h('span', { class: spanCls }, [
         h(iconCheck(), { class: ['tiny-svg-size', 'icon-check'] }),
@@ -580,6 +598,7 @@ export const Cell = {
   renderTreeSelectionCell(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderSelectionCell(h, params))
   },
+  // TODO: 与renderSelectionCell代码方法高度相似，待提取公共逻辑。
   renderSelectionCellByProp(h, params) {
     let { $table, column, row } = params
     let { slots } = column
@@ -838,12 +857,8 @@ export const Cell = {
     let { actived } = params.$table.editStore
 
     const { editConfig } = params.$table
-    return Cell.runRenderer(
-      h,
-      params,
-      this,
-      actived && actived.row === params.row && handleActivedCanActive({ editConfig, params })
-    )
+    const isActiveCell = () => (editConfig?.activeStrictly ? handleActivedCanActive({ editConfig, params }) : true)
+    return Cell.runRenderer(h, params, this, actived?.row === params.row && isActiveCell())
   },
   renderTreeCellEdit(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderCellEdit(h, params))

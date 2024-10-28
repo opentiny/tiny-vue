@@ -631,7 +631,7 @@ type IFormTrigger = 'change' | 'blur'
 
 interface IFormRules {
   required?: boolean // 是否必填
-  message?: number // 校验错误的提示
+  message?: string // 校验错误的提示
   // 内置的类型校验
   type?: 'date' | 'dateTime' | 'float' | 'array' | 'string' | 'number' | 'url' | 'time' | 'email' | 'object' | 'boolean' | 'enum'
   // 校验触发时机， 默认为 ['change', 'blur'] 两种场景都触发，如果仅在主动调用校验方式时触发，可设置为空数组 []。

@@ -3,7 +3,7 @@
     <tiny-autocomplete
       v-model="value"
       :prefix-icon="IconEdit"
-      :suffix-icon="IconAssociation"
+      :suffix-icon="IconApp"
       placeholder="请输入内容"
       :fetch-suggestions="querySearch"
     ></tiny-autocomplete>
@@ -12,7 +12,7 @@
 
 <script>
 import { Autocomplete } from '@opentiny/vue'
-import { IconEdit, IconAssociation } from '@opentiny/vue-icon'
+import { iconEdit, iconApp } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -22,8 +22,8 @@ export default {
     return {
       restaurants: [],
       value: '',
-      IconEdit: IconEdit(),
-      IconAssociation: IconAssociation()
+      IconEdit: iconEdit(),
+      IconApp: iconApp()
     }
   },
   methods: {

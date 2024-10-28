@@ -43,7 +43,7 @@ import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.
 
 const TinyIconAttachment = iconAttachment()
 const TinyIconSuccessful = iconSuccessful()
-const TinyIconCloseCircle = iconClose()
+const TinyIconClose = iconClose()
 const TinyIconDownload = iconDownload()
 const TinyIconFileCloudupload = iconFileCloudupload()
 const TinyIconPlus = iconPlus()
@@ -239,7 +239,7 @@ export default defineComponent({
       ),
       showDel && (
         <span class="thumb-icon" title={t('ui.fileUpload.deleteFile')} onClick={() => handleRemove(file)}>
-          <TinyIconCloseCircle class="close-icon" />
+          <TinyIconClose class="close-icon" />
         </span>
       )
     ]

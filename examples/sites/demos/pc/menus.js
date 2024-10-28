@@ -82,6 +82,7 @@ export const cmpMenus = [
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
       { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
+      // { 'nameCn': '多色图标', 'name': 'IconMulticolor', 'key': 'icon-multicolor' }, // 隐藏路由，目前只有saas使用
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
       { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },
       { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },

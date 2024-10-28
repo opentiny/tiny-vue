@@ -23,8 +23,8 @@ import {
   iconLoadingShadow,
   iconWarning,
   iconClose,
-  iconFullscreenLeft,
-  iconMinscreenLeft
+  iconFullscreenRight,
+  iconMinscreenRight
 } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/modal/index.less'
 import type { IModalApi } from '@opentiny/vue-renderless/types/modal.type'
@@ -192,7 +192,7 @@ export default defineComponent({
                         )
                       : null,
                     resize
-                      ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
+                      ? h(zoomLocat ? iconMinscreenRight() : iconFullscreenRight(), {
                           class: ['tiny-modal__zoom-btn', 'trigger__btn'],
                           on: {
                             click: this.toggleZoomEvent

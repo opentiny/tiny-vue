@@ -15,7 +15,7 @@
 <script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton } from '@opentiny/vue'
-import { iconEditorListNum } from '@opentiny/vue-icon'
+import { IconEditorList } from '@opentiny/vue-icon'
 
 const options = ref({
   width: 300,
@@ -27,7 +27,7 @@ const options = ref({
   // downloadFile: (file) => {
   //   console.log('file', file)
   // },
-  icon: iconEditorListNum()
+  icon: IconEditorList()
 })
 const fileList = ref([
   {

@@ -23,6 +23,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-icon-multicolor": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",

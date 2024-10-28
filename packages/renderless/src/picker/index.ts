@@ -66,7 +66,7 @@ export const watchMobileVisible =
 export const watchPickerVisible =
   ({ api, vm, dispatch, emit, props, state, nextTick }) =>
   (value) => {
-    if (props.readonly || state.pickerDisabled || state.isMobileMode) return
+    if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
 
     if (value) {
       api.showPicker()
@@ -939,9 +939,9 @@ export const handleFocus =
     const type = state.type
 
     if (DATEPICKER.TriggerTypes.includes(type)) {
-      if (state.isMobileMode && state.isDateMobileComponent) {
+      if (state.isMobileScreen && state.isDateMobileComponent) {
         api.dateMobileToggle(true)
-      } else if (state.isMobileMode && state.isTimeMobileComponent) {
+      } else if (state.isMobileScreen && state.isTimeMobileComponent) {
         api.timeMobileToggle(true)
       } else {
         state.pickerVisible = true

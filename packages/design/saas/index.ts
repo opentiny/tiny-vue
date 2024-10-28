@@ -27,9 +27,10 @@ import DateRange from './src/date-range'
 import Pager from './src/pager'
 import DialogBox from './src/dialog-box'
 import Popeditor from './src/popeditor'
-import { version } from './package.json'
+import DialogSelect from './src/dialog-select'
 import DatePanel from './src/date-panel'
 import Cascader from './src/cascader'
+import { version } from './package.json'
 
 export default {
   name: 'saas',
@@ -65,6 +66,7 @@ export default {
     DateRange,
     DialogBox,
     DatePanel,
+    DialogSelect,
     Cascader
   }
 }

@@ -694,12 +694,11 @@ export default defineComponent({
 
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
-          e.preventDefault()
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
+          e.preventDefault()
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-
           router.push(data.link)
           scrollByHash(hash)
         }

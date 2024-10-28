@@ -378,6 +378,21 @@ export default {
       ],
       methods: [
         {
+          name: 'getSelection',
+          type: '() => IData[]',
+          typeAnchorName: 'IData',
+          meta: {
+            stable: '3.19.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '获取多选选中数据',
+            'en-US': 'Get multi-select selected data'
+          },
+          mode: ['pc'],
+          pcDemo: 'set-selection'
+        },
+        {
           name: 'queryGridData',
           type: '() => void',
           defaultValue: '',
@@ -387,6 +402,21 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'nest-grid-multi'
+        },
+        {
+          name: 'setSelection',
+          type: '(data: IData | IData[], checked: boolean) => void',
+          typeAnchorName: 'IData',
+          meta: {
+            stable: '3.19.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置数据的多选选中状态，需要在弹窗初始化后调用，否则调用无效',
+            'en-US': 'Set the multi-select selected state of data'
+          },
+          mode: ['pc'],
+          pcDemo: 'set-selection'
         }
       ],
       slots: [
@@ -674,6 +704,16 @@ interface IResizeEvent {
   fullscreen: boolean
   // 弹窗的元素
   dialog: HTMLElement
+}
+      `
+    },
+    {
+      name: 'IData',
+      type: 'interface',
+      code: `
+interface IData {
+  // 表格或者tree行数据
+  [prop: string]: any
 }
       `
     }

@@ -23,7 +23,7 @@
  *
  */
 
-import { xss } from '../../common/xss.js'
+import { xss } from '../../common/xss'
 import browser from '../../common/browser'
 import { toTreeArray } from '../static'
 import { getCellValue, getFuncText } from '../utils'
@@ -71,7 +71,7 @@ const getCsvContent = ($table, opts, oColumns, oData) => {
   const tableEl = $table.$el
   const tab = opts.useTabs === false ? '' : '\t'
   const { columns, datas } = getCsvData(opts, oData, oColumns, tableEl)
-  let content = '\ufeff' // BOM字节序标记
+  let content = '\uFEFF' // BOM字节序标记
   const transfrom = (str) => {
     if (typeof str === 'string' && str.replace(/ /g, '').match(/[\s,"]/)) {
       str = '"' + str.replace(/"/g, '""') + '"'

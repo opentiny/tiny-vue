@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common'
+import { xss } from '../common/xss'
 
 export const getLocales =
   ({ api, service, state }) =>
@@ -33,15 +33,9 @@ export const switchLanguage =
   ({ api, state, service }) =>
   (lang) => {
     const { locales, current } = state
-    const domain = service.getDomain()
     const hasMultiLocale = state.locales.length === 2
 
     state.current = hasMultiLocale ? (state.current = locales.indexOf(current) === 0 ? locales[1] : locales[0]) : lang
-
-    const expires = new Date(new Date().getTime() + 3600000).toGMTString()
-    const currLang = state.current.substring(0, 2) === 'zh' ? 'zh' : 'en'
-
-    document.cookie = `lang=${currLang};expires=${expires};domain=${domain};path=/`
 
     api.setText()
   }

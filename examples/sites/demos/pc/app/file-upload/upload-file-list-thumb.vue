@@ -14,7 +14,7 @@
 
 <script>
 import { FileUpload, Button } from '@opentiny/vue'
-import { iconEditorListNum } from '@opentiny/vue-icon'
+import { IconEditorList } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
         // downloadFile: (file) => {
         //   console.log('file', file)
         // },
-        icon: iconEditorListNum()
+        icon: IconEditorList()
       },
       fileList: [
         {

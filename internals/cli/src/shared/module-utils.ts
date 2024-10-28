@@ -147,6 +147,7 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
         .replace('vue-common/src/', 'packages/common/')
         .replace('vue-locale/src/', 'packages/locale/')
         .replace('vue-icon/src/', 'packages/icon/')
+        .replace('vue-icon-multicolor/src/', 'packages/icon-multicolor/')
         .replace('/index.ts', '/src/index.js')
         .replace('/src/', '/dist/lib/')
         .replace('.vue', '.js')

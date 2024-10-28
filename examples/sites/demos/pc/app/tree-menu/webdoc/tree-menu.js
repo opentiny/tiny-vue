@@ -359,6 +359,19 @@ export default {
           'Indicate whether to allow the search box clear button to be displayed by setting the<code>clearable</code>property'
       },
       codeFiles: ['clearable.vue']
+    },
+    {
+      demoId: 'width-adapt',
+      name: {
+        'zh-CN': '宽度自适应',
+        'en-US': 'Can the search box be cleared'
+      },
+      desc: {
+        'zh-CN': '通过 <code> widthAdapt </code> 属性，是否让组件宽度自适应父容器。默认为 <code> false </code>',
+        'en-US':
+          'The <code>widthAdapt </code> attribute specifies whether to enable the component width to adapt to the parent container.'
+      },
+      codeFiles: ['width-adapt.vue']
     }
   ]
 }
