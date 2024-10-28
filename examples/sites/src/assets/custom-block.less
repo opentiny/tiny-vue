@@ -1,11 +1,15 @@
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body li {
-  list-style: circle;
+.markdown-body.markdown-body ul,
+.markdown-body.markdown-body ol,
+.markdown-body.markdown-body li {
+  list-style: disc;
 }
-.markdown-body li+li {
-  margin-top: 16px;
+.markdown-body.markdown-body ul,
+.markdown-body.markdown-body ol {
+  margin-left: 18px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
+
 // 切换md中,这2个类的显示隐藏. used-config  used-tiny 类
 .md-config .markdown-body {
   .used-tiny {
@@ -34,7 +38,7 @@
   }
   p {
     font-size: 14px;
-    line-height: 30px;  
+    line-height: 30px;
     margin-bottom: 11px;
   }
   code {
@@ -109,7 +113,7 @@
 .custom-block.danger {
   margin: 1rem 0;
   border-left: 0.5rem solid;
-  padding: 0.1rem 1.5rem;
+  padding: 1rem 1.5rem;
   overflow-x: auto;
 }
 .markdown-body {

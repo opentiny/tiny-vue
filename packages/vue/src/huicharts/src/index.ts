@@ -1,5 +1,5 @@
-import { HuiChartsRing } from '../huicharts-ring'
 import { HuiChartsPie } from '../huicharts-pie'
+import { HuiChartsRing } from '../huicharts-ring'
 import { HuiChartsBar } from '../huicharts-bar'
 import { HuiChartsHistogram } from '../huicharts-histogram'
 import { HuiChartsRadar } from '../huicharts-radar'

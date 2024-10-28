@@ -179,7 +179,7 @@ export default {
     toolbarButtonClickEvent({ code, $grid }) {
       const data = $grid.getSelectRecords()
 
-      const update = $grid.getUpdateRecords()
+      const editRows = $grid.getUpdateRecords().concat($grid.getInsertRecords())
 
       switch (code) {
         case 'insert':
@@ -207,7 +207,7 @@ export default {
           break
         }
         case 'save': {
-          if (update.length === 0) {
+          if (editRows.length === 0) {
             Modal.alert('没有修改记录')
           }
           break

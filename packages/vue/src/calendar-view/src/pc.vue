@@ -58,8 +58,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                    ? 'is-selected'
-                    : '',
+                      ? 'is-selected'
+                      : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >

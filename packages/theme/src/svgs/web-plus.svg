@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Creator: CorelDRAW X7 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 18 16" xmlns:xlink="http://www.w3.org/1999/xlink">
- <g>
-  <path class="fil0" d="M0 0l17 0c0,0 1,0 1,0l0 12c0,1 -1,1 -1,1l-8 0 0 2 4 0c0,0 0,0 0,0l0 1c0,0 0,0 0,0l-9 0c-1,0 -1,0 -1,0l0 -1c0,0 0,0 1,0l3 0 0 -2 -7 0c0,0 0,0 0,-1l0 -12c0,0 0,0 0,0zm2 8l14 0 0 -6 -14 0 0 6zm14 1l-14 0 0 2 14 0 0 -2z"/>
- </g>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc fill="none">
+			Created with Pixso.
+	</desc>
+	<defs fill="none" />
+	<g>
+		<path id="形状" d="M12.5 2L3.16016 2C2.15039 2 1.33008 2.82031 1.33008 3.83008L1.33008 10.5C1.33008 11.5098 2.15039 12.3301 3.16016 12.3301L12.5 12.3301C13.5098 12.3301 14.3301 11.5098 14.3301 10.5L14.3301 3.83008C14.3301 2.82031 13.5098 2 12.5 2ZM13.3301 10.5C13.3301 10.9609 12.96 11.3301 12.5 11.3301L3.16016 11.3301C2.7002 11.3301 2.33008 10.9609 2.33008 10.5L2.33008 3.83008C2.33008 3.36914 2.7002 3 3.16016 3L12.5 3C12.96 3 13.3301 3.36914 13.3301 3.83008L13.3301 10.5ZM11.5 14.6602C11.7705 14.6602 12 14.4297 12 14.1602C12 13.8906 11.7705 13.6602 11.5 13.6602L4.16016 13.6602C3.88965 13.6602 3.66016 13.8906 3.66016 14.1602C3.66016 14.4297 3.88965 14.6602 4.16016 14.6602L11.5 14.6602Z" clip-rule="evenodd" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
 </svg>

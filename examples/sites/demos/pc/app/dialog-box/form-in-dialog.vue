@@ -5,7 +5,6 @@
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       resize
-      max-height="500"
       title="消息"
       width="30%"
       :is-form-reset="false"
@@ -17,7 +16,6 @@
         <tiny-form-item label="岗位" prop="type">
           <tiny-radio-group v-model="formData.type">
             <tiny-radio :label="0">研发</tiny-radio>
-            <tiny-radio :label="1">非研发</tiny-radio>
           </tiny-radio-group>
         </tiny-form-item>
         <tiny-form-item label="特长" prop="goodAt">
@@ -31,7 +29,7 @@
             >
           </tiny-checkbox-group>
         </tiny-form-item>
-        <tiny-form-item label="技能" prop="skill" required>
+        <tiny-form-item label="技能" prop="skill">
           <tiny-select v-model="value">
             <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
             </tiny-option>

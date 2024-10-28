@@ -1,6 +1,6 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <header class="flex-horizontal docs-header">
+  <header :class="['flex-horizontal', 'docs-header', cmpId === 'loading' && 'docs-header-highlight']">
     <div class="docs-title-wrap">
       <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
       <version-tip
@@ -95,7 +95,13 @@
               </div>
             </div>
           </div>
-          <tiny-tabs v-else v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
+          <tiny-tabs
+            v-else
+            v-model="activeTab"
+            ref="demoTabs"
+            :class="['docs-content-tabs', cmpId === 'loading' && 'docs-content-tabs-highlight']"
+            @click="onTabsClick"
+          >
             <tiny-tab-item :title="i18nByKey('demos')" name="demos">
               <!-- demos列表 -->
               <template v-if="currJson?.demos?.length">
@@ -107,6 +113,7 @@
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
+                      @mounted="demoMounted"
                     />
                   </div>
                   <div v-else>
@@ -158,7 +165,11 @@
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
                             <template #default="{ row }">
-                              <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                              <async-highlight
+                                v-if="row.code"
+                                :code="row.code.trim()"
+                                :types="chartCode ? 'html' : 'ts'"
+                              ></async-highlight>
                               <div v-if="row.depTypes">
                                 <async-highlight
                                   v-for="(k, i) in row.depTypes"
@@ -201,7 +212,7 @@
                             </template>
                           </tiny-grid-column>
                           <tiny-grid-column
-                            v-if="key === 'props'"
+                            v-if="key === 'props' || key === 'options'"
                             field="defaultValue"
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
@@ -224,6 +235,7 @@
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
             id="anchor"
+            :offset-top="156"
             :links="currAnchorLinks"
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
@@ -319,6 +331,7 @@ export default defineComponent({
       showApiTab: computed(() => state.currApiTypes.length),
       columnWidth: {
         props: ['15%', '20%', '15%'],
+        options: ['15%', '20%', '15%'],
         events: ['15%', '25%', 0],
         methods: ['15%', '20%', 0],
         slots: ['15%', 0, 0],
@@ -332,11 +345,32 @@ export default defineComponent({
         activeMethod: (row) => row.typeAnchorName,
         showIcon: true // 配置是否显示展开图标
       },
-      contributors: [] // 贡献者
+      contributors: [], // 贡献者
+      chartCode: false
     })
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+
+    let finishNum = 0
+    let isAllMounted = false
+    let demoMountedResolve
+    const demoMounted = () => {
+      finishNum++
+      if (finishNum === state.currJson.demos.length) {
+        isAllMounted = true
+        demoMountedResolve(true)
+      }
+    }
+
+    const allDemoMounted = async () => {
+      if (isAllMounted) {
+        return isAllMounted
+      }
+      return new Promise((resolve) => {
+        demoMountedResolve = resolve
+      })
+    }
 
     const getApiAnchorLinks = () => {
       if (!state.currJson.apis?.length) {
@@ -450,10 +484,7 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log('querySelector has special character:', err)
-          }
+          } catch (err) {}
           if (scrollTarget && !isRunningTest) {
             document.getElementById('doc-layout').scrollTo({
               top: scrollTarget.offsetTop,
@@ -462,7 +493,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -492,6 +523,9 @@ export default defineComponent({
           `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
         )
       ]
+
+      state.chartCode = getWebdocPath(state.cmpId) === 'chart'
+
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
         state.activeTab = 'apis'
@@ -569,11 +603,9 @@ export default defineComponent({
 
           // F5刷新加载时，跳到当前示例
           // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          return allDemoMounted().then(() => {
+            scrollByHash(hash)
+          })
         })
         .finally(() => {
           // 获取组件贡献者
@@ -616,6 +648,7 @@ export default defineComponent({
     }
 
     const fn = {
+      demoMounted,
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
@@ -661,12 +694,11 @@ export default defineComponent({
 
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
-          e.preventDefault()
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
+          e.preventDefault()
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-
           router.push(data.link)
           scrollByHash(hash)
         }
@@ -742,6 +774,10 @@ export default defineComponent({
   background-color: #fff;
   box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
 
+  &.docs-header-highlight {
+    z-index: var(--docs-header-zindex-highlight);
+  }
+
   .docs-title-wrap {
     flex: 1;
     min-width: var(--layout-content-main-min-width);
@@ -789,6 +825,10 @@ export default defineComponent({
     --tv-Tabs-item-font-size: 18px;
     --tv-Tabs-header-font-active-text-color: #2f5bea;
     --tv-Tabs-item-active-border-color: #2f5bea;
+
+    &.docs-content-tabs-highlight :deep(.tiny-tabs__header) {
+      z-index: var(--docs-layout-sider-zindex-highlight);
+    }
 
     flex: 1;
     transition: all ease-in-out 0.3s;

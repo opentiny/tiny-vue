@@ -4,6 +4,7 @@
     <tiny-grid
       ref="revertGridRef"
       :data="tableData"
+      show-overflow="tooltip"
       seq-serial
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
@@ -22,7 +23,7 @@
         show-overflow="ellipsis"
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="100">
-        <template v-slot="data">
+        <template #default="data">
           <tiny-button size="mini" @click="$refs.revertGridRef.revertData(data.row)">恢复</tiny-button>
         </template>
       </tiny-grid-column>

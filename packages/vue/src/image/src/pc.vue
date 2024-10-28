@@ -32,7 +32,7 @@
         'tiny-image__preview': state.getPreview
       }"
     />
-    <teleport to="body">
+    <teleport :disabled="!appendToBody" to="body">
       <image-viewer
         ref="imageViewer"
         :z-index="zIndex"
@@ -65,7 +65,18 @@ export default defineComponent({
     TinyIconImageError: iconImageError()
   },
   emits: ['load', 'error', 'delete', 'change-index'],
-  props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex', 'keepStyle', 'showIndex'],
+  props: [
+    ...props,
+    'src',
+    'fit',
+    'lazy',
+    'scrollContainer',
+    'previewSrcList',
+    'zIndex',
+    'keepStyle',
+    'showIndex',
+    'appendToBody'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IImageApi
   }

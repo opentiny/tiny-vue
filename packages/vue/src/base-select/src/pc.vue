@@ -26,8 +26,7 @@
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
       state.selectDisabled ? 'is-disabled' : '',
-      $parent.$attrs.class,
-      inputBoxType === 'underline' ? 'tiny-base-select__underline' : ''
+      $parent.$attrs.class
     ]"
     @mouseleave.self="
       () => {
@@ -253,6 +252,7 @@
           :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
+          :input-box-type="inputBoxType"
           :class="{
             'is-focus': state.visible,
             overflow: state.overflow,
@@ -548,6 +548,7 @@ import RecycleScroller from '@opentiny/vue-recycle-scroller'
 import TinyCheckbox from '@opentiny/vue-checkbox'
 
 import '@opentiny/vue-theme/select/index.less'
+import '@opentiny/vue-theme/base-select/index.less'
 
 const getReference = (el, binding, vnode) => {
   const _ref = binding.expression ? binding.value : binding.arg

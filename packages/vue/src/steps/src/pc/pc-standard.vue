@@ -19,7 +19,7 @@
             {{ node[countField] }}
           </div>
           <div v-if="node[statusField]" :class="['dot', node[statusField]]">
-            <icon-refres v-if="node[statusField] === 'doing'"></icon-refres>
+            <icon-refresh v-if="node[statusField] === 'doing'"></icon-refresh>
             <icon-yes v-else-if="node[statusField] === 'done'"></icon-yes>
           </div>
         </slot>
@@ -31,12 +31,12 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconRefres, iconYes } from '@opentiny/vue-icon'
+import { iconRefresh, iconYes } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['click'],
   components: {
-    IconRefres: iconRefres(),
+    IconRefresh: iconRefresh(),
     IconYes: iconYes()
   },
   props: [

@@ -5,6 +5,7 @@
     :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     :edit-rules="validRules"
     :valid-config="{ asteriskMethod }"
+    show-overflow="tooltip"
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>

@@ -88,6 +88,7 @@ export default defineComponent({
       default: false
     },
     suffixIcon: Object,
+    prefixIcon: Object,
     lazyShowPopper: {
       type: Boolean,
       default: false
@@ -106,7 +107,7 @@ export default defineComponent({
     return setup({ props, context, renderless, api, h })
   },
   render() {
-    const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title, suffixIcon } = this
+    const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title, suffixIcon, prefixIcon } = this
     const { slots, size, state, border, showIcon, round, clickOutside } = this
 
     const params = { visible: state.visible }
@@ -117,6 +118,7 @@ export default defineComponent({
 
     // 优先级：suffix-icon 插槽 > suffixIcon 属性 > 其他主题图标 > 默认主题图标
     const IconDown = suffixIcon || state.designConfig?.icons?.dropdownIcon || iconDownWard()
+    const IconPre = prefixIcon
     const ButtonIconDown = state.designConfig?.icons?.dropdownIcon || iconDownWard()
     const defaultSlot = slots.default && slots.default(params)
 
@@ -144,6 +146,7 @@ export default defineComponent({
       )
     } else {
       const suffixSlot = slots['suffix-icon'] && slots['suffix-icon']()
+      const prefixSlot = slots['prefix-icon'] && slots['prefix-icon']()
       const vnodeData = (defaultSlot && defaultSlot[0]?.data) || {}
       const { attrs = {} } = vnodeData
 
@@ -159,6 +162,13 @@ export default defineComponent({
         ''
       )
 
+      const prefixInner =
+        prefixIcon || prefixSlot ? (
+          <span class={'tiny-dropdown__prefix-inner ' + visibleClass}>{prefixSlot || <IconPre></IconPre>}</span>
+        ) : (
+          ''
+        )
+
       let defaultTriggerElm =
         defaultSlot || title ? <span class={'tiny-dropdown__title'}>{defaultSlot || title}</span> : null
 
@@ -172,15 +182,15 @@ export default defineComponent({
             showIcon ? ' is-show-icon ' : ''
           } ${triggerClass}`}
           reset-time={0}>
+          {prefixInner}
           {defaultTriggerElm}
           {suffixInner}
         </tiny-button>
       ) : (
         <span
           ref="trigger"
-          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${
-            disabled ? ' is-disabled' : ''
-          } ${triggerClass}`}>
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}>
+          {prefixInner}
           {defaultTriggerElm}
           {suffixInner}
         </span>

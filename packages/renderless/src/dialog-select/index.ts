@@ -162,6 +162,93 @@ export const selectedBoxClear =
     state.selectedChanged = true
   }
 
+export const setTreeSelection =
+  ({ api, state, vm, props }) =>
+  (keys, value) => {
+    const tree = vm.$refs.multiTree
+    if (!tree) {
+      return
+    }
+    if (value) {
+      keys.forEach((key) => {
+        if (!state.selectedValues.includes(key)) {
+          tree.setCheckedByNodeKey(key, true)
+          const datas = getTreeSelect({ vm, props })
+          const values = datas.map((item) => item[props.valueField])
+          state.selectedDatas = datas
+          state.selectedValues = values
+        }
+      })
+    } else {
+      keys.forEach((key) => {
+        if (state.selectedValues.includes(key)) {
+          tree.setCheckedByNodeKey(key, false)
+          const datas = getTreeSelect({ vm, props })
+          const values = datas.map((item) => item[props.valueField])
+          state.selectedDatas = datas
+          state.selectedValues = values
+        }
+      })
+    }
+    api.selectedBoxInit()
+  }
+
+export const setGridSelection =
+  ({ api, state, vm }) =>
+  (keys, value) => {
+    const grid = vm.$refs.multiGrid
+    if (!grid) {
+      return
+    }
+    const gridRows = []
+    if (value) {
+      keys.forEach((key) => {
+        if (!state.selectedValues.includes(key)) {
+          const row = grid.getRowById(key)
+          state.selectedValues = [...state.selectedValues, key]
+          state.selectedDatas = [...state.selectedDatas, row]
+          gridRows.push(row)
+        }
+      })
+    } else {
+      keys.forEach((key) => {
+        if (state.selectedValues.includes(key)) {
+          const index = state.selectedValues.indexOf(key)
+          state.selectedValues.splice(index, 1)
+          state.selectedDatas.splice(index, 1)
+          gridRows.push(grid.getRowById(key))
+        }
+      })
+    }
+    grid.setSelection(gridRows, Boolean(value))
+    api.selectedBoxInit()
+  }
+
+export const setSelection =
+  ({ props, api }) =>
+  (data, value) => {
+    const { multi, popseletor, valueField } = props
+    if (!multi) {
+      return
+    }
+    const dataArr = Array.isArray(data) ? data : [data]
+    const keys = dataArr.map((i) => i[valueField]).filter((i) => i)
+    if (keys.length === 0) {
+      return
+    }
+    if (popseletor === 'grid') {
+      return api.setGridSelection(keys, value)
+    }
+    if (popseletor === 'tree') {
+      return api.setTreeSelection(keys, value)
+    }
+  }
+
+export const getSelection =
+  ({ state }) =>
+  () =>
+    state.selectedDatas
+
 export const selectedBoxDelete =
   ({ props, state, vm }) =>
   ({ option: row }) => {

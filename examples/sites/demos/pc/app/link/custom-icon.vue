@@ -10,7 +10,7 @@
     >
     <tiny-link :icon="IconEdit">编辑</tiny-link>
     <tiny-link :icon="IconEdit">禁用</tiny-link>
-    <tiny-link>查看<icon-view class="tiny-svg-size"></icon-view> </tiny-link>
+    <tiny-link>查看<icon-search class="tiny-svg-size"></icon-search> </tiny-link>
     <tiny-link>
       <template #icon> <icon-del class="tiny-svg-size"></icon-del> </template>删除</tiny-link
     >
@@ -19,12 +19,12 @@
 
 <script>
 import { Link } from '@opentiny/vue'
-import { IconEditor, IconView, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
+import { IconEditor, IconSearch, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyLink: Link,
-    IconView: IconView(),
+    IconSearch: IconSearch(),
     IconDel: IconDeleteL(),
     IconFilletExternalLink: IconFilletExternalLink()
   },

@@ -1,5 +1,9 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+  <tiny-grid
+    :data="tableData"
+    show-overflow="tooltip"
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column
       field="id"

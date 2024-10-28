@@ -1,14 +1,17 @@
 interface ThemeData {
+  /** 主题的ID */
   id?: string
+  /** 主题的名称 */
   name?: string
+  /** 主题的中文名称 */
   cnName?: string
   /**
-   * 需要追加的全局css变量的对象。
+   * 需要追加的全局css变量的对象
    * 比如： { 'tv-base-color-brand' : '#1476ff' } 会追加到 :root { --tv-base....... }
    * */
   data?: Record<string, string>
   /**
-   * 需要追加的样式规则, 以覆盖或扩充组件的样式。
+   * 需要追加的样式规则, 以覆盖或扩充组件的样式
    * 比如： .tiny-button { border:none;  }
    * */
   css?: string

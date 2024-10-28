@@ -6,11 +6,12 @@ test('快捷键', async ({ page }) => {
   const slider = page.locator('.tiny-slider-container .tiny-slider')
   const sliderBlock = slider.locator('.tiny-slider__handle')
   //   鼠标按下滑块
-  await sliderBlock.hover()
-  await page.mouse.down()
+  await sliderBlock.click()
   //   快捷键左键向左移动
   await page.keyboard.press('ArrowLeft')
+  await page.waitForTimeout(50)
   await page.keyboard.press('ArrowLeft')
+  await page.waitForTimeout(50)
   await sliderBlock.hover()
   await expect(slider.locator('.tiny-slider__tips')).toHaveText('38')
 

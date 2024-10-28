@@ -34,7 +34,7 @@
         ></tiny-user-head>
       </slot>
     </div>
-    <div data-tag="tiny-standard-list-item-title" class="text-left flex-auto mx-0 my-auto leading-5">
+    <div data-tag="tiny-standard-list-item-title" class="text-left overflow-auto flex-auto mx-0 my-auto leading-5">
       <slot>
         <div class="text-sm flex items-center">
           <slot name="title">

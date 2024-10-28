@@ -148,6 +148,30 @@ export default {
       codeFiles: ['verticalOffset.vue']
     },
     {
+      demoId: 'manual-close',
+      name: {
+        'zh-CN': '手动关闭通知',
+        'en-US': 'Vertical Offset'
+      },
+      desc: {
+        'zh-CN': `
+          通过<code>Notify</code>函数弹出通知后，会返回一个对应的<code>instance</code>对象，并保存在组件库的内部闭包变量中。<br>
+          需要手动关闭通知时，可以调用 <code>instance.close()</code> 方法关闭该通知。<br>
+          在<code>Notify</code>函数中，还存在2个静态方法去关闭通知。<br>
+          1、<code>Notify.close :(id, beforeClose)=>void </code>, 关闭指定的通知。其中<code>id</code>可通过<code>instance</code>对象获取。 <br>
+          2、<code>Notify.closeAll :()=>void </code>, 关闭所有通知。<br>
+        `,
+        'en-US': `
+          After a notification is displayed using the <code>Notify</code> function, a corresponding <code>instance</code> object is returned and stored in the internal closure variable of the component library. <br>
+          To disable notifications manually, you can record the <code>instance</code> object and call the <code>instance.close()</code> method to disable the notification. <br>
+          In the <code>Notify</code> function, there are two static methods to turn off the notification. <br>
+          1, <code>Notify.close :(id, beforeClose)=>void </code>, turn off the specified notification. The <code>id</code> can be obtained from the <code>instance</code> object. <br>
+          2. <code>Notify.closeAll :()=>void </code> to close all notifications. <br>
+        `
+      },
+      codeFiles: ['manual-close.vue']
+    },
+    {
       demoId: 'notify-events',
       name: {
         'zh-CN': '事件',

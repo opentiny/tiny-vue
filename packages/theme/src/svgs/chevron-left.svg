@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#D8D8D8;fill-opacity:0;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
-</style>
-<rect id="矩形" class="st0" width="16" height="16"/>
-<path id="Stroke-1-Copy" class="st1" d="M10.56,1.23c0.33-0.3,0.86-0.3,1.19,0c0.29,0.27,0.32,0.69,0.1,0.99l-0.1,0.11L5.74,7.88
-	C5.68,7.93,5.67,8,5.7,8.06l0.04,0.05l6.02,5.56c0.33,0.3,0.33,0.8,0,1.1c-0.29,0.27-0.75,0.3-1.07,0.09l-0.12-0.09L4.54,9.22
-	C3.87,8.59,3.82,7.61,4.4,6.93l0.14-0.15L10.56,1.23z"/>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc fill="none">
+			Created with Pixso.
+	</desc>
+	<defs fill="none">
+	</defs>
+	<g>
+		<path id="路径" d="M5.42 7.42C5.11 7.74 5.11 8.25 5.42 8.56L9.52 12.66C9.75 12.89 10.14 12.89 10.37 12.66C10.6 12.42 10.6 12.05 10.37 11.81L6.56 8L10.37 4.17C10.58 3.97 10.6 3.64 10.43 3.41C10.2 3.17 9.76 3.11 9.52 3.33L5.42 7.42Z" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
 </svg>

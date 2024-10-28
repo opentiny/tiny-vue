@@ -9,7 +9,7 @@
       :hide-required-asterisk="hideRequiredAsterisk"
       :model="createData"
       :rules="rules"
-      label-width="100px"
+      label-width="108px"
       validate-type="text"
       message-type="block"
     >
@@ -36,7 +36,6 @@ import {
   FormItem as TinyFormItem,
   Input as TinyInput,
   Button as TinyButton,
-  Modal,
   Switch as TinySwitch
 } from '@opentiny/vue'
 
@@ -59,6 +58,7 @@ function handleSubmit() {
   })
 }
 </script>
+
 <style scoped>
 .demo-form {
   width: 380px;

@@ -10,7 +10,7 @@
  *
  */
 import type { IButtonRenderlessParams, IButtonState } from '@/types'
-import { xss } from '../common'
+import { xss } from '../common/xss'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>

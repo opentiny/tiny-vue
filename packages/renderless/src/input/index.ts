@@ -11,13 +11,7 @@
  */
 
 import { omitText } from '../common/string'
-import type {
-  IInputApi,
-  IInputClassPrefixConstants,
-  IInputRenderlessParamUtils,
-  IInputRenderlessParams,
-  IInputState
-} from 'types/input.type'
+import type { IInputApi, IInputRenderlessParamUtils, IInputRenderlessParams, IInputState } from 'types/input.type'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -340,11 +334,9 @@ export const handleCompositionEnd =
   }
 
 export const calcIconOffset =
-  ({ CLASS_PREFIX, parent }: Pick<IInputRenderlessParams, 'parent'> & { CLASS_PREFIX: IInputClassPrefixConstants }) =>
+  ({ vm, parent }: Pick<IInputRenderlessParams, 'parent' | 'vm'>) =>
   (place: 'prefix' | 'suffix'): void => {
-    const elList = [].slice.call(
-      parent.$el.querySelectorAll(`.${CLASS_PREFIX.Input}${place}`) || []
-    ) as unknown as HTMLElement[]
+    const elList = vm.$refs[place] ? [vm.$refs[place]] : []
 
     if (!elList.length) {
       return
@@ -367,11 +359,11 @@ export const calcIconOffset =
     const pendant = pendantMap[place]
 
     if (parent.$slots[pendant]) {
-      const dom = parent.$el.querySelector(`.${CLASS_PREFIX.InputGroup}${pendant}`)
+      const dom = vm.$refs[pendant]
       let transform
 
       if (place === 'suffix') {
-        transform = `translateX(-${dom.offsetWidth}px)`
+        transform = `translateX(-${dom.offsetWidth}px) translateY(-50%)`
       } else if (place === 'prefix') {
         transform = `translate(${dom.offsetWidth}px, -50%)`
       }

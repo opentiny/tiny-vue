@@ -17,7 +17,7 @@
       :tabindex="tabindex"
       v-else-if="!state.ranged"
       data-tag="tiny-date-editor"
-      :readonly="state.isMobileMode || !editable || readonly || state.type === 'dates' || state.type === 'week'"
+      :readonly="state.isMobileScreen || !editable || readonly || state.type === 'dates' || state.type === 'week'"
       :disabled="state.pickerDisabled"
       :size="state.pickerSize"
       :name="name"
@@ -49,7 +49,7 @@
       </template>
       <template #suffix>
         <i data-tag="icon" class="flex items-center cursor-pointer">
-          <transition v-if="!state.isMobileMode" name="tiny-transition-icon-scale-in">
+          <transition v-if="!state.isMobileScreen" name="tiny-transition-icon-scale-in">
             <component
               :is="state.showClose ? clearIcon : null"
               @click="handleClickIcon"
@@ -106,7 +106,7 @@
           :title="state.displayValue && state.displayValue[0]"
           :disabled="state.pickerDisabled"
           v-bind="state.firstInputId"
-          :readonly="state.isMobileMode || !editable || readonly"
+          :readonly="state.isMobileScreen || !editable || readonly"
           :name="name && name[0]"
           @input="handleStartInput"
           @change="handleStartChange"
@@ -136,7 +136,7 @@
           :title="state.displayValue && state.displayValue[1]"
           :disabled="state.pickerDisabled"
           v-bind="state.secondInputId"
-          :readonly="state.isMobileMode || !editable || readonly"
+          :readonly="state.isMobileScreen || !editable || readonly"
           :name="name && name[1]"
           @input="handleEndInput"
           @change="handleEndChange"
@@ -146,7 +146,7 @@
         />
         <i
           @click="handleClickIcon"
-          v-if="!state.isMobileMode && state.haveTrigger"
+          v-if="!state.isMobileScreen && state.haveTrigger"
           data-tag="tiny-input__icon tiny-range__close-icon"
           :class="gcls('close-icon')"
         >
@@ -183,7 +183,7 @@
     </div>
     <!-- 大屏面板 -->
     <component
-      v-if="!state.isMobileMode"
+      v-if="!state.isMobileScreen"
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
@@ -199,7 +199,7 @@
     </component>
     <!-- 小屏 - 日期面板 -->
     <tiny-date-picker-mobile
-      v-if="state.isMobileMode && state.isDateMobileComponent"
+      v-if="state.isMobileScreen && state.isDateMobileComponent"
       ref="datePickerMobile"
       v-model="state.dateMobileOption.value"
       :title="title"
@@ -219,7 +219,7 @@
     </tiny-date-picker-mobile>
     <!-- 小屏 - 时间面板 -->
     <tiny-time-picker-mobile
-      v-if="state.isMobileMode && state.isTimeMobileComponent"
+      v-if="state.isMobileScreen && state.isTimeMobileComponent"
       ref="datePickerMobile"
       v-model="state.timeMobileOption.value"
       :default-value="state.timeMobileOption.defaultValue"

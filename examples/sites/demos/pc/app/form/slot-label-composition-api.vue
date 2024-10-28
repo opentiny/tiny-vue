@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px" show-message>
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
       <tiny-form-item prop="users">
         <template #label> 必填 </template>
         <tiny-input v-model="createData.users"></tiny-input>
@@ -11,7 +11,7 @@
       </tiny-form-item>
       <tiny-form-item prop="url">
         <template #label>
-          <div class="custom-label">超过两行文字，省略显示</div>
+          <div class="custom-label" v-auto-tip>超过两行文字，省略显示</div>
         </template>
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
@@ -37,6 +37,7 @@ import {
   Modal,
   RadioGroup as TinyRadioGroup
 } from '@opentiny/vue'
+import { AutoTip as VAutoTip } from '@opentiny/vue-directive'
 
 function handleClick() {
   Modal.message({ message: 'click', status: 'info' })

@@ -57,6 +57,7 @@ const classMap = {
   colActived: 'col__actived',
   rowNew: 'row__new',
   rowSelected: 'row__selected',
+  rowRadio: 'row__radio',
   rowActived: 'row__actived',
   isScrollload: 'is__scrollload'
 }
@@ -548,7 +549,8 @@ function renderRow(args) {
           {
             [`row__level-${rowLevel}`]: treeConfig,
             [classMap.rowNew]: editStore.insertList.includes(row),
-            [classMap.rowSelected]: selection.includes(row) || selectRow === row,
+            [classMap.rowSelected]: selection.includes(row),
+            [classMap.rowRadio]: selectRow === row,
             [classMap.rowActived]: rowActived
           },
           rowClassName

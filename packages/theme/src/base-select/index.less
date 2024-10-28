@@ -1,0 +1,401 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@base-select-prefix-cls: ~'@{css-prefix}base-select';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{base-select-prefix-cls} {
+  .inject-BaseSelect-vars();
+
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  outline: 0;
+  font-size: var(--tv-BaseSelect-font-size);
+  line-height: var(--tv-BaseSelect-line-height);
+
+  &&__multiple:not(&__collapse-tags):not(&__filterable) &__tags > span {
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+  }
+
+  &&__collapse-tags {
+    .@{base-select-prefix-cls}__tags {
+      & > span {
+        display: flex;
+        width: 100%;
+
+        & > span {
+          display: flex;
+        }
+
+        & > span:not(:only-child):first-child {
+          max-width: 70%;
+        }
+      }
+    }
+
+    &.@{base-select-prefix-cls}__filterable {
+      .@{base-select-prefix-cls}__tags {
+        & > span {
+          width: auto;
+          max-width: 76%;
+
+          & > span:first-child {
+            flex: 1;
+
+            // 兼容ie10-ie11
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+              flex-basis: auto;
+            }
+          }
+
+          & > span:only-child,
+          & > span:not(:only-child):first-child {
+            max-width: 100%;
+          }
+
+          & > span:not(:only-child):not(:first-child) {
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+              // 兼容ie10-ie11
+              flex-shrink: 0;
+              flex-basis: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &&__filterable {
+    .@{base-select-prefix-cls}__tags {
+      .@{base-select-prefix-cls}__input {
+        cursor: text;
+      }
+    }
+  }
+
+  &__tags {
+    position: absolute;
+    line-height: normal;
+    white-space: normal;
+    padding: var(--tv-BaseSelect-tags-padding);
+    z-index: 1;
+    top: 50%;
+    margin-left: 1px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+
+    & > span {
+      display: contents;
+
+      > span {
+        font-size: 0;
+      }
+    }
+
+    .not-visible {
+      visibility: hidden;
+    }
+
+    /* 搜索框 */
+    .@{base-select-prefix-cls}__input {
+      cursor: pointer;
+      border: none;
+      outline: 0;
+      padding: 0;
+      margin-left: 8px;
+      color: var(--tv-BaseSelect-text-color);
+      font-size: var(--tv-BaseSelect-font-size);
+      height: var(--tv-BaseSelect-input-height);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: transparent;
+    }
+
+    &.is-showicon {
+      padding-left: 24px;
+    }
+
+    .@{tag-prefix-cls} {
+      white-space: nowrap;
+      box-sizing: border-box;
+      border-color: transparent;
+      margin: var(--tv-BaseSelect-tag-margin);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: inline-flex;
+      justify-content: flex-start;
+      align-items: center;
+      max-width: 160px;
+    }
+
+    .@{base-select-prefix-cls}__tags-text {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      vertical-align: bottom;
+
+      & + .@{tag-prefix-cls}__close {
+        flex-shrink: 0;
+      }
+
+      &.is-disabled {
+        max-height: 24px;
+        display: inline-flex;
+
+        > span {
+          margin: var(--tv-BaseSelect-tag-margin);
+          display: inline-block;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+
+    // 收起按钮
+    .@{base-select-prefix-cls}__collapse-text {
+      display: inline-flex;
+      align-items: center;
+      margin-left: var(--tv-BaseSelect-tags-margin-left);
+      font-size: var(--tv-BaseSelect-font-size);
+      color: var(--tv-BaseSelect-collapse-text-color);
+
+      .tiny-svg {
+        margin-left: var(--tv-BaseSelect-collapse-icon-margin-left);
+        fill: var(--tv-BaseSelect-collapse-icon-color);
+      }
+    }
+  }
+
+  &.is-hover-expand,
+  &.is-click-expand {
+    vertical-align: top;
+
+    .@{base-select-prefix-cls}__tags-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &.is-hover {
+      .is-expand {
+        z-index: 2;
+      }
+    }
+
+    .@{base-select-prefix-cls}__tags {
+      height: var(--tv-BaseSelect-tags-height);
+      overflow: hidden;
+
+      &-collapse {
+        visibility: visible;
+        position: static;
+      }
+
+      .is-hidden {
+        visibility: hidden;
+        position: absolute;
+      }
+
+      > span > span {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+    }
+
+    &.is-hover,
+    &.collapse-tag-clicked {
+      .@{base-select-prefix-cls}__tags {
+        height: auto;
+        max-height: none;
+        overflow-y: auto;
+
+        &-collapse {
+          visibility: hidden;
+          position: absolute;
+
+          &.is-hidden {
+            margin: 0;
+          }
+        }
+
+        &.not-selected {
+          overflow-y: hidden;
+        }
+      }
+    }
+
+    & .is-expand {
+      position: absolute;
+      width: 100%;
+    }
+
+    &.@{base-select-prefix-cls}--small {
+      .@{base-select-prefix-cls}__tags {
+        padding-top: 2px;
+      }
+    }
+
+    &.@{base-select-prefix-cls}--mini {
+      .@{base-select-prefix-cls}__tags {
+        padding-top: 2px;
+      }
+    }
+  }
+
+  &.is-hover-expand.is-disabled {
+    .@{base-select-prefix-cls}__tags {
+      height: auto;
+    }
+  }
+
+  &.is-click-expand .@{base-select-prefix-cls}__tags-collapse {
+    visibility: visible;
+    position: static;
+
+    &.is-hidden {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+
+    .@{input-prefix-cls} {
+      &__inner {
+        padding-right: 12px;
+      }
+
+      &__suffix {
+        display: inline-block;
+      }
+    }
+
+    .@{base-select-prefix-cls}__tags {
+      padding-right: 16px;
+    }
+  }
+
+  &-tip &-tipcontent {
+    max-width: 300px;
+  }
+
+  & .@{input-prefix-cls} {
+    display: block;
+
+    .@{input-prefix-cls}__inner[readonly] {
+      cursor: pointer;
+    }
+
+    .@{base-select-prefix-cls}__caret {
+      fill: var(--tv-BaseSelect-icon-color);
+      font-size: var(--tv-BaseSelect-icon-font-size);
+      transition: transform 0.3s;
+      transform: rotateZ(180deg);
+      cursor: pointer;
+
+      &:hover {
+        fill: var(--tv-BaseSelect-icon-color-hover);
+      }
+
+      &.is-reverse {
+        transform: rotateZ(0);
+      }
+    }
+
+    .@{base-select-prefix-cls}__limit-txt,
+    .@{base-select-prefix-cls}__proportion-txt {
+      color: var(--tv-BaseSelect-suffix-text-color);
+      font-size: var(--tv-BaseSelect-font-size);
+      margin: var(--tv-BaseSelect-suffix-txt-margin);
+    }
+
+    .@{base-select-prefix-cls}__copy {
+      cursor: pointer;
+      margin-right: var(--tv-BaseSelect-suffix-icon-margin-right);
+    }
+
+    .@{input-prefix-cls}__suffix {
+      top: var(--tv-BaseSelect-suffix-top);
+
+      &-inner {
+        font-size: 0;
+      }
+    }
+
+    & .@{input-prefix-cls}__suffix-inner {
+      overflow: hidden;
+    }
+
+    &-medium .@{input-prefix-cls}__suffix {
+      top: var(--tv-BaseSelect-suffix-top-medium);
+    }
+
+    // TODO: 尾部按钮应垂直居中，待优化
+    &-small .@{input-prefix-cls}__suffix {
+      top: var(--tv-BaseSelect-suffix-top-small);
+    }
+
+    &-mini .@{input-prefix-cls}__suffix {
+      top: var(--tv-BaseSelect-suffix-top-mini);
+    }
+
+    &.is-disabled {
+      .@{base-select-prefix-cls}__caret {
+        fill: var(--tv-BaseSelect-icon-color-disabled);
+        cursor: not-allowed;
+      }
+
+      .@{input-prefix-cls}__inner {
+        cursor: not-allowed;
+      }
+    }
+
+    &.is-focus .@{input-prefix-cls}__inner {
+      border-color: var(--tv-BaseSelect-input-border-color-active);
+    }
+  }
+}

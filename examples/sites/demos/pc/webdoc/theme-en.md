@@ -1,4 +1,127 @@
-## Theme Configuration
+## Theme configuration
+
+<div class="tip custom-block">
+  This section of the document only supports theme customization after <code> @opentiny/vue@3.19.0 </code>. For historical theme configuration, see <a href='# Historical version of the theme configuration '> Archive information </a> at the bottom of the current document.
+</div>
+
+537/5000
+A set of global CSS variables is defined in the TinyVue component library to unify theme styles, such as fonts, colors, spacing, and rounding values, and component-level CSS variables are also defined within each component. Starting with the <code> @opentiny/vue@3.19.0 </code> version, the overall style of the component library is changed to a new 'Opentiny Design' style, which is more suitable for enterprise-class and background management applications. If you want to use the OLD theme style, you can choose to continue using the historical version, or refer to the current document's <a href='#OLD theme configuration '>OLD theme configuration </a>.
+
+- The global 'CSS variable' is located in the 'base' directory of the theme package: [base/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/vars.less)
+
+- Component-level 'CSS variables' in the theme root of each component, Such as [the button/vars. Less] (<https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less>)
+
+By reading the above source code, you can see which styles of component libraries can be customized.
+
+### Custom theme
+
+In a user's project, if you need to customize the theme style, or override the style of some components, you can configure the theme of the user project using the 'TinyThemeTool' class provided by the component library. We will also provide more topics for you to choose from in the future.
+
+'ThemeData' is a custom theme data format that allows users to pass in overwritten global CSS variables via the 'data' property and valid css rule blocks via the 'CSS' property.
+
+```ts
+interface ThemeData {
+  /** Theme ID */
+  id?: string
+  /** Theme Name */
+  name?: string
+  /** Theme Chinese Name */
+  cnName?: string
+  /**
+   * The object to which the global css variable needs to be appended.
+   * eg. { 'tv-base-color-brand' : '#1476ff' } will append to  :root { --tv-base....... }
+   * */
+  data?: Record<string, string>
+  /**
+   * Additional style rules are required to override or extend the style of the component.
+   * eg.  .tiny-button { border:none;  }
+   * */
+  css?: string
+}
+```
+
+You can customize your theme as follows:
+
+```ts
+import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
+
+const themeTool = new TinyThemeTool()
+
+themeTool.changeTheme({
+  name: 'my-app-custom-styles',
+  data: {
+    'tv-base-color-brand': '#1476ff',
+    'tv-font-size-md': '12px',
+    'tv-font-size-lg': '16px',
+    'tv-font-size-xxl': '20px'
+  },
+  css: `
+    .tiny-button {
+      --tv-Button-border-radius: 6px;
+
+      min-width: 80px;
+      border:none;
+      padding : 2px 20px;
+    }
+    .tiny-button.tiny-button--primary{
+      background-color: #508de3;
+    }
+  `
+})
+```
+
+<div class="info custom-block">
+In many historical projects, many developers will write component styles by <code>important</code> and <code>:deep()</code> to override certain component library styles. These styles are scattered throughout the components. When later versions of the component library are upgraded, the component structure or class name may be adjusted, resulting in an override failure. <br><br>
+
+You are advised to use <code>TinyThemeTool</code> to override component styles. In this way, modified CSS rules are centralized to facilitate subsequent maintenance. Users can also introduce 'CSS files' to override styles, but make sure that the styles in them take precedence over the component library.
+
+</div>
+
+### Micro Frontends scene
+
+By default, the 'themeTool.changeTheme' method will mount a custom style to the current 'document'. However, in microfront end frameworks, there is often a mechanism for style isolation, such as an unbounded microfront that encloses a 'Web Component' to mount child applications. If you customize the theme in this scenario, you must mount the style to the 'ShadowRoot' of the subapplication.
+
+```ts
+import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
+
+const wujieDom = document.querySelector('wujie-app[data-wujie-id]') //
+const target = wujieDom.shadowRoot
+
+const themeTool = new TinyThemeTool()
+
+themeTool.changeTheme(
+  {
+    name: 'my-app-custom-styles',
+    data: {
+      // ....
+    },
+    css: `....`
+  },
+  target // ----- mount point
+)
+```
+
+## OLD主题配置
+
+We do not recommend that users continue to use the old theme, but for historical projects, we provide a set of 'CSS variables' of the old theme that users need to adapt in the project.
+
+```ts
+import TinyThemeTool, { OldTheme } from '@opentiny/vue-theme/theme-tool'
+
+const themeTool = new TinyThemeTool(OldTheme)
+
+// themeTool.changeTheme(OldTheme)  // 效果同上
+```
+
+<div class="warning custom-block">
+   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈。也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本，我们将继续维护一段时间。
+</div>
+
+## Historical version of the theme configuration
+
+<div class="danger custom-block">
+  本节文档仅支持 <code> @opentiny/vue@3.18.0 </code> 版本之前的主题定制
+</div>
 
 The `TinyVue` multi-topic uses `css` variables and defines a series of global/component style variables that you can adjust according to your requirements.
 
@@ -6,7 +129,7 @@ Variables involved in the topic. To view the variables, perform the following st
 
 Source code: [basic-var.less](https://github.com/opentiny/tiny-vue-theme/blob/main/src/base/basic-var.less)
 
-Design website: [Administrative side specification design variable] (https://rnd-think.huawei.com/think-home/designAnnotation)
+Design website: [Administrative side specification design variable] (<https://rnd-think.huawei.com/think-home/designAnnotation>)
 
 Basic style variable `npm` Repository path: `@opentiny/vue-theme/theme`
 
@@ -15,9 +138,9 @@ Basic style variable `npm` Repository path: `@opentiny/vue-theme/theme`
 Currently, the official offers 4 sets of themes:
 
 -Default Theme
--Infinity Theme ` tinyInfinityTheme`
--Aurora Theme ` tinyAuroraTheme`
--XDesign Theme ` tinySmbTheme`
+-Infinity Theme `tinyInfinityTheme`
+-Aurora Theme `tinyAuroraTheme`
+-XDesign Theme `tinySmbTheme`
 
 #### Using predefined themes through alias [Currently only supported: Eurora theme and XDesign theme]
 
@@ -45,7 +168,7 @@ resolve: {
 }
 ```
 
-#### The specific usage of theme initialization and dynamic theme switching is shown below, and the following code is added to the main.ts file.
+#### The specific usage of theme initialization and dynamic theme switching is shown below, and the following code is added to the main.ts file
 
 ```js
 import TinyThemeTool from ' @opentiny/vue-theme/theme-tool.js'
@@ -105,7 +228,7 @@ getComputedStyle(el).getPropertyValue('--ti-base-color-white')
 el.style.setProperty('--ti-base-color-white', '#fefefe')
 ```
 
-### Theme variables are standardized and replaced with old and new variable names.
+### Theme variables are standardized and replaced with old and new variable names
 
 Background: Because the `tiny-vue` needs to connect to the theme-based configuration system, the `tiny-vue` component library is later than the `3.5. 0` version, and the name of the customized variable is changed.
 
@@ -149,7 +272,7 @@ Example 1: The special variable table shows that the old variable similar to `--
 
 If the original project style is `padding: var(--ti-button-padding);`, manually replace it with `padding: var(--ti-button-padding-vertical) var(--ti-button-padding-horizontal);`.
 
-Example 2: The old variable similar to `--ti-pager-primary-color` is split into `3 `new variables, `--ti-pager-primary-bg-color`, `--ti-pager-primary-text-color`, and `--ti-pager-primary-border-color`. Literally `Background Color`, `Text Color`, and `Border Color`
+Example 2: The old variable similar to `--ti-pager-primary-color` is split into `3`new variables, `--ti-pager-primary-bg-color`, `--ti-pager-primary-text-color`, and `--ti-pager-primary-border-color`. Literally `Background Color`, `Text Color`, and `Border Color`
 
 If the original format is `--ti-pager-primary-color:red;`, manually replace it with `--ti-pager-primary-bg-color: red; --ti-pager-primary-text-color: red; --ti-pager-primary-border-color: red;`.
 

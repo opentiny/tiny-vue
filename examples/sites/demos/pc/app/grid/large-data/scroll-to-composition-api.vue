@@ -48,13 +48,13 @@ function scrollTo() {
 }
 
 function scrollToRow() {
-  let row = tinyGridRef.value.getData(49)
+  let row = tinyGridRef.value.getData(50)
 
   tinyGridRef.value.scrollToRow(row)
 }
 
 function scrollToColumn() {
-  let column = tinyGridRef.value.getColumnByField('attr499')
+  let column = tinyGridRef.value.getColumnByField('attr500')
 
   tinyGridRef.value.scrollToColumn(column)
 }

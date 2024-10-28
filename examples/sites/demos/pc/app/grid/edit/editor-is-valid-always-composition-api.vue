@@ -2,6 +2,7 @@
   <div>
     <tiny-grid
       :data="tableData"
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
     >

@@ -171,9 +171,9 @@
 
     & > .selection-dropdown-wrapper {
       position: absolute;
-      left: 50%;
-      transform: translateX(12px);
-      top: 0;
+      left: calc(50% + 22px);
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
 
       .tiny-svg {
         fill: var(--tv-Grid-icon-color);

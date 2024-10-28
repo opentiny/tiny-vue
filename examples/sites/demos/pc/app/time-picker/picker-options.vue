@@ -25,6 +25,6 @@ export default {
 
 <style scoped>
 .demo-date-picker-options {
-  width: 240px;
+  width: 280px;
 }
 </style>

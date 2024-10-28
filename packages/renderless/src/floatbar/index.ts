@@ -11,7 +11,7 @@
  */
 
 import type { IFloatbarRenderlessParams, IFloatbarItem } from '@/types'
-import { xss } from '../common/xss.js'
+import { xss } from '../common/xss'
 
 export const computeData = ({ props }: Pick<IFloatbarRenderlessParams, 'props'>): IFloatbarItem[] => {
   if (Array.isArray(props.data) && props.data.length) {

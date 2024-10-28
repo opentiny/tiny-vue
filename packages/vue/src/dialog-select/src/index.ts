@@ -5,10 +5,19 @@ const template = () => {
   return PCTemplate
 }
 
+const $constants = {
+  INPUT_HEIGHT: '32px',
+  INPUT_MARGIN_BOTTOM: '8px'
+}
+
 export default defineComponent({
   name: $prefix + 'DialogSelect',
   props: {
     ...$props,
+    _constants: {
+      type: Object,
+      default: () => $constants
+    },
     dialogOp: {
       type: Object,
       default: () => ({})

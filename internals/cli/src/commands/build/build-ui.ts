@@ -200,7 +200,15 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
               dependencies['@vue/composition-api'] = '1.7.2'
             }
 
-            const matchList = ['vue-icon', 'vue-icon-saas', 'vue', 'design/aurora', 'design/saas', 'vue-directive']
+            const matchList = [
+              'vue-icon',
+              'vue-icon-saas',
+              'vue-icon-multicolor',
+              'vue',
+              'design/aurora',
+              'design/saas',
+              'vue-directive'
+            ]
 
             // 如果是主入口、svg图标或者主题规范包则直接指向相同路径
             if (matchList.includes(filePath)) {
@@ -320,7 +328,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
               if (source.includes('vue-design-') || source.includes('vue-icon') || source.includes('vue-common')) {
                 return false
               }
-            } else if (/vue-icon(-saas)?\/index/.test(importer)) {
+            } else if (/vue-icon(-saas|-multicolor)?\/index/.test(importer)) {
               // 图标入口排除子图标
               return /^\.\//.test(source)
             }
@@ -331,7 +339,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 子图标排除周边引用, 这里注意不要排除svg图标
-            if (/vue-icon(-saas)?\/.+\/index/.test(importer)) {
+            if (/vue-icon(-saas|-multicolor)?\/.+\/index/.test(importer)) {
               return !/\.svg/.test(source)
             }
 
@@ -432,6 +440,7 @@ export async function buildUi(
   // 如果指定了打包icon或者没有传入任何组件
   if (names.some((name) => name.includes('icon')) || !names.length) {
     tasks.push(...getByName({ name: kebabCase({ str: 'icon-saas' }), isSort: false }))
+    tasks.push(...getByName({ name: kebabCase({ str: 'icon-multicolor' }), isSort: false }))
     tasks.push(...getAllIcons())
   }
 

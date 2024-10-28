@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common'
+import { xss } from '../common/xss'
 
 export const getUserHref =
   ({ api, props }) =>

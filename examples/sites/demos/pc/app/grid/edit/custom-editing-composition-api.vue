@@ -2,6 +2,7 @@
   <tiny-grid
     :data="tableData"
     seq-serial
+    show-overflow="tooltip"
     :edit-config="{
       trigger: 'click',
       mode: 'cell',

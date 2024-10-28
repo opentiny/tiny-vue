@@ -10,7 +10,7 @@
       @close="onClose"
       @confirm="onConfirm"
     >
-      <div class="content">
+      <div>
         <span>内容区域</span>
       </div>
     </tiny-drawer>
@@ -37,9 +37,3 @@ const onConfirm = () => {
   Modal.message({ message: '确定事件', status: 'info' })
 }
 </script>
-
-<style scoped>
-.content {
-  padding: 20px 0;
-}
-</style>

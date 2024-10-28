@@ -1,6 +1,6 @@
-import OldTheme from './old-theme-index.js'
+import tinyOldTheme from './old-theme-index.js'
 
-export { OldTheme }
+export { tinyOldTheme }
 
 /**
  * 动态切换文档或影子根节点的样式类

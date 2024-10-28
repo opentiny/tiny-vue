@@ -345,21 +345,14 @@ export default {
       deleteSelectRecord: '您确定要删除所选记录吗？',
       emptyText: '暂无数据',
       error: {
-        cellEditRender: '渲染器 cell-render 和 edit-render 不能同时使用',
-        delGetAllRecords: '方法 getAllRecords 已废弃，请使用 getRecordset',
-        delGetRecords: '方法 getRecords 已废弃，请使用 getData',
-        delLabel: '参数 label 已废弃，请使用 title',
-        delProp: '参数 prop 已废弃，请使用 field',
         delRevert: '方法 revert 已废弃，请使用 revertData',
         groupFixed: '如果使用分组表头，固定列必须在左右两侧',
         notDelete: 'Delete 方法不存在',
-        notMouse: '虚拟滚动不支持 mouse-config',
         notQuery: 'query 方法不存在',
         notResizable: '横向虚拟滚动不支持 resizable',
         notSave: 'save 方法不存在',
         reqModule: '缺少 {{name}} 模块',
         rowIdEmpty: '参数 row-id 不允许为空',
-        scrollOriginal: '虚拟滚动启用后只能导出源数据，请将设置 original=true',
         scrollYHeight: '启用虚拟滚动必须要设置 height 或 max-height',
         toolbarId: '工具栏需要设置唯一 id',
         treeFixedExpand: '树结构的固定列与展开行功能有冲突',
@@ -378,7 +371,6 @@ export default {
         clipboardWriteError: '剪切板写入错误'
       },
       filter: {
-        allFilter: '全部',
         allSelect: '(全选)',
         endDate: '结束日期',
         startDate: '开始日期',
@@ -609,10 +601,7 @@ export default {
     usercard: {
       address: '地址',
       collapse: '收起',
-      department: '部门',
       email: '邮箱',
-      employeeId: '员工 ID',
-      'employee_id': '员工 ID',
       empno: '工号',
       expand: '展开',
       fax: '传真',
@@ -622,10 +611,8 @@ export default {
       other: '其他',
       phone: '固定电话',
       timezone: '时区',
-      title: '用户信息: {0}',
       travelcode: '出差联系信息',
-      viop: 'VIOP',
-      zipcode: '邮编'
+      viop: 'VIOP'
     },
     richText: {
       bold: '加粗',
@@ -765,7 +752,8 @@ export default {
     selectedBox: {
       select: '已选（%s）',
       allSelect: '已全选（%s）',
-      clear: '清空'
+      clear: '清空',
+      noData: '暂无数据'
     },
     record: {
       record: '录音',
