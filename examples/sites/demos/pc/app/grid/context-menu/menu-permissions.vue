@@ -9,6 +9,7 @@
         visibleMethod
       }"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
       @cell-context-menu="cellContextMenuEvent"
       @context-menu-click="contextMenuClickEvent"

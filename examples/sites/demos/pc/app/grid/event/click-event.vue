@@ -9,6 +9,7 @@
       @footer-cell-click="footerClick"
       @footer-cell-dblclick="footerCellDbClick"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>

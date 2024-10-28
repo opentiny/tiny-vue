@@ -3,10 +3,9 @@
     <tiny-grid
       :data="tableData"
       column-min-width="100"
-      auto-resize
+      show-overflow="tooltip"
       :column-anchor="columnAnchor"
       :optimization="{ scrollX: { gt: 20 } }"
-      height="auto"
     >
       <tiny-grid-column field="name0" title="名称0" sortable fixed="left"></tiny-grid-column>
       <tiny-grid-column field="name1" title="名称1" sortable fixed="left"></tiny-grid-column>

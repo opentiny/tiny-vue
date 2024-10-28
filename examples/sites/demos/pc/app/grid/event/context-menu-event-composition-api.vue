@@ -11,6 +11,7 @@
         visibleMethod
       }"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
       @context-menu-click="contextMenuClickEvent"
     >

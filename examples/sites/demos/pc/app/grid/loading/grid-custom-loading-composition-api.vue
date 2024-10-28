@@ -57,14 +57,14 @@ init()
 
 const loadingComponent = () => (
   <div class="custom-loading">
-    <span>正在加载中。。。</span>
+    <span>正在加载中...</span>
   </div>
 )
 </script>
 
 <style scoped>
 .custom-loading {
-  font-size: 20px;
+  font-size: 16px;
   width: 100%;
   height: 100%;
   display: flex;
