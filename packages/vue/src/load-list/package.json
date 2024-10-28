@@ -7,7 +7,8 @@
   "sideEffects": false,
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

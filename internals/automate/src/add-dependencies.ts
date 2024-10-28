@@ -27,7 +27,7 @@ async function writeJson(jsonPath, dependencies) {
   toDelDeps.forEach((dep) => {
     delete json.dependencies[dep]
   })
-  writeFile(jsonPath, JSON.stringify(json, null, 2))
+  writeFile(jsonPath, JSON.stringify(json, null, 2) + '\n')
 }
 
 // 解析文件内容中的opentiny依赖
@@ -55,7 +55,7 @@ async function addComponentDepencies(component, dir) {
   const allFiles = await fg(['**/*.ts', '**/*.vue'], {
     dot: true,
     cwd: componentPath,
-    ignore: ['**/node_modules', '__test__']
+    ignore: ['**/node_modules', '__test__', '__tests__']
   })
   for (let i = 0; i < allFiles.length; i++) {
     const file = allFiles[i]
@@ -73,6 +73,6 @@ scanDir(root, 'dir').then((dirs) => {
   dirs.forEach((dir) => addComponentDepencies(dir, root))
 })
 
-scanDir(path.join(root, 'chart'), 'dir').then((dirs) => {
-  dirs.forEach((dir) => addComponentDepencies(dir, path.join(root, 'chart')))
+scanDir(path.join(root, 'huicharts'), 'dir').then((dirs) => {
+  dirs.forEach((dir) => addComponentDepencies(dir, path.join(root, 'huicharts')))
 })

@@ -19,7 +19,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-upload-dragger": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~"
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

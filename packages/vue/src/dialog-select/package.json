@@ -21,7 +21,8 @@
     "@opentiny/vue-selected-box": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-tree": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }
