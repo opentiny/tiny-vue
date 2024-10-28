@@ -10,8 +10,8 @@
     <tiny-tree
       ref="treeRef"
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       node-key="id"
       default-expand-all
       :current-node-key="currentNodeKey"
@@ -30,7 +30,8 @@ export default {
   data() {
     return {
       id: 1000, // 新节点的id 从1000递增
-      data: this.generateTreeData(100)
+      data: this.generateTreeData(100),
+      currentNodeKey: '1'
     }
   },
   methods: {

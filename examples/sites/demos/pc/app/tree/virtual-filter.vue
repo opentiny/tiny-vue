@@ -8,8 +8,8 @@
     <tiny-tree
       ref="treeRef"
       :data="data"
-      :nodeHeight="50"
-      :treeHeight="400"
+      :node-height="50"
+      :tree-height="400"
       :filter-node-method="filterNodeMethod"
       show-checkbox
       node-key="id"
@@ -43,8 +43,6 @@ export default {
     },
     // eslint-disable-next-line unused-imports/no-unused-vars
     filterNodeMethod(text, data, node) {
-      // console.log('过滤', text,data,node);
-      
       return data.label.includes(text)
     },
     generateTreeData(num) {
@@ -55,13 +53,13 @@ export default {
           children.push({
             label: `数据 ${i}-${j}`,
             children: [], // 子节点可以继续递归生成,
-            id: i.toString()
+            id: `${i}-${j}`
           })
         }
         data.push({
           label: `数据 ${i}`,
           children,
-          id: i.toString()
+          id: `${i}`
         })
       }
       return data
@@ -78,7 +76,7 @@ export default {
   margin-bottom: 16px;
 }
 
-.option-row>span {
+.option-row > span {
   font-size: 18px;
 }
 
