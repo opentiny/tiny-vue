@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .demo-date-picker {
-  width: 280px;
+  width: 360px;
 }
 .nowclass {
   display: inline-flex;

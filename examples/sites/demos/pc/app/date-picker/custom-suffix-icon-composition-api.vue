@@ -15,7 +15,7 @@ const IconMinus = iconMinus()
 
 <style>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 
 .my-date-picker {

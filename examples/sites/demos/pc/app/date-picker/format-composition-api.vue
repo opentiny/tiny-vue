@@ -35,7 +35,7 @@ const selectedValue = ref(1590076800000)
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

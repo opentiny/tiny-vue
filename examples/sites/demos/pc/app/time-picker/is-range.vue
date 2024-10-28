@@ -24,6 +24,6 @@ export default {
 
 <style scoped lang="less">
 .demo-time-picker-wrap {
-  width: 360px;
+  width: 280px;
 }
 </style>
