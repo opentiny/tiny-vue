@@ -131,6 +131,12 @@ export default {
   background-color: #f9fafc;
 }
 
+.row-bg .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .align {
   height: 120px;
 }
