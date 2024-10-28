@@ -2,10 +2,11 @@
   <div class="virtual-scroll-demo">
     <TinyVirtualScroll
       :data="showData"
-      :item-size="50"
+      :item-size="100"
       item-index="key"
+      :visible-size="600"
+      direction="horizontal"
       class="tiny-virtual-scroll"
-      :visible-size="300"
     >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
@@ -33,13 +34,21 @@ showData.value = Array.from(Array(1000), (v, k) => {
 
 <style scoped>
 .virtual-scroll-demo {
-  height: 100%;
+  width: 600px;
   overflow: hidden;
 }
 
-.virtual-scroll-demo .tiny-virtual-scroll-item {
-  padding: 10px;
-  border-bottom: 2px solid #ddd;
-  align-content: center;
+.virtual-scroll-demo .tiny-virtual-scroll {
+  height: 50px;
+}
+
+.virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
+  border-right: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 21px;
+  height: 100%;
 }
 </style>

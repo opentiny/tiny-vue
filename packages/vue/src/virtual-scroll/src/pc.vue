@@ -4,14 +4,16 @@
     ref="virtualScroll"
     @scroll="handleScroll"
     :style="
-      direction === 'vertical'
-        ? { 'height': `${visibleSize}px` }
-        : { 'width': `${visibleSize}px`, whiteSpace: 'nowrap' }
+      direction === 'vertical' ? { 'height': `${visibleSize}px` } : { 'width': `${visibleSize}px`, overflowX: 'auto' }
     "
   >
     <div
       class="virtual-scroll-context"
-      :style="direction === 'vertical' ? { 'height': `${state.totalSize}px` } : { 'width': `${state.totalSize}px` }"
+      :style="
+        direction === 'vertical'
+          ? { 'height': `${state.totalSize}px` }
+          : { 'width': `${state.totalSize}px`, height: '1px' }
+      "
     ></div>
     <div
       class="virtual-scroll-wrapper"
@@ -22,7 +24,6 @@
               'transform': `translate3d(${state.translate}px,0,0)`,
               flexDirection: 'row',
               display: 'flex'
-              // width: 'max-content'
             }
       "
     >
@@ -30,7 +31,7 @@
       <div
         class="virtual-scroll-item"
         ref="items"
-        :style="direction === 'vertical' ? { 'height': `${itemSize}px` } : { 'width': `${itemSize}px ` }"
+        :style="direction === 'vertical' ? { 'height': `${itemSize}px` } : { 'width': `${itemSize}px` }"
         v-for="(item, index) in state.visibleData"
         :key="item[itemIndex] || index"
       >
