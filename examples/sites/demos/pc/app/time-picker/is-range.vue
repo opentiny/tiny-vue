@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-time-picker-wrap">
     <tiny-time-picker v-model="value1" is-range></tiny-time-picker>
   </div>
 </template>
@@ -21,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-time-picker-wrap {
+  width: 360px;
+}
+</style>

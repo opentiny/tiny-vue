@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-time-picker-wrap">
     <tiny-time-picker v-model="value1" is-range></tiny-time-picker>
   </div>
 </template>
@@ -13,3 +13,9 @@ const endTime = new Date(2016, 9, 10, 18, 50)
 
 const value1 = ref([startTime, endTime])
 </script>
+
+<style scoped lang="less">
+.demo-time-picker-wrap {
+  width: 360px;
+}
+</style>

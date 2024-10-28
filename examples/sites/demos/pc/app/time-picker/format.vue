@@ -50,7 +50,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;
