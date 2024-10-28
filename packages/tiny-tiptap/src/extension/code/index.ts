@@ -12,6 +12,7 @@ const Code = TiptapCode.extend<ExtensionOptions & CodeOptions>({
         return [
           {
             key: 'code',
+            title: '代码',
             icon: iconRichTextCodeView(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
@@ -22,12 +23,12 @@ const Code = TiptapCode.extend<ExtensionOptions & CodeOptions>({
               return () => {
                 return editor.isActive(Code.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Code

@@ -16,7 +16,7 @@ function isElementInViewport(el: HTMLElement, viewport: HTMLElement) {
 }
 
 export default defineComponent({
-  name: $prefix + 'SlashMenu',
+  name: $prefix + 'SlashMenuDemo',
   props: {
     items: {
       type: Array,
@@ -51,11 +51,13 @@ export default defineComponent({
           const containerTop = menuContainer.offsetTop
           const itemTop = selectedItem.offsetTop
           const scrollHeight = itemTop - containerTop
+
           if (!isElementInViewport(selectedItem, menuContainer)) {
             // 获取容器的 border 和 padding 滚动时减去
             const containerStyleMap = window.getComputedStyle(menuContainer)
             const { borderTopWidth, paddingTop } = containerStyleMap
             const miscHeight = Math.trunc(parseFloat(borderTopWidth) + parseFloat(paddingTop))
+
             menuContainer.scrollTo({
               top: scrollHeight - miscHeight,
               behavior: 'smooth'
@@ -109,16 +111,16 @@ export default defineComponent({
     })
 
     return () => (
-      <div class="tiny-slash-menu__view" ref={slashMenuRef}>
+      <div class="tiny-slash-menu__view" ref={slashMenuRef} style={{ backgroundColor: '#F7CC4F' }}>
         {items?.length ? (
-          props.items.map((item, index) => (
+          items.map((item, index) => (
             <div
               class={['tiny-slash-menu__item', { 'is-active': selectedIndex.value === index }]}
               key={index}
               id={`slash-menu-${index}`}
               onClick={() => handleSelectItem(index)}>
-              <span>{item.title}</span>
-              {item.icon && <item.icon class="tiny-slash-menu__icon"></item.icon>}
+              {item.icon && <item.icon class="tiny-slash-menu__icon" style={{ margin: 'unset' }}></item.icon>}
+              <span style={{ marginLeft: 'auto' }}>{item.title}</span>
             </div>
           ))
         ) : (

@@ -1,5 +1,6 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 import BoxSelector from '../common/box-selector.tsx'
+import ColorSelector from '../common/color-selector.jsx'
 
 /**
  * 每一个都是独立的按钮，可能存在点击效果、下拉框以及hover样式
@@ -7,7 +8,8 @@ import BoxSelector from '../common/box-selector.tsx'
 export default defineComponent({
   name: $prefix + 'ToolbarMenuItem',
   components: {
-    BoxSelector
+    BoxSelector,
+    ColorSelector
   },
   props: {
     item: {
@@ -23,14 +25,10 @@ export default defineComponent({
 
     const isActive = hooks.computed(() => item.isActive?.())
 
-    const withInput = !!withColor
-    const inputRef = hooks.ref()
+    // 需要出现子菜单或其他辅助区域
+    const showTooltip = withColor || withTable || submenu?.length > 0
 
     const handleClick = (item) => {
-      if (withInput) {
-        inputRef.value?.click?.()
-        return
-      }
       const { action } = item
       action?.()
     }
@@ -43,20 +41,19 @@ export default defineComponent({
           </div>
         )}
 
-        {/* 颜色输入框 */}
-        {withColor && <input ref={inputRef} type="color" onInput={(e) => item.action?.(e?.target?.value)} />}
-
         {/* 子选项 */}
-        <div class="tiny-toolbar-menu__tooltip tooltip">
-          {item.submenu?.map((option) => (
-            <div class="tiny-toolbar-menu__option" onClick={() => option.action()}>
-              {option.icon && <option.icon></option.icon>}
-              <div>{option.text}</div>
-            </div>
-          ))}
-
-          {withTable && <BoxSelector onClickBox={(e) => item.action?.(e)} />}
-        </div>
+        {showTooltip && (
+          <div class={['tiny-toolbar-menu__tooltip', 'tooltip', { 'with-table': withTable }]}>
+            {item.submenu?.map((option) => (
+              <div class="tiny-toolbar-menu__option" onClick={() => option.action()}>
+                {option.icon && <option.icon></option.icon>}
+                <div>{option.text}</div>
+              </div>
+            ))}
+            {withTable && <box-selector onClickBox={(e) => item.action?.(e)} />}
+            {withColor && <color-selector onClickBox={(e) => item.action?.(e)} defaultColor={config.defaultColor} />}
+          </div>
+        )}
       </button>
     )
   }

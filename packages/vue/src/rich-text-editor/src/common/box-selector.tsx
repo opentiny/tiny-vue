@@ -1,7 +1,8 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 
 const SIDE = 4
-const BOX_SIZE = 30
+const MAX_SIDE = 10
+const BOX_SIZE = 20
 
 export default defineComponent({
   name: $prefix + 'BoxSelector',
@@ -17,6 +18,8 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { side, size } = props
+    const sideX = hooks.ref(side)
+    const sideY = hooks.ref(side)
 
     const boxPanelRef = hooks.ref()
     const flagX = hooks.ref(-1)
@@ -26,6 +29,13 @@ export default defineComponent({
         const { x, y } = boxPanelRef.value.getBoundingClientRect()
         flagX.value = Math.ceil((e.x - x) / size)
         flagY.value = Math.ceil((e.y - y) / size)
+        if (flagX.value >= MAX_SIDE || flagY.value >= MAX_SIDE) return
+        if (flagX.value === sideX.value) {
+          sideX.value = flagX.value + 1
+        }
+        if (flagY.value === sideY.value) {
+          sideY.value = flagY.value + 1
+        }
       }
     }
 
@@ -60,9 +70,9 @@ export default defineComponent({
 
     return () => (
       <div class="tiny-box-selector__view" ref={boxPanelRef} onmousemove={handleMouseMove}>
-        {new Array(side).fill(0).map((row, rowIndex) => (
+        {new Array(sideY.value).fill(0).map((row, rowIndex) => (
           <div class="tiny-box-selector__row">
-            {new Array(side).fill(0).map((col, colIndex) => (
+            {new Array(sideX.value).fill(0).map((col, colIndex) => (
               <div
                 onClick={() => handleClickBox(rowIndex, colIndex)}
                 class={['tiny-box-selector__item', { 'is-active': rowIndex < flagY.value && colIndex < flagX.value }]}

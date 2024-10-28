@@ -23,12 +23,12 @@ const Bold = TiptapBold.extend<ExtensionOptions & BoldOptions>({
               return () => {
                 return editor.isActive(Bold.name)
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default Bold

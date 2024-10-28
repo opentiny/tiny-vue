@@ -12,26 +12,28 @@ const History = TiptapHistory.extend<ExtensionOptions & HistoryOptions>({
         return [
           {
             key: 'undo',
+            title: '撤销',
             icon: iconRichTextUndo(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
                 editor.chain().focus().undo().run()
               }
-            }
+            },
           },
           {
             key: 'redo',
+            title: '重做',
             icon: iconRichTextRedo(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
                 editor.chain().focus().redo().run()
               }
-            }
-          }
+            },
+          },
         ]
-      }
+      },
     }
-  }
+  },
 })
 
 export default History

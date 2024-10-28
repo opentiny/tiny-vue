@@ -14,11 +14,11 @@ function getToolbarItemsFromExtensions(editor: Editor) {
 
       if (!getToolbarMenus) return prev
 
-      const menuItems = getToolbarMenus().map((item) => ({
+      const menuItems = getToolbarMenus().map(item => ({
         ...item,
         isActive: item.isActive?.({ editor }),
         action: item.action?.({ editor }),
-        submenu: item.submenu?.({ editor }) ?? []
+        submenu: item.submenu?.({ editor }) ?? [],
       }))
 
       prev.push(...menuItems)
