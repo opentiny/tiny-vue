@@ -57,5 +57,5 @@ test('mini 尺寸', async ({ page }) => {
   await expect(input).toHaveClass(/tiny-input-mini/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
   // TODO: 此处继承input 尺寸的话，应该是24
-  expect(height).toBeCloseTo(27, 1)
+  expect(height).toBeCloseTo(24, 1)
 })

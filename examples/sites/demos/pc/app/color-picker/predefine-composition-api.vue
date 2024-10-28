@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ColorPicker v-model="color" :predefine="predefine" />
+    <tiny-color-picker v-model="color" :predefine="predefine" />
     <br />
-    <Button @click="addPredefineColor">Append predefine color</Button>
-    <Button @click="popPredefineColor">Pop predefine color</Button>
+    <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
+    <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
   </div>
 </template>
 

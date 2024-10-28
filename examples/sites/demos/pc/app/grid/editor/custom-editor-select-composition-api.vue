@@ -11,7 +11,7 @@
         field="area"
         title="区域"
         :editor="{
-          component: Select,
+          component: TinySelect,
           attrs: { options, textField: 'name', valueField: 'id' }
         }"
         :format-config="{ data: options, label: 'name', value: 'id' }"

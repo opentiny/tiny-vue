@@ -7,7 +7,7 @@
         field="boole"
         title="Vue 渲染器"
         align="center"
-        :renderer="{ component: Switch }"
+        :renderer="{ component: TinySwitch }"
       ></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
       <tiny-grid-column field="createdDate" title="创建时间"></tiny-grid-column>

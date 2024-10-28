@@ -18,7 +18,7 @@
         value: 'value'
       }"
       :editor="{
-        component: Select,
+        component: TinySelect,
         attrs: { textField: 'text', clearable: true }
       }"
     ></tiny-grid-column>

@@ -4,7 +4,13 @@
     <tiny-button @click="addHistoryColor">Append history color</tiny-button>
     <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
     <div style="position: relative">
-      <ColorSelectPanel v-model="color" :visible="visible" @confirm="onConfirm" @cancel="onCancel" :history="history" />
+      <tiny-color-select-panel
+        v-model="color"
+        :visible="visible"
+        @confirm="onConfirm"
+        @cancel="onCancel"
+        :history="history"
+      />
     </div>
   </div>
 </template>
