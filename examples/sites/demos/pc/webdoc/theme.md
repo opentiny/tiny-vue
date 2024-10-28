@@ -4,14 +4,16 @@
   本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
 </div>
 
-为了给开发者带来更好的用户体验，从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格。如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。
+为了给开发者带来更好的用户体验，从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格。
+
+<!-- 如果需要使用旧主题风格，可以选择继续使用历史版本，或者参考当前文档的<a href='#OLD主题配置'>OLD主题配置</a>进行配置。 -->
 
 在 `TinyVue` 组件库中定义了一组全局 `CSS 变量`，用于统一主题风格，比如字体，颜色，间距，圆角等值，每个组件内部也定义了组件级的`CSS 变量`。
 
 - 全局 `CSS 变量`位于主题包的`base`目录：[base/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/vars.less)
-- 组件级的`CSS 变量` 在每个组件的主题根目录，比如 [button/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less)
+- 组件级的`CSS 变量` 在每个组件的主题根目录，比如： [button/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less)
 
-通过阅读以上源码，可以了解组件库有哪些样式可以定制。
+通过阅读以上源码，可以快速了解组件库有哪些`CSS 变量`可以定制。
 
 ### 自定义主题
 
@@ -101,7 +103,7 @@ themeTool.changeTheme(
 )
 ```
 
-## OLD主题配置
+<!-- ## OLD主题配置
 
 我们不建议用户继续使用旧主题，但对于历史项目，我们提供一组旧主题的`CSS变量`,需要用户在工程中适配。
 
@@ -115,7 +117,7 @@ const themeTool = new TinyThemeTool(tinyOldTheme)
 
 <div class="warning custom-block">
    旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本。
-</div>
+</div> -->
 
 ## 历史版本的主题配置
 
@@ -127,7 +129,7 @@ const themeTool = new TinyThemeTool(tinyOldTheme)
 
 主题涉及到的变量，查看方式：
 
-源码：[basic-var.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/basic-var.less)
+源码：[basic-var.less](https://github.com/opentiny/tiny-vue/blob/v3.18.0/packages/theme/src/base/basic-var.less)
 
 基础样式变量 `npm` 仓库路径：`@opentiny/vue-theme/theme`
 
