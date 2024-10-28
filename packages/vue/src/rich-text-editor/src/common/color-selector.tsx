@@ -1,4 +1,5 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
+import ColorSelectPanel from '@opentiny/vue-color-select-panel'
 
 export default defineComponent({
   name: $prefix + 'ColorSelector',
@@ -8,6 +9,9 @@ export default defineComponent({
       default: () => []
     }
   },
+  components: {
+    ColorSelectPanel
+  },
   setup(props, { emit }) {
     const handleClickBox = (color) => {
       const instance = hooks.getCurrentInstance()
@@ -15,8 +19,8 @@ export default defineComponent({
     }
 
     return () => (
-      <div>
-        <div class="tiny-color-selector__view">
+      <div class="tiny-color-selector__view">
+        <div class="tiny-color-selector__container">
           {props.defaultColor?.map((color, index) => (
             <div
               class="tiny-color-selector__box"
@@ -24,6 +28,7 @@ export default defineComponent({
               onClick={() => handleClickBox(color)}></div>
           ))}
         </div>
+        <color-select-panel visible={true} onConfirm={handleClickBox} />
       </div>
     )
   }

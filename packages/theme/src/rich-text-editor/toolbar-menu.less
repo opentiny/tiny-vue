@@ -115,9 +115,17 @@
 
     .tiny-color-selector {
       &__view {
+        display: flex;
+        flex-direction: column;
+
+        .tiny-color-select-panel {
+          position: relative;
+        }
+      }
+      &__container {
         padding: 10px;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(5, 1fr);
         gap: 10px;
       }

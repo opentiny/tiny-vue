@@ -13,7 +13,7 @@ const CodeBlock = TiptapCodeBlock.extend<
       getToolbarMenus() {
         return [
           {
-            key: '代码块',
+            key: 'codeBlock',
             icon: iconRichTextCodeBlock(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
