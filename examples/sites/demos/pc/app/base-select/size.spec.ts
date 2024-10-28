@@ -9,7 +9,7 @@ test('默认尺寸', async ({ page }) => {
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
 
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '28px')
+  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '32px')
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--light/)
 })
 
@@ -39,7 +39,7 @@ test('small 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-small/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--small tiny-tag--light/)
-  expect(height).toBeCloseTo(32, 1)
+  expect(height).toBeCloseTo(28, 1)
 })
 
 test('mini 尺寸', async ({ page }) => {
@@ -54,5 +54,5 @@ test('mini 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-mini/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
-  expect(height).toBeCloseTo(24, 1)
+  expect(height).toBeCloseTo(27, 1)
 })

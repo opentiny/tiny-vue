@@ -6,11 +6,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartLine } from '@opentiny/vue'
+import { HuichartsLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: ChartLine
+    TinyLine: HuichartsLine
   },
   data() {
     return {
@@ -45,9 +45,10 @@ export default {
   },
   methods: {
     addData() {
-      this.chartData.rows.push({
-        日期: `1月${this.chartData.rows.length + 1}日`,
-        value: Math.ceil(10000 * Math.random())
+      this.options.data.push({
+        'Day': `1月${this.options.data.length + 1}日`,
+        'Domestics': Math.ceil(50 * Math.random()),
+        'Abroad': Math.ceil(50 * Math.random())
       })
     }
   }

@@ -1049,11 +1049,11 @@ export default {
         },
         {
           name: 'tooltip-config',
-          type: 'IToolTipConfig',
-          typeAnchorName: 'IToolTipConfig',
+          linkTo: 'tooltip#tooltip--props',
+          type: 'Tooltip.Props',
           defaultValue: '',
           desc: {
-            'zh-CN': 'Grid 内置 tooltip 配置项，请参考 Tooltip 组件属性说明',
+            'zh-CN': 'Grid 内置 tooltip 配置项，配置项将透传至 Tooltip，请参考 Tooltip 组件属性说明',
             'en-US':
               'Configuration item of the built-in tooltip of the Grid. For details, see the Tooltip Attribute Description.'
           },
@@ -4415,6 +4415,8 @@ interface IEditConfig {
   showStatus?: boolean
   // 自定义编辑规则，返回true可以编辑返回false则禁止编辑
   activeMethod?: ({row: IRow, column: IColumnConfig})=> boolean
+  // （3.19新增）当mode为'row'时，行编辑激活状态下默认会忽略activeMethod，配置为true使其生效
+  activeStrictly?: boolean
 }
       `
     },

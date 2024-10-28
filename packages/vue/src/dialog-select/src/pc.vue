@@ -1,6 +1,11 @@
 <template>
   <tiny-dialog-box
-    :class="['tiny-dialog-select', { 'radio-check': !multi }]"
+    :class="[
+      'tiny-dialog-select',
+      { 'radio-check': !multi },
+      { 'is-grid': popseletor === 'grid' },
+      { 'is-tree': popseletor === 'tree' }
+    ]"
     :visible="visible"
     @update:visible="$emit('update:visible', $event)"
     modal
@@ -36,7 +41,7 @@
                 v-if="visible || state.multiGridStore.inited"
                 ref="multiGrid"
                 v-bind="gridOp"
-                :border="state.theme !== 'saas'"
+                :border="state.isBorder"
                 :stripe="false"
                 auto-resize
                 :height="`${mainHeight}px`"
@@ -56,30 +61,42 @@
                 v-model="state.multiTreeStore.filterText"
                 @change="doMultiTreeFilter"
                 clearable
-              ></tiny-input>
-              <div style="height: calc(100% - 28px)" class="tiny-dialog-select__body-tree-wrapper">
-                <tiny-tree
-                  v-if="visible || state.multiTreeStore.inited"
-                  ref="multiTree"
-                  :show-checkbox="multi"
-                  :show-radio="!multi"
-                  lazy-current
-                  lazy
-                  :after-load="multiTreeAfterLoad"
-                  :view-type="state.multiTreeStore.viewType"
-                  :default-expanded-keys="state.multiTreeStore.expandedKeys"
-                  :default-expanded-keys-highlight="state.multiTreeStore.highlight"
-                  :filter-node-method="multiTreeFilterNode"
-                  :filter-plain-method="multiTreeFilterPlain"
-                  :default-checked-keys="state.multiTreeStore.checkedKeys"
-                  v-bind="treeOp"
-                  @leave-plain-view="multiTreeLeavePlain"
-                  @check="multiTreeCheck"
-                  @node-expand="multiTreeCheck"
-                  @node-collapse="multiTreeCheck"
-                  @check-plain="multiTreeCheck"
-                  @check-change="multiTreeRadio"
-                ></tiny-tree>
+              >
+                <template v-if="state.theme !== 'saas'" #prefix>
+                  <tiny-icon-search></tiny-icon-search>
+                </template>
+              </tiny-input>
+              <div
+                :style="{
+                  height: `calc(100% - ${state.constants.INPUT_HEIGHT} - ${state.constants.INPUT_MARGIN_BOTTOM} )`
+                }"
+                class="tiny-dialog-select__body-tree-wrapper"
+              >
+                <div>
+                  <tiny-tree
+                    v-if="visible || state.multiTreeStore.inited"
+                    ref="multiTree"
+                    :show-checkbox="multi"
+                    :show-radio="!multi"
+                    lazy-current
+                    lazy
+                    :after-load="multiTreeAfterLoad"
+                    :view-type="state.multiTreeStore.viewType"
+                    :default-expanded-keys="state.multiTreeStore.expandedKeys"
+                    :default-expanded-keys-highlight="state.multiTreeStore.highlight"
+                    :filter-node-method="multiTreeFilterNode"
+                    :filter-plain-method="multiTreeFilterPlain"
+                    :default-checked-keys="state.multiTreeStore.checkedKeys"
+                    v-bind="treeOp"
+                    @leave-plain-view="multiTreeLeavePlain"
+                    @check="multiTreeCheck"
+                    @node-expand="multiTreeCheck"
+                    @node-collapse="multiTreeCheck"
+                    @check-plain="multiTreeCheck"
+                    @check-change="multiTreeRadio"
+                  >
+                  </tiny-tree>
+                </div>
               </div>
             </div>
           </template>
@@ -155,6 +172,7 @@ import Split from '@opentiny/vue-split'
 import SelectedBox from '@opentiny/vue-selected-box'
 import Input from '@opentiny/vue-input'
 import Tree from '@opentiny/vue-tree'
+import { iconSearch } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/dialog-select/index.less'
 
 export default defineComponent({
@@ -206,7 +224,8 @@ export default defineComponent({
     TinySplit: Split,
     TinySelectedBox: SelectedBox,
     TinyInput: Input,
-    TinyTree: Tree
+    TinyTree: Tree,
+    TinyIconSearch: iconSearch()
   },
   setup(props, context): any {
     return setup({ props, context, renderless, api })

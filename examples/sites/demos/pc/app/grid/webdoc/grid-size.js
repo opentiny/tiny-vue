@@ -26,7 +26,7 @@ export default {
       'demoId': 'size-min-width',
       'name': { 'zh-CN': '本列最小宽度', 'en-US': 'Set the width of all columns' },
       'desc': {
-        'zh-CN': '<p>通过表格列属性 <code>min-width</code> 本列最小宽度；会自动将剩余空间按比例分配。\n</p>\n',
+        'zh-CN': '<p>通过表格列属性 <code>min-width</code> 设置本列最小宽度；会自动将剩余空间按比例分配。\n</p>\n',
         'en-US':
           '<p>Set the width of all columns through the <code>column-width</code> attribute. The default value is even distribution. \n</p>\n'
       },

@@ -42,7 +42,7 @@ export default {
   width: 280px;
 
   :deep(.tiny-date-editor--datetimerange.tiny-input__inner) {
-    width: 280px;
+    width: 360px;
   }
 
   & > * {

@@ -5,19 +5,35 @@
     <tiny-select ref="selectTagSelectable" v-model="value1" multiple tag-selectable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <br /><br />
+    <br />
+    <br />
     <p>场景2：多选一键复制所有标签</p>
     <br />
     <tiny-select ref="selectCopyable" v-model="value2" multiple copyable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <br /><br />
+    <br />
+    <br />
     <p>场景3：多选设置复制文本分隔符</p>
     <br />
     <tiny-select ref="selectCopyable" v-model="value2" multiple copyable text-split="/">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <br /><br />
+    <br />
+    <br />
+    <tiny-select
+      ref="selectCopyable"
+      v-model="value2"
+      multiple
+      copyable
+      text-split="/"
+      :multiple-limit="2"
+      show-limit-text
+    >
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <br />
+    <br />
     <p>复制到此处：</p>
     <tiny-input v-model="copyValue" class="copy-value" type="text"></tiny-input>
   </div>

@@ -16,18 +16,20 @@
 @time-spinner-prefix-cls: ~'@{css-prefix}time-spinner';
 
 .@{time-spinner-prefix-cls} {
-  .component-css-vars-time-spinner();
+  .inject-TimeSpinner-vars();
 
   &__wrapper {
-    max-height: var(--ti-time-spinner-wrapper-max-height);
+    max-height: var(--tv-TimeSpinner-wrapper-max-height);
     overflow: hidden;
     display: inline-block;
     width: 50%;
     vertical-align: top;
     position: relative;
+
     &.@{scrollbar-prefix-cls} {
       overflow: hidden;
     }
+
     .@{scrollbar-prefix-cls}__wrap:not(.@{scrollbar-prefix-cls}__wrap--hidden-default) {
       padding-bottom: 15px;
     }
@@ -37,20 +39,23 @@
       text-align: center;
       overflow: hidden;
 
+      // 上下箭头占位
       .@{time-spinner-prefix-cls}__list {
-        transform: translateY(-32px);
+        &::after,
+        &::before {
+          transform: translateY(-32px);
+        }
       }
 
       .@{time-spinner-prefix-cls}__item:hover:not(.disabled):not(.active) {
-        background: var(--ti-time-spinner-bg-color);
+        background: var(--tv-TimeSpinner-item-bg-color-hover);
         cursor: default;
       }
     }
 
     .@{time-spinner-prefix-cls}__list {
       transform: translateY(-6px);
-      margin-bottom: var(--ti-time-spinner-list-margin-bottom);
-      margin-top: var(--ti-time-spinner-list-margin-top);
+      margin: var(--tv-TimeSpinner-list-margin);
     }
 
     &:last-child {
@@ -61,8 +66,6 @@
   }
 
   &__arrow {
-    font-size: var(--ti-time-spinner-font-size);
-    color: var(--ti-time-spinner-arrow-text-color);
     height: 30px;
     line-height: 30px;
     position: absolute;
@@ -73,11 +76,12 @@
     cursor: pointer;
 
     .@{svg-prefix-cls} {
-      fill: var(--ti-time-spinner-arrow-text-color);
+      fill: var(--tv-TimeSpinner-icon-color);
+      font-size: var(--tv-TimeSpinner-icon-size);
     }
 
     &:hover .@{svg-prefix-cls} {
-      fill: var(--ti-time-spinner-arrow-hover-text-color);
+      fill: var(--tv-TimeSpinner-icon-color-hover);
     }
 
     &.@{css-prefix}icon-arrow-up {
@@ -103,7 +107,6 @@
     margin: 0;
     list-style: none;
     text-align: center;
-    border-right: 1px solid var(--ti-time-spinner-list-border-color);
 
     &::after,
     &::before {
@@ -116,31 +119,27 @@
 
   & &__item {
     text-align: center;
-    margin: var(--ti-time-spinner-item-margin-top) var(--ti-time-spinner-item-margin-right) 0;
-    font-size: var(--ti-time-spinner-font-size);
-    color: var(--ti-time-spinner-text-color);
-    height: var(--ti-time-spinner-item-height);
-    line-height: var(--ti-time-spinner-item-line-height);
-    font-weight: var(--ti-time-spinner-item-font-weight);
+    margin: var(--tv-TimeSpinner-item-margin);
+    padding: var(--tv-TimeSpinner-item-padding);
+    font-size: var(--tv-TimeSpinner-font-size);
+    line-height: var(--tv-TimeSpinner-line-height);
+    color: var(--tv-TimeSpinner-text-color);
+    border-radius: var(--tv-TimeSpinner-item-border-radius);
+    width: 52px;
 
     &:hover:not(.disabled):not(.active) {
-      background: var(--ti-time-spinner-selected-bg-color);
+      background: var(--tv-TimeSpinner-item-bg-color-hover);
       cursor: pointer;
-      border-radius: var(--ti-time-spinner-selected-border-radius);
     }
 
     &.active:not(.disabled) {
-      color: var(--ti-time-spinner-item-active-text-color);
-      font-weight: var(--ti-time-spinner-item-active-font-weight);
-      background-color: var(--ti-time-spinner-item-bg-color);
-      border-radius: var(--ti-time-spinner-selected-border-radius);
+      background-color: var(--tv-TimeSpinner-item-bg-color-active);
     }
 
     &.disabled {
-      color: var(--ti-time-spinner-disabled-text-color);
+      color: var(--tv-TimeSpinner-text-color-disabled);
       cursor: not-allowed;
-      background: var(--ti-time-spinner-disabled-text-background);
-      border-radius: var(--ti-time-spinner-disabled-text-border-radius);
+      background: var(--tv-TimeSpinner-item-bg-color-disabled);
     }
   }
 

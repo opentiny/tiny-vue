@@ -2,8 +2,8 @@
   <div>
     <tiny-radio-group v-model="radioValue" size="mini" class="demo-time-picker__switch-size">
       <tiny-radio-button label="medium"></tiny-radio-button>
-      <tiny-radio-button label="small"></tiny-radio-button>
       <tiny-radio-button label="default"></tiny-radio-button>
+      <tiny-radio-button label="small"></tiny-radio-button>
       <tiny-radio-button label="mini"></tiny-radio-button>
     </tiny-radio-group>
     <div class="demo-date-picker-wrap">

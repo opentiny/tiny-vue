@@ -10,260 +10,152 @@
 *
 */
 
-@import '../mixins/tag.less';
-@import '../mixins/common.less';
 @import '../custom.less';
 @import './vars.less';
 
 @tag-prefix-cls: ~'@{css-prefix}tag';
 
 .@{tag-prefix-cls} {
-  .component-css-vars-tag();
+  .inject-Tag-vars();
 
-  height: var(--ti-tag-height);
-  line-height: var(--ti-tag-height);
-  padding: 0 8px;
-  font-size: var(--ti-tag-font-size);
-  border-width: var(--ti-tag-border-weight); // smb新增
-  border-radius: var(--ti-tag-border-radius);
-  border-style: solid;
-  box-sizing: border-box;
-  white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
+  height: fit-content; // 避免 flex时，高度拉伸
+  line-height: var(--tv-Tag-line-height);
+  border: 1px solid;
+  max-width: 200px; // 新增约束，避免太长的标签
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
-  .tag-variant(
-    var(--ti-tag-primary-text-color),
-    var(--ti-tag-primary-border-color),
-    var(--ti-tag-primary-background-color)
-  );
+  /** size 场景 */
+  .size-mixin(@size) {
+    @fs: %('var(--tv-Tag-font-size%a)', @size);
+    @px: %('var(--tv-Tag-padding-x%a)', @size);
+    @py: %('var(--tv-Tag-padding-y%a)', @size);
+    @br: %('var(--tv-Tag-border-radius%a)', @size);
 
-  & &__close {
-    font-size: var(--ti-tag-close-font-size);
-    margin-left: var(--ti-tag-close-margin-left); // smb新增
-    margin-right: var(--ti-tag-close-margin-right); // smb新增
-    opacity: var(--ti-tag-primary-close-opacity); // smb新增
-    fill: var(--ti-tag-primary-close-icon-color); // smb新增
-    &:hover {
-      cursor: pointer;
-      // smb新增
-      fill: var(--ti-tag-primary-close-hover-icon-color);
+    font-size: e(@fs);
+    padding: e(@py) e(@px);
+    border-radius: e(@br);
+  }
+
+  .size-mixin(e(''));
+
+  &.@{tag-prefix-cls}--mini {
+    .size-mixin(-mini);
+  }
+  &.@{tag-prefix-cls}--small {
+    .size-mixin(-small);
+  }
+  &.@{tag-prefix-cls}--medium {
+    .size-mixin(-medium);
+  }
+
+  /** 颜色场景 */
+  .color-type-effect-mixin(@type) {
+    @light-c: %('var(--tv-Tag-text-color-light%a)', @type);
+    @light-bg: %('var(--tv-Tag-bg-color-light%a)', @type);
+    @light-bc: %('var(--tv-Tag-border-color-light%a)', @type);
+    @dark-c: %('var(--tv-Tag-text-color-dark%a)', @type);
+    @dark-bg: %('var(--tv-Tag-bg-color-dark%a)', @type);
+    @dark-bc: %('var(--tv-Tag-border-color-dark%a)', @type);
+    @plain-c: %('var(--tv-Tag-text-color-plain%a)', @type);
+    @plain-bg: %('var(--tv-Tag-bg-color-plain%a)', @type);
+    @plain-bc: %('var(--tv-Tag-border-color-plain%a)', @type);
+
+    &.@{tag-prefix-cls}--light {
+      color: e(@light-c);
+      background-color: e(@light-bg);
+      border-color: e(@light-bc);
+    }
+
+    &.@{tag-prefix-cls}--dark {
+      color: e(@dark-c);
+      background-color: e(@dark-bg);
+      border-color: e(@dark-bc);
+    }
+
+    &.@{tag-prefix-cls}--plain {
+      color: e(@plain-c);
+      background-color: e(@plain-bg);
+      border-color: e(@plain-bc);
+    }
+  }
+  .color-type-effect-mixin(e(''));
+
+  &.@{tag-prefix-cls}--success {
+    .color-type-effect-mixin(-success);
+  }
+  &.@{tag-prefix-cls}--danger {
+    .color-type-effect-mixin(-danger);
+  }
+  &.@{tag-prefix-cls}--warning {
+    .color-type-effect-mixin(-warning);
+  }
+  &.@{tag-prefix-cls}--info {
+    .color-type-effect-mixin(-info);
+  }
+
+  // colors
+  .color-colors-mixin(@color) {
+    @c: %('var(--tv-Tag-text-color-%a)', @color);
+    @bg: %('var(--tv-Tag-bg-color-%a)', @color);
+
+    &.@{tag-prefix-cls}--@{color} {
+      color: e(@c);
+      background: e(@bg);
     }
   }
 
-  &&--info {
-    .tag-variant(
-      var(--ti-tag-info-text-color),
-      var(--ti-tag-info-border-color),
-      var(--ti-tag-info-background-color)
-    );
-  }
+  .color-colors-mixin(red);
+  .color-colors-mixin(orange);
+  .color-colors-mixin(green);
+  .color-colors-mixin(blue);
+  .color-colors-mixin(purple);
+  .color-colors-mixin(brown);
+  .color-colors-mixin(grey);
+  .color-colors-mixin(gold);
 
-  &&--success {
-    .tag-variant(
-      var(--ti-tag-success-text-color),
-      var(--ti-tag-success-border-color),
-      var(--ti-tag-success-background-color)
-    );
-  }
-
-  &&--warning {
-    .tag-variant(
-      var(--ti-tag-warning-text-color),
-      var(--ti-tag-warning-border-color),
-      var(--ti-tag-warning-background-color)
-    );
-  }
-
-  &&--danger {
-    .tag-variant(
-      var(--ti-tag-danger-text-color),
-      var(--ti-tag-danger-border-color),
-      var(--ti-tag-danger-background-color)
-    );
-  }
-
-  &--dark {
-    .tag-dark-variant(
-      var(--ti-tag-dark-text-color),
-      var(--ti-tag-dark-bg-color)
-    );
-  }
-
-  &--dark&--info {
-    .tag-dark-variant(
-      var(--ti-tag-dark-text-color),
-      var(--ti-tag-dark-info-bg-color)
-    );
-  }
-
-  &--dark&--success {
-    .tag-dark-variant(
-      var(--ti-tag-dark-text-color),
-      var(--ti-tag-dark-success-bg-color)
-    );
-  }
-
-  &--dark&--warning {
-    .tag-dark-variant(
-      var(--ti-tag-dark-text-color),
-      var(--ti-tag-dark-warning-bg-color)
-    );
-  }
-
-  &--dark&--danger {
-    .tag-dark-variant(
-      var(--ti-tag-dark-text-color),
-      var(--ti-tag-dark-danger-bg-color)
-    );
-  }
-
-  &--plain {
-    .tag-variant(
-      var(--ti-tag-plain-text-color),
-      var(--ti-tag-plain-border-color),
-      var(--ti-tag-plain-background-color)
-    );
-  }
-
-  &--plain&--info {
-    .tag-variant(
-      var(--ti-tag-plain-info-text-color),
-      var(--ti-tag-plain-info-border-color),
-      var(--ti-tag-plain-background-color)
-    );
-  }
-
-  &--plain&--success {
-    .tag-variant(
-      var(--ti-tag-plain-success-text-color),
-      var(--ti-tag-plain-success-border-color),
-      var(--ti-tag-plain-background-color)
-    );
-  }
-
-  &--plain&--warning {
-    .tag-variant(
-      var(--ti-tag-plain-warning-text-color),
-      var(--ti-tag-plain-warning-border-color),
-      var(--ti-tag-plain-background-color)
-    );
-  }
-
-  &--plain&--danger {
-    .tag-variant(
-      var(--ti-tag-plain-danger-text-color),
-      var(--ti-tag-plain-danger-border-color),
-      var(--ti-tag-plain-background-color)
-    );
-  }
-
-  &--red {
-    .tag-variant(
-      var(--ti-tag-red-text-color),
-      var(--ti-tag-red-text-color),
-      var(--ti-tag-red-bg-color),
-    );
-  }
-
-  &--orange {
-    .tag-variant(
-      var(--ti-tag-orange-text-color),
-      var(--ti-tag-orange-text-color),
-      var(--ti-tag-orange-bg-color),
-    );
-  }
-
-  &--green {
-    .tag-variant(
-      var(--ti-tag-green-text-color),
-      var(--ti-tag-green-text-color),
-      var(--ti-tag-green-bg-color),
-    );
-  }
-
-  &--blue {
-    .tag-variant(
-      var(--ti-tag-blue-text-color),
-      var(--ti-tag-blue-text-color),
-      var(--ti-tag-blue-bg-color),
-    );
-  }
-
-  &--purple {
-    .tag-variant(
-      var(--ti-tag-purple-text-color),
-      var(--ti-tag-purple-text-color),
-      var(--ti-tag-purple-bg-color),
-    );
-  }
-
-  &--brown {
-    .tag-variant(
-      var(--ti-tag-brown-text-color),
-      var(--ti-tag-brown-text-color),
-      var(--ti-tag-brown-bg-color),
-    );
-  }
-
-  &--grey {
-    .tag-variant(
-      var(--ti-tag-grey-text-color),
-      var(--ti-tag-grey-text-color),
-      var(--ti-tag-grey-bg-color),
-    );
-  }
-
-  &--medium {
-    height: var(--ti-tag-medium-height);
-    line-height: var(--ti-tag-medium-height); // smb修正
-    padding: 0 var(--ti-tag-medium-padding-horizontal); // smb新增
-    border-radius: var(--ti-tag-medium-border-radius); // smb新增
-    // smb新增
-    .@{tag-prefix-cls}__close {
-      margin-left: var(--ti-tag-close-medium-margin-left);
-      margin-right: var(--ti-tag-close-medium-margin-right);
-    }
-  }
-
-  &--small {
-    height: var(--ti-tag-small-height);
-    line-height: var(--ti-tag-small-height); // smb修正
-    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
-    font-size: 12px; // smb新增
-    border-radius: var(--ti-tag-small-border-radius); // smb新增
-    // smb新增
-    .@{tag-prefix-cls}__close {
-      margin-left: var(--ti-tag-close-small-margin-left);
-      margin-right: var(--ti-tag-close-small-margin-right);
-    }
-  }
-
-  &--mini {
-    height: var(--ti-tag-mini-height);
-    line-height: var(--ti-tag-mini-height); // smb修正
-    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
-    font-size: 12px; // smb新增
-    border-radius: var(--ti-tag-small-border-radius); // smb新增
-    // smb新增
-    .@{tag-prefix-cls}__close {
-      margin-left: var(--ti-tag-close-small-margin-left);
-      margin-right: var(--ti-tag-close-small-margin-right);
-    }
-  }
-
-  // smb新增
-  &.is-disabled,
-  &.is-disabled:focus,
-  &.is-disabled:hover {
+  //disabled
+  &.is-disabled.is-disabled.is-disabled.is-disabled {
+    color: var(--tv-Tag-text-color-disabled);
+    background-color: var(--tv-Tag-bg-color-disabled);
     cursor: not-allowed;
-    color: #c2c2c2;
-    background-color: var(--ti-tag-disabled-background-color);
-    svg,
-    svg:hover,
+  }
+
+  /** 关闭图标 场景 */
+  .@{tag-prefix-cls}__close {
+    font-size: var(--tv-Tag-close-icon-size);
+    fill: var(--tv-Tag-close-icon-color);
+    margin-left: var(--tv-Tag-close-icon-margin-left);
+
+    &:hover {
+      fill: var(--tv-Tag-close-icon-color-hover);
+    }
+  }
+
+  &.is-disabled.is-disabled {
     .@{tag-prefix-cls}__close {
-      cursor: not-allowed;
-      fill: #c2c2c2;
+      fill: var(--tv-Tag-close-icon-color-disabled);
+    }
+  }
+
+  /** 其它 场景 */
+
+  // 默认插槽内的图标
+  & svg:not(.@{tag-prefix-cls}__close) {
+    margin-right: var(--tv-Tag-slot-icon-margin-right);
+    fill: currentColor;
+  }
+
+  &.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon {
+    padding: var(--tv-Tag-only-icon-padding);
+
+    svg {
+      font-size: var(--tv-Tag-only-icon-font-size);
+      margin-right: 0; // 此时不需要右边距了
     }
   }
 }

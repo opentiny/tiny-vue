@@ -18,7 +18,7 @@
 
 .@{crop-prefix-cls} {
   &__wrapper {
-    .component-css-vars-crop();
+    .inject-Crop-vars();
   }
 
   .cropper-container {
@@ -64,8 +64,7 @@
   }
 
   .cropper-modal {
-    background-color: var(--ti-crop-modal-bg-color);
-    opacity: 0.5;
+    background-color: var(--tv-Crop-modal-bg-color);
   }
 
   .cropper-view-box {
@@ -86,9 +85,9 @@
   .cropper-dashed.dashed-h {
     border-bottom-width: 1px;
     border-top-width: 1px;
-    height: 33.33333%;
+    height: 33.3333%;
     left: 0;
-    top: 33.33333%;
+    top: 33.3333%;
     width: 100%;
   }
 
@@ -96,9 +95,9 @@
     border-left-width: 1px;
     border-right-width: 1px;
     height: 100%;
-    left: 33.33333%;
+    left: 33.3333%;
     top: 0;
-    width: 33.33333%;
+    width: 33.3333%;
   }
 
   .cropper-center {
@@ -114,7 +113,7 @@
   // 正中心的+号
   .cropper-center:before,
   .cropper-center:after {
-    background-color: var(--ti-crop-center-bg-color);
+    background-color: var(--tv-Crop-center-bg-color);
     content: ' ';
     display: block;
     position: absolute;
@@ -145,7 +144,7 @@
 
   .cropper-face {
     opacity: 0.1;
-    background-color: var(--ti-crop-face-bg-color);
+    background-color: var(--tv-Crop-face-bg-color);
     left: 0;
     top: 0;
   }
@@ -311,17 +310,15 @@
   input[type='file'] {
     display: none;
   }
-}
 
-.@{crop-prefix-cls} {
   position: fixed;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   z-index: 1000;
   background: #61616180;
 
@@ -337,7 +334,6 @@
   }
 
   &__dialog-content__handle__button {
-    // width: 268px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -372,7 +368,6 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    // background: white;
     z-index: 1001;
   }
 

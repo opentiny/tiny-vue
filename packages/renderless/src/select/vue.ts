@@ -240,7 +240,8 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
         return designConfig.state.autoHideDownIcon
       }
       return true // tiny 默认为true
-    })()
+    })(),
+    designConfig
   })
 
   return state

@@ -18,6 +18,7 @@ export const computedInternalLayout =
       props.mode === 'simple' && (layout = 'sizes, total, prev, current, next')
       props.mode === 'complete' && (layout = 'sizes, total, prev, pager, next, jumper')
       props.mode === 'fixed' && (layout = 'prev,pager,next')
+      props.mode === 'simplest' && (layout = 'total, prev, simplest-pager, next')
     } else if ((!props.mode && props.layout) || (props.mode && props.layout)) {
       layout = props.layout
     } else {
@@ -65,6 +66,38 @@ export const computedInternalPageCount =
     }
 
     return null
+  }
+
+export const computedSimplestPagerOption =
+  ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (): Array<{ value: number; label: string }> => {
+    const itemSizes = Math.max(1, Math.ceil(props.total / state.internalPageSize))
+    return Array.from({ length: itemSizes }).map((item, index) => ({
+      value: index + 1,
+      label: `${index + 1}/${itemSizes}`
+    }))
+  }
+
+export const computedSimplestPagerWidth =
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (): number => {
+    const baseWidth = 60
+    const num = String(state.internalCurrentPage).length + String(state.simplestPagerOption.length).length
+    // 输入框长度 = 基本宽度加数字长度
+    return baseWidth + num * 8
+  }
+
+export const computedPageSizeText =
+  ({ props, designConfig }: Pick<IPagerRenderlessParams, 'props' | 'designConfig'>) =>
+  (): string => {
+    if (props.pageSizeText) {
+      return props.pageSizeText
+    }
+    // 默认返回空字符串，不展示"条/页", 可以通过设置pageSizeText为null来显示。亦或者自定义
+    if (designConfig?.state && Object.hasOwnProperty.call(designConfig.state, 'pageSizeText')) {
+      return designConfig.state.pageSizeText
+    }
+    return ''
   }
 
 export const handleJumperFocus =

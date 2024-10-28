@@ -9,34 +9,16 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small / mini)</code> 。',
-        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small/mini)</code> .'
+        'zh-CN': `
+          通过默认插槽，可以将文字和图标显示为一个标签。 <br>
+          通过 <code>value</code> 属性，也可以设置标签值。
+        `,
+        'en-US': `
+          Through the default slot, text and ICONS can be displayed as a label. <br>
+          Tag values can also be set using the <code>value</code> property.
+        `
       },
       codeFiles: ['basic-usage.vue']
-    },
-    {
-      demoId: 'content',
-      name: {
-        'zh-CN': '配置式',
-        'en-US': 'Bind Value'
-      },
-      desc: {
-        'zh-CN': '通过 <code>value</code> 设置标签值。',
-        'en-US': 'Set label values through <code>value</code> . '
-      },
-      codeFiles: ['content.vue']
-    },
-    {
-      demoId: 'color-border',
-      name: {
-        'zh-CN': '颜色与边框',
-        'en-US': 'Color and border'
-      },
-      desc: {
-        'zh-CN': `通过 <code>hit</code> 设置边框；<code>color</code> 设置颜色，可使用预设值，也可自定义颜色值；当自定义颜色值为字符串则只能设置背景色；若为数组则第一个值为背景色，第二个为文本色。`,
-        'en-US': `Use <code>hit</code> to set the border. <code>color</code> Set the color. You can use the preset value or customize the color value. If the value of Custom Color is a character string, only the background color can be set. If it is an array, the first value is the background color and the second is the text color.`
-      },
-      codeFiles: ['color-border.vue']
     },
     {
       demoId: 'effect',
@@ -51,6 +33,44 @@ export default {
           'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger)</code> .'
       },
       codeFiles: ['effect.vue']
+    },
+    {
+      demoId: 'color-border',
+      name: {
+        'zh-CN': '其它颜色',
+        'en-US': 'Other Color'
+      },
+      desc: {
+        'zh-CN': `
+        通过 <code>color</code> 设置颜色，可使用预设值，也可自定义颜色值；<br>
+        当自定义颜色值为字符串时，则设置背景色；<br>
+        当自定义颜色值为数组则第一个值为背景色，第二个为文本色。<br>
+        <div class="tip custom-block">
+          避免同时使用  <code>color</code> 和  <code>type</code>\ <code>effect</code>属性！
+        </div>
+        `,
+        'en-US': `
+          Use <code>color</code> to set the color. You can use the preset value or customize the color value.<br>
+          When the custom color value is a string, only the background color can be set; <br>
+          If it is an array, the first value is the background color, and the second value is the text color. <br>
+          <div class="tip custom-block">
+            Avoid using both <code>color</code> and <code>type</code>\ <code>effect</code> properties!
+          </div>
+        `
+      },
+      codeFiles: ['color-border.vue']
+    },
+    {
+      demoId: 'size',
+      name: {
+        'zh-CN': '尺寸',
+        'en-US': 'Size'
+      },
+      desc: {
+        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small / mini)</code> 。',
+        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small/mini)</code> .'
+      },
+      codeFiles: ['size.vue']
     },
     {
       demoId: 'disabled',
@@ -79,24 +99,10 @@ export default {
       codeFiles: ['delete.vue']
     },
     {
-      demoId: 'create',
-      name: {
-        'zh-CN': '动态编辑',
-        'en-US': 'Dynamic Edit'
-      },
-      desc: {
-        'zh-CN':
-          '添加新标签：监听 <code>+ New Tag</code> 元素点击事件，打开 <code>input</code> 输入框，监听输入框事件做添加操作；<br />\n          修改旧标签：监听旧标签的双击事件，打开 <code>input</code> 输入框，监听输入框事件做修改操作。',
-        'en-US':
-          'Add a new tag: listen for <code>+New Tag</code> element click events, open the <code>input</code> input box, and listen for input box events to add<br/>\n        Modify old tags: listen for double click events on old tags, open the <code>input</code> input box, and listen for input box events to make modifications.'
-      },
-      codeFiles: ['create.vue']
-    },
-    {
       demoId: 'slot-default',
       name: {
-        'zh-CN': '图标型',
-        'en-US': 'Icon type'
+        'zh-CN': '默认插槽',
+        'en-US': 'Default slot'
       },
       desc: {
         'zh-CN': '通过 <code>default</code> 默认插槽自定义标签内容，生成图标标签。',

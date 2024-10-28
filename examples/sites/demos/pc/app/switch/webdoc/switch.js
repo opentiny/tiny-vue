@@ -27,6 +27,18 @@ export default {
       codeFiles: ['mini-mode.vue']
     },
     {
+      demoId: 'loading',
+      name: {
+        'zh-CN': '加载中状态',
+        'en-US': 'Loading status'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>loading</code> 设置开关显示加载状态。</p>',
+        'en-US': '<p>Set the switch to display the loading status through<code>loading</code>.'
+      },
+      codeFiles: ['loading.vue']
+    },
+    {
       demoId: 'custom-open-close',
       name: {
         'zh-CN': '自定义开关显示',

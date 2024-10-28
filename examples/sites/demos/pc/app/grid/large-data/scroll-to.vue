@@ -53,12 +53,12 @@ export default {
       this.$refs.tinyGrid.scrollTo(800, 300)
     },
     scrollToRow() {
-      let row = this.$refs.tinyGrid.getData(49)
+      let row = this.$refs.tinyGrid.getData(50)
 
       this.$refs.tinyGrid.scrollToRow(row)
     },
     scrollToColumn() {
-      let column = this.$refs.tinyGrid.getColumnByField('attr499')
+      let column = this.$refs.tinyGrid.getColumnByField('attr500')
 
       this.$refs.tinyGrid.scrollToColumn(column)
     }

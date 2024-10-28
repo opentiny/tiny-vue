@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { ChartMap as TinyChartMap } from '@opentiny/vue'
+import { HuichartsMap as TinyChartMap } from '@opentiny/vue'
 import chinaData from './china.js'
 
 const chartData = ref({

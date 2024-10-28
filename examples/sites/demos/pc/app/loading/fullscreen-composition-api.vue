@@ -25,11 +25,21 @@ function handleClick() {
 function handleClick2() {
   const loading = Loading.service({
     lock: true,
-    text: 'Loading',
-    background: 'rgba(0, 0, 0, 0.8)'
+    customClass: 'my-custom-loading-fullscreen',
+    text: '正在提交...',
+    background: 'rgba(0, 0, 0, 0.3)'
   })
   setTimeout(() => {
     loading.close()
   }, 2500)
 }
 </script>
+
+<style>
+.my-custom-loading-fullscreen .tiny-loading__spinner > .tiny-svg.circular {
+  fill: #fff;
+}
+.my-custom-loading-fullscreen .tiny-loading__spinner > .tiny-loading__text {
+  color: #fff;
+}
+</style>

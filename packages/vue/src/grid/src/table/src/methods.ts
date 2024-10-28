@@ -772,6 +772,12 @@ const Methods = {
       })
       this.collectColumn = collectColumn
     }
+
+    const toolbarVm = this.getVm('toolbar')
+    // 合并更新toolbar的Column配置
+    if (toolbarVm) {
+      toolbarVm.updateColumn(fullColumn)
+    }
     this.$emit('update:customs', fullColumn)
   },
   resetAll() {
@@ -1002,8 +1008,8 @@ const Methods = {
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
-    // 列宽最少限制 40px, x-design为72px
-    let minCellWidth = this.$grid?.designConfig?.minWidth || 40
+    // 列宽最少限制 72px, saas为40px
+    let minCellWidth = this.$grid?.designConfig?.minWidth || 72
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight

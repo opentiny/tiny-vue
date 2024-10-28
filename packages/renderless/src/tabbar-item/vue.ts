@@ -11,7 +11,7 @@
  */
 
 import { getRouteActive, onClick, bindChildren, routeTab, getTabbarItemsWidth } from './index'
-import { xss } from '../common'
+import { xss } from '../common/xss'
 
 export const api = ['state', 'onClick', 'getTabbarItemsWidth']
 

@@ -3,6 +3,7 @@
     ref="changeGrid"
     :data="tableData"
     seq-serial
+    show-overflow="tooltip"
     :edit-config="{ trigger: 'click', mode: 'row', showStatus: true }"
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -20,7 +21,7 @@
       show-overflow="ellipsis"
     ></tiny-grid-column>
     <tiny-grid-column title="操作" width="100">
-      <template v-slot="data">
+      <template #default="data">
         <tiny-button size="mini" @click="handleSave(data.row)">保存</tiny-button>
       </template>
     </tiny-grid-column>

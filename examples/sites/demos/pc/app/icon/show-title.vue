@@ -1,6 +1,10 @@
 <template>
-  <div title="复制" class="icon-demo">
-    <icon-copy></icon-copy>
+  <div class="icon-demo">
+    <div title="可见提示">
+      <tiny-icon-copy></tiny-icon-copy>
+    </div>
+
+    <tiny-icon-copy title="不可见提示"></tiny-icon-copy>
   </div>
 </template>
 
@@ -9,14 +13,17 @@ import { IconCopy } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconCopy: IconCopy()
+    TinyIconCopy: IconCopy()
   }
 }
 </script>
 
 <style scoped>
+.icon-demo {
+  display: flex;
+}
 .icon-demo .tiny-svg {
-  margin: 20px 83px;
+  margin: 20px 40px;
   font-size: 24px;
 }
 </style>

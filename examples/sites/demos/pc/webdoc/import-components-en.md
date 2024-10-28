@@ -44,6 +44,13 @@ For more information about automatic on-demand imports, please refer to [unplugi
 
 ### Multi-component introduction
 
+<div class="tip custom-block">
+<br />
+Warm reminder: Exporting components with Tiny prefix is ​​supported since 3.17.0. If using previous versions, you need to use aliases.
+<br />
+<p>For example:<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+</div>
+
 Multi-component reference is from the dependency package.`@opentiny/vue`Multiple components are referenced in. The following is an example (in the following figure)`Button`and`Alert`Component as an example):
 
 ```html
@@ -55,12 +62,12 @@ Multi-component reference is from the dependency package.`@opentiny/vue`Multiple
 </template>
 
 <script>
-  import { Button, Alert } from '@opentiny/vue'
+  import { TinyButton, TinyAlert } from '@opentiny/vue'
 
   export default {
     components: {
-      TinyButton: Button,
-      TinyAlert: Alert
+      TinyButton,
+      TinyAlert
     }
   }
 </script>

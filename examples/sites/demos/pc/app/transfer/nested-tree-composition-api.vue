@@ -74,6 +74,7 @@ const treeData = ref([
   }
 ])
 const treeConfig = ref({
+  showLine: true,
   showCheckbox: true,
   nodeKey: 'id',
   checkStrictly: true,

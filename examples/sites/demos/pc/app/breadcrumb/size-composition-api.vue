@@ -1,10 +1,10 @@
 <template>
-  <tiny-breadcrumb size="medium" @select="breadcrumbClick">
-    <tiny-breadcrumb-item :to="{ path: '/' }" @select="breadcrumbItemClick" label="首页"></tiny-breadcrumb-item>
+  <tiny-breadcrumb size="medium">
+    <tiny-breadcrumb-item :to="{ path: '' }" @select="breadcrumbItemClick" label="首页"></tiny-breadcrumb-item>
     <tiny-breadcrumb-item>
-      <a href="/"> 产品 </a>
+      <a href="#"> 产品 </a>
     </tiny-breadcrumb-item>
-    <tiny-breadcrumb-item :to="{ path: '/breadcrumb' }"> 软件 </tiny-breadcrumb-item>
+    <tiny-breadcrumb-item :to="{ path: '#' }"> 软件 </tiny-breadcrumb-item>
   </tiny-breadcrumb>
 </template>
 

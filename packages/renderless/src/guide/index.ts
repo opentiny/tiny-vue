@@ -81,7 +81,7 @@ const getItemCopy = (props, tour, result) => {
 
 const newTour = (state, Shepherd, offset, designConfig) => {
   const tour = new Shepherd.Tour({
-    useModalOverlay: !designConfig?.state?.isUseModalOverlay,
+    useModalOverlay: designConfig?.state?.isUseModalOverlay ?? false,
     defaultStepOptions: {
       modalOverlayOpeningPadding: state.modalOverlayOpeningPadding,
       modalOverlayOpeningRadius: state.modalOverlayOpeningRadius,
@@ -132,6 +132,19 @@ const itemStep = (item, state, deepCopy, index, Shepherd) => {
         const currentStep = Shepherd.activeTour && Shepherd.activeTour.getCurrentStep()
         const currentStepElement = currentStep && currentStep.getElement()
         const footer = currentStepElement && currentStepElement.querySelector('.shepherd-footer')
+        const cancelIcon =
+          currentStepElement && currentStepElement.querySelector('.shepherd-header .shepherd-cancel-icon span')
+        const cloesIcon = `<svg  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <desc fill="none">
+            Created with Pixso.
+        </desc>
+        <defs fill="none" />
+        <g>
+          <path id="path" d="M12.49 3.3C12.66 3.47 12.66 3.74 12.54 3.92L8.58 7.89L12.49 11.77C12.7 11.96 12.72 12.25 12.54 12.48C12.37 12.67 12.05 12.72 11.83 12.54L7.88 8.58L4 12.49C3.82 12.66 3.5 12.67 3.32 12.5C3.13 12.33 3.08 12.05 3.24 11.83L7.17 7.89L3.29 4C3.12 3.79 3.13 3.48 3.33 3.29C3.5 3.15 3.75 3.13 3.91 3.24L7.88 7.17L11.78 3.3C11.96 3.08 12.29 3.08 12.49 3.3Z" fill-opacity="1.000000" fill-rule="evenodd"/>
+        </g>
+      </svg>`
+
+        cancelIcon.innerHTML = cloesIcon
         const progress = document.createElement('span')
         progress.classList.add('progress-style')
         progress.innerText = `${Shepherd.activeTour && Shepherd.activeTour.steps.indexOf(currentStep) + 1}/${

@@ -13,7 +13,7 @@ test('测试按钮是否换行', async ({ page }) => {
   const demo = page.locator('#button-group-multiple')
   const buttonGroup = demo.locator('.tiny-button-group')
   const button = buttonGroup.locator('button').first()
-  const bottomSpace = 4
+  const bottomSpace = 2
   let groupBox = await buttonGroup.boundingBox()
   let buttonBox = await button.boundingBox()
   expect(groupBox?.height).toBe(((buttonBox?.height || 0) + bottomSpace) * 2)

@@ -4,6 +4,10 @@ test('拖拽控制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-drag#drag-row-drag-ctrl')
   const diabledDragDom = page.getByRole('cell', { name: '拖拽触发源1' })
+  await page.setViewportSize({
+    width: 1600,
+    height: 1200
+  })
   // 获取拖拽元素位置
   const { x, y } = await diabledDragDom.boundingBox()
   // 验证不可拖拽
@@ -23,7 +27,7 @@ test('拖拽控制', async ({ page }) => {
   await draggerDom.hover()
   await page.mouse.down()
   await page.waitForTimeout(200)
-  await page.mouse.move(left, top - 200)
+  await page.mouse.move(left, top - 240)
   await page.waitForTimeout(200)
   await page.mouse.up()
   await page.waitForTimeout(200)

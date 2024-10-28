@@ -1,7 +1,12 @@
 <template>
   <div>
     <h4 class="title">单元格编辑：</h4>
-    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      seq-serial
+      show-overflow="tooltip"
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column
         field="name"

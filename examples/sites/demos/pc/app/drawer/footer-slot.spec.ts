@@ -11,6 +11,5 @@ test('底部插槽', async ({ page }) => {
 
   await page.waitForTimeout(300)
   await expect(footer).toBeVisible()
-  await expect(footer.locator('> div')).toHaveClass('my-footer')
-  await expect(footer).toContainText('自定义底部文本')
+  await expect(footer.locator('> div')).toHaveClass('foot-text')
 })

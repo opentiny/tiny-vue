@@ -92,7 +92,6 @@
         :class="m(gcls('radio-input'))"
         :value="label"
         type="radio"
-        aria-hidden="true"
         v-model="state.model"
         @focus="state.focus = true"
         @blur="state.focus = false"

@@ -17,41 +17,41 @@
 @date-table-prefix-cls: ~'@{css-prefix}date-table';
 
 .@{date-table-prefix-cls} {
-  .component-css-vars-date-table();
+  .inject-DateTable-vars();
 
-  font-size: var(--ti-date-table-font-size);
+  font-size: var(--tv-DateTable-font-size);
   .user-select(none);
 
   &.is-week-mode &__row:hover {
     td {
       &.available:hover {
-        color: var(--ti-date-table-text-color);
+        color: var(--tv-DateTable-text-color);
       }
 
       &:first-child div {
         margin-left: 5px;
-        border-top-left-radius: var(--ti-date-table-td-border-radius);
-        border-bottom-left-radius: var(--ti-date-table-td-border-radius);
+        border-top-left-radius: var(--tv-DateTable-td-border-radius);
+        border-bottom-left-radius: var(--tv-DateTable-td-border-radius);
       }
 
       &:last-child div {
         margin-right: 5px;
-        border-top-right-radius: var(--ti-date-table-td-border-radius);
-        border-bottom-right-radius: var(--ti-date-table-td-border-radius);
+        border-top-right-radius: var(--tv-DateTable-td-border-radius);
+        border-bottom-right-radius: var(--tv-DateTable-td-border-radius);
       }
     }
 
     div {
-      background-color: var(--ti-date-table-hover-bg-color);
+      background-color: var(--tv-DateTable-hover-bg-color);
     }
   }
 
   &.is-week-mode &__row.current {
     div {
-      background-color: var(--ti-date-table-week-bg-color-current-select);
+      background-color: var(--tv-DateTable-week-bg-color-current-select);
 
       &:hover {
-        background-color: var(--ti-date-table-week-bg-color-current-hover);
+        background-color: var(--tv-DateTable-week-bg-color-current-hover);
       }
     }
 
@@ -62,19 +62,19 @@
 
       &.start-date span,
       &.end-date span {
-        background-color: var(--ti-date-table-bg-color-current-select);
-        border-radius: var(--ti-date-table-border-radius-current-select);
+        background-color: var(--tv-DateTable-bg-color-current-select);
+        border-radius: var(--tv-DateTable-border-radius-current-select);
       }
     }
   }
   &__week {
-    height: var(--ti-date-table-week-height);
-    line-height: var(--ti-date-table-tr-line-height);
+    height: var(--tv-DateTable-week-height);
+    line-height: var(--tv-DateTable-tr-line-height);
   }
   td {
-    width: var(--ti-date-table-td-width);
-    height: var(--ti-date-table-td-height);
-    padding: var(--ti-date-table-td-padding-vertical) var(--ti-date-table-td-padding-horizontal);
+    width: var(--tv-DateTable-td-width);
+    height: var(--tv-DateTable-td-height);
+    padding: var(--tv-DateTable-td-padding);
     box-sizing: border-box;
     text-align: center;
     cursor: pointer;
@@ -82,43 +82,39 @@
     position: relative;
 
     div {
-      height: var(--ti-date-table-td-div-height);
-      min-width: var(--ti-date-table-td-div-width);
+      height: var(--tv-DateTable-td-div-height);
+      min-width: var(--tv-DateTable-td-div-width);
       padding: 3px 0;
       box-sizing: border-box;
     }
 
     span {
-      min-width: var(--ti-date-table-td-span-width);
-      height: var(--ti-date-table-td-span-height);
-      line-height: var(--ti-date-table-td-span-height);
+      min-width: var(--tv-DateTable-td-span-width);
+      height: var(--tv-DateTable-td-span-height);
+      line-height: var(--tv-DateTable-td-span-height);
       display: block;
       margin: 0 auto;
       position: absolute;
       left: 50%;
-      top: var(--ti-date-table-td-span-top);
+      top: var(--tv-DateTable-td-span-top);
       transform: translateX(-50%);
     }
 
     &.next-month,
     &.pre-month {
-      color: var(--ti-date-table-td-pre-month-text-color);
+      color: var(--tv-DateTable-td-pre-month-text-color);
       cursor: pointer;
-
-      & span:hover {
-        background: var(--ti-datetime-beside-day-bg-color-hover);
-      }
     }
 
     &.today {
       position: relative;
-      color: var(--ti-date-table-td-today-text-color);
+      color: var(--tv-DateTable-text-color);
 
       &:after {
         content: '';
         width: 12px;
         height: 1px;
-        background: var(--ti-date-table-td-today-border-color);
+        background: transparent;
         position: absolute;
         left: 0;
         right: 0;
@@ -127,38 +123,38 @@
       }
 
       span {
-        line-height: var(--ti-date-table-td-today-height);
-        min-width: var(--ti-date-table-td-today-width);
-        height: var(--ti-date-table-td-today-height);
-        border-radius: var(--ti-date-table-td-today-border-radius);
-        border: solid var(--ti-date-table-td-today-circle-border-width) var(--ti-date-table-td-today-circle-border-color);
+        line-height: var(--tv-DateTable-td-today-height);
+        min-width: var(--tv-DateTable-td-today-width);
+        height: var(--tv-DateTable-td-today-height);
+        border-radius: var(--tv-DateTable-td-today-border-radius);
+        border: 1px solid var(--tv-DateTable-td-today-circle-border-color);
       }
 
       &.end-date,
       &.start-date {
         span {
-          color: var(--ti-date-table-td-normal-text-color);
+          color: var(--tv-DateTable-td-normal-text-color);
         }
       }
     }
 
     &.available:not(.today):hover span {
-      background-color: var(--ti-date-table-hover-bg-color);
-      border-radius: var(--ti-date-table-border-radius-current-select);
+      background-color: var(--tv-DateTable-hover-bg-color);
+      border-radius: var(--tv-DateTable-border-radius-current-select);
       border-color: transparent;
     }
     &.current.available:not(.today):hover span {
-      color: var(--ti-date-table-td-normal-text-color);
-      background-color: var(--ti-date-table-bg-color-current-select);
-      border-radius: var(--ti-date-table-border-radius-current-select);
+      color: var(--tv-DateTable-td-normal-text-color);
+      background-color: var(--tv-DateTable-bg-color-current-select);
+      border-radius: var(--tv-DateTable-border-radius-current-select);
       border-color: transparent;
     }
 
     &.current:not(.disabled) {
       span {
-        color: var(--ti-date-table-td-normal-text-color);
-        background-color: var(--ti-date-table-bg-color-current-select);
-        border-radius: var(--ti-date-table-border-radius-current-select);
+        color: var(--tv-DateTable-td-normal-text-color);
+        background-color: var(--tv-DateTable-bg-color-current-select);
+        border-radius: var(--tv-DateTable-border-radius-current-select);
         border-color: transparent;
       }
 
@@ -170,12 +166,12 @@
     &.end-date,
     &.start-date {
       div {
-        color: var(--ti-date-table-td-normal-text-color);
+        color: var(--tv-DateTable-td-normal-text-color);
       }
 
       span {
-        background-color: var(--ti-date-table-bg-color-current-select);
-        border-radius: var(--ti-date-table-start-date-border-radius);
+        background-color: var(--tv-DateTable-bg-color-current-select);
+        border-radius: var(--tv-DateTable-start-date-border-radius);
         border: 0;
       }
     }
@@ -183,43 +179,43 @@
     &.start-date {
       div {
         margin-left: 5px;
-        border-top-left-radius: var(--ti-date-table-td-border-radius);
-        border-bottom-left-radius: var(--ti-date-table-td-border-radius);
+        border-top-left-radius: var(--tv-DateTable-td-border-radius);
+        border-bottom-left-radius: var(--tv-DateTable-td-border-radius);
       }
     }
 
     &.end-date {
       div {
         margin-right: 5px;
-        border-top-right-radius: var(--ti-date-table-td-border-radius);
-        border-bottom-right-radius: var(--ti-date-table-td-border-radius);
+        border-top-right-radius: var(--tv-DateTable-td-border-radius);
+        border-bottom-right-radius: var(--tv-DateTable-td-border-radius);
       }
     }
 
     &.disabled {
       div {
-        background-color: var(--ti-date-table-disabled-bg-color);
+        background-color: var(--tv-DateTable-bg-color-disabled);
         opacity: 1;
         cursor: not-allowed;
-        color: var(--ti-date-table-disabled-text-color);
-        border-top-left-radius: var(--ti-date-table-td-disabled-border-radius);
-        border-bottom-left-radius: var(--ti-date-table-td-disabled-border-radius);
+        color: var(--tv-DateTable-text-color-disabled);
+        border-top-left-radius: var(--tv-DateTable-td-border-radius-disabled);
+        border-bottom-left-radius: var(--tv-DateTable-td-border-radius-disabled);
       }
     }
 
     &.in-range {
       div {
-        background-color: var(--ti-date-table-range-bg-color);
+        background-color: var(--tv-DateTable-range-bg-color);
 
         &:hover {
-          background-color: var(--ti-date-table-range-hover-bg-color);
+          background-color: var(--tv-DateTable-range-hover-bg-color);
         }
       }
 
       &.end-date:hover,
       &.start-date:hover {
         span {
-          background-color: var(--ti-date-table-bg-color-current-select);
+          background-color: var(--tv-DateTable-bg-color-current-select);
         }
       }
     }
@@ -230,59 +226,58 @@
 
     &.selected {
       div {
-        margin-left: 5px;
-        margin-right: 5px;
-        background-color: var(--ti-date-table-td-range-bg-color);
-
-        &:hover {
-          background-color: var(--ti-date-table-td-range-bg-color);
-        }
+        margin-left: 4px;
+        margin-right: 4px;
       }
 
       span {
-        background-color: var(--ti-date-table-bg-color-current-select);
-        color: var(--ti-date-table-td-normal-text-color);
+        background-color: var(--tv-DateTable-bg-color-current-select);
+        color: var(--tv-DateTable-td-normal-text-color);
         border: none;
-        border-radius: var(--ti-date-table-cell-selected-border-radius);
+        border-radius: var(--tv-DateTable-cell-border-radius-selected);
       }
 
       &.available:hover span {
-        background-color: var(--ti-date-table-bg-color-current-select);
+        background-color: var(--tv-DateTable-bg-color-current-select);
       }
+    }
+    &.selected.in-range div{
+      background-color: var(--tv-DateTable-td-bg-color-range-selected);
     }
 
     &.week {
       font-size: 80%;
-      color: var(--ti-date-table-text-color);
+      color: var(--tv-DateTable-text-color);
     }
   }
 
   th {
-    color: var(--ti-date-table-th-text-color);
+    color: var(--tv-DateTable-th-text-color);
     font-weight: 400;
     white-space: nowrap;
+    vertical-align: middle;
   }
-  &__row .disabled + .disabled div{
-    border-radius: var(--ti-date-table-td-row-disabled-border-radius);
+  &__row .disabled + .disabled div {
+    border-radius: unset;
   }
-  &__row .disabled:not(:has(+ .disabled)) div{
-    border-top-right-radius: var(--ti-date-table-td-disabled-border-radius);
-    border-bottom-right-radius: var(--ti-date-table-td-disabled-border-radius);
+  &__row .disabled:not(:has(+ .disabled)) div {
+    border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
+    border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row .in-range:first-of-type div{
-    border-top-left-radius: var(--ti-date-table-td-disabled-border-radius);
-    border-bottom-left-radius: var(--ti-date-table-td-disabled-border-radius);
+  &__row .in-range:first-of-type div {
+    border-top-left-radius: var(--tv-DateTable-td-border-radius-disabled);
+    border-bottom-left-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row .in-range:last-of-type div{
-    border-top-right-radius: var(--ti-date-table-td-disabled-border-radius);
-    border-bottom-right-radius: var(--ti-date-table-td-disabled-border-radius);
+  &__row .in-range:last-of-type div {
+    border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
+    border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row td:nth-child(1 of .available.in-range) div{
-    border-top-left-radius: var(--ti-date-table-td-disabled-border-radius);
-    border-bottom-left-radius: var(--ti-date-table-td-disabled-border-radius);
+  &__row td:nth-child(1 of .available.in-range) div {
+    border-top-left-radius: var(--tv-DateTable-td-border-radius-disabled);
+    border-bottom-left-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row td:nth-last-child(1 of .available.in-range) div{
-    border-top-right-radius: var(--ti-date-table-td-disabled-border-radius);
-    border-bottom-right-radius: var(--ti-date-table-td-disabled-border-radius);
+  &__row td:nth-last-child(1 of .available.in-range) div {
+    border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
+    border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
 }

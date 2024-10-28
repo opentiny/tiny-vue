@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common/xss.js'
+import { xss } from '../common/xss'
 
 export const getRoute = (route) => `/${route || ''}`.replace(/^\/+/, '/')
 

@@ -28,7 +28,7 @@ test.describe('下拉表格远程搜索', () => {
     const row2 = page.getByRole('row', { name: '省份2 城市2 区域2' })
     await expect(row2).not.toBeVisible()
     await row1.getByRole('cell').first().click()
-    await expect(row1).toHaveClass(/row__current/)
+    await expect(row1).toHaveClass(/tiny-grid-body__row row__selected/)
     await expect(input).toHaveValue('省1-市1')
 
     const row3 = page.getByRole('row', { name: '省份10 城市10 区域10' })

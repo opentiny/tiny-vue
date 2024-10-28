@@ -101,7 +101,7 @@ export default {
       'name': { 'zh-CN': '错误提示配置项', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>表格默认错误提示显示在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参参考 tooltip 组件。</p>\n',
+          '<p>表格默认错误提示挂载在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参考 tooltip 组件。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['validation/tipconfig.vue']

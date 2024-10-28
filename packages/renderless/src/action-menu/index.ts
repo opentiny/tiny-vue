@@ -34,7 +34,7 @@ export const computedSpacing =
     if (state.isCardMode) {
       return '10px'
     } else {
-      return designConfig?.props.spacing || '5px'
+      return designConfig?.props.spacing || '8px'
     }
   }
 

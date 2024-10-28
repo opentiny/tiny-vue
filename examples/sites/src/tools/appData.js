@@ -16,7 +16,8 @@ const appFn = {
     if (name !== appData.lang) {
       let url = location.href
       url = location.href.replace(LANG_PATH_MAP[appData.lang], LANG_PATH_MAP[name])
-      appData.lang = name
+      // appData.lang = name 官网先屏蔽英文内容
+      appData.lang = ZH_CN_LANG
       location.replace(url)
     }
   },

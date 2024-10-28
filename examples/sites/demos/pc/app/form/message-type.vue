@@ -47,12 +47,12 @@ export default {
         datepicker: ''
       },
 
-      messageType: '',
+      messageType: 'block',
 
       messageTypeList: [
-        { text: '默认', value: '' },
+        { text: '块级', value: 'block' },
         { text: '行内', value: 'inline' },
-        { text: '块级', value: 'block' }
+        { text: '绝对定位', value: 'absolute' }
       ],
       rules: {
         users: { required: true, message: '必填', trigger: 'blur' },

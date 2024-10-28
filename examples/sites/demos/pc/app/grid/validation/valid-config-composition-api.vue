@@ -12,6 +12,7 @@
       :valid-config="{ message: 'inline' }"
       :edit-rules="validRules"
       :size="size"
+      show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: Input }"></tiny-grid-column>

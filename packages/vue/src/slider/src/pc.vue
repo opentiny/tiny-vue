@@ -77,35 +77,40 @@
         </template>
       </div>
     </div>
+
     <template v-if="showInput">
-      <div class="tiny-slider__input">
+      <div class="tiny-slider__input" :class="{ 'is-disabled': state.disabled }">
         <slot :slot-scope="state.slotValue">
-          <input
+          <tiny-input
             v-if="!state.isDouble"
+            v-model="state.slotValue"
             type="text"
-            :value="state.slotValue"
+            :disabled="state.disabled"
             @change="inputOnChange"
             @focus="handleSlotInputFocus"
             @blur="handleSlotInputBlur"
             @input="handleSlotInput($event)"
-            :disabled="state.disabled"
-          />
+          >
+          </tiny-input>
+
           <template v-else>
-            <input
-              :value="state.slotValue[0]"
+            <tiny-input
+              v-model="state.slotValue[0]"
+              :disabled="state.disabled"
               @focus="handleSlotInputFocus"
               @blur="handleSlotInputBlur"
               @input="handleSlotInput($event)"
-              :disabled="state.disabled"
-            />
+            ></tiny-input>
+
             <span class="tiny-slider__input__split">-</span>
-            <input
-              :value="state.slotValue[1]"
+            <tiny-input
+              v-model="state.slotValue[1]"
+              :disabled="state.disabled"
               @focus="handleSlotInputFocus"
               @blur="handleSlotInputBlur"
               @input="handleSlotInput($event, false)"
-              :disabled="state.disabled"
-            />
+            >
+            </tiny-input>
           </template>
           <span class="tiny-slider__input__unit">{{ unit }}</span>
         </slot>
@@ -117,6 +122,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/slider/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import Input from '@opentiny/vue-input'
 import type { ISliderApi } from '@opentiny/vue-renderless/types/slider.type'
 import '@opentiny/vue-theme/slider/index.less'
 
@@ -140,6 +146,9 @@ export default defineComponent({
     'formatTooltip',
     'changeCompat'
   ],
+  components: {
+    TinyInput: Input
+  },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi
   }

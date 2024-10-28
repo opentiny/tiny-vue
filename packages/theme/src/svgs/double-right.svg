@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="图层_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16"
+	 style="enable-background:new 0 0 16 16;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#D8D8D8;fill-opacity:0;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+	.st0{fill:none;}
 </style>
-<polygon id="矩形" class="st0" points="0,0 0,16 16,16 16,0 "/>
-<path id="形状结合" class="st1" d="M1.25,1.23C0.95,1.5,0.92,1.92,1.15,2.22l0.1,0.11l6.02,5.56C7.32,7.93,7.33,8,7.3,8.06
-	L7.26,8.12l-6.02,5.56c-0.33,0.3-0.33,0.8,0,1.1c0.29,0.27,0.75,0.3,1.07,0.09l0.12-0.09l6.02-5.56C9.13,8.59,9.18,7.61,8.6,6.93
-	L8.46,6.78L2.44,1.23C2.11,0.92,1.58,0.92,1.25,1.23z M7.25,1.23C6.95,1.5,6.92,1.92,7.15,2.22l0.1,0.11l6.02,5.56
-	C13.32,7.93,13.33,8,13.3,8.06l-0.04,0.05l-6.02,5.56c-0.33,0.3-0.33,0.8,0,1.1c0.29,0.27,0.75,0.3,1.07,0.09l0.12-0.09l6.02-5.56
-	c0.67-0.62,0.72-1.61,0.14-2.28l-0.14-0.15L8.44,1.23C8.11,0.92,7.58,0.92,7.25,1.23z"/>
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="16" width="16" x="0" y="0"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<polygon id="Fill-1" class="st0" points="16,0 16,16 0,16 0,0 "/>
+<path id="形状结合" class="st1" d="M7.7,2.7C7.5,2.8,7.5,3.1,7.7,3.4l0.1,0.1l4.4,4.4l-4.4,4.3c-0.2,0.2-0.2,0.6,0,0.8
+	c0.2,0.2,0.5,0.2,0.7,0.1l0.1-0.1l4.8-4.7c0.2-0.2,0.2-0.5,0.1-0.7l-0.1-0.1L8.5,2.7C8.3,2.4,8,2.4,7.7,2.7z M2.7,2.7
+	C2.5,2.8,2.5,3.1,2.6,3.4l0.1,0.1l4.4,4.4l-4.4,4.3c-0.2,0.2-0.2,0.6,0,0.8c0.2,0.2,0.5,0.2,0.7,0.1l0.1-0.1l4.8-4.7
+	c0.2-0.2,0.2-0.5,0.1-0.7L8.3,7.5L3.5,2.7C3.3,2.4,2.9,2.4,2.7,2.7z"/>
 </svg>

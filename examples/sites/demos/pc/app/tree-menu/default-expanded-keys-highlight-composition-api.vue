@@ -2,6 +2,7 @@
   <div>
     <tiny-button @click="changeHighlight" type="primary">设置展开并高亮</tiny-button>
     <tiny-tree-menu
+      class="demo-tree-menu"
       node-key="id"
       :data="treeData"
       :default-expanded-keys="expandeArr"
@@ -128,8 +129,8 @@ const changeHighlight = () => {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 .tiny-button {

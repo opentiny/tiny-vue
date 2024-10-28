@@ -19,6 +19,7 @@
       'tiny-tree-menu__show-filter': showFilter,
       'tiny-tree-menu__show-expand': showExpand
     }"
+    :style="widthAdapt ? { width: '100%' } : {}"
   >
     <div v-if="menuCollapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
       <icon-arrow></icon-arrow>
@@ -216,6 +217,11 @@ export default defineComponent({
       default: false
     },
     highlightQuery: {
+      type: Boolean,
+      default: false
+    },
+    // metaErp 新增属性
+    widthAdapt: {
       type: Boolean,
       default: false
     }

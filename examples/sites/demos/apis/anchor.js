@@ -84,7 +84,7 @@ export default {
         },
         {
           name: 'link-click',
-          type: '(event: Event, currentLink: {link: string, title: string}) => void',
+          type: '(event: Event, currentLink: { link: string, title: string } ) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '锚点点击事件',
@@ -93,18 +93,6 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'set-container',
           mfDemo: 'set-container'
-        },
-        {
-          name: 'on-change',
-          type: '(hash: string) => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '使用 change 代替；[deprecated v3.12.0 废弃，v3.17.0 移除；移除原因：命名规范]',
-            'en-US':
-              'use change instead [deprecated v3.12.0 abandoned, v3.17.0 removed; reason for removal: naming convention]'
-          },
-          mode: ['pc'],
-          pcDemo: 'change'
         }
       ],
       methods: [],

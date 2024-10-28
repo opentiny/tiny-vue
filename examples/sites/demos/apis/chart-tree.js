@@ -4,346 +4,117 @@ export default {
     {
       name: 'chart-tree',
       type: 'component',
-      props: [
+      options: [
         {
-          name: 'cancel-resize-check',
-          type: 'boolean',
-          defaultValue: 'false',
+          name: 'theme',
+          type: 'string',
+          defaultValue: 'cloud-light',
+          typeAnchorName: 'Theme',
           desc: {
-            'zh-CN': '是否禁用 resize 时的容器检测',
-            'en-US': 'Whether to disable container detection during resize'
+            'zh-CN': '主题',
+            'en-US': 'Chart theme'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
-          name: 'change-delay',
-          type: 'number',
-          defaultValue: "'0'",
+          name: 'padding',
+          type: 'array',
+          defaultValue: '[50,20,50,20]',
+          typeAnchorName: 'Padding',
           desc: {
-            'zh-CN': '属性修改触发图表重绘回调的延迟',
-            'en-US': 'Delay for triggering chart redrawing callback after attribute modification'
+            'zh-CN': '图表内边距值',
+            'en-US': 'Margin values within the chart'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'tooltip',
+          type: 'object',
+          defaultValue: '默认显示',
+          typeAnchorName: 'Tooltip',
+          desc: {
+            'zh-CN': '悬浮提示框内容配置',
+            'en-US': 'Content configuration of floating prompt box'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
           name: 'data',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '数据由指标和维度组成,“维度” 指的是数据的属性,“指标” 是量化衡量标准',
-            'en-US':
-              'Data consists of indicators and dimensions. Dimension refers to data attributes, and indicator refers to quantitative measurement standards.'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'events',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '事件绑定',
-            'en-US': 'Event binding'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'extend',
-          typeAnchorName: 'chart#IChartProps',
-          type: 'objcet',
-          defaultValue: '',
-          desc: {
-            'zh-CN': 'echarts 的配置项',
-            'en-US': 'Configuration items of echarts'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'height',
-          type: 'string',
-          defaultValue: "'400px'",
-          desc: {
-            'zh-CN': '设置图表容器的高度。',
-            'en-US': 'Set the height of the chart container.'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'init-options',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': 'init 附加参数',
-            'en-US': 'Init Additional Parameters'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'judge-width',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否处理生成图表时的宽度问题',
-            'en-US': 'Do you want to process the width issue when generating charts?'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'legend-visible',
-          type: 'boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '是否显示图例',
-            'en-US': 'Display legend'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'not-set-unchange',
           type: 'array',
-          defaultValue: '',
+          defaultValue: '无',
+          typeAnchorName: 'Data',
           desc: {
-            'zh-CN': '未发生变化时不参加 setOption 的属性',
-            'en-US': 'The setOption attribute does not change.'
+            'zh-CN': '图表数据',
+            'en-US': 'Chart data'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
-          name: 'resize-delay',
-          type: 'number',
-          defaultValue: "'200'",
-          desc: {
-            'zh-CN': '窗口 resize 事件回调的延迟',
-            'en-US': 'Delay of the window resize event callback'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'resizeable',
-          type: 'boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '是否处理窗口 resize 事件',
-            'en-US': 'Whether to process the window resize event'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'set-option-opts',
-          type: 'boolean | object',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': 'echarts setOption 的第二个参数',
-            'en-US': 'Echarts setOption second parameter'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          mode: []
-        },
-        {
-          name: 'theme',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义主题名称。;自定义主题对象。',
-            'en-US': 'User-defined theme name. ;User-defined theme object.'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'theme-name',
+          name: 'type',
           type: 'string',
-          defaultValue: '',
+          defaultValue: '无',
+          typeAnchorName: 'Type',
           desc: {
-            'zh-CN': '自定义主题名称,如果设置了 theme-name, 则 theme 无效',
-            'en-US': 'User-defined theme name. If theme-name is set, the theme is invalid.'
+            'zh-CN': '树图类型',
+            'en-US': 'Tree diagram type'
           },
           mode: ['pc'],
           pcDemo: ''
         },
+
         {
-          name: 'tooltip-visible',
-          type: 'boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '是否显示提示框',
-            'en-US': 'Display dialog box'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'width',
+          name: 'direction',
           type: 'string',
-          defaultValue: "'auto'",
+          defaultValue: 'left',
+          typeAnchorName: 'Direction',
           desc: {
-            'zh-CN': '设置图表容器的宽度。',
-            'en-US': 'Set the width of the chart container.'
+            'zh-CN': '线性树图起点方向',
+            'en-US': 'Starting direction of linear tree graph'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
-          name: 'width-change-delay',
+          name: 'symbolSize',
           type: 'number',
-          defaultValue: "'300'",
+          defaultValue: '10',
+          typeAnchorName: 'SymbolSize',
           desc: {
-            'zh-CN': '容器宽度变化的延迟',
-            'en-US': 'Container width change delay'
+            'zh-CN': '树图图元大小',
+            'en-US': 'Tree diagram element size'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
-          name: 'options',
-          type: 'object',
-          defaultValue: '',
+          name: 'lineType',
+          type: 'string',
+          defaultValue: 'curve',
+          typeAnchorName: 'LineType',
           desc: {
-            'zh-CN': '图表配置项(无法与settings混用)',
-            'en-US': 'Chart Configuration item (cannot be used together with settings)'
+            'zh-CN': '线性树图连线形状',
+            'en-US': 'Linear tree graph connection shape'
           },
           mode: ['pc'],
           pcDemo: ''
         },
         {
-          name: 'settings',
-          type: 'object',
-          defaultValue: '',
+          name: 'initialTreeDepth',
+          type: 'number',
+          defaultValue: '1',
+          typeAnchorName: 'InitialTreeDepth',
           desc: {
-            'zh-CN': '配置项',
-            'en-US': 'Chart Configuration items'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'color-mode',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义颜色模式',
-            'en-US': 'Custom color mode'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'mark-line',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '图表标线',
-            'en-US': 'Chart markings'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'mark-area',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '图表标志区域',
-            'en-US': 'Chart symbol area'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'mark-point',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '图表标点',
-            'en-US': 'Chart punctuation'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'loading',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '图表加载状态',
-            'en-US': 'Chart loading status'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'data-empty',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '暂无数据状态',
-            'en-US': 'No data status available at the moment'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'before-config',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '对数据提前进行额外的处理,在数据转化为配置项开始前触发',
-            'en-US':
-              'Perform additional processing on the data in advance, triggering before the data is converted into configuration items'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'after-config',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '对生成好的echarts配置进行额外的处理,在数据转化为配置项结束后触发',
-            'en-US':
-              'Perform additional processing on the generated echarts configuration and trigger it after the data is converted into configuration items'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'after-set-option',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '生成图之后获取 echarts 实例',
-            'en-US': 'After generating the graph, obtain the echarts instance'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
-          name: 'after-set-option-once',
-          type: 'object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '生成图之后获取 echarts 实例(只执行一次)',
-            'en-US': 'After generating the graph, obtain the echarts instance (executed only once)'
+            'zh-CN': '树图初始展开层级',
+            'en-US': 'Initial unfolding hierarchy of tree diagram'
           },
           mode: ['pc'],
           pcDemo: ''
         }
       ],
-
       events: [
         {
           name: 'ready',
@@ -390,22 +161,139 @@ export default {
       ]
     }
   ],
+
   types: [
     {
-      name: 'Options',
+      name: 'Data',
       type: 'interface',
-      code: `
-            interface Options {
-                theme: string // 主题, 默认值: cloud-light
-                padding: array // 图表内边距值, 默认值: [50,20,50,20]
-                tipHtml: function // 悬浮提示框内容配置, 默认显示
-                data: array // 图表数据(必填)
-                type: string // 树图类型
-                direction: string // 线性树图起点方向, 默认值: left
-                symbolSize: number // 树图树元大小, 默认值: 10
-                lineType: string // 线性树图连线形状, 默认值: curve
-                initialTreeDepth: number // 树图初始展开层级, 默认值: 1
-            }`
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">格式：</p>
+<div data-v-md-line="3"><div class="v-md-pre-wrapper v-md-pre-wrapper-d extra-class"><pre class="v-md-hljs-d"><code>data: [
+    {
+      name: <span class="hljs-string">'节点'</span>,
+      data: [
+        {
+          name: <span class="hljs-string">'flare'</span>,
+          children: [
+            {
+              name: <span class="hljs-string">'data'</span>,
+              children: [
+                {
+                  name: <span class="hljs-string">'converters'</span>,
+                  children: [
+                    { name: <span class="hljs-string">'Converters'</span>, value: <span class="hljs-number">721</span> },
+                    { name: <span class="hljs-string">'DelimitedTextConverter'</span>, value: <span class="hljs-number">4294</span> },
+                    ...
+                  ],
+                },
+                {
+                  name: <span class="hljs-string">'DataUtil'</span>,
+                  value: <span class="hljs-number">3322</span>,
+                },
+                ...
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+</code></pre>
+</div></div><p data-v-md-line="36">说明：树图的数据, 最外层name为本系列的数据的名称，data为需要渲染的树的数据，树的数据中name:节点的名称,value:节点的数值,children: 子节点。name,value,children 的名称是固定的，不允许做更改。name 为必传,value 和 children 可不传。</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Direction',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>'left'</code></p>
+<p data-v-md-line="3">可选值：<code>'left','right','top','bottom'</code></p>
+<p data-v-md-line="5">说明：树图的起点方向,仅 type 为<code>LineTreeChart</code>时有效</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'InitialTreeDepth',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>1</code></p>
+<p data-v-md-line="3">说明：树图的初始展开层级,最小值为 1</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'LineType',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>'curve'</code></p>
+<p data-v-md-line="3">可选值：<code>'curve','polyline'</code></p>
+<p data-v-md-line="5">说明：树图的连线的形状,仅 type 为<code>LineTreeChart</code>时有效,<code>'polyline'</code>表示折线，<code>'curve'</code>表示曲线。</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'SymbolSize',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>10</code></p>
+<p data-v-md-line="3">说明：树图的图元的大小</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Type',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">可选值：<code>LineTreeChart，RingTreeChart</code></p>
+<p data-v-md-line="3">说明：图表类型，共有线形树图和环形树图两套</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Theme',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>light</code></p>
+<p data-v-md-line="3">可选值：</p>
+<p data-v-md-line="5"><code>light</code> ：ICT3.0图表浅色主题<br>
+<code>dark</code> ：ICT3.0图表深色主题<br>
+<code>hdesign-light</code> ：H Design1.1图表浅色主题<br>
+<code>hdesign-dark</code> ：H Design1.1图表深色主题<br>
+<code>cloud-light</code> ：华为云图表浅色主题<br>
+<code>bpit-light</code> ：质量&amp;流程IT图表浅色主题<br>
+<code>bpit-dark</code> ：质量&amp;流程IT图表深色主题</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Padding',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">说明：设置图表四个方向的 <code>padding</code> 值<br>
+<code>padding : [top, right, bottom, left]</code><br>
+top 的值可以是 20 这样的具体像素值 ， 可以是 ‘20%’ 这样相对于容器高宽的百分比，也可以是 ‘top’ ， ‘middle’ ， ‘bottom’<br>
+left 的值可以是 20 这样的具体像素值 ， 可以是 ‘20%’ 这样相对于容器高宽的百分比，也可以是 ‘left’ ， ‘center’ ， ‘right’<br>
+right 的值可以是 20 这样的具体像素值 ， 可以是 ‘20%’ 这样相对于容器高宽的百分比<br>
+bottom 的值可以是 20 这样的具体像素值 ， 可以是 ‘20%’ 这样相对于容器高宽的百分比</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Tooltip',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：</p>
+<div data-v-md-line="3"><div class="v-md-pre-wrapper v-md-pre-wrapper-d extra-class"><pre class="v-md-hljs-d"><code>tooltip 提示框组件：tooltip.show = <span class="hljs-literal">true</span> 默认显示
+</code></pre>
+</div></div><p data-v-md-line="7">格式：</p>
+<div data-v-md-line="9"><div class="v-md-pre-wrapper v-md-pre-wrapper-d extra-class"><pre class="v-md-hljs-d"><code>tooltip: {
+  show: <span class="hljs-literal">true</span>,
+  formatter: (params, ticket, callback) =&gt; {
+    let htmlString = <span class="hljs-string">'';
+    params.map((item, index) =&gt; {
+      if (index === 0) htmlString += item.name + '</span>&lt;br/&gt;<span class="hljs-string">';
+      htmlString += 
+      <code> &lt;div&gt;
+          &lt;i style="display:inline-block;width:10px;height:10px;background-color:\${item.color};"&gt;&lt;/i&gt;
+          &lt;span style="margin-left:5px;color:#ffffff"&gt;
+              &lt;span style="display:inline-block;width:100px;"&gt;\${item.seriesName} User&lt;/span&gt;
+              &lt;span style="font-weight:bold"&gt; \${item.value} %&lt;/span&gt;
+              &lt;span style="color:gray"&gt; out &lt;/span&gt;
+              &lt;span style="color:red"&gt; \${100 - item.value} %&lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;</code>;
+    });
+    return htmlString;
+  }
+};
+</span></code></pre>
+</div></div><p data-v-md-line="32">说明：通过回调函数的参数，自行制作一个 HTML 片段<br>
+详细参数解释见： <a target="_blank" href="https://echarts.apache.org/zh/option.html#tooltip.formatter">https://echarts.apache.org/zh/option.html#tooltip.formatter</a></p>
+</div></div></div></td></tr></div>`
     }
   ]
 }

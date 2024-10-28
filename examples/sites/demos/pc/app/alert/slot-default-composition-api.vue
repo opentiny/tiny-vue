@@ -9,14 +9,29 @@
       <a href="javascript: void(0);">取消</a>
     </tiny-alert>
     <br />
-    <tiny-alert type="success" size="large" description="提交结果页用于反馈一系列操作任务的处理结果。">
+    <tiny-alert
+      type="success"
+      size="large"
+      description="提交结果页用于反馈一系列操作任务的处理结果。"
+      class="demo-alert"
+    >
       <a href="javascript: void(0);">继续提交</a>
       <a href="javascript: void(0);">取消操作</a>
     </tiny-alert>
     <br />
-    <tiny-alert type="error" size="large" description="提交结果页用于反馈一系列操作任务的处理结果。"></tiny-alert>
+    <tiny-alert
+      type="error"
+      size="large"
+      description="提交结果页用于反馈一系列操作任务的处理结果。"
+      class="demo-alert"
+    ></tiny-alert>
     <br />
-    <tiny-alert type="warning" size="large" description="提交结果页用于反馈一系列操作任务的处理结果。">
+    <tiny-alert
+      type="warning"
+      size="large"
+      description="提交结果页用于反馈一系列操作任务的处理结果。"
+      class="demo-alert"
+    >
       <a href="javascript: void(0);">继续提交</a>
       <a href="javascript: void(0);">取消操作</a>
     </tiny-alert>
@@ -30,5 +45,8 @@ import { Alert as TinyAlert } from '@opentiny/vue'
 <style>
 .demo-alert .tiny-alert__opration {
   margin-top: 4px;
+}
+.demo-alert .tiny-alert__opration a {
+  margin-right: 16px;
 }
 </style>

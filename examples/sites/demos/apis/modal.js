@@ -27,7 +27,7 @@ export default {
               'Customize the props of the cancel button. The optional values ​​are consistent with the Button component'
           },
           mode: ['pc'],
-          pcDemo: 'footer-btn-props'
+          pcDemo: 'modal-footer'
         },
         {
           name: 'cancel-content',
@@ -38,7 +38,7 @@ export default {
             'en-US': 'Customize cancel button content'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'footer-btn-content',
+          pcDemo: 'modal-footer',
           mfDemo: ''
         },
         {
@@ -52,7 +52,7 @@ export default {
               'Customize the confirmation button props, the optional values are consistent with the Button component'
           },
           mode: ['pc'],
-          pcDemo: 'footer-btn-props'
+          pcDemo: 'modal-footer'
         },
         {
           name: 'confirm-content',
@@ -63,7 +63,7 @@ export default {
             'en-US': 'Customize confirmation button content'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'footer-btn-content',
+          pcDemo: 'modal-footer',
           mfDemo: ''
         },
         {
@@ -97,7 +97,7 @@ export default {
             'en-US': "Delay for automatic shutdown, only valid when type is 'message'"
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'duration',
+          pcDemo: 'message-close',
           mobileDemo: 'duration',
           mfDemo: ''
         },
@@ -110,7 +110,7 @@ export default {
             'en-US': 'Whether to allow pressing the Esc key to close a window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'esc-closable',
+          pcDemo: 'modal-other',
           mobileDemo: 'mask-closable',
           mfDemo: ''
         },
@@ -123,7 +123,7 @@ export default {
             'en-US': 'Control bottom dragable'
           },
           mode: ['pc'],
-          pcDemo: 'footer-slot'
+          pcDemo: 'modal-footer'
         },
         {
           name: 'fullscreen',
@@ -134,7 +134,7 @@ export default {
             'en-US': 'Whether to maximize the display'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'fullscreen',
+          pcDemo: 'modal-size',
           mobileDemo: 'fullscreen',
           mfDemo: ''
         },
@@ -147,7 +147,7 @@ export default {
             'en-US': 'window height'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'resize',
+          pcDemo: 'modal-size',
           mobileDemo: '',
           mfDemo: ''
         },
@@ -161,7 +161,7 @@ export default {
               "If you don't want the window to be clicked repeatedly, you can set a unique id to prevent repeated prompts. This is only valid when type is 'message'"
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'id',
+          pcDemo: 'message-id',
           mobileDemo: 'id',
           mfDemo: ''
         },
@@ -174,7 +174,7 @@ export default {
             'en-US': 'Whether to reset the form data when closing the pop-up window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'is-form-reset',
+          pcDemo: 'modal-other',
           mobileDemo: 'is-form-reset',
           mfDemo: ''
         },
@@ -187,7 +187,7 @@ export default {
             'en-US': 'Whether to lock the scroll bar and not allow the page to scroll'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'lock-scroll',
+          pcDemo: 'modal-lock',
           mobileDemo: 'lock-scroll',
           mfDemo: ''
         },
@@ -200,7 +200,7 @@ export default {
             'en-US': 'Whether to lock the page and not allow any operations outside the window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'lock-view',
+          pcDemo: 'modal-lock',
           mobileDemo: 'lock-view',
           mfDemo: ''
         },
@@ -213,7 +213,7 @@ export default {
             'en-US': 'Whether to display the mask layer'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'lock-view1',
+          pcDemo: 'modal-mask',
           mobileDemo: 'mask-closable',
           mfDemo: ''
         },
@@ -226,7 +226,7 @@ export default {
             'en-US': 'Whether to allow clicking on the mask layer to close the window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'mask-closable',
+          pcDemo: 'modal-mask',
           mobileDemo: 'mask-closable',
           mfDemo: ''
         },
@@ -239,7 +239,7 @@ export default {
             'en-US': 'Window contents'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'message',
+          pcDemo: 'basic-usage',
           mobileDemo: 'message',
           mfDemo: ''
         },
@@ -263,7 +263,7 @@ export default {
             'en-US': 'Minimum height of window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'min-height',
+          pcDemo: 'modal-resize',
           mobileDemo: 'min-height',
           mfDemo: ''
         },
@@ -276,7 +276,7 @@ export default {
             'en-US': 'The minimum width of the window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'min-width',
+          pcDemo: 'modal-resize',
           mobileDemo: 'min-width',
           mfDemo: ''
         },
@@ -289,7 +289,7 @@ export default {
             'en-US': 'Whether to display'
           },
           mode: ['pc', 'mobile'],
-          pcDemo: 'value',
+          pcDemo: 'basic-usage',
           mobileDemo: 'cancel-event'
         },
         {
@@ -323,7 +323,7 @@ export default {
             'en-US': 'Whether to allow dragging to resize the window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'resize',
+          pcDemo: 'modal-resize',
           mobileDemo: 'resize',
           mfDemo: ''
         },
@@ -347,7 +347,8 @@ export default {
             'en-US': 'Display bottom'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'showFooter',
+          pcDemo: 'modal-footer',
+          mobileDemo: 'showFooter',
           mfDemo: ''
         },
         {
@@ -359,20 +360,9 @@ export default {
             'en-US': 'Display Header'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'showHeader',
+          pcDemo: 'modal-header',
           mobileDemo: 'showHeader',
           mfDemo: ''
-        },
-        {
-          name: 'showFooter',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>是否显示底部</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'showFooter'
         },
         {
           name: 'status',
@@ -397,20 +387,20 @@ export default {
             'en-US': 'Window title'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'title',
+          pcDemo: 'modal-header',
           mobileDemo: 'title',
           mfDemo: ''
         },
         {
           name: 'top',
           type: 'number | string',
-          defaultValue: '15',
+          defaultValue: '80',
           desc: {
             'zh-CN': "消息距离顶部的位置，仅当 type 为 'message' 时有效",
             'en-US': "The position of the message from the top, only valid when type is 'message'"
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'top',
+          pcDemo: 'message-top',
           mobileDemo: 'top',
           mfDemo: ''
         },
@@ -423,7 +413,7 @@ export default {
             'en-US': 'Window type'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'type',
+          pcDemo: 'basic-usage',
           mobileDemo: 'type',
           mfDemo: ''
         },
@@ -448,7 +438,7 @@ export default {
               'The width of the window(Set the width in pixels or percentages, and the browser window size can be changed to display in the center)'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'resize',
+          pcDemo: 'modal-size',
           mobileDemo: 'grid',
           mfDemo: ''
         },
@@ -460,19 +450,8 @@ export default {
             'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）',
             'en-US': 'Customize the stacking order (may be used in some special scenarios, such as when it is blocked)'
           },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'z-index',
-          mfDemo: ''
-        },
-        {
-          name: 'zIndex',
-          type: 'Number',
-          defaultValue: '3000',
-          desc: {
-            'zh-CN': '<p>自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile', 'mobile-first'],
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: 'modal-other',
           mobileDemo: 'zIndex',
           mfDemo: ''
         }
@@ -488,7 +467,7 @@ export default {
             'en-US': 'This event is triggered when the Cancel button is clicked'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'cancel-event',
           mfDemo: ''
         },
@@ -502,7 +481,7 @@ export default {
             'en-US': 'This event is triggered when the close button is clicked'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'close-event',
           mfDemo: ''
         },
@@ -516,7 +495,7 @@ export default {
             'en-US': 'This event is triggered when the OK button is clicked'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'confirm-event',
           mfDemo: ''
         },
@@ -530,7 +509,7 @@ export default {
             'en-US': 'This event is triggered when the window is closed'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'hide-event',
           mfDemo: ''
         },
@@ -544,7 +523,7 @@ export default {
             'en-US': 'This event is triggered when the window is displayed'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'show-event',
           mfDemo: ''
         },
@@ -558,7 +537,7 @@ export default {
             'en-US': 'This event is triggered when a window is zoomed in or out'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'event',
+          pcDemo: 'modal-event',
           mobileDemo: 'zoom-event',
           mfDemo: ''
         }
@@ -574,7 +553,7 @@ export default {
             'en-US': 'Default slot'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'default-grid',
+          pcDemo: 'modal-fn-slots',
           mobileDemo: 'cancel-event',
           mfDemo: ''
         },
@@ -587,7 +566,7 @@ export default {
             'en-US': 'Template at the bottom of the window'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'footer-slot',
+          pcDemo: 'modal-fn-slots',
           mobileDemo: 'footer-slot',
           mfDemo: ''
         }

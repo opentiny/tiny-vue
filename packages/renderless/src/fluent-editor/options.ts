@@ -1,5 +1,42 @@
 import { isNull } from '../common/type'
 
+const fontFamilyConfig = [
+  'songti',
+  'yahei',
+  'kaiti',
+  'heiti',
+  'lishu',
+  'mono',
+  'arial',
+  'arialblack',
+  'comic',
+  'impact',
+  'times'
+]
+
+const fontSizeConfig = [
+  '12px',
+  '13px',
+  '14px',
+  '15px',
+  '16px',
+  '17px',
+  '18px',
+  '19px',
+  '20px',
+  '22px',
+  '24px',
+  '26px',
+  '29px',
+  '32px',
+  '36px',
+  '40px',
+  '48px',
+  '72px'
+]
+
+const lineHeightConfig = ['1', '1.2', '1.5', '2', '2.5', '3', '4', '5']
+
 const betterTable = {
   operationMenu: {
     items: {
@@ -20,33 +57,35 @@ const betterTable = {
   }
 }
 
-const toolbar = (FluentEditor) => {
-  const underline = ['bold', 'italic', 'underline', 'strike']
-  const list = [{ list: 'ordered' }, { list: 'bullet' }]
-  const script = [{ script: 'sub' }, { script: 'super' }]
+const underline = ['bold', 'italic', 'underline', 'strike']
+const list = [{ list: 'ordered' }, { list: 'bullet' }]
+const script = [{ script: 'sub' }, { script: 'super' }]
 
+export const defaultToolbar = [
+  ['undo', 'redo', 'clean'],
+  [
+    { font: fontFamilyConfig },
+    { size: fontSizeConfig },
+    { lineheight: lineHeightConfig },
+    { header: [1, 2, 3, 4, 5, 6, false] }
+  ],
+  underline,
+  ['blockquote', 'code-block'],
+  [{ header: 1 }, { header: 2 }],
+  list,
+  script,
+  [{ indent: '-1' }, { indent: '+1' }],
+  [{ direction: 'rtl' }],
+  [{ color: [] }, { background: [] }],
+  [{ align: [] }],
+  ['link', 'image'],
+  ['better-table'],
+  ['fullscreen']
+]
+
+const toolbar = () => {
   return {
-    container: [
-      ['undo', 'redo', 'clean'],
-      [
-        { font: FluentEditor.imports['formats/font'].whitelist },
-        { size: FluentEditor.imports['formats/size'].whitelist },
-        { lineheight: FluentEditor.imports['formats/lineheight'].whitelist },
-        { header: [1, 2, 3, 4, 5, 6, false] }
-      ],
-      underline,
-      ['blockquote', 'code-block'],
-      [{ header: 1 }, { header: 2 }],
-      list,
-      script,
-      [{ indent: '-1' }, { indent: '+1' }],
-      [{ direction: 'rtl' }],
-      [{ color: [] }, { background: [] }],
-      [{ align: [] }],
-      ['link', 'image'],
-      ['better-table'],
-      ['fullscreen']
-    ]
+    container: defaultToolbar
   }
 }
 
@@ -170,7 +209,7 @@ const defaultOption = ({ FluentEditor, state, mentionObj }) => {
       file: true, // 上传文件需开启
       image: FluentEditor.imports['modules/image-spec'],
       counter: false,
-      toolbar: toolbar(FluentEditor),
+      toolbar: toolbar(),
       'better-table': betterTable,
       mention: mention(mentionObj),
       keyboard: keyboard({ FluentEditor, state })

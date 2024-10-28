@@ -16,44 +16,41 @@
 @filter-box-prefix-cls: ~'@{css-prefix}filter-box';
 
 .@{filter-box-prefix-cls} {
-  .component-css-vars-filter-box();
+  .inject-FilterBox-vars();
 
   width: fit-content;
-  height: var(--ti-filter-box-btn-height);
-  line-height: var(--ti-filter-box-btn-height);
+  height: var(--tv-FilterBox-btn-height);
+  line-height: var(--tv-FilterBox-btn-height);
   border-radius: 4px;
-  background: var(--ti-filter-box-btn-bg-color);
-  color: #161e26;
-  padding: 4px var(--ti-filter-box-btn-padding-horizontal);
+  background: var(--tv-FilterBox-btn-bg-color);
+  color: var(--tv-FilterBox-btn-text-color);
+  padding: 4px var(--tv-FilterBox-btn-padding-x);
   display: flex;
   align-items: center;
-  font-size: 12px;
-
-  &:hover {
-    background: var(--ti-filter-box-btn-hover-bg-color);
-  }
+  font-size: var(--tv-FilterBox-btn-font-size);
 
   &.disabled {
     cursor: not-allowed;
 
     .title label {
-      color: #b5bbc1;
+      color: var(--tv-FilterBox-btn-disabled-text-color);
     }
 
     .value {
-      color: #5c6976;
+      color: var(--tv-FilterBox-btn-disabled-text-color);
     }
 
     svg.filter-box-icon {
-      fill: #b5bbce;
+      fill: var(--tv-FilterBox-icon-color-disabled);
       cursor: not-allowed;
     }
   }
 
   .title {
     height: inherit;
-    line-height: var(--ti-filter-box-btn-title-line-height);
-    font-size: var(--ti-filter-box-btn-font-size);
+    line-height: var(--tv-FilterBox-btn-title-line-height);
+    font-size: var(--tv-FilterBox-btn-font-size);
+    margin-right: 0;
 
     label {
       display: inline-block;
@@ -61,25 +58,27 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: var(--ti-filter-box-btn-text-color);
-      margin-right: 4px;
+      color: var(--tv-FilterBox-btn-text-color);
+      margin-right: 8px;
+      margin-top: 3px;
     }
 
     &.active label {
-      color: var(--ti-filter-box-btn-hover-text-color);
+      color: var(--tv-FilterBox-btn-active-text-color);
     }
 
+    // 问号图标
     svg {
-      width: 16px;
-      height: 16px;
-      margin-right: var(--ti-filter-box-help-btn-margin-right);
-      fill: var(--ti-filter-box-help-btn-icon-color);
+      width: var(--tv-FilterBox-icon-size);
+      height: var(--tv-FilterBox-icon-size);
+      margin-right: var(--tv-FilterBox-help-btn-margin-right);
+      fill: var(--tv-FilterBox-icon-color);
       position: relative;
-      top: var(--ti-filter-box-help-btn-position-top);
+      top: var(--tv-FilterBox-help-btn-position-top);
       vertical-align: super;
 
       &:hover {
-        fill: var(--ti-filter-box-btn-hover-text-color);
+        fill: var(--tv-FilterBox-icon-color-hover);
       }
     }
   }
@@ -87,24 +86,24 @@
   .value {
     max-width: 100px;
     height: inherit;
-    line-height: inherit;
     margin-right: 4px;
+    vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 12px;
-    color: #161e26;
+    font-size: var(--tv-FilterBox-btn-font-size);
+    color: var(--tv-color-text);
 
     &.placeholder {
-      color: #aeaeae;
+      color: var(--tv-FilterBox-btn-text-color-placeholder);
     }
   }
 
   .filter-box-icon {
-    width: var(--ti-filter-box-expand-btn-icon-size);
-    height: var(--ti-filter-box-expand-btn-icon-size);
+    width: var(--tv-FilterBox-icon-size);
+    height: var(--tv-FilterBox-icon-size);
     cursor: pointer;
-    fill: var(--ti-filter-box-expand-btn-icon-color);
+    fill: var(--tv-FilterBox-icon-color);
     transition: transform 0.3s;
 
     &.is-reverse {
@@ -113,13 +112,21 @@
   }
 
   .filter-icon-close {
-    width: 16px;
-    height: 16px;
+    width: var(--tv-FilterBox-icon-size);
+    height: var(--tv-FilterBox-icon-size);
     cursor: pointer;
-    fill: #b5bbc1;
+    fill: var(--tv-FilterBox-icon-color);
 
     &:hover {
-      fill: #78828d;
+      fill: var(--tv-FilterBox-icon-color-hover);
+    }
+  }
+
+  &:not(.disabled):hover {
+    background: var(--tv-FilterBox-btn-hover-bg-color);
+
+    .filter-box-icon {
+      fill: var(--tv-FilterBox-icon-color-hover);
     }
   }
 

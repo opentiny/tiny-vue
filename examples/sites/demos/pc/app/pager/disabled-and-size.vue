@@ -2,7 +2,7 @@
   <div class="content">
     是否禁用：<tiny-switch v-model="isDisabled"></tiny-switch>
     <tiny-pager mode="number" :total="100" :disabled="isDisabled" />
-    <tiny-pager :total="100" size="mini" :disabled="isDisabled" />
+    <tiny-pager mode="number" :total="100" size="mini" :disabled="isDisabled" />
   </div>
 </template>
 

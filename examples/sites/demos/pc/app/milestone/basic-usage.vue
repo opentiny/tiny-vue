@@ -30,13 +30,13 @@ export default {
         // 对应 status = completed
         completed: '#1890ff',
         // 对应 status = doing
-        doing: '#9ec591',
+        doing: '#7eb7fc',
         // 对应 status = back
-        back: '#97a7db',
+        back: '#ff8800',
         // 对应 status = end
         end: '#faad14',
         // 对应 status = cancel
-        cancel: '#d9d9d9'
+        cancel: '#fce2e0'
       },
       // 数据源
       milestoneData: [

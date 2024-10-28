@@ -19,6 +19,7 @@ export const defaultConfigs = {
   customClass: null,
   placement: 'right',
   width: null,
+  height: null,
   title: '',
   showClose: true,
   showHeader: true,

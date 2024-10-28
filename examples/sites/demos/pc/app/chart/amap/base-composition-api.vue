@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { AutonaviMap as TinyAutonaviMap } from '@opentiny/vue'
+import { HuichartsAmap as TinyAutonaviMap } from '@opentiny/vue'
 
 const options = ref({
   key: '4b5f2cf2cba25200cc6b68c398468899',

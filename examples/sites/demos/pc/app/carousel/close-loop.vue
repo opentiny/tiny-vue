@@ -1,5 +1,5 @@
 <template>
-  <tiny-carousel height="150px" :loop="false" arrow="always">
+  <tiny-carousel height="150px" loop :disabled="true" arrow="always">
     <tiny-carousel-item class="carousel-item-demo" v-for="item in 3" :key="item">
       <h3>{{ item }}</h3>
     </tiny-carousel-item>

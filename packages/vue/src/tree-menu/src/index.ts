@@ -88,6 +88,11 @@ export const treeMenuProps = {
   highlightQuery: {
     type: Boolean,
     default: false
+  },
+  // metaErp 新增属性
+  widthAdapt: {
+    type: Boolean,
+    default: false
   }
 }
 

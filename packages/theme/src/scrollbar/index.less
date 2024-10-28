@@ -16,7 +16,7 @@
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
 
 .@{scrollbar-prefix-cls} {
-  .component-css-vars-scrollbar();
+  .inject-Scrollbar-vars();
 
   overflow: hidden;
   position: relative;
@@ -45,12 +45,12 @@
     width: 0;
     height: 0;
     cursor: pointer;
-    border-radius: var(--ti-scrollbar-thumb-border-radius);
-    background-color: var(--ti-scrollbar-thumb-bg-color);
+    border-radius: var(--tv-Scrollbar-thumb-border-radius);
+    background-color: var(--tv-Scrollbar-thumb-bg-color);
     transition: 0.3s background-color;
 
     &:hover {
-      background-color: var(--ti-scrollbar-thumb-hover-bg-color);
+      background-color: var(--tv-Scrollbar-thumb-hover-bg-color);
     }
   }
 
@@ -63,9 +63,9 @@
     transition: opacity 120ms ease-out;
 
     &.is-vertical {
-      width: var(--ti-scrollbar-vertical-width);
+      width: var(--tv-Scrollbar-vertical-width);
       top: 2px;
-      right: var(--ti-scrollbar-vertical-right);
+      right: var(--tv-Scrollbar-vertical-right);
 
       & > div {
         width: 100%;
@@ -81,5 +81,53 @@
         height: 100%;
       }
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .@{css-prefix}scrollbar::-webkit-scrollbar {
+    width: var(--tv-size-scrollbar-width);
+    height: var(--tv-size-scrollbar-height);
+  }
+
+  .@{css-prefix}scrollbar::-webkit-scrollbar-track-piece {
+    background: transparent;
+    border: 0;
+  }
+
+  .@{css-prefix}scrollbar::-webkit-scrollbar-thumb {
+    background: var(--tv-color-bg-scrollbar-thumb);
+    border-radius: var(--tv-border-radius-scrollbar-thumb);
+  }
+
+  .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--tv-color-bg-scrollbar-thumb-hover);
+  }
+
+  .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:active {
+    background: var(--tv-color-bg-scrollbar-thumb-active);
+  }
+
+  .@{css-prefix}min-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .@{css-prefix}min-scrollbar::-webkit-scrollbar-track-piece {
+    background: transparent;
+    border: 0;
+  }
+
+  .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--tv-color-bg-scrollbar-thumb);
+    border-radius: 2px;
+  }
+
+  .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--tv-color-bg-scrollbar-thumb-hover);
+  }
+
+  .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:active {
+    background: var(--tv-color-bg-scrollbar-thumb-active);
   }
 }

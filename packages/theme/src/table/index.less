@@ -19,7 +19,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{table-prefix-cls} {
-  .component-css-vars-table();
+  .inject-Table-vars();
 
   &.simple {
     table {
@@ -33,20 +33,17 @@
 
       tbody {
         tr {
-          color: var(--ti-table-text-color);
-          background: var(--ti-table-bg-color);
-
-          &:nth-child(odd) {
-            background: var(--ti-table-odd-bg-color);
-          }
+          color: var(--tv-Table-text-color);
+          background: var(--tv-Table-bg-color);
 
           &:hover {
-            background: var(--ti-table-hover-bg-color);
+            background: var(--tv-Table-hover-bg-color);
           }
 
           &.is-disabled {
-            background: var(--ti-table-disabled-bg-color);
-            color: var(--ti-table-disabled-text-color);
+            background: var(--tv-Table-disabled-bg-color);
+            color: var(--tv-Table-disabled-text-color);
+            cursor: not-allowed;
           }
         }
 
@@ -59,7 +56,7 @@
             height: 160px;
             text-align: center;
             vertical-align: middle;
-            color: var(--ti-table-nodata-text-color);
+            color: var(--tv-Table-nodata-text-color);
             background-color: transparent;
           }
         }
@@ -67,14 +64,16 @@
 
       th {
         padding: 2px 0 2px 8px;
-        height: var(--ti-table-td-height);
+        height: var(--tv-Table-td-height);
+        vertical-align: middle;
         border-left: none;
       }
 
       td {
         padding: 2px 0 2px 8px;
-        height: var(--ti-table-td-height);
-        font-size: var(--ti-table-td-font-size);
+        height: var(--tv-Table-td-height);
+        vertical-align: middle;
+        font-size: var(--tv-Table-td-font-size);
 
         .overflow {
           white-space: nowrap;
@@ -84,18 +83,18 @@
       }
 
       thead {
-        border-bottom: 1px solid var(--ti-table-border-color);
+        border-bottom: 1px solid var(--tv-Table-border-color);
         text-align: left;
-        background: var(--ti-table-thead-bg-color);
-        color: var(--ti-table-text-color);
+        background: var(--tv-Table-thead-bg-color);
+        color: var(--tv-Table-text-color);
 
         th {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           text-align: left;
-          font-size: var(--ti-table-td-font-size);
-          color: var(--ti-table-text-color);
+          font-size: var(--tv-Table-td-font-size);
+          color: var(--tv-Table-text-color);
           line-height: 1.7em;
 
           .overflow {
@@ -109,18 +108,17 @@
 
     .@{table-header-prefix-cls}__line {
       float: right;
-      border-left: 1px solid var(--ti-table-border-color);
+      border-left: 1px solid var(--tv-Table-border-color);
       height: 20px;
     }
 
     .@{table-cell-prefix-cls} {
       .@{svg-prefix-cls} {
-        font-size: var(--ti-common-font-size-2);
-        font-size: var(--ti-table-icon-font-size);
-        fill: var(--ti-table-border-color);
+        font-size: var(--tv-Table-icon-font-size);
+        fill: var(--tv-Table-border-color);
 
         &.is-check {
-          fill: var(--ti-table-check-icon-color);
+          fill: var(--tv-Table-check-icon-color);
         }
       }
     }

@@ -17,9 +17,23 @@ export const computedWidth =
     return props.width || designConfig?.constants?.DEFAULT_WIDTH || (constants as IDrawerCT).DEFAULT_WIDTH
   }
 
+export const computedHeight =
+  ({
+    state,
+    designConfig,
+    props,
+    constants
+  }: Pick<IDrawerRenderlessParams, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  (): string => {
+    if (state.height) {
+      return state.height + 'px'
+    }
+    return props.height || designConfig?.constants?.DEFAULT_HEIGHT || (constants as IDrawerCT).DEFAULT_HEIGHT
+  }
+
 export const close =
   ({ api }: { api: IDrawerApi }) =>
-  (force = false) => {
+  (force = true) => {
     api.handleClose('close', typeof force === 'boolean' ? force : false)
   }
 

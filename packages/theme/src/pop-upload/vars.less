@@ -10,59 +10,33 @@
 *
 */
 
-.component-css-vars-pop-upload() {
-  // 上传按钮文字大小(hide)
-  --ti-popupload-font-size: var(--ti-common-font-size-base, 12px);
-  // 弹窗头部alert提示底部外边距
-  --ti-popupload-dialog-header-alert-margin-bottom: var(--ti-common-space-10, 10px);
+.inject-PopUpload-vars() {
+  // 上传按钮文字大小
+  --tv-PopUpload-font-size: var(--tv-font-size-md);
   //  弹窗表格高度
-  --ti-popupload-dialog-table-height: calc(var(--ti-common-size-35x, 140px) * 2);
+  --tv-PopUpload-dialog-table-height: 280px;
   // 弹窗表格字号
-  --ti-popupload-dialog-table-font-size: var(--ti-common-font-size-1, 14px);
-  // 弹窗表格顶部外边距
-  --ti-popupload-dialog-margin-top: var(--ti-common-space-10, 10px);
-  // 弹窗表格头部横向分割线颜色
-  --ti-popupload-dialog-table-border-color: var(--ti-common-color-line-normal, #adb0b8);
-  // 弹窗表格头部竖向分割线颜色(new)
-  --ti-popupload-dialog-table-line-bg-color: var(--ti-common-color-line-normal, #adb0b8);
+  --tv-PopUpload-dialog-table-font-size: var(--tv-font-size-md);
   // 弹窗表格头部竖向分割线高度(new)
-  --ti-popupload-dialog-table-line-height: var(--ti-common-size-height-normal, 28px);
+  --tv-PopUpload-dialog-table-line-height: 16px;
   // 弹窗表格头部高度
-  --ti-popupload-dialog-table-header-height: var(--ti-common-size-height-small, 32px);
+  --tv-PopUpload-dialog-table-header-height: var(--tv-size-height-xs);
   // 弹窗表格头部文本色
-  --ti-popupload-dialog-table-header-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-PopUpload-dialog-table-header-text-color: var(--tv-color-text);
   // 弹窗表格头部字重
-  --ti-popupload-dialog-table-header-font-weight: var(--ti-common-font-weight-bold, 700);
+  --tv-PopUpload-dialog-table-header-font-weight: var(--tv-font-weight-bold);
   // 弹窗表格头部背景色
-  --ti-popupload-dialog-table-header-bg-color: var(--ti-common-color-bg-normal, #eef0f5);
-  // 弹窗表格头部item垂直内边距
-  --ti-popupload-table-header-col-padding-vertical: var(--ti-common-space-0, 0px);
-  // 弹窗表格头部item水平内边距
-  --ti-popupload-table-header-col-padding-horizontal: var(--ti-common-space-3x, 12px);
-  // 弹窗表格内容item垂直内边距
-  --ti-popupload-table-body-col-padding-vertical: var(--ti-common-space-2x, 8px);
-  // 弹窗表格内容item水平内边距
-  --ti-popupload-table-body-col-padding-horizontal: var(--ti-common-space-3x, 12px);
-  // 弹窗表格内容item垂直外边距
-  --ti-popupload-table-body-col-margin-vertical: var(--ti-common-space-0, 0px);
-  // 弹窗表格内容item水平外边距
-  --ti-popupload-table-body-col-margin-horizontal: var(--ti-common-space-0, 0px);
+  --tv-PopUpload-dialog-table-header-bg-color: var(--tv-color-bg);
   // 弹窗表格内容item行高
-  --ti-popupload-table-body-col-line-height: var(--ti-common-line-height-4, 20px);
+  --tv-PopUpload-table-body-col-line-height: 30px;
   // 弹窗表格内容偶数行背景色
-  --ti-popupload-table-item-even-bg-color: var(--ti-common-color-info-bg, rgba(51, 51, 51, 0.06));
-  // 弹窗表格每行底部边框色(new)
-  --ti-popupload-table-item-border-color: var(--ti-common-color-transparent, transparent);
-  // 弹窗表格底部内边距
-  --ti-popupload-dialog-table-body-padding-bottom: var(--ti-common-space-10, 10px);
-  // 弹窗底部内边距
-  --ti-popupload-dialog-footer-padding-bottom: var(--ti-common-space-6x, 24px);
+  --tv-PopUpload-table-item-even-bg-color: var(--tv-color-bg-secondary);
   // 弹窗已上传文件的删除文本色
-  --ti-popupload-dialog-delete-text-color: var(--ti-common-color-text-link, #526ecc);
+  --tv-PopUpload-dialog-delete-text-color: var(--tv-color-text-link);
   // 弹窗文件列表等待上传圆圈色
-  --ti-popupload-status-icon-color: var(--ti-common-color-line-normal, #adb0b8);
+  --tv-PopUpload-status-icon-border-color: var(--tv-color-border);
   // 弹窗文件列表上传成功圆圈色
-  --ti-popupload-status-success-icon-color: var(--ti-common-color-success, #50d4ab);
+  --tv-PopUpload-status-success-icon-border-color: var(--tv-color-success-border);
   // 弹窗文件列表上传失败圆圈色
-  --ti-popupload-status-fail-icon-color: var(--ti-common-color-error-border, #f66f6a);
+  --tv-PopUpload-status-fail-icon-color: var(--tv-color-error-border);
 }

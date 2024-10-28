@@ -17,7 +17,7 @@
 @date-range-picker-prefix-cls: ~'@{css-prefix}date-range-picker';
 
 .@{date-range-picker-prefix-cls} {
-  .component-css-vars-date-range-picker();
+  .inject-DateRange-vars();
 
   width: 558px;
 
@@ -30,20 +30,13 @@
     width: 100%;
   }
 
-  .@{picker-panel-prefix-cls}__body {
-    min-width: var(--ti-date-range-picker-body-min-width);
-  }
-
-  .@{picker-panel-prefix-cls}__content {
-    margin: 0;
-  }
-
   &__header {
     position: relative;
     text-align: center;
-    height: var(--ti-date-range-picker-header-height);
-    margin-bottom: var(--ti-date-range-picker-header-margin-bottom);
-    line-height: var(--ti-date-range-picker-header-line-height);
+    padding: var(--tv-DateRange-header-padding);
+    line-height: var(--tv-DateRange-line-height);
+    border-bottom: 1px solid var(--tv-DateRange-header-border-color);
+    margin-bottom: 12px;
 
     [class*='arrow-left'] {
       float: left;
@@ -54,7 +47,7 @@
     }
 
     div {
-      font-size: var(--ti-date-range-picker-header-font-size);
+      font-size: var(--tv-DateRange-font-size);
       font-weight: 500;
       margin-right: 50px;
     }
@@ -62,58 +55,60 @@
 
   &__content {
     float: left;
-    width: 50%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 16px;
+    width: calc(50% - var(--tv-DateRange-left-content-margin-right));
 
     &.is-left {
-      border-right: 1px solid var(--ti-date-picker-border-color);
+      margin-right: var(--tv-DateRange-left-content-margin-right);
+      padding-right: var(--tv-DateRange-left-content-padding-right);
+      .@{date-range-picker-prefix-cls}__table {
+        padding-left: 16px;
+      }
+    }
+
+    &.is-right {
+      margin-left: var(--tv-DateRange-right-content-margin-left);
+      padding-left: var(--tv-DateRange-right-content-padding-left);
+
+      .@{date-range-picker-prefix-cls}__table {
+        padding-right: 16px;
+      }
     }
 
     .@{date-range-picker-prefix-cls}__header div {
       margin-left: 50px;
-      margin-right: 50px;
     }
   }
 
   &__editors-wrap {
-    box-sizing: border-box;
     display: table-cell;
 
     &.is-right {
       text-align: right;
+      padding-left: var(--tv-DateRange-editors-wrap-padding-left);
     }
   }
 
   &__time-header {
     position: relative;
-    border-bottom: 1px solid var(--ti-date-picker-border-color);
-    font-size: var(--ti-date-picker-font-size);
-    padding: 8px 5px 5px;
+    font-size: var(--tv-DateRange-font-size);
+    padding: var(--tv-DateRange-time-header-padding);
     display: table;
     width: 100%;
-    box-sizing: border-box;
 
     & > .@{css-prefix}icon-arrow-right {
-      font-size: var(--ti-common-font-size-4);
+      font-size: var(--tv-DateRange-icon-size);
       vertical-align: middle;
       display: table-cell;
-      color: var(--ti-date-range-picker-time-header-icon-color);
+      color: var(--tv-DateRange-icon-color);
     }
   }
 
   &__time-picker-wrap {
     position: relative;
     display: table-cell;
-    padding: 0 5px;
 
-    .@{picker-panel-prefix-cls} {
-      position: absolute;
-      top: 13px;
-      right: 0;
-      z-index: 1;
-      background: var(--ti-date-picker-bg-color);
+    &:first-of-type {
+      padding-right: var(--tv-DateRange-time-picker-padding-right);
     }
   }
 }

@@ -54,7 +54,7 @@ export const renderless = (
     currentHash: '',
     isScroll: false,
     scrollTimer: 0,
-    offsetTop: 0
+    childOffsetTop: 0
   })
 
   Object.assign(api, {

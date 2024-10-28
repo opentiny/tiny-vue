@@ -10,7 +10,7 @@ test('card类型', async ({ page }) => {
   const firstItem = tabItems.first()
   const item5 = tabItems.nth(4)
   const content = tabs.getByRole('tabpanel')
-  const borderValue = '1px solid rgb(223, 225, 230)'
+  const borderValue = '1px solid rgb(240, 240, 240)'
 
   await expect(tabs).toHaveClass(/tiny-tabs--card/)
   await expect(tabItems).toHaveCount(5)

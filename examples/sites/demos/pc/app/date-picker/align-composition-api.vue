@@ -31,6 +31,6 @@ const value = ref('')
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 350px;
+  width: 280px;
 }
 </style>

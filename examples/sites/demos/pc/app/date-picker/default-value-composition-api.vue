@@ -34,7 +34,7 @@ const defaultTimeRange = ref(['09:00:00', '18:00:00'])
   width: 280px;
 
   :deep(.tiny-date-editor--datetimerange.tiny-input__inner) {
-    width: 280px;
+    width: 360px;
   }
 
   & > * {

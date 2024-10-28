@@ -18,36 +18,36 @@
 @time-select-scrollbar-cls: ~'@{css-prefix}scrollbar';
 
 .@{time-select-prefix-cls} {
-  .component-css-vars-time-select();
+  .inject-TimeSelect-vars();
   
-  height: var(--ti-time-select-height);
+  height: 242px;
   .@{time-select-scrollbar-cls} {
-    height: var(--ti-time-select-scrollbar-height);
+    height: 242px;
     .@{css-prefix}scrollbar__wrap {
-      max-height: var(--ti-time-select-scrollbar-wrap-max-height);
+      max-height: unset;
     }
   }
 
   & &__item {
-    color: var(--ti-time-select-item-text-color);
-    font-size: var(--ti-time-select-item-font-size);
-    padding: 0 var(--ti-time-select-item-padding-horizontal);
-    line-height: var(--ti-time-select-item-line-height);
-    height: var(--ti-time-select-item-height);
+    color: var(--tv-TimeSelect-item-text-color);
+    font-size: var(--tv-TimeSelect-item-font-size);
+    padding: 0 var(--tv-TimeSelect-item-padding-horizontal);
+    line-height: 32px;
+    height: 32px;
 
 
     &.selected:not(.disabled) {
-      color: var(--ti-time-select-item-selected-text-color);
-      background-color: var(--ti-time-select-item-select-hover-bg-color);
+      color: var(--tv-TimeSelect-item-selected-text-color);
+      background-color: var(--tv-TimeSelect-item-select-hover-bg-color);
     }
 
     &:not(.disabled):hover {
-      background-color: var(--ti-time-select-item-hover-bg-color);
+      background-color: var(--tv-TimeSelect-item-hover-bg-color);
       cursor: pointer;
     }
 
     &.disabled {
-      color: var(--ti-time-select-item-disabled-text-color);
+      color: var(--tv-TimeSelect-item-disabled-text-color);
       cursor: not-allowed;
     }
   }
@@ -55,7 +55,7 @@
     &__content {
       padding-left: 0;
       padding-right: 0;
-      padding-top: var(--ti-time-select-content-padding-top);
+      padding-top: var(--tv-TimeSelect-content-padding-top);
     }
   }
 }

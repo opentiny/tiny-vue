@@ -1,7 +1,7 @@
 <template>
   <tiny-file-upload accept="image/*" ref="upload" :action="action" :file-list="fileList" :before-upload="beforeUpload">
     <template #trigger>
-      <tiny-button type="primary">选取文件</tiny-button>
+      <tiny-button>选取文件</tiny-button>
     </template>
     <template #tip>
       <div class="tiny-upload__tip">只允许上传 image 类型文件</div>

@@ -81,7 +81,6 @@ export default {
 
 <style lang="less">
 .custom-error {
-  padding: 4px 0;
   display: flex;
   .tiny-svg {
     fill: var(--ti-tooltip-validate-icon-color);

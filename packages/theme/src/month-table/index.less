@@ -12,25 +12,24 @@
 
 @import '../custom.less';
 @import './vars.less';
-@import '../date-picker/vars.less';
 @import '../date-table/vars.less';
 
 @month-table-prefix-cls: ~'@{css-prefix}month-table';
 
 .@{month-table-prefix-cls} {
-  .component-css-vars-month-table();
-  .component-css-vars-date-picker();
-  .component-css-vars-date-table();
+  .inject-MonthTable-vars();
+  .inject-DateTable-vars();
 
   .month-table();
 }
 
 .month-table() {
-  font-size: var(--ti-date-picker-font-size);
+  font-size: var(--tv-MonthTable-font-size);
   margin: -1px;
   border-collapse: collapse;
 
-  tr, td {
+  tr,
+  td {
     text-align: center;
     padding: 16px 0;
     cursor: pointer;
@@ -41,22 +40,21 @@
     }
 
     div {
-      height: var(--ti-month-table-td-div-height);
+      height: var(--tv-MonthTable-td-height);
       box-sizing: border-box;
       padding: 0 4px;
     }
 
     &.today {
       .cell {
-        color: var(--ti-month-table-cell-today-text-color);
-        font-weight: var(--ti-month-table-cell-today-font-weight);
-        border: solid 1px var(--ti-month-table-cell-today-border-color);
+        color: var(--tv-MonthTable-text-color);
+        border: solid 1px var(--tv-MonthTable-cell-border-color-today);
       }
 
       &.end-date,
       &.start-date {
         .cell {
-          color: var(--ti-month-table-td-date-text-color);
+          color: var(--tv-MonthTable-td-text-color-emphasize);
           border-color: transparent;
         }
       }
@@ -64,26 +62,27 @@
 
     &.disabled {
       .cell {
-        background-color: var(--ti-date-picker-disabled-bg-color);
+        background-color: var(--tv-MonthTable-bg-color-disabled);
         cursor: not-allowed;
-        color: var(--ti-date-picker-disabled-text-color);
+        color: var(--tv-MonthTable-cell-color-disabled);
 
         &:hover {
-          color: var(--ti-date-picker-disabled-text-color);
+          cursor: not-allowed;
+          background-color: var(--tv-MonthTable-bg-color-disabled);
         }
       }
     }
 
     .cell {
       width: 100%;
-      height: var(--ti-month-table-cell-height);
-      line-height: var(--ti-month-table-cell-height);
+      height: var(--tv-MonthTable-td-height);
+      padding: var(--tv-MonthTable-td-padding);
+      line-height: var(--tv-MonthTable-line-height);
       display: block;
-      color: var(--ti-date-picker-text-color);
+      color: var(--tv-MonthTable-text-color);
 
       &:hover {
-        color: var(--ti-date-picker-text-color);
-        background: var(--ti-month-table-cell-hover-bg-color);
+        background: var(--tv-MonthTable-bg-color-hover);
         border-color: transparent;
       }
     }
@@ -91,34 +90,48 @@
     &.in-range {
       div,
       div:hover {
-        background-color: var(--ti-month-table-td-range-bg-color);
+        background-color: var(--tv-MonthTable-bg-color-hover);
       }
     }
 
     &.end-date,
     &.start-date {
       div {
-        color: var(--ti-month-table-td-date-text-color);
+        color: var(--tv-MonthTable-td-text-color-emphasize);
+      }
+
+      &.start-date {
+        div {
+          border-radius: var(--tv-MonthTable-cell-border-radius-start);
+          padding-left: 0;
+        }
+      }
+
+      &.end-date {
+        div {
+          border-radius: var(--tv-MonthTable-cell-border-radius-end);
+          padding-right: 0;
+        }
       }
 
       .cell {
-        color: var(--ti-month-table-td-date-text-color);
-        background-color: var(--ti-month-table-td-text-bg-color);
+        color: var(--tv-MonthTable-td-text-color-emphasize);
+        background-color: var(--tv-MonthTable-bg-color-emphasize);
       }
     }
 
     &:not(.in-range) {
       .cell {
         width: auto;
-        border-radius: var(--ti-month-table-cell-border-radius);
+        border-radius: var(--tv-MonthTable-cell-border-radius);
       }
     }
 
     &.current:not(.disabled) .cell {
       &,
       &:hover {
-        color: var(--ti-date-table-td-normal-text-color);
-        background: var(--ti-month-table-td-text-bg-color);
+        color: var(--tv-DateTable-td-normal-text-color);
+        background: var(--tv-MonthTable-bg-color-emphasize);
         border-color: transparent;
       }
     }

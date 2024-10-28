@@ -11,7 +11,7 @@
  -->
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
-    <div v-show="state.visible" class="tiny-time-panel tiny-popper" :class="state.popperClass">
+    <div v-show="state.visible" class="tiny-time tiny-time-panel tiny-popper" :class="state.popperClass">
       <div class="tiny-time-panel__header">
         <div class="tiny-time-panel__header-input">
           <tiny-input v-model="state.displayValue" :placeholder="state.format"></tiny-input>
@@ -36,7 +36,7 @@
         </time-spinner>
       </div>
       <div class="tiny-time-panel__footer">
-        <tiny-button v-if="!state.showTimePickerButton" class="tiny-time-panel__btn" @click="handleCancel()">
+        <tiny-button v-if="!state.showTimePickerButton" class="tiny-time-panel__btn cancel" @click="handleCancel()">
           {{ t('ui.datepicker.cancel') }}
         </tiny-button>
         <tiny-button

@@ -85,14 +85,15 @@ export default {
 
 <style scoped>
 .demo-autocomplete .tiny-autocomplete {
-  width: 270px;
+  width: 300px;
 }
-.pend-slot, .fix-slot {
+.pend-slot,
+.fix-slot {
   margin-right: 12px;
 }
 
 .default-slot-buttom {
   font-size: 12px;
-  color: #a29b91
+  color: #a29b91;
 }
 </style>

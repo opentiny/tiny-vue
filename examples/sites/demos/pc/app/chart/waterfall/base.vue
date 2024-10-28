@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartWaterfall } from '@opentiny/vue'
+import { HuichartsWaterfall } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWaterfall: ChartWaterfall
+    TinyWaterfall: HuichartsWaterfall
   },
   data() {
     return {

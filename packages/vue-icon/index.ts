@@ -127,6 +127,7 @@ import IconExport from './src/export'
 import IconExpressSearch from './src/express-search'
 import IconEyeclose from './src/eyeclose'
 import IconEyeopen from './src/eyeopen'
+import IconFeedback from './src/feedback'
 import IconEditorAlignCenter from './src/editor-align-center'
 import IconEditorAlignLeft from './src/editor-align-left'
 import IconEditorAlignRight from './src/editor-align-right'
@@ -180,6 +181,7 @@ import IconFrownO from './src/frown-o'
 import IconFrown from './src/frown'
 import IconFullscreen from './src/fullscreen'
 import IconFullscreenLeft from './src/fullscreen-left'
+import IconFullscreenRight from './src/fullscreen-right'
 import IconGoBack from './src/go-back'
 import IconGrade from './src/grade'
 import IconGroupTransfer from './src/group-transfer'
@@ -219,6 +221,7 @@ import IconLineThrought from './src/line-throught'
 import IconLink from './src/link'
 import IconLoading from './src/loading'
 import IconLoadingShadow from './src/loading-shadow'
+import IconLocalePanel from './src/locale-panel'
 import IconLock from './src/lock'
 import IconMailContent from './src/mail-content'
 import IconMail from './src/mail'
@@ -339,6 +342,7 @@ import IconSetting from './src/setting'
 import IconShare from './src/share'
 import IconShareArrow from './src/share-arrow'
 import IconShoppingCard from './src/shopping-card'
+import IconShutdown from './src/shutdown'
 import IconSmileO from './src/smile-o'
 import IconSmile from './src/smile'
 import IconSoldOut from './src/sold-out'
@@ -377,6 +381,7 @@ import IconUnlock from './src/unlock'
 import IconUnsent from './src/unsent'
 import IconUpO from './src/up-o'
 import IconUp from './src/up'
+import IconUpdate from './src/update'
 import IconUpload from './src/upload'
 import IconUser from './src/user'
 import IconVersiontree from './src/versiontree'
@@ -431,6 +436,7 @@ import IconAddPicture from './src/add-picture'
 
 // sync aui icons
 import IconAdministratorO from './src/administrator-o'
+import IconAgency from './src/agency'
 import IconAudit from './src/audit'
 import IconBatchFill from './src/batch-fill'
 import IconCardMode from './src/card-mode'
@@ -509,6 +515,7 @@ import IconShipped from './src/shipped'
 import IconSubstituteMaterial from './src/substitute-material'
 import IconSurchargeSettled from './src/surcharge-settled'
 import IconSurchargeToBeSettled from './src/surcharge-to-be-settled'
+import IconSynchronize from './src/synchronize'
 import IconToBeUploaded from './src/to-be-uploaded'
 import IconTotalNolume from './src/total-nolume'
 import IconTotalNumber from './src/total-number'
@@ -593,6 +600,8 @@ export {
   IconSurchargeSettled as iconSurchargeSettled,
   IconSurchargeToBeSettled,
   IconSurchargeToBeSettled as iconSurchargeToBeSettled,
+  IconSynchronize,
+  IconSynchronize as iconSynchronize,
   IconToBeUploaded,
   IconToBeUploaded as iconToBeUploaded,
   IconTotalNolume,
@@ -919,6 +928,8 @@ export {
   IconEyeclose as iconEyeclose,
   IconEyeopen,
   IconEyeopen as iconEyeopen,
+  IconFeedback,
+  IconFeedback as iconFeedback,
   IconEditorAlignCenter,
   IconEditorAlignCenter as iconEditorAlignCenter,
   IconEditorAlignLeft,
@@ -1025,6 +1036,8 @@ export {
   IconFullscreen as iconFullscreen,
   IconFullscreenLeft,
   IconFullscreenLeft as iconFullscreenLeft,
+  IconFullscreenRight,
+  IconFullscreenRight as iconFullscreenRight,
   IconMinscreenLeft,
   IconMinscreenLeft as iconMinscreenLeft,
   IconGoBack,
@@ -1105,6 +1118,8 @@ export {
   IconLoading as iconLoading,
   IconLoadingShadow,
   IconLoadingShadow as iconLoadingShadow,
+  IconLocalePanel,
+  IconLocalePanel as iconLocalePanel,
   IconLock,
   IconLock as iconLock,
   IconLeftWardArrow,
@@ -1345,6 +1360,8 @@ export {
   IconShareArrow as iconShareArrow,
   IconShoppingCard,
   IconShoppingCard as iconShoppingCard,
+  IconShutdown,
+  IconShutdown as iconShutdown,
   IconSmileO,
   IconSmileO as iconSmileO,
   IconSmile,
@@ -1421,6 +1438,8 @@ export {
   IconUpO as iconUpO,
   IconUp,
   IconUp as iconUp,
+  IconUpdate,
+  IconUpdate as iconUpdate,
   IconUpWard,
   IconUpWard as iconUpWard,
   IconUpload,
@@ -1457,6 +1476,8 @@ export {
   // sync aui icons
   IconAdministratorO,
   IconAdministratorO as iconAdministratorO,
+  IconAgency,
+  IconAgency as iconAgency,
   IconAudit,
   IconAudit as iconAudit,
   IconBatchFill,
@@ -1580,6 +1601,7 @@ export default {
   IconSubstituteMaterial,
   IconSurchargeSettled,
   IconSurchargeToBeSettled,
+  IconSynchronize,
   IconToBeUploaded,
   IconTotalNolume,
   IconTotalNumber,
@@ -1741,6 +1763,7 @@ export default {
   IconExpressSearch,
   IconEyeclose,
   IconEyeopen,
+  IconFeedback,
   IconEditorAlignCenter,
   IconEditorAlignLeft,
   IconEditorAlignRight,
@@ -1794,6 +1817,7 @@ export default {
   IconFrown,
   IconFullscreen,
   IconFullscreenLeft,
+  IconFullscreenRight,
   IconMinscreenLeft,
   IconGoBack,
   IconGrade,
@@ -1834,6 +1858,7 @@ export default {
   IconLink,
   IconLoading,
   IconLoadingShadow,
+  IconLocalePanel,
   IconLock,
   IconLeftWardArrow,
   IconMailContent,
@@ -1953,6 +1978,7 @@ export default {
   IconShare,
   IconShareArrow,
   IconShoppingCard,
+  IconShutdown,
   IconSmileO,
   IconSmile,
   IconSoldOut,
@@ -1991,6 +2017,7 @@ export default {
   IconUnsent,
   IconUpO,
   IconUp,
+  IconUpdate,
   IconUpWard,
   IconUpload,
   IconUser,
@@ -2009,6 +2036,7 @@ export default {
   IconAddPicture,
   // sync aui icons
   IconAdministratorO,
+  IconAgency,
   IconAudit,
   IconBatchFill,
   IconCardMode,

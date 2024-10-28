@@ -79,6 +79,7 @@ export default {
         }
       ],
       treeConfig: {
+        showLine: true,
         showCheckbox: true,
         nodeKey: 'id',
         checkStrictly: true,

@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-menu placeholder="请输入内容进行筛选"></tiny-tree-menu>
+  <tiny-tree-menu placeholder="输入关键字搜索"></tiny-tree-menu>
 </template>
 
 <script>

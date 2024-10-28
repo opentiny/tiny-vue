@@ -2,7 +2,7 @@
   <div>
     <tiny-button @click="openDrawer" type="primary"> 隐藏关闭图标 </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :show-close="false">
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
     </tiny-drawer>
   </div>
 </template>

@@ -14,11 +14,11 @@
         <tiny-grid-column :renderer="rendererCellOperate" width="100"></tiny-grid-column>
       </tiny-grid-column>
     </tiny-grid-column>
-    <tiny-grid-column :title="renderHeaderDescription" header-align="center">
+    <tiny-grid-column title="描述" header-align="center">
       <tiny-grid-column field="name" title="名称" show-tip sortable width="600"></tiny-grid-column>
       <tiny-grid-column
         field="area"
-        :title="renderHeaderArea"
+        title="分区"
         :editor="{ component: 'select', options }"
         sortable
         width="600"
@@ -27,7 +27,7 @@
     <tiny-grid-column :title="renderHeaderRelation" header-align="center">
       <tiny-grid-column
         field="address"
-        :title="renderHeaderAddress"
+        title="地区"
         :editor="{ component: 'input', autoselect: true }"
         sortable
         width="600"
@@ -44,7 +44,7 @@
     <tiny-grid-column title="右冻结分组" header-align="center" fixed="right">
       <tiny-grid-column
         field="address"
-        :title="renderHeaderAddress"
+        title="地区"
         :editor="{ component: 'input', autoselect: true }"
         sortable
         width="150"
@@ -172,45 +172,12 @@ export default {
     }
   },
   methods: {
-    renderHeaderDescription(h) {
-      const IconAdministrator = this.IconAdministrator
-
-      return (
-        <span>
-          {' '}
-          <IconAdministrator />
-          Description
-        </span>
-      )
-    },
     renderHeaderRelation(h) {
       const IconVersiontree = this.IconVersiontree
 
       return (
         <span>
           <IconVersiontree />
-        </span>
-      )
-    },
-
-    renderHeaderArea(h) {
-      const IconMarkOn = this.IconMarkOn
-
-      return (
-        <span>
-          <IconMarkOn />
-          Description
-        </span>
-      )
-    },
-
-    renderHeaderAddress(h) {
-      const IconUser = this.IconUser
-
-      return (
-        <span>
-          <IconUser />
-          Description
         </span>
       )
     },

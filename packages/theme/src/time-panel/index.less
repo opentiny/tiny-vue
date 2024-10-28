@@ -17,53 +17,45 @@
 @time-panel-prefix-cls: ~'@{css-prefix}time-panel';
 
 .@{time-panel-prefix-cls} {
-  .component-css-vars-time-panel();
+  .inject-TimePanel-vars();
 
-  margin: 5px 0;
-  border: 1px solid var(--ti-time-panel-border-color);
-  background-color: var(--ti-time-panel-bg-color);
-  box-shadow: var(--ti-time-panel-box-shadow);
-  border-radius: var(--ti-time-panel-border-radius);
+  margin: var(--tv-TimePanel-margin);
+  font-size: var(--tv-TimePanel-font-size);
+  background-color: var(--tv-TimePanel-bg-color);
+  box-shadow: var(--tv-TimePanel-box-shadow);
+  border-radius: var(--tv-TimePanel-border-radius);
   position: absolute;
-  width: var(--ti-time-panel-width);
+  width: var(--tv-TimePanel-width);
   left: 0;
   z-index: 1000;
   box-sizing: content-box;
-  padding: 0 var(--ti-time-panel-padding-right);
+  padding: var(--tv-TimePanel-padding);
   .user-select(none);
 
   &__header {
-    display: var(--ti-time-panel-header-display);
+    display: block;
   }
 
   &__header-input {
-    width: 212px;
-    margin: 16px 4px 24px;
-
-    input {
-      height: 28px;
-    }
+    margin: var(--tv-TimePanel-header-margin);
   }
 
   &__header-title {
-    font-size: 14px;
     display: flex;
     justify-content: space-around;
-    color: #808080;
-    margin-top: 8px;
-    height: 22px;
+    color: var(--tv-TimePanel-header-text-color);
     align-items: center;
-    line-height: 22px;
   }
 
   &__content {
     font-size: 0;
     position: relative;
     overflow: hidden;
+    padding-bottom: var(--tv-TimePanel-content-padding-bottom);
 
     &:after,
     &:before {
-      display: var(--ti-time-panel-content-split-line-display);
+      display: none;
       content: '';
       top: 50%;
       position: absolute;
@@ -75,8 +67,8 @@
       box-sizing: border-box;
       padding-top: 6px;
       text-align: left;
-      border-top: 1px solid var(--ti-time-panel-border-color);
-      border-bottom: 1px solid var(--ti-time-panel-border-color);
+      border-top: 1px solid var(--tv-TimePanel-border-color-divider);
+      border-bottom: 1px solid var(--tv-TimePanel-border-color-divider);
     }
 
     &:after {
@@ -103,39 +95,30 @@
   }
 
   &__footer {
-    border-top: 1px solid var(--ti-time-panel-border-color);
-    padding: var(--ti-time-panel-footer-padding-top) var(--ti-time-panel-footer-padding-right);
-    height: var(--ti-time-panel-footer-height, 36px);
+    border-top: 1px solid var(--tv-TimePanel-border-color-divider);
     text-align: right;
     box-sizing: border-box;
-    margin: 12px var(--ti-time-panel-footer-margin-right) 0;
+    padding: var(--tv-TimePanel-footer-padding);
+    margin: var(--tv-TimePanel-footer-margin);
   }
 
+  // TODO: 待确认有没有这种无边框场景，没有的话去掉
   &__btn.tiny-button {
-    min-width: var(--ti-time-panel-btn-min-width);
+    min-width: inherit;
     border: none;
-    line-height: var(--ti-time-panel-btn-height);
-    padding: var(--ti-time-panel-btn-padding-vertical) var(--ti-time-panel-btn-padding-horizontal);
+    height: var(--tv-TimePanel-btn-height);
+    padding: var(--tv-TimePanel-btn-padding);
     margin: 0 5px;
     cursor: pointer;
-    background-color: var(--ti-time-panel-btn-bg-color);
+    background-color: transparent;
     outline: 0;
     font-size: 12px;
-    color: var(--ti-time-panel-btn-text-color);
-    border-radius: var(--ti-time-panel-btn-border-radius);
+    border-radius: var(--tv-TimePanel-btn-border-radius);
     transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    &.cancel {
-      display: var(--ti-time-panel-btn-cancel-display);
-    }
-
     &.confirm {
-      font-weight: var(--ti-time-panel-btn-font-weight);
-      color: var(--ti-time-panel-btn-confirm-text-color);
-
-      &:hover {
-        background-color: var(--ti-time-panel-btn-confirm-hover-bg-color);
-      }
+      font-weight: var(--tv-TimePanel-btn-font-weight);
+      color: var(--tv-TimePanel-confirm-text-color);
     }
   }
 }

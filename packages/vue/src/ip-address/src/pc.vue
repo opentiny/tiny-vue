@@ -12,16 +12,15 @@
 <template>
   <div class="tiny-ip-address">
     <ul
-      :class="{
-        active: state.active,
-        disabled: state.disabled,
-        'tiny-ip-address__input': true
-      }"
-      :style="state.heightStyle"
+      :class="[
+        state.active ? 'active' : '',
+        state.disabled ? 'disabled' : '',
+        'tiny-ip-address__input',
+        state.size ? `${state.size}` : 'default'
+      ]"
     >
-      <li v-for="(item, index) of state.address" :key="index" :style="state.lineHeightStyle">
+      <li v-for="(item, index) of state.address" :key="index">
         <input
-          :style="state.allHeightStyle"
           ref="inputs"
           :readonly="readonly"
           :disabled="state.disabled"

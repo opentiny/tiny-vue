@@ -1,16 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	viewBox="0 0 24 24" xml:space="preserve">
-<g id="Icon">
-	<g id="UI-icons-英文名" transform="translate(-832.000000, -1658.000000)">
-		<g id="网站通用图标" transform="translate(100.000000, 1136.000000)">
-			<g id="ellipsis" transform="translate(728.000000, 512.000000)">
-				<circle id="Oval-20" class="st0" cx="9" cy="22" r="1.5"/>
-				<circle id="Oval-20_1_" class="st0" cx="16" cy="22" r="1.5"/>
-				<circle id="Oval-20_2_" class="st0" cx="23" cy="22" r="1.5"/>
-			</g>
-		</g>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc fill="none">
+			Created with Pixso.
+	</desc>
+	<defs fill="none" />
+	<g>
+		<path id="path-1" d="M2.30078 7.7793L2.30078 7.85938C2.32031 8.50977 2.86133 9.0293 3.52148 9.0293C4.20117 9.0293 4.75 8.49023 4.75 7.82031C4.75 7.14844 4.20117 6.60938 3.52148 6.60938C2.86133 6.60938 2.32031 7.12891 2.30078 7.7793ZM6.54102 7.82031C6.54102 8.49023 7.08008 9.0293 7.76172 9.0293C8.44141 9.0293 8.99023 8.49023 8.99023 7.82031C8.99023 7.14844 8.44141 6.60938 7.76172 6.60938C7.08008 6.60938 6.54102 7.14844 6.54102 7.82031ZM10.7812 7.85938L10.7812 7.7793C10.8008 7.12891 11.3398 6.60938 12 6.60938C12.6816 6.60938 13.2305 7.14844 13.2305 7.82031C13.2305 8.49023 12.6816 9.0293 12 9.0293C11.3398 9.0293 10.8008 8.50977 10.7812 7.85938Z" clip-rule="evenodd" fill-opacity="1.000000" fill-rule="evenodd"/>
 	</g>
-</g>
 </svg>

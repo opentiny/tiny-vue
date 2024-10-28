@@ -65,6 +65,16 @@ export default {
       'codeFiles': ['editor/editor-bg.vue']
     },
     {
+      'demoId': 'active-strictly',
+      'name': { 'zh-CN': '行编辑禁用特定列', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          "<p>当 <code>editConfig.mode</code> 为'row'时，行编辑激活状态下默认会忽略 <code>editConfig.activeMethod</code> ，配置 <code>editConfig.activeStrictly</code> 为true使其生效",
+        'en-US': ''
+      },
+      'codeFiles': ['editor/active-strictly.vue']
+    },
+    {
       'demoId': 'editor-custom-edit',
       'name': { 'zh-CN': '多行编辑', 'en-US': '' },
       'desc': {

@@ -7,6 +7,7 @@
     <tiny-grid
       :data="tableData"
       ref="insertGrid"
+      show-overflow="tooltip"
       seq-serial
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true, insertChanged: true }"
     >

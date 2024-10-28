@@ -1,0 +1,9 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc fill="none">
+			Created with Pixso.
+	</desc>
+	<defs fill="none"/>
+	<g>
+		<path id="形状结合" d="M8 1C11.8604 1 15 4.13086 15 8C15 11.8594 11.8604 15 8 15C4.12988 15 1 11.8594 1 8C1 4.13086 4.12988 1 8 1ZM8 2C4.67969 2 2 4.67969 2 8C2 11.3105 4.67969 14 8 14C11.3096 14 14 11.3105 14 8C14 4.67969 11.3096 2 8 2ZM8.5 6C8.5 5.7207 8.26953 5.5 8 5.5C7.71973 5.5 7.5 5.7207 7.5 6L7.5 10C7.5 10.2695 7.71973 10.5 8 10.5C8.26953 10.5 8.5 10.2695 8.5 10L8.5 6Z" clip-rule="evenodd" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

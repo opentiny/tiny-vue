@@ -1,14 +1,14 @@
 <template>
-  <tiny-tree-menu :data="treeData" node-key="id" :default-expanded-keys="expandeArr"> </tiny-tree-menu>
+  <tiny-tree-menu class="demo-tree-menu" :data="treeData" node-key="id" :default-expanded-keys="expandeArr">
+  </tiny-tree-menu>
 </template>
 
 <script>
-import { TreeMenu, Button } from '@opentiny/vue'
+import { TreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu,
-    TinyButton: Button
+    TinyTreeMenu: TreeMenu
   },
   data() {
     return {
@@ -121,8 +121,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 </style>

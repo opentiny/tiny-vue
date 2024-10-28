@@ -17,12 +17,12 @@
 @cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
 
 .@{cascader-menu-prefix-cls} {
-  .component-css-vars-cascader-menu();
+  .inject-CascaderMenu-vars();
 
-  min-width: var(--ti-cascader-menu-width);
+  min-width: var(--tv-CascaderMenu-width);
   box-sizing: border-box;
-  color: var(--ti-cascader-menu-text-color);
-  border-right: solid 1px var(--ti-cascader-menu-border-color);
+  color: var(--tv-CascaderMenu-text-color);
+  border-right: solid 1px var(--tv-CascaderMenu-border-color);
 
   &:last-child {
     border-right: none;
@@ -39,10 +39,10 @@
   & &__list {
     position: relative;
     min-height: 100%;
-    margin: var(--ti-cascader-menu-list-margin-vertical) var(--ti-cascader-menu-list-margin-horizontal);
+    margin: var(--tv-CascaderMenu-list-margin-vertical) var(--tv-CascaderMenu-list-margin-horizontal);
     list-style: none;
     box-sizing: border-box;
-    padding: var(--ti-cascader-menu-list-padding-vertical) var(--ti-cascader-menu-list-padding-horizontal);
+    padding: var(--tv-CascaderMenu-list-padding-y) var(--tv-CascaderMenu-list-padding-x);
   }
 
   &__hover-zone {
@@ -60,7 +60,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: var(--ti-cascader-menu-empty-text-color);
+    color: var(--tv-CascaderMenu-empty-text-color);
   }
 
   &__no-data {
@@ -69,6 +69,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: var(--ti-cascader-menu-empty-text-color);
+    color: var(--tv-CascaderMenu-empty-text-color);
   }
 }

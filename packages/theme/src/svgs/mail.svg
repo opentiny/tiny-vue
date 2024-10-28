@@ -1,16 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	viewBox="0 0 24 24" xml:space="preserve">
-<g id="Icon">
-	<g id="UI-icons-英文名" transform="translate(-828.000000, -1735.000000)">
-		<g id="网站通用图标" transform="translate(100.000000, 1136.000000)">
-			<g id="mail" transform="translate(728.000000, 596.000000)">
-				<path id="Shape" class="st0" d="M21,6H3C2.1,6,1,7.1,1,8v14c0,0.9,1.1,2,2,2h18c0.9,0,2-1.1,2-2V8C23,7.1,21.9,6,21,6z M19,8
-					l-6.3,4.7l0,0l0,0c-0.2,0.2-0.4,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.6-0.2l0,0L5,8H19z M3,22c0,0,0-4.3,0-13l7.2,5.4
-					c0.5,0.4,1.1,0.7,1.8,0.7c0.7,0,1.4-0.2,1.9-0.7L21,9v13C21,22,15,22,3,22z"/>
-			</g>
-		</g>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc fill="none">
+			Created with Pixso.
+	</desc>
+	<defs fill="none">
+	</defs>
+	<g>
+		<path id="形状结合" d="M12.5 2.5C13.88 2.5 15 3.61 15 5L15 11C15 12.38 13.88 13.5 12.5 13.5L3.5 13.5C2.11 13.5 1 12.38 1 11L1 5C1 3.61 2.11 2.5 3.5 2.5L12.5 2.5ZM13.87 4.4L8.95 8.49C8.4 8.95 7.59 8.95 7.04 8.49L2.12 4.4C2.04 4.58 2 4.78 2 5L2 11C2 11.82 2.67 12.5 3.5 12.5L12.5 12.5C13.32 12.5 14 11.82 14 11L14 5C14 4.78 13.95 4.58 13.87 4.4ZM12.5 3.5L3.5 3.5C3.24 3.5 3.01 3.56 2.8 3.67L7.67 7.72C7.86 7.87 8.13 7.87 8.32 7.72L13.19 3.67C12.98 3.56 12.75 3.5 12.5 3.5Z" fill-opacity="1.000000" fill-rule="nonzero"/>
 	</g>
-</g>
 </svg>

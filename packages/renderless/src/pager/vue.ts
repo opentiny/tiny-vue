@@ -10,6 +10,9 @@ import {
   computedInternalLayout,
   computedTotalText,
   computedInternalPageCount,
+  computedSimplestPagerOption,
+  computedSimplestPagerWidth,
+  computedPageSizeText,
   handleJumperFocus,
   handleSizeChange,
   handleJumperInput,
@@ -83,15 +86,19 @@ export const renderless = (
     internalTotal: props.total,
     jumperValue: '1',
     jumperBackup: '1',
+    simplestPagerOption: computed(() => api.computedSimplestPagerOption()),
+    simplestPagerWidth: computed(() => api.computedSimplestPagerWidth()),
     showPager: computed(() => api.computedShowPager()),
     internalLayout: computed(() => api.computedInternalLayout()),
     totalText: computed(() => api.computedTotalText()),
     internalPageCount: computed(() => api.computedInternalPageCount()),
-    showJumperSufix: designConfig?.state?.showJumperSufix ?? true,
-    align: props.align || designConfig?.state?.align || 'left',
+    showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
+    align: props.align || designConfig?.state?.align || 'right',
     totalI18n: designConfig?.state?.totalI18n || 'totals',
-    totalFixedLeft: props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? false,
-    pageSizeText: props.pageSizeText ?? designConfig?.state?.pageSizeText
+    totalFixedLeft: computed(
+      () => props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? props.mode !== 'simplest' ?? true
+    ),
+    pageSizeText: computed(() => api.computedPageSizeText())
   })
 
   Object.assign(api, {
@@ -100,6 +107,9 @@ export const renderless = (
     computedInternalLayout: computedInternalLayout({ props }),
     computedTotalText: computedTotalText({ props, t }),
     computedInternalPageCount: computedInternalPageCount({ props, state }),
+    computedSimplestPagerOption: computedSimplestPagerOption({ props, state }),
+    computedSimplestPagerWidth: computedSimplestPagerWidth({ state }),
+    computedPageSizeText: computedPageSizeText({ props, designConfig }),
     getValidCurrentPage: getValidCurrentPage({ state }),
     handleJumperFocus: handleJumperFocus({ state }),
     handleSizeChange: handleSizeChange({ props, state, api, emit, vm }),

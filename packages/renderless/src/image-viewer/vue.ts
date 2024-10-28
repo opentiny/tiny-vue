@@ -93,7 +93,8 @@ const initState = ({ reactive, computed, api, mode, props, constants, inject }) 
     infinite: true,
     loading: false,
     transform: { scale: 1, deg: 0, offsetX: 0, offsetY: 0, objfit: 'contain', enableTransition: false },
-    urlList: props.urlList || inject('urlList', null),
+    urlList:
+      props.urlList || (Array.isArray(inject('urlList')) && inject('urlList').length !== 0) ? inject('urlList') : null,
     mode: constants.MODE.CONTAIN,
     previewVisible: props.previewVisible,
     fullScreen: props.imageFullCurrent,

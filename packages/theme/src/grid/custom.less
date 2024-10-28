@@ -20,6 +20,10 @@
 .@{grid-custom-prefix-cls} {
   width: 100%;
 
+  .tiny-modal__header {
+    margin-bottom: 16px;
+  }
+
   & &__tabs {
     .@{css-prefix}tabs__content {
       margin: 0;
@@ -27,7 +31,7 @@
     .@{grid-custom-prefix-cls}__tabs-body {
       overflow-y: auto;
       border: 0;
-      padding: 12px 0;
+      padding: 16px 0;
 
       .tabs-body-item {
         .@{grid-custom-prefix-cls}__alert {
@@ -35,43 +39,44 @@
         }
 
         .@{grid-custom-prefix-cls}__setting {
-          border-bottom: 1px solid var(--ti-grid-border-color);
-          padding: 12px 0 24px;
+          border-bottom: 1px solid transparent;
+          padding: 8px 0 0;
 
           .setting-item {
-            font-size: var(--ti-grid-font-size);
-            padding: 10px 8px;
+            font-size: var(--tv-Grid-font-size);
+            padding: 8px;
             overflow: hidden;
             position: relative;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
 
             .setting-icon {
               font-size: 0; // 解决inline-block间隙问题
               .icon {
                 display: inline-block;
+
                 &:not(:last-child) {
                   margin-right: 12px;
                 }
               }
 
               .@{svg-prefix-cls} {
-                font-size: var(--ti-common-font-size-1);
-                fill: var(--ti-grid-normal-text-color);
+                font-size: var(--tv-Grid-icon-size);
+                fill: var(--tv-Grid-icon-color);
                 cursor: pointer;
 
                 &:hover {
-                  fill: var(--ti-grid-primary-disabled-text-color);
+                  fill: var(--tv-Grid-icon-color-hover);
                 }
 
                 &.open,
                 &.lock,
                 &.sort {
-                  fill: var(--ti-grid-primary-color);
+                  fill: var(--tv-Grid-icon-color);
 
                   &:hover {
-                    fill: var(--ti-grid-primary-hover-color);
+                    fill: var(--tv-Grid-icon-color-hover);
                   }
                 }
 
@@ -89,7 +94,6 @@
 
             .setting-item {
               span.label {
-                width: 26%;
                 display: inline-block;
                 text-align: right;
                 padding-right: 24px;
@@ -122,9 +126,9 @@
   }
 
   & &__footer {
-    margin: 12px;
+    margin-bottom: 32px;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid ref="gridRef" :data="tableData" seq-serial show-overflow="ellipsis">
+  <tiny-grid ref="gridRef" :data="tableData" show-overflow="tooltip">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :renderer="renderInput('name')">
       <template #header="{ column }">

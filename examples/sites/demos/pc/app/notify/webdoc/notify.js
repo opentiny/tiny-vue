@@ -9,8 +9,24 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '通过函数调用的方式使用组件。',
-        'en-US': 'Components are used by means of function calls'
+        'zh-CN': `
+          通过<code>Notify</code>函数,在页面上弹出通知框组件。<br>
+          通过 <code>title</code>  属性设置通知框标题。<br>
+          通过 <code>message</code>  属性设置通知框的内容。<br>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> 小技巧 </p>
+             标题和内容不仅支持字符串传入，还支持<code> jsx </code> 和 <code>h</code> 函数的写法。
+          </div>
+        `,
+        'en-US': `
+          The <code>Notify</code> function is used to display the notification component on the page. <br>
+          Set the title of the notification box with the <code>title</code> property. <br>
+          Set the contents of the notification box with the <code>message</code> property. <br>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> Tips </p>
+            The title and content support not only string passing, but also the writing of <code> jsx </code> and <code>h</code> functions.
+          </div>
+        `
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -35,9 +51,10 @@ export default {
         'en-US': 'Automatic shutdown delay'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>duration</code>  属性设置自动关闭的延迟时间，默认值：4500ms 。</p>\n',
+        'zh-CN':
+          '通过 <code>duration</code>  属性设置自动关闭的延迟时间， 默认情况， <code>success  info </code> 延时5秒 <code> warning  error </code> 延时10秒自动关闭。',
         'en-US':
-          '<p>You can set the delay for automatic shutdown through the <code>duration</code> attribute. The default value is 4500 ms. </p>\n'
+          'Use the <code>duration</code> property to set the automatic shutdown delay. By default, <code>success info </code> delays the shutdown by 5 seconds. <code> warning error </code> delays the shutdown by 10 seconds.'
       },
       codeFiles: ['duration.vue']
     },
@@ -53,30 +70,6 @@ export default {
           '<p>You can set the position of the notification box through the <code>position</code> attribute. The default value is bottom-right. </p>\n'
       },
       codeFiles: ['position.vue']
-    },
-    {
-      demoId: 'title',
-      name: {
-        'zh-CN': '标题',
-        'en-US': 'Title'
-      },
-      desc: {
-        'zh-CN': '<p>可通过 <code>title</code>  属性设置通知框标题。</p>\n',
-        'en-US': '<p>You can set the title of the notification box through the <code>title</code> attribute. </p>\n'
-      },
-      codeFiles: ['title.vue']
-    },
-    {
-      demoId: 'message',
-      name: {
-        'zh-CN': '内容自定义',
-        'en-US': 'Custom Content'
-      },
-      desc: {
-        'zh-CN': '<p>可通过 <code>message</code>  属性设置通知框的内容。</p>\n',
-        'en-US': '<p>You can set the content of the notification box through the <code>message</code> attribute. </p>\n'
-      },
-      codeFiles: ['message.vue']
     },
     {
       demoId: 'showClose',
@@ -153,6 +146,30 @@ export default {
         'en-US': '<p> The vertical deviation distance can be set by using <code>verticalOffset</code>.'
       },
       codeFiles: ['verticalOffset.vue']
+    },
+    {
+      demoId: 'manual-close',
+      name: {
+        'zh-CN': '手动关闭通知',
+        'en-US': 'Vertical Offset'
+      },
+      desc: {
+        'zh-CN': `
+          通过<code>Notify</code>函数弹出通知后，会返回一个对应的<code>instance</code>对象，并保存在组件库的内部闭包变量中。<br>
+          需要手动关闭通知时，可以调用 <code>instance.close()</code> 方法关闭该通知。<br>
+          在<code>Notify</code>函数中，还存在2个静态方法去关闭通知。<br>
+          1、<code>Notify.close :(id, beforeClose)=>void </code>, 关闭指定的通知。其中<code>id</code>可通过<code>instance</code>对象获取。 <br>
+          2、<code>Notify.closeAll :()=>void </code>, 关闭所有通知。<br>
+        `,
+        'en-US': `
+          After a notification is displayed using the <code>Notify</code> function, a corresponding <code>instance</code> object is returned and stored in the internal closure variable of the component library. <br>
+          To disable notifications manually, you can record the <code>instance</code> object and call the <code>instance.close()</code> method to disable the notification. <br>
+          In the <code>Notify</code> function, there are two static methods to turn off the notification. <br>
+          1, <code>Notify.close :(id, beforeClose)=>void </code>, turn off the specified notification. The <code>id</code> can be obtained from the <code>instance</code> object. <br>
+          2. <code>Notify.closeAll :()=>void </code> to close all notifications. <br>
+        `
+      },
+      codeFiles: ['manual-close.vue']
     },
     {
       demoId: 'notify-events',

@@ -50,42 +50,16 @@
         class="tiny-checkbox-group tiny-transfer-panel__list"
         :class="{ 'is-filterable': filterable }"
       >
-        <label
-          class="tiny-checkbox tiny-transfer-panel__item"
-          :class="[
-            item[state.disabledProp] ? 'is-disabled' : '',
-            state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1 ? 'is-checked' : ''
-          ]"
-          @click.stop.prevent="checkedEvent(item[state.keyProp], item[state.disabledProp])"
-          :key="item[state.keyProp]"
+        <tiny-checkbox
           v-for="item in state.filteredData"
+          :key="item[state.keyProp]"
+          class="tiny-transfer-panel__item"
+          :disabled="item[state.disabledProp]"
+          :checked="state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1"
+          @change="checkedEvent(item[state.keyProp], item[state.disabledProp])"
         >
-          <span
-            class="tiny-checkbox__input"
-            :class="[
-              item[state.disabledProp] ? 'is-disabled' : '',
-              state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1 ? 'is-checked' : ''
-            ]"
-          >
-            <span class="tiny-checkbox__inner">
-              <icon-check
-                v-if="!(state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1)"
-                class="tiny-svg-size"
-              />
-              <icon-checked-sur v-else class="tiny-svg-size" />
-            </span>
-            <input
-              type="checkbox"
-              aria-hidden="false"
-              :disabled="item[state.disabledProp]"
-              class="tiny-checkbox__original"
-              :value="item[state.keyProp]"
-            />
-          </span>
-          <span class="tiny-checkbox__label">
-            <option-content :option="optionRender(item)"></option-content>
-          </span>
-        </label>
+          <option-content :option="optionRender(item)"></option-content>
+        </tiny-checkbox>
       </div>
       <component
         ref="plugin"
@@ -129,7 +103,7 @@ import { renderless, api } from '@opentiny/vue-renderless/transfer-panel/vue'
 import Checkbox from '@opentiny/vue-checkbox'
 import Input from '@opentiny/vue-input'
 import Pager from '@opentiny/vue-pager'
-import { iconArrowUp, iconArrowDown, iconCheckedSur, iconCheck, iconSearch } from '@opentiny/vue-icon'
+import { iconArrowUp, iconArrowDown, iconYes, iconSearch } from '@opentiny/vue-icon'
 
 export const transferPanelProps = {
   columns: Array,
@@ -172,8 +146,8 @@ export default defineComponent({
     TinyPager: Pager,
     IconArrowDown: iconArrowDown(),
     IconArrowUp: iconArrowUp(),
-    IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck(),
+    IconCheckedSur: iconYes(),
+    IconCheck: iconYes(),
     IconSearch: iconSearch(),
     OptionContent: {
       props: {

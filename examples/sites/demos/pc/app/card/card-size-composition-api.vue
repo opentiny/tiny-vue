@@ -26,26 +26,26 @@
 
 <script setup>
 import { Card as TinyCard } from '@opentiny/vue'
-import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
+import { IconDeleteL, IconEditor, IconSortTriangle, IconFilletExternalLink } from '@opentiny/vue-icon'
 import { ref } from 'vue'
 
 const options = ref([
   {
     text: '删除列表',
-    icon: IconDel()
+    icon: IconDeleteL()
   },
   {
     text: '编辑',
-    icon: IconWriting(),
+    icon: IconEditor(),
     disabled: true
   },
   {
     text: '排序',
-    icon: IconAscending()
+    icon: IconSortTriangle()
   },
   {
     text: '分享',
-    icon: IconShare(),
+    icon: IconFilletExternalLink(),
     disabled: true
   }
 ])

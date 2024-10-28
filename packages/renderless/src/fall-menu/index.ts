@@ -13,7 +13,7 @@
 import { REFRESH_INTERVAL } from '../common'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
-import { xss } from '../common/xss.js'
+import { xss } from '../common/xss'
 import type { IFallMenuApi, IFallMenuState, IFallMenuProps, IPagerData } from '@/types'
 
 export const arrowClick = (state: IFallMenuState) => (opt) => {
@@ -22,6 +22,10 @@ export const arrowClick = (state: IFallMenuState) => (opt) => {
 
 export const overContent = (state: IFallMenuState) => (on) => {
   state.isActive = on
+}
+
+export const clickActive = (state: IFallMenuState) => (index) => {
+  state.active = index
 }
 
 export const mouseover =

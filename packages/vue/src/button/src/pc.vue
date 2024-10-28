@@ -44,7 +44,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconLoading } from '@opentiny/vue-icon'
+import { iconLoadingShadow } from '@opentiny/vue-icon'
 import type { IButtonApi } from '@opentiny/vue-renderless/types/button.type'
 import '@opentiny/vue-theme/button/index.less'
 
@@ -68,7 +68,7 @@ export default defineComponent({
     'customClass',
     'ghost'
   ],
-  components: { IconLoading: iconLoading() },
+  components: { IconLoading: iconLoadingShadow() },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IButtonApi
   }

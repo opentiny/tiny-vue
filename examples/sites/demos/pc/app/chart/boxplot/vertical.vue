@@ -3,17 +3,17 @@
 </template>
 
 <script lang="jsx">
-import { ChartBoxplot } from '@opentiny/vue'
+import { HuichartsBoxplot } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBoxplot: ChartBoxplot
+    TinyBoxplot: HuichartsBoxplot
   },
   data() {
+    const sourceData0 = this.makeData()
+    const sourceData1 = this.makeData()
+    const sourceData2 = this.makeData()
     return {
-      sourceData0: makeData(),
-      sourceData1: makeData(),
-      sourceData2: makeData(),
       options: {
         padding: [50, 30, 55, 20],
         xAxis: {

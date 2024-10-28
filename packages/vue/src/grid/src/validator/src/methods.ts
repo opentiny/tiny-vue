@@ -60,8 +60,12 @@ const onRejected = (opt, _this) => {
       cb ? resolve() : reject(args)
     }
 
-    const funcPosAndFinish = (params, finish) => () => {
-      getCell(_this, params).then((activeCell) => {
+    const funcPosAndFinish = (params, finish) => async () => {
+      // 如果是虚拟滚动，则先滚动到对应单元格且渲染后再显示提示
+      if (_this.scrollXLoad) {
+        await _this.scrollToColumn(params.column, true)
+      }
+      return getCell(_this, params).then((activeCell) => {
         params.cell = activeCell
         _this.handleValidError(params)
         finish()

@@ -42,3 +42,9 @@ function selectChange(tz) {
   Modal.message({ message: `当前值为 ${tz.tz.name}`, status: 'info' })
 }
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 280px;
+}
+</style>

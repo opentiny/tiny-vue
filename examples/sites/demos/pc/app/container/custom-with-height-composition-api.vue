@@ -22,7 +22,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Container as TinyContainer, Layout as TinyLayout } from '@opentiny/vue'
+import { TinyContainer, TinyLayout } from '@opentiny/vue'
 
 const pattern = ref('legend')
 const asideWidth = ref(200)

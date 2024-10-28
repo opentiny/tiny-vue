@@ -191,7 +191,9 @@ export default defineComponent({
 
     const hasSubColumn = findTree(
       slotVnode,
-      ({ componentOptions, type }) => {
+      (node) => {
+        // 当使用jsx来写默认插槽时，vnode的children为[undefined], 使用fallback值防止解构报错
+        const { componentOptions, type } = node || {}
         const componentName = (type && type.name) || (componentOptions && componentOptions.Ctor.extendOptions.name)
 
         return $table.isValidCustomColumn(componentName)

@@ -23,15 +23,15 @@ import { Milestone as TinyMilestone } from '@opentiny/vue'
 // statusMap 对应 milestoneData的status；显示的背景色样式（可以是旗，可以是步骤条）
 const statusMap = ref({
   // 对应 status = completed
-  completed: 'var(--ti-common-color-line-active)',
+  completed: '#1890ff',
   // 对应 status = doing
-  doing: '#9ec591',
+  doing: '#7eb7fc',
   // 对应 status = back
-  back: '#97a7db',
+  back: '#ff8800',
   // 对应 status = end
   end: '#faad14',
   // 对应 status = cancel
-  cancel: '#d9d9d9'
+  cancel: '#fce2e0'
 })
 
 // 数据源

@@ -114,7 +114,6 @@ const notSimpleComponents = [
   'RichText',
   'RichTextEditor',
   'River',
-  'SvgIcon',
   'TextPopup',
   'ToggleMenu',
   'User',
@@ -149,10 +148,24 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
       include: includeTemplate.join(endOfLine),
       components: componentsTemplate.join(',' + endOfLine),
       exportComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}${component} as Tiny${component.trim()}`)
+        .map((component) => {
+          if (component.includes('Hui')) {
+            return `${component}${joinStr}${component} as ${component
+              .replace('Huicharts', 'Charts')
+              .trim()}${joinStr}${component} as Tiny${component.trim()}`
+          }
+          return `${component}${joinStr}${component} as Tiny${component.trim()}`
+        })
         .join(joinStr),
       defaultComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}Tiny${component.trim()}: ${component}`)
+        .map((component) => {
+          if (component.includes('Hui')) {
+            return `${component}${joinStr}${component
+              .replace('Huicharts', 'Charts')
+              .trim()}: ${component}${joinStr}Tiny${component.trim()}: ${component}`
+          }
+          return `${component}${joinStr}Tiny${component.trim()}: ${component}`
+        })
         .join(joinStr)
     }
   })

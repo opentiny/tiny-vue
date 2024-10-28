@@ -9,5 +9,5 @@ test('PopUpload 设置组件大小', async ({ page }) => {
 
   await expect(modalAppearBtn).toHaveClass(/tiny-button--medium/)
   await expect(modalAppearBtn).toHaveCSS('height', '40px')
-  await expect(modalAppearBtn).toHaveCSS('min-width', '88px')
+  await expect(modalAppearBtn).toHaveCSS('min-width', '112px')
 })

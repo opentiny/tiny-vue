@@ -1,5 +1,5 @@
 <template>
-  <tiny-user-contact :data="data" :espace="espace"></tiny-user-contact>
+  <tiny-user-contact :data="data" :espace="data.espace"></tiny-user-contact>
 </template>
 
 <script setup>

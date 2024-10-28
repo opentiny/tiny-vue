@@ -13,6 +13,13 @@ function showModal() {
     status: 'info',
     messageClosable: true,
     events: {
+      hide: () => {
+        Notify({
+          type: 'info',
+          title: '触发hide回调事件',
+          position: 'top-right'
+        })
+      },
       close: () => {
         Notify({
           type: 'info',

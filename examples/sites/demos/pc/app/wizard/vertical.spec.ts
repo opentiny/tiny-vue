@@ -16,17 +16,19 @@ test('垂直流程图', async ({ page }) => {
   await expect(nodeNames).toHaveCount(nodeCount)
   for (let i = 0; i < nodeCount; i++) {
     await expect(nodeNames.nth(i)).toHaveText(names[i])
-    await expect(nodeLines.nth(i)).toHaveCSS('width', '4px')
-    await expect(nodeLines.nth(i)).toHaveCSS('height', '88px')
-    await expect(nodeIcons.nth(i)).toHaveCSS('height', '20px')
-    await expect(nodeIcons.nth(i)).toHaveCSS('height', '20px')
+    await expect(nodeLines.nth(i)).toHaveCSS('width', '1px')
+    await expect(nodeLines.nth(i)).toHaveCSS('height', '60px')
+    await expect(nodeIcons.nth(i)).toHaveCSS('height', '32px')
 
     if (i === 4) {
-      await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(194, 196, 199)')
-      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(223, 225, 230)')
+      await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
+      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(240, 240, 240)')
+    } else if (i === 3) {
+      await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(219, 219, 219)')
+      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(255, 255, 255)')
     } else {
-      await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(94, 124, 224)')
-      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(94, 124, 224)')
+      await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(25, 25, 25)')
+      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(255, 255, 255)')
     }
   }
 })

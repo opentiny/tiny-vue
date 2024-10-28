@@ -20,36 +20,24 @@
   user-select: none;
   cursor: pointer;
 
-  &.size__small,
-  &.size__mini {
-    font-size: var(--ti-grid-font-size);
-
-    > input {
-      & + .@{grid-radio-prefix-cls}__icon {
-        font-size: var(--ti-common-font-size-1);
-      }
-    }
-  }
-
   > input {
     display: none;
 
     & + .@{grid-radio-prefix-cls}__icon {
       position: relative;
       display: inline-block;
-      width: 1em;
-      height: 1em;
+      line-height: 1;
       vertical-align: middle;
       border-radius: 50%;
-      font-size: var(--ti-common-font-size-2);
+      font-size: var(--tv-Grid-font-size);
 
       > svg {
-        fill: var(--ti-grid-radio-border-color);
+        fill: var(--tv-Grid-radio-icon-color);
         vertical-align: top;
-        font-size: var(--ti-grid-select-icon-font-size);
+        font-size: var(--tv-Grid-radio-icon-size);
 
         &:hover {
-          fill: var(--ti-grid-primary-hover-color);
+          fill: var(--tv-Grid-radio-icon-color-hover);
         }
 
         &.icon-radio-selected {
@@ -66,12 +54,12 @@
 
         &.icon-radio-selected {
           display: inline-block;
-          fill: var(--ti-grid-radio-bg-color-checked);
+          fill: var(--tv-Grid-radio-icon-color-selected);
         }
       }
 
       & + .@{grid-radio-prefix-cls}__label {
-        color: var(--ti-grid-primary-color);
+        color: var(--tv-Grid-text-color);
       }
     }
   }
@@ -82,24 +70,24 @@
     > input {
       & + .@{grid-radio-prefix-cls}__icon {
         > svg {
-          fill: var(--ti-grid-border-color);
+          fill: var(--tv-Grid-radio-icon-color-disabled);
 
           path:last-child {
-            fill: var(--ti-grid-input-disabled-bg-color);
+            fill: var(--tv-Grid-radio-icon-color-disabled);
           }
         }
 
         & + .@{grid-radio-prefix-cls}__label {
-          color: var(--ti-grid-radio-border-color);
+          color: var(--tv-Grid-text-color-disabled);
         }
       }
 
       &:checked + .@{grid-radio-prefix-cls}__icon {
         > svg {
-          fill: var(--ti-grid-input-disabled-bg-color);
+          fill: var(--tv-Grid-radio-icon-color-disabled);
 
           path:first-child {
-            fill: var(--ti-grid-input-disabled-bg-color);
+            fill: var(--tv-Grid-radio-icon-color-disabled);
           }
         }
       }

@@ -227,6 +227,7 @@
             >
             <tiny-progress
               v-if="file.status === 'uploading' || file.status === 'downloading'"
+              status="success"
               :type="listType === 'picture-card' ? state.progressType : 'line'"
               :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
               :width="state.progressWidth"

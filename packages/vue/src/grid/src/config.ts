@@ -31,13 +31,15 @@ import {
   iconSortTriangleAscending,
   iconFullscreen,
   iconSortTriangleDescending,
-  iconSortTriangle
+  iconSortTriangle,
+  iconError
 } from '@opentiny/vue-icon'
 import { $prefix } from '@opentiny/vue-common'
 
 const GlobalConfig = {
   validConfig: {
-    message: 'tooltip'
+    message: 'tooltip',
+    icon: iconError()
   },
   // 默认开启点击头部单元格触发排序
   sortConfig: { multipleColumnSort: false },

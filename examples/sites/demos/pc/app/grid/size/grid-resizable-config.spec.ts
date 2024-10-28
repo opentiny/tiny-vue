@@ -23,12 +23,12 @@ test('resizable limit', async ({ page }) => {
   // 向左拖拽 100 px，期望宽度等于最小值 60 px
   await drag(page, nameDragLineEl, -100)
   const { width: nameDragLeftWidth } = (await nameHeaderColumnEl.boundingBox())!
-  await expect(nameDragLeftWidth).toEqual(60)
+  await expect(nameDragLeftWidth).toEqual(120)
 
   // 向右拖拽 100 px，期望宽度等于最大值 60 px
   await drag(page, nameDragLineEl, 100)
   const { width: nameDragRightWidth } = (await nameHeaderColumnEl.boundingBox())!
-  await expect(nameDragRightWidth).toEqual(60)
+  await expect(nameDragRightWidth).toEqual(120)
 
   const areaDragLineEl = demo.locator('.tiny-grid-resizable.is__line').nth(1)
   const areaHeaderColumnEl = demo.locator('.tiny-grid-header__column').nth(2)

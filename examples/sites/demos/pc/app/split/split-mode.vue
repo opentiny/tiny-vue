@@ -41,7 +41,6 @@ export default {
 <style scoped>
 .demo-split {
   height: 200px;
-  border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 }
 

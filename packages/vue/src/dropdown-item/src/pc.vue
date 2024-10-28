@@ -13,14 +13,18 @@
 <template>
   <!-- TINY-TODO:  tiny-dropdown-menu__item命名不规范，后续统一有个迭代去掉 -->
   <li
-    v-auto-tip="{ always: true, content: getTip, effect, placement: tipPosition }"
-    class="tiny-dropdown-item tiny-dropdown-menu__item"
-    :class="{
-      'is-disabled': disabled,
-      'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
-      'tiny-dropdown-item--check-status': state.checkedStatus && selected,
-      'has-children': itemData.children && itemData.children.length
-    }"
+    v-auto-tip="
+      state.computedTip ? { always: true, content: state.computedTip, effect, placement: tipPosition } : false
+    "
+    :class="[
+      'tiny-dropdown-item',
+      'tiny-dropdown-menu__item',
+      state.sizeClass,
+      disabled ? 'is-disabled' : '',
+      divided ? 'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided' : '',
+      state.checkedStatus && selected ? 'tiny-dropdown-item--check-status' : '',
+      itemData.children && itemData.children.length ? 'has-children' : ''
+    ]"
     ref="dropdownItem"
     @click.stop="handleClick"
     @mousedown.stop
@@ -35,7 +39,8 @@
         <component :is="state.getIcon"></component>
       </span>
       <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
-        <component v-if="icon" :is="icon" class="tiny-svg-size"></component>
+        <!-- TODO: 评估没什么用的话去掉 tiny-svg-size -->
+        <component v-if="icon" :is="icon" class="tiny-svg-size tiny-dropdown-item__pre-icon"></component>
         <span class="tiny-dropdown-item__label">
           <slot :item-data="itemData">
             <span>{{ label }}</span>
@@ -67,7 +72,7 @@
 <script lang="ts">
 import { props, setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/vue'
-import { iconDeltaLeft } from '@opentiny/vue-icon'
+import { iconLeftWardArrow } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/dropdown-item/index.less'
 import { AutoTip } from '@opentiny/vue-directive'
 import type { IDropdownItemApi } from '@opentiny/vue-renderless/types/dropdown-item.type'
@@ -100,7 +105,7 @@ export default defineComponent({
     'effect'
   ],
   components: {
-    IconDeltaLeft: iconDeltaLeft()
+    IconLeftWardArrow: iconLeftWardArrow()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IDropdownItemApi

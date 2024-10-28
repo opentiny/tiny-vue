@@ -13,7 +13,7 @@
 import { ref } from 'vue'
 import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
 
-const activeName = ref('second')
+const activeName = ref('first')
 </script>
 
 <style scoped>

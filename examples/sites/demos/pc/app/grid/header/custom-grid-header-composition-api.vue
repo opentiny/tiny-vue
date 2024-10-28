@@ -120,7 +120,7 @@ function renderHeaderRelation() {
 
 function renderHeaderArea() {
   return (
-    <span>
+    <span style="order: -1">
       <IconMarkOn />
       Description
     </span>
@@ -129,7 +129,7 @@ function renderHeaderArea() {
 
 function renderHeaderAddress() {
   return (
-    <span>
+    <span style="order: -1">
       <IconUser />
       Description
     </span>

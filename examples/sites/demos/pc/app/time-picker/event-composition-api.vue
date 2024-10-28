@@ -1,26 +1,14 @@
 <template>
   <div class="demo-date-picker-wrap">
-    <tiny-button @click="handleFocus">focus</tiny-button>
-    <tiny-time-picker
-      v-model="value1"
-      ref="timePickerRef"
-      @blur="blur"
-      @change="change"
-      @focus="focus"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" @blur="blur" @change="change" @focus="focus"></tiny-time-picker>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker, Modal, Button as TinyButton } from '@opentiny/vue'
+import { TimePicker as TinyTimePicker, Modal } from '@opentiny/vue'
 
 const value1 = ref(new Date(2016, 9, 10, 18, 40))
-const timePickerRef = ref()
-
-function handleFocus() {
-  timePickerRef.value.$el.querySelector('input').focus()
-}
 
 function blur() {
   Modal.message({ message: 'blur事件', status: 'info' })

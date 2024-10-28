@@ -92,10 +92,10 @@ export default {
         },
         {
           name: 'mode',
-          type: "'number' | 'simple' | 'complete' | 'fixed'",
+          type: "'number' | 'simple' | 'complete' | 'fixed' | 'simplest'",
           defaultValue: '',
           desc: {
-            'zh-CN': '设置分页组件显示模式，此属性优先级大于 layout',
+            'zh-CN': '设置分页组件显示模式，此属性优先级大于 layout, 3.19.0新增simplest',
             'en-US': 'Set the display mode of pagination components, which takes priority over layout'
           },
           mode: ['pc'],

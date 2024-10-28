@@ -25,8 +25,8 @@ function addMatcherTr({ _quill, oper }) {
   })
 }
 
-function addMatcherTd({ _quill, oper, Delta }) {
-  _quill.clipboard.addMatcher('TD', function (node, delta) {
+function addMatcherTdOrTh({ _quill, oper, Delta, tagName }) {
+  _quill.clipboard.addMatcher(tagName, function (node, delta) {
     const tableId = oper.getTableId()
     const rowId = oper.getRowId()
     const cellId = cellName()
@@ -104,7 +104,8 @@ function addMatcher({ qil: _quill, Delta }) {
 
   addMatcherTable({ _quill, oper })
   addMatcherTr({ _quill, oper })
-  addMatcherTd({ _quill, oper, Delta })
+  addMatcherTdOrTh({ _quill, oper, Delta, tagName: 'TD' })
+  addMatcherTdOrTh({ _quill, oper, Delta, tagName: 'TH' })
   // 移除table/tr, tr/td间空白符
   addMatcher3(_quill)
   // word粘贴到IE里会出现几个空内容的font标签

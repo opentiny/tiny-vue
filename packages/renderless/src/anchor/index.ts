@@ -124,7 +124,10 @@ export const handleScroll = (state: IAnchorRenderlessParams['state']) => () => {
 
 // 设置滚动偏移量
 const setChildOffsetTop = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 'props'>) => {
-  state.offsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
+  if (!props.links?.length) {
+    return
+  }
+  state.childOffsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
 }
 
 export const getContainer =
@@ -164,12 +167,14 @@ export const unmounted =
 export const onItersectionObserver =
   ({ state, props, api, vm, emit }: Pick<IAnchorRenderlessParams, 'state' | 'props' | 'api' | 'vm' | 'emit'>) =>
   () => {
-    const { expandLink, scrollContainer } = state
+    const { expandLink, scrollContainer, childOffsetTop } = state
+    const { offsetTop } = props
     state.currentLink && updateSkidPosition({ vm, state, emit })
+    const rootMargin = offsetTop ? `${-offsetTop}px 0px 0px 0px` : ''
     state.intersectionObserver = new IntersectionObserver(
       (entries) => {
         const { top } = scrollContainer.getBoundingClientRect()
-        const scrollStartTop = top + state.offsetTop
+        const scrollStartTop = top + childOffsetTop + offsetTop
         entries.forEach((item) => {
           const key = item.target.id
           state.observerLinks[key] = item
@@ -194,9 +199,10 @@ export const onItersectionObserver =
             if (
               item.isIntersecting &&
               item.intersectionRatio >= 0 &&
-              item.target.getBoundingClientRect().top < scrollStartTop
+              item.target.getBoundingClientRect().top <= scrollStartTop
             ) {
               const link = `#${item.target.id}`
+
               if (!expandLink[link].children) {
                 api.getCurrentAnchor(link)
                 break
@@ -207,7 +213,7 @@ export const onItersectionObserver =
           }
         }
       },
-      { root: scrollContainer, threshold: [0, 0.25, 0.5, 1] }
+      { root: scrollContainer, threshold: [0, 0.25, 0.5, 1], rootMargin }
     )
 
     addObserver({ props, state })
@@ -229,7 +235,11 @@ export const linkClick =
 
     if (scrollContainer && scrollContainer !== document.body && !isChangeHash) {
       const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
-      const top = linkEl?.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
+      const top =
+        linkEl?.getBoundingClientRect().top -
+        scrollContainer.getBoundingClientRect().top +
+        scrollContainer.scrollTop -
+        props.offsetTop // 修复横向锚点无法滚动到顶部
       const param = { top, left: 0, behavior: 'smooth' } as ScrollToOptions
       scrollContainer?.scrollTo(param)
       scrollContainer?.addEventListener('scroll', api.handleScroll())

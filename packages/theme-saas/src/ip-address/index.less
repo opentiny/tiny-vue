@@ -16,7 +16,6 @@
     @apply relative;
     @apply p-0;
     @apply w-full;
-    @apply h-7;
     @apply border border-solid border-color-border;
     @apply text-color-text-primary;
     @apply rounded;
@@ -77,8 +76,6 @@
         @apply text-color-text-primary;
         width: ~'calc(100% - theme(spacing.3))';
         @apply float-left;
-        @apply h-7;
-        @apply leading-7;
         @apply p-0;
         @apply text-xs;
 
@@ -113,6 +110,38 @@
           @apply py-0 px-2;
           @apply text-xs;
         }
+      }
+    }
+    &.medium {
+      height: 42px;
+      li input {
+        height: 42px;
+        line-height: 42px;
+      }
+    }
+
+    &.default {
+      @apply h-7;
+      li input {
+        @apply h-7;
+        @apply leading-7;
+      }
+    }
+    
+
+    &.small {
+      @apply h-9;
+      li input {
+        @apply h-9;
+        @apply leading-9;
+      }
+    }
+
+    &.mini {
+      @apply h-6;
+      li input {
+        @apply h-6;
+        @apply leading-6;
       }
     }
   }

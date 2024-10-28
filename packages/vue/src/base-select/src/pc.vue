@@ -26,8 +26,7 @@
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
       state.selectDisabled ? 'is-disabled' : '',
-      $parent.$attrs.class,
-      inputBoxType === 'underline' ? 'tiny-base-select__underline' : ''
+      $parent.$attrs.class
     ]"
     @mouseleave.self="
       () => {
@@ -253,6 +252,7 @@
           :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
+          :input-box-type="inputBoxType"
           :class="{
             'is-focus': state.visible,
             overflow: state.overflow,
@@ -430,7 +430,7 @@
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -455,7 +455,7 @@
                 !remote
               "
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'
@@ -540,8 +540,6 @@ import {
   IconEllipsis,
   IconChevronUp
 } from '@opentiny/vue-icon'
-import Grid from '@opentiny/vue-grid'
-import Tree from '@opentiny/vue-tree'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
 import RecycleScroller from '@opentiny/vue-recycle-scroller'
@@ -550,6 +548,7 @@ import RecycleScroller from '@opentiny/vue-recycle-scroller'
 import TinyCheckbox from '@opentiny/vue-checkbox'
 
 import '@opentiny/vue-theme/select/index.less'
+import '@opentiny/vue-theme/base-select/index.less'
 
 const getReference = (el, binding, vnode) => {
   const _ref = binding.expression ? binding.value : binding.arg
@@ -593,8 +592,6 @@ export default defineComponent({
     TinyTag,
     TinyInput,
     TinyOption,
-    TinyGrid: Grid,
-    TinyTree: Tree,
     TinyButton,
     IconClose: IconClose(),
     TinyScrollbar,

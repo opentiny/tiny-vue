@@ -5,8 +5,8 @@ test('粘贴上传', async ({ page }) => {
   await page.goto('file-upload#paste-upload')
 
   const drag = page.locator('.tiny-upload-dragger')
-  await expect(drag).toHaveCSS('width', '360px')
-  await expect(drag).toHaveCSS('height', '180px')
+  await expect(drag).toHaveCSS('width', '100px')
+  await expect(drag).toHaveCSS('height', '100px')
 
   const path = require('node:path')
   const pathJpg = path.resolve(__dirname, '测试.jpg')
