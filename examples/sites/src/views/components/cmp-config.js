@@ -28,7 +28,7 @@ const faqMdConfig = {
 }
 
 const getWebdocPath = (path) => {
-  if (path?.startsWith('grid-')) {
+  if (path?.startsWith('grid-') && path !== 'grid-select') {
     return 'grid'
   } else if (path?.startsWith('chart-')) {
     return 'chart'
