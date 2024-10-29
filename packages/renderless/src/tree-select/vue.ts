@@ -2,11 +2,11 @@ import { filter, nodeClick, check } from './index'
 
 export const api = ['state', 'filter', 'nodeClick', 'check']
 
-export const renderless = (props, { reactive }, { vm }) => {
+export const renderless = (props, { reactive, computed }, { vm, emit }) => {
   const api = {}
 
   const state = reactive({
-    value: props.modelValue,
+    value: computed(() => props.modelValue),
     treeData: props.treeOp.data
   })
 
@@ -14,7 +14,7 @@ export const renderless = (props, { reactive }, { vm }) => {
     state,
     filter: filter({ vm }),
     nodeClick: nodeClick({ props, vm }),
-    check: check({ props, vm })
+    check: check({ props, vm, emit })
   })
 
   return api
