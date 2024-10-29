@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { Progress } from '@opentiny/vue'
+import { TinyProgress } from '@opentiny/vue'
 import { IconOperationfaildL } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyProgress: Progress,
+    TinyProgress,
     IconOperationfaildL: IconOperationfaildL()
   },
   data() {

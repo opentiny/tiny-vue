@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { QueryBuilder } from '@opentiny/vue'
+import { TinyQueryBuilder } from '@opentiny/vue'
 import { random } from '@opentiny/vue-renderless/common/string'
 
 export default {
   components: {
-    TinyQueryBuilder: QueryBuilder
+    TinyQueryBuilder
   },
   data() {
     return {
@@ -126,121 +126,121 @@ const config = {
   },
   combinators: [
     {
-      'name': 'and',
-      'label': '且'
+      name: 'and',
+      label: '且'
     },
     {
-      'name': 'or',
-      'label': '或'
+      name: 'or',
+      label: '或'
     }
   ],
   fields: [
     {
-      'name': 'user',
-      'label': 'User',
-      'placeholder': '请输入',
-      'children': [
+      name: 'user',
+      label: 'User',
+      placeholder: '请输入',
+      children: [
         {
-          'name': 'firstName',
-          'label': 'First Name',
-          'placeholder': '请输入',
+          name: 'firstName',
+          label: 'First Name',
+          placeholder: '请输入',
           validator: (r) => !!r.value
         },
         {
-          'name': 'user.lastName',
-          'label': 'Last Name',
-          'placeholder': 'Enter last name',
-          'defaultOperator': 'beginsWith',
+          name: 'user.lastName',
+          label: 'Last Name',
+          placeholder: 'Enter last name',
+          defaultOperator: 'beginsWith',
           validator: (r) => !!r.value
         }
       ]
     },
     {
-      'name': 'age',
-      'label': 'Age',
-      'inputType': 'number',
+      name: 'age',
+      label: 'Age',
+      inputType: 'number',
       validator: (r) => !!r.value
     },
     {
-      'name': 'gender',
-      'label': 'Gender',
-      'operators': [
+      name: 'gender',
+      label: 'Gender',
+      operators: [
         {
-          'name': '=',
-          'label': '='
+          name: '=',
+          label: '='
         }
       ],
-      'valueEditorType': 'radio',
-      'values': [
+      valueEditorType: 'radio',
+      values: [
         {
-          'name': 'M',
-          'label': 'Male'
+          name: 'M',
+          label: 'Male'
         },
         {
-          'name': 'F',
-          'label': 'Female'
+          name: 'F',
+          label: 'Female'
         },
         {
-          'name': 'O',
-          'label': 'Other'
+          name: 'O',
+          label: 'Other'
         }
       ]
     },
     {
-      'name': 'height',
-      'label': 'Height'
+      name: 'height',
+      label: 'Height'
     },
     {
-      'name': 'job',
-      'label': 'Job'
+      name: 'job',
+      label: 'Job'
     },
     {
-      'name': 'description',
-      'label': 'Description',
-      'valueEditorType': 'textarea'
+      name: 'description',
+      label: 'Description',
+      valueEditorType: 'textarea'
     },
     {
-      'name': 'birthdate',
-      'label': 'Birth Date',
-      'inputType': 'date'
+      name: 'birthdate',
+      label: 'Birth Date',
+      inputType: 'date'
     },
     {
-      'name': 'datetime',
-      'label': 'Show Time',
-      'inputType': 'datetime-local'
+      name: 'datetime',
+      label: 'Show Time',
+      inputType: 'datetime-local'
     },
     {
-      'name': 'alarm',
-      'label': 'Daily Alarm',
-      'inputType': 'time'
+      name: 'alarm',
+      label: 'Daily Alarm',
+      inputType: 'time'
     },
     {
-      'name': 'groupedField1',
-      'label': 'Grouped Field 1',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField1',
+      label: 'Grouped Field 1',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField2',
-      'label': 'Grouped Field 2',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField2',
+      label: 'Grouped Field 2',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField3',
-      'label': 'Grouped Field 3',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField3',
+      label: 'Grouped Field 3',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField4',
-      'label': 'Grouped Field 4',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField4',
+      label: 'Grouped Field 4',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     }
   ]
 }

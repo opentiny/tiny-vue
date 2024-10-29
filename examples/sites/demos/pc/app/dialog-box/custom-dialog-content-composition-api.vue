@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, DialogBox as TinyDialogBox, Alert as TinyAlert } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyAlert } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
 </script>

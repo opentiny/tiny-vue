@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = ref([])
@@ -32,7 +32,7 @@ function beforeUpload(file) {
 
     img.src = base64
     img.onload = function () {
-      Modal.message({
+      TinyModal.message({
         message: '宽：' + img.naturalWidth + ' 高：' + img.naturalHeight,
         status: 'info'
       })

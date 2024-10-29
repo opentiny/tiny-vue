@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Guide as TinyGuide, Button as TinyButton } from '@opentiny/vue'
+import { TinyGuide, TinyButton } from '@opentiny/vue'
 
 const size = ref(20)
 const showStep = ref(false)

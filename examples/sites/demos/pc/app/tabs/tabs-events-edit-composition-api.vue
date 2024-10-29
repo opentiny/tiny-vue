@@ -1,6 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" tab-style="card" editable @edit="edit">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -8,10 +8,10 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('first')
-const Tabs = ref([
+const tabs = ref([
   {
     title: '表单组件',
     name: 'first',

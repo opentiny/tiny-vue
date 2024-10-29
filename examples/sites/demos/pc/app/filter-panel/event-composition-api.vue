@@ -19,13 +19,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import {
-  FilterPanel as TinyFilterPanel,
-  Radio as TinyRadio,
-  RadioGroup as TinyRadioGroup,
-  Input as TinyInput,
-  Modal
-} from '@opentiny/vue'
+import { TinyFilterPanel, TinyRadio, TinyRadioGroup, TinyInput, TinyModal } from '@opentiny/vue'
 
 const inputVal = ref('')
 const radioVal = ref('')
@@ -39,7 +33,7 @@ function handleClear() {
 }
 
 function visibleChange(v) {
-  Modal.message({
+  TinyModal.message({
     message: `${v} visibleChange`,
     status: 'info'
   })

@@ -6,7 +6,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 
 const options = reactive([
   { value: '选项1', label: '北京' },

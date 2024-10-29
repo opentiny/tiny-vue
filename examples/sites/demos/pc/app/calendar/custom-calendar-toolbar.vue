@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Calendar, Button } from '@opentiny/vue'
+import { TinyCalendar, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendar: Calendar,
-    TinyButton: Button
+    TinyCalendar,
+    TinyButton
   },
   methods: {
     toToday(scope) {

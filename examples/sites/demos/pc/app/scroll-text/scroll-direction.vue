@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { ScrollText } from '@opentiny/vue'
+import { TinyScrollText } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyScrollText: ScrollText
+    TinyScrollText
   }
 }
 </script>

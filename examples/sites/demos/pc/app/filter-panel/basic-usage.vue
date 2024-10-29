@@ -21,15 +21,15 @@
 </template>
 
 <script>
-import { FilterPanel, Radio, RadioGroup, Input, Switch } from '@opentiny/vue'
+import { TinyFilterPanel, TinyRadio, TinyRadioGroup, TinyInput, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinyFilterPanel: FilterPanel,
-    TinyInput: Input,
-    TinySwitch: Switch
+    TinyRadio,
+    TinyRadioGroup,
+    TinyFilterPanel,
+    TinyInput,
+    TinySwitch
   },
   data() {
     return {

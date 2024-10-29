@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import { Button, Modal, Form, FormItem, Input } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input
+    TinyButton,
+    TinyModal,
+    TinyForm,
+    TinyFormItem,
+    TinyInput
   },
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.confirm({
+      TinyModal.confirm({
         message: '窗口内容',
         title: '自定义弹窗标题',
         showHeader: true,

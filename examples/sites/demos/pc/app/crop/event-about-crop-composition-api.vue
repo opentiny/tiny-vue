@@ -19,45 +19,45 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Crop as TinyCrop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function getCanvasData() {
-  Modal.message({
+  TinyModal.message({
     message: `Canvas 数据：${JSON.stringify(cropRef.value.getCropBoxData())}`,
     status: 'info'
   })
 }
 
 function cropdata(data) {
-  Modal.message({
+  TinyModal.message({
     message: `Canvas 数据：${JSON.stringify(data)}`,
     status: 'info'
   })
 }
 
 function cropstart(e) {
-  Modal.message({
+  TinyModal.message({
     message: 'cropstart 事件，回调参数：' + e,
     status: 'info'
   })
 }
 
 function cropmove(e) {
-  Modal.message({
+  TinyModal.message({
     message: 'cropmove 事件，回调参数：' + e,
     status: 'info'
   })
 }
 
 function cropend(e) {
-  Modal.message({ message: 'cropend 事件，回调参数：' + e, status: 'info' })
+  TinyModal.message({ message: 'cropend 事件，回调参数：' + e, status: 'info' })
 }
 
 function crop(e) {
-  Modal.message({ message: 'crop 事件，回调参数：' + e, status: 'info' })
+  TinyModal.message({ message: 'crop 事件，回调参数：' + e, status: 'info' })
 }
 </script>

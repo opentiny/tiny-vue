@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Roles, Modal } from '@opentiny/vue'
+import { TinyRoles, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRoles: Roles
+    TinyRoles
   },
   data() {
     return {
@@ -170,7 +170,7 @@ export default {
       /* 选中值发生变化时触发 */
       this.roleId = roleId
 
-      Modal.message(`当前选中的角色id是${roleId}`)
+      TinyModal.message(`当前选中的角色id是${roleId}`)
     }
   }
 }

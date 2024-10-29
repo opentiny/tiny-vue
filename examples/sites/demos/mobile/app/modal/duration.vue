@@ -7,18 +7,18 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     baseClick() {
-      Modal.message({ message: '默认3000ms后自动关闭提示框', tiny_mode: 'mobile' })
+      TinyModal.message({ message: '默认3000ms后自动关闭提示框', tiny_mode: 'mobile' })
     },
     successClick() {
-      Modal.message({
+      TinyModal.message({
         message: '500ms后自动关闭提示框',
         status: 'success',
         duration: '500',
@@ -26,7 +26,7 @@ export default {
       })
     },
     errorClick() {
-      Modal.message({
+      TinyModal.message({
         message: '5000ms后自动关闭提示框',
         status: 'error',
         duration: '5000',

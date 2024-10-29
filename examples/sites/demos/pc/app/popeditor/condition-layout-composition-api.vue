@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Select, Numeric } from '@opentiny/vue'
+import { TinyPopeditor, TinySelect, TinyNumeric } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
 const value = ref(5)
@@ -22,7 +22,7 @@ const gridOp = ref({
     {
       field: 'id',
       title: 'ID',
-      width: 40
+      width: 50
     },
     {
       field: 'name',
@@ -46,16 +46,11 @@ const gridOp = ref({
 })
 const conditions = ref([
   {
-    label: '公司名',
-    field: 'name',
-    span: 12,
-    labelWidth: '160px',
-    attrs: { clearable: true }
-  },
-  {
     label: '城市',
     field: 'city',
-    component: hooks.markRaw(Select),
+    labelWidth: '50px',
+    component: hooks.markRaw(TinySelect),
+    labelPosition: 'left',
     attrs: {
       options: [
         { label: '福州', value: 'fz' },
@@ -64,7 +59,13 @@ const conditions = ref([
     },
     span: 6
   },
-  { label: '员工', field: 'employees', component: hooks.markRaw(Numeric) }
+  {
+    label: '员工',
+    field: 'employees',
+    span: 6,
+    labelWidth: '50px',
+    component: hooks.markRaw(TinyNumeric)
+  }
 ])
 
 function remoteSearch({ page }) {

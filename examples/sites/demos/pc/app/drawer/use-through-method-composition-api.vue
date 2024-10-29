@@ -6,7 +6,7 @@
 
 <script lang="tsx" setup>
 import { ref } from 'vue'
-import { Drawer, Button as TinyButton } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 import { iconHelp } from '@opentiny/vue-icon'
 
 let drawerInstance = null
@@ -42,6 +42,6 @@ const config = ref({
   }
 })
 const showDrawer = () => {
-  drawerInstance = Drawer.service(config.value)
+  drawerInstance = TinyDrawer.service(config.value)
 }
 </script>

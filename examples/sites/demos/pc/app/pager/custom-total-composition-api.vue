@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Pager as TinyPager } from '@opentiny/vue'
+import { TinyPager } from '@opentiny/vue'
 
 const currentPage = ref(5)
 </script>

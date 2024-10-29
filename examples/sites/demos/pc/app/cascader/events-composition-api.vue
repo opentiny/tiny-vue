@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Cascader as TinyCascader, Modal } from '@opentiny/vue'
+import { TinyCascader, TinyModal } from '@opentiny/vue'
 
 const value = ref('anzhuangcli')
 const options = ref([
@@ -217,30 +217,30 @@ const options = ref([
 const cascaderRef = ref()
 
 function visibleChange(val) {
-  Modal.message({
+  TinyModal.message({
     message: '当前触发了:visible-change 事件,当前状态为：' + val,
     status: 'info'
   })
 }
 
 function handleFocus() {
-  Modal.message({ message: '当前触发了:focus 事件', status: 'info' })
+  TinyModal.message({ message: '当前触发了:focus 事件', status: 'info' })
 }
 
 function expandChange() {
-  Modal.message({
+  TinyModal.message({
     message: '当前触发了:expand-change 事件',
     status: 'info'
   })
 }
 
 function handleblur() {
-  Modal.message({ message: '当前触发了:blur 事件', status: 'info' })
+  TinyModal.message({ message: '当前触发了:blur 事件', status: 'info' })
 }
 
 function handleChange(value) {
   let checkVal = cascaderRef.value.getCheckedNodes(true)
-  Modal.message({
+  TinyModal.message({
     message: 'change 事件，当前选中的值为:' + checkVal[0].label + '；传入的值为：' + value,
     status: 'info'
   })

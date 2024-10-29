@@ -28,7 +28,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Huicharts as TinyChart, Button as TinyButton } from '@opentiny/vue'
+import { TinyHuicharts as TinyChart, TinyButton } from '@opentiny/vue'
 
 const colorMode = ref('default')
 const key = ref(0)
@@ -43,18 +43,18 @@ const options1 = ref({
     icon: 'line'
   },
   data: [
-    { 'Month': 'Jan', 'Domestics': 33, 'Abroad': 37 },
-    { 'Month': 'Feb', 'Domestics': 27, 'Abroad': 39 },
-    { 'Month': 'Mar', 'Domestics': 31, 'Abroad': 20 },
-    { 'Month': 'Apr', 'Domestics': 30, 'Abroad': 15 },
-    { 'Month': 'May', 'Domestics': 37, 'Abroad': 13 },
-    { 'Month': 'Jun', 'Domestics': 36, 'Abroad': 17 },
-    { 'Month': 'Jul', 'Domestics': 42, 'Abroad': 22 },
-    { 'Month': 'Aug', 'Domestics': 22, 'Abroad': 12 },
-    { 'Month': 'Sep', 'Domestics': 17, 'Abroad': 30 },
-    { 'Month': 'Oct', 'Domestics': 40, 'Abroad': 33 },
-    { 'Month': 'Nov', 'Domestics': 42, 'Abroad': 22 },
-    { 'Month': 'Dec', 'Domestics': 32, 'Abroad': 11 }
+    { Month: 'Jan', Domestics: 33, Abroad: 37 },
+    { Month: 'Feb', Domestics: 27, Abroad: 39 },
+    { Month: 'Mar', Domestics: 31, Abroad: 20 },
+    { Month: 'Apr', Domestics: 30, Abroad: 15 },
+    { Month: 'May', Domestics: 37, Abroad: 13 },
+    { Month: 'Jun', Domestics: 36, Abroad: 17 },
+    { Month: 'Jul', Domestics: 42, Abroad: 22 },
+    { Month: 'Aug', Domestics: 22, Abroad: 12 },
+    { Month: 'Sep', Domestics: 17, Abroad: 30 },
+    { Month: 'Oct', Domestics: 40, Abroad: 33 },
+    { Month: 'Nov', Domestics: 42, Abroad: 22 },
+    { Month: 'Dec', Domestics: 32, Abroad: 11 }
   ],
   xAxis: {
     data: 'Month'
@@ -71,18 +71,18 @@ const options2 = ref({
     icon: 'line'
   },
   data: [
-    { 'Month': 'Jan', 'Domestics': 33, 'Abroad': 37 },
-    { 'Month': 'Feb', 'Domestics': 27, 'Abroad': 39 },
-    { 'Month': 'Mar', 'Domestics': 31, 'Abroad': 20 },
-    { 'Month': 'Apr', 'Domestics': 30, 'Abroad': 15 },
-    { 'Month': 'May', 'Domestics': 37, 'Abroad': 13 },
-    { 'Month': 'Jun', 'Domestics': 36, 'Abroad': 17 },
-    { 'Month': 'Jul', 'Domestics': 42, 'Abroad': 22 },
-    { 'Month': 'Aug', 'Domestics': 22, 'Abroad': 12 },
-    { 'Month': 'Sep', 'Domestics': 17, 'Abroad': 30 },
-    { 'Month': 'Oct', 'Domestics': 40, 'Abroad': 33 },
-    { 'Month': 'Nov', 'Domestics': 42, 'Abroad': 22 },
-    { 'Month': 'Dec', 'Domestics': 32, 'Abroad': 11 }
+    { Month: 'Jan', Domestics: 33, Abroad: 37 },
+    { Month: 'Feb', Domestics: 27, Abroad: 39 },
+    { Month: 'Mar', Domestics: 31, Abroad: 20 },
+    { Month: 'Apr', Domestics: 30, Abroad: 15 },
+    { Month: 'May', Domestics: 37, Abroad: 13 },
+    { Month: 'Jun', Domestics: 36, Abroad: 17 },
+    { Month: 'Jul', Domestics: 42, Abroad: 22 },
+    { Month: 'Aug', Domestics: 22, Abroad: 12 },
+    { Month: 'Sep', Domestics: 17, Abroad: 30 },
+    { Month: 'Oct', Domestics: 40, Abroad: 33 },
+    { Month: 'Nov', Domestics: 42, Abroad: 22 },
+    { Month: 'Dec', Domestics: 32, Abroad: 11 }
   ],
   xAxis: {
     data: 'Month'

@@ -21,24 +21,24 @@
 </template>
 
 <script>
-import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   methods: {
     saveSetting(settingConfigs) {
-      Modal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
+      TinyModal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
     },
     cancelSetting(settingConfigs) {
-      Modal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
+      TinyModal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
     },
     resetSetting() {
-      Modal.alert('点击了重置按钮')
+      TinyModal.alert('点击了重置按钮')
     }
   },
   data() {

@@ -4,7 +4,7 @@
     <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
     <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
     <div style="position: relative">
-      <ColorSelectPanel
+      <tiny-color-select-panel
         v-model="color"
         :visible="visible"
         @confirm="onConfirm"
@@ -18,14 +18,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ColorSelectPanel, Button as TinyButton, Notify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton, TinyNotify } from '@opentiny/vue'
 
 const color = ref('#66ccff')
 const visible = ref(false)
 const changeVisible = () => (visible.value = !visible.value)
 const hidden = () => (visible.value = false)
 const onConfirm = (msg) => {
-  Notify({
+  TinyNotify({
     type: 'success',
     position: 'top-right',
     title: '用户点击了选择',
@@ -34,7 +34,7 @@ const onConfirm = (msg) => {
   hidden()
 }
 const onCancel = () => {
-  Notify({
+  TinyNotify({
     type: 'error',
     position: 'top-right',
     title: '用户点击了取消'

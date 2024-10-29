@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconWebPlus, iconSuccessful, iconCloseSquare } from '@opentiny/vue-icon'
 
 const options = ref([

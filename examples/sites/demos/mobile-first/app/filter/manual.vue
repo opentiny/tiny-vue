@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import { Filter, Button, SelectMobile } from '@opentiny/vue'
+import { TinyFilter, TinyButton, TinySelectMobile } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFilter: Filter,
-    TinySelectMobile: SelectMobile,
-    TinyButton: Button
+    TinyFilter,
+    TinySelectMobile,
+    TinyButton
   },
   data() {
     return {
@@ -162,6 +162,7 @@ const filterList = [
     ]
   }
 ]
+
 const list = [
   {
     id: 1,

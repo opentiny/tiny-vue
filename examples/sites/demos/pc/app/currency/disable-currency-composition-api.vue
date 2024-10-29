@@ -8,13 +8,13 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Currency as TinyCurrency, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCurrency, TinyButton, TinyModal } from '@opentiny/vue'
 
 const value = ref('VUV')
 const disabled = ref(false)
 
 function change(val) {
-  Modal.message({ message: '当前选择值：' + val, status: 'info' })
+  TinyModal.message({ message: '当前选择值：' + val, status: 'info' })
 }
 
 function Switchover() {

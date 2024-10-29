@@ -16,12 +16,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, UserHead } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyUserHead } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const mockData = [
@@ -90,6 +90,7 @@ export default {
         employees: 540
       }
     ]
+
     return {
       tableData: mockData
     }
@@ -107,7 +108,7 @@ export default {
       )
     },
     renderUserHead(h, { row }) {
-      const UserHeadImg = UserHead
+      const UserHeadImg = TinyUserHead
 
       return (
         <span>

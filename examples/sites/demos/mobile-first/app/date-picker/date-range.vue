@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { DatePicker, Modal } from '@opentiny/vue'
+import { TinyDatePicker, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -18,11 +18,11 @@ export default {
       onPickOptions: {
         onPick: (val) => {
           if (val.maxDate) {
-            Modal.message({
+            TinyModal.message({
               message: '当前获取的值 maxDate' + val.maxDate,
               status: 'info'
             })
-            Modal.message({
+            TinyModal.message({
               message: '当前获取的值 minDate：' + val.minDate,
               status: 'info'
             })

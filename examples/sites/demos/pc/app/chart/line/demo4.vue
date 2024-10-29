@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsLine } from '@opentiny/vue'
+import { TinyHuichartsLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: HuichartsLine
+    TinyLine: TinyHuichartsLine
   },
   data() {
     return {
@@ -20,18 +20,18 @@ export default {
           icon: 'line'
         },
         data: [
-          { 'Month': 'Jan', 'Domestic': 33, 'Abroad': 1 },
-          { 'Month': 'Feb', 'Domestic': 27, 'Abroad': 39 },
-          { 'Month': 'Mar', 'Domestic': 31, 'Abroad': 20 },
-          { 'Month': 'Apr', 'Domestic': '', 'Abroad': undefined },
-          { 'Month': 'May', 'Domestic': 37, 'Abroad': 1 },
-          { 'Month': 'Jun', 'Domestic': '', 'Abroad': '' },
-          { 'Month': 'Jul', 'Domestic': 42, 'Abroad': 22 },
-          { 'Month': 'Aug', 'Domestic': 22, 'Abroad': 12 },
-          { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
-          { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
-          { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
-          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 }
+          { Month: 'Jan', Domestic: 33, Abroad: 1 },
+          { Month: 'Feb', Domestic: 27, Abroad: 39 },
+          { Month: 'Mar', Domestic: 31, Abroad: 20 },
+          { Month: 'Apr', Domestic: '', Abroad: undefined },
+          { Month: 'May', Domestic: 37, Abroad: 1 },
+          { Month: 'Jun', Domestic: '', Abroad: '' },
+          { Month: 'Jul', Domestic: 42, Abroad: 22 },
+          { Month: 'Aug', Domestic: 22, Abroad: 12 },
+          { Month: 'Sep', Domestic: 17, Abroad: 30 },
+          { Month: 'Oct', Domestic: 40, Abroad: 33 },
+          { Month: 'Nov', Domestic: 42, Abroad: 22 },
+          { Month: 'Dec', Domestic: 32, Abroad: 1 }
         ],
         xAxis: 'Month',
         yAxis: {

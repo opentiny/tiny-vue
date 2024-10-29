@@ -16,15 +16,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Numeric, Radio } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyNumeric, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyNumeric,
+    TinyRadio
   },
   data() {
     return {

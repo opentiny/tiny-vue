@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { UserContact as TinyUserContact } from '@opentiny/vue'
+import { TinyUserContact } from '@opentiny/vue'
 import { reactive } from 'vue'
 
 const data = reactive({

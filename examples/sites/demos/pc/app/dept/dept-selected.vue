@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Dept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     selected(value) {
-      Modal.message({ message: '下拉选项值改变为: ' + value, status: 'info' })
+      TinyModal.message({ message: '下拉选项值改变为: ' + value, status: 'info' })
     }
   }
 }

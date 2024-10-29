@@ -35,15 +35,15 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, Button, DialogBox } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyDialogBox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyDialogBox: DialogBox
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinyDialogBox
   },
   data() {
     return {

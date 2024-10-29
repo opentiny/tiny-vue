@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="jsx">
-import { Locales as TinyLocales } from '@opentiny/vue'
+import { TinyLocales } from '@opentiny/vue'
 
 function getLocale() {
   // resolve 出来的必须是国际化的 key

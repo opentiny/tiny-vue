@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const drawer = ref()
@@ -29,7 +29,7 @@ const forceClose = () => {
 }
 
 const onBeforeClose = (type) => {
-  Modal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
+  TinyModal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
   return false
 }
 </script>

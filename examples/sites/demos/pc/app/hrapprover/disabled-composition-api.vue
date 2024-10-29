@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Hrapprover as TinyHrapprover, Button as TinyButton } from '@opentiny/vue'
+import { TinyHrapprover, TinyButton } from '@opentiny/vue'
 
 const disabled = ref(false)
 const value = ref('022471')

@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeSelect as TinyTimeSelect, Button as TinyButton } from '@opentiny/vue'
+import { TinyTimeSelect, TinyButton } from '@opentiny/vue'
 
 const value = ref('')
 const timeSelectRef = ref()

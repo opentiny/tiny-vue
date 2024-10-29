@@ -55,16 +55,16 @@
 </template>
 
 <script>
-import { ConfigProvider, Button, Input, Layout, Row, Col } from '@opentiny/vue'
+import { TinyConfigProvider, TinyButton, TinyInput, TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyConfigProvider: ConfigProvider,
-    TinyButton: Button,
-    TinyInput: Input,
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyConfigProvider,
+    TinyButton,
+    TinyInput,
+    TinyLayout,
+    TinyRow,
+    TinyCol
   },
   data() {
     return {

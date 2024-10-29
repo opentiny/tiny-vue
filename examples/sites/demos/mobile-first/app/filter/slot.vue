@@ -43,13 +43,13 @@
 </template>
 
 <script>
-import { Filter, Button } from '@opentiny/vue'
+import { TinyFilter, TinyButton } from '@opentiny/vue'
 import { IconExpressSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFilter: Filter,
-    TinyButton: Button,
+    TinyFilter,
+    TinyButton,
     IconExpressSearch: IconExpressSearch()
   },
   data() {

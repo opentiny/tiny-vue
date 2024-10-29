@@ -51,15 +51,15 @@
 </template>
 
 <script>
-import { BaseSelect, Option, Input, Button, DialogBox, Modal } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyInput, TinyButton, TinyDialogBox, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyDialogBox: DialogBox
+    TinyBaseSelect,
+    TinyOption,
+    TinyInput,
+    TinyButton,
+    TinyDialogBox
   },
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
     },
     handleConfirm() {
       if (!this.optionLabel || !this.optionValue) {
-        Modal.message({ message: '选项不能为空！', status: 'warning' })
+        TinyModal.message({ message: '选项不能为空！', status: 'warning' })
         return
       }
       this.boxVisibility = false

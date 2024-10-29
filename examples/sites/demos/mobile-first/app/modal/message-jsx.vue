@@ -9,12 +9,12 @@
 </template>
 
 <script lang="jsx">
-import { Radio, Modal, Button } from '@opentiny/vue'
+import { TinyRadio, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyButton: Button
+    TinyRadio,
+    TinyButton
   },
   data() {
     return {
@@ -44,13 +44,13 @@ export default {
 
       switch (this.value) {
         case 'message':
-          method = Modal.message
+          method = TinyModal.message
           break
         case 'confirm':
-          method = Modal.confirm
+          method = TinyModal.confirm
           break
         case 'alert':
-          method = Modal.alert
+          method = TinyModal.alert
           break
       }
 
@@ -72,27 +72,27 @@ export default {
         ],
         events: {
           show() {
-            Modal.message('show')
+            TinyModal.message('show')
           },
           hide() {
-            Modal.message('hide')
+            TinyModal.message('hide')
           },
           close() {
-            Modal.message('close')
+            TinyModal.message('close')
           },
           confirm() {
-            Modal.message('confirm')
+            TinyModal.message('confirm')
           },
           cancel() {
-            Modal.message('cancel')
+            TinyModal.message('cancel')
           }
         }
       }).then((type) => {
-        Modal.message('关闭就会触发，' + type)
+        TinyModal.message('关闭就会触发，' + type)
       })
     },
     showDialog() {
-      Modal.alert({
+      TinyModal.alert({
         status: 'error',
         title: '错误提示',
         message: '嵌套弹出框'

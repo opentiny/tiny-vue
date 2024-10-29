@@ -3,15 +3,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.message({ message: '距离顶部的位置为500', top: 500, tiny_mode: 'mobile' })
+      TinyModal.message({ message: '距离顶部的位置为500', top: 500, tiny_mode: 'mobile' })
     }
   }
 }

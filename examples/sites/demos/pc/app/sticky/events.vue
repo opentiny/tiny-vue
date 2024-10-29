@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import { Sticky, Button } from '@opentiny/vue'
+import { TinySticky, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySticky: Sticky,
-    TinyButton: Button
+    TinySticky,
+    TinyButton
   },
   methods: {
     change(isFixed) {
-      Modal.message({
+      TinyModal.message({
         message: `触发 change 事件，当前isFixed为：${isFixed}`,
         status: 'info'
       })

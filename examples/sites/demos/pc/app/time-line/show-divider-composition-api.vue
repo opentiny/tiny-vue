@@ -5,7 +5,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
+import { TinyTimeLine, TinyModal } from '@opentiny/vue'
 
 const normalActive = ref(0)
 const data = reactive([{ name: 'Basic Info' }, { name: 'BOQ Info' }, { name: 'Involved Parties' }, { name: 'Billing' }])
@@ -13,6 +13,6 @@ const data = reactive([{ name: 'Basic Info' }, { name: 'BOQ Info' }, { name: 'In
 const normalClick = (index, node) => {
   normalActive.value = index
 
-  Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
+  TinyModal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
 }
 </script>

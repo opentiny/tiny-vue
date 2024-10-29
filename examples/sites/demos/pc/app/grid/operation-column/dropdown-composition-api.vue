@@ -21,13 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  Dropdown as TinyDropdown,
-  DropdownMenu as TinyDropdownMenu,
-  DropdownItem as TinyDropdownItem
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 const tableData = ref([
   {

@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Split as TinySplit } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 import { IconPause } from '@opentiny/vue-icon'
 
 const split2 = ref(0.4)

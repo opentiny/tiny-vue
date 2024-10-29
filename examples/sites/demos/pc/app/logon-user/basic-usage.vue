@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { LogonUser } from '@opentiny/vue'
+import { TinyLogonUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLogonUser: LogonUser
+    TinyLogonUser
   },
   methods: {
     getUserInfo() {

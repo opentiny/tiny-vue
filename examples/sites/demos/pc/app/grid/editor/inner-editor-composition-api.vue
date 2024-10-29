@@ -33,7 +33,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const options = ref([
   { label: '华中区', value: '华中区' },
@@ -135,10 +135,10 @@ const tableData = ref([
 ])
 
 function change() {
-  Modal.message({ message: 'change:', status: 'info' })
+  TinyModal.message({ message: 'change:', status: 'info' })
 }
 
 function input() {
-  Modal.message({ message: 'input:', status: 'info' })
+  TinyModal.message({ message: 'input:', status: 'info' })
 }
 </script>

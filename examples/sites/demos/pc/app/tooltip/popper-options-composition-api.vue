@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tooltip as TinyTooltip } from '@opentiny/vue'
+import { TinyTooltip } from '@opentiny/vue'
 
 const options = ref({
   bubbling: true, // 监听元素所有上级有滚动元素的scroll事件,防止弹出层与页面分离

@@ -9,11 +9,11 @@
 </template>
 
 <script lang="jsx">
-import { PopUpload } from '@opentiny/vue'
+import { TinyPopUpload } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopUpload: PopUpload
+    TinyPopUpload
   },
   data() {
     return {

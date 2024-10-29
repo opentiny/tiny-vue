@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { SelectView, Button } from '@opentiny/vue'
+import { TinySelectView, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelectView: SelectView,
-    TinyButton: Button
+    TinySelectView,
+    TinyButton
   },
   data() {
     const list = [

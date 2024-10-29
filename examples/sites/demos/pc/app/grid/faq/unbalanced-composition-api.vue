@@ -40,7 +40,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 import { iconAdministrator, iconVersiontree } from '@opentiny/vue-icon'
 
 const IconVersiontree = iconVersiontree()

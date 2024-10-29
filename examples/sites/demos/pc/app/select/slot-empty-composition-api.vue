@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect, Button as TinyButton } from '@opentiny/vue'
+import { TinySelect, TinyButton } from '@opentiny/vue'
 
 const value = ref('')
 </script>

@@ -14,13 +14,13 @@
 </template>
 
 <script lang="jsx">
-import { Search, Button } from '@opentiny/vue'
+import { TinySearch, TinyButton } from '@opentiny/vue'
 import { iconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySearch: Search,
-    TinyButton: Button,
+    TinySearch,
+    TinyButton,
     TinyIconSearch: iconSearch()
   },
   data() {

@@ -13,19 +13,19 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyButton: Button,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyButton,
+    TinyGridColumn
   },
   data() {
     return {
       prefetchArgs: [{ property: 'name', sort: 'desc' }],
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,

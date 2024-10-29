@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Menu, Modal } from '@opentiny/vue'
+import { TinyMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMenu: Menu
+    TinyMenu
   },
   data() {
     return {
@@ -173,7 +173,7 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+      TinyModal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
     }
   }
 }

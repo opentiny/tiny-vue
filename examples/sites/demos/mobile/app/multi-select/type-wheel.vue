@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import { MultiSelect, Toast } from '@opentiny/vue'
+import { TinyMultiSelect, TinyToast } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMultiSelect: MultiSelect
+    TinyMultiSelect
   },
   data() {
     return {
@@ -197,12 +197,12 @@ export default {
   methods: {
     confirm(selectedOptions, headerIndex, columnIndices) {
       const selectVal = selectedOptions.reduce((prev, current) => `${prev} - ${current.label}`, '')
-      Toast.service({
+      TinyToast.service({
         text: `选中值: ${selectVal}`
       })
     },
     reset(currentValue, headerIndex, columnIndices) {
-      Toast.service({
+      TinyToast.service({
         text: '已重置为初始值'
       })
     }

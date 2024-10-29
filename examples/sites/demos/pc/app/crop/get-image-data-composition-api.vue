@@ -9,20 +9,20 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Crop as TinyCrop, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function getImageData() {
-  Modal.message({
+  TinyModal.message({
     message: `图像数据：${JSON.stringify(cropRef.value.getImageData())}`,
     status: 'info'
   })
 }
 function getCanvasData() {
-  Modal.message({
+  TinyModal.message({
     message: `画布位置和大小数据: ${JSON.stringify(cropRef.value.getCanvasData())}`,
     status: 'info'
   })

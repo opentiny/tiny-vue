@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { Calendar as TinyCalendar } from '@opentiny/vue'
+import { TinyCalendar } from '@opentiny/vue'
 </script>

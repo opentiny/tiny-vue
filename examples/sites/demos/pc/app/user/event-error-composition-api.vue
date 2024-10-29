@@ -4,12 +4,12 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { User as TinyUser, Modal } from '@opentiny/vue'
+import { TinyUser, TinyModal } from '@opentiny/vue'
 
 const user = ref('')
 
 function queryError(error) {
-  Modal.message({
+  TinyModal.message({
     message: `查询失败:[${error.join(',')}]`,
     status: 'error'
   })

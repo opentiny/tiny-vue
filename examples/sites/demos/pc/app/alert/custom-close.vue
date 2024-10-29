@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { Alert, Notify, Switch } from '@opentiny/vue'
+import { TinyAlert, TinyNotify, TinySwitch } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinySwitch: Switch,
+    TinyAlert,
+    TinySwitch,
     TinyIconCloseCircle: iconCloseCircle()
   },
   data() {
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     close() {
-      Notify({
+      TinyNotify({
         type: 'success',
         message: '触发关闭事件',
         position: 'top-right',

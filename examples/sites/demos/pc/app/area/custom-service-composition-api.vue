@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Area as TinyArea } from '@opentiny/vue'
+import { TinyArea } from '@opentiny/vue'
 
 const value = ref([])
 const field = ref({ label: 'name', value: 'id' })

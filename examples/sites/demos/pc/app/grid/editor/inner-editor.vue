@@ -32,12 +32,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -143,10 +143,10 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({ message: 'change:', status: 'info' })
+      TinyModal.message({ message: 'change:', status: 'info' })
     },
     input() {
-      Modal.message({ message: 'input:', status: 'info' })
+      TinyModal.message({ message: 'input:', status: 'info' })
     }
   }
 }

@@ -37,7 +37,7 @@
 <script setup>
 import { reactive } from 'vue'
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown as TinyDropdown, DropdownMenu as TinyDropdownMenu, Modal } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyModal } from '@opentiny/vue'
 
 const options = reactive([
   {
@@ -109,7 +109,7 @@ const menuOptions = reactive({
 })
 
 const itemClick = (data) => {
-  Modal.message({
+  TinyModal.message({
     message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`
   })
 }

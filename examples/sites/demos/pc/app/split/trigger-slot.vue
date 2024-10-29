@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Split } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 import { IconPause } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySplit: Split,
+    TinySplit,
     TinyIconPause: IconPause()
   },
   data() {

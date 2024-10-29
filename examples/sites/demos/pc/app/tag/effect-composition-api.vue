@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tag as TinyTag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 
 const items = ref([
   { type: '', label: '标签一' },

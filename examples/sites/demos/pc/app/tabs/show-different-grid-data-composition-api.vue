@@ -25,7 +25,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem, Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const activeName = ref('second')
 const tableData = ref([

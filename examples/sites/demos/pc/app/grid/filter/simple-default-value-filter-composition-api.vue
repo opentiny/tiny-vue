@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal, Input } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyInput } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -87,12 +87,12 @@ const nameFilter = ref({
   },
   simpleFilter: {
     searchConfig: {
-      component: Input
+      component: TinyInput
     }
   }
 })
 
 function filterChangeEvent({ filters }) {
-  Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+  TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
 }
 </script>

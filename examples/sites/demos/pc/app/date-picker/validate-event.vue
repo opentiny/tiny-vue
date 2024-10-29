@@ -26,16 +26,16 @@
 </template>
 
 <script>
-import { Form, FormItem, Button, TimePicker, DatePicker, Input, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyButton, TinyTimePicker, TinyDatePicker, TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyTimePicker: TimePicker,
-    TinyDatePicker: DatePicker
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinyTimePicker,
+    TinyDatePicker
   },
   data() {
     return {
@@ -71,9 +71,9 @@ export default {
     submitForm() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.message({ message: 'Submitted successfully !', status: 'success' })
+          TinyModal.message({ message: 'Submitted successfully !', status: 'success' })
         } else {
-          Modal.message({ message: 'Data verification failed !', status: 'error' })
+          TinyModal.message({ message: 'Data verification failed !', status: 'error' })
 
           return false
         }

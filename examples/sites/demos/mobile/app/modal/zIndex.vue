@@ -3,15 +3,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: 'zIndex的值为500', zIndex: 500, tiny_mode: 'mobile' })
+      TinyModal.alert({ message: 'zIndex的值为500', zIndex: 500, tiny_mode: 'mobile' })
     }
   }
 }

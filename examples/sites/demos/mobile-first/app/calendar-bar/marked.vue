@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { CalendarBar } from '@opentiny/vue'
+import { TinyCalendarBar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendarBar: CalendarBar
+    TinyCalendarBar
   },
   data() {
     return {

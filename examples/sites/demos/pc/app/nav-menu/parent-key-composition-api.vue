@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { NavMenu as TinyNavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 
 const menuData = ref([
   { id: 1, pid: 0, title: '首页', url: '' },

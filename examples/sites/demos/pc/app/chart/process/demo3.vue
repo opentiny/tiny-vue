@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsProcess } from '@opentiny/vue'
+import { TinyHuichartsProcess } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProcess: HuichartsProcess
+    TinyProcess: TinyHuichartsProcess
   },
   data() {
     return {
@@ -19,8 +19,7 @@ export default {
         // 主题,默认值'light'
         theme: 'light',
         // Padding控制图表距离容器的上、右、下、左padding值
-        padding: [32, 32, 0, 32],
-        // 颜色组，循环使用
+        padding: [32, 32, 0, 32], // 颜色组，循环使用
         color: ['#fa2a2d', '#ff7500', '#ffbf00', '#41ba41', '#00aaee'],
         barWidth: 25,
         calibrationValue: 250,

@@ -15,12 +15,12 @@
 </template>
 
 <script lang="jsx">
-import { Crop, Button, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -35,12 +35,12 @@ export default {
       if (canvas.toBlob) {
         // 生成 Blob 图片格式
         canvas.toBlob((img) => {
-          Modal.message({ message: `Blob：${img.size}`, status: 'info' })
+          TinyModal.message({ message: `Blob：${img.size}`, status: 'info' })
         })
       } else if (canvas.msToBlob) {
         // 生成兼容 IE 的 Blob 图片格式
         const img = canvas.msToBlob()
-        Modal.message({ message: `Blob：${img.size}`, status: 'info' })
+        TinyModal.message({ message: `Blob：${img.size}`, status: 'info' })
       } else {
         // 生成 base64 图片格式
         canvas.toDataURL('image/jpeg')

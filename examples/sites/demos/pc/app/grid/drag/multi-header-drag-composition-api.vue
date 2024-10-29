@@ -99,7 +99,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const dropConfig = ref({
   // 在设置 scheme 标志位 v2 时，列拖拽使用新方案。不影响行拖拽使用 sortablejs
@@ -141,10 +141,10 @@ const tableData = ref([
 ])
 
 function columnDragStart() {
-  Modal.message({ message: '列拖拽开始', status: 'info' })
+  TinyModal.message({ message: '列拖拽开始', status: 'info' })
 }
 function columnDrop() {
-  Modal.message({ message: '列拖拽结束', status: 'info' })
+  TinyModal.message({ message: '列拖拽结束', status: 'info' })
 }
 </script>
 

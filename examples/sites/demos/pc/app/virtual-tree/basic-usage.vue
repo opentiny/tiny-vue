@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { VirtualTree, Button, Modal } from '@opentiny/vue'
+import { TinyVirtualTree, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyVirtualTree: VirtualTree,
-    TinyButton: Button
+    TinyVirtualTree,
+    TinyButton
   },
   computed: {
     treeOp() {
@@ -77,7 +77,7 @@ export default {
       return treeData
     },
     handleNodeClick(data) {
-      Modal.message({ message: `${data.label}`, status: 'info' })
+      TinyModal.message({ message: `${data.label}`, status: 'info' })
     }
   }
 }

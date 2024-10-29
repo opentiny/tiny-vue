@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { SelectMobile, Button } from '@opentiny/vue'
+import { TinySelectMobile, TinyButton } from '@opentiny/vue'
 
 const list = [
   {
@@ -43,8 +43,8 @@ const list = [
 
 export default {
   components: {
-    TinySelectMobile: SelectMobile,
-    TinyButton: Button
+    TinySelectMobile,
+    TinyButton
   },
   data() {
     return {

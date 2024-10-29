@@ -16,10 +16,10 @@
 </template>
 
 <script setup lang="jsx">
-import { Popover as TinyPopover, Notify, Button as TinyButton } from '@opentiny/vue'
+import { TinyPopover, TinyNotify, TinyButton } from '@opentiny/vue'
 
 function enter() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '进入的动画结束后触发',
     offset: 100
@@ -27,7 +27,7 @@ function enter() {
 }
 
 function leave() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '离开的动画结束后触发',
     offset: 100
@@ -35,7 +35,7 @@ function leave() {
 }
 
 function show() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '显示时触发',
     offset: 100
@@ -43,7 +43,7 @@ function show() {
 }
 
 function hide() {
-  Notify({
+  TinyNotify({
     title: '提示',
     message: '隐藏时触发',
     offset: 100

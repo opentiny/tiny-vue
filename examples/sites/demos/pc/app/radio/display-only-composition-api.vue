@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Radio as TinyRadio, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
+import { TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 const value = ref('1')
 const value1 = ref('B')

@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { DropTimes } from '@opentiny/vue'
+import { TinyDropTimes } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropTimes: DropTimes
+    TinyDropTimes
   },
   data() {
     return {

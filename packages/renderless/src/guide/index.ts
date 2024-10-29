@@ -62,6 +62,10 @@ export const mounted =
     }
   }
 
+export const beforeUnmount = (state) => () => {
+  state.tour.hide()
+}
+
 const getItemCopy = (props, tour, result) => {
   const { domData } = props
 

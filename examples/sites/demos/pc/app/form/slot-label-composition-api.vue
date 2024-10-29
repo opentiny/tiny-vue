@@ -28,19 +28,11 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  Modal,
-  RadioGroup as TinyRadioGroup
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyModal, TinyRadioGroup } from '@opentiny/vue'
 import { AutoTip as VAutoTip } from '@opentiny/vue-directive'
 
 function handleClick() {
-  Modal.message({ message: 'click', status: 'info' })
+  TinyModal.message({ message: 'click', status: 'info' })
 }
 
 const options = ref([
@@ -72,7 +64,7 @@ const ruleFormRef = ref()
 function handleSubmit() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.alert('提交成功')
+      TinyModal.alert('提交成功')
     }
   })
 }

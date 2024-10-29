@@ -34,13 +34,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  Button as TinyButton,
-  GridToolbar as TinyGridToolbar,
-  Modal
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 function canRemove(node, nodes) {
   let flag = false
@@ -282,13 +276,13 @@ function removeEvent() {
 function getRemoveEvent() {
   let removeRecords = removeList.value
 
-  Modal.alert(removeRecords.length)
+  TinyModal.alert(removeRecords.length)
 }
 
 function getUpdateEvent() {
   let updateRecords = treeRef.value.getUpdateRecords()
 
-  Modal.alert(updateRecords.length)
+  TinyModal.alert(updateRecords.length)
 }
 
 function clearTreeExpand() {

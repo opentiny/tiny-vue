@@ -40,12 +40,12 @@
 </template>
 
 <script lang="jsx">
-import { Fullscreen } from '@opentiny/vue'
+import { TinyFullscreen } from '@opentiny/vue'
 
 export default {
   name: 'ComponentExample',
   components: {
-    TinyFullscreen: Fullscreen
+    TinyFullscreen
   },
   data() {
     return {

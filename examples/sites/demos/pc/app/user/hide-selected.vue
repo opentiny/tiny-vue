@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { User } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {

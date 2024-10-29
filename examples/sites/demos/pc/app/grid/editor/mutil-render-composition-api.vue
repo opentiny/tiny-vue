@@ -11,7 +11,7 @@
         field="area"
         title="区域"
         :editor="{
-          component: Select,
+          component: TinySelect,
           attrs: {
             multiple: true,
             options,
@@ -38,7 +38,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Select } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
 
 const options = ref([
   { name: '华中区', id: '1' },

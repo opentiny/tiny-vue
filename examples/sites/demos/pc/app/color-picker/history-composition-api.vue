@@ -1,15 +1,15 @@
 <template>
   <div>
-    <ColorPicker v-model="color" :history="history" />
+    <tiny-color-picker v-model="color" :history="history" />
     <br />
-    <Button @click="addHistoryColor">Append history color</Button>
-    <Button @click="popHistoryColor">Pop history color</Button>
+    <tiny-button @click="addHistoryColor">Append history color</tiny-button>
+    <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { ColorPicker, Button } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 
 const color = ref('#66ccff')
 const history = ref(['#66ccff'])

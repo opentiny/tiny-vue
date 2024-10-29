@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { SelectMobile, Button } from '@opentiny/vue'
+import { TinySelectMobile, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelectMobile: SelectMobile,
-    TinyButton: Button
+    TinySelectMobile,
+    TinyButton
   },
   data() {
     const list = [
@@ -60,6 +60,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .page__hd {
   padding: 40px;

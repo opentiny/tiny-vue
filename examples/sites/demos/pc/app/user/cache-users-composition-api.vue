@@ -15,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { User as TinyUser } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 const user1 = ref('test1,test2,test3')
 const user2 = ref('test1,test10')

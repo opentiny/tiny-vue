@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { QueryBuilder } from '@opentiny/vue'
+import { TinyQueryBuilder } from '@opentiny/vue'
 import { random } from '@opentiny/vue-renderless/common/string'
 
 export default {
   components: {
-    TinyQueryBuilder: QueryBuilder
+    TinyQueryBuilder
   },
   data() {
     return {
@@ -136,1233 +136,1233 @@ const config = {
   showLockButtons: false,
   combinators: [
     {
-      'name': 'and',
-      'label': '且'
+      name: 'and',
+      label: '且'
     },
     {
-      'name': 'or',
-      'label': '或'
+      name: 'or',
+      label: '或'
     }
   ],
   fields: [
     {
-      'name': 'firstName',
-      'label': 'First Name',
-      'placeholder': '请输入',
+      name: 'firstName',
+      label: 'First Name',
+      placeholder: '请输入',
       validator: (r) => !!r.value
     },
     {
-      'name': 'lastName',
-      'label': 'Last Name',
-      'placeholder': 'Enter last name',
-      'defaultOperator': 'beginsWith',
+      name: 'lastName',
+      label: 'Last Name',
+      placeholder: 'Enter last name',
+      defaultOperator: 'beginsWith',
       validator: (r) => !!r.value
     },
     {
-      'name': 'age',
-      'label': 'Age',
-      'inputType': 'number',
+      name: 'age',
+      label: 'Age',
+      inputType: 'number',
       validator: (r) => !!r.value
     },
     {
-      'name': 'isMusician',
-      'label': 'Is a musician',
-      'valueEditorType': 'checkbox',
-      'operators': [
+      name: 'isMusician',
+      label: 'Is a musician',
+      valueEditorType: 'checkbox',
+      operators: [
         {
-          'name': '=',
-          'label': '='
+          name: '=',
+          label: '='
         }
       ],
-      'defaultValue': false,
+      defaultValue: false,
       validator: (r) => !!r.value
     },
     {
-      'name': 'instrument',
-      'label': 'Primary instrument',
-      'valueEditorType': 'select',
-      'values': [
+      name: 'instrument',
+      label: 'Primary instrument',
+      valueEditorType: 'select',
+      values: [
         {
-          'label': 'Percussion instruments',
-          'options': [
+          label: 'Percussion instruments',
+          options: [
             {
-              'name': 'Clapstick',
-              'label': 'Clapstick'
+              name: 'Clapstick',
+              label: 'Clapstick'
             },
             {
-              'name': 'Cowbell',
-              'label': 'Cowbell'
+              name: 'Cowbell',
+              label: 'Cowbell'
             },
             {
-              'name': 'Cymbal',
-              'label': 'Cymbal'
+              name: 'Cymbal',
+              label: 'Cymbal'
             },
             {
-              'name': 'Gong',
-              'label': 'Gong'
+              name: 'Gong',
+              label: 'Gong'
             },
             {
-              'name': 'Maraca',
-              'label': 'Maraca'
+              name: 'Maraca',
+              label: 'Maraca'
             },
             {
-              'name': 'Marimba',
-              'label': 'Marimba'
+              name: 'Marimba',
+              label: 'Marimba'
             },
             {
-              'name': 'More cowbell',
-              'label': 'More cowbell'
+              name: 'More cowbell',
+              label: 'More cowbell'
             },
             {
-              'name': 'Spoon',
-              'label': 'Spoon'
+              name: 'Spoon',
+              label: 'Spoon'
             },
             {
-              'name': 'Steelpan',
-              'label': 'Steelpan'
+              name: 'Steelpan',
+              label: 'Steelpan'
             },
             {
-              'name': 'Tambourine',
-              'label': 'Tambourine'
+              name: 'Tambourine',
+              label: 'Tambourine'
             },
             {
-              'name': 'Triangle',
-              'label': 'Triangle'
+              name: 'Triangle',
+              label: 'Triangle'
             },
             {
-              'name': 'Vibraphone',
-              'label': 'Vibraphone'
+              name: 'Vibraphone',
+              label: 'Vibraphone'
             },
             {
-              'name': 'Washboard',
-              'label': 'Washboard'
+              name: 'Washboard',
+              label: 'Washboard'
             },
             {
-              'name': 'Wood block',
-              'label': 'Wood block'
+              name: 'Wood block',
+              label: 'Wood block'
             },
             {
-              'name': 'Wooden fish',
-              'label': 'Wooden fish'
+              name: 'Wooden fish',
+              label: 'Wooden fish'
             },
             {
-              'name': 'Xylophone',
-              'label': 'Xylophone'
+              name: 'Xylophone',
+              label: 'Xylophone'
             }
           ]
         },
         {
-          'label': 'Membranophones',
-          'options': [
+          label: 'Membranophones',
+          options: [
             {
-              'name': 'Barrel drum',
-              'label': 'Barrel drum'
+              name: 'Barrel drum',
+              label: 'Barrel drum'
             },
             {
-              'name': 'Bass drum',
-              'label': 'Bass drum'
+              name: 'Bass drum',
+              label: 'Bass drum'
             },
             {
-              'name': 'Bongo drums',
-              'label': 'Bongo drums'
+              name: 'Bongo drums',
+              label: 'Bongo drums'
             },
             {
-              'name': 'Conga',
-              'label': 'Conga'
+              name: 'Conga',
+              label: 'Conga'
             },
             {
-              'name': 'Drum',
-              'label': 'Drum'
+              name: 'Drum',
+              label: 'Drum'
             },
             {
-              'name': 'Drum kit',
-              'label': 'Drum kit'
+              name: 'Drum kit',
+              label: 'Drum kit'
             },
             {
-              'name': "Jew's harp",
-              'label': "Jew's harp"
+              name: "Jew's harp",
+              label: "Jew's harp"
             },
             {
-              'name': 'Octaban',
-              'label': 'Octaban'
+              name: 'Octaban',
+              label: 'Octaban'
             },
             {
-              'name': 'Samphor',
-              'label': 'Samphor'
+              name: 'Samphor',
+              label: 'Samphor'
             },
             {
-              'name': 'Snare drum',
-              'label': 'Snare drum'
+              name: 'Snare drum',
+              label: 'Snare drum'
             },
             {
-              'name': 'Timpani',
-              'label': 'Timpani'
+              name: 'Timpani',
+              label: 'Timpani'
             },
             {
-              'name': 'Tom-tom',
-              'label': 'Tom-tom'
+              name: 'Tom-tom',
+              label: 'Tom-tom'
             }
           ]
         },
         {
-          'label': 'Wind instruments',
-          'options': [
+          label: 'Wind instruments',
+          options: [
             {
-              'name': 'Accordion',
-              'label': 'Accordion'
+              name: 'Accordion',
+              label: 'Accordion'
             },
             {
-              'name': 'Air horn',
-              'label': 'Air horn'
+              name: 'Air horn',
+              label: 'Air horn'
             },
             {
-              'name': 'Bagpipe',
-              'label': 'Bagpipe'
+              name: 'Bagpipe',
+              label: 'Bagpipe'
             },
             {
-              'name': 'Baritone horn',
-              'label': 'Baritone horn'
+              name: 'Baritone horn',
+              label: 'Baritone horn'
             },
             {
-              'name': 'Bassoon',
-              'label': 'Bassoon'
+              name: 'Bassoon',
+              label: 'Bassoon'
             },
             {
-              'name': 'Bazooka',
-              'label': 'Bazooka'
+              name: 'Bazooka',
+              label: 'Bazooka'
             },
             {
-              'name': 'Beatboxing',
-              'label': 'Beatboxing'
+              name: 'Beatboxing',
+              label: 'Beatboxing'
             },
             {
-              'name': 'Blown bottle',
-              'label': 'Blown bottle'
+              name: 'Blown bottle',
+              label: 'Blown bottle'
             },
             {
-              'name': 'Bugle',
-              'label': 'Bugle'
+              name: 'Bugle',
+              label: 'Bugle'
             },
             {
-              'name': 'Clarinet',
-              'label': 'Clarinet'
+              name: 'Clarinet',
+              label: 'Clarinet'
             },
             {
-              'name': 'Conch',
-              'label': 'Conch'
+              name: 'Conch',
+              label: 'Conch'
             },
             {
-              'name': 'Cornet',
-              'label': 'Cornet'
+              name: 'Cornet',
+              label: 'Cornet'
             },
             {
-              'name': 'Didgeridoo',
-              'label': 'Didgeridoo'
+              name: 'Didgeridoo',
+              label: 'Didgeridoo'
             },
             {
-              'name': 'Double bell euphonium',
-              'label': 'Double bell euphonium'
+              name: 'Double bell euphonium',
+              label: 'Double bell euphonium'
             },
             {
-              'name': 'Doulophone',
-              'label': 'Doulophone'
+              name: 'Doulophone',
+              label: 'Doulophone'
             },
             {
-              'name': 'English horn',
-              'label': 'English horn'
+              name: 'English horn',
+              label: 'English horn'
             },
             {
-              'name': 'Euphonium',
-              'label': 'Euphonium'
+              name: 'Euphonium',
+              label: 'Euphonium'
             },
             {
-              'name': 'Flugelhorn',
-              'label': 'Flugelhorn'
+              name: 'Flugelhorn',
+              label: 'Flugelhorn'
             },
             {
-              'name': 'Flute',
-              'label': 'Flute'
+              name: 'Flute',
+              label: 'Flute'
             },
             {
-              'name': 'French horn',
-              'label': 'French horn'
+              name: 'French horn',
+              label: 'French horn'
             },
             {
-              'name': 'Harmonica',
-              'label': 'Harmonica'
+              name: 'Harmonica',
+              label: 'Harmonica'
             },
             {
-              'name': 'Irish flute',
-              'label': 'Irish flute'
+              name: 'Irish flute',
+              label: 'Irish flute'
             },
             {
-              'name': 'Jug',
-              'label': 'Jug'
+              name: 'Jug',
+              label: 'Jug'
             },
             {
-              'name': 'Kazoo',
-              'label': 'Kazoo'
+              name: 'Kazoo',
+              label: 'Kazoo'
             },
             {
-              'name': 'Melodeon',
-              'label': 'Melodeon'
+              name: 'Melodeon',
+              label: 'Melodeon'
             },
             {
-              'name': 'Mezzo-soprano',
-              'label': 'Mezzo-soprano'
+              name: 'Mezzo-soprano',
+              label: 'Mezzo-soprano'
             },
             {
-              'name': 'Oboe',
-              'label': 'Oboe'
+              name: 'Oboe',
+              label: 'Oboe'
             },
             {
-              'name': 'Ocarina',
-              'label': 'Ocarina'
+              name: 'Ocarina',
+              label: 'Ocarina'
             },
             {
-              'name': 'Pan flute',
-              'label': 'Pan flute'
+              name: 'Pan flute',
+              label: 'Pan flute'
             },
             {
-              'name': 'Piccolo',
-              'label': 'Piccolo'
+              name: 'Piccolo',
+              label: 'Piccolo'
             },
             {
-              'name': 'Pipe organ',
-              'label': 'Pipe organ'
+              name: 'Pipe organ',
+              label: 'Pipe organ'
             },
             {
-              'name': 'Recorder',
-              'label': 'Recorder'
+              name: 'Recorder',
+              label: 'Recorder'
             },
             {
-              'name': 'Saxophone',
-              'label': 'Saxophone'
+              name: 'Saxophone',
+              label: 'Saxophone'
             },
             {
-              'name': 'Slide whistle',
-              'label': 'Slide whistle'
+              name: 'Slide whistle',
+              label: 'Slide whistle'
             },
             {
-              'name': 'Sousaphone',
-              'label': 'Sousaphone'
+              name: 'Sousaphone',
+              label: 'Sousaphone'
             },
             {
-              'name': 'Trombone',
-              'label': 'Trombone'
+              name: 'Trombone',
+              label: 'Trombone'
             },
             {
-              'name': 'Trumpet',
-              'label': 'Trumpet'
+              name: 'Trumpet',
+              label: 'Trumpet'
             },
             {
-              'name': 'Tuba',
-              'label': 'Tuba'
+              name: 'Tuba',
+              label: 'Tuba'
             },
             {
-              'name': 'Whistle',
-              'label': 'Whistle'
+              name: 'Whistle',
+              label: 'Whistle'
             }
           ]
         },
         {
-          'label': 'Stringed instruments',
-          'options': [
+          label: 'Stringed instruments',
+          options: [
             {
-              'name': 'Aeolian harp',
-              'label': 'Aeolian harp'
+              name: 'Aeolian harp',
+              label: 'Aeolian harp'
             },
             {
-              'name': 'Bandolin',
-              'label': 'Bandolin'
+              name: 'Bandolin',
+              label: 'Bandolin'
             },
             {
-              'name': 'Banjo ukulele',
-              'label': 'Banjo ukulele'
+              name: 'Banjo ukulele',
+              label: 'Banjo ukulele'
             },
             {
-              'name': 'Cello',
-              'label': 'Cello'
+              name: 'Cello',
+              label: 'Cello'
             },
             {
-              'name': 'Chapman stick',
-              'label': 'Chapman stick'
+              name: 'Chapman stick',
+              label: 'Chapman stick'
             },
             {
-              'name': 'Clavichord',
-              'label': 'Clavichord'
+              name: 'Clavichord',
+              label: 'Clavichord'
             },
             {
-              'name': 'Clavinet',
-              'label': 'Clavinet'
+              name: 'Clavinet',
+              label: 'Clavinet'
             },
             {
-              'name': 'Double bass',
-              'label': 'Double bass'
+              name: 'Double bass',
+              label: 'Double bass'
             },
             {
-              'name': 'Dulcimer',
-              'label': 'Dulcimer'
+              name: 'Dulcimer',
+              label: 'Dulcimer'
             },
             {
-              'name': 'Fiddle',
-              'label': 'Fiddle'
+              name: 'Fiddle',
+              label: 'Fiddle'
             },
             {
-              'name': 'Guitar',
-              'label': 'Guitar'
+              name: 'Guitar',
+              label: 'Guitar'
             },
             {
-              'name': 'Hammered dulcimer',
-              'label': 'Hammered dulcimer'
+              name: 'Hammered dulcimer',
+              label: 'Hammered dulcimer'
             },
             {
-              'name': 'Harp',
-              'label': 'Harp'
+              name: 'Harp',
+              label: 'Harp'
             },
             {
-              'name': 'Harpsichord',
-              'label': 'Harpsichord'
+              name: 'Harpsichord',
+              label: 'Harpsichord'
             },
             {
-              'name': 'Lute',
-              'label': 'Lute'
+              name: 'Lute',
+              label: 'Lute'
             },
             {
-              'name': 'Lyre',
-              'label': 'Lyre'
+              name: 'Lyre',
+              label: 'Lyre'
             },
             {
-              'name': 'Maguhu',
-              'label': 'Maguhu'
+              name: 'Maguhu',
+              label: 'Maguhu'
             },
             {
-              'name': 'Mandola',
-              'label': 'Mandola'
+              name: 'Mandola',
+              label: 'Mandola'
             },
             {
-              'name': 'Mandolin',
-              'label': 'Mandolin'
+              name: 'Mandolin',
+              label: 'Mandolin'
             },
             {
-              'name': 'Octobass',
-              'label': 'Octobass'
+              name: 'Octobass',
+              label: 'Octobass'
             },
             {
-              'name': 'Piano',
-              'label': 'Piano'
+              name: 'Piano',
+              label: 'Piano'
             },
             {
-              'name': 'Sitar',
-              'label': 'Sitar'
+              name: 'Sitar',
+              label: 'Sitar'
             },
             {
-              'name': 'Ukulele',
-              'label': 'Ukulele'
+              name: 'Ukulele',
+              label: 'Ukulele'
             },
             {
-              'name': 'Viol',
-              'label': 'Viol'
+              name: 'Viol',
+              label: 'Viol'
             },
             {
-              'name': 'Violin',
-              'label': 'Violin'
+              name: 'Violin',
+              label: 'Violin'
             },
             {
-              'name': 'Washtub bass',
-              'label': 'Washtub bass'
+              name: 'Washtub bass',
+              label: 'Washtub bass'
             }
           ]
         },
         {
-          'label': 'Electronic instruments',
-          'options': [
+          label: 'Electronic instruments',
+          options: [
             {
-              'name': 'AlphaSphere',
-              'label': 'AlphaSphere'
+              name: 'AlphaSphere',
+              label: 'AlphaSphere'
             },
             {
-              'name': 'Audiocubes',
-              'label': 'Audiocubes'
+              name: 'Audiocubes',
+              label: 'Audiocubes'
             },
             {
-              'name': 'Bass pedals',
-              'label': 'Bass pedals'
+              name: 'Bass pedals',
+              label: 'Bass pedals'
             },
             {
-              'name': 'Continuum Fingerboard',
-              'label': 'Continuum Fingerboard'
+              name: 'Continuum Fingerboard',
+              label: 'Continuum Fingerboard'
             },
             {
-              'name': 'Croix Sonore',
-              'label': 'Croix Sonore'
+              name: 'Croix Sonore',
+              label: 'Croix Sonore'
             },
             {
-              'name': "Denis d'or",
-              'label': "Denis d'or"
+              name: "Denis d'or",
+              label: "Denis d'or"
             },
             {
-              'name': 'Dubreq stylophone',
-              'label': 'Dubreq stylophone'
+              name: 'Dubreq stylophone',
+              label: 'Dubreq stylophone'
             },
             {
-              'name': 'Drum machine',
-              'label': 'Drum machine'
+              name: 'Drum machine',
+              label: 'Drum machine'
             },
             {
-              'name': 'Eigenharp',
-              'label': 'Eigenharp'
+              name: 'Eigenharp',
+              label: 'Eigenharp'
             },
             {
-              'name': 'Electric guitar',
-              'label': 'Electric guitar'
+              name: 'Electric guitar',
+              label: 'Electric guitar'
             },
             {
-              'name': 'Electronic keyboard',
-              'label': 'Electronic keyboard'
+              name: 'Electronic keyboard',
+              label: 'Electronic keyboard'
             },
             {
-              'name': 'Electronic organ',
-              'label': 'Electronic organ'
+              name: 'Electronic organ',
+              label: 'Electronic organ'
             },
             {
-              'name': 'EWI',
-              'label': 'EWI'
+              name: 'EWI',
+              label: 'EWI'
             },
             {
-              'name': 'Fingerboard synthesizer',
-              'label': 'Fingerboard synthesizer'
+              name: 'Fingerboard synthesizer',
+              label: 'Fingerboard synthesizer'
             },
             {
-              'name': 'Hammond organ',
-              'label': 'Hammond organ'
+              name: 'Hammond organ',
+              label: 'Hammond organ'
             },
             {
-              'name': 'Keyboard',
-              'label': 'Keyboard'
+              name: 'Keyboard',
+              label: 'Keyboard'
             },
             {
-              'name': 'Keytar',
-              'label': 'Keytar'
+              name: 'Keytar',
+              label: 'Keytar'
             },
             {
-              'name': 'Kraakdoos',
-              'label': 'Kraakdoos'
+              name: 'Kraakdoos',
+              label: 'Kraakdoos'
             },
             {
-              'name': 'Laser harp',
-              'label': 'Laser harp'
+              name: 'Laser harp',
+              label: 'Laser harp'
             },
             {
-              'name': 'Mellotron',
-              'label': 'Mellotron'
+              name: 'Mellotron',
+              label: 'Mellotron'
             },
             {
-              'name': 'MIDI keyboard',
-              'label': 'MIDI keyboard'
+              name: 'MIDI keyboard',
+              label: 'MIDI keyboard'
             },
             {
-              'name': 'Omnichord',
-              'label': 'Omnichord'
+              name: 'Omnichord',
+              label: 'Omnichord'
             },
             {
-              'name': 'Ondes Martenot',
-              'label': 'Ondes Martenot'
+              name: 'Ondes Martenot',
+              label: 'Ondes Martenot'
             },
             {
-              'name': 'Otamatone',
-              'label': 'Otamatone'
+              name: 'Otamatone',
+              label: 'Otamatone'
             },
             {
-              'name': 'Sampler',
-              'label': 'Sampler'
+              name: 'Sampler',
+              label: 'Sampler'
             },
             {
-              'name': 'Seaboard music instrument',
-              'label': 'Seaboard music instrument'
+              name: 'Seaboard music instrument',
+              label: 'Seaboard music instrument'
             },
             {
-              'name': 'Skoog',
-              'label': 'Skoog'
+              name: 'Skoog',
+              label: 'Skoog'
             },
             {
-              'name': 'Synclavier',
-              'label': 'Synclavier'
+              name: 'Synclavier',
+              label: 'Synclavier'
             },
             {
-              'name': 'Synthesizer',
-              'label': 'Synthesizer'
+              name: 'Synthesizer',
+              label: 'Synthesizer'
             },
             {
-              'name': 'Teleharmonium',
-              'label': 'Teleharmonium'
+              name: 'Teleharmonium',
+              label: 'Teleharmonium'
             },
             {
-              'name': 'Tenori-on',
-              'label': 'Tenori-on'
+              name: 'Tenori-on',
+              label: 'Tenori-on'
             },
             {
-              'name': 'Theremin',
-              'label': 'Theremin'
+              name: 'Theremin',
+              label: 'Theremin'
             },
             {
-              'name': 'trautonium',
-              'label': 'trautonium'
+              name: 'trautonium',
+              label: 'trautonium'
             },
             {
-              'name': 'Turntablism',
-              'label': 'Turntablism'
+              name: 'Turntablism',
+              label: 'Turntablism'
             },
             {
-              'name': 'Turntable',
-              'label': 'Turntable'
+              name: 'Turntable',
+              label: 'Turntable'
             }
           ]
         }
       ],
-      'defaultValue': 'Cowbell',
-      'operators': [
+      defaultValue: 'Cowbell',
+      operators: [
         {
-          'name': '=',
-          'label': '='
+          name: '=',
+          label: '='
         },
         {
-          'name': 'in',
-          'label': 'in'
+          name: 'in',
+          label: 'in'
         }
       ]
     },
     {
-      'name': 'alsoPlays',
-      'label': 'Also plays',
-      'valueEditorType': 'multiselect',
-      'values': [
+      name: 'alsoPlays',
+      label: 'Also plays',
+      valueEditorType: 'multiselect',
+      values: [
         {
-          'label': 'Percussion instruments',
-          'options': [
+          label: 'Percussion instruments',
+          options: [
             {
-              'name': 'Clapstick',
-              'label': 'Clapstick'
+              name: 'Clapstick',
+              label: 'Clapstick'
             },
             {
-              'name': 'Cowbell',
-              'label': 'Cowbell'
+              name: 'Cowbell',
+              label: 'Cowbell'
             },
             {
-              'name': 'Cymbal',
-              'label': 'Cymbal'
+              name: 'Cymbal',
+              label: 'Cymbal'
             },
             {
-              'name': 'Gong',
-              'label': 'Gong'
+              name: 'Gong',
+              label: 'Gong'
             },
             {
-              'name': 'Maraca',
-              'label': 'Maraca'
+              name: 'Maraca',
+              label: 'Maraca'
             },
             {
-              'name': 'Marimba',
-              'label': 'Marimba'
+              name: 'Marimba',
+              label: 'Marimba'
             },
             {
-              'name': 'More cowbell',
-              'label': 'More cowbell'
+              name: 'More cowbell',
+              label: 'More cowbell'
             },
             {
-              'name': 'Spoon',
-              'label': 'Spoon'
+              name: 'Spoon',
+              label: 'Spoon'
             },
             {
-              'name': 'Steelpan',
-              'label': 'Steelpan'
+              name: 'Steelpan',
+              label: 'Steelpan'
             },
             {
-              'name': 'Tambourine',
-              'label': 'Tambourine'
+              name: 'Tambourine',
+              label: 'Tambourine'
             },
             {
-              'name': 'Triangle',
-              'label': 'Triangle'
+              name: 'Triangle',
+              label: 'Triangle'
             },
             {
-              'name': 'Vibraphone',
-              'label': 'Vibraphone'
+              name: 'Vibraphone',
+              label: 'Vibraphone'
             },
             {
-              'name': 'Washboard',
-              'label': 'Washboard'
+              name: 'Washboard',
+              label: 'Washboard'
             },
             {
-              'name': 'Wood block',
-              'label': 'Wood block'
+              name: 'Wood block',
+              label: 'Wood block'
             },
             {
-              'name': 'Wooden fish',
-              'label': 'Wooden fish'
+              name: 'Wooden fish',
+              label: 'Wooden fish'
             },
             {
-              'name': 'Xylophone',
-              'label': 'Xylophone'
+              name: 'Xylophone',
+              label: 'Xylophone'
             }
           ]
         },
         {
-          'label': 'Membranophones',
-          'options': [
+          label: 'Membranophones',
+          options: [
             {
-              'name': 'Barrel drum',
-              'label': 'Barrel drum'
+              name: 'Barrel drum',
+              label: 'Barrel drum'
             },
             {
-              'name': 'Bass drum',
-              'label': 'Bass drum'
+              name: 'Bass drum',
+              label: 'Bass drum'
             },
             {
-              'name': 'Bongo drums',
-              'label': 'Bongo drums'
+              name: 'Bongo drums',
+              label: 'Bongo drums'
             },
             {
-              'name': 'Conga',
-              'label': 'Conga'
+              name: 'Conga',
+              label: 'Conga'
             },
             {
-              'name': 'Drum',
-              'label': 'Drum'
+              name: 'Drum',
+              label: 'Drum'
             },
             {
-              'name': 'Drum kit',
-              'label': 'Drum kit'
+              name: 'Drum kit',
+              label: 'Drum kit'
             },
             {
-              'name': "Jew's harp",
-              'label': "Jew's harp"
+              name: "Jew's harp",
+              label: "Jew's harp"
             },
             {
-              'name': 'Octaban',
-              'label': 'Octaban'
+              name: 'Octaban',
+              label: 'Octaban'
             },
             {
-              'name': 'Samphor',
-              'label': 'Samphor'
+              name: 'Samphor',
+              label: 'Samphor'
             },
             {
-              'name': 'Snare drum',
-              'label': 'Snare drum'
+              name: 'Snare drum',
+              label: 'Snare drum'
             },
             {
-              'name': 'Timpani',
-              'label': 'Timpani'
+              name: 'Timpani',
+              label: 'Timpani'
             },
             {
-              'name': 'Tom-tom',
-              'label': 'Tom-tom'
+              name: 'Tom-tom',
+              label: 'Tom-tom'
             }
           ]
         },
         {
-          'label': 'Wind instruments',
-          'options': [
+          label: 'Wind instruments',
+          options: [
             {
-              'name': 'Accordion',
-              'label': 'Accordion'
+              name: 'Accordion',
+              label: 'Accordion'
             },
             {
-              'name': 'Air horn',
-              'label': 'Air horn'
+              name: 'Air horn',
+              label: 'Air horn'
             },
             {
-              'name': 'Bagpipe',
-              'label': 'Bagpipe'
+              name: 'Bagpipe',
+              label: 'Bagpipe'
             },
             {
-              'name': 'Baritone horn',
-              'label': 'Baritone horn'
+              name: 'Baritone horn',
+              label: 'Baritone horn'
             },
             {
-              'name': 'Bassoon',
-              'label': 'Bassoon'
+              name: 'Bassoon',
+              label: 'Bassoon'
             },
             {
-              'name': 'Bazooka',
-              'label': 'Bazooka'
+              name: 'Bazooka',
+              label: 'Bazooka'
             },
             {
-              'name': 'Beatboxing',
-              'label': 'Beatboxing'
+              name: 'Beatboxing',
+              label: 'Beatboxing'
             },
             {
-              'name': 'Blown bottle',
-              'label': 'Blown bottle'
+              name: 'Blown bottle',
+              label: 'Blown bottle'
             },
             {
-              'name': 'Bugle',
-              'label': 'Bugle'
+              name: 'Bugle',
+              label: 'Bugle'
             },
             {
-              'name': 'Clarinet',
-              'label': 'Clarinet'
+              name: 'Clarinet',
+              label: 'Clarinet'
             },
             {
-              'name': 'Conch',
-              'label': 'Conch'
+              name: 'Conch',
+              label: 'Conch'
             },
             {
-              'name': 'Cornet',
-              'label': 'Cornet'
+              name: 'Cornet',
+              label: 'Cornet'
             },
             {
-              'name': 'Didgeridoo',
-              'label': 'Didgeridoo'
+              name: 'Didgeridoo',
+              label: 'Didgeridoo'
             },
             {
-              'name': 'Double bell euphonium',
-              'label': 'Double bell euphonium'
+              name: 'Double bell euphonium',
+              label: 'Double bell euphonium'
             },
             {
-              'name': 'Doulophone',
-              'label': 'Doulophone'
+              name: 'Doulophone',
+              label: 'Doulophone'
             },
             {
-              'name': 'English horn',
-              'label': 'English horn'
+              name: 'English horn',
+              label: 'English horn'
             },
             {
-              'name': 'Euphonium',
-              'label': 'Euphonium'
+              name: 'Euphonium',
+              label: 'Euphonium'
             },
             {
-              'name': 'Flugelhorn',
-              'label': 'Flugelhorn'
+              name: 'Flugelhorn',
+              label: 'Flugelhorn'
             },
             {
-              'name': 'Flute',
-              'label': 'Flute'
+              name: 'Flute',
+              label: 'Flute'
             },
             {
-              'name': 'French horn',
-              'label': 'French horn'
+              name: 'French horn',
+              label: 'French horn'
             },
             {
-              'name': 'Harmonica',
-              'label': 'Harmonica'
+              name: 'Harmonica',
+              label: 'Harmonica'
             },
             {
-              'name': 'Irish flute',
-              'label': 'Irish flute'
+              name: 'Irish flute',
+              label: 'Irish flute'
             },
             {
-              'name': 'Jug',
-              'label': 'Jug'
+              name: 'Jug',
+              label: 'Jug'
             },
             {
-              'name': 'Kazoo',
-              'label': 'Kazoo'
+              name: 'Kazoo',
+              label: 'Kazoo'
             },
             {
-              'name': 'Melodeon',
-              'label': 'Melodeon'
+              name: 'Melodeon',
+              label: 'Melodeon'
             },
             {
-              'name': 'Mezzo-soprano',
-              'label': 'Mezzo-soprano'
+              name: 'Mezzo-soprano',
+              label: 'Mezzo-soprano'
             },
             {
-              'name': 'Oboe',
-              'label': 'Oboe'
+              name: 'Oboe',
+              label: 'Oboe'
             },
             {
-              'name': 'Ocarina',
-              'label': 'Ocarina'
+              name: 'Ocarina',
+              label: 'Ocarina'
             },
             {
-              'name': 'Pan flute',
-              'label': 'Pan flute'
+              name: 'Pan flute',
+              label: 'Pan flute'
             },
             {
-              'name': 'Piccolo',
-              'label': 'Piccolo'
+              name: 'Piccolo',
+              label: 'Piccolo'
             },
             {
-              'name': 'Pipe organ',
-              'label': 'Pipe organ'
+              name: 'Pipe organ',
+              label: 'Pipe organ'
             },
             {
-              'name': 'Recorder',
-              'label': 'Recorder'
+              name: 'Recorder',
+              label: 'Recorder'
             },
             {
-              'name': 'Saxophone',
-              'label': 'Saxophone'
+              name: 'Saxophone',
+              label: 'Saxophone'
             },
             {
-              'name': 'Slide whistle',
-              'label': 'Slide whistle'
+              name: 'Slide whistle',
+              label: 'Slide whistle'
             },
             {
-              'name': 'Sousaphone',
-              'label': 'Sousaphone'
+              name: 'Sousaphone',
+              label: 'Sousaphone'
             },
             {
-              'name': 'Trombone',
-              'label': 'Trombone'
+              name: 'Trombone',
+              label: 'Trombone'
             },
             {
-              'name': 'Trumpet',
-              'label': 'Trumpet'
+              name: 'Trumpet',
+              label: 'Trumpet'
             },
             {
-              'name': 'Tuba',
-              'label': 'Tuba'
+              name: 'Tuba',
+              label: 'Tuba'
             },
             {
-              'name': 'Whistle',
-              'label': 'Whistle'
+              name: 'Whistle',
+              label: 'Whistle'
             }
           ]
         },
         {
-          'label': 'Stringed instruments',
-          'options': [
+          label: 'Stringed instruments',
+          options: [
             {
-              'name': 'Aeolian harp',
-              'label': 'Aeolian harp'
+              name: 'Aeolian harp',
+              label: 'Aeolian harp'
             },
             {
-              'name': 'Bandolin',
-              'label': 'Bandolin'
+              name: 'Bandolin',
+              label: 'Bandolin'
             },
             {
-              'name': 'Banjo ukulele',
-              'label': 'Banjo ukulele'
+              name: 'Banjo ukulele',
+              label: 'Banjo ukulele'
             },
             {
-              'name': 'Cello',
-              'label': 'Cello'
+              name: 'Cello',
+              label: 'Cello'
             },
             {
-              'name': 'Chapman stick',
-              'label': 'Chapman stick'
+              name: 'Chapman stick',
+              label: 'Chapman stick'
             },
             {
-              'name': 'Clavichord',
-              'label': 'Clavichord'
+              name: 'Clavichord',
+              label: 'Clavichord'
             },
             {
-              'name': 'Clavinet',
-              'label': 'Clavinet'
+              name: 'Clavinet',
+              label: 'Clavinet'
             },
             {
-              'name': 'Double bass',
-              'label': 'Double bass'
+              name: 'Double bass',
+              label: 'Double bass'
             },
             {
-              'name': 'Dulcimer',
-              'label': 'Dulcimer'
+              name: 'Dulcimer',
+              label: 'Dulcimer'
             },
             {
-              'name': 'Fiddle',
-              'label': 'Fiddle'
+              name: 'Fiddle',
+              label: 'Fiddle'
             },
             {
-              'name': 'Guitar',
-              'label': 'Guitar'
+              name: 'Guitar',
+              label: 'Guitar'
             },
             {
-              'name': 'Hammered dulcimer',
-              'label': 'Hammered dulcimer'
+              name: 'Hammered dulcimer',
+              label: 'Hammered dulcimer'
             },
             {
-              'name': 'Harp',
-              'label': 'Harp'
+              name: 'Harp',
+              label: 'Harp'
             },
             {
-              'name': 'Harpsichord',
-              'label': 'Harpsichord'
+              name: 'Harpsichord',
+              label: 'Harpsichord'
             },
             {
-              'name': 'Lute',
-              'label': 'Lute'
+              name: 'Lute',
+              label: 'Lute'
             },
             {
-              'name': 'Lyre',
-              'label': 'Lyre'
+              name: 'Lyre',
+              label: 'Lyre'
             },
             {
-              'name': 'Maguhu',
-              'label': 'Maguhu'
+              name: 'Maguhu',
+              label: 'Maguhu'
             },
             {
-              'name': 'Mandola',
-              'label': 'Mandola'
+              name: 'Mandola',
+              label: 'Mandola'
             },
             {
-              'name': 'Mandolin',
-              'label': 'Mandolin'
+              name: 'Mandolin',
+              label: 'Mandolin'
             },
             {
-              'name': 'Octobass',
-              'label': 'Octobass'
+              name: 'Octobass',
+              label: 'Octobass'
             },
             {
-              'name': 'Piano',
-              'label': 'Piano'
+              name: 'Piano',
+              label: 'Piano'
             },
             {
-              'name': 'Sitar',
-              'label': 'Sitar'
+              name: 'Sitar',
+              label: 'Sitar'
             },
             {
-              'name': 'Ukulele',
-              'label': 'Ukulele'
+              name: 'Ukulele',
+              label: 'Ukulele'
             },
             {
-              'name': 'Viol',
-              'label': 'Viol'
+              name: 'Viol',
+              label: 'Viol'
             },
             {
-              'name': 'Violin',
-              'label': 'Violin'
+              name: 'Violin',
+              label: 'Violin'
             },
             {
-              'name': 'Washtub bass',
-              'label': 'Washtub bass'
+              name: 'Washtub bass',
+              label: 'Washtub bass'
             }
           ]
         },
         {
-          'label': 'Electronic instruments',
-          'options': [
+          label: 'Electronic instruments',
+          options: [
             {
-              'name': 'AlphaSphere',
-              'label': 'AlphaSphere'
+              name: 'AlphaSphere',
+              label: 'AlphaSphere'
             },
             {
-              'name': 'Audiocubes',
-              'label': 'Audiocubes'
+              name: 'Audiocubes',
+              label: 'Audiocubes'
             },
             {
-              'name': 'Bass pedals',
-              'label': 'Bass pedals'
+              name: 'Bass pedals',
+              label: 'Bass pedals'
             },
             {
-              'name': 'Continuum Fingerboard',
-              'label': 'Continuum Fingerboard'
+              name: 'Continuum Fingerboard',
+              label: 'Continuum Fingerboard'
             },
             {
-              'name': 'Croix Sonore',
-              'label': 'Croix Sonore'
+              name: 'Croix Sonore',
+              label: 'Croix Sonore'
             },
             {
-              'name': "Denis d'or",
-              'label': "Denis d'or"
+              name: "Denis d'or",
+              label: "Denis d'or"
             },
             {
-              'name': 'Dubreq stylophone',
-              'label': 'Dubreq stylophone'
+              name: 'Dubreq stylophone',
+              label: 'Dubreq stylophone'
             },
             {
-              'name': 'Drum machine',
-              'label': 'Drum machine'
+              name: 'Drum machine',
+              label: 'Drum machine'
             },
             {
-              'name': 'Eigenharp',
-              'label': 'Eigenharp'
+              name: 'Eigenharp',
+              label: 'Eigenharp'
             },
             {
-              'name': 'Electric guitar',
-              'label': 'Electric guitar'
+              name: 'Electric guitar',
+              label: 'Electric guitar'
             },
             {
-              'name': 'Electronic keyboard',
-              'label': 'Electronic keyboard'
+              name: 'Electronic keyboard',
+              label: 'Electronic keyboard'
             },
             {
-              'name': 'Electronic organ',
-              'label': 'Electronic organ'
+              name: 'Electronic organ',
+              label: 'Electronic organ'
             },
             {
-              'name': 'EWI',
-              'label': 'EWI'
+              name: 'EWI',
+              label: 'EWI'
             },
             {
-              'name': 'Fingerboard synthesizer',
-              'label': 'Fingerboard synthesizer'
+              name: 'Fingerboard synthesizer',
+              label: 'Fingerboard synthesizer'
             },
             {
-              'name': 'Hammond organ',
-              'label': 'Hammond organ'
+              name: 'Hammond organ',
+              label: 'Hammond organ'
             },
             {
-              'name': 'Keyboard',
-              'label': 'Keyboard'
+              name: 'Keyboard',
+              label: 'Keyboard'
             },
             {
-              'name': 'Keytar',
-              'label': 'Keytar'
+              name: 'Keytar',
+              label: 'Keytar'
             },
             {
-              'name': 'Kraakdoos',
-              'label': 'Kraakdoos'
+              name: 'Kraakdoos',
+              label: 'Kraakdoos'
             },
             {
-              'name': 'Laser harp',
-              'label': 'Laser harp'
+              name: 'Laser harp',
+              label: 'Laser harp'
             },
             {
-              'name': 'Mellotron',
-              'label': 'Mellotron'
+              name: 'Mellotron',
+              label: 'Mellotron'
             },
             {
-              'name': 'MIDI keyboard',
-              'label': 'MIDI keyboard'
+              name: 'MIDI keyboard',
+              label: 'MIDI keyboard'
             },
             {
-              'name': 'Omnichord',
-              'label': 'Omnichord'
+              name: 'Omnichord',
+              label: 'Omnichord'
             },
             {
-              'name': 'Ondes Martenot',
-              'label': 'Ondes Martenot'
+              name: 'Ondes Martenot',
+              label: 'Ondes Martenot'
             },
             {
-              'name': 'Otamatone',
-              'label': 'Otamatone'
+              name: 'Otamatone',
+              label: 'Otamatone'
             },
             {
-              'name': 'Sampler',
-              'label': 'Sampler'
+              name: 'Sampler',
+              label: 'Sampler'
             },
             {
-              'name': 'Seaboard music instrument',
-              'label': 'Seaboard music instrument'
+              name: 'Seaboard music instrument',
+              label: 'Seaboard music instrument'
             },
             {
-              'name': 'Skoog',
-              'label': 'Skoog'
+              name: 'Skoog',
+              label: 'Skoog'
             },
             {
-              'name': 'Synclavier',
-              'label': 'Synclavier'
+              name: 'Synclavier',
+              label: 'Synclavier'
             },
             {
-              'name': 'Synthesizer',
-              'label': 'Synthesizer'
+              name: 'Synthesizer',
+              label: 'Synthesizer'
             },
             {
-              'name': 'Teleharmonium',
-              'label': 'Teleharmonium'
+              name: 'Teleharmonium',
+              label: 'Teleharmonium'
             },
             {
-              'name': 'Tenori-on',
-              'label': 'Tenori-on'
+              name: 'Tenori-on',
+              label: 'Tenori-on'
             },
             {
-              'name': 'Theremin',
-              'label': 'Theremin'
+              name: 'Theremin',
+              label: 'Theremin'
             },
             {
-              'name': 'trautonium',
-              'label': 'trautonium'
+              name: 'trautonium',
+              label: 'trautonium'
             },
             {
-              'name': 'Turntablism',
-              'label': 'Turntablism'
+              name: 'Turntablism',
+              label: 'Turntablism'
             },
             {
-              'name': 'Turntable',
-              'label': 'Turntable'
+              name: 'Turntable',
+              label: 'Turntable'
             }
           ]
         }
       ],
-      'defaultValue': 'More cowbell',
-      'operators': [
+      defaultValue: 'More cowbell',
+      operators: [
         {
-          'name': 'in',
-          'label': 'in'
+          name: 'in',
+          label: 'in'
         }
       ]
     },
     {
-      'name': 'gender',
-      'label': 'Gender',
-      'operators': [
+      name: 'gender',
+      label: 'Gender',
+      operators: [
         {
-          'name': '=',
-          'label': '='
+          name: '=',
+          label: '='
         }
       ],
-      'valueEditorType': 'radio',
-      'values': [
+      valueEditorType: 'radio',
+      values: [
         {
-          'name': 'M',
-          'label': 'Male'
+          name: 'M',
+          label: 'Male'
         },
         {
-          'name': 'F',
-          'label': 'Female'
+          name: 'F',
+          label: 'Female'
         },
         {
-          'name': 'O',
-          'label': 'Other'
+          name: 'O',
+          label: 'Other'
         }
       ]
     },
     {
-      'name': 'height',
-      'label': 'Height'
+      name: 'height',
+      label: 'Height'
     },
     {
-      'name': 'job',
-      'label': 'Job'
+      name: 'job',
+      label: 'Job'
     },
     {
-      'name': 'description',
-      'label': 'Description',
-      'valueEditorType': 'textarea'
+      name: 'description',
+      label: 'Description',
+      valueEditorType: 'textarea'
     },
     {
-      'name': 'birthdate',
-      'label': 'Birth Date',
-      'inputType': 'date'
+      name: 'birthdate',
+      label: 'Birth Date',
+      inputType: 'date'
     },
     {
-      'name': 'datetime',
-      'label': 'Show Time',
-      'inputType': 'datetime-local'
+      name: 'datetime',
+      label: 'Show Time',
+      inputType: 'datetime-local'
     },
     {
-      'name': 'alarm',
-      'label': 'Daily Alarm',
-      'inputType': 'time'
+      name: 'alarm',
+      label: 'Daily Alarm',
+      inputType: 'time'
     },
     {
-      'name': 'groupedField1',
-      'label': 'Grouped Field 1',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField1',
+      label: 'Grouped Field 1',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField2',
-      'label': 'Grouped Field 2',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField2',
+      label: 'Grouped Field 2',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField3',
-      'label': 'Grouped Field 3',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField3',
+      label: 'Grouped Field 3',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     },
     {
-      'name': 'groupedField4',
-      'label': 'Grouped Field 4',
-      'comparator': 'groupNumber',
-      'groupNumber': 'group1',
-      'valueSources': ['field', 'value']
+      name: 'groupedField4',
+      label: 'Grouped Field 4',
+      comparator: 'groupNumber',
+      groupNumber: 'group1',
+      valueSources: ['field', 'value']
     }
   ]
 }

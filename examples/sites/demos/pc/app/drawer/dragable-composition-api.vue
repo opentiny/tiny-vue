@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const placement = ref('right')
@@ -32,7 +32,7 @@ const openDrawer = (target) => {
 }
 
 const drag = ({ width, height }) => {
-  Modal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
+  TinyModal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
 }
 </script>
 

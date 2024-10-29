@@ -15,14 +15,14 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, RadioGroup, RadioButton } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinyRadioGroup: RadioGroup,
-    TinyRadioButton: RadioButton
+    TinyTabs,
+    TinyTabItem,
+    TinyRadioGroup,
+    TinyRadioButton
   },
   data() {
     return {

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, DatePicker, Numeric, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDatePicker, TinyNumeric, TinyModal } from '@opentiny/vue'
 
 const filteData = [
   { label: '福州', value: '福州' },
@@ -22,8 +22,8 @@ const filteData = [
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -102,7 +102,7 @@ export default {
       employeesFilter: {
         layout: 'input,enum,default,extends,base',
         inputFilter: {
-          component: Numeric,
+          component: TinyNumeric,
           attrs: { format: 'yyyy/MM/dd hh:mm:ss' },
           relations: [
             {
@@ -144,7 +144,7 @@ export default {
       },
       dateFilter: {
         inputFilter: {
-          component: DatePicker,
+          component: TinyDatePicker,
           attrs: {
             format: 'yyyy-MM-dd hh:mm:ss',
             valueFormat: 'yyyy-MM-dd hh:mm:ss'
@@ -166,7 +166,7 @@ export default {
   },
   methods: {
     filterChangeEvent({ filters }) {
-      Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+      TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
     }
   }
 }

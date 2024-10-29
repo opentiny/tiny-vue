@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Dept as TinyDept } from '@opentiny/vue'
+import { TinyDept } from '@opentiny/vue'
 
 const value = ref('022471')
 </script>

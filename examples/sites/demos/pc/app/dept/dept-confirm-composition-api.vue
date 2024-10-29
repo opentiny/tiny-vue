@@ -8,13 +8,13 @@
 </template>
 
 <script setup lang="jsx">
-import { Dept as TinyDept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const value = ref('022471')
 
 function confirm() {
-  Modal.message({ message: 'Dept部门 confirm 事件' })
+  TinyModal.message({ message: 'Dept部门 confirm 事件' })
 }
 </script>
 

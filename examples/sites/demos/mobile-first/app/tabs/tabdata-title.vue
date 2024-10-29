@@ -1,29 +1,29 @@
 <template>
   <tiny-tabs v-model="activeName" v-if="showTab" tab-style="card" :with-close="true" @close="close">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName: '',
       showTab: false,
-      Tabs: []
+      tabs: []
     }
   },
   mounted() {
     setTimeout(() => {
-      this.Tabs = [
+      this.tabs = [
         {
           title: '表单组件',
           name: 'first',
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     close(name) {
-      this.Tabs = this.Tabs.filter((tab) => {
+      this.tabs = this.tabs.filter((tab) => {
         return tab.name !== name
       })
     }

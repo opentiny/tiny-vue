@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Input, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {
@@ -22,19 +22,19 @@ export default {
   },
   methods: {
     onChange() {
-      Modal.message({ message: 'change 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'change 事件触发了', status: 'info' })
     },
     onInput() {
-      Modal.message({ message: 'input 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'input 事件触发了', status: 'info' })
     },
     onBlur() {
-      Modal.message({ message: 'blur 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'blur 事件触发了', status: 'info' })
     },
     onFocus() {
-      Modal.message({ message: 'focus 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'focus 事件触发了', status: 'info' })
     },
     onClear() {
-      Modal.message({ message: 'clear 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'clear 事件触发了', status: 'info' })
     }
   }
 }

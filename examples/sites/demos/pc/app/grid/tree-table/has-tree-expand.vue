@@ -15,12 +15,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -147,7 +147,7 @@ export default {
   methods: {
     handTreeExpand({ row, rowIndex }) {
       if (this.$refs.treeGrid.hasTreeExpand(row)) {
-        Modal.message({
+        TinyModal.message({
           message: `当前展开行：${JSON.stringify(rowIndex + 1)}`,
           status: 'info'
         })

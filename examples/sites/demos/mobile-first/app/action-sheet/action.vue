@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import { ActionSheet, Button, Modal } from '@opentiny/vue'
+import { TinyActionSheet, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionSheet: ActionSheet,
-    TinyButton: Button
+    TinyActionSheet,
+    TinyButton
   },
   data() {
     return {
@@ -43,10 +43,10 @@ export default {
   },
   methods: {
     selectOption(option, index) {
-      Modal.message(`选择了第${index + 1}项 [${option}]`)
+      TinyModal.message(`选择了第${index + 1}项 [${option}]`)
     },
     close() {
-      Modal.message('点击取消了')
+      TinyModal.message('点击取消了')
     }
   }
 }

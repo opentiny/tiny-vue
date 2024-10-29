@@ -39,17 +39,26 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal, CheckboxGroup, Popeditor } from '@opentiny/vue'
+import {
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyCheckboxGroup,
+  TinyPopeditor
+} from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyCheckboxGroup: CheckboxGroup,
-    TinyPopeditor: Popeditor
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyCheckboxGroup,
+    TinyPopeditor
   },
   data() {
     const dataset = [
@@ -114,6 +123,7 @@ export default {
         city: '深圳'
       }
     ]
+
     return {
       options: [
         { label: '45', text: '很好' },
@@ -131,7 +141,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -173,7 +183,7 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          TinyModal.alert('提交成功')
         }
       })
     }

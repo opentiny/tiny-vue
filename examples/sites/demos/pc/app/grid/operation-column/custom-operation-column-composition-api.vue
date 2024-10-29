@@ -18,7 +18,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import { iconEdit, iconSearch } from '@opentiny/vue-icon'
 
 const tableData = ref([
@@ -70,7 +70,7 @@ const TinyIconEdit = iconEdit()
 const TinyIconSearch = iconSearch()
 
 function clickHandler(row) {
-  Modal.message({ message: JSON.stringify(row), status: 'success' })
+  TinyModal.message({ message: JSON.stringify(row), status: 'success' })
 }
 </script>
 

@@ -5,16 +5,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Image as TinyImage, Modal } from '@opentiny/vue'
+import { TinyImage, TinyModal } from '@opentiny/vue'
 
 const errUrl = ref('')
 const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function errorHandler() {
-  Modal.message({ message: '加载失败触发事件', status: 'info' })
+  TinyModal.message({ message: '加载失败触发事件', status: 'info' })
 }
 function loadHandler() {
-  Modal.message({ message: '加载成功触发事件', status: 'info' })
+  TinyModal.message({ message: '加载成功触发事件', status: 'info' })
 }
 </script>
 

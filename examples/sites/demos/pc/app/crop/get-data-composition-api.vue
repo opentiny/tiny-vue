@@ -9,7 +9,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Crop as TinyCrop, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
@@ -20,7 +20,7 @@ function clearn() {
 }
 
 function getData() {
-  Modal.message({
+  TinyModal.message({
     message: `裁剪区域数据：${JSON.stringify(cropRef.value.getData())}`,
     status: 'info'
   })

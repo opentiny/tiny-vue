@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import { Tabs, TabItem, Button } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinyButton: Button
+    TinyTabs,
+    TinyTabItem,
+    TinyButton
   },
   data() {
     return {

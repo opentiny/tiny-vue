@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { HuichartsRadar as TinyRadar } from '@opentiny/vue'
+import { TinyHuichartsRadar as TinyRadar } from '@opentiny/vue'
 
 const options = ref({
   color: ['#fa2a2d', '#ff7500', '#ffbf00', '#41ba41', '#00aaee'], // 自定义颜色组，会循环使用该颜色组
@@ -20,19 +20,19 @@ const options = ref({
   },
   radarMax: 100,
   data: {
-    'Domestic': {
-      'Equipment': 41,
-      'VM': 91,
-      'CSP': 81,
-      'RD': 51,
-      'Markets': 71
+    Domestic: {
+      Equipment: 41,
+      VM: 91,
+      CSP: 81,
+      RD: 51,
+      Markets: 71
     },
-    'Abroad': {
-      'Equipment': 77,
-      'VM': 55,
-      'CSP': 93,
-      'RD': 90,
-      'Markets': 87
+    Abroad: {
+      Equipment: 77,
+      VM: 55,
+      CSP: 93,
+      RD: 90,
+      Markets: 87
     }
   }
 })

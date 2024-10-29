@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Tree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 import { iconPutAway, iconExpand, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTree: Tree
+    TinyTree
   },
   data() {
     return {

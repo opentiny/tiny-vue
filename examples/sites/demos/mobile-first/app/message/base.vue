@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     messageClick() {
-      Modal.message('message 提示框')
+      TinyModal.message('message 提示框')
     }
   }
 }

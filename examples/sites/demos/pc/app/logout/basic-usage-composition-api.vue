@@ -7,7 +7,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Logout as TinyLogout, Modal } from '@opentiny/vue'
+import { TinyLogout, TinyModal } from '@opentiny/vue'
 
 const isLogin = ref(false)
 const service = ref({
@@ -18,7 +18,7 @@ const service = ref({
 
 function beforeLogout() {
   // 注销前的回调函数
-  Modal.message({ message: '注销前的回调函数', status: 'info' })
+  TinyModal.message({ message: '注销前的回调函数', status: 'info' })
   window.localStorage.setItem('isLogin', false)
   // window.location.reload()
 }
@@ -44,7 +44,7 @@ function isGuestUser() {
 
 function showLogin() {
   /* 此处为用户的自定义登录逻辑 */
-  Modal.confirm('模拟登录且登录成功').then(() => {
+  TinyModal.confirm('模拟登录且登录成功').then(() => {
     window.localStorage.setItem('isLogin', true)
     window.location.reload()
   })

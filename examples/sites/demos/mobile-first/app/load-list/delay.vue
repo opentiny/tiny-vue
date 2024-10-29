@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import { LoadList } from '@opentiny/vue'
+import { TinyLoadList } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLoadList: LoadList
+    TinyLoadList
   },
   data() {
     return {

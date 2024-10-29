@@ -92,6 +92,25 @@
       div:hover {
         background-color: var(--tv-MonthTable-bg-color-hover);
       }
+
+      &:first-of-type {
+        div {
+          border-radius: var(--tv-MonthTable-cell-border-radius-first);
+        }
+
+        &.end-date {
+          div {
+            border-radius: var(--tv-MonthTable-cell-border-radius);
+            padding-left: 0;
+          }
+        }
+      }
+
+      &:last-of-type {
+        div {
+          border-radius: var(--tv-MonthTable-cell-border-radius-last);
+        }
+      }
     }
 
     &.end-date,

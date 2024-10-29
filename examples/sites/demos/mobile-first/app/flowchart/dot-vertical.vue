@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import { Flowchart, Modal } from '@opentiny/vue'
+import { TinyFlowchart, TinyModal } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
-const { createConfig, Node, resizeMixin } = Flowchart
+const { createConfig, Node, resizeMixin } = TinyFlowchart
 const nodeWrapperSize = 32
 
 const chartData = {
@@ -109,8 +109,7 @@ const chartData = {
   groups: [
     {
       nodes: ['2', '3'],
-      padding: [20, 100],
-      // fillStyle: '#f5f6f8',
+      padding: [20, 100], // fillStyle: '#f5f6f8',
       lineDash: [6, 6],
       strokeStyle: '#8d959e',
       title: '主账',
@@ -196,7 +195,7 @@ Object.assign(chartConfig, {
 export default {
   mixins: [resizeMixin({ refName: 'chart', nodeWrapperSize })],
   components: {
-    TinyFlowchart: Flowchart
+    TinyFlowchart
   },
   data() {
     return {
@@ -207,19 +206,19 @@ export default {
   methods: {
     onClickNode(afterNode, e) {
       // console.log(afterNode, e)
-      Modal.message('click-node')
+      TinyModal.message('click-node')
     },
     onClickLink(afterLink, e) {
       // console.log(afterLink, e)
-      Modal.message('click-link')
+      TinyModal.message('click-link')
     },
     onClickBlank(param, e) {
       // console.log(param, e)
-      Modal.message('click-blank')
+      TinyModal.message('click-blank')
     },
     onClickGroup(afterGroup, e) {
       // console.log(afterGroup, e)
-      Modal.message('click-group')
+      TinyModal.message('click-group')
     }
   }
 }

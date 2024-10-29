@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import { Badge } from '@opentiny/vue'
-import { Button } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyBadge: Badge
+    TinyButton,
+    TinyBadge
   },
   data() {
     return {

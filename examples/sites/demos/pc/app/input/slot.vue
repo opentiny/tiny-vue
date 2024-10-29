@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { IconSearch, IconCalendar } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyIconSearch: IconSearch(),
     TinyIconCalendar: IconCalendar(),
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {

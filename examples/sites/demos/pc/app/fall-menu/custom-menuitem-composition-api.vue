@@ -16,7 +16,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { FallMenu as TinyFallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 
 const dataset = ref([
   { title: '首页', url: '#/zh-CN/index' },

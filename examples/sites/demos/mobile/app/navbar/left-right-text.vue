@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { NavBar } from '@opentiny/vue'
+import { TinyNavBar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNavBar: NavBar
+    TinyNavBar
   },
   data() {
     return {}

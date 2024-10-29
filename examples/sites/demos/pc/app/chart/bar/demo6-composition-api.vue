@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsBar as TinyChartBar } from '@opentiny/vue'
+import { TinyHuichartsBar as TinyChartBar } from '@opentiny/vue'
 
 const options = ref({
   data: [

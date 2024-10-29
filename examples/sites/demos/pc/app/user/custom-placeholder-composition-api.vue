@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { User as TinyUser } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 const user = ref('441047913162396')
 </script>

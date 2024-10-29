@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal, DatePicker } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyDatePicker } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -48,7 +48,7 @@ const birthdayFilter = ref({
   layout: 'simple',
   simpleFilter: {
     datetimeConfig: {
-      component: DatePicker,
+      component: TinyDatePicker,
       format: 'yyyy-MM-dd',
       valueFormat: 'yyyy-MM-dd',
       // 最大允许选择的时间
@@ -63,7 +63,7 @@ const hireDateFilter = ref({
   layout: 'simple',
   simpleFilter: {
     datetimeConfig: {
-      component: DatePicker,
+      component: TinyDatePicker,
       format: 'yyyy/MM/dd',
       valueFormat: 'yyyy/MM/dd',
       // 最大允许选择的时间
@@ -78,7 +78,7 @@ const startFilter = ref({
   layout: 'simple',
   simpleFilter: {
     datetimeConfig: {
-      component: DatePicker,
+      component: TinyDatePicker,
       format: 'yyyy-MM-dd hh:mm:ss',
       valueFormat: 'yyyy-MM-dd hh:mm:ss',
       type: 'datetime',
@@ -94,7 +94,7 @@ const expiredFilter = ref({
   layout: 'simple',
   simpleFilter: {
     datetimeConfig: {
-      component: DatePicker,
+      component: TinyDatePicker,
       format: 'yyyy-MM-dd hh:mm:ss',
       valueFormat: 'yyyy-MM-dd hh:mm:ss',
       // 最大允许选择的时间
@@ -107,6 +107,6 @@ const expiredFilter = ref({
 })
 
 function filterChangeEvent({ filters }) {
-  Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+  TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
 }
 </script>

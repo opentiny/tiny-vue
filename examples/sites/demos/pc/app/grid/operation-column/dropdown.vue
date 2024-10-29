@@ -20,15 +20,15 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyGrid,
+    TinyGridColumn,
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   data() {
     return {

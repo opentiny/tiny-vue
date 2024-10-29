@@ -6,15 +6,15 @@
 </template>
 
 <script lang="jsx">
-import { Notify, Button } from '@opentiny/vue'
+import { TinyNotify, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     handleClick() {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: '通知消息的标题',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
@@ -24,12 +24,13 @@ export default {
       })
     },
     handleClickJxs() {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: () => <h4 style="margin:0">通知消息的标题</h4>,
         message: () => (
           <span>通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文</span>
         ),
+
         position: 'top-right',
         duration: 5000,
         customClass: 'my-custom-cls'

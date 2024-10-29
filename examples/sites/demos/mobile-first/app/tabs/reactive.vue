@@ -23,15 +23,15 @@
 </template>
 
 <script>
-import { DatePicker, Tabs, TabItem, Select, Option } from '@opentiny/vue'
+import { TinyDatePicker, TinyTabs, TinyTabItem, TinySelect, TinyOption } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker,
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinySelect: Select,
-    TinyOption: Option
+    TinyDatePicker,
+    TinyTabs,
+    TinyTabItem,
+    TinySelect,
+    TinyOption
   },
   data() {
     return {

@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import { Button, Loading } from '@opentiny/vue'
+import { TinyButton, TinyLoading } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   directives: {
-    Loading: Loading.directive
+    Loading: TinyLoading.directive
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
       }, 2500)
     },
     handleClick2() {
-      const loading = Loading.service({
+      const loading = TinyLoading.service({
         lock: true,
         customClass: 'my-custom-loading-fullscreen',
         text: '正在提交...',

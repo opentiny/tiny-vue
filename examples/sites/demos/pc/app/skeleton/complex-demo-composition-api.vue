@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import { Skeleton as TinySkeleton } from '@opentiny/vue'
+import { TinySkeleton } from '@opentiny/vue'
 </script>

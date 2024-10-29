@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { Switch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySwitch: Switch
+    TinySwitch
   },
   data() {
     return {

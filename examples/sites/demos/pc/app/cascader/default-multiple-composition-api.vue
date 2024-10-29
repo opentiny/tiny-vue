@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Cascader as TinyCascader, Modal } from '@opentiny/vue'
+import { TinyCascader, TinyModal } from '@opentiny/vue'
 
 const value = ref([
   ['zhinan', 'anzhuang', 'xiangmudengji'],
@@ -213,7 +213,7 @@ const options = ref([
 ])
 
 function removeTag(val) {
-  Modal.message({
+  TinyModal.message({
     message: '当前触发了 remove-tag 事件删除的值为：' + val,
     status: 'info'
   })

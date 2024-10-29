@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsTree as TinyChartTree } from '@opentiny/vue'
+import { TinyHuichartsTree as TinyChartTree } from '@opentiny/vue'
 
 const options = ref({
   // 图表类型（线型树图）
@@ -14,7 +14,6 @@ const options = ref({
 
   // padding控制图表距离容器的上、右、下、左padding值
   padding: [20, 80, 20, 80],
-
   // 图元的大小，默认值10
   symbolSize: 10,
 

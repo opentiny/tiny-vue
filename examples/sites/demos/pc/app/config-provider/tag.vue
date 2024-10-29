@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { ConfigProvider, Tag, Switch } from '@opentiny/vue'
+import { TinyConfigProvider, TinyTag, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyConfigProvider: ConfigProvider,
-    TinyTag: Tag,
-    TinySwitch: Switch
+    TinyConfigProvider,
+    TinyTag,
+    TinySwitch
   },
   data() {
     return {

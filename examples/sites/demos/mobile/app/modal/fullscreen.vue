@@ -3,15 +3,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '最大化显示', fullscreen: true, tiny_mode: 'mobile' })
+      TinyModal.alert({ message: '最大化显示', fullscreen: true, tiny_mode: 'mobile' })
     }
   }
 }

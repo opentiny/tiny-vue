@@ -4,11 +4,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TagGroup as TinyTagGroup } from '@opentiny/vue'
+import { TinyTagGroup } from '@opentiny/vue'
 
 const data = ref([
   {
-    name: '标签一',
+    name: '标签一'
   },
   {
     name: '标签二',

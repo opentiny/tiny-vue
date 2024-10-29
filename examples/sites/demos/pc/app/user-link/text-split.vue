@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { UserLink } from '@opentiny/vue'
+import { TinyUserLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserLink: UserLink
+    TinyUserLink
   },
   data() {
     return {

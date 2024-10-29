@@ -25,22 +25,22 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     editActive() {
-      Modal.message({
+      TinyModal.message({
         message: '激活编辑事件',
         status: 'info'
       })
     },
     editClosed() {
-      Modal.message({
+      TinyModal.message({
         message: '触发关闭编辑事件',
         status: 'info'
       })
@@ -49,7 +49,7 @@ export default {
       return row.area !== '华东区'
     },
     editDisabled() {
-      Modal.message({
+      TinyModal.message({
         message: '激活editDisable事件',
         status: 'info'
       })

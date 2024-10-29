@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid } from '@opentiny/vue'
+import { TinyGrid } from '@opentiny/vue'
 
 const columns = ref([
   {

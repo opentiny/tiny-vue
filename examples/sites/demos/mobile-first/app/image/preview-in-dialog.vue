@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import { Button, DialogBox, Image } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyImage } from '@opentiny/vue'
 
 export default {
-  components: { TinyButton: Button, TinyDialogBox: DialogBox, TinyImage: Image },
+  components: { TinyButton, TinyDialogBox, TinyImage },
   data() {
     return {
       visible3: false,

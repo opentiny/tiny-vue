@@ -25,12 +25,7 @@
 <script setup>
 import { ref } from 'vue'
 import { iconStarDisable } from '@opentiny/vue-icon'
-import {
-  Dropdown as TinyDropdown,
-  DropdownMenu as TinyDropdownMenu,
-  DropdownItem as TinyDropdownItem,
-  Notify
-} from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyNotify } from '@opentiny/vue'
 
 const options = ref([
   {
@@ -54,7 +49,7 @@ const options = ref([
 ])
 
 function itemClick(data) {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: 'itemData',
     message: `配置式可以通过data.itemData获取配置数据：${JSON.stringify(data.itemData)}`,

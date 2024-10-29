@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { Alert, Modal } from '@opentiny/vue'
+import { TinyAlert, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert
+    TinyAlert
   },
   methods: {
     close() {
-      Modal.message('关闭了')
+      TinyModal.message('关闭了')
     }
   }
 }

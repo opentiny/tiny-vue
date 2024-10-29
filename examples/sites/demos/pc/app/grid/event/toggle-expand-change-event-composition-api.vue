@@ -38,7 +38,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -167,7 +167,7 @@ function expandChange({ row, rowIndex }) {
   } else {
     message = `当前收缩行：${JSON.stringify(rowIndex + 1)}`
   }
-  Modal.message({
+  TinyModal.message({
     message,
     status: 'info'
   })

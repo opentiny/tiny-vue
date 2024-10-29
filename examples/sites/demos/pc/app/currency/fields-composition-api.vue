@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Currency as TinyCurrency } from '@opentiny/vue'
+import { TinyCurrency } from '@opentiny/vue'
 
 const value = ref('')
 const fields = ref({

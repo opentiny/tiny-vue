@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -148,7 +148,7 @@ export default {
       // return false // 所有分组默认收起
     },
     onToggleGroupChange({ row }) {
-      Modal.message({ message: `分组${row.fold ? '合起' : '展开'}`, status: 'info' })
+      TinyModal.message({ message: `分组${row.fold ? '合起' : '展开'}`, status: 'info' })
     },
     renderGroupCell(h, { row, column }) {
       if (row.value !== '华南区') return

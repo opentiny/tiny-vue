@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { FileUpload as TinyFileUpload } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = reactive([

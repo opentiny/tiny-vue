@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Guide as TinyGuide, Alert as TinyAlert, Button as TinyButton, Divider as TinyDivider } from '@opentiny/vue'
+import { TinyGuide, TinyAlert, TinyButton, TinyDivider } from '@opentiny/vue'
 
 const showStep = ref(false)
 const domData = ref([

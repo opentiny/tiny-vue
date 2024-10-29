@@ -4,22 +4,22 @@
 
 <script setup>
 import { ref } from 'vue'
-import { User as TinyUser, Modal } from '@opentiny/vue'
+import { TinyUser, TinyModal } from '@opentiny/vue'
 
 const user = ref('441047913162396,702973890055088,421000103624183')
 
 const change = (val) => {
-  Modal.message({ message: `${val}`, status: 'info' })
+  TinyModal.message({ message: `${val}`, status: 'info' })
 }
 
 const handleFocus = () => {
-  Modal.message({
+  TinyModal.message({
     message: '组件聚焦'
   })
 }
 
 const handleBlur = () => {
-  Modal.message({
+  TinyModal.message({
     message: '组件失焦'
   })
 }

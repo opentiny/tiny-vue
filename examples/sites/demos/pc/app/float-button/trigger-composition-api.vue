@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { FloatButton as TinyFloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 import { iconDel } from '@opentiny/vue-icon'
 
 const IconDel = iconDel()

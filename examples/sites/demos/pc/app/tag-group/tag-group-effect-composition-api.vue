@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TagGroup as TinyTagGroup } from '@opentiny/vue'
+import { TinyTagGroup } from '@opentiny/vue'
 
 const items = ref([
   { name: '标签一' },

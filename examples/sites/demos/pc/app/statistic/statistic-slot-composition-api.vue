@@ -19,5 +19,5 @@
 </template>
 
 <script setup>
-import { Statistic as TinyStatistic, Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
+import { TinyStatistic, TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 </script>

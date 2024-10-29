@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import { UserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserHead: UserHead
+    TinyUserHead
   },
   data() {
     return {

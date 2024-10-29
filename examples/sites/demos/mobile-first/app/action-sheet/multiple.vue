@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { ActionSheet, Button } from '@opentiny/vue'
+import { TinyActionSheet, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionSheet: ActionSheet,
-    TinyButton: Button
+    TinyActionSheet,
+    TinyButton
   },
   data() {
     const list = [

@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { Input, Switch } from '@opentiny/vue'
+import { TinyInput, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input,
-    TinySwitch: Switch
+    TinyInput,
+    TinySwitch
   },
   data() {
     return {

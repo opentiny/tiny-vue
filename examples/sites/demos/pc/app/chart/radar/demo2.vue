@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { HuichartsRadar } from '@opentiny/vue'
+import { TinyHuichartsRadar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadar: HuichartsRadar
+    TinyRadar: TinyHuichartsRadar
   },
   data() {
     return {
@@ -26,19 +26,19 @@ export default {
         // 当不设置 radarMax 时， 雷达图坐标系为数据中的最大值
         radarMax: 100,
         data: {
-          'Domestic': {
-            'Equipment': 41,
-            'VM': 91,
-            'CSP': 81,
-            'RD': 51,
-            'Markets': 71
+          Domestic: {
+            Equipment: 41,
+            VM: 91,
+            CSP: 81,
+            RD: 51,
+            Markets: 71
           },
-          'Abroad': {
-            'Equipment': 72,
-            'VM': 55,
-            'CSP': 93,
-            'RD': 90,
-            'Markets': 82
+          Abroad: {
+            Equipment: 72,
+            VM: 55,
+            CSP: 93,
+            RD: 90,
+            Markets: 82
           }
         }
       }

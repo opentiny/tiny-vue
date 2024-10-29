@@ -4,7 +4,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 import { IconPlusCircle, IconPlusSquare, IconPreChecked, IconNode, IconNew } from '@opentiny/vue-icon'
 
 const treeData = reactive([

@@ -14,17 +14,17 @@
 </template>
 
 <script lang="jsx">
-import { Transfer, Tree } from '@opentiny/vue'
+import { TinyTransfer, TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer
   },
   data() {
     return {
       value: [3, 4, 5],
       renderTree: {
-        plugin: Tree
+        plugin: TinyTree
       },
       treeData: [
         {

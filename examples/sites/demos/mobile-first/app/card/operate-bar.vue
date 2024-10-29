@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Card } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCard: Card
+    TinyCard
   },
   data() {
     return {

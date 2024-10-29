@@ -5,11 +5,11 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Notify } from '@opentiny/vue'
+import { TinyButton, TinyNotify } from '@opentiny/vue'
 import { IconCloseSquare } from '@opentiny/vue-icon'
 
 function baseClick() {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: '通知',
     message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',

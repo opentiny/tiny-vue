@@ -14,13 +14,13 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Crop as TinyCrop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 let num = ref(0)
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 function changeMode() {
   num.value = (num.value + 1) % 4
-  Modal.message({ message: '模式:' + num.value })
+  TinyModal.message({ message: '模式:' + num.value })
 }
 </script>

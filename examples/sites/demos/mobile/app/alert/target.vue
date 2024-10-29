@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { Alert, Tabs, TabItem } from '@opentiny/vue'
+import { TinyAlert, TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyAlert,
+    TinyTabs,
+    TinyTabItem
   }
 }
 </script>

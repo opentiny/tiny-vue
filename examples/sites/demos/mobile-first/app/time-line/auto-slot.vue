@@ -25,13 +25,13 @@
 </template>
 
 <script>
-import { TimeLine, UserHead } from '@opentiny/vue'
+import { TinyTimeLine, TinyUserHead } from '@opentiny/vue'
 import { IconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine,
-    TinyUserHead: UserHead
+    TinyTimeLine,
+    TinyUserHead
   },
   data() {
     return {

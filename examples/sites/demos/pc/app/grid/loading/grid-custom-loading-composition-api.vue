@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 const tableData = ref([])
 const loading = ref(true)
@@ -48,6 +48,7 @@ const init = () => {
         city: '韶关'
       }
     ]
+
     loading.value = false
   }, 2000)
 }

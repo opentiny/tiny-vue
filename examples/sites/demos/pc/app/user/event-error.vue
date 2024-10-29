@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { User, Modal } from '@opentiny/vue'
+import { TinyUser, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     queryError(error) {
-      Modal.message({
+      TinyModal.message({
         message: `查询失败:[${error.join(',')}]`,
         status: 'error'
       })

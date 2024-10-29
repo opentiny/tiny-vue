@@ -8,12 +8,12 @@
 </template>
 
 <script lang="jsx">
-import { TextPopup, Button } from '@opentiny/vue'
+import { TinyTextPopup, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTextPopup: TextPopup,
-    TinyButton: Button
+    TinyTextPopup,
+    TinyButton
   },
   data() {
     return {

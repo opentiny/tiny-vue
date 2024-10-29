@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { FileUpload, Alert } from '@opentiny/vue'
+import { TinyFileUpload, TinyAlert } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinyFileUpload: FileUpload
+    TinyAlert,
+    TinyFileUpload
   },
   data() {
     return {

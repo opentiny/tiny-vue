@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup, Modal } from '@opentiny/vue'
+import { TinyButtonGroup, TinyModal } from '@opentiny/vue'
 
 const checkedVal = ref('Button1')
 const groupData = ref([
@@ -16,6 +16,6 @@ const groupData = ref([
 ])
 
 function handleChange(val) {
-  Modal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
+  TinyModal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
 }
 </script>

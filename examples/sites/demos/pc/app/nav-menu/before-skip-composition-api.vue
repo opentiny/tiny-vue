@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { NavMenu as TinyNavMenu, Modal } from '@opentiny/vue'
+import { TinyNavMenu, TinyModal } from '@opentiny/vue'
 
 const menuData = ref([
   {
@@ -302,7 +302,7 @@ const menuData = ref([
 ])
 
 function handleSkip({ title }) {
-  Modal.message({ message: '当前跳转的菜单为：' + title, status: 'info' })
+  TinyModal.message({ message: '当前跳转的菜单为：' + title, status: 'info' })
   return false
 }
 </script>

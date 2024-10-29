@@ -49,13 +49,13 @@
 </template>
 
 <script>
-import { SliderButton, SliderButtonGroup } from '@opentiny/vue'
+import { TinySliderButton, TinySliderButtonGroup } from '@opentiny/vue'
 import { IconCardMode, IconEditorMenuLeft, IconException, IconDerive } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySliderButton: SliderButton,
-    TinySliderButtonGroup: SliderButtonGroup,
+    TinySliderButton,
+    TinySliderButtonGroup,
     IconCardMode: IconCardMode(),
     IconEditorMenuLeft: IconEditorMenuLeft(),
     IconException: IconException(),

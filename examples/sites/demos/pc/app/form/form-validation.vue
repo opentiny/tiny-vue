@@ -38,30 +38,30 @@
 
 <script>
 import {
-  Form,
-  FormItem,
-  Input,
-  DatePicker,
-  Button,
-  Modal,
-  RadioGroup,
-  Numeric,
-  IpAddress,
-  ButtonGroup
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyRadioGroup,
+  TinyNumeric,
+  TinyIpAddress,
+  TinyButtonGroup
 } from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyRadioGroup: RadioGroup,
-    TinyNumeric: Numeric,
-    TinyIpAddress: IpAddress,
-    TinyButtonGroup: ButtonGroup
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyRadioGroup,
+    TinyNumeric,
+    TinyIpAddress,
+    TinyButtonGroup
   },
   data() {
     return {
@@ -107,9 +107,9 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('回调用法：提交成功')
+          TinyModal.alert('回调用法：提交成功')
         } else {
-          Modal.alert('回调用法：提交失败')
+          TinyModal.alert('回调用法：提交失败')
         }
       })
     },
@@ -117,10 +117,10 @@ export default {
       this.$refs.ruleFormRef
         .validate()
         .then(() => {
-          Modal.alert('promise用法:提交成功')
+          TinyModal.alert('promise用法:提交成功')
         })
         .catch(() => {
-          Modal.alert('promise用法:提交失败')
+          TinyModal.alert('promise用法:提交失败')
         })
     },
     clearFormValid() {

@@ -13,13 +13,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
@@ -67,6 +67,7 @@ export default {
           employees: 800
         }
       ]
+
       // tableData: window.MOCK_GRID_DATA.slice(5, 10)  //mock tableData数据
     }
   }

@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Numeric as TinyNumeric, Modal } from '@opentiny/vue'
+import { TinyNumeric, TinyModal } from '@opentiny/vue'
 
 const value = ref(1)
 
 const onFocus = (event: FocusEvent) => {
-  Modal.message({ message: `${event.type} 事件`, status: 'info' })
+  TinyModal.message({ message: `${event.type} 事件`, status: 'info' })
 }
 </script>

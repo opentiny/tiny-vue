@@ -29,16 +29,36 @@
   text-overflow: ellipsis;
   overflow: hidden;
 
+  &.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon {
+    padding: var(--tv-Tag-only-icon-padding);
+
+    svg {
+      font-size: var(--tv-Tag-only-icon-font-size);
+      margin-right: 0; // 此时不需要右边距了
+    }
+  }
+
   /** size 场景 */
   .size-mixin(@size) {
     @fs: %('var(--tv-Tag-font-size%a)', @size);
     @px: %('var(--tv-Tag-padding-x%a)', @size);
     @py: %('var(--tv-Tag-padding-y%a)', @size);
     @br: %('var(--tv-Tag-border-radius%a)', @size);
+    @icon-fs: %('var(--tv-Tag-only-icon-font-size%a)', @size);
+    @icon-py: %('var(--tv-Tag-only-icon-padding%a)', @size);
 
     font-size: e(@fs);
     padding: e(@py) e(@px);
     border-radius: e(@br);
+
+    &.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon {
+      padding: e(@icon-py);
+
+      svg {
+        font-size: e(@icon-fs);
+        margin-right: 0; // 此时不需要右边距了
+      }
+    }
   }
 
   .size-mixin(e(''));
@@ -148,14 +168,5 @@
   & svg:not(.@{tag-prefix-cls}__close) {
     margin-right: var(--tv-Tag-slot-icon-margin-right);
     fill: currentColor;
-  }
-
-  &.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon {
-    padding: var(--tv-Tag-only-icon-padding);
-
-    svg {
-      font-size: var(--tv-Tag-only-icon-font-size);
-      margin-right: 0; // 此时不需要右边距了
-    }
   }
 }

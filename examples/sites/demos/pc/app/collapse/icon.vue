@@ -26,13 +26,13 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem } from '@opentiny/vue'
 import { IconDeltaRight, IconDeltaRightO } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem,
+    TinyCollapse,
+    TinyCollapseItem,
     IconDeltaRight: IconDeltaRight()
   },
   data() {

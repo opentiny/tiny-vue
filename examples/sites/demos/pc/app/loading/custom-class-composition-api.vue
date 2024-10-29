@@ -4,10 +4,10 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 onMounted(() => {
-  Loading.service({
+  TinyLoading.service({
     text: '自定义 loading 类名',
     customClass: 'new-loading',
     target: document.getElementById('tiny-demo-loading-custom-class'),

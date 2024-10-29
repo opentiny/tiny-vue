@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Radio as TinyRadio, RadioButton as TinyRadioButton, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
+import { TinyRadio, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 const radio = ref('禁用')
 const radio1 = ref('6')

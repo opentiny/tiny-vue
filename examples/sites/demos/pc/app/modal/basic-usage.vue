@@ -24,12 +24,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal, Notify } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal
+    TinyButton,
+    TinyModal
   },
   data() {
     return {
@@ -39,15 +39,15 @@ export default {
   },
   methods: {
     baseClick() {
-      const modal = Modal.alert('基本提示框', '标题')
+      const modal = TinyModal.alert('基本提示框', '标题')
       setTimeout(() => modal.vm.close(), 3000)
     },
     successClick() {
-      Modal.alert({ message: '成功提示框', status: 'success' })
+      TinyModal.alert({ message: '成功提示框', status: 'success' })
     },
     confirmClick() {
-      Modal.confirm('您确定要删除吗？').then((res) => {
-        Notify({
+      TinyModal.confirm('您确定要删除吗？').then((res) => {
+        TinyNotify({
           type: 'info',
           title: '触发回调事件',
           message: `点击${res}按钮`
@@ -55,18 +55,19 @@ export default {
       })
     },
     jsxClick() {
-      Modal.alert({
+      TinyModal.alert({
         message: (
           <div>
             <button>some button</button>
             <b>some text</b>
           </div>
         ),
+
         status: 'success'
       })
     },
     messageClick() {
-      Modal.message('简单的消息')
+      TinyModal.message('简单的消息')
     }
   }
 }

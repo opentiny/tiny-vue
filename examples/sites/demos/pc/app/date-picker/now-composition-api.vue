@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const value1 = ref('2020-11-11 10:10:11')
 const value2 = ref('2020-11-11 10:10:11')

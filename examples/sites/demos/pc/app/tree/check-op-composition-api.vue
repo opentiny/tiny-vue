@@ -23,7 +23,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 const treeRef = ref()
 const data = ref([

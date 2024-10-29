@@ -30,19 +30,28 @@
 </template>
 
 <script>
-import { Form, FormItem, Numeric, Radio, DatePicker, Tooltip, Input, Button } from '@opentiny/vue'
+import {
+  TinyForm,
+  TinyFormItem,
+  TinyNumeric,
+  TinyRadio,
+  TinyDatePicker,
+  TinyTooltip,
+  TinyInput,
+  TinyButton
+} from '@opentiny/vue'
 import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio,
-    TinyDatePicker: DatePicker,
-    TinyTooltip: Tooltip,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyNumeric,
+    TinyRadio,
+    TinyDatePicker,
+    TinyTooltip,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {

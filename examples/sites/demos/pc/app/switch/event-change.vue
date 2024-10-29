@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { Switch, Modal } from '@opentiny/vue'
+import { TinySwitch, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySwitch: Switch
+    TinySwitch
   },
   methods: {
     handleChange(val) {
-      Modal.message({ message: `开关值：${val}`, status: 'info' })
+      TinyModal.message({ message: `开关值：${val}`, status: 'info' })
     }
   }
 }

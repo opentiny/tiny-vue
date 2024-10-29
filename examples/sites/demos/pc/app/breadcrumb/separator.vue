@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { Breadcrumb, BreadcrumbItem } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem } from '@opentiny/vue'
 import { IconBoat } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyBreadcrumb: Breadcrumb,
-    TinyBreadcrumbItem: BreadcrumbItem
+    TinyBreadcrumb,
+    TinyBreadcrumbItem
   },
   data() {
     return {

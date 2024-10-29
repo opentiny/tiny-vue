@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { MindMap as TinyMindMap } from '@opentiny/vue'
+import { TinyMindMap } from '@opentiny/vue'
 </script>
 
 <style scoped>

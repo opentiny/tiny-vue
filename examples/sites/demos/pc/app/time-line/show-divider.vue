@@ -4,11 +4,11 @@
 </template>
 
 <script>
-import { TimeLine, Modal } from '@opentiny/vue'
+import { TinyTimeLine, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
     normalClick(index, node) {
       this.normalActive = index
 
-      Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
+      TinyModal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
     }
   }
 }

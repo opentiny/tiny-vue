@@ -8,12 +8,12 @@
 </template>
 
 <script lang="jsx">
-import { Tag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 import { IconTime, IconFileupload, IconChevronRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTag: Tag,
+    TinyTag,
     TinyIconTime: IconTime(),
     TinyIconFileupload: IconFileupload(),
     TinyIconChevronRight: IconChevronRight()

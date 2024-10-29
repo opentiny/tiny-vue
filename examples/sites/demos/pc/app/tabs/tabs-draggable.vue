@@ -10,20 +10,20 @@
     @tab-drag-over="handleOver"
     @tab-drag-end="handleEnd"
   >
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       dropConfig: {
         plugin: Sortable
       },
-      Tabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -59,15 +59,15 @@ export default {
     },
     handleEnd(event) {
       const { oldDraggableIndex, newDraggableIndex } = event
-      const tab = this.Tabs.splice(oldDraggableIndex, 1)[0]
-      this.Tabs.splice(newDraggableIndex, 0, tab)
+      const tab = this.tabs.splice(oldDraggableIndex, 1)[0]
+      this.tabs.splice(newDraggableIndex, 0, tab)
 
-      console.log(this.Tabs)
+      console.log(this.tabs)
     },
     handleAdd() {
-      this.Tabs.push({
-        title: 'Tab ' + String(this.Tabs.length + 1),
-        name: String(this.Tabs.length + 1),
+      this.tabs.push({
+        title: 'Tab ' + String(this.tabs.length + 1),
+        name: String(this.tabs.length + 1),
         content: '动态增加tabitem'
       })
     }

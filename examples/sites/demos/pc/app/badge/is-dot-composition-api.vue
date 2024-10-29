@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import { Badge as TinyBadge } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
-import { Button as TinyButton } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 
 const TinyIconMail = iconMail()
 </script>

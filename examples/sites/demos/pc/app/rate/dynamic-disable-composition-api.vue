@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Rate as TinyRate } from '@opentiny/vue'
+import { TinyRate } from '@opentiny/vue'
 
 const rate = ref(2.5)
 </script>

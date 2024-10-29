@@ -16,12 +16,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const validRules = {
@@ -148,7 +148,7 @@ export default {
   },
   methods: {
     validError() {
-      Modal.message({ message: '触发校验不通过事件', status: 'info' })
+      TinyModal.message({ message: '触发校验不通过事件', status: 'info' })
     }
   }
 }

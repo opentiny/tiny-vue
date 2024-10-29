@@ -47,33 +47,33 @@
 
 <script lang="jsx">
 import {
-  Button,
-  DialogBox,
-  Form,
-  FormItem,
-  Input,
-  Radio,
-  RadioGroup,
-  Checkbox,
-  CheckboxGroup,
-  Notify,
-  Select,
-  Option
+  TinyButton,
+  TinyDialogBox,
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyRadio,
+  TinyRadioGroup,
+  TinyCheckbox,
+  TinyCheckboxGroup,
+  TinyNotify,
+  TinySelect,
+  TinyOption
 } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinyCheckbox: Checkbox,
-    TinyCheckboxGroup: CheckboxGroup,
-    TinySelect: Select,
-    TinyOption: Option
+    TinyButton,
+    TinyDialogBox,
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyRadio,
+    TinyRadioGroup,
+    TinyCheckbox,
+    TinyCheckboxGroup,
+    TinySelect,
+    TinyOption
   },
   data() {
     return {
@@ -108,7 +108,7 @@ export default {
         if (response.status === 200) {
           this.btnSubmit.loading = false
           this.boxVisibility = false
-          Notify({
+          TinyNotify({
             title: '成功',
             message: '表单已成功提交！',
             offset: 0

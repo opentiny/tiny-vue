@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { Mask, Button } from '@opentiny/vue'
+import { TinyMask, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMask: Mask,
-    TinyButton: Button
+    TinyMask,
+    TinyButton
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
     handleClick() {
       this.showMsg = true
     }
-  },
+  }
 }
 </script>
 

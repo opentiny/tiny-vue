@@ -1,15 +1,15 @@
 <template>
   <div class="left-panel">
-    <fall-menu :data="dataset"></fall-menu>
+    <tiny-fall-menu :data="dataset"></tiny-fall-menu>
   </div>
 </template>
 
 <script lang="jsx">
-import { FallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    FallMenu
+    TinyFallMenu
   },
   data() {
     return {

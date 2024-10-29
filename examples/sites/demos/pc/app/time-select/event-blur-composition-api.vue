@@ -12,20 +12,20 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeSelect as TinyTimeSelect, Modal } from '@opentiny/vue'
+import { TinyTimeSelect, TinyModal } from '@opentiny/vue'
 
 const value1 = ref('08:30')
 
 function bulr() {
-  Modal.message({ message: 'blur事件', status: 'info' })
+  TinyModal.message({ message: 'blur事件', status: 'info' })
 }
 
 function change() {
-  Modal.message({ message: 'change事件', status: 'info' })
+  TinyModal.message({ message: 'change事件', status: 'info' })
 }
 
 function focus() {
-  Modal.message({ message: 'focus事件', status: 'info' })
+  TinyModal.message({ message: 'focus事件', status: 'info' })
 }
 </script>
 

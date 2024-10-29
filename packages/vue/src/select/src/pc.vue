@@ -156,6 +156,7 @@
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
+                  only-icon
                   :closable="false"
                   :size="state.collapseTagSize"
                   @click="onClickCollapseTag($event)"
@@ -502,7 +503,7 @@
             <slot name="dropdown"></slot>
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
-              class="tiny-option tiny-select-dropdown__item"
+              class="tiny-option tiny-option_all tiny-select-dropdown__item"
               data-tag="tiny-option"
               :class="[
                 {

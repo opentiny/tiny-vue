@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { FilterPanel as TinyFilterPanel, Input as TinyInput, Button as TinyButton, Tag as TinyTag } from '@opentiny/vue'
+import { TinyFilterPanel, TinyInput, TinyButton, TinyTag } from '@opentiny/vue'
 
 const tip = ref('请选择物品数量')
 const inputVal = ref('')

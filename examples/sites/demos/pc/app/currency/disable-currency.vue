@@ -7,12 +7,12 @@
 </template>
 
 <script lang="jsx">
-import { Currency, Button, Modal } from '@opentiny/vue'
+import { TinyCurrency, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCurrency: Currency,
-    TinyButton: Button
+    TinyCurrency,
+    TinyButton
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     change(val) {
-      Modal.message({ message: '当前选择值：' + val, status: 'info' })
+      TinyModal.message({ message: '当前选择值：' + val, status: 'info' })
     },
     Switchover() {
       this.disabled = !this.disabled

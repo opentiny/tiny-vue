@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsScatter } from '@opentiny/vue'
+import { TinyHuichartsScatter } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyScatter: HuichartsScatter
+    TinyScatter: TinyHuichartsScatter
   },
   data() {
     return {

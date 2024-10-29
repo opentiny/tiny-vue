@@ -31,7 +31,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 const toolbarButtons = ref([
   {
@@ -90,7 +90,7 @@ function toolbarButtonClickEvent({ code, $grid }) {
   switch (code) {
     case 'copy': {
       if (data.length === 0) {
-        Modal.message({ message: '请至少选中一条记录', status: 'info' })
+        TinyModal.message({ message: '请至少选中一条记录', status: 'info' })
       }
 
       data.forEach((item) => {

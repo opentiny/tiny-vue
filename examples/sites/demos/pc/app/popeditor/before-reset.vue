@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { Popeditor, Modal } from '@opentiny/vue'
+import { TinyPopeditor, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     const dataset = [
@@ -87,7 +87,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     beforeReset() {
-      Modal.message({ message: '重置前的钩子函数', status: 'info' })
+      TinyModal.message({ message: '重置前的钩子函数', status: 'info' })
     }
   }
 }

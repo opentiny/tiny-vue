@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import { Input, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     addMemory(val) {
-      Modal.message({ message: val, status: 'success' })
+      TinyModal.message({ message: val, status: 'success' })
       this.$refs.textMemory.addMemory(val)
     }
   }

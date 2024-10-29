@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Steps as TinySteps, Modal } from '@opentiny/vue'
+import { TinySteps, TinyModal } from '@opentiny/vue'
 
 const advancedActive = ref(1)
 const data = ref([
@@ -25,6 +25,6 @@ const data = ref([
 const advancedClick = (index, node) => {
   advancedActive.value = index
 
-  Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
+  TinyModal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
 }
 </script>

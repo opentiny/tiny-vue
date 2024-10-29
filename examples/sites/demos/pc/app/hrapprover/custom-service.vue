@@ -9,11 +9,11 @@
 </template>
 
 <script lang="jsx">
-import { Hrapprover } from '@opentiny/vue'
+import { TinyHrapprover } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHrapprover: Hrapprover
+    TinyHrapprover
   },
   data() {
     return {
@@ -26,22 +26,22 @@ export default {
     getFetchHrapprover() {
       return Promise.resolve([
         {
-          'dept_Code': '022471',
-          'remarks': null,
-          'approval_Person': 'test1',
-          'approval_Category': '0303'
+          dept_Code: '022471',
+          remarks: null,
+          approval_Person: 'test1',
+          approval_Category: '0303'
         },
         {
-          'dept_Code': '041963',
-          'remarks': '权限申请',
-          'approval_Person': 'test2',
-          'approval_Category': '0303'
+          dept_Code: '041963',
+          remarks: '权限申请',
+          approval_Person: 'test2',
+          approval_Category: '0303'
         },
         {
-          'dept_Code': '041963',
-          'remarks': '资产申请',
-          'approval_Person': 'test3',
-          'approval_Category': '0303'
+          dept_Code: '041963',
+          remarks: '资产申请',
+          approval_Person: 'test3',
+          approval_Category: '0303'
         }
       ])
     }

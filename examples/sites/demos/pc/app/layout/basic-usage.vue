@@ -42,13 +42,13 @@
 </template>
 
 <script>
-import { Layout, Row, Col } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyLayout,
+    TinyRow,
+    TinyCol
   }
 }
 </script>

@@ -14,20 +14,20 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Company as TinyCompany, Modal } from '@opentiny/vue'
+import { TinyCompany, TinyModal } from '@opentiny/vue'
 
 const value = ref('')
 
 function visibleChange(val) {
-  Modal.message({ message: `visible:${val}`, status: 'info' })
+  TinyModal.message({ message: `visible:${val}`, status: 'info' })
 }
 
 function clear() {
-  Modal.message({ message: 'clear:触发了', status: 'info' })
+  TinyModal.message({ message: 'clear:触发了', status: 'info' })
 }
 
 function change(value) {
-  Modal.message({ message: `change:${value}`, status: 'info' })
+  TinyModal.message({ message: `change:${value}`, status: 'info' })
 }
 </script>
 

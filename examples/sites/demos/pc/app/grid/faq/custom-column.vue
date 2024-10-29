@@ -21,7 +21,7 @@
 
 <script>
 import { h } from '@opentiny/vue-common'
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const GridColumnWrapper = {
   name: 'MyGridColumn',
@@ -30,14 +30,14 @@ const GridColumnWrapper = {
     return () => {
       const config = { props, scopedSlots: { ...slots } }
 
-      return h(GridColumn, config)
+      return h(TinyGridColumn, config)
     }
   }
 }
 
 export default {
   components: {
-    TinyGrid: Grid,
+    TinyGrid,
     GridColumnWrapper
   },
   data() {

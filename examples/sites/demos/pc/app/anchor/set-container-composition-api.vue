@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
+import { TinyAnchor, TinyRow, TinyCol } from '@opentiny/vue'
 
 const links = ref([
   {

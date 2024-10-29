@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Company as TinyCompany } from '@opentiny/vue'
+import { TinyCompany } from '@opentiny/vue'
 
 const value = ref('')
 </script>

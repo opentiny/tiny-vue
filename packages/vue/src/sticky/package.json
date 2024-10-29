@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-sticky",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -8,8 +8,7 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

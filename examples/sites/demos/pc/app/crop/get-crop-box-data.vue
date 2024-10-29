@@ -7,12 +7,12 @@
 </template>
 
 <script lang="jsx">
-import { Crop, Button, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getCropBoxData() {
-      Modal.message({
+      TinyModal.message({
         message: `裁剪框数据：${JSON.stringify(this.$refs.crop.getCropBoxData())}`,
         status: 'info'
       })

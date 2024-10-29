@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import { FilterPanel, Radio, RadioGroup, Input, Modal } from '@opentiny/vue'
+import { TinyFilterPanel, TinyRadio, TinyRadioGroup, TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinyFilterPanel: FilterPanel,
-    TinyInput: Input
+    TinyRadio,
+    TinyRadioGroup,
+    TinyFilterPanel,
+    TinyInput
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
       this.inputVal = ''
     },
     visibleChange(v) {
-      Modal.message({
+      TinyModal.message({
         message: `${v} visibleChange`,
         status: 'info'
       })

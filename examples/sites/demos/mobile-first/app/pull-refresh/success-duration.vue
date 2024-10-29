@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <tiny-pull-refresh
     ref="refresh"
     v-model="isLoading"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { PullRefresh } from '@opentiny/vue'
+import { TinyPullRefresh } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPullRefresh: PullRefresh
+    TinyPullRefresh
   },
   data() {
     return {

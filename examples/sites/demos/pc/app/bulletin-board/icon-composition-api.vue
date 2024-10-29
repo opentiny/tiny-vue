@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { BulletinBoard as TinyBulletinBoard } from '@opentiny/vue'
+import { TinyBulletinBoard } from '@opentiny/vue'
 import { iconShare } from '@opentiny/vue-icon'
 
 const tabTitle = ref(['TINY 更新日志', '他们都在用', 'TINY 特性'])

@@ -57,19 +57,19 @@
 <script setup>
 import { ref } from 'vue'
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Numeric as TinyNumeric,
-  Radio as TinyRadio,
-  DatePicker as TinyDatePicker,
-  Input as TinyInput,
-  Checkbox as TinyCheckbox,
-  CheckboxGroup as TinyCheckboxGroup,
-  Switch as TinySwitch,
-  Autocomplete as TinyAutocomplete,
-  Select as TinySelect,
-  Option as TinyOption,
-  Modal
+  TinyForm,
+  TinyFormItem,
+  TinyNumeric,
+  TinyRadio,
+  TinyDatePicker,
+  TinyInput,
+  TinyCheckbox,
+  TinyCheckboxGroup,
+  TinySwitch,
+  TinyAutocomplete,
+  TinySelect,
+  TinyOption,
+  TinyModal
 } from '@opentiny/vue'
 
 const displayOnly = ref(true)
@@ -101,11 +101,11 @@ const options = ref([
 const onPickOptions = ref({
   onPick: (val) => {
     if (val.maxDate) {
-      Modal.message({
+      TinyModal.message({
         message: '当前获取的值 maxDate' + val.maxDate,
         status: 'info'
       })
-      Modal.message({
+      TinyModal.message({
         message: '当前获取的值 minDate：' + val.minDate,
         status: 'info'
       })

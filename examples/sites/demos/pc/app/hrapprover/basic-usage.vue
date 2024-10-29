@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Hrapprover } from '@opentiny/vue'
+import { TinyHrapprover } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHrapprover: Hrapprover
+    TinyHrapprover
   },
   data() {
     return {

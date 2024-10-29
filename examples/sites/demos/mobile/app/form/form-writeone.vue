@@ -71,14 +71,14 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, DialogBox } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDialogBox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDialogBox: DialogBox
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDialogBox
   },
   data() {
     return {

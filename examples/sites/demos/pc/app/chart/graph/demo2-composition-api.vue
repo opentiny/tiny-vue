@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { HuichartsGraph as TinyChartGraph } from '@opentiny/vue'
+import { TinyHuichartsGraph as TinyChartGraph } from '@opentiny/vue'
 
 let axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日']
 

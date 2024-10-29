@@ -73,12 +73,12 @@
 </template>
 
 <script>
-import { ColumnListItem, Tag } from '@opentiny/vue'
+import { TinyColumnListItem, TinyTag } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColumnListItem: ColumnListItem,
-    TinyTag: Tag
+    TinyColumnListItem,
+    TinyTag
   },
   data() {
     return {}

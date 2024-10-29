@@ -3,18 +3,18 @@
 </template>
 
 <script>
-import { Roles, Modal } from '@opentiny/vue'
+import { TinyRoles, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRoles: Roles
+    TinyRoles
   },
   data() {
     return {}
   },
   methods: {
     change(userId) {
-      Modal.message({ message: `${userId}`, status: 'info' })
+      TinyModal.message({ message: `${userId}`, status: 'info' })
     }
   }
 }

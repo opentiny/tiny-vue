@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import { Statistic, Layout, Row, Col } from '@opentiny/vue'
+import { TinyStatistic, TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyStatistic: Statistic,
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyStatistic,
+    TinyLayout,
+    TinyRow,
+    TinyCol
   }
 }
 </script>

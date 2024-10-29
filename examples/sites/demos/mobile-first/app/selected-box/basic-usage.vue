@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import { SelectedBox, Button } from '@opentiny/vue'
+import { TinySelectedBox, TinyButton } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinySelectedBox: SelectedBox,
-    TinyButton: Button
+    TinySelectedBox,
+    TinyButton
   },
   data() {
     return {

@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     baseClick() {
-      Modal.alert({
+      TinyModal.alert({
         message: '基本提示框',
         title: '基本标题',
         confirmContent: '自定义确认',
@@ -22,7 +22,7 @@ export default {
       })
     },
     successClick() {
-      Modal.alert({
+      TinyModal.alert({
         message: '密码已经修改成功，为保障信息安全，建议每30天修改1次密码。',
         title: '成功提示',
         status: 'success'

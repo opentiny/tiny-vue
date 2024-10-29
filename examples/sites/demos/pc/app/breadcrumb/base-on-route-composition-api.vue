@@ -8,7 +8,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem } from '@opentiny/vue'
 
 const routes = computed(() => {
   return []

@@ -14,7 +14,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinySwitch } from '@opentiny/vue'
 
 const activeName4 = ref('navigation1')
 const tooltipConfig = ref({ effect: 'light', placement: 'left', visible: 'auto' })

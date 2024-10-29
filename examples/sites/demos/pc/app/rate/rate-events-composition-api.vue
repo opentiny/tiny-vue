@@ -4,11 +4,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Rate as TinyRate, Modal } from '@opentiny/vue'
+import { TinyRate, TinyModal } from '@opentiny/vue'
 
 const rate1 = ref(2)
 
 function onchange(v) {
-  Modal.message({ message: `选中的值是${v}`, status: 'info' })
+  TinyModal.message({ message: `选中的值是${v}`, status: 'info' })
 }
 </script>

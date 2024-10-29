@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { Badge as TinyBadge } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue'
 </script>

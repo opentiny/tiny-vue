@@ -59,7 +59,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption, OptionGroup as TinyOptionGroup } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyOptionGroup } from '@opentiny/vue'
 
 const options3 = ref([
   {

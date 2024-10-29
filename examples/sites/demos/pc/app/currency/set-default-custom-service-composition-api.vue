@@ -11,13 +11,13 @@
 
 <script setup>
 import { ref, getCurrentInstance } from 'vue'
-import { Currency as TinyCurrency, Modal } from '@opentiny/vue'
+import { TinyCurrency, TinyModal } from '@opentiny/vue'
 
 const value = ref('')
 const defaultCurrency = ref('VUV')
 
 const change = (value) => {
-  Modal.message({ message: `当前值为 ${value}`, status: 'info' })
+  TinyModal.message({ message: `当前值为 ${value}`, status: 'info' })
 }
 
 const fetchDefaultCurrency = () => {
@@ -32,7 +32,7 @@ const setDefaultCurrency = (value) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       defaultCurrency.value = value
-      Modal.message({ message: `设置默认值成功，值为${value} `, status: 'success' })
+      TinyModal.message({ message: `设置默认值成功，值为${value} `, status: 'success' })
       resolve(value)
     }, 500)
   })

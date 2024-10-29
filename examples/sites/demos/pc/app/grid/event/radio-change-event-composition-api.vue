@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -59,7 +59,7 @@ const tableData = ref([
 ])
 
 function radioChange() {
-  Modal.message({
+  TinyModal.message({
     message: '选项改变',
     status: 'info'
   })

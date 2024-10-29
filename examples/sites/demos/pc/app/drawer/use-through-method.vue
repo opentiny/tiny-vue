@@ -5,12 +5,12 @@
 </template>
 
 <script lang="tsx">
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 import { iconHelp } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
           )
         }
       }
-      this.drawerInstance = Drawer.service(config)
+      this.drawerInstance = TinyDrawer.service(config)
     },
     closeDrawer() {
       this.drawerInstance.close()

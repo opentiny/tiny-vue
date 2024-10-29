@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsBoxplot as TinyChartBoxplot } from '@opentiny/vue'
+import { TinyHuichartsBoxplot as TinyChartBoxplot } from '@opentiny/vue'
 
 const options = ref({
   direction: 'horizontal', // 横向

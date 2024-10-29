@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { Switch, Button } from '@opentiny/vue'
+import { TinySwitch, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySwitch: Switch,
-    TinyButton: Button
+    TinySwitch,
+    TinyButton
   },
   data() {
     return {

@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Pager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   methods: {
     onBeforePageChange(param) {
       const { callback, rollback } = param
-      Modal.confirm('您确定要继续变更操作吗？').then((res) => {
+      TinyModal.confirm('您确定要继续变更操作吗？').then((res) => {
         if (res === 'confirm') {
           callback && callback()
         } else {

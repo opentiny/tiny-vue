@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { User as TinyUser } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 const user1 = ref('702973890055088')
 const user2 = ref('421000103624002')

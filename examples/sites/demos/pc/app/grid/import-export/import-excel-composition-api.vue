@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { GridColumn as TinyGridColumn, Grid as TinyGrid } from '@opentiny/vue'
+import { TinyGridColumn, TinyGrid } from '@opentiny/vue'
 import { ref } from 'vue'
 
 // import * as XLSX from 'xlsx'

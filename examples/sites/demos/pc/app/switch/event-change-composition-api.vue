@@ -3,9 +3,9 @@
 </template>
 
 <script setup>
-import { Switch as TinySwitch, Modal } from '@opentiny/vue'
+import { TinySwitch, TinyModal } from '@opentiny/vue'
 
 function handleChange(val) {
-  Modal.message({ message: `开关值：${val}`, status: 'info' })
+  TinyModal.message({ message: `开关值：${val}`, status: 'info' })
 }
 </script>

@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { NavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 import { IconSetting, IconAdministrator } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyNavMenu: NavMenu,
+    TinyNavMenu,
     IconSetting: IconSetting(),
     IconAdministrator: IconAdministrator()
   },

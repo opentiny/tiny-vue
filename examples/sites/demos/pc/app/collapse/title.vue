@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem } from '@opentiny/vue'
 import { iconStarO, iconSetting } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem,
+    TinyCollapse,
+    TinyCollapseItem,
     TinyIconStarO: iconStarO(),
     TinyIconSetting: iconSetting()
   },

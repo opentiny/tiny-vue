@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import { BaseSelect, Option, Modal } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option
+    TinyBaseSelect,
+    TinyOption
   },
   data() {
     return {
@@ -57,42 +57,42 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 change 事件',
         status: 'info'
       })
     },
     clear() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 clear 事件',
         status: 'info'
       })
     },
     focus() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 focus 事件'
       })
     },
     blur() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 blur 事件',
         status: 'info'
       })
     },
     removeTag() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 remove-tag 事件',
         status: 'info'
       })
     },
     visibleChange() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 visible-change 事件',
         status: 'info'
       })
     },
     dropdownClick() {
-      Modal.message({
+      TinyModal.message({
         message: '触发 dropdown-click 事件',
         status: 'info'
       })

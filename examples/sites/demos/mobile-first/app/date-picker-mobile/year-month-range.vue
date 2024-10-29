@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { DatePickerMobileFirst, Button } from '@opentiny/vue'
+import { TinyDatePickerMobileFirst, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePickerMobile: DatePickerMobileFirst,
-    TinyButton: Button
+    TinyDatePickerMobile: TinyDatePickerMobileFirst,
+    TinyButton
   },
   data() {
     return {

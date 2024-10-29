@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import { Tabs, TabItem, Button } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyButton } from '@opentiny/vue'
 import { IconCalendar, IconReplies } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
+    TinyTabs,
+    TinyTabItem,
     IconCalendar: IconCalendar(),
     IconReplies: IconReplies(),
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {

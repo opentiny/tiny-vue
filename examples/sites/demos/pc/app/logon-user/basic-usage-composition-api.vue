@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="jsx">
-import { LogonUser as TinyLogonUser } from '@opentiny/vue'
+import { TinyLogonUser } from '@opentiny/vue'
 
 function getUserInfo() {
   return Promise.resolve({

@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import { FilterBar, Modal } from '@opentiny/vue'
+import { TinyFilterBar, TinyModal } from '@opentiny/vue'
 import { IconUnfilter } from '@opentiny/vue-icon'
 
 export default {
   components: {
     IconUnfilter: IconUnfilter(),
-    TinyFilterBar: FilterBar
+    TinyFilterBar
   },
   data() {
     return {
@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     click(index) {
-      Modal.message(`当前点击第 ${index + 1} 项，值为 【${this.data[index]}】`)
+      TinyModal.message(`当前点击第 ${index + 1} 项，值为 【${this.data[index]}】`)
     },
     filterClickHandler() {
-      Modal.message(`插槽内点击过滤图标事件`)
+      TinyModal.message(`插槽内点击过滤图标事件`)
     }
   }
 }

@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeSelect as TinyTreeSelect } from '@opentiny/vue'
+import { TinyTreeSelect } from '@opentiny/vue'
 
 const value = ref([])
 

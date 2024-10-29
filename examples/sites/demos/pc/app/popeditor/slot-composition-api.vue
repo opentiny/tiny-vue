@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyPopeditor, TinyInput, TinyButton } from '@opentiny/vue'
 
 const dataset = [
   {
@@ -96,7 +96,7 @@ const gridOp = ref({
     {
       field: 'id',
       title: 'ID',
-      width: 40
+      width: 50
     },
     {
       field: 'name',

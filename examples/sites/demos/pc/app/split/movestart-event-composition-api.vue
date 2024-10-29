@@ -13,12 +13,12 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Split as TinySplit, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 const split1 = ref(0.3)
 
 function movestart() {
-  Modal.message('拖拽开始')
+  TinyModal.message('拖拽开始')
 }
 </script>
 

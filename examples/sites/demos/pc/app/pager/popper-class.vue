@@ -9,14 +9,15 @@
 </template>
 
 <script>
-import { Pager } from '@opentiny/vue'
+import { TinyPager } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   }
 }
 </script>
+
 <style>
 .custom-pager.tiny-popper {
   background: #e6f7ff;

@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { Card } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCard: Card
+    TinyCard
   },
   data() {
     return {
@@ -57,6 +57,6 @@ export default {
   padding: 16px;
 }
 .my-card {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

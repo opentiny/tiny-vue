@@ -33,17 +33,17 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Numeric as TinyNumeric,
-  Radio as TinyRadio,
-  DatePicker as TinyDatePicker,
-  DropTimes as TinyDropTimes,
-  Tooltip as TinyTooltip,
-  Input as TinyInput,
-  Button as TinyButton,
-  ButtonGroup as TinyButtonGroup,
-  Modal as TinyModal
+  TinyForm,
+  TinyFormItem,
+  TinyNumeric,
+  TinyRadio,
+  TinyDatePicker,
+  TinyDropTimes,
+  TinyTooltip,
+  TinyInput,
+  TinyButton,
+  TinyButtonGroup,
+  TinyModal
 } from '@opentiny/vue'
 
 const sizeList = ref([

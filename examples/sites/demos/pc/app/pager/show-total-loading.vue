@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { Pager, Switch } from '@opentiny/vue'
+import { TinyPager, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager,
-    TinySwitch: Switch
+    TinyPager,
+    TinySwitch
   },
   data() {
     return {

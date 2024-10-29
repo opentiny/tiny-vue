@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 const value1 = ref(['选项1', '选项2'])
 const value2 = ref(['001', '002'])

@@ -15,12 +15,12 @@
 </template>
 
 <script lang="jsx">
-import { List } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue'
 import { iconChevronRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyList: List,
+    TinyList,
     IconChevronRight: iconChevronRight()
   },
   data() {

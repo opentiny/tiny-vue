@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { IpAddress } from '@opentiny/vue'
+import { TinyIpAddress } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyIpAddress: IpAddress
+    TinyIpAddress
   },
   data() {
     return {

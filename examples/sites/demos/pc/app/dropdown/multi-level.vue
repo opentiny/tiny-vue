@@ -35,12 +35,12 @@
 
 <script>
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown, DropdownMenu, Modal } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu
+    TinyDropdown,
+    TinyDropdownMenu
   },
   data() {
     return {
@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     itemClick(data) {
-      Modal.message({
+      TinyModal.message({
         message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`
       })
     }

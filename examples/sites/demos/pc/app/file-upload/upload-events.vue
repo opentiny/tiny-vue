@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -44,28 +44,28 @@ export default {
   },
   methods: {
     handleRemove() {
-      Modal.message({ message: '触发删除文件回调事件', status: 'info' })
+      TinyModal.message({ message: '触发删除文件回调事件', status: 'info' })
     },
     handlePreview(file) {
-      Modal.message({ message: file.url, status: 'info' })
+      TinyModal.message({ message: file.url, status: 'info' })
     },
     progressEvent() {
-      Modal.message({ message: '文件上传时的回调 返回进程', status: 'loading' })
+      TinyModal.message({ message: '文件上传时的回调 返回进程', status: 'loading' })
     },
     errorEvent() {
-      Modal.message({ message: '文件上传失败回调', status: 'error' })
+      TinyModal.message({ message: '文件上传失败回调', status: 'error' })
     },
     handleExceed() {
-      Modal.message({ message: '触发文件超出个数限制回调事件', status: 'warning' })
+      TinyModal.message({ message: '触发文件超出个数限制回调事件', status: 'warning' })
     },
     handleAvatarSuccess() {
-      Modal.message({ message: '触发上传文件成功回调事件', status: 'success' })
+      TinyModal.message({ message: '触发上传文件成功回调事件', status: 'success' })
     },
     handleChange() {
-      Modal.message({ message: '触发上传文件改变回调事件', status: 'info' })
+      TinyModal.message({ message: '触发上传文件改变回调事件', status: 'info' })
     },
     handleHashProgress() {
-      Modal.message({ message: '文件上传生成hash值时的回调 返回进程', status: 'info' })
+      TinyModal.message({ message: '文件上传生成hash值时的回调 返回进程', status: 'info' })
     }
   }
 }

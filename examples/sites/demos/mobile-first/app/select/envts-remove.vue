@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { Select, Option, Modal } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {
@@ -49,12 +49,12 @@ export default {
   },
   methods: {
     removeTag() {
-      Modal.message({
+      TinyModal.message({
         message: 'removeTag事件'
       })
     },
     visibleChange() {
-      Modal.message({
+      TinyModal.message({
         message: 'visibleChange事件'
       })
     }

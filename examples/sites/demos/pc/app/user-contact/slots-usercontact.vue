@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { UserContact } from '@opentiny/vue'
+import { TinyUserContact } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserContact: UserContact
+    TinyUserContact
   },
   data() {
     return {

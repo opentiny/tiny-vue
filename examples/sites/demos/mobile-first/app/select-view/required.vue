@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import { SelectView, Button, Modal } from '@opentiny/vue'
+import { TinySelectView, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelectView: SelectView,
-    TinyButton: Button
+    TinySelectView,
+    TinyButton
   },
   data() {
     const list = [
@@ -93,7 +93,7 @@ export default {
     searchClick(option, actionIsSuccessful) {
       if (!actionIsSuccessful) {
         // 选择操作失败，必选不能取消选择
-        Modal.message(`选择项 [${option.userName} ${option.employeeNumber}] 操作失败，该必选不能取消选择`)
+        TinyModal.message(`选择项 [${option.userName} ${option.employeeNumber}] 操作失败，该必选不能取消选择`)
       }
     }
   }

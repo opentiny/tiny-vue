@@ -17,17 +17,18 @@
 </template>
 
 <script lang="jsx">
-import { Popover, Button } from '@opentiny/vue'
+import { TinyPopover, TinyButton } from '@opentiny/vue'
 import { IconRefres } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinyButton: Button,
+    TinyPopover,
+    TinyButton,
     TinyIconRefres: IconRefres()
   }
 }
 </script>
+
 <style scoped>
 .container {
   display: flex;

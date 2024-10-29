@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import { Guide, Button } from '@opentiny/vue'
+import { TinyGuide, TinyButton } from '@opentiny/vue'
 
 const imgUrl = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
 export default {
   components: {
-    TinyGuide: Guide,
-    TinyButton: Button
+    TinyGuide,
+    TinyButton
   },
   data() {
     return {

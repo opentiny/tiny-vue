@@ -4,10 +4,10 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 onMounted(() => {
-  Loading.service({
+  TinyLoading.service({
     text: '加载中',
     target: document.getElementById('tiny-demo-loading-tip-text'),
     size: 'large'

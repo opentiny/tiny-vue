@@ -20,13 +20,13 @@
 </template>
 
 <script lang="jsx">
-import { DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 import { iconAssociation } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
+    TinyDropdownMenu,
+    TinyDropdownItem,
     IconAssociation: iconAssociation()
   },
   data() {

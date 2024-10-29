@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { Numeric, Modal } from '@opentiny/vue'
+import { TinyNumeric, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNumeric: Numeric
+    TinyNumeric
   },
   data() {
     return {
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     onChange(val: number | undefined, oldVal: number | undefined) {
-      Modal.message({ message: `${val} ${oldVal}`, status: 'info' })
+      TinyModal.message({ message: `${val} ${oldVal}`, status: 'info' })
     }
   }
 }

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -97,8 +97,8 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button
+    TinyDialogSelect,
+    TinyButton
   },
   data() {
     return {

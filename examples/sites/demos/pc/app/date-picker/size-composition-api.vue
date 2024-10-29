@@ -35,11 +35,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  DatePicker as TinyDatePicker,
-  RadioGroup as TinyRadioGroup,
-  RadioButton as TinyRadioButton
-} from '@opentiny/vue'
+import { TinyDatePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 const value = ref('')
 const dateTimeValue = ref('')

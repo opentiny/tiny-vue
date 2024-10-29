@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
       this.placement = target === 'width' ? 'right' : 'bottom'
     },
     drag({ width, height }) {
-      Modal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
+      TinyModal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
     }
   }
 }
