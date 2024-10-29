@@ -5,7 +5,7 @@
       <tiny-button @click="clearData">清除数据</tiny-button>
     </div>
     <div>
-      <div class="tip">5个插槽示例</div>
+      <div class="tips">提示：5个插槽示例</div>
       <tiny-tree :data="data" default-expand-all>
         <!-- 前缀插槽 -->
         <template #prefix="{ node }">
@@ -33,7 +33,7 @@
       </tiny-tree>
     </div>
     <div>
-      <div class="tip">render-content + empty-text 示例</div>
+      <div class="tips">提示：render-content + empty-text 示例</div>
       <tiny-tree :data="data" empty-text="组件无数据" :render-content="renderContent" default-expand-all> </tiny-tree>
     </div>
   </div>
@@ -105,8 +105,8 @@ export default {
 .slot-demo > div {
   margin-bottom: 8px;
 }
-.tip {
-  font-weight: bold;
-  margin-bottom: 8px;
+.tips {
+  color: #888;
+  margin: 12px 20px;
 }
 </style>

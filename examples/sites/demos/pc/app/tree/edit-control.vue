@@ -4,7 +4,7 @@
     <tiny-button @click="closeEdit">取消编辑</tiny-button>
     <tiny-button @click="saveEdit">保存编辑</tiny-button> <br />
     <br />
-    <div class="red">数据1 禁止添加; &nbsp;数据2 禁止编辑; &nbsp;数据3 禁止删除;</div>
+    <div class="tips">提示：数据1 禁止添加; &nbsp;数据2 禁止编辑; &nbsp;数据3 禁止删除;</div>
     <tiny-tree
       ref="treeRef"
       node-key="id"
@@ -117,7 +117,8 @@ export default {
 </script>
 
 <style scoped>
-.red {
-  color: red;
+.tips {
+  color: #888;
+  margin: 12px 20px;
 }
 </style>
