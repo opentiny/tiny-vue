@@ -48,6 +48,62 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'view-map',
+          type: 'Map | boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '扩展的对应视图映射, 也可赋值为 true 来使用默认视图',
+            'en-US':
+              'The corresponding view mapping of the extension, which can also be assigned to true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'slash-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '斜杠菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the slash menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'slash-menu-usage'
+        },
+        {
+          name: 'float-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '浮动菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the float menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'bubble-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '气泡菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the bubble menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'bubble-menu-usage'
+        },
+        {
+          name: 'collaboration',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '开启协作模式',
+            'en-US': 'Enable collaboration mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'collaboration-usage'
         }
       ],
       events: [
