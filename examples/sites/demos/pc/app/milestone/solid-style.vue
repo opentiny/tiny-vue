@@ -17,7 +17,7 @@ export default {
     return {
       isSolid: false,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
+        completed: 'var(--tv-color-bg-disabled-control-active)',
         doing: '#7ED321',
         back: '#f5222d',
         end: '#faad14',
