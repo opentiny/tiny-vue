@@ -271,7 +271,7 @@ type IEffect = 'dark' | 'light' | 'plain'
       name: 'ISize',
       type: 'type',
       code: `
-type ISize = 'medium' | 'small' | 'mini' | ''
+type ISize = 'medium' | 'small' | ''
 `
     },
     {
