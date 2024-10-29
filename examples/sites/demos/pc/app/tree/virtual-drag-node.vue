@@ -12,21 +12,23 @@
         <tiny-radio label="node-drag-end">node-drag-end</tiny-radio>
       </tiny-radio-group>
     </div>
-    <tiny-tree
-      :data="data"
-      :node-height="50"
-      :tree-height="400"
-      draggable
-      :allow-drag="allowDrag"
-      :allow-drop="allowDrop"
-      @node-drop="nodeDrop"
-      @node-drag-start="dragStart"
-      @node-drag-enter="dragEnter"
-      @node-drag-over="dragOver"
-      @node-drag-leave="dragLeave"
-      @node-drag-end="dragEnd"
-      default-expand-all
-    ></tiny-tree>
+    <div class="virtual-drag-node">
+      <tiny-tree
+        :data="data"
+        :node-height="50"
+        :tree-height="400"
+        draggable
+        :allow-drag="allowDrag"
+        :allow-drop="allowDrop"
+        @node-drop="nodeDrop"
+        @node-drag-start="dragStart"
+        @node-drag-enter="dragEnter"
+        @node-drag-over="dragOver"
+        @node-drag-leave="dragLeave"
+        @node-drag-end="dragEnd"
+        default-expand-all
+      ></tiny-tree>
+    </div>
   </div>
 </template>
 
@@ -112,5 +114,9 @@ export default {
   margin-bottom: 16px;
   font-weight: bold;
   font-size: 16px;
+}
+
+.virtual-drag-node {
+  width: 800px;
 }
 </style>

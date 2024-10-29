@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="virtual-tree">
     <tiny-tree
       :data="data"
       :node-height="50"
@@ -51,3 +51,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.virtual-tree {
+  width: 800px;
+}
+</style>
