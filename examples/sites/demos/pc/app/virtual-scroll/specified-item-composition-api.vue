@@ -18,7 +18,7 @@
         :data="showData"
         :item-size="50"
         item-index="key"
-        :visible-size="300"
+        :visible-size="400"
         class="tiny-virtual-scroll"
         direction="vertical"
       >
@@ -71,6 +71,11 @@ showData.value = Array.from(Array(1000), (v, k) => {
 
 .scrollTo-demo .footer .tiny-numeric {
   width: 200px;
+}
+
+.scrollTo-demo .main .tiny-virtual-scroll {
+  width: 1000px;
+  border: solid 1px #c2c2c2;
 }
 
 .scrollTo-demo .main .tiny-virtual-scroll .tiny-virtual-scroll-item {

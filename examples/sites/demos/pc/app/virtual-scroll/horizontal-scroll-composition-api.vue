@@ -39,7 +39,7 @@ showData.value = Array.from(Array(1000), (v, k) => {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  height: 50px;
+  height: 52px;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
@@ -48,7 +48,7 @@ showData.value = Array.from(Array(1000), (v, k) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 21px;
+  font-size: 20px;
   height: 100%;
 }
 </style>

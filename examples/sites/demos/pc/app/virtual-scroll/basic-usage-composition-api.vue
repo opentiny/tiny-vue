@@ -5,7 +5,7 @@
       :item-size="50"
       item-index="key"
       class="tiny-virtual-scroll"
-      :visible-size="300"
+      :visible-size="400"
     >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
@@ -35,11 +35,19 @@ showData.value = Array.from(Array(1000), (v, k) => {
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.virtual-scroll-demo .tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll {
+  width: 1000px;
+  border: solid 1px #c2c2c2;
+}
+
+.virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
+  width: 100%;
   padding: 10px;
-  border-bottom: 2px solid #ddd;
-  align-content: center;
+  border-bottom: 2px solid #c2c2c2;
 }
 </style>

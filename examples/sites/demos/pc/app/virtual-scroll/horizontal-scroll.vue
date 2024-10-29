@@ -48,7 +48,7 @@ export default {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  height: 50px;
+  height: 52px;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
@@ -57,7 +57,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 21px;
+  font-size: 20px;
   height: 100%;
 }
 </style>

@@ -4,7 +4,7 @@
       :data="showData"
       :estimated-item-size="50"
       item-index="id"
-      :visible-size="300"
+      :visible-size="400"
       class="tiny-virtual-scroll"
       direction="vertical"
       :buffer="0.5"
@@ -47,10 +47,11 @@ export default {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  width: 100%;
+  width: 1000px;
+  border: solid 1px #c2c2c2;
 }
 
-.virtual-scroll-demo .tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
 }
