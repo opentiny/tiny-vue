@@ -156,6 +156,7 @@
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
+                  only-icon
                   :closable="false"
                   :size="state.collapseTagSize"
                   @click="onClickCollapseTag($event)"
