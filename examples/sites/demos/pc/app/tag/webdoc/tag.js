@@ -69,8 +69,8 @@ export default {
         'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small / mini)</code> 。',
-        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small/mini)</code> .'
+        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small)</code> 。',
+        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small)</code> .'
       },
       codeFiles: ['size.vue']
     },
