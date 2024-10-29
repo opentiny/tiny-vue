@@ -21,7 +21,7 @@ export default {
         name: 'smb', // 设计规范名称
         version: '1.0.0', // 设计规范版本号
         components: {
-          TinyAlert: {
+          Alert: {
             icons: {
               warning: iconWarningTriangle()
             },

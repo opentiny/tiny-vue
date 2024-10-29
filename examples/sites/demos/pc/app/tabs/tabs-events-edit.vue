@@ -1,6 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" tab-style="card" editable @edit="edit">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       activeName: 'first',
-      TinyTabs: [
+      tabs: [
         {
           title: '表单组件',
           name: 'first',

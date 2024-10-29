@@ -1,13 +1,13 @@
 <template>
   <div class="left-panel">
-    <fall-menu :data="dataset">
+    <tiny-fall-menu :data="dataset">
       <template #left>
         <icon-left class="tiny-svg-size" />
       </template>
       <template #right>
         <icon-right class="tiny-svg-size" />
       </template>
-    </fall-menu>
+    </tiny-fall-menu>
   </div>
 </template>
 

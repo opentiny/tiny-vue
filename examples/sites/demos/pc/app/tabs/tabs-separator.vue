@@ -25,7 +25,7 @@
     </tiny-tabs>
     <br /><br /><br /><br />
     <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px">
-      <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+      <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>
     </tiny-tabs>
@@ -44,7 +44,7 @@ export default {
     return {
       activeName1: 'first',
       activeName2: 'second',
-      TinyTabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     handleadd() {
-      this.TinyTabs.push({
+      this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加tabitem'
