@@ -17,7 +17,9 @@
 
   //------------------------------------------------------- 尺寸 场景：font-size, border-radius ,padding-x,y   -------
 
-  /** 由于 tag 有border的，所有的padding值比设计图减少1 */
+  /** 由于 tag 有border的，所有的padding值比设计图减少1 
+   *  去掉mini 尺寸。  small  正常  medium。 如果用户使用了mini时，尺寸等于small
+  */
 
   // 超小标签字号
   --tv-Tag-font-size-mini: var(--tv-font-size-sm);
@@ -35,28 +37,28 @@
   // 小型标签字号
   --tv-Tag-font-size-small: var(--tv-font-size-sm);
   // 小型标签水平间距
-  --tv-Tag-padding-x-small: 7px;
+  --tv-Tag-padding-x-small: 3px;
   // 小型标签垂直间距
-  --tv-Tag-padding-y-small: 2px;
+  --tv-Tag-padding-y-small: 0;
   // 小型标签圆角
-  --tv-Tag-border-radius-small: var(--tv-border-radius-sm);
+  --tv-Tag-border-radius-small: var(--tv-border-radius-xs);
   // 标签在仅图标模式时，图标的大小
-  --tv-Tag-only-icon-font-size-small: 14px;
+  --tv-Tag-only-icon-font-size-small: 12px;
   // 标签在仅图标模式时，标签的内边距
-  --tv-Tag-only-icon-padding-small: 0.5px;
+  --tv-Tag-only-icon-padding-small: 2px;
 
   // 默认标签字号
-  --tv-Tag-font-size: var(--tv-font-size-md);
+  --tv-Tag-font-size: var(--tv-font-size-sm);
   // 默认标签水平间距
-  --tv-Tag-padding-x: 11px;
+  --tv-Tag-padding-x: 7px;
   // 默认标签垂直间距
-  --tv-Tag-padding-y: 2.5px;
+  --tv-Tag-padding-y: 2px;
   // 默认标签圆角
-  --tv-Tag-border-radius: var(--tv-border-radius-md);
+  --tv-Tag-border-radius: var(--tv-border-radius-sm);
   // 标签在仅图标模式时，图标的大小
-  --tv-Tag-only-icon-font-size: 16px;
+  --tv-Tag-only-icon-font-size: 14px;
   // 标签在仅图标模式时，标签的内边距
-  --tv-Tag-only-icon-padding: 3px;
+  --tv-Tag-only-icon-padding: 0.5px;
 
   // 中等标签字号
   --tv-Tag-font-size-medium: var(--tv-font-size-md); //14
