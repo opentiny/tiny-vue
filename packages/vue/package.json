@@ -131,6 +131,7 @@
     "@opentiny/vue-floatbar": "workspace:~",
     "@opentiny/vue-floating-button": "workspace:~",
     "@opentiny/vue-flowchart": "workspace:~",
+    "@opentiny/vue-fluent-editor": "workspace:~",
     "@opentiny/vue-form": "workspace:~",
     "@opentiny/vue-form-item": "workspace:~",
     "@opentiny/vue-fullscreen": "workspace:~",
