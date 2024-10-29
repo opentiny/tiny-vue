@@ -15,13 +15,16 @@
   // 标签字体的行高
   --tv-Tag-line-height: var(--tv-line-height-number);
 
-  //------------------------------------------------------- 尺寸 场景：fontsize, border-radius ,padding-x,y   -------
+  //------------------------------------------------------- 尺寸 场景：font-size, border-radius ,padding-x,y   -------
+
+  /** 由于 tag 有border的，所有的padding值比设计图减少1 */
+
   // 超小标签字号
-  --tv-Tag-font-size-mini: 10px;
+  --tv-Tag-font-size-mini: var(--tv-font-size-sm);
   // 超小标签水平间距
-  --tv-Tag-padding-x-mini: var(--tv-space-sm);
+  --tv-Tag-padding-x-mini: 3px;
   // 超小标签垂直间距
-  --tv-Tag-padding-y-mini: 0.5px;
+  --tv-Tag-padding-y-mini: 0;
   // 超小标签圆角
   --tv-Tag-border-radius-mini: var(--tv-border-radius-xs);
   // 标签在仅图标模式时，图标的大小
@@ -32,41 +35,41 @@
   // 小型标签字号
   --tv-Tag-font-size-small: var(--tv-font-size-sm);
   // 小型标签水平间距
-  --tv-Tag-padding-x-small: var(--tv-space-sm);
+  --tv-Tag-padding-x-small: 7px;
   // 小型标签垂直间距
-  --tv-Tag-padding-y-small: 0;
+  --tv-Tag-padding-y-small: 2px;
   // 小型标签圆角
-  --tv-Tag-border-radius-small: var(--tv-border-radius-xs);
+  --tv-Tag-border-radius-small: var(--tv-border-radius-sm);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size-small: 14px;
   // 标签在仅图标模式时，标签的内边距
-  --tv-Tag-only-icon-padding-small: 2px;
+  --tv-Tag-only-icon-padding-small: 0.5px;
 
   // 默认标签字号
   --tv-Tag-font-size: var(--tv-font-size-md);
   // 默认标签水平间距
-  --tv-Tag-padding-x: var(--tv-space-md);
+  --tv-Tag-padding-x: 11px;
   // 默认标签垂直间距
-  --tv-Tag-padding-y: 0.5px;
+  --tv-Tag-padding-y: 2.5px;
   // 默认标签圆角
-  --tv-Tag-border-radius: var(--tv-border-radius-sm);
+  --tv-Tag-border-radius: var(--tv-border-radius-md);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size: 16px;
   // 标签在仅图标模式时，标签的内边距
   --tv-Tag-only-icon-padding: 3px;
 
   // 中等标签字号
-  --tv-Tag-font-size-medium: var(--tv-font-size-md);
+  --tv-Tag-font-size-medium: var(--tv-font-size-md); //14
   // 中等标签水平间距
-  --tv-Tag-padding-x-medium: var(--tv-space-lg);
+  --tv-Tag-padding-x-medium: 11px;
   // 中等标签垂直间距
   --tv-Tag-padding-y-medium: 4.5px;
   // 中等标签圆角
   --tv-Tag-border-radius-medium: var(--tv-border-radius-md);
   // 标签在仅图标模式时，图标的大小
-  --tv-Tag-only-icon-font-size-medium: 20px;
+  --tv-Tag-only-icon-font-size-medium: 16px;
   // 标签在仅图标模式时，标签的内边距
-  --tv-Tag-only-icon-padding-medium: 5px;
+  --tv-Tag-only-icon-padding-medium: 7px;
 
   //------------------------------------------------------- 颜色 场景：（1、考虑border，虽然cloud design没有，但适配其它肯定有border的) ----
 
