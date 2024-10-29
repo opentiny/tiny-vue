@@ -69,7 +69,7 @@ export default {
         {
           title: 'TinyVue',
           content: '^15.0.01',
-          imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.7.20240711104855/assets/tinyvue.svg'
+          imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/tinyvue.svg'
         },
         {
           title: 'TinyNG',

@@ -49,6 +49,6 @@ const options = ref([
   padding: 16px;
 }
 .my-card {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
