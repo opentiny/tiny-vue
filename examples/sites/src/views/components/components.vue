@@ -1,18 +1,18 @@
 <template>
-  <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
-    <span class="cmp-mode-title">文档类型： </span>
-    <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
-  </div>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <header class="flex-horizontal docs-header">
+  <header :class="['flex-horizontal', 'docs-header', cmpId === 'loading' && 'docs-header-highlight']">
     <div class="docs-title-wrap">
       <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
       <version-tip
-        v-if="currJson.metaData || currJson.versionTipOption"
-        :meta-data="currJson.metaData"
+        v-if="currJson.meta || currJson.versionTipOption"
+        :meta="currJson.meta"
         v-bind="currJson.versionTipOption"
       >
       </version-tip>
+    </div>
+    <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
+      <span class="cmp-mode-title">文档类型： </span>
+      <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
     </div>
     <span class="docs-header-spacer"></span>
   </header>
@@ -54,8 +54,8 @@
                             <span v-else>{{ row.name }}</span>
                           </span>
                           <version-tip
-                            v-if="row.metaData || row.versionTipOption"
-                            :meta-data="row.metaData"
+                            v-if="row.meta || row.versionTipOption"
+                            :meta="row.meta"
                             v-bind="row.versionTipOption"
                             render-type="tag"
                             tip-subject="api"
@@ -84,14 +84,24 @@
                         :title="i18nByKey('defValue')"
                         :width="columnWidth[key][2]"
                       ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                        <template #default="data">
+                          <span v-html="data.row.desc"></span>
+                        </template>
+                      </tiny-grid-column>
                     </tiny-grid>
                   </template>
                 </div>
               </div>
             </div>
           </div>
-          <tiny-tabs v-else v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
+          <tiny-tabs
+            v-else
+            v-model="activeTab"
+            ref="demoTabs"
+            :class="['docs-content-tabs', cmpId === 'loading' && 'docs-content-tabs-highlight']"
+            @click="onTabsClick"
+          >
             <tiny-tab-item :title="i18nByKey('demos')" name="demos">
               <!-- demos列表 -->
               <template v-if="currJson?.demos?.length">
@@ -103,6 +113,7 @@
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
+                      @mounted="demoMounted"
                     />
                   </div>
                   <div v-else>
@@ -126,7 +137,7 @@
                 </template>
               </div>
             </tiny-tab-item>
-            <tiny-tab-item v-if="showApiTab && !isRunningTest" title="API" name="api">
+            <tiny-tab-item v-if="showApiTab && !isRunningTest && currJson.apis?.length" title="API" name="api">
               <!-- api文档 -->
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
@@ -154,7 +165,11 @@
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
                             <template #default="{ row }">
-                              <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                              <async-highlight
+                                v-if="row.code"
+                                :code="row.code.trim()"
+                                :types="chartCode ? 'html' : 'ts'"
+                              ></async-highlight>
                               <div v-if="row.depTypes">
                                 <async-highlight
                                   v-for="(k, i) in row.depTypes"
@@ -172,8 +187,8 @@
                                 <span v-else>{{ row.name }}</span>
                               </span>
                               <version-tip
-                                v-if="row.metaData || row.versionTipOption"
-                                :meta-data="row.metaData"
+                                v-if="row.meta || row.versionTipOption"
+                                :meta="row.meta"
                                 v-bind="row.versionTipOption"
                                 render-type="tag"
                                 tip-subject="api"
@@ -197,12 +212,16 @@
                             </template>
                           </tiny-grid-column>
                           <tiny-grid-column
-                            v-if="key === 'props'"
+                            v-if="key === 'props' || key === 'options'"
                             field="defaultValue"
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
                           ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                            <template #default="data">
+                              <span v-html="data.row.desc"></span>
+                            </template>
+                          </tiny-grid-column>
                         </tiny-grid>
                       </template>
                     </div>
@@ -240,6 +259,7 @@
 
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
@@ -271,6 +291,8 @@ export default defineComponent({
     const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
     const anchorRefreshKey = ref(0)
     const apiTableRef = ref()
+    const route = useRoute()
+
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: getWord('zh-CN', 'en-US'),
@@ -302,12 +324,13 @@ export default defineComponent({
       currAnchorLinks: computed(() => (state.activeTab === 'demos' ? state.demoAnchorLinks : state.apiAnchorLinks)),
       // 单demo显示时
       singleDemo: null,
-      activeTab: 'demos',
+      activeTab: route.hash === '#api' ? 'api' : 'demos',
       tableData: {},
       currApiTypes: [],
       showApiTab: computed(() => state.currApiTypes.length),
       columnWidth: {
         props: ['15%', '20%', '15%'],
+        options: ['15%', '20%', '15%'],
         events: ['15%', '25%', 0],
         methods: ['15%', '20%', 0],
         slots: ['15%', 0, 0],
@@ -321,11 +344,32 @@ export default defineComponent({
         activeMethod: (row) => row.typeAnchorName,
         showIcon: true // 配置是否显示展开图标
       },
-      contributors: [] // 贡献者
+      contributors: [], // 贡献者
+      chartCode: false
     })
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+
+    let finishNum = 0
+    let isAllMounted = false
+    let demoMountedResolve
+    const demoMounted = () => {
+      finishNum++
+      if (finishNum === state.currJson.demos.length) {
+        isAllMounted = true
+        demoMountedResolve(true)
+      }
+    }
+
+    const allDemoMounted = async () => {
+      if (isAllMounted) {
+        return isAllMounted
+      }
+      return new Promise((resolve) => {
+        demoMountedResolve = resolve
+      })
+    }
 
     const getApiAnchorLinks = () => {
       if (!state.currJson.apis?.length) {
@@ -368,14 +412,14 @@ export default defineComponent({
         for (const apiType of Object.keys(apiGroup)) {
           if (Array.isArray(apiGroup[apiType]) && apiGroup[apiType].length) {
             const apiArr = apiGroup[apiType].map((i) => {
-              const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, metaData, versionTipOption } = i
+              const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, meta, versionTipOption } = i
               const item = {
                 name,
                 type,
                 defaultValue: defaultValue || '--',
                 desc: desc[state.langKey],
                 demoId,
-                metaData,
+                meta,
                 versionTipOption,
                 typeAnchorName: '',
                 linkTo
@@ -439,10 +483,7 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log('querySelector has special character:', err)
-          }
+          } catch (err) {}
           if (scrollTarget && !isRunningTest) {
             document.getElementById('doc-layout').scrollTo({
               top: scrollTarget.offsetTop,
@@ -451,7 +492,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -481,6 +522,9 @@ export default defineComponent({
           `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
         )
       ]
+
+      state.chartCode = getWebdocPath(state.cmpId) === 'chart'
+
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
         state.activeTab = 'apis'
@@ -558,11 +602,9 @@ export default defineComponent({
 
           // F5刷新加载时，跳到当前示例
           // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          return allDemoMounted().then(() => {
+            scrollByHash(hash)
+          })
         })
         .finally(() => {
           // 获取组件贡献者
@@ -605,10 +647,12 @@ export default defineComponent({
     }
 
     const fn = {
+      demoMounted,
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
-      onTabsClick: () => {
+      onTabsClick: (data) => {
+        router.push(`#${data.name}`)
         scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
@@ -667,6 +711,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 切换组件时tabs激活页变成demos
+          state.activeTab = 'demos'
           // 每次切换组件都需要让锚点组件重新刷新
           anchorRefreshKey.value++
         }
@@ -723,9 +769,13 @@ export default defineComponent({
   position: sticky;
   top: 0;
   z-index: var(--docs-header-zindex);
-  padding: var(--ti-common-space-4x) var(--ti-common-space-10x);
+  padding: 16px 40px;
   background-color: #fff;
-  box-shadow: var(--ti-common-space-3x) 0 var(--ti-common-space-5x) var(--ti-common-space-6) rgba(0, 0, 0, 0.06);
+  box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
+
+  &.docs-header-highlight {
+    z-index: var(--docs-header-zindex-highlight);
+  }
 
   .docs-title-wrap {
     flex: 1;
@@ -736,13 +786,13 @@ export default defineComponent({
 
   .markdown-top-body {
     z-index: var(--docs-markdown-top-body-zindex);
-    font-size: var(--ti-common-font-size-1);
+    font-size: 14px;
     transition: all ease-in-out 0.3s;
 
     :deep(h1) {
       margin: 0;
       padding: 0;
-      font-size: var(--ti-common-font-size-5);
+      font-size: 24px;
       line-height: 40px;
     }
   }
@@ -758,7 +808,7 @@ export default defineComponent({
 }
 
 .docs-content {
-  margin: var(--ti-common-space-4x) 0 120px;
+  margin: 16px 0 120px;
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
@@ -766,14 +816,18 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     min-width: 680px;
-    padding: 0 var(--ti-common-space-10x);
+    padding: 0 40px;
   }
 
   .docs-content-tabs {
-    --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: var(--ti-common-font-size-3);
-    --ti-tabs-header-font-active-text-color: #2f5bea;
-    --ti-tabs-item-active-border-color: #2f5bea;
+    --tv-Tabs-heigh: 48px;
+    --tv-Tabs-item-font-size: 18px;
+    --tv-Tabs-header-font-active-text-color: #2f5bea;
+    --tv-Tabs-item-active-border-color: #2f5bea;
+
+    &.docs-content-tabs-highlight :deep(.tiny-tabs__header) {
+      z-index: var(--docs-layout-sider-zindex-highlight);
+    }
 
     flex: 1;
     transition: all ease-in-out 0.3s;
@@ -793,7 +847,7 @@ export default defineComponent({
         left: 0;
         display: block;
         width: 100%;
-        height: var(--ti-common-size-4x);
+        height: 16px;
         background: linear-gradient(to bottom, #fff, transparent);
         transform: translateY(100%);
       }
@@ -812,9 +866,6 @@ export default defineComponent({
 }
 
 .api-table {
-  --ti-grid-font-size: var(--ti-common-font-size-1);
-  --ti-grid-default-header-column-height: var(--ti-common-size-10x);
-
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -837,11 +888,20 @@ export default defineComponent({
   }
 
   :deep(.api-table-expand-col) {
-    padding-left: var(--ti-common-space-4x);
+    padding-left: 16px;
   }
 
   :deep(.tiny-grid-body__expanded-cell) {
-    background-color: var(--ti-common-color-bg-gray);
+    background-color: #fafafa;
+  }
+
+  :deep(code) {
+    color: #476582;
+    padding: 4px 8px;
+    margin: 0 4px;
+    font-size: 0.85em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
   }
 }
 
@@ -855,7 +915,7 @@ export default defineComponent({
   flex: none;
   width: 200px;
   height: calc(100vh - 280px);
-  padding-top: var(--ti-common-space-4x);
+  padding-top: 16px;
 
   .tiny-anchor__dot {
     max-height: calc(100vh - 300px);
@@ -898,19 +958,19 @@ export default defineComponent({
 .all-demos-container,
 .all-api-container {
   flex: 1;
-  padding-top: var(--ti-common-space-8x);
+  padding-top: 32px;
   scroll-behavior: smooth;
 }
 
 .all-api-container {
-  padding-top: var(--ti-common-space-3x);
+  padding-top: 12px;
 }
 
 .flex-horizontal {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  column-gap: var(--ti-common-space-4x);
+  column-gap: 16px;
 }
 
 .cmp-container {
@@ -929,7 +989,6 @@ export default defineComponent({
   }
 
   :deep(.tiny-anchor-link) {
-    margin-bottom: 10px;
     font-size: 12px;
 
     a {
@@ -945,8 +1004,8 @@ export default defineComponent({
   margin-top: 48px;
 
   .cmp-contributor-title {
-    margin-bottom: var(--ti-common-size-8x);
-    font-size: var(--ti-common-font-size-4);
+    margin-bottom: 32px;
+    font-size: 20px;
     font-weight: Semibold;
     color: #191919;
   }
@@ -954,8 +1013,8 @@ export default defineComponent({
   .cmp-contributor-item {
     width: 42px;
     height: 42px;
-    margin-right: var(--ti-common-space-3x);
-    margin-bottom: var(--ti-common-space-5x);
+    margin-right: 12px;
+    margin-bottom: 20px;
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
@@ -972,7 +1031,7 @@ export default defineComponent({
   }
 
   .cmp-contributor-tip {
-    font-size: var(--ti-common-font-size-1);
+    font-size: 14px;
     color: #191919;
   }
 }

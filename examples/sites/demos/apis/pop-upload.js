@@ -297,8 +297,8 @@ export default {
             'zh-CN': '自定义上传提示内容',
             'en-US': 'Customize upload prompt content'
           },
-          metaData: {
-            new: '3.18.0'
+          meta: {
+            stable: '3.18.0'
           },
           mode: ['pc'],
           pcDemo: 'upload-tip'

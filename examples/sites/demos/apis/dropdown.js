@@ -241,7 +241,7 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'lazy-show-popper',
           mfDemo: '',
-          metaData: {
+          meta: {
             experimental: '3.18.0'
           }
         }
