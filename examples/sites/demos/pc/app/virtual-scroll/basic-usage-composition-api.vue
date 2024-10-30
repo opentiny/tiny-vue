@@ -35,9 +35,7 @@ showData.value = Array.from(Array(1000), (v, k) => {
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
@@ -49,5 +47,6 @@ showData.value = Array.from(Array(1000), (v, k) => {
   width: 100%;
   padding: 10px;
   border-bottom: 2px solid #c2c2c2;
+  font-size: 15px;
 }
 </style>

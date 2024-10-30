@@ -48,7 +48,8 @@ export default {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  height: 52px;
+  height: 50px;
+  overflow-y: hidden;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {

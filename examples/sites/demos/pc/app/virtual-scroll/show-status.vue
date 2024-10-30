@@ -76,6 +76,6 @@ export default {
   padding: 10px;
   border-bottom: 2px solid #ddd;
   width: 100%;
-  align-content: center;
+  font-size: 15px;
 }
 </style>

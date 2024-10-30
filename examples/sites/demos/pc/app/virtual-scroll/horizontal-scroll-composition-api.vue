@@ -2,7 +2,7 @@
   <div class="virtual-scroll-demo">
     <TinyVirtualScroll
       :data="showData"
-      :item-size="100"
+      :item-size="120"
       item-index="key"
       :visible-size="600"
       direction="horizontal"
@@ -39,7 +39,8 @@ showData.value = Array.from(Array(1000), (v, k) => {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  height: 52px;
+  height: 50px;
+  overflow-y: hidden;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {

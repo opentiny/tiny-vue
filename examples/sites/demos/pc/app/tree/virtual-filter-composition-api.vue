@@ -8,8 +8,8 @@
       <tiny-tree
         ref="treeRef"
         :data="data"
-        :node-height="50"
-        :tree-height="400"
+        show-virtual-scroll
+        :tree-height="350"
         :filter-node-method="filterNodeMethod"
         show-checkbox
         node-key="id"
