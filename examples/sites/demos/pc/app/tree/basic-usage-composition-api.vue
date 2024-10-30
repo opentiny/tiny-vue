@@ -76,7 +76,4 @@ function nodeClick(data, node, vm) {
   margin-top: 16px;
   margin-bottom: 16px;
 }
-.option-row > span {
-  font-size: 18px;
-}
 </style>

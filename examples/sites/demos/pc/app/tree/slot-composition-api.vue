@@ -13,7 +13,7 @@
         </template>
         <!-- 默认插槽 -->
         <template #default="node">
-          <div style="color: red">{{ node.data.label }}</div>
+          <div style="margin: 0 8px">{{ node.data.label }}</div>
         </template>
         <!-- 后缀插槽 -->
         <template #suffix="{ node }">
@@ -22,7 +22,7 @@
         <!-- 操作插槽 -->
         <template #operation="{ node }">
           <div style="width: 80px; text-align: right">
-            <tiny-link :underline="true" title="一些功能操作" type="primary"> 新增 </tiny-link> &nbsp;
+            <tiny-link :underline="true" title="一些功能操作"> 新增 </tiny-link> &nbsp;
             <tiny-link :underline="true" title="一些功能操作" type="danger"> 删除 </tiny-link>
           </div>
         </template>
@@ -78,7 +78,7 @@ function clearData() {
 function renderContent(h, { node, data }) {
   return (
     <span>
-      {node.label} <TinyIconPlusSquare fill="red" />
+      {node.label} <TinyIconPlusSquare fill="#666" />
     </span>
   )
 }

@@ -5,7 +5,7 @@
     </tiny-tree>
     <br />
     <div class="tips">提示：非手风琴模式，自定义自动勾选的内容</div>
-    <tiny-tree :data="data" accordion show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
+    <tiny-tree :data="data" show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
       <template #switchText>
         <span>自定义开关的内容</span>
       </template>
