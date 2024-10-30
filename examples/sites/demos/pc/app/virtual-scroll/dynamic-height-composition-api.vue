@@ -43,7 +43,7 @@ for (let i = 1; i <= 10000; i++) {
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  width: 100%;
+  width: 1000px;
   border: solid 1px #c2c2c2;
 }
 
