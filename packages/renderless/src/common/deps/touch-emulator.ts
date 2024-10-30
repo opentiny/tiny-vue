@@ -1,4 +1,4 @@
-import { isBrowser } from '../browser.js'
+import { isBrowser } from '../browser'
 
 let emulated = false
 let initiated = false

@@ -23,8 +23,8 @@ import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
 import { on, off } from '../common/deps/dom'
-import { xss } from '../common/xss.js'
-import { isBrowser } from '../common/browser.js'
+import { xss } from '../common/xss'
+import { isBrowser } from '../common/browser'
 
 const { nextZIndex } = PopupManager
 

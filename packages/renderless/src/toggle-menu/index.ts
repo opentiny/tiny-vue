@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common/xss.js'
+import { xss } from '../common/xss'
 import { isObject } from '../common/type'
 
 export const filterNode = (props) => (value, data) => {

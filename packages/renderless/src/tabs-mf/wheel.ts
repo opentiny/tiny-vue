@@ -1,4 +1,4 @@
-import { isBrowser } from '../common/browser.js'
+import { isBrowser } from '../common/browser'
 
 export const getAddWheelListener = (window, document) => {
   const { addApiName, removeApiName, prefix } = detectEventModel(window)
