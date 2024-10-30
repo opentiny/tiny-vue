@@ -7,7 +7,8 @@ export default {
       props: [
         {
           name: 'custom-tool-bar',
-          type: `(bold | italic | underline | strike | quote | code | codeBlock | unorderedlist | orderedlist | taskList | subscript | superscript | undo | redo | left | center | right | h-box | font-size | line-height | highlight | color | backgroundColor | formatClear | link | unlink | img | table)[]`,
+          typeAnchorName: 'IToolBarItem',
+          type: `IToolBarItem[]`,
           defaultValue: '[]',
           desc: {
             'zh-CN': '传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。',
@@ -201,6 +202,42 @@ export default {
           pcDemo: 'custom-search-types'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IToolBarItem',
+      type: 'interface',
+      code: `
+type IToolBarItem = 
+  'bold' | 
+  'italic' |
+  'underline' |
+  'strike' |
+  'quote' |
+  'code' |
+  'codeBlock' |
+  'unorderedlist' |
+  'orderedlist' |
+  'taskList' |
+  'subscript' |
+  'superscript' |
+  'undo' |
+  'redo' |
+  'left' |
+  'center' |
+  'right' |
+  'h-box' |
+  'font-size' |
+  'line-height' |
+  'highlight' |
+  'color' | 
+  'backgroundColor' |
+  'formatClear' |
+  'link' |
+  'img' |
+  'table'
+`
     }
   ]
 }

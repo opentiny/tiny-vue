@@ -15,18 +15,30 @@ function isElementInViewport(el: HTMLElement, viewport: HTMLElement) {
   )
 }
 
+/**
+ * 定义斜杠菜单 UI 视图
+ */
 export default defineComponent({
   name: $prefix + 'SlashMenuDemo',
   props: {
+    /**
+     * 传入的斜杠菜单项
+     * icon: Component: icon 组件
+     * title: 菜单名称
+     */
     items: {
       type: Array,
       default: () => []
     },
+    /**
+     * 具体的菜单动作
+     */
     command: Function
   },
   methods: {},
   setup(props, { expose }) {
     const { items } = props
+    // 当前菜单光标选择序列
     const selectedIndex = hooks.ref(0)
     const menuLength = hooks.ref(0)
     const slashMenuRef = hooks.ref()
@@ -34,6 +46,7 @@ export default defineComponent({
     hooks.watch(
       () => props.items,
       () => {
+        // 实时更新斜杠菜单 ui 初始化时重置选择光标为 0
         selectedIndex.value = 0
         menuLength.value = props.items.length
       },
@@ -45,11 +58,15 @@ export default defineComponent({
     hooks.watch(
       () => selectedIndex.value,
       () => {
+        // 监听选择光标变化 根据菜单容器高度移动视图
         const selectedItem = document.getElementById(`slash-menu-${selectedIndex.value}`)
         const menuContainer = slashMenuRef.value as HTMLDivElement
         if (selectedItem && menuContainer) {
+          // 菜单容器顶部高度
           const containerTop = menuContainer.offsetTop
+          // 当前选项顶部高度
           const itemTop = selectedItem.offsetTop
+          // 已滚动高度
           const scrollHeight = itemTop - containerTop
 
           if (!isElementInViewport(selectedItem, menuContainer)) {
@@ -67,6 +84,7 @@ export default defineComponent({
       }
     )
 
+    // 监听键盘事件 包括方向键与回车
     function onKeyDown({ event }: { event: KeyboardEvent }) {
       if (event.key === 'ArrowUp') {
         handleKeyUp()
@@ -98,6 +116,7 @@ export default defineComponent({
       handleSelectItem(selectedIndex.value)
     }
 
+    // 选择菜单时的具体命令
     function handleSelectItem(index: number) {
       const item = props.items[index]
 
@@ -106,11 +125,13 @@ export default defineComponent({
       }
     }
 
+    // 暴露键盘 onKeyDown 方法
     expose({
       onKeyDown
     })
 
     return () => (
+      // 此处修改了斜杠菜单的背景色 与默认视图有所区别
       <div class="tiny-slash-menu__view" ref={slashMenuRef} style={{ backgroundColor: '#F7CC4F' }}>
         {items?.length ? (
           items.map((item, index) => (
