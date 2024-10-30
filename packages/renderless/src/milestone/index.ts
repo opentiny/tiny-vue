@@ -19,7 +19,7 @@ import type {
   IMilestoneIconStyle,
   IMilestoneFlagOperateParams
 } from '@/types'
-import { isBrowser } from '../common/browser.js'
+import { isBrowser } from '../common/browser'
 
 export const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
   if (hex.includes('var') && isBrowser) {

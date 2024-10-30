@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/nuxt",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "tiny-vue module for Nuxt",
   "author": "",
   "license": "MIT",
