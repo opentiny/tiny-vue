@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：只显示图标</p>
+    <p>场景1：显示图标</p>
     <tiny-action-menu
       class="custom-icon"
       :options="options"
