@@ -6,19 +6,19 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'customToolBar',
-          type: 'Array',
+          name: 'custom-tool-bar',
+          typeAnchorName: 'IToolBarItem',
+          type: `IToolBarItem[]`,
           defaultValue: '[]',
           desc: {
-            'zh-CN':
-              "传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。可配置的项目有：'bold','italic', 'underline', 'strike', 'quote', 'code', 'codeBlock', 'unorderedlist', 'orderedlist', 'taskList', 'subscript', 'superscript', 'undo', 'redo', 'left', 'center', 'right', 'h-box', 'font-size', 'line-height', 'highlight', 'color', 'backgroundColor', 'formatClear', 'link', 'unlink', 'img', 'table'",
+            'zh-CN': '传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。',
             'en-US': 'Pass in the toolbar button configuration that needs to be displayed, and customize the use'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
         },
         {
-          name: 'modelValue',
+          name: 'model-value',
           type: 'string',
           defaultValue: '',
           desc: {
@@ -41,7 +41,7 @@ export default {
         },
         {
           name: 'placeholder',
-          type: 'Stirng',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '占位符，在v-model为空时展示',
@@ -49,11 +49,67 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'view-map',
+          type: 'Map | boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '扩展的对应视图映射, 也可赋值为 true 来使用默认视图',
+            'en-US':
+              'The corresponding view mapping of the extension, which can also be assigned to true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'slash-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '斜杠菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the slash menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'slash-menu-usage'
+        },
+        {
+          name: 'float-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '浮动菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the float menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'bubble-menu-view',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '气泡菜单的视图，也可赋值为 true 来使用默认视图',
+            'en-US': 'View of the bubble menu, which can also be assigned as true to use the default view'
+          },
+          mode: ['pc'],
+          pcDemo: 'bubble-menu-usage'
+        },
+        {
+          name: 'collaboration',
+          type: 'Object | boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '开启协作模式',
+            'en-US': 'Enable collaboration mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'collaboration-usage'
         }
       ],
       events: [
         {
-          name: 'beforeCreate',
+          name: 'before-create',
           defaultValue: '',
           desc: {
             'zh-CN': '当编辑器视图创造之前，将会触发该事件',
@@ -103,7 +159,7 @@ export default {
           pcDemo: 'base'
         },
         {
-          name: 'selectionUpdate',
+          name: 'selection-update',
           defaultValue: '',
           desc: {
             'zh-CN': '当编辑器选区改变，将会触发该事件',
@@ -136,16 +192,52 @@ export default {
       methods: [],
       slots: [
         {
-          name: 'toolBar',
+          name: 'tool-bar',
           defaultValue: '',
           desc: {
-            'zh-CN': 'toolBar添加按钮,会传出editor实例，详情见tiptap',
-            'en-US': 'toolBar Add Button'
+            'zh-CN': 'tool-bar 添加按钮,会传出 editor 实例，详情见 tiptap',
+            'en-US': 'tool-bar Add Button'
           },
           mode: ['pc'],
           pcDemo: 'custom-search-types'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IToolBarItem',
+      type: 'interface',
+      code: `
+type IToolBarItem = 
+  'bold' | 
+  'italic' |
+  'underline' |
+  'strike' |
+  'quote' |
+  'code' |
+  'codeBlock' |
+  'unorderedlist' |
+  'orderedlist' |
+  'taskList' |
+  'subscript' |
+  'superscript' |
+  'undo' |
+  'redo' |
+  'left' |
+  'center' |
+  'right' |
+  'h-box' |
+  'font-size' |
+  'line-height' |
+  'highlight' |
+  'color' | 
+  'backgroundColor' |
+  'formatClear' |
+  'link' |
+  'img' |
+  'table'
+`
     }
   ]
 }
