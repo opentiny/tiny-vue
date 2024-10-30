@@ -325,7 +325,7 @@ export default {
         },
         {
           name: 'node-height',
-          type: 'nunmber',
+          type: 'number',
           defaultValue: '',
           desc: {
             'zh-CN': '触发树的虚拟滚动功能所需的节点高度，单位为像素',

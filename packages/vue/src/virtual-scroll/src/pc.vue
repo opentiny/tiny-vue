@@ -19,7 +19,7 @@
       class="virtual-scroll-wrapper"
       :style="
         direction === 'vertical'
-          ? { 'transform': `translate3d(0,${state.translate}px,0)`, flexDirection: 'column' }
+          ? { 'transform': `translate3d(0,${state.translate}px,0)`, flexDirection: 'column', width: '100%' }
           : {
               'transform': `translate3d(${state.translate}px,0,0)`,
               flexDirection: 'row',
@@ -27,7 +27,6 @@
             }
       "
     >
-      <!-- 每项内容 -->
       <div
         class="virtual-scroll-item"
         ref="items"

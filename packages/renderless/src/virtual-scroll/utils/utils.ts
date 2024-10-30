@@ -1,5 +1,5 @@
 // 二分法查找
-const binarySearch = (list: Array, value: Number) => {
+export const binarySearch = (list: Array, value: Number) => {
   let start = 0
   let end = list.length - 1
   let tempIndex = null
@@ -19,4 +19,3 @@ const binarySearch = (list: Array, value: Number) => {
   }
   return tempIndex
 }
-export default binarySearch

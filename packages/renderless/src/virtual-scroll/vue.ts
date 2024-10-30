@@ -18,7 +18,6 @@ import {
   scrollToItem,
   scrollToPosition
 } from './index'
-import { initService } from '../user'
 
 export const api = [
   'state',
@@ -30,20 +29,17 @@ export const api = [
   'calculateTotalSize',
   'scrollToItem'
 ]
-export const renderless = (props, { reactive, nextTick, watch, onMounted, ref, computed }, { service }) => {
-  service = initService({ props, service })
-
+export const renderless = (props, { reactive, nextTick, watch, onMounted, ref }) => {
   const api = {}
   const state = reactive({
     data: [...props.data],
     visibleData: [],
     translate: 0,
     totalSize: 0,
-    positions: [], // 不定高度的列表缓存
-    lastUpdateTime: Date.now()
+    positions: []
   })
   const virtualScroll = ref(null)
-  const items = ref([]) // 列表数组*
+  const items = ref([])
   Object.assign(api, {
     state,
     virtualScroll,
@@ -56,21 +52,15 @@ export const renderless = (props, { reactive, nextTick, watch, onMounted, ref, c
     scrollToPosition: scrollToPosition({ api, virtualScroll, state, props })
   })
   api.initPositions()
-  state.temporary = {}
-  if (props.prerender) {
-    state.temporary.prerender = true
-    api.handleScroll()
-  }
   const handle = () => {
     if (!virtualScroll.value) return
     nextTick(() => {
       api.initPositions()
-      state.temporary.prerender = false
       state.totalSize = api.calculateTotalSize()
       api.handleScroll()
     })
   }
-  // 组件挂载后加载滚动事件
+
   onMounted(handle)
   watch(
     () => props.data,

@@ -13,7 +13,7 @@
 
 <template>
   <div class="tiny-tree-node__wrapper">
-    <div v-if="nodeHeight">
+    <div v-if="showVirtualScroll">
       <div
         class="tiny-tree-node"
         :class="{
@@ -454,6 +454,7 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showVirtualScroll: Boolean,
     collapsible: {
       type: Boolean,
       default: true
