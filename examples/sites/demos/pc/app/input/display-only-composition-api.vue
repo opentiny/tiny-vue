@@ -17,7 +17,7 @@
       <tiny-input class="demp-input-dis" v-model="input1" type="textarea" display-only></tiny-input>
     </p>
     <p>
-      <label>display-only&autosize：</label>
+      <label>display-only & autosize：</label>
       <tiny-input class="demp-input-dis" v-model="input1" type="textarea" display-only autosize></tiny-input>
     </p>
   </div>

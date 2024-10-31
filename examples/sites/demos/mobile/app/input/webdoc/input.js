@@ -37,7 +37,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过对应的 <code>type</code> 属性，可以设置为对应的类型。默认为 text，可选值为 text，textarea 和其他 原生 input 的 type 值</p>',
+          '<p>通过对应的 <code>type</code> 属性，可以设置为对应的类型。默认为 text，可选值为 text，number 等其他 原生 input 的 type 值</p>',
         'en-US':
           '<p>You can set the corresponding type through the corresponding <code>type</code> attribute. The default value is text. The options are text, textarea, and other type values of the native input</p>'
       },
