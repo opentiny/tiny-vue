@@ -8,7 +8,7 @@
       <tiny-tree
         ref="treeRef"
         :data="data"
-        show-virtual-scroll
+        enable
         :tree-height="350"
         :filter-node-method="filterNodeMethod"
         show-checkbox

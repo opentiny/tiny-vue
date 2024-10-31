@@ -2,7 +2,7 @@
   <div class="virtual-tree">
     <tiny-tree
       :data="data"
-      show-virtual-scroll
+      enable
       :tree-height="350"
       :show-line="false"
       default-expand-all

@@ -24,7 +24,7 @@
   >
     <template v-if="viewType === 'tree'">
       <TinyVirtualScroll
-        v-if="showVirtualScroll"
+        v-if="enable"
         :data="state.flattenedTreeData"
         :item-size="nodeHeight || 32"
         :visible-size="treeHeight"
@@ -33,7 +33,7 @@
       >
         <template #default="virtualProps">
           <tree-node
-            show-virtual-scroll
+            enable
             :action="state.action"
             :show-radio="showRadio"
             :theme="theme"
@@ -231,7 +231,7 @@ export default defineComponent({
     'currentNodeKey',
     'renderContent',
     'showCheckbox',
-    'showVirtualScroll',
+    'enable',
     'draggable',
     'allowDrag',
     'allowDrop',

@@ -501,11 +501,11 @@ export default {
       },
       desc: {
         'zh-CN': `通过<code>data</code>属性设置数据源，默认通过<code>label</code>,<code>children</code>,<code>id</code>展示属性。<br>
-                  通过<code>show-virtual-scroll</code>属性设置是否使用虚拟滚动功能。<br>
+                  通过<code>enable</code>属性设置是否使用虚拟滚动功能。<br>
                   使用虚拟滚动功能时，必须添加<code>tree-height</code>属性设置虚拟滚动显示的区域高度。<br>
                   根据数据属性可自行添加<code>node-height</code>属性来设置每个树节点的高度。`,
         'en-US': `The data source is set using the <code>data</code> property. By default, the properties are displayed using <code>label</code>,<code>children</code>, and <code>id</code>. <br>
-                  Set whether to use the virtual scroll feature with the <code>show-virtual-scroll</code> attribute.<br>
+                  Set whether to use the virtual scroll feature with the <code>enable</code> attribute.<br>
                   When using the virtual scroll feature, you must add the <code>tree-height</code> attribute to set the height of the area displayed by the virtual scroll.<br>
                   The <code>node-height</code> attribute can be added by itself to set the height of each tree node according to the data attributes.`
       },

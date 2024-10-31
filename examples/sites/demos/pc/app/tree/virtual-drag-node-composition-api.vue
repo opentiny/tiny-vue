@@ -15,7 +15,7 @@
     <div class="virtual-drag-node">
       <tiny-tree
         :data="data"
-        show-virtual-scroll
+        enable
         :tree-height="350"
         draggable
         :allow-drag="allowDrag"

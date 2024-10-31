@@ -113,7 +113,7 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    showVirtualScroll: Boolean,
+    enable: Boolean,
     nodeHeight: Number,
     treeHeight: Number,
     shrinkIcon: Object,

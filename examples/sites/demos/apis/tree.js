@@ -233,6 +233,17 @@ export default {
           pcDemo: 'expand-control'
         },
         {
+          name: 'enable',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '是否为虚拟滚动模式',
+            'en-US': 'Whether virtual scrolling mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'virtual-tree'
+        },
+        {
           name: 'filter-node-method',
           type: '(value, data, node)=>boolean',
           defaultValue: '',
@@ -445,17 +456,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'radio'
-        },
-        {
-          name: 'show-virtual-scroll',
-          type: 'boolean',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '是否为虚拟滚动模式',
-            'en-US': 'Whether virtual scrolling mode'
-          },
-          mode: ['pc'],
-          pcDemo: 'virtual-tree'
         },
         {
           name: 'shrink-icon',

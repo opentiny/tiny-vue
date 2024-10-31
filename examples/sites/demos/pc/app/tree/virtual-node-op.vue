@@ -11,7 +11,7 @@
       <tiny-tree
         ref="treeRef"
         :data="data"
-        show-virtual-scroll
+        enable
         :tree-height="350"
         node-key="id"
         default-expand-all
