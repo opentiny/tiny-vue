@@ -10,18 +10,8 @@
 *
 */
 
-@import '../custom.less';
-@import './vars.less';
-
-@area-prefix-cls: ~'@{css-prefix}area';
-@select-prefix-cls: ~'@{css-prefix}select';
-
-.@{area-prefix-cls} {
-  .@{select-prefix-cls} {
-    .inject-Area-vars();
-
-    width: 220px;
-    margin-right: var(--tv-Area-select-margin-right);
-    margin-bottom: var(--tv-Area-select-margin-bottom);;
-  }
+.inject-Area-vars() {
+  // 选中框间距
+  --tv-Area-select-margin-right: var(--tv-space-xl, 16px);
+  --tv-Area-select-margin-bottom: var(--tv-space-xl, 16px);
 }

@@ -13,9 +13,9 @@
       :append-to-body="popperAppendToBody"
     >
       <template #reference>
-        <span
+        <span class="tiny-locales__text"
           >{{ state.text && t(state.text)
-          }}<span>
+          }}<span class="tiny-locales__icon">
             <IconChevronDown v-show="!state.visible" />
             <IconChevronUp v-show="state.visible" /> </span
         ></span>
@@ -39,13 +39,13 @@ import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/locales/vue'
 import { use, enUS, zhCN } from '@opentiny/vue-locale'
 import TinyPopover from '@opentiny/vue-popover'
-import { IconChevronUp, IconChevronDown } from '@opentiny/vue-icon'
+import { IconUpWard, IconChevronDown } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Locales',
   components: {
     TinyPopover,
-    IconChevronUp: IconChevronUp(),
+    IconChevronUp: IconUpWard(),
     IconChevronDown: IconChevronDown()
   },
   props: {
