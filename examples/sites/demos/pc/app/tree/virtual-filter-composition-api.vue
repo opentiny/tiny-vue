@@ -4,21 +4,22 @@
       <span> 搜索值：</span>
       <tiny-input v-model="filterText" @input="inputChange"></tiny-input>
     </div>
-
-    <tiny-tree
-      ref="treeRef"
-      :data="data"
-      :node-height="50"
-      :tree-height="400"
-      :filter-node-method="filterNodeMethod"
-      show-checkbox
-      node-key="id"
-    >
-      <!-- 屏蔽默认的后缀图标 -->
-      <template #suffix>
-        <div></div>
-      </template>
-    </tiny-tree>
+    <div class="virtual-filter">
+      <tiny-tree
+        ref="treeRef"
+        :data="data"
+        enable
+        :tree-height="350"
+        :filter-node-method="filterNodeMethod"
+        show-checkbox
+        node-key="id"
+      >
+        <!-- 屏蔽默认的后缀图标 -->
+        <template #suffix>
+          <div></div>
+        </template>
+      </tiny-tree>
+    </div>
   </div>
 </template>
 
@@ -71,5 +72,9 @@ const data = generateTreeData(100)
 
 .tiny-input {
   width: 150px;
+}
+
+.virtual-filter {
+  width: 800px;
 }
 </style>

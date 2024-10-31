@@ -53,14 +53,18 @@ showData.value = Array.from(Array(1000), (v, k) => {
 .scrollTo-demo .check .tiny-button {
   display: block;
   width: 150px;
-
   text-align: center;
+}
+
+.scrollTo-demo .context .tiny-virtual-scroll {
+  width: 1000px;
+  border: solid 1px #c2c2c2;
 }
 
 .scrollTo-demo .context .tiny-virtual-scroll .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
   width: 100%;
-  align-content: center;
+  font-size: 15px;
 }
 </style>

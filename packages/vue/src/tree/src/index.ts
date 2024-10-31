@@ -113,6 +113,7 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    enable: Boolean,
     nodeHeight: Number,
     treeHeight: Number,
     shrinkIcon: Object,

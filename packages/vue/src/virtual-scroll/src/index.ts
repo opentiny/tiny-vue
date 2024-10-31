@@ -47,11 +47,6 @@ export default defineComponent({
       type: Number,
       default: 1
     },
-    prerender: {
-      // 预渲染条数
-      type: Number,
-      default: 0
-    },
     visibleSize: {
       type: Number,
       default: 400,

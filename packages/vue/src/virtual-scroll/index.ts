@@ -1,5 +1,6 @@
-import VirtualScroll from './src/index.js'
 import '@opentiny/vue-theme/virtual-scroll/index.less'
+
+import VirtualScroll from './src/index'
 import { version } from './package.json'
 
 VirtualScroll.model = {

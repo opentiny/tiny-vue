@@ -55,6 +55,18 @@ export default {
         'en-US': '<p>Click the button to toggle the state of the data display.</p>\n.'
       },
       codeFiles: ['show-status.vue']
+    },
+    {
+      demoId: 'horizontal-scroll',
+      name: {
+        'zh-CN': '水平滚动',
+        'en-US': 'horizontal scroll'
+      },
+      desc: {
+        'zh-CN': '<p>固定高度的水平滚动。</p>\n',
+        'en-US': '<p>Horizontal rolling at a fixed height.</p>\n.'
+      },
+      codeFiles: ['horizontal-scroll.vue']
     }
   ]
 }

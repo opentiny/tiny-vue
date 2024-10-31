@@ -2,12 +2,11 @@
   <div class="virtual-scroll-demo">
     <TinyVirtualScroll
       :data="showData"
-      :estimated-item-size="50"
-      item-index="id"
-      :visible-size="400"
+      :item-size="120"
+      item-index="key"
+      :visible-size="600"
+      direction="horizontal"
       class="tiny-virtual-scroll"
-      direction="vertical"
-      :buffer="0.5"
     >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
@@ -22,33 +21,35 @@
 import { ref } from 'vue'
 import { VirtualScroll as TinyVirtualScroll } from '@opentiny/vue'
 
-// 创建动态数据
 const showData = ref([])
 
-for (let i = 1; i <= 10000; i++) {
-  showData.value.push({
-    id: i,
-    value: `${i}字符内容`.repeat(Math.ceil(Math.random() * 30))
-  })
-}
+// 生成模拟数据
+showData.value = Array.from(Array(1000), (v, k) => {
+  return {
+    value: `第${k + 1}项`,
+    key: k + 1
+  }
+})
 </script>
 
-<style>
+<style scoped>
 .virtual-scroll-demo {
-  height: 100%;
+  width: 600px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  width: 1000px;
-  border: solid 1px #c2c2c2;
+  height: 50px;
+  overflow-y: hidden;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
-  padding: 10px;
-  border-bottom: 2px solid #ddd;
+  border-right: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  height: 100%;
 }
 </style>

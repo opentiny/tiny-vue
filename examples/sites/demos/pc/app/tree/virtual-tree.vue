@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="virtual-tree">
     <tiny-tree
       :data="data"
-      :node-height="50"
-      :tree-height="400"
+      enable
+      :tree-height="350"
       :show-line="false"
       default-expand-all
       @node-click="nodeClick"
@@ -51,3 +51,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.virtual-tree {
+  width: 800px;
+}
+</style>

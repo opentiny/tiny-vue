@@ -9,12 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import binarySearch from './utils/utils'
+import { binarySearch } from './utils/utils'
 
 // 获取列表起始索引
 const getStartIndex = ({ state, scrollTop = 0 }) => {
   if (!state || !state.positions) return 0
-  // 二分法查找
   return binarySearch(state.positions, scrollTop)
 }
 
@@ -33,10 +32,10 @@ export const updatePositions =
       let oldS = positions[index].height
       dValue = oldS - s
       if (!dValue) return
-      // 存在差值
+
       positions[index].bottom = positions[index].bottom - dValue
       positions[index].height = s
-      // 依次更新positions中后续列表
+
       for (let k = index + 1; k < index + nodes.length; k++) {
         positions[k].top = positions[k - 1].bottom
         positions[k].bottom = positions[k].bottom - dValue
@@ -75,27 +74,19 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
 
     const scrollPosition =
       props.direction === 'vertical' ? virtualScroll.value.scrollTop : virtualScroll.value.scrollLeft
-    if (state.temporary.prerender) {
-      start = 0
-      end = Math.min(props.prerender, state.data.length)
-      totalSize = null
+    if (props.itemSize) {
+      const viewStart = ~~(scrollPosition / props.itemSize)
+
+      const bufferItems = props.buffer * viewNum
+      start = viewStart - bufferItems > 0 ? viewStart - bufferItems : 0
+      end =
+        viewStart + viewNum + bufferItems < state.data.length ? viewStart + viewNum + bufferItems : state.data.length
+
+      state.visibleData = state.data.slice(start, end)
+      state.translate = start * props.itemSize
+
+      return
     } else {
-      if (props.itemSize) {
-        const viewStart = ~~(scrollPosition / props.itemSize)
-
-        // 计算缓存区的大小对应的条数
-        const bufferItems = props.buffer * viewNum
-        // 计算要显示的范围，使用Diff算法来更新数据范围
-        start = viewStart - bufferItems > 0 ? viewStart - bufferItems : 0
-        end =
-          viewStart + viewNum + bufferItems < state.data.length ? viewStart + viewNum + bufferItems : state.data.length
-
-        state.visibleData = state.data.slice(start, end)
-        state.translate = start * props.itemSize
-
-        return
-      }
-
       // 使用动态渲染
       const startIndex = getStartIndex({ state, scrollTop: scrollPosition })
       const bufferCount = viewNum * props.buffer
@@ -104,7 +95,7 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
       const belowCount = Math.min(state.data.length - endIndex, bufferCount)
       start = startIndex - aboveCount
       end = endIndex + belowCount
-      state.visibleData = state.data.slice(start, end) // 计算新的可视数据
+      state.visibleData = state.data.slice(start, end)
       if (startIndex >= 1) {
         bufferSize = state.positions[startIndex].top - (state.positions[start] ? state.positions[start].top : 0)
         state.translate = state.positions[startIndex - 1].bottom - bufferSize
@@ -114,9 +105,10 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
       await updatePositions({ state, items, props })
       totalSize = calculateTotalSize({ state, props })
     }
+
     state.totalSize = totalSize
   }
-  return (event) => {
+  return () => {
     if (animationFrameId !== null) {
       cancelAnimationFrame(animationFrameId)
     }
@@ -125,7 +117,6 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
     })
   }
 }
-
 // 初始化动态高度列表
 export const initPositions =
   ({ props, state }) =>
@@ -153,7 +144,7 @@ export const scrollToItem =
   (index) => {
     let position
     if (props.itemSize === null) {
-      position = index > 0 ? state.positions[index - 1].bottom : 0 // 无
+      position = index > 0 ? state.positions[index - 1].bottom : 0
     } else {
       position = (index - 1) * props.itemSize
     }

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="virtual-tree">
     <tiny-tree
       :data="data"
-      :node-height="50"
-      :tree-height="400"
+      enable
+      :tree-height="350"
       :show-line="showLine === 'show'"
       default-expand-all
       class="tiny-tree"
@@ -41,3 +41,9 @@ const nodeClick = (data, node, vm) => {
   console.log('点击节点事件：', { data, node, vm })
 }
 </script>
+
+<style scoped>
+.virtual-tree {
+  width: 800px;
+}
+</style>

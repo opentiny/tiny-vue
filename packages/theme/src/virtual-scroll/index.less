@@ -10,15 +10,12 @@
 *
 */
 @import '../custom.less';
-@import './vars.less';
 
 @virtualscroll-prefix-cls: ~'@{css-prefix}virtual-scroll';
 .@{virtualscroll-prefix-cls} {
-  .component-css-vars-virtual-scroll();
 
   position: relative;
   overflow: auto;
-  background-color: rgba(151, 205, 255, 0.822);
 
   & > .virtual-scroll-context {
     position: absolute;
@@ -28,18 +25,10 @@
     z-index: -1;
   }
 
-  // 实际渲染区域
   & > .virtual-scroll-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     display: flex;
-  }
-
-  // 每项内容
-  & > .virtual-scroll-item {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
   }
 }

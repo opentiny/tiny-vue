@@ -2,12 +2,11 @@
   <div class="virtual-scroll-demo">
     <TinyVirtualScroll
       :data="showData"
-      :estimated-item-size="50"
-      item-index="id"
-      :visible-size="400"
+      :item-size="120"
+      item-index="key"
+      :visible-size="600"
+      direction="horizontal"
       class="tiny-virtual-scroll"
-      direction="vertical"
-      :buffer="0.5"
     >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
@@ -27,32 +26,39 @@ export default {
   },
   data() {
     return {
-      showData: [] // 用于存储生成的动态数据
+      showData: []
     }
   },
   created() {
-    // 生成动态高度的数据
-    this.showData = Array.from({ length: 10000 }, (_, i) => ({
-      id: i + 1,
-      value: `${i + 1}字符内容`.repeat(Math.ceil(Math.random() * 30))
-    }))
+    // 生成模拟数据
+    this.showData = Array.from(Array(1000), (v, k) => {
+      return {
+        value: `第${k + 1}项`,
+        key: k + 1
+      }
+    })
   }
 }
 </script>
 
-<style>
+<style scoped>
 .virtual-scroll-demo {
-  height: 100%;
+  width: 600px;
   overflow: hidden;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll {
-  width: 1000px;
-  border: solid 1px #c2c2c2;
+  height: 50px;
+  overflow-y: hidden;
 }
 
 .virtual-scroll-demo .tiny-virtual-scroll .tiny-virtual-scroll-item {
-  padding: 10px;
-  border-bottom: 2px solid #ddd;
+  border-right: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  height: 100%;
 }
 </style>

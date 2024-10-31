@@ -7,15 +7,17 @@
       <tiny-button @click="updateKeyChildren">更新子节点</tiny-button>
       <tiny-button @click="remove">删除当前节点</tiny-button>
     </div>
-    <tiny-tree
-      ref="treeRef"
-      :data="data"
-      :node-height="50"
-      :tree-height="400"
-      node-key="id"
-      default-expand-all
-      :current-node-key="currentNodeKey"
-    ></tiny-tree>
+    <div class="virtual-node-op">
+      <tiny-tree
+        ref="treeRef"
+        :data="data"
+        enable
+        :tree-height="350"
+        node-key="id"
+        default-expand-all
+        :current-node-key="currentNodeKey"
+      ></tiny-tree>
+    </div>
   </div>
 </template>
 
@@ -84,3 +86,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.virtual-node-op {
+  width: 800px;
+}
+</style>
