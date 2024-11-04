@@ -50,12 +50,7 @@ const pickerOptions = {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
-
-  :deep(.tiny-date-editor--daterange.tiny-input__inner) {
-    width: 360px;
-  }
-
+  width: 360px;
   & > * {
     margin-top: 12px;
   }

@@ -12,7 +12,7 @@ test('时间格式化', async ({ page }) => {
 
   await page.getByRole('textbox', { name: '19:40:00 pm' }).click()
   await page.waitForTimeout(100)
-  await page.getByRole('listitem').filter({ hasText: '08 pm' }).locator('span').click()
+  await page.getByRole('listitem').filter({ hasText: '08 pm' }).first().locator('span').click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '20:40:00 pm' })).toBeVisible()

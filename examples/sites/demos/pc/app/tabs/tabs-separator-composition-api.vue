@@ -25,7 +25,7 @@
     </tiny-tabs>
     <br /><br /><br /><br />
     <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px">
-      <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+      <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>
     </tiny-tabs>
@@ -39,7 +39,7 @@ import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 const activeName1 = ref('first')
 const activeName2 = ref('second')
 const tabIndex = ref(2)
-const Tabs = reactive([
+const tabs = reactive([
   {
     title: 'Tab 1',
     name: '1',
@@ -53,7 +53,7 @@ const Tabs = reactive([
 ])
 
 const handleadd = () => {
-  Tabs.push({
+  tabs.push({
     title: 'Tab ++',
     name: ++tabIndex.value + '',
     content: '动态增加tabitem'

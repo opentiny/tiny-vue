@@ -143,14 +143,6 @@ export const cmpMenus = [
       { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
-      {
-        'nameCn': '富文本编辑器',
-        'name': 'RichTextEditor',
-        'key': 'rich-text-editor',
-        'meta': {
-          'experimental': '3.10.0'
-        }
-      },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
@@ -358,7 +350,7 @@ if (envTarget === 'inner' || showBusiness) {
       { 'nameCn': '公司', 'name': 'Company', 'key': 'company' },
       { 'nameCn': '国家/地区', 'name': 'Country', 'key': 'country' },
       { 'nameCn': '币种', 'name': 'Currency', 'key': 'currency' },
-      { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
+      // { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
       { 'nameCn': '下拉角色', 'name': 'DropRoles', 'key': 'drop-roles' },
       { 'nameCn': '消息弹框', 'name': 'Espace', 'key': 'espace' },
       { 'nameCn': '权签人', 'name': 'HrApprover', 'key': 'hrapprover' },

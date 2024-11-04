@@ -5,7 +5,7 @@
       seq-serial
       :start-index="200"
       :pager="{
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,

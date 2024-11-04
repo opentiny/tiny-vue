@@ -114,21 +114,17 @@
       width: 12%;
     }
 
-    .@{range-prefix-cls}__close-box {
-      height: 16px;
-      z-index: 5;
-      position: relative;
-    }
-
     .@{range-prefix-cls}__close-icon {
-      width: 20px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       position: absolute;
-      right: -20px;
+      top: 16px;
+      right: 12px;
+      transform: translateY(-50%);
       background-color: #ffffff;
-      margin-top: -1px;
-
-      &,
+      fill: var(--tv-Picker-icon-color);
+      z-index: 5;
+      
       &:hover {
         fill: var(--tv-Picker-icon-color-hover);
       }
@@ -177,7 +173,7 @@
     }
 
     .@{range-prefix-cls}-separator {
-      line-height: 28px;
+      line-height: 20px;
       font-size: var(--tv-Picker-font-size);
     }
 

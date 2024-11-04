@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-grid :columns="columnsData" :data="tableData" ref="theGrid"> </tiny-grid>
+    <tiny-grid :columns="columnsData" :data="tableData" ref="theGrid" show-overflow="tooltip"> </tiny-grid>
   </div>
 </template>
 

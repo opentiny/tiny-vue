@@ -54,6 +54,9 @@
     }
 
     .@{time-spinner-prefix-cls}__list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       transform: translateY(-6px);
       margin: var(--tv-TimeSpinner-list-margin);
     }
@@ -64,7 +67,12 @@
       }
     }
   }
-
+  &__wrapper.is-arrow {
+    height: 220px;
+  }
+  &__wrapper.is-arrow .@{time-spinner-prefix-cls}__list{
+    height: 200px;
+  }
   &__arrow {
     height: 30px;
     line-height: 30px;

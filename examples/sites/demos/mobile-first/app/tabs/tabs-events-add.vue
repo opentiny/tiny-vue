@@ -1,6 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" :with-add="true" @add="add" tab-style="card">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      TinyTabs: [
+      tabs: [
         {
           title: '表单组件',
           name: 'first',
@@ -49,7 +49,7 @@ export default {
         message: '动态增加 tabitem'
       })
 
-      this.TinyTabs.push({
+      this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加 tabitem'

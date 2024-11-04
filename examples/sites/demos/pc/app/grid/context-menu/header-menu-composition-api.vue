@@ -6,6 +6,7 @@
         header: { options: headerMenus },
         visibleMethod
       }"
+      show-overflow="tooltip"
       @context-menu-click="contextMenuClickEvent"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>

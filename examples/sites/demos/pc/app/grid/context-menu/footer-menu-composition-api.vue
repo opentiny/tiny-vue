@@ -7,6 +7,7 @@
         footer: { options: footerMenus },
         visibleMethod
       }"
+      show-overflow="tooltip"
       show-footer
       :footer-method="footerMethod"
       @context-menu-click="contextMenuClickEvent"

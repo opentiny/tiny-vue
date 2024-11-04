@@ -120,11 +120,11 @@
       />
       <i class="tiny-input__icon tiny-input__icon">
         <transition name="tiny-transition-icon-scale-in">
-          <div v-if="state.haveTrigger" class="tiny-range__close-box">
+          <div v-if="state.haveTrigger">
             <component
               :is="state.showClose ? clearIcon : null"
               @click="handleClickIcon"
-              class="baseClearicon tiny-range__close-icon"
+              class="tiny-range__close-icon"
             />
           </div>
         </transition>

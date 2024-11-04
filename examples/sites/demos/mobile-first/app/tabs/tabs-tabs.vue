@@ -1,6 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" v-if="showTab" tab-style="card" :with-close="true" @close="close">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
       <tiny-tabs v-model="activeName1" v-if="item.name === 'f1'">
         <tiny-tab-item title="s1子标签页" name="s1">
@@ -32,7 +32,7 @@ export default {
       activeName: 'f1',
       activeName2: 'ss1',
       showTab: true,
-      TinyTabs: [
+      tabs: [
         {
           title: '表单组件',
           name: 'f1',
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     close(name) {
-      this.TinyTabs = this.TinyTabs.filter((tab) => {
+      this.tabs = this.tabs.filter((tab) => {
         return tab.name !== name
       })
     }

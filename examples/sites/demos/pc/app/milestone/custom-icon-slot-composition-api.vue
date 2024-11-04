@@ -2,7 +2,7 @@
   <div class="demo-milestone">
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
       <template #icon="data">
-        <component :is="data.slotScope.icon" class="custom"> </component>
+        <component :is="data.slotScope.icon" class="custom-milestone"> </component>
       </template>
     </tiny-milestone>
   </div>
@@ -64,7 +64,7 @@ const milestoneData = ref([
 </script>
 
 <style>
-.custom {
+.custom-milestone {
   width: 16px;
   height: 16px;
   line-height: 16px;

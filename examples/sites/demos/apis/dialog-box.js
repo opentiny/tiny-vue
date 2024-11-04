@@ -133,7 +133,7 @@ export default {
             'en-US': 'Achieve the maximum height of the window'
           },
           mode: ['pc'],
-          pcDemo: 'form-in-dialog'
+          pcDemo: 'dialog-width'
         },
         {
           name: 'modal',

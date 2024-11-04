@@ -3,7 +3,7 @@
     <template #moreIcon>
       <tiny-icon-popup />
     </template>
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -21,14 +21,14 @@ export default {
   },
   data() {
     return {
-      TinyTabs: []
+      tabs: []
     }
   },
   created() {
     // 创建tabs
     for (let i = 1; i < 101; i++) {
       const title = `Tab ${i}`
-      this.TinyTabs.push({
+      this.tabs.push({
         title,
         name: i + '',
         content: `${title} content `

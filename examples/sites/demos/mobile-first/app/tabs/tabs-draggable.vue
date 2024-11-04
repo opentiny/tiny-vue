@@ -12,7 +12,7 @@
     @tab-drag-over="handleOver"
     @tab-drag-end="handleEnd"
   >
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -34,7 +34,7 @@ export default {
       dropConfig: {
         plugin: Sortable
       },
-      TinyTabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -62,15 +62,15 @@ export default {
     },
     handleEnd(event) {
       const { oldDraggableIndex, newDraggableIndex } = event
-      const tab = this.TinyTabs.splice(oldDraggableIndex, 1)[0]
-      this.TinyTabs.splice(newDraggableIndex, 0, tab)
+      const tab = this.tabs.splice(oldDraggableIndex, 1)[0]
+      this.tabs.splice(newDraggableIndex, 0, tab)
 
-      console.log(this.TinyTabs)
+      console.log(this.tabs)
     },
     handleAdd() {
-      this.TinyTabs.push({
-        title: 'Tab ' + String(this.TinyTabs.length + 1),
-        name: String(this.TinyTabs.length + 1),
+      this.tabs.push({
+        title: 'Tab ' + String(this.tabs.length + 1),
+        name: String(this.tabs.length + 1),
         content: '动态增加tabitem'
       })
     }

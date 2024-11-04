@@ -1,20 +1,18 @@
 <template>
   <tiny-layout>
-    <tiny-row>
-      <tiny-col :span="4">
+    <tiny-row class="demo-row">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">focus:</label>
         <tiny-date-picker v-model="valueFocus" @focus="handleFocus"></tiny-date-picker>
       </tiny-col>
-      <tiny-col :span="4">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">blur:</label>
         <tiny-date-picker v-model="valueBlur" @blur="handleBlur"></tiny-date-picker>
       </tiny-col>
-      <tiny-col :span="4">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">change:</label>
         <tiny-date-picker v-model="valueChange" @change="handleChange"></tiny-date-picker>
       </tiny-col>
-    </tiny-row>
-    <tiny-row>
       <tiny-col :span="6">
         <label class="demo-date-picker-label">onPick:</label>
         <tiny-date-picker v-model="valueOnPick" type="daterange" :picker-options="pickerOptions"></tiny-date-picker>
@@ -64,6 +62,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-row {
+  width: 80%;
+}
 .demo-date-picker-label {
   display: inline-block;
   margin: 12px 0;

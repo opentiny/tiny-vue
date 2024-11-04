@@ -1,6 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" v-if="showTab" tab-style="card" :with-close="true" @close="close">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -18,12 +18,12 @@ export default {
     return {
       activeName: '',
       showTab: false,
-      TinyTabs: []
+      tabs: []
     }
   },
   mounted() {
     setTimeout(() => {
-      this.TinyTabs = [
+      this.tabs = [
         {
           title: '表单组件',
           name: 'first',
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     close(name) {
-      this.TinyTabs = this.TinyTabs.filter((tab) => {
+      this.tabs = this.tabs.filter((tab) => {
         return tab.name !== name
       })
     }

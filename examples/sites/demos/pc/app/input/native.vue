@@ -21,7 +21,6 @@
     <br />
     <div>
       <span>autocomplete="on"</span>
-      <br /><br />
       <form>
         <tiny-input v-model="inputAutocomplete" autocomplete="on" name="email" type="email"></tiny-input>
       </form>
@@ -48,11 +47,16 @@ export default {
 </script>
 
 <style scoped>
-.demo-input > p > span {
+.demo-input > p > span,
+.demo-input > div > span {
   display: inline-block;
   width: 130px;
 }
 .demo-input .tiny-input {
   width: 250px;
+}
+.demo-input > div {
+  display: flex;
+  align-items: center;
 }
 </style>

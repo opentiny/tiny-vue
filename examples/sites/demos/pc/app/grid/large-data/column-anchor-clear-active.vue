@@ -1,7 +1,7 @@
 <template>
   <tiny-grid
     column-min-width="100"
-    auto-resize
+    show-overflow="tooltip"
     :column-anchor="columnAnchor"
     :optimization="{ scrollX: { gt: 20 } }"
     :fetch-data="fetchData"

@@ -55,6 +55,6 @@ export default {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 </style>
