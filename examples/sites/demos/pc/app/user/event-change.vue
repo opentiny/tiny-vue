@@ -1,5 +1,7 @@
 <template>
-  <tiny-user v-model="user" multiple @change="change" @focus="handleFocus" @blur="handleBlur"></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user v-model="user" multiple @change="change" @focus="handleFocus" @blur="handleBlur"></tiny-user>
+  </div>
 </template>
 
 <script>
@@ -31,3 +33,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

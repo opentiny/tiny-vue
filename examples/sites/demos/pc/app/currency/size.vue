@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <div class="demo-currency-class">
     <tiny-currency v-model="value" size="medium" placeholder="请选择" @change="change"></tiny-currency>
+    <br /><br />
+    <tiny-currency v-model="value" placeholder="请选择" @change="change"></tiny-currency>
+    <br /><br />
+    <tiny-currency v-model="value" size="small" placeholder="请选择" @change="change"></tiny-currency>
+    <br /><br />
+    <tiny-currency v-model="value" size="mini" placeholder="请选择" @change="change"></tiny-currency>
     <p>当前选中值：{{ value }}</p>
   </div>
 </template>
@@ -26,6 +32,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-currency-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

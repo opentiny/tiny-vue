@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-currency-class">
     <tiny-currency
       v-model="value"
       :drop-style="{ width: '200px', 'min-width': '200px' }"
@@ -22,3 +22,14 @@ const change = (value) => {
   TinyModal.message({ message: `当前值为 ${value}`, status: 'info' })
 }
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
+</style>

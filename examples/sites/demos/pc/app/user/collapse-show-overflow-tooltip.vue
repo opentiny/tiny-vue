@@ -1,12 +1,14 @@
 <template>
-  <tiny-user
-    v-model="user"
-    :collapse-show-overflow-tooltip="true"
-    multiple
-    cache-key="test-user"
-    :cache-fields="['email']"
-    value-field="userAccount"
-  ></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user
+      v-model="user"
+      :collapse-show-overflow-tooltip="true"
+      multiple
+      cache-key="test-user"
+      :cache-fields="['email']"
+      value-field="userAccount"
+    ></tiny-user>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -23,3 +25,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

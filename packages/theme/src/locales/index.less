@@ -11,21 +11,45 @@
 */
 
 @import '../custom.less';
+@import './vars.less';
 
 @locales-prefix-cls: ~'@{css-prefix}locales';
 @popover-prefix-cls: ~'@{css-prefix}popover';
 @popper-prefix-cls: ~'@{css-prefix}popper';
 
 .@{locales-prefix-cls} {
+  .inject-Locales-vars() ;
+
   cursor: pointer;
 
   svg {
-    margin-left: 2px;
+    margin-left: var(--tv-Locales-svg-margin-left);
+  }
+  &__text {
+    font-size: var(--tv-Locales-text-font-size);
+    color: var(--tv-Locales-svg-color);
+    display: inline-flex;
+    align-items: center;
+  }
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: var(--tv-Locales-svg-size);
+      height: var(--tv-Locales-svg-size);;
+      fill: var(--tv-Locales-text-color);
+    }
+    .chevron-up {
+      width: var(--tv-Locales-up-svg-size);
+      height: var(--tv-Locales-up-svg-size);
+    }
   }
 
   &__popper {
+    .inject-Locales-vars() ;
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
-      padding: 0;
+      padding: var(--tv-Locales-popper-padding-h) 0;
     }
 
     .poplist {
@@ -34,11 +58,11 @@
       li {
         list-style: none;
         cursor: pointer;
-        padding: 0 8px;
-        line-height: 30px;
+        padding: 0 var(--tv-Locales-popper-li-padding-h);
+        line-height: var(--tv-Locales-popper-li-line-heigaht);
 
-        &.selected {
-          background: #f5f5f5;
+        &:hover {
+          background-color: var(--tv-Locales-popper-li-hover-color);
         }
       }
     }

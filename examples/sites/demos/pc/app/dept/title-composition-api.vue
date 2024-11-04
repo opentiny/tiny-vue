@@ -1,5 +1,7 @@
 <template>
-  <tiny-dept v-model="value" title="部门"></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept v-model="value" title="部门"></tiny-dept>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -8,3 +10,9 @@ import { TinyDept } from '@opentiny/vue'
 
 const value = ref('022471')
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

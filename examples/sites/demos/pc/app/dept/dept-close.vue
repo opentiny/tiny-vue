@@ -1,5 +1,7 @@
 <template>
-  <tiny-dept v-model="value" @close="close"></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept v-model="value" @close="close"></tiny-dept>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -21,3 +23,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

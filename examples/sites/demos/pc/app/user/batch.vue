@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <tiny-user v-model="user1" :batch="true" :cache="false"></tiny-user>
     <br />
     <tiny-user v-model="user2" :batch="true" :cache="false"></tiny-user>
@@ -42,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

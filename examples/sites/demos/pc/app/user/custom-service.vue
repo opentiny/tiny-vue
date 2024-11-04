@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <p class="user-value">
       {{ user }}
     </p>
@@ -160,6 +160,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-user-class {
+  width: 280px;
+}
 .user-value {
   font-size: 14px;
   line-height: 1.5;

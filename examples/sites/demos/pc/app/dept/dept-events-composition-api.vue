@@ -1,5 +1,7 @@
 <template>
-  <tiny-dept v-model="value" @change="change" @open="open"></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept v-model="value" @change="change" @open="open"></tiny-dept>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -16,3 +18,9 @@ function change(value) {
   TinyModal.message({ message: '改变的部门值: ' + value, status: 'info' })
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

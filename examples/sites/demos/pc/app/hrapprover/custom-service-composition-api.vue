@@ -1,11 +1,13 @@
 <template>
-  <tiny-hrapprover
-    v-model="value"
-    :approval-person="person"
-    @update:approvalPerson="person = $event"
-    :fetch-hrapprover="getFetchHrapprover"
-    :category="category"
-  ></tiny-hrapprover>
+  <div class="demo-hrapprover-class">
+    <tiny-hrapprover
+      v-model="value"
+      :approval-person="person"
+      @update:approvalPerson="person = $event"
+      :fetch-hrapprover="getFetchHrapprover"
+      :category="category"
+    ></tiny-hrapprover>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -39,3 +41,9 @@ function getFetchHrapprover() {
   ])
 }
 </script>
+
+<style scoped>
+.demo-hrapprover-class {
+  width: 280px;
+}
+</style>

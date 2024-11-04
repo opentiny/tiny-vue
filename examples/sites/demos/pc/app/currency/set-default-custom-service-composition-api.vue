@@ -1,12 +1,14 @@
 <template>
-  <tiny-currency
-    v-model="value"
-    placeholder="请选择"
-    set-default
-    :fetch-default-currency="fetchDefaultCurrency"
-    :set-default-currency="setDefaultCurrency"
-    @change="change"
-  ></tiny-currency>
+  <div class="demo-currency-class">
+    <tiny-currency
+      v-model="value"
+      placeholder="请选择"
+      set-default
+      :fetch-default-currency="fetchDefaultCurrency"
+      :set-default-currency="setDefaultCurrency"
+      @change="change"
+    ></tiny-currency>
+  </div>
 </template>
 
 <script setup>
@@ -41,3 +43,9 @@ const instance = getCurrentInstance()
 const { $service } = instance.appContext.config.globalProperties
 console.log($service?.base.getEnvInfo())
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+</style>

@@ -1,9 +1,7 @@
 <template>
-  <div class="demo-dept">
+  <div class="demo-dept-class">
     <h3 class="title">基本用法</h3>
-    <div class="content">
-      <tiny-dept v-model="value" :before-confirm="beforeConfirm"></tiny-dept>
-    </div>
+    <tiny-dept v-model="value" :before-confirm="beforeConfirm"></tiny-dept>
   </div>
 </template>
 
@@ -23,8 +21,8 @@ function beforeConfirm() {
 </script>
 
 <style scoped>
-.demo-dept .tiny-dept {
-  width: 270px;
+.demo-dept-class {
+  width: 280px;
 }
 .title {
   font-size: 14px;

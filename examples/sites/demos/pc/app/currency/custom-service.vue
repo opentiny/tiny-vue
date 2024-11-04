@@ -1,5 +1,7 @@
 <template>
-  <tiny-currency v-model="value" :fetch-currency="getCurrencyData" clearable></tiny-currency>
+  <div class="demo-currency-class">
+    <tiny-currency v-model="value" :fetch-currency="getCurrencyData" clearable></tiny-currency>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -74,3 +76,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+</style>

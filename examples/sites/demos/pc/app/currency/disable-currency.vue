@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-currency-class">
     <tiny-button @click="Switchover" style="margin-bottom: 10px">启用/禁用</tiny-button>
     <br />
     <tiny-currency v-model="value" placeholder="请选择" @change="change" :disabled="disabled"></tiny-currency>
@@ -30,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+</style>

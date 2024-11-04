@@ -1,5 +1,7 @@
 <template>
-  <tiny-drop-roles v-model="value" @change="change"></tiny-drop-roles>
+  <div class="demo-drop-roles-class">
+    <tiny-drop-roles v-model="value" @change="change"></tiny-drop-roles>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -29,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-drop-roles-class {
+  width: 280px;
+}
+</style>
