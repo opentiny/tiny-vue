@@ -6,7 +6,7 @@
       width="600"
       height="400"
       row-height="36"
-      scrollbar-size="6"
+      scrollbar-size="8"
       :tree-op="treeOp"
     ></tiny-virtual-tree>
   </div>
