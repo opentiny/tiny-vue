@@ -10,6 +10,7 @@
       title="标题"
       :placement="placement"
       v-model:visible="visible"
+      height="600px"
     >
       <div>left或者right内容区域</div>
     </tiny-drawer>

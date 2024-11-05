@@ -10,8 +10,9 @@
       :visible="visible"
       @update:visible="visible = $event"
       @drag="drag"
+      height="600px"
     >
-      <div class="content">
+      <div>
         <p v-if="placement === 'right'">横向拖拽左边框可改变抽屉主体宽度。</p>
         <p v-else>竖向拖拽上边框可改变抽屉主体高度。</p>
       </div>
@@ -44,9 +45,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.content {
-  height: 300px;
-}
-</style>
