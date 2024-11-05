@@ -35,7 +35,7 @@ const footerHtml = `<div class="tinyui-design-footer">
   <div class="footer-content">
    <div class="footer-logo-container">
       <a href="/" class="footer-logo-link">
-        <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/opentiny-logo.svg" title="OpenTiny" class="footer-logo">
+        <img src="/static/images/opentiny-logo.svg" title="OpenTiny" class="footer-logo">
         <span class="footer-logo-title">OpenTiny</span>
       </a>
       <div class="footer-promotional-container">
@@ -49,15 +49,15 @@ const footerHtml = `<div class="tinyui-design-footer">
         <div class="footer-logolist-container">
           
             <a href="/pro" class="footer-logo-link footer-logo-link-list">
-              <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/pro.svg" title="TinyPro">
+              <img src="/static/images/footer/pro.svg" title="TinyPro">
             </a>
           
             <a href="/designtheme/home" class="footer-logo-link footer-logo-link-list">
-              <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/theme.svg" title="TinyTheme">
+              <img src="/static/images/footer/theme.svg" title="TinyTheme">
             </a>
           
             <a href="/tiny-cli/home" class="footer-logo-link footer-logo-link-list">
-              <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/cli.svg" title="TinyCLI">
+              <img src="/static/images/footer/cli.svg" title="TinyCLI">
             </a>
           
         </div>
@@ -69,13 +69,12 @@ const footerHtml = `<div class="tinyui-design-footer">
       
       <div class="link-item">
         <div class="footer-title-container">
-          <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/footer-title-resource.svg" class="footer-logo-s">
+          <img src="/static/images/footer/footer-title-resource.svg" class="footer-logo-s">
           <span class="footer-title">相关资源</span>
           <span class="icon-arrow"></span>
         </div>
         <div class="footer-text-list">
           
-            <a href="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/OpenTinyUI.sketch" title="Sketch 设计资源" target="_blank" rel="noopener noreferrer" class="list-item">Sketch 设计资源</a>
           
             <a href="https://angular.cn/" title="Angular - 中文网" target="_blank" rel="noopener noreferrer" class="list-item">Angular - 中文网</a>
           
@@ -88,7 +87,7 @@ const footerHtml = `<div class="tinyui-design-footer">
       
       <div class="link-item">
         <div class="footer-title-container">
-          <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/footer-title-community.svg" class="footer-logo-s">
+          <img src="/static/images/footer/footer-title-community.svg" class="footer-logo-s">
           <span class="footer-title">社区</span>
           <span class="icon-arrow"></span>
         </div>
@@ -107,7 +106,7 @@ const footerHtml = `<div class="tinyui-design-footer">
       
       <div class="link-item">
         <div class="footer-title-container">
-          <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/footer-title-help.svg" class="footer-logo-s">
+          <img src="/static/images/footer/footer-title-help.svg" class="footer-logo-s">
           <span class="footer-title">帮助</span>
           <span class="icon-arrow"></span>
         </div>
@@ -126,11 +125,11 @@ const footerHtml = `<div class="tinyui-design-footer">
       
       <div class="contact">
         <div>
-          <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/footer-title-human.svg" class="footer-logo-s">
+          <img src="/static/images/footer/footer-title-human.svg" class="footer-logo-s">
           <span class="footer-title">联系我们</span>
         </div>
         <div class="group-code">
-          <img src="//res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/code-open.png">
+          <img src="/static/images/footer/code-open.png">
         </div>
       </div>
     </div>
