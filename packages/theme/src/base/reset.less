@@ -177,7 +177,23 @@
   }
 }
 
-.tiny-popper,
+.tiny-popper {
+  &[x-placement^='top'] {
+    margin-bottom: 4px;
+  }
+  &[x-placement^='bottom'] {
+    margin-top: 4px;
+  }
+  &[x-placement^='right'] {
+    margin-left: 4px;
+  }
+  &[x-placement^='left'] {
+    margin-right: 4px;
+  }
+}
+
+
+.tiny-popconfirm-popover,
 .tiny-tooltip__popper {
   .popper__arrow {
     position: absolute;

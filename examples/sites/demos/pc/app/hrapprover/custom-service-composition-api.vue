@@ -6,6 +6,7 @@
       @update:approvalPerson="person = $event"
       :fetch-hrapprover="getFetchHrapprover"
       :category="category"
+      title="选择权签人"
     ></tiny-hrapprover>
   </div>
 </template>

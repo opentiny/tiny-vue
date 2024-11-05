@@ -18,6 +18,7 @@
       @update:visible="state.open = $event"
       :close-on-click-modal="false"
       width="550px"
+      top="10vh"
       append-to-body
       @close="closeDialog"
       :title="title"
