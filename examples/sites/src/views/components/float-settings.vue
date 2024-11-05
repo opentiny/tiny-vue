@@ -200,28 +200,17 @@ export default defineComponent({
         const nav = document.querySelector('.nav')
         if (docLayout) {
           docLayout.onscroll = debounce(100, false, () => {
-            const {
-              scrollTop: layoutScrollTop,
-              scrollHeight: layoutScrollHeight,
-              clientHeight: layoutHeight
-            } = docLayout
+            const { scrollTop: layoutScrollTop } = docLayout
             const headerHeight = docLayout.querySelector('header')?.clientHeight || 0
-            const footerHeight = docLayout.querySelector('#footer')?.clientHeight || 0
             const footerTop = footer.getBoundingClientRect().top
             const navHeight = nav?.clientHeight || 0
             const currSettingsBottom = parseInt(window.getComputedStyle(floatSettings.value).getPropertyValue('bottom'))
-            const footerVisibleHeight = footerHeight - (layoutScrollHeight - layoutScrollTop - layoutHeight)
 
             state.showBackTop = layoutScrollTop > 500
             state.showSettings = footerTop - navHeight - headerHeight > 220
 
             if (!state.initBottomVal) {
               state.initBottomVal = currSettingsBottom
-            }
-            if (footerVisibleHeight > state.initBottomVal - 40) {
-              state.settingsStyle.bottom = `${footerVisibleHeight + 20}px`
-            } else {
-              state.settingsStyle.bottom = DEFAULT_BOTTOM_VAL
             }
           })
         }
@@ -297,9 +286,10 @@ export default defineComponent({
     border-radius: 12px;
     background-color: #fff;
     cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 
     &:hover {
-      box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
 
       .settings-icon {
         color: #191919;

@@ -493,7 +493,7 @@ export default defineComponent({
             })
           }
         }
-      }, 600)
+      }, 0)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
