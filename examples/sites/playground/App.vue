@@ -1,23 +1,18 @@
-<script setup>
+<script setup lang="jsx">
 import { onMounted, reactive, nextTick } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
 import Editor from '@vue/repl/codemirror-editor'
-import {
-  ButtonGroup as TinyButtonGroup,
-  Select as TinySelect,
-  Option as TinyOption,
-  Switch as TinySwitch,
-  Notify
-} from '@opentiny/vue'
+import { TinyButtonGroup, TinyButton, TinySelect, TinyOption, TinySwitch, Notify } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version-3.16'
+const VERSION = 'tiny-vue-version-3.19'
+const NOTIFY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
@@ -28,40 +23,57 @@ const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
 
-const versions = ['3.19', '3.18', '3.17', '3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
-const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
+const versions = ['3.19', '3.18', '3.17']
+const getVersion = () => {
+  if (isPreview) {
+    return versions[0]
+  }
+  if (versions.includes(localStorage.getItem(VERSION))) {
+    localStorage.getItem(VERSION)
+  }
+  return versions[0]
+}
+const latestVersion = getVersion()
 const cdnHost = localStorage.getItem('setting-cdn')
 
 const versionDelimiter = cdnHost.includes('npmmirror') ? '/' : '@'
 const fileDelimiter = cdnHost.includes('npmmirror') ? 'files/' : ''
 
-const isOldVersion = (version) => {
-  const minorVersion = version?.split('.')?.[1]
-  return minorVersion && minorVersion < 16
+let notify
+const showNotify = () => {
+  if (localStorage.getItem(NOTIFY) !== 'true' && !notify) {
+    const muteNotify = () => {
+      notify.close()
+      localStorage.setItem(NOTIFY, true)
+    }
+    notify = Notify({
+      type: 'info',
+      title: '温馨提示：',
+      message: () => (
+        <div>
+          <div>演练场仅保留最新的三个版本可选。</div>
+          <div style="text-align: right;margin-top: 12px;">
+            <TinyButton onClick={muteNotify} type={'primary'}>
+              不再提示
+            </TinyButton>
+          </div>
+        </div>
+      ),
+      duration: -1,
+      position: 'top-right',
+      verticalOffset: 200
+    })
+  }
 }
 
-// 3.16.0版本之前的runtime还没有抽离单独的包
-const getRuntime = (version) => {
-  if (isOldVersion(version)) {
-    return `${cdnHost}/@opentiny/vue${versionDelimiter}${version}/${fileDelimiter}runtime/`
-  }
-  return `${cdnHost}/@opentiny/vue-runtime${versionDelimiter}${version}/${fileDelimiter}dist3/`
-}
-
-// 3.16.0版本之前的runtime没有tiny-vue-pc.mjs文件
-const getPcRuntime = (version) => {
-  if (isOldVersion(version)) {
-    return `${getRuntime(version)}tiny-vue.mjs`
-  }
-  return `${getRuntime(version)}tiny-vue-pc.mjs`
-}
+const getRuntime = (version) => `${cdnHost}/@opentiny/vue-runtime${versionDelimiter}${version}/${fileDelimiter}dist3/`
 
 const createImportMap = (version) => {
   const imports = {
     'vue': `${cdnHost}/vue${versionDelimiter}3.4.27/${fileDelimiter}dist/vue.runtime.esm-browser.js`,
     'echarts': `${cdnHost}/echarts${versionDelimiter}5.4.1/${fileDelimiter}dist/echarts.esm.js`,
     '@vue/compiler-sfc': `${cdnHost}/@vue/compiler-sfc${versionDelimiter}3.4.27/${fileDelimiter}dist/compiler-sfc.esm-browser.js`,
-    '@opentiny/vue': getPcRuntime(version),
+    '@opentiny/vue': `${getRuntime(version)}tiny-vue-pc.mjs`,
     '@opentiny/vue-icon': `${getRuntime(version)}tiny-vue-icon.mjs`,
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
@@ -72,8 +84,9 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'saas'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] =
-      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[
+      `@opentiny/vue-design-${tinyTheme}`
+    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
@@ -291,7 +304,13 @@ function share() {
       </span>
       <span class="ml20">
         OpenTiny Vue 版本:
-        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px" :disabled="isPreview">
+        <tiny-select
+          v-model="state.selectVersion"
+          style="width: 150px"
+          :disabled="isPreview"
+          @change="selectVersion"
+          @click="showNotify"
+        >
           <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>
