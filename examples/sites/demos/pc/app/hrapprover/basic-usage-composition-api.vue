@@ -2,6 +2,7 @@
   <div class="demo-hrapprover-class">
     <tiny-hrapprover
       v-model="value"
+      title="选择权签人"
       :approval-person="person"
       @update:approvalPerson="person = $event"
     ></tiny-hrapprover>

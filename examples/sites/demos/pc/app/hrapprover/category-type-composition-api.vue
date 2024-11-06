@@ -4,6 +4,7 @@
       v-model="value"
       :approval-person="person"
       @update:approvalPerson="person = $event"
+      title="选择权签人"
       category="0506"
     ></tiny-hrapprover>
   </div>

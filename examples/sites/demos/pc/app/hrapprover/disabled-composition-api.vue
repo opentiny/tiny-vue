@@ -4,6 +4,7 @@
     <tiny-hrapprover
       :value="value"
       :approval-person="person"
+      title="选择权签人"
       @update:approvalPerson="person = $event"
       :disabled="disabled"
     ></tiny-hrapprover>
