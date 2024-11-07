@@ -217,7 +217,7 @@ export const clearQuery = (refs: ITransferRenderlessParams['refs']) => (which: '
 
 /** SortableJs 插件的回调逻辑， 添加，删除，更新事件后，触发本函数 */
 export const logicFun =
-  ({ props, emit, state }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  ({ props, emit, state, vm }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
   ({ event, isAdd, pullMode }: { event: any; isAdd?: boolean; pullMode?: 'sort' }) => {
     let currentValue = props.modelValue.slice()
     let movedKeys = []
@@ -225,9 +225,12 @@ export const logicFun =
     if (pullMode) {
       currentValue.splice(event.newIndex, 0, currentValue.splice(event.oldIndex, 1)[0])
     } else {
+      const rightPanel = vm.$refs.rightPanel
+      const leftPanel = vm.$refs.leftPanel
+
       const key = isAdd
-        ? state.targetData[event.oldIndex][props.props.key]
-        : state.sourceData[event.oldIndex][props.props.key]
+        ? rightPanel.state.filteredData[event.oldIndex][props.props.key]
+        : leftPanel.state.filteredData[event.oldIndex][props.props.key]
       const index = isAdd ? state.rightChecked.indexOf(key) : state.leftChecked.indexOf(key)
       const valueIndex = currentValue.indexOf(key)
 
