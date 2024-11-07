@@ -5,7 +5,6 @@
       ref="gridRef"
       :select-config="selectConfig"
       highlight-current-row
-      border
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
