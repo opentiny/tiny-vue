@@ -816,7 +816,6 @@ export default defineComponent({
     flex: 1;
     display: flex;
     justify-content: center;
-    min-width: 680px;
     padding: 0 40px;
   }
 
@@ -837,7 +836,6 @@ export default defineComponent({
 
     :deep(> .tiny-tabs__header) {
       position: sticky;
-      top: 90px;
       z-index: var(--docs-tabs-header-zindex);
       background-color: #fff;
 
@@ -972,6 +970,10 @@ export default defineComponent({
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
+}
+
+.docs-content-main {
+  overflow: auto;
 }
 
 .cmp-container {

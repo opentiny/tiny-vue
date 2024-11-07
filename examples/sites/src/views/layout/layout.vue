@@ -196,8 +196,11 @@ export default defineComponent({
 .content-layout {
   display: flex;
   --layout-tree-menu-input-height: 32px;
-  --layout-content-main-min-width: 600px;
+  --layout-content-main-min-width: 200px;
   --layout-content-main-max-width: 1000px;
+}
+@media screen and (max-width: 640px) {
+  --layout-content-main-min-width: 600px;
 }
 
 .tiny-tooltip.tiny-tooltip__popper.is-light.docs-tooltip {
