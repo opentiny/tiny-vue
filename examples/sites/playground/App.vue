@@ -12,7 +12,7 @@ import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
 const VERSION = 'tiny-vue-version-3.19'
-const NOTIFY = 'tiny-vue-playground-notify'
+const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
@@ -41,10 +41,10 @@ const fileDelimiter = cdnHost.includes('npmmirror') ? 'files/' : ''
 
 let notify
 const showNotify = () => {
-  if (localStorage.getItem(NOTIFY) !== 'true' && !notify) {
+  if (localStorage.getItem(NOTIFY_KEY) !== 'true' && !notify) {
     const muteNotify = () => {
       notify.close()
-      localStorage.setItem(NOTIFY, true)
+      localStorage.setItem(NOTIFY_KEY, true)
     }
     notify = Notify({
       type: 'info',
