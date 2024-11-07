@@ -7,11 +7,15 @@ test('change事件', async ({ page }) => {
   const anchor = page.locator('.tiny-anchor')
   const link1 = anchor.getByRole('link', { name: '演示' })
   const link2 = anchor.getByRole('link', { name: 'change 事件' })
-  const modal = page.locator('.tiny-modal')
 
+  const values = [] as string[]
+  page.on('console', async (msg) => {
+    for (const arg of msg.args()) {
+      values.push(await arg.jsonValue())
+    }
+  })
   await link1.click()
-  await expect(modal).toHaveCount(1)
   await link2.click()
-  await expect(modal).toHaveCount(2)
-  await expect(modal.last()).toHaveText(/#change/)
+  expect(values.length).toBe(2)
+  expect(values[0].startsWith('当前锚点#demonstrate')).toBeTruthy()
 })
