@@ -288,9 +288,9 @@ function share() {
 
 <template>
   <div class="header">
-    <div class="title"><img class="logo" :src="logoUrl" /> <span>OpenTiny Vue 演练场</span></div>
+    <div class="title"><img class="logo" :src="logoUrl" /> <span class="mobile-hide">OpenTiny Vue 演练场</span></div>
     <div>
-      <span class="ml20">
+      <span class="ml20 mobile-hide">
         布局方向:
         <tiny-button-group
           :data="state.layoutOptions"
@@ -298,12 +298,12 @@ function share() {
           @change="changeLayout"
         ></tiny-button-group>
       </span>
-      <span class="ml20">
+      <span class="ml20 mobile-hide">
         布局反转:
         <tiny-switch v-model="state.layoutReverse" mini @change="changeReserve"></tiny-switch>
       </span>
       <span class="ml20">
-        OpenTiny Vue 版本:
+        <span class="mobile-hide">OpenTiny Vue 版本: </span>
         <tiny-select
           v-model="state.selectVersion"
           style="width: 150px"
@@ -336,6 +336,12 @@ function share() {
   box-sizing: border-box;
 }
 
+/** 小屏幕时隐藏 */
+@media screen and (max-width: 640px) {
+  .mobile-hide {
+    display: none;
+  }
+}
 #header {
   display: none;
 }
