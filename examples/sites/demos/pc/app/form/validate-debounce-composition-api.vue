@@ -8,8 +8,8 @@
         <tiny-input v-model="createData.user2"></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="success" @click="clearFormValid">移除表单校验</tiny-button>
         <tiny-button type="primary" @click="handleSubmit">提交</tiny-button>
+        <tiny-button @click="clearFormValid">移除表单校验</tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
