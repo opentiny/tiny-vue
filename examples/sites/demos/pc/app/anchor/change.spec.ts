@@ -16,6 +16,6 @@ test('change事件', async ({ page }) => {
   })
   await link1.click()
   await link2.click()
-  expect(values.length).toBe(2)
+  expect(values.length).toBe(3)
   expect(values[0].startsWith('当前锚点#demonstrate')).toBeTruthy()
 })
