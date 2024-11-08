@@ -21,8 +21,8 @@
   width: 100%;
   height: auto;
   padding-top: 32px;
-  border: 1px solid #EBEBEB;
-  background-color: var(--tv-CalendarView-bg);
+  border: 1px solid #ebebeb;
+  background-color: var(--tv-CalendarView-bg-color);
 
   &__header {
     display: flex;
@@ -34,7 +34,7 @@
   &__header div:first-child {
     flex-grow: 1;
   }
-  &__header div:first-child{
+  &__header div:first-child {
     flex-grow: 1;
   }
 
@@ -43,7 +43,6 @@
     margin-right: var(--tv-CalendarView-picker-right-bottom);
   }
 
-
   &__radio {
     flex-shrink: 0;
     .tiny-radio-button__inner {
@@ -51,16 +50,16 @@
       background-color: #ededed;
       svg {
         width: var(--tv-CalendarView-radio-font-size);
-        height: var(--tv-CalendarView-radio-font-size);;
-        fill:var(--tv-CalendarView-radio-icon-fill);
+        height: var(--tv-CalendarView-radio-font-size);
+        fill: var(--tv-CalendarView-radio-icon-color);
       }
     }
-    .is-active{
+    .is-active {
       .tiny-radio-button__inner {
-        background-color: var(--tv-CalendarView-radio-active-inner-bg);
+        background-color: var(--tv-CalendarView-radio-active-inner-bg-color);
         border: 1px solid var(--tv-CalendarView-radio-active-border-color);
-        svg{
-          fill: var(--tv-CalendarView-radio-active-fill);
+        svg {
+          fill: var(--tv-CalendarView-radio-active-icon-color);
         }
       }
     }
@@ -68,11 +67,11 @@
 
   .@{calendar-view-prefix-cls}-month {
     &__header {
-    display: flex;
-    position: relative;
-    justify-content: space-around;
-    height: 40px;
-      .header-left{
+      display: flex;
+      position: relative;
+      justify-content: space-around;
+      height: 40px;
+      .header-left {
         height: 100%;
         display: flex;
         align-items: center;
@@ -80,28 +79,28 @@
         left: 32px;
         cursor: pointer;
 
-        >svg{
-          fill: var(--tv-CalendarView-header-svg-fill);
+        > svg {
+          fill: var(--tv-CalendarView-header-icon-color);
         }
       }
 
-      .header-main{
+      .header-main {
         display: flex;
         justify-content: space-around;
         flex: 1;
         height: 100%;
 
-        >li{
+        > li {
           line-height: 40px;
 
-          >span{
-            font-size: var(--tv-CalendarView-header-main-text-size);
+          > span {
+            font-size: var(--tv-CalendarView-header-main-font-size);
             color: var(--tv-CalendarView-header-main-text-color);
           }
         }
       }
 
-      .header-right{
+      .header-right {
         height: 100%;
         display: flex;
         align-items: center;
@@ -109,8 +108,8 @@
         right: 32px;
         cursor: pointer;
 
-        >svg{
-          fill: var(--tv-CalendarView-header-svg-fill);
+        > svg {
+          fill: var(--tv-CalendarView-header-icon-color);
         }
       }
     }
@@ -118,92 +117,92 @@
     &__main {
       width: 100%;
       overflow: hidden;
-      border-top: 1px solid #EBEBEB;
+      border-top: 1px solid #ebebeb;
 
-      .main-container{
+      .main-container {
         width: 100%;
-        
-        margin-top: var(--tv-CalendarView-main-margin-top);;
-        
-        >ul{
+
+        margin-top: var(--tv-CalendarView-main-margin-top);
+
+        > ul {
           width: 100%;
           display: flex;
           justify-content: space-around;
-          border-bottom: 1px solid #EBEBEB;
+          border-bottom: 1px solid #ebebeb;
 
-          >li{
-            font-size: var(--tv-CalendarView-main-li-size);
-            padding: var(--tv-CalendarView-main-li-space) 0;
+          > li {
+            font-size: var(--tv-CalendarView-main-li-font-size);
+            padding: var(--tv-CalendarView-main-li-padding) 0;
             position: relative;
             height: 80px;
             overflow: hidden;
-            border-right: 1px solid #EBEBEB;
-            background-color: var(--tv-CalendarView-main-li-bg);
+            border-right: 1px solid #ebebeb;
+            background-color: var(--tv-CalendarView-main-li-bg-color);
 
-            &.is-selected{
-              background-color: var(--tv-CalendarView-li-selected-bg);
+            &.is-selected {
+              background-color: var(--tv-CalendarView-li-selected-bg-color);
             }
 
             &.not-selected:hover {
-                background-color: var(--tv-CalendarView-not-selected-hover-color);
-              }
+              background-color: var(--tv-CalendarView-bg-color-unselected-hover);
+            }
 
             &.bg-blue {
-              background-color: rgba(0,103,209,0.1);
+              background-color: rgba(0, 103, 209, 0.1);
             }
 
             &.bg-green {
-              background-color: rgba(0,168,116,0.1);
+              background-color: rgba(0, 168, 116, 0.1);
             }
 
             &.bg-red {
-              background-color: rgba(235,23,31,0.1);
+              background-color: rgba(235, 23, 31, 0.1);
             }
 
             &.bg-yellow {
-              background-color: rgba(243,105,0,0.1);
+              background-color: rgba(243, 105, 0, 0.1);
             }
 
             &.bg-purple {
-              background-color: rgba(116,94,246,0.1);
+              background-color: rgba(116, 94, 246, 0.1);
             }
 
             &.bg-cyan {
-              background-color: rgba(0,162,181,0.1);
+              background-color: rgba(0, 162, 181, 0.1);
             }
 
             &.bg-grey {
-              background-color: rgba(141,149,158,0.3);
+              background-color: rgba(141, 149, 158, 0.3);
             }
           }
         }
 
-        .day-selected{
+        .day-selected {
           position: absolute;
           top: 0;
           right: 0;
-          background-color: var(--tv-CalendarView-selected-hover-color);
+          background-color: var(--tv-CalendarView-selected-bg-color-hover);
 
-          >svg{
-            width: var(--tv-CalendarView-selected-svg-size);
-            height: var(--tv-CalendarView-selected-svg-size);
-            fill: var(--tv-CalendarView-selected-svg-color);
+          > svg {
+            width: var(--tv-CalendarView-selected-icon-size);
+            height: var(--tv-CalendarView-selected-icon-size);
+            fill: var(--tv-CalendarView-selected-icon-color);
             position: relative;
           }
         }
 
-        .date{
+        .date {
           margin-left: var(--tv-CalendarView-date-margin-left);
-          color: var(--tv-CalendarView-date-text-color);;
+          color: var(--tv-CalendarView-date-text-color);
 
-          &.is-next-or-last{
+          &.is-next-or-last {
             color: var(--tv-CalendarView-date-weaken-text-color);
           }
-          &.is-selected{
+          &.is-selected {
             color: var(--tv-CalendarView-date-selected-text-color);
           }
-          &.is-disabled{
-            color: var(--tv-CalendarView-text-disabled-color);
+          &.is-disabled {
+            color: var(--tv-CalendarView-text-color-disabled);
           }
         }
 
@@ -211,29 +210,29 @@
           overflow-y: auto;
           width: 100%;
 
-          &::-webkit-scrollbar{
+          &::-webkit-scrollbar {
             width: 0;
             height: 0;
           }
 
-          .events-container{
+          .events-container {
             margin-bottom: var(--tv-CalendarView-event-container-margin-bottom);
           }
 
-          .events-start{
+          .events-start {
             padding: 0 var(--tv-CalendarView-event-start-padding);
 
-            &.multi-day{
+            &.multi-day {
               padding-right: 0;
             }
           }
 
-          .events-title{
+          .events-title {
             width: 100%;
             display: inline-block;
             font-size: var(--tv-CalendarView-event-title-font-size);
             line-height: 17px;
-            color: var(--tv-CalendarView-event-title--text-color);
+            color: var(--tv-CalendarView-event-title-text-color);
             padding: 0 10px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -241,72 +240,71 @@
 
             &.theme-blue {
               border-left: 2px solid #1890ff;
-              background-color: rgba(0,103,209,0.1);
+              background-color: rgba(0, 103, 209, 0.1);
             }
 
             &.theme-green {
-              border-left: 2px solid #00A874;
-              background-color: rgba(0,168,116,0.1);
+              border-left: 2px solid #00a874;
+              background-color: rgba(0, 168, 116, 0.1);
             }
 
             &.theme-red {
-              border-left: 2px solid #EB171F;
-              background-color: rgba(235,23,31,0.1);
+              border-left: 2px solid #eb171f;
+              background-color: rgba(235, 23, 31, 0.1);
             }
 
             &.theme-yellow {
-              border-left: 2px solid #F36900;
-              background-color: rgba(243,105,0,0.1);
+              border-left: 2px solid #f36900;
+              background-color: rgba(243, 105, 0, 0.1);
             }
 
             &.theme-purple {
-              border-left: 2px solid #745EF7;
-              background-color: rgba(116,94,246,0.1);
+              border-left: 2px solid #745ef7;
+              background-color: rgba(116, 94, 246, 0.1);
             }
 
             &.theme-cyan {
-              border-left: 2px solid #00A2B5;
-              background-color: rgba(0,162,181,0.1);
+              border-left: 2px solid #00a2b5;
+              background-color: rgba(0, 162, 181, 0.1);
             }
 
             &.theme-grey {
-              border-left: 2px solid #8D959E;
-              background-color: rgba(141,149,158,0.3);
+              border-left: 2px solid #8d959e;
+              background-color: rgba(141, 149, 158, 0.3);
             }
           }
 
-          .events-end{
+          .events-end {
             height: 20px;
             line-height: 20px;
 
             &.bg-blue {
-              background-color: rgba(0,103,209,0.1);
+              background-color: rgba(0, 103, 209, 0.1);
             }
 
             &.bg-green {
-              background-color: rgba(0,168,116,0.1);
+              background-color: rgba(0, 168, 116, 0.1);
             }
 
             &.bg-red {
-              background-color: rgba(235,23,31,0.1);
+              background-color: rgba(235, 23, 31, 0.1);
             }
 
             &.bg-yellow {
-              background-color: rgba(243,105,0,0.1);
+              background-color: rgba(243, 105, 0, 0.1);
             }
 
             &.bg-purple {
-              background-color: rgba(116,94,246,0.1);
+              background-color: rgba(116, 94, 246, 0.1);
             }
 
             &.bg-cyan {
-              background-color: rgba(0,162,181,0.1);
+              background-color: rgba(0, 162, 181, 0.1);
             }
 
             &.bg-grey {
-              background-color: rgba(141,149,158,0.3);
+              background-color: rgba(141, 149, 158, 0.3);
             }
-
           }
         }
       }
@@ -314,7 +312,6 @@
   }
 
   .@{calendar-view-prefix-cls}-week {
-
     &__header {
       display: flex;
       justify-content: space-around;
@@ -322,48 +319,48 @@
       height: 40px;
     }
 
-    .header-left{
+    .header-left {
       margin-left: 32px;
       flex-shrink: 0;
       text-align: right;
       cursor: pointer;
 
-      >svg{
-        fill: var(--tv-CalendarView-header-svg-fill);
+      > svg {
+        fill: var(--tv-CalendarView-header-icon-color);
       }
     }
-    .header-right{
+    .header-right {
       margin-right: 32px;
       flex-shrink: 0;
       text-align: left;
       cursor: pointer;
 
-      >svg{
-        fill: var(--tv-CalendarView-header-svg-fill);
+      > svg {
+        fill: var(--tv-CalendarView-header-icon-color);
       }
     }
 
-    .header-main{
+    .header-main {
       display: flex;
       justify-content: space-around;
       flex: 1;
       height: 100%;
 
-      >li{
+      > li {
         line-height: 40px;
 
-        .date{
+        .date {
           position: relative;
           margin-right: 10px;
           font-size: var(--tv-CalendarView-week-date-font-size);
           color: var(--tv-CalendarView-week-date-text-color);
 
-          &.is-today{
+          &.is-today {
             color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
-        
-        .mark{
+
+        .mark {
           width: 6px;
           height: 6px;
           position: absolute;
@@ -371,7 +368,7 @@
           left: var(--tv-CalendarView-mark-left);
           border-radius: var(--tv-CalendarView-mark-border-radius);
 
-          &.is-two-digit{
+          &.is-two-digit {
             left: var(--tv-CalendarView-mark-digit-left);
           }
 
@@ -380,172 +377,170 @@
           }
 
           &.mark-green {
-            background-color: #00A874
+            background-color: #00a874;
           }
 
           &.mark-red {
-            background-color: var(--tv-CalendarView-mark-color);  
+            background-color: var(--tv-CalendarView-mark-bg-color);
           }
 
           &.mark-yellow {
-            background-color: #F36900;
+            background-color: #f36900;
           }
 
           &.mark-purple {
-            background-color: #745EF7
+            background-color: #745ef7;
           }
 
           &.mark-cyan {
-            background-color: #00A2B5;
+            background-color: #00a2b5;
           }
 
           &.mark-grey {
-            background-color: #8D959E;
+            background-color: #8d959e;
           }
         }
-        
-        .week-day{
+
+        .week-day {
           font-size: var(--tv-CalendarView-week-day-font-size);
           color: #8d959e;
 
-          &.is-today{
+          &.is-today {
             color: #1890ff;
           }
         }
       }
     }
-
-    
   }
 
   .@{calendar-view-prefix-cls}-week__timeline {
-      width: 100%;
-      height: 448px;
-      display: flex;
-      overflow-y: auto;
-      margin-top: var(--tv-CalendarView-timeline-margin-top);
+    width: 100%;
+    height: 448px;
+    display: flex;
+    overflow-y: auto;
+    margin-top: var(--tv-CalendarView-timeline-margin-top);
 
-      .day-times{
-        width: 36px;
-        margin-left: 21px;
+    .day-times {
+      width: 36px;
+      margin-left: 21px;
 
-        ul>li{
-          height: 20px;
-          text-align: left;
-          border-bottom-width: var(--tv-CalendarView-timeline-li-border-width);
+      ul > li {
+        height: 20px;
+        text-align: left;
+        border-bottom-width: var(--tv-CalendarView-timeline-li-border-width);
+        border-bottom-style: solid;
+        border-bottom-color: #fff;
+
+        &.is-odd-num {
+          border-bottom-color: #f5f6f8;
+        }
+
+        span {
+          font-size: var(--tv-CalendarView-timeline-span-font-size);
+          color: var(--tv-CalendarView-timeline-span-text-color);
+        }
+      }
+    }
+
+    .day-events {
+      flex: 1;
+
+      > ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        > li {
+          position: relative;
+
+          &.is-weekends {
+            background-color: rgba(245, 246, 248, 0.5);
+          }
+        }
+      }
+
+      .events-list {
+        > li {
+          position: relative;
+          height: var(--tv-CalendarView-events-list-height);
+          padding: var(--tv-CalendarView-events-list-padding);
+          list-style-type: none;
+          border-bottom-width: 1px;
           border-bottom-style: solid;
-          border-bottom-color: #fff;
+          border-bottom-color: #f5f6f8;
 
-          &.is-odd-num{
-            border-bottom-color: #f5f6f8;
-          }
-
-          span{
-            font-size: var(--tv-CalendarView-timeline-span-font-size);
-            color: var(--tv-CalendarView-timeline-span-text-color);
+          &.is-even-num {
+            border-bottom-style: dashed;
           }
         }
-      }
 
-      .day-events{
-        flex: 1;
-
-        >ul{
-          width: 100%;
+        .events-item {
+          font-size: var(--tv-CalendarView-events-item-font-size);
+          font-weight: var(--tv-CalendarView-events-item-font-weight);
+          width: 92%;
           display: flex;
-          justify-content: space-around;
+          align-items: center;
+          padding: 0 6px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          line-height: 1.5;
+          border-radius: 2px;
+          color: var(--tv-CalendarView-events-item-text-color);
 
-          >li{
-            position: relative;
-
-            &.is-weekends{
-              background-color: rgba(245,246,248,0.5);
-            }
-          }
-        }
-
-        .events-list{
-          >li{
-            position: relative;
-            height: var(--tv-CalendarView-events-list-height);
-            padding: var(--tv-CalendarView-events-list-padding);;
-            list-style-type: none;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #f5f6f8;
-
-            &.is-even-num{
-              border-bottom-style: dashed;
-            }
+          &.theme-blue {
+            border-left: 2px solid #1890ff;
+            background-color: rgba(0, 103, 209, 0.1);
           }
 
-          .events-item{
-            font-size: var(--tv-CalendarView-events-item-font-size);
-            font-weight: var(--tv-CalendarView-events-item-font-weight);
-            width: 92%;
-            display: flex;
-            align-items: center;
-            padding: 0 6px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            line-height: 1.5;
-            border-radius: 2px;
-            color: var(--tv-CalendarView-events-item-color);
+          &.theme-green {
+            border-left: 2px solid #00a874;
+            background-color: rgba(0, 168, 116, 0.1);
+          }
 
-            &.theme-blue {
-              border-left: 2px solid #1890ff;
-              background-color: rgba(0,103,209,0.1);
-            }
+          &.theme-red {
+            border-left: 2px solid #eb171f;
+            background-color: rgba(235, 23, 31, 0.1);
+          }
 
-            &.theme-green {
-              border-left: 2px solid #00A874;
-              background-color: rgba(0,168,116,0.1);
-            }
+          &.theme-yellow {
+            border-left: 2px solid #f36900;
+            background-color: rgba(243, 105, 0, 0.1);
+          }
 
-            &.theme-red {
-              border-left: 2px solid #EB171F;
-              background-color: rgba(235,23,31,0.1);
-            }
+          &.theme-purple {
+            border-left: 2px solid #745ef7;
+            background-color: rgba(116, 94, 246, 0.1);
+          }
 
-            &.theme-yellow {
-              border-left: 2px solid #F36900;
-              background-color: rgba(243,105,0,0.1);
-            }
+          &.theme-cyan {
+            border-left: 2px solid #00a2b5;
+            background-color: rgba(0, 162, 181, 0.1);
+          }
 
-            &.theme-purple {
-              border-left: 2px solid #745EF7;
-              background-color: rgba(116,94,246,0.1);
-            }
-
-            &.theme-cyan {
-              border-left: 2px solid #00A2B5;
-              background-color: rgba(0,162,181,0.1);
-            }
-
-            &.theme-grey {
-              border-left: 2px solid #8D959E;
-              background-color: rgba(141,149,158,0.3);
-            }
+          &.theme-grey {
+            border-left: 2px solid #8d959e;
+            background-color: rgba(141, 149, 158, 0.3);
           }
         }
       }
+    }
   }
-  
+
   .@{calendar-view-prefix-cls}-week__schedule {
     width: 100%;
     padding: 0 24px 16px 24px;
     overflow-y: auto;
     height: 448px;
 
-    >ul{
+    > ul {
       display: flex;
       width: 100%;
 
-      >li{
+      > li {
         height: 100%;
-        padding: var(--tv-CalendarView-week-li-padding-v) var(--tv-CalendarView-week-li-padding-h);
+        padding: var(--tv-CalendarView-week-li-padding-y) var(--tv-CalendarView-week-li-padding-x);
 
         .title {
           font-size: var(--tv-CalendarView-week-title-font-size);
@@ -560,32 +555,32 @@
       }
     }
 
-    .day-events{
+    .day-events {
       font-size: var(--tv-CalendarView-week-day-font-size);
       padding: 6px 0;
       height: auto;
       border: 1px solid #e8ebef;
       border-radius: var(--tv-CalendarView-week-day-border-radius);
-      margin-bottom: var(--tv-CalendarView-week-day-margin-bottom);;
+      margin-bottom: var(--tv-CalendarView-week-day-margin-bottom);
       box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
 
-      .title{
+      .title {
         padding: 0 6px;
         margin-bottom: 6px;
         border-left-width: 2px;
         border-left-color: #1890ff;
       }
 
-      .date{
+      .date {
         margin-bottom: 6px;
-        padding: 0 var(--tv-CalendarView-week-date-padding-h);
+        padding: 0 var(--tv-CalendarView-week-date-padding-x);
         color: var(--tv-CalendarView-week-date-text-color);
       }
 
-      .content{
-        padding: 0 var(--tv-CalendarView-week-content-padding-h);
+      .content {
+        padding: 0 var(--tv-CalendarView-week-content-padding-x);
         color: #8d959e;
-        overflow : hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -594,7 +589,7 @@
       }
     }
 
-    .new-schedule{
+    .new-schedule {
       height: 32px;
       text-align: center;
       line-height: 32px;
@@ -604,14 +599,14 @@
       border-radius: var(--tv-CalendarView-week-schedule-border-radius);
       cursor: pointer;
 
-      >svg{
+      > svg {
         width: var(--tv-CalendarView-week-schedule-icon-size);
         height: var(--tv-CalendarView-week-schedule-icon-size);
         vertical-align: sub;
-        fill:#8d959e;
+        fill: #8d959e;
       }
 
-      >span{
+      > span {
         margin-left: var(--tv-CalendarView-schedule-span-margin-left);
         color: #8d959e;
       }
@@ -623,13 +618,13 @@
   .inject-CalendarView-vars();
   position: absolute;
   max-width: 320px;
-  .tooltip-main{
+  .tooltip-main {
     padding: var(--tv-CalendarView-tooltip-title-font-size);
-    .title{
+    .title {
       font-size: var(--tv-CalendarView-tooltip-title-font-size);
       font-weight: var(--tv-CalendarView-tooltip-title-font-weight);
     }
-    .date{
+    .date {
       margin: 6px 0;
       color: var(--tv-CalendarView-tooltip-date-text-color);
     }
