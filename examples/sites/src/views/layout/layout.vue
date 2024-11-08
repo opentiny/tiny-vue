@@ -340,7 +340,6 @@ export default defineComponent({
 #doc-layout {
   width: 100%;
   height: calc(100vh - 60px);
-  overflow: hidden auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

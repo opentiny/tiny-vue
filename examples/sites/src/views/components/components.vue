@@ -16,7 +16,7 @@
     </div>
     <span class="docs-header-spacer"></span>
   </header>
-  <div class="docs-content">
+  <div class="docs-content" id="doc-layout-scoller">
     <div class="ti-fi-1 ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -241,7 +241,7 @@
             :is-affix="anchorAffix"
             type="dot"
             mask-class="custom-active-anchor"
-            container-id="#doc-layout"
+            container-id="#doc-layout-scoller"
             @link-click="handleAnchorClick"
           >
           </tiny-anchor>
@@ -254,8 +254,8 @@
         {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
       </div>
     </div>
+    <div id="footer"></div>
   </div>
-  <div id="footer"></div>
 </template>
 
 <script lang="jsx">
@@ -473,7 +473,7 @@ export default defineComponent({
     const scrollByHash = (hash) => {
       setTimeout(() => {
         if (!hash) {
-          document.getElementById('doc-layout').scrollTo({
+          document.getElementById('doc-layout-scoller').scrollTo({
             top: 0,
             left: 0
           })
@@ -486,7 +486,7 @@ export default defineComponent({
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {}
           if (scrollTarget && !isRunningTest) {
-            document.getElementById('doc-layout').scrollTo({
+            document.getElementById('doc-layout-scoller').scrollTo({
               top: scrollTarget.offsetTop,
               left: 0,
               behavior: 'smooth'
@@ -501,7 +501,7 @@ export default defineComponent({
       let hash = router.currentRoute.value.hash?.slice(1)
       if (hash !== 'API') {
         setTimeout(() => {
-          document.getElementById('doc-layout').scrollTo({
+          document.getElementById('doc-layout-scoller').scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
@@ -622,18 +622,18 @@ export default defineComponent({
     }
 
     const onDocLayoutScroll = debounce(100, false, () => {
-      const docLayout = document.getElementById('doc-layout')
+      const docLayout = document.getElementById('doc-layout-scoller')
       const { scrollTop, scrollHeight, clientHeight: layoutHeight } = docLayout
       const headerHeight = document.querySelector('.docs-header')?.clientHeight || 0
       const footerHeight = document.getElementById('footer')?.clientHeight || 0
       const anchorHeight = document.querySelector('#anchor')?.clientHeight || 0
-      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout视口下隐藏的部分高度
+      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout-scoller视口下隐藏的部分高度
       state.anchorAffix = layoutHeight - headerHeight - (footerHeight - remainHeight) > anchorHeight
     })
 
     const setScrollListener = () => {
       nextTick(() => {
-        const docLayout = document.getElementById('doc-layout')
+        const docLayout = document.getElementById('doc-layout-scoller')
         if (docLayout) {
           docLayout.addEventListener('scroll', onDocLayoutScroll)
         }
@@ -641,7 +641,7 @@ export default defineComponent({
     }
 
     const removeScrollListener = () => {
-      const docLayout = document.getElementById('doc-layout')
+      const docLayout = document.getElementById('doc-layout-scoller')
       if (docLayout) {
         docLayout.removeEventListener('scroll', onDocLayoutScroll)
       }
@@ -809,7 +809,9 @@ export default defineComponent({
 }
 
 .docs-content {
-  margin: 16px 0 120px;
+  flex: 1;
+  overflow: hidden auto;
+  padding: 16px 0 0;
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
@@ -970,10 +972,6 @@ export default defineComponent({
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
-}
-
-.docs-content-main {
-  overflow: auto;
 }
 
 .cmp-container {
