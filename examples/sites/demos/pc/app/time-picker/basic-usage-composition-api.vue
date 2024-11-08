@@ -16,7 +16,7 @@
 import { ref } from 'vue'
 import { TinyTimePicker } from '@opentiny/vue'
 
-const value1 = ref(new Date(2016, 9, 10, 18, 40))
+const value1 = ref(new Date(2016, 9, 10, 18, 40, 20))
 </script>
 
 <style scoped>

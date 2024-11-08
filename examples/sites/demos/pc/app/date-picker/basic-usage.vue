@@ -31,7 +31,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

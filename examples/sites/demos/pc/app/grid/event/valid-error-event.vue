@@ -3,6 +3,7 @@
     <tiny-grid
       :data="tableData"
       @valid-error="validError"
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
     >

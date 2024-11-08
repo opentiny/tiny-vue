@@ -119,7 +119,7 @@ export default {
   methods: {
     remoteMethod(value) {
       const filterData = this.filter(value)
-
+      console.log(filterData, value)
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(filterData)

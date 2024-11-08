@@ -7,6 +7,7 @@
         body: { options: bodyMenus },
         visibleMethod
       }"
+      show-overflow="tooltip"
       @cell-context-menu="cellContextMenuEvent"
       @context-menu-click="contextMenuClickEvent"
     >

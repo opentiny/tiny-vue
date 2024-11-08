@@ -76,7 +76,7 @@ function resetForm() {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 400px;
+  width: 360px;
 
   :deep(.tiny-form-item .tiny-form-item) {
     margin-bottom: 8px;

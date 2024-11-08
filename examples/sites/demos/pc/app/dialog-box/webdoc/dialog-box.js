@@ -111,12 +111,14 @@ export default {
     {
       demoId: 'dialog-width',
       name: {
-        'zh-CN': '弹窗的宽度',
-        'en-US': 'Wideness of the pop-up window'
+        'zh-CN': '弹窗的宽度和最大高度',
+        'en-US': 'The width and height of the pop-up window'
       },
       desc: {
-        'zh-CN': '<p>可通过<code>width</code>属性设置指定弹窗的宽度。</p>\n',
-        'en-US': '<p>The<code>width</code>attribute specifies the width of the pop-up window. </p>\n'
+        'zh-CN':
+          '<p>可通过<code>width</code>属性设置指定弹窗的宽度，<code>max-height</code>属性设置窗口最大高度。</p>\n',
+        'en-US':
+          '<p>The<code>width</code>attribute specifies the width of the pop-up window,<code>max-height</code> Property Setting the maximum height of the window.</p>\n'
       },
       codeFiles: ['dialog-width.vue']
     },
@@ -243,9 +245,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>is-form-reset</code>属性设置<code>false</code>,关闭弹窗不重置数据，<code>resize</code>属性设置窗口最大化，<code>max-height</code>属性设置窗口最大高度。</p>',
+          '<p>可通过<code>is-form-reset</code>属性设置<code>false</code>,关闭弹窗不重置数据，<code>resize</code>属性设置窗口最大化。</p>',
         'en-US':
-          '<p>By setting the<code>is-form-reset</code>attribute to <code>false</code>, close the pop-up window without resetting the data,<code>resize</code> Property Setting Window Maximization,<code>max-height</code> Property Setting the maximum height of the window.</p>'
+          '<p>By setting the<code>is-form-reset</code>attribute to <code>false</code>, close the pop-up window without resetting the data,<code>resize</code> Property Setting Window Maximization.</p>'
       },
       codeFiles: ['form-in-dialog.vue']
     },

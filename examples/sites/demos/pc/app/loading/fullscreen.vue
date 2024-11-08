@@ -15,7 +15,7 @@ export default {
     TinyButton
   },
   directives: {
-    TinyLoading: TinyLoading.directive
+    Loading: TinyLoading.directive
   },
   data() {
     return {

@@ -228,3 +228,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+:deep(.tiny-picker) {
+  width: 300px;
+}
+</style>

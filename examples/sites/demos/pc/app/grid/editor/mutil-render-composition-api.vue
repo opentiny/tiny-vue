@@ -11,7 +11,7 @@
         field="area"
         title="区域"
         :editor="{
-          component: Select,
+          component: TinySelect,
           attrs: {
             multiple: true,
             options,

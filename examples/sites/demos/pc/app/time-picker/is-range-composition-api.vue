@@ -16,6 +16,6 @@ const value1 = ref([startTime, endTime])
 
 <style scoped lang="less">
 .demo-time-picker-wrap {
-  width: 360px;
+  width: 280px;
 }
 </style>

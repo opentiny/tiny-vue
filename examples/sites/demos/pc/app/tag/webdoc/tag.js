@@ -11,11 +11,13 @@ export default {
       desc: {
         'zh-CN': `
           通过默认插槽，可以将文字和图标显示为一个标签。 <br>
-          通过 <code>value</code> 属性，也可以设置标签值。
+          通过 <code>value</code> 属性，也可以设置标签值。 <br>
+          通过 <code>only-icon</code> 属性，设置标签只有图标。
         `,
         'en-US': `
           Through the default slot, text and ICONS can be displayed as a label. <br>
-          Tag values can also be set using the <code>value</code> property.
+          Tag values can also be set using the <code>value</code> property. <br>
+          Use the <code>only-icon</code> property to set the label to only ICONS.
         `
       },
       codeFiles: ['basic-usage.vue']
@@ -67,8 +69,8 @@ export default {
         'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small / mini)</code> 。',
-        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small/mini)</code> .'
+        'zh-CN': '通过 <code>size</code> 设置尺寸大小，可选值： <code>(medium / small)</code> 。',
+        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small)</code> .'
       },
       codeFiles: ['size.vue']
     },

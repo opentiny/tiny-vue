@@ -7,7 +7,7 @@
     show-more-tabs
     popper-class="custom-class"
   >
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -17,7 +17,7 @@
 import { ref } from 'vue'
 import { TinyTabs, TinyTabItem, TinyModal } from '@opentiny/vue'
 
-const Tabs = ref([
+const tabs = ref([
   {
     title: 'Tab 1',
     name: '1',
@@ -37,7 +37,7 @@ function handleAdd() {
     status: 'success'
   })
 
-  Tabs.value.push({
+  tabs.value.push({
     title: 'Tab ++',
     name: ++tabIndex.value + '',
     content: '动态增加tabitem'

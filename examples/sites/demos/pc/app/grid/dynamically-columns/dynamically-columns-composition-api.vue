@@ -222,3 +222,9 @@ function getMonthBetween(start, end) {
   return result
 }
 </script>
+
+<style scoped>
+:deep(.tiny-picker) {
+  width: 300px;
+}
+</style>

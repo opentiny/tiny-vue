@@ -59,8 +59,8 @@ export default {
         'en-US': 'Restrict file types'
       },
       desc: {
-        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式。',
-        'en-US': 'Limit the format of uploaded files by setting <code>accept</code> .'
+        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式只能为图片类型。',
+        'en-US': 'Set a limit on the format of uploaded files to only be image type through <code>accept</code>.'
       },
       codeFiles: ['accept-file-image.vue']
     },

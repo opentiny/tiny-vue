@@ -8,7 +8,7 @@
     <tiny-grid-column
       field="id"
       title="名称（Popeditor）"
-      :editor="{ component: Popeditor, attrs: getPopEditorOp }"
+      :editor="{ component: TinyPopeditor, attrs: getPopEditorOp }"
       :format-config="{
         type: 'enum',
         async: true,

@@ -15,7 +15,7 @@
       show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" title="名称" :editor="{ component: Input }"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" :editor="{ component: TinyInput }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input' }"></tiny-grid-column>

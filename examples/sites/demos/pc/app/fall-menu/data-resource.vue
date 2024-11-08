@@ -1,6 +1,6 @@
 <template>
   <div class="left-panel">
-    <fall-menu :data="dataset"></fall-menu>
+    <tiny-fall-menu :data="dataset"></tiny-fall-menu>
   </div>
 </template>
 

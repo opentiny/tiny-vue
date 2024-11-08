@@ -1,7 +1,7 @@
 ## 主题配置
 
 <div class="warning custom-block">
-  本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 版本之后的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
+  本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 及其之后版本的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
 </div>
 
 为了给开发者带来更好的用户体验，从 <code> @opentiny/vue@3.19.0 </code> 版本开始， 组件库的整体风格切换为 `Opentiny Design` 新风格。
@@ -19,7 +19,7 @@
 
 在用户的工程中，如果需要定制主题风格，或者覆盖某些组件的样式，则可以使用组件库提供的 `TinyThemeTool` 类进行配置用户工程的主题。后续我们也将提供更多的主题供大家选择。
 
-`ThemeData` 是自定义主题数据格式，用户可以通过`data`属性，传入覆盖的全局 `CSS 变量`， 通过`css`属性，传入有效的CSS规则块。
+`ThemeData` 是自定义主题数据格式，用户可以通过`data`属性，传入覆盖的全局 `CSS 变量`， 通过`css`属性，传入有效的 CSS 规则块。
 
 ```ts
 interface ThemeData {
@@ -75,7 +75,7 @@ themeTool.changeTheme({
 <div class="tip custom-block">
 在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式，这些样式就会散落在各个组件里。在组件库后续版本升级时，可能会调整组件结构或类名，造成样式覆盖失效，不建议这样做。 <br><br>
 
-我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样CSS规则会集中在一起，方便后续维护。除此之外，用户也可以将自定义样式统一写在一个 `CSS文件` 中并引入项目，但要保证其中的样式优先级高于组件库的优先级。
+我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样 CSS 规则会集中在一起，方便后续维护。除此之外，用户也可以将自定义样式统一写在一个 `CSS文件` 中并引入项目，但要保证其中的样式优先级高于组件库的优先级。
 
 </div>
 
@@ -122,7 +122,7 @@ const themeTool = new TinyThemeTool(tinyOldTheme)
 ## 历史版本的主题配置
 
 <div class="danger custom-block">
-  本节文档仅支持 <code> @opentiny/vue@3.18.0 </code> 版本之前的主题定制
+  本节文档仅支持 <code> @opentiny/vue@3.18.0 </code> 及其之前版本的主题定制
 </div>
 
 `TinyVue` 多主题采用的是 `css` 变量，并定义了一系列全局/组件的样式变量，你可以根据需求进行相应调整。
@@ -233,11 +233,11 @@ new TinyThemeTool(tinyTestTheme, 'tinyStyleSheetId')
 theme.changeTheme(tinyTestTheme)
 ```
 
-### 自定义cssvar变量前缀（用于解决cssvar变量冲突的问题）
+### 自定义 cssvar 变量前缀（用于解决 cssvar 变量冲突的问题）
 
-#### vuecli工程
+#### vuecli 工程
 
-自定义loader文件（custom-loader.js）内容：
+自定义 loader 文件（custom-loader.js）内容：
 
 ```js
 module.exports = function (source) {
@@ -262,7 +262,7 @@ chainWebpack: (config) => {
 }
 ```
 
-#### vite工程
+#### vite 工程
 
 vite.config.js 定义
 

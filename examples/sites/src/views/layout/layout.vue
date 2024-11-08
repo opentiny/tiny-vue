@@ -290,7 +290,7 @@ export default defineComponent({
   }
 
   .tiny-input {
-    margin: 0 10px 12px;
+    margin: 0 10px 16px;
     width: auto;
     max-width: unset;
   }
