@@ -5,7 +5,7 @@ test('change事件', async ({ page }) => {
   await page.goto('anchor#change')
 
   const anchor = page.locator('.tiny-anchor')
-  const link1 = anchor.getByRole('link', { name: '演示' })
+  const link1 = anchor.getByRole('link', { name: '基本用法' })
   const link2 = anchor.getByRole('link', { name: 'change 事件' })
 
   const values = [] as string[]
@@ -16,6 +16,6 @@ test('change事件', async ({ page }) => {
   })
   await link1.click()
   await link2.click()
-  expect(values.length).toBe(3)
+  expect(values.length).toBe(2)
   expect(values[0].startsWith('当前锚点')).toBeTruthy()
 })
