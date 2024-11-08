@@ -11,11 +11,14 @@ test('change事件', async ({ page }) => {
   const values = [] as string[]
   page.on('console', async (msg) => {
     for (const arg of msg.args()) {
-      values.push(await arg.jsonValue())
+      const text = await arg.jsonValue()
+      if (text.includes('当前锚点')) {
+        values.push(text)
+      }
     }
   })
   await link1.click()
   await link2.click()
   expect(values.length).toBe(2)
-  expect(values[0].startsWith('当前锚点')).toBeTruthy()
+  expect(values[0].startsWith('当前锚点#basic-usage')).toBeTruthy()
 })
