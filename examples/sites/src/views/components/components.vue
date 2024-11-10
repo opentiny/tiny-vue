@@ -17,7 +17,7 @@
     <span class="docs-header-spacer"></span>
   </header>
   <div class="docs-content" id="doc-layout-scoller">
-    <div class="ti-fi-1 ti-rel cmp-container">
+    <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
           <div v-if="['interfaces', 'types', 'classes'].includes(cmpId)" id="TS" class="all-api-container">
@@ -235,12 +235,10 @@
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
             id="anchor"
-            :offset-top="156"
             :links="currAnchorLinks"
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
             type="dot"
-            mask-class="custom-active-anchor"
             container-id="#doc-layout-scoller"
             @link-click="handleAnchorClick"
           >
@@ -486,8 +484,10 @@ export default defineComponent({
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {}
           if (scrollTarget && !isRunningTest) {
+            // doc-layout-scoller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
+            // 所以滚动需要修正 tab-title的占位高度才行
             document.getElementById('doc-layout-scoller').scrollTo({
-              top: scrollTarget.offsetTop,
+              top: scrollTarget.offsetTop + 52,
               left: 0,
               behavior: 'smooth'
             })
@@ -767,9 +767,6 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .docs-header {
-  position: sticky;
-  top: 0;
-  z-index: var(--docs-header-zindex);
   padding: 16px 40px;
   background-color: #fff;
   box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);

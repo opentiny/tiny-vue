@@ -338,11 +338,12 @@ export default defineComponent({
 }
 
 #doc-layout {
-  width: 100%;
-  height: calc(100vh - 60px);
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden auto;
+  width: 100%;
+  height: calc(100vh - 60px);
 }
 
 .api-type-box {
