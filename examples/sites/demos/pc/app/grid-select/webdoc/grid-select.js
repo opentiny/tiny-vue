@@ -17,6 +17,19 @@ export default {
         'en-US': ''
       },
       codeFiles: ['basic-usage.vue']
+    },
+    {
+      demoId: 'multiple',
+      name: {
+        'zh-CN': '多选',
+        'en-US': 'Multiple'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组，默认选中值会以标签形式展示。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['multiple.vue']
     }
   ]
 }

@@ -1,6 +1,8 @@
-export const api = ['state']
+import { radioChange, selectChange } from './index'
 
-export const renderless = (props, { reactive }, { vm }) => {
+export const api = ['state', 'radioChange', 'selectChange']
+
+export const renderless = (props, { reactive }, { vm, emit }) => {
   const api = {}
 
   const state = reactive({
@@ -9,7 +11,9 @@ export const renderless = (props, { reactive }, { vm }) => {
   })
 
   Object.assign(api, {
-    state
+    state,
+    radioChange: radioChange({ props, vm, emit }),
+    selectChange: selectChange({ props, vm, emit })
   })
 
   return api

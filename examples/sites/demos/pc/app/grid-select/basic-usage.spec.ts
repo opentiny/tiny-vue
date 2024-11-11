@@ -1,20 +1,25 @@
 import { expect, test } from '@playwright/test'
 
-test('测试基本用法', async ({ page }) => {
+test('测试下拉表格单选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('tree-select#basic-usage')
+  await page.goto('grid-select#basic-usage')
 
   const wrap = page.locator('#basic-usage')
-  const select = wrap.locator('.tiny-tree-select').nth(0)
+  const select = wrap.locator('.tiny-grid-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const treeNode = dropdown.locator('.tiny-tree-node')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
+  const row = dropdown.getByRole('row')
+
+  await expect(suffixSvg).toHaveCount(1)
+  await expect(suffixSvg).toBeVisible()
 
   await input.click()
-  await expect(treeNode).toHaveCount(7)
+  await expect(dropdown).toBeVisible()
+  await expect(row).toHaveCount(6)
 
-  await treeNode.filter({ hasText: /^二级 2-1$/ }).click()
-  await expect(input).toHaveValue('二级 2-1')
+  await row.nth(1).getByRole('cell').first().click()
+  await expect(input).toHaveValue('广州市')
   await input.click()
-  await expect(treeNode.filter({ hasText: /^二级 2-1$/ })).toHaveClass(/is-current/)
+  await expect(row.filter({ hasText: '广州市' })).toHaveClass(/tiny-grid-body__row row__radio/)
 })

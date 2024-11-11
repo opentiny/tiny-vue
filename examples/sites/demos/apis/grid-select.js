@@ -16,6 +16,50 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'modelValue / v-model',
+          type: 'string | number | Array<string|number>',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '绑定值',
+            'en-US': 'Bind value'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'multiple',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否允许选择多个选项',
+            'en-US': 'Allow multiple options to be selected'
+          },
+          mode: ['pc'],
+          pcDemo: 'multiple'
+        },
+        {
+          name: 'text-field',
+          type: 'string',
+          defaultValue: "''",
+          desc: {
+            'zh-CN': '显示值字段',
+            'en-US': 'Show Value Fields'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'value-field',
+          type: 'string',
+          defaultValue: "''",
+          desc: {
+            'zh-CN': '绑定值字段',
+            'en-US': 'Bind Value Field'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         }
       ]
     }
@@ -25,14 +69,14 @@ export default {
       name: 'IGridOption',
       type: 'interface',
       code: `
-interface ITreeNode {
-  label: string         // 默认树节点的文本字段
-  id: number|string     // 树节点唯一标识
-  children: ITreeNode[] // 子节点
-}
-
 interface IGridOption {
-  data: ITreeNode[] // 树数据，用法同 Tree
+  data: Record<string, any>
+  columns: {
+    type: string
+    field: string
+    title: string
+    width: number
+  }[] // 表格列数据，用法同 Grid
 }
 `
     }

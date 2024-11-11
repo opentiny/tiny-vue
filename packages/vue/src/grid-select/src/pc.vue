@@ -1,7 +1,19 @@
 <template>
-  <tiny-base-select ref="baseSelectRef" class="tiny-grid-select" v-model="state.value">
+  <tiny-base-select ref="baseSelectRef" class="tiny-grid-select" v-model="state.value" :multiple="multiple">
     <template #panel>
-      <tiny-grid ref="gridRef" v-bind="state.gridData"></tiny-grid>
+      <tiny-grid
+        ref="gridRef"
+        auto-resize
+        :row-id="valueField"
+        :highlight-current-row="true"
+        :columns="state.gridData.columns"
+        :data="state.gridData"
+        @select-all="selectChange"
+        @select-change="selectChange"
+        @radio-change="radioChange"
+        @mousedown.stop
+        v-bind="state.gridData"
+      ></tiny-grid>
     </template>
   </tiny-base-select>
 </template>
@@ -19,9 +31,22 @@ export default defineComponent({
     TinyBaseSelect: BaseSelect
   },
   props: {
+    clearable: Boolean,
+    filterable: Boolean,
+    filterMethod: Function,
     gridOp: {
       type: Object,
       default: () => ({})
+    },
+    modelValue: {},
+    multiple: Boolean,
+    textField: {
+      type: String,
+      default: 'label'
+    },
+    valueField: {
+      type: String,
+      default: 'value'
     }
   },
   setup(props, context) {
