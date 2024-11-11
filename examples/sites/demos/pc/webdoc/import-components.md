@@ -29,7 +29,7 @@ export default {
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
 
@@ -64,7 +64,7 @@ export default {
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const Components = require('unplugin-vue-components/webpack').default
 const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
@@ -158,7 +158,7 @@ export default {
 }
 ```
 
-#### 温馨提示：
+#### 温馨提示
 
 因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
 

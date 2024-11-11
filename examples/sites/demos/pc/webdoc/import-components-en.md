@@ -22,19 +22,19 @@ Vite
 import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default {
-  plugins: [autoImportPlugin()]
+  plugins: [autoImportPlugin('vite')]
 }
 ```
 
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
 
 module.exports = {
-  plugins: [autoImportPlugin()]
+  plugins: [autoImportPlugin('webpack')]
 }
 ```
 
