@@ -36,60 +36,62 @@
                     <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
                       {{ key }}
                     </div>
-                    <tiny-grid class="api-table" :data="tableData[oneGroup.name][key]" :expand-config="apiExpandConf">
-                      <tiny-grid-column
-                        v-if="tableData[oneGroup.name][key][0]?.type"
-                        class-name="api-table-expand-col"
-                        type="expand"
-                        width="32"
-                      >
-                        <template #default="{ row }">
-                          <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
-                        <template #default="{ row }">
-                          <span class="api-table-name">
-                            <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                            <span v-else>{{ row.name }}</span>
-                          </span>
-                          <version-tip
-                            v-if="row.meta || row.versionTipOption"
-                            :meta="row.meta"
-                            v-bind="row.versionTipOption"
-                            render-type="tag"
-                            tip-subject="api"
-                          >
-                          </version-tip>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column
-                        v-if="tableData[oneGroup.name][key][0]?.type"
-                        field="type"
-                        :title="i18nByKey('propType')"
-                        :width="columnWidth[key][1]"
-                      >
-                        <template #default="{ row }">
-                          <a
-                            v-if="row.typeAnchorName"
-                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
-                            v-html="row.type"
-                          ></a>
-                          <span v-else v-html="row.type"></span>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column
-                        v-if="key === 'props'"
-                        field="defaultValue"
-                        :title="i18nByKey('defValue')"
-                        :width="columnWidth[key][2]"
-                      ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                        <template #default="data">
-                          <span v-html="data.row.desc"></span>
-                        </template>
-                      </tiny-grid-column>
-                    </tiny-grid>
+                    <div class="api-table-box">
+                      <tiny-grid class="api-table" :data="tableData[oneGroup.name][key]" :expand-config="apiExpandConf">
+                        <tiny-grid-column
+                          v-if="tableData[oneGroup.name][key][0]?.type"
+                          class-name="api-table-expand-col"
+                          type="expand"
+                          width="32"
+                        >
+                          <template #default="{ row }">
+                            <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
+                          <template #default="{ row }">
+                            <span class="api-table-name">
+                              <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
+                              <span v-else>{{ row.name }}</span>
+                            </span>
+                            <version-tip
+                              v-if="row.meta || row.versionTipOption"
+                              :meta="row.meta"
+                              v-bind="row.versionTipOption"
+                              render-type="tag"
+                              tip-subject="api"
+                            >
+                            </version-tip>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column
+                          v-if="tableData[oneGroup.name][key][0]?.type"
+                          field="type"
+                          :title="i18nByKey('propType')"
+                          :width="columnWidth[key][1]"
+                        >
+                          <template #default="{ row }">
+                            <a
+                              v-if="row.typeAnchorName"
+                              :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
+                              v-html="row.type"
+                            ></a>
+                            <span v-else v-html="row.type"></span>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column
+                          v-if="key === 'props'"
+                          field="defaultValue"
+                          :title="i18nByKey('defValue')"
+                          :width="columnWidth[key][2]"
+                        ></tiny-grid-column>
+                        <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                          <template #default="data">
+                            <span v-html="data.row.desc"></span>
+                          </template>
+                        </tiny-grid-column>
+                      </tiny-grid>
+                    </div>
                   </template>
                 </div>
               </div>
@@ -142,7 +144,7 @@
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
                   <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-                  <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
+                  <div class="mt20 wp100" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
                     <div class="ti-f-r ti-f-pos-start ti-fw-bold">
                       <div :id="`cmp-${oneGroup.name}`" class="ti-f18">
                         {{ oneGroup.name }}
@@ -156,73 +158,75 @@
                         <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
                           {{ key }}
                         </div>
-                        <tiny-grid
-                          ref="apiTableRef"
-                          class="api-table"
-                          :data="tableData[oneGroup.name][key]"
-                          :expand-config="apiExpandConf"
-                          row-id="name"
-                        >
-                          <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
-                            <template #default="{ row }">
-                              <async-highlight
-                                v-if="row.code"
-                                :code="row.code.trim()"
-                                :types="chartCode ? 'html' : 'ts'"
-                              ></async-highlight>
-                              <div v-if="row.depTypes">
-                                <async-highlight
-                                  v-for="(k, i) in row.depTypes"
-                                  :key="i"
-                                  :code="currJson.types[k]?.code"
-                                  types="ts"
-                                ></async-highlight>
-                              </div>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
-                            <template #default="{ row }">
-                              <span class="api-table-name">
-                                <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                                <span v-else>{{ row.name }}</span>
-                              </span>
-                              <version-tip
-                                v-if="row.meta || row.versionTipOption"
-                                :meta="row.meta"
-                                v-bind="row.versionTipOption"
-                                render-type="tag"
-                                tip-subject="api"
-                              >
-                              </version-tip>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column
-                            v-if="tableData[oneGroup.name][key].find((i) => i.type)"
-                            field="type"
-                            :title="i18nByKey('propType')"
-                            :width="columnWidth[key][1]"
+                        <div class="api-table-box">
+                          <tiny-grid
+                            ref="apiTableRef"
+                            class="api-table"
+                            :data="tableData[oneGroup.name][key]"
+                            :expand-config="apiExpandConf"
+                            row-id="name"
                           >
-                            <template #default="{ row }">
-                              <span
-                                :class="{ 'type-link': row.typeAnchorName || row.linkTo }"
-                                :id="row.typeAnchorName ? row.type : ''"
-                                @click="toOuterType(row)"
-                                >{{ row.type }} <icon-outer-link v-if="row.linkTo"></icon-outer-link
-                              ></span>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column
-                            v-if="key === 'props' || key === 'options'"
-                            field="defaultValue"
-                            :title="i18nByKey('defValue')"
-                            :width="columnWidth[key][2]"
-                          ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                            <template #default="data">
-                              <span v-html="data.row.desc"></span>
-                            </template>
-                          </tiny-grid-column>
-                        </tiny-grid>
+                            <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
+                              <template #default="{ row }">
+                                <async-highlight
+                                  v-if="row.code"
+                                  :code="row.code.trim()"
+                                  :types="chartCode ? 'html' : 'ts'"
+                                ></async-highlight>
+                                <div v-if="row.depTypes">
+                                  <async-highlight
+                                    v-for="(k, i) in row.depTypes"
+                                    :key="i"
+                                    :code="currJson.types[k]?.code"
+                                    types="ts"
+                                  ></async-highlight>
+                                </div>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
+                              <template #default="{ row }">
+                                <span class="api-table-name">
+                                  <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
+                                  <span v-else>{{ row.name }}</span>
+                                </span>
+                                <version-tip
+                                  v-if="row.meta || row.versionTipOption"
+                                  :meta="row.meta"
+                                  v-bind="row.versionTipOption"
+                                  render-type="tag"
+                                  tip-subject="api"
+                                >
+                                </version-tip>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column
+                              v-if="tableData[oneGroup.name][key].find((i) => i.type)"
+                              field="type"
+                              :title="i18nByKey('propType')"
+                              :width="columnWidth[key][1]"
+                            >
+                              <template #default="{ row }">
+                                <span
+                                  :class="{ 'type-link': row.typeAnchorName || row.linkTo }"
+                                  :id="row.typeAnchorName ? row.type : ''"
+                                  @click="toOuterType(row)"
+                                  >{{ row.type }} <icon-outer-link v-if="row.linkTo"></icon-outer-link
+                                ></span>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column
+                              v-if="key === 'props' || key === 'options'"
+                              field="defaultValue"
+                              :title="i18nByKey('defValue')"
+                              :width="columnWidth[key][2]"
+                            ></tiny-grid-column>
+                            <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                              <template #default="data">
+                                <span v-html="data.row.desc"></span>
+                              </template>
+                            </tiny-grid-column>
+                          </tiny-grid>
+                        </div>
                       </template>
                     </div>
                   </div>
@@ -812,6 +816,7 @@ export default defineComponent({
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
+    width: 100%;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -863,11 +868,18 @@ export default defineComponent({
   }
 }
 
+.api-table-box {
+  border-left: 1px solid rgb(239, 239, 245);
+  border-right: 1px solid rgb(239, 239, 245);
+  overflow-x: auto;
+  width: 100%;
+}
+
 .api-table {
   width: 100%;
+  min-width: 640px;
   table-layout: fixed;
   border-collapse: collapse;
-  border: 1px solid rgb(239, 239, 245);
 
   a,
   .type-link {
@@ -956,7 +968,7 @@ export default defineComponent({
 .all-demos-container,
 .all-api-container {
   flex: 1;
-  padding-top: 32px;
+  padding: 32px 0;
   scroll-behavior: smooth;
 }
 
