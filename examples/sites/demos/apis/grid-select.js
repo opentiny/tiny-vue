@@ -6,6 +6,40 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'clearable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否启用一键清除的功能',
+            'en-US': 'Whether to display the one click clear button, only applicable to radio selection'
+          },
+          mode: ['pc'],
+          pcDemo: 'clearable',
+          mfDemo: 'clearable'
+        },
+        {
+          name: 'filterable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否可搜索',
+            'en-US': 'Is it searchable'
+          },
+          mode: ['pc'],
+          pcDemo: 'filter-method'
+        },
+        {
+          name: 'filter-method',
+          type: '(query: string) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义过滤方法',
+            'en-US': 'Custom filtering method'
+          },
+          mode: ['pc'],
+          pcDemo: 'filter-method'
+        },
+        {
           name: 'grid-op',
           typeAnchorName: 'IGridOption',
           type: 'IGridOption',
@@ -16,6 +50,19 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'init-label',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '通过 <code>init-label</code> 属性设置远程搜索或者嵌套树懒加载数据未获取到时显示的初始化 <code>label </code>值。',
+            'en-US':
+              'Use the <code>init-label</code> attribute to set the initial <code>label </code> value displayed when remote search or nested sloth loading data is not obtained.'
+          },
+          mode: ['pc'],
+          pcDemo: 'init-label'
         },
         {
           name: 'modelValue / v-model',
@@ -38,6 +85,40 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'multiple'
+        },
+        {
+          name: 'remote',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否为远程搜索',
+            'en-US': 'Is it a remote search'
+          },
+          mode: ['pc'],
+          pcDemo: 'remote-method'
+        },
+        {
+          name: 'remote-method',
+          type: '(query:string) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '远程搜索的方法',
+            'en-US': 'Remote search methods'
+          },
+          mode: ['pc'],
+          pcDemo: 'remote-method'
+        },
+        {
+          name: 'reserve-keyword',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '多选可搜索时，是否在选中一个选项后仍然保留当前的搜索关键词',
+            'en-US':
+              'When selecting multiple searchable options, do you still keep the current search keywords after selecting one option'
+          },
+          mode: ['pc'],
+          pcDemo: 'remote-method'
         },
         {
           name: 'text-field',

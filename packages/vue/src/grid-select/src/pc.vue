@@ -32,14 +32,56 @@ export default defineComponent({
   },
   props: {
     clearable: Boolean,
+    extraQueryParams: {
+      type: [Object, String, Boolean, Array, Number],
+      default: ''
+    },
     filterable: Boolean,
     filterMethod: Function,
     gridOp: {
       type: Object,
       default: () => ({})
     },
+    initLabel: {
+      type: String,
+      default: ''
+    },
+    initQuery: Function,
     modelValue: {},
     multiple: Boolean,
+    radioConfig: {
+      type: Object,
+      default() {
+        return {
+          checkMethod() {
+            return true
+          }
+        }
+      }
+    },
+    remote: Boolean,
+    remoteConfig: {
+      type: Object,
+      default() {
+        return {
+          showIcon: false,
+          clearData: false,
+          autoSearch: false
+        }
+      }
+    },
+    remoteMethod: Function,
+    reserveKeyword: Boolean,
+    selectConfig: {
+      type: Object,
+      default() {
+        return {
+          checkMethod() {
+            return true
+          }
+        }
+      }
+    },
     textField: {
       type: String,
       default: 'label'
