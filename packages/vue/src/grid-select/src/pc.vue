@@ -5,6 +5,8 @@
         ref="gridRef"
         auto-resize
         :row-id="valueField"
+        :select-config="buildSelectConfig()"
+        :radio-config="buildRadioConfig()"
         :highlight-current-row="true"
         :columns="state.gridData.columns"
         :data="state.gridData"

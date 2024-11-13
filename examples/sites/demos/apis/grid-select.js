@@ -87,6 +87,18 @@ export default {
           pcDemo: 'multiple'
         },
         {
+          name: 'radio-config',
+          typeAnchorName: 'IRadioConfig',
+          type: 'IRadioConfig',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '单选配置项',
+            'en-US': 'Radio config'
+          },
+          mode: ['pc'],
+          pcDemo: 'config'
+        },
+        {
           name: 'remote',
           type: 'boolean',
           defaultValue: 'false',
@@ -121,6 +133,18 @@ export default {
           pcDemo: 'remote-method'
         },
         {
+          name: 'select-config',
+          typeAnchorName: 'ISelectConfig',
+          type: 'ISelectConfig',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '多选配置项',
+            'en-US': 'Select config'
+          },
+          mode: ['pc'],
+          pcDemo: 'config'
+        },
+        {
           name: 'text-field',
           type: 'string',
           defaultValue: "''",
@@ -151,14 +175,23 @@ export default {
       type: 'interface',
       code: `
 interface IGridOption {
-  data: Record<string, any>
-  columns: {
-    type: string
-    field: string
-    title: string
-    width: number
-  }[] // 表格列数据，用法同 Grid
+  data: Record<string, unknown>
+  columns: IColumnConfig[] // 表格列数据，同 Grid 组件的 IColumnConfig：https://opentiny.design/tiny-vue/zh-CN/smb-theme/components/grid#api
 }
+`
+    },
+    {
+      name: 'IRadioConfig',
+      type: 'interface',
+      code: `
+同 Grid 组件的 IRadioConfig：https://opentiny.design/tiny-vue/zh-CN/smb-theme/components/grid#api
+`
+    },
+    {
+      name: 'ISelectConfig',
+      type: 'interface',
+      code: `
+同 Grid 组件的 ISelectConfig：https://opentiny.design/tiny-vue/zh-CN/smb-theme/components/grid#api
 `
     }
   ]

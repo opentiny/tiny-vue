@@ -1,3 +1,22 @@
+export const buildSelectConfig =
+  ({ props, state }) =>
+  () => {
+    const checkRowKeys = state.gridCheckedData
+    const selectConfig = props.selectConfig
+
+    return Object.assign({}, selectConfig, { checkRowKeys })
+  }
+
+export const buildRadioConfig =
+  ({ props, state }) =>
+  () => {
+    const checkRowKey = state.currentKey
+    const highlight = true
+    const radioConfig = props.radioConfig
+
+    return Object.assign({}, radioConfig, { checkRowKey, highlight })
+  }
+
 export const radioChange =
   ({ props, vm, emit }) =>
   ({ row }) => {

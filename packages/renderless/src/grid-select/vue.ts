@@ -1,6 +1,6 @@
-import { radioChange, selectChange } from './index'
+import { buildRadioConfig, buildSelectConfig, radioChange, selectChange } from './index'
 
-export const api = ['state', 'radioChange', 'selectChange']
+export const api = ['state', 'buildRadioConfig', 'buildSelectConfig', 'radioChange', 'selectChange']
 
 export const renderless = (props, { reactive }, { vm, emit }) => {
   const api = {}
@@ -12,6 +12,8 @@ export const renderless = (props, { reactive }, { vm, emit }) => {
 
   Object.assign(api, {
     state,
+    buildRadioConfig: buildRadioConfig({ props, state }),
+    buildSelectConfig: buildSelectConfig({ props, state }),
     radioChange: radioChange({ props, vm, emit }),
     selectChange: selectChange({ props, vm, emit })
   })
