@@ -118,21 +118,16 @@
         @focus="handleFocus"
         class="tiny-range-input"
       />
-      <i class="tiny-input__icon tiny-input__icon">
+      <i class="tiny-input__icon tiny-input__suffix">
         <transition name="tiny-transition-icon-scale-in">
-          <div v-if="state.haveTrigger">
-            <component
-              :is="state.showClose ? clearIcon : null"
-              @click="handleClickIcon"
-              class="tiny-range__close-icon"
-            />
-          </div>
+          <component
+            v-if="state.haveTrigger"
+            :is="state.showClose ? clearIcon : null"
+            @click="handleClickIcon"
+            class="tiny-range__close-icon"
+          />
         </transition>
-        <component
-          v-if="!state.isDisplayOnly"
-          :is="state.triggerClass"
-          class="tiny-input__icon tiny-range__icon tiny-input__suffix"
-        />
+        <component v-if="!state.isDisplayOnly" :is="state.triggerClass" class="tiny-range__icon" />
       </i>
       <tiny-tooltip
         class="tiny-range-editor-display-only"

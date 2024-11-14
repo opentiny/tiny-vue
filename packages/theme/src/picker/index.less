@@ -83,10 +83,6 @@
       }
     }
 
-    .@{range-prefix-cls}__icon {
-      margin-top: -1px;
-    }
-
     .@{range-prefix-cls}-input,
     .@{range-prefix-cls}-separator {
       font-size: var(--tv-Picker-font-size);
@@ -117,14 +113,13 @@
     .@{range-prefix-cls}__close-icon {
       width: 16px;
       height: 16px;
-      position: absolute;
-      top: 16px;
-      right: 12px;
-      transform: translateY(-50%);
-      background-color: #ffffff;
+      cursor: pointer;
       fill: var(--tv-Picker-icon-color);
-      z-index: 5;
-      
+
+      & + .@{range-prefix-cls}__icon {
+        display: none;
+      }
+
       &:hover {
         fill: var(--tv-Picker-icon-color-hover);
       }
@@ -229,7 +224,7 @@
 
 .@{range-editor-prefix-cls}.is-display-only {
   position: relative;
-  border-width: 0px;
+  border-width: 0;
 
   & > *:not(.@{range-editor-prefix-cls}-display-only) {
     visibility: hidden;
