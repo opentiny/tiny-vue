@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      valueSingle: [],
+      valueSingle: '',
       gridOpSingle: {
         data: [
           { id: '001', area: '华南区', province: '广东省', city: '广州市' },
@@ -34,6 +34,17 @@ export default {
           { field: 'city', title: '城市', width: 60 }
         ]
       }
+    }
+  },
+  methods: {
+    filter(value) {
+      if (!value) {
+        return this.gridOpSingle.data
+      }
+
+      return this.gridOpSingle.data.filter((item) => {
+        return item.city.includes(value)
+      })
     }
   }
 }

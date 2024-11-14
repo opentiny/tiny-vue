@@ -13,11 +13,11 @@
     <p>场景2：多选</p>
     <br />
     <tiny-grid-select
-      v-model="valueMulti"
+      v-model="valueMultiple"
       multiple
       value-field="id"
       text-field="city"
-      :grid-op="gridOpMulti"
+      :grid-op="gridOpMultiple"
       :select-config="selectConfig"
     ></tiny-grid-select>
   </div>
@@ -28,7 +28,7 @@ import { ref, reactive } from 'vue'
 import { TinyGridSelect } from '@opentiny/vue'
 
 const valueSingle = ref('')
-const valueMulti = ref([])
+const valueMultiple = ref([])
 
 const gridOpSingle = reactive({
   data: [
@@ -46,7 +46,7 @@ const gridOpSingle = reactive({
   ]
 })
 
-const gridOpMulti = reactive({
+const gridOpMultiple = reactive({
   data: [
     { id: '001', area: '华南区', province: '广东省', city: '广州市' },
     { id: '002', area: '华南区', province: '广东省', city: '深圳市' },

@@ -136,14 +136,14 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
-      {
-        'nameCn': '下拉表格选择器',
-        'name': 'GridSelect',
-        'key': 'grid-select',
-        'meta': {
-          'experimental': '3.20.0'
-        }
-      },
+      // {
+      //   'nameCn': '下拉表格选择器',
+      //   'name': 'GridSelect',
+      //   'key': 'grid-select',
+      //   'meta': {
+      //     'experimental': '3.20.0'
+      //   }
+      // },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
