@@ -270,7 +270,7 @@ export const resizeTextarea =
 
     const { autosize, type } = parent
 
-    if (type !== 'textarea') {
+    if (type !== 'textarea' || !vm.$refs.textarea) {
       return
     }
 
