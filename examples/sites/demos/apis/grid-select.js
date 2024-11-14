@@ -52,19 +52,6 @@ export default {
           pcDemo: 'basic-usage'
         },
         {
-          name: 'init-label',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN':
-              '通过 <code>init-label</code> 属性设置远程搜索或者嵌套树懒加载数据未获取到时显示的初始化 <code>label </code>值。',
-            'en-US':
-              'Use the <code>init-label</code> attribute to set the initial <code>label </code> value displayed when remote search or nested sloth loading data is not obtained.'
-          },
-          mode: ['pc'],
-          pcDemo: 'init-label'
-        },
-        {
           name: 'modelValue / v-model',
           type: 'string | number | Array<string|number>',
           defaultValue: '',

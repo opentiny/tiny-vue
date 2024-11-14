@@ -1,5 +1,12 @@
 <template>
-  <tiny-base-select ref="baseSelectRef" class="tiny-grid-select" v-model="state.value" :multiple="multiple">
+  <tiny-base-select
+    ref="baseSelectRef"
+    class="tiny-grid-select"
+    v-model="state.value"
+    :multiple="multiple"
+    :filterable="filterable"
+    :filter-method="filter"
+  >
     <template #panel>
       <tiny-grid
         ref="gridRef"
@@ -14,7 +21,7 @@
         @select-change="selectChange"
         @radio-change="radioChange"
         @mousedown.stop
-        v-bind="state.gridData"
+        v-bind="gridOp"
       ></tiny-grid>
     </template>
   </tiny-base-select>

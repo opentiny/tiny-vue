@@ -32,6 +32,19 @@ export default {
       codeFiles: ['multiple.vue']
     },
     {
+      demoId: 'filter',
+      name: {
+        'zh-CN': '可过滤',
+        'en-US': 'Filterable'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>filterable</code> 设置是否可过滤，<code>filter-method</code> 设置自定义过滤逻辑。</p>\n',
+        'en-US': ''
+      },
+      codeFiles: ['filter.vue']
+    },
+    {
       demoId: 'config',
       name: {
         'zh-CN': '配置项',

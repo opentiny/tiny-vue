@@ -17,6 +17,23 @@ export const buildRadioConfig =
     return Object.assign({}, radioConfig, { checkRowKey, highlight })
   }
 
+export const filter =
+  ({ props, state, vm }) =>
+  (value) => {
+    const { filterMethod } = props
+
+    const table = vm.$refs.gridRef.$refs.tinyTable
+    const fullData = table.afterFullData
+
+    vm.$refs.gridRef.scrollTo(null, 0)
+
+    table.afterFullData = filterMethod(value, fullData) || []
+
+    vm.$refs.gridRef.handleTableData(!value)
+
+    state.previousQuery = value
+  }
+
 export const radioChange =
   ({ props, vm, emit }) =>
   ({ row }) => {

@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { GridSelect as TinyGridSelect } from '@opentiny/vue'
+import { TinyGridSelect } from '@opentiny/vue'
 
 const valueSingle = ref('')
 const valueMulti = ref([])
