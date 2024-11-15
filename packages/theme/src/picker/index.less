@@ -111,18 +111,26 @@
     }
 
     .@{range-prefix-cls}__close-icon {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-      fill: var(--tv-Picker-icon-color);
+      position: absolute;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      height: 100%;
 
-      & + .@{range-prefix-cls}__icon {
-        display: none;
-      }
+      svg {
+        width: var(--tv-Picker-icon-size);
+        height: var(--tv-Picker-icon-size);
+        cursor: pointer;
+        fill: var(--tv-Picker-icon-color);
 
-      &:hover {
-        fill: var(--tv-Picker-icon-color-hover);
+        &:hover {
+          fill: var(--tv-Picker-icon-color-hover);
+        }
       }
+    }
+
+    .@{range-prefix-cls}__close-icon:has(> svg) + .@{range-prefix-cls}__icon {
+      display: none;
     }
   }
 }
