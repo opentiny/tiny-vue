@@ -97,7 +97,9 @@ import {
   onClickCollapseTag,
   computedIsExpand,
   updateSelectedData,
-  hidePanel
+  hidePanel,
+  computedShowTagText,
+  isTagClosable
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -154,7 +156,9 @@ export const api = [
   'clearSearchText',
   'onClickCollapseTag',
   'updateSelectedData',
-  'hidePanel'
+  'hidePanel',
+  'computedShowTagText',
+  'isTagClosable'
 ]
 
 const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
@@ -271,6 +275,8 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     formItemSize: computed(() => (parent.formItem || { state: {} }).state.formItemSize),
     selectDisabled: computed(() => api.computedSelectDisabled()),
     isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
+    isDisabled: computed(() => props.disabled || (parent.form || {}).disabled),
+    isShowTagText: computed(() => api.computedShowTagText()),
     gridCheckedData: computed(() => api.getcheckedData()),
     searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
     childrenName: computed(() => 'children'),
@@ -364,6 +370,8 @@ const initApi = ({
     computedGetTagType: computedGetTagType({ designConfig, props }),
     clearSearchText: clearSearchText({ state, api }),
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
+    computedShowTagText: computedShowTagText({ state }),
+    isTagClosable: isTagClosable(),
     updateSelectedData: updateSelectedData({ state }),
     hidePanel: hidePanel({ state })
   })
