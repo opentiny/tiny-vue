@@ -129,7 +129,7 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置只读态时的文本内容区，如果没有则会使用 modelVale 的值作为只读文本',
+            'zh-CN': '设置只读态时的文本内容区，如果没有则会使用 modelValue 的值作为只读文本',
             'en-US':
               "Sets the text content area in the read-only state, if not, modelVale's value is used as the read-only text"
           },
@@ -416,7 +416,7 @@ export default {
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
-            'zh-CN': '输入框尺寸，只在 type!="textarea" 时有效',
+            'zh-CN': '输入框尺寸，只在 type 为 "textarea" 时有效',
             'en-US': 'Size of the text box. This parameter is valid only when type!="textarea". '
           },
           mode: ['pc', 'mobile-first'],
