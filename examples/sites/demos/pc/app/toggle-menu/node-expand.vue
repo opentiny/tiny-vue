@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { ToggleMenu, Modal } from '@opentiny/vue'
+import { TinyToggleMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyToggleMenu: ToggleMenu
+    TinyToggleMenu
   },
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     nodeExpand() {
-      Modal.message('展开节点后的事件')
+      TinyModal.message('展开节点后的事件')
     }
   }
 }

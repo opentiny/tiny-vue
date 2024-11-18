@@ -20,7 +20,8 @@ export default {
     delayBlur: true
   },
   props: {
-    tagType: 'info'
+    tagType: 'info',
+    stopPropagation: true
   },
   renderless: (props, hooks, { emit }, api) => {
     const state = api.state

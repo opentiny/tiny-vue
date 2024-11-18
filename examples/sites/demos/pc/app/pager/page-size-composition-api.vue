@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { Pager as TinyPager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal } from '@opentiny/vue'
 </script>

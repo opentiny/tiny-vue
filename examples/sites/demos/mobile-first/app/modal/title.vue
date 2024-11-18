@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '自定义标题', title: '自定义标题' })
+      TinyModal.alert({ message: '自定义标题', title: '自定义标题' })
     }
   }
 }

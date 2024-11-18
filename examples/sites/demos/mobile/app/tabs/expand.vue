@@ -1,22 +1,22 @@
 <template>
   <div class="demo-tabs">
     <tiny-tabs v-model="activeName" show-expand-tabs expand-tabs-title="请选择" expand-tabs-mode="columns">
-      <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name"> </tiny-tab-item>
+      <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name"> </tiny-tab-item>
     </tiny-tabs>
   </div>
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
-      Tabs: [
+      tabs: [
         {
           title: '标签 1',
           name: '1',

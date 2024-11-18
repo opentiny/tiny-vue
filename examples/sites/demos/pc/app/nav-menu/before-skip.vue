@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { NavMenu, Modal } from '@opentiny/vue'
+import { TinyNavMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNavMenu: NavMenu
+    TinyNavMenu
   },
   data() {
     return {
@@ -309,7 +309,7 @@ export default {
   },
   methods: {
     handleSkip({ title }) {
-      Modal.message({ message: '当前跳转的菜单为：' + title, status: 'info' })
+      TinyModal.message({ message: '当前跳转的菜单为：' + title, status: 'info' })
       return false
     }
   }

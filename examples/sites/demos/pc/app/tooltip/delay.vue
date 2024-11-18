@@ -13,11 +13,11 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip } from '@opentiny/vue'
+import { TinyTooltip } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip
+    TinyTooltip
   },
   data() {
     return {}

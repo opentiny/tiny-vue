@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { FileUpload, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyModal } from '@opentiny/vue'
 import { iconPicture } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
+    TinyFileUpload,
     TinyIconPicture: iconPicture()
   },
   data() {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     dropErrorHandler(files) {
-      Modal.message(`有${files.length}个文件拖拽失败`)
+      TinyModal.message(`有${files.length}个文件拖拽失败`)
     }
   }
 }

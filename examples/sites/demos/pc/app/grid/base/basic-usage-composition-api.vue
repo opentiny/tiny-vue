@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="jsx">
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 import { reactive } from 'vue'
 
 const tableData = reactive([

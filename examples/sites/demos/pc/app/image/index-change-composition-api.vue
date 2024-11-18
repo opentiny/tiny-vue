@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Image as TinyImage, Modal } from '@opentiny/vue'
+import { TinyImage, TinyModal } from '@opentiny/vue'
 
 const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 const srcList = ref([
@@ -17,7 +17,7 @@ const srcList = ref([
 
 function changeIndex(index) {
   console.log('sssss')
-  Modal.message({ message: `图片切换事件触发，当前 index： ${index}`, status: 'info' })
+  TinyModal.message({ message: `图片切换事件触发，当前 index： ${index}`, status: 'info' })
 }
 </script>
 

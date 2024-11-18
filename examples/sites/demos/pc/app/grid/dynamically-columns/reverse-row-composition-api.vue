@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyButton } from '@opentiny/vue'
 
 const columns = [
   { field: 'name', title: '名称' },

@@ -25,16 +25,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  Input as TinyInput,
-  TimePicker as TinyTimePicker,
-  Modal
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyTimePicker, TinyModal } from '@opentiny/vue'
 
 function change() {
-  Modal.message({ message: '下班时间编辑完成', status: 'info' })
+  TinyModal.message({ message: '下班时间编辑完成', status: 'info' })
 }
 
 const tableData = ref([

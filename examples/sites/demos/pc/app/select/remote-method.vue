@@ -103,13 +103,13 @@
 </template>
 
 <script>
-import { Select, Option, Button } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option,
-    TinyButton: Button
+    TinySelect,
+    TinyOption,
+    TinyButton
   },
   data() {
     return {
@@ -187,6 +187,7 @@ export default {
       'Wisconsin',
       'Wyoming'
     ]
+
     this.list = states.map((item) => {
       return { value: item, label: item }
     })

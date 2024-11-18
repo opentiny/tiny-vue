@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem } from '@opentiny/vue'
 
 const activeName = ref('1')
 </script>

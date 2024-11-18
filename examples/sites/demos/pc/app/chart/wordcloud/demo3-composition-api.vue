@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsWordcloud as TinyChartWordcloud } from '@opentiny/vue'
+import { TinyHuichartsWordcloud as TinyChartWordcloud } from '@opentiny/vue'
 
 const options = ref({
   // 形状支持 circle, cardioid, diamond, triangle-forward, triangle, pentagon, star
@@ -23,7 +23,6 @@ const options = ref({
 
   // 字体大小范围, 默认值 [16,64]
   sizeRange: [-90, 90],
-
   // 文字旋转步值，默认0
   rotationStep: 45,
   data: [

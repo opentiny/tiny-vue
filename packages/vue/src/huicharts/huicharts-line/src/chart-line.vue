@@ -28,7 +28,7 @@ export default {
       }
       const option = line(columns, rows, this.settings, extra)
 
-      this.option = {
+      this.huiChartOption = {
         smooth: true,
         ...option
       }

@@ -5,7 +5,6 @@
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       resize
-      max-height="500"
       title="消息"
       width="30%"
       :is-form-reset="false"
@@ -17,7 +16,6 @@
         <tiny-form-item label="岗位" prop="type">
           <tiny-radio-group v-model="formData.type">
             <tiny-radio :label="0">研发</tiny-radio>
-            <tiny-radio :label="1">非研发</tiny-radio>
           </tiny-radio-group>
         </tiny-form-item>
         <tiny-form-item label="特长" prop="goodAt">
@@ -31,7 +29,7 @@
             >
           </tiny-checkbox-group>
         </tiny-form-item>
-        <tiny-form-item label="技能" prop="skill" required>
+        <tiny-form-item label="技能" prop="skill">
           <tiny-select v-model="value">
             <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
             </tiny-option>
@@ -50,18 +48,18 @@
 <script setup lang="jsx">
 import { ref, computed } from 'vue'
 import {
-  Button as TinyButton,
-  DialogBox as TinyDialogBox,
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Radio as TinyRadio,
-  RadioGroup as TinyRadioGroup,
-  Checkbox as TinyCheckbox,
-  CheckboxGroup as TinyCheckboxGroup,
-  Notify,
-  Option as TinyOption,
-  Select as TinySelect
+  TinyButton,
+  TinyDialogBox,
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyRadio,
+  TinyRadioGroup,
+  TinyCheckbox,
+  TinyCheckboxGroup,
+  TinyNotify,
+  TinyOption,
+  TinySelect
 } from '@opentiny/vue'
 
 const options = ref([
@@ -110,7 +108,7 @@ function handleSubmit() {
     if (response.status === 200) {
       btnSubmit.value.loading = false
       boxVisibility.value = false
-      Notify({
+      TinyNotify({
         title: '成功',
         message: '表单已成功提交！',
         offset: 0

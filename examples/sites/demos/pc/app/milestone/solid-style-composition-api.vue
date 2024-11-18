@@ -7,11 +7,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone, Button as TinyButton } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 const isSolid = ref(false)
 const statusMap = ref({
-  completed: 'var(--ti-common-color-line-active)',
+  completed: 'var(--tv-color-bg-disabled-control-active)',
   doing: '#7ED321',
   back: '#f5222d',
   end: '#faad14',

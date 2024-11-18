@@ -21,12 +21,12 @@
 </template>
 
 <script lang="jsx">
-import { Container, Layout } from '@opentiny/vue'
+import { TinyContainer, TinyLayout } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyContainer: Container,
-    TinyLayout: Layout
+    TinyContainer,
+    TinyLayout
   },
   data() {
     return {

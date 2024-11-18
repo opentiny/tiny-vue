@@ -10,7 +10,7 @@
  *
  */
 export default {
-  'en-US': 'English',
+  'en-US': '英语',
   'zh-CN': '中文',
   'zh-TW': '中国台湾',
   hello: '你好 {name}',
@@ -359,8 +359,8 @@ export default {
         treeInsert: '树结构不支持 insert 操作',
         treeRemove: '树结构不支持 remove 操作',
         unableInsert: '无法插入到指定位置',
-        dargSelf: '不允许自己给自己拖动',
-        dargFixed: '固定列不允许拖动',
+        notAllowDragSelf: '不允许自己给自己拖动',
+        notAllowDragFixed: '固定列不允许拖动',
         remoteMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteMethod',
         remoteSelectedMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteSelectedMethod',
         chainCallError: '列的默认插槽中存在语法错误，请检查。',

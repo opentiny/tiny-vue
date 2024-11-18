@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Switch } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinySwitch: Switch
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinySwitch
   },
   data() {
     return {

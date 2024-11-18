@@ -3,7 +3,7 @@
     <template #moreIcon>
       <tiny-icon-popup />
     </template>
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -11,16 +11,16 @@
 
 <script setup lang="jsx">
 import { reactive } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
-const Tabs = reactive([])
+const tabs = reactive([])
 const TinyIconPopup = iconPopup()
 
 // 创建tabs
 for (let i = 1; i < 101; i++) {
   const title = `Tab ${i}`
-  Tabs.push({
+  tabs.push({
     title,
     name: i + '',
     content: `${title} content `

@@ -20,13 +20,13 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal, Link } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal,
-    TinyLink: Link
+    TinyButton,
+    TinyModal,
+    TinyLink
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.confirm({
+      TinyModal.confirm({
         title: '自定义弹窗标题',
         showHeader: true,
         showFooter: true,

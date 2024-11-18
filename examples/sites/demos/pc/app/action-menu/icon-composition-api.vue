@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：只显示图标</p>
+    <p>场景1：显示图标</p>
     <tiny-action-menu
       class="custom-icon"
       :options="options"
@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconWebPlus, iconSuccessful, iconShutdown, iconEllipsis } from '@opentiny/vue-icon'
 
 const options = ref([

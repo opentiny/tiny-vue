@@ -8,7 +8,7 @@
 </template>
 
 <script lang="jsx">
-import { Button, Grid } from '@opentiny/vue'
+import { TinyButton, TinyGrid } from '@opentiny/vue'
 
 const columns = []
 const tableData = []
@@ -26,8 +26,8 @@ for (let k = 0; k < 100; k++) {
 }
 export default {
   components: {
-    TinyButton: Button,
-    TinyGrid: Grid
+    TinyButton,
+    TinyGrid
   },
   methods: {
     loadData() {

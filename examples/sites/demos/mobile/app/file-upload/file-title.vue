@@ -7,12 +7,12 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue'
 import { iconUpload } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
+    TinyFileUpload,
     IconUpload: iconUpload()
   },
   data() {

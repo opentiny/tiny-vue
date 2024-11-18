@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const eventsData = ref({
   cellClick: cellClickEvent
@@ -63,7 +63,7 @@ const tableData = ref([
 ])
 
 function cellClickEvent({ column }) {
-  Modal.message({ message: `单元格点击${column.title}`, status: 'info' })
+  TinyModal.message({ message: `单元格点击${column.title}`, status: 'info' })
 }
 </script>
 

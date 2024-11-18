@@ -16,7 +16,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Crop as TinyCrop, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()
@@ -28,12 +28,12 @@ function getCroppedCanvas() {
   if (canvas.toBlob) {
     // 生成 Blob 图片格式
     canvas.toBlob((img) => {
-      Modal.message({ message: `Blob：${img.size}`, status: 'info' })
+      TinyModal.message({ message: `Blob：${img.size}`, status: 'info' })
     })
   } else if (canvas.msToBlob) {
     // 生成兼容 IE 的 Blob 图片格式
     const img = canvas.msToBlob()
-    Modal.message({ message: `Blob：${img.size}`, status: 'info' })
+    TinyModal.message({ message: `Blob：${img.size}`, status: 'info' })
   } else {
     // 生成 base64 图片格式
     canvas.toDataURL('image/jpeg')

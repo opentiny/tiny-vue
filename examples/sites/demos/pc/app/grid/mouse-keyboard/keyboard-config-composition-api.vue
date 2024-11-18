@@ -26,7 +26,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const keyboardConfigData = ref({
   isArrow: true, // 是否开启方向键功能，默认false
@@ -34,7 +34,7 @@ const keyboardConfigData = ref({
   isTab: true, // 是否开启 Tab 键功能，默认false
   isEdit: true, // 是否开启任意键进入编辑（功能键除外），默认false
   editMethod({ seq }) {
-    Modal.message({ message: `seq: ${seq}`, status: 'info' })
+    TinyModal.message({ message: `seq: ${seq}`, status: 'info' })
   }
 })
 const options = ref([

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <p>尺寸：medium</p>
     <tiny-user v-model="user" size="medium"></tiny-user>
     <p>尺寸：small</p>
@@ -11,12 +11,15 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { User as TinyUser } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 const user = ref('421000103624183')
 </script>
 
 <style scoped>
+.demo-user-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

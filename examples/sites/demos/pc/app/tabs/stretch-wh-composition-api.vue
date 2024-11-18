@@ -13,7 +13,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('second')
 </script>

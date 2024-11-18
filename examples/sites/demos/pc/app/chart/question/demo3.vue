@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsLine } from '@opentiny/vue'
+import { TinyHuichartsLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: HuichartsLine
+    TinyLine: TinyHuichartsLine
   },
   data() {
     this.chartSettings = {

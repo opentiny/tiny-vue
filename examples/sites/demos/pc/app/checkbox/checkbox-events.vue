@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { CheckboxButton, CheckboxGroup, Modal } from '@opentiny/vue'
+import { TinyCheckboxButton, TinyCheckboxGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckboxButton: CheckboxButton,
-    TinyCheckboxGroup: CheckboxGroup
+    TinyCheckboxButton,
+    TinyCheckboxGroup
   },
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     valueChange(val) {
-      Modal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })
+      TinyModal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })
     }
   }
 }

@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { Card } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCard: Card
+    TinyCard
   },
   data() {
     return {

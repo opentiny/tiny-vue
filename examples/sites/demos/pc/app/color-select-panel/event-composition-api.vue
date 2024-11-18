@@ -9,14 +9,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ColorSelectPanel as TinyColorSelectPanel, Button, Notify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton, TinyNotify } from '@opentiny/vue'
 
 const color = ref('#66ccff')
 const visible = ref(false)
 const changeVisible = () => (visible.value = !visible.value)
 const hidden = () => (visible.value = false)
 const onConfirm = (hex) => {
-  Notify({
+  TinyNotify({
     type: 'success',
     position: 'top-right',
     title: '用户点击了选择',
@@ -25,7 +25,7 @@ const onConfirm = (hex) => {
   hidden()
 }
 const onCancel = () => {
-  Notify({
+  TinyNotify({
     type: 'error',
     position: 'top-right',
     title: '用户点击了取消'

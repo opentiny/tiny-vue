@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { FloatingButton, Button } from '@opentiny/vue'
+import { TinyFloatingButton, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFloatingButton: FloatingButton,
-    TinyButton: Button
+    TinyFloatingButton,
+    TinyButton
   },
   data() {
     return {

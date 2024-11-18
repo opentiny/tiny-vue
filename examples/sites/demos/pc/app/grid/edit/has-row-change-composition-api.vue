@@ -30,7 +30,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton, TinyModal } from '@opentiny/vue'
 
 const options = ref([
   { label: '华北区', value: '华北区' },
@@ -86,9 +86,9 @@ const changeGridRef = ref()
 function handleSave(row) {
   changeGridRef.value.clearActived().then(() => {
     if (!changeGridRef.value.hasRowChange(row)) {
-      Modal.alert('当前数据未改变！')
+      TinyModal.alert('当前数据未改变！')
     } else {
-      Modal.alert('保存成功！')
+      TinyModal.alert('保存成功！')
     }
   })
 }

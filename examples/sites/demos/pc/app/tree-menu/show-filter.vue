@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import { TreeMenu, RadioGroup, Radio } from '@opentiny/vue'
+import { TinyTreeMenu, TinyRadioGroup, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyTreeMenu,
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {

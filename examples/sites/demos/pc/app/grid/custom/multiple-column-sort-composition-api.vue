@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyGridToolbar } from '@opentiny/vue'
 
 const tableData = ref([
   {

@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload, Button as TinyButton } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
 
 const requestData = ref({
   id: 123

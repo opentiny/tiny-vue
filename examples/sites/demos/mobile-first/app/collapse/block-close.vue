@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem, Modal } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapse,
+    TinyCollapseItem
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     blockClose(value) {
-      Modal.message({ message: '阻止面板关闭；传入value：' + value })
+      TinyModal.message({ message: '阻止面板关闭；传入value：' + value })
       return false
     }
   }

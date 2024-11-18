@@ -6,16 +6,16 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { UserAccount as TinyUserAccount, Modal } from '@opentiny/vue'
+import { TinyUserAccount, TinyModal } from '@opentiny/vue'
 
 const isLogin = ref(false)
 const service = ref({
-  getUserInfo: getUserInfo,
-  getUserImageUrl: getUserImageUrl,
-  getLangData: getLangData,
-  getLogoutUrl: getLogoutUrl,
-  isGuestUser: isGuestUser,
-  showLogin: showLogin
+  getUserInfo,
+  getUserImageUrl,
+  getLangData,
+  getLogoutUrl,
+  isGuestUser,
+  showLogin
 })
 
 function getUserInfo() {
@@ -59,7 +59,7 @@ function isGuestUser() {
 
 function showLogin() {
   /* 此处为用户的自定义登录逻辑 */
-  Modal.confirm('模拟登录且登录成功').then(() => {
+  TinyModal.confirm('模拟登录且登录成功').then(() => {
     window.localStorage.setItem('isLogin', true)
     window.location.reload()
   })

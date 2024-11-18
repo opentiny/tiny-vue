@@ -9,6 +9,7 @@
       @footer-cell-click="footerClick"
       @footer-cell-dblclick="footerCellDbClick"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -22,12 +23,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -127,28 +128,28 @@ export default {
   },
   methods: {
     headerCellClickEvent({ column }) {
-      Modal.message({
+      TinyModal.message({
         message: `表头点击${column.title}`,
         status: 'info'
       })
     },
     cellClickEvent({ column }) {
-      Modal.message({ message: `单元格点击${column.title}`, status: 'info' })
+      TinyModal.message({ message: `单元格点击${column.title}`, status: 'info' })
     },
     cellDBLClickEvent({ column }) {
-      Modal.message({ message: `单元格双击${column.title}`, status: 'info' })
+      TinyModal.message({ message: `单元格双击${column.title}`, status: 'info' })
     },
     headerCellDBLClickEvent({ column }) {
-      Modal.message({
+      TinyModal.message({
         message: `表头双击${column.title}`,
         status: 'info'
       })
     },
     footerClick(a) {
-      Modal.message({ message: `${a.columnIndex}`, status: 'info' })
+      TinyModal.message({ message: `${a.columnIndex}`, status: 'info' })
     },
     footerCellDbClick() {
-      Modal.alert('触发表尾双击点击事件')
+      TinyModal.alert('触发表尾双击点击事件')
     },
     footerMethod({ columns, data }) {
       return [

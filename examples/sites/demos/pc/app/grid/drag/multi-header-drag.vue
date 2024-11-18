@@ -98,12 +98,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -149,10 +149,10 @@ export default {
   },
   methods: {
     columnDragStart() {
-      Modal.message({ message: '列拖拽开始', status: 'info' })
+      TinyModal.message({ message: '列拖拽开始', status: 'info' })
     },
     columnDrop() {
-      Modal.message({ message: '列拖拽结束', status: 'info' })
+      TinyModal.message({ message: '列拖拽结束', status: 'info' })
     }
   }
 }

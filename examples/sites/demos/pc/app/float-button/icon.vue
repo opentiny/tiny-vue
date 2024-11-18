@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { FloatButton as TinyFloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 import { iconDel } from '@opentiny/vue-icon'
 
 export default {

@@ -217,7 +217,7 @@ export const clearQuery = (refs: ITransferRenderlessParams['refs']) => (which: '
 
 /** SortableJs 插件的回调逻辑， 添加，删除，更新事件后，触发本函数 */
 export const logicFun =
-  ({ props, emit, state }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  ({ props, emit, state, vm }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
   ({ event, isAdd, pullMode }: { event: any; isAdd?: boolean; pullMode?: 'sort' }) => {
     let currentValue = props.modelValue.slice()
     let movedKeys = []
@@ -225,10 +225,18 @@ export const logicFun =
     if (pullMode) {
       currentValue.splice(event.newIndex, 0, currentValue.splice(event.oldIndex, 1)[0])
     } else {
+      // tiny新增：过滤时拖动，需要从左右页面过滤后的项中，去查找数据。
+      const rightPanel = vm.$refs.rightPanel
+      const leftPanel = vm.$refs.leftPanel
+
+      // 拖动起始时，索引行的 key值
       const key = isAdd
-        ? state.targetData[event.oldIndex][props.props.key]
-        : state.sourceData[event.oldIndex][props.props.key]
+        ? rightPanel.state.filteredData[event.oldIndex][props.props.key] // 从右到左， 对于左面板是 add
+        : leftPanel.state.filteredData[event.oldIndex][props.props.key] // 从左到右， 对于左面板是 remove
+
+      // 拖动项是否在勾中的项中
       const index = isAdd ? state.rightChecked.indexOf(key) : state.leftChecked.indexOf(key)
+      // 拖动项是否在当前值中
       const valueIndex = currentValue.indexOf(key)
 
       if (isAdd) {
@@ -271,9 +279,11 @@ export const sortableEvent =
         sort: false,
         filter: '.is-disabled',
         onAdd(event) {
+          // 从右拖到左
           api.logicFun({ event, isAdd: true })
         },
         onRemove(event) {
+          // 从左拖到右
           api.logicFun({ event, isAdd: false })
         }
       })

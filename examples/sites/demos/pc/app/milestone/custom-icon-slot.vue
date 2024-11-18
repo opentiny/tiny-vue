@@ -2,19 +2,19 @@
   <div class="demo-milestone">
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
       <template #icon="data">
-        <component :is="data.slotScope.icon" class="custom"> </component>
+        <component :is="data.slotScope.icon" class="custom-milestone"> </component>
       </template>
     </tiny-milestone>
   </div>
 </template>
 
 <script lang="jsx">
-import { Milestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 import { IconShare, IconYes, IconDel, IconAscending, IconWriting } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
+    TinyMilestone,
     IconShare: IconShare(),
     IconYes: IconYes(),
     IconDel: IconDel(),
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style>
-.custom {
+.custom-milestone {
   width: 16px;
   height: 16px;
   line-height: 16px;

@@ -188,6 +188,19 @@
         @apply fill-color-none;
       }
     }
+
+    .@{select-prefix-cls}__tags-panel {
+      @apply flex;
+      width: ~'calc(100% + theme(spacing.2))';
+
+      .@{tag-prefix-cls}:last-child {
+        @apply flex-shrink-0;
+      }
+    }
+
+    .@{select-prefix-cls}__tags-content {
+      @apply contents;
+    }
   }
 
   &.is-hover-expand {

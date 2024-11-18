@@ -18,7 +18,7 @@
 
 <script>
 import MultiColorSvgs from '@opentiny/vue-icon-multicolor'
-import { Modal, Tabs, TabItem } from '@opentiny/vue'
+import { TinyModal, TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const tinyIconMulticolor = [
   'ColorIconActivitys',
@@ -67,8 +67,8 @@ const tinyIconMulticolor = [
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
       input.select()
       document.execCommand('Copy')
       document.body.removeChild(input)
-      Modal.message({
+      TinyModal.message({
         message: `成功复制图标名称 ${name} `,
         status: 'info'
       })

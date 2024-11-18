@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ToggleMenu as TinyToggleMenu, Notify } from '@opentiny/vue'
+import { TinyToggleMenu, TinyNotify } from '@opentiny/vue'
 
 const datas = ref([
   {
@@ -91,35 +91,35 @@ const datas = ref([
 ])
 
 function nodeDragStart() {
-  Notify({
+  TinyNotify({
     message: '拖拽节点后的事件',
     position: 'top-right'
   })
 }
 
 function nodeDragEnter() {
-  Notify({
+  TinyNotify({
     message: '拖拽进入某个节点（包含自身节点）时触发的事件',
     position: 'top-right'
   })
 }
 
 function nodeDragOver() {
-  Notify({
+  TinyNotify({
     message: '拖拽经过某个节点（包含自身节点）时触发的事件',
     position: 'top-right'
   })
 }
 
 function nodeDragLeave() {
-  Notify({
+  TinyNotify({
     message: '拖拽离开某个节点（包含自身节点）时触发的事件',
     position: 'top-right'
   })
 }
 
 function nodeDragEnd() {
-  Notify({
+  TinyNotify({
     message: '拖拽结束时触发的事件',
     position: 'top-right'
   })

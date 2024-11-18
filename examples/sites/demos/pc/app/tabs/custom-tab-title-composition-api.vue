@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyButton } from '@opentiny/vue'
 import { iconCalendar, iconReplies } from '@opentiny/vue-icon'
 
 const activeName = ref('second')

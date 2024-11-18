@@ -5,6 +5,16 @@
       <tiny-date-picker v-model="disabledValue" disabled placeholder="请选择日期"></tiny-date-picker>
     </div>
     <br />
+    <p>年禁用：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker
+        v-model="value"
+        type="year"
+        :picker-options="yearPickerOptions"
+        placeholder="请选择年"
+      ></tiny-date-picker>
+    </div>
+    <br />
     <p>部分禁用：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
@@ -32,11 +42,11 @@
 </template>
 
 <script>
-import { DatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -47,7 +57,12 @@ export default {
       editableValue: '',
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now() || time.getTime() < new Date('2023-08-01').getTime()
+          return time.getTime() > Date.now() || time.getTime() < new Date('2023-08-15').getTime()
+        }
+      },
+      yearPickerOptions: {
+        disabledDate(year) {
+          return year > 2025 || year < 2022
         }
       }
     }
@@ -57,12 +72,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
-
-  :deep(.tiny-date-editor--daterange.tiny-input__inner) {
-    width: 360px;
-  }
-
+  width: 360px;
   & > * {
     margin-top: 12px;
   }

@@ -1,22 +1,22 @@
 <template>
   <tiny-tabs v-model="activeName" :with-add="true" @add="add" tab-style="card">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
-      Tabs: [
+      tabs: [
         {
           title: '表单组件',
           name: 'first',
@@ -49,7 +49,7 @@ export default {
         message: '动态增加 tabitem'
       })
 
-      this.Tabs.push({
+      this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加 tabitem'

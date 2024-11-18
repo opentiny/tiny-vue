@@ -1,27 +1,29 @@
 <template>
-  <tiny-user v-model="user1" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user2" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user3" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user4" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user5" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user6" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user7" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user8" :batch="true" :cache="false"></tiny-user>
-  <br />
-  <tiny-user v-model="user9" :batch="true" :cache="false"></tiny-user>
-  <br />
+  <div class="demo-user-class">
+    <tiny-user v-model="user1" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user2" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user3" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user4" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user5" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user6" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user7" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user8" :batch="true" :cache="false"></tiny-user>
+    <br />
+    <tiny-user v-model="user9" :batch="true" :cache="false"></tiny-user>
+    <br />
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { User as TinyUser } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 const user1 = ref('702973890055088')
 const user2 = ref('421000103624002')
@@ -33,3 +35,9 @@ const user7 = ref('421000103624007')
 const user8 = ref('421000103624008')
 const user9 = ref('421000103624009')
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

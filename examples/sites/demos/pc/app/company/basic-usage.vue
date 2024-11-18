@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-company-class">
     <tiny-company
       v-model="value"
       placeholder="请选择"
@@ -13,11 +13,11 @@
 </template>
 
 <script lang="jsx">
-import { Company, Modal } from '@opentiny/vue'
+import { TinyCompany, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCompany: Company
+    TinyCompany
   },
   data() {
     return {
@@ -26,19 +26,22 @@ export default {
   },
   methods: {
     visibleChange(val) {
-      Modal.message({ message: `visible:${val}`, status: 'info' })
+      TinyModal.message({ message: `visible:${val}`, status: 'info' })
     },
     clear() {
-      Modal.message({ message: 'clear:触发了', status: 'info' })
+      TinyModal.message({ message: 'clear:触发了', status: 'info' })
     },
     change(value) {
-      Modal.message({ message: `change:${value}`, status: 'info' })
+      TinyModal.message({ message: `change:${value}`, status: 'info' })
     }
   }
 }
 </script>
 
 <style scoped>
+.demo-company-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

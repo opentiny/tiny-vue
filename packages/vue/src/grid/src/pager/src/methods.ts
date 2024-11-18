@@ -79,6 +79,7 @@ export default {
     return res
   },
   pageChangeEvent(params) {
+    this.tablePageLoading = true
     // 这里需要做下防抖操作，防止在pageSize从小变大的时候导致fetch-data触发多次
     if (!this.tasks.updatePage) {
       this.tasks.updatePage = debounce(200, () => {
@@ -89,9 +90,10 @@ export default {
 
         // 处理配置式表格的监听事件
         this.emitter.emit('page-change', eventParams)
-
-        // 触发fetchData
-        this.commitProxy('query')
+        this.handleFetch('query').then(() => {
+          this.realTimeTablePage = { ...this.tablePage }
+          this.tablePageLoading = false
+        })
 
         if (toolbarVm) {
           toolbarVm.orderSetting()

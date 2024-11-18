@@ -1,21 +1,23 @@
 <template>
-  <tiny-user
-    v-model="user"
-    :collapse-tags="true"
-    :collapse-show-overflow-tooltip="true"
-    multiple
-    cache-key="test-user"
-    :cache-fields="['email']"
-    value-field="userAccount"
-  ></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user
+      v-model="user"
+      :collapse-tags="true"
+      :collapse-show-overflow-tooltip="true"
+      multiple
+      cache-key="test-user"
+      :cache-fields="['email']"
+      value-field="userAccount"
+    ></tiny-user>
+  </div>
 </template>
 
 <script lang="jsx">
-import { User } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -24,3 +26,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

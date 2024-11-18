@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal, Tag, Radio, ColumnListItem, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyTag, TinyRadio, TinyColumnListItem, TinyPager } from '@opentiny/vue'
 import {
   IconChevronRight,
   IconAreaChart,
@@ -91,19 +91,19 @@ import {
 
 export default {
   components: {
-    TinyTag: Tag,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio,
-    TinyColumnListItem: ColumnListItem,
+    TinyTag,
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio,
+    TinyColumnListItem,
     IconChevronRight: IconChevronRight()
   },
   methods: {
     clickHandler(e, { row, buttonConfig }) {
-      Modal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
+      TinyModal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
     },
     onCardClick(row, e) {
-      Modal.message('onCardClick')
+      TinyModal.message('onCardClick')
     },
     getData({ page }) {
       let curPage = page.currentPage
@@ -140,7 +140,7 @@ export default {
         }
       },
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,
@@ -168,7 +168,7 @@ export default {
             {
               render: ({ h, row, field, value, config, color }) =>
                 h(
-                  Tag,
+                  TinyTag,
                   {
                     props: { size: 'mini', type: color, customClass: 'inline-block truncate max-w-[6.25rem] h-[18px]' }
                   },
@@ -177,6 +177,7 @@ export default {
             }
           ]
         ],
+
         tagColorFields: ['tagColor1', 'tagColor2', 'tagColor3']
       },
       operationConfig: {

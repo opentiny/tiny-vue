@@ -31,7 +31,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 const toolbarButtons = ref([
   {
@@ -117,21 +117,21 @@ function toolbarButtonClickEvent({ code, $grid }) {
     }
     case 'delete': {
       if (data.length === 0) {
-        Modal.alert('请至少选中一条记录')
+        TinyModal.alert('请至少选中一条记录')
       }
       $grid.removeSelecteds()
       break
     }
     case 'getDelete': {
       const removeRecords = $grid.getRemoveRecords() // 获取删除的数据
-      Modal.alert('获取删除的数据' + JSON.stringify(removeRecords))
+      TinyModal.alert('获取删除的数据' + JSON.stringify(removeRecords))
       break
     }
     case 'save': {
       if (!updateData.length && !insertData.length && !removeData.length) {
-        Modal.alert('没有修改记录')
+        TinyModal.alert('没有修改记录')
       } else {
-        Modal.message({
+        TinyModal.message({
           message: '点击保存触发, 新增的数据',
           status: 'info'
         })
@@ -143,7 +143,7 @@ function toolbarButtonClickEvent({ code, $grid }) {
     }
     case 'getRecordset': {
       const records = $grid.getRecordset()
-      Modal.alert('增删改记录集合：' + JSON.stringify(records))
+      TinyModal.alert('增删改记录集合：' + JSON.stringify(records))
       break
     }
   }

@@ -35,11 +35,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  DatePicker as TinyDatePicker,
-  RadioGroup as TinyRadioGroup,
-  RadioButton as TinyRadioButton
-} from '@opentiny/vue'
+import { TinyDatePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 const value = ref('')
 const dateTimeValue = ref('')
@@ -52,12 +48,7 @@ const radioValue = ref('default')
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
-
-  :deep(.tiny-date-editor--daterange.tiny-input__inner) {
-    width: 360px;
-  }
-
+  width: 360px;
   & > * {
     margin-top: 12px;
   }

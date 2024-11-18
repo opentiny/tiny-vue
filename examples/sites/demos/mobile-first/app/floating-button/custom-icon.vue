@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { FloatingButton } from '@opentiny/vue'
+import { TinyFloatingButton } from '@opentiny/vue'
 import { IconArrowUp } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFloatingButton: FloatingButton
+    TinyFloatingButton
   },
   data() {
     return {

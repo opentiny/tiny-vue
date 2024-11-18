@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="demo-time-picker-wrap">
     <tiny-time-picker v-model="value1" is-range></tiny-time-picker>
   </div>
 </template>
 
 <script>
-import { TimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker
+    TinyTimePicker
   },
   data() {
     const startTime = new Date(2016, 9, 10, 18, 40)
@@ -21,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-time-picker-wrap {
+  width: 280px;
+}
+</style>

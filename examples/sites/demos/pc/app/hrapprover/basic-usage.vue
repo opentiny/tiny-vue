@@ -1,13 +1,20 @@
 <template>
-  <tiny-hrapprover v-model="value" :approval-person="person" @update:approvalPerson="person = $event"></tiny-hrapprover>
+  <div class="demo-hrapprover-class">
+    <tiny-hrapprover
+      v-model="value"
+      title="选择权签人"
+      :approval-person="person"
+      @update:approvalPerson="person = $event"
+    ></tiny-hrapprover>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Hrapprover } from '@opentiny/vue'
+import { TinyHrapprover } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHrapprover: Hrapprover
+    TinyHrapprover
   },
   data() {
     return {
@@ -17,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-hrapprover-class {
+  width: 280px;
+}
+</style>

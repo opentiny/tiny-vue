@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { ButtonGroup, Modal } from '@opentiny/vue'
+import { TinyButtonGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButtonGroup: ButtonGroup
+    TinyButtonGroup
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      Modal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
+      TinyModal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
     }
   }
 }

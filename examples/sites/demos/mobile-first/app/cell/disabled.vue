@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Cell } from '@opentiny/vue'
+import { TinyCell } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCell: Cell
+    TinyCell
   },
   data() {
     return {

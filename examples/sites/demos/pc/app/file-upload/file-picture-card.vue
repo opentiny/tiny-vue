@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { FileUpload, DialogBox } from '@opentiny/vue'
+import { TinyFileUpload, TinyDialogBox } from '@opentiny/vue'
 import { IconPlus, IconView, IconDownload, IconDel } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyDialogBox: DialogBox,
+    TinyFileUpload,
+    TinyDialogBox,
     IconPlus: IconPlus(),
     IconView: IconView(),
     IconDownload: IconDownload(),

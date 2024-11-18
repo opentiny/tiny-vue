@@ -56,12 +56,12 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip, Switch } from '@opentiny/vue'
+import { TinyTooltip, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
-    TinySwitch: Switch
+    TinyTooltip,
+    TinySwitch
   },
   data() {
     return {

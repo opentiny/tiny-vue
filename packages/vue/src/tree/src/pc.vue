@@ -146,8 +146,8 @@
         </div>
       </div>
       <div class="tiny-tree__del-footer">
-        <tiny-button @click="cancelDelete">{{ t('ui.base.cancel') }}</tiny-button>
-        <tiny-button type="primary" @click="deleteAction">{{ t('ui.base.confirm') }}</tiny-button>
+        <tiny-button @click="cancelDelete" size="mini">{{ t('ui.base.cancel') }}</tiny-button>
+        <tiny-button type="primary" @click="deleteAction" size="mini">{{ t('ui.base.confirm') }}</tiny-button>
       </div>
     </tiny-popover>
   </div>

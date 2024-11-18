@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { Tabbar } from '@opentiny/vue'
+import { TinyTabbar } from '@opentiny/vue'
 import { IconWebPlus, IconMail, IconMarkOn, IconUser, IconEllipsis } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabbar: Tabbar
+    TinyTabbar
   },
   data() {
     return {

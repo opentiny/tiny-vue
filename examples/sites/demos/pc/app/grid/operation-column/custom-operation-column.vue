@@ -17,13 +17,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import { IconEdit, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
+    TinyGrid,
+    TinyGridColumn,
     IconEdit: IconEdit(),
     IconSearch: IconSearch()
   },
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     clickHandler(row) {
-      Modal.message({ message: JSON.stringify(row), status: 'success' })
+      TinyModal.message({ message: JSON.stringify(row), status: 'success' })
     }
   }
 }

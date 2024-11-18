@@ -9,6 +9,7 @@
       title="标题"
       :placement="placement"
       v-model:visible="visible"
+      height="600px"
     >
       <div>left或者right内容区域</div>
     </tiny-drawer>
@@ -26,12 +27,12 @@
 </template>
 
 <script>
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {

@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { FloatButton as TinyFloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 import { iconDel, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
 const IconDel = iconDel()

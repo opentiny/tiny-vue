@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Guide as TinyGuide, Button as TinyButton, Alert as TinyAlert } from '@opentiny/vue'
+import { TinyGuide, TinyButton, TinyAlert } from '@opentiny/vue'
 
 const showStepDefault = ref(false)
 const showStepMainAxis = ref(false)

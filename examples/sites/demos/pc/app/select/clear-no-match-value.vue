@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import { Select, Option } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {

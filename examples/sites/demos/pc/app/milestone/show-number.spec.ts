@@ -23,12 +23,12 @@ test('序号显示', async ({ page }) => {
   const iconStyles = [
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(0, 0, 0)',
+      'color': 'rgb(179, 214, 255)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(0, 0, 0)',
+      'color': 'rgb(179, 214, 255)',
       'box-shadow': 'none'
     },
     {

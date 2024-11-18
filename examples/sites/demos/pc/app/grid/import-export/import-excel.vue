@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import { GridColumn, Grid } from '@opentiny/vue'
+import { TinyGridColumn, TinyGrid } from '@opentiny/vue'
 
 // import * as XLSX from 'xlsx'
 
 export default {
   components: {
-    TinyGridColumn: GridColumn,
-    TinyGrid: Grid
+    TinyGridColumn,
+    TinyGrid
   },
   data() {
     return {

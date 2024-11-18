@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { Alert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue'
 import { IconBoat } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyAlert: Alert
+    TinyAlert
   },
   data() {
     return {

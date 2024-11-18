@@ -25,13 +25,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   data() {
     const tableData = [
@@ -100,6 +100,7 @@ export default {
         employees: 540
       }
     ]
+
     return {
       tableData,
       divWidth: 'width: 500px;'

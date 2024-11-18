@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Search } from '@opentiny/vue'
+import { TinySearch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search
+    TinySearch
   },
   data() {
     return {

@@ -13,12 +13,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, Crop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       this.$refs.crop.destroy()
     },
     ready() {
-      Modal.message('触发 ready 事件')
+      TinyModal.message('触发 ready 事件')
     }
   }
 }

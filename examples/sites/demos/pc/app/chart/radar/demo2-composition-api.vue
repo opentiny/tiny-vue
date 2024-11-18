@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { HuichartsRadar as TinyRadar } from '@opentiny/vue'
+import { TinyHuichartsRadar as TinyRadar } from '@opentiny/vue'
 
 const options = ref({
   legend: {
@@ -21,19 +21,19 @@ const options = ref({
   // 当不设置 radarMax 时， 雷达图坐标系为数据中的最大值
   radarMax: 100,
   data: {
-    'Domestic': {
-      'Equipment': 41,
-      'VM': 91,
-      'CSP': 81,
-      'RD': 51,
-      'Markets': 71
+    Domestic: {
+      Equipment: 41,
+      VM: 91,
+      CSP: 81,
+      RD: 51,
+      Markets: 71
     },
-    'Abroad': {
-      'Equipment': 72,
-      'VM': 55,
-      'CSP': 93,
-      'RD': 90,
-      'Markets': 82
+    Abroad: {
+      Equipment: 72,
+      VM: 55,
+      CSP: 93,
+      RD: 90,
+      Markets: 82
     }
   }
 })

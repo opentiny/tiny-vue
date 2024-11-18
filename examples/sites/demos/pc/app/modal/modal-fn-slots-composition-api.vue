@@ -20,15 +20,13 @@
 </template>
 
 <script setup lang="jsx">
-import { Button as TinyButton, Modal, Link } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyLink } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const TinyModal = Modal
-const TinyLink = Link
 const show = ref(false)
 
 function btnClick() {
-  Modal.confirm({
+  TinyModal.confirm({
     title: '自定义弹窗标题',
     showHeader: true,
     showFooter: true,

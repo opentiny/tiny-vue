@@ -7,11 +7,11 @@
 </template>
 
 <script lang="jsx">
-import { ToggleMenu } from '@opentiny/vue'
+import { TinyToggleMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyToggleMenu: ToggleMenu
+    TinyToggleMenu
   },
   data() {
     return {

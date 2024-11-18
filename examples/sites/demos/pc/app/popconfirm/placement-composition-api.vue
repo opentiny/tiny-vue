@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popconfirm as TinyPopconfirm, Button as TinyButton } from '@opentiny/vue'
+import { TinyPopconfirm, TinyButton } from '@opentiny/vue'
 
 const title = ref('这是气泡标题')
 const message = ref('这是气泡提示框内容。')

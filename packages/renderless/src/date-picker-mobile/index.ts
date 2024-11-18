@@ -63,7 +63,7 @@ export const formatDate =
 const getDateFromStr = (dateStr, direction = 'top') => {
   const arr = dateStr.split('/').map((item) => +item)
   const yarr = arr[0]
-  const month = direction == 'top' ? arr[1] - 1 : arr[1]
+  const month = direction === 'top' ? arr[1] - 1 : arr[1]
   return new Date(yarr, month, 1)
 }
 
@@ -99,12 +99,12 @@ export const initPanel =
     let date = new Date(year, month - 1, 1) // 加载日历的起始日期
     const dateList = {}
 
-    Array.from({ length: 12 * state.yearNum }).map(() => {
+    Array.from({ length: 12 * state.yearNum }).forEach(() => {
       const startWeek = date.getDay()
       dateList[getDateStr(year, month)] = Array.from({ length: startWeek }).map(() => ({}))
       const days = getDaysByMonth(year, month)
 
-      Array.from({ length: days }).map((v, index) => {
+      Array.from({ length: days }).forEach((v, index) => {
         const day = index + 1
         const dayInfo = api.getCurrentDate(new Date(year, month - 1, day))
 
@@ -276,9 +276,8 @@ export const selectOption =
       }
     } else {
       state.date = new Date(current.value)
-
-      emit('click', current)
     }
+    emit('click', current)
   }
 
 export const confirm =
@@ -391,16 +390,20 @@ export const scrollEnd =
     state.isYearMonthPanel ? api.loadYearMonth('down') : api.loadingDate('down')
   }
 
-export const clear = ({ state, emit, api }) => () => {
-  state.date = Array.isArray(state.date) ? [] : ''
+export const clear =
+  ({ state, emit, api }) =>
+  () => {
+    state.date = Array.isArray(state.date) ? [] : ''
 
-  emit('update:modelValue', state.date)
-  emit('clear', state.date)
-  api.close()
-}
+    emit('update:modelValue', state.date)
+    emit('clear', state.date)
+    api.close()
+  }
 
-export const close = ({ emit, vm }) => () => {
-  vm.$refs.actionSheet.close()
+export const close =
+  ({ emit, vm }) =>
+  () => {
+    vm.$refs.actionSheet.close()
 
-  emit('close')
-}
+    emit('close')
+  }

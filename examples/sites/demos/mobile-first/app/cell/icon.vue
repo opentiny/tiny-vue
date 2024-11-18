@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { Cell } from '@opentiny/vue'
+import { TinyCell } from '@opentiny/vue'
 import { IconWriting } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCell: Cell
+    TinyCell
   },
   data() {
     return {

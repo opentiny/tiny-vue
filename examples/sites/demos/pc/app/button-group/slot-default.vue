@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Button, ButtonGroup } from '@opentiny/vue'
+import { TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyButtonGroup: ButtonGroup
+    TinyButton,
+    TinyButtonGroup
   }
 }
 </script>

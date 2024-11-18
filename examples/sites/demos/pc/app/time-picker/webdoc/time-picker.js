@@ -22,7 +22,7 @@ export default {
         'en-US': 'Select time range'
       },
       desc: {
-        'zh-CN': '<p><code>picker-options</code> 设置固定时间范围</p>',
+        'zh-CN': '<p>通过<code>picker-options</code> 设置固定时间范围</p>',
         'en-US': '<p><code>picker-options</code> Setting a fixed time range.</p>'
       },
       codeFiles: ['picker-options.vue']
@@ -35,7 +35,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "<p><code>is-range</code> 设置是否为范围选择，默认为 false，<code>range-separator</code>，设置范围选择分隔符（为可选值）默认为 '-'。</p>",
+          "<p>通过<code>is-range</code> 设置是否为范围选择，默认为 false，通过<code>range-separator</code>设置范围选择分隔符（为可选值）默认为 '-'。</p>",
         'en-US':
           "<p><code> is-range </code> whether the setting is range selection. Default is false, <code> range-separator </code>, and the range selection delimiter (optional) defaults to'-'.</p>"
       },

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { QrCode as TinyQrCode } from '@opentiny/vue'
+import { TinyQrCode } from '@opentiny/vue'
 
 const params = {
   value: '测试二维码数据',

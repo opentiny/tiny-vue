@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { CheckboxButton as TinyCheckboxButton, CheckboxGroup as TinyCheckboxGroup, Modal } from '@opentiny/vue'
+import { TinyCheckboxButton, TinyCheckboxGroup, TinyModal } from '@opentiny/vue'
 
 const list = ref([])
 const checked = ref([])
@@ -17,7 +17,7 @@ getData().then((data) => {
 })
 
 function valueChange(val) {
-  Modal.message({
+  TinyModal.message({
     message: `当前选择：${JSON.stringify(val)}`,
     status: 'info'
   })

@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const tableData = ref([
@@ -71,12 +71,12 @@ const tableData = ref([
 ])
 
 const saveSetting = (settingConfigs) => {
-  Modal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
+  TinyModal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
 }
 const cancelSetting = (settingConfigs) => {
-  Modal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
+  TinyModal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
 }
 const resetSetting = () => {
-  Modal.alert('点击了重置按钮')
+  TinyModal.alert('点击了重置按钮')
 }
 </script>

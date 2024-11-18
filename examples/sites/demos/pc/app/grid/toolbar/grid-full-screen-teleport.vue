@@ -14,14 +14,14 @@
 
 <script>
 import { Teleport } from '@opentiny/vue-common'
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
     TinyTeleport: Teleport,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {

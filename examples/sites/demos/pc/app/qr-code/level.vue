@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import { QrCode, Radio, RadioButton, RadioGroup } from '@opentiny/vue'
+import { TinyQrCode, TinyRadio, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyQrCode: QrCode,
-    TinyRadio: Radio,
-    TinyRadioButton: RadioButton,
-    TinyRadioGroup: RadioGroup
+    TinyQrCode,
+    TinyRadio,
+    TinyRadioButton,
+    TinyRadioGroup
   },
   data() {
     return {

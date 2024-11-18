@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { TimeLine, Modal } from '@opentiny/vue'
+import { TinyTimeLine, TinyModal } from '@opentiny/vue'
 import { iconLocalePanel, iconFeedback, iconSynchronize, iconAgency } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   methods: {
     click(index, node) {
       this.active = index
-      Modal.message({
+      TinyModal.message({
         message: 'click 事件，当前 index：' + index + ' 节点信息：' + node.name + ',' + node.time,
         status: 'info'
       })

@@ -31,14 +31,14 @@
 </template>
 
 <script>
-import { Form, FormItem, FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     const validatePass = (rule, value, callback) => {
@@ -78,9 +78,9 @@ export default {
     formValidate() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('校验通过')
+          TinyModal.alert('校验通过')
         } else {
-          Modal.message({ message: '校验不通过', status: 'warning' })
+          TinyModal.message({ message: '校验不通过', status: 'warning' })
           return false
         }
       })

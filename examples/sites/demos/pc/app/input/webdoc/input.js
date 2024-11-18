@@ -227,7 +227,8 @@ export default {
         'en-US': 'Memory History Input'
       },
       desc: {
-        'zh-CN': '<p>参考以下例子，输入完成后，输入会被记住。</p>',
+        'zh-CN':
+          '<p>通过组件实例方法 <code> addMemory </code> 添加历史输入数据，输入完成后，输入会被记住。通过 <code> memory-space </code> 属性配置最多可以被记录的条数。</p>',
         'en-US': '<p>Refer to the following example. After the input is complete, the input will be remembered</p>'
       },
       codeFiles: ['method-addMemory.vue']
@@ -253,9 +254,15 @@ export default {
         'en-US': 'Native Attribute'
       },
       desc: {
-        'zh-CN': '<p>可设置 <code>name</code>  <code>disabled</code> <code>readonly</code>等原生属性。</p>\n',
+        'zh-CN': `
+        <p>可设置 <code>name</code>  <code>disabled</code> <code>readonly</code>等原生属性。</p>
+         <div class="tip custom-block">
+            <p class="custom-block-title"> 温馨提示： </p>
+            <p>原生属性是透传给 <code> input </code>原生标签的，功能和使用原生标签等同。</p>
+          </div>
+        `,
         'en-US':
-          '<p>You can set native attributes such as <code>name</code> <code>disabled</code> <code>readonly</code> . </p>\n'
+          '<p>You can set native attributes such as <code>name</code> <code>disabled</code> <code>readonly</code> . </p>'
       },
       codeFiles: ['native.vue']
     },

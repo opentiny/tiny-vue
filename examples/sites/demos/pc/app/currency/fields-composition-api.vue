@@ -1,10 +1,12 @@
 <template>
-  <tiny-currency v-model="value" :fetch-currency="getCurrencyData" :fields="fields"></tiny-currency>
+  <div class="demo-currency-class">
+    <tiny-currency v-model="value" :fetch-currency="getCurrencyData" :fields="fields"></tiny-currency>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Currency as TinyCurrency } from '@opentiny/vue'
+import { TinyCurrency } from '@opentiny/vue'
 
 const value = ref('')
 const fields = ref({
@@ -32,3 +34,9 @@ function getCurrencyData() {
   })
 }
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+</style>

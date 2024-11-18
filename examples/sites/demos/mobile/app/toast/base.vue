@@ -5,16 +5,16 @@
 </template>
 
 <script lang="jsx">
-import { Toast, Button } from '@opentiny/vue'
+import { TinyToast, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyToast: Toast
+    TinyButton,
+    TinyToast
   },
   methods: {
     showTextToast() {
-      Toast.service({
+      TinyToast.service({
         text: 'Toast',
         type: 'text',
         time: 2000,

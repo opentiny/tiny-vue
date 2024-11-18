@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {

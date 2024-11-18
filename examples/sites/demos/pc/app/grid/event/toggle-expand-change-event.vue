@@ -37,12 +37,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     expandChange({ row, rowIndex }) {
@@ -52,7 +52,7 @@ export default {
       } else {
         message = `当前收缩行：${JSON.stringify(rowIndex + 1)}`
       }
-      Modal.message({
+      TinyModal.message({
         message,
         status: 'info'
       })

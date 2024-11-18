@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { CalendarView, Button, Modal } from '@opentiny/vue'
+import { TinyCalendarView, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendarView: CalendarView,
-    TinyButton: Button
+    TinyCalendarView,
+    TinyButton
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
   methods: {
     setDays(type) {
       if (!this.selectedDate.length) {
-        Modal.message({ message: '请选择日期', status: 'info' })
+        TinyModal.message({ message: '请选择日期', status: 'info' })
         return
       }
       this[type].push(...this.selectedDate)

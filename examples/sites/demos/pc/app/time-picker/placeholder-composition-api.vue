@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 const value = ref('')
 const rangeValue = ref(['', ''])
@@ -27,7 +27,7 @@ const rangeValue = ref(['', ''])
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 }
 p {
   font-size: 14px;

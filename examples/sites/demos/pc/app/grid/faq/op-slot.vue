@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Grid } from '@opentiny/vue'
+import { TinyGrid } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid
+    TinyGrid
   },
   data() {
     return {

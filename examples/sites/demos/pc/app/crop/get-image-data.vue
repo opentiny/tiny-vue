@@ -8,12 +8,12 @@
 </template>
 
 <script lang="jsx">
-import { Crop, Button, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -23,13 +23,13 @@ export default {
   },
   methods: {
     getImageData() {
-      Modal.message({
+      TinyModal.message({
         message: `图像数据：${JSON.stringify(this.$refs.crop.getImageData())}`,
         status: 'info'
       })
     },
     getCanvasData() {
-      Modal.message({
+      TinyModal.message({
         message: `画布位置和大小数据: ${JSON.stringify(this.$refs.crop.getCanvasData())}`,
         status: 'info'
       })

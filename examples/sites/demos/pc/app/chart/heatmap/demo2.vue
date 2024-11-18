@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHeatmap: HuichartsHeatmap
+    TinyHeatmap: TinyHuichartsHeatmap
   },
   data() {
     return {
@@ -19,7 +19,6 @@ export default {
 
         // padding控制图表距离容器的上，右，下，左padding值
         padding: [50, 120, 20, 20],
-
         // 矩形的颜色，默认值'#1F55B5'
         color: '#1F55B5',
 
@@ -30,7 +29,6 @@ export default {
 
           // 两端的文本，默认值为data第三个属性值的最大值和最小值
           text: ['亮', '暗'],
-
           // 水平与垂直放置，默认值vertical
           // vertical 或者 horizontal
           orient: 'vertical',

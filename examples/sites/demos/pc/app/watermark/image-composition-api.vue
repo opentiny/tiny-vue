@@ -6,7 +6,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { Watermark as TinyWatermark } from '@opentiny/vue'
+import { TinyWatermark } from '@opentiny/vue'
 
 const params = reactive({
   width: 136,

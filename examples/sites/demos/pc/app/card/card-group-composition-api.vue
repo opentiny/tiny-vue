@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, CardGroup as TinyCardGroup } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 import { ref } from 'vue'

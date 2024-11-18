@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import { SliderButtonGroup, Modal, SliderButton, Button } from '@opentiny/vue'
+import { TinySliderButtonGroup, TinyModal, TinySliderButton, TinyButton } from '@opentiny/vue'
 import { IconCardMode, IconEditorMenuLeft, IconException, IconDerive } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySliderButtonGroup: SliderButtonGroup,
-    TinySliderButton: SliderButton,
-    TinyButton: Button,
+    TinySliderButtonGroup,
+    TinySliderButton,
+    TinyButton,
     IconCardMode: IconCardMode(),
     IconEditorMenuLeft: IconEditorMenuLeft(),
     IconException: IconException(),
@@ -89,7 +89,7 @@ export default {
     advancedClick(label) {
       this.advancedActive1 = label
 
-      Modal.message(`节点label: ${label}`)
+      TinyModal.message(`节点label: ${label}`)
     },
     changeButtonSize() {
       this.buttonSize = 'large'

@@ -2,7 +2,7 @@
   <div class="demo-milestone">
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
       <template #top="data">
-        <span class="f18 ml50">{{ data.slotScope.status }}</span>
+        <span class="status f18 ml50 mb8">{{ data.slotScope.status }}</span>
       </template>
       <template #bottom="data">
         <span class="f12">{{ data.slotScope.name }} {{ data.slotScope.time }}</span>
@@ -12,11 +12,11 @@
 </template>
 
 <script lang="jsx">
-import { Milestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone
+    TinyMilestone
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
       normalActive: 2,
       advancedActive: 2,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
+        completed: 'var(--tv-color-bg-disabled-control-active)',
         doing: '#7ED321',
         back: '#f5222d',
         end: '#faad14',
@@ -62,5 +62,8 @@ export default {
 <style scoped>
 .demo-milestone ::v-deep .tiny-milestone__description-status {
   margin-top: 4px;
+}
+.status {
+  display: inline-block;
 }
 </style>

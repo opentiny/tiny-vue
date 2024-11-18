@@ -94,7 +94,7 @@
 </template>
 
 <script setup>
-import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 </script>
 
 <style scoped>
@@ -121,6 +121,12 @@ import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
+}
+
+.row-bg .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .align {

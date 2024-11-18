@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { BaseSelect, Modal } from '@opentiny/vue'
+import { TinyBaseSelect, TinyModal } from '@opentiny/vue'
 
 const buildOptions = () =>
   Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"北京${i}"}`))
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect
+    TinyBaseSelect
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     onChange(value) {
-      Modal.message({
+      TinyModal.message({
         message: JSON.stringify(value),
         status: 'info'
       })

@@ -11,14 +11,12 @@
 */
 
 .inject-Tooltip-vars() {
-  // 弹框三角默认边框色
-  --tv-Tooltip-popper-border-color: var(--tv-color-border-active);
   // 弹框字体行高
   --tv-Tooltip-popper-font-line-height: var(--tv-line-height-number);
   // 悬浮弹出框圆角
   --tv-Tooltip-popper-border-radius: var(--tv-border-radius-lg);
   // 悬浮弹出框字号
-  --tv-Tooltip-popper-font-size: var(--tv-font-size-md);
+  --tv-Tooltip-popper-font-size: var(--tv-font-size-default);
 
   // 正常背景色
   --tv-Tooltip-popper-normal-bg-color: var(--tv-color-bg-secondary);
@@ -56,12 +54,14 @@
   --tv-Tooltip-popper-success-border-color: var(--tv-color-success-border);
 
   // dark主题弹框背景色
-  --tv-Tooltip-popper-dark-bg-color: var(--tv-color-bg-primary);
+  --tv-Tooltip-popper-dark-bg-color: var(--tv-color-bg-dark);
   // dark主题弹框文本色
   --tv-Tooltip-popper-dark-text-color: var(--tv-color-text-white);
+  // dark主题|禁用时弹框边框色
+  --tv-Tooltip-popper-dark-border-color: var(--tv-color-border-hover);
+
   // light主题弹框背景色
   --tv-Tooltip-popper-light-bg-color: var(--tv-color-bg-secondary);
-
   // light主题|禁用弹框文本色
   --tv-Tooltip-popper-light-text-color: var(--tv-color-text);
   // light主题|禁用时弹框边框色

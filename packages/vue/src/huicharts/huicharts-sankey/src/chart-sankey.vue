@@ -28,7 +28,7 @@ export default {
         tooltipVisible: this.tooltipVisible
       }
       const option = sankey(columns, rows, this.settings, extra)
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

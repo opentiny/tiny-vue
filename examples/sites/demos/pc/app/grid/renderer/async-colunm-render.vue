@@ -18,7 +18,7 @@
         value: 'value'
       }"
       :editor="{
-        component: Select,
+        component: TinySelect,
         attrs: { textField: 'text', clearable: true }
       }"
     ></tiny-grid-column>
@@ -30,19 +30,19 @@
 
 <script lang="jsx">
 // TEXTFIELD  FORMAT-CONFIG  LABLE  VALUE  ASYNC:true  type:enun
-import { Grid, GridColumn, Pager, Select } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Select,
+      TinySelect,
       options: [],
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,

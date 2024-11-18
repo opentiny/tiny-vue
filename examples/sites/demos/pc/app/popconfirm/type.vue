@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import { Popconfirm, Button } from '@opentiny/vue'
+import { TinyPopconfirm, TinyButton } from '@opentiny/vue'
 import { iconDel } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyPopconfirm: Popconfirm,
-    TinyButton: Button
+    TinyPopconfirm,
+    TinyButton
   },
   data() {
     return {

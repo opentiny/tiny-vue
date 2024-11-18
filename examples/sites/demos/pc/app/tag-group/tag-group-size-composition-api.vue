@@ -4,14 +4,12 @@
     <tiny-tag-group :data="items" size="medium"> </tiny-tag-group>
     <div>小型标签：small</div>
     <tiny-tag-group :data="items" size="small"> </tiny-tag-group>
-    <div>超小标签：mini</div>
-    <tiny-tag-group :data="items" size="mini"> </tiny-tag-group>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TagGroup as TinyTagGroup } from '@opentiny/vue'
+import { TinyTagGroup } from '@opentiny/vue'
 
 const items = ref([
   { type: '', name: '标签一' },

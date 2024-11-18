@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Transfer as TinyTransfer, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyTransfer, TinyRadio } from '@opentiny/vue'
 
 const generateData = () => {
   const data = []

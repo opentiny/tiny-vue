@@ -1,13 +1,15 @@
 <template>
-  <tiny-dept v-model="value" @close="close"></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept v-model="value" @close="close"></tiny-dept>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Dept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   data() {
     return {
@@ -16,8 +18,14 @@ export default {
   },
   methods: {
     close() {
-      Modal.message('关闭弹出框')
+      TinyModal.message('关闭弹出框')
     }
   }
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

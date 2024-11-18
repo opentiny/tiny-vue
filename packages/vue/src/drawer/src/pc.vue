@@ -31,7 +31,7 @@
         ]"
         :style="{
           width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
-          height: ['top', 'bottom'].includes(placement) || dragable ? state.computedHeight : null,
+          height: ['top', 'bottom', 'left', 'right'].includes(placement) || dragable ? state.computedHeight : null,
           zIndex
         }"
         v-show="state.visible"

@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { SliderButton, SliderButtonGroup, Modal } from '@opentiny/vue'
+import { TinySliderButton, TinySliderButtonGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySliderButton: SliderButton,
-    TinySliderButtonGroup: SliderButtonGroup
+    TinySliderButton,
+    TinySliderButtonGroup
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     change(label) {
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，选中的 Radio label 值为：' + label,
         status: 'info'
       })

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Modal } from '@opentiny/vue'
+import { TinyModal } from '@opentiny/vue'
 import TinyFluentEditor from '@opentiny/vue-fluent-editor'
 
 export default {
@@ -34,7 +34,7 @@ export default {
           next(file.downloadUrl)
         },
         fail: (serverError) => {
-          Modal.message({
+          TinyModal.message({
             message: `上传失败回调事件：${serverError}`,
             status: 'info'
           })

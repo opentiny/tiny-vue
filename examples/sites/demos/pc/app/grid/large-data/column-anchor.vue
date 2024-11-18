@@ -3,7 +3,7 @@
     <tiny-grid
       :data="tableData"
       column-min-width="100"
-      auto-resize
+      show-overflow="tooltip"
       :column-anchor="columnAnchor"
       :optimization="{ scrollX: { gt: 20 } }"
       height="auto"
@@ -67,13 +67,13 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 import { IconMarkOn } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -97,6 +97,7 @@ export default {
           ]
         ]
       ],
+
       tableData: [
         {
           id: '1',

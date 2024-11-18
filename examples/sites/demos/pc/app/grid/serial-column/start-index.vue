@@ -5,7 +5,7 @@
       seq-serial
       :start-index="200"
       :pager="{
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,
@@ -25,16 +25,16 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Pager,
+      TinyPager,
       fetchData: {
         api: this.getData
       },

@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { IconSearch, IconCalendar } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyInput: Input,
+    TinyInput,
     TinyIconSearch: IconSearch(),
     TinyIconCalendar: IconCalendar()
   },

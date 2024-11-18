@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {

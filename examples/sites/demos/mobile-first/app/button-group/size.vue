@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { ButtonGroup } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButtonGroup: ButtonGroup
+    TinyButtonGroup
   },
   data() {
     return {

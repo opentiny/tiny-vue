@@ -86,17 +86,24 @@ export const handleSelectChange =
 export const handleClick =
   ({ api, vm, props, state }) =>
   (e) => {
+    // tiny 新增： 点击子节点之间的空白时，不会收齐父节点
+    const contentElm = vm.$refs.content
+    if (contentElm && !contentElm.contains(e?.target)) {
+      return
+    }
+
     // tiny 新增： 去掉trigger参数，不影响点击的逻辑
     const store = state.tree.state.store
 
-    state.tree.clearCurrentStore(props.node)
     if (!state.tree.onlyCheckChildren) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
       !props.node.disabled &&
-        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     } else if (props.node.isLeaf && !props.node.disabled) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
-      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     }
 
     state.tree.currentNode = vm

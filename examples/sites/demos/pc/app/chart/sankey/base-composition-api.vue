@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsSankey as TinyChartSankey } from '@opentiny/vue'
+import { TinyHuichartsSankey as TinyChartSankey } from '@opentiny/vue'
 
 const options = ref({
   // 页面节点是否可被拖动,布尔值,默认值为true
@@ -14,7 +14,6 @@ const options = ref({
 
   // widthSpace, 自定义节点矩形宽度及每列间距, 默认[10, 30]
   widthSpace: [10, 30],
-
   // value: 传递的数据值,与连接带的高度大小正相关
   sortType: 'unset', // 设置数据的排序方式 ascend decline
   emptyStatus: 'node', // 空节点的展示状态 churnBar

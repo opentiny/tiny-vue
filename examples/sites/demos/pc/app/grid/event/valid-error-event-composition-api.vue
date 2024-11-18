@@ -3,6 +3,7 @@
     <tiny-grid
       :data="tableData"
       @valid-error="validError"
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
     >
@@ -17,7 +18,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const validRules = {
   name: [
@@ -139,6 +140,6 @@ const tableData = ref([
 ])
 
 function validError() {
-  Modal.message({ message: '触发校验不通过事件', status: 'info' })
+  TinyModal.message({ message: '触发校验不通过事件', status: 'info' })
 }
 </script>

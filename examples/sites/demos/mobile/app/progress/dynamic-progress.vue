@@ -12,14 +12,14 @@
 </template>
 
 <script lang="jsx">
-import { Progress, Button } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue'
 
 // import { setInterval, clearInterval } from 'timers'
 
 export default {
   components: {
-    TinyProgress: Progress,
-    TinyButton: Button
+    TinyProgress,
+    TinyButton
   },
   data() {
     return {

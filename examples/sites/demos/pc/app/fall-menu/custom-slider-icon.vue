@@ -1,23 +1,23 @@
 <template>
   <div class="left-panel">
-    <fall-menu :data="dataset">
+    <tiny-fall-menu :data="dataset">
       <template #left>
         <icon-left class="tiny-svg-size" />
       </template>
       <template #right>
         <icon-right class="tiny-svg-size" />
       </template>
-    </fall-menu>
+    </tiny-fall-menu>
   </div>
 </template>
 
 <script lang="jsx">
-import { FallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 import { IconLeft, IconRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    FallMenu,
+    TinyFallMenu,
     IconLeft: IconLeft(),
     IconRight: IconRight()
   },

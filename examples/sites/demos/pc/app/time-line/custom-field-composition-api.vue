@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 import { iconLoading } from '@opentiny/vue-icon'
 
 const active = ref(1)

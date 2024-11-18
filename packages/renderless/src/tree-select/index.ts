@@ -5,7 +5,7 @@ export const filter =
   }
 
 export const nodeClick =
-  ({ props, vm }) =>
+  ({ props, vm, emit }) =>
   (data) => {
     if (!props.multiple) {
       vm.$refs.baseSelectRef.updateSelectedData({
@@ -17,16 +17,23 @@ export const nodeClick =
         }
       })
 
+      emit('change', data[props.valueField])
+      emit('update:modelValue', data[props.valueField])
+
       vm.$refs.baseSelectRef.hidePanel()
     }
   }
 
 export const check =
-  ({ props, vm }) =>
+  ({ props, vm, emit }) =>
   (data, { checkedNodes }) => {
     if (props.multiple) {
+      const currentValue = []
+
       vm.$refs.baseSelectRef.updateSelectedData(
         checkedNodes.map((node) => {
+          currentValue.push(node[props.valueField])
+
           return {
             ...node,
             currentLabel: node[props.textField],
@@ -34,5 +41,8 @@ export const check =
           }
         })
       )
+
+      emit('change', currentValue)
+      emit('update:modelValue', currentValue)
     }
   }

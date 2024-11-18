@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { TreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {
@@ -181,20 +181,20 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+      TinyModal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
     },
     currentChange(data) {
-      Modal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
+      TinyModal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
     },
     nodeExpand(data) {
-      Modal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
+      TinyModal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
     },
     nodeCollapse(data) {
-      Modal.message({ message: `节点-${data.label}被关闭了`, status: 'info' })
+      TinyModal.message({ message: `节点-${data.label}被关闭了`, status: 'info' })
     },
     checkChange(node, newVal) {
       let state = newVal ? '选中' : '取消'
-      Modal.message({
+      TinyModal.message({
         message: `节点-${node.label}被${state}了`,
         status: 'info'
       })

@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { TimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 import { iconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {

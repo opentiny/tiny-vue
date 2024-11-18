@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Slider as TinySlider, Button as TinyButton } from '@opentiny/vue'
+import { TinySlider, TinyButton } from '@opentiny/vue'
 
 const value = ref(20)
 

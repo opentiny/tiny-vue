@@ -8,7 +8,6 @@ if (typeof window !== 'undefined') {
 
   try {
     const opts = Object.defineProperty({}, 'passive', {
-      // eslint-disable-next-line getter-return
       get() {
         supportsPassive = true
       }
@@ -33,6 +32,13 @@ export const handleVisibilityChange =
         emit('hidden')
       }
     }
+  }
+
+export const init =
+  ({ api }) =>
+  () => {
+    api.resetTemporary()
+    api.updateVisibleItems(true)
   }
 
 export const updateVisibleItems =
@@ -117,22 +123,22 @@ export const computedSizes =
       const items = props.items
       const field = props.sizeField
       const minItemSize = props.minItemSize
-      let computedMinSize = 10000
+      let computedMinItemSize = 10000
       let accumulator = 0
       let current
 
-      for (let i = 0, l = items.length; i < l; i++) {
+      for (let i = 0, len = items.length; i < len; i++) {
         current = items[i][field] || minItemSize
 
-        if (current < computedMinSize) {
-          computedMinSize = current
+        if (current < computedMinItemSize) {
+          computedMinItemSize = current
         }
 
         accumulator += current
         sizes[i] = { accumulator, size: current }
       }
 
-      state.temporary.computedMinItemSize = computedMinSize
+      state.temporary.computedMinItemSize = computedMinItemSize
 
       return sizes
     }
@@ -160,10 +166,10 @@ export const getScroll =
     let scrollRange
 
     if (props.pageMode) {
-      const bounds = el.getBoundingClientRect()
-      const boundsSize = isVertical ? bounds.height : bounds.width
+      const boundRect = el.getBoundingClientRect()
+      const boundsSize = isVertical ? boundRect.height : boundRect.width
       let size = isVertical ? window.innerHeight : window.innerWidth
-      let start = -(isVertical ? bounds.top : bounds.left)
+      let start = -(isVertical ? boundRect.top : boundRect.left)
 
       if (start < 0) {
         size += start
@@ -188,12 +194,12 @@ export const unuseView =
   (state) =>
   (view, fake = false) => {
     const unusedViews = state.temporary.unusedViews
-    const type = view.nr.type
-    let unusedPool = unusedViews.get(type)
+    const { type: nrType } = view.nr
+    let unusedPool = unusedViews.get(nrType)
 
     if (!unusedPool) {
       unusedPool = []
-      unusedViews.set(type, unusedPool)
+      unusedViews.set(nrType, unusedPool)
     }
 
     unusedPool.push(view)
@@ -414,32 +420,32 @@ const computeRange = (args) => {
 const computeRangeVariableSizeMode = (args) => {
   let { count, sizes, scroll, startIndex, totalSize, endIndex } = args
   let { items, visibleStartIndex, beforeSize, visibleEndIndex } = args
-  let h, a, b, i, oldI
+  let height, lower, upper, cursor, oldCursor
 
-  a = 0
-  b = count - 1
-  i = ~~(count / 2)
+  lower = 0
+  upper = count - 1
+  cursor = ~~(count / 2)
 
   do {
-    oldI = i
-    h = sizes[i].accumulator
+    oldCursor = cursor
+    height = sizes[cursor].accumulator
 
-    if (h < scroll.start) {
-      a = i
-    } else if (i < count - 1 && sizes[i + 1].accumulator > scroll.start) {
-      b = i
+    if (height < scroll.start) {
+      lower = cursor
+    } else if (cursor < count - 1 && sizes[cursor + 1].accumulator > scroll.start) {
+      upper = cursor
     }
 
-    i = ~~((a + b) / 2)
-  } while (i !== oldI)
+    cursor = ~~((lower + upper) / 2)
+  } while (cursor !== oldCursor)
 
-  i < 0 && (i = 0)
+  cursor < 0 && (cursor = 0)
 
-  startIndex = i
+  startIndex = cursor
 
   totalSize = sizes[count - 1].accumulator
 
-  for (endIndex = i; endIndex < count && sizes[endIndex].accumulator < scroll.end; endIndex++) {
+  for (endIndex = cursor; endIndex < count && sizes[endIndex].accumulator < scroll.end; endIndex++) {
     // empty
   }
 
@@ -620,4 +626,18 @@ export const computeViewEvent =
         mouseleave: () => (state.hoverKey = null)
       }
     }
+  }
+
+export const resetTemporary =
+  ({ state }) =>
+  () => {
+    state.temporary = {
+      startIndex: 0,
+      endIndex: 0,
+      views: new Map(),
+      unusedViews: new Map(),
+      scrollDirty: false,
+      lastUpdateScrollPosition: 0
+    }
+    state.pool = []
   }

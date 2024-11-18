@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, Tag as TinyTag } from '@opentiny/vue'
+import { TinyCard, TinyTag } from '@opentiny/vue'
 import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 import { ref } from 'vue'
 

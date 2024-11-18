@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Tabs, TabItem, Toast } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyToast } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     beforeLeave(activeName, oldActiveName) {
-      Toast.service({
+      TinyToast.service({
         text: '页签切换被阻止'
       })
       return false

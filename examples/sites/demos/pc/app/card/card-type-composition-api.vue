@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const dsj = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`)

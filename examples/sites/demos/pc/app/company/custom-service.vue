@@ -1,23 +1,25 @@
 <template>
-  <tiny-company
-    v-model="value"
-    placeholder="请输入"
-    :fetch-company="getCompanyData"
-    :fields="fields"
-    :max="2"
-    @change="change"
-    @clear="clear"
-    is-drop-inherit-width
-    clearable
-  ></tiny-company>
+  <div class="demo-company-class">
+    <tiny-company
+      v-model="value"
+      placeholder="请输入"
+      :fetch-company="getCompanyData"
+      :fields="fields"
+      :max="2"
+      @change="change"
+      @clear="clear"
+      is-drop-inherit-width
+      clearable
+    ></tiny-company>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Company, Modal } from '@opentiny/vue'
+import { TinyCompany, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCompany: Company
+    TinyCompany
   },
   data() {
     return {
@@ -52,11 +54,17 @@ export default {
       })
     },
     clear() {
-      Modal.message({ message: 'clear:触发了', status: 'info' })
+      TinyModal.message({ message: 'clear:触发了', status: 'info' })
     },
     change(value) {
-      Modal.message({ message: `change:${value}`, status: 'info' })
+      TinyModal.message({ message: `change:${value}`, status: 'info' })
     }
   }
 }
 </script>
+
+<style scoped>
+.demo-company-class {
+  width: 280px;
+}
+</style>

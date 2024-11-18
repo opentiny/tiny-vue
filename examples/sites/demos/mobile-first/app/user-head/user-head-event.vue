@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { UserHeadGroup, Popover, Modal } from '@opentiny/vue'
+import { TinyUserHeadGroup, TinyPopover, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserHeadGroup: UserHeadGroup,
-    TinyPopover: Popover
+    TinyUserHeadGroup,
+    TinyPopover
   },
   data() {
     return {
@@ -81,10 +81,10 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message('click')
+      TinyModal.message('click')
     },
     mouseEnter() {
-      Modal.message('mouseEnter')
+      TinyModal.message('mouseEnter')
     }
   }
 }

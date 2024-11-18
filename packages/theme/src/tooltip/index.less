@@ -44,49 +44,6 @@
     word-wrap: break-word;
     box-shadow: var(--tv-Tooltip-box-shadow);
 
-    .popper__arrow {
-      position: absolute;
-      display: block;
-      // 原来是用border来模拟三角形的，现在是通过div模拟，所以将border-width赋值给div的width.
-      width: 12px;
-      height: 20px;
-      background-color: var(--tv-Tooltip-popper-border-color);
-      transform: rotateZ(45deg);
-      border-radius: 2px;
-    }
-
-    &[x-placement^='top'] {
-      margin-bottom: 12px;
-
-      .popper__arrow {
-        bottom: -7px;
-      }
-    }
-
-    &[x-placement^='bottom'] {
-      margin-top: 12px;
-
-      .popper__arrow {
-        top: -7px;
-      }
-    }
-
-    &[x-placement^='right'] {
-      margin-left: 12px;
-
-      .popper__arrow {
-        left: -3px;
-      }
-    }
-
-    &[x-placement^='left'] {
-      margin-right: 12px;
-
-      .popper__arrow {
-        right: -3px;
-      }
-    }
-
     &.is-normal {
       .tooltip-type(
         var(--tv-Tooltip-popper-normal-text-color),
@@ -133,8 +90,11 @@
     }
 
     &.is-dark {
-      background: var(--tv-Tooltip-popper-dark-bg-color);
-      color: var(--tv-Tooltip-popper-dark-text-color);
+      .tooltip-type(
+        var(--tv-Tooltip-popper-dark-text-color),
+        var(--tv-Tooltip-popper-dark-bg-color),
+        var(--tv-Tooltip-popper-dark-border-color)
+      );
     }
 
     &.is-light {

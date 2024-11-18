@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const options = ref([
   { label: '华北区', value: '华北区' },
@@ -79,14 +79,14 @@ const tableData = ref([
 ])
 
 const editActive = () => {
-  Modal.message({
+  TinyModal.message({
     message: '激活编辑事件',
     status: 'info'
   })
 }
 
 const editClosed = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发关闭编辑事件',
     status: 'info'
   })
@@ -97,7 +97,7 @@ const activeMethod = ({ row }) => {
 }
 
 const editDisabled = () => {
-  Modal.message({
+  TinyModal.message({
     message: '激活editDisable事件',
     status: 'info'
   })

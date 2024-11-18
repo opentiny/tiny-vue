@@ -23,13 +23,13 @@
 </template>
 
 <script lang="jsx">
-import { PopUpload, Alert, Link } from '@opentiny/vue'
+import { TinyPopUpload, TinyAlert, TinyLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopUpload: PopUpload,
-    TinyAlert: Alert,
-    TinyLink: Link
+    TinyPopUpload,
+    TinyAlert,
+    TinyLink
   },
   data() {
     return {

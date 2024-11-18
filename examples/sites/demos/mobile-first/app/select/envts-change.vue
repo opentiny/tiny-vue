@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { Select, Option, Modal } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {
@@ -51,27 +51,27 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({
+      TinyModal.message({
         message: 'changes事件'
       })
     },
     clear() {
-      Modal.message({
+      TinyModal.message({
         message: 'clear事件'
       })
     },
     focus() {
-      Modal.message({
+      TinyModal.message({
         message: 'focus事件'
       })
     },
     blur() {
-      Modal.message({
+      TinyModal.message({
         message: 'blur事件'
       })
     },
     dropdownClick() {
-      Modal.message({
+      TinyModal.message({
         message: 'dropdown-click事件'
       })
     }

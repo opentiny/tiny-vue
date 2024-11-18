@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { Amount } from '@opentiny/vue'
+import { TinyAmount } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAmount: Amount
+    TinyAmount
   },
   data() {
     return {

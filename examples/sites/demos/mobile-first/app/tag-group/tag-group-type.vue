@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { TagGroup } from '@opentiny/vue'
+import { TinyTagGroup } from '@opentiny/vue'
 
 // success / warning / alerting / error / info / default
 export default {
   components: {
-    TinyTagGroup: TagGroup
+    TinyTagGroup
   },
   data() {
     return {

@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal, DatePicker } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
         layout: 'simple',
         simpleFilter: {
           datetimeConfig: {
-            component: DatePicker,
+            component: TinyDatePicker,
             format: 'yyyy-MM-dd',
             valueFormat: 'yyyy-MM-dd',
             // 最大允许选择的时间
@@ -69,7 +69,7 @@ export default {
         layout: 'simple',
         simpleFilter: {
           datetimeConfig: {
-            component: DatePicker,
+            component: TinyDatePicker,
             format: 'yyyy/MM/dd',
             valueFormat: 'yyyy/MM/dd',
             // 最大允许选择的时间
@@ -84,7 +84,7 @@ export default {
         layout: 'simple',
         simpleFilter: {
           datetimeConfig: {
-            component: DatePicker,
+            component: TinyDatePicker,
             format: 'yyyy-MM-dd hh:mm:ss',
             valueFormat: 'yyyy-MM-dd hh:mm:ss',
             type: 'datetime',
@@ -100,7 +100,7 @@ export default {
         layout: 'simple',
         simpleFilter: {
           datetimeConfig: {
-            component: DatePicker,
+            component: TinyDatePicker,
             format: 'yyyy-MM-dd hh:mm:ss',
             valueFormat: 'yyyy-MM-dd hh:mm:ss',
             // 最大允许选择的时间
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     filterChangeEvent({ filters }) {
-      Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+      TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
     }
   }
 }

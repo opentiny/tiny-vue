@@ -22,12 +22,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyModal } from '@opentiny/vue'
 
 const activeNames = ref([1, 3])
 
 function change(activeNames) {
-  Modal.message({
+  TinyModal.message({
     message: 'change 事件，当前激活面板：' + activeNames,
     status: 'info'
   })

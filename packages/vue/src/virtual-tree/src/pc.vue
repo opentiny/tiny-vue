@@ -1,6 +1,6 @@
 <template>
-  <aui-virtual-scroll-box ref="vsBox" class="aui-virtual-tree" v-bind="state.vsBoxOptions" @change="onVsBoxChange">
-    <aui-tree
+  <tiny-virtual-scroll-box ref="vsBox" class="tiny-virtual-tree" v-bind="state.vsBoxOptions" @change="onVsBoxChange">
+    <tiny-tree
       ref="tree"
       v-bind="state.treeOptions"
       v-on="state.treeEvents"
@@ -32,8 +32,8 @@
       <template v-if="slots.operation" #operation="params">
         <slot name="operation" v-bind="params"></slot>
       </template>
-    </aui-tree>
-  </aui-virtual-scroll-box>
+    </tiny-tree>
+  </tiny-virtual-scroll-box>
 </template>
 
 <script lang="ts">
@@ -46,8 +46,8 @@ export default defineComponent({
   inheritAttrs: false,
   props: [...props, 'width', 'height', 'rowHeight', 'scrollbarSize', 'treeOp'],
   components: {
-    AuiVirtualScrollBox: VirtualScrollBox,
-    AuiTree: Tree
+    TinyVirtualScrollBox: VirtualScrollBox,
+    TinyTree: Tree
   },
   setup(props, context): any {
     return setup({ props, context, renderless, api })

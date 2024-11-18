@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { Divider as TinyDivider } from '@opentiny/vue'
+import { TinyDivider } from '@opentiny/vue'
 </script>

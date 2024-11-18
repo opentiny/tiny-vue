@@ -44,14 +44,14 @@
 </template>
 
 <script lang="jsx">
-import { Tree, RadioGroup, Radio, Input } from '@opentiny/vue'
+import { TinyTree, TinyRadioGroup, TinyRadio, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinyInput: Input
+    TinyTree,
+    TinyRadio,
+    TinyRadioGroup,
+    TinyInput
   },
   data() {
     return {

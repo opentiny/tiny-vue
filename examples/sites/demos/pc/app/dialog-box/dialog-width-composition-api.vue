@@ -1,9 +1,18 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility1 = true" type="info">宽度 30%</tiny-button>
+    <tiny-button @click="boxVisibility1 = true" type="info">宽度30% 最大高度200px</tiny-button>
     <tiny-button @click="boxVisibility2 = true">宽度 60%</tiny-button>
-    <tiny-dialog-box v-model:visible="boxVisibility1" title="消息" width="30%">
-      <span>dialog-box 内容</span>
+    <tiny-dialog-box v-model:visible="boxVisibility1" title="消息" width="30%" max-height="200px">
+      <div>
+        <tiny-radio-group>
+          <tiny-radio :label="0">产品</tiny-radio>
+        </tiny-radio-group>
+      </div>
+      <div>
+        <tiny-radio-group>
+          <tiny-radio :label="0">研发</tiny-radio>
+        </tiny-radio-group>
+      </div>
       <template #footer>
         <tiny-button type="primary" @click="boxVisibility1 = false">确 定</tiny-button>
       </template>
@@ -19,7 +28,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, DialogBox as TinyDialogBox } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 const boxVisibility1 = ref(false)
 const boxVisibility2 = ref(false)
@@ -28,5 +37,8 @@ const boxVisibility2 = ref(false)
 <style scoped>
 .mydialogBox {
   background: rgba(150, 137, 137, 0.8);
+}
+.demo-class {
+  height: 300px;
 }
 </style>

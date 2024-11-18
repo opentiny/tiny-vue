@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="jsx">
-import { HuichartsBoxplot as TinyChartBoxplot } from '@opentiny/vue'
+import { TinyHuichartsBoxplot as TinyChartBoxplot } from '@opentiny/vue'
 import { ref } from 'vue'
 
 function makeData() {
@@ -61,15 +61,15 @@ const options = ref({
     },
     {
       fromDatasetIndex: 0,
-      transform: { 'type': 'boxplot' }
+      transform: { type: 'boxplot' }
     },
     {
       fromDatasetIndex: 1,
-      transform: { 'type': 'boxplot' }
+      transform: { type: 'boxplot' }
     },
     {
       fromDatasetIndex: 2,
-      transform: { 'type': 'boxplot' }
+      transform: { type: 'boxplot' }
     }
   ],
   series: [

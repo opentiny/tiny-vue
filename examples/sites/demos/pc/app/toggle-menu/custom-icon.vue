@@ -3,12 +3,12 @@
 </template>
 
 <script lang="jsx">
-import { ToggleMenu } from '@opentiny/vue'
+import { TinyToggleMenu } from '@opentiny/vue'
 import { IconDoubleRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyToggleMenu: ToggleMenu
+    TinyToggleMenu
   },
   data() {
     return {

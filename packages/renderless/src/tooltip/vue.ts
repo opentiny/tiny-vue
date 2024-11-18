@@ -143,6 +143,7 @@ export const renderless = (
   onUnmounted(() => {
     api.destroyed()
     api.observer && api.observer.disconnect()
+    vm.$off('tooltip-update')
   })
 
   return api

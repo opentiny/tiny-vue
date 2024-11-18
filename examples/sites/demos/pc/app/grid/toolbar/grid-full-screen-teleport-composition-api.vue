@@ -15,7 +15,7 @@
 <script setup>
 import { Teleport as TinyTeleport } from '@opentiny/vue-common'
 import { ref, nextTick } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 const isFullscreen = ref(false)
 const fullscreenStyle = ref('')

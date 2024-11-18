@@ -119,7 +119,7 @@ export default {
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'Show bottom or not',
+          pcDemo: 'footer-slot',
           mfDemo: ''
         },
         {
@@ -172,7 +172,7 @@ export default {
         {
           name: 'height',
           type: 'string',
-          defaultValue: "'500px'",
+          defaultValue: "'100vh'",
           desc: {
             'zh-CN': '设置抽屉的高度',
             'en-US': 'Set the height of the drawer'

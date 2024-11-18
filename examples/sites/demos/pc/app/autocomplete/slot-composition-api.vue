@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 import { iconEdit, iconAssociation } from '@opentiny/vue-icon'
 
 const restaurants = ref([])

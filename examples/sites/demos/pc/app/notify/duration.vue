@@ -6,15 +6,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Notify } from '@opentiny/vue'
+import { TinyButton, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     successClick() {
-      Notify({
+      TinyNotify({
         type: 'success',
         title: '通知消息的标题',
         message: '500ms 后自动关闭提示框',
@@ -23,7 +23,7 @@ export default {
       })
     },
     errorClick() {
-      Notify({
+      TinyNotify({
         type: 'error',
         title: '通知消息的标题',
         message: '5000ms 后自动关闭提示框',

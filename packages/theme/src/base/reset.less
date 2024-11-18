@@ -152,18 +152,6 @@
     display: none;
   }
 
-  .popper__arrow {
-    &,
-    &:after {
-      position: absolute;
-      display: block;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-    }
-  }
-
   @media (min-width: 768px) {
     ::-webkit-scrollbar {
       width: var(--tv-size-scrollbar-width);
@@ -185,6 +173,74 @@
 
     ::-webkit-scrollbar-thumb:active {
       background: var(--tv-color-bg-scrollbar-thumb-active);
+    }
+  }
+}
+
+// 没有箭头的场景， select/ userlink /roles/ dept 等默认距离4 px
+.tiny-popper {
+  &[x-placement^='top'] {
+    margin-bottom: 4px;
+  }
+
+  &[x-placement^='bottom'] {
+    margin-top: 4px;
+  }
+
+  &[x-placement^='right'] {
+    margin-left: 4px;
+  }
+
+  &[x-placement^='left'] {
+    margin-right: 4px;
+  }
+}
+
+// 有箭头的场景，统一规范所有样式
+.tiny-popconfirm-popover:has(.popper__arrow),
+.tiny-popper:has(.popper__arrow),
+.tiny-tooltip__popper:has(.popper__arrow) {
+  .popper__arrow {
+    position: absolute;
+    display: block;
+    // 原来是用border来模拟三角形的，现在是通过div模拟，所以将border-width赋值给div的width.
+    width: 12px;
+    height: 20px;
+    background-color: #fff; // popover,dropdown 都是只有白色。 tooltip的颜色是自己覆盖的
+    transform: rotateZ(45deg);
+    border-radius: 2px;
+    z-index: -1;
+  }
+
+  &[x-placement^='top'] {
+    margin-bottom: 12px;
+
+    .popper__arrow {
+      bottom: -7px;
+    }
+  }
+
+  &[x-placement^='bottom'] {
+    margin-top: 12px;
+
+    .popper__arrow {
+      top: -7px;
+    }
+  }
+
+  &[x-placement^='right'] {
+    margin-left: 12px;
+
+    .popper__arrow {
+      left: -3px;
+    }
+  }
+
+  &[x-placement^='left'] {
+    margin-right: 12px;
+
+    .popper__arrow {
+      right: -3px;
     }
   }
 }

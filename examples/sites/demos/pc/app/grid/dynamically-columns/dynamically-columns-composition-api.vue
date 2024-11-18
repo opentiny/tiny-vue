@@ -29,10 +29,10 @@
 
 <script setup lang="jsx">
 import { ref, onMounted } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, DatePicker as TinyDatePicker, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDatePicker, TinyPager } from '@opentiny/vue'
 
 const pagerConfig = ref({
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 5,
@@ -222,3 +222,9 @@ function getMonthBetween(start, end) {
   return result
 }
 </script>
+
+<style scoped>
+:deep(.tiny-picker) {
+  width: 300px;
+}
+</style>

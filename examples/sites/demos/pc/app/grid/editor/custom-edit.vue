@@ -25,19 +25,19 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Input, Select, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinySelect, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   methods: {
     renderInput(field) {
       return (h, { row }) =>
         row.editing
-          ? h(Input, {
+          ? h(TinyInput, {
               props: { modelValue: row[field] },
               on: { 'update:modelValue': (value) => (row[field] = value) }
             })
@@ -46,7 +46,7 @@ export default {
     renderSelect(field) {
       return (h, { row }) =>
         row.editing
-          ? h(Select, {
+          ? h(TinySelect, {
               props: { modelValue: row[field], options: this.options, textField: 'label', valueField: 'value' },
               on: { 'update:modelValue': (value) => (row[field] = value) }
             })

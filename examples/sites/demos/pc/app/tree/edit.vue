@@ -8,24 +8,17 @@
     <tiny-button @click="editNode">编辑节点</tiny-button>
     <tiny-button @click="saveNode">5s后保存节点</tiny-button> <br />
     <br />
-    <tiny-tree
-      ref="treeRef"
-      show-checkbox
-      node-key="id"
-      :data="data"
-      current-node-key="1"
-      default-expand-all
-    ></tiny-tree>
+    <tiny-tree ref="treeRef" node-key="id" :data="data" current-node-key="1" default-expand-all></tiny-tree>
   </div>
 </template>
 
 <script>
-import { Tree, Button } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyButton: Button
+    TinyTree,
+    TinyButton
   },
   data() {
     return {

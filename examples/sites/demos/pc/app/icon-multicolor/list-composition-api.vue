@@ -18,7 +18,7 @@
 
 <script setup>
 import MultiColorSvgsList from '@opentiny/vue-icon-multicolor'
-import { Modal } from '@opentiny/vue'
+import { TinyModal } from '@opentiny/vue'
 
 const tinyIconMulticolor = [
   'ColorIconActivitys',
@@ -81,7 +81,7 @@ function click(name) {
   input.select()
   document.execCommand('Copy')
   document.body.removeChild(input)
-  Modal.message({
+  TinyModal.message({
     message: `成功复制图标名称 ${name} `,
     status: 'info'
   })

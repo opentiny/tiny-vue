@@ -34,7 +34,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 const toolbarButtons = ref([
   {
@@ -102,7 +102,7 @@ const tableData = ref([
 ])
 
 function currentChange({ row }) {
-  Modal.message({ message: `${row.name}`, status: 'info' })
+  TinyModal.message({ message: `${row.name}`, status: 'info' })
 }
 
 function toolbarButtonClickEvent({ code, $grid }) {

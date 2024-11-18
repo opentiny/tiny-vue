@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Carousel, CarouselItem } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCarousel: Carousel,
-    TinyCarouselItem: CarouselItem
+    TinyCarousel,
+    TinyCarouselItem
   },
   data() {
     return {

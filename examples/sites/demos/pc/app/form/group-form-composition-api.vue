@@ -36,14 +36,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Button as TinyButton,
-  Modal,
-  Radio as TinyRadio
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal, TinyRadio } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 
 const createData = reactive({
@@ -76,7 +69,7 @@ function handleSubmit() {
   Promise.all([validForm(groupForm1Ref), validForm(groupForm2Ref)]).then((res) => {
     const [valid1, valid2] = res
     if (valid1 && valid2) {
-      Modal.alert('提交成功！')
+      TinyModal.alert('提交成功！')
     }
   })
 }

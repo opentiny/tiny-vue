@@ -1,22 +1,22 @@
 <template>
   <tiny-tabs tab-style="card" :editable="false" :with-add="true" @add="handleadd" style="width: 500px" show-more-tabs>
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
 </template>
 
 <script>
-import { Tabs, TabItem, Modal } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
-      Tabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -35,12 +35,12 @@ export default {
   methods: {
     handleadd() {
       // 如果tabItem数量小于指定值就可以新增
-      if (this.Tabs.length < this.maxCount) {
+      if (this.tabs.length < this.maxCount) {
         const name = `${++this.tabIndex}`
         const title = `Tab ++ ${name}`
-        this.Tabs.push({ title, name, content: '动态增加tabitem - ' + name })
+        this.tabs.push({ title, name, content: '动态增加tabitem - ' + name })
       } else {
-        Modal.message('tabitem数量已到最大值')
+        TinyModal.message('tabitem数量已到最大值')
       }
     }
   }

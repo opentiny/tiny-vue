@@ -9,12 +9,12 @@
 </template>
 
 <script lang="jsx">
-import { Radio, Modal, Button } from '@opentiny/vue'
+import { TinyRadio, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyButton: Button
+    TinyRadio,
+    TinyButton
   },
   data() {
     return {
@@ -46,13 +46,13 @@ export default {
 
       switch (this.value) {
         case 'message':
-          method = Modal.message
+          method = TinyModal.message
           break
         case 'confirm':
-          method = Modal.confirm
+          method = TinyModal.confirm
           break
         case 'alert':
-          method = Modal.alert
+          method = TinyModal.alert
           break
       }
 

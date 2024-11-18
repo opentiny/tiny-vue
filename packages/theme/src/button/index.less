@@ -8,7 +8,8 @@
 .@{button-prefix-cls} {
   .inject-Button-vars();
 
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   appearance: none;
   text-align: center;
   white-space: nowrap;
@@ -258,6 +259,9 @@
   &.is-only-icon.is-only-icon {
     // 只有default主题的边框色和 hover 边框色 是和主题色相反的。其它都随主题的色。
     // 仅图标的plain场景，无对应示例，不处理。
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     &.@{button-prefix-cls}--default {
       border-color: var(--tv-Button-border-color-only-icon-default);
 

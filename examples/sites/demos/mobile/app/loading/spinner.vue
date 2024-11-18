@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 import { iconLoading } from '@opentiny/vue-icon'
 
 export default {
   mounted() {
-    Loading.service({
+    TinyLoading.service({
       spinner: iconLoading(),
       text: '自定义 loading 图标',
       target: document.getElementById('demo-loading'),

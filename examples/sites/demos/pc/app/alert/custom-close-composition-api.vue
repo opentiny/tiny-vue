@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Alert as TinyAlert, Switch as TinySwitch, Notify } from '@opentiny/vue'
+import { TinyAlert, TinySwitch, TinyNotify } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 const show = ref(true)
@@ -22,7 +22,7 @@ const show = ref(true)
 const TinyIconCloseCircle = iconCloseCircle()
 
 const close = () => {
-  Notify({
+  TinyNotify({
     type: 'success',
     message: '触发关闭事件',
     position: 'top-right',

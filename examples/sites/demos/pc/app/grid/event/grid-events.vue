@@ -11,12 +11,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     cellClickEvent({ column }) {
-      Modal.message({ message: `单元格点击${column.title}`, status: 'info' })
+      TinyModal.message({ message: `单元格点击${column.title}`, status: 'info' })
     }
   }
 }

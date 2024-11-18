@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Calendar } from '@opentiny/vue'
+import { TinyCalendar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendar: Calendar
+    TinyCalendar
   },
   data() {
     return {

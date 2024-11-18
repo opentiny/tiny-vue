@@ -45,16 +45,16 @@
 </template>
 
 <script>
-import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyLayout,
+    TinyRow,
+    TinyCol,
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>

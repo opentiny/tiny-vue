@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { Tag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 import { IconHeartempty } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTag: Tag,
+    TinyTag,
     TinyIconHeartempty: IconHeartempty()
   }
 }

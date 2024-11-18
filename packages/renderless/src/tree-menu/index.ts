@@ -10,6 +10,7 @@
  *
  */
 import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITreeMenuNewData } from '@/types'
+import { xss } from '../common/xss'
 
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
@@ -118,7 +119,11 @@ export const check = (emit) => (data, checkedStatus) => {
   emit('check', data, checkedStatus)
 }
 
-export const currentChange = (emit) => (data, node) => {
+export const currentChange = (emit) => (data, node, e) => {
+  if (data && data.url && e.target.nodeName !== 'A' && e.target.nodeName !== 'SPAN') {
+    window.open(xss.filterUrl(data.url), '_self').opener = null
+  }
+
   emit('current-change', data, node)
 }
 

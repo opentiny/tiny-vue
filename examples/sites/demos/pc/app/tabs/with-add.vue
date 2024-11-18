@@ -7,23 +7,23 @@
     show-more-tabs
     popper-class="custom-class"
   >
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, Modal } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
-      Tabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -40,12 +40,12 @@ export default {
   },
   methods: {
     handleAdd() {
-      Modal.message({
+      TinyModal.message({
         message: '动态增加 Tab ++',
         status: 'success'
       })
 
-      this.Tabs.push({
+      this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加tabitem'

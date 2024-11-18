@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 
@@ -28,12 +28,12 @@ const showDrawer = () => {
 }
 
 const onOpen = () => {
-  Modal.message({ message: '打开事件', status: 'info' })
+  TinyModal.message({ message: '打开事件', status: 'info' })
 }
 const onClose = () => {
-  Modal.message({ message: '关闭事件', status: 'info' })
+  TinyModal.message({ message: '关闭事件', status: 'info' })
 }
 const onConfirm = () => {
-  Modal.message({ message: '确定事件', status: 'info' })
+  TinyModal.message({ message: '确定事件', status: 'info' })
 }
 </script>

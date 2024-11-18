@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu, RadioGroup as TinyRadioGroup, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyTreeMenu, TinyRadioGroup, TinyRadio } from '@opentiny/vue'
 
 const highlightQuery = ref('hide')
 

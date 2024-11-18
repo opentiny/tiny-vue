@@ -3,20 +3,20 @@
 </template>
 
 <script lang="ts">
-import { RichTextEditor } from '@opentiny/vue'
+import { TinyRichTextEditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRichTextEditor: RichTextEditor
+    TinyRichTextEditor
   },
   data() {
     return {
       options: {
         content: '自定义options，覆盖默认options',
         autofocus: true,
-        editable: true,
+        editable: true
       }
     }
-  },
+  }
 }
 </script>

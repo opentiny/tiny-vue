@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tiny-grid :columns="columnsData" :data="tableData" ref="theGridRef"> </tiny-grid>
+    <tiny-grid :columns="columnsData" :data="tableData" ref="theGridRef" show-overflow="tooltip"> </tiny-grid>
   </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid } from '@opentiny/vue'
+import { TinyGrid } from '@opentiny/vue'
 
 const tableData = ref([
   {

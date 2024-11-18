@@ -34,14 +34,14 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -80,7 +80,7 @@ export default {
     handleSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          TinyModal.alert('提交成功')
         }
       })
     }

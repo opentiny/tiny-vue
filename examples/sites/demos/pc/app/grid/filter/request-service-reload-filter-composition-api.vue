@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const tableData = ref([
@@ -85,7 +85,7 @@ const nameFilter = {
   defaultFilter: true
 }
 const pagerConfig = {
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 5,

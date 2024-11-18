@@ -12,7 +12,7 @@
 
 .inject-Grid-vars() {
   // 表格字号
-  --tv-Grid-font-size: var(--tv-font-size-md);
+  --tv-Grid-font-size: var(--tv-font-size-default);
   // 表格行高
   --tv-Grid-line-height: var(--tv-line-height-number);
   // 表格文本色
@@ -124,6 +124,8 @@
   --tv-Grid-radio-icon-color-selected: var(--tv-color-bg-active-control);
   // 单选框禁用颜色
   --tv-Grid-radio-icon-color-disabled: var(--tv-color-bg-disabled);
+  // 单选框禁用边框色
+  --tv-Grid-radio-border-color-disabled: var(--tv-color-border-disabled);
   // -------筛选相关样式-------
   // 筛选一般背景色
   --tv-Grid-filter-bg-color: var(--tv-color-bg);
@@ -132,7 +134,7 @@
   // 筛选输入框悬浮边框颜色
   --tv-Grid-filter-input-border-color-hover: var(--tv-color-border-hover);
   // 筛选输入框边框圆角
-  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-default);
   // -------工具栏相关样式-------
   // 工具栏垂直边距
   --tv-Grid-toolbar-padding-y: var(--tv-space-xl);
@@ -145,7 +147,7 @@
   // 工具栏图标按钮悬浮边框色
   --tv-Grid-toolbar-btn-icon-border-color-hover: var(--tv-color-border-hover);
   // 工具栏图标按钮边框圆角
-  --tv-Grid-toolbar-btn-icon-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-toolbar-btn-icon-border-radius: var(--tv-border-radius-default);
   // -------mini/small表格-------
   // mini表格单元格水平内边距
   --tv-Grid-cell-padding-x-mini: 16px;
@@ -159,9 +161,9 @@
   // 树节点图标右侧内边距
   --tv-Grid-tree-expand-icon-padding-right: var(--tv-space-md);
   // 内置输入框高度
-  --tv-Grid-input-height: var(--tv-size-height-md);
+  --tv-Grid-input-height: var(--tv-size-height-default);
   // 内置输入框边框圆角
-  --tv-Grid-input-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-input-border-radius: var(--tv-border-radius-default);
   // 内置输入框悬浮边框颜色
   --tv-Grid-input-border-color-hover: var(--tv-color-border-hover);
   // 表格无数据背景图片

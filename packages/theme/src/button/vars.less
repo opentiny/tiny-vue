@@ -28,9 +28,9 @@
 
   //--------------------------------------------------- 场景2、尺寸  height, font-size,padding-x,min-width,仅图标时的 icon-size
   // 默认时按钮字号
-  --tv-Button-font-size: var(--tv-font-size-md);
+  --tv-Button-font-size: var(--tv-font-size-default);
   // 默认时按钮高度
-  --tv-Button-height: var(--tv-size-height-md);
+  --tv-Button-height: var(--tv-size-height-default);
   // 默认时按钮水平间距
   --tv-Button-padding-x: 24px; // space变量不存在，是否替换成 space-base * 6 这种？
   // 默认时按钮最小宽度
@@ -38,7 +38,7 @@
   // 默认时按钮内图标的大小
   --tv-Button-size-icon-font-size: 18px;
   // 超大按钮字号
-  --tv-Button-font-size-large: var(--tv-font-size-md);
+  --tv-Button-font-size-large: var(--tv-font-size-default);
   // 超大按钮高度
   --tv-Button-height-large: var(--tv-size-height-xl);
   // 超大按钮水平间距
@@ -48,7 +48,7 @@
   // 超大按钮内图标的大小
   --tv-Button-size-icon-font-size-large: 28px;
   // 中等按钮字号
-  --tv-Button-font-size-medium: var(--tv-font-size-md);
+  --tv-Button-font-size-medium: var(--tv-font-size-default);
   // 中等按钮高度
   --tv-Button-height-medium: var(--tv-size-height-lg);
   // 中等按钮水平间距
@@ -66,7 +66,7 @@
   // 小型按钮最小宽度
   --tv-Button-min-width-small: 72px;
   // 小型按钮内图标的大小
-  --tv-Button-size-icon-font-size-small: 14px;
+  --tv-Button-size-icon-font-size-small: 16px;
   // 超小按钮字号
   --tv-Button-font-size-mini: var(--tv-font-size-sm);
   // 超小按钮高度
@@ -150,35 +150,35 @@
   // primary 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-primary: var(--tv-color-act-primary-bg-white);
   // primary 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-primary: var(--tv-color-act-primary-border-active);
+  --tv-Button-border-color-plain-primary: var(--tv-color-act-primary-border-light);
 
   // success 主题时按钮朴素文本色
   --tv-Button-text-color-plain-success: var(--tv-color-act-success-text);
   // success 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-light);
   // success 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-active-1);
+  --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-light);
 
   // warning 主题时按钮朴素文本色
   --tv-Button-text-color-plain-warning: var(--tv-color-act-warning-text);
   // warning 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-warning: var(--tv-color-act-warning-bg-light);
   // warning 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-warning: var(--tv-color-act-warning-border-active-1);
+  --tv-Button-border-color-plain-warning: var(--tv-color-act-warning-border-light);
 
   // danger 主题时按钮朴素文本色
   --tv-Button-text-color-plain-danger: var(--tv-color-act-danger-text);
   // danger 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-danger: var(--tv-color-act-danger-bg-light);
   // danger 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-active-1);
+  --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-light);
 
   // info 主题时按钮朴素文本色
   --tv-Button-text-color-plain-info: var(--tv-color-act-info-text);
   // info 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-info: var(--tv-color-act-info-bg-light);
   // info 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-active-1);
+  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-light);
 
   // 幽灵态和plain是平级的关系. 如果同时存在，优先级不能保证稳定。
 
@@ -310,7 +310,7 @@
   // 仅图标且default主题时， 外边框的悬浮色
   --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-secondary);
   // 仅图标且有边框时，边框的圆角大
-  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md);
+  --tv-Button-border-radius-only-icon: var(--tv-border-radius-default);
 
   // 仅图标且无边框时，背景阴影的圆角
   --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm);
@@ -324,7 +324,7 @@
   // 纯文字时，文字的禁用色
   --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled);
   //  纯文字时，字体大小
-  --tv-Button-font-size-ontext: var(--tv-font-size-md);
+  --tv-Button-font-size-ontext: var(--tv-font-size-default);
 
   // 混排有边框和无边框时，图标右边距
   --tv-Button-margin-right-isicon-svg: var(--tv-space-sm);
@@ -334,7 +334,7 @@
   // 混排无边框时,文字的禁用色
   --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled);
   //混排无边框时，字体大小
-  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md);
+  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-default);
 
   //------------------------------------------------------ 场景5、 其它场景-----------------------------------------
   // 相邻按钮的默认的左外边距

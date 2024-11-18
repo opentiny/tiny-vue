@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { Area } from '@opentiny/vue'
+import { TinyArea } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyArea: Area
+    TinyArea
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
           id: '3623',
           id_and_type: '3623JCR',
           parent_and_type: null,
-          name: 'A公司 Marketing与销售服务部',
+          name: 'A公司销售服务部',
           date_from: '2005/06/21 00:00:00',
           name_en: 'Consumer BG Marketing and Sales Service Dept',
           parent_type: null,
@@ -43,7 +43,7 @@ export default {
           id: '650561',
           id_and_type: '650561JCR',
           parent_and_type: null,
-          name: 'A公司 Marketing与销售服务部（东莞）',
+          name: 'A公司销售服务部（东莞）',
           date_from: '2012/09/27 00:00:00',
           name_en: 'Consumer BG Marketing and Sales Service Dept (Dongguan)',
           parent_type: null,

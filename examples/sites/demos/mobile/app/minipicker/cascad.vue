@@ -17,14 +17,14 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, MiniPicker } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyMiniPicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMiniPicker: MiniPicker,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input
+    TinyMiniPicker,
+    TinyForm,
+    TinyFormItem,
+    TinyInput
   },
   data() {
     return {

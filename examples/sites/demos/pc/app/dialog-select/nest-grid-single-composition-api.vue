@@ -42,12 +42,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import {
-  DialogSelect as TinyDialogSelect,
-  Button as TinyButton,
-  Search as TinySearch,
-  Select as TinySelect
-} from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [

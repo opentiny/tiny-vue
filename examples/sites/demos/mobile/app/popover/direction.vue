@@ -32,7 +32,7 @@
 </template>
 
 <script lang="jsx">
-import { Popover } from '@opentiny/vue'
+import { TinyPopover } from '@opentiny/vue'
 
 export default {
   data() {
@@ -90,7 +90,7 @@ export default {
     }
   },
   components: {
-    TinyPopover: Popover
+    TinyPopover
   },
   methods: {
     itemClick(item) {

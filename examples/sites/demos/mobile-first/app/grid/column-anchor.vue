@@ -63,14 +63,14 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Radio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyRadio } from '@opentiny/vue'
 import { IconMarkOn } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyRadio: Radio,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyRadio,
+    TinyGridColumn
   },
   data() {
     return {
@@ -106,6 +106,7 @@ export default {
           ]
         ]
       ],
+
       tableData: [
         {
           id: '1',

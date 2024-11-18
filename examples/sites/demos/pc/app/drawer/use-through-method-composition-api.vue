@@ -6,7 +6,7 @@
 
 <script lang="tsx" setup>
 import { ref } from 'vue'
-import { Drawer, Button as TinyButton } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, Notify } from '@opentiny/vue'
 import { iconHelp } from '@opentiny/vue-icon'
 
 let drawerInstance = null
@@ -24,15 +24,26 @@ const config = ref({
   showFooter: true,
   // 通过 events 监听事件
   events: {
-    open: (instance) => console.log('open 事件', instance),
-    close: () => console.log('close 事件')
+    open: (instance) =>
+      Notify({
+        type: 'info',
+        title: 'open 事件',
+        message: `${instance.title}`,
+        position: 'top-right'
+      }),
+    close: () =>
+      Notify({
+        type: 'info',
+        title: 'close 事件',
+        position: 'top-right'
+      })
   },
   // 通过属性 customSlots 设置插槽, 插槽内容可以是 string | VNode | ({h, $drawer}) => VNode
   customSlots: {
     // 使用 h 函数
     default: (h) => h('p', { class: '' }, '抽屉主体内容。'),
     // 返回 VNode 节点的方法, 可通过参数中 $drawer 访问到组件实例
-    headerRight: () => <IconHelp></IconHelp>,
+    headerRight: () => <IconHelp style="width:20px;height:20px"></IconHelp>,
     // 直接赋值 VNode
     footer: (
       <TinyButton type="primary" onClick={closeDrawer}>
@@ -42,6 +53,6 @@ const config = ref({
   }
 })
 const showDrawer = () => {
-  drawerInstance = Drawer.service(config.value)
+  drawerInstance = TinyDrawer.service(config.value)
 }
 </script>

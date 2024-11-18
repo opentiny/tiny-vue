@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsPie as TinyChartPie, Modal as TinyModal } from '@opentiny/vue'
+import { TinyHuichartsPie as TinyChartPie, TinyModal } from '@opentiny/vue'
 
 const options = ref({
   type: 'pie',

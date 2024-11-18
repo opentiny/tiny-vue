@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const value = ref('')
 const dateTimeValue = ref('')
@@ -31,12 +31,7 @@ const defaultTimeRange = ref(['09:00:00', '18:00:00'])
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
-
-  :deep(.tiny-date-editor--datetimerange.tiny-input__inner) {
-    width: 360px;
-  }
-
+  width: 360px;
   & > * {
     margin-top: 12px;
   }

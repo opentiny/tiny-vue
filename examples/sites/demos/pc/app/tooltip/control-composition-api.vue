@@ -57,7 +57,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tooltip as TinyTooltip, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyTooltip, TinySwitch } from '@opentiny/vue'
 
 const visible = ref(false)
 const manualShow = ref(false)

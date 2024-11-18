@@ -19,12 +19,12 @@ export default function extendComponentModel() {
     },
 
     setCenterAndZoom(center, zoom) {
-      this.option.center = center
-      this.option.zoom = zoom
+      this.huiChartOption.center = center
+      this.huiChartOption.zoom = zoom
     },
 
     centerOrZoomChanged(center, zoom) {
-      let option = this.option
+      let option = this.huiChartOption
       return !(equal(center, option.center) && zoom === option.zoom)
     },
 

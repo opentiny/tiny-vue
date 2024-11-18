@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsRing as TinyChartRing } from '@opentiny/vue'
+import { TinyHuichartsRing as TinyChartRing } from '@opentiny/vue'
 
 const options = ref({
   tipHtml: (params, ticket, callback) => {

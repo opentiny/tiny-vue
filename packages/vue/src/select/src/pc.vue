@@ -33,12 +33,7 @@
         state.inputHovering = false
       }
     "
-    @mouseenter.self="
-      () => {
-        state.selectHover = true
-        state.inputHovering = true
-      }
-    "
+    @mouseenter.self="onMouseenterSelf"
     @click="toggleMenu"
     v-clickoutside="handleClose"
   >
@@ -156,6 +151,7 @@
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
+                  only-icon
                   :closable="false"
                   :size="state.collapseTagSize"
                   @click="onClickCollapseTag($event)"
@@ -227,7 +223,8 @@
             >
               <span>
                 <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot>
+                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
+                  >;
                 </span>
               </span>
 
@@ -292,11 +289,14 @@
           :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
+          :show-empty-value="showEmptyValue"
           :inputBoxType="inputBoxType"
           :class="{
             'is-focus': state.visible,
             overflow: state.overflow,
-            'is-show-close': state.showClose
+            'is-show-close': state.showClose,
+            'show-copy': copyable,
+            'show-clear': clearable
           }"
           :tabindex="multiple && filterable ? '-1' : tabindex"
           @focus="handleFocus"
@@ -455,7 +455,6 @@
               <tiny-recycle-scroller
                 ref="scrollbar"
                 style="height: 100%"
-                :key="state.magicKey"
                 :key-field="valueField"
                 :list-class="['tiny-select-dropdown__wrap']"
                 :item-class="['tiny-select-dropdown__item-view']"
@@ -502,7 +501,7 @@
             <slot name="dropdown"></slot>
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
-              class="tiny-option tiny-select-dropdown__item"
+              class="tiny-option tiny-option_all tiny-select-dropdown__item"
               data-tag="tiny-option"
               :class="[
                 {
@@ -771,6 +770,8 @@ export default defineComponent({
     'initLabel',
     'blank',
     'tooltipConfig',
+    'showEmptyValue',
+    'stopPropagation',
     // 以下为 tiny 新增
     'searchable',
     'showEmptyImage',

@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker, Modal } from '@opentiny/vue'
+import { TinyDatePicker, TinyModal } from '@opentiny/vue'
 import tzData from '@opentiny/vue-renderless/picker/timezone'
 
 const timezoneValue = ref('')
@@ -39,12 +39,12 @@ const value = ref('')
 const referenceDate = ref('2020-10-28T00:00:00.000+0800')
 
 function selectChange(tz) {
-  Modal.message({ message: `当前值为 ${tz.tz.name}`, status: 'info' })
+  TinyModal.message({ message: `当前值为 ${tz.tz.name}`, status: 'info' })
 }
 </script>
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 </style>

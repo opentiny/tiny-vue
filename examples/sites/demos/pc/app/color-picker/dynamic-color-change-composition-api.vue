@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ColorPicker as TinyColorPicker, Button as TinyButton } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const color = ref('#66ccff')

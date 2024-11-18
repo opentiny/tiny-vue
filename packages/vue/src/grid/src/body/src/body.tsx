@@ -134,7 +134,8 @@ function buildColumnProps(args) {
 
 function buildColumnChildren(args) {
   let { h, hasDefaultTip, params, row, validError, column, $table } = args
-  let { showEllipsis, showTip, showTitle, showTooltip, validStore, dropConfig } = args
+  let { showEllipsis, showTip, showTitle, showTooltip, validStore } = args
+  const dropConfig = args.dropConfig || {}
   const { validOpts } = $table
   let cellNode: any[] = []
   let validNode: any = null

@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { CascaderPanel as TinyCascaderPanel } from '@opentiny/vue'
+import { TinyCascaderPanel } from '@opentiny/vue'
 
 const value = ref([
   ['zhinan', 'anzhuang', 'xiangmudengji'],

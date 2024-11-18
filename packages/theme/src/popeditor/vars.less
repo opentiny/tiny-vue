@@ -12,7 +12,7 @@
 
 .inject-Popeditor-vars() {
   // 默认字号大小
-  --tv-Popeditor-font-size: var(--tv-font-size-md);
+  --tv-Popeditor-font-size: var(--tv-font-size-default);
   // 输入框右侧默认图标色
   --tv-Popeditor-icon-color: var(--tv-color-icon);
   // 输入框右侧禁用图标色
@@ -20,9 +20,9 @@
   // 输入框右侧默认图标悬浮色
   --tv-Popeditor-icon-color-hover: var(--tv-color-icon-hover);
   // 输入框右侧默认图标字号
-  --tv-Popeditor-icon-font-size: var(--tv-font-size-md);
+  --tv-Popeditor-icon-font-size: var(--tv-font-size-default);
   // 输入框右侧默认图标高度
-  --tv-Popeditor-icon-height: var(--tv-size-height-md);
+  --tv-Popeditor-icon-height: var(--tv-size-height-default);
   // 输入框右侧默认图标行高
   --tv-Popeditor-icon-line-height: var(--tv-Popeditor-icon-height);
   // 弹出框头部标题选中文本色和边框色
@@ -39,4 +39,8 @@
   --tv-Popeditor-tabs-text-color: var(--tv-color-text);
   // 弹出表格搜索项左侧标签文本默认宽度
   --tv-Popeditor-search-item-width: 80px;
+  // 弹出表格搜索项右侧内间距
+  --tv-Popeditor-search-item-padding-right: var(--tv-space-sm, 4px);
+  // 弹出表格搜索项左侧内间距
+  --tv-Popeditor-search-item-padding-left: var(--tv-space-sm, 4px);
 }

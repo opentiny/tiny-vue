@@ -20,7 +20,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Search as TinySearch, Modal } from '@opentiny/vue'
+import { TinySearch, TinyModal } from '@opentiny/vue'
 
 const searchTypes = ref([
   {
@@ -38,22 +38,22 @@ const searchTypes = ref([
 ])
 
 function search(key, value) {
-  Modal.message({ message: `search: ${value}`, status: 'info' })
+  TinyModal.message({ message: `search: ${value}`, status: 'info' })
 }
 
 function change(key, value) {
-  Modal.message({ message: `change: ${value}`, status: 'info' })
+  TinyModal.message({ message: `change: ${value}`, status: 'info' })
 }
 
 function clear() {
-  Modal.message({ message: 'clear', status: 'info' })
+  TinyModal.message({ message: 'clear', status: 'info' })
 }
 
 function input(key, value) {
-  Modal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
+  TinyModal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
 }
 
 function select(value) {
-  Modal.message({ message: `${value.text}`, status: 'info' })
+  TinyModal.message({ message: `${value.text}`, status: 'info' })
 }
 </script>

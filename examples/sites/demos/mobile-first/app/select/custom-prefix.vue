@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import { Select, Option } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 import { IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option,
+    TinySelect,
+    TinyOption,
     IconShare: IconShare()
   },
   data() {

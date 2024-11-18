@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 const defaultValue = ref('2020-02-10 18:40')
 const value = ref('')
@@ -25,7 +25,7 @@ const rangeValue = ref('')
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 }
 p {
   font-size: 14px;

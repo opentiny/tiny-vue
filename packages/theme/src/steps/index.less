@@ -127,7 +127,6 @@
     margin: 0 1px;
     height: 32px;
     display: flex;
-    border-radius: 2px;
     overflow: hidden;
     cursor: pointer;
     color: var(--tv-Steps-text-color);
@@ -636,7 +635,7 @@
 
       &.block-mini {
         .title,
-        .description,
+        .description.not-vertical,
         .line-footer {
           max-width: 150px;
         }
@@ -692,7 +691,7 @@
         }
       }
 
-      .description,
+      .description.not-vertical,
       .line-footer {
         line-height: 1.5;
         margin-left: calc(var(--tv-Steps-node-circle-size) + var(--tv-Steps-text-margin-left));

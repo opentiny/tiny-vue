@@ -21,11 +21,11 @@
 </template>
 
 <script lang="jsx">
-import { Transfer } from '@opentiny/vue'
+import { TinyTransfer } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer
   },
   data() {
     const generateData = () => {

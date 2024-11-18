@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { LinkMenu } from '@opentiny/vue'
+import { TinyLinkMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLinkMenu: LinkMenu
+    TinyLinkMenu
   },
   data() {
     return {

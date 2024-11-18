@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Radio, RadioGroup, Modal } from '@opentiny/vue'
+import { TinyRadio, TinyRadioGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     change(val) {
-      Modal.message({ message: `当前变化的值：${val}`, status: 'info' })
+      TinyModal.message({ message: `当前变化的值：${val}`, status: 'info' })
     }
   }
 }

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Signature } from '@opentiny/vue'
+import { TinySignature } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySignature: Signature
+    TinySignature
   },
   mounted() {
     setTimeout(() => {

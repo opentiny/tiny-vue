@@ -8,7 +8,7 @@
     <tiny-grid-column
       field="id"
       title="名称（Popeditor）"
-      :editor="{ component: Popeditor, attrs: getPopEditorOp }"
+      :editor="{ component: TinyPopeditor, attrs: getPopEditorOp }"
       :format-config="{
         type: 'enum',
         async: true,
@@ -28,16 +28,16 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Popeditor } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopeditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Popeditor,
+      TinyPopeditor,
       popeditOptions: [],
       tableData: [
         {
@@ -89,7 +89,7 @@ export default {
             {
               field: 'id',
               title: 'ID',
-              width: 40
+              width: 60
             },
             {
               field: 'name',

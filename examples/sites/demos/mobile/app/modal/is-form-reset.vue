@@ -16,15 +16,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal, Notify, Form, FormItem, Input } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyNotify, TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input
+    TinyButton,
+    TinyModal,
+    TinyForm,
+    TinyFormItem,
+    TinyInput
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     closeClick() {
-      Notify({
+      TinyNotify({
         title: 'closeClick事件',
         message: '点击关闭按钮时触发事件',
         position: 'top-right'

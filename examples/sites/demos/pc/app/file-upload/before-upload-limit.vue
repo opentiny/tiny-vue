@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -33,7 +33,7 @@ export default {
         const allow = isJPG && isLt2M
 
         if (!allow) {
-          Modal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then(
+          TinyModal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then(
             (res) => {
               res === 'confirm' ? resolve() : reject(new Error('取消上传'))
             }

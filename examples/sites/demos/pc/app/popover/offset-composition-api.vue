@@ -38,7 +38,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Popover as TinyPopover, Button as TinyButton, Slider as TinySlider } from '@opentiny/vue'
+import { TinyPopover, TinyButton, TinySlider } from '@opentiny/vue'
 
 const show = ref(true)
 const arrowOffset = ref(true)

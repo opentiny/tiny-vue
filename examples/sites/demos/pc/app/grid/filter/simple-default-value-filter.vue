@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal, Input } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
         },
         simpleFilter: {
           searchConfig: {
-            component: Input
+            component: TinyInput
           }
         }
       }
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     filterChangeEvent({ filters }) {
-      Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+      TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
     }
   }
 }

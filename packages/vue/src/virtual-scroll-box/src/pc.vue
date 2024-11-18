@@ -1,8 +1,8 @@
 <template>
-  <div class="aui-virtual-scroll-box" :style="state.ctx.boxStyle" @scroll="onScroll">
-    <div class="aui-virtual-scroll-box__x-axis" :style="state.ctx.xAxisStyle"></div>
-    <div class="aui-virtual-scroll-box__y-axis" :style="state.ctx.yAxisStyle"></div>
-    <div class="aui-virtual-scroll-box__view" :style="state.ctx.viewStyle">
+  <div class="tiny-virtual-scroll-box" :style="state.ctx.boxStyle" @scroll="onScroll">
+    <div class="tiny-virtual-scroll-box__x-axis" :style="state.ctx.xAxisStyle"></div>
+    <div class="tiny-virtual-scroll-box__y-axis" :style="state.ctx.yAxisStyle"></div>
+    <div class="tiny-virtual-scroll-box__view" :style="state.ctx.viewStyle">
       <slot :params="state.slotParams"></slot>
     </div>
   </div>

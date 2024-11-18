@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const value = ref('')
 const dateTimeValue = ref('')
@@ -23,7 +23,7 @@ const yearValue = ref('')
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

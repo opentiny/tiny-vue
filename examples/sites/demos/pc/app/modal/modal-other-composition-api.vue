@@ -30,16 +30,9 @@
 </template>
 
 <script setup>
-import {
-  Button as TinyButton,
-  Modal,
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput
-} from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const TinyModal = Modal
 const show = ref(false)
 const options = ref({
   mask: true,
@@ -51,7 +44,7 @@ const createData = ref({
 })
 
 function btnClick() {
-  Modal.confirm({
+  TinyModal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,

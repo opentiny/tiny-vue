@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { TreeSelect, Input } from '@opentiny/vue'
+import { TinyTreeSelect, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeSelect: TreeSelect,
-    TinyInput: Input
+    TinyTreeSelect,
+    TinyInput
   },
   data() {
     return {

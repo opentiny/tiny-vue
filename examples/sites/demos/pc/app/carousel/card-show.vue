@@ -31,15 +31,15 @@
 </template>
 
 <script>
-import { Carousel, CarouselItem, Card, Button } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem, TinyCard, TinyButton } from '@opentiny/vue'
 import { IconChevronRight, IconChevronLeft } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCarousel: Carousel,
-    TinyCarouselItem: CarouselItem,
-    TinyCard: Card,
-    TinyButton: Button
+    TinyCarousel,
+    TinyCarouselItem,
+    TinyCard,
+    TinyButton
   },
   data() {
     return {

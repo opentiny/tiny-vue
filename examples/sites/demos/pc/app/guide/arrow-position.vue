@@ -22,13 +22,13 @@
 </template>
 
 <script>
-import { Alert, Button, Guide } from '@opentiny/vue'
+import { TinyAlert, TinyButton, TinyGuide } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinyButton: Button,
-    TinyGuide: Guide
+    TinyAlert,
+    TinyButton,
+    TinyGuide
   },
   data() {
     return {

@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { Popeditor, Modal } from '@opentiny/vue'
+import { TinyPopeditor, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     changeFn(val, data) {
-      Modal.message({
+      TinyModal.message({
         message: `值变为${val},${JSON.stringify(data)}`,
         status: 'info'
       })
@@ -126,19 +126,20 @@ export default {
           city: '深圳'
         }
       ]
+
       const offset = (val - 1) * this.pagerOp.pageSize
       this.gridOp.data = dataset.slice(offset, offset + this.pagerOp.pageSize)
     },
     handlePopup() {
       setTimeout(() => {
-        Modal.message({
+        TinyModal.message({
           message: 'popup 弹窗打开事件',
           status: 'info'
         })
       }, 0)
     },
     handleClose() {
-      Modal.message({
+      TinyModal.message({
         message: 'close 弹窗关闭事件',
         status: 'info'
       })

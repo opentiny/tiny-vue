@@ -117,13 +117,13 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input
+    TinyForm,
+    TinyFormItem,
+    TinyInput
   },
   data() {
     return {

@@ -10,8 +10,9 @@
       :visible="visible"
       @update:visible="visible = $event"
       @drag="drag"
+      height="600px"
     >
-      <div class="content">
+      <div>
         <p v-if="placement === 'right'">横向拖拽左边框可改变抽屉主体宽度。</p>
         <p v-else>竖向拖拽上边框可改变抽屉主体高度。</p>
       </div>
@@ -21,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 const visible = ref(false)
 const placement = ref('right')
@@ -32,12 +33,6 @@ const openDrawer = (target) => {
 }
 
 const drag = ({ width, height }) => {
-  Modal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
+  TinyModal.message({ message: `抽屉的宽为${width},高为${height}`, status: 'info' })
 }
 </script>
-
-<style scoped>
-.content {
-  height: 300px;
-}
-</style>

@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { Area, Notify } from '@opentiny/vue'
+import { TinyArea, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyArea: Area
+    TinyArea
   },
   data() {
     return {
@@ -22,19 +22,19 @@ export default {
   },
   methods: {
     changeRegion(value) {
-      Notify({
+      TinyNotify({
         message: '当前选择的 Region 为:' + value,
         position: 'top-right'
       })
     },
     changeRep(value) {
-      Notify({
+      TinyNotify({
         message: '当前选择的 Rep 为:' + value,
         position: 'top-right'
       })
     },
     changeOffice(value) {
-      Notify({
+      TinyNotify({
         message: '当前选择的 Office 为:' + value,
         position: 'top-right'
       })

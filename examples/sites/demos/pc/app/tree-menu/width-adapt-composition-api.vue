@@ -171,22 +171,3 @@ const data = [
   }
 ]
 </script>
-
-<!-- <template>
-  <tiny-tree-menu ></tiny-tree-menu>
-</template>
-
-<script>
-
-
-export default {
-  components: {
-    TinyTreeMenu: TreeMenu
-  },
-  data() {
-    return {
-      treeData: 
-    }
-  }
-}
-</script> -->

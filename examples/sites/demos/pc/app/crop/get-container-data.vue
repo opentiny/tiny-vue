@@ -7,12 +7,12 @@
 </template>
 
 <script lang="jsx">
-import { Crop, Button, Modal } from '@opentiny/vue'
+import { TinyCrop, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getContainerData() {
-      Modal.message({
+      TinyModal.message({
         message: `容器数据：${JSON.stringify(this.$refs.crop.getContainerData())}`,
         status: 'info'
       })

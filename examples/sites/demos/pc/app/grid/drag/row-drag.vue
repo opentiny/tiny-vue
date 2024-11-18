@@ -17,13 +17,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -95,13 +95,13 @@ export default {
   },
   methods: {
     rowDropStart() {
-      Modal.message({ message: '行拖拽开始', status: 'info' })
+      TinyModal.message({ message: '行拖拽开始', status: 'info' })
     },
     rowDropEnd() {
-      Modal.message({ message: '行拖拽结束', status: 'info' })
+      TinyModal.message({ message: '行拖拽结束', status: 'info' })
     },
     rowDropMove() {
-      Modal.message({ message: '行拖拽移动', status: 'info' })
+      TinyModal.message({ message: '行拖拽移动', status: 'info' })
     }
   }
 }

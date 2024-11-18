@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Wizard } from '@opentiny/vue'
+import { TinyWizard } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWizard: Wizard
+    TinyWizard
   },
   data() {
     return {

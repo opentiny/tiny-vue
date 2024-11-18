@@ -12,11 +12,11 @@
 </template>
 
 <script lang="jsx">
-import { Table } from '@opentiny/vue'
+import { TinyTable } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTable: Table
+    TinyTable
   },
   data() {
     return {

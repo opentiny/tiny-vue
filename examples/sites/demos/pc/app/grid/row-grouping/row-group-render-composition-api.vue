@@ -19,7 +19,7 @@
 
 <script lang="jsx" setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const data = ref([
   {
@@ -133,7 +133,7 @@ function activeMethod({ value }) {
   // return false // 所有分组默认收起
 }
 function onToggleGroupChange({ row }) {
-  Modal.message({ message: `分组${row.fold ? '合起' : '展开'}`, status: 'info' })
+  TinyModal.message({ message: `分组${row.fold ? '合起' : '展开'}`, status: 'info' })
 }
 function renderGroupCell(h, { row, column }) {
   if (row.value !== '华南区') return

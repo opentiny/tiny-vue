@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -32,10 +32,10 @@ export default {
       this.visible = true
     },
     close() {
-      Modal.message('关闭事件')
+      TinyModal.message('关闭事件')
     },
     confirm() {
-      Modal.message('确认事件')
+      TinyModal.message('确认事件')
     }
   }
 }

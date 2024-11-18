@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal
+    TinyButton,
+    TinyModal
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     hideClick() {
-      Modal.message({ message: '在窗口关闭时会触发事件' })
+      TinyModal.message({ message: '在窗口关闭时会触发事件' })
     }
   }
 }

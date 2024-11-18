@@ -27,8 +27,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
-import { Tag as TinyTag } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 import { iconSearch, iconPlusCircle } from '@opentiny/vue-icon'
 
 const TinyIconPlusCircle = iconPlusCircle()

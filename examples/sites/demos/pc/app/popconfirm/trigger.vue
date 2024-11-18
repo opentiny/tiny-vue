@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { Popconfirm, Button } from '@opentiny/vue'
+import { TinyPopconfirm, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopconfirm: Popconfirm,
-    TinyButton: Button
+    TinyPopconfirm,
+    TinyButton
   },
   data() {
     return {

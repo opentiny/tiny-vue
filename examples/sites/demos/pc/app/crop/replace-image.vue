@@ -14,12 +14,12 @@
 </template>
 
 <script lang="jsx">
-import { Crop, Button } from '@opentiny/vue'
+import { TinyCrop, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {

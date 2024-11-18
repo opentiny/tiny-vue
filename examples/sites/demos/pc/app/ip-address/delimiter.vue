@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { IpAddress } from '@opentiny/vue'
+import { TinyIpAddress } from '@opentiny/vue'
 import { IconBoat } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyIpAddress: IpAddress
+    TinyIpAddress
   },
   data() {
     return {

@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-import { ScrollText as TinyScrollText } from '@opentiny/vue'
+import { TinyScrollText } from '@opentiny/vue'
 </script>

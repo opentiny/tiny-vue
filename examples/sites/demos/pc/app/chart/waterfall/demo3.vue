@@ -5,17 +5,16 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsWaterfall } from '@opentiny/vue'
+import { TinyHuichartsWaterfall } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWaterfall: HuichartsWaterfall
+    TinyWaterfall: TinyHuichartsWaterfall
   },
   data() {
     return {
       options: {
         padding: [50, 30, 20, 20],
-
         // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
         type: 'water-fall',
         data: [

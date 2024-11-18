@@ -61,7 +61,7 @@ const initState = ({ reactive, computed, api, props, h, slots }): ITransferState
 export const renderless = (
   props: ITransferProps,
   { computed, onMounted, reactive, h }: ISharedRenderlessParamHooks,
-  { $prefix, emit, refs, parent, slots }: ITransferRenderlessParamUtils
+  { $prefix, emit, refs, parent, slots, vm }: ITransferRenderlessParamUtils
 ) => {
   const api = {} as ITransferApi
   const Tree = $prefix + 'Tree'
@@ -80,7 +80,7 @@ export const renderless = (
     addToRight: addToRight({ emit, refs, props, state, Tree }),
     onTargetCheckedChange: onTargetCheckedChange({ emit, state }),
     onSourceCheckedChange: onSourceCheckedChange({ emit, state }),
-    logicFun: logicFun({ props, emit, state }),
+    logicFun: logicFun({ props, emit, state, vm }),
     getTargetData: getTargetData({ props, state, Tree, Table }),
     sortableEvent: sortableEvent({ api, droppanel: DROPPANEL, props, queryDom: TRANSFERPANEL, refs })
   })

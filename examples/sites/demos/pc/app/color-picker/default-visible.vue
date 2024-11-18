@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { ColorPicker } from '@opentiny/vue'
+import { TinyColorPicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker
+    TinyColorPicker
   },
   data() {
     return {

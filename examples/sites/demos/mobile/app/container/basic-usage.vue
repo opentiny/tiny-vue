@@ -38,13 +38,13 @@
 </template>
 
 <script>
-import { Container, Radio, RadioGroup } from '@opentiny/vue'
+import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyContainer: Container,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyContainer,
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {

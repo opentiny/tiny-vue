@@ -4,11 +4,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Amount as TinyAmount, Modal } from '@opentiny/vue'
+import { TinyAmount, TinyModal } from '@opentiny/vue'
 
 const value = ref(888888888888.88)
 
 function handleChange(value) {
-  Modal.message({ message: `当前值为 ${value.amount}`, status: 'info' })
+  TinyModal.message({ message: `当前值为 ${value.amount}`, status: 'info' })
 }
 </script>

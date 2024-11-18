@@ -87,12 +87,12 @@
 </template>
 
 <script>
-import { Progress } from '@opentiny/vue'
+import { TinyProgress } from '@opentiny/vue'
 import { iconOperationfaildL, iconSuccessful } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyProgress: Progress,
+    TinyProgress,
     TinyIconOperationfaildL: iconOperationfaildL(),
     TinyIconSuccessfull: iconSuccessful()
   },

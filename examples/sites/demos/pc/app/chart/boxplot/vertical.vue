@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { HuichartsBoxplot } from '@opentiny/vue'
+import { TinyHuichartsBoxplot } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBoxplot: HuichartsBoxplot
+    TinyBoxplot: TinyHuichartsBoxplot
   },
   data() {
     const sourceData0 = this.makeData()
@@ -53,15 +53,15 @@ export default {
           },
           {
             fromDatasetIndex: 0,
-            transform: { 'type': 'boxplot' }
+            transform: { type: 'boxplot' }
           },
           {
             fromDatasetIndex: 1,
-            transform: { 'type': 'boxplot' }
+            transform: { type: 'boxplot' }
           },
           {
             fromDatasetIndex: 2,
-            transform: { 'type': 'boxplot' }
+            transform: { type: 'boxplot' }
           }
         ],
         series: [

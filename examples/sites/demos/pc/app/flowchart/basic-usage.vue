@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { Modal, Popover } from '@opentiny/vue'
+import { TinyModal, TinyPopover } from '@opentiny/vue'
 import Flowchart from '@opentiny/vue-flowchart'
 import { hooks } from '@opentiny/vue-common'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
@@ -117,7 +117,7 @@ const HandlerList = {
     IconDown: iconChevronDown(),
     IconUp: iconChevronUp(),
     HandlerDropdown,
-    TinyPopover: Popover
+    TinyPopover
   },
   props: {
     params: Object
@@ -237,13 +237,13 @@ export default {
       this.$refs.chart.refresh()
     },
     onClickNode(_afterNode, _e) {
-      Modal.message('click-node')
+      TinyModal.message('click-node')
     },
     onClickLink(_afterLink, _e) {
-      Modal.message('click-link')
+      TinyModal.message('click-link')
     },
     onClickBlank(_param, _e) {
-      Modal.message('click-blank')
+      TinyModal.message('click-blank')
     }
   }
 }

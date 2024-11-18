@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { NavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNavMenu: NavMenu
+    TinyNavMenu
   },
   data() {
     return {

@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { Link as TinyLink } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 
 function handleClick() {
   console.log('clicked')

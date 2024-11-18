@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Numeric as TinyNumeric } from '@opentiny/vue'
+import { TinyNumeric } from '@opentiny/vue'
 
 const value = ref(0)
 const step = ref(2)

@@ -7,7 +7,7 @@
         field="boole"
         title="Vue 渲染器"
         align="center"
-        :renderer="{ component: Switch }"
+        :renderer="{ component: TinySwitch }"
       ></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
       <tiny-grid-column field="createdDate" title="创建时间"></tiny-grid-column>
@@ -18,16 +18,16 @@
 </template>
 
 <script lang="jsx">
-import { Switch, Grid, GridColumn } from '@opentiny/vue'
+import { TinySwitch, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Switch,
+      TinySwitch,
       tableData: [
         {
           id: '1',

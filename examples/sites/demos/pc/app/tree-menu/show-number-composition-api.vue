@@ -11,7 +11,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const treeData = reactive([
   {

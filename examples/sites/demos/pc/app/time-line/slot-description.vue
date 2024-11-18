@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { TimeLine, TimelineItem } from '@opentiny/vue'
+import { TinyTimeLine, TinyTimelineItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine,
-    TinyTimelineItem: TimelineItem
+    TinyTimeLine,
+    TinyTimelineItem
   },
   data() {
     return {

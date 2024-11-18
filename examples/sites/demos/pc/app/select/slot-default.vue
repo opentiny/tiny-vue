@@ -34,14 +34,14 @@
 </template>
 
 <script>
-import { Select, Option, Tag, Tooltip } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyTag, TinyTooltip } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option,
-    TinyTag: Tag,
-    TinyTooltip: Tooltip
+    TinySelect,
+    TinyOption,
+    TinyTag,
+    TinyTooltip
   },
   data() {
     return {

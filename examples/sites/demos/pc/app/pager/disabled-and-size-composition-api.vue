@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Pager as TinyPager, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyPager, TinySwitch } from '@opentiny/vue'
 
 const isDisabled = ref(false)
 </script>

@@ -7,10 +7,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { RadioGroup as TinyRadioGroup, Modal } from '@opentiny/vue'
+import { TinyRadioGroup, TinyModal } from '@opentiny/vue'
 
 function handleClick() {
-  Modal.message({ message: 'click', status: 'info' })
+  TinyModal.message({ message: 'click', status: 'info' })
 }
 const value = ref('A')
 const options = ref([

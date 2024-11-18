@@ -7,7 +7,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, Button } from '@opentiny/vue'
+import { TinyGrid, TinyButton } from '@opentiny/vue'
 
 const columns = [
   { field: 'name', title: '名称' },
@@ -112,8 +112,8 @@ const data = [
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyButton: Button
+    TinyGrid,
+    TinyButton
   },
   data() {
     return {

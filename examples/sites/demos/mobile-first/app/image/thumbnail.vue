@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { ImageViewer, Button } from '@opentiny/vue'
+import { TinyImageViewer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImageViewer: ImageViewer,
-    TinyButton: Button
+    TinyImageViewer,
+    TinyButton
   },
   data() {
     return {

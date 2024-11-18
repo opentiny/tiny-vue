@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { TimePicker, Modal } from '@opentiny/vue'
+import { TinyTimePicker, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker
+    TinyTimePicker
   },
   data() {
     return {
@@ -18,13 +18,13 @@ export default {
   },
   methods: {
     blur() {
-      Modal.message({ message: 'blur事件', status: 'info' })
+      TinyModal.message({ message: 'blur事件', status: 'info' })
     },
     change() {
-      Modal.message({ message: 'change事件', status: 'info' })
+      TinyModal.message({ message: 'change事件', status: 'info' })
     },
     focus() {
-      Modal.message({ message: 'focus事件', status: 'info' })
+      TinyModal.message({ message: 'focus事件', status: 'info' })
     }
   }
 }
@@ -32,7 +32,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;

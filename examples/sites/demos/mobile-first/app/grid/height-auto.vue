@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Pager, Radio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyRadio } from '@opentiny/vue'
 
 const total = 300
 const mockData = () => {
@@ -59,9 +59,9 @@ const tableDatas = mockData()
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
         contentFields: ['area', 'abc', 'address', 'introduction']
       },
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 60,

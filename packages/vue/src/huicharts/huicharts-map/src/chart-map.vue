@@ -38,7 +38,7 @@ export default {
 
       const option = map(columns, rows, this.settings, extra)
 
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

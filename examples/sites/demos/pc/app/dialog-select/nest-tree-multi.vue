@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import Sortable from 'sortablejs'
 
@@ -136,8 +136,8 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
+    TinyDialogSelect,
+    TinyButton,
     TinyIconClose: iconClose()
   },
   data() {

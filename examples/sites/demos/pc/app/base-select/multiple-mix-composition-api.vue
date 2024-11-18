@@ -84,13 +84,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  BaseSelect as TinyBaseSelect,
-  Option as TinyOption,
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Button as TinyButton
-} from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyForm, TinyFormItem, TinyButton } from '@opentiny/vue'
 
 const options = ref([
   {

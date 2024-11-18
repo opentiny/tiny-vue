@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import { ColumnListItem } from '@opentiny/vue'
+import { TinyColumnListItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColumnListItem: ColumnListItem
+    TinyColumnListItem
   },
   data() {
     return {

@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { ColorSelectPanel, Button, Notify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorSelectPanel: ColorSelectPanel,
-    TinyButton: Button
+    TinyColorSelectPanel,
+    TinyButton
   },
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
       this.visible = false
     },
     onConfirm(hex) {
-      Notify({
+      TinyNotify({
         type: 'success',
         position: 'top-right',
         title: '用户点击了选择',
@@ -38,7 +38,7 @@ export default {
       this.hidden()
     },
     onCancel() {
-      Notify({
+      TinyNotify({
         type: 'error',
         position: 'top-right',
         title: '用户点击了取消'

@@ -1,20 +1,18 @@
 <template>
   <tiny-layout>
-    <tiny-row>
-      <tiny-col :span="4">
+    <tiny-row class="demo-row">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">focus:</label>
         <tiny-date-picker v-model="valueFocus" @focus="handleFocus"></tiny-date-picker>
       </tiny-col>
-      <tiny-col :span="4">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">blur:</label>
         <tiny-date-picker v-model="valueBlur" @blur="handleBlur"></tiny-date-picker>
       </tiny-col>
-      <tiny-col :span="4">
+      <tiny-col :span="6">
         <label class="demo-date-picker-label">change:</label>
         <tiny-date-picker v-model="valueChange" @change="handleChange"></tiny-date-picker>
       </tiny-col>
-    </tiny-row>
-    <tiny-row>
       <tiny-col :span="6">
         <label class="demo-date-picker-label">onPick:</label>
         <tiny-date-picker v-model="valueOnPick" type="daterange" :picker-options="pickerOptions"></tiny-date-picker>
@@ -24,14 +22,14 @@
 </template>
 
 <script>
-import { Layout, Row, Col, DatePicker, Modal } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyDatePicker, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyDatePicker: DatePicker
+    TinyLayout,
+    TinyRow,
+    TinyCol,
+    TinyDatePicker
   },
   data() {
     return {
@@ -41,26 +39,32 @@ export default {
       valueOnPick: '',
       pickerOptions: {
         onPick: ({ minDate, maxDate }) => {
-          Modal.message({ message: `触发 onPick 事件，开始日期为：${minDate}，结束日期为：${maxDate}`, status: 'info' })
+          TinyModal.message({
+            message: `触发 onPick 事件，开始日期为：${minDate}，结束日期为：${maxDate}`,
+            status: 'info'
+          })
         }
       }
     }
   },
   methods: {
     handleFocus() {
-      Modal.message({ message: '触发 focus 事件', status: 'info' })
+      TinyModal.message({ message: '触发 focus 事件', status: 'info' })
     },
     handleBlur() {
-      Modal.message({ message: '触发 blur 事件', status: 'info' })
+      TinyModal.message({ message: '触发 blur 事件', status: 'info' })
     },
     handleChange(value) {
-      Modal.message({ message: '触发 change 事件，组件绑定值为：' + value, status: 'info' })
+      TinyModal.message({ message: '触发 change 事件，组件绑定值为：' + value, status: 'info' })
     }
   }
 }
 </script>
 
 <style scoped>
+.demo-row {
+  width: 80%;
+}
 .demo-date-picker-label {
   display: inline-block;
   margin: 12px 0;

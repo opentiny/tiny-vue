@@ -2,20 +2,20 @@
   <div class="tiny-action-menu">
     <ul :class="{ 'tiny-action-menu__wrap': true, 'tiny-action-menu__card-mode': state.isCardMode }">
       <li
-        v-for="(visableItem, index) in state.visibleOptions"
+        v-for="(visibleItem, index) in state.visibleOptions"
         :key="index"
         :class="[
           'tiny-action-menu__item',
-          'tiny-action-menu__item-visable',
-          { 'is-disabled': visableItem.disabled, 'tiny-action-menu__card-item': state.isCardMode }
+          'tiny-action-menu__item-visible',
+          { 'is-disabled': visibleItem.disabled, 'tiny-action-menu__card-item': state.isCardMode }
         ]"
       >
         <tiny-dropdown-item
-          :item-data="visableItem"
-          :label="visableItem[textField]"
+          :item-data="visibleItem"
+          :label="visibleItem[textField]"
           :text-field="textField"
-          :disabled="visableItem.disabled"
-          :icon="visableItem.icon"
+          :disabled="visibleItem.disabled"
+          :icon="visibleItem.icon"
           @item-click="handleItemClick"
         >
           <template #default="{ itemData }">

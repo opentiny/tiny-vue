@@ -18,11 +18,7 @@
 
 <script setup>
 import { iconAscending } from '@opentiny/vue-icon'
-import {
-  Dropdown as TinyDropdown,
-  DropdownMenu as TinyDropdownMenu,
-  DropdownItem as TinyDropdownItem
-} from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 const TinyIconAscending = iconAscending()
 </script>

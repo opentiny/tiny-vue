@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { PopUpload, Modal } from '@opentiny/vue'
+import { TinyPopUpload, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopUpload: PopUpload
+    TinyPopUpload
   },
   data() {
     return {
@@ -15,7 +15,7 @@ export default {
         return new Promise((resolve) => {
           // 此处为用户自定义的上传服务请求
           setTimeout(() => {
-            Modal.message('上传成功')
+            TinyModal.message('上传成功')
           }, 500)
         })
       }

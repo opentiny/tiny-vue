@@ -14,17 +14,16 @@
 </template>
 
 <script>
-import { MultiSelect } from '@opentiny/vue'
+import { TinyMultiSelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMultiSelect: MultiSelect
+    TinyMultiSelect
   },
   data() {
     return {
       value1: ['', '', ''],
       value2: [''],
-
       data1: [
         {
           title: '时间',

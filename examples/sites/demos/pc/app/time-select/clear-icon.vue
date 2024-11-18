@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { TimeSelect } from '@opentiny/vue'
+import { TinyTimeSelect } from '@opentiny/vue'
 import { IconYes } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeSelect: TimeSelect
+    TinyTimeSelect
   },
   data() {
     return {

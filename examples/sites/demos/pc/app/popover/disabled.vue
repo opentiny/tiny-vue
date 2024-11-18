@@ -20,13 +20,13 @@
 </template>
 
 <script lang="jsx">
-import { Popover, Button, Switch } from '@opentiny/vue'
+import { TinyPopover, TinyButton, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinyButton: Button,
-    TinySwitch: Switch
+    TinyPopover,
+    TinyButton,
+    TinySwitch
   },
   data() {
     return {

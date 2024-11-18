@@ -15,11 +15,11 @@
 </template>
 
 <script lang="jsx">
-import { List } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyList: List
+    TinyList
   },
   data() {
     return {

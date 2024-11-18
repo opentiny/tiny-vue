@@ -1,10 +1,12 @@
 <template>
-  <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  <div class="demo-country-class">
+    <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Country as TinyCountry } from '@opentiny/vue'
+import { TinyCountry } from '@opentiny/vue'
 
 const value = ref('')
 const fields = ref({
@@ -39,3 +41,9 @@ function getCountryData() {
   })
 }
 </script>
+
+<style scoped>
+.demo-country-class {
+  width: 280px;
+}
+</style>

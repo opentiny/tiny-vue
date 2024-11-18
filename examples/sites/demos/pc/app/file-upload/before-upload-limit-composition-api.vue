@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = ref([
@@ -25,9 +25,11 @@ function beforeAvatarUpload(file) {
     const allow = isJPG && isLt2M
 
     if (!allow) {
-      Modal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then((res) => {
-        res === 'confirm' ? resolve() : reject(new Error('取消上传'))
-      })
+      TinyModal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then(
+        (res) => {
+          res === 'confirm' ? resolve() : reject(new Error('取消上传'))
+        }
+      )
     } else {
       resolve()
     }

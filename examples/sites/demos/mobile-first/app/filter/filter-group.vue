@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { Filter } from '@opentiny/vue'
+import { TinyFilter } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFilter: Filter
+    TinyFilter
   },
   data() {
     return {

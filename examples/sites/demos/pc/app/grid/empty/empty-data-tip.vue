@@ -7,7 +7,7 @@
       <tiny-grid-column field="address" title="地址"></tiny-grid-column>
       <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
       <template #empty>
-        <span style="color: red">没有更多数据了！</span>
+        <span style="color: #ff8800">没有更多数据了！</span>
       </template>
     </tiny-grid>
     <br />
@@ -23,12 +23,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     renderEmpty() {

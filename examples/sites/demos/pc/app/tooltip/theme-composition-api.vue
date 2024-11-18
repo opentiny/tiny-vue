@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="jsx">
-import { Tooltip as TinyTooltip, Button as TinyButton } from '@opentiny/vue'
+import { TinyTooltip, TinyButton } from '@opentiny/vue'
 </script>
 
 <style scoped>

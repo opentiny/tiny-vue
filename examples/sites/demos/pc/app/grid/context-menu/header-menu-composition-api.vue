@@ -6,6 +6,7 @@
         header: { options: headerMenus },
         visibleMethod
       }"
+      show-overflow="tooltip"
       @context-menu-click="contextMenuClickEvent"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -20,7 +21,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const headerMenus = ref([
   [
@@ -150,11 +151,11 @@ function contextMenuClickEvent({ menu, row, column }) {
   switch (menu.code) {
     case 'copy':
       if (row && column) {
-        Modal.message({ message: `${row}`, status: 'info' })
+        TinyModal.message({ message: `${row}`, status: 'info' })
       }
       break
     default:
-      Modal.alert(`点击了 ${menu.name} 选项`)
+      TinyModal.alert(`点击了 ${menu.name} 选项`)
   }
 }
 </script>

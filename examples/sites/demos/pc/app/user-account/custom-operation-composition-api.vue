@@ -7,7 +7,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { UserAccount as TinyUserAccount, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyUserAccount, TinyRadio } from '@opentiny/vue'
 
 const value = ref('1')
 </script>

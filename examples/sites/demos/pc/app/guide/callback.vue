@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { Guide, Button } from '@opentiny/vue'
+import { TinyGuide, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGuide: Guide,
-    TinyButton: Button
+    TinyGuide,
+    TinyButton
   },
   data() {
     return {

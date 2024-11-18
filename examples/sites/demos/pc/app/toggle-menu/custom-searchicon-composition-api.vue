@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ToggleMenu as TinyToggleMenu } from '@opentiny/vue'
+import { TinyToggleMenu } from '@opentiny/vue'
 import { iconDoubleRight } from '@opentiny/vue-icon'
 
 const IconDoubleRight = iconDoubleRight()

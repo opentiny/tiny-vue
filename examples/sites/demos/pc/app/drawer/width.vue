@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -27,6 +27,7 @@ export default {
   methods: {
     openDrawer0() {
       this.visible = true
+      this.width = '900px'
     },
     openDrawer1() {
       this.width = '700px'

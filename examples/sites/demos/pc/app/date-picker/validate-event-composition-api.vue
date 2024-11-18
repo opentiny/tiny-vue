@@ -27,15 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Button as TinyButton,
-  TimePicker as TinyTimePicker,
-  DatePicker as TinyDatePicker,
-  Input as TinyInput,
-  Modal
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyButton, TinyTimePicker, TinyDatePicker, TinyInput, TinyModal } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 const ruleForm = ref({
@@ -68,9 +60,9 @@ const rules = ref({
 function submitForm() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.message({ message: 'Submitted successfully !', status: 'success' })
+      TinyModal.message({ message: 'Submitted successfully !', status: 'success' })
     } else {
-      Modal.message({ message: 'Data verification failed !', status: 'error' })
+      TinyModal.message({ message: 'Data verification failed !', status: 'error' })
 
       return false
     }
@@ -84,7 +76,7 @@ function resetForm() {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 400px;
+  width: 360px;
 
   :deep(.tiny-form-item .tiny-form-item) {
     margin-bottom: 8px;

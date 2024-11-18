@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { Popconfirm, Button, Modal } from '@opentiny/vue'
+import { TinyPopconfirm, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopconfirm: Popconfirm,
-    TinyButton: Button
+    TinyPopconfirm,
+    TinyButton
   },
   data() {
     return {
@@ -24,19 +24,19 @@ export default {
   },
   methods: {
     show() {
-      Modal.message({
+      TinyModal.message({
         status: 'info',
         message: 'show事件触发了'
       })
     },
     hide() {
-      Modal.message({
+      TinyModal.message({
         status: 'info',
         message: 'hide事件触发了'
       })
     },
     confirm() {
-      Modal.message({
+      TinyModal.message({
         status: 'info',
         message: 'confirm事件触发了'
       })

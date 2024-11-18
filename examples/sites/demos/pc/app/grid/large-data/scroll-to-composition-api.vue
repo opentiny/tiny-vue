@@ -6,13 +6,13 @@
       <tiny-button @click="scrollToColumn">滚动到500列</tiny-button>
     </div>
     <br />
-    <tiny-grid ref="tinyGridRef" height="300"> </tiny-grid>
+    <tiny-grid ref="tinyGridRef" height="300" column-width="100"> </tiny-grid>
   </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyButton } from '@opentiny/vue'
 
 const tinyGridRef = ref()
 

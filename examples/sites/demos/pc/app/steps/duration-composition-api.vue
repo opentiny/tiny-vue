@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Steps as TinySteps } from '@opentiny/vue'
+import { TinySteps } from '@opentiny/vue'
 
 const duration = ref(1000)
 const advancedActive = ref(2)

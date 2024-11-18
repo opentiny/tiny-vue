@@ -13,36 +13,36 @@
 </template>
 
 <script>
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
       toolbarButtons: [
         {
           code: 'clearSelection',
-          name: '手动取消多选行'
+          name: '取消多选行'
         },
         {
           code: 'setAllSelection',
-          name: '手动选中所有行'
+          name: '选中所有行'
         },
         {
           code: 'setSelection',
-          name: '手动选中指定行'
+          name: '选中指定行'
         },
         {
           code: 'toggleAllSelection',
-          name: '手动切换所有行选中状态'
+          name: '切换所有行选中状态'
         },
         {
           code: 'toggleRowSelection',
-          name: '手动切换指定行选中状态'
+          name: '切换指定行选中状态'
         }
       ],
       tableData: [

@@ -1,9 +1,6 @@
 export default {
   column: '2',
   owner: '',
-  meta: {
-    experimental: '3.17.0'
-  },
   demos: [
     {
       demoId: 'basic-usage',
@@ -53,6 +50,18 @@ export default {
         'en-US': ''
       },
       codeFiles: ['options.vue']
+    },
+    {
+      demoId: 'formula',
+      name: {
+        'zh-CN': '可编辑公式',
+        'en-US': 'Formula'
+      },
+      desc: {
+        'zh-CN': '通过设置 <code>options</code> 中的 <code>mathlive</code> 为 true 开启可编辑公式功能。',
+        'en-US': ''
+      },
+      codeFiles: ['options-formula.vue']
     },
     {
       demoId: 'data-switch',

@@ -15,11 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  TimePicker as TinyTimePicker,
-  RadioGroup as TinyRadioGroup,
-  RadioButton as TinyRadioButton
-} from '@opentiny/vue'
+import { TinyTimePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 const startTime = new Date(2016, 9, 10, 18, 40)
 const endTime = new Date(2016, 9, 10, 18, 50)
@@ -35,7 +31,7 @@ const radioValue = ref('default')
 }
 
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;

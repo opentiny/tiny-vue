@@ -46,18 +46,27 @@
 </template>
 
 <script>
-import { Form, FormItem, Numeric, Radio, Input, SelectMobile, DatePickerMobileFirst, Cell } from '@opentiny/vue'
+import {
+  TinyForm,
+  TinyFormItem,
+  TinyNumeric,
+  TinyRadio,
+  TinyInput,
+  TinySelectMobile,
+  TinyDatePickerMobileFirst,
+  TinyCell
+} from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePickerMobile: DatePickerMobileFirst,
-    TinySelectMobile: SelectMobile,
-    TinyCell: Cell,
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio,
-    TinyInput: Input
+    TinyDatePickerMobile: TinyDatePickerMobileFirst,
+    TinySelectMobile,
+    TinyCell,
+    TinyForm,
+    TinyFormItem,
+    TinyNumeric,
+    TinyRadio,
+    TinyInput
   },
   data() {
     const list = [
@@ -79,6 +88,7 @@ export default {
           '已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期已过期'
       }
     ]
+
     return {
       dateVisibility: false,
       datetimeVisibility: false,

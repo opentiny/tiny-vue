@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { LoadList, Loading } from '@opentiny/vue'
+import { TinyLoadList, TinyLoading } from '@opentiny/vue'
 
 let index = 0
 const fetchSomething = () => {
@@ -57,10 +57,10 @@ const fetchSomething = () => {
 
 export default {
   components: {
-    TinyLoadList: LoadList
+    TinyLoadList
   },
   directives: {
-    loading: Loading.directive
+    loading: TinyLoading.directive
   },
   data() {
     return {

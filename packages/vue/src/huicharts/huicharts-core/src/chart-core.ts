@@ -26,7 +26,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default() { } },
+    events: { type: Object, default() {} },
     initOptions: {
       type: Object,
       default() {
@@ -72,7 +72,7 @@ export default {
     },
     extend: {
       type: Object,
-      default() { }
+      default() {}
     },
     tooltipFormatter: { type: Function },
 
@@ -120,7 +120,7 @@ export default {
     },
     setOptionOpts: {
       type: Object,
-      default() { }
+      default() {}
     },
     colorMode: {
       type: String,
@@ -129,7 +129,7 @@ export default {
   },
   data() {
     return {
-      option: {},
+      huiChartOption: {},
       eChartOption: {},
       renderOption: {},
       initOpts: {},
@@ -194,27 +194,27 @@ export default {
           ...this.initOpts,
           ...val
         }
-        this.renderChart(this.option)
+        this.renderChart(this.huiChartOption)
       },
       deep: true
     },
     judgeWidth: {
       handler(val) {
         this.initOpts.domResize = val
-        this.renderChart(this.option)
+        this.renderChart(this.huiChartOption)
       }
     },
     delay: {
       handler(val) {
         this.initOpts.resizeThrottle = val
-        this.renderChart(this.option)
+        this.renderChart(this.huiChartOption)
       },
       deep: true
     },
     resizeable: {
       handler(val) {
         this.initOpts.windowResize = val
-        this.renderChart(this.option)
+        this.renderChart(this.huiChartOption)
       }
     },
     setOptionOpts: {
@@ -243,14 +243,14 @@ export default {
     },
 
     size: {
-      handler(val) {
+      handler() {
         this.$nextTick(() => {
           this.integrateChart && this.integrateChart.echartsIns && this.integrateChart.echartsIns.resize()
         })
       }
     },
     colors: {
-      handler(val) {
+      handler() {
         this.refreshChart()
       },
       deep: true
@@ -334,10 +334,10 @@ export default {
         }
       }
     },
-    applyExtend(option) {
+    applyExtend(huiChartOption) {
       if (this.extend) {
         return setExtend({
-          option,
+          huiChartOption,
           extend: this.extend
         })
       }
@@ -345,56 +345,56 @@ export default {
 
     // 更新图表
     refreshChart() {
-      if (!this.option.theme) {
-        this.option.theme = 'cloud-light'
-      }
-      if (Array.isArray(this.colors) && this.colors.length > 0) {
-        option.color = cloneDeep(this.colors)
-      }
       const { data } = this
       if (Object.keys(this.options).length === 0) {
         this.updateChart(data)
       } else {
-        this.option = cloneDeep(this.options)
+        this.huiChartOption = cloneDeep(this.options)
       }
-      let { option } = this
+      let { huiChartOption } = this
+      if (!huiChartOption.theme) {
+        huiChartOption.theme = 'bpit-light'
+      }
+      if (Array.isArray(this.colors) && this.colors.length > 0) {
+        huiChartOption.color = cloneDeep(this.colors)
+      }
       clearTimeout(this.timer)
       this.timer = null
       this.timer = setTimeout(() => {
         if (this.afterConfig) {
-          option = this.afterConfig(option)
+          huiChartOption = this.afterConfig(huiChartOption)
         }
 
-        this.selfSetting(option)
-        this.setAnimation(option)
+        this.selfSetting(huiChartOption)
+        this.setAnimation(huiChartOption)
         this.applyMarks(this.integrateChart.eChartOption)
-        this.integrateChart.refresh(option)
+        this.integrateChart.refresh(cloneDeep(huiChartOption))
         if (this.colorMode !== 'default') {
-          option.color = this.computedChartColor()
+          huiChartOption.color = this.computedChartColor()
         }
         if (this.extend && Object.keys(this.extend).length !== 0) {
-          option.extend = this.applyExtend(this.integrateChart.eChartOption)
-          this.integrateChart.refresh(option)
+          huiChartOption.extend = cloneDeep(this.applyExtend(this.integrateChart.eChartOption))
+          this.integrateChart.refresh(cloneDeep(huiChartOption))
         }
-        this.$emit('handle-color', option.color)
+        this.$emit('handle-color', huiChartOption.color)
         if (this.afterSetOption) {
           this.afterSetOption(this.integrateChart.echartsIns)
         }
-        this.$emit('ready', this.integrateChart.echartsIns, option)
+        this.$emit('ready', this.integrateChart.echartsIns, huiChartOption)
       }, this.changeDelay)
       this.eChartOption = this.integrateChart.eChartOption
     },
 
     // 初始渲染图表
-    renderChart(option) {
+    renderChart(huiChartOption) {
       // 设置默认theme为'cloud-light'
-      if (!option.theme) {
-        option.theme = 'cloud-light'
+      if (!huiChartOption.theme) {
+        huiChartOption.theme = 'bpit-light'
       }
 
       // 将外部colors放入配置项中
       if (Array.isArray(this.colors) && this.colors.length > 0) {
-        option.color = cloneDeep(this.colors)
+        huiChartOption.color = cloneDeep(this.colors)
       }
       const plugins = this.plugins || {}
 
@@ -402,13 +402,13 @@ export default {
       if (this.isSelfChart) {
         this.integrateChart.init(this.$refs.chartRef)
         if (this.colorMode !== 'default') {
-          option.color = this.computedChartColor()
+          huiChartOption.color = this.computedChartColor()
         }
-        this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, plugins)
-        this.$emit('handle-color', option.color)
+        this.integrateChart.setSimpleOption(this.chartList[this.iChartName], huiChartOption, plugins)
+        this.$emit('handle-color', huiChartOption.color)
       } else {
-        this.selfSetting(option)
-        this.setAnimation(option)
+        this.selfSetting(huiChartOption)
+        this.setAnimation(huiChartOption)
 
         // theme为ecahrts主题参数
         const theme = this.themeName || this.theme || DEFAULT_THEME
@@ -416,27 +416,27 @@ export default {
 
         // 通过colorMode参数控制颜色
         if (this.colorMode !== 'default') {
-          option.color = this.computedChartColor()
+          huiChartOption.color = this.computedChartColor()
         }
-        this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
-        this.$emit('handle-color', option.color)
+        this.integrateChart.setSimpleOption(this.iChartName, cloneDeep(huiChartOption), plugins)
+        this.$emit('handle-color', huiChartOption.color)
         this.applyMarks(this.integrateChart.eChartOption)
       }
 
       // 判断extend，将extend放入配置项中
       if (this.extend && Object.keys(this.extend).length !== 0) {
-        option.extend = this.applyExtend(this.integrateChart.eChartOption)
-        this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
+        huiChartOption.extend = this.applyExtend(this.integrateChart.eChartOption)
+        this.integrateChart.setSimpleOption(this.iChartName, cloneDeep(huiChartOption), plugins)
       }
       this.integrateChart.render(this.renderOption)
 
       // 返回图表实例
-      this.$emit('ready', this.integrateChart.echartsIns, option)
+      this.$emit('ready', this.integrateChart.echartsIns, huiChartOption)
 
       // 返回图表实例(仅一次)
       if (!this.once['ready-once']) {
         this.once['ready-once'] = true
-        this.$emit('ready-once', this.integrateChart.echartsIns, option)
+        this.$emit('ready-once', this.integrateChart.echartsIns, huiChartOption)
       }
 
       // 赋值echartOption，方便用户获取
@@ -467,12 +467,12 @@ export default {
         this.integrateChart.echartsIns.resize()
       }
     },
-    afterConfigFn(option) {
+    afterConfigFn(huiChartOption) {
       if (this.afterConfig) {
-        option = this.afterConfig(option)
-        this.option = option
+        huiChartOption = this.afterConfig(huiChartOption)
+        this.huiChartOption = huiChartOption
       }
-      return option
+      return huiChartOption
     },
     beforeConfigFn(data) {
       if (this.beforeConfig) {
@@ -537,7 +537,7 @@ export default {
     }
   },
   created() {
-    this.option = {}
+    this.huiChartOption = {}
     if (!this.selfChart.includes(this.iChartName)) {
       this.isSelfChart = false
       this.integrateChart = new IntegrateChart()
@@ -567,12 +567,12 @@ export default {
     if (Object.keys(this.options).length === 0) {
       this.updateChart(data)
     } else {
-      this.option = cloneDeep(this.options)
+      this.huiChartOption = cloneDeep(this.options)
     }
-    let { option } = this
-    option = this.afterConfigFn(option)
+    let { huiChartOption } = this
+    huiChartOption = this.afterConfigFn(huiChartOption)
 
-    this.renderChart(option)
+    this.renderChart(huiChartOption)
 
     this.afterSetOption && this.afterSetOption(this.integrateChart.echartsIns)
 

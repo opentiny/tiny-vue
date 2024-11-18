@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.18.0",
+  "version": "3.19.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -113,6 +113,7 @@
     "@opentiny/vue-grid": "workspace:~",
     "@opentiny/vue-grid-column": "workspace:~",
     "@opentiny/vue-grid-manager": "workspace:~",
+    "@opentiny/vue-grid-select": "workspace:~",
     "@opentiny/vue-grid-toolbar": "workspace:~",
     "@opentiny/vue-guide": "workspace:~",
     "@opentiny/vue-hrapprover": "workspace:~",

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-time-range",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,7 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-time-spinner": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-button": "workspace:~"
   },
   "license": "MIT"
 }

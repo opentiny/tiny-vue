@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { TimePicker, RadioGroup, RadioButton } from '@opentiny/vue'
+import { TinyTimePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker,
-    TinyRadioGroup: RadioGroup,
-    TinyRadioButton: RadioButton
+    TinyTimePicker,
+    TinyRadioGroup,
+    TinyRadioButton
   },
   data() {
     const startTime = new Date(2016, 9, 10, 18, 40)
@@ -41,7 +41,7 @@ export default {
 }
 
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;

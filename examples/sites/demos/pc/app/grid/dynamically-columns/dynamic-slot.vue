@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 let times = 1
 
@@ -40,11 +40,12 @@ const createNewCols = () => [
     }
   }
 ]
+
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   methods: {
     change() {

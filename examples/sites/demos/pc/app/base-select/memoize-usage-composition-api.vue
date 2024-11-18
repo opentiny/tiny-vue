@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
 
 const MemorizeInstance = new Memorize({ key: 'test456' })

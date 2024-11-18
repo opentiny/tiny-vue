@@ -3,6 +3,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   rules: {
-    'no-console': 'off'
+    'no-console': 'off',
+    'vue/no-unused-vars': 'off'
   }
 }

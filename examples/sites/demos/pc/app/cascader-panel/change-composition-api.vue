@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { CascaderPanel as TinyCascaderPanel, Modal, Button as TinyButton } from '@opentiny/vue'
+import { TinyCascaderPanel, TinyModal, TinyButton } from '@opentiny/vue'
 
 const value = ref('')
 const optionsCascader = ref([
@@ -224,14 +224,14 @@ function change(value) {
     mess = checkVal[0].label
   }
 
-  Modal.message({
+  TinyModal.message({
     message: 'change 事件，当前选中的值为:' + mess + '；传入的值为:' + value,
     status: 'info'
   })
 }
 
 function expandChange(value) {
-  Modal.message({ message: `节点展开：${value}`, status: 'info' })
+  TinyModal.message({ message: `节点展开：${value}`, status: 'info' })
 }
 </script>
 

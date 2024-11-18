@@ -8,12 +8,12 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip, Slider } from '@opentiny/vue'
+import { TinyTooltip, TinySlider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
-    TinySlider: Slider
+    TinyTooltip,
+    TinySlider
   },
   data() {
     return {

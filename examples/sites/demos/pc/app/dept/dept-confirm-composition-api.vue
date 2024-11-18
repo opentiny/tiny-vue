@@ -1,26 +1,24 @@
 <template>
-  <div class="demo-dept">
+  <div class="demo-dept-class">
     <h3 class="title">基本用法</h3>
-    <div class="content">
-      <tiny-dept v-model="value" @confirm="confirm"></tiny-dept>
-    </div>
+    <tiny-dept v-model="value" @confirm="confirm"></tiny-dept>
   </div>
 </template>
 
 <script setup lang="jsx">
-import { Dept as TinyDept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const value = ref('022471')
 
 function confirm() {
-  Modal.message({ message: 'Dept部门 confirm 事件' })
+  TinyModal.message({ message: 'Dept部门 confirm 事件' })
 }
 </script>
 
 <style scoped>
-.demo-dept .tiny-dept {
-  width: 270px;
+.demo-dept-class {
+  width: 280px;
 }
 .title {
   font-size: 14px;

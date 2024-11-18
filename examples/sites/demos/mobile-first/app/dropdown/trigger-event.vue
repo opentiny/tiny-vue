@@ -74,16 +74,16 @@
 
 <script>
 import { IconPlus, IconPlusCircle, IconPlusSquare, IconCheckedLinear, IconCheckedSur } from '@opentiny/vue-icon'
-import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
+    TinyLayout,
+    TinyRow,
+    TinyCol,
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem,
     IconPlus: IconPlus(),
     IconPlusCircle: IconPlusCircle(),
     IconPlusSquare: IconPlusSquare(),

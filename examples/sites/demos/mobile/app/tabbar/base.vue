@@ -16,14 +16,14 @@
 </template>
 
 <script lang="jsx">
-import { Tabbar, TabbarItem, Button } from '@opentiny/vue'
+import { TinyTabbar, TinyTabbarItem, TinyButton } from '@opentiny/vue'
 import { iconDialog, iconEmailAdd, iconGroup, iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabbar: Tabbar,
-    TinyTabbarItem: TabbarItem,
-    TinyButton: Button
+    TinyTabbar,
+    TinyTabbarItem,
+    TinyButton
   },
   data() {
     return {

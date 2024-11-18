@@ -11,7 +11,7 @@
         <tiny-grid-toolbar :buttons="toolbarButtons" @button-click="toolbarButtonClickEvent"></tiny-grid-toolbar>
       </template>
       <tiny-grid-column type="index" width="160"></tiny-grid-column>
-      <tiny-grid-column field="name" title="名称" width="460" :editor="{ component: Input }"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" width="460" :editor="{ component: TinyInput }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" width="460" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" width="460" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column
@@ -25,13 +25,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Input, Modal as TinyModal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     const validRules = {
@@ -62,7 +62,7 @@ export default {
     }
     return {
       validRules,
-      Input,
+      TinyInput,
       toolbarButtons: [
         {
           code: 'save',

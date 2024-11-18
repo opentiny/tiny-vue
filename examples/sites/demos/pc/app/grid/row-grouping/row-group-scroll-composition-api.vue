@@ -50,7 +50,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const codePointA = 'A'.codePointAt(0)
 const areas = ['华东区', '华南区', '华中区', '西南区']

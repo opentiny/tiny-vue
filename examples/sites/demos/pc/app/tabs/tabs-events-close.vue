@@ -2,7 +2,7 @@
   <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" :before-close="beforeClose" @close="close">
     <tiny-tab-item
       :key="item.name"
-      v-for="item in Tabs"
+      v-for="item in tabs"
       :title="item.title"
       :name="item.name"
       :with-close="item.withClose"
@@ -13,17 +13,17 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName: 'first',
-      Tabs: [
+      tabs: [
         {
           title: '表单组件',
           name: 'first',
@@ -64,7 +64,7 @@ export default {
         message: '关闭 ' + name + ' 页签'
       })
 
-      this.Tabs = this.Tabs.filter((tab) => {
+      this.tabs = this.tabs.filter((tab) => {
         return tab.name !== name
       })
     }

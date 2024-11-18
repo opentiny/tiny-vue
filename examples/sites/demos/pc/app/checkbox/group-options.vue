@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { CheckboxGroup, Modal } from '@opentiny/vue'
+import { TinyCheckboxGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckboxGroup: CheckboxGroup
+    TinyCheckboxGroup
   },
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message({ message: 'click', status: 'info' })
+      TinyModal.message({ message: 'click', status: 'info' })
     }
   }
 }

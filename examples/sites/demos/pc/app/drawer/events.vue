@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -35,13 +35,13 @@ export default {
       this.visible = true
     },
     onOpen() {
-      Modal.message({ message: '打开事件', status: 'info' })
+      TinyModal.message({ message: '打开事件', status: 'info' })
     },
     onClose() {
-      Modal.message({ message: '关闭事件', status: 'info' })
+      TinyModal.message({ message: '关闭事件', status: 'info' })
     },
     onConfirm() {
-      Modal.message({ message: '确定事件', status: 'info' })
+      TinyModal.message({ message: '确定事件', status: 'info' })
     }
   }
 }

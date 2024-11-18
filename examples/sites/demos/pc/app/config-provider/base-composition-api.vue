@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ConfigProvider as TinyConfigProvider, Alert as TinyAlert, Modal } from '@opentiny/vue'
+import { TinyConfigProvider, TinyAlert, TinyModal } from '@opentiny/vue'
 import { iconWarningTriangle } from '@opentiny/vue-icon'
 
 const design = ref({
@@ -31,7 +31,7 @@ const design = ref({
         return {
           handleClose() {
             state.show = false
-            Modal.message('触发自定方法')
+            TinyModal.message('触发自定方法')
             emit('close')
           }
         }
@@ -40,5 +40,3 @@ const design = ref({
   }
 })
 </script>
-
-<style scoped></style>

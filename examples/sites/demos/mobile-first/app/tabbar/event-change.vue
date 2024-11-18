@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem, Modal } from '@opentiny/vue'
+import { TinyTabbar, TinyTabbarItem, TinyModal } from '@opentiny/vue'
 import { IconWebPlus, IconMail, IconMarkOn, IconUser } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTabbar: Tabbar,
-    TinyTabbarItem: TabbarItem
+    TinyTabbar,
+    TinyTabbarItem
   },
   data() {
     return {
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      Modal.message({ message: '当前标签页为：' + val, status: 'info' })
+      TinyModal.message({ message: '当前标签页为：' + val, status: 'info' })
     }
   }
 }

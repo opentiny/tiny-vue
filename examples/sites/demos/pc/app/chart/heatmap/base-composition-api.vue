@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { HuichartsHeatmap as TinyChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap as TinyChartHeatmap } from '@opentiny/vue'
 
 const options = ref({
   // 图表类型(矩形热力图)

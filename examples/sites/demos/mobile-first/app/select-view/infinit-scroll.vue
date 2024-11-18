@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { SelectView, Button } from '@opentiny/vue'
+import { TinySelectView, TinyButton } from '@opentiny/vue'
 
 const list = [
   {
@@ -76,8 +76,8 @@ const list = [
 
 export default {
   components: {
-    TinySelectView: SelectView,
-    TinyButton: Button
+    TinySelectView,
+    TinyButton
   },
   data() {
     return {

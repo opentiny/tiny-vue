@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import { Alert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue'
 export default {
   components: {
-    TinyAlert: Alert
+    TinyAlert
   }
 }
 </script>

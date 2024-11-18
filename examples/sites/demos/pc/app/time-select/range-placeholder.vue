@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import { TimeSelect } from '@opentiny/vue'
+import { TinyTimeSelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeSelect: TimeSelect
+    TinyTimeSelect
   },
   data() {
     return {

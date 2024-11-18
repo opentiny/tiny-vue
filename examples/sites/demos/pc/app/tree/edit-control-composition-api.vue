@@ -4,7 +4,7 @@
     <tiny-button @click="closeEdit">取消编辑</tiny-button>
     <tiny-button @click="saveEdit">保存编辑</tiny-button> <br />
     <br />
-    <div class="red">数据1 禁止添加; &nbsp;数据2 禁止编辑; &nbsp;数据3 禁止删除;</div>
+    <div class="tips">提示：数据1 禁止添加; &nbsp;数据2 禁止编辑; &nbsp;数据3 禁止删除;</div>
     <tiny-tree
       ref="treeRef"
       node-key="id"
@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyTree, TinyButton, TinyModal } from '@opentiny/vue'
 
 const data = ref([
   {
@@ -91,7 +91,7 @@ function deleteNodeMethod() {
 
   // 方式 2：返回 Promise 异步
   return new Promise((resolve) => {
-    Modal.confirm({
+    TinyModal.confirm({
       title: 'deleteNodeMethod 钩子函数',
       status: 'info',
       message: '您确定要删除数据吗？',
@@ -109,7 +109,8 @@ function deleteNodeMethod() {
 </script>
 
 <style scoped>
-.red {
-  color: red;
+.tips {
+  color: #888;
+  margin: 12px 20px;
 }
 </style>

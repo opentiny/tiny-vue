@@ -134,15 +134,16 @@ export const cmpMenus = [
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
+      { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
+      { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       {
-        'nameCn': '富文本',
-        'name': 'FluentEditor',
-        'key': 'fluent-editor',
+        'nameCn': '下拉表格选择器',
+        'name': 'GridSelect',
+        'key': 'grid-select',
         'meta': {
-          'experimental': '3.17.0'
+          'experimental': '3.20.0'
         }
       },
-      { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
@@ -150,14 +151,6 @@ export const cmpMenus = [
       { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
-      {
-        'nameCn': '富文本编辑器',
-        'name': 'RichTextEditor',
-        'key': 'rich-text-editor',
-        'meta': {
-          'experimental': '3.10.0'
-        }
-      },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
@@ -365,7 +358,7 @@ if (envTarget === 'inner' || showBusiness) {
       { 'nameCn': '公司', 'name': 'Company', 'key': 'company' },
       { 'nameCn': '国家/地区', 'name': 'Country', 'key': 'country' },
       { 'nameCn': '币种', 'name': 'Currency', 'key': 'currency' },
-      { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
+      // { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
       { 'nameCn': '下拉角色', 'name': 'DropRoles', 'key': 'drop-roles' },
       { 'nameCn': '消息弹框', 'name': 'Espace', 'key': 'espace' },
       { 'nameCn': '权签人', 'name': 'HrApprover', 'key': 'hrapprover' },

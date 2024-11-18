@@ -6,13 +6,8 @@
     @click="handleYearTableClick"
   >
     <tbody>
-      <tr v-for="(row, key) in state.rows" :key="key">
-        <td
-          v-for="(cell, key) in row"
-          class="text-center cursor-pointer py-4 px-0"
-          :data-class="getCellStyle(cell)"
-          :key="key"
-        >
+      <tr v-for="(row, trKey) in state.rows" :key="trKey">
+        <td v-for="(cell, tdKey) in row" class="text-center cursor-pointer py-4 px-0" :key="tdKey">
           <div
             :class="
               m(
@@ -26,21 +21,21 @@
               :class="
                 m(
                   'w-12 h-12 leading-[theme(spacing.12)] box-border block text-color-text-primary my-0 rounded hover:bg-color-brand-hover-subtle',
-                  { 'border border-solid border-color-border-focus leading-[46px]': state.today },
+                  { 'border border-solid border-color-border-focus leading-[46px]': state.currentYear === cell.text },
                   { 'my-0 mx-auto': !cell.inRange },
                   { 'text-color-text-inverse bg-color-brand': cell.start },
                   { 'text-color-text-inverse bg-color-brand': cell.end },
                   {
                     'bg-color-bg-3 cursor-not-allowed text-color-text-disabled hover:text-color-text-disabled hover:bg-color-bg-3':
-                      state.disabled
+                      getIsDisabled(cell.text)
                   },
                   {
                     'text-color-text-inverse bg-color-brand hover:text-color-text-inverse hover:bg-color-brand':
-                      state.current && !state.disabled
+                      getIsCurrent(cell.text) && !getIsDisabled(cell.text)
                   }
                 )
               "
-              :aria-disabled="state.disabled ? true : undefined"
+              :aria-disabled="getIsDisabled(cell.text) ? true : undefined"
               >{{ cell.text }}</a
             >
           </div>

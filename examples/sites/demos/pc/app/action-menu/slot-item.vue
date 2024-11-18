@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu,
+    TinyActionMenu,
     IconSmile: iconSmile()
   },
   data() {

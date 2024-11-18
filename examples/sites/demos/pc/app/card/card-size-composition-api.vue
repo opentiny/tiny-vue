@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 import { IconDeleteL, IconEditor, IconSortTriangle, IconFilletExternalLink } from '@opentiny/vue-icon'
 import { ref } from 'vue'
 

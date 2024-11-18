@@ -281,7 +281,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>当一个 cropper 实例完全构建时，通过触发 <code>disable</code> 方法禁用裁剪框，当触发 <code>enable</code> 启用裁剪框。</p>\n',
+          '<p>当一个 cropper 实例完全构建时，通过触发 <code>disable</code> 方法禁用裁剪框，触发 <code>enable</code> 方法启用裁剪框。</p>\n',
         'en-US':
           '<p>When a cropper instance is completely built, the <code>disable</code> method is triggered to disable the cropping box. When the <code>enable</code> method is triggered to enable the cropping box.</p>\n'
       },
@@ -295,7 +295,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>说明当画布或剪切框开始发生变化时触发 <code>cropstart</code> 事件\n当画布或剪切框正在发生变化时触发 <code>cropmove</code> 事件\n当画布或剪切框发生变化结束时触发 <code>cropend</code> 事件\n当画布或裁剪框发生改变时触发 <code>crop</code> 事件\n通过触发 <code>getCanvasData</code> 获取画布 Canvas（图像包装器）位置和大小数据。</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>说明当画布或剪切框开始发生变化时触发 <code>cropstart</code> 事件，当画布或剪切框正在发生变化时触发 <code>cropmove</code> 事件，当画布或剪切框发生变化结束时触发 <code>cropend</code> 事件，当画布或裁剪框发生改变时触发 <code>crop</code> 事件，通过触发 <code>getCanvasData</code> 获取画布 Canvas（图像包装器）位置和大小数据。</p>\n</div>\n',
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> Description: The <code>cropstart</code> event is triggered when the canvas or clipping box starts to change.\nThe <code>cropmove</code> event is triggered when the canvas or clipping box is changed.\nThe <code>cropen event is triggered when the canvas or clipping box ends. d</code>Event\nThe <code>crop</code> event is triggered when the canvas or crop box changes. \nThe <code>getCanvasData</code> event is triggered to obtain the position and size data of the canvas (image wrapper). </p>\n</div>\n'
       },

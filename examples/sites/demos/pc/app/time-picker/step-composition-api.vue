@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 const step = ref({
   hour: 2,
@@ -19,6 +19,6 @@ const value = ref(new Date(2016, 9, 10, 18, 40))
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 }
 </style>

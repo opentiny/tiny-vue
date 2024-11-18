@@ -8,22 +8,22 @@
 </template>
 
 <script lang="jsx">
-import { Milestone, Button } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
-    TinyButton: Button
+    TinyMilestone,
+    TinyButton
   },
   data() {
     return {
       isBefore: false,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
-        doing: '#7ED321',
-        back: '#f5222d',
-        end: '#faad14',
-        cancel: '#d9d9d9'
+        completed: 'var(--tv-color-bg-disabled-control-active)', // 组件库基础变量
+        doing: '#9edb58',
+        back: '#c2c2c2',
+        end: '#edf7df',
+        cancel: '#f23030'
       },
       milestoneData: [
         {

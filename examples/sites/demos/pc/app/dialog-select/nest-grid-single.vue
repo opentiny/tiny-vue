@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Search, Select } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -76,10 +76,10 @@ const queryFilter = (pager, search) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
-    TinySearch: Search,
-    TinySelect: Select
+    TinyDialogSelect,
+    TinyButton,
+    TinySearch,
+    TinySelect
   },
   data() {
     return {
