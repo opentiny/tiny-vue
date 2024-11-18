@@ -361,9 +361,10 @@ export const setSelected =
           : 'halfselect'
         : 'check'
 
-      if (state.selected.length === 0 || !state.selected[0].currentLabel) {
+      if (!state.selected?.[0]?.isTree && !state.selected?.[0]?.isGrid) {
         state.selected = result
       }
+      state.selected.length && (state.selectedLabel = '')
 
       vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')

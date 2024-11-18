@@ -63,7 +63,8 @@ export const selectChange =
           return {
             ...node,
             currentLabel: node[props.textField],
-            value: node[props.valueField]
+            value: node[props.valueField],
+            isGrid: true
           }
         })
       )

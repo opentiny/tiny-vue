@@ -37,7 +37,8 @@ export const check =
           return {
             ...node,
             currentLabel: node[props.textField],
-            value: node[props.valueField]
+            value: node[props.valueField],
+            isTree: true
           }
         })
       )
