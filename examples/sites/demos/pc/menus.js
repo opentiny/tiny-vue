@@ -121,10 +121,7 @@ export const cmpMenus = [
       {
         'nameCn': '基础选择器',
         'name': 'BaseSelect',
-        'key': 'base-select',
-        'meta': {
-          'experimental': '3.17.0'
-        }
+        'key': 'base-select'
       },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
