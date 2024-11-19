@@ -387,6 +387,7 @@
           <!-- tiny 新增 可搜索的输入框 -->
           <tiny-input
             v-if="searchable"
+            input-box-type="underline"
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
@@ -516,7 +517,7 @@
             v-if="!slots.panel && state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))"
           >
             <!-- tiny 新增 showEmptyImage功能 -->
-            <div v-if="loadingText || slots.empty">
+            <div v-if="loadingText || slots.empty" class="tiny-select-dropdown__empty-wrap">
               <slot name="empty" v-if="slots.empty"></slot>
               <span v-else-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
               <p class="tiny-select-dropdown__empty" v-else>
