@@ -40,7 +40,7 @@ export default {
         echartsLib: this.integrateChart.echartIns
       }
       const option = heatmap(columns, rows, this.settings, extra, true)
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     },

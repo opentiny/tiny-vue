@@ -27,7 +27,7 @@ export default {
         legendVisible: this.legendVisible,
         t
       }
-      this.option = candle(columns, rows, this.settings, extra)
+      this.huiChartOption = candle(columns, rows, this.settings, extra)
     }
   }
 }

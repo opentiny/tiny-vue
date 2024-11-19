@@ -95,14 +95,15 @@ export const handleClick =
     // tiny 新增： 去掉trigger参数，不影响点击的逻辑
     const store = state.tree.state.store
 
-    state.tree.clearCurrentStore(props.node)
     if (!state.tree.onlyCheckChildren) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
       !props.node.disabled &&
-        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     } else if (props.node.isLeaf && !props.node.disabled) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
-      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     }
 
     state.tree.currentNode = vm

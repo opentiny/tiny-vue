@@ -29,6 +29,7 @@
     <div
       data-tag="tiny-select-dropdown-main"
       ref="drawerBox"
+      @mousedown.stop
       :style="{ 'z-index': state.zIndex }"
       :class="
         m(

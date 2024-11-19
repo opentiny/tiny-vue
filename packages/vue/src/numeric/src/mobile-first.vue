@@ -106,7 +106,7 @@
       class="sm:leading-normal text-color-text-primary"
       :class="state.inputSize !== 'mini' ? 'text-sm' : 'text-xs'"
     >
-      <span>{{ state.displayValue }}</span
+      <span>{{ state.displayOnlyText }}</span
       ><span v-if="unit && !hideUnit" class="ml-2">{{ unit }}</span>
     </div>
     <div

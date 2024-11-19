@@ -5,6 +5,16 @@
       <tiny-date-picker v-model="disabledValue" disabled placeholder="请选择日期"></tiny-date-picker>
     </div>
     <br />
+    <p>年禁用：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker
+        v-model="value"
+        type="year"
+        :picker-options="yearPickerOptions"
+        placeholder="请选择年"
+      ></tiny-date-picker>
+    </div>
+    <br />
     <p>部分禁用：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
@@ -44,6 +54,11 @@ const editableValue = ref('')
 const pickerOptions = {
   disabledDate(time) {
     return time.getTime() > Date.now() || time.getTime() < new Date('2023-08-01').getTime()
+  }
+}
+const yearPickerOptions = {
+  disabledDate(year) {
+    return year > 2025 || year < 2022
   }
 }
 </script>

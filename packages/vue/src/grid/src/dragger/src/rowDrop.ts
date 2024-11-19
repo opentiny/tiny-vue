@@ -76,7 +76,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
           wrapperElem.insertBefore(targetTrElem, oldTrElem)
 
           return Modal.message({
-            message: GlobalConfig.i18n('ui.grid.error.dargSelf'),
+            message: GlobalConfig.i18n('ui.grid.error.notAllowDragSelf'),
             status: 'error'
           })
         }
@@ -149,7 +149,7 @@ export const onEndEvent = ({ event, _this }) => {
     }
 
     return Modal.message({
-      message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
+      message: GlobalConfig.i18n('ui.grid.error.notAllowDragFixed'),
       status: 'error'
     })
   }

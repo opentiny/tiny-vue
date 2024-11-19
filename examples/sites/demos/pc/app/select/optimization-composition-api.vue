@@ -2,13 +2,14 @@
   <div>
     <p>单选：</p>
     <br />
-    <tiny-select v-model="value1" :options="options" optimization @change="onChange"></tiny-select>
+    <tiny-select v-model="value1" :options="options" filterable optimization @change="onChange"></tiny-select>
     <br /><br />
     <p>多选：</p>
     <br />
     <tiny-select
       v-model="value2"
       optimization
+      filterable
       multiple
       collapse-tags
       :multiple-limit="5"
@@ -41,6 +42,7 @@ const onChange = (value) => {
 .tiny-select {
   width: 280px;
 }
+
 p {
   font-size: 14px;
   line-height: 1.5;

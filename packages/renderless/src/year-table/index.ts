@@ -11,52 +11,33 @@
  */
 
 import { toDate } from '../common/date'
-import { range, nextDate, getDayCountOfYear } from '../common/deps/date-util'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
 import { DATEPICKER } from '../common'
 
-const datesInYear = (year) => {
-  const numOfDays = getDayCountOfYear(year)
-  const firstDay = new Date(year, 0, 1)
-
-  return range(numOfDays).map((n) => nextDate(firstDay, n))
-}
-
-export const getCellStyle =
-  ({ props, state }) =>
-  (cell) => {
+export const getIsDefault =
+  ({ props }) =>
+  (year) => {
     const { defaultValue } = props
-    const year = cell.text
-    const style = {}
-    const today = new Date()
 
-    style.disabled = typeof props.disabledDate === 'function' ? datesInYear(year).every(props.disabledDate) : false
-
-    const execDate = typeof props.value === 'object' ? props.value : toDate(props.value)
-
-    style.current = arrayFindIndex(coerceTruthyValueToArray(execDate), (date) => date.getFullYear() === year) >= 0
-    style.today = today.getFullYear() === year
-    style.default = Array.isArray(defaultValue)
+    return Array.isArray(defaultValue)
       ? defaultValue.some((v) => v && v.getFullYear() === year)
       : defaultValue && defaultValue.getFullYear() === year
+  }
 
-    if (cell.inRange) {
-      style[DATEPICKER.InRange] = true
-    }
+export const getIsDisabled =
+  ({ props }) =>
+  (year) => {
+    return props.selectionMode.startsWith('year') && typeof props.disabledDate === 'function'
+      ? props.disabledDate(year)
+      : false
+  }
 
-    if (cell.start) {
-      style[DATEPICKER.StartDate] = true
-    }
+export const getIsCurrent =
+  ({ props }) =>
+  (year) => {
+    const execDate = typeof props.value === 'object' ? props.value : toDate(props.value)
 
-    if (cell.end) {
-      style[DATEPICKER.EndDate] = true
-    }
-
-    for (const key in style) {
-      state[key] = style[key]
-    }
-
-    return style
+    return arrayFindIndex(coerceTruthyValueToArray(execDate), (date) => date.getFullYear() === year) >= 0
   }
 
 export const clearDate = (date) => {
@@ -105,7 +86,9 @@ export const getRows =
 
         cell.text = year
         cell.type = isToday ? DATEPICKER.Today : DATEPICKER.Normal
-        cell.disabled = typeof disabledDate === 'function' && disabledDate(new Date(year, 0, 1))
+        if (props.selectionMode.startsWith('year')) {
+          cell.disabled = typeof disabledDate === 'function' && disabledDate(year)
+        }
 
         if (selectionMode === DATEPICKER.YearRange) {
           const minYear = typeof minDate === 'object' && minDate ? minDate.getFullYear() : minDate

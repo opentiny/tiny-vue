@@ -70,6 +70,7 @@ export default defineComponent({
     'showNotToggle',
     'showCloneButtons',
     'showLockButtons',
+    'allowDelAll',
     'resetOnFieldChange',
     'resetOnOperatorChange',
     'autoSelectField',

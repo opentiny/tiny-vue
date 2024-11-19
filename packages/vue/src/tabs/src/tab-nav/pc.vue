@@ -15,7 +15,7 @@ import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
-import DropdownItem from '@opentiny/vue-dropdown-item'
+import TabDropdownItem from './tab-dropdown-item.vue'
 import Tooltip from '@opentiny/vue-tooltip'
 import { iconChevronLeft, iconChevronRight, iconClose } from '@opentiny/vue-icon'
 import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
@@ -28,7 +28,7 @@ export default defineComponent({
     TabBar,
     Dropdown,
     DropdownMenu,
-    DropdownItem,
+    TabDropdownItem,
     Tooltip,
     IconChevronLeft: iconChevronLeft(),
     IconChevronRight: iconChevronRight(),
@@ -69,11 +69,11 @@ export default defineComponent({
 
     const spans = [
       <span class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']} onClick={scrollPrev}>
-        <icon-chevron-left />
+        <IconChevronLeft />
       </span>,
       !showMoreTabs ? (
         <span class={['tiny-tabs__nav-next', state.scrollable.next ? '' : 'is-disabled']} onClick={scrollNext}>
-          <icon-chevron-right />
+          <IconChevronRight />
         </span>
       ) : null
     ]
@@ -97,26 +97,21 @@ export default defineComponent({
           ? dropdowpList.map((pane, index) => {
               const tabName = pane.name || pane.state.index || index
               const tabLabelContent = pane.$slots.title || pane.title
-              const tabindex = pane.state.active ? 0 : -1
 
               pane.state.index = `${index + showPanesCount}`
 
-              return (
-                <dropdown-item
-                  class="tiny-tabs__more-item"
-                  tabindex={tabindex}
-                  onFocus={() => {
-                    setFocus()
-                  }}
-                  onBlur={() => {
-                    removeFocus()
-                  }}
-                  onClick={(e) => {
-                    removeFocus()
-                    onTabClick(pane, tabName, e)
-                  }}>
-                  {typeof tabLabelContent === 'function' ? tabLabelContent() : tabLabelContent}
-                </dropdown-item>
+              return h(
+                TabDropdownItem,
+                {
+                  class: 'tiny-tabs__more-item',
+                  attrs: {
+                    itemClick(e) {
+                      removeFocus()
+                      onTabClick(pane, tabName, e)
+                    }
+                  }
+                },
+                [typeof tabLabelContent === 'function' ? tabLabelContent() : tabLabelContent]
               )
             })
           : null
@@ -156,7 +151,7 @@ export default defineComponent({
 
       const btnClose = withClose ? (
         <span class="tiny-tabs__icon-close">
-          <icon-close
+          <IconClose
             onClick={(e) => {
               onTabRemove(pane, e)
             }}
@@ -281,7 +276,7 @@ export default defineComponent({
             style={state.navStyle}
             role="tablist"
             on-keydown={changeTab}>
-            {!tabStyle ? <tab-bar ref="tabBar" tabs={panes} /> : null}
+            {!tabStyle ? <TabBar ref="tabBar" tabs={panes} /> : null}
             {tabs}
           </div>
         </div>

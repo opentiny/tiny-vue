@@ -149,6 +149,12 @@ export default defineComponent({
         pageSize: 10,
         currentPage: 1
       },
+      tablePageLoading: false,
+      realTimeTablePage: {
+        total: 0,
+        pageSize: 10,
+        currentPage: 1
+      },
       columnAnchorParams: {},
       columnAnchorKey: '',
       tasks: {},
@@ -175,9 +181,9 @@ export default defineComponent({
       return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
     },
     seqIndex() {
-      let { seqSerial, scrollLoad, pagerConfig, startIndex } = this
+      let { seqSerial, scrollLoad, pagerConfig: oldPage, startIndex, tablePageLoading, realTimeTablePage } = this
       let seqIndexValue = startIndex
-
+      const pagerConfig = tablePageLoading ? realTimeTablePage : oldPage
       if ((seqSerial || scrollLoad) && pagerConfig) {
         seqIndexValue = (pagerConfig.currentPage - 1) * pagerConfig.pageSize + startIndex
       }

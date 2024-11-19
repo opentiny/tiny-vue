@@ -91,6 +91,10 @@ export const uploadProps = {
   promptTip: {
     type: Boolean,
     default: false
+  },
+  showFileList: {
+    type: Boolean,
+    default: true
   }
 }
 

@@ -28,7 +28,7 @@ export default {
         tooltipVisible: this.tooltipVisible
       }
       const option = scatter(columns, rows, this.settings, extra)
-      this.option = { ...option }
+      this.huiChartOption = { ...option }
     }
   }
 }

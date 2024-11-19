@@ -283,7 +283,7 @@ export const resizeTextarea =
       return
     }
 
-    if (!autosize) {
+    if (!autosize || state.isDisplayOnly) {
       state.textareaCalcStyle = {
         minHeight: api.calcTextareaHeight(vm.$refs.textarea).minHeight
       }

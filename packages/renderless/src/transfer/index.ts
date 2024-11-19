@@ -225,13 +225,18 @@ export const logicFun =
     if (pullMode) {
       currentValue.splice(event.newIndex, 0, currentValue.splice(event.oldIndex, 1)[0])
     } else {
+      // tiny新增：过滤时拖动，需要从左右页面过滤后的项中，去查找数据。
       const rightPanel = vm.$refs.rightPanel
       const leftPanel = vm.$refs.leftPanel
 
+      // 拖动起始时，索引行的 key值
       const key = isAdd
-        ? rightPanel.state.filteredData[event.oldIndex][props.props.key]
-        : leftPanel.state.filteredData[event.oldIndex][props.props.key]
+        ? rightPanel.state.filteredData[event.oldIndex][props.props.key] // 从右到左， 对于左面板是 add
+        : leftPanel.state.filteredData[event.oldIndex][props.props.key] // 从左到右， 对于左面板是 remove
+
+      // 拖动项是否在勾中的项中
       const index = isAdd ? state.rightChecked.indexOf(key) : state.leftChecked.indexOf(key)
+      // 拖动项是否在当前值中
       const valueIndex = currentValue.indexOf(key)
 
       if (isAdd) {
@@ -274,9 +279,11 @@ export const sortableEvent =
         sort: false,
         filter: '.is-disabled',
         onAdd(event) {
+          // 从右拖到左
           api.logicFun({ event, isAdd: true })
         },
         onRemove(event) {
+          // 从左拖到右
           api.logicFun({ event, isAdd: false })
         }
       })

@@ -2,7 +2,7 @@ import { createHandlerOnEnd, getSortColumns } from './rowDrop'
 export default {
   // 处理列拖拽
   columnDrop(headerEl) {
-    const { plugin, onBeforeMove, filter } = this.dropConfig
+    const { plugin, onBeforeMove, filter } = this.dropConfig || {}
     const columnDropContainer = headerEl.querySelector('.tiny-grid__header .tiny-grid-header__row')
 
     const columnDropOptions = {
@@ -31,7 +31,7 @@ export default {
           }
 
           return Modal.message({
-            message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
+            message: GlobalConfig.i18n('ui.grid.error.notAllowDragFixed'),
             status: 'error'
           })
         }
