@@ -272,7 +272,7 @@ const getOptionOfSetSelected = ({ api, props }) => {
   }
 
   // tiny 新增
-  if (!option.currentLabel) {
+  if (!option.state.currentLabel) {
     api.clearNoMatchValue('')
   }
 
