@@ -1602,7 +1602,7 @@ export const mounted =
     state.completed = true
 
     // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
+    const defaultSizeMap = { medium: 40, default: 32, small: 28, mini: 24 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
