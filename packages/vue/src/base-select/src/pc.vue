@@ -371,9 +371,9 @@
               autofocus
             ></tiny-input>
           </div>
-          <div v-if="topCreate" class="tiny-base-select__top-create">
+          <div v-if="topCreate" class="tiny-select__top-create">
             <div @click="$emit('top-create-click', $event)">
-              <icon-plus></icon-plus>
+              <component :is="state.designConfig?.icons?.addIcon || 'icon-add-circle'"></component>
               <span>{{ topCreateText }}</span>
             </div>
           </div>
@@ -561,11 +561,12 @@ import {
   IconCheck,
   IconCheckedSur,
   IconCopy,
-  IconPlus,
   IconDeltaDown,
   IconSearch,
   IconEllipsis,
-  IconChevronUp
+  IconChevronUp,
+  iconAddCircle,
+  iconLoadingShadow
 } from '@opentiny/vue-icon'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
@@ -623,7 +624,8 @@ export default defineComponent({
     IconClose: IconClose(),
     TinyScrollbar,
     IconCopy: IconCopy(),
-    IconPlus: IconPlus(),
+    IconAddCircle: iconAddCircle(),
+    IconLoadingShadow: iconLoadingShadow(),
     TinySelectDropdown,
     IconHalfselect: IconHalfselect(),
     IconCheck: IconCheck(),
