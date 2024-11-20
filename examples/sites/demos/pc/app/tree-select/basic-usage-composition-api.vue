@@ -6,7 +6,7 @@
 import { ref } from 'vue'
 import { TinyTreeSelect } from '@opentiny/vue'
 
-const value = ref('')
+const value = ref(4)
 
 const treeOp = ref({
   data: [

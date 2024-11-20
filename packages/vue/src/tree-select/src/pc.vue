@@ -11,7 +11,9 @@
     <template #panel>
       <tiny-tree
         ref="treeRef"
+        :current-node-key="!multiple ? state.currentKey : ''"
         :data="state.treeData"
+        :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
         :expand-on-click-node="false"
         :icon-trigger-click-node="false"
         :default-expand-all="true"
