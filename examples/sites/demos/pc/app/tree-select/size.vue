@@ -2,10 +2,10 @@
   <div>
     <p>medium</p>
     <tiny-tree-select v-model="value" size="medium" multiple :tree-op="treeOp"></tiny-tree-select>
-    <p>small</p>
-    <tiny-tree-select v-model="value" size="small" multiple :tree-op="treeOp"> </tiny-tree-select>
     <p>默认</p>
     <tiny-tree-select v-model="value" multiple :tree-op="treeOp"></tiny-tree-select>
+    <p>small</p>
+    <tiny-tree-select v-model="value" size="small" multiple :tree-op="treeOp"> </tiny-tree-select>
     <p>mini</p>
     <tiny-tree-select v-model="value" size="mini" multiple :tree-op="treeOp"> </tiny-tree-select>
   </div>
