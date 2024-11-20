@@ -22,9 +22,10 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 const options = ref({
   resize: true,
@@ -35,7 +36,7 @@ const options = ref({
 })
 
 function btnClick() {
-  TinyModal.confirm({
+  Modal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,

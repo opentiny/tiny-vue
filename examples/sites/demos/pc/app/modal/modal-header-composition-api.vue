@@ -13,13 +13,14 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 
 function btnClick() {
-  TinyModal.alert({ message: '窗口内容', title: '自定义弹窗标题', showHeader: true, showFooter: true })
+  Modal.alert({ message: '窗口内容', title: '自定义弹窗标题', showHeader: true, showFooter: true })
 }
 
 function openModal() {

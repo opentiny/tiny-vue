@@ -28,13 +28,14 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 
 function btnClick() {
-  TinyModal.confirm({
+  Modal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,
@@ -68,7 +69,7 @@ function openModal() {
 }
 
 function handleEvent(eventName, eventArgs) {
-  TinyModal.message({ status: 'info', message: `${eventName} 事件触发了` })
+  Modal.message({ status: 'info', message: `${eventName} 事件触发了` })
   console.log({ eventName, eventArgs })
 }
 </script>

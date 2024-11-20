@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton
+    TinyButton: Button
   },
   methods: {
     btnClick() {
-      TinyModal.message({
+      Modal.message({
         status: 'info',
         message: '自定义消息的内容可关闭,5s 后得自动关闭',
         messageClosable: true,
