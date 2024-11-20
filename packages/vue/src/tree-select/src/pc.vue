@@ -3,10 +3,10 @@
     ref="baseSelectRef"
     class="tiny-tree-select"
     v-model="state.value"
-    :multiple="multiple"
-    :filterable="filterable"
     :clearable="clearable"
+    :filterable="filterable"
     :filter-method="filter"
+    :multiple="multiple"
   >
     <template #panel>
       <tiny-tree
@@ -14,15 +14,15 @@
         :current-node-key="!multiple ? state.currentKey : ''"
         :data="state.treeData"
         :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
-        :expand-on-click-node="false"
-        :icon-trigger-click-node="false"
         :default-expand-all="true"
-        :props="{ label: textField }"
-        :node-key="valueField"
-        :show-checkbox="multiple"
+        :expand-on-click-node="false"
         :filter-node-method="filterMethod"
-        @node-click="nodeClick"
+        :icon-trigger-click-node="false"
+        :node-key="valueField"
+        :props="{ label: textField }"
+        :show-checkbox="multiple"
         @check="check"
+        @node-click="nodeClick"
       ></tiny-tree>
     </template>
   </tiny-base-select>
