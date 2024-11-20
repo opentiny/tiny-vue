@@ -38,7 +38,7 @@
     "@unocss/reset": "0.38.2",
     "@vue/repl": "^2.5.5",
     "@vueuse/head": "0.7.13",
-    "github-markdown-css": "^5.1.0",
+    "github-markdown-css": "~5.1.0",
     "highlight.js": "^11.5.1",
     "marked": "^4.3.0",
     "mathlive": "^0.101.1",
