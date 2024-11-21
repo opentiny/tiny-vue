@@ -13,7 +13,7 @@
 import type { ExtractPropTypes } from 'vue'
 import type { timelineProps, $constants } from '@/time-line/src'
 import type { toggleFold } from 'src/time-line'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { ITimelineItem } from './timeline-item.type'
 
 export type ITimelineProps = ExtractPropTypes<typeof timelineProps>

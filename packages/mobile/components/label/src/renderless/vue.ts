@@ -15,7 +15,7 @@ import type {
   ILabelRenderlessParamUtils,
   ISharedRenderlessParamHooks,
   ILabelApi
-} from '@/types'
+} from '../label'
 import { handleClick, computeLabel, computeLabelClass } from './index'
 
 export const api = ['state', 'handleClick', 'computeLabel', 'computeLabelStyle', 'computeLabelClass']

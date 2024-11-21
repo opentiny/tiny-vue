@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { ITabsVm } from './tabs.type'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { tabBarProps } from '@/tabs/src/tab-nav'
 import type { computedBarStyle } from '../src/tab-bar'
 

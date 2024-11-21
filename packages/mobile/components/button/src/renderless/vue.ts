@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { ISharedRenderlessParamHooks, IButtonProps, IButtonApi, IButtonRenderlessParamUtils } from '@/types'
+import type { ISharedRenderlessParamHooks, IButtonProps, IButtonApi, IButtonRenderlessParamUtils } from '../button'
 
 import { handleClick, clearTimer } from './index'
 

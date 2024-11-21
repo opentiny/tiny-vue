@@ -10,7 +10,6 @@
  *
  */
 import Exception from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/exception/index.less'
 
 /* istanbul ignore next */
 Exception.install = function (Vue) {

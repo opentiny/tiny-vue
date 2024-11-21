@@ -54,34 +54,12 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
+import { popoverProps } from './popover'
 import '@opentiny/vue-theme-mobile/popover/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'hide', 'show', 'after-enter', 'after-leave', 'created', 'itemClick'],
-  props: [
-    ...props,
-    'appendToBody',
-    'arrowOffset',
-    'boundariesPadding',
-    'closeDelay',
-    'disabled',
-    'modelValue',
-    'offset',
-    'openDelay',
-    'placement',
-    'popper',
-    'popperClass',
-    'popperOptions',
-    'reference',
-    'tabindex',
-    'title',
-    'transition',
-    'trigger',
-    'visibleArrow',
-    'width',
-    'maxHeight',
-    'listData'
-  ],
+  props: popoverProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -10,7 +10,6 @@
  *
  */
 import PickerColumn from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/picker-column/index.less'
 
 /* istanbul ignore next */
 PickerColumn.install = function (Vue) {

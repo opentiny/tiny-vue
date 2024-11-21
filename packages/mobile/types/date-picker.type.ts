@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { datePickerProps, $constants } from '@/date-picker/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export type IDatePickerProps = ExtractPropTypes<typeof datePickerProps>
 

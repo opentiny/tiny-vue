@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { popoverProps } from '@/popover/src'
-import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
 
 import type {
   mounted,

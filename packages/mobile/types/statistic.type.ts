@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { statisticProps, $constants } from '@/statistic/src'
-import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
 
 export type IStatisticProps = ExtractPropTypes<typeof statisticProps>
 

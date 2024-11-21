@@ -16,7 +16,8 @@ import type {
   IActionSheetProps,
   ISharedRenderlessParamHooks,
   IActionSheetRenderlessParamUtils
-} from '@/types'
+} from '../action-sheet'
+
 import {
   setSheetStyle,
   initScrollMenu,

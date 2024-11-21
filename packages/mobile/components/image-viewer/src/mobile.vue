@@ -124,25 +124,11 @@ import {
   iconDel
 } from '@opentiny/vue-icon'
 import touchDeactives from './mobileTouch.js'
+import { imageViewerProps } from './image-viewer'
 import '@opentiny/vue-theme-mobile/image-viewer/index.less'
 
 export default defineComponent({
-  props: [
-    ...props,
-    'urlList',
-    'zIndex',
-    'onSwitch',
-    'onClose',
-    'previewVisible',
-    'closeShow',
-    'arrowShow',
-    'toolShow',
-    'showIndex',
-    'imageFullCurrent',
-    'startPosition',
-    'asyncClose',
-    'deleteButton'
-  ],
+  props: imageViewerProps,
   components: {
     IconClose: iconClose(),
     IconChevronLeft: iconChevronLeft(),

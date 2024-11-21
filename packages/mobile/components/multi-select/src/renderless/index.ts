@@ -10,7 +10,7 @@
  *
  */
 
-import { cloneDeep } from '../chart-core/deps/utils'
+import { cloneDeep } from '@opentiny/utils/object'
 
 export const initValue =
   ({ props, emit }) =>

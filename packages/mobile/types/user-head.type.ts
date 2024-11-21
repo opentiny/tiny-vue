@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { userHeadProps, $constants } from '@/user-head/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { computedFontSize, computedLabel, computedMessage, computedStyle, getInternalValue } from 'src/user-head'
 
 export interface IUserHeadState {

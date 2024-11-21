@@ -27,14 +27,14 @@ import {
   onChange,
   updateColumnValue
 } from './index'
-import { DATE } from '../common'
+import { DATE } from '@opentiny/utils'
 import type {
   IDatePickerApi,
   IDatePickerProps,
   IDatePickerRenderlessParamUtils,
   IDatePickerState,
   ISharedRenderlessParamHooks
-} from '@/types'
+} from '../date-picker'
 
 export const api = [
   'state',

@@ -10,7 +10,6 @@
  *
  */
 import MultiSelect from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/multi-select/index.less'
 
 MultiSelect.install = function (Vue) {
   Vue.component(MultiSelect.name, MultiSelect)

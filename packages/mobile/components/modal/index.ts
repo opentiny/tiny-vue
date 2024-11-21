@@ -11,9 +11,8 @@
  */
 
 import { createComponent, setupComponent } from '../../../vue-common'
-import { MsgQueue } from '@opentiny/vue-renderless/modal'
-import TINYModal from './src/index'
-import Popconfirm from '@opentiny/vue-popconfirm'
+import { MsgQueue } from './src/renderless'
+import TINYModal from './src/mobile.vue'
 
 export function Modal(options) {
   const modalPromise = new Promise((resolve) => {
@@ -48,10 +47,10 @@ export function Modal(options) {
           },
           options
         ),
-        component: options.componentType === 'popconfirm' ? Popconfirm : TINYModal
+        component: TINYModal
       })
 
-      const open = $modal[options.componentType === 'popconfirm' ? 'show' : 'open']
+      const open = $modal.open
       if (open) {
         open()
       }
@@ -61,7 +60,7 @@ export function Modal(options) {
   return modalPromise
 }
 const modal = Modal
-const types = ['alert', 'confirm', 'message', 'popconfirm']
+const types = ['alert', 'confirm', 'message']
 
 const defOpts = {
   alert: {
@@ -79,8 +78,7 @@ const defOpts = {
     showHeader: false,
     showClose: false,
     type: 'message'
-  },
-  popconfirm: {}
+  }
 }
 
 types.forEach((type) => {
@@ -110,7 +108,6 @@ types.forEach((type) => {
 export const alert = (Modal as any).alert
 export const message = (Modal as any).message
 export const confirm = (Modal as any).confirm
-export const popconfirm = (Modal as any).popconfirm
 
 TINYModal.installed = false
 setupComponent.TINYModal = {
@@ -131,7 +128,6 @@ setupComponent.TINYModal = {
     root[`${prefix}alert`] = (Modal as any).alert
     root[`${prefix}message`] = (Modal as any).message
     root[`${prefix}confirm`] = (Modal as any).confirm
-    root[`${prefix}popconfirm`] = (Modal as any).popconfirm
   }
 }
 

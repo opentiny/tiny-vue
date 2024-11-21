@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { progressProps, $constants } from '@/progress/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export type IProgressProps = ExtractPropTypes<typeof progressProps>
 

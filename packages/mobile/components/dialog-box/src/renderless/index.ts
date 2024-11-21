@@ -10,10 +10,10 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '../common/deps/dom'
-import { emitEvent } from '../common/event'
-import { getDomNode } from '../common/deps/dom'
-import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '@/types'
+import { on, off, addClass, removeClass } from '@opentiny/utils/deps/dom'
+import { emitEvent } from '@opentiny/utils/event'
+import { getDomNode } from '@opentiny/utils/deps/dom'
+import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '../dialog-box'
 
 export const computedAnimationName =
   ({ constants, props }: Pick<IDialogBoxRenderlessParams, 'constants' | 'props'>) =>

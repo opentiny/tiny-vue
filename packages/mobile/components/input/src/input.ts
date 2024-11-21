@@ -10,8 +10,9 @@
  *
  */
 import type { PropType } from '../../../vue-common'
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes, ComputedRef } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
   INPUT_PC: 'tiny-input__',
@@ -37,7 +38,6 @@ export const $constants = {
 }
 
 export const inputProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -151,11 +151,86 @@ export const inputProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Input',
-  inheritAttrs: false,
-  props: inputProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+import type {
+  calculateNodeStyling,
+  calcTextareaHeight,
+  getInput,
+  handleInput,
+  calcIconOffset,
+  focus,
+  watchFormSelect,
+  setNativeInputValue,
+  resizeTextarea,
+  updateIconOffset,
+  hiddenPassword,
+  inputStyle
+} from './renderless'
+
+export interface IInputState {
+  mode: string
+  focused: boolean
+  hovering: boolean
+  isComposing: boolean
+  passwordVisible: boolean
+  boxVisibility: boolean
+  textareaCalcStyle: object
+  checkedLabel: string
+  width: string
+  sheetvalue: string | number | undefined
+  inputSize: ComputedRef<string>
+  showClear: ComputedRef<boolean>
+  upperLimit: ComputedRef<string>
+  textLength: ComputedRef<string>
+  inputExceed: ComputedRef<boolean>
+  formItemSize: ComputedRef<string>
+  validateIcon: ComputedRef<typeof $constants.VALIDATE_ICON | null>
+  showWordLimit: ComputedRef<boolean>
+  inputDisabled: ComputedRef<boolean>
+  validateState: ComputedRef<string>
+  textareaStyle: ComputedRef<object>
+  needStatusIcon: ComputedRef<boolean>
+  showPwdVisible: ComputedRef<boolean>
+  nativeInputValue: ComputedRef<string>
+  isWordLimitVisible: ComputedRef<boolean>
+  isDisplayOnly: ComputedRef<boolean>
+  displayOnlyTooltip: string
+  hiddenPassword: ComputedRef<string>
+}
+
+export type IInputRenderlessParamUtils = ISharedRenderlessParamUtils<IInputConstants>
+
+export type IInputProps = ExtractPropTypes<typeof inputProps>
+
+export type IInputConstants = typeof $constants
+
+export interface IInputApi extends Pick<IInputRenderlessParamUtils, 'dispatch'> {
+  state: IInputState
+  setNativeInputValue: ReturnType<typeof setNativeInputValue>
+  resizeTextarea: ReturnType<typeof resizeTextarea>
+  updateIconOffset: ReturnType<typeof updateIconOffset>
+  hiddenPassword: ReturnType<typeof hiddenPassword>
+  watchFormSelect: ReturnType<typeof watchFormSelect>
+  getInput: ReturnType<typeof getInput>
+  calcTextareaHeight: ReturnType<typeof calcTextareaHeight>
+  calculateNodeStyling: ReturnType<typeof calculateNodeStyling>
+  handleInput: ReturnType<typeof handleInput>
+  calcIconOffset: ReturnType<typeof calcIconOffset>
+  focus: ReturnType<typeof focus>
+  inputStyle: ReturnType<typeof inputStyle>
+}
+
+export type IInputRenderlessParams = ISharedRenderlessFunctionParams<IInputConstants> & {
+  state: IInputState
+  props: IInputProps
+  api: IInputApi
+}
+
+export interface IInputClassPrefixConstants {
+  Input: string
+  InputGroup: string
+}
+
+export interface IInputEventNameConstants {
+  change: string
+  blur: string
+}

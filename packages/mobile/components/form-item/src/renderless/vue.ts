@@ -50,7 +50,7 @@ import type {
   IFormInstance,
   IFormItemRenderlessParams,
   IFormItemRenderlessParamUtils
-} from '@/types'
+} from '../form-item'
 
 export const api = [
   'state',

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { imageProps, $constants } from '@/image/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type {
   computedGetImageStyle,
   computedGetPreview,

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { anchorProps } from '@/anchor/src'
-import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
 import type {
   mounted,
   updated,

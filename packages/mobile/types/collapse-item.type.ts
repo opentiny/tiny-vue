@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { collapseItemProps, $constants } from '@/collapse-item/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export type ICollapseItemProps = ExtractPropTypes<typeof collapseItemProps>
 

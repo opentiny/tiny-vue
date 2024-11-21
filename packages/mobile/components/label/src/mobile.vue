@@ -19,6 +19,7 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
+import '@opentiny/vue-theme-mobile/label/index.less'
 
 export default defineComponent({
   props: [

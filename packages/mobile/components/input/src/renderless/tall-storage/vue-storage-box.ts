@@ -9,18 +9,19 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-export const api = ['state']
 
-export const renderless = (props, { computed, reactive, onMounted, onUpdated, watch }, { emit, parent, refs }) => {
-  const state = reactive({})
+import { addMemory, searchMemory, selectedMemory } from './index'
 
-  const api = {
-    state
-  }
-
-  Object.assign(api, {
-    state
+export default ({ api, props, reactive, toRefs }) => {
+  const state = reactive({
+    storageData: [],
+    isMemoryStorage: false
   })
 
-  return api
+  return {
+    ...toRefs(state),
+    addMemory: addMemory(props),
+    searchMemory: searchMemory({ props, state }),
+    selectedMemory: selectedMemory({ api, state })
+  }
 }

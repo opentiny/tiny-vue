@@ -10,7 +10,7 @@
  *
  */
 
-import type { IFormApi, IFormProps, IFormState, IFormRenderlessParams, IFormRenderlessParamUtils } from '@/types'
+import type { IFormApi, IFormProps, IFormState, IFormRenderlessParams, IFormRenderlessParamUtils } from '../form'
 
 import {
   watchRules,

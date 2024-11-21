@@ -12,6 +12,7 @@
 
 import type { ExtractPropTypes, CSSProperties } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks, ITinyVm } from '../../../types/shared.type'
 
 export const $constants = {
   ICON_MAP: {

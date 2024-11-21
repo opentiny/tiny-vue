@@ -18,7 +18,7 @@ import type {
   IInputClassPrefixConstants,
   IInputEventNameConstants,
   IInputRenderlessParams
-} from '@/types'
+} from '../input'
 import {
   blur,
   showBox,
@@ -53,7 +53,7 @@ import {
   handleLeaveTextarea,
   getDisplayOnlyText
 } from './index'
-import useStorageBox from '../tall-storage/vue-storage-box'
+import useStorageBox from './tall-storage/vue-storage-box'
 
 export const api = [
   'blur',

@@ -1,4 +1,4 @@
-import type { ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { ExtractPropTypes } from 'vue'
 import type { cascaderProps } from '@/cascader/src'
 import type { ICascaderPanelApi, ICascaderPanelNodePropValue } from '@/types'

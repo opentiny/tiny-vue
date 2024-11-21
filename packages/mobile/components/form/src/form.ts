@@ -9,11 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+
+import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+import type { IFormItemInstance, IFormItemRule } from '../../form-item/src/form-item'
 
 export const formProps = {
-  ...$props,
   model: Object,
   rules: Object,
   inlineMessage: {
@@ -109,11 +110,77 @@ export const formProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Form',
-  componentName: 'Form',
-  props: formProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+import type {
+  updateTip,
+  computedAutoLabelWidth,
+  computedHideRequiredAsterisk,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
+  created,
+  resetFields,
+  clearValidate,
+  validate,
+  validateField,
+  getLabelWidthIndex,
+  registerLabelWidth,
+  deregisterLabelWidth,
+  watchRules,
+  showTooltip,
+  hideTooltip
+} from './renderless'
+
+export interface IFormRules {
+  [prop: string]: IFormItemRule
+}
+export interface IFormState {
+  showAutoWidth: boolean
+  fields: IFormItemInstance[]
+  timer: number
+  tooltipVisible: boolean
+  displayedValue: string
+  potentialLabelWidthArr: number[]
+  autoLabelWidth: string
+  isDisplayOnly: boolean
+  hasRequired: boolean
+  hideRequiredAsterisk: boolean
+  validateIcon: object | null
+  isErrorInline: boolean
+  isErrorBlock: boolean
+  labelWidth: string
+  tooltipType: string
+}
+
+export type IFormProps = ExtractPropTypes<typeof formProps>
+
+export type IFormRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  state: IFormState
+  props: IFormProps
+  api: IFormApi
+  dialog: ITinyVm | null
+}
+
+export interface IFormApi {
+  state: IFormState
+  updateTip: ReturnType<typeof updateTip>
+  computedAutoLabelWidth: ReturnType<typeof computedAutoLabelWidth>
+  computedHideRequiredAsterisk: ReturnType<typeof computedHideRequiredAsterisk>
+  computedValidateIcon: ReturnType<typeof computedValidateIcon>
+  computedIsErrorInline: ReturnType<typeof computedIsErrorInline>
+  computedIsErrorBlock: ReturnType<typeof computedIsErrorBlock>
+  created: ReturnType<typeof created>
+  resetFields: ReturnType<typeof resetFields>
+  clearValidate: ReturnType<typeof clearValidate>
+  validate: ReturnType<typeof validate>
+  validateField: ReturnType<typeof validateField>
+  getLabelWidthIndex: ReturnType<typeof getLabelWidthIndex>
+  registerLabelWidth: ReturnType<typeof registerLabelWidth>
+  deregisterLabelWidth: ReturnType<typeof deregisterLabelWidth>
+  watchRules: ReturnType<typeof watchRules>
+  showTooltip: ReturnType<typeof showTooltip>
+  hideTooltip: ReturnType<typeof hideTooltip>
+}
+
+export type IFormRenderlessParamUtils = ISharedRenderlessParamUtils<never>
+
+export type IFormInstance = ComponentPublicInstance & IFormProps & IFormApi

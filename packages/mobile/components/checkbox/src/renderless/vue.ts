@@ -17,7 +17,7 @@ import type {
   ISharedRenderlessParamHooks,
   ICheckboxRenderlessParams,
   ICheckboxRenderlessParamUtils
-} from '@/types'
+} from '../checkbox'
 import {
   addToStore,
   removeFromStore,

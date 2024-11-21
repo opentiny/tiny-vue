@@ -13,8 +13,9 @@
 import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2, hooks } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
 import LabelWrap from './label-wrap'
-import Tooltip from '@opentiny/vue-tooltip'
-import type { IFormItemApi, IFormItemInstance } from '@opentiny/vue-renderless/types/form-item.type'
+import Tooltip from '../../tooltip'
+import { formItemProps } from './form-item'
+import type { IFormItemApi, IFormItemInstance } from './form-item'
 
 const $constants = {
   FORM_NAME: 'Form',
@@ -28,60 +29,7 @@ export default defineComponent({
     LabelWrap,
     Tooltip
   },
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    appendToBody: {
-      type: Boolean,
-      default: undefined
-    },
-    error: String,
-    for: String,
-    inlineMessage: {
-      type: Boolean,
-      default: undefined
-    },
-    messageType: String,
-    label: String,
-    labelWidth: String,
-    manual: Boolean,
-    popperOptions: {
-      type: Object,
-      default: () => ({})
-    },
-    prop: String,
-    required: {
-      type: Boolean,
-      default: undefined
-    },
-    rules: [Object, Array],
-    showMessage: {
-      type: Boolean,
-      default: true
-    },
-    size: String,
-    validateDisabled: Boolean,
-    validateDebounce: Boolean,
-    validatePosition: String,
-    validateStatus: String,
-    validateType: String,
-    validateIcon: {
-      type: Object,
-      default: null
-    },
-    ellipsis: {
-      type: Boolean,
-      default: false
-    },
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-    extra: String
-  },
+  props: formItemProps,
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFormItemApi
   },

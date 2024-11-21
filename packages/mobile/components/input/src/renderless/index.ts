@@ -10,14 +10,14 @@
  *
  */
 
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils/string'
 import type {
   IInputApi,
   IInputClassPrefixConstants,
   IInputRenderlessParamUtils,
   IInputRenderlessParams,
   IInputState
-} from 'types/input.type'
+} from '../input'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;

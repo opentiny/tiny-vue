@@ -43,7 +43,7 @@ import {
   hideScrollbar,
   watchVisible
 } from './index'
-import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
+import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '../modal'
 
 export const api = [
   'state',

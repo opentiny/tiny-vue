@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { amountProps } from '@/amount/src'
-import type { ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export interface IAmountState {
   visible: boolean

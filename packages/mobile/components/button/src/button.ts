@@ -9,6 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { ComputedRef, ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { clearTimer, handleClick } from './renderless'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const buttonProps = {
   type: {
@@ -59,3 +63,26 @@ export const buttonProps = {
   },
   ghost: Boolean
 }
+
+export interface IButtonState {
+  timer: number
+  disabled: boolean
+  plain: ComputedRef<boolean>
+  formDisabled: ComputedRef<boolean>
+  buttonDisabled: ComputedRef<boolean>
+}
+
+export type IButtonRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  state: IButtonState
+  props: IButtonProps
+}
+
+export type IButtonProps = ExtractPropTypes<typeof buttonProps>
+
+export interface IButtonApi {
+  state: IButtonState
+  clearTimer: ReturnType<typeof clearTimer>
+  handleClick: ReturnType<typeof handleClick>
+}
+
+export type IButtonRenderlessParamUtils = ISharedRenderlessParamUtils<never>

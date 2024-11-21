@@ -37,7 +37,7 @@ import type {
   ISharedRenderlessFunctionParams,
   ISharedRenderlessParamHooks,
   ISharedRenderlessParamUtils
-} from './shared.type'
+} from '../../../types/shared.type'
 
 export type IDialogBoxProps = ExtractPropTypes<typeof dialogBoxProps>
 

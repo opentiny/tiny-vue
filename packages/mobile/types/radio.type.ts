@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { radioProps, $constants } from '@/radio/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type {
   handleChange,
   isGroup,

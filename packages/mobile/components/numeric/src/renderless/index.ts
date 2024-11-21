@@ -17,13 +17,13 @@ import type {
   INumericRenderlessParams,
   INumericGetEmitValueParams,
   INumericUnitPrecision
-} from '@/types'
-import type { BigIntDecimal } from '../common/bigInt'
-import { formatNumber, roundFixed } from '../common/decimal'
-import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
-import { isNumber, isNull } from '../common/type'
-import { MOUSEDELTA } from '../common'
-import { on, off } from '../common/deps/dom'
+} from '../numeric'
+import type { BigIntDecimal } from '@opentiny/utils/bigInt'
+import { formatNumber, roundFixed } from '@opentiny/utils/decimal'
+import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/utils/bigInt'
+import { isNumber, isNull } from '@opentiny/utils/type'
+import { MOUSEDELTA } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils/deps/dom'
 
 export const initService = (
   service: INumericRenderlessParamUtils['service']

@@ -6,7 +6,7 @@ import type {
   ICascaderPanelNodeValue,
   ICascaderPanelNode
 } from './cascader-panel.type'
-import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
 import type {
   isInPath,
   handleExpand,

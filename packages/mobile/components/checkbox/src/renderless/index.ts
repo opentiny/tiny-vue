@@ -10,8 +10,8 @@
  *
  */
 
-import type { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '@/types'
-import { isNull } from '../common/type'
+import type { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '../checkbox'
+import { isNull } from '@opentiny/utils/type'
 
 export const addToStore =
   ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>

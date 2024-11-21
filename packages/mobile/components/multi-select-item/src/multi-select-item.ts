@@ -9,26 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
 
-export default defineComponent({
-  name: $prefix + 'MultiSelectItem',
-  inject: {},
-  props: {
-    ...$props,
-    option: {
-      type: Object,
-      default: () => ({
-        label: ''
-      })
-    },
-    divided: {
-      type: Boolean,
-      default: false
-    }
+export const multiSelectItemProps = {
+  option: {
+    type: Object,
+    default: () => ({
+      label: ''
+    })
   },
-  setup(props, context) {
-    return $setup({ props, context, template })
+  divided: {
+    type: Boolean,
+    default: false
   }
-})
+}

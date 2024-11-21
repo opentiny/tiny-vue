@@ -23,7 +23,7 @@ import type {
   handleClick,
   getStatusCls
 } from '../src/timeline-item'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { ITimelineCustomCls, ITimelineProps } from './time-line.type'
 
 export type ITimelineItemProps = ExtractPropTypes<typeof timelineItemProps>

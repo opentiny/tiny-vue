@@ -10,7 +10,6 @@
  *
  */
 import Label from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/label/index.less'
 
 /* istanbul ignore next */
 Label.install = function (Vue) {

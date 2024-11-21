@@ -9,11 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix, $props, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ComputedRef, ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const labelProps = {
-  ...$props,
   label: {
     type: String,
     default: ''
@@ -60,10 +60,29 @@ export const labelProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Label',
-  props: labelProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export type ILabelProps = ExtractPropTypes<typeof labelProps>
+
+export interface ILabelState {
+  label: ComputedRef<string>
+  type: ComputedRef<string>
+  color: ComputedRef<string>
+  size: ComputedRef<string>
+  labelStyle: ComputedRef<object>
+  labelClass: ComputedRef<string>
+  isRequired: ComputedRef<boolean>
+}
+
+export interface ILabelApi {
+  state: ILabelState
+  handleClick: (event: MouseEvent) => void
+  computeLabel: () => string
+  computeLabelStyle: () => object
+  computeLabelClass: () => []
+}
+export type ILabelRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  api: ILabelApi
+  state: ILabelState
+  props: ILabelProps
+}
+
+export type ILabelRenderlessParamUtils = ISharedRenderlessParamUtils<never>

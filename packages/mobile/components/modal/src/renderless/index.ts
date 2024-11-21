@@ -10,11 +10,11 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
-import { getDomNode } from '../common/deps/dom'
-import { getViewportWindow } from '../common/global'
+import { KEY_CODE } from '@opentiny/utils'
+import { on, off, addClass, hasClass, removeClass } from '@opentiny/utils/deps/dom'
+import PopupManager from '@opentiny/utils/deps/popup-manager'
+import { getDomNode } from '@opentiny/utils/deps/dom'
+import { getViewportWindow } from '@opentiny/utils/global'
 
 import type {
   IModalProps,

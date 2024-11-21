@@ -31,9 +31,15 @@ import {
   handleItemClick,
   observeCallback
 } from './index'
-import userPopper from '../common/deps/vue-popper'
-import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
-import type { IPopoverApi, IPopoverProps, IPopoverState, IPopoverRenderlessParams } from 'types/popover.type'
+import userPopper from '@opentiny/utils/deps/vue-popper'
+import type {
+  IPopoverApi,
+  IPopoverProps,
+  IPopoverState,
+  IPopoverRenderlessParams,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '../popover'
 
 export const api = [
   'state',

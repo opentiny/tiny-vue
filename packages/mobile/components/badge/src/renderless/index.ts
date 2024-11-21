@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { IBadgeRenderlessParams, IBadgeContent } from '@/types'
+import type { IBadgeRenderlessParams, IBadgeContent } from '../badge'
 import type { StyleValue } from 'vue'
 
 export const computedContent =

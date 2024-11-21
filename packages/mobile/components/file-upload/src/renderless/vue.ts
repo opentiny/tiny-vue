@@ -18,10 +18,10 @@ import type {
   IFileUploadModalVm,
   IFileUploadService,
   IFileUploadStreamsaver
-} from '@/types'
+} from '../file-upload'
 
 import { downloadFile as ordinaryDownload } from '../upload-list'
-import { formatFileSize } from '../common/string'
+import { formatFileSize } from '@opentiny/utils/string'
 
 import {
   initService,
@@ -97,7 +97,7 @@ import {
   closeRecordPanel,
   getTipMessage
 } from './index'
-import { isEmptyObject } from '../common/type'
+import { isEmptyObject } from '@opentiny/utils/type'
 
 export const api = [
   'state',

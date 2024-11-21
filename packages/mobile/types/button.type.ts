@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { buttonProps } from '@/button/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { clearTimer, handleClick } from '../src/button'
 
 export interface IButtonState {

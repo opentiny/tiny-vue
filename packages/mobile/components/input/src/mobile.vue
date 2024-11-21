@@ -175,7 +175,8 @@
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
 import { iconClose, iconEyeopen, iconEyeclose, iconChevronRight } from '@opentiny/vue-icon'
-import ActionSheet from '@opentiny/vue-action-sheet'
+import ActionSheet from '../../action-sheet'
+import { inputProps } from './input'
 import '@opentiny/vue-theme-mobile/input/index.less'
 
 export default defineComponent({
@@ -199,35 +200,7 @@ export default defineComponent({
     IconEyeclose: iconEyeclose(),
     TinyActionSheet: ActionSheet
   },
-  props: [
-    ...props,
-    'name',
-    'selectMenu',
-    'ellipsis',
-    'contentStyle',
-    'labelWidth',
-    'tips',
-    'isSelect',
-    'type',
-    'label',
-    'modelValue',
-    'disabled',
-    'readonly',
-    'clearable',
-    'suffixIcon',
-    'prefixIcon',
-    'autocomplete',
-    'showPassword',
-    'validateEvent',
-    'showWordLimit',
-    'title',
-    'counter',
-    'autosize',
-    'tabindex',
-    'width',
-    'textAlign',
-    'resize'
-  ],
+  props: inputProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

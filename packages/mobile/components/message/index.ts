@@ -1,5 +1,5 @@
-import Modal from '@opentiny/vue-modal'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import Modal from '../modal'
+import { extend } from '@opentiny/utils/object'
 import { $prefix } from '../../../vue-common'
 
 const Message = extend(true, { props: { componentName: { type: String, default: 'Message' } } }, Modal, {
@@ -9,13 +9,6 @@ const Message = extend(true, { props: { componentName: { type: String, default: 
 /* istanbul ignore next */
 Message.install = function (Vue) {
   Vue.component(Message.name, Message)
-}
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Message.install(window.Vue)
-  }
 }
 
 export default Message

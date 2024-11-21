@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { rateProps, $constants } from '@/rate/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type {
   computedActiveClass,
   computedActiveColor,

@@ -18,7 +18,7 @@ import type {
   INumericRenderlessParamUtils,
   INumericRenderlessParams,
   INumericInitStateParams
-} from '@/types'
+} from '../numeric'
 import {
   watchValue,
   toPrecision,

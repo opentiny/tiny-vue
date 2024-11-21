@@ -10,7 +10,7 @@
  *
  */
 import type { CSSProperties } from 'vue'
-import type { IAlertRenderlessParams, ITinyVm } from '@/types'
+import type { IAlertRenderlessParams, ITinyVm } from '../alert'
 
 export const ALERT_TIMEOUT = 2000
 

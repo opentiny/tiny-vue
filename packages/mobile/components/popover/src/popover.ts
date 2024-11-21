@@ -9,12 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import type { IPopoverApi } from '@opentiny/vue-renderless/types/popover.type'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export const popoverProps = {
-  ...$props,
   appendToBody: {
     type: Boolean,
     default: true
@@ -84,11 +83,70 @@ export const popoverProps = {
     default: () => true
   }
 }
-export default defineComponent({
-  inheritAttrs: true,
-  name: $prefix + 'Popover',
-  props: popoverProps,
-  setup(props, context) {
-    return $setup({ props, context, template }) as unknown as IPopoverApi
-  }
-})
+
+import type {
+  mounted,
+  computedTooltipId,
+  destroyed,
+  doToggle,
+  doShow,
+  doClose,
+  handleFocus,
+  handleClick,
+  handleBlur,
+  handleKeydown,
+  handleAfterEnter,
+  handleAfterLeave,
+  handleMouseEnter,
+  handleMouseLeave,
+  handleDocumentClick,
+  cleanup,
+  wrapMounted,
+  handleItemClick,
+  observeCallback
+} from './renderless'
+
+export type IPopoverProps = ExtractPropTypes<typeof popoverProps>
+
+export interface IPopoverState {
+  popperElm: HTMLElement
+  referenceElm: HTMLElement
+  showPopper: boolean
+  timer: number
+  mounted: boolean
+  xPlacement: string
+  tooltipId: string
+  webCompEventTarget: HTMLElement | null
+}
+
+export interface IPopoverApi {
+  state: IPopoverState
+  doDestroy: (forceDestroy?: boolean | undefined) => void
+  observer: MutationObserver
+  mounted: ReturnType<typeof mounted>
+  cleanup: ReturnType<typeof cleanup>
+  destroyed: ReturnType<typeof destroyed>
+  computedTooltipId: ReturnType<typeof computedTooltipId>
+  doShow: ReturnType<typeof doShow>
+  doClose: ReturnType<typeof doClose>
+  doToggle: ReturnType<typeof doToggle>
+  handleClick: ReturnType<typeof handleClick>
+  handleAfterEnter: ReturnType<typeof handleAfterEnter>
+  handleBlur: ReturnType<typeof handleBlur>
+  handleFocus: ReturnType<typeof handleFocus>
+  handleKeydown: ReturnType<typeof handleKeydown>
+  handleMouseLeave: ReturnType<typeof handleMouseLeave>
+  handleAfterLeave: ReturnType<typeof handleAfterLeave>
+  handleMouseEnter: ReturnType<typeof handleMouseEnter>
+  handleDocumentClick: ReturnType<typeof handleDocumentClick>
+  wrapMounted: ReturnType<typeof wrapMounted>
+  handleItemClick: ReturnType<typeof handleItemClick>
+  observeCallback: ReturnType<typeof observeCallback>
+}
+
+export type IPopoverRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  props: IPopoverProps
+  state: IPopoverState
+  api: IPopoverApi
+  updatePopper: () => void
+}

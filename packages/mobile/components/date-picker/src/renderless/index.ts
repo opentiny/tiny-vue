@@ -17,7 +17,7 @@ import type {
   IDatePickerProps,
   IDatePickerRenderlessParams,
   IDatePickerState
-} from '@/types'
+} from '../date-picker'
 
 export const getMonthEndDay =
   (constants: IDatePickerConstants) =>

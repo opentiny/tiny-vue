@@ -53,6 +53,7 @@ import { $prefix, props, setup, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
 import { iconChevronDown } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
+import { multiSelectItemProps } from './multi-select-item'
 import '@opentiny/vue-theme-mobile/multi-select-item/index.less'
 
 export default defineComponent({
@@ -61,7 +62,7 @@ export default defineComponent({
     TinyButton: Button,
     IconChevronDown: iconChevronDown()
   },
-  props: [...props, 'option', 'divided'],
+  props: multiSelectItemProps,
 
   setup(props, context) {
     return setup({ props, context, renderless, api })

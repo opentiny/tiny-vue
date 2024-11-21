@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { ILabelProps } from 'types/label.type'
+import type { ILabelProps } from '../label'
 
 const prefix = 'tiny-mobile-label-'
 

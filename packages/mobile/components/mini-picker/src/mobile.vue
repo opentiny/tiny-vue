@@ -46,7 +46,8 @@
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from './renderless/vue'
 import { $prefix, setup, defineComponent } from '../../../vue-common'
-import PickerColumn from '@opentiny/vue-picker-column'
+import PickerColumn from '../../picker-column'
+import '@opentiny/vue-theme-mobile/mini-picker/index.less'
 
 const $constants = {
   CHILDREN_PICKER: 'childrenPicker'

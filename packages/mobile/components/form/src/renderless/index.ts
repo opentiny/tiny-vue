@@ -10,9 +10,9 @@
  *
  */
 
-import { merge } from '../common/object'
+import { merge } from '@opentiny/utils/object'
 
-import type { IFormRenderlessParams } from '@/types'
+import type { IFormRenderlessParams } from '../form'
 
 export const watchRules =
   ({ api, props, state }: Pick<IFormRenderlessParams, 'api' | 'props' | 'state'>) =>

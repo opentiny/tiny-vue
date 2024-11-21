@@ -39,14 +39,14 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
 
 import '@opentiny/vue-theme-mobile/index-bar/index.less'
 
 export default defineComponent({
   emits: ['select', 'change'],
-  props: [...props, 'indexList'],
+  props: ['indexList'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -25,7 +25,7 @@ import type {
   setCurrentNode,
   getCurrentNode
 } from '../src/tree-menu'
-import type { ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export interface ITreeMenuState {
   data?: unknown[]

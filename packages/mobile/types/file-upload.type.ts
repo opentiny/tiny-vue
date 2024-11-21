@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { fileUploadProps, $constants } from '@/file-upload/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
 import type {
   sliceChunk,
   getFormData,

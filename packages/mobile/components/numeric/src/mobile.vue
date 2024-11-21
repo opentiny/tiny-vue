@@ -72,8 +72,9 @@
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
 import { props, setup, directive, defineComponent } from '../../../vue-common'
-import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
+import bind from '@opentiny/utils/deps/repeat-click'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
+import { numericProps } from './numeric'
 import '@opentiny/vue-theme-mobile/numeric/index.less'
 
 export default defineComponent({
@@ -86,25 +87,7 @@ export default defineComponent({
     IconMinus: iconMinus(),
     IconPlus: iconPlus()
   },
-  props: [
-    ...props,
-    'step',
-    'stepStrictly',
-    'max',
-    'min',
-    'modelValue',
-    'disabled',
-    'size',
-    'controls',
-    'controlsPosition',
-    'name',
-    'label',
-    'placeholder',
-    'precision',
-    'circulate',
-    'theme',
-    'changeCompat'
-  ],
+  props: numericProps,
   emits: ['update:modelValue', 'change', 'blur', 'focus'],
   setup(props, context) {
     return setup({ props, context, renderless, api })

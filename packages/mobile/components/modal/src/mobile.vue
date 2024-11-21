@@ -12,42 +12,13 @@
 <script lang="tsx">
 import { props, setup, h, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
-import Button from '@opentiny/vue-button'
+import Button from '../../button'
 import { iconFullscreenLeft, iconMinscreenLeft } from '@opentiny/vue-icon'
+import { modalProps } from './modal'
 import '@opentiny/vue-theme-mobile/modal/index.less'
 
 export default defineComponent({
-  props: [
-    ...props,
-    '_constants',
-    'animat',
-    'beforeClose',
-    'duration',
-    'escClosable',
-    'events',
-    'fullscreen',
-    'height',
-    'id',
-    'isFormReset',
-    'lockScroll',
-    'lockView',
-    'marginSize',
-    'mask',
-    'maskClosable',
-    'message',
-    'minHeight',
-    'minWidth',
-    'modelValue',
-    'resize',
-    'showFooter',
-    'showHeader',
-    'title',
-    'top',
-    'type',
-    'vSize',
-    'width',
-    'zIndex'
-  ],
+  props: modalProps,
   components: {
     Button
   },

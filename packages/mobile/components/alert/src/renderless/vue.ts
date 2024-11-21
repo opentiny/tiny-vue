@@ -16,7 +16,7 @@ import type {
   IAlertState,
   ISharedRenderlessParamHooks,
   IAlertRenderlessParamUtils
-} from '@/types'
+} from '../alert'
 import {
   computedGetIcon,
   computedGetTitle,

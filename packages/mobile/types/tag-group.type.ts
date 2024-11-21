@@ -2,7 +2,7 @@ import type { debounce } from 'src/common/runtime'
 import type { ExtractPropTypes } from 'vue'
 import type { tagGroupProps } from '@/tag-group/src'
 import type { getHiddenTags, handelItemClick } from '../src/tag-group'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export interface ITagGroupDataItem {
   name: string

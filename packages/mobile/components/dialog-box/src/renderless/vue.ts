@@ -31,7 +31,7 @@ import {
   hideScrollbar,
   computedBodyStyle
 } from './index'
-import usePopup from '../common/deps/vue-popup'
+import usePopup from '@opentiny/utils/deps/vue-popup'
 import type {
   IDialogBoxApi,
   IDialogBoxProps,
@@ -42,7 +42,7 @@ import type {
   ISharedRenderlessParamHooks,
   IDialogBoxInitApiParam,
   IDialogBoxInitWatchParam
-} from '@/types'
+} from '../dialog-box'
 
 export const api = [
   'afterEnter',

@@ -10,7 +10,8 @@
  *
  */
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
   FILE_UPLOAD_INNER_TEMPLATE: 'file-upload-inner-template',

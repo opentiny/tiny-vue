@@ -10,10 +10,10 @@
  *
  */
 
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import PopupManager from '@opentiny/utils/deps/popup-manager'
+import { getStyle, addClass } from '@opentiny/utils/deps/dom'
 import { createComponent, hooks, appProperties } from '../../../vue-common'
-import Loading from './index'
+import Loading from './mobile.vue'
 
 export const defaults = {
   text: null,

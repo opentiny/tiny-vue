@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { IButtonRenderlessParams, IButtonState } from '@/types'
-import { xss } from '../common'
+import type { IButtonRenderlessParams, IButtonState } from '../button'
+import { xss } from '@opentiny/utils'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>

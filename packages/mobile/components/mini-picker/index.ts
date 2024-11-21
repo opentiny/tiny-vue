@@ -10,7 +10,6 @@
  *
  */
 import MiniPicker from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/mini-picker/index.less'
 
 /* istanbul ignore next */
 MiniPicker.install = function (Vue) {

@@ -36,11 +36,12 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script>
 import { renderless, api } from './renderless/vue'
 import { setup, $prefix, defineComponent } from '../../../vue-common'
 import Button from '../../button'
 import { exceptionProps } from './exception'
+import '@opentiny/vue-theme-mobile/exception/index.less'
 
 export default defineComponent({
   name: $prefix + 'Exception',

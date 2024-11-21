@@ -433,3 +433,13 @@ export const merge = function (target: object, ...rest: object[]) {
 
   return target
 }
+
+export const cloneDeep = (data) => {
+  if (isObject(data)) {
+    return extend(true, data)
+  } else if (Array.isArray(data)) {
+    return copyArray(data)
+  } else {
+    return data
+  }
+}

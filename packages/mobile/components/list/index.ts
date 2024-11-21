@@ -10,7 +10,6 @@
  *
  */
 import List from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/list/index.less'
 
 /* istanbul ignore next */
 List.install = function (Vue) {

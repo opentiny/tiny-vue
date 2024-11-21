@@ -10,12 +10,12 @@
  *
  */
 
-import { POSITION, VALIDATE_STATE } from '../common'
-import { omitText } from '../common/string'
-import { merge } from '../common/object'
-import Validator from '../common/validate'
-import { isNull } from '../common/type'
-import debounce from '../common/deps/debounce'
+import { POSITION, VALIDATE_STATE } from '@opentiny/utils'
+import { omitText } from '@opentiny/utils/string'
+import { merge } from '@opentiny/utils/object'
+import Validator from '@opentiny/utils/validate'
+import { isNull } from '@opentiny/utils/type'
+import debounce from '@opentiny/utils/deps/debounce'
 import type {
   IFormItemRenderlessParams,
   IFormInstance,
@@ -24,7 +24,7 @@ import type {
   IFormItemTrigger,
   IFormItemValidateStatus,
   IFormItemLabelStyle
-} from '@/types'
+} from '../form-item'
 import type { StyleValue } from 'vue'
 
 export const watchError =

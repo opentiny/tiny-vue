@@ -12,7 +12,7 @@
 
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
 import type { actionMenuProps } from '@/action-menu/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type {
   handleMoreClick,
   handleItemClick,

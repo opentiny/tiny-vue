@@ -9,10 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
-import { on, off, addClass, removeClass } from '../common/deps/dom'
-import { guid } from '../common/string'
-import { KEY_CODE } from '../common'
+import type { IPopoverRenderlessParams, IPopoverState } from '../popover'
+import { on, off, addClass, removeClass } from '@opentiny/utils/deps/dom'
+import { guid } from '@opentiny/utils/string'
+import { KEY_CODE } from '@opentiny/utils'
 
 const processTrigger = ({
   api,

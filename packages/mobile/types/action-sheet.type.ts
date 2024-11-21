@@ -1,6 +1,6 @@
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { actionSheetProps } from '@/action-sheet/src'
-import type { ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export interface IActionSheetState {
   toggle: boolean

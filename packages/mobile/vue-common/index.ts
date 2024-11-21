@@ -26,8 +26,8 @@ import { defineComponent, isVue2, isVue3 } from './src/adapter'
 import { useBreakpoint } from './src/breakpoint'
 import { useDefer } from './src/usedefer'
 
-import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
-import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
+import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/utils/deps/useInstanceSlots'
+import { useRelation as createUseRelation } from '@opentiny/utils/deps/useRelation'
 
 export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
 export const useRelation = createUseRelation({ ...hooks, isVue2 })
