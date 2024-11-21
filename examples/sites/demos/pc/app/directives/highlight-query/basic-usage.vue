@@ -13,12 +13,12 @@
 
 <script>
 import { HighlightQuery } from '@opentiny/vue-directive'
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 export default {
   directives: { HighlightQuery },
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {

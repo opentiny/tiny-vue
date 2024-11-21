@@ -4,6 +4,7 @@
       :data="tableData"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
+      show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>
@@ -13,7 +14,7 @@
       <tiny-grid-column field="telephone" title="telephone" :editor="{}">
         <template #edit="scope">
           <div>
-            <input v-model="scope.row.telephone" @input="slotOnInput($event, scope)" />
+            <input class="grid-editor-input" v-model="scope.row.telephone" @input="slotOnInput($event, scope)" />
           </div>
         </template>
       </tiny-grid-column>
@@ -23,27 +24,26 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const CustomInput = {
   inheritAttrs: false,
-  template: '<input :value="value" class="grid-editor-item" @change="change" @input="input"/>',
   props: {
-    value: String
-  },
-  model: {
-    prop: 'value',
-    event: 'input'
+    modelValue: String
   },
   methods: {
     change(event) {
-      this.$emit('input', event.target.value)
+      this.$emit('update:modelValue', event.target.value)
     },
     input(event) {
-      this.$emit('input', event.target.value)
+      this.$emit('update:modelValue', event.target.value)
     }
+  },
+  render() {
+    return <input value={this.modelValue} class="grid-editor-input" onChange={this.change} onInput={this.input} />
   }
 }
+
 const validRules = {
   name: [
     { required: true, message: '名称必填' },
@@ -171,3 +171,10 @@ function slotOnInput(e, scope) {
   scope.$table.updateStatus(scope, e.target.value)
 }
 </script>
+
+<style scoped>
+:deep(.tiny-grid) .col__edit .grid-editor-input {
+  width: 100%;
+  height: 100%;
+}
+</style>

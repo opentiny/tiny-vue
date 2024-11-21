@@ -60,11 +60,11 @@
 </template>
 
 <script>
-import { Select } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select
+    TinySelect
   },
   created() {
     this.allData = Array.from({ length: 1000 }, (a, i) => {
@@ -99,6 +99,7 @@ export default {
         title: '区域'
       }
     ]
+
     return {
       allData: [],
       value1: '',
@@ -118,7 +119,7 @@ export default {
   methods: {
     remoteMethod(value) {
       const filterData = this.filter(value)
-
+      console.log(filterData, value)
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(filterData)

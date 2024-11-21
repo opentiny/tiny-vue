@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 const treeData = ref([
   {
@@ -110,6 +110,6 @@ const treeData = ref([
 ])
 
 const handleNodeClick = (data) => {
-  Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+  TinyModal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
 }
 </script>

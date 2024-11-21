@@ -4,6 +4,7 @@
     <tiny-grid
       ref="revertGridRef"
       :data="tableData"
+      show-overflow="tooltip"
       seq-serial
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
@@ -22,7 +23,7 @@
         show-overflow="ellipsis"
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="100">
-        <template v-slot="data">
+        <template #default="data">
           <tiny-button size="mini" @click="$refs.revertGridRef.revertData(data.row)">恢复</tiny-button>
         </template>
       </tiny-grid-column>
@@ -32,7 +33,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 const options = ref([
   { label: '华北区', value: '华北区' },

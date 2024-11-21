@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import { RichTextEditor } from '@opentiny/vue'
+import { TinyRichTextEditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRichTextEditor: RichTextEditor
+    TinyRichTextEditor
   },
   data() {
     return {

@@ -3,11 +3,11 @@
     <div class="option-row">
       <span class="tip">选择版型：</span>
       <tiny-radio-group v-model="pattern">
-        <tiny-radio label="default">默认:default</tiny-radio>
-        <tiny-radio label="classic">经典:classic</tiny-radio>
-        <tiny-radio label="simple">简约:simple</tiny-radio>
-        <tiny-radio label="fashion">时尚:fashion</tiny-radio>
-        <tiny-radio label="legend">传奇:legend</tiny-radio>
+        <tiny-radio label="default">默认：default</tiny-radio>
+        <tiny-radio label="classic">经典：classic</tiny-radio>
+        <tiny-radio label="simple">简约：simple</tiny-radio>
+        <tiny-radio label="fashion">时尚：fashion</tiny-radio>
+        <tiny-radio label="legend">传奇：legend</tiny-radio>
       </tiny-radio-group>
     </div>
     <tiny-container :pattern="pattern">
@@ -26,13 +26,13 @@
 </template>
 
 <script lang="jsx">
-import { Container, Radio, RadioGroup } from '@opentiny/vue'
+import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyContainer: Container,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyContainer,
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {

@@ -129,7 +129,8 @@ const setLocalStorageage = (name, value, memorySpace = 5) => {
 }
 
 export const addMemory = (props) => (value) => {
-  if (props.name && value) {
+  // input记忆历史输入不添加空白字符
+  if (props.name && value?.trim()) {
     setLocalStorageage(props.name, value, props.memorySpace)
   }
 }

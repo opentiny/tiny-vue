@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { Switch as TinySwitch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue'
 </script>

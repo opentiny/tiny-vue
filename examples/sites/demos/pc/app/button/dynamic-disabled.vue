@@ -29,15 +29,15 @@
 </template>
 
 <script>
-import { Button, Layout, Row, Switch } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow, TinySwitch } from '@opentiny/vue'
 import { iconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinySwitch: Switch
+    TinyButton,
+    TinyLayout,
+    TinyRow,
+    TinySwitch
   },
   data() {
     return {

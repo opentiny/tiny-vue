@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   mounted() {
     // mini 尺寸
-    Loading.service({
+    TinyLoading.service({
       size: 'mini',
       text: 'mini 尺寸',
       target: '#loading-box0',
@@ -21,7 +21,7 @@ export default {
     })
 
     // small 尺寸
-    Loading.service({
+    TinyLoading.service({
       size: 'small',
       text: 'small 尺寸',
       target: '#loading-box1',
@@ -29,7 +29,7 @@ export default {
     })
 
     // medium 尺寸
-    Loading.service({
+    TinyLoading.service({
       size: 'medium',
       text: 'medium 尺寸',
       target: '#loading-box2',
@@ -37,7 +37,7 @@ export default {
     })
 
     // large 尺寸
-    Loading.service({
+    TinyLoading.service({
       size: 'large',
       text: 'large 尺寸',
       target: '#loading-box3',

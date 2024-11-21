@@ -11,6 +11,7 @@
         visibleMethod
       }"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
       @context-menu-click="contextMenuClickEvent"
     >
@@ -25,12 +26,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -50,6 +51,7 @@ export default {
           }
         ]
       ],
+
       bodyMenus: [
         [
           {
@@ -71,6 +73,7 @@ export default {
           }
         ]
       ],
+
       footerMenus: [
         [
           {
@@ -87,6 +90,7 @@ export default {
           }
         ]
       ],
+
       tableData: [
         {
           id: '1',
@@ -183,13 +187,13 @@ export default {
   },
   methods: {
     headerMenuClick() {
-      Modal.message({
+      TinyModal.message({
         message: '触发表头右键点击事件',
         status: 'info'
       })
     },
     footerMenuClick() {
-      Modal.message({
+      TinyModal.message({
         message: '触发表尾右键点击事件',
         status: 'info'
       })
@@ -235,11 +239,11 @@ export default {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            Modal.alert(`copy ${row}`)
+            TinyModal.alert(`copy ${row}`)
           }
           break
         default:
-          Modal.alert(`点击了 ${menu.name} 选项`)
+          TinyModal.alert(`点击了 ${menu.name} 选项`)
       }
     }
   }

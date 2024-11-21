@@ -48,20 +48,20 @@
 <script setup>
 import { ref } from 'vue'
 import {
-  Collapse as TinyCollapse,
-  CollapseItem as TinyCollapseItem,
-  Layout as TinyLayout,
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Row as TinyRow,
-  Col as TinyCol,
-  Input as TinyInput,
-  Numeric as TinyNumeric,
-  IpAddress as TinyIpAddress,
-  Select as TinySelect,
-  Option as TinyOption,
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn
+  TinyCollapse,
+  TinyCollapseItem,
+  TinyLayout,
+  TinyForm,
+  TinyFormItem,
+  TinyRow,
+  TinyCol,
+  TinyInput,
+  TinyNumeric,
+  TinyIpAddress,
+  TinySelect,
+  TinyOption,
+  TinyGrid,
+  TinyGridColumn
 } from '@opentiny/vue'
 
 const activeNames = ref(['1', '2'])

@@ -6,18 +6,18 @@
 </template>
 
 <script lang="jsx">
-import { Milestone, Button } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
-    TinyButton: Button
+    TinyMilestone,
+    TinyButton
   },
   data() {
     return {
       isSolid: false,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
+        completed: 'var(--tv-color-bg-disabled-control-active)',
         doing: '#7ED321',
         back: '#f5222d',
         end: '#faad14',

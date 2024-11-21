@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 
 const groupData = ref([
   { text: 'Button1', value: 1 },

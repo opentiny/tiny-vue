@@ -29,18 +29,18 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyGridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,

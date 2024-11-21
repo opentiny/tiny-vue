@@ -3,15 +3,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.message({ message: '不允许重复点击', id: 'unique', tiny_mode: 'mobile' })
+      TinyModal.message({ message: '不允许重复点击', id: 'unique', tiny_mode: 'mobile' })
     }
   }
 }

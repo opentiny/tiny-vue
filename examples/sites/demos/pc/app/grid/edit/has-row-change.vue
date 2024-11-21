@@ -3,6 +3,7 @@
     ref="changeGrid"
     :data="tableData"
     seq-serial
+    show-overflow="tooltip"
     :edit-config="{ trigger: 'click', mode: 'row', showStatus: true }"
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -20,7 +21,7 @@
       show-overflow="ellipsis"
     ></tiny-grid-column>
     <tiny-grid-column title="操作" width="100">
-      <template v-slot="data">
+      <template #default="data">
         <tiny-button size="mini" @click="handleSave(data.row)">保存</tiny-button>
       </template>
     </tiny-grid-column>
@@ -28,13 +29,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   data() {
     return {
@@ -93,9 +94,9 @@ export default {
     handleSave(row) {
       this.$refs.changeGrid.clearActived().then(() => {
         if (!this.$refs.changeGrid.hasRowChange(row)) {
-          Modal.alert('当前数据未改变！')
+          TinyModal.alert('当前数据未改变！')
         } else {
-          Modal.alert('保存成功！')
+          TinyModal.alert('保存成功！')
         }
       })
     }

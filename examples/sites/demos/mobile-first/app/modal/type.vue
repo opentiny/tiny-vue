@@ -7,21 +7,21 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     alertClick() {
-      Modal.alert('alert 弹框', '弹框')
+      TinyModal.alert('alert 弹框', '弹框')
     },
     messageClick() {
-      Modal.message('message 提示框')
+      TinyModal.message('message 提示框')
     },
     confirmClick() {
-      Modal.confirm('您确定要删除吗？', '确定框')
+      TinyModal.confirm('您确定要删除吗？', '确定框')
     }
   }
 }

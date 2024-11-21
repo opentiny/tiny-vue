@@ -15,7 +15,7 @@
           @collapse-change="collapseChange"
         >
           <template #default="{ data }">
-            <div class="node-name-container">
+            <a @click="clickMenuLink" :href="getMenuLink(data)" class="node-name-container">
               <tiny-tag v-if="data?.mode?.includes('mobile-first')" size="mini" effect="plain" class="absolute-tag"
                 >多端</tiny-tag
               >
@@ -35,7 +35,7 @@
                 :is-from-menu="true"
               >
               </version-tip>
-            </div>
+            </a>
           </template>
         </tiny-tree-menu>
       </div>
@@ -56,7 +56,7 @@
 
 <script>
 import { useRoute } from 'vue-router'
-import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
 import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
@@ -96,6 +96,7 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
+    const route = useRoute()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
@@ -123,23 +124,35 @@ export default defineComponent({
       }
     }
 
+    const getMenuLink = (menu) => {
+      if (menu.type === 'overview') {
+        return `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/overview`
+      } else if (menu.type === 'docs') {
+        return getTo('docs/', menu.key)
+      } else if (menu.type === 'components') {
+        return getTo('components/', menu.key)
+      }
+    }
+
     const collapseChange = (isCollapsed) => {
       state.isCollapsed = isCollapsed
     }
     let routerCbDestroy = null
 
-    onMounted(async () => {
-      // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
-      routerCbDestroy = router.afterEach((to) => {
-        if (to.hash) {
-          const el = document.querySelector(to.hash)
-          if (el) {
-            return el.scrollIntoView()
-          }
+    watch(
+      () => route.path,
+      (currentVal) => {
+        // 监听路由变化，反作用与左侧列表菜单展开对应的列表
+        const list = currentVal.split('/')
+        if (list && list[list.length - 1]) {
+          const key = list[list.length - 1]
+          state.expandKeys = [key]
+          state.treeMenuRef.setCurrentKey(key)
         }
-        state.contentRef.scrollTo({ top: 0, behavior: 'auto' })
-      })
+      }
+    )
 
+    onMounted(async () => {
       // 刷新后，高亮相应的菜单
       const cmpId = router.currentRoute.value?.params?.cmpId
       if (cmpId) {
@@ -154,6 +167,10 @@ export default defineComponent({
       routerCbDestroy()
     })
 
+    const clickMenuLink = (e) => {
+      e.preventDefault()
+    }
+
     return {
       ...toRefs(state),
       appData,
@@ -165,6 +182,8 @@ export default defineComponent({
       apiModeState,
       apiModeFn,
       templateModeState,
+      getMenuLink,
+      clickMenuLink,
       getWord,
       i18nByKey,
       isThemeSaas
@@ -177,8 +196,11 @@ export default defineComponent({
 .content-layout {
   display: flex;
   --layout-tree-menu-input-height: 32px;
-  --layout-content-main-min-width: 600px;
+  --layout-content-main-min-width: 200px;
   --layout-content-main-max-width: 1000px;
+}
+@media screen and (max-width: 640px) {
+  --layout-content-main-min-width: 600px;
 }
 
 .tiny-tooltip.tiny-tooltip__popper.is-light.docs-tooltip {
@@ -204,22 +226,19 @@ export default defineComponent({
   }
 }
 
-.tiny-dropdown-item.is-actived {
-  background-color: var(--ti-dropdown-item-hover-bg-color);
-  color: var(--ti-dropdown-item-hover-text-color);
-  border-radius: var(--ti-dropdown-item-border-radius);
-}
-
 .is-collapsed + .main-menu.tiny-tree-menu {
   height: 100%;
 }
 
 .main-menu.tiny-tree-menu {
-  --ti-tree-menu-node-current-text-color: #191919;
-
   height: 100%;
   padding-top: 30px;
   padding-left: 10px;
+  width: 276px;
+
+  &.is-collapsed {
+    width: 0;
+  }
 
   &::before {
     display: none;
@@ -237,20 +256,18 @@ export default defineComponent({
       .tiny-tree-node__content:hover {
         border-radius: 20px;
       }
-
-      &.is-current {
-        > .tiny-tree-node__content .node-name-label {
-          font-weight: 600;
-        }
-
-        .menu-type-icon {
-          fill: #191919;
+      .tiny-tree-node__content {
+        height: 40px;
+        line-height: 40px;
+        &::before {
+          display: none;
         }
       }
     }
 
     .node-float-tip {
       border-radius: 0;
+      margin-right: 8px;
     }
   }
 
@@ -265,13 +282,9 @@ export default defineComponent({
   }
 
   .tiny-input {
-    margin: 0 10px 12px;
+    margin: 0 10px 16px;
     width: auto;
-
-    .tiny-input__inner {
-      width: 100%;
-      border: 1px solid #f0f0f0;
-    }
+    max-width: unset;
   }
 
   .tiny-tree-node__content-box {
@@ -294,6 +307,7 @@ export default defineComponent({
     line-height: 1.5;
 
     .node-name-container {
+      color: #191919;
       display: flex;
       align-items: center;
       flex-wrap: nowrap;
@@ -324,12 +338,12 @@ export default defineComponent({
 }
 
 #doc-layout {
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow: hidden auto;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden auto;
+  width: 100%;
+  height: calc(100vh - 60px);
 }
 
 .api-type-box {

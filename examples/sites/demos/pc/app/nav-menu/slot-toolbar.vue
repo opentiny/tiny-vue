@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { NavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 import { IconSetting, IconAdministrator } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyNavMenu: NavMenu,
+    TinyNavMenu,
     IconSetting: IconSetting(),
     IconAdministrator: IconAdministrator()
   },
@@ -329,10 +329,10 @@ export default {
   vertical-align: middle;
 }
 
-
-.preview-nav .icon-setting, .preview-nav .icon-administrator{
-  margin-right:20px;
-  fill: white;
+.preview-nav .icon-setting,
+.preview-nav .icon-administrator {
+  margin-right: 20px;
+  fill: #808080;
   font-size: 24px;
 }
 </style>

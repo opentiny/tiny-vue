@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { DialogSelect as TinyDialogSelect, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -139,7 +139,8 @@ const state = reactive({
     load: remoteSearch,
     queryPidsBySearch,
     queryPidsByIds,
-    defaultCheckedKeys: [4]
+    defaultCheckedKeys: [4],
+    showLine: true
   }
 })
 
@@ -159,9 +160,7 @@ const lookupMethod = (values) => {
   })
 }
 const onDialogSelectChange = (values, texts, selectedDatas) => {
-  Modal.message({
-    message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-    status: 'info'
-  })
+  // 打印change回调数据，控制台查看
+  console.log({ values, texts, selectedDatas })
 }
 </script>

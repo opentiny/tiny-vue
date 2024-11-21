@@ -1,11 +1,32 @@
 <template>
   <div class="tiny-demo">
     <tiny-button @click="visible = !visible">{{ `${visible ? '关闭' : '打开'}窗口` }}</tiny-button>
+    <tiny-button @click="visible1 = !visible1">
+      {{ `${visible1 ? '关闭' : '打开'}窗口(插槽自定义场景)` }}
+    </tiny-button>
     <tiny-dialog-select
       ref="dialogSelect"
       class="tiny-demo-tree-multi"
       :visible="visible"
       @update:visible="visible = $event"
+      popseletor="tree"
+      multi
+      :dialog-op="dialogOp"
+      :tree-op="treeOp"
+      :selected-box-op="selectedBoxOp"
+      :lookup-method="lookupMethod"
+      :before-close="beforeClose"
+      @change="onDialogSelectChange"
+      value-field="id"
+      text-field="label"
+      :main-height="290"
+    >
+    </tiny-dialog-select>
+    <tiny-dialog-select
+      ref="dialogSelect"
+      class="tiny-demo-tree-multi"
+      :visible="visible1"
+      @update:visible="visible1 = $event"
       popseletor="tree"
       multi
       :dialog-op="dialogOp"
@@ -36,7 +57,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import Sortable from 'sortablejs'
 
@@ -115,13 +136,14 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
+    TinyDialogSelect,
+    TinyButton,
     TinyIconClose: iconClose()
   },
   data() {
     return {
       visible: false,
+      visible1: false,
       dialogOp: {
         top: '20vh',
         width: '800px',
@@ -146,7 +168,8 @@ export default {
         load: this.remoteSearch,
         queryPidsBySearch: this.queryPidsBySearch,
         queryPidsByIds: this.queryPidsByIds,
-        defaultCheckedKeys: [1, 4, 8]
+        defaultCheckedKeys: [1, 4, 8],
+        showLine: true
       }
     }
   },
@@ -189,10 +212,8 @@ export default {
       })
     },
     onDialogSelectChange(values, texts, selectedDatas) {
-      Modal.message({
-        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-        status: 'info'
-      })
+      // 打印change回调数据，控制台查看
+      console.log({ values, texts, selectedDatas })
     }
   }
 }
@@ -204,28 +225,29 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 28px;
+  line-height: 28px;
 }
 
 .tiny-demo-tree-multi .tiny-demo-tree-multi-option .title {
   color: #161e26;
-  position: relative;
-  top: 4px;
+  font-size: 14px;
 }
 
 .tiny-demo-tree-multi .tiny-demo-tree-multi-option .sub-text {
   color: #8d959e;
-  position: relative;
-  top: 4px;
   margin-left: 8px;
 }
 
 .tiny-demo-tree-multi-close {
   height: 28px;
+  line-height: 28px;
+  svg {
+    fill: #808080;
+  }
 }
 
 .tiny-demo-tree-multi-close > span {
   position: relative;
-  top: 2px;
   left: 12px;
 }
 </style>

@@ -422,6 +422,21 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'show-filter'
+        },
+        {
+          name: 'width-adapt',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 <code> widthAdapt </code> 属性，是否让组件宽度自适应父容器。',
+            'en-US':
+              'The <code>widthAdapt </code> attribute specifies whether to enable the component width to adapt to the parent container.'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'show-filter'
         }
       ],
       events: [

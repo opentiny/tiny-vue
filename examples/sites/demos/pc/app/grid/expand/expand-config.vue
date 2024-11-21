@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   mounted() {
     let allData = this.$refs.selfTable.getData()

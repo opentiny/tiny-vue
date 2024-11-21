@@ -10,22 +10,33 @@
 *
 */
 
-.component-css-vars-badge() {
-  --ti-badge-size: var(--ti-common-font-size-2);
-  --ti-badge-font-size: var(--ti-common-font-size-0);
-  --ti-badge-line-height: calc(var(--ti-common-line-height-base) - 4px);
-  --ti-badge-font-weight: var(--ti-common-font-weight-normal);
-  --ti-badge-border-radius: var(--ti-common-border-radius-4);
-  --ti-badge-text-color: var(--ti-base-color-bg-7);
-  --ti-badge-bg-color: var(--ti-base-color-error);
-  --ti-badge-link-hover-text-color: var(--ti-common-color-light, #fff);
-  --ti-badge-active-text-color: var(--ti-base-color-brand-6, #5e7ce0);
-  --ti-badge-active-bg-color: var(--ti-common-color-light, #fff);
-  --ti-badge-primary-bg-color: var(--ti-base-color-brand-6, #5e7ce0);
-  --ti-badge-success-bg-color: var(--ti-common-color-success-normal, #50d4ab);
-  --ti-badge-warning-bg-color: var(--ti-common-color-warning-normal, #fa9841);
-  --ti-badge-danger-bg-color: var(--ti-base-color-error-3, #f66f6a);
-  --ti-badge-info-bg-color: var(--ti-common-color-info-normal, #252b3a);
-  --ti-badge-border: var(--ti-common-border-weight-normal);
-  --ti-badge-margin-left: 0;
+.inject-Badge-vars() {
+  // 标记的圆角
+  --tv-Badge-border-radius: var(--tv-border-radius-round);
+  // 标记的内边距
+  --tv-Badge-horizontal-padding: var(--tv-space-base);
+  // 标记的尺寸
+  --tv-Badge-font-size: var(--tv-font-size-sm);
+  // 标记的字重
+  --tv-Badge-font-weight: var(--tv-font-weight-regular);
+  // 标记的文本色
+  --tv-Badge-text-color: var(--tv-color-act-primary-text-white);
+  // 标记的背景色
+  --tv-Badge-bg-color: var(--tv-color-act-danger-bg);
+  // 标记a标签的文本及悬浮文本色
+  --tv-Badge-a-text-color: var(--tv-color-act-primary-text-white);
+  // 标记左边距
+  --tv-Badge-margin-left: var(--tv-space-sm);
+  // 标记的小圆点背景色
+  --tv-Badge-dot-bg-color: var(--tv-color-act-danger-bg);
+  // 标记的主要背景色
+  --tv-Badge-primary-bg-color: var(--tv-color-bg-primary);
+  // 标记的成功背景色
+  --tv-Badge-success-bg-color: var(--tv-color-act-success-bg);
+  // 标记的警告背景色
+  --tv-Badge-warning-bg-color: var(--tv-color-act-warning-bg);
+  // 标记的危险背景色
+  --tv-Badge-danger-bg-color: var(--tv-color-act-danger-bg);
+  // 标记的信息背景色
+  --tv-Badge-info-bg-color: var(--tv-color-act-info-bg);
 }

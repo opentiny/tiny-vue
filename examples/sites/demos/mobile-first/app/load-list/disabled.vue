@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import { LoadList, Button } from '@opentiny/vue'
+import { TinyLoadList, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLoadList: LoadList,
-    TinyButton: Button
+    TinyLoadList,
+    TinyButton
   },
   data() {
     return {

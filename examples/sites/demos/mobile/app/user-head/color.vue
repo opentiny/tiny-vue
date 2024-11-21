@@ -17,11 +17,11 @@
 </template>
 
 <script lang="jsx">
-import { UserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserHead: UserHead
+    TinyUserHead
   }
 }
 </script>

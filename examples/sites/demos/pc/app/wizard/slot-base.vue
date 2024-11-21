@@ -7,11 +7,11 @@
 </template>
 
 <script lang="jsx">
-import { Wizard, Modal } from '@opentiny/vue'
+import { TinyWizard, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWizard: Wizard
+    TinyWizard
   },
   data() {
     return {

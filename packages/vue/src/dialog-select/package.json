@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-dialog-select",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -21,7 +21,8 @@
     "@opentiny/vue-selected-box": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-tree": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

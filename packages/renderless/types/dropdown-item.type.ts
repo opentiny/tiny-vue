@@ -21,7 +21,7 @@ import type {
   confirm,
   handleClick,
   computedGetIcon,
-  getTip
+  computedTip
 } from '../src/dropdown-item'
 
 export type IDropdownItemVm = ComponentPublicInstance & {
@@ -76,7 +76,7 @@ export interface IDropdownItemApi {
   confirm: ReturnType<typeof confirm>
   handleClick: ReturnType<typeof handleClick>
   computedGetIcon: ReturnType<typeof computedGetIcon>
-  getTip: ReturnType<typeof getTip>
+  computedTip: ReturnType<typeof computedTip>
 }
 
 export type IDropdownItemRenderlessParams = ISharedRenderlessFunctionParams<IDropdownItemConstants> & {

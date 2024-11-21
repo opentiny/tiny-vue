@@ -18,7 +18,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const dropConfig = ref({
@@ -87,14 +87,14 @@ const tableData = ref([
 ])
 
 function rowDropStart() {
-  Modal.message({ message: '行拖拽开始', status: 'info' })
+  TinyModal.message({ message: '行拖拽开始', status: 'info' })
 }
 
 function rowDropEnd() {
-  Modal.message({ message: '行拖拽结束', status: 'info' })
+  TinyModal.message({ message: '行拖拽结束', status: 'info' })
 }
 
 function rowDropMove() {
-  Modal.message({ message: '行拖拽移动', status: 'info' })
+  TinyModal.message({ message: '行拖拽移动', status: 'info' })
 }
 </script>

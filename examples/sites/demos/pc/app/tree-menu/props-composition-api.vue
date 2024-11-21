@@ -1,10 +1,10 @@
 <template>
-  <tiny-tree-menu :data="treeData" :props="mapField"></tiny-tree-menu>
+  <tiny-tree-menu class="demo-tree-menu" :data="treeData" :props="mapField"></tiny-tree-menu>
 </template>
 
 <script setup>
 import { reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const mapField = reactive({
   label: 'name',
@@ -122,8 +122,8 @@ const treeData = reactive([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 </style>

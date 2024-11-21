@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Loading, Button as TinyButton } from '@opentiny/vue'
+import { TinyLoading, TinyButton } from '@opentiny/vue'
 
 const loadingInstance = ref(null)
 
@@ -16,7 +16,7 @@ const closeLoading = () => {
 }
 
 onMounted(() => {
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-basic-loading1')
   })
 })

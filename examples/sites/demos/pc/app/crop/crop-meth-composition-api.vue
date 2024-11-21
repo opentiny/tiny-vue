@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Crop as TinyCrop } from '@opentiny/vue'
+import { TinyButton, TinyCrop } from '@opentiny/vue'
 
 const visible = ref(false)
 const cropRef = ref()

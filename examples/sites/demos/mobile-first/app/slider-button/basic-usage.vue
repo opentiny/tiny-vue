@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { SliderButton, SliderButtonGroup } from '@opentiny/vue'
+import { TinySliderButton, TinySliderButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySliderButton: SliderButton,
-    TinySliderButtonGroup: SliderButtonGroup
+    TinySliderButton,
+    TinySliderButtonGroup
   },
   data() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <tiny-grid
     column-min-width="100"
-    auto-resize
+    show-overflow="tooltip"
     :column-anchor="columnAnchor"
     :optimization="{ scrollX: { gt: 20 } }"
     :fetch-data="fetchData"
@@ -66,7 +66,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 import { IconMarkOn } from '@opentiny/vue-icon'
 
 function getData({ page }) {
@@ -167,6 +167,7 @@ const columnAnchor = ref([
         )
     ]
   ],
+
   {
     field: 'address', // 列锚点字段
     label: null, // 列锚点名称
@@ -177,7 +178,7 @@ const columnAnchor = ref([
 ])
 
 const pagerConfig = ref({
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 3,

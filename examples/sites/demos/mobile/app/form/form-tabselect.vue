@@ -39,11 +39,11 @@
 </template>
 
 <script lang="jsx">
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {

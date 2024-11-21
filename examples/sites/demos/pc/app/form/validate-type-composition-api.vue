@@ -22,14 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  ButtonGroup as TinyButtonGroup
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 

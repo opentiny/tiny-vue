@@ -28,9 +28,12 @@ export default defineComponent({
           : null
       ),
       h('div', {
-        class: m('absolute bottom-0.5 h-0.5 bg-color-brand transition-all duration-300', {
-          'hidden': !state.currentNav
-        }),
+        class: m(
+          'absolute bg-color-brand transition-all duration-300 z-20 rounded-full bottom-px h-px py-px box-content',
+          {
+            'hidden': !state.currentNav
+          }
+        ),
         style: { width: state.currentWidth + 'px', left: state.currentPosition + 'px' }
       })
     ])

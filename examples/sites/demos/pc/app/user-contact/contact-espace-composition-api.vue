@@ -1,9 +1,9 @@
 <template>
-  <tiny-user-contact :data="data" :espace="espace"></tiny-user-contact>
+  <tiny-user-contact :data="data" :espace="data.espace"></tiny-user-contact>
 </template>
 
 <script setup>
-import { UserContact as TinyUserContact } from '@opentiny/vue'
+import { TinyUserContact } from '@opentiny/vue'
 import { reactive } from 'vue'
 
 const data = reactive({

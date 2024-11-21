@@ -17,24 +17,24 @@
 
 .@{badge-prefix-cls} {
   &__wrapper {
-    .component-css-vars-badge();
+    .inject-Badge-vars();
   }
 
   display: inline-block;
-  min-width: var(--ti-badge-size);
-  height: var(--ti-badge-size);
-  line-height: var(--ti-badge-line-height);
-  border-radius: var(--ti-badge-border-radius);
-  padding: 0 4px;
-  font-size: var(--ti-badge-font-size);
-  font-weight: var(--ti-badge-font-weight);
-  color: var(--ti-badge-text-color);
-  background-color: var(--ti-badge-bg-color);
+  min-width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: var(--tv-Badge-border-radius);
+  padding: 0 var(--tv-Badge-horizontal-padding);
+  font-size: var(--tv-Badge-font-size);
+  font-weight: var(--tv-Badge-font-weight);
+  color: var(--tv-Badge-text-color);
+  background-color: var(--tv-Badge-bg-color);
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
-  margin-left: var(--ti-badge-margin-left);
-  border: var(--ti-badge-border) solid #FFFFFF;
+  border: 1px solid #FFFFFF;
+  margin-left: var(--tv-Badge-margin-left);
 
   &:empty {
     display: none;
@@ -47,63 +47,41 @@
 
   a,
   a:hover {
-    color: var(--ti-badge-text-color);
+    color: var(--tv-Badge-a-text-color);
     text-decoration: none;
   }
 
-  a.badge {
-    &:hover,
-    &:focus {
-      color: var(--ti-badge-link-hover-text-color);
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-
-  a.list-group-item.active > .badge,
-  .nav-pills > .active > a > .badge {
-    color: var(--ti-badge-active-text-color);
-    background-color: var(--ti-badge-active-bg-color);
-  }
-
-  .nav-pills > li > a > .badge {
-    margin-left: 3px;
-  }
-
-  &--max {
-    padding: 0 6px;
-    border-radius: 10px;
-  }
 
   &--default {
     width: 6px;
     height: 6px;
     min-width: auto;
-    background-color: var(--ti-badge-bg-color);
+    background-color: var(--tv-Badge-dot-bg-color);
     display: inline-block;
     vertical-align: top;
     padding: 0;
     border-radius: 50%;
     border: unset;
+    margin-left: 0;
   }
 
   &--primary {
-    background-color: var(--ti-badge-primary-bg-color);
+    background-color: var(--tv-Badge-primary-bg-color);
   }
 
   &--success {
-    background-color: var(--ti-badge-success-bg-color);
+    background-color: var(--tv-Badge-success-bg-color);
   }
 
   &--warning {
-    background-color: var(--ti-badge-warning-bg-color);
+    background-color: var(--tv-Badge-warning-bg-color);
   }
 
   &--danger {
-    background-color: var(--ti-badge-danger-bg-color);
+    background-color: var(--tv-Badge-danger-bg-color);
   }
 
   &--info {
-    background-color: var(--ti-badge-info-bg-color);
+    background-color: var(--tv-Badge-info-bg-color);
   }
 }

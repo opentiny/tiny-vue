@@ -12,12 +12,12 @@
 </template>
 
 <script lang="jsx">
-import { CascaderPanel, Modal, Button } from '@opentiny/vue'
+import { TinyCascaderPanel, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascaderPanel: CascaderPanel,
-    TinyButton: Button
+    TinyCascaderPanel,
+    TinyButton
   },
   data() {
     return {
@@ -223,7 +223,7 @@ export default {
       this.$refs.cascaderPanel.clearCheckedNodes()
     },
     expandChange(value) {
-      Modal.message({ message: `节点展开：${value}`, status: 'info' })
+      TinyModal.message({ message: `节点展开：${value}`, status: 'info' })
     },
     change(value) {
       const checkVal = this.$refs.cascaderPanel.getCheckedNodes()
@@ -233,7 +233,7 @@ export default {
         mess = checkVal[0].label
       }
 
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，当前选中的值为:' + mess + '；传入的值为:' + value,
         status: 'info'
       })

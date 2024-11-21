@@ -13,5 +13,5 @@
 </template>
 
 <script setup lang="jsx">
-import { Floatbar as TinyFloatbar } from '@opentiny/vue'
+import { TinyFloatbar } from '@opentiny/vue'
 </script>

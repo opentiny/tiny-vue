@@ -4,13 +4,13 @@
 
 <script setup lang="jsx">
 import { onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 import { iconLoadingShadow } from '@opentiny/vue-icon'
 
 const spinnerIcon = iconLoadingShadow()
 
 onMounted(() => {
-  Loading.service({
+  TinyLoading.service({
     text: '自定义 loading 图标',
     spinner: spinnerIcon,
     target: document.getElementById('tiny-demo-loading-spinner')

@@ -11,6 +11,7 @@
         visibleMethod
       }"
       show-footer
+      show-overflow="tooltip"
       :footer-method="footerMethod"
       @context-menu-click="contextMenuClickEvent"
     >
@@ -26,7 +27,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const headerMenus = ref([
   [
@@ -176,14 +177,14 @@ const tableData = ref([
 ])
 
 const headerMenuClick = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发表头右键点击事件',
     status: 'info'
   })
 }
 
 function footerMenuClick() {
-  Modal.message({
+  TinyModal.message({
     message: '触发表尾右键点击事件',
     status: 'info'
   })
@@ -232,11 +233,11 @@ function contextMenuClickEvent({ menu, row, column }) {
   switch (menu.code) {
     case 'copy':
       if (row && column) {
-        Modal.alert(`copy ${row}`)
+        TinyModal.alert(`copy ${row}`)
       }
       break
     default:
-      Modal.alert(`点击了 ${menu.name} 选项`)
+      TinyModal.alert(`点击了 ${menu.name} 选项`)
   }
 }
 </script>

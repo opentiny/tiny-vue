@@ -5,16 +5,15 @@
 </template>
 
 <script setup lang="jsx">
-import { Notify, Button as TinyButton } from '@opentiny/vue'
+import { TinyNotify, TinyButton } from '@opentiny/vue'
 
 function baseClick() {
-  Notify({
+  TinyNotify({
     type: 'info',
-    title: (h, params) => <h4>通知消息的标题</h4>,
+    title: '通知消息的标题',
     message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
     showIcon: false,
-    position: 'top-right',
-    duration: 500000
+    position: 'top-right'
   })
 }
 </script>

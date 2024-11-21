@@ -12,17 +12,17 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem, Modal } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   methods: {
     buttonClick() {
-      Modal.message({ message: '下拉菜单内置按钮点击事件', status: 'info' })
+      TinyModal.message({ message: '下拉菜单内置按钮点击事件', status: 'info' })
     }
   }
 }

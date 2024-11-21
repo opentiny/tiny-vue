@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { Cascader, Button } from '@opentiny/vue'
+import { TinyCascader, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascader: Cascader,
-    TinyButton: Button
+    TinyCascader,
+    TinyButton
   },
   data() {
     return {

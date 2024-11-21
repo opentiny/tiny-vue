@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { CalendarBar, Modal } from '@opentiny/vue'
+import { TinyCalendarBar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendarBar: CalendarBar
+    TinyCalendarBar
   },
   data() {
     return {
@@ -17,9 +17,9 @@ export default {
   methods: {
     expand(expanded) {
       if (expanded) {
-        Modal.message('处于展开状态')
+        TinyModal.message('处于展开状态')
       } else {
-        Modal.message('处于收起状态')
+        TinyModal.message('处于收起状态')
       }
     }
   }

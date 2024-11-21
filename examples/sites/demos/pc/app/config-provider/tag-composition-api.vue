@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { ConfigProvider as TinyConfigProvider, Tag as TinyTag, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyConfigProvider, TinyTag, TinySwitch } from '@opentiny/vue'
 
 const tag = ref({
   enable: true,

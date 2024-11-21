@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Popeditor as TinyPopeditor, Modal } from '@opentiny/vue'
+import { TinyPopeditor, TinyModal } from '@opentiny/vue'
 
 const value = ref('')
 const gridOp = ref({
@@ -23,7 +23,7 @@ const gridOp = ref({
     {
       field: 'id',
       title: 'ID',
-      width: 40
+      width: 50
     },
     {
       field: 'name',
@@ -50,7 +50,7 @@ const pagerOp = ref({
 handlePageChange(1)
 
 function changeFn(val, data) {
-  Modal.message({
+  TinyModal.message({
     message: `值变为${val},${JSON.stringify(data)}`,
     status: 'info'
   })
@@ -119,13 +119,14 @@ function handlePageChange(val) {
       city: '深圳'
     }
   ]
+
   const offset = (val - 1) * pagerOp.value.pageSize
   gridOp.value.data = dataset.slice(offset, offset + pagerOp.value.pageSize)
 }
 
 function handlePopup() {
   setTimeout(() => {
-    Modal.message({
+    TinyModal.message({
       message: 'popup 弹窗打开事件',
       status: 'info'
     })
@@ -133,7 +134,7 @@ function handlePopup() {
 }
 
 function handleClose() {
-  Modal.message({
+  TinyModal.message({
     message: 'close 弹窗关闭事件',
     status: 'info'
   })

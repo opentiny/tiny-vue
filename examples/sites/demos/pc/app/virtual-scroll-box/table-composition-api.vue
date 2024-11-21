@@ -24,7 +24,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { VirtualScrollBox as TinyVirtualScrollBox } from '@opentiny/vue'
+import { TinyVirtualScrollBox } from '@opentiny/vue'
 
 const genColumn = (total) => {
   const columns = []

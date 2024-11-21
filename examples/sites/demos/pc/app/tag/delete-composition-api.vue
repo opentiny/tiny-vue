@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { Tag as TinyTag, Modal } from '@opentiny/vue'
+import { TinyTag, TinyModal } from '@opentiny/vue'
 
 const tags = ref([
   { name: '标签一', type: '' },
@@ -26,11 +26,11 @@ const tags = ref([
 
 function handleClose(tag) {
   tags.value.splice(tags.value.indexOf(tag), 1)
-  Modal.message('close 事件')
+  TinyModal.message('close 事件')
 }
 
 function beforeDelete(done) {
-  Modal.confirm('确认删除？').then((res) => {
+  TinyModal.confirm('确认删除？').then((res) => {
     res === 'confirm' && done()
   })
 }

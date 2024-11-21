@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { UserHead as TinyUserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
 
 const text = ref('文字')
 </script>

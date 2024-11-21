@@ -1,40 +1,31 @@
-/**
- * 将 dist 目录生成 TGZ 的压缩包   fs.cp 需要node 18.0+
- */
-
 import fs from 'node:fs'
 import path from 'node:path'
-import fg from 'fast-glob'
 
-// 替换文件内容。 如果不指定target，则原地覆盖
-function replaceFile(src, cb, target = null) {
-  let content = fs.readFileSync(src, 'utf8')
-  content = cb(content)
-  fs.writeFileSync(target || src, content, 'utf8')
-}
+const root = path.resolve('./')
 
-// 1、从 index.css 生成 lowcode.css ------ 提供特殊的前缀名称
-replaceFile('dist/index.css', (content) => content.replace(/--ti-/g, '--ti-vue-'), 'dist/lowcode.css')
-
-// 2、复制一份冗余的文件，统一替换 --ti- 前缀为 --tvue- ,避免混用 tiny3时，css变量名冲突。
-fs.cpSync('dist', '_dist', { recursive: true, force: true })
-fs.cpSync('_dist', 'dist/_dist', { recursive: true, force: true })
-fs.rmSync('_dist', { recursive: true, force: true })
-// 2.1 处理所有的 index.css
-let files = fg.sync(['dist/_dist/**/index.css'])
-files.forEach((file) => {
-  replaceFile(file, (content) => content.replace(/--ti-/g, '--tvue-'))
-})
-// 2.2 处理所有的说主题js
-files = fg.sync(['dist/_dist/**/{aurora,smb}-theme.js', 'dist/_dist/theme/**/{index,component}.js'])
-files.forEach((file) => {
-  replaceFile(file, (content) =>
-    content
-      .replace(/--ti-/g, '--tvue-') //
-      .replace(/'ti-/g, `'tvue-`)
-  )
-})
-
-// 3、复制package.json/README.md到dist目录
-fs.copyFileSync('package.json', path.join('dist', 'package.json'))
+// 1、复制 theme-tool.js /README.md 到dist目录
 fs.copyFileSync('README.md', path.join('dist', 'README.md'))
+fs.copyFileSync('src/theme-tool.js', path.join('dist', 'theme-tool.js'))
+fs.copyFileSync('src/theme-tool.d.ts', path.join('dist', 'theme-tool.d.ts'))
+
+// 2、读取 old-theme-index.js , dist/old-theme-index.less， 合并后写入 dist/ old-theme-index.js
+let jsStr = `
+export default {
+  id: 'tiny-old-theme',
+  name: 'OldTheme',
+  cnName: '旧的主题',
+  css: \`#CSS#\`
+}
+`
+let cssStr = fs.readFileSync(path.resolve(root, 'dist/old-theme-index.css'), 'utf8')
+
+jsStr = jsStr.replace('#CSS#', cssStr)
+fs.writeFileSync(path.resolve(root, 'src/old-theme-index.js'), jsStr) // 供开发时(pnpm site)， 可以访问到最新的定制主题变量
+fs.writeFileSync(path.resolve(root, 'dist/old-theme-index.js'), jsStr) // 打包发布用
+
+// 3、复制 package.json
+const content = fs.readFileSync(path.resolve(root, 'package.json'), 'utf8')
+const packageJson = JSON.parse(content)
+delete packageJson.exports
+delete packageJson.private
+fs.writeFileSync(path.resolve(root, 'dist/package.json'), JSON.stringify(packageJson, null, 2))

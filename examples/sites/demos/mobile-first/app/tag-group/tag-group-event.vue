@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { TagGroup, Modal } from '@opentiny/vue'
+import { TinyTagGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTagGroup: TagGroup
+    TinyTagGroup
   },
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     itemClick(item, i, e) {
-      Modal.message(`当前点击的是第${i + 1}个标签`)
+      TinyModal.message(`当前点击的是第${i + 1}个标签`)
     }
   }
 }

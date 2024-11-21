@@ -30,30 +30,30 @@
   .@{grid-prefix-cls}-border-bottom,
   .@{grid-prefix-cls}-border-left {
     position: absolute;
-    background-color: var(--ti-grid-primary-color);
+    background-color: var(--tv-Grid-cell-border-color-focus);
   }
 
   .@{grid-prefix-cls}-checked-borders {
     .@{grid-prefix-cls}-border-top,
     .@{grid-prefix-cls}-border-bottom {
-      height: var(--ti-grid-column-checked-border-width);
+      height: 2px;
     }
 
     .@{grid-prefix-cls}-border-right,
     .@{grid-prefix-cls}-border-left {
-      width: var(--ti-grid-column-checked-border-width);
+      width: 2px;
     }
   }
 
   .@{grid-prefix-cls}-copyed-borders {
     .@{grid-prefix-cls}-border-top,
     .@{grid-prefix-cls}-border-bottom {
-      height: calc(var(--ti-grid-column-checked-border-width) + 1px);
+      height: 3px;
     }
 
     .@{grid-prefix-cls}-border-right,
     .@{grid-prefix-cls}-border-left {
-      width: calc(var(--ti-grid-column-checked-border-width) + 1px);
+      width: 3px;
     }
 
     & > span {
@@ -61,8 +61,8 @@
         135deg,
         transparent,
         transparent 3px,
-        var(--ti-grid-primary-color) 3px,
-        var(--ti-grid-primary-color) 9px
+        var(--tv-Grid-border-color-active) 3px,
+        var(--tv-Grid-border-color-active) 9px
       );
       animation: shine 1s infinite linear;
     }
@@ -73,7 +73,7 @@
   .@{grid-body-prefix-cls}__column {
     // 设置鼠标或者键盘选中时，单元格的背景颜色
     &.col__selected {
-      background-color: var(--ti-grid-light-color);
+      background-color: #fff;
     }
 
     // 修复计数器组件在表格中显示异常问题

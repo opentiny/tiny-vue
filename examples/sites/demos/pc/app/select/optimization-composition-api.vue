@@ -2,13 +2,14 @@
   <div>
     <p>单选：</p>
     <br />
-    <tiny-select v-model="value1" :options="options" optimization @change="onChange"></tiny-select>
+    <tiny-select v-model="value1" :options="options" filterable optimization @change="onChange"></tiny-select>
     <br /><br />
     <p>多选：</p>
     <br />
     <tiny-select
       v-model="value2"
       optimization
+      filterable
       multiple
       collapse-tags
       :multiple-limit="5"
@@ -20,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect, Modal } from '@opentiny/vue'
+import { TinySelect, TinyModal } from '@opentiny/vue'
 
 const buildOptions = () =>
   Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"北京${i}"}`))
@@ -30,7 +31,7 @@ const value2 = ref([])
 const options = ref(buildOptions())
 
 const onChange = (value) => {
-  Modal.message({
+  TinyModal.message({
     message: JSON.stringify(value),
     status: 'info'
   })
@@ -41,6 +42,7 @@ const onChange = (value) => {
 .tiny-select {
   width: 280px;
 }
+
 p {
   font-size: 14px;
   line-height: 1.5;

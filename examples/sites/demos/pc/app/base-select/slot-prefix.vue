@@ -1,21 +1,21 @@
 <template>
   <tiny-base-select v-model="value" multiple collapse-tags>
     <template #prefix>
-      <icon-share></icon-share>
+      <tiny-icon-location></tiny-icon-location>
     </template>
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-base-select>
 </template>
 
 <script>
-import { BaseSelect, Option } from '@opentiny/vue'
-import { iconShare } from '@opentiny/vue-icon'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
+import { iconLocation } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option,
-    IconShare: iconShare()
+    TinyBaseSelect,
+    TinyOption,
+    TinyIconLocation: iconLocation()
   },
   data() {
     return {

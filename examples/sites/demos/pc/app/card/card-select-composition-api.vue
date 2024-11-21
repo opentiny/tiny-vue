@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, CardGroup as TinyCardGroup, Select as TinySelect } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup, TinySelect } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const radioValue = ref('TinyVue')
@@ -62,7 +62,7 @@ const dataArr = ref([
   {
     title: 'TinyVue',
     content: '^15.0.01',
-    imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyvue.svg'
+    imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/tinyvue.svg'
   },
   {
     title: 'TinyNG',

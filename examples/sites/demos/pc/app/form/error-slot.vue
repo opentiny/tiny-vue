@@ -27,15 +27,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 import { iconError } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
     TinyIconError: iconError()
   },
   data() {

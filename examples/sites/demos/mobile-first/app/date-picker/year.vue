@@ -37,14 +37,14 @@
 </template>
 
 <script>
-import { Layout, Row, Col, DatePicker } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
-    TinyDatePicker: DatePicker
+    TinyLayout,
+    TinyRow,
+    TinyCol,
+    TinyDatePicker
   },
   data() {
     return {

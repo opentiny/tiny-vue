@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 const visible = ref(false)
 
@@ -26,7 +26,17 @@ function openDrawer() {
 
 <style scoped>
 .my-header {
-  padding: 0 32px;
-  border-bottom: 1px solid #ccc;
+  padding: 32px 32px 24px;
+}
+
+.my-header h3 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.my-header p {
+  font-size: 12px;
+  line-height: 1.5;
 }
 </style>

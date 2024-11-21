@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Numeric, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyNumeric, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -60,7 +60,7 @@ const tableData = ref([
 const employeesFilter = ref({
   layout: 'input,enum,default,extends,base',
   inputFilter: {
-    component: Numeric,
+    component: TinyNumeric,
     attrs: { format: 'yyyy/MM/dd hh:mm:ss' },
     relation: 'A',
     relations: [
@@ -111,6 +111,6 @@ const nameFilter = ref({
 })
 
 function filterChangeEvent({ filters }) {
-  Modal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
+  TinyModal.message({ message: `${JSON.stringify(filters)}`, status: 'info' })
 }
 </script>

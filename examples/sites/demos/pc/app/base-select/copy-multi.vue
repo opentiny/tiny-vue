@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import { BaseSelect, Option, Input } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option,
-    TinyInput: Input
+    TinyBaseSelect,
+    TinyOption,
+    TinyInput
   },
   data() {
     return {

@@ -37,7 +37,7 @@ export default {
             'en-US': 'Round button'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
+          pcDemo: '',
           mfDemo: ''
         },
         {
@@ -91,8 +91,8 @@ export default {
           type: 'Component',
           defaultValue: '',
           desc: {
-            'zh-CN': '按钮左侧展示的图标，接收为Icon组件',
-            'en-US': 'The icon displayed by the button is received as an Icon component'
+            'zh-CN': '按钮左侧展示的图标，接收为<code>Icon</code>组件',
+            'en-US': 'The icon displayed by the button is received as an <code>Icon</code> component'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'icon',
@@ -117,8 +117,8 @@ export default {
           type: "'button' | 'submit' | 'reset'",
           defaultValue: "'button'",
           desc: {
-            'zh-CN': '对应按钮原生 type 属性',
-            'en-US': 'Set the button native type attribute'
+            'zh-CN': '对应按钮原生<code>type</code>属性',
+            'en-US': 'Set the button native <code>type</code> attribute'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: '',
@@ -191,10 +191,10 @@ export default {
           name: 'type',
           typeAnchorName: 'IButtonType',
           type: 'IButtonType',
-          defaultValue: 'default',
+          defaultValue: "'default'",
           desc: {
-            'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
-            'en-US': 'Display different states of buttons, set to text to display as text buttons'
+            'zh-CN': '展示按钮不同的状态，设置为<code>text</code>则展示为文本按钮',
+            'en-US': 'Display different states of buttons, set to <code>text</code> to display as text buttons'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'basic-usage',

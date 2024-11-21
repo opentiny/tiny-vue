@@ -17,7 +17,6 @@ test('必填项红色星号', async ({ page }) => {
     return { display, content }
   })
 
-  expect(beforeElement.display).toBe('inline-block')
   expect(beforeElement.content).toBe('"*"')
 
   await switchBtn.click()

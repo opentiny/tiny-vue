@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <tiny-file-upload ref="uploadRef" :action="action" :file-list="fileList">
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </tiny-file-upload>
     <br />
     <tiny-button @click="cancelUpload" type="primary">点击清空上传列表</tiny-button>
@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload, Button as TinyButton } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = ref([

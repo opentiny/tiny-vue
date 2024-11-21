@@ -80,6 +80,15 @@
       "backgroundColor": "transparent",
       "bold": false,
       "italic": false
+    },
+    {
+      "tag": "--",
+      "color": "#FFFFFF",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "#5CB300",
+      "bold": false,
+      "italic": false
     }
   ],
   "vue.codeActions.enabled": false

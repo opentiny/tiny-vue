@@ -1,5 +1,6 @@
 <template>
-  <div ref="reference" class="tiny-date-container">
+  <!-- TODO: 后续去掉 tiny-date-container -->
+  <div ref="reference" class="tiny-picker tiny-date-container">
     <tiny-filter-box
       v-if="shape === 'filter'"
       v-clickoutside.mousedown="handleClose"
@@ -122,7 +123,7 @@
           <component :is="state.showClose ? clearIcon : null" />
         </transition>
       </i>
-      <i class="tiny-input__icon tiny-range__icon tiny-input__suffix" v-if="!state.isDisplayOnly">
+      <i v-if="!state.isDisplayOnly" class="tiny-input__icon tiny-range__icon tiny-input__suffix">
         <component :is="state.triggerClass" />
       </i>
       <tiny-tooltip

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Cascader } from '@opentiny/vue'
+import { TinyCascader } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascader: Cascader
+    TinyCascader
   },
   data() {
     return {

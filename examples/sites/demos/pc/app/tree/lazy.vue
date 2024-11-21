@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { Tree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree
+    TinyTree
   },
   methods: {
     // node为点击的节点， resolve为回调函数，用于异步返回下层节点的数据

@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Pager as TinyPager, RadioButton as TinyRadioButton, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
+import { TinyPager, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 const mode = ref('number')
 </script>

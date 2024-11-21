@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { Divider } from '@opentiny/vue'
+import { TinyDivider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDivider: Divider
+    TinyDivider
   }
 }
 </script>

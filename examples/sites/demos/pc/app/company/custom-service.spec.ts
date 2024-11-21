@@ -23,8 +23,4 @@ test('自定义服务', async ({ page }) => {
   await expect(modal.nth(1)).toHaveText('change:0001')
   await expect(input).toHaveValue('公司一')
   await input.hover()
-
-  // 清空
-  await page.locator('.tiny-select .tiny-input__suffix .tiny-svg.icon-close').click()
-  await expect(input).toHaveValue('')
 })

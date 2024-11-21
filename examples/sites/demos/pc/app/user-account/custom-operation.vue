@@ -6,12 +6,12 @@
 </template>
 
 <script lang="jsx">
-import { UserAccount, Radio } from '@opentiny/vue'
+import { TinyUserAccount, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserAccount: UserAccount,
-    TinyRadio: Radio
+    TinyUserAccount,
+    TinyRadio
   },
   data() {
     return {

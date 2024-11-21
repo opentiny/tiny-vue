@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell' }">
+  <tiny-grid :data="tableData" show-overflow="tooltip" :edit-config="{ trigger: 'click', mode: 'cell' }">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="created_date" title="创建时间"></tiny-grid-column>
     <tiny-grid-column
@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const tableData = ref([
   {

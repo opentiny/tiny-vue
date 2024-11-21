@@ -1,6 +1,10 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" seq-seria :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      show-overflow="tooltip"
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column
         field="name"
@@ -28,12 +32,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -139,10 +143,10 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({ message: 'change:', status: 'info' })
+      TinyModal.message({ message: 'change:', status: 'info' })
     },
     input() {
-      Modal.message({ message: 'input:', status: 'info' })
+      TinyModal.message({ message: 'input:', status: 'info' })
     }
   }
 }

@@ -4,20 +4,35 @@
     <tiny-button @click="openDrawer('right')"> right </tiny-button>
     <tiny-button @click="openDrawer('top')"> top </tiny-button>
     <tiny-button @click="openDrawer('bottom')"> bottom </tiny-button>
+    <tiny-drawer
+      v-if="placement === 'left' || placement === 'right'"
+      title="标题"
+      :placement="placement"
+      v-model:visible="visible"
+      height="600px"
+    >
+      <div>left或者right内容区域</div>
+    </tiny-drawer>
 
-    <tiny-drawer title="标题" :placement="placement" :visible="visible" @update:visible="visible = $event">
-      <div style="padding: 32px">内容区域</div>
+    <tiny-drawer
+      v-if="placement === 'top' || placement === 'bottom'"
+      title="标题"
+      :placement="placement"
+      v-model:visible="visible"
+      height="400px"
+    >
+      <div>top或者bottom区域</div>
     </tiny-drawer>
   </div>
 </template>
 
 <script>
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {

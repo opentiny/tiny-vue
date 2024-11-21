@@ -1,10 +1,14 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+  <tiny-grid
+    :data="tableData"
+    show-overflow="tooltip"
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column
       field="id"
       title="名称（Popeditor）"
-      :editor="{ component: Popeditor, attrs: getPopEditorOp }"
+      :editor="{ component: TinyPopeditor, attrs: getPopEditorOp }"
       :format-config="{
         type: 'enum',
         async: true,
@@ -25,7 +29,7 @@
 
 <script setup lang="jsx">
 import { ref, onMounted } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Popeditor } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopeditor } from '@opentiny/vue'
 
 const popeditOptions = ref([])
 const tableData = ref([
@@ -76,13 +80,13 @@ function getPopEditorOp() {
   return {
     valueField: 'id',
     textField: 'name',
-    remoteSearch: remoteSearch,
+    remoteSearch,
     gridOp: {
       columns: [
         {
           field: 'id',
           title: 'ID',
-          width: 40
+          width: 60
         },
         {
           field: 'name',

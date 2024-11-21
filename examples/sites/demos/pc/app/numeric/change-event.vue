@@ -7,12 +7,12 @@
 </template>
 
 <script lang="ts">
-import { Numeric, Modal, Button } from '@opentiny/vue'
+import { TinyNumeric, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNumeric: Numeric,
-    TinyButton: Button
+    TinyNumeric,
+    TinyButton
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     onChange(newVal: number, oldVal: number) {
-      Modal.message({
+      TinyModal.message({
         message: '新值：' + newVal + '，旧值：' + oldVal,
         status: 'info'
       })

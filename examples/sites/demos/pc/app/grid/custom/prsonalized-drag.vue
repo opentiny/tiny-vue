@@ -19,14 +19,14 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   methods: {
     onBeforeMove() {

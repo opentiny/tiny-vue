@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -155,7 +155,7 @@ const tableData = ref([
 ])
 
 function expandTree() {
-  Modal.message({
+  TinyModal.message({
     message: '触树展开事件',
     status: 'info'
   })

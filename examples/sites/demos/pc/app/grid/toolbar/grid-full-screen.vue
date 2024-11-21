@@ -15,13 +15,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
@@ -75,7 +75,7 @@ export default {
     beforeOpenFullScreen() {
       let doAction = true
 
-      Modal.message({
+      TinyModal.message({
         message: doAction ? '不阻止全屏' : '阻止全屏',
         status: 'info'
       })
@@ -85,7 +85,7 @@ export default {
     beforeCloseFullScreen() {
       let doAction = true
 
-      Modal.message({
+      TinyModal.message({
         message: doAction ? '不阻止退出全屏' : '阻止退出全屏',
         status: 'info'
       })
@@ -93,7 +93,7 @@ export default {
       return doAction
     },
     onFullscreen(isFull) {
-      Modal.message({
+      TinyModal.message({
         message: isFull ? '全屏了' : '关闭全屏了',
         status: 'info'
       })

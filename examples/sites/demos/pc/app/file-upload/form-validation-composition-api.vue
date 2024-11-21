@@ -17,7 +17,7 @@
         @remove="handleRemove"
       >
         <template #trigger>
-          <tiny-button type="primary">选取文件</tiny-button>
+          <tiny-button>选取文件</tiny-button>
         </template>
         <template #tip>
           <div class="tiny-upload__tip">只能上传 jpg/png 文件</div>
@@ -30,13 +30,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  FileUpload as TinyFileUpload,
-  Button as TinyButton,
-  Modal
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const ruleFormRef = ref(null)
@@ -78,9 +72,9 @@ const beforeUpload = (file) => {
 const formValidate = () => {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.alert('校验通过')
+      TinyModal.alert('校验通过')
     } else {
-      Modal.message({ message: '校验不通过', status: 'warning' })
+      TinyModal.message({ message: '校验不通过', status: 'warning' })
       return false
     }
   })

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" :resizable-config="{ limit }">
+    <tiny-grid :data="tableData" :resizable-config="{ limit }" show-overflow="tooltip">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
+      <tiny-grid-column field="name" width="120" title="名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
       <tiny-grid-column field="createdDate" title="创建时间"></tiny-grid-column>
       <tiny-grid-column field="employees" title="人数"></tiny-grid-column>
@@ -12,7 +12,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 /**
  * 限制列宽在 min, max 之间
@@ -35,8 +35,8 @@ function limitWidth(width, min, max) {
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -137,7 +137,7 @@ export default {
   methods: {
     limit({ field, width }) {
       if (field === 'name') {
-        return limitWidth(width, 60, 60)
+        return limitWidth(width, 120, 120)
       }
 
       return limitWidth(width, 50, 300)

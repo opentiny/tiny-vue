@@ -32,12 +32,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import {
-  Carousel as TinyCarousel,
-  CarouselItem as TinyCarouselItem,
-  Card as TinyCard,
-  Button as TinyButton
-} from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem, TinyCard, TinyButton } from '@opentiny/vue'
 import { IconChevronRight, IconChevronLeft } from '@opentiny/vue-icon'
 
 const TinyIconChevronRight = IconChevronRight()

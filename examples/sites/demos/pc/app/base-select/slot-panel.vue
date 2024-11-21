@@ -40,7 +40,8 @@
                 return {
                   ...node,
                   currentLabel: node.label,
-                  value: node.id
+                  value: node.id,
+                  isTree: true
                 }
               })
             )
@@ -79,12 +80,12 @@
 </template>
 
 <script>
-import { BaseSelect, Tree } from '@opentiny/vue'
+import { TinyBaseSelect, TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyTree: Tree
+    TinyBaseSelect,
+    TinyTree
   },
   data() {
     return {

@@ -9,7 +9,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TextPopup as TinyTextPopup, Button as TinyButton } from '@opentiny/vue'
+import { TinyTextPopup, TinyButton } from '@opentiny/vue'
 
 const value = ref('')
 

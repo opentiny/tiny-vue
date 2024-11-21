@@ -9,9 +9,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Button as TinyButton, Loading } from '@opentiny/vue'
+import { TinyButton, TinyLoading } from '@opentiny/vue'
 
-const vLoading = Loading.directive
+const vLoading = TinyLoading.directive
 
 const fullscreenLoading = ref(false)
 
@@ -23,13 +23,23 @@ function handleClick() {
 }
 
 function handleClick2() {
-  const loading = Loading.service({
+  const loading = TinyLoading.service({
     lock: true,
-    text: 'Loading',
-    background: 'rgba(0, 0, 0, 0.8)'
+    customClass: 'my-custom-loading-fullscreen',
+    text: '正在提交...',
+    background: 'rgba(0, 0, 0, 0.3)'
   })
   setTimeout(() => {
     loading.close()
   }, 2500)
 }
 </script>
+
+<style>
+.my-custom-loading-fullscreen .tiny-loading__spinner > .tiny-svg.circular {
+  fill: #fff;
+}
+.my-custom-loading-fullscreen .tiny-loading__spinner > .tiny-loading__text {
+  color: #fff;
+}
+</style>

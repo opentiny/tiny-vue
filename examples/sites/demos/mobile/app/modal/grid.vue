@@ -18,14 +18,14 @@
 </template>
 
 <script lang="jsx">
-import { Button, Modal, Grid, GridColumn } from '@opentiny/vue'
+import { TinyButton, TinyModal, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyModal: Modal,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyButton,
+    TinyModal,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

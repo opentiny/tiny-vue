@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 import { iconEdit, iconAssociation } from '@opentiny/vue-icon'
 
 const restaurants = ref([])
@@ -78,14 +78,15 @@ function loadAll() {
 
 <style scoped>
 .demo-autocomplete .tiny-autocomplete {
-  width: 270px;
+  width: 300px;
 }
-.pend-slot, .fix-slot {
+.pend-slot,
+.fix-slot {
   margin-right: 12px;
 }
 
 .default-slot-buttom {
   font-size: 12px;
-  color: #a29b91
+  color: #a29b91;
 }
 </style>

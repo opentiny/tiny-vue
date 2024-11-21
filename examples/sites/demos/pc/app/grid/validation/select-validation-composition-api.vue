@@ -5,6 +5,7 @@
       ref="basicGridRef"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
+      show-overflow="tooltip"
     >
       <template #toolbar>
         <tiny-grid-toolbar :buttons="toolbarButtons" @button-click="toolbarButtonClickEvent"></tiny-grid-toolbar>
@@ -21,12 +22,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  GridToolbar as TinyGridToolbar,
-  Modal as TinyModal
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 const validRules = {
   name: [

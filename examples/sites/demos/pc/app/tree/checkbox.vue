@@ -29,11 +29,11 @@
 </template>
 
 <script lang="jsx">
-import { Tree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree
+    TinyTree
   },
   data() {
     return {

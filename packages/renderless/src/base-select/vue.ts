@@ -1,7 +1,6 @@
 import {
   debouncRquest,
   getChildValue,
-  getcheckedData,
   calcOverFlow,
   toggleCheckAll,
   handleCopyClick,
@@ -55,7 +54,6 @@ import {
   onMouseenterNative,
   onMouseleaveNative,
   onCopying,
-  gridOnQueryChange,
   defaultOnQueryChange,
   queryChange,
   toVisible,
@@ -97,7 +95,9 @@ import {
   onClickCollapseTag,
   computedIsExpand,
   updateSelectedData,
-  hidePanel
+  hidePanel,
+  computedShowTagText,
+  isTagClosable
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -154,7 +154,9 @@ export const api = [
   'clearSearchText',
   'onClickCollapseTag',
   'updateSelectedData',
-  'hidePanel'
+  'hidePanel',
+  'computedShowTagText',
+  'isTagClosable'
 ]
 
 const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
@@ -259,8 +261,6 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     initialInputHeight: 0,
     currentPlaceholder: props.placeholder,
     filteredOptionsCount: 0,
-    gridData: [],
-    treeData: [],
     remoteData: [],
     currentKey: props.modelValue,
     updateId: '',
@@ -271,12 +271,12 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     formItemSize: computed(() => (parent.formItem || { state: {} }).state.formItemSize),
     selectDisabled: computed(() => api.computedSelectDisabled()),
     isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
-    gridCheckedData: computed(() => api.getcheckedData()),
+    isDisabled: computed(() => props.disabled || (parent.form || {}).disabled),
+    isShowTagText: computed(() => api.computedShowTagText()),
     searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
     childrenName: computed(() => 'children'),
     tooltipContent: {},
     isHidden: false,
-    defaultCheckedKeys: [],
     optionIndexArr: [],
     showCollapseTag: false,
     exceedMaxVisibleRow: false, // 是否超出默认最大显示行数
@@ -317,7 +317,6 @@ const initApi = ({
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
     setSoftFocus: setSoftFocus({ vm, state }),
-    getcheckedData: getcheckedData({ props, state }),
     resetInputWidth: resetInputWidth({ vm, state }),
     resetHoverIndex: resetHoverIndex({ props, state }),
     resetDatas: resetDatas({ props, state }),
@@ -338,7 +337,6 @@ const initApi = ({
     onMouseenterNative: onMouseenterNative({ state }),
     onMouseleaveNative: onMouseleaveNative({ state }),
     onCopying: onCopying({ state, vm }),
-    gridOnQueryChange: gridOnQueryChange({ props, vm, constants, state }),
     watchHoverIndex: watchHoverIndex({ state }),
     computeOptimizeOpts: computeOptimizeOpts({ props, designConfig }),
     computeCollapseTags: computeCollapseTags(props),
@@ -364,6 +362,8 @@ const initApi = ({
     computedGetTagType: computedGetTagType({ designConfig, props }),
     clearSearchText: clearSearchText({ state, api }),
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
+    computedShowTagText: computedShowTagText({ state }),
+    isTagClosable: isTagClosable(),
     updateSelectedData: updateSelectedData({ state }),
     hidePanel: hidePanel({ state })
   })

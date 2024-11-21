@@ -9,7 +9,7 @@
       :hide-required-asterisk="hideRequiredAsterisk"
       :model="createData"
       :rules="rules"
-      label-width="100px"
+      label-width="108px"
       validate-type="text"
       message-type="block"
     >
@@ -31,14 +31,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Button as TinyButton,
-  Modal,
-  Switch as TinySwitch
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinySwitch } from '@opentiny/vue'
 
 const hideRequiredAsterisk = ref(true)
 const createData = reactive({
@@ -59,6 +52,7 @@ function handleSubmit() {
   })
 }
 </script>
+
 <style scoped>
 .demo-form {
   width: 380px;

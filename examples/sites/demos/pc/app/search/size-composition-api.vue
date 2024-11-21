@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Search as TinySearch } from '@opentiny/vue'
+import { TinySearch } from '@opentiny/vue'
 
 const value1 = ref('')
 const value2 = ref('')

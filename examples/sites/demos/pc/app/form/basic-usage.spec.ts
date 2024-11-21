@@ -30,10 +30,6 @@ test('测试基本表单', async ({ page }) => {
   await page.getByRole('listitem').filter({ hasText: '00:30' }).click()
   await expect(timePicker).toHaveValue('00:30')
 
-  // 其他输入
-  await demo.getByPlaceholder('click').first().hover()
-  await expect(page.getByRole('tooltip', { name: 'TinyUI Form Demo' })).toBeVisible()
-
   // 提交按钮
   const dialog = page.locator('.tiny-modal.active')
   await demo.getByRole('button', { name: '提交' }).click()

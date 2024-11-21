@@ -186,10 +186,12 @@ export const computedGetIcon =
     return designConfig?.icons[name] || constants?.ICON_MAP[name]
   }
 
-export const getTip = ({ props, vm }: Pick<IDropdownItemRenderlessParams, 'props' | 'vm'>): string => {
-  if (props.tip && typeof props.tip === 'function') {
-    return props.tip({ itemData: props.itemData, vm })
-  }
+export const computedTip =
+  ({ props, vm }: Pick<IDropdownItemRenderlessParams, 'props' | 'vm'>): string =>
+  () => {
+    if (props.tip && typeof props.tip === 'function') {
+      return props.tip({ itemData: props.itemData, vm })
+    }
 
-  return props.tip || ''
-}
+    return props.tip || ''
+  }

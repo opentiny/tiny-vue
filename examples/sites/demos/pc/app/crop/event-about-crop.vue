@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, Crop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -33,34 +33,34 @@ export default {
   },
   methods: {
     getCanvasData() {
-      Modal.message({
+      TinyModal.message({
         message: `Canvas 数据：${JSON.stringify(this.$refs.crop.getCropBoxData())}`,
         status: 'info'
       })
     },
     cropdata(data) {
-      Modal.message({
+      TinyModal.message({
         message: `Canvas 数据：${JSON.stringify(data)}`,
         status: 'info'
       })
     },
     cropstart(e) {
-      Modal.message({
+      TinyModal.message({
         message: 'cropstart 事件，回调参数：' + e,
         status: 'info'
       })
     },
     cropmove(e) {
-      Modal.message({
+      TinyModal.message({
         message: 'cropmove 事件，回调参数：' + e,
         status: 'info'
       })
     },
     cropend(e) {
-      Modal.message({ message: 'cropend 事件，回调参数：' + e, status: 'info' })
+      TinyModal.message({ message: 'cropend 事件，回调参数：' + e, status: 'info' })
     },
     crop(e) {
-      Modal.message({ message: 'crop 事件，回调参数：' + e, status: 'info' })
+      TinyModal.message({ message: 'crop 事件，回调参数：' + e, status: 'info' })
     }
   }
 }

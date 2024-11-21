@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { CalendarView as TinyCalendarView, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyCalendarView, TinyButton, TinyModal } from '@opentiny/vue'
 
 const workingDays = ref([])
 const offDays = ref([])
@@ -35,7 +35,7 @@ const map = {
 
 const setDays = (type) => {
   if (!selectedDate.value.length) {
-    Modal.message({ message: '请选择日期', status: 'info' })
+    TinyModal.message({ message: '请选择日期', status: 'info' })
     return
   }
   map[type].value.push(...selectedDate.value)

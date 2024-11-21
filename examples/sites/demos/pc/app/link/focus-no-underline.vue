@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import { Link } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLink: Link
+    TinyLink
   }
 }
 </script>
 
 <style scoped>
 .tiny-link {
-  margin-right: 8px;
+  margin-right: 48px;
 }
 </style>

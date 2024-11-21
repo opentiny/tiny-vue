@@ -27,7 +27,7 @@
 <script setup>
 import { ref } from 'vue'
 import Svgs from '@opentiny/vue-icon'
-import { Modal, Input as TinyInput } from '@opentiny/vue'
+import { TinyModal, TinyInput } from '@opentiny/vue'
 import { iconGroups } from './iconGroups.js'
 
 const all = Object.values(iconGroups).flat()
@@ -44,7 +44,7 @@ const searchName = ref('')
 
 function click(name) {
   window.navigator.clipboard.writeText(name)
-  Modal.message({
+  TinyModal.message({
     message: `成功复制图标名称 ${name} `,
     status: 'info'
   })

@@ -24,7 +24,7 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { ChartLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -69,7 +69,7 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { Chart } from '@opentiny/vue'
+  import { Huicharts } from '@opentiny/vue'
   export default {
     components: {
       TinyChart: Chart
@@ -90,7 +90,7 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { ChartLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue'
   export default {
     components: {
       TinyChartLine: ChartLine,

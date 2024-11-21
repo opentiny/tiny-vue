@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const flag = ref(false)

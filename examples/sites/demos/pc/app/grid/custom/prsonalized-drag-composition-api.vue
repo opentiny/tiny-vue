@@ -15,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const setting = ref({

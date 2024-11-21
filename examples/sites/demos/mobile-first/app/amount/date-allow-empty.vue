@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Amount, Modal } from '@opentiny/vue'
+import { TinyAmount, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAmount: Amount
+    TinyAmount
   },
   data() {
     return {
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     change(val) {
-      Modal.message({
+      TinyModal.message({
         message: `改变后的值：${JSON.stringify(val)}`,
         status: 'info'
       })

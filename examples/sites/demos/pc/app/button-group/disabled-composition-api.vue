@@ -4,9 +4,6 @@
       <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
     </div>
     <div class="mt-12">
-      <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
-    </div>
-    <div class="mt-12">
       <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
     </div>
   </div>
@@ -14,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 
 const value = ref(1)
 const groupData = ref([

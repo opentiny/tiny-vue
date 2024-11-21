@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { Input, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {
@@ -24,19 +24,19 @@ export default {
   },
   methods: {
     onChange() {
-      Modal.message('change')
+      TinyModal.message('change')
     },
     onInput() {
-      Modal.message('input')
+      TinyModal.message('input')
     },
     onBlur() {
-      Modal.message('blur')
+      TinyModal.message('blur')
     },
     onFocus() {
-      Modal.message('focus')
+      TinyModal.message('focus')
     },
     onClear() {
-      Modal.message('clear')
+      TinyModal.message('clear')
     }
   }
 }

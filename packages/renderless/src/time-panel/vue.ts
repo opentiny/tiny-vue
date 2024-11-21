@@ -54,7 +54,7 @@ const initState = ({ reactive, computed, api }) => {
       set: (value) => {
         const valid = state.items.some((item) => item.value === value)
 
-        state.realValue = valid ? value : ''
+        state.realValue = state.lastEmitValue = valid ? value : ''
       }
     })
   })

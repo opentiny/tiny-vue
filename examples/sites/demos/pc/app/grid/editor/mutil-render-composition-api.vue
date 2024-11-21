@@ -1,13 +1,17 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" seq-seria :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      show-overflow="tooltip"
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column
         field="area"
         title="区域"
         :editor="{
-          component: Select,
+          component: TinySelect,
           attrs: {
             multiple: true,
             options,
@@ -34,7 +38,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Select } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
 
 const options = ref([
   { name: '华中区', id: '1' },

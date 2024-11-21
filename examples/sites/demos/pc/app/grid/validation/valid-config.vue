@@ -12,9 +12,10 @@
       :valid-config="{ message: 'inline' }"
       :edit-rules="validRules"
       :size="size"
+      show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" title="名称" :editor="{ component: Input }"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" :editor="{ component: TinyInput }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input' }"></tiny-grid-column>
@@ -23,17 +24,17 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Input, Radio } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio
   },
   data() {
     return {
-      Input,
+      TinyInput,
       size: '',
       validRules: {
         name: [

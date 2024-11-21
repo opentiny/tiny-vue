@@ -25,6 +25,7 @@
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
+import { isNull } from '@opentiny/vue-renderless/common/type'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
 import {
@@ -378,7 +379,7 @@ const Methods = {
     let rowKey = getTableRowKey(this)
     let buildRowCache = (row, index) => {
       let rowId = getRowid(this, row)
-      if (!rowId) {
+      if (isNull(rowId) || rowId === '') {
         rowId = getRowUniqueId()
         set(row, rowKey, rowId)
       }
@@ -495,7 +496,8 @@ const Methods = {
       }
     })
     // 如果行数据的唯一主键不存在，则生成
-    if (!get(row, rowKey)) {
+    const rowId = get(row, rowKey)
+    if (isNull(rowId) || rowId === '') {
       set(row, rowKey, getRowUniqueId())
     }
     return row
@@ -772,6 +774,12 @@ const Methods = {
       })
       this.collectColumn = collectColumn
     }
+
+    const toolbarVm = this.getVm('toolbar')
+    // 合并更新toolbar的Column配置
+    if (toolbarVm) {
+      toolbarVm.updateColumn(fullColumn)
+    }
     this.$emit('update:customs', fullColumn)
   },
   resetAll() {
@@ -1002,8 +1010,8 @@ const Methods = {
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
-    // 列宽最少限制 40px, x-design为72px
-    let minCellWidth = this.$grid?.designConfig?.minWidth || 40
+    // 列宽最少限制 72px, saas为40px
+    let minCellWidth = this.$grid?.designConfig?.minWidth || 72
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight

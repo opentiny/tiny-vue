@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { LogonUser as TinyLogonUser } from '@opentiny/vue'
+import { TinyLogonUser } from '@opentiny/vue'
 
 const serivce = ref({
   getUserInfo() {

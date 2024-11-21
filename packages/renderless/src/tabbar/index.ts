@@ -74,6 +74,11 @@ export const initPage =
     })
   }
 
-export const beforeDestroy = (api) => () => {
-  off(window, 'resize', api.initPage)
-}
+export const beforeDestroy =
+  ({ vm, api }) =>
+  () => {
+    off(window, 'resize', api.initPage)
+    vm.$off('updateItems')
+    vm.$off('activeItem')
+    vm.$off('showIndex')
+  }

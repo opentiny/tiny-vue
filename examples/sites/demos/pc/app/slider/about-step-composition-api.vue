@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Slider as TinySlider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue'
 
 const value = ref(20)
 </script>

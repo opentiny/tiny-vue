@@ -276,6 +276,7 @@ export const unmounted =
   (): void => {
     state.canShowTip = false
     api.dispatch('Form', 'form:removeField', vm)
+    api.removeValidateEvents()
   }
 
 export const validate =
@@ -452,7 +453,9 @@ export const addValidateEvents =
   }
 
 export const removeValidateEvents = (vm: IFormItemRenderlessParams['vm']) => (): void => {
-  vm.$off()
+  vm.$off('form.blur')
+  vm.$off('form.change')
+  vm.$off('displayed-value-changed')
 }
 
 export const updateTip =

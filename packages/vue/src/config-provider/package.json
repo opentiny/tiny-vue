@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-config-provider",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
@@ -15,8 +15,7 @@
   },
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-config-provider": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

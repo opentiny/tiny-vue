@@ -82,6 +82,7 @@ export const cmpMenus = [
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
       { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
+      // { 'nameCn': '多色图标', 'name': 'IconMulticolor', 'key': 'icon-multicolor' }, // 隐藏路由，目前只有saas使用
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
       { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },
       { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
@@ -104,13 +105,10 @@ export const cmpMenus = [
       { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
       { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
       { 'nameCn': '下拉菜单', 'name': 'Dropdown', 'key': 'dropdown' },
-      { 'nameCn': '瀑布菜单', 'name': 'FallMenu', 'key': 'fall-menu' },
-      { 'nameCn': '收藏夹菜单', 'name': 'LinkMenu', 'key': 'link-menu' },
       { 'nameCn': '导航菜单', 'name': 'NavMenu', 'key': 'nav-menu' },
       { 'nameCn': '分页', 'name': 'Pager', 'key': 'pager' },
       { 'nameCn': '步骤条', 'name': 'Steps', 'key': 'steps' },
       { 'nameCn': '页签', 'name': 'Tabs', 'key': 'tabs' },
-      { 'nameCn': '收缩菜单', 'name': 'ToggleMenu', 'key': 'toggle-menu' },
       { 'nameCn': '树型菜单', 'name': 'TreeMenu', 'key': 'tree-menu' }
     ]
   },
@@ -123,10 +121,7 @@ export const cmpMenus = [
       {
         'nameCn': '基础选择器',
         'name': 'BaseSelect',
-        'key': 'base-select',
-        'meta': {
-          'experimental': '3.17.0'
-        }
+        'key': 'base-select'
       },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
@@ -136,15 +131,16 @@ export const cmpMenus = [
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
-      {
-        'nameCn': '富文本',
-        'name': 'FluentEditor',
-        'key': 'fluent-editor',
-        'meta': {
-          'experimental': '3.17.0'
-        }
-      },
+      { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
+      // {
+      //   'nameCn': '下拉表格选择器',
+      //   'name': 'GridSelect',
+      //   'key': 'grid-select',
+      //   'meta': {
+      //     'experimental': '3.20.0'
+      //   }
+      // },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
@@ -152,14 +148,6 @@ export const cmpMenus = [
       { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
-      {
-        'nameCn': '富文本编辑器',
-        'name': 'RichTextEditor',
-        'key': 'rich-text-editor',
-        'meta': {
-          'experimental': '3.10.0'
-        }
-      },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
@@ -190,6 +178,8 @@ export const cmpMenus = [
       { 'nameCn': '大数据', 'name': '', 'key': 'grid-large-data' },
       { 'nameCn': '分页', 'name': '', 'key': 'grid-pager' },
       { 'nameCn': '编辑', 'name': '', 'key': 'grid-edit' },
+      { 'nameCn': '编辑器', 'name': '', 'key': 'grid-editor' },
+      { 'nameCn': '表格校验', 'name': '', 'key': 'grid-validation' },
       { 'nameCn': '工具栏', 'name': '', 'key': 'grid-toolbar' },
       { 'nameCn': '加载中', 'name': '', 'key': 'grid-loading' },
       { 'nameCn': '宽高尺寸', 'name': '', 'key': 'grid-size' },
@@ -207,9 +197,7 @@ export const cmpMenus = [
       { 'nameCn': '分组', 'name': '', 'key': 'grid-row-grouping' },
       { 'nameCn': '拖拽', 'name': '', 'key': 'grid-drag' },
       { 'nameCn': '右键菜单', 'name': '', 'key': 'grid-context-menu' },
-      { 'nameCn': '编辑器', 'name': '', 'key': 'grid-editor' },
       { 'nameCn': '渲染器', 'name': '', 'key': 'grid-renderer' },
-      { 'nameCn': '表格校验', 'name': '', 'key': 'grid-validation' },
       { 'nameCn': '事件', 'name': '', 'key': 'grid-event' },
       { 'nameCn': '插槽', 'name': '', 'key': 'grid-slot' },
       { 'nameCn': '个性化', 'name': '', 'key': 'grid-custom' },
@@ -367,7 +355,7 @@ if (envTarget === 'inner' || showBusiness) {
       { 'nameCn': '公司', 'name': 'Company', 'key': 'company' },
       { 'nameCn': '国家/地区', 'name': 'Country', 'key': 'country' },
       { 'nameCn': '币种', 'name': 'Currency', 'key': 'currency' },
-      { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
+      // { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
       { 'nameCn': '下拉角色', 'name': 'DropRoles', 'key': 'drop-roles' },
       { 'nameCn': '消息弹框', 'name': 'Espace', 'key': 'espace' },
       { 'nameCn': '权签人', 'name': 'HrApprover', 'key': 'hrapprover' },

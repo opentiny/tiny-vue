@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Image } from '@opentiny/vue'
+import { TinyImage } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImage: Image
+    TinyImage
   },
   data() {
     return {

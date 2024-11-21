@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px" show-message>
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
       <tiny-form-item prop="users">
         <template #label> 必填 </template>
         <tiny-input v-model="createData.users"></tiny-input>
@@ -11,7 +11,7 @@
       </tiny-form-item>
       <tiny-form-item prop="url">
         <template #label>
-          <div class="custom-label">超过两行文字，省略显示</div>
+          <div class="custom-label" v-auto-tip>超过两行文字，省略显示</div>
         </template>
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
@@ -27,17 +27,19 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyModal, TinyRadioGroup } from '@opentiny/vue'
+import { AutoTip } from '@opentiny/vue-directive'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyRadioGroup: RadioGroup
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyRadioGroup
   },
+  directives: { AutoTip },
   data() {
     return {
       options: [
@@ -70,7 +72,7 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          TinyModal.alert('提交成功')
         }
       })
     }

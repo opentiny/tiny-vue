@@ -1,11 +1,11 @@
 <template>
   <div>
-    <span class="red">手风琴模式，父子严格显示自动勾选</span>
+    <div class="tips">提示：手风琴模式，父子严格显示自动勾选</div>
     <tiny-tree :data="data" accordion show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
     </tiny-tree>
     <br />
-    <span class="red">非手风琴模式，自定义自动勾选的内容</span>
-    <tiny-tree :data="data" accordion show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
+    <div class="tips">提示：非手风琴模式，自定义自动勾选的内容</div>
+    <tiny-tree :data="data" show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
       <template #switchText>
         <span>自定义开关的内容</span>
       </template>
@@ -15,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 
 const data = ref([
   {
@@ -43,7 +43,8 @@ const data = ref([
 </script>
 
 <style scoped>
-.red {
-  color: red;
+.tips {
+  color: #888;
+  margin: 12px 20px;
 }
 </style>

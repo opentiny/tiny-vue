@@ -11,11 +11,8 @@
  -->
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
-    <div v-show="state.visible" class="tiny-time-panel tiny-popper" :class="state.popperClass">
+    <div v-show="state.visible" class="tiny-time tiny-time-panel tiny-popper" :class="state.popperClass">
       <div class="tiny-time-panel__header">
-        <div class="tiny-time-panel__header-input">
-          <tiny-input v-model="state.displayValue" :placeholder="state.format"></tiny-input>
-        </div>
         <div class="tiny-time-panel__header-title">
           <span>{{ t('ui.datepicker.hour') }}</span>
           <span>{{ t('ui.datepicker.minute') }}</span>
@@ -36,7 +33,7 @@
         </time-spinner>
       </div>
       <div class="tiny-time-panel__footer">
-        <tiny-button v-if="!state.showTimePickerButton" class="tiny-time-panel__btn" @click="handleCancel()">
+        <tiny-button v-if="!state.showTimePickerButton" class="tiny-time-panel__btn cancel" @click="handleCancel()">
           {{ t('ui.datepicker.cancel') }}
         </tiny-button>
         <tiny-button
@@ -58,14 +55,12 @@
 import { renderless, api } from '@opentiny/vue-renderless/time/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TimeSpinner from '@opentiny/vue-time-spinner'
-import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
 
 export default defineComponent({
   emits: ['dodestroy', 'pick', 'select-range'],
   components: {
     TimeSpinner,
-    TinyInput: Input,
     TinyButton: Button
   },
   props: [...props, 'show', 'timeArrowControl', 'emitter', 'value', 'step'],

@@ -20,11 +20,11 @@
 </template>
 
 <script lang="jsx">
-import { Avatar } from '@opentiny/vue'
+import { TinyAvatar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAvatar: Avatar
+    TinyAvatar
   },
   data() {
     return {

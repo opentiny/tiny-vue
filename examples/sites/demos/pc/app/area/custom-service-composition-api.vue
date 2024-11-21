@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Area as TinyArea } from '@opentiny/vue'
+import { TinyArea } from '@opentiny/vue'
 
 const value = ref([])
 const field = ref({ label: 'name', value: 'id' })
@@ -23,7 +23,7 @@ function getJCR() {
       id: '3623',
       id_and_type: '3623JCR',
       parent_and_type: null,
-      name: 'A公司 Marketing与销售服务部',
+      name: 'A公司销售服务部',
       date_from: '2005/06/21 00:00:00',
       name_en: 'Consumer BG Marketing and Sales Service Dept',
       parent_type: null,
@@ -36,7 +36,7 @@ function getJCR() {
       id: '650561',
       id_and_type: '650561JCR',
       parent_and_type: null,
-      name: 'A公司 Marketing与销售服务部（东莞）',
+      name: 'A公司销售服务部（东莞）',
       date_from: '2012/09/27 00:00:00',
       name_en: 'Consumer BG Marketing and Sales Service Dept (Dongguan)',
       parent_type: null,

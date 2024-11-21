@@ -1,13 +1,15 @@
 <template>
-  <tiny-user v-model="user" multiple @change="change" @focus="handleFocus" @blur="handleBlur"></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user v-model="user" multiple @change="change" @focus="handleFocus" @blur="handleBlur"></tiny-user>
+  </div>
 </template>
 
 <script>
-import { User, Modal } from '@opentiny/vue'
+import { TinyUser, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -16,18 +18,24 @@ export default {
   },
   methods: {
     change(val) {
-      Modal.message({ message: `${val}`, status: 'info' })
+      TinyModal.message({ message: `${val}`, status: 'info' })
     },
     handleFocus() {
-      Modal.message({
+      TinyModal.message({
         message: '组件聚焦'
       })
     },
     handleBlur() {
-      Modal.message({
+      TinyModal.message({
         message: '组件失焦'
       })
     }
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

@@ -38,6 +38,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       '@opentiny/vue-locale': 'TinyVueLocale',
       '@opentiny/vue-common': 'TinyVueCommon',
       '@opentiny/vue-icon': 'TinyVueIcon',
+      '@opentiny/vue-icon-multicolor': 'TinyVueIconMulticolor',
       'echarts': 'Echarts'
     }
   }
@@ -191,6 +192,10 @@ function getEntryTasks() {
     {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-icon-multicolor/index.ts',
+      libPath: 'tiny-vue-icon-multicolor'
     },
     {
       path: 'vue-directive/index.ts',

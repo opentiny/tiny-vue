@@ -24,13 +24,13 @@
 
 <script>
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown, DropdownMenu, DropdownItem, Notify } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     itemClick(data) {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: 'itemData',
         message: `配置式可以通过data.itemData获取配置数据：${JSON.stringify(data.itemData)}`,

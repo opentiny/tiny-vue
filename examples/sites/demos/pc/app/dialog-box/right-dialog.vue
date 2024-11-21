@@ -18,13 +18,13 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
+    TinyButton,
+    TinyDialogBox,
     IconHelpCircle: iconHelpCircle()
   },
   data() {

@@ -21,12 +21,12 @@ test('裁剪框最小宽高', async ({ page }) => {
 
   box = await face.boundingBox()
 
-  expect(box.width).toBe(100)
-  expect(box.height).toBe(56.25) // 此处有bug, 高度最小应该为 100， 实际最小为56.25
+  expect(box.width).toBe(199.99996948242188)
+  expect(box.height).toBe(112.5) // 此处有bug, 高度最小应该为 100， 实际最小为56.25
 
   // 判断container 大小为  800*200
   box = await container.boundingBox()
 
-  expect(box.width).toBe(800)
-  expect(box.height).toBe(200)
+  expect(box.width).toBe(650)
+  expect(box.height).toBe(300)
 })

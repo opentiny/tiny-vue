@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import { Signature, Button, DialogBox } from '@opentiny/vue'
+import { TinySignature, TinyButton, TinyDialogBox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySignature: Signature,
-    TinyDialogBox: DialogBox,
-    TinyButton: Button
+    TinySignature,
+    TinyDialogBox,
+    TinyButton
   },
   data() {
     return {

@@ -1,11 +1,5 @@
 <template>
-  <tiny-grid
-    :data="tableData"
-    seq-serial
-    show-overflow="ellipsis"
-    :edit-config="{ activeMethod }"
-    :cell-class-name="cellClassName"
-  >
+  <tiny-grid :data="tableData" show-overflow="tooltip" :edit-config="{ activeMethod }" :cell-class-name="cellClassName">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>
     <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
@@ -15,12 +9,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

@@ -53,13 +53,13 @@
 </template>
 
 <script>
-import { Card, CardGroup, Select } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup, TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCard: Card,
-    TinyCardGroup: CardGroup,
-    TinySelect: Select
+    TinyCard,
+    TinyCardGroup,
+    TinySelect
   },
   data() {
     return {
@@ -69,7 +69,7 @@ export default {
         {
           title: 'TinyVue',
           content: '^15.0.01',
-          imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.7.20240711104855/assets/tinyvue.svg'
+          imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/tinyvue.svg'
         },
         {
           title: 'TinyNG',

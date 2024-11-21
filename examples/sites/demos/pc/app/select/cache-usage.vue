@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { Select } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select
+    TinySelect
   },
   data() {
     return {

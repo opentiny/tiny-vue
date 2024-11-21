@@ -1,17 +1,19 @@
 <template>
-  <tiny-dept :value="value" size="medium">
-    <template #hrapprover="data">
-      <div>{{ data.slotScope.hrapprover }}</div>
-    </template>
-  </tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept :value="value">
+      <template #hrapprover="data">
+        <div>{{ data.slotScope.hrapprover }}</div>
+      </template>
+    </tiny-dept>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Dept } from '@opentiny/vue'
+import { TinyDept } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   data() {
     return {
@@ -20,3 +22,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

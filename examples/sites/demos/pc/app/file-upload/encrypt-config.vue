@@ -2,18 +2,18 @@
   <div>
     <div class="mb10">{{ encryptConfig }}</div>
     <tiny-file-upload :action="action" :data="data" :encrypt-config="encryptConfig">
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </tiny-file-upload>
   </div>
 </template>
 
 <script>
-import { FileUpload, Button } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {

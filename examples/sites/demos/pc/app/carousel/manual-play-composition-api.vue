@@ -21,13 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Carousel as TinyCarousel,
-  CarouselItem as TinyCarouselItem,
-  Numeric as TinyNumeric,
-  Button as TinyButton,
-  ButtonGroup as TinyButtonGroup
-} from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem, TinyNumeric, TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 const index = ref(3)
 const carouselRef = ref()

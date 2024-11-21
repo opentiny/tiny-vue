@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid ref="gridRef" :data="tableData" seq-serial show-overflow="ellipsis">
+  <tiny-grid ref="gridRef" :data="tableData" show-overflow="tooltip">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :renderer="renderInput('name')">
       <template #header="{ column }">
@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Input, Select, Button as TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinySelect, TinyButton } from '@opentiny/vue'
 
 const options = ref([
   { label: '华北区', value: '华北区' },
@@ -87,7 +87,7 @@ const tableData = ref([
 function renderInput(field) {
   return (h, { row }) =>
     row.editing
-      ? h(Input, {
+      ? h(TinyInput, {
           props: { modelValue: row[field] },
           on: { 'update:modelValue': (value) => (row[field] = value) }
         })
@@ -97,7 +97,7 @@ function renderInput(field) {
 function renderSelect(field) {
   return (h, { row }) =>
     row.editing
-      ? h(Select, {
+      ? h(TinySelect, {
           props: { modelValue: row[field], options: options.value, textField: 'label', valueField: 'value' },
           on: { 'update:modelValue': (value) => (row[field] = value) }
         })

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { MultiSelect, Toast } from '@opentiny/vue'
+import { TinyMultiSelect, TinyToast } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMultiSelect: MultiSelect
+    TinyMultiSelect
   },
   data() {
     return {
@@ -233,7 +233,7 @@ export default {
   methods: {
     handleItemClick(item, headerIndex) {
       const text = `${this.data[headerIndex].title}: ${item.label}`
-      Toast.service({
+      TinyToast.service({
         text
       })
     }

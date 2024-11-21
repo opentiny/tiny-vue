@@ -7,7 +7,7 @@
 @quarter-panel-prefix-cls: ~'@{css-prefix}quarter-panel';
 
 .@{quarter-panel-prefix-cls} {
-  .component-css-vars-quarter-panel();
+  .inject-QuarterPanel-vars();
 
   table {
     table-layout: fixed;
@@ -15,20 +15,24 @@
   }
 
   &__header {
-    margin: 12px 12px 0 12px;
     text-align: center;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--ti-date-picker-border-color);
-    line-height: var(--ti-date-picker-header-line-height);
-  }
+    padding: var(--tv-QuarterPanel-header-padding);
+    margin-bottom: var(--tv-QuarterPanel-header-margin-bottom);
+    border-bottom: 1px solid var(--tv-QuarterPanel-border-color);
+    line-height: var(--tv-QuarterPanel-header-line-height);
 
-  &__content {
+    .tiny-date-picker__prev-btn {
+      float: left;
+    }
 
+    .tiny-date-picker__next-btn {
+      float: right;
+    }
   }
 
   &__table {
-    .component-css-vars-month-table();
-    .component-css-vars-date-table();
+    .inject-MonthTable-vars();
+    .inject-DateTable-vars();
 
     .month-table();
   }

@@ -18,7 +18,7 @@
     <br />
     <div>场景2：显示边框并圆角</div>
     <br />
-    <tiny-dropdown border round>
+    <tiny-dropdown border round type="primary">
       <span>下拉菜单</span>
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -50,13 +50,13 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>

@@ -1,14 +1,22 @@
 <template>
-  <tiny-dept v-model="value" @close="close"></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept v-model="value" @close="close"></tiny-dept>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Dept as TinyDept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 const value = ref('022471')
 
 function close() {
-  Modal.message('关闭弹出框')
+  TinyModal.message('关闭弹出框')
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

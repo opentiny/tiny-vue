@@ -28,14 +28,14 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Tabs, TabItem } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyTabs,
+    TinyTabItem,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const tableData = [
@@ -104,6 +104,7 @@ export default {
         employees: 540
       }
     ]
+
     return {
       tableData,
       activeName: 'medium'

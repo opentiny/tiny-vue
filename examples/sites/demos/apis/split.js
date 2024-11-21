@@ -14,7 +14,7 @@ export default {
             'en-US': 'Easy Mode Enables Left/Top Expand Collapse Button'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'horizontal-collapse'
         },
         {
           name: 'collapse-right-bottom',
@@ -25,7 +25,7 @@ export default {
             'en-US': 'Easy Mode Enables Right/Down Expand Collapse Button'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'horizontal-collapse'
         },
         {
           mode: []
@@ -84,7 +84,7 @@ export default {
             'en-US': 'Three blocks are configured.'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'three-areas'
         },
         {
           name: 'border',
@@ -121,7 +121,7 @@ export default {
             'en-US': 'Triggered when the left arrow is folded'
           },
           mode: ['pc'],
-          pcDemo: 'moving-event'
+          pcDemo: 'event-click'
         },
         {
           name: 'moveend',
@@ -165,7 +165,7 @@ export default {
             'en-US': 'Triggered when the right arrow is folded'
           },
           mode: ['pc'],
-          pcDemo: 'moving-event'
+          pcDemo: 'event-click'
         }
       ],
       methods: [],

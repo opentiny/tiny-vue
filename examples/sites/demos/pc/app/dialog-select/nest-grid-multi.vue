@@ -21,7 +21,7 @@
       @change="onDialogSelectChange"
       value-field="id"
       text-field="name"
-      :main-height="290"
+      :main-height="240"
     >
       <template #search>
         <div class="tiny-demo-search">
@@ -29,7 +29,13 @@
             <tiny-search placeholder="公司名称" is-enter-search @search="onSearch"></tiny-search>
           </div>
           <div class="tiny-demo-search-right">
-            <tiny-select v-model="searchData.city" placeholder="选择城市" :options="options" clearable></tiny-select>
+            <tiny-select
+              v-model="searchData.city"
+              placeholder="选择城市"
+              :options="options"
+              clearable
+              @change="onCitySearch"
+            ></tiny-select>
           </div>
         </div>
       </template>
@@ -38,7 +44,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Search, Select, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 // 模拟服务侧数据
@@ -74,10 +80,10 @@ const queryFilter = (pager, search) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
-    TinySearch: Search,
-    TinySelect: Select
+    TinyDialogSelect,
+    TinyButton,
+    TinySearch,
+    TinySelect
   },
   data() {
     return {
@@ -91,14 +97,14 @@ export default {
       visible: false,
       dialogOp: {
         top: '20vh',
-        width: '800px',
+        width: '700px',
         title: '选择公司',
         beforeClose: this.beforeClose,
         dialogClass: 'custom-dialog-class'
       },
       gridOp: {
         columns: [
-          { field: 'id', title: 'ID', width: 40 },
+          { field: 'id', title: 'ID', width: 50 },
           { field: 'name', title: '名称', showOverflow: 'tooltip' },
           { field: 'province', title: '省份', width: 80 },
           { field: 'city', title: '城市', width: 80 }
@@ -108,15 +114,19 @@ export default {
           reserve: true,
           checkRowKeys: ['1', '6']
         },
+        border: false,
+        size: 'small',
         // 单选时生效
         radioConfig: { checkRowKey: '3' }
       },
+      // 此处配置参考 Pager 组件
       pagerOp: {
         currentPage: 1,
         pageSize: 5,
         pageSizes: [5, 10],
         total: 0,
-        layout: 'prev, pager, next'
+        layout: 'total, sizes, prev, pager, next',
+        size: 'mini'
       },
       selectedBoxOp: {
         config: {
@@ -145,6 +155,11 @@ export default {
       this.pagerOp.currentPage = 1
       this.$refs.dialogSelect.queryGridData()
     },
+    onCitySearch(value) {
+      this.searchData.city = value
+      this.pagerOp.currentPage = 1
+      this.$refs.dialogSelect.queryGridData()
+    },
     remoteSearch() {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -170,24 +185,24 @@ export default {
       })
     },
     onDialogSelectChange(values, texts, selectedDatas) {
-      Modal.message({
-        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-        status: 'info'
-      })
+      // 打印change回调数据，控制台查看
+      console.log({ values, texts, selectedDatas })
     }
   }
 }
 </script>
 
-<style scoped>
-.tiny-demo-dialog-select .tiny-demo-search {
-  display: flow-root;
-}
+<style scoped lang="less">
+.tiny-demo-search {
+  display: flex;
 
-.tiny-demo-dialog-select .tiny-demo-search-left,
-.tiny-demo-dialog-select .tiny-demo-search-right {
-  float: left;
-  width: 200px;
-  margin-right: 16px;
+  .tiny-demo-search-left {
+    flex: 1;
+  }
+
+  .tiny-demo-search-right {
+    width: 186px;
+    margin-left: 8px;
+  }
 }
 </style>

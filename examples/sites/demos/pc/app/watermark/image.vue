@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Watermark } from '@opentiny/vue'
+import { TinyWatermark } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWatermark: Watermark
+    TinyWatermark
   },
   data() {
     return {

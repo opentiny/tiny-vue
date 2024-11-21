@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -97,8 +97,8 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button
+    TinyDialogSelect,
+    TinyButton
   },
   data() {
     return {
@@ -119,7 +119,8 @@ export default {
         load: this.remoteSearch,
         queryPidsBySearch: this.queryPidsBySearch,
         queryPidsByIds: this.queryPidsByIds,
-        defaultCheckedKeys: [4]
+        defaultCheckedKeys: [4],
+        showLine: true
       }
     }
   },
@@ -161,10 +162,8 @@ export default {
       })
     },
     onDialogSelectChange(values, texts, selectedDatas) {
-      Modal.message({
-        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-        status: 'info'
-      })
+      // 打印change回调数据，控制台查看
+      console.log({ values, texts, selectedDatas })
     }
   }
 }

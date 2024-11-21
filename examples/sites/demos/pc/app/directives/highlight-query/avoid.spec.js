@@ -4,9 +4,8 @@ test('避免用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('directives-highlight-query#avoid')
 
-  const input = page.locator('.pc-demo-container .tiny-input-inner').first()
   const hlNode = page.locator('.pc-demo-container .tiny-hl-query-node')
-  const button = page.locator('.pc-demo-container .tiny-button')
+  const button = page.locator('.pc-demo-container .tiny-button').first()
 
   await expect(hlNode).toHaveCount(12)
 

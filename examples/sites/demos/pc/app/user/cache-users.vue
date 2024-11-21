@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <p>无缓存</p>
     <tiny-user v-model="user1" multiple :cache="false" value-field="userAccount"></tiny-user>
     <p>有缓存</p>
@@ -14,11 +14,11 @@
 </template>
 
 <script lang="jsx">
-import { User } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-user-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

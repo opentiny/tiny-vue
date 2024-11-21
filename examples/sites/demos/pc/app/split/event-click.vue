@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import { Split, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySplit: Split
+    TinySplit
   },
   data() {
     return {
@@ -32,10 +32,10 @@ export default {
   },
   methods: {
     leftTopClick() {
-      Modal.message('点击事件1')
+      TinyModal.message('点击事件1')
     },
     rightBottomClick() {
-      Modal.message('点击事件2')
+      TinyModal.message('点击事件2')
     }
   }
 }
@@ -44,7 +44,6 @@ export default {
 <style scoped>
 .split-v-model {
   height: 200px;
-  border: 1px solid #d9d9d9;
 }
 
 .demo-split-pane {

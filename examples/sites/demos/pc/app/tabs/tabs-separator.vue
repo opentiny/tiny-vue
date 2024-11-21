@@ -24,8 +24,8 @@
       <tiny-tab-item title="业务组件" name="fourth"> 业务组件,与业务紧密相关实现某种业务功能的组件集。 </tiny-tab-item>
     </tiny-tabs>
     <br /><br /><br /><br />
-    <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px" show-more-tabs>
-      <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px">
+      <tiny-tab-item :key="item.name" v-for="item in tabs" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>
     </tiny-tabs>
@@ -33,18 +33,18 @@
 </template>
 
 <script>
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
       activeName1: 'first',
       activeName2: 'second',
-      Tabs: [
+      tabs: [
         {
           title: 'Tab 1',
           name: '1',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     handleadd() {
-      this.Tabs.push({
+      this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
         content: '动态增加tabitem'

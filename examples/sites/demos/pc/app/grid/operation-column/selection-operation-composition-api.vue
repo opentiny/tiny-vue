@@ -14,28 +14,28 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 const toolbarButtons = ref([
   {
     code: 'clearSelection',
-    name: '手动取消多选行'
+    name: '取消多选行'
   },
   {
     code: 'setAllSelection',
-    name: '手动选中所有行'
+    name: '选中所有行'
   },
   {
     code: 'setSelection',
-    name: '手动选中指定行'
+    name: '选中指定行'
   },
   {
     code: 'toggleAllSelection',
-    name: '手动切换所有行选中状态'
+    name: '切换所有行选中状态'
   },
   {
     code: 'toggleRowSelection',
-    name: '手动切换指定行选中状态'
+    name: '切换指定行选中状态'
   }
 ])
 const tableData = ref([

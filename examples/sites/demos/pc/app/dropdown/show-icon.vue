@@ -26,22 +26,36 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
+    <p>场景3：前置图标</p>
+    <tiny-dropdown :prefix-icon="tinyIconLanguage" :show-icon="false">
+      <template #dropdown>
+        <tiny-dropdown-menu>
+          <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
+          <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item>狮子头</tiny-dropdown-item>
+          <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
+          <tiny-dropdown-item>双皮奶</tiny-dropdown-item>
+          <tiny-dropdown-item>蚵仔煎</tiny-dropdown-item>
+        </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
   </div>
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
-import { iconEllipsis } from '@opentiny/vue-icon'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
+import { iconEllipsis, iconLanguage } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   data() {
     return {
-      tinyIconEllipsis: iconEllipsis()
+      tinyIconEllipsis: iconEllipsis(),
+      tinyIconLanguage: iconLanguage()
     }
   }
 }

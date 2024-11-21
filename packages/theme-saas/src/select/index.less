@@ -61,7 +61,7 @@
 
     .@{input-prefix-cls} {
       &.is-show-close {
-        .icon-close {
+        .@{select-prefix-cls}__close {
           @apply mr-1;
         }
       }
@@ -187,6 +187,19 @@
       .@{tag-prefix-cls}__close {
         @apply fill-color-none;
       }
+    }
+
+    .@{select-prefix-cls}__tags-panel {
+      @apply flex;
+      width: ~'calc(100% + theme(spacing.2))';
+
+      .@{tag-prefix-cls}:last-child {
+        @apply flex-shrink-0;
+      }
+    }
+
+    .@{select-prefix-cls}__tags-content {
+      @apply contents;
     }
   }
 
@@ -335,7 +348,7 @@
         @apply pr-12;
       }
 
-      .icon-close {
+      .tiny-select__close {
         @apply mr-2;
         @apply fill-color-text-placeholder;
 

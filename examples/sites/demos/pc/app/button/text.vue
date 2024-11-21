@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {

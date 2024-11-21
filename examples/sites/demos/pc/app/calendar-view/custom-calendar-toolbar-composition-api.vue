@@ -7,5 +7,5 @@
 </template>
 
 <script setup lang="ts">
-import { CalendarView as TinyCalendarView } from '@opentiny/vue'
+import { TinyCalendarView } from '@opentiny/vue'
 </script>

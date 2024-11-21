@@ -16,12 +16,12 @@
 </template>
 
 <script lang="jsx">
-import { List } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue'
 import { iconRightward } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyList: List,
+    TinyList,
     IconRightward: iconRightward()
   },
   data() {

@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { TreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {

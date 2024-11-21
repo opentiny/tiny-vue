@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem, Modal } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapse,
+    TinyCollapseItem
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     change(val) {
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，当前选中的值为：' + val,
         status: 'info'
       })

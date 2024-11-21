@@ -12,5 +12,6 @@ test('基本用法', async ({ page }) => {
   await expect(visibleItem).toHaveCount(4)
   await expect(moreItem).not.toHaveText(/更多/)
   // 三点图标
-  await expect(moreItem.locator('circle')).toHaveCount(3)
+  const SvgPathReg = /^M2\.3 7\.78v.+219-1\.17Z$/
+  await expect(moreItem.locator('.tiny-svg path').first()).toHaveAttribute('d', SvgPathReg)
 })

@@ -1,16 +1,28 @@
 <template>
-  <tiny-link-menu :data="datas" title="收藏夹菜单" wrap :keep-selected-nodes="false"></tiny-link-menu>
+  <tiny-link-menu
+    :data="datas"
+    title="收藏夹菜单"
+    wrap
+    expandIconColor="#191919"
+    shrinkIconColor="#191919"
+    :expand-icon="expandIcon"
+    :shrink-icon="shrinkIcon"
+    :keep-selected-nodes="false"
+  ></tiny-link-menu>
 </template>
 
 <script lang="jsx">
-import { LinkMenu } from '@opentiny/vue'
+import { TinyLinkMenu } from '@opentiny/vue'
+import { iconPutAway, iconExpand } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyLinkMenu: LinkMenu
+    TinyLinkMenu
   },
   data() {
     return {
+      shrinkIcon: iconExpand(),
+      expandIcon: iconPutAway(),
       datas: [
         {
           id: 1,

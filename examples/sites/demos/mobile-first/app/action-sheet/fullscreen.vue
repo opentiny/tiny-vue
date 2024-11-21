@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import { ActionSheet, Button, Modal } from '@opentiny/vue'
+import { TinyActionSheet, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionSheet: ActionSheet,
-    TinyButton: Button
+    TinyActionSheet,
+    TinyButton
   },
   data() {
     return {
       boxVisibility: false,
       beforeCloseFn() {
-        Modal.message('已拦截关闭动作!')
+        TinyModal.message('已拦截关闭动作!')
         return false
       }
     }

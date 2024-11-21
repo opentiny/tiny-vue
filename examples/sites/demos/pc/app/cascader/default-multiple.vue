@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { Cascader, Modal } from '@opentiny/vue'
+import { TinyCascader, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascader: Cascader
+    TinyCascader
   },
   data() {
     return {
@@ -220,7 +220,7 @@ export default {
   },
   methods: {
     removeTag(val) {
-      Modal.message({
+      TinyModal.message({
         message: '当前触发了 remove-tag 事件删除的值为：' + val,
         status: 'info'
       })

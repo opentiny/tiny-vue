@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 
 const checkedVal = ref(1)
 const textField = ref('text-key')

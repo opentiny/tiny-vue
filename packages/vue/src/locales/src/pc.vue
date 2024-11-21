@@ -13,12 +13,13 @@
       :append-to-body="popperAppendToBody"
     >
       <template #reference>
-        <span
-          >{{ state.text && t(state.text)
-          }}<span>
+        <span class="tiny-locales__text">
+          {{ state.text && t(state.text) }}
+          <span class="tiny-locales__icon">
             <IconChevronDown v-show="!state.visible" />
-            <IconChevronUp v-show="state.visible" /> </span
-        ></span>
+            <IconChevronUp class="chevron-up" v-show="state.visible" />
+          </span>
+        </span>
       </template>
       <div class="poplist">
         <li

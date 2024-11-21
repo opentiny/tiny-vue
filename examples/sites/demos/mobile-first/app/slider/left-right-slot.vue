@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { Slider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue'
 import { IconFrown, IconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySlider: Slider,
+    TinySlider,
     TinyIconFrown: IconFrown(),
     TinyIconSmile: IconSmile()
   },

@@ -43,7 +43,7 @@ export default {
         },
         {
           name: 'height',
-          type: 'string',
+          type: 'string | number',
           defaultValue: '',
           desc: {
             'zh-CN': '日历高度',

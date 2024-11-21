@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName4 = ref('navigation1')
 const tabs3 = ref([

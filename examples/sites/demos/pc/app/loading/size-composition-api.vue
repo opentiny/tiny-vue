@@ -8,20 +8,20 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 const loadingInstance = ref(null)
 
 onMounted(() => {
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading1'),
     size: 'small'
   })
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading2'),
     size: 'medium'
   })
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading3'),
     size: 'large'
   })

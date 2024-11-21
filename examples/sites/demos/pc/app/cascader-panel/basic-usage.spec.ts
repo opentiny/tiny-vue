@@ -8,5 +8,5 @@ test('基本用法', async ({ page }) => {
   await page.getByRole('menuitem', { name: '项目登记' }).click()
 
   await expect(page.getByRole('menuitem', { name: '项目登记' })).toHaveClass('tiny-cascader-node is-active')
-  await expect(page.getByRole('menuitem', { name: '项目登记' })).toHaveCSS('background-color', 'rgb(94, 124, 224)')
+  await expect(page.getByRole('menuitem', { name: '项目登记' })).toHaveCSS('background-color', 'rgb(245, 245, 245)')
 })

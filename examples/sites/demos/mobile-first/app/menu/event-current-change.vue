@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Menu, Modal } from '@opentiny/vue'
+import { TinyMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMenu: Menu
+    TinyMenu
   },
   data() {
     return {
@@ -173,7 +173,7 @@ export default {
   },
   methods: {
     currentChange(data) {
-      Modal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
+      TinyModal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
     }
   }
 }

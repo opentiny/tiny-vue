@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { Grid as TinyGrid, Pager, GridToolbar, Button } from '@opentiny/vue'
+import { TinyGrid, TinyPager, TinyGridToolbar, TinyButton } from '@opentiny/vue'
 import { iconLanguage } from '@opentiny/vue-icon'
 
 const introduction = '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -38,11 +38,11 @@ const op = {
     api: getData
   },
   toolbar: {
-    component: GridToolbar,
+    component: TinyGridToolbar,
     // 支持配置式使用buttons和tools插槽
     slots: {
       buttons(params, h) {
-        return h('div', { class: 'buttons-wrapper' }, [h(Button, '配置式插槽')])
+        return h('div', { class: 'buttons-wrapper' }, [h(TinyButton, '配置式插槽')])
       },
       tools(params, h) {
         return h('div', { class: 'tools-pos' }, [[h(iconLanguage())]])
@@ -50,7 +50,7 @@ const op = {
     }
   },
   pager: {
-    component: Pager,
+    component: TinyPager,
     attrs: {
       currentPage: 1,
       pageSize: 3,

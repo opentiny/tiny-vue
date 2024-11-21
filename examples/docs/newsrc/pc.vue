@@ -157,7 +157,6 @@ import {
 } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import Loading from '@opentiny/vue-loading'
-import designSmbConfig from '@opentiny/vue-design-smb'
 import designSaasConfig from '@opentiny/vue-design-saas'
 import { menuData, demoStr, demoVue, mds, demos } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
@@ -263,10 +262,9 @@ export default {
       modeFn.pushToUrl()
     }
 
-    // 默认全部使用designSmbConfig，后续验收完毕再调整
     const designConfigMap = {
-      'tiny-smb-theme': designSmbConfig,
-      'tiny-aurora-theme': designSmbConfig
+      'tiny-smb-theme': {},
+      'tiny-aurora-theme': {}
     }
 
     const lastThemeKey = localStorage.getItem('tinyThemeToolkey')

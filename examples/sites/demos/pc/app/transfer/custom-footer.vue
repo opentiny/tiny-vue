@@ -10,12 +10,12 @@
 </template>
 
 <script lang="jsx">
-import { Transfer, Button } from '@opentiny/vue'
+import { TinyTransfer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer,
-    TinyButton: Button
+    TinyTransfer,
+    TinyButton
   },
   data() {
     const generateData = () => {

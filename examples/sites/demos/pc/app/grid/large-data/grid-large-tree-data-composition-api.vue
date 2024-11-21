@@ -43,17 +43,17 @@
     <tiny-grid-column
       field="planDevEndTime"
       title="计划开发结束时间"
-      :editor="{ component: DatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
+      :editor="{ component: TinyDatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
     ></tiny-grid-column>
     <tiny-grid-column
       field="planTestEndTime"
       title="计划测试结束时间"
-      :editor="{ component: DatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
+      :editor="{ component: TinyDatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
     ></tiny-grid-column>
     <tiny-grid-column
       field="customerExpect"
       title="用户期望交付时间"
-      :editor="{ component: DatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
+      :editor="{ component: TinyDatePicker, attrs: { format: 'yyyy-MM-dd', valueFormat: 'yyyy-MM-dd' } }"
     ></tiny-grid-column>
     <tiny-grid-column field="requireSource" title="需求来源">
       <template #header="{ column }">{{ column.title }}</template>
@@ -126,7 +126,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, DatePicker } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDatePicker } from '@opentiny/vue'
 
 const template = {
   id: '0',

@@ -3,7 +3,7 @@
     <div class="my20">自定义节点,为节点添加提示</div>
     <tiny-cascader v-model="value1" :options="options">
       <template #default="{ node }">
-        <span :title="node.label"> {{ node.label }} <tiny-icon-share /></span>
+        <span :title="node.label"> {{ node.label }} <tiny-icon-fillet-external-link /></span>
       </template>
     </tiny-cascader>
     <div class="my20">自定义空数据插槽</div>
@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import { Cascader } from '@opentiny/vue'
-import { iconShare } from '@opentiny/vue-icon'
+import { TinyCascader } from '@opentiny/vue'
+import { iconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyCascader: Cascader,
-    TinyIconShare: iconShare()
+    TinyCascader,
+    TinyIconFilletExternalLink: iconFilletExternalLink()
   },
   data() {
     return {

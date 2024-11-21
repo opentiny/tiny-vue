@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import { BaseSelect, Option } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 import { iconFile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option
+    TinyBaseSelect,
+    TinyOption
   },
   data() {
     return {

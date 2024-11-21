@@ -5,7 +5,6 @@
       ref="gridRef"
       :select-config="selectConfig"
       highlight-current-row
-      border
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
@@ -29,7 +28,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const tableData = ref([
   {

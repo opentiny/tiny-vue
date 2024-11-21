@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import { FilterBar, Button } from '@opentiny/vue'
+import { TinyFilterBar, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFilterBar: FilterBar,
-    TinyButton: Button
+    TinyFilterBar,
+    TinyButton
   },
   data() {
     return {

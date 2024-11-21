@@ -1,7 +1,12 @@
 <template>
   <div>
     <h4 class="title">单元格编辑：</h4>
-    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      seq-serial
+      show-overflow="tooltip"
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column
         field="name"
@@ -55,12 +60,12 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

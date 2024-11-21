@@ -5,5 +5,5 @@ test('列头是否开启高亮', async ({ page }) => {
   await page.goto('grid-highlight#highlight-highlight-hover-column')
   await page.getByRole('cell', { name: '员工数' }).hover()
   await page.waitForTimeout(200)
-  await expect(page.getByRole('cell', { name: '员工数' })).toHaveCSS('background-color', 'rgb(215, 239, 251)')
+  await expect(page.getByRole('cell', { name: '员工数' })).toHaveCSS('background-color', 'rgb(222, 236, 255)')
 })

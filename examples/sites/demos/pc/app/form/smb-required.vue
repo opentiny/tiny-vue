@@ -9,7 +9,7 @@
       :hide-required-asterisk="hideRequiredAsterisk"
       :model="createData"
       :rules="rules"
-      label-width="100px"
+      label-width="108px"
       validate-type="text"
       message-type="block"
     >
@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal, Switch } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinySwitch: Switch
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinySwitch
   },
   data() {
     return {

@@ -26,7 +26,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol, Button as TinyButton } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyButton } from '@opentiny/vue'
 
 const state = ref({
   buttonLabel: '升序',

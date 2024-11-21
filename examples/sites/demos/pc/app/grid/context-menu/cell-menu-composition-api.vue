@@ -7,6 +7,7 @@
         body: { options: bodyMenus },
         visibleMethod
       }"
+      show-overflow="tooltip"
       @cell-context-menu="cellContextMenuEvent"
       @context-menu-click="contextMenuClickEvent"
     >
@@ -22,7 +23,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 import { IconDel, IconCopy } from '@opentiny/vue-icon'
 
 const bodyMenus = ref([
@@ -159,14 +160,14 @@ function visibleMethod({ options, column }) {
 }
 
 function cellContextMenuEvent({ row }) {
-  Modal.message({ message: `${row.id}`, status: 'info' })
+  TinyModal.message({ message: `${row.id}`, status: 'info' })
 }
 
 function contextMenuClickEvent({ menu, row, column }) {
   switch (menu.code) {
     case 'copy':
       if (row && column) {
-        Modal.message({ message: `${row.id}`, status: 'info' })
+        TinyModal.message({ message: `${row.id}`, status: 'info' })
       }
       break
     default:

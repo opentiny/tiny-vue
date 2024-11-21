@@ -1,5 +1,6 @@
 <template>
   <tiny-tree-menu
+    class="demo-tree-menu"
     :data="treeData"
     default-expand-all
     show-number
@@ -10,7 +11,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const treeData = reactive([
   {
@@ -124,8 +125,8 @@ const treeData = reactive([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

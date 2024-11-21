@@ -1,7 +1,6 @@
 import { watch, computed } from 'vue'
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
 import { hooks } from '@opentiny/vue-common'
-import designSmbConfig from '@opentiny/vue-design-smb'
 import designSaasConfig from '@opentiny/vue-design-saas'
 import { router } from '@/router'
 import { appData } from './appData'
@@ -67,10 +66,10 @@ const themeData = [
 ]
 
 const designConfigMap = {
-  [DEFAULT_THEME]: designSmbConfig,
-  [INFINITY_THEME]: designSmbConfig,
-  [AURORA_THEME]: designSmbConfig,
-  [SMB_THEME]: designSmbConfig
+  [DEFAULT_THEME]: {},
+  [INFINITY_THEME]: {},
+  [AURORA_THEME]: {},
+  [SMB_THEME]: {}
 }
 
 const theme = new TinyThemeTool()
@@ -82,7 +81,8 @@ watch(
   () => currentThemeKey.value,
   (newVal) => {
     localStorage.setItem(CURRENT_THEME_KEY, newVal)
-    theme.changeTheme(themeMap[newVal])
+    // 先屏蔽，等themeTool重构完成
+    // theme.changeTheme(themeMap[newVal])
   }
 )
 

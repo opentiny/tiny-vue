@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import { Button, DialogBox, Radio } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyRadio: Radio
+    TinyButton,
+    TinyDialogBox,
+    TinyRadio
   },
   data() {
     return {

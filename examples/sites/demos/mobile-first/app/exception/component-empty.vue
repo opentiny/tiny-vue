@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div>
     <tiny-grid :data="tableData" height="300">
       <tiny-grid-column type="index" width="5%"></tiny-grid-column>
@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Exception, Split } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyException, TinySplit } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyException: Exception,
-    TinySplit: Split
+    TinyGrid,
+    TinyGridColumn,
+    TinyException,
+    TinySplit
   },
   methods: {
     renderEmpty() {

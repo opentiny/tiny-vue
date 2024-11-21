@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { TreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   methods: {
     dropCallback(params1, params2, params3) {
@@ -27,11 +27,11 @@ export default {
     },
     dragStart(node, event) {
       console.log('drag-start', node, event)
-      Modal.message('拖拽节点开始时触发的事件')
+      TinyModal.message('拖拽节点开始时触发的事件')
     },
     dragEnd(draggingNode, targetNode, dropType, event) {
       console.log('drag-end', draggingNode, targetNode, dropType, event)
-      Modal.message('拖拽结束时触发的事件')
+      TinyModal.message('拖拽结束时触发的事件')
     }
   },
   data() {

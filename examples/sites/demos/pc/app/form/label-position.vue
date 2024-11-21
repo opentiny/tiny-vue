@@ -3,7 +3,7 @@
     <div class="title">
       标签位置： <tiny-button-group :data="labelPositionList" v-model="labelPositionValue"></tiny-button-group>
     </div>
-    <tiny-form ref="ruleFormRef" :model="createData" :label-position="labelPositionValue" label-width="60px">
+    <tiny-form ref="ruleFormRef" :model="createData" :label-position="labelPositionValue">
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, ButtonGroup } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButtonGroup: ButtonGroup
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButtonGroup
   },
   data() {
     return {

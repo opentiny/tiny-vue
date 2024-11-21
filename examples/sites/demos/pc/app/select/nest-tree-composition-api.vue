@@ -38,7 +38,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 const treeValue1 = ref(10)
 const treeValue2 = ref([9, 6])

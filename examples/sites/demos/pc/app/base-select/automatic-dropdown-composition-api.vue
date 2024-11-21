@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption, Button as TinyButton } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyButton } from '@opentiny/vue'
 
 const options = ref([
   { value: '选项1', label: '北京' },

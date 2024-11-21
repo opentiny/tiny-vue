@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const value = ref('')
 const dateRangeValue = ref('')
@@ -159,7 +159,7 @@ const pickerOptionsStartFrom = {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 350px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

@@ -8,21 +8,25 @@
         <tiny-radio label="hide"> 默认不变 </tiny-radio>
       </tiny-radio-group>
     </div>
-    <tiny-tree-menu :highlight-query="highlightQuery === 'show'" :data="treeData"></tiny-tree-menu>
+    <tiny-tree-menu
+      class="demo-tree-menu"
+      :highlight-query="highlightQuery === 'show'"
+      :data="treeData"
+    ></tiny-tree-menu>
     <br /><br />
     <p>场景2：不可过滤 + 不设置原生 title 属性</p>
-    <tiny-tree-menu :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
   </div>
 </template>
 
 <script>
-import { TreeMenu, RadioGroup, Radio } from '@opentiny/vue'
+import { TinyTreeMenu, TinyRadioGroup, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyTreeMenu,
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {
@@ -187,8 +191,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

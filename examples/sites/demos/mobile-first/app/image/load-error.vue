@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Image, Modal } from '@opentiny/vue'
+import { TinyImage, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImage: Image
+    TinyImage
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     errorHandler() {
-      Modal.message({ message: '加载失败触发事件', status: 'info' })
+      TinyModal.message({ message: '加载失败触发事件', status: 'info' })
     }
   }
 }

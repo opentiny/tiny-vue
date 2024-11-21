@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -60,14 +60,14 @@ const tableData = ref([
 ])
 
 const cellMouseenterEvent = ({ column }) => {
-  Modal.message({
+  TinyModal.message({
     message: `鼠标进入单元格${column.title}`,
     status: 'info'
   })
 }
 
 const cellMouseleaveEvent = ({ column }) => {
-  Modal.message({
+  TinyModal.message({
     message: `鼠标离开单元格${column.title}`,
     status: 'info'
   })

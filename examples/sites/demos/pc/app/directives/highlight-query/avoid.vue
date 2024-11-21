@@ -2,42 +2,42 @@
   <div>
     <div>
       关键字：<tiny-input v-model="query" placeholder="输入关键字，观察下面的高亮"></tiny-input> &nbsp;
-      <tiny-button @click="changeList">修改内容</tiny-button>
+      <tiny-button @click="changeList">修改诗的内容</tiny-button>
     </div>
 
-    <div>避免场景1： 直接包含文字节点</div>
+    <div class="title">避免场景1： 直接包含文字节点，无法动态更新</div>
     <div v-highlight-query="query">
       {{ list.join(',') }}
     </div>
     <br />
-    <div>避免场景2：文字节点与其它组件混合</div>
+    <div class="title">避免场景2：文字节点与其它组件混合，无法动态更新</div>
     <div v-highlight-query="query">
       {{ list.join(',') }}
-      <tiny-input></tiny-input>
+      <tiny-button>混入的按钮</tiny-button>
     </div>
     <br />
-    <div>正确的场景1</div>
+    <div class="title">正确的场景1</div>
     <div v-highlight-query="query">
       <span> {{ list.join(',') }}</span>
     </div>
     <br />
-    <div>正确的场景2</div>
+    <div class="title">正确的场景2</div>
     <div v-highlight-query="query">
       <span> {{ list.join(',') }}</span>
-      <tiny-input></tiny-input>
+      <tiny-button>混入的按钮</tiny-button>
     </div>
   </div>
 </template>
 
 <script>
 import { HighlightQuery } from '@opentiny/vue-directive'
-import { Input, Button } from '@opentiny/vue'
+import { TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   directives: { HighlightQuery },
   components: {
-    TinyInput: Input,
-    TinyButton: Button
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -61,5 +61,14 @@ export default {
 
 div {
   line-height: 2;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tiny-button {
+  margin-left: 20px;
 }
 </style>

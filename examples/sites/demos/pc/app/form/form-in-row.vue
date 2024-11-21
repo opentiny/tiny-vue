@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Numeric, Radio } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyNumeric, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyNumeric: Numeric,
-    TinyRadio: Radio
+    TinyForm,
+    TinyFormItem,
+    TinyNumeric,
+    TinyRadio
   },
   data() {
     return {

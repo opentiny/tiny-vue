@@ -16,13 +16,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Button as TinyButton,
-  Modal
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
 
 const createData = reactive({
   username: '',
@@ -37,7 +31,7 @@ const ruleFormRef = ref()
 function handleSubmit() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.alert('校验通过，开始注册！')
+      TinyModal.alert('校验通过，开始注册！')
     } else {
       return false
     }

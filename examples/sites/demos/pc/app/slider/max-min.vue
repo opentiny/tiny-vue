@@ -1,13 +1,13 @@
 <template>
-  <tiny-slider v-model="value" :min="0" :max="100"></tiny-slider>
+  <tiny-slider v-model="value" :min="30" :max="70"></tiny-slider>
 </template>
 
 <script>
-import { Slider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySlider: Slider
+    TinySlider
   },
   data() {
     return {

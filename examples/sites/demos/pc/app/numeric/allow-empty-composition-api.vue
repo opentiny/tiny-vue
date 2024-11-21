@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Numeric as TinyNumeric, Modal } from '@opentiny/vue'
+import { TinyNumeric, TinyModal } from '@opentiny/vue'
 
 const value = ref(1)
 
 const onChange = (val: number | undefined, oldVal: number | undefined) => {
-  Modal.message({ message: `${val} ${oldVal}`, status: 'info' })
+  TinyModal.message({ message: `${val} ${oldVal}`, status: 'info' })
 }
 </script>

@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>

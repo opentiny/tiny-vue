@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Grid, Pager, GridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyPager, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid
+    TinyGrid
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
           api: this.getData
         },
         toolbar: {
-          component: GridToolbar,
+          component: TinyGridToolbar,
           buttons: [
             {
               code: 'insert',
@@ -47,7 +47,7 @@ export default {
           toolbarButtonClick: this.toolbarButtonClickEvent
         },
         pager: {
-          component: Pager,
+          component: TinyPager,
           attrs: {
             currentPage: 1,
             pageSize: 5,
@@ -179,7 +179,7 @@ export default {
     toolbarButtonClickEvent({ code, $grid }) {
       const data = $grid.getSelectRecords()
 
-      const update = $grid.getUpdateRecords()
+      const editRows = $grid.getUpdateRecords().concat($grid.getInsertRecords())
 
       switch (code) {
         case 'insert':
@@ -187,7 +187,7 @@ export default {
           break
         case 'copy': {
           if (data.length === 0) {
-            Modal.alert('请至少选中一条记录')
+            TinyModal.alert('请至少选中一条记录')
           }
           data.forEach((item) => {
             delete item._RID
@@ -201,14 +201,14 @@ export default {
         }
         case 'delete': {
           if (data.length === 0) {
-            Modal.alert('请至少选中一条记录')
+            TinyModal.alert('请至少选中一条记录')
           }
           $grid.removeSelecteds()
           break
         }
         case 'save': {
-          if (update.length === 0) {
-            Modal.alert('没有修改记录')
+          if (editRows.length === 0) {
+            TinyModal.alert('没有修改记录')
           }
           break
         }

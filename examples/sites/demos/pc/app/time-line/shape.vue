@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
-import { TimeLine, Button } from '@opentiny/vue'
+import { TinyTimeLine, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine,
-    TinyButton: Button
+    TinyTimeLine,
+    TinyButton
   },
   data() {
     return {

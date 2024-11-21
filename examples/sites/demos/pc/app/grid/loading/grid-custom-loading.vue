@@ -11,13 +11,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
     loadingComponent() {
       return (
         <div class="custom-loading">
-          <span>正在加载中。。。</span>
+          <span>正在加载中...</span>
         </div>
       )
     },
@@ -67,6 +67,7 @@ export default {
             city: '韶关'
           }
         ]
+
         this.loading = false
       }, 2000)
     }
@@ -76,7 +77,7 @@ export default {
 
 <style scoped>
 .custom-loading {
-  font-size: 20px;
+  font-size: 16px;
   width: 100%;
   height: 100%;
   display: flex;

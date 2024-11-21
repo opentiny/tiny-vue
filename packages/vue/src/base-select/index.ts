@@ -10,7 +10,6 @@
  *
  */
 import BaseSelect from './src/index'
-import '@opentiny/vue-theme/base-select/index.less'
 import { version } from './package.json'
 
 BaseSelect.model = {

@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const eachWeekFirstDay = ref([])
 const value = ref('')
@@ -48,6 +48,6 @@ function formatWeeks(customWeeks, weekFirstDays) {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 </style>

@@ -7,7 +7,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Amount as TinyAmount, Button as TinyButton } from '@opentiny/vue'
+import { TinyAmount, TinyButton } from '@opentiny/vue'
 
 const value = ref(88.88)
 const disabled = ref(false)

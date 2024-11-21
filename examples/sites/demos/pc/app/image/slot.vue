@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import { Image } from '@opentiny/vue'
+import { TinyImage } from '@opentiny/vue'
 import { iconImageError } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyImage: Image,
+    TinyImage,
     TinyIconImageError: iconImageError()
   },
   data() {

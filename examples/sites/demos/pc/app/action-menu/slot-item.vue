@@ -2,18 +2,18 @@
   <tiny-action-menu :options="options">
     <template #item="{ data }">
       <icon-smile></icon-smile>
-      <span> {{ data.name }}</span>
+      <span style="vertical-align: middle"> {{ data.name }}</span>
     </template>
   </tiny-action-menu>
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu,
+    TinyActionMenu,
     IconSmile: iconSmile()
   },
   data() {

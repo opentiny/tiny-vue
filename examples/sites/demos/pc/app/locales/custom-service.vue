@@ -7,22 +7,22 @@
 </template>
 
 <script lang="jsx">
-import { Locales } from '@opentiny/vue'
+import { TinyLocales } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLocales: Locales
+    TinyLocales
   },
   methods: {
     getLocale() {
       // resolve 出来的必须是国际化的 key
-      return Promise.resolve(['zhCN', 'enUS', 'zhTW'])
+      return Promise.resolve(['zh_CN', 'en_US', 'zh_TW'])
     },
     getCurrentLocale() {
-      return Promise.resolve(['zhCN'])
+      return Promise.resolve(['zh_CN'])
     },
     getChangeLocaleUrl(targetLocale) {
-      if (targetLocale === 'enUS') {
+      if (targetLocale === 'en_US') {
         return Promise.resolve(`${window.location.origin}/#/webenglish/en-US/component/locales/custom-service`)
       } else {
         return Promise.resolve(`${window.location.origin}/#/zh-CN/component/custom-service`)

@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   methods: {
     radioChange() {
-      Modal.message({
+      TinyModal.message({
         message: '选项改变',
         status: 'info'
       })

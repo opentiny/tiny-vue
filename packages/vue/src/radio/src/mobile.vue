@@ -29,7 +29,6 @@
         class="tiny-mobile-radio__original"
         :value="label"
         type="radio"
-        aria-hidden="true"
         v-model="state.model"
         @focus="state.focus = true"
         @blur="state.focus = false"

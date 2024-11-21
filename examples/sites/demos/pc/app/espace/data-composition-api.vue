@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Espace as TinyEspace } from '@opentiny/vue'
+import { TinyEspace } from '@opentiny/vue'
 
 const op = ref([
   {

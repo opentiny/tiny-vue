@@ -13,22 +13,49 @@
 @import '../custom.less';
 @import './vars.less';
 
+@tag-prefix-cls: ~'@{css-prefix}tag';
 @tag-group-prefix-cls: ~'@{css-prefix}tag-group';
 
 .@{tag-group-prefix-cls} {
-  .component-css-vars-tag-group();
+  .inject-TagGroup-vars();
 
   overflow: hidden;
   position: relative;
-  padding-right: var(--ti-tag-group-padding-right);
+  margin-bottom: var(--tv-TagGroup-margin-bottom);
 
-  &_icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    border: none;
-    svg {
-      fill: var(--ti-tag-group-ellipsis-icon-color);
+  .@{tag-prefix-cls} {
+    margin-right: var(--tv-TagGroup-item-margin-right);
+    margin-bottom: var(--tv-TagGroup-item-margin-bottom);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &.@{tag-group-prefix-cls}-has-more {
+    padding-right: var(--tv-TagGroup-more-icon-safe-space);
+    .@{tag-group-prefix-cls}_icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      svg {
+        height: 22px; // 纯图标tag高度不够
+      }
+    }
+  }
+}
+
+// popover弹出层里面的 tag 子项也要有边距
+.@{tag-group-prefix-cls}-popper {
+  .inject-TagGroup-vars();
+
+  .@{tag-prefix-cls} {
+    margin-right: var(--tv-TagGroup-item-margin-right);
+    margin-bottom: var(--tv-TagGroup-item-margin-bottom);
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

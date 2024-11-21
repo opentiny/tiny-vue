@@ -7,7 +7,7 @@ import type { IAnchorApi } from '@opentiny/vue-renderless/types/anchor.type'
 export default defineComponent({
   name: $prefix + 'Anchor',
   directives: { AutoTip },
-  props: [...props, 'isAffix', 'links', 'containerId', 'markClass', 'type'],
+  props: [...props, 'isAffix', 'links', 'containerId', 'markClass', 'type', 'offsetTop'],
   emits: ['linkClick', 'onChange', 'change'], // deprecated v3.12.0废弃，v3.17.0移除onChange 事件
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IAnchorApi

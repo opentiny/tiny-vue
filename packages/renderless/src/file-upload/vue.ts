@@ -366,6 +366,7 @@ export const renderless = (
   onBeforeUnmount(() => {
     api.onBeforeDestroy()
     api = {} as IFileUploadApi
+    vm.$off('drag-over')
   })
 
   initWatch({ watch, state, api, props, $service })

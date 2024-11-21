@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { DatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

@@ -11,20 +11,20 @@ test('BulletinBoard 基本用法', async ({ page }) => {
   // 默认激活第一项选项卡
   await expect(tabTitle.first()).toHaveClass(/is-active/)
   await expect(tabTitle.first()).toContainText('TINY 更新日志')
-  await expect(tabTitle.first()).toHaveCSS('color', 'rgb(94, 124, 224)')
+  await expect(tabTitle.first()).toHaveCSS('color', 'rgb(25, 25, 25)')
   await expect(tabContent.first()).toHaveClass(/active-item/)
   await expect(tabContent.first()).toBeVisible()
 
   // 鼠标上放选项标题时，文字变色
   for (let i = 0; i < 3; i++) {
     await tabTitle.nth(i).hover()
-    await expect(tabTitle.nth(i)).toHaveCSS('color', 'rgb(94, 124, 224)')
+    await expect(tabTitle.nth(i)).toHaveCSS('color', 'rgb(25, 25, 25)')
   }
   // 点击选项标题后，切换展示相应的选项内容
   for (let i = 0; i < 3; i++) {
     await tabTitle.nth(i).click()
     await expect(tabTitle.nth(i)).toHaveClass(/is-active/)
-    await expect(tabTitle.nth(i)).toHaveCSS('color', 'rgb(94, 124, 224)')
+    await expect(tabTitle.nth(i)).toHaveCSS('color', 'rgb(25, 25, 25)')
     await expect(tabContent.nth(i)).toHaveClass(/active-item/)
     await expect(tabContent.nth(i)).toBeVisible()
   }

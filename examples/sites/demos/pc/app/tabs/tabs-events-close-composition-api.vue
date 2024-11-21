@@ -2,7 +2,7 @@
   <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" :before-close="beforeClose" @close="close">
     <tiny-tab-item
       :key="item.name"
-      v-for="item in Tabs"
+      v-for="item in tabs"
       :title="item.title"
       :name="item.name"
       :with-close="item.withClose"
@@ -14,10 +14,10 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('first')
-const Tabs = ref([
+const tabs = ref([
   {
     title: '表单组件',
     name: 'first',
@@ -58,7 +58,7 @@ function close(name) {
     message: '关闭 ' + name + ' 页签'
   })
 
-  Tabs.value = Tabs.value.filter((tab) => {
+  tabs.value = tabs.value.filter((tab) => {
     return tab.name !== name
   })
 }

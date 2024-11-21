@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import { Split } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySplit: Split
+    TinySplit
   },
   data() {
     return {
@@ -37,7 +37,6 @@ export default {
 <style scoped>
 .split-nest {
   height: 300px;
-  border: 1px solid #d9d9d9;
 }
 
 .split-content {

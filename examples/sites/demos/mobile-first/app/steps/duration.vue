@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Steps } from '@opentiny/vue'
+import { TinySteps } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySteps: Steps
+    TinySteps
   },
   data() {
     return {

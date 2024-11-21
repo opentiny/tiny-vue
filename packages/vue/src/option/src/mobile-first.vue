@@ -19,7 +19,7 @@
         highlightClass
       )
     "
-    data-tag="tiny-select-dropdown-item"
+    data-tag="tiny-option"
   >
     <span v-if="state.selectMultiple" class="w-4 mr-2">
       <component

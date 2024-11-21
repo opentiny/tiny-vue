@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconWebPlus, iconSuccessful, iconCloseSquare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu
+    TinyActionMenu
   },
   data() {
     return {

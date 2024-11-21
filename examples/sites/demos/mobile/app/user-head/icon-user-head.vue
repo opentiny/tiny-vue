@@ -3,12 +3,12 @@
 </template>
 
 <script lang="jsx">
-import { UserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
 import { iconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyUserHead: UserHead
+    TinyUserHead
   },
   data() {
     return {

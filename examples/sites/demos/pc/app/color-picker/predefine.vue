@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import { ColorPicker, Button } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker,
-    TinyButton: Button
+    TinyColorPicker,
+    TinyButton
   },
   data() {
     return {

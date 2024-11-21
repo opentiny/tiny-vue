@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 const value = ref(new Date(2016, 9, 10, 18, 40))
 const selectedValue = ref(Number(new Date(2016, 9, 10, 18, 30)))
@@ -38,7 +38,7 @@ const pickerValue = ref(new Date(2016, 9, 10, 18, 40))
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;

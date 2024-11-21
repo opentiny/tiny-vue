@@ -59,12 +59,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Button as TinyButton,
-  DialogBox as TinyDialogBox,
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn
-} from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
 const options = ref([

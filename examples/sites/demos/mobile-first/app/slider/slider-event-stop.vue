@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Slider, Notify } from '@opentiny/vue'
+import { TinySlider, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySlider: Slider
+    TinySlider
   },
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     stop(val) {
-      Notify({
+      TinyNotify({
         title: '触发停止滑动事件',
         message: `停止后值为${val}`,
         offset: 150

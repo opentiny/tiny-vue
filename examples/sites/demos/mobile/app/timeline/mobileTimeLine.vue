@@ -37,11 +37,11 @@
 </template>
 
 <script lang="jsx">
-import { TimeLine, Modal } from '@opentiny/vue'
+import { TinyTimeLine, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -66,7 +66,7 @@ export default {
     timeClick1(index, node) {
       this.timeActive1 = index
 
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+      TinyModal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
     },
     timeClick2(index) {
       this.timeActive2 = index

@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { UserHead as TinyUserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
 
 const labelText = 'Ai'
 </script>

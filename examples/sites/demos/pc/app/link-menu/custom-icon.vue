@@ -3,12 +3,12 @@
 </template>
 
 <script lang="jsx">
-import { LinkMenu } from '@opentiny/vue'
+import { TinyLinkMenu } from '@opentiny/vue'
 import { IconDoubleRight, IconExpressSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyLinkMenu: LinkMenu
+    TinyLinkMenu
   },
   data() {
     return {

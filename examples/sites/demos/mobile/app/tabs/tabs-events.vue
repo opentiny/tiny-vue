@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { Tabs, TabItem, Toast } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyToast } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
   methods: {
     click(tabItem, event) {
       event.stopPropagation()
-      Toast.service({
+      TinyToast.service({
         text: '点击的页签 name 是 ' + tabItem.name
       })
     }

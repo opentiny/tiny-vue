@@ -2,6 +2,7 @@
   <div>
     <tiny-grid
       :data="tableData"
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
     >
@@ -19,12 +20,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const validRules = {

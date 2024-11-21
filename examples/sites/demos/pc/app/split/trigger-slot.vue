@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Split } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 import { IconPause } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySplit: Split,
+    TinySplit,
     TinyIconPause: IconPause()
   },
   data() {
@@ -37,7 +37,6 @@ export default {
 <style scoped>
 .demo-split {
   height: 200px;
-  border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 }
 

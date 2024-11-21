@@ -27,7 +27,7 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Fullscreen } from '@opentiny/vue'
+import { TinyFullscreen } from '@opentiny/vue'
 
 const fullscreen = ref(false)
 const teleport = ref(true)
@@ -37,7 +37,7 @@ const smallImg = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/bo
 const bigImg = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/book-big.jpg`)
 
 async function toggle() {
-  await Fullscreen.toggle(instance.vnode.el.querySelector('.tiny-fullscreen-wrapper'), {
+  await TinyFullscreen.toggle(instance.vnode.el.querySelector('.tiny-fullscreen-wrapper'), {
     teleport: teleport.value,
     pageOnly: pageOnly.value,
     zIndex: 999,
@@ -46,7 +46,7 @@ async function toggle() {
     }
   })
 
-  fullscreen.value = Fullscreen.isFullscreen
+  fullscreen.value = TinyFullscreen.isFullscreen
 }
 </script>
 

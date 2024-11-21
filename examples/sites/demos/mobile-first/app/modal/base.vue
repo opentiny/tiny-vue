@@ -16,31 +16,31 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     successClick() {
-      Modal.alert({
+      TinyModal.alert({
         message: '密码已经修改成功，为保障信息安全，建议每30天修改1次密码。',
         title: '成功提示',
         status: 'success'
       })
     },
     errorClick() {
-      Modal.alert({ message: '共提交12张表单，成功10张，失败2张。', title: '未完成', status: 'error' })
+      TinyModal.alert({ message: '共提交12张表单，成功10张，失败2张。', title: '未完成', status: 'error' })
     },
     confirmClick() {
-      Modal.confirm({ message: '更新大约需要30分钟，确定立即开始吗？', title: '更新确认' })
+      TinyModal.confirm({ message: '更新大约需要30分钟，确定立即开始吗？', title: '更新确认' })
     },
     warnningClick() {
-      Modal.alert({ message: '删除后数据不可恢复，确定删除吗？', title: '删除确认', status: 'warning' })
+      TinyModal.alert({ message: '删除后数据不可恢复，确定删除吗？', title: '删除确认', status: 'warning' })
     },
     popClickRef() {
-      Modal.popconfirm({
+      TinyModal.popconfirm({
         title: '这是气泡标题',
         message: '这是气泡确认框提示内容文本描述，这是两行的样是两行的样式，内容很长很长',
         reference: this.$refs.popRef.$el,
@@ -60,7 +60,7 @@ export default {
       })
     },
     popClickTarget(event) {
-      Modal.popconfirm({
+      TinyModal.popconfirm({
         title: '这是气泡标题',
         message: '这是气泡确认框提示内容文本描述，这是两行的样是两行的样式，内容很长很长',
         reference: event.currentTarget,
@@ -80,7 +80,7 @@ export default {
       })
     },
     popInfoClick() {
-      Modal.popconfirm({
+      TinyModal.popconfirm({
         type: 'info',
         title: '这是提示气泡',
         message: '内容很短',
@@ -90,7 +90,7 @@ export default {
       })
     },
     popWarningClick() {
-      Modal.popconfirm({
+      TinyModal.popconfirm({
         type: 'warning',
         title: '这是警告气泡',
         message: '内容很短',

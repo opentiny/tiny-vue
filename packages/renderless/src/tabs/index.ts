@@ -131,15 +131,20 @@ export const calcMorePanes =
 
     if (tabs && tabs.length) {
       let tabsAllWidth = 0
+
+      if (state.currentIndex === -1) {
+        state.currentIndex = state.panes.findIndex((item) => item.state.paneName === state.currentName)
+      }
+      const currentIndex = state.currentIndex < 0 ? 0 : state.currentIndex
+      const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
+
       for (let i = 0; i < tabs.length; i++) {
         const tabItem = tabs[i] as HTMLElement
         // 遮住元素一半则隐藏
         tabsAllWidth = tabItem.offsetLeft + tabItem.offsetWidth / 2
-        const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
-        const currentName = Number(state.currentName || 0)
-        if (tabsAllWidth > tabsHeaderWidth && currentName >= 0) {
-          if (currentName >= i + 1) {
-            state.showPanesCount = currentName - 0
+        if (tabsAllWidth > tabsHeaderWidth && currentIndex >= 0) {
+          if (currentIndex >= i + 1) {
+            state.showPanesCount = currentIndex
           } else {
             state.showPanesCount = i
           }

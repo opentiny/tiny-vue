@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { CalendarView, Modal } from '@opentiny/vue'
+import { TinyCalendarView, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCalendarView: CalendarView
+    TinyCalendarView
   },
   data() {
     return {
@@ -27,22 +27,22 @@ export default {
   },
   methods: {
     prevWeekClick(date) {
-      Modal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
+      TinyModal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
     },
     nextWeekClick(date) {
-      Modal.message({ message: `下一周按钮点击事件： ${date[0].value}`, status: 'info' })
+      TinyModal.message({ message: `下一周按钮点击事件： ${date[0].value}`, status: 'info' })
     },
     weekChange(weekDate) {
-      Modal.message({ message: `周改变事件： ${weekDate[0].value}`, status: 'info' })
+      TinyModal.message({ message: `周改变事件： ${weekDate[0].value}`, status: 'info' })
     },
     yearChange(newVal, oldVal) {
-      Modal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
+      TinyModal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
     },
     monthChange(newVal, oldVal) {
-      Modal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+      TinyModal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
     },
     modeChange(val) {
-      Modal.message({ message: `模式切换事件: ${val}`, status: 'info' })
+      TinyModal.message({ message: `模式切换事件: ${val}`, status: 'info' })
     }
   }
 }

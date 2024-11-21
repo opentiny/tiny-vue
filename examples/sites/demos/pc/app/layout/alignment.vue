@@ -94,13 +94,13 @@
 </template>
 
 <script lang="jsx">
-import { Layout, Row, Col } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyLayout,
+    TinyRow,
+    TinyCol
   }
 }
 </script>
@@ -129,6 +129,12 @@ export default {
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
+}
+
+.row-bg .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .align {

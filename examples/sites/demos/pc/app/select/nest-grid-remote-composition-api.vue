@@ -61,7 +61,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 const allData = Array.from({ length: 1000 }, (a, i) => {
   return {

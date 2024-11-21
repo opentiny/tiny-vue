@@ -1,17 +1,42 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete
-      size="medium"
-      v-model="value"
-      :fetch-suggestions="querySearch"
-      placeholder="请输入内容"
-    ></tiny-autocomplete>
+    <div>
+      <div class="title">medium:</div>
+      <tiny-autocomplete
+        size="medium"
+        v-model="value"
+        :fetch-suggestions="querySearch"
+        placeholder="请输入内容"
+      ></tiny-autocomplete>
+    </div>
+    <div>
+      <div class="title">default:</div>
+      <tiny-autocomplete v-model="value" :fetch-suggestions="querySearch" placeholder="请输入内容"></tiny-autocomplete>
+    </div>
+    <div>
+      <div class="title">small:</div>
+      <tiny-autocomplete
+        size="small"
+        v-model="value"
+        :fetch-suggestions="querySearch"
+        placeholder="请输入内容"
+      ></tiny-autocomplete>
+    </div>
+    <div>
+      <div class="title">small:</div>
+      <tiny-autocomplete
+        size="mini"
+        v-model="value"
+        :fetch-suggestions="querySearch"
+        placeholder="请输入内容"
+      ></tiny-autocomplete>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 
 const restaurants = ref([])
 const value = ref('')
@@ -64,5 +89,11 @@ function loadAll() {
 <style scoped>
 .demo-autocomplete .tiny-autocomplete {
   width: 270px;
+}
+.demo-autocomplete > div {
+  margin-top: 12px;
+}
+.demo-autocomplete > div > .title {
+  line-height: 26px;
 }
 </style>

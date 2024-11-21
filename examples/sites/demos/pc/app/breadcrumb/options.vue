@@ -6,22 +6,22 @@
 </template>
 
 <script>
-import { Breadcrumb, Notify } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBreadcrumb: Breadcrumb
+    TinyBreadcrumb
   },
   data() {
     return {
       options: [
         {
           label: '首页',
-          to: { path: '/' }
+          to: { path: '#' }
         },
         {
           label: '产品',
-          to: { path: '/breadcrumb' }
+          to: { path: '#' }
         },
         {
           label: '软件',
@@ -31,11 +31,11 @@ export default {
       options1: [
         {
           name: '首页',
-          to: { path: '/' }
+          to: { path: '' }
         },
         {
           name: '产品',
-          to: { path: '/breadcrumb' }
+          to: { path: '#' }
         },
         {
           name: '软件',
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     itemClick: (value) => {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: '触发选择面包屑事件',
         message: JSON.stringify(value),

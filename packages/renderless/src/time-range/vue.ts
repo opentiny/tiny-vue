@@ -71,7 +71,7 @@ export const renderless = (props, { computed, reactive, watch, nextTick }, { t, 
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss', t)
   const MAX_TIME = parseDate('23:59:59', 'HH:mm:ss', t)
   const state = initState({ reactive, computed, vm, api })
-  state.showTimePickerRangeButton = designConfig?.showTimePickerRangeButton
+  state.showTimePickerRangeButton = designConfig?.showTimePickerRangeButton ?? true
 
   Object.assign(api, {
     t,

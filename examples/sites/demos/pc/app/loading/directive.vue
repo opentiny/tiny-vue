@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import { Loading, Button } from '@opentiny/vue'
+import { TinyLoading, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   directives: {
-    loading: Loading.directive
+    loading: TinyLoading.directive
   },
   data() {
     return {
-      isLoading: false,
+      isLoading: false
     }
   },
   methods: {

@@ -10,27 +10,27 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     baseClick() {
-      Modal.message({ message: '基本提示图标', status: 'info' })
+      TinyModal.message({ message: '基本提示图标', status: 'info' })
     },
     successClick() {
-      Modal.message({ message: '成功提示图标', status: 'success' })
+      TinyModal.message({ message: '成功提示图标', status: 'success' })
     },
     warningClick() {
-      Modal.message({ message: '警告提示图标', status: 'warning' })
+      TinyModal.message({ message: '警告提示图标', status: 'warning' })
     },
     errorClick() {
-      Modal.message({ message: '错误提示图标', status: 'error' })
+      TinyModal.message({ message: '错误提示图标', status: 'error' })
     },
     loadingClick() {
-      Modal.message({ message: '加载提示图标', status: 'loading' })
+      TinyModal.message({ message: '加载提示图标', status: 'loading' })
     },
     statusCommonpentClick() {
       const IconComp = {
@@ -40,7 +40,7 @@ export default {
           return {}
         }
       }
-      Modal.message({ message: 'status 为自定义组件', status: IconComp })
+      TinyModal.message({ message: 'status 为自定义组件', status: IconComp })
     }
   }
 }

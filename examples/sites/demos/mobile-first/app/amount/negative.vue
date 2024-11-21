@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { Amount, Form, FormItem } from '@opentiny/vue'
+import { TinyAmount, TinyForm, TinyFormItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAmount: Amount,
-    TinyForm: Form,
-    TinyFormItem: FormItem
+    TinyAmount,
+    TinyForm,
+    TinyFormItem
   },
   data() {
     return {

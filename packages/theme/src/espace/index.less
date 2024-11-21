@@ -17,22 +17,22 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{espace-prefix-cls} {
-  .component-css-vars-espace();
+  .inject-Espace-vars();
 
   .item-talk,
   .item-call,
   .item-email {
-    margin: 0 8px 0 0;
+    margin: 0 24px 0 0;
     line-height: 1;
 
     .@{svg-prefix-cls} {
-      fill: var(--ti-espace-text-color);
-      font-size: var(--ti-espace-font-size);
+      fill: var(--tv-Espace-icon-color);
+      font-size: var(--tv-Espace-font-size);
     }
 
     &:hover {
       .@{svg-prefix-cls} {
-        fill: var(--ti-espace-hover-text-color);
+        fill: var(--tv-Espace-icon-color-hover);
       }
     }
   }

@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Numeric, Modal } from '@opentiny/vue'
+import { TinyNumeric, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNumeric: Numeric
+    TinyNumeric
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     Efocus() {
-      Modal.message({ message: 'focus 事件', status: 'info' })
+      TinyModal.message({ message: 'focus 事件', status: 'info' })
     }
   }
 }

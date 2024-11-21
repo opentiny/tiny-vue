@@ -5,6 +5,7 @@
       ref="theGrid"
       :data="tableData"
       seq-serial
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'manual', mode: 'cell', autoClear: false }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -37,13 +38,13 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyButton,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -118,10 +119,12 @@ export default {
         this.getActiveRow()
       })
     },
-    cancelRowEvent() {
-      this.$refs.theGrid.clearActived().then(() => {
-        this.getActiveRow()
-      })
+    cancelRowEvent(row) {
+      const grid = this.$refs.theGrid
+      grid
+        .clearActived()
+        .then(() => grid.revertData(row))
+        .then(this.getActiveRow)
     },
     getActiveRow() {
       const activedRow = this.$refs.theGrid.getActiveRow()

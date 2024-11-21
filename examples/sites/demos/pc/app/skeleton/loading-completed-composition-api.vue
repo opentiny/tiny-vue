@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { Skeleton as TinySkeleton, Button as TinyButton, SkeletonItem as TinySkeletonItem } from '@opentiny/vue'
+import { TinySkeleton, TinyButton, TinySkeletonItem } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const loading = ref(true)

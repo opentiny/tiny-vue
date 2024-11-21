@@ -4,27 +4,27 @@
       <template #icon> <icon-fillet-external-link class="tiny-svg-link"></icon-fillet-external-link> </template
       >链接按钮</tiny-link
     >
-    <tiny-link disabled>
+    <tiny-link>
       <template #icon> <icon-fillet-external-link class="tiny-svg-size"></icon-fillet-external-link> </template
       >链接按钮</tiny-link
     >
-    <tiny-link :underline="false" :icon="IconEdit">编辑</tiny-link>
-    <tiny-link :underline="false" :icon="IconEdit" disabled>禁用</tiny-link>
-    <tiny-link :underline="false">查看<icon-view class="tiny-svg-size"></icon-view> </tiny-link>
-    <tiny-link :underline="false">
+    <tiny-link :icon="IconEdit">编辑</tiny-link>
+    <tiny-link :icon="IconEdit">禁用</tiny-link>
+    <tiny-link>查看<icon-search class="tiny-svg-size"></icon-search> </tiny-link>
+    <tiny-link>
       <template #icon> <icon-del class="tiny-svg-size"></icon-del> </template>删除</tiny-link
     >
   </div>
 </template>
 
 <script>
-import { Link } from '@opentiny/vue'
-import { IconEditor, IconView, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
+import { TinyLink } from '@opentiny/vue'
+import { IconEditor, IconSearch, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyLink: Link,
-    IconView: IconView(),
+    TinyLink,
+    IconSearch: IconSearch(),
     IconDel: IconDeleteL(),
     IconFilletExternalLink: IconFilletExternalLink()
   },
@@ -38,6 +38,6 @@ export default {
 
 <style scoped>
 .tiny-link {
-  margin-right: 8px;
+  margin-right: 48px;
 }
 </style>

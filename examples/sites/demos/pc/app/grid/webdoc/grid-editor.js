@@ -10,7 +10,7 @@ export default {
         <p>通过在 <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">特别说明：</p>
-          <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器。</p>
+          <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件且均为浏览器原生组件并非TinyVue组件，需要使用其他组件可参考自定义编辑器。</p>
         </div>
         `,
         'en-US':
@@ -44,7 +44,7 @@ export default {
     {
       'demoId': 'editor-popeditor-in-grid-remote-search',
       'name': {
-        'zh-CN': 'Popeditor 弹窗编辑',
+        'zh-CN': '弹窗编辑',
         'en-US': 'Edit the Popeditor pop-up window and configure remote search.'
       },
       'desc': {
@@ -63,6 +63,16 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['editor/editor-bg.vue']
+    },
+    {
+      'demoId': 'active-strictly',
+      'name': { 'zh-CN': '行编辑禁用特定列', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          "<p>当 <code>editConfig.mode</code> 为'row'时，行编辑激活状态下默认会忽略 <code>editConfig.activeMethod</code> ，配置 <code>editConfig.activeStrictly</code> 为true使其生效",
+        'en-US': ''
+      },
+      'codeFiles': ['editor/active-strictly.vue']
     },
     {
       'demoId': 'editor-custom-edit',

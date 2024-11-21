@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import { Tag, Input } from '@opentiny/vue'
+import { TinyTag, TinyInput } from '@opentiny/vue'
 import { IconPlus } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTag: Tag,
-    TinyInput: Input,
+    TinyTag,
+    TinyInput,
     IconPlus: IconPlus()
   },
   data() {

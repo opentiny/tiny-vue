@@ -10,9 +10,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>type</code> 设置按钮类型， <code>plain</code> 设置是否为朴素按钮， <code>round</code> 设置是否为圆角按钮， <code>circle</code> 设置是否为圆形按钮。</p>',
+          '<p>通过 <code>type</code> 设置按钮类型， <code>plain</code> 设置是否为朴素按钮， <code>circle</code> 设置是否为圆形按钮。</p>',
         'en-US':
-          '<p>Set the button type through <code>type</code> , whether it is a plain button, whether it is a rounded button, and whether it is a circular button.</p>'
+          '<p>Set the button type through <code>type</code> , whether it is a plain button and whether it is a circular button.</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -47,10 +47,8 @@ export default {
         'en-US': 'Icon Button'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>icon</code> 设置按钮展示图标， 接收一个图标组件。</p><div class="tip custom-block"><p class="custom-block-title">Icon 图标用法</p><p>先从 <code>@opentiny/vue-icon</code> 中导入需要的 Icon，执行Icon函数得到Icon组件。然后在模板中通过 <code>icon</code> 属性进行引用。</p>',
-        'en-US':
-          '<p>Display icons and receive an icon component through the <code>icon</code> settings button</ p> <div class="tip custom block"><p class="custom block title">Icon icon usage</p><p>First, import the required Icon from <code>@ opentiny/vue icon</code> , and execute the Icon function to obtain the Icon component. Then refer to it in the template through the <code>icon</code> attribute.</p>'
+        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。',
+        'en-US': 'Display icons and receive an icon component through the <code>icon</code> settings button'
       },
       codeFiles: ['icon.vue']
     },

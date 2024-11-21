@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import { FilterPanel, Input, Button, Tag } from '@opentiny/vue'
+import { TinyFilterPanel, TinyInput, TinyButton, TinyTag } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFilterPanel: FilterPanel,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyTag: Tag
+    TinyFilterPanel,
+    TinyInput,
+    TinyButton,
+    TinyTag
   },
   data() {
     return {

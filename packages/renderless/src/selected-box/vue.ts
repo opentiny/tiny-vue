@@ -57,7 +57,8 @@ export const renderless = (
     popoverContent: '',
     dragInstance: null,
     slotParams: computed(() => ({ inverse: state.inverse, total: state.total, select: state.select })),
-    showClear: computed(() => api.computedShowClear())
+    showClear: computed(() => api.computedShowClear()),
+    theme: vm.theme
   })
 
   const api = {

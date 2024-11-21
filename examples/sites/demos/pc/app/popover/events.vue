@@ -16,31 +16,31 @@
 </template>
 
 <script lang="jsx">
-import { Popover, Notify, Button } from '@opentiny/vue'
+import { TinyPopover, TinyNotify, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinyButton: Button
+    TinyPopover,
+    TinyButton
   },
   methods: {
     show() {
-      Notify({
+      TinyNotify({
         message: '显示时触发'
       })
     },
     hide() {
-      Notify({
+      TinyNotify({
         message: '隐藏时触发'
       })
     },
     enter() {
-      Notify({
+      TinyNotify({
         message: '进入的动画结束后触发'
       })
     },
     leave() {
-      Notify({
+      TinyNotify({
         message: '离开的动画结束后触发'
       })
     }

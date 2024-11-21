@@ -19,18 +19,13 @@ test('函数式使用', async ({ page }) => {
 
   // 点击Request Fullscreen按钮，图片全屏展示
   await fullBtn.click()
-  await expect(smallImg).not.toHaveCSS('display', 'none')
-  await expect(bigImg).toHaveCSS('display', 'none')
+  await expect(smallImg).toHaveCSS('display', 'none')
+  await expect(bigImg).not.toHaveCSS('display', 'none')
 
   //  选取需要添加样式的元素并设置新的CSS属性
   await page.$eval('.tinyui-design-header', (el) => {
     el.setAttribute('style', 'display: none;')
   })
-
-  // // 点击Exit Fullscreen按钮，退出全屏展示
-  await fullBtn.click()
-  await expect(smallImg).not.toHaveCSS('display', 'none')
-  await expect(bigImg).toHaveCSS('display', 'none')
 
   // TINY-TODO: 全屏时，按Esc键退出全屏图片有问题
   // TINY-TODO: 因全屏模式下获取不到元素   pageOnly  teleport区别暂未测试

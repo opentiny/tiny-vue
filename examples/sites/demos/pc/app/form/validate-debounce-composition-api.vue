@@ -8,8 +8,8 @@
         <tiny-input v-model="createData.user2"></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="success" @click="clearFormValid">移除表单校验</tiny-button>
         <tiny-button type="primary" @click="handleSubmit">提交</tiny-button>
+        <tiny-button @click="clearFormValid">移除表单校验</tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -17,13 +17,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Button as TinyButton,
-  Modal
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
 
 const createData = reactive({
   user1: '',
@@ -42,7 +36,7 @@ function clearFormValid() {
 function handleSubmit() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      Modal.message({ message: '提交成功', status: 'info' })
+      TinyModal.message({ message: '提交成功', status: 'info' })
     }
   })
 }
@@ -55,10 +49,10 @@ function validateUser(rule, value, callback) {
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (value && value.length > 30) {
-        Modal.message({ message: '校验成功', status: 'info' })
+        TinyModal.message({ message: '校验成功', status: 'info' })
         resolve()
       } else {
-        Modal.message({ message: '校验失败', status: 'info' })
+        TinyModal.message({ message: '校验失败', status: 'info' })
         reject(new Error('The length must be greater than 30 characters.'))
       }
     }, 300)

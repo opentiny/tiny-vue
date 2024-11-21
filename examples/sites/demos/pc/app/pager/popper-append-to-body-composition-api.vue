@@ -9,5 +9,5 @@
 </template>
 
 <script setup>
-import { Pager as TinyPager } from '@opentiny/vue'
+import { TinyPager } from '@opentiny/vue'
 </script>

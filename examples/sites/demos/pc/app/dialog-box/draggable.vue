@@ -29,13 +29,13 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox, Notify, Input, Modal } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyNotify, TinyInput, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyInput: Input
+    TinyButton,
+    TinyDialogBox,
+    TinyInput
   },
   data() {
     return {
@@ -47,20 +47,20 @@ export default {
   },
   methods: {
     dragStart() {
-      Notify({
+      TinyNotify({
         message: '拖拽开始',
         position: 'top-right'
       })
     },
     dragEnd() {
-      Notify({
+      TinyNotify({
         message: '拖拽结束',
         position: 'top-right'
       })
     },
     dragMove() {
       if (!this.isNotifyMoving) {
-        Notify({
+        TinyNotify({
           message: '拖拽移动',
           position: 'top-right'
         })
@@ -68,7 +68,7 @@ export default {
       }
     },
     beforeClose() {
-      Modal.message({ message: 'before-close', status: 'info' })
+      TinyModal.message({ message: 'before-close', status: 'info' })
     },
     dragDialog() {
       this.boxVisibility = true

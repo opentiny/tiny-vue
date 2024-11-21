@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Breadcrumb, BreadcrumbItem } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBreadcrumb: Breadcrumb,
-    TinyBreadcrumbItem: BreadcrumbItem
+    TinyBreadcrumb,
+    TinyBreadcrumbItem
   },
   computed: {
     routes() {

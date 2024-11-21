@@ -17,13 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Numeric as TinyNumeric,
-  Radio as TinyRadio
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyNumeric, TinyRadio } from '@opentiny/vue'
 
 const formData = ref({
   user: '',

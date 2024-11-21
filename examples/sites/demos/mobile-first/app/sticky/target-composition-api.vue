@@ -9,5 +9,5 @@
 </template>
 
 <script setup>
-import { Sticky as TinySticky, Button as TinyButton } from '@opentiny/vue'
+import { TinySticky, TinyButton } from '@opentiny/vue'
 </script>

@@ -19,7 +19,7 @@
 @radio-prefix-cls: ~'@{css-prefix}radio';
 
 .@{radio-group-prefix-cls} {
-  .component-css-vars-radio-group();
+  .inject-RadioGroup-vars();
 
   display: inline-flex;
 
@@ -31,31 +31,13 @@
       margin-right: 0;
 
       &:not(:last-child) {
-        margin-bottom: var(--ti-radio-group-margin-bottom);
+        margin-bottom: var(--tv-RadioGroup-margin-bottom);
       }
     }
 
     .@{radio-button-prefix-cls} {
       display: block;
-      margin-bottom: var(--ti-radio-button-margin-bottom);
-      border-radius: var(--ti-radio-button-border-radius);
-
-      &:first-child .@{radio-button-prefix-cls}__inner {
-        border-radius: var(--ti-radio-button-top-border-radius) var(--ti-radio-button-top-border-radius) var(--ti-radio-button-bottom-border-radius) var(--ti-radio-button-bottom-border-radius);
-      }
-
-      &:last-child .@{radio-button-prefix-cls}__inner {
-        border-radius: var(--ti-radio-button-bottom-border-radius) var(--ti-radio-button-bottom-border-radius) var(--ti-radio-button-top-border-radius) var(--ti-radio-button-top-border-radius);
-      }
-
-      &.is-active .@{radio-button-prefix-cls}__inner {
-        box-shadow: none;
-        border-color: var(--ti-radio-button-checked-normal-border-color);
-      }
-
-      &.is-active.is-disabled .@{radio-button-prefix-cls}__inner {
-        border-color: var(--ti-radio-input-checked-disabled-border-color);
-      }
+      margin-bottom: var(--tv-RadioGroup-button-margin-bottom);
     }
   }
 }

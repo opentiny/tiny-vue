@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Split as TinySplit } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 const split1 = ref(0.5)
 </script>
@@ -21,7 +21,6 @@ const split1 = ref(0.5)
 <style scoped>
 .split-v-model {
   height: 200px;
-  border: 1px solid #d9d9d9;
 }
 
 .demo-split-pane {

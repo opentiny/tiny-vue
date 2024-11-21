@@ -16,7 +16,7 @@ test('基本用法', async ({ page }) => {
   // 更多按钮
   await expect(moreItem).toHaveText(/更多/)
   // 图标显示
-  await expect(moreItem.locator('svg > path').nth(0)).toHaveAttribute('d', 'M2 6h20L12 19z')
+  await expect(moreItem.locator('.tiny-dropdown__trigger .tiny-svg')).toBeVisible()
   // 分割线
   await expect(actionMenu.locator('.tiny-action-menu__item-line')).toHaveCount(2)
   // 图标旋转

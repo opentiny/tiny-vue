@@ -24,15 +24,15 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox, Notify, Input, Form, FormItem } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyNotify, TinyInput, TinyForm, TinyFormItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyInput: Input,
-    TinyForm: Form,
-    TinyFormItem: FormItem
+    TinyButton,
+    TinyDialogBox,
+    TinyInput,
+    TinyForm,
+    TinyFormItem
   },
   data() {
     return {
@@ -44,28 +44,28 @@ export default {
   },
   methods: {
     open() {
-      Notify({
+      TinyNotify({
         title: '窗口弹出',
         message: this.getTime(new Date()),
         offset: 0
       })
     },
     opened() {
-      Notify({
+      TinyNotify({
         title: '窗口弹出动画完成',
         message: this.getTime(new Date()),
         offset: 0
       })
     },
     close() {
-      Notify({
+      TinyNotify({
         title: '窗口关闭',
         message: this.getTime(new Date()),
         offset: 0
       })
     },
     closed() {
-      Notify({
+      TinyNotify({
         title: '窗口关闭动画完成',
         message: this.getTime(new Date()),
         offset: 0

@@ -26,14 +26,15 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 
 const options = ref([
   { value: '选项1', label: '北京' },
   { value: '选项2', label: '上海' },
   { value: '选项3', label: '天津' },
   { value: '选项4', label: '重庆超长超长超长超长超长超长超长超长超长' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项5', label: '深圳' },
+  { value: '选项6', label: '广州' }
 ])
 
 const value1 = ref(['选项1', '选项2'])

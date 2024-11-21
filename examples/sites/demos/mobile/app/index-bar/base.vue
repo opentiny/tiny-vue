@@ -14,12 +14,12 @@
 </template>
 
 <script lang="jsx">
-import { IndexBar, IndexBarAnchor } from '@opentiny/vue'
+import { TinyIndexBar, TinyIndexBarAnchor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyIndexBar: IndexBar,
-    TinyIndexBarAnchor: IndexBarAnchor
+    TinyIndexBar,
+    TinyIndexBarAnchor
   },
   data() {
     return {

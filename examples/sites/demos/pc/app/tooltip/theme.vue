@@ -31,12 +31,12 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip, Button } from '@opentiny/vue'
+import { TinyTooltip, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
-    TinyButton: Button
+    TinyTooltip,
+    TinyButton
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="title">单击进入编辑状态：</h4>
-    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click' }">
+    <tiny-grid :data="tableData" show-overflow="tooltip" seq-serial :edit-config="{ trigger: 'click' }">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
@@ -39,7 +39,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const options = ref([
   { label: '华北区', value: '华北区' },

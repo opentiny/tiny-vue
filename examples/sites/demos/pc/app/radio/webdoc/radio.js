@@ -43,18 +43,6 @@ export default {
       codeFiles: ['group-options.vue']
     },
     {
-      demoId: 'with-border',
-      name: {
-        'zh-CN': '带有边框',
-        'en-US': 'With borders'
-      },
-      desc: {
-        'zh-CN': '<p>可通过设置 <code>border</code> 属性，给单选框增加边框。</p>\n',
-        'en-US': '<p>You can set the <code>border</code> attribute to add a border to an option button. </p>\n'
-      },
-      codeFiles: ['with-border.vue']
-    },
-    {
       demoId: 'dynamic-disable',
       name: {
         'zh-CN': '禁用状态',
@@ -116,7 +104,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可对按钮形式的 <code>radio</code> 或带有边框的 <code>radio</code> 设置 <code>size</code> 属性，以改变其尺寸，可选值有： <code>medium</code>  、<code>small</code>  、<code>mini</code> 。</p>\n',
+          '<p>可对按钮形式的 <code>radio</code> 设置 <code>size</code> 属性，以改变其尺寸，可选值有： <code>medium</code>  、<code>small</code>  、<code>mini</code> 。</p>',
         'en-US':
           '<p>You can set the <code>size</code> attribute for a radio with a button or a radio with a border to change its size. The options include medium, small, and mini. </p>\n'
       },

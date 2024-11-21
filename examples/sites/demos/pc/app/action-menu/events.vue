@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { ActionMenu, Notify } from '@opentiny/vue'
+import { TinyActionMenu, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu
+    TinyActionMenu
   },
   data() {
     return {
@@ -41,21 +41,21 @@ export default {
   methods: {
     itemClick(data) {
       console.log(data)
-      Notify({
+      TinyNotify({
         message: JSON.stringify(data.itemData),
         position: 'top-right',
         duration: 2000
       })
     },
     visibleChange(status) {
-      Notify({
+      TinyNotify({
         message: `触发 visible-change 事件,下拉状态为 ${status}`,
         position: 'top-right',
         duration: 2000
       })
     },
     moreClick() {
-      Notify({
+      TinyNotify({
         message: '触发 moreClick 事件',
         position: 'top-right',
         duration: 2000

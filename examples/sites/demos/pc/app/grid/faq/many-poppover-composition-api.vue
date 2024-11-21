@@ -37,7 +37,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Popover as TinyPopover } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopover } from '@opentiny/vue'
 
 const flag = ref(false)
 const tableData = ref([

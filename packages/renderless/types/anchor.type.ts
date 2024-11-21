@@ -25,7 +25,7 @@ export interface IAnchorState {
   currentHash: string
   isScroll: boolean
   scrollTimer: number
-  offsetTop: number
+  childOffsetTop: number
 }
 
 export type IAnchorProps = ExtractPropTypes<typeof anchorProps>

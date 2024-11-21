@@ -45,7 +45,9 @@
       @drop.stop="handleDrop"
       ref="node"
     >
+      <!-- 当前节点的行： 缩进块+left(箭头图标+单多选钮+loading+prefix+label+suffix)+right(finish图标+operation+编辑按钮) -->
       <div
+        ref="content"
         :class="{
           'tiny-tree-node__content': true,
           'tiny-tree-node__content-number': showNumber
@@ -113,9 +115,7 @@
             :label="node.id"
             :disabled="!!node.disabled"
           ></tiny-radio>
-          <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
-          </svg>
+          <icon-loading v-if="node.loading" class="tiny-tree-node__loading" />
           <slot name="prefix" :node="node"></slot>
           <template v-if="action.type === 'edit' && action.node && action.node === node">
             <tiny-input
@@ -128,9 +128,9 @@
               @click.stop="($event) => $event.stopPropagation()"
             />
           </template>
-          <div v-else class="tiny-tree-node__content-box">
+          <template v-else>
             <node-content :node="node" :render-content="renderContent"></node-content>
-          </div>
+          </template>
           <slot name="suffix" :node="node"></slot>
         </div>
         <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
@@ -164,6 +164,7 @@
         </div>
       </div>
 
+      <!-- 子级树节点 -->
       <template v-if="node.childNodes.length">
         <collapse-transition>
           <div
@@ -240,12 +241,14 @@ import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import {
   iconChevronRight,
-  iconLoading,
+  iconLoadingShadow,
   iconArrowBottom,
   iconEdit,
   iconDel,
   iconPlusSquare,
-  iconFinish
+  iconFinish,
+  iconExpand,
+  iconPutAway
 } from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
@@ -325,12 +328,14 @@ export default defineComponent({
     TinyRadio: Radio,
     TinyInput: Input,
     IconChevronRight: iconChevronRight(),
-    IconLoading: iconLoading(),
+    IconLoading: iconLoadingShadow(),
     IconArrowBottom: iconArrowBottom(),
     IconEdit: iconEdit(),
     IconDel: iconDel(),
     IconPlusSquare: iconPlusSquare(),
     IconFinish: iconFinish(),
+    IconExpand: iconExpand(),
+    IconPutAway: iconPutAway(),
     MenuContext: {
       props: {
         node: {

@@ -22,6 +22,6 @@ test('测试更多按钮', async ({ page }) => {
   // 判断图标是否正确
   const moreButton = buttonGroup.getByRole('button').nth(3)
   const moreButtonSvg = moreButton.locator('svg path').first()
-  const moreSvgPathReg = /^M292\.768 449\.694c2\.491\.515.+002-12.555-\.002z$/
+  const moreSvgPathReg = /^M2\.3 7\.78v.+219-1\.17Z$/
   await expect(moreButtonSvg).toHaveAttribute('d', moreSvgPathReg)
 })

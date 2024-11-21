@@ -2,7 +2,7 @@
   <tiny-layout>
     <p>基本按钮</p>
     <tiny-row>
-      <tiny-button type="primary" native-type="submit"> 主要按钮 </tiny-button>
+      <tiny-button type="primary"> 主要按钮 </tiny-button>
       <tiny-button> 次要按钮 </tiny-button>
       <tiny-button type="success"> 成功按钮 </tiny-button>
       <tiny-button type="info"> 信息按钮 </tiny-button>
@@ -20,22 +20,22 @@
     </tiny-row>
     <tiny-row>
       <tiny-button :icon="IconSearch" circle></tiny-button>
-      <tiny-button type="primary" :icon="IconEdit" circle></tiny-button>
+      <tiny-button type="primary" :icon="IconEditor" circle></tiny-button>
       <tiny-button type="success" :icon="IconYes" circle></tiny-button>
       <tiny-button type="info" :icon="IconMail" circle></tiny-button>
       <tiny-button type="warning" :icon="IconStarO" circle></tiny-button>
-      <tiny-button type="danger" :icon="IconDel" circle></tiny-button>
+      <tiny-button type="danger" :icon="IconDeleteL" circle></tiny-button>
     </tiny-row>
   </tiny-layout>
 </template>
 
 <script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
-import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
+import { iconDeleteL, iconYes, iconEditor, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
-const IconDel = iconDel()
+const IconDeleteL = iconDeleteL()
 const IconYes = iconYes()
-const IconEdit = iconEdit()
+const IconEditor = iconEditor()
 const IconMail = iconMail()
 const IconStarO = iconStarO()
 const IconSearch = iconSearch()

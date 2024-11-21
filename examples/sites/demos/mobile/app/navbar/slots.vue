@@ -11,12 +11,12 @@
 </template>
 
 <script lang="jsx">
-import { NavBar } from '@opentiny/vue'
+import { TinyNavBar } from '@opentiny/vue'
 import { iconArrowLeft, iconMore } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyNavBar: NavBar,
+    TinyNavBar,
     IconArrowLeft: iconArrowLeft(),
     IconMore: iconMore()
   },

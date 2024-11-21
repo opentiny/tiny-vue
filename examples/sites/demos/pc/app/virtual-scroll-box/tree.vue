@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import { VirtualScrollBox, Tree } from '@opentiny/vue'
+import { TinyVirtualScrollBox, TinyTree } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
 export default {
   components: {
-    TinyVirtualScrollBox: VirtualScrollBox,
-    TinyTree: Tree
+    TinyVirtualScrollBox,
+    TinyTree
   },
   data() {
     return {

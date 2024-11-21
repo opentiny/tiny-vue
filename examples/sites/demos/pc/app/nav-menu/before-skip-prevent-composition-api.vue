@@ -10,7 +10,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { NavMenu as TinyNavMenu, Modal } from '@opentiny/vue'
+import { TinyNavMenu, TinyModal } from '@opentiny/vue'
 import { iconTotal } from '@opentiny/vue-icon'
 
 const menuData = ref([
@@ -309,7 +309,7 @@ const menuData = ref([
 const TinyIconTotal = iconTotal()
 
 function handleSkip({ url }) {
-  Modal.message({
+  TinyModal.message({
     message: 'prevent 事件，当前URL：' + url,
     status: 'info'
   })

@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem } from '@opentiny/vue'
 import { iconStarO, iconSetting } from '@opentiny/vue-icon'
 
 const activeNames = ref(['1'])

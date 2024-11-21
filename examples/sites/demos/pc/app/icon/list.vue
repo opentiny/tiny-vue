@@ -26,12 +26,12 @@
 
 <script>
 import Svgs from '@opentiny/vue-icon'
-import { Modal, Input } from '@opentiny/vue'
+import { TinyModal, TinyInput } from '@opentiny/vue'
 import { iconGroups } from './iconGroups.js'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     const all = Object.values(iconGroups).flat()
@@ -53,7 +53,7 @@ export default {
   methods: {
     click(name) {
       window.navigator.clipboard.writeText(name)
-      Modal.message({
+      TinyModal.message({
         message: `成功复制图标名称 ${name} `,
         status: 'info'
       })

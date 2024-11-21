@@ -22,13 +22,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import {
-  FilterPanel as TinyFilterPanel,
-  Radio as TinyRadio,
-  RadioGroup as TinyRadioGroup,
-  Input as TinyInput,
-  Switch as TinySwitch
-} from '@opentiny/vue'
+import { TinyFilterPanel, TinyRadio, TinyRadioGroup, TinyInput, TinySwitch } from '@opentiny/vue'
 
 const inputVal = ref('')
 const radioVal = ref('')

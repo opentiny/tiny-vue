@@ -1,6 +1,6 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <header class="flex-horizontal docs-header">
+  <header :class="['flex-horizontal', 'docs-header', cmpId === 'loading' && 'docs-header-highlight']">
     <div class="docs-title-wrap">
       <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
       <version-tip
@@ -16,8 +16,8 @@
     </div>
     <span class="docs-header-spacer"></span>
   </header>
-  <div class="docs-content">
-    <div class="ti-fi-1 ti-rel cmp-container">
+  <div class="docs-content" id="doc-layout-scoller">
+    <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
           <div v-if="['interfaces', 'types', 'classes'].includes(cmpId)" id="TS" class="all-api-container">
@@ -36,66 +36,74 @@
                     <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
                       {{ key }}
                     </div>
-                    <tiny-grid class="api-table" :data="tableData[oneGroup.name][key]" :expand-config="apiExpandConf">
-                      <tiny-grid-column
-                        v-if="tableData[oneGroup.name][key][0]?.type"
-                        class-name="api-table-expand-col"
-                        type="expand"
-                        width="32"
-                      >
-                        <template #default="{ row }">
-                          <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
-                        <template #default="{ row }">
-                          <span class="api-table-name">
-                            <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                            <span v-else>{{ row.name }}</span>
-                          </span>
-                          <version-tip
-                            v-if="row.meta || row.versionTipOption"
-                            :meta="row.meta"
-                            v-bind="row.versionTipOption"
-                            render-type="tag"
-                            tip-subject="api"
-                          >
-                          </version-tip>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column
-                        v-if="tableData[oneGroup.name][key][0]?.type"
-                        field="type"
-                        :title="i18nByKey('propType')"
-                        :width="columnWidth[key][1]"
-                      >
-                        <template #default="{ row }">
-                          <a
-                            v-if="row.typeAnchorName"
-                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
-                            v-html="row.type"
-                          ></a>
-                          <span v-else v-html="row.type"></span>
-                        </template>
-                      </tiny-grid-column>
-                      <tiny-grid-column
-                        v-if="key === 'props'"
-                        field="defaultValue"
-                        :title="i18nByKey('defValue')"
-                        :width="columnWidth[key][2]"
-                      ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                        <template #default="data">
-                          <span v-html="data.row.desc"></span>
-                        </template>
-                      </tiny-grid-column>
-                    </tiny-grid>
+                    <div class="api-table-box">
+                      <tiny-grid class="api-table" :data="tableData[oneGroup.name][key]" :expand-config="apiExpandConf">
+                        <tiny-grid-column
+                          v-if="tableData[oneGroup.name][key][0]?.type"
+                          class-name="api-table-expand-col"
+                          type="expand"
+                          width="32"
+                        >
+                          <template #default="{ row }">
+                            <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
+                          <template #default="{ row }">
+                            <span class="api-table-name">
+                              <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
+                              <span v-else>{{ row.name }}</span>
+                            </span>
+                            <version-tip
+                              v-if="row.meta || row.versionTipOption"
+                              :meta="row.meta"
+                              v-bind="row.versionTipOption"
+                              render-type="tag"
+                              tip-subject="api"
+                            >
+                            </version-tip>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column
+                          v-if="tableData[oneGroup.name][key][0]?.type"
+                          field="type"
+                          :title="i18nByKey('propType')"
+                          :width="columnWidth[key][1]"
+                        >
+                          <template #default="{ row }">
+                            <a
+                              v-if="row.typeAnchorName"
+                              :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
+                              v-html="row.type"
+                            ></a>
+                            <span v-else v-html="row.type"></span>
+                          </template>
+                        </tiny-grid-column>
+                        <tiny-grid-column
+                          v-if="key === 'props'"
+                          field="defaultValue"
+                          :title="i18nByKey('defValue')"
+                          :width="columnWidth[key][2]"
+                        ></tiny-grid-column>
+                        <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                          <template #default="data">
+                            <span v-html="data.row.desc"></span>
+                          </template>
+                        </tiny-grid-column>
+                      </tiny-grid>
+                    </div>
                   </template>
                 </div>
               </div>
             </div>
           </div>
-          <tiny-tabs v-else v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
+          <tiny-tabs
+            v-else
+            v-model="activeTab"
+            ref="demoTabs"
+            :class="['docs-content-tabs', cmpId === 'loading' && 'docs-content-tabs-highlight']"
+            @click="onTabsClick"
+          >
             <tiny-tab-item :title="i18nByKey('demos')" name="demos">
               <!-- demos列表 -->
               <template v-if="currJson?.demos?.length">
@@ -107,6 +115,7 @@
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
+                      @mounted="demoMounted"
                     />
                   </div>
                   <div v-else>
@@ -130,12 +139,12 @@
                 </template>
               </div>
             </tiny-tab-item>
-            <tiny-tab-item v-if="showApiTab && !isRunningTest" title="API" name="api">
+            <tiny-tab-item v-if="showApiTab && !isRunningTest && currJson.apis?.length" title="API" name="api">
               <!-- api文档 -->
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
                   <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-                  <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
+                  <div class="mt20 wp100" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
                     <div class="ti-f-r ti-f-pos-start ti-fw-bold">
                       <div :id="`cmp-${oneGroup.name}`" class="ti-f18">
                         {{ oneGroup.name }}
@@ -149,69 +158,75 @@
                         <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
                           {{ key }}
                         </div>
-                        <tiny-grid
-                          ref="apiTableRef"
-                          class="api-table"
-                          :data="tableData[oneGroup.name][key]"
-                          :expand-config="apiExpandConf"
-                          row-id="name"
-                        >
-                          <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
-                            <template #default="{ row }">
-                              <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
-                              <div v-if="row.depTypes">
-                                <async-highlight
-                                  v-for="(k, i) in row.depTypes"
-                                  :key="i"
-                                  :code="currJson.types[k]?.code"
-                                  types="ts"
-                                ></async-highlight>
-                              </div>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
-                            <template #default="{ row }">
-                              <span class="api-table-name">
-                                <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                                <span v-else>{{ row.name }}</span>
-                              </span>
-                              <version-tip
-                                v-if="row.meta || row.versionTipOption"
-                                :meta="row.meta"
-                                v-bind="row.versionTipOption"
-                                render-type="tag"
-                                tip-subject="api"
-                              >
-                              </version-tip>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column
-                            v-if="tableData[oneGroup.name][key].find((i) => i.type)"
-                            field="type"
-                            :title="i18nByKey('propType')"
-                            :width="columnWidth[key][1]"
+                        <div class="api-table-box">
+                          <tiny-grid
+                            ref="apiTableRef"
+                            class="api-table"
+                            :data="tableData[oneGroup.name][key]"
+                            :expand-config="apiExpandConf"
+                            row-id="name"
                           >
-                            <template #default="{ row }">
-                              <span
-                                :class="{ 'type-link': row.typeAnchorName || row.linkTo }"
-                                :id="row.typeAnchorName ? row.type : ''"
-                                @click="toOuterType(row)"
-                                >{{ row.type }} <icon-outer-link v-if="row.linkTo"></icon-outer-link
-                              ></span>
-                            </template>
-                          </tiny-grid-column>
-                          <tiny-grid-column
-                            v-if="key === 'props'"
-                            field="defaultValue"
-                            :title="i18nByKey('defValue')"
-                            :width="columnWidth[key][2]"
-                          ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                            <template #default="data">
-                              <span v-html="data.row.desc"></span>
-                            </template>
-                          </tiny-grid-column>
-                        </tiny-grid>
+                            <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
+                              <template #default="{ row }">
+                                <async-highlight
+                                  v-if="row.code"
+                                  :code="row.code.trim()"
+                                  :types="chartCode ? 'html' : 'ts'"
+                                ></async-highlight>
+                                <div v-if="row.depTypes">
+                                  <async-highlight
+                                    v-for="(k, i) in row.depTypes"
+                                    :key="i"
+                                    :code="currJson.types[k]?.code"
+                                    types="ts"
+                                  ></async-highlight>
+                                </div>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
+                              <template #default="{ row }">
+                                <span class="api-table-name">
+                                  <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
+                                  <span v-else>{{ row.name }}</span>
+                                </span>
+                                <version-tip
+                                  v-if="row.meta || row.versionTipOption"
+                                  :meta="row.meta"
+                                  v-bind="row.versionTipOption"
+                                  render-type="tag"
+                                  tip-subject="api"
+                                >
+                                </version-tip>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column
+                              v-if="tableData[oneGroup.name][key].find((i) => i.type)"
+                              field="type"
+                              :title="i18nByKey('propType')"
+                              :width="columnWidth[key][1]"
+                            >
+                              <template #default="{ row }">
+                                <span
+                                  :class="{ 'type-link': row.typeAnchorName || row.linkTo }"
+                                  :id="row.typeAnchorName ? row.type : ''"
+                                  @click="toOuterType(row)"
+                                  >{{ row.type }} <icon-outer-link v-if="row.linkTo"></icon-outer-link
+                                ></span>
+                              </template>
+                            </tiny-grid-column>
+                            <tiny-grid-column
+                              v-if="key === 'props' || key === 'options'"
+                              field="defaultValue"
+                              :title="i18nByKey('defValue')"
+                              :width="columnWidth[key][2]"
+                            ></tiny-grid-column>
+                            <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                              <template #default="data">
+                                <span v-html="data.row.desc"></span>
+                              </template>
+                            </tiny-grid-column>
+                          </tiny-grid>
+                        </div>
                       </template>
                     </div>
                   </div>
@@ -228,8 +243,7 @@
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
             type="dot"
-            mask-class="custom-active-anchor"
-            container-id="#doc-layout"
+            container-id="#doc-layout-scoller"
             @link-click="handleAnchorClick"
           >
           </tiny-anchor>
@@ -242,12 +256,13 @@
         {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
       </div>
     </div>
+    <div id="footer"></div>
   </div>
-  <div id="footer"></div>
 </template>
 
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
@@ -279,6 +294,8 @@ export default defineComponent({
     const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
     const anchorRefreshKey = ref(0)
     const apiTableRef = ref()
+    const route = useRoute()
+
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: getWord('zh-CN', 'en-US'),
@@ -310,12 +327,13 @@ export default defineComponent({
       currAnchorLinks: computed(() => (state.activeTab === 'demos' ? state.demoAnchorLinks : state.apiAnchorLinks)),
       // 单demo显示时
       singleDemo: null,
-      activeTab: 'demos',
+      activeTab: route.hash === '#api' ? 'api' : 'demos',
       tableData: {},
       currApiTypes: [],
       showApiTab: computed(() => state.currApiTypes.length),
       columnWidth: {
         props: ['15%', '20%', '15%'],
+        options: ['15%', '20%', '15%'],
         events: ['15%', '25%', 0],
         methods: ['15%', '20%', 0],
         slots: ['15%', 0, 0],
@@ -329,11 +347,32 @@ export default defineComponent({
         activeMethod: (row) => row.typeAnchorName,
         showIcon: true // 配置是否显示展开图标
       },
-      contributors: [] // 贡献者
+      contributors: [], // 贡献者
+      chartCode: false
     })
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+
+    let finishNum = 0
+    let isAllMounted = false
+    let demoMountedResolve
+    const demoMounted = () => {
+      finishNum++
+      if (finishNum === state.currJson.demos.length) {
+        isAllMounted = true
+        demoMountedResolve(true)
+      }
+    }
+
+    const allDemoMounted = async () => {
+      if (isAllMounted) {
+        return isAllMounted
+      }
+      return new Promise((resolve) => {
+        demoMountedResolve = resolve
+      })
+    }
 
     const getApiAnchorLinks = () => {
       if (!state.currJson.apis?.length) {
@@ -436,7 +475,7 @@ export default defineComponent({
     const scrollByHash = (hash) => {
       setTimeout(() => {
         if (!hash) {
-          document.getElementById('doc-layout').scrollTo({
+          document.getElementById('doc-layout-scoller').scrollTo({
             top: 0,
             left: 0
           })
@@ -447,19 +486,18 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log('querySelector has special character:', err)
-          }
+          } catch (err) {}
           if (scrollTarget && !isRunningTest) {
-            document.getElementById('doc-layout').scrollTo({
-              top: scrollTarget.offsetTop,
+            // doc-layout-scoller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
+            // 所以滚动需要修正 tab-title的占位高度才行
+            document.getElementById('doc-layout-scoller').scrollTo({
+              top: scrollTarget.offsetTop + 52,
               left: 0,
               behavior: 'smooth'
             })
           }
         }
-      }, 600)
+      }, 0)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -467,7 +505,7 @@ export default defineComponent({
       let hash = router.currentRoute.value.hash?.slice(1)
       if (hash !== 'API') {
         setTimeout(() => {
-          document.getElementById('doc-layout').scrollTo({
+          document.getElementById('doc-layout-scoller').scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
@@ -489,6 +527,9 @@ export default defineComponent({
           `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
         )
       ]
+
+      state.chartCode = getWebdocPath(state.cmpId) === 'chart'
+
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
         state.activeTab = 'apis'
@@ -565,7 +606,10 @@ export default defineComponent({
           }
 
           // F5刷新加载时，跳到当前示例
-          scrollByHash(hash)
+          // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
+          return allDemoMounted().then(() => {
+            scrollByHash(hash)
+          })
         })
         .finally(() => {
           // 获取组件贡献者
@@ -582,18 +626,18 @@ export default defineComponent({
     }
 
     const onDocLayoutScroll = debounce(100, false, () => {
-      const docLayout = document.getElementById('doc-layout')
+      const docLayout = document.getElementById('doc-layout-scoller')
       const { scrollTop, scrollHeight, clientHeight: layoutHeight } = docLayout
       const headerHeight = document.querySelector('.docs-header')?.clientHeight || 0
       const footerHeight = document.getElementById('footer')?.clientHeight || 0
       const anchorHeight = document.querySelector('#anchor')?.clientHeight || 0
-      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout视口下隐藏的部分高度
+      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout-scoller视口下隐藏的部分高度
       state.anchorAffix = layoutHeight - headerHeight - (footerHeight - remainHeight) > anchorHeight
     })
 
     const setScrollListener = () => {
       nextTick(() => {
-        const docLayout = document.getElementById('doc-layout')
+        const docLayout = document.getElementById('doc-layout-scoller')
         if (docLayout) {
           docLayout.addEventListener('scroll', onDocLayoutScroll)
         }
@@ -601,17 +645,19 @@ export default defineComponent({
     }
 
     const removeScrollListener = () => {
-      const docLayout = document.getElementById('doc-layout')
+      const docLayout = document.getElementById('doc-layout-scoller')
       if (docLayout) {
         docLayout.removeEventListener('scroll', onDocLayoutScroll)
       }
     }
 
     const fn = {
+      demoMounted,
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
-      onTabsClick: () => {
+      onTabsClick: (data) => {
+        router.push(`#${data.name}`)
         scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
@@ -653,11 +699,12 @@ export default defineComponent({
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
+          e.preventDefault()
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-
-          e.preventDefault()
+          router.push(data.link)
+          scrollByHash(hash)
         }
       }
     }
@@ -669,6 +716,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 切换组件时tabs激活页变成demos
+          state.activeTab = 'demos'
           // 每次切换组件都需要让锚点组件重新刷新
           anchorRefreshKey.value++
         }
@@ -722,12 +771,13 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .docs-header {
-  position: sticky;
-  top: 0;
-  z-index: var(--docs-header-zindex);
   padding: 16px 40px;
   background-color: #fff;
   box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
+
+  &.docs-header-highlight {
+    z-index: var(--docs-header-zindex-highlight);
+  }
 
   .docs-title-wrap {
     flex: 1;
@@ -760,22 +810,28 @@ export default defineComponent({
 }
 
 .docs-content {
-  margin: 16px 0 120px;
+  flex: 1;
+  overflow: hidden auto;
+  padding: 16px 0 0;
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
+    width: 100%;
     flex: 1;
     display: flex;
     justify-content: center;
-    min-width: 680px;
     padding: 0 40px;
   }
 
   .docs-content-tabs {
-    --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: 18px;
-    --ti-tabs-header-font-active-text-color: #2f5bea;
-    --ti-tabs-item-active-border-color: #2f5bea;
+    --tv-Tabs-heigh: 48px;
+    --tv-Tabs-item-font-size: 18px;
+    --tv-Tabs-header-font-active-text-color: #2f5bea;
+    --tv-Tabs-item-active-border-color: #2f5bea;
+
+    &.docs-content-tabs-highlight :deep(.tiny-tabs__header) {
+      z-index: var(--docs-layout-sider-zindex-highlight);
+    }
 
     flex: 1;
     transition: all ease-in-out 0.3s;
@@ -784,7 +840,6 @@ export default defineComponent({
 
     :deep(> .tiny-tabs__header) {
       position: sticky;
-      top: 90px;
       z-index: var(--docs-tabs-header-zindex);
       background-color: #fff;
 
@@ -813,14 +868,18 @@ export default defineComponent({
   }
 }
 
-.api-table {
-  --ti-grid-font-size: 14px;
-  --ti-grid-default-header-column-height: 40px;
-
+.api-table-box {
+  border-left: 1px solid rgb(239, 239, 245);
+  border-right: 1px solid rgb(239, 239, 245);
+  overflow-x: auto;
   width: 100%;
+}
+
+.api-table {
+  width: 100%;
+  min-width: 640px;
   table-layout: fixed;
   border-collapse: collapse;
-  border: 1px solid rgb(239, 239, 245);
 
   a,
   .type-link {
@@ -909,7 +968,7 @@ export default defineComponent({
 .all-demos-container,
 .all-api-container {
   flex: 1;
-  padding-top: 32px;
+  padding: 32px 0;
   scroll-behavior: smooth;
 }
 
@@ -940,7 +999,6 @@ export default defineComponent({
   }
 
   :deep(.tiny-anchor-link) {
-    margin-bottom: 10px;
     font-size: 12px;
 
     a {

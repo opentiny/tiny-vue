@@ -256,7 +256,14 @@ export function svg({ name = 'Icon', component }) {
       defineComponent({
         name: $prefix + name,
         setup: (props, context) => {
-          const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
+          const {
+            fill,
+            width,
+            height,
+            'custom-class': customClass,
+            'first-color': firstColor,
+            'second-color': secondColor
+          } = context.attrs || {}
           const mergeProps = Object.assign({}, props, propData || null)
           const mode = resolveMode(mergeProps, context)
           const isMobileFirst = mode === 'mobile-first'
@@ -271,7 +278,13 @@ export function svg({ name = 'Icon', component }) {
 
           const extend = Object.assign(
             {
-              style: { fill, width, height },
+              style: {
+                fill,
+                width,
+                height,
+                '--tiny-first-color': firstColor || '',
+                '--tiny-second-color': secondColor || ''
+              },
               class: className,
               isSvg: true
             },

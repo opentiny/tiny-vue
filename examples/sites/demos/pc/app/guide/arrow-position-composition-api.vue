@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Alert as TinyAlert, Button as TinyButton, Guide as TinyGuide } from '@opentiny/vue'
+import { TinyAlert, TinyButton, TinyGuide } from '@opentiny/vue'
 
 const showStep1 = ref(false)
 const showStep2 = ref(false)

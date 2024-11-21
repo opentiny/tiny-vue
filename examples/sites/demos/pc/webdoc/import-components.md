@@ -29,7 +29,7 @@ export default {
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
 
@@ -50,7 +50,7 @@ Vite
 // vite.config.ts
 
 import Components from 'unplugin-vue-components/vite'
-import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+import { TinyVueResolver } from '@opentiny/unplugin-tiny-vue'
 
 export default {
   plugins: [
@@ -64,7 +64,7 @@ export default {
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const Components = require('unplugin-vue-components/webpack').default
 const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
@@ -84,7 +84,14 @@ module.exports = defineConfig({
 
 ### 多组件引入
 
-多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `Button` 和 `Alert` 组件为例）：
+<div class="tip custom-block">
+<br />
+温馨提示：带有Tiny前缀的组件导出自3.17.0开始支持。若使用之前版本，需使用别名。
+<br />
+<p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+</div>
+
+多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `TinyButton` 和 `TinyAlert` 组件为例）：
 
 ```html
 <template>
@@ -95,12 +102,12 @@ module.exports = defineConfig({
 </template>
 
 <script>
-  import { Button, Alert } from '@opentiny/vue'
+  import { TinyButton, TinyAlert } from '@opentiny/vue'
 
   export default {
     components: {
-      TinyButton: Button,
-      TinyAlert: Alert
+      TinyButton,
+      TinyAlert
     }
   }
 </script>
@@ -151,7 +158,7 @@ export default {
 }
 ```
 
-#### 温馨提示：
+#### 温馨提示
 
 因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
 

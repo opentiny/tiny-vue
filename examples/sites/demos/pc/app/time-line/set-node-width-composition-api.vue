@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 
 const active1 = ref(0)
 const active2 = ref(1)

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { RichTextEditor as TinyRichTextEditor } from '@opentiny/vue'
+import { TinyRichTextEditor } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const value = ref('你好 Opentiny!')

@@ -17,7 +17,7 @@
 @input-prefix-cls: ~'@{css-prefix}input';
 
 .@{hrapprover-prefix-cls} {
-  .component-css-vars-hrapprover();
+  .inject-Hrapprover-vars();
 
   & &__list {
     height: 180px;
@@ -26,21 +26,21 @@
   }
 
   & &__error {
-    border: solid 1px var(--ti-hrapprover-error-border-color);
+    border: solid 1px var(--tv-Hrapprover-error-border-color);
   }
 
   table {
     tbody {
       tr {
-        color: var(--ti-hrapprover-table-text-color);
-        background: var(--ti-hrapprover-tr-bg-color);
+        color: var(--tv-Hrapprover-table-text-color);
+        background: var(--tv-Hrapprover-tr-bg-color);
 
         &:hover {
-          background: var(--ti-hrapprover-tr-hover-bg-color);
+          background: var(--tv-Hrapprover-tr-hover-bg-color);
         }
 
         &:nth-child(odd) {
-          background: var(--ti-hrapprover-tr-odd-bg-color);
+          background: var(--tv-Hrapprover-tr-odd-bg-color);
         }
       }
     }
@@ -54,27 +54,27 @@
     th {
       border-left: none;
       padding: 2px 0 2px 8px;
-      height: var(--ti-hrapprover-th-height);
+      height: var(--tv-Hrapprover-th-height);
     }
 
     td {
       padding: 2px 0 2px 8px;
-      height: var(--ti-hrapprover-th-height);
-      font-size: var(--ti-hrapprover-table-font-size);
+      height: var(--tv-Hrapprover-th-height);
+      font-size: var(--tv-Hrapprover-table-font-size);
     }
 
     thead {
-      border-bottom: 1px solid var(--ti-hrapprover-thead-border-color);
+      border-bottom: 1px solid var(--tv-Hrapprover-thead-border-color);
       text-align: left;
-      background: var(--ti-hrapprover-thead-bg-color);
-      color: var(--ti-hrapprover-table-text-color);
+      background: var(--tv-Hrapprover-thead-bg-color);
+      color: var(--tv-Hrapprover-table-text-color);
 
       th {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-size: var(--ti-hrapprover-table-font-size);
-        color: var(--ti-hrapprover-table-text-color);
+        font-size: var(--tv-Hrapprover-table-font-size);
+        color: var(--tv-Hrapprover-table-text-color);
       }
     }
   }

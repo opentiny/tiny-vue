@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Pager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   }
 }
 </script>

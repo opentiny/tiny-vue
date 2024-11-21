@@ -53,20 +53,20 @@
 </template>
 
 <script lang="jsx">
-import { Pager, Search, Button, Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+import { TinyPager, TinySearch, TinyButton, TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search,
-    TinyButton: Button,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinySearch,
+    TinyButton,
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 10,

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { Alert as TinyAlert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue'
 import { iconBoat, iconWarningTriangle } from '@opentiny/vue-icon'
 
 const TinyIconBoat = iconBoat()

@@ -4,6 +4,7 @@
       :data="tableData"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
+      show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="max" title="最大值" :editor="{ component: 'input' }"></tiny-grid-column>
@@ -15,7 +16,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const validRules = {
   current: {

@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import { TimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker
+    TinyTimePicker
   },
   data() {
     return {
-      value1: new Date(2016, 9, 10, 18, 40)
+      value1: new Date(2016, 9, 10, 18, 40, 20)
     }
   }
 }
@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 200px;
+  width: 280px;
 }
 p {
   font-size: 14px;

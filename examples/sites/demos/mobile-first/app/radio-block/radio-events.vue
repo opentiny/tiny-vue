@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { RadioButton, RadioGroup, Modal } from '@opentiny/vue'
+import { TinyRadioButton, TinyRadioGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadioButton: RadioButton,
-    TinyRadioGroup: RadioGroup
+    TinyRadioButton,
+    TinyRadioGroup
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     change(label) {
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，选中的 Radio label 值为：' + label,
         status: 'info'
       })

@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { TimePickerMobile, Button } from '@opentiny/vue'
+import { TinyTimePickerMobile, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePickerMobile: TimePickerMobile,
-    TinyButton: Button
+    TinyTimePickerMobile,
+    TinyButton
   },
   data() {
     return {

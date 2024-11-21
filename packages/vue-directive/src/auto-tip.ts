@@ -20,6 +20,9 @@ interface TooltipDirectiveConfig {
   placement?: string
 }
 
+// 高度计算最多可以允许的误差，修复checkbox的tip提示一直显示的bug（scrollHeight：15，clientHeight：14）
+const MISTAKE_VALUE = 2
+
 /** v-auto-tip 绑定值。 支持 falsy值 或 TooltipDirectiveConfig 值， 当传入falsy值时，表示禁用tooltip */
 type BoundingValueType = undefined | false | TooltipDirectiveConfig
 
@@ -32,7 +35,8 @@ const tooltipContent = hooks.ref('')
 // 判断是否超出隐藏
 const isEllipsis = (currentTarget) =>
   currentTarget?.textContent &&
-  (currentTarget.scrollWidth > currentTarget.clientWidth || currentTarget.scrollHeight > currentTarget.clientHeight)
+  (currentTarget.scrollWidth > currentTarget.clientWidth ||
+    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE)
 
 const isAlwaysShowTip = (currentTarget) => Boolean(currentTarget?.boundingValue?.always)
 

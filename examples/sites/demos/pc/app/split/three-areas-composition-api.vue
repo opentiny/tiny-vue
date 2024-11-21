@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Split as TinySplit } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 const split1 = ref(0.8)
 const split2 = ref(0.25)
@@ -29,7 +29,6 @@ const split2 = ref(0.25)
 <style scoped>
 .split-nest {
   height: 300px;
-  border: 1px solid #d9d9d9;
 }
 
 .split-content {

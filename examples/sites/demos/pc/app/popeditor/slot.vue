@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import { Popeditor, Input, Button } from '@opentiny/vue'
+import { TinyPopeditor, TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyPopeditor,
+    TinyInput,
+    TinyButton
   },
   data() {
     const dataset = [
@@ -103,7 +103,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',

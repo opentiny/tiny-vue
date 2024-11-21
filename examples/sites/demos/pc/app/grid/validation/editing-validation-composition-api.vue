@@ -2,17 +2,12 @@
   <div>
     <tiny-grid
       :data="tableData"
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column
-        field="name"
-        title="名称"
-        sortable
-        align="right"
-        :editor="{ component: 'input' }"
-      ></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" sortable :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input' }"></tiny-grid-column>
@@ -22,7 +17,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const validRules = {
   name: [

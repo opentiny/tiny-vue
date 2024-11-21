@@ -1,18 +1,16 @@
 <template>
-  <div class="demo-dept">
+  <div class="demo-dept-class">
     <h3 class="title">基本用法</h3>
-    <div class="content">
-      <tiny-dept v-model="value" :before-confirm="beforeConfirm"></tiny-dept>
-    </div>
+    <tiny-dept v-model="value" :before-confirm="beforeConfirm"></tiny-dept>
   </div>
 </template>
 
 <script lang="jsx">
-import { Dept, Modal } from '@opentiny/vue'
+import { TinyDept, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDept: Dept
+    TinyDept
   },
   setup() {
     return {
@@ -22,7 +20,7 @@ export default {
   methods: {
     beforeConfirm() {
       return new Promise((resolve, reject) => {
-        Modal.confirm('确定关闭弹框？').then((res) => {
+        TinyModal.confirm('确定关闭弹框？').then((res) => {
           res === 'confirm' ? resolve() : reject(new Error('已取消关闭'))
         })
       })
@@ -32,8 +30,8 @@ export default {
 </script>
 
 <style scoped>
-.demo-dept .tiny-dept {
-  width: 270px;
+.demo-dept-class {
+  width: 280px;
 }
 .title {
   font-size: 14px;

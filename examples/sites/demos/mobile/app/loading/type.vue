@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   data() {
@@ -14,7 +14,7 @@ export default {
     }
   },
   mounted() {
-    this.loadingInstance = Loading.service({
+    this.loadingInstance = TinyLoading.service({
       tiny_mode: 'mobile',
       target: document.getElementById('tiny-mobile-loading2'),
       type: 'simple'

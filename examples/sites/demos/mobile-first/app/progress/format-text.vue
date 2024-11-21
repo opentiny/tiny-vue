@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { Progress, Button } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProgress: Progress,
-    TinyButton: Button
+    TinyProgress,
+    TinyButton
   },
   methods: {
     formatText() {

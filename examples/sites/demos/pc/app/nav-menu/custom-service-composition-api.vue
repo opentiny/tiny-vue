@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { NavMenu as TinyNavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 
 const fields = {
   textField: 'label',

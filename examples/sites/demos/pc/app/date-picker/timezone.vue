@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import { DatePicker, Modal } from '@opentiny/vue'
+import { TinyDatePicker, TinyModal } from '@opentiny/vue'
 import tzData from '@opentiny/vue-renderless/picker/timezone'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     selectChange(tz) {
-      Modal.message({ message: `当前值为 ${tz.tz.name}`, status: 'info' })
+      TinyModal.message({ message: `当前值为 ${tz.tz.name}`, status: 'info' })
     }
   }
 }
@@ -55,6 +55,6 @@ export default {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 </style>

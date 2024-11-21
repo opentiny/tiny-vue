@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
+import { TinyAnchor, TinyRow, TinyCol } from '@opentiny/vue'
 
 const links = ref([
   {
@@ -67,25 +67,29 @@ function handleClick(e, link) {
 .scroll-container {
   height: 40vh;
   overflow: auto;
+  text-align: center;
+  font-size: 24px;
+}
+.scroll-container > div {
+  padding-top: 20%;
 }
 .sec-1 {
   height: 50vh;
-  background: rgba(135, 206, 235, 0.1);
+  background: #b6d4f2;
 }
 .sec-2 {
   height: 50vh;
-  background: rgba(135, 206, 235, 0.3);
+  background: #c2c2c2;
 }
 .sec-3 {
-  background: rgba(135, 206, 235, 0.6);
-  padding-top: 20vh;
+  background: #fff4e8;
 }
 .sec-3-1 {
   height: 50vh;
-  background: rgba(135, 206, 235, 0.8);
+  background: #b9e683;
 }
 .sec-3-2 {
   height: 50vh;
-  background: rgba(135, 206, 235, 1);
+  background: #f2c5c2;
 }
 </style>

@@ -1,17 +1,18 @@
 <template>
   <div class="button-group-demo">
     <tiny-button-group size="medium" :data="groupData" v-model="checkedVal"></tiny-button-group>
+    <tiny-button-group :data="groupData" v-model="checkedVal"></tiny-button-group>
     <tiny-button-group size="small" :data="groupData" v-model="checkedVal"></tiny-button-group>
     <tiny-button-group size="mini" :data="groupData" v-model="checkedVal"></tiny-button-group>
   </div>
 </template>
 
 <script>
-import { ButtonGroup } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButtonGroup: ButtonGroup
+    TinyButtonGroup
   },
   data() {
     return {

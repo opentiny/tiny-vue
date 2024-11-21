@@ -34,20 +34,13 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>
-
-<style>
-.demo-drop .tiny-dropdown .tiny-dropdown__trigger.tiny-dropdown__caret-button {
-  padding-left: 14px;
-  padding-right: 14px;
-}
-</style>

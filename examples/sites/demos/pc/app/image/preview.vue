@@ -3,17 +3,17 @@
     <div>点击图片预览大图</div>
     <br />
     <div class="demo-image__preview">
-      <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index></tiny-image>
+      <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index :appendToBody="false"></tiny-image>
     </div>
   </div>
 </template>
 
 <script>
-import { Image } from '@opentiny/vue'
+import { TinyImage } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImage: Image
+    TinyImage
   },
   data() {
     return {

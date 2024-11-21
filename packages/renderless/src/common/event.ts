@@ -41,6 +41,7 @@ export const emitEvent = (emit, name, ...args) => {
 
     args.unshift(event)
     args.unshift(name)
+    // eslint-disable-next-line prefer-spread
     emit.apply(null, args)
   }
 
@@ -58,4 +59,27 @@ export const getActualTarget = (e) => {
     return null
   }
   return e.target.shadowRoot && e.composed ? e.composedPath()[0] || e.target : e.target
+}
+
+export const correctTarget = (event, target?: EventTarget) => {
+  let newTarget
+
+  if (event.target === null && target) {
+    newTarget = target
+  } else {
+    const nodeList = event.composedPath()
+    if (event.target !== nodeList[0]) {
+      newTarget = nodeList[0]
+    }
+  }
+
+  if (newTarget) {
+    Object.defineProperty(event, 'target', {
+      get() {
+        return newTarget
+      },
+      enumerable: true,
+      configurable: true
+    })
+  }
 }

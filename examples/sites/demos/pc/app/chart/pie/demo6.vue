@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartPie } from '@opentiny/vue'
+import { TinyHuichartsPie } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPie: ChartPie
+    TinyPie: TinyHuichartsPie
   },
   data() {
     return {

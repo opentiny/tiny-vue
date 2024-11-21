@@ -26,10 +26,20 @@
 
   &.row-justify-space-around {
     @apply justify-around;
+
+    &:after,
+    &:before {
+      @apply hidden;
+    }
   }
 
   &.row-justify-space-between {
     @apply justify-between;
+
+    &:after,
+    &:before {
+      @apply hidden;
+    }
   }
 
   &.row-align-top {

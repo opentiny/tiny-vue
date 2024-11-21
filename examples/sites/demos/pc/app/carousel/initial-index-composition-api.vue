@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem } from '@opentiny/vue'
 </script>
 
 <style scoped>

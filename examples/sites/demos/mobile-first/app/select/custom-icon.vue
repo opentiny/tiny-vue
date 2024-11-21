@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { Select, Option } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 import { IconPopup } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {

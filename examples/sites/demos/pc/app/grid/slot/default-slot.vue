@@ -15,13 +15,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Tooltip } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyTooltip } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyTooltip,
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

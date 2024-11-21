@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { VirtualScrollBox } from '@opentiny/vue'
+import { TinyVirtualScrollBox } from '@opentiny/vue'
 
 const genColumn = (total) => {
   const columns = []
@@ -58,7 +58,7 @@ const { rows, rowSizes } = genRow(20000)
 
 export default {
   components: {
-    TinyVirtualScrollBox: VirtualScrollBox
+    TinyVirtualScrollBox
   },
   data() {
     return {

@@ -6,17 +6,17 @@
       <tiny-button @click="scrollToColumn">滚动到500列</tiny-button>
     </div>
     <br />
-    <tiny-grid ref="tinyGrid" height="300"> </tiny-grid>
+    <tiny-grid ref="tinyGrid" height="300" column-width="100"> </tiny-grid>
   </div>
 </template>
 
 <script lang="jsx">
-import { Grid, Button } from '@opentiny/vue'
+import { TinyGrid, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyButton: Button
+    TinyGrid,
+    TinyButton
   },
   data() {
     return {}
@@ -53,12 +53,12 @@ export default {
       this.$refs.tinyGrid.scrollTo(800, 300)
     },
     scrollToRow() {
-      let row = this.$refs.tinyGrid.getData(49)
+      let row = this.$refs.tinyGrid.getData(50)
 
       this.$refs.tinyGrid.scrollToRow(row)
     },
     scrollToColumn() {
-      let column = this.$refs.tinyGrid.getColumnByField('attr499')
+      let column = this.$refs.tinyGrid.getColumnByField('attr500')
 
       this.$refs.tinyGrid.scrollToColumn(column)
     }

@@ -16,7 +16,7 @@
 @image-prefix-cls: ~'@{css-prefix}image';
 
 .@{image-prefix-cls} {
-  .component-css-vars-image();
+  .inject-Image-vars();
 
   position: relative;
   display: inline-block;
@@ -41,19 +41,19 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    font-size: var(--ti-image-error-font-size);
-    color: var(--ti-image-error-text-color);
+    font-size: var(--tv-Image-error-font-size);
+    color: var(--tv-Image-error-text-color);
     vertical-align: middle;
-    line-height: var(--ti-image-error-line-height);
+    line-height: var(--tv-Image-error-line-height);
 
     &-text {
       margin-top: 4px;
-      display: var(--ti-image-error-display);
+      display: inline-block;
     }
 
     & > .tiny-svg {
       font-size: 16px;
-      display: var(--ti-image-error-display);
+      display: inline-block;
     }
   }
 
@@ -63,12 +63,12 @@
 
   &__error,
   &__placeholder {
-    background: var(--ti-image-error-bg-color);
+    background: var(--tv-Image-error-bg-color);
   }
 
   &__error {
-    background: var(--ti-image-error-bg-image-url) no-repeat center/50%;
-    background-color: var(--ti-image-error-bg-color);
+    background: var(--tv-Image-error-bg-image-url) no-repeat center/50%;
+    background-color: var(--tv-Image-error-bg-color);
   }
 
   &__error,

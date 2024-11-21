@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import { Autocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAutocomplete: Autocomplete
+    TinyAutocomplete
   },
   data() {
     return {

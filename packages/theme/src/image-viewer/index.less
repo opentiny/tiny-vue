@@ -17,10 +17,10 @@
 @image-viewer-prefix-cls: ~'@{css-prefix}image-viewer';
 
 .@{image-viewer-prefix-cls} {
-  .component-css-vars-image-viewer();
+  .inject-ImageViewer-vars();
 
   &__wrapper {
-    background: var(--ti-image-viewer-mask-wrap-bg-color);
+    background: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -35,30 +35,32 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    opacity: var(--ti-image-viewer-btn-opacity);
+    opacity: 1;
     box-sizing: border-box;
     .user-select(none);
 
     svg {
-      fill: var(--ti-image-viewer-text-color);
+      width: 20px;
+      height: 20px;
+      fill: var(--tv-ImageViewer-text-color);
     }
   }
 
   &__close {
-    top: var(--ti-image-viewer-close-top);
-    right: var(--ti-image-viewer-close-right);
-    width: var(--ti-image-viewer-close-width);
-    height: var(--ti-image-viewer-close-height);
-    font-size: var(--ti-image-viewer-close-font-size);
-    background-color: var(--ti-image-viewer-close-bg-color);
+    top: 32px;
+    right: 32px;
+    width: 40px;
+    height: 40px;
+    font-size: var(--tv-ImageViewer-close-font-size);
+    background-color: var(--tv-ImageViewer-close-bg-color);
 
     &:hover {
       cursor: pointer;
-      background-color: var(--ti-image-viewer-close-bg-color-hover);
+      background-color: #606266;
     }
   }
 
-  &__canvas {
+  &__canvas { 
     width: 100%;
     height: 100%;
     display: flex;
@@ -68,29 +70,26 @@
 
   &__actions {
     left: 50%;
-    bottom: var(--ti-image-viewer-actions-bottom);
+    bottom: 32px;
     transform: translateX(-50%);
-    width: var(--ti-image-viewer-actions-width);
-    height: var(--ti-image-viewer-actions-height);
-    padding: 0 23px;
-    background-color: var(--ti-image-viewer-close-bg-color);
-    border-radius: var(--ti-image-viewer-actions-border-radius);
+    width: 248px;
+    height: var(--tv-ImageViewer-actions-height);
+    padding: 10px 24px; 
+    background-color: var(--tv-ImageViewer-close-bg-color);
+    border-radius: var(--tv-ImageViewer-actions-border-radius);
   }
 
   &__actions-inner {
     width: 100%;
     height: 100%;
-    text-align: justify;
     cursor: default;
-    font-size: var(--ti-image-viewer-actions-inner-font-size);
     display: flex;
     align-items: center;
-    justify-content: var(--ti-image-viewer-actions-inner-justify-content);
+    justify-content: space-around;
 
     svg {
-      fill: var(--ti-image-viewer-actions-inner-text-color);
-      margin-right: var(--ti-image-viewer-actions-icon-margin-right);
-      font-size: var(--ti-image-viewer-actions-icon-size);
+      fill: var(--tv-ImageViewer-actions-inner-text-color);
+      margin-right: var(--tv-ImageViewer-actions-icon-margin-right);
 
       &:hover {
         cursor: pointer;
@@ -99,38 +98,41 @@
   }
 
   &__actions-divider {
-    display: var(--ti-image-viewer-actions-divider-display);
+    display: inline-block;
   }
 
   &__actions-count {
-    font-size: var(--ti-image-viewer-actions-count-font-size);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: var(--tv-ImageViewer-actions-count-font-size);
     color: #fff;
     position: relative;
-    margin-left: var(--ti-image-viewer-actions-count-margin-left);
   }
 
   &__next,
   &__prev {
     top: 50%;
-    width: var(--ti-image-viewer-next-width);
-    height: var(--ti-image-viewer-next-height);
-    font-size: var(--ti-image-viewer-next-font-size);
-    background-color: var(--ti-image-viewer-close-bg-color);
+    width: var(--tv-ImageViewer-next-width);
+    height: var(--tv-ImageViewer-next-height);
+    font-size: var(--tv-ImageViewer-next-font-size);
+    background-color: var(--tv-ImageViewer-close-bg-color);
 
     &:hover {
       cursor: pointer;
-      background-color: var(--ti-image-viewer-close-bg-color-hover);
+      background-color: #606266;
     }
   }
 
   &__prev {
     transform: translateY(-50%);
-    left: var(--ti-image-viewer-prev-left);
+    left: var(--tv-ImageViewer-prev-left);
   }
 
   &__next {
     transform: translateY(-50%);
-    right: var(--ti-image-viewer-next-right);
+    right: var(--tv-ImageViewer-next-right);
     text-indent: 2px;
   }
 
@@ -140,6 +142,6 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: var(--ti-image-viewer-mask-bg-color);
+    background: rgba(0,0,0,0.08);
   }
 }

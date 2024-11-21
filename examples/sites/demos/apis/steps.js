@@ -19,13 +19,14 @@ export default {
         },
         {
           name: 'advanced',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '是否开启高级向导模式',
             'en-US': 'Enable Advanced Wizard Mode'
           },
-          mode: ['mobile-first'],
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'advanced-steps',
           mfDemo: 'advanced-steps'
         },
         {
@@ -98,6 +99,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'node-width'
+        },
+        {
+          name: 'line',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 line 设置横向单链型步骤条',
+            'en-US': 'Set horizontal single chain step bar through line'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         },
         {
           name: 'name-field',

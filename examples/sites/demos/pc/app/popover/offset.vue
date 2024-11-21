@@ -37,13 +37,13 @@
 </template>
 
 <script lang="jsx">
-import { Popover, Button, Slider } from '@opentiny/vue'
+import { TinyPopover, TinyButton, TinySlider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinyButton: Button,
-    TinySlider: Slider
+    TinyPopover,
+    TinyButton,
+    TinySlider
   },
   data() {
     return {

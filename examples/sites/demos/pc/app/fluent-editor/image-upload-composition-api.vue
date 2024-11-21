@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Modal } from '@opentiny/vue'
+import { TinyModal } from '@opentiny/vue'
 import { TinyFluentEditor } from '@opentiny/vue'
 
 const content = ref('{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}')
@@ -30,7 +30,7 @@ const imageUpload = {
     next(file.downloadUrl)
   },
   fail: (serverError) => {
-    Modal.message({
+    TinyModal.message({
       message: `上传失败回调事件：${serverError}`,
       status: 'info'
     })

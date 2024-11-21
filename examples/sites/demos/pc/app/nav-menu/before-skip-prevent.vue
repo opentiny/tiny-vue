@@ -9,17 +9,17 @@
 </template>
 
 <script lang="jsx">
-import { NavMenu, Modal } from '@opentiny/vue'
+import { TinyNavMenu, TinyModal } from '@opentiny/vue'
 import { IconTotal } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyNavMenu: NavMenu,
+    TinyNavMenu,
     IconTotal: IconTotal()
   },
   methods: {
     handleSkip({ url }) {
-      Modal.message({
+      TinyModal.message({
         message: 'prevent 事件，当前URL：' + url,
         status: 'info'
       })

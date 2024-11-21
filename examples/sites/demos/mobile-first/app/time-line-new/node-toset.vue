@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import { TimeLineNew } from '@opentiny/vue'
+import { TinyTimeLineNew } from '@opentiny/vue'
 import { IconLoading, IconTime } from '@opentiny/vue-icon'
 
 export default {
   components: {
     IconLoading: IconLoading(),
     IconTime: IconTime(),
-    TinyTimeLine: TimeLineNew
+    TinyTimeLine: TinyTimeLineNew
   },
   data() {
     return {

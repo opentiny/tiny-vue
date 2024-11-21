@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Numeric } from '@opentiny/vue'
+import { TinyNumeric } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNumeric: Numeric
+    TinyNumeric
   },
   data() {
     return {

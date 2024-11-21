@@ -27,7 +27,7 @@ import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners, isScale } from '@opentiny/vue-renderless/grid/utils'
+import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridHeader from '../../header'
 import GridFooter from '../../footer'
@@ -103,7 +103,9 @@ function mergeTreeConfig(_vm) {
 }
 
 const renderEmptyPartFn = (opt) => {
-  const { _vm, tableData, $slots, renderEmpty } = opt
+  const { _vm, tableData } = opt
+  const { $grid = {}, renderEmpty } = _vm
+  const { slots } = $grid
   return () => {
     let emptyPartVnode = null
     let { computerTableBodyHeight } = _vm
@@ -112,8 +114,8 @@ const renderEmptyPartFn = (opt) => {
       let emptyVnodes
       let noEmptyClass = _vm.viewType === V_CARD || _vm.viewType === V_LIST
 
-      if ($slots.empty) {
-        emptyVnodes = $slots.empty.call(_vm, h)
+      if (slots.empty) {
+        emptyVnodes = slots.empty.call(_vm, h)
       } else if (renderEmpty) {
         emptyVnodes = [renderEmpty(h, _vm)]
       } else {
@@ -272,21 +274,13 @@ function getRenderer(opt) {
     visibleColumn
   } = opt
   const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const {
-    isCtxMenu,
-    isResizable,
-    renderEmpty,
-    scrollbarHeight,
-    selectToolbarStore,
-    tooltipContentOpts,
-    vaildTipOpts,
-    validOpts
-  } = _vm
+  const { isCtxMenu, isResizable, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } =
+    _vm
   const { selectToolbar, renderedToolbar } = $grid
 
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
-  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
+  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData })
   const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
@@ -316,9 +310,13 @@ const renderFooterBorder = (_vm) => {
 // 设置表格最外层元素类名
 function getTableAttrs(tableVm) {
   const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
-  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig = {} } = tableVm
+  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
   const { maxHeight, loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
-  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan, dropConfig = {} } = tableVm
+  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan } = tableVm
+
+  // 当用户传null值，解构得到的值为null，因此需要使用fallback值
+  const dropConfig = tableVm.dropConfig || {}
+  const mouseConfig = tableVm.mouseConfig || {}
 
   const map = {
     showHeader: 'show__head',
@@ -334,7 +332,7 @@ function getTableAttrs(tableVm) {
 
   // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
   if (isShapeTable && maxHeight) {
-    style.maxHeight = isScale(maxHeight) ? maxHeight : toNumber(maxHeight) + 'px'
+    style.maxHeight = Number(maxHeight) ? maxHeight + 'px' : maxHeight
   }
 
   return {

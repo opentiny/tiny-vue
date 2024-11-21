@@ -14,34 +14,76 @@
 @import './vars.less';
 
 @dialog-select-prefix-cls: ~'@{css-prefix}dialog-select';
-@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
 
 .@{dialog-select-prefix-cls} {
-  .component-css-vars-dialog-select();
-
-  .@{dialog-box-prefix-cls}__body {
-    margin-top: var(--ti-dialog-box-body-margin-top);
-    margin-bottom: var(--ti-dialog-box-body-margin-bottom);
-  }
+  .inject-DialogSelect-vars();
 
   .@{dialog-select-prefix-cls}__body {
+    &-search {
+      margin-bottom: var(--tv-DialogSelect-search-margin-bottom);
+    }
 
-    &-search,
     &-selector {
-      margin-bottom: var(--ti-dialog-select-body-margin-bottom);
+      .tiny-split-pane {
+        &.left-pane {
+          padding-right: var(--tv-DialogSelect-split-pane-padding-right-left);
+        }
+      }
+
+      .tiny-split-trigger-con-simple:hover {
+        .tiny-split-trigger {
+          background: transparent;
+        }
+      }
+
+      .tiny-split-trigger-vertical {
+        background-color: transparent;
+      }
+    }
+
+    &-grid {
+      border: var(--tv-DialogSelect-body-box-border);
+      border-radius: var(--tv-DialogSelect-border-radius);
+      overflow: hidden;
     }
 
     &-tree {
-      margin-right: var(--ti-dialog-select-tree-margin-right);
+      margin-right: var(--tv-DialogSelect-tree-margin-right);
+
+      .tiny-input-prefix .tiny-input__inner {
+        padding-left: var(--tv-DialogSelect-search-input-padding-left);
+      }
+
+      .tiny-input__prefix {
+        display: inline-block;
+
+        .tiny-svg {
+          font-size: var(--tv-DialogSelect-icon-size);
+        }
+      }
+
+      &-wrapper {
+        margin-top: var(--tv-DialogSelect-tree-wrapper-margin-top);
+        border: var(--tv-DialogSelect-body-box-border);
+        border-radius: var(--tv-DialogSelect-border-radius);
+        padding: var(--tv-DialogSelect-tree-wrapper-padding);
+
+        > div {
+          height: 100%;
+          overflow: auto;
+
+          .tiny-tree {
+            padding: 0;
+          }
+        }
+      }
     }
 
     &-box {
-      border: var(--ti-dialog-select-body-box-border-weight) var(--ti-dialog-select-body-box-border-style) var(--ti-dialog-select-body-box-border-color);
-      border-left: none;
-    }
-
-    &-tree-wrapper {
-      overflow: auto;
+      border: var(--tv-DialogSelect-body-box-border);
+      border-radius: var(--tv-DialogSelect-border-radius);
+      margin-left: var(--tv-DialogSelect-box-margin-left);
+      overflow: hidden;
     }
   }
 
@@ -49,34 +91,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--ti-dialog-select-footer-padding-vertical) var(--ti-dialog-select-footer-padding-horizontal);
 
     &-pager {
       .tiny-pager {
-        padding: var(--ti-dialog-select-pager-padding-vertical) var(--ti-dialog-select-pager-padding-horizontal);
+        padding: 0;
 
         &__btn-prev {
-          margin-left: var(--ti-dialog-select-pager-prev-margin-left);
+          margin-left: 0;
         }
       }
     }
   }
 
-  .tiny-grid__body-wrapper {
-    border-bottom: var(--ti-dialog-select-grid-body-border-weight-bottom);
-  }
-
   .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
-    padding-left: var(--ti-dialog-select-split-simple-padding-left);
-    padding-right: var(--ti-dialog-select-split-simple-padding-right);
-  }
-
-  .tiny-split-trigger-vertical {
-    background-color: var(--ti-dialog-select-split-bg-color);
+    padding: var(--tv-DialogSelect-split-trigger-padding);
   }
 
   .tiny-split-wrapper {
     box-shadow: none;
+    border: none;
+    border-radius: 0;
   }
 
   &.radio-check {
@@ -85,7 +119,27 @@
     }
 
     .tiny-dialog-select__body-tree {
-      margin-right: var(--ti-dialog-select-tree-radio-margin-right);
+      margin-right: 0;
+    }
+
+    .@{dialog-select-prefix-cls}__body-grid {
+      border: none;
+      border-radius: 0;
+      overflow: auto;
+    }
+  }
+
+  &.is-tree {
+    .tiny-split-pane {
+      &.left-pane {
+        padding-right: 0;
+      }
+
+      &.right-pane {
+        .tiny-dialog-select__body-box {
+          margin-left: 0;
+        }
+      }
     }
   }
 }

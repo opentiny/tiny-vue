@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { DatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 import { iconMinus } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -23,10 +23,10 @@ export default {
 
 <style>
 .demo-date-picker-wrap {
-  width: 280px;
+  width: 360px;
 }
 
 .my-date-picker {
-  background-color: #ddd;
+  background-color: #f0f0f0;
 }
 </style>

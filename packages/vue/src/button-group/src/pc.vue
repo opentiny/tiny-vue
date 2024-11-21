@@ -53,9 +53,9 @@
             :key="index"
             :class="{ active: state.value === node[valueField] }"
           >
-            <tiny-button :class="getItemClass(node)" @click="handleClick(node)">
+            <button :class="getItemClass(node)" @click="handleClick(node)">
               {{ node[textField] }}
-            </tiny-button>
+            </button>
 
             <span
               v-if="node.sup"
@@ -76,9 +76,9 @@
             </span>
           </li>
           <li v-if="data.length > showMore" class="tiny-group-item__more">
-            <tiny-popover :visible-arrow="false" width="200" popper-class="tiny-group-item__more-popover">
+            <tiny-popover :visible-arrow="false" popper-class="tiny-group-item__more-popover">
               <template #reference>
-                <tiny-button class="more-button">
+                <tiny-button :reset-time="0" class="more-button">
                   <icon-popup></icon-popup>
                 </tiny-button>
               </template>
@@ -99,7 +99,7 @@
           </li>
           <li v-if="showEdit" class="tiny-group-item__edit">
             <tiny-button @click="$emit('edit')" class="edit-button">
-              <icon-writing></icon-writing>
+              <Icon-editor></Icon-editor>
             </tiny-button>
           </li>
         </ul>
@@ -116,7 +116,7 @@ import { renderless, api } from '@opentiny/vue-renderless/button-group/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
-import { iconPopup, iconWriting } from '@opentiny/vue-icon'
+import { iconPopup, iconEditor } from '@opentiny/vue-icon'
 import { AutoTip } from '@opentiny/vue-directive'
 import type { IButtonGroupApi } from '@opentiny/vue-renderless/types/button-group.type'
 
@@ -140,7 +140,7 @@ export default defineComponent({
     TinyPopover: Popover,
     TinyButton: Button,
     IconPopup: iconPopup(),
-    IconWriting: iconWriting()
+    IconEditor: iconEditor() // 新规范图标
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IButtonGroupApi

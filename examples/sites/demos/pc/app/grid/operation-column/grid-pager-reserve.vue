@@ -21,13 +21,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager, Notify, Button, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyNotify, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
         }
       },
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,
@@ -57,7 +57,7 @@ export default {
   methods: {
     getAllSelection() {
       const selection = this.$refs.grid.getAllSelection()
-      Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
+      TinyModal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
     },
     getTableData() {
       return [
@@ -146,7 +146,7 @@ export default {
       })
     },
     selectedDevices({ $table }) {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: '获取选中的所有数据',
         message: JSON.stringify($table.selection),

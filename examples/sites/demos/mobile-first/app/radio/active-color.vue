@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { RadioButton, RadioGroup } from '@opentiny/vue'
+import { TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadioButton: RadioButton,
-    TinyRadioGroup: RadioGroup
+    TinyRadioButton,
+    TinyRadioGroup
   },
   data() {
     return {

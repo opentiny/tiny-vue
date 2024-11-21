@@ -6,5 +6,5 @@ test('Breadcrumb 自定义节点', async ({ page }) => {
 
   const breadcrumbItem = page.locator('.tiny-breadcrumb__item')
   const slotItem = breadcrumbItem.nth(1).locator('a')
-  await expect(slotItem).toHaveAttribute('href', '/')
+  await expect(slotItem).toHaveAttribute('href', '#')
 })

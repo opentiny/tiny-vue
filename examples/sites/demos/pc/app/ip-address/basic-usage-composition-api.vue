@@ -5,7 +5,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { IpAddress as TinyIpAddress } from '@opentiny/vue'
+import { TinyIpAddress } from '@opentiny/vue'
 
 const value1 = ref('192.168.0.1')
 const value2 = ref('fe80::204:61ff:fe9d:f156')

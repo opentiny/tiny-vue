@@ -59,6 +59,9 @@
           </div>
         </div>
       </div>
+      <div class="tiny-selected-box__list-empty" v-show="!state.select.length && state.theme !== 'saas'">
+        <div>{{ t('ui.selectedBox.noData') }}</div>
+      </div>
     </div>
     <tiny-popover
       ref="popover"

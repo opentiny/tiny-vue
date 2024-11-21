@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHeatmap: ChartHeatmap
+    TinyHeatmap: TinyHuichartsHeatmap
   },
   data() {
     return {

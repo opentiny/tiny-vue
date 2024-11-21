@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
-      Pager,
+      TinyPager,
       data: [
         {
           id: '1',

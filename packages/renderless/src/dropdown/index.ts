@@ -266,7 +266,7 @@ export const mounted =
   }
 
 export const beforeDistory =
-  ({ api, state }: Pick<IDropdownRenderlessParams, 'api' | 'state'>) =>
+  ({ vm, api, state }: Pick<IDropdownRenderlessParams, 'vm' | 'api' | 'state'>) =>
   () => {
     if (state.triggerElm) {
       off(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
@@ -287,6 +287,11 @@ export const beforeDistory =
 
       state.dropdownElm = null
     }
+
+    vm.$off('menu-item-click')
+    vm.$off('current-item-click')
+    vm.$off('selected-index')
+    vm.$off('is-disabled')
   }
 
 export const clickOutside =

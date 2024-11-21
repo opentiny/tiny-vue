@@ -14,6 +14,11 @@
     "type": "module",
     "exclude": false
   },
+  "IconMulticolor": {
+    "path": "vue-icon-multicolor/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Common": {
     "path": "vue-common/src/index.ts",
     "type": "module",
@@ -21,11 +26,6 @@
   },
   "SaasCommon": {
     "path": "vue-saas-common/src/index.ts",
-    "type": "module",
-    "exclude": false
-  },
-  "DesignSmb": {
-    "path": "design/smb/index.ts",
     "type": "module",
     "exclude": false
   },

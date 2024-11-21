@@ -6,12 +6,12 @@
 </template>
 
 <script lang="jsx">
-import { Amount, Button } from '@opentiny/vue'
+import { TinyAmount, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAmount: Amount,
-    TinyButton: Button
+    TinyAmount,
+    TinyButton
   },
   data() {
     return {

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="jsx">
-import { RichTextEditor as TinyRichTextEditor, Notify } from '@opentiny/vue'
+import { TinyRichTextEditor, TinyNotify } from '@opentiny/vue'
 const beforeCreate = function (editor) {
   console.log('beforeCreate')
 }

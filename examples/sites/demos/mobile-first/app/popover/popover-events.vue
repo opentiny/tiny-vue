@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { Popover, Notify, Button } from '@opentiny/vue'
+import { TinyPopover, TinyNotify, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopover: Popover,
-    TinyButton: Button
+    TinyPopover,
+    TinyButton
   },
   data() {
     return {
@@ -31,28 +31,28 @@ export default {
   },
   methods: {
     enter() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '显示动画播放完毕后触发',
         offset: 100
       })
     },
     leave() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '隐藏动画播放完毕后触发',
         offset: 100
       })
     },
     show() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '显示时触发',
         offset: 100
       })
     },
     hide() {
-      Notify({
+      TinyNotify({
         title: '提示',
         message: '隐藏时触发',
         offset: 100

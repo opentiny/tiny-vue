@@ -126,20 +126,6 @@ export default {
       codeFiles: ['vertical-checkbox.vue']
     },
     {
-      demoId: 'border',
-      name: {
-        'zh-CN': '带边框复选框',
-        'en-US': 'Checkbox border'
-      },
-      desc: {
-        'zh-CN':
-          '<p> <code>checkbox</code> 上配置 <code>border</code> ，可显示边框。若复选框后的描述文本超出时，可以通过 <code>tooltip</code> 组件增加提示信息，鼠标悬停时可提示所有内容。</p>',
-        'en-US':
-          '<p>Configure <code>border</code> on <code>checkbox</code> to display borders. If the description text after the check box exceeds, a prompt message can be added through the Tooltip component, and all content can be prompted when the mouse hovers.</p>'
-      },
-      codeFiles: ['border.vue']
-    },
-    {
       demoId: 'text',
       name: {
         'zh-CN': '状态对应的值',

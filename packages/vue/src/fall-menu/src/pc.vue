@@ -24,14 +24,21 @@
               <li
                 v-for="(level1, index) in state.data"
                 :key="index"
+                @click="clickActive(index)"
                 @mouseover="mouseover(index)"
                 @mouseout="mouseout"
-                :class="{
-                  'fall-hide': index >= state.pagerData.index[state.pager - 1] && state.pager !== state.pagerData.size
-                }"
+                :class="[
+                  index >= state.pagerData.index[state.pager - 1] && state.pager !== state.pagerData.size
+                    ? 'fall-hide'
+                    : ''
+                ]"
               >
                 <slot name="level1" :slot-scope="level1">
-                  <a :href="level1.url" :class="{ now: index === state.activeNode }">{{ level1.title }} </a>
+                  <a
+                    :class="[index === state.active ? 'active-show' : '', index === state.activeNode ? 'now' : '']"
+                    :href="level1.url"
+                    >{{ level1.title }}
+                  </a>
                 </slot>
               </li>
             </ul>

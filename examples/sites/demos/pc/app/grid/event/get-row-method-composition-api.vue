@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton, Modal as TinyModal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {

@@ -10,7 +10,7 @@
  *
  */
 
-import { log as uLog, xss } from './xss.js'
+import { log as uLog, xss } from './xss'
 
 export const KEY_CODE = {
   Backspace: 8,

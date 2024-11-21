@@ -6,7 +6,6 @@
           <template #dropdown>
             <tiny-dropdown-menu placement="bottom">
               <tiny-dropdown-item :item-data="{ name: 'selectCurPage' }"> 选择本页数据 </tiny-dropdown-item>
-              <tiny-dropdown-item :item-data="{ name: 'selectAllPage' }"> 选择全部数据 </tiny-dropdown-item>
               <tiny-dropdown-item :item-data="{ name: 'clearCurPage' }"> 取消选择 </tiny-dropdown-item>
             </tiny-dropdown-menu>
           </template>
@@ -22,13 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  Dropdown as TinyDropdown,
-  DropdownMenu as TinyDropdownMenu,
-  DropdownItem as TinyDropdownItem
-} from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 const tableData = ref([
   {

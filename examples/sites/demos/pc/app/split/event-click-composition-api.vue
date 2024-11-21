@@ -20,22 +20,21 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Split as TinySplit, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 const split1 = ref(0.5)
 
 function leftTopClick() {
-  Modal.message('点击事件1')
+  TinyModal.message('点击事件1')
 }
 function rightBottomClick() {
-  Modal.message('点击事件2')
+  TinyModal.message('点击事件2')
 }
 </script>
 
 <style scoped>
 .split-v-model {
   height: 200px;
-  border: 1px solid #d9d9d9;
 }
 
 .demo-split-pane {

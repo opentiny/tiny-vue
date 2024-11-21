@@ -1,15 +1,15 @@
 <template>
   <div>
-    <tiny-grid :columns="columnsData" :data="tableData" ref="theGrid"> </tiny-grid>
+    <tiny-grid :columns="columnsData" :data="tableData" ref="theGrid" show-overflow="tooltip"> </tiny-grid>
   </div>
 </template>
 
 <script lang="jsx">
-import { Grid } from '@opentiny/vue'
+import { TinyGrid } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid
+    TinyGrid
   },
   data() {
     return {

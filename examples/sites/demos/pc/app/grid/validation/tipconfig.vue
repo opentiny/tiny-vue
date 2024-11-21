@@ -5,6 +5,7 @@
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :tooltip-config="{ appendToBody: false, placement: 'right' }"
       :edit-rules="validRules"
+      show-overflow="tooltip"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>
@@ -16,12 +17,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     const validRules = {

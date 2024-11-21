@@ -2,6 +2,7 @@
   <div>
     <tiny-button @click="changeHighlight" type="primary">设置展开并高亮</tiny-button>
     <tiny-tree-menu
+      class="demo-tree-menu"
       node-key="id"
       :data="treeData"
       :default-expanded-keys="expandeArr"
@@ -12,7 +13,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { TreeMenu as TinyTreeMenu, Button as TinyButton } from '@opentiny/vue'
+import { TinyTreeMenu, TinyButton } from '@opentiny/vue'
 
 let expandeArr = reactive([30101])
 const highlight = ref(30101)
@@ -128,8 +129,8 @@ const changeHighlight = () => {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 .tiny-button {

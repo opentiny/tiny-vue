@@ -553,3 +553,268 @@
     height: 3.33333333vw;
   }
 }
+
+.tinyui-design-footer {
+  font-size: 16px;
+  color: #2c2e30;
+  background-color: #fafafa;
+  overflow: hidden;
+}
+.tinyui-design-footer .footer-content {
+  display: flex;
+  margin: 0 auto;
+  padding: 10vh 0 6.8vh;
+  justify-content: center;
+  width: 70%;
+  box-sizing: border-box;
+}
+.tinyui-design-footer .footer-content .contact {
+  width: fit-content;
+}
+.tinyui-design-footer .footer-content .contact .group-code {
+  margin: 30px 0;
+}
+.tinyui-design-footer .footer-content .contact .group-code > img {
+  width: 150px;
+  border: solid 0.55vw #f2f6f9;
+}
+.tinyui-design-footer .footer-content .links {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-between;
+  flex: 1 1 auto;
+}
+.tinyui-design-footer .footer-content .links .link-item .list-item {
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: #2c2e30;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tinyui-design-footer .footer-content .links .link-item .list-item:hover {
+  color: #2f5bea;
+}
+.tinyui-design-footer .footer-text-list {
+  font-size: 14px;
+  line-height: 39px;
+  white-space: nowrap;
+}
+.tinyui-design-footer .footer-title {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  margin-left: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.tinyui-design-footer .footer-title-container {
+  margin-bottom: 17px;
+}
+.tinyui-design-footer .copyright {
+  height: 86px;
+  line-height: 1.8;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background-color: #3e4345;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tinyui-design-footer .copyright p {
+  margin: 0;
+}
+.footer-logo-container {
+  position: relative;
+  padding-right: 4.7%;
+  margin-right: 4.7%;
+  box-sizing: border-box;
+}
+.footer-logo-container::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 135px;
+  border-right: 1px solid #979797;
+  opacity: 0.28;
+  top: 60px;
+  right: 0;
+}
+.footer-promotional-container {
+  margin: 10px 0;
+  padding-left: 1.05vw;
+}
+.footer-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  height: 38px;
+}
+.footer-logo-link-list {
+  height: 26px;
+  margin-right: 30px;
+}
+.footer-logo-link-list:last-child {
+  margin-right: 0;
+}
+.footer-logo-link-list img {
+  height: 100%;
+}
+.footer-promotional-label {
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+}
+.footer-logo-title {
+  display: inline-block;
+  height: 38px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #242424;
+  margin-left: 0.53vw;
+}
+.footer-logo {
+  vertical-align: middle;
+  width: 53px;
+}
+.footer-logo-s {
+  vertical-align: middle;
+  width: 16px;
+}
+.footer-logolist-container {
+  margin-top: 10px;
+}
+.footer-logo-list {
+  margin-right: 1.46vw;
+}
+.icon-arrow {
+  display: none;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-out;
+  transform-origin: center center;
+  background: url(assets/icon-arrow.png) no-repeat;
+  background-size: 100% 100%;
+}
+@media screen and (max-width: 1339px) {
+  .tinyui-design-footer .footer-content {
+    width: 84%;
+  }
+  .tinyui-design-footer .footer-content .contact .group-code > img {
+    width: 85px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .tinyui-design-footer .footer-content {
+    width: 96%;
+  }
+  .tinyui-design-footer .footer-logo-container {
+    padding-right: 2%;
+    margin-right: 2%;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .tinyui-design-footer .footer-logo-container {
+    display: flex;
+    padding-right: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e5e6ea;
+  }
+  .tinyui-design-footer .footer-logo-container::after {
+    display: none;
+  }
+  .tinyui-design-footer .footer-logo-container .footer-logolist-container {
+    padding-left: 0;
+  }
+  .tinyui-design-footer .footer-logo-container .footer-promotional-container {
+    padding: 0;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .tinyui-design-footer .footer-content {
+    flex-direction: column;
+    width: 100%;
+    padding: 50px 30px 20px;
+  }
+  .tinyui-design-footer .footer-content .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tinyui-design-footer .footer-content .links .link-item {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #e5e6ea;
+  }
+  .tinyui-design-footer .footer-content .links .link-item .list-item {
+    width: 100%;
+  }
+  .tinyui-design-footer .footer-content .links .link-item div {
+    width: 100%;
+    text-align: left;
+  }
+  .tinyui-design-footer .footer-content .contact {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .tinyui-design-footer .footer-content .contact .group-code {
+    margin-left: 0;
+    margin: 30px auto 12px;
+  }
+  .tinyui-design-footer .footer-content .contact .footer-logo-s {
+    display: none;
+  }
+  .tinyui-design-footer .footer-content .contact .footer-title {
+    font-size: 16px;
+    color: #2c2e30;
+    line-height: 22px;
+  }
+  .tinyui-design-footer .footer-content .footer-text-list {
+    padding-left: 23px;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+  }
+  .tinyui-design-footer .footer-content .footer-text-list.current {
+    height: fit-content;
+  }
+  .tinyui-design-footer .footer-content .footer-title-container {
+    margin: 19px 0;
+    position: relative;
+    text-align: left;
+  }
+  .tinyui-design-footer .footer-content .footer-title-container .icon-arrow {
+    display: block;
+  }
+  .tinyui-design-footer .footer-content .footer-title-container.current .icon-arrow {
+    transform: rotate(180deg);
+  }
+  .tinyui-design-footer .copyright {
+    background: transparent;
+    border-top: 1px solid #e5e6ea;
+  }
+  .tinyui-design-footer .copyright p {
+    font-size: 12px;
+    text-align: center;
+    color: #2c2e30;
+    line-height: 21px;
+    margin: 0;
+  }
+}

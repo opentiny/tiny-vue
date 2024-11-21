@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   data() {
@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted() {
-    Loading.service({
+    TinyLoading.service({
       lock: true,
       text: '加载中',
       target: '#boxeight', // 可传DOM节点对应ID名或类名字符串，也可以传入DOM对象，例如：domObj，let domObj = document.getElementById('boxeight').

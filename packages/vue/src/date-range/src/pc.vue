@@ -147,22 +147,24 @@
               </button>
               <div>{{ state.leftLabel }}</div>
             </div>
-            <date-table
-              selection-mode="range"
-              :date="state.leftDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              :cell-class-name="state.cellClassName"
-              @changerange="handleChangeRange"
-              :first-day-of-week="state.firstDayOfWeek"
-              :show-week-number="showWeekNumber"
-              :format-weeks="formatWeeks"
-              @pick="handleRangePick"
-            >
-            </date-table>
+            <div class="tiny-date-range-picker__table">
+              <date-table
+                selection-mode="range"
+                :date="state.leftDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :cell-class-name="state.cellClassName"
+                @changerange="handleChangeRange"
+                :first-day-of-week="state.firstDayOfWeek"
+                :show-week-number="showWeekNumber"
+                :format-weeks="formatWeeks"
+                @pick="handleRangePick"
+              >
+              </date-table>
+            </div>
           </div>
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-right">
             <div class="tiny-date-range-picker__header">
@@ -194,32 +196,33 @@
               </button>
               <div>{{ state.rightLabel }}</div>
             </div>
-            <date-table
-              selection-mode="range"
-              :date="state.rightDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              :cell-class-name="state.cellClassName"
-              @changerange="handleChangeRange"
-              :first-day-of-week="state.firstDayOfWeek"
-              :show-week-number="showWeekNumber"
-              :format-weeks="formatWeeks"
-              @pick="handleRangePick"
-            >
-            </date-table>
+            <div class="tiny-date-range-picker__table">
+              <date-table
+                selection-mode="range"
+                :date="state.rightDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :cell-class-name="state.cellClassName"
+                @changerange="handleChangeRange"
+                :first-day-of-week="state.firstDayOfWeek"
+                :show-week-number="showWeekNumber"
+                :format-weeks="formatWeeks"
+                @pick="handleRangePick"
+              >
+              </date-table>
+            </div>
           </div>
         </div>
       </div>
       <div class="tiny-picker-panel__footer" v-if="state.showTime">
-        <tiny-button size="mini" type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
+        <tiny-button type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
           {{ t('ui.datepicker.clear') }}
         </tiny-button>
         <tiny-button
           :plain="state.confirmButtonProps.plain"
-          size="mini"
           :type="state.confirmButtonProps.type"
           class="tiny-picker-panel__link-btn"
           :disabled="state.btnDisabled"

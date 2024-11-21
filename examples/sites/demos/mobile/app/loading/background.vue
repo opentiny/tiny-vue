@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   mounted() {
-    Loading.service({
+    TinyLoading.service({
       background: '#19191960',
       text: '自定义遮罩层背景色',
       target: document.getElementById('demo-loading'),

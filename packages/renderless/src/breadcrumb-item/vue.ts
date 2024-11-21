@@ -30,7 +30,7 @@ export const renderless = (
   const constants = breadcrumb._constants
   const state = reactive({
     size: inject('size', null),
-    separator: computed(() => breadcrumb.separator || designConfig?.separator || '>')
+    separator: computed(() => breadcrumb.separator || designConfig?.separator || '/')
   })
   const api: IBreadcrumbItemApi = {
     state,

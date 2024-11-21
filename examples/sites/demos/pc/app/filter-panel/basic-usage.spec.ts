@@ -13,7 +13,7 @@ test('基本用法', async ({ page }) => {
 
   await button.click()
   await popPanel.isVisible()
-  await page.getByRole('radio', { name: '等于' }).click()
+  await page.locator('label').filter({ hasText: '等于' }).click()
   await button.getByText('物品数量等于').isVisible()
   await inputEl.click()
   await inputEl.fill('10')

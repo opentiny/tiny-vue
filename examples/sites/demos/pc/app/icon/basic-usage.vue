@@ -1,10 +1,10 @@
 <template>
   <div class="icon-demo">
-    <icon-share></icon-share>
-    <icon-del></icon-del>
-    <icon-writing></icon-writing>
-    <icon-ascending></icon-ascending>
-    <icon-clock-work></icon-clock-work>
+    <icon-share class="icon-shared"></icon-share>
+    <icon-del class="icon-del"></icon-del>
+    <icon-writing class="icon-writing"></icon-writing>
+    <icon-ascending class="icon-ascending"></icon-ascending>
+    <icon-clock-work class="icon-clock-work"></icon-clock-work>
   </div>
 </template>
 
@@ -24,8 +24,24 @@ export default {
 
 <style scoped>
 .icon-demo .tiny-svg {
-  margin: 20px 83px;
+  margin: 20px 40px;
   vertical-align: middle;
+}
+.icon-demo .icon-shared {
+  font-size: 14px;
+}
+.icon-demo .icon-del {
+  font-size: 20px;
+}
+.icon-demo .icon-writing {
   font-size: 24px;
+}
+.icon-demo .icon-ascending {
+  font-size: 30px;
+  fill: blue;
+}
+.icon-demo .icon-clock-work {
+  font-size: 48px;
+  fill: red;
 }
 </style>

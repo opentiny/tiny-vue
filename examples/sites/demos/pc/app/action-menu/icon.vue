@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：只显示图标</p>
+    <p>场景1：显示图标</p>
     <tiny-action-menu
       class="custom-icon"
       :options="options"
@@ -16,19 +16,19 @@
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
-import { IconPreChecked, iconSuccessful, iconCloseSquare, iconEllipsis } from '@opentiny/vue-icon'
+import { TinyActionMenu } from '@opentiny/vue'
+import { iconWebPlus, iconSuccessful, iconShutdown, iconEllipsis } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu
+    TinyActionMenu
   },
   data() {
     return {
       options: [
         {
           label: '远程登陆',
-          icon: IconPreChecked()
+          icon: iconWebPlus()
         },
         {
           label: '开机',
@@ -36,14 +36,14 @@ export default {
         },
         {
           label: '关机',
-          icon: iconCloseSquare()
+          icon: iconShutdown()
         },
         {
           label: '重启'
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+          children: [{ label: '更改安全组' }, { label: '切换VPC' }]
         }
       ],
       options1: [

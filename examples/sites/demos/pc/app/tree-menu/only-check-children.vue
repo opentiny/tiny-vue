@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { TreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {
@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+      TinyModal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
     }
   }
 }

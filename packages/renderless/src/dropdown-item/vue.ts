@@ -37,7 +37,7 @@ import {
   getItemStyle,
   handleClick,
   computedGetIcon,
-  getTip
+  computedTip
 } from './index'
 
 export const api = [
@@ -55,10 +55,10 @@ export const api = [
   'close',
   'closed',
   'handleClick',
-  'getTip'
+  'computedTip'
 ]
 
-const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) => {
+const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm, dropdownVm }) => {
   const state: IDropdownItemState = reactive({
     checkedStatus: dropdownMenuVm?.checkedStatus,
     sort: props.modelValue,
@@ -78,8 +78,10 @@ const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) =
     currentIndex: props.currentIndex,
     textField: dropdownMenuVm?.textField || props.textField,
     popperClass: dropdownMenuVm?.popperClass || '',
+    sizeClass: dropdownVm?.size ? `tiny-dropdown-item--${dropdownVm?.size}` : '',
     getIcon: computed(() => api.computedGetIcon()),
-    children: []
+    children: [],
+    computedTip: computed(() => api.computedTip())
   })
 
   return state
@@ -106,7 +108,7 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
     confirm: confirm({ emit, props, state }),
     handleClick: handleClick({ state, props, dispatch, vm, emit }),
     computedGetIcon: computedGetIcon({ constants, designConfig }),
-    getTip: getTip({ props, vm })
+    computedTip: computedTip({ props, vm })
   })
 }
 
@@ -117,7 +119,8 @@ export const renderless = (
 ): IDropdownItemApi => {
   const api = {} as IDropdownItemApi
   const dropdownMenuVm = inject('dropdownMenuVm', null) as IDropdownMenuVm
-  const state: IDropdownItemState = initState({ reactive, computed, api, props, parent, dropdownMenuVm })
+  const dropdownVm = inject('dropdownVm', null)
+  const state: IDropdownItemState = initState({ reactive, computed, api, props, parent, dropdownMenuVm, dropdownVm })
 
   initApi({ api, state, emit, props, parent, dispatch, vm, constants, designConfig })
 

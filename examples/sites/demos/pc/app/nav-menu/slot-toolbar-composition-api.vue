@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { NavMenu as TinyNavMenu } from '@opentiny/vue'
+import { TinyNavMenu } from '@opentiny/vue'
 import { iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
 const menuData = ref([
@@ -322,9 +322,10 @@ const TinyIconAdministrator = iconAdministrator()
   vertical-align: middle;
 }
 
-.preview-nav .icon-setting, .preview-nav .icon-administrator{
-  margin-right:20px;
-  fill: white;
+.preview-nav .icon-setting,
+.preview-nav .icon-administrator {
+  margin-right: 20px;
+  fill: #808080;
   font-size: 24px;
 }
 </style>

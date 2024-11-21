@@ -7,6 +7,7 @@
     <tiny-grid
       :data="tableData"
       ref="insertGrid"
+      show-overflow="tooltip"
       seq-serial
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true, insertChanged: true }"
     >
@@ -47,7 +48,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButotn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton as TinyButotn } from '@opentiny/vue'
 
 const insertGrid = ref('insertGrid')
 

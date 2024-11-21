@@ -5,6 +5,7 @@
       ref="revertGrid"
       :data="tableData"
       seq-serial
+      show-overflow="tooltip"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -22,7 +23,7 @@
         show-overflow="ellipsis"
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="100">
-        <template v-slot="data">
+        <template #default="data">
           <tiny-button size="mini" @click="$refs.revertGrid.revertData(data.row)">恢复</tiny-button>
         </template>
       </tiny-grid-column>
@@ -31,13 +32,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGrid,
+    TinyGridColumn,
+    TinyButton
   },
   data() {
     return {
