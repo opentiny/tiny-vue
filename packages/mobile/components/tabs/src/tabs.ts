@@ -9,15 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
-
 export const $constants = {
   TAB_ITEM: 'TabItem'
 }
 
 export const tabsProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -67,12 +63,3 @@ export const tabsProps = {
   overflowTitle: Boolean,
   titleWidth: String
 }
-
-export default defineComponent({
-  name: $prefix + 'Tabs',
-  emits: ['tab-nav-update'],
-  props: tabsProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

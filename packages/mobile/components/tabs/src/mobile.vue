@@ -11,34 +11,18 @@
  -->
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, h, defineComponent } from '../../../vue-common'
+import { setup, h, defineComponent } from '../../../vue-common'
 import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
-import { touchStart, touchMove } from '@opentiny/vue-renderless/common/deps/touch'
+import { touchStart, touchMove } from '@opentiny/utils/deps/touch'
 import '@opentiny/vue-theme-mobile/tabs/index.less'
 import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
+import { tabsProps } from './tabs'
 
 const MIN_SWIPE_DISTANCE = 50
 
 export default defineComponent({
-  props: [
-    ...props,
-    'activeName',
-    'position',
-    'withClose',
-    'withAdd',
-    'activeColor',
-    'modelValue',
-    'beforeLeave',
-    'editable',
-    'showExpandTabs',
-    'childrenTabs',
-    'swipeable',
-    'expandTabsTitle',
-    'expandTabsMode',
-    'stretch',
-    'size'
-  ],
+  props: tabsProps,
   components: {
     TabNav,
     IconPlus: iconPlus()

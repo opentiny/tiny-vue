@@ -1,7 +1,4 @@
-import { $props } from '../../../vue-common'
-
 export const tabNavPcProps = {
-  ...$props,
   panes: {
     type: Array,
     default: () => []
@@ -39,7 +36,6 @@ export const tabNavPcProps = {
 }
 
 export const tabNavMobileProps = {
-  ...$props,
   panes: {
     type: Array,
     default: () => []
@@ -74,9 +70,4 @@ export const tabNavMobileProps = {
     type: Boolean,
     default: false
   }
-}
-
-export const tabBarProps = {
-  ...$props,
-  tabs: Array
 }
