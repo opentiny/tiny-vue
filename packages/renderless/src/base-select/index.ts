@@ -1870,7 +1870,9 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        // 给多选复制全部标签图标留一部分间距
+        const COPY_ICON_WIDTH = 16
+        state.inputPaddingRight = parseFloat(paddingRight) + COPY_ICON_WIDTH
       }
     })
   }
