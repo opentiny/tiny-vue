@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { directive } from '@opentiny/vue-common'
+import { directive } from '../../../vue-common'
 import { isObject } from '@opentiny/vue-renderless/common/type'
 
 class TinyTouch {

@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/tabbar-item/vue'
-import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { $props, $prefix, setup, defineComponent } from '../../../vue-common'
 
 export default defineComponent({
   name: $prefix + 'TabbarItem',

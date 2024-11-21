@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { PropType } from '@opentiny/vue-common'
-import { $setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from '../../../vue-common'
+import { $setup, $prefix, defineComponent } from '../../../vue-common'
 import { iconClose } from '@opentiny/vue-icon'
 import template from 'virtual-template?mobile'
 

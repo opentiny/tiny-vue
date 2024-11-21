@@ -60,8 +60,8 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/pull-refresh/vue'
+import { $prefix, setup, defineComponent, props } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.less'
 
 export default defineComponent({

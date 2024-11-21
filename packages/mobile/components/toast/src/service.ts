@@ -10,7 +10,7 @@
  *
  */
 
-import { createComponent } from '@opentiny/vue-common'
+import { createComponent } from '../../../vue-common'
 import Toast from './mobile.vue'
 
 const defaults = {

@@ -24,8 +24,8 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/form/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
 import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
 import '@opentiny/vue-theme-mobile/form/index.less'
 import '@opentiny/vue-theme-mobile/form-item/index.less'

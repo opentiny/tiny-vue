@@ -24,12 +24,13 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/container/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../../vue-common'
+import { containerProps } from './container'
 import '@opentiny/vue-theme-mobile/container/index.less'
 
 export default defineComponent({
-  props: [...props, 'pattern', 'leftWidth', 'rightWidth'],
+  props: containerProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

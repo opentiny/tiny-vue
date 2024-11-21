@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/toast/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/toast/index.less'
 import { IconMobileErrorWhite, IconMobileSuccessWhite } from '@opentiny/vue-icon'
 import type { IToastApi } from '@opentiny/vue-renderless/types/toast.type'

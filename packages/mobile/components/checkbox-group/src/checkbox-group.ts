@@ -10,43 +10,38 @@
  *
  */
 export const $constants = {
-  DEFAULT: 'default',
-  SIMPLE: 'simple',
-  LEGEND: 'legend',
-  CLASSIC: 'classic',
-  FASHION: 'fashion'
+  FORM_ITEM: 'FormItem',
+  FORM_CHANGE: 'form.change'
 }
 
-export const containerProps = {
+export const CheckboxGroupProps = {
   _constants: {
     type: Object,
     default: () => $constants
   },
-  pattern: {
+  modelValue: {},
+  disabled: Boolean,
+  min: Number,
+  max: Number,
+  size: String,
+  fill: String,
+  textColor: String,
+  vertical: Boolean,
+  options: {
+    type: Array,
+    default: () => []
+  },
+  type: {
     type: String,
-    default: 'default',
-    validator: (value: string) => !!$constants[value.toUpperCase()]
+    default: 'checkbox'
   },
-  headerHeight: {
-    type: [Number, String],
-    default: 60
+  displayOnly: {
+    type: Boolean,
+    default: false
   },
-  asideWidth: {
-    type: [Number, String],
-    default: 200
-  },
-  footerHeight: {
-    type: [Number, String],
-    default: 60
-  },
-
-  // mobile
-  leftWidth: {
-    type: [Number, String],
-    default: 60
-  },
-  rightWidth: {
-    type: [Number, String],
-    default: 44
+  iconPosition: String as PropType<IconPosition>,
+  shape: {
+    type: String,
+    default: ''
   }
 }

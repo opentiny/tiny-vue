@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/slider/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
 import type { ISliderApi } from '@opentiny/vue-renderless/types/slider.type'
 import '@opentiny/vue-theme-mobile/slider/index.less'
 

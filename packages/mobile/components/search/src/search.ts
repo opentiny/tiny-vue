@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, $props, $setup, defineComponent } from '../../../vue-common'
 import { t } from '@opentiny/vue-locale'
 import template from 'virtual-template?mobile'
 

@@ -1,4 +1,4 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup } from '../../../vue-common'
 import template from 'virtual-template?mobile'
 
 export default {

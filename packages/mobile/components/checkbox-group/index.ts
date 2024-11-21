@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import CheckboxGroup from './src/index'
-import { version } from './package.json'
-
-CheckboxGroup.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import CheckboxGroup from './src/mobile.vue'
 
 /* istanbul ignore next */
 CheckboxGroup.install = function (Vue) {
   Vue.component(CheckboxGroup.name, CheckboxGroup)
-}
-
-CheckboxGroup.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    CheckboxGroup.install(window.Vue)
-  }
 }
 
 export default CheckboxGroup

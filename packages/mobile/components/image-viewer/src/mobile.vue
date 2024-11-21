@@ -111,8 +111,8 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/image-viewer/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
 import {
   iconClose,
   iconChevronLeft,

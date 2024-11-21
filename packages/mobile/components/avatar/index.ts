@@ -10,7 +10,6 @@
  *
  */
 import Avatar from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/avatar/index.less'
 
 /* istanbul ignore next */
 Avatar.install = function (Vue) {

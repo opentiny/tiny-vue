@@ -37,8 +37,8 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/exception/vue'
-import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, $prefix, defineComponent } from '../../../vue-common'
 import Button from '@opentiny/vue-button'
 
 export default defineComponent({

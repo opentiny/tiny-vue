@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/tabbar/vue'
+import { setup, $prefix, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/tabbar/index.less'
 
 export default defineComponent({

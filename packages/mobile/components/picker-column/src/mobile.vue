@@ -32,8 +32,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/picker-column/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 
 export default defineComponent({
   name: $prefix + 'PickerColumn',

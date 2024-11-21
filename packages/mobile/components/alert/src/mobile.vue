@@ -28,9 +28,9 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../common'
+import { setup, defineComponent } from '../../../vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarningTriangle } from '@opentiny/vue-icon'
-import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
+import type { IAlertApi } from './alert'
 import { alertProps } from './alert'
 import '@opentiny/vue-theme-mobile/alert/index.less'
 

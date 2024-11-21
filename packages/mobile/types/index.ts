@@ -1,6 +1,6 @@
 export * from './action-menu.type'
 export * from './action-sheet.type'
-export * from './alert.type'
+export * from '../components/alert/src/alert.type'
 export * from './amount.type'
 export * from './anchor.type'
 export * from './area.type'

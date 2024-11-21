@@ -10,8 +10,8 @@
  *
  -->
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/file-upload/vue'
-import { props, setup, h, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, h, defineComponent } from '../../../vue-common'
 import UploadList from '@opentiny/vue-upload-list'
 import Upload from '@opentiny/vue-upload'
 import Progress from '@opentiny/vue-progress'

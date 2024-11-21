@@ -67,8 +67,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
 import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/progress/index.less'
 import type { IProgressApi } from '@opentiny/vue-renderless/types/progress.type'

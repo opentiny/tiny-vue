@@ -35,8 +35,8 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/list/vue'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 
 export default defineComponent({
   name: $prefix + 'List',

@@ -44,8 +44,8 @@
 
 <script lang="tsx">
 import { t } from '@opentiny/vue-locale'
-import { renderless, api } from '@opentiny/vue-renderless/mini-picker/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import PickerColumn from '@opentiny/vue-picker-column'
 
 const $constants = {

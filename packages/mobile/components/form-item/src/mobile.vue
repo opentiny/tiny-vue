@@ -10,8 +10,8 @@
  *
  -->
 <script lang="tsx">
-import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2, hooks } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
+import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2, hooks } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
 import type { IFormItemApi, IFormItemInstance } from '@opentiny/vue-renderless/types/form-item.type'
@@ -182,8 +182,8 @@ export default defineComponent({
         typeof this.appendToBody === 'boolean'
           ? this.appendToBody
           : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
+            ? formAppendToBody
+            : true
       const validatePosition =
         this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
 

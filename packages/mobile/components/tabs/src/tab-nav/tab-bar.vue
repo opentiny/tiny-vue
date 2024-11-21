@@ -17,8 +17,8 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/tab-bar/vue'
+import { $prefix, setup } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import type { ITabBarPcApi } from '@opentiny/vue-renderless/types/tab-bar.type'
 import { tabBarProps } from './index'
 

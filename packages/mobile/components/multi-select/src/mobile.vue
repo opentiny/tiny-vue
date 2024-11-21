@@ -116,9 +116,9 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from '@opentiny/vue-common'
-import { $prefix, setup, defineComponent, directive } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/multi-select/vue'
+import type { PropType } from '../../../vue-common'
+import { $prefix, setup, defineComponent, directive } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import { iconChevronDown, iconSearch } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'

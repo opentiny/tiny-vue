@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix } from '../../common'
-import type { PropType } from '../../common'
+import { $prefix } from '../../../vue-common'
+import type { PropType } from '../../../vue-common'
 
 export type IconPosition = 'center' | 'top'
 

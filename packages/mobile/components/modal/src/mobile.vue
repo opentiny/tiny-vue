@@ -10,8 +10,8 @@
  *
  -->
 <script lang="tsx">
-import { props, setup, h, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/modal/vue'
+import { props, setup, h, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import Button from '@opentiny/vue-button'
 import { iconFullscreenLeft, iconMinscreenLeft } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/modal/index.less'

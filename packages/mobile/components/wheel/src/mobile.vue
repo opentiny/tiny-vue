@@ -47,8 +47,8 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/wheel/vue'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import { IconYes } from '@opentiny/vue-icon'
 import BScroll from '@better-scroll/core'
 import Wheel from '@better-scroll/wheel'

@@ -10,8 +10,8 @@
  *
  -->
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/tabs/vue'
-import { props, setup, h, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, h, defineComponent } from '../../../vue-common'
 import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
 import { touchStart, touchMove } from '@opentiny/vue-renderless/common/deps/touch'

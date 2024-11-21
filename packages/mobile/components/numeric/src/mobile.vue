@@ -70,8 +70,8 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/numeric/vue'
-import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, directive, defineComponent } from '../../../vue-common'
 import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/numeric/index.less'

@@ -10,8 +10,9 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h, defineComponent } from '../../common'
+import { $prefix, setup, h, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
+import '@opentiny/vue-theme-mobile/avatar/index.less'
 
 const $constants = {
   COMPONENT_PREFIX: 'tiny-mobile-avatar',

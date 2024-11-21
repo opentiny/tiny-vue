@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/tag/vue'
-import { props, setup, h, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, h, defineComponent } from '../../../vue-common'
 import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
 import '@opentiny/vue-theme-mobile/tag/index.less'
 

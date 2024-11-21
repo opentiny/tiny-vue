@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/index-bar/vue'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/index-bar-anchor/index.less'
 
 export default defineComponent({

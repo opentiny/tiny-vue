@@ -65,8 +65,8 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/search/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
 import { iconSearch, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/search/index.less'
 import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'

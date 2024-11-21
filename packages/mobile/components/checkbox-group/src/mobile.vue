@@ -25,16 +25,17 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/checkbox-group/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import Checkbox from '@opentiny/vue-checkbox'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../../vue-common'
+import Checkbox from '../../checkbox'
+import { CheckboxGroupProps } from './checkbox-group'
 import '@opentiny/vue-theme-mobile/checkbox-group/index.less'
 
 export default defineComponent({
   components: {
     Checkbox
   },
-  props: [...props, 'modelValue', 'type', 'options', 'disabled', 'vertical', 'max', 'min', 'iconPosition'],
+  props: CheckboxGroupProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

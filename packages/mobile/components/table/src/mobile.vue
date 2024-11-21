@@ -89,8 +89,8 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/table/vue'
-import { setup, props, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, props, defineComponent } from '../../../vue-common'
 import { iconRadioselected, iconRadio, iconCheck, iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/table/index.less'
 

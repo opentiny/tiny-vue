@@ -10,7 +10,6 @@
  *
  */
 import DatePicker from './src/mobile.vue'
-import '@opentiny/vue-theme/date-picker/index.less'
 
 /* istanbul ignore next */
 DatePicker.install = function (Vue) {

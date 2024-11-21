@@ -1,6 +1,6 @@
 import Modal from '@opentiny/vue-modal'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { $prefix } from '@opentiny/vue-common'
+import { $prefix } from '../../../vue-common'
 
 const Message = extend(true, { props: { componentName: { type: String, default: 'Message' } } }, Modal, {
   name: $prefix + 'Message'

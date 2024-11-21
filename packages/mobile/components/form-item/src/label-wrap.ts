@@ -1,4 +1,4 @@
-import { setup, h, $props, defineComponent } from '@opentiny/vue-common'
+import { setup, h, $props, defineComponent } from '../../../vue-common'
 
 export default defineComponent({
   props: {

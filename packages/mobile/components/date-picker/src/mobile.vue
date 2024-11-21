@@ -33,11 +33,12 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/date-picker/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import MiniPicker from '@opentiny/vue-mini-picker'
 import Input from '@opentiny/vue-input'
 import { iconCloseCircle } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme/date-picker/index.less'
 
 export default defineComponent({
   components: {

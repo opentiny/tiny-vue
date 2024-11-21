@@ -10,7 +10,7 @@
  *
  */
 
-import { createComponent, setupComponent } from '@opentiny/vue-common'
+import { createComponent, setupComponent } from '../../../vue-common'
 import { MsgQueue } from '@opentiny/vue-renderless/modal'
 import TINYModal from './src/index'
 import Popconfirm from '@opentiny/vue-popconfirm'

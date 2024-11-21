@@ -39,8 +39,8 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/index-bar/vue'
+import { props, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 
 import '@opentiny/vue-theme-mobile/index-bar/index.less'
 

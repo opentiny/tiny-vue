@@ -49,8 +49,8 @@
 </template>
 
 <script lang="ts">
-import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/multi-select-item/vue'
+import { $prefix, props, setup, defineComponent } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import { iconChevronDown } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import '@opentiny/vue-theme-mobile/multi-select-item/index.less'

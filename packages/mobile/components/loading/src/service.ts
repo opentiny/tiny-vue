@@ -12,7 +12,7 @@
 
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { createComponent, hooks, appProperties } from '@opentiny/vue-common'
+import { createComponent, hooks, appProperties } from '../../../vue-common'
 import Loading from './index'
 
 export const defaults = {

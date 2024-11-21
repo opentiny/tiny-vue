@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/mask/vue'
+import { props, setup, defineComponent, $prefix } from '../../../vue-common'
+import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/mask/index.less'
 
 export default defineComponent({

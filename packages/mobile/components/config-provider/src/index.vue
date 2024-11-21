@@ -1,6 +1,6 @@
 <script lang="ts">
-import { provideDesignConfig, hooks, props as _props, isVue2, $prefix, defineComponent } from '@opentiny/vue-common'
-import type { PropType } from '@opentiny/vue-common'
+import { provideDesignConfig, hooks, props as _props, isVue2, $prefix, defineComponent } from '../../../vue-common'
+import type { PropType } from '../../../vue-common'
 import type { Tag, TextDirection, breakPoint } from './props'
 import { configProviderContextKey } from '../index'
 import '@opentiny/vue-theme/config-provider/index.less'
