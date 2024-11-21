@@ -16,7 +16,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTabbar, TinyTabbarItem, TinyButton } from '@opentiny/vue'
+import { TinyTabbar, TinyTabbarItem, TinyButton } from '@opentiny/vue-mobile'
 import { iconDialog, iconEmailAdd, iconGroup, iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
 export default {

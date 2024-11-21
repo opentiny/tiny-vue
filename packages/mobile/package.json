@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-mobile",
   "type": "module",
-  "version": "3.14.0",
+  "version": "3.19.0",
   "private": true,
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
@@ -32,14 +32,10 @@
     "postversion": "pnpm build"
   },
   "dependencies": {
-    "@better-scroll/core": "^2.5.0"
+    "@better-scroll/core": "^2.5.0",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "devDependencies": {
-    "@vue/composition-api": "1.7.2",
-    "@vue/runtime-core": "^3.3.9",
-    "@vue/runtime-dom": "^3.3.9",
-    "vue2": "npm:vue@2.6.14",
-    "vue2.7": "npm:vue@2.7.10",
-    "vue3": "npm:vue@3.3.9"
+    "vue": "^3.5.0"
   }
 }

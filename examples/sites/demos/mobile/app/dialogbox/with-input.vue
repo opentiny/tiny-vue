@@ -19,7 +19,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyButton, TinyDialogBox, TinyInput } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyInput } from '@opentiny/vue-mobile'
 
 export default {
   components: {

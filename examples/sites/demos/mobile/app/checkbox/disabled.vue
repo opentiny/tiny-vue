@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue'
+import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue-mobile'
 
 export default {
   components: {

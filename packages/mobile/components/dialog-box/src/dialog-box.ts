@@ -10,8 +10,7 @@
  *
  */
 
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import { $prefix } from '../../../vue-common'
 
 export const $constants = {
   DIALOG_SLIDER_RIGHT: 'dialog-slideRight',
@@ -28,7 +27,6 @@ export const $constants = {
 }
 
 export const dialogBoxProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -120,15 +118,3 @@ export const dialogBoxProps = {
     default: () => ''
   }
 }
-
-export default defineComponent({
-  name: $prefix + 'DialogBox',
-  model: {
-    prop: 'visible',
-    event: 'update:visible'
-  },
-  props: dialogBoxProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

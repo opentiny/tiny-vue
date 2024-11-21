@@ -39,24 +39,15 @@
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
 import { setup, $prefix, defineComponent } from '../../../vue-common'
-import Button from '@opentiny/vue-button'
+import Button from '../../button'
+import { exceptionProps } from './exception'
 
 export default defineComponent({
   name: $prefix + 'Exception',
   components: {
     TinyButton: Button
   },
-  props: {
-    type: {
-      type: String,
-      default: 'nodata'
-    },
-    message: String,
-    subMessage: String,
-    exceptionClass: String,
-    buttonText: String,
-    imageUrl: String
-  },
+  props: exceptionProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

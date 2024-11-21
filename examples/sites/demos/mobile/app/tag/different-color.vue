@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { TinyTag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue-mobile'
 
 export default {
   components: {

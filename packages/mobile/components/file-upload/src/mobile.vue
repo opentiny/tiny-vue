@@ -12,9 +12,9 @@
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
 import { props, setup, h, defineComponent } from '../../../vue-common'
-import UploadList from '@opentiny/vue-upload-list'
-import Upload from '@opentiny/vue-upload'
-import Progress from '@opentiny/vue-progress'
+import UploadList from '../../upload-list'
+import Upload from '../../upload'
+import Progress from '../../progress'
 import { iconUpload } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/file-upload/index.less'
 import '@opentiny/vue-theme-mobile/upload-list/index.less'

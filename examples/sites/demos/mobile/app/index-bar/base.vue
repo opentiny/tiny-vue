@@ -14,7 +14,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyIndexBar, TinyIndexBarAnchor } from '@opentiny/vue'
+import { TinyIndexBar, TinyIndexBarAnchor } from '@opentiny/vue-mobile'
 
 export default {
   components: {

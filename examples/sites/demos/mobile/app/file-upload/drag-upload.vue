@@ -6,7 +6,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyFileUpload } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue-mobile'
 import { iconFileupload } from '@opentiny/vue-icon'
 
 export default {

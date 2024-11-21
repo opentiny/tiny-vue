@@ -6,14 +6,12 @@
     </p>
     <tiny-checkbox-group v-model="checked1" icon-position="top">
       <tiny-checkbox label="复选框1">
-        <span style="display: block;margin-bottom: 10px;"
+        <span style="display: block; margin-bottom: 10px"
           >第1个选项内容。。。第1个选项内容。。。第1个选项内容。。。第1个选项内容。。。第1个选项内容。。。第1个选项内容。。。</span
         >
       </tiny-checkbox>
       <tiny-checkbox label="复选框2">
-          <span
-            >第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。</span
-          >
+        <span>第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。第2个选项内容。。。</span>
       </tiny-checkbox>
     </tiny-checkbox-group>
     <br />
@@ -26,7 +24,7 @@
 </template>
 
 <script>
-import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue'
+import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue-mobile'
 
 export default {
   components: {

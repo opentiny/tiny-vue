@@ -16,7 +16,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyGrid, TinyGridColumn, TinyUserHead } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyUserHead } from '@opentiny/vue-mobile'
 
 export default {
   components: {

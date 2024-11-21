@@ -27,7 +27,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyProgress } from '@opentiny/vue'
+import { TinyProgress } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -10,9 +10,7 @@
  *
  */
 import type { PropType } from '../../../vue-common'
-import { $setup, $prefix, defineComponent } from '../../../vue-common'
 import { iconClose } from '@opentiny/vue-icon'
-import template from 'virtual-template?mobile'
 
 const currentYear = new Date().getFullYear()
 
@@ -52,18 +50,7 @@ const validator = (value) => {
   return result
 }
 
-const $props = {
-  'tiny_mode': String,
-  'tiny_mode_root': Boolean,
-  'tiny_template': [Function, Object],
-  'tiny_renderless': Function,
-  'tiny_theme': String,
-  'tiny_chart_theme': Object
-}
-
 export const datePickerProps = {
-  ...$props,
-
   tabindex: {
     type: String,
     default: '1'
@@ -216,11 +203,3 @@ export const datePickerProps = {
     default: false
   }
 }
-
-export default defineComponent({
-  name: $prefix + 'DatePicker',
-  props: datePickerProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

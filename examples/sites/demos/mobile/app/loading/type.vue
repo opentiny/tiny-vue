@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyLoading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue-mobile'
 
 export default {
   data() {

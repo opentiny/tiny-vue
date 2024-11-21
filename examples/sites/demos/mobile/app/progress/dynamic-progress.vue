@@ -12,7 +12,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyProgress, TinyButton } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue-mobile'
 
 // import { setInterval, clearInterval } from 'timers'
 

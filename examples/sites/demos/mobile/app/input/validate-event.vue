@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TinyInput, TinyForm, TinyFormItem } from '@opentiny/vue'
+import { TinyInput, TinyForm, TinyFormItem } from '@opentiny/vue-mobile'
 
 export default {
   components: {

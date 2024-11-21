@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { TinyTabs, TinyTabItem, TinyToast } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyToast } from '@opentiny/vue-mobile'
 
 export default {
   components: {

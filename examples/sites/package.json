@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@opentiny/vue": "workspace:~",
+    "@opentiny/vue-mobile": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-saas": "workspace:~",

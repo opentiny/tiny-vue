@@ -16,7 +16,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
+import { TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue-mobile'
 
 export default {
   components: {

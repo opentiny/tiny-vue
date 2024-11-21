@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyDialogBox } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyDialogBox } from '@opentiny/vue-mobile'
 
 export default {
   components: {

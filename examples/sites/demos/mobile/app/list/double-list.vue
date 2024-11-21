@@ -15,7 +15,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyList } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue-mobile'
 
 export default {
   components: {

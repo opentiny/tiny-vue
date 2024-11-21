@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue'
+import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue-mobile'
 
 export default {
   components: {
