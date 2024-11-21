@@ -9,22 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import FileUpload from './src/index'
+import FileUpload from './src/mobile.vue'
 import '@opentiny/vue-theme/file-upload/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 FileUpload.install = function (Vue) {
   Vue.component(FileUpload.name, FileUpload)
-}
-
-FileUpload.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    FileUpload.install(window.Vue)
-  }
 }
 
 export default FileUpload

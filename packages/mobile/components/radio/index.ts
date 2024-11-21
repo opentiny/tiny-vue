@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Radio from './src/index'
-import { version } from './package.json'
-
-Radio.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import Radio from './src/mobile.vue'
 
 /* istanbul ignore next */
 Radio.install = function (Vue) {
   Vue.component(Radio.name, Radio)
-}
-
-Radio.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Radio.install(window.Vue)
-  }
 }
 
 export default Radio

@@ -9,26 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Slider from './src/index'
-import { version } from './package.json'
-
-/* istanbul ignore next */
-Slider.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import Slider from './src/mobile.vue'
 
 Slider.install = function (Vue) {
   Vue.component(Slider.name, Slider)
-}
-
-Slider.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Slider.install(window.Vue)
-  }
 }
 
 export default Slider

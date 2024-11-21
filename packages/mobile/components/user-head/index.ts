@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import UserHead from './src/index'
-import { version } from './package.json'
-
-UserHead.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import UserHead from './src/mobile.vue'
 
 /* istanbul ignore next */
 UserHead.install = function (Vue) {
   Vue.component(UserHead.name, UserHead)
-}
-
-UserHead.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    UserHead.install(window.Vue)
-  }
 }
 
 export default UserHead

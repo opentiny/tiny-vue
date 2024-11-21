@@ -11,7 +11,7 @@
  */
 
 import { createComponent } from '@opentiny/vue-common'
-import Toast from './index'
+import Toast from './mobile.vue'
 
 const defaults = {
   type: 'text'

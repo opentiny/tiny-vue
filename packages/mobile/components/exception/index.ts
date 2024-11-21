@@ -9,22 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Exception from './src/index'
+import Exception from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/exception/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 Exception.install = function (Vue) {
   Vue.component(Exception.name, Exception)
-}
-
-Exception.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Exception.install(window.Vue)
-  }
 }
 
 export default Exception

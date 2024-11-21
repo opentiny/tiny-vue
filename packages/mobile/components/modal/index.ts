@@ -14,14 +14,6 @@ import { createComponent, setupComponent } from '@opentiny/vue-common'
 import { MsgQueue } from '@opentiny/vue-renderless/modal'
 import TINYModal from './src/index'
 import Popconfirm from '@opentiny/vue-popconfirm'
-import { version } from './package.json'
-
-TINYModal.version = version
-
-TINYModal.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
 
 export function Modal(options) {
   const modalPromise = new Promise((resolve) => {

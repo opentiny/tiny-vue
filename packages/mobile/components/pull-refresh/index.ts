@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import PullRefresh from './src/index'
-import { version } from './package.json'
-
-PullRefresh.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import PullRefresh from './src/mobile.vue'
 
 /* istanbul ignore next */
 PullRefresh.install = function (Vue) {
   Vue.component(PullRefresh.name, PullRefresh)
-}
-
-PullRefresh.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    PullRefresh.install(window.Vue)
-  }
 }
 
 export default PullRefresh

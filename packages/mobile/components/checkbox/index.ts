@@ -11,11 +11,6 @@
  */
 import Checkbox from './src/mobile.vue'
 
-Checkbox.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
-
 /* istanbul ignore next */
 Checkbox.install = function (Vue) {
   Vue.component(Checkbox.name, Checkbox)

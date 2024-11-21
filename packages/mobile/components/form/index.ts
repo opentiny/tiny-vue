@@ -9,21 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Form from './src/index'
-import { version } from './package.json'
+import Form from './src/mobile.vue'
 
 /* istanbul ignore next */
 Form.install = function (Vue) {
   Vue.component(Form.name, Form)
-}
-
-Form.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Form.install(window.Vue)
-  }
 }
 
 export default Form

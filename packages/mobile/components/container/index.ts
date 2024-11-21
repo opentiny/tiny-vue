@@ -9,22 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Container from './src/index'
+import Container from './src/mobile.vue'
 import '@opentiny/vue-theme/container/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 Container.install = function (Vue) {
   Vue.component(Container.name, Container)
-}
-
-Container.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Container.install(window.Vue)
-  }
 }
 
 export default Container

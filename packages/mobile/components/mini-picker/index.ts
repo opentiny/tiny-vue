@@ -11,20 +11,10 @@
  */
 import MiniPicker from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/mini-picker/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 MiniPicker.install = function (Vue) {
   Vue.component(MiniPicker.name, MiniPicker)
-}
-
-MiniPicker.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    MiniPicker.install(window.Vue)
-  }
 }
 
 export default MiniPicker

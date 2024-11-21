@@ -11,11 +11,6 @@
  */
 import Badge from './src/mobile.vue'
 
-Badge.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
-
 /* istanbul ignore next */
 Badge.install = function (Vue) {
   Vue.component(Badge.name, Badge)

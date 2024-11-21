@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Tabbar from './src/index'
-import { version } from './package.json'
-
-Tabbar.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import Tabbar from './src/mobile.vue'
 
 /* istanbul ignore next */
 Tabbar.install = function (Vue) {
   Vue.component(Tabbar.name, Tabbar)
-}
-
-Tabbar.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Tabbar.install(window.Vue)
-  }
 }
 
 export default Tabbar

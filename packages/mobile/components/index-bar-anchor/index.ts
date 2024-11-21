@@ -10,20 +10,10 @@
  *
  */
 import IndexBarAnchor from './src/index.vue'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 IndexBarAnchor.install = function (Vue) {
   Vue.component(IndexBarAnchor.name, IndexBarAnchor)
-}
-
-IndexBarAnchor.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    IndexBarAnchor.install(window.Vue)
-  }
 }
 
 export default IndexBarAnchor

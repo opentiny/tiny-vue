@@ -11,20 +11,10 @@
  */
 import List from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/list/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 List.install = function (Vue) {
   Vue.component(List.name, List)
-}
-
-List.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    List.install(window.Vue)
-  }
 }
 
 export default List

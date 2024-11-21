@@ -11,20 +11,10 @@
  */
 import PickerColumn from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/picker-column/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 PickerColumn.install = function (Vue) {
   Vue.component(PickerColumn.name, PickerColumn)
-}
-
-PickerColumn.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    PickerColumn.install(window.Vue)
-  }
 }
 
 export default PickerColumn

@@ -11,11 +11,6 @@
  */
 import ActionSheet from './src/mobile.vue'
 
-ActionSheet.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
-
 /* istanbul ignore next */
 ActionSheet.install = function (Vue) {
   Vue.component(ActionSheet.name, ActionSheet)

@@ -11,18 +11,10 @@
  */
 import service from './src/service.js'
 import '@opentiny/vue-theme-mobile/toast/index.less'
-import { version } from './package.json'
 
 let Toast: any = {
   install() {},
-  service,
-  version
-}
-
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Toast.install(window.Vue)
-  }
+  service
 }
 
 export default Toast

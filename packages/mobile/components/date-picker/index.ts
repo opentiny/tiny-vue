@@ -9,27 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import DatePicker from './src/index.js'
+import DatePicker from './src/mobile.vue'
 import '@opentiny/vue-theme/date-picker/index.less'
-import { version } from './package.json'
-
-DatePicker.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
 
 /* istanbul ignore next */
 DatePicker.install = function (Vue) {
   Vue.component(DatePicker.name, DatePicker)
-}
-
-DatePicker.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    DatePicker.install(window.Vue)
-  }
 }
 
 export default DatePicker

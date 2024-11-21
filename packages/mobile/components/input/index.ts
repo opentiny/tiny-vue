@@ -9,26 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Input from './src/index'
-import { version } from './package.json'
-
-Input.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
+import Input from './src/mobile.vue'
 
 /* istanbul ignore next */
 Input.install = function (Vue) {
   Vue.component(Input.name, Input)
-}
-
-Input.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Input.install(window.Vue)
-  }
 }
 
 export default Input

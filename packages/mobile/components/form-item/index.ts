@@ -9,18 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import FormItem from './src/index'
+import FormItem from './src/mobile.vue'
 
 /* istanbul ignore next */
 FormItem.install = function (Vue) {
   Vue.component(FormItem.name, FormItem)
-}
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    FormItem.install(window.Vue)
-  }
 }
 
 export default FormItem

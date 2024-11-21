@@ -10,20 +10,10 @@
  *
  */
 import Mask from './src/mobile.vue'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 Mask.install = function (Vue) {
   Vue.component(Mask.name, Mask)
-}
-
-Mask.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Mask.install(window.Vue)
-  }
 }
 
 export default Mask

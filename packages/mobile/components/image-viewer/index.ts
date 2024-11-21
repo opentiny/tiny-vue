@@ -9,21 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import ImageViewer from './src/index'
-import { version } from './package.json'
+import ImageViewer from './src/mobile.vue'
 
 /* istanbul ignore next */
 ImageViewer.install = function (Vue) {
   Vue.component(ImageViewer.name, ImageViewer)
-}
-
-ImageViewer.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    ImageViewer.install(window.Vue)
-  }
 }
 
 export default ImageViewer

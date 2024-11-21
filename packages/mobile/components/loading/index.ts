@@ -12,7 +12,6 @@
 import service from './src/service'
 import directive from './src/directive'
 import { setupComponent } from '@opentiny/vue-common'
-import { version } from './package.json'
 
 const Loadings: any = {
   install(app) {
@@ -21,13 +20,6 @@ const Loadings: any = {
   service,
   directive,
   version
-}
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Loadings.install(window.Vue)
-  }
 }
 
 setupComponent.TINYLoading = {

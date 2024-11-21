@@ -11,20 +11,10 @@
  */
 import NavBar from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/nav-bar/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 NavBar.install = function (Vue) {
   Vue.component(NavBar.name, NavBar)
-}
-
-NavBar.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    NavBar.install(window.Vue)
-  }
 }
 
 export default NavBar

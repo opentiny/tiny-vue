@@ -9,27 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Popover from './src/index'
+import Popover from './src/mobile.vue'
 import '@opentiny/vue-theme/popover/index.less'
-import { version } from './package.json'
 
 /* istanbul ignore next */
 Popover.install = function (Vue) {
   Vue.component(Popover.name, Popover)
-}
-
-Popover.model = {
-  prop: 'modelValue',
-  event: 'update:modelValue'
-}
-
-Popover.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Popover.install(window.Vue)
-  }
 }
 
 export default Popover
