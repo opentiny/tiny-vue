@@ -17,7 +17,7 @@
   <tiny-date-picker
     v-else-if="['date', 'datetime-local'].includes(type)"
     v-model="modelValue"
-    value-format="yyyy-MM-dd"
+    :value-format="dateProps.valueFormat || 'yyyy-MM-dd'"
     v-bind="dateProps"
     v-on="events"
     @update:modelValue="update"
@@ -25,8 +25,8 @@
   <tiny-time-picker
     v-else-if="type === 'time'"
     v-model="modelValue"
-    format="hh:mm"
-    value-format="shortTime"
+    :format="timeProps.format || 'hh:mm'"
+    :value-format="timeProps.valueFormat || 'shortTime'"
     v-bind="timeProps"
     v-on="events"
     @update:modelValue="update"

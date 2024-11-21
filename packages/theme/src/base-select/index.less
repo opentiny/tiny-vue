@@ -203,6 +203,24 @@
     }
   }
 
+  & {
+    .@{tag-prefix-cls} {
+      height: 20px;
+    }
+  }
+
+  &--medium {
+    .@{tag-prefix-cls} {
+      height: 24px;
+    }
+  }
+
+  &--small, &--mini {
+    .@{tag-prefix-cls} {
+      height: 16px;
+    }
+  }
+
   &.is-hover-expand,
   &.is-click-expand {
     vertical-align: top;
@@ -308,10 +326,6 @@
       &__inner {
         padding-right: 12px;
       }
-
-      &__suffix {
-        display: inline-block;
-      }
     }
 
     .@{base-select-prefix-cls}__tags {
@@ -359,8 +373,6 @@
     }
 
     .@{input-prefix-cls}__suffix {
-      top: var(--tv-BaseSelect-suffix-top);
-
       &-inner {
         font-size: 0;
       }
@@ -368,19 +380,6 @@
 
     & .@{input-prefix-cls}__suffix-inner {
       overflow: hidden;
-    }
-
-    &-medium .@{input-prefix-cls}__suffix {
-      top: var(--tv-BaseSelect-suffix-top-medium);
-    }
-
-    // TODO: 尾部按钮应垂直居中，待优化
-    &-small .@{input-prefix-cls}__suffix {
-      top: var(--tv-BaseSelect-suffix-top-small);
-    }
-
-    &-mini .@{input-prefix-cls}__suffix {
-      top: var(--tv-BaseSelect-suffix-top-mini);
     }
 
     &.is-disabled {

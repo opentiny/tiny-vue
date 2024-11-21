@@ -1,10 +1,12 @@
 <template>
-  <tiny-dept
-    v-model="value"
-    :fetch-dept-by-value="getfetchDeptByValue"
-    :fetch-dept="getfetchDept"
-    :fetch-dept-list="getDeptList"
-  ></tiny-dept>
+  <div class="demo-dept-class">
+    <tiny-dept
+      v-model="value"
+      :fetch-dept-by-value="getfetchDeptByValue"
+      :fetch-dept="getfetchDept"
+      :fetch-dept-list="getDeptList"
+    ></tiny-dept>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -274,3 +276,9 @@ function getDeptList(upperCode) {
   })
 }
 </script>
+
+<style scoped>
+.demo-dept-class {
+  width: 280px;
+}
+</style>

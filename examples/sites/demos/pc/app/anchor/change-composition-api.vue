@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TinyAnchor, TinyModal } from '@opentiny/vue'
+import { TinyAnchor } from '@opentiny/vue'
 
 const links = ref([
   {
@@ -42,6 +42,6 @@ const links = ref([
 ])
 
 function handleChange(link) {
-  TinyModal.message({ message: `change${link}`, status: 'info' })
+  console.log(`当前锚点${link}`)
 }
 </script>

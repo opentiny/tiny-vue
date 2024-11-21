@@ -86,7 +86,7 @@ function getPopEditorOp() {
         {
           field: 'id',
           title: 'ID',
-          width: 40
+          width: 60
         },
         {
           field: 'name',

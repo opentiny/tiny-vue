@@ -2,12 +2,13 @@
 @import './vars.less';
 
 @color-select-panel-prefix-cls: ~'@{css-prefix}color-select-panel';
+
 .@{color-select-panel-prefix-cls} {
   .inject-ColorSelectPanel-vars();
   display: flex;
   flex-direction: column;
   position: absolute;
-  max-width: 264px;
+  min-width: 320px;
   z-index: 10;
   background: var(--tv-ColorSelectPanel-bg-color);
   gap: var(--tv-ColorSelectPanel-spacing);
@@ -32,7 +33,8 @@
     gap: 12px;
 
     &__color-select {
-      width: 220px;
+      min-width: 220px;
+      flex-grow: 1;
       height: 142px;
       position: relative;
 
@@ -83,7 +85,7 @@
 
   &__alpha {
     position: relative;
-    width: 240px;
+    min-width: 240px;
     height: 8px;
     border-radius: var(--tv-ColorSelectPanel-border-radius-lg);
     margin-top: var(--tv-ColorSelectPanel-alpha-margin-top);
@@ -110,6 +112,7 @@
     .tiny-collapse-item__content {
       border: 0;
       padding: 12px;
+
       .@{color-select-panel-prefix-cls}__history,
       .@{color-select-panel-prefix-cls}__predefine {
         display: flex;

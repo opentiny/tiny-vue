@@ -1,5 +1,7 @@
 <template>
-  <tiny-user v-model="user" disabled></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user v-model="user" disabled></tiny-user>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -16,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

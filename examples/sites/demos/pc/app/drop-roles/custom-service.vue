@@ -1,12 +1,14 @@
 <template>
-  <tiny-drop-roles
-    v-model="value"
-    placeholder="选择角色"
-    :fields="fields"
-    :fetch-role="getRoleList"
-    :fetch-current-role="getCurrentRole"
-    @change="change"
-  ></tiny-drop-roles>
+  <div class="demo-drop-roles-class">
+    <tiny-drop-roles
+      v-model="value"
+      placeholder="选择角色"
+      :fields="fields"
+      :fetch-role="getRoleList"
+      :fetch-current-role="getCurrentRole"
+      @change="change"
+    ></tiny-drop-roles>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -48,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-drop-roles-class {
+  width: 280px;
+}
+</style>

@@ -1,5 +1,7 @@
 <template>
-  <tiny-company v-model="value" clearable :max="2" :disabled="false"></tiny-company>
+  <div class="demo-company-class">
+    <tiny-company v-model="value" clearable :max="2" :disabled="false"></tiny-company>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -16,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-company-class {
+  width: 280px;
+}
+</style>

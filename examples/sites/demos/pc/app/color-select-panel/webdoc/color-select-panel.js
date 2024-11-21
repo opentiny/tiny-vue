@@ -65,6 +65,20 @@ export default {
           'By<code>predefine</code>predefined color values, user behavior does not change the predefined colors, but they can be changed externally.'
       },
       codeFiles: ['predefine.vue']
+    },
+    {
+      demoId: 'colorUpdate',
+      name: {
+        'zh-CN': '颜色修改事件',
+        'en-US': 'Color update event'
+      },
+      desc: {
+        'zh-CN':
+          '通过<code>@color-update</code>来监听颜色修改事件, 注意: 只在颜色修改时会触发改事件, 例如拖拽光标或修改色相、透明度时',
+        'en-US':
+          'Listen for color modification events through<code>@color-update</code>. Note that the change event will only be triggered when the color is modified, such as when dragging the cursor or changing the hue or transparency'
+      },
+      codeFiles: ['color-update.vue']
     }
   ]
 }

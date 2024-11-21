@@ -2,20 +2,11 @@
   <div class="demo-form">
     <h3 class="title">是否禁用表单：<tiny-switch v-model="formDisabled"></tiny-switch></h3>
     <tiny-form :disabled="formDisabled" label-width="150px">
-      <tiny-form-item label="Input">
-        <tiny-input v-model="createData.user"></tiny-input>
-      </tiny-form-item>
-      <tiny-form-item label="Select">
-        <tiny-select v-model="createData.select" placeholder="请选择">
-          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
-          </tiny-option>
-        </tiny-select>
-      </tiny-form-item>
-      <tiny-form-item label="Numeric">
-        <tiny-numeric v-model="createData.quantity"></tiny-numeric>
-      </tiny-form-item>
       <tiny-form-item label="Switch">
         <tiny-switch v-model="createData.sw"></tiny-switch>
+      </tiny-form-item>
+      <tiny-form-item label="Link">
+        <tiny-link>默认链接</tiny-link>
       </tiny-form-item>
       <tiny-form-item label="Radio">
         <tiny-radio v-model="createData.sex" label="1"> 男 </tiny-radio>
@@ -31,6 +22,24 @@
           <tiny-checkbox label="复选框2" name="name2"></tiny-checkbox>
         </tiny-checkbox-group>
       </tiny-form-item>
+      <tiny-form-item label="IpAddress">
+        <tiny-ip-address v-model="createData.ipAddress"></tiny-ip-address>
+      </tiny-form-item>
+      <tiny-form-item label="ButtonGroup">
+        <tiny-button-group :data="groupData"></tiny-button-group>
+      </tiny-form-item>
+      <tiny-form-item label="Input">
+        <tiny-input v-model="createData.user"></tiny-input>
+      </tiny-form-item>
+      <tiny-form-item label="Select">
+        <tiny-select v-model="createData.select" placeholder="">
+          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
+          </tiny-option>
+        </tiny-select>
+      </tiny-form-item>
+      <tiny-form-item label="Numeric">
+        <tiny-numeric v-model="createData.quantity"></tiny-numeric>
+      </tiny-form-item>
       <tiny-form-item label="Datepicker">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
@@ -38,7 +47,6 @@
         <tiny-time-picker
           v-model="createData.timePicker"
           :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
-          placeholder="任意时间点"
         ></tiny-time-picker>
       </tiny-form-item>
       <tiny-form-item label="Droptime">
@@ -46,35 +54,21 @@
       </tiny-form-item>
       <tiny-form-item label="Tooltip">
         <tiny-tooltip effect="light" content="TinyUI Form Demo" placement="right">
-          <tiny-input v-model="createData.input" placeholder="click"></tiny-input>
+          <tiny-input v-model="createData.input"></tiny-input>
         </tiny-tooltip>
       </tiny-form-item>
       <tiny-form-item label="Textarea">
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
       </tiny-form-item>
       <tiny-form-item label="Autocomplete">
-        <tiny-autocomplete
-          v-model="createData.autocomplete"
-          placeholder="请输入内容"
-          :fetch-suggestions="querySearch"
-        ></tiny-autocomplete>
-      </tiny-form-item>
-      <tiny-form-item label="ButtonGroup">
-        <tiny-button-group :data="groupData"></tiny-button-group>
+        <tiny-autocomplete v-model="createData.autocomplete" :fetch-suggestions="querySearch"></tiny-autocomplete>
       </tiny-form-item>
       <tiny-form-item label="Cascader">
-        <tiny-cascader :options="options" :props="{ emitPath: false }"></tiny-cascader>
-      </tiny-form-item>
-      <tiny-form-item label="IpAddress">
-        <tiny-ip-address v-model="createData.ipAddress"></tiny-ip-address>
-      </tiny-form-item>
-      <tiny-form-item label="Link">
-        <tiny-link>默认链接</tiny-link>
+        <tiny-cascader :options="options" :props="{ emitPath: false }" placeholder=" "></tiny-cascader>
       </tiny-form-item>
       <tiny-form-item label="PopEditor">
         <tiny-popeditor
           v-model="createData.popEditor"
-          placeholder="请选择"
           :grid-op="gridOp"
           text-field="name"
           value-field="id"
@@ -100,7 +94,6 @@ import {
   TinyDropTimes,
   TinyTooltip,
   TinyInput,
-  TinyButton,
   TinyAutocomplete,
   TinyButtonGroup,
   TinyCascader,
@@ -172,7 +165,7 @@ const gridOp = ref({
     {
       field: 'id',
       title: 'ID',
-      width: 40
+      width: 60
     },
     {
       field: 'name',
@@ -268,7 +261,7 @@ function createFilter(queryString) {
 
 .title {
   margin-bottom: 30px;
-  margin-left: 100px;
+  margin-left: 80px;
   font-size: 14px;
 }
 </style>

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { TinyAnchor, TinyModal } from '@opentiny/vue'
+import { TinyAnchor } from '@opentiny/vue'
 
 export default {
   components: {
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     handleChange(link) {
-      TinyModal.message({ message: `change${link}`, status: 'info' })
+      console.log(`当前锚点${link}`)
     }
   }
 }

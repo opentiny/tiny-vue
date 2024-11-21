@@ -67,10 +67,6 @@
   --tv-Tabs-small-item-font-size: var(--tv-font-size-heading-xs, 16px);
   // card类型标签项水平内边距
   --tv-Tabs-item-padding-horizontal: var(--tv-space-lg, 12px);
-  // card类型选中项底部小滑块厚度(hide)
-  --tv-Tabs-item-bottom-border-weight: var(--tv-border-width, 1px);
-  // card类型选中项底部边框色
-  --tv-Tabs-item-bottom-border-color: var(--tv-color-act-primary-border-light-hover, #ffffff);
   // card类型选中项(不含下|左)边框厚度
   --tv-Tabs-item-top-right-border-weight: var(--tv-border-width, 1px);
   // card类型选中项背景色
@@ -82,7 +78,7 @@
   // bordercard类型选中项文本色
   --tv-Tabs-dark-text-color-active: var(--tv-color-info-text-primary, #191919);
   // bordercard类型选中项背景色
-  --tv-Tabs-dark-bg-color-active: var(--tv-color-bg-active, #f5f5f5);
+  --tv-Tabs-dark-bg-color-active: var(--tv-color-bg-active-dark, #f5f5f5);
   // bordercard类型非选中项悬浮文本色
   --tv-Tabs-dark-text-color-hover: var(--tv-color-act-info-text-white-hover, #ffffff);
   // bordercard类型非选中项文本色
@@ -94,23 +90,21 @@
   // bordercard类型标签栏边框厚度
   --tv-Tabs-dark-border-weight: 0px;
   // bordercard类型默认背景色
-  --tv-Tabs-header-dark-bg-color: var(--tv-color-bg-primary, #191919);
+  --tv-Tabs-header-dark-bg-color: var(--tv-color-bg-dark, #191919);
   // bordercard类型标签项高度
   --tv-Tabs-dark-item-height: calc(var(--tv-size-base, 4px) * 11.75);
   // 标签项超出时上下按钮尺寸
-  --tv-Tabs-prev-next-btn-icon-size: var(--tv-font-size-md, 14px);
+  --tv-Tabs-prev-next-btn-icon-size: var(--tv-font-size-default, 14px);
   // 标签项默认右外边距
   --tv-Tabs-item-margin-right: 32px;
   // 标签项active边框样式(hide)
   --tv-Tabs-item-active-border-style: solid;
-  // 标签项底部边框样式(hide)
-  --tv-Tabs-item-bottom-border-style: solid;
   // 横向标签栏字号
   --tv-Tabs-item-font-size: var(--tv-font-size-heading-xs, 16px);
   // 纵向标签栏非选中项背景色
   --tv-Tabs-header-bg-color: var(--tv-color-bg-header, #f0f0f0);
   // 纵向标签栏字号
-  --tv-Tabs-font-size-base: var(--tv-font-size-md, 14px);
+  --tv-Tabs-font-size-base: var(--tv-font-size-default, 14px);
   // 竖向标签项水平内边距
   --tv-Tabs-item-vertical-padding-horizontal: var(--tv-font-size-xxl, 20px);
   // 选中标签项小滑块厚度(不含card类型)
@@ -126,7 +120,7 @@
   // 可关闭项(选中项|未选中项悬浮)图标色
   --tv-Tabs-icon-close-hover-text-color: var(--tv-color-icon-hover, #191919);
   // 可关闭项关闭图标尺寸
-  --tv-Tabs-icon-size-close: var(--tv-font-size-md, 14px);
+  --tv-Tabs-icon-size-close: var(--tv-font-size-default, 14px);
   // 可关闭项关闭图标垂直外边距(hide)
   --tv-Tabs-icon-close-margin-vertical: 0px;
   // 可关闭项右外边距
@@ -152,19 +146,19 @@
   // 内容水平外边距
   --tv-Tabs-content-margin-horizontal: 0px;
   // buttoncard类型标签栏背景色
-  --tv-Tabs-button-card-nav-bg-color: var(--tv-color-bg-active, #f5f5f5);
+  --tv-Tabs-button-card-nav-bg-color: var(--tv-color-bg, #f5f5f5);
   // buttoncard类型选项文本色
   --tv-Tabs-button-card-item-text-color: #595959;
   // buttoncard类型选项悬浮文本色
   --tv-Tabs-button-card-item-hover-text-color: #191919;
   // buttoncard类型选项字号
-  --tv-Tabs-button-card-item-font-size: var(--tv-font-size-md, 14px);
+  --tv-Tabs-button-card-item-font-size: var(--tv-font-size-default, 14px);
   // buttoncard类型选项高度
   --tv-Tabs-button-card-item-height: var(--tv-size-height-md, 32px);
   // buttoncard类型选中项背景色
-  --tv-Tabs-button-card-item-active-bg-color: var(--tv-color-act-primary-bg-white-active, #ffffff);
+  --tv-Tabs-button-card-item-active-bg-color: var(--tv-color-success-bg-white, #ffffff);
   // buttoncard类型选中项文本色
-  --tv-Tabs-button-card-item-active-text-color: #191919;
+  --tv-Tabs-button-card-item-active-text-color: var(--tv-color-act-primary-text, #191919);
   // buttoncard类型选中项边框色
   --tv-Tabs-button-card-item-active-border-color: #191919;
   // buttoncard类型圆角

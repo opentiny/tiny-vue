@@ -27,7 +27,7 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   const requiredTip = page.getByRole('tooltip', { name: '必填' })
 
   // 对长度有要求的检验
-  const firstInput = formItem.first().locator('input')
+  const firstInput = formItem.nth(2).locator('input')
   await firstInput.click()
   await firstInput.blur()
   await expect(requiredTip.first()).toBeVisible()
@@ -48,7 +48,7 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).not.toBeVisible()
 
   // url输入框
-  const urlInput = formItem.nth(2).locator('input')
+  const urlInput = formItem.nth(4).locator('input')
   const validUrl = 'https://test.com'
   urlInput.fill('1111')
   await expect(page.getByRole('tooltip', { name: '非法 URL 地址' })).toBeVisible()
@@ -56,7 +56,7 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   await expect(page.getByRole('tooltip', { name: '非法 URL 地址' })).not.toBeVisible()
 
   // email输入框
-  const emailInput = formItem.nth(4).locator('input')
+  const emailInput = formItem.nth(5).locator('input')
   const validEmail = '111@test.com'
   emailInput.fill('1111')
   await expect(page.getByRole('tooltip', { name: '非法邮件地址' })).toBeVisible()

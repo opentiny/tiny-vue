@@ -1,18 +1,14 @@
 <template>
   <div class="tiny-color-select-panel__inner">
-    <div
-      class="tiny-color-select-panel__inner__color-select"
-      ref="wrapper"
-      :style="{
-        background: state.background
-      }"
-    >
-      <div class="white"></div>
-      <div class="black"></div>
-      <div class="cursor" ref="cursor"></div>
-    </div>
+    <sv-select :color="color" @ready="onSvReady" />
     <div class="tiny-color-select-panel__inner__hue-select" ref="bar">
-      <div ref="thumb"></div>
+      <div
+        ref="thumb"
+        :style="{
+          top: state.thumbTop + 'px',
+          transform: 'translateY(-50%)'
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -20,9 +16,10 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/hue-select/vue'
 import { setup, defineComponent } from '@opentiny/vue-common'
+import SvSelect from './sv-select.vue'
 
 export default defineComponent({
-  emits: ['hue-update', 'sv-update'],
+  emits: ['hueUpdate', 'svReady', 'hueReady'],
   props: {
     color: {
       type: Object
@@ -31,6 +28,7 @@ export default defineComponent({
       type: Boolean
     }
   },
+  components: { SvSelect },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

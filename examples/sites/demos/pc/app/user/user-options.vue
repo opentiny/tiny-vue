@@ -1,12 +1,14 @@
 <template>
-  <tiny-user v-model="user">
-    <template #options="slotScope">
-      <div>
-        <span>{{ slotScope.slotScope.employeeNumber }}</span
-        >-<span>{{ slotScope.slotScope.email }}</span>
-      </div>
-    </template>
-  </tiny-user>
+  <div class="demo-user-class">
+    <tiny-user v-model="user">
+      <template #options="slotScope">
+        <div>
+          <span>{{ slotScope.slotScope.employeeNumber }}</span
+          >-<span>{{ slotScope.slotScope.email }}</span>
+        </div>
+      </template>
+    </tiny-user>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -23,3 +25,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

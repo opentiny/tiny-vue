@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-company-class">
     <tiny-company
       v-model="value"
       placeholder="请选择"
@@ -32,6 +32,9 @@ function change(value) {
 </script>
 
 <style scoped>
+.demo-company-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

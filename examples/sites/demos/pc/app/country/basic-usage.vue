@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-country-class">
     <tiny-country v-model="value" @change="change"></tiny-country>
     <p>当前选中值：{{ value }}</p>
   </div>
@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-country-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

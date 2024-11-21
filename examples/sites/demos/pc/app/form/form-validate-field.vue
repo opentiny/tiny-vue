@@ -12,8 +12,8 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="validateField"> 校验 </tiny-button>
-        <tiny-button type="primary" @click="clearValidate"> 移除校验 </tiny-button>
-        <tiny-button type="primary" @click="resetField"> 重置日期 </tiny-button>
+        <tiny-button @click="clearValidate"> 移除校验 </tiny-button>
+        <tiny-button @click="resetField"> 重置日期 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

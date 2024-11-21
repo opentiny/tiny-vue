@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <tiny-user v-model="user" multiple value-field="userAccount" tag-selectable></tiny-user>
   </div>
 </template>
@@ -18,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

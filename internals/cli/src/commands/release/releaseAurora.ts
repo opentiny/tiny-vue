@@ -42,6 +42,7 @@ const findAllpage = (packagesPath) => {
       .replace(/"(.*?\/xss)"/g, '"@aurora/utils"')
       // @opentiny/fluent-editor 包是与框架无关的包
       .replace(/@aurora\/fluent-editor/g, '@opentiny/fluent-editor')
+      .replace(/@aurora\/huicharts/g, '@opentiny/huicharts')
 
     // 解决当AUI只有一个mobile-first模板而TinyVue有多个模板，导致Linkjs加载不到多端模板的问题
     if (

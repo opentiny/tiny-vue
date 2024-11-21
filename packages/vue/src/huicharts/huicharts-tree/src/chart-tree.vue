@@ -30,7 +30,7 @@ export default {
       }
 
       const option = tree(columns, rows, this.settings, extra)
-      this.option = { ...option }
+      this.huiChartOption = { ...option }
     }
   }
 }

@@ -10,7 +10,8 @@ import {
   beforeUnmount,
   maxLength,
   handlePaste,
-  isDisplayOnly
+  isDisplayOnly,
+  handleClick
 } from './index'
 
 export const api = [
@@ -55,7 +56,8 @@ const initApi = (args) => {
     beforeUnmount: beforeUnmount({ api, state }),
     maxLength: maxLength({ props, constants }),
     handlePaste: handlePaste({ state }),
-    isDisplayOnly: isDisplayOnly({ state, props, parent, nextTick })
+    isDisplayOnly: isDisplayOnly({ state, props, parent, nextTick }),
+    handleClick: handleClick({ state, Quill })
   })
 }
 
@@ -99,6 +101,7 @@ export const renderless = (
   { service, emit, t, nextTick, vm, i18n, constants, parent },
   { Quill, ImageDrop, ImageUpload, FileUpload, Modal }
 ) => {
+  // metaErp专用的组件，aui 没有替换tiny
   parent.auiForm = parent.auiForm || inject('form', null)
   const api = {}
   const state = initState({ reactive, props, computed, api, parent })

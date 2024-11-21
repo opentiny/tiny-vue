@@ -1,5 +1,7 @@
 <template>
-  <tiny-user v-model="user" multiple @error="queryError"></tiny-user>
+  <div class="demo-user-class">
+    <tiny-user v-model="user" multiple @error="queryError"></tiny-user>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -15,3 +17,9 @@ function queryError(error) {
   })
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

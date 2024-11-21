@@ -270,7 +270,7 @@ export const resizeTextarea =
 
     const { autosize, type } = parent
 
-    if (type !== 'textarea') {
+    if (type !== 'textarea' || !vm.$refs.textarea) {
       return
     }
 
@@ -283,7 +283,7 @@ export const resizeTextarea =
       return
     }
 
-    if (!autosize) {
+    if (!autosize || state.isDisplayOnly) {
       state.textareaCalcStyle = {
         minHeight: api.calcTextareaHeight(vm.$refs.textarea).minHeight
       }

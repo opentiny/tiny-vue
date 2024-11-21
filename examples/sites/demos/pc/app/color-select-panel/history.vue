@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { TinyColorSelectPanel, TinyButton, TinyNotify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
@@ -39,20 +39,9 @@ export default {
       this.visible = false
     },
     onConfirm(msg) {
-      TinyNotify({
-        type: 'success',
-        position: 'top-right',
-        title: '用户点击了选择',
-        message: msg
-      })
       this.hidden()
     },
     onCancel() {
-      TinyNotify({
-        type: 'error',
-        position: 'top-right',
-        title: '用户点击了取消'
-      })
       this.hidden()
     },
     randomHex() {

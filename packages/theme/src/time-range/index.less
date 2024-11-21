@@ -24,7 +24,6 @@
   &__content {
     position: relative;
     text-align: center;
-    padding: var(--tv-TimeRange-content-padding);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -39,31 +38,26 @@
     display: flex;
     justify-content: space-around;
     color: var(--tv-TimeRange-header-text-color);
-    padding: 8px;
-    height: 30px;
+    padding: var(--tv-TimeRange-title-padding);
     align-items: center;
-    line-height: 30px;
   }
 
   &__cell {
-    box-sizing: border-box;
-    margin: 0;
-    padding: var(--tv-TimeRange-cell-padding);
     width: 50%;
+
+    .tiny-time-panel__content {
+      padding-bottom: var(--tv-TimeRange-cell-content-padding-bottom);
+    }
   }
 
   &__header {
     height: var(--tv-TimeRange-header-height);
     color: var(--tv-TimeRange-header-text-color);
     line-height: var(--tv-TimeRange-header-line-height);
-    margin-bottom: var(--tv-TimeRange-header-margin-bottom);
+    padding: var(--tv-TimeRange-header-padding);
     text-align: left;
     font-size: var(--tv-TimeRange-font-size);
-    border-bottom: 1px solid var(--tv-TimeRange-header-border-bottom);
-
-    span {
-      margin-left: var(--tv-TimeRange-header-margin-left);
-    }
+    border-bottom: 1px solid var(--tv-TimeRange-border-color-divider);
   }
 
   &__body {
@@ -73,9 +67,6 @@
   &__footer {
     border-top: 1px solid var(--tv-TimeRange-border-color-divider);
     padding: var(--tv-TimeRange-footer-padding);
-    height: var(--tv-TimeRange-footer-height);
-    box-sizing: border-box;
-    margin-top: 12px;
     display: flex;
     justify-content: flex-end;
     align-items: center;

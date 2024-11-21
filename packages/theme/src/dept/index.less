@@ -22,22 +22,18 @@
   .inject-Dept-vars();
 
   &__search {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 
-  &__text,
   &__label {
+    width: 80px;
     font-size: var(--tv-Dept-label-font-size);
     color: var(--tv-Dept-label-text-color);
     font-weight: var(--tv-Dept-label-font-weight);
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  &__label {
-    text-align: right;
-
     &.is-selected {
       text-align: left;
       margin-bottom: 4px;
@@ -53,7 +49,7 @@
   }
 
   &__item {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 
   &__search &__label,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <tiny-user v-model="user" multiple value-split=";" text-split="," value-field="userAccount"></tiny-user>
     <p>value 值：{{ user }}</p>
   </div>
@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-user-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;

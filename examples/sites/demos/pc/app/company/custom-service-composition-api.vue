@@ -1,15 +1,17 @@
 <template>
-  <tiny-company
-    v-model="value"
-    placeholder="请输入"
-    :fetch-company="getCompanyData"
-    :fields="fields"
-    :max="2"
-    @change="change"
-    @clear="clear"
-    is-drop-inherit-width
-    clearable
-  ></tiny-company>
+  <div class="demo-company-class">
+    <tiny-company
+      v-model="value"
+      placeholder="请输入"
+      :fetch-company="getCompanyData"
+      :fields="fields"
+      :max="2"
+      @change="change"
+      @clear="clear"
+      is-drop-inherit-width
+      clearable
+    ></tiny-company>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -53,3 +55,9 @@ function change(value) {
   TinyModal.message({ message: `change:${value}`, status: 'info' })
 }
 </script>
+
+<style scoped>
+.demo-company-class {
+  width: 280px;
+}
+</style>

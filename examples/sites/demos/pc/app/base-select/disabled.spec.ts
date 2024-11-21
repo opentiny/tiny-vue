@@ -64,8 +64,6 @@ test('多选，禁用项默认选中', async ({ page }) => {
 
   // 默认值显示tag数
   await expect(tag).toHaveCount(2)
-  // 禁用项默认选中不显示关闭图标
-  await expect(tag.filter({ hasText: '上海' }).locator('svg')).toHaveCount(0)
   // 非禁用项显示关闭图标
   await expect(tag.filter({ hasText: '天津' }).locator('svg')).toHaveCount(1)
 

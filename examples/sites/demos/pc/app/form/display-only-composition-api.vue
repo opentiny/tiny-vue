@@ -2,12 +2,21 @@
   <div class="demo-form">
     <div class="title">表单是否仅展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
     <tiny-form :inline="inline" label-position="top" :display-only="displayOnly">
-      <tiny-form-item label="超长文字">
-        <tiny-input v-model="formData.input"></tiny-input>
+      <tiny-form-item label="开关">
+        <tiny-switch></tiny-switch>
       </tiny-form-item>
       <tiny-form-item label="radio">
         <tiny-radio v-model="formData.radioValue" label="1">男</tiny-radio>
         <tiny-radio v-model="formData.radioValue" label="2" text="女"></tiny-radio>
+      </tiny-form-item>
+      <tiny-form-item label="复选框">
+        <tiny-checkbox v-model="formData.checked">复选框</tiny-checkbox>
+      </tiny-form-item>
+      <tiny-form-item label="复选框组">
+        <tiny-checkbox-group v-model="formData.checkedArr">
+          <tiny-checkbox label="复选框1" name="name1"></tiny-checkbox>
+          <tiny-checkbox label="复选框2" name="name2"></tiny-checkbox>
+        </tiny-checkbox-group>
       </tiny-form-item>
       <tiny-form-item label="select">
         <tiny-select v-model="formData.select">
@@ -19,26 +28,11 @@
           <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
         </tiny-select>
       </tiny-form-item>
-      <tiny-form-item label="文本域">
-        <tiny-input v-model="formData.textareaValue" type="textarea"></tiny-input>
-      </tiny-form-item>
       <tiny-form-item label="我的密码">
         <tiny-input v-model="formData.passwordValue" type="password"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="数字">
         <tiny-numeric v-model="formData.quantity" unit="个"></tiny-numeric>
-      </tiny-form-item>
-      <tiny-form-item label="复选框">
-        <tiny-checkbox v-model="formData.checked">复选框</tiny-checkbox>
-      </tiny-form-item>
-      <tiny-form-item label="复选框组">
-        <tiny-checkbox-group v-model="formData.checkedArr">
-          <tiny-checkbox label="复选框1" name="name1"></tiny-checkbox>
-          <tiny-checkbox label="复选框2" name="name2"></tiny-checkbox>
-        </tiny-checkbox-group>
-      </tiny-form-item>
-      <tiny-form-item label="开关">
-        <tiny-switch></tiny-switch>
       </tiny-form-item>
       <tiny-form-item label="自动完成">
         <tiny-autocomplete
@@ -49,6 +43,12 @@
       </tiny-form-item>
       <tiny-form-item label="datePicker">
         <tiny-date-picker v-model="formData.datePicker"></tiny-date-picker>
+      </tiny-form-item>
+      <tiny-form-item label="超长文字">
+        <tiny-input v-model="formData.input"></tiny-input>
+      </tiny-form-item>
+      <tiny-form-item label="文本域">
+        <tiny-input v-model="formData.textareaValue" type="textarea"></tiny-input>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -146,7 +146,7 @@ const pickerOptions = ref({
 })
 const formData = ref({
   input:
-    '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',
+    'TinyVue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用 TinyVue。',
   radioValue: '1',
   select: '选项1',
   select1: ['选项1', '选项2'],
@@ -164,7 +164,7 @@ const formData = ref({
   monthrange: ['2022-01', '2023-01'],
   quantity: 1,
   textareaValue:
-    '大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦',
+    'OpenTiny 是一套企业级组件库解决方案，适配 PC 端 / 移动端等多端，涵盖 Vue2 / Vue3 / Angular 多技术栈，拥有主题配置系统 / 中后台模板 / CLI 命令行等效率提升工具，可帮助开发者高效开发 Web 应用。',
   checked: true,
   checkedArr: ['复选框1'],
   rate1: 2,
@@ -202,7 +202,6 @@ function createFilter(queryString) {
 }
 .title {
   margin-bottom: 30px;
-  margin-left: 16px;
   font-size: 14px;
 }
 </style>

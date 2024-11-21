@@ -22,7 +22,7 @@ const initState = ({ reactive, computed, props, api }) => {
   })
   return state
 }
-export const renderless = (props, { reactive, watch, onMounted, computed }, { vm, emit, nextTick }) => {
+export const renderless = (props, { reactive, watch, onMounted, computed, onUnmounted }, { vm, emit, nextTick }) => {
   const api = {}
 
   const state = initState({ reactive, computed, props, api })
@@ -93,6 +93,11 @@ export const renderless = (props, { reactive, watch, onMounted, computed }, { vm
       vm.$emit('current-change', param)
       api.setIsCurrent(state.data, param)
     })
+  })
+
+  onUnmounted(() => {
+    vm.$off('node-clicked')
+    vm.$off('node-changed')
   })
 
   return api

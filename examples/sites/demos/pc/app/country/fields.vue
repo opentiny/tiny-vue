@@ -1,5 +1,7 @@
 <template>
-  <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  <div class="demo-country-class">
+    <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -48,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-country-class {
+  width: 280px;
+}
+</style>

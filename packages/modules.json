@@ -1322,6 +1322,12 @@
     "type": "component",
     "exclude": false
   },
+  "GridSelect": {
+    "path": "vue/src/grid-select/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": ["pc"]
+  },
   "GridToolbar": {
     "path": "vue/src/grid-toolbar/index.ts",
     "type": "component",

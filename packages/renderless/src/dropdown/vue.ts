@@ -84,8 +84,8 @@ export const renderless = (
     handleMainButtonClick: handleMainButtonClick({ api, emit }),
     triggerElmFocus: triggerElmFocus(state),
     initDomOperation: initDomOperation({ api, state, vm }),
-    beforeDistory: beforeDistory({ api, state }),
-    clickOutside: clickOutside({ state, props, api })
+    beforeDistory: beforeDistory({ vm, api, state }),
+    clickOutside: clickOutside({ props, api })
   })
 
   watch(() => state.visible, api.watchVisible)

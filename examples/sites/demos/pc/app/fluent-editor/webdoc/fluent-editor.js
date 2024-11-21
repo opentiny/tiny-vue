@@ -52,6 +52,18 @@ export default {
       codeFiles: ['options.vue']
     },
     {
+      demoId: 'formula',
+      name: {
+        'zh-CN': '可编辑公式',
+        'en-US': 'Formula'
+      },
+      desc: {
+        'zh-CN': '通过设置 <code>options</code> 中的 <code>mathlive</code> 为 true 开启可编辑公式功能。',
+        'en-US': ''
+      },
+      codeFiles: ['options-formula.vue']
+    },
+    {
       demoId: 'data-switch',
       name: {
         'zh-CN': '数据格式转换',

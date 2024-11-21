@@ -51,6 +51,7 @@
       :context="r.context"
       :validation="r.validationResult"
       :schema="r.schema"
+      :bindProps="(r.schema.bindProps && r.schema.bindProps.midSelect) || {}"
     ></component>
 
     <template

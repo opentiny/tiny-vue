@@ -153,17 +153,6 @@ export default defineComponent({
     )
 
     onMounted(async () => {
-      // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
-      routerCbDestroy = router.afterEach((to) => {
-        if (to.hash) {
-          const el = document.querySelector(to.hash)
-          if (el) {
-            return el.scrollIntoView()
-          }
-        }
-        state.contentRef.scrollTo({ top: 0, behavior: 'auto' })
-      })
-
       // 刷新后，高亮相应的菜单
       const cmpId = router.currentRoute.value?.params?.cmpId
       if (cmpId) {
@@ -207,8 +196,11 @@ export default defineComponent({
 .content-layout {
   display: flex;
   --layout-tree-menu-input-height: 32px;
-  --layout-content-main-min-width: 600px;
+  --layout-content-main-min-width: 200px;
   --layout-content-main-max-width: 1000px;
+}
+@media screen and (max-width: 640px) {
+  --layout-content-main-min-width: 600px;
 }
 
 .tiny-tooltip.tiny-tooltip__popper.is-light.docs-tooltip {
@@ -346,12 +338,12 @@ export default defineComponent({
 }
 
 #doc-layout {
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow: hidden auto;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden auto;
+  width: 100%;
+  height: calc(100vh - 60px);
 }
 
 .api-type-box {

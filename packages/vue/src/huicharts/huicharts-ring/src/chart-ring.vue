@@ -28,7 +28,7 @@ export default {
         tooltipVisible: this.tooltipVisible,
         t
       }
-      this.option = pie(columns, rows, this.settings, extra, true)
+      this.huiChartOption = pie(columns, rows, this.settings, extra, true)
     }
   }
 }

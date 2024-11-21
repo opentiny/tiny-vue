@@ -16,7 +16,9 @@ import {
   scrollToPosition,
   scrollToItem,
   computeViewStyle,
-  computeViewEvent
+  computeViewEvent,
+  resetTemporary,
+  init
 } from './index'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 
@@ -27,13 +29,14 @@ export const api = [
   'scrollToItem',
   'computeViewStyle',
   'computeViewEvent',
-  'updateVisibleItems'
+  'updateVisibleItems',
+  'resetTemporary'
 ]
 
 const addWatchers = ({ watch, props, api, state }) => {
   watch(
     () => props.items,
-    () => api.updateVisibleItems(true)
+    () => api.init()
   )
 
   watch(
@@ -103,7 +106,9 @@ export const renderless = (
     applyPageMode: applyPageMode({ api, props }),
     addListeners: addListeners({ api, state }),
     removeListeners: removeListeners({ api, state }),
-    scrollToItem: scrollToItem({ api, props, state })
+    scrollToItem: scrollToItem({ api, props, state }),
+    resetTemporary: resetTemporary({ state }),
+    init: init({ api })
   })
 
   state.temporary = {

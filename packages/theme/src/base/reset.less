@@ -177,8 +177,29 @@
   }
 }
 
-.tiny-popper,
-.tiny-tooltip__popper {
+// 没有箭头的场景， select/ userlink /roles/ dept 等默认距离4 px
+.tiny-popper {
+  &[x-placement^='top'] {
+    margin-bottom: 4px;
+  }
+
+  &[x-placement^='bottom'] {
+    margin-top: 4px;
+  }
+
+  &[x-placement^='right'] {
+    margin-left: 4px;
+  }
+
+  &[x-placement^='left'] {
+    margin-right: 4px;
+  }
+}
+
+// 有箭头的场景，统一规范所有样式
+.tiny-popconfirm-popover:has(.popper__arrow),
+.tiny-popper:has(.popper__arrow),
+.tiny-tooltip__popper:has(.popper__arrow) {
   .popper__arrow {
     position: absolute;
     display: block;

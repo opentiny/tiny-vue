@@ -10,12 +10,7 @@
         state.inputHovering = false
       }
     "
-    @mouseenter.self="
-      () => {
-        state.selectHover = true
-        state.inputHovering = true
-      }
-    "
+    @mouseenter.self="onMouseenterSelf"
     @click="toggleMenu"
     v-clickoutside="handleClose"
     v-bind="a($attrs, ['class', 'style'], true)"
@@ -29,7 +24,7 @@
         { 'z-[2]': state.isExpand && hoverExpand && (state.inputHovering || state.visible) }
       ]"
       :title="
-        multiple && !state.selectDisabled
+        multiple && !state.selectDisabled && state.selected.length
           ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
           : !multiple && state.selectDisabled
             ? state.selectedLabel
@@ -265,6 +260,7 @@
         :unselectable="state.readonly ? 'on' : 'off'"
         :validate-event="false"
         :tabindex="multiple && filterable ? '-1' : tabindex"
+        :show-empty-value="showEmptyValue"
         @focus="handleFocus"
         @blur="handleBlur"
         @keyup="debouncedOnInputChange"
@@ -300,9 +296,10 @@
             @click="handleClearClick"
             @mouseenter="state.inputHovering = true"
           ></icon-close>
+          <!-- tiny 新增： 必须使用 state.getIcon.icon -->
           <component
             v-show="!(remote && filterable && !remoteConfig.showIcon)"
-            :is="dropdownIcon"
+            :is="state.getIcon.icon"
             :class="
               m(
                 gcls('caret'),
@@ -338,6 +335,7 @@
           :style="dropStyle"
           :popper-options="popperOptions"
           :class="m('duration-300')"
+          :height="dropdownHeight"
         >
           <div
             v-if="shape && filterable"
@@ -383,7 +381,6 @@
                 ref="scrollbar"
                 style="height: 100%"
                 :key-field="valueField"
-                :key="state.magicKey"
                 :list-class="[
                   'tiny-select-dropdown__wrap sm:max-h-56 pb-1 sm:pb-0',
                   state.device === 'mb' ? 'scrollbar-size-0' : ''
@@ -711,7 +708,9 @@ export default defineComponent({
     'searchPlaceholder',
     'initLabel',
     'blank',
+    'showEmptyValue',
     'tooltipConfig',
+    'dropdownHeight',
     'allText'
   ],
   setup(props, context) {

@@ -1,15 +1,15 @@
 <template>
   <div style="height: 330px">
     <span>
-      <tiny-button @click="defaultVisable = true">默认属性配置</tiny-button>
-      <tiny-button @click="hideVisable = true">隐藏头部</tiny-button>
-      <tiny-button @click="btnVisable = true">隐藏关闭按钮</tiny-button>
+      <tiny-button @click="defaultVisible = true">默认属性配置</tiny-button>
+      <tiny-button @click="hideVisible = true">隐藏头部</tiny-button>
+      <tiny-button @click="btnVisible = true">隐藏关闭按钮</tiny-button>
     </span>
 
     <tiny-dialog-box
-      v-if="defaultVisable"
-      :visible="defaultVisable"
-      @update:visible="defaultVisable = $event"
+      v-if="defaultVisible"
+      :visible="defaultVisible"
+      @update:visible="defaultVisible = $event"
       :modal-append-to-body="false"
     >
       <div>自定义内容</div>
@@ -19,9 +19,9 @@
       :modal-append-to-body="false"
       title="标题1"
       :show-header="false"
-      :visible="hideVisable"
-      v-if="hideVisable"
-      @update:visible="hideVisable = $event"
+      :visible="hideVisible"
+      v-if="hideVisible"
+      @update:visible="hideVisible = $event"
       ><div>自定义内容</div></tiny-dialog-box
     >
 
@@ -29,9 +29,9 @@
       :modal-append-to-body="false"
       title="标题1"
       :show-close="false"
-      v-if="btnVisable"
-      :visible="btnVisable"
-      @update:visible="btnVisable = $event"
+      v-if="btnVisible"
+      :visible="btnVisible"
+      @update:visible="btnVisible = $event"
       ><div>自定义内容</div></tiny-dialog-box
     >
   </div>
@@ -47,9 +47,9 @@ export default {
   },
   data() {
     return {
-      hideVisable: false,
-      btnVisable: false,
-      defaultVisable: false
+      hideVisible: false,
+      btnVisible: false,
+      defaultVisible: false
     }
   },
   methods: {}

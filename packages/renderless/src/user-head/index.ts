@@ -57,7 +57,7 @@ export const computedFontSize =
       }
 
       const mfsizeMap = {
-        1: `${state.size / 1.5}px`,
+        1: `${state.size / 2}px`,
         2: `${state.size / 3}px`,
         3: `${state.size / 4.5}px`,
         4: `${state.size / 6}px`,

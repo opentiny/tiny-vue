@@ -47,6 +47,7 @@
     >
       <!-- 当前节点的行： 缩进块+left(箭头图标+单多选钮+loading+prefix+label+suffix)+right(finish图标+operation+编辑按钮) -->
       <div
+        ref="content"
         :class="{
           'tiny-tree-node__content': true,
           'tiny-tree-node__content-number': showNumber

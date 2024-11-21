@@ -1,86 +1,76 @@
-import type { IColorSelectPanelRef } from '@/types'
-import type Color from '../utils/color'
+import type {
+  IColorSelectPanelHueProps,
+  IColorSelectPanelRef,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '@/types'
+import type { Color } from '../utils/color'
+import { getClientXY } from '../utils/getClientXY'
 
-export const setPosition = (el: HTMLElement, x: number, y: number) => {
-  el.style.top = `${y}px`
-  el.style.left = `${x}px`
+interface DomInit {
+  thumb: IColorSelectPanelRef<HTMLElement | undefined>
+  bar: IColorSelectPanelRef<HTMLElement | undefined>
+  wrapper: IColorSelectPanelRef<HTMLElement | undefined>
 }
-export const getXBySaturation = (s: number, width: number) => (s * width) / 100
-export const getYByLight = (l: number, height: number) => ((100 - l) * height) / 100
-export const updatePosition = (
-  event: MouseEvent | TouchEvent,
-  rect: DOMRect,
-  cursor: IColorSelectPanelRef<HTMLElement>
+
+export const initState = (
+  props: IColorSelectPanelHueProps<Color>,
+  { reactive, ref, computed }: ISharedRenderlessParamHooks
 ) => {
-  let x = (event as MouseEvent).clientX - rect.left
-  let y = (event as MouseEvent).clientY - rect.top
-  x = Math.max(0, x)
-  x = Math.min(x, rect.width)
-  y = Math.max(0, y)
-  y = Math.min(y, rect.height)
-
-  setPosition(cursor.value, x - (1 / 2) * cursor.value.offsetWidth, y - (1 / 2) * cursor.value.offsetWidth)
-  return { x, y }
-}
-export const calcSaturation = (x: number, width: number) => x / width
-export const calcBrightness = (y: number, height: number) => 100 - (y / height) * 100
-export const getThumbTop = (wrapper: HTMLElement, thumb: HTMLElement, hue: number) => {
-  return Math.round((hue * (wrapper.offsetHeight - thumb.offsetHeight / 2)) / 360)
+  const hueValue = computed(() => props.color.get('hue'))
+  const thumbTop = ref(0)
+  const state = reactive({ hueValue, thumbTop })
+  return state
 }
 
-export const resetCursor = (
-  s: number,
-  v: number,
-  wrapper: IColorSelectPanelRef<HTMLElement>,
-  cursor: IColorSelectPanelRef<HTMLElement>,
-  thumb: IColorSelectPanelRef<HTMLElement>,
-  color: Color,
-  h: IColorSelectPanelRef<number>
-) => {
-  const { width, height } = wrapper.value.getBoundingClientRect()
-  const x = getXBySaturation(s, width) - (1 / 2) * cursor.value.offsetWidth
-  const y = getYByLight(v, height) - (1 / 2) * cursor.value.offsetWidth
-  setPosition(cursor.value, x < 0 ? 0 : x, y < 0 ? 0 : y)
-  const thummbTop = getThumbTop(wrapper.value, thumb.value, color.get('h'))
-  thumb.value.style.top = `${thummbTop}px`
-  h.value = color.get('h')
-}
-
-export const updateCursor = (
-  wrapper: IColorSelectPanelRef<HTMLElement>,
-  cursor: IColorSelectPanelRef<HTMLElement>,
-  emit
-) => {
-  return (color: Color, event: MouseEvent) => {
-    const rect = wrapper.value.getBoundingClientRect()
-    const { x, y } = updatePosition(event, rect, cursor)
-    color.set({
-      s: calcSaturation(x, rect.width) * 100,
-      v: calcBrightness(y, rect.height),
-      h: color.get('h')
-    })
-    emit('sv-update', {
-      s: color.get('s'),
-      v: color.get('v'),
-      h: color.get('h')
-    })
+export const initDom = ({ ref }: ISharedRenderlessParamHooks): DomInit => {
+  return {
+    thumb: ref<HTMLElement>(),
+    bar: ref<HTMLElement>(),
+    wrapper: ref<HTMLElement>()
   }
 }
 
-export const updateThumb = (
-  bar: IColorSelectPanelRef<HTMLElement>,
-  thumb: IColorSelectPanelRef<HTMLElement>,
-  h: IColorSelectPanelRef<Number>,
-  emit
+export const useEvent = (
+  { thumb, bar }: DomInit,
+  state: ReturnType<typeof initState>,
+  props: IColorSelectPanelHueProps<Color>,
+  { emit }: ISharedRenderlessParamUtils
 ) => {
-  return (event: MouseEvent) => {
-    const e = event as MouseEvent
-    const rect = bar.value.getBoundingClientRect()
-    let top = e.clientY - rect.top
+  const onSvReady = (update) => {
+    emit('svReady', update)
+  }
+  const getThumbTop = () => {
+    if (!thumb.value) {
+      return 0
+    }
+    const hue = props.color.get('hue')
+    if (!bar.value) {
+      return 0
+    }
+    return (hue * (bar.value.offsetHeight - thumb.value.offsetHeight / 2)) / 360
+  }
+  const update = () => {
+    state.thumbTop = getThumbTop()
+  }
+  const onDrag = (event: MouseEvent | TouchEvent) => {
+    if (!bar.value || !thumb.value) {
+      return
+    }
+    const el = bar.value
+    if (!el) {
+      return
+    }
+    const rect = el?.getBoundingClientRect()
+    const { clientY } = getClientXY(event)
+    let top = clientY - rect.top
+
     top = Math.min(top, rect.height - thumb.value.offsetHeight / 2)
     top = Math.max(thumb.value.offsetHeight / 2, top)
-    thumb.value.style.top = `${top}px`
-    h.value = Math.round(((top - thumb.value.offsetHeight / 2) / (rect.height - thumb.value.offsetHeight)) * 360)
-    emit('hue-update', h.value)
+    const hue = Math.round(((top - thumb.value.offsetHeight / 2) / (rect.height - thumb.value.offsetHeight)) * 360)
+    state.thumbTop = top
+    emit('hueUpdate', hue)
+    props.color.set('hue', hue)
   }
+  return { update, onDrag, onSvReady }
 }

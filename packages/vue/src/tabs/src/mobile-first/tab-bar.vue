@@ -54,7 +54,7 @@ export default defineComponent({
           ref: 'tabMore',
           attrs: { 'data-tag': 'tiny-tab-more' },
           class: [
-            'inline-flex w-max h-11 sm:h-10 absolute top-0 right-0 z-0 bg-color-bg-1',
+            'inline-flex w-max h-11 sm:h-10 absolute top-0 right-0 z-20 bg-color-bg-1 before:content-[""] before:block before:absolute before:bg-color-border-separator before:h-px before:w-full before:bottom-px',
             state.moreRight ? 'shadow-[-1px_-10px_4px_4px_rgba(0,0,0,0.08)]' : ''
           ]
         },

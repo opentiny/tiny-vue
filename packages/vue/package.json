@@ -113,6 +113,7 @@
     "@opentiny/vue-grid": "workspace:~",
     "@opentiny/vue-grid-column": "workspace:~",
     "@opentiny/vue-grid-manager": "workspace:~",
+    "@opentiny/vue-grid-select": "workspace:~",
     "@opentiny/vue-grid-toolbar": "workspace:~",
     "@opentiny/vue-guide": "workspace:~",
     "@opentiny/vue-hrapprover": "workspace:~",

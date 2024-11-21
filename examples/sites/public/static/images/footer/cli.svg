@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 10</title>
+    <g id="logo-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-应用-2" transform="translate(-1329.000000, -159.000000)">
+            <g id="编组-10" transform="translate(1329.000000, 159.000000)">
+                <rect id="矩形备份" fill="#2F5BEA" x="0" y="0" width="40" height="40" rx="7.18993409"></rect>
+                <g id="编组备份" transform="translate(8.508089, 6.782504)">
+                    <polygon id="路径" fill="#FFFFFF" points="11.4919113 0 18.2721326 3.91330138 9.86688013 8.77230087 9.8738316 8.78433712 6.80512257 10.5554917 6.80512257 15.9762015 11.5011123 18.6865564 14.5641738 16.9186486 14.5731456 16.93418 22.9838048 12.0720729 22.9838226 19.8981426 11.4919113 26.5308568 0 19.8981426 0 6.6327142"></polygon>
+                    <polygon id="路径" fill="#A0B3F1" points="11.5011123 18.6865564 22.9225159 12.0615019 22.9225338 19.8875716 11.4919113 26.5308568"></polygon>
+                    <polygon id="路径" fill="#BFCCF6" points="6.80512257 15.9762015 11.5011123 18.6865564 11.4919113 26.5308568 0 19.8981426"></polygon>
+                    <polygon id="路径" fill="#DFE5FA" points="11.4919113 0 18.2721326 3.91330138 11.4966193 7.83016359"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

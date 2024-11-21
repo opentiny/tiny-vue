@@ -12,34 +12,32 @@
 
 .inject-TimeRange-vars() {
   // 字号
-  --tv-TimeRange-font-size: var(--tv-font-size-md, 14px);
+  --tv-TimeRange-font-size: var(--tv-font-size-default, 14px);
   // 圆角
   --tv-TimeRange-border-radius: var(--tv-border-radius-md, 6px);
   // 分割线颜色
   --tv-TimeRange-border-color-divider: var(--tv-color-border-divider, #f0f0f0);
 
   // 单元格内间距
-  --tv-TimeRange-cell-padding: 0px;
-  // 内容区内间距
-  --tv-TimeRange-content-padding: 0px;
+  --tv-TimeRange-cell-content-padding-bottom: var(--tv-space-xl, 16px);
 
   // 头部高度
   --tv-TimeRange-header-height: var(--tv-size-height-xl, 48px);
   // 头部行高
-  --tv-TimeRange-header-line-height: calc(var(--tv-size-height-xl, 48px) - 2px);
-  // 头部底部外间距
-  --tv-TimeRange-header-margin-bottom: 0px;
+  --tv-TimeRange-header-line-height: var(--tv-TimeRange-header-height, 48px);
+
   // 头部文本色
   --tv-TimeRange-header-text-color: var(--tv-color-text-weaken, #808080);
-  // 头部右侧外间距
-  --tv-TimeRange-header-margin-left: var(--tv-space-xl, 16px);
+  // 头部内间距
+  --tv-TimeRange-header-padding: 0 var(--tv-space-xl, 16px);
+  // 标题内间距
+  --tv-TimeRange-title-padding: var(--tv-space-lg, 12px) var(--tv-space-md, 8px) var(--tv-space-md, 8px)
+    var(--tv-space-md, 8px);
 
-  // 底部高度
-  --tv-TimeRange-footer-height: 56px;
   // 底部内间距
-  --tv-TimeRange-footer-padding: var(--tv-space-xl, 16px) var(--tv-space-xl, 16px) 0 0;
+  --tv-TimeRange-footer-padding: var(--tv-space-xl, 16px);
 
-  //按钮内间距
+  // 按钮内间距
   --tv-TimeRange-btn-padding: 0 var(--tv-space-sm, 4px);
   // 按钮高度
   --tv-TimeRange-btn-height: var(--tv-size-height-sm, 28px);

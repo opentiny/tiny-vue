@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <p class="user-value">
       {{ user }}
     </p>
@@ -152,6 +152,9 @@ function fetchW3Accounts(userId) {
 </script>
 
 <style scoped>
+.demo-user-class {
+  width: 280px;
+}
 .user-value {
   font-size: 14px;
   line-height: 1.5;

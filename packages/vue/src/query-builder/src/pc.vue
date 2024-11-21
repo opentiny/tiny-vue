@@ -47,7 +47,7 @@ export default defineComponent({
     showClearBtn() {
       const rules = this.query?.rules || []
 
-      return this.getRuleTotal(rules) <= 1
+      return !this.config.allowDelAll && this.getRuleTotal(rules) <= 1
     },
     style() {
       return !this.maxHeight

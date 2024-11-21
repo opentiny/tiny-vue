@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     updateChart() {
-      this.option = { ...this.options }
+      this.huiChartOption = { ...this.options }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-drop-roles-class">
     <tiny-drop-roles v-model="value" @change="change"></tiny-drop-roles>
     <p>当前选中值：{{ value }}</p>
   </div>
@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style scoped>
+.demo-drop-roles-class {
+  width: 280px;
+}
 p {
   font-size: 14px;
   line-height: 1.5;
