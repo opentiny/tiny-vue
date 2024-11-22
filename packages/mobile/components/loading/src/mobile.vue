@@ -17,7 +17,6 @@
 <script lang="ts">
 import { $prefix, setup, $props, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
-import { classes } from './tokens'
 import loadingImg from '@opentiny/vue-theme-mobile/images/loading.png'
 import '@opentiny/vue-theme-mobile/loading/index.less'
 
@@ -36,7 +35,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, classes })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

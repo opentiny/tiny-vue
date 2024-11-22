@@ -30,7 +30,7 @@ import '@opentiny/vue-theme-mobile/tabbar/index.less'
 export default defineComponent({
   name: $prefix + 'Tabbar',
   componentName: 'Tabbar',
-  props: tabbarProps
+  props: tabbarProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

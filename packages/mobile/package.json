@@ -15,15 +15,12 @@
     "url": "https://github.com/opentiny/tiny-vue/issues"
   },
   "keywords": [
-    "vue",
     "vue3",
     "frontend",
     "component-library",
     "components",
     "vue-components",
-    "opentiny",
-    "renderless-components",
-    "headless-components"
+    "opentiny"
   ],
   "sideEffects": false,
   "main": "index.ts",
