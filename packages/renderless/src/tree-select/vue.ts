@@ -1,4 +1,14 @@
-import { check, filter, getCheckedData, getPluginOption, getTreeData, mounted, nodeClick } from './index'
+import {
+  check,
+  filter,
+  getCheckedData,
+  getPluginOption,
+  getTreeData,
+  mounted,
+  nodeClick,
+  watchValue,
+  getChildValue
+} from './index'
 
 export const api = ['state', 'check', 'filter', 'nodeClick']
 
@@ -11,7 +21,7 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
     defaultCheckedKeys: [],
     remoteData: [],
     treeData: props.treeOp.data,
-    value: computed(() => props.modelValue)
+    modelValue: []
   })
 
   Object.assign(api, {
@@ -22,7 +32,9 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
     getPluginOption: getPluginOption({ api, props, state }),
     getTreeData: getTreeData({ props, state }),
     mounted: mounted({ api, state, props, vm }),
-    nodeClick: nodeClick({ props, vm, emit })
+    nodeClick: nodeClick({ props, vm, emit }),
+    watchValue: watchValue({ api, props, vm, state }),
+    getChildValue: getChildValue()
   })
 
   watch(
@@ -30,6 +42,20 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
     (data) => data && (state.treeData = data),
     { immediate: true, deep: true }
   )
+
+  watch(
+    () => props.modelValue,
+    () => {
+      if (props.multiple && Array.isArray(props.modelValue)) {
+        state.modelValue = [...props.modelValue]
+      } else {
+        state.modelValue = props.modelValue
+      }
+    },
+    { immediate: true, deep: true }
+  )
+
+  watch(() => state.modelValue, api.watchValue)
 
   onMounted(api.mounted)
 
