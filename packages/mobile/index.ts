@@ -5,17 +5,17 @@ import Badge from './components/badge'
 import Button from './components/button'
 import Checkbox from './components/checkbox'
 import CheckboxGroup from './components/checkbox-group'
-// import ColorPicker from './components/color-picker'
 import Container from './components/container'
 import DatePicker from './components/date-picker'
 import DialogBox from './components/dialog-box'
-// import DropdownItem from './components/dropdown-item'
-// import DropdownMenu from './components/dropdown-menu'
+import DropdownItem from './components/dropdown-item'
+import DropdownMenu from './components/dropdown-menu'
 import Exception from './components/exception'
 import FileUpload from './components/file-upload'
 import Form from './components/form'
 import ImageViewer from './components/image-viewer'
 import IndexBar from './components/index-bar'
+import IndexBarAnchor from './components/index-bar-anchor'
 import Input from './components/input'
 import Label from './components/label'
 import List from './components/list'
@@ -39,83 +39,13 @@ import Tabbar from './components/tabbar'
 import TabbarItem from './components/tabbar-item'
 import Table from './components/table'
 import Tabs from './components/tabs'
+import TabItem from './components/tab-item'
 import Tag from './components/tag'
 import TimeLine from './components/time-line'
 import Toast from './components/toast'
 import UploadList from './components/upload-list'
 import UserHead from './components/user-head'
 import Wheel from './components/wheel'
-import { $prefix } from './vue-common'
-
-const components = [
-  ActionSheet,
-  Alert,
-  Avatar,
-  Badge,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  //   ColorPicker,
-  Container,
-  DatePicker,
-  DialogBox,
-  //   DropdownItem,
-  //   DropdownMenu,
-  Exception,
-  FileUpload,
-  Form,
-  ImageViewer,
-  IndexBar,
-  Input,
-  Label,
-  List,
-  Loading,
-  Mask,
-  MiniPicker,
-  Modal,
-  MultiSelect,
-  MultiSelectItem,
-  NavBar,
-  Numeric,
-  PickerColumn,
-  Popover,
-  Progress,
-  PullRefresh,
-  Radio,
-  Search,
-  Slider,
-  Switch,
-  Tabbar,
-  TabbarItem,
-  Table,
-  Tabs,
-  Tag,
-  TimeLine,
-  Toast,
-  UploadList,
-  UserHead,
-  Wheel
-]
-
-export const install = (app, opts = {}) => {
-  const regex = new RegExp('^' + $prefix)
-
-  const appProperties = app.config?.globalProperties || app.prototype
-  appProperties.tiny_mode = { value: 'mobile' }
-
-  components.forEach((component) => {
-    const name = component.name
-    const alias = opts.alias || opts.prefix
-
-    if (typeof component.install !== 'function') return
-
-    if (name && alias) {
-      app.component(name.replace(regex, alias), component)
-    } else {
-      component.install(app)
-    }
-  })
-}
 
 export const version = '3.18.0'
 
@@ -134,18 +64,16 @@ export {
   Checkbox as TinyCheckbox,
   CheckboxGroup,
   CheckboxGroup as TinyCheckboxGroup,
-  //   ColorPicker,
-  //   ColorPicker as TinyColorPicker,
   Container,
   Container as TinyContainer,
   DatePicker,
   DatePicker as TinyDatePicker,
   DialogBox,
   DialogBox as TinyDialogBox,
-  //   DropdownItem,
-  //   DropdownItem as TinyDropdownItem,
-  //   DropdownMenu,
-  //   DropdownMenu as TinyDropdownMenu,
+  DropdownItem,
+  DropdownItem as TinyDropdownItem,
+  DropdownMenu,
+  DropdownMenu as TinyDropdownMenu,
   Exception,
   Exception as TinyException,
   FileUpload,
@@ -156,6 +84,8 @@ export {
   ImageViewer as TinyImageViewer,
   IndexBar,
   IndexBar as TinyIndexBar,
+  IndexBarAnchor,
+  IndexBarAnchor as TinyIndexBarAnchor,
   Input,
   Input as TinyInput,
   Label,
@@ -202,6 +132,8 @@ export {
   Table as TinyTable,
   Tabs,
   Tabs as TinyTabs,
+  TabItem,
+  TabItem as TinyTabItem,
   Tag,
   Tag as TinyTag,
   TimeLine,

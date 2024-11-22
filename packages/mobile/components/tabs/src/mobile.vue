@@ -16,7 +16,7 @@ import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
 import { touchStart, touchMove } from '@opentiny/utils/deps/touch'
 import '@opentiny/vue-theme-mobile/tabs/index.less'
-import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
+import type { ITabsApi } from './tabs'
 import { tabsProps } from './tabs'
 
 const MIN_SWIPE_DISTANCE = 50

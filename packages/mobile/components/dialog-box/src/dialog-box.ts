@@ -40,7 +40,7 @@ import type {
   ISharedRenderlessParamUtils
 } from '../../../types/shared.type'
 
-export { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks }
 
 export const $constants = {
   DIALOG_SLIDER_RIGHT: 'dialog-slideRight',

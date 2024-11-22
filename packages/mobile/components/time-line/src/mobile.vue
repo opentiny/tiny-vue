@@ -81,28 +81,14 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '../../../vue-common'
 import { iconYes } from '@opentiny/vue-icon'
 import { timelineProps } from './time-line'
 import '@opentiny/vue-theme-mobile/steps/index.less'
 
 export default defineComponent({
   emits: ['click'],
-  props: [
-    ...props,
-    'vertical',
-    'horizontal',
-    'showNumber',
-    'nameField',
-    'timeField',
-    'start',
-    'data',
-    'space',
-    'active',
-    'reverse',
-    'showStatus',
-    'showFoldBtn'
-  ],
+  props: timelineProps,
   components: {
     IconYes: iconYes()
   },

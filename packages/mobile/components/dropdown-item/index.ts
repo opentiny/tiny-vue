@@ -9,23 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import service from './src/service'
-import directive from './src/directive'
-import { setupComponent } from '../../../vue-common'
+import DropdownItem from './src/mobile.vue'
 
-const Loadings: any = {
-  install(app) {
-    app.directive('loading', directive)
-  },
-  service,
-  directive
+/* istanbul ignore next */
+DropdownItem.install = function (Vue) {
+  Vue.component(DropdownItem.name, DropdownItem)
 }
 
-setupComponent.TINYLoading = {
-  init(root) {
-    let prefix = root.$apiPrefix || '$'
-    root[`${prefix}loading`] = service
-  }
-}
-
-export default Loadings
+export default DropdownItem
