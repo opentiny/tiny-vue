@@ -187,10 +187,11 @@ export default {
           type: 'Number',
           defaultValue: '5',
           desc: {
-            'zh-CN': '显示模块数量，超出隐藏',
-            'en-US': 'Display the number of modules. The number of modules exceeds the hidden value'
+            'zh-CN': '控制信息可见的节点数，默认可见5个',
+            'en-US': 'Control the number of visible nodes for information, with a default of 5 visible nodes'
           },
-          mode: ['mobile-first'],
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'line-horizontal',
           mfDemo: 'vertical'
         }
       ],
