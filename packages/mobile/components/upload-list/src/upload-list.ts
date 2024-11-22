@@ -26,7 +26,7 @@ import type {
   getNotSuccessFiles
 } from './renderless'
 
-export type { IFileUploadConstants, IFileUploadModalVm, IFileUploadFile }
+export type { IFileUploadConstants, IFileUploadModalVm, IFileUploadFile, downloadFile }
 
 export const uploadListProps = {
   disabled: {

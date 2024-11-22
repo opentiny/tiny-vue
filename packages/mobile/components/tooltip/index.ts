@@ -9,11 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import FileUpload from './src/mobile.vue'
+import Tooltip from './src/mobile.vue'
 
 /* istanbul ignore next */
-FileUpload.install = function (Vue) {
-  Vue.component(FileUpload.name, FileUpload)
+Tooltip.install = function (Vue) {
+  Vue.component(Tooltip.name, Tooltip)
 }
 
-export default FileUpload
+export default Tooltip

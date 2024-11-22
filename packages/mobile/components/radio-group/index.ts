@@ -9,11 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import FileUpload from './src/mobile.vue'
+import RadioGroup from './src/mobile.vue'
 
 /* istanbul ignore next */
-FileUpload.install = function (Vue) {
-  Vue.component(FileUpload.name, FileUpload)
+RadioGroup.install = function (Vue) {
+  Vue.component(RadioGroup.name, RadioGroup)
 }
 
-export default FileUpload
+export default RadioGroup

@@ -13,6 +13,7 @@ import DropdownMenu from './components/dropdown-menu'
 import Exception from './components/exception'
 import FileUpload from './components/file-upload'
 import Form from './components/form'
+import FormItem from './components/form-item'
 import ImageViewer from './components/image-viewer'
 import IndexBar from './components/index-bar'
 import IndexBarAnchor from './components/index-bar-anchor'
@@ -32,6 +33,7 @@ import Popover from './components/popover'
 import Progress from './components/progress'
 import PullRefresh from './components/pull-refresh'
 import Radio from './components/radio'
+import RadioGroup from './components/radio-group'
 import Search from './components/search'
 import Slider from './components/slider'
 import Switch from './components/switch'
@@ -43,6 +45,7 @@ import TabItem from './components/tab-item'
 import Tag from './components/tag'
 import TimeLine from './components/time-line'
 import Toast from './components/toast'
+import Tooltip from './components/tooltip'
 import UploadList from './components/upload-list'
 import UserHead from './components/user-head'
 import Wheel from './components/wheel'
@@ -80,6 +83,8 @@ export {
   FileUpload as TinyFileUpload,
   Form,
   Form as TinyForm,
+  FormItem,
+  FormItem as TinyFormItem,
   ImageViewer,
   ImageViewer as TinyImageViewer,
   IndexBar,
@@ -118,6 +123,8 @@ export {
   PullRefresh as TinyPullRefresh,
   Radio,
   Radio as TinyRadio,
+  RadioGroup,
+  RadioGroup as TinyRadioGroup,
   Search,
   Search as TinySearch,
   Slider,
@@ -140,6 +147,8 @@ export {
   TimeLine as TinyTimeLine,
   Toast,
   Toast as TinyToast,
+  Tooltip,
+  Tooltip as TinyTooltip,
   UploadList,
   UploadList as TinyUploadList,
   UserHead,

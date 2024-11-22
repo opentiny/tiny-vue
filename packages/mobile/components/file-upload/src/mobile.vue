@@ -20,7 +20,7 @@ import '@opentiny/vue-theme-mobile/file-upload/index.less'
 import '@opentiny/vue-theme-mobile/upload-list/index.less'
 import '@opentiny/vue-theme-mobile/upload-dragger/index.less'
 import '@opentiny/vue-theme-mobile/upload/index.less'
-import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
+import type { IFileUploadApi } from './file-upload'
 
 export default defineComponent({
   inheritAttrs: false,

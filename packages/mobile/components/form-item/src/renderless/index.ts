@@ -80,7 +80,7 @@ export const computedLabelStyle =
   (): IFormItemLabelStyle => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       return result
     }
 
@@ -98,7 +98,7 @@ export const computedValueStyle =
   (): { width: string } => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       result.width = '100%'
       return result
     }
@@ -372,7 +372,7 @@ export const resetField =
 export const getRules =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemRule[] => {
-    let formRules = state.form.rules || {}
+    let formRules = state.form?.rules || {}
     const selfRules = props.rules as IFormItemRule[]
     const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
