@@ -52,6 +52,7 @@ import { renderless, api } from './renderless/vue'
 import { IconYes } from '@opentiny/vue-icon'
 import BScroll from '@better-scroll/core'
 import Wheel from '@better-scroll/wheel'
+import '@opentiny/vue-theme-mobile/wheel/index.less'
 
 BScroll.use(Wheel)
 

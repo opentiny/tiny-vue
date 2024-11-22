@@ -22,12 +22,13 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { props, setup, h, defineComponent } from '../../../vue-common'
+import { tagProps } from './tag'
 import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
 import '@opentiny/vue-theme-mobile/tag/index.less'
 
 export default defineComponent({
   emits: ['click', 'close'],
-  props: [...props, 'text', 'color', 'width', 'mini', 'maxWidth'],
+  props: tagProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   }

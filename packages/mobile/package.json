@@ -34,7 +34,8 @@
   "dependencies": {
     "@better-scroll/core": "^2.5.0",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/utils": "workspace:~"
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "devDependencies": {
     "vue": "^3.5.0"

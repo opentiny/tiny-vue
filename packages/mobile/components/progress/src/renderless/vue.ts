@@ -15,7 +15,7 @@ import type {
   IProgressApi,
   ISharedRenderlessParamHooks,
   IProgressRenderlessParamUtils
-} from '@/types'
+} from '../progress'
 import {
   computedBarStyle,
   computedRelativeStrokeWidth,

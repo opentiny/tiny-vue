@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Tag from './src/index'
-import '@opentiny/vue-theme/tag/index.less'
+import Tag from './src/mobile.vue'
 
 /* istanbul ignore next */
 Tag.install = function (Vue) {

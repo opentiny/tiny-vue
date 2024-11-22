@@ -31,7 +31,7 @@ import type {
   ITimelineState,
   ISharedRenderlessParamHooks,
   ITimelineItem
-} from '@/types'
+} from '../time-line'
 
 export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDate', 'changeStatus', 'toggleFold']
 

@@ -9,10 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { ISearchRenderlessParams, ISearchValue } from '@/types'
-import { on, off } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
-import { isObject, typeOf } from '../common/type'
+import type { ISearchRenderlessParams, ISearchValue } from '../search'
+import { on, off } from '@opentiny/utils/deps/dom'
+import PopupManager from '@opentiny/utils/deps/popup-manager'
+import { isObject, typeOf } from '@opentiny/utils/type'
 
 export const emitInput =
   ({ emit }: Pick<ISearchRenderlessParams, 'emit'>) =>

@@ -9,14 +9,15 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { timeout } from './renderless'
 
 export const toastProps = {
-  ...$props,
   type: {
     type: String,
-    validator: (value: string) => Boolean(~['text', 'correct', 'error'].indexOf(value))
+    validator: (value: string) => ['text', 'correct', 'error'].includes(value)
   },
   zIndex: {
     type: Number,
@@ -36,11 +37,22 @@ export const toastProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Toast',
-  emits: ['timeout'],
-  props: toastProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export interface IToastState {
+  text: string | null
+  type?: string
+  time: number
+}
+
+export type IToastProps = ExtractPropTypes<typeof toastProps>
+
+export type IToastRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  state: IToastState
+  props: IToastProps
+}
+
+export interface IToastApi {
+  state: IToastState
+  timeout: ReturnType<typeof timeout>
+}
+
+export type IToastRenderlessParamUtils = ISharedRenderlessParamUtils<never>

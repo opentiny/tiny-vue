@@ -71,21 +71,11 @@ import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
 import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/progress/index.less'
-import type { IProgressApi } from '@opentiny/vue-renderless/types/progress.type'
+import { progressProps } from './progress'
+import type { IProgressApi } from './progress'
 
 export default defineComponent({
-  props: [
-    ...props,
-    'type',
-    'percentage',
-    'status',
-    'strokeWidth',
-    'textInside',
-    'width',
-    'showText',
-    'color',
-    'format'
-  ],
+  props: progressProps,
   components: {
     IconClose: iconClose(),
     IconSuccessful: iconSuccessful(),

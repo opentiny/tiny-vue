@@ -10,14 +10,14 @@
  *
  */
 
-import { format } from '../common/date'
+import { format } from '@opentiny/utils/date'
 import type {
   ITimelineProps,
   ITimelineRenderlessParams,
   ITimelineItem,
   ITimelineStatusCls,
   ITimelineCustomCls
-} from '@/types'
+} from '../time-line'
 
 export const getDate = (dateTime: string): { date: string; time: string } => ({
   date: format(dateTime, 'yyyy-MM-dd'),

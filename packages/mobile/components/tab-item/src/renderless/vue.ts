@@ -16,7 +16,7 @@ import type {
   ISharedRenderlessParamHooks,
   ITabItemRenderlessParamUtils,
   ITabsVm
-} from '@/types'
+} from '../tab-item'
 import { computedIsClosable, computedActive, computedPaneName, watchTitle } from './index'
 
 export const api = ['state']

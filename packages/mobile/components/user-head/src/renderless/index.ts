@@ -10,7 +10,7 @@
  *
  */
 
-import type { IUserHeadRenderlessParams } from '@/types'
+import type { IUserHeadRenderlessParams } from '../user-head'
 
 export const computedStyle =
   ({ state, props }: Pick<IUserHeadRenderlessParams, 'state' | 'props'>) =>

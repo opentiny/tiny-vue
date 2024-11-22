@@ -33,21 +33,13 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { $props, $prefix, setup, defineComponent } from '../../../vue-common'
+import { tabbarItemProps } from './tabbar-item'
+import '@opentiny/vue-theme-mobile/tabbar-item/index.less'
 
 export default defineComponent({
   name: $prefix + 'TabbarItem',
   componentName: 'TinyTabbarItem',
-  props: {
-    ...$props,
-    url: String,
-    replace: Boolean,
-    to: [String, Object],
-    dot: Boolean,
-    icon: Object,
-    name: [Number, String],
-    info: [Number, String],
-    badge: [Number, String]
-  },
+  props: tabbarItemProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

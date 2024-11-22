@@ -53,7 +53,7 @@ import type {
   ISharedRenderlessParamHooks,
   ISliderApi,
   ISliderRenderlessParamUtils
-} from '@/types'
+} from '../slider'
 
 export const api = [
   'state',

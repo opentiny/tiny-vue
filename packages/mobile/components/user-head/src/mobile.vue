@@ -40,25 +40,14 @@
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
 import { iconUser } from '@opentiny/vue-icon'
+import { userHeadProps } from './user-head'
 import '@opentiny/vue-theme-mobile/user-head/index.less'
 
 export default defineComponent({
   components: {
     IconUser: iconUser()
   },
-  props: [
-    ...props,
-    'min',
-    'round',
-    'color',
-    'backgroundColor',
-    'type',
-    'modelValue',
-    'messageTotal',
-    'messageType',
-    'messageUpperLimit',
-    'size'
-  ],
+  props: userHeadProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

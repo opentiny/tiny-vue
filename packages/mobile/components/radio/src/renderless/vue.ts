@@ -16,7 +16,7 @@ import type {
   IRadioState,
   ISharedRenderlessParamHooks,
   IRadioRenderlessParamUtils
-} from '@/types'
+} from '../radio'
 import {
   handleChange,
   isGroup,

@@ -24,34 +24,13 @@
 <script lang="ts">
 import { setup, $prefix, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
+import { tabbarProps } from './tabbar'
 import '@opentiny/vue-theme-mobile/tabbar/index.less'
 
 export default defineComponent({
   name: $prefix + 'Tabbar',
   componentName: 'Tabbar',
-  props: {
-    activeColor: String,
-    border: {
-      type: Boolean,
-      default: true
-    },
-    fixed: {
-      type: Boolean,
-      default: true
-    },
-    inactiveColor: String,
-    modelValue: {
-      type: [Number, String],
-      default: 0
-    },
-    placeholder: Boolean,
-    route: Boolean,
-    safeAreaInsetBottom: {
-      type: Boolean,
-      default: null
-    },
-    zIndex: [Number, String]
-  },
+  props: tabbarProps
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

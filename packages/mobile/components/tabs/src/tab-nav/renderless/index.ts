@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { ITabNavRenderlessParams } from '@/types'
+import type { ITabNavRenderlessParams } from '../tab-nav'
 import { KEY_CODE, POSITION } from '@opentiny/utils'
 import { capitalize } from '@opentiny/utils/string'
 import { addResizeListener, removeResizeListener } from '@opentiny/utils/deps/resize-event'

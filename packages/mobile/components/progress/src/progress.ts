@@ -9,8 +9,9 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
   PROGRESS_TYPE: {
@@ -58,7 +59,6 @@ export const $constants = {
 }
 
 export const progressProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -107,10 +107,83 @@ export const progressProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Progress',
-  props: progressProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export type IProgressProps = ExtractPropTypes<typeof progressProps>
+
+export interface IProgressState {
+  percentTextSize: number
+  rate: number
+  radius: number
+  stroke: string
+  content: string
+  barStyle: object
+  trackPath: string
+  perimeter: number
+  iconClass: string
+  iconStyle: object
+  circleStyle: object
+  trailPathStyle: object
+  circlePathStyle: object
+  progressTextSize: number
+  strokeDashoffset: string
+  strokeWidth: number
+  width: number
+  relativeStrokeWidth: number
+}
+
+export interface IProgressColorItem {
+  color: string
+  progress: number
+}
+
+export interface IProgressIconStyle<T> {
+  width: T
+  height: T
+}
+
+export interface IProgressPathStyle {
+  strokeDasharray: string
+  strokeDashoffset: string
+  transition?: string
+}
+
+export interface IProgressBarStyle {
+  width: string
+  backgroundColor: string
+}
+
+export interface IProgressApi {
+  state: IProgressState
+  customAppearHook: (el: HTMLElement) => void
+  computedContent: () => string
+  getColorArray: () => IProgressColorItem[]
+  computedRate: () => number
+  computedPerimeter: () => number
+  computedRadius: () => number
+  computedTrackPath: () => string
+  computedIconClass: () => string
+  computedIconStyle: () => IProgressIconStyle<number> | object
+  computedCircleStyle: () => IProgressIconStyle<string> | object
+  computedCirclePathStyle: () => IProgressPathStyle
+  computedStrokeDashoffset: () => string
+  computedTrailPathStyle: () => IProgressPathStyle
+  computedRelativeStrokeWidth: () => number
+  computedProgressTextSize: () => number
+  customAfterAppearHook: (el: HTMLElement) => void
+  customBeforeAppearHook: (el: HTMLElement) => void
+  getLevelColor: (p: number) => string
+  computedBarStyle: () => IProgressBarStyle
+  getCurrentColor: (p: number) => string
+  computedStroke: () => string
+}
+
+export type IProgressConstants = typeof $constants
+
+export type IProgressRenderlessParamUtils = ISharedRenderlessParamUtils<IProgressConstants> & {
+  constants: IProgressConstants
+}
+
+export type IProgressRenderlessParams = ISharedRenderlessFunctionParams<IProgressConstants> & {
+  state: IProgressState
+  props: IProgressProps
+  api: IProgressApi
+}

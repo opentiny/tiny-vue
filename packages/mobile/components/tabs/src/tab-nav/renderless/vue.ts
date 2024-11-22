@@ -15,7 +15,7 @@ import type {
   ITabNavProps,
   ISharedRenderlessParamHooks,
   ITabNavRenderlessParamUtils
-} from '@/types'
+} from '../tab-nav'
 import {
   computedNavStyle,
   computedSizeName,

@@ -15,7 +15,7 @@ import type {
   IProgressPathStyle,
   IProgressIconStyle,
   IProgressColorItem
-} from '@/types'
+} from '../progress'
 
 export const computedBarStyle =
   ({ api, props }: Pick<IProgressRenderlessParams, 'api' | 'props'>) =>
@@ -148,8 +148,8 @@ export const computedProgressTextSize =
         fontSize = state.strokeWidth
           ? constants.TEXT_XS + state.strokeWidth * constants.STROKE_WIDTH_RATE
           : props.size === constants.PROGRESS_SIZE.SMALL
-          ? constants.TEXT_XS
-          : constants.TEXT_SM
+            ? constants.TEXT_XS
+            : constants.TEXT_SM
       } else {
         const width = state.width ? state.width : sizeWidthMap[props.size]
         fontSize = width / constants.WIDTH_RATE_THREE

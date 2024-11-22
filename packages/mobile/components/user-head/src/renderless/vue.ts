@@ -10,7 +10,13 @@
  *
  */
 
-import type { IUserHeadApi, IUserHeadProps, IUserHeadRenderlessParamUtils, IUserHeadState } from 'types/user-head.type'
+import type {
+  IUserHeadApi,
+  IUserHeadProps,
+  IUserHeadRenderlessParamUtils,
+  IUserHeadState,
+  ISharedRenderlessParamHooks
+} from '../user-head'
 import {
   computedMessage,
   computedStyle,
@@ -20,7 +26,6 @@ import {
   handleClick,
   mouseEnter
 } from './index'
-import type { ISharedRenderlessParamHooks } from 'types/shared.type'
 
 export const api = ['state', 'handleClick', 'mouseEnter']
 

@@ -9,20 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
 
-export default defineComponent({
-  name: $prefix + 'Table',
-  props: {
-    ...$props,
-    columns: Array,
-    data: Array,
-    width: String,
-    defaultChecked: Array,
-    keys: String
-  },
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export const tableProps = {
+  columns: Array,
+  data: Array,
+  width: String,
+  defaultChecked: Array,
+  keys: String
+}

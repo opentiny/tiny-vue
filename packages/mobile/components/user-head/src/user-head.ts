@@ -9,15 +9,17 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { computedFontSize, computedLabel, computedMessage, computedStyle, getInternalValue } from './renderless'
 
 export const $constants = {
   ITEM_NAME: '.user-head-item'
 }
 
 export const userHeadProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -102,10 +104,36 @@ export const userHeadProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'UserHead',
-  props: userHeadProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export interface IUserHeadState {
+  internalValue: string | Record<string, any>
+  label: string
+  style: ReturnType<ReturnType<typeof computedStyle>>
+  message: string
+  fontSize: { fontSize: string }
+  size: number
+  color: string
+  backgroundColor: string
+}
+
+export type IUserHeadProps = ExtractPropTypes<typeof userHeadProps>
+
+export type IUserHeadConstants = typeof $constants
+
+export type IUserHeadRenderlessParams = ISharedRenderlessFunctionParams<IUserHeadConstants> & {
+  api: IUserHeadApi
+  state: IUserHeadState
+  props: IUserHeadProps
+}
+
+export interface IUserHeadApi {
+  state: IUserHeadState
+  computedLabel: ReturnType<typeof computedLabel>
+  computedStyle: ReturnType<typeof computedStyle>
+  computedMessage: ReturnType<typeof computedMessage>
+  computedFontSize: ReturnType<typeof computedFontSize>
+  getInternalValue: ReturnType<typeof getInternalValue>
+  handleClick: (event: Event) => void
+  mouseEnter: (event: Event) => void
+}
+
+export type IUserHeadRenderlessParamUtils = ISharedRenderlessParamUtils<IUserHeadConstants>

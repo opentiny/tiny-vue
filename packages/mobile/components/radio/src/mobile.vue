@@ -48,11 +48,12 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
+import { radioProps } from './radio'
 import '@opentiny/vue-theme-mobile/radio/index.less'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'events', 'label', 'text', 'disabled', 'name'],
+  props: radioProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

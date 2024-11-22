@@ -17,7 +17,7 @@ import type {
   ISwitchState,
   ISharedRenderlessParamHooks,
   ISwitchRenderlessParamUtils
-} from '@/types'
+} from '../switch'
 
 export const api = ['toggle', 'state']
 

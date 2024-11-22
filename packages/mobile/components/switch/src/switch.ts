@@ -9,8 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes, StyleValue } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from './renderless'
 
 export const $constants = {
   PC_PREFIXCLS: 'tiny-switch',
@@ -22,7 +24,6 @@ export const $constants = {
 }
 
 export const switchProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -72,10 +73,35 @@ export const switchProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Switch',
-  props: switchProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export interface ISwitchState {
+  currentValue: string | number | boolean
+  innerClasses: string
+  wrapClasses: ISwitchClass
+  style: StyleValue
+  formDisabled: boolean
+  disabled: boolean
+  isDisplayOnly: boolean
+  showText: boolean
+}
+
+export type ISwitchClass = Array<string | { [calssName: string]: boolean }>
+
+export type ISwitchProps = ExtractPropTypes<typeof switchProps>
+
+export type ISwitchConstants = typeof $constants
+
+export type ISwitchRenderlessParams = ISharedRenderlessFunctionParams<ISwitchConstants> & {
+  state: ISwitchState
+  props: ISwitchProps
+  prefixCls: string
+}
+
+export interface ISwitchApi {
+  state: ISwitchState
+  toggle: ReturnType<typeof toggle>
+  computedWarpClasses: ReturnType<typeof computedWarpClasses>
+  computedInnerClasses: ReturnType<typeof computedInnerClasses>
+  computedStyle: ReturnType<typeof computedStyle>
+}
+
+export type ISwitchRenderlessParamUtils = ISharedRenderlessParamUtils<ISwitchConstants>

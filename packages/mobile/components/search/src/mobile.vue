@@ -69,7 +69,8 @@ import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
 import { iconSearch, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/search/index.less'
-import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
+import type { ISearchApi } from './search'
+import { searchProps } from './search'
 
 export default defineComponent({
   props: [

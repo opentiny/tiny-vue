@@ -9,9 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix, $props, $setup, defineComponent } from '../../../vue-common'
 import type { PropType } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes } from 'vue'
+import type { toggleFold } from './renderless'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
   PROCESS_DONE_CLS: 'process-done',
@@ -26,7 +28,6 @@ export const $constants = {
 export type ShapeType = 'circle' | 'dot'
 
 export const timelineProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -114,10 +115,60 @@ export const timelineProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'TimeLine',
-  props: timelineProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export type ITimelineProps = ExtractPropTypes<typeof timelineProps>
+
+export type ITimelineConstants = typeof $constants
+
+export type ITimelineRenderlessParamUtils = ISharedRenderlessParamUtils<ITimelineConstants>
+
+export type TimelineItemType = 'primary' | 'success' | 'warning' | 'error' | 'info'
+export interface ITimelineItem {
+  index: number
+  name: string
+  time: string
+  error: boolean
+  disabled: boolean
+  type: TimelineItemType
+  fold?: boolean
+}
+
+export interface ITimelineState {
+  nodes: ITimelineItem[]
+  timelineItems: ITimelineItem[]
+  current: number
+  isReverse: boolean
+  stackNodes: ITimelineItem[]
+  computedSpace: string
+  showData: boolean
+  showAll: boolean
+  computedWrapperClass: ITimelineCustomCls
+  computedLineWidth: string
+}
+
+export interface ITimelineApi {
+  state: ITimelineState
+  getDate: () => string
+  computedData: () => ITimelineItem[]
+  computedCurrent: () => number
+  computedIsReverse: () => boolean
+  computedSpace: () => string | number
+  getStatus: () => string
+  handleClick: () => void
+  getStatusCls: () => ITimelineStatusCls
+  computedStackNodes: () => ITimelineItem[]
+  changeStatus: () => boolean
+  computedWrapperClass: () => ITimelineCustomCls
+  toggleFold: ReturnType<typeof toggleFold>
+}
+
+export type ITimelineRenderlessParams = ISharedRenderlessFunctionParams<ITimelineConstants> & {
+  api: ITimelineApi
+  state: ITimelineState
+  props: ITimelineProps
+}
+
+export type ITimelineStatusCls = {
+  [key in keyof ITimelineConstants]?: boolean
+}
+
+export type ITimelineCustomCls = (string | { [key: string]: boolean })[]

@@ -16,13 +16,14 @@ import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/toast/index.less'
 import { IconMobileErrorWhite, IconMobileSuccessWhite } from '@opentiny/vue-icon'
 import type { IToastApi } from '@opentiny/vue-renderless/types/toast.type'
+import { toastProps } from './toast'
 
 export default defineComponent({
   components: {
     IconMobileErrorWhite: IconMobileErrorWhite(),
     IconMobileSuccessWhite: IconMobileSuccessWhite()
   },
-  props: [...props, 'type', 'zIndex', 'text', 'time', 'timeout'],
+  props: toastProps,
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IToastApi
   }

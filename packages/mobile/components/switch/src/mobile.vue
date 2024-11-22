@@ -21,6 +21,7 @@
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
 import '@opentiny/vue-theme-mobile/switch/index.less'
+import { switchProps } from './switch'
 
 export default defineComponent({
   props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'loading', 'mini'],

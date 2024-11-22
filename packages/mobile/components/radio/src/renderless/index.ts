@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { IRadioRenderlessParams, IRadioState } from '@/types'
+import type { IRadioRenderlessParams, IRadioState } from '../radio'
 
 export const handleChange =
   ({

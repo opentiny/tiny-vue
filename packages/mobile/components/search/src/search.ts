@@ -9,12 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix, $props, $setup, defineComponent } from '../../../vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?mobile'
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const searchProps = {
-  ...$props,
   mini: {
     type: Boolean,
     default: false
@@ -94,11 +94,44 @@ export const searchProps = {
   typeValue: Object,
   suffixIcon: [Object, String]
 }
+export interface ISearchState {
+  show: boolean
+  focus: boolean
+  hovering: boolean
+  collapse: boolean
+  currentValue: string
+  searchValue: object
+  types: string[]
+  showClear: boolean
+  formItemSize: string
+  searchSize: string
+}
 
-export default defineComponent({
-  name: $prefix + 'Search',
-  props: searchProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export type ISearchProps = ExtractPropTypes<typeof searchProps>
+
+export type ISearchRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  state: ISearchState
+  props: ISearchProps
+  api: ISearchApi
+}
+
+export interface ISearchValue {
+  text: string
+  value: number
+}
+export interface ISearchApi {
+  state: ISearchState
+  changeKey: (key: ISearchValue) => void
+  handleChange: (event: Event) => void
+  showSelector: () => void
+  searchClick: (event: Event) => void
+  clickOutside: (event: Event) => void
+  emitInput: (...args: [string, ISearchValue]) => void
+  setDefaultType: (searchTypes: ISearchValue[]) => ISearchValue
+  formatSearchTypes: (searchTypes: ISearchValue[]) => ISearchValue[]
+  clear: (event: Event) => void
+  handleInput: (event: Event) => void
+  searchEnterKey: () => void
+}
+
+export type ISearchRenderlessParamUtils = ISharedRenderlessParamUtils<never>

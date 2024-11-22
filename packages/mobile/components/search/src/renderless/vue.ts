@@ -15,7 +15,7 @@ import type {
   ISearchApi,
   ISharedRenderlessParamHooks,
   ISearchRenderlessParamUtils
-} from '@/types'
+} from '../search'
 
 import {
   clear,

@@ -10,7 +10,6 @@
  *
  */
 import TabbarItem from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/tabbar-item/index.less'
 
 /* istanbul ignore next */
 TabbarItem.install = function (Vue) {

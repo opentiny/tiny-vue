@@ -9,11 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '../../../vue-common'
-import template from 'virtual-template?mobile'
+
+import type { ExtractPropTypes } from 'vue'
+import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 
 export const tagProps = {
-  ...$props,
   hit: Boolean,
   text: String,
   type: String,
@@ -47,10 +48,26 @@ export const tagProps = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'Tag',
-  props: tagProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})
+export interface ITagState {
+  type: string | undefined
+  show: boolean
+  selected: boolean
+  text: string
+  color: string
+  mini: boolean
+  maxWidth: string | number
+}
+
+export interface ITagApi {
+  state: ITagState
+  handleClose: (event: Event) => void
+  handleClick: (event: Event) => void
+}
+
+export type ITagProps = ExtractPropTypes<typeof tagProps>
+
+export type ITagRenderlessParams = ISharedRenderlessFunctionParams<never> & {
+  state: ITagState
+  props: ITagProps
+  api: ITagApi
+}

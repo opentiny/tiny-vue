@@ -10,7 +10,6 @@
  *
  */
 import Wheel from './src/mobile.vue'
-import '@opentiny/vue-theme-mobile/wheel/index.less'
 
 Wheel.install = function (Vue) {
   Vue.component(Wheel.name, Wheel)

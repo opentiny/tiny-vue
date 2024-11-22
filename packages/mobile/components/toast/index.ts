@@ -10,7 +10,6 @@
  *
  */
 import service from './src/service.js'
-import '@opentiny/vue-theme-mobile/toast/index.less'
 
 let Toast: any = {
   install() {},

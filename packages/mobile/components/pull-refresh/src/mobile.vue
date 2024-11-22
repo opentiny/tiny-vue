@@ -62,43 +62,12 @@
 <script lang="tsx">
 import { $prefix, setup, defineComponent, props } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
+import { pullRefreshProps } from './pull-refresh'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.less'
 
 export default defineComponent({
   name: $prefix + 'PullRefresh',
-  props: {
-    ...props,
-    modelValue: Boolean,
-    loosingText: String,
-    animationDuration: {
-      type: [Number, String],
-      default: 300
-    },
-    hasMore: {
-      type: Boolean,
-      default: true
-    },
-    disabledPullDown: {
-      type: Boolean,
-      default: false
-    },
-    disabledPullUp: {
-      type: Boolean,
-      default: false
-    },
-    pullUpDistance: {
-      type: [Number, String],
-      default: 18
-    },
-    pullUpLoadingText: {
-      type: String,
-      default: null
-    },
-    pullDownLoadingText: {
-      type: String,
-      default: null
-    }
-  },
+  props: pullRefreshProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } from '@/types'
+import type { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } from '../tabs'
 
 export const calcPaneInstances =
   ({

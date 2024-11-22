@@ -58,27 +58,13 @@
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
 import { props, setup, defineComponent } from '../../../vue-common'
-import type { ISliderApi } from '@opentiny/vue-renderless/types/slider.type'
+import type { ISliderApi } from './slider'
+import { sliderProps } from './slider'
 import '@opentiny/vue-theme-mobile/slider/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'change', 'start', 'stop'],
-  props: [
-    ...props,
-    'modelValue',
-    'disabled',
-    'max',
-    'min',
-    'vertical',
-    'step',
-    'numPages',
-    'showTip',
-    'showInput',
-    'height',
-    'range',
-    'formatTooltip',
-    'changeCompat'
-  ],
+  props: sliderProps,
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi
   }

@@ -17,7 +17,7 @@ import type {
   ISharedRenderlessParamHooks,
   ITabsRenderlessParamUtils,
   ITabsRenderlessParams
-} from '@/types'
+} from '../tabs'
 import {
   calcMorePanes,
   calcExpandPanes,

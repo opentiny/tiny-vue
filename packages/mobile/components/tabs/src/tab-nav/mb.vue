@@ -15,8 +15,8 @@ import { $prefix, setup, h } from '../../../../vue-common'
 // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { renderless, api } from './renderless/vue'
 import { iconClose, iconChevronDown } from '@opentiny/vue-icon'
-import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
-import { tabNavMobileProps } from './index'
+import type { ITabNavApi } from './tab-nav'
+import { tabNavProps } from './tab-nav'
 
 export default {
   name: $prefix + 'TabNav',
@@ -24,7 +24,7 @@ export default {
     IconClose: iconClose(),
     IconChevronDown: iconChevronDown()
   },
-  props: tabNavMobileProps,
+  props: tabNavProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, h }) as unknown as ITabNavApi
   },
