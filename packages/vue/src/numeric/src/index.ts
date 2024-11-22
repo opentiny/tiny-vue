@@ -97,6 +97,10 @@ export const numericProps = {
     type: [Number, String],
     default: 1
   },
+  stepRestore: {
+    type: Boolean,
+    default: false
+  },
   stepStrictly: {
     type: Boolean,
     default: false

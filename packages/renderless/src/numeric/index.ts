@@ -302,6 +302,11 @@ export const setCurrentValue =
       if (validateEvent) {
         dispatch(constants.COMPONENT_NAME, constants.EVENT_NAME.change, [state.currentValue])
       }
+
+      if (props.stepRestore && props.step > 1 && newVal % Number(props.step) !== 0) {
+        state.currentValue = oldVal
+        state.userInput = oldVal
+      }
     }
   }
 

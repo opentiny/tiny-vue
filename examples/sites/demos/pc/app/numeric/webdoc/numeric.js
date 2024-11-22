@@ -35,8 +35,10 @@ export default {
         'en-US': 'Step'
       },
       desc: {
-        'zh-CN': '可通过<code>step</code>属性设置计数器的加减数值。',
-        'en-US': 'Set the addition and subtraction values of the counter through the<code>step</code>attribute.'
+        'zh-CN':
+          '可通过<code>step</code>属性设置计数器的加减数值，<code>step-restore</code>属性设置是否还原上一个值，<code>step-strictly</code>属性设置只能输入 step 的倍数',
+        'en-US':
+          'Set the addition and subtraction values of the counter through the<code>step</code>attribute,<code>step-restore</code>property setting whether to restore the previous value,<code>step restricted</code>The attribute setting can only input multiples of step'
       },
       codeFiles: ['about-step.vue']
     },

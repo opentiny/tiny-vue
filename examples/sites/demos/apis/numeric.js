@@ -309,13 +309,29 @@ export default {
             'en-US': 'Whether to enter only multiples of step'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'step',
+          pcDemo: 'about-step',
           mobileDemo: 'step',
           mfDemo: ''
         },
         {
+          name: 'step-restore',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '当输入值，非step步长的倍数时，是否还原上一个值',
+            'en-US': 'When the input value is not a multiple of the step size, should the previous value be restored'
+          },
+          meta: {
+            stable: '3.20.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'about-step',
+          mobileDemo: '',
+          mfDemo: ''
+        },
+        {
           name: 'strict-input',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '严格控制输入，包含合法性输入与小数点长度验证，不允许输入超过精度设置',

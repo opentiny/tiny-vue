@@ -223,6 +223,7 @@ export default defineComponent({
     ...props,
     'step',
     'tabindex',
+    'stepRestore',
     'stepStrictly',
     'max',
     'min',
