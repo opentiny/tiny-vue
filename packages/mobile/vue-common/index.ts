@@ -20,17 +20,10 @@ import {
 } from './src/adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './src/csscls'
-import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './src/adapter'
 import { useBreakpoint } from './src/breakpoint'
 import { useDefer } from './src/usedefer'
-
-import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/utils/deps/useInstanceSlots'
-import { useRelation as createUseRelation } from '@opentiny/utils/deps/useRelation'
-
-export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
-export const useRelation = createUseRelation({ ...hooks, isVue2 })
 
 export { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass }
 export { useBreakpoint, useDefer }
@@ -133,8 +126,6 @@ export const $setup = ({ props, context, template, extend = {} }) => {
   return renderComponent({ view, props, context, extend })
 }
 
-export const mergeClass = /* @__PURE__ */ (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
-
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
 export const design = {
   configKey: Symbol('designConfigKey'),
@@ -182,9 +173,6 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     globalDesignConfig,
     useBreakpoint
   }
-  if (specifyPc !== 'pc') {
-    utils.mergeClass = mergeClass
-  }
 
   utils.vm.theme = resolveTheme(props, context)
   utils.vm.chartTheme = resolveChartTheme(props, context)
@@ -203,9 +191,6 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     d: utils.defineInstanceProperties,
     dp: utils.defineParentInstanceProperties,
     gcls: (key) => getElementCssClass(classes, key)
-  }
-  if (specifyPc !== 'pc') {
-    attrs.m = mergeClass
   }
   /**
    * 修复 render 函数下 this.slots 不会动态更新的问题（vue3 环境没有问题）
@@ -262,9 +247,6 @@ export function svg({ name = 'Icon', component }) {
           let className = 'tiny-svg'
 
           const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
-          if (specifyPc !== 'pc' && isMobileFirst) {
-            className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
-          }
 
           const extend = Object.assign(
             {

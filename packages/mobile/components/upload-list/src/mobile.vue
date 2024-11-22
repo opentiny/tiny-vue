@@ -158,29 +158,17 @@
               :src="file.url"
               alt=""
             />
-            <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled">
-              <template #content>
-                <span v-if="file.status === 'fail'" class="tiny-upload-list__item-tooltip"
-                  ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-                    t('ui.fileUpload.networkError')
-                  }}</span
-                >
-                <span v-else class="tiny-upload-list__item-tooltip">{{
-                  isFolderTitle ? (file.path || '') + file.name : file.name
-                }}</span>
-              </template>
-              <a
-                :class="['tiny-upload-list__item-name', { isFail: isEdm && file.status === 'fail' }]"
-                @click="handleClick($event, file)"
-                :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
-              >
-                <icon-attachment
-                  v-if="!isFolder"
-                  :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
-                  class="tiny-svg-size"
-                />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
-              </a>
-            </tiny-tooltip>
+            <a
+              :class="['tiny-upload-list__item-name', { isFail: isEdm && file.status === 'fail' }]"
+              @click="handleClick($event, file)"
+              :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
+            >
+              <icon-attachment
+                v-if="!isFolder"
+                :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+                class="tiny-svg-size"
+              />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
+            </a>
             <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
               <span>{{ file.docId }}</span>
               <span>{{ file.version }}</span>
@@ -241,53 +229,44 @@
             >
               {{ t('ui.fileUpload.cancelFile') }}
             </div>
-            <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled || file.status !== 'fail'">
-              <template #content>
-                <span class="tiny-upload-list__item-tooltip"
-                  ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-                    t('ui.fileUpload.pictureNetworkError')
-                  }}</span
-                >
-              </template>
+            <span
+              class="tiny-upload-list__item-actions"
+              v-if="listType === 'picture-card' && (state.progressWidth ? file.status !== 'uploading' : true)"
+            >
               <span
-                class="tiny-upload-list__item-actions"
-                v-if="listType === 'picture-card' && (state.progressWidth ? file.status !== 'uploading' : true)"
+                v-if="openDownloadFile"
+                class="tiny-upload-list__item-download"
+                :title="t('ui.fileUpload.downloadFile')"
+                @click="handleClick(file)"
               >
-                <span
-                  v-if="openDownloadFile"
-                  class="tiny-upload-list__item-download"
-                  :title="t('ui.fileUpload.downloadFile')"
-                  @click="handleClick(file)"
-                >
-                  <icon-download class="tiny-svg-size" />
-                </span>
-                <span
-                  class="tiny-upload-list__item-preview"
-                  v-if="handlePreview && file.status !== 'fail'"
-                  :title="t('ui.fileUpload.previewFile')"
-                  @click="handlePreview(file)"
-                >
-                  <icon-fullscreen-left v-if="state.preViewComponent" class="tiny-svg-size tiny-svg-fullscreen" />
-                  <icon-view v-else class="tiny-svg-size" />
-                </span>
-                <span
-                  v-if="isEdm && !isFolder && !disabled"
-                  :title="t('ui.fileUpload.updateFile')"
-                  class="tiny-upload-list__item-refres"
-                  @click="$emit('update', file)"
-                >
-                  <icon-file-cloudupload class="tiny-svg-size" />
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="tiny-upload-list__item-delete"
-                  :title="t('ui.fileUpload.deleteFile')"
-                  @click="$emit('remove', file)"
-                >
-                  <icon-del class="tiny-svg-size" />
-                </span>
+                <icon-download class="tiny-svg-size" />
               </span>
-            </tiny-tooltip>
+              <span
+                class="tiny-upload-list__item-preview"
+                v-if="handlePreview && file.status !== 'fail'"
+                :title="t('ui.fileUpload.previewFile')"
+                @click="handlePreview(file)"
+              >
+                <icon-fullscreen-left v-if="state.preViewComponent" class="tiny-svg-size tiny-svg-fullscreen" />
+                <icon-view v-else class="tiny-svg-size" />
+              </span>
+              <span
+                v-if="isEdm && !isFolder && !disabled"
+                :title="t('ui.fileUpload.updateFile')"
+                class="tiny-upload-list__item-refres"
+                @click="$emit('update', file)"
+              >
+                <icon-file-cloudupload class="tiny-svg-size" />
+              </span>
+              <span
+                v-if="!disabled"
+                class="tiny-upload-list__item-delete"
+                :title="t('ui.fileUpload.deleteFile')"
+                @click="$emit('remove', file)"
+              >
+                <icon-del class="tiny-svg-size" />
+              </span>
+            </span>
           </slot>
         </div>
         <div
@@ -316,7 +295,6 @@
 import { $prefix, setup, props, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
 import Progress from '../../progress'
-import Tooltip from '../../tooltip'
 import Button from '../../button'
 import {
   iconAttachment,
@@ -357,7 +335,6 @@ export default defineComponent({
   name: $prefix + 'UploadList',
   components: {
     TinyProgress: Progress,
-    TinyTooltip: Tooltip,
     TinyButton: Button,
     IconAttachment: iconAttachment(),
     IconSuccessful: iconSuccessful(),

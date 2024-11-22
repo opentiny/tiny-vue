@@ -20,7 +20,7 @@ import type {
   IFileUploadStreamsaver
 } from '../file-upload'
 
-import { downloadFile as ordinaryDownload } from '../upload-list'
+import { downloadFile as ordinaryDownload } from '../../../upload-list/src/renderless'
 import { formatFileSize } from '@opentiny/utils/string'
 
 import {

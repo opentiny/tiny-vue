@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.0",
+    "@better-scroll/wheel": "^2.5.0",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue-locale": "workspace:~"

@@ -27,13 +27,13 @@ import type {
   IFileUploadBatchSegmentDownload,
   IFileUploadSliceDownloadChunk,
   IFileUploadLargeDocumentDownload
-} from '@/types'
+} from '../file-upload'
 
-import { extend } from '../common/object'
-import { xss, log } from '../common/xss'
-import uploadAjax from '../common/deps/upload-ajax'
-import { isObject } from '../common/type'
-import { isEmptyObject } from '../common/type'
+import { extend } from '@opentiny/utils/object'
+import { xss, log } from '@opentiny/utils/xss'
+import uploadAjax from '@opentiny/utils/deps/upload-ajax'
+import { isObject } from '@opentiny/utils/type'
+import { isEmptyObject } from '@opentiny/utils/type'
 
 let initTokenPromise = null
 
