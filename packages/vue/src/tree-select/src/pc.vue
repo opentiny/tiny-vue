@@ -2,7 +2,7 @@
   <tiny-base-select
     ref="baseSelectRef"
     class="tiny-tree-select"
-    v-model="state.value"
+    v-model="state.modelValue"
     :clearable="clearable"
     :filterable="filterable"
     :filter-method="filter"
@@ -11,6 +11,7 @@
     <template #panel>
       <tiny-tree
         ref="treeRef"
+        :check-strictly="treeOp.checkStrictly"
         :current-node-key="!multiple ? state.currentKey : ''"
         :data="state.treeData"
         :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"

@@ -115,14 +115,14 @@ export const getPluginOption =
  */
 export const getCheckedData =
   ({ props, state }) =>
-  () => {
+  (selected) => {
     const checkedKey = []
 
-    if (!Array.isArray(state.selected)) {
-      return props.modelValue ? [props.modelValue] : [state.selected[props.valueField]]
+    if (!Array.isArray(selected)) {
+      return props.modelValue ? [props.modelValue] : [selected[props.valueField]]
     } else {
-      state.selected.length > 0 &&
-        state.selected.forEach((item) => {
+      selected.length > 0 &&
+        selected.forEach((item) => {
           checkedKey.push(item[props.valueField])
         })
 
@@ -133,31 +133,31 @@ export const getCheckedData =
 export const mounted =
   ({ api, state, props, vm }) =>
   () => {
-    if (!state.value || state.value.length === 0) return
+    if (!state.modelValue || state.modelValue.length === 0) return
 
     if (props.multiple) {
       let initialNodes = []
-      if (Array.isArray(state.value)) {
-        state.value.forEach((value) => {
+      if (Array.isArray(state.modelValue)) {
+        state.modelValue.forEach((value) => {
           const option = api.getPluginOption(value)
           initialNodes = initialNodes.concat(option)
         })
       }
 
-      vm.$refs.baseSelectRef.updateSelectedData(
-        initialNodes.map((node) => {
-          return {
-            ...node,
-            currentLabel: node[props.textField],
-            value: node[props.valueField],
-            isTree: true
-          }
-        })
-      )
+      const selected = initialNodes.map((node) => {
+        return {
+          ...node,
+          currentLabel: node[props.textField],
+          value: node[props.valueField],
+          isTree: true
+        }
+      })
 
-      state.defaultCheckedKeys = api.getCheckedData()[0]
+      vm.$refs.baseSelectRef.updateSelectedData(selected)
+
+      state.defaultCheckedKeys = api.getCheckedData(selected)
     } else {
-      const data = api.getPluginOption(state.value)[0]
+      const data = api.getPluginOption(state.modelValue)[0]
       vm.$refs.baseSelectRef.updateSelectedData({
         ...data,
         currentLabel: data[props.textField],
@@ -168,5 +168,32 @@ export const mounted =
       })
 
       state.currentKey = data[props.valueField]
+    }
+  }
+
+export const watchValue =
+  ({ api, props, vm, state }) =>
+  (newValue, oldValue) => {
+    if (props.multiple) {
+      let initialNodes = []
+      if (Array.isArray(newValue)) {
+        newValue.forEach((value) => {
+          const option = api.getPluginOption(value)
+          initialNodes = initialNodes.concat(option)
+        })
+      }
+
+      const selected = initialNodes.map((node) => {
+        return {
+          ...node,
+          currentLabel: node[props.textField],
+          value: node[props.valueField],
+          isTree: true
+        }
+      })
+
+      vm.$refs.baseSelectRef.updateSelectedData(selected)
+
+      vm.$refs.treeRef.setCheckedKeys(newValue)
     }
   }
