@@ -157,7 +157,7 @@ export const customDesignConfig: CustomDesignConfig = {
   designConfig: null
 }
 
-export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
+export const setup = ({ props, context, renderless, api, extendOptions = {}, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
 
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
@@ -219,11 +219,6 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 
       if (typeof value !== 'undefined') {
         attrs[name] = value
-        // 只有单层组件，才需要给setup传递： mono:true
-        // 双层组件，需要把内层的api复制到外层，这样用户应用的ref才能拿到组件的api
-        if (!mono) {
-          utils.setParentAttribute({ name, value })
-        }
       }
     })
   }
