@@ -56,7 +56,9 @@
           :key="index"
           :label="item[state.textField]"
           :item-data="item"
+          :_constants="_constants"
           :icon="item.icon"
+          :is-mono="true"
           :disabled="item.disabled"
           :divided="item.divided"
           :tip="item.tip"
@@ -102,13 +104,15 @@ export default defineComponent({
     'textField',
     'tip',
     'tipPosition',
-    'effect'
+    'effect',
+    'isMono'
   ],
   components: {
     IconLeftWardArrow: iconLeftWardArrow()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api }) as unknown as IDropdownItemApi
+    // 修复双层组件导致自调用组件时产生的数据混乱问题
+    return setup({ props, context, renderless, api, mono: props.isMono }) as unknown as IDropdownItemApi
   }
 })
 </script>
