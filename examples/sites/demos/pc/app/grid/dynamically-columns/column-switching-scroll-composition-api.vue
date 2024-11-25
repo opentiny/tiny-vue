@@ -1,6 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="changeFlag">{{ flag ? '隐藏' : '显示' }}最后一列</tiny-button>
+    <div>
+      <tiny-button @click="changeFlag">{{ flag ? '隐藏' : '显示' }}最后一列</tiny-button>
+    </div>
+    <br />
     <tiny-grid
       ref="grid"
       column-width="200"

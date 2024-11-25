@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :data="tableData" border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>

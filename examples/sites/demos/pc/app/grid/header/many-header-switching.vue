@@ -1,27 +1,28 @@
 <template>
   <div>
-    <!-- button -->
-    <tiny-button class="mb-12" @click="flag = !flag">{{ (flag ? '删除' : '新增') + '子表头' }}</tiny-button>
-    <!-- grid -->
+    <div>
+      <tiny-button @click="flag = !flag">{{ (flag ? '删除' : '新增') + '子表头' }}</tiny-button>
+    </div>
+    <br />
     <tiny-grid :data="tableData" resizable :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <tiny-grid-column title="操作" header-align="center">
         <tiny-grid-column type="index" width="60"></tiny-grid-column>
         <tiny-grid-column type="selection" width="48" v-if="flag"></tiny-grid-column>
-        <tiny-grid-column :renderer="rendererCellOperate" width="100" v-if="flag"></tiny-grid-column>
+        <tiny-grid-column field="id" title="id" width="100" v-if="flag"></tiny-grid-column>
       </tiny-grid-column>
-      <tiny-grid-column :title="renderHeaderDescription" header-align="center">
+      <tiny-grid-column title="地址信息" header-align="center">
         <tiny-grid-column field="name" title="名称" show-tip sortable></tiny-grid-column>
         <tiny-grid-column
           field="area"
-          :title="renderHeaderArea"
+          title="地区"
           :editor="{ component: 'select', options }"
           sortable
         ></tiny-grid-column>
       </tiny-grid-column>
-      <tiny-grid-column :title="renderHeaderRelation" header-align="center">
+      <tiny-grid-column title="其他信息" header-align="center">
         <tiny-grid-column
           field="address"
-          :title="renderHeaderAddress"
+          title="地址"
           :editor="{ component: 'input', autoselect: true }"
           sortable
         ></tiny-grid-column>
@@ -39,15 +40,6 @@
 
 <script lang="jsx">
 import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
-import { h } from '@opentiny/vue-common'
-import {
-  iconAdministrator,
-  iconVersiontree,
-  iconMarkOn,
-  iconUser,
-  iconAssociation,
-  iconHelpful
-} from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -87,29 +79,6 @@ export default {
         { label: '华南区', value: '华南区' }
       ]
     }
-  },
-  methods: {
-    renderHeaderDescription() {
-      return h('span', [h(iconAdministrator()), 'Description'])
-    },
-    renderHeaderRelation() {
-      return h('span', [h(iconVersiontree())])
-    },
-    renderHeaderArea() {
-      return h('span', [h(iconMarkOn()), 'Description'])
-    },
-    renderHeaderAddress() {
-      return h('span', [h(iconUser()), 'Description'])
-    },
-    rendererCellOperate() {
-      return h('div', { style: 'text-align:center;font-size:16px;' }, [h(iconHelpful()), h(iconAssociation())])
-    }
   }
 }
 </script>
-
-<style scoped>
-.mb-12 {
-  margin-bottom: 12px;
-}
-</style>
