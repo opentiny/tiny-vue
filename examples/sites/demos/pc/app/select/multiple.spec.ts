@@ -42,9 +42,9 @@ test('multiple-limit', async ({ page }) => {
   await expect(option.filter({ hasText: '全部' })).toHaveCount(0)
 
   const list = await option.all()
-  await expect(list[0]).toHaveClass(/selected hover is-required/)
+  await expect(list[0]).toHaveClass(/selected is-required/)
   await expect(list[1]).toHaveClass(/is-disabled/)
-  await expect(list[2]).toHaveClass(/selected/)
+  await expect(list[2]).toHaveClass(/selected hover/)
   await expect(list[3]).toHaveClass(/is-disabled/)
   await expect(list[4]).toHaveClass(/is-disabled/)
   await expect(list[5]).toHaveClass(/is-disabled/)
