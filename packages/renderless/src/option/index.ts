@@ -49,6 +49,14 @@ export const handleGroupDisabled =
     vm.groupDisabled = val
   }
 
+export const hoverItem =
+  ({ select, props, state }) =>
+  () => {
+    if (!props.disabled && !state.groupDisabled && !select.state.disabledOptionHover) {
+      select.state.hoverIndex = select.state.optionIndexArr.indexOf(state.index)
+    }
+  }
+
 export const selectOptionClick =
   ({ props, state, select, constants, vm }) =>
   () => {
