@@ -70,7 +70,7 @@
     // 表头单元格高度
     .@{grid-prefix-cls}-header__column {
       height: var(--tv-Grid-header-height);
-      padding: var() var(--tv-Grid-cell-padding-x);
+      padding: var(--tv-Grid-header-padding-y) var(--tv-Grid-cell-padding-x);
     }
 
     .@{grid-prefix-cls}-loading {
@@ -110,8 +110,7 @@
     // 表头单元格高度
     .@{grid-prefix-cls}-header__column {
       height: var(--tv-Grid-header-height-small);
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding: var(--tv-Grid-header-padding-y) var(--tv-Grid-cell-padding-x-small);
     }
 
     .@{grid-prefix-cls}-loading {
@@ -151,7 +150,7 @@
     // Mini尺寸表头单元格高度
     .@{grid-prefix-cls}-header__column {
       height: var(--tv-Grid-header-height-mini);
-      padding: 4px var(--tv-Grid-cell-padding-x);
+      padding: 2px var(--tv-Grid-cell-padding-x-mini);
     }
 
     .@{grid-prefix-cls}-loading {
@@ -909,7 +908,7 @@
 
     .@{grid-prefix-cls}-body__column {
       &.col__actived,
-      &.edit_visible {
+      &.edit__visible {
         padding: 0 var(--tv-Grid-cell-padding-x);
       }
 

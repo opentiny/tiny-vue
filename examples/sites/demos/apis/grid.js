@@ -724,7 +724,10 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'IResizableConfig',
+          name: 'resizable-config',
+          meta: {
+            stable: '3.19.0'
+          },
           typeAnchorName: 'IResizableConfig',
           type: 'IResizableConfig',
           defaultValue: '',
