@@ -6,6 +6,10 @@
   "module": "index.ts",
   "sideEffects": false,
   "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  },
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",

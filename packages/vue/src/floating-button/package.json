@@ -8,7 +8,7 @@
   "main": "lib/index.js",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
+    "vitest": "catalog:"
   },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
