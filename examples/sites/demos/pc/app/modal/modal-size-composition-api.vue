@@ -32,7 +32,6 @@ const TinyModal = Modal
 const show = ref(false)
 const fullscreen = ref(false)
 const options = ref({
-  resize: true,
   width: 800,
   height: 400,
   minWidth: 700,

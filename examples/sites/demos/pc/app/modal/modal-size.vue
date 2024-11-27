@@ -37,7 +37,6 @@ export default {
       show: false,
       fullscreen: false,
       options: {
-        resize: true,
         width: 800,
         height: 400,
         minWidth: 700,
