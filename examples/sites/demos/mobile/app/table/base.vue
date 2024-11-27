@@ -12,7 +12,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTable } from '@opentiny/vue'
+import { TinyTable } from '@opentiny/vue-mobile'
 
 export default {
   components: {

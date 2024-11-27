@@ -1328,7 +1328,7 @@ export const initPopper = ({ props, hooks, vnode }) => {
     props: {
       ...props,
       popperOptions: Object.assign({ boundariesPadding: 0, gpuAcceleration: false }, props.popperOptions),
-      visibleArrow: true,
+      visibleArrow: false,
       offset: 0,
       boundariesPadding: 5,
       arrowOffset: 35,

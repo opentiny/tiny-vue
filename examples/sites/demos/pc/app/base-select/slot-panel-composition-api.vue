@@ -40,7 +40,8 @@
                 return {
                   ...node,
                   currentLabel: node.label,
-                  value: node.id
+                  value: node.id,
+                  isTree: true
                 }
               })
             )

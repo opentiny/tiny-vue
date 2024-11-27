@@ -164,7 +164,7 @@ export const handleContextMenu =
       const treeWidth = state.tree.$parent.$el.offsetWidth
 
       if (event.clientY > -10) {
-        state.menuposition.top = `${vm.$refs.node.offsetTop + vm.$refs.node.childNodes[0].offsetHeight / 2}px`
+        state.menuposition.top = `${vm.$refs.node.offsetTop + vm.$refs.content.offsetHeight / 2}px`
       }
 
       if (event.clientX > -10) {

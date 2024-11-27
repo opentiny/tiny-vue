@@ -3,7 +3,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyNavBar } from '@opentiny/vue'
+import { TinyNavBar } from '@opentiny/vue-mobile'
 
 export default {
   components: {

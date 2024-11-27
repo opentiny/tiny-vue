@@ -11,7 +11,7 @@
 </template>
 
 <script lang="jsx">
-import { TinySlider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue-mobile'
 
 export default {
   components: {

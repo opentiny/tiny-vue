@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { TinyRadio } from '@opentiny/vue'
+import { TinyRadio } from '@opentiny/vue-mobile'
 
 export default {
   components: {

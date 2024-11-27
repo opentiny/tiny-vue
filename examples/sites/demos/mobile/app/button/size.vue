@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { TinyButton } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue-mobile'
 import { iconMail } from '@opentiny/vue-icon'
 
 export default {

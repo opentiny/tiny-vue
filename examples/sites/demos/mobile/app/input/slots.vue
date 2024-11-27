@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue-mobile'
 import { IconSearch, IconCalendar } from '@opentiny/vue-icon'
 
 export default {

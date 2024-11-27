@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'BaiduMapChart',
-      option: {}
+      iChartName: 'BaiduMapChart'
     }
   },
   methods: {
@@ -25,10 +24,6 @@ export default {
         this.huiChartOption = { ...this.options, ...this.settings }
         if (!this.tooltipVisible) {
           this.huiChartOption.tooltip = { show: false }
-        }
-
-        if (!this.legendVisible) {
-          this.huiChartOption.legend = { show: false }
         }
 
         return

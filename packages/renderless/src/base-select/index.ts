@@ -1602,7 +1602,7 @@ export const mounted =
     state.completed = true
 
     // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
+    const defaultSizeMap = { medium: 40, default: 32, small: 28, mini: 24 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
@@ -1870,7 +1870,9 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        // 给多选复制全部标签图标留一部分间距
+        const COPY_ICON_WIDTH = 16
+        state.inputPaddingRight = parseFloat(paddingRight) + COPY_ICON_WIDTH
       }
     })
   }

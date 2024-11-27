@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { TinyLoading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue-mobile'
 
 export default {
   mounted() {

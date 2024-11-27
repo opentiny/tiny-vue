@@ -43,6 +43,8 @@
     "@tiptap/vue-2": "~2.1.16",
     "@tiptap/vue-3": "~2.1.16",
     "highlight.js": "^11.8.0",
-    "lowlight": "^2.9.0"
+    "lowlight": "^2.9.0",
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
   }
 }

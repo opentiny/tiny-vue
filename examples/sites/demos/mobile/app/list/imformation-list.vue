@@ -82,7 +82,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyList } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue-mobile'
 import { iconDialog } from '@opentiny/vue-icon'
 
 export default {

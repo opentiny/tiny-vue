@@ -26,7 +26,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default() {} },
+    events: { type: Object, default() { } },
     initOptions: {
       type: Object,
       default() {
@@ -72,7 +72,7 @@ export default {
     },
     extend: {
       type: Object,
-      default() {}
+      default() { }
     },
     tooltipFormatter: { type: Function },
 
@@ -120,7 +120,7 @@ export default {
     },
     setOptionOpts: {
       type: Object,
-      default() {}
+      default() { }
     },
     colorMode: {
       type: String,
@@ -351,9 +351,9 @@ export default {
       } else {
         this.huiChartOption = cloneDeep(this.options)
       }
-      let { huiChartOption } = this
+      let huiChartOption = cloneDeep(this.huiChartOption)
       if (!huiChartOption.theme) {
-        huiChartOption.theme = 'bpit-light'
+        huiChartOption.theme = 'cloud-light'
       }
       if (Array.isArray(this.colors) && this.colors.length > 0) {
         huiChartOption.color = cloneDeep(this.colors)
@@ -389,7 +389,7 @@ export default {
     renderChart(huiChartOption) {
       // 设置默认theme为'cloud-light'
       if (!huiChartOption.theme) {
-        huiChartOption.theme = 'bpit-light'
+        huiChartOption.theme = 'cloud-light'
       }
 
       // 将外部colors放入配置项中

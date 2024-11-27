@@ -33,7 +33,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyPopover } from '@opentiny/vue'
+import { TinyPopover } from '@opentiny/vue-mobile'
 
 export default {
   data() {

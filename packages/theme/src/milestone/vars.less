@@ -17,14 +17,8 @@
   /* 图标节点部分 */
   // 实心显示节点光晕背景色
   --tv-Milestone-bg-color: var(--tv-color-bg-secondary, #fff);
-  // 图标节点绝对定位左侧间距
-  --tv-Milestone-icon-left: calc(50% - 16px);
-  // 图标节点绝对定位顶部间距
-  --tv-Milestone-icon-top: 0px;
   // 图标节点宽度
-  --tv-Milestone-icon-width: calc(var(--tv-size-base, 4px) * 8);
-  // 图标节点高度
-  --tv-Milestone-icon-height: var(--tv-size-height-md, 32px);
+  --tv-Milestone-node-size: calc(var(--tv-size-base, 4px) * 8);
   // 图标节点默认边框厚度
   --tv-Milestone-icon-border-width: var(--tv-border-width, 1px);
   // 图标节点图标大小
@@ -39,14 +33,8 @@
   --tv-Milestone-line-bg-color: var(--tv-color-bg-disabled-control-checked, #dbdbdb);
   // 完成节点线路背景色
   --tv-Milestone-line-bg-color-completed: var(--tv-color-bg-primary, #191919);
-  // 线绝对定位左侧偏移
-  --tv-Milestone-line-left: calc(50% + 24px);
-  // 线绝对定位顶部偏移
-  --tv-Milestone-line-top: -16px;
   // 线高度
   --tv-Milestone-line-height: var(--tv-border-width, 1px);
-  // 线宽度
-  --tv-Milestone-line-width: calc(100% - 48px);
 
   /* 横向节点下方部分 */
   // 节点下方日期文本色
@@ -79,10 +67,6 @@
   --tv-Milestone-flag-desc-font-size: var(--tv-font-size-sm, 12px);
 
   /* 旗子线部分 */
-  // 旗子线绝对定位左侧间距
-  --tv-Milestone-flag-line-margin-left: 0px;
   // 旗子线背景色
   --tv-Milestone-flag-line-bg-color: var(--tv-color-bg, #f5f5f5);
-  // 旗子线圆圈是否显示
-  --tv-Milestone-dot-display: none;
 }

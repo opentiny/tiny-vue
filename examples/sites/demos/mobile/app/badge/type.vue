@@ -20,7 +20,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyBadge } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -4,25 +4,29 @@
       <template #header>操作</template>
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
       <tiny-grid-column type="selection" width="48"></tiny-grid-column>
-      <tiny-grid-column width="100" align="center">
-        <tiny-icon-helpful style="text-align: center; font-size: 16px; fill"></tiny-icon-helpful>
-        &nbsp;&nbsp;
-        <tiny-icon-association style="text-align: center; font-size: 16px"></tiny-icon-association>
-      </tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column header-align="center">
-      <template #header> <tiny-icon-administrator></tiny-icon-administrator>Description </template>
+      <template #header>
+        <div class="custom-header">
+          <tiny-icon-administrator></tiny-icon-administrator>
+          <span style="margin-left: 4px">Description</span>
+        </div>
+      </template>
       <tiny-grid-column field="name" title="名称" show-tip sortable></tiny-grid-column>
       <tiny-grid-column field="area" :editor="{ component: 'select', options }" sortable>
-        <template #header> <tiny-icon-mark-on></tiny-icon-mark-on>Description </template>
+        <template #header>
+          <div class="custom-header">
+            <tiny-icon-mark-on></tiny-icon-mark-on>
+            <span style="margin-left: 4px">Description</span>
+          </div>
+        </template>
       </tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column header-align="center">
       <template #header>
         <tiny-icon-versiontree></tiny-icon-versiontree>
       </template>
-      <tiny-grid-column field="address" :editor="{ component: 'input', autoselect: true }" sortable>
-        <template #header> <tiny-icon-user></tiny-icon-user> Description </template>
+      <tiny-grid-column field="address" title="地址" :editor="{ component: 'input', autoselect: true }" sortable>
       </tiny-grid-column>
       <tiny-grid-column
         field="introduction"
@@ -38,14 +42,7 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
-import {
-  iconAdministrator,
-  iconVersiontree,
-  iconMarkOn,
-  iconUser,
-  iconAssociation,
-  iconHelpful
-} from '@opentiny/vue-icon'
+import { iconAdministrator, iconVersiontree, iconMarkOn } from '@opentiny/vue-icon'
 
 const tableData = ref([
   {
@@ -100,7 +97,11 @@ const options = ref([
 const TinyIconVersiontree = iconVersiontree()
 const TinyIconAdministrator = iconAdministrator()
 const TinyIconMarkOn = iconMarkOn()
-const TinyIconUser = iconUser()
-const TinyIconAssociation = iconAssociation()
-const TinyIconHelpful = iconHelpful()
 </script>
+
+<style scoped>
+.custom-header {
+  display: flex;
+  align-items: center;
+}
+</style>

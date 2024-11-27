@@ -782,7 +782,7 @@ class Popper {
       if (this._options.updateHiddenPopperOnScroll) {
         this.state.updateBoundFn()
       } else {
-        if (isDisplayNone(this._popper)) return
+        if (isDisplayNone(this._reference)) return
         this.state.updateBoundFn()
       }
     }

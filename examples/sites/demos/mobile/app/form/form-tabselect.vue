@@ -39,7 +39,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyButton } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

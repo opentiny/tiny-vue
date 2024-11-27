@@ -1326,7 +1326,9 @@
     "path": "vue/src/grid-select/index.ts",
     "type": "component",
     "exclude": false,
-    "mode": ["pc"]
+    "mode": [
+      "pc"
+    ]
   },
   "GridToolbar": {
     "path": "vue/src/grid-toolbar/index.ts",

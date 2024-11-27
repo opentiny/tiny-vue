@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { TinySearch } from '@opentiny/vue'
+import { TinySearch } from '@opentiny/vue-mobile'
 
 export default {
   components: {

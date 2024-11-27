@@ -54,5 +54,5 @@ test('mini 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-mini/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
-  expect(height).toBeCloseTo(28, 1)
+  expect(height).toBeCloseTo(24, 1)
 })
