@@ -6,6 +6,5 @@ export default {
     labelWidth: '100px',
     tooltipType: 'error'
   },
-  hideRequiredAsterisk: false,
   messageType: 'absolute'
 }

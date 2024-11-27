@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('必填项红色星号', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('form#smb-required')
+  await page.goto('form#hide-required')
 
-  const demo = page.locator('#smb-required')
+  const demo = page.locator('#hide-required')
   const form = demo.locator('.tiny-form')
   const firstLabel = form.locator('.tiny-form-item__label').first()
   const switchBtn = demo.locator('.tiny-switch')
