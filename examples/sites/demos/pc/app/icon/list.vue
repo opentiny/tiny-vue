@@ -4,17 +4,12 @@
       <tiny-input class="search-input" v-model="searchName" clearable autofocus size="small"></tiny-input>
     </div>
     <div class="svgs-wrapper">
-      <div v-for="(nameList, groupName) in iconGroups" :key="groupName">
-        <div class="group-name">
+      <div v-for="(nameList, groupName) in iconGroupsMap" :key="groupName">
+        <div v-show="nameList.length" class="group-name">
           {{ groupName }}
         </div>
-        <template v-for="name in nameList">
-          <div
-            v-if="searchName === '' || name.toLowerCase().includes(searchName.toLowerCase())"
-            :key="name"
-            class="svgs-item"
-            @click="click(name)"
-          >
+        <template v-for="name in nameList" :key="name">
+          <div class="svgs-item" @click="click(name)">
             <component :is="Svgs[name] && Svgs[name]()" class="svgs-icon"></component>
             <span class="svgs-text">{{ name }}</span>
           </div>
@@ -47,7 +42,8 @@ export default {
     return {
       iconGroups,
       Svgs,
-      searchName: ''
+      searchName: '',
+      iconGroupsMap: iconGroups
     }
   },
   methods: {
@@ -57,6 +53,29 @@ export default {
         message: `成功复制图标名称 ${name} `,
         status: 'info'
       })
+    }
+  },
+  watch: {
+    searchName(newVal) {
+      const keyWord = (newVal || '').trim().toLowerCase()
+      if (keyWord === '') {
+        this.iconGroupsMap = iconGroups
+      } else {
+        const result = {}
+        for (let groupName in iconGroups) {
+          const nameList = iconGroups[groupName]
+          nameList.forEach((name) => {
+            if (name.toLowerCase().includes(keyWord)) {
+              if (!result[groupName]) {
+                result[groupName] = [name]
+              } else {
+                result[groupName] = [...result[groupName], name]
+              }
+            }
+          })
+        }
+        this.iconGroupsMap = result
+      }
     }
   }
 }
