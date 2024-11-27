@@ -109,7 +109,8 @@ import {
   onClickCollapseTag,
   computedIsExpand,
   computedShowTagText,
-  isTagClosable
+  isTagClosable,
+  computedCurrentSizeMap
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -243,7 +244,8 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
       }
       return true // tiny 默认为true
     })(),
-    designConfig
+    designConfig,
+    currentSizeMap: computed(() => api.computedCurrentSizeMap())
   })
 
   return state
@@ -404,7 +406,8 @@ const initApi = ({
     clearSearchText: clearSearchText({ state, api }),
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
     computedShowTagText: computedShowTagText({ state }),
-    isTagClosable: isTagClosable()
+    isTagClosable: isTagClosable(),
+    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig })
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })
