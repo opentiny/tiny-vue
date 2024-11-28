@@ -10,9 +10,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>type</code> 设置按钮类型， <code>plain</code> 设置是否为朴素按钮， <code>circle</code> 设置是否为圆形按钮。</p>',
+          '通过 <code>type</code> 设置按钮类型， <code>plain</code> 设置是否为朴素按钮，<code>round</code> 设置是否为圆角按钮， <code>circle</code> 设置是否为圆形按钮。',
         'en-US':
-          '<p>Set the button type through <code>type</code> , whether it is a plain button and whether it is a circular button.</p>'
+          'Run the <code>type</code> command to set the button type. The <code>plain</code> command is used to set whether it is a plain button, <code>round</code> command is used to set whether it is a rounded button, and <code>circle</code> command is used to set whether it is a round button.'
       },
       codeFiles: ['basic-usage.vue']
     },
