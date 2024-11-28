@@ -4,15 +4,16 @@
       <tiny-input class="search-input" v-model="searchName" clearable autofocus size="small"></tiny-input>
     </div>
     <div class="svgs-wrapper">
-      <div v-for="(nameList, groupName) in iconGroups" :key="groupName">
+      <div v-for="(nameList, groupName) in iconGroups" :key="groupName" class="svgs-box">
         <div class="group-name">
           {{ groupName }}
         </div>
-        <template v-for="name in nameList">
+        <template v-for="name in nameList" :key="name">
           <div
-            v-if="searchName === '' || name.toLowerCase().includes(searchName.toLowerCase())"
-            :key="name"
-            class="svgs-item"
+            :class="{
+              'svg-visible': searchName === '' || name.toLowerCase().includes(searchName.toLowerCase()),
+              'svgs-item': true
+            }"
             @click="click(name)"
           >
             <component :is="Svgs[name] && Svgs[name]()" class="svgs-icon"></component>
@@ -85,11 +86,8 @@ export default {
   width: 250px;
 }
 
-.group-name:not(:has(+ .svgs-item)) {
-  display: none;
-}
-
 .group-name {
+  display: none;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
@@ -110,9 +108,9 @@ export default {
 }
 
 .svgs-item {
+  display: none;
   width: 20%;
   text-align: center;
-  display: inline-block;
   padding: 24px;
 }
 
@@ -125,5 +123,13 @@ export default {
   display: block;
   font-size: 12px;
   font-weight: 600;
+}
+
+.svgs-box:has(> .svg-visible) .group-name {
+  display: block;
+}
+
+.svgs-item.svg-visible {
+  display: inline-block;
 }
 </style>
