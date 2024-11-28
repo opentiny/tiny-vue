@@ -1,20 +1,28 @@
-import { filter, nodeClick, check } from './index'
+import { check, filter, getCheckedData, getPluginOption, getTreeData, mounted, nodeClick } from './index'
 
-export const api = ['state', 'filter', 'nodeClick', 'check']
+export const api = ['state', 'check', 'filter', 'nodeClick']
 
-export const renderless = (props, { reactive, computed, watch }, { vm, emit }) => {
+export const renderless = (props, { reactive, computed, watch, onMounted }, { vm, emit }) => {
   const api = {}
 
   const state = reactive({
-    value: computed(() => props.modelValue),
-    treeData: props.treeOp.data
+    childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
+    currentKey: props.modelValue,
+    defaultCheckedKeys: [],
+    remoteData: [],
+    treeData: props.treeOp.data,
+    value: computed(() => props.modelValue)
   })
 
   Object.assign(api, {
     state,
+    check: check({ props, vm, emit }),
     filter: filter({ vm }),
-    nodeClick: nodeClick({ props, vm, emit }),
-    check: check({ props, vm, emit })
+    getCheckedData: getCheckedData({ props, state }),
+    getPluginOption: getPluginOption({ api, props, state }),
+    getTreeData: getTreeData({ props, state }),
+    mounted: mounted({ api, state, props, vm }),
+    nodeClick: nodeClick({ props, vm, emit })
   })
 
   watch(
@@ -22,6 +30,8 @@ export const renderless = (props, { reactive, computed, watch }, { vm, emit }) =
     (data) => data && (state.treeData = data),
     { immediate: true, deep: true }
   )
+
+  onMounted(api.mounted)
 
   return api
 }

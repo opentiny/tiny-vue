@@ -13,7 +13,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyMiniPicker, TinyButton } from '@opentiny/vue'
+import { TinyMiniPicker, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

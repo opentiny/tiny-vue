@@ -101,8 +101,8 @@ const initWatcher = ({
 
 export const renderless = (
   props: ITabsProps,
-  { onMounted, onUpdated, provide, reactive, watch }: ISharedRenderlessParamHooks,
-  { refs, parent, emit, constants, nextTick, childrenHandler }: ITabsRenderlessParamUtils
+  { onMounted, onUpdated, provide, reactive, watch, onUnmounted }: ISharedRenderlessParamHooks,
+  { vm, refs, parent, emit, constants, nextTick, childrenHandler }: ITabsRenderlessParamUtils
 ): ITabsApi => {
   const api = {} as ITabsApi
   const state: ITabsState = initState({ reactive, props })
@@ -142,6 +142,10 @@ export const renderless = (
     api.calcPaneInstances()
     api.calcMorePanes()
     api.calcExpandPanes()
+  })
+
+  onUnmounted(() => {
+    vm.$off('tab-nav-update')
   })
 
   return api

@@ -24,7 +24,7 @@ export default {
         legendVisible: this.legendVisible,
         tooltipVisible: this.tooltipVisible
       }
-      this.option = getIChartOption(columns, rows, this.settings, extra)
+      this.huiChartOption = getIChartOption(columns, rows, this.settings, extra)
     }
   }
 }

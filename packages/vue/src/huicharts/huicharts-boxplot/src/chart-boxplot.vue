@@ -28,7 +28,7 @@ export default {
         data: prepareBoxplotData && Array.isArray(data) ? data : null
       }
       const option = boxplot(columns, rows, this.settings, extra)
-      this.option = { ...option }
+      this.huiChartOption = { ...option }
     },
     prepareBoxplotData(data) {
       return prepareBoxplotData(data)

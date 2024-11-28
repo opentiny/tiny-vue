@@ -63,6 +63,7 @@ import {
   buildRadioConfig,
   onMouseenterNative,
   onMouseleaveNative,
+  onMouseenterSelf,
   onCopying,
   gridOnQueryChange,
   defaultOnQueryChange,
@@ -108,10 +109,12 @@ import {
   onClickCollapseTag,
   computedIsExpand,
   computedShowTagText,
-  isTagClosable
+  isTagClosable,
+  computedCurrentSizeMap
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
+import { useUserAgent } from '../common/deps/useUserAgent'
 
 export const api = [
   'state',
@@ -165,6 +168,7 @@ export const api = [
   'buildRadioConfig',
   'onMouseenterNative',
   'onMouseleaveNative',
+  'onMouseenterSelf',
   'onCopying',
   'handleDropdownClick',
   'handleEnterTag',
@@ -185,7 +189,6 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     datas: [],
     initDatas: [],
     query: '',
-    magicKey: 0,
     options: [],
     visible: false,
     showCopy: computed(() => api.computedShowCopy()),
@@ -241,13 +244,15 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
       }
       return true // tiny 默认为true
     })(),
-    designConfig
+    designConfig,
+    currentSizeMap: computed(() => api.computedCurrentSizeMap())
   })
 
   return state
 }
 
 const initStateAdd = ({ computed, props, api, parent }) => {
+  const { isIOS } = useUserAgent()
   return {
     selectedTags: [],
     tips: '',
@@ -302,6 +307,7 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     isHidden: false,
     defaultCheckedKeys: [],
     optionIndexArr: [],
+    isIOS,
     showCollapseTag: false,
     exceedMaxVisibleRow: false, // 是否超出默认最大显示行数
     toHideIndex: Infinity // 第一个超出被隐藏的索引
@@ -370,6 +376,7 @@ const initApi = ({
     buildRadioConfig: buildRadioConfig({ props, state }),
     onMouseenterNative: onMouseenterNative({ state }),
     onMouseleaveNative: onMouseleaveNative({ state }),
+    onMouseenterSelf: onMouseenterSelf({ state }),
     onCopying: onCopying({ state, vm }),
     gridOnQueryChange: gridOnQueryChange({ props, vm, constants, state }),
     watchHoverIndex: watchHoverIndex({ state }),
@@ -399,7 +406,8 @@ const initApi = ({
     clearSearchText: clearSearchText({ state, api }),
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
     computedShowTagText: computedShowTagText({ state }),
-    isTagClosable: isTagClosable()
+    isTagClosable: isTagClosable(),
+    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig })
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })

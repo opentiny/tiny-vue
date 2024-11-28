@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 
 function btnClick() {
-  TinyModal.confirm({
+  Modal.message({
     status: 'info',
     message: '自定义消息的内容距离顶部500px',
     top: 500

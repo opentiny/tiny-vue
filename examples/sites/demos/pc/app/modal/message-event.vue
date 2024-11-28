@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton
+    TinyButton: Button
   },
   methods: {
     btnClick() {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const $this = this
 
-      TinyModal.message({
+      Modal.message({
         message: '自定义消息的内容',
         events: {
           show(ev) {
@@ -32,7 +32,7 @@ export default {
       })
     },
     handleEvent(eventName, eventArgs) {
-      TinyModal.message({ status: 'info', message: `${eventName} 事件触发了` })
+      Modal.message({ status: 'info', message: `${eventName} 事件触发了` })
       console.log({ eventName, eventArgs })
     }
   }

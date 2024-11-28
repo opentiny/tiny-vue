@@ -3,7 +3,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyUserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue-mobile'
 import { iconSmile } from '@opentiny/vue-icon'
 
 export default {

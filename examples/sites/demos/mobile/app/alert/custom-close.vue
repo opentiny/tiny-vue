@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { TinyAlert, TinySwitch, TinyToast } from '@opentiny/vue'
+import { TinyAlert, TinySwitch, TinyToast } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -43,7 +43,6 @@
     .placeholder(@color: var(--tv-Input-placeholder-text-color));
 
     &.@{input-prefix-cls}__mask {
-      font-family: serif;
       color: #999;
     }
   }
@@ -149,8 +148,8 @@
   &__prefix,
   &__suffix {
     position: absolute;
-    top: var(--tv-Input-suffix-top);
-    transform: translateY(-50%);
+    top: 0;
+    height: 100%;
     transition: all 0.3s;
     text-align: center;
     color: var(--tv-Input-border-color);
@@ -204,13 +203,15 @@
     line-height: var(--tv-Input-height);
     text-align: center;
     transition: all 0.3s;
-    font-size: var(--tv-Input-icon-font-size);
-    fill: var(--tv-Input-icon-color);
-    width: var(--tv-Input-suffix-icon-width);
-    height: var(--tv-Input-suffix-icon-height);
 
-    &:hover {
-      fill: var(--tv-Input-icon-active-border-color);
+    svg {
+      fill: var(--tv-Input-icon-color);
+      width: var(--tv-Input-suffix-icon-width);
+      height: var(--tv-Input-suffix-icon-height);
+
+      &:hover {
+        fill: var(--tv-Input-icon-active-border-color);
+      }
     }
 
     &:after {
@@ -236,6 +237,7 @@
     padding-right: var(--tv-Input-prefix-padding-right);
   }
 
+  // 输入字数统计
   &-word-limit &__inner {
     padding-right: 56px;
     padding-left: 8px;
@@ -248,33 +250,25 @@
 
   &-medium {
     .input-size(var(--tv-Input-medium-height));
-    .@{input-prefix-cls}__suffix {
-      top: var(--tv-Input-suffix-top-medium);
-    }
   }
 
   &-small {
     .input-size(var(--tv-Input-small-height));
-    font-size: var(--tv-Input-small-font-size);
+
     .@{input-prefix-cls}__inner {
       font-size: var(--tv-Input-small-font-size);
-    }
-    .@{input-prefix-cls}__suffix {
-      top: var(--tv-Input-suffix-top-small);
     }
   }
 
   &-mini {
     .input-size(var(--tv-Input-mini-height));
-    font-size: var(--tv-Input-small-font-size);
+
     .@{input-prefix-cls}__inner {
       font-size: var(--tv-Input-small-font-size);
     }
-    .@{input-prefix-cls}__suffix {
-      top: var(--tv-Input-suffix-top-mini);
-    }
   }
 
+  // 只读模式
   &.is-display-only {
     .@{input-prefix-cls}-display-only {
       position: relative;
@@ -323,6 +317,7 @@
     }
   }
 
+  // 下边框模式
   &.tiny-input-underline {
     .tiny-input__inner {
       border-radius: 0;

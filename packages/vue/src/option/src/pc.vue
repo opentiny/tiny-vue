@@ -1,6 +1,7 @@
 <template>
   <li
     ref="option"
+    @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
     data-tag="tiny-option"

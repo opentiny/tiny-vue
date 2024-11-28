@@ -45,12 +45,12 @@
   // 尾部文本色
   --tv-BaseSelect-suffix-text-color: var(--tv-color-text-weaken, #808080);
   // 输入框高度（默认尺寸）
-  --tv-BaseSelect-input-height: var(--tv-size-height-default, 32px);
+  --tv-BaseSelect-input-height: var(--tv-size-height-md, 32px);
 
   // 多选标签容器内边距
   --tv-BaseSelect-tags-padding: var(--tv-space-xs, 2px) 0px var(--tv-space-xs, 2px) var(--tv-space-xs, 2px);
   // 多选标签容器高度
-  --tv-BaseSelect-tags-height: var(--tv-size-height-default, 32px);
+  --tv-BaseSelect-tags-height: var(--tv-size-height-md, 32px);
   // 标签外边距
   --tv-BaseSelect-tag-margin: var(--tv-space-xs, 2px);
 
@@ -60,4 +60,13 @@
   --tv-BaseSelect-collapse-icon-color: var(--tv-color-icon-link, #1476ff);
   // 收起按钮图标左侧外边距
   --tv-BaseSelect-collapse-icon-margin-left: var(--tv-space-xs, 2px);
+
+  // medium 尺寸的 tag 高度
+  --tv-BaseSelect-tag-height-medium: calc(var(--tv-size-height-lg) - 8px);
+  // 默认尺寸的 tag 高度
+  --tv-BaseSelect-tag-height-default: calc(var(--tv-size-height-md) - 8px);
+  // small 尺寸的tag高度
+  --tv-BaseSelect-tag-height-small: calc(var(--tv-size-height-sm) - 8px);
+  // mini 尺寸的 tag 高度
+  --tv-BaseSelect-tag-height-mini: calc(var(--tv-size-height-xs) - 8px);
 }

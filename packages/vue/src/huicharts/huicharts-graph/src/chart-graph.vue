@@ -27,7 +27,7 @@ export default {
       }
       const option = graph(columns, rows, this.settings, extra)
 
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

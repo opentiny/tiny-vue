@@ -44,6 +44,10 @@
 
       > div {
         display: flex;
+
+        > div {
+          background-color: #fff;
+        }
       }
 
       &::-webkit-scrollbar {
@@ -362,7 +366,7 @@
       cursor: pointer;
 
       .@{steps-prefix-cls} {
-        &--main {
+        &-main {
           display: flex;
           align-items: center;
           position: relative;
@@ -724,10 +728,6 @@
         margin-top: 8px;
       }
 
-      .@{steps-prefix-cls}-main {
-        height: 42px;
-      }
-
       /** 尺寸场景 */
       .block-size-mixin(@size, @iconFontSize, @iconSize, @titleFontSize, @circleSize, @space) {
         .@{steps-prefix-cls}-icon {
@@ -879,8 +879,8 @@
           right: 0;
           top: 0;
           transform: translateX(100%);
-          border-top: 14px solid transparent;
-          border-bottom: 14px solid transparent;
+          border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
+          border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-left: 9px solid #fff;
           z-index: 1;
         }
@@ -890,8 +890,8 @@
           position: absolute;
           left: 0;
           top: 0;
-          border-top: 14px solid transparent;
-          border-bottom: 14px solid transparent;
+          border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
+          border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-left: 9px solid #d7d8da;
         }
 
@@ -1009,24 +1009,24 @@
       &.doing,
       &.active:not(.fault, .disabled) {
         & > .block-left .left-dot {
-          border-color: #191919;
+          border-color: var(--tv-Steps-dot-vertical-current-bg-color);
         }
       }
 
       &.done,
       &.doing {
         & > .block-left > .left-line {
-          background-color: #191919;
+          background-color: var(--tv-Steps-dot-vertical-current-bg-color);
         }
 
         & > .block-right .title-vertical {
-          color: #191919;
+          color: var(--tv-Steps-advance-active-text-color);
         }
       }
 
       &.active:not(.fault, .disabled) {
         & > .block-left > .left-dot {
-          background-color: #191919;
+          background-color: var(--tv-Steps-dot-vertical-current-bg-color);
         }
       }
 

@@ -122,7 +122,7 @@ const initWatch = ({ watch, selectVm, state, nextTick }) => {
       }, 0)
 
       if (val && selectVm.multiple) {
-        state.originValue = selectVm.modelValue.slice(0)
+        state.originValue = selectVm.modelValue && selectVm.modelValue.slice(0)
       }
     }
   )

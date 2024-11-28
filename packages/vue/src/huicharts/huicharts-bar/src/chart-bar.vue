@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'BarChart',
-      option: {}
+      iChartName: 'BarChart'
     }
   },
   methods: {
@@ -31,7 +30,7 @@ export default {
 
       const option = histogram(columns, rows, this.settings, extra, false)
 
-      this.option = {
+      this.huiChartOption = {
         smooth: true,
         ...option,
         direction: 'horizontal'

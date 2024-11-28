@@ -3,8 +3,8 @@ export default {
     const state = api.state
 
     return {
-      treeWrapperMaxHeight() {
-        state.treeWrapperMaxHeight = 'auto'
+      computedTreeMaxHeight() {
+        state.treeWrapperMaxHeight = ''
       }
     }
   }

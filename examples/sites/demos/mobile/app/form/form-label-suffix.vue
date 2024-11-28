@@ -34,7 +34,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 export default {
   components: {

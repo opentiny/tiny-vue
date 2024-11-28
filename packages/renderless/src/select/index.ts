@@ -15,6 +15,7 @@ import { isNull } from '../common/type'
 import { fastdom } from '../common/deps/fastdom'
 import { deepClone } from '../picker-column'
 import { escapeRegexpString } from '../option'
+import { correctTarget } from '../common/event'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -120,15 +121,15 @@ export const defaultOnQueryChange =
     }
     setFilteredSelectCls(nextTick, state, props)
     api.getOptionIndexArr()
-
-    state.magicKey = state.magicKey > 0 ? -1 : 1
   }
 
 export const queryChange =
   ({ props, state, constants }) =>
   (value, isInput) => {
     if (props.optimization && isInput) {
-      const filterDatas = state.initDatas.filter((item) => new RegExp(escapeRegexpString(value), 'i').test(item.label))
+      const filterDatas = state.initDatas.filter((item) =>
+        new RegExp(escapeRegexpString(value), 'i').test(item[props.textField])
+      )
       state.datas = filterDatas
     } else {
       state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
@@ -202,7 +203,7 @@ export const handleQueryChange =
 
     state.hoverIndex = -1
 
-    if (props.multiple && (props.filterable || props.searchable) && !props.shape) {
+    if (props.multiple && (props.filterable || props.searchable) && !props.shape && !state.selectDisabled) {
       nextTick(() => {
         if (!vm.$refs.input) {
           return
@@ -333,17 +334,17 @@ export const getOption =
     if (props.optimization) {
       option = api.getSelectedOption(value)
       if (option) {
-        return { value: option.value, currentLabel: option.label || option.currentLabel }
+        return { value: option.value, currentLabel: option[props.textField] || option.currentLabel }
       }
 
-      option = state.datas.find((v) => getObj(v, props.valueKey) === value)
+      option = state.datas.find((v) => getObj(v, props.valueField) === value)
       if (option) {
-        return { value: option.value, currentLabel: option.label || option.currentLabel }
+        return { value: option[props.valueField], currentLabel: option[props.textField] || option.currentLabel }
       }
     }
     // tiny 新增 clearNoMatchValue的条件
     const label = !isObject && !isNull && !isUndefined && !props.clearNoMatchValue ? value : ''
-    let newOption = { value, currentLabel: label }
+    let newOption = { value, currentLabel: label, isFakeLabel: true }
 
     if (props.multiple) {
       newOption.hitState = false
@@ -357,9 +358,13 @@ export const getSelectedOption =
   (value) => {
     let option
     if (props.multiple) {
-      option = state.selected.find((v) => getObj(v, props.valueKey) === value)
+      option = state.selected.find((v) => getObj(v, props.valueField) === value && !v.isFakeLabel)
     } else {
-      if (!isEmptyObject(state.selected) && getObj(state.selected, props.valueKey) === value) {
+      if (
+        !isEmptyObject(state.selected) &&
+        getObj(state.selected, props.valueField) === value &&
+        !state.selected.isFakeLabel
+      ) {
         option = state.selected
       }
     }
@@ -452,6 +457,8 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api, init }) => {
   state.selectedLabel = label
   state.selected = obj
   state.currentKey = data[props.valueField]
+  vm.$refs.selectTree && vm.$refs.selectTree.setCurrentKey && vm.$refs.selectTree.setCurrentKey(state.currentKey)
+  props.treeOp.showRadio && (state.defaultCheckedKeys = [state.currentKey])
 }
 
 export const setSelected =
@@ -589,7 +596,21 @@ export const handleBlur =
   ({ constants, dispatch, emit, state, designConfig }) =>
   (event) => {
     clearTimeout(state.timer)
+    const target = event.target
+
     state.timer = setTimeout(() => {
+      correctTarget(event, target)
+
+      if (event.target !== target) {
+        Object.defineProperty(event, 'target', {
+          get() {
+            return target
+          },
+          enumerable: true,
+          configurable: true
+        })
+      }
+
       if (state.isSilentBlur) {
         state.isSilentBlur = false
       } else {
@@ -718,7 +739,6 @@ export const resetInputHeight =
         api.calcCollapseTags()
       }
 
-      const sizeInMap = designConfig?.state.initialInputHeight || Math.round(state.initialInputHeight) || 32
       const noSelected = state.selected.length === 0
       // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
       const spacingHeight = designConfig?.state?.spacingHeight ?? constants.SPACING_HEIGHT
@@ -729,11 +749,11 @@ export const resetInputHeight =
             const tagsClientHeight = tags.clientHeight
 
             fastdom.mutate(() => {
-              input.style.height = Math.max(tagsClientHeight + spacingHeight, sizeInMap) + 'px'
+              input.style.height = Math.max(tagsClientHeight + spacingHeight, state.currentSizeMap) + 'px'
             })
           })
         } else {
-          input.style.height = noSelected ? sizeInMap + 'px' : Math.max(0, sizeInMap) + 'px'
+          input.style.height = noSelected ? state.currentSizeMap + 'px' : Math.max(0, state.currentSizeMap) + 'px'
         }
       } else {
         input.style.height = 'auto'
@@ -893,16 +913,26 @@ export const getValueIndex =
   }
 
 export const toggleMenu =
-  ({ vm, state, props, api }) =>
+  ({ vm, state, props, api, designConfig }) =>
   (e) => {
     if (props.keepFocus && state.visible && (props.filterable || props.searchable)) {
       return
+    }
+
+    if (state.isIOS) {
+      state.selectHover = true
+      state.inputHovering = true
     }
 
     const event = e || window.event
     const enterCode = 13
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
+
+    const isStop = props.stopPropagation ?? designConfig?.props?.stopPropagation ?? false
+    if (!props.displayOnly && isStop) {
+      event.stopPropagation()
+    }
 
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
@@ -922,6 +952,7 @@ export const selectOption =
   ({ api, state, props }) =>
   (e) => {
     if (!state.visible || props.hideDrop) {
+      state.softFocus = false
       api.toggleMenu(e)
     } else {
       let option = ''
@@ -1292,9 +1323,11 @@ export const watchValue =
       }
 
       if ((props.filterable || props.searchable) && !props.reserveKeyword) {
-        // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
-        // searchable时，不清空query, 这样才能保持搜索结果
-        props.renderType !== constants.TYPE.Grid && !props.searchable && (state.query = '')
+        // 还原AUI的做法
+        const isChange = false
+        const isInput = true
+        state.query = ''
+        api.handleQueryChange(state.query, isChange, isInput)
       }
     }
 
@@ -1601,7 +1634,7 @@ export const handleCopyClick =
   }
 
 export const selectChange =
-  ({ props, state, api }) =>
+  ({ props, state, api, vm }) =>
   ({ $table, selection, checked, row }) => {
     const { textField, valueField } = props
     const remoteItem = (row) => {
@@ -1618,6 +1651,10 @@ export const selectChange =
             selection.filter((row) => !~state.modelValue.indexOf(row[valueField]))
           ))
         : $table.tableFullData.forEach((row) => remoteItem(row))
+    }
+
+    if (props.filterable && props.multiple) {
+      vm.$refs.input.focus()
     }
 
     const keys = state.selected.map((item) => item[valueField])
@@ -1825,10 +1862,21 @@ export const buildRadioConfig =
 export const onMouseenterNative =
   ({ state }) =>
   () => {
-    state.inputHovering = true
+    if (!state.isIOS) {
+      state.inputHovering = true
+    }
 
     if (state.searchSingleCopy && state.selectedLabel) {
       state.softFocus = true
+    }
+  }
+
+export const onMouseenterSelf =
+  ({ state }) =>
+  () => {
+    if (!state.isIOS) {
+      state.selectHover = true
+      state.inputHovering = true
     }
   }
 
@@ -2000,10 +2048,19 @@ export const initQuery =
     return Promise.resolve(selected)
   }
 
+export const computedCurrentSizeMap =
+  ({ state, designConfig }) =>
+  () => {
+    const defaultSizeMap = { default: 32, mini: 24, small: 28, medium: 40 }
+    const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
+
+    return sizeMap[state.selectSize || 'default']
+  }
+
 export const mounted =
   ({ api, parent, state, props, vm, designConfig }) =>
   () => {
-    state.defaultCheckedKeys = state.gridCheckedData
+    state.defaultCheckedKeys = props.multiple ? state.gridCheckedData : props.treeOp.defaultCheckedKeys || []
     const parentEl = parent.$el
     const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
 
@@ -2015,17 +2072,9 @@ export const mounted =
 
     state.completed = true
 
-    // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
-    const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
-
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
       state.currentPlaceholder = ''
     }
-
-    state.initialInputHeight = state.isDisplayOnly
-      ? sizeMap[state.selectSize || 'default'] // tiny 新增 : default, aui只处理了另3种情况，不传入时，要固定为default
-      : inputClientRect.height || sizeMap[state.selectSize]
 
     addResizeListener(parentEl, api.handleResize)
 
@@ -2210,12 +2259,19 @@ export const computedTagsStyle =
 
 export const computedReadonly =
   ({ props, state }) =>
-  () =>
-    state.device === 'mb' ||
-    props.readonly ||
-    !(props.filterable || props.searchable) ||
-    props.multiple ||
-    (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
+  () => {
+    if (state.isIOS && props.filterable) {
+      return false
+    } else {
+      return (
+        state.device === 'mb' ||
+        props.readonly ||
+        !(props.filterable || props.searchable) ||
+        props.multiple ||
+        (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
+      )
+    }
+  }
 
 export const computedShowClose =
   ({ props, state }) =>
@@ -2402,7 +2458,7 @@ export const clearNoMatchValue =
 // 解决无界时，event.target 会变为 wujie_iframe的元素的bug
 export const handleDebouncedQueryChange = ({ state, api }) =>
   debounce(state.debounce, (value) => {
-    api.handleQueryChange(value)
+    api.handleQueryChange(value, false, true)
   })
 
 export const onClickCollapseTag =

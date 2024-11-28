@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'TreeChart',
-      option: {}
+      iChartName: 'TreeChart'
     }
   },
   methods: {
@@ -30,7 +29,7 @@ export default {
       }
 
       const option = tree(columns, rows, this.settings, extra)
-      this.option = { ...option }
+      this.huiChartOption = { ...option }
     }
   }
 }

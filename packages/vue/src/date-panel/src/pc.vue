@@ -213,7 +213,7 @@
       <!-- 此刻/确认 -->
       <div
         class="tiny-picker-panel__footer"
-        v-show="state.isShowFooter"
+        v-if="state.isShowFooter"
         :style="{ justifyContent: !['dates', 'years'].includes(state.selectionMode) ? 'space-between' : 'right' }"
       >
         <slot>

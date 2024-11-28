@@ -54,7 +54,7 @@ export const cmpMenus = [
     labelEn: 'Container',
     key: 'cmp_container',
     children: [
-      { name: 'Dialog', nameCn: '对话框', key: 'dialogbox' },
+      { name: 'Dialog', nameCn: '对话框', key: 'dialog-box' },
       { name: 'Container', nameCn: '内容布局', key: 'container' }
     ]
   },

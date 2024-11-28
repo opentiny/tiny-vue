@@ -9,8 +9,10 @@ export default {
         'en-US': 'Horizontal Chain Steps'
       },
       desc: {
-        'zh-CN': '<p>通过添加 <code>line</code> 用作横向单链型步骤条。</p>',
-        'en-US': '<p>Use the <code>line</code> property to create a horizontal chain steps.</p>'
+        'zh-CN':
+          '<p>通过添加 <code>line</code> 用作横向单链型步骤条，<code>visible-num</code> 控制信息可见的节点数。</p>',
+        'en-US':
+          '<p>Use the <code>line</code> property to create a horizontal chain steps, <code>visible-num</code>Control the number of nodes where information is visible.</p>'
       },
       codeFiles: ['line-horizontal.vue']
     },

@@ -511,11 +511,10 @@ export default defineComponent({
               </li>
             </ul>
             <div class="tiny-grid__filter-option filter-option__btns filter-option__date-button">
-              <Button size="mini" onClick={this.filterDate}>
+              <Button type="primary" onClick={this.filterDate}>
                 {this.i18n('ui.base.confirm')}
               </Button>
               <Button
-                size="mini"
                 onClick={() => {
                   filterStore.visible = false
                 }}>
@@ -561,11 +560,10 @@ export default defineComponent({
             </ul>
             {filterStore.multi ? (
               <div class="tiny-grid__filter-option filter-option__btns">
-                <Button size="mini" onClick={this.filterEnum}>
+                <Button type="primary" onClick={this.filterEnum}>
                   {this.i18n('ui.base.confirm')}
                 </Button>
                 <Button
-                  size="mini"
                   onClick={() => {
                     filterStore.visible = false
                   }}>

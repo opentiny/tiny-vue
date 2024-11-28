@@ -13,7 +13,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyImageViewer, TinyButton } from '@opentiny/vue'
+import { TinyImageViewer, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { TinyPullRefresh } from '@opentiny/vue'
+import { TinyPullRefresh } from '@opentiny/vue-mobile'
 
 export default {
   components: {

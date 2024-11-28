@@ -8,7 +8,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyBadge, TinyButton } from '@opentiny/vue'
+import { TinyBadge, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

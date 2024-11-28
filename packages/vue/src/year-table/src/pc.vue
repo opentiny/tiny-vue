@@ -13,10 +13,25 @@
 <template>
   <table class="tiny-year-table" @mousemove="handleMouseMove" @click="handleYearTableClick">
     <tbody>
-      <tr v-for="(row, key) in state.rows" :key="key">
-        <td v-for="(cell, key) in row" class="available" :class="getCellStyle(cell)" :key="key">
+      <tr v-for="(row, trKey) in state.rows" :key="trKey">
+        <td
+          v-for="(cell, tdKey) in row"
+          class="available"
+          :key="tdKey"
+          :class="[
+            {
+              'disabled': getIsDisabled(cell.text),
+              'current': getIsCurrent(cell.text),
+              'default': getIsDefault(cell.text),
+              'today': state.currentYear === cell.text,
+              'in-range': cell.inRange,
+              'start-date': cell.start,
+              'end-date': cell.end
+            }
+          ]"
+        >
           <div>
-            <a class="cell" :aria-disabled="state.disabled ? true : undefined">{{ cell.text }}</a>
+            <a class="cell" :aria-disabled="getIsDisabled(cell.text) ? true : undefined">{{ cell.text }}</a>
           </div>
         </td>
       </tr>

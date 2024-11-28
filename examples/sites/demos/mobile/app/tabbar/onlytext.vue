@@ -19,7 +19,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue'
+import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue-mobile'
 
 export default {
   components: {

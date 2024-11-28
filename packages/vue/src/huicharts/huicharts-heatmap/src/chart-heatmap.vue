@@ -13,11 +13,6 @@ import { $prefix } from '@opentiny/vue-common'
 export default {
   name: $prefix + 'ChartHeatmap',
   mixins: [Core],
-  data() {
-    return {
-      option: {}
-    }
-  },
   computed: {
     iChartName() {
       const { type } = this.settings
@@ -40,7 +35,7 @@ export default {
         echartsLib: this.integrateChart.echartIns
       }
       const option = heatmap(columns, rows, this.settings, extra, true)
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     },

@@ -40,7 +40,7 @@ export default {
         extend: this.extend
       }
       const option = radar(columns, rows, this.settings, extra)
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

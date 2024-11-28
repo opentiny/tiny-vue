@@ -22,38 +22,21 @@
   box-sizing: border-box;
 }
 
-// 表头单元格高度
-.DefaultHeaderColumnHeight() {
-  height: var(--tv-Grid-header-height);
-}
-
-.MediumHeaderColumnHeight() {
-  height: 46px;
-}
-
-.SmallHeaderColumnHeight() {
-  height: 32px;
-}
-
-.MiniHeaderColumnHeight() {
-  height: 32px;
-}
-
 // 表格主体单元格高度
 .DefaultColumnHeight() {
-  height: 48px;
+  height: var(--tv-Grid-cell-height);
 }
 
 .MediumColumnHeight() {
-  height: 52px;
+  height: calc(var(--tv-Grid-cell-height) + 4px);
 }
 
 .SmallColumnHeight() {
-  height: 40px;
+  height: var(--tv-Grid-cell-height-small);
 }
 
 .MiniColumnHeight() {
-  height: 32px;
+  height: var(--tv-Grid-cell-height-mini);
 }
 
 .DefaultTdPadding() {

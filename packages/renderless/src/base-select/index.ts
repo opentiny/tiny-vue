@@ -61,51 +61,6 @@ export const showTip =
     }
   }
 
-export const gridOnQueryChange =
-  ({ props, vm, constants, state }) =>
-  (value) => {
-    const { multiple, valueField, filterMethod, filterable, remote, remoteMethod } = props
-
-    if (filterable && typeof filterMethod === 'function') {
-      const table = vm.$refs.selectGrid.$refs.tinyTable
-      const fullData = table.afterFullData
-
-      vm.$refs.selectGrid.scrollTo(null, 0)
-
-      table.afterFullData = filterMethod(value, fullData) || []
-
-      vm.$refs.selectGrid
-        .handleTableData(!value)
-        .then(() => state.selectEmitter.emit(constants.EVENT_NAME.updatePopper))
-
-      state.previousQuery = value
-    } else if (remote && typeof remoteMethod === 'function') {
-      state.previousQuery = value
-      remoteMethod(value, props.extraQueryParams).then((data) => {
-        // 多选时取远端数据与当前已选数据的并集
-        if (multiple) {
-          const selectedIds = state.selected.map((sel) => sel[valueField])
-          vm.$refs.selectGrid.clearSelection()
-          vm.$refs.selectGrid.setSelection(
-            data.filter((row) => ~selectedIds.indexOf(row[valueField])),
-            true
-          )
-          state.remoteData = data.filter((row) => !~selectedIds.indexOf(row[valueField])).concat(state.selected)
-        } else {
-          vm.$refs.selectGrid.clearRadioRow()
-          vm.$refs.selectGrid.setRadioRow(find(data, (item) => props.modelValue === item[props.valueField]))
-          state.remoteData = data
-        }
-
-        vm.$refs.selectGrid.$refs.tinyTable.lastScrollTop = 0
-        vm.$refs.selectGrid.loadData(data)
-        vm.$refs.selectGrid
-          .handleTableData(!value)
-          .then(() => state.selectEmitter.emit(constants.EVENT_NAME.updatePopper))
-      })
-    }
-  }
-
 export const defaultOnQueryChange =
   ({ props, state, constants, api, nextTick }) =>
   (value, isInput) => {
@@ -317,7 +272,7 @@ const getOptionOfSetSelected = ({ api, props }) => {
   }
 
   // tiny 新增
-  if (!option.currentLabel) {
+  if (!option.state.currentLabel) {
     api.clearNoMatchValue('')
   }
 
@@ -361,11 +316,11 @@ export const setSelected =
           : 'halfselect'
         : 'check'
 
-      if (state.selected.length === 0 || !state.selected[0].currentLabel) {
+      if (!state.selected?.[0]?.isTree && !state.selected?.[0]?.isGrid) {
         state.selected = result
       }
+      state.selected.length && (state.selectedLabel = '')
 
-      vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
       setFilteredSelectCls(nextTick, state, props)
@@ -1246,10 +1201,6 @@ export const toVisible =
       if (vm.$refs.input && vm.$refs.input.value === '' && state.selected.length === 0) {
         state.currentPlaceholder = state.cachedPlaceHolder
       }
-
-      if (vm.$refs.selectGrid) {
-        vm.$refs.selectGrid.clearScroll()
-      }
     })
 
     postOperOfToVisible({ props, state, constants })
@@ -1281,31 +1232,6 @@ export const toHide =
           state.currentPlaceholder = state.selectedLabel
           state.selectedLabel = ''
         }
-      }
-    }
-
-    if (vm.$refs.selectGrid) {
-      let { fullData } = vm.$refs.selectGrid.getTableData()
-      if (multiple) {
-        const selectedIds = state.selected.map((sel) => sel[valueField])
-        vm.$refs.selectGrid.clearSelection()
-        vm.$refs.selectGrid.setSelection(
-          fullData.filter((row) => ~selectedIds.indexOf(row[valueField])),
-          true
-        )
-      } else {
-        vm.$refs.selectGrid.clearRadioRow()
-        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[valueField]))
-      }
-
-      if (filterable && typeof props.filterMethod === 'function') {
-        vm.$refs.selectGrid.handleTableData(true)
-      } else if (
-        filterable &&
-        remote &&
-        (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
-      ) {
-        vm.$refs.selectGrid.handleTableData()
       }
     }
   }
@@ -1423,23 +1349,6 @@ export const handleCopyClick =
     input.select()
     document.execCommand('copy')
     parent.$el.removeChild(input)
-  }
-
-export const getcheckedData =
-  ({ props, state }) =>
-  () => {
-    const checkedKey = []
-
-    if (!Array.isArray(state.selected)) {
-      return props.modelValue ? [props.modelValue] : [state.selected[props.valueField]]
-    } else {
-      state.selected.length > 0 &&
-        state.selected.forEach((item) => {
-          checkedKey.push(item[props.valueField])
-        })
-
-      return checkedKey
-    }
   }
 
 export const debouncRquest = ({ api, state, props }) =>
@@ -1667,14 +1576,12 @@ export const initQuery =
         return new Promise((resolve) => {
           initData.then((selected) => {
             state.remoteData = selected
-            vm.$refs.selectGrid.loadData(selected)
             resolve(selected)
           })
         })
       }
       selected = initData
       state.remoteData = selected
-      vm.$refs.selectGrid.loadData(selected)
     }
 
     return Promise.resolve(selected)
@@ -1683,7 +1590,6 @@ export const initQuery =
 export const mounted =
   ({ api, parent, state, props, vm, designConfig }) =>
   () => {
-    state.defaultCheckedKeys = state.gridCheckedData
     const parentEl = parent.$el
     const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
 
@@ -1696,7 +1602,7 @@ export const mounted =
     state.completed = true
 
     // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
+    const defaultSizeMap = { medium: 40, default: 32, small: 28, mini: 24 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
@@ -1964,12 +1870,31 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        // 给多选复制全部标签图标留一部分间距
+        const COPY_ICON_WIDTH = 16
+        state.inputPaddingRight = parseFloat(paddingRight) + COPY_ICON_WIDTH
       }
     })
   }
 
 // 以下为tiny 新增功能
+/**
+ * 兼容不同主题多选禁用的展示类型
+ * default 和 smb 主题，displayOnly 时显示为 tagText,否则为 tag
+ * aurora 主题 displayOnly||disabled 时显示为tagText,否则为 tag
+ */
+export const computedShowTagText =
+  ({ state }) =>
+  () =>
+    state.isDisplayOnly
+
+/**
+ * 兼容不同主题多选，tag 在disabled 和 required 时是否显示关闭按钮的区别
+ * default 主题 ，禁用显示关闭按钮，required目前和aurora保持一致不显示，待设计图补充时更新
+ * aurora 主题，禁用时无禁用效果，required 时不显示关闭按钮
+ */
+export const isTagClosable = () => (item) => !item.required
+
 export const computedGetIcon =
   ({ designConfig, props }) =>
   () => {

@@ -308,6 +308,15 @@ export default defineComponent({
         return {}
       }
     },
+    showEmptyValue: Boolean,
+    dropdownHeight: {
+      type: String,
+      default: 'initial'
+    },
+    stopPropagation: {
+      type: Boolean,
+      default: undefined
+    },
     // 以下为 tiny 新增
     searchable: {
       type: Boolean,

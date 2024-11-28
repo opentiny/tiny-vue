@@ -60,7 +60,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyList } from '@opentiny/vue'
+import { TinyList } from '@opentiny/vue-mobile'
 import { iconHelp, iconChevronRight } from '@opentiny/vue-icon'
 
 export default {

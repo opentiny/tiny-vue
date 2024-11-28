@@ -263,18 +263,18 @@ export default {
       codeFiles: ['group-form.vue']
     },
     {
-      demoId: 'smb-required',
+      demoId: 'hide-required',
       name: {
         'zh-CN': '必填项红色星号',
         'en-US': 'Required items with a red asterisk'
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>hide-required-asterisk</code> 设置是否隐藏标签前的红色星号，默认为 <code>true</code> 。</p>',
+          '<p>通过 <code>hide-required-asterisk</code> 设置是否隐藏标签前的红色星号，默认为 <code>false</code> 。</p>',
         'en-US':
-          'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>true</code>.'
+          'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>false</code>.'
       },
-      codeFiles: ['smb-required.vue']
+      codeFiles: ['hide-required.vue']
     },
     {
       demoId: 'popper-options',

@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'SunburstChart',
-      option: {}
+      iChartName: 'SunburstChart'
     }
   },
   methods: {
@@ -28,7 +27,7 @@ export default {
       }
       const option = sunburst(columns, rows, this.settings, extra)
 
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

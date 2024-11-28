@@ -44,7 +44,7 @@ export default {
         {
           name: 'hide-required-asterisk',
           type: 'boolean',
-          defaultValue: 'true',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '是否隐藏必填字段的标签旁边的红色星号',
             'en-US': 'Whether to hide the red asterisk next to the label of mandatory fields'

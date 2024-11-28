@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton,
-    TinyModal
+    TinyButton: Button,
+    TinyModal: Modal
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const $this = this
 
-      TinyModal.confirm({
+      Modal.confirm({
         message: '窗口内容',
         title: '自定义弹窗标题',
         showHeader: true,
@@ -77,7 +77,7 @@ export default {
       this.show = true
     },
     handleEvent(eventName, eventArgs) {
-      TinyModal.message({ status: 'info', message: `${eventName} 事件触发了` })
+      Modal.message({ status: 'info', message: `${eventName} 事件触发了` })
       console.log({ eventName, eventArgs })
     }
   }

@@ -21,7 +21,15 @@
     <h2>#foot 插槽</h2>
     <div class="content">
       <tiny-button @click="openModal_1">自定义弹窗底部</tiny-button>
-      <tiny-modal v-model="show1" type="confirm" title="自定义弹窗标题" message="窗口内容" show-header show-footer>
+      <tiny-modal
+        v-model="show1"
+        type="confirm"
+        title="自定义弹窗标题"
+        message="窗口内容"
+        footer-dragable
+        show-header
+        show-footer
+      >
         <template #footer>
           <tiny-link type="primary">返回</tiny-link>
           <tiny-link style="margin-left: 12px">保存</tiny-link>
@@ -32,13 +40,13 @@
 </template>
 
 <script>
-import { TinyButton, TinyModal, TinyLink } from '@opentiny/vue'
+import { Button, Modal, Link } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton,
-    TinyModal,
-    TinyLink
+    TinyButton: Button,
+    TinyModal: Modal,
+    TinyLink: Link
   },
   data() {
     return {
@@ -55,7 +63,7 @@ export default {
   },
   methods: {
     btnClick() {
-      TinyModal.confirm({
+      Modal.confirm({
         message: '窗口内容',
         title: '自定义弹窗标题',
         showHeader: true,

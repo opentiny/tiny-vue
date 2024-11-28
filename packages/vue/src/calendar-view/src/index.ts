@@ -66,7 +66,7 @@ export const calendarViewProps = {
     }
   },
   height: {
-    type: String,
+    type: [String, Number],
     default: ''
   },
   markColor: {

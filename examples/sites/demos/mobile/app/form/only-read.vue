@@ -66,7 +66,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue-mobile'
 
 export default {
   components: {

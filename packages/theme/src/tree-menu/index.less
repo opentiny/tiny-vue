@@ -148,7 +148,7 @@
       top: 48px;
       bottom: 0;
       z-index: 2;
-      border-top: 1px solid  var(--tv-TreeMenu-border-top-color);
+      border-top: 1px solid var(--tv-TreeMenu-border-top-color);
     }
   }
 
@@ -240,9 +240,10 @@
           position: relative;
 
           .tree-node-body {
-            color: var(--tv-TreeMenu-node-current-text-color);
+            font-weight: bold;
           }
         }
+
         & > .@{tree-node-prefix-cls}__content::before {
           content: '';
           position: absolute;

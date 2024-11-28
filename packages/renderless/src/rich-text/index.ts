@@ -73,6 +73,7 @@ export const initQuill =
     state.quill.enable(false)
     state.quill.on('selection-change', api.selectionChange)
     state.quill.on('text-change', api.textChange)
+    state.quill.root.addEventListener('click', api.handleClick)
 
     if (state.content) {
       state.quill.pasteHTML(xss.filterHtml(state.content))
@@ -86,6 +87,22 @@ export const initQuill =
     emit('ready', state.quill)
 
     api.setToolbarTips()
+  }
+
+export const handleClick =
+  ({ state, Quill }) =>
+  (event) => {
+    const el = event.target
+
+    if (!(el instanceof HTMLElement) || el.tagName !== 'IMG') {
+      return
+    }
+    event.stopPropagation()
+
+    const imgBlot = Quill.find(el)
+    const index = state.quill.getIndex(imgBlot)
+
+    state.quill.setSelection(index + 1)
   }
 
 export const setToolbarTips =
@@ -249,6 +266,7 @@ export const beforeUnmount =
   () => {
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
+    state.quill.root.removeEventListener('click', api.handleClick)
     state.quill = null
     delete state.quill
   }

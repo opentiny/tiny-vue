@@ -124,6 +124,7 @@ export interface Schema {
   showCombinatorsBetweenRules: boolean
   showNotToggle: boolean
   showCloneButtons: boolean
+  allowDelAll: boolean
   showLockButtons: boolean
   autoSelectField: boolean
   autoSelectOperator: boolean
@@ -393,6 +394,10 @@ type QueryBuilderPropsBase<RG extends RuleGroupType | RuleGroupTypeIC> = (RG ext
      * Show the "Clone rule" and "Clone group" buttons
      */
     showCloneButtons?: boolean
+    /**
+     * Allow all rules to be deleted
+     */
+    allowDelAll?: boolean
     /**
      * Show the "Lock rule" and "Lock group" buttons
      */

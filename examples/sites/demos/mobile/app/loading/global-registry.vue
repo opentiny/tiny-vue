@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { TinyLoading, TinyButton } from '@opentiny/vue'
+import { TinyLoading, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

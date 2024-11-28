@@ -9,7 +9,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyButton, TinyModal, TinyNotify } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 export default {
   components: {
@@ -31,22 +31,10 @@ export default {
       })
     },
     baseClick4() {
-      TinyModal.confirm({ message: '您确定要删除吗？', tiny_mode: 'mobile' }).then((res) => {
-        TinyNotify({
-          type: 'info',
-          title: '触发回调事件',
-          message: `点击${res}按钮`
-        })
-      })
+      TinyModal.confirm({ message: '您确定要删除吗？', tiny_mode: 'mobile' }).then((res) => {})
     },
     baseClick5() {
-      TinyModal.confirm({ message: '您确定要删除吗？', showHeader: false, tiny_mode: 'mobile' }).then((res) => {
-        TinyNotify({
-          type: 'info',
-          title: '触发回调事件',
-          message: `点击${res}按钮`
-        })
-      })
+      TinyModal.confirm({ message: '您确定要删除吗？', showHeader: false, tiny_mode: 'mobile' }).then((res) => {})
     }
   }
 }

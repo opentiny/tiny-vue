@@ -22,7 +22,7 @@ import { iconPopup } from '@opentiny/vue-icon'
 
 const tinyIconPopup = iconPopup()
 const value = ref('')
-const value2 = ref([])
+const value2 = ref([9])
 
 const treeOp = ref({
   data: [

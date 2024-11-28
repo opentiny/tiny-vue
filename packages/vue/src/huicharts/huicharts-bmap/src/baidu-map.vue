@@ -15,20 +15,15 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'BaiduMapChart',
-      option: {}
+      iChartName: 'BaiduMapChart'
     }
   },
   methods: {
     updateChart() {
       if (this.options && Object.keys(this.options).length) {
-        this.option = { ...this.options, ...this.settings }
+        this.huiChartOption = { ...this.options, ...this.settings }
         if (!this.tooltipVisible) {
-          this.option.tooltip = { show: false }
-        }
-
-        if (!this.legendVisible) {
-          this.option.legend = { show: false }
+          this.huiChartOption.tooltip = { show: false }
         }
 
         return
@@ -52,7 +47,7 @@ export default {
         'backgroundColor',
         'textStyle'
       ]
-      this.option = {
+      this.huiChartOption = {
         ...this.settings,
         tooltip: this.tooltipVisible ? this.tooltip : { show: false },
         series: this.series
@@ -60,12 +55,12 @@ export default {
 
       echartsSettings.forEach((prop) => {
         if (this[prop]) {
-          this.option[prop] = this[prop]
+          this.huiChartOption[prop] = this[prop]
         }
       })
 
       if (!this.legendVisible) {
-        this.option.legend = { show: false }
+        this.huiChartOption.legend = { show: false }
       }
     }
   }

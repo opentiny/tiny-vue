@@ -25,13 +25,13 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 const fullscreen = ref(false)
 const options = ref({
-  resize: true,
   width: 800,
   height: 400,
   minWidth: 700,
@@ -39,7 +39,7 @@ const options = ref({
 })
 
 function btnClick(isFull) {
-  TinyModal.confirm({
+  Modal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,

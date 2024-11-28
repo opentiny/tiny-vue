@@ -29,7 +29,7 @@ export default {
       }
       const option = waterfall(columns, rows, this.settings, extra)
 
-      this.option = {
+      this.huiChartOption = {
         ...option
       }
     }

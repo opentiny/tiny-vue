@@ -1,10 +1,19 @@
 <template>
-  <tiny-base-select ref="baseSelectRef" class="tiny-grid-select" v-model="state.value" :multiple="multiple">
+  <tiny-base-select
+    ref="baseSelectRef"
+    class="tiny-grid-select"
+    v-model="state.value"
+    :multiple="multiple"
+    :filterable="filterable"
+    :filter-method="filter"
+  >
     <template #panel>
       <tiny-grid
         ref="gridRef"
         auto-resize
         :row-id="valueField"
+        :select-config="buildSelectConfig()"
+        :radio-config="buildRadioConfig()"
         :highlight-current-row="true"
         :columns="state.gridData.columns"
         :data="state.gridData"
@@ -12,7 +21,7 @@
         @select-change="selectChange"
         @radio-change="radioChange"
         @mousedown.stop
-        v-bind="state.gridData"
+        v-bind="gridOp"
       ></tiny-grid>
     </template>
   </tiny-base-select>
@@ -32,14 +41,56 @@ export default defineComponent({
   },
   props: {
     clearable: Boolean,
+    extraQueryParams: {
+      type: [Object, String, Boolean, Array, Number],
+      default: ''
+    },
     filterable: Boolean,
     filterMethod: Function,
     gridOp: {
       type: Object,
       default: () => ({})
     },
+    initLabel: {
+      type: String,
+      default: ''
+    },
+    initQuery: Function,
     modelValue: {},
     multiple: Boolean,
+    radioConfig: {
+      type: Object,
+      default() {
+        return {
+          checkMethod() {
+            return true
+          }
+        }
+      }
+    },
+    remote: Boolean,
+    remoteConfig: {
+      type: Object,
+      default() {
+        return {
+          showIcon: false,
+          clearData: false,
+          autoSearch: false
+        }
+      }
+    },
+    remoteMethod: Function,
+    reserveKeyword: Boolean,
+    selectConfig: {
+      type: Object,
+      default() {
+        return {
+          checkMethod() {
+            return true
+          }
+        }
+      }
+    },
     textField: {
       type: String,
       default: 'label'

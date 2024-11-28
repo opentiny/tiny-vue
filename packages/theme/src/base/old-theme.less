@@ -162,7 +162,9 @@
   --tv-color-act-primary-border-light-hover-1: var(--tv-base-color-brand-3); // #beccfa  幽灵hover边框色-2.2
   --tv-color-act-primary-border-light-active-1: var(--tv-base-color-brand-3); // #beccfa  幽灵active边框色-2.2
 
-  /* 成功-success */
+  --tv-color-act-primary-plain-text-hover: var(--tv-base-color-common-1); // #fff
+
+    /* 成功-success */
   --tv-color-act-success-text: var(--tv-base-color-success-6); // #50d4ab 成功文本色-1（成功主色）： 朴素/幽灵/纯文本/链接
   --tv-color-act-success-text-hover: var(--tv-base-color-success-6); // #50d4ab 成功hover文本色-1
   --tv-color-act-success-text-active: var(--tv-base-color-success-6); // #50d4ab 成功active文本色-1
@@ -188,6 +190,8 @@
   --tv-color-act-success-border-light: var(--tv-base-color-success-6); // #daf2bb  成功边框色-2:朴素
   --tv-color-act-success-border-light-hover: var(--tv-base-color-success-1); //  #edf7df 成功hover边框色
   --tv-color-act-success-border-light-active: var(--tv-base-color-success-1); //  #edf7df 成功active边框色
+
+  --tv-color-act-success-plain-text-hover:  var(--tv-base-color-common-1); // #fff
 
   /* 告警-warning */
   --tv-color-act-warning-text: var(--tv-base-color-warn-7); // #e37d29   告警文本色-1（告警主色）：朴素/幽灵/纯文本/链接
@@ -216,6 +220,8 @@
   --tv-color-act-warning-border-light-hover: var(--tv-base-color-warn-1); // #fff4e8 告警hover边框色
   --tv-color-act-warning-border-light-active: var(--tv-base-color-warn-1); // #fff4e8 告警active边框色
 
+  --tv-color-act-warning-plain-text-hover: var(--tv-base-color-common-1); // #fff
+
   /* 危险-danger */
   --tv-color-act-danger-text: var(--tv-base-color-error-12); // #c7000b  危险文本色-1（成功主色）：朴素/幽灵/纯文本/链接
   --tv-color-act-danger-text-hover: var(--tv-base-color-error-12); // #c7000b  危险hover文本色-1
@@ -242,6 +248,8 @@
   --tv-color-act-danger-border-light:  var(--tv-base-color-error-12); // #c7000b 危险边框色-2：朴素
   --tv-color-act-danger-border-light-hover: var(--tv-base-color-error-1); // #ffeceb  危险hover边框色
   --tv-color-act-danger-border-light-active: var(--tv-base-color-error-1); // #ffeceb  危险active边框色
+
+  --tv-color-act-danger-plain-text-hover: var(--tv-base-color-common-1); // #fff
 
   /* 信息-info */
   --tv-color-act-info-text: var(--tv-base-color-info-7);//  信息文本色-1（信息主色）：朴素/幽灵/纯文本/链接
@@ -270,6 +278,8 @@
   --tv-color-act-info-border-light-hover: var(--tv-base-color-info-1); // #f0f7ff  信息hover边框色
   --tv-color-act-info-border-light-active: var(--tv-base-color-info-1); // #f0f7ff  信息active边框色
 
+  --tv-color-act-info-plain-text-hover: var(--tv-base-color-common-1); // #fff
+
   /** 2.4 文本色 **/
   --tv-color-text: var(--tv-base-color-common-8); // #252b3a 一级文本色-正文主色，重要信息、标题颜色、输入类文本颜色、导航栏文字图标
   --tv-color-text-secondary: var(--tv-base-color-common-7); // #575d6c  二级文本色-次要信息
@@ -282,6 +292,8 @@
   --tv-color-text-link: var(--tv-base-color-brand-7); // #526ecc 链接色（链接按钮）
   --tv-color-text-link-hover: var(--tv-base-color-brand-10); // #344899 链接悬浮色
   --tv-color-text-darbg: var(--tv-base-color-common-5); // 深色背景文本色，顶级导航/一级tab文本色
+
+  --tv-color-plain-text-hover: var(--tv-base-color-brand-6); // #5e7c60
 
   /** 2.5 图标色 **/
   --tv-color-icon: var(--tv-base-color-common-7); // #575d6c 默认图标色
@@ -310,33 +322,32 @@
   --tv-color-bg-gray-2: var(--tv-base-color-common-3); // #e6e6e6 灰色背景-2灰色标签背景色
   --tv-color-bg-header: var(--tv-base-color-common-4); // #f0f0f0 表头背景色(如果只有表格使用，就转成组件级变量）
   --tv-color-bg-mask: rgba(0, 0, 0, 30%); // 遮罩层带有透明度的背景色
-  --tv-color-bg-dark:var(--tv-base-color-common-9); // #464c59 深色背景色 顶部导航/ 深色tab/深色提示背景色
+  --tv-color-bg-dark: var(--tv-base-color-common-9); // #464c59 深色背景色 顶部导航/ 深色tab/深色提示背景色
 
 
   /* 2.6.2 禁用 */
   --tv-color-bg-disabled: var(--tv-base-color-common-2); // #f5f5f6 禁用背景色
   --tv-color-bg-disabled-control-checked: var(--tv-base-color-common-4); // #dbdbdb 深色背景禁用色，控件选中状态下的禁用背景色
-  --tv-color-bg-disabled-control-unactive:var(--tv-base-color-common-4) ; // #dfe1e6 开关组件“关”禁用背景色
+  --tv-color-bg-disabled-control-unactive: var(--tv-base-color-common-4) ; // #dfe1e6 开关组件“关”禁用背景色
   --tv-color-bg-disabled-control-active: var(--tv-base-color-brand-3); // #beccfa  深色背景禁用色，开关组件“开”禁用背景色
 
   /* 2.6.3 悬浮 */
-  --tv-color-bg-hover:  var(--tv-base-color-brand-1); // #f2f5fc 浅背景-悬浮色
+  --tv-color-bg-hover: var(--tv-base-color-brand-1); // #f2f5fc 浅背景-悬浮色
   --tv-color-bg-hover-primary: var(--tv-base-color-common-10); // #5c6173 一级tab页签背景-悬浮色 /分页hover背景颜色 /灰色悬浮背景色：表格悬浮、下拉悬浮、左侧导航悬浮
   --tv-color-bg-hover-secondary: var(--tv-base-color-common-1); // #fff 次要背景色悬浮色 / 穿梭框头部/折叠面板背景色
   --tv-color-bg-hover-1: var(--tv-base-color-brand-1); // #f2f5fc  浅蓝色场景：悬浮背景色-日期悬浮 /选块悬浮态背景色
   --tv-color-bg-hover-2: var(--tv-base-color-common-5); // #e6e6e6 轮播箭头背景悬浮色
   --tv-color-bg-hover-3: var(--tv-base-color-brand-1); // #f0f7ff 悬浮背景色
-  --tv-color-bg-hover-dark:var(--tv-base-color-common-10); // #5c6173 深色背景悬浮色
+  --tv-color-bg-hover-dark: var(--tv-base-color-common-10); // #5c6173 深色背景悬浮色
 
   /* 2.6.4 active/选中 */
-  --tv-color-bg-active: var(--tv-base-color-brand); // #5e7ce0  分页选中背景色/左侧导航选中背景色
+  --tv-color-bg-active: var(--tv-base-color-brand-1); // #5e7ce0  分页选中背景色/左侧导航选中背景色
   --tv-color-bg-active-control: var(--tv-base-color-brand); // #5e7ce0 主色蓝，单选/复选选中背景色、开关开的背景色、选块点击背景色、滑块选中背景色、价格曲线、区域选择选中的背景色
   --tv-color-bg-active-primary: var(--tv-base-color-brand); // #5e7ce0 品牌色，锚点-当前位置的圆点背景色/leftmenuthin左侧导航收起图标选中的背景色、NPS评分选中背景色
-  --tv-color-bg-active-secondary: var(--tv-base-color-common-5); // #adb0b8 次要背景色active色/下拉选中的背景色/一级tab页签背景-选中色/树控件选中背景颜色
+  --tv-color-bg-active-secondary: var(--tv-base-color-common-1); // #adb0b8 次要背景色active色/下拉选中的背景色/一级tab页签背景-选中色/树控件选中背景颜色
   --tv-color-bg-active-emphasize: var(--tv-base-color-brand); //  #5e7ce0 时间选择选中背景色
   --tv-color-bg-active-emphasize-light: var(--tv-base-color-brand-1); // #f0f7ff 表格选中背景色
-  --tv-color-bg-active-secondary: var(--tv-base-color-common-1); // #fff 次要背景激活色
-  --tv-color-bg-active-dark:var(--tv-base-color-common-3); // #eef0f5 深色背景色激活色
+  --tv-color-bg-active-dark: var(--tv-base-color-common-3); // #eef0f5 深色背景色激活色
 
   /** 2.7 边框色/分割线颜色 **/
 
@@ -366,7 +377,7 @@
   --tv-font-size-lg: 16px;
   --tv-font-size-xl: 18px;
   --tv-font-size-xxl: 20px;
-  --tv-font-size-default:var(--tv-font-size-sm);
+  --tv-font-size-default: var(--tv-font-size-sm);
 
   --tv-font-size-heading-xs: 16px; // 卡片标题
   --tv-font-size-heading-sm: 18px; // 页面标题
@@ -385,11 +396,10 @@
 
   /** 4. 圆角变量 **/
   --tv-border-radius-xs: 2px;
-  --tv-border-radius-sm: 4px;
-  --tv-border-radius-md: 6px; // 默认
-  --tv-border-radius-lg: 8px;
+  --tv-border-radius-sm: 2px;
+  --tv-border-radius-md: 2px; // 默认
+  --tv-border-radius-lg: 4px;
   --tv-border-radius-round: 999px; // 50% 会造成椭圆，避免使用。 999px是 tiny3的做法。 
-  --tv-border-radius-default:var(--tv-border-radius-xs);
 
   /** 5. 边框  **/
   --tv-border-width: 1px;
@@ -401,6 +411,8 @@
   --tv-space-md: calc(var(--tv-space-base) * 2);
   --tv-space-lg: calc(var(--tv-space-base) * 3);
   --tv-space-xl: calc(var(--tv-space-base) * 4);
+  --tv-space-table-x: 2px; // 表格单元格水平间距基准
+  --tv-space-table-y: 1px; // 表格单元格垂直间距基准
 
   /** 7. 尺寸变量 size **/
 
@@ -409,11 +421,10 @@
 
   /** 7.1 表单类组件的 height */
   --tv-size-height-xs: 24px; // mini 尺寸
-  --tv-size-height-sm: 28px; // small 尺寸
-  --tv-size-height-md: 32px; // medium 尺寸 - 默认
-  --tv-size-height-lg: 40px; // large 尺寸
-  --tv-size-height-xl: 48px; //  xLarge 尺寸
-  --tv-size-height-default:var(--tv-size-height-sm);
+  --tv-size-height-sm: 24px; // small 尺寸
+  --tv-size-height-md: 28px; // medium 尺寸 - 默认
+  --tv-size-height-lg: 32px; // large 尺寸
+  --tv-size-height-xl: 36px; //  xLarge 尺寸
 
   /** 7.2 图标大小 width, height **/
   --tv-icon-size: 14px;

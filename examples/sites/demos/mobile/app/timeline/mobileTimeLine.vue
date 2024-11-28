@@ -37,7 +37,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTimeLine, TinyModal } from '@opentiny/vue'
+import { TinyTimeLine, TinyModal } from '@opentiny/vue-mobile'
 
 export default {
   components: {

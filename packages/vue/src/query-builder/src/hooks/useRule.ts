@@ -103,7 +103,11 @@ export const useRule = (props: RuleProps) => {
 
   const removeRule = (_event?: any) => {
     if (!disabled) {
-      onRuleRemove(onlyOne ? path.slice(0, -1) : path)
+      if (schema.allowDelAll) {
+        onRuleRemove(path)
+      } else {
+        onRuleRemove(onlyOne ? path.slice(0, -1) : path)
+      }
     }
   }
 
