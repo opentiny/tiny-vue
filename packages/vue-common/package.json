@@ -24,14 +24,13 @@
   "bugs": {
     "url": "https://github.com/opentiny/tiny-vue/issues"
   },
-  "main": "src/index.ts",
+  "main": "src/index-dev.ts",
   "sideEffects": false,
   "type": "module",
   "dependencies": {
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "tailwind-merge": "^1.8.0"
   },
   "scripts": {
