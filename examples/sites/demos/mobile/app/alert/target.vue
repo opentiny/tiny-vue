@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { TinyAlert, TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyAlert, TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
 
 export default {
   components: {

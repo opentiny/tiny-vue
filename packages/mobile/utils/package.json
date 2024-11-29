@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/utils",
+  "type": "module",
+  "version": "3.19.0",
+  "sideEffects": false,
+  "main": "index.ts",
+  "scripts": {
+    "build": "pnpm -w build:ui",
+    "postversion": "pnpm build"
+  }
+}

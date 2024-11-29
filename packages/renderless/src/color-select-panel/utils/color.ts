@@ -26,8 +26,8 @@ const parseHex = function (hex: string) {
 }
 
 const hsv2hsl = ({ hue, sat, val }: { hue: number; sat: number; val: number }) => {
-  const hue_ = 2 - sat * val
-  return [hue, (sat * val) / (hue_ < 1 ? hue_ : 2 - hue_) || 0, hue / 2]
+  const hue_ = (2 - sat) * val
+  return [hue, (sat * val) / (hue_ < 1 ? hue_ : 2 - hue_) || 0, hue_ / 2]
 }
 
 const isString = (val: unknown): val is string => typeof val === 'string'

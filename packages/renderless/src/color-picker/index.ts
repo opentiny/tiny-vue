@@ -1,6 +1,7 @@
 import type { IColorSelectPanelRef } from '@/types'
+import type { Color } from './utils/color'
 
-const updateModelValue = (val, emit) => {
+export const updateModelValue = (val, emit) => {
   emit('update:modelValue', val)
 }
 
@@ -10,15 +11,14 @@ export const toggleVisible = (isShow: IColorSelectPanelRef<boolean>) => {
   }
 }
 
-export const useEvent = (hex, emit, changeVisible) => {
+export const useEvent = (state, emit, changeVisible, color: Color) => {
   const onConfirm = (val) => {
-    hex.value = val
+    color.fromString(val)
     updateModelValue(val, emit)
     emit('confirm', val)
     changeVisible(false)
   }
-  const onCancel = (color: IColorSelectPanelRef<string>) => {
-    hex.value = color.value.hex
+  const onCancel = () => {
     changeVisible(false)
     emit('cancel')
   }

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue-mobile'
 
 export default {
   components: {

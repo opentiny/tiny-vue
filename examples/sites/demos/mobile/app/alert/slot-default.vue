@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { TinyAlert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue-mobile'
 
 export default {
   components: {

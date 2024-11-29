@@ -3,7 +3,6 @@
     <tiny-grid-column title="操作" header-align="center">
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
       <tiny-grid-column type="selection" width="48"></tiny-grid-column>
-      <tiny-grid-column :renderer="rendererCellOperate" width="100"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column :title="renderHeaderDescription" header-align="center">
       <tiny-grid-column field="name" title="名称" show-tip sortable></tiny-grid-column>
@@ -17,7 +16,7 @@
     <tiny-grid-column :title="renderHeaderRelation" header-align="center">
       <tiny-grid-column
         field="address"
-        :title="renderHeaderAddress"
+        title="地址"
         :editor="{ component: 'input', autoselect: true }"
         sortable
       ></tiny-grid-column>
@@ -34,14 +33,7 @@
 
 <script lang="jsx">
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
-import {
-  IconAdministrator,
-  IconVersiontree,
-  IconMarkOn,
-  IconUser,
-  IconAssociation,
-  IconHelpful
-} from '@opentiny/vue-icon'
+import { iconAdministrator, iconVersiontree, iconMarkOn } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -50,12 +42,6 @@ export default {
   },
   data() {
     return {
-      IconVersiontree: IconVersiontree(),
-      IconAdministrator: IconAdministrator(),
-      IconMarkOn: IconMarkOn(),
-      IconUser: IconUser(),
-      IconAssociation: IconAssociation(),
-      IconHelpful: IconHelpful(),
       tableData: [
         {
           id: '1',
@@ -109,18 +95,19 @@ export default {
   },
   methods: {
     renderHeaderDescription() {
-      const IconAdministrator = this.IconAdministrator
+      const IconAdministrator = iconAdministrator()
 
       return (
-        <span>
-          {' '}
+        <>
           <IconAdministrator />
-          Description
-        </span>
+          <span class="tiny-grid-cell-text" style="margin-left: 4px">
+            Description
+          </span>
+        </>
       )
     },
     renderHeaderRelation() {
-      const IconVersiontree = this.IconVersiontree
+      const IconVersiontree = iconVersiontree()
 
       return (
         <span>
@@ -129,37 +116,15 @@ export default {
       )
     },
     renderHeaderArea(h) {
-      const IconMarkOn = this.IconMarkOn
+      const IconMarkOn = iconMarkOn()
 
       return (
-        <span style="order: -1">
-          <IconMarkOn />
-          Description
-        </span>
-      )
-    },
-
-    renderHeaderAddress() {
-      const IconUser = this.IconUser
-
-      return (
-        <span style="order: -1">
-          <IconUser />
-          Description
-        </span>
-      )
-    },
-
-    rendererCellOperate() {
-      const IconAssociation = this.IconAssociation
-      const IconHelpful = this.IconHelpful
-
-      return (
-        <div style="text-align: center; font-size: 16px;">
-          <IconHelpful />
-          &nbsp;&nbsp;
-          <IconAssociation />
-        </div>
+        <>
+          <IconMarkOn style="order: -1; margin-right: 4px;" />
+          <span class="tiny-grid-cell-text" style="order: -1;">
+            Description
+          </span>
+        </>
       )
     }
   }

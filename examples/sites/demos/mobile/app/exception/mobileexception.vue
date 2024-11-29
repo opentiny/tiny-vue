@@ -101,7 +101,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyException, TinyButton } from '@opentiny/vue'
+import { TinyException, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

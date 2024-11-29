@@ -205,19 +205,25 @@
 
   & {
     .@{tag-prefix-cls} {
-      height: 20px;
+      height: var(--tv-BaseSelect-tag-height-default);
     }
   }
 
   &--medium {
     .@{tag-prefix-cls} {
-      height: 24px;
+      height: var(--tv-BaseSelect-tag-height-medium);
     }
   }
 
-  &--small, &--mini {
+  &--small {
     .@{tag-prefix-cls} {
-      height: 16px;
+      height: var(--tv-BaseSelect-tag-height-small);
+    }
+  }
+
+  &--mini {
+    .@{tag-prefix-cls} {
+      height: var(--tv-BaseSelect-tag-height-mini);
     }
   }
 

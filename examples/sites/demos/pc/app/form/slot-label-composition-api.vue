@@ -11,7 +11,7 @@
       </tiny-form-item>
       <tiny-form-item prop="url">
         <template #label>
-          <div class="custom-label" v-auto-tip>超过两行文字，省略显示</div>
+          <div class="custom-label" v-auto-tip>超过两行文字，显示省略号</div>
         </template>
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>

@@ -1,0 +1,11 @@
+{
+  "name": "vue3-common",
+  "private": true,
+  "version": "5.0.2-mf.0",
+  "description": "",
+  "main": "index.ts",
+  "devDependencies": {
+    "@vue/runtime-core": "^3.2.31",
+    "vue": "^3.3.9"
+  }
+}

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyException } from '@opentiny/vue'
+import { TinyException } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'BarChart',
-      option: {}
+      iChartName: 'BarChart'
     }
   },
   methods: {

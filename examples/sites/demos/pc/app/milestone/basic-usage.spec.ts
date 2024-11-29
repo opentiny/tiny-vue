@@ -34,18 +34,18 @@ test('基本用法', async ({ page }) => {
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(126, 183, 252)',
+      'background-color': 'rgb(232, 250, 255)',
       'color': 'rgb(255, 255, 255)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(252, 226, 224)',
+      'color': 'rgba(242, 48, 48, 0.1)',
       'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(255, 136, 0)',
+      'color': 'rgb(237, 247, 223)',
       'box-shadow': 'none'
     },
     {
@@ -56,7 +56,7 @@ test('基本用法', async ({ page }) => {
   ]
   const titles = ['completed 状态', 'completed 状态', 'doing 状态', 'cancel 状态', 'back 状态', 'end 状态']
   const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
-  const flagLineColors = ['rgb(255, 136, 0)', 'rgb(255, 136, 0)', 'rgb(126, 183, 252)', 'rgb(252, 226, 224)']
+  const flagLineColors = ['rgb(237, 247, 223)', 'rgb(237, 247, 223)', 'rgb(232, 250, 255)', 'rgba(242, 48, 48, 0.1)']
 
   await expect(nodes).toHaveCount(nodeCount)
   await expect(nodeLines).toHaveCount(nodeCount)

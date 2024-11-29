@@ -40,6 +40,18 @@ export default {
         'en-US': 'Container labels can be customized through<code>tag</code>.'
       },
       codeFiles: ['tag.vue']
+    },
+    {
+      demoId: 'form',
+      name: {
+        'zh-CN': '隐藏表单必填星号',
+        'en-US': 'Hide all form required asterisks'
+      },
+      desc: {
+        'zh-CN': '通过 <code>design</code> 设置所有表单组件默认不显示必填星号。',
+        'en-US': 'Set the all form component via <code>design</code> to not display required asterisks by default.'
+      },
+      codeFiles: ['form.vue']
     }
   ]
 }

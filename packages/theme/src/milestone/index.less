@@ -56,11 +56,11 @@
   /* 图标节点 */
   & &__icon {
     position: relative;
-    left: var(--tv-Milestone-icon-left);
-    top: var(--tv-Milestone-icon-top);
-    width: var(--tv-Milestone-icon-width);
-    height: var(--tv-Milestone-icon-height);
-    line-height: var(--tv-Milestone-icon-height);
+    left: calc(50% - 16px);
+    top: 0px;
+    width: var(--tv-Milestone-node-size);
+    height: var(--tv-Milestone-node-size);
+    line-height: var(--tv-Milestone-node-size);
     font-size: var(--tv-Milestone-font-size);
     text-align: center;
     border-radius: 50%;
@@ -93,10 +93,10 @@
 
   & &__line {
     position: relative; // 里程碑线条不区分状态
-    left: var(--tv-Milestone-line-left);
-    top: var(--tv-Milestone-line-top);
+    left: calc(50% + 24px);
+    top: -16px;
     height: var(--tv-Milestone-line-height);
-    width: var(--tv-Milestone-line-width);
+    width: calc(100% - 48px);
     background-color: var(--tv-Milestone-line-bg-color);
 
     &-end {
@@ -178,7 +178,7 @@
   & &__flag-line {
     height: 30px;
     width: 1px;
-    margin-left: var(--tv-Milestone-flag-line-margin-left);
+    margin-left: 0px;
     background: var(--tv-Milestone-flag-line-bg-color);
   }
 
@@ -186,7 +186,7 @@
     position: relative;
     bottom: -29px;
     right: 2px;
-    display: var(--tv-Milestone-dot-display);
+    display: none;
     width: 5px;
     height: 5px;
     border: solid 1px;

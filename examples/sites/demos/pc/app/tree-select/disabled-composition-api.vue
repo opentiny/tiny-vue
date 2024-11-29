@@ -15,7 +15,7 @@ import { TinyTreeSelect } from '@opentiny/vue'
 
 const value1 = ref('')
 const value2 = ref(1)
-const value3 = ref([1, 4, 9, 10])
+const value3 = ref([9, 6])
 
 const treeOp = ref({
   data: [

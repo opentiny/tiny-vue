@@ -9,7 +9,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyAvatar } from '@opentiny/vue'
+import { TinyAvatar } from '@opentiny/vue-mobile'
 import { iconClockWork } from '@opentiny/vue-icon'
 
 export default {

@@ -151,7 +151,7 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
         .map((component) => {
           if (component.includes('Hui')) {
             return `${component}${joinStr}${component} as ${component
-              .replace('Huicharts', 'Charts')
+              .replace('Huicharts', 'Chart')
               .trim()}${joinStr}${component} as Tiny${component.trim()}`
           }
           return `${component}${joinStr}${component} as Tiny${component.trim()}`
@@ -161,7 +161,7 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
         .map((component) => {
           if (component.includes('Hui')) {
             return `${component}${joinStr}${component
-              .replace('Huicharts', 'Charts')
+              .replace('Huicharts', 'Chart')
               .trim()}: ${component}${joinStr}Tiny${component.trim()}: ${component}`
           }
           return `${component}${joinStr}Tiny${component.trim()}: ${component}`

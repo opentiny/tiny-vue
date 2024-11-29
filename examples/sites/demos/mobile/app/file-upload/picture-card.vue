@@ -33,7 +33,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyFileUpload, TinyDialogBox } from '@opentiny/vue'
+import { TinyFileUpload, TinyDialogBox } from '@opentiny/vue-mobile'
 import { iconPlus } from '@opentiny/vue-icon'
 
 export default {

@@ -21,8 +21,8 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '时候启用历史记录',
-            'en-US': 'enable history or not'
+            'zh-CN': '历史记录默认值',
+            'en-US': 'Default values for historical records'
           },
           mode: ['pc'],
           pcDemo: 'history'
@@ -32,11 +32,39 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '时候启用历史记录',
-            'en-US': 'enable predefine or not'
+            'zh-CN': '预定义颜色色值',
+            'en-US': 'predefine color values'
           },
           mode: ['pc'],
           pcDemo: 'predefine'
+        },
+        {
+          name: 'enable-history',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否启用预定义颜色',
+            'en-US': 'enable history or not'
+          },
+          mode: ['pc'],
+          pcDemo: 'history',
+          meta: {
+            stable: '3.19.0'
+          }
+        },
+        {
+          name: 'enable-predefine-color',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否启用预定义颜色',
+            'en-US': 'enable predefined colors or not'
+          },
+          mode: ['pc'],
+          pcDemo: 'predefine',
+          meta: {
+            stable: '3.19.0'
+          }
         },
         {
           name: 'visible',
@@ -47,6 +75,21 @@ export default {
             'en-US': 'Is color select panel displayed by default'
           },
           mode: ['pc']
+        },
+        {
+          name: 'format',
+          type: "('hex'|'rgb'|'hsl'|'hsv')[]",
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '点击确认后, confirm的事件将会返回对应的format数值. 如果为空数组则表示禁用颜色格式下拉选择',
+            'en-US':
+              'After clicking confirm, the confirm event will return the corresponding format value If it is an empty array, it means that the color format dropdown selection is disabled'
+          },
+          mode: ['pc'],
+          pcDemo: 'format',
+          meta: {
+            stable: '3.19.0'
+          }
         }
       ],
       events: [

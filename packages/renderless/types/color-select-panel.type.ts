@@ -6,8 +6,10 @@ export interface IColorSelectPanelProps {
   alpha: boolean
   history: string[]
   predefine: string[]
-  format: 'hsl' | 'hsv' | 'hex'
+  format: ('hsl' | 'hsv' | 'hex' | 'rgb')[]
   modelValue: string
+  enableHistory: boolean
+  enablePredefineColor: boolean
 }
 
 export interface IColorSelectPanelAlphProps<C> {

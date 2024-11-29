@@ -1,9 +1,10 @@
 <template>
   <div>
-    <tiny-color-picker v-model="color" :predefine="predefine" />
+    <tiny-color-picker v-model="color" :enable-predefine-color="enablePredefineColor" :predefine="predefine" />
     <br />
     <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
     <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
+    <tiny-button @click="enablePredefineColor = !enablePredefineColor">Toggle predefine visibility</tiny-button>
   </div>
 </template>
 
@@ -24,4 +25,5 @@ const addPredefineColor = () => {
 const popPredefineColor = () => {
   predefine.value.pop()
 }
+const enablePredefineColor = ref(false)
 </script>

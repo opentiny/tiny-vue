@@ -15,6 +15,7 @@
         show-header
         show-footer
         v-bind="options"
+        :esc-closable="true"
       >
         <tiny-form :model="createData" label-width="100px">
           <tiny-form-item label="用户名" prop="username">
@@ -30,13 +31,21 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal, TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue'
+import {
+  Button as TinyButton,
+  Modal,
+  Form as TinyForm,
+  FormItem as TinyFormItem,
+  Input as TinyInput
+} from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 const options = ref({
   mask: true,
-  maskClosable: true
+  maskClosable: true,
+  escClosable: true
 })
 const createData = ref({
   username: '',
@@ -44,7 +53,7 @@ const createData = ref({
 })
 
 function btnClick() {
-  TinyModal.confirm({
+  Modal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,

@@ -304,6 +304,8 @@ export const open =
 
           if (props.fullscreen) {
             nextTick(api.maximize)
+          } else {
+            api.revert()
           }
         })
       }

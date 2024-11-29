@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { TinyMultiSelect } from '@opentiny/vue'
+import { TinyMultiSelect } from '@opentiny/vue-mobile'
 
 export default {
   components: {

@@ -1,11 +1,11 @@
 <template>
   <div>
     <p>场景1：一键复制所有标签</p>
-    <tiny-tree-select v-model="value2" :tree-op="treeOp" multiple copyable></tiny-tree-select>
+    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple copyable></tiny-tree-select>
     <p>场景2：设置复制文本分隔符</p>
-    <tiny-tree-select v-model="value2" :tree-op="treeOp" multiple copyable text-split="/"></tiny-tree-select>
+    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple copyable text-split="/"></tiny-tree-select>
     <p>粘贴至此处：</p>
-    <tiny-input v-model="inputVal" type="text"></tiny-input>
+    <tiny-input v-model="inputVal" class="copy-value" type="text"></tiny-input>
   </div>
 </template>
 
@@ -13,8 +13,7 @@
 import { ref } from 'vue'
 import { TinyTreeSelect, TinyInput } from '@opentiny/vue'
 
-const value = ref('')
-const value2 = ref([])
+const value = ref([9, 6])
 const inputVal = ref('')
 
 const treeOp = ref({

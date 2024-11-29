@@ -17,7 +17,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyUserHead } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue-mobile'
 
 export default {
   components: {

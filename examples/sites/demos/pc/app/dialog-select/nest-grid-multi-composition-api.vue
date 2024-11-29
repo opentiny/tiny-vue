@@ -133,18 +133,18 @@ const state = reactive({
   }
 })
 
-const dialogSelect = ref('')
+const dialogSelect = ref(null)
 
 const onSizeChange = (pageSize) => {
   state.pagerOp.pageSize = pageSize
 
-  dialogSelect.value.valuequeryGridData()
+  dialogSelect.value?.queryGridData()
 }
 
 const onCurrentChange = (currentPage) => {
   state.pagerOp.currentPage = currentPage
 
-  dialogSelect.value.queryGridData()
+  dialogSelect.value?.queryGridData()
 }
 
 const onSearch = (key, value) => {

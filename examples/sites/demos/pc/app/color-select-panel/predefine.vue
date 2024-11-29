@@ -1,9 +1,10 @@
 <template>
   <div>
-    <p>{{ color }}</p>
+    <p>{{ enablePredefineColor }}</p>
     <tiny-button @click="changeVisible">Show Color select panel</tiny-button>
     <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
     <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
+    <tiny-button @click="enablePredefineColor = !enablePredefineColor">Toggle Predefine color visibility</tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel
         v-model="color"
@@ -11,6 +12,7 @@
         @confirm="onConfirm"
         @cancel="onCancel"
         :predefine="predefine"
+        :enable-predefine-color="enablePredefineColor"
         alpha
       />
     </div>
@@ -29,7 +31,8 @@ export default {
     return {
       color: '#66ccff',
       visible: false,
-      predefine: new Array(8).fill(0).map(() => this.randomHex())
+      predefine: new Array(8).fill(0).map(() => this.randomHex()),
+      enablePredefineColor: false
     }
   },
   methods: {

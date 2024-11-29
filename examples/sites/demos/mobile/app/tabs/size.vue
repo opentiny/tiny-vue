@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
 
 export default {
   components: {

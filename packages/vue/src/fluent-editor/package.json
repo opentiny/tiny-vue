@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.25.7"
+    "vitest": "catalog:"
   }
 }

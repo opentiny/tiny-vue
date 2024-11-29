@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyToast, TinyButton } from '@opentiny/vue'
+import { TinyToast, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

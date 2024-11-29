@@ -8,7 +8,7 @@
 </template>
 
 <script lang="jsx">
-import { TinySwitch } from '@opentiny/vue'
+import { TinySwitch } from '@opentiny/vue-mobile'
 
 export default {
   components: {

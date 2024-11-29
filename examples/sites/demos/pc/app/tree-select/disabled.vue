@@ -20,7 +20,7 @@ export default {
     return {
       value1: '',
       value2: 1,
-      value3: [1, 4, 9, 10],
+      value3: [9, 6],
       treeOp: {
         data: [
           {

@@ -6,14 +6,20 @@
   "module": "index.ts",
   "sideEffects": false,
   "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-collapse": "workspace:~",
-    "@opentiny/vue-collapse-item": "workspace:~"
+    "@opentiny/vue-collapse-item": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-option": "workspace:^",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-select": "workspace:^",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

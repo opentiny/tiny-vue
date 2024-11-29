@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton,
-    TinyModal
+    TinyButton: Button,
+    TinyModal: Modal
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     btnClick() {
-      TinyModal.confirm({
+      Modal.confirm({
         message: '窗口内容',
         title: '自定义弹窗标题',
         showHeader: true,

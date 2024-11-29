@@ -27,7 +27,7 @@ export default {
     return {
       tinyIconPopup: iconPopup(),
       value: '',
-      value2: [],
+      value2: [9],
       treeOp: {
         data: [
           {

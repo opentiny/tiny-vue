@@ -80,7 +80,7 @@ export default defineComponent({
     }
     // Msg Content
     if (typeof message === 'string') {
-      notifyContent = h('p', { class: 'tiny-notify__content' }, message)
+      notifyContent = h('span', { class: 'tiny-notify__content' }, message)
     } else if (typeof message === 'function') {
       notifyContent = message(h, {
         vm: this,

@@ -15,8 +15,7 @@ export default {
   mixins: [Core],
   data() {
     return {
-      iChartName: 'AutonaviMapChart',
-      option: {}
+      iChartName: 'AutonaviMapChart'
     }
   },
   mounted() {

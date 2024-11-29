@@ -50,7 +50,7 @@ export const initApi = (
     nextTick(() => {
       const newColor = new Color({
         enableAlpha: props.alpha,
-        format: props.format ?? '',
+        format: state.currentFormat ?? '',
         value: props.modelValue
       })
       if (!state.color.compare(newColor)) {
@@ -60,6 +60,9 @@ export const initApi = (
   }
   const onConfirm = () => {
     submitValue()
+    if (!state.enableHistory) {
+      return
+    }
     let index = state.stack.indexOf(state.input)
     if (index === -1) {
       state.stack.push(state.input)
@@ -124,10 +127,16 @@ export const initApi = (
 }
 
 export const initState = (props: IColorSelectPanelProps, { reactive, ref, computed }: ISharedRenderlessParamHooks) => {
+  const stack = ref<string[]>([...(props.history ?? [])])
+  const predefineStack = computed(() => props.predefine)
+  const hue = ref()
+  const sv = ref()
+  const alpha = ref()
+  const currentFormat = ref(props.format[0])
   const color = reactive(
     new Color({
       enableAlpha: props.alpha,
-      format: props.format ?? '',
+      format: currentFormat.value ?? 'hex',
       value: props.modelValue
     })
   ) as Color
@@ -142,11 +151,6 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
   })
   const currentColor = computed(() => (!props.modelValue && !showPicker.value ? '' : color.value))
 
-  const stack = ref<string[]>([...(props.history ?? [])])
-  const predefineStack = computed(() => props.predefine)
-  const hue = ref()
-  const sv = ref()
-  const alpha = ref()
   const state = reactive({
     color,
     input,
@@ -159,8 +163,10 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
     alpha,
     stack,
     predefineStack,
-    enablePredefineColor: computed(() => props.predefine?.length),
-    enableHistory: computed(() => props.history?.length)
+    enablePredefineColor: computed(() => props.enablePredefineColor),
+    enableHistory: computed(() => props.enableHistory),
+    currentFormat,
+    formats: props.format
   })
   return state
 }
@@ -194,16 +200,11 @@ export const initWatch = (
       }
     }
   )
-  /**
-   * @description 预留了一个 format props类型
-   * @description 2024/11/17 尚未实现
-   * @see https://github.com/opentiny/tiny-vue/issues/2514
-   */
   watch(
-    () => [props.format, props.alpha],
+    () => [state.currentFormat, props.alpha],
     () => {
       state.color.enableAlpha = props.alpha
-      state.color.format = props.format || state.color.format
+      state.color.format = state.currentFormat || state.color.format
       state.color.onChange()
       updateModelValue(state.color.value, emit)
     }
@@ -240,6 +241,9 @@ export const initWatch = (
   watch(
     () => props.history,
     () => {
+      if (!state.enableHistory) {
+        return
+      }
       state.stack = props.history
     },
     { deep: true }
