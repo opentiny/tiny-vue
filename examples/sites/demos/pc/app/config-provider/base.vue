@@ -3,7 +3,7 @@
     <tiny-config-provider :design="design">
       <div class="demo-form">
         <tiny-alert type="warning" description="全局配置组件的默认行为"></tiny-alert>
-        <tiny-form :model="formData">
+        <tiny-form ref="ruleFormRef" :model="formData">
           <tiny-form-item label="年龄" prop="age" required>
             <tiny-numeric v-model="formData.age"></tiny-numeric>
           </tiny-form-item>
@@ -11,7 +11,7 @@
             <tiny-input v-model="formData.name"></tiny-input>
           </tiny-form-item>
           <tiny-form-item>
-            <tiny-button type="primary"> 提交 </tiny-button>
+            <tiny-button @click="handleSubmitPromise" type="primary"> 校验 </tiny-button>
           </tiny-form-item>
         </tiny-form>
       </div>
@@ -55,7 +55,8 @@ export default {
           },
           Button: {
             props: {
-              resetTime: 0
+              resetTime: 0,
+              round: true
             }
           },
           Alert: {
@@ -86,6 +87,11 @@ export default {
         name: '',
         age: ''
       }
+    }
+  },
+  methods: {
+    handleSubmitPromise() {
+      this.$refs.ruleFormRef.validate()
     }
   }
 }

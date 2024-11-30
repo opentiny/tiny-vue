@@ -26,6 +26,7 @@ export const renderless = (
     timer: 0,
     disabled: props.disabled,
     plain: computed(() => props.plain || (parent.buttonGroup || {}).plain),
+    round: computed(() => props.round ?? designConfig?.props?.round ?? false),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     buttonDisabled: computed(
       () => props.disabled || state.disabled || (parent.buttonGroup || {}).disabled || state.formDisabled
