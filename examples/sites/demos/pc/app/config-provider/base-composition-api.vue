@@ -75,7 +75,7 @@ const design = {
 }
 
 const handleSubmitPromise = () => {
-  ruleFormRef.value.validate()
+  ruleFormRef.value.validate().catch(() => {})
 }
 
 const formData = ref({

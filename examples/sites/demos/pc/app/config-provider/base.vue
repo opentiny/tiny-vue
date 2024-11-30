@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     handleSubmitPromise() {
-      this.$refs.ruleFormRef.validate()
+      this.$refs.ruleFormRef.validate().catch(() => {})
     }
   }
 }
