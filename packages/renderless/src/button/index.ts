@@ -13,18 +13,27 @@ import type { IButtonRenderlessParams, IButtonState } from '@/types'
 import { xss } from '../common/xss'
 
 export const handleClick =
-  ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  ({ emit, props, state, designConfig }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state' | 'designConfig'>) =>
   (event: MouseEvent): void => {
     const urlHref = xss.filterUrl(props.href)
+    const DEFAULT_RESETTIME = 1000
+
+    let resetTime = DEFAULT_RESETTIME
+
+    if (props.resetTime !== DEFAULT_RESETTIME) {
+      resetTime = props.resetTime
+    } else {
+      resetTime = designConfig?.props?.resetTime ?? props.resetTime
+    }
 
     if (urlHref) {
       location.href = urlHref
-    } else if (props.nativeType === 'button' && props.resetTime > 0) {
+    } else if (props.nativeType === 'button' && resetTime > 0) {
       state.disabled = true
 
       state.timer = window.setTimeout(() => {
         state.disabled = false
-      }, props.resetTime)
+      }, resetTime)
     }
 
     emit('click', event)
