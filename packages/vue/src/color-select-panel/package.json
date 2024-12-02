@@ -16,9 +16,9 @@
     "@opentiny/vue-collapse-item": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-option": "workspace:^",
+    "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-select": "workspace:^",
+    "@opentiny/vue-select": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
