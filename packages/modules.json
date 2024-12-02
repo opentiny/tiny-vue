@@ -3060,11 +3060,6 @@
       "pc"
     ]
   },
-  "TreeMenuPc": {
-    "path": "vue/src/tree-menu/src/pc.vue",
-    "type": "template",
-    "exclude": false
-  },
   "TreePc": {
     "path": "vue/src/tree/src/pc.vue",
     "type": "template",

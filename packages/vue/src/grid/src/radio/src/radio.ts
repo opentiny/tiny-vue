@@ -22,8 +22,9 @@
  * SOFTWARE.
  *
  */
-import { h, $prefix, defineComponent } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent, isVue2, hooks } from '@opentiny/vue-common'
 import { iconRadio, iconRadioselected } from '@opentiny/vue-icon'
+import { AutoTip } from '@opentiny/vue-directive'
 
 export default defineComponent({
   name: $prefix + 'GridRadio',
@@ -35,6 +36,7 @@ export default defineComponent({
     name: String,
     size: String
   },
+  directives: { AutoTip },
   computed: {
     vSize() {
       return this.size || this.$parent.size || this.$parent.vSize
@@ -47,6 +49,18 @@ export default defineComponent({
     let { disabled, vSize, modelValue, label, name } = this
     let $slots = this.slots
     const disableClass = 'disabled'
+
+    const labelContent = () => {
+      let content = h(
+        'span',
+        { class: 'tiny-grid-radio__label', directives: isVue2 ? [{ name: 'AutoTip' }] : null },
+        $slots.default()
+      )
+      if (!isVue2) {
+        hooks.withDirectives(content, [[AutoTip]])
+      }
+      return content
+    }
 
     return h(
       'label',
@@ -82,7 +96,7 @@ export default defineComponent({
           h(iconRadio(), { class: ['tiny-svg-size', 'icon-radio'] }),
           h(iconRadioselected(), { class: ['tiny-svg-size', 'icon-radio-selected'] })
         ]),
-        $slots.default ? h('span', { class: 'tiny-grid-radio__label' }, $slots.default()) : null
+        $slots.default ? labelContent() : null
       ]
     )
   }

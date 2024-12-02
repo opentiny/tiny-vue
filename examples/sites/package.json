@@ -52,7 +52,6 @@
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
     "@playwright/test": "~1.42.0",
-    "@opentiny/vue-mobile": "workspace:~",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",
     "@unocss/preset-icons": "^0.38.2",
