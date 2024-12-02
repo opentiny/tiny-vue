@@ -22,7 +22,7 @@ export const handleChange =
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonGroupRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (node: IButtonGroupNode): void => {
-    if (!state.disabled && !node.disabled) {
+    if (!state.disabled && !node.disabled && state.value !== node[props.valueField]) {
       state.value = node[props.valueField]
       emit('update:modelValue', state.value)
     }
