@@ -84,7 +84,7 @@ export const getPrecision =
 
 export const internalIncrease =
   ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
-  ({ val, step }: { val: number; step: number | string }): string => {
+  ({ val, step }: { val: number | string; step: number | string }): string => {
     const decimal = api.getDecimal(val)
     if (decimal.isNaN() && val !== undefined) {
       return state.currentValue
@@ -95,7 +95,7 @@ export const internalIncrease =
 
 export const internalDecrease =
   ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
-  ({ val, step }: { val: number; step: number | string }): string | number => {
+  ({ val, step }: { val: number | string; step: number | string }): string | number => {
     const decimal = api.getDecimal(val)
 
     if (decimal.isNaN() && val !== undefined) {
@@ -123,7 +123,7 @@ export const increase =
     }
     let newVal = api.internalIncrease({
       val: value,
-      step: props.step.value ? Number(props.step.value) : props.step
+      step: typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
     })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -155,7 +155,7 @@ export const decrease =
     }
     let newVal = api.internalDecrease({
       val: value,
-      step: props.step.value ? Number(props.step.value) : props.step
+      step: typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
     })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -363,7 +363,7 @@ export const handleInputChange =
   ({ api, state, props }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event): void => {
     const value = event.target?.value === '-' ? 0 : event.target?.value
-    if (props.stepStrictly || props.step.mode === 'strictly') {
+    if (props.stepStrictly || (typeof props.step === 'object' && props.step?.mode === 'strictly')) {
       const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
       if (
         Math.abs(previousValue - value) % Number(props.step) === 0 ||
@@ -453,7 +453,8 @@ export const displayValue =
 export const getNumPecision =
   ({ api, props }: Pick<INumericRenderlessParams, 'api' | 'props'>) =>
   (): number => {
-    const stepPrecision = api.getPrecision(props.step.value || props.step)
+    const stepValue = typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
+    const stepPrecision = api.getPrecision(stepValue)
 
     if (props.precision !== undefined) {
       return props.precision
