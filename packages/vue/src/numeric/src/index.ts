@@ -94,7 +94,7 @@ export const numericProps = {
   },
   size: String,
   step: {
-    type: [Number, String],
+    type: [Number, String, Object],
     default: 1
   },
   stepStrictly: {
