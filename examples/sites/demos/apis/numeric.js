@@ -523,7 +523,7 @@ interface INumericFormat {
       type: 'interface',
       code: `
 interface IStepStrategy {
-  value: string | number,
+  value: number | string, // 5 或者 '5'
   mode: 'strictly' | 'restore'
 }
       `
