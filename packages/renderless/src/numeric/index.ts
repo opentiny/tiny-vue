@@ -363,7 +363,7 @@ export const handleInputChange =
   ({ api, state, props }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event): void => {
     const value = event.target?.value === '-' ? 0 : event.target?.value
-    if (props.stepStrictly || props.step?.mode === 'strictly') {
+    if (props.stepStrictly || props.step.mode === 'strictly') {
       const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
       if (
         Math.abs(previousValue - value) % Number(props.step) === 0 ||
