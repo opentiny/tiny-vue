@@ -1,20 +1,54 @@
 <template>
   <div>
     <tiny-config-provider :design="design">
-      <tiny-alert type="warning" description="type 为 warning"></tiny-alert>
+      <div class="demo-form">
+        <tiny-alert type="warning" description="全局配置组件的默认行为"></tiny-alert>
+        <tiny-form ref="ruleFormRef" :model="formData">
+          <tiny-form-item label="年龄" prop="age" required>
+            <tiny-numeric v-model="formData.age"></tiny-numeric>
+          </tiny-form-item>
+          <tiny-form-item label="姓名" prop="name" required>
+            <tiny-input v-model="formData.name"></tiny-input>
+          </tiny-form-item>
+          <tiny-form-item>
+            <tiny-button @click="handleSubmitPromise" type="primary"> 校验 </tiny-button>
+          </tiny-form-item>
+        </tiny-form>
+      </div>
     </tiny-config-provider>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TinyConfigProvider, TinyAlert, TinyModal } from '@opentiny/vue'
+import {
+  TinyConfigProvider,
+  TinyAlert,
+  TinyModal,
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyNumeric,
+  TinyButton
+} from '@opentiny/vue'
 import { iconWarningTriangle } from '@opentiny/vue-icon'
 
-const design = ref({
-  name: 'smb', // 设计规范名称
+const ruleFormRef = ref()
+const design = {
+  name: 'x-design', // 设计规范名称
   version: '1.0.0', // 设计规范版本号
   components: {
+    Form: {
+      props: {
+        hideRequiredAsterisk: true
+      }
+    },
+    Button: {
+      props: {
+        resetTime: 0,
+        round: true
+      }
+    },
     Alert: {
       icons: {
         warning: iconWarningTriangle()
@@ -38,5 +72,20 @@ const design = ref({
       }
     }
   }
+}
+
+const handleSubmitPromise = () => {
+  ruleFormRef.value.validate().catch(() => {})
+}
+
+const formData = ref({
+  name: '',
+  age: ''
 })
 </script>
+
+<style scoped>
+.demo-form {
+  width: 380px;
+}
+</style>

@@ -15,7 +15,7 @@
             state.buttonDisabled ? '-disabled' : ''
           }`
         ),
-        gcls(round ? 'is-round' : 'no-round'),
+        gcls(state.round ? 'is-round' : 'no-round'),
         gcls(circle ? 'is-circle' : 'no-circle'),
         gcls({ 'is-border': circle || !(type === 'text' || icon) }),
         gcls({ 'button-link': href }),

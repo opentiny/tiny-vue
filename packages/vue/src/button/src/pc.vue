@@ -24,7 +24,7 @@
         'is-loading': loading,
         'is-plain': state.plain,
         'is-ghost': ghost,
-        'is-round': round,
+        'is-round': state.round,
         'is-circle': circle,
         'is-icon': icon && !loading && (text || slots.default),
         'is-only-icon': icon && !loading && !(text || slots.default)

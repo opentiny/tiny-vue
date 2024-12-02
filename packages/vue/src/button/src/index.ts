@@ -55,7 +55,10 @@ export const buttonProps = {
     }
   },
   /** 是否圆角按钮 */
-  round: Boolean,
+  round: {
+    type: Boolean,
+    default: undefined
+  },
   /** 是否朴素按钮  */
   plain: Boolean,
   /** 是否圆形按钮  */

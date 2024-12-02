@@ -9,7 +9,8 @@ export default {
         'en-US': 'Basic Use'
       },
       desc: {
-        'zh-CN': '可通过<code>design</code>属性设置自定义不同设计规范的图标和逻辑。',
+        'zh-CN':
+          '可通过<code> design </code>属性设置自定义不同设计规范的图标和逻辑，例如：全局配置 Form 表单组件的必填星号是否默认显示、Button 组件的点击后的禁用时间和是否默认圆角。',
         'en-US':
           'Icons and logic for different design specifications can be customized through the <code>design</code> attribute configuration.'
       },
@@ -40,18 +41,6 @@ export default {
         'en-US': 'Container labels can be customized through<code>tag</code>.'
       },
       codeFiles: ['tag.vue']
-    },
-    {
-      demoId: 'form',
-      name: {
-        'zh-CN': '隐藏表单必填星号',
-        'en-US': 'Hide all form required asterisks'
-      },
-      desc: {
-        'zh-CN': '通过 <code>design</code> 设置所有表单组件默认不显示必填星号。',
-        'en-US': 'Set the all form component via <code>design</code> to not display required asterisks by default.'
-      },
-      codeFiles: ['form.vue']
     }
   ]
 }
