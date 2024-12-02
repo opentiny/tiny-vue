@@ -11,7 +11,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyNavBar } from '@opentiny/vue'
+import { TinyNavBar } from '@opentiny/vue-mobile'
 import { iconArrowLeft, iconMore } from '@opentiny/vue-icon'
 
 export default {

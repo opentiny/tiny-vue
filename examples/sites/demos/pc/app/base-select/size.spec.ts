@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('默认尺寸', async ({ page }) => {
+test('medium 尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('base-select#size')
 
@@ -9,11 +9,12 @@ test('默认尺寸', async ({ page }) => {
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
 
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '32px')
-  await expect(tag.nth(0)).toHaveClass(/tiny-tag--light/)
+  await expect(input).toHaveClass(/tiny-input-medium/)
+  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '40px')
+  await expect(tag.nth(0)).toHaveClass(/tiny-tag--medium tiny-tag--light/)
 })
 
-test('medium 尺寸', async ({ page }) => {
+test('默认尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('base-select#size')
 
@@ -22,9 +23,8 @@ test('medium 尺寸', async ({ page }) => {
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
 
-  await expect(input).toHaveClass(/tiny-input-medium/)
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '40px')
-  await expect(tag.nth(0)).toHaveClass(/tiny-tag--medium tiny-tag--light/)
+  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '32px')
+  await expect(tag.nth(0)).toHaveClass(/tiny-tag--light/)
 })
 
 test('small 尺寸', async ({ page }) => {
@@ -54,5 +54,5 @@ test('mini 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-mini/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
-  expect(height).toBeCloseTo(28, 1)
+  expect(height).toBeCloseTo(24, 1)
 })

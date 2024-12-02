@@ -7,7 +7,9 @@ export const renderless = (props, { reactive, watch }, { vm, emit }) => {
 
   const state = reactive({
     value: props.modelValue,
-    gridData: props.gridOp.data
+    gridData: props.gridOp.data,
+    remoteData: [],
+    selected: props.multiple ? [] : {}
   })
 
   Object.assign(api, {

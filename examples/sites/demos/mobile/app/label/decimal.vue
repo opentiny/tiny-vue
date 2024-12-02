@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { TinyLabel } from '@opentiny/vue'
+import { TinyLabel } from '@opentiny/vue-mobile'
 
 export default {
   components: {

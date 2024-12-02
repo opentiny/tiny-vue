@@ -272,7 +272,7 @@ const getOptionOfSetSelected = ({ api, props }) => {
   }
 
   // tiny 新增
-  if (!option.currentLabel) {
+  if (!option.state.currentLabel) {
     api.clearNoMatchValue('')
   }
 
@@ -316,9 +316,10 @@ export const setSelected =
           : 'halfselect'
         : 'check'
 
-      if (state.selected.length === 0 || !state.selected[0].currentLabel) {
+      if (!state.selected?.[0]?.isTree && !state.selected?.[0]?.isGrid) {
         state.selected = result
       }
+      state.selected.length && (state.selectedLabel = '')
 
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
@@ -1601,7 +1602,7 @@ export const mounted =
     state.completed = true
 
     // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { default: 32, mini: 24, small: 36, medium: 40 }
+    const defaultSizeMap = { medium: 40, default: 32, small: 28, mini: 24 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
@@ -1869,12 +1870,31 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        // 给多选复制全部标签图标留一部分间距
+        const COPY_ICON_WIDTH = 16
+        state.inputPaddingRight = parseFloat(paddingRight) + COPY_ICON_WIDTH
       }
     })
   }
 
 // 以下为tiny 新增功能
+/**
+ * 兼容不同主题多选禁用的展示类型
+ * default 和 smb 主题，displayOnly 时显示为 tagText,否则为 tag
+ * aurora 主题 displayOnly||disabled 时显示为tagText,否则为 tag
+ */
+export const computedShowTagText =
+  ({ state }) =>
+  () =>
+    state.isDisplayOnly
+
+/**
+ * 兼容不同主题多选，tag 在disabled 和 required 时是否显示关闭按钮的区别
+ * default 主题 ，禁用显示关闭按钮，required目前和aurora保持一致不显示，待设计图补充时更新
+ * aurora 主题，禁用时无禁用效果，required 时不显示关闭按钮
+ */
+export const isTagClosable = () => (item) => !item.required
+
 export const computedGetIcon =
   ({ designConfig, props }) =>
   () => {

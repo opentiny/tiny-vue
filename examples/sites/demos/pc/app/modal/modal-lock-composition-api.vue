@@ -29,9 +29,10 @@
 </template>
 
 <script setup>
-import { TinyButton, TinyModal } from '@opentiny/vue'
+import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
+const TinyModal = Modal
 const show = ref(false)
 const options = ref({
   lockScroll: false,
@@ -45,11 +46,11 @@ function removeBodyScroll() {
   document.body.style.height = '100vh'
   document.body.classList.add('of-hidden')
 }
-function btnClick() {
+function btnClick(lockType) {
   options.value.lockScroll = lockType === 'scroll'
   options.value.lockView = lockType === 'view'
 
-  TinyModal.confirm({
+  Modal.confirm({
     message: '窗口内容',
     title: '自定义弹窗标题',
     showHeader: true,
@@ -58,7 +59,7 @@ function btnClick() {
   })
 }
 
-function openModal() {
+function openModal(lockType) {
   options.value.lockScroll = lockType === 'scroll'
   options.value.lockView = lockType === 'view'
   show.value = true

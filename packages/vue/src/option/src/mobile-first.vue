@@ -1,6 +1,7 @@
 <template>
   <div
     ref="option"
+    @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
     :data-index="state.index"

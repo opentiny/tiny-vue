@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyProgress, TinyButton } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue-mobile'
 import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 
 export default {

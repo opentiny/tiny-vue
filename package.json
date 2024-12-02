@@ -2,7 +2,7 @@
   "name": "opentiny-vue",
   "version": "3.14.0",
   "private": true,
-  "packageManager": "pnpm@8.3.1",
+  "packageManager": "pnpm@9.14.2",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
   "license": "MIT",
@@ -27,8 +27,8 @@
   ],
   "main": "packages/index.js",
   "engines": {
-    "node": ">=16",
-    "pnpm": ">=6.35"
+    "node": ">=18",
+    "pnpm": ">=9.5"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -194,7 +194,7 @@
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
     "typescript": "^5.0.0",
-    "vite": "^4.3.8",
+    "vite": "catalog:",
     "vue": "^3.4.23",
     "vue-tsc": "^1.6.5"
   },
@@ -228,7 +228,7 @@
       "vue2": "npm:vue@2.6.14",
       "vue2.7": "npm:vue@2.7.10",
       "vue3": "npm:vue@3.4.23",
-      "vite": "^4.3.8"
+      "vite": "catalog:"
     },
     "packageExtensions": {
       "vue-template-compiler@2.6.14": {

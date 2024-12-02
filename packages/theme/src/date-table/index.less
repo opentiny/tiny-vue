@@ -206,10 +206,6 @@
     &.in-range {
       div {
         background-color: var(--tv-DateTable-range-bg-color);
-
-        &:hover {
-          background-color: var(--tv-DateTable-range-hover-bg-color);
-        }
       }
 
       &.end-date:hover,
@@ -264,19 +260,19 @@
     border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
     border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row .in-range:first-of-type div {
+  &__row td:first-of-type div {
     border-top-left-radius: var(--tv-DateTable-td-border-radius-disabled);
     border-bottom-left-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row .in-range:last-of-type div {
+  &__row td:last-of-type div {
     border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
     border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row td:nth-child(1 of .available.in-range) div {
+  &__row td.pre-month + td.available.in-range div {
     border-top-left-radius: var(--tv-DateTable-td-border-radius-disabled);
     border-bottom-left-radius: var(--tv-DateTable-td-border-radius-disabled);
   }
-  &__row td:nth-last-child(1 of .available.in-range) div {
+  &__row td.available.in-range:has(+ td.next-month) div {
     border-top-right-radius: var(--tv-DateTable-td-border-radius-disabled);
     border-bottom-right-radius: var(--tv-DateTable-td-border-radius-disabled);
   }

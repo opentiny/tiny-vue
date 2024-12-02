@@ -47,7 +47,7 @@ export const computedAutoLabelWidth =
 export const computedHideRequiredAsterisk =
   ({ props, designConfig }: Pick<IFormRenderlessParams, 'props' | 'designConfig'>) =>
   (): boolean => {
-    return props.hideRequiredAsterisk ?? designConfig?.hideRequiredAsterisk ?? true
+    return props.hideRequiredAsterisk ?? designConfig?.props?.hideRequiredAsterisk ?? false
   }
 
 export const computedValidateIcon =

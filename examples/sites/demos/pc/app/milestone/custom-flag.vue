@@ -17,15 +17,12 @@ export default {
   },
   data() {
     return {
-      timeActive1: 1,
-      normalActive: 2,
-      advancedActive: 2,
       statusMap: {
-        completed: 'var(--tv-color-bg-disabled-control-active)',
-        doing: '#7ED321',
-        back: '#f5222d',
+        completed: '#f0f7ff',
+        doing: '#e8faff',
+        back: '#edf7df',
         end: '#faad14',
-        cancel: '#d9d9d9'
+        cancel: '#f230301A'
       },
       milestoneData: [
         {

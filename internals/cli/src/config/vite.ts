@@ -26,7 +26,7 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     '@opentiny/vue-theme-mobile': pathFromWorkspaceRoot('packages/theme-mobile/src'),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
-    '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src'),
+    '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src/index-dev'),
     '@opentiny/vue-locale': pathFromWorkspaceRoot('packages/vue-locale/src'),
 
     // 虚拟映射

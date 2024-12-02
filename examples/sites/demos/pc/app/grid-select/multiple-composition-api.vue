@@ -2,7 +2,7 @@
   <tiny-grid-select
     v-model="value"
     multiple
-    :grid-op="gridOpMulti"
+    :grid-op="gridOpMultiple"
     value-field="id"
     text-field="city"
   ></tiny-grid-select>
@@ -14,7 +14,7 @@ import { GridSelect as TinyGridSelect } from '@opentiny/vue'
 
 const value = ref('')
 
-const gridOpMulti = reactive({
+const gridOpMultiple = reactive({
   data: [
     { id: '001', area: '华南区', province: '广东省', city: '广州市' },
     { id: '002', area: '华南区', province: '广东省', city: '深圳市' },

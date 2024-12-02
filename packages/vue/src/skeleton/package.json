@@ -15,6 +15,6 @@
   "license": "MIT",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "0.31.0"
+    "vitest": "catalog:"
   }
 }

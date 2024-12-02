@@ -1,6 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="change" type="primary" class="mb-16"> 反转列顺序 </tiny-button>
+    <div>
+      <tiny-button @click="change"> 反转列顺序 </tiny-button>
+    </div>
+    <br />
     <tiny-grid :data="tableData">
       <tiny-grid-column v-for="col in cols" :key="col.field" v-bind="col"></tiny-grid-column>
     </tiny-grid>
@@ -60,9 +63,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.mb-16 {
-  margin-bottom: 16px;
-}
-</style>

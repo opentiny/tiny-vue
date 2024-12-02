@@ -1,9 +1,19 @@
 <template>
-  <div class="tiny-color-select-panel" @click.stop v-if="state.isShow" v-clickoutside="onCancel">
-    <hue-select :color="state.color" @hue-update="onHueUpdate" @sv-update="onSVUpdate" />
-    <alpha-select v-if="alpha" :color="state.color" @alpha-update="onAlphaUpdate" />
+  <div class="tiny-color-select-panel" @click.stop v-if="state.showPicker" v-clickoutside="onClickOutside">
+    <hue-select :color="state.color" @hue-ready="onHueReady" @sv-ready="onSvReady" />
+    <alpha-select v-if="alpha" :color="state.color" @ready="onAlphaReady" />
     <div class="tiny-color-select-panel__tools">
-      <tiny-input v-model="state.res" size="small" />
+      <div class="tiny-color-select-panel__tools__format-select" v-if="state.formats.length">
+        <tiny-select v-model="state.currentFormat">
+          <tiny-option
+            v-for="formatValue in state.formats"
+            :key="formatValue"
+            :value="formatValue"
+            :label="formatValue"
+          />
+        </tiny-select>
+      </div>
+      <tiny-input v-model="state.input" size="small" />
       <div class="tiny-color-select-panel__tools-btns">
         <tiny-button size="small" @click="onCancel">
           {{ t('ui.colorSelectPanel.cancel') }}
@@ -52,8 +62,6 @@
 
 <script>
 import Button from '@opentiny/vue-button'
-import Collapse from '@opentiny/vue-collapse'
-import CollapseItem from '@opentiny/vue-collapse-item'
 import Input from '@opentiny/vue-input'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
@@ -61,17 +69,33 @@ import HueSelect from './components/hue-select.vue'
 import AlphaSelect from './components/alpha-select.vue'
 import '@opentiny/vue-theme/color-select-panel/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import Collapse from '@opentiny/vue-collapse'
+import CollapseItem from '@opentiny/vue-collapse-item'
+import Select from '@opentiny/vue-select'
+import Option from '@opentiny/vue-option'
 
 export default defineComponent({
-  emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update', 'color-update'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine'],
+  emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
+  props: [
+    ...props,
+    'modelValue',
+    'visible',
+    'alpha',
+    'history',
+    'predefine',
+    'format',
+    'enableHistory',
+    'enablePredefineColor'
+  ],
   components: {
     HueSelect,
     AlphaSelect,
     TinyButton: Button,
     TinyInput: Input,
     TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapseItem: CollapseItem,
+    TinySelect: Select,
+    TinyOption: Option
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {

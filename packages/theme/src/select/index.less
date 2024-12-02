@@ -222,10 +222,15 @@
     }
   }
 
+  &.tiny-select__multiple.is-display-only {
+    &.is-hover-expand,
+    &.is-click-expand {
+      vertical-align: top;
+    }
+  }
+
   &.is-hover-expand,
   &.is-click-expand {
-    vertical-align: top;
-
     .@{select-prefix-cls}__tags-group {
       position: absolute;
       top: 0;
@@ -306,18 +311,6 @@
     & .is-expand {
       position: absolute;
       width: 100%;
-    }
-
-    &.@{select-prefix-cls}--small {
-      .@{select-prefix-cls}__tags {
-        padding-top: 2px;
-      }
-    }
-
-    &.@{select-prefix-cls}--mini {
-      .@{select-prefix-cls}__tags {
-        padding-top: 2px;
-      }
     }
   }
 

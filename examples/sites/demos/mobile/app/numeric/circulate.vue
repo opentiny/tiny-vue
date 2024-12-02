@@ -8,7 +8,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyNumeric } from '@opentiny/vue'
+import { TinyNumeric } from '@opentiny/vue-mobile'
 
 export default {
   components: {

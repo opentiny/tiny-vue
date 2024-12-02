@@ -13,11 +13,6 @@ import { $prefix } from '@opentiny/vue-common'
 export default {
   name: $prefix + 'ChartHeatmap',
   mixins: [Core],
-  data() {
-    return {
-      option: {}
-    }
-  },
   computed: {
     iChartName() {
       const { type } = this.settings

@@ -22,7 +22,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyActionSheet, TinyButton } from '@opentiny/vue'
+import { TinyActionSheet, TinyButton } from '@opentiny/vue-mobile'
 
 export default {
   components: {

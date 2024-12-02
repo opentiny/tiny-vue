@@ -90,7 +90,7 @@
       }
 
       &:not(.dot):not(.is-active):hover {
-        color: var(--tv-Pager-list-item-hover-text-color);
+        color: var(--tv-Pager-page-item-text-color-hover);
         background-color: var(--tv-Pager-bg-color-hover);
         border: 1px solid var(--tv-Pager-page-item-border-color-hover);
         font-weight: var(--tv-Pager-page-item-font-weight-hover);
@@ -116,7 +116,7 @@
 
       &.is-active {
         font-weight: bold;
-        color: var(--tv-Pager-text-color);
+        color: var(--tv-Pager-page-item-text-color-active);
         background-color: var(--tv-Pager-page-item-bg-color-active);
         border: 1px solid var(--tv-Pager-page-item-border-color-hover);
       }
@@ -415,9 +415,13 @@
       }
     }
 
-    .@{pager-prefix-cls}__page-size,
-    .@{pager-prefix-cls}__page-size-btn {
+    .@{pager-prefix-cls}__page-size {
       height: var(--tv-Pager-input-height-xs);
+      line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
+    }
+
+    .@{pager-prefix-cls}__page-size-btn {
+      height: calc(var(--tv-Pager-input-height-xs) - 2px);
       line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
     }
 

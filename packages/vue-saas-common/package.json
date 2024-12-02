@@ -29,7 +29,8 @@
   "type": "module",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-design-saas": "workspace:~"
+    "@opentiny/vue-design-saas": "workspace:~",
+    "tailwind-merge": "^1.8.0"
   },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",

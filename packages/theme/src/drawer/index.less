@@ -120,8 +120,8 @@
 
       .@{drawer-prefix-cls}__header,
       .@{drawer-prefix-cls}__footer {
-        margin-left: 32px;
-        margin-right: 32px;
+        margin-left: var(--tv-Drawer-padding);
+        margin-right: var(--tv-Drawer-padding);
       }
 
       .@{drawer-prefix-cls}__header-wrapper {
@@ -155,7 +155,7 @@
         }
 
         .@{drawer-prefix-cls}__header {
-          padding: 32px 0 24px;
+          padding: var(--tv-Drawer-padding) 0 24px;
           background: var(--tv-Drawer-bg-color);
           display: flex;
           justify-content: space-between;
@@ -197,7 +197,7 @@
       .@{drawer-prefix-cls}__body {
         flex: auto;
         overflow: auto;
-        padding: 0 32px;
+        padding: 0 var(--tv-Drawer-padding);
         border-bottom: 1px solid var(--tv-Drawer-divider-body-border-color);
       }
 
@@ -206,7 +206,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding: 24px 0 32px;
+        padding: 24px 0 var(--tv-Drawer-padding);
       }
     }
   }

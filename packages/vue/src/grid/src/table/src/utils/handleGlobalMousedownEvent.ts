@@ -76,11 +76,13 @@ export function handleGlobalIsClear({ $el, _vm, actived, editConfig, event, isCl
 }
 
 export function handleGlobalClearActived({ $el, _vm, event, isClear }) {
+  const tableContent = _vm.$refs.tableBody?.$refs.table
+  // 如果点击了当前表格之外
   if (
     isClear ||
-    // 如果点击了当前表格之外
     !_vm.getEventTargetNode(event, $el).flag ||
-    (_vm.$refs.tableHeader && _vm.$refs.tableHeader.$el.contains(event.target))
+    (_vm.$refs.tableHeader && _vm.$refs.tableHeader.$el.contains(event.target)) ||
+    (tableContent && !tableContent.contains(event.target))
   ) {
     setTimeout(() => _vm.clearActived(event))
   }

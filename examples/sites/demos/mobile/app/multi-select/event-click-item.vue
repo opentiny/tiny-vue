@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { TinyMultiSelect, TinyToast } from '@opentiny/vue'
+import { TinyMultiSelect, TinyToast } from '@opentiny/vue-mobile'
 
 export default {
   components: {

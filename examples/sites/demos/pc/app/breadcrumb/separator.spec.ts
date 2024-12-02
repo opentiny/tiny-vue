@@ -8,6 +8,6 @@ test('Breadcrumb 自定义分隔符', async ({ page }) => {
   const separator1 = breadcrumb.first().locator('.tiny-breadcrumb__separator')
   const separator2 = breadcrumb.nth(1).locator('.tiny-breadcrumb__separator-cls')
 
-  await expect(separator1.first()).not.toHaveText(/>/)
+  await expect(separator1.first()).toHaveText(/>/)
   await expect(separator2.first()).not.toHaveText(/>/)
 })

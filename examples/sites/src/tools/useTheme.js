@@ -1,18 +1,9 @@
 import { watch, computed } from 'vue'
-import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
 import { hooks } from '@opentiny/vue-common'
 import designSaasConfig from '@opentiny/vue-design-saas'
 import { router } from '@/router'
 import { appData } from './appData'
-import {
-  THEME_ROUTE_MAP,
-  CURRENT_THEME_KEY,
-  DEFAULT_THEME,
-  AURORA_THEME,
-  SMB_THEME,
-  INFINITY_THEME,
-  getKeyByValue
-} from '../const'
+import { THEME_ROUTE_MAP, CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, SMB_THEME, INFINITY_THEME } from '../const'
 import glaciers from '@/assets/images/glaciers.png'
 import glaciersIcon from '@/assets/images/glaciers-icon.png'
 
@@ -24,13 +15,7 @@ import oceanicIcon from '@/assets/images/oceanic-icon.png'
 
 import starrySky from '@/assets/images/starry-sky.png'
 import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
-
-const themeMap = {
-  [DEFAULT_THEME]: null,
-  [AURORA_THEME]: null,
-  [SMB_THEME]: null,
-  [INFINITY_THEME]: null
-}
+import TinyThemeTool, { tinyOldTheme } from '@opentiny/vue-theme/theme-tool'
 
 const isEn = appData.lang === 'enUS'
 
@@ -72,8 +57,6 @@ const designConfigMap = {
   [SMB_THEME]: {}
 }
 
-const theme = new TinyThemeTool()
-
 const defaultThemeKey = DEFAULT_THEME
 const currentThemeKey = hooks.ref(defaultThemeKey)
 
@@ -81,8 +64,6 @@ watch(
   () => currentThemeKey.value,
   (newVal) => {
     localStorage.setItem(CURRENT_THEME_KEY, newVal)
-    // 先屏蔽，等themeTool重构完成
-    // theme.changeTheme(themeMap[newVal])
   }
 )
 
@@ -106,6 +87,7 @@ const changeTheme = (themeKey) => {
 const getThemeData = () => JSON.parse(JSON.stringify(themeData))
 
 let initWatchRoute = false
+let loadedTheme = false
 const watchRoute = () => {
   if (initWatchRoute) {
     return
@@ -114,14 +96,17 @@ const watchRoute = () => {
   watch(
     () => router.currentRoute.value.params.theme,
     (val) => {
-      const themeKey = getKeyByValue(THEME_ROUTE_MAP, val)
-      currentThemeKey.value = themeKey || defaultThemeKey
+      if (!loadedTheme && val === 'old-theme') {
+        const themeTool = new TinyThemeTool()
+        themeTool.changeTheme(tinyOldTheme)
+        loadedTheme = true
+      }
     }
   )
 }
 
 export default function useTheme() {
-  watchRoute()
+  !initWatchRoute && watchRoute()
   return {
     getThemeData,
     changeTheme,

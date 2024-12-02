@@ -23,31 +23,31 @@ describe('PC Mode', () => {
   })
 
   test('closable', () => {
-    const wrapper = mount(() => <Alert closable={false}/>)
+    const wrapper = mount(() => <Alert closable={false} />)
     expect(wrapper.find('.tiny-alert__close').exists()).toBeFalsy()
   })
 
   test('title', () => {
     const title = 'mock title when size is large'
-    const wrapper = mount(() => <Alert size='large' title={title}/>)
+    const wrapper = mount(() => <Alert size="large" title={title} />)
     expect(wrapper.find('.tiny-alert__title').text()).toEqual(title)
   })
 
   test('center', () => {
-    const wrapper = mount(() => <Alert center={true}/>)
+    const wrapper = mount(() => <Alert center={true} />)
     expect(wrapper.find('.is-center').exists()).toBeTruthy()
   })
 
   test('close-text', () => {
     const closeText = 'close'
-    const wrapper = mount(() => <Alert closeText={closeText}/>)
+    const wrapper = mount(() => <Alert closeText={closeText} />)
     expect(wrapper.find('.tiny-alert__close').exists()).toBeFalsy()
     expect(wrapper.find('.is-custom').exists()).toBeTruthy()
     expect(wrapper.find('.is-custom').text()).toEqual(closeText)
   })
 
   test('show-icon', () => {
-    const wrapper = mount(() => <Alert showIcon={false}/>)
+    const wrapper = mount(() => <Alert showIcon={false} />)
     // close icon and alert icon use the same class
     expect(wrapper.findAll('.tiny-alert__icon').length).toEqual(1)
   })
@@ -70,25 +70,19 @@ describe('PC Mode', () => {
 
   test('default slot', () => {
     const text = 'default slot'
-    const wrapper = mount(() => (
-      <Alert size='large' v-slots={{ default: () => text }}/>
-    ))
+    const wrapper = mount(() => <Alert size="large" v-slots={{ default: () => text }} />)
     expect(wrapper.find('.tiny-alert__opration').text()).toEqual(text)
   })
 
   test('description slot', () => {
     const text = 'description slot'
-    const wrapper = mount(() => (
-      <Alert size='large' v-slots={{ description: () => text }}/>
-    ))
+    const wrapper = mount(() => <Alert size="large" v-slots={{ description: () => text }} />)
     expect(wrapper.find('.tiny-alert__description').text()).toEqual(text)
   })
 
   test('close event', async () => {
     const handleClose = vi.fn()
-    const wrapper = mount(() => (
-      <Alert size='large' onClose={handleClose}/>
-    ))
+    const wrapper = mount(() => <Alert size="large" onClose={handleClose} />)
     await wrapper.find('.tiny-alert__close').trigger('click')
     expect(handleClose).toHaveBeenCalled()
   })

@@ -80,6 +80,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
+      { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
       // { 'nameCn': '多色图标', 'name': 'IconMulticolor', 'key': 'icon-multicolor' }, // 隐藏路由，目前只有saas使用
@@ -121,10 +122,7 @@ export const cmpMenus = [
       {
         'nameCn': '基础选择器',
         'name': 'BaseSelect',
-        'key': 'base-select',
-        'meta': {
-          'experimental': '3.17.0'
-        }
+        'key': 'base-select'
       },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
@@ -136,14 +134,14 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
-      {
-        'nameCn': '下拉表格选择器',
-        'name': 'GridSelect',
-        'key': 'grid-select',
-        'meta': {
-          'experimental': '3.20.0'
-        }
-      },
+      // {
+      //   'nameCn': '下拉表格选择器',
+      //   'name': 'GridSelect',
+      //   'key': 'grid-select',
+      //   'meta': {
+      //     'experimental': '3.20.0'
+      //   }
+      // },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
@@ -312,7 +310,6 @@ export const cmpMenus = [
     'key': 'cmp-other-components',
     'children': [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
-      { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
       { 'nameCn': '弹窗选择 ', 'name': 'DialogSelect ', 'key': 'dialog-select' },
       { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },

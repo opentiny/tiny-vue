@@ -20,7 +20,6 @@ import {
 } from './adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './csscls'
-import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './adapter'
 import { useBreakpoint } from './breakpoint'
@@ -136,8 +135,6 @@ export const $setup = ({ props, context, template, extend = {} }) => {
   return renderComponent({ view, props, context, extend })
 }
 
-export const mergeClass = /* @__PURE__ */ (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
-
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
 export const design = {
   configKey: Symbol('designConfigKey'),
@@ -162,12 +159,16 @@ interface DesignConfig {
 
 interface CustomDesignConfig {
   designConfig: null | DesignConfig
+  twMerge: (str: string) => string
 }
 
 // 允许自定义主题规范，适用于MetaERP项目
 export const customDesignConfig: CustomDesignConfig = {
-  designConfig: null
+  designConfig: null,
+  twMerge: () => ''
 }
+
+export const mergeClass = (...cssClasses) => customDesignConfig.twMerge(stringifyCssClass(cssClasses))
 
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
@@ -176,17 +177,14 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   const globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
-  const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
   const utils = {
     $prefix,
     t,
     ...tools(context, resolveMode(props, context)),
     designConfig,
     globalDesignConfig,
-    useBreakpoint
-  }
-  if (specifyPc !== 'pc') {
-    utils.mergeClass = mergeClass
+    useBreakpoint,
+    mergeClass
   }
 
   utils.vm.theme = resolveTheme(props, context)
@@ -205,11 +203,10 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     a: filterAttrs,
     d: utils.defineInstanceProperties,
     dp: utils.defineParentInstanceProperties,
-    gcls: (key) => getElementCssClass(classes, key)
+    gcls: (key) => getElementCssClass(classes, key),
+    m: mergeClass
   }
-  if (specifyPc !== 'pc') {
-    attrs.m = mergeClass
-  }
+
   /**
    * 修复 render 函数下 this.slots 不会动态更新的问题（vue3 环境没有问题）
    * 解决方法：在 instance 下注入 slots、scopedSlots
@@ -271,8 +268,7 @@ export function svg({ name = 'Icon', component }) {
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
 
-          const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
-          if (specifyPc !== 'pc' && isMobileFirst) {
+          if (isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
