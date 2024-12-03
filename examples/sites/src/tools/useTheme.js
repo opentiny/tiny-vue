@@ -1,6 +1,7 @@
 import { watch, computed } from 'vue'
 import { hooks } from '@opentiny/vue-common'
 import designSaasConfig from '@opentiny/vue-design-saas'
+import designSMBConfig from '@opentiny/vue-design-smb'
 import { router } from '@/router'
 import { appData } from './appData'
 import { THEME_ROUTE_MAP, CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, SMB_THEME, INFINITY_THEME } from '../const'
@@ -71,7 +72,11 @@ const designConfig = computed(() => {
   if (import.meta.env.VITE_TINY_THEME === 'saas') {
     return designSaasConfig
   }
-  return designConfigMap[currentThemeKey.value]
+  if (router.currentRoute.value.params.theme === 'smb-theme') {
+    return designSMBConfig
+  }
+
+  return {}
 })
 
 const changeTheme = (themeKey) => {
