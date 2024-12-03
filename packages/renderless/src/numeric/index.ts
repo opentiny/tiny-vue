@@ -123,7 +123,7 @@ export const increase =
     }
     let newVal = api.internalIncrease({
       val: value,
-      step: typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
+      step: props.step?.value ?? props.step
     })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -155,7 +155,7 @@ export const decrease =
     }
     let newVal = api.internalDecrease({
       val: value,
-      step: typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
+      step: props.step?.value ?? props.step
     })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -453,7 +453,7 @@ export const displayValue =
 export const getNumPecision =
   ({ api, props }: Pick<INumericRenderlessParams, 'api' | 'props'>) =>
   (): number => {
-    const stepValue = typeof props.step === 'object' && props.step?.value !== undefined ? props.step.value : props.step
+    const stepValue = props.step?.value ?? props.step
     const stepPrecision = api.getPrecision(stepValue)
 
     if (props.precision !== undefined) {
