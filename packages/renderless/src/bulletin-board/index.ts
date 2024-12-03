@@ -34,3 +34,9 @@ export const computedMoreLink =
     }
     return props.moreLink
   }
+
+export const handleBulletinBoardClick =
+  ({ emit }) =>
+  (item) => {
+    emit('handleClick', item)
+  }

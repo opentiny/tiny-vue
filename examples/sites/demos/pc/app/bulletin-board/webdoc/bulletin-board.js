@@ -104,6 +104,18 @@ export default {
         'en-US': '<p>You can use <code>icon</code> to customize the new bulletin prefix icon. </p>\n'
       },
       codeFiles: ['icon.vue']
+    },
+    {
+      demoId: 'events',
+      name: {
+        'zh-CN': 'click事件',
+        'en-US': 'Fold panel click event'
+      },
+      desc: {
+        'zh-CN': '<p>当点击后会触发触发 <code>click</code> 事件。</p>',
+        'en-US': '<p>When clicked, it will trigger<code>click</code>. </p>'
+      },
+      codeFiles: ['events.vue']
     }
   ]
 }
