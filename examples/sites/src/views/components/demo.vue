@@ -3,7 +3,7 @@
     <div class="demo-content">
       <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
       <div class="ti-f-r ti-f-pos-between ti-f-box-end">
-        <div class="demo-title">{{ demo.name[langKey] }}</div>
+        <h2 class="demo-title">{{ demo.name[langKey] }}</h2>
         <div class="demo-options">
           <tiny-tooltip
             placement="top"

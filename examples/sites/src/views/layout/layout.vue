@@ -11,6 +11,7 @@
           :data="menuOptions"
           :menu-collapsible="true"
           :filter-node-method="searchMenu"
+          :show-filter="false"
           @current-change="clickMenu"
           @collapse-change="collapseChange"
         >

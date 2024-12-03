@@ -1,6 +1,6 @@
 <!--anchor:on-->
 
-## 安装
+# 安装
 
 `TinyVue` 组件库同时支持 `Vue 2.0` 和 `Vue 3.0` 框架，统一依赖包为`@opentiny/vue`,请根据下表安装不同的版本以适配您的项目：
 
@@ -13,7 +13,7 @@
 
 长期以来，TinyVue 都是只支持 Vue 2.6.14 版本。 从 TinyVue 2.11.0 开始，也支持 Vue 2.7+的工程了，请确保你安装了正确的 Vue 2.x 的依赖。
 
-### 全新项目配置
+## 全新项目配置
 
 在项目的根目录中，打开控制台，执行以下命令，为 `Vue 3.0` 的项目安装 `TinyVue` 组件库 ：
 
@@ -57,7 +57,7 @@ export default defineConfig({
   <p><code> @opentiny/vue </code> 支持多种模式。如果您的工程非移动端工程，可以在上面配置代码中的<code>process.env</code>中，声明<code>TINY_MODE</code>的值，以使工程在构建时，能将移动端模式的代码摇掉，优化打包产物的体积。比如 <code>'process.env': { ...process.env,TINY_MODE:'pc' }</code>。</p>
 </div>
 
-### 通过 CDN 方式引入 (v3.16.0及之前的版本可用)
+## 通过 CDN 方式引入 (v3.16.0及之前的版本可用)
 
 为了更快地体验 `TinyVue` 的组件，你也可以通过 `CDN` 方式直接在 HTML 页面中引入 `TinyVue`, 建议版本号写 `2` 个有效版本数字即可，具体配置如下:
 
@@ -80,7 +80,7 @@ export default defineConfig({
 </head>
 ```
 
-### 通过 CDN 方式引入 (v3.17.0开始提供使用)
+## 通过 CDN 方式引入 (v3.17.0开始提供使用)
 
 为了应对不同的业务需要，`TinyVue` 提供多种形态的 `runtime`:
 
@@ -134,7 +134,7 @@ export default defineConfig({
 </body>
 ```
 
-### 常见问题和解决方法：
+## 常见问题和解决方法：
 
 问题一：`v-model cannot be used on a prop, because local prop bindings are not writable.`
 

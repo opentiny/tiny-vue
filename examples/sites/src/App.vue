@@ -17,6 +17,8 @@ import { iconClose } from '@opentiny/vue-icon'
 import { appData } from './tools'
 import useTheme from './tools/useTheme'
 
+const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+
 export default defineComponent({
   name: 'AppVue',
   props: [],
@@ -40,6 +42,11 @@ export default defineComponent({
         }
       })
       common.renderHeader()
+
+      const searchBox = document.querySelector('.search-box')
+      if (searchBox && envTarget === 'open') {
+        searchBox.style.display = 'block'
+      }
     })
     const { designConfig, currentThemeKey } = useTheme()
 

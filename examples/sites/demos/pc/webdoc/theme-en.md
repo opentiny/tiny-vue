@@ -1,4 +1,4 @@
-## Theme configuration
+# Theme configuration
 
 <div class="tip custom-block">
   This section of the document only supports theme customization after <code> @opentiny/vue@3.19.0 </code>. For historical theme configuration, see <a href='# Historical version of the theme configuration '> Archive information </a> at the bottom of the current document.
@@ -13,7 +13,7 @@ A set of global CSS variables is defined in the TinyVue component library to uni
 
 By reading the above source code, you can see which styles of component libraries can be customized.
 
-### Custom theme
+## Custom theme
 
 In a user's project, if you need to customize the theme style, or override the style of some components, you can configure the theme of the user project using the 'TinyThemeTool' class provided by the component library. We will also provide more topics for you to choose from in the future.
 
@@ -77,7 +77,7 @@ You are advised to use <code>TinyThemeTool</code> to override component styles. 
 
 </div>
 
-### Micro Frontends scene
+## Micro Frontends scene
 
 By default, the 'themeTool.changeTheme' method will mount a custom style to the current 'document'. However, in microfront end frameworks, there is often a mechanism for style isolation, such as an unbounded microfront that encloses a 'Web Component' to mount child applications. If you customize the theme in this scenario, you must mount the style to the 'ShadowRoot' of the subapplication.
 
