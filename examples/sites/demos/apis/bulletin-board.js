@@ -90,7 +90,7 @@ export default {
       ],
       events: [
         {
-          name: 'handleClick',
+          name: 'contentClick',
           type: '(event: BulletinBoardData) => void',
           defaultValue: '',
           desc: {
@@ -98,7 +98,10 @@ export default {
             'en-US': 'The callback function triggered when the content of the bulletin board is clicked'
           },
           mode: ['pc'],
-          pcDemo: 'events'
+          pcDemo: 'events',
+          meta: {
+            stable: '3.20.0'
+          }
         }
       ],
       methods: [],

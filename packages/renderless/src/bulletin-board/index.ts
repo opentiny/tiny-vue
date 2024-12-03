@@ -38,5 +38,5 @@ export const computedMoreLink =
 export const handleBulletinBoardClick =
   ({ emit }) =>
   (item) => {
-    emit('handleClick', item)
+    emit('contentClick', item)
   }

@@ -1,5 +1,5 @@
 <template>
-  <tiny-bulletin-board :tab-title="tabTitle" :data="data" @handleClick="handleClick"></tiny-bulletin-board>
+  <tiny-bulletin-board :tab-title="tabTitle" :data="data" @contentClick="contentClick"></tiny-bulletin-board>
 </template>
 
 <script>
@@ -94,9 +94,9 @@ export default {
     }
   },
   methods: {
-    handleClick(item) {
+    contentClick(item) {
       TinyModal.message({
-        message: 'click 事件：内容为' + item.text,
+        message: '触发 contentClick 事件：内容为' + item.text,
         status: 'info'
       })
     }
