@@ -40,6 +40,11 @@ export default defineComponent({
         }
       })
       common.renderHeader()
+
+      const searchBox = document.querySelector('.search-box')
+      if (searchBox) {
+        searchBox.style.display = 'block'
+      }
     })
     const { designConfig, currentThemeKey } = useTheme()
 

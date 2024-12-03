@@ -35,6 +35,10 @@ b, strong {
   left: 360px;
 }
 
+.DocSearch-Container {
+  z-index: 1000;
+}
+
 .DocSearch-Button {
   border-radius: 6px;
   transition: 0.4s
