@@ -926,6 +926,7 @@ export default defineComponent({
   width: 200px;
   height: calc(100vh - 280px);
   padding-top: 16px;
+  overflow: hidden;
 
   .tiny-anchor__dot {
     max-height: calc(100vh - 300px);
@@ -995,7 +996,7 @@ export default defineComponent({
   :deep(.tiny-anchor__affix) {
     top: unset !important;
     overflow-y: auto;
-    max-height: calc(100vh - 230px);
+    max-height: calc(100vh - 300px);
   }
 
   :deep(.tiny-anchor-link) {
