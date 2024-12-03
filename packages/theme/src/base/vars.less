@@ -339,7 +339,6 @@
   --tv-color-bg-hover-secondary: var(--tv-base-color-common-1); // #fff 次要背景色悬浮色 / 穿梭框头部/折叠面板背景色
   --tv-color-bg-hover-1: var(--tv-base-color-brand-2); // #deecff  浅蓝色场景：悬浮背景色-日期悬浮 /选块悬浮态背景色
   --tv-color-bg-hover-2: var(--tv-base-color-common-5); // #e6e6e6 轮播箭头背景悬浮色
-  --tv-color-bg-hover-3: var(--tv-base-color-brand-1); // #f0f7ff 悬浮背景色
   --tv-color-bg-hover-dark:var(--tv-base-color-common-11); // #191919 深色背景悬浮色 （这个颜色待和设计师确认，原本tab用的#191919）
 
   /* 2.6.4 active/选中 */
@@ -400,7 +399,8 @@
   --tv-border-radius-sm: 4px;
   --tv-border-radius-md: 6px; // 默认
   --tv-border-radius-lg: 8px;
-  --tv-border-radius-round: 999px; // 50% 会造成椭圆，避免使用。 999px是 tiny3的做法。 
+  --tv-border-radius-round: 999px; // 50% 会造成椭圆，避免使用。 
+  --tv-border-radius-brand: var(--tv-border-radius-round); // 品牌相关。用于圆角，按钮、分页等场景 
 
   /** 5. 边框  **/
   --tv-border-width: 1px;
@@ -412,6 +412,8 @@
   --tv-space-md: calc(var(--tv-space-base) * 2);
   --tv-space-lg: calc(var(--tv-space-base) * 3);
   --tv-space-xl: calc(var(--tv-space-base) * 4);
+  --tv-space-xxl: calc(var(--tv-space-base) * 6); // 内容块之间的间距
+  --tv-space-xxxl: calc(var(--tv-space-base) * 8); // 容器与容器内容的间距
   --tv-space-table-x: 4px; // 表格单元格水平间距基准
   --tv-space-table-y: 4px; // 表格单元格垂直间距基准
 

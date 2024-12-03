@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TreeMenu from './src/index'
-import '@opentiny/vue-theme/tree-menu/index.less'
+import TreeMenu from './src/pc.vue'
 import { version } from './package.json'
 
 /* istanbul ignore next */

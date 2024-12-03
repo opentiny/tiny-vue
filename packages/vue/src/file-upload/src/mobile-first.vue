@@ -673,7 +673,7 @@ export default defineComponent({
       <div {...attrs} data-tag="tiny-file-upload" class={isDragSingle ? 'relative inline-block' : ''}>
         {getDefaultTitle({ listType, title, showTitle, displayOnly, mode })}
         {noticePC}
-        {isText ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
+        {isText && !displayOnly ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
         {noticeMF}
         {uploadList}
         {previewComponent}

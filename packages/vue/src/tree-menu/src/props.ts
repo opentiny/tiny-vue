@@ -1,6 +1,5 @@
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
 import { iconSearch } from '@opentiny/vue-icon'
+import { $props } from '@opentiny/vue-common'
 
 export const treeMenuProps = {
   ...$props,
@@ -95,11 +94,3 @@ export const treeMenuProps = {
     default: false
   }
 }
-
-export default defineComponent({
-  name: $prefix + 'TreeMenu',
-  props: treeMenuProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

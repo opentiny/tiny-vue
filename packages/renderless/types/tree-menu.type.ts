@@ -1,5 +1,5 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
-import type { treeMenuProps } from '@/tree-menu/src'
+import type { treeMenuProps } from '@/tree-menu/src/props.ts'
 import type {
   initData,
   setMenuKey,

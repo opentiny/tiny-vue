@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-grid",
   "type": "module",
-  "version": "3.19.0",
+  "version": "3.20.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-dropdown": "workspace:~",
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",

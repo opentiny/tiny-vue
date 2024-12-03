@@ -865,6 +865,11 @@
     "type": "module",
     "exclude": false
   },
+  "DesignSmb": {
+    "path": "design/smb/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "DialogBox": {
     "path": "vue/src/dialog-box/index.ts",
     "type": "component",
@@ -3059,11 +3064,6 @@
     "mode": [
       "pc"
     ]
-  },
-  "TreeMenuPc": {
-    "path": "vue/src/tree-menu/src/pc.vue",
-    "type": "template",
-    "exclude": false
   },
   "TreePc": {
     "path": "vue/src/tree/src/pc.vue",

@@ -289,8 +289,12 @@ export default {
         },
         {
           name: 'step',
-          type: 'number',
+          type: 'number | string | IStepStrategy',
+          typeAnchorName: 'IStepStrategy',
           defaultValue: '1',
+          meta: {
+            stable: '3.20.0'
+          },
           desc: {
             'zh-CN': '步长',
             'en-US': 'Increment or decrement value each time'
@@ -309,13 +313,13 @@ export default {
             'en-US': 'Whether to enter only multiples of step'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'step',
+          pcDemo: 'about-step',
           mobileDemo: 'step',
           mfDemo: ''
         },
         {
           name: 'strict-input',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '严格控制输入，包含合法性输入与小数点长度验证，不允许输入超过精度设置',
@@ -511,6 +515,16 @@ interface INumericFormat {
   fractionGroupSize: 0, // 小数部分分组间隔
   fractionGroupSeparator: '', // 小数分组分隔符
   suffix: '@' // 后置标识
+}
+      `
+    },
+    {
+      name: 'IStepStrategy',
+      type: 'interface',
+      code: `
+interface IStepStrategy {
+  value: number | string, // 5 或者 '5'
+  mode: 'strictly' | 'restore'
 }
       `
     }

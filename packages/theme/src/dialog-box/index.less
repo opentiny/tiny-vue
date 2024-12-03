@@ -59,7 +59,7 @@
   }
 
   & &__header {
-    padding: 32px 32px 24px;
+    padding: var(--tv-DialogBox-padding) var(--tv-DialogBox-padding) 24px;
     background: var(--tv-DialogBox-bg-color);
     font-weight: var(--tv-DialogBox-head-title-font-weight);
     display: flex;
@@ -116,7 +116,7 @@
 
   & &__body {
     text-align: left;
-    padding: 0 32px;
+    padding: 0 var(--tv-DialogBox-padding);
     color: var(--tv-DialogBox-body-text-color);
     font-size: var(--tv-DialogBox-body-font-size);
 
@@ -135,7 +135,7 @@
   }
 
   & &__footer {
-    padding: 24px 32px 32px;
+    padding: 24px var(--tv-DialogBox-padding) var(--tv-DialogBox-padding);
     text-align: right;
     box-sizing: border-box;
 
@@ -162,12 +162,12 @@
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__footer {
       width: calc(100% - 64px);
-      margin-left: 32px;
-      margin-right: 32px;
+      margin-left: var(--tv-DialogBox-padding);
+      margin-right: var(--tv-DialogBox-padding);
     }
 
     .@{dialog-box-prefix-cls}__header {
-      padding: 32px 0 20px;
+      padding: var(--tv-DialogBox-padding) 0 24px;
       border-bottom: 1px solid var(--tv-DialogBox-head-divider-border-color);
 
       &btn {
@@ -180,11 +180,11 @@
       overflow: auto;
       color: var(--tv-DialogBox-drawer-body-color);
       border-bottom: 1px solid var(--tv-DialogBox-drawer-divider-border-color);
-      padding: 0 32px;
+      padding: 0 var(--tv-DialogBox-padding);
     }
 
     .@{dialog-box-prefix-cls}__footer {
-      padding: 24px 0 32px;
+      padding: 24px 0 var(--tv-DialogBox-padding);
       text-align: right;
     }
   }
