@@ -103,7 +103,7 @@ themeTool.changeTheme(
 )
 ```
 
-<!-- ## OLD主题配置
+## OLD主题配置
 
 我们不建议用户继续使用旧主题，但对于历史项目，我们提供一组旧主题的`CSS变量`,需要用户在工程中适配。
 
@@ -117,7 +117,7 @@ const themeTool = new TinyThemeTool(tinyOldTheme)
 
 <div class="warning custom-block">
    旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本。
-</div> -->
+</div>
 
 ## 历史版本的主题配置
 
