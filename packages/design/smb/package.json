@@ -1,0 +1,8 @@
+{
+  "name": "@opentiny/vue-design-smb",
+  "version": "3.20.0",
+  "main": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "license": "MIT"
+}
