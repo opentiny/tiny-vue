@@ -25,14 +25,14 @@
               :target="subItem.target"
               class="tiny-bulletin-board__textTitle"
               rel="noopener noreferrer"
-              @click.native="handleBulletinBoardClick(subItem)"
+              @click="handleBulletinBoardClick(subItem)"
             >
               {{ subItem.text }}
               <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
                 <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}
               </span>
             </a>
-            <span v-else class="tiny-bulletin-board__textTitle" @click.native="handleBulletinBoardClick(subItem)">
+            <span v-else class="tiny-bulletin-board__textTitle" @click="handleBulletinBoardClick(subItem)">
               {{ subItem.text }}
               <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
                 <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}

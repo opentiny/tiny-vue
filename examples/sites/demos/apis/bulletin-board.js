@@ -90,7 +90,7 @@ export default {
       ],
       events: [
         {
-          name: 'click',
+          name: 'handleClick',
           type: '(event: BulletinBoardData) => void',
           defaultValue: '',
           desc: {
