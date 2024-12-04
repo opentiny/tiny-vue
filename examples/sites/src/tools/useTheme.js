@@ -16,7 +16,7 @@ import oceanicIcon from '@/assets/images/oceanic-icon.png'
 
 import starrySky from '@/assets/images/starry-sky.png'
 import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
-import TinyThemeTool, { tinyOldTheme } from '@opentiny/vue-theme/theme-tool'
+import TinyThemeTool, { tinyOldTheme, tinyAuroraTheme } from '@opentiny/vue-theme/theme-tool'
 
 const isEn = appData.lang === 'enUS'
 
@@ -104,6 +104,11 @@ const watchRoute = () => {
       if (!loadedTheme && val === 'old-theme') {
         const themeTool = new TinyThemeTool()
         themeTool.changeTheme(tinyOldTheme)
+        loadedTheme = true
+      }
+      if (!loadedTheme && val === 'aurora-theme') {
+        const themeTool = new TinyThemeTool()
+        themeTool.changeTheme(tinyAuroraTheme)
         loadedTheme = true
       }
     }
