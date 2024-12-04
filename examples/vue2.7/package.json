@@ -37,7 +37,7 @@
     "postcss": "^8.4.16",
     "tailwindcss": "^3.2.4",
     "tailwindcss-vite-plugin": "^0.0.3",
-    "typescript": "^5.0.0",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-checker": "^0.5.2",
     "vite-plugin-dynamic-import": "^1.2.4",

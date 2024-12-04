@@ -193,7 +193,7 @@
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
-    "typescript": "^5.0.0",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vue": "^3.4.23",
     "vue-tsc": "^1.6.5"
@@ -215,7 +215,7 @@
       "regenerator-runtime": "0.13.9",
       "tailwindcss@3": "3.2.4",
       "tslib": "2.4.0",
-      "typescript": "^5.0.0",
+      "typescript": "catalog:",
       "vue-i18n@8": "8.27.2",
       "vue-i18n@9": "9.2.2",
       "vue-router@3": "3.6.5",

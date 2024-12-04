@@ -74,7 +74,7 @@
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
-    "typescript": "^5.0.2",
+    "typescript": "catalog:",
     "unocss": "^0.39.3",
     "unplugin-vue-components": "^0.19.9",
     "uslug": "^1.0.4",
