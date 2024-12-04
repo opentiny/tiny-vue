@@ -551,7 +551,7 @@ type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'i
       name: 'IPlacementType',
       type: 'type',
       code: `        
-type IPlacementType =  'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
+type IPlacementType =  'bottom-start' | 'bottom-end'
 `
     }
   ]
