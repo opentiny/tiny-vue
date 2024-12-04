@@ -33,6 +33,7 @@ function concatIndex(cb) {
 // 2、拼接所有组件的 old-theme.less 到一起   old-theme-index.less
 function concatOldTheme(cb) {
   _concatFiles('../src/*/old-theme.less', '../src/old-theme-index.less')
+  _concatFiles('../src/*/aurora-theme.less', '../src/aurora-theme-index.less')
   cb()
 }
 // 3、编译
@@ -41,7 +42,8 @@ gulp.task('compile', () => {
     .src([
       `${source}/**/index.less`, // 编译默认主题
       `${source}/index.less`,
-      `${source}/old-theme-index.less` // 编译旧主题
+      `${source}/old-theme-index.less`, // 编译旧主题
+      `${source}/aurora-theme-index.less` // 编译aurora主题
     ])
     .pipe(svgInline(svgInlineOption))
     .pipe(less())
