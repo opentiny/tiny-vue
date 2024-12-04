@@ -176,7 +176,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
   let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
   // globalDesignConfig 可能是响应式对象，比如 computed
-  globalDesignConfig = globalDesignConfig.value || globalDesignConfig
+  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
   const utils = {
