@@ -43,9 +43,13 @@ jobs:
         with:
           source: ./examples/sites/dist
           destination: ./_site
-      - run: sudo chmod -R 777 ./dist
-      - run: cp ./examples/sites/dist/assets/_commonjsHelpers*.js ./_site/assets
-      - run: cp ./_site/index.html ./_site/404.html
+      - name: Repair build artifact
+        run: |
+          sudo chmod -R 777 ./_site
+          cp ./examples/sites/dist/assets/_commonjsHelpers*.js ./_site/assets
+          cp ./_site/index.html ./_site/404.html
+          sed -i 's/\/static/\/tiny-vue\/static/' ./_site/static/js/design-common.js
+          sh ./examples/sites/dist/cp-component-md.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
