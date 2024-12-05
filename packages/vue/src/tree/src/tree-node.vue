@@ -121,7 +121,7 @@
             <tiny-input
               v-model="action.label"
               ref="editInput"
-              autofocus
+              :autofocus="true"
               clearable
               @keyup.enter="saveEdit($event)"
               @blur="saveEdit($event)"
