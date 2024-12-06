@@ -13,7 +13,7 @@ import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
 import { addClass, removeClass } from '../common/deps/dom'
 
 const getEleMentBySelect = (parent, selector) =>
-  selector?.startsWith('#') ? document.getElementById('selector') : parent.querySelector(selector)
+  selector?.startsWith('#') ? document.getElementById(selector.slice(1)) : parent.querySelector(selector)
 
 export const setFixAnchor =
   ({ vm, props }: Pick<IAnchorRenderlessParams, 'vm' | 'props'>) =>
