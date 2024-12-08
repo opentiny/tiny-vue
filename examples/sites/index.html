@@ -21,24 +21,13 @@
       window.DEPLOY_URL = ''
       window.process = { env: {} }
     </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
   </head>
 
   <body class="of-hidden">
     <div id="header"></div>
     <app-root></app-root>
     <div id="app" class="wp100 hp100 pt60 of-hidden"></div>
-    <div class="search-box" style="display: none;"></div>
-    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script type="text/javascript">
-      docsearch({
-        appId: "AGPA5UXHMH",
-        apiKey: "5fa09fc20270efa61d68e2c2eb0f56df",
-        indexName: "opentiny",
-        container: ".search-box",
-        debug: false
-      });
-    </script>
+    <div class="search-box"></div>
     <!-- prettier-ignore -->
     <script id="tinyui-design-common" src="/static/js/design-common.js"></script>
     <script type="module" src="./src/main.js"></script>

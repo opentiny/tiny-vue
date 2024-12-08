@@ -4,7 +4,8 @@ html {
 }
 
 /* reset.css 引入后造成site官网中 b 和 strong 标签没有粗体，此处还原粗体  */
-b, strong {
+b,
+strong {
   font-weight: 700;
 }
 
@@ -22,7 +23,8 @@ b, strong {
   z-index: 1000 !important;
 }
 
-.tiny-grid td,.tiny-grid th {
+.tiny-grid td,
+.tiny-grid th {
   vertical-align: middle;
 }
 
@@ -42,7 +44,7 @@ b, strong {
 
 .DocSearch-Button {
   border-radius: 6px;
-  transition: 0.4s
+  transition: 0.4s;
 }
 
 .DocSearch-Button:hover {
