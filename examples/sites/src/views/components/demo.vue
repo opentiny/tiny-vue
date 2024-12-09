@@ -310,6 +310,12 @@ export default defineComponent({
   }
 }
 
+@media screen and (max-width: 640px) {
+  .pc-demo-container {
+    overflow: auto;
+  }
+}
+
 .pc-demo-container {
   display: flex;
   flex-direction: column;
