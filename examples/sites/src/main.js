@@ -31,10 +31,24 @@ import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import html from 'highlight.js/lib/languages/xml'
+import docsearch from '@docsearch/js'
+import '@docsearch/css'
+
+const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', html)
+
+if (envTarget === 'open') {
+  docsearch({
+    appId: 'AGPA5UXHMH',
+    apiKey: '5fa09fc20270efa61d68e2c2eb0f56df',
+    indexName: 'opentiny',
+    container: '.search-box',
+    debug: false
+  })
+}
 
 // 实验后发现，先调用一次预热一下，后续再调用会有速度的提示，因此在main中预热一下。
 setTimeout(() => {

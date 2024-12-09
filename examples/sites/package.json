@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "3.20.2",
+  "version": "3.20.3",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -47,7 +47,9 @@
     "tailwindcss": "^3.2.4",
     "vue": "^3.4.31",
     "vue-i18n": "^9.1.10",
-    "vue-router": "4.1.5"
+    "vue-router": "4.1.5",
+    "@docsearch/js": "^3.8.0",
+    "@docsearch/css": "^3.8.0"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
