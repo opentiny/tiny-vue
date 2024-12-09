@@ -33,7 +33,7 @@ import css from 'highlight.js/lib/languages/css'
 import html from 'highlight.js/lib/languages/xml'
 import docsearch from '@docsearch/js'
 import '@docsearch/css'
-import { doSearhEverySite } from './tools/docsearch'
+import { doSearchEverySite } from './tools/docsearch'
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 
@@ -51,7 +51,7 @@ docsearch({
 
 if (envTarget !== 'open') {
   // 支持本地开发和内网使用全局搜索
-  doSearhEverySite()
+  doSearchEverySite()
 }
 
 // 实验后发现，先调用一次预热一下，后续再调用会有速度的提示，因此在main中预热一下。

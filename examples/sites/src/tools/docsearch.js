@@ -11,7 +11,7 @@ const findUrlLink = (target) => {
 const isAlgoliaHitDom = (dom) =>
   dom?.className?.includes?.(HIT_CLASS) || dom?.parentElement?.className?.includes?.(HIT_CLASS)
 
-export const doSearhEverySite = () => {
+export const doSearchEverySite = () => {
   window.addEventListener('click', (event) => {
     const target = event.target
     if (isAlgoliaHitDom(target)) {
