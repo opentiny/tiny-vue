@@ -37,7 +37,7 @@ strong {
   left: 210px;
 }
 
-.DocSearch-Container {
+.DocSearch.DocSearch-Container {
   z-index: 1000;
   font-size: 14px;
 }
@@ -72,11 +72,11 @@ strong {
 }
 
 @media screen and (max-width: 768px) {
-  .DocSearch-Modal {
-    margin-top: 60px;
-  }
-
   .search-box {
     left: 230px;
+  }
+
+  .search-box .DocSearch-Button {
+    padding: 0 11px;
   }
 }
