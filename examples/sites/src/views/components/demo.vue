@@ -319,7 +319,9 @@ export default defineComponent({
 .pc-demo-container {
   display: flex;
   flex-direction: column;
-  background: #fafafa;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
   padding: 26px 18px 42px;
 
   .pc-demo {
