@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import viteDosearchPlugin from './vite-dosearch-plugin'
 import Unocss from 'unocss/vite'
 import path from 'node:path'
 import UnoCssConfig from './uno.config'
@@ -42,6 +43,7 @@ export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
   const isSaas = env.VITE_TINY_THEME === 'saas'
   const isPlus = env.VITE_APP_MODE === 'plus'
+  const isInner = env.VITE_BUILD_TARGET === 'inner'
   const demosPath = isPlus ? '../plusdocs/pc' : `./demos/${env.VITE_APP_MODE}`
   const apisPath = isPlus ? '../plusdocs/apis' : './demos/apis'
   const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(demosPath)
@@ -115,7 +117,8 @@ export default defineConfig((config) => {
       viteStaticCopy({
         targets: copyTarget
       }),
-      delStatic()
+      delStatic(),
+      isInner ? viteDosearchPlugin() : null
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
