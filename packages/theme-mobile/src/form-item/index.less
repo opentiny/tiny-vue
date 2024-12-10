@@ -38,12 +38,12 @@
 
   &--medium &__content,
   &--medium &__label {
-    line-height: var(--ti-form-item-medium-line-height, 36px);
+    line-height: 36px;
   }
 
   &--small &__content,
   &--small &__label {
-    line-height: var(--ti-form-item-small-line-height, 28px);
+    line-height: 28px;
   }
 
   &--small &__error {
@@ -52,7 +52,7 @@
 
   &--mini &__content,
   &--mini &__label {
-    line-height: var(--ti-form-item-mini-line-height, 24px);
+    line-height: 24px;
   }
 
   &--mini &__error {
@@ -73,7 +73,7 @@
     vertical-align: middle;
     float: left;
     font-size: 16px;
-    color: var(--ti-form-item-label-color, #333);
+    color: var(--ti-mobile-form-item-label-color);
     line-height: 48px;
     padding-right: 8px;
     box-sizing: border-box;
@@ -90,7 +90,7 @@
   &__content {
     line-height: 48px;
     position: relative;
-    font-size: var(--ti-form-item-label-font-size, 14px);
+    font-size: 14px;
     .clearfix();
 
     .@{input-group-prefix-cls} {
@@ -118,8 +118,8 @@
   }
 
   &__error {
-    color: var(--ti-form-item-error-color, #f5222d);
-    font-size: var(--ti-form-item-error-font-size, 12px);
+    color: var(--ti-mobile-form-item-error-color);
+    font-size: 12px;
     line-height: 1;
     padding-top: 4px;
     position: absolute;
@@ -139,7 +139,7 @@
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     .@{form-item-prefix-cls}__label:before {
       content: '*';
-      color: var(--ti-form-item-error-color, #f5222d);
+      color: var(--ti-mobile-form-item-error-color);
       margin-right: 4px;
     }
   }
@@ -149,7 +149,7 @@
     .@{input-prefix-cls}__inner:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
-      border-color: var(--ti-form-item-error-color, #f5222d);
+      border-color: var(--ti-mobile-form-item-error-color);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -160,13 +160,13 @@
     }
 
     .@{input-prefix-cls}__validateIcon {
-      color: var(--ti-form-item-error-color, #f5222d);
+      color: var(--ti-mobile-form-item-error-color);
     }
 
     .@{numeric-prefix-cls}__input-inner {
       &,
       &:focus {
-        border-color: var(--ti-form-item-error-color, #f5222d);
+        border-color: var(--ti-mobile-form-item-error-color);
       }
     }
   }

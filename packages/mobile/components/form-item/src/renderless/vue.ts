@@ -110,7 +110,7 @@ const initState = ({
     formItemSize: computed(() => props.size || state.formSize),
     isDisplayOnly: computed(() => state.formInstance.displayOnly),
     labelPosition: computed(() => state.formInstance.labelPosition),
-    hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
+    hideRequiredAsterisk: computed(() => state.formInstance?.state?.hideRequiredAsterisk),
     labelSuffix: computed(() => state.formInstance.labelSuffix),
     labelWidth: computed(() => state.formInstance.labelWidth),
     showMessage: computed(() => state.formInstance.showMessage),
@@ -120,7 +120,7 @@ const initState = ({
     isErrorInline: computed(() => api.computedIsErrorInline()),
     isErrorBlock: computed(() => api.computedIsErrorBlock()),
     disabled: computed(() => state.formInstance.disabled),
-    tooltipType: computed(() => state.formInstance.state.tooltipType)
+    tooltipType: computed(() => state.formInstance?.state?.tooltipType)
   })
 
   return state

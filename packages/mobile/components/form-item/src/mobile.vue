@@ -227,7 +227,7 @@ export default defineComponent({
       {
         props: {
           isAutoWidth: state.labelStyle && state.labelStyle.width === 'auto',
-          updateAll: state.form.labelWidth === 'auto',
+          updateAll: state.form?.labelWidth === 'auto',
           isMobile: state.mode === 'mobile'
         }
       },
@@ -249,7 +249,7 @@ export default defineComponent({
                   mouseleave: handleMouseleave
                 }
               },
-              labelSlot || label + state.form.labelSuffix
+              labelSlot || label + (state.form?.labelSuffix || '')
             )
           : null
       ]

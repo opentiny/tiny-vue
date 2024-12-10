@@ -84,7 +84,7 @@ export const computedLabelStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
 
     if (labelWidth) {
       result.width = labelWidth
@@ -103,7 +103,7 @@ export const computedValueStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
 
     if (labelWidth) {
       if (labelWidth === 'auto') {
@@ -231,7 +231,7 @@ export const getPropByPath = (obj: object, path: string, strict?: boolean) => {
 export const computedFieldValue =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   () => {
-    const model = state.form.model
+    const model = state.form?.model
 
     if (!model || !props.prop) {
       return
@@ -287,7 +287,6 @@ export const validate =
     state.validateState = VALIDATE_STATE.Validating
 
     const descriptor = {}
-
     if (rules && rules.length > 0) {
       rules.forEach((rule) => {
         delete rule.trigger
@@ -531,7 +530,7 @@ export const handleMouseenter =
 export const handleLabelMouseenter =
   ({ props, state, slots }) =>
   (e) => {
-    if (!state.form.overflowTitle || !state.form || slots.label) return
+    if (!state.form?.overflowTitle || !state.form || slots.label) return
     const label = e.target
     if (label && label.scrollWidth > label.offsetWidth) {
       state.form.showTooltip(label, props.label + state.form.labelSuffix)

@@ -12,6 +12,22 @@
 import type { PropType } from '../../../vue-common'
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+
+import type {
+  calculateNodeStyling,
+  calcTextareaHeight,
+  getInput,
+  handleInput,
+  calcIconOffset,
+  focus,
+  watchFormSelect,
+  setNativeInputValue,
+  resizeTextarea,
+  updateIconOffset,
+  hiddenPassword,
+  inputStyle
+} from './renderless'
+
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
@@ -109,6 +125,10 @@ export const inputProps = {
     type: Boolean,
     default: false
   },
+  title: {
+    type: String,
+    default: ''
+  },
   showTitle: {
     type: Boolean,
     default: false
@@ -150,21 +170,6 @@ export const inputProps = {
     type: [String, Number] as PropType<string | number | null>
   }
 }
-
-import type {
-  calculateNodeStyling,
-  calcTextareaHeight,
-  getInput,
-  handleInput,
-  calcIconOffset,
-  focus,
-  watchFormSelect,
-  setNativeInputValue,
-  resizeTextarea,
-  updateIconOffset,
-  hiddenPassword,
-  inputStyle
-} from './renderless'
 
 export interface IInputState {
   mode: string
