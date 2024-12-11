@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.12.3",
-    "unplugin-vue-components": "^0.26.0"
+    "unplugin-vue-components": "^0.26.0",
+    "vue": "~3.4.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.2.0",
