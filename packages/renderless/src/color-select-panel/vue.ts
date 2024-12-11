@@ -1,6 +1,5 @@
 import type { IColorSelectPanelProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 import { initApi, initState, initWatch } from './index'
-import { onMounted } from 'vue'
 
 export const api = [
   'state',
@@ -59,7 +58,7 @@ export const renderless = (
     onClickOutside
   }
   initWatch(state, props, hooks, utils)
-  onMounted(() => {
+  hooks.onMounted(() => {
     if (props.modelValue) {
       state.input = state.currentColor
     }

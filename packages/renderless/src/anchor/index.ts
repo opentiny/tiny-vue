@@ -12,6 +12,9 @@
 import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
 import { addClass, removeClass } from '../common/deps/dom'
 
+const getEleMentBySelect = (parent, selector) =>
+  selector?.startsWith('#') ? document.getElementById(selector.slice(1)) : parent.querySelector(selector)
+
 export const setFixAnchor =
   ({ vm, props }: Pick<IAnchorRenderlessParams, 'vm' | 'props'>) =>
   () => {
@@ -25,7 +28,7 @@ export const setFixAnchor =
 const setMarkClass = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 'props'>) => {
   const { scrollContainer } = state
   const { markClass } = props
-  const activeContentEl = scrollContainer.querySelector(`${state.currentLink}`)
+  const activeContentEl = getEleMentBySelect(scrollContainer, `${state.currentLink}`)
   if (markClass) {
     addClass(activeContentEl, markClass)
     setTimeout(() => {
@@ -95,7 +98,7 @@ const addObserver = ({ props, state }: Pick<IAnchorRenderlessParams, 'props' | '
     list.forEach((item) => {
       const link = item.link
       expandLink[link] = item
-      const linkEl = document.querySelector(link)
+      const linkEl = getEleMentBySelect(document, link)
       linkEl && intersectionObserver.observe(linkEl)
       if (item.children) {
         observer(item.children)
@@ -127,13 +130,13 @@ const setChildOffsetTop = ({ state, props }: Pick<IAnchorRenderlessParams, 'stat
   if (!props.links?.length) {
     return
   }
-  state.childOffsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
+  state.childOffsetTop = getEleMentBySelect(document, props.links[0].link)?.offsetTop || 0
 }
 
 export const getContainer =
   ({ props }: Pick<IAnchorRenderlessParams, 'props'>) =>
   (): Element =>
-    (props.containerId && document.querySelector(props.containerId)) || document.body
+    (props.containerId && getEleMentBySelect(document, props.containerId)) || document.body
 
 export const mounted =
   ({ state, api, props, nextTick }: Pick<IAnchorRenderlessParams, 'state' | 'api' | 'props' | 'nextTick'>) =>
@@ -234,7 +237,7 @@ export const linkClick =
     setMarkClass({ state, props })
 
     if (scrollContainer && scrollContainer !== document.body && !isChangeHash) {
-      const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
+      const linkEl = getEleMentBySelect(scrollContainer, item.link) as HTMLElement
       const top =
         linkEl?.getBoundingClientRect().top -
         scrollContainer.getBoundingClientRect().top +

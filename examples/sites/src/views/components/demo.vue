@@ -310,10 +310,18 @@ export default defineComponent({
   }
 }
 
+@media screen and (max-width: 640px) {
+  .pc-demo-container {
+    overflow: auto;
+  }
+}
+
 .pc-demo-container {
   display: flex;
   flex-direction: column;
-  background: #fafafa;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
   padding: 26px 18px 42px;
 
   .pc-demo {
