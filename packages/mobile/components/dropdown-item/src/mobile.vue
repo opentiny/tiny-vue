@@ -99,16 +99,17 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent, directive } from '../../../vue-common'
+import { setup, defineComponent, directive } from '../../../vue-common'
 import { iconYes } from '@opentiny/vue-icon'
 import Popup from '../../popup'
 import Button from '../../button'
 import Clickoutside from '@opentiny/utils/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-item/index.less'
+import { dropdownItemProps } from './dropdown-item'
 
 export default defineComponent({
   directives: directive({ Clickoutside }),
-  props: [...props, 'modelValue', 'title', 'disabled', 'titleClass', 'options', 'icon', 'type'],
+  props: dropdownItemProps,
   components: {
     IconYes: iconYes(),
     TinyPopup: Popup,

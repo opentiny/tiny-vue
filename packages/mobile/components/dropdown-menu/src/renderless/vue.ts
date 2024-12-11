@@ -11,7 +11,6 @@
  */
 
 import type {
-  IDropdownVm,
   IDropdownMenuState,
   IDropdownMenuApi,
   IDropdownMenuProps,
@@ -23,7 +22,6 @@ import {
   updateOffset,
   clickOutside,
   getScroller,
-  useVuePopper,
   mounted,
   handleMenuItemClick,
   handleMouseenter,
@@ -64,14 +62,11 @@ export const renderless = (
 
   provide('dropdownMenuVm', vm)
   provide('multiStage', props.multiStage)
-  const dropdownVm: IDropdownVm = inject('dropdownVm')
 
   if (mode === 'mobile') {
     nextTick(() => {
       state.scroller = getScroller(vm.$refs.menu as HTMLElement)
     })
-  } else {
-    useVuePopper({ api, hooks, props, instance, state, dropdownVm, designConfig })
   }
 
   Object.assign(api, {

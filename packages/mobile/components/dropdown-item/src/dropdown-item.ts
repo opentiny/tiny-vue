@@ -47,12 +47,16 @@ export const $constants = {
 }
 
 export const dropdownItemProps = {
+  modelValue: [Number, String, Array],
   _constants: {
     type: Object,
     default: () => $constants
   },
   icon: [String, Object],
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   divided: Boolean,
   itemData: {
     type: [String, Object],

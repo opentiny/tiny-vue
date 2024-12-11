@@ -68,6 +68,9 @@ export default {
 </script>
 
 <style>
+.title-class {
+  background-color: #ddd;
+}
 .dropdownMenu {
   width: 356px;
   height: calc(100% - 0px);
