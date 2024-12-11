@@ -9,7 +9,6 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { isBrowser } from '../common/browser'
 
 export const px2percent = ({ numerator, denominator }) => parseFloat(numerator) / parseFloat(denominator)
 
@@ -173,7 +172,7 @@ export const computeOffset =
   () => {
     setTimeout(() => {
       // 防止当split组件销毁时，state为undefined导致的报错
-      if (state && isBrowser) {
+      if (state) {
         state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
         state.leftTopPane = state.totalPane * (state.offset / 100)
       }

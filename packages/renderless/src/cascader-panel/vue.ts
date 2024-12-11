@@ -36,7 +36,7 @@ import {
 } from './index'
 import { merge } from '../common/object'
 import { isEmpty } from '../cascader'
-import Store from './store'
+import Store from './store.js'
 import type {
   ICascaderPanelApi,
   ICascaderPanelProps,

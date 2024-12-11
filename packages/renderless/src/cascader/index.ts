@@ -10,7 +10,7 @@
  *
  */
 
-import browser, { isBrowser } from '../common/browser'
+import browser from '../common/browser'
 import { isNull } from '../common/type'
 import debounce from '../common/deps/debounce'
 import { isEqual } from '../common/object'
@@ -356,18 +356,17 @@ export const focusFirstNode =
 export const computePresentText =
   ({ props, state }: { props: ICascaderProps; state: ICascaderState }) =>
   () => {
-    if (isBrowser) {
-      if (!isEmpty(state.checkedValue)) {
-        const node = state.panel.getNodeByValue(state.checkedValue)
+    if (!isEmpty(state.checkedValue)) {
+      const node = state.panel.getNodeByValue(state.checkedValue)
 
-        if (node && (state.config.checkStrictly || node.isLeaf)) {
-          state.presentText = node.getText(props.showAllLevels, props.separator)
-          return
-        }
+      if (node && (state.config.checkStrictly || node.isLeaf)) {
+        state.presentText = node.getText(props.showAllLevels, props.separator)
+        return
       }
-      state.inputValue = null
-      state.presentText = null
     }
+
+    state.inputValue = null
+    state.presentText = null
   }
 
 export const computePresentTags =

@@ -8,16 +8,8 @@
  * @author Wilson Page <wilsonpage@me.com>
  * @author Kornel Lesinski <kornel.lesinski@ft.com>
  */
-import { isBrowser } from '../../browser'
 
-const RAF = (function () {
-  if (isBrowser) {
-    return window.requestAnimationFrame.bind(window)
-  }
-  return function (callback) {
-    setTimeout(() => callback(Date.now()), 1000 / 60)
-  }
-})()
+const RAF = window.requestAnimationFrame
 
 const scheduleFlush = (fastdom) => {
   if (!fastdom.scheduled) {
@@ -70,7 +62,6 @@ class FastDom {
 
   runTasks(tasks) {
     let task
-    // eslint-disable-next-line no-cond-assign
     while ((task = tasks.shift())) task()
   }
 

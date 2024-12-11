@@ -33,7 +33,6 @@ import {
 import { getToken, initService } from '../file-upload'
 import { formatFileSize } from '../common/string'
 import { getApi } from '../file-upload/vue'
-import { isBrowser } from '../common/browser'
 
 export const api = [
   't',
@@ -66,7 +65,7 @@ export const renderless = (
 ): IUploadListApi => {
   const api = { getApi } as IUploadListApi
   parent = inject('uploader').$children[0]
-  const constants = isBrowser ? (parent.$constants as IFileUploadConstants) : null
+  const constants = parent.$constants as IFileUploadConstants
   const $service = initService({ props, service })
   const { current } = useBreakpoint()
 

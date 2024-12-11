@@ -1,5 +1,3 @@
-import { isBrowser } from '../common/browser'
-
 const DEFAULT_DURATION = 200
 
 // 触发惯性滑动条件:
@@ -42,7 +40,6 @@ export const setRollerStyle =
 export const onTouchStart =
   ({ state, props, touch, vm }) =>
   (event) => {
-    if (!isBrowser) return
     touch.start(event)
     if (state.moving) {
       const dom = vm.$refs.roller

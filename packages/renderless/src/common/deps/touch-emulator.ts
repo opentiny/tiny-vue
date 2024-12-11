@@ -1,19 +1,16 @@
-import { isBrowser } from '../browser'
-
 let emulated = false
 let initiated = false
 let eventTarget = null
 let mouseTarget = null
 
-const matches = isBrowser ? Element.prototype.matches : null
+const matches = Element.prototype.matches
 
 const closest = (el, s) => {
-  if (isBrowser) {
-    do {
-      if (matches.call(el, s)) return el
-      el = el.parentElement || el.parentNode
-    } while (el !== null && el.nodeType === 1)
-  }
+  do {
+    if (matches.call(el, s)) return el
+    el = el.parentElement || el.parentNode
+  } while (el !== null && el.nodeType === 1)
+
   return null
 }
 
@@ -114,12 +111,11 @@ const touchEmulator = () => {
 }
 
 const emulate = () => {
-  if (isBrowser) {
-    const supportTouch = 'ontouchstart' in window
-    if (!emulated && !supportTouch) {
-      emulated = true
-      touchEmulator()
-    }
+  const supportTouch = 'ontouchstart' in window
+
+  if (!emulated && !supportTouch) {
+    emulated = true
+    touchEmulator()
   }
 }
 

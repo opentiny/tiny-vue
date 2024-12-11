@@ -14,7 +14,6 @@ import { on, off, isDisplayNone, isServer } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
-import { isBrowser } from '../browser'
 
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
@@ -377,18 +376,17 @@ class Popper {
     this._options.modifierFns = modifiers.map((modifier) => {
       return this[modifier]
     })
+    this._popper.setAttribute('x-placement', this._options.placement)
 
-    if (isBrowser) {
-      this._popper.setAttribute('x-placement', this._options.placement)
-      this.state.position = this._getPopperPositionByRefernce(this._reference)
-      setStyle(this._popper, { position: this.state.position, top: 0 })
-      if (this._popper) {
-        this._popper.popperVm = this
-        resizeOb && resizeOb.observe(this._popper)
-      }
-      this.update()
-      this._setupEventListeners()
+    this.state.position = this._getPopperPositionByRefernce(this._reference)
+
+    setStyle(this._popper, { position: this.state.position, top: 0 })
+    if (this._popper) {
+      this._popper.popperVm = this
+      resizeOb && resizeOb.observe(this._popper)
     }
+    this.update()
+    this._setupEventListeners()
   }
 
   destroy() {
