@@ -90,7 +90,7 @@ const screenfull = {
 
       this.on('change', onFullscreenEntered)
 
-      element = element || (typeof document !== 'undefined' ? document.documentElement : null)
+      element = element || (isBrowser ? document.documentElement : null)
 
       if (element && fullscreenEvents && element[fullscreenEvents.requestFullscreen]) {
         const promiseReturn = element[fullscreenEvents.requestFullscreen](options)
@@ -117,7 +117,7 @@ const screenfull = {
 
       this.on('change', onFullscreenExit)
 
-      if (typeof document !== 'undefined' && fullscreenEvents && document[fullscreenEvents.exitFullscreen]) {
+      if (isBrowser && fullscreenEvents && document[fullscreenEvents.exitFullscreen]) {
         const promiseReturn = document[fullscreenEvents.exitFullscreen]()
 
         if (promiseReturn instanceof Promise) {
@@ -140,14 +140,14 @@ const screenfull = {
   on(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName && typeof document !== 'undefined') {
+    if (eventName && isBrowser) {
       on(document, eventName, callback)
     }
   },
   off(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName && typeof document !== 'undefined') {
+    if (eventName && isBrowser) {
       off(document, eventName, callback)
     }
   },
@@ -155,7 +155,7 @@ const screenfull = {
 }
 
 // 处理屏幕全屏状态的方法
-if (typeof document !== 'undefined') {
+if (isBrowser) {
   Object.defineProperties(screenfull, {
     isFullscreen: {
       get() {
