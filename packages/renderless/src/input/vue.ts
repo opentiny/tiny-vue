@@ -416,6 +416,10 @@ export const renderless = (
       api.setShowMoreBtn(true)
       on(window, 'resize', api.setShowMoreBtn)
     }
+
+    if (vm.$attrs.autofocus) {
+      api.focus()
+    }
   })
 
   onBeforeUnmount(() => {
