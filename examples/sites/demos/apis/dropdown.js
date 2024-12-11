@@ -371,7 +371,10 @@ export default {
             'en-US': 'Menu pop-up location '
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          pcDemo: 'placement',
+          meta: {
+            experimental: '3.21.0'
+          }
         },
         {
           name: 'popper-class',

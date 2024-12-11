@@ -14,6 +14,7 @@
 @import './vars.less';
 
 @dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
+@dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{dropdown-item-prefix-cls} {
@@ -157,11 +158,11 @@
 }
 
 /* 右侧展开 */
-.tiny-dropdown-menu[x-placement='bottom-start'],
-.tiny-dropdown-menu[x-placement='top-start'] {
+.@{dropdown-menu-prefix-cls}[x-placement='bottom-start'],
+.@{dropdown-menu-prefix-cls}[x-placement='top-start'] {
   &:has(.has-children) {
     &,
-    .tiny-dropdown-menu {
+    .@{dropdown-menu-prefix-cls} {
       & > li:not(.has-children) .@{dropdown-item-prefix-cls}__content {
         margin-left: 0;
       }
