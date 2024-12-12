@@ -3,8 +3,8 @@
     <div class="option-row">
       <span class="tip">选择版型：</span>
       <tiny-radio-group v-model="pattern">
-        <tiny-radio label="default">默认:default</tiny-radio>
-        <tiny-radio label="classic">经典:classic</tiny-radio>
+        <tiny-radio label="default" v-model="pattern">默认:default</tiny-radio>
+        <tiny-radio label="classic" v-model="pattern">经典:classic</tiny-radio>
       </tiny-radio-group>
     </div>
     <tiny-container :pattern="pattern">
