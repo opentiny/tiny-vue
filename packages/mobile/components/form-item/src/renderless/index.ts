@@ -18,7 +18,6 @@ import { isNull } from '@opentiny/utils/type'
 import debounce from '@opentiny/utils/deps/debounce'
 import type {
   IFormItemRenderlessParams,
-  IFormInstance,
   IFormItemDisplayedValueParam,
   IFormItemRule,
   IFormItemTrigger,
@@ -80,11 +79,11 @@ export const computedLabelStyle =
   (): IFormItemLabelStyle => {
     const result = { width: '' }
 
-    if (state.form?.labelPosition === POSITION.Top) {
+    if (state.formInstance?.labelPosition === POSITION.Top) {
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
+    const labelWidth = props.labelWidth || state.formInstance?.state?.labelWidth
 
     if (labelWidth) {
       result.width = labelWidth
@@ -98,12 +97,12 @@ export const computedValueStyle =
   (): { width: string } => {
     const result = { width: '' }
 
-    if (state.form?.labelPosition === POSITION.Top) {
+    if (state.formInstance?.labelPosition === POSITION.Top) {
       result.width = '100%'
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
+    const labelWidth = props.labelWidth || state.formInstance?.state?.labelWidth
 
     if (labelWidth) {
       if (labelWidth === 'auto') {
@@ -122,7 +121,7 @@ export const computedContentStyle =
     const result: StyleValue = {}
     const label = props.label
 
-    if (state.form.labelPosition === POSITION.Top || state.form.inline) {
+    if (state.formInstance.labelPosition === POSITION.Top || state.formInstance.inline) {
       return result
     }
 
@@ -130,12 +129,12 @@ export const computedContentStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.formInstance.state.labelWidth
 
     if (labelWidth === 'auto') {
       if (props.labelWidth === 'auto') {
         result.marginLeft = state.computedLabelWidth
-      } else if (state.form.state.labelWidth === 'auto') {
+      } else if (state.formInstance.state.labelWidth === 'auto') {
         result.marginLeft = state.formInstance.state.autoLabelWidth
       }
     } else {
@@ -143,25 +142,6 @@ export const computedContentStyle =
     }
 
     return result
-  }
-
-export const computedForm =
-  ({ constants, vm, state }: Pick<IFormItemRenderlessParams, 'constants' | 'vm' | 'state'>) =>
-  (): IFormInstance | null => {
-    const { FORM_NAME, FORM_ITEM_NAME } = constants
-    let parent = vm.$parent?.$parent as IFormInstance | null
-    let parentName = parent?.$options?.componentName
-
-    while (parent && parentName !== FORM_NAME) {
-      if (parentName === FORM_ITEM_NAME) {
-        state.isNested = true
-      }
-
-      parent = parent?.$parent as IFormInstance | null
-      parentName = parent?.$options?.componentName
-    }
-
-    return parent
   }
 
 export const computedIsRequired =
@@ -231,7 +211,7 @@ export const getPropByPath = (obj: object, path: string, strict?: boolean) => {
 export const computedFieldValue =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   () => {
-    const model = state.form?.model
+    const model = state.formInstance?.model
 
     if (!model || !props.prop) {
       return
@@ -337,7 +317,7 @@ export const resetField =
     state.validateState = ''
     state.validateMessage = ''
 
-    let model = state.form.model || {}
+    let model = state.formInstance.model || {}
     let value = state.fieldValue
     let path = props.prop || ''
 
@@ -371,7 +351,7 @@ export const resetField =
 export const getRules =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemRule[] => {
-    let formRules = state.form?.rules || {}
+    let formRules = state.formInstance?.rules || {}
     const selfRules = props.rules as IFormItemRule[]
     const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
@@ -506,7 +486,7 @@ export const wrapValidate = ({
 export const handleMouseenter =
   ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
   (e): void => {
-    if (!state.isDisplayOnly || !state.typeName || !state.form) return
+    if (!state.isDisplayOnly || !state.typeName || !state.formInstance) return
     const dom = e.target
     const text = dom.textContent
     const font = window.getComputedStyle(dom).font
@@ -523,22 +503,22 @@ export const handleMouseenter =
     }
 
     if (res.o || overHeight) {
-      state.form.showTooltip(dom, state.displayedValue)
+      state.formInstance.showTooltip(dom, state.displayedValue)
     }
   }
 
 export const handleLabelMouseenter =
   ({ props, state, slots }) =>
   (e) => {
-    if (!state.form?.overflowTitle || !state.form || slots.label) return
+    if (!state.formInstance?.overflowTitle || !state.formInstance || slots.label) return
     const label = e.target
     if (label && label.scrollWidth > label.offsetWidth) {
-      state.form.showTooltip(label, props.label + state.form.labelSuffix)
+      state.formInstance.showTooltip(label, props.label + state.formInstance.labelSuffix)
     }
   }
 
 export const handleMouseleave = (state: IFormItemRenderlessParams['state']) => (): void => {
-  state.form && state.form.hideTooltip()
+  state.formInstance && state.formInstance.hideTooltip()
 }
 
 export const getDisplayedValue =

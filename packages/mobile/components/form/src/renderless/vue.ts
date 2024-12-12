@@ -108,7 +108,7 @@ export const renderless = (
 
   api.created()
 
-  provide('form', parent)
+  provide('form', vm)
 
   provide('showAutoWidth', state.showAutoWidth)
 
