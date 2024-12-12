@@ -85,7 +85,7 @@ export const watchVisible =
     'api' | 'constants' | 'emit' | 'nextTick' | 'parent' | 'props' | 'vm' | 'state'
   >) =>
   (val: boolean): void => {
-    const el = parent.$el
+    const el = vm.$el
 
     if (props.lockScroll) {
       val ? api.showScrollbar() : api.hideScrollbar()
@@ -137,7 +137,7 @@ export const mounted =
     }
 
     if (props.visible) {
-      const el = parent.$el
+      const el = vm.$el
 
       api.open()
 
@@ -286,20 +286,20 @@ const findPopoverComponent = ({
   return componentList
 }
 
-const closeAllPopover = (parent: IDialogBoxRenderlessParams['parent']) => {
-  findPopoverComponent({ vm: parent, componentList: [] }).forEach((component) => {
+const closeAllPopover = (vm: IDialogBoxRenderlessParams['vm']) => {
+  findPopoverComponent({ vm, componentList: [] }).forEach((component) => {
     component.state.visible = false
   })
 }
 
 export const handleDrag =
-  ({ parent, props, state, emit }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit'>) =>
+  ({ parent, props, state, emit }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit' | 'vm'>) =>
   (event: MouseEvent): void => {
     if (!props.draggable) {
       return
     }
 
-    let modalBoxElem = parent.$el.querySelector('.tiny-dialog-box') as HTMLDivElement
+    let modalBoxElem = vm.$el.querySelector('.tiny-dialog-box') as HTMLDivElement
     event.preventDefault()
 
     let demMousemove = document.onmousemove
@@ -313,7 +313,7 @@ export const handleDrag =
 
       if (!state.move) {
         emit('drag-start', event)
-        closeAllPopover(parent)
+        closeAllPopover(vm)
         state.move = true
       }
 
