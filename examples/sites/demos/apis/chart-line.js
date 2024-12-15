@@ -66,6 +66,18 @@ export default {
           pcDemo: ''
         },
         {
+          name: 'area',
+          type: 'boolean',
+          defaultValue: 'false',
+          typeAnchorName: 'area',
+          desc: {
+            'zh-CN': '折线面积图',
+            'en-US': 'Line area chart'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
           name: 'silent',
           type: 'boolean',
           defaultValue: 'false',
@@ -359,6 +371,13 @@ export default {
       type: 'interface',
       code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>false</code></p>
 <p data-v-md-line="3">说明：折线图是否开启平滑曲线</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'area',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">默认值：<code>false</code></p>
+<p data-v-md-line="3">说明：折线图显示为折线面积图</p>
 </div></div></div></td></tr></div>`
     },
     {
