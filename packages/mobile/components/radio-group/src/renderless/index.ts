@@ -11,7 +11,7 @@
  */
 
 import type { IRadioGroupRenderlessParams } from '../radio-group'
-import { KEY_CODE } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/mobile-utils'
 
 export const handleKeydown =
   (parent: IRadioGroupRenderlessParams['parent']) =>

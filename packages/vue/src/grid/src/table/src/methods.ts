@@ -563,8 +563,8 @@ const Methods = {
     return result
   },
   hasRowChange(row, field) {
-    const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig = {} } = this
-    const { insertChanged = false } = editConfig
+    const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig } = this
+    const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     const rowId = getRowid(this, row)
     let originRow

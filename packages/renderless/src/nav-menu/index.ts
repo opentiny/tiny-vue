@@ -23,7 +23,7 @@ import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
 import { on, off } from '../common/deps/dom'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { isBrowser } from '../common/browser'
 
 const { nextZIndex } = PopupManager

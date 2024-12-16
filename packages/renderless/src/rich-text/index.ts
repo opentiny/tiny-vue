@@ -1,5 +1,5 @@
 import { extend } from '../common/object'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 import { getToolbarTips, defaultOptions } from './options'
 import registerTableModule from './table-module'

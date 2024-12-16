@@ -1,12 +1,24 @@
 import { extend } from '../common/object'
 import { isNull } from '../common/type'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =
-  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }) =>
+  ({
+    api,
+    emit,
+    props,
+    service,
+    state,
+    FluentEditor,
+    UploaderDfls,
+    defaultOptions,
+    vm,
+    useBreakpoint,
+    simpleToolbar
+  }) =>
   () => {
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler

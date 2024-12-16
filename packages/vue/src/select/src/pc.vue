@@ -37,17 +37,12 @@
     @click="toggleMenu"
     v-clickoutside="handleClose"
   >
+    <!-- tiny新增：title 简化处理 -->
     <div
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
-      :title="
-        multiple && !state.selectDisabled && state.selected.length
-          ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
-          : !multiple && state.selectDisabled
-            ? state.selectedLabel
-            : ''
-      "
+      :title="state.displayOnlyContent"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -486,7 +481,7 @@
           </template>
 
           <tiny-scrollbar
-            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType)"
+            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType) && !(state.isDisplayOnly && options)"
             ref="scrollbar"
             show
             tag="ul"

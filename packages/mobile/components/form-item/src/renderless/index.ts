@@ -10,12 +10,12 @@
  *
  */
 
-import { POSITION, VALIDATE_STATE } from '@opentiny/utils'
-import { omitText } from '@opentiny/utils/string'
-import { merge } from '@opentiny/utils/object'
-import Validator from '@opentiny/utils/validate'
-import { isNull } from '@opentiny/utils/type'
-import debounce from '@opentiny/utils/deps/debounce'
+import { POSITION, VALIDATE_STATE } from '@opentiny/mobile-utils'
+import { omitText } from '@opentiny/mobile-utils/string'
+import { merge } from '@opentiny/mobile-utils/object'
+import Validator from '@opentiny/mobile-utils/validate'
+import { isNull } from '@opentiny/mobile-utils/type'
+import debounce from '@opentiny/mobile-utils/deps/debounce'
 import type {
   IFormItemRenderlessParams,
   IFormItemDisplayedValueParam,

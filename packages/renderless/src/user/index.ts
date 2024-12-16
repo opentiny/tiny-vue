@@ -14,7 +14,7 @@ import debounce from '../common/deps/debounce'
 import { toDateStr } from '../common/date'
 import { toJsonStr } from '../common/object'
 import { toJson } from '../common/string'
-import { log } from '../common/xss'
+import { log } from '@opentiny/utils'
 
 const toLowerCase = (val) => {
   return typeof val === 'string' ? val.toLowerCase() : val

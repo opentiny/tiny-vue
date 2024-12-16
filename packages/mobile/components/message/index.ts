@@ -1,5 +1,5 @@
 import Modal from '../modal'
-import { extend } from '@opentiny/utils/object'
+import { extend } from '@opentiny/mobile-utils/object'
 import { $prefix } from '../../../vue-common'
 
 const Message = extend(true, { props: { componentName: { type: String, default: 'Message' } } }, Modal, {

@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off, isDisplayNone, isServer } from './dom'
+import { on, off, isDisplayNone } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'

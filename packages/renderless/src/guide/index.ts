@@ -1,4 +1,4 @@
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 export const createShepherd =
   ({ state, props, Shepherd, offset, designConfig }) =>

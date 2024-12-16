@@ -10,7 +10,7 @@
  *
  */
 
-import { omitText } from '@opentiny/utils/string'
+import { omitText } from '@opentiny/mobile-utils/string'
 import type {
   IInputApi,
   IInputClassPrefixConstants,

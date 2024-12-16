@@ -216,10 +216,6 @@ export const handleQueryChange =
       })
     }
 
-    if (props.renderType === constants.TYPE.Tree) {
-      return
-    }
-
     state.triggerSearch = true
 
     api.defaultOnQueryChange(value, isInput)
@@ -562,20 +558,28 @@ export const toggleCheckAll =
 export const handleFocus =
   ({ emit, props, state }) =>
   (event) => {
-    if (!state.softFocus) {
-      if (props.automaticDropdown || props.filterable || props.searchable) {
-        state.visible = true
-        state.softFocus = true
-      }
+    state.willFocusRun = true
+    state.willFocusTimer && clearTimeout(state.willFocusTimer)
 
-      emit('focus', event)
-    } else {
-      if (state.searchSingleCopy && state.selectedLabel) {
+    state.willFocusTimer = setTimeout(() => {
+      state.willFocusTimer = 0
+      if (!state.willFocusRun) return // 立即触发了blur,则不执行focus了
+
+      if (!state.softFocus) {
+        if (props.automaticDropdown || props.filterable || props.searchable) {
+          state.visible = true
+          state.softFocus = true
+        }
+
         emit('focus', event)
-      }
+      } else {
+        if (state.searchSingleCopy && state.selectedLabel) {
+          emit('focus', event)
+        }
 
-      state.softFocus = false
-    }
+        state.softFocus = false
+      }
+    }, 10)
   }
 
 export const focus =
@@ -596,6 +600,8 @@ export const blur =
 export const handleBlur =
   ({ constants, dispatch, emit, state, designConfig }) =>
   (event) => {
+    state.willFocusRun = false
+
     clearTimeout(state.timer)
     const target = event.target
 
@@ -2308,13 +2314,11 @@ export const computedOptionsAllDisabled = (state) => () =>
   state.options.filter((option) => option.visible).every((option) => option.disabled)
 
 export const computedDisabledTooltipContent =
-  ({ props, state }) =>
+  ({ state }) =>
   () => {
-    if (props.multiple) {
-      return state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(';')
-    } else {
-      return state.selected.state ? state.selected.state.currentLabel : state.selected.currentLabel
-    }
+    // tiny 新增： 仅displayOnly且传入options属性时， 不需要渲染option
+    // 禁用的tooltip内容 和 仅展示的显示内容，都应该是当前label值，共用即可！
+    return state.displayOnlyContent
   }
 
 export const computedSelectDisabled =
@@ -2391,7 +2395,7 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        state.inputPaddingRight = parseFloat(paddingRight) || 0
       }
     })
   }

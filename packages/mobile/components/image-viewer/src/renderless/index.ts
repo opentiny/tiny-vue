@@ -10,10 +10,10 @@
  *
  */
 
-import { on, off } from '@opentiny/utils/deps/dom'
-import { KEY_CODE } from '@opentiny/utils'
-import PopupManager from '@opentiny/utils/deps/popup-manager'
-import { xss } from '@opentiny/utils/xss'
+import { on, off } from '@opentiny/mobile-utils/deps/dom'
+import { KEY_CODE } from '@opentiny/mobile-utils'
+import PopupManager from '@opentiny/mobile-utils/deps/popup-manager'
+import { xss } from '@opentiny/mobile-utils/xss'
 
 const isFirefox = () => !!window.navigator.userAgent.match(/firefox/i)
 

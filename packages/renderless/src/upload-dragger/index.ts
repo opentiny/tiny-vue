@@ -18,58 +18,63 @@ export const onDragOver =
 
 export const onDrop =
   ({ emit, props, state }: Pick<IUploadDraggerRenderlessParams, 'emit' | 'props' | 'state'>) =>
-  (event: DragEvent): null | boolean | undefined => {
+  async (event) => {
     if (props.disabled || !state.uploader) {
       return
     }
 
     const accept = state.uploader.accept
+    let files = event.dataTransfer.files
+    const isDirectory = event.dataTransfer.items && event.dataTransfer.items[0].webkitGetAsEntry().isDirectory
 
+    state.uploadFiles = []
     state.dragover = false
 
-    const files = event.dataTransfer?.files
+    if (isDirectory) {
+      const fileItems = event.dataTransfer.items[0].webkitGetAsEntry()
+
+      await readFiles(fileItems, state)
+      files = state.uploadFiles
+    }
 
     if (!accept) {
       emit('file', files)
       return
     }
 
-    const notAcceptedFiles = [] as File[]
+    const notAcceptedFiles = []
 
-    // 这里用来判断拖拽的文件是否要抛出drop-error事件，并非用来判断accept过滤非法文件，在beforeUpload中处理accept过滤
-    if (files) {
-      Array.from(files).filter((file: File) => {
-        const { type, name } = file
-        const extension = name.includes('.') ? `.${name.split('.').pop()}` : ''
-        const baseType = type.replace(/\/.*$/, '')
+    ;[].slice.call(files).filter((file) => {
+      const { type, name } = file
+      const extension = name.includes('.') ? `.${name.split('.').pop()}` : ''
+      const baseType = type.replace(/\/.*$/, '')
 
-        let isValid = accept
-          .split(',')
-          .map((type) => type.trim())
-          .filter((type) => type)
-          .some((type) => {
-            if (/\..+$/.test(type)) {
-              return extension === type
-            }
+      let isValid = accept
+        .split(',')
+        .map((type) => type.trim())
+        .filter((type) => type)
+        .some((type) => {
+          if (/\..+$/.test(type)) {
+            return extension === type
+          }
 
-            if (/\/\*$/.test(type)) {
-              return baseType === type.replace(/\/\*$/, '')
-            }
+          if (/\/\*$/.test(type)) {
+            return baseType === type.replace(/\/\*$/, '')
+          }
 
-            if (/^[^/]+\/[^/]+$/.test(type)) {
-              return true
-            }
+          if (/^[^/]+\/[^/]+$/.test(type)) {
+            return true
+          }
 
-            return false
-          })
+          return false
+        })
 
-        !isValid && notAcceptedFiles.push(file)
+      !isValid && notAcceptedFiles.push(file)
 
-        return isValid
-      })
+      return isValid
+    })
 
-      notAcceptedFiles.length && state.uploader.$emit('drop-error', notAcceptedFiles)
-    }
+    notAcceptedFiles.length && state.uploader.$emit('drop-error', notAcceptedFiles)
 
     emit('file', files)
   }
@@ -79,3 +84,32 @@ export const watchDragover =
   () => {
     state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE].$emit('drag-over', state.dragover)
   }
+
+async function readFiles(directory, state) {
+  const reader = directory.createReader()
+
+  // 读取文件夹中的所有条目
+  const entries = await new Promise((resolve) => {
+    reader.readEntries((entries) => {
+      resolve(entries)
+    })
+  })
+
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i]
+
+    // 如果条目是文件，则将文件的信息添加到数组中
+    if (entry.isFile) {
+      await new Promise((resolve) => {
+        entry.file((file) => {
+          state.uploadFiles.push(file)
+          resolve(void 0)
+        })
+      })
+    }
+    // 如果条目是文件夹，则递归调用readFiles函数，继续读取文件夹中的文件
+    else if (entry.isDirectory) {
+      await readFiles(entry, state)
+    }
+  }
+}

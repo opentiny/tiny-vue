@@ -103,7 +103,7 @@ import { setup, defineComponent, directive } from '../../../vue-common'
 import { iconYes } from '@opentiny/vue-icon'
 import Popup from '../../popup'
 import Button from '../../button'
-import Clickoutside from '@opentiny/utils/deps/clickoutside'
+import Clickoutside from '@opentiny/mobile-utils/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-item/index.less'
 import { dropdownItemProps } from './dropdown-item'
 

@@ -10,9 +10,9 @@
  *
  */
 import type { IPopoverRenderlessParams, IPopoverState } from '../popover'
-import { on, off, addClass, removeClass } from '@opentiny/utils/deps/dom'
-import { guid } from '@opentiny/utils/string'
-import { KEY_CODE } from '@opentiny/utils'
+import { on, off, addClass, removeClass } from '@opentiny/mobile-utils/deps/dom'
+import { guid } from '@opentiny/mobile-utils/string'
+import { KEY_CODE } from '@opentiny/mobile-utils'
 
 const processTrigger = ({
   api,

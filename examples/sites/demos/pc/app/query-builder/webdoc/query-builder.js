@@ -64,6 +64,19 @@ export default {
         'en-US': ' '
       },
       codeFiles: ['sub-component-param.vue']
+    },
+    {
+      demoId: 'advanced-mode',
+      name: {
+        'zh-CN': '高级模式',
+        'en-US': 'Advanced Mode'
+      },
+      desc: {
+        'zh-CN':
+          '高级模式，用法详见示例:<br> \n 自定义组件必须实现:<strong> value</strong>属性和<strong>change</strong>事件,<br> \n <strong>自定义组件的其他额外属性：</strong><br> \n data-id: string,数据ID <br> \n operator: string, 操作符<br> \n filed-name: string, 字段名 <br> \n path: Array<number> 字段在queryBuilder中的父子路径, <br> \n key: to| from',
+        'en-US': ' '
+      },
+      codeFiles: ['advanced-mode.vue']
     }
   ]
 }

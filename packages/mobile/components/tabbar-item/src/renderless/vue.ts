@@ -11,7 +11,7 @@
  */
 
 import { getRouteActive, onClick, bindChildren, routeTab, getTabbarItemsWidth } from './index'
-import { xss } from '@opentiny/utils'
+import { xss } from '@opentiny/mobile-utils'
 
 export const api = ['state', 'onClick', 'getTabbarItemsWidth']
 

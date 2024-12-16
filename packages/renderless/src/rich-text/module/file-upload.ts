@@ -1,4 +1,4 @@
-import { xss } from '../../common/xss'
+import { xss } from '@opentiny/utils'
 
 const Upload = function (quill, options) {
   this.quill = quill

@@ -61,10 +61,14 @@ export default {
         'en-US': 'Display only'
       },
       desc: {
-        'zh-CN':
-          '<p>Form 表单内 Select 组件不同尺寸设置 <code>hover-expand</code> 和 <code>display-only</code> 属性的综合应用。</p>\n',
-        'en-US':
-          '<p>Comprehensive application of the <code>hover-expand</code> and <code>display-only</code> attributes of the Select component in the form. </p>\n'
+        'zh-CN': `
+            通过<code>display-only</code> 属性，设置组件只显示文字。仅展示时，如果组件的选项要通过<code>options</code> 属性传入,可以优化组件加载速度。<br>  
+            通过 <code>hover-expand</code> 设置多选时，鼠标移入触发标签的自动展开。
+          `,
+        'en-US': `
+            Use the <code>display-only</code> attribute to set the widget to display only text. If the options of a component are transferred through the <code>options</code> attribute, the component loading speed can be optimized.<br>
+            Click <code>hover-expand</code> to set the automatic expansion of the trigger label.
+          `
       },
       codeFiles: ['multiple-mix.vue']
     },

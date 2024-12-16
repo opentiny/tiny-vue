@@ -13,7 +13,7 @@
 import { on, off } from '../common/deps/dom'
 import { KEY_CODE } from '../common'
 import PopupManager from '../common/deps/popup-manager'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { isBrowser } from '../common/browser'
 
 const isFirefox = () => (isBrowser ? !!window.navigator.userAgent.match(/firefox/i) : false)

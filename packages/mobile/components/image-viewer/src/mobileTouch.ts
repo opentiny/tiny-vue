@@ -10,7 +10,7 @@
  *
  */
 import { directive } from '../../../vue-common'
-import { isObject } from '@opentiny/utils/type'
+import { isObject } from '@opentiny/mobile-utils/type'
 
 class TinyTouch {
   constructor(element, tinyBinding, type) {
