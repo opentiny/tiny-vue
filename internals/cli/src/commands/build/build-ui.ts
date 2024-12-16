@@ -207,6 +207,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
               'vue',
               'design/aurora',
               'design/saas',
+              'design/smb',
               'vue-directive'
             ]
 

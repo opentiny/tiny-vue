@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { isObject } from '../common/type'
 
 export const filterNode = (props) => (value, data) => {

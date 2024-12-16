@@ -11,7 +11,7 @@
  */
 
 import { hasOwn, isNull } from '../type'
-import { log } from '../xss'
+import { log } from '@opentiny/utils'
 
 const formatRegExp = /%[sdj%]/g
 

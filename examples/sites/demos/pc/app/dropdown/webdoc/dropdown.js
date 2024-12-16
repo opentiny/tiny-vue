@@ -28,6 +28,20 @@ export default {
       codeFiles: ['disabled.vue']
     },
     {
+      demoId: 'placement',
+      name: {
+        'zh-CN': '展开位置',
+        'en-US': 'Placement'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>placement</code> 属性设置为 <code>bottom-start</code> 设置右侧展开。默认值为左侧展开。\n',
+        'en-US':
+          '<p>Set the <code>placement</code> attribute to <code>bottom-start</code> to expand on the right side. The default value is left expansion. </p>\n'
+      },
+      codeFiles: ['placement.vue']
+    },
+    {
       demoId: 'size',
       name: {
         'zh-CN': '尺寸',

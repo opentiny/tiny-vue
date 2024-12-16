@@ -18,12 +18,12 @@ import type {
   INumericGetEmitValueParams,
   INumericUnitPrecision
 } from '../numeric'
-import type { BigIntDecimal } from '@opentiny/utils/bigInt'
-import { formatNumber, roundFixed } from '@opentiny/utils/decimal'
-import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/utils/bigInt'
-import { isNumber, isNull } from '@opentiny/utils/type'
-import { MOUSEDELTA } from '@opentiny/utils'
-import { on, off } from '@opentiny/utils/deps/dom'
+import type { BigIntDecimal } from '@opentiny/mobile-utils/bigInt'
+import { formatNumber, roundFixed } from '@opentiny/mobile-utils/decimal'
+import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/mobile-utils/bigInt'
+import { isNumber, isNull } from '@opentiny/mobile-utils/type'
+import { MOUSEDELTA } from '@opentiny/mobile-utils'
+import { on, off } from '@opentiny/mobile-utils/deps/dom'
 
 export const initService = (
   service: INumericRenderlessParamUtils['service']

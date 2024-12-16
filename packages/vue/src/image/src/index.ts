@@ -12,6 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { IImageApi } from '@opentiny/vue-renderless/types/image.type'
 import template from 'virtual-template?pc|mobile-first'
+import { isBrowser } from '@opentiny/vue-renderless/common/browser'
 
 export const $constants = {
   NONE: 'none',
@@ -35,7 +36,7 @@ export const imageProps = {
     default: () => []
   },
   scrollContainer: {
-    type: [String, HTMLElement],
+    type: isBrowser ? [String, HTMLElement] : null,
     default: null
   },
   src: String,

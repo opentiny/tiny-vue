@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { isBrowser } from '../browser'
 
 let ws = null
 const url = 'ws://localhost'
@@ -26,6 +27,7 @@ let heartbeatTimer = null
 let connectTimer = null
 let apiTimers = {}
 let events = {}
+// eslint-disable-next-line import/no-mutable-exports
 let out = {}
 
 let error = () => undefined
@@ -379,7 +381,7 @@ out.addContactList = function (account, cb) {
   )
 }
 
-if (!window.WebSocket) {
+if (!isBrowser || !window.WebSocket) {
   const notFn = function () {
     return undefined
   }
@@ -398,7 +400,7 @@ if (!window.WebSocket) {
 let initialized = false
 
 export function init() {
-  if (!initialized) {
+  if (!initialized && isBrowser) {
     localStorage.setItem('eSpaceCtrl_initialized', 0)
     out.init({ timeout: 3000, pollingInterval: 1000 })
     out.ready(() => {

@@ -119,23 +119,9 @@ export default defineComponent({
         {state.currentBreakpoint === 'default' && tipSlot && (
           <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
         )}
-        {state.currentBreakpoint === 'default' && (
-          <div
-            data-tag="tiny-upload-drag-single"
-            class="h-full"
-            onClick={($event) => handleClick($event, sourceType)}
-            onKeydown={handleKeydown}
-            tabindex="0">
-            {listType === 'drag-single' ? (
-              <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
-                {defaultSlot}
-              </UploadDragger>
-            ) : (
-              defaultSlot
-            )}
-          </div>
-        )}
+        {state.currentBreakpoint === 'default' && uploadTrigger()}
         {state.currentBreakpoint !== 'default' &&
+          !displayOnly &&
           (promptTip && tipMessage ? (
             <div class="hidden sm:inline-flex sm:items-center">
               {uploadTrigger()}

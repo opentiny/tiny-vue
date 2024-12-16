@@ -11,7 +11,7 @@
  */
 
 import { getRouteActive, onClick, bindChildren, routeTab, getTabbarItemsWidth } from './index'
-import { xss } from '@opentiny/utils'
+import { xss } from '@opentiny/mobile-utils'
 
 export const api = ['state', 'onClick', 'getTabbarItemsWidth']
 
@@ -28,8 +28,8 @@ export const renderless = (
     info: computed(() => (props.dot ? '' : !props.dot && props.badge)),
     url: computed(() => xss.filterUrl(props.url)),
     routeActive: computed(() => api.getRouteActive()),
-    renderActive: computed(() => (parent.$parent.route ? state.routeActive : state.active)),
-    renderColor: computed(() => parent.$parent[state.active ? 'activeColor' : 'inactiveColor']),
+    renderActive: computed(() => (vm.$parent.route ? state.routeActive : state.active)),
+    renderColor: computed(() => vm.$parent[state.active ? 'activeColor' : 'inactiveColor']),
     showVm: true,
     itemWidth: null,
     childrenNumber: 0,

@@ -74,7 +74,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           requireReturnsDefault: true,
           defaultIsModuleExports: true,
           // echarts模块本身是esmodules格式不需要经过commonjs转换
-          exclude: ['node_modules/echarts/**', 'node_modules/echarts', 'node_modules/crypto-js/**']
+          exclude: ['node_modules/echarts/**', 'node_modules/echarts']
         }),
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],

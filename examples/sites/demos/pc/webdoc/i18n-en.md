@@ -1,8 +1,8 @@
-## Internationalization
+# Internationalization
 
 `TinyVue` uses the official internationalization plug-in of `Vue`. You need to install the `vue-i18n` plug-in.
 
-### Vue 3.0 internationalization configuration
+## Vue 3.0 internationalization configuration
 
 Step 1: You are advised to install the `vue-i18n` plug-in of the `^ 9.1.6' version by running the following command:
 
@@ -48,7 +48,7 @@ app.use(initI18n({ locale: 'zhCN' }))
 app.use(router).mount('#app')
 ```
 
-### Vue 2.0 internationalization configuration
+## Vue 2.0 internationalization configuration
 
 Step 1: You are advised to install the `vue-i18n` plug-in of the `8.15. 0` version by running the following command:
 

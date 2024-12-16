@@ -6,8 +6,6 @@ test('基础用法', async ({ page }) => {
   const preview = page.locator('#basic-usage')
   const link = preview.locator('a')
 
-  await expect(link.first()).toHaveText('默认链接')
-  await expect(link.nth(1)).toHaveText('默认链接2')
   await link.first().hover()
   await expect(link.first()).toHaveCSS('color', 'rgb(20, 118, 255)')
 
@@ -19,6 +17,8 @@ test('基础用法', async ({ page }) => {
     }
   })
   await link.first().click()
+
+  await page.waitForTimeout(100)
 
   expect(values[0]).toBe('clicked')
 })

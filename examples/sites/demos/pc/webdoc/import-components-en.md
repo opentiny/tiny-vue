@@ -1,10 +1,10 @@
 <!--anchor:on-->
 
-## Introduction Components
+# Introduction Components
 
 `TinyVue` supports automatic import, multiple component import, single component import, and complete import.
 
-### Auto import (recommended)
+## Auto import (recommended)
 
 First, you need to install the plugin `@opentiny/unplugin-tiny-vue`.
 
@@ -42,7 +42,7 @@ This way, you can directly use TinyVue components in your project. These compone
 
 For more information about automatic on-demand imports, please refer to [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import).
 
-### Multi-component introduction
+## Multi-component introduction
 
 <div class="tip custom-block">
 <br />
@@ -73,7 +73,7 @@ Multi-component reference is from the dependency package.`@opentiny/vue`Multiple
 </script>
 ```
 
-### Single component introduction
+## Single component introduction
 
 `TinyVue`Each component can be installed and used independently. That is, only the dependency of a single component is installed and referenced independently.
 
@@ -108,7 +108,7 @@ Use in Pages`Button`and`Alert`An example of a component is as follows:
 </script>
 ```
 
-### Full introduction (not recommended)
+## Full introduction (not recommended)
 
 Once the component is fully introduced, you do not need to import the component and register it locally on every page.`main.js`Global registration in, but as a result, it loses`tree-shaking`Capabilities. Redundant code is available after packaging.
 

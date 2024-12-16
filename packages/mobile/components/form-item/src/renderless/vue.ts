@@ -28,7 +28,6 @@ import {
   computedLabelStyle,
   computedValueStyle,
   computedContentStyle,
-  computedForm,
   computedIsRequired,
   computedFieldValue,
   computedGetValidateType,
@@ -102,7 +101,6 @@ const initState = ({
     labelStyle: computed(() => api.computedLabelStyle()),
     valueStyle: computed(() => api.computedValueStyle()),
     contentStyle: computed(() => api.computedContentStyle()),
-    form: computed(() => api.computedForm() as IFormInstance),
     fieldValue: computed(() => api.computedFieldValue()),
     isRequired: computed(() => api.computedIsRequired()),
     formInline: computed(() => state.formInstance.inline),
@@ -110,7 +108,7 @@ const initState = ({
     formItemSize: computed(() => props.size || state.formSize),
     isDisplayOnly: computed(() => state.formInstance.displayOnly),
     labelPosition: computed(() => state.formInstance.labelPosition),
-    hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
+    hideRequiredAsterisk: computed(() => state.formInstance?.state?.hideRequiredAsterisk),
     labelSuffix: computed(() => state.formInstance.labelSuffix),
     labelWidth: computed(() => state.formInstance.labelWidth),
     showMessage: computed(() => state.formInstance.showMessage),
@@ -120,7 +118,7 @@ const initState = ({
     isErrorInline: computed(() => api.computedIsErrorInline()),
     isErrorBlock: computed(() => api.computedIsErrorBlock()),
     disabled: computed(() => state.formInstance.disabled),
-    tooltipType: computed(() => state.formInstance.state.tooltipType)
+    tooltipType: computed(() => state.formInstance?.state?.tooltipType)
   })
 
   return state
@@ -137,7 +135,6 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     computedLabelStyle: computedLabelStyle({ props, state }),
     computedValueStyle: computedValueStyle({ props, state }),
     computedContentStyle: computedContentStyle({ props, state }),
-    computedForm: computedForm({ constants, vm, state }),
     computedFieldValue: computedFieldValue({ props, state }),
     computedGetValidateType: computedGetValidateType({ props, state }),
     computedValidateIcon: computedValidateIcon({ props, state }),

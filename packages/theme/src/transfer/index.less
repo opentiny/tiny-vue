@@ -320,14 +320,13 @@
         text-align: center;
         border: 1px solid;
         border-radius: var(--tv-Transfer-header-sort-border-radius);
-        color: var(--tv-Transfer-header-sort-text-color);
+        color: var(--tv-Transfer-header-sort-icon-color);
         display: inline-block;
         cursor: pointer;
 
-        i {
-          width: calc(var(--tv-Transfer-header-sort-width) - 2px);
-          height: calc(var(--tv-Transfer-header-sort-width) - 2px);
-          display: block;
+        .tiny-svg {
+          fill: var(--tv-Transfer-header-sort-icon-color);
+          vertical-align: text-top;
         }
       }
     }

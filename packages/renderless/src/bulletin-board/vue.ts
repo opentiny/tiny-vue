@@ -10,11 +10,11 @@
  *
  */
 
-import { getRoute, computedDataList, computedMoreLink } from './index'
+import { getRoute, computedDataList, computedMoreLink, handleBulletinBoardClick } from './index'
 
-export const api = ['state', 'getRoute']
+export const api = ['state', 'getRoute', 'handleBulletinBoardClick']
 
-export const renderless = (props, { reactive, computed, watch }) => {
+export const renderless = (props, { reactive, computed, watch }, { emit }) => {
   const api = {}
   const state = reactive({
     actName: props.activeName,
@@ -34,7 +34,8 @@ export const renderless = (props, { reactive, computed, watch }) => {
     state,
     getRoute,
     computedDataList: computedDataList({ props, state }),
-    computedMoreLink: computedMoreLink({ props })
+    computedMoreLink: computedMoreLink({ props }),
+    handleBulletinBoardClick: handleBulletinBoardClick({ emit })
   })
 
   return api

@@ -1,10 +1,10 @@
 <!--anchor:on-->
 
-## 开发示例
+# 开发示例
 
 本文以 [Vite](https://cn.vitejs.dev/) 工程为例，展示如何使用 `TinyVue` 组件。
 
-### 搭建 Vite 项目
+## 搭建 Vite 项目
 
 使用以下命令创建 `Vite` 工程：
 
@@ -30,7 +30,7 @@ npm run dev
 
 <img src="@demos/resource/vite-vue.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14)" ><br><br>
 
-### 安装并使用 `TinyVue` 组件
+## 安装并使用 `TinyVue` 组件
 
 执行以下命令安装 `Vue 3.0` 版本的 `TinyVue` 组件库 ：
 

@@ -25,7 +25,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.0.2",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-react": "^4.0.1",
     "vite-plugin-svgr": "^3.2.0"

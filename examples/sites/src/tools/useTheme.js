@@ -1,6 +1,7 @@
 import { watch, computed } from 'vue'
 import { hooks } from '@opentiny/vue-common'
 import designSaasConfig from '@opentiny/vue-design-saas'
+import designSMBConfig from '@opentiny/vue-design-smb'
 import { router } from '@/router'
 import { appData } from './appData'
 import { THEME_ROUTE_MAP, CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, SMB_THEME, INFINITY_THEME } from '../const'
@@ -15,7 +16,7 @@ import oceanicIcon from '@/assets/images/oceanic-icon.png'
 
 import starrySky from '@/assets/images/starry-sky.png'
 import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
-import TinyThemeTool, { tinyOldTheme } from '@opentiny/vue-theme/theme-tool'
+import TinyThemeTool, { tinyOldTheme, tinyAuroraTheme } from '@opentiny/vue-theme/theme-tool'
 
 const isEn = appData.lang === 'enUS'
 
@@ -71,7 +72,11 @@ const designConfig = computed(() => {
   if (import.meta.env.VITE_TINY_THEME === 'saas') {
     return designSaasConfig
   }
-  return designConfigMap[currentThemeKey.value]
+  if (router.currentRoute.value.params.theme === 'smb-theme') {
+    return designSMBConfig
+  }
+
+  return {}
 })
 
 const changeTheme = (themeKey) => {
@@ -99,6 +104,11 @@ const watchRoute = () => {
       if (!loadedTheme && val === 'old-theme') {
         const themeTool = new TinyThemeTool()
         themeTool.changeTheme(tinyOldTheme)
+        loadedTheme = true
+      }
+      if (!loadedTheme && val === 'aurora-theme') {
+        const themeTool = new TinyThemeTool()
+        themeTool.changeTheme(tinyAuroraTheme)
         loadedTheme = true
       }
     }

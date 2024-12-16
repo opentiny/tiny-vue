@@ -146,18 +146,18 @@
                   <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
                   <div class="mt20 wp100" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
                     <div class="ti-f-r ti-f-pos-start ti-fw-bold">
-                      <div :id="`cmp-${oneGroup.name}`" class="ti-f18">
+                      <h2 :id="`cmp-${oneGroup.name}`" class="ti-f18">
                         {{ oneGroup.name }}
-                      </div>
+                      </h2>
                       <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">
                         {{ oneGroup.type }}
                       </div>
                     </div>
                     <div v-for="(oneApiArr, key) in oneGroup" :key="key">
                       <template v-if="!['name', 'type'].includes(key) && oneApiArr.length > 0">
-                        <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
+                        <h3 class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
                           {{ key }}
-                        </div>
+                        </h3>
                         <div class="api-table-box">
                           <tiny-grid
                             ref="apiTableRef"
@@ -926,6 +926,7 @@ export default defineComponent({
   width: 200px;
   height: calc(100vh - 280px);
   padding-top: 16px;
+  overflow: hidden;
 
   .tiny-anchor__dot {
     max-height: calc(100vh - 300px);
@@ -995,7 +996,7 @@ export default defineComponent({
   :deep(.tiny-anchor__affix) {
     top: unset !important;
     overflow-y: auto;
-    max-height: calc(100vh - 230px);
+    max-height: calc(100vh - 300px);
   }
 
   :deep(.tiny-anchor-link) {

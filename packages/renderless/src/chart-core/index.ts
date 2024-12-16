@@ -21,7 +21,7 @@ import {
   DEFAULT_CONFIG
 } from './deps/constants'
 import { getType, debounce, isObject, cloneDeep, isEqual, htmlHandler, get } from './deps/utils'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import setAnimation from './modules/animation'
 import setExtend from './modules/extend'
 import setMark from './modules/mark'

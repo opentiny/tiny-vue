@@ -50,6 +50,7 @@ export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, mer
 
   if (typeof createI18n === 'function') {
     const vueI18n = createI18n({
+      legacy: i18n.legacy,
       locale: i18n.locale || 'zhCN',
       messages: merge({ lang, i18n, messages })
     })

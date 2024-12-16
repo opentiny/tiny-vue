@@ -81,7 +81,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^3.7.3",
     "tsup": "7.2.0",
-    "typescript": "^5.0.0",
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
     "webpack": "^5.75.0"

@@ -11,7 +11,7 @@
  */
 
 import { hasOwn } from '../type'
-import { xss } from '../xss'
+import { xss } from '@opentiny/utils'
 
 const getBody = (xhr) => {
   const text = xhr.responseText || xhr.response

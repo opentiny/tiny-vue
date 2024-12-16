@@ -3,7 +3,9 @@ import { test, expect } from '@playwright/test'
 test('可缩放文本域', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('input#resize')
-  const textarea = await page.locator('.demo-input .tiny-textarea > .tiny-textarea-display-only > textarea')
+
+  const demo = page.locator('#resize')
+  const textarea = await demo.locator('.tiny-textarea > .tiny-textarea-display-only > textarea')
   await expect(textarea.nth(0)).toHaveCSS('resize', 'vertical')
   await expect(textarea.nth(1)).toHaveCSS('resize', 'none')
   await expect(textarea.nth(2)).toHaveCSS('resize', 'both')
@@ -12,7 +14,7 @@ test('可缩放文本域', async ({ page }) => {
 
   const fillText =
     'test1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
-  const textarea2 = page.locator('.demo-input .tiny-textarea .tiny-textarea-autosize-display-only > textarea')
+  const textarea2 = demo.locator('.auto-size .tiny-textarea textarea')
 
   // autosize = { minRows: 2, maxRows: 3 } 检查高度
   let defaultHeight = await textarea2

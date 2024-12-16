@@ -11,6 +11,7 @@
           :data="menuOptions"
           :menu-collapsible="true"
           :filter-node-method="searchMenu"
+          :show-filter="isShowFilter"
           @current-change="clickMenu"
           @collapse-change="collapseChange"
         >
@@ -139,6 +140,9 @@ export default defineComponent({
     }
     let routerCbDestroy = null
 
+    const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+    const isShowFilter = envTarget !== 'open'
+
     watch(
       () => route.path,
       (currentVal) => {
@@ -186,7 +190,8 @@ export default defineComponent({
       clickMenuLink,
       getWord,
       i18nByKey,
-      isThemeSaas
+      isThemeSaas,
+      isShowFilter
     }
   }
 })

@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/vue-design-smb",
+  "version": "3.20.0",
+  "main": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@opentiny/vue-icon": "workspace:~"
+  },
+  "type": "module",
+  "license": "MIT"
+}

@@ -94,9 +94,14 @@
     cursor: not-allowed;
 
     .tiny-svg {
-      fill: var(--tv-Option-icon-color-checked-disabled);
+      &.checked-sur,
+      &.halfselect {
+        fill: var(--tv-Option-icon-color-checked-disabled);
+      }
 
       &.check {
+        fill: var(--tv-Option-icon-color-unchecked-disabled); /* #bfbfbf */
+
         path:first-of-type {
           fill: var(--tv-Option-icon-bg-color-disabled);
         }

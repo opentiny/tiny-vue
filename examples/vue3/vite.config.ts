@@ -72,7 +72,11 @@ export default defineConfig((config) => {
         }
       }),
       Unocss({
-        include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/], // 增加js ,ts扫描
+        content: {
+          pipeline: {
+            include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/] // 增加js ,ts扫描
+          }
+        },
         presets: [],
         rules,
         shortcuts,

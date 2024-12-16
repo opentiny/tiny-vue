@@ -10,7 +10,7 @@
  *
  */
 
-import { merge } from '@opentiny/utils/object'
+import { merge } from '@opentiny/mobile-utils/object'
 
 import type { IFormRenderlessParams } from '../form'
 
