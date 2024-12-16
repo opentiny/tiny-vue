@@ -1,15 +1,12 @@
 {
   "name": "@opentiny/vue-grid",
   "type": "module",
-  "version": "3.20.0",
+  "version": "3.20.1",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
@@ -31,5 +28,8 @@
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
 }
