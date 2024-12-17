@@ -43,7 +43,7 @@ export default defineComponent({
       default: true
     },
     renderLabel: Function,
-    onlyUsePanel: String
+    onlyUsePanel: Boolean
   },
   provide() {
     return {
