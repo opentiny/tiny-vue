@@ -78,15 +78,15 @@ export const computedIsErrorBlock =
   }
 
 export const created =
-  ({ parent, state }: Pick<IFormRenderlessParams, 'parent' | 'state'>) =>
+  ({ vm, state }: Pick<IFormRenderlessParams, 'vm' | 'state'>) =>
   (): void => {
-    parent.$on('form:addField', (field) => {
+    vm.$on('form:addField', (field) => {
       if (field) {
         state.fields.push(field)
       }
     })
     /* istanbul ignore next */
-    parent.$on('form:removeField', (field) => {
+    vm.$on('form:removeField', (field) => {
       if (field.prop) {
         state.fields.splice(state.fields.indexOf(field), 1)
       }

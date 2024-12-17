@@ -25,13 +25,15 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
 import { formProps } from './form'
 import '@opentiny/vue-theme-mobile/form/index.less'
 import '@opentiny/vue-theme-mobile/form-item/index.less'
 
 export default defineComponent({
+  name: $prefix + 'Form',
+  componentName: 'Form',
   props: formProps,
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFormApi
