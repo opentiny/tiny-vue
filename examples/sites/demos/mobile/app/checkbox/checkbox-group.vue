@@ -1,8 +1,8 @@
 <template>
   <div class="checkbox-wrap">
     <tiny-checkbox-group v-model="checked">
-      <tiny-checkbox label="复选框1"></tiny-checkbox>
-      <tiny-checkbox label="复选框2"></tiny-checkbox>
+      <tiny-checkbox label="复选框1">复选框1</tiny-checkbox>
+      <tiny-checkbox label="复选框2">复选框2</tiny-checkbox>
     </tiny-checkbox-group>
     <p>当前选中的值为：{{ checked }}</p>
   </div>
