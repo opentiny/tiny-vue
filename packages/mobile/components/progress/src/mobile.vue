@@ -28,7 +28,7 @@
     <div class="tiny-mobile-progress-bar" v-if="type === 'line'">
       <div class="tiny-mobile-progress-bar__outer" :style="{ height: state.strokeWidth + 'px' }">
         <div class="tiny-mobile-progress-bar__inner" :style="state.barStyle">
-          <div class="tiny-mobile-progress-bar__innerText" v-if="showText && textInside && strokeWidth > 12">
+          <div class="tiny-mobile-progress-bar__innerText" v-if="showText && textInside && state.strokeWidth > 12">
             {{ state.content }}
           </div>
         </div>
