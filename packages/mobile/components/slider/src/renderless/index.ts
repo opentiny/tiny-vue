@@ -98,20 +98,13 @@ export const bindMouseDown =
     let isClickBtn: boolean | undefined = false
     let isClickLabel: boolean | undefined = false
 
-    if (mode === 'mobile-first') {
-      const role = Array.from(handleEl.attributes).find((attr) => attr.name === 'role')
-      const name = role && role.value
+    isClickBar = hasClass(handleEl, constants.sliderCls(mode)) || hasClass(handleEl, constants.rangeCls(mode))
+    isClickBtn =
+      hasClass(handleEl, constants.buttonCls(mode)) ||
+      hasClass(handleEl, constants.leftSvgCls(mode)) ||
+      hasClass(handleEl, constants.rightSvgCls(mode))
+    isClickLabel = hasClass(handleEl, constants.PC_LABEL_CLS)
 
-      isClickBar = name === constants.PC_SLIDER_CLS || name === constants.PC_RANGE_CLS
-      isClickBtn = name === constants.PC_BUTTON_CLS
-    } else {
-      isClickBar = hasClass(handleEl, constants.sliderCls(mode)) || hasClass(handleEl, constants.rangeCls(mode))
-      isClickBtn =
-        hasClass(handleEl, constants.buttonCls(mode)) ||
-        hasClass(handleEl, constants.leftSvgCls(mode)) ||
-        hasClass(handleEl, constants.rightSvgCls(mode))
-      isClickLabel = hasClass(handleEl, constants.PC_LABEL_CLS)
-    }
     if (state.disabled || (!isClickBtn && !isClickBar && !isClickLabel)) {
       state.activeIndex = -1
       return
