@@ -4,6 +4,9 @@
   "version": "3.20.0",
   "sideEffects": false,
   "main": "index.ts",
+  "dependencies": {
+    "xss": "1.0.14"
+  },
   "scripts": {
     "build": "pnpm -w build:ui",
     "postversion": "pnpm build"

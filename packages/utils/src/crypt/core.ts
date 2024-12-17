@@ -46,11 +46,14 @@ if (crypto) {
 }
 
 export class Base {
+  // @ts-ignore
   static create(...args) {
+    // @ts-ignore
     return new this(...args)
   }
 
   clone() {
+    // @ts-ignore
     const clone = new this.constructor()
     Object.assign(clone, this)
     return clone
@@ -277,6 +280,7 @@ export class BufferedBlockAlgorithm extends Base {
 
     if (mWordsReady) {
       for (let offset = 0; offset < mWordsReady; offset += blockSize) {
+        // @ts-ignore
         this._doProcessBlock(dataWords, offset)
       }
 
@@ -321,7 +325,7 @@ export class Hasher extends BufferedBlockAlgorithm {
 
   reset() {
     super.reset.call(this)
-
+    // @ts-ignore
     this._doReset()
   }
 
@@ -330,6 +334,7 @@ export class Hasher extends BufferedBlockAlgorithm {
       this._append(messageUpdate)
     }
 
+    // @ts-ignore
     const hash = this._doFinalize()
 
     return hash

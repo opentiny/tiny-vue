@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "color": "4.2.3",
-    "xss": "1.0.11",
     "@opentiny/utils": "workspace:~"
   },
   "devDependencies": {
