@@ -63,6 +63,19 @@ export default {
         'en-US': ''
       },
       codeFiles: ['data-switch.vue']
+    },
+    {
+      demoId: 'before-editor-init',
+      name: {
+        'zh-CN': '初始化前的钩子',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>before-editor-init</code> 设置 FluentEditor 初始化前的钩子函数，主要用于注册 FluentEditor 自定义格式和模块。<br>这个示例增加了两个新的格式：good / bad，并在工具栏增加了对应的图标用于设置这两种格式。<br>选中一段文本，点击点赞图标，会将文本色设置成绿色；点击点踩图标，会将文本色设置成红色。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['before-editor-init.vue']
     }
   ]
 }
