@@ -60,13 +60,14 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup, defineComponent, props } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import { renderless, api } from './renderless/vue'
 import { pullRefreshProps } from './pull-refresh'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.less'
 
 export default defineComponent({
   name: $prefix + 'PullRefresh',
+  componentName: 'PullRefresh',
   props: pullRefreshProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
