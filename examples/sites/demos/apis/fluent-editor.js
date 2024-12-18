@@ -9,6 +9,9 @@ export default {
           name: 'before-editor-init',
           type: '(FluentEditor) => void',
           defaultValue: '',
+          meta: {
+            stable: '3.21.0'
+          },
           desc: {
             'zh-CN': 'FluentEditor 初始化之前执行的钩子，用于注册自定义 FluentEditor 模块和格式。',
             'en-US': ''
