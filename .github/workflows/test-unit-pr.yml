@@ -67,11 +67,6 @@ jobs:
           path: ./pr-id.txt
 
   pr-test:
-    if: ${{ needs.parse-components.outputs.testComponents }}
-    strategy:
-      matrix:
-        testcli: ${{ fromJson(needs.parse-components.outputs.testclis) }}
-
     name: PR Unit Test
     needs: parse-components
     runs-on: ubuntu-latest
