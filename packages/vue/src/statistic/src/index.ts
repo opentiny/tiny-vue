@@ -14,7 +14,7 @@ export const statisticProps = {
   precision: Number,
   formatter: Function,
   value: {
-    type: Number || String,
+    type: [Number, String],
     default: 0
   },
   prefix: String,
