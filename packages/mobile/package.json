@@ -25,8 +25,7 @@
   "sideEffects": false,
   "main": "index.ts",
   "scripts": {
-    "build": "pnpm -w build:ui",
-    "postversion": "pnpm build"
+    "build": "vite build"
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.0",
@@ -36,6 +35,12 @@
     "@opentiny/vue-locale": "workspace:~"
   },
   "devDependencies": {
-    "vue": "^3.5.0"
+    "vue": "^3.5.0",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "vite-plugin-dts": "^4.3.0",
+    "vite-svg-loader": "^5.1.0"
   }
 }
