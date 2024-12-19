@@ -4,36 +4,33 @@ import designSaasConfig from '@opentiny/vue-design-saas'
 import designSMBConfig from '@opentiny/vue-design-smb'
 import { router } from '@/router'
 import { appData } from './appData'
-import { THEME_ROUTE_MAP, CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, SMB_THEME, INFINITY_THEME } from '../const'
+import { CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, OLD_THEME, themeToolValuesMap } from '../const'
 import glaciers from '@/assets/images/glaciers.png'
 import glaciersIcon from '@/assets/images/glaciers-icon.png'
-
-import infinitely from '@/assets/images/Infinitely.png'
-import infinitelyIcon from '@/assets/images/Infinitely-icon.png'
 
 import oceanic from '@/assets/images/oceanic.png'
 import oceanicIcon from '@/assets/images/oceanic-icon.png'
 
 import starrySky from '@/assets/images/starry-sky.png'
 import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
-import TinyThemeTool, { tinyOldTheme, tinyAuroraTheme } from '@opentiny/vue-theme/theme-tool'
+import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
 
 const isEn = appData.lang === 'enUS'
 
 const themeData = [
   {
     value: [DEFAULT_THEME],
-    label: isEn ? 'Default Theme' : '冰川主题',
-    tips: isEn ? 'Accurate, Efficient, Distinct' : '精准、高效、清晰',
-    icon: glaciersIcon,
-    bgImage: glaciers
-  },
-  {
-    value: [SMB_THEME],
     label: isEn ? 'Star Theme' : '星空主题',
     tips: isEn ? 'Leading, Innovative, Reliable' : '领先、创新、信赖',
     icon: starrySkyIcon,
     bgImage: starrySky
+  },
+  {
+    value: [OLD_THEME],
+    label: isEn ? 'Default Theme' : '冰川主题',
+    tips: isEn ? 'Accurate, Efficient, Distinct' : '精准、高效、清晰',
+    icon: glaciersIcon,
+    bgImage: glaciers
   },
   {
     value: [AURORA_THEME],
@@ -41,25 +38,10 @@ const themeData = [
     tips: isEn ? 'Simple, Agile, Delightful' : '简约、敏捷、愉悦',
     icon: oceanicIcon,
     bgImage: oceanic
-  },
-  {
-    value: [INFINITY_THEME],
-    label: isEn ? 'Infinity Theme' : '无限主题',
-    tips: isEn ? 'Creative, Scientific, Efficient' : '创造、科学、高效',
-    icon: infinitelyIcon,
-    bgImage: infinitely
   }
 ]
 
-const designConfigMap = {
-  [DEFAULT_THEME]: {},
-  [INFINITY_THEME]: {},
-  [AURORA_THEME]: {},
-  [SMB_THEME]: {}
-}
-
-const defaultThemeKey = DEFAULT_THEME
-const currentThemeKey = hooks.ref(defaultThemeKey)
+const currentThemeKey = hooks.ref(DEFAULT_THEME)
 
 watch(
   () => currentThemeKey.value,
@@ -82,7 +64,7 @@ const designConfig = computed(() => {
 const changeTheme = (themeKey) => {
   router.push({
     params: {
-      theme: THEME_ROUTE_MAP[themeKey]
+      theme: themeKey
     },
     hash: router?.currentRoute.value.hash
   })
@@ -101,14 +83,10 @@ const watchRoute = () => {
   watch(
     () => router.currentRoute.value.params.theme,
     (val) => {
-      if (!loadedTheme && val === 'old-theme') {
+      if (!loadedTheme && themeToolValuesMap[val]) {
+        currentThemeKey.value = val
         const themeTool = new TinyThemeTool()
-        themeTool.changeTheme(tinyOldTheme)
-        loadedTheme = true
-      }
-      if (!loadedTheme && val === 'aurora-theme') {
-        const themeTool = new TinyThemeTool()
-        themeTool.changeTheme(tinyAuroraTheme)
+        themeTool.changeTheme(themeToolValuesMap[val])
         loadedTheme = true
       }
     }
@@ -122,6 +100,6 @@ export default function useTheme() {
     changeTheme,
     currentThemeKey,
     designConfig,
-    defaultTheme: THEME_ROUTE_MAP[defaultThemeKey]
+    defaultTheme: DEFAULT_THEME
   }
 }
