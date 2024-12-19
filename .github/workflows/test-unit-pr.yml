@@ -1,5 +1,5 @@
-name: E2E Test PR
-run-name: E2E Test PR--${{ github.event.pull_request.title }}
+name: Unit Test PR
+run-name: Unit Test PR--${{ github.event.pull_request.title }}
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
@@ -32,7 +32,7 @@ jobs:
               components = [...new Set(components)].slice(0, 3).join(' ')
               core.setOutput('testComponents', components)
             } else {
-              const warningString =`**[e2e-test-warn]**
+              const warningString =`**[unit-test-warn]**
               The component to be tested is missing.
 
               The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
@@ -72,7 +72,7 @@ jobs:
       matrix:
         testcli: ${{ fromJson(needs.parse-components.outputs.testclis) }}
 
-    name: PR E2E Test
+    name: PR Unit Test
     needs: parse-components
     runs-on: ubuntu-latest
     env:
@@ -102,5 +102,5 @@ jobs:
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
 
-      - name: E2E unit
+      - name: Unit Test
         run: pnpm test:unit3 ${{ env.TEST_COMPONENTS }}
