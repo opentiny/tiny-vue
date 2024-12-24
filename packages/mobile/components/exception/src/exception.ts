@@ -3,6 +3,7 @@ export const exceptionProps = {
     type: String,
     default: 'nodata'
   },
+  buttonText: String,
   message: String,
   subMessage: String,
   exceptionClass: String,
