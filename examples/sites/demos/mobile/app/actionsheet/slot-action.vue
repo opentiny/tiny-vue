@@ -12,7 +12,13 @@
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       content-position
-    ></tiny-action-sheet>
+    >
+      <template #item="data">
+        <div>
+          {{ data.item.label }}
+        </div>
+      </template>
+    </tiny-action-sheet>
   </div>
 </template>
 

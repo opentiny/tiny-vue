@@ -11,7 +11,6 @@
       ellipsis
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
-      content-position
     ></tiny-action-sheet>
   </div>
 </template>

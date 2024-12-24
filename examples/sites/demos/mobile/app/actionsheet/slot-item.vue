@@ -10,7 +10,6 @@
       :menus="menus"
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
-      content-position
     >
       <template #item="data">
         <div>
