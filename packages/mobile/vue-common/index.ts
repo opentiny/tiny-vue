@@ -20,7 +20,6 @@ import {
 } from './src/adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './src/csscls'
-import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './src/adapter'
 import { useBreakpoint } from './src/breakpoint'
 import { useDefer } from './src/usedefer'
@@ -164,7 +163,6 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, cla
   const globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
-  const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
   const utils = {
     $prefix,
     t,
@@ -233,15 +231,13 @@ export function svg({ name = 'Icon', component }) {
       defineComponent({
         name: $prefix + name,
         setup: (props, context) => {
-          const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
+          const { fill, width, height } = context.attrs || {}
           const mergeProps = Object.assign({}, props, propData || null)
           const mode = resolveMode(mergeProps, context)
           const isMobileFirst = mode === 'mobile-first'
           const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
-
-          const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
 
           const extend = Object.assign(
             {

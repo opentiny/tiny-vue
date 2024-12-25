@@ -32,6 +32,7 @@
     "@better-scroll/wheel": "^2.5.0",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/mobile-utils": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-locale": "workspace:~"
   },
   "devDependencies": {

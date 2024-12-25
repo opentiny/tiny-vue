@@ -22,8 +22,7 @@ import {
   defineComponent,
   isEmptyVnode,
   hooks
-} from '../../..//vue-common'
-import '@opentiny/vue-theme/tooltip/index.less'
+} from '../../../vue-common'
 import type { ITooltipApi, ITinyVm } from './tooltip'
 import { tooltipProps } from './tooltip'
 
