@@ -98,4 +98,5 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: Unit Test
+        if: ${{ env.TEST_COMPONENTS }}
         run: pnpm test:unit3 ${{ env.TEST_COMPONENTS }}
