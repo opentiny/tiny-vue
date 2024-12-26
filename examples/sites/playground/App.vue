@@ -89,6 +89,8 @@ const createImportMap = (version) => {
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
+    imports['@opentiny/vue-common'] = `${getRuntime(version)}tiny-vue-saas-common.mjs`
+    imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-all.mjs`
   }
   return {
     imports
