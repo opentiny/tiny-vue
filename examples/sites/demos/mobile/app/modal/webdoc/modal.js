@@ -111,18 +111,6 @@ export default {
       codeFiles: ['fullscreen.vue']
     },
     {
-      demoId: 'grid',
-      name: {
-        'zh-CN': '网格',
-        'en-US': 'button type'
-      },
-      desc: {
-        'zh-CN': '<p>网格</p>',
-        'en-US': '<p>button type</p>'
-      },
-      codeFiles: ['grid.vue']
-    },
-    {
       demoId: 'hide-event',
       name: {
         'zh-CN': '隐藏事件',
