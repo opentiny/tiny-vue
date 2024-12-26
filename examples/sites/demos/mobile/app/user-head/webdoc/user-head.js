@@ -136,18 +136,6 @@ export default {
       codeFiles: ['min-user-head.vue']
     },
     {
-      demoId: 'render-user-head-in-grid',
-      name: {
-        'zh-CN': '渲染用户头像在网格中',
-        'en-US': 'button type'
-      },
-      desc: {
-        'zh-CN': '<p>渲染用户头像在网格中</p>',
-        'en-US': '<p>button type</p>'
-      },
-      codeFiles: ['render-user-head-in-grid.vue']
-    },
-    {
       demoId: 'round-user-head',
       name: {
         'zh-CN': '圆形用户头像',
