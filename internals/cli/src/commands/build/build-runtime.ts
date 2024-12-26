@@ -240,7 +240,7 @@ export async function buildRuntime({
     const processor = await createProcessor(
       {
         '--output': path.join(outDir, 'tailwind.css'),
-        '--content': path.join(outDir, 'tiny-vue.mjs')
+        '--content': path.join(outDir, 'tiny-vue-all.mjs')
       },
       path.resolve(rootDir, 'theme-saas/tailwind.config.js')
     )
