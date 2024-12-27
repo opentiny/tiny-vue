@@ -14,12 +14,12 @@ import type { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } 
 export const calcPaneInstances =
   ({
     constants,
-    parent,
+    vm,
     state,
     childrenHandler
-  }: Pick<ITabsRenderlessParams, 'constants' | 'parent' | 'state' | 'childrenHandler'>) =>
+  }: Pick<ITabsRenderlessParams, 'constants' | 'vm' | 'state' | 'childrenHandler'>) =>
   (isForceUpdate = false) => {
-    const tabItemVNodes = parent.$slots.default
+    const tabItemVNodes = vm.$slots.default
 
     /* istanbul ignore if */
     if (tabItemVNodes) {
@@ -62,13 +62,13 @@ export const calcPaneInstances =
 
 /* istanbul ignore */
 export const calcMorePanes =
-  ({ parent, props, state, refs }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state' | 'refs'>) =>
+  ({ vm, props, state, refs }: Pick<ITabsRenderlessParams, 'vm' | 'props' | 'state' | 'refs'>) =>
   () => {
     if (!props.showMoreTabs) {
       return
     }
 
-    const el = parent.$el
+    const el = vm.$el
     const tabs = el.querySelectorAll('.tiny-tabs__item')
     const tabNavRefs = refs.nav.$refs
 
@@ -93,12 +93,12 @@ export const calcMorePanes =
   }
 
 export const calcExpandPanes =
-  ({ parent, props, state }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state'>) =>
+  ({ vm, props, state }: Pick<ITabsRenderlessParams, 'vm' | 'props' | 'state'>) =>
   () => {
     if (!props.showExpandTabs) {
       return
     }
-    const el = parent.$el
+    const el = vm.$el
     const tabsHeader = el.querySelector('.tiny-mobile-tabs__header')
 
     if (tabsHeader) {
@@ -185,11 +185,11 @@ export const changeCurrentName =
   }
 
 export const created =
-  ({ api, parent, state }: Pick<ITabsRenderlessParams, 'api' | 'parent' | 'state'>) =>
+  ({ api, vm, state }: Pick<ITabsRenderlessParams, 'api' | 'vm' | 'state'>) =>
   () => {
     api.changeDirection(state.currentName)
 
-    parent.$on('tab-nav-update', api.calcPaneInstances.bind(null, true))
+    vm.$on('tab-nav-update', api.calcPaneInstances.bind(null, true))
   }
 
 export const changeDirection =
