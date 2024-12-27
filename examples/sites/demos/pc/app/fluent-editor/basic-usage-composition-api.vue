@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
-    <div class="fluent-editor-demo__basic-usage__content">
-      内容：<br />
-      {{ content }}
-    </div>
+  <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
+  <div class="fluent-editor-demo__basic-usage__content">
+    内容：<br />
+    {{ content }}
   </div>
 </template>
 

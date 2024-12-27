@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <tiny-fluent-editor
-      ref="fluentEditorRef"
-      v-model="content"
-      :before-editor-init="beforeEditorInit"
-      :options="editorOptions"
-    ></tiny-fluent-editor>
-    内容：<br />
-    {{ content }}
-  </div>
+  <tiny-fluent-editor
+    ref="fluentEditorRef"
+    v-model="content"
+    :before-editor-init="beforeEditorInit"
+    :options="editorOptions"
+  ></tiny-fluent-editor>
 </template>
 
 <script>

@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <tiny-fluent-editor v-model="content" :image-upload="imageUpload"></tiny-fluent-editor>
-    内容：<br />
-    {{ content }}
-  </div>
+  <tiny-fluent-editor v-model="content" :image-upload="imageUpload"></tiny-fluent-editor>
 </template>
 
 <script>

@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <tiny-fluent-editor v-model="value" :data-type="false" :data-upgrade="false"></tiny-fluent-editor>
-    内容：<br />
-    {{ value }}
-  </div>
+  <tiny-fluent-editor v-model="value" :data-type="false" :data-upgrade="false"></tiny-fluent-editor>
 </template>
 
 <script setup>
