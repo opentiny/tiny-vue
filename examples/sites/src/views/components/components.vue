@@ -1,6 +1,6 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <header :class="['flex-horizontal', 'docs-header', cmpId === 'loading' && 'docs-header-highlight']">
+  <header class="flex-horizontal docs-header">
     <div class="docs-title-wrap">
       <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
       <version-tip
@@ -97,13 +97,7 @@
               </div>
             </div>
           </div>
-          <tiny-tabs
-            v-else
-            v-model="activeTab"
-            ref="demoTabs"
-            :class="['docs-content-tabs', cmpId === 'loading' && 'docs-content-tabs-highlight']"
-            @click="onTabsClick"
-          >
+          <tiny-tabs v-else v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
             <tiny-tab-item :title="i18nByKey('demos')" name="demos">
               <!-- demos列表 -->
               <template v-if="currJson?.demos?.length">
@@ -775,10 +769,6 @@ export default defineComponent({
   background-color: #fff;
   box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
 
-  &.docs-header-highlight {
-    z-index: var(--docs-header-zindex-highlight);
-  }
-
   .docs-title-wrap {
     flex: 1;
     min-width: var(--layout-content-main-min-width);
@@ -828,10 +818,6 @@ export default defineComponent({
     --tv-Tabs-item-font-size: 18px;
     --tv-Tabs-header-font-active-text-color: #2f5bea;
     --tv-Tabs-item-active-border-color: #2f5bea;
-
-    &.docs-content-tabs-highlight :deep(.tiny-tabs__header) {
-      z-index: var(--docs-layout-sider-zindex-highlight);
-    }
 
     flex: 1;
     transition: all ease-in-out 0.3s;
