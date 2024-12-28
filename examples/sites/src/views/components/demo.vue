@@ -1,82 +1,100 @@
 <template>
-  <div :id="demo.demoId" class="ti-br-sm ti-wp100" :class="currDemoId === demo.demoId ? 'b-a-success is-current' : ''">
-    <div class="demo-content">
-      <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
-      <div class="ti-f-r ti-f-pos-between ti-f-box-end">
-        <h2 class="demo-title">{{ demo.name[langKey] }}</h2>
-        <div class="demo-options">
-          <tiny-tooltip
-            placement="top"
-            effect="light"
-            popper-class="docs-tooltip"
-            :append-to-body="false"
-            :content="copyTip"
-          >
-            <i
-              :class="copyIcon"
-              class="h:c-success ti-w16 ti-h16 ti-cur-hand"
-              @click="copyCode(demo)"
-              @mouseout="resetTip()"
-            />
-          </tiny-tooltip>
-          <tiny-tooltip
-            placement="top"
-            effect="light"
-            popper-class="docs-tooltip"
-            :append-to-body="false"
-            :content="demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode')"
-          >
-            <i
-              :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
-              class="ti-ml8 h:c-success ti-w16 ti-h16 ti-cur-hand"
-              @click="toggleDemoCode(demo)"
-            />
-          </tiny-tooltip>
-          <tiny-tooltip
-            placement="top"
-            effect="light"
-            popper-class="docs-tooltip"
-            :append-to-body="false"
-            :content="i18nByKey('playground')"
-          >
-            <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
-          </tiny-tooltip>
+  <div ref="demoContainer" :id="demo.demoId" class="demo-container">
+    <div
+      v-if="isIntersecting"
+      class="ti-br-sm ti-wp100"
+      :class="currDemoId === demo.demoId ? 'b-a-success is-current' : ''"
+    >
+      <div class="demo-content">
+        <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
+        <div class="ti-f-r ti-f-pos-between ti-f-box-end">
+          <h2 class="demo-title">{{ demo.name[langKey] }}</h2>
+          <div class="demo-options">
+            <tiny-tooltip
+              placement="top"
+              effect="light"
+              popper-class="docs-tooltip"
+              :append-to-body="false"
+              :content="copyTip"
+            >
+              <i
+                :class="copyIcon"
+                class="h:c-success ti-w16 ti-h16 ti-cur-hand"
+                @click="copyCode(demo)"
+                @mouseout="resetTip()"
+              />
+            </tiny-tooltip>
+            <tiny-tooltip
+              placement="top"
+              effect="light"
+              popper-class="docs-tooltip"
+              :append-to-body="false"
+              :content="demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode')"
+            >
+              <i
+                :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
+                class="ti-ml8 h:c-success ti-w16 ti-h16 ti-cur-hand"
+                @click="toggleDemoCode(demo)"
+              />
+            </tiny-tooltip>
+            <tiny-tooltip
+              placement="top"
+              effect="light"
+              popper-class="docs-tooltip"
+              :append-to-body="false"
+              :content="i18nByKey('playground')"
+            >
+              <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
+            </tiny-tooltip>
+          </div>
         </div>
-      </div>
-      <component :is="getDescMd(demo)" class="demo-desc markdown-body" />
+        <component :is="getDescMd(demo)" class="demo-desc markdown-body" />
 
-      <div v-if="isMobileFirst" class="pc-demo-container">
-        <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
-      </div>
-      <div v-else-if="demoConfig.isMobile" class="phone-container">
-        <div class="mobile-view-container">
-          <component :is="cmp" />
+        <div v-if="isMobileFirst" class="pc-demo-container">
+          <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
+        </div>
+        <div v-else-if="demoConfig.isMobile" class="phone-container">
+          <div class="mobile-view-container">
+            <component :is="cmp" />
+          </div>
+        </div>
+        <div v-else class="pc-demo-container">
+          <div class="pc-demo">
+            <component :is="cmp" />
+          </div>
         </div>
       </div>
-      <div v-else class="pc-demo-container">
-        <div class="pc-demo">
-          <component :is="cmp" />
+      <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
+      <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless demo-code">
+        <template v-if="files?.length">
+          <tiny-tabs v-model="tabValue" class="code-tabs">
+            <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
+              <async-highlight :code="file.code"></async-highlight>
+            </tiny-tab-item>
+          </tiny-tabs>
+        </template>
+        <div v-else-if="files[0]">
+          <async-highlight :code="files[0].code"></async-highlight>
         </div>
-      </div>
-    </div>
-    <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
-    <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless demo-code">
-      <template v-if="files?.length">
-        <tiny-tabs v-model="tabValue" class="code-tabs">
-          <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
-            <async-highlight :code="file.code"></async-highlight>
-          </tiny-tab-item>
-        </tiny-tabs>
-      </template>
-      <div v-else-if="files[0]">
-        <async-highlight :code="files[0].code"></async-highlight>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick, inject, ref } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  computed,
+  toRefs,
+  shallowRef,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  nextTick,
+  inject,
+  ref
+} from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, appData, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
@@ -91,7 +109,7 @@ const { apiModeState, apiModeFn } = useApiMode()
 
 export default defineComponent({
   name: 'Demo',
-  props: ['demo', 'currDemoId'],
+  props: ['demo', 'currDemoId', 'observer', 'isIntersecting'],
   emits: ['mounted'],
   components: {
     TinyTooltip,
@@ -133,6 +151,9 @@ export default defineComponent({
       }
       return demo.files
     }
+
+    const demoContainer = ref(null)
+
     const state = reactive({
       tabValue: 'tab0',
       cmpId: router.currentRoute.value.params.cmpId,
@@ -142,7 +163,6 @@ export default defineComponent({
     })
 
     const cmp = shallowRef(null)
-
     const showPreview = inject('showPreview')
 
     const fn = {
@@ -205,22 +225,40 @@ export default defineComponent({
       }
     }
 
-    onMounted(async () => {
-      const demoName = apiModeFn.getDemoName(`${getWebdocPath(state.cmpId)}/${props.demo.codeFiles[0]}`)
-
-      if (vueComponents[demoName]) {
-        cmp.value = (await vueComponents[demoName]()).default
-      } else {
-        const log = `${demoName}示例资源不存在，请检查文件名是否正确？`
-        cmp.value = <div>{log}</div>
+    onMounted(() => {
+      if (demoContainer.value) {
+        props.observer?.observe?.(demoContainer.value)
       }
+
       nextTick(() => {
         emit('mounted')
       })
     })
 
+    onBeforeUnmount(() => {
+      if (demoContainer.value) {
+        props.observer?.unobserve?.(demoContainer.value)
+      }
+    })
+
     const demos = ref(props.demo)
     const files = ref([])
+
+    watch(
+      () => props.isIntersecting,
+      async () => {
+        if (props.isIntersecting) {
+          const demoName = apiModeFn.getDemoName(`${getWebdocPath(state.cmpId)}/${props.demo.codeFiles[0]}`)
+          if (vueComponents[demoName]) {
+            cmp.value = (await vueComponents[demoName]()).default
+          } else {
+            const log = `${demoName}示例资源不存在，请检查文件名是否正确？`
+            cmp.value = <div>{log}</div>
+          }
+        }
+      },
+      { immediate: true }
+    )
 
     watch(
       () => props.demo,
@@ -244,12 +282,27 @@ export default defineComponent({
       }
     )
 
-    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst, i18nByKey, files }
+    return {
+      ...toRefs(state),
+      ...fn,
+      appData,
+      vueComponents,
+      demoConfig,
+      cmp,
+      isMobileFirst,
+      i18nByKey,
+      files,
+      demoContainer
+    }
   }
 })
 </script>
 
 <style lang="less" scoped>
+.demo-container {
+  min-height: 200px;
+}
+
 .is-current {
   padding: 20px 24px;
 }

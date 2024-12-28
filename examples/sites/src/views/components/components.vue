@@ -20,84 +20,7 @@
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
-          <div v-if="['interfaces', 'types', 'classes'].includes(cmpId)" id="TS" class="all-api-container">
-            <div class="ti-f-c ti-f-wrap api-list">
-              <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
-                <div class="ti-f-r ti-f-pos-start ti-fw-bold">
-                  <div :id="`cmp-${oneGroup.name}`" class="ti-f18">
-                    {{ oneGroup.name }}
-                  </div>
-                  <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">
-                    {{ oneGroup.type }}
-                  </div>
-                </div>
-                <div v-for="(oneApiArr, key) in oneGroup" :key="key">
-                  <template v-if="key !== 'name' && key !== 'type' && oneApiArr.length > 0">
-                    <div class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
-                      {{ key }}
-                    </div>
-                    <div class="api-table-box">
-                      <tiny-grid class="api-table" :data="tableData[oneGroup.name][key]" :expand-config="apiExpandConf">
-                        <tiny-grid-column
-                          v-if="tableData[oneGroup.name][key][0]?.type"
-                          class-name="api-table-expand-col"
-                          type="expand"
-                          width="32"
-                        >
-                          <template #default="{ row }">
-                            <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
-                          </template>
-                        </tiny-grid-column>
-                        <tiny-grid-column field="name" :title="i18nByKey('name')" :width="columnWidth[key][0]">
-                          <template #default="{ row }">
-                            <span class="api-table-name">
-                              <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                              <span v-else>{{ row.name }}</span>
-                            </span>
-                            <version-tip
-                              v-if="row.meta || row.versionTipOption"
-                              :meta="row.meta"
-                              v-bind="row.versionTipOption"
-                              render-type="tag"
-                              tip-subject="api"
-                            >
-                            </version-tip>
-                          </template>
-                        </tiny-grid-column>
-                        <tiny-grid-column
-                          v-if="tableData[oneGroup.name][key][0]?.type"
-                          field="type"
-                          :title="i18nByKey('propType')"
-                          :width="columnWidth[key][1]"
-                        >
-                          <template #default="{ row }">
-                            <a
-                              v-if="row.typeAnchorName"
-                              :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
-                              v-html="row.type"
-                            ></a>
-                            <span v-else v-html="row.type"></span>
-                          </template>
-                        </tiny-grid-column>
-                        <tiny-grid-column
-                          v-if="key === 'props'"
-                          field="defaultValue"
-                          :title="i18nByKey('defValue')"
-                          :width="columnWidth[key][2]"
-                        ></tiny-grid-column>
-                        <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                          <template #default="data">
-                            <span v-html="data.row.desc"></span>
-                          </template>
-                        </tiny-grid-column>
-                      </tiny-grid>
-                    </div>
-                  </template>
-                </div>
-              </div>
-            </div>
-          </div>
-          <tiny-tabs v-else v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
+          <tiny-tabs v-model="activeTab" ref="demoTabs" class="docs-content-tabs" @click="onTabsClick">
             <tiny-tab-item :title="i18nByKey('demos')" name="demos">
               <!-- demos列表 -->
               <template v-if="currJson?.demos?.length">
@@ -106,6 +29,8 @@
                     <demo
                       v-for="demo in currJson.demos"
                       :key="demo.name"
+                      :observer="observer"
+                      :isIntersecting="demo.isIntersecting"
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
@@ -113,7 +38,7 @@
                     />
                   </div>
                   <div v-else>
-                    <demo v-if="singleDemo" :key="singleDemo.name" :demo="singleDemo" />
+                    <demo v-if="singleDemo" :isIntersecting="true" :key="singleDemo.name" :demo="singleDemo" />
                   </div>
                 </div>
               </template>
@@ -294,11 +219,10 @@ export default defineComponent({
       webDocPath: computed(() => ''),
       langKey: getWord('zh-CN', 'en-US'),
       cmpId: '',
+      observer: null,
       currJson: { column: 1, demos: [], apis: [], types: {} },
       cmpTopMd: null,
       cmpFAQMd: null,
-      evenDemo: computed(() => state.currJson.demos?.filter((d, i) => i % 2 === 0) || []),
-      oddDemo: computed(() => state.currJson.demos?.filter((d, i) => i % 2 === 1) || []),
       currDemoId: '',
       demoAnchorLinks: computed(() => {
         const links =
@@ -481,6 +405,7 @@ export default defineComponent({
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {}
+
           if (scrollTarget && !isRunningTest) {
             // doc-layout-scoller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
             // 所以滚动需要修正 tab-title的占位高度才行
@@ -556,6 +481,12 @@ export default defineComponent({
           // 3、加载cmpId.js 文件
           // eslint-disable-next-line no-eval
           const json = jsData ? eval('(' + jsData.slice(15) + ')') : {}
+
+          // 默认设置每个实例demo都不和视图相交
+          json.demos?.forEach((item) => {
+            item.isIntersecting = false
+          })
+
           state.currJson = {
             ...json,
             demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
@@ -635,6 +566,27 @@ export default defineComponent({
         if (docLayout) {
           docLayout.addEventListener('scroll', onDocLayoutScroll)
         }
+
+        const options = {
+          root: docLayout,
+          threshold: 0.2
+        }
+
+        const callback = (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // 当demo示例与视图相交才加载对应的vue组件
+              const demoId = entry.target.id
+              state.currJson.demos.forEach((item) => {
+                if (item.demoId === demoId) {
+                  item.isIntersecting = true
+                }
+              })
+            }
+          })
+        }
+
+        state.observer = new IntersectionObserver(callback, options)
       })
     }
 
@@ -736,6 +688,7 @@ export default defineComponent({
 
     onMounted(() => {
       loadPage()
+      // 加载公共尾部
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
       setScrollListener()
@@ -766,6 +719,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .docs-header {
   padding: 16px 40px;
+  min-height: 102px;
   background-color: #fff;
   box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
 
