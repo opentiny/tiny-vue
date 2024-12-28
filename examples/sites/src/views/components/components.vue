@@ -16,7 +16,7 @@
     </div>
     <span class="docs-header-spacer"></span>
   </header>
-  <div class="docs-content" id="doc-layout-scoller">
+  <div class="docs-content" id="doc-layout-scroller">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -233,11 +233,12 @@
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
             id="anchor"
+            :offset-top="56"
             :links="currAnchorLinks"
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
             type="dot"
-            container-id="#doc-layout-scoller"
+            container-id="#doc-layout-scroller"
             @link-click="handleAnchorClick"
           >
           </tiny-anchor>
@@ -469,7 +470,7 @@ export default defineComponent({
     const scrollByHash = (hash) => {
       setTimeout(() => {
         if (!hash) {
-          document.getElementById('doc-layout-scoller').scrollTo({
+          document.getElementById('doc-layout-scroller').scrollTo({
             top: 0,
             left: 0
           })
@@ -482,10 +483,10 @@ export default defineComponent({
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {}
           if (scrollTarget && !isRunningTest) {
-            // doc-layout-scoller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
+            // doc-layout-scroller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
             // 所以滚动需要修正 tab-title的占位高度才行
-            document.getElementById('doc-layout-scoller').scrollTo({
-              top: scrollTarget.offsetTop + 52,
+            document.getElementById('doc-layout-scroller').scrollTo({
+              top: scrollTarget.offsetTop,
               left: 0,
               behavior: 'smooth'
             })
@@ -499,7 +500,7 @@ export default defineComponent({
       let hash = router.currentRoute.value.hash?.slice(1)
       if (hash !== 'API') {
         setTimeout(() => {
-          document.getElementById('doc-layout-scoller').scrollTo({
+          document.getElementById('doc-layout-scroller').scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
@@ -620,18 +621,18 @@ export default defineComponent({
     }
 
     const onDocLayoutScroll = debounce(100, false, () => {
-      const docLayout = document.getElementById('doc-layout-scoller')
+      const docLayout = document.getElementById('doc-layout-scroller')
       const { scrollTop, scrollHeight, clientHeight: layoutHeight } = docLayout
       const headerHeight = document.querySelector('.docs-header')?.clientHeight || 0
       const footerHeight = document.getElementById('footer')?.clientHeight || 0
       const anchorHeight = document.querySelector('#anchor')?.clientHeight || 0
-      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout-scoller视口下隐藏的部分高度
+      const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout-scroller视口下隐藏的部分高度
       state.anchorAffix = layoutHeight - headerHeight - (footerHeight - remainHeight) > anchorHeight
     })
 
     const setScrollListener = () => {
       nextTick(() => {
-        const docLayout = document.getElementById('doc-layout-scoller')
+        const docLayout = document.getElementById('doc-layout-scroller')
         if (docLayout) {
           docLayout.addEventListener('scroll', onDocLayoutScroll)
         }
@@ -639,7 +640,7 @@ export default defineComponent({
     }
 
     const removeScrollListener = () => {
-      const docLayout = document.getElementById('doc-layout-scoller')
+      const docLayout = document.getElementById('doc-layout-scroller')
       if (docLayout) {
         docLayout.removeEventListener('scroll', onDocLayoutScroll)
       }
@@ -802,7 +803,7 @@ export default defineComponent({
 .docs-content {
   flex: 1;
   overflow: hidden auto;
-  padding: 16px 0 0;
+  margin-top: 16px;
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
@@ -826,6 +827,7 @@ export default defineComponent({
 
     :deep(> .tiny-tabs__header) {
       position: sticky;
+      top: 0;
       z-index: var(--docs-tabs-header-zindex);
       background-color: #fff;
 
