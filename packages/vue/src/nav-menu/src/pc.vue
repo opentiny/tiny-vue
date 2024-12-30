@@ -31,7 +31,7 @@
             :to="getRoute(item)"
             :class="{
               active: index === state.activeIndex,
-              selected: index === state.selectedIndex
+              selected: getTabSelected(item, index)
             }"
             @mouseenter="showSubMenu(item.children, { index }, $event)"
             @mouseleave="willHideSubMenu"
@@ -43,8 +43,10 @@
     </div>
     <div
       v-show="state.isShowMore"
-      :style="{ marginLeft: state.marginLeft + 'px' }"
-      class="more"
+      :class="{
+        more: true,
+        selected: state.enterMoreMenu || getMoreSelected()
+      }"
       @mouseenter="showSubMenu(state.more[0].children, { more: true })"
       @mouseleave="willHideSubMenu"
     >
@@ -70,7 +72,10 @@
             <li
               v-for="(item, index) in state.more"
               :key="index + (item.title || '')"
-              :class="{ active: index === state.subActiveIndex, selected: index === state.moreItemSelectedIndex }"
+              :class="{
+                active: index === state.subActiveIndex,
+                selected: getLeftSelected(item, index)
+              }"
             >
               <component
                 :is="getTag(item)"
@@ -127,7 +132,9 @@
                     :is="getTag(item)"
                     :to="getRoute(item)"
                     @click="clickMenu(item, i, index)"
-                    :class="{ selected: i === state.subItemSelectedIndex && index === state.subIndex }"
+                    :class="{
+                      selected: getLastChildSelected(item, i, index)
+                    }"
                   >
                     {{ item.title }}
                   </component>
@@ -174,7 +181,8 @@ export default defineComponent({
     'fetchMenuData',
     'fields',
     'prevent',
-    'allowFullUrl'
+    'allowFullUrl',
+    'defaultActive'
   ],
   components: {
     TinyTooltip: Tooltip,

@@ -81,6 +81,18 @@ export default {
       codeFiles: ['before-skip-prevent.vue']
     },
     {
+      demoId: 'selecte',
+      name: {
+        'zh-CN': '自定义选中菜单',
+        'en-US': 'Customize selected menu'
+      },
+      desc: {
+        'zh-CN': '通过 <code>default-active</code> 自定义当前选中的菜单。',
+        'en-US': 'Customize the currently selected menu through<code>default active</code>.'
+      },
+      codeFiles: ['selecte.vue']
+    },
+    {
       demoId: 'custom-service',
       name: {
         'zh-CN': '自定义服务',
