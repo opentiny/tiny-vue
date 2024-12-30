@@ -1,10 +1,10 @@
 <!--anchor:on-->
 
-## Development Example
+# Development Example
 
 This article is based on[Vite](https://cn.vitejs.dev/) Project example to show how to use`TinyVue`components.
 
-### Building the Vite project
+## Building the Vite project
 
 Create a`Vite`Works:
 
@@ -30,7 +30,7 @@ After the browser is started, if the following interface is displayed, it indica
 
 <img src="@demos/resource/vite-vue.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14)" ><br><br>
 
-### Install and use`TinyVue`Components
+## Install and use`TinyVue`Components
 
 Run the following command to install the`Vue 3.0`version of`TinyVue`Component library:
 

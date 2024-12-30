@@ -108,7 +108,7 @@ const initApi = ({
     computedIsDisplayOnly: computedIsDisplayOnly({ state, props }),
     computedIsGroupDisplayOnly: computedIsGroupDisplayOnly({ state }),
     computedGetModelGet: computedGetModelGet({ state, props }),
-    computedIsGroup: computedIsGroup({ state, parent, constants }),
+    computedIsGroup: computedIsGroup({ state, vm, constants }),
     computedCheckboxSize: computedCheckboxSize({ state, props, formItemSize }),
     computedGetModelSet: computedGetModelSet({ state, dispatch, emit, constants }),
     mounted: mounted({ emit, props, api, parent }),

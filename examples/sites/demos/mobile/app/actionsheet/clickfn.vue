@@ -11,7 +11,6 @@
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       @click="clickItem"
-      content-position
     ></tiny-action-sheet>
   </div>
 </template>

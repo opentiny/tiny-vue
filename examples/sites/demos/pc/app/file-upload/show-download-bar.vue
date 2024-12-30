@@ -46,15 +46,15 @@ export default {
       if (file.docId === 'M1T2A1N548572512085860351') {
         file.showDownloadBar = true
 
-        // 更新downloadPercentage，vue2下写法
+        // 更新 downloadPercentage，vue2 下写法
         // this.$set(file, 'downloadPercentage', 0)
-        // 更新downloadPercentage，vue3下写法
+        // 更新 downloadPercentage，vue3 下写法
         file.downloadPercentage = 0
 
         const timer = setInterval(() => {
           if (file.downloadPercentage >= 100) {
             clearInterval(timer)
-            // 下载完成后可以隐藏进度条，因为进度条有过渡动画，所以可以延迟1s再隐藏
+            // 下载完成后可以隐藏进度条，因为进度条有过渡动画，所以可以延迟 1s 再隐藏
             setTimeout(() => {
               file.showDownloadBar = false
             }, 1000)
@@ -68,18 +68,18 @@ export default {
         // 模拟下载失败场景
         file.showDownloadBar = true
 
-        // 更新downloadPercentage，vue2下写法
+        // 更新 downloadPercentage，vue2 下写法
         // this.$set(file, 'downloadPercentage', 0)
-        // 更新downloadPercentage，vue3下写法
+        // 更新 downloadPercentage，vue3 下写法
         file.downloadPercentage = 0
 
         const timer = setInterval(() => {
           if (file.downloadPercentage >= 50) {
             clearInterval(timer)
             // file.showDownloadBar = false
-            // 更新downloadStatus，vue2下写法
+            // 更新 downloadStatus，vue2 下写法
             // this.$set(file, 'downloadStatus', 'exception')
-            // 更新downloadStatus，vue3下写法
+            // 更新 downloadStatus，vue3 下写法
             file.downloadStatus = 'exception'
 
             TinyModal.message({ message: '下载失败', status: 'error' })

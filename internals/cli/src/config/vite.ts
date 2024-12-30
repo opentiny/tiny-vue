@@ -75,9 +75,6 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'echarts/renderers',
       'echarts-wordcloud',
       'echarts',
-      'crypto-js/core',
-      'crypto-js/sha256.js',
-      'crypto-js/lib-typedarrays.js',
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
     ].filter((item) => !!item)

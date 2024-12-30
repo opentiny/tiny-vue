@@ -11,7 +11,7 @@
  */
 
 import { computedContent, computedValueRef, computedTransform } from './index'
-import { xss } from '@opentiny/utils/xss'
+import { xss } from '@opentiny/mobile-utils/xss'
 import type { IBadgeState, IBadgeProps, IBadgeApi, IBadgeRenderlessParams } from '../badge'
 
 export const api = ['state']

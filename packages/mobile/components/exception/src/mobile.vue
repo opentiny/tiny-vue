@@ -17,7 +17,7 @@
       <slot name="content">
         <div class="tiny-mobile-exception__content-message">
           <div class="main-message">
-            {{ state.message }}
+            {{ message }}
           </div>
           <div v-if="subMessage" class="sub-message">
             {{ subMessage }}

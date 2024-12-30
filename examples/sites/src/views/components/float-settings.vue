@@ -149,7 +149,7 @@ export default defineComponent({
 
     const funcs = {
       onBackTop() {
-        document.getElementById('doc-layout').scrollTo({
+        document.getElementById('doc-layout-scroller').scrollTo({
           top: 0,
           left: 0,
           behavior: 'smooth'
@@ -196,7 +196,7 @@ export default defineComponent({
 
     const setScrollListener = () => {
       nextTick(() => {
-        const docLayout = document.getElementById('doc-layout')
+        const docLayout = document.getElementById('doc-layout-scroller')
         const nav = document.querySelector('.nav')
         if (docLayout) {
           docLayout.onscroll = debounce(100, false, () => {
@@ -218,7 +218,7 @@ export default defineComponent({
     }
 
     const removeScrollListener = () => {
-      const docLayout = document.getElementById('doc-layout') || {}
+      const docLayout = document.getElementById('doc-layout-scroller') || {}
       docLayout.onscroll = null
     }
 

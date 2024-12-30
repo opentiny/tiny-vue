@@ -1,5 +1,5 @@
 <template>
-  <tiny-progress class="circle-progress" type="circle" :percentage="50" status="exception"></tiny-progress>
+  <tiny-progress class="circle-progress" type="circle" :percentage="50" :width="124" status="exception"></tiny-progress>
 </template>
 
 <script lang="jsx">

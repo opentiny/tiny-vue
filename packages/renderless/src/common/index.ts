@@ -10,7 +10,7 @@
  *
  */
 
-import { log as uLog, xss } from './xss'
+import { log as uLog, xss } from '@opentiny/utils'
 
 export const KEY_CODE = {
   Backspace: 8,

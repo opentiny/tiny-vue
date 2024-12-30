@@ -47,7 +47,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
 
-    const { mode } = tasks[0]
+    const { mode, libPath } = tasks[0]
 
     const modeList = ['pc', 'mobile', 'mobile-first']
 
@@ -57,7 +57,8 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       dtsInclude: [] as string[],
       dts: false,
       npmScope,
-      isRuntime: true
+      isRuntime: true,
+      design: libPath === 'tiny-vue-saas-common' ? 'saas' : null
     } as BaseConfig) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
@@ -74,7 +75,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           requireReturnsDefault: true,
           defaultIsModuleExports: true,
           // echarts模块本身是esmodules格式不需要经过commonjs转换
-          exclude: ['node_modules/echarts/**', 'node_modules/echarts', 'node_modules/crypto-js/**']
+          exclude: ['node_modules/echarts/**', 'node_modules/echarts']
         }),
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
@@ -119,6 +120,9 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           external: (source, importer, isResolved) => {
             if (isResolved || !importer) return false
 
+            if (libPath === 'tiny-vue-saas-common') {
+              return ['@vue/composition-api', 'vue'].includes(source)
+            }
             return Object.keys(getExternal()).includes(source)
           },
           output: {
@@ -160,6 +164,10 @@ function getEntryTasks() {
     {
       path: 'vue-common/src/index.ts',
       libPath: 'tiny-vue-common'
+    },
+    {
+      path: 'vue-saas-common/src/index.ts',
+      libPath: 'tiny-vue-saas-common'
     },
     {
       path: 'vue-runtime/all.ts',
@@ -232,7 +240,7 @@ export async function buildRuntime({
     const processor = await createProcessor(
       {
         '--output': path.join(outDir, 'tailwind.css'),
-        '--content': path.join(outDir, 'tiny-vue.mjs')
+        '--content': path.join(outDir, 'tiny-vue-all.mjs')
       },
       path.resolve(rootDir, 'theme-saas/tailwind.config.js')
     )

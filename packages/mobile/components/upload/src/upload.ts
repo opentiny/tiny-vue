@@ -1,4 +1,4 @@
-import uploadAjax from '@opentiny/utils/deps/upload-ajax'
+import uploadAjax from '@opentiny/mobile-utils/deps/upload-ajax'
 import type { ExtractPropTypes } from 'vue'
 import type {
   ISharedRenderlessFunctionParams,

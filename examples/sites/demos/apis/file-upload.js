@@ -304,8 +304,8 @@ export default {
         },
         {
           name: 'http-request',
-          type: '(file: IFile) => Promise<any>',
-          typeAnchorName: 'IFile',
+          type: '(file: ICustomParam) => Promise<any>',
+          typeAnchorName: 'ICustomParam',
           defaultValue: '',
           desc: {
             'zh-CN': '覆盖默认的上传行为，可以自定义上传的实现; 由于 TinyVue 官网为 Mock 上传不能执行上传',
@@ -1058,6 +1058,22 @@ interface IFile {
   uid: string // uid 
 }
       `
+    },
+    {
+      name: 'ICustomParam',
+      type: 'interface',
+      code: `
+interface ICustomParam {
+  action: string
+  data: IData // 上传时附带的额外参数
+  file: IFile
+  filename: string
+  headers: object // 头部请求信息
+  onError: (error: any) => void // 上传失败回调函数，自定义入参
+  onProgress: (event: any) => void // 上传中回调函数
+  onSuccess: (res: any) => void // 上传成功回调函数
+  withCredentials: boolean // 是否支持发送 cookie 凭证信息
+}`
     },
     {
       name: 'IEncryptConfig',

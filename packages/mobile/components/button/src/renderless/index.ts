@@ -10,21 +10,21 @@
  *
  */
 import type { IButtonRenderlessParams, IButtonState } from '../button'
-import { xss } from '@opentiny/utils'
+import { xss } from '@opentiny/mobile-utils'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (event: MouseEvent): void => {
     const urlHref = xss.filterUrl(props.href)
-
+    let reset = Number(props.resetTime)
     if (urlHref) {
       location.href = urlHref
-    } else if (props.nativeType === 'button' && props.resetTime > 0) {
+    } else if (props.nativeType === 'button' && reset > 0) {
       state.disabled = true
 
       state.timer = window.setTimeout(() => {
         state.disabled = false
-      }, props.resetTime)
+      }, reset)
     }
 
     emit('click', event)

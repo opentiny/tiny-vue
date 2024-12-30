@@ -1,10 +1,10 @@
-## Environment Preparation
+# Environment Preparation
 
 TinyVue is a`Vue`UI component library, which can also support`Vue 2.0`and`Vue 3.0`.
 
 Browser compatibility`TinyVue`The latest versions of mainstream browsers are supported: Chrome, Edge, Firefox, Opera, and Safari. No longer supported`Internet Explorer`.
 
-### Installing Node.js
+## Installing Node.js
 
 Recommended Installation`v16.13.0`version, if the local`Node.js`, run the following command to check whether the version is correct:
 
@@ -12,7 +12,7 @@ Recommended Installation`v16.13.0`version, if the local`Node.js`, run the follow
 node -v
 ```
 
-### Installing Yarn
+## Installing Yarn
 
 management`npm`There are two main tools for the package. One is the installation.`Node.js`When it comes`npm`, the other is the faster`yarn`, run the following command to install:
 

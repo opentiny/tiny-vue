@@ -12,7 +12,16 @@ const supportMap = {
   'rspack': AutoRspack
 }
 
-export const TinyVueResolver = (componentName) => {
+const TinyVueFunc = ['TinyModal', 'TinyNotify', 'TinyLoading']
+
+export const TinyVueResolver = (componentName: string) => {
+  if (TinyVueFunc.includes(componentName)) {
+    return {
+      name: componentName,
+      from: '@opentiny/vue'
+    }
+  }
+
   if (componentName.startsWith('Tiny') && !componentName.startsWith('TinyIcon')) {
     return {
       name: componentName.slice(4),

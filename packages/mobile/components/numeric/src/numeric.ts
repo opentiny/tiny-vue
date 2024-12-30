@@ -10,7 +10,7 @@
  *
  */
 import type { ExtractPropTypes } from 'vue'
-import type { BigIntDecimal } from '@opentiny/utils/bigInt'
+import type { BigIntDecimal } from '@opentiny/mobile-utils/bigInt'
 import type {
   focus,
   select,

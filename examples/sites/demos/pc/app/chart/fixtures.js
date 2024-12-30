@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from '@playwright/test'
 
 const config = {
-  waitTime: 2000 // 默认2000毫秒
+  waitTime: 2000 // 默认 2000 毫秒
 }
 
 // 创建一个可以在所有测试中使用的自定义 test
@@ -12,7 +12,7 @@ const test = baseTest.extend({
       await originalGoto(url, options)
       await page.waitForTimeout(config.waitTime)
     }
-    // 使用自定义的page
+    // 使用自定义的 page
     await use(page)
   }
 })

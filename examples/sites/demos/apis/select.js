@@ -657,6 +657,30 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'init-label'
+        },
+        {
+          name: 'display-only',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置组件只显示文字。在Form中使用时，会默认继承上级的<code>display-only</code>的值。',
+            'en-US':
+              'Sets the widget to display only text.When used in a form, the value of <code>display-only</code> is inherited by default.'
+          },
+          mode: ['pc'],
+          pcDemo: 'multiple-mix'
+        },
+        {
+          name: 'hover-expand',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '多选时，鼠标移入触发标签的自动展开',
+            'en-US':
+              'When multiple selections are selected, move the cursor to trigger the automatic expansion of the label.'
+          },
+          mode: ['pc'],
+          pcDemo: 'multiple-mix'
         }
       ],
       events: [

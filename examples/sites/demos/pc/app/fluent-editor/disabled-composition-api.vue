@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <tiny-fluent-editor v-model="content" disabled></tiny-fluent-editor>
-  </div>
+  <tiny-fluent-editor v-model="content" disabled></tiny-fluent-editor>
 </template>
 
 <script setup>

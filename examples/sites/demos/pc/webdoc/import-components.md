@@ -1,10 +1,10 @@
 <!--anchor:on-->
 
-## 引入组件
+# 引入组件
 
 `TinyVue` 支持自动导入、多组件引入、单组件引入以及完整引入四种方式。
 
-### 自动导入（推荐）
+## 自动导入（推荐）
 
 首先你需要安装 `@opentiny/unplugin-tiny-vue` 这款插件。
 
@@ -80,13 +80,61 @@ module.exports = defineConfig({
 })
 ```
 
+#### 关于函数式组件
+
+TinyModal，TinyNotify，TinyLoading 可使用函数形式调用，在使用时，需使用 `unplugin-auto-import` 实现自动导入。
+
+Vite
+
+```js
+// vite.config.js
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { TinyVueResolver } from '@opentiny/unplugin-tiny-vue'
+
+module.exports = defineConfig({
+  configureWebpack: {
+    plugins: [
+      Components({
+        resolvers: [TinyVueResolver]
+      }),
+      AutoImport({
+        resolvers: [TinyVueResolver]
+      })
+    ]
+  }
+})
+```
+
+Webpack
+
+```js
+// webpack.config.js
+const Components = require('unplugin-vue-components/webpack').default
+const AutoImport = require('unplugin-auto-import/webpack').default
+const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
+
+module.exports = defineConfig({
+  configureWebpack: {
+    plugins: [
+      Components({
+        resolvers: [TinyVueResolver]
+      }),
+      AutoImport({
+        resolvers: [TinyVueResolver]
+      })
+    ]
+  }
+})
+```
+
 想了解更多自动按需导入的信息，请参考：[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 和 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)。
 
-### 多组件引入
+## 多组件引入
 
 <div class="tip custom-block">
 <br />
-温馨提示：带有Tiny前缀的组件导出自3.17.0开始支持。若使用之前版本，需使用别名。
+温馨提示：带有 Tiny 前缀的组件导出自 3.17.0 开始支持。若使用之前版本，需使用别名。
 <br />
 <p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
 </div>
@@ -113,7 +161,7 @@ module.exports = defineConfig({
 </script>
 ```
 
-### `vite` 工程多组件引入按需加载和打包配置方法
+## `vite` 工程多组件引入按需加载和打包配置方法
 
 通过配置 `@opentiny/vue-vite-import` 插件可以按需只打包 pc 或者移动的组件，减少组件库打包后的体积。
 
@@ -149,7 +197,7 @@ export default {
           }
         }
       ],
-      'pc' // 此配置非必选，按需配置(pc|mobile|mobile-first)
+      'pc' // 此配置非必选，按需配置 (pc|mobile|mobile-first)
     )
   ],
   define: {
@@ -158,7 +206,7 @@ export default {
 }
 ```
 
-#### 温馨提示
+### 温馨提示
 
 因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
 
@@ -173,7 +221,7 @@ export default {
 }
 ```
 
-### 单组件引入
+## 单组件引入
 
 `TinyVue` 每个组件都可以独立安装、独立使用，即只安装单个组件的依赖并单独引用该组件。
 
@@ -208,7 +256,7 @@ npm install @opentiny/vue-button @opentiny/vue-alert
 </script>
 ```
 
-### 完整引入（不推荐）
+## 完整引入（不推荐）
 
 完整引入组件后，就不需每个页面都 import 组件和局部注册，只需在 `main.js` 中全局注册，但因此会失去 `tree-shaking` 的能力，打包后会有冗余代码。
 

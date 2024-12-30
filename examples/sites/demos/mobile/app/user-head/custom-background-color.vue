@@ -1,5 +1,5 @@
 <template>
-  <tiny-user-head type="icon" background-color="var(--ti-common-color-line-active)"></tiny-user-head>
+  <tiny-user-head type="icon" background-color="'#5E7CE0'"></tiny-user-head>
 </template>
 
 <script lang="jsx">

@@ -115,6 +115,7 @@ import {
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
 import { useUserAgent } from '../common/deps/useUserAgent'
+import { isBrowser } from '../common/browser'
 
 export const api = [
   'state',
@@ -205,7 +206,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     optionsAllDisabled: computed(() => api.computedOptionsAllDisabled()),
     collapseTagSize: computed(() => api.computedCollapseTagSize()),
     showNewOption: computed(() => api.computedShowNewOption()),
-    selectSize: computed(() => props.size || state.formItemSize),
+    selectSize: computed(() => (isBrowser ? props.size || state.formItemSize : 0)),
     optimizeOpts: computed(() => api.computeOptimizeOpts()),
     optimizeStore: { valueIndex: 0, recycleScrollerHeight: computed(() => api.recycleScrollerHeight()) },
 
@@ -225,11 +226,42 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     selectedVal: computed(() =>
       state.device === 'mb' && props.multiple && state.visible ? state.selectedCopy : state.selected
     ),
-    displayOnlyContent: computed(() =>
-      props.multiple && Array.isArray(state.selected)
-        ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
-        : ''
-    ),
+    displayOnlyContent: computed(() => {
+      if (props.multiple) {
+        if (Array.isArray(state.selected)) {
+          // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
+          if (state.isDisplayOnly && props.options && props.options.length > 0) {
+            return state.selected
+              .map((item) => {
+                const find = props.options.find((opt) => opt[props.valueField] === item.value)
+                return find ? find[props.textField] : ''
+              })
+              .join('; ')
+          } else {
+            return state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+          }
+        } else {
+          return ''
+        }
+      } else {
+        // 单选
+        if (state.selected) {
+          // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
+          if (state.isDisplayOnly && props.options && props.options.length > 0) {
+            const find = props.options.find((opt) => opt[props.valueField] === state.selected.value)
+            return find ? find[props.textField] : ''
+          } else {
+            return (
+              (state.selected.state
+                ? state.selected.state.currentLabel
+                : state.selected.currentLabel || state.selected.label) || ''
+            )
+          }
+        } else {
+          return ''
+        }
+      }
+    }),
     breakpoint: useBreakpoint ? useBreakpoint().current : '',
     isSaaSTheme: vm.theme === 'saas',
     disabledOptionHover: false,
@@ -310,7 +342,9 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     isIOS,
     showCollapseTag: false,
     exceedMaxVisibleRow: false, // 是否超出默认最大显示行数
-    toHideIndex: Infinity // 第一个超出被隐藏的索引
+    toHideIndex: Infinity, // 第一个超出被隐藏的索引
+    willFocusRun: false, // 进入focus时，延时等一下看是否触发blur,触发则不进入focus
+    willFocusTimer: 0
   }
 }
 

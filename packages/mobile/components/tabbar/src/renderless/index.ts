@@ -10,7 +10,7 @@
  *
  */
 
-import { off } from '@opentiny/utils/deps/dom'
+import { off } from '@opentiny/mobile-utils/deps/dom'
 
 export const setActiveItem =
   ({ props, state }) =>

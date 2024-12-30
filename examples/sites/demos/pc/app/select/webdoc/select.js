@@ -61,10 +61,14 @@ export default {
         'en-US': 'Display only'
       },
       desc: {
-        'zh-CN':
-          '<p>Form 表单内 Select 组件不同尺寸设置 <code>hover-expand</code> 和 <code>display-only</code> 属性的综合应用。</p>\n',
-        'en-US':
-          '<p>Comprehensive application of the <code>hover-expand</code> and <code>display-only</code> attributes of the Select component in the form. </p>\n'
+        'zh-CN': `
+            通过<code>display-only</code> 属性，设置组件只显示文字。仅展示时，如果组件的选项要通过<code>options</code> 属性传入,可以优化组件加载速度。<br>  
+            通过 <code>hover-expand</code> 设置多选时，鼠标移入触发标签的自动展开。
+          `,
+        'en-US': `
+            Use the <code>display-only</code> attribute to set the widget to display only text. If the options of a component are transferred through the <code>options</code> attribute, the component loading speed can be optimized.<br>
+            Click <code>hover-expand</code> to set the automatic expansion of the trigger label.
+          `
       },
       codeFiles: ['multiple-mix.vue']
     },
@@ -128,10 +132,22 @@ export default {
         'en-US': 'Filterable'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>filterable</code> 属性启用搜索功能。<code>filter-method</code> 自定义过滤方法。 <code>no-match-text</code> 属性自定义与搜索条件无匹配项时显示的文字。</p>\n',
-        'en-US':
-          '<p>Enable search functionality through the <code>filterable</code> attribute <code>filter-method</code> customize the filtering method <code>no-match-text</code> the text displayed when there is no match between attribute customization and search criteria.</p>\n'
+        'zh-CN': `
+          通过 <code>filterable</code> 属性, 启用搜索功能。<br>
+          通过 <code>filter-method</code> 方法属性, 自定义过滤方法。 <br>
+          通过 <code>no-match-text</code> 属性, 自定义与搜索条件无匹配项时显示的文字。<br>
+          <div class="danger custom-block">
+           在<code>filter-method</code>方法属性中，禁止通过修改组件的 <code>options</code>的个数，去控制过滤下拉列表选项。这样不匹配的<code>Option</code>组件会卸载，造成<code>Select</code>组件引用到被卸载的选项值时引发错误。正确的过滤函数应该参考本示例的用法。
+          </div>
+          `,
+        'en-US': `
+          Enable the search function using the <code>filterable</code> attribute. <br>
+          Use the <code>filter-method</code> method attribute to customize the filtering method. <br>
+          You can use the <code>no-match-text</code> attribute to customize the text that is displayed if there is no match with the search criteria. <br>
+          <div class="danger custom-block">
+          In the <code>filter-method</code> method property, you cannot change the number of <code>options</code> of a component to control the filtering drop-down list options. This uninstalls the mismatched <code>Option</code> component, causing an error when the <code>Select</code> component references the uninstalled option value. The correct filter function should follow the usage in this example.
+          </div>
+        `
       },
       codeFiles: ['filter-method.vue']
     },

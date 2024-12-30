@@ -11,7 +11,13 @@
  -->
 <template>
   <div :class="['tiny-cascader-panel', border && 'is-bordered']" @keydown="handleKeyDown">
-    <cascader-menu v-for="(menu, index) in state.menus" :index="index" :key="index" :nodes="menu"></cascader-menu>
+    <cascader-menu
+      v-for="(menu, index) in state.menus"
+      :index="index"
+      :key="index"
+      :nodes="menu"
+      :onlyUsePanel="onlyUsePanel"
+    ></cascader-menu>
   </div>
 </template>
 
@@ -36,7 +42,8 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    renderLabel: Function
+    renderLabel: Function,
+    onlyUsePanel: Boolean
   },
   provide() {
     return {

@@ -103,7 +103,8 @@ export default defineComponent({
     'dataType',
     'dataUpgrade',
     'zIndex',
-    'imagePasteFailCallback'
+    'imagePasteFailCallback',
+    'beforeEditorInit'
   ],
   setup(props, context): any {
     return setup({

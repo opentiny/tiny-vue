@@ -10,7 +10,7 @@
  *
  */
 
-import { cloneDeep } from '@opentiny/utils/object'
+import { cloneDeep } from '@opentiny/mobile-utils/object'
 
 export const created = (api) => () => {
   api.loadPickerData()

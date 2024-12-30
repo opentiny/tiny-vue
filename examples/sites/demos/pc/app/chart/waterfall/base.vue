@@ -19,7 +19,7 @@ export default {
           show: false
         },
 
-        // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
+        // water-fall 表示为瀑布形态，此时图中会自动添加一个 Total(总和) 数据
         type: 'water-fall',
         data: [
           { Name: 'NLE', User: 10 },

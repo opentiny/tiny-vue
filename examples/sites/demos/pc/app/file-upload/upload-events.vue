@@ -65,7 +65,7 @@ export default {
       TinyModal.message({ message: '触发上传文件改变回调事件', status: 'info' })
     },
     handleHashProgress() {
-      TinyModal.message({ message: '文件上传生成hash值时的回调 返回进程', status: 'info' })
+      TinyModal.message({ message: '文件上传生成 hash 值时的回调 返回进程', status: 'info' })
     }
   }
 }

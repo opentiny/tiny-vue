@@ -78,23 +78,23 @@ const inline = ref(false)
 const size = ref('')
 const options = ref([
   {
-    value: '选项1',
+    value: '选项 1',
     label: '黄金糕'
   },
   {
-    value: '选项2',
+    value: '选项 2',
     label: '双皮奶'
   },
   {
-    value: '选项3',
+    value: '选项 3',
     label: '蚵仔煎'
   },
   {
-    value: '选项4',
+    value: '选项 4',
     label: '龙须面'
   },
   {
-    value: '选项5',
+    value: '选项 5',
     label: '北京烤鸭'
   }
 ])
@@ -148,8 +148,8 @@ const formData = ref({
   input:
     'TinyVue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用 TinyVue。',
   radioValue: '1',
-  select: '选项1',
-  select1: ['选项1', '选项2'],
+  select: '选项 1',
+  select1: ['选项 1', '选项 2'],
   datePicker: '2022-01-01',
   daterangeValue: [new Date(), new Date(2019, 12, 12)],
   value: '88.88',
@@ -166,20 +166,20 @@ const formData = ref({
   textareaValue:
     'OpenTiny 是一套企业级组件库解决方案，适配 PC 端 / 移动端等多端，涵盖 Vue2 / Vue3 / Angular 多技术栈，拥有主题配置系统 / 中后台模板 / CLI 命令行等效率提升工具，可帮助开发者高效开发 Web 应用。',
   checked: true,
-  checkedArr: ['复选框1'],
+  checkedArr: ['复选框 1'],
   rate1: 2,
   passwordValue: '12345',
   restaurants: [
     {
-      value: 'GFD科技有限公司',
+      value: 'GFD 科技有限公司',
       address: '福州'
     },
     {
-      value: 'WWWW科技有限公司',
+      value: 'WWWW 科技有限公司',
       address: '深圳福田区'
     }
   ],
-  autocompleteValue: 'GFD科技有限公司'
+  autocompleteValue: 'GFD 科技有限公司'
 })
 
 let restaurants

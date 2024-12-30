@@ -10,8 +10,8 @@
  *
  */
 
-import PopupManager from '@opentiny/utils/deps/popup-manager'
-import { getStyle, addClass } from '@opentiny/utils/deps/dom'
+import PopupManager from '@opentiny/mobile-utils/deps/popup-manager'
+import { getStyle, addClass } from '@opentiny/mobile-utils/deps/dom'
 import { createComponent, hooks, appProperties } from '../../../vue-common'
 import Loading from './mobile.vue'
 

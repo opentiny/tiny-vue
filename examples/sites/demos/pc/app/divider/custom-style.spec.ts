@@ -1,7 +1,7 @@
 // divider#custom-style
 import { test, expect } from '@playwright/test'
 
-test('Divider样式', async ({ page }) => {
+test('Divider 样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('divider#custom-style')
   await page.getByText('自定义分隔线颜色').click()

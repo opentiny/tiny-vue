@@ -21,7 +21,7 @@ export default {
   methods: {
     getValue() {
       TinyModal.message({
-        message: '当前状态对应的值为:' + this.checked,
+        message: '当前状态对应的值为：' + this.checked,
         top: 200,
         status: 'info'
       })

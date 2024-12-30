@@ -218,7 +218,7 @@ const cascaderRef = ref()
 
 function visibleChange(val) {
   TinyModal.message({
-    message: '当前触发了:visible-change 事件,当前状态为：' + val,
+    message: '当前触发了:visible-change 事件，当前状态为：' + val,
     status: 'info'
   })
 }
@@ -241,7 +241,7 @@ function handleblur() {
 function handleChange(value) {
   let checkVal = cascaderRef.value.getCheckedNodes(true)
   TinyModal.message({
-    message: 'change 事件，当前选中的值为:' + checkVal[0].label + '；传入的值为：' + value,
+    message: 'change 事件，当前选中的值为：' + checkVal[0].label + '；传入的值为：' + value,
     status: 'info'
   })
 }

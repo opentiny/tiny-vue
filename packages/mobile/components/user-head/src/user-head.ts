@@ -12,8 +12,9 @@
 
 import type { ExtractPropTypes } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 import type { computedFontSize, computedLabel, computedMessage, computedStyle, getInternalValue } from './renderless'
+
+export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {
   ITEM_NAME: '.user-head-item'
@@ -80,7 +81,7 @@ export const userHeadProps = {
   /**
    * @property {Number} - 消息计数
    */
-  messageTotal: Number,
+  messageTotal: [Number, String],
 
   /**
    * @property {String} [messageType=details] - 消息类型 details|basic 可选

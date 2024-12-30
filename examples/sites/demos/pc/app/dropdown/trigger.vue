@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1： 默认悬浮时触发下拉</p>
+    <p>场景 1：默认悬浮时触发下拉</p>
     <tiny-dropdown trigger="hover">
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -13,7 +13,7 @@
       </template>
     </tiny-dropdown>
 
-    <p>场景2： 设置点击时触发下拉</p>
+    <p>场景 2：设置点击时触发下拉</p>
     <tiny-dropdown trigger="click">
       <template #dropdown>
         <tiny-dropdown-menu>

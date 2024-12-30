@@ -49,11 +49,11 @@ export default {
       desc: {
         'zh-CN': '<p>组件提供<code>default、title-left、title、title-right、footer</code>5 个插槽</p>',
         'en-US':
-          '<p>The component provides five slots: <code>default, title-left,title、 title-right, and footer</code></p>'
+          '<p>The component provides five slots: <code>default, title-left,title, title-right, and footer</code></p>'
       },
       codeFiles: ['slot.vue']
     }
-    // 以下demo示例将暂不暴露
+    // 以下 demo 示例将暂不暴露
     // {
     //   demoId: 'card-size',
     //   name: {

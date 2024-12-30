@@ -11,7 +11,7 @@
 import { ref } from 'vue'
 import { TinyCheckboxButton, TinyCheckboxGroup, TinyModal } from '@opentiny/vue'
 
-const checked = ref(['复选框1'])
+const checked = ref(['复选框 1'])
 
 function valueChange(val) {
   TinyModal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })

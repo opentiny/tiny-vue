@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
-import { LANG_KEY, LANG_PATH_MAP, ZH_CN_LANG, CURRENT_THEME_KEY, THEME_ROUTE_MAP, SMB_THEME } from './const'
-import { $local } from './tools/storage'
+import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
 
 const Components = () => import('@/views/components/components.vue')
 const Docs = () => import('@/views/docs/docs.vue')
@@ -35,11 +34,8 @@ let routes = [
   {
     path: '/:pathMatch(.*)*',
     redirect: () => {
-      const lang = $local[LANG_KEY]
-      const langPath = LANG_PATH_MAP[lang] || LANG_PATH_MAP[ZH_CN_LANG]
-      const themeKey = localStorage.getItem(CURRENT_THEME_KEY)
-      const theme = THEME_ROUTE_MAP[themeKey] || THEME_ROUTE_MAP[SMB_THEME]
-      return { path: `${context}${langPath}/${theme}/overview` }
+      const langPath = LANG_PATH_MAP[ZH_CN_LANG]
+      return { path: `${context}${langPath}/${DEFAULT_THEME}/overview` }
     }
   }
 ]

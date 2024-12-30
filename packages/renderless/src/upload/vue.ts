@@ -53,7 +53,7 @@ export const renderless = (
   props: IUploadProps,
   { computed, inject, reactive, onMounted, onBeforeUnmount }: ISharedRenderlessParamHooks,
   { refs, service, t, useBreakpoint }: IUploadRenderlessParamUtils,
-  { Modal }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: object }
+  { Modal }: IFileUploadModalVm & { Streamsaver: object }
 ): IUploadApi => {
   const api = {} as IUploadApi
   const uploader = inject('uploader') as IFileUploadVm

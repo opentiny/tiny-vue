@@ -13,7 +13,7 @@
 import { REFRESH_INTERVAL } from '../common'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import type { IFallMenuApi, IFallMenuState, IFallMenuProps, IPagerData } from '@/types'
 
 export const arrowClick = (state: IFallMenuState) => (opt) => {

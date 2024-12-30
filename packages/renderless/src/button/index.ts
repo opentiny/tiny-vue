@@ -10,7 +10,7 @@
  *
  */
 import type { IButtonRenderlessParams, IButtonState } from '@/types'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 export const handleClick =
   ({ emit, props, state, designConfig }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state' | 'designConfig'>) =>

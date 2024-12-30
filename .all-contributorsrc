@@ -627,6 +627,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "dufu1991",
+      "name": "dufu1991",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24769077?v=4",
+      "profile": "https://github.com/dufu1991",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,

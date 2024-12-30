@@ -10,7 +10,7 @@
  *
  */
 
-import { omitText } from '@opentiny/utils/string'
+import { omitText } from '@opentiny/mobile-utils/string'
 import type {
   IInputApi,
   IInputClassPrefixConstants,
@@ -391,9 +391,9 @@ export const handlePasswordVisible =
   }
 
 export const getSuffixVisible =
-  ({ parent, props, state }: Pick<IInputRenderlessParams, 'parent' | 'props' | 'state'>) =>
+  ({ vm, props, state }: Pick<IInputRenderlessParams, 'vm' | 'props' | 'state'>) =>
   (): boolean =>
-    parent.$slots.suffix ||
+    vm.$slots.suffix ||
     props.suffixIcon ||
     state.showClear ||
     props.showPassword ||

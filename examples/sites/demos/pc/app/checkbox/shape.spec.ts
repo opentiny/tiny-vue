@@ -13,5 +13,5 @@ test('过滤器模式', async ({ page }) => {
   await expect(checkboxGroup.locator('.tiny-checkbox').nth(1)).toHaveCSS('background-color', 'rgb(230, 230, 230)')
   await checkboxGroup.locator('.tiny-checkbox').nth(1).hover()
   await page.waitForTimeout(50)
-  await expect(tooltip).toHaveText('复选框2复选框2复选框2复选框2复选框2复选框2')
+  await expect(tooltip).toHaveText('复选框 2 复选框 2 复选框 2 复选框 2 复选框 2 复选框 2')
 })

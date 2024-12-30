@@ -10,7 +10,7 @@
  *
  */
 
-import { format } from '@opentiny/utils/date'
+import { format } from '@opentiny/mobile-utils/date'
 import type {
   ITimelineProps,
   ITimelineRenderlessParams,

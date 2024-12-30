@@ -28,6 +28,20 @@ export default {
       codeFiles: ['disabled.vue']
     },
     {
+      demoId: 'placement',
+      name: {
+        'zh-CN': '展开位置',
+        'en-US': 'Placement'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>placement</code> 属性设置为 <code>bottom-start</code> 设置右侧展开。默认值为左侧展开。\n',
+        'en-US':
+          '<p>Set the <code>placement</code> attribute to <code>bottom-start</code> to expand on the right side. The default value is left expansion. </p>\n'
+      },
+      codeFiles: ['placement.vue']
+    },
+    {
       demoId: 'size',
       name: {
         'zh-CN': '尺寸',
@@ -91,7 +105,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为: <code>click</code> / <code>hover</code> 。</p>\n',
+          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为：<code>click</code> / <code>hover</code> 。</p>\n',
         'en-US':
           '<p>By setting the <code>trigger</code> attribute to trigger a drop-down, the default is <code>hover</code>. The optional values are: <code>click</code> / <code>hover</code>.</p>\n'
       },

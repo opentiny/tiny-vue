@@ -23,19 +23,19 @@ export default {
   methods: {
     changeRegion(value) {
       TinyNotify({
-        message: '当前选择的 Region 为:' + value,
+        message: '当前选择的 Region 为：' + value,
         position: 'top-right'
       })
     },
     changeRep(value) {
       TinyNotify({
-        message: '当前选择的 Rep 为:' + value,
+        message: '当前选择的 Rep 为：' + value,
         position: 'top-right'
       })
     },
     changeOffice(value) {
       TinyNotify({
-        message: '当前选择的 Office 为:' + value,
+        message: '当前选择的 Office 为：' + value,
         position: 'top-right'
       })
     }

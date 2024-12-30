@@ -10,7 +10,6 @@
  *
  */
 import Container from './src/mobile.vue'
-import '@opentiny/vue-theme/container/index.less'
 
 /* istanbul ignore next */
 Container.install = function (Vue) {

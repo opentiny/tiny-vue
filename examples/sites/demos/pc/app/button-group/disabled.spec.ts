@@ -26,5 +26,5 @@ test('测试按钮是否禁用', async ({ page }) => {
 
   // 按钮悬浮提示
   await buttonGroup3.locator('button').nth(1).hover()
-  await expect(page.getByText('因为xxx原因被禁用')).toBeVisible()
+  await expect(page.getByText('因为 xxx 原因被禁用')).toBeVisible()
 })

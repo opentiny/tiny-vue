@@ -148,6 +148,7 @@
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"
           @load-data="computePresentContent"
+          :onlyUsePanel="false"
         ></tiny-cascader-panel>
         <tiny-scrollbar
           ref="suggestionPanel"

@@ -93,7 +93,7 @@ export const renderless = (
     computedValidateIcon: computedValidateIcon({ props, designConfig }),
     computedIsErrorInline: computedIsErrorInline({ props, designConfig }),
     computedIsErrorBlock: computedIsErrorBlock({ props, designConfig }),
-    created: created({ parent, state }),
+    created: created({ vm, state }),
     resetFields: resetFields({ props, state }),
     clearValidate: clearValidate(state),
     validate: validate({ props, state }),
@@ -108,7 +108,7 @@ export const renderless = (
 
   api.created()
 
-  provide('form', parent)
+  provide('form', vm)
 
   provide('showAutoWidth', state.showAutoWidth)
 

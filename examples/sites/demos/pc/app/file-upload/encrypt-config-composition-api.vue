@@ -15,7 +15,7 @@ const action = ref('http://localhost:3000/api/upload')
 const encryptConfig = reactive({
   enabled: true,
   encrypt: true,
-  watermark: '水印示例1'
+  watermark: '水印示例 1'
 })
 
 const data = computed(() => {

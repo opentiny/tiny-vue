@@ -371,7 +371,10 @@ export default {
             'en-US': 'Menu pop-up location '
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          pcDemo: 'placement',
+          meta: {
+            experimental: '3.21.0'
+          }
         },
         {
           name: 'popper-class',
@@ -551,7 +554,7 @@ type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'i
       name: 'IPlacementType',
       type: 'type',
       code: `        
-type IPlacementType =  'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
+type IPlacementType =  'bottom-start' | 'bottom-end'
 `
     }
   ]

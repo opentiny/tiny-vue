@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     uploadSuccess() {
-      // 模拟上传成功后，返回的数据信息,以此通过validatePass的校验
+      // 模拟上传成功后，返回的数据信息，以此通过 validatePass 的校验
       this.createData.files = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/book.jpg`
 
       // 上传成功后再进行表单验证

@@ -10,5 +10,5 @@
 import { ref } from 'vue'
 import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue'
 
-const checkedData = ref(['复选框1'])
+const checkedData = ref(['复选框 1'])
 </script>

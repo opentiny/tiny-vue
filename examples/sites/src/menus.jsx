@@ -26,16 +26,20 @@ function genMenus() {
     }
   ]
 
-  const docOptions = docMenus.map((menu) => ({
-    ...menu,
-    label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
-    children: menu.children.map((page) => ({
-      ...page,
-      id: page.key,
-      label: appData.lang === 'zhCN' ? page.title : page.titleEn,
-      type: 'docs'
-    }))
-  }))
+  // 使用指南只在DEV下生效
+  const docOptions = import.meta.env.DEV
+    ? docMenus.map((menu) => ({
+        ...menu,
+        label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
+        children: menu.children.map((page) => ({
+          ...page,
+          id: page.key,
+          label: appData.lang === 'zhCN' ? page.title : page.titleEn,
+          type: 'docs'
+        }))
+      }))
+    : []
+
   const cmpOptions = cmpMenus.map((menu) => ({
     ...menu,
     label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
@@ -46,6 +50,7 @@ function genMenus() {
       type: 'components'
     }))
   }))
+
   return [...standaloneOptions, ...docOptions, ...cmpOptions]
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload ref="uploadRef" :http-request="httpRequest" :file-list="fileList">
+  <tiny-file-upload ref="uploadRef" :http-request="httpRequest" :file-list="fileList" @success="handleSuccess">
     <template #trigger>
       <tiny-button>点击上传</tiny-button>
     </template>
@@ -7,17 +7,20 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 const fileList = reactive([])
-const httpRequest = ref((files) => {
+const httpRequest = reactive(({ onSuccess, file }) => {
   return new Promise((resolve) => {
     // 此处为用户自定义的上传服务请求
     setTimeout(() => {
-      TinyModal.message('上传成功')
-      fileList.push(files.file)
+      onSuccess('上传成功')
+      this.fileList.push(file)
     }, 500)
   })
 })
+const handleSuccess = (res) => {
+  TinyModal.message(res)
+}
 </script>

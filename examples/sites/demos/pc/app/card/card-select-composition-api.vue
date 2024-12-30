@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrap">
-    <!-- 单选demo -->
+    <!-- 单选 demo -->
     <tiny-card-group v-model="radioValue" check-type="radio">
       <tiny-card
         id="smb-card"
@@ -25,7 +25,7 @@
       </tiny-card>
     </tiny-card-group>
 
-    <!-- 多选demo -->
+    <!-- 多选 demo -->
     <tiny-card-group v-model="checkboxValue" check-type="checkbox">
       <tiny-card
         id="smb-card"
@@ -104,7 +104,7 @@ const dataArr = ref([
   height: 80px;
   margin-right: 20px;
 }
-/* 业务功能demo */
+/* 业务功能 demo */
 .smb-card {
   display: inline-block;
   position: relative;

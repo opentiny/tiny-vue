@@ -1,12 +1,24 @@
 import { extend } from '../common/object'
 import { isNull } from '../common/type'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =
-  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }) =>
+  ({
+    api,
+    emit,
+    props,
+    service,
+    state,
+    FluentEditor,
+    UploaderDfls,
+    defaultOptions,
+    vm,
+    useBreakpoint,
+    simpleToolbar
+  }) =>
   () => {
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
@@ -36,6 +48,8 @@ export const init =
     if (current.value === 'default') {
       state.innerOptions.modules.toolbar = simpleToolbar
     }
+
+    props.beforeEditorInit?.(FluentEditor)
 
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)
@@ -182,8 +196,8 @@ export const handleCompositionend =
         state.quill.root.classList.add('ql-blank')
       }
     } else {
-      let data = state.quill.container.innerHTML,
-        range = state.quill.getSelection(true)
+      let data = state.quill.container.innerHTML
+      let range = state.quill.getSelection(true)
       const [mentionItem, offset] = state.quill.getLeaf(range.index)
 
       if (mentionItem.statics.blotName === 'break' || (mentionItem.statics.blotName === 'text' && offset === 0)) {
@@ -192,8 +206,8 @@ export const handleCompositionend =
       if (mentionItem.statics.blotName === 'break') {
         state.quill.setSelection(range.index + event.data.length)
       } else {
-        let pattern = /[\u4E00-\u9FA5\uf900-\ufa2d]/,
-          flag
+        let pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/
+        let flag
 
         if (pattern.test(event.data)) {
           flag = true
@@ -286,8 +300,8 @@ export const inputFileHandler =
       fileInput.setAttribute('accept', mimeTypes)
 
       if (
-        (UploaderDfls.enableMultiUpload['file'] && type === 'file') ||
-        (UploaderDfls.enableMultiUpload['image'] && type === 'image')
+        (UploaderDfls.enableMultiUpload.file && type === 'file') ||
+        (UploaderDfls.enableMultiUpload.image && type === 'image')
       ) {
         fileInput.setAttribute('multiple', '')
       }
@@ -331,12 +345,12 @@ export const uploaderDflsHandler =
 export const handleUploadFile =
   ({ api, UploaderDfls }) =>
   (range, files, hasRejectedFile) => {
-    const fileEnableMultiUpload = UploaderDfls.enableMultiUpload === true || UploaderDfls.enableMultiUpload['file']
+    const fileEnableMultiUpload = UploaderDfls.enableMultiUpload === true || UploaderDfls.enableMultiUpload.file
 
     api.fileOperationToSev({
       operation: 'upload',
       data: fileEnableMultiUpload ? { files } : { file: files[0] },
-      hasRejectedFile: hasRejectedFile,
+      hasRejectedFile,
       callback: (res) => {
         if (!res) {
           return
@@ -478,11 +492,11 @@ export const handleUploadImage =
   (range, { file, files }, hasRejectedImage) => {
     if (state.quill.options.uploadOption.imageUploadToServer) {
       const index = state.promisesData.length
-      const imageEnableMultiUpload = UploaderDfls.enableMultiUpload['image']
+      const imageEnableMultiUpload = UploaderDfls.enableMultiUpload.image
       const result = {
         file,
         data: { files: [file] },
-        hasRejectedImage: hasRejectedImage,
+        hasRejectedImage,
         callback: (res) => {
           if (!res) {
             return
@@ -514,7 +528,7 @@ export const handleUploadImage =
       }
 
       if (imageEnableMultiUpload) {
-        result['data'] = { files }
+        result.data = { files }
       }
 
       state.promisesData.push({
@@ -851,7 +865,7 @@ export const handleDblclick =
       props.picPreview &&
       e &&
       e.type === 'dblclick' &&
-      [...e.target.classList].indexOf('blot-formatter__overlay') > -1 &&
+      [...e.target.classList].includes('blot-formatter__overlay') &&
       e.target.dataset.image
     ) {
       api.doPreview(e.target)

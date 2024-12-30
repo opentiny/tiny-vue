@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <tiny-fluent-editor v-model="content" :options="options"></tiny-fluent-editor>
-    内容：<br />
-    {{ content }}
-  </div>
+  <tiny-fluent-editor v-model="content" :options="options"></tiny-fluent-editor>
 </template>
 
 <script>

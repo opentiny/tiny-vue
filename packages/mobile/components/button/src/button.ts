@@ -12,6 +12,7 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 import type { clearTimer, handleClick } from './renderless'
+
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const buttonProps = {
@@ -29,7 +30,7 @@ export const buttonProps = {
     default: ''
   },
   resetTime: {
-    type: Number,
+    type: [Number, String],
     default: 1000
   },
   nativeType: {

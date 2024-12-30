@@ -10,7 +10,7 @@
  *
  */
 
-import { isNumber } from '@opentiny/utils/type'
+import { isNumber } from '@opentiny/mobile-utils/type'
 
 export const computedShowHeader =
   ({ constants, props }) =>

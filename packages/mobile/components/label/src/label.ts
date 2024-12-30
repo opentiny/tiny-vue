@@ -11,6 +11,7 @@
  */
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const labelProps = {

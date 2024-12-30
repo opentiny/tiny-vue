@@ -24,7 +24,7 @@ interface IChartSettings {
   bmap: object // 百度地图配置项
   key: string // 百度地图 access_key
   useOuterMap: boolean // 使用全局的地图依赖
-  v: string // 百度地图版本，默认2.0
+  v: string // 百度地图版本，默认 2.0
 }
 `
     }

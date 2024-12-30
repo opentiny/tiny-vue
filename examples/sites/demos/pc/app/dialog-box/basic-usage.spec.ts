@@ -14,11 +14,11 @@ test('dialogBox 基础用法', async ({ page }) => {
   await page.getByRole('button', { name: /Dialog/ }).click()
   await page.getByLabel('Close').click()
 
-  // 点击遮罩时，关闭dialogBox
+  // 点击遮罩时，关闭 dialogBox
   await page.getByRole('button', { name: /Dialog/ }).click()
   await page.locator('.tiny-dialog-box__wrapper').click()
 
-  // 按 ESC 键，关闭dialogBox
+  // 按 ESC 键，关闭 dialogBox
   await page.getByRole('button', { name: /Dialog/ }).click()
   await page.locator('body').press('Escape')
   expect(page.locator('.tiny-dialog-box.is-center > .tiny-dialog-box__header')).toBeHidden()

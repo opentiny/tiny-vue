@@ -10,7 +10,7 @@ test('事件', async ({ page }) => {
   const leftSvg = page.locator('.header-left > .tiny-svg')
   const rightSvg = page.locator('.header-right > .tiny-svg')
   const mode = page.locator('label').nth(2)
-  const modalVal = page.getByText('模式切换事件: schedule')
+  const modalVal = page.getByText('模式切换事件：schedule')
   await timeBtn.click()
   await page.waitForTimeout(100)
   await leftYear.click()

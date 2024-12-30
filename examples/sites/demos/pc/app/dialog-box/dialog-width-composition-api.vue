@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility1 = true" type="info">宽度30% 最大高度200px</tiny-button>
+    <tiny-button @click="boxVisibility1 = true" type="info">宽度 30% 最大高度 200px</tiny-button>
     <tiny-button @click="boxVisibility2 = true">宽度 60%</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility1" title="消息" width="30%" max-height="200px">
       <div>

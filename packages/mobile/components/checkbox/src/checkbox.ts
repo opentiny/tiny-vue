@@ -13,6 +13,28 @@ import { $prefix } from '../../../vue-common'
 import type { PropType } from '../../../vue-common'
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+
+import type {
+  addToStore,
+  removeFromStore,
+  computedStore,
+  computedFormItemSize,
+  computedIsChecked,
+  computedIsLimitDisabled,
+  computedIsDisabled,
+  computedIsDisplayOnly,
+  computedIsGroupDisplayOnly,
+  computedGetModelGet,
+  computedIsGroup,
+  computedCheckboxSize,
+  computedGetModelSet,
+  mounted,
+  handleChange,
+  computedDisplayLabel,
+  computedIsShowText,
+  computedShowText
+} from './renderless'
+
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export type IconPosition = 'center' | 'top'
@@ -74,27 +96,6 @@ export const checkboxProps = {
     default: ''
   }
 }
-
-import type {
-  addToStore,
-  removeFromStore,
-  computedStore,
-  computedFormItemSize,
-  computedIsChecked,
-  computedIsLimitDisabled,
-  computedIsDisabled,
-  computedIsDisplayOnly,
-  computedIsGroupDisplayOnly,
-  computedGetModelGet,
-  computedIsGroup,
-  computedCheckboxSize,
-  computedGetModelSet,
-  mounted,
-  handleChange,
-  computedDisplayLabel,
-  computedIsShowText,
-  computedShowText
-} from './renderless'
 
 export type ICheckboxSizeEnum = 'medium' | 'small' | 'mini'
 export type ICheckboxModalValue = string | number | boolean

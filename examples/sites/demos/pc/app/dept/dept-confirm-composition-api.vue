@@ -12,7 +12,7 @@ import { ref } from 'vue'
 const value = ref('022471')
 
 function confirm() {
-  TinyModal.message({ message: 'Dept部门 confirm 事件' })
+  TinyModal.message({ message: 'Dept 部门 confirm 事件' })
 }
 </script>
 

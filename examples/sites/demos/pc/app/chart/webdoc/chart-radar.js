@@ -29,8 +29,8 @@ export default {
       code: `
 interface IChartSettings {
   areaStyle: object // 区域填充样式，
-  dataType: object // 数据类型，可选值: KMB , normal , percent 
-  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  dataType: object // 数据类型，可选值：KMB , normal , percent 
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为 2
   dimension: string // 维度，默认 columns 第一项为维度
   itemStyle: object // 折线拐点标志的样式，
   label: object // 图形上的文本标签，

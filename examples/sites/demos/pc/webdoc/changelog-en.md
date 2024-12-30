@@ -155,7 +155,7 @@
 
 ### 📢 Breaking changes
 
-- Remove the `rich-text` component, because the third-party plug-in `quill` introduced by the component is an overdue high-risk dependency, and if you want to continue to use it, you can use the old version： `@opentiny/vue-rich-text@3.0.0`
+- Remove the `rich-text` component, because the third-party plug-in `quill` introduced by the component is an overdue high-risk dependency, and if you want to continue to use it, you can use the old version: `@opentiny/vue-rich-text@3.0.0`
 
 ### ✨ New characteristics
 

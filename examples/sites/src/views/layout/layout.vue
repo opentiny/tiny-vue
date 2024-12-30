@@ -11,6 +11,7 @@
           :data="menuOptions"
           :menu-collapsible="true"
           :filter-node-method="searchMenu"
+          :show-filter="isShowFilter"
           @current-change="clickMenu"
           @collapse-change="collapseChange"
         >
@@ -139,6 +140,9 @@ export default defineComponent({
     }
     let routerCbDestroy = null
 
+    const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+    const isShowFilter = envTarget !== 'open'
+
     watch(
       () => route.path,
       (currentVal) => {
@@ -186,7 +190,8 @@ export default defineComponent({
       clickMenuLink,
       getWord,
       i18nByKey,
-      isThemeSaas
+      isThemeSaas,
+      isShowFilter
     }
   }
 })
@@ -256,9 +261,15 @@ export default defineComponent({
       .tiny-tree-node__content:hover {
         border-radius: 20px;
       }
+
       .tiny-tree-node__content {
         height: 40px;
         line-height: 40px;
+
+        .tiny-tree-node__content-left {
+          padding-left: 16px;
+        }
+
         &::before {
           display: none;
         }
@@ -296,8 +307,8 @@ export default defineComponent({
   }
   .absolute-tag {
     position: absolute;
-    right: 4px;
-    top: 18px;
+    right: 8px;
+    top: 13px;
   }
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));

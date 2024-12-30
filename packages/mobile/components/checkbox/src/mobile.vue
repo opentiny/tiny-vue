@@ -64,11 +64,13 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import { checkboxProps } from './checkbox'
 import '@opentiny/vue-theme-mobile/checkbox/index.less'
 
 export default defineComponent({
+  name: $prefix + 'Checkbox',
+  componentName: 'Checkbox',
   props: checkboxProps,
   emits: ['update:modelValue', 'change', 'complete', 'click'],
   setup(props, context) {

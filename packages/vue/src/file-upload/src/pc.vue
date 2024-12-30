@@ -35,9 +35,6 @@ import {
   iconPlus,
   iconHelpCircle
 } from '@opentiny/vue-icon'
-import CryptoJS from 'crypto-js/core.js'
-import 'crypto-js/sha256.js'
-import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
 
@@ -93,14 +90,14 @@ export default defineComponent({
     'compact',
     'promptTip'
   ],
-  setup(props, context) {
-    // 内置crypto-js和streamsaver进行上传下载
+  emits: ['change', 'hash-progress', 'progress', 'success', 'error', 'remove', 'download'],
+  setup(props, context): any {
     return setup({
       props,
       context,
       renderless,
       api,
-      extendOptions: { Modal, CryptoJS, Streamsaver }
+      extendOptions: { Modal, Streamsaver }
     }) as unknown as IFileUploadApi
   },
   components: {

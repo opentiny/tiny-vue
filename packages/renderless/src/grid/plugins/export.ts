@@ -23,7 +23,7 @@
  *
  */
 
-import { xss } from '../../common/xss'
+import { xss } from '@opentiny/utils'
 import browser from '../../common/browser'
 import { toTreeArray } from '../static'
 import { getCellValue, getFuncText } from '../utils'
