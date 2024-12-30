@@ -11,13 +11,10 @@ export const statisticProps = {
     type: Object,
     default: () => $constants
   },
-  precision: {
-    type: Number,
-    default: 0
-  },
+  precision: Number,
   formatter: Function,
   value: {
-    type: Number,
+    type: [Number, String],
     default: 0
   },
   prefix: String,
