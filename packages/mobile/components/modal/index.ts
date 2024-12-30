@@ -10,7 +10,7 @@
  *
  */
 
-import { createComponent, setupComponent } from '../../../vue-common'
+import { createComponent, setupComponent } from '../../vue-common'
 import { MsgQueue } from './src/renderless'
 import TINYModal from './src/mobile.vue'
 

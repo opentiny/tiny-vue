@@ -14,7 +14,7 @@
       </tiny-form-item>
       <tiny-form-item label="Checkbox">
         <tiny-checkbox v-model="createData.checked"> 复选框 </tiny-checkbox>
-        <tiny-checkbox v-model="createData.checked2"> 复选框2 </tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked2"> 复选框 2 </tiny-checkbox>
       </tiny-form-item>
       <tiny-form-item label="CheckboxGroup">
         <tiny-checkbox-group v-model="createData.groupChecked">
@@ -118,7 +118,7 @@ const createData = reactive({
   dropTimes: '',
   input: '',
   autocomplete: '',
-  groupChecked: ['复选框1'],
+  groupChecked: ['复选框 1'],
   ipAddress: '192.168.0.1',
   popEditor: '',
   select: '',
@@ -129,29 +129,29 @@ const createData = reactive({
 const formDisabled = ref(false)
 const restaurants = ref([
   {
-    value: 'GFD科技YX公司',
+    value: 'GFD 科技 YX 公司',
     address: '福州'
   },
   {
-    value: 'WWWW科技YX公司',
+    value: 'WWWW 科技 YX 公司',
     address: '深圳福田区'
   },
   {
-    value: 'RFV有限责任公司',
+    value: 'RFV 有限责任公司',
     address: '中山市'
   }
 ])
 const selectOptions = ref([
   {
-    value: '选项1',
+    value: '选项 1',
     label: '黄金糕'
   },
   {
-    value: '选项2',
+    value: '选项 2',
     label: '双皮奶'
   },
   {
-    value: '选项3',
+    value: '选项 3',
     label: '蚵仔煎'
   }
 ])
@@ -186,19 +186,19 @@ const gridOp = ref({
   data: [
     {
       id: '1',
-      name: 'GFD科技YX公司',
+      name: 'GFD 科技 YX 公司',
       city: '福州',
       province: '福建'
     },
     {
       id: '2',
-      name: 'WWW科技YX公司',
+      name: 'WWW 科技 YX 公司',
       city: '深圳',
       province: '广东'
     },
     {
       id: '3',
-      name: 'RFV有限责任公司',
+      name: 'RFV 有限责任公司',
       city: '中山',
       province: '广东'
     }

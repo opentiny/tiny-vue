@@ -10,7 +10,7 @@ import { TinyHuichartsGauge as TinyChartGauge } from '@opentiny/vue'
 
 const options = ref({
   // splitColor 分割仪表盘
-  // splitColor[i][0] 的值代表整根轴线的百分比, 应该 0 到 1 之间
+  // splitColor[i][0] 的值代表整根轴线的百分比，应该 0 到 1 之间
   // splitColor[1][1] 是对应的颜色
   splitColor: [
     [0.25, '#0d9458'],

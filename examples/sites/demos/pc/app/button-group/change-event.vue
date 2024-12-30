@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      TinyModal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
+      TinyModal.message({ message: `change 事件触发了，选中值为 ${val}`, status: 'info' })
     }
   }
 }

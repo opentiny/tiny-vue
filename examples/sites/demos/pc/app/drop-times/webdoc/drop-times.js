@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p><code>start</code> 设置区间的起始时间，默认为 0 ，<code>end</code> 设置区间的结束时间，默认为 24 * 60 ，<code>step</code> 设置间隔的步长，默认为 15 。</p>\n',
+          '<p><code>start</code> 设置区间的起始时间，默认为 0，<code>end</code> 设置区间的结束时间，默认为 24 * 60，<code>step</code> 设置间隔的步长，默认为 15。</p>\n',
         'en-US':
           '<p><code>start</code>: indicates the start time of the interval. The default value is 0. <code>end</code> indicates the end time of the interval. The default value is 24 x 60. <code>step</code> indicates the step of the interval. The default value is 15. </p>\n'
       },

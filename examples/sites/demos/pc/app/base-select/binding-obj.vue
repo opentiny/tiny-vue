@@ -20,13 +20,13 @@ export default {
   data() {
     return {
       options: [
-        { obj: { val: '选项1', id: 1 }, text: '北京' },
-        { obj: { val: '选项2', id: 2 }, text: '上海' },
-        { obj: { val: '选项3', id: 3 }, text: '天津' },
-        { obj: { val: '选项4', id: 4 }, text: '重庆' },
-        { obj: { val: '选项5', id: 5 }, text: '深圳' }
+        { obj: { val: '选项 1', id: 1 }, text: '北京' },
+        { obj: { val: '选项 2', id: 2 }, text: '上海' },
+        { obj: { val: '选项 3', id: 3 }, text: '天津' },
+        { obj: { val: '选项 4', id: 4 }, text: '重庆' },
+        { obj: { val: '选项 5', id: 5 }, text: '深圳' }
       ],
-      value: { val: '选项3', id: 3 }
+      value: { val: '选项 3', id: 3 }
     }
   }
 }

@@ -126,7 +126,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>在开启多选模式后，默认情况下会展示所有已选中的选项的 Tag，可以使用 <code>collapse-tags</code> 来折叠 Tag 。</p>',
+          '<p>在开启多选模式后，默认情况下会展示所有已选中的选项的 Tag，可以使用 <code>collapse-tags</code> 来折叠 Tag。</p>',
         'en-US':
           '<p>After the multi-selection mode is enabled, tags of all selected options are displayed by default. You can use <code>collapse-tags</code> to collapse tags. </p>'
       },
@@ -167,7 +167,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          <p>\n            <div>当选中某一级时，动态加载该级下的选项。</dvi>\n            <div>通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</div>\n            <div><code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。</div>\n            <p>\n              <div>为了更准确的显示节点的状态，默认地（默认指没有设置<code>props.leaf</code>）可以使用<code>leaf</code>字段。</div>\n              <div>表明此节点是否为叶子节点，否则会简单地以有无子节点来判断是否为叶子节点。</div>\n            </p>\n          </p>\n        ',
+          '\n          <p>\n            <div>当选中某一级时，动态加载该级下的选项。</dvi>\n            <div>通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</div>\n            <div><code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调 (必须调用)。</div>\n            <p>\n              <div>为了更准确的显示节点的状态，默认地（默认指没有设置<code>props.leaf</code>）可以使用<code>leaf</code>字段。</div>\n              <div>表明此节点是否为叶子节点，否则会简单地以有无子节点来判断是否为叶子节点。</div>\n            </p>\n          </p>\n        ',
         'en-US':
           '\n          <p>\n            <div> When a level is selected, dynamically loads the options under that level. </dvi>\n            <div> enables dynamic loading with <code>lazy</code> in the <code>props</code> property, and sets the method of loading the data source with <code>lazyload</code>. </div>\n            <div>The<code>lazyload</code> method takes two arguments, node for the current clicked node, and resolve for the callback (which must be called) when the data is loaded. </div>\n            <p>\n            <div> In order to more accurately display the state of the node, the <code>leaf</code> field can be used by default (the default means that <code>props.leaf</code> is not set). </div>\n            <div> indicates whether this node is a leaf, otherwise it is simply determined by the presence or absence of child nodes. </div>\n            </p>\n          </p>\n        '
       },
@@ -195,7 +195,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "<p>\n          <div>通过 <code>props.children</code> 指定选项的子选项，默认为 'children' 。</div>\n          <div>通过 <code>props.value</code> 指定指定选项的 value 值，默认为 'value' 。</div>\n          <div>通过 <code>props.label</code> 指定选项标签,默认为 'label' 。</div>\n        <p/>",
+          "<p>\n          <div>通过 <code>props.children</code> 指定选项的子选项，默认为 'children' 。</div>\n          <div>通过 <code>props.value</code> 指定指定选项的 value 值，默认为 'value' 。</div>\n          <div>通过 <code>props.label</code> 指定选项标签，默认为 'label' 。</div>\n        <p/>",
         'en-US':
           "<p>\n          <div> specifies the suboptions of the option via <code>props.children</code>, which defaults to 'children'. </div>\n          <div> Specifies the value of the given option via <code>props.value</code>, which defaults to 'value'. </div>\n          <div> Specifies the option label via <code>props.label</code>, which defaults to 'label'. </div>\n        <p/>"
       },
@@ -209,7 +209,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>\n            将 <code>filterable</code> 赋值为 <code>true</code> 即可打开搜索功能，默认会匹配节点的 <code>label</code> 或所有父节点的 <code>label</code> (由 <code>show-all-levels</code> 决定)中包含输入值的选项。</br>\n            使用<code>empty</code> 插槽设置无匹配选项时显示的内容，使用<code>debounce</code>设置搜索延迟。\n          </p>',
+          '<p>\n            将 <code>filterable</code> 赋值为 <code>true</code> 即可打开搜索功能，默认会匹配节点的 <code>label</code> 或所有父节点的 <code>label</code> (由 <code>show-all-levels</code> 决定) 中包含输入值的选项。</br>\n            使用<code>empty</code> 插槽设置无匹配选项时显示的内容，使用<code>debounce</code>设置搜索延迟。\n          </p>',
         'en-US':
           '<p>\n            Set <code>filterable</code> to <code>true</code> to turn on the search function, By default, the <code>label</code> of the node or the <code>label</code> of all parent nodes (as determined by <code>show-all-levels</code>) will match the option containing the input value. </br>\n            Use the <code>empty</code> slot to set what will be displayed if there is no matching option, and use <code>debounce</code> to set the search delay.\n          </p>'
       },
@@ -235,7 +235,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p><code>filter-method</code> 自定义搜索逻辑，第一个参数是节点 node，第二个参数是搜索关键词 keyword，通过返回布尔值表示是否命中,如果需要搜索到父级，通过 props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。默认单选模式下，只能选择叶子节点。</p>\n',
+          '<p><code>filter-method</code> 自定义搜索逻辑，第一个参数是节点 node，第二个参数是搜索关键词 keyword，通过返回布尔值表示是否命中，如果需要搜索到父级，通过 props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。默认单选模式下，只能选择叶子节点。</p>\n',
         'en-US':
           '<p><code>filter-method</code> customizes the search logic. The first parameter is node, and the second parameter is keyword. A boolean value is returned to indicate whether the search is hit. To select a parent, set props.checkStrictly = true to deselect the parent and child nodes. In this way, the purpose of selecting any level of option is achieved. In the default single-choice mode, only leaf nodes can be selected. </p>\n'
       },

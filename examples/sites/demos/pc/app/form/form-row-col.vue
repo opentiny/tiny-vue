@@ -68,7 +68,7 @@ export default {
       rules: {
         users: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: 'blur' }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'blur' }
         ],
         datepicker: { type: 'date' },
         url: { type: 'url' },

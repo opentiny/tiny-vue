@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      checked: ['复选框1', '复选框2']
+      checked: ['复选框 1', '复选框 2']
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：带标签和提示信息</p>
+    <p>场景 1：带标签和提示信息</p>
     <br />
     <tiny-base-select v-model="value1" popper-class="slot-default">
       <template v-for="item in options1">
@@ -18,7 +18,7 @@
     </tiny-base-select>
     <br /><br />
 
-    <p>场景2：选项双行</p>
+    <p>场景 2：选项双行</p>
     <br />
     <tiny-base-select v-model="value2" popper-class="double-row">
       <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
@@ -38,23 +38,23 @@ import { ref } from 'vue'
 import { TinyBaseSelect, TinyOption, TinyTag, TinyTooltip } from '@opentiny/vue'
 
 const options1 = ref([
-  { value: '选项1', label: '北京', tag: 'New', tip: '自定义提示' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京', tag: 'New', tip: '自定义提示' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 
 const options2 = ref([
-  { value: '选项1', label: '子网1 （192.168.0.1/24）', desc: '可用 IP 数 250' },
-  { value: '选项2', label: '子网2 （192.168.0.1/24）', desc: '可用 IP 数 250' },
-  { value: '选项3', label: '子网3 （192.168.0.1/24）', desc: '可用 IP 数 250' },
-  { value: '选项4', label: '子网4 （192.168.0.1/24）', desc: '可用 IP 数 250' },
-  { value: '选项5', label: '子网5 （192.168.0.1/24）', desc: '可用 IP 数 250' }
+  { value: '选项 1', label: '子网 1（192.168.0.1/24）', desc: '可用 IP 数 250' },
+  { value: '选项 2', label: '子网 2（192.168.0.1/24）', desc: '可用 IP 数 250' },
+  { value: '选项 3', label: '子网 3（192.168.0.1/24）', desc: '可用 IP 数 250' },
+  { value: '选项 4', label: '子网 4（192.168.0.1/24）', desc: '可用 IP 数 250' },
+  { value: '选项 5', label: '子网 5（192.168.0.1/24）', desc: '可用 IP 数 250' }
 ])
 
-const value1 = ref('选项1')
-const value2 = ref('选项1')
+const value1 = ref('选项 1')
+const value2 = ref('选项 1')
 </script>
 
 <style lang="less" scoped>

@@ -61,7 +61,7 @@ const fileList = ref([
     docId: 'M1T2A1N548572512085860353',
     path: 'edm/one/',
     docVersion: 'V1',
-    name: 'test5超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长.doc',
+    name: 'test5 超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长.doc',
     docSize: 17252 * 1024,
     size: 17252 * 1024,
     serverName: 'ShenZhen'

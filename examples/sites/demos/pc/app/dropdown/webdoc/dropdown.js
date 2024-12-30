@@ -105,7 +105,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为: <code>click</code> / <code>hover</code> 。</p>\n',
+          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为：<code>click</code> / <code>hover</code> 。</p>\n',
         'en-US':
           '<p>By setting the <code>trigger</code> attribute to trigger a drop-down, the default is <code>hover</code>. The optional values are: <code>click</code> / <code>hover</code>.</p>\n'
       },

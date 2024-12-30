@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('tip提示', async ({ page }) => {
+test('tip 提示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('filter-panel#tip')
 

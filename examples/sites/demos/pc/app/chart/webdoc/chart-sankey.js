@@ -22,8 +22,8 @@ export default {
       type: 'interface',
       code: `
 interface IChartSettings {
-  dataType: array // 数据类型，数组的第一项为 item 的数据类型，第二项为 line 的数据类型，可选值: KMB , normal , percent 
-  digit: number // 设置数据类型为percent时保留的位数，默认为2
+  dataType: array // 数据类型，数组的第一项为 item 的数据类型，第二项为 line 的数据类型，可选值：KMB , normal , percent 
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为 2
   dimension: string // 维度，默认 columns 第一项为维度
   itemStyle: object // 节点矩形的样式，
   label: object // 每个矩形节点中文本标签的样式，

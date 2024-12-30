@@ -31,7 +31,7 @@ export default {
   methods: {
     setAspectRatio(aspectRatio) {
       Modal.message({
-        message: `宽高比数据: ${JSON.stringify(aspectRatio)}`,
+        message: `宽高比数据：${JSON.stringify(aspectRatio)}`,
         status: 'info'
       })
     }

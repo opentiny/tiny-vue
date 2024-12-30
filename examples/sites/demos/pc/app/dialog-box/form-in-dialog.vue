@@ -97,7 +97,7 @@ export default {
       },
       goodAtOptions: [
         ['架构', '算法', '自动化'],
-        ['UI设计', 'EXCEL', 'PPT制作']
+        ['UI 设计', 'EXCEL', 'PPT 制作']
       ]
     }
   },

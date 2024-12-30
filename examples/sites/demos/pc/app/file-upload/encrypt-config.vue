@@ -21,7 +21,7 @@ export default {
       encryptConfig: {
         enabled: true,
         encrypt: true,
-        watermark: '水印示例1'
+        watermark: '水印示例 1'
       }
     }
   },

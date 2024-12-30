@@ -73,7 +73,7 @@ export default {
         'en-US': 'Timeline Range Configuration'
       },
       desc: {
-        'zh-CN': '<p>通过dayTimes属性配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。</p>\n',
+        'zh-CN': '<p>通过 dayTimes 属性配置时间线模式下所展示的时间范围，默认为 [8,18]，可配范围 [0,23]。</p>\n',
         'en-US':
           '<p>Use the dayTimes attribute to set the time range displayed in timeline mode. The default value is [8,18], and the value range is [0,23].</p>\n'
       },
@@ -99,7 +99,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过showMark回调函数来标记某些日期，markColor属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor可选颜色同 theme</p>\n',
+          '<p>通过 showMark 回调函数来标记某些日期，markColor 属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor 可选颜色同 theme</p>\n',
         'en-US':
           '<p>Use the showMark callback function to mark some dates. The markColor attribute is used to set the mark color. This function takes effect only in timeline mode and agenda mode. markColor Optional Color Same as theme</p>\n'
       },
@@ -137,7 +137,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色blue、green、red、yellow、purple、cyan、grey</p>\n',
+          '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey</p>\n',
         'en-US':
           '<p>Customize the background color of the date cell. </p>\n<p>Currently, only preset colors are supported. The options are blue, green, red, yellow, purple, cyan, and grey.</p>'
       },

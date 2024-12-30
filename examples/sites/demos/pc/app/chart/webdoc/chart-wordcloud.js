@@ -37,8 +37,8 @@ interface IChartSettings {
   color: array[string] | string | () => void // 词云图字体颜色，默认为 "rgb(Math.round(Math.random * 160), Math.round(Math.random * 160), Math.round(Math.random * 160))"
   dimension: string // 维度，默认 columns[0]
   metrics: string // 指标，默认 columns[1]
-  sizeMax: number // 最大字体大小，默认为60
-  sizeMin: number // 最小字体大小，默认为12
+  sizeMax: number // 最大字体大小，默认为 60
+  sizeMin: number // 最小字体大小，默认为 12
 }
 `
     }

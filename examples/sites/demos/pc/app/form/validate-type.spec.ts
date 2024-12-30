@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试校验提示是否出现在form上', async ({ page }) => {
+test('测试校验提示是否出现在 form 上', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('form#validate-type')
 

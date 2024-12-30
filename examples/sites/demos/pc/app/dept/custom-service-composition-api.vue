@@ -13,7 +13,7 @@
 import { ref } from 'vue'
 import { TinyDept } from '@opentiny/vue'
 
-// mock数据
+// mock 数据
 const DEPT_LIST = [
   {
     upperCode: '000001',
@@ -22,14 +22,14 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '022471',
         dept_Code: null,
-        hrName: 'SZ技术',
+        hrName: 'SZ 技术',
         coaCode: null
       },
       {
         coa_Combination: null,
         hrCode: '030055',
         dept_Code: null,
-        hrName: 'SZ海洋网络',
+        hrName: 'SZ 海洋网络',
         coaCode: null
       },
       {
@@ -43,7 +43,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '022279',
         dept_Code: null,
-        hrName: '贝托SZ',
+        hrName: '贝托 SZ',
         coaCode: null
       },
       {
@@ -62,7 +62,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '041963',
         dept_Code: null,
-        hrName: 'BPIT&QM HRBP管理部',
+        hrName: 'BPIT&QM HRBP 管理部',
         coaCode: '0021.000.0001.041963'
       }
     ]
@@ -86,21 +86,21 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '023338',
         dept_Code: null,
-        hrName: '测试数据室XX',
+        hrName: '测试数据室 XX',
         coaCode: '0021.000.0001.023338'
       },
       {
         coa_Combination: null,
         hrCode: '027425',
         dept_Code: null,
-        hrName: '中国XX测试数据部',
+        hrName: '中国 XX 测试数据部',
         coaCode: '0021.000.0002.027425'
       },
       {
         coa_Combination: null,
         hrCode: '023093',
         dept_Code: null,
-        hrName: '测试数据XX管理部',
+        hrName: '测试数据 XX 管理部',
         coaCode: '0021.000.0001.023093'
       }
     ]
@@ -112,7 +112,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '038370',
         dept_Code: null,
-        hrName: '业务应用与XX测试数据部',
+        hrName: '业务应用与 XX 测试数据部',
         coaCode: '0021.000.0001.038370'
       },
       {
@@ -126,21 +126,21 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '023114',
         dept_Code: null,
-        hrName: '测试数据XX人力资源部',
+        hrName: '测试数据 XX 人力资源部',
         coaCode: '0021.000.0001.023114'
       },
       {
         coa_Combination: null,
         hrCode: '034899',
         dept_Code: null,
-        hrName: '测试数据XX财经管理部',
+        hrName: '测试数据 XX 财经管理部',
         coaCode: '0021.000.0001.034899'
       },
       {
         coa_Combination: null,
         hrCode: '023221',
         dept_Code: null,
-        hrName: '测试数据XX质量与运营部',
+        hrName: '测试数据 XX 质量与运营部',
         coaCode: '0021.000.0001.023221'
       }
     ]
@@ -152,7 +152,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '023489',
         dept_Code: null,
-        hrName: '中央XX测试数据部',
+        hrName: '中央 XX 测试数据部',
         coaCode: '0021.000.0001.023489'
       }
     ]
@@ -164,7 +164,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '023286',
         dept_Code: null,
-        hrName: 'XX应用交付部',
+        hrName: 'XX 应用交付部',
         coaCode: '0021.000.0001.023286'
       }
     ]
@@ -176,7 +176,7 @@ const DEPT_LIST = [
         coa_Combination: null,
         hrCode: '022471',
         dept_Code: null,
-        hrName: 'XX应用实施部',
+        hrName: 'XX 应用实施部',
         coaCode: '0021.000.0001.022471'
       }
     ]
@@ -204,19 +204,19 @@ function getfetchDeptByValue(searchValue) {
         {
           coaCode: '0021.000.0001.023475',
           hrCode: '023475',
-          hrName: '测试数据室XX质量与运营部',
+          hrName: '测试数据室 XX 质量与运营部',
           coaStatus: '1-有效-VALID'
         },
         {
           coaCode: '0021.000.0001.023114',
           hrCode: '023114',
-          hrName: '测试数据XX人力资源部',
+          hrName: '测试数据 XX 人力资源部',
           coaStatus: '1-有效-VALID'
         },
         {
           coaCode: '0021.000.0001.023093',
           hrCode: '023093',
-          hrName: '测试数据XX管理部',
+          hrName: '测试数据 XX 管理部',
           coaStatus: '1-有效-VALID'
         }
       ])
@@ -243,19 +243,19 @@ function getfetchDept(code) {
         {
           coaCode: '0021.000.0001.023475',
           hrCode: '023475',
-          hrName: '测试数据室XX质量与运营部',
+          hrName: '测试数据室 XX 质量与运营部',
           coaStatus: '1-有效-VALID'
         },
         {
           coaCode: '0021.000.0001.023114',
           hrCode: '023114',
-          hrName: '测试数据XX人力资源部',
+          hrName: '测试数据 XX 人力资源部',
           coaStatus: '1-有效-VALID'
         },
         {
           coaCode: '0021.000.0001.023093',
           hrCode: '023093',
-          hrName: '测试数据XX管理部',
+          hrName: '测试数据 XX 管理部',
           coaStatus: '1-有效-VALID'
         }
       ])

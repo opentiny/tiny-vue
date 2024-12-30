@@ -35,7 +35,7 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(15).locator('input')).toBeDisabled()
   await expect(formItem.nth(16).locator('input').first()).toBeDisabled()
   await expect(formItem.nth(17).locator('input').first()).toBeDisabled()
-  // 尝试拖到滑块,应是无法拖动状态
+  // 尝试拖到滑块，应是无法拖动状态
   const { x, y, height } = await slider.boundingBox()
   await page.mouse.move(x, y + height / 2)
   await page.mouse.down()
@@ -62,7 +62,7 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(15).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(16).locator('input').first()).not.toBeDisabled()
   await expect(formItem.nth(17).locator('input').first()).not.toBeDisabled()
-  // 尝试拖到滑块,应是可以拖动状态
+  // 尝试拖到滑块，应是可以拖动状态
   const sliderBox = await slider.boundingBox()
   await page.mouse.move(sliderBox.x, sliderBox.y + sliderBox.height / 2)
   await page.mouse.down()

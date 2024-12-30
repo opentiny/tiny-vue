@@ -62,7 +62,7 @@ export default {
           value: 'Button3',
           sup: {
             class: 'sup-text',
-            text: '8折'
+            text: '8 折'
           }
         },
         {
@@ -71,7 +71,7 @@ export default {
           sup: {
             slot: 'button4',
             class: 'sup-slot',
-            text: '8折'
+            text: '8 折'
           }
         }
       ],

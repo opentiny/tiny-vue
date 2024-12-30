@@ -37,7 +37,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>disabled</code> 设置按钮组是否禁用，数据项设置 <code>disabled</code> 属性可以禁用单个按钮，数据项设置 <code>tip</code> 属性(v3.17.0版本增加此功能)增加按钮悬浮提示功能。</p>',
+          '<p>通过 <code>disabled</code> 设置按钮组是否禁用，数据项设置 <code>disabled</code> 属性可以禁用单个按钮，数据项设置 <code>tip</code> 属性 (v3.17.0 版本增加此功能) 增加按钮悬浮提示功能。</p>',
         'en-US':
           '<p>You can set whether to disable the button group through <code>disabled</code>. You can set the <code>disabled</code> attribute to disable a single button. You can set the <code>tip</code> attribute to add the reason for disabling the button. </p></p>'
       },

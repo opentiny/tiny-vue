@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试Alpha', async ({ page }) => {
+test('测试 Alpha', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('color-select-panel#alpha')
   const demo = await page.locator('#alpha')

@@ -8,7 +8,7 @@ test('获取图像数据', async ({ page }) => {
   await expect(page.getByText('图像数据：')).toHaveCount(1)
 
   await page.getByRole('button', { name: '获取画布位置和大小数据' }).click()
-  await expect(page.getByText('画布位置和大小数据:')).toHaveCount(1)
+  await expect(page.getByText('画布位置和大小数据：')).toHaveCount(1)
 
   // 待补充验证：弹窗内数据
 })

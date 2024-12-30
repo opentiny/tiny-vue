@@ -14,6 +14,7 @@ import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import tailwindCss from 'tailwindcss'
+import { visualizer } from 'rollup-plugin-visualizer'
 import fg from 'fast-glob'
 import fs from 'fs-extra'
 
@@ -117,6 +118,7 @@ export default defineConfig((config) => {
       viteStaticCopy({
         targets: copyTarget
       }),
+      config.mode === 'visualizer' && visualizer({ open: true }),
       delStatic(),
       isInner ? viteDosearchPlugin() : null
     ],

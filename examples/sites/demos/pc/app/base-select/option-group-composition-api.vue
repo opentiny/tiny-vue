@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：分组 + 多选 + 面板可搜索</div>
+    <div>场景 1：分组 + 多选 + 面板可搜索</div>
     <br />
     <tiny-base-select v-model="value2" multiple filterable :searchable="true">
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
@@ -14,7 +14,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景2：单选分组</div>
+    <div>场景 2：单选分组</div>
     <br />
     <tiny-base-select v-model="value1" filterable>
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
@@ -28,7 +28,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景3：分组 + 多选</div>
+    <div>场景 3：分组 + 多选</div>
     <br />
     <tiny-base-select v-model="value2" multiple>
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
@@ -42,7 +42,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景4：分组 + 多选 + 可搜索</div>
+    <div>场景 4：分组 + 多选 + 可搜索</div>
     <br />
     <tiny-base-select v-model="value2" filterable multiple>
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">

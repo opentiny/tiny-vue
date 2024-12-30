@@ -11,9 +11,9 @@ test('cache-op', async ({ page }) => {
 
   await input.click()
   await dropdown.getByRole('listitem').filter({ hasText: '北京' }).click()
-  await expect(cacheValue).toContainText(['选项1'])
+  await expect(cacheValue).toContainText(['选项 1'])
 
   await input.click()
   await dropdown.getByRole('listitem').filter({ hasText: '上海' }).click()
-  await expect(cacheValue).toContainText(['选项2'])
+  await expect(cacheValue).toContainText(['选项 2'])
 })
