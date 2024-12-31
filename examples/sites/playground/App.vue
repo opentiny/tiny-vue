@@ -1,7 +1,7 @@
-<script setup lang="jsx">
-import { onMounted, reactive, nextTick } from 'vue'
-import { Repl, useStore, File } from '@opentiny/vue-repl'
-import '@opentiny/vue-repl/dist/style.css'
+<script setup lang="tsx">
+import { onMounted, reactive, nextTick, computed } from 'vue'
+import type { SFCOptions } from '@vue/repl'
+import { Repl, useStore, useVueImportMap, File } from '@vue/repl'
 
 import Editor from '@vue/repl/codemirror-editor'
 import { TinyButtonGroup, TinyButton, TinySelect, TinyOption, TinySwitch, Notify } from '@opentiny/vue'
@@ -113,21 +113,38 @@ const getTinyTheme = (version) => {
   return tinyThemeMap[theme]
 }
 
+const { productionMode, vueVersion, importMap } = useVueImportMap({})
+
+// enable experimental features
+const sfcOptions = computed(
+  (): SFCOptions => ({
+    script: {
+      inlineTemplate: true,
+      propsDestructure: true
+    },
+    style: {
+      isProd: productionMode.value
+    },
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag: string) => tag.startsWith('custom-')
+      }
+    }
+  })
+)
+
 // 如果hash有效，它格式为： 3.8.4|eNqIVV9p.............
 const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
-// eslint-disable-next-line new-cap
-const store = new useStore({
-  serializedState: shareData.length === 2 ? shareData[1] : '',
-  showOutput: true,
-  outputMode: 'preview',
-  versions: {
-    vue: '3.2.47',
-    opentiny: '3.9.1',
-    typescript: '5.1.3'
-  }
-})
+const store = useStore(
+  {
+    builtinImportMap: importMap,
+    vueVersion,
+    sfcOptions
+  },
+  hash
+)
 
 // repl 属性
 const state = reactive({
@@ -182,7 +199,7 @@ function selectVersion(version) {
 
 function versionChange(version) {
   const importMap = createImportMap(version)
-  store.state.files['import-map.json'] = new File('', JSON.stringify(importMap))
+  store.files['import-map.json'] = new File('', JSON.stringify(importMap))
   insertStyleDom(version)
 }
 
@@ -236,8 +253,8 @@ const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
 
 const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
   const code = await getDemoCode({ cmpId, fileName, apiMode, mode })
-  store.state.mainFile = fileName
-  store.state.activeFile = fileName
+  store.mainFile = fileName
+  store.activeFilename = fileName
   store.addFile(new File(fileName, code, false))
   versionChange(latestVersion)
 }
@@ -246,7 +263,7 @@ onMounted(() => {
   setTinyDesign()
   // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
-    const demoFile = Object.values(store.state.files).find(
+    const demoFile = Object.values(store.files.value).find(
       (file) =>
         file.filename.startsWith('src/') &&
         file.filename.endsWith('.vue') &&
@@ -254,8 +271,8 @@ onMounted(() => {
         file.filename !== 'src/PlaygroundMain.vue'
     )
 
-    store.state.mainFile = demoFile.filename
-    store.state.activeFile = demoFile
+    store.mainFile = demoFile.filename
+    store.activeFilename = demoFile.filename
     versionChange(shareData[0])
   } else {
     const fileName = searchObj.get('fileName')
@@ -324,12 +341,17 @@ function share() {
   </div>
   <Repl
     :editor="Editor"
+    @keydown.ctrl.s.prevent
+    @keydown.meta.s.prevent
+    :editorOptions="{ autoSaveText: false }"
     :store="store"
-    :preview-options="state.previewOptions"
-    :clear-console="false"
     :layout="state.layout"
     :layout-reverse="state.layoutReverse"
-  ></Repl>
+    :showCompileOutput="true"
+    :autoResize="true"
+    :clearConsole="false"
+    :preview-options="state.previewOptions"
+  />
 </template>
 
 <style>

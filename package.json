@@ -197,7 +197,7 @@
     "shx": "^0.3.4",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vue": "^3.4.38",
+    "vue": "^3.5.13",
     "vue-tsc": "^1.6.5"
   },
   "pnpm": {
@@ -206,10 +206,10 @@
       "tsup@7.2.0": "patches/tsup@7.2.0.patch"
     },
     "overrides": {
-      "@vue/compiler-sfc@3": "3.4.38",
-      "@vue/runtime-core@3": "3.4.38",
-      "@vue/runtime-dom@3": "3.4.38",
-      "@vue/shared@3": "3.4.38",
+      "@vue/compiler-sfc@3": "3.5.13",
+      "@vue/runtime-core@3": "3.5.13",
+      "@vue/runtime-dom@3": "3.5.13",
+      "@vue/shared@3": "3.5.13",
       "@playwright/test": "1.42.1",
       "cropperjs": "1.5.12",
       "echarts": "5.4.1",
@@ -226,10 +226,10 @@
       "vue-template-compiler@2.7": "2.7.10",
       "vue@2.6": "2.6.14",
       "vue@2.7": "2.7.10",
-      "vue@3": "3.4.38",
+      "vue@3": "3.5.13",
       "vue2": "npm:vue@2.6.14",
       "vue2.7": "npm:vue@2.7.10",
-      "vue3": "npm:vue@3.4.38"
+      "vue3": "npm:vue@3.5.13"
     },
     "packageExtensions": {
       "vue-template-compiler@2.6.14": {
@@ -249,7 +249,7 @@
       },
       "vite-plugin-dts": {
         "peerDependencies": {
-          "vue": "^3.4.38"
+          "vue": "^3.5.13"
         }
       },
       "vite-plugin-md": {

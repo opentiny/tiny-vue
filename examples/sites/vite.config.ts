@@ -138,6 +138,8 @@ export default defineConfig((config) => {
         '@': path.resolve('src'),
         '@demos': path.resolve(`${demosPath}`),
         '@menu': menuPath,
+        'vue/compiler-sfc': 'vue/compiler-sfc',
+        'vue': 'vue/dist/vue.runtime.esm-browser.js',
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
