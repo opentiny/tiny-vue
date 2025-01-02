@@ -43,7 +43,7 @@ const flag = ref(false)
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     city: '福州很长很长福州很长很长福州很长很长福州很长很长福州很长很长福州很长很长福州很长很长福州很长很长',
     employees: 800,
     created_date: '2014-04-30 00:56:00',
@@ -51,7 +51,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWW科技有限公司',
+    name: 'WWW 科技有限公司',
     city: '深圳',
     employees: 300,
     created_date: '2016-07-08 12:36:22',
@@ -59,7 +59,7 @@ const tableData = ref([
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     city: '中山',
     employees: 1300,
     created_date: '2014-02-14 14:14:14',
@@ -67,7 +67,7 @@ const tableData = ref([
   },
   {
     id: '4',
-    name: 'TGB科技有限公司',
+    name: 'TGB 科技有限公司',
     city: '龙岩',
     employees: 360,
     created_date: '2013-01-13 13:13:13',
@@ -75,7 +75,7 @@ const tableData = ref([
   },
   {
     id: '5',
-    name: 'YHN科技有限公司',
+    name: 'YHN 科技有限公司',
     city: '韶关',
     employees: 810,
     created_date: '2012-12-12 12:12:12',

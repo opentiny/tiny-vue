@@ -24,7 +24,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          "<p>在 <code>grid</code> 标签上配置 <code>tree-config={children: 'children',renderIcon}</code>，其中 <code>renderIcon</code> 可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 <code>tree-node</code> 属性。</p>\n",
+          "<p>在 <code>grid</code> 标签上配置 <code>tree-config={children: 'children',renderIcon}</code>，其中 <code>renderIcon</code> 可以自定义树表的展开收缩图标。以树的形式来展示数据，还需要在展示树节点的字段上配置 <code>tree-node</code> 属性。</p>\n",
         'en-US':
           "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node"
       },
@@ -112,7 +112,7 @@ export default {
       'name': { 'zh-CN': '增删改', 'en-US': 'Add, Delete, and Modify' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid-toolbar</code> 标签上配置 <code>slot=&quot;toolbar&quot</code>; 插槽，配置相关的操作按钮 ，注意：新增数据需要在 <code>grid</code> 标签上配置 <code>edit-config</code> 编辑框的配置信息，并通过 <code>ref</code> 获取到组件实例调用方法进行相关操作，<code>findTree、filterTree</code> 是工具类里的查找和过滤方法。由于tree</code> 数据节构的特殊性，<code>grid</code> 的 <code>getInsertRecords</code> 与 <code>getRecordset</code> 方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n',
+          '<p>在 <code>grid-toolbar</code> 标签上配置 <code>slot=&quot;toolbar&quot</code>; 插槽，配置相关的操作按钮，注意：新增数据需要在 <code>grid</code> 标签上配置 <code>edit-config</code> 编辑框的配置信息，并通过 <code>ref</code> 获取到组件实例调用方法进行相关操作，<code>findTree、filterTree</code> 是工具类里的查找和过滤方法。由于 tree</code> 数据节构的特殊性，<code>grid</code> 的 <code>getInsertRecords</code> 与 <code>getRecordset</code> 方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n',
         'en-US':
           '<p>Set slot=&quot;toolbar&quot; on the grid-toolbar tab, and configure related operation buttons. Note: To add data, you need to configure the edit-config text box on the grid tab. In addition, the component instance invokes methods through ref to perform related operations. findTree and filterTree are search and filter methods in the tool class. Due to the special structure of tree data, the <code>getInsertRecords</code> and <code>getRecordset</code> methods of the grid cannot obtain new data. Such data needs to be processed by users. </p>\n'
       },
@@ -123,7 +123,7 @@ export default {
       'name': { 'zh-CN': '键盘操作', 'en-US': 'Keyboard operation' },
       'desc': {
         'zh-CN': `
-        <p>键盘移动高亮行,设置斑马线属性 <code>stripe</code> 为 <code>false</code>,鼠标悬停高亮行 <code>highlight-hover-row</code> 为 <code>false</code>,高亮当前行 <code>highlight-current-row</code> ,并配置 <code>keyboard-config={isArrow: true}</code> 属性启用方向键功能。</p>
+        <p>键盘移动高亮行，设置斑马线属性 <code>stripe</code> 为 <code>false</code>,鼠标悬停高亮行 <code>highlight-hover-row</code> 为 <code>false</code>,高亮当前行 <code>highlight-current-row</code> ,并配置 <code>keyboard-config={isArrow: true}</code> 属性启用方向键功能。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">按键说明：</p>
           <ul>

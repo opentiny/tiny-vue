@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('layout对齐方式', async ({ page }) => {
+test('layout 对齐方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
   await page.goto('layout#alignment')

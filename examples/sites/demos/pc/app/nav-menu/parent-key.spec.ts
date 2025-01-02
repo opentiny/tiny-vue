@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('支持完整URL', async ({ page }) => {
+test('支持完整 URL', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('nav-menu#parent-key')
   const preview = page.locator('#parent-key')

@@ -8,7 +8,7 @@ test('新增列滚动位置', async ({ page }) => {
   await demo.locator('.tiny-grid__body-wrapper.body__wrapper').click()
   await page.mouse.wheel(10000, 0)
 
-  await expect(demo.getByText('地址2')).toBeVisible()
+  await expect(demo.getByText('地址 2')).toBeVisible()
   await demo.getByText('显示最后一列').click()
-  await expect(demo.getByText('地址2')).toBeVisible()
+  await expect(demo.getByText('地址 2')).toBeVisible()
 })

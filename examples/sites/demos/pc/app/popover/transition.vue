@@ -10,7 +10,7 @@
         content="这是一段内容。"
       >
         <template #reference>
-          <tiny-button>默认0.2s隐藏</tiny-button>
+          <tiny-button>默认 0.2s 隐藏</tiny-button>
         </template>
       </tiny-popover>
     </div>
@@ -24,7 +24,7 @@
         content="这是一段内容。"
       >
         <template #reference>
-          <tiny-button>自定义1.5s隐藏</tiny-button>
+          <tiny-button>自定义 1.5s 隐藏</tiny-button>
         </template>
       </tiny-popover>
     </div>
@@ -50,8 +50,8 @@ export default {
 </style>
 
 <style>
-/** 自定义动画类名要匹配transition属性中的值
-    由于弹窗元素是插入到body中的，所以写在全局样式 */
+/** 自定义动画类名要匹配 transition 属性中的值
+    由于弹窗元素是插入到 body 中的，所以写在全局样式 */
 .custom-fade-enter,
 .custom-fade-enter-from,
 .custom-fade-leave-to {

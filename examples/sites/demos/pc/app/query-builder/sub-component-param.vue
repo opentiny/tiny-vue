@@ -104,7 +104,7 @@ const config = {
   showLockButtons: false,
   bindProps: {
     leftSelect: {
-      // 此为左侧Select参数，统一控制左侧所有Select
+      // 此为左侧 Select 参数，统一控制左侧所有 Select
       filterable: true,
       filterMethod: (value, data) => {
         if (!value) return true
@@ -112,11 +112,11 @@ const config = {
       }
     },
     input: {
-      // 此为输入框参数，包括textarea
+      // 此为输入框参数，包括 textarea
       clearable: true
     },
     select: {
-      // 此为右侧Select参数
+      // 此为右侧 Select 参数
       clearable: true
     },
     numeric: {

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('ipAddress change事件', async ({ page }) => {
+test('ipAddress change 事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('ip-address#event')
 
@@ -27,7 +27,7 @@ test('ipAddress change事件', async ({ page }) => {
   await expect(modal.filter({ hasText: 'input 事件触发了' })).toBeVisible()
 })
 
-test('select事件', async ({ page }) => {
+test('select 事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('ip-address#event')
 

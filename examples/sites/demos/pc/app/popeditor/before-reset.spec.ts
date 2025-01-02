@@ -12,7 +12,7 @@ test('PopEditor 重置', async ({ page }) => {
   const resetBtn = dialogBox.getByRole('button', { name: '重 置' })
   const infoModal = page.locator('.tiny-modal')
 
-  // 点击弹出框重置按钮，清空搜索框，modal弹出提示
+  // 点击弹出框重置按钮，清空搜索框，modal 弹出提示
   await textBox.click()
   await company.fill('111')
   await city.fill('222')

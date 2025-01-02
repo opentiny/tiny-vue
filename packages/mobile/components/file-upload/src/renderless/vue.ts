@@ -19,7 +19,6 @@ import type {
   IFileUploadService,
   IFileUploadStreamsaver
 } from '../file-upload'
-
 import { downloadFile as ordinaryDownload } from '../../../upload-list/src/renderless'
 import { formatFileSize } from '@opentiny/mobile-utils/string'
 
@@ -294,7 +293,7 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
 
 const initWatch = ({ watch, state, api, props, $service }) => {
   watch(
-    () => props.edm.upload,
+    () => props.edm?.upload,
     (value) => value && api.getToken({ token: value.token, isinit: true }),
     { immediate: true, deep: true }
   )
@@ -332,7 +331,7 @@ export let getApi = () => ({}) as { downloadFile: Function }
 export const renderless = (
   props: IFileUploadProps,
   { computed, inject, onBeforeUnmount, provide, reactive, ref, watch, onMounted }: ISharedRenderlessParamHooks,
-  { t, vm, parent, emit, service, mode, constants, useBreakpoint }: IFileUploadRenderlessParamUtils,
+  { t, vm, emit, service, mode, constants, useBreakpoint }: IFileUploadRenderlessParamUtils,
   { Modal, CryptoJS, Streamsaver }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: IFileUploadStreamsaver }
 ): IFileUploadApi => {
   let api = {} as IFileUploadApi
@@ -355,7 +354,7 @@ export const renderless = (
   mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver })
   getApi = () => api
 
-  provide('uploader', parent)
+  provide('uploader', vm)
 
   onMounted(api.mounted)
 

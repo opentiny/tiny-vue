@@ -31,20 +31,20 @@
       <tiny-grid-column field="address" title="地址"></tiny-grid-column>
       <tiny-grid-column field="englishName" title="英文名"></tiny-grid-column>
       <tiny-grid-column field="established" title="成立时间" sortable></tiny-grid-column>
-      <tiny-grid-column field="listed" title="是否上市1"></tiny-grid-column>
-      <tiny-grid-column field="ranking" title="国内排名1" sortable></tiny-grid-column>
+      <tiny-grid-column field="listed" title="是否上市 1"></tiny-grid-column>
+      <tiny-grid-column field="ranking" title="国内排名 1" sortable></tiny-grid-column>
       <tiny-grid-column field="registeredCapital" title="注册资本1" sortable></tiny-grid-column>
       <tiny-grid-column field="businessScope" title="业务范围1"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工数1" sortable></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址1"></tiny-grid-column>
-      <tiny-grid-column field="englishName" title="英文名2"></tiny-grid-column>
-      <tiny-grid-column field="established" title="成立时间2" sortable></tiny-grid-column>
-      <tiny-grid-column field="listed" title="是否上市2"></tiny-grid-column>
-      <tiny-grid-column field="ranking" title="国内排名2" sortable></tiny-grid-column>
-      <tiny-grid-column field="registeredCapital" title="注册资本2" sortable></tiny-grid-column>
-      <tiny-grid-column field="businessScope" title="业务范围2"></tiny-grid-column>
-      <tiny-grid-column field="employees" title="员工数2" sortable></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址2"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址 1"></tiny-grid-column>
+      <tiny-grid-column field="englishName" title="英文名 2"></tiny-grid-column>
+      <tiny-grid-column field="established" title="成立时间 2" sortable></tiny-grid-column>
+      <tiny-grid-column field="listed" title="是否上市 2"></tiny-grid-column>
+      <tiny-grid-column field="ranking" title="国内排名 2" sortable></tiny-grid-column>
+      <tiny-grid-column field="registeredCapital" title="注册资本 2" sortable></tiny-grid-column>
+      <tiny-grid-column field="businessScope" title="业务范围 2"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 2" sortable></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址 2"></tiny-grid-column>
       <tiny-grid-column v-if="flag" field="introduction" title="公司简介（最后一列）" show-overflow></tiny-grid-column>
     </tiny-grid>
   </div>
@@ -59,15 +59,15 @@ const flag = ref(false)
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     address: '福州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 800,
     englishName: 'GFD',
     established: '2005',
     listed: '是',
     ranking: '23',
-    registeredCapital: '2000万',
+    registeredCapital: '2000 万',
     businessScope: '食品'
   }
 ])

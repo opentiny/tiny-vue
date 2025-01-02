@@ -9,15 +9,15 @@ export default {
         'zh-CN': `
         <div class="tip custom-block">
           <p class="custom-block-title">filter 配置</p>
-          <p>通过自定义的 <code>filter</code> 的作用域插槽自定义筛选的规则, 可以配置项：
+          <p>通过自定义的 <code>filter</code> 的作用域插槽自定义筛选的规则，可以配置项：
             <ul>
-              <li>multi 设置在显示枚举选项功能是否为多选, 仅在 enumable:true 下有效。</li>
+              <li>multi 设置在显示枚举选项功能是否为多选，仅在 enumable:true 下有效。</li>
               <li>enumable 设置在过滤面板中显示枚举选项。</li>
               <li>inputFilter 设置在过滤面板中显示输入筛选的项。</li>
               <li>defaultFilter 设置在过滤面板中显示默认的筛选条件。</li>
-              <li>values 设置在显示枚举选项功能(enumable)下制定静态数据源。</li>
-              <li>label 设置枚举数据的显示值属性字段， 默认'label'。</li>
-              <li>value 设置枚举数据的实际值属性字段， 默认'value'。</li>
+              <li>values 设置在显示枚举选项功能 (enumable) 下制定静态数据源。</li>
+              <li>label 设置枚举数据的显示值属性字段，默认'label'。</li>
+              <li>value 设置枚举数据的实际值属性字段，默认'value'。</li>
             </ul>
           </p>
         </div>
@@ -38,17 +38,17 @@ export default {
     },
     {
       'demoId': 'filter-simple-filter',
-      'name': { 'zh-CN': '简化版筛选-单选/多选菜单', 'en-US': 'Custom Parameter' },
+      'name': { 'zh-CN': '简化版筛选 - 单选/多选菜单', 'en-US': 'Custom Parameter' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code> 。</p>\n',
-        'en-US': '<p>Add custom parameters by <code>params</code>。</p>\n'
+        'en-US': '<p>Add custom parameters by <code>params</code>.</p>\n'
       },
       'codeFiles': ['filter/simple-filter.vue']
     },
     {
       'demoId': 'filter-simple-date-filter',
-      'name': { 'zh-CN': '简化版筛选-时间日期菜单', 'en-US': 'Advanced Filter Settings' },
+      'name': { 'zh-CN': '简化版筛选 - 时间日期菜单', 'en-US': 'Advanced Filter Settings' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code>。</p>\n',
@@ -102,7 +102,7 @@ export default {
       'name': { 'zh-CN': '服务端过滤默认选中值', 'en-US': 'Server-side filtering default selected value' },
       'desc': {
         'zh-CN':
-          '<p>配置 remote-filter 开启服务端过滤后，表格初始化时，如果设置了 <code>auto-load</code> 会在表格列初始化钱调用 <code>handleFetch</code>，因此此时无法获取到过滤参数，如果需要设置服务端过滤默认选中值，需将 <code>auto-load</code> 设置为false且手动调用一次 <code>handleFetch</code> 方法。</p>\n',
+          '<p>配置 remote-filter 开启服务端过滤后，表格初始化时，如果设置了 <code>auto-load</code> 会在表格列初始化钱调用 <code>handleFetch</code>，因此此时无法获取到过滤参数，如果需要设置服务端过滤默认选中值，需将 <code>auto-load</code> 设置为 false 且手动调用一次 <code>handleFetch</code> 方法。</p>\n',
         'en-US':
           '<p>Set the default input filtering options through the <code>inputFilter.relation</code> attribute. \n Enter the built-in options for filtering: <code>equals</code>, <code>unequal</code>, <code>greaterThan</code>, <code>lessThan</code>, <code>equalToGreaterThan</code>, <code>equalToLessThan</code>, <code>contains</code>, <code>startwith</code>, <code>endwith</code>; Custom options can also be configured. \n When configuring custom options, you need to configure the filtering method through the <code>inputFilter.method</code> attribute. </p>\n'
       },

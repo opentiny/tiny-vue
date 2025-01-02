@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：单选</p>
+    <p>场景 1：单选</p>
     <br />
     <tiny-grid-select
       v-model="valueSingle"
@@ -10,7 +10,7 @@
       :radio-config="radioConfig"
     ></tiny-grid-select>
     <br /><br />
-    <p>场景2：多选</p>
+    <p>场景 2：多选</p>
     <br />
     <tiny-grid-select
       v-model="valueMulti"

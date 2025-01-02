@@ -5,9 +5,9 @@ test('高亮多处', async ({ page }) => {
   await page.goto('guide#highlight-box')
 
   const showBtn = page.getByRole('button', { name: '开始引导', exact: true })
-  const step1 = page.getByRole('button', { name: '新手引导1' })
-  const step2 = page.getByRole('button', { name: '新手引导2' })
-  const step3 = page.getByRole('button', { name: '新手引导3' })
+  const step1 = page.getByRole('button', { name: '新手引导 1' })
+  const step2 = page.getByRole('button', { name: '新手引导 2' })
+  const step3 = page.getByRole('button', { name: '新手引导 3' })
   const hightAlert1 = page.locator('.tiny-alert').nth(0)
   const hightAlert2 = page.locator('.hight5')
   const guide = page.getByRole('dialog')

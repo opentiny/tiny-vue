@@ -38,7 +38,7 @@ export default {
       showStep4: false,
       data1: [
         {
-          title: '新手引导标题1',
+          title: '新手引导标题 1',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-arrow-position',
           button: [
@@ -51,7 +51,7 @@ export default {
       ],
       data2: [
         {
-          title: '新手引导标题2',
+          title: '新手引导标题 2',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-arrow-position',
           button: [
@@ -64,7 +64,7 @@ export default {
       ],
       data3: [
         {
-          title: '新手引导标题3',
+          title: '新手引导标题 3',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-arrow-position',
           button: [
@@ -78,7 +78,7 @@ export default {
       data4: [
         {
           popPosition: 'top',
-          title: '新手引导标题4',
+          title: '新手引导标题 4',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-arrow-position',
           button: [

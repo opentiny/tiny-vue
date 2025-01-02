@@ -3,8 +3,8 @@
     <tiny-button type="primary" @click="stepStart">开始引导</tiny-button>
     <tiny-divider color="var(--ti-common-color-line-dividing)"></tiny-divider>
     <div>
-      <tiny-button plain class="guide1-content-steps">新手引导1</tiny-button>
-      <tiny-button plain class="guide2-content-steps">新手引导2</tiny-button>
+      <tiny-button plain class="guide1-content-steps">新手引导 1</tiny-button>
+      <tiny-button plain class="guide2-content-steps">新手引导 2</tiny-button>
     </div>
     <tiny-guide :show-step="showStep" :dom-data="domData"></tiny-guide>
   </div>

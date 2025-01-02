@@ -207,7 +207,7 @@ export const handleEvent =
       params.options = options
     }
 
-    emit(type, params, event)
+    type !== 'close' && emit(type, params, event)
     events[type] && events[type].call(parent, params)
     api.close(type)
   }

@@ -21,7 +21,7 @@ export default {
             <li><code>Delete</code>：清空内容。</li>
             <li><code>Backspace</code>：清空内容并激活选中单元格为编辑状态。</li>
             <li><code>F2</code>：激活单元格编辑。</li>
-            <li><code>Esc</code>： 取消单元格编辑。</li>
+            <li><code>Esc</code>：取消单元格编辑。</li>
             <li><code>Page Up</code>：向上翻页滚动。</li>
             <li><code>Page Down</code>：向下翻页滚动。</li>
             <li><code>Home</code>：滚动到顶部。</li>

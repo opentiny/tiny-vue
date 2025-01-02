@@ -31,7 +31,7 @@ export default {
     //   if (files.length <= 0) {
     //     return false
     //   } else if (!/\.(xls|xlsx)$/.test(files[0].name.toLowerCase())) {
-    //     Modal.message({ message: '上传格式不正确，请上传xls或者xlsx格式', status: 'warning' })
+    //     Modal.message({ message: '上传格式不正确，请上传 xls 或者 xlsx 格式', status: 'warning' })
     //     return false
     //   } else {
     //     // 更新获取文件名

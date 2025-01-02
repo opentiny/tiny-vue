@@ -41,49 +41,49 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技有限公司',
+          name: 'GFD 科技有限公司',
           address: '福州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 800,
           distance: 1400
         },
         {
           id: '2',
-          name: 'WWW科技有限公司',
+          name: 'WWW 科技有限公司',
           address: '深圳福田区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 300,
           distance: 700
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           address: '中山市',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 1300,
           distance: 700
         },
         {
           id: '4',
-          name: 'TGB科技有限公司',
+          name: 'TGB 科技有限公司',
           address: '龙岩',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 360,
           distance: 800
         },
         {
           id: '5',
-          name: 'YHN科技有限公司',
+          name: 'YHN 科技有限公司',
           address: '韶关',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 810,
           distance: 1000
         },
         {
           id: '6',
-          name: 'WSX科技有限公司',
+          name: 'WSX 科技有限公司',
           address: '黄冈',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 800,
           distance: 1200
         }

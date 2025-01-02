@@ -29,28 +29,28 @@ function debounce(fn, delay = 50) {
 
 function handleCurrentChange(val) {
   TinyModal.message({
-    message: `current-change 事件，当前页: ${val}`,
+    message: `current-change 事件，当前页：${val}`,
     status: 'info'
   })
 }
 
 function handleSizeChange(val) {
   TinyModal.message({
-    message: `size-change 事件，每页条目数: ${val}`,
+    message: `size-change 事件，每页条目数：${val}`,
     status: 'info'
   })
 }
 
 function prevClick(val) {
   TinyModal.message({
-    message: `prev-click 事件，当前页: ${val}`,
+    message: `prev-click 事件，当前页：${val}`,
     status: 'info'
   })
 }
 
 function nextClick(val) {
   TinyModal.message({
-    message: `next-click 事件，当前页: ${val}`,
+    message: `next-click 事件，当前页：${val}`,
     status: 'info'
   })
 }

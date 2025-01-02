@@ -6,7 +6,7 @@ test('测试对话框中预览图片', async ({ page }) => {
 
   const preview = page.locator('.pc-demo-container')
   const viewerImage = page.locator('.tiny-image-viewer')
-  const btn = preview.getByRole('button', { name: '弹出Dialog' })
+  const btn = preview.getByRole('button', { name: '弹出 Dialog' })
   const dialog = page.locator('.pc-demo-container .tiny-dialog-box__title')
   const image = preview.locator('.tiny-image__inner')
 

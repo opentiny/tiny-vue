@@ -15,5 +15,5 @@ test('行拖拽', async ({ page }) => {
   await page.waitForTimeout(200)
   await page.mouse.up()
   await page.waitForTimeout(200)
-  await expect(page.locator('.tiny-grid-body__row').nth(5)).toContainText('WSX科技YX公司')
+  await expect(page.locator('.tiny-grid-body__row').nth(5)).toContainText('WSX 科技 YX 公司')
 })

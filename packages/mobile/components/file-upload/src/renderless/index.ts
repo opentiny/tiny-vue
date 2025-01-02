@@ -315,7 +315,7 @@ export const startUpload =
   }: Pick<IFileUploadRenderlessParams, 'state' | 'constants' | 'vm' | 'api' | 't'> & IFileUploadModalVm) =>
   (file: IFileUploadFile, isList: boolean) => {
     if (state.isHwh5) {
-      vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+      vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
       return
     }
     if (file.size > state.docSize && file.size > state.chunkSize) {
@@ -335,7 +335,7 @@ export const startUpload =
         status: 'warning'
       })
     } else {
-      vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+      vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
     }
   }
 
@@ -629,16 +629,14 @@ export const handleStart =
 
     if (!state.isEdm && props.autoUpload) {
       if (props.multiple && props.mergeService) {
-        const handler = (file) =>
-          vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+        const handler = (file) => vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
 
         rawFiles.length && api.beforeUpload({ raw: rawFiles }, true, handler)
       } else {
         rawFiles.forEach((rawFile) => {
           const file = api.getFile(rawFile)
           if (!file) return
-          const handler = (file) =>
-            vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+          const handler = (file) => vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
 
           api.beforeUpload(file, true, handler)
         })
@@ -863,7 +861,7 @@ export const handleReUpload =
     const { READY } = constants.FILE_STATUS
     file.status = READY
     file.percentage = 0
-    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+    vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
   }
 
 export const handleReUploadTotal = (api: IFileUploadRenderlessParams['api']) => (files: IFileUploadFile[]) => {
@@ -918,7 +916,7 @@ export const abort =
       })
     }
 
-    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].abort(file)
+    vm.$refs[constants.UPLOAD_INNER].abort(file)
   }
 
 export const abortDownload =
@@ -990,12 +988,12 @@ export const submit =
         const rawFiles = files.map((file) => file.raw)
         rawFiles.length &&
           api.beforeUpload({ raw: rawFiles }, false, (file) => {
-            vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+            vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
           })
       } else {
         files.forEach((file) => {
           api.beforeUpload(file, false, (file) => {
-            vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+            vm.$refs[constants.UPLOAD_INNER].upload(file.raw)
           })
         })
       }
@@ -1005,7 +1003,7 @@ export const submit =
 export const handleClick =
   ({ constants, vm }: Pick<IFileUploadRenderlessParams, 'constants' | 'vm'>) =>
   () =>
-    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].handleClick()
+    vm.$refs[constants.UPLOAD_INNER].handleClick()
 
 export const getFileUploadUrl = (service: IFileUploadRenderlessParams['service']) => (): Promise<string> =>
   service.getFileUploadUrl()
@@ -2121,7 +2119,7 @@ export const batchSegmentUpload =
     } else {
       typeof props.edm.upload.closeloading === 'function' && props.edm.upload.closeloading()
 
-      vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(state.largeFileInfo[docId])
+      vm.$refs[constants.UPLOAD_INNER].upload(state.largeFileInfo[docId])
     }
   }
 
@@ -2623,7 +2621,7 @@ export const getFileSourceType =
 export const updateFile =
   ({ constants, vm }: Pick<IFileUploadRenderlessParams, 'constants' | 'vm'>) =>
   (file: IFileUploadFile) => {
-    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].handleUpdate(file)
+    vm.$refs[constants.UPLOAD_INNER].handleUpdate(file)
   }
 
 export const handleChange =
@@ -2634,7 +2632,7 @@ export const handleChange =
       if (!Array.isArray(file)) {
         files = [file]
       }
-      vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].handleChange({ target: { files } })
+      vm.$refs[constants.UPLOAD_INNER].handleChange({ target: { files } })
     }
   }
 

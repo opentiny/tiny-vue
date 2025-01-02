@@ -142,7 +142,7 @@ const TinyIconTotal = iconTotal()
 
 function handleSkip({ url }) {
   TinyModal.message({
-    message: 'prevent 事件，当前URL：' + url,
+    message: 'prevent 事件，当前 URL：' + url,
     status: 'info'
   })
   return false

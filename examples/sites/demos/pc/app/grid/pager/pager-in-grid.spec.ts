@@ -10,7 +10,7 @@ test('测试表格分页', async ({ page }) => {
   const firstTableRow = demo.locator('.tiny-grid .tiny-grid-body__row').first()
 
   await next.click()
-  await expect(firstTableRow).toHaveText(/WSX科技YX公司/)
+  await expect(firstTableRow).toHaveText(/WSX 科技 YX 公司/)
   await next.click()
-  await expect(firstTableRow).toHaveText(/TIG管理YX公司/)
+  await expect(firstTableRow).toHaveText(/TIG 管理 YX 公司/)
 })
