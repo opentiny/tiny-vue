@@ -28,16 +28,45 @@ export default {
       codeFiles: ['manual-upload.vue']
     },
     {
-      demoId: 'accept-file-image',
+      demoId: 'header-show',
+      name: {
+        'zh-CN': '手动上传',
+        'en-US': 'Manual upload'
+      },
+      desc: {
+        'zh-CN':
+          '通过<code>header-show</code>设置是否显示头部，该属性默认为true。<code>file-title</code> 设置头部标题。',
+        'en-US':
+          'Set whether to display the header through<code>header show</code>, which defaults to true<code>file title</code>Set the header title.'
+      },
+      codeFiles: ['header-show.vue']
+    },
+    {
+      demoId: 'file-icon-list',
+      name: {
+        'zh-CN': '手动上传',
+        'en-US': 'Manual upload'
+      },
+      desc: {
+        'zh-CN':
+          '通过<code>file-icon-list</code>配置文件上传显示的图标路径，未配置会默认显示组件内部配置图标，<code>file-list</code>配置上传的文件列表。',
+        'en-US':
+          'Upload and display the icon path through the<code>file-icon-list</code>configuration file. If not configured, the internal configuration icon of the component will be displayed by default<code>file-list</code>Configure the list of uploaded files.'
+      },
+      codeFiles: ['file-icon-list.vue']
+    },
+    {
+      demoId: 'accept-file',
       name: {
         'zh-CN': '限制文件类型',
         'en-US': 'Restrict file types'
       },
       desc: {
-        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式只能为图片类型。',
-        'en-US': 'Set a limit on the format of uploaded files to only be image type through <code>accept</code>.'
+        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式只能为<code>.doc</code><code>.docx</code>。',
+        'en-US':
+          'Set a limit on the format of uploaded files to only be<code>. doc</code><code>. docx</code>through<code>accept</code>.'
       },
-      codeFiles: ['accept-file-image.vue']
+      codeFiles: ['accept-file.vue']
     },
     {
       demoId: 'max-file-count',
@@ -61,25 +90,11 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>before-remove</code> 执行移除文件前的操作，返回 <code>false</code> 或 <code>reject</code> 则阻止删除。',
+          '通过 <code>before-remove</code> 执行移除文件前的操作，返回 <code>false</code> 或 <code>reject</code> 则阻止删除。<code>success-statistics</code>设置是否展示上传成功数量。',
         'en-US':
-          'Perform the operation before removing the file by <code>before-remove</code> , and return <code>false</code> or <code>reject</code> to prevent deletion.'
+          'Perform the operation before removing the file by <code>before-remove</code> , and return <code>false</code> or <code>reject</code> to prevent deletion.<code>success statistics</code>Set whether to display the number of successful uploads.</code>'
       },
       codeFiles: ['prevent-delete-file.vue']
-    },
-    {
-      demoId: 'upload-request',
-      name: {
-        'zh-CN': '定义请求头部',
-        'en-US': 'Custom request header'
-      },
-      desc: {
-        'zh-CN':
-          '通过 <code>headers</code> 配置上传请求头部信息， <code>with-credentials</code> 设置允许发送 cookie 凭证信息。',
-        'en-US':
-          'Configure the upload request header information through <code>headers</code> , and set the permission to send cookie credential information through <code>with-credentials</code> settings.'
-      },
-      codeFiles: ['upload-request.vue']
     },
     {
       demoId: 'upload-file-list',
@@ -89,11 +104,24 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>file-list</code> 设置上传的文件列表，也可通过 <code>:show-file-list="false"</code> 关闭列表的显示； <code>open-download-file</code> 设置文件是否可下载。',
+          '通过 <code>file-list</code> 设置上传的文件列表，也可通过 <code>show-file-list="false"</code> 关闭列表的显示； <code>open-download-file</code> 设置文件是否可下载。',
         'en-US':
           'Set the list of uploaded files through <code>file-list</code> , or turn off the display of the list through <code>: show-file-list="false"</code> ; <code>open-download-file</code> Set whether the file is downloadable.'
       },
       codeFiles: ['upload-file-list.vue']
+    },
+    {
+      demoId: 'upload-http-request',
+      name: {
+        'zh-CN': '上传请求',
+        'en-US': 'Upload request'
+      },
+      desc: {
+        'zh-CN': '通过 <code>http-request</code> 覆盖默认的上传行为，可以自定义上传的实现。',
+        'en-US':
+          'By using<code>http request</code>to override the default upload behavior, the implementation of upload can be customized.'
+      },
+      codeFiles: ['upload-http-request.vue']
     },
     {
       demoId: 'picture-card',
@@ -110,17 +138,79 @@ export default {
       codeFiles: ['picture-card.vue']
     },
     {
-      demoId: 'picture-list',
+      demoId: 'size',
       name: {
-        'zh-CN': '图片列表缩略图',
-        'en-US': 'Image List Thumbnail'
+        'zh-CN': '设置按钮尺寸',
+        'en-US': 'Set button size'
       },
       desc: {
-        'zh-CN': '通过设置 <code>list-type="picture"</code> 实现图片列表缩略图显示。',
-        'en-US':
-          'By setting <code>list-type="picture"</code> , the thumbnail display of the image list can be achieved.'
+        'zh-CN': '通过<code>size</code>设置按钮尺寸。',
+        'en-US': 'Set button size through<code>size</code>'
       },
-      codeFiles: ['picture-list.vue']
+      codeFiles: ['size.vue']
+    },
+    {
+      demoId: 'data',
+      name: {
+        'zh-CN': '上传额外参数用法',
+        'en-US': 'Usage of uploading additional parameters'
+      },
+      desc: {
+        'zh-CN': '通过<code>data</code> 设置上传时附带的额外参数，<code>upload-icon</code>是否显示头部文件上传按钮。',
+        'en-US':
+          'Set the additional parameters that come with uploading through <code>data</code> .<code>upload icon</code>Whether to display the header file upload button.'
+      },
+      codeFiles: ['data.vue']
+    },
+    {
+      demoId: 'mini-mode',
+      name: {
+        'zh-CN': 'mini 模式',
+        'en-US': 'Mini Mode'
+      },
+      desc: {
+        'zh-CN': '通过设置 <code>mini-mode</code>设置<code>mini</code>模式，默认为false。',
+        'en-US': 'By setting the<code>mini-mode</code>, set the<code>mini</code>mode to false by default.'
+      },
+      codeFiles: ['mini-mode.vue']
+    },
+    {
+      demoId: 'dynamic-disable',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '通过 <code>disabled</code> 设置禁用功能。',
+        'en-US': 'Disable the function by setting <code>disabled</code> .'
+      },
+      codeFiles: ['dynamic-disable.vue']
+    },
+    {
+      demoId: 'upload-request',
+      name: {
+        'zh-CN': '定义请求头部',
+        'en-US': 'Custom request header'
+      },
+      desc: {
+        'zh-CN':
+          '通过 <code>headers</code> 配置上传请求头部信息，<code>before-upload</code>上传文件之前的钩子，参数为上传的文件，若返回<code>false</code>或者返回<code>Promise</code>且被<code>reject</code>，则停止上传。',
+        'en-US':
+          'Configure upload request header information through<code>headers</code>.<code>before upload</code>The hook before uploading a file, with the parameter being the uploaded file. If it returns<code>false</code>or returns<code>Promise</code>and is rejected</code>, the upload will be stopped.'
+      },
+      codeFiles: ['upload-request.vue']
+    },
+    {
+      demoId: 'with-credentials',
+      name: {
+        'zh-CN': '定义请求头部',
+        'en-US': 'Custom request header'
+      },
+      desc: {
+        'zh-CN': '通过 <code>with-credentials</code> 设置允许发送 cookie 凭证信息。',
+        'en-US': 'Set the permission to send cookie credential information through<code>with credentials</code>.'
+      },
+      codeFiles: ['with-credentials.vue']
     },
     {
       demoId: 'clear-files',
