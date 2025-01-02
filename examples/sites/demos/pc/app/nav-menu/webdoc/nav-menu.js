@@ -129,18 +129,6 @@ export default {
         'en-US': 'Use <code>allow-full-url</code> to support the inclusion of a complete URL in the data.'
       },
       codeFiles: ['allow-full-url.vue']
-    },
-    {
-      demoId: 'crm-demo',
-      name: {
-        'zh-CN': '自定义样式',
-        'en-US': 'Custom Style'
-      },
-      desc: {
-        'zh-CN': '通过修改 <code>css</code> 变量名自定义导航菜单样式。',
-        'en-US': 'Customizing the NavMenu style by changing the <code>CSS</code> variable name. '
-      },
-      codeFiles: ['crm-demo.vue']
     }
   ]
 }

@@ -12,15 +12,7 @@ const menuData = ref([
   { id: 1, pid: 0, title: '首页', url: '' },
   { id: 2, pid: 0, title: '指南', url: '' },
   { id: 3, pid: 0, title: '组件', url: '' },
-  { id: 4, pid: 0, title: '教程', url: '' },
-  { id: 5, pid: 0, title: '规范', url: '#/zh-CN/regular/rulelevel' },
-  { id: 6, pid: 0, title: '性能', url: '#/zh-CN/speed' },
-  { id: 7, pid: 0, title: '案例', url: '#/zh-CN/example' },
-  { id: 8, pid: 0, title: '更新日志', url: '#/zh-CN/guide/changelog' },
-  { id: 9, pid: 0, title: '测试', url: '#/zh-CN/guide/aaa' },
-  { id: 10, pid: 0, title: '资源', url: '' },
-  { id: 11, pid: 0, title: 'SDK', url: '' },
-  { id: 12, pid: 0, title: 'TINY 学院', url: '' },
+  { id: 9, pid: 0, title: '其他', url: 'crop' },
   { id: 13, pid: 2, title: '引入组件', url: '' },
   { id: 14, pid: 2, title: '后端适配器', url: '' },
   { id: 15, pid: 2, title: '服务代理', url: '' },
@@ -64,16 +56,7 @@ const menuData = ref([
   { id: 53, pid: 20, title: 'Company 公司', url: '#/zh-CN/component/company' },
   { id: 54, pid: 20, title: 'Dept 部门', url: '#/zh-CN/component/dept' },
   { id: 55, pid: 20, title: 'eDoc 企业文档', url: '#/zh-CN/component/Edoc' },
-  { id: 56, pid: 20, title: 'User 用户', url: '#/zh-CN/component/user' },
-  { id: 57, pid: 21, title: '添加标签页', url: '#/zh-CN/tutorial/addtabs' },
-  { id: 58, pid: 21, title: '标签页配置', url: '#/zh-CN/tutorial/tabsattr' },
-  { id: 59, pid: 22, title: '添加查询页面', url: '#/zh-CN/tutorial/addlist' },
-  { id: 60, pid: 22, title: '列表属性配置', url: '#/zh-CN/tutorial/listattr' },
-  { id: 61, pid: 22, title: '通讯录查询', url: '#/zh-CN/tutorial/searchfunc' },
-  { id: 62, pid: 23, title: '表单新增功能', url: '#/zh-CN/tutorial/addservice' },
-  { id: 63, pid: 23, title: '表单数据验证', url: '#/zh-CN/tutorial/valid' },
-  { id: 64, pid: 24, title: '开启编辑功能', url: '#/zh-CN/tutorial/editattr' },
-  { id: 65, pid: 24, title: '保存表格数据', url: '#/zh-CN/tutorial/savefunc' }
+  { id: 56, pid: 20, title: 'User 用户', url: '#/zh-CN/component/user' }
 ])
 </script>
 
