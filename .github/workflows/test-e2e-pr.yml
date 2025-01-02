@@ -30,7 +30,7 @@ jobs:
                 .map((c) => c.trim())
                 .filter((c) => /^[a-z\-\/]+$/.test(c))
                 .map((c) => `"\\/${c}\\/"`)
-              components = [...new Set(components)].slice(0, 3).join(' ')
+              components = [...new Set(components)].join(' ')
               core.setOutput('testComponents', components)
             } else {
               const warningString =`**[e2e-test-warn]**
