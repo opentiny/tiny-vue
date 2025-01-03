@@ -57,7 +57,7 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
         : {
             command: devServerCommon,
             url: baseURL,
-            reuseExistingServer: !process.env.CI,
+            reuseExistingServer: !!process.env.CI,
             stdout: 'pipe'
           },
     projects: [
