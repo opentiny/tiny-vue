@@ -80,7 +80,7 @@ function getMenuData() {
             },
             {
               label: 'Guide 引导',
-              urlField: 'pager',
+              urlField: 'guide',
               id: '3-2-3'
             }
           ]
@@ -133,7 +133,7 @@ function getMenuData() {
     },
     {
       label: '其他',
-      url: 'crop',
+      urlField: 'crop',
       id: '4'
     }
   ]

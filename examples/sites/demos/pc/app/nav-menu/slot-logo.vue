@@ -86,7 +86,7 @@ export default {
                 },
                 {
                   title: 'Guide 引导',
-                  url: 'pager',
+                  url: 'guide',
                   id: '3-2-3'
                 }
               ]

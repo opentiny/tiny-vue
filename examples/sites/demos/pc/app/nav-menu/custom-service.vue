@@ -88,7 +88,7 @@ export default {
                 },
                 {
                   label: 'Guide 引导',
-                  urlField: 'pager',
+                  urlField: 'guide',
                   id: '3-2-3'
                 }
               ]
@@ -141,7 +141,7 @@ export default {
         },
         {
           label: '其他',
-          url: 'crop',
+          urlField: 'crop',
           id: '4'
         }
       ]
