@@ -207,7 +207,7 @@ export const handleEvent =
       params.options = options
     }
 
-    type !== 'close' && emit(type, params, event)
+    emit(type, params, event)
     events[type] && events[type].call(parent, params)
     api.close(type)
   }
@@ -374,7 +374,6 @@ export const close =
       setTimeout(() => {
         state.visible = false
         let params = { type, $modal: parent }
-        emit('close', params)
         if (events.hide) {
           events.hide.call(parent, params)
         } else {
