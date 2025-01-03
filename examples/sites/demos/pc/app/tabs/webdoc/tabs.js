@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><code>Tabs</code> ：通过 v-model 设置选中的页签项，对应 TabItem 页签项中 name 属性的值；<br />\n        <code>TabItem</code> ：通过 title 设置页签项标题， name 设置页签项的值，disabled 设置页签项禁用，默认插槽自定义对应的内容。</div>',
+          '<div class="tip custom-block"><code>Tabs</code> ：通过 v-model 设置选中的页签项，对应 TabItem 页签项中 name 属性的值；<br />\n        <code>TabItem</code> ：通过 title 设置页签项标题，name 设置页签项的值，disabled 设置页签项禁用，默认插槽自定义对应的内容。</div>',
         'en-US':
           '<div class="tip custom-block"><p> <code>Tabs</code> :Set the selected tag item through the v-model , corresponding to the value of the name attribute in the TabItem tag item;<br/>\n        <code>TabItem</code> :Set the label item title through title .nameSet the value of tab items.disabledSet tab items to be disabled.Customize the corresponding content for the default slot.</div>'
       },
@@ -103,7 +103,7 @@ export default {
       },
       desc: {
         'zh-CN': `通过 <code>with-close</code> 打开关闭按钮，并监听 <code>close</code> 事件自定义实现删除页签项的逻辑。
-          <code>beforeClose</code> 设置删除前的操作，返回为false则取消删除，反之则执行删除。`,
+          <code>beforeClose</code> 设置删除前的操作，返回为 false 则取消删除，反之则执行删除。`,
         'en-US': `Use <code>with-close</code> to open the close button and listen to the <code>close</code> event to customize the logic for deleting tab items.
           <code>beforeClose</code> sets the operation before the deletion. If the return value is false, the deletion is canceled. Otherwise, the deletion is performed.`
       },
@@ -156,7 +156,7 @@ export default {
         'en-US': 'Automatic widening'
       },
       desc: {
-        'zh-CN': '通过 <code>stretch</code> 设置页签项的宽度是否自撑开，默认为 false 。',
+        'zh-CN': '通过 <code>stretch</code> 设置页签项的宽度是否自撑开，默认为 false。',
         'en-US':
           'Set whether the width of the label item is self expanding by <code>stretch</code> , and the default is false.'
       },
@@ -217,11 +217,11 @@ export default {
     {
       demoId: 'show-different-grid-data',
       name: {
-        'zh-CN': '与Grid结合',
+        'zh-CN': '与 Grid 结合',
         'en-US': 'Combining with Grid'
       },
       desc: {
-        'zh-CN': 'Grid组件需要设置 <code>:auto-resize=“true”</code> ，自适应父元素 <code>TabItem</code> 相应变化。',
+        'zh-CN': 'Grid 组件需要设置 <code>:auto-resize=“true”</code> ，自适应父元素 <code>TabItem</code> 相应变化。',
         'en-US':
           'The Grid component needs to set <code>:auto-resize="true"</code> to adapt to the corresponding changes of the parent element <code>TabItem</code> .'
       },

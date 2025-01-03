@@ -64,8 +64,8 @@ export const renderless = (
   { Modal }: IFileUploadModalVm
 ): IUploadListApi => {
   const api = { getApi } as IUploadListApi
-  parent = inject('uploader').$children[0]
-  const constants = parent.$constants as IFileUploadConstants
+  vm = inject('uploader')
+  const constants = vm.$constants as IFileUploadConstants
   const $service = initService({ props, service })
   const { current } = useBreakpoint()
 

@@ -23,7 +23,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 text-field 设置显示字段信息,默认是 userCN\n注意 UserLink 组件请求的是 mock 数据，其他用户查询不了，开发时请用真实服务。</p>\n',
+          '<p>通过 text-field 设置显示字段信息，默认是 userCN\n注意 UserLink 组件请求的是 mock 数据，其他用户查询不了，开发时请用真实服务。</p>\n',
         'en-US':
           '<p>Use text-field to set the displayed field information. The default value is userCN.\nNote that the UserLink component requests mock data, which cannot be queried by other users. Use the real service during development. </p>\n'
       },
@@ -37,7 +37,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "<p>通过 text-split 自定义文本分隔符,默认是 ','\n注意 UserLink 组件请求的是 mock 数据，其他用户查询不了，开发时请用真实服务。</p>\n",
+          "<p>通过 text-split 自定义文本分隔符，默认是 ','\n注意 UserLink 组件请求的是 mock 数据，其他用户查询不了，开发时请用真实服务。</p>\n",
         'en-US':
           "<p>Use text-split to customize the text separator. The default value is ','\nNote that the UserLink component requests mock data, which cannot be queried by other users. Use the real service during development. </p>\n"
       },

@@ -19,7 +19,7 @@ test('PopUpload 最大上传文件数', async ({ page }) => {
   await alert.getByText('上传文件数限制为:2').isVisible()
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), selectFilesBtn.click()])
   await fileChooser.setFiles([path1, path2, path3])
-  await alert.getByText('上传文件数量超出限制,已取消该操作').isVisible()
+  await alert.getByText('上传文件数量超出限制，已取消该操作').isVisible()
   await expect(lists).toHaveCount(0)
   await fileChooser.setFiles([path1, path2])
   await expect(lists).toHaveCount(2)

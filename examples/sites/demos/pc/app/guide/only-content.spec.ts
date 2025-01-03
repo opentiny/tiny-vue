@@ -6,12 +6,12 @@ test('纯段落用户引导', async ({ page }) => {
 
   const showBtn = page.getByRole('button', { name: '开始引导' })
   const nextBtn = page.getByRole('button', { name: '下一步' })
-  const guideEle1 = page.getByRole('button', { name: '新手引导1' })
-  const guideEle2 = page.getByRole('button', { name: '新手引导2' })
+  const guideEle1 = page.getByRole('button', { name: '新手引导 1' })
+  const guideEle2 = page.getByRole('button', { name: '新手引导 2' })
   const guide = page.getByRole('dialog')
   const arrow = guide.locator('.shepherd-arrow')
 
-  // 引导1
+  // 引导 1
   await showBtn.click()
   await expect(guide).toBeVisible()
   await expect(guide).toHaveClass(/only-content/)
@@ -25,7 +25,7 @@ test('纯段落用户引导', async ({ page }) => {
   expect(guideBox.x + guideBox.width / 2).toBeGreaterThan(guideEle1Box.x)
   expect(guideBox.x + guideBox.width / 2).toBeLessThan(guideEle1Box.x + guideEle1Box.width)
 
-  // 引导2
+  // 引导 2
   await nextBtn.click()
   await expect(guide).toBeVisible()
   await expect(guide).toHaveClass(/only-content/)

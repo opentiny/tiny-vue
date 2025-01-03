@@ -4,7 +4,7 @@ test('自定义渐变动画', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popover#transition')
 
-  let button1 = page.getByRole('button', { name: '默认0.2s隐藏' })
+  let button1 = page.getByRole('button', { name: '默认 0.2s 隐藏' })
   let pop1 = page.getByRole('tooltip', { name: /这是一段内容/ })
 
   await button1.hover()

@@ -7,5 +7,5 @@ test('事件', async ({ page }) => {
   const demo = page.locator('#events')
 
   await demo.locator('i').first().scrollIntoViewIfNeeded()
-  await expect(page.getByText('触发 change 事件，当前isFixed为：true')).toBeVisible()
+  await expect(page.getByText('触发 change 事件，当前 isFixed 为：true')).toBeVisible()
 })

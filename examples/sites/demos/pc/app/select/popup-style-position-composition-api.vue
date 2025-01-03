@@ -9,10 +9,10 @@ import { reactive, ref } from 'vue'
 import { TinySelect, TinyOption } from '@opentiny/vue'
 
 const options = reactive([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' }
 ])
 const value = ref('')
 </script>

@@ -17,15 +17,15 @@ import { TinyTimeSelect, TinyModal } from '@opentiny/vue'
 const value1 = ref('08:30')
 
 function bulr() {
-  TinyModal.message({ message: 'blur事件', status: 'info' })
+  TinyModal.message({ message: 'blur 事件', status: 'info' })
 }
 
 function change() {
-  TinyModal.message({ message: 'change事件', status: 'info' })
+  TinyModal.message({ message: 'change 事件', status: 'info' })
 }
 
 function focus() {
-  TinyModal.message({ message: 'focus事件', status: 'info' })
+  TinyModal.message({ message: 'focus 事件', status: 'info' })
 }
 </script>
 

@@ -6,7 +6,7 @@ test('固定时间范围', async ({ page }) => {
   const timeInput = page.getByRole('textbox', { name: '起始时间' })
   const options = page.locator('.tiny-picker-panel').nth(1).locator('div')
   await timeInput.click()
-  // options的第一条是options.first()，时间是08:30；最后一条（最大时间）是options.nth(43)，时间是18：30
+  // options 的第一条是 options.first()，时间是 08:30；最后一条（最大时间）是 options.nth(43)，时间是 18:30
   await expect(options.first()).toContainText('08:30')
   await expect(options.nth(44)).toContainText('18:30')
   // 起始时间选择10:00，稍后验证结束时间10:00是否disabled。

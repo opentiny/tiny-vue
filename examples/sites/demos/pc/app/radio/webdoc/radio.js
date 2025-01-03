@@ -49,7 +49,7 @@ export default {
         'en-US': 'Disabled'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>disabled</code> 设置是否禁用单选框 。</p>\n',
+        'zh-CN': '<p>通过 <code>disabled</code> 设置是否禁用单选框。</p>\n',
         'en-US':
           '<p>Set the <code>disabled</code> attribute to enable the disabled state. The default value is false. </p>\n'
       },

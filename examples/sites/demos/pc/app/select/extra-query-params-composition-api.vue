@@ -115,7 +115,7 @@ const remoteMethod1 = (value) => {
   })
 }
 
-// init 表示是否是初始化（mounted里面执行为初始化）
+// init 表示是否是初始化（mounted 里面执行为初始化）
 const initQuery2 = (value, extraQueryParams, init) => {
   const res = children.value.filter((child) => extraQueryParams.includes(child.parent))
 

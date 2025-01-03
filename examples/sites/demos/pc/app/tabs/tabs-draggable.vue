@@ -68,7 +68,7 @@ export default {
       this.tabs.push({
         title: 'Tab ' + String(this.tabs.length + 1),
         name: String(this.tabs.length + 1),
-        content: '动态增加tabitem'
+        content: '动态增加 tabitem'
       })
     }
   }

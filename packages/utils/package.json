@@ -4,6 +4,7 @@
   "description": "nanoid console xss",
   "author": "",
   "license": "ISC",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"

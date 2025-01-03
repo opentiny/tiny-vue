@@ -157,7 +157,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '可通过<code>@change</code>设置监听数值改变事件。当<code>change-compat</code>为false时，仅当加减按钮及直接输入数值时会触发<code>change</code>事件。',
+          '可通过<code>@change</code>设置监听数值改变事件。当<code>change-compat</code>为 false 时，仅当加减按钮及直接输入数值时会触发<code>change</code>事件。',
         'en-US':
           'The <code>@change</code> event is triggered when the value of the text box is changed. When the<code>change compat</code>is false, the <code>change</code> event will be triggered when only the add and subtract buttons and directly entering numerical values are used.</p>\n'
       },
@@ -216,7 +216,7 @@ export default {
     {
       demoId: 'filter-mode-change',
       name: {
-        'zh-CN': '过滤器模式change事件',
+        'zh-CN': '过滤器模式 change 事件',
         'en-US': 'Filter Mode'
       },
       desc: {

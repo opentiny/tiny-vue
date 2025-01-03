@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      placeholder: '自定义placeholder'
+      placeholder: '自定义 placeholder'
     }
   }
 }

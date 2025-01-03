@@ -458,7 +458,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>配置 <code>auto-lookup</code> 为false，设置初始化不请求数据，也可以调用 this.$refs.popeditor.handleSearch() 主动调用请求方法。</p>',
+          '<p>配置 <code>auto-lookup</code> 为 false，设置初始化不请求数据，也可以调用 this.$refs.popeditor.handleSearch() 主动调用请求方法。</p>',
         'en-US': ''
       },
       codeFiles: ['auto-lookup.vue']

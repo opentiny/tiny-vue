@@ -48,7 +48,7 @@ export default {
       this.tabs.push({
         title: 'Tab ++',
         name: ++this.tabIndex + '',
-        content: '动态增加tabitem'
+        content: '动态增加 tabitem'
       })
     }
   }

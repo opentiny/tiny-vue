@@ -51,7 +51,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。<br>在多选模式下，可通过 <code>reserve-keyword</code> 设置选中一个选项后依然保留搜索关键字。</p>',
+          '<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3 个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。<br>在多选模式下，可通过 <code>reserve-keyword</code> 设置选中一个选项后依然保留搜索关键字。</p>',
         'en-US': ''
       },
       codeFiles: ['remote.vue']

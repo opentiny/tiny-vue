@@ -18,21 +18,21 @@ const message = ref('这是气泡确认框提示内容文本描述，这是两�
 function show() {
   TinyModal.message({
     status: 'info',
-    message: 'show事件触发了'
+    message: 'show 事件触发了'
   })
 }
 
 function hide() {
   TinyModal.message({
     status: 'info',
-    message: 'hide事件触发了'
+    message: 'hide 事件触发了'
   })
 }
 
 function confirm() {
   TinyModal.message({
     status: 'info',
-    message: 'confirm事件触发了'
+    message: 'confirm 事件触发了'
   })
 }
 </script>

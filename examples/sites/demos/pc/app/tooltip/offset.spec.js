@@ -9,7 +9,7 @@ test('测试偏移量', async ({ page }) => {
 
   await expect(tip).toBeVisible()
 
-  // 计算3个位置
+  // 计算 3 个位置
   const middle = await arrow.boundingBox()
 
   await page.dragAndDrop('.tiny-slider__handle', '.pc-demo-container', {
@@ -26,7 +26,7 @@ test('测试偏移量', async ({ page }) => {
   await page.waitForTimeout(10)
   const right = await arrow.boundingBox()
 
-  // 测试3个位置
+  // 测试 3 个位置
   expect(left.x < middle.x)
   expect(middle.x < right.x)
 })

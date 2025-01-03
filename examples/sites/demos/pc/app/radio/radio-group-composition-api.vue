@@ -1,15 +1,15 @@
 <template>
   <div>
     <tiny-radio-group v-model="value1">
-      <tiny-radio label="1">备选项1</tiny-radio>
-      <tiny-radio label="2">备选项2</tiny-radio>
-      <tiny-radio label="3">备选项3</tiny-radio>
+      <tiny-radio label="1">备选项 1</tiny-radio>
+      <tiny-radio label="2">备选项 2</tiny-radio>
+      <tiny-radio label="3">备选项 3</tiny-radio>
     </tiny-radio-group>
     <div class="mt-20">
       <tiny-radio-group v-model="value2">
-        <tiny-radio-button label="1">备选项1</tiny-radio-button>
-        <tiny-radio-button label="2">备选项2</tiny-radio-button>
-        <tiny-radio-button label="3">备选项3</tiny-radio-button>
+        <tiny-radio-button label="1">备选项 1</tiny-radio-button>
+        <tiny-radio-button label="2">备选项 2</tiny-radio-button>
+        <tiny-radio-button label="3">备选项 3</tiny-radio-button>
       </tiny-radio-group>
     </div>
   </div>

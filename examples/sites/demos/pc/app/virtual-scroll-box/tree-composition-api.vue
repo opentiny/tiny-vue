@@ -33,7 +33,7 @@ const config = reactive({
   spanConfig: [[]] // 没有合并
 })
 const treeData = ref([])
-const treeExpandeds = ref([1, 21]) // 树默认展开项的id
+const treeExpandeds = ref([1, 21]) // 树默认展开项的 id
 const rowOffset = ref('')
 const nodeKey = 'id'
 const rowHeight = 36
@@ -112,7 +112,7 @@ const flattenTreeData = () => {
   config.rowSizes = chart.map(() => rowHeight) // 树的每一项高度
 
   // 这两项没有实际作用，只是为了保证组件正常工作
-  config.columns = ['c-1'] // 只有1列
+  config.columns = ['c-1'] // 只有 1 列
   config.columnSizes = [config.width - 17] // 这个列的宽度为 `虚滚区域宽度` 减去 `垂直滚动条宽度`
 }
 

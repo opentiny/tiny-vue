@@ -29,12 +29,12 @@
         >
           <template #reference>
             <div>
-              <tiny-button @click="visible2 = !visible2">子级弹框2</tiny-button>
+              <tiny-button @click="visible2 = !visible2">子级弹框 2</tiny-button>
             </div>
           </template>
         </tiny-popover>
         <template #reference>
-          <tiny-button @click="visible1 = !visible1">子级弹框1</tiny-button>
+          <tiny-button @click="visible1 = !visible1">子级弹框 1</tiny-button>
         </template>
       </tiny-popover>
       <template #reference>

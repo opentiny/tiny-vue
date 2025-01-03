@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Rate 自定义禁用时未选中图标颜色', () => {
-  test('icon禁用', async ({ page }) => {
+  test('icon 禁用', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('rate#disabled-not-selected-color')
 

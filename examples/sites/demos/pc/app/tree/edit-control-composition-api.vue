@@ -4,7 +4,7 @@
     <tiny-button @click="closeEdit">取消编辑</tiny-button>
     <tiny-button @click="saveEdit">保存编辑</tiny-button> <br />
     <br />
-    <div class="tips">提示：数据1 禁止添加; &nbsp;数据2 禁止编辑; &nbsp;数据3 禁止删除;</div>
+    <div class="tips">提示：数据 1 禁止添加; &nbsp;数据 2 禁止编辑; &nbsp;数据 3 禁止删除;</div>
     <tiny-tree
       ref="treeRef"
       node-key="id"

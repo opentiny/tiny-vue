@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：嵌套表格禁用某项（单选）</div>
+    <div>场景 1：嵌套表格禁用某项（单选）</div>
     <br />
     <tiny-select
       v-model="value1"
@@ -12,7 +12,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景2：嵌套表格禁用某项（多选）</div>
+    <div>场景 2：嵌套表格禁用某项（多选）</div>
     <br />
     <tiny-select
       v-model="value2"
@@ -25,7 +25,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景3：嵌套表格行选中（单选）</div>
+    <div>场景 3：嵌套表格行选中（单选）</div>
     <br />
     <tiny-select
       v-model="value3"
@@ -38,7 +38,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景4：嵌套表格行选中（多选）</div>
+    <div>场景 4：嵌套表格行选中（多选）</div>
     <br />
     <tiny-select
       v-model="value4"

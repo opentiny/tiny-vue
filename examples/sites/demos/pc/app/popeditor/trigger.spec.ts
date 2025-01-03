@@ -16,5 +16,5 @@ test('PopEditor 单选时触发勾选的方式', async ({ page }) => {
   await row.click()
   await confirmBtn.click()
   await expect(dialogBox).not.toBeVisible()
-  await expect(textBox).toHaveValue('WWW科技YX公司')
+  await expect(textBox).toHaveValue('WWW 科技 YX 公司')
 })

@@ -25,7 +25,7 @@ const exampleData = ref({
         id: 'c9ee9a4e8f3f83c5'
       },
       {
-        topic: 'Javascript权威指南',
+        topic: 'Javascript 权威指南',
         id: 'c9ee9b8e87958282'
       },
       {
@@ -57,7 +57,7 @@ const onCreate = (instance) => {
 }
 const exportData = () => {
   if (render.value) {
-    TinyModal.message({ message: '数据已经输出于控制台, 请打开控制台查看', status: 'info' })
+    TinyModal.message({ message: '数据已经输出于控制台，请打开控制台查看', status: 'info' })
 
     console.log(render.value.getData())
   }

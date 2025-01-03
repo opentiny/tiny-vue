@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       options: {
-        content: '自定义options，覆盖默认options',
+        content: '自定义 options，覆盖默认 options',
         autofocus: true,
         editable: true
       }

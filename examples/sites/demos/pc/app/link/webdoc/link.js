@@ -11,7 +11,7 @@ export default {
       desc: {
         'zh-CN': `
           通过 <code>value</code> 或者默认插槽设置链接显示内容。<br>
-          绑定 <code>click</code> 事件监听点击。 当禁用或配置 <code>href</code> 属性时， 不会触发<code>click</code>事件！
+          绑定 <code>click</code> 事件监听点击。当禁用或配置 <code>href</code> 属性时，不会触发<code>click</code>事件！
         `,
         'en-US': `
           Set the link to display content via <code>value</code> or the default slot. 

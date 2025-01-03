@@ -9,6 +9,6 @@ import { TinyRate, TinyModal } from '@opentiny/vue'
 const rate1 = ref(2)
 
 function onchange(v) {
-  TinyModal.message({ message: `选中的值是${v}`, status: 'info' })
+  TinyModal.message({ message: `选中的值是 ${v}`, status: 'info' })
 }
 </script>

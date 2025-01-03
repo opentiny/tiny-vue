@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('card类型', async ({ page }) => {
+test('card 类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tab-style-card')
 

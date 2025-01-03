@@ -7,7 +7,7 @@
 <script setup lang="jsx">
 import { TinyTree } from '@opentiny/vue'
 
-// node为点击的节点， resolve为回调函数，用于异步返回下层节点的数据
+// node 为点击的节点，resolve 为回调函数，用于异步返回下层节点的数据
 function load(node, resolve) {
   console.log('即将加载节点下级数据：', node)
 
@@ -36,7 +36,7 @@ function load(node, resolve) {
   }
 }
 function afterLoad(data) {
-  console.log('afterLoad属性触发：', data)
+  console.log('afterLoad 属性触发：', data)
 }
 function loadedData(data) {
   console.log('load-data 事件触发：', data)

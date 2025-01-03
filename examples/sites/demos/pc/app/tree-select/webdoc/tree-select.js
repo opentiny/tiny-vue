@@ -37,7 +37,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, <code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签，<code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
         'en-US':
           '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags are displayed in a thumbnail. By setting <code>hover-expand</code> to <code>true</code> , the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
@@ -50,7 +50,7 @@ export default {
         'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini 。</p>',
+        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini。</p>',
         'en-US':
           '<p>Set the input box size through the <code>size</code> attribute, with optional values of medium / small / mini.</p>'
       },

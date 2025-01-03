@@ -10,17 +10,17 @@ export default {
       },
       desc: {
         'zh-CN': `
-          <code>Modal</code> 组件有2种调用方法：<code>函数式调用</code>和<code>标签式调用</code>。 <br>
+          <code>Modal</code> 组件有 2 种调用方法：<code>函数式调用</code>和<code>标签式调用</code>。 <br>
           <div class="tip custom-block">
             <p class="custom-block-title"> 函数式调用 </p>
             通过调用<code>Modal</code>对象下的 <code>alert</code>、<code>confirm</code>、<code>message</code>方法调用弹窗组件。 <br>
             函数入参：支持<code>(message:string, title:string, options: Object)</code> 或  <code>(options: Object) </code>两种形式。
-                     其中 <code>options</code> 对象支持<code>Modal</code> 组件的部分属性值,比如 <code>message, title, status</code> 等。 <br>
+                     其中 <code>options</code> 对象支持<code>Modal</code> 组件的部分属性值，比如 <code>message, title, status</code> 等。 <br>
             函数返回：返回值为一个<code>Promise</code>对象，其中属性<code>vm</code>可用来关闭当前模态框<br>
           </div>
           <div class="tip custom-block">
             <p class="custom-block-title"> 标签式调用 </p>
-            <code>Modal</code> 对象自身也是一个标准的Vue 组件，通过<code>modelValue</code> 属性控制弹窗的显示和隐藏。
+            <code>Modal</code> 对象自身也是一个标准的 Vue 组件，通过<code>modelValue</code> 属性控制弹窗的显示和隐藏。
           </div>
           <div class="warning custom-block">
             <p class="custom-block-title"> 特别提示： </p>
@@ -137,8 +137,8 @@ export default {
       desc: {
         'zh-CN': `
           通过<code>resize</code>属性，设置是否允许拖动边框调整窗口大小，并且右上角显示切换最大化的按钮。<br>
-          当 <code>resize</code>属性设置为<code>true</code>后，通过 <code>min-height</code>属性设置拖拽后窗口的最小高度,默认值为 200.<br>
-          <code>min-width</code>属性设置拖拽后窗口的最小宽度,默认值为 340。<br>
+          当 <code>resize</code>属性设置为<code>true</code>后，通过 <code>min-height</code>属性设置拖拽后窗口的最小高度，默认值为 200.<br>
+          <code>min-width</code>属性设置拖拽后窗口的最小宽度，默认值为 340。<br>
         `,
         'en-US': `
           With the <code>resize</code> property, set whether to allow dragging the border to resize the window, and the upper right corner shows a button to maximize the switch. <br>
@@ -156,8 +156,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>mask</code>属性,设置是否显示遮罩层。默认值为<code>true</code>  <br>
-          通过<code>mask-closable</code>属性,设置是否允许点击遮罩层关闭窗口。默认值为<code>false</code><br>
+          通过<code>mask</code>属性，设置是否显示遮罩层。默认值为<code>true</code>  <br>
+          通过<code>mask-closable</code>属性，设置是否允许点击遮罩层关闭窗口。默认值为<code>false</code><br>
         `,
         'en-US': `
           The <code>mask</code> property can be used to set whether the mask layer is displayed. The default value is <code>true</code> <br>
@@ -174,8 +174,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>lock-scroll</code>属性,设置是否锁住滚动条，不允许页面滚动。默认值为<code>false</code><br>
-          通过<code>lock-view</code>属性,设置是否锁住页面，不允许窗口之外的任何操作。默认值为<code>true</code><br>
+          通过<code>lock-scroll</code>属性，设置是否锁住滚动条，不允许页面滚动。默认值为<code>false</code><br>
+          通过<code>lock-view</code>属性，设置是否锁住页面，不允许窗口之外的任何操作。默认值为<code>true</code><br>
           <div class="tip custom-block">
             <code>锁住滚动条</code> 是指锁定<code>body</code>元素上的滚动条，仅当<code>body</code>有滚动条时，才有效果。<br>
             <code>锁住页面</code> 是指鼠标不能操作蒙层下面的元素。<br>
@@ -203,7 +203,7 @@ export default {
         'zh-CN': `
           通过<code>esc-closable</code>属性设置是否允许按 Esc 键关闭窗口。默认值为<code>false</code><br>
           通过<code>z-index</code>属性设置自定义堆叠顺序。<br>
-          通过<code>is-form-reset</code>属性，设置关闭弹窗后，是否重置数据。 默认值为<code>true</code>,即关闭弹窗后重置数据。<br>
+          通过<code>is-form-reset</code>属性，设置关闭弹窗后，是否重置数据。默认值为<code>true</code>,即关闭弹窗后重置数据。<br>
         `,
         'en-US': ` 
           The <code>esc-closable</code> property sets whether to allow the Esc key to close the window. The default value is <code>false</code><br>
@@ -255,7 +255,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          弹窗模式具有 <code> #default </code>,<code> #footer </code>插槽，标签式时，使用标准的Vue插槽语法即可。<br /> 
+          弹窗模式具有 <code> #default </code>,<code> #footer </code>插槽，标签式时，使用标准的 Vue 插槽语法即可。<br /> 
           在函数式使用时，通过<code>slots</code>属性，传入相应的插槽。<code> #footer </code>插槽的作用域上下文变量有： <code> {$modal, beforeClose,confirm,cancel} </code> 可使用。 <br /> 
           <div class="tip custom-block">
             函数式传入插槽时，由于<code>Modal</code>组件是直接挂载到<code>body</code>上，不是在<code>Demo</code>组件内部渲染的，所以<code>jsx</code>引用组件时，要使用引用组件的变量，而不能使用<code>Demo</code>中注册的组件名。详见示例代码
@@ -285,7 +285,7 @@ export default {
       desc: {
         'zh-CN': `
           通过<code>message-closable</code>属性设置消息可手动关闭。默认值为<code>false</code><br>
-          通过<code>duration</code>属性设置自动关闭的延迟时间,单位为毫秒。默认值为<code>3000 ms</code><br>
+          通过<code>duration</code>属性设置自动关闭的延迟时间，单位为毫秒。默认值为<code>3000 ms</code><br>
         `,
         'en-US': `
           Messages can be manually closed by setting the <code>message-closable</code> property. The default value is <code>false</code><br>
@@ -301,7 +301,7 @@ export default {
         'en-US': 'Position from top'
       },
       desc: {
-        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置,单位为px',
+        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置，单位为 px',
         'en-US': `Use the <code>top</code> property to set the distance from the top of the message in units of px. `
       },
       codeFiles: ['message-top.vue']

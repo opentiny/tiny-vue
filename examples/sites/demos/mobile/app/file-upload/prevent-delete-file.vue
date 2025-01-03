@@ -5,6 +5,7 @@
     :file-list="fileList"
     :auto-upload="false"
     :before-remove="beforeRemove"
+    success-statistics
   >
     <template #trigger>
       <icon-upload></icon-upload>
@@ -13,7 +14,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyFileUpload } from '@opentiny/vue-mobile'
+import { TinyFileUpload, TinyModal } from '@opentiny/vue-mobile'
 import { iconUpload } from '@opentiny/vue-icon'
 
 export default {
@@ -33,13 +34,11 @@ export default {
     }
   },
   methods: {
-    beforeRemove(file, fileList) {
+    beforeRemove(file) {
       return new Promise((resolve, reject) => {
-        if (window.confirm(`确定移除 ${file.name}？`)) {
-          resolve()
-        } else {
-          reject(new Error())
-        }
+        TinyModal.confirm(`确定移除 ${file.name}？`).then((res) => {
+          res === 'confirm' ? resolve() : reject(new Error('取消移除'))
+        })
       })
     }
   }

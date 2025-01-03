@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      id: 1000, // 新节点的id 从1000递增
+      id: 1000, // 新节点的 id 从 1000 递增
       data: [
         {
           id: '1',

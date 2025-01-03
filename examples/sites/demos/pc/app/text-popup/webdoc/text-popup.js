@@ -46,7 +46,7 @@ export default {
         'en-US': 'Separator'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>separtor</code> 设置分隔符,在文本框中输入回车就是分隔符的位置。</p>\n',
+        'zh-CN': '<p>通过 <code>separtor</code> 设置分隔符，在文本框中输入回车就是分隔符的位置。</p>\n',
         'en-US':
           '<p>You can use <code>separtor</code> to set the separator. Enter the position of the separator in the text box and press Enter. </p>\n'
       },

@@ -17,7 +17,7 @@ import { iconPopup } from '@opentiny/vue-icon'
 const tabs = reactive([])
 const TinyIconPopup = iconPopup()
 
-// 创建tabs
+// 创建 tabs
 for (let i = 1; i < 101; i++) {
   const title = `Tab ${i}`
   tabs.push({

@@ -46,6 +46,6 @@ test('可收藏栏目数', async ({ page }) => {
   await preview.getByRole('button', { name: '确定' }).click()
   // 弹框应该不可见
   await expect(dialogBox).toBeHidden()
-  // 页面上应该展示所选的5个菜单项
+  // 页面上应该展示所选的 5 个菜单项
   await expect(preview.locator('.tiny-link-menu .tiny-link-menu__nav > a')).toHaveCount(5)
 })

@@ -170,25 +170,25 @@ const treeData = ref([
 ])
 
 const handleNodeClick = (data) => {
-  TinyModal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+  TinyModal.message({ message: `节点 - ${data.label}被点击了`, status: 'info' })
 }
 
 const currentChange = (data) => {
-  TinyModal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
+  TinyModal.message({ message: `选中节点变化为：${data.label}`, status: 'info' })
 }
 
 const nodeExpand = (data) => {
-  TinyModal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
+  TinyModal.message({ message: `节点 - ${data.label}被打开了`, status: 'info' })
 }
 
 const nodeCollapse = (data) => {
-  TinyModal.message({ message: `节点-${data.label}被关闭了`, status: 'info' })
+  TinyModal.message({ message: `节点 - ${data.label}被关闭了`, status: 'info' })
 }
 
 const checkChange = (node, newVal) => {
   let state = newVal ? '选中' : '取消'
   TinyModal.message({
-    message: `节点-${node.label}被${state}了`,
+    message: `节点 - ${node.label}被${state}了`,
     status: 'info'
   })
 }

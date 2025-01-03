@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>场景1：文字超长省略显示</p>
+    <p>场景 1：文字超长省略显示</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" ellipsis></tiny-tree-menu>
     <br />
-    <p>场景2：文字超长换行显示</p>
+    <p>场景 2：文字超长换行显示</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" wrap></tiny-tree-menu>
   </div>
 </template>
