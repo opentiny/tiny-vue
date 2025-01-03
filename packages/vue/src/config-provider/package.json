@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-config-provider",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,

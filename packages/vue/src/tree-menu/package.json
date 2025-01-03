@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-tree-menu",
-  "version": "3.20.1",
+  "version": "3.21.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
