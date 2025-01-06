@@ -994,7 +994,7 @@ export const handleKeydown =
       if (state.userInput === '' || api.isValidValue(api.parseString(state.displayValue))) {
         // time-select组件中，对输入的数据进行校验，如果有效则取默认过滤后数据的第一个。
         if (state.type === 'time-select') {
-          state.userInput = /^(0[0-9]|1[0-9]|2[0-4])$/.test(state.userInput) ? state.picker.state.items[0]?.value : ''
+          state.userInput = state.picker.state.items.length ? state.picker.state.items[0].value : ''
         }
 
         api.handleChange()
