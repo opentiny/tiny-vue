@@ -15,7 +15,7 @@
       ref="popper"
       v-show="state.visible"
       :style="{ width: state.width + 'px' }"
-      :class="[state.popperClass, { noMatchHeight: !state.items.length }]"
+      :class="[state.popperClass, { 'not-match-height': !state.items.length }]"
       class="tiny-picker-panel tiny-time-select tiny-popper"
     >
       <tiny-scrollbar noresize wrap-class="tiny-picker-panel__content">
@@ -35,7 +35,7 @@
             {{ item.value }}
           </div>
         </div>
-        <div v-else class="noMatch">{{ $t('ui.select.noMatch') }}</div>
+        <div v-else class="no-match">{{ $t('ui.select.noMatch') }}</div>
       </tiny-scrollbar>
     </div>
   </transition>
