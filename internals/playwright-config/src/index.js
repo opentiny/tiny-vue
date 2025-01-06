@@ -18,7 +18,7 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
     timeout: 30 * 1000,
     expect: {
       // 每个 expect() 用例最长时间。
-      timeout: 15 * 1000,
+      timeout: 8 * 1000,
       toHaveScreenshot: {
         maxDiffPixelRatio: 0.02
       }
