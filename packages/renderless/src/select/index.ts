@@ -216,6 +216,12 @@ export const handleQueryChange =
       })
     }
 
+    // 嵌套树时， filterMehod传递给tree组件，然后在上面：  vm.$refs.selectTree.filter(value) 强制让tree去过滤了。
+    // 如果不return,那么 api.defaultOnQueryChange 内部会再次过滤，而触发错误。
+    if (props.renderType === constants.TYPE.Tree) {
+      return
+    }
+
     state.triggerSearch = true
 
     api.defaultOnQueryChange(value, isInput)

@@ -13,5 +13,5 @@ test('基本用法', async ({ page }) => {
 
   await fileChooser.setFiles(currentPath)
   await page.getByText('测试.jpg').isVisible()
-  await expect(lists).toHaveText('测试.jpg 按 delete 键可删除')
+  await expect(lists).toHaveText('测试.jpg按 delete 键可删除')
 })

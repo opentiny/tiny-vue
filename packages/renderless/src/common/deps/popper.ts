@@ -274,15 +274,16 @@ const stopFn = (ev: Event) => {
 }
 
 /** 全局的resize观察器， 监听popper的大小改变  */
-const resizeOb = isBrowser
-  ? new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.target.popperVm && entry.contentRect.height > 50) {
-          entry.target.popperVm.update()
-        }
+const resizeOb =
+  isBrowser && typeof ResizeObserver === 'function'
+    ? new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.target.popperVm && entry.contentRect.height > 50) {
+            entry.target.popperVm.update()
+          }
+        })
       })
-    })
-  : null
+    : null
 
 interface PopperOptions {
   arrowOffset: number
