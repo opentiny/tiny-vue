@@ -27,6 +27,7 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
 
   // 测试清除功能
   await expect(datePickerCustomClearIcon).toHaveValue('2023-05-24')
-  await demo.getByRole('img').nth(2).click()
+  await datePickerCustomClearIcon.hover()
+  await demo.locator('.baseClearicon').click()
   await expect(datePickerCustomClearIcon).toHaveValue('')
 })
