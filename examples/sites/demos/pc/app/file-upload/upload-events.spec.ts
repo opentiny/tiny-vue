@@ -10,7 +10,7 @@ test('事件', async ({ page }) => {
   const modals = page.locator('.tiny-modal')
   const delButton = page
     .getByRole('listitem')
-    .filter({ hasText: 'test1 按 delete 键可删除' })
+    .filter({ hasText: 'test1按 delete 键可删除' })
     .getByTitle('删除文件')
     .locator('svg')
 
