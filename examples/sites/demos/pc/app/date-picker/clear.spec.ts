@@ -26,8 +26,8 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
   await expect(clearIcon.locator('path').nth(0)).toHaveAttribute('d', /^M12\.49 3\.3a.+22\.71 0Z$/)
 
   // 测试清除功能
-  await expect(datePickerCustomClearIcon).toHaveValue('2023-05-24')
-  await datePickerCustomClearIcon.hover()
-  await demo.locator('.baseClearicon').click()
-  await expect(datePickerCustomClearIcon).toHaveValue('')
+  await expect(datePickerDefaultClearIcon).toHaveValue('2023-05-24')
+  await datePickerDefaultClearIcon.hover()
+  await demo.locator('.baseClearicon').first().click()
+  await expect(datePickerDefaultClearIcon).toHaveValue('')
 })
