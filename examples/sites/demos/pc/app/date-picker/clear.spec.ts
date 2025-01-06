@@ -4,10 +4,12 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#clear')
 
-  const datePickerDefaultClearIcon = page.getByRole('textbox').nth(1)
-  const datePickerHideClearIcon = page.getByRole('textbox').nth(2)
-  const datePickerCustomClearIcon = page.getByRole('textbox').nth(3)
-  const clearIcon = page.locator('.tiny-date-editor .tiny-input__icon-container .baseClearicon')
+  const demo = page.locator('#clear')
+
+  const datePickerDefaultClearIcon = demo.getByRole('textbox').nth(0)
+  const datePickerHideClearIcon = demo.getByRole('textbox').nth(1)
+  const datePickerCustomClearIcon = demo.getByRole('textbox').nth(2)
+  const clearIcon = demo.locator('.tiny-date-editor .tiny-input__icon-container .baseClearicon')
 
   // 默认显示清除按钮
   await datePickerDefaultClearIcon.hover()
