@@ -1,22 +1,22 @@
 <template>
-  <tiny-grid
-    :data="tableData"
-    border
-    show-footer
-    :footer-method="footerMethod"
-    :footer-span-method="footerRowspanMethod"
-  >
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-grid ref="grid" :data="tableData" show-footer :footer-method="footerMethod" border :edit-config="{}">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column
+        field="employees"
+        title="员工数"
+        :editor="{ component: TinyNumeric, events: { change: handleChange } }"
+      ></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script lang="jsx">
-import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
+<script>
+import { TinyGrid, TinyGridColumn, TinyNumeric } from '@opentiny/vue'
 
 export default {
   components: {
@@ -25,9 +25,10 @@ export default {
   },
   data() {
     return {
+      TinyNumeric,
       tableData: [
         {
-          id: '1',
+          id: '0',
           name: 'GFD 科技 YX 公司',
           city: '福州',
           employees: 800,
@@ -86,32 +87,27 @@ export default {
     }
   },
   methods: {
+    handleChange() {
+      this.$refs.grid.updateFooter()
+    },
     footerMethod({ columns, data }) {
+      if (data.length === 0) {
+        return [['和值', '', '', 0]]
+      }
+
       return [
         columns.map((column, columnIndex) => {
           if (columnIndex === 0) {
-            return '全部的员工数量'
+            return '和值'
           }
 
-          if (columnIndex === 2) {
-            return data.map((item) => item.employees).reduce((acc, item) => acc + item)
+          if (column.property === 'employees') {
+            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
           }
 
           return null
-        }),
-        columns.map(() => null)
+        })
       ]
-    },
-    footerRowspanMethod({ $rowIndex, columnIndex }) {
-      if ($rowIndex === 0) {
-        if (columnIndex === 0) {
-          return { rowspan: 2, colspan: 2 }
-        }
-
-        if (columnIndex === 2) {
-          return { rowspan: 2, colspan: 1 }
-        }
-      }
     }
   }
 }
