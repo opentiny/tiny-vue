@@ -76,21 +76,20 @@ describe('PC Mode', () => {
     const handleClick = vi.fn()
     const wrapper = mount(() => (
       <Grid data={data} onCellClick={handleClick}>
-        <GridColumn type="index" titile="序号" width="100"></GridColumn>
-        <GridColumn
-          field="name"
-          titile="名称"
-          width="100"
-          v-slots={{
+        <GridColumn type="index" title="序号" width="100"></GridColumn>
+        <GridColumn field="name" title="名称" width="100">
+          {{
             default: (data) => (
               <span class="pink-cell" style="color:pink">
                 {data.row.name}
               </span>
             )
-          }}></GridColumn>
-        <GridColumn field="city" titile="城市" width="100"></GridColumn>
+          }}
+        </GridColumn>
+        <GridColumn field="city" title="城市" width="100"></GridColumn>
       </Grid>
     ))
+    await nextTick()
     await nextTick()
     expect(wrapper.find('.pink-cell').exists()).toBeTruthy()
   })
