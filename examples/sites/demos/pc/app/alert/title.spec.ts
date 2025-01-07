@@ -9,4 +9,7 @@ test('测试 Alert 自定义标题', async ({ page }) => {
   const title = alert.locator('.tiny-alert__title')
   await expect(title).toHaveCount(1)
   await expect(title).toHaveText('通过属性设置自定义 title')
+
+  const alert1 = page.locator('.tiny-alert--large').nth(2)
+  await expect(alert1).not.toHaveText('消息')
 })
