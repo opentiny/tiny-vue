@@ -301,6 +301,7 @@ export const directive = (directives) => {
   for (const name in directives) {
     const content = directives[name]
 
+    mapping(content, 'mounted', 'inserted')
     mapping(content, 'beforeMount', 'bind')
     mapping(content, 'updated', 'update')
     mapping(content, 'unmounted', 'unbind')
