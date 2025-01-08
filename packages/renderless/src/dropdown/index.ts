@@ -177,7 +177,7 @@ export const initAria =
     }
   }
 
-const toggleFocus =
+export const toggleFocus =
   ({ state, value }) =>
   () => {
     state.focusing = value
@@ -194,9 +194,9 @@ export const initEvent =
     state.dropdownElm?.addEventListener('keydown', api.handleItemKeyDown, true)
 
     if (!props.splitButton || !props.singleButton) {
-      on(state.triggerElm, 'focus', toggleFocus({ state, value: true }))
-      on(state.triggerElm, 'blur', toggleFocus({ state, value: false }))
-      on(state.triggerElm, 'click', toggleFocus({ state, value: false }))
+      on(state.triggerElm, 'focus', api.toggleFocusOnTrue)
+      on(state.triggerElm, 'blur', api.toggleFocusOnFalse)
+      on(state.triggerElm, 'click', api.toggleFocusOnFalse)
     }
 
     if (state.trigger === 'hover') {
@@ -270,9 +270,9 @@ export const beforeDistory =
   () => {
     if (state.triggerElm) {
       off(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
-      off(state.triggerElm, 'focus', toggleFocus({ state, value: true }))
-      off(state.triggerElm, 'blur', toggleFocus({ state, value: false }))
-      off(state.triggerElm, 'click', toggleFocus({ state, value: false }))
+      off(state.triggerElm, 'focus', api.toggleFocusOnTrue)
+      off(state.triggerElm, 'blur', api.toggleFocusOnFalse)
+      off(state.triggerElm, 'click', api.toggleFocusOnFalse)
       off(state.triggerElm, 'mouseenter', api.show)
       off(state.triggerElm, 'mouseleave', api.hide)
       off(state.triggerElm, 'click', api.handleClick)

@@ -333,7 +333,6 @@ export class Hasher extends BufferedBlockAlgorithm {
     if (messageUpdate) {
       this._append(messageUpdate)
     }
-
     // @ts-ignore
     const hash = this._doFinalize()
 

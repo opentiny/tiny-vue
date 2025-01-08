@@ -21,6 +21,7 @@ export const $constants = {
   DIALOG_BOX_CLASS: 'div.tiny-dialog-box',
   PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
   MOBILE_SCROLL_LOCK_CLASS: 'mobile-dialog-box__scroll-lock',
+  DIALOG_BOX_DATA_TAG: 'tiny-dialog-box',
   Mode: 'pc',
   SCROLL_LOCK_CLASS(mode) {
     return mode === this.Mode ? this.PC_SCROLL_LOCK_CLASS : this.MOBILE_SCROLL_LOCK_CLASS
@@ -122,6 +123,14 @@ export const dialogBoxProps = {
   dialogTransition: {
     type: String,
     default: ''
+  },
+  noAnimation: {
+    type: Boolean,
+    default: false
+  },
+  customStyle: {
+    type: Object,
+    default: () => ({})
   }
 }
 

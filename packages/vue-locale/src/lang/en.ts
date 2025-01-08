@@ -194,7 +194,7 @@ export default {
       hour: 'hour',
       minute: 'minute',
       second: 'second',
-      to: '',
+      to: '-',
       yearMonth: '{month} {year}',
       yearMonthDay: '{month} {day}, {year}'
     },

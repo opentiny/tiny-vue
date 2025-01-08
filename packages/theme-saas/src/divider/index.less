@@ -1,0 +1,71 @@
+@import '../custom.less';
+
+@divider-prefix-cls: ~'@{css-prefix}divider';
+
+.@{divider-prefix-cls} {
+  @apply h-auto;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply relative;
+  @apply w-full;
+  @apply overflow-hidden;
+
+  & &--default,
+  &&--default {
+    @apply border-color-border;
+  }
+
+  & &--info,
+  &&--info {
+    @apply border-color-brand;
+  }
+
+  & &--error,
+  &&--error {
+    @apply border-color-error;
+  }
+
+  & &--warning,
+  &&--warning {
+    @apply border-color-warning;
+  }
+
+  & &--success,
+  &&--success {
+    @apply border-color-success;
+  }
+
+  &--horizontal {
+    @apply mt-24 mr-0 mb-24 ml-0;
+  }
+
+  &--vertical {
+    @apply inline-block;
+    @apply w-1;
+    @apply align-middle;
+    @apply mt-0 mr-8 mb-0 ml-8;
+    height: 1em;
+    @apply border-l border-l-color-border;
+  }
+
+  &__text {
+    @apply absolute;
+    @apply font-medium;
+    @apply pt-0 pr-14 pb-0 pl-14;
+    @apply text-color-text-primary;
+    @apply bg-color-bg-1;
+  }
+
+  .@{divider-prefix-cls}-line {
+    @apply h-px;
+    @apply w-full;
+    @apply border-t;
+  }
+
+  .@{divider-prefix-cls}-text {
+    @apply absolute;
+    @apply pt-0 pr-14 pb-0 pl-14;
+    @apply bg-white;
+  }
+}

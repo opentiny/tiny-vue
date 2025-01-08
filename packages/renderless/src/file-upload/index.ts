@@ -1511,7 +1511,7 @@ export const downloadFileSingleInner =
 
 export const getDownloadFileInfo =
   ({ api, state, props, service }: Pick<IFileUploadRenderlessParams, 'api' | 'state' | 'props' | 'service'>) =>
-  ({ docId }: { docId: string }) => {
+  ({ docId, docVersion }: { docId: string; docVersion: string }) => {
     return service.getDocumentInfoUrl().then((url) => {
       return new Promise((resolve, reject) => {
         service
