@@ -340,7 +340,7 @@ const Methods = {
     return new Promise((resolve) => {
       this.loadTableData(datas)
       resolve()
-    }).then(this.recalculate)
+    })
   },
   reloadRow(row, record, field) {
     let { tableData, tableSourceData } = this
@@ -1627,14 +1627,10 @@ const Methods = {
   },
   // 处理x轴方向虚拟滚动列数据加载
   updateScrollXData() {
-    let { scrollXLoad, scrollXStore, tableColumn, treeConfig, visibleColumn, visibleColumnChanged, columnStore } = this
-    let { lastStartIndex = -1, renderSize, startIndex } = scrollXStore
-    let args = { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn, columnStore }
-
-    Object.assign(args, { treeConfig, visibleColumn, visibleColumnChanged })
+    let { scrollXStore } = this
 
     // 获取需要渲染的列数和最后一次渲染列的index值
-    let ret = sliceVisibleColumn(args)
+    let ret = sliceVisibleColumn(this)
 
     if (ret.sliced) {
       // 更新DOM样式保证表格滚动时的对齐，初始化表格时也需要计算x轴方向滚动条占位符的尺寸
@@ -2076,6 +2072,7 @@ const Methods = {
         lastScrollLeft = Math.min(lastScrollLeft, maxScrollLeft)
 
         fastdom.mutate(() => {
+          this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
 
           scrollXLoad && this.triggerScrollXEvent()

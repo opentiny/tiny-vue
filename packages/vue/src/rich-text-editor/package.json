@@ -18,6 +18,10 @@
     "@opentiny/vue-icon": "workspace:~"
   },
   "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  },
+  "peerDependencies": {
     "@tiptap/core": "~2.1.16",
     "@tiptap/extension-code-block-lowlight": "~2.1.16",
     "@tiptap/extension-collaboration": "~2.1.16",
@@ -43,8 +47,6 @@
     "@tiptap/vue-2": "~2.1.16",
     "@tiptap/vue-3": "~2.1.16",
     "highlight.js": "^11.8.0",
-    "lowlight": "^2.9.0",
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
+    "lowlight": "^2.9.0"
   }
 }

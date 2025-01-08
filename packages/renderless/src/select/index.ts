@@ -572,6 +572,11 @@ export const handleFocus =
       if (!state.willFocusRun) return // 立即触发了blur,则不执行focus了
 
       if (!state.softFocus) {
+        // tiny 新增 shape条件: 防止过滤器模式，且filterable时， 面板无法关闭的bug
+        if (props.shape === 'filter') {
+          return
+        }
+
         if (props.automaticDropdown || props.filterable || props.searchable) {
           state.visible = true
           state.softFocus = true

@@ -123,18 +123,18 @@ export default defineComponent({
         {state.currentBreakpoint !== 'default' &&
           !displayOnly &&
           (promptTip && tipMessage ? (
-            <div class="hidden sm:inline-flex sm:items-center">
+            <div class="hidden sm:inline-flex sm:items-center w-full">
               {uploadTrigger()}
               <tiny-tooltip effect="light" content={tipMessage} placement="right" popper-options={popperConfig}>
                 <tiny-icon-help-circle custom-class="ml-2 cursor-pointer fill-color-icon-tertiary"></tiny-icon-help-circle>
               </tiny-tooltip>
             </div>
           ) : listType === 'text' ? (
-            <div class="hidden sm:inline-flex sm:items-center">
+            <div class="hidden sm:inline-flex sm:items-center w-full">
               {uploadTrigger()}
               <div
-                title={tipMessage}
-                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer">
+                title={typeof tipMessage === 'string' ? tipMessage : ''}
+                class="hidden sm:block text-xs leading-4 overflow-hidden whitespace-nowrap text-ellipsis text-color-text-placeholder ml-2 cursor-pointer">
                 {tipMessage}
               </div>
             </div>

@@ -50,6 +50,8 @@ export interface IDropdownApi {
   initDomOperation: () => void
   beforeDistory: () => void
   clickOutside: () => void
+  toggleFocusOnTrue: () => void
+  toggleFocusOnFalse: () => void
 }
 
 export type IDropdownRenderlessParams = ISharedRenderlessFunctionParams<null> & {

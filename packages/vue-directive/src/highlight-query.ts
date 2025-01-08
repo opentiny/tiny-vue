@@ -15,7 +15,7 @@ function editNodes(el: HTMLElement, nodes: HTMLElement[], query: string) {
   // 2、处理收集后的节点，字符串搜索性能优于正则替换
   nodes.forEach((node) => {
     const content = node.textContent as string
-    const start = content.toLowerCase().indexOf(query.toLowerCase())
+    const start = content.indexOf(query)
     const startText = content.substring(0, start)
     const endText = content.substring(start + query.length)
 
@@ -58,7 +58,7 @@ function edit(el: HTMLElement, query: string) {
       }
 
       const content = node.textContent || ''
-      return content.toLowerCase().includes(query.toLowerCase())
+      return content.includes(query)
     })
 
     editNodes(el, matchNodes, query)

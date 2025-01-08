@@ -93,23 +93,13 @@ export default {
             return '全部的员工数量'
           }
 
-          if (column.property === 'employees') {
-            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
+          if (columnIndex === 2) {
+            return data.map((item) => item.employees).reduce((acc, item) => acc + item)
           }
 
           return null
         }),
-        columns.map((column, columnIndex) => {
-          if (columnIndex === 0) {
-            return null
-          }
-
-          if (column.property === 'employees') {
-            return null
-          }
-
-          return null
-        })
+        columns.map(() => null)
       ]
     },
     footerRowspanMethod({ $rowIndex, columnIndex }) {
@@ -118,24 +108,8 @@ export default {
           return { rowspan: 2, colspan: 2 }
         }
 
-        if (columnIndex === 1) {
-          return { rowspan: 0, colspan: 0 }
-        }
-
-        if (columnIndex === 3) {
+        if (columnIndex === 2) {
           return { rowspan: 2, colspan: 1 }
-        }
-      } else if ($rowIndex === 1) {
-        if (columnIndex === 0) {
-          return { rowspan: 0, colspan: 0 }
-        }
-
-        if (columnIndex === 1) {
-          return { rowspan: 0, colspan: 0 }
-        }
-
-        if (columnIndex === 3) {
-          return { rowspan: 0, colspan: 0 }
         }
       }
     }

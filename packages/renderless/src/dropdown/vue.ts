@@ -36,14 +36,15 @@ import {
   initDomOperation,
   mounted,
   beforeDistory,
-  clickOutside
+  clickOutside,
+  toggleFocus
 } from './index'
 
 export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick', 'clickOutside']
 
 export const renderless = (
   props: IDropdownProps,
-  { reactive, watch, provide, onMounted, computed }: ISharedRenderlessParamHooks,
+  { reactive, watch, provide, onMounted, computed, onBeforeUnmount }: ISharedRenderlessParamHooks,
   { emit, parent, broadcast, vm, nextTick, mode, designConfig }: IDropdownRenderlessParamUtils
 ): IDropdownApi => {
   const api = {} as IDropdownApi
@@ -85,13 +86,16 @@ export const renderless = (
     triggerElmFocus: triggerElmFocus(state),
     initDomOperation: initDomOperation({ api, state, vm }),
     beforeDistory: beforeDistory({ vm, api, state }),
-    clickOutside: clickOutside({ props, api })
+    clickOutside: clickOutside({ props, api }),
+    toggleFocusOnTrue: toggleFocus({ state, value: true }),
+    toggleFocusOnFalse: toggleFocus({ state, value: false })
   })
 
   watch(() => state.visible, api.watchVisible)
   watch(() => state.focusing, api.watchFocusing)
 
   onMounted(api.mounted)
+  onBeforeUnmount(api.beforeDistory)
 
   return api
 }

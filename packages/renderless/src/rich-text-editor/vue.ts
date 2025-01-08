@@ -1,14 +1,14 @@
 import {
+  Active,
+  closeTablePanel,
+  eventClick,
+  eventImg,
   handleChange,
   setLink,
-  tableMouseMove,
-  tableChoose,
-  toggleTablePanel,
-  closeTablePanel,
   shouldShow,
-  eventImg,
-  eventClick,
-  Active
+  tableChoose,
+  tableMouseMove,
+  toggleTablePanel
 } from './index'
 import type { ISharedRenderlessParamHooks } from '@/types'
 
@@ -261,11 +261,11 @@ export const renderless = (
     onDestroy() {
       // The editor is being destroyed.
       emit('destroy')
-    },
-    ...props.options
+    }
   }
 
-  let options = Object.assign(defaultOptions, props.options)
+  let options = { ...defaultOptions, ...props.options }
+  options.extensions = [...new Set([...defaultOptions.extensions, ...(props.options.extensions || [])])]
 
   const state = reactive({
     editor: new Editor(options),

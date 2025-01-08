@@ -28,7 +28,7 @@ export const getIsDisabled =
   ({ props }) =>
   (year) => {
     return props.selectionMode.startsWith('year') && typeof props.disabledDate === 'function'
-      ? props.disabledDate(year)
+      ? props.disabledDate(new Date(year, 0, 1, 0))
       : false
   }
 
@@ -87,7 +87,7 @@ export const getRows =
         cell.text = year
         cell.type = isToday ? DATEPICKER.Today : DATEPICKER.Normal
         if (props.selectionMode.startsWith('year')) {
-          cell.disabled = typeof disabledDate === 'function' && disabledDate(year)
+          cell.disabled = typeof disabledDate === 'function' && disabledDate(new Date(year, 0, 1, 0))
         }
 
         if (selectionMode === DATEPICKER.YearRange) {

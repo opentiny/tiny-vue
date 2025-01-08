@@ -8,18 +8,18 @@ test('固定时间范围', async ({ page }) => {
   await timeInput.click()
   // options 的第一条是 options.first()，时间是 08:30；最后一条（最大时间）是 options.nth(43)，时间是 18:30
   await expect(options.first()).toContainText('08:30')
-  await expect(options.nth(43)).toContainText('18:30')
-  // 起始时间选择 10:00，稍后验证结束时间 10:00 是否 disabled。
-  options.nth(9).click()
+  await expect(options.nth(44)).toContainText('18:30')
+  // 起始时间选择10:00，稍后验证结束时间10:00是否disabled。
+  options.nth(10).click()
   await expect(page.locator('.tiny-input-suffix .tiny-input__inner').first()).toHaveValue('10:00')
 
   const timeEnd = page.getByRole('textbox', { name: '结束时间' })
   const endOptions = page.locator('.tiny-picker-panel').nth(1).locator('div')
   await timeEnd.click()
   await expect(endOptions.first()).toContainText('08:30')
-  await expect(endOptions.nth(43)).toContainText('18:30')
-  // 验证结束时间 10:00 是否 disabled
-  await expect(endOptions.nth(9)).toHaveClass('tiny-time-select__item disabled')
-  endOptions.nth(10).click()
+  await expect(endOptions.nth(44)).toContainText('18:30')
+  // 验证结束时间10:00是否disabled
+  await expect(endOptions.nth(10)).toHaveClass('tiny-time-select__item disabled')
+  endOptions.nth(11).click()
   await expect(page.locator('.tiny-input-suffix .tiny-input__inner').last()).toHaveValue('10:15')
 })

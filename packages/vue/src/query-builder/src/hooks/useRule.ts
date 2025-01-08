@@ -134,8 +134,9 @@ export const useRule = (props: RuleProps) => {
         }
       }
     }
+    return { name: field, label: field }
   }
-  let fieldData = fieldMap?.[field] ?? findFieldData(field, fields)
+  let fieldData = fieldMap?.[field] ? fieldMap[field] : findFieldData(field, fields)
   const inputType = fieldData.inputType ?? getInputType(field, operator)
   const operators = getOperators(field)
   const operatorObject = getOption(operators, operator)

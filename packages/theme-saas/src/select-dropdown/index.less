@@ -91,6 +91,12 @@
     > span > .tiny-svg {
       @apply ~'-mt-0.5';
     }
+    &:first-child {
+      > .tiny-svg,
+      > span > .tiny-svg {
+        margin-top: 1px
+      }
+    }
   }
 
   & &__loading {

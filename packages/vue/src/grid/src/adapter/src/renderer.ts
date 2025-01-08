@@ -100,24 +100,32 @@ function getEvents(renderOpts, params, context) {
 }
 
 function renderOptions(h, options, renderOpts, params, context) {
-  let { optionProps = {} } = renderOpts
-  let labelProp = optionProps.label || 'label'
-  let valueProp = optionProps.value || 'value'
-  let { column, row } = params
-  let { formatConfig } = column.own
-  let cellValue = isSyncCell(renderOpts, params, context) ? getCellValue(row, column) : column.model.value
+  const { optionProps = {} } = renderOpts
+  const labelProp = optionProps.label || 'label'
+  const valueProp = optionProps.value || 'value'
+  const { column, row } = params
+  const { formatConfig } = column.own
+  const cellValue = isSyncCell(renderOpts, params, context) ? getCellValue(row, column) : column.model.value
 
   if (!options && formatConfig && formatConfig.data) {
     options = formatConfig.data
   }
-
-  return options.map((item, index) => {
-    let attrs = {
-      domProps: { value: item[valueProp], selected: item.value === cellValue },
+  let hasSelected = false
+  const optionsList = options.map((item, index) => {
+    const selected = item.value === cellValue
+    if (selected) {
+      hasSelected = true
+    }
+    const attrs = {
+      domProps: { value: item[valueProp], selected },
       key: index
     }
     return h('option', attrs, item[labelProp])
   })
+  if (options.length && !hasSelected) {
+    optionsList.unshift(h('option', { style: 'display:none', selected: true }, ''))
+  }
+  return optionsList
 }
 
 function renderOptgroups(h, options, params, context) {
@@ -213,7 +221,9 @@ function defaultEditRender(h, renderOpts, params, context) {
   let editorModel = component.model || {}
   let modelProps = typeof component === 'string' ? 'value' : editorModel.prop || 'modelValue'
 
+  const key = row[$table.rowId]
   let options = {
+    key,
     class: isTag ? `tiny-grid-default-${component}` : '',
     attrs: {
       formatOpt,
