@@ -132,11 +132,12 @@ export default {
         },
         {
           name: 'default-expanded-keys',
-          type: 'boolean',
-          defaultValue: 'false',
+          type: 'string[]',
+          defaultValue: '[]',
           desc: {
-            'zh-CN': '默认展开节点的keys',
-            'en-US': 'The keys of the node are expanded by default'
+            'zh-CN': '默认展开节点的keys。当属性变化时，会自动收起全部并重新展开指定的数据项。 ',
+            'en-US':
+              'The keys of the node are expanded by default.When the property changes, it automatically collapses all and reexpands the specified data item.'
           },
           mode: ['pc'],
           pcDemo: 'expand-control'

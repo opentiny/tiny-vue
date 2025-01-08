@@ -1,7 +1,7 @@
 <template>
   <div class="demo-form">
     <div class="title">
-      <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
+      <div>validate 用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
       <tiny-form-item label="等级" prop="radio">
@@ -79,14 +79,14 @@ const rules = ref({
   radio: [{ required: true, message: '必填', trigger: 'change' }],
   users: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
   ],
   datepicker: { type: 'date' },
   url: { type: 'url' },
   email: { type: 'email' },
   ip: [
     {
-      validator: (rule, value, cb) => (value === '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))),
+      validator: (rule, value, cb) => (value === '1.1.1.1' ? cb() : cb(new Error('必填 1.1.1.1'))),
       trigger: 'change'
     }
   ],
@@ -107,10 +107,10 @@ function handleSubmitPromise() {
   ruleFormRef.value
     .validate()
     .then(() => {
-      TinyModal.alert('promise用法:提交成功')
+      TinyModal.alert('promise 用法：提交成功')
     })
     .catch(() => {
-      TinyModal.alert('promise用法:提交失败')
+      TinyModal.alert('promise 用法：提交失败')
     })
 }
 

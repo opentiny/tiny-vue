@@ -1,8 +1,8 @@
 <template>
   <tiny-checkbox-group v-model="checkedData">
-    <tiny-checkbox label="复选框1" name="name1"></tiny-checkbox>
-    <tiny-checkbox label="复选框2" name="name2" checked></tiny-checkbox>
-    <tiny-checkbox label="复选框3" name="name3"></tiny-checkbox>
+    <tiny-checkbox label="复选框 1" name="name1"></tiny-checkbox>
+    <tiny-checkbox label="复选框 2" name="name2" checked></tiny-checkbox>
+    <tiny-checkbox label="复选框 3" name="name3"></tiny-checkbox>
   </tiny-checkbox-group>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      checkedData: ['复选框1']
+      checkedData: ['复选框 1']
     }
   }
 }

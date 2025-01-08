@@ -5,23 +5,23 @@
       <tiny-button @click="changeList">修改诗的内容</tiny-button>
     </div>
 
-    <div class="title">避免场景1： 直接包含文字节点，无法动态更新</div>
+    <div class="title">避免场景 1：直接包含文字节点，无法动态更新</div>
     <div v-highlight-query="query">
       {{ list.join(',') }}
     </div>
     <br />
-    <div class="title">避免场景2：文字节点与其它组件混合，无法动态更新</div>
+    <div class="title">避免场景 2：文字节点与其它组件混合，无法动态更新</div>
     <div v-highlight-query="query">
       {{ list.join(',') }}
       <tiny-button>混入的按钮</tiny-button>
     </div>
     <br />
-    <div class="title">正确的场景1</div>
+    <div class="title">正确的场景 1</div>
     <div v-highlight-query="query">
       <span> {{ list.join(',') }}</span>
     </div>
     <br />
-    <div class="title">正确的场景2</div>
+    <div class="title">正确的场景 2</div>
     <div v-highlight-query="query">
       <span> {{ list.join(',') }}</span>
       <tiny-button>混入的按钮</tiny-button>

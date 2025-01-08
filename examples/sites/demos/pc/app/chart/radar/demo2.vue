@@ -23,7 +23,7 @@ export default {
         },
 
         // radarMax 用来设置雷达图最外圈的数值
-        // 当不设置 radarMax 时， 雷达图坐标系为数据中的最大值
+        // 当不设置 radarMax 时，雷达图坐标系为数据中的最大值
         radarMax: 100,
         data: {
           Domestic: {

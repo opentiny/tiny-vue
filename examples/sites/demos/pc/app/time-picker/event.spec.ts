@@ -9,7 +9,7 @@ test('事件', async ({ page }) => {
   const confirmBtn = page.getByRole('button', { name: '确定' })
 
   await timePicker.click()
-  await expect(modal.filter({ hasText: 'focus事件' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'focus 事件' })).toBeVisible()
   await confirmBtn.click()
-  await expect(modal.filter({ hasText: 'blur事件' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'blur 事件' })).toBeVisible()
 })

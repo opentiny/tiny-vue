@@ -13,7 +13,7 @@ export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')
   const prefixes = ['2xl', 'xl', 'lg', 'md', 'sm']
   const createMatchMedia = (mediaQueryString) => {
-    if (isServer) {
+    if (isServer || typeof matchMedia !== 'function') {
       return {
         matches: false,
         media: mediaQueryString,

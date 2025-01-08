@@ -34,7 +34,7 @@ export default {
       showStepAlignmentAxis: false,
       domDataDefault: [
         {
-          title: '新手引导标题1',
+          title: '新手引导标题 1',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-offset',
           button: [
@@ -47,7 +47,7 @@ export default {
       ],
       domDataMainAxis: [
         {
-          title: '新手引导标题2',
+          title: '新手引导标题 2',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-offset',
           button: [
@@ -60,7 +60,7 @@ export default {
       ],
       domDataCrossAxis: [
         {
-          title: '新手引导标题3',
+          title: '新手引导标题 3',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-offset',
           button: [
@@ -73,7 +73,7 @@ export default {
       ],
       domDataAlignmentAxis: [
         {
-          title: '新手引导标题4',
+          title: '新手引导标题 4',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
           domElement: '.demo-guide-offset',
           button: [

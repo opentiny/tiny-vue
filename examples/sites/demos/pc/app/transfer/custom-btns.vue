@@ -3,7 +3,7 @@
     <div style="margin-bottom: 16px">
       <span>功能控制：</span>
       <tiny-button @click="toggleAllBtn()">
-        {{ showAllBtn ? '不显示all-btns' : '显示all-btns' }}
+        {{ showAllBtn ? '不显示 all-btns' : '显示 all-btns' }}
       </tiny-button>
       <tiny-button @click="toggleDisable()">
         {{ alwaysDisable ? '无选时中禁用' : '无选中时高亮' }}

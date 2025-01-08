@@ -32,10 +32,10 @@ export default {
   },
   methods: {
     leftTopClick() {
-      TinyModal.message('点击事件1')
+      TinyModal.message('点击事件 1')
     },
     rightBottomClick() {
-      TinyModal.message('点击事件2')
+      TinyModal.message('点击事件 2')
     }
   }
 }

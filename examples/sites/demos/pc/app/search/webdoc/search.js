@@ -96,7 +96,7 @@ export default {
         'en-US': 'Left slot and Disabled'
       },
       desc: {
-        'zh-CN': '通过 <code>prefix</code> 插槽自定义左侧内容, <code>disabled</code> 控制禁用状态。',
+        'zh-CN': '通过 <code>prefix</code> 插槽自定义左侧内容，<code>disabled</code> 控制禁用状态。',
         'en-US':
           'Customize the left content through the <code>prefix</code> slot, <code>disabled</code>Control the disabled state.'
       },
@@ -110,7 +110,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />\n              通过 <code>change</code> 监听输入框失焦时搜索值改变事件, <code>input</code> 监听搜索值实时改变事件；<br />\n              通过 <code>select</code> 监听搜索类型选中事件。</div>',
+          '<div class="tip custom-block">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />\n              通过 <code>change</code> 监听输入框失焦时搜索值改变事件，<code>input</code> 监听搜索值实时改变事件；<br />\n              通过 <code>select</code> 监听搜索类型选中事件。</div>',
         'en-US':
           '<div class="tip custom-block">Set a carriage return to trigger a search event by <code>is enter search</code> , and listen for search events by <code>search</code> <br />\n              By <code>change</code> listening for search value change events when the input box is out of focus, and <code>input</code> listening for real-time search value change events<br />\n              Listen for search type selection events through <code>select</code> .</div>'
       },

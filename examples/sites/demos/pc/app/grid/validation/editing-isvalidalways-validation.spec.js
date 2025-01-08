@@ -5,13 +5,13 @@ test('隐藏列编辑时校验', async ({ page }) => {
   await page.goto('grid-validation#validation-editing-isvalidalways-validation')
   await page
     .getByRole('row', {
-      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
     })
     .getByRole('textbox')
     .clear()
   await page
     .getByRole('row', {
-      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
     })
     .getByRole('textbox')
     .fill('GF')

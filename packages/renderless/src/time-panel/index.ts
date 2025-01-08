@@ -106,8 +106,15 @@ export const computItems =
         current = api.nextTime(current, step)
       }
     }
-
-    return result
+    // 生成选项数据时若开启过滤，则进行选项数据过滤，否则返回原始选项数据
+    if (state.isFilter) {
+      const newItems = result.filter((item) => {
+        return item.value.includes(state.filterVal)
+      })
+      return newItems
+    } else {
+      return result
+    }
   }
 
 export const handleClick = (api) => (item) => !item.disabled && api.emitPick({ value: item.value })

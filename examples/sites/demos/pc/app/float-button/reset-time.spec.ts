@@ -8,7 +8,7 @@ test('测试按钮禁用事件', async ({ page }) => {
 
   const defalutDisabled = demo.getByRole('button', { name: '点' })
 
-  // 默认禁用1S
+  // 默认禁用 1S
   await defalutDisabled.click()
   await expect(page.locator('.tiny-float-button')).toHaveClass(
     /tiny-float-button tiny-float-button--success is-disabled is-circle/

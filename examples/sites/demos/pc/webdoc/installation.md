@@ -11,11 +11,11 @@
 
 **Vue2 工程说明**
 
-长期以来，TinyVue 都是只支持 Vue 2.6.14 版本。 从 TinyVue 2.11.0 开始，也支持 Vue 2.7+的工程了，请确保你安装了正确的 Vue 2.x 的依赖。
+长期以来，TinyVue 都是只支持 Vue 2.6.14 版本。从 TinyVue 2.11.0 开始，也支持 Vue 2.7+ 的工程了，请确保你安装了正确的 Vue 2.x 的依赖。
 
 ## 全新项目配置
 
-在项目的根目录中，打开控制台，执行以下命令，为 `Vue 3.0` 的项目安装 `TinyVue` 组件库 ：
+在项目的根目录中，打开控制台，执行以下命令，为 `Vue 3.0` 的项目安装 `TinyVue` 组件库：
 
 ```bash
 yarn add @opentiny/vue@3
@@ -23,7 +23,7 @@ yarn add @opentiny/vue@3
 npm install @opentiny/vue@3
 ```
 
-或者执行以下命令，为 `Vue 2.0` 的项目安装 `TinyVue` 组件库 ：
+或者执行以下命令，为 `Vue 2.0` 的项目安装 `TinyVue` 组件库：
 
 ```bash
 yarn add @opentiny/vue@2
@@ -49,7 +49,7 @@ export default defineConfig({
 
 <div class="tip custom-block">
   <br>
-  <p>为了避免<code> @opentiny/vue </code> 的月度版本(minor)升级带来的不确定因素，因此推荐在您的工程中的<code> package.json </code> 中依赖包的版本号前使用 ~，
+  <p>为了避免<code> @opentiny/vue </code> 的月度版本 (minor) 升级带来的不确定因素，因此推荐在您的工程中的<code> package.json </code> 中依赖包的版本号前使用 ~，
     比如 <code>"@opentiny/vue": "~3.12.0</code>。</p>
 </div>
 <div class="tip custom-block">
@@ -57,9 +57,9 @@ export default defineConfig({
   <p><code> @opentiny/vue </code> 支持多种模式。如果您的工程非移动端工程，可以在上面配置代码中的<code>process.env</code>中，声明<code>TINY_MODE</code>的值，以使工程在构建时，能将移动端模式的代码摇掉，优化打包产物的体积。比如 <code>'process.env': { ...process.env,TINY_MODE:'pc' }</code>。</p>
 </div>
 
-## 通过 CDN 方式引入 (v3.16.0及之前的版本可用)
+## 通过 CDN 方式引入 (v3.16.0 及之前的版本可用)
 
-为了更快地体验 `TinyVue` 的组件，你也可以通过 `CDN` 方式直接在 HTML 页面中引入 `TinyVue`, 建议版本号写 `2` 个有效版本数字即可，具体配置如下:
+为了更快地体验 `TinyVue` 的组件，你也可以通过 `CDN` 方式直接在 HTML 页面中引入 `TinyVue`, 建议版本号写 `2` 个有效版本数字即可，具体配置如下：
 
 ```html
 <head>
@@ -80,13 +80,13 @@ export default defineConfig({
 </head>
 ```
 
-## 通过 CDN 方式引入 (v3.17.0开始提供使用)
+## 通过 CDN 方式引入 (v3.17.0 开始提供使用)
 
 为了应对不同的业务需要，`TinyVue` 提供多种形态的 `runtime`:
 
 | Runtime 名称              | 使用说明                   |
 | ------------------------- | -------------------------- |
-| tiny-vue-pc.mjs           | 包含所有pc模板的组件集合   |
+| tiny-vue-pc.mjs           | 包含所有 pc 模板的组件集合   |
 | tiny-vue-mobile.mjs       | 包含所有移动模板的组件集合 |
 | tiny-vue-mobile-first.mjs | 包含所有多端模板的组件集合 |
 | tiny-vue-simple.mjs       | 包含常用组件的集合         |

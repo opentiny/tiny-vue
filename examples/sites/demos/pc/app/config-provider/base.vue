@@ -68,7 +68,7 @@ export default {
              * @param {*} props 组件属性集合
              * @param {*} hooks vue2-->@composition-api,vue3-->vue
              * @param {*} param2 context
-             * @param {*} api Alert组件renderless层方法属性和方法集合
+             * @param {*} api Alert 组件 renderless 层方法属性和方法集合
              */
             renderless: (props, hooks, { emit }, api) => {
               const state = api.state

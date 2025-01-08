@@ -15,7 +15,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'accept-file-image',
-          mobileDemo: 'accept-file-image',
+          mobileDemo: 'accept-file',
           mfDemo: ''
         },
         {
@@ -71,7 +71,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'prevent-delete-file',
-          mobileDemo: 'custom-prefix',
+          mobileDemo: 'prevent-delete-file',
           mfDemo: ''
         },
         {
@@ -86,7 +86,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'before-upload-limit',
-          mobileDemo: 'custom-prefix',
+          mobileDemo: 'upload-request',
           mfDemo: ''
         },
         {
@@ -159,7 +159,7 @@ export default {
             'en-US': 'display different button'
           },
           mode: ['mobile'],
-          mobileDemo: 'manual-upload'
+          mobileDemo: ''
         },
         {
           name: 'display-only',
@@ -219,17 +219,6 @@ export default {
           pcDemo: 'encrypt-config'
         },
         {
-          name: 'ext-icons',
-          type: 'Object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置自定义文件类型图标，根据扩展名定义，默认由组件内部提供。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'placeholder'
-        },
-        {
           name: 'file-icon-list',
           type: 'Array',
           defaultValue: '',
@@ -275,7 +264,7 @@ export default {
             'en-US': 'display different button'
           },
           mode: ['mobile'],
-          mobileDemo: 'file-title'
+          mobileDemo: 'header-show'
         },
         {
           name: 'header-show',
@@ -304,8 +293,8 @@ export default {
         },
         {
           name: 'http-request',
-          type: '(file: IFile) => Promise<any>',
-          typeAnchorName: 'IFile',
+          type: '(file: ICustomParam) => Promise<any>',
+          typeAnchorName: 'ICustomParam',
           defaultValue: '',
           desc: {
             'zh-CN': '覆盖默认的上传行为，可以自定义上传的实现; 由于 TinyVue 官网为 Mock 上传不能执行上传',
@@ -386,7 +375,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'max-file-count',
-          mobileDemo: 'upload-limit',
+          mobileDemo: 'max-file-count',
           mfDemo: ''
         },
         {
@@ -411,19 +400,8 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'upload-file-list-thumb',
-          mobileDemo: 'file-picture-card',
+          mobileDemo: 'picture-card',
           mfDemo: ''
-        },
-        {
-          name: 'max_file_count',
-          type: 'Number',
-          defaultValue: 'Infinity',
-          desc: {
-            'zh-CN': '<p>设置文件上传数量的最大值，默认无限制，要大于0的正整数。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
         },
         {
           name: 'max-name-length',
@@ -614,7 +592,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'upload-file-list',
-          mobileDemo: 'upload-user-head',
+          mobileDemo: 'upload-file-list',
           mfDemo: ''
         },
         {
@@ -670,7 +648,7 @@ export default {
             'en-US': 'display different button'
           },
           mode: ['mobile'],
-          mobileDemo: ''
+          mobileDemo: 'prevent-delete-file'
         },
         {
           name: 'thumb-option',
@@ -919,7 +897,7 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'abort-quest',
-          mobileDemo: 'event',
+          mobileDemo: 'abort-quest',
           mfDemo: ''
         },
         {
@@ -1058,6 +1036,22 @@ interface IFile {
   uid: string // uid 
 }
       `
+    },
+    {
+      name: 'ICustomParam',
+      type: 'interface',
+      code: `
+interface ICustomParam {
+  action: string
+  data: IData // 上传时附带的额外参数
+  file: IFile
+  filename: string
+  headers: object // 头部请求信息
+  onError: (error: any) => void // 上传失败回调函数，自定义入参
+  onProgress: (event: any) => void // 上传中回调函数
+  onSuccess: (res: any) => void // 上传成功回调函数
+  withCredentials: boolean // 是否支持发送 cookie 凭证信息
+}`
     },
     {
       name: 'IEncryptConfig',

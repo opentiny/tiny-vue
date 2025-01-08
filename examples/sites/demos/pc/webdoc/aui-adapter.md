@@ -20,13 +20,13 @@
 - 随着应用生态特别是手机应用生态的繁荣，以及多样化设备生态的发展，`多端`、`多主题`被提上日程；
 - 原有 AUI 推出的主题方案过于臃肿（用户定制主题需要设置一堆的  `cssvar`  变量，因为颜色没有统一，配置多主题的门槛也比较高），后期会基于  [tailwindcss](https://github.com/tailwindlabs/tailwindcss)  对主题变量进行收拢（简化开发者配置）以及工程化改造，使得定制多主题更加简单。目前业内比较成熟的主题方案  [daisyui](https://github.com/saadeghi/daisyui)。
 
-鉴于以上原因， 推出  `SaaS`  主题，如果想体验  `SaaS`  主题可以按照下述文档，进行打包配置更改：
+鉴于以上原因，推出  `SaaS`  主题，如果想体验  `SaaS`  主题可以按照下述文档，进行打包配置更改：
 
 #### 方法一
 
 方案一需要额外安装以下依赖：
 
-- `@opentiny/vue-theme-saas`  主题会对现有组件样式进行细微调整，不会影响原有 DOM 结构以及 API 。
+- `@opentiny/vue-theme-saas`  主题会对现有组件样式进行细微调整，不会影响原有 DOM 结构以及 API。
 - `@opentiny/vue-icon-saas`  是  `SaaS`  主题风格配套的 icon 图标组件。
 - `@opentiny/vue-design-saas`  是  `SaaS`  主题风格配套的设计规范配置。
 
@@ -68,7 +68,7 @@ export default defineConfig({
 </script>
 
 <template>
-  <!-- 注入saas设计规范配置 -->
+  <!-- 注入 saas 设计规范配置 -->
   <config-provider :design="designSaasConfig">
     <my-app></my-app>
   </config-provider>
@@ -79,7 +79,7 @@ export default defineConfig({
 
 方法二需要额外安装以下依赖：
 
-- `@opentiny/vue-theme-saas`  主题会对现有组件样式进行细微调整，不会影响原有 DOM 结构以及 API 。
+- `@opentiny/vue-theme-saas`  主题会对现有组件样式进行细微调整，不会影响原有 DOM 结构以及 API。
 - `@opentiny/vue-icon-saas`  是  `SaaS`  主题风格配套的 icon 图标组件。
 - `@opentiny/vue-common-saas`  是  `SaaS`  主题风格配套的适配层，内联了方法一的`@opentiny/vue-design-saas`。
 
@@ -174,7 +174,7 @@ app.config.globalProperties.tiny_mode = { value: 'mobile-first' }
   <div>
     <tiny-layout>
       <tiny-row tiny_mode="pc" tiny_mode_root>
-        <tiny-button>PC按钮</tiny-button>
+        <tiny-button>PC 按钮</tiny-button>
         <tiny-button type="primary" native-type="submit">主要按钮</tiny-button>
         <tiny-button type="success">成功按钮</tiny-button>
         <tiny-button type="info">信息按钮</tiny-button>

@@ -40,7 +40,7 @@ test('small 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-small/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--small tiny-tag--light/)
-  // TODO: 此处继承input 尺寸的话，应该是28
+  // TODO: 此处继承 input 尺寸的话，应该是 28
   expect(height).toBeCloseTo(28, 1)
 })
 
@@ -56,6 +56,6 @@ test('mini 尺寸', async ({ page }) => {
 
   await expect(input).toHaveClass(/tiny-input-mini/)
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
-  // TODO: 此处继承input 尺寸的话，应该是24
+  // TODO: 此处继承 input 尺寸的话，应该是 24
   expect(height).toBeCloseTo(24, 1)
 })

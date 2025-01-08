@@ -37,6 +37,17 @@ export default {
           },
           mode: ['mobile'],
           mobileDemo: 'ellipsis'
+        },
+        {
+          name: 'content-position',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示action插槽',
+            'en-US': 'Whether to display action slots '
+          },
+          mode: ['mobile'],
+          mobileDemo: 'slot-action'
         }
       ],
       events: [
@@ -70,11 +81,21 @@ export default {
           name: 'action',
           defaultValue: '',
           desc: {
-            'zh-CN': '<p>自定义操作项内容</p>',
+            'zh-CN': '<p>action插槽</p>',
             'en-US': 'Click'
           },
           mode: ['mobile'],
           mobileDemo: 'slot-action'
+        },
+        {
+          name: 'item',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>item插槽</p>',
+            'en-US': 'Click'
+          },
+          mode: ['mobile'],
+          mobileDemo: 'slot-item'
         },
         {
           mode: []

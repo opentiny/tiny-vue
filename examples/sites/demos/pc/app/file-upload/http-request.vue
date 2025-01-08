@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload ref="upload" :http-request="httpRequest" :file-list="fileList">
+  <tiny-file-upload ref="upload" :http-request="httpRequest" :file-list="fileList" @success="handleSuccess">
     <template #trigger>
       <tiny-button>点击上传</tiny-button>
     </template>
@@ -17,15 +17,20 @@ export default {
   data() {
     return {
       fileList: [],
-      httpRequest: (files) => {
+      httpRequest: ({ onSuccess, file }) => {
         return new Promise((resolve) => {
           // 此处为用户自定义的上传服务请求
           setTimeout(() => {
-            TinyModal.message('上传成功')
-            this.fileList.push(files.file)
+            onSuccess('上传成功')
+            this.fileList.push(file)
           }, 500)
         })
       }
+    }
+  },
+  methods: {
+    handleSuccess(res) {
+      TinyModal.message(res)
     }
   }
 }

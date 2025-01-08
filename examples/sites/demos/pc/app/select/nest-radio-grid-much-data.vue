@@ -31,7 +31,7 @@ export default {
     for (let i = 0; i <= 800; i++) {
       const obj = {
         id: i,
-        area: '华南区' + i,
+        area: '华南区 ' + i,
         province: '广东省',
         city: '广州市'
       }

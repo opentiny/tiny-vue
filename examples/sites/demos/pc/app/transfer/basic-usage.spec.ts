@@ -19,12 +19,12 @@ test('测试基本用法', async ({ page }) => {
 
   // 1、从左交换至右
   let labels = leftPanel.locator('label').filter({ hasText: '备选项 2' }).locator('span')
-  // 选中"备选项2"
+  // 选中"备选项 2"
   await labels.nth(1).click()
   await expect(labels.first()).toHaveClass(/is-checked/)
   await page.waitForTimeout(10)
 
-  // 选中"备选项3"
+  // 选中"备选项 3"
   labels = leftPanel.locator('label').filter({ hasText: '备选项 3' }).locator('span')
   await labels.nth(1).click()
   await expect(labels.first()).toHaveClass(/is-checked/)
@@ -50,12 +50,12 @@ test('测试基本用法', async ({ page }) => {
 
   // 2、从右交换至左
 
-  // 选中"备选项2"
+  // 选中"备选项 2"
   labels = rightPanel.locator('label').filter({ hasText: '备选项 2' }).locator('span')
   await labels.nth(1).click()
   await expect(labels.first()).toHaveClass(/is-checked/)
 
-  // 选中"备选项3"
+  // 选中"备选项 3"
   labels = page.locator('label').filter({ hasText: '备选项 3' }).locator('span')
   await labels.nth(1).click()
   await expect(labels.first()).toHaveClass(/is-checked/)

@@ -26,19 +26,19 @@ export default {
     show() {
       TinyModal.message({
         status: 'info',
-        message: 'show事件触发了'
+        message: 'show 事件触发了'
       })
     },
     hide() {
       TinyModal.message({
         status: 'info',
-        message: 'hide事件触发了'
+        message: 'hide 事件触发了'
       })
     },
     confirm() {
       TinyModal.message({
         status: 'info',
-        message: 'confirm事件触发了'
+        message: 'confirm 事件触发了'
       })
     }
   }

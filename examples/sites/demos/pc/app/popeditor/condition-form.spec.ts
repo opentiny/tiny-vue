@@ -10,7 +10,7 @@ test('PopEditor 表单中使用并开启表单校验', async ({ page }) => {
     .filter({ hasText: /^文本选择确 认取 消$/ })
     .getByRole('textbox')
     .click()
-  await page.getByRole('row', { name: 'GFD科技YX公司 福建 福州' }).locator('path').nth(1).click()
+  await page.getByRole('row', { name: 'GFD 科技 YX 公司 福建 福州' }).locator('path').nth(1).click()
   await page.getByRole('button', { name: '确 认' }).click()
   await preview
     .locator('div')

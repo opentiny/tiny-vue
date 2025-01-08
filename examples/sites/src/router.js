@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
-import { LANG_PATH_MAP, ZH_CN_LANG, THEME_ROUTE_MAP, DEFAULT_THEME } from './const'
+import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
 
 const Components = () => import('@/views/components/components.vue')
 const Docs = () => import('@/views/docs/docs.vue')
@@ -35,8 +35,7 @@ let routes = [
     path: '/:pathMatch(.*)*',
     redirect: () => {
       const langPath = LANG_PATH_MAP[ZH_CN_LANG]
-      const theme = THEME_ROUTE_MAP[DEFAULT_THEME]
-      return { path: `${context}${langPath}/${theme}/overview` }
+      return { path: `${context}${langPath}/${DEFAULT_THEME}/overview` }
     }
   }
 ]

@@ -11,7 +11,7 @@ test('重载数据时不清除过滤', async ({ page }) => {
   await page.getByRole('button', { name: '确定' }).click()
   await page
     .locator('div')
-    .filter({ hasText: /^前端过滤示例Relaod数据$/ })
+    .filter({ hasText: /^前端过滤示例Relaod 数据$/ })
     .getByRole('button')
     .click()
 

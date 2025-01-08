@@ -91,7 +91,7 @@ rules: {
 
 ```js
 rules: {
-  users: { min: 2, message: '长度必须不小于2' }
+  users: { min: 2, message: '长度必须不小于 2' }
 }
 ```
 
@@ -101,7 +101,7 @@ rules: {
 
 ```js
 rules: {
-  users: { max: 11, message: '长度必须不大于11' }
+  users: { max: 11, message: '长度必须不大于 11' }
 }
 ```
 
@@ -111,7 +111,7 @@ rules: {
 
 ```js
 rules: {
-  users: { len: 2, message: '长度必须为2' }
+  users: { len: 2, message: '长度必须为 2' }
 }
 ```
 
@@ -122,8 +122,8 @@ rules: {
 
 ```js
 rules: {
-  users: { len: 2, message: '长度必须为2', trigger: 'change' },
-  password: { len: 2, message: '长度必须为2', trigger: ['change', 'blur'] },
+  users: { len: 2, message: '长度必须为 2', trigger: 'change' },
+  password: { len: 2, message: '长度必须为 2', trigger: ['change', 'blur'] },
   nickname: { len: 10, message: '已存在重复名称', trigger: [] }
 }
 ```
@@ -254,7 +254,7 @@ rules: {
 如下所示，先在 `methods` 对象中定义一个自定义校验的方法：
 
 ```js
-// 自定义的校验password的方法
+// 自定义的校验 password 的方法
 validatePass(rule, value, callback) {
   if (!/^(?=._[a-z])(?=._[A-Z])(?=.\*\\d)[a-zA-Z\d]{8,}$/.test(value)) {
     callback(new Error('最少八个字符，至少包含一个大写字母，一个小写字母和一个数字'))
@@ -282,7 +282,7 @@ rules: {
 如下所示，先在 `methods` 对象中定义一个自定义的异步校验的方法：
 
 ```js
-// 自定义异步校验password的方法
+// 自定义异步校验 password 的方法
 promiseField(rule, value, callback) {
   ajax({
     url: 'xx',

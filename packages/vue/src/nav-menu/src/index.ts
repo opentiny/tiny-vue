@@ -23,6 +23,7 @@ export const navMenuProps = {
     }
   },
   parentKey: String,
+  defaultActive: String,
   beforeSkip: Function,
   fetchMenuData: Function,
   fields: Object,

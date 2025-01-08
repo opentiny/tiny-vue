@@ -1,3 +1,5 @@
+import { tinyOldTheme, tinyAuroraTheme } from '@opentiny/vue-theme/theme-tool'
+
 // localStorage中保存语言的key
 export const LANG_KEY = '_lang'
 // localStorage中保存语言的value
@@ -12,17 +14,17 @@ export const LANG_PATH_MAP = {
 export const CURRENT_THEME_KEY = 'tiny-current-theme'
 
 // 主题
-export const DEFAULT_THEME = 'tiny-default-theme'
-export const AURORA_THEME = 'tiny-aurora-theme'
-export const SMB_THEME = 'tiny-smb-theme'
-export const INFINITY_THEME = 'tiny-infinity-theme'
+export const DEFAULT_THEME = 'os-theme'
+export const AURORA_THEME = 'aurora-theme'
+export const SMB_THEME = 'smb-theme'
+export const OLD_THEME = 'old-theme'
 
-// 主题对应路由参数映射表
-export const THEME_ROUTE_MAP = {
-  [DEFAULT_THEME]: 'os-theme',
-  [AURORA_THEME]: 'aurora-theme',
-  [SMB_THEME]: 'smb-theme',
-  [INFINITY_THEME]: 'infinity-theme'
+// 主题工具导出主题变量和主题的映射关系
+export const themeToolValuesMap = {
+  [DEFAULT_THEME]: '',
+  [AURORA_THEME]: tinyAuroraTheme,
+  [SMB_THEME]: '',
+  [OLD_THEME]: tinyOldTheme
 }
 
 /**

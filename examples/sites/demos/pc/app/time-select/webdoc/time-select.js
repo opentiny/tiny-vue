@@ -110,7 +110,7 @@ export default {
         'en-US': 'medium Size'
       },
       desc: {
-        'zh-CN': '通过修改 size 的属性值可调整输入框尺寸，提供 medium、small、mini三个固定属性值。',
+        'zh-CN': '通过修改 size 的属性值可调整输入框尺寸，提供 medium、small、mini 三个固定属性值。',
         'en-US': 'For details, see the following example.'
       },
       codeFiles: ['size-medium.vue']

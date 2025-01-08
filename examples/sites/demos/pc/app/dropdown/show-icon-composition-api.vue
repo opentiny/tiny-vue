@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1： 只显示文本</p>
+    <p>场景 1：只显示文本</p>
     <tiny-dropdown :show-icon="false">
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -13,7 +13,7 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：自定义图且只显示图标</p>
+    <p>场景 2：自定义图且只显示图标</p>
     <tiny-dropdown title="" :suffix-icon="tinyIconEllipsis" class="only-icon">
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -27,7 +27,7 @@
       </template>
     </tiny-dropdown>
 
-    <p>场景3：前置图标</p>
+    <p>场景 3：前置图标</p>
     <tiny-dropdown :prefix-icon="tinyIconLanguage" :show-icon="false">
       <template #dropdown>
         <tiny-dropdown-menu>

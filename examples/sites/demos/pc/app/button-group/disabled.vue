@@ -26,7 +26,7 @@ export default {
       ],
       disabledGroup: [
         { text: 'Button1', value: 1 },
-        { text: 'Button2', value: 2, disabled: true, tip: '因为xxx原因被禁用' },
+        { text: 'Button2', value: 2, disabled: true, tip: '因为 xxx 原因被禁用' },
         { text: 'Button3', value: 3 }
       ]
     }

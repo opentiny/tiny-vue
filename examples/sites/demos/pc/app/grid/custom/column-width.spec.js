@@ -25,6 +25,6 @@ test('本地存储列宽', async ({ page }) => {
   await page.reload()
   const thDom2 = page.getByRole('cell', { name: '员工数' })
   const { width: thWidth2 } = await thDom2.boundingBox()
-  // 检测列宽有没有保存在localstorage
+  // 检测列宽有没有保存在 localstorage
   expect(thWidth2).toEqual(lastThWidth)
 })

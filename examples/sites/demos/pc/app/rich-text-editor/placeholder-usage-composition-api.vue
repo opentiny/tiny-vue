@@ -6,5 +6,5 @@
 import { ref } from 'vue'
 import { TinyRichTextEditor } from '@opentiny/vue'
 
-const placeholder = ref('自定义placeholder')
+const placeholder = ref('自定义 placeholder')
 </script>

@@ -21,7 +21,7 @@ const showStep = ref(false)
 const label = ref('')
 const domData = ref([
   {
-    title: '新手引导标题1',
+    title: '新手引导标题 1',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e1',
     button: [
@@ -35,7 +35,7 @@ const domData = ref([
     }
   },
   {
-    title: '新手引导标题2',
+    title: '新手引导标题 2',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e2',
     button: [
@@ -54,7 +54,7 @@ const domData = ref([
     }
   },
   {
-    title: '新手引导标题3',
+    title: '新手引导标题 3',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e3',
     button: [
@@ -73,7 +73,7 @@ const domData = ref([
     }
   },
   {
-    title: '新手引导标题4',
+    title: '新手引导标题 4',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e4',
     button: [
@@ -96,7 +96,7 @@ const domData = ref([
     }
   },
   {
-    title: '新手引导标题5',
+    title: '新手引导标题 5',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e5',
     button: [
@@ -115,7 +115,7 @@ const domData = ref([
     }
   },
   {
-    title: '新手引导标题6',
+    title: '新手引导标题 6',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
     domElement: '.e6',
     button: [

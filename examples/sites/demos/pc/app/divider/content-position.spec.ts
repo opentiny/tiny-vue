@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('Divider文案位置', async ({ page }) => {
+test('Divider 文案位置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('divider#content-position')
   await page.getByText('文案在左侧').click()

@@ -5,7 +5,7 @@ test('行内校验', async ({ page }) => {
 
   const demo = page.locator('#valid-config')
   await page.goto('grid-validation#valid-config')
-  await page.getByText('WWW科技有限公司').click()
+  await page.getByText('WWW 科技有限公司').click()
   await demo.locator('.tiny-input__inner').fill('')
 
   await expect(demo.locator('.tiny-grid-cell__valid-msg')).toBeVisible()

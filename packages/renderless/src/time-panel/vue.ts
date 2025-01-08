@@ -47,6 +47,8 @@ const initState = ({ reactive, computed, api }) => {
     maxTime: '',
     width: 0,
     lastEmitValue: '',
+    isFilter: false,
+    filterVal: '',
     items: computed(() => api.computItems()),
     default: computed(() => state.defaultValue || state.defaultTime || ''),
     value: computed({

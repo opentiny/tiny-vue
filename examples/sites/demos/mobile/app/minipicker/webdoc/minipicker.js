@@ -29,7 +29,7 @@ export default {
     {
       demoId: 'cancel',
       name: {
-        'zh-CN': '<code>cancel</code>事件',
+        'zh-CN': 'cancel事件',
         'en-US': 'events'
       },
       desc: {
@@ -53,7 +53,7 @@ export default {
     {
       demoId: 'change',
       name: {
-        'zh-CN': '<code>change</code>事件',
+        'zh-CN': 'change事件',
         'en-US': 'events'
       },
       desc: {

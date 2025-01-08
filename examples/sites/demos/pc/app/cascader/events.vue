@@ -224,7 +224,7 @@ export default {
   methods: {
     visibleChange(val) {
       TinyModal.message({
-        message: '当前触发了:visible-change 事件,当前状态为：' + val,
+        message: '当前触发了:visible-change 事件，当前状态为：' + val,
         status: 'info'
       })
     },
@@ -243,7 +243,7 @@ export default {
     handleChange(value) {
       let checkVal = this.$refs.cascader.getCheckedNodes(true)
       TinyModal.message({
-        message: 'change 事件，当前选中的值为:' + checkVal[0].label + '；传入的值为：' + value,
+        message: 'change 事件，当前选中的值为：' + checkVal[0].label + '；传入的值为：' + value,
         status: 'info'
       })
     }

@@ -10,7 +10,7 @@ import { TinyHuichartsLiquidfill as TinyChartLiquidfill } from '@opentiny/vue'
 
 const options = ref({
   label: {
-    formatter: '{a}\n\n购房比: {c}',
+    formatter: '{a}\n\n购房比：{c}',
     fontSize: 40
   },
   legend: {

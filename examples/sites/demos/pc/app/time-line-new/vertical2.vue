@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     click(index) {
-      TinyModal.message({ message: `触发了click事件：${index}`, status: 'info' })
+      TinyModal.message({ message: `触发了 click 事件：${index}`, status: 'info' })
       this.active = index
     }
   }

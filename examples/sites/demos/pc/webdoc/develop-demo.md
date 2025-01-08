@@ -32,7 +32,7 @@ npm run dev
 
 ## 安装并使用 `TinyVue` 组件
 
-执行以下命令安装 `Vue 3.0` 版本的 `TinyVue` 组件库 ：
+执行以下命令安装 `Vue 3.0` 版本的 `TinyVue` 组件库：
 
 ```bash
 yarn add @opentiny/vue@3
@@ -58,7 +58,7 @@ export default defineConfig({
 
 安装完成后，请按 `Ctrl + C` 中断关闭当前服务，然后执行 `yarn dev # npm run dev` 重启服务；
 
-接下来修改工程中的 `App.vue` 文件， 添加以下代码（以 `Button` 组件为例）：
+接下来修改工程中的 `App.vue` 文件，添加以下代码（以 `Button` 组件为例）：
 
 ```js
 <script setup>

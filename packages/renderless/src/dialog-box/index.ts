@@ -56,6 +56,10 @@ export const computedStyle =
       }
     }
 
+    if (props.customStyle) {
+      style = Object.assign(style, props.customStyle)
+    }
+
     return style
   }
 
@@ -111,9 +115,9 @@ export const watchVisible =
         nextTick(() => state.key++)
       }
 
-      if (props.rightSlide) {
-        const dialogBoxDom = el.querySelector(constants.DIALOG_BOX_CLASS) || el
-        dialogBoxDom.style.left = ''
+      if (props.rightSlide && state.current !== 'default') {
+        const selector = `[data-tag=${constants.DIALOG_BOX_DATA_TAG}]`
+        props.rightSlide && (el.querySelector(selector).style.left = '')
       }
     }
   }

@@ -544,6 +544,12 @@ export const handleInput =
       const val = event.target.value
       state.userInput = val
     }
+
+    // time-selelt 组件中，输入值开启过滤逻辑，将值传递给生成选项数据的计算属性中生成过滤后的数据面板
+    if (state.type === 'time-select') {
+      state.picker.state.isFilter = true
+      state.picker.state.filterVal = state.userInput
+    }
   }
 
 export const formatInputValue =
@@ -986,6 +992,11 @@ export const handleKeydown =
     // Enter
     if (keyCode === 13) {
       if (state.userInput === '' || api.isValidValue(api.parseString(state.displayValue))) {
+        // time-select组件中，对输入的数据进行校验，如果有效则取默认过滤后数据的第一个。
+        if (state.type === 'time-select') {
+          state.userInput = state.picker.state.items.length ? state.picker.state.items[0].value : ''
+        }
+
         api.handleChange()
         state.pickerVisible = state.picker.state.visible = false
         api.blur()
@@ -1010,6 +1021,10 @@ export const hidePicker =
   ({ destroyPopper, state }) =>
   () => {
     if (state.picker) {
+      // time-select组件中，选中面板关闭则清除过滤，保证下次面板打开时原始items数据。
+      if (state.type === 'time-select') {
+        state.picker.state.isFilter = false
+      }
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
       destroyPopper()

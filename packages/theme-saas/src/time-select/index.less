@@ -1,8 +1,21 @@
 @import '../custom.less';
 
 @time-select-prefix-cls: ~'@{css-prefix}time-select';
+@picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
+@time-select-scrollbar-cls: ~'@{css-prefix}scrollbar';
 
 .@{time-select-prefix-cls} {
+
+  &.not-match-height {
+    height: 36px;
+  }
+  height: 252px;
+  padding-top: 6px;
+  border-radius: 8px;
+  .@{time-select-scrollbar-cls} {
+    height: 100%;
+  }
+
   .@{scrollbar-prefix-cls}__wrap {
     @apply p-0;
     @apply !mb-0;
@@ -34,6 +47,14 @@
 
       &.selected {
         @apply text-color-brand-disabled;
+      }
+    }
+  }
+
+  .@{picker-panel-prefix-cls} {
+    &__content {
+      .no-match {
+        text-align: center;
       }
     }
   }

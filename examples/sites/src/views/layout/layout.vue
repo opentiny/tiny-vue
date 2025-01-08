@@ -261,9 +261,15 @@ export default defineComponent({
       .tiny-tree-node__content:hover {
         border-radius: 20px;
       }
+
       .tiny-tree-node__content {
         height: 40px;
         line-height: 40px;
+
+        .tiny-tree-node__content-left {
+          padding-left: 16px;
+        }
+
         &::before {
           display: none;
         }
@@ -301,8 +307,8 @@ export default defineComponent({
   }
   .absolute-tag {
     position: absolute;
-    right: 4px;
-    top: 18px;
+    right: 8px;
+    top: 13px;
   }
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));

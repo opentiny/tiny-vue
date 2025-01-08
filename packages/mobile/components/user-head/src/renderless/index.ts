@@ -27,7 +27,7 @@ export const computedMessage =
   ({ props }: Pick<IUserHeadRenderlessParams, 'props'>) =>
   () => {
     let result = ''
-    const total = Math.floor(props.messageTotal || NaN)
+    const total = Math.floor(Number(props.messageTotal) || NaN)
 
     if (props.messageType === 'details' && !isNaN(total) && total > 0) {
       result = String(total)
@@ -65,11 +65,7 @@ export const computedFontSize =
         6: `${state.size / 9}px`
       }
 
-      if (mode === 'mobile-first') {
-        fontSize = mfsizeMap[length]
-      } else {
-        fontSize = sizeMap[length]
-      }
+      fontSize = sizeMap[length]
     }
 
     return { fontSize }

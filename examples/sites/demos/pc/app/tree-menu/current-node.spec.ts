@@ -10,7 +10,7 @@ test('设置当前节点', async ({ page }) => {
   const button = wrap.locator('.tiny-button')
   const currentCls = /is-current/
 
-  // 通过key设置当前节点
+  // 通过 key 设置当前节点
   await button.nth(0).click()
   await expect(treeNode.filter({ hasText: /^按需引入$/ })).toHaveClass(currentCls)
   // 获取当前被选中节点的 key
@@ -20,7 +20,7 @@ test('设置当前节点', async ({ page }) => {
   await button.nth(3).click()
   await expect(wrap.locator('.current-node')).toHaveText('{ "id": 20101, "label": "按需引入" }')
 
-  // 通过node设置当前节点
+  // 通过 node 设置当前节点
   await button.nth(1).click()
   await expect(treeNode.filter({ hasText: /^规范$/ })).toHaveClass(currentCls)
   // 获取当前被选中节点的 key

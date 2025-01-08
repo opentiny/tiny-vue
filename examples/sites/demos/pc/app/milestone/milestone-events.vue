@@ -57,7 +57,7 @@ export default {
           flags: [
             {
               status: 'back',
-              content: '欢迎使用vui',
+              content: '欢迎使用 vui',
               name: 'test7'
             },
             {

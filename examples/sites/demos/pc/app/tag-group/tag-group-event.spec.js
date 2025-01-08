@@ -7,5 +7,5 @@ test('TagGroup 事件', async ({ page }) => {
   const tag3 = page.locator('.tiny-tag ').filter({ hasText: '标签二' })
   await tag3.click()
 
-  await expect(page.locator('.tiny-modal__box').filter({ hasText: '当前点击的是第2个标签' })).toBeVisible()
+  await expect(page.locator('.tiny-modal__box').filter({ hasText: '当前点击的是第 2 个标签' })).toBeVisible()
 })

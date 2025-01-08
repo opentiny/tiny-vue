@@ -41,12 +41,16 @@ export const pullRefreshProps = {
     type: Boolean,
     default: true
   },
-
-  // mobile-first的props
-  headHeight: { type: [Number, String], default: $constants.DEFAULT_HEAD_HEIGHT },
-  pullingText: { type: String, default: t('ui.pullRefresh.pulling') },
-  loadingText: { type: String, default: $constants.STATUS.LOADING },
-  pullDistance: [Number, String],
-  loadingOptions: { type: Object, default: () => ({}) },
-  selfSimulate: { type: Boolean, default: false }
+  pullUpLoadingText: {
+    type: String,
+    default: ''
+  },
+  pullDownLoadingText: {
+    type: String,
+    default: ''
+  },
+  disabledPullUp: {
+    type: Boolean,
+    default: false
+  }
 }

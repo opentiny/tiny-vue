@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：节点可勾选 + 默认选中</p>
+    <p>场景 1：节点可勾选 + 默认选中</p>
     <tiny-tree-menu
       class="demo-tree-menu"
       node-key="id"
@@ -9,7 +9,7 @@
       :default-checked-keys="expandeArr"
     ></tiny-tree-menu>
     <br /><br />
-    <p>场景2：节点可勾选 + 父子级不相关联</p>
+    <p>场景 2：节点可勾选 + 父子级不相关联</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
   </div>
 </template>

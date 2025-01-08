@@ -213,7 +213,9 @@ function defaultEditRender(h, renderOpts, params, context) {
   let editorModel = component.model || {}
   let modelProps = typeof component === 'string' ? 'value' : editorModel.prop || 'modelValue'
 
+  const key = row[$table.rowId]
   let options = {
+    key,
     class: isTag ? `tiny-grid-default-${component}` : '',
     attrs: {
       formatOpt,

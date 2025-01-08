@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：显示边框</div>
+    <div>场景 1：显示边框</div>
     <br />
     <tiny-dropdown border>
       <span>下拉菜单</span>
@@ -16,7 +16,7 @@
     </tiny-dropdown>
     <br />
     <br />
-    <div>场景2：显示边框并圆角</div>
+    <div>场景 2：显示边框并圆角</div>
     <br />
     <tiny-dropdown border round type="primary">
       <span>下拉菜单</span>
@@ -32,7 +32,7 @@
     </tiny-dropdown>
     <br />
     <br />
-    <div>场景3：显示边框 + 不显示图标</div>
+    <div>场景 3：显示边框 + 不显示图标</div>
     <br />
     <tiny-dropdown border :show-icon="false">
       <span>下拉菜单</span>

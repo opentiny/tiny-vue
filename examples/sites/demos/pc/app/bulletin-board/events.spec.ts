@@ -7,5 +7,5 @@ test('测试点击事件', async ({ page }) => {
   const modal = page.locator('.tiny-modal')
 
   await demo.getByRole('link', { name: 'TINY v2.1.3 版本' }).click()
-  await expect(modal.getByText('click 事件：内容为TINY v2.1.3 版本')).toBeVisible()
+  await expect(modal.getByText('click 事件：内容为 TINY v2.1.3 版本')).toBeVisible()
 })

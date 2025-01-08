@@ -21,6 +21,6 @@ let num = ref(0)
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 function changeMode() {
   num.value = (num.value + 1) % 4
-  TinyModal.message({ message: '模式:' + num.value })
+  TinyModal.message({ message: '模式：' + num.value })
 }
 </script>

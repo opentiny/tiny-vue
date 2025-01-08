@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      TinyModal.alert({ message: '不显示底部', showFooter: false, tiny_mode: 'mobile' })
+      TinyModal.alert({ message: '不显示底部', maskClosable: true, showFooter: false, tiny_mode: 'mobile' })
     }
   }
 }

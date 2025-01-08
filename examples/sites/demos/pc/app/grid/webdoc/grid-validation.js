@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '常显编辑器校验', 'en-US': 'Verify hidden columns during editing' },
       'desc': {
         'zh-CN':
-          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象且列配置 <code>type：visible</code> 且配置 <code>isValidAlways</code> 属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则。</p>\n',
+          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象且列配置 <code>type：visible</code> 且配置 <code>isValidAlways</code> 属性时，即列总是显示可编辑状态时，支持编辑时校验，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则。</p>\n',
         'en-US':
           '<p>When the edit-config object is configured for the grid tag, type is set to visible, and isValidAlways is configured for the column, that is, the column is always editable, verification during editing is supported. Configure the edit-rules object to set the verification object and verification rule. For details, see the following example. </p>\n'
       },
@@ -101,7 +101,7 @@ export default {
       'name': { 'zh-CN': '错误提示配置项', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>表格默认错误提示挂载在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参考 tooltip 组件。</p>\n',
+          '<p>表格默认错误提示挂载在 <code>body</code> 上，可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时 tip 位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参考 tooltip 组件。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['validation/tipconfig.vue']

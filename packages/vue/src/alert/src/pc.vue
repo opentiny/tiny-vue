@@ -17,10 +17,8 @@
     >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
       <div class="tiny-alert__content" :class="{ 'close-hidden': !closable }">
-        <div v-if="size === 'large'" class="tiny-alert__title">
-          <slot name="title">
-            {{ state.getTitle }}
-          </slot>
+        <div v-if="size === 'large' && showTitle" class="tiny-alert__title">
+          <slot name="title"> {{ state.getTitle }}</slot>
         </div>
         <div
           :class="[
@@ -67,6 +65,7 @@ export default defineComponent({
     'closable',
     'center',
     'showIcon',
+    'showTitle',
     'closeText',
     'customClass'
   ],

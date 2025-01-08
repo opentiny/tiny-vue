@@ -69,7 +69,7 @@ const MultiColorSvgs = Object.keys(MultiColorSvgsList).map((name) => {
   return {
     name,
     component: MultiColorSvgsList[name](),
-    // 3.19.0版本新增图标
+    // 3.19.0 版本新增图标
     tinyFlag3_19: tinyIconMulticolor.includes(name)
   }
 })

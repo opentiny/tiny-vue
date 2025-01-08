@@ -152,6 +152,9 @@ export const initData =
     state
   }: Pick<INavMenuRenderlessParams, 'fetchMenuData' | 'fields' | 'props' | 'state'>) =>
   () => {
+    if (props.defaultActive) {
+      state.defaultActiveId = props.defaultActive
+    }
     const { textField = 'title', urlField = 'url', key = 'id' } = fields || {}
     const { parentKey, data } = props
     const isFullUrl = (url: string): boolean => /^(https?:\/\/|\/\/)[\s\S]+$/.test(url)
@@ -221,7 +224,6 @@ export const mounted =
 
       router.afterEach(state.afterEach)
     }
-
     props.data && props.data.length && route && api.setActiveMenu(api.getSelectedIndex(route.path))
   }
 
@@ -438,12 +440,17 @@ export const clickMenu =
     if (index === undefined) {
       return
     }
+    if (state.defaultActiveId) {
+      state.defaultActiveId = item.id
+      state.selectedIndex = -1
+    }
     if (state.enterMenu) {
       state.subIndex = -1
       state.subItemSelectedIndex = -1
       api.setActiveMenu(index)
     }
     if (state.enterMoreMenu) {
+      state.selectedIndex = -1
       state.moreItemSelectedIndex = index
     } else {
       state.subItemSelectedIndex = index
@@ -522,7 +529,7 @@ export const calcWidth =
     let menuWidth = el.offsetWidth
     let width = props.overflow === 'retract' ? 0 : menuWidth - toolbarWidth - logoWidth
 
-    width = width - 120 - (toolbarWidth ? 50 : 10) - (logoWidth ? 100 : 0)
+    width = width - 90 // 预留更多的位置
     state.width = width < 200 ? 0 : width
     state.popMenuTop = el.offsetHeight
   }
@@ -590,3 +597,66 @@ export const handleTitleMouseleave =
   (): void => {
     state.tooltipVisible = false
   }
+
+export const getMoreSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (): void => {
+    let isSelected = false
+    if (state?.more.length) {
+      state.more.forEach((item) => {
+        if (item?.id === state.defaultActiveId) {
+          isSelected = true
+        } else if (item?.children?.length) {
+          isSelected = getSelectedState(item.children, state.defaultActiveId)
+        }
+      })
+    }
+    return isSelected
+  }
+
+export const getTabSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, index): void => {
+    let isChildSelected = false
+    if (item?.id && item?.children?.length) {
+      isChildSelected = getSelectedState(item.children, state.defaultActiveId)
+    }
+    let isSelected = item?.id === state.defaultActiveId || isChildSelected || index === state.selectedIndex
+
+    return isSelected
+  }
+
+export const getLeftSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, index): void => {
+    let isLeftChildSelected = false
+    if (item?.id && item?.children?.length) {
+      isLeftChildSelected = getSelectedState(item.children, state.defaultActiveId)
+    }
+    let isSelected = item?.id === state.defaultActiveId || isLeftChildSelected || index === state.moreItemSelectedIndex
+    return isSelected
+  }
+
+export const getLastChildSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, i, index): void => {
+    let isSelected =
+      item?.id === state.defaultActiveId || (i === state.subItemSelectedIndex && index === state.subIndex)
+    return isSelected
+  }
+
+const getSelectedState = (itemData, id) => {
+  let isSelected = false
+  itemData.forEach((data) => {
+    if (data?.id === id) {
+      isSelected = true
+    } else if (data?.children?.length) {
+      data?.children.forEach((dataChildren) => {
+        if (dataChildren?.id === id) {
+          isSelected = true
+        }
+      })
+    }
+  })
+  return isSelected
+}

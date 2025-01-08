@@ -47,6 +47,7 @@ export interface INavMenuState {
   afterEach: (() => void) | null
   tooltipVisible: boolean
   tooltipContent: string | null
+  defaultActiveId: string | null
   isSaaSTheme: boolean
   menuClass: string
 }

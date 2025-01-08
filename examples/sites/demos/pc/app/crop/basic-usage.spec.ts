@@ -9,5 +9,5 @@ test('基本用法', async ({ page }) => {
 
   await expect(demo.locator('.tiny-crop__dialog')).toHaveCount(1)
   await expect(demo.locator('.cropper-face')).toHaveCount(1)
-  await expect(demo.locator('.iconButton')).toHaveCount(12) // 包含2个split
+  await expect(demo.locator('.iconButton')).toHaveCount(12) // 包含 2 个 split
 })

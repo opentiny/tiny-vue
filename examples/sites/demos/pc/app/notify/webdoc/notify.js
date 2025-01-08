@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>Notify</code>函数,在页面上弹出通知框组件。<br>
+          通过<code>Notify</code>函数，在页面上弹出通知框组件。<br>
           通过 <code>title</code>  属性设置通知框标题。<br>
           通过 <code>message</code>  属性设置通知框的内容。<br>
           <div class="tip custom-block">
@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过 <code>type</code> 设置不同的类型。可选值：success、warning、info、error，默认值：info 。</p>\n',
+          '<p>可通过 <code>type</code> 设置不同的类型。可选值：success、warning、info、error，默认值：info。</p>\n',
         'en-US':
           '<p>You can set different types by <code>type</code>. The options are success, warning, info, and error. The default value is info. </p>\n'
       },
@@ -52,7 +52,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>duration</code>  属性设置自动关闭的延迟时间， 默认情况， <code>success  info </code> 延时5秒 <code> warning  error </code> 延时10秒自动关闭。',
+          '通过 <code>duration</code>  属性设置自动关闭的延迟时间，默认情况， <code>success  info </code> 延时 5 秒 <code> warning  error </code> 延时 10 秒自动关闭。',
         'en-US':
           'Use the <code>duration</code> property to set the automatic shutdown delay. By default, <code>success info </code> delays the shutdown by 5 seconds. <code> warning error </code> delays the shutdown by 10 seconds.'
       },
@@ -65,7 +65,7 @@ export default {
         'en-US': 'Display position'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>position</code>  属性设置通知框显示位置，默认值：bottom-right 。</p>\n',
+        'zh-CN': '<p>可通过 <code>position</code>  属性设置通知框显示位置，默认值：bottom-right。</p>\n',
         'en-US':
           '<p>You can set the position of the notification box through the <code>position</code> attribute. The default value is bottom-right. </p>\n'
       },
@@ -91,7 +91,7 @@ export default {
         'en-US': 'The type icon is not displayed.'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>showIcon</code>  属性设置通知框是否显示类型图标，默认值：true 。</p>\n',
+        'zh-CN': '<p>可通过 <code>showIcon</code>  属性设置通知框是否显示类型图标，默认值：true。</p>\n',
         'en-US':
           '<p>You can use the <code>showIcon</code> attribute to set whether to display the type icon in the notification box. The default value is true. </p>\n'
       },
@@ -104,7 +104,7 @@ export default {
         'en-US': 'Custom Close Icon'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>closeIcon</code>  属性设置通知框关闭图标，默认值：IconClose 。</p>\n',
+        'zh-CN': '<p>可通过 <code>closeIcon</code>  属性设置通知框关闭图标，默认值：IconClose。</p>\n',
         'en-US':
           '<p>You can set the icon for closing the notification box through the <code>closeIcon</code> attribute. The default value is IconClose. </p>\n'
       },
@@ -117,7 +117,7 @@ export default {
         'en-US': 'Custom type icon'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>statusIcon</code>  属性设置通知框类型图标，默认值：IconInfoSolid 。</p>\n',
+        'zh-CN': '<p>可通过 <code>statusIcon</code>  属性设置通知框类型图标，默认值：IconInfoSolid。</p>\n',
         'en-US':
           '<p>You can set the notification box type icon through the <code>statusIcon</code> attribute. The default value is IconInfoSolid. </p>\n'
       },
@@ -157,7 +157,7 @@ export default {
         'zh-CN': `
           通过<code>Notify</code>函数弹出通知后，会返回一个对应的<code>instance</code>对象，并保存在组件库的内部闭包变量中。<br>
           需要手动关闭通知时，可以调用 <code>instance.close()</code> 方法关闭该通知。<br>
-          在<code>Notify</code>函数中，还存在2个静态方法去关闭通知。<br>
+          在<code>Notify</code>函数中，还存在 2 个静态方法去关闭通知。<br>
           1、<code>Notify.close :(id, beforeClose)=>void </code>, 关闭指定的通知。其中<code>id</code>可通过<code>instance</code>对象获取。 <br>
           2、<code>Notify.closeAll :()=>void </code>, 关闭所有通知。<br>
         `,

@@ -6,7 +6,7 @@ test('描述文本', async ({ page }) => {
 
   const demo = page.locator('#description')
   const checkbox = demo.locator('.tiny-checkbox-group .tiny-checkbox__label')
-  await expect(checkbox.first()).toHaveText('复选框1')
-  await expect(checkbox.nth(1)).toHaveText('复选框2文本')
-  await expect(checkbox.nth(2)).toHaveText('复选框3文本')
+  await expect(checkbox.first()).toHaveText('复选框 1')
+  await expect(checkbox.nth(1)).toHaveText('复选框 2 文本')
+  await expect(checkbox.nth(2)).toHaveText('复选框 3 文本')
 })

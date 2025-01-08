@@ -111,10 +111,9 @@ export const computedIsChecked =
   }
 
 export const computedIsGroup =
-  ({ state, parent, constants }: Pick<ICheckboxRenderlessParams, 'state' | 'parent' | 'constants'>) =>
+  ({ state, vm, constants }: Pick<ICheckboxRenderlessParams, 'state' | 'vm' | 'constants'>) =>
   (): boolean => {
-    let parentObj = parent.$parent
-
+    let parentObj = vm.$parent
     while (parentObj) {
       if (parentObj.$options.componentName !== constants.CHECKBOX_GROUP) {
         parentObj = parentObj.$parent

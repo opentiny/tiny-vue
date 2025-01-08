@@ -28,7 +28,7 @@
   > .slot-logo {
     float: left;
     overflow: hidden;
-    margin: 0 48px 0 16px;
+    padding: 0 48px 0 16px;
     line-height: var(--tv-NavMenu-height);
   }
 
@@ -97,22 +97,24 @@
     line-height: var(--tv-NavMenu-height);
 
     &.active,
-    &:hover,
-    &.selected {
+    &:hover {
+      // 规范选中后，背景色修改
       color: var(--tv-NavMenu-item-text-color);
-      background: var(--tv-NavMenu-item-hover-bg-color);
+      text-decoration: none;
+      font-weight: var(--tv-NavMenu-item-text-font-weight);
     }
 
     &.selected {
       position: relative;
-      color: var(--tv-NavMenu-item-text-color);
-      background: var(--tv-NavMenu-item-hover-bg-color);
+      font-weight: var(--tv-NavMenu-item-text-font-weight);
 
       &:after {
         content: ' ';
-        width: var(--tv-NavMenu-item-selected-underline-width);
+        width: 100%;
         height: 2px;
         background: var(--tv-NavMenu-item-selected-underline-bg-color);
+        border: 1px solid var(--tv-NavMenu-item-selected-underline-bg-color);
+        border-radius: 0;
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -158,6 +160,7 @@
           }
 
           &.active,
+          &.selected,
           &:hover {
             color: var(--tv-NavMenu-popmenu-more-item-hover-text-color);
             font-weight: 700;
@@ -329,7 +332,6 @@
               > a {
                 color: var(--tv-NavMenu-popmenu-text-color);
                 font-size: var(--tv-NavMenu-popmenu-node-title-font-size);
-                font-weight: bold;
               }
             }
           }

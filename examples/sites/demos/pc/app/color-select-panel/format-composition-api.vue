@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>颜色值: {{ color }}</p>
+    <p>颜色值：{{ color }}</p>
     <tiny-button @click="changeVisible"> Toggle </tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel

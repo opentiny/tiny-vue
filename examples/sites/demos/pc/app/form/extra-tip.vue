@@ -33,7 +33,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '必填' },
-          { min: 2, max: 11, message: '长度必须不小于2' }
+          { min: 2, max: 11, message: '长度必须不小于 2' }
         ],
         age: { required: true }
       }

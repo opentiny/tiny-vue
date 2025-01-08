@@ -225,7 +225,7 @@ function change(value) {
   }
 
   TinyModal.message({
-    message: 'change 事件，当前选中的值为:' + mess + '；传入的值为:' + value,
+    message: 'change 事件，当前选中的值为：' + mess + '；传入的值为：' + value,
     status: 'info'
   })
 }

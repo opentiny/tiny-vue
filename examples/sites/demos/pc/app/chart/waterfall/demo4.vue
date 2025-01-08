@@ -19,13 +19,13 @@ export default {
           show: true
         },
         label: {
-          // 此处也可以使用Array对每个柱状图进行单独配置
+          // 此处也可以使用 Array 对每个柱状图进行单独配置
           show: true,
           position: 'top',
           offfset: [0, -6]
         },
 
-        // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
+        // water-fall 表示为瀑布形态，此时图中会自动添加一个 Total(总和) 数据
         type: 'water-fall',
         data: [
           { Name: 'NLE', Man: 5, Female: 5, Unkown: 19 },

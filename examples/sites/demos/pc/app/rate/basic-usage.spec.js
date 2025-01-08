@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Rate 基本用法', () => {
 
-  test('鼠标hover时，icon高亮', async ({ page }) => {
+  test('鼠标 hover 时，icon 高亮', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('rate#basic-usage')
 
-    // 鼠标hover到相应icon时，icon样式改变
+    // 鼠标 hover 到相应 icon 时，icon 样式改变
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
     await icon.nth(0).hover()
     await expect(icon.nth(0)).toHaveClass(/hover/)
@@ -29,7 +29,7 @@ test.describe('Rate 基本用法', () => {
     await expect(icon.nth(4)).toHaveCSS('fill', 'rgb(255, 187, 51)')
   })
 
-  test('click选中值准确', async ({ page }) => {
+  test('click 选中值准确', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('rate#basic-usage')
 

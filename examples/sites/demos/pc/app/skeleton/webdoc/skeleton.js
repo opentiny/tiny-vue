@@ -87,7 +87,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>loading</code> 属性的值来表示是否加载完成。 可以通过具名插槽 <code>default</code> 来构建 <code>loading</code> 结束之后需要展示的真实 DOM 元素结构。</p>\n',
+          '<p>通过 <code>loading</code> 属性的值来表示是否加载完成。可以通过具名插槽 <code>default</code> 来构建 <code>loading</code> 结束之后需要展示的真实 DOM 元素结构。</p>\n',
         'en-US':
           '<p>Whether the loading is completed is indicated by the value of the <code>loading</code> attribute. You can use the named slot <code>default</code> to build the real DOM element structure that needs to be displayed after <code>loading</code> ends.</p>\n'
       },

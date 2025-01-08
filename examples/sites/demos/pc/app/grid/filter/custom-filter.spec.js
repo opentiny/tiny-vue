@@ -8,5 +8,5 @@ test('列筛选规则', async ({ page }) => {
   await page.getByRole('textbox').nth(1).press('CapsLock')
   await page.getByRole('textbox').nth(1).fill('WWW')
   await page.getByRole('button', { name: 'confirm' }).click()
-  await expect(page.getByRole('cell', { name: 'WWW科技YX公司' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'WWW 科技 YX 公司' })).toBeVisible()
 })

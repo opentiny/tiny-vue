@@ -36,7 +36,7 @@ while (mPrime < 64) {
 
 export class SHA256Algo extends Hasher {
   _hash: any
-  _data: any
+  declare _data: any
 
   _doReset() {
     this._hash = new WordArray(H.slice(0))

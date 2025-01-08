@@ -44,7 +44,7 @@ export default {
     {
       demoId: 'options-usage',
       name: {
-        'zh-CN': 'options选项用法',
+        'zh-CN': 'options 选项用法',
         'en-US': 'Basic Usage'
       },
       desc: {
@@ -56,7 +56,7 @@ export default {
     {
       demoId: 'placeholder-usage',
       name: {
-        'zh-CN': 'placeholder选项用法',
+        'zh-CN': 'placeholder 选项用法',
         'en-US': 'Basic Usage'
       },
       desc: {

@@ -154,8 +154,9 @@ const transformDefaultImport = (matchRes: string, opt: PluginInnerOption) => {
   return `import ${matchRes} from '${importName}'`
 }
 
+// 排除注释代码
 const getCompRegExp = (libraryName: any) =>
-  new RegExp(`import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
+  new RegExp(`(?<!//\\s*)import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
 
 function transformCode(code: string, plgOptions: PluginInnerOptions): string {
   let resultCode = code

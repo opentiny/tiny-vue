@@ -22,7 +22,7 @@ export default defineComponent({
       required: true
     },
     index: Number,
-    onlyUsePanel: String
+    onlyUsePanel: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

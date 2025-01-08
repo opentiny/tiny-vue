@@ -26,7 +26,7 @@
 import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
-import { updateCellTitle, getOffsetPos, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
+import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { random } from '@opentiny/vue-renderless/common/string'
 
@@ -504,11 +504,12 @@ export default defineComponent({
       let { dragLeft = 0, minInterval = 36, fixedOffsetWidth = 0 } = {}
       let { resizeBar: resizeBarElem, tableBody } = $table.$refs
       let { cell = dragBtnElem.parentNode, dragBtnWidth = dragBtnElem.clientWidth } = {}
-      let { pos = getOffsetPos(dragBtnElem, $el), tableBodyElem = tableBody.$el } = {}
       let startColumnLeft = cell.offsetLeft
       let dragBtnOffsetWidth = Math.floor(dragBtnWidth / 2)
-      let dragMinLeft = pos.left - cell.clientWidth + dragBtnWidth + minInterval
-      let dragPosLeft = pos.left + dragBtnOffsetWidth
+      const tableBodyElem = tableBody.$el
+      const btnLeft = dragBtnElem?.getBoundingClientRect().left - $el?.getBoundingClientRect().left
+      let dragMinLeft = btnLeft - cell.clientWidth + dragBtnWidth + minInterval
+      let dragPosLeft = btnLeft + dragBtnOffsetWidth
       let { oldMousemove = document.onmousemove, oldMouseup = document.onmouseup } = {}
 
       // 处理拖动事件
@@ -533,7 +534,7 @@ export default defineComponent({
 
         let ret = computeDragLeft(args)
         dragMinLeft = ret.dragMinLeft
-        dragLeft = ret.dragLeft - dragBtnOffsetWidth
+        dragLeft = ret.dragLeft
 
         let currentLeft = ret.dragLeft - scrollLeft
 

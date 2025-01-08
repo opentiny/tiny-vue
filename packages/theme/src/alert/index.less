@@ -54,6 +54,8 @@
       font-size: var(--tv-Alert-desc-font-size);
       font-weight: var(--tv-Alert-desc-font-weight);
       color: var(--tv-Alert-desc-text-color);
+      // 由于close-icon是abs， 需要给出安全边距防止重叠
+      margin-right: calc(var(--tv-Alert-close-icon-font-size) + var(--tv-Alert-close-icon-right) + 16px);
     }
 
     .@{alert-prefix-cls}__opration {

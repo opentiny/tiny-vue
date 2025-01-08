@@ -15,7 +15,7 @@ test('嵌套使用', async ({ page }) => {
   await page.mouse.down()
   await page.mouse.move(50 + x, y)
   await page.mouse.up()
-  //   移动之后的宽度为:移动之前的宽度+50-分割线宽度的一半
+  //   移动之后的宽度为：移动之前的宽度 +50-分割线宽度的一半
   const afterMove = leftWidth + 50 - centerWidth / 2
   const { width: afterWidth } = await leftDiv.boundingBox()
   await expect(Math.ceil(afterMove)).toEqual(Math.ceil(afterWidth))

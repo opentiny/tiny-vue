@@ -21,7 +21,7 @@ export default {
       TinyModal.message('打开弹出框')
     },
     change(value) {
-      TinyModal.message({ message: '改变的部门值: ' + value, status: 'info' })
+      TinyModal.message({ message: '改变的部门值：' + value, status: 'info' })
     }
   }
 }

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题、菜单内容超长时换行显示', () => {
+test.describe('以下 3 个测试将覆盖 3 个 demo: 数据源、收藏菜单标题、菜单内容超长时换行显示', () => {
   test('弹框功能是否正常', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('link-menu#data-resource')
@@ -75,7 +75,7 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
     await preview.getByRole('button', { name: '确定' }).click()
     // 弹框应该不可见
     await expect(dialogBox).toBeHidden()
-    // 页面上应该展示所选的3个菜单项
+    // 页面上应该展示所选的 3 个菜单项
     await expect(preview.locator('.tiny-link-menu .tiny-link-menu__nav > a')).toHaveCount(3)
   })
 })

@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     selected(value) {
-      TinyModal.message({ message: '下拉选项值改变为: ' + value, status: 'info' })
+      TinyModal.message({ message: '下拉选项值改变为：' + value, status: 'info' })
     }
   }
 }

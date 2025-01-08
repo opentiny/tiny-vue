@@ -119,6 +119,20 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'show-title',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示标题，在 size 为 large 时有效',
+            'en-US': 'Display title,valid when size is large'
+          },
+          mode: ['pc'],
+          pcDemo: 'title',
+          meta: {
+            stable: '3.21.0'
+          }
+        },
+        {
           name: 'single-line',
           type: 'String',
           defaultValue: '',

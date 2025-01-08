@@ -219,10 +219,10 @@ export default {
         },
         {
           name: 'validate-on-rule-change',
-          type: 'boolean',
+          type: 'boolean | "deep"',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '是否在 rules 属性改变后立即触发一次验证',
+            'zh-CN': '是否在 rules 属性改变后立即触发一次验证（"deep"选项新增于3.21.0）',
             'en-US': 'Whether to trigger a verification immediately after the rules attribute is changed'
           },
           mode: ['pc', 'mobile', 'mobile-first'],

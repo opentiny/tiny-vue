@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="demo1">
-      <div>场景1：默认 focus() 后仅聚焦，不下拉</div>
+      <div>场景 1：默认 focus() 后仅聚焦，不下拉</div>
       <br />
       <tiny-button @click="handleFocus1"> 点击获取焦点 </tiny-button>
       <tiny-button @click="handleBlur1"> 点击失去焦点 </tiny-button>
@@ -12,7 +12,7 @@
     </div>
     <br />
     <div class="demo2">
-      <div>场景2：配置 filterable，focus() 后聚焦并自动下拉</div>
+      <div>场景 2：配置 filterable，focus() 后聚焦并自动下拉</div>
       <br />
       <tiny-button @click="handleFocus2"> 点击获取焦点 </tiny-button>
       <tiny-button @click="handleBlur2"> 点击失去焦点 </tiny-button>
@@ -23,7 +23,7 @@
     </div>
     <br />
     <div class="demo3">
-      <div>场景2：配置 automaticDropdown，focus() 后聚焦并自动下拉</div>
+      <div>场景 3：配置 automaticDropdown，focus() 后聚焦并自动下拉</div>
       <br />
       <tiny-button @click="handleFocus3"> 点击获取焦点 </tiny-button>
       <tiny-button @click="handleBlur3"> 点击失去焦点 </tiny-button>
@@ -47,11 +47,11 @@ export default {
   data() {
     return {
       options: [
-        { value: '选项1', label: '北京' },
-        { value: '选项2', label: '上海' },
-        { value: '选项3', label: '天津' },
-        { value: '选项4', label: '重庆' },
-        { value: '选项5', label: '深圳' }
+        { value: '选项 1', label: '北京' },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
       ],
       value: ''
     }

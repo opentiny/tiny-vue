@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-// 场景1
+// 场景 1
 test('配置式：使用 menu-options', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dropdown#options')
@@ -10,7 +10,7 @@ test('配置式：使用 menu-options', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
-  await expect(dropDown).toContainText('下拉菜单') // 增加这一行，可以保证hover()是成功的。
+  await expect(dropDown).toContainText('下拉菜单') // 增加这一行，可以保证 hover() 是成功的。
   await page.waitForTimeout(200)
   await dropDown.hover()
   await expect(dropDownMenu.first()).toBeVisible()
@@ -21,7 +21,7 @@ test('配置式：使用 menu-options', async ({ page }) => {
   await expect(dropDownMenuItem.nth(2).locator('svg > path')).toHaveAttribute('d', /^M12 2\.8c\.1 0.+2-\.6-\.3-1-\.3z$/)
 })
 
-// 场景2
+// 场景 2
 test('配置式：使用 menu-options 和 title', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dropdown#options')
@@ -42,7 +42,7 @@ test('配置式：使用 menu-options 和 title', async ({ page }) => {
   await expect(dropDownMenuItem.nth(2).locator('svg > path')).toHaveAttribute('d', /^M12 2\.8c\.1 0.+2-\.6-\.3-1-\.3z$/)
 })
 
-// 场景3
+// 场景 3
 test('配置式：使用 menu-options 和 text-field', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dropdown#options')
@@ -62,7 +62,7 @@ test('配置式：使用 menu-options 和 text-field', async ({ page }) => {
   await expect(dropDownMenuItem.nth(2).locator('svg > path')).toHaveAttribute('d', /^M12 2\.8c\.1 0.+2-\.6-\.3-1-\.3z$/)
 })
 
-// 场景4
+// 场景 4
 test('配置式：使用 options', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dropdown#options')
@@ -83,7 +83,7 @@ test('配置式：使用 options', async ({ page }) => {
   await expect(dropDownMenuItem.nth(2).locator('svg > path')).toHaveAttribute('d', /^M12 2\.8c\.1 0.+2-\.6-\.3-1-\.3z$/)
 })
 
-// 场景5
+// 场景 5
 test('配置式：使用 options 和 text-field ', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dropdown#options')

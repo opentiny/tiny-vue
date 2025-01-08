@@ -202,7 +202,7 @@ const initApi = ({
     handleChange: handleChange(emit),
     watchFormSelect: watchFormSelect({ emit, props, state }),
     calcIconOffset: calcIconOffset({ CLASS_PREFIX, parent }),
-    getSuffixVisible: getSuffixVisible({ parent, props, state }),
+    getSuffixVisible: getSuffixVisible({ vm, props, state }),
     calculateNodeStyling: calculateNodeStyling(),
     handleCompositionStart: handleCompositionStart(state),
     handleCompositionUpdate: handleCompositionUpdate(state),

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('BulletinBoard 选项卡标题(', async ({ page }) => {
+test('BulletinBoard 选项卡标题 (', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('bulletin-board#tab-title')
 

@@ -4,6 +4,6 @@ export default <Options>{
   entryPoints: ['src/*.ts'],
   clean: true,
   format: ['cjs', 'esm'],
-  dts: true,
+  dts: false,
   onSuccess: 'esno scripts/postbuild.ts'
 }

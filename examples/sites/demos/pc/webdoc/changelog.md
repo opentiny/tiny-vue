@@ -101,7 +101,7 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 - fix(notify): [notify] missing title parameter style exception by @betavs in https://github.com/opentiny/tiny-vue/pull/2571
 - fix(button): [button,cascader] fix button's radius and cascader bgcolor by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2572
 - fix(select): [select] fix the problem of multiple selection of hover … by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/2566
-- fix: fix grid、flowchart、grid、tree-menu bugs by @zzcr in https://github.com/opentiny/tiny-vue/pull/2588
+- fix: fix grid, flowchart, grid, tree-menu bugs by @zzcr in https://github.com/opentiny/tiny-vue/pull/2588
 - fix: remove mathlive demo to fixed site build error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2587
 - fix: fix color-select-panel error when publish by @zzcr in https://github.com/opentiny/tiny-vue/pull/2583
 - fix(date-picker): [date-picker] Fix the issue of icons not being cent… by @Youyou-smiles in https://github.com/opentiny/tiny-vue/pull/2592
@@ -134,7 +134,7 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 
 ### Breaking Changes 🛠
 
-- 为了更好的用户体验，从 @opentiny/vue@3.19.0 版本开始， 组件库的整体默认风格切换为 Opentiny Design 新风格。
+- 为了更好的用户体验，从 @opentiny/vue@3.19.0 版本开始，组件库的整体默认风格切换为 Opentiny Design 新风格。
 - feat(tooltip): [tooltip] add text content wrapper and content-max-height prop by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1910
 
 ### Exciting New Features 🎉
@@ -202,7 +202,7 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 - feat(carousel): [carousel]modify smb theme and add props by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2125
 - feat(switch): [switch] Adapting to the SMB theme by @Youyou-smiles in https://github.com/opentiny/tiny-vue/pull/2112
 - feat(drop-times): [drop-times] Adapting to the SMB theme by @Youyou-smiles in https://github.com/opentiny/tiny-vue/pull/2118
-- fix(theme):　[tree,tooltip,transfer, cascader] update unsolved smb components by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2124
+- fix(theme): [tree,tooltip,transfer, cascader] update unsolved smb components by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2124
 - feat(modal): [modal] modify demo by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2129
 - feat(checkbox): [checkbox] Adapting to the SMB theme by @Youyou-smiles in https://github.com/opentiny/tiny-vue/pull/2130
 - feat: [input] add new vars less by @zzcr in https://github.com/opentiny/tiny-vue/pull/2128
@@ -535,7 +535,7 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 - feat(link-menu): [link-menu]modify smb-theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1846
 - feat(nav-menu): [nav-menu] updata nav-menu xdesign by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1849
 - feat(pop-upload): [pop-upload] 刷新 popupload 规范，增加 uploadTip 插槽 by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1850
-- feat(pop-upload): [pop-upload] 刷新 popupload 规范，表格头部优化，增加上传数据统计能力,修复长度限制 bug by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1852
+- feat(pop-upload): [pop-upload] 刷新 popupload 规范，表格头部优化，增加上传数据统计能力，修复长度限制 bug by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1852
 - feat(toggle-menu): [toggle-menu] add smb theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1861
 - feat(color-select-panel): [color-select-panel]modify smb-theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1837
 - fix(button): [button] add ts declaration for button , and remove hook-updated … by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1853

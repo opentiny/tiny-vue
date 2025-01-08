@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN': `通过 <code>content</code> 属性指定提示的内容。<br>
-           通过 <code>placement</code> 属性指定提示的显示位置，支持12个显示位置。<br>
+           通过 <code>placement</code> 属性指定提示的显示位置，支持 12 个显示位置。<br>
            通过 <code>effect</code> 属性指定提示的效果。<br>`,
         'en-US': `Specify the content of the prompt via the <code>content</code> attribute <br>
           Use the <code>placement</code> property to specify the display location of the prompt. 12 display locations are supported <br>
@@ -27,7 +27,7 @@ export default {
       desc: {
         'zh-CN': `
             通过 <code>effect</code> 属性设置明暗效果，可选值 <code>dark/light</code> ,默认值为 <code>dark</code>，通常使用<code>effect</code>设置效果。<br>
-            通过 <code>type</code> 属性设置主题,它的优先级大于 <code>effect</code>。`,
+            通过 <code>type</code> 属性设置主题，它的优先级大于 <code>effect</code>。`,
         'en-US': `
             The <code>effect</code> property is used to set the light and dark effect. The optional dark/light effect is dark by default. The effect< br> is usually set by <code>effect</code>.
             Set the theme with the <code>type</code> property, which has a higher priority than the <code>effect</code>.`
@@ -43,8 +43,8 @@ export default {
       desc: {
         'zh-CN': `
           提示组件默认是监听鼠标移入/移出事件来触发，手动控制提示的出现，有以下方法：<br>
-          1.通过 <code>visible</code> 属性设置是否智能识别溢出后提示,属性取值为 <code> always / auto </code>。当取值为<code>auto</code>时，智能提示是自动识别文字是否有长度溢出，动态的显示提示。<br>
-          2.通过 <code>manual</code> 属性为 true 后,就可以通过设置 <code>v-model</code> 属性，动态控制显示和隐藏。<br>
+          1.通过 <code>visible</code> 属性设置是否智能识别溢出后提示，属性取值为 <code> always / auto </code>。当取值为<code>auto</code>时，智能提示是自动识别文字是否有长度溢出，动态的显示提示。<br>
+          2.通过 <code>manual</code> 属性为 true 后，就可以通过设置 <code>v-model</code> 属性，动态控制显示和隐藏。<br>
           3.通过 <code>disabled</code> 属性，直接禁用提示。<br>`,
         'en-US': `
           The Tooltip component is triggered by listening for mouse move in/out events by default, and manually controls the appearance of the prompt in the following ways: <br>
@@ -95,7 +95,7 @@ export default {
         'zh-CN': `
           通过 <code> visible-arrow </code> 属性设置是否显示小箭头。<br>
           通过 <code> enterable </code> 属性设置鼠标是否可进入到 tooltip 中。<br>
-          通过 <code> popper-class </code> 属性设置弹出dom的类名，便于用户定制弹出层的样式。<br>`,
+          通过 <code> popper-class </code> 属性设置弹出 dom 的类名，便于用户定制弹出层的样式。<br>`,
         'en-US': `
           The <code> visible-arrow </code> property sets whether the small arrow is displayed. <br>
           Use the <code> enterable </code> property to set whether the mouse can enter the tooltip. <br>
@@ -111,9 +111,9 @@ export default {
       },
       desc: {
         'zh-CN': `
-            通过 <code>open-delay</code> 属性设置组件延迟出现的时间，单位毫秒,默认值为 0。<br>
-            通过 <code>close-delay</code> 属性设置 组件延迟关闭的时间，单位毫秒,默认值为 300。<br>
-            通过 <code>hide-after</code> 属性设置组件出现后自动隐藏的时间，单位毫秒，为 0 则不会自动隐藏,默认值为 0。<br>
+            通过 <code>open-delay</code> 属性设置组件延迟出现的时间，单位毫秒，默认值为 0。<br>
+            通过 <code>close-delay</code> 属性设置 组件延迟关闭的时间，单位毫秒，默认值为 300。<br>
+            通过 <code>hide-after</code> 属性设置组件出现后自动隐藏的时间，单位毫秒，为 0 则不会自动隐藏，默认值为 0。<br>
           `,
         'en-US': `
             Use the <code>open-delay</code> property to set the delay in milliseconds for the Tooltip component to appear. The default value is 0. <br>
@@ -142,7 +142,7 @@ export default {
         'en-US': 'Customized Animation'
       },
       desc: {
-        'zh-CN': '通过 <code>transition</code> 定义渐变动画,默认选值为 <code>tiny-fade-in-linear</code>。',
+        'zh-CN': '通过 <code>transition</code> 定义渐变动画，默认选值为 <code>tiny-fade-in-linear</code>。',
         'en-US':
           'Define a gradient animation using <code>transition</code>. The default value is <code>tiny-fade-in-linear</code>'
       },

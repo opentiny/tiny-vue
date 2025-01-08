@@ -3,7 +3,7 @@
     <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
     <br /><br />
 
-    <p>通过 <code>advanced</code> 属性启用高级向导功能:</p>
+    <p>通过 <code>advanced</code> 属性启用高级向导功能：</p>
     <br />
     <tiny-steps advanced :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
   </div>
@@ -25,6 +25,6 @@ const data = ref([
 const advancedClick = (index, node) => {
   advancedActive.value = index
 
-  TinyModal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
+  TinyModal.message({ message: `节点 index: ${index}; 节点信息：${JSON.stringify(node)}`, status: 'info' })
 }
 </script>

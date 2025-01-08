@@ -26,16 +26,19 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import Checkbox from '../../checkbox'
 import { CheckboxGroupProps } from './checkbox-group'
 import '@opentiny/vue-theme-mobile/checkbox-group/index.less'
 
 export default defineComponent({
+  name: $prefix + 'CheckboxGroup',
+  componentName: 'CheckboxGroup',
   components: {
     Checkbox
   },
   props: CheckboxGroupProps,
+  emits: ['change', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

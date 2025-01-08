@@ -18,7 +18,7 @@ test('节点可勾选', async ({ page }) => {
   await node.click()
   await expect(treeNode.filter({ hasText: /^首页$/ })).toHaveClass(/is-current/)
 
-  // 父级选中, 子孙节点同时都选中
+  // 父级选中，子孙节点同时都选中
   await treeNodeContent
     .filter({ hasText: /^指南$/ })
     .locator('.tiny-checkbox')
@@ -32,7 +32,7 @@ test('节点可勾选', async ({ page }) => {
   await expect(treeNodeContent.filter({ hasText: /^按需引入$/ }).locator('.tiny-checkbox')).toHaveClass(selectedClass)
   await expect(treeNodeContent.filter({ hasText: /^完整引入$/ }).locator('.tiny-checkbox')).toHaveClass(selectedClass)
 
-  // 子节点取消勾选, 祖先节点改变勾选状态
+  // 子节点取消勾选，祖先节点改变勾选状态
   await treeNodeContent
     .filter({ hasText: /^完整引入$/ })
     .locator('.tiny-checkbox')

@@ -10,7 +10,6 @@
  *
  */
 import Popover from './src/mobile.vue'
-import '@opentiny/vue-theme/popover/index.less'
 
 /* istanbul ignore next */
 Popover.install = function (Vue) {

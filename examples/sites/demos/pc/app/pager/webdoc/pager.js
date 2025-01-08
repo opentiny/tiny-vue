@@ -111,7 +111,7 @@ export default {
         'en-US': 'Paging drop-down list box display position'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>popper-append-to-body</code> 设置分页下拉框元素是否追加到body元素节点下。</p>',
+        'zh-CN': '<p>通过 <code>popper-append-to-body</code> 设置分页下拉框元素是否追加到 body 元素节点下。</p>',
         'en-US':
           'Indicates whether to add an element in the <p> <code>popper-append-to-body</code> paging drop-down list box to the body element node.</p>'
       },
@@ -138,7 +138,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>custom-total</code> 设置分页总条数显示文本。传值为文本则显示传入的文本，传值为 <code>true</code> 时，<code>0 ～ 99999</code> 显示具体数值， <code>100000 ～ 999999</code> 显示 <code>10万+</code> 。<code>1000000 ～ 9999999</code> 显示 <code>100万+</code> 。超过 <code>10000000</code> 显示 <code>1千万+</code></p>',
+          '<p>通过 <code>custom-total</code> 设置分页总条数显示文本。传值为文本则显示传入的文本，传值为 <code>true</code> 时，<code>0 ～ 99999</code> 显示具体数值， <code>100000 ～ 999999</code> 显示 <code>10 万+</code> 。<code>1000000 ～ 9999999</code> 显示 <code>100 万+</code> 。超过 <code>10000000</code> 显示 <code>1 千万+</code></p>',
         'en-US':
           '<p> <code>custom total</code> You can customize the total number of pages to display text. If the value is passed as text, the incoming text will be displayed; When the value is passed as <code>true</code> , a number is displayed normally when it is less than <code>100000</code> , and when it is greater than <code>100000</code> , it is displayed as <code>100K+</code> . By analogy, display <code>1M+</code> , <code>10M+</code> , and display as <code>10M+</code> when it is greater than <code>10 million</code> .\n'
       },

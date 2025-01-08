@@ -118,7 +118,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>color</code>属性设置自定义颜色，图标或文字类型（type属性值为 icon 或 label ）的情况下，设置字体颜色和背景色。</p>\n',
+          '<p>可通过<code>color</code>属性设置自定义颜色，图标或文字类型（type 属性值为 icon 或 label）的情况下，设置字体颜色和背景色。</p>\n',
         'en-US':
           '<p>You can use <code>color</code> to customize the color. If the icon or text type is set to icon or label, set the font color and background color. </p>\n'
       },
@@ -155,7 +155,7 @@ export default {
         'en-US': 'Avatar Displayed in Grid Cells'
       },
       desc: {
-        'zh-CN': '可通过Grid单元格<code>renderer</code>属性设置传入封装用户头像组件（HTML格式）。',
+        'zh-CN': '可通过 Grid 单元格<code>renderer</code>属性设置传入封装用户头像组件（HTML 格式）。',
         'en-US':
           'Pass in the encapsulated user avatar component (in HTML format) through the Grid cell attribute<code>renderer</code>.'
       },

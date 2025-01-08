@@ -88,7 +88,7 @@ const data = ref([
 ])
 function contentClick(item) {
   TinyModal.message({
-    message: '触发 contentClick 事件：内容为' + item.text,
+    message: '触发 contentClick 事件：内容为 ' + item.text,
     status: 'info'
   })
 }

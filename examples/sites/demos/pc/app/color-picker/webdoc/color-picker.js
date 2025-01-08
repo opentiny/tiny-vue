@@ -35,7 +35,7 @@ export default {
         'en-US': 'eventing'
       },
       desc: {
-        'zh-CN': '通过点击确认时触发<code>confirm</code>事件, 取消时触发<code>cancel</code>事件。',
+        'zh-CN': '通过点击确认时触发<code>confirm</code>事件，取消时触发<code>cancel</code>事件。',
         'en-US':
           'When click confirm will trigger <code>confirm</code>event. When click outside or cancel will trigger <code>cancel</code> event.'
       },
@@ -61,7 +61,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '当<code>enable-history</code>为<code>true</code>时, 将会启用历史记录功能。当用户点击确认时, 将会自动将颜色插入到<code>history</code>用户行为会更改历史记录, 外部可以更改历史记录。',
+          '当<code>enable-history</code>为<code>true</code>时，将会启用历史记录功能。当用户点击确认时，将会自动将颜色插入到<code>history</code>用户行为会更改历史记录，外部可以更改历史记录。',
         'en-US':
           'When <code>enable-history</code> is <code>true</code>, the history function will be enabled. When the user clicks confirm, the color will automatically be inserted into the <code>history</code> User behavior can change history, and external users can also change history.'
       },
@@ -75,7 +75,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '当<code>enable-predefine-color</code>为<code>时</code>启用预定义颜色功能, 通过设置<code>predefine</code>属性来定义预定义颜色值，用户行为不会更改预定义颜色, 但外部可以更改。',
+          '当<code>enable-predefine-color</code>为<code>时</code>启用预定义颜色功能，通过设置<code>predefine</code>属性来定义预定义颜色值，用户行为不会更改预定义颜色，但外部可以更改。',
         'en-US':
           'When<code>enable-predefine-color</code> is <code>true</code>, the predefine function will be enable. By<code>predefine</code>predefined color values, user behavior does not change the predefined colors, but they can be changed externally.'
       },
@@ -89,7 +89,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '当<code>visible</code>为<code>true</code>时, 将会默认显示<code>color-select</code>。 <code>visible</code>是响应式的, 所以你可以强制控制<code>color-select</code>的状态。当<code>visible</code>切换的时候, 会触发<code>cancel</code>事件。',
+          '当<code>visible</code>为<code>true</code>时，将会默认显示<code>color-select</code>。 <code>visible</code>是响应式的，所以你可以强制控制<code>color-select</code>的状态。当<code>visible</code>切换的时候，会触发<code>cancel</code>事件。',
         'en-US':
           'If <code>visible</code> is true the <code>color-select</code> will show. The visible prop is reactive so you can force change <code>color-select</code> show or not. When change <code>visible</code> will trigger <code>cancel</code> event.'
       },
@@ -102,7 +102,7 @@ export default {
         'en-US': 'dynamic-color-change'
       },
       desc: {
-        'zh-CN': '通过动态切换<code>color</code>属性, 以满足各种需求。',
+        'zh-CN': '通过动态切换<code>color</code>属性，以满足各种需求。',
         'en-US': 'Can dynamically switch <code>color</code> attributes to meet various needs.'
       },
       codeFiles: ['dynamic-color-change.vue']
@@ -115,7 +115,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过设置 <code>format</code> 属性, 用于设置点击确定后颜色的格式. 目前支持<code>hex</code>, <code>hsl</code>, <code>hsv</code>, <code>rgb</code>',
+          '通过设置 <code>format</code> 属性，用于设置点击确定后颜色的格式。目前支持<code>hex</code>, <code>hsl</code>, <code>hsv</code>, <code>rgb</code>',
         'en-US': ''
       },
       codeFiles: ['format.vue']

@@ -18,8 +18,8 @@ test('数据字段映射', async ({ page }) => {
   ]
   const flagcontents = [
     /第二阶段flag-content-field/,
-    /第四阶段1flag-content-field/,
-    /第四阶段2flag-content-field/,
+    /第四阶段 1flag-content-field/,
+    /第四阶段 2flag-content-field/,
     /第五阶段flag-content-field/
   ]
   const titles = ['POR1', 'POR2', 'POR3', 'POR4', 'POR5']

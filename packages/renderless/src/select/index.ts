@@ -216,6 +216,12 @@ export const handleQueryChange =
       })
     }
 
+    // 嵌套树时， filterMehod传递给tree组件，然后在上面：  vm.$refs.selectTree.filter(value) 强制让tree去过滤了。
+    // 如果不return,那么 api.defaultOnQueryChange 内部会再次过滤，而触发错误。
+    if (props.renderType === constants.TYPE.Tree) {
+      return
+    }
+
     state.triggerSearch = true
 
     api.defaultOnQueryChange(value, isInput)
@@ -566,6 +572,11 @@ export const handleFocus =
       if (!state.willFocusRun) return // 立即触发了blur,则不执行focus了
 
       if (!state.softFocus) {
+        // tiny 新增 shape条件: 防止过滤器模式，且filterable时， 面板无法关闭的bug
+        if (props.shape === 'filter') {
+          return
+        }
+
         if (props.automaticDropdown || props.filterable || props.searchable) {
           state.visible = true
           state.softFocus = true

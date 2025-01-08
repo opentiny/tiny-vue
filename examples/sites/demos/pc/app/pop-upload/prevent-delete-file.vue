@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      // return false  支持同步返回 也支持 Promise异步返回
+      // return false  支持同步返回 也支持 Promise 异步返回
       return new Promise((resolve, reject) => {
         TinyModal.confirm(`确定移除 ${file.name}？`).then((res) => {
           res === 'confirm' ? resolve() : reject(new Error())

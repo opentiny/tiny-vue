@@ -7,5 +7,5 @@ test('视图模式', async ({ page }) => {
   await page.getByRole('button', { name: '切换模式' }).click()
   await page.getByRole('button', { name: '图片裁剪' }).click()
 
-  // 待补充4个模式的校验
+  // 待补充 4 个模式的校验
 })

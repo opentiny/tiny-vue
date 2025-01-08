@@ -102,7 +102,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "<p>可以通过以下属性自定义数据项字段：<br /><code>name-field</code>： 设置节点信息中名称对应的字段名，默认为 'name'  <br /><code>count-field</code>：设置条形步骤条里徽标计数对应的字段名，默认为 'count' 。<br /><code>status-field</code>：设置数据状态对应的字段名，默认为 'status' 。</p>\n",
+          "<p>可以通过以下属性自定义数据项字段：<br /><code>name-field</code>：设置节点信息中名称对应的字段名，默认为 'name'  <br /><code>count-field</code>：设置条形步骤条里徽标计数对应的字段名，默认为 'count' 。<br /><code>status-field</code>：设置数据状态对应的字段名，默认为 'status' 。</p>\n",
         'en-US':
           "You can customize the data item fields with the following attributes.<br /><code>name-field</code>: Set the field name corresponding to the name in the node information, the default is 'name'.<br /><code>count-field</code>Set the field name corresponding to the count in the logo counter of the bar step bar, the default is 'count'.<br /><code>status-field</code>: Set the field name corresponding to the status in the data item, the default is 'status'."
       },

@@ -203,7 +203,7 @@ function handleChange(val) {
 }
 
 function getMonthBetween(start, end) {
-  // 传入的格式YYYY-MM
+  // 传入的格式 YYYY-MM
   let result = []
   let s = start.split('-')
   let e = end.split('-')

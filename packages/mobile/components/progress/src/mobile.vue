@@ -26,9 +26,9 @@
     aria-valuemax="100"
   >
     <div class="tiny-mobile-progress-bar" v-if="type === 'line'">
-      <div class="tiny-mobile-progress-bar__outer" :style="{ height: strokeWidth + 'px' }">
+      <div class="tiny-mobile-progress-bar__outer" :style="{ height: state.strokeWidth + 'px' }">
         <div class="tiny-mobile-progress-bar__inner" :style="state.barStyle">
-          <div class="tiny-mobile-progress-bar__innerText" v-if="showText && textInside && strokeWidth > 12">
+          <div class="tiny-mobile-progress-bar__innerText" v-if="showText && textInside && state.strokeWidth > 12">
             {{ state.content }}
           </div>
         </div>
@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '../../../vue-common'
 import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/progress/index.less'
 import { progressProps } from './progress'

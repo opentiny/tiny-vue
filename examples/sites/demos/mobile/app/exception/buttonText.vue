@@ -1,11 +1,6 @@
 <template>
   <div class="tiny-mobile-exception-demo">
-    <tiny-exception
-      type="nodata"
-      button-text="重试"
-      :imageUrl="imageUrl"
-      message="网络异常，请稍后再试，或者联系管理员给您处理"
-    ></tiny-exception>
+    <tiny-exception type="nodata" button-text="重试" :imageUrl="imageUrl"></tiny-exception>
   </div>
 </template>
 

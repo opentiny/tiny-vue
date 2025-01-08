@@ -5,7 +5,7 @@ test('关闭通知框前触发的事件', async ({ page }) => {
   await page.goto('notify#notify-events')
   await page.getByRole('button', { name: '关闭前的事件' }).click()
   await page.locator('.tiny-notify__icon-close > .tiny-svg').click()
-  const cloEveNT = await page.locator('.tiny-modal__box').filter({ hasText: '在通知框关闭前触发的事件,返回 false 可阻止关闭通知框' })
+  const cloEveNT = await page.locator('.tiny-modal__box').filter({ hasText: '在通知框关闭前触发的事件，返回 false 可阻止关闭通知框' })
   await expect(cloEveNT).toBeVisible()
 })
 

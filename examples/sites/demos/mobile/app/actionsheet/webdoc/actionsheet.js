@@ -29,7 +29,7 @@ export default {
     {
       demoId: 'slot-item',
       name: {
-        'zh-CN': '插槽',
+        'zh-CN': '数据插槽',
         'en-US': 'events'
       },
       desc: {
@@ -41,7 +41,7 @@ export default {
     {
       demoId: 'slot-action',
       name: {
-        'zh-CN': '插槽',
+        'zh-CN': 'action插槽',
         'en-US': 'events'
       },
       desc: {

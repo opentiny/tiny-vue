@@ -65,6 +65,10 @@ export const fluentEditorProps = {
   imagePasteFailCallback: {
     type: Function,
     default: () => {}
+  },
+  beforeEditorInit: {
+    type: Function,
+    default: () => {}
   }
 }
 

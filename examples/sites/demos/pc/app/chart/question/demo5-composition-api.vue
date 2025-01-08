@@ -2,10 +2,10 @@
   <div>
     <p>
       <tiny-button @click="changeWidth">点击改变父元素宽度</tiny-button>
-      <tiny-button @click="resize">点击执行resize()</tiny-button>
+      <tiny-button @click="resize">点击执行 resize()</tiny-button>
     </p>
     <br />
-    <p>当前父元素宽度: {{ parentElementWidth }}，chart 组件{{ isAction ? '已' : '未' }}执行 resize()。</p>
+    <p>当前父元素宽度：{{ parentElementWidth }}，chart 组件{{ isAction ? '已' : '未' }}执行 resize()。</p>
     <div :style="{ width: parentElementWidth }">
       <tiny-line ref="chartRef" :options="options" :change-delay="1000" resizeable></tiny-line>
     </div>

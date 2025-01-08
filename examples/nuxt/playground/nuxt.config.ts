@@ -8,7 +8,7 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   // modules: ['../src/module'],
   vite: {
     plugins: [
@@ -34,7 +34,6 @@ export default defineNuxtConfig({
       alias: {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-        '@': pathFromWorkspaceRoot('examples/docs/newsrc'),
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, '')

@@ -33,7 +33,8 @@ export const formProps = {
   size: String,
   disabled: Boolean,
   validateOnRuleChange: {
-    type: Boolean,
+    type: [Boolean, String],
+    validator: (value: string | boolean) => typeof value === 'boolean' || ['deep'].includes(value),
     default: true
   },
   hideRequiredAsterisk: {

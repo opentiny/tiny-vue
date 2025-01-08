@@ -32,24 +32,24 @@ const fetchData = ref({
 const tableData = ref([
   {
     id: '1',
-    name: { value: 'GFD科技有限公司' },
+    name: { value: 'GFD 科技有限公司' },
     area: '华东区',
     address: '福州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '2',
-    name: { value: 'WWWW科技有限公司' },
+    name: { value: 'WWWW 科技有限公司' },
     area: '华南区',
     address: '深圳福田区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '3',
-    name: { value: 'RFV有限责任公司' },
+    name: { value: 'RFV 有限责任公司' },
     area: '华南区',
     address: '中山市',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 

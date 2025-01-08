@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>场景1：配置式配置映射字段</p>
+    <p>场景 1：配置式配置映射字段</p>
     <tiny-select v-model="value1" multiple :options="options" value-field="val" text-field="text"> </tiny-select>
-    <p>场景2：嵌套表格配置映射字段</p>
+    <p>场景 2：嵌套表格配置映射字段</p>
     <tiny-select
       v-model="value2"
       multiple
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      value1: ['选项1', '选项2'],
+      value1: ['选项 1', '选项 2'],
       value2: ['001', '002'],
       gridOp: {
         data: [
@@ -41,13 +41,13 @@ export default {
         ]
       },
       options: [
-        { val: '选项1', text: '北京' },
-        { val: '选项2', text: '上海' },
-        { val: '选项3', text: '天津' },
-        { val: '选项4', text: '重庆' },
-        { val: '选项5', text: '深圳' },
-        { val: '选项6', text: '南京' },
-        { val: '选项7', text: '成都' }
+        { val: '选项 1', text: '北京' },
+        { val: '选项 2', text: '上海' },
+        { val: '选项 3', text: '天津' },
+        { val: '选项 4', text: '重庆' },
+        { val: '选项 5', text: '深圳' },
+        { val: '选项 6', text: '南京' },
+        { val: '选项 7', text: '成都' }
       ]
     }
   }

@@ -25,7 +25,7 @@ test('PopUpload 基本用法', async ({ page }) => {
   await lists.isHidden()
   await expect(uploadsBtn).toBeDisabled()
 
-  // 判断弹窗中的uploadName属性是否生效
+  // 判断弹窗中的 uploadName 属性是否生效
   await page.waitForTimeout(200)
   await expect(uploadName).toHaveAttribute('name', 'inputName')
 

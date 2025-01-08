@@ -31,7 +31,7 @@ const showStep3 = ref(false)
 const showStep4 = ref(false)
 const data1 = ref([
   {
-    title: '新手引导标题1',
+    title: '新手引导标题 1',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
     domElement: '.demo-guide-arrow-position',
     button: [
@@ -44,7 +44,7 @@ const data1 = ref([
 ])
 const data2 = ref([
   {
-    title: '新手引导标题2',
+    title: '新手引导标题 2',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
     domElement: '.demo-guide-arrow-position',
     button: [
@@ -57,7 +57,7 @@ const data2 = ref([
 ])
 const data3 = ref([
   {
-    title: '新手引导标题3',
+    title: '新手引导标题 3',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
     domElement: '.demo-guide-arrow-position',
     button: [
@@ -71,7 +71,7 @@ const data3 = ref([
 const data4 = ref([
   {
     popPosition: 'top',
-    title: '新手引导标题4',
+    title: '新手引导标题 4',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
     domElement: '.demo-guide-arrow-position',
     button: [

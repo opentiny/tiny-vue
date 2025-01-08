@@ -40,7 +40,7 @@ export default {
       rules: {
         users: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
         ],
         datepicker: { type: 'date' },
         url: { type: 'url', required: true }
@@ -58,7 +58,7 @@ export default {
       if (errArray.length > 0) {
         // empty
       } else {
-        TinyModal.alert('日期和url通过校验')
+        TinyModal.alert('日期和 url 通过校验')
       }
     },
     clearValidate() {

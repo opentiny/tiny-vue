@@ -50,7 +50,7 @@ const CascaderMenu = defineComponent({
       required: true
     },
     index: Number,
-    onlyUsePanel: String
+    onlyUsePanel: Boolean
   },
   inject: {
     panel: {

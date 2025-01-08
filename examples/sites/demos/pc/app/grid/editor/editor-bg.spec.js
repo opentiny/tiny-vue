@@ -7,7 +7,7 @@ test('维护编辑状态', async ({ page }) => {
   await expect(
     page
       .getByRole('row', {
-        name: '3 RFV有限责任公司 华南区 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+        name: '3 RFV 有限责任公司 华南区 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
       })
       .getByRole('textbox')
   ).toHaveCount(0)

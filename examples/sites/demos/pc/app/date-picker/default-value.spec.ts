@@ -9,7 +9,7 @@ test('[DatePicker] 测试选择器打开时默认时间设置', async ({ page })
   await expect(page.getByRole('button', { name: '2000 年' })).toBeVisible()
   await expect(page.getByRole('button', { name: '11 月' })).toBeVisible()
 
-  // default-time: 日期时间(范围)，选择日期之后默认显示的时间(范围)
+  // default-time: 日期时间 (范围)，选择日期之后默认显示的时间 (范围)
   const dateInputDefaultTime = page.getByRole('textbox').nth(2)
   await dateInputDefaultTime.fill('2023-05-20 09:00:00')
   await dateInputDefaultTime.press('Enter')

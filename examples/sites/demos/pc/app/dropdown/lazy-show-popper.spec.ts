@@ -10,10 +10,10 @@ test('基本用法', async ({ page }) => {
 
   const dropDown2 = wrap.locator('.tiny-dropdown').nth(1)
 
-  // 2个示例应该是10个菜单项， 懒加载成功的话，应该只加载5个。
+  // 2 个示例应该是 10 个菜单项，懒加载成功的话，应该只加载 5 个。
   await expect(dropDownLi).toHaveCount(5)
 
-  // 点击后，应该加载10个, 但展开的5项是 appendToBody的。
+  // 点击后，应该加载 10 个，但展开的 5 项是 appendToBody 的。
   await dropDown2.click()
   await expect(dropDownLi).toHaveCount(5)
   await expect(dropDownOnBody).toHaveCount(5)

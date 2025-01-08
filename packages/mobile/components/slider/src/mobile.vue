@@ -12,6 +12,7 @@
 <template>
   <div style="position: relative">
     <div
+      ref="slider"
       :class="['tiny-mobile-slider', { 'tiny-mobile-slider__vertical': vertical, disabled }]"
       :style="{ height: vertical ? height : '' }"
       @touchstart="bindMouseDown"
@@ -40,7 +41,7 @@
         @mouseleave="hideTip"
         @keydown="bindKeyDown"
       ></div>
-      <div class="tiny-mobile-slider__tips" v-show="showTip && state.showTip" :style="state.tipStyle">
+      <div ref="sliderTip" class="tiny-mobile-slider__tips" v-show="showTip && state.showTip" :style="state.tipStyle">
         {{ state.tipValue }}
       </div>
     </div>
@@ -57,12 +58,14 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '../../../vue-common'
 import type { ISliderApi } from './slider'
 import { sliderProps } from './slider'
 import '@opentiny/vue-theme-mobile/slider/index.less'
 
 export default defineComponent({
+  name: $prefix + 'Slider',
+  componentName: 'Slider',
   emits: ['update:modelValue', 'change', 'start', 'stop'],
   props: sliderProps,
   setup(props, context) {

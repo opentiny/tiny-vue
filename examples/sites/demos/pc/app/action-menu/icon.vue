@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：显示图标</p>
+    <p>场景 1：显示图标</p>
     <tiny-action-menu
       class="custom-icon"
       :options="options"
@@ -10,7 +10,7 @@
       :max-show-num="3"
     >
     </tiny-action-menu>
-    <p>场景2：只显示文本</p>
+    <p>场景 2：只显示文本</p>
     <tiny-action-menu :options="options1" :show-icon="false" :max-show-num="3"> </tiny-action-menu>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC' }]
+          children: [{ label: '更改安全组' }, { label: '切换 VPC' }]
         }
       ],
       options1: [
@@ -61,7 +61,7 @@ export default {
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+          children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
         }
       ],
       tinyIconEllipsis: iconEllipsis()

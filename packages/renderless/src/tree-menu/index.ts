@@ -27,6 +27,12 @@ export const initData =
     }
   }
 
+export const getTree =
+  ({ vm }) =>
+  () => {
+    return vm.$refs.tree
+  }
+
 export const setMenuKey =
   (api: ITreeMenuApi) =>
   ({ newData, menuData }: { newData: ITreeMenuNewData[]; menuData: ITreeMenuData[] }) => {

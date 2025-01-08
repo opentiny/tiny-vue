@@ -85,6 +85,10 @@ export const alertProps = {
     type: Boolean,
     default: false
   },
+  showTitle: {
+    type: Boolean,
+    default: true
+  },
   target: {
     type: String,
     default: ''
