@@ -116,9 +116,11 @@
 
   & &__body {
     text-align: left;
-    padding: 0 var(--tv-DialogBox-padding);
+    padding: var(--tv-DialogBox-vertical-padding) var(--tv-DialogBox-padding);
     color: var(--tv-DialogBox-body-text-color);
     font-size: var(--tv-DialogBox-body-font-size);
+    overflow: auto;
+    max-height: 65vh;
 
     .@{css-prefix}upload {
       overflow: hidden;
