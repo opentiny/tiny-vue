@@ -31,7 +31,7 @@ import {
   handleItemClick,
   observeCallback
 } from './index'
-import userPopper from '@opentiny/mobile-utils/deps/vue-popper'
+import userPopper from '@mobile-root/utils/deps/vue-popper'
 import type {
   IPopoverApi,
   IPopoverProps,

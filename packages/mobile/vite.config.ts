@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import svgLoader from 'vite-svg-loader'
+import path from 'node:path'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), svgLoader()],
+  plugins: [vue(), vueJsx()],
   build: {
     lib: {
       entry: './index.ts'
@@ -19,6 +19,11 @@ export default defineConfig({
           preserveModules: true
         }
       ]
+    }
+  },
+  resolve: {
+    alias: {
+      '@mobile-root': path.resolve(__dirname, '')
     }
   }
 })

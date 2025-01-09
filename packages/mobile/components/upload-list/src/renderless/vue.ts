@@ -31,7 +31,7 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../../../file-upload/src/renderless'
-import { formatFileSize } from '@opentiny/mobile-utils/string'
+import { formatFileSize } from '@mobile-root/utils/string'
 import { getApi } from '../../../file-upload/src/renderless/vue'
 
 export const api = [

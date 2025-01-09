@@ -11,8 +11,8 @@
  */
 
 import type { ILoadingRenderlessParamUtils, ILoadingRenderlessParams, ILoadingState } from '../loading'
-import afterLeave from '@opentiny/mobile-utils/deps/after-leave'
-import { removeClass } from '@opentiny/mobile-utils/deps/dom'
+import afterLeave from '@mobile-root/utils/deps/after-leave'
+import { removeClass } from '@mobile-root/utils/deps/dom'
 
 export const handleAfterLeave = (emit: ILoadingRenderlessParamUtils['emit']) => (): void => {
   emit('after-leave')

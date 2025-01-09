@@ -10,7 +10,7 @@
  *
  */
 
-import { cloneDeep } from '@opentiny/mobile-utils/object'
+import { cloneDeep } from '@mobile-root/utils/object'
 
 export const initValue =
   ({ props, emit }) =>

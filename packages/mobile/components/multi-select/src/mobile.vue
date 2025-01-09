@@ -125,9 +125,8 @@ import Input from '../../input'
 import Mask from '../../mask'
 import MultiSelectItem from '../../multi-select-item'
 import Wheel from '../../wheel'
-import Clickoutside from '@opentiny/mobile-utils/deps/clickoutside'
+import Clickoutside from '@mobile-root/utils/deps/clickoutside'
 import { t } from '@opentiny/vue-locale'
-import { multiSelectProps } from './multi-select'
 import '@opentiny/vue-theme-mobile/multi-select/index.less'
 
 export default defineComponent({

@@ -31,7 +31,7 @@ import {
   hideScrollbar,
   computedBodyStyle
 } from './index'
-import usePopup from '@opentiny/mobile-utils/deps/vue-popup'
+import usePopup from '@mobile-root/utils/deps/vue-popup'
 import type {
   IDialogBoxApi,
   IDialogBoxProps,

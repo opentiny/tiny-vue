@@ -10,7 +10,7 @@
  *
  */
 import type { ExtractPropTypes } from 'vue'
-import type { BigIntDecimal } from '@opentiny/mobile-utils/bigInt'
+import type { BigIntDecimal } from '@mobile-root/utils/bigInt'
 import type {
   focus,
   select,
@@ -42,6 +42,7 @@ import type {
   handleChange
 } from './renderless'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
 export const $constants = {

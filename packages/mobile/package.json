@@ -31,17 +31,16 @@
     "@better-scroll/core": "^2.5.0",
     "@better-scroll/wheel": "^2.5.0",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/mobile-utils": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~"
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "devDependencies": {
-    "vue": "^3.5.0",
-    "typescript": "catalog:",
-    "vite": "catalog:",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "typescript": "catalog:",
+    "vite": "catalog:",
     "vite-plugin-dts": "^4.3.0",
-    "vite-svg-loader": "^5.1.0"
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.5.0"
   }
 }

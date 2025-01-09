@@ -10,7 +10,7 @@
  *
  */
 
-import { isObject, isNull } from '@opentiny/mobile-utils/type'
+import { isObject, isNull } from '@mobile-root/utils/type'
 
 export const getRouteActive =
   ({ props, route }) =>

@@ -18,7 +18,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* alias */
+    "paths": {
+      "@mobile-root/*": ["./*"]
+    }
   },
   "include": ["components/**/*.ts", "components/**/*.tsx", "components/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

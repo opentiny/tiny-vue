@@ -10,7 +10,7 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/mobile-utils'
+import { KEY_CODE } from '@mobile-root/utils'
 
 export const mousedown = (event) => {
   if (event && event.preventDefault) {

@@ -1,6 +1,6 @@
 import hooks from './adapter'
-import { isServer } from '@opentiny/mobile-utils/deps/dom'
-import debounce from '@opentiny/mobile-utils/deps/debounce'
+import { isServer } from '@mobile-root/utils/deps/dom'
+import debounce from '@mobile-root/utils/deps/debounce'
 
 /**
  * 组合使用 Tailwind 的响应性断点状态

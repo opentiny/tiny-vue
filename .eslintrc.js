@@ -51,6 +51,7 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/no-invalid-this': 'off',
     'vue/no-deprecated-dollar-scopedslots-api': 'off',
-    '@typescript-eslint/lines-between-class-members': 'off'
+    '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/no-this-alias': 'off'
   }
 }
