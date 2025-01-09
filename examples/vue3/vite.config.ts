@@ -92,6 +92,7 @@ export default defineConfig((config) => {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
+        '@mobile-root': pathFromWorkspaceRoot('packages/mobile'),
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),

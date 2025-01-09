@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { PropType } from '../../../vue-common'
+import type { PropType } from '@mobile-root/vue-common'
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 

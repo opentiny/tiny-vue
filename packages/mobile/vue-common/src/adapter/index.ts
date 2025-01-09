@@ -473,7 +473,6 @@ export const createComponentFn = (design) => {
     return createVm({}, vnode.component)
   }
 }
-
 export const defineComponent = hooks.defineComponent
 
 export default hooks

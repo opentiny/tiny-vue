@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/vue-common'
 import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/list/index.less'
 

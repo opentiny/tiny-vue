@@ -116,8 +116,8 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from '../../../vue-common'
-import { $prefix, setup, defineComponent, directive } from '../../../vue-common'
+import type { PropType } from '@mobile-root/vue-common'
+import { $prefix, setup, defineComponent, directive } from '@mobile-root/vue-common'
 import { renderless, api } from './renderless/vue'
 import { iconChevronDown, iconSearch } from '@opentiny/vue-icon'
 import Button from '../../button'

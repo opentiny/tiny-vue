@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { directive } from '../../../vue-common'
+import { directive } from '@mobile-root/vue-common'
 import { isObject } from '@mobile-root/utils/type'
 
 class TinyTouch {

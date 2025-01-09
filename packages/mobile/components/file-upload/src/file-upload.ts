@@ -85,7 +85,7 @@ import type {
 } from './renderless'
 import type { downloadFile as ordinaryDownload } from '../../upload-list/src/upload-list'
 import type { IUploadFormData } from '../../upload/src/upload'
-import { $props } from '../../../vue-common'
+import { $props } from '@mobile-root/vue-common'
 
 export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
 
