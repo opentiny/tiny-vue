@@ -260,6 +260,7 @@
           :id="id"
           :autocomplete="autocomplete"
           :size="state.selectSize"
+          :showTooltip="false"
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
           :display-only="state.isDisplayOnly"
