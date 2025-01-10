@@ -17,7 +17,7 @@ if (window.__POWERED_BY_WUJIE__) {
 }
 ```
 
-## 2、In the 'Vitepress' project, reference the 'opentiny' component package and use the 'Vitepress' packaging command: 'pnpm docs:build' ， Causing error: 'ERR_UNSUPPORTED_DIR_IMPORT'
+## 2、In the 'Vitepress' project, reference the 'Opentiny' component package and use the 'Vitepress' packaging command: 'pnpm docs:build' ， Causing error: 'ERR_UNSUPPORTED_DIR_IMPORT'
 
 **Reason:** Unable to find the 'js/css/...' files referenced within the component package waiting for suffix path, error statement: 'Error [ERR_UNSUPPORTED_DIR_IMPORT]: Directory import "xxx" is not supported resolving ES modules imported from xxx/lib/index.js'
 
