@@ -16,3 +16,19 @@ if (window.__POWERED_BY_WUJIE__) {
   globalConfig.viewportWindow = window.parent
 }
 ```
+
+## 2、在vitepress中，引用opentiny组件包，使用vitepress打包命令:pnpm docs:build，报错：ERR_UNSUPPORTED_DIR_IMPORT
+
+_原因：_ 使用vitepress打包，找不到组件包内文件相关引用的js/css等后缀路径。导致报错：ERR_UNSUPPORTED_DIR_IMPORT
+
+_解决方案:_ 通过配置`vitepress/config.js`文件，解决报错问题：
+
+```js
+export default defineConfig({
+  vite: {
+    ssr: {
+      noExternal: [/@opentiny\//]
+    }
+  }
+})
+```

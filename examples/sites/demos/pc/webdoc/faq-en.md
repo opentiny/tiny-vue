@@ -16,3 +16,19 @@ if (window.__POWERED_BY_WUJIE__) {
   globalConfig.viewportWindow = window.parent
 }
 ```
+
+## 2、In Vitepress, reference the Opentiny component package and use Vitepress to package the command: pnpm docs:build， report errors: ERR_UNSUPPORTED_DIR_IMPORT
+
+_Reason：_ Using Vitepress packaging, the suffix paths such as js/css related to file references in the component package cannot be found. Causing error: ERR_UNSUPPORTED_DIR_IMPORT
+
+_Solution:_ Resolve the error issue by configuring the 'vitepress/config. js' file:
+
+```js
+export default defineConfig({
+  vite: {
+    ssr: {
+      noExternal: [/@opentiny\//]
+    }
+  }
+})
+```
