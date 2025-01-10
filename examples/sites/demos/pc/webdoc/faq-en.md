@@ -2,10 +2,10 @@
 
 ## 1, Popup element misaligned and flipped in wujie micro front-end
 
-_Reason:_ The popup element has a boundary detection logic, and in sub applications, the width and height of 'window' may be much smaller than that of the viewport,
+**Reason:** The popup element has a boundary detection logic, and in sub applications, the width and height of 'window' may be much smaller than that of the viewport,
 therefore, it can misjudge boundaries, leading to issues such as flipping and misalignment.
 
-_Solution:_ Introducing popup global configuration, assigning the 'window' of the main application to the 'viewportWindow' of the global configuration for boundary judgment
+**Solution:** Introducing 'popup global' configuration, assigning the 'window' of the main application to the 'viewportWindow' of the global configuration for boundary judgment
 
 ```js
 import globalConfig from '@opentiny/vue-renderless/common/global'
@@ -17,15 +17,16 @@ if (window.__POWERED_BY_WUJIE__) {
 }
 ```
 
-## 2、In Vitepress, reference the Opentiny component package and use Vitepress to package the command: pnpm docs:build， report errors: ERR_UNSUPPORTED_DIR_IMPORT
+## 2、In the 'Vitepress' project, reference the 'opentiny' component package and use the 'Vitepress' packaging command: 'pnpm docs:build' ， Causing error: 'ERR_UNSUPPORTED_DIR_IMPORT'
 
-_Reason：_ Using Vitepress packaging, the suffix paths such as js/css related to file references in the component package cannot be found. Causing error: ERR_UNSUPPORTED_DIR_IMPORT
+**Reason:** Unable to find the 'js/css/...' files referenced within the component package waiting for suffix path, error statement: 'Error [ERR_UNSUPPORTED_DIR_IMPORT]: Directory import "xxx" is not supported resolving ES modules imported from xxx/lib/index.js'
 
-_Solution:_ Resolve the error issue by configuring the 'vitepress/config. js' file:
+**Solution:** In the '. vitepress/config. js' file, add the following code:
 
 ```js
 export default defineConfig({
   vite: {
+    // ...
     ssr: {
       noExternal: [/@opentiny\//]
     }
