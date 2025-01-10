@@ -9,7 +9,6 @@ jobs:
   build:
     runs-on: windows-latest
     outputs:
-      publishVersion: ${{ steps.parseTag.outputs.publishVersion }}
       branchVersion: ${{ steps.parseTag.outputs.branchVersion }}
     steps:
       - name: Parse Tag
@@ -18,9 +17,7 @@ jobs:
         with:
           script: |
             const tag = `${{ github.ref_name }}`
-            const publishVersion = tag.slice(3)
             const branchVersion = tag.slice(1)
-            core.setOutput('publishVersion', publishVersion)
             core.setOutput('branchVersion', branchVersion)
 
       - name: CheckOut Code
@@ -53,10 +50,10 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: Run Build Components
-        run: pnpm build:ui -t ${{ steps.parseTag.outputs.publishVersion }}
+        run: pnpm build:ui
 
       - name: Run Build Sass Common
-        run: pnpm build:ui saas-common -t ${{ steps.parseTag.outputs.publishVersion }} -d saas
+        run: pnpm build:ui saas-common -d saas
 
       - name: Run Build Theme
         run: pnpm build:theme
