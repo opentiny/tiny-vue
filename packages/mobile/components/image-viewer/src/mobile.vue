@@ -112,7 +112,7 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '@mobile-root/vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import {
   iconClose,
   iconChevronLeft,

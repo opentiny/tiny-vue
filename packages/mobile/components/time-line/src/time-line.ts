@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { PropType } from '@mobile-root/vue-common'
+import type { PropType } from '@mobile-root/common'
 import type { ExtractPropTypes } from 'vue'
 import type { toggleFold } from './renderless'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'

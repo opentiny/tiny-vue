@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '@mobile-root/vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import { tabbarItemProps } from './tabbar-item'
 import '@opentiny/vue-theme-mobile/tabbar-item/index.less'
 

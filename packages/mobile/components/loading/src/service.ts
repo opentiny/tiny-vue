@@ -12,7 +12,7 @@
 
 import PopupManager from '@mobile-root/utils/deps/popup-manager'
 import { getStyle, addClass } from '@mobile-root/utils/deps/dom'
-import { createComponent, hooks, appProperties } from '@mobile-root/vue-common'
+import { createComponent, hooks, appProperties } from '@mobile-root/common'
 import Loading from './mobile.vue'
 
 export const defaults = {
