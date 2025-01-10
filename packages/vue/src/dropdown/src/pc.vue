@@ -35,7 +35,7 @@ export default defineComponent({
     trigger: String,
     // tiny新增
     visible: {
-      type: Boolean || undefined,
+      type: [Boolean, undefined],
       default: undefined
     },
     size: {

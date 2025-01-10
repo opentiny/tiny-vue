@@ -6,7 +6,7 @@ export const dropdownProps = {
   modelValue: [String, Number],
   // tiny新增
   visible: {
-    type: Boolean || undefined,
+    type: [Boolean, undefined],
     default: undefined
   },
   type: String,
