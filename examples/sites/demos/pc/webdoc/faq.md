@@ -17,7 +17,7 @@ if (window.__POWERED_BY_WUJIE__) {
 }
 ```
 
-## 2、在 `Vitepress` 项目中，引用 `opentiny` 组件包，使用 `Vitepress` 打包命令：`pnpm docs:build`，导致报错：`ERR_UNSUPPORTED_DIR_IMPORT`
+## 2、在 `Vitepress` 项目中，引用 `Opentiny` 组件包，使用 `Vitepress` 打包命令：`pnpm docs:build`，导致报错：`ERR_UNSUPPORTED_DIR_IMPORT`
 
 **原因：** 找不到组件包内引用相关文件的 `js/css/...` 等后缀路径，报错语句：`Error [ERR_UNSUPPORTED_DIR_IMPORT]: Directory import 'xxx' is not supported resolving ES modules imported from xxx/lib/index.js`
 
