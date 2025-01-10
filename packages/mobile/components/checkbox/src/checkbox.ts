@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $prefix } from '@mobile-root/vue-common'
-import type { PropType } from '@mobile-root/vue-common'
+import { $prefix } from '@mobile-root/common'
+import type { PropType } from '@mobile-root/common'
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
 

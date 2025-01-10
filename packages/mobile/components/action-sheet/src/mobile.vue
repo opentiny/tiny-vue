@@ -52,7 +52,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '@mobile-root/vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import '@opentiny/vue-theme-mobile/action-sheet/index.less'
 import BScroll from '@better-scroll/core'
 import { actionSheetProps } from './action-sheet'

@@ -22,7 +22,7 @@ import {
   defineComponent,
   isEmptyVnode,
   hooks
-} from '@mobile-root/vue-common'
+} from '@mobile-root/common'
 import type { ITooltipApi, ITinyVm } from './tooltip'
 import { tooltipProps } from './tooltip'
 

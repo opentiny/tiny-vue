@@ -10,7 +10,7 @@
  *
  */
 
-import { $prefix } from '@mobile-root/vue-common'
+import { $prefix } from '@mobile-root/common'
 import type { ExtractPropTypes } from 'vue'
 import type {
   handleCancel,

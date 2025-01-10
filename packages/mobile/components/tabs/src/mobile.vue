@@ -11,7 +11,7 @@
  -->
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, h, defineComponent } from '@mobile-root/vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
 import { touchStart, touchMove } from '@mobile-root/utils/deps/touch'

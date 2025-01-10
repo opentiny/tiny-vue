@@ -13,7 +13,7 @@ import afterLeave from '@mobile-root/utils/deps/after-leave'
 import PopupManager from '@mobile-root/utils/deps/popup-manager'
 import { addClass, getStyle, removeClass } from '@mobile-root/utils/deps/dom'
 import Loading from './mobile.vue'
-import { hooks, directive, createComponent, appProperties } from '@mobile-root/vue-common'
+import { hooks, directive, createComponent, appProperties } from '@mobile-root/common'
 import { constants, defaults } from './service'
 
 const insertDom = (parent, el, binding) => {

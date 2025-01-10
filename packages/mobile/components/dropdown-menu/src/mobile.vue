@@ -51,8 +51,8 @@
                   item.type === 'filter'
                     ? 'IconUnfilter'
                     : item.type === 'selection' && item.state.showPopup
-                    ? 'IconUp'
-                    : 'IconDown'
+                      ? 'IconUp'
+                      : 'IconDown'
                 "
                 :class="[item.type === 'filter' ? 'filter-icon' : '']"
               />
@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent, directive } from '@mobile-root/vue-common'
+import { setup, defineComponent, directive } from '@mobile-root/common'
 import { iconUp, iconDown, iconUnfilter, iconSort, iconDeltaDown, iconDeltaUp } from '@opentiny/vue-icon'
 import { dropdownMenuProps } from './dropdown-menu'
 import Clickoutside from '@mobile-root/utils/deps/clickoutside'

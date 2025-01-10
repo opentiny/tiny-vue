@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { setup, h, defineComponent } from '@mobile-root/vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import Button from '../../button'
 import { iconFullscreenLeft, iconMinscreenLeft } from '@opentiny/vue-icon'
