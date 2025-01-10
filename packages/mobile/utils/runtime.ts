@@ -41,8 +41,6 @@ import validate from './validate'
 import memorize from './deps/memorize'
 import * as common from '.'
 
-const version = process.env.RUNTIME_VERSION
-
 const Renderless = {
   browser,
   array,
@@ -66,8 +64,7 @@ const Renderless = {
   vuePopup,
   memorize,
   common,
-  validate,
-  version
+  validate
 }
 
 export default Renderless
@@ -95,6 +92,5 @@ export {
   vuePopup,
   validate,
   memorize,
-  common,
-  version
+  common
 }

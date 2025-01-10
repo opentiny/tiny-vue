@@ -23,7 +23,7 @@
 import { renderless, api } from './renderless/vue'
 import { setup, h, defineComponent } from '@mobile-root/common'
 import { tagProps } from './tag'
-import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
+import type { ITagApi } from './tag'
 import '@opentiny/vue-theme-mobile/tag/index.less'
 
 export default defineComponent({
