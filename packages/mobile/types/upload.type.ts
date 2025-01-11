@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { uploadProps } from '@/upload/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '@mobile-root/shared.type'
 import type {
   isImage,
   abort,

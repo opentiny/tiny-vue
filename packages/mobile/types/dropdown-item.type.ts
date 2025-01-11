@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComponentPublicInstance, ComputedRef } from 'vue'
 import type { dropdownItemProps, $constants } from '@/dropdown-item/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { IDropdownMenuVm } from './dropdown-menu.type'
 import type {
   open,

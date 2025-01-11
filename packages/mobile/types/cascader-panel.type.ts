@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type Node from '../src/cascader-panel/node'
 import type Store from '../src/cascader-panel/store'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type {
   getNodeByValue,
   calculateCheckedNodePaths,

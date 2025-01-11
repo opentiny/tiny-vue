@@ -31,7 +31,7 @@ import type {
   handleClear,
   handleChange
 } from '../src/numeric'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type INumericProps = ExtractPropTypes<typeof numericProps>
 

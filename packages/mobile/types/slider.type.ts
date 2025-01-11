@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef, CSSProperties } from 'vue'
 import type { sliderProps, $constants } from '@/slider/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type {
   getMarkList,
   getActiveButtonValue,

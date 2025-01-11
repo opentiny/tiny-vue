@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { wizardProps, $constants } from '@/wizard/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type IWizardProps = ExtractPropTypes<typeof wizardProps>
 

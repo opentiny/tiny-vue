@@ -1,6 +1,6 @@
 import type { Component, ExtractPropTypes, ComputedRef } from 'vue'
 import type { pickerProps } from '@/picker/src/type'
-import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type IPickerProps = ExtractPropTypes<typeof pickerProps>
 

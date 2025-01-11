@@ -12,7 +12,7 @@
 
 import type { ExtractPropTypes } from 'vue'
 import type { floatbarProps } from '@/floatbar/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export interface IFloatbarItem {
   url: string

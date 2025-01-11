@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { tooltipProps } from '@/tooltip/src'
-import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams } from '@mobile-root/shared.type'
 
 import type {
   bindEvent,

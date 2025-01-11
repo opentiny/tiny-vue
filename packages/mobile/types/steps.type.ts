@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { stepsProps } from '@/steps/src'
-import type { ISharedRenderlessParamUtils, ISharedRenderlessFunctionParams } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils, ISharedRenderlessFunctionParams } from '@mobile-root/shared.type'
 import type {
   updateStartIndex,
   isVisibleHandler,

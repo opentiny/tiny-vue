@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { breadcrumbItemProps } from '@/breadcrumb-item/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type IBreadcrumbItemProps = ExtractPropTypes<typeof breadcrumbItemProps>
 

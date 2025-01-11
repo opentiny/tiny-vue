@@ -13,7 +13,7 @@ import type {
   select,
   highlight
 } from '../src/autocomplete'
-import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export interface IAutoCompleteState {
   activated: boolean

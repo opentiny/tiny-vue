@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, Component } from 'vue'
 import type { loadingProps } from '@/loading/src'
 import type { constants } from '@/loading/src/service'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { setText, close, handleAfterLeave } from '../src/loading'
 
 export interface ILoadingState {

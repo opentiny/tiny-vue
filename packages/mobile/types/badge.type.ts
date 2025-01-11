@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { badgeProps } from '@/badge/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { computedValueRef, computedContent, computedTransform } from '../src/badge'
 
 export type IBadgeContent = string | number | undefined

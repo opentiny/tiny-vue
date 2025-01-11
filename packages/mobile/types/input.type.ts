@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { inputProps, $constants } from '@/input/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type useStorageBox from '../src/tall-storage/vue-storage-box'
 import type {
   calculateNodeStyling,

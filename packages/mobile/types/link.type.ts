@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { linkProps } from '@/link/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type ILinkProps = ExtractPropTypes<typeof linkProps>
 

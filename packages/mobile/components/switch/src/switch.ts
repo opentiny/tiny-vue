@@ -10,9 +10,10 @@
  *
  */
 import type { ExtractPropTypes, StyleValue } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from './renderless'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
   PC_PREFIXCLS: 'tiny-switch',

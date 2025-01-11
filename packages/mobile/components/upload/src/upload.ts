@@ -5,7 +5,7 @@ import type {
   ISharedRenderlessParamUtils,
   ITinyVm,
   ISharedRenderlessParamHooks
-} from '../../../types/shared.type'
+} from '@mobile-root/shared.type'
 import type {
   isImage,
   abort,

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { milestoneProps, $constants } from '@/milestone/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type IMilestoneProps = ExtractPropTypes<typeof milestoneProps>
 

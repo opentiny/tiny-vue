@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { labelProps } from '@/label/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export type ILabelProps = ExtractPropTypes<typeof labelProps>
 

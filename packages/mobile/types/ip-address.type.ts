@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { ipAddressProps } from '@/ip-address/src'
-import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type {
   getCursorPosition,
   select,

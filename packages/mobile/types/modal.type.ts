@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { modalProps, $constants } from '@/modal/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { mouseEnterEvent, mouseLeaveEvent } from '../src/modal'
 
 type zoomLocatType = null | {

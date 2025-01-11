@@ -1,4 +1,4 @@
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { ICascaderPanelNode, ICascaderPanelApi } from './cascader-panel.type'
 import type { clearHoverZone, handleExpand, handleMouseMove } from '../src/cascader-menu'
 

@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { floatButtonProps } from '@/float-button/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { clearTimer, handleClick } from '../src/float-button'
 
 export interface IFloatButtonState {

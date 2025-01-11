@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, StyleValue } from 'vue'
 import type { radioButtonProps, $constants } from '@/radio-button/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type {
   handleChange,
   getValue,

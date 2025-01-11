@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { popConfirmProps, $constants } from '@/popconfirm/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { show, hide, confirm, handleEmit } from '../src/popconfirm'
 
 export interface IPopconfirmState {

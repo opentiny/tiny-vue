@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComputedRef } from 'vue'
 import type { popeditorProps, $constants } from '@/popeditor/src'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export interface IPopeditorState {
   showContent: boolean
