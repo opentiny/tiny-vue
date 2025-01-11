@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    dts(),
+    dts({ rullupTypes: true }),
     replace({
       '.less': '.css'
     })
