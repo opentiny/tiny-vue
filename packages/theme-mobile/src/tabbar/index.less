@@ -17,14 +17,14 @@
 @tabbar-prefix-cls: ~'@{css-prefix}mobile-tabbar';
 
 .@{tabbar-prefix-cls} {
-  .component-css-vars-tabbar();
+  .inject-Tabbar-vars();
 
   z-index: 1;
   display: flex;
   box-sizing: content-box;
   width: 100%;
-  height: var(--ti-mobile-tabbar-height, 48px);
-  background-color: var(--ti-mobile-tabbar-bgcolor, #f0f0f0);
+  height: var(--tvm-Tabbar-height, 48px);
+  background-color: var(--tvm-Tabbar-bgcolor, #f0f0f0);
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 
@@ -39,6 +39,6 @@
   }
 
   &.is-border {
-    .hairline('top', var(--ti-mobile-tabbar-border-color, #ccc), absolute);
+    .hairline('top', var(--tvm-Tabbar-border-color, #ccc), absolute);
   }
 }

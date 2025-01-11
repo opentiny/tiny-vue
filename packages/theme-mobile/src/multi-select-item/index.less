@@ -18,30 +18,30 @@
 @multi-select-item-prefix-cls: ~'@{css-prefix}mobile-multi-select-item';
 
 .@{multi-select-item-prefix-cls} {
-  .component-css-vars-multi-select-item();
+  .inject-MultiSelectItem-vars();
 
   width: 100%;
-  height: var(--ti-mobile-multi-select-item-height);
-  padding: 0 var(--ti-mobile-multi-select-item-padding-horizontal);
-  line-height: var(--ti-mobile-multi-select-item-height);
-  background: var(--ti-mobile-multi-select-item-bg-color);
-  color: var(--ti-mobile-multi-select-item-text-color);
-  font-size: var(--ti-mobile-multi-select-item-font-size);
+  height: var(--tvm-MultiSelectItem-height);
+  padding: 0 var(--tvm-MultiSelectItem-padding-horizontal);
+  line-height: var(--tvm-MultiSelectItem-height);
+  background: var(--tvm-MultiSelectItem-bg-color);
+  color: var(--tvm-MultiSelectItem-text-color);
+  font-size: var(--tvm-MultiSelectItem-font-size);
 
   &:active {
-    background-color: var(--ti-mobile-multi-select-item-bg-color-touch);
+    background-color: var(--tvm-MultiSelectItem-bg-color-touch);
   }
 
   &.is-active {
-    color: var(--ti-mobile-multi-select-item-text-color-active);
-    font-weight: var(--ti-mobile-multi-select-item-font-weight-active);
+    color: var(--tvm-MultiSelectItem-text-color-active);
+    font-weight: var(--tvm-MultiSelectItem-font-weight-active);
   }
 
   &.is-disabled {
-    color: var(--ti-mobile-multi-select-item-text-color-disabled);
+    color: var(--tvm-MultiSelectItem-text-color-disabled);
 
     .@{multi-select-item-prefix-cls}__suffix-icon svg {
-      fill: var(--ti-mobile-multi-select-item-icon-color-disabled);
+      fill: var(--tvm-MultiSelectItem-icon-color-disabled);
     }
   }
 
@@ -59,7 +59,7 @@
   &__content-indent {
     display: inline-block;
     height: 100%;
-    width: var(--ti-mobile-multi-select-item-indent-width);
+    width: var(--tvm-MultiSelectItem-indent-width);
   }
 
   &__suffix-icon {

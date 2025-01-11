@@ -19,11 +19,11 @@
 @input-prefix-cls: ~'@{css-prefix}mobile-input';
 
 .@{numeric-prefix-cls} {
-  .component-css-vars-numeric();
+  .inject-Numeric-vars();
 
   position: relative;
   display: inline-block;
-  width: var(--ti-mobile-numeric-width);
+  width: var(--tvm-Numeric-width);
   outline: none;
 
   &__input {
@@ -33,7 +33,7 @@
       cursor: not-allowed;
       pointer-events: none;
       border: none;
-      color: var(--ti-mobile-numeric-text-color-disabled);
+      color: var(--tvm-Numeric-text-color-disabled);
     }
 
     &.is-disabled .@{input-prefix-cls}__icon {
@@ -43,13 +43,13 @@
 
   &__input-inner {
     width: 100%;
-    height: var(--ti-mobile-numeric-height);
-    line-height: var(--ti-mobile-numeric-height);
-    font-size: var(--ti-mobile-numeric-font-size);
-    font-weight: var(--ti-mobile-numeric-font-weight);
-    color: var(--ti-mobile-numeric-text-color);
+    height: var(--tvm-Numeric-height);
+    line-height: var(--tvm-Numeric-height);
+    font-size: var(--tvm-Numeric-font-size);
+    font-weight: var(--tvm-Numeric-font-weight);
+    color: var(--tvm-Numeric-text-color);
     border: none;
-    padding: 0 var(--ti-mobile-numeric-height);
+    padding: 0 var(--tvm-Numeric-height);
     outline: 0;
     display: inline-block;
     box-sizing: border-box;
@@ -72,10 +72,10 @@
     position: absolute;
     z-index: 1;
     top: 0;
-    width: var(--ti-mobile-numeric-height);
-    height: var(--ti-mobile-numeric-height);
-    line-height: var(--ti-mobile-numeric-height);
-    background-color: var(--ti-mobile-numeric-button-background-color);
+    width: var(--tvm-Numeric-height);
+    height: var(--tvm-Numeric-height);
+    line-height: var(--tvm-Numeric-height);
+    background-color: var(--tvm-Numeric-button-background-color);
     border-radius: 999px;
     display: flex;
     align-items: center;
@@ -83,16 +83,16 @@
     cursor: pointer;
 
     svg {
-      fill: var(--ti-mobile-numeric-icon-color);
-      width: var(--ti-mobile-numeric-icon-height);
-      height: var(--ti-mobile-numeric-icon-height);
+      fill: var(--tvm-Numeric-icon-color);
+      width: var(--tvm-Numeric-icon-height);
+      height: var(--tvm-Numeric-icon-height);
     }
 
     &.is-disabled {
       cursor: not-allowed;
 
       svg {
-        fill: var(--ti-mobile-numeric-icon-color-disabled);
+        fill: var(--tvm-Numeric-icon-color-disabled);
       }
     }
   }
@@ -108,14 +108,14 @@
   &.is-disabled &__decrease,
   &.is-disabled &__increase {
     svg {
-      fill: var(--ti-mobile-numeric-icon-color-disabled);
+      fill: var(--tvm-Numeric-icon-color-disabled);
     }
 
     &:hover {
       cursor: not-allowed;
 
       svg {
-        fill: var(--ti-mobile-numeric-icon-color-disabled);
+        fill: var(--tvm-Numeric-icon-color-disabled);
       }
     }
   }

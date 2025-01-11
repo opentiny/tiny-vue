@@ -17,19 +17,21 @@
 @progress-prefix-cls: ~'@{css-prefix}mobile-progress';
 
 .@{progress-prefix-cls} {
+  .inject-Popover-vars();
+
   position: relative;
   line-height: 1;
 
   &.is-success {
-    .progress-status(var(--ti-progress-success-color, #52c41a));
+    .progress-status(var(--tvm-Progress-success-color, #52c41a));
   }
 
   &.is-warning {
-    .progress-status(var(--ti-progress-warning-color, #faad14));
+    .progress-status(var(--tvm-Progress-warning-color, #faad14));
   }
 
   &.is-exception {
-    .progress-status(var(--ti-progress-exception-color, #f5222d));
+    .progress-status(var(--tvm-Progress-exception-color, #f5222d));
   }
 
   &--circle,
@@ -71,13 +73,12 @@
     padding-right: 50px;
     width: 100%;
     margin-right: -55px;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
     &__outer {
       height: 2px;
-      border-radius: var(--ti-progress-bar-border-radius, 100px);
-      background-color: var(--ti-progress-bar-outer-bgcolor, #f5f5f5);
+      border-radius: 999px;
+      background-color: var(--tvm-Progress-bar-outer-bgcolor, #f5f5f5);
       overflow: hidden;
       position: relative;
       vertical-align: middle;
@@ -90,25 +91,25 @@
       height: 100%;
       background-color: #00c696;
       text-align: right;
-      border-radius: var(--ti-progress-bar-border-radius, 100px);
+      border-radius: 999px;
       line-height: 1;
       white-space: nowrap;
       transition: width 0.6s ease;
 
-      &::after {
+      &:after {
         content: '';
         height: 100%;
       }
     }
 
     &__innerText {
-      color: var(--ti-progress-bar-inner-text-color, #fff);
-      font-size: var(--ti-progress-text-font-size, 12px);
+      color: var(--tvm-Progress-bar-inner-text-color, #fff);
+      font-size: var(--tvm-Progress-text-font-size, 12px);
       margin: 0 5px;
     }
 
     &,
-    &__inner::after,
+    &__inner:after,
     &__innerText {
       display: inline-block;
       vertical-align: middle;
@@ -116,8 +117,8 @@
   }
 
   &-text {
-    font-size: var(--ti-progress-text-font-size, 12px);
-    color: var(--ti-progress-text-color, #333);
+    font-size: var(--tvm-Progress-text-font-size, 12px);
+    color: var(--tvm-Progress-text-color, #333);
     display: inline-block;
     vertical-align: middle;
     margin-left: 12px;
@@ -127,16 +128,6 @@
       vertical-align: middle;
       display: inline-block;
     }
-  }
-}
-
-@-webkit-keyframes progress {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 32px 0;
   }
 }
 

@@ -18,7 +18,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{tabbar-item-prefix-cls} {
-  .component-css-vars-tabbar-item();
+  .inject-TabbarItem-vars();
 
   display: flex;
   flex: 1;
@@ -35,29 +35,29 @@
     .@{svg-prefix-cls} {
       display: block;
       min-width: 1em;
-      font-size: var(--ti-mobile-tabbar-item-icon-size, 18px);
-      fill: var(--ti-mobile-tabbar-item-color, #666);
+      font-size: var(--tvm-TabbarItem-icon-size, 18px);
+      fill: var(--tvm-TabbarItem-color, #666);
     }
 
     img {
       display: block;
-      height: var(--ti-mobile-tabbar-item-icon-size, 18px);
+      height: var(--tvm-TabbarItem-icon-size, 18px);
     }
   }
 
   &__text {
-    font-size: var(--ti-mobile-tabbar-item-text-font-size, 10px);
-    color: var(--ti-mobile-tabbar-item-color, #666);
+    font-size: var(--tvm-TabbarItem-text-font-size, 10px);
+    color: var(--tvm-TabbarItem-color, #666);
   }
 
   &.is-active &__icon {
     .@{svg-prefix-cls} {
-      fill: var(--ti-mobile-tabbar-item-active-color, #f04b3d);
+      fill: var(--tvm-TabbarItem-active-color, #f04b3d);
     }
   }
 
   &.is-active &__text {
-    color: var(--ti-mobile-tabbar-item-active-color, #f04b3d);
+    color: var(--tvm-TabbarItem-active-color, #f04b3d);
   }
 
   .@{info-prefix-cls} {
@@ -70,13 +70,13 @@
     padding: 0 3px;
     color: #fff;
     font-weight: 500;
-    font-size: var(--ti-mobile-tabbar-item-info-font-size, 12px);
+    font-size: var(--tvm-TabbarItem-info-font-size, 12px);
     font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
     line-height: 14px;
     text-align: center;
-    background-color: var(--ti-mobile-tabbar-item-info-bgcolor, #ee0a24);
+    background-color: var(--tvm-TabbarItem-info-bgcolor, #ee0a24);
     border: 1px solid #fff;
-    border-radius: var(--ti-mobile-tabbar-item-info-border-radius, 16px);
+    border-radius: var(--tvm-TabbarItem-info-border-radius, 16px);
     transform: translate(50%, -50%);
     transform-origin: 100%;
   }
@@ -85,7 +85,7 @@
     width: 8px;
     min-width: 0;
     height: 8px;
-    background-color: var(--ti-mobile-tabbar-item-info-bgcolor, #ee0a24);
+    background-color: var(--tvm-TabbarItem-info-bgcolor, #ee0a24);
     border-radius: 100%;
   }
 }

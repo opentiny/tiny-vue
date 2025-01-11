@@ -18,7 +18,7 @@
 @alert-prefix-cls: ~'@{css-prefix}mobile-alert';
 
 .@{alert-prefix-cls} {
-  .component-css-vars-alert();
+  .inject-Alert-vars();
 
   display: flex;
   align-items: flex-start;
@@ -29,20 +29,21 @@
 
   .@{alert-prefix-cls}__content {
     flex: 1;
-    color: var(--ti-mobile-alert-content-text-color);
-    font-weight: var(--ti-mobile-alert-font-weight);
-    padding: 0 var(--ti-mobile-alert-content-padding-horizontal);
+    color: var(--tvm-Alert-content-text-color);
+    font-weight: var(--tvm-Alert-font-weight);
+    padding: 0 var(--tvm-Alert-content-padding-horizontal);
     white-space: pre-wrap;
     word-break: break-all;
   }
 
   &--normal {
-    height: var(--ti-mobile-alert-height, 36px);
+    height: var(--tvm-Alert-height, 36px);
     line-height: 1.5;
-    padding: var(--ti-mobile-alert-padding-top) var(--ti-mobile-alert-padding-right) var(--ti-mobile-alert-padding-bottom) var(--ti-mobile-alert-padding-left);
+    padding: var(--tvm-Alert-padding-top) var(--tvm-Alert-padding-right) var(--tvm-Alert-padding-bottom)
+      var(--tvm-Alert-padding-left);
 
     .@{alert-prefix-cls}__content {
-      font-size: var(--ti-mobile-alert-content-font-size, 12px);
+      font-size: var(--tvm-Alert-content-font-size, 12px);
 
       &.is-hideicon {
         padding: 0;
@@ -51,10 +52,11 @@
   }
 
   &&--large {
-    padding: var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-right) var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-left);
+    padding: var(--tvm-Alert-large-padding-vertical) var(--tvm-Alert-padding-right)
+      var(--tvm-Alert-large-padding-vertical) var(--tvm-Alert-padding-left);
 
     .@{alert-prefix-cls}__content {
-      font-size: var(--ti-mobile-alert-large-font-size);
+      font-size: var(--tvm-Alert-large-font-size);
 
       &.is-hideicoalert-variantn {
         padding: 0;
@@ -62,7 +64,7 @@
     }
 
     .is-custom {
-      font-size: var(--ti-mobile-alert-large-font-size);
+      font-size: var(--tvm-Alert-large-font-size);
     }
 
     .@{alert-prefix-cls}__icon {
@@ -72,46 +74,46 @@
 
   &--success {
     .alert-variant(
-      var(--ti-mobile-alert-success-icon-color) ;
-        var(--ti-mobile-alert-success-link-color) ;
-        var(--ti-mobile-alert-success-bg-color)
+      var(--tvm-Alert-success-icon-color) ;
+        var(--tvm-Alert-success-link-color) ;
+        var(--tvm-Alert-success-bg-color)
     );
   }
 
   &--info {
     .alert-variant(
-      var(--ti-mobile-alert-info-icon-color) ;
-        var(--ti-mobile-alert-info-link-color) ;
-        var(--ti-mobile-alert-info-bg-color)
+      var(--tvm-Alert-info-icon-color) ;
+        var(--tvm-Alert-info-link-color) ;
+        var(--tvm-Alert-info-bg-color)
     );
   }
 
   &--warning {
     .alert-variant(
-      var(--ti-mobile-alert-warning-icon-color) ;
-        var(--ti-mobile-alert-warning-link-color) ;
-        var(--ti-mobile-alert-warning-bg-color)
+      var(--tvm-Alert-warning-icon-color) ;
+        var(--tvm-Alert-warning-link-color) ;
+        var(--tvm-Alert-warning-bg-color)
     );
   }
 
   &--error {
     .alert-variant(
-      var(--ti-mobile-alert-error-icon-color) ;
-        var(--ti-mobile-alert-error-link-color) ;
-        var(--ti-mobile-alert-error-bg-color)
+      var(--tvm-Alert-error-icon-color) ;
+        var(--tvm-Alert-error-link-color) ;
+        var(--tvm-Alert-error-bg-color)
     );
   }
 
   &__icon {
     margin-top: 2px;
-    font-size: var(--ti-mobile-alert-icon-size);
+    font-size: var(--tvm-Alert-icon-size);
 
     &.@{alert-prefix-cls}__close {
       position: absolute;
-      top: var(--ti-mobile-alert-padding-top);
-      right: var(--ti-mobile-alert-padding-right);
+      top: var(--tvm-Alert-padding-top);
+      right: var(--tvm-Alert-padding-right);
       margin-top: 0;
-      fill: var(--ti-mobile-alert-close-icon-color);
+      fill: var(--tvm-Alert-close-icon-color);
     }
   }
 
@@ -125,12 +127,12 @@
 
   .is-custom {
     cursor: pointer;
-    font-size: var(--ti-mobile-alert-content-font-size);
-    color: var(--ti-mobile-alert-custom-text-color);
+    font-size: var(--tvm-Alert-content-font-size);
+    color: var(--tvm-Alert-custom-text-color);
   }
 
   & &__close {
-    font-size: var(--ti-mobile-alert-close-icon-font-size);
+    font-size: var(--tvm-Alert-close-icon-font-size);
     cursor: pointer;
   }
 }

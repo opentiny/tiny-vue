@@ -17,14 +17,14 @@
 @dialog-box-prefix-cls: ~'@{css-prefix}mobile-dialog-box';
 
 .@{dialog-box-prefix-cls} {
-  .component-css-vars-dialog-box();
+  .inject-DialogBox-vars();
 
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: var(--ti-mobile-dialogbox-width, 270px);
-  background: var(--ti-mobile-dialogbox-background, #fff);
+  width: var(--tvm-DialogBox-width, 270px);
+  background: var(--tvm-DialogBox-background, #fff);
 
   &__wrapper {
     margin: 0;
@@ -47,14 +47,14 @@
   }
 
   & &__title {
-    font-size: var(--ti-mobile-dialogbox-title-font-size, 17px);
-    color: var(--ti-mobile-dialogbox-title-color, #000);
+    font-size: var(--tvm-DialogBox-title-font-size, 17px);
+    color: var(--tvm-DialogBox-title-color, #000);
     font-weight: bold;
   }
 
   & &__body {
-    font-size: var(--ti-mobile-dialogbox-body-font-size, 16px);
-    color: var(--ti-mobile-dialogbox-body-color, #333);
+    font-size: var(--tvm-DialogBox-body-font-size, 16px);
+    color: var(--tvm-DialogBox-body-color, #333);
     padding: 0px 16px 16px;
     max-height: 482px;
     overflow-y: auto;
@@ -68,7 +68,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .hairline('top', var(--ti-mobile-dialogbox-border-color, #ccc));
+    .hairline('top', var(--tvm-DialogBox-border-color, #ccc));
   }
 
   & &__button {
@@ -84,15 +84,14 @@
     }
 
     &.cancel-button {
-      color: var(--ti-mobile-dialogbox-cancel-button-color, #999);
-      .hairline('right', var(--ti-mobile-dialogbox-border-color, #ccc));
+      color: var(--tvm-DialogBox-cancel-button-color, #999);
+      .hairline('right', var(--tvm-DialogBox-border-color, #ccc));
     }
 
     &.confirm-button {
-      color: var(--ti-mobile-dialogbox-confirm-button-color, #333);
+      color: var(--tvm-DialogBox-confirm-button-color, #333);
     }
   }
-
 }
 
 .v-modal {

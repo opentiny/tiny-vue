@@ -17,7 +17,7 @@
 @mini-picker-prefix-cls: ~'@{css-prefix}mobile-mini-picker';
 
 .@{mini-picker-prefix-cls} {
-  .component-css-vars-mini-picker();
+  .inject-MiniPicker-vars();
 
   &__mask {
     position: fixed;
@@ -25,7 +25,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--ti-mobile-mini-picker-mask-background, rgba(0, 0, 0, 0.6));
+    background: var(--tvm-MiniPicker-mask-background, rgba(0, 0, 0, 0.6));
     z-index: 1000;
   }
 
@@ -34,7 +34,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--ti-mobile-mini-picker-content-bgcolor, #ddd);
+    background-color: var(--tvm-MiniPicker-content-bgcolor, #ddd);
     transform: translate(0, 100%);
     backface-visibility: hidden;
     transition: transform 0.3s;
@@ -48,31 +48,31 @@
   &__toolbar {
     position: relative;
     display: flex;
-    height: var(--ti-mobile-mini-picker-toolbar-height, 44px);
-    line-height: var(--ti-mobile-mini-picker-toolbar-height, 44px);
+    height: var(--tvm-MiniPicker-toolbar-height, 44px);
+    line-height: var(--tvm-MiniPicker-toolbar-height, 44px);
     padding: 0 17px;
-    background-color: var(--ti-mobile-mini-picker-toolbar-bgcolor, #fff);
-    font-size: var(--ti-mobile-mini-picker-toolbar-font-size, 14px);
+    background-color: var(--tvm-MiniPicker-toolbar-bgcolor, #fff);
+    font-size: var(--tvm-MiniPicker-toolbar-font-size, 14px);
     text-align: center;
     .hairline(
       'bottom',
-      var(--ti-mobile-mini-picker-toolbar-border-color, #ddd)
+      var(--tvm-MiniPicker-toolbar-border-color, #ddd)
     );
 
     .picker_action {
       display: block;
       flex: 1;
-      color: var(--ti-mobile-mini-picker-toolbar-action-color, #039be5);
+      color: var(--tvm-MiniPicker-toolbar-action-color, #039be5);
     }
 
     .picker_cancel {
-      color: var(--ti-mobile-mini-picker-toolbar-cancel-color, #666);
+      color: var(--tvm-MiniPicker-toolbar-cancel-color, #666);
       text-align: left;
     }
 
     .picker_title {
-      color: var(--ti-mobile-mini-picker-toolbar-title-color, #333);
-      font-size: var(--ti-mobile-mini-picker-toolbar-title-font-size, 17px);
+      color: var(--tvm-MiniPicker-toolbar-title-color, #333);
+      font-size: var(--tvm-MiniPicker-toolbar-title-font-size, 17px);
       font-family: 'PingFangSC-Regular';
     }
 
@@ -85,7 +85,7 @@
     position: relative;
     display: flex;
     height: 238px;
-    background-color: var(--ti-mobile-mini-picker-columns-bgcolor, #fff);
+    background-color: var(--tvm-MiniPicker-columns-bgcolor, #fff);
     overflow: hidden;
   }
 }

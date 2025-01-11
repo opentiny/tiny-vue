@@ -17,14 +17,14 @@
 @mask-prefix-cls: ~'@{css-prefix}mobile-mask';
 
 .@{mask-prefix-cls} {
-  .component-css-vars-mask();
+  .inject-Mask-vars();
 
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--tiny-mobile-mask-bg-color);
+  background: var(--tvm-Mask-bg-color);
   height: 100%;
 }
 
