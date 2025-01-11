@@ -10,8 +10,31 @@
  *
  */
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams } from '@mobile-root/shared.type'
+
+import type {
+  mounted,
+  computedTooltipId,
+  destroyed,
+  doToggle,
+  doShow,
+  doClose,
+  handleFocus,
+  handleClick,
+  handleBlur,
+  handleKeydown,
+  handleAfterEnter,
+  handleAfterLeave,
+  handleMouseEnter,
+  handleMouseLeave,
+  handleDocumentClick,
+  cleanup,
+  wrapMounted,
+  handleItemClick,
+  observeCallback
+} from './renderless'
+
+export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export const popoverProps = {
   appendToBody: {
@@ -83,28 +106,6 @@ export const popoverProps = {
     default: () => true
   }
 }
-
-import type {
-  mounted,
-  computedTooltipId,
-  destroyed,
-  doToggle,
-  doShow,
-  doClose,
-  handleFocus,
-  handleClick,
-  handleBlur,
-  handleKeydown,
-  handleAfterEnter,
-  handleAfterLeave,
-  handleMouseEnter,
-  handleMouseLeave,
-  handleDocumentClick,
-  cleanup,
-  wrapMounted,
-  handleItemClick,
-  observeCallback
-} from './renderless'
 
 export type IPopoverProps = ExtractPropTypes<typeof popoverProps>
 

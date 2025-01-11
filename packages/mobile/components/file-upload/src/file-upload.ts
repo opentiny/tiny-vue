@@ -10,7 +10,7 @@
  *
  */
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '@mobile-root/shared.type'
 import type {
   sliceChunk,
   getFormData,
@@ -87,7 +87,7 @@ import type { downloadFile as ordinaryDownload } from '../../upload-list/src/upl
 import type { IUploadFormData } from '../../upload/src/upload'
 import { $props } from '@mobile-root/common'
 
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
   FILE_UPLOAD_INNER_TEMPLATE: 'file-upload-inner-template',

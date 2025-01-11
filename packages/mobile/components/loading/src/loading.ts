@@ -10,10 +10,11 @@
  *
  */
 import type { ExtractPropTypes, Component } from 'vue'
-import type { constants } from './service'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import { constants } from './service'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { setText, close, handleAfterLeave } from './renderless'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const loadingProps = {
   type: {

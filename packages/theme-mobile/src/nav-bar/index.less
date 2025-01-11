@@ -18,22 +18,22 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{mobile-nav-bar-prefix-cls} {
-  .component-css-vars-nav-bar();
+  .inject-NavBar-vars();
 
   position: relative;
   z-index: 1;
-  height: var(--ti-mobile-nav-bar-height, 44px);
-  line-height: var(--ti-mobile-nav-bar-height, 44px);
+  height: var(--tvm-NavBar-height, 44px);
+  line-height: var(--tvm-NavBar-height, 44px);
   padding: 0 10px;
   text-align: center;
-  background-color: var(--ti-mobile-nav-bar-bgcolor, #343745);
+  background-color: var(--tvm-NavBar-bgcolor, #343745);
   user-select: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .@{svg-prefix-cls} {
-    fill: var(--ti-mobile-nav-bar-icon-color, #fff);
+    fill: var(--tvm-NavBar-icon-color, #fff);
     font-size: 24px;
     position: relative;
     text-rendering: auto;
@@ -49,8 +49,8 @@
 
   &__title {
     max-width: 60%;
-    color: var(--ti-mobile-nav-bar-title-color, #f0f0f0);
-    font-size: var(--ti-mobile-nav-bar-arrow-font-size, 17px);
+    color: var(--tvm-NavBar-title-color, #f0f0f0);
+    font-size: var(--tvm-NavBar-arrow-font-size, 17px);
 
     .main-title,
     .sub-title {
@@ -77,7 +77,7 @@
 
   &__left,
   &__right {
-    font-size: var(--ti-mobile-nav-bar-left-font-size, 16px);
+    font-size: var(--tvm-NavBar-left-font-size, 16px);
     cursor: pointer;
 
     &:active {
@@ -86,6 +86,6 @@
   }
 
   &__text {
-    color: var(--ti-mobile-nav-bar-title-color, #f0f0f0);
+    color: var(--tvm-NavBar-title-color, #f0f0f0);
   }
 }

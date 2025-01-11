@@ -16,25 +16,25 @@
 @steps-prefix-cls: ~'@{css-prefix}mobile-steps';
 
 .@{steps-prefix-cls} {
-  .component-css-vars-steps();
+  .inject-Steps-vars();
 
-  color: var(--ti-mobile-steps-timeline-date-time-text-color);
+  color: var(--tvm-Steps-timeline-date-time-text-color);
 
   .line {
-    background: var(--ti-mobile-steps-line-bg-color);
+    background: var(--tvm-Steps-line-bg-color);
   }
 
   .icon {
-    width: var(--ti-mobile-steps-icon-size);
-    height: var(--ti-mobile-steps-icon-size);
-    line-height: var(--ti-mobile-steps-icon-size);
+    width: var(--tvm-Steps-icon-size);
+    height: var(--tvm-Steps-icon-size);
+    line-height: var(--tvm-Steps-icon-size);
     position: relative;
     text-align: center;
     left: ~'calc(50% - 10px)';
     top: 4px;
     border-radius: 50%;
-    background: var(--ti-mobile-steps-icon-bg-color);
-    color: var(--ti-mobile-steps-unselected-text-color);
+    background: var(--tvm-Steps-icon-bg-color);
+    color: var(--tvm-Steps-unselected-text-color);
     cursor: pointer;
     z-index: 15;
   }
@@ -50,13 +50,13 @@
     text-align: center;
 
     .name {
-      font-size: var(--ti-mobile-steps-font-size-base);
+      font-size: var(--tvm-Steps-font-size-base);
       float: left;
       width: 100%;
     }
 
     .status {
-      font-size: var(--ti-mobile-steps-font-size-base);
+      font-size: var(--tvm-Steps-font-size-base);
       float: left;
       width: 100%;
     }
@@ -64,56 +64,56 @@
 
   .process-done {
     .node-description {
-      color: var(--ti-mobile-steps-done-text-color);
+      color: var(--tvm-Steps-done-text-color);
     }
 
     .icon {
-      background: var(--ti-mobile-steps-done-icon-bg-color);
-      color: var(--ti-mobile-steps-done-icon-fill-color);
-      width: var(--ti-mobile-steps-icon-size);
-      height: var(--ti-mobile-steps-icon-size);
-      line-height: var(--ti-mobile-steps-icon-size);
-      font-size: var(--ti-mobile-steps-icon-size);
+      background: var(--tvm-Steps-done-icon-bg-color);
+      color: var(--tvm-Steps-done-icon-fill-color);
+      width: var(--tvm-Steps-icon-size);
+      height: var(--tvm-Steps-icon-size);
+      line-height: var(--tvm-Steps-icon-size);
+      font-size: var(--tvm-Steps-icon-size);
 
       .@{css-prefix}svg {
-        fill: var(--ti-mobile-steps-done-icon-fill-color);
+        fill: var(--tvm-Steps-done-icon-fill-color);
         vertical-align: baseline;
-        border: 1px solid var(--ti-mobile-steps-done-active-border-color);
+        border: 1px solid var(--tvm-Steps-done-active-border-color);
         border-radius: 50%;
         padding: 2px;
       }
     }
 
     .line {
-      background: var(--ti-mobile-steps-line-active-bg-color);
+      background: var(--tvm-Steps-line-active-bg-color);
     }
   }
 
   .process-current {
     .node-description {
-      color: var(--ti-mobile-steps-done-text-color);
+      color: var(--tvm-Steps-done-text-color);
     }
 
     .icon {
       border: none;
-      background: var(--ti-mobile-steps-advanced-active-bg-color);
-      color: var(--ti-mobile-steps-advanced-li-text-color);
-      font-size: var(--ti-mobile-steps-font-size-base);
+      background: var(--tvm-Steps-advanced-active-bg-color);
+      color: var(--tvm-Steps-advanced-li-text-color);
+      font-size: var(--tvm-Steps-font-size-base);
     }
   }
 
   .process-wait {
     .icon {
-      border: 1px solid var(--ti-mobile-steps-unselected-text-color);
+      border: 1px solid var(--tvm-Steps-unselected-text-color);
       box-sizing: border-box;
-      font-size: var(--ti-mobile-steps-font-size-base);
+      font-size: var(--tvm-Steps-font-size-base);
     }
   }
 
   .reverse {
     .process-current {
       .line {
-        background: var(--ti-mobile-steps-line-active-bg-color);
+        background: var(--tvm-Steps-line-active-bg-color);
       }
     }
   }
@@ -127,7 +127,7 @@
     }
 
     .line {
-      height: var(--ti-mobile-steps-line-height);
+      height: var(--tvm-Steps-line-height);
       left: 50%;
       top: -6px;
       position: relative;
@@ -139,13 +139,13 @@
 
     .process-done {
       .line {
-        background: var(--ti-mobile-steps-line-active-bg-color);
+        background: var(--tvm-Steps-line-active-bg-color);
       }
     }
 
     .process-current {
       .name {
-        color: var(--ti-mobile-steps-advanced-active-bg-color);
+        color: var(--tvm-Steps-advanced-active-bg-color);
         font-weight: bold;
       }
     }
@@ -161,8 +161,8 @@
 
   & &-timeline {
     overflow: hidden;
-    font-size: var(--ti-mobile-steps-timeline-name-font-size);
-    color: var(--ti-mobile-steps-timeline-date-time-text-color);
+    font-size: var(--tvm-Steps-timeline-name-font-size);
+    color: var(--tvm-Steps-timeline-date-time-text-color);
 
     .timeline {
       li {
@@ -191,21 +191,21 @@
           z-index: 10;
 
           &-normal {
-            border: 1px solid var(--ti-mobile-steps-unselected-text-color);
+            border: 1px solid var(--tvm-Steps-unselected-text-color);
             box-sizing: border-box;
-            background: var(--ti-mobile-steps-timeline-bg-color-normal);
+            background: var(--tvm-Steps-timeline-bg-color-normal);
           }
 
           &-success {
-            background: var(--ti-mobile-steps-timeline-bg-color-success);
+            background: var(--tvm-Steps-timeline-bg-color-success);
           }
 
           &-error {
-            background: var(--ti-mobile-steps-timeline-bg-color-error);
+            background: var(--tvm-Steps-timeline-bg-color-error);
           }
 
           &-handing {
-            background: var(--ti-mobile-steps-timeline-bg-color-handing);
+            background: var(--tvm-Steps-timeline-bg-color-handing);
           }
         }
 
@@ -228,7 +228,7 @@
           &-arrow {
             width: 8px;
             height: 8px;
-            border-color: var(--ti-mobile-steps-arrow-btn-border-color);
+            border-color: var(--tvm-Steps-arrow-btn-border-color);
             border-style: solid;
             border-width: 2px 2px 0 0;
             transform: rotate(-45deg);
@@ -250,7 +250,7 @@
       }
 
       .line {
-        width: var(--ti-mobile-steps-line-height);
+        width: var(--tvm-Steps-line-height);
         position: absolute;
         left: 3px;
         top: 0;
@@ -293,11 +293,11 @@
       }
 
       &.process-done {
-        color: var(--ti-mobile-steps-done-text-color);
+        color: var(--tvm-Steps-done-text-color);
       }
 
       &.process-current {
-        color: var(--ti-mobile-steps-advanced-active-bg-color);
+        color: var(--tvm-Steps-advanced-active-bg-color);
       }
 
       .name {
@@ -328,7 +328,7 @@
             width: 45px;
             line-height: 45px;
             height: 45px;
-            font-size: var(--ti-mobile-steps-font-size-7);
+            font-size: var(--tvm-Steps-font-size-7);
             position: relative;
             left: -20px;
           }

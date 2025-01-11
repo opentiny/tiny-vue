@@ -15,7 +15,7 @@ import type {
   ISharedRenderlessFunctionParams,
   ISharedRenderlessParamUtils,
   ISharedRenderlessParamHooks
-} from '../../../types/shared.type'
+} from '@mobile-root/shared.type'
 import type { mounted, handleKeydown } from './renderless'
 
 export type { ISharedRenderlessParamHooks }

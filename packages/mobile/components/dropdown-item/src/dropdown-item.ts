@@ -14,7 +14,7 @@ import type {
   ISharedRenderlessFunctionParams,
   ISharedRenderlessParamUtils,
   ISharedRenderlessParamHooks
-} from '../../../types/shared.type'
+} from '@mobile-root/shared.type'
 import type { IDropdownMenuVm } from '../../dropdown-menu/src/dropdown-menu'
 import type {
   open,

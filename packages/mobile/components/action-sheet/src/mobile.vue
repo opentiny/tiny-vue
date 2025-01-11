@@ -56,12 +56,13 @@ import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import '@opentiny/vue-theme-mobile/action-sheet/index.less'
 import BScroll from '@better-scroll/core'
 import { actionSheetProps } from './action-sheet'
+import type { IActionSheetApi } from './action-sheet'
 
 export default defineComponent({
   name: $prefix + 'ActionSheet',
   props: actionSheetProps,
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { BScroll } })
+    return setup({ props, context, renderless, api, extendOptions: { BScroll } }) as unknown as IActionSheetApi
   }
 })
 </script>

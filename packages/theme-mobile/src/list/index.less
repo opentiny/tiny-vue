@@ -17,7 +17,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{list-prefix-cls} {
-  .component-css-vars-list();
+  .inject-List-vars();
 
   width: 100%;
   min-height: 48px;
@@ -25,12 +25,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  background-color: var(--ti-mobile-list-bgcolor, #fff);
+  background-color: var(--tvm-List-bgcolor, #fff);
   box-sizing: border-box;
   position: relative;
 
   &:active {
-    background-color: var(--ti-mobile-list-active-bgcolor, #ddd);
+    background-color: var(--tvm-List-active-bgcolor, #ddd);
   }
 
   &:not(:last-child)::after {
@@ -41,7 +41,7 @@
     right: 0;
     bottom: 0;
     left: 16px;
-    border-bottom: 1px solid var(--ti-mobile-list-border-color, #ddd);
+    border-bottom: 1px solid var(--tvm-List-border-color, #ddd);
     transform: scaleY(0.5);
   }
 
@@ -62,18 +62,18 @@
   }
 
   &__main-text {
-    color: var(--ti-mobile-list-main-text-color, #333);
-    font-size: var(--ti-mobile-list-main-text-font-size, 16px);
+    color: var(--tvm-List-main-text-color, #333);
+    font-size: var(--tvm-List-main-text-font-size, 16px);
   }
 
   &__sub-text {
-    color: var(--ti-mobile-list-sub-text-color, #999);
-    font-size: var(--ti-mobile-list-sub-text-font-size, 14px);
+    color: var(--tvm-List-sub-text-color, #999);
+    font-size: var(--tvm-List-sub-text-font-size, 14px);
   }
 
   &__content-des {
-    color: var(--ti-mobile-list-content-des-color, #999);
-    font-size: var(--ti-mobile-list-content-des-font-size, 12px);
+    color: var(--tvm-List-content-des-color, #999);
+    font-size: var(--tvm-List-content-des-font-size, 12px);
     margin: 4px 0 0;
   }
 
@@ -81,7 +81,7 @@
     margin-right: 16px;
 
     .@{svg-prefix-cls} {
-      font-size: var(--ti-mobile-list-prefix-size, 24px);
+      font-size: var(--tvm-List-prefix-size, 24px);
     }
   }
 
@@ -89,8 +89,8 @@
     margin-left: 16px;
 
     .@{svg-prefix-cls} {
-      fill: var(--ti-mobile-list-suffix-color, #999);
-      font-size: var(--ti-mobile-list-suffix-size, 16px);
+      fill: var(--tvm-List-suffix-color, #999);
+      font-size: var(--tvm-List-suffix-size, 16px);
     }
   }
 
