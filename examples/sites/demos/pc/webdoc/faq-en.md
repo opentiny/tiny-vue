@@ -33,3 +33,43 @@ export default defineConfig({
   }
 })
 ```
+
+## 3、Configure `change-compat` to `true` to trigger the event
+
+By default, when the code logic changes the value of the responsive variable, the component will not trigger the corresponding event. For example, when the `current-page` of the `Pager` is modified, the `current-change` event will not be triggered. The corresponding event will be triggered only after the interaction occurs.
+You can set `change-compat` to `true` to trigger the event in the above situation.
+
+```html
+<template>
+  <div>
+    <tiny-button @click="currentPage = 1">change current-page</tiny-button>
+    <tiny-pager
+      :total="100"
+      :current-page="currentPage"
+      mode="number"
+      change-compat
+      @current-change="dataChangeTrigger"
+    ></tiny-pager>
+  </div>
+</template>
+
+<script setup>
+  import { ref } from 'vue'
+  import { TinyPager, TinyModal, TinyButton } from '@opentiny/vue'
+
+  const currentPage = ref(10)
+
+  const dataChangeTrigger = () => {
+    TinyModal.message({
+      message: 'current-change is triggered',
+      status: 'info'
+    })
+  }
+</script>
+
+<style scoped>
+  .tiny-button {
+    margin-bottom: 12px;
+  }
+</style>
+```

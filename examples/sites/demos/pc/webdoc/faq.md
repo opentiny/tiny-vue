@@ -33,3 +33,43 @@ export default defineConfig({
   }
 })
 ```
+
+## 3、配置 `change-compat` 为 `true` 触发事件
+
+默认情况下，代码逻辑更改响应式变量的值，组件不会触发对应事件，例如当修改 `Pager` 组件的 `current-page` 时，不会触发 `current-change` 事件。仅当交互行为发生后，才会触发对应事件。
+可以将 `change-compat` 设置为 `true` 在上述情况下触发事件。
+
+```html
+<template>
+  <div>
+    <tiny-button @click="currentPage = 1">改变current-page</tiny-button>
+    <tiny-pager
+      :total="100"
+      :current-page="currentPage"
+      mode="number"
+      change-compat
+      @current-change="dataChangeTrigger"
+    ></tiny-pager>
+  </div>
+</template>
+
+<script setup>
+  import { ref } from 'vue'
+  import { TinyPager, TinyModal, TinyButton } from '@opentiny/vue'
+
+  const currentPage = ref(10)
+
+  const dataChangeTrigger = () => {
+    TinyModal.message({
+      message: 'current-change 事件触发',
+      status: 'info'
+    })
+  }
+</script>
+
+<style scoped>
+  .tiny-button {
+    margin-bottom: 12px;
+  }
+</style>
+```
