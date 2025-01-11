@@ -13,7 +13,7 @@ import {
   computedSimplestPagerOption,
   computedSimplestPagerWidth,
   computedPageSizeText,
-  computedInternalPageSize,
+  getInternalPageSize,
   handleJumperFocus,
   handleSizeChange,
   handleJumperInput,
@@ -80,7 +80,7 @@ export const renderless = (
   const state: IPagerState = reactive({
     showSizes: false,
     internalCurrentPage: 1,
-    internalPageSize: computed(() => api.computedInternalPageSize()),
+    internalPageSize: 10,
     lastEmittedPage: -1,
     userChangePageSize: false,
     internalTotal: props.total,
@@ -134,7 +134,7 @@ export const renderless = (
     clickSizes: clickSizes(),
     // watch
     watchInternalCurrentPage: watchInternalCurrentPage({ state, emit, props }),
-    computedInternalPageSize: computedInternalPageSize({ state, props }),
+    getInternalPageSize: getInternalPageSize({ state, props }),
     watchCurrentPage: watchCurrentPage({ state, api }),
     watchInternalPageCount: watchInternalPageCount({ state, api }),
     watchTotal: watchTotal({ state }),
@@ -143,6 +143,7 @@ export const renderless = (
   })
 
   state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
+  state.internalPageSize = api.getInternalPageSize()
 
   watch(() => state.internalCurrentPage, api.watchInternalCurrentPage)
   watch(() => state.internalPageSize, api.watchInternalPageSize)
@@ -150,6 +151,14 @@ export const renderless = (
   watch(() => state.internalPageCount, api.watchInternalPageCount)
   watch(() => props.total, api.watchTotal)
   watch(() => state.showSizes, api.watchShowSizes)
+  watch(
+    () => props.pageSize,
+    () => (state.internalPageSize = api.getInternalPageSize())
+  )
+  watch(
+    () => props.pageSizes,
+    () => (state.internalPageSize = api.getInternalPageSize())
+  )
 
   return api
 }

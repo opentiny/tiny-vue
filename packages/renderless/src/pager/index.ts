@@ -68,17 +68,6 @@ export const computedInternalPageCount =
     return null
   }
 
-export const computedInternalPageSize =
-  ({ props }: Pick<IPagerRenderlessParams, 'props'>) =>
-  (): number => {
-    const { pageSize, pageSizes } = props
-    let internalPageSize = isNaN(pageSize) ? 10 : Number(pageSize)
-    if (Array.isArray(pageSizes)) {
-      internalPageSize = pageSizes.includes(pageSize) ? pageSize : pageSizes[0]
-    }
-    return internalPageSize
-  }
-
 export const computedSimplestPagerOption =
   ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
   (): Array<{ value: number; label: string }> => {
@@ -483,6 +472,17 @@ export const getValidCurrentPage =
     }
 
     return resetVal === undefined ? parseVal : resetVal
+  }
+
+export const getInternalPageSize =
+  ({ props }: Pick<IPagerRenderlessParams, 'props'>) =>
+  (): number => {
+    const { pageSize, pageSizes } = props
+    let internalPageSize = isNaN(pageSize) ? 10 : Number(pageSize)
+    if (Array.isArray(pageSizes)) {
+      internalPageSize = pageSizes.includes(pageSize) ? pageSize : pageSizes[0]
+    }
+    return internalPageSize
   }
 
 export const emitChange =
