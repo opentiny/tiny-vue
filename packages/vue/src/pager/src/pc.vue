@@ -207,7 +207,8 @@ export default defineComponent({
     'size',
     'align',
     'totalFixedLeft',
-    'pageSizeText'
+    'pageSizeText',
+    'changeCompat'
   ],
   directives: {
     loading: Loading.directive

@@ -68,6 +68,17 @@ export const computedInternalPageCount =
     return null
   }
 
+export const computedInternalPageSize =
+  ({ props }: Pick<IPagerRenderlessParams, 'props'>) =>
+  (): number => {
+    const { pageSize, pageSizes } = props
+    let internalPageSize = isNaN(pageSize) ? 10 : Number(pageSize)
+    if (Array.isArray(pageSizes)) {
+      internalPageSize = pageSizes.includes(pageSize) ? pageSize : pageSizes[0]
+    }
+    return internalPageSize
+  }
+
 export const computedSimplestPagerOption =
   ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
   (): Array<{ value: number; label: string }> => {
@@ -107,24 +118,18 @@ export const handleJumperFocus =
   }
 
 export const watchInternalCurrentPage =
-  ({ state, emit }: Pick<IPagerRenderlessParams, 'state' | 'emit'>) =>
+  ({ state, emit, props }: Pick<IPagerRenderlessParams, 'state' | 'emit' | 'props'>) =>
   (currentPage: number): void => {
     const value = String(currentPage)
 
     if (state.jumperValue !== value) {
       state.jumperValue = value
     }
-    emit('update:current-page', currentPage)
-    emit('current-change', currentPage)
-    state.lastEmittedPage = -1
-  }
-
-export const watchPageSizes =
-  ({ state, props }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
-  (newVal: number[]): void => {
-    if (Array.isArray(newVal)) {
-      state.internalPageSize = newVal.includes(props.pageSize) ? props.pageSize : newVal[0]
+    if (props.changeCompat) {
+      emit('update:current-page', currentPage)
+      emit('current-change', currentPage)
     }
+    state.lastEmittedPage = -1
   }
 
 export const watchCurrentPage =
@@ -148,10 +153,12 @@ export const watchInternalPageCount =
     state.userChangePageSize = false
   }
 
-export const watchPageSize =
-  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+export const watchInternalPageSize =
+  ({ props, emit }: Pick<IPagerRenderlessParams, 'props' | 'emit'>) =>
   (pageSize: number): void => {
-    state.internalPageSize = isNaN(pageSize) ? 10 : pageSize
+    if (props.changeCompat) {
+      emit('size-change', pageSize)
+    }
   }
 
 export const watchTotal =
@@ -189,7 +196,9 @@ export const handleSizeChange =
         state.userChangePageSize = true
         state.showSizes = false
         emit('update:pageSize', val)
-        emit('size-change', val)
+        if (!props.changeCompat) {
+          emit('size-change', val)
+        }
         emit('page-change', {
           currentPage: state.internalCurrentPage,
           pageSize: val,
@@ -477,11 +486,14 @@ export const getValidCurrentPage =
   }
 
 export const emitChange =
-  ({ state, nextTick, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state' | 'nextTick'>) =>
+  ({ state, nextTick, emit, props }: Pick<IPagerRenderlessParams, 'emit' | 'state' | 'nextTick' | 'props'>) =>
   (): void => {
     nextTick(() => {
       if (state.internalCurrentPage !== state.lastEmittedPage || state.userChangePageSize) {
-        emit('update:current-page', state.internalCurrentPage)
+        if (!props.changeCompat) {
+          emit('update:current-page', state.internalCurrentPage)
+          emit('current-change', state.internalCurrentPage)
+        }
         emit('page-change', {
           currentPage: state.internalCurrentPage,
           pageSize: state.internalPageSize,
