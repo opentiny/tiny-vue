@@ -26,7 +26,7 @@ jobs:
         with:
           script: |
             const version = `${{ inputs.version }}`
-            if(/^\d\.\d+\.\d+/.test(vserion)) {
+            if(!/^\d\.\d+\.\d+/.test(vserion)) {
               throw new Error('版本号格式不正确')
             }
             const publishVersion = version.slice(2)
