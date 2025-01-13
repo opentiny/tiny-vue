@@ -166,7 +166,6 @@
       "@vue/runtime-core@3": "3.4.38",
       "@vue/runtime-dom@3": "3.4.38",
       "@vue/shared@3": "3.4.38",
-      "@playwright/test": "1.42.1",
       "cropperjs": "1.5.12",
       "echarts": "5.4.1",
       "follow-redirects": "1.14.8",
