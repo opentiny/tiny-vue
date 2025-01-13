@@ -10,7 +10,7 @@ jobs:
   dispatch-test-all:
     name: Dispatch All Test
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -63,7 +63,7 @@ jobs:
     if: always()
     needs: [dispatch-test-all]
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/setup-node@v3
         with:

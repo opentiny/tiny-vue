@@ -17,7 +17,7 @@ jobs:
   dispatch-tests:
     name: Dispatch Tests
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: Setup pnpm

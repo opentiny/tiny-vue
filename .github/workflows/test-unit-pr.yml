@@ -11,7 +11,7 @@ concurrency:
 jobs:
   parse-components:
     name: Parse Affected Components
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       testComponents: ${{ steps.parseTitle.outputs.testComponents }}
     steps:
@@ -69,7 +69,7 @@ jobs:
   pr-test:
     name: PR Unit Test
     needs: parse-components
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       TEST_COMPONENTS: ${{ needs.parse-components.outputs.testComponents }}
     steps:
