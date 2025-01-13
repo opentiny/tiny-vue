@@ -100,9 +100,11 @@ function rule9({ keyboardConfig, isKeyWithCtrl, isKeyA, isKeyX, isKeyC, isKeyV, 
   }
 }
 
-function rule10({ keyboardConfig, isKeyWithCtrl, _vm, event, selected }) {
+function rule10({ keyboardConfig, isKeyWithCtrl, _vm, event, selected, actived }) {
+  // 如果同一个单元格已经被激活编辑态，那么就不重复触发
   return {
-    match: () => keyboardConfig.isEdit && !isKeyWithCtrl,
+    match: () =>
+      keyboardConfig.isEdit && !isKeyWithCtrl && !(selected.row === actived.row && selected.column === actived.column),
     action: () => _vm.handleOtherKeyDown({ event, selected })
   }
 }
@@ -147,7 +149,7 @@ export function onGlobalKeydown(event, _vm) {
     rule8({ isKeyDel, treeConfig, highlightCurrentRow, currentRow, isKeyBack, keyboardConfig, _vm, event, selected }),
     rule9({ keyboardConfig, isKeyWithCtrl, isKeyA, isKeyX, isKeyC, isKeyV, _vm, event }),
     // 如果是按下非功能键之外允许直接编辑
-    rule10({ keyboardConfig, isKeyWithCtrl, _vm, event, selected })
+    rule10({ keyboardConfig, isKeyWithCtrl, _vm, event, selected, actived })
   ]
 
   for (let i = 0; i < rules.length; i++) {
