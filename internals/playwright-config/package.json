@@ -1,15 +1,15 @@
 {
   "name": "@opentiny-internal/playwright-config",
-  "private": true,
   "type": "module",
   "version": "1.0.1-beta.0",
+  "private": true,
   "description": "",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "keywords": [],
+  "main": "src/index.js",
+  "module": "src/index.js",
   "dependencies": {
-    "@playwright/test": "~1.42.0"
+    "@playwright/test": "catalog:"
   }
 }

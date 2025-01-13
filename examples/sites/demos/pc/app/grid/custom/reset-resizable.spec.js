@@ -30,10 +30,12 @@ test.describe('手动重置列操作', () => {
 
   test('重置列隐藏', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
+    const custom = page.locator('.tiny-grid-custom')
+
     await page.goto('grid-custom#custom-reset-resizable')
     await page.locator('.tiny-grid-custom__setting-btn').click()
-    await page.getByRole('row', { name: '员工数 显示 未冻结' }).getByTitle('显示').getByRole('img').click()
-    await page.getByRole('button', { name: '确定' }).click()
+    await custom.getByRole('row', { name: '员工数' }).getByTitle('显示').getByRole('img').click()
+    await custom.getByRole('button', { name: '确定' }).click()
     const thHeader = page.locator('th.tiny-grid-header__column').nth(1)
     await expect(thHeader).toContainText('地址')
     await page.getByRole('button', { name: '重置列的隐藏操作' }).click()
