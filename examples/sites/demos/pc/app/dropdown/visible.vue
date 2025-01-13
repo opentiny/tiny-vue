@@ -1,18 +1,20 @@
 <template>
-  <tiny-dropdown v-model:visible="visible" @item-click="itemClick">
-    <div @click="handleClick">点击{{ visible ? '隐藏' : '显示' }}</div>
-    <template #dropdown>
-      <tiny-dropdown-menu>
-        <tiny-dropdown-item
-          v-for="(item, index) in options"
-          :key="index"
-          :label="item.label"
-          :disabled="item.disabled"
-          :item-data="item"
-        ></tiny-dropdown-item>
-      </tiny-dropdown-menu>
-    </template>
-  </tiny-dropdown>
+  <div class="box">
+    <tiny-dropdown v-model:visible="visible">
+      <div @click="handleClick">点击{{ visible ? '隐藏' : '显示' }}</div>
+      <template #dropdown>
+        <tiny-dropdown-menu>
+          <tiny-dropdown-item
+            v-for="(item, index) in options"
+            :key="index"
+            :label="item.label"
+            :disabled="item.disabled"
+            :item-data="item"
+          ></tiny-dropdown-item>
+        </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
+  </div>
 </template>
 
 <script>
@@ -32,7 +34,7 @@ export default {
           label: '黄金糕'
         },
         {
-          label: '点击我隐藏'
+          label: '狮子头'
         },
         {
           label: '螺蛳粉'
@@ -47,14 +49,15 @@ export default {
     }
   },
   methods: {
-    itemClick(e) {
-      if (e.itemData.label === '点击我隐藏') {
-        this.visible = false
-      }
-    },
     handleClick() {
       this.visible = !this.visible
     }
   }
 }
 </script>
+
+<style scoped>
+.box {
+  height: 150px;
+}
+</style>

@@ -114,13 +114,15 @@ export default defineComponent({
   },
   render() {
     const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title, suffixIcon, prefixIcon } = this
-    const { slots, size, state, border, showIcon, round, clickOutside } = this
+    const { slots, size, state, border, showIcon, round, clickOutside, visible } = this
 
     const params = { visible: state.visible }
     let triggerElm = null
     // TINY-TODO tiny-dropdown类名整改,统一tiny-组件名为前缀
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
-    const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
+    // tiny新增visible判断
+    const addVisibleClass = state.visibleIsBoolean ? visible : state.visible
+    const visibleClass = addVisibleClass ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
     // 优先级：suffix-icon 插槽 > suffixIcon 属性 > 其他主题图标 > 默认主题图标
     const IconDown = suffixIcon || state.designConfig?.icons?.dropdownIcon || iconDownWard()

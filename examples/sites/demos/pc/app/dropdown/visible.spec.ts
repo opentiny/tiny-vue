@@ -19,6 +19,6 @@ test('手动控制显隐', async ({ page }) => {
   await dropDownMenu.locator('div').filter({ hasText: '黄金糕' }).nth(1).click()
   await expect(dropDownMenu).toHaveCount(1)
 
-  await dropDownMenu.locator('div').filter({ hasText: '点击我隐藏' }).nth(1).click()
+  await wrap.getByText('点击隐藏').click()
   await expect(dropDownMenu).toHaveCount(0)
 })
