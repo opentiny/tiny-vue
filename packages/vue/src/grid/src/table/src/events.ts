@@ -230,7 +230,6 @@ export function handleOtherKeyDown({ event, selected }) {
     (!keyboardConfig.editMethod || !(keyboardConfig.editMethod(selected.args, event) === false))
   ) {
     // 如果是按下非功能键之外允许直接编辑
-    setCellValue(selected.row, selected.column, null)
     this.handleActived(selected.args, event)
   }
 }
