@@ -2,7 +2,6 @@ packages:
   - packages/**
   - examples/**
   - internals/*
-  - solid-demo/*
 
   # 统一版本，方便维护
 catalog:

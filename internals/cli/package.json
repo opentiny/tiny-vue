@@ -27,9 +27,6 @@
     "create:icon-saas": "esno src/index.ts create:icon-saas",
     "clean:build": "esno src/commands/clean.ts",
     "create:mapping": "esno src/commands/create/create-mapping.ts",
-    "build:entry-react": "esno src/index.ts build:entry-react",
-    "create:mapping-react": "esno src/commands/create/create-mapping-react.ts",
-    "build:react": "esno src/index.ts build:react",
     "build:chartTheme": "esno src/index.ts build:chartTheme"
   },
   "dependencies": {
