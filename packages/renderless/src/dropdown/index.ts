@@ -266,7 +266,13 @@ export const handleMainButtonClick =
   }
 
 export const mounted =
-  ({ api, vm, state, broadcast }: Pick<IDropdownRenderlessParams, 'api' | 'vm' | 'state' | 'broadcast'>) =>
+  ({
+    api,
+    vm,
+    state,
+    broadcast,
+    props
+  }: Pick<IDropdownRenderlessParams, 'api' | 'vm' | 'state' | 'broadcast' | 'props'>) =>
   () => {
     if (state.showSelfIcon) {
       state.showIcon = false
@@ -279,6 +285,8 @@ export const mounted =
     })
     if (!state.visibleIsBoolean) {
       vm.$on('is-disabled', api.clickOutside)
+    } else if (props.visible) {
+      broadcast('TinyDropdownMenu', 'visible', true)
     }
   }
 

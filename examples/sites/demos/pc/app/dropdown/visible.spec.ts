@@ -7,6 +7,9 @@ test('手动控制显隐', async ({ page }) => {
   const wrap = page.locator('#visible')
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu').locator('visible=true')
 
+  await wrap.getByText('点击隐藏').click()
+  await expect(dropDownMenu).toHaveCount(0)
+
   await wrap.getByText('点击显示').click()
   await expect(dropDownMenu).toHaveCount(1)
 
@@ -14,12 +17,6 @@ test('手动控制显隐', async ({ page }) => {
   await expect(dropDownMenu).toHaveCount(1)
 
   await dropDownMenu.locator('div').filter({ hasText: '黄金糕' }).nth(1).click()
-  await expect(dropDownMenu).toHaveCount(1)
-
-  await wrap.getByText('点击隐藏').click()
-  await expect(dropDownMenu).toHaveCount(0)
-
-  await wrap.getByText('点击显示').click()
   await expect(dropDownMenu).toHaveCount(1)
 
   await dropDownMenu.locator('div').filter({ hasText: '点击我隐藏' }).nth(1).click()

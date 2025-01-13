@@ -73,7 +73,7 @@ export const renderless = (
     watchFocusing: watchFocusing(parent),
     show: show({ props, state, emit }),
     hide: hide({ api, props, state, emit }),
-    mounted: mounted({ api, vm, state, broadcast }),
+    mounted: mounted({ api, vm, state, broadcast, props }),
     handleClick: handleClick({ api, props, state, emit }),
     handleTriggerKeyDown: handleTriggerKeyDown({ api, state }),
     handleItemKeyDown: handleItemKeyDown({ api, props, state, emit }),

@@ -1,6 +1,6 @@
 <template>
-  <tiny-dropdown v-model:visible="visible" :show-icon="false" @item-click="itemClick" :hideOnClick="false">
-    <tiny-button @click="handleClick">点击{{ visible ? '隐藏' : '显示' }}</tiny-button>
+  <tiny-dropdown v-model:visible="visible" @item-click="itemClick">
+    <div @click="handleClick">点击{{ visible ? '隐藏' : '显示' }}</div>
     <template #dropdown>
       <tiny-dropdown-menu>
         <tiny-dropdown-item
@@ -17,9 +17,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyButton } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
-const visible = ref(false)
+const visible = ref(true)
 const options = [
   {
     label: '黄金糕'
