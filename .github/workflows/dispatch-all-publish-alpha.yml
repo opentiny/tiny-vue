@@ -1,4 +1,4 @@
-name: Dispatch All Publish Alpha
+name: Dispatch Alpha All Publish
 run-name: Dispatch All Publish Alpha--${{ inputs.version }}
 
 on:

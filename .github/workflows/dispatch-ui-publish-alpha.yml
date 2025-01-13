@@ -1,5 +1,5 @@
-name: Dispatch Ui Publish
-run-name: Dispatch Ui--${{ inputs.components }}
+name: Dispatch Alpha Ui Publish
+run-name: Dispatch Alpha Ui--${{ inputs.components }}
 
 on:
   workflow_dispatch:

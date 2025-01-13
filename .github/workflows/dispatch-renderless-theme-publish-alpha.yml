@@ -1,5 +1,5 @@
-name: Dispatch Renderless Theme Runtime
-run-name: Dispatch Renderless Theme Runtime--${{ inputs.components }}
+name: Dispatch Alpha Renderless Theme Runtime
+run-name: Dispatch Alpha Renderless Theme Runtime--${{ inputs.components }}
 
 on:
   workflow_dispatch:
