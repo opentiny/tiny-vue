@@ -18,17 +18,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Parse Components
-        id: parseComponents
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const branchName = `${{ github.ref_name }}`
-
-            if (!branchName.includes('release-3.')) {
-              throw new Error('请使用release-3.xx.xx分支发布正式包')
-            }
-
       - name: CheckOut Code
         uses: actions/checkout@master
         with:
@@ -63,7 +52,7 @@ jobs:
         run: pnpm build:ui ${{ inputs.components }}
 
       - name: Run Release alpha
-        run: pnpm release:alpha
+        run: pnpm release:alpha -u
 
       - name: Publish
         run: |

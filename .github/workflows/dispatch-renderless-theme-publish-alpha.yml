@@ -81,7 +81,7 @@ jobs:
         run: pnpm build:runtime
 
       - name: Run Release alpha
-        run: pnpm release:alpha
+        run: pnpm release:alpha -u
 
       - name: Publish
         run: |
