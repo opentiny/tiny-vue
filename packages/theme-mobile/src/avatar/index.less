@@ -17,7 +17,7 @@
 @avatar-prefix-cls: ~'@{css-prefix}mobile-avatar';
 
 .@{avatar-prefix-cls} {
-  .component-css-vars-avatar();
+  .inject-Avatar-vars();
 
   display: inline-block;
   box-sizing: border-box;
@@ -25,44 +25,44 @@
   overflow: hidden;
   border-style: solid;
   border-width: 0;
-  color: var(--ti-mobile-avatar-color, #fff);
-  background: var(--ti-mobile-avatar-bgcolor, #c0c4cc);
-  width: var(--ti-mobile-avatar-size, 40px);
-  height: var(--ti-mobile-avatar-size, 40px);
-  line-height: var(--ti-mobile-avatar-size, 40px);
-  font-size: var(--ti-mobile-avatar-font-size, 14px);
+  color: var(--tvm-Avatar-color, #fff);
+  background: var(--tvm-Avatar-bgcolor, #c0c4cc);
+  width: var(--tvm-Avatar-size, 40px);
+  height: var(--tvm-Avatar-size, 40px);
+  line-height: var(--tvm-Avatar-size, 40px);
+  font-size: var(--tvm-Avatar-font-size, 14px);
 
   & > img {
     height: 100%;
   }
 
   &--square {
-    border-radius: var(--ti-mobile-avatar-square-border-radius, 4px);
+    border-radius: var(--tvm-Avatar-square-border-radius, 4px);
   }
 
   &--icon {
-    font-size: var(--ti-mobile-avatar-icon-font-size, 18px);
+    font-size: var(--tvm-Avatar-icon-font-size, 18px);
   }
 
   &--large {
-    width: var(--ti-mobile-avatar-large-size, 80px);
-    height: var(--ti-mobile-avatar-large-size, 80px);
-    line-height: var(--ti-mobile-avatar-large-size, 80px);
+    width: var(--tvm-Avatar-large-size, 80px);
+    height: var(--tvm-Avatar-large-size, 80px);
+    line-height: var(--tvm-Avatar-large-size, 80px);
   }
 
   &--medium {
-    width: var(--ti-mobile-avatar-medium-size, 56px);
-    height: var(--ti-mobile-avatar-medium-size, 56px);
-    line-height: var(--ti-mobile-avatar-medium-size, 56px);
+    width: var(--tvm-Avatar-medium-size, 56px);
+    height: var(--tvm-Avatar-medium-size, 56px);
+    line-height: var(--tvm-Avatar-medium-size, 56px);
   }
 
   &--small {
-    width: var(--ti-mobile-avatar-small-size, 48px);
-    height: var(--ti-mobile-avatar-small-size, 48px);
-    line-height: var(--ti-mobile-avatar-small-size, 48px);
+    width: var(--tvm-Avatar-small-size, 48px);
+    height: var(--tvm-Avatar-small-size, 48px);
+    line-height: var(--tvm-Avatar-small-size, 48px);
   }
 
   &--bg-color {
-    background-color: var(--ti-mobile-base-color-brand-1);
+    background-color: var(--tvm-base-color-brand-1);
   }
 }

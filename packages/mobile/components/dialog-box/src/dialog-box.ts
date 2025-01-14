@@ -10,7 +10,7 @@
  *
  */
 
-import { $prefix } from '../../../vue-common'
+import { $prefix } from '@mobile-root/common'
 import type { ExtractPropTypes } from 'vue'
 import type {
   handleCancel,
@@ -38,7 +38,7 @@ import type {
   ISharedRenderlessFunctionParams,
   ISharedRenderlessParamHooks,
   ISharedRenderlessParamUtils
-} from '../../../types/shared.type'
+} from '@mobile-root/shared.type'
 
 export type { ISharedRenderlessParamHooks }
 

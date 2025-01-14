@@ -173,7 +173,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { iconClose, iconEyeopen, iconEyeclose, iconChevronRight } from '@opentiny/vue-icon'
 import ActionSheet from '../../action-sheet'
 import { inputProps } from './input'

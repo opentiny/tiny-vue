@@ -10,7 +10,7 @@
  *
  */
 
-import { isNumber } from '@opentiny/mobile-utils/type'
+import { isNumber } from '@mobile-root/utils/type'
 
 export const computedShowHeader =
   ({ constants, props }) =>
@@ -128,7 +128,7 @@ export const computedLeftStyle =
 export const computedShowRight =
   ({ constants, props }) =>
   () => {
-    return props.pattern === constants.DEFAULT ? false : true
+    return props.pattern !== constants.DEFAULT
   }
 
 export const computedRightStyle =

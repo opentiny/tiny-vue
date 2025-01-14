@@ -1,0 +1,91 @@
+name: Dispatch Alpha All Publish
+run-name: Dispatch All Publish Alpha--${{ inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: |
+          输入您将要发布的版本号,
+          例如： `3.xx.xx`.
+        required: true
+        type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    outputs:
+      publishVersion: ${{ steps.parseVersion.outputs.publishVersion }}
+    steps:
+      - name: Parse Version
+        id: parseVersion
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const version = `${{ inputs.version }}`
+            if(!/^\d\.\d+\.\d+/.test(version)) {
+              throw new Error('版本号格式不正确')
+            }
+            const publishVersion = version.slice(2)
+            core.setOutput('publishVersion', publishVersion)
+
+      - name: CheckOut Code
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: Run Build Components
+        run: pnpm build:ui -t ${{ steps.parseVersion.outputs.publishVersion }}
+
+      - name: Run Build Sass Common
+        run: pnpm build:ui saas-common -t ${{ steps.parseVersion.outputs.publishVersion }} -d saas
+
+      - name: Run Build Theme
+        run: pnpm build:theme
+
+      - name: Run Build Renderless
+        run: pnpm build:renderless
+
+      - name: Run Build ThemeSaas
+        run: pnpm build:themeSaas
+
+      - name: Run Build ThemeMobile
+        run: pnpm build:themeMobile
+
+      - name: Run Build Runtime
+        run: pnpm build:runtime
+
+      - name: Run Release alpha
+        run: pnpm release:alpha
+
+      - name: Publish Vue3 And Vue2 components
+        run: pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}

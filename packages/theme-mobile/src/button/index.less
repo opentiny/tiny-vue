@@ -20,13 +20,13 @@
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
 
 .@{button-prefix-cls} {
-  .component-css-vars-button();
+  .inject-Button-vars();
 
   position: relative;
   margin: 0;
 
   text-size-adjust: 100%;
-  border-width: var(--ti-mobile-button-border-width);
+  border-width: var(--tvm-Button-border-width);
   border-style: solid;
   transition:
     border 0.3s ease 0s,
@@ -43,61 +43,61 @@
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: middle;
-  padding: 0 var(--ti-mobile-button-padding-large);
-  height: var(--ti-mobile-button-height-large);
-  min-width: var(--ti-mobile-button-min-width-large);
-  line-height: var(--ti-mobile-button-height-large);
-  font-size: var(--ti-mobile-button-font-size-default);
+  padding: 0 var(--tvm-Button-padding-large);
+  height: var(--tvm-Button-height-large);
+  min-width: var(--tvm-Button-min-width-large);
+  line-height: var(--tvm-Button-height-large);
+  font-size: var(--tvm-Button-font-size-default);
 
   // 主要
   &--primary {
-    color: var(--ti-mobile-button-text-color-white);
-    background-color: var(--ti-mobile-button-bg-color-black);
+    color: var(--tvm-Button-text-color-white);
+    background-color: var(--tvm-Button-bg-color-black);
     border-radius: 999px;
     border: none;
 
     &:active,
     &.is-active {
-      background-color: var(--ti-mobile-button-bg-color-active);
+      background-color: var(--tvm-Button-bg-color-active);
     }
 
     &.is-disabled {
       cursor: not-allowed;
-      color: var(--ti-mobile-button-text-color-disabled);
-      background-color: var(--ti-mobile-button-bg-color-disabled);
+      color: var(--tvm-Button-text-color-disabled);
+      background-color: var(--tvm-Button-bg-color-disabled);
     }
 
     &:hover {
-      background-color: var(--ti-mobile-button-bg-color-black);
+      background-color: var(--tvm-Button-bg-color-black);
     }
 
     &.is-loading {
-      background-color: var(--ti-mobile-button-bg-color-active);
+      background-color: var(--tvm-Button-bg-color-active);
     }
   }
 
   &--icon {
-    color: var(--ti-mobile-button-text-color-black);
-    background-color: var(--ti-mobile-button-bg-color-white);
+    color: var(--tvm-Button-text-color-black);
+    background-color: var(--tvm-Button-bg-color-white);
     min-width: 0 !important;
     padding: 0 !important;
     line-height: 0;
     border: none;
 
     .is-icon {
-      fill: var(--ti-mobile-button-text-color-black);
-      width: var(--ti-mobile-button-icon-size-large);
-      height: var(--ti-mobile-button-icon-size-large);
+      fill: var(--tvm-Button-text-color-black);
+      width: var(--tvm-Button-icon-size-large);
+      height: var(--tvm-Button-icon-size-large);
     }
 
     .small {
-      width: var(--ti-mobile-button-icon-size-small);
-      height: var(--ti-mobile-button-icon-size-small);
+      width: var(--tvm-Button-icon-size-small);
+      height: var(--tvm-Button-icon-size-small);
     }
 
     &:active .is-icon,
     &.is-active {
-      fill: var(--ti-mobile-button-bg-color-active);
+      fill: var(--tvm-Button-bg-color-active);
     }
 
     &.is-disabled,
@@ -105,65 +105,65 @@
     &.is-disabled.is-active,
     &.is-disabled .is-icon {
       cursor: not-allowed;
-      fill: var(--ti-mobile-button-text-color-disabled);
+      fill: var(--tvm-Button-text-color-disabled);
     }
 
     &.is-disabled {
-      color: var(--ti-mobile-button-text-color-disabled);
-      background-color: var(--ti-mobile-button-bg-color-white);
+      color: var(--tvm-Button-text-color-disabled);
+      background-color: var(--tvm-Button-bg-color-white);
     }
   }
 
   &--danger {
-    color: var(--ti-mobile-button-text-color-danger);
-    background-color: var(--ti-mobile-button-bg-color-white);
-    border-color: var(--ti-mobile-button-text-color-danger);
+    color: var(--tvm-Button-text-color-danger);
+    background-color: var(--tvm-Button-bg-color-white);
+    border-color: var(--tvm-Button-text-color-danger);
     border-radius: 999px;
 
     &.is-disabled {
       cursor: not-allowed;
-      color: var(--ti-mobile-button-text-color-disabled);
-      background-color: var(--ti-mobile-button-bg-color-disabled);
+      color: var(--tvm-Button-text-color-disabled);
+      background-color: var(--tvm-Button-bg-color-disabled);
       border: none;
     }
   }
 
   &--text {
-    color: var(--ti-mobile-button-text-color-blue);
-    background-color: var(--ti-mobile-button-bg-color-white);
+    color: var(--tvm-Button-text-color-blue);
+    background-color: var(--tvm-Button-bg-color-white);
     border: none;
     min-width: 0 !important;
     padding: 0 !important;
 
     &.is-disabled {
-      color: var(--ti-mobile-button-text-color-disabled);
-      background-color: var(--ti-mobile-button-bg-color-white);
+      color: var(--tvm-Button-text-color-disabled);
+      background-color: var(--tvm-Button-bg-color-white);
     }
   }
 
   &--secondary {
-    color: var(--ti-mobile-button-text-color-black);
-    background-color: var(--ti-mobile-button-bg-color-white);
+    color: var(--tvm-Button-text-color-black);
+    background-color: var(--tvm-Button-bg-color-white);
     border-radius: 999px;
 
     &.is-disabled {
       cursor: not-allowed;
-      color: var(--ti-mobile-button-text-color-disabled);
-      background-color: var(--ti-mobile-button-bg-color-disabled);
+      color: var(--tvm-Button-text-color-disabled);
+      background-color: var(--tvm-Button-bg-color-disabled);
       border: none;
     }
   }
 
   &--small {
-    padding: 0 var(--ti-mobile-button-padding-small);
-    height: var(--ti-mobile-button-height-small);
-    min-width: var(--ti-mobile-button-min-width-small);
-    line-height: var(--ti-mobile-button-height-small);
-    font-size: var(--ti-mobile-button-font-size-small);
+    padding: 0 var(--tvm-Button-padding-small);
+    height: var(--tvm-Button-height-small);
+    min-width: var(--tvm-Button-min-width-small);
+    line-height: var(--tvm-Button-height-small);
+    font-size: var(--tvm-Button-font-size-small);
 
     .is-icon {
-      width: var(--ti-mobile-button-icon-size-small);
-      height: var(--ti-mobile-button-icon-size-small);
+      width: var(--tvm-Button-icon-size-small);
+      height: var(--tvm-Button-icon-size-small);
     }
   }
 
@@ -172,27 +172,27 @@
     pointer-events: none;
 
     svg {
-      fill: var(--ti-mobile-button-text-color-white);
-      font-size: var(--ti-mobile-button-font-size-default);
+      fill: var(--tvm-Button-text-color-white);
+      font-size: var(--tvm-Button-font-size-default);
     }
   }
 }
 
 .@{button-prefix-cls}-loading {
-  width: var(--ti-mobile-button-loading-size);
-  height: var(--ti-mobile-button-loading-size);
+  width: var(--tvm-Button-loading-size);
+  height: var(--tvm-Button-loading-size);
   border-radius: 50%;
   position: relative;
   float: left;
   animation: rotating 1.5s linear infinite;
   top: calc(50% - 8px);
-  margin-right: var(--ti-mobile-button-loading-padding);
+  margin-right: var(--tvm-Button-loading-padding);
 
   &-white {
     background-image: conic-gradient(rgb(255 255 255/ 0%), rgb(255 255 255 / 100%));
 
     .@{button-prefix-cls}-loading-inner {
-      background: var(--ti-mobile-button-bg-color-active);
+      background: var(--tvm-Button-bg-color-active);
     }
   }
 
@@ -200,17 +200,17 @@
     background-image: conic-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 100%));
 
     .@{button-prefix-cls}-loading-inner {
-      background: var(--ti-mobile-button-bg-color-white);
+      background: var(--tvm-Button-bg-color-white);
     }
   }
 
   &-inner {
-    width: var(--ti-mobile-button-loading-size-inner);
-    height: var(--ti-mobile-button-loading-size-inner);
+    width: var(--tvm-Button-loading-size-inner);
+    height: var(--tvm-Button-loading-size-inner);
     border-radius: 50%;
     position: absolute;
-    top: var(--ti-mobile-button-loading-padding-size-inner);
-    left: var(--ti-mobile-button-loading-padding-size-inner);
+    top: var(--tvm-Button-loading-padding-size-inner);
+    left: var(--tvm-Button-loading-padding-size-inner);
   }
 }
 

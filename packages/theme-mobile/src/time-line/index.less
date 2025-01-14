@@ -17,51 +17,51 @@
 @timeline-prefix-cls: ~'@{css-prefix}mobile-timeline';
 
 .@{timeline-prefix-cls} {
-  .component-css-vars-timeline();
+  .inject-Timeline-vars();
 
   overflow: hidden;
-  font-size: var(--ti-mobile-timeline-font-size, 14px);
+  font-size: var(--tvm-Timeline-font-size, 14px);
 
   &__item {
-    .hairline('bottom', var(--ti-mobile-timeline-hairline-color, #ddd));
+    .hairline('bottom', var(--tvm-Timeline-hairline-color, #ddd));
 
     &.complete {
       .@{timeline-prefix-cls}__date,
       .@{timeline-prefix-cls}__time {
-        color: var(--ti-mobile-timeline-complete-color, #ccc);
+        color: var(--tvm-Timeline-complete-color, #ccc);
       }
 
       .@{timeline-prefix-cls}__icon {
-        background: var(--ti-mobile-timeline-complete-icon-bgcolor, #f8f8f8);
-        border: 1px solid var(--ti-mobile-timeline-complete-icon-border-color, #ccc);
+        background: var(--tvm-Timeline-complete-icon-bgcolor, #f8f8f8);
+        border: 1px solid var(--tvm-Timeline-complete-icon-border-color, #ccc);
       }
 
       .@{timeline-prefix-cls}__title,
       .@{timeline-prefix-cls}__cycle,
       .@{timeline-prefix-cls}__user,
       .@{timeline-prefix-cls}__tip {
-        color: var(--ti-mobile-timeline-complete-color, #ccc);
+        color: var(--tvm-Timeline-complete-color, #ccc);
       }
     }
 
     &.fail {
       .@{timeline-prefix-cls}__icon {
-        background: var(--ti-mobile-timeline-fail-icon-color, #f36f64);
-        border: 1px solid var(--ti-mobile-timeline-fail-icon-color, #f36f64);
+        background: var(--tvm-Timeline-fail-icon-color, #f36f64);
+        border: 1px solid var(--tvm-Timeline-fail-icon-color, #f36f64);
       }
     }
 
     &.success {
       .@{timeline-prefix-cls}__icon {
-        background: var(--ti-mobile-timeline-success-icon-color, #50e3c2);
-        border: 1px solid var(--ti-mobile-timeline-success-icon-color, #50e3c2);
+        background: var(--tvm-Timeline-success-icon-color, #50e3c2);
+        border: 1px solid var(--tvm-Timeline-success-icon-color, #50e3c2);
       }
     }
 
     &.current {
       .@{timeline-prefix-cls}__icon {
         background: var(
-          --ti-mobile-timeline-current-icon-color,
+          --tvm-Timeline-current-icon-color,
           radial-gradient(#fff, #fff 15%, #36b2ef, #90d3f3, #cdebfa, #fff)
         );
       }
@@ -91,7 +91,7 @@
       height: 100%;
       display: block;
       position: absolute;
-      background-color: var(--ti-mobile-timeline-hairline-color, #ddd);
+      background-color: var(--tvm-Timeline-hairline-color, #ddd);
       left: 0;
       transform-origin: 100% 50%;
 
@@ -109,19 +109,19 @@
 
   & &__date-time {
     text-align: right;
-    color: var(--ti-mobile-timeline-color, #333);
+    color: var(--tvm-Timeline-color, #333);
     padding: 15px 22px 15px 4px;
     min-width: 100px;
   }
 
   & &__time {
     display: block;
-    color: var(--ti-mobile-timeline-color, #333);
-    font-size: var(--ti-mobile-timeline-font-size, 14px);
+    color: var(--tvm-Timeline-color, #333);
+    font-size: var(--tvm-Timeline-font-size, 14px);
   }
 
   & &__date {
-    font-size: var(--ti-mobile-timeline-font-size, 14px);
+    font-size: var(--tvm-Timeline-font-size, 14px);
   }
 
   & &__content {
@@ -140,28 +140,28 @@
 
   &__user {
     width: 60%;
-    color: var(--ti-mobile-timeline-user-color, #039be5);
+    color: var(--tvm-Timeline-user-color, #039be5);
     display: inline-block;
   }
 
   &__cycle {
-    color: var(--ti-mobile-timeline-cycle-color, #666);
+    color: var(--tvm-Timeline-cycle-color, #666);
   }
 
   &__tip {
-    color: var(--ti-mobile-timeline-tip-color, #ef4f4f);
+    color: var(--tvm-Timeline-tip-color, #ef4f4f);
   }
 
   .name {
     float: left;
     margin-left: 15px;
-    font-size: var(--ti-mobile-timeline-font-size, 14px);
+    font-size: var(--tvm-Timeline-font-size, 14px);
   }
 
   &__icon {
-    width: var(--ti-mobile-timeline-icon-size, 20px);
-    height: var(--ti-mobile-timeline-icon-size, 20px);
-    line-height: var(--ti-mobile-timeline-icon-size, 20px);
+    width: var(--tvm-Timeline-icon-size, 20px);
+    height: var(--tvm-Timeline-icon-size, 20px);
+    line-height: var(--tvm-Timeline-icon-size, 20px);
     position: relative;
     text-align: center;
     left: ~'calc(50% - 10px)';

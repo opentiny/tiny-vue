@@ -1,4 +1,4 @@
-import { setup, h, $props, defineComponent } from '../../../vue-common'
+import { setup, h, $props, defineComponent } from '@mobile-root/common'
 
 export default defineComponent({
   props: {

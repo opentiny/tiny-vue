@@ -17,7 +17,7 @@
 @action-sheet-prefix-cls: ~'@{css-prefix}mobile-action-sheet';
 
 .@{action-sheet-prefix-cls} {
-  .component-css-vars-action-sheet();
+  .inject-ActionSheet-vars();
 
   position: relative;
   height: 100%;
@@ -35,7 +35,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--ti-mobile-action-sheet-content-bg-color, #fff);
+    background-color: var(--tvm-ActionSheet-content-bg-color, #fff);
     transform: translate(0, 100%);
     backface-visibility: hidden;
     transition: transform 0.3s;
@@ -43,16 +43,18 @@
     overflow-y: scroll;
     backface-visibility: hidden;
     border-radius: 16px 16px 0px 0px;
+
     &.is-toggle {
       transform: translate(0, 0);
     }
+
     &.is-not-content {
       z-index: 2000;
     }
   }
 
   &__menu {
-    background-color: var(--ti-mobile-action-sheet-menu-bg-color, #fff);
+    background-color: var(--tvm-ActionSheet-menu-bg-color, #fff);
   }
 
   &__menu.is-ellipsis &__item {
@@ -69,18 +71,18 @@
     height: 40px;
     line-height: 40px;
     padding: 0px 16px;
-    color: var(--ti-mobile-action-sheet-item-text-color, #333);
-    font-size: var(--ti-mobile-action-sheet-item-font-size, 16px);
+    color: var(--tvm-ActionSheet-item-text-color, #333);
+    font-size: var(--tvm-ActionSheet-item-font-size, 16px);
     text-align: center;
   }
 
   &__item {
     &:active {
-      background-color: var(--ti-mobile-action-sheet-item-active-bg-color, #ececec);
+      background-color: var(--tvm-ActionSheet-item-active-bg-color, #ececec);
     }
 
     &.is-active {
-      color: var(--ti-mobile-action-sheet-item-active-text-color, #039be5);
+      color: var(--tvm-ActionSheet-item-active-text-color, #039be5);
     }
   }
 
@@ -94,17 +96,17 @@
   }
 
   &__item:not(:first-child) {
-    .hairline('top', var(--ti-mobile-action-sheet-item-border-color, #ddd));
+    .hairline('top', var(--tvm-ActionSheet-item-border-color, #ddd));
 
     &.is-warn {
-      color: var(--ti-mobile-action-sheet-item-warn-text-color, #f36f64);
+      color: var(--tvm-ActionSheet-item-warn-text-color, #f36f64);
     }
   }
 
   &__action {
     width: 100%;
     position: absolute;
-    background-color: var(--ti-mobile-action-sheet-action-bg-color, #fff);
+    background-color: var(--tvm-ActionSheet-action-bg-color, #fff);
   }
 }
 

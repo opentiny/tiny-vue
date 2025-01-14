@@ -34,7 +34,7 @@
       >
         <div
           data-tag="tiny-alert-large"
-          v-if="size === 'large'"
+          v-if="size === 'large' && showTitle"
           @click="handleHeaderClick"
           class="inline-flex cursor-pointer font-medium"
         >
@@ -94,8 +94,8 @@
         class="flex-1 leading-6 text-sm overflow-hidden cursor-pointer"
         :class="[showIcon ? 'ml-2' : '', closable ? 'mr-2' : '']"
       >
-        <div data-tag="tiny-alert-large" v-if="size === 'large'" class="font-medium">
-          <slot name="title">{{ state.getTitle }}</slot>
+        <div data-tag="tiny-alert-large" v-if="size === 'large' && showTitle" class="font-medium">
+          <slot name="title">{{ state.getTitle }} </slot>
         </div>
         <div
           data-tag="tiny-alert-singlelinebox"
@@ -152,6 +152,7 @@ export default defineComponent({
     'closable',
     'center',
     'showIcon',
+    'showTitle',
     'closeText',
     'singleLine',
     'scrolling',

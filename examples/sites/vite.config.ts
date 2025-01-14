@@ -135,6 +135,7 @@ export default defineConfig((config) => {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
+        '@mobile-root': pathFromWorkspaceRoot('packages/mobile'),
         '@': path.resolve('src'),
         '@demos': path.resolve(`${demosPath}`),
         '@menu': menuPath,

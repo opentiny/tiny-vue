@@ -10,6 +10,10 @@
  *
  */
 
+import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
+import type { IDropdownItemVm } from '../../dropdown-item/src/dropdown-item'
+
 export const dropdownMenuProps = {
   multiStage: {
     type: Boolean,
@@ -66,10 +70,6 @@ export const dropdownMenuProps = {
     default: 'label'
   }
 }
-
-import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-import type { IDropdownItemVm } from '../../dropdown-item/src/dropdown-item'
 
 export type { IDropdownItemVm }
 

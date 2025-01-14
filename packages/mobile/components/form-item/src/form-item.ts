@@ -1,5 +1,38 @@
 import type { ExtractPropTypes, StyleValue } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '@mobile-root/shared.type'
+
+import type {
+  watchError,
+  updateTip,
+  watchValidateStatus,
+  computedLabelStyle,
+  computedValueStyle,
+  computedContentStyle,
+  computedForm,
+  computedFieldValue,
+  computedGetValidateType,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
+  clearValidate,
+  getRules,
+  updateComputedLabelWidth,
+  removeValidateEvents,
+  unmounted,
+  mounted,
+  computedIsRequired,
+  resetField,
+  getFilteredRule,
+  onFieldBlur,
+  onFieldChange,
+  addValidateEvents,
+  validate,
+  getDisplayedValue,
+  clearDisplayedValue,
+  handleMouseenter,
+  handleMouseleave
+} from './renderless'
+
 export type { IFormInstance } from '../../form/src/form'
 
 export const $constants = {
@@ -61,38 +94,6 @@ export const formItemProps = {
   },
   extra: String
 }
-
-import type {
-  watchError,
-  updateTip,
-  watchValidateStatus,
-  computedLabelStyle,
-  computedValueStyle,
-  computedContentStyle,
-  computedForm,
-  computedFieldValue,
-  computedGetValidateType,
-  computedValidateIcon,
-  computedIsErrorInline,
-  computedIsErrorBlock,
-  clearValidate,
-  getRules,
-  updateComputedLabelWidth,
-  removeValidateEvents,
-  unmounted,
-  mounted,
-  computedIsRequired,
-  resetField,
-  getFilteredRule,
-  onFieldBlur,
-  onFieldChange,
-  addValidateEvents,
-  validate,
-  getDisplayedValue,
-  clearDisplayedValue,
-  handleMouseenter,
-  handleMouseleave
-} from './renderless'
 
 export interface IFormItemDisplayedValueParam {
   type: string

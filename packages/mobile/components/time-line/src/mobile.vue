@@ -81,7 +81,7 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { iconYes } from '@opentiny/vue-icon'
 import { timelineProps } from './time-line'
 import '@opentiny/vue-theme-mobile/steps/index.less'

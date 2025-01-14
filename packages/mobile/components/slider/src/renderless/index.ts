@@ -10,10 +10,10 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/mobile-utils'
-import { emitEvent } from '@opentiny/mobile-utils/event'
-import { on, off, hasClass } from '@opentiny/mobile-utils/deps/dom'
-import { toNumber } from '@opentiny/mobile-utils/string'
+import { KEY_CODE } from '@mobile-root/utils'
+import { emitEvent } from '@mobile-root/utils/event'
+import { on, off, hasClass } from '@mobile-root/utils/deps/dom'
+import { toNumber } from '@mobile-root/utils/string'
 import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '../slider'
 
 export const bindEvent = (api: ISliderApi) => () => {

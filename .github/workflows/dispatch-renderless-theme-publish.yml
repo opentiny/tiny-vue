@@ -1,5 +1,5 @@
-name: Dispatch Renderless Theme
-run-name: Dispatch Renderless Theme--${{ inputs.components }}
+name: Dispatch Renderless Theme Runtime
+run-name: Dispatch Renderless Theme Runtime--${{ inputs.components }}
 
 on:
   workflow_dispatch:
@@ -26,7 +26,7 @@ jobs:
             const branchName = `${{ github.ref_name }}`
             const moduleName = `${{ inputs.components }}`
 
-            if (!moduleName.includes('theme') && !moduleName.includes('renderless')) {
+            if (!moduleName.includes('theme') && !moduleName.includes('renderless') && !moduleName.includes('runtime')) {
               throw new Error('请输入正确的包名称')
             }
 

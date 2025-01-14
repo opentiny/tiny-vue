@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { containerProps } from './container'
 import '@opentiny/vue-theme-mobile/container/index.less'
 

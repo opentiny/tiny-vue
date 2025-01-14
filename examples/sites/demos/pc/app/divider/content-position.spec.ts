@@ -1,12 +1,10 @@
 import { test, expect } from '@playwright/test'
 
-test('Divider 文案位置', async ({ page }) => {
+test('分割线文案位置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('divider#content-position')
-  await page.getByText('文案在左侧').click()
-  await page.getByText('文案', { exact: true }).first().click()
-  await page.getByText('文案在中间').click()
-  await page.getByText('文案', { exact: true }).nth(1).click()
-  await page.getByText('文案在右侧').click()
-  await page.getByText('文案', { exact: true }).nth(2).click()
+  const left = page.locator('.tiny-divider__text')
+  await expect(left.first()).toHaveText('左侧且偏移20%')
+  await expect(left.nth(1)).toHaveText('中间')
+  await expect(left.nth(2)).toHaveCSS('right', '80px')
 })

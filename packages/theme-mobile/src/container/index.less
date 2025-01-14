@@ -16,7 +16,7 @@
 @container-prefix-cls: ~'@{css-prefix}mobile-container';
 
 .@{container-prefix-cls} {
-  .component-css-vars-container();
+  .inject-Container-vars();
 
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
   flex-wrap: nowrap;
 
   &__left {
-    margin-right: var(--ti-mobile-container-common-padding);
+    margin-right: var(--tvm-Container-common-padding);
   }
 
   &__center {
@@ -32,6 +32,6 @@
   }
 
   &__right {
-    margin-left: var(--ti-mobile-container-common-padding);
+    margin-left: var(--tvm-Container-common-padding);
   }
 }

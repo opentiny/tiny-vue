@@ -11,8 +11,9 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams } from '@mobile-root/shared.type'
+
+export type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 
 export const tagProps = {
   hit: Boolean,

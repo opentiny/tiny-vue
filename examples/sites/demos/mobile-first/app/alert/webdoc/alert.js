@@ -36,7 +36,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>当  <code>size</code>为 large 时显示标题，可设置  <code>title</code> 或  <code>slot</code> 自定义标题。默认标题根据设置的 <code>type</code> 显示。</p>',
+          '<p>当  <code>size</code>为 large 时显示标题，可设置  <code>title</code> 或  <code>slot</code> 自定义标题，通过 <code> show-title </code>属性控制标题是否显示。默认标题根据设置的 <code>type</code> 显示。</p>',
         'en-US':
           '<p>When <code>size</code> is set to large, the title is displayed. You can set <code>title</code> or <code>slot</code> to customize the title. The default title is displayed according to the set <code>type</code>.</p>'
       },

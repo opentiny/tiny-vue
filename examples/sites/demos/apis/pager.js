@@ -17,6 +17,21 @@ export default {
           pcDemo: 'align'
         },
         {
+          name: 'change-compat',
+          type: 'boolean',
+          defaultValue: 'false',
+          meta: {
+            stable: '3.22.0'
+          },
+          desc: {
+            'zh-CN': '手动改变值时，是否触发对应的change事件',
+            'en-US': 'When the value is manually changed, whether the corresponding change event is triggered'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'pager-event',
+          mfDemo: ''
+        },
+        {
           name: 'current-page',
           type: 'number',
           defaultValue: '1',

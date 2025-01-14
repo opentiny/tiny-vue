@@ -19,7 +19,7 @@ import type {
   IUploadOptionsOfHwh5
 } from '../upload'
 
-import { KEY_CODE } from '@opentiny/mobile-utils'
+import { KEY_CODE } from '@mobile-root/utils'
 
 export const isImage = (str: string): boolean => str.includes('image')
 

@@ -228,8 +228,14 @@ export default {
         'en-US': 'Event'
       },
       desc: {
-        'zh-CN':
-          '<p> \n        当前所在页改变后会触发 <code>current-change</code> 事件。<br />\n        每页展示条目数改变后会触发 <code>size-change</code> 事件。<br />\n        点击上一页按钮改变当前页后触发 <code>prev-click</code> 事件、下一页触发 <code>next-click</code> 事件。<br />\n        当在最后一页切换每页条目数时会同时触发 <code>current-change</code> 、<code>size-change</code> 两个事件，如果两个事件调用同一函数（比如后台拉取数据），则需要则做防抖处理。\n        </p>',
+        'zh-CN': `
+        <p> 
+          当前所在页改变后会触发 <code>current-change</code> 事件。<br />
+          每页展示条目数改变后会触发 <code>size-change</code> 事件。<br />
+          点击上一页按钮改变当前页后触发 <code>prev-click</code> 事件、下一页触发 <code>next-click</code> 事件。<br />
+          当在最后一页切换每页条目数时会同时触发 <code>current-change</code> 、<code>size-change</code> 两个事件，如果两个事件调用同一函数（比如后台拉取数据），则需要则做防抖处理。<br />
+          默认情况下，当手动改变 <code>current-page</code> 或 <code>page-size</code> 的值时，不会触发对应的change事件，设置 <code>change-compat</code> 为 <code>true</code> 以触发对应事件。
+        </p>`,
         'en-US': '<p> <code>current-change</code> Triggered when the current page number is switched.</p>\n'
       },
       codeFiles: ['pager-event.vue']

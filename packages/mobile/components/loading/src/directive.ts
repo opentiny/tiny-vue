@@ -9,11 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import afterLeave from '@opentiny/mobile-utils/deps/after-leave'
-import PopupManager from '@opentiny/mobile-utils/deps/popup-manager'
-import { addClass, getStyle, removeClass } from '@opentiny/mobile-utils/deps/dom'
+import afterLeave from '@mobile-root/utils/deps/after-leave'
+import PopupManager from '@mobile-root/utils/deps/popup-manager'
+import { addClass, getStyle, removeClass } from '@mobile-root/utils/deps/dom'
 import Loading from './mobile.vue'
-import { hooks, directive, createComponent, appProperties } from '../../../vue-common'
+import { hooks, directive, createComponent, appProperties } from '@mobile-root/common'
 import { constants, defaults } from './service'
 
 const insertDom = (parent, el, binding) => {

@@ -19,14 +19,14 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{upload-list-prefix-cls} {
-  .component-css-vars-upload-list();
+  .inject-UploadList-vars();
 
   & &__item {
     position: relative;
     display: flex;
-    border-radius: var(--ti-mobile-upload-list-item-border-radius, 2px);
+    border-radius: var(--tvm-UploadList-item-border-radius, 2px);
     margin: 0 10px 8px 10px;
-    background-color: var(--ti-mobile-upload-list-item-bgcolor, #f9f9f9);
+    background-color: var(--tvm-UploadList-item-bgcolor, #f9f9f9);
     line-height: 48px;
 
     &:focus {
@@ -34,8 +34,8 @@
     }
 
     .icon-close {
-      fill: var(--ti-mobile-upload-list-icon-close-color, #606266);
-      font-size: var(--ti-mobile-upload-list-icon-size, 24px);
+      fill: var(--tvm-UploadList-icon-close-color, #606266);
+      font-size: var(--tvm-UploadList-icon-size, 24px);
       opacity: 0.75;
       cursor: pointer;
     }
@@ -49,15 +49,15 @@
 
   // 图片墙样式
   &--picture-card &__item {
-    width: var(--ti-mobile-file-upload-picture-card-size, 64px);
-    height: var(--ti-mobile-file-upload-picture-card-size, 64px);
+    width: var(--tvm-file-upload-picture-card-size, 64px);
+    height: var(--tvm-file-upload-picture-card-size, 64px);
     margin: 0 12px 12px 0;
     box-sizing: border-box;
     float: left;
 
     .card-close {
-      font-size: var(--ti-mobile-upload-list-picture-card-close-size, 16px);
-      fill: var(--ti-mobile-upload-list-picture-card-close-color, #f36f64);
+      font-size: var(--tvm-UploadList-picture-card-close-size, 16px);
+      fill: var(--tvm-UploadList-picture-card-close-color, #f36f64);
       position: absolute;
       top: 0;
       right: 0;
@@ -106,15 +106,15 @@
       font-size: 0;
 
       .@{svg-prefix-cls} {
-        font-size: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
-        fill: var(--ti-mobile-upload-list-file-type-icon-color, #606266);
+        font-size: var(--tvm-UploadList-file-type-icon-size, 40px);
+        fill: var(--tvm-UploadList-file-type-icon-color, #606266);
         line-height: 1;
         margin: 4px 8px 4px 4px;
       }
 
       .file-type-icon {
-        width: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
-        height: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
+        width: var(--tvm-UploadList-file-type-icon-size, 40px);
+        height: var(--tvm-UploadList-file-type-icon-size, 40px);
         margin: 4px 8px 4px 4px;
       }
     }
@@ -141,20 +141,20 @@
 
     .file-name {
       margin-top: 4px;
-      color: var(--ti-mobile-upload-list-file-name-color, #333);
-      font-size: var(--ti-mobile-upload-list-file-name-font-size, 14px);
+      color: var(--tvm-UploadList-file-name-color, #333);
+      font-size: var(--tvm-UploadList-file-name-font-size, 14px);
       line-height: 1.42857143;
     }
 
     .file-size {
-      color: var(--ti-mobile-upload-list-file-size-color, #999);
-      font-size: var(--ti-mobile-upload-list-file-size-font-size, 12px);
+      color: var(--tvm-UploadList-file-size-color, #999);
+      font-size: var(--tvm-UploadList-file-size-font-size, 12px);
       line-height: 1.41666667;
     }
   }
 
   .@{progress-prefix-cls}-bar__outer {
-    background-color: var(--ti-mobile-upload-list-progress-outer-bgcolor, #e6e6e6);
+    background-color: var(--tvm-UploadList-progress-outer-bgcolor, #e6e6e6);
   }
 
   .@{image-viewer-prefix-cls}__btn {

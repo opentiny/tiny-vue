@@ -3,10 +3,13 @@ import { Command, Option } from 'commander'
 import { createIconSaas } from './commands/create/index.js'
 import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact, chartTheme } from './commands/build'
 import { releaseAurora } from './commands/release/releaseAurora'
+import { releaseAlpha } from './commands/release/releaseAlpha'
 
 const program = new Command()
 
 program.command('release:aurora').description('转换为aurora的包').action(releaseAurora)
+
+program.command('release:alpha').description('转换为组织名为@opentinyvue的包').action(releaseAlpha)
 
 program.command('create:icon-saas').description('同步生成 icon-saas').action(createIconSaas)
 

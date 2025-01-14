@@ -10,7 +10,7 @@
  *
  */
 
-import { createComponent } from '../../../vue-common'
+import { createComponent } from '@mobile-root/common'
 import Toast from './mobile.vue'
 
 const defaults = {

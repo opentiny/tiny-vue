@@ -11,7 +11,7 @@
  */
 
 import { setActiveItem, onChange, getChildrens, getItems, beforeDestroy, initPage } from './index'
-import { on } from '@opentiny/mobile-utils/deps/dom'
+import { on } from '@mobile-root/utils/deps/dom'
 
 export const api = ['state', 'onChange', 'getChildrens']
 

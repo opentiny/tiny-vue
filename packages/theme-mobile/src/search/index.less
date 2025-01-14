@@ -19,20 +19,20 @@
 @search-prefix-cls: ~'@{css-prefix}mobile-search';
 
 .@{search-prefix-cls} {
-  .component-css-vars-search();
+  .inject-Search-vars();
 
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  height: var(--ti-mobile-search-height);
+  height: var(--tvm-Search-height);
   outline: none;
 
   & &__line {
     position: relative;
     flex: auto;
-    height: var(--ti-mobile-search-input-height);
+    height: var(--tvm-Search-input-height);
     margin-left: 16px;
-    border-radius: var(--ti-mobile-search-input-height);
+    border-radius: var(--tvm-Search-input-height);
     overflow: hidden;
     box-sizing: border-box;
     background: transparent;
@@ -62,11 +62,11 @@
   }
 
   &-gray &__box {
-    background: var(--ti-mobile-search-input-bg-color-gray);
+    background: var(--tvm-Search-input-bg-color-gray);
   }
 
   &-primary &__box {
-    background: var(--ti-mobile-search-input-bg-color-primary);
+    background: var(--tvm-Search-input-bg-color-primary);
   }
 
   & &__input {
@@ -76,44 +76,44 @@
     border: 0;
     margin-left: 8px;
     padding-right: 15px;
-    color: var(--ti-mobile-search-text-color-primary);
+    color: var(--tvm-Search-text-color-primary);
     background: transparent;
-    font-size: var(--ti-mobile-search-font-size);
+    font-size: var(--tvm-Search-font-size);
     outline: none;
 
     &-primary {
-      color: var(--ti-mobile-search-text-color-primary);
-      caret-color: var(--ti-mobile-search-caret-color-primary);
-      .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
+      color: var(--tvm-Search-text-color-primary);
+      caret-color: var(--tvm-Search-caret-color-primary);
+      .placeholder(@color: var(--tvm-Search-placeholder-text-color-primary));
 
       &:focus {
-        .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
+        .placeholder(@color: var(--tvm-Search-placeholder-text-color-primary));
       }
     }
 
     &-gray {
-      color: var(--ti-mobile-search-text-color-gray);
-      caret-color: var(--ti-mobile-search-caret-color-gray);
-      .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
+      color: var(--tvm-Search-text-color-gray);
+      caret-color: var(--tvm-Search-caret-color-gray);
+      .placeholder(@color: var(--tvm-Search-placeholder-text-color-gray));
 
       &:focus {
-        .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
+        .placeholder(@color: var(--tvm-Search-placeholder-text-color-gray));
       }
     }
   }
 
   &-primary {
-    background-color: var(--ti-mobile-search-bg-color-primary);
+    background-color: var(--tvm-Search-bg-color-primary);
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-primary);
+      fill: var(--tvm-Search-icon-fill-color-primary);
     }
   }
 
   &-gray {
-    color: var(--ti-mobile-search-text-color-gray);
-    background-color: var(--ti-mobile-search-bg-color-gray);
+    color: var(--tvm-Search-text-color-gray);
+    background-color: var(--tvm-Search-bg-color-gray);
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-gray);
+      fill: var(--tvm-Search-icon-fill-color-gray);
     }
   }
 
@@ -122,13 +122,13 @@
     display: flex;
 
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-primary);
+      fill: var(--tvm-Search-icon-fill-color-primary);
     }
   }
 
   &-gray &__icon {
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-gray);
+      fill: var(--tvm-Search-icon-fill-color-gray);
     }
   }
 
@@ -148,12 +148,12 @@
     justify-content: center;
     width: 46px;
     height: 100%;
-    color: var(--ti-mobile-search-text-color-primary);
+    color: var(--tvm-Search-text-color-primary);
   }
 
   & &__present {
-    color: var(--ti-mobile-search-text-color-primary);
-    font-size: var(--ti-mobile-search-font-size);
+    color: var(--tvm-Search-text-color-primary);
+    font-size: var(--tvm-Search-font-size);
     line-height: 1;
     white-space: nowrap;
     cursor: pointer;
@@ -161,7 +161,7 @@
   }
 
   &-gray &__present {
-    color: var(--ti-mobile-search-text-color-gray);
+    color: var(--tvm-Search-text-color-gray);
   }
 
   &.focus &__present {

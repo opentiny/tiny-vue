@@ -28,8 +28,8 @@ import {
   observeCallback,
   handleDocumentClick
 } from './index'
-import userPopper from '@opentiny/mobile-utils/deps/vue-popper'
-import { guid } from '@opentiny/mobile-utils/string'
+import userPopper from '@mobile-root/utils/deps/vue-popper'
+import { guid } from '@mobile-root/utils/string'
 import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
 import type { ITooltipApi, ITooltipProps, ITooltipState } from 'types/tooltip.type'
 

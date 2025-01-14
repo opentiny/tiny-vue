@@ -13,6 +13,7 @@ import {
   computedSimplestPagerOption,
   computedSimplestPagerWidth,
   computedPageSizeText,
+  getInternalPageSize,
   handleJumperFocus,
   handleSizeChange,
   handleJumperInput,
@@ -36,12 +37,11 @@ import {
   setTotal,
   clickSizes,
   watchInternalCurrentPage,
-  watchPageSizes,
   watchCurrentPage,
   watchInternalPageCount,
-  watchPageSize,
   watchTotal,
-  watchShowSizes
+  watchShowSizes,
+  watchInternalPageSize
 } from './index'
 
 export const api = [
@@ -80,7 +80,7 @@ export const renderless = (
   const state: IPagerState = reactive({
     showSizes: false,
     internalCurrentPage: 1,
-    internalPageSize: props.pageSize,
+    internalPageSize: 10,
     lastEmittedPage: -1,
     userChangePageSize: false,
     internalTotal: props.total,
@@ -129,28 +129,36 @@ export const renderless = (
     prev: prev({ state, props, api, emit }),
     next: next({ props, state, api, emit }),
     buildBeforePageChangeParam: buildBeforePageChangeParam({ state }),
-    emitChange: emitChange({ state, nextTick, emit }),
+    emitChange: emitChange({ state, nextTick, emit, props }),
     setTotal: setTotal({ state }),
     clickSizes: clickSizes(),
     // watch
-    watchInternalCurrentPage: watchInternalCurrentPage({ state, emit }),
-    watchPageSizes: watchPageSizes({ state, props }),
+    watchInternalCurrentPage: watchInternalCurrentPage({ state, emit, props }),
+    getInternalPageSize: getInternalPageSize({ state, props }),
     watchCurrentPage: watchCurrentPage({ state, api }),
     watchInternalPageCount: watchInternalPageCount({ state, api }),
-    watchPageSize: watchPageSize({ state }),
     watchTotal: watchTotal({ state }),
-    watchShowSizes: watchShowSizes({ nextTick, vm })
+    watchShowSizes: watchShowSizes({ nextTick, vm }),
+    watchInternalPageSize: watchInternalPageSize({ emit, props })
   })
 
   state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
+  state.internalPageSize = api.getInternalPageSize()
 
   watch(() => state.internalCurrentPage, api.watchInternalCurrentPage)
-  watch(() => props.pageSizes, api.watchPageSizes, { immediate: true })
+  watch(() => state.internalPageSize, api.watchInternalPageSize)
   watch(() => props.currentPage, api.watchCurrentPage)
   watch(() => state.internalPageCount, api.watchInternalPageCount)
-  watch(() => props.pageSize, api.watchPageSize, { immediate: true })
   watch(() => props.total, api.watchTotal)
   watch(() => state.showSizes, api.watchShowSizes)
+  watch(
+    () => props.pageSize,
+    () => (state.internalPageSize = api.getInternalPageSize())
+  )
+  watch(
+    () => props.pageSizes,
+    () => (state.internalPageSize = api.getInternalPageSize())
+  )
 
   return api
 }

@@ -29,11 +29,11 @@ import type {
   IFileUploadLargeDocumentDownload
 } from '../file-upload'
 
-import { extend } from '@opentiny/mobile-utils/object'
-import { xss, log } from '@opentiny/mobile-utils/xss'
-import uploadAjax from '@opentiny/mobile-utils/deps/upload-ajax'
-import { isObject } from '@opentiny/mobile-utils/type'
-import { isEmptyObject } from '@opentiny/mobile-utils/type'
+import { extend } from '@mobile-root/utils/object'
+import { xss, log } from '@mobile-root/utils/xss'
+import uploadAjax from '@mobile-root/utils/deps/upload-ajax'
+import { isObject } from '@mobile-root/utils/type'
+import { isEmptyObject } from '@mobile-root/utils/type'
 
 let initTokenPromise = null
 

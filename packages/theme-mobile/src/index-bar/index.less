@@ -17,7 +17,7 @@
 @index-bar-prefix-cls: ~'@{css-prefix}mobile-index-bar';
 
 .@{index-bar-prefix-cls} {
-  .component-css-vars-index-bar();
+  .inject-IndexBar-vars();
 
   &__side {
     position: fixed;
@@ -33,7 +33,7 @@
     user-select: none;
     transform: translateY(-50%);
     z-index: 2;
-    background: var(--ti-mobile-index-bar-side-bg-color);
+    background: var(--tvm-IndexBar-side-bg-color);
   }
 
   &__label {
@@ -41,14 +41,14 @@
     font-size: 10px;
     line-height: 16px;
     font-weight: 500;
-    color: var(--ti-mobile-index-bar-text-color);
+    color: var(--tvm-IndexBar-text-color);
   }
 
   &__label--active {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    color: var(--ti-mobile-index-bar-text-color-active);
-    background: var(--ti-mobile-index-bar-bg-color-active);
+    color: var(--tvm-IndexBar-text-color-active);
+    background: var(--tvm-IndexBar-bg-color-active);
   }
 }

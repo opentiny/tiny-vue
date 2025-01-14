@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import type { ISliderApi } from './slider'
 import { sliderProps } from './slider'
 import '@opentiny/vue-theme-mobile/slider/index.less'

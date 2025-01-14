@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { props, setup, h, defineComponent } from '../../../vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import Button from '../../button'
 import { iconFullscreenLeft, iconMinscreenLeft } from '@opentiny/vue-icon'
@@ -19,9 +19,6 @@ import '@opentiny/vue-theme-mobile/modal/index.less'
 
 export default defineComponent({
   props: modalProps,
-  components: {
-    Button
-  },
   provide() {
     return { dialog: this }
   },

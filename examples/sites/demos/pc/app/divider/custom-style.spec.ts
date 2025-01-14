@@ -1,19 +1,15 @@
 // divider#custom-style
 import { test, expect } from '@playwright/test'
 
-test('Divider 样式', async ({ page }) => {
+test('自定义样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('divider#custom-style')
-  await page.getByText('自定义分隔线颜色').click()
-  await page.locator('.tiny-divider').first().click()
-  await page.getByText('自定义分隔线的样式').click()
-  await page.locator('.pc-demo > div:nth-child(4)').click()
-  await page.getByText('自定义文案的颜色').click()
-  await page
-    .locator('div')
-    .filter({ hasText: /^文案$/ })
-    .first()
-    .click()
-  await page.getByText('文案的背景颜色', { exact: true }).click()
-  await page.getByText('文案', { exact: true }).nth(1).click()
+  const dividerText = page.locator('.tiny-divider__text')
+  const dividerMargin = page.locator('.tiny-divider')
+  const dividerLine = page.locator('.tiny-divider-line').first()
+  await expect(dividerLine.first()).toHaveCSS('border-color', 'rgb(20, 118, 255)')
+  await expect(dividerText.first()).toHaveCSS('color', 'rgb(20, 118, 255)')
+  await expect(dividerText.nth(1)).toHaveCSS('background-color', 'rgb(20, 118, 255)')
+  await expect(dividerText.nth(2)).toHaveCSS('font-size', '16px')
+  await expect(dividerMargin.nth(4)).toHaveCSS('height', '40px')
 })

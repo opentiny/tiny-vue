@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 
 import '@opentiny/vue-theme-mobile/index-bar/index.less'

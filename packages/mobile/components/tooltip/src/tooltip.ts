@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ITinyVm } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ITinyVm } from '@mobile-root/shared.type'
 
 import type {
   bindEvent,

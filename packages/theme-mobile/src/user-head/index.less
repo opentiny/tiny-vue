@@ -16,7 +16,7 @@
 @user-head-prefix-cls: ~'@{css-prefix}mobile-user-head';
 
 .@{user-head-prefix-cls} {
-  .component-css-vars-user-head();
+  .inject-UserHead-vars();
 
   display: inline-block;
   position: relative;
@@ -24,27 +24,27 @@
   &__portrait {
     overflow: hidden;
     text-align: center;
-    border-radius: var(--ti-mobile-userhead-head-border-radius);
+    border-radius: var(--tvm-UserHead-head-border-radius);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--ti-mobile-userhead-head-bg-color);
+    background-color: var(--tvm-UserHead-head-bg-color);
 
     &.round {
       border-radius: 50%;
     }
 
     &.min {
-      width: var(--ti-mobile-userhead-head-size-small);
-      height: var(--ti-mobile-userhead-head-size-small);
-      line-height: var(--ti-mobile-userhead-head-size-small);
+      width: var(--tvm-UserHead-head-size-small);
+      height: var(--tvm-UserHead-head-size-small);
+      line-height: var(--tvm-UserHead-head-size-small);
     }
 
     &.icon {
-      font-size: var(--ti-mobile-userhead-head-icon-size-normal);
+      font-size: var(--tvm-UserHead-head-icon-size-normal);
 
       &.min {
-        font-size: var(--ti-mobile-userhead-head-icon-size-small);
+        font-size: var(--tvm-UserHead-head-icon-size-small);
       }
 
       svg {

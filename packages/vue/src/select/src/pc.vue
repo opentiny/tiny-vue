@@ -210,30 +210,12 @@
           </span>
 
           <span v-else :class="['tiny-select__tags-text', 'is-display-only', { 'is-disabled': state.isDisabled }]">
-            <tiny-tooltip
-              :effect="tooltipConfig.effect || 'light'"
-              :placement="tooltipConfig.placement || 'top'"
-              :popper-class="tooltipConfig.popperClass || ''"
-              :disabled="!showTips"
-            >
-              <span>
-                <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
-                  >;
-                </span>
+            <span>
+              <span v-for="item in state.selected" :key="item.value">
+                <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
+                >;
               </span>
-
-              <template #content>
-                <div :class="[state.showTips && 'tiny-select__show-tips', 'tiny-select__show-common']">
-                  <span v-if="slots.label">
-                    <span v-for="item in state.selected" :key="getValueKey(item)">
-                      <slot name="label" :item="item"></slot>
-                    </span>
-                  </span>
-                  <span v-else>{{ disabledTooltipContent || state.disabledTooltipContent }}</span>
-                </div>
-              </template>
-            </tiny-tooltip>
+            </span>
           </span>
           <!-- tiny 新增：searchable时, 这里不显示 state.query -->
           <input
@@ -278,6 +260,7 @@
           :id="id"
           :autocomplete="autocomplete"
           :size="state.selectSize"
+          :showTooltip="false"
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
           :display-only="state.isDisplayOnly"

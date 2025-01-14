@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import '@opentiny/vue-theme-mobile/picker-column/index.less'
 
 export default defineComponent({

@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { iconUser } from '@opentiny/vue-icon'
 import { userHeadProps } from './user-head'
 import '@opentiny/vue-theme-mobile/user-head/index.less'

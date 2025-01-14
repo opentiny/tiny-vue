@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "3.20.7",
+  "version": "3.21.0",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -22,6 +22,9 @@
     "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
+    "@docsearch/css": "^3.8.0",
+    "@docsearch/js": "^3.8.0",
+    "@docsearch/react": "npm:@docsearch/css",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
@@ -48,16 +51,12 @@
     "tailwindcss": "^3.2.4",
     "vue": "^3.4.31",
     "vue-i18n": "^9.1.10",
-    "vue-router": "4.1.5",
-    "@docsearch/js": "^3.8.0",
-    "@docsearch/css": "^3.8.0",
-    "@docsearch/react": "npm:@docsearch/css"
+    "vue-router": "4.1.5"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
     "@opentiny/vue-mobile": "workspace:~",
-    "@playwright/test": "~1.42.0",
-    "rollup-plugin-visualizer": "^5.12.0",
+    "@playwright/test": "catalog:",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",
     "@unocss/preset-icons": "^0.38.2",
@@ -78,6 +77,7 @@
     "markdown-it-table-of-contents": "^0.6.0",
     "markdown-it-toc-done-right": "^4.2.0",
     "prettier": "^2.7.1",
+    "rollup-plugin-visualizer": "^5.12.0",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "typescript": "catalog:",

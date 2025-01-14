@@ -19,12 +19,12 @@
 @checkbox-prefix-cls: ~'@{css-prefix}mobile-checkbox';
 
 .@{checkbox-prefix-cls} {
-  .component-css-vars-checkbox();
+  .inject-Checkbox-vars();
 
   position: relative;
   display: inline-block;
   white-space: nowrap;
-  margin-right: var(--ti-mobile-checkbox-margin-right);
+  margin-right: var(--tvm-Checkbox-margin-right);
   cursor: pointer;
   .user-select(none);
 
@@ -39,17 +39,17 @@
     vertical-align: middle;
     outline: 0;
     cursor: pointer;
-    width: var(--ti-mobile-checkbox-width);
-    height: var(--ti-mobile-checkbox-height);
-    line-height: var(--ti-mobile-checkbox-line-height);
+    width: var(--tvm-Checkbox-width);
+    height: var(--tvm-Checkbox-height);
+    line-height: var(--tvm-Checkbox-line-height);
   }
 
   &__inner {
     display: inline-block;
     position: relative;
-    background-color: var(--ti-mobile-checkbox-bg-color);
-    border: 1.5px solid var(--ti-mobile-checkbox-border-color);
-    border-radius: var(--ti-mobile-checkbox-border-radius, 3px);
+    background-color: var(--tvm-Checkbox-bg-color);
+    border: 1.5px solid var(--tvm-Checkbox-border-color);
+    border-radius: var(--tvm-Checkbox-border-radius, 3px);
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -59,7 +59,7 @@
       background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
     &:hover {
-      border-color: var(--ti-mobile-checkbox-checked-border-color);
+      border-color: var(--tvm-Checkbox-checked-border-color);
     }
 
     &::after {
@@ -67,7 +67,7 @@
       content: '';
       border-width: 2px;
       border-style: solid;
-      border-color: var(--ti-mobile-checkbox-selected-border-color);
+      border-color: var(--tvm-Checkbox-selected-border-color);
       border-left: 0;
       border-top: 0;
       height: 11px;
@@ -94,21 +94,21 @@
 
   &__label {
     display: inline-block;
-    padding-left: var(--ti-mobile-checkbox-label-padding-left);
+    padding-left: var(--tvm-Checkbox-label-padding-left);
     line-height: 24px;
-    color: var(--ti-mobile-checkbox-text-color);
-    font-size: var(--ti-mobile-checkbox-font-size, 16px);
+    color: var(--tvm-Checkbox-text-color);
+    font-size: var(--tvm-Checkbox-font-size, 16px);
     vertical-align: middle;
     word-break: break-all;
     white-space: pre-wrap;
   }
 
   &.is-checked &__inner {
-    background-color: var(--ti-mobile-checkbox-checked-bg-color);
+    background-color: var(--tvm-Checkbox-checked-bg-color);
   }
 
   &.is-checked &__inner::after {
-    border-color: var(--ti-mobile-checkbox-selected-border-color);
+    border-color: var(--tvm-Checkbox-selected-border-color);
     transform: translate(-50%, -50%) rotate(45deg) scaleY(1);
     opacity: 1;
   }
@@ -119,7 +119,7 @@
       position: absolute;
       display: block;
       border-radius: 2px;
-      background-color: var(--ti-mobile-checkbox-indeterminate-bg-color);
+      background-color: var(--tvm-Checkbox-indeterminate-bg-color);
       height: 10px;
       width: 10px;
       left: 0;
@@ -136,20 +136,20 @@
 
   &.is-checked &__inner,
   &.is-indeterminate &__inner {
-    background-color: var(--ti-mobile-checkbox-checked-bg-color);
-    border-color: var(--ti-mobile-checkbox-checked-border-color);
+    background-color: var(--tvm-Checkbox-checked-bg-color);
+    border-color: var(--tvm-Checkbox-checked-border-color);
   }
 
   &.is-disabled {
     .checkbox-input-disabled(
-      var(--ti-mobile-checkbox-disabled-text-color),
-      var(--ti-mobile-checkbox-disabled-bg-color),
-      var(--ti-mobile-checkbox-checked-disabled-bg-color),
-      var(--ti-mobile-checkbox-disabled-border-color)
+      var(--tvm-Checkbox-disabled-text-color),
+      var(--tvm-Checkbox-disabled-bg-color),
+      var(--tvm-Checkbox-checked-disabled-bg-color),
+      var(--tvm-Checkbox-disabled-border-color)
     );
   }
 
-  &.icon-position-top  &__input {
+  &.icon-position-top &__input {
     vertical-align: top;
   }
 }
