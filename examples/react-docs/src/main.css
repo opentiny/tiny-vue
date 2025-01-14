@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.app {
-  margin: 10px;
-  width: 500px;
-}

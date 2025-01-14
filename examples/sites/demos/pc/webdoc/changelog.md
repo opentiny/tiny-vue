@@ -4,6 +4,125 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 
 在此页面上，您只能看到我们的 更新日志 最新三个迭代的日志记录，如您要查看完整记录可以查看：[Release](https://github.com/opentiny/tiny-vue/releases)
 
+## v2.21.0/v3.21.0
+
+`2025/01/15`
+
+## What's Changed
+
+### Exciting New Features 🎉
+
+- feat(tiny-vue-nuxt): [tiny-vue-nuxt] add tiny-vue-nuxt module and add… by @18003228289 in https://github.com/opentiny/tiny-vue/pull/1761
+- feat(tiny-vue-nuxt): [tiny-vue-nuxt] finish importing all components to nuxt module by @18003228289 in https://github.com/opentiny/tiny-vue/pull/1838
+- fix(random): [random] use Math.random() instead to support SSR by @18003228289 in https://github.com/opentiny/tiny-vue/pull/1868
+- feat: add nuxt dev environment by @zzcr in https://github.com/opentiny/tiny-vue/pull/1993
+- feat: add mobile dependence by @zzcr in https://github.com/opentiny/tiny-vue/pull/2609
+- feat: sync 3.20.0 to dev by @zzcr in https://github.com/opentiny/tiny-vue/pull/2639
+- feat: support nuxt by @zzcr in https://github.com/opentiny/tiny-vue/pull/2635
+- feat(dropdown): [dropdown] add right side expansion function for dropdown by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/2608
+- feat: support nuxt by @kagol in https://github.com/opentiny/tiny-vue/pull/2641
+- feat: add @opentiny/utils package by @zzcr in https://github.com/opentiny/tiny-vue/pull/2661
+- feat(fluent-editor): add before-editor-init props by @kagol in https://github.com/opentiny/tiny-vue/pull/2670
+- feat: [grid,alert,form]use catalog to globally upgrade vite and vitest; and add mobile build config by @zzcr in https://github.com/opentiny/tiny-vue/pull/2680
+- feat(site): Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2688
+- feat(site): optimize the performance of the official website, use lazy loading for document examples by @zzcr in https://github.com/opentiny/tiny-vue/pull/2713
+- feat(nav-menu): [nav-menu] Add custom selected mode by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/2718
+- feat(nav-menu): [nav-menu] Simplify the demo data by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/2728
+- feat: add utils packages type module by @zzcr in https://github.com/opentiny/tiny-vue/pull/2731
+- feat: update version to 3.21.0 by @zzcr in https://github.com/opentiny/tiny-vue/pull/2734
+- feat: remove chart e2e-test cases by @zzcr in https://github.com/opentiny/tiny-vue/pull/2742
+- feat(alert): [alert] display title when size is large by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/2744
+- feat: enhance the divider dialogbox treemenu function by @zzcr in https://github.com/opentiny/tiny-vue/pull/2758
+- feat: update playground versions by @zzcr in https://github.com/opentiny/tiny-vue/pull/2763
+- feat(alert): [alert] display title when size is large in mobile-first by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/2765
+
+### Bug Fixes 🐛
+
+- fix(crypto): [crypto] use nanoid instead to support SSR by @18003228289 in https://github.com/opentiny/tiny-vue/pull/1860
+- fix(ssr): [ssr] fix ssr problems by @18003228289 in https://github.com/opentiny/tiny-vue/pull/1935
+- fix(nuxt): update vue version to fix button slot error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2026
+- fix(plugin): [plugin] fix nuxt plugin by @18003228289 in https://github.com/opentiny/tiny-vue/pull/2220
+- fix(plugin): [plugin] fix nuxt plugin by @18003228289 in https://github.com/opentiny/tiny-vue/pull/2212
+- fix(chart): huiCharts 打包替换为 Chart by @Davont in https://github.com/opentiny/tiny-vue/pull/2622
+- fix: fix slider compilation error in vue2 by @zzcr in https://github.com/opentiny/tiny-vue/pull/2625
+- fix(tabbar): modify mobile tabbar problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2638
+- fix(dropdown-menu): fix mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2642
+- fix(form): modify mobile form problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2643
+- fix(container): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2646
+- fix(dialog-box): modify mobile dialog-box problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2644
+- fix(select): [select] fix the vertical centering of the suffix icon by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/2645
+- fix(tree-select): solve the problem of tree attributes not being passed through by @kagol in https://github.com/opentiny/tiny-vue/pull/2659
+- fix(label): modify mobile bug by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2672
+- fix(input): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2671
+- fix(slider): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2669
+- fix(tree): default-expanded-keys description is wrong by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2667
+- fix(checkbox): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2666
+- fix(form): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2665
+- fix(popover): remove aria-hidden by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2664
+- fix(progress): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2654
+- fix(button): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2660
+- fix(auto-import-plugin): support functional components by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/2511
+- fix: fix warning in cascader component by @zzcr in https://github.com/opentiny/tiny-vue/pull/2662
+- fix(nuxt): fix the error when starting the nuxt project by @zzcr in https://github.com/opentiny/tiny-vue/pull/2668
+- fix(unplugin-tiny-vue): fix error TinyVueResolver name by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2676
+- fix(action-sheet): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2692
+- fix(pull-refresh): modify mobile bug by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2677
+- fix(exception): modify mobile problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2690
+- fix(file-upload): [file-upload] Optimized the usage of the customized upload example. by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/2694
+- fix(vue-renderless): [action-menu, alert] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2693
+- fix: fix change theme error when open playground by @zzcr in https://github.com/opentiny/tiny-vue/pull/2681
+- fix(vue-renderless): [autocomplete,base-select,amount,anchor,area] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2695
+- fix(mobile): fix mobile components build error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2696
+- fix(site): fix error when build saas site by @zzcr in https://github.com/opentiny/tiny-vue/pull/2701
+- fix(mini-picker): the demo on the mobile client is modified. by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2698
+- fix(modal): modify the display and error issues of the mobile demo by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2704
+- fix(user-head): the problem and type of the demo on the mobile client are modified by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2699
+- fix(vue-renderless): [breadcrumb, bulletin-board, button, button-group,calendar, calendar-view, card, carousel, cascader, cascader-panel, chart,checkbox, collapse, color-picker, color-select-panel,company,config-provider,container,crop,currency,date-picker,dept,dialog-box,dialog-select,directives,divider,drawer,drop-roles,drop-times,dropdown,espace,fall-menu,file-upload,filter-panel,float-button,floatbar,flowchart,fluent-editor,form,fullscreen] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2709
+- fix(tabs): modify the issue of the mobile demo not displaying and reporting errors by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2710
+- fix(vue-renderless): [grid] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2714
+- fix(grid): [grid] fix the initial position on the left when dragging … by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/2719
+- fix(statistic): [statistic] synchronize the statistic component of the release-3.18 version to the dev branch by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2717
+- fix(file-upload): modify the error reported by the upload component on the mobile client and add the demo by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2724
+- fix(input): [input] cancel bacground style of input count in textarea by @wNing50 in https://github.com/opentiny/tiny-vue/pull/2715
+- fix(modal): [modal] repeatedly dispatch the close event by @betavs in https://github.com/opentiny/tiny-vue/pull/2573
+- fix(vue-renderless): [grid-select,guide,hrapprover,hrapprover,icon,icon-multicolor,image,infinite-scroll,input,ip-address,layout,link,link-menu,loading,locales,logon-user,logout,milestone,mind-map,modal,nav-menu,notify,numeric,pager,pop-upload,popconfirm,popeditor,popover,progress,qr-code,query-builder] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2721
+- fix(modal): [modal] modifying the modal component and clicking the confirm button accidentally triggered the close event by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2727
+- fix(vue-renderless): [radio,rate,rich-text-editor,roles,scroll-text,search,select,skeleton,slider,split,statistic,steps,sticky,switch,tabs,tag,tag-group,text-popup,time-line,time-line-new,time-picker,time-select,toggle-menu,tooltip,transfer,tree,tree-menu,tree-select] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2729
+- fix(vite-import): fix the issue of escaping comment code in on-demand packaging plugin by @zzcr in https://github.com/opentiny/tiny-vue/pull/2726
+- fix(vue-renderless): [user,user-account,user-contact,user-head,user-link,virtual-scroll-box,virtual-tree,watermark,wizard] fix site: Optimize site documentation typesetting by @dufu1991 in https://github.com/opentiny/tiny-vue/pull/2732
+- fix: supplement mistakenly deleted files by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2736
+- fix(e2e): [tooltip,select] fix the security that causes e2e test failures. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2743
+- fix(e2e): [file-upload] Fix the error reported in the E2E test case of the upload component. by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/2741
+- fix(e2e): [cascader,color-picker,crop] fix cascader color-picker crop components e2e-test error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2746
+- fix(demos/checkbox): [checkbox] fix checkbox e2e-test error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2745
+- fix(modal): [modal] modify e2e test case error by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2747
+- fix(date-picker): [date-picker] fix date-picker e2e test error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2749
+- fix(time-select): [time-select] Fix and optimize issues with invalid … by @Youyou-smiles in https://github.com/opentiny/tiny-vue/pull/2735
+- fix(popeditor): the default width of the label in popeditor is added by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2750
+- fix(modal): [modal] the style does not take effect by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2751
+- fix(carousel): [carousel] modify the vertical arrow display issue of the carousel component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2752
+- fix(grid): [grid] fix can not select first option when value is empty by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/2756
+- fix(dialog-box): [dialog-box] modify the style of the dialog box by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2757
+- fix(loading): [loading] v-loading's lifecycle name replace by inserted by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2759
+- fix(grid): [grid] fix checkbox border become smaller when config show… by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/2762
+- fix: fix huichart build error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2760
+- fix(renderless): fix renderless package publish error by @zzcr in https://github.com/opentiny/tiny-vue/pull/2761
+- fix(divider): [divider] modify e2e test cases for the divider component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/2766
+
+### Other Changes
+
+- docs: hide the search input on the left menu at open source sites by @kagol in https://github.com/opentiny/tiny-vue/pull/2607
+- ci: auto deploy site by @kagol in https://github.com/opentiny/tiny-vue/pull/2617
+- docs: add dufu1991 as a contributor for doc by @allcontributors in https://github.com/opentiny/tiny-vue/pull/2703
+- docs(select): add the description of the filterMethod prop for Select by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/2708
+- docs: fix back to top does not work and the document tab title does n… by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/2712
+- test(grid): [grid] fix unit test error by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/2754
+
+## New Contributors
+
+- @18003228289 made their first contribution in https://github.com/opentiny/tiny-vue/pull/1761
+- @dufu1991 made their first contribution in https://github.com/opentiny/tiny-vue/pull/2688
+
 ## v2.20.0/v3.20.0
 
 `2024/12/06`
@@ -508,102 +627,3 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 ## New Contributors
 
 - @BWrong made their first contribution in https://github.com/opentiny/tiny-vue/pull/2387
-
-## v2.18.0/v3.18.0
-
-`2024/08/20`
-
-## What's Changed
-
-### Exciting New Features 🎉
-
-- feat(tree-select): [tree-select] add tree-select component by @kagol in https://github.com/opentiny/tiny-vue/pull/1683
-- feat: support solidjs (#1566) by @zzcr in https://github.com/opentiny/tiny-vue/pull/1682
-- feat(tree-menu)[tree-menu]: clearable by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1672
-- feat(tabs): [tabs] Add new specification function by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1762
-- feat(search): [search] add disabled functionality to the search component and adapt to new specifications by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1756
-- feat(fluent-editor): add mobile-first template by @kagol in https://github.com/opentiny/tiny-vue/pull/1763
-- feat(Switch): [switch] suppor custom open and close icon. by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1551
-- feat(runtime): add directive runtime by @zzcr in https://github.com/opentiny/tiny-vue/pull/1784
-- fix(warning): fix all warning , fix dialog-box's visible ,default false by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1792
-- feat(fluent-editor): optimize fluent-editor mobile-first by @kagol in https://github.com/opentiny/tiny-vue/pull/1794
-- feat(file-upload): [file-upload]刷新上传组件新规范 by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1811
-- feat(pager): [pager] add new props total-fixed-left by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1819
-- develop split for smb-design theme by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1830
-- feat(fall-menu): [fall-menu]modify smb-theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1842
-- feat(bulletin-board): [bulletin-board] updata bulletin-board xdesign by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1844
-- feat(link-menu): [link-menu]modify smb-theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1846
-- feat(nav-menu): [nav-menu] updata nav-menu xdesign by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1849
-- feat(pop-upload): [pop-upload] 刷新 popupload 规范，增加 uploadTip 插槽 by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1850
-- feat(pop-upload): [pop-upload] 刷新 popupload 规范，表格头部优化，增加上传数据统计能力，修复长度限制 bug by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1852
-- feat(toggle-menu): [toggle-menu] add smb theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1861
-- feat(color-select-panel): [color-select-panel]modify smb-theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1837
-- fix(button): [button] add ts declaration for button , and remove hook-updated … by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1853
-- fix (anchor): [anchor] Fix the issue that the scrolling response lags after the anchor is clicked. Add a tooltip to adapt to the SaaS theme. by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1892
-
-### Bug Fixes 🐛
-
-- fix(unplugin-virtual-template): fix build internals error in node v18.19.1 by @gweesin in https://github.com/opentiny/tiny-vue/pull/1676
-- fix(vue-renderless): [radio] fix handleKeydown blocking default events and bubble logic by @Nowitzki41 in https://github.com/opentiny/tiny-vue/pull/1650
-- fix: fix pnpm site error by @kagol in https://github.com/opentiny/tiny-vue/pull/1702
-- chore(fluent-editor): update package.json by @kagol in https://github.com/opentiny/tiny-vue/pull/1721
-- fix(docs): fix components number by @zzcr in https://github.com/opentiny/tiny-vue/pull/1754
-- fix(tree-menu): [tree-menu] resolve the issue of disabled treemenu components not taking effect by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1736
-- fix(auto-tip): [auto-tip] Fix the issue where the placement configuration always has old values by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/1774
-- fix(rich-text-editor): [rich-text-editor] fix data binding doen't work by @gweesin in https://github.com/opentiny/tiny-vue/pull/1779
-- fix(playground): could not open playground as Composition mode by @gweesin in https://github.com/opentiny/tiny-vue/pull/1787
-- fix(picker): fix mobile breakpoint cannot use pc datepicker and timep… by @gweesin in https://github.com/opentiny/tiny-vue/pull/1678
-- fix(fluent-editor): fix toolbar icon and undo/redo by @kagol in https://github.com/opentiny/tiny-vue/pull/1786
-- fix: fix layout asider layer error on mobile mode by @gweesin in https://github.com/opentiny/tiny-vue/pull/1778
-- fix(color-picker): [color-picker,color-select-panel] fix issue 1684 by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1686
-- fix: fix Vue packages version mismatch by @kagol in https://github.com/opentiny/tiny-vue/pull/1791
-- fix(fluent-editor): fix better-table module by @kagol in https://github.com/opentiny/tiny-vue/pull/1788
-- fix(fluent-editor): fix image module and optimize toolbar style by @kagol in https://github.com/opentiny/tiny-vue/pull/1799
-- fix(form): [form] fix text validation style error in other size form … by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1798
-- fix(tree-menu): [tree-menu] Delete the prefix-icon attribute of the tree-menu component by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1789
-- fix(grid): fix grid click menu item jump to blank tab in playground c… by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1802
-- fix(fluent-editor): fix error when execute pnpm site by @kagol in https://github.com/opentiny/tiny-vue/pull/1815
-- fix(fluent-editor): fix fluent-editor saas theme by @kagol in https://github.com/opentiny/tiny-vue/pull/1814
-- fix(form): [form] fix content not aligned when display only close #1698 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1805
-- fix(warning): fix unocss version conflicts by @gweesin in https://github.com/opentiny/tiny-vue/pull/1825
-- fix(playground): fix old version runtime not found close #1817 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1818
-- fix(fluent-editor): fix style error by @kagol in https://github.com/opentiny/tiny-vue/pull/1829
-- fix(fluent-editor): fix style missing by @kagol in https://github.com/opentiny/tiny-vue/pull/1831
-- fix(fluent-editor): fix console warn by @kagol in https://github.com/opentiny/tiny-vue/pull/1833
-- fix(select): [select] Adapt to multiple+disabled+displayOnly scenarios with different themes by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/1835
-- fix(fluent-editor): fix tasklist format by @kagol in https://github.com/opentiny/tiny-vue/pull/1845
-- fix(base-select): [base-select] fix check all style by @kagol in https://github.com/opentiny/tiny-vue/pull/1848
-- fix(form): [form] fix dynamic change size fail in prod mode by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1857
-- fix(theme): [anchor] Fixed the theme switch bug and the anchor line color under the default theme. by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1854
-- fix(pop-confirm): [pop-confirm] remove m funtion from pc template by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1863
-- fix(build): fix some bugs when build components by @zzcr in https://github.com/opentiny/tiny-vue/pull/1873
-- fix(theme): Fixed the issue that multiple root files are generated when the theme is packaged. by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1893
-
-### Other Changes
-
-- chore(base-select): [base-select] add mark and metaData by @kagol in https://github.com/opentiny/tiny-vue/pull/1681
-- chore: update workflow node-version to 20 by @kagol in https://github.com/opentiny/tiny-vue/pull/1742
-- docs(changelog): update changelog and runtime doc by @zzcr in https://github.com/opentiny/tiny-vue/pull/1749
-- feat: update site design style by @zzcr in https://github.com/opentiny/tiny-vue/pull/1752
-- docs(sites): fix docs typo by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1758
-- docs(tree-select): [tree-select] optimize demo/api docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1743
-- docs(fluent-editor): optimize demo/api docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1757
-- docs(grid): add grid-column props docs by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1782
-- docs(dialog-box): [dialog-box] update document by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1732
-- docs(numeric): [numeric]optimized docs of numeric component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1753
-- docs(button-group): add new slot api version by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1797
-- docs(fluent-editor): optimize fluent-editor mobile-first docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1804
-- fix(numeric): modify docs by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1803
-- feat: update vue-docs by @zzcr in https://github.com/opentiny/tiny-vue/pull/1810
-- docs(fluent-editor): optimize fluent-editor pc docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1807
-- docs(theme): add custom cssvar variable prefix documentation by @zzcr in https://github.com/opentiny/tiny-vue/pull/1806
-- feat(link): add link‘s typescript and docs by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1816
-- feat(readme): add readme files to main packages by @zzcr in https://github.com/opentiny/tiny-vue/pull/1826
-- docs(fluent-editor): add fluent-editor docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1834
-- docs(fluent-editor): optimize mobile-first demo by @kagol in https://github.com/opentiny/tiny-vue/pull/1836
-- ci: add automate script to transform demos to add "Tiny" prefix by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1832
-
-## New Contributors
-
-- @Nowitzki41 made their first contribution in https://github.com/opentiny/tiny-vue/pull/1650
-- @Simon-He95 made their first contribution in https://github.com/opentiny/tiny-vue/pull/1839

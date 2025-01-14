@@ -301,6 +301,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .demo-container {
   min-height: 200px;
+  width: 100%;
 }
 
 .is-current {

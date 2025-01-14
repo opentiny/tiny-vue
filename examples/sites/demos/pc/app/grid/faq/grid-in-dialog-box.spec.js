@@ -5,12 +5,7 @@ test('弹窗框中表格编辑器失焦功能测试', async ({ page }) => {
   await page.goto('grid-faq#faq-grid-in-dialog-box')
   await page.getByRole('button', { name: '弹出 Dialog false' }).click()
   await page.getByText('GFD 科技有限公司').first().click()
-  await page
-    .getByRole('row', {
-      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
-    })
-    .getByRole('textbox')
-    .fill('ss')
+  await page.locator('.tiny-grid-default-input').fill('ss')
   await page.getByText('消息').click()
 
   await expect(page.getByText('ss').first()).toBeVisible()

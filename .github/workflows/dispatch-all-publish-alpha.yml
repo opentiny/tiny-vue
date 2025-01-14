@@ -1,29 +1,41 @@
-name: Auto All Publish
+name: Dispatch Alpha All Publish
+run-name: Dispatch All Publish Alpha--${{ inputs.version }}
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: |
+          输入您将要发布的版本号,
+          例如： `3.xx.xx`.
+        required: true
+        type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: windows-latest
     outputs:
-      branchVersion: ${{ steps.parseTag.outputs.branchVersion }}
+      publishVersion: ${{ steps.parseVersion.outputs.publishVersion }}
     steps:
-      - name: Parse Tag
-        id: parseTag
+      - name: Parse Version
+        id: parseVersion
         uses: actions/github-script@v6
         with:
           script: |
-            const tag = `${{ github.ref_name }}`
-            const branchVersion = tag.slice(1)
-            core.setOutput('branchVersion', branchVersion)
+            const version = `${{ inputs.version }}`
+            if(!/^\d\.\d+\.\d+/.test(version)) {
+              throw new Error('版本号格式不正确')
+            }
+            const publishVersion = version.slice(2)
+            core.setOutput('publishVersion', publishVersion)
 
       - name: CheckOut Code
         uses: actions/checkout@master
         with:
-          ref: release-${{ steps.parseTag.outputs.branchVersion }}
+          ref: ${{ github.ref_name }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -50,10 +62,10 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: Run Build Components
-        run: pnpm build:ui
+        run: pnpm build:ui -t ${{ steps.parseVersion.outputs.publishVersion }}
 
       - name: Run Build Sass Common
-        run: pnpm build:ui saas-common -d saas
+        run: pnpm build:ui saas-common -t ${{ steps.parseVersion.outputs.publishVersion }} -d saas
 
       - name: Run Build Theme
         run: pnpm build:theme
@@ -70,16 +82,10 @@ jobs:
       - name: Run Build Runtime
         run: pnpm build:runtime
 
+      - name: Run Release alpha
+        run: pnpm release:alpha
+
       - name: Publish Vue3 And Vue2 components
         run: pnpm pub:all
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Release
-        if: contains(github.ref_name, 'alpha') == false
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}

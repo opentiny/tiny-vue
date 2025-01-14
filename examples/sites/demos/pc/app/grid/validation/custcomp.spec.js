@@ -2,14 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('自定义组件与插槽编辑器校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
+  const demo = page.locator('#validation-custcomp')
   await page.goto('grid-validation#validation-custcomp')
   await page.getByText('GFD 科技 YX 公司').first().click()
-  await page
-    .getByRole('row', {
-      name: '1 华东区 福州 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。 1234567890'
-    })
-    .getByRole('textbox')
-    .fill('')
+  await demo.locator('.tiny-grid-default-input').fill('')
 
   await expect(page.getByRole('tooltip', { name: '必填' })).toBeVisible()
 })
