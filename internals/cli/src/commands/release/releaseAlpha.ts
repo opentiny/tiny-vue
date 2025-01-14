@@ -8,7 +8,7 @@ const excludeFiles = ['.png', '.gif', '.jpeg', '.jpg', '.ttf', 'node_modules']
 
 /**
  * @param {string} packageName 包名
- * @param {string} packageName 包名
+ * @param {string} version 原始版本号
  * @returns {string} 自动升级patch版本后的版本号
  */
 const getPatchVersion = (packageName: string, version: string): string => {
