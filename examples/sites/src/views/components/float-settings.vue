@@ -118,6 +118,7 @@ export default defineComponent({
     const { templateModeState } = useTemplateMode()
     const floatSettings = ref(null)
     const isPlus = import.meta.env.VITE_APP_MODE === 'plus'
+    const isMobile = import.meta.env.VITE_APP_MODE === 'mobile'
 
     const state = reactive({
       demoStyleVisible: false,
@@ -140,6 +141,15 @@ export default defineComponent({
         duration: 3000
       })
       isShowTip = true
+    }
+
+    if (isMobile) {
+      // mobile模式暂无组合式api
+      state.styleSettings = state.styleSettings.map((item) => ({
+        ...item,
+        options: item.options.filter((elem) => elem.value !== 'Composition')
+      }))
+      apiModeState.apiMode = 'Options'
     }
 
     if (isPlus) {

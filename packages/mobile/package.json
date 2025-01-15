@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-mobile",
   "type": "module",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.6",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
   "license": "MIT",
@@ -26,7 +26,8 @@
     "main": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "main": "index.ts",
   "scripts": {

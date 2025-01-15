@@ -30,10 +30,6 @@ jobs:
               throw new Error('请输入正确的包名称')
             }
 
-            if (!branchName.includes('release-3.')) {
-              throw new Error('请使用release-3.xx.xx分支发布正式包')
-            }
-
       - name: CheckOut Code
         uses: actions/checkout@master
         with:
@@ -85,7 +81,7 @@ jobs:
         run: pnpm build:runtime
 
       - name: Run Release alpha
-        run: pnpm release:alpha
+        run: pnpm release:alpha -u
 
       - name: Publish
         run: |

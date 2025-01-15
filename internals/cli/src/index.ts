@@ -9,7 +9,11 @@ const program = new Command()
 
 program.command('release:aurora').description('转换为aurora的包').action(releaseAurora)
 
-program.command('release:alpha').description('转换为组织名为@opentinyvue的包').action(releaseAlpha)
+program
+  .command('release:alpha')
+  .description('转换为组织名为@opentinyvue的包')
+  .option('-u, --updateVersion', '是否自动升级patch版本号', false)
+  .action(releaseAlpha)
 
 program.command('create:icon-saas').description('同步生成 icon-saas').action(createIconSaas)
 
