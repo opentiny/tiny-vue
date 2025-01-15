@@ -55,7 +55,7 @@
         </div>
         <div v-else-if="demoConfig.isMobile" class="phone-container-flex">
           <div class="mobile-view-btn">
-            <tiny-button>预览</tiny-button>
+            <tiny-button>{{ i18nByKey('yan-shi') }}</tiny-button>
           </div>
           <div class="mobile-view-container phone-container">
             <!-- 移动端展示内容 -->
