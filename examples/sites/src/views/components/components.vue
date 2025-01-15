@@ -176,6 +176,9 @@
         {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
       </div>
     </div>
+    <div style="width: 300px; height: 500px">
+      <iframe width="100%" height="100%" :src="mobilePreviewUrl" frameborder="0"></iframe>
+    </div>
     <div id="footer"></div>
   </div>
 </template>
@@ -705,9 +708,11 @@ export default defineComponent({
 
     const hasKey = (apiArr, key) => !apiArr.every((item) => item[key] === undefined)
 
+    const mobilePreviewUrl = `${import.meta.env.VITE_MOBILE_URL}?component=button&demo=base.vue`
     return {
       ...toRefs(state),
       ...fn,
+      mobilePreviewUrl,
       i18nByKey,
       anchorRefreshKey,
       apiModeState,

@@ -23,7 +23,7 @@ export default {
 <style>
 .demo {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 20px;
 }
 </style>

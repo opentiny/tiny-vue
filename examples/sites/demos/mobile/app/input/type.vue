@@ -49,7 +49,7 @@ export default {
   height: 100%;
   padding: 20px 16px;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: auto;
   background: #f5f5f5;
 }
 

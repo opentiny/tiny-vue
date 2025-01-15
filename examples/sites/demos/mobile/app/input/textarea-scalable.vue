@@ -42,7 +42,7 @@ export default {
   height: 100%;
   padding: 20px 16px;
   background: #f5f5f5;
-  overflow-y: scroll;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
