@@ -72,6 +72,7 @@
     "build:site": "pnpm i -g pnpm && pnpm build:vite-import && pnpm build:virtual-template && pnpm -C examples/sites build",
     "release:aurora": "pnpm -C internals/cli release:aurora",
     "release:alpha": "pnpm -C internals/cli release:alpha",
+    "release:e2eConfig": "pnpm -C internals/cli release:e2eConfig",
     "// ---------- 使用pnpm批量发布npm包 ----------": "",
     "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --tag v2-latest --no-git-checks --access=public",
     "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --no-git-checks --access=public",
