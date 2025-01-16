@@ -8,17 +8,17 @@
       <div class="demo-content">
         <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
         <div class="ti-f-r ti-f-pos-between ti-f-box-end">
-          <h2 class="demo-title">{{ demo.name[langKey] }}</h2>
+          <h2 class="demo-title">{{ demo.name[state.langKey] }}</h2>
           <div class="demo-options">
             <tiny-tooltip
               placement="top"
               effect="light"
               popper-class="docs-tooltip"
               :append-to-body="false"
-              :content="copyTip"
+              :content="state.copyTip"
             >
               <i
-                :class="copyIcon"
+                :class="state.copyIcon"
                 class="h:c-success ti-w16 ti-h16 ti-cur-hand"
                 @click="copyCode(demo)"
                 @mouseout="resetTip()"
@@ -53,12 +53,9 @@
         <div v-if="isMobileFirst" class="pc-demo-container">
           <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
         </div>
-        <div v-else-if="demoConfig.isMobile" class="phone-container-flex">
-          <div class="mobile-view-btn">
-            <tiny-button>{{ i18nByKey('yan-shi') }}</tiny-button>
-          </div>
-          <div class="mobile-view-container phone-container">
-            <!-- 移动端展示内容 -->
+        <div v-else-if="demoConfig.isMobile" class="phone-container">
+          <div class="mobile-view-container">
+            <component :is="cmp" />
           </div>
         </div>
         <div v-else class="pc-demo-container">
@@ -70,7 +67,7 @@
       <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
       <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless demo-code">
         <template v-if="files?.length">
-          <tiny-tabs v-model="tabValue" class="code-tabs">
+          <tiny-tabs v-model="state.tabValue" class="code-tabs">
             <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
               <async-highlight :code="file.code"></async-highlight>
             </tiny-tab-item>
@@ -84,22 +81,10 @@
   </div>
 </template>
 
-<script lang="jsx">
-import {
-  defineComponent,
-  reactive,
-  computed,
-  toRefs,
-  shallowRef,
-  onMounted,
-  onBeforeUnmount,
-  watch,
-  nextTick,
-  inject,
-  ref
-} from 'vue'
+<script setup lang="ts">
+import { reactive, computed, shallowRef, onMounted, onBeforeUnmount, watch, nextTick, inject, ref, h } from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
-import { $split, appData, fetchDemosFile } from '@/tools'
+import { $split, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmp-config'
 import { router } from '@/router.js'
@@ -108,195 +93,188 @@ import { useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
 import AsyncHighlight from './async-highlight.vue'
 
+const props = defineProps({
+  demo: {
+    type: Object,
+    default: () => ({})
+  },
+  currDemoId: {
+    type: String,
+    default: ''
+  },
+  observer: {
+    type: Object,
+    default: () => ({})
+  },
+  isIntersecting: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['mounted'])
+
 const { apiModeState, apiModeFn } = useApiMode()
 
-export default defineComponent({
-  name: 'Demo',
-  props: ['demo', 'currDemoId', 'observer', 'isIntersecting'],
-  emits: ['mounted'],
-  components: {
-    TinyTooltip,
-    TinyTabs,
-    TinyTabItem,
-    TinyButton,
-    AsyncHighlight
+defineOptions({
+  name: 'Demo'
+})
+
+const demos = ref(props.demo)
+const files = ref([])
+const { templateModeState } = useTemplateMode()
+const { currentThemeKey } = useTheme()
+const isMobileFirst = computed(() => {
+  return templateModeState.mode === 'mobile-first'
+})
+const demoContainer = ref(null)
+const cmp = shallowRef(null)
+const showPreview = inject('showPreview')
+const state = reactive({
+  tabValue: 'tab0',
+  cmpId: router.currentRoute.value.params.cmpId,
+  langKey: getWord('zh-CN', 'en-US'),
+  copyTip: i18nByKey('copyCode'),
+  copyIcon: 'i-ti-copy'
+})
+
+watch(
+  () => props.isIntersecting,
+  async () => {
+    if (props.isIntersecting) {
+      const demoName = apiModeFn.getDemoName(`${getWebdocPath(state.cmpId)}/${props.demo.codeFiles[0]}`)
+      if (vueComponents[demoName]) {
+        cmp.value = (await vueComponents[demoName]()).default
+      } else {
+        const log = `${demoName}示例资源不存在，请检查文件名是否正确？`
+        cmp.value = h('div', {}, log)
+      }
+    }
   },
-  setup(props, { emit }) {
-    const { templateModeState } = useTemplateMode()
-    const { currentThemeKey } = useTheme()
-    const isMobileFirst = computed(() => {
-      return templateModeState.mode === 'mobile-first'
-    })
+  { immediate: true }
+)
 
-    const getDemoCodeFn = async (demo, forceUpdate) => {
-      // 获取code代码文本
-      if (!demo.files || forceUpdate) {
-        const cmpId = router.currentRoute.value.params.cmpId
-        const promises = demo.codeFiles.map(async (fileName) => {
-          // 切换option-api和composition-api
-          const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
-          let code = ''
-
-          const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
-          code = await fetchDemosFile(path)
-            .then((code) => {
-              return code
-            })
-            .catch(() => {
-              return `${demoName}示例资源不存在，请检查文件名是否正确？`
-            })
-          const ext = $split(fileName, '.', -1)
-          const language = languageMap[ext] || ''
-          return { code, fileName, language }
-        })
-        demo.files = await Promise.all(promises)
-        return demo.files
-      }
-      return demo.files
+watch(
+  () => props.demo,
+  () => {
+    demos.value = props.demo
+    if (props.demo.files) {
+      files.value = props.demo.files
     }
+  },
+  { deep: true }
+)
 
-    const demoContainer = ref(null)
-
-    const state = reactive({
-      tabValue: 'tab0',
-      cmpId: router.currentRoute.value.params.cmpId,
-      langKey: getWord('zh-CN', 'en-US'),
-      copyTip: i18nByKey('copyCode'),
-      copyIcon: 'i-ti-copy'
-    })
-
-    const cmp = shallowRef(null)
-    const showPreview = inject('showPreview')
-
-    const fn = {
-      getDescMd(demo) {
-        // desc字段是一段html
-
-        const desc = demo.desc[state.langKey].trim()
-
-        return <div class="demo-desc" v-html={desc}></div>
-      },
-      async toggleDemoCode(demo) {
-        // 第一次打开时，要请求一下相应的codeFiles .存储到files属性下
-        if (!demo.files) {
-          await this.getDemoCode(demo)
-          demo.isOpen = true
-        } else {
-          demo.isOpen = !demo.isOpen
-        }
-
-        await nextTick()
-        window.dispatchEvent(new Event('resize'))
-      },
-      async copyCode(demo) {
-        if (demo.isOpen) {
-          const idx = parseInt(state.tabValue.slice(3))
-
-          navigator.clipboard.writeText(demo.files[idx].code)
-        } else {
-          await this.getDemoCode(demo)
-
-          navigator.clipboard.writeText(demo.files[0].code)
-        }
-        state.copyTip = i18nByKey('copyCodeOk')
-        state.copyIcon = 'i-ti-check'
-      },
-      resetTip() {
-        setTimeout(() => {
-          state.copyTip = i18nByKey('copyCode')
-          state.copyIcon = 'i-ti-copy'
-        }, 300)
-      },
-      getDemoCode(demo) {
-        // 获取code代码文本
-        return getDemoCodeFn(demo)
-      },
-      openPlayground(demo, open = true) {
-        const cmpId = router.currentRoute.value.params.cmpId
-        const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[0]
-        const openModeQuery = open ? '' : '&openMode=preview'
-        // TODO: 目前mf只有Options写法，后续再放开compositon
-        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
-          isMobileFirst.value ? 'Options' : apiModeState.apiMode
-        }&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
-
-        if (open) {
-          window.open(url)
-        } else {
-          showPreview(url)
-        }
-      }
-    }
-
-    onMounted(() => {
-      if (demoContainer.value) {
-        props.observer?.observe?.(demoContainer.value)
-      }
-
-      nextTick(() => {
-        emit('mounted')
+watch(
+  () => apiModeState.apiMode,
+  () => {
+    if (props.demo.files?.length > 0) {
+      getDemoCodeFn(props.demo, true).then((demoFiles) => {
+        files.value = demoFiles
       })
-    })
-
-    onBeforeUnmount(() => {
-      if (demoContainer.value) {
-        props.observer?.unobserve?.(demoContainer.value)
-      }
-    })
-
-    const demos = ref(props.demo)
-    const files = ref([])
-
-    watch(
-      () => props.isIntersecting,
-      async () => {
-        if (props.isIntersecting) {
-          const demoName = apiModeFn.getDemoName(`${getWebdocPath(state.cmpId)}/${props.demo.codeFiles[0]}`)
-          if (vueComponents[demoName]) {
-            cmp.value = (await vueComponents[demoName]()).default
-          } else {
-            const log = `${demoName}示例资源不存在，请检查文件名是否正确？`
-            cmp.value = <div>{log}</div>
-          }
-        }
-      },
-      { immediate: true }
-    )
-
-    watch(
-      () => props.demo,
-      () => {
-        demos.value = props.demo
-        if (props.demo.files) {
-          files.value = props.demo.files
-        }
-      },
-      { deep: true }
-    )
-
-    watch(
-      () => apiModeState.apiMode,
-      () => {
-        if (props.demo.files?.length > 0) {
-          getDemoCodeFn(props.demo, true).then((demoFiles) => {
-            files.value = demoFiles
-          })
-        }
-      }
-    )
-
-    return {
-      ...toRefs(state),
-      ...fn,
-      appData,
-      vueComponents,
-      demoConfig,
-      cmp,
-      isMobileFirst,
-      i18nByKey,
-      files,
-      demoContainer
     }
+  }
+)
+
+const getDemoCodeFn = async (demo, forceUpdate?: boolean) => {
+  // 获取code代码文本
+  if (!demo.files || forceUpdate) {
+    const cmpId = router.currentRoute.value.params.cmpId
+    const promises = demo.codeFiles.map(async (fileName) => {
+      // 切换option-api和composition-api
+      const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
+      let code = ''
+
+      const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
+      code = await fetchDemosFile(path)
+        .then((code) => {
+          return code
+        })
+        .catch(() => {
+          return `${demoName}示例资源不存在，请检查文件名是否正确？`
+        })
+      const ext = $split(fileName, '.', -1)
+      const language = languageMap[ext] || ''
+      return { code, fileName, language }
+    })
+    demo.files = await Promise.all(promises)
+    return demo.files
+  }
+  return demo.files
+}
+
+const getDescMd = (demo) => {
+  const desc = demo.desc[state.langKey].trim()
+  const html = h('div', { class: 'demo-desc', innerHTML: desc })
+  return html
+}
+
+const toggleDemoCode = async (demo) => {
+  // 第一次打开时，要请求一下相应的codeFiles .存储到files属性下
+  if (!demo.files) {
+    await getDemoCode(demo)
+    demo.isOpen = true
+  } else {
+    demo.isOpen = !demo.isOpen
+  }
+  await nextTick()
+  window.dispatchEvent(new Event('resize'))
+}
+
+const copyCode = async (demo) => {
+  if (demo.isOpen) {
+    const idx = parseInt(state.tabValue.slice(3))
+
+    navigator.clipboard.writeText(demo.files[idx].code)
+  } else {
+    await getDemoCode(demo)
+
+    navigator.clipboard.writeText(demo.files[0].code)
+  }
+  state.copyTip = i18nByKey('copyCodeOk')
+  state.copyIcon = 'i-ti-check'
+}
+
+const resetTip = () => {
+  setTimeout(() => {
+    state.copyTip = i18nByKey('copyCode')
+    state.copyIcon = 'i-ti-copy'
+  }, 300)
+}
+
+const getDemoCode = (demo) => {
+  // 获取code代码文本
+  return getDemoCodeFn(demo)
+}
+
+const openPlayground = (demo, open = true) => {
+  const cmpId = router.currentRoute.value.params.cmpId
+  const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[0]
+  const openModeQuery = open ? '' : '&openMode=preview'
+  // TODO: 目前mf只有Options写法，后续再放开compositon
+  const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
+    isMobileFirst.value ? 'Options' : apiModeState.apiMode
+  }&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
+
+  if (open) {
+    window.open(url)
+  } else {
+    showPreview(url)
+  }
+}
+
+onMounted(() => {
+  if (demoContainer.value) {
+    props.observer?.observe?.(demoContainer.value)
+  }
+  nextTick(() => {
+    emit('mounted')
+  })
+})
+
+onBeforeUnmount(() => {
+  if (demoContainer.value) {
+    props.observer?.unobserve?.(demoContainer.value)
   }
 })
 </script>
@@ -413,11 +391,6 @@ export default defineComponent({
 
 .demo-code {
   border: 1px solid #efeff4;
-}
-
-.phone-container-flex {
-  display: flex;
-  justify-content: flex-start;
 }
 
 .phone-container {
