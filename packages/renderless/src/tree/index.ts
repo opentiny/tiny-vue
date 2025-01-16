@@ -18,7 +18,7 @@ import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
 
-import { log } from '@opentiny/utils'
+import { log } from '../common'
 
 export const setChildren = (props) => (data) => (props.data = data)
 

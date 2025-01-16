@@ -30,7 +30,7 @@ import type {
 } from '../file-upload'
 
 import { extend } from '@mobile-root/utils/object'
-import { xss, log } from '@mobile-root/utils'
+import { xss, log } from '@mobile-root/utils/xss'
 import uploadAjax from '@mobile-root/utils/deps/upload-ajax'
 import { isObject } from '@mobile-root/utils/type'
 import { isEmptyObject } from '@mobile-root/utils/type'
@@ -577,7 +577,7 @@ export const handleStart =
     state,
     vm
   }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'vm'>) =>
-  (rawFiles: IFileUploadFile[], updateId: string, reUpload = false) => {
+  (rawFiles: IFileUploadFile[], updateId: string, reUpload: boolean = false) => {
     if (state.isHwh5) {
       rawFiles = handleHwh5Files(rawFiles, props.hwh5)
     }
@@ -921,7 +921,7 @@ export const abort =
 
 export const abortDownload =
   ({ state }: Pick<IFileUploadRenderlessParams, 'state'>) =>
-  (file: IFileUploadFile, batch = false) => {
+  (file: IFileUploadFile, batch: boolean = false) => {
     const cancel = (docId) => {
       if (!docId) return
       const cancels = state.downloadCancelToken[docId]
@@ -2246,7 +2246,7 @@ export const getToken =
 
 export const previewFile =
   ({ api, props }: Pick<IFileUploadRenderlessParams, 'api' | 'props'>) =>
-  (file: IFileUploadFile, open = false) => {
+  (file: IFileUploadFile, open: boolean = false) => {
     return new Promise((resolve, reject) => {
       try {
         const tokenParams = { isOnlinePreview: true, file, type: 'preview', token: props.edm.preview.token }

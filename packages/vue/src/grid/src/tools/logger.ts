@@ -1,4 +1,4 @@
-import { log } from '@opentiny/utils'
+import { log } from '@opentiny/vue-renderless/common'
 import GlobalConfig from '../config'
 
 const outLog = (type) => (message, detail) => {
@@ -8,7 +8,7 @@ const outLog = (type) => (message, detail) => {
     msg += `: ${detail}`
   }
 
-  log.logger.log(msg, type)
+  log(msg, type)
 
   return msg
 }

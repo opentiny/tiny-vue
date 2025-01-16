@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '@opentiny/utils'
+import { log as uLog, xss } from '@opentiny/utils'
 
 export const KEY_CODE = {
   Backspace: 8,
@@ -263,5 +263,9 @@ export const CASCADER = {
 }
 
 export const version = process.env.RUNTIME_VERSION
+
+export const log = (data, type = 'log') => {
+  uLog.logger[type](data)
+}
 
 export { xss }
