@@ -1,0 +1,13 @@
+<svg width="16.000000" height="16.000000" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip2_141">
+			<rect id="3#停止-stop" width="16.000000" height="16.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip2_141)">
+		<path id="形状结合" d="M8 1C11.86 1 15 4.13 15 8C15 11.86 11.86 15 8 15C4.13 15 1 11.86 1 8C1 4.13 4.13 1 8 1ZM8 2C4.68 2 2 4.68 2 8C2 11.31 4.68 14 8 14C11.31 14 14 11.31 14 8C14 4.68 11.31 2 8 2ZM9 6C9.55 6 10 6.44 10 7L10 9C10 9.55 9.55 10 9 10L7 10C6.44 10 6 9.55 6 9L6 7C6 6.44 6.44 6 7 6L9 6Z" fill="currentColor" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>

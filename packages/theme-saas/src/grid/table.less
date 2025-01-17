@@ -195,12 +195,13 @@
     &.fixed-right-first__column + .col__gutter {
       position: sticky;
       right: 0;
-      background-color: #f4f6fb;
+      // TODO: 待fill-8原子色修改成不透明颜色后改成@apply写法
+      background-color: var(--tiny-color-fill-8, #f4f6fb);
     }
   }
 
   th.fixed__column {
-    background-color: #f4f6fb;
+    background-color: var(--tiny-color-fill-8, #f4f6fb);
     &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
       transform: translateX(-1px);
     }
@@ -230,17 +231,17 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          background-color: #f4f6fb;
+          background-color: var(--tiny-color-fill-8, #f4f6fb);
         }
 
         &.row__current {
-          background-color: #e8eef7;
+          @apply bg-color-info-primary-subtler;
         }
       }
 
       &.row__hover {
         &:nth-child(2n) {
-          background-color: #e8eef7;
+          @apply bg-color-info-primary-subtler;
         }
       }
 
@@ -546,7 +547,7 @@
   }
 
   &.row__highlight &-body__row:hover {
-    background-color: #f3f3f3;
+    @apply bg-color-bg-4;
 
     .fixed__column {
       background-color: inherit;

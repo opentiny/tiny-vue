@@ -75,6 +75,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    hoverExpand: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: ''

@@ -1,0 +1,14 @@
+<svg width="72.000000" height="72.000000" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip117_239">
+			<rect id="21#移动应用测试-MobileAppTest" width="72.000000" height="72.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip117_239)">
+		<path id="矩形备份-19" d="M16 0L56 0C64.8 0 72 7.2 72 16L72 56C72 64.79 64.8 72 56 72L16 72C7.19 72 0 64.79 0 56L0 16C0 7.2 7.19 0 16 0Z" fill="#1476FF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="形状结合" d="M56.2 12C58.3 12 60 13.7 60 15.79L60 44C60 45.79 58.8 48 57.2 48.89L38.8 59.29C38 59.79 37 60 36 60C35 60 34 59.79 33.2 59.29L14.8 48.79C13.2 47.89 12 45.79 12 44L12 15.79C12 13.7 13.7 12 15.8 12L56.2 12ZM44 19L28 19C26.89 19 26 19.89 26 21L26 48C26 49.1 26.89 50 28 50L44 50C45.1 50 46 49.1 46 48L46 21C46 19.89 45.1 19 44 19ZM41.5 43.5C42.1 43.5 42.5 43.89 42.5 44.5C42.5 45.1 42.1 45.5 41.5 45.5L30.5 45.5C29.89 45.5 29.5 45.1 29.5 44.5C29.5 43.89 29.89 43.5 30.5 43.5L41.5 43.5Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

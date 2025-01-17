@@ -1,0 +1,19 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+		Created with Pixso.
+	</desc>
+	<defs>
+		<linearGradient x1="16.679789" y1="12.657847" x2="2.538637" y2="5.657825"
+			id="paint_linear_84_25_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="currentColor" stop-opacity="0" />
+			<stop offset="1" stop-color="currentColor" />
+		</linearGradient>
+	</defs>
+	<path id="Stroke-2"
+		d="M8 1C8.47 1 8.85 1.37 8.85 1.85C8.85 2.32 8.47 2.7 8 2.7C5.06 2.7 2.7 5.06 2.7 8C2.7 10.93 5.06 13.29 8 13.29C10.93 13.29 13.29 10.93 13.29 8C13.29 7.52 13.67 7.14 14.14 7.14C14.62 7.14 15 7.52 15 8C15 11.87 11.87 15 8 15C4.12 15 1 11.87 1 8C1 4.12 4.12 1 8 1Z"
+		fill="url(#paint_linear_84_25_0)" fill-opacity="1" fill-rule="nonzero">
+		<animateTransform attributeName="transform" attributeType="XML" type="rotate"
+			from="0 7.9 7.9" to="360 7.9 7.9" dur="1s" repeatCount="indefinite"></animateTransform>
+	</path>
+</svg>
