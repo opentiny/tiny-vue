@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '@opentiny/mobile-utils/deps/dom'
-import { emitEvent } from '@opentiny/mobile-utils/event'
-import { getDomNode } from '@opentiny/mobile-utils/deps/dom'
+import { on, off, addClass, removeClass } from '@mobile-root/utils/deps/dom'
+import { emitEvent } from '@mobile-root/utils/event'
+import { getDomNode } from '@mobile-root/utils/deps/dom'
 import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '../dialog-box'
 
 export const computedAnimationName =

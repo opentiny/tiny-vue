@@ -16,7 +16,7 @@
 @label-prefix-cls: ~'@{css-prefix}mobile-label';
 
 .@{label-prefix-cls} {
-  .component-css-vars-label();
+  .inject-Label-vars();
 
   display: inline-block;
   word-break: break-word;
@@ -24,8 +24,8 @@
   white-space: normal;
 
   &-isRequired {
-    color: var(--ti-mobile-label-text-color-required);
-    margin-left: var(--ti-mobile-label-required-padding-left);
+    color: var(--tvm-Label-text-color-required);
+    margin-left: var(--tvm-Label-required-padding-left);
   }
 
   &-wholeline {
@@ -56,50 +56,50 @@
   }
 
   &-large {
-    font-size: var(--ti-mobile-label-text-size-large);
-    line-height: var(--ti-mobile-label-text-size-large);
+    font-size: var(--tvm-Label-text-size-large);
+    line-height: var(--tvm-Label-text-size-large);
   }
 
   &-normal {
-    font-size: var(--ti-mobile-label-text-size-normal);
-    line-height: var(--ti-mobile-label-text-size-normal);
+    font-size: var(--tvm-Label-text-size-normal);
+    line-height: var(--tvm-Label-text-size-normal);
   }
 
   &-small {
-    font-size: var(--ti-mobile-label-text-size-small);
-    line-height: var(--ti-mobile-label-text-size-small);
+    font-size: var(--tvm-Label-text-size-small);
+    line-height: var(--tvm-Label-text-size-small);
   }
 
   &-mini {
-    font-size: var(--ti-mobile-label-text-size-mini);
-    line-height: var(--ti-mobile-label-text-size-mini);
+    font-size: var(--tvm-Label-text-size-mini);
+    line-height: var(--tvm-Label-text-size-mini);
   }
 
   &-primary {
-    color: var(--ti-mobile-label-text-color-primary);
+    color: var(--tvm-Label-text-color-primary);
   }
 
   &-secondary {
-    color: var(--ti-mobile-label-text-color-secondary);
+    color: var(--tvm-Label-text-color-secondary);
   }
 
   &-placeholder {
-    color: var(--ti-mobile-label-text-color-placeholder);
+    color: var(--tvm-Label-text-color-placeholder);
   }
 
   &-disabled {
-    color: var(--ti-mobile-label-text-color-disabled);
+    color: var(--tvm-Label-text-color-disabled);
   }
 
   &-inverse {
-    color: var(--ti-mobile-label-text-color-inverse);
+    color: var(--tvm-Label-text-color-inverse);
   }
 
   &-brand {
-    color: var(--ti-mobile-label-text-color-brand);
+    color: var(--tvm-Label-text-color-brand);
   }
 
   &-link {
-    color: var(--ti-mobile-label-text-color-link);
+    color: var(--tvm-Label-text-color-link);
   }
 }

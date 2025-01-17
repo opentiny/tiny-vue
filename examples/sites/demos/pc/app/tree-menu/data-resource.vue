@@ -1,9 +1,5 @@
 <template>
   <div>
-    <p>场景 1：静态数据</p>
-    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
-    <br />
-    <p>场景 2：服务端数据</p>
     <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
   </div>
 </template>

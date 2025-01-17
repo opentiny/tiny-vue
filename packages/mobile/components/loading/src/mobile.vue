@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, $props, defineComponent } from '../../../vue-common'
+import { $prefix, setup, $props, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import loadingImg from '@opentiny/vue-theme-mobile/images/loading.png'
 import '@opentiny/vue-theme-mobile/loading/index.less'

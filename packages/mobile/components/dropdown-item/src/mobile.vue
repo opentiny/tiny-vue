@@ -99,11 +99,11 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent, directive } from '../../../vue-common'
+import { setup, defineComponent, directive } from '@mobile-root/common'
 import { iconYes } from '@opentiny/vue-icon'
 import Popup from '../../popup'
 import Button from '../../button'
-import Clickoutside from '@opentiny/mobile-utils/deps/clickoutside'
+import Clickoutside from '@mobile-root/utils/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-item/index.less'
 import { dropdownItemProps } from './dropdown-item'
 

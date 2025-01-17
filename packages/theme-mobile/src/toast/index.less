@@ -16,7 +16,7 @@
 @toast-prefix-cls: ~'@{css-prefix}mobile-toast';
 
 .@{toast-prefix-cls} {
-  .component-css-vars-toast();
+  .inject-Toast-vars();
 
   position: fixed;
   display: flex;
@@ -33,28 +33,28 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: var(--ti-mobile-toast-padding-size-horizontal);
-    background-color: var(--ti-mobile-toast-bg-color-primary);
-    border-radius: var(--ti-mobile-toast-border-radius);
-    box-shadow: var(--ti-mobile-toast-shadow, 0 0 20px 0 rgb(0 0 0 / 8%));
+    padding: var(--tvm-Toast-padding-size-horizontal);
+    background-color: var(--tvm-Toast-bg-color-primary);
+    border-radius: var(--tvm-Toast-border-radius);
+    box-shadow: var(--tvm-Toast-shadow, 0 0 20px 0 rgb(0 0 0 / 8%));
     backdrop-filter: blur(5px);
-    max-width: var(--ti-mobile-toast-width-max);
+    max-width: var(--tvm-Toast-width-max);
     min-width: 106px;
 
     &-text {
-      padding: var(--ti-mobile-toast-padding-size-veritical) var(--ti-mobile-toast-padding-size-horizontal);
+      padding: var(--tvm-Toast-padding-size-veritical) var(--tvm-Toast-padding-size-horizontal);
     }
   }
 
   &-text {
     word-wrap: break-word;
     word-break: break-all;
-    font-size: var(--ti-mobile-toast-text-font-size);
-    color: var(--ti-mobile-toast-text-color-primary, #fff);
+    font-size: var(--tvm-Toast-text-font-size);
+    color: var(--tvm-Toast-text-color-primary, #fff);
   }
 
   &-icon {
-    padding-bottom: var(--ti-mobile-toast-padding-bottom);
-    font-size: var(--ti-mobile-toast-icon-size);
+    padding-bottom: var(--tvm-Toast-padding-bottom);
+    font-size: var(--tvm-Toast-icon-size);
   }
 }

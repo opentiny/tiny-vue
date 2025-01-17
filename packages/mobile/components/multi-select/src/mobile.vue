@@ -116,8 +116,8 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from '../../../vue-common'
-import { $prefix, setup, defineComponent, directive } from '../../../vue-common'
+import type { PropType } from '@mobile-root/common'
+import { $prefix, setup, defineComponent, directive } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import { iconChevronDown, iconSearch } from '@opentiny/vue-icon'
 import Button from '../../button'
@@ -125,9 +125,8 @@ import Input from '../../input'
 import Mask from '../../mask'
 import MultiSelectItem from '../../multi-select-item'
 import Wheel from '../../wheel'
-import Clickoutside from '@opentiny/mobile-utils/deps/clickoutside'
+import Clickoutside from '@mobile-root/utils/deps/clickoutside'
 import { t } from '@opentiny/vue-locale'
-import { multiSelectProps } from './multi-select'
 import '@opentiny/vue-theme-mobile/multi-select/index.less'
 
 export default defineComponent({

@@ -9,11 +9,23 @@
     <div class="title">每页条目数和当前页同时改变：</div>
     <tiny-pager :total="100" :current-page="10" mode="number" @current-change="fetchData" @size-change="fetchData">
     </tiny-pager>
+    <div class="title">改变current-page触发事件：</div>
+    <tiny-button @click="currentPage = 1">改变current-page</tiny-button>
+    <tiny-pager
+      :total="100"
+      :current-page="currentPage"
+      mode="number"
+      change-compat
+      @current-change="dataChangeTrigger"
+    ></tiny-pager>
   </div>
 </template>
 
 <script setup>
-import { TinyPager, TinyModal } from '@opentiny/vue'
+import { ref } from 'vue'
+import { TinyPager, TinyModal, TinyButton } from '@opentiny/vue'
+
+const currentPage = ref(10)
 
 function debounce(fn, delay = 50) {
   let timer
@@ -60,6 +72,13 @@ const fetchData = debounce(() => {
     status: 'info'
   })
 })
+
+const dataChangeTrigger = () => {
+  TinyModal.message({
+    message: 'current-change 事件触发',
+    status: 'info'
+  })
+}
 </script>
 
 <style scoped>
@@ -68,5 +87,8 @@ const fetchData = debounce(() => {
   margin-bottom: 4px;
   font-size: 16px;
   font-weight: bold;
+}
+.tiny-button {
+  margin-top: 12px;
 }
 </style>

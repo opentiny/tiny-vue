@@ -24,9 +24,9 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
-import type { ITabItemApi } from '@opentiny/vue-renderless/types/tab-item.type'
+import type { ITabItemApi } from './tab-item'
 import { tabItemProps } from './tab-item'
 
 export default defineComponent({

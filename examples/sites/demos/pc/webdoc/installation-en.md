@@ -48,12 +48,8 @@ export default defineConfig({
 ```
 
 <div class="tip custom-block">
-<br>
 <p> To avoid the uncertainty associated with monthly (minor) upgrades of <code> @opentiny/vue </code>, it is recommended to use ~ before relying on the version number of the package in <code> package.json </code> in your project.
 For example, <code>"@opentiny/vue": "~3.12.0</code>. </p>
-</div>
-<div class="tip custom-block">
-<br>
 <p><code> @opentiny/vue </code> supports multiple modes. If your project is not a mobile project, you can declare the value of <code>TINY_MODE</code> in <code>process.env</code> in the above configuration code. In order to make the project during construction, the mobile side code can be shaken off and the volume of the packaged product can be optimized. For example, <code>'process.env': {... env,TINY_MODE:'pc'}</code>. </p>
 </div>
 

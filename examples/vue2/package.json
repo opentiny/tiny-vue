@@ -27,7 +27,7 @@
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-vite-import": "workspace:~",
-    "@playwright/test": "~1.42.0",
+    "@playwright/test": "catalog:",
     "@tiptap/vue-2": "^2.1.0",
     "@unocss/core": "^0.48.0",
     "@unocss/preset-icons": "^0.61.9",

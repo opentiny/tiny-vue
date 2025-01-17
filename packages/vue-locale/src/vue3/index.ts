@@ -7,6 +7,7 @@ let lang = zhCN
 let i18nHandler = null as any
 
 export const t = function (this: any, path, options = undefined as any) {
+  // eslint-disable-next-line prefer-rest-params
   if (i18nHandler) return i18nHandler.apply(this, arguments)
 
   const array = path.split('.')
@@ -45,7 +46,10 @@ export interface InitI18nOption {
   app?: any
   createI18n?: Function
   messages?: Record<string, any>
-  i18n?: { legacy: boolean, locale: string }
+  i18n?: {
+    legacy: boolean
+    locale: string
+  }
   merge?: Function
 }
 

@@ -452,7 +452,7 @@ export default defineComponent({
 
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
-        state.activeTab = 'apis'
+        state.activeTab = 'api'
       } else {
         promiseArr[1] = fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
       }
@@ -604,7 +604,9 @@ export default defineComponent({
         navigator.clipboard.writeText(text)
       },
       onTabsClick: (data) => {
-        router.push(`#${data.name}`)
+        if (data.name) {
+          router.push(`#${data.name}`)
+        }
         scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
@@ -613,7 +615,9 @@ export default defineComponent({
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
-          router.push(`#${demoId}`)
+          if (demoId) {
+            router.push(`#${demoId}`)
+          }
           if (apiModeState.demoMode === 'single') {
             state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
           }

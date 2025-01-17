@@ -16,7 +16,7 @@
 @pull-refresh-prefix-cls: ~'@{css-prefix}mobile-pull-refresh';
 
 .@{pull-refresh-prefix-cls} {
-  .component-css-vars-pull-refresh();
+  .inject-PullRefresh-vars();
 
   height: 100%;
   user-select: none;
@@ -31,8 +31,8 @@
   &__tips {
     width: 100%;
     overflow: hidden;
-    color: var(--ti-mobile-pull-refresh-text-color);
-    font-size: var(--ti-mobile-pull-refresh-font-size);
+    color: var(--tvm-PullRefresh-text-color);
+    font-size: var(--tvm-PullRefresh-font-size);
     text-align: center;
   }
 
@@ -56,10 +56,10 @@
 
   &__loading {
     border-radius: 50%;
-    width: var(--ti-mobile-pull-refresh-head-loading-icon-size-outside);
-    height: var(--ti-mobile-pull-refresh-head-loading-icon-size-outside);
+    width: var(--tvm-PullRefresh-head-loading-icon-size-outside);
+    height: var(--tvm-PullRefresh-head-loading-icon-size-outside);
     display: inline-block;
-    background-image: var(--ti-mobile-pull-refresh-head-loading-bg-image);
+    background-image: var(--tvm-PullRefresh-head-loading-bg-image);
     position: relative;
 
     &-animation {
@@ -67,10 +67,10 @@
     }
 
     &-inner {
-      width: var(--ti-mobile-pull-refresh-head-loading-icon-size-inside);
-      height: var(--ti-mobile-pull-refresh-head-loading-icon-size-inside);
+      width: var(--tvm-PullRefresh-head-loading-icon-size-inside);
+      height: var(--tvm-PullRefresh-head-loading-icon-size-inside);
       border-radius: 50%;
-      background: var(--ti-mobile-pull-refresh-head-loading-icon-bg-color);
+      background: var(--tvm-PullRefresh-head-loading-icon-bg-color);
       position: absolute;
       top: 2px;
       left: 2px;
@@ -78,8 +78,8 @@
   }
 
   &__text {
-    font-size: var(--ti-mobile-pull-refresh-font-size);
-    color: var(--ti-mobile-pull-refresh-text-color);
+    font-size: var(--tvm-PullRefresh-font-size);
+    color: var(--tvm-PullRefresh-text-color);
     padding-left: 8px;
   }
 
@@ -87,9 +87,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--ti-mobile-pull-refresh-font-size);
-    color: var(--ti-mobile-pull-refresh-text-color);
-    height: var(--ti-mobile-pull-refresh-foot-size-height);
+    font-size: var(--tvm-PullRefresh-font-size);
+    color: var(--tvm-PullRefresh-text-color);
+    height: var(--tvm-PullRefresh-foot-size-height);
   }
 
   @keyframes turn-around {

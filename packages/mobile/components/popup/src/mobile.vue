@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { setup, $prefix, $props, defineComponent } from '../../../vue-common'
+import { setup, $prefix, $props, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/popup/index.less'

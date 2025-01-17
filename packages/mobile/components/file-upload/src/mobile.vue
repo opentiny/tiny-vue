@@ -11,7 +11,7 @@
  -->
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, h, defineComponent } from '../../../vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import UploadList from '../../upload-list'
 import Upload from '../../upload'
 import { iconUpload } from '@opentiny/vue-icon'

@@ -20,7 +20,7 @@ import type {
   IFileUploadStreamsaver
 } from '../file-upload'
 import { downloadFile as ordinaryDownload } from '../../../upload-list/src/renderless'
-import { formatFileSize } from '@opentiny/mobile-utils/string'
+import { formatFileSize } from '@mobile-root/utils/string'
 
 import {
   initService,
@@ -96,7 +96,7 @@ import {
   closeRecordPanel,
   getTipMessage
 } from './index'
-import { isEmptyObject } from '@opentiny/mobile-utils/type'
+import { isEmptyObject } from '@mobile-root/utils/type'
 
 export const api = [
   'state',

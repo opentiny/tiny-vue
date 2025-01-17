@@ -10,8 +10,7 @@
  *
  */
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '@mobile-root/shared.type'
 import type {
   calcPaneInstances,
   calcMorePanes,
@@ -27,6 +26,8 @@ import type {
   handleTabDragOver,
   handleTabDragEnd
 } from './renderless'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
   TAB_ITEM: 'TabItem'

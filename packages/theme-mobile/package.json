@@ -65,6 +65,7 @@
       "selector-pseudo-element-colon-notation": "single",
       "import-notation": null,
       "string-quotes": "single",
+      "custom-property-pattern": null,
       "selector-class-pattern": null,
       "declaration-empty-line-before": null,
       "at-rule-empty-line-before": null,

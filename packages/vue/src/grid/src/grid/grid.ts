@@ -521,7 +521,8 @@ export default defineComponent({
     },
     // 监听某个元素是否出现在视口中
     addIntersectionObserver() {
-      if (this.intersectionOption && this.intersectionOption.disabled) return
+      if ((this.intersectionOption && this.intersectionOption.disabled) || typeof IntersectionObserver === 'undefined')
+        return
 
       this.intersectionObserver = new IntersectionObserver((entries) => {
         let entry = entries[0]

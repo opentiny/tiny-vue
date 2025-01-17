@@ -6,11 +6,5 @@ test('自定义编辑规则', async ({ page }) => {
   await page.getByText('GFD 科技 YX 公司').first().click()
   await expect(page.getByText('GFD 科技 YX 公司').first()).toBeVisible()
   await page.getByText('WWWW 科技 YX 公司').first().click()
-  await expect(
-    page
-      .getByRole('row', {
-        name: '2 华南区 2014-02-14 14:14:14 1300 公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
-      })
-      .getByRole('textbox')
-  ).toBeVisible()
+  await expect(page.locator('.tiny-grid-default-input')).toBeVisible()
 })

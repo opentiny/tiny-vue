@@ -16,19 +16,19 @@
 @badge-prefix-cls: ~'@{css-prefix}mobile-badge';
 
 .@{badge-prefix-cls} {
-  .component-css-vars-badge();
+  .inject-Badge-vars();
 
   position: relative;
   vertical-align: middle;
   display: inline-block;
 
   &__content {
-    height: var(--ti-mobile-badge-size, 18px);
-    line-height: var(--ti-mobile-badge-size, 18px);
+    height: var(--tvm-Badge-size, 18px);
+    line-height: var(--tvm-Badge-size, 18px);
     padding: 0 6px;
-    font-size: var(--ti-mobile-badge-font-size, 13px);
-    color: var(--ti-mobile-badge-color, #fff);
-    background-color: var(--ti-mobile-badge-danger-bgcolor, #f36f64);
+    font-size: var(--tvm-Badge-font-size, 13px);
+    color: var(--tvm-Badge-color, #fff);
+    background-color: var(--tvm-Badge-danger-bgcolor, #f36f64);
     border-radius: 10px;
     font-family: 'Microsoft YaHei', Arial;
     display: inline-block;
@@ -70,29 +70,30 @@
   }
 
   &__content&--primary {
-    background-color: var(--ti-mobile-badge-primary-bgcolor, #1890ff);
+    background-color: var(--tvm-Badge-primary-bgcolor, #1890ff);
   }
 
   &__content&--success {
-    background-color: var(--ti-mobile-badge-success-bgcolor, #52c41a);
+    background-color: var(--tvm-Badge-success-bgcolor, #52c41a);
   }
 
   &__content&--warning {
-    background-color: var(--ti-mobile-badge-warning-bgcolor, #faad14);
+    background-color: var(--tvm-Badge-warning-bgcolor, #faad14);
   }
 
   &__content&--danger {
-    background-color: var(--ti-mobile-badge-danger-bgcolor, #f36f64);
+    background-color: var(--tvm-Badge-danger-bgcolor, #f36f64);
   }
 
   &__content&--info {
-    background-color: var(--ti-mobile-badge-info-bgcolor, #333);
+    background-color: var(--tvm-Badge-info-bgcolor, #333);
   }
 
   & &__link {
-    color: var(--ti-mobile-badge-color, #fff);
+    color: var(--tvm-Badge-color, #fff);
+
     &:hover {
-      color: var(--ti-mobile-badge-color, #fff);
+      color: var(--tvm-Badge-color, #fff);
       text-decoration: none;
     }
   }

@@ -17,7 +17,7 @@
 @radio-prefix-cls: ~'@{css-prefix}mobile-radio';
 
 .@{radio-prefix-cls} {
-  .component-css-vars-radio();
+  .inject-Radio-vars();
 
   margin-right: 30px;
   outline: 0;
@@ -37,9 +37,9 @@
   }
 
   &__input {
-    width: var(--ti-mobile-radio-size, 24px);
-    height: var(--ti-mobile-radio-size, 24px);
-    line-height: var(--ti-mobile-radio-size, 24px);
+    width: var(--tvm-Radio-size, 24px);
+    height: var(--tvm-Radio-size, 24px);
+    line-height: var(--tvm-Radio-size, 24px);
     outline: 0;
     cursor: pointer;
     vertical-align: middle;
@@ -53,20 +53,20 @@
     left: 2px;
     top: 2px;
     background-color: #fff;
-    width: var(--ti-mobile-radio-size-outer, 20px);
-    height: var(--ti-mobile-radio-size-outer, 20px);
-    border: 1.5px solid var(--ti-mobile-radio-border-color-default);
+    width: var(--tvm-Radio-size-outer, 20px);
+    height: var(--tvm-Radio-size-outer, 20px);
+    border: 1.5px solid var(--tvm-Radio-border-color-default);
     border-radius: 50%;
 
     &:after {
-      border-color: var(--ti-mobile-radio-checked-color);
+      border-color: var(--tvm-Radio-checked-color);
       opacity: 0;
     }
   }
 
   &__inner {
-    width: var(--ti-mobile-radio-size-inner, 10px);
-    height: var(--ti-mobile-radio-size-inner, 10px);
+    width: var(--tvm-Radio-size-inner, 10px);
+    height: var(--tvm-Radio-size-inner, 10px);
     background-color: transparent;
     box-sizing: border-box;
     border-radius: 999px;
@@ -89,16 +89,16 @@
   }
 
   &.is-bordered:not(.is-disabled):hover &__inner {
-    border-color: var(--ti-mobile-radio-checked-color #1476ff);
+    border-color: var(--tvm-Radio-checked-color #1476ff);
   }
 
   &.is-checked &__inner {
-    border-color: var(--ti-mobile-radio-checked-color);
-    background-color: var(--ti-mobile-radio-checked-color);
+    border-color: var(--tvm-Radio-checked-color);
+    background-color: var(--tvm-Radio-checked-color);
   }
 
   &.is-checked &__outer {
-    border-color: var(--ti-mobile-radio-checked-color);
+    border-color: var(--tvm-Radio-checked-color);
   }
 
   &.is-disabled &__outer,
@@ -107,29 +107,29 @@
   }
 
   &.is-disabled.is-checked &__outer {
-    border-color: var(--ti-mobile-radio-color-disabled);
+    border-color: var(--tvm-Radio-color-disabled);
 
     &:after {
-      border-color: var(--ti-mobile-radio-color-disabled);
+      border-color: var(--tvm-Radio-color-disabled);
     }
   }
 
   &.is-disabled.is-checked &__inner {
-    background-color: var(--ti-mobile-radio-color-disabled);
-    border-color: var(--ti-mobile-radio-color-disabled);
+    background-color: var(--tvm-Radio-color-disabled);
+    border-color: var(--tvm-Radio-color-disabled);
 
     &:after {
-      border-color: var(--ti-mobile-radio-color-disabled);
+      border-color: var(--tvm-Radio-color-disabled);
     }
   }
 
   &.is-disabled &__inner {
-    background-color: var(--ti-mobile-radio-bg-color-disabled);
-    border-color: var(--ti-mobile-radio-color-disabled);
+    background-color: var(--tvm-Radio-bg-color-disabled);
+    border-color: var(--tvm-Radio-color-disabled);
 
     &:after {
-      border-color: var(--ti-mobile-radio-color-disabled);
-      background-color: var(--ti-mobile-radio-bg-color-disabled);
+      border-color: var(--tvm-Radio-color-disabled);
+      background-color: var(--tvm-Radio-bg-color-disabled);
     }
   }
 
@@ -146,8 +146,8 @@
   }
 
   &__label {
-    font-size: var(--ti-mobile-radio-label-font-size);
-    color: var(--ti-mobile-radio-label-text-color);
+    font-size: var(--tvm-Radio-label-font-size);
+    color: var(--tvm-Radio-label-text-color);
     padding-left: 8px;
     vertical-align: middle;
   }

@@ -96,3 +96,42 @@ new Vue({
   render: (h) => h(App)
 }).$mount('#app')
 ```
+
+## Adding Other Minority Languages
+
+In the component library, Chinese and English are built in by default. In the `@opentiny/vue@3.22.0` and later versions, the Spanish and Portuguese internationalization language packages are added to the component library. You can use the packages during internationalization configuration.
+
+```js {18-26}
+import { createI18n } from 'vue-i18n'
+import locale from '@opentiny/vue-locale'
+
+// Importing a Package in a Minority Language
+import { esLA, ptBR } from '@opentiny/vue-locale'
+
+const initI18n = (i18n) =>
+  locale.initI18n({
+    i18n,
+    createI18n,
+    messages: {
+      zhCN: {
+        test: '项目自用的国际化内容'
+      },
+      enUS: {
+        test: 'project self-use for English'
+      },
+      esLA: {
+        // mix it with the content used by the project.
+        ...esLA,
+        test: 'Contenido de los propios proyectos'
+      },
+      ptBR: {
+        ...ptBR,
+        test: 'Conteúdo para uso próprio do projeto'
+      }
+    }
+  })
+
+export const i18n = initI18n({ locale: 'esLA' })
+```
+
+After the preceding configuration, the Vue3 project supports the internationalization environment of four languages. The method of configuring the Vue2 project is the same. You only need to import the internationalization language package of the minority language and mix the internationalization content of the project.

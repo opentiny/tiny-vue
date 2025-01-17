@@ -17,7 +17,7 @@
 @image-viewer-prefix-cls: ~'@{css-prefix}mobile-image-viewer';
 
 .@{image-viewer-prefix-cls} {
-  .component-css-vars-image-viewer();
+  .inject-ImageViewer-vars();
 
   &__wrapper {
     position: fixed;
@@ -35,7 +35,7 @@
     top: 0;
     left: 0;
     opacity: 0.9;
-    background: var(--ti-mobile-image-viewer-mask-background, #000);
+    background: var(--tvm-ImageViewer-mask-background, #000);
   }
 
   &__btn {
@@ -50,7 +50,7 @@
     .user-select(none);
 
     svg {
-      fill: var(--ti-mobile-image-viewer-color, #fff);
+      fill: var(--tvm-ImageViewer-color, #fff);
     }
   }
 
@@ -60,7 +60,7 @@
     width: 22px;
     height: 22px;
     font-size: 20px;
-    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+    background-color: var(--tvm-ImageViewer-close-bgcolor, #606266);
   }
 
   &__next,
@@ -69,13 +69,13 @@
     width: 44px;
     height: 44px;
     font-size: 24px;
-    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+    background-color: var(--tvm-ImageViewer-close-bgcolor, #606266);
 
     &.is-arrow-disabled {
-      background-color: var(--ti-mobile-image-viewer-arrow-disabled-bgcolor, #bfbfbf);
+      background-color: var(--tvm-ImageViewer-arrow-disabled-bgcolor, #bfbfbf);
 
       svg {
-        fill: var(--ti-mobile-image-viewer-arrow-disabled-color, #999);
+        fill: var(--tvm-ImageViewer-arrow-disabled-color, #999);
       }
     }
   }
@@ -98,7 +98,7 @@
     width: 282px;
     height: 44px;
     padding: 0 23px;
-    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+    background-color: var(--tvm-ImageViewer-close-bgcolor, #606266);
     border-radius: 22px;
   }
 
@@ -163,7 +163,7 @@
     border-radius: 0px;
 
     span {
-      color: var(--ti-mobile-image-viewer-color, #fff);
+      color: var(--tvm-ImageViewer-color, #fff);
       margin-right: 5px;
     }
   }

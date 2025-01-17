@@ -7,6 +7,7 @@ let lang = zhCN
 let i18nHandler = null as any
 
 export const t = function (this: any, path, options = undefined as any) {
+  // eslint-disable-next-line prefer-rest-params
   if (i18nHandler) return i18nHandler.apply(this, arguments)
 
   const array = path.split('.')
@@ -43,6 +44,7 @@ export const extend = _extend
 
 export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, merge }) => {
   if (typeof merge !== 'function') {
+    // eslint-disable-next-line no-useless-call
     merge = ({ lang, i18n, messages }) => extend.call(null, true, lang, i18n.messages, messages)
   }
 

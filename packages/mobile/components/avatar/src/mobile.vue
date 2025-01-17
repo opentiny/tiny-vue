@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h, defineComponent } from '../../../vue-common'
+import { $prefix, setup, h, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/avatar/index.less'
 

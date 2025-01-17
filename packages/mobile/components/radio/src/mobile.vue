@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { radioProps } from './radio'
 import '@opentiny/vue-theme-mobile/radio/index.less'
 

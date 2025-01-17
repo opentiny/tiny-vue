@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, parseVnode, h, defineComponent, isVue2 } from '../../../vue-common'
+import { $prefix, setup, parseVnode, h, defineComponent, isVue2 } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '../../tooltip'

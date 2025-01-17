@@ -133,9 +133,7 @@ module.exports = defineConfig({
 ## 多组件引入
 
 <div class="tip custom-block">
-<br />
-温馨提示：带有 Tiny 前缀的组件导出自 3.17.0 开始支持。若使用之前版本，需使用别名。
-<br />
+<p>温馨提示：带有 Tiny 前缀的组件导出自 3.17.0 开始支持。若使用之前版本，需使用别名。</p>
 <p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
 </div>
 

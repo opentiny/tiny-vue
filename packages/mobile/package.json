@@ -1,8 +1,7 @@
 {
   "name": "@opentiny/vue-mobile",
   "type": "module",
-  "version": "3.21.0",
-  "private": true,
+  "version": "1.0.0-alpha.6",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
   "license": "MIT",
@@ -23,25 +22,34 @@
     "opentiny"
   ],
   "sideEffects": false,
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
   "main": "index.ts",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.0",
     "@better-scroll/wheel": "^2.5.0",
+    "xss": "1.0.14",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/mobile-utils": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~"
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "devDependencies": {
-    "vue": "^3.5.0",
-    "typescript": "catalog:",
-    "vite": "catalog:",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "typescript": "catalog:",
+    "vite": "catalog:",
     "vite-plugin-dts": "^4.3.0",
-    "vite-svg-loader": "^5.1.0"
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.5.0"
   }
 }

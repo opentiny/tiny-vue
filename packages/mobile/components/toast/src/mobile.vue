@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import '@opentiny/vue-theme-mobile/toast/index.less'
 import { IconMobileErrorWhite, IconMobileSuccessWhite } from '@opentiny/vue-icon'
-import type { IToastApi } from '@opentiny/vue-renderless/types/toast.type'
+import type { IToastApi } from './toast'
 import { toastProps } from './toast'
 
 export default defineComponent({

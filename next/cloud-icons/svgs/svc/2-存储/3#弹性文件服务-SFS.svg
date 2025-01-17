@@ -1,0 +1,14 @@
+<svg width="72.000000" height="72.000000" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip117_64">
+			<rect id="3#弹性文件服务-SFS" width="72.000000" height="72.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip117_64)">
+		<path id="矩形备份-19" d="M16 0L56 0C64.8 0 72 7.19 72 16L72 56C72 64.8 64.8 72 56 72L16 72C7.19 72 0 64.8 0 56L0 16C0 7.19 7.19 0 16 0Z" fill="#FF9A2E" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="形状结合" d="M58.5 30L58.5 50.3C58.5 52.6 56.7 54.4 54.39 54.4L17.6 54.4C15.3 54.4 13.5 52.6 13.5 50.3L13.5 30L58.5 30ZM27.8 17.6L31.89 21.7L54.39 21.7C56.7 21.7 58.5 23.5 58.5 25.8L58.5 28L13.5 28L13.5 21.7C13.5 19.5 15.2 17.7 17.39 17.6L17.6 17.6L27.8 17.6Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

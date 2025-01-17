@@ -16,44 +16,44 @@
 @tag-prefix-cls: ~'@{css-prefix}mobile-tag';
 
 .@{tag-prefix-cls} {
-  .component-css-vars-tag();
+  .inject-Tag-vars();
 
-  line-height: var(--ti-mobile-tag-height-default);
-  padding: 0 var(--ti-mobile-tag-padding-default);
+  line-height: var(--tvm-Tag-height-default);
+  padding: 0 var(--tvm-Tag-padding-default);
   text-align: center;
-  font-size: var(--ti-mobile-tag-font-size-default);
-  color: var(--ti-mobile-tag-color-default);
-  background-color: var(--ti-mobile-tag-bg-color-default);
+  font-size: var(--tvm-Tag-font-size-default);
+  color: var(--tvm-Tag-color-default);
+  background-color: var(--tvm-Tag-bg-color-default);
   display: inline-block;
-  border-radius: var(--ti-mobile-tag-border-radius-default);
+  border-radius: var(--tvm-Tag-border-radius-default);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
   &-mini {
-    line-height: var(--ti-mobile-tag-height-mini);
-    padding: 0 var(--ti-mobile-tag-padding-mini);
-    font-size: var(--ti-mobile-tag-font-size-mini);
-    border-radius: var(--ti-mobile-tag-border-radius-mini);
+    line-height: var(--tvm-Tag-height-mini);
+    padding: 0 var(--tvm-Tag-padding-mini);
+    font-size: var(--tvm-Tag-font-size-mini);
+    border-radius: var(--tvm-Tag-border-radius-mini);
   }
 
   &-red {
-    color: var(--ti-mobile-tag-color-red);
-    background-color: var(--ti-mobile-tag-bg-color-red);
+    color: var(--tvm-Tag-color-red);
+    background-color: var(--tvm-Tag-bg-color-red);
   }
 
   &-blue {
-    color: var(--ti-mobile-tag-color-blue);
-    background-color: var(--ti-mobile-tag-bg-color-blue);
+    color: var(--tvm-Tag-color-blue);
+    background-color: var(--tvm-Tag-bg-color-blue);
   }
 
   &-yellow {
-    color: var(--ti-mobile-tag-color-yellow);
-    background-color: var(--ti-mobile-tag-bg-color-yellow);
+    color: var(--tvm-Tag-color-yellow);
+    background-color: var(--tvm-Tag-bg-color-yellow);
   }
 
   &-green {
-    color: var(--ti-mobile-tag-color-green);
-    background-color: var(--ti-mobile-tag-bg-color-green);
+    color: var(--tvm-Tag-color-green);
+    background-color: var(--tvm-Tag-bg-color-green);
   }
 }

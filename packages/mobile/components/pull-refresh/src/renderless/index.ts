@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '@opentiny/mobile-utils/deps/dom'
+import { on, off } from '@mobile-root/utils/deps/dom'
 
 // 上拉触发事件超时时间
 const PULL_UP_TIME_OUT = 300

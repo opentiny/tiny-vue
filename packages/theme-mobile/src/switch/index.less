@@ -14,14 +14,14 @@
 @import './vars.less';
 
 @switch-prefix-cls: ~'@{css-prefix}mobile-switch';
-@btn-size: var(--ti-mobile-switch-btn-size-normal, 18px);
+@btn-size: var(--tvm-Switch-btn-size-normal, 18px);
 @btn-size-half: calc(@btn-size / 2);
 @loading-size: calc(@btn-size - 6px);
 @loading-size-half: calc(@loading-size / 2);
 @btn-padding: 3px;
 @loading-left: calc(calc(@btn-size-half - @loading-size-half) + @btn-padding);
 
-@btn-size-mini: var(--ti-mobile-switch-btn-size-mini, 16px);
+@btn-size-mini: var(--tvm-Switch-btn-size-mini, 16px);
 @btn-size-half-mini: calc(@btn-size-mini / 2);
 @loading-size-mini: calc(@btn-size-mini - 6px);
 @loading-size-half-mini: calc(@loading-size-mini / 2);
@@ -29,12 +29,12 @@
 @loading-left-mini: calc(calc(@btn-size-half-mini - @loading-size-half-mini) + @btn-padding-mini);
 
 .@{switch-prefix-cls} {
-  .component-css-vars-switch();
+  .inject-Switch-vars();
 
-  width: var(--ti-mobile-switch-width-normal, 40px);
-  height: var(--ti-mobile-switch-height-mormal, 24px);
+  width: var(--tvm-Switch-width-normal, 40px);
+  height: var(--tvm-Switch-height-mormal, 24px);
   border-radius: 999px;
-  background-color: var(--ti-mobile-switch-bg-color-default, #c2c2c2);
+  background-color: var(--tvm-Switch-bg-color-default, #c2c2c2);
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -43,12 +43,12 @@
   transition: all 0.2s ease-in-out;
 
   &.mini {
-    width: var(--ti-mobile-switch-width-small, 36px);
-    height: var(--ti-mobile-switch-height-small, 20px);
+    width: var(--tvm-Switch-width-small, 36px);
+    height: var(--tvm-Switch-height-small, 20px);
   }
 
   &.disabled {
-    background-color: var(--ti-mobile-switch-bg-color-disabled, #dbdbdb);
+    background-color: var(--tvm-Switch-bg-color-disabled, #dbdbdb);
     cursor: not-allowed;
 
     &:after {
@@ -56,7 +56,7 @@
     }
 
     &.@{switch-prefix-cls}-checked {
-      background-color: var(--ti-mobile-switch-bg-color-checked-disabled, #b3d6ff);
+      background-color: var(--tvm-Switch-bg-color-checked-disabled, #b3d6ff);
 
       &:after {
         border-color: rgb(0 0 0 / 10%);
@@ -69,11 +69,11 @@
     width: @btn-size;
     height: @btn-size;
     border-radius: 50%;
-    background-color: var(--ti-mobile-switch-font-color, #fff);
+    background-color: var(--tvm-Switch-font-color, #fff);
     box-shadow: 0 3px 3px rgb(0 0 0 / 10%);
     position: absolute;
     left: @btn-padding;
-    top: calc(calc(var(--ti-mobile-switch-height-mormal) - @btn-size) / 2);
+    top: calc(calc(var(--tvm-Switch-height-mormal) - @btn-size) / 2);
     cursor: pointer;
     transition:
       left 0.2s ease-in-out,
@@ -84,12 +84,12 @@
   &.mini:after {
     width: @btn-size-mini;
     height: @btn-size-mini;
-    top: calc(calc(var(--ti-mobile-switch-height-mini, 20px) - @btn-size-mini) / 2);
+    top: calc(calc(var(--tvm-Switch-height-mini, 20px) - @btn-size-mini) / 2);
     left: @btn-padding-mini;
   }
 
   &&-checked {
-    background-color: var(--ti-mobile-switch-bg-color-checked, #1476ff);
+    background-color: var(--tvm-Switch-bg-color-checked, #1476ff);
 
     &:after {
       left: calc(calc(100% - @btn-size) - @btn-padding);

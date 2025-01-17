@@ -29,11 +29,11 @@ import type {
   IFileUploadLargeDocumentDownload
 } from '../file-upload'
 
-import { extend } from '@opentiny/mobile-utils/object'
-import { xss, log } from '@opentiny/mobile-utils/xss'
-import uploadAjax from '@opentiny/mobile-utils/deps/upload-ajax'
-import { isObject } from '@opentiny/mobile-utils/type'
-import { isEmptyObject } from '@opentiny/mobile-utils/type'
+import { extend } from '@mobile-root/utils/object'
+import { xss, log } from '@mobile-root/utils'
+import uploadAjax from '@mobile-root/utils/deps/upload-ajax'
+import { isObject } from '@mobile-root/utils/type'
+import { isEmptyObject } from '@mobile-root/utils/type'
 
 let initTokenPromise = null
 
@@ -399,7 +399,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), 'K'), sizeUnit: '' })}`,
+        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), ' KB'), sizeUnit: '' })}`,
         status: 'warning'
       })
 
@@ -577,7 +577,7 @@ export const handleStart =
     state,
     vm
   }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'vm'>) =>
-  (rawFiles: IFileUploadFile[], updateId: string, reUpload: boolean = false) => {
+  (rawFiles: IFileUploadFile[], updateId: string, reUpload = false) => {
     if (state.isHwh5) {
       rawFiles = handleHwh5Files(rawFiles, props.hwh5)
     }
@@ -921,7 +921,7 @@ export const abort =
 
 export const abortDownload =
   ({ state }: Pick<IFileUploadRenderlessParams, 'state'>) =>
-  (file: IFileUploadFile, batch: boolean = false) => {
+  (file: IFileUploadFile, batch = false) => {
     const cancel = (docId) => {
       if (!docId) return
       const cancels = state.downloadCancelToken[docId]
@@ -2246,7 +2246,7 @@ export const getToken =
 
 export const previewFile =
   ({ api, props }: Pick<IFileUploadRenderlessParams, 'api' | 'props'>) =>
-  (file: IFileUploadFile, open: boolean = false) => {
+  (file: IFileUploadFile, open = false) => {
     return new Promise((resolve, reject) => {
       try {
         const tokenParams = { isOnlinePreview: true, file, type: 'preview', token: props.edm.preview.token }

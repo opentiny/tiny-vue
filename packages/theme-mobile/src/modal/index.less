@@ -21,7 +21,7 @@
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
 
 .@{modal-prefix-cls} {
-  .component-css-vars-modal();
+  .inject-Modal-vars();
 }
 
 .@{modal-prefix-cls} {
@@ -32,8 +32,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    font-size: var(--ti-mobile-modal-text-font-size);
-    color: var(--ti-mobile-modal-text-color);
+    font-size: var(--tvm-Modal-text-font-size);
+    color: var(--tvm-Modal-text-color);
     transition: top 0.4s;
 
     &.active {
@@ -82,8 +82,8 @@
 
     &:not(.type__message) {
       .@{modal-prefix-cls}__text {
-        font-size: var(--ti-mobile-modal-text-font-size);
-        color: var(--ti-mobile-common-color-text-secondary);
+        font-size: var(--tvm-Modal-text-font-size);
+        color: var(--tvm-common-color-text-secondary);
         line-height: 1.5;
       }
     }
@@ -120,7 +120,7 @@
 
     &.size__small,
     &.size__mini {
-      font-size: var(--ti-mobile-modal-text-font-size);
+      font-size: var(--tvm-Modal-text-font-size);
 
       .@{modal-prefix-cls}__box {
         padding: 6px 0;
@@ -135,13 +135,13 @@
       }
 
       .@{modal-prefix-cls}__header {
-        font-size: var(--ti-mobile-modal-header-font-size);
+        font-size: var(--tvm-Modal-header-font-size);
         padding: 6px 30px 8px 14px;
       }
 
       .@{modal-prefix-cls}__zoom-btn,
       .@{modal-prefix-cls}__close-btn {
-        font-size: var(--ti-mobile-modal-header-font-size);
+        font-size: var(--tvm-Modal-header-font-size);
         top: 10px;
       }
     }
@@ -185,7 +185,7 @@
       }
 
       .@{modal-prefix-cls}__status-wrapper {
-        font-size: var(--ti-mobile-modal-small-btn-font-size);
+        font-size: var(--tvm-Modal-small-btn-font-size);
         padding-right: 10px;
       }
     }
@@ -199,8 +199,8 @@
         position: absolute;
         left: 50%;
         top: 0;
-        box-shadow: var(--ti-mobile-modal-box-shadow);
-        border: 1px solid var(--ti-mobile-modal-border-color);
+        box-shadow: var(--tvm-Modal-box-shadow);
+        border: 1px solid var(--tvm-Modal-border-color);
 
         .@{modal-prefix-cls}__header {
           cursor: move;
@@ -221,7 +221,7 @@
     &.type__alert,
     &.type__confirm {
       .@{modal-prefix-cls}__status-wrapper {
-        font-size: var(--ti-mobile-modal-alert-font-size);
+        font-size: var(--tvm-Modal-alert-font-size);
         padding: 0 10px 0 2px;
       }
     }
@@ -250,10 +250,10 @@
 
   &__box {
     width: 90%;
-    background-color: var(--ti-mobile-modal-box-bg-color);
+    background-color: var(--tvm-Modal-box-bg-color);
     border-radius: 16px;
-    font-size: var(--ti-mobile-modal-header-font-size);
-    box-shadow: var(--ti-mobile-modal-box-shadow);
+    font-size: var(--tvm-Modal-header-font-size);
+    box-shadow: var(--tvm-Modal-box-shadow);
     text-align: left;
     pointer-events: auto;
     visibility: hidden;
@@ -317,8 +317,8 @@
 
   &__header {
     flex-shrink: 0;
-    color: var(--ti-mobile-modal-text-color);
-    font-size: var(--ti-mobile-modal-header-font-size);
+    color: var(--tvm-Modal-text-color);
+    font-size: var(--tvm-Modal-header-font-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -330,20 +330,20 @@
 
   &__zoom-btn,
   &__close-btn {
-    font-size: var(--ti-mobile-modal-header-font-size);
+    font-size: var(--tvm-Modal-header-font-size);
     position: absolute;
     right: 24px;
-    top: var(--ti-mobile-modal-close-btn-top);
+    top: var(--tvm-Modal-close-btn-top);
     z-index: 1;
-    fill: var(--ti-mobile-modal-text-color);
-    transform: var(--ti-mobile-modal-close-btn-scale);
+    fill: var(--tvm-Modal-text-color);
+    transform: var(--tvm-Modal-close-btn-scale);
     cursor: pointer;
     padding: 0;
     border-radius: 4px;
 
     &:hover {
-      fill: var(--ti-mobile-modal-text-color);
-      background-color: var(--ti-mobile-modal-close-btn-bg-color-hover);
+      fill: var(--tvm-Modal-text-color);
+      background-color: var(--tvm-Modal-close-btn-bg-color-hover);
     }
   }
 
@@ -363,20 +363,20 @@
 
     .@{button-prefix-cls} {
       border-radius: 18px;
-      width: var(--ti-mobile-modal-btn-width);
-      height: var(--ti-mobile-modal-btn-height);
-      line-height: var(--ti-mobile-modal-btn-height);
+      width: var(--tvm-Modal-btn-width);
+      height: var(--tvm-Modal-btn-height);
+      line-height: var(--tvm-Modal-btn-height);
 
       &__single {
-        width: var(--ti-mobile-modal-single-btn-width);
+        width: var(--tvm-Modal-single-btn-width);
       }
     }
     .@{button-default-prefix-cls} {
       display: inline-block;
       margin-right: 16px;
-      background-color: var(--ti-mobile-modal-cancel-btn-bg-color, #f5f5f5);
+      background-color: var(--tvm-Modal-cancel-btn-bg-color, #f5f5f5);
       border: none;
-      color: var(--ti-mobile-modal-text-color);
+      color: var(--tvm-Modal-text-color);
     }
   }
 

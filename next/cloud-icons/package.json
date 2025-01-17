@@ -1,0 +1,45 @@
+{
+  "name": "@opentiny/cloud-icons",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloud Design Icons",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "icon",
+    "cloud icons",
+    "service icons",
+    "iconify",
+    "unocss",
+    "preset-icon"
+  ],
+  "files": [
+    "example/",
+    "svgs/",
+    "json/",
+    "style/",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build:example": "vite build",
+    "build:icon": "tsx scripts/build.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@iconify/tools": "catalog:",
+    "@iconify/types": "catalog:",
+    "@iconify/utils": "catalog:",
+    "@unocss/preset-icons": "catalog:",
+    "chalk": "catalog:",
+    "fast-glob": "catalog:",
+    "highlight.js": "catalog:",
+    "lu2": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

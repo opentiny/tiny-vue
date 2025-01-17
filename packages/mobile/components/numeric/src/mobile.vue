@@ -71,8 +71,8 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, directive, defineComponent } from '../../../vue-common'
-import bind from '@opentiny/mobile-utils/deps/repeat-click'
+import { setup, directive, defineComponent } from '@mobile-root/common'
+import bind from '@mobile-root/utils/deps/repeat-click'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
 import { numericProps } from './numeric'
 import '@opentiny/vue-theme-mobile/numeric/index.less'

@@ -22,7 +22,7 @@
 @numeric-prefix-cls: ~'@{css-prefix}mobile-numeric';
 
 .@{form-item-prefix-cls} {
-  .component-css-vars-form-item();
+  .inject-FormItem-vars();
   .clearfix();
 
   margin-bottom: 12px;
@@ -73,7 +73,7 @@
     vertical-align: middle;
     float: left;
     font-size: 16px;
-    color: var(--ti-mobile-form-item-label-color);
+    color: var(--tvm-FormItem-label-color);
     line-height: 48px;
     padding-right: 8px;
     box-sizing: border-box;
@@ -118,7 +118,7 @@
   }
 
   &__error {
-    color: var(--ti-mobile-form-item-error-color);
+    color: var(--tvm-FormItem-error-color);
     font-size: 12px;
     line-height: 1;
     padding-top: 4px;
@@ -139,7 +139,7 @@
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     .@{form-item-prefix-cls}__label:before {
       content: '*';
-      color: var(--ti-mobile-form-item-error-color);
+      color: var(--tvm-FormItem-error-color);
       margin-right: 4px;
     }
   }
@@ -149,7 +149,7 @@
     .@{input-prefix-cls}__inner:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
-      border-color: var(--ti-mobile-form-item-error-color);
+      border-color: var(--tvm-FormItem-error-color);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -160,13 +160,13 @@
     }
 
     .@{input-prefix-cls}__validateIcon {
-      color: var(--ti-mobile-form-item-error-color);
+      color: var(--tvm-FormItem-error-color);
     }
 
     .@{numeric-prefix-cls}__input-inner {
       &,
       &:focus {
-        border-color: var(--ti-mobile-form-item-error-color);
+        border-color: var(--tvm-FormItem-error-color);
       }
     }
   }

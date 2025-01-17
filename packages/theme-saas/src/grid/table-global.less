@@ -165,21 +165,21 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          background-color: #f4f6fb;
+          background-color: var(--tiny-color-fill-8, #f4f6fb);
         }
 
         &.row__current {
-          background-color: #e8eef7;
+          @apply bg-color-info-primary-subtler;
         }
       }
 
       &.row__selected {
         &:nth-child(2n) {
-          background-color: #e8eef7;
+          @apply bg-color-info-primary-subtler;
         }
 
         &:nth-child(2n + 1) {
-          background-color: #f4f6fb;
+          background-color: var(--tiny-color-fill-8, #f4f6fb);
         }
       }
     }
@@ -458,15 +458,15 @@
     }
 
     &.row__selected {
-      background-color: #f4f6fb;
+      background-color: var(--tiny-color-fill-8, #f4f6fb);
 
       &.row__hover {
-        background-color: #f4f6fb;
+        background-color: var(--tiny-color-fill-8, #f4f6fb);
       }
     }
 
     &.row__current {
-      background-color: #f4f6fb;
+      background-color: var(--tiny-color-fill-8, #f4f6fb);
     }
   }
 

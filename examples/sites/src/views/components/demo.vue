@@ -53,9 +53,12 @@
         <div v-if="isMobileFirst" class="pc-demo-container">
           <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
         </div>
-        <div v-else-if="demoConfig.isMobile" class="phone-container">
-          <div class="mobile-view-container">
-            <component :is="cmp" />
+        <div v-else-if="demoConfig.isMobile" class="phone-container-flex">
+          <div class="mobile-view-btn">
+            <tiny-button>{{ i18nByKey('yan-shi') }}</tiny-button>
+          </div>
+          <div class="mobile-view-container phone-container">
+            <!-- 移动端展示内容 -->
           </div>
         </div>
         <div v-else class="pc-demo-container">
@@ -301,6 +304,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .demo-container {
   min-height: 200px;
+  width: 100%;
 }
 
 .is-current {
@@ -409,6 +413,11 @@ export default defineComponent({
 
 .demo-code {
   border: 1px solid #efeff4;
+}
+
+.phone-container-flex {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .phone-container {

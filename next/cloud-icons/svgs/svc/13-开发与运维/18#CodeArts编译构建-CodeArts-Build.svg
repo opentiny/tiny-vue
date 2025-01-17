@@ -1,0 +1,14 @@
+<svg width="72.000000" height="72.000000" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip117_223">
+			<rect id="18#CodeArts编译构建-CodeArts-Build" width="72.000000" height="72.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip117_223)">
+		<path id="矩形备份-19" d="M16 0L56 0C64.8 0 72 7.2 72 16L72 56C72 64.79 64.8 72 56 72L16 72C7.19 72 0 64.79 0 56L0 16C0 7.2 7.19 0 16 0Z" fill="#1476FF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="形状结合" d="M56.2 12C58.3 12 60 13.7 60 15.79L60 44C60 45.79 58.8 48 57.2 48.89L38.8 59.29C38 59.79 37 60 36 60C35 60 34 59.79 33.2 59.29L14.8 48.79C13.2 47.89 12 45.79 12 44L12 15.79C12 13.7 13.7 12 15.8 12L56.2 12ZM49.6 21L22.39 21C21.3 21 20.39 21.89 20.39 23L20.39 41C20.39 42.1 21.3 43 22.39 43L49.6 43C50.7 43 51.6 42.1 51.6 41L51.6 23C51.6 21.89 50.7 21 49.6 21ZM41.5 26.5C42.1 26.5 42.5 26.89 42.5 27.5C42.5 28.1 42.1 28.5 41.5 28.5L30.5 28.5C29.89 28.5 29.5 28.1 29.5 27.5C29.5 26.89 29.89 26.5 30.5 26.5L41.5 26.5Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

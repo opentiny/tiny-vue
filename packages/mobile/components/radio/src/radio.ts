@@ -11,8 +11,7 @@
  */
 import type { PropType } from 'vue'
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type {
   handleChange,
   isGroup,
@@ -23,6 +22,8 @@ import type {
   getModel,
   setModel
 } from './renderless'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
   RADIO_GROUP: 'RadioGroup'

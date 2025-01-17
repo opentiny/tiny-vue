@@ -19,7 +19,7 @@
 @svg-prefix-cls: ~'@{css-prefix}mobile-svg';
 
 .@{table-prefix-cls} {
-  .component-css-vars-table();
+  .inject-Table-vars();
 
   &.simple {
     overflow: auto;
@@ -35,21 +35,21 @@
 
       tbody {
         tr {
-          color: var(--ti-mobile-table-text-color);
+          color: var(--tvm-Table-text-color);
           font-weight: 400;
 
           td {
-            background: var(--ti-mobile-table-bg-color);
+            background: var(--tvm-Table-bg-color);
           }
 
           &:nth-child(odd),
           td {
-            background: var(--ti-mobile-table-odd-bg-color);
+            background: var(--tvm-Table-odd-bg-color);
           }
 
           &.is-disabled {
-            background: var(--ti-mobile-table-disabled-bg-color);
-            color: var(--ti-mobile-table-disabled-text-color);
+            background: var(--tvm-Table-disabled-bg-color);
+            color: var(--tvm-Table-disabled-text-color);
           }
         }
 
@@ -57,7 +57,7 @@
           width: 100%;
           height: 100%;
           text-align: center;
-          color: var(--ti-mobile-table-nodata-text-color);
+          color: var(--tvm-Table-nodata-text-color);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -66,14 +66,14 @@
 
       th {
         padding-left: 20px;
-        height: var(--ti-mobile-table-td-height);
+        height: var(--tvm-Table-td-height);
         border-left: none;
       }
 
       td {
         padding-left: 20px;
-        height: var(--ti-mobile-table-td-height);
-        font-size: var(--ti-mobile-table-td-font-size);
+        height: var(--tvm-Table-td-height);
+        font-size: var(--tvm-Table-td-font-size);
 
         .overflow {
           white-space: nowrap;
@@ -84,18 +84,18 @@
 
       thead {
         text-align: left;
-        color: var(--ti-mobile-table-head-text-color);
+        color: var(--tvm-Table-head-text-color);
 
         th {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           text-align: left;
-          font-size: var(--ti-mobile-table-td-font-size);
-          color: var(--ti-mobile-table-head-text-color);
+          font-size: var(--tvm-Table-td-font-size);
+          color: var(--tvm-Table-head-text-color);
           font-weight: 500;
           line-height: 1.7em;
-          background: var(--ti-mobile-table-thead-bg-color);
+          background: var(--tvm-Table-thead-bg-color);
 
           .overflow {
             white-space: nowrap;
@@ -118,11 +118,11 @@
       position: relative;
 
       .@{svg-prefix-cls} {
-        font-size: var(--ti-mobile-table-icon-font-size);
-        fill: var(--ti-mobile-table-border-color);
+        font-size: var(--tvm-Table-icon-font-size);
+        fill: var(--tvm-Table-border-color);
 
         &.is-check {
-          fill: var(--ti-mobile-table-check-icon-color);
+          fill: var(--tvm-Table-check-icon-color);
         }
       }
 

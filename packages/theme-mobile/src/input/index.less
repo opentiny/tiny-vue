@@ -21,22 +21,22 @@
 @input-group-prefix-cls: ~'@{css-prefix}mobile-input-group';
 
 .@{textarea-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   position: relative;
 
   &__inner {
-    padding: var(--ti-mobile-textarea-padding-vertical) var(--ti-mobile-textarea-padding-horizontal);
-    font-size: var(--ti-mobile-textarea-inner-font-size, 16px);
-    font-family: var(--ti-mobile-input-font-family);
-    color: var(--ti-mobile-textarea-inner-text-color);
+    padding: var(--tvm-textarea-padding-vertical) var(--tvm-textarea-padding-horizontal);
+    font-size: var(--tvm-textarea-inner-font-size, 16px);
+    font-family: var(--tvm-Input-font-family);
+    color: var(--tvm-textarea-inner-text-color);
     display: block;
     resize: vertical;
     box-sizing: border-box;
     border: 1px solid #c2c2c2;
     border-radius: 8px;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    line-height: var(--ti-mobile-input-line-height);
+    line-height: var(--tvm-Input-line-height);
 
     &.is-autosize {
       overflow: hidden;
@@ -48,57 +48,57 @@
     }
 
     .placeholder(
-      @color: var(--ti-mobile-textarea-inner-placeholder-color)
+      @color: var(--tvm-textarea-inner-placeholder-color)
     );
   }
 
   &__wrapper {
     display: inline-block;
     overflow: hidden;
-    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
-    border-radius: var(--ti-mobile-input-radius);
+    border: var(--tvm-Input-border-width) solid var(--tvm-Input-border-color);
+    border-radius: var(--tvm-Input-radius);
   }
 
   &__count {
     position: absolute;
-    right: var(--ti-mobile-textarea-padding-horizontal);
-    bottom: var(--ti-mobile-textarea-padding-vertical);
-    color: var(--ti-mobile-input-count-text-color);
-    font-size: var(--ti-mobile-input-count-font-size);
+    right: var(--tvm-textarea-padding-horizontal);
+    bottom: var(--tvm-textarea-padding-vertical);
+    color: var(--tvm-Input-count-text-color);
+    font-size: var(--tvm-Input-count-font-size);
   }
 
   &.is-focus &__inner {
-    border-color: var(--ti-mobile-input-border-color-active);
-    border-width: var(--ti-mobile-input-border-width-active);
+    border-color: var(--tvm-Input-border-color-active);
+    border-width: var(--tvm-Input-border-width-active);
   }
 
   &.is-showlimit &__inner {
-    padding-bottom: calc(var(--ti-mobile-input-count-font-size) * 1.5 + var(--ti-mobile-textarea-padding-vertical));
+    padding-bottom: calc(var(--tvm-Input-count-font-size) * 1.5 + var(--tvm-textarea-padding-vertical));
   }
 
   &.is-disabled {
     .@{textarea-prefix-cls}__inner {
-      border-color: var(--ti-mobile-border-color-disabled);
-      background-color: var(--ti-mobile-input-bg-color-disabled);
-      color: var(--ti-mobile-input-text-color-disabled);
+      border-color: var(--tvm-border-color-disabled);
+      background-color: var(--tvm-Input-bg-color-disabled);
+      color: var(--tvm-Input-text-color-disabled);
       cursor: not-allowed;
-      .placeholder(@color: var(--ti-mobile-input-text-color-disabled));
+      .placeholder(@color: var(--tvm-Input-text-color-disabled));
     }
   }
 
   &.is-exceed {
     &__count {
-      color: var(--ti-mobile-input-exceed-text-color);
+      color: var(--tvm-Input-exceed-text-color);
     }
   }
 }
 
 .@{input-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   position: relative;
   width: 100%;
-  line-height: var(--ti-mobile-input-line-height);
+  line-height: var(--tvm-Input-line-height);
 
   &::-webkit-scrollbar {
     z-index: 11;
@@ -129,24 +129,24 @@
   }
 
   &.is-focus &__wrapper {
-    border-color: var(--ti-mobile-input-border-color-active);
-    border-width: var(--ti-mobile-input-border-width-active);
+    border-color: var(--tvm-Input-border-color-active);
+    border-width: var(--tvm-Input-border-width-active);
   }
 
   &.is-exceed &__suffix &__count {
-    color: var(--ti-mobile-input-exceed-text-color);
+    color: var(--tvm-Input-exceed-text-color);
   }
 
   &.is-disabled {
     .@{input-prefix-cls}__wrapper {
-      border-color: var(--ti-mobile-border-color-disabled);
-      background: var(--ti-mobile-input-bg-color-disabled);
+      border-color: var(--tvm-border-color-disabled);
+      background: var(--tvm-Input-bg-color-disabled);
     }
 
     .@{input-prefix-cls}__inner {
       cursor: not-allowed;
-      color: var(--ti-mobile-input-text-color-disabled);
-      .placeholder(@color: var(--ti-mobile-input-text-color-disabled));
+      color: var(--tvm-Input-text-color-disabled);
+      .placeholder(@color: var(--tvm-Input-text-color-disabled));
     }
 
     .@{input-prefix-cls}__icon {
@@ -155,7 +155,7 @@
       &.@{css-prefix}svg {
         &,
         &:hover {
-          fill: var(--ti-mobile-input-icon-color-disabled);
+          fill: var(--tvm-Input-icon-color-disabled);
         }
       }
     }
@@ -165,7 +165,7 @@
       .@{css-prefix}svg {
         &,
         &:hover {
-          fill: var(--ti-mobile-input-icon-color-disabled);
+          fill: var(--tvm-Input-icon-color-disabled);
         }
       }
     }
@@ -182,11 +182,11 @@
   &__wrapper {
     display: flex;
     align-items: center;
-    height: var(--ti-mobile-input-height);
+    height: var(--tvm-Input-height);
     overflow: hidden;
-    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
-    border-radius: var(--ti-mobile-input-radius);
-    background: var(--ti-mobile-input-bg-color);
+    border: var(--tvm-Input-border-width) solid var(--tvm-Input-border-color);
+    border-radius: var(--tvm-Input-radius);
+    background: var(--tvm-Input-bg-color);
   }
 
   &__inner {
@@ -194,10 +194,10 @@
     order: 3;
     width: 100%;
     height: 100%;
-    padding: 0 var(--ti-mobile-input-padding-horizontal);
-    font-size: var(--ti-mobile-input-font-size);
-    font-family: var(--ti-mobile-input-font-family);
-    color: var(--ti-mobile-input-text-color);
+    padding: 0 var(--tvm-Input-padding-horizontal);
+    font-size: var(--tvm-Input-font-size);
+    font-family: var(--tvm-Input-font-family);
+    color: var(--tvm-Input-text-color);
     border: 0;
     outline: 0;
     display: inline-block;
@@ -205,7 +205,7 @@
     -webkit-appearance: none;
     appearance: none;
     transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    .placeholder(@color: var(--ti-mobile-input-placeholder-text-color));
+    .placeholder(@color: var(--tvm-Input-placeholder-text-color));
 
     &:hover,
     &:focus,
@@ -221,24 +221,24 @@
   }
 
   & &__clear {
-    font-size: var(--ti-mobile-input-icon-font-size, 16px);
+    font-size: var(--tvm-Input-icon-font-size, 16px);
     cursor: pointer;
     transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     &,
     &:hover {
-      fill: var(--ti-mobile-input-icon-color);
+      fill: var(--tvm-Input-icon-color);
     }
   }
 
   & &__count {
     height: 100%;
     display: inline-flex;
-    color: var(--ti-mobile-input-count-text-color);
-    font-size: var(--ti-mobile-input-count-font-size);
+    color: var(--tvm-Input-count-text-color);
+    font-size: var(--tvm-Input-count-font-size);
 
     .@{input-prefix-cls}__count-inner {
-      background: var(--ti-mobile-input-bg-color, #fff);
+      background: var(--tvm-Input-bg-color, #fff);
       line-height: initial;
       display: inline-block;
     }
@@ -254,15 +254,15 @@
   }
 
   &__prefix {
-    padding-left: var(--ti-mobile-input-padding-horizontal);
+    padding-left: var(--tvm-Input-padding-horizontal);
     order: 2;
     transition: all 0.3s;
-    font-size: var(--ti-mobile-input-icon-font-size);
+    font-size: var(--tvm-Input-icon-font-size);
   }
 
   &__suffix {
     order: 4;
-    padding-right: var(--ti-mobile-input-padding-horizontal);
+    padding-right: var(--tvm-Input-padding-horizontal);
     transition: all 0.3s;
 
     &:hover {
@@ -276,14 +276,14 @@
   }
 
   &__icon {
-    line-height: var(--ti-mobile-input-line-height, 30px);
+    line-height: var(--tvm-Input-line-height, 30px);
     text-align: center;
     transition: all 0.3s;
-    font-size: var(--ti-mobile-input-icon-font-size);
+    font-size: var(--tvm-Input-icon-font-size);
 
     &,
     &:hover {
-      fill: var(--ti-mobile-input-icon-color);
+      fill: var(--tvm-Input-icon-color);
     }
 
     &:after {
@@ -297,7 +297,7 @@
     .svg-operationfaild {
       &,
       &:hover {
-        fill: var(--ti-mobile-input-icon-color);
+        fill: var(--tvm-Input-icon-color);
       }
     }
   }
@@ -307,20 +307,20 @@
   }
 
   &-medium {
-    .input-size(var(--ti-mobile-input-medium-height, 42px));
+    .input-size(var(--tvm-Input-medium-height, 42px));
   }
 
   &-small {
-    .input-size(var(--ti-mobile-input-small-height, 36px));
+    .input-size(var(--tvm-Input-small-height, 36px));
   }
 
   &-mini {
-    .input-size(var(--ti-mobile-input-mini-height, 24px));
+    .input-size(var(--tvm-Input-mini-height, 24px));
   }
 }
 
 .@{input-prefix-cls}__title {
-  margin-bottom: var(--ti-mobile-input-title-margin-bottom);
+  margin-bottom: var(--tvm-Input-title-margin-bottom);
 }
 
 .@{input-group-prefix-cls} {
@@ -368,16 +368,16 @@
 
   &__prepend {
     order: 1;
-    padding: 0 var(--ti-mobile-input-prepend-padding-horizontal);
-    color: var(--ti-mobile-input-prepend-text-color);
-    background-color: var(--ti-mobile-input-prepend-bg-color);
+    padding: 0 var(--tvm-Input-prepend-padding-horizontal);
+    color: var(--tvm-Input-prepend-text-color);
+    background-color: var(--tvm-Input-prepend-bg-color);
   }
 
   &__append {
     order: 5;
-    padding: 0 var(--ti-mobile-input-append-padding-horizontal);
-    color: var(--ti-mobile-input-append-text-color);
-    background-color: var(--ti-mobile-input-append-bg-color);
+    padding: 0 var(--tvm-Input-append-padding-horizontal);
+    color: var(--tvm-Input-append-text-color);
+    background-color: var(--tvm-Input-append-bg-color);
   }
 }
 
@@ -386,12 +386,12 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  background: var(--ti-mobile-input-bg-color, #fff);
+  background: var(--tvm-Input-bg-color, #fff);
 
   &-icon {
     order: 5;
     height: 20px;
-    margin-right: var(--ti-mobile-input-padding-horizontal);
+    margin-right: var(--tvm-Input-padding-horizontal);
     line-height: 20px;
     width: 20px;
     font-size: 0;
@@ -399,7 +399,7 @@
     transition: all linear 0.3s;
 
     svg {
-      fill: var(--ti-mobile-input-icon-color);
+      fill: var(--tvm-Input-icon-color);
       font-size: 20px;
       vertical-align: text-bottom;
     }
@@ -422,12 +422,13 @@
     position: absolute;
     overflow: hidden;
     font-size: 13px;
-    color: var(--ti-mobile-common-color-error-text-1);
+    color: var(--tvm-common-color-error-text-1);
     text-overflow: ellipsis;
     bottom: -36px;
-    background: var(--ti-mobile-input-form-bg-color-error);
+    background: var(--tvm-Input-form-bg-color-error);
     border-radius: 4px;
     padding: 0px 12px;
+
     &.align-right {
       text-align: right;
     }
@@ -446,8 +447,8 @@
 }
 
 .@{input-prefix-cls}__tips {
-  margin-top: var(--ti-mobile-input-tips-margin-top);
-  font-size: var(--ti-mobile-input-tips-font-size);
+  margin-top: var(--tvm-Input-tips-margin-top);
+  font-size: var(--tvm-Input-tips-font-size);
 }
 
 @keyframes rotating {

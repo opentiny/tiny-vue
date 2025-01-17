@@ -1,0 +1,67 @@
+packages:
+  - cloud-icons/**
+  - scene-theme/**
+  - packages/**
+
+# 统一版本引入， 各子项目引入时，只需要使用 "catalog:" 即可。
+catalog:
+  # 配置
+  "@antfu/eslint-config": ^2.27.1
+  "@typescript-eslint/utils": ^8.2.0
+  "eslint": ^9.9.1
+  "eslint-plugin-format": ^0.1.2
+  "@vue/tsconfig": "0.4.0"
+  "@tsconfig/node20": "^20.1.2"
+
+  # 工具
+  "chalk": "4.1.2"
+  "cross-spawn": "^7.0.3"
+  "fs-extra": "^10.1.0"
+  "fast-glob": "^3.3.2"
+  "tsx": "^4.7.0"
+
+  # vue vite
+  "typescript": "^5.5.3"
+  "vite": "^6.0.1"
+  "vue": "^3.4.37"
+  "vue-tsc": "^2.0.29"
+  "vite-plugin-inspect": "^0.8.7"
+  "@vitejs/plugin-vue": "^5.1.2"
+  "@vueuse/core": "^11.0.0"
+  "vitepress": "^1.5.0"
+
+  # 测试
+  "vitest": ^2.0.0
+
+  # storybook
+  "@chromatic-com/storybook": "^1.7.0"
+  "@storybook/addon-essentials": "^8.2.9"
+  "@storybook/addon-interactions": "^8.2.9"
+  "@storybook/addon-links": "^8.2.9"
+  "@storybook/addon-onboarding": "^8.2.9"
+  "@storybook/blocks": "^8.2.9"
+  "@storybook/test": "^8.2.9"
+  "@storybook/vue3": "^8.2.9"
+  "@storybook/vue3-vite": "^8.2.9"
+  "storybook": "^8.2.9"
+
+  # 图标
+  "@iconify/utils": "^2.1.32"
+  "@iconify/tools": "^4.0.5"
+  "@iconify/types": "^2.0.0"
+  "unocss": "latest"
+  "@unocss/preset-icons": "latest"
+  "@unocss/reset": "latest"
+  "@unocss/core": "latest"
+
+
+  # 三方依赖
+  "@floating-ui/dom": "^1.6.9"
+  "highlight.js": "^11.10.0"
+  "lu2": "2024.9.2"
+
+  # 其它
+  "@types/node": "^22.5.0"
+  "rimraf": "^6.0.1"
+  "pnpm": "^9.8.0"
+  "less": "^4.2.0"

@@ -20,19 +20,19 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{file-upload-prefix-cls} {
-  .component-css-vars-file-upload();
+  .inject-FileUpload-vars();
 
   &__header {
     display: flex;
     align-items: center;
     padding: 12px 16px;
     margin-bottom: 12px;
-    .hairline('bottom', var(--ti-mobile-file-upload-hairline-color, #ddd));
+    .hairline('bottom', var(--tvm-FileUpload-hairline-color, #ddd));
 
     &-title {
       flex: 1;
-      color: var(--ti-mobile-file-upload-title-color, #333);
-      font-size: var(--ti-mobile-file-upload-font-size, 16px);
+      color: var(--tvm-FileUpload-title-color, #333);
+      font-size: var(--tvm-FileUpload-font-size, 16px);
     }
 
     &-upload {
@@ -42,8 +42,8 @@
 
     .upload-icon {
       .@{svg-prefix-cls} {
-        font-size: var(--ti-mobile-file-upload-icon-size, 24px);
-        fill: var(--ti-mobile-file-upload-icon-color, #999);
+        font-size: var(--tvm-FileUpload-icon-size, 24px);
+        fill: var(--tvm-FileUpload-icon-color, #999);
       }
     }
   }
@@ -54,13 +54,13 @@
   }
 
   .upload-status {
-    color: var(--ti-mobile-file-upload-status-color, #999);
-    font-size: var(--ti-mobile-file-upload-status-font-size, 12px);
+    color: var(--tvm-FileUpload-status-color, #999);
+    font-size: var(--tvm-FileUpload-status-font-size, 12px);
     margin-right: 10px;
 
     .@{svg-prefix-cls} {
-      font-size: var(--ti-mobile-file-upload-icon-size, 24px);
-      fill: var(--ti-mobile-file-upload-icon-color, #999);
+      font-size: var(--tvm-FileUpload-icon-size, 24px);
+      fill: var(--tvm-FileUpload-icon-color, #999);
     }
   }
 
@@ -72,11 +72,11 @@
   }
 
   .@{upload-prefix-cls}--picture-card {
-    width: var(--ti-mobile-file-upload-picture-card-size, 64px);
-    height: var(--ti-mobile-file-upload-picture-card-size, 64px);
-    line-height: var(--ti-mobile-file-upload-picture-card-size, 64px);
-    border: 1px solid var(--ti-mobile-file-upload-picture-card-border-color, #ccc);
-    background-color: var(--ti-mobile-file-upload-picture-card-bgcolor, #fff);
+    width: var(--tvm-FileUpload-picture-card-size, 64px);
+    height: var(--tvm-FileUpload-picture-card-size, 64px);
+    line-height: var(--tvm-FileUpload-picture-card-size, 64px);
+    border: 1px solid var(--tvm-FileUpload-picture-card-border-color, #ccc);
+    background-color: var(--tvm-FileUpload-picture-card-bgcolor, #fff);
     border-radius: 0;
     display: inline-block;
     text-align: center;
@@ -90,7 +90,7 @@
 
     &:hover,
     &:focus {
-      border-color: var(--ti-mobile-file-upload-picture-card-border-color, #ccc);
+      border-color: var(--tvm-FileUpload-picture-card-border-color, #ccc);
     }
   }
 }
