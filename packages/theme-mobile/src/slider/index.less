@@ -20,9 +20,9 @@
   .inject-Slider-vars();
 
   position: relative;
-  height: var(--tvm-Slider-track-size, 2px);
+  height: var(--tvm-Slider-track-height, 2px);
   margin: 15px 0;
-  background: var(--tvm-Slider-track-bgcolor, #ccc);
+  background: var(--tvm-Slider-track-bg-color, #ccc);
   width: ~'calc(100% - 89px)';
   display: inline-block;
   cursor: pointer;
@@ -36,7 +36,7 @@
   }
 
   &&__vertical {
-    width: var(--tvm-Slider-track-size, 2px);
+    width: var(--tvm-Slider-track-height, 2px);
     height: 300px;
     display: block;
     margin: 0 15px;
@@ -51,7 +51,7 @@
       border-radius: 10px;
       position: absolute;
       z-index: 1;
-      width: var(--tvm-Slider-track-size, 2px);
+      width: var(--tvm-Slider-track-height, 2px);
     }
 
     .@{slider-prefix-cls}__up {
@@ -71,8 +71,8 @@
 
   &__range {
     position: absolute;
-    height: var(--tvm-Slider-track-size, 2px);
-    background: var(--tvm-Slider-range-bgcolor, #00c696);
+    height: var(--tvm-Slider-track-height, 2px);
+    background: var(--tvm-Slider-range-bg-color, #00c696);
     z-index: 1;
   }
 
@@ -89,13 +89,13 @@
     left: 0;
     bottom: 50%;
     transform: translateY(50%);
-    width: var(--tvm-Slider-handle-size, 24px);
-    height: var(--tvm-Slider-handle-size, 24px);
+    width: var(--tvm-Slider-handle-height, 24px);
+    height: var(--tvm-Slider-handle-height, 24px);
     border-radius: 50%;
     margin-left: -13px;
     margin-top: -13px;
     outline: none;
-    background: var(--tvm-Slider-handle-bgcolor, #fff);
+    background: var(--tvm-Slider-handle-bg-color, #fff);
     box-shadow:
       0 0 1px 0 rgba(0, 0, 0, 0.05),
       0 3px 8px 0 rgba(0, 0, 0, 0.2);
@@ -117,8 +117,8 @@
     left: -2px;
     word-break: normal; // popup-body里面加了默认折行影响到此处需要重置
     white-space: nowrap; // 强制不换行-to liyingfu 纵向进度条上的tips如果内容过多并有空格就会掉下去，此处设置强制显示一行
-    background: var(--tvm-Slider-tips-color, #1890ff);
-    border: 1px solid var(--tvm-Slider-tips-color, #1890ff);
+    background: var(--tvm-Slider-tips-text-color, #1890ff);
+    border: 1px solid var(--tvm-Slider-tips-text-color, #1890ff);
     border-radius: var(--tvm-Slider-tips-border-radius, 2px);
     color: var(--tvm-Slider-tips-text-color, #fff);
 
@@ -127,7 +127,7 @@
       bottom: -6px;
       .tip-arrow(50%; auto; 0;);
       .tip-make-arrow(
-        6px 6px 0 6px; var(--tvm-Slider-tips-color, #1890ff) transparent
+        6px 6px 0 6px; var(--tvm-Slider-tips-text-color, #1890ff) transparent
       );
     }
 
@@ -136,7 +136,7 @@
       bottom: -4px;
       .tip-arrow(50%; auto; 0;);
       .tip-make-arrow(
-        4px 4px 0 4px; var(--tvm-Slider-tips-color, #1890ff) transparent
+        4px 4px 0 4px; var(--tvm-Slider-tips-text-color, #1890ff) transparent
       );
     }
   }
@@ -147,7 +147,7 @@
     vertical-align: top;
     margin-left: 16px;
     font-size: var(--tvm-Slider-input-font-size, 14px);
-    color: var(--tvm-Slider-input-color, #888);
+    color: var(--tvm-Slider-input-text-color, #888);
 
     input {
       width: 42px;
@@ -155,8 +155,8 @@
       line-height: 30px;
       border: 1px solid var(--tvm-Slider-input-border-color, #d9d9d9);
       border-radius: var(--tvm-Slider-input-border-radius, 2px);
-      color: var(--tvm-Slider-input-color, #888);
-      background: var(--tvm-Slider-input-bgcolor, #fff);
+      color: var(--tvm-Slider-input-text-color, #888);
+      background: var(--tvm-Slider-input-bg-color, #fff);
       font-size: inherit;
       padding: 0 8px;
       outline: 0;

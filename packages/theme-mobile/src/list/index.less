@@ -25,12 +25,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  background-color: var(--tvm-List-bgcolor, #fff);
+  background-color: var(--tvm-List-bg-color, #fff);
   box-sizing: border-box;
   position: relative;
 
   &:active {
-    background-color: var(--tvm-List-active-bgcolor, #ddd);
+    background-color: var(--tvm-List-active-bg-color, #ddd);
   }
 
   &:not(:last-child)::after {
@@ -63,16 +63,16 @@
 
   &__main-text {
     color: var(--tvm-List-main-text-color, #333);
-    font-size: var(--tvm-List-main-text-font-size, 16px);
+    font-size: var(--tvm-List-main-font-size, 16px);
   }
 
   &__sub-text {
     color: var(--tvm-List-sub-text-color, #999);
-    font-size: var(--tvm-List-sub-text-font-size, 14px);
+    font-size: var(--tvm-List-sub-font-size, 14px);
   }
 
   &__content-des {
-    color: var(--tvm-List-content-des-color, #999);
+    color: var(--tvm-List-content-des-text-color, #999);
     font-size: var(--tvm-List-content-des-font-size, 12px);
     margin: 4px 0 0;
   }
@@ -81,7 +81,7 @@
     margin-right: 16px;
 
     .@{svg-prefix-cls} {
-      font-size: var(--tvm-List-prefix-size, 24px);
+      font-size: var(--tvm-List-prefix-icon-size, 24px);
     }
   }
 
@@ -89,8 +89,8 @@
     margin-left: 16px;
 
     .@{svg-prefix-cls} {
-      fill: var(--tvm-List-suffix-color, #999);
-      font-size: var(--tvm-List-suffix-size, 16px);
+      fill: var(--tvm-List-suffix-icon-color, #999);
+      font-size: var(--tvm-List-suffix-icon-size, 16px);
     }
   }
 

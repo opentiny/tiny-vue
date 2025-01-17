@@ -59,4 +59,8 @@ export default {
   overflow: hidden;
   overflow-y: auto;
 }
+
+.tiny-mobile-avatar {
+  margin-right: 4px;
+}
 </style>

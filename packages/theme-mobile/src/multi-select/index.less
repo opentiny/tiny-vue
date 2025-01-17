@@ -21,7 +21,7 @@
   .inject-MultiSelect-vars();
 
   position: relative;
-  background: var(--tvm-MultiSelect-bg, #fff);
+  background: var(--tvm-MultiSelect-bg-color, #fff);
   width: 100%;
   border-radius: 0 0 16px 16px;
 
@@ -31,9 +31,9 @@
     justify-content: space-between;
     align-items: center;
     height: var(--tvm-MultiSelect-header-height);
-    padding: 0 var(--tvm-MultiSelect-header-padding-horizontal);
-    background: var(--tvm-MultiSelect-header-bg, #fff);
-    border-bottom: 1px solid var(--tvm-MultiSelect-header-border-bottom-color);
+    padding: 0 var(--tvm-MultiSelect-header-padding-x);
+    background: var(--tvm-MultiSelect-header-bg-color, #fff);
+    border-bottom: 1px solid var(--tvm-MultiSelect-header-border-color);
     z-index: 100;
 
     &.is-disabled,
@@ -73,7 +73,7 @@
       width: fix-content;
       height: 100%;
       margin-right: var(--tvm-MultiSelect-header-item-margin-right);
-      background: var(--tvm-MultiSelect-header-item-bg);
+      background: var(--tvm-MultiSelect-header-item-bg-color);
       border-radius: 4px;
       padding: 5px 0;
       user-select: none;
@@ -101,8 +101,8 @@
       transition: all linear 0.3s;
 
       svg {
-        fill: var(--tvm-MultiSelect-header-svg-fill-color);
-        font-size: var(--tvm-MultiSelect-header-icon-font-size);
+        fill: var(--tvm-MultiSelect-header-icon-color);
+        font-size: var(--tvm-MultiSelect-header-icon-size);
         vertical-align: text-bottom;
       }
     }
@@ -118,19 +118,19 @@
 
     &-search {
       flex: 1;
-      margin: var(--tvm-space-2x) 0;
+      margin: var(--tvm-space-md) 0;
     }
 
     &-prefix-icon {
-      fill: var(--tvm-color-text-placeholder);
-      color: var(--tvm-color-text-placeholder);
-      font-size: var(--tvm-font-size-l);
+      fill: var(--tvm-color-icon);
+      color: var(--tvm-color-icon);
+      font-size: var(--tvm-icon-size);
     }
 
     &-cancel-btn {
       flex: 0;
       white-space: nowrap;
-      margin: 0 var(--tvm-space-6x) 0 var(--tvm-space-3x);
+      margin: 0 var(--tvm-space-xxl) 0 var(--tvm-space-lg);
     }
   }
 
@@ -174,8 +174,8 @@
 
     .tiny-mobile-button--primary {
       color: var(--tvm-button-color, #fff);
-      border-color: var(--tvm-base-color-brand-1, #4a79fe);
-      background-color: var(--tvm-base-color-brand-1, #4a79fe);
+      border-color: var(--tvm-color-act-info-border, #1476ff);
+      background-color: var(--tvm-color-act-info-bg, #1476ff);
     }
 
     .tiny-mobile-button--default {
