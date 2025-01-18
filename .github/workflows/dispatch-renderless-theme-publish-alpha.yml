@@ -7,7 +7,7 @@ on:
       components:
         description: |
           输入需要打包的模块名称，多个以英文逗号分隔,
-          例如： `theme,renderless,runtime`
+          例如： `theme,renderless,runtime,docs`
         required: true
         type: string
 concurrency:
@@ -86,5 +86,12 @@ jobs:
       - name: Publish
         run: |
           pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
+
+      - name: Publish Docs
+        if: contains(inputs.components, 'docs') == true
+        run: |
+          pnpm pub:site
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
