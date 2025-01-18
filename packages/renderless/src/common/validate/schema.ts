@@ -11,7 +11,7 @@
  */
 
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
-import { hasOwn, isFunction } from '../type'
+import { type } from '@opentiny/utils'
 
 function Schema(descriptor, translate) {
   Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)
@@ -82,7 +82,7 @@ const getFieldsSchema = (rule, data) => {
 
   if (rule.defaultField) {
     for (const k in data.value) {
-      if (hasOwn.call(data.value, k)) {
+      if (type.hasOwn.call(data.value, k)) {
         schema[k] = rule.defaultField
       }
     }
@@ -94,7 +94,7 @@ const getFieldsSchema = (rule, data) => {
   }
 
   for (const f in schema) {
-    if (hasOwn.call(schema, f)) {
+    if (type.hasOwn.call(schema, f)) {
       const fieldSchema = Array.isArray(schema[f]) ? schema[f] : [schema[f]]
 
       schema[f] = fieldSchema.map(addFullfield.bind(null, f))
@@ -225,7 +225,7 @@ Schema.prototype = {
     let rule
 
     Object.keys(rules).forEach((key) => {
-      if (hasOwn.call(rules, key)) {
+      if (type.hasOwn.call(rules, key)) {
         rule = rules[key]
         this.rules[key] = Array.isArray(rule) ? rule : [rule]
       }
@@ -346,7 +346,7 @@ Schema.prototype = {
     )
   },
   getValidationMethod(rule) {
-    if (isFunction(rule.validator)) {
+    if (type.isFunction(rule.validator)) {
       return rule.validator
     }
 
@@ -368,7 +368,7 @@ Schema.prototype = {
       rule.type = 'pattern'
     }
 
-    if (typeof rule.validator !== 'function' && rule.type && !hasOwn.call(Schema.validators, rule.type)) {
+    if (typeof rule.validator !== 'function' && rule.type && !type.hasOwn.call(Schema.validators, rule.type)) {
       throw new Error(format('Unknown rule type %s', rule.type))
     }
 

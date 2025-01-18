@@ -14,7 +14,7 @@ import { POSITION, VALIDATE_STATE } from '../common'
 import { omitText } from '../common/string'
 import { merge } from '../common/object'
 import Validator from '../common/validate'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 import debounce from '../common/deps/debounce'
 import type {
   IFormItemRenderlessParams,
@@ -30,7 +30,7 @@ import type { StyleValue } from 'vue'
 export const watchError =
   (state: IFormItemRenderlessParams['state']) =>
   (value: string): void => {
-    if (!isNull(value) && state.getValidateType === 'tip') {
+    if (!type.isNull(value) && state.getValidateType === 'tip') {
       state.canShowTip = true
     }
 

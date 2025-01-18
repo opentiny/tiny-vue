@@ -10,8 +10,7 @@
  *
  */
 
-import { xss } from '@opentiny/utils'
-import { isObject } from '../common/type'
+import { xss, type } from '@opentiny/utils'
 
 export const filterNode = (props) => (value, data) => {
   const node = data[props.props.label || 'label'] || ''
@@ -49,7 +48,7 @@ export const initData =
       state.datas = api.setMenuKey({ newData: [], menuData })
     } else if (typeof service.getMenuDataAsync === 'function') {
       const asyncMenuData = service.getMenuDataAsync()
-      if (isObject(asyncMenuData) && asyncMenuData.then) {
+      if (type.isObject(asyncMenuData) && asyncMenuData.then) {
         asyncMenuData.then((data) => {
           state.datas = api.setMenuKey({ newData: [], menuData: data })
         })

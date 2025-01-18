@@ -11,7 +11,7 @@
  */
 
 import { DATEPICKER } from '../index'
-import { isNull, isDate } from '../type'
+import { type } from '@opentiny/utils'
 
 const fecha = {}
 const digitsReg = ['\\d\\d?', '\\d{3}', '\\d{4}']
@@ -230,7 +230,7 @@ fecha.format = (dateObj, mask, i18nSettings) => {
     dateObj = new Date(dateObj)
   }
 
-  if (!isDate(dateObj) || isNaN(dateObj.getTime())) {
+  if (!type.isDate(dateObj) || isNaN(dateObj.getTime())) {
     throw new Error('Invalid Date in fecha.format')
   }
 
@@ -273,7 +273,7 @@ const getDate = (dateInfo) => {
   let date
   const today = new Date()
 
-  if (!isNull(dateInfo.timezoneOffset)) {
+  if (!type.isNull(dateInfo.timezoneOffset)) {
     dateInfo.minute = Number(dateInfo.minute || 0) - Number(dateInfo.timezoneOffset)
 
     const { year, month, day, hour, minute, second, millisecond } = dateInfo
@@ -330,7 +330,7 @@ fecha.parse = (dateStr, format, i18nSettings) => {
     parseInfo[i - 1](dateInfo, matches[i], i18n)
   }
 
-  if (dateInfo.isPm === true && !isNull(dateInfo.hour) && Number(dateInfo.hour) !== 12) {
+  if (dateInfo.isPm === true && !type.isNull(dateInfo.hour) && Number(dateInfo.hour) !== 12) {
     dateInfo.hour = Number(dateInfo.hour) + 12
   } else if (dateInfo.isPm === false && Number(dateInfo.hour) === 12) {
     dateInfo.hour = 0

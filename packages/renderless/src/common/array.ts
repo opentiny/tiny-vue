@@ -11,8 +11,8 @@
  */
 
 import { SORT } from './index'
-import { isSame } from './type'
 import { getObj } from './object'
+import { type } from '@opentiny/utils'
 
 /**
  * 返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。 TINY_NO_NEED 现在数组有 findIndex
@@ -123,7 +123,7 @@ export const sort = (arr, field, sort = SORT.Asc) => {
  * @returns {Array}
  */
 export const push = (arr, data) => {
-  if (Array.isArray(arr) && !arr.some((value) => isSame(value, data))) {
+  if (Array.isArray(arr) && !arr.some((value) => type.isSame(value, data))) {
     arr.push(data)
   }
 
@@ -200,10 +200,10 @@ export const transformPidToChildren = (data, pidName = 'pId', childrenName = 'ch
 
   Array.isArray(data) &&
     data.forEach((item) => {
-      if (item[pidName] == '0') {
+      if (item[pidName] === '0') {
         result.push(item)
       } else {
-        const parent = find(data, (i) => i[idName] == item[pidName])
+        const parent = find(data, (i) => i[idName] === item[pidName])
 
         if (!parent) {
           return

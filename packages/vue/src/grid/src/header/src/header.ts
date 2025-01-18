@@ -23,7 +23,7 @@
  *
  */
 
-import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
@@ -166,7 +166,7 @@ function getThPropsArg(args) {
         [classMap.fixedHidden]: fixedHiddenColumn,
         [classMap.isSortable]: !['index', 'radio', 'selection'].includes(column.type) && column.sortable,
         [classMap.isEditable]: column.editor,
-        [classMap.isFilter]: isObject(column.filter),
+        [classMap.isFilter]: type.isObject(column.filter),
         [classMap.filterActive]: column.filter && column.filter.hasFilter,
         'fixed-left-last__column':
           column.fixed === 'left' && (leftList[leftList.length - 1] === column || column.isFixedLeftLast),
@@ -276,7 +276,7 @@ function getThHandler(args) {
     let { showHeaderOverflow, showHeaderTip, headerAlign, align, headerClassName } = column
     let isColGroup = column.children && column.children.length
     let fixedHiddenColumn = column.fixed
-    let headOverflow = isNull(showHeaderOverflow) ? allColumnHeaderOverflow : showHeaderOverflow
+    let headOverflow = type.isNull(showHeaderOverflow) ? allColumnHeaderOverflow : showHeaderOverflow
     let showEllipsis = headOverflow === 'ellipsis'
     let showTitle = headOverflow === 'title'
     let headAlign = headerAlign || align || allHeaderAlign || allAlign

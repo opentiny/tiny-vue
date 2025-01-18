@@ -23,7 +23,7 @@
  *
  */
 
-import { isDate, isRegExp } from '../../../common/type'
+import { type } from '@opentiny/utils'
 import isNumber from './isNumber'
 import isString from './isString'
 import isBoolean from './isBoolean'
@@ -39,11 +39,11 @@ const helperEqualCompare = ({ val1, val2, compare, func, key, obj1, obj2 }) => {
   }
 
   if (val1 && val2 && !isNumber(val1) && !isNumber(val2) && !isString(val1) && !isString(val2)) {
-    if (isRegExp(val1)) {
+    if (type.isRegExp(val1)) {
       return compare(String(val1), String(val2), key, obj1, obj2)
     }
 
-    if (isDate(val1) || isBoolean(val1)) {
+    if (type.isDate(val1) || isBoolean(val1)) {
       return compare(Number(val1), Number(val2), key, obj1, obj2)
     }
 

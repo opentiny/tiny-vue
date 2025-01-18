@@ -10,9 +10,9 @@
  *
  */
 
-import { hasOwn, isNull } from '../../type'
 import { getNodeKey } from './util'
 import Node from './node'
+import { type } from '@opentiny/utils'
 
 export default class TreeStore {
   constructor(options) {
@@ -20,7 +20,7 @@ export default class TreeStore {
     this.currentNodeKey = null
 
     for (let option in options) {
-      if (hasOwn.call(options, option)) {
+      if (type.hasOwn.call(options, option)) {
         this[option] = options[option]
       }
     }
@@ -45,7 +45,7 @@ export default class TreeStore {
     const mapping = {}
 
     for (let key in props) {
-      if (hasOwn.call(props, key)) {
+      if (type.hasOwn.call(props, key)) {
         mapping[key] = data[props[key]]
       }
     }
@@ -248,7 +248,7 @@ export default class TreeStore {
     const nodesMap = this.nodesMap
 
     Object.keys(nodesMap).forEach((nodeKey) => {
-      hasOwn.call(nodesMap, nodeKey) && allNodes.push(nodesMap[nodeKey])
+      type.hasOwn.call(nodesMap, nodeKey) && allNodes.push(nodesMap[nodeKey])
     })
 
     return allNodes
@@ -378,7 +378,7 @@ export default class TreeStore {
   }
 
   setCurrentNodeKey(key) {
-    if (isNull(key)) {
+    if (type.isNull(key)) {
       this.currentNode && (this.currentNode.isCurrent = false)
       this.currentNode = null
 

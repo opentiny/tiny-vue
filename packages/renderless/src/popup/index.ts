@@ -13,12 +13,12 @@
 import { on, off } from '../common/deps/dom'
 import { touchStart, touchMove } from '../common/deps/touch'
 import { getScroller } from '../dropdown-menu'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const getStyle = (props) => () => {
   const style = { ...props.popupStyle }
 
-  if (!isNull(props.duration)) {
+  if (!type.isNull(props.duration)) {
     const key = props.position === 'center' ? 'animationDuration' : 'transitionDuration'
 
     style[key] = `${props.duration}s`

@@ -11,22 +11,20 @@
  */
 
 import { extend, copyArray } from '../../common/object'
-import { isObject, typeOf as getType, isNull } from '../../common/type'
+import { type, xss } from '@opentiny/utils'
+
 import _debounce from '../../common/deps/debounce'
 import _numerify from './numerify'
 import { escapeHtml } from '../../common/string'
-import { xss } from '@opentiny/utils'
 
 export { setObj as set, getObj as get, isEqual } from '../../common/object'
-
-export { typeOf as getType, isObject } from '../../common/type'
 
 export const debounce = (callback, delay) => _debounce(delay, false, callback)
 
 export const camelToKebab = (str) => str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 
 export const cloneDeep = (data) => {
-  if (isObject(data)) {
+  if (type.isObject(data)) {
     return extend(true, data)
   } else if (Array.isArray(data)) {
     return copyArray(data)
@@ -44,7 +42,7 @@ export const getFormated = (value, type, digit, defaultVal = '-') => {
     return value
   }
 
-  if (getType(type) === 'function') {
+  if (type.typeOf(type) === 'function') {
     return type(value, _numerify)
   }
 
@@ -204,13 +202,13 @@ export const getLegend = (args, legendItemStyle) => {
     return { data: metrics }
   }
 
-  const data = labelMap ? metrics.map((item) => (isNull(labelMap[item]) ? item : labelMap[item])) : metrics
+  const data = labelMap ? metrics.map((item) => (type.isNull(labelMap[item]) ? item : labelMap[item])) : metrics
 
   return {
     ...legendItemStyle,
     data,
     formatter(name) {
-      return isNull(legendName[name]) ? name : legendName[name]
+      return type.isNull(legendName[name]) ? name : legendName[name]
     }
   }
 }

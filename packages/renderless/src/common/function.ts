@@ -1,4 +1,4 @@
-import { isPromise } from './type'
+import { type } from '@opentiny/utils'
 
 export const noop = () => {}
 
@@ -6,7 +6,7 @@ export const callInterceptor = (interceptor, { args = [], done, canceled, error 
   if (interceptor) {
     const returnVal = interceptor(...args)
 
-    if (isPromise(returnVal)) {
+    if (type.isPromise(returnVal)) {
       returnVal
         .then((value) => {
           if (value) {

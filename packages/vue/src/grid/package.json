@@ -26,6 +26,7 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~"
   },
   "devDependencies": {

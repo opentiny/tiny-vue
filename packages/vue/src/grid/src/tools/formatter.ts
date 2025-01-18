@@ -35,7 +35,7 @@ import {
   toBoolValue
 } from '@opentiny/vue-renderless/common/string'
 import { find } from '@opentiny/vue-renderless/grid/static/'
-import { isNumber, isDate, isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'
 import { iconClose, iconYes } from '@opentiny/vue-icon'
 import { warn } from './logger'
@@ -81,7 +81,7 @@ const dateFormat = function (value, formatString) {
 
     const currentTimezone = 0 - new Date().getTimezoneOffset() / 60
     const newDate = getDateWithNewTimezone(
-      isDate(value) ? value : new Date(toDate(value)),
+      type.isDate(value) ? value : new Date(toDate(value)),
       currentTimezone,
       userFormat.timezone || 8
     )
@@ -113,7 +113,7 @@ export default {
     let { options, optionGroups, optionProps = {}, optionGroupProps = {} } = this.editor
     const format = this.own.formatConfig
 
-    if (isNull(cellValue) || cellValue === '') {
+    if (type.isNull(cellValue) || cellValue === '') {
       return ''
     }
 
@@ -226,7 +226,7 @@ export default {
     if (section) {
       let rateValue = parseInt(lengthRate, 10)
 
-      if (!isNumber(rateValue)) {
+      if (!type.isNumber(rateValue)) {
         return rate
       }
       if (rateValue === 100) {
@@ -265,7 +265,7 @@ export default {
       noFork: false
     }
     const format = Object.assign(defaultFormat, this.own.formatConfig)
-    const cellValue = !isNull(format.trueValue) ? value === format.trueValue : toBoolValue(value)
+    const cellValue = !type.isNull(format.trueValue) ? value === format.trueValue : toBoolValue(value)
 
     if (!format.htmlView) {
       return cellValue

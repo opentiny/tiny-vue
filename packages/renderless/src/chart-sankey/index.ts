@@ -12,7 +12,7 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const getTooltip = (args) => {
   const { digit, itemDataType, linksDataType } = args
@@ -48,7 +48,7 @@ const getSeries = (args) => {
   if (useDataValue) {
     mapHandler = (link) => ({ ...link, value: dataMap[link.target] })
   } else if (!valueFull) {
-    mapHandler = (link) => (isNull(link.value) ? { ...link, value: dataMap[link.target] } : link)
+    mapHandler = (link) => (type.isNull(link.value) ? { ...link, value: dataMap[link.target] } : link)
   }
 
   if (mapHandler) {

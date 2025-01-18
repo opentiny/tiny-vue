@@ -10,7 +10,7 @@
  *
  */
 
-import { hasOwn } from '../type'
+import { type } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 
 const getBody = (xhr) => {
@@ -102,7 +102,7 @@ export default (option) => {
   const headers = option.headers || {}
 
   for (let header in headers) {
-    if (hasOwn.call(headers, header) && headers[header] !== null) {
+    if (type.hasOwn.call(headers, header) && headers[header] !== null) {
       xhr.setRequestHeader(header, headers[header])
     }
   }

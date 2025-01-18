@@ -11,7 +11,7 @@
  */
 
 import { find } from '../common/array'
-import { typeOf, isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 import { getDataset } from '../common/dataset'
 import { isNullOrEmpty } from '../common/string'
 import { isEqual } from '../common/object'
@@ -95,10 +95,10 @@ export const getDisplay =
 
       return displayTxt.join(props.textSplit)
     } else {
-      if (isNull(state.selectedDatas)) {
+      if (type.isNull(state.selectedDatas)) {
         return ''
       } else {
-        return typeOf(state.selectedDatas) === 'object' ? state.selectedDatas[props.textField] : state.selectedDatas
+        return type.typeOf(state.selectedDatas) === 'object' ? state.selectedDatas[props.textField] : state.selectedDatas
       }
     }
   }
@@ -171,7 +171,7 @@ export const handleConfirm =
     if (props.popseletor === constants.TYPE_GRID) {
       props.multi ? api.getMultiSelectedData({ props, state }) : api.getRadioSelectedData()
 
-      if (!isNull(state.commitValue)) {
+      if (!type.isNull(state.commitValue)) {
         state.display = api.getDisplay({ props, state })
 
         if (!isEqual(state.commitValue, props.modelValue)) {
@@ -309,7 +309,7 @@ const renderTextHandler = ({ state, props, datas, dataset, value }) => {
 }
 
 const getTreeSelectList = ({ value, state, props }) => {
-  value = typeOf(value) === 'number' ? (isNaN(value) ? '' : String(value)) : value
+  value = type.typeOf(value) === 'number' ? (isNaN(value) ? '' : String(value)) : value
 
   let treeSelectList = []
 

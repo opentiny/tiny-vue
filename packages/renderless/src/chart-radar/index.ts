@@ -12,13 +12,13 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const getRadarLegend = (rows, dimension, legendName) => {
   let legendData = rows.map((row) => row[dimension]).filter((i) => i)
 
   function formatter(name) {
-    return isNull(legendName[name]) ? name : legendName[name]
+    return type.isNull(legendName[name]) ? name : legendName[name]
   }
 
   return { data: legendData, formatter }
@@ -63,7 +63,7 @@ const getRadarSetting = (rows, metrics, labelMap) => {
 
   rows.forEach((items) => {
     metrics.forEach((item) => {
-      const key = isNull(labelMap[item]) ? item : labelMap[item]
+      const key = type.isNull(labelMap[item]) ? item : labelMap[item]
 
       if (indicatorTemp[key]) {
         indicatorTemp[key].push(items[item])
@@ -99,7 +99,7 @@ const getRadarSeries = (args) => {
 
     Object.keys(row).forEach((key) => {
       if (~metrics.indexOf(key)) {
-        let k = isNull(labelMap[key]) ? radarIndexObj[key] : radarIndexObj[labelMap[key]]
+        let k = type.isNull(labelMap[key]) ? radarIndexObj[key] : radarIndexObj[labelMap[key]]
 
         serieData.value[k] = row[key]
       }

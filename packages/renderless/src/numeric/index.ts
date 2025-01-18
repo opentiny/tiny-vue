@@ -21,7 +21,8 @@ import type {
 import type { BigIntDecimal } from '../common/bigInt'
 import { formatNumber, roundFixed } from '../common/decimal'
 import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
-import { isNumber, isNull } from '../common/type'
+import { type } from '@opentiny/utils'
+
 import { MOUSEDELTA } from '../common'
 import { on, off } from '../common/deps/dom'
 
@@ -200,7 +201,7 @@ export const handleFocus =
 
     const currentValue = api.getDecimal(state.currentValue)
 
-    if (!currentValue.isNaN() && !isNull(state.currentValue)) {
+    if (!currentValue.isNaN() && !type.isNull(state.currentValue)) {
       const fractionLen = (currentValue.toString().split('.')[1] || '').length
 
       if (fractionLen < state.format.fraction && props.holdZero) {
@@ -354,7 +355,7 @@ export const handleInput =
         .join('.')
     }
 
-    event.target.value = isNull(value) ? '' : value
+    event.target.value = type.isNull(value) ? '' : value
     state.lastInput = value
     state.userInput = value
   }
@@ -387,12 +388,12 @@ export const mounted =
       state.controls = false
     }
 
-    if (isNumber(state.currentValue) && state.currentValue < (props.min as number)) {
+    if (type.isNumber(state.currentValue) && state.currentValue < (props.min as number)) {
       state.currentValue = props.min as number
       state.lastInput = props.min as number
       state.userInput = props.min as number
     }
-    if (isNumber(state.currentValue) && state.currentValue > (props.max as number)) {
+    if (type.isNumber(state.currentValue) && state.currentValue > (props.max as number)) {
       state.currentValue = props.max as number
       state.lastInput = props.max as number
       state.userInput = props.max as number
@@ -495,8 +496,8 @@ export const getUnitPrecision = ({
   const serFra = getUnitPrecision(unit) || {}
   const serFmt = getNumberFormat() || {}
 
-  fraction = isNumber(precision) ? precision : isNumber(format.fraction) ? format.fraction : serFra.fraction
-  rounding = isNumber(format.rounding) ? format.rounding : serFra.rounding
+  fraction = type.isNumber(precision) ? precision : type.isNumber(format.fraction) ? format.fraction : serFra.fraction
+  rounding = type.isNumber(format.rounding) ? format.rounding : serFra.rounding
 
   return { ...defaultFmt, fraction, rounding, ...serFmt, ...format }
 }

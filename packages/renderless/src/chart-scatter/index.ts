@@ -13,11 +13,11 @@
 import { getFormated, hexToRgb } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 import { line } from '../chart-line'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const getScatterLegend = (dataLabels, legendName) => {
   function formatter(name) {
-    return isNull(legendName[name]) ? name : legendName[name]
+    return type.isNull(legendName[name]) ? name : legendName[name]
   }
 
   return { data: dataLabels, formatter, itemStyle: { borderWidth: 1 } }

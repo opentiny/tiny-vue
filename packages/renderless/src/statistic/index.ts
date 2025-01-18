@@ -1,4 +1,4 @@
-import { isFunction } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const isNumber =
   ({ props }) =>
@@ -9,7 +9,7 @@ export const isNumber =
 export const getIntegerAndDecimal =
   ({ props }) =>
   () => {
-    if (isFunction(props.formatter)) {
+    if (type.isFunction(props.formatter)) {
       return props.formatter(props.value)
     }
     if (!isNumber(props.value)) {

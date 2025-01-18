@@ -100,7 +100,7 @@ import {
   isTagClosable
 } from './index'
 import debounce from '../common/deps/debounce'
-import { isNumber } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -265,7 +265,7 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     currentKey: props.modelValue,
     updateId: '',
     popperElm: null,
-    debounce: computed(() => (isNumber(props.queryDebounce) ? props.queryDebounce : props.remote ? 300 : 0)),
+    debounce: computed(() => (type.isNumber(props.queryDebounce) ? props.queryDebounce : props.remote ? 300 : 0)),
     emptyText: computed(() => api.emptyText()),
     emptyFlag: computed(() => api.emptyFlag()),
     formItemSize: computed(() => (parent.formItem || { state: {} }).state.formItemSize),

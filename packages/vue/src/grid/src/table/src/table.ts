@@ -25,7 +25,7 @@
 import { h, hooks, $prefix, resolveTheme, defineComponent, useInstanceSlots, useRelation } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
@@ -99,7 +99,7 @@ function loadStatic(data, _vm) {
 function mergeTreeConfig(_vm) {
   if (_vm.treeConfig) {
     const { ordered } = _vm.treeConfig
-    _vm.treeOrdered = isNull(ordered) ? true : Boolean(ordered)
+    _vm.treeOrdered = type.isNull(ordered) ? true : Boolean(ordered)
   }
 }
 
@@ -800,7 +800,7 @@ export default defineComponent({
       return extend(true, {}, GlobalConfig.menu, this.contextMenu)
     },
     hasFilter() {
-      return this.tableColumn.some((column) => isObject(column.filter) && !isEmptyObject(column.filter))
+      return this.tableColumn.some((column) => type.isObject(column.filter) && !type.isEmptyObject(column.filter))
     },
     hasTip() {
       return TINYGrid._tooltip

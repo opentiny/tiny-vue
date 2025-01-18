@@ -12,7 +12,7 @@
 
 import { getFormated, getMapJSON, getLegend as getLegendMap } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const getTooltip = ({ dataType, digit, dataStore, metrics, color, labelMap }) => {
   function formatter(item) {
@@ -25,7 +25,7 @@ const getTooltip = ({ dataType, digit, dataStore, metrics, color, labelMap }) =>
     tplt.push(`${itemLabel(item.name)}<br>`)
 
     metrics.forEach((label, index) => {
-      let title = isNull(labelMap[label]) ? label : labelMap[label]
+      let title = type.isNull(labelMap[label]) ? label : labelMap[label]
 
       tplt.push(`${itemPoint(color[index])}${itemLabel(title)}`)
       if (dataStore[item.name]) {
@@ -57,7 +57,7 @@ const getSeries = (args) => {
   const { emphasis = { itemStyle: { areaColor: 'rgba(25,25,25,0.2)' }, label: { color: '#191919' } } } = {}
 
   metrics.forEach((itemName) => {
-    const name = !isNull(labelMap[itemName]) ? labelMap[itemName] : itemName
+    const name = !type.isNull(labelMap[itemName]) ? labelMap[itemName] : itemName
     const data = []
     const itemResult = {
       name,

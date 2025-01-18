@@ -14,7 +14,7 @@ import * as util from '../util'
 import required from './required'
 import { format } from '../../date'
 import { isNullOrEmpty } from '../../string'
-import { isNumber, isObject, isDate, typeOf } from '../../type'
+import { type } from '@opentiny/utils'
 
 const emailReg1 = '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))'
 const emailReg = new RegExp(
@@ -48,10 +48,10 @@ const types = {
       return false
     }
   },
-  date: isDate,
-  number: (value) => isNumber(Number(value)),
-  object: (value) => isObject(value) && !types.array(value),
-  method: (value) => typeOf(value) === 'function',
+  date: type.isDate,
+  number: (value) => type.isNumber(Number(value)),
+  object: (value) => type.isObject(value) && !types.array(value),
+  method: (value) => type.typeOf(value) === 'function',
 
   email: (value) => isNullOrEmpty(value) || (!!value.match(pattern.email) && value.length < 255),
 

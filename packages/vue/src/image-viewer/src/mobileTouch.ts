@@ -10,7 +10,7 @@
  *
  */
 import { directive } from '@opentiny/vue-common'
-import { isObject } from '@opentiny/vue-renderless/common/type'
+import { type as _type } from '@opentiny/utils'
 
 class TinyTouch {
   constructor(element, tinyBinding, type) {
@@ -22,7 +22,7 @@ class TinyTouch {
     that.tinyVueMoves = true
     that.tinyVueLeave = true
     that.tinyLongTouch = true
-    that.tinyVueCallBack = isObject(tinyBinding.value) ? tinyBinding.value.fn : tinyBinding.value
+    that.tinyVueCallBack = _type.isObject(tinyBinding.value) ? tinyBinding.value.fn : tinyBinding.value
     that.element.addEventListener('touchstart', (e) => {
       that.start(e)
     })

@@ -12,7 +12,7 @@
 
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
 import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
-import { typeOf } from '../common/type'
+import { type } from '@opentiny/utils'
 import { rafThrottle } from '../image-viewer'
 import { xss } from '@opentiny/utils'
 
@@ -106,7 +106,7 @@ export const addLazyLoadListener =
 
     if (isHtmlElement(scrollContainer)) {
       _scrollContainer = scrollContainer as HTMLElement
-    } else if (typeOf(scrollContainer) === 'string') {
+    } else if (type.typeOf(scrollContainer) === 'string') {
       _scrollContainer = document.querySelector(scrollContainer as string)!
     } else {
       _scrollContainer = getScrollContainer(vm.$el) as HTMLElement

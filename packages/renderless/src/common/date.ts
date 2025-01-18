@@ -10,7 +10,7 @@
  *
  */
 
-import { isDate, isNumber, isNumeric } from './type'
+import { type } from '@opentiny/utils'
 import { fillChar } from './string'
 
 const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -360,7 +360,7 @@ const innerParse = (value, dateFormat) => {
 export const toDate = (value, dateFormat, minDate) => {
   let date
 
-  if (isNumber(value)) {
+  if (type.isNumber(value)) {
     date = new Date(value)
   } else if (typeof value === 'string') {
     date = innerParse(value, dateFormat)
@@ -404,7 +404,7 @@ export const toDate = (value, dateFormat, minDate) => {
  * @returns {String}
  */
 export const format = function (date, dateFormat = 'yyyy/MM/dd hh:mm:ss') {
-  if (isDate(date)) {
+  if (type.isDate(date)) {
     if (typeof dateFormat === 'string') {
       const o = {
         'y{1,4}': date.getFullYear(),
@@ -455,7 +455,7 @@ export const format = function (date, dateFormat = 'yyyy/MM/dd hh:mm:ss') {
  * @returns {Date}
  */
 export const getDateWithNewTimezone = (date, otz, ntz, timezoneOffset = 0) => {
-  if (!isDate(date) || !isNumeric(otz) || !isNumeric(ntz) || !isNumeric(timezoneOffset)) {
+  if (!type.isDate(date) || !type.isNumeric(otz) || !type.isNumeric(ntz) || !type.isNumeric(timezoneOffset)) {
     return
   }
 
@@ -479,10 +479,10 @@ export const getDateWithNewTimezone = (date, otz, ntz, timezoneOffset = 0) => {
  * @returns {String}
  */
 export const toDateStr = (date, dateFormat, timezone) => {
-  if (date && isNumeric(timezone)) {
+  if (date && type.isNumeric(timezone)) {
     timezone = parseFloat(parseFloat(timezone).toFixed(2))
 
-    date = getDateWithNewTimezone(isDate(date) ? date : new Date(toDate(date)), 0, timezone)
+    date = getDateWithNewTimezone(type.isDate(date) ? date : new Date(toDate(date)), 0, timezone)
   }
 
   return format(date, dateFormat)
@@ -502,7 +502,7 @@ export const toDateStr = (date, dateFormat, timezone) => {
  */
 export const getWeekOfFirstDay = (date, isSunFirst) => {
   typeof date === 'boolean' && (isSunFirst = date)
-  isDate(date) || (date = new Date())
+  type.isDate(date) || (date = new Date())
 
   const day = date.getDay()
   let dayOfMonth = date.getDate()
@@ -529,7 +529,7 @@ export const getStrTimezone = (value) => {
     value = minoffset * `${match[1]}1`
   }
 
-  if (isNumber(value) && value >= -12 && value <= 12) {
+  if (type.isNumber(value) && value >= -12 && value <= 12) {
     return value
   }
 

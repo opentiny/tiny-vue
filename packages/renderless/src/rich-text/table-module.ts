@@ -1,5 +1,5 @@
 import { random } from '../common/string'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 function cellName() {
   return random().toString(36).slice(2)
@@ -133,7 +133,7 @@ function provideTableTrick({ Parchment }) {
       const leaf = getLeafFromQuill()
       let blot = leaf[0]
 
-      while (!isNull(blot) && blot.statics.blotName !== what) {
+      while (!type.isNull(blot) && blot.statics.blotName !== what) {
         blot = blot.parent
       }
 
@@ -220,7 +220,7 @@ function createTable({ value, Container, Parchment, Scroll }) {
   let blot = leaf[0]
   let topBranch = null
 
-  while (!isNull(blot) && !(blot instanceof Container || blot instanceof Scroll)) {
+  while (!type.isNull(blot) && !(blot instanceof Container || blot instanceof Scroll)) {
     topBranch = blot
     blot = blot.parent
   }
@@ -258,7 +258,7 @@ function provideTable({ Container, Parchment, Scroll, TableTrick, TableRow }) {
       const next = this.next
 
       if (
-        !isNull(next) &&
+        !type.isNull(next) &&
         next.prev === this &&
         next.statics.blotName === this.statics.blotName &&
         next.domNode.tagName === this.domNode.tagName &&
@@ -338,7 +338,7 @@ function provideContainBlot({ Container, Parchment, Block, BlockEmbed }) {
         this.appendChild(item)
       }
 
-      if (isNull(target.parent)) return
+      if (type.isNull(target.parent)) return
 
       super.replace(target)
     }
@@ -370,7 +370,7 @@ function provideTableRow({ Container, Parchment }) {
       const next = this.next
 
       if (
-        !isNull(next) &&
+        !type.isNull(next) &&
         next.prev === this &&
         next.statics.blotName === this.statics.blotName &&
         next.domNode.tagName === this.domNode.tagName &&
@@ -427,7 +427,7 @@ function provideTableCell({ Container, Parchment, Block, BlockEmbed, ContainBlot
     optimize() {
       super.optimize()
       // Add parent TR and TABLE when missing
-      if (!isNull(this.parent) && this.parent.statics.blotName !== 'tr') {
+      if (!type.isNull(this.parent) && this.parent.statics.blotName !== 'tr') {
         // we will mark td position, put in table and replace mark
         const mark = Parchment.create('block')
 
@@ -442,7 +442,7 @@ function provideTableCell({ Container, Parchment, Block, BlockEmbed, ContainBlot
       }
       // merge same TD id
       if (
-        !isNull(this.next) &&
+        !type.isNull(this.next) &&
         this.next.prev === this &&
         this.next.statics.blotName === this.statics.blotName &&
         this.next.domNode.tagName === this.domNode.tagName &&

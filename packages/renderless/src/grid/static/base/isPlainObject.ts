@@ -10,6 +10,6 @@
  *
  */
 
-import { isPlainObject } from '../../../common/type'
+import { type } from '@opentiny/utils'
 
-export default isPlainObject
+export default type.isPlainObject

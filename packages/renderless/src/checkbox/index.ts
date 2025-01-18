@@ -11,7 +11,7 @@
  */
 
 import type { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '@/types'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const addToStore =
   ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
@@ -72,7 +72,7 @@ export const computedGetModelGet = ({ state, props }: Pick<ICheckboxRenderlessPa
       ? props.modelValue
       : state.selfModel
 
-  return isNull(model) ? state.isGroup ? [] : '' : model
+  return type.isNull(model) ? state.isGroup ? [] : '' : model
 }
 
 export const computedGetModelSet =
@@ -104,7 +104,7 @@ export const computedIsChecked =
       return state.model
     } else if (Array.isArray(state.model)) {
       return state.model.includes(props.label)
-    } else if (!isNull(state.model)) {
+    } else if (!type.isNull(state.model)) {
       return state.model === props.trueLabel
     }
     return false
@@ -209,12 +209,12 @@ export const computedDisplayLabel =
 export const computedIsShowText =
   ({ props }: Pick<ICheckboxRenderlessParams, 'props'>) =>
   (): boolean =>
-    !isNull(props.text) || !isNull(props.label)
+    !type.isNull(props.text) || !type.isNull(props.label)
 
 export const computedShowText =
   ({ props }: Pick<ICheckboxRenderlessParams, 'props'>) =>
   (): ICheckboxProps['label'] | ICheckboxProps['text'] => {
-    if (props.text || !isNull(props.text)) {
+    if (props.text || !type.isNull(props.text)) {
       return props.text
     } else {
       return props.label

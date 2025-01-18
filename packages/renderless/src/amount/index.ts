@@ -13,7 +13,6 @@
 import { on, off } from '../common/deps/dom'
 import { formatNumber } from '../common/decimal'
 import { getMiniDecimal, equalsDecimal } from '../common/bigInt'
-import { isNumber } from '../common/type'
 
 export const initService = (service) => {
   const { utils = {} } = service || {}
@@ -325,12 +324,16 @@ export const getPrecision = ({ service, props, currency }) => {
     zeroize: props.holdZero
   }
 
-  fraction = isNumber(format.fraction) ? format.fraction : isNumber(serFra.fraction) ? serFra.fraction : digits
+  fraction = type.isNumber(format.fraction)
+    ? format.fraction
+    : type.isNumber(serFra.fraction)
+      ? serFra.fraction
+      : digits
 
   if (r === false) {
     rounding = 0
   } else {
-    rounding = isNumber(rounding) ? rounding : isNumber(serFra.rounding) ? serFra.rounding : 5
+    rounding = type.isNumber(rounding) ? rounding : type.isNumber(serFra.rounding) ? serFra.rounding : 5
   }
 
   return { ...defaultFmt, fraction, rounding, ...serFmt, ...format }

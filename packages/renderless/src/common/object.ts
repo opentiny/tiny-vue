@@ -10,7 +10,7 @@
  *
  */
 
-import { hasOwn, typeOf, isObject, isPlainObject, isNull } from './type'
+import { type } from '@opentiny/utils'
 
 /**
  * 将对象的每个属性值进行循环处理。
@@ -30,7 +30,7 @@ export const each = (obj: object, handle: (key: string, value?: any) => boolean)
     return
   }
   for (const name in obj) {
-    if (hasOwn.call(obj, name)) {
+    if (type.hasOwn.call(obj, name)) {
       if (handle(name, obj[name]) === false) {
         break
       }
@@ -61,7 +61,7 @@ let extend: (deep: boolean | object, ...values: object[]) => object
  * @returns {Object}
  */
 export const getObj = (data: object, names: string, isExceptRoot?: boolean) => {
-  if (!data || !isPlainObject(data) || !names || typeof names !== 'string') {
+  if (!data || !type.isPlainObject(data) || !names || typeof names !== 'string') {
     return
   }
 
@@ -76,7 +76,7 @@ export const getObj = (data: object, names: string, isExceptRoot?: boolean) => {
     for (let i = startIndex; i < len; i++) {
       obj = obj[nameArr[i]]
 
-      if (isNull(obj)) {
+      if (type.isNull(obj)) {
         return obj
       }
     }
@@ -104,7 +104,7 @@ export const getObj = (data: object, names: string, isExceptRoot?: boolean) => {
  * @returns {Object}
  */
 export const setObj = (data: object, names: string, value: any, isMerge) => {
-  if (!data || !isPlainObject(data) || !names || typeof names !== 'string') {
+  if (!data || !type.isPlainObject(data) || !names || typeof names !== 'string') {
     return data
   }
 
@@ -124,7 +124,7 @@ export const setObj = (data: object, names: string, value: any, isMerge) => {
       name = nameArr[i]
       target = tmpl[name]
 
-      if (target === null || !isPlainObject(target)) {
+      if (target === null || !type.isPlainObject(target)) {
         tmpl[name] = {}
         target = tmpl[name]
       }
@@ -135,13 +135,13 @@ export const setObj = (data: object, names: string, value: any, isMerge) => {
     item = nameArr[len]
 
     isMerge
-      ? isPlainObject(tmpl[item])
+      ? type.isPlainObject(tmpl[item])
         ? extend(true, tmpl[item], value)
         : (tmpl[item] = value)
       : (tmpl[item] = value)
   } else {
     isMerge
-      ? isPlainObject(obj[item])
+      ? type.isPlainObject(obj[item])
         ? extend(true, obj[item], value) //
         : (obj[item] = value)
       : (obj[item] = value)
@@ -194,7 +194,7 @@ export const copyField = (data: object, fields?: string[], isMerge?: boolean, is
     return result
   }
 
-  if (isPlainObject(data)) {
+  if (type.isPlainObject(data)) {
     return Array.isArray(fields)
       ? innerCopyFields(data, fields, isMerge, isExclude)
       : extend(isMerge !== false, {}, data)
@@ -229,12 +229,12 @@ export const copyArray = (arr: any[]) => {
 
 const deepCopy = (target, name, deep, copy, src) => {
   let copyIsArray
-  if (deep && copy && (isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+  if (deep && copy && (type.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
     if (copyIsArray) {
       copyIsArray = false
       target[name] = copyArray(copy)
     } else {
-      const clone = src && isPlainObject(src) ? src : {}
+      const clone = src && type.isPlainObject(src) ? src : {}
       target[name] = extend(deep, clone, copy)
     }
   } else if (copy !== undefined) {
@@ -252,20 +252,20 @@ extend = function (...args) {
   let i = 1
   let deep = false
 
-  if (typeOf(target) === 'boolean') {
+  if (type.typeOf(target) === 'boolean') {
     deep = target as boolean
     target = args[i] || {}
     i++
   }
 
-  if (!isObject(target) && typeOf(target) !== 'function') {
+  if (!type.isObject(target) && type.typeOf(target) !== 'function') {
     target = {}
   }
 
   for (; i < length; i++) {
     const options = args[i]
 
-    if (options !== null && isObject(options)) {
+    if (options !== null && type.isObject(options)) {
       const names = Object.keys(options)
 
       for (const name of names) {
@@ -318,7 +318,7 @@ export const isEqual: (sourceData: object, targetData: object, deep?: boolean, f
   deep?: boolean,
   fields?: string[]
 ) => {
-  if (typeOf(sourceData) === typeOf(targetData)) {
+  if (type.typeOf(sourceData) === type.typeOf(targetData)) {
     deep = deep !== false
 
     if (Array.isArray(fields)) {
@@ -339,7 +339,7 @@ export const isEqual: (sourceData: object, targetData: object, deep?: boolean, f
 }
 
 isEachEqual = (data1: any, data2: any, deep?: boolean) => {
-  if (!isPlainObject(data1)) {
+  if (!type.isPlainObject(data1)) {
     // 当是数组的情况
     if (!Array.isArray(data1)) {
       return data1 === data2
@@ -363,11 +363,11 @@ isEachEqual = (data1: any, data2: any, deep?: boolean) => {
   const names = Object.keys(data1)
 
   for (const name of names) {
-    if (hasOwn.call(data2, name)) {
+    if (type.hasOwn.call(data2, name)) {
       const _data1 = data1[name]
       const _data2 = data2[name]
 
-      if ((deep && isObject(_data1)) || Array.isArray(_data1)) {
+      if ((deep && type.isObject(_data1)) || Array.isArray(_data1)) {
         bEqual = isEachEqual(_data1, _data2, deep)
       } else {
         bEqual = _data1 === _data2
@@ -421,7 +421,7 @@ export const merge = function (target: object, ...rest: object[]) {
     const source = rest[i] || {}
 
     for (const prop in source) {
-      if (hasOwn.call(source, prop)) {
+      if (type.hasOwn.call(source, prop)) {
         const value = source[prop]
 
         if (value !== undefined) {

@@ -10,8 +10,7 @@
  *
  */
 
-import { hasOwn, isNull } from '../type'
-import { log } from '@opentiny/utils'
+import { log, type } from '@opentiny/utils'
 
 const formatRegExp = /%[sdj%]/g
 
@@ -110,7 +109,7 @@ function isNativeStringType(type) {
  * @description 判断对应的类型是否是空值
  */
 export function isEmptyValue(data, dataType) {
-  if (isNull(data)) {
+  if (type.isNull(data)) {
     return true
   }
 
@@ -274,7 +273,7 @@ export function deepMerge(target, sources) {
     return target
   }
   for (const source in sources) {
-    if (hasOwn.call(sources, source)) {
+    if (type.hasOwn.call(sources, source)) {
       const value = sources[source]
 
       if (typeof value === 'object' && typeof target[source] === 'object') {

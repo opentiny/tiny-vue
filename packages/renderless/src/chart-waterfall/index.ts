@@ -11,8 +11,8 @@
  */
 
 import { getFormated } from '../chart-core/deps/utils'
-import { isNull } from '../common/type'
 import { itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
+import { type } from '@opentiny/utils'
 
 const getWaterfallTooltip = (dataType, digit) => {
   let trigger = 'axis'
@@ -49,7 +49,7 @@ const getWaterfallXAxis = (args) => {
 
 const getWaterfallYAxis = (args) => {
   const { axisVisible, dataType, digit, labelMap, yAxisName } = args
-  let name = !isNull(labelMap[yAxisName]) ? labelMap[yAxisName] : yAxisName
+  let name = !type.isNull(labelMap[yAxisName]) ? labelMap[yAxisName] : yAxisName
   let formatter = function (val) {
     return getFormated(val, dataType, digit)
   }

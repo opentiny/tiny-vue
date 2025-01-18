@@ -13,7 +13,7 @@ import type { IWizardRenderlessParams, IWizardPropsDataNode, IWizardNodesItem } 
 
 import { format } from '../common/date'
 import { copyArray, extend } from '../common/object'
-import { isObject } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const lastStepHandle =
   ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
@@ -76,7 +76,7 @@ export const nodeClick =
   }
 
 export const cloneDeep = (data) => {
-  if (isObject(data)) {
+  if (type.isObject(data)) {
     return extend(true, data)
   } else if (Array.isArray(data)) {
     return copyArray(data)

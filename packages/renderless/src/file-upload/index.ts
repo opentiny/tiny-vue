@@ -32,8 +32,7 @@ import type {
 import { extend } from '../common/object'
 import { xss, log, crypt } from '@opentiny/utils'
 import uploadAjax from '../common/deps/upload-ajax'
-import { isObject } from '../common/type'
-import { isEmptyObject } from '../common/type'
+import { type } from '@opentiny/utils'
 
 let initTokenPromise = null
 
@@ -60,7 +59,7 @@ export const initService = ({
   const { network = {}, common = {} } = service || {}
   const { request, get, post, all, spread, CancelToken = {} } = network
   let requestFn
-  if (!isEmptyObject(props.hwh5)) {
+  if (!type.isEmptyObject(props.hwh5)) {
     const { HWH5 } = props.hwh5
     const { uploadToEDM } = HWH5()
     requestFn = props.httpRequest || uploadToEDM
@@ -532,7 +531,7 @@ const handleHwh5Files = (files: IFileUploadFile[], hwh5: object): IFileUploadFil
     if (file instanceof File) return file
     let url
     let f = {}
-    if (isObject(file)) {
+    if (type.isObject(file)) {
       url = file.url
       f = file
     } else {
@@ -2277,7 +2276,7 @@ export const previewFile =
               return
             }
 
-            if (isObject(file) || (Array.isArray(file) && file.length === 1)) {
+            if (type.isObject(file) || (Array.isArray(file) && file.length === 1)) {
               api.previewFileSingle({ file: Array.isArray(file) ? { ...file[0] } : file, resolve, open })
             } else if (Array.isArray(file) && file.length > 1) {
               api.previewFileBatch({ file, resolve, open })
@@ -2451,7 +2450,7 @@ export const getPreviewUrlSync =
 
     for (let key in paramsData) {
       const val = paramsData[key]
-      if (!isObject(val)) {
+      if (!type.isObject(val)) {
         if (key === 'text') {
           params.push(`watermark=${encodeURIComponent(val)}`)
         }
@@ -2480,7 +2479,7 @@ export const previewImage =
             }
 
             service.getPreviewUrl().then((url) => {
-              if (isObject(file) || (Array.isArray(file) && file.length === 1)) {
+              if (type.isObject(file) || (Array.isArray(file) && file.length === 1)) {
                 api
                   .previewImageSingle({ url, file: Array.isArray(file) ? { ...file[0] } : file })
                   .then((link) => resolve(link))

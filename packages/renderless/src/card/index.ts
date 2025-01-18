@@ -1,4 +1,4 @@
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const handelIconClick =
   ({ emit }) =>
@@ -73,7 +73,7 @@ export const getModel =
     const model = state.isGroup ? state.store : props.modelValue !== undefined ? props.modelValue : state.selfModel
 
     if (state.isCheckbox) {
-      return isNull(model) ? [] : model
+      return type.isNull(model) ? [] : model
     } else {
       return state.store
     }

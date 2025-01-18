@@ -12,11 +12,11 @@
 
 import rules from '../rules/index'
 import { isEmptyValue } from '../util'
-import { hasOwn } from '../../type'
+import { type } from '@opentiny/utils'
 
 export default function (rule, checkValue, callback, source, options) {
   const errors = []
-  const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
+  const validate = rule.required || (!rule.required && type.hasOwn.call(source, rule.field))
 
   if (validate) {
     if (isEmptyValue(checkValue) && !rule.required) {

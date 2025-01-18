@@ -1,15 +1,14 @@
 import { formatNumber, recoverNumber } from '@opentiny/vue-renderless/common/decimal'
 import { toDate, getDateWithNewTimezone } from '@opentiny/vue-renderless/common/date'
-import { isPlainObject, isDate, isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { formatDate } from '@opentiny/vue-renderless/common/deps/date-util'
-import { isNumber } from '@opentiny/vue-renderless/common/type'
 
 export const getNumberFormat = (config) => {
   const groupSize = 3
   let groupSeparator = ','
   let decimalSeparator = '.'
 
-  if (isPlainObject(config)) {
+  if (type.isPlainObject(config)) {
     return config
   }
 
@@ -50,7 +49,7 @@ export const getStrTimezone = (value) => {
     value = minoffset * `${match[1]}1`
   }
 
-  if (isNumber(value) && value >= -12 && value <= 12) {
+  if (type.isNumber(value) && value >= -12 && value <= 12) {
     return value
   }
 
@@ -95,11 +94,11 @@ export default function (t) {
        * @returns {String}
        */
       formatDate(value, format) {
-        if (isNull(value)) {
+        if (type.isNull(value)) {
           return value
         }
 
-        let date = isDate(value) ? value : toDate(value)
+        let date = type.isDate(value) ? value : toDate(value)
         let dbtimezone = opt.DbTimezone
         let includeTz = value.match && value.match(TZRE)
         const convers = format === false || arguments[2] === false
@@ -112,7 +111,7 @@ export default function (t) {
           date = this.getDateWithNewTimezone(date, dbtimezone, opt.Timezone, opt.TimezoneOffset)
         }
 
-        return isDate(date) ? formatDate(date, format || opt.DateFormat, t) : null
+        return type.isDate(date) ? formatDate(date, format || opt.DateFormat, t) : null
       },
 
       /**

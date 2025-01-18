@@ -10,7 +10,7 @@
  *
  */
 
-import { isNumber } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const computedShowHeader =
   ({ constants, props }) =>
@@ -27,7 +27,7 @@ export const computedShowAside =
   () =>
     props.pattern !== constants.CLASSIC
 
-const transferWidthOrHeight = (value) => (isNumber(value) ? value + 'px' : value)
+const transferWidthOrHeight = (value) => (type.isNumber(value) ? value + 'px' : value)
 
 export const computedHeaderStyle =
   ({ constants, props }) =>

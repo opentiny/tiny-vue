@@ -98,7 +98,7 @@ import {
   closeRecordPanel,
   getTipMessage
 } from './index'
-import { isEmptyObject } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -177,7 +177,7 @@ const initState = ({
     fileWater: false,
     tabUrl: '',
     cacheDocuments: {},
-    isEdm: computed(() => !isEmptyObject(props.edm)),
+    isEdm: computed(() => !type.isEmptyObject(props.edm)),
     uploadDisabled: computed(() => api.computedUploadDisabled()),
     dialogConfigObj: computed(() => api.getDialogConfigObj()),
     uploadingFiles: [],
@@ -194,7 +194,7 @@ const initState = ({
     isDragover: false,
     downloadCancelToken: {}, // 取消下载token
     downloadCancelData: {}, // 取消下载时需要清空的缓存数据
-    isHwh5: computed(() => !isEmptyObject(props.hwh5)),
+    isHwh5: computed(() => !type.isEmptyObject(props.hwh5)),
     selected: null,
     types: computed(() => api.computedSourcetype()),
     triggerClickType: '',

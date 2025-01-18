@@ -11,7 +11,7 @@
  */
 
 import * as util from '../util'
-import { isNumber } from '../../type'
+import { type } from '@opentiny/utils'
 import { getLength } from '../../string'
 
 function getErro({ min, max, val, key, rule, errors, util, options }) {
@@ -25,12 +25,12 @@ function getErro({ min, max, val, key, rule, errors, util, options }) {
 }
 
 export default function (rule, checkValue, source, errors, options) {
-  const len = isNumber(rule.len)
-  const min = isNumber(rule.min)
-  const max = isNumber(rule.max)
+  const len = type.isNumber(rule.len)
+  const min = type.isNumber(rule.min)
+  const max = type.isNumber(rule.max)
   let val = checkValue
   let key: string | null = null
-  const num = isNumber(Number(checkValue))
+  const num = type.isNumber(Number(checkValue))
   const str = typeof checkValue === 'string'
   const arr = Array.isArray(checkValue)
 

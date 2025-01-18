@@ -24,7 +24,7 @@
  */
 
 import { isFunction, find } from '@opentiny/vue-renderless/grid/static/'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import {
   updateCellTitle,
   emitEvent,
@@ -348,7 +348,7 @@ const setColumnEvents = (args1) => {
   let tdOns = {}
   let fixedHiddenColumn = column.fixed
   let { editor, showOverflow, showTip } = column
-  let cellOverflow = isNull(showOverflow) ? allColumnOverflow : showOverflow
+  let cellOverflow = type.isNull(showOverflow) ? allColumnOverflow : showOverflow
   let showTitle = cellOverflow === 'title'
   let showTooltip = cellOverflow === true || cellOverflow === 'tooltip'
   let showEllipsis = cellOverflow === 'ellipsis'

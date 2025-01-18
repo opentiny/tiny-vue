@@ -14,7 +14,7 @@ import { KEY_CODE } from '../common'
 import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 import { getDomNode } from '../common/deps/dom'
-import { getViewportWindow } from '../common/global'
+import { global } from '@opentiny/utils'
 
 import type {
   IModalProps,
@@ -279,7 +279,7 @@ export const open =
           if (!isMobileFirstMode) {
             let modalBoxElem = api.getBox()
 
-            const viewportWindow = getViewportWindow()
+            const viewportWindow = global.getViewportWindow()
 
             let clientVisibleWidth =
               viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth

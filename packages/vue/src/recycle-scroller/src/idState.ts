@@ -1,5 +1,5 @@
 import { hooks } from '@opentiny/vue-common'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 
 const { reactive } = hooks
 
@@ -11,7 +11,7 @@ const buildInstanceTemporary = (store) => {
   temporary.updateIdState = (vm) => {
     const id = temporary.getId()
 
-    if (isNull(id)) {
+    if (type.isNull(id)) {
       console.warn('[TINY Error][Mixin IdState] No id found for IdState with idProp')
     }
 
@@ -73,7 +73,7 @@ export default function ({ idProp, stateGetterName }) {
       this.temporary.updateIdState(this)
     },
     [stateGetterName](id) {
-      return isNull(id) ? store : store[id] ? store[id] : null
+      return type.isNull(id) ? store : store[id] ? store[id] : null
     }
   }
 }

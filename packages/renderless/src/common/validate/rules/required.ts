@@ -11,10 +11,10 @@
  */
 
 import * as util from '../util'
-import { hasOwn } from '../../type'
+import { type } from '@opentiny/utils'
 
-export default function ({ rule, checkValue, source, errors, options, type }) {
-  if (rule.required && (!hasOwn.call(source, rule.field) || util.isEmptyValue(checkValue, type || rule.type))) {
+export default function ({ rule, checkValue, source, errors, options, _type }) {
+  if (rule.required && (!type.hasOwn.call(source, rule.field) || util.isEmptyValue(checkValue, type || rule._type))) {
     errors.push(util.format(options.messages.required, ''))
   }
 }

@@ -10,15 +10,15 @@
  *
  */
 
-import { isObject, isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const getRouteActive =
   ({ props, route }) =>
   () => {
     if (props.to && route) {
-      const config = isObject(props.to) ? props.to : { path: props.to }
+      const config = type.isObject(props.to) ? props.to : { path: props.to }
       const pathMatched = config.path === route.path
-      const nameMatched = !isNull(config.name) && config.name === route.name
+      const nameMatched = !type.isNull(config.name) && config.name === route.name
 
       return pathMatched || nameMatched
     }

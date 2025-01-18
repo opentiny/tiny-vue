@@ -21,7 +21,6 @@ import * as date from './date'
 import * as decimal from './decimal'
 import * as object from './object'
 import * as string from './string'
-import * as type from './type'
 import * as dataset from './dataset'
 import afterLeave from './deps/after-leave'
 import clickoutside from './deps/clickoutside'
@@ -49,7 +48,6 @@ const Renderless = {
   date,
   object,
   decimal,
-  type,
   string,
   afterLeave,
   dataset,
@@ -79,7 +77,6 @@ export {
   decimal,
   object,
   string,
-  type,
   dataset,
   afterLeave,
   clickoutside,

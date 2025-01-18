@@ -10,7 +10,7 @@
  *
  */
 
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 import { isEqual } from '../common/object'
 import { isEmpty } from '../cascader'
 import { KEY_CODE, CASCADER } from '../common'
@@ -90,7 +90,7 @@ export const syncActivePath =
         .map((node) => api.getNodeByValue(node.getValue()))
         .filter((node) => node) as ICascaderPanelNode[]
 
-      if (isNull(nodes[0])) {
+      if (type.isNull(nodes[0])) {
         state.activePath = []
       } else {
         api.expandNodes(nodes)

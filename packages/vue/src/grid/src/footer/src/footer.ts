@@ -25,7 +25,7 @@
 
 import { isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { getClass, emitEvent, formatText, updateCellTitle } from '@opentiny/vue-renderless/grid/utils'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
 const classMap = {
@@ -314,7 +314,7 @@ export default defineComponent({
       let { column, footerData, footerSpanMethod, tableListeners } = opt
       let { showOverflow, footerAlign, align, footerClassName } = column
       let fixedHiddenColumn = column.fixed
-      let cellOverflowValue = isNull(showOverflow) ? allColumnOverflow : showOverflow
+      let cellOverflowValue = type.isNull(showOverflow) ? allColumnOverflow : showOverflow
       let footAlign = footerAlign || align || allFooterAlign || allAlign
       let isShowEllipsis = cellOverflowValue === 'ellipsis'
       let isShowTitle = cellOverflowValue === 'title'

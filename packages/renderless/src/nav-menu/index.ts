@@ -18,7 +18,7 @@ import type {
   whitchSubMenuType
 } from '@/types'
 import { omitText } from '../common/string'
-import { isEmptyObject, isObject } from '../common/type'
+import { type } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
@@ -41,8 +41,10 @@ export const computedPopClass = (state: INavMenuState) => (): string => {
 export const computedSubMenus = (state: INavMenuState) => (): menuItemType[] => {
   let arr: menuItemType[] = state.subMenu
 
-  if (state.subMenu && !isEmptyObject(state.subMenu)) {
-    if (!state.subMenu.map((item) => item.children && !isEmptyObject(item.children)).reduce((pre, cur) => pre || cur)) {
+  if (state.subMenu && !type.isEmptyObject(state.subMenu)) {
+    if (
+      !state.subMenu.map((item) => item.children && !type.isEmptyObject(item.children)).reduce((pre, cur) => pre || cur)
+    ) {
       arr = [{ children: state.subMenu }]
     }
   }
@@ -180,7 +182,7 @@ export const initData =
 
     const menuData = props.fetchMenuData && fetchMenuData()
 
-    if (isObject(menuData) && menuData?.then) {
+    if (type.isObject(menuData) && menuData?.then) {
       menuData.then((data) => {
         state.data = mapTree(props.parentKey ? transformTreeData(data, key, props.parentKey) : data, buildData)
       })

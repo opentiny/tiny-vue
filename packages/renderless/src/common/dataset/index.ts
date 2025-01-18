@@ -11,7 +11,7 @@
  */
 
 import { format } from '../string'
-import { isObject } from '../type'
+import { type } from '@opentiny/utils'
 import { transformTreeData } from '../array'
 
 /**
@@ -56,7 +56,7 @@ const getNsObj = (obj, names) => {
   const curkey = arr.shift()
   const curObj = obj[curkey]
 
-  if (isObject(curObj) && arr.length) {
+  if (type.isObject(curObj) && arr.length) {
     return getNsObj(curObj, arr)
   }
 
@@ -109,7 +109,7 @@ export const getDataset = ({ dataset, service, tree }, args) =>
     if (!$service) {
       return resolve([])
     }
-    if (isObject(source) && source.url) {
+    if (type.isObject(source) && source.url) {
       const { type = 'GET', data, beforeRequest, afterRequest, success, hideErr, url, method, ...options } = source
       options.url = url
       options.method = method || type.toLocaleLowerCase()

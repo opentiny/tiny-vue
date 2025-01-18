@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+import { type } from '@opentiny/utils'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent, appProperties, $props } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'
@@ -679,7 +679,7 @@ export default defineComponent({
           })
         }
 
-        if (isNumber(pageSize) && this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize !== pageSize) {
+        if (type.isNumber(pageSize) && this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize !== pageSize) {
           this.$grid.pageSizeChange(pageSize)
         }
       }

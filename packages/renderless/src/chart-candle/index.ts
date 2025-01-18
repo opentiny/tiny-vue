@@ -12,7 +12,7 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const DEF_MA = [5, 10, 20, 30]
 const DEF_DOWN_COLOR = '#eb171f'
@@ -27,10 +27,10 @@ const getCandleLegend = (args) => {
   let data = [defaultKName]
 
   showMA && (data = data.concat(MA.map((v) => `MA${v}`)))
-  labelMap && (data = data.map((v) => (isNull(labelMap[v]) ? v : labelMap[v])))
+  labelMap && (data = data.map((v) => (type.isNull(labelMap[v]) ? v : labelMap[v])))
 
   function formatter(name) {
-    return isNull(legendName[name]) ? name : legendName[name]
+    return type.isNull(legendName[name]) ? name : legendName[name]
   }
 
   return { data, formatter }
@@ -56,7 +56,7 @@ const getCandleTooltip = (args) => {
     options.forEach((opt) => {
       const { color, componentSubType, data, seriesName } = opt
 
-      const name = isNull(labelMap[seriesName]) ? seriesName : labelMap[seriesName]
+      const name = type.isNull(labelMap[seriesName]) ? seriesName : labelMap[seriesName]
 
       tplt.push(`${itemPoint(color)}${itemContent(name)}: `)
 
@@ -64,7 +64,7 @@ const getCandleTooltip = (args) => {
         tplt.push('<br>')
 
         metrics.slice(0, 4).forEach((m, i) => {
-          const name = isNull(labelMap[m]) ? m : labelMap[m]
+          const name = type.isNull(labelMap[m]) ? m : labelMap[m]
           const value = getFormated(data[i + 1], dataType, digit)
 
           tplt.push(`${itemLabel(`- ${name}`)}${itemContent(value)}<br>`)
@@ -162,13 +162,13 @@ const getCandleSeries = (args) => {
   const { MA, digit, downColor, itemStyle, labelMap, showMA, showVol, upColor, values, volumes } = args
   const style = itemStyle || { color: upColor, color0: downColor, borderColor: null, borderColor0: null }
   const lineStyle = { opacity: 0.5 }
-  const name = isNull(labelMap[defaultKName]) ? defaultKName : labelMap[defaultKName]
+  const name = type.isNull(labelMap[defaultKName]) ? defaultKName : labelMap[defaultKName]
   const series = [{ name, data: values, type: 'candlestick', itemStyle: style }]
 
   if (showMA) {
     MA.forEach((d) => {
       const key = `MA${d}`
-      const serieName = isNull(labelMap[key]) ? key : labelMap[key]
+      const serieName = type.isNull(labelMap[key]) ? key : labelMap[key]
       const serieData = calculateMA(d, values, digit)
 
       series.push({ name: serieName, data: serieData, type: 'line', lineStyle, smooth: true })

@@ -12,7 +12,7 @@
 
 import { getFormated, getStackMap, get, set, cloneDeep } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 // default opacity of bar while dim-axis type is 'value'
 const VALUE_AXIS_OPACITY = 0.5
@@ -134,7 +134,7 @@ const getBarSeries = (args) => {
   innerRows.forEach((row) => metrics.forEach((item) => seriesTemp[item].push(row[item])))
 
   series = Object.keys(seriesTemp).map((item) => {
-    let name = !isNull(labelMap[item]) ? labelMap[item] : item
+    let name = !type.isNull(labelMap[item]) ? labelMap[item] : item
     let type = ~showLine.indexOf(item) ? 'line' : 'bar'
     let data = dimAxisType === 'value' ? getValueData(seriesTemp[item], dims) : seriesTemp[item]
     let axisIndex = ~secondAxis.indexOf(item) ? '1' : '0'
@@ -155,10 +155,10 @@ const getBarSeries = (args) => {
 
     if (Object.keys(stack).length) {
       // 堆叠图
-      if (stackNum === Object.keys(stackMap).length - 1 || isNull(seriesItem.stack)) {
+      if (stackNum === Object.keys(stackMap).length - 1 || type.isNull(seriesItem.stack)) {
         seriesItem.itemStyle = Object.assign(defaultItemStyle, seriesItem.itemStyle)
       }
-      if (!isNull(seriesItem.stack)) {
+      if (!type.isNull(seriesItem.stack)) {
         stackNum++
       }
 
@@ -175,9 +175,9 @@ const getBarSeries = (args) => {
     let itemOpacity = opacity || get(seriesItem, 'itemStyle.opacity')
 
     dimAxisType === 'value' && Object.assign(seriesItem, { barGap, barCategoryGap: '1%' })
-    dimAxisType === 'value' && isNull(itemOpacity) && (itemOpacity = VALUE_AXIS_OPACITY)
+    dimAxisType === 'value' && type.isNull(itemOpacity) && (itemOpacity = VALUE_AXIS_OPACITY)
 
-    !isNull(itemOpacity) && set(seriesItem, 'itemStyle.opacity', itemOpacity)
+    !type.isNull(itemOpacity) && set(seriesItem, 'itemStyle.opacity', itemOpacity)
 
     return seriesItem
   })
@@ -192,12 +192,12 @@ const getLegend = (args) => {
     return { data: metrics }
   }
 
-  const data = labelMap ? metrics.map((item) => (isNull(labelMap[item]) ? item : labelMap[item])) : metrics
+  const data = labelMap ? metrics.map((item) => (type.isNull(labelMap[item]) ? item : labelMap[item])) : metrics
 
   return {
     data,
     formatter(name) {
-      return !isNull(legendName[name]) ? legendName[name] : name
+      return !type.isNull(legendName[name]) ? legendName[name] : name
     }
   }
 }

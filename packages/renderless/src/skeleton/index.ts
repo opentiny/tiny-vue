@@ -1,11 +1,11 @@
-import { isNumber, isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 export const toPxStyle = (value: string | number): undefined | string => {
-  if (isNull(value)) {
+  if (type.isNull(value)) {
     return undefined
   }
 
-  if (isNumber(value)) {
+  if (type.isNumber(value)) {
     return `${value}px`
   }
 

@@ -11,7 +11,8 @@
  */
 
 import { getFormated, getStackMap, getLegend, hexToRgb, set } from '../chart-core/deps/utils'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
+
 import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
 
 const getLineXAxis = (args) => {
@@ -63,7 +64,7 @@ const getLineSeries = (args) => {
     metrics.forEach((item) => {
       let value = null
 
-      if (!isNull(row[item])) {
+      if (!type.isNull(row[item])) {
         value = row[item]
       } else if (nullAddZero) {
         value = 0
@@ -74,7 +75,7 @@ const getLineSeries = (args) => {
   })
 
   metrics.forEach((item, i) => {
-    let name = !isNull(labelMap[item]) ? labelMap[item] : item
+    let name = !type.isNull(labelMap[item]) ? labelMap[item] : item
     const isSmooth = !(smooth === false)
     let seriesItem = { smooth: isSmooth, name, type: 'line', data: dataTempObj[item] }
 

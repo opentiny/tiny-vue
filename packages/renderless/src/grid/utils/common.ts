@@ -23,7 +23,7 @@
  *
  */
 
-import { isNull } from '../../common/type'
+import { type } from '@opentiny/utils'
 import { find } from '../../common/array'
 import { get, isFunction, set } from '../static'
 
@@ -84,7 +84,7 @@ export const initFilter = (filter) => {
   }
 }
 
-export const formatText = (value) => `${isNull(value) ? '' : value}`
+export const formatText = (value) => `${type.isNull(value) ? '' : value}`
 
 export const setCellValue = (row, column, value) => {
   const { format, property } = column

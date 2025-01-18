@@ -18,7 +18,7 @@ import type {
 
 import { isEqual } from '../common/object'
 import { capitalize } from '../common/string'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 let uid = 0
 
@@ -80,7 +80,7 @@ export default class Node {
 
     if (lazy) {
       const leafValue = data[leaf]
-      const isLeaf = !isNull(leafValue) ? leafValue : loaded ? !children.length : false
+      const isLeaf = !type.isNull(leafValue) ? leafValue : loaded ? !children.length : false
 
       this.hasChildren = !isLeaf
 

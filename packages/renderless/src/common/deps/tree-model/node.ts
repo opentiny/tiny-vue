@@ -13,7 +13,7 @@
 import { merge } from '../../object'
 import { markNodeData, NODE_KEY } from './util'
 import { indexOf } from '../../array'
-import { hasOwn, typeOf } from '../../type'
+import { type } from '@opentiny/utils'
 
 const defaultChildrenKey = 'children'
 const defaultIsLeafKey = 'isLeaf'
@@ -23,9 +23,9 @@ const getPropertyFromData = (node, prop) => {
   const dataData = node.data || {}
   const config = props[prop]
 
-  if (typeOf(config) === 'string') {
+  if (type.typeOf(config) === 'string') {
     return dataData[config]
-  } else if (typeOf(config) === 'function') {
+  } else if (type.typeOf(config) === 'function') {
     return config(dataData, node)
   } else if (typeof config === 'undefined') {
     const dataProp = dataData[prop]
@@ -161,7 +161,7 @@ export default class Node {
     this.updateMethod = () => {}
 
     Object.keys(options).forEach((key) => {
-      if (hasOwn.call(options, key)) {
+      if (type.hasOwn.call(options, key)) {
         this[key] = options[key]
       }
     })

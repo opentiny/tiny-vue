@@ -6,12 +6,11 @@ import PopupManager from '../common/deps/popup-manager'
 import debounce from '../common/deps/debounce'
 import { getDataset } from '../common/dataset'
 import Memorize from '../common/deps/memorize'
-import { isEmptyObject } from '../common/type'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { extend } from '../common/object'
 import { BROWSER_NAME } from '../common'
 import browserInfo from '../common/browser'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 import { fastdom } from '../common/deps/fastdom'
 import { deepClone } from '../picker-column'
 import { escapeRegexpString } from '../option'
@@ -364,7 +363,7 @@ export const getSelectedOption =
       option = state.selected.find((v) => getObj(v, props.valueField) === value && !v.isFakeLabel)
     } else {
       if (
-        !isEmptyObject(state.selected) &&
+        !type.isEmptyObject(state.selected) &&
         getObj(state.selected, props.valueField) === value &&
         !state.selected.isFakeLabel
       ) {
@@ -447,7 +446,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api, init }) => {
   const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
   const data = find(nestdata, (item) => props.modelValue === item[props.valueField])
 
-  if (isEmptyObject(data)) {
+  if (type.isEmptyObject(data)) {
     api.clearNoMatchValue('')
     return
   }
@@ -2299,7 +2298,7 @@ export const computedShowClose =
     (state.inputHovering || (props.multiple && state.visible)) &&
     (props.multiple
       ? Array.isArray(props.modelValue) && props.modelValue.length > 0
-      : !isNull(props.modelValue) && props.modelValue !== '')
+      : !type.isNull(props.modelValue) && props.modelValue !== '')
 
 // tiny 新增：  aui有自己的逻辑，移至defineConfig中去了
 export const computedCollapseTagSize = (state) => () => state.selectSize

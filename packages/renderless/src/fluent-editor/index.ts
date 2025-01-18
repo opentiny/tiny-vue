@@ -1,5 +1,5 @@
 import { extend } from '../common/object'
-import { isNull } from '../common/type'
+import { type as _type } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
 import { on, off } from '../common/deps/dom'
@@ -293,7 +293,7 @@ export const inputFileHandler =
     const betterToolbar = state.quill.getModule('toolbar')
     let fileInput = betterToolbar.container.querySelector(`input.ql-${type}[type=file]`)
 
-    if (isNull(fileInput)) {
+    if (_type.isNull(fileInput)) {
       fileInput = document.createElement('input')
       fileInput.classList.add(`ql-${type}`)
       fileInput.setAttribute('type', 'file')

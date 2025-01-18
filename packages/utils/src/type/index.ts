@@ -147,7 +147,7 @@ export const isNumeric = (value: any) => value - parseFloat(value) >= 0
  *     let date = new Date()
  *     isDate(date)  // true
  */
-export const isDate = (value) => typeOf(value) === 'date'
+export const isDate = (value: any) => typeOf(value) === 'date'
 
 /**
  * 判断两个值是否值相同且类型相同。
@@ -163,4 +163,4 @@ export const isSame = (x: any, y: any) =>
 /** 判断是否是正则表达式 */
 export const isRegExp = (value: any) => typeOf(value) === 'regExp'
 
-export const isPromise = (val) => isObject(val) && isFunction(val.then) && isFunction(val.catch)
+export const isPromise = (val: any) => isObject(val) && isFunction(val.then) && isFunction(val.catch)

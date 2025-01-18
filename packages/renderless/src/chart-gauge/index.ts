@@ -11,8 +11,8 @@
  */
 
 import { getFormated, isObject } from '../chart-core/deps/utils'
-import { isNull } from '../common/type'
 import { itemLabel, itemContent } from '../chart-core/deps/constants'
+import { type } from '@opentiny/utils'
 
 const getTooltip = (args) => {
   const { dataType, digit, tooltipFormatter } = args
@@ -58,7 +58,7 @@ function getSeries(args) {
 
     const result = {
       type: 'gauge',
-      name: !isNull(labelMap[label]) ? labelMap[label] : label,
+      name: !type.isNull(labelMap[label]) ? labelMap[label] : label,
       data: [{ name: dataName[label] || '', value: row[metrics] }],
       detail: {
         fontSize: 60,

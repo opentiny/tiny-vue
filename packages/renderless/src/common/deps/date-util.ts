@@ -11,9 +11,9 @@
  */
 
 import fecha from './date'
-import { isNull } from '../type'
 import { isLeapYear } from '../date'
 import { DATEPICKER } from '../index'
+import { type } from '@opentiny/utils'
 
 const weeks = DATEPICKER.Weeks
 const months = DATEPICKER.MonhtList
@@ -39,7 +39,7 @@ export const getI18nSettings = (t) => ({
 })
 
 export const isDate = function (date) {
-  if (isNull(date)) {
+  if (type.isNull(date)) {
     return false
   }
   if (isNaN(new Date(date).getTime())) {
@@ -210,7 +210,7 @@ export const modifyTime = (date, h, m, s) => {
 }
 
 export const modifyWithTimeString = (date, time, t) => {
-  if (isNull(date) || !time) {
+  if (type.isNull(date) || !time) {
     return date
   }
 

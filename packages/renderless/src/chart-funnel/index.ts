@@ -12,7 +12,7 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const getFunnelTooltip = (dataType, digit) => {
   function formatter(item) {
@@ -31,7 +31,7 @@ const getFunnelLegend = (args) => {
   const { data, legendName } = args
 
   function formatter(name) {
-    return isNull(legendName[name]) ? name : legendName[name]
+    return type.isNull(legendName[name]) ? name : legendName[name]
   }
 
   return { data, formatter }

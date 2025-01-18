@@ -10,8 +10,8 @@
  *
  */
 
-import { hasOwn, isNull } from '../type'
-import globalConfig from '../global'
+import { type } from '@opentiny/utils'
+import { global } from '@opentiny/utils'
 
 export const isServer = typeof window === 'undefined'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
@@ -126,7 +126,7 @@ export const setStyle = (el: HTMLElement, name: string | object, value?: any) =>
 
   if (typeof name === 'object') {
     for (const prop in name) {
-      if (hasOwn.call(name, prop)) {
+      if (type.hasOwn.call(name, prop)) {
         setStyle(el, prop, name[prop])
       }
     }
@@ -149,7 +149,7 @@ export const isScroll = (el: HTMLElement, vertical?: boolean) => {
    * 它的值为false: 当vertical = null / undefinded。
    * 它的值为 true: 当vertical =true /false
    */
-  const determinedDirection = !isNull(vertical)
+  const determinedDirection = !type.isNull(vertical)
   let overflow
 
   if (determinedDirection) {
@@ -195,7 +195,7 @@ export const isInContainer = (el: HTMLElement, container: HTMLElement) => {
   const elRect = el.getBoundingClientRect()
   let containerRect
 
-  if (~[window, document, document.documentElement].indexOf(container) || isNull(container)) {
+  if (~[window, document, document.documentElement].indexOf(container) || type.isNull(container)) {
     containerRect = {
       top: 0,
       right: window.innerWidth,
@@ -221,7 +221,7 @@ export const isInContainer = (el: HTMLElement, container: HTMLElement) => {
  * @returns visibleWidth ： 可视区宽度（不含滚动条）
  */
 export const getDomNode = () => {
-  const viewportWindow = globalConfig.viewportWindow || window
+  const viewportWindow = global.globalConfig.viewportWindow || window
   let documentElement = viewportWindow.document.documentElement
   let bodyElem = viewportWindow.document.body
 

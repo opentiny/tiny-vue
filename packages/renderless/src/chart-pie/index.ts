@@ -12,7 +12,7 @@
 
 import { getFormated, setArrayValue, cloneDeep } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { type } from '@opentiny/utils'
 
 const pieRadius = 100
 const ringRadius = [90, 100]
@@ -123,7 +123,7 @@ const getPieLegend = (args) => {
   if (legend.length) {
     let show = legend.length < legendLimit
     let formatter = function (name) {
-      return !isNull(legendName[name]) ? legendName[name] : name
+      return !type.isNull(legendName[name]) ? legendName[name] : name
     }
 
     return { data: legend, show, formatter }
