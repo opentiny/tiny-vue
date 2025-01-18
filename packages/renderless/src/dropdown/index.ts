@@ -39,24 +39,28 @@ export const watchFocusing = (parent: IDropdownRenderlessParams['parent']) => (v
 }
 
 export const show =
-  ({ props, state }: Pick<IDropdownRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, emit }: Pick<IDropdownRenderlessParams, 'props' | 'state' | 'emit'>) =>
   () => {
     if (props.disabled) {
       return
     }
 
-    clearTimeout(Number(state.timeout))
+    if (state.visibleIsBoolean) {
+      emit('update:visible', true)
+    } else {
+      clearTimeout(Number(state.timeout))
 
-    state.timeout = setTimeout(
-      () => {
-        state.visible = true
-      },
-      state.trigger === 'click' ? 0 : props.showTimeout
-    )
+      state.timeout = setTimeout(
+        () => {
+          state.visible = true
+        },
+        state.trigger === 'click' ? 0 : props.showTimeout
+      )
+    }
   }
 
 export const hide =
-  ({ api, props, state }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state'>) =>
+  ({ api, props, state, emit }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state' | 'emit'>) =>
   () => {
     if (props.disabled) {
       return
@@ -68,14 +72,18 @@ export const hide =
       api.resetTabindex(state.triggerElm)
     }
 
-    clearTimeout(Number(state.timeout))
+    if (state.visibleIsBoolean) {
+      emit('update:visible', false)
+    } else {
+      clearTimeout(Number(state.timeout))
 
-    state.timeout = setTimeout(
-      () => {
-        state.visible = false
-      },
-      state.trigger === 'click' ? 0 : props.hideTimeout
-    )
+      state.timeout = setTimeout(
+        () => {
+          state.visible = false
+        },
+        state.trigger === 'click' ? 0 : props.hideTimeout
+      )
+    }
   }
 
 export const handleClick =
@@ -85,9 +93,12 @@ export const handleClick =
       return
     }
 
-    emit('handle-click', state.visible)
-
-    state.visible ? api.hide() : api.show()
+    if (state.visibleIsBoolean) {
+      emit('handle-click', props.visible)
+    } else {
+      emit('handle-click', state.visible)
+      state.visible ? api.hide() : api.show()
+    }
   }
 
 export const handleTriggerKeyDown =
@@ -112,7 +123,7 @@ export const handleTriggerKeyDown =
   }
 
 export const handleItemKeyDown =
-  ({ api, props, state }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state'>) =>
+  ({ api, props, state, emit }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state' | 'emit'>) =>
   (event: KeyboardEvent) => {
     const keyCode = event.keyCode
     const target = event.target
@@ -199,6 +210,10 @@ export const initEvent =
       on(state.triggerElm, 'click', api.toggleFocusOnFalse)
     }
 
+    if (state.visibleIsBoolean) {
+      return
+    }
+
     if (state.trigger === 'hover') {
       on(state.triggerElm, 'mouseenter', api.show)
       on(state.triggerElm, 'mouseleave', api.hide)
@@ -251,7 +266,13 @@ export const handleMainButtonClick =
   }
 
 export const mounted =
-  ({ api, vm, state, broadcast }: Pick<IDropdownRenderlessParams, 'api' | 'vm' | 'state' | 'broadcast'>) =>
+  ({
+    api,
+    vm,
+    state,
+    broadcast,
+    props
+  }: Pick<IDropdownRenderlessParams, 'api' | 'vm' | 'state' | 'broadcast' | 'props'>) =>
   () => {
     if (state.showSelfIcon) {
       state.showIcon = false
@@ -262,7 +283,11 @@ export const mounted =
     vm.$on('selected-index', (selectedIndex) => {
       broadcast('TinyDropdownMenu', 'menu-selected-index', selectedIndex)
     })
-    vm.$on('is-disabled', api.clickOutside)
+    if (!state.visibleIsBoolean) {
+      vm.$on('is-disabled', api.clickOutside)
+    } else if (props.visible) {
+      broadcast('TinyDropdownMenu', 'visible', true)
+    }
   }
 
 export const beforeDistory =

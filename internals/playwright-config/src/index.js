@@ -52,7 +52,7 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
     },
     // 如果是全量跑测试官网或者本地测试则不需要开启webServer
     webServer:
-      process.env.PYTEST_BASEURL || !process.env.CI
+      !devServerCommon || !process.env.CI
         ? null
         : {
             command: devServerCommon,

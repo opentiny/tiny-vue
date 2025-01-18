@@ -1,0 +1,14 @@
+<svg width="72.000000" height="72.000000" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip117_213">
+			<rect id="2#消息通知服务-SMN" width="72.000000" height="72.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip117_213)">
+		<path id="矩形备份-19" d="M16 0L56 0C64.8 0 72 7.2 72 16L72 56C72 64.79 64.8 72 56 72L16 72C7.19 72 0 64.79 0 56L0 16C0 7.2 7.19 0 16 0Z" fill="#FF9A2E" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="形状结合" d="M55.6 14.2C58.5 14.2 60.8 16.6 60.8 19.5L60.8 46.9C60.8 49.9 58.5 52.2 55.6 52.2L41.8 52.2L38.2 56.6C37.7 57.3 37 57.6 36.1 57.7L35.89 57.7C35 57.7 34.2 57.3 33.6 56.6L30 52.1L16.2 52.1C13.39 52.1 11.2 49.8 11 46.9L11 46.7L11 19.5C11 16.5 13.3 14.2 16.2 14.2L55.6 14.2ZM51 37L21 37C19.89 37 19 37.9 19 39C19 40.1 19.89 41 21 41L51 41C52.1 41 53 40.1 53 39C53 37.9 52.1 37 51 37ZM51 27L21 27C19.89 27 19 27.9 19 29C19 30.1 19.89 31 21 31L51 31C52.1 31 53 30.1 53 29C53 27.9 52.1 27 51 27Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>

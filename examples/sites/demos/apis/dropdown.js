@@ -219,6 +219,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'v-model:visible',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '手动控制下拉弹框显隐，优先级高于trigger',
+            'en-US': 'Manually control the display and hide of the dropdown menu, with priority higher than the trigger'
+          },
+          mode: ['pc'],
+          pcDemo: 'visible'
+        },
+        {
           name: 'visible-arrow',
           type: 'boolean',
           defaultValue: 'false',

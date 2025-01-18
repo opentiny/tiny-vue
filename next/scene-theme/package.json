@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/scene-theme",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Scene theme with UnoCSS",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": "vite build",
+    "dev": "pnpm vitepress dev docs"
+  },
+  "devDependencies": {
+    "@opentiny/cloud-icons": "workspace：~",
+    "@unocss/reset": "catalog:",
+    "@unocss/core": "catalog:",
+    "less": "catalog:",
+    "vitepress": "catalog:"
+  }
+}

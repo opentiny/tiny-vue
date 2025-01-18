@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/next",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.8.0",
+  "description": "TinyVue Next UI Library",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "clean": "pnpx rimraf --glob dist \"packages/*/dist\"",
+    "clean:all": "pnpx rimraf --glob dist  node_modules \"packages/*/dist\" \"packages/*/node_modules\" ",
+    "dev": "pnpm -F \"@opentiny/tn-vue\" storybook",
+    "dev:icon": "pnpm -C \"cloud-icons\" dev",
+    "build:icon": "pnpm -C \"cloud-icons\" build:icon",
+    "build:icon:example": "pnpm -C \"cloud-icons\" build:example"
+  },
+  "devDependencies": {
+    "rimraf": "catalog:"
+  }
+}

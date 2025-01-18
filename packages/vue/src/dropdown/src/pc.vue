@@ -33,6 +33,11 @@ export default defineComponent({
     ...$props,
     type: String,
     trigger: String,
+    // tiny新增
+    visible: {
+      type: [Boolean, undefined],
+      default: undefined
+    },
     size: {
       type: String,
       default: ''
@@ -101,20 +106,23 @@ export default defineComponent({
     'menu-item-click',
     'handle-click',
     'is-disabled',
-    'selected-index'
+    'selected-index',
+    'update:visible'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
   },
   render() {
     const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title, suffixIcon, prefixIcon } = this
-    const { slots, size, state, border, showIcon, round, clickOutside } = this
+    const { slots, size, state, border, showIcon, round, clickOutside, visible } = this
 
     const params = { visible: state.visible }
     let triggerElm = null
     // TINY-TODO tiny-dropdown类名整改,统一tiny-组件名为前缀
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
-    const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
+    // tiny新增visible判断
+    const addVisibleClass = state.visibleIsBoolean ? visible : state.visible
+    const visibleClass = addVisibleClass ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
     // 优先级：suffix-icon 插槽 > suffixIcon 属性 > 其他主题图标 > 默认主题图标
     const IconDown = suffixIcon || state.designConfig?.icons?.dropdownIcon || iconDownWard()
@@ -189,7 +197,9 @@ export default defineComponent({
       ) : (
         <span
           ref="trigger"
-          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}>
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${
+            disabled ? ' is-disabled' : ''
+          } ${triggerClass}`}>
           {prefixInner}
           {defaultTriggerElm}
           {suffixInner}
@@ -208,7 +218,7 @@ export default defineComponent({
     const menuElm = disabled ? null : (slots.dropdown && slots.dropdown()) || defaulMenuElm
 
     return (
-      <div class="tiny-dropdown" v-clickoutside={clickOutside} aria-disabled={disabled}>
+      <div class="tiny-dropdown" v-clickoutside={!state.visibleIsBoolean && clickOutside} aria-disabled={disabled}>
         {triggerElm}
         {menuElm}
       </div>

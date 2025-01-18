@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>云规范图标集预览</title>
+    <style>
+      .hide {
+        display: none;
+      }
+      body {
+        padding: 0 24px 48px;
+      }
+      #list .icon-item {
+        display: inline-block;
+        text-align: center;
+        font-size: 12px;
+        color: #575d6c;
+      }
+      #list i {
+        margin: 20px;
+        transition: all 0.5s;
+      }
+      #list i:hover {
+        transform: scale(1.5);
+        cursor: copy;
+      }
+      .icon-counts {
+        color: #0057c3;
+        text-decoration: underline;
+        margin-left: 8px;
+        cursor: pointer;
+      }
+      .icons-group {
+        margin-bottom: 0;
+        margin-top: 32px;
+      }
+      .icon-title,
+      .icon-name {
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #list .base {
+        font-size: 32px;
+      }
+      #list .base ~ div {
+        width: 80px;
+      }
+      #list .svc {
+        font-size: 72px;
+      }
+      #list .svc ~ div {
+        width: 108px;
+      }
+      #list .ext,
+      #list .stat {
+        font-size: 80px;
+      }
+      #list .ext ~ div,
+      #list .stat ~ div {
+        width: 120px;
+      }
+      .settings {
+        display: flex;
+        justify-content: space-between;
+      }
+      .settings label {
+        margin: 0 16px 12px;
+      }
+      .settings label {
+        font-weight: bold;
+      }
+
+      .dlg-root {
+        margin: 24px;
+      }
+      code {
+        padding: 4px;
+        background-color: #e5e5e5;
+        cursor: pointer;
+        user-select: all;
+      }
+    </style>
+    <link rel="stylesheet" href="./style/all.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1 style="text-align: center">云规范图标集预览</h1>
+      <div class="settings">
+        <div>
+          <label> 选择图标集:</label>
+          <select id="sel-category" is="ui-select">
+            <option value="base">系统图标</option>
+            <option value="svc">服务图标</option>
+            <option value="ext">扩展图标</option>
+            <option value="stat">状态图标</option>
+          </select>
+          <span class="hide">
+            <label> 引用方式:</label>
+            <select id="sel-type" is="ui-select">
+              <option value="ci">class</option>
+              <option value="ci">json-data</option>
+            </select>
+          </span>
+          <label> 图标颜色:</label>
+          <input id="sel-color" type="color" is="ui-color" value="#000000" />
+          <label> 复制方式:</label>
+          <select id="sel-copy" is="ui-select">
+            <option value="all">完整标签</option>
+            <option value="only-name">图标类名</option>
+          </select>
+          <ui-lighttip id="lightTip" type="success">复制成功</ui-lighttip>
+        </div>
+        <div>
+          <button id="btnHelp" type="primary" class="ui-button">使用说明</button>
+        </div>
+      </div>
+      <div id="list"></div>
+
+      <dialog id="dlgHelp" is="ui-dialog">
+        <div class="dlg-root">
+          <h3>1、安装</h3>
+          <div>在项目中安装: <code>npm i @opentiny/cloud-icons</code></div>
+          <h3>2、通过css 引用</h3>
+          <div>在工程中引入图标的css文件： <code>import "@opentiny/cloud-icons/style/all.css"</code></div>
+          <h3>3、通过 @unocss/preset-icons 插件按需引用</h3>
+          <div>
+            例如vite工程中，配置UnoCss的图标插件：
+            <pre id="helpCode"></pre>
+          </div>
+
+          <h3>4、使用图标</h3>
+          <ul>
+            <li>
+              通过图标名引用所需图标： <code>&lt;i class="ci-search"&gt;&lt;/i&gt;</code> 会得到
+              <i class="ci-search"></i>
+            </li>
+            <li>通过修改图标的 <code>color \ font-size</code> 控制图标的大小和颜色。</li>
+          </ul>
+        </div>
+      </dialog>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
