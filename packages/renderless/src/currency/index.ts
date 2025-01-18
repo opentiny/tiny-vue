@@ -11,7 +11,7 @@
  */
 
 import { isUndefined, isNull } from '../grid/static'
-import { log } from '../common'
+import { log } from '@opentiny/utils'
 
 export const init =
   ({ state, service, api }) =>
