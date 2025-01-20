@@ -76,7 +76,7 @@ export const fixServiceData =
           if (text) {
             option[valueField] = text
           } else {
-            logger.warn('data error. set it to the default value.', 'warn')
+            logger.warn('data error. set it to the default value.')
             option[textField] = option[valueField] = props.currency
           }
         }

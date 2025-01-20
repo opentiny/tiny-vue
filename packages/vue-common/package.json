@@ -31,6 +31,7 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/utils": "workspace:~",
     "tailwind-merge": "^1.8.0"
   },
   "scripts": {
