@@ -24,8 +24,7 @@
  */
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
-import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
-import { type } from '@opentiny/utils'
+import { dom, type } from '@opentiny/utils'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
 import {
@@ -981,7 +980,7 @@ const Methods = {
     const mainBody = this.elemStore['main-body-wrapper']
 
     // 如果表格主体是隐藏的，就不重新计算布局
-    if (isDisplayNone(mainBody)) {
+    if (dom.isDisplayNone(mainBody)) {
       return
     }
 
@@ -1185,7 +1184,7 @@ const Methods = {
     this.currentRow = row
     if (this.highlightCurrentRow) {
       let rowElems = this.$el.querySelectorAll(`[data-rowid="${getRowid(this, row)}"]`)
-      arrayEach(rowElems, (elem) => addClass(elem, 'row__current'))
+      arrayEach(rowElems, (elem) => dom.addClass(elem, 'row__current'))
     }
     return this.$nextTick()
   },
@@ -1197,7 +1196,7 @@ const Methods = {
   clearCurrentRow() {
     Object.assign(this, { currentRow: null, hoverRow: null })
     let rowElems = this.$el.querySelectorAll('.row__current')
-    arrayEach(rowElems, (elem) => removeClass(elem, 'row__current'))
+    arrayEach(rowElems, (elem) => dom.removeClass(elem, 'row__current'))
     return this.$nextTick()
   },
   clearRadioRow() {
@@ -1243,13 +1242,13 @@ const Methods = {
     run(['clearCurrentRow', 'clearCurrentColumn'], this)
     this.currentColumn = column
     let colElems = this.$el.querySelectorAll(`.${column.id}`)
-    arrayEach(colElems, (elem) => addClass(elem, 'col__current'))
+    arrayEach(colElems, (elem) => dom.addClass(elem, 'col__current'))
     return this.$nextTick()
   },
   clearCurrentColumn() {
     this.currentColumn = null
     let colElems = this.$el.querySelectorAll('.col__current')
-    arrayEach(colElems, (elem) => removeClass(elem, 'col__current'))
+    arrayEach(colElems, (elem) => dom.removeClass(elem, 'col__current'))
     return this.$nextTick()
   },
   // 当单元格发生改变时，如果存在规则，则校验

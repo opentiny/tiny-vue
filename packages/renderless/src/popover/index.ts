@@ -10,9 +10,9 @@
  *
  */
 import type { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
-import { on, off, addClass, removeClass } from '../common/deps/dom'
 import { guid } from '../common/string'
 import { KEY_CODE } from '../common'
+import { dom } from '@opentiny/utils'
 
 const processTrigger = ({
   api,
@@ -23,20 +23,20 @@ const processTrigger = ({
   const { referenceElm, popperElm } = state
 
   if (props.trigger === 'click') {
-    on(referenceElm, 'click', api.doToggle)
-    on(document, 'click', api.handleDocumentClick)
+    dom.on(referenceElm, 'click', api.doToggle)
+    dom.on(document, 'click', api.handleDocumentClick)
   } else if (props.trigger === 'hover') {
-    on(referenceElm, 'mouseenter', api.handleMouseEnter)
-    on(popperElm, 'mouseenter', api.handleMouseEnter)
-    on(referenceElm, 'mouseleave', api.handleMouseLeave)
-    on(popperElm, 'mouseleave', api.handleMouseLeave)
+    dom.on(referenceElm, 'mouseenter', api.handleMouseEnter)
+    dom.on(popperElm, 'mouseenter', api.handleMouseEnter)
+    dom.on(referenceElm, 'mouseleave', api.handleMouseLeave)
+    dom.on(popperElm, 'mouseleave', api.handleMouseLeave)
   } else if (props.trigger === 'focus') {
     if (referenceElm.querySelector('input, textarea')) {
-      on(referenceElm, 'focusin', api.doShow)
-      on(referenceElm, 'focusout', api.doClose)
+      dom.on(referenceElm, 'focusin', api.doShow)
+      dom.on(referenceElm, 'focusout', api.doClose)
     } else {
-      on(referenceElm, 'mousedown', api.doShow)
-      on(referenceElm, 'mouseup', api.doClose)
+      dom.on(referenceElm, 'mousedown', api.doShow)
+      dom.on(referenceElm, 'mouseup', api.doClose)
     }
   } else if (props.trigger === 'manual') {
     // 手动模式，且用户初始modelValue=true,要触发show
@@ -65,7 +65,7 @@ export const mounted =
 
     if (referenceElm) {
       if (mode !== 'mobile-first') {
-        addClass(referenceElm, `${constants.IDPREFIX}__reference`)
+        dom.addClass(referenceElm, `${constants.IDPREFIX}__reference`)
       }
 
       referenceElm.setAttribute('aria-describedby', tooltipId)
@@ -73,7 +73,7 @@ export const mounted =
       popperElm.setAttribute('tabindex', 0)
 
       if (props.trigger !== 'click') {
-        on(referenceElm, 'focusin', () => {
+        dom.on(referenceElm, 'focusin', () => {
           api.handleFocus()
 
           // 仅vue2有 __vue__
@@ -84,13 +84,13 @@ export const mounted =
           }
         })
 
-        on(popperElm, 'focusin', api.handleFocus)
-        on(referenceElm, 'focusout', api.handleBlur)
-        on(popperElm, 'focusout', api.handleBlur)
+        dom.on(popperElm, 'focusin', api.handleFocus)
+        dom.on(referenceElm, 'focusout', api.handleBlur)
+        dom.on(popperElm, 'focusout', api.handleBlur)
       }
 
-      on(referenceElm, 'keydown', api.handleKeydown)
-      on(referenceElm, 'click', api.handleClick)
+      dom.on(referenceElm, 'keydown', api.handleKeydown)
+      dom.on(referenceElm, 'click', api.handleClick)
     }
 
     processTrigger({ api, state, props, nextTick })
@@ -111,7 +111,7 @@ export const doClose = (state: IPopoverState) => () => {
 export const handleFocus =
   ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
-    addClass(state.referenceElm, 'focusing')
+    dom.addClass(state.referenceElm, 'focusing')
 
     if (props.trigger === 'click' || props.trigger === 'focus') {
       state.showPopper = true
@@ -125,13 +125,13 @@ export const handleClick = (state: IPopoverState) => (event: MouseEvent) => {
   if (event?.target && popperElm) {
     state.webCompEventTarget = event.target as HTMLElement
   }
-  removeClass(state.referenceElm, 'focusing')
+  dom.removeClass(state.referenceElm, 'focusing')
 }
 
 export const handleBlur =
   ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
-    removeClass(state.referenceElm, 'focusing')
+    dom.removeClass(state.referenceElm, 'focusing')
 
     if (props.trigger === 'click' || props.trigger === 'focus') {
       state.showPopper = false
@@ -236,23 +236,23 @@ export const destroyed =
     const { referenceElm, popperElm } = state
 
     // 原来
-    off(referenceElm, 'click', api.doToggle)
-    off(referenceElm, 'mouseup', api.doClose)
-    off(referenceElm, 'mousedown', api.doShow)
-    off(referenceElm, 'focusin', api.doShow)
-    off(referenceElm, 'focusout', api.doClose)
-    off(referenceElm, 'mouseleave', api.handleMouseLeave)
-    off(referenceElm, 'mouseenter', api.handleMouseEnter)
-    off(document, 'click', api.handleDocumentClick)
+    dom.off(referenceElm, 'click', api.doToggle)
+    dom.off(referenceElm, 'mouseup', api.doClose)
+    dom.off(referenceElm, 'mousedown', api.doShow)
+    dom.off(referenceElm, 'focusin', api.doShow)
+    dom.off(referenceElm, 'focusout', api.doClose)
+    dom.off(referenceElm, 'mouseleave', api.handleMouseLeave)
+    dom.off(referenceElm, 'mouseenter', api.handleMouseEnter)
+    dom.off(document, 'click', api.handleDocumentClick)
 
     // 同步补充
-    off(popperElm, 'focusin', api.handleFocus) //
-    off(popperElm, 'focusout', api.handleBlur)
-    off(popperElm, 'mouseenter', api.handleMouseEnter)
-    off(popperElm, 'mouseleave', api.handleMouseLeave)
-    off(referenceElm, 'click', api.handleClick)
-    off(referenceElm, 'focusout', api.handleBlur)
-    off(referenceElm, 'keydown', api.handleKeydown)
+    dom.off(popperElm, 'focusin', api.handleFocus) //
+    dom.off(popperElm, 'focusout', api.handleBlur)
+    dom.off(popperElm, 'mouseenter', api.handleMouseEnter)
+    dom.off(popperElm, 'mouseleave', api.handleMouseLeave)
+    dom.off(referenceElm, 'click', api.handleClick)
+    dom.off(referenceElm, 'focusout', api.handleBlur)
+    dom.off(referenceElm, 'keydown', api.handleKeydown)
   }
 
 export const computedTooltipId = (constants: { IDPREFIX: string }) => () => `${constants.IDPREFIX}-${guid('', 4)}`

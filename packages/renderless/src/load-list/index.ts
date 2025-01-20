@@ -1,5 +1,4 @@
-import { isDisplayNone } from '../common/deps/dom'
-
+import { dom } from '@opentiny/utils'
 export const clickList =
   ({ emit, props }) =>
   () => {
@@ -30,7 +29,7 @@ export const check =
     const offset = +props.offset
     const scrollParentRect = api.useRect(state.scroller)
 
-    if (!scrollParentRect.height || isDisplayNone(vm.$el)) {
+    if (!scrollParentRect.height || dom.isDisplayNone(vm.$el)) {
       return
     }
 

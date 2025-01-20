@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { addClass, removeClass, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import throttle from '@opentiny/vue-renderless/common/deps/throttle'
 import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
 
@@ -38,7 +38,7 @@ export function handleHeaderCellMousedownEvent({ $el, _vm, bodyList, cell, heade
       flag = tmp.flag
       targetElem = tmp.targetElem
     }
-    if (flag && !hasClass(targetElem, 'col__index')) {
+    if (flag && !dom.hasClass(targetElem, 'col__index')) {
       let colIndex = [...targetElem.parentNode.children].indexOf(targetElem)
       let lastCell = bodyList[bodyList.length - 1].children[colIndex]
       let headCell = headerList[0].children[colIndex]
@@ -50,11 +50,11 @@ export function handleHeaderCellMousedownEvent({ $el, _vm, bodyList, cell, heade
 
   let updateEventThrot = throttle(80, false, updateEvent, true)
 
-  addClass($el, 'tiny-grid-cell__checked')
+  dom.addClass($el, 'tiny-grid-cell__checked')
 
   document.onmousemove = updateEventThrot
   document.onmouseup = function () {
-    removeClass($el, 'tiny-grid-cell__checked')
+    dom.removeClass($el, 'tiny-grid-cell__checked')
 
     document.onmousemove = oldMousemove
     document.onmouseup = oldMouseup

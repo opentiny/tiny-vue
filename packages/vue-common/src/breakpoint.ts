@@ -1,6 +1,6 @@
 import hooks from './adapter'
-import { isServer } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { dom } from '@opentiny/utils'
 
 /**
  * 组合使用 Tailwind 的响应性断点状态
@@ -13,7 +13,7 @@ export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')
   const prefixes = ['2xl', 'xl', 'lg', 'md', 'sm']
   const createMatchMedia = (mediaQueryString) => {
-    if (isServer || typeof matchMedia !== 'function') {
+    if (dom.isServer || typeof matchMedia !== 'function') {
       return {
         matches: false,
         media: mediaQueryString,

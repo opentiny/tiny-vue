@@ -1,5 +1,5 @@
 import { doDestroy, show, hide, popoverShow, popoverHide, handleClear, handleDocumentClick, togglePanel } from './index'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = ['state', 'doDestroy', 'show', 'hide', 'popoverShow', 'popoverHide', 'handleClear', 'togglePanel']
 
@@ -23,11 +23,11 @@ export const renderless = (props, { reactive, onMounted, onBeforeUnmount }, { vm
 
   handleDocumentClick
   onMounted(() => {
-    on(document, 'click', api.handleDocumentClick)
+    dom.on(document, 'click', api.handleDocumentClick)
   })
 
   onBeforeUnmount(() => {
-    off(document, 'click', api.handleDocumentClick)
+    dom.off(document, 'click', api.handleDocumentClick)
   })
 
   return api

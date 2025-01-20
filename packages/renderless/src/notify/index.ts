@@ -11,7 +11,7 @@
  */
 
 import { KEY_CODE } from '../common'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 
 export const startTimer =
@@ -87,7 +87,7 @@ export const bindEvent =
 
     api.startTimer()
 
-    on(document, 'keydown', api.bindKeyDown)
+    dom.on(document, 'keydown', api.bindKeyDown)
   }
 
-export const unBindEvent = (api) => () => off(document, 'keydown', api.bindKeyDown)
+export const unBindEvent = (api) => () => dom.off(document, 'keydown', api.bindKeyDown)

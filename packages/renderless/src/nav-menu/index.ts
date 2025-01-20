@@ -22,7 +22,7 @@ import { type } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 import { isBrowser } from '../common/browser'
 
@@ -217,7 +217,7 @@ export const mounted =
   (): void => {
     api.calcWidth()
 
-    on(window, 'resize', api.calcWidth)
+    dom.on(window, 'resize', api.calcWidth)
 
     if (router) {
       state.afterEach = (to) => {
@@ -239,7 +239,7 @@ export const unMounted =
     }
 
     state.afterEach = null
-    off(window, 'resize', api.calcWidth)
+    dom.off(window, 'resize', api.calcWidth)
   }
 
 export const getSelectedIndex =

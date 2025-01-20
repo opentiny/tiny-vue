@@ -30,7 +30,7 @@ import {
   parseHeaderHeight,
   checkSelfSimulate
 } from './index'
-import { getScrollParent } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { useTouch } from '../common/deps/useTouch'
 import { useEventListener } from '../common/deps/useEventListener'
 import emulate from '../common/deps/touch-emulator'
@@ -126,7 +126,7 @@ export const renderless = (
   state.stopHandle = api.useEventListener('touchmove', api.onTouchMove, { target: toRef(state, 'scrollTrack') })
 
   onMounted(() => {
-    state.scrollParent = getScrollParent(vm.$refs.root)
+    state.scrollParent = dom.getScrollParent(vm.$refs.root)
     state.scrollTrack = vm.$refs.track
   })
 

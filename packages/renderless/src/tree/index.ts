@@ -13,10 +13,9 @@
 import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
 import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
-import { addClass, removeClass } from '../common/deps/dom'
-import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
+import { dom } from '@opentiny/utils'
 
 import { log } from '@opentiny/utils'
 
@@ -139,7 +138,7 @@ const setDropIndicatorTop = (dropNode, parent, dropType) => {
     dropIndicator.style.top = indicatorTop + 'px'
   }
 
-  dropType === 'inner' ? addClass(dropNode.$el, 'is-drop-inner') : removeClass(dropNode.$el, 'is-drop-inner')
+  dropType === 'inner' ? dom.addClass(dropNode.$el, 'is-drop-inner') : dom.removeClass(dropNode.$el, 'is-drop-inner')
 }
 
 const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState, event }) => {
@@ -194,7 +193,7 @@ export const dragOver =
     const oldDropNode = dragState.dropNode
 
     if (oldDropNode && oldDropNode !== dropNode) {
-      removeClass(oldDropNode.$el, 'is-drop-inner')
+      dom.removeClass(oldDropNode.$el, 'is-drop-inner')
     }
 
     const draggingNode = dragState.draggingNode
@@ -253,7 +252,7 @@ export const dragEnd =
 
       normalType && state.store.registerNode(draggingNodeCopy)
 
-      removeClass(dropNode.$el, 'is-drop-inner')
+      dom.removeClass(dropNode.$el, 'is-drop-inner')
 
       emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event)
 
@@ -398,7 +397,7 @@ export const mounted =
   ({ api, vm }) =>
   () => {
     api.initTabIndex()
-    on(vm.$el, 'keydown', api.handleKeydown)
+    dom.on(vm.$el, 'keydown', api.handleKeydown)
   }
 
 export const beforeUnmount =
@@ -406,7 +405,7 @@ export const beforeUnmount =
   () => {
     state.action.popoverVisible = false
 
-    off(vm.$el, 'keydown', api.handleKeydown)
+    dom.off(vm.$el, 'keydown', api.handleKeydown)
   }
 
 export const wrapMounted =

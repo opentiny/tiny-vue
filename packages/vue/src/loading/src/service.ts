@@ -11,7 +11,7 @@
  */
 
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { createComponent, hooks, appProperties } from '@opentiny/vue-common'
 import Loading from './index'
 
@@ -40,13 +40,13 @@ const addStyle = (options, parent, instance) => {
   let maskStyle = {}
 
   if (options.fullscreen) {
-    instance.originalPosition = getStyle(document.body, 'position')
-    instance.originalOverflow = getStyle(document.body, 'overflow')
+    instance.originalPosition = dom.getStyle(document.body, 'position')
+    instance.originalOverflow = dom.getStyle(document.body, 'overflow')
     maskStyle.zIndex = PopupManager.nextZIndex()
   } else if (options.body) {
     const clientRect = options.target.getBoundingClientRect()
 
-    instance.originalPosition = getStyle(document.body, 'position')
+    instance.originalPosition = dom.getStyle(document.body, 'position')
 
     const direction = ['top', 'left']
 
@@ -62,7 +62,7 @@ const addStyle = (options, parent, instance) => {
       maskStyle[property] = clientRect[property] + 'px'
     })
   } else {
-    instance.originalPosition = getStyle(parent, 'position')
+    instance.originalPosition = dom.getStyle(parent, 'position')
   }
 
   Object.keys(maskStyle).forEach((property) => {
@@ -115,11 +115,11 @@ export default (configs = {}) => {
   addStyle(configs, parent, instance)
 
   if (instance.originalPosition !== 'absolute' && instance.originalPosition !== 'fixed') {
-    addClass(parent, constants.PARENT_RELATIVE_CLS)
+    dom.addClass(parent, constants.PARENT_RELATIVE_CLS)
   }
 
   if (configs.fullscreen && configs.lock) {
-    addClass(parent, constants.PARENT_HIDDEN_CLS)
+    dom.addClass(parent, constants.PARENT_HIDDEN_CLS)
   }
 
   parent.appendChild(instance.$el)

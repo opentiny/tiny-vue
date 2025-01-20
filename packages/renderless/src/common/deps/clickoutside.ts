@@ -10,7 +10,7 @@
  *
  */
 
-import { on } from './dom'
+import { dom } from '@opentiny/utils'
 
 const isServer = typeof window === 'undefined'
 const nodeList = []
@@ -19,14 +19,14 @@ let startClick
 let seed = 0
 
 if (!isServer) {
-  on(document, 'mousedown', (event) => {
+  dom.on(document, 'mousedown', (event) => {
     startClick = event
     nodeList
       .filter((node) => node[nameSpace].mousedownTrigger)
       .forEach((node) => node[nameSpace].documentHandler(event, startClick))
   })
 
-  on(document, 'mouseup', (event) => {
+  dom.on(document, 'mouseup', (event) => {
     nodeList
       .filter((node) => !node[nameSpace].mousedownTrigger)
       .forEach((node) => node[nameSpace].documentHandler(event, node[nameSpace]?.mouseupTrigger ? event : startClick))

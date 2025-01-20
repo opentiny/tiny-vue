@@ -1,4 +1,4 @@
-import { on, isServer } from './dom'
+import { dom } from '@opentiny/utils'
 
 let width
 let height
@@ -8,7 +8,7 @@ export const useWindowSize = (ref) => () => {
     width = ref(0)
     height = ref(0)
 
-    if (!isServer) {
+    if (!dom.isServer) {
       const update = () => {
         width.value = window.innerWidth
         height.value = window.innerHeight
@@ -16,8 +16,8 @@ export const useWindowSize = (ref) => () => {
 
       update()
 
-      on(window, 'resize', update, { passive: true })
-      on(window, 'orientationchange', update, { passive: true })
+      dom.on(window, 'resize', update, { passive: true })
+      dom.on(window, 'orientationchange', update, { passive: true })
     }
   }
 

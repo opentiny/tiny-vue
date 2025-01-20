@@ -1,5 +1,5 @@
 import debounce from '../common/deps/debounce'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 const getButtonPosition =
   ({ sliderState }) =>
@@ -153,12 +153,12 @@ export const renderless = (props, { reactive, onMounted, onUnmounted, computed, 
   })
 
   onUnmounted(() => {
-    off(window, 'resize', api.currentPosition)
+    dom.off(window, 'resize', api.currentPosition)
   })
 
   onMounted(() => {
     api.currentPosition(true)
-    on(window, 'resize', api.currentPosition)
+    dom.on(window, 'resize', api.currentPosition)
   })
 
   watch(

@@ -11,7 +11,7 @@
  */
 
 import { KEY_CODE } from '../index'
-import { addClass, removeClass, on } from './dom'
+import { dom as doms } from '@opentiny/utils'
 
 const isServer = typeof window === 'undefined'
 
@@ -104,19 +104,19 @@ const PopupManager = {
     // 查询或创建一个modalDom----遮罩层, 为其赋值所有class ,style
     const modalDom = getModal()
 
-    addClass(modalDom, classes.modal)
+    doms.addClass(modalDom, classes.modal)
 
     if (this.modalFade && !PopupManager.hasModal) {
-      addClass(modalDom, classes.enter)
+      doms.addClass(modalDom, classes.enter)
     }
 
     if (modalClass) {
       const classArr = modalClass.trim().split(/\s+/)
-      classArr.forEach((cls) => addClass(modalDom, cls))
+      classArr.forEach((cls) => doms.addClass(modalDom, cls))
     }
 
     setTimeout(() => {
-      removeClass(modalDom, classes.enter)
+      doms.removeClass(modalDom, classes.enter)
     }, 200)
 
     if (zIndex) {
@@ -163,7 +163,7 @@ const PopupManager = {
       if (topPopup.id === id) {
         if (topPopup.modalClass) {
           const classArr = topPopup.modalClass.trim().split(/\s+/)
-          classArr.forEach((cls) => removeClass(modalDom, cls))
+          classArr.forEach((cls) => doms.removeClass(modalDom, cls))
         }
 
         modalStack.pop()
@@ -179,8 +179,8 @@ const PopupManager = {
     }
 
     if (modalStack.length === 0) {
-      this.modalFade && addClass(modalDom, classes.leave)
-      removeClass(document.body, this.popLockClass)
+      this.modalFade && doms.addClass(modalDom, classes.leave)
+      doms.removeClass(document.body, this.popLockClass)
       this.resetBodyBorder()
 
       setTimeout(() => {
@@ -193,7 +193,7 @@ const PopupManager = {
           PopupManager.modalDom = null as unknown as HTMLElement
         }
 
-        removeClass(modalDom, classes.leave)
+        doms.removeClass(modalDom, classes.leave)
       }, 200)
     }
   }
@@ -223,7 +223,7 @@ getModal = () => {
       { passive: true }
     )
 
-    on(modalDom, 'click', () => {
+    doms.on(modalDom, 'click', () => {
       PopupManager.doOnModalClick()
     })
   }
@@ -233,7 +233,7 @@ getModal = () => {
 
 if (!isServer) {
   // 点esc时，关闭栈顶Popup。  也就是说组件内不用关心esc了， 这里统一接管了
-  on(window, 'keydown', (event: KeyboardEvent) => {
+  doms.on(window, 'keydown', (event: KeyboardEvent) => {
     if (event.keyCode === KEY_CODE.Escape) {
       const modalStack = PopupManager.modalStack
 

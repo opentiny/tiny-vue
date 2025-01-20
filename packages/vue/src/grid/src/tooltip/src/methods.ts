@@ -1,5 +1,5 @@
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { createTooltipRange, processContentMethod } from './handleTooltip'
 
 let focusSingle = null
@@ -52,7 +52,7 @@ export default {
     const range = createTooltipRange({ _vm: this, cell, column, isHeader })
     const rangeWidth = range.getBoundingClientRect().width
     const padding =
-      (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
+      (parseInt(dom.getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(dom.getStyle(cell, 'paddingRight'), 10) || 0)
     const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
 
     // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示

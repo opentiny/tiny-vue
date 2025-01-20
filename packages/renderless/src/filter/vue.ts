@@ -1,4 +1,4 @@
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 import {
   panelToggle,
@@ -60,13 +60,13 @@ export const renderless = (props, { reactive, computed, onMounted, onBeforeUnmou
   })
 
   onMounted(() => {
-    on(window, 'scroll', api.resize)
-    on(window, 'resize', api.resize)
+    dom.on(window, 'scroll', api.resize)
+    dom.on(window, 'resize', api.resize)
   })
 
   onBeforeUnmount(() => {
-    off(window, 'scroll', api.resize)
-    off(window, 'resize', api.resize)
+    dom.off(window, 'scroll', api.resize)
+    dom.off(window, 'resize', api.resize)
   })
 
   return api

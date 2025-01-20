@@ -15,6 +15,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",

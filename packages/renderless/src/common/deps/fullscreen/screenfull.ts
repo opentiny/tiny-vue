@@ -10,8 +10,8 @@
  *
  */
 
-import { on, off } from '../dom'
 import { isBrowser } from '../../browser'
+import { dom } from '@opentiny/utils'
 
 const fullscreenApi = [
   'fullscreenElement',
@@ -141,14 +141,14 @@ const screenfull = {
     const eventName = eventNameMap[event]
 
     if (eventName && isBrowser) {
-      on(document, eventName, callback)
+      dom.on(document, eventName, callback)
     }
   },
   off(event, callback) {
     const eventName = eventNameMap[event]
 
     if (eventName && isBrowser) {
-      off(document, eventName, callback)
+      dom.off(document, eventName, callback)
     }
   },
   raw: fullscreenEvents || {}

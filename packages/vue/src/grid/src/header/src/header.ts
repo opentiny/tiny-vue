@@ -24,7 +24,7 @@
  */
 
 import { type } from '@opentiny/utils'
-import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
@@ -408,7 +408,7 @@ const documentOnmouseup = function ({
   column.resizeWidth = resizeWidth < 40 ? 40 : resizeWidth
 
   resizeBarElem.style.display = 'none'
-  removeClass($table.$el, 'tiny-grid-cell__resize')
+  dom.removeClass($table.$el, 'tiny-grid-cell__resize')
   Object.assign($table, { _isResize: false, _lastResizeTime: Date.now() })
 
   $table.analyColumnWidth()
@@ -542,7 +542,7 @@ export default defineComponent({
       }
 
       resizeBarElem.style.display = 'block'
-      addClass($table.$el, 'tiny-grid-cell__resize')
+      dom.addClass($table.$el, 'tiny-grid-cell__resize')
       $table._isResize = true
 
       document.onmousemove = handleMousemoveEvent

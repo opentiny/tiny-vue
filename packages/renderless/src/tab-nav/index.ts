@@ -13,7 +13,7 @@ import type { ITabNavRenderlessParams } from '@/types'
 import { KEY_CODE, POSITION } from '../common'
 import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string; width?: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
@@ -125,9 +125,9 @@ export const mounted = ({ api, parent }: Pick<ITabNavRenderlessParams, 'api' | '
 
   /* istanbul ignore next */
   addResizeListener(el, api.updated)
-  on(document, 'visibilitychange', api.visibilityChangeHandler)
-  on(window, 'blur', api.windowBlurHandler)
-  on(window, 'focus', api.windowFocusHandler)
+  dom.on(document, 'visibilitychange', api.visibilityChangeHandler)
+  dom.on(window, 'blur', api.windowBlurHandler)
+  dom.on(window, 'focus', api.windowFocusHandler)
 
   api.scrollToActiveTab()
   api.scrollIntoView()
@@ -142,9 +142,9 @@ export const beforeUnmount = ({ api, parent }: Pick<ITabNavRenderlessParams, 'ap
     removeResizeListener(el, api.updated)
   }
 
-  off(document, 'visibilitychange', api.visibilityChangeHandler)
-  off(window, 'blur', api.windowBlurHandler)
-  off(window, 'focus', api.windowFocusHandler)
+  dom.off(document, 'visibilitychange', api.visibilityChangeHandler)
+  dom.off(window, 'blur', api.windowBlurHandler)
+  dom.off(window, 'focus', api.windowFocusHandler)
 }
 
 export const visibilityChangeHandler = (state: ITabNavRenderlessParams['state']) => () => {

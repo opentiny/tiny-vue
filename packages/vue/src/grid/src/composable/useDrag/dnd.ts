@@ -1,4 +1,4 @@
-import { on, off, preventDefault } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const initDrag = (dndProxyElement, dndElements, config = {}) => {
   if (dndElements instanceof NodeList) {
@@ -14,7 +14,7 @@ export const initDrag = (dndProxyElement, dndElements, config = {}) => {
   }
 
   // dragover 事件处理
-  const onDragOver = (e) => preventDefault(e)
+  const onDragOver = (e) => dom.preventDefault(e)
 
   // dragenter 事件处理
   const onDragEnter = (e) => {
@@ -84,11 +84,11 @@ export const initDrag = (dndProxyElement, dndElements, config = {}) => {
       elNodes.splice(0, elNodes.length)
     }
 
-    on(dndProxyElement, 'dragstart', onDragStart)
-    on(dndProxyElement, 'dragover', onDragOver)
-    on(dndProxyElement, 'dragenter', onDragEnter)
-    on(dndProxyElement, 'dragend', onDragEnd)
-    on(dndProxyElement, 'drop', onDrop)
+    dom.on(dndProxyElement, 'dragstart', onDragStart)
+    dom.on(dndProxyElement, 'dragover', onDragOver)
+    dom.on(dndProxyElement, 'dragenter', onDragEnter)
+    dom.on(dndProxyElement, 'dragend', onDragEnd)
+    dom.on(dndProxyElement, 'drop', onDrop)
   }
 
   let dragTarget // 被拖拽元素
@@ -248,11 +248,11 @@ export const initDrag = (dndProxyElement, dndElements, config = {}) => {
   // 移除事件代理和内部状态引用
   const destroy = () => {
     if (dndProxyElement) {
-      off(dndProxyElement, 'dragstart', onDragStart)
-      off(dndProxyElement, 'dragover', onDragOver)
-      off(dndProxyElement, 'dragenter', onDragEnter)
-      off(dndProxyElement, 'dragend', onDragEnd)
-      off(dndProxyElement, 'drop', onDrop)
+      dom.off(dndProxyElement, 'dragstart', onDragStart)
+      dom.off(dndProxyElement, 'dragover', onDragOver)
+      dom.off(dndProxyElement, 'dragenter', onDragEnter)
+      dom.off(dndProxyElement, 'dragend', onDragEnd)
+      dom.off(dndProxyElement, 'drop', onDrop)
     }
 
     removeDropClass()

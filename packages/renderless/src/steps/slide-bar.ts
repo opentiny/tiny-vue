@@ -1,5 +1,5 @@
 import debounce from '../common/deps/debounce'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 const getBoundingPosition =
   ({ state }) =>
@@ -151,11 +151,11 @@ export const renderless = (props, { reactive, onMounted, onUnmounted, computed }
 
   onMounted(() => {
     api.updatePosition(true)
-    on(window, 'resize', api.updatePosition)
+    dom.on(window, 'resize', api.updatePosition)
   })
 
   onUnmounted(() => {
-    off(window, 'resize', api.updatePosition)
+    dom.off(window, 'resize', api.updatePosition)
   })
 
   return api

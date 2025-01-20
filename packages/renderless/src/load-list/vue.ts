@@ -1,5 +1,5 @@
 import { clickList, check, clickErrorText } from './index'
-import { getScrollParent } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { useRect } from '../common/deps/useRect'
 import { useEventListener } from '../common/deps/useEventListener'
 import debounce from '../common/deps/debounce'
@@ -68,7 +68,7 @@ export const renderless = (
   })
 
   onMounted(() => {
-    state.scrollParent = getScrollParent(vm.$el)
+    state.scrollParent = dom.getScrollParent(vm.$el)
 
     if (props.immediateCheck) {
       api.check()

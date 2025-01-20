@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const computedWrapperStyle = (state) => () => {
   const wrapperStyle = {
@@ -178,9 +178,9 @@ export const mountedHandler =
   () => {
     const track = vm.$refs.track
 
-    on(track, 'touchstart', api.onTouchstart)
-    on(track, 'touchmove', api.onTouchmove)
-    on(track, 'touchend', api.onTouchend)
+    dom.on(track, 'touchstart', api.onTouchstart)
+    dom.on(track, 'touchmove', api.onTouchmove)
+    dom.on(track, 'touchend', api.onTouchend)
 
     state.clumnsWrapHeight = state.itemHeight * state.visibleItemCount
 
@@ -194,9 +194,9 @@ export const beforeUnmountHandler =
   () => {
     const track = vm.$refs.track
 
-    off(track, 'touchstart', api.onTouchstart)
-    off(track, 'touchmove', api.onTouchmove)
-    off(track, 'touchend', api.onTouchend)
+    dom.off(track, 'touchstart', api.onTouchstart)
+    dom.off(track, 'touchmove', api.onTouchmove)
+    dom.off(track, 'touchend', api.onTouchend)
   }
 
 export const momentum =

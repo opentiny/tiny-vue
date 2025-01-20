@@ -11,8 +11,7 @@
  */
 
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
-import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
-import { type } from '@opentiny/utils'
+import { type, dom } from '@opentiny/utils'
 import { rafThrottle } from '../image-viewer'
 import { xss } from '@opentiny/utils'
 
@@ -92,7 +91,7 @@ export const handleSwitch =
 export const handleLazyLoad =
   ({ state, api, vm, nextTick }: Pick<IImageRenderlessParams, 'api' | 'state' | 'nextTick' | 'vm'>) =>
   () => {
-    if (isInContainer(vm.$el, state._scrollContainer as HTMLElement)) {
+    if (dom.isInContainer(vm.$el, state._scrollContainer as HTMLElement)) {
       nextTick(() => (state.show = true))
       api.removeLazyLoadListener()
     }
@@ -109,13 +108,13 @@ export const addLazyLoadListener =
     } else if (type.typeOf(scrollContainer) === 'string') {
       _scrollContainer = document.querySelector(scrollContainer as string)!
     } else {
-      _scrollContainer = getScrollContainer(vm.$el) as HTMLElement
+      _scrollContainer = dom.getScrollContainer(vm.$el) as HTMLElement
     }
 
     if (_scrollContainer) {
       state._scrollContainer = _scrollContainer
       state._lazyLoadHandler = rafThrottle(api.handleLazyLoad)
-      on(_scrollContainer, 'scroll', state._lazyLoadHandler)
+      dom.on(_scrollContainer, 'scroll', state._lazyLoadHandler)
       api.handleLazyLoad()
     }
   }
@@ -127,7 +126,7 @@ export const removeLazyLoadListener = (state: IImageState) => () => {
     return
   }
 
-  off(_scrollContainer, 'scroll', _lazyLoadHandler)
+  dom.off(_scrollContainer, 'scroll', _lazyLoadHandler)
   state._scrollContainer = null
   state._lazyLoadHandler = null
 }

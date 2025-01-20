@@ -28,6 +28,7 @@
   "sideEffects": false,
   "type": "module",
   "dependencies": {
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",

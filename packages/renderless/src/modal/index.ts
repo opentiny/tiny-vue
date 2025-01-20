@@ -11,10 +11,8 @@
  */
 
 import { KEY_CODE } from '../common'
-import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
-import { getDomNode } from '../common/deps/dom'
-import { global } from '@opentiny/utils'
+import { global, dom } from '@opentiny/utils'
 
 import type {
   IModalProps,
@@ -120,14 +118,14 @@ export const mounted =
         api.showScrollbar()
       }
     } else {
-      on(window, 'resize', api.resetDragStyle)
+      dom.on(window, 'resize', api.resetDragStyle)
     }
 
     if (props.escClosable) {
-      on(document, 'keydown', api.handleGlobalKeydownEvent)
+      dom.on(document, 'keydown', api.handleGlobalKeydownEvent)
     }
 
-    on(window, 'hashchange', api.handleHashChange)
+    dom.on(window, 'hashchange', api.handleHashChange)
 
     document.body.appendChild(parent.$el)
   }
@@ -135,10 +133,10 @@ export const mounted =
 export const beforeUnmouted =
   ({ api, parent, isMobileFirstMode }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'isMobileFirstMode'>) =>
   (): void => {
-    isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
-    off(document, 'keydown', api.handleGlobalKeydownEvent)
-    off(window, 'hashchange', api.handleHashChange)
-    off(window, 'resize', api.resetModalViewPosition)
+    isMobileFirstMode && dom.off(window, 'resize', api.resetDragStyle)
+    dom.off(document, 'keydown', api.handleGlobalKeydownEvent)
+    dom.off(window, 'hashchange', api.handleHashChange)
+    dom.off(window, 'resize', api.resetModalViewPosition)
     api.removeMsgQueue()
     api.hideScrollbar()
 
@@ -299,7 +297,7 @@ export const open =
             ) {
               modalBoxElem.style.top = `${props.marginSize}px`
             }
-            on(window, 'resize', api.resetModalViewPosition)
+            dom.on(window, 'resize', api.resetModalViewPosition)
           }
 
           if (props.fullscreen) {
@@ -414,7 +412,7 @@ export const maximize =
       if (!state.zoomLocat) {
         let marginSize = props.marginSize
         let modalBoxElement = api.getBox()
-        let { visibleHeight, visibleWidth } = getDomNode()
+        let { visibleHeight, visibleWidth } = dom.getDomNode()
 
         state.zoomLocat = {
           top: modalBoxElement.offsetTop,
@@ -495,7 +493,7 @@ function getEventTargetNode(
   let target = event.target as any
 
   while (target && target.nodeType && target !== document) {
-    if (queryCls && hasClass(target, queryCls)) {
+    if (queryCls && dom.hasClass(target, queryCls)) {
       targetElem = target
     } else if (target === container) {
       return {
@@ -530,7 +528,7 @@ export const mousedownEvent =
       let demMouseup = document.onmouseup
       let disX = event.clientX - modalBoxElement.offsetLeft
       let disY = event.clientY - modalBoxElement.offsetTop
-      let { visibleHeight, visibleWidth } = getDomNode()
+      let { visibleHeight, visibleWidth } = dom.getDomNode()
 
       document.onmousemove = (event) => {
         event.preventDefault()
@@ -573,7 +571,7 @@ export const mousedownEvent =
         modalBoxElement.style.left = `${left}px`
         modalBoxElement.style.top = `${top}px`
 
-        addClass(modalBoxElement, DragClass)
+        dom.addClass(modalBoxElement, DragClass)
 
         emit('custom-mousemove', event)
       }
@@ -583,7 +581,7 @@ export const mousedownEvent =
         document.onmouseup = demMouseup
 
         nextTick(() => {
-          removeClass(modalBoxElement, DragClass)
+          dom.removeClass(modalBoxElement, DragClass)
         })
 
         emit('custom-mouseup', event)
@@ -848,7 +846,7 @@ export const dragEvent =
     event.preventDefault()
 
     const delta = { x: 0, y: 0 }
-    const { visibleHeight, visibleWidth } = getDomNode()
+    const { visibleHeight, visibleWidth } = dom.getDomNode()
     const modalBoxElem = api.getBox()
     const demMousemove = document.onmousemove
     const demMouseup = document.onmouseup
@@ -872,7 +870,7 @@ export const dragEvent =
 
       delta.x = delta.y = 0
 
-      addClass(modalBoxElem, DragClass)
+      dom.addClass(modalBoxElem, DragClass)
 
       emitZoom({
         params: { type: 'resize', $modal: parent },
@@ -888,7 +886,7 @@ export const dragEvent =
       document.onmouseup = demMouseup
 
       setTimeout(() => {
-        removeClass(modalBoxElem, DragClass)
+        dom.removeClass(modalBoxElem, DragClass)
         state.prevEvent = null
       }, 50)
     }
@@ -911,11 +909,11 @@ export const resetDragStyle = (api: IModalApi) => (): void => {
 }
 
 export const showScrollbar = (lockScrollClass) => () => {
-  addClass(document.body, lockScrollClass)
+  dom.addClass(document.body, lockScrollClass)
 }
 
 export const hideScrollbar = (lockScrollClass) => () => {
-  removeClass(document.body, lockScrollClass)
+  dom.removeClass(document.body, lockScrollClass)
 }
 
 export const resetModalViewPosition = (api: IModalApi) => () => {

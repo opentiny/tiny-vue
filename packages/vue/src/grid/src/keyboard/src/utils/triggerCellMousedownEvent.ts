@@ -23,7 +23,7 @@
  *
  */
 import throttle from '@opentiny/vue-renderless/common/deps/throttle'
-import { hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
 
 export function onCellMousedownGridEl(args) {
@@ -47,7 +47,7 @@ export function onCellMousedownGridEl(args) {
         getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(cellLastElementChild))
       )
       _vm.handleIndexChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(cell)))
-    } else if (!hasClass(targetElem, 'col__index')) {
+    } else if (!dom.hasClass(targetElem, 'col__index')) {
       let firstCell = targetElem.parentNode.firstElementChild
       let colIndex = [].indexOf.call(targetElem.parentNode.children, targetElem)
       let head = headerList[0].children[colIndex]

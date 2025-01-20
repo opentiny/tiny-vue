@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { addClass as addCls, removeClass as rmvCls } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export default {
   name: 'menuTransition',
@@ -13,7 +13,7 @@ export default {
     return {
       on: {
         beforeEnter(elem) {
-          addCls(elem, 'transition-[height] duration-300 ease-in-out')
+          dom.addClass(elem, 'transition-[height] duration-300 ease-in-out')
           if (!elem.dataset) elem.dataset = {}
           elem.style.height = '0'
         },
@@ -30,7 +30,7 @@ export default {
         },
 
         afterEnter(elem) {
-          rmvCls(elem, 'transition-[height] duration-300 ease-in-out')
+          dom.removeClass(elem, 'transition-[height] duration-300 ease-in-out')
 
           elem.style.height = ''
           elem.style.overflow = elem.dataset.oldOverflow
@@ -47,14 +47,14 @@ export default {
         leave(elem) {
           if (elem.scrollHeight === 0) return
 
-          addCls(elem, 'transition-[height] duration-300 ease-in-out')
+          dom.addClass(elem, 'transition-[height] duration-300 ease-in-out')
 
           elem.style.transitionProperty = 'height'
           elem.style.height = 0
         },
 
         afterLeave(elem) {
-          rmvCls(elem, 'transition-[height] duration-300 ease-in-out')
+          dom.removeClass(elem, 'transition-[height] duration-300 ease-in-out')
 
           elem.style.height = ''
           elem.style.overflow = elem.dataset.oldOverflow

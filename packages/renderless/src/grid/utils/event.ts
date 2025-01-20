@@ -25,7 +25,7 @@
 
 import browser from '../../common/browser'
 import { remove } from '../static'
-import { on } from '../../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 // 监听全局事件
 const wheelName = browser.isDoc && /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'
@@ -55,13 +55,13 @@ const GlobalEvent = {
 }
 
 if (browser.isDoc) {
-  on(document, 'keydown', GlobalEvent.trigger)
-  on(document, 'contextmenu', GlobalEvent.trigger)
-  on(window, 'mousedown', GlobalEvent.trigger)
-  on(window, 'mousedown', GlobalEvent.capture, true)
-  on(window, 'blur', GlobalEvent.trigger)
-  on(window, 'resize', GlobalEvent.trigger)
-  on(window, wheelName, GlobalEvent.trigger)
+  dom.on(document, 'keydown', GlobalEvent.trigger)
+  dom.on(document, 'contextmenu', GlobalEvent.trigger)
+  dom.on(window, 'mousedown', GlobalEvent.trigger)
+  dom.on(window, 'mousedown', GlobalEvent.capture, true)
+  dom.on(window, 'blur', GlobalEvent.trigger)
+  dom.on(window, 'resize', GlobalEvent.trigger)
+  dom.on(window, wheelName, GlobalEvent.trigger)
 }
 
 export default GlobalEvent

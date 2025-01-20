@@ -11,7 +11,7 @@
  */
 
 import { extend } from '../../object'
-import { on, off } from '../dom'
+import { dom } from '@opentiny/utils'
 import screenfull from './screenfull'
 
 const defaults = {
@@ -128,7 +128,7 @@ const api = {
       // 网页全屏模式 按键回调
       const keypressCallback = (e) => {
         if (e.key === 'Escape') {
-          off(document, 'keyup', keypressCallback)
+          dom.off(document, 'keyup', keypressCallback)
           this.exit()
         }
       }
@@ -136,8 +136,8 @@ const api = {
       this.isFullscreen = true
       this.targetElement = targetEle
 
-      off(document, 'keyup', keypressCallback)
-      on(document, 'keyup', keypressCallback)
+      dom.off(document, 'keyup', keypressCallback)
+      dom.on(document, 'keyup', keypressCallback)
 
       if (this.opts.callback) {
         this.opts.callback(this.isFullscreen)

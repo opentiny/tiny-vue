@@ -10,10 +10,9 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
 import { KEY_CODE } from '../common'
 import PopupManager from '../common/deps/popup-manager'
-import { xss } from '@opentiny/utils'
+import { xss, dom } from '@opentiny/utils'
 import { isBrowser } from '../common/browser'
 
 const isFirefox = () => (isBrowser ? !!window.navigator.userAgent.match(/firefox/i) : false)
@@ -48,7 +47,7 @@ export const hide =
 export const deviceSupportInstall =
   ({ state, api, mode }) =>
   () => {
-    on(window, 'resize', api.initPage)
+    dom.on(window, 'resize', api.initPage)
 
     state.urlList = state.urlList.map((subItem) => {
       let subItemObj = {}
@@ -127,15 +126,15 @@ export const deviceSupportInstall =
       }
     })
 
-    on(document, 'keydown', state._keyDownHandler)
-    mode !== 'mobile-first' && on(document, mousewheelEventName, state._mouseWheelHandler)
+    dom.on(document, 'keydown', state._keyDownHandler)
+    mode !== 'mobile-first' && dom.on(document, mousewheelEventName, state._mouseWheelHandler)
   }
 
 export const deviceSupportUninstall =
   ({ state, mode }) =>
   () => {
-    off(document, 'keydown', state._keyDownHandler)
-    mode !== 'mobile-first' && off(document, mousewheelEventName, state._mouseWheelHandler)
+    dom.off(document, 'keydown', state._keyDownHandler)
+    mode !== 'mobile-first' && dom.off(document, mousewheelEventName, state._mouseWheelHandler)
 
     state._keyDownHandler = null
     state._mouseWheelHandler = null
@@ -164,21 +163,21 @@ export const handleMouseDown = (state) => (event) => {
     state.transform.offsetY = offsetY + event.pageY - startY
   })
 
-  on(document, 'mousemove', state._dragHandler)
+  dom.on(document, 'mousemove', state._dragHandler)
 
-  state._removeDrag = () => off(document, 'mousemove', state._dragHandler)
+  state._removeDrag = () => dom.off(document, 'mousemove', state._dragHandler)
 
   if (state._clearMouse) {
     state._clearMouse()
     state._clearMouse = undefined
   }
 
-  on(document, 'mouseup', state._removeDrag)
-  on(document, 'mouseleave', state._removeDrag)
+  dom.on(document, 'mouseup', state._removeDrag)
+  dom.on(document, 'mouseleave', state._removeDrag)
 
   state._clearMouse = () => {
-    off(document, 'mouseup', state._removeDrag)
-    off(document, 'mouseleave', state._removeDrag)
+    dom.off(document, 'mouseup', state._removeDrag)
+    dom.off(document, 'mouseleave', state._removeDrag)
   }
 
   event.preventDefault()
@@ -786,7 +785,7 @@ export const initPage =
 export const beforeDestroy =
   ({ api, state }) =>
   () => {
-    off(window, 'resize', api.initPage)
+    dom.off(window, 'resize', api.initPage)
 
     if (state._clearMouse) {
       state._clearMouse()

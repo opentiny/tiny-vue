@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off, isDisplayNone } from './dom'
+import { dom } from '@opentiny/utils'
 import PopupManager from './popup-manager'
 import { global, type } from '@opentiny/utils'
 import { isBrowser } from '../browser'
@@ -782,12 +782,12 @@ class Popper {
       if (this._options.updateHiddenPopperOnScroll) {
         this.state.updateBoundFn()
       } else {
-        if (isDisplayNone(this._reference)) return
+        if (dom.isDisplayNone(this._reference)) return
         this.state.updateBoundFn()
       }
     }
 
-    on(window, 'resize', this.state.updateBoundFn)
+    dom.on(window, 'resize', this.state.updateBoundFn)
 
     if (this._options.boundariesElement !== 'window') {
       let target: HTMLElement = this._options.scrollParent || getScrollParent(this._reference)
@@ -815,26 +815,26 @@ class Popper {
 
         this.state.scrollTargets = targets || []
         targets.forEach((target) => {
-          on(target, 'scroll', this.state.scrollUpdate)
+          dom.on(target, 'scroll', this.state.scrollUpdate)
         })
       } else {
         if (customTargets.length) {
           this.state.scrollTargets = customTargets
           customTargets.forEach((target) => {
-            on(target, 'scroll', this.state.scrollUpdate)
+            dom.on(target, 'scroll', this.state.scrollUpdate)
           })
         } else {
-          on(target, 'scroll', this.state.scrollUpdate)
+          dom.on(target, 'scroll', this.state.scrollUpdate)
         }
       }
     }
   }
 
   _removeEventListeners() {
-    off(window, 'resize', this.state.updateBoundFn)
+    dom.off(window, 'resize', this.state.updateBoundFn)
 
     if (this._options.boundariesElement !== 'window' && this.state.scrollTarget) {
-      off(this.state.scrollTarget, 'scroll', this.state.scrollUpdate)
+      dom.off(this.state.scrollTarget, 'scroll', this.state.scrollUpdate)
       this.state.scrollTarget = null
 
       // 移除祖先监听
@@ -842,7 +842,7 @@ class Popper {
         let targets = this.state.scrollTargets || []
 
         targets.forEach((target) => {
-          off(target, 'scroll', this.state.scrollUpdate)
+          dom.off(target, 'scroll', this.state.scrollUpdate)
         })
         this.state.scrollTargets = null
       }

@@ -11,7 +11,7 @@
  */
 
 import { setActiveItem, onChange, getChildrens, getItems, beforeDestroy, initPage } from './index'
-import { on } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = ['state', 'onChange', 'getChildrens']
 
@@ -44,7 +44,7 @@ export const renderless = (
   })
 
   onMounted(() => {
-    on(window, 'resize', api.initPage)
+    dom.on(window, 'resize', api.initPage)
 
     state.tabbarWidth = vm.$refs.tabbar && vm.$refs.tabbar.offsetWidth
     if (props.placeholder && props.fixed) {

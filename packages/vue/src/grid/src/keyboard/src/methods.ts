@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { arrayEach, arrayIndexOf, findTree, find } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue, setCellValue, getCell, getRowNodes, getCellNodeIndex } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
@@ -38,7 +38,7 @@ import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedo
 import { warn, Formatter } from '../../tools'
 
 const removeCellClass = (bodyRef, clazz) =>
-  arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
+  arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => dom.removeClass(elem, clazz))
 
 const getCellIndex = ({ cell, bodyList }) => {
   let trElem = cell.parentNode
@@ -358,11 +358,11 @@ export default {
 
     if (bodyElem) {
       let elem = bodyElem.querySelector('.col__selected')
-      removeClass(elem, 'col__selected')
+      dom.removeClass(elem, 'col__selected')
     }
 
     if (headerElem) {
-      arrayEach(headerElem.querySelectorAll('.col__title-selected'), (elem) => removeClass(elem, 'col__title-selected'))
+      arrayEach(headerElem.querySelectorAll('.col__title-selected'), (elem) => dom.removeClass(elem, 'col__title-selected'))
     }
 
     return this.$nextTick()
@@ -446,7 +446,7 @@ export default {
           cHeight += colNode.offsetHeight
         }
 
-        addClass(colNode, 'col__checked')
+        dom.addClass(colNode, 'col__checked')
       })
     })
 
@@ -518,7 +518,7 @@ export default {
 
     arrayEach(rowNodes, (rowNode) => {
       arrayEach(rowNode, (colNode) => {
-        addClass(colNode, 'col__index-checked')
+        dom.addClass(colNode, 'col__index-checked')
       })
     })
 
@@ -526,7 +526,7 @@ export default {
   },
   _clearIndexChecked() {
     let indexCheckeds = this.elemStore['main-body-list'].querySelectorAll('.col__index-checked')
-    let eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
+    let eachHandler = (colNode) => dom.removeClass(colNode, 'col__index-checked')
 
     arrayEach(indexCheckeds, eachHandler)
 
@@ -539,7 +539,7 @@ export default {
 
     arrayEach(rowNodes, (rowNode) => {
       arrayEach(rowNode, (colNode) => {
-        addClass(colNode, 'col__title-checked')
+        dom.addClass(colNode, 'col__title-checked')
       })
     })
 
@@ -549,7 +549,7 @@ export default {
     let headerElem = this.elemStore['main-header-list']
 
     if (headerElem) {
-      let eachHandler = (colNode) => removeClass(colNode, 'col__title-checked')
+      let eachHandler = (colNode) => dom.removeClass(colNode, 'col__title-checked')
 
       arrayEach(headerElem.querySelectorAll('.col__title-checked'), eachHandler)
     }
@@ -618,7 +618,7 @@ export default {
           cHeight += colNode.offsetHeight
         }
 
-        addClass(colNode, 'col__copyed')
+        dom.addClass(colNode, 'col__copyed')
       })
     })
 

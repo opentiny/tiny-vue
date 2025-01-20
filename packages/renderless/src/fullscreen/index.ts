@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const toggle =
   ({ state, api }) =>
@@ -35,8 +35,8 @@ export const request =
         state.isFullscreen = true
 
         api.onChangeFullScreen()
-        off(document, 'keyup', api.keypressCallback)
-        on(document, 'keyup', api.keypressCallback)
+        dom.off(document, 'keyup', api.keypressCallback)
+        dom.on(document, 'keyup', api.keypressCallback)
       } else {
         sf.off('change', api.fullScreenCallback)
         sf.on('change', api.fullScreenCallback)
@@ -71,7 +71,7 @@ export const exit =
         state.isFullscreen = false
 
         api.onChangeFullScreen()
-        off(document, 'keyup', api.keypressCallback)
+        dom.off(document, 'keyup', api.keypressCallback)
       } else {
         sf.exit()
       }

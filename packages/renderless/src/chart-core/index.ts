@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import {
   DEFAULT_COLORS,
   DEFAULT_THEME,
@@ -436,14 +436,14 @@ export const init =
 export const addResizeListener =
   ({ state, api }) =>
   () => {
-    on(window, 'resize', api.resizeHandler)
+    dom.on(window, 'resize', api.resizeHandler)
     state.once.onresize = true
   }
 
 export const removeResizeListener =
   ({ state, api }) =>
   () => {
-    off(window, 'resize', api.resizeHandler)
+    dom.off(window, 'resize', api.resizeHandler)
     state.once.onresize = false
   }
 

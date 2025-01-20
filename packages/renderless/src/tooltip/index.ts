@@ -12,7 +12,7 @@
 
 import type { ITooltipApi, ITooltipRenderlessParams, ITooltipState } from '@/types'
 import debounce from '../common/deps/debounce'
-import { on, off, addClass, removeClass } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const show =
   ({ api, state, props }: Pick<ITooltipRenderlessParams, 'api' | 'state' | 'props'>) =>
@@ -138,12 +138,12 @@ export const destroyed =
     state.showPopper = false
 
     if (reference && reference.nodeType === 1) {
-      off(document, 'click', api.handleDocumentClick)
-      off(reference, 'mouseenter', api.show)
-      off(reference, 'mouseleave', api.hide)
-      off(reference, 'focus', api.focusHandler)
-      off(reference, 'blur', api.handleBlur)
-      off(reference, 'click', api.removeFocusing)
+      dom.off(document, 'click', api.handleDocumentClick)
+      dom.off(reference, 'mouseenter', api.show)
+      dom.off(reference, 'mouseleave', api.hide)
+      dom.off(reference, 'focus', api.focusHandler)
+      dom.off(reference, 'blur', api.handleBlur)
+      dom.off(reference, 'click', api.removeFocusing)
     }
 
     if (vm.popperVM) {
@@ -160,9 +160,9 @@ export const debounceClose = ({ api, props }: Pick<ITooltipRenderlessParams, 'ap
 /* istanbul ignore next */
 export const watchFocusing = (state: ITooltipState) => (value: boolean) => {
   if (value) {
-    addClass(state.referenceElm, 'focusing')
+    dom.addClass(state.referenceElm, 'focusing')
   } else {
-    removeClass(state.referenceElm, 'focusing')
+    dom.removeClass(state.referenceElm, 'focusing')
   }
 }
 
@@ -205,12 +205,12 @@ export const bindEvent =
     referenceElm.setAttribute('aria-describedby', state.tooltipId)
     referenceElm.setAttribute('tabindex', state.tabindex.toString())
 
-    on(document, 'click', api.handleDocumentClick)
-    on(referenceElm, 'mouseenter', api.show)
-    on(referenceElm, 'mouseleave', api.hide)
-    on(referenceElm, 'focus', api.focusHandler)
-    on(referenceElm, 'blur', api.handleBlur)
-    on(referenceElm, 'click', api.removeFocusing)
+    dom.on(document, 'click', api.handleDocumentClick)
+    dom.on(referenceElm, 'mouseenter', api.show)
+    dom.on(referenceElm, 'mouseleave', api.hide)
+    dom.on(referenceElm, 'focus', api.focusHandler)
+    dom.on(referenceElm, 'blur', api.handleBlur)
+    dom.on(referenceElm, 'click', api.removeFocusing)
   }
 
 export const observeCallback =

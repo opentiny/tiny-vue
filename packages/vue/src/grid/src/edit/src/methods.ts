@@ -24,7 +24,7 @@
  */
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { hooks } from '@opentiny/vue-common'
-import { addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import browser from '@opentiny/vue-renderless/common/browser'
 import {
   isArray,
@@ -552,7 +552,7 @@ export default {
       return
     }
 
-    addClass(trElem.querySelector(`.${column.id}`), 'col__selected')
+    dom.addClass(trElem.querySelector(`.${column.id}`), 'col__selected')
   },
 
   /**

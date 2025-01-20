@@ -12,7 +12,7 @@
 
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
-import { on, off, isDisplayNone } from './dom'
+import { dom } from '@opentiny/utils'
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 import type Popper from './popper'
 
@@ -114,7 +114,7 @@ export default (options: IPopperInputParams) => {
     const { followReferenceHide = true } = props?.popperOptions || {}
     const { _popper: popper, _reference: reference } = popperInstance
 
-    if (followReferenceHide && isDisplayNone(reference)) {
+    if (followReferenceHide && dom.isDisplayNone(reference)) {
       popper.style.display = 'none'
     }
   }
@@ -173,7 +173,7 @@ export default (options: IPopperInputParams) => {
 
     state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
     followHide(state.popperJS)
-    on(state.popperElm, 'click', stop)
+    dom.on(state.popperElm, 'click', stop)
   }
 
   /** 第一次 updatePopper 的时候，才真正执行创建
@@ -217,7 +217,7 @@ export default (options: IPopperInputParams) => {
     if (remove) {
       // 当popper中嵌套popper时，内层popper被移除后不会重新创建，因此onDeactivated不将内层popper移除
       if (state.popperElm && state.popperElm.parentNode === document.body) {
-        off(state.popperElm, 'click', stop)
+        dom.off(state.popperElm, 'click', stop)
         state.popperElm.remove()
       }
     }

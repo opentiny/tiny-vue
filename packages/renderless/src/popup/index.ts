@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { touchStart, touchMove } from '../common/deps/touch'
 import { getScroller } from '../dropdown-menu'
 import { type } from '@opentiny/utils'
@@ -50,8 +50,8 @@ export const open =
     emit('open')
 
     if (props.lockScroll) {
-      on(document, 'touchstart', touchStart)
-      on(document, 'touchmove', api.onTouchMove)
+      dom.on(document, 'touchstart', touchStart)
+      dom.on(document, 'touchmove', api.onTouchMove)
 
       if (!state.context.lockCount) {
         document.body.classList.add(constants.OVERFLOWHIDDEN)
@@ -71,8 +71,8 @@ export const close =
     if (props.lockScroll) {
       state.context.lockCount--
 
-      off(document, 'touchstart', touchStart)
-      off(document, 'touchmove', api.onTouchMove)
+      dom.off(document, 'touchstart', touchStart)
+      dom.off(document, 'touchmove', api.onTouchMove)
 
       if (!state.context.lockCount) {
         document.body.classList.remove(constants.OVERFLOWHIDDEN)

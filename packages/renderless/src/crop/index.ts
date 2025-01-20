@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { toFileSize } from '../common/string'
 
 export const watchImageSrc = (state) => (value) => (state.src = value)
@@ -19,9 +19,9 @@ export const watchVisible =
   ({ api, state }) =>
   (value) => {
     if (value) {
-      on(document.body, 'keydown', api.shortcutKeys)
+      dom.on(document.body, 'keydown', api.shortcutKeys)
     } else {
-      off(document.body, 'keydown', api.shortcutKeys)
+      dom.off(document.body, 'keydown', api.shortcutKeys)
     }
 
     state.cropvisible = value

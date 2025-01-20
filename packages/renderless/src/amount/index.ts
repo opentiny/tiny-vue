@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { formatNumber } from '../common/decimal'
 import { getMiniDecimal, equalsDecimal } from '../common/bigInt'
 
@@ -245,9 +245,9 @@ export const handelClick =
 
 export const addOutSideEvent = (api) => (visible) => {
   if (visible) {
-    on(document, 'click', api.handelClick)
+    dom.on(document, 'click', api.handelClick)
   } else {
-    off(document, 'click', api.handelClick)
+    dom.off(document, 'click', api.handelClick)
   }
 }
 

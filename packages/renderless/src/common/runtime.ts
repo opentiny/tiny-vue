@@ -25,7 +25,6 @@ import * as dataset from './dataset'
 import afterLeave from './deps/after-leave'
 import clickoutside from './deps/clickoutside'
 import debounce from './deps/debounce'
-import * as dom from './deps/dom'
 import popper from './deps/popper'
 import popupManager from './deps/popup-manager'
 import * as resizeEvent from './deps/resize-event'
@@ -52,7 +51,6 @@ const Renderless = {
   afterLeave,
   dataset,
   clickoutside,
-  dom,
   debounce,
   popper,
   resizeEvent,
@@ -81,7 +79,6 @@ export {
   afterLeave,
   clickoutside,
   debounce,
-  dom,
   popper,
   popupManager,
   resizeEvent,

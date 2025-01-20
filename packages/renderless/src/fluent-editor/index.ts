@@ -2,7 +2,7 @@ import { extend } from '../common/object'
 import { type as _type } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =
@@ -149,13 +149,13 @@ export const keyDownHandler =
 export const addFullscreenchange =
   ({ api }) =>
   () => {
-    on(document, 'keydown', api.keyDownHandler)
+    dom.on(document, 'keydown', api.keyDownHandler)
   }
 
 export const removeFullscreenchange =
   ({ api }) =>
   () => {
-    off(document, 'keydown', api.keyDownHandler)
+    dom.off(document, 'keydown', api.keyDownHandler)
 
     api.keyDownHandler = null
   }
@@ -163,15 +163,15 @@ export const removeFullscreenchange =
 export const handleComposition =
   ({ state, api }) =>
   () => {
-    on(state.quill.root, 'compositionstart', api.handleCompositionstart)
-    on(state.quill.root, 'compositionend', api.handleCompositionend)
+    dom.on(state.quill.root, 'compositionstart', api.handleCompositionstart)
+    dom.on(state.quill.root, 'compositionend', api.handleCompositionend)
   }
 
 export const removeHandleComposition =
   ({ state, api }) =>
   () => {
-    off(state.quill.root, 'compositionstart', api.handleCompositionstart)
-    off(state.quill.root, 'compositionend', api.handleCompositionend)
+    dom.off(state.quill.root, 'compositionstart', api.handleCompositionstart)
+    dom.off(state.quill.root, 'compositionend', api.handleCompositionend)
   }
 
 // 开始输入中文

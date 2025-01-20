@@ -19,7 +19,7 @@ import {
   mouseMoveDocumentHandler,
   mouseUpDocumentHandler
 } from './index'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -44,7 +44,7 @@ export const renderless = (props, { computed, onUnmounted, reactive }, { vm, par
     mouseMoveDocumentHandler: mouseMoveDocumentHandler({ vm, state })
   }
 
-  onUnmounted(() => off(document, 'mouseup', api.mouseUpDocumentHandler))
+  onUnmounted(() => dom.off(document, 'mouseup', api.mouseUpDocumentHandler))
 
   return Object.assign(api, {
     startDrag: startDrag({ api, on, state }),

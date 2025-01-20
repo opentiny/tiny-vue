@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 // 上拉触发事件超时时间
 const PULL_UP_TIME_OUT = 300
@@ -117,10 +117,10 @@ export const mountedHandler =
   () => {
     const track = refs.track
 
-    on(track, 'touchstart', api.onTouchstart)
-    on(track, 'touchmove', api.onTouchmove)
-    on(track, 'touchend', api.onTouchend)
-    on(track, 'scroll', api.onScroll)
+    dom.on(track, 'touchstart', api.onTouchstart)
+    dom.on(track, 'touchmove', api.onTouchmove)
+    dom.on(track, 'touchend', api.onTouchend)
+    dom.on(track, 'scroll', api.onScroll)
   }
 
 export const beforeUnmountHandler =
@@ -128,10 +128,10 @@ export const beforeUnmountHandler =
   () => {
     const track = refs.track
 
-    off(track, 'touchstart', api.onTouchstart)
-    off(track, 'touchmove', api.onTouchmove)
-    off(track, 'touchend', api.onTouchend)
-    off(track, 'scroll', api.onScroll)
+    dom.off(track, 'touchstart', api.onTouchstart)
+    dom.off(track, 'touchmove', api.onTouchmove)
+    dom.off(track, 'touchend', api.onTouchend)
+    dom.off(track, 'scroll', api.onScroll)
   }
 
 export const handlerModelValue =

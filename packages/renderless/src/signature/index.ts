@@ -1,4 +1,4 @@
-import { preventDefault } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 const getOffsetPosition = ({ touch, state }) => {
   let offsetY = 0
@@ -91,7 +91,7 @@ export const touchMove =
       return false
     }
 
-    preventDefault(e)
+    dom.preventDefault(e)
 
     const touch = event.touches[0]
 
@@ -120,7 +120,7 @@ export const touchEnd =
   ({ emit, state }) =>
   (event) => {
     state.isDrawing = false
-    preventDefault(event)
+    dom.preventDefault(event)
     emit('end')
   }
 

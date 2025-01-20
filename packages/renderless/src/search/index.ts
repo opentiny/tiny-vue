@@ -10,7 +10,7 @@
  *
  */
 import type { ISearchRenderlessParams, ISearchValue } from '@/types'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 import { type } from '@opentiny/utils'
 
@@ -123,14 +123,13 @@ export const formatSearchTypes = (searchTypes: ISearchValue[]): ISearchValue[] =
 export const mounted =
   ({ api }: Pick<ISearchRenderlessParams, 'api'>) =>
   () => {
-    on(document.body, 'click', api.clickOutside)
+    dom.on(document.body, 'click', api.clickOutside)
   }
 
 /* istanbul ignore next */
 export const beforeDestroy =
   ({ api }: Pick<ISearchRenderlessParams, 'api'>) =>
   () => {
-    off(document.body, 'click', api.clickOutside)
   }
 
 export const clear =

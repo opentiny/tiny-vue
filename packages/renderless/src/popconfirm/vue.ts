@@ -4,7 +4,7 @@ import type {
   IPopconfirmRenderlessParamUtils,
   ISharedRenderlessParamHooks
 } from '@/types'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { show, hide, confirm, handleEmit, handleDocumentClick } from './index'
 
 export const api = ['state', 'show', 'hide', 'confirm', 'handleEmit']
@@ -34,10 +34,10 @@ export const renderless = (
   })
 
   onMounted(() => {
-    props.closeOnClickOutside && on(document, 'click', api.handleDocumentClick)
+    props.closeOnClickOutside && dom.on(document, 'click', api.handleDocumentClick)
   })
   onBeforeUnmount(() => {
-    props.closeOnClickOutside && off(document, 'click', api.handleDocumentClick)
+    props.closeOnClickOutside && dom.off(document, 'click', api.handleDocumentClick)
   })
 
   return api

@@ -16,7 +16,7 @@ import { getDataset } from '../common/dataset'
 import { isNullOrEmpty } from '../common/string'
 import { isEqual } from '../common/object'
 import { eachTree } from '../grid/static'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const computedGetTitle = ({ constants, props, t }) => props.title || t(constants.TITLE)
 
@@ -777,10 +777,10 @@ export const doSuggesst =
 
     let query = event
 
-    off(window, 'resize', api.updateSuggestWidth)
-    off(document, 'click', api.closeSuggestPanel)
-    on(document, 'click', api.closeSuggestPanel)
-    on(window, 'resize', api.updateSuggestWidth)
+    dom.off(window, 'resize', api.updateSuggestWidth)
+    dom.off(document, 'click', api.closeSuggestPanel)
+    dom.on(document, 'click', api.closeSuggestPanel)
+    dom.on(window, 'resize', api.updateSuggestWidth)
 
     api.updateSuggestWidth()
 
@@ -838,8 +838,8 @@ export const closeSuggestPanel =
     }
 
     if (!keep) {
-      off(document, 'click', api.closeSuggestPanel)
-      off(window, 'resize', api.updateSuggestWidth)
+      dom.off(document, 'click', api.closeSuggestPanel)
+      dom.off(window, 'resize', api.updateSuggestWidth)
 
       api.handleConfirm(state.closeSuggestPanelInvoker === 'openDialog')
       state.closeSuggestPanelInvoker = null

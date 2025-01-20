@@ -1,7 +1,7 @@
-import { isServer } from './dom'
+import { dom } from '@opentiny/utils'
 
 function getIsIOS() {
-  if (isServer) return false
+  if (dom.isServer) return false
   return (
     window.navigator &&
     window.navigator.userAgent &&

@@ -11,23 +11,23 @@
  */
 import afterLeave from '@opentiny/vue-renderless/common/deps/after-leave'
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { addClass, getStyle, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import Loading from './index'
 import { hooks, directive, createComponent, appProperties } from '@opentiny/vue-common'
 import { constants, defaults } from './service'
 
 const insertDom = (parent, el, binding) => {
-  if (!el.domVisible && getStyle(el, 'display') !== 'none' && getStyle(el, 'visibility') !== 'hidden') {
+  if (!el.domVisible && dom.getStyle(el, 'display') !== 'none' && dom.getStyle(el, 'visibility') !== 'hidden') {
     Object.keys(el.maskStyle).forEach((property) => {
       el.mask.style[property] = el.maskStyle[property]
     })
 
     if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed') {
-      addClass(parent, constants.PARENT_RELATIVE_CLS)
+      dom.addClass(parent, constants.PARENT_RELATIVE_CLS)
     }
 
     if (binding.modifiers.fullscreen && binding.modifiers.lock) {
-      addClass(parent, constants.PARENT_HIDDEN_CLS)
+      dom.addClass(parent, constants.PARENT_HIDDEN_CLS)
     }
 
     el.domVisible = true
@@ -51,7 +51,7 @@ const insertDom = (parent, el, binding) => {
 
 const appendLoadingToBody = (el, binding) => {
   const clientRect = el.getBoundingClientRect()
-  el.originalPosition = getStyle(document.body, 'position')
+  el.originalPosition = dom.getStyle(document.body, 'position')
   const direction = ['top', 'left']
 
   direction.forEach((property) => {
@@ -60,7 +60,7 @@ const appendLoadingToBody = (el, binding) => {
       clientRect[property] +
       document.body[scroll] +
       document.documentElement[scroll] -
-      parseInt(getStyle(document.body, `margin-${property}`), 10) +
+      parseInt(dom.getStyle(document.body, `margin-${property}`), 10) +
       'px'
   })
   const size = ['height', 'width']
@@ -76,19 +76,19 @@ const toggleLoading = (el, binding, maskInstance) => {
   if (binding.value) {
     hooks.nextTick(() => {
       if (binding.modifiers.fullscreen) {
-        el.originalPosition = getStyle(document.body, 'position')
-        el.originalOverflow = getStyle(document.body, 'overflow')
+        el.originalPosition = dom.getStyle(document.body, 'position')
+        el.originalOverflow = dom.getStyle(document.body, 'overflow')
         el.maskStyle.zIndex = PopupManager.nextZIndex()
 
-        addClass(el.mask, constants.IS_FULLSCREEN_CLS)
+        dom.addClass(el.mask, constants.IS_FULLSCREEN_CLS)
         insertDom(document.body, el, binding)
       } else {
-        removeClass(el.mask, constants.IS_FULLSCREEN_CLS)
+        dom.removeClass(el.mask, constants.IS_FULLSCREEN_CLS)
 
         if (binding.modifiers.body) {
           appendLoadingToBody(el, binding)
         } else {
-          el.originalPosition = getStyle(el, 'position')
+          el.originalPosition = dom.getStyle(el, 'position')
 
           insertDom(el, el, binding)
         }
@@ -106,8 +106,8 @@ const toggleLoading = (el, binding, maskInstance) => {
 
         el.domVisible = false
 
-        removeClass(target, constants.PARENT_RELATIVE_CLS)
-        removeClass(target, constants.PARENT_HIDDEN_CLS)
+        dom.removeClass(target, constants.PARENT_RELATIVE_CLS)
+        dom.removeClass(target, constants.PARENT_HIDDEN_CLS)
 
         maskInstance.hiding = false
       },

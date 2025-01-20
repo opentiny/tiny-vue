@@ -23,8 +23,9 @@
  *
  */
 import { findIndexOf } from '@opentiny/vue-renderless/grid/static/'
-import { hasChildrenList, getDomNode, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { hasChildrenList, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { Menus } from '../../adapter'
+import { dom } from '@opentiny/utils'
 
 let getSelectItem = (subList) => {
   for (let i = 0; i < subList.length; i++) {
@@ -182,7 +183,7 @@ export default {
         return
       }
       event.preventDefault()
-      let { scrollLeft, scrollTop, visibleHeight, visibleWidth } = getDomNode()
+      let { scrollLeft, scrollTop, visibleHeight, visibleWidth } = dom.getDomNode()
       let { clientX, clientY } = event
       let left = clientX + scrollLeft
       let top = clientY + scrollTop

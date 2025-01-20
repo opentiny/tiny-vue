@@ -21,10 +21,8 @@ import type {
 import type { BigIntDecimal } from '../common/bigInt'
 import { formatNumber, roundFixed } from '../common/decimal'
 import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
-import { type } from '@opentiny/utils'
-
+import { type, dom } from '@opentiny/utils'
 import { MOUSEDELTA } from '../common'
-import { on, off } from '../common/deps/dom'
 
 export const initService = (
   service: INumericRenderlessParamUtils['service']
@@ -412,7 +410,7 @@ export const mounted =
       setTimeout(() => (state.pasting = false))
     }
 
-    on(innerInput, 'paste', state.onPase)
+    dom.on(innerInput, 'paste', state.onPase)
   }
 
 export const unmounted =
@@ -420,7 +418,7 @@ export const unmounted =
   (): void => {
     const innerInput = parent.$el.querySelector('input')
 
-    off(innerInput, 'paste', state.onPase)
+    dom.off(innerInput, 'paste', state.onPase)
   }
 
 export const updated =

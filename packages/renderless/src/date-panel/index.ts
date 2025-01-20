@@ -30,7 +30,7 @@ import {
   extractTimeFormat
 } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { getDateWithNewTimezone, getLocalTimezone } from '../common/date'
 import { fillChar } from '../common/string'
 
@@ -400,14 +400,14 @@ export const resetView =
   }
 
 export const handleEnter = (api) => () => {
-  on(document.body, 'keydown', api.handleKeydown)
+  dom.on(document.body, 'keydown', api.handleKeydown)
 }
 
 export const handleLeave =
   ({ api, emit }) =>
   () => {
     emit('dodestroy')
-    off(document.body, 'keydown', api.handleKeydown)
+    dom.off(document.body, 'keydown', api.handleKeydown)
   }
 
 export const handleKeydown =

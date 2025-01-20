@@ -24,7 +24,7 @@
  */
 
 import { getRowid } from './common'
-import { hasClass, getDomNode } from '../../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { getActualTarget } from '../../common/event'
 import { arrayIndexOf } from '../static'
 
@@ -193,7 +193,7 @@ export const getEventTargetNode = (event, container, queryCls) => {
   let target = getActualTarget(event)
 
   while (target && target.nodeType && target !== document) {
-    if (queryCls && (hasClass(target, queryCls) || hasDataTag(target, queryCls))) {
+    if (queryCls && (dom.hasClass(target, queryCls) || hasDataTag(target, queryCls))) {
       targetEl = target
     } else if (target === container) {
       return {
@@ -238,7 +238,7 @@ export const getOffsetPos = (el, container) => getNodeOffset(el, container, { le
 
 export const getAbsolutePos = (el) => {
   const bounding = el.getBoundingClientRect()
-  const { scrollTop, scrollLeft } = getDomNode()
+  const { scrollTop, scrollLeft } = dom.getDomNode()
 
   return {
     top: scrollTop + bounding.top,
@@ -310,5 +310,3 @@ export const getCell = ($table, { row, column }) =>
       )
     })
   })
-
-export { getDomNode }

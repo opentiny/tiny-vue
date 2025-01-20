@@ -56,7 +56,7 @@ import {
   handleTextareaMouseUp
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = [
   'blur',
@@ -407,7 +407,7 @@ export const renderless = (
 
     if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
       api.setShowMoreBtn(true)
-      on(window, 'resize', api.setShowMoreBtn)
+      dom.on(window, 'resize', api.setShowMoreBtn)
     }
 
     if (vm.$attrs.autofocus) {
@@ -417,7 +417,7 @@ export const renderless = (
 
   onBeforeUnmount(() => {
     if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
-      off(window, 'resize', api.setShowMoreBtn)
+      dom.off(window, 'resize', api.setShowMoreBtn)
     }
   })
 

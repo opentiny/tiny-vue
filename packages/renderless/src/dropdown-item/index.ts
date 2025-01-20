@@ -16,7 +16,7 @@ import type {
   IDropdownItemTag,
   IDropdownItemOptionStyle
 } from '@/types'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const getTitle = (props: IDropdownItemRenderlessParams['props']) => (): string => {
   if (props.title) {
@@ -31,7 +31,7 @@ export const getTitle = (props: IDropdownItemRenderlessParams['props']) => (): s
 export const bindScroll =
   ({ api, parent }: Pick<IDropdownItemRenderlessParams, 'api' | 'parent'>) =>
   (value): void => {
-    const action = value ? on : off
+    const action = value ? dom.on : dom.off
     action(parent.state.scroller, 'scroll', api.onScroll, true)
   }
 

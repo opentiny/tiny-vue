@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const generateFixedClassName = ({ $table, bodyElem, leftList, rightList }) => {
   if (!$table || !bodyElem) {
@@ -9,9 +9,9 @@ export const generateFixedClassName = ({ $table, bodyElem, leftList, rightList }
 
   if (leftList.length) {
     if (scrollLeft === 0) {
-      removeClass($table.$el, 'tiny-grid-fixed__left')
+      dom.removeClass($table.$el, 'tiny-grid-fixed__left')
     } else {
-      addClass($table.$el, 'tiny-grid-fixed__left')
+      dom.addClass($table.$el, 'tiny-grid-fixed__left')
     }
   }
 
@@ -19,9 +19,9 @@ export const generateFixedClassName = ({ $table, bodyElem, leftList, rightList }
     const isShowRightFixed = bodyElem.scrollWidth - bodyElem.clientWidth - bodyElem.scrollLeft
 
     if (isShowRightFixed === 0) {
-      removeClass($table.$el, 'tiny-grid-fixed__right')
+      dom.removeClass($table.$el, 'tiny-grid-fixed__right')
     } else {
-      addClass($table.$el, 'tiny-grid-fixed__right')
+      dom.addClass($table.$el, 'tiny-grid-fixed__right')
     }
   }
 }

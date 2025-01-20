@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { addClass as addCls, removeClass as rmvCls } from '@opentiny/vue-renderless/common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { $prefix, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
@@ -26,7 +26,7 @@ export default defineComponent({
     return {
       on: {
         beforeEnter(elem) {
-          addCls(elem, 'collapse-transition')
+          dom.addClass(elem, 'collapse-transition')
 
           if (!elem.dataset) elem.dataset = {}
 
@@ -54,7 +54,7 @@ export default defineComponent({
         },
 
         afterEnter(elem) {
-          rmvCls(elem, 'collapse-transition')
+          dom.removeClass(elem, 'collapse-transition')
 
           elem.style.height = ''
           elem.style.overflow = elem.dataset.oldOverflow
@@ -73,7 +73,7 @@ export default defineComponent({
         leave(elem) {
           if (elem.scrollHeight === 0) return
 
-          addCls(elem, 'collapse-transition')
+          dom.addClass(elem, 'collapse-transition')
 
           elem.style.transitionProperty = 'height'
           elem.style.height = 0
@@ -82,7 +82,7 @@ export default defineComponent({
         },
 
         afterLeave(elem) {
-          rmvCls(elem, 'collapse-transition')
+          dom.removeClass(elem, 'collapse-transition')
 
           elem.style.height = ''
           elem.style.overflow = elem.dataset.oldOverflow

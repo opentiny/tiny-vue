@@ -1,5 +1,4 @@
-import { on, off, isServer } from './dom'
-
+import { dom } from '@opentiny/utils'
 export const onMountedOrActivated =
   ({ onMounted, onActivated, nextTick }) =>
   (hook) => {
@@ -15,7 +14,7 @@ export const onMountedOrActivated =
 export const useEventListener =
   ({ unref, isRef, watch, nextTick, onMounted, onUnmounted, onActivated, onDeactivated }) =>
   (type, listener, options = {}) => {
-    if (isServer) return
+    if (dom.isServer) return
 
     const { target = window, passive = false, capture = false } = options
 
@@ -28,7 +27,7 @@ export const useEventListener =
       const element = unref(target)
 
       if (element && !attached) {
-        on(element, type, listener, { capture, passive })
+        dom.on(element, type, listener, { capture, passive })
         attached = true
       }
     }
@@ -39,7 +38,7 @@ export const useEventListener =
       const element = unref(target)
 
       if (element && attached) {
-        off(element, type, listener, { capture, passive })
+        dom.off(element, type, listener, { capture, passive })
         attached = false
       }
     }

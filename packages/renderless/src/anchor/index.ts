@@ -10,7 +10,7 @@
  *
  */
 import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
-import { addClass, removeClass } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 const getEleMentBySelect = (parent, selector) =>
   selector?.startsWith('#') ? document.getElementById(selector.slice(1)) : parent.querySelector(selector)
@@ -30,9 +30,9 @@ const setMarkClass = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 
   const { markClass } = props
   const activeContentEl = getEleMentBySelect(scrollContainer, `${state.currentLink}`)
   if (markClass) {
-    addClass(activeContentEl, markClass)
+    dom.addClass(activeContentEl, markClass)
     setTimeout(() => {
-      removeClass(activeContentEl, markClass)
+      dom.removeClass(activeContentEl, markClass)
     }, 1000)
   }
 }
@@ -70,7 +70,7 @@ const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, '
 
   const offsetTop = linkTitleClientTop - anchorClientTop
   const offsetLeft = linkTitleClientLeft - anchorClientLeft
-  addClass(skidRef, 'tiny-anchor-orbit-skid--active')
+  dom.addClass(skidRef, 'tiny-anchor-orbit-skid--active')
   skidRef.style.transform = `translateY(${offsetTop}px)`
   skidRef.style.height = `${offsetHeight}px`
   if (maskRef) {

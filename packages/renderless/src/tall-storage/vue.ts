@@ -11,7 +11,7 @@
  */
 
 import { mousedown, selectItem, keydown } from './index'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = ['state', 'mousedown', 'selectItem']
 
@@ -35,10 +35,10 @@ export const renderless = (props, { onUnmounted, reactive, watch }, { emit }) =>
 
   onUnmounted(() => {
     state.hoverValue = ''
-    off(document, 'keydown', api.keydown)
+    dom.off(document, 'keydown', api.keydown)
   })
 
-  on(document, 'keydown', api.keydown)
+  dom.on(document, 'keydown', api.keydown)
 
   return api
 }

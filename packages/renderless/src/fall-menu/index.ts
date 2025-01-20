@@ -11,7 +11,7 @@
  */
 
 import { REFRESH_INTERVAL } from '../common'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 import { xss } from '@opentiny/utils'
 import type { IFallMenuApi, IFallMenuState, IFallMenuProps, IPagerData } from '@/types'
@@ -117,11 +117,11 @@ export const mounted =
   ({ api }) =>
   () => {
     api.computePx()
-    on(window, 'resize', api.reRender)
+    dom.on(window, 'resize', api.reRender)
   }
 
 /* istanbul ignore next */
-export const beforeDestroy = (api) => () => off(window, 'resize', api.reRender)
+export const beforeDestroy = (api) => () => dom.off(window, 'resize', api.reRender)
 
 export const computeLeft =
   ({ state }) =>

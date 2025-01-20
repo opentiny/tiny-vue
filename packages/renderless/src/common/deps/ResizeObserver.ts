@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from './dom'
+import { dom } from '@opentiny/utils'
 import { isBrowser } from '../browser'
 
 const MapShim = (function () {
@@ -219,8 +219,8 @@ const ResizeObserverController = (function () {
       return
     }
 
-    on(document, 'transitionend', this.onTransitionEnd_)
-    on(window, 'resize', this.refresh)
+    dom.on(document, 'transitionend', this.onTransitionEnd_)
+    dom.on(window, 'resize', this.refresh)
 
     if (mutationObserverSupported) {
       this.mutationsObserver_ = new MutationObserver(this.refresh)
@@ -234,7 +234,7 @@ const ResizeObserverController = (function () {
 
       this.mutationsObserver_.observe(document, options)
     } else {
-      on(document, 'DOMSubtreeModified', this.refresh)
+      dom.on(document, 'DOMSubtreeModified', this.refresh)
       this.mutationEventsAdded_ = true
     }
 
@@ -246,13 +246,13 @@ const ResizeObserverController = (function () {
       return
     }
 
-    off(document, 'transitionend', this.onTransitionEnd_)
-    off(window, 'resize', this.refresh)
+    dom.off(document, 'transitionend', this.onTransitionEnd_)
+    dom.off(window, 'resize', this.refresh)
 
     this.mutationsObserver_ && this.mutationsObserver_.disconnect()
 
     if (this.mutationEventsAdded_) {
-      off(document, 'DOMSubtreeModified', this.refresh)
+      dom.off(document, 'DOMSubtreeModified', this.refresh)
     }
 
     this.mutationsObserver_ = null

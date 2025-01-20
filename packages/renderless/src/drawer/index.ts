@@ -1,5 +1,5 @@
 import debounce from '../common/deps/debounce'
-import { addClass, removeClass } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import type { IDrawerState, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils, IDrawerRenderlessParams } from '@/types'
 
 export const computedWidth =
@@ -169,9 +169,9 @@ export const removeDragEvent =
   }
 
 export const showScrollbar = (lockScrollClass: string) => () => {
-  addClass(document.body, lockScrollClass)
+  dom.addClass(document.body, lockScrollClass)
 }
 
 export const hideScrollbar = (lockScrollClass: string) => () => {
-  removeClass(document.body, lockScrollClass)
+  dom.removeClass(document.body, lockScrollClass)
 }

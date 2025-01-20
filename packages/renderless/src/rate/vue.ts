@@ -27,7 +27,7 @@ import {
   computedActiveColor,
   computedActiveClass
 } from './index'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -83,13 +83,13 @@ export const useChangeValue = ({
   }
 
   onMounted(() => {
-    on(document, 'mousemove', updateMousePostion)
-    on(document, 'mouseleave', api.resetCurrentValue)
+    dom.on(document, 'mousemove', updateMousePostion)
+    dom.on(document, 'mouseleave', api.resetCurrentValue)
   })
 
   onUnmounted(() => {
-    off(document, 'mousemove', updateMousePostion)
-    off(document, 'mouseleave', api.resetCurrentValue)
+    dom.off(document, 'mousemove', updateMousePostion)
+    dom.off(document, 'mouseleave', api.resetCurrentValue)
     state.mouseTarget = null
   })
 

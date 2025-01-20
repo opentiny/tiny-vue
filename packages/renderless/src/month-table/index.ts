@@ -11,7 +11,7 @@
  */
 
 import { toDate } from '../common/date'
-import { hasClass } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { range as rangeDate, getDayCountOfMonth, nextDate } from '../common/deps/date-util'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
 import { DATEPICKER } from '../common'
@@ -185,7 +185,7 @@ export const handleMonthTableClick =
       return
     }
 
-    if (hasClass(target, 'disabled')) {
+    if (dom.hasClass(target, 'disabled')) {
       return
     }
 

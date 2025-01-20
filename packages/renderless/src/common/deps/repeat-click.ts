@@ -10,7 +10,7 @@
  *
  */
 
-import { on, once } from './dom'
+import { dom } from '@opentiny/utils'
 
 export default (el, binding) => {
   // fix issue#919
@@ -32,13 +32,13 @@ export default (el, binding) => {
     interval = null
   }
 
-  on(el, 'mousedown', (e) => {
+  dom.on(el, 'mousedown', (e) => {
     if (e.button !== 0) {
       return
     }
 
     startTime = Date.now()
-    once(document, 'mouseup', clear)
+    dom.once(document, 'mouseup', clear)
     clearInterval(interval)
     interval = setInterval(handler, LONG_PRESS_INTERVAL)
   })

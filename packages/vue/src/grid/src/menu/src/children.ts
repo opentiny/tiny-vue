@@ -22,7 +22,8 @@
  * SOFTWARE.
  *
  */
-import { getFuncText, getDomNode } from '@opentiny/vue-renderless/grid/utils'
+import { getFuncText } from '@opentiny/vue-renderless/grid/utils'
+import { dom } from '@opentiny/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
@@ -89,7 +90,7 @@ export default defineComponent({
         this.$nextTick(() => {
           const { tableInstance, $el } = this
           const { width, height, bottom } = $el.getBoundingClientRect()
-          const { visibleHeight, visibleWidth } = getDomNode()
+          const { visibleHeight, visibleWidth } = dom.getDomNode()
           const ctxElem = tableInstance.$refs.ctxWrapper.$el
           const target = tableInstance.ctxMenuStore.target
           const { width: ctxWidth, right: ctxRight } = ctxElem.getBoundingClientRect()

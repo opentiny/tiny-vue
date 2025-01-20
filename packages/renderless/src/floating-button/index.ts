@@ -1,4 +1,4 @@
-import { off, on } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const getClientWidth =
   ({ state, vm }) =>
@@ -35,9 +35,9 @@ export const clearTimer =
   () => {
     clearTimeout(state.initTimer)
 
-    off(window, 'resize', api.getClientWidth)
-    off(window, 'scroll', api.onScroll)
-    off(window, 'scroll', api.getScrollListener)
+    dom.off(window, 'resize', api.getClientWidth)
+    dom.off(window, 'scroll', api.onScroll)
+    dom.off(window, 'scroll', api.getScrollListener)
   }
 
 export const getScrollListener =
@@ -147,5 +147,5 @@ export const mounted = (api) => () => {
   api.getClientWidth()
   api.onScroll()
   api.getExpandList()
-  on(window, 'resize', api.getClientWidth)
+  dom.on(window, 'resize', api.getClientWidth)
 }

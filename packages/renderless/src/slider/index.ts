@@ -12,16 +12,16 @@
 
 import { KEY_CODE } from '../common'
 import { emitEvent } from '../common/event'
-import { on, off, hasClass } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import { toNumber } from '../common/string'
 import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
 
 export const bindEvent = (api: ISliderApi) => () => {
-  on(window, 'resize', api.bindResize)
+  dom.on(window, 'resize', api.bindResize)
   api.bindResize()
 }
 
-export const unBindEvent = (api: ISliderApi) => () => off(window, 'resize', api.bindResize)
+export const unBindEvent = (api: ISliderApi) => () => dom.off(window, 'resize', api.bindResize)
 
 export const bindResize =
   ({ vm, props, state }: Pick<ISliderRenderlessParams, 'vm' | 'props' | 'state'>) =>
@@ -105,12 +105,12 @@ export const bindMouseDown =
       isClickBar = name === constants.PC_SLIDER_CLS || name === constants.PC_RANGE_CLS
       isClickBtn = name === constants.PC_BUTTON_CLS
     } else {
-      isClickBar = hasClass(handleEl, constants.sliderCls(mode)) || hasClass(handleEl, constants.rangeCls(mode))
+      isClickBar = dom.hasClass(handleEl, constants.sliderCls(mode)) || dom.hasClass(handleEl, constants.rangeCls(mode))
       isClickBtn =
-        hasClass(handleEl, constants.buttonCls(mode)) ||
-        hasClass(handleEl, constants.leftSvgCls(mode)) ||
-        hasClass(handleEl, constants.rightSvgCls(mode))
-      isClickLabel = hasClass(handleEl, constants.PC_LABEL_CLS)
+        dom.hasClass(handleEl, constants.buttonCls(mode)) ||
+        dom.hasClass(handleEl, constants.leftSvgCls(mode)) ||
+        dom.hasClass(handleEl, constants.rightSvgCls(mode))
+      isClickLabel = dom.hasClass(handleEl, constants.PC_LABEL_CLS)
     }
     if (state.disabled || (!isClickBtn && !isClickBar && !isClickLabel)) {
       state.activeIndex = -1
@@ -119,10 +119,10 @@ export const bindMouseDown =
 
     api.bindResize()
 
-    on(window, 'mouseup', api.bindMouseUp)
-    on(window, 'mousemove', api.bindMouseMove)
-    on(window, 'touchend', api.bindMouseUp)
-    on(window, 'touchmove', api.bindMouseMove)
+    dom.on(window, 'mouseup', api.bindMouseUp)
+    dom.on(window, 'mousemove', api.bindMouseMove)
+    dom.on(window, 'touchend', api.bindMouseUp)
+    dom.on(window, 'touchmove', api.bindMouseMove)
 
     state.isDrag = isClickBtn
     isClickBtn && (state.activeIndex = api.getActiveButtonIndex(event))
@@ -176,10 +176,10 @@ export const bindMouseUp =
     }
     state.isDrag = false
 
-    off(window, 'mouseup', api.bindMouseUp)
-    off(window, 'mousemove', api.bindMouseMove)
-    off(window, 'touchend', api.bindMouseUp)
-    off(window, 'touchmove', api.bindMouseMove)
+    dom.off(window, 'mouseup', api.bindMouseUp)
+    dom.off(window, 'mousemove', api.bindMouseMove)
+    dom.off(window, 'touchend', api.bindMouseUp)
+    dom.off(window, 'touchmove', api.bindMouseMove)
 
     emit('stop', api.getActiveButtonValue())
 
@@ -261,7 +261,7 @@ const getActiveButtonIndexFlag = ({
   } else {
     return (
       state.isDouble &&
-      (hasClass(previousElementSibling, cls) ||
+      (dom.hasClass(previousElementSibling, cls) ||
         (event.target as SVGAElement).className.baseVal === 'tiny-slider-right-svg')
     )
   }

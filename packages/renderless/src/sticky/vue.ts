@@ -1,7 +1,8 @@
 import { useRect } from '../common/deps/useRect'
 import { useWindowSize } from '../common/deps/useWindowSize'
 import { useEventListener } from '../common/deps/useEventListener'
-import { useScrollParent } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
+
 import { computedRootStyle, computedStickyStyle, updateRoot, unitToPx, getRootRect, getTarget } from './index'
 
 export const api = ['state']
@@ -38,7 +39,7 @@ export const renderless = (props, hooks, { vm, emit }) => {
     getRootRect: getRootRect({ vm, state, api }),
     getTarget: getTarget({ props, state, api }),
     useEventListener: useEventListener(hooks),
-    useScrollParent: useScrollParent(hooks),
+    useScrollParent: dom.useScrollParent(hooks),
     useWindowSize: useWindowSize(ref),
     useRect: useRect(unref),
     unitToPx: unitToPx()

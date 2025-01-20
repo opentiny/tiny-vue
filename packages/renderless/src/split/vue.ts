@@ -24,7 +24,7 @@ import {
   buttonRightBottomClick,
   computeOffset
 } from './index'
-import { on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const api = ['state', 'handleMousedown', 'buttonMousedown', 'buttonLeftTopClick', 'buttonRightBottomClick']
 
@@ -60,7 +60,7 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants, design
     getleftTopMin: getleftTopMin(state),
     getrightBottomMin: getrightBottomMin(state),
     ...getUseOffset.api,
-    handleUp: handleUp({ api, emit, off, state }),
+    handleUp: handleUp({ api, emit, dom.off, state }),
     getAnotherOffset: getAnotherOffset({ vm, state }),
     handleMove: handleMove({ api, emit, props, vm, state }),
     handleMousedown: handleMousedown({ api, emit, on, props, state, vm }),
@@ -95,11 +95,11 @@ export const useOffset = ({ nextTick, props, vm, constants, hooks }) => {
   watch(() => props.modelValue, api.computeOffset, { immediate: true })
 
   onMounted(() => {
-    on(window, 'resize', api.computeOffset)
+    dom.on(window, 'resize', api.computeOffset)
   })
 
   onUnmounted(() => {
-    off(window, 'resize', api.computeOffset)
+    dom.off(window, 'resize', api.computeOffset)
   })
 
   return {

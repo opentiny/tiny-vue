@@ -10,9 +10,8 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '../common/deps/dom'
 import { emitEvent } from '../common/event'
-import { getDomNode } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '@/types'
 
 export const computedAnimationName =
@@ -93,7 +92,7 @@ export const watchVisible =
       state.closed = false
       emit('open')
       /* istanbul ignore next */
-      on(el, 'scroll', api.updatePopper)
+      dom.on(el, 'scroll', api.updatePopper)
 
       nextTick(() => {
         vm.$refs.dialog.scrollTop = 0
@@ -104,7 +103,7 @@ export const watchVisible =
       }
     } else {
       /* istanbul ignore next */
-      off(el, 'scroll', api.updatePopper)
+      dom.off(el, 'scroll', api.updatePopper)
 
       if (!state.closed) {
         state.emitter.emit('boxclose', props.isFormReset)
@@ -306,7 +305,7 @@ export const handleDrag =
     let demMouseup = document.onmouseup
     let disX = event.clientX - modalBoxElem.offsetLeft
     let disY = event.clientY - modalBoxElem.offsetTop
-    let { visibleHeight, visibleWidth } = getDomNode()
+    let { visibleHeight, visibleWidth } = dom.getDomNode()
 
     document.onmousemove = (event) => {
       event.preventDefault()
@@ -358,11 +357,11 @@ export const handleDrag =
   }
 
 export const showScrollbar = (lockScrollClass: string) => (): void => {
-  addClass(document.body, lockScrollClass)
+  dom.addClass(document.body, lockScrollClass)
 }
 
 export const hideScrollbar = (lockScrollClass: string) => (): void => {
-  removeClass(document.body, lockScrollClass)
+  dom.removeClass(document.body, lockScrollClass)
 }
 
 // tiny 新增

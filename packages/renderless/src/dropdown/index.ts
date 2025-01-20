@@ -12,7 +12,7 @@
 
 import type { IDropdownRenderlessParams } from '@/types'
 import { KEY_CODE } from '../common'
-import { addClass, removeClass, on, off } from '../common/deps/dom'
+import { dom } from '@opentiny/utils'
 
 export const watchVisible =
   ({ broadcast, emit, nextTick }: Pick<IDropdownRenderlessParams, 'broadcast' | 'emit' | 'nextTick'>) =>
@@ -34,7 +34,7 @@ export const watchFocusing = (parent: IDropdownRenderlessParams['parent']) => (v
   const selfDefine: HTMLElement | null = parent.$el.querySelector('.tiny-dropdown-selfdefine')
 
   if (selfDefine) {
-    value ? addClass(selfDefine, 'focusing') : removeClass(selfDefine, 'focusing')
+    value ? dom.addClass(selfDefine, 'focusing') : dom.removeClass(selfDefine, 'focusing')
   }
 }
 
@@ -184,7 +184,7 @@ export const initAria =
     if (!props.splitButton || !props.singleButton) {
       state.triggerElm?.setAttribute('role', 'button')
       state.triggerElm?.setAttribute('tabindex', String(props.tabindex))
-      addClass(state.triggerElm, 'tiny-dropdown-selfdefine')
+      dom.addClass(state.triggerElm, 'tiny-dropdown-selfdefine')
     }
   }
 
@@ -201,13 +201,13 @@ export const initEvent =
 
     state.triggerElm = buttonValue ? vm.$refs.trigger.$el : props.border ? vm.$refs.trigger.$el : vm.$refs.trigger
 
-    on(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
+    dom.on(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
     state.dropdownElm?.addEventListener('keydown', api.handleItemKeyDown, true)
 
     if (!props.splitButton || !props.singleButton) {
-      on(state.triggerElm, 'focus', api.toggleFocusOnTrue)
-      on(state.triggerElm, 'blur', api.toggleFocusOnFalse)
-      on(state.triggerElm, 'click', api.toggleFocusOnFalse)
+      dom.on(state.triggerElm, 'focus', api.toggleFocusOnTrue)
+      dom.on(state.triggerElm, 'blur', api.toggleFocusOnFalse)
+      dom.on(state.triggerElm, 'click', api.toggleFocusOnFalse)
     }
 
     if (state.visibleIsBoolean) {
@@ -215,12 +215,12 @@ export const initEvent =
     }
 
     if (state.trigger === 'hover') {
-      on(state.triggerElm, 'mouseenter', api.show)
-      on(state.triggerElm, 'mouseleave', api.hide)
-      on(state.dropdownElm, 'mouseenter', api.show)
-      on(state.dropdownElm, 'mouseleave', api.hide)
+      dom.on(state.triggerElm, 'mouseenter', api.show)
+      dom.on(state.triggerElm, 'mouseleave', api.hide)
+      dom.on(state.dropdownElm, 'mouseenter', api.show)
+      dom.on(state.dropdownElm, 'mouseleave', api.hide)
     } else if (state.trigger === 'click') {
-      on(state.triggerElm, 'click', api.handleClick)
+      dom.on(state.triggerElm, 'click', api.handleClick)
     }
 
     if (mode === 'mobile-first') {
@@ -294,21 +294,21 @@ export const beforeDistory =
   ({ vm, api, state }: Pick<IDropdownRenderlessParams, 'vm' | 'api' | 'state'>) =>
   () => {
     if (state.triggerElm) {
-      off(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
-      off(state.triggerElm, 'focus', api.toggleFocusOnTrue)
-      off(state.triggerElm, 'blur', api.toggleFocusOnFalse)
-      off(state.triggerElm, 'click', api.toggleFocusOnFalse)
-      off(state.triggerElm, 'mouseenter', api.show)
-      off(state.triggerElm, 'mouseleave', api.hide)
-      off(state.triggerElm, 'click', api.handleClick)
+      dom.off(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
+      dom.off(state.triggerElm, 'focus', api.toggleFocusOnTrue)
+      dom.off(state.triggerElm, 'blur', api.toggleFocusOnFalse)
+      dom.off(state.triggerElm, 'click', api.toggleFocusOnFalse)
+      dom.off(state.triggerElm, 'mouseenter', api.show)
+      dom.off(state.triggerElm, 'mouseleave', api.hide)
+      dom.off(state.triggerElm, 'click', api.handleClick)
       state.triggerElm = null
     }
 
     if (state.dropdownElm) {
       state.dropdownElm.removeEventListener('keydown', api.handleItemKeyDown, true)
 
-      off(state.dropdownElm, 'mouseenter', api.show)
-      off(state.dropdownElm, 'mouseleave', api.hide)
+      dom.off(state.dropdownElm, 'mouseenter', api.show)
+      dom.off(state.dropdownElm, 'mouseleave', api.hide)
 
       state.dropdownElm = null
     }
