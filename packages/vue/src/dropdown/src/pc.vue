@@ -33,6 +33,11 @@ export default defineComponent({
     ...$props,
     type: String,
     trigger: String,
+    // tiny新增
+    visible: {
+      type: Boolean || undefined,
+      default: undefined
+    },
     size: {
       type: String,
       default: ''
@@ -101,7 +106,8 @@ export default defineComponent({
     'menu-item-click',
     'handle-click',
     'is-disabled',
-    'selected-index'
+    'selected-index',
+    'update:visible'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
@@ -189,7 +195,9 @@ export default defineComponent({
       ) : (
         <span
           ref="trigger"
-          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}>
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${
+            disabled ? ' is-disabled' : ''
+          } ${triggerClass}`}>
           {prefixInner}
           {defaultTriggerElm}
           {suffixInner}
@@ -208,7 +216,7 @@ export default defineComponent({
     const menuElm = disabled ? null : (slots.dropdown && slots.dropdown()) || defaulMenuElm
 
     return (
-      <div class="tiny-dropdown" v-clickoutside={clickOutside} aria-disabled={disabled}>
+      <div class="tiny-dropdown" v-clickoutside={!state.visibleIsBoolean && clickOutside} aria-disabled={disabled}>
         {triggerElm}
         {menuElm}
       </div>
