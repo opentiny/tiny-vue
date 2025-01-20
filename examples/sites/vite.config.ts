@@ -1,6 +1,5 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import viteDosearchPlugin from './vite-dosearch-plugin'
 import Unocss from 'unocss/vite'
 import path from 'node:path'
 import UnoCssConfig from './uno.config'
@@ -13,42 +12,14 @@ import importPlugin from '@opentiny/vue-vite-import'
 import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
-import tailwindCss from 'tailwindcss'
 import { visualizer } from 'rollup-plugin-visualizer'
-import fg from 'fast-glob'
-import fs from 'fs-extra'
-
-const delStatic = () => {
-  let config
-  return {
-    name: 'inline-plugin-del-static',
-    apply: 'build',
-    configResolved(_config) {
-      config = _config
-    },
-    async closeBundle() {
-      const targetPath = path.join(config.build.outDir, '@demos')
-      const files = await fg(['**/*.spec.js', '**/*.spec.ts'], {
-        dot: true,
-        cwd: targetPath
-      })
-      files.forEach((filename) => {
-        const filePath = path.join(targetPath, filename)
-        fs.unlink(filePath)
-      })
-    }
-  }
-}
+import { delStaticPlugin, viteDocsearchPlugin, modifyViteConfig } from './vite.extend.ts'
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
-  const isSaas = env.VITE_TINY_THEME === 'saas'
-  const isPlus = env.VITE_APP_MODE === 'plus'
-  const isInner = env.VITE_BUILD_TARGET === 'inner'
-  const isMobile = env.VITE_APP_MODE === 'mobile'
-  const demosPath = isPlus ? '../plusdocs/pc' : `./demos/${env.VITE_APP_MODE}`
-  const apisPath = isPlus ? '../plusdocs/apis' : './demos/apis'
-  const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(demosPath)
+
+  const demosPath = `./demos/${env.VITE_APP_MODE}`
+  const apisPath = './demos/apis'
   const copyTarget = [
     {
       src: `${demosPath}/*`,
@@ -59,24 +30,6 @@ export default defineConfig((config) => {
       dest: '@demos/apis'
     }
   ]
-  if (isSaas) {
-    copyTarget.push({
-      src: `./demos/mobile-first/*`,
-      dest: '@demos/mobile-first'
-    })
-  }
-
-  const buildInput = () => {
-    // design-server中一个路由对应一个页面
-    const input = {
-      index: path.resolve(__dirname, './index.html'),
-      playground: path.resolve(__dirname, './playground.html')
-    }
-    if (isMobile) {
-      input.mobile = path.resolve(__dirname, './mobile.html')
-    }
-    return input
-  }
 
   const viteConfig = {
     envDir: './env',
@@ -129,17 +82,17 @@ export default defineConfig((config) => {
         markdownItUses: MdExt
       }),
       Unocss(UnoCssConfig),
-      viteStaticCopy({
-        targets: copyTarget
-      }),
       config.mode === 'visualizer' && visualizer({ open: true }),
-      delStatic(),
-      isInner ? viteDosearchPlugin() : null
+      delStaticPlugin(),
+      viteDocsearchPlugin(env)
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {
-        input: buildInput()
+        input: {
+          index: path.resolve(__dirname, './index.html'),
+          playground: path.resolve(__dirname, './playground.html')
+        }
       }
     },
     resolve: {
@@ -147,8 +100,8 @@ export default defineConfig((config) => {
       alias: {
         '@mobile-root': pathFromWorkspaceRoot('packages/mobile'),
         '@': path.resolve('src'),
-        '@demos': path.resolve(`${demosPath}`),
-        '@menu': menuPath,
+        '@demos': path.resolve(demosPath),
+        '@menu': path.resolve(demosPath),
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
@@ -169,19 +122,9 @@ export default defineConfig((config) => {
       __INTLIFY_JIT_COMPILATION__: false,
       __INTLIFY_DROP_MESSAGE_COMPILER__: false,
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
-    }
-  }
-
-  if (env.VITE_TINY_THEME === 'saas') {
-    viteConfig.css = {
-      postcss: {
-        plugins: [tailwindCss]
-      }
-    }
-    // 这里逻辑是兼容saas官网工程的alias写法
-    if (!viteConfig.resolve.alias['@opentiny/vue-theme']) {
-      viteConfig.resolve.alias['@opentiny/vue-theme'] = '@opentiny/vue-theme-saas'
-      viteConfig.resolve.alias['@opentiny/vue-icon'] = '@opentiny/vue-icon-saas'
+    },
+    tinyCustom: {
+      copyTarget
     }
   }
 
@@ -189,5 +132,13 @@ export default defineConfig((config) => {
     viteConfig.define['process.env'] = {}
   }
 
-  return viteConfig
+  const newViteConfig = modifyViteConfig(viteConfig, env, { plugins: { viteStaticCopy } })
+
+  newViteConfig.plugins.push(
+    viteStaticCopy({
+      targets: newViteConfig.tinyCustom.copyTarget
+    })
+  )
+
+  return newViteConfig
 })
