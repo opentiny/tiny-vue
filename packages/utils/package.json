@@ -1,10 +1,10 @@
 {
   "name": "@opentiny/utils",
+  "type": "module",
   "version": "1.0.0",
   "description": "nanoid console xss",
   "author": "",
   "license": "ISC",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"
@@ -16,14 +16,16 @@
   ],
   "scripts": {
     "build": "vite build",
-    "pub": "pnpm publish --no-git-checks --access=public"
+    "pub": "pnpm publish --no-git-checks --access=public",
+    "test": "vitest"
   },
   "dependencies": {
     "xss": "1.0.14"
   },
   "devDependencies": {
     "typescript": "catalog:",
+    "vite": "catalog:",
     "vite-plugin-dts": "~4.3.0",
-    "vite": "catalog:"
+    "vitest": "catalog:"
   }
 }

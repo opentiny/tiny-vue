@@ -1,26 +1,24 @@
 .inject-MultiSelectItem-vars() {
   // 选项高度
-  --tvm-MultiSelectItem-height: 48px;
+  --tvm-MultiSelectItem-height: var(--tvm-size-height-xl, 48px);
   // 选项水平内边距
-  --tvm-MultiSelectItem-padding-horizontal: var(--tvm-space-4x, 16px);
+  --tvm-MultiSelectItem-padding-x: var(--tvm-space-xl, 16px);
   // 选项字号
-  --tvm-MultiSelectItem-font-size: var(--tvm-font-size-m, 14px);
+  --tvm-MultiSelectItem-font-size: var(--tvm-font-size-default, 14px);
   // 选项字体色
-  --tvm-MultiSelectItem-text-color: var(--tvm-color-text-secondary, #595959);
+  --tvm-MultiSelectItem-text-color: var(--tvm-color-text, #191919);
   // 选项选中字体色
-  --tvm-MultiSelectItem-text-color-active: var(--tvm-color-text-primary, #191919);
+  --tvm-MultiSelectItem-text-color-active: var(--tvm-color-text-active, #1476ff);
   // 选项禁用字体色
   --tvm-MultiSelectItem-text-color-disabled: var(--tvm-color-text-disabled, #c2c2c2);
   // 选项选中字重
-  --tvm-MultiSelectItem-font-weight-active: var(--tvm-font-weight-medium, 500);
-  // 选项图标大小
-  --tvm-MultiSelectItem-icon-font-size: var(--tvm-font-size-l, 16px);
+  --tvm-MultiSelectItem-font-weight-active: var(--tvm-font-weight-bold, 500);
   // 选项图标禁用色
   --tvm-MultiSelectItem-icon-color-disabled: var(--tvm-color-icon-disabled, #c2c2c2);
   // 选项背景色
-  --tvm-MultiSelectItem-bg-color: var(--tvm-color-bg-container-1, #fff);
+  --tvm-MultiSelectItem-bg-color: var(--tvm-color-bg-secondary, #fff);
   // 选项点击背景色
-  --tvm-MultiSelectItem-bg-color-touch: var(--tvm-color-bg-active);
+  --tvm-MultiSelectItem-bg-color-active: var(--tvm-color-bg-active);
   // 子选项缩进
-  --tvm-MultiSelectItem-indent-width: var(--tvm-space-4x, 16px);
+  --tvm-MultiSelectItem-indent-width: 16px;
 }

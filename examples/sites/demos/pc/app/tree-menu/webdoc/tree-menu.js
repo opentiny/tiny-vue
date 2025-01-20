@@ -9,21 +9,21 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '<p>通过引用组件标签即可，默认从框架服务读取数据。</p>\n',
-        'en-US': '<p>By referencing component labels, data is read from the framework service by default. </p>\n'
+        'zh-CN': '<p>通过 <code>data</code> 属性设置静态数据。</p>\n',
+        'en-US': '<p>Set static data through the <code>data</code> attribute. </p>\n'
       },
       codeFiles: ['basic-usage.vue']
     },
     {
       demoId: 'data-resource',
       name: {
-        'zh-CN': '数据源',
-        'en-US': 'Data Source'
+        'zh-CN': '服务端数据',
+        'en-US': 'Server data'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>data</code> 属性设置静态数据，<code>get-menu-data-sync</code> 设置服务端数据，直接返回数据源。</p>\n',
-        'en-US': '<p>Set static data in the tree menu through <code>data</code> attributes. </p>\n'
+        'zh-CN': '<p>通过 <code>get-menu-data-sync</code> 设置服务端数据，直接返回数据源。</p>\n',
+        'en-US':
+          '<p>Set server data through <code>get menu data sync</code> and directly return the data source. </p>\n'
       },
       codeFiles: ['data-resource.vue']
     },

@@ -11,14 +11,15 @@ test('PopUpload 限制上传文件类型和大小', async ({ page }) => {
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const uploadsBtn = uploadModal.getByRole('button', { name: '开始上传' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
   const path2 = path.resolve(__dirname, '测试.png')
   const path3 = path.resolve(__dirname, '测试.svg')
 
   await modalAppearBtn.click()
-  await expect(alert.getByText('上传文件大小不超过:9KB')).toBeVisible()
-  await expect(alert.getByText('上传文件类型限制为:.png,.jpg')).toBeVisible()
+  await expect(alert.getByText('上传文件大小不超过: 9KB')).toBeVisible()
+  await expect(alert.getByText('上传文件类型限制为: .png,.jpg')).toBeVisible()
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), selectFilesBtn.click()])
   await fileChooser.setFiles(path1)
   await uploadsBtn.click()

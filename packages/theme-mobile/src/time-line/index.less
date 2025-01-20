@@ -23,16 +23,16 @@
   font-size: var(--tvm-Timeline-font-size, 14px);
 
   &__item {
-    .hairline('bottom', var(--tvm-Timeline-hairline-color, #ddd));
+    .hairline('bottom', var(--tvm-Timeline-hairline-border-color, #ddd));
 
     &.complete {
       .@{timeline-prefix-cls}__date,
       .@{timeline-prefix-cls}__time {
-        color: var(--tvm-Timeline-complete-color, #ccc);
+        color: var(--tvm-Timeline-complete-text-color, #ccc);
       }
 
       .@{timeline-prefix-cls}__icon {
-        background: var(--tvm-Timeline-complete-icon-bgcolor, #f8f8f8);
+        background: var(--tvm-Timeline-complete-icon-bg-color, #f8f8f8);
         border: 1px solid var(--tvm-Timeline-complete-icon-border-color, #ccc);
       }
 
@@ -40,7 +40,7 @@
       .@{timeline-prefix-cls}__cycle,
       .@{timeline-prefix-cls}__user,
       .@{timeline-prefix-cls}__tip {
-        color: var(--tvm-Timeline-complete-color, #ccc);
+        color: var(--tvm-Timeline-complete-text-color, #ccc);
       }
     }
 
@@ -91,7 +91,7 @@
       height: 100%;
       display: block;
       position: absolute;
-      background-color: var(--tvm-Timeline-hairline-color, #ddd);
+      background-color: var(--tvm-Timeline-hairline-border-color, #ddd);
       left: 0;
       transform-origin: 100% 50%;
 
@@ -109,14 +109,14 @@
 
   & &__date-time {
     text-align: right;
-    color: var(--tvm-Timeline-color, #333);
+    color: var(--tvm-Timeline-text-color);
     padding: 15px 22px 15px 4px;
     min-width: 100px;
   }
 
   & &__time {
     display: block;
-    color: var(--tvm-Timeline-color, #333);
+    color: var(--tvm-Timeline-text-color);
     font-size: var(--tvm-Timeline-font-size, 14px);
   }
 
@@ -140,16 +140,16 @@
 
   &__user {
     width: 60%;
-    color: var(--tvm-Timeline-user-color, #039be5);
+    color: var(--tvm-Timeline-user-text-color);
     display: inline-block;
   }
 
   &__cycle {
-    color: var(--tvm-Timeline-cycle-color, #666);
+    color: var(--tvm-Timeline-cycle-text-color);
   }
 
   &__tip {
-    color: var(--tvm-Timeline-tip-color, #ef4f4f);
+    color: var(--tvm-Timeline-tip-text-color);
   }
 
   .name {

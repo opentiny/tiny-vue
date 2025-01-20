@@ -91,7 +91,7 @@
       <div
         data-tag="tiny-alert-notfoldable"
         v-else
-        class="flex-1 leading-6 text-sm overflow-hidden cursor-pointer"
+        class="flex-1 leading-6 text-sm overflow-hidden"
         :class="[showIcon ? 'ml-2' : '', closable ? 'mr-2' : '']"
       >
         <div data-tag="tiny-alert-large" v-if="size === 'large' && showTitle" class="font-medium">

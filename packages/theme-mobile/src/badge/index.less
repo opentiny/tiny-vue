@@ -23,12 +23,12 @@
   display: inline-block;
 
   &__content {
-    height: var(--tvm-Badge-size, 18px);
-    line-height: var(--tvm-Badge-size, 18px);
+    height: var(--tvm-Badge-height, 18px);
+    line-height: var(--tvm-Badge-height, 18px);
     padding: 0 6px;
     font-size: var(--tvm-Badge-font-size, 13px);
-    color: var(--tvm-Badge-color, #fff);
-    background-color: var(--tvm-Badge-danger-bgcolor, #f36f64);
+    color: var(--tvm-Badge-text-color, #fff);
+    background-color: var(--tvm-Badge-danger-bg-color, #f36f64);
     border-radius: 10px;
     font-family: 'Microsoft YaHei', Arial;
     display: inline-block;
@@ -70,23 +70,23 @@
   }
 
   &__content&--primary {
-    background-color: var(--tvm-Badge-primary-bgcolor, #1890ff);
+    background-color: var(--tvm-Badge-primary-bg-color, #1890ff);
   }
 
   &__content&--success {
-    background-color: var(--tvm-Badge-success-bgcolor, #52c41a);
+    background-color: var(--tvm-Badge-success-bg-color, #52c41a);
   }
 
   &__content&--warning {
-    background-color: var(--tvm-Badge-warning-bgcolor, #faad14);
+    background-color: var(--tvm-Badge-warning-bg-color, #faad14);
   }
 
   &__content&--danger {
-    background-color: var(--tvm-Badge-danger-bgcolor, #f36f64);
+    background-color: var(--tvm-Badge-danger-bg-color, #f36f64);
   }
 
   &__content&--info {
-    background-color: var(--tvm-Badge-info-bgcolor, #333);
+    background-color: var(--tvm-Badge-info-bg-color, #333);
   }
 
   & &__link {

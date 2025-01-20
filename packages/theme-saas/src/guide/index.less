@@ -3,18 +3,10 @@
 @guide-prefix-cls: ~'@{css-prefix}guide';
 .@{guide-prefix-cls} {
   .shepherd-arrow {
-    height: 16px;
-    position: absolute;
-    width: 16px;
-    z-index: -10;
+    @apply h-4 absolute w-4 -z-10;
 
     &:before {
-      width: 16px;
-      position: absolute;
-      height: 16px;
-      background-color: #fff;
-      transform: rotate(45deg);
-      z-index: -10;
+      @apply w-4 absolute h-4  bg-color-bg-1 rotate-45 -z-10;
       content: '';
     }
   }
@@ -35,11 +27,11 @@
       padding-left: 24px;
       padding-right: 24px;
       padding-top: 24px;
-      background-color: #fff;
+      @apply bg-color-bg-1;
 
       .shepherd-title {
         font-size: 18px;
-        color: #333d48;
+        @apply text-color-text-primary;
         line-height: 20px;
         font-weight: 700;
         display: flex;
@@ -63,7 +55,7 @@
           width: 20px;
           height: 20px;
           line-height: 20px;
-          color: #333d48;
+          @apply text-color-text-primary;
           display: inline-flex;
           justify-content: center;
           font-weight: 300;
@@ -79,7 +71,7 @@
 
     .shepherd-text {
       line-height: 20px;
-      color: #333d48;
+      @apply text-color-text-primary;
       font-size: 14px;
       padding: 24px 24px 22px;
 
@@ -131,14 +123,14 @@
         position: absolute;
         left: 24px;
         font-size: 14px;
-        color: #161e26;
+        @apply text-color-text-primary;
         font-weight: 400;
         font-family: PingFangSC;
       }
 
       .shepherd-button {
-        color: #fff;
-        background-color: #0067d1;
+        @apply text-color-text-inverse;
+        @apply bg-color-brand;
         cursor: pointer;
         border-radius: 4px;
         border: 0;
@@ -148,25 +140,25 @@
         transition: all 0.5s ease;
 
         &:hover {
-          background-color: #0072e8;
+          @apply bg-color-brand-hover;
         }
 
         &:focus {
-          background-color: #0067d1;
+          @apply bg-color-brand;
         }
 
         &:active {
-          background-color: #005bba;
+          @apply bg-color-brand-active;
         }
 
         &:disabled {
           background-color: rgba(0, 103, 209, 0.3);
-          color: #fff;
+          @apply text-color-text-inverse;
           cursor: not-allowed;
         }
 
         &.shepherd-button-secondary {
-          color: #161e26;
+          @apply text-color-text-primary;
           border-radius: 4px;
           font-size: 12px;
           text-align: center;
@@ -174,7 +166,7 @@
           font-weight: 400px;
           margin-left: 8px;
           border-color: rgba(22, 30, 38, 0.2);
-          background-color: #fff;
+          @apply bg-color-bg-1;
           border-left-width: 1px;
           border-right-width: 1px;
           border-top-width: 1px;
@@ -182,15 +174,15 @@
           border-style: solid;
 
           &:hover {
-            border-color: #161e26;
+            @apply border-color-text-primary;
           }
 
           &:active {
-            border-color: #005bba;
+            @apply border-color-brand-active;
           }
 
           &:focus {
-            border-color: #161e26;
+            @apply border-color-text-primary;
           }
 
           &:disabled {
@@ -221,7 +213,7 @@
   .@{guide-prefix-cls}__z-top {
     z-index: 9999;
     position: relative;
-    background-color: #fff;
+    @apply bg-color-bg-1;
   }
 
   &.shepherd-has-title {
@@ -238,23 +230,21 @@
 
   &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] {
     & > .shepherd-arrow:before {
-      background-color: #fff;
+      @apply bg-color-bg-1;
     }
   }
 
   &.shepherd-element {
     height: auto;
     box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.16);
-    background-color: #fff;
+    @apply bg-color-bg-1;
     opacity: 0;
     visibility: hidden;
     z-index: 9999;
     width: 510px;
     outline: none;
     border-radius: 4px;
-    transition:
-      opacity 0.3s,
-      visibility 0.3s;
+    transition: opacity 0.3s, visibility 0.3s;
   }
 
   &.shepherd-enabled.shepherd-element {
@@ -296,7 +286,7 @@
   }
 
   &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] > .shepherd-arrow:before {
-    background-color: #fff;
+    @apply bg-color-bg-1;
   }
 
   &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,
@@ -317,18 +307,12 @@
   position: fixed;
   z-index: 9997;
   top: 0;
-  transition:
-    all 0.3s ease-out,
-    height 0ms 0.3s,
-    opacity 0.3s 0ms;
+  transition: all 0.3s ease-out, height 0ms 0.3s, opacity 0.3s 0ms;
 
   &.shepherd-modal-is-visible {
     opacity: 0.5;
     transform: translateZ(0);
-    transition:
-      all 0.3s ease-out,
-      height 0s 0s,
-      opacity 0.3s 0s;
+    transition: all 0.3s ease-out, height 0s 0s, opacity 0.3s 0s;
 
     path {
       pointer-events: all;
@@ -339,5 +323,5 @@
 .@{guide-prefix-cls}__z-top {
   z-index: 9999;
   position: relative;
-  background-color: #fff;
+  @apply bg-color-bg-1;
 }

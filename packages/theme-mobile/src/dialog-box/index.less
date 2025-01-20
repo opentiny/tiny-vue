@@ -24,7 +24,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: var(--tvm-DialogBox-width, 270px);
-  background: var(--tvm-DialogBox-background, #fff);
+  background: var(--tvm-DialogBox-bg-color);
 
   &__wrapper {
     margin: 0;
@@ -47,14 +47,14 @@
   }
 
   & &__title {
-    font-size: var(--tvm-DialogBox-title-font-size, 17px);
-    color: var(--tvm-DialogBox-title-color, #000);
+    font-size: var(--tvm-DialogBox-title-font-size);
+    color: var(--tvm-DialogBox-title-text-color);
     font-weight: bold;
   }
 
   & &__body {
-    font-size: var(--tvm-DialogBox-body-font-size, 16px);
-    color: var(--tvm-DialogBox-body-color, #333);
+    font-size: var(--tvm-DialogBox-body-font-size);
+    color: var(--tvm-DialogBox-body-text-color);
     padding: 0px 16px 16px;
     max-height: 482px;
     overflow-y: auto;
@@ -68,7 +68,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .hairline('top', var(--tvm-DialogBox-border-color, #ccc));
+    .hairline('top', var(--tvm-DialogBox-border-color));
   }
 
   & &__button {
@@ -84,12 +84,12 @@
     }
 
     &.cancel-button {
-      color: var(--tvm-DialogBox-cancel-button-color, #999);
-      .hairline('right', var(--tvm-DialogBox-border-color, #ccc));
+      color: var(--tvm-DialogBox-cancel-button-text-color);
+      .hairline('right', var(--tvm-DialogBox-border-color));
     }
 
     &.confirm-button {
-      color: var(--tvm-DialogBox-confirm-button-color, #333);
+      color: var(--tvm-DialogBox-confirm-button-text-color);
     }
   }
 }

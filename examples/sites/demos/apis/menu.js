@@ -21,7 +21,7 @@ export default {
           type: 'Array',
           defaultValue: '',
           desc: {
-            'zh-CN': '数据源',
+            'zh-CN': '服务端数据',
             'en-US': ''
           },
           mode: ['mobile-first'],

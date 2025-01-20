@@ -17,21 +17,21 @@
 @progress-prefix-cls: ~'@{css-prefix}mobile-progress';
 
 .@{progress-prefix-cls} {
-  .inject-Popover-vars();
+  .inject-Progress-vars();
 
   position: relative;
   line-height: 1;
 
   &.is-success {
-    .progress-status(var(--tvm-Progress-success-color, #52c41a));
+    .progress-status(var(--tvm-Progress-success-bg-color, #52c41a));
   }
 
   &.is-warning {
-    .progress-status(var(--tvm-Progress-warning-color, #faad14));
+    .progress-status(var(--tvm-Progress-warning-bg-color, #faad14));
   }
 
   &.is-exception {
-    .progress-status(var(--tvm-Progress-exception-color, #f5222d));
+    .progress-status(var(--tvm-Progress-exception-bg-color, #f5222d));
   }
 
   &--circle,
@@ -78,7 +78,7 @@
     &__outer {
       height: 2px;
       border-radius: 999px;
-      background-color: var(--tvm-Progress-bar-outer-bgcolor, #f5f5f5);
+      background-color: var(--tvm-Progress-bar-outer-bg-color, #f5f5f5);
       overflow: hidden;
       position: relative;
       vertical-align: middle;

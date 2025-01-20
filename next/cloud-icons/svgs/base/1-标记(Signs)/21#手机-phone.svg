@@ -1,0 +1,13 @@
+<svg width="16.000000" height="16.000000" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip2_129">
+			<rect id="21#手机-phone" width="16.000000" height="16.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip2_129)">
+		<path id="形状结合" d="M11 1C12.38 1 13.5 2.11 13.5 3.5L13.5 12.5C13.5 13.88 12.38 15 11 15L5 15C3.61 15 2.5 13.88 2.5 12.5L2.5 3.5C2.5 2.11 3.61 1 5 1L11 1ZM11 2L5 2C4.17 2 3.5 2.67 3.5 3.5L3.5 12.5C3.5 13.32 4.17 14 5 14L11 14C11.82 14 12.5 13.32 12.5 12.5L12.5 3.5C12.5 2.67 11.82 2 11 2ZM8 11.2C8.39 11.2 8.72 11.52 8.72 11.92C8.72 12.32 8.39 12.64 8 12.64C7.6 12.64 7.27 12.32 7.27 11.92C7.27 11.52 7.6 11.2 8 11.2ZM9.5 3.5C9.77 3.5 10 3.72 10 4C10 4.27 9.77 4.5 9.5 4.5L6.5 4.5C6.22 4.5 6 4.27 6 4C6 3.72 6.22 3.5 6.5 3.5L9.5 3.5Z" fill="currentColor" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>

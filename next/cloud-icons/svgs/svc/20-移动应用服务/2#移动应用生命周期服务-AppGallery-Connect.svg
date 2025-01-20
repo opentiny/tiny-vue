@@ -1,0 +1,23 @@
+<svg width="72.000000" height="72.000000" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip117_289">
+			<rect id="2#移动应用生命周期服务-AppGallery-Connect" width="72.000000" height="72.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="43.837086" y1="43.822968" x2="35.321888" y2="35.307774" id="paint_linear_117_1109_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.000000"/>
+			<stop offset="1.000000" stop-color="#FFFFFF"/>
+		</linearGradient>
+		<linearGradient x1="28.137688" y1="28.137638" x2="36.654961" y2="36.654911" id="paint_linear_117_1110_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.000000"/>
+			<stop offset="1.000000" stop-color="#FFFFFF"/>
+		</linearGradient>
+	</defs>
+	<g clip-path="url(#clip117_289)">
+		<path id="矩形备份-19" d="M16 0L56 0C64.8 0 72 7.2 72 16L72 56C72 64.79 64.8 72 56 72L16 72C7.19 72 0 64.79 0 56L0 16C0 7.2 7.19 0 16 0Z" fill="#F85835" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="矩形" d="M40 13.69L45.6 19.29C43.2 16.89 39.4 16.89 37 19.29L21.5 34.69C20.8 35.39 20.8 36.5 21.5 37.19L34.5 50.19L34.7 50.39C35.4 51.09 36.5 51.09 37.2 50.39L34.8 52.79C32.5 55.09 28.7 55.09 26.3 52.79L13.7 40C11.5 37.79 11.5 34.19 13.7 31.89L32 13.69C34.2 11.39 37.8 11.39 40 13.69Z" fill="url(#paint_linear_117_1109_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="矩形_00000023998205895816913880000011392133989135088001_" d="M31.9 58.29L26.3 52.7C28.7 55.09 32.5 55.09 34.9 52.7L50.4 37.2C51.1 36.5 51.1 35.4 50.4 34.7L37.4 21.7L37.2 21.5C36.5 20.79 35.4 20.79 34.7 21.5L34.6 21.59L37.1 19.09C39.4 16.79 43.2 16.79 45.6 19.09L58.3 31.79C60.5 34 60.5 37.59 58.3 39.9L40 58.29C37.8 60.5 34.2 60.5 31.9 58.29Z" fill="url(#paint_linear_117_1110_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>
