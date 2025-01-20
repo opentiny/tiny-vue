@@ -7,7 +7,7 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
  *
  * @example
  * const breakpoint = useBreakpoint()
- * watch(breakpoint.current, (current) => { console.log(current) })
+ * watch(breakpoint.current, (current) => { ...... })
  */
 export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')

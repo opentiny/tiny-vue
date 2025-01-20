@@ -30,7 +30,7 @@ import type {
 } from '@/types'
 
 import { extend } from '../common/object'
-import { xss, log, crypt } from '@opentiny/utils'
+import { xss, logger, crypt } from '@opentiny/utils'
 import uploadAjax from '../common/deps/upload-ajax'
 import { isObject } from '../common/type'
 import { isEmptyObject } from '../common/type'
@@ -555,7 +555,7 @@ export const handleStart =
     state,
     vm
   }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'vm'>) =>
-  (rawFiles: IFileUploadFile[], updateId: string, reUpload: boolean = false) => {
+  (rawFiles: IFileUploadFile[], updateId: string, reUpload = false) => {
     if (state.isHwh5) {
       rawFiles = handleHwh5Files(rawFiles, props.hwh5)
     }
@@ -900,7 +900,7 @@ export const abort =
 
 export const abortDownload =
   ({ state }: Pick<IFileUploadRenderlessParams, 'state'>) =>
-  (file: IFileUploadFile, batch: boolean = false) => {
+  (file: IFileUploadFile, batch = false) => {
     const cancel = (docId) => {
       if (!docId) return
       const cancels = state.downloadCancelToken[docId]
@@ -1685,7 +1685,7 @@ export const afterDownload =
           ']'
         ]
 
-        log.logger.warn(msgArray.join(''))
+        logger.warn(msgArray.join(''))
         delete state.downloadReplayAtoms[key]
       } else {
         if (state.downloadReplayAtoms[key] === undefined) {
@@ -1694,7 +1694,7 @@ export const afterDownload =
 
         const msgArray = ['replay ', countDownloadReplay, '! [docId:', file.docId, ', chunk:', range.index, ']']
 
-        log.logger.warn(msgArray.join(''))
+        logger.warn(msgArray.join(''))
 
         state.downloadReplayAtoms[key] += 1
 
@@ -1932,7 +1932,7 @@ const afterUpload = ({
         file.chunk,
         ']'
       ]
-      log.logger.warn(msgArray.join(''))
+      logger.warn(msgArray.join(''))
 
       delete state.replayAtoms[key]
     } else {
@@ -1942,7 +1942,7 @@ const afterUpload = ({
 
       const msgArray = ['replay ', countReplay, '! [docId:', file.docId, ', chunk:', file.chunk, ']']
 
-      log.logger.warn(msgArray.join(''))
+      logger.warn(msgArray.join(''))
 
       state.replayAtoms[key] += 1
 
@@ -2263,7 +2263,7 @@ export const getToken =
 
 export const previewFile =
   ({ api, props }: Pick<IFileUploadRenderlessParams, 'api' | 'props'>) =>
-  (file: IFileUploadFile, open: boolean = false) => {
+  (file: IFileUploadFile, open = false) => {
     return new Promise((resolve, reject) => {
       try {
         const tokenParams = { isOnlinePreview: true, file, type: 'preview', token: props.edm.preview.token }

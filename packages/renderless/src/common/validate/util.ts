@@ -11,7 +11,7 @@
  */
 
 import { hasOwn, isNull } from '../type'
-import { log } from '@opentiny/utils'
+import { logger } from '@opentiny/utils'
 
 const formatRegExp = /%[sdj%]/g
 
@@ -208,7 +208,7 @@ export function asyncMap(objArray, option, func, callback) {
     })
 
     // 校验器会报告中，errors fields 同时存在，属于正常，不打印；  代码真异常才打印。
-    pending.catch((error) => (error.errors && error.fields) || log.logger.error(error))
+    pending.catch((error) => (error.errors && error.fields) || logger.error(error))
     return pending
   }
 
@@ -244,7 +244,7 @@ export function asyncMap(objArray, option, func, callback) {
   })
 
   // 校验器会报告中，errors fields 同时存在，属于正常，不打印；  代码真异常才打印。
-  pending.catch((error) => (error.errors && error.fields) || log.logger.error(error))
+  pending.catch((error) => (error.errors && error.fields) || logger.error(error))
 
   return pending
 }

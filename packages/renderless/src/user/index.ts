@@ -14,7 +14,7 @@ import debounce from '../common/deps/debounce'
 import { toDateStr } from '../common/date'
 import { toJsonStr } from '../common/object'
 import { toJson } from '../common/string'
-import { log } from '@opentiny/utils'
+import { logger } from '@opentiny/utils'
 
 const toLowerCase = (val) => {
   return typeof val === 'string' ? val.toLowerCase() : val
@@ -87,7 +87,6 @@ const request = {
   },
 
   setCache(data, valueField) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
 
     if (valueField && !this.group[valueField]) {
@@ -116,7 +115,6 @@ const request = {
       })
   },
   batchRequest(api) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
@@ -141,7 +139,7 @@ const request = {
               }
             })
           })
-          errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
+          errors.length && logger.warn(`user [${errors.join(',')}] not found`)
           this.clearRequest()
         }
       }

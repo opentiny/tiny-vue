@@ -1,11 +1,11 @@
 import xss from './xss'
-import log from './log'
+import logger from './logger'
 import crypt from './crypt'
 
-export { xss, log, crypt }
+export { xss, logger, crypt }
 
 export default {
   xss,
-  log,
+  logger,
   crypt
 }

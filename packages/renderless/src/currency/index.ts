@@ -11,7 +11,7 @@
  */
 
 import { isUndefined, isNull } from '../grid/static'
-import { log } from '@opentiny/utils'
+import { logger } from '@opentiny/utils'
 
 export const init =
   ({ state, service, api }) =>
@@ -76,7 +76,7 @@ export const fixServiceData =
           if (text) {
             option[valueField] = text
           } else {
-            log('data error. set it to the default value.', 'warn')
+            logger.warn('data error. set it to the default value.', 'warn')
             option[textField] = option[valueField] = props.currency
           }
         }

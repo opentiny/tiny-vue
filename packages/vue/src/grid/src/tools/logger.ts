@@ -1,4 +1,4 @@
-import { log } from '@opentiny/utils'
+import { logger } from '@opentiny/utils'
 import GlobalConfig from '../config'
 
 const outLog = (type) => (message, detail) => {
@@ -8,7 +8,7 @@ const outLog = (type) => (message, detail) => {
     msg += `: ${detail}`
   }
 
-  log.logger.log(msg, type)
+  logger[type](msg)
 
   return msg
 }
