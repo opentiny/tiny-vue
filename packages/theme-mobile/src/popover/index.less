@@ -23,7 +23,7 @@
   background: var(--tvm-Popover-bg-color);
   color: var(--tvm-Popover-text-color);
   border-radius: var(--tvm-Popover-border-radius);
-  padding: var(--tvm-Popover-padding-vertical) 0;
+  padding: var(--tvm-Popover-padding-y) 0;
   z-index: 2000;
   line-height: 1.4;
   text-align: justify;
@@ -55,7 +55,7 @@
   }
 
   &[x-placement^='top'] {
-    margin-bottom: var(--tvm-Popover-placement-margin-vertical);
+    margin-bottom: var(--tvm-Popover-placement-margin-y);
 
     .popper__arrow {
       bottom: -6px;
@@ -74,7 +74,7 @@
   }
 
   &[x-placement^='bottom'] {
-    margin-top: var(--tvm-Popover-placement-margin-vertical);
+    margin-top: var(--tvm-Popover-placement-margin-y);
 
     .popper__arrow {
       top: -6px;
@@ -93,7 +93,7 @@
   }
 
   &[x-placement^='right'] {
-    margin-left: var(--tvm-Popover-placement-margin-horizontal);
+    margin-left: var(--tvm-Popover-placement-margin-x);
 
     .popper__arrow {
       top: 50%;
@@ -112,7 +112,7 @@
   }
 
   &[x-placement^='left'] {
-    margin-right: var(--tvm-Popover-placement-margin-horizontal);
+    margin-right: var(--tvm-Popover-placement-margin-x);
 
     .popper__arrow {
       top: 50%;
@@ -174,7 +174,7 @@
         flex-direction: column;
 
         .main {
-          color: var(--tvm-common-color-text-primary, #191919);
+          color: var(--tvm-color-text, #191919);
           font-size: var(--tvm-Popover-font-size, 14px);
           margin-right: 30px;
         }

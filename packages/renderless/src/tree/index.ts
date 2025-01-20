@@ -17,7 +17,7 @@ import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
 import { dom } from '@opentiny/utils'
 
-import { log } from '@opentiny/utils'
+import { logger } from '@opentiny/utils'
 
 export const setChildren = (props) => (data) => (props.data = data)
 
@@ -822,7 +822,7 @@ export const addNode =
     }
 
     if (state.allNodeKeys.includes(nodeId) && !props.editConfig.noWarning) {
-      log.logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
+      logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
     }
 
     state.allNodeKeys.push(nodeId)

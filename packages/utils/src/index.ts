@@ -1,15 +1,15 @@
 import xss from './xss'
-import log from './log'
+import logger from './logger'
 import crypt from './crypt'
-import * as global from './global'
-import * as dom from './dom'
+import global from './global'
+import dom from './dom'
 import * as type from './type'
 
-export { xss, log, crypt, dom, global, type }
+export { xss, logger, crypt, dom, global, type }
 
 export default {
   xss,
-  log,
+  logger,
   dom,
   crypt,
   global,

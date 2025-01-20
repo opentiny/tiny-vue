@@ -7,7 +7,7 @@ import { dom } from '@opentiny/utils'
  *
  * @example
  * const breakpoint = useBreakpoint()
- * watch(breakpoint.current, (current) => { console.log(current) })
+ * watch(breakpoint.current, (current) => { ...... })
  */
 export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')

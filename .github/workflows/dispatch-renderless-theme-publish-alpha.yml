@@ -7,7 +7,7 @@ on:
       components:
         description: |
           输入需要打包的模块名称，多个以英文逗号分隔,
-          例如： `theme,renderless,runtime`
+          例如： `theme,renderless,runtime,docs`
         required: true
         type: string
 concurrency:
@@ -26,7 +26,7 @@ jobs:
             const branchName = `${{ github.ref_name }}`
             const moduleName = `${{ inputs.components }}`
 
-            if (!moduleName.includes('theme') && !moduleName.includes('renderless') && !moduleName.includes('runtime')) {
+            if (!moduleName.includes('theme') && !moduleName.includes('renderless') && !moduleName.includes('docs') && !moduleName.includes('runtime')) {
               throw new Error('请输入正确的包名称')
             }
 
@@ -86,5 +86,12 @@ jobs:
       - name: Publish
         run: |
           pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
+
+      - name: Publish Docs
+        if: contains(inputs.components, 'docs') == true
+        run: |
+          pnpm pub:site
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}

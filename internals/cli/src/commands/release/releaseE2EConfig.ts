@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import { pathFromWorkspaceRoot } from '../../config/vite'
 
-const pathFromExamples = (...args) => pathFromWorkspaceRoot('examples', ...args)
+export const pathFromExamples = (...args) => pathFromWorkspaceRoot('examples', ...args)
 
 const playWrightConfigPath = pathFromExamples('vue3/playwright.config.js')
 

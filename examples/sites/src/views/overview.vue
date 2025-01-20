@@ -67,7 +67,7 @@
 import { defineComponent, reactive, toRefs, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
-import TinyInput from '@opentiny/vue-input'
+import { TinyInput } from '@opentiny/vue'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
 import { getWord, i18nByKey, isZhCn, pubUrl } from '@/tools'

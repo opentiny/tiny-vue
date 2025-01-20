@@ -36,6 +36,9 @@ export default {
 .avatar-wrap {
   padding: 20px;
 }
+.tiny-mobile-avatar {
+  margin-right: 4px;
+}
 .avatar-wrap svg {
   height: 100%;
   width: 100%;

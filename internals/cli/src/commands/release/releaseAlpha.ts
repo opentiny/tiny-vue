@@ -1,4 +1,5 @@
 import { pathFromPackages } from '../build/build-ui'
+import { pathFromExamples } from './releaseE2EConfig'
 import path from 'node:path'
 import fs from 'fs-extra'
 import semver from 'semver'
@@ -47,9 +48,24 @@ const findAllpage = (packagesPath, updateVersion) => {
   }
 }
 
+const releaseSiteAlpha = (updateVersion) => {
+  const PKG_PATH = pathFromExamples('sites/package.json')
+  const PKGContent = fs.readJSONSync(PKG_PATH)
+
+  PKGContent.name = PKGContent.name.replace('@opentiny', '@opentinyvue')
+  if (updateVersion) {
+    PKGContent.version = getPatchVersion(PKGContent.name, PKGContent.version)
+  }
+  PKGContent.devDependencies = { ...PKGContent.devDependencies, ...PKGContent.dependencies }
+  delete PKGContent.dependencies
+
+  fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
+}
+
 export const releaseAlpha = ({ updateVersion }) => {
   const distLists = ['dist3/', 'dist2/', 'renderless/dist', 'theme/dist', 'theme-mobile/dist', 'theme-saas/dist']
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item), updateVersion)
   })
+  releaseSiteAlpha(updateVersion)
 }
