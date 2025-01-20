@@ -10,9 +10,8 @@
  *
  */
 
-import { dom } from '@opentiny/utils'
 import PopupManager from './popup-manager'
-import { global, type } from '@opentiny/utils'
+import { global, type, dom } from '@opentiny/utils'
 import { isBrowser } from '../browser'
 
 const positions = ['left', 'right', 'top', 'bottom']

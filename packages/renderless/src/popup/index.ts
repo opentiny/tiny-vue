@@ -10,10 +10,9 @@
  *
  */
 
-import { dom } from '@opentiny/utils'
 import { touchStart, touchMove } from '../common/deps/touch'
 import { getScroller } from '../dropdown-menu'
-import { type } from '@opentiny/utils'
+import { type, dom } from '@opentiny/utils'
 
 export const getStyle = (props) => () => {
   const style = { ...props.popupStyle }

@@ -10,9 +10,8 @@
  *
  */
 import type { ISearchRenderlessParams, ISearchValue } from '@/types'
-import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
-import { type } from '@opentiny/utils'
+import { type, dom } from '@opentiny/utils'
 
 export const emitInput =
   ({ emit }: Pick<ISearchRenderlessParams, 'emit'>) =>
@@ -129,8 +128,7 @@ export const mounted =
 /* istanbul ignore next */
 export const beforeDestroy =
   ({ api }: Pick<ISearchRenderlessParams, 'api'>) =>
-  () => {
-  }
+  () => {}
 
 export const clear =
   ({ api, emit, vm, state }: Pick<ISearchRenderlessParams, 'api' | 'emit' | 'vm' | 'state'>) =>

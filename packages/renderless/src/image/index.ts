@@ -11,9 +11,8 @@
  */
 
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
-import { type, dom } from '@opentiny/utils'
+import { type, dom, xss } from '@opentiny/utils'
 import { rafThrottle } from '../image-viewer'
-import { xss } from '@opentiny/utils'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
 

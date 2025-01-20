@@ -15,9 +15,7 @@ import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
 import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
-import { dom } from '@opentiny/utils'
-
-import { logger } from '@opentiny/utils'
+import { logger, dom } from '@opentiny/utils'
 
 export const setChildren = (props) => (data) => (props.data = data)
 

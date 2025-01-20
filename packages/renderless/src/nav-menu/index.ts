@@ -18,12 +18,10 @@ import type {
   whitchSubMenuType
 } from '@/types'
 import { omitText } from '../common/string'
-import { type } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
-import { dom } from '@opentiny/utils'
-import { xss } from '@opentiny/utils'
+import { dom, type, xss } from '@opentiny/utils'
 import { isBrowser } from '../common/browser'
 
 const { nextZIndex } = PopupManager

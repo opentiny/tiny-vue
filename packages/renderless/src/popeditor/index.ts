@@ -11,12 +11,11 @@
  */
 
 import { find } from '../common/array'
-import { type } from '@opentiny/utils'
 import { getDataset } from '../common/dataset'
 import { isNullOrEmpty } from '../common/string'
 import { isEqual } from '../common/object'
 import { eachTree } from '../grid/static'
-import { dom } from '@opentiny/utils'
+import { dom, type } from '@opentiny/utils'
 
 export const computedGetTitle = ({ constants, props, t }) => props.title || t(constants.TITLE)
 
@@ -98,7 +97,9 @@ export const getDisplay =
       if (type.isNull(state.selectedDatas)) {
         return ''
       } else {
-        return type.typeOf(state.selectedDatas) === 'object' ? state.selectedDatas[props.textField] : state.selectedDatas
+        return type.typeOf(state.selectedDatas) === 'object'
+          ? state.selectedDatas[props.textField]
+          : state.selectedDatas
       }
     }
   }

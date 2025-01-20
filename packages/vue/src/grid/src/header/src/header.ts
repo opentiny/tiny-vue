@@ -23,8 +23,7 @@
  *
  */
 
-import { type } from '@opentiny/utils'
-import { dom } from '@opentiny/utils'
+import { dom, type } from '@opentiny/utils'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'

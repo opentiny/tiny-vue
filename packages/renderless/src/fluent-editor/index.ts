@@ -1,8 +1,6 @@
 import { extend } from '../common/object'
-import { type as _type } from '@opentiny/utils'
-import { xss } from '@opentiny/utils'
+import { type as _type, xss, dom } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
-import { dom } from '@opentiny/utils'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =

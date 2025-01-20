@@ -10,8 +10,7 @@
  *
  */
 
-import { type } from '@opentiny/utils'
-import { xss } from '@opentiny/utils'
+import { type, xss } from '@opentiny/utils'
 
 const getBody = (xhr) => {
   const text = xhr.responseText || xhr.response
