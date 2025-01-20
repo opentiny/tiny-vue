@@ -312,6 +312,12 @@ export default defineComponent({
       if (demo?.codeFiles.length > 0) {
         getIframeConetent(demo.demoId, demo.codeFiles[0])
         jumpToMobileDemoAndHash(demo.demoId)
+        state.currDemoId = demo.demoId
+        state.currJson.demos.forEach((item) => {
+          if (item.demoId === demo.demoId) {
+            item.isIntersecting = true
+          }
+        })
       }
     }
 
@@ -660,8 +666,8 @@ export default defineComponent({
       onTabsClick: (data) => {
         if (data.name) {
           router.push(`#${data.name}`)
+          scrollToLayoutTop()
         }
-        scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
       jumpToDemo: (demoId) => {
