@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mobile-preview">
     <component :is="showComponent" />
   </div>
 </template>
@@ -68,10 +68,37 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style>
+<style lang="less">
 html,
 body {
   margin: 0;
   padding: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  ::-webkit-scrollbar {
+    width: var(--tvm-size-scrollbar-width);
+    height: var(--tvm-size-scrollbar-height);
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    background: var(--tvm-color-bg-scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--tvm-color-bg-scrollbar-thumb);
+    border-radius: var(--tvm-border-radius-scrollbar-thumb);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--tvm-color-bg-scrollbar-thumb-hover);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--tvm-color-bg-scrollbar-thumb-active);
+  }
 }
 </style>

@@ -55,7 +55,9 @@
         </div>
         <div v-else-if="demoConfig.isMobile" class="mobile-demo-container">
           <div class="mobile-view-btn">
-            <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
+            <tiny-mobile-button type="secondary" @click="openIframe(demo)">{{
+              i18nByKey('yan-shi')
+            }}</tiny-mobile-button>
           </div>
         </div>
         <div v-else class="pc-demo-container">
@@ -92,6 +94,7 @@ import demoConfig from '@demos/config.js'
 import { useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
 import AsyncHighlight from './async-highlight.vue'
+import { Button as TinyMobileButton } from '@opentiny/vue-mobile'
 
 const props = defineProps({
   demo: {
