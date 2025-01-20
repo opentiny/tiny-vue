@@ -185,7 +185,7 @@ export const mounted =
   }
 
 export const filterImageUrl = (props) => () => {
-  const isBase64 = /^data:image\/(png|jpg|jpeg|gif);base64,([a-zA-Z0-9+/]+={0,2})/
+  const isBase64 = /^data:(image|application)\/(png|jpg|jpeg|gif|octet-stream);base64,([a-zA-Z0-9+/]+={0,2})/
 
   return isBase64.test(props.src) ? props.src : xss.filterUrl(props.src)
 }
