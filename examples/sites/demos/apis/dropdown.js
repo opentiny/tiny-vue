@@ -222,6 +222,9 @@ export default {
           name: 'v-model:visible',
           type: 'boolean',
           defaultValue: 'false',
+          meta: {
+            stable: '3.21.1'
+          },
           desc: {
             'zh-CN': '手动控制下拉弹框显隐，优先级高于trigger',
             'en-US': 'Manually control the display and hide of the dropdown menu, with priority higher than the trigger'
