@@ -100,7 +100,7 @@ const initState = ({ reactive, computed, api, i18n, designConfig, props }) => {
     shortcuts: props.shortcuts || [],
     visible: false,
     currentView: DATEPICKER.Date,
-    disabledDate: props.disabledDate || '',
+    disabledDate: props.disabledDate || null,
     cellClassName: '',
     selectableRange: [],
     firstDayOfWeek: props.firstDayOfWeek || 7,

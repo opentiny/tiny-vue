@@ -40,6 +40,14 @@ export const watchVisible =
         state.oldValue = state.value
         vm.$refs.spinner.emitSelectRange('hours')
         api.adjustSpinners()
+
+        // 若超出浏览器视窗则修改时间面板位置
+        const element = vm.$el
+        const { left, width } = element.getBoundingClientRect()
+        if (left + width > document.documentElement.clientWidth) {
+          element.style.left = 'unset'
+          element.style.right = 0
+        }
       })
     } else {
       state.needInitAdjust = true

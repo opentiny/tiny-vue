@@ -448,6 +448,9 @@ const getTarget = (event) => {
 export const handleClick =
   ({ api, emit, props, state }) =>
   (event) => {
+    if (props.readonly) {
+      return
+    }
     let target = getTarget(event)
 
     if (target.tagName !== 'TD') {

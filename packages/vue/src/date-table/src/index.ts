@@ -32,6 +32,10 @@ export default defineComponent({
       type: Boolean,
       default: () => false
     },
+    readonly: {
+      type: Boolean,
+      default: () => false
+    },
     value: {},
     formatWeeks: Function
   },

@@ -17,12 +17,14 @@ import {
   formatDate,
   modifyDate,
   modifyTime,
+  toDate,
   nextYear,
   prevYear,
   nextMonth,
   prevMonth,
   modifyWithTimeString
 } from '../common/deps/date-util'
+import { DATEPICKER } from './../common/index'
 
 export const calcDefaultValue = (defaultVal) => {
   if (Array.isArray(defaultVal)) {
@@ -213,7 +215,10 @@ export const handleClear =
     emit('pick', null)
   }
 
-export const handleChangeRange = (state) => (val) => {
+export const handleChangeRange = (state, props) => (val) => {
+  if (props.readonly) {
+    return
+  }
   state.minDate = val.minDate
   state.maxDate = val.maxDate
   state.rangeState = val.rangeState
@@ -366,8 +371,11 @@ export const handleTimeChange =
   }
 
 export const handleRangePick =
-  ({ api, state, t }) =>
+  ({ api, state, props, t }) =>
   (val, close = true) => {
+    if (props.readonly) {
+      return
+    }
     const defaultTime = state.defaultTime || []
     let minDateVal = val.minDate
     let maxDateVal = val.maxDate
@@ -404,7 +412,7 @@ export const handleRangePick =
     api.handleConfirm()
   }
 
-export const handleShortcutClick = (state, api) => (shortcut) => {
+export const handleShortcutClick = (state, api, props) => (shortcut) => {
   if (shortcut.type) {
     state.singleSelect = true
     state.shortcutType = shortcut.type
@@ -424,7 +432,15 @@ export const handleShortcutClick = (state, api) => (shortcut) => {
   if (shortcut.onClick) {
     const picker = {
       $emit: (type, [start, end]) => {
-        api.doPick(start, end)
+        // 面板直接使用快捷选项
+        if (props.shortcuts?.length) {
+          state.value = [start, end]
+          state.leftDate = start
+          state.rightDate = end
+          api.handleRangePick({ minDate: start, maxDate: end })
+        } else {
+          api.doPick(start, end)
+        }
       }
     }
 
@@ -539,10 +555,15 @@ export const rightPrevMonth =
     (state.rightDate = prevMonth(state.rightDate))
 
 export const handleConfirm =
-  ({ api, emit, state }) =>
+  ({ api, emit, state, props, t }) =>
   (visible = false) => {
     if (api.isValidValue([state.minDate, state.maxDate])) {
       emit('pick', [state.minDate, state.maxDate], visible)
+      const defaultFormat = props.type === 'daterange' ? DATEPICKER.DateFormats.date : DATEPICKER.DateFormats.datetime
+      const start = formatDate(state.minDate, props.format || defaultFormat, t)
+      const end = formatDate(state.maxDate, props.format || defaultFormat, t)
+      emit('update:modelValue', [start, end])
+      emit('select-change', [start, end])
     }
   }
 
@@ -594,5 +615,21 @@ export const watchPickerVisible =
       state.singleSelect = false
       state.minRangeDate = constants.startDate
       state.maxRangeDate = constants.endDate
+    }
+  }
+
+export const watchModelValue =
+  ({ state }) =>
+  (val) => {
+    const newVal = toDate(val?.[0])
+    const newVal1 = toDate(val?.[1])
+    if (newVal && newVal1) {
+      const start = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate())
+      const end = modifyDate(newVal1, newVal1.getFullYear(), newVal1.getMonth(), newVal1.getUTCDate())
+      state.value = [start, end]
+      state.minDate = start
+      state.maxDate = end
+      state.leftDate = start
+      state.rightDate = end
     }
   }
