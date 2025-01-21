@@ -138,6 +138,7 @@
       </tiny-tooltip>
     </div>
     <component
+      v-show="state.pickerVisible"
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
@@ -145,7 +146,6 @@
       :format-weeks="formatWeeks"
       :now-click="nowClick"
       ref="picker"
-      :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"

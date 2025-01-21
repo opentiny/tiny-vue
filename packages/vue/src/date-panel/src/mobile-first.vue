@@ -7,7 +7,7 @@
     >
       <div data-tag="tiny-picker-panel__body-wrapper" :class="gcls('picker-panel-body')">
         <slot name="sidebar" data-tag="tiny-picker-panel__sidebar" :class="gcls('sidebar')"></slot>
-        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts" :class="gcls('sidebar')">
+        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts?.length" :class="gcls('sidebar')">
           <button
             type="button"
             data-tag="tiny-picker-panel__shortcut"
@@ -21,7 +21,7 @@
         </div>
         <div
           data-tag="tiny-picker-panel__body"
-          :class="[gcls('picker-panel-body'), { 'ml-28': slots.sidebar || state.shortcuts }]"
+          :class="[gcls('picker-panel-body'), { 'ml-28': slots.sidebar || state.shortcuts?.length }]"
         >
           <div v-if="state.showTime" data-tag="tiny-date-picker__time-header" :class="gcls('time-header')">
             <span data-tag="tiny-date-picker__editor-wrap" :class="gcls('editor-wrap')">
@@ -87,7 +87,7 @@
             </button>
             <span
               role="button"
-              @click="showYearPicker"
+              @click="showHeaderPicker('Year')"
               data-tag="tiny-date-picker__header-label"
               :class="[gcls('header-label')]"
               >{{ state.yearLabel }}</span
@@ -95,7 +95,7 @@
             <span
               v-show="state.currentView === 'date'"
               role="button"
-              @click="showMonthPicker"
+              @click="showHeaderPicker('Month')"
               data-tag="tiny-date-picker__header-label"
               :class="[gcls('header-label'), { 'text-color-brand': state.currentView === 'month' }]"
               >{{ t(`ui.datepicker.month${state.month + 1}`) }}</span

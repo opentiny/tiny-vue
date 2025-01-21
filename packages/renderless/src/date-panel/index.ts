@@ -165,15 +165,24 @@ export const cusEmit =
     state.userInputTime = null
   }
 
-export const showMonthPicker =
-  ({ state }) =>
-  () =>
-    (state.currentView = DATEPICKER.Month)
+export const panelEmit =
+  ({ state, emit, t, props }) =>
+  (value, ...args) => {
+    state.date = value
+    state.value = value
+    const formatVal = formatDate(value, props.format, t)
+    emit('select-change', formatVal, ...args)
+    emit('update:modelValue', formatVal, ...args)
+  }
 
-export const showYearPicker =
-  ({ state }) =>
-  () =>
-    (state.currentView = DATEPICKER.Year)
+export const showHeaderPicker =
+  ({ state, props }) =>
+  (type) => {
+    if (props.readonly) {
+      return
+    }
+    state.currentView = DATEPICKER[type]
+  }
 
 export const cusPrevMonth =
   ({ state }) =>
@@ -205,11 +214,16 @@ export const cusNextYear =
     }
   }
 
-export const handleShortcutClick = (api) => (shortcut) => {
+export const handleShortcutClick = (api, props) => (shortcut) => {
   if (shortcut.onClick) {
     const picker = {
       $emit: (type, start, end) => {
-        api.doPick(start, end)
+        // 面板直接使用快捷选项
+        if (props.shortcuts?.length) {
+          api.handleDatePick(start, end)
+        } else {
+          api.doPick(start, end)
+        }
       }
     }
 
@@ -257,8 +271,11 @@ export const handleMonthPick =
   }
 
 export const handleDatePick =
-  ({ api, state, t }) =>
+  ({ api, state, t, props }) =>
   (value) => {
+    if (props.readonly) {
+      return
+    }
     if (state.selectionMode === DATEPICKER.Day) {
       let newDate = state.value
         ? modifyDate(state.value, value.getFullYear(), value.getMonth(), value.getDate())
@@ -269,8 +286,8 @@ export const handleDatePick =
       }
 
       state.date = newDate
-
       api.cusEmit(state.date, state.showTime)
+      api.panelEmit(state.date, t, props)
     } else if (state.selectionMode === DATEPICKER.Week) {
       api.cusEmit(value.date)
     } else if (state.selectionMode === DATEPICKER.Dates) {

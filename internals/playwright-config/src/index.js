@@ -65,7 +65,7 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
         name: 'chromium',
         use: {
           ...devices['Desktop Chrome'],
-          viewport: { width: 1080, height: 720 }
+          viewport: { width: 1600, height: 960 }
         }
       },
       {
