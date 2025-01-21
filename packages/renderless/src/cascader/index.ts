@@ -11,7 +11,7 @@
  */
 
 import browser, { isBrowser } from '../common/browser'
-import { type } from '@opentiny/utils'
+import { type as types } from '@opentiny/utils'
 import debounce from '../common/deps/debounce'
 import { isEqual } from '../common/object'
 import { addResizeListener } from '../common/deps/resize-event'
@@ -48,7 +48,7 @@ export const getConfig =
       const { newProp, type } = migratingProps[oldProp]
       let oldValue = $attrs[oldProp] || $attrs[kebabCase(oldProp)]
 
-      if (type.isNull(config[newProp]) && !type.isNull(oldProp)) {
+      if (types.isNull(config[newProp]) && !types.isNull(oldProp)) {
         if (oldValue === '' && type === Boolean) {
           oldValue = true
         }
@@ -129,7 +129,7 @@ export const watchCheckedValue =
   }
 
 export const isEmpty = (val) => {
-  if (type.isNull(val)) {
+  if (types.isNull(val)) {
     return true
   }
   if (typeof val === 'boolean') {
@@ -226,7 +226,7 @@ export const toggleDropDownVisible =
 
     const { input } = vm.$refs
 
-    visible = !type.isNull(visible) ? visible : !state.dropDownVisible
+    visible = !types.isNull(visible) ? visible : !state.dropDownVisible
     if (visible !== state.dropDownVisible) {
       state.dropDownVisible = visible
       if (visible) {

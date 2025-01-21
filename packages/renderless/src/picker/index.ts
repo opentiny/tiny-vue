@@ -11,7 +11,7 @@
  */
 
 import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '../common/date'
-import { type } from '@opentiny/utils'
+import { type as types } from '@opentiny/utils'
 import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
 import { formatDate, parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '../common/deps/date-util'
@@ -197,7 +197,7 @@ export const parsedValue =
       if (isServiceTimezone) {
         if (Array.isArray(date)) {
           date = [].concat(date).map((item) => {
-            return type.isDate(item) ? formatDate(item, state.valueFormat, t) : item
+            return types.isDate(item) ? formatDate(item, state.valueFormat, t) : item
           })
         } else {
           if (state.valueFormat !== DATEPICKER.TimesTamp) {
@@ -213,7 +213,7 @@ export const parsedValue =
       return getDateWithNewTimezone(result || props.modelValue, from, to, timezoneOffset)
     }
 
-    const trans = (value) => (typeof value === 'string' || type.isNumber(value) ? toDate(value) : value)
+    const trans = (value) => (typeof value === 'string' || types.isNumber(value) ? toDate(value) : value)
     const values = []
       .concat(props.modelValue)
       .map((val) => getDateWithNewTimezone(trans(val), from, to, timezoneOffset))
@@ -235,7 +235,11 @@ export const getTimezone =
 
     let serveTimezone = isTzNumber(dbTimezone) ? dbTimezone : isTzNumber(DbTimezone) ? DbTimezone : cur
     let clientTimezone = isTzNumber(timezone) ? timezone : isTzNumber(Timezone) ? Timezone : cur
-    let clientTimezoneOffset = type.isNumber(timezoneOffset) ? timezoneOffset : type.isNumber(TimezoneOffset) ? TimezoneOffset : 0
+    let clientTimezoneOffset = types.isNumber(timezoneOffset)
+      ? timezoneOffset
+      : types.isNumber(TimezoneOffset)
+        ? TimezoneOffset
+        : 0
     const value = props.modelValue
     const str = (Array.isArray(value) ? value[0] : value) || ''
     const match = typeof str === 'string' && str.match(/(-|\+)(\d{2}):?(\d{2})$/)
@@ -254,7 +258,7 @@ export const getTimezone =
 
 const nullOrString = (value) => {
   const arr = Array.isArray(value) ? value : [value]
-  return arr.every((val) => (!val && !type.isNumber(val)) || typeof val === 'string')
+  return arr.every((val) => (!val && !types.isNumber(val)) || typeof val === 'string')
 }
 
 export const getValueFormat = ({ props, utils }) => {
@@ -263,7 +267,7 @@ export const getValueFormat = ({ props, utils }) => {
   let suffix = ''
   let separator = ' '
 
-  if (!valueFormat && ~type.indexOf('datetime') && (iso8601 || setting) && nullOrString(value)) {
+  if (!valueFormat && ~types.indexOf('datetime') && (iso8601 || setting) && nullOrString(value)) {
     const str = (Array.isArray(value) ? value[0] : value) || ''
     const match = str.match(iso8601Reg)
 
@@ -1367,7 +1371,7 @@ export const emitDbTime =
     if (isServiceTimezone && !valueEquals(date, state.dbTime)) {
       let hasDate = false
       const dbTime = [].concat(date).map((item) => {
-        if (type.isDate(item)) {
+        if (types.isDate(item)) {
           hasDate = true
           let currentDate = getDateWithNewTimezone(item, getLocalTimezone(), from)
 

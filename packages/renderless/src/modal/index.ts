@@ -918,7 +918,7 @@ export const hideScrollbar = (lockScrollClass) => () => {
 
 export const resetModalViewPosition = (api: IModalApi) => () => {
   const modalBoxElement = api.getBox()
-  const viewportWindow = getViewportWindow()
+  const viewportWindow = global.getViewportWindow()
   const clientVisibleWidth =
     viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
   modalBoxElement.style.left = `${clientVisibleWidth / 2 - modalBoxElement.offsetWidth / 2}px`

@@ -871,7 +871,7 @@ class Popper {
       let scrollLeft = noScroll ? 0 : getScrollLeftValue(scrollParent)
 
       // PopupManager.viewportWindow是为了兼容之前已经采用此方法兼容微前端的用户，后续需要采用globalConfig.viewportWindow
-      const viewportWindow = global.globalConfig.viewportWindow || PopupManager.viewportWindow || window
+      const viewportWindow = global.globalConfig?.viewportWindow || PopupManager.viewportWindow || window
       boundaries = {
         top: 0 - (offsetParentRect.top - scrollTop),
         right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),

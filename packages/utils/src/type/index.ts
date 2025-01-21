@@ -164,3 +164,20 @@ export const isSame = (x: any, y: any) =>
 export const isRegExp = (value: any) => typeOf(value) === 'regExp'
 
 export const isPromise = (val: any) => isObject(val) && isFunction(val.then) && isFunction(val.catch)
+
+export default {
+  toString,
+  hasOwn,
+  isNull,
+  typeOf,
+  isObject,
+  isFunction,
+  isPlainObject,
+  isEmptyObject,
+  isNumber,
+  isNumeric,
+  isDate,
+  isSame,
+  isRegExp,
+  isPromise
+}

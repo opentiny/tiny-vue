@@ -305,3 +305,23 @@ export const isDisplayNone = (elm) => {
 
   return false
 }
+
+export default {
+  on,
+  off,
+  once,
+  hasClass,
+  addClass,
+  removeClass,
+  getStyle,
+  setStyle,
+  isScroll,
+  getScrollContainer,
+  getDomNode,
+  getScrollTop,
+  stopPropagation,
+  preventDefault,
+  getScrollParent,
+  useScrollParent,
+  isDisplayNone
+}

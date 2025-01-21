@@ -10,7 +10,7 @@
  *
  */
 
-import { dom } from '@opentiny/utils'
+import { dom, type as types } from '@opentiny/utils'
 import { formatNumber } from '../common/decimal'
 import { getMiniDecimal, equalsDecimal } from '../common/bigInt'
 
@@ -324,16 +324,16 @@ export const getPrecision = ({ service, props, currency }) => {
     zeroize: props.holdZero
   }
 
-  fraction = type.isNumber(format.fraction)
+  fraction = types.isNumber(format.fraction)
     ? format.fraction
-    : type.isNumber(serFra.fraction)
+    : types.isNumber(serFra.fraction)
       ? serFra.fraction
       : digits
 
   if (r === false) {
     rounding = 0
   } else {
-    rounding = type.isNumber(rounding) ? rounding : type.isNumber(serFra.rounding) ? serFra.rounding : 5
+    rounding = types.isNumber(rounding) ? rounding : types.isNumber(serFra.rounding) ? serFra.rounding : 5
   }
 
   return { ...defaultFmt, fraction, rounding, ...serFmt, ...format }

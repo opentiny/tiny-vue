@@ -47,8 +47,8 @@ export const renderless = (props, { computed, onUnmounted, reactive }, { vm, par
   onUnmounted(() => dom.off(document, 'mouseup', api.mouseUpDocumentHandler))
 
   return Object.assign(api, {
-    startDrag: startDrag({ api, on, state }),
+    startDrag: startDrag({ api, on: dom.on, state }),
     clickThumbHandler: clickThumbHandler({ api, state }),
-    mouseUpDocumentHandler: mouseUpDocumentHandler({ api, off, state })
+    mouseUpDocumentHandler: mouseUpDocumentHandler({ api, off: dom.off, state })
   })
 }

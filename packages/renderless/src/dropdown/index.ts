@@ -225,7 +225,7 @@ export const initEvent =
 
     if (mode === 'mobile-first') {
       if (props.splitButton || props.singleButton) {
-        on(state.triggerElm, 'click', api.handleClick)
+        dom.on(state.triggerElm, 'click', api.handleClick)
       }
     }
   }
