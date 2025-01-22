@@ -40,11 +40,9 @@ const receiveMessage = ({ data }) => {
   if (!['tiny-vue-site'].includes(from)) {
     return
   }
-  showLoading()
   const demoPath = `${component}/${demo}`
   getComponent(demoPath).then((cmp) => {
     showComponent.value = cmp
-    closeLoading()
   })
 }
 
