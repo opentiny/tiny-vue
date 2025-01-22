@@ -752,11 +752,12 @@ function renderDefEmpty(h) {
 }
 
 const syncHeaderAndFooterScroll = ({ bodyElem, footerElem, headerElem, isX }) => {
+  const scrollLeft = bodyElem.scrollLeft
   if (isX && headerElem) {
-    headerElem.scrollLeft = bodyElem.scrollLeft
+    headerElem.scrollLeft = scrollLeft
   }
   if (isX && footerElem) {
-    footerElem.scrollLeft = bodyElem.scrollLeft
+    footerElem.scrollLeft = scrollLeft
   }
 }
 
@@ -871,10 +872,6 @@ export default defineComponent({
     // 空数据元素
     elemStore[`${keyPrefix}emptyBlock`] = $refs.emptyBlock
 
-    // 表体第一层div监听滚动事件
-    $el.onscroll = this.scrollEvent
-    $el._onscroll = this.scrollEvent
-
     if (dropConfig) {
       const { plugin, row = true } = dropConfig
       plugin && row && (this.rowSortable = $table.rowDrop(this.$el))
@@ -908,7 +905,10 @@ export default defineComponent({
       'div',
       {
         ref: 'body',
-        class: ['tiny-grid__body-wrapper', 'body__wrapper', { [classMap.isScrollload]: scrollLoad }]
+        class: ['tiny-grid__body-wrapper', 'body__wrapper', { [classMap.isScrollload]: scrollLoad }],
+        on: {
+          scroll: this.scrollEvent
+        }
       },
       [
         // 表格主体内容x轴方向虚拟滚动条占位元素

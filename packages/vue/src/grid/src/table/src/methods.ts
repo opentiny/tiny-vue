@@ -1645,8 +1645,10 @@ const Methods = {
       // 设置新的渲染列触发Vue渲染
       this.tableColumn = ret.tableColumn
       this.visibleColumnChanged = ret.visibleColumnChanged
-
-      this.$nextTick(this.updateStyle)
+      this.$nextTick(() => {
+        this.updateFooter()
+        this.updateStyle()
+      })
     })
   },
   // 更新横向 X 可视渲染上下剩余空间大小
