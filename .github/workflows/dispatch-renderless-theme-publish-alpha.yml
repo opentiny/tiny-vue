@@ -7,7 +7,7 @@ on:
       components:
         description: |
           输入需要打包的模块名称，多个以英文逗号分隔,
-          例如： `theme,renderless,runtime,docs`
+          例如： `theme,renderless,runtime,docs,utils`
         required: true
         type: string
 concurrency:
