@@ -1,5 +1,5 @@
 import { getScrollContainer } from '../common/deps/infinite-scroll'
-import { type } from '@opentiny/utils'
+import { type as types } from '@opentiny/utils'
 
 let supportsPassive = false
 
@@ -488,7 +488,7 @@ const computePool = (args) => {
 
     const key = keyField ? item[keyField] : item
 
-    if (type.isNull(key)) {
+    if (types.isNull(key)) {
       throw new Error(`[TINY Error][RecycleScroller] Key is ${key} on item (keyField is '${keyField}')`)
     }
 
@@ -540,7 +540,7 @@ const unuseInvisible = ({ continuous, pool, checkItem, itemIndexByKey, keyField,
           view.nr.index = itemIndexByKey[view.item[keyField]]
         }
 
-        if (type.isNull(view.nr.index) || view.nr.index < startIndex || view.nr.index >= endIndex) {
+        if (types.isNull(view.nr.index) || view.nr.index < startIndex || view.nr.index >= endIndex) {
           api.unuseView(view)
         }
       }

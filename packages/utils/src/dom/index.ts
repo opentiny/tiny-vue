@@ -317,6 +317,7 @@ export default {
   setStyle,
   isScroll,
   getScrollContainer,
+  isInContainer,
   getDomNode,
   getScrollTop,
   stopPropagation,

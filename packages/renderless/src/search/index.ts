@@ -11,7 +11,7 @@
  */
 import type { ISearchRenderlessParams, ISearchValue } from '@/types'
 import PopupManager from '../common/deps/popup-manager'
-import { type, dom } from '@opentiny/utils'
+import { type as utilsType, dom } from '@opentiny/utils'
 
 export const emitInput =
   ({ emit }: Pick<ISearchRenderlessParams, 'emit'>) =>
@@ -90,9 +90,9 @@ export const setDefaultType = (searchTypes: ISearchValue[], typeValue: ISearchVa
 
   for (let i = 0, len = searchTypes.length; i < len; i++) {
     if (
-      type.isObject(searchTypes[i]) &&
-      type.typeOf(searchTypes[i].value) !== 'undefined' &&
-      type.typeOf(searchTypes[i].text) !== 'undefined'
+      utilsType.isObject(searchTypes[i]) &&
+      utilsType.typeOf(searchTypes[i].value) !== 'undefined' &&
+      utilsType.typeOf(searchTypes[i].text) !== 'undefined'
     ) {
       type = searchTypes[i]
       break
@@ -107,9 +107,9 @@ export const formatSearchTypes = (searchTypes: ISearchValue[]): ISearchValue[] =
 
   for (let i = 0, len = searchTypes.length; i < len; i++) {
     if (
-      type.isObject(searchTypes[i]) &&
-      type.typeOf(searchTypes[i].value) !== 'undefined' &&
-      type.typeOf(searchTypes[i].text) !== 'undefined'
+      utilsType.isObject(searchTypes[i]) &&
+      utilsType.typeOf(searchTypes[i].value) !== 'undefined' &&
+      utilsType.typeOf(searchTypes[i].text) !== 'undefined'
     ) {
       types.push(searchTypes[i])
     }

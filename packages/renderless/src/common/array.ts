@@ -200,10 +200,10 @@ export const transformPidToChildren = (data, pidName = 'pId', childrenName = 'ch
 
   Array.isArray(data) &&
     data.forEach((item) => {
-      if (item[pidName] === '0') {
+      if (item[pidName] == '0') {
         result.push(item)
       } else {
-        const parent = find(data, (i) => i[idName] === item[pidName])
+        const parent = find(data, (i) => i[idName] == item[pidName])
 
         if (!parent) {
           return

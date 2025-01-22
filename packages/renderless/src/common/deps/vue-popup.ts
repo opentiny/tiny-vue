@@ -12,7 +12,7 @@
 
 import { merge } from '../object'
 import PopupManager from './popup-manager'
-import { dom } from '@opentiny/utils'
+import { dom as doms } from '@opentiny/utils'
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 
 let idSeed = 1
@@ -122,7 +122,7 @@ const openFn =
         if (props.lockScroll) {
           // 必须先计算宽度，再添加popLockClass。 下面2行不能交换
           PopupManager.fixBodyBorder()
-          dom.addClass(document.body, PopupManager.popLockClass)
+          doms.addClass(document.body, PopupManager.popLockClass)
         }
       }
 

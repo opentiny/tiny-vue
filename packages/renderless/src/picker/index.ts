@@ -267,7 +267,7 @@ export const getValueFormat = ({ props, utils }) => {
   let suffix = ''
   let separator = ' '
 
-  if (!valueFormat && ~types.indexOf('datetime') && (iso8601 || setting) && nullOrString(value)) {
+  if (!valueFormat && ~type.indexOf('datetime') && (iso8601 || setting) && nullOrString(value)) {
     const str = (Array.isArray(value) ? value[0] : value) || ''
     const match = str.match(iso8601Reg)
 
