@@ -160,15 +160,16 @@
               </div>
             </tiny-tab-item>
           </tiny-tabs>
-        </div>
-        <div v-if="demoConfig.isMobile" class="mobile-view-container">
-          <!-- 移动端展示内容 -->
-          <div class="phone-container">
-            <div class="mobile-iframe-container">
-              <iframe ref="iframeRef" width="100%" height="100%" :src="iframeUrl" frameborder="0"></iframe>
+          <div v-if="demoConfig.isMobile" class="mobile-view-container">
+            <!-- 移动端展示内容 -->
+            <div class="phone-container">
+              <div class="mobile-iframe-container">
+                <iframe ref="iframeRef" width="100%" height="100%" :src="iframeUrl" frameborder="0"></iframe>
+              </div>
             </div>
           </div>
         </div>
+
         <!-- demo与api目录锚点 -->
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
