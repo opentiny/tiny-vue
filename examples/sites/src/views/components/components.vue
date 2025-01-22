@@ -360,11 +360,6 @@ const getIframeDemo = (demo) => {
     getIframeConetent(demo.demoId, demo.codeFiles[0])
     jumpToMobileDemoAndHash(demo.demoId)
     state.currDemoId = demo.demoId
-    state.currJson.demos.forEach((item) => {
-      if (item.demoId === demo.demoId) {
-        item.isIntersecting = true
-      }
-    })
   }
 }
 
@@ -380,7 +375,6 @@ const jumpToMobileDemoAndHash = (hash) => {
   } else if (apiModeState.demoMode === 'default') {
     // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
     state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-    scrollByHash(hash)
   }
 }
 
@@ -1107,6 +1101,7 @@ const handleAnchorClick = (e, data) => {
 
 .mobile-view-container {
   width: 400px;
+  margin: 0 20px;
 }
 
 .mobile-iframe-container {
