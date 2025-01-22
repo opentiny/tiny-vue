@@ -1,5 +1,7 @@
 import path from 'node:path'
 import tailwindCss from 'tailwindcss'
+import fg from 'fast-glob'
+import fs from 'fs-extra'
 
 // 删除构建后一些无用的静态资源
 export const delStaticPlugin = () => {
