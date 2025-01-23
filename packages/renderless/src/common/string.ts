@@ -10,7 +10,7 @@
  *
  */
 
-import { type } from '@opentiny/utils'
+import { type as types } from '@opentiny/utils'
 import { getObj, toJsonStr } from './object'
 import { toFixed, Decimal } from './decimal'
 import { globalEnvironment, isBrowser } from './browser'
@@ -221,7 +221,7 @@ export const getLength = (string, regular) => {
  * @returns {String}
  */
 export const fillChar = (string, length, append, chr = '0') => {
-  if (typeof string === 'string' && typeof chr === 'string' && type.isNumber(length)) {
+  if (typeof string === 'string' && typeof chr === 'string' && types.isNumber(length)) {
     let len = string.length - length
 
     if (len > 0) {
@@ -366,7 +366,7 @@ export const fieldFormat = (string, data, type = 'html') => {
 
       let value = getObj(data, offset)
 
-      if (type.isNull(value)) {
+      if (types.isNull(value)) {
         value = ''
       }
 
@@ -392,7 +392,7 @@ const getFormatText = () => (str, reg, args, format) =>
     }
 
     const value = args[j]
-    const string = type.isPlainObject(value) ? toJsonStr(value) : value
+    const string = types.isPlainObject(value) ? toJsonStr(value) : value
 
     if (isNullOrEmpty(value)) {
       return ''
@@ -463,7 +463,7 @@ export const format = function (string, data, type = 'text') {
 
   let args, res
 
-  if (type.isPlainObject(data)) {
+  if (types.isPlainObject(data)) {
     return fieldFormat(string, data, type)
   }
 
@@ -482,7 +482,7 @@ export const format = function (string, data, type = 'text') {
 }
 
 const getTruthyValue = ({ string, length, ellipsis }) => {
-  const flag = typeof string === 'string' && type.isNumber(length) && length < string.length
+  const flag = typeof string === 'string' && types.isNumber(length) && length < string.length
   const truthyValue = flag && format(ellipsis, string.substr(0, length))
 
   return { flag, truthyValue }
@@ -531,7 +531,7 @@ export const tryToConvert = (convert, defaultValue, ...args) => {
  * @returns {Number}
  */
 export const toInt = (value) =>
-  type.isNumber(value) ? Number(value.toFixed(0)) : typeof value === 'string' ? parseInt(value, 10) : NaN
+  types.isNumber(value) ? Number(value.toFixed(0)) : typeof value === 'string' ? parseInt(value, 10) : NaN
 
 /**
  * 尝试将字符串解析成十进制整数。如果 value 是个无效的整数，则返回 defaultValue。
@@ -555,7 +555,7 @@ export const tryToInt = (value, defaultValue) => tryToConvert(toInt, defaultValu
  * @param {Number|String} value 要解析的字符串
  * @returns {Number}
  */
-export const toNumber = (value) => (type.isNumber(value) ? value : typeof value === 'string' ? parseFloat(value) : NaN)
+export const toNumber = (value) => (types.isNumber(value) ? value : typeof value === 'string' ? parseFloat(value) : NaN)
 
 /**
  * 尝试将字符串解析成数值。如果 value 是个无效的数字，则返回 defaultValue。
@@ -586,7 +586,7 @@ export const tryToNumber = (value, defaultValue) => tryToConvert(toNumber, defau
 export const toDecimal = (value, fraction = 2, isTruncate = false) => {
   let result = NaN
 
-  if (type.isNumber(value)) {
+  if (types.isNumber(value)) {
     result = value
   }
 
@@ -597,7 +597,7 @@ export const toDecimal = (value, fraction = 2, isTruncate = false) => {
     }
   }
 
-  if (type.isNumber(result)) {
+  if (types.isNumber(result)) {
     if (isTruncate) {
       result = toFixed(
         value
@@ -649,7 +649,7 @@ export const tryToDecimal = (value, fraction, isTruncate, defaultValue) =>
  * @returns {String}
  */
 export const toCurrency = (value, fraction, placeholder, isTruncate) => {
-  if (type.isNumeric(value)) {
+  if (types.isNumeric(value)) {
     let val = toDecimal(Number(value), fraction, isTruncate)
     val = String(val).replace(/(^|[^\w.])(\d{4,})/g, ($0, $1, $2) => $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, '$&,'))
     return placeholder ? format(placeholder, val) : val
@@ -689,9 +689,9 @@ export const tryToCurrency = (value, fraction, placeholder, defaultValue) =>
  * @returns {Boolean|number}
  */
 export const toBoolValue = (value) => {
-  if (type.isNumber(value)) {
+  if (types.isNumber(value)) {
     return value ? 1 : 0
-  } else if (type.isNull(value) || value === 'false') {
+  } else if (types.isNull(value) || value === 'false') {
     return false
   } else if (value === 'true') {
     return true
@@ -714,7 +714,7 @@ export const toBoolValue = (value) => {
  * @returns {String}
  */
 export const toRate = (value, total = 1, fraction = 2) =>
-  type.isNumber(value) && type.isNumber(total)
+  types.isNumber(value) && types.isNumber(total)
     ? toDecimal(Decimal(value).mul(100).div(total).toNumber(), fraction) + '%'
     : value
 
@@ -732,7 +732,7 @@ export const toRate = (value, total = 1, fraction = 2) =>
  * @returns {String}
  */
 export const toFileSize = (value, unit, currUnit) => {
-  if (type.isNumeric(value)) {
+  if (types.isNumeric(value)) {
     value = Number(value)
 
     if (value === 0) {
@@ -778,7 +778,7 @@ export const toFileSize = (value, unit, currUnit) => {
 export const formatFileSize = (size, baseUnit = '') => {
   if ([undefined, null].includes(size)) {
     return ''
-  } else if (!type.isNumber(size) || size <= 0) {
+  } else if (!types.isNumber(size) || size <= 0) {
     return size + baseUnit
   }
 

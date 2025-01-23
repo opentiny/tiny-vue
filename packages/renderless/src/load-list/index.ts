@@ -1,4 +1,5 @@
 import { dom } from '@opentiny/utils'
+
 export const clickList =
   ({ emit, props }) =>
   () => {
