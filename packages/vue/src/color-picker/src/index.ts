@@ -20,7 +20,7 @@ export default defineComponent({
       type: String,
       default: '',
       validator(val: string) {
-        return [' large', 'medium', 'small', 'mini', ''].includes(val)
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
       }
     },
     format: {
