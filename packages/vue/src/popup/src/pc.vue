@@ -49,6 +49,7 @@
 import { setup, $prefix, $props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popup/vue'
 import { iconClose } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme/popup/index.less'
 
 const $constants = {
   OVERFLOWHIDDEN: 'tiny-overflow-hidde'

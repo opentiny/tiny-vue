@@ -11,7 +11,7 @@
  */
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export const searchProps = {
   ...$props,

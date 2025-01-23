@@ -13,7 +13,7 @@ import type { PropType } from '@opentiny/vue-common'
 import { $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconClose } from '@opentiny/vue-icon'
 import { api } from '@opentiny/vue-renderless/picker/vue'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc'
 
 const currentYear = new Date().getFullYear()
 

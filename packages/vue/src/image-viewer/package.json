@@ -22,7 +22,6 @@
     "@opentiny/vue-dropdown-menu": "workspace:~",
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-action-sheet": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
