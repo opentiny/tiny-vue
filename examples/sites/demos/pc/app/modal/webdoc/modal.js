@@ -203,11 +203,13 @@ export default {
         'zh-CN': `
           通过<code>esc-closable</code>属性设置是否允许按 Esc 键关闭窗口。默认值为<code>false</code><br>
           通过<code>z-index</code>属性设置自定义堆叠顺序。<br>
+          通过<code>show-close</code>属性设置自定义是否显示关闭按钮。默认值为<code>true</code><br>
           通过<code>is-form-reset</code>属性，设置关闭弹窗后，是否重置数据。默认值为<code>true</code>,即关闭弹窗后重置数据。<br>
         `,
         'en-US': ` 
           The <code>esc-closable</code> property sets whether to allow the Esc key to close the window. The default value is <code>false</code><br>
           You can set a custom stack order using the <code>z-index</code> property. <br>
+          Customize whether to display a close button through the<code>show-close</code>attribute. The default value is<code>true</code><br>
           You can use the <code>is-form-reset</code> property to set whether data is reset after modal is closed. The default value is <code>true</code>, that is, the data is reset after the modal window is closed. <br>
         `
       },

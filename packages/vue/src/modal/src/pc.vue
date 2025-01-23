@@ -68,7 +68,8 @@ export default defineComponent({
     'cancelBtnProps',
     'footerDragable',
     'tiny_theme',
-    'slots'
+    'slots',
+    'showClose'
   ],
   emits: [
     'update:modelValue',
@@ -88,7 +89,19 @@ export default defineComponent({
     return setup({ props, context, renderless, api }) as unknown as IModalApi
   },
   render() {
-    let { $props = {}, state, scopedSlots, vSize, type, resize, animat, status, showHeader, messageClosable } = this
+    let {
+      $props = {},
+      state,
+      scopedSlots,
+      vSize,
+      type,
+      resize,
+      showClose,
+      animat,
+      status,
+      showHeader,
+      messageClosable
+    } = this
     let { showFooter, title, message, lockScroll, lockView, mask, _constants: constants, t } = this
     let { confirmContent, cancelContent, confirmBtnProps, cancelBtnProps } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
@@ -199,12 +212,14 @@ export default defineComponent({
                           }
                         })
                       : null,
-                    h(iconClose(), {
-                      class: ['tiny-modal__close-btn', 'trigger__btn'],
-                      on: {
-                        click: this.closeEvent
-                      }
-                    })
+                    showClose
+                      ? h(iconClose(), {
+                          class: ['tiny-modal__close-btn', 'trigger__btn'],
+                          on: {
+                            click: this.closeEvent
+                          }
+                        })
+                      : null
                   ]
                 )
               : null,
