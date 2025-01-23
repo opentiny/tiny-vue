@@ -26,7 +26,7 @@
               <template v-if="state.currJson?.demos?.length">
                 <div class="all-demos-container" id="all-demos-container">
                   <div v-if="apiModeState.demoMode === 'default'" id="demo-list" class="ti-f-c ti-f-wrap demo-list">
-                    <demo
+                    <demo-box
                       v-for="demo in state.currJson.demos"
                       :key="demo.name"
                       :observer="state.observer"
@@ -39,7 +39,7 @@
                     />
                   </div>
                   <div v-else>
-                    <demo
+                    <demo-box
                       v-if="state.singleDemo"
                       :isIntersecting="true"
                       :key="state.singleDemo.name"
@@ -221,7 +221,7 @@ import {
 import { iconOuterLink } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode, getCmpContributors } from '@/tools'
-import demo from '@/views/components/demo'
+import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'
 import { router } from '@/router.js'
 import { faqMdConfig, getWebdocPath } from './cmp-config'

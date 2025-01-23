@@ -8,6 +8,6 @@ export default {
   base: '',
   prodBase: '',
   initApp: (app) => {
-    app.config.globalProperties[map.tinyMode] = { value: 'mobile' }
+    app.config.globalProperties[map.tinyMode] = { value: 'pc' }
   }
 }
