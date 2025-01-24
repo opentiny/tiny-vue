@@ -1,4 +1,4 @@
-import { getWindow } from '../window'
+import { getWindow } from '../globalConfigs'
 
 /** 生成字节流或字符串的sha256编码 */
 export async function sha256(message: ArrayBuffer | string) {
