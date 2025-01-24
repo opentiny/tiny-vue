@@ -10,11 +10,10 @@
  *
  */
 
-import PopupManager from './popup-manager'
-import PopperJS from './popper'
-import { on, off, isDisplayNone } from './dom'
+import { PopupManager, Popper as PopperJS, on, off, isDisplayNone } from '@opentiny/utils'
+
+// todo
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
-import type Popper from './popper'
 
 export interface IPopperState {
   popperJS: Popper

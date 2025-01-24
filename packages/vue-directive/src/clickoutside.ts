@@ -10,7 +10,7 @@
  *
  */
 
-import { on } from './dom'
+import { on } from '@opentiny/utils'
 
 const isServer = typeof window === 'undefined'
 const nodeList = []

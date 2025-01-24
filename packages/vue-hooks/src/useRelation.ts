@@ -1,4 +1,4 @@
-import { noop } from '../function'
+import { noop } from '@opentiny/utils'
 import { onMountedOrActivated as createHook } from './useEventListener'
 
 /**

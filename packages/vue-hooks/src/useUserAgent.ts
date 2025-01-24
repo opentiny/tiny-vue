@@ -1,4 +1,4 @@
-import { isServer } from './dom'
+import { isServer } from '@opentiny/utils'
 
 function getIsIOS() {
   if (isServer) return false

@@ -1,4 +1,4 @@
-import { on, isServer } from './dom'
+import { on, isServer } from '@opentiny/utils'
 
 let width
 let height

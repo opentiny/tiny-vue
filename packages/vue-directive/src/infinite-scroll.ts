@@ -1,4 +1,4 @@
-import throttle from './throttle'
+import { throttle } from '@opentiny/utils'
 
 const CONTEXT_KEY = '@@infinitescrollContext'
 const OBSERVER_CHECK_INTERVAL = 50

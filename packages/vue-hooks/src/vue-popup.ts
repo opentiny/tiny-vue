@@ -10,9 +10,9 @@
  *
  */
 
-import { merge } from '../object'
-import PopupManager from './popup-manager'
-import { addClass } from './dom'
+import { merge, PopupManager, addClass } from '@opentiny/utils'
+
+// todo
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 
 let idSeed = 1

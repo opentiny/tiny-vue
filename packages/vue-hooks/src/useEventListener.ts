@@ -1,4 +1,4 @@
-import { on, off, isServer } from './dom'
+import { on, off, isServer } from '@opentiny/utils'
 
 export const onMountedOrActivated =
   ({ onMounted, onActivated, nextTick }) =>

@@ -1,12 +1,11 @@
 import xss from './xss'
 import logger from './logger'
 import crypt from './crypt'
-
 import ResizeObserver from './resize-observer'
 
 export { xss, logger, crypt, ResizeObserver }
 
-export { getWindow, isWeb, globalConfig, getViewportWindow } from './globalConfigs'
+export { getWindow, isWeb, globalConfig, getViewportWindow } from './globalConfig'
 export { getDays, getWeek, lastMonth, nextMonth, getCalendar, transformArray, parseDate } from './calendar'
 export {
   isLeapYear,
@@ -70,7 +69,7 @@ export {
   omitText
 } from './string'
 
-// 待转移到globalConfigs
+// 待转移到globalConfig
 export { isBrowser, globalEnvironment, browser } from './browser'
 
 export { roundFixed, Decimal, toFixed as toFixedDecimal, formatNumber, recoverNumber } from './decimal'

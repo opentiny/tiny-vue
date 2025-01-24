@@ -1,5 +1,4 @@
-import throttle from './throttle'
-import { isEqual } from '../object'
+import { throttle, isEqual } from '@opentiny/utils'
 
 const CONTEXT_KEY = '@@observevisibilityContext'
 

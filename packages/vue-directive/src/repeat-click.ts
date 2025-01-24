@@ -10,7 +10,7 @@
  *
  */
 
-import { on, once } from './dom'
+import { on, once } from '@opentiny/utils'
 
 export default (el, binding) => {
   // fix issue#919

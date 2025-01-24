@@ -8,7 +8,7 @@
  * @author Wilson Page <wilsonpage@me.com>
  * @author Kornel Lesinski <kornel.lesinski@ft.com>
  */
-import { isBrowser } from '../../browser'
+import { isBrowser } from '../browser'
 
 const RAF = (function () {
   if (isBrowser) {
