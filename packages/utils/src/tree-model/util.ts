@@ -10,8 +10,24 @@
  *
  */
 
-import throttle from './throttle'
+export const NODE_KEY = '$treeNodeId'
 
-export function debounce(delay, atBegin, callback?: Function) {
-  return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false)
+export const getNodeKey = function (key, data) {
+  if (!key) {
+    return data[NODE_KEY]
+  }
+  return data[key]
+}
+
+export const markNodeData = function (node, data) {
+  if (!data || data[NODE_KEY]) {
+    return
+  }
+
+  Object.defineProperty(data, NODE_KEY, {
+    value: node.id,
+    enumerable: false,
+    configurable: false,
+    writable: false
+  })
 }

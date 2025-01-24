@@ -10,7 +10,7 @@
  *
  */
 
-import throttle from './throttle'
+import { throttle } from '../throttle'
 
 export function debounce(delay, atBegin, callback?: Function) {
   return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false)
