@@ -8,6 +8,6 @@ test('自定义总条数', async ({ page }) => {
   const pager = demo.locator('.tiny-pager')
   const total = pager.locator('.tiny-pager__total')
 
-  await expect(total.first()).toHaveText('总条数：100万+')
-  await expect(total.nth(1)).toHaveText('总条数：条数超出百万')
+  await expect(total.first()).toHaveText('总条数： 100万+')
+  await expect(total.nth(1)).toHaveText('总条数： 条数超出百万')
 })
