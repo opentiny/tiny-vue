@@ -1,6 +1,106 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'Tabbar',
+      type: 'component',
+      props: [
+        {
+          name: 'active-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>选中标签的颜色</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'active-inactive-color'
+        },
+        {
+          name: 'border',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否显示外边框，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'border'
+        },
+        {
+          name: 'fixed',
+          type: 'Boolen',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否固定在底部，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'border'
+        },
+        {
+          name: 'inactive-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>未选中标签的颜色</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'active-inactive-color'
+        },
+        {
+          name: 'route',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否开启路由模式，该属性默认为false</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'route'
+        },
+        {
+          name: 'z-index',
+          type: 'Number | String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>元素 z-index</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'border'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: 'Function()',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>切换标签时触发,value: 当前选中标签的名称或索引值</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'event-change'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'icon',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义图标</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'slot-icon'
+        }
+      ]
+    },
+    {
+      name: 'TabbarItem',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'onlytext',

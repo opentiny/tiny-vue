@@ -1,6 +1,99 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'progress',
+      type: 'component',
+      props: [
+        {
+          name: 'color',
+          typeAnchorName: 'IColorItem',
+          type: 'string | IColorItem[] | (percentage: string) => string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '进度条背景色（会覆盖 status 状态颜色）',
+            'en-US': 'Background color of the progress bar (overwrites the status color)'
+          },
+          mobileDemo: 'custom-color'
+        },
+        {
+          name: 'percentage',
+          type: 'number',
+          defaultValue: '0',
+          desc: {
+            'zh-CN': '百分比（必填）；该属性的可选值为 0-100',
+            'en-US': 'Percentage (mandatory) The optional values for this property are 0 - 100'
+          },
+          mobileDemo: 'dynamic-progress'
+        },
+        {
+          name: 'show-text',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示进度条文字内容',
+            'en-US': 'Display progress bar text'
+          },
+          mobileDemo: 'text-inside-or-no-text'
+        },
+        {
+          name: 'status',
+          type: "'success' | 'exception' | 'warning'",
+          defaultValue: '',
+          desc: {
+            'zh-CN': '进度条当前状态',
+            'en-US': 'Current status of the progress bar'
+          },
+          mobileDemo: 'progress-status'
+        },
+        {
+          name: 'stroke-width',
+          type: 'number',
+          defaultValue: '6',
+          desc: {
+            'zh-CN': 'line 类型进度条的宽度，单位 px',
+            'en-US': 'The width of the progress bar of type line, in px'
+          },
+          mobileDemo: 'progress-width'
+        },
+        {
+          name: 'text-inside',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '进度条显示文字内置在进度条内（只在 type=line 时可用）',
+            'en-US':
+              'The text displayed on the progress bar is embedded in the progress bar. This parameter is available only when type is set to line'
+          },
+          mobileDemo: 'format-text'
+        },
+        {
+          name: 'type',
+          type: "'line' | 'circle' | 'dashboard'",
+          defaultValue: "'line'",
+          desc: {
+            'zh-CN': '进度条类型',
+            'en-US': 'Progress bar type'
+          },
+          mobileDemo: 'progress-type'
+        },
+        {
+          name: 'width',
+          type: 'number',
+          defaultValue: '126',
+          desc: {
+            'zh-CN': '环形进度条画布宽度（只在 type 为 circle 或 dashboard 时可用）',
+            'en-US': 'Circular progress bar canvas width (available only when type is circle or dashboard)'
+          },
+          mobileDemo: 'width'
+        }
+      ],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'progress-type',
@@ -146,6 +239,18 @@ export default {
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['width.vue']
+    }
+  ],
+  types: [
+    {
+      name: 'IColorItem',
+      type: 'type',
+      code: `
+interface IColorItem {
+  color: string
+  percentage: number
+}
+`
     }
   ]
 }

@@ -1,6 +1,60 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'loading',
+      type: 'component',
+      props: [
+        {
+          name: 'target',
+          type: 'HTMLElement | string',
+          defaultValue: 'document.body',
+          desc: {
+            'zh-CN':
+              'Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector 以获取到对应 DOM 节点',
+            'en-US':
+              'Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.'
+          },
+          mobileDemo: 'type'
+        },
+        {
+          name: 'tiny_mode',
+          type: 'string',
+          defaultValue: 'pc',
+          desc: {
+            'zh-CN': '<p>通配置项pc,mobile表示不同设备</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'type'
+        },
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: 'primary',
+          desc: {
+            'zh-CN': '<p>通过type设置不同的加载样式</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'type'
+        }
+      ],
+      events: [],
+      methods: [
+        {
+          name: 'closeLoading',
+          type: 'Function',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>关闭Loading</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'type'
+        }
+      ],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'base',
@@ -84,93 +138,12 @@ export default {
         'en-US': 'Global Registry'
       },
       desc: {
-        'zh-CN': `<p>通过 <code>v-loading.lock.fullscreen</code> 指令方式或者服务方式进行全局加载，如需使用指令方式全局加载需要如下操作：
-          <p>在 Vue 2 版本环境中添加 <code>Vue.use(Loading)</code>；</p><p>在Vue 3 版本环境中添加 <code>app.use(Loading)</code>.<p>`,
-        'en-US': `<p>Global loading can be achieved through the <code>v-loading.lock.fullscreen</code> directive or service. To use the directive for global loading, follow these steps:</p><p>For Vue 2 environment, add <code>Vue.use(Loading)</code>;</p><p>For Vue 3 environment, add <code>app.use(Loading)</code>.</p>`
+        'zh-CN':
+          '<p>通过 <code>v-loading.lock.fullscreen</code> 指令方式或者服务方式进行全局加载，如需使用指令方式全局加载需要如下操作：\n          <p>在 Vue 2 版本环境中添加 <code>Vue.use(Loading)</code>；</p><p>在Vue 3 版本环境中添加 <code>app.use(Loading)</code>.<p>',
+        'en-US':
+          '<p>Global loading can be achieved through the <code>v-loading.lock.fullscreen</code> directive or service. To use the directive for global loading, follow these steps:</p><p>For Vue 2 environment, add <code>Vue.use(Loading)</code>;</p><p>For Vue 3 environment, add <code>app.use(Loading)</code>.</p>'
       },
       codeFiles: ['global-registry.vue']
-    }
-  ],
-  apis: [
-    {
-      name: 'Loading', // 组件名称展示使用
-      type: 'loading', // API 类型
-      properties: [
-        {
-          name: 'type',
-          type: 'string',
-          defaultValue: 'primary',
-          desc: {
-            'zh-CN': '<p>通过type设置不同的加载样式</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'type'
-        },
-        {
-          name: 'background',
-          type: 'string',
-          defaultValue: `'#0000004b'`,
-          desc: {
-            'zh-CN': '遮罩层背景色',
-            'en-US': 'mask background color'
-          },
-          demoId: 'background'
-        },
-        {
-          name: 'custom-class',
-          type: 'string',
-          defaultValue: '--',
-          desc: {
-            'zh-CN': '自定义类名',
-            'en-US': 'Custom class name'
-          },
-          demoId: 'custom-class'
-        },
-        {
-          name: 'spinner',
-          type: 'Component',
-          defaultValue: '--',
-          desc: {
-            'zh-CN': '自定义加载图标',
-            'en-US': 'display different button'
-          },
-          demoId: 'spinner'
-        },
-        {
-          name: 'target',
-          type: 'DOM',
-          defaultValue: 'document.body',
-          desc: {
-            'zh-CN':
-              '需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector 以获取到对应 DOM 节点',
-            'en-US':
-              'The DOM node to be targeted for coverage. It can be a DOM object or a string; if a string is passed, it will be used as a parameter for document.querySelector to obtain the corresponding DOM node'
-          },
-          demoId: 'base'
-        }
-      ],
-      method: [
-        {
-          name: 'close',
-          type: '() => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '关闭 Loading',
-            'en-US': 'close loading'
-          },
-          demoId: 'base'
-        },
-        {
-          name: 'service',
-          type: '() => Component',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '创建一个 Loading 组件实例并展示',
-            'en-US': 'Create a Loading component instance and display it'
-          },
-          demoId: 'base'
-        }
-      ]
     }
   ]
 }

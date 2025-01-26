@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'radio',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'dynamic-disable',
-          mobileDemo: 'disabled',
           mfDemo: ''
         },
         {
@@ -38,9 +37,8 @@ export default {
             'zh-CN': 'radio 选中时的值',
             'en-US': 'Value when radio is selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'label',
           mfDemo: ''
         },
         {
@@ -62,14 +60,13 @@ export default {
             'zh-CN': '原生 name 属性',
             'en-US': 'Native name attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: 'base',
           mfDemo: ''
         },
         {
           name: 'tabindex',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': 'Radio 组件的 tabindex。默认值为 1 ',
@@ -86,14 +83,13 @@ export default {
             'zh-CN': '单选框文本内容',
             'en-US': 'Radio Box Text Content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'radio-text',
-          mobileDemo: 'base',
           mfDemo: ''
         },
         {
           name: 'v-model',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '绑定值',
@@ -101,17 +97,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
-        },
-        {
-          name: 'value',
-          type: 'object | string',
-          defaultValue: '{}',
-          desc: {
-            'zh-CN': '<p>绑定值，该属性默认为{}</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'base'
         }
       ],
       events: [
@@ -123,9 +108,8 @@ export default {
             'zh-CN': '绑定值变化时触发的事件',
             'en-US': 'Event triggered when the binding value changes'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'radio-events',
-          mobileDemo: 'event',
           mfDemo: ''
         }
       ],
@@ -139,9 +123,8 @@ export default {
             'zh-CN': 'radio 的默认插槽',
             'en-US': 'Radio default slot'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'default-slot',
-          mobileDemo: '',
           mfDemo: ''
         }
       ]

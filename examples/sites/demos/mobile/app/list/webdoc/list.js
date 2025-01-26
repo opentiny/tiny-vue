@@ -1,6 +1,74 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'List',
+      type: 'component',
+      props: [
+        {
+          name: 'content',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置主文本</p>',
+            'en-US': 'Is fixed top'
+          },
+          mobileDemo: 'double-line'
+        },
+        {
+          name: 'sub-text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置次文本</p>',
+            'en-US': 'Is show right arrow'
+          },
+          mobileDemo: 'single-line'
+        }
+      ],
+      events: [],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义主文本内容</p>',
+            'en-US': 'Is show right arrow'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'description',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义描述内容</p>',
+            'en-US': 'Is show right arrow'
+          },
+          mobileDemo: 'slots'
+        },
+        {
+          name: 'prefix',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义头部内容</p>',
+            'en-US': 'Is show right arrow'
+          },
+          mobileDemo: 'slots'
+        },
+        {
+          name: 'suffix',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义尾部内容</p>',
+            'en-US': 'Is show right arrow'
+          },
+          mobileDemo: 'slots'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'double-line',

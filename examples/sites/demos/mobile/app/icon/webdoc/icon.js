@@ -1,6 +1,7 @@
 export default {
   column: '2',
   owner: '',
+  apis: [],
   demos: [
     {
       demoId: 'icon-set',

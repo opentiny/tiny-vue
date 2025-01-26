@@ -1,6 +1,328 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'modal',
+      type: 'component',
+      props: [
+        {
+          name: 'duration',
+          type: 'number | string',
+          defaultValue: '3000',
+          desc: {
+            'zh-CN': "自动关闭的延时，仅当 type 为 'message' 有效",
+            'en-US': "Delay for automatic shutdown, only valid when type is 'message'"
+          },
+          mobileDemo: 'duration'
+        },
+        {
+          name: 'esc-closable',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否允许按 Esc 键关闭窗口',
+            'en-US': 'Whether to allow pressing the Esc key to close a window'
+          },
+          mobileDemo: 'mask-closable'
+        },
+        {
+          name: 'fullscreen',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否最大化显示',
+            'en-US': 'Whether to maximize the display'
+          },
+          mobileDemo: 'fullscreen'
+        },
+        {
+          name: 'height',
+          type: 'number | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的高度',
+            'en-US': 'window height'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'id',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': "如果不想窗口重复点击，可以设置唯一的 id 防止重复提示，仅当 type 为 'message' 有效",
+            'en-US':
+              "If you don't want the window to be clicked repeatedly, you can set a unique id to prevent repeated prompts. This is only valid when type is 'message'"
+          },
+          mobileDemo: 'id'
+        },
+        {
+          name: 'is-form-reset',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '关闭弹窗时，是否重置表单数据',
+            'en-US': 'Whether to reset the form data when closing the pop-up window'
+          },
+          mobileDemo: 'is-form-reset'
+        },
+        {
+          name: 'lock-scroll',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否锁住滚动条，不允许页面滚动',
+            'en-US': 'Whether to lock the scroll bar and not allow the page to scroll'
+          },
+          mobileDemo: 'lock-scroll'
+        },
+        {
+          name: 'lock-view',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否锁住页面，不允许窗口之外的任何操作',
+            'en-US': 'Whether to lock the page and not allow any operations outside the window'
+          },
+          mobileDemo: 'lock-view'
+        },
+        {
+          name: 'mask',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示遮罩层',
+            'en-US': 'Whether to display the mask layer'
+          },
+          mobileDemo: 'mask-closable'
+        },
+        {
+          name: 'mask-closable',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '是否允许点击遮罩层关闭窗口',
+            'en-US': 'Whether to allow clicking on the mask layer to close the window'
+          },
+          mobileDemo: 'mask-closable'
+        },
+        {
+          name: 'message',
+          type: 'string | VNode | () => string | VNode',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的内容',
+            'en-US': 'Window contents'
+          },
+          mobileDemo: 'message'
+        },
+        {
+          name: 'min-height',
+          type: 'number | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的最小高度',
+            'en-US': 'Minimum height of window'
+          },
+          mobileDemo: 'min-height'
+        },
+        {
+          name: 'min-width',
+          type: 'number | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的最小宽度',
+            'en-US': 'The minimum width of the window'
+          },
+          mobileDemo: 'min-width'
+        },
+        {
+          name: 'modelValue / v-model',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示',
+            'en-US': 'Whether to display'
+          },
+          mobileDemo: 'cancel-event'
+        },
+        {
+          name: 'resize',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否允许拖动调整窗口大小',
+            'en-US': 'Whether to allow dragging to resize the window'
+          },
+          mobileDemo: 'resize'
+        },
+        {
+          name: 'show-header',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示头部',
+            'en-US': 'Display Header'
+          },
+          mobileDemo: 'showHeader'
+        },
+        {
+          name: 'status',
+          typeAnchorName: 'IStatus',
+          type: 'IStatus',
+          defaultValue: "'info'",
+          desc: {
+            'zh-CN': "消息状态，当 type 为 'alert'、'message'、'confirm' 时有效",
+            'en-US': "Message status, valid when type is 'alert', 'message', 'confirm'"
+          },
+          mobileDemo: 'status'
+        },
+        {
+          name: 'title',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的标题',
+            'en-US': 'Window title'
+          },
+          mobileDemo: 'title'
+        },
+        {
+          name: 'top',
+          type: 'number | string',
+          defaultValue: '80',
+          desc: {
+            'zh-CN': "消息距离顶部的位置，仅当 type 为 'message' 时有效",
+            'en-US': "The position of the message from the top, only valid when type is 'message'"
+          },
+          mobileDemo: 'top'
+        },
+        {
+          name: 'type',
+          type: "'alert' | 'confirm' | 'message'",
+          defaultValue: "'alert'",
+          desc: {
+            'zh-CN': '窗口类型',
+            'en-US': 'Window type'
+          },
+          mobileDemo: 'type'
+        },
+        {
+          name: 'width',
+          type: 'number | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口的宽度（设置宽度像素或者百分比，浏览器窗口大小改变可居中显示)',
+            'en-US':
+              'The width of the window(Set the width in pixels or percentages, and the browser window size can be changed to display in the center)'
+          },
+          mobileDemo: 'grid'
+        },
+        {
+          name: 'z-index',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）',
+            'en-US': 'Customize the stacking order (may be used in some special scenarios, such as when it is blocked)'
+          },
+          mobileDemo: 'zIndex'
+        }
+      ],
+      events: [
+        {
+          name: 'cancel',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam, event: Event) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击取消按钮时会触发该事件',
+            'en-US': 'This event is triggered when the Cancel button is clicked'
+          },
+          mobileDemo: 'cancel-event'
+        },
+        {
+          name: 'close',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam, event: Event) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击关闭按钮时会触发该事件',
+            'en-US': 'This event is triggered when the close button is clicked'
+          },
+          mobileDemo: 'close-event'
+        },
+        {
+          name: 'confirm',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam, event: Event) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击确定按钮时会触发该事件',
+            'en-US': 'This event is triggered when the OK button is clicked'
+          },
+          mobileDemo: 'confirm-event'
+        },
+        {
+          name: 'hide',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '在窗口关闭时会触发该事件',
+            'en-US': 'This event is triggered when the window is closed'
+          },
+          mobileDemo: 'hide-event'
+        },
+        {
+          name: 'show',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '在窗口显示时会触发该事件',
+            'en-US': 'This event is triggered when the window is displayed'
+          },
+          mobileDemo: 'show-event'
+        },
+        {
+          name: 'zoom',
+          typeAnchorName: 'IModalEventParam',
+          type: '(params: IModalEventParam, event: Event) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口缩放时会触发该事件',
+            'en-US': 'This event is triggered when a window is zoomed in or out'
+          },
+          mobileDemo: 'zoom-event'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '默认插槽',
+            'en-US': 'Default slot'
+          },
+          mobileDemo: 'cancel-event'
+        },
+        {
+          name: 'footer',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '窗口底部的模板',
+            'en-US': 'Template at the bottom of the window'
+          },
+          mobileDemo: 'footer-slot'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'base',
@@ -337,6 +659,25 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['zoom-event.vue']
+    }
+  ],
+  types: [
+    {
+      name: 'IModalEventParam',
+      type: 'interface',
+      code: `
+interface IModalEventParam {
+  type: 'alert' | 'message' | 'confirm' // 弹窗类型
+  $modal: ComponentPublicInstance // Modal组件实例
+}
+`
+    },
+    {
+      name: 'IStatus',
+      type: 'type',
+      code: `
+          type IStatus = 'info' | 'success' | 'warning' | 'error' | 'loading'
+      `
     }
   ]
 }

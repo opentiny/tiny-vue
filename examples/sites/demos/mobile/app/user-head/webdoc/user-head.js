@@ -1,6 +1,129 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'user-head',
+      type: 'component',
+      props: [
+        {
+          name: 'backgroundColor',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置背景色</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'custom-background-color'
+        },
+        {
+          name: 'color',
+          type: 'string',
+          defaultValue: "'#ffffff'",
+          desc: {
+            'zh-CN': '文字颜色',
+            'en-US': 'Text color'
+          },
+          mobileDemo: 'color'
+        },
+        {
+          name: 'messageTotal',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>右上角消息计数</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'message-count-limit'
+        },
+        {
+          name: 'messageType',
+          type: 'string',
+          defaultValue: 'details',
+          desc: {
+            'zh-CN': '<p>右上角消息提醒类型，basic显示小圆点不显示消息数量</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'message-count-type'
+        },
+        {
+          name: 'messageUpperLimit',
+          type: 'number',
+          defaultValue: '0',
+          desc: {
+            'zh-CN': '<p>右上角消息显示上限</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'message-count-limit'
+        },
+        {
+          name: 'min',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '小尺寸模式',
+            'en-US': 'Small size mode'
+          },
+          mobileDemo: 'min-user-head'
+        },
+        {
+          name: 'round',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '圆形模式',
+            'en-US': 'Circular mode'
+          },
+          mobileDemo: 'round-user-head'
+        },
+        {
+          name: 'size',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置头像尺寸</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'basic-usage'
+        },
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: "'label'",
+          desc: {
+            'zh-CN': '头像类型，icon|image|label 可选',
+            'en-US':
+              'Avatar type. The options are icon, image, and label. ;The value of this attribute can be icon / image / label'
+          },
+          mobileDemo: 'basic-usage'
+        },
+        {
+          name: 'v-model/modelValue',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'basic-usage'
+        }
+      ],
+      events: [],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义图像内容',
+            'en-US': 'Customized image content'
+          },
+          mobileDemo: 'round-user-head'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'basic-usage',

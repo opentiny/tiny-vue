@@ -1,6 +1,146 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'checkbox',
+      type: 'component',
+      props: [
+        {
+          name: 'checked',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否默认勾选',
+            'en-US': 'Currently selected'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否禁用',
+            'en-US': 'Disable'
+          },
+          mobileDemo: 'disabled'
+        },
+        {
+          name: 'false-label',
+          type: 'string | number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '没有选中时的值',
+            'en-US': 'Value when no option is selected'
+          },
+          mobileDemo: 'custom-value'
+        },
+        {
+          name: 'icon-position',
+          type: 'string',
+          defaultValue: 'center',
+          desc: {
+            'zh-CN': "<p>图标与文本的对齐方式，可选值：'center' | 'top'</p>",
+            'en-US': "<p>Alignment of icon and text, optional value: 'center' | 'top'</p>"
+          },
+          mobileDemo: 'icon-position'
+        },
+        {
+          name: 'indeterminate',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置 indeterminate 状态，只负责样式控制',
+            'en-US': 'Sets the indeterminate state and controls only the style.'
+          },
+          mobileDemo: 'indeterminate'
+        },
+        {
+          name: 'label',
+          type: 'string | number | boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '选中状态的值（只有在 checkbox-group 中或者绑定对象类型为 array 时有效）',
+            'en-US':
+              'Selected value (This parameter is valid only when checkbox-group or the bound object type is array)'
+          },
+          mobileDemo: 'basic-usage'
+        },
+        {
+          name: 'name',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '原生 name 属性',
+            'en-US': 'Native name attribute'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'true-label',
+          type: 'string | number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '选中时的值',
+            'en-US': 'Value when selected'
+          },
+          mobileDemo: 'custom-value'
+        },
+        {
+          name: 'v-model / modelValue',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>绑定值</p>',
+            'en-US': '<p>value</p>'
+          },
+          mobileDemo: 'basic-usage'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: '(value: string | number | boolean) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当绑定值变化时触发的事件',
+            'en-US': 'This event is triggered when the binding value changes'
+          },
+          mobileDemo: 'event-change'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': 'checkbox的内容',
+            'en-US': 'Checkbox content'
+          },
+          mobileDemo: ''
+        }
+      ]
+    },
+    {
+      name: 'checkbox-group',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    },
+    {
+      name: 'checkbox-button',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'basic-usage',

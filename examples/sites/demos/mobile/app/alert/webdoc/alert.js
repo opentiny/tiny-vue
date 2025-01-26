@@ -1,6 +1,122 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'alert',
+      type: 'component',
+      props: [
+        {
+          name: 'center',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '文字是否居中',
+            'en-US': 'Whether the text is centered'
+          },
+          mobileDemo: 'center'
+        },
+        {
+          name: 'closable',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '警告是否可以关闭',
+            'en-US': 'Set whether alarms can be disabled.'
+          },
+          mobileDemo: 'custom-close'
+        },
+        {
+          name: 'close-text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭按钮自定义文本',
+            'en-US': 'Customized text of the close button'
+          },
+          mobileDemo: 'custom-close'
+        },
+        {
+          name: 'description',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '警告的提示内容',
+            'en-US': 'Set the warning prompt content'
+          },
+          mobileDemo: 'custom-close'
+        },
+        {
+          name: 'icon',
+          type: 'Component',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '传入图标组件自定义警告的图标，默认会根据 type 值自动使用对应图标',
+            'en-US':
+              'The icon for the custom warning of the incoming icon component will be automatically used based on the type value by default'
+          },
+          mobileDemo: 'icon'
+        },
+        {
+          name: 'size',
+          type: "'normal' | 'large'",
+          defaultValue: "'normal'",
+          desc: {
+            'zh-CN': '警告的尺寸大小',
+            'en-US': 'Set the size of the warning'
+          },
+          mobileDemo: 'size'
+        },
+        {
+          name: 'target',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '挂载容器的ref值，通过该属性可以让组件展示在对应容器的顶部',
+            'en-US':
+              'Mounted container reference, this property allows the component to be displayed at the top of the corresponding container.'
+          },
+          mobileDemo: 'target'
+        },
+        {
+          name: 'type',
+          typeAnchorName: 'IType',
+          type: 'IType',
+          defaultValue: "'info'",
+          desc: {
+            'zh-CN': '警告的类型',
+            'en-US': 'Set the alarm type'
+          },
+          mobileDemo: 'size'
+        }
+      ],
+      events: [
+        {
+          name: 'close',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭 alert 时触发的事件',
+            'en-US': 'Event triggered when the alert function is disabled'
+          },
+          mobileDemo: 'custom-close'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '组件默认插槽，当 size 设置为 large 时有效，显示在 <code>description</code>下方 ',
+            'en-US': 'The default slot for the component is valid when size is set to large'
+          },
+          mobileDemo: 'slot-default'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'base',
@@ -87,6 +203,15 @@ export default {
         'en-US': '<p>Customize prompt messages through default slot.</p>'
       },
       codeFiles: ['slot-default.vue']
+    }
+  ],
+  types: [
+    {
+      name: 'IType',
+      type: 'type',
+      code: `
+type IType = 'success' | 'warning' | 'info' | 'error' | 'simple'
+`
     }
   ]
 }

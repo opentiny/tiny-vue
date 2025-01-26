@@ -1,6 +1,16 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'dialog-box',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'append-to-body',

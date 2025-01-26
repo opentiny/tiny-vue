@@ -1,6 +1,145 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'pull-refresh ',
+      type: 'component',
+      props: [
+        {
+          name: 'disabled-pull-down',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用下拉刷新</p>',
+            'en-US': 'disablde pull down'
+          },
+          mobileDemo: 'disabled-pull-down'
+        },
+        {
+          name: 'disabled-pull-up',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用上拉</p>',
+            'en-US': 'disablded pull up'
+          },
+          mobileDemo: 'disabled-pull-up'
+        },
+        {
+          name: 'has-more',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>是否有更多数据</p>',
+            'en-US': 'has more'
+          },
+          mobileDemo: 'has-more'
+        },
+        {
+          name: 'loosing-text',
+          type: 'string',
+          defaultValue: '释放即可刷新',
+          desc: {
+            'zh-CN': '<p>下拉高度大于等于head-height时的提示文字，默认为：释放即可刷新</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'loosing-text'
+        },
+        {
+          name: 'pull-down-loading-text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>下拉加载文字</p>',
+            'en-US': 'pull down loading text'
+          },
+          mobileDemo: 'pulling-text'
+        },
+        {
+          name: 'pull-up-distance',
+          type: 'number',
+          defaultValue: '18',
+          desc: {
+            'zh-CN': '<p>触发上拉刷新的距离</p>',
+            'en-US': 'pull up distance'
+          },
+          mobileDemo: 'pull-up-distance'
+        },
+        {
+          name: 'pull-up-loading-text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>上拉加载文字</p>',
+            'en-US': 'pull up loading text'
+          },
+          mobileDemo: 'pulling-text'
+        },
+        {
+          name: 'v-model',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否刷新状态，可以手动设置false来关闭刷新</p>',
+            'en-US': 'is refreshing'
+          },
+          mobileDemo: 'base'
+        }
+      ],
+      events: [
+        {
+          name: 'pull-down',
+          type: '(event: PullEvent) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>下拉时触发的事件</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'event'
+        },
+        {
+          name: 'pull-up',
+          type: '(event: PullEvent) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>上拉时触发的事件</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'event'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'footer',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>上拉加载更多插槽</p>',
+            'en-US': 'pull up slot'
+          },
+          mobileDemo: 'pull-refresh-slot'
+        },
+        {
+          name: 'header',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>下拉刷新插槽</p>',
+            'en-US': 'pull down slot'
+          },
+          mobileDemo: ''
+        }
+      ]
+    },
+    {
+      name: 'pull-refresh',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'base',

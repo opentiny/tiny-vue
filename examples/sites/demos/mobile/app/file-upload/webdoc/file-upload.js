@@ -1,6 +1,424 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'file-upload',
+      type: 'component',
+      props: [
+        {
+          name: 'accept',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '限制文件类型（thumbnail-mode 模式下此参数无效）',
+            'en-US': 'Restrict the types of files. This parameter is invalid in thumbnail-mode mode'
+          },
+          mobileDemo: 'accept-file'
+        },
+        {
+          name: 'action',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '上传的地址，必填参数',
+            'en-US': 'The address for uploading files, required parameter'
+          },
+          mobileDemo: 'accept-file'
+        },
+        {
+          name: 'auto-upload',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否在选取文件后立即进行上传',
+            'en-US': 'Whether to upload a file immediately after it is selected'
+          },
+          mobileDemo: 'manual-upload'
+        },
+        {
+          name: 'before-remove',
+          typeAnchorName: 'IFile',
+          type: '(file: IFile, fileList: IFile[]) => boolean | Promise',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '删除文件前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除',
+            'en-US':
+              'Hook before deleting files. The parameters are the uploaded files and file list. If false is returned or Promise is returned and rejected, the deletion stops'
+          },
+          mobileDemo: 'prevent-delete-file'
+        },
+        {
+          name: 'before-upload',
+          typeAnchorName: 'IFile',
+          type: '(file: IFile) => boolean | Promise',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传',
+            'en-US':
+              'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops'
+          },
+          mobileDemo: 'upload-request'
+        },
+        {
+          name: 'buttons',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置组件基本按钮禁用或启用。</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'data',
+          typeAnchorName: 'IData',
+          type: 'IData',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '上传时附带的额外参数，参数自定义',
+            'en-US': 'Extra parameters attached during upload, parameter customization'
+          },
+          mobileDemo: 'data'
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否禁用',
+            'en-US': 'Is it disabled'
+          },
+          mobileDemo: 'dynamic-disable'
+        },
+        {
+          name: 'display',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>显示删除文件功能，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'file-icon-list',
+          type: 'Array',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>配置文件上传显示的图标路径，未配置会默认显示组件内部配置图标</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'file-icon-list'
+        },
+        {
+          name: 'file-list',
+          typeAnchorName: 'IFileListItem',
+          type: 'IFileListItem[]',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '上传的文件列表',
+            'en-US': 'List of uploaded files'
+          },
+          mobileDemo: 'upload-file-list'
+        },
+        {
+          name: 'file-title',
+          type: 'string',
+          defaultValue: '附件',
+          desc: {
+            'zh-CN': '<p>头部标题，该属性默认为‘附件’</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'header-show'
+        },
+        {
+          name: 'header-show',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>是否显示头部，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'header-show'
+        },
+        {
+          name: 'headers',
+          typeAnchorName: 'IHeaders',
+          type: 'IHeaders',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置上传的请求头部;通过设置 headers 为头部请求信息',
+            'en-US': 'Set the upload request header. You can set headers to the header request information'
+          },
+          mobileDemo: 'upload-request'
+        },
+        {
+          name: 'http-request',
+          type: '(file: ICustomParam) => Promise<any>',
+          typeAnchorName: 'ICustomParam',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '覆盖默认的上传行为，可以自定义上传的实现; 由于 TinyVue 官网为 Mock 上传不能执行上传',
+            'en-US':
+              'Overwrite the default upload behavior. You can customize the upload implementation. The upload cannot be performed because the TinyVue official website uses Mock upload'
+          },
+          mobileDemo: 'upload-http-request'
+        },
+        {
+          name: 'limit',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '最大允许上传个数',
+            'en-US': 'Maximum number of files that can be uploaded'
+          },
+          mobileDemo: 'max-file-count'
+        },
+        {
+          name: 'list-type',
+          typeAnchorName: 'IListType',
+          type: 'IListType',
+          defaultValue: "'text'",
+          desc: {
+            'zh-CN': '文件列表的类型',
+            'en-US': 'File list type'
+          },
+          mobileDemo: 'picture-card'
+        },
+        {
+          name: 'mini-mode',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>设置 mini 模式。</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'mini-mode'
+        },
+        {
+          name: 'multiple',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否支持多选文件',
+            'en-US': 'Specifies whether multiple files can be selected'
+          },
+          mobileDemo: 'multiple-file'
+        },
+        {
+          name: 'name',
+          type: 'string',
+          defaultValue: "'file'",
+          desc: {
+            'zh-CN': '上传的文件字段名',
+            'en-US': 'Field name of the uploaded file'
+          },
+          mobileDemo: 'data'
+        },
+        {
+          name: 'show-file-list',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示已上传文件列表',
+            'en-US': 'Whether to display the list of uploaded files'
+          },
+          mobileDemo: 'upload-file-list'
+        },
+        {
+          name: 'size',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>为单个按钮且按钮为TinyVue的Button组件时生效，值可设置为：medium，small，mini</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'size'
+        },
+        {
+          name: 'success-statistics',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>文件上传成功数量展示，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'prevent-delete-file'
+        },
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>文本，该属性默认为select</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: ''
+        },
+        {
+          name: 'upload-icon',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>是否显示头部文件上传按钮，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'data'
+        },
+        {
+          name: 'with-credentials',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '支持发送 cookie 凭证信息',
+            'en-US': 'Cookie credential information can be sent'
+          },
+          mobileDemo: 'with-credentials'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          typeAnchorName: 'IFile',
+          type: '(file: IFile, fileList: IFile[]) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '文件状态改变时触发的事件，添加文件、上传成功和上传失败时都会被触发',
+            'en-US':
+              'The event triggered when the file status changes, including adding a file, successfully uploading, and failing to upload, will be triggered'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'error',
+          typeAnchorName: 'IFile',
+          type: '(message: ProgressEvent, file: IFile, fileList: IFile[]) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '文件上传失败时触发的事件； message 为错误信息事件对象，file 为当前上传失败文件信息，fileList 为上传成功 file 数组',
+            'en-US':
+              'Event triggered when file upload fails; Message is the error message event object, file is the current upload failure file information, and fileList is the upload success file array'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'exceed',
+          typeAnchorName: 'IFile',
+          type: '(files: File | File[], fileList: IFile[]) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '文件超出个数限制时触发的事件； files 为上传的文件',
+            'en-US': 'Event triggered when the number of files exceeds the limit; Files are uploaded files'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'preview',
+          typeAnchorName: 'IFile',
+          type: '(file: IFile) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击文件列表中已上传的文件时触发的事件',
+            'en-US': 'Event triggered when clicking on an uploaded file in the file list'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'progress',
+          typeAnchorName: 'IFile',
+          type: '(message: ProgressEvent, file: IFile) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '文件上传时触发的事件； message 为进度条事件对象',
+            'en-US': 'Event triggered during file upload; Message is the progress bar event object'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'remove',
+          typeAnchorName: 'IFile',
+          type: '(file: IFile) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '从文件列表移除文件时触发的事件； file 为当前移除的文件信息',
+            'en-US':
+              'Event triggered when removing a file from the file list; File is the information of the currently removed file'
+          },
+          mobileDemo: 'upload-events'
+        },
+        {
+          name: 'success',
+          typeAnchorName: 'IFile',
+          type: '(res: ProgressEvent, file: IFile, fileList: IFile[]) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '文件上传成功时触发的事件； res 为上传成功后的响应信息事件对象，file 为当前上传的文件，fileList 为所有上传文件数组',
+            'en-US':
+              'Event triggered when the file is successfully uploaded; Res is the response information event object after successful upload, file is the current uploaded file, and fileList is an array of all uploaded files'
+          },
+          mobileDemo: 'upload-events'
+        }
+      ],
+      methods: [
+        {
+          name: 'abort',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '取消上传请求',
+            'en-US': 'Cancel the upload request'
+          },
+          mobileDemo: 'abort-quest'
+        },
+        {
+          name: 'clearFiles',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '清空已上传的文件列表（该方法不支持在 before-upload 中调用）',
+            'en-US': 'Clear the list of uploaded files. (This method cannot be invoked in before-upload)'
+          },
+          mobileDemo: 'clear-files'
+        },
+        {
+          name: 'submit',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '手动上传文件列表',
+            'en-US': 'List of manually uploaded files'
+          },
+          mobileDemo: 'manual-upload'
+        }
+      ],
+      slots: [
+        {
+          name: 'tip',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '提示说明文字',
+            'en-US': 'Prompt Description'
+          },
+          mobileDemo: 'custom-upload-tip'
+        },
+        {
+          name: 'trigger',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '触发文件选择框的内容',
+            'en-US': 'Content of the triggering file selection box'
+          },
+          mobileDemo: 'custom-upload-tip'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'multiple-file',
@@ -278,6 +696,75 @@ export default {
           '<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />\n        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />\n        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>'
       },
       codeFiles: ['upload-events.vue']
+    }
+  ],
+  types: [
+    {
+      name: 'IData',
+      type: 'interface',
+      code: `
+interface IData {
+  [propsName?: any]: any // 上传参数可自定义
+}
+      `
+    },
+    {
+      name: 'IFile',
+      type: 'interface',
+      code: `
+interface IFile {
+  name: string // 上传文件名
+  percentage: string // 上传进度百分比
+  raw: File // 原始文件信息
+  size: number // 文件大小
+  status: string // 上传状态
+  uid: string // uid 
+}
+      `
+    },
+    {
+      name: 'ICustomParam',
+      type: 'interface',
+      code: `
+interface ICustomParam {
+  action: string
+  data: IData // 上传时附带的额外参数
+  file: IFile
+  filename: string
+  headers: object // 头部请求信息
+  onError: (error: any) => void // 上传失败回调函数，自定义入参
+  onProgress: (event: any) => void // 上传中回调函数
+  onSuccess: (res: any) => void // 上传成功回调函数
+  withCredentials: boolean // 是否支持发送 cookie 凭证信息
+}`
+    },
+    {
+      name: 'IFileListItem',
+      type: 'interface',
+      code: `
+interface IFileListItem {
+  name: string // 文件名
+  url: string // 文件url 例如：'https://xxx.cdn.com/xxx.jpg'
+}
+      `
+    },
+    {
+      name: 'IHeaders',
+      type: 'interface',
+      code: `
+interface IHeaders {
+  'Accept-Language'?: string // 比如等于：'en,zh'
+  Authorization?: string // 比如等于：'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+  [props: string]: any // headers的属性和属性值自定义
+}
+      `
+    },
+    {
+      name: 'IListType',
+      type: 'type',
+      code: `
+type IListType = 'text' | 'picture' | 'picture-card' | 'thumb' | 'saas' // saas为3.14.0版本新增
+      `
     }
   ]
 }

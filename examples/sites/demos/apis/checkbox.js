@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'checkbox',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '是否默认勾选',
             'en-US': 'Currently selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'checked',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -26,14 +25,13 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'indeterminate',
-          mobileDemo: 'disabled',
           mfDemo: ''
         },
         {
           name: 'display-only',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启组件 display-only 只显示模式，默认值为 false',
@@ -50,21 +48,9 @@ export default {
             'zh-CN': '没有选中时的值',
             'en-US': 'Value when no option is selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'text',
-          mobileDemo: 'custom-value',
           mfDemo: ''
-        },
-        {
-          name: 'icon-position',
-          type: 'String',
-          defaultValue: 'center',
-          desc: {
-            'zh-CN': "<p>图标与文本的对齐方式，可选值：'center' | 'top'</p>",
-            'en-US': "<p>Alignment of icon and text, optional value: 'center' | 'top'</p>"
-          },
-          mode: ['mobile'],
-          mobileDemo: 'icon-position'
         },
         {
           name: 'indeterminate',
@@ -74,9 +60,8 @@ export default {
             'zh-CN': '设置 indeterminate 状态，只负责样式控制',
             'en-US': 'Sets the indeterminate state and controls only the style.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'indeterminate',
-          mobileDemo: 'indeterminate',
           mfDemo: ''
         },
         {
@@ -88,9 +73,8 @@ export default {
             'en-US':
               'Selected value (This parameter is valid only when checkbox-group or the bound object type is array)'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'checkbox-group',
-          mobileDemo: 'basic-usage',
           mfDemo: ''
         },
         {
@@ -112,9 +96,8 @@ export default {
             'zh-CN': '原生 name 属性',
             'en-US': 'Native name attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -148,9 +131,8 @@ export default {
             'zh-CN': '选中时的值',
             'en-US': 'Value when selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'text',
-          mobileDemo: 'custom-value',
           mfDemo: ''
         },
         {
@@ -163,17 +145,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
-        },
-        {
-          name: 'v-model / modelValue',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>绑定值</p>',
-            'en-US': '<p>value</p>'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
         }
       ],
       events: [
@@ -185,9 +156,8 @@ export default {
             'zh-CN': '当绑定值变化时触发的事件',
             'en-US': 'This event is triggered when the binding value changes'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'checkbox-events',
-          mobileDemo: 'event-change',
           mfDemo: ''
         }
       ],
@@ -201,9 +171,8 @@ export default {
             'zh-CN': 'checkbox的内容',
             'en-US': 'Checkbox content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'checkbox-slot',
-          mobileDemo: '',
           mfDemo: ''
         }
       ]

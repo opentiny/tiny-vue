@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'switch',
@@ -24,9 +24,8 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'dynamic-disable',
-          mobileDemo: 'disabled',
           mfDemo: ''
         },
         {
@@ -51,9 +50,8 @@ export default {
             'zh-CN': 'switch 关闭时的值',
             'en-US': 'Value when switch is disabled'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-true-false-value',
-          mobileDemo: 'base',
           mfDemo: ''
         },
         {
@@ -64,9 +62,8 @@ export default {
             'zh-CN': '设置是否显示为 mini 模式，mini 模式下不会显示 slot 的内容',
             'en-US': 'Sets whether to display in mini mode. In mini mode, the content of the slot is not displayed'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'mini-mode',
-          mobileDemo: 'mini',
           mfDemo: ''
         },
         {
@@ -93,7 +90,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '定义开关尺寸',
@@ -110,14 +107,13 @@ export default {
             'zh-CN': 'switch 打开时的值',
             'en-US': 'Value when switch is enabled'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-true-false-value',
-          mobileDemo: 'base',
           mfDemo: ''
         },
         {
           name: 'types',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '展示开关不同的状态',
@@ -134,8 +130,7 @@ export default {
             'zh-CN': '<p>绑定值</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'base',
+          mode: ['mobile-first'],
           mfDemo: ''
         }
       ],
@@ -148,9 +143,8 @@ export default {
             'zh-CN': 'switch 状态发生变化时的回调函数',
             'en-US': 'Callback function for switch changes'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: 'event-change',
-          mobileDemo: 'event'
+          mode: ['pc'],
+          pcDemo: 'event-change'
         },
         {
           name: 'enent',

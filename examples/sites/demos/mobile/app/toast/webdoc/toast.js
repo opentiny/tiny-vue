@@ -1,6 +1,68 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'Toast',
+      type: 'component',
+      props: [
+        {
+          name: 'text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>展示的文本</p>',
+            'en-US': 'display text'
+          },
+          mobileDemo: 'base'
+        },
+        {
+          name: 'time',
+          type: 'number',
+          defaultValue: '2000',
+          desc: {
+            'zh-CN': '<p>展示持续时间，单位：ms</p>',
+            'en-US': 'display times'
+          },
+          mobileDemo: 'base'
+        },
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: 'text',
+          desc: {
+            'zh-CN': '<p>类型， text：纯文本 correct：成功 error：失败</p>',
+            'en-US': 'type'
+          },
+          mobileDemo: 'base'
+        },
+        {
+          name: 'zIndex',
+          type: 'number',
+          defaultValue: '100',
+          desc: {
+            'zh-CN': '<p>弹框层级</p>',
+            'en-US': ''
+          },
+          mobileDemo: 'base'
+        }
+      ],
+      events: [],
+      methods: [
+        {
+          name: 'timeout',
+          type: 'Function',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>消失前的回调</p>',
+            'en-US': ''
+          },
+          mobileDemo: 'base'
+        }
+      ],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'base',

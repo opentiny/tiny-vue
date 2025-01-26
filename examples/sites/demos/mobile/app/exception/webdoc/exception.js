@@ -1,6 +1,109 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'Exception',
+      type: 'component',
+      props: [
+        {
+          name: 'buttonText',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>按钮文字/p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'buttonText'
+        },
+        {
+          name: 'exceptionClass',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义缺省页类名</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'exceptionClass'
+        },
+        {
+          name: 'imageUrl',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义图片</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'buttonText'
+        },
+        {
+          name: 'message',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>主图片文字，在图片下方</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'message'
+        },
+        {
+          name: 'subMessage',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>副文本内容,在描述文字的下方</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'subMessage'
+        },
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: 'nodata',
+          desc: {
+            'zh-CN':
+              '<p>设置缺省页类型，默认为nodata,可选值有 weaknet || noperm || busy || build || weaknet || pcview</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'type'
+        }
+      ],
+      events: [
+        {
+          name: 'click',
+          type: 'Function()',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>点击按钮时触发，type 为 nodata 时启用</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'message'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'content',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置内容</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'mobileexception'
+        },
+        {
+          name: 'footer',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置底部内容</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'mobileexception'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'mobileexception',

@@ -1,6 +1,149 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'multiSelect',
+      type: 'component',
+      props: [
+        {
+          name: 'data-source',
+          type: 'IMultiSelectMenu[]',
+          typeAnchorName: 'IMultiSelectMenu',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '数据源',
+            'en-US': 'data source'
+          },
+          mobileDemo: 'basic-usage'
+        },
+        {
+          name: 'default-selected-array',
+          type: 'number[]',
+          defaultValue: '',
+          desc: {
+            'zh-CN': "默认值，当 type='wheel' 时适用",
+            'en-US': "default selected value, used when type='wheel'"
+          },
+          mobileDemo: 'type-wheel'
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '禁用',
+            'en-US': 'disabled'
+          },
+          mobileDemo: 'disabled'
+        },
+        {
+          name: 'filterable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '可筛选',
+            'en-US': 'filterable'
+          },
+          mobileDemo: 'filter'
+        },
+        {
+          name: 'mask',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示遮罩层',
+            'en-US': 'to show mask'
+          },
+          mobileDemo: 'mask'
+        },
+        {
+          name: 'mask-options',
+          type: 'IMaskOptions',
+          typeAnchorName: 'IMaskOptions',
+          defaultValue: '{}',
+          desc: {
+            'zh-CN':
+              '遮罩层配置：<ul><li>zIndex: 遮罩层的层叠数值</li><li>cancelTouch: 是否禁用 touch 事件，禁用后点击遮罩层不能关闭下拉框</li></ul>',
+            'en-US':
+              'Mask layer settings, including the following properties: <p>zIndex: the stacking order value of the mask layer;</p><p>cancelTouch: whether to disable touch events.</p>'
+          },
+          mobileDemo: 'mask-options'
+        },
+        {
+          name: 'search-placeholder',
+          type: 'string',
+          defaultValue: '搜索',
+          desc: {
+            'zh-CN': '搜索框默认提示',
+            'en-US': 'search input placeholder'
+          },
+          mobileDemo: 'filter'
+        },
+        {
+          name: 'type',
+          type: "'list' | 'wheel'",
+          defaultValue: '',
+          desc: {
+            'zh-CN': '选项外观，其中 list：列表形式；wheel：滑轮模式',
+            'en-US': 'option appearance'
+          },
+          mobileDemo: 'wheel'
+        },
+        {
+          name: 'v-model/modelValue',
+          type: '(string | string[])[]',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '<p>选中值</p>',
+            'en-US': '<p>selected value</p>'
+          },
+          mobileDemo: 'basic-usage'
+        }
+      ],
+      events: [
+        {
+          name: 'item-click',
+          type: '(option, headerIndex) => void',
+          desc: {
+            'zh-CN': '点击选项事件，当 type="list" 时适用',
+            'en-us': 'click option event, applicable when type = "list"'
+          },
+          mobileDemo: 'event-click-item'
+        },
+        {
+          name: 'confirm',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': "确认事件，当 type='wheel' 时适用",
+            'en-US': "confirm selection event, applicable when the type = 'wheel'"
+          },
+          mobileDemo: 'type-wheel'
+        },
+        {
+          name: 'reset',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': "重置事件，当 type='wheel' 时适用",
+            'en-US': "reset selection event, applicable when the type = 'wheel'"
+          },
+          mobileDemo: 'type-wheel'
+        }
+      ],
+      slots: [
+        {
+          name: 'footer',
+          desc: {
+            'zh-CN': '选项底部插槽',
+            'en-US': 'slot under options'
+          },
+          mobileDemo: 'slots'
+        }
+      ]
+    }
+  ],
   demos: [
     {
       demoId: 'basic-usage',
@@ -100,6 +243,21 @@ export default {
         'en-US': '<p>Listen to the option click event through <code>item-click</code>.</p>'
       },
       codeFiles: ['event-click-item.vue']
+    }
+  ],
+  types: [
+    {
+      name: 'IMultiSelectMenu',
+      type: 'interface',
+      code: `
+interface IMultiSelectMenu {
+  title: string, // 菜单项标题
+  options: IMultiSelectOption[], // 选项数据
+  multiple?: boolean, // 是否多选
+  disabled?: boolean, // 菜单项是否禁用
+  hasFooter?: boolean // 是否显示底部
+}
+`
     }
   ]
 }

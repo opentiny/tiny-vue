@@ -1,6 +1,172 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'tabs',
+      type: 'component',
+      props: [
+        {
+          name: 'active-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当前页签的字体颜色',
+            'en-US': 'active tab color'
+          },
+          mobileDemo: 'active-color'
+        },
+        {
+          name: 'active-name',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置初始选中的页签项',
+            'en-US': 'Set initially selected label items'
+          },
+          mobileDemo: 'active-name'
+        },
+        {
+          name: 'before-leave',
+          type: '(activeName: string, oldActiveName: string) => boolean | Promise',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '切换页签项之前的钩子，若返回 false 或返回 Promise 且被 reject，则阻止切换； activeName: 即将切换的页签项名称, oldActiveName: 当前页签项名称',
+            'en-US':
+              'The hook before the tag is switched. If false is returned or Promise is returned and rejected, the switch is blocked; ActiveName: The name of the label item that is about to be switched, oldActiveName: The name of the current label item'
+          },
+          mobileDemo: 'before-leave'
+        },
+        {
+          name: 'expand-tabs-mode',
+          type: 'string',
+          defaultValue: 'columns',
+          desc: {
+            'zh-CN': '展开内容的排列方式，可选值 column：为单列，columns：为多列',
+            'en-US':
+              "The arrangement of content can be displayed in either a single column format, which is referred to as 'column', or in multiple columns, which is referred to as 'columns'."
+          },
+          mobileDemo: 'expend'
+        },
+        {
+          name: 'expand-tabs-title',
+          type: 'string',
+          defaultValue: '请选择',
+          desc: {
+            'zh-CN': '展开内容的标题',
+            'en-US': 'Expand Content Title'
+          },
+          mobileDemo: 'expend'
+        },
+        {
+          name: 'show-expand-tabs',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '页签可展开',
+            'en-US': 'tabs expandable'
+          },
+          mobileDemo: 'expend'
+        },
+        {
+          name: 'swipeable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '滑动页签内容切换页签',
+            'en-US': 'slide tab content to switch tab'
+          },
+          mobileDemo: 'swipe'
+        },
+        {
+          name: 'v-model / modelValue',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '选中选项卡的 name',
+            'en-US': 'the name of the selected item'
+          },
+          mobileDemo: 'basic-usage'
+        },
+        {
+          name: 'with-add',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示添加按钮，用来添加页签项',
+            'en-US': 'Do you want to display the add button to add tab item'
+          },
+          mobileDemo: 'add-delete-tab'
+        },
+        {
+          name: 'with-close',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示页签项的关闭按钮，用来删除页签项',
+            'en-US': 'Do you want to display the close button for label items to delete them'
+          },
+          mobileDemo: 'add-delete-tab'
+        }
+      ],
+      events: [
+        {
+          name: 'add',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击"添加"按钮后触发，用于编写增加页签项的逻辑',
+            'en-US': 'Triggered after clicking the "Add" button, used to write logic for adding tab items'
+          },
+          mobileDemo: 'tabs-events'
+        },
+        {
+          name: 'click',
+          type: '(TabItem: Component, event: Event) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击页签项时触发，tab 被选中时触发； TabItem: 点中页签项的vueComponent对象信息',
+            'en-US':
+              'Trigger an event when clicking on a tab item, Triggered when tab is selected; TabItem: Click on the Component object information of the tab item in the middle'
+          },
+          mobileDemo: 'tabs-events'
+        },
+        {
+          name: 'close',
+          type: '(name: string) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击页签项关闭按钮后触发，用于编写删除页签项的逻辑； name: 要删除的页签项name值',
+            'en-US':
+              'Triggered after clicking the tab item close button, used to write logic for deleting tab items; name: The name value of the tab item to be deleted'
+          },
+          mobileDemo: 'tabs-events'
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '默认插槽',
+            'en-US': 'default slot'
+          },
+          mobileDemo: 'basic-usage'
+        }
+      ]
+    },
+    {
+      name: 'tab-item',
+      type: 'component',
+      props: [],
+      events: [],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'basic-usage',

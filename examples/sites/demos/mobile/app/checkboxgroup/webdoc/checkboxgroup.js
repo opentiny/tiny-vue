@@ -1,6 +1,77 @@
 export default {
   column: '2',
   owner: '',
+  apis: [
+    {
+      name: 'CheckboxGroup',
+      type: 'component',
+      props: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用，该属性默认为false</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'disabled'
+        },
+        {
+          name: 'max',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>可被勾选的 checkbox 的最大数量</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'min-max'
+        },
+        {
+          name: 'min',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>可被勾选的 checkbox 的最小数量</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'min-max'
+        },
+        {
+          name: 'value / v-model',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>绑定值</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'dedisabled'
+        },
+        {
+          name: 'vertical',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否竖向模式</p>',
+            'en-US': 'display different button'
+          },
+          mobileDemo: 'vertical'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>当绑定值变化时触发的事件,该事件可获取更新后的值</p>',
+            'en-US': 'Click'
+          },
+          mobileDemo: 'event-change'
+        }
+      ],
+      methods: [],
+      slots: []
+    }
+  ],
   demos: [
     {
       demoId: 'disabled',
