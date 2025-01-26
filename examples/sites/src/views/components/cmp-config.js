@@ -23,12 +23,6 @@ const languageMap = {
   sass: 'css'
 }
 
-// 只有select组件需要select.faq.cn.md
-const faqMdConfig = {
-  // TODO: 找不到select的问答md,先关闭
-  // select: true
-}
-
 const getWebdocPath = (path) => {
   if (path?.startsWith('grid-') && path !== 'grid-select') {
     return 'grid'
@@ -43,4 +37,4 @@ const getWebdocPath = (path) => {
 
 const staticDemoPath = '@demos/app'
 
-export { languageMap, faqMdConfig, vueComponents, getWebdocPath, staticDemoPath }
+export { languageMap, vueComponents, getWebdocPath, staticDemoPath }

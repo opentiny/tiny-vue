@@ -2,7 +2,7 @@
   <!-- 一个组件的文档:  描述md + demos + apis -->
   <header class="flex-horizontal docs-header">
     <div class="docs-title-wrap">
-      <div class="markdown-body markdown-top-body" size="medium" v-html="state.cmpTopMd"></div>
+      <div class="markdown-body markdown-top-body" v-html="state.cmpTopMd"></div>
       <version-tip
         v-if="state.currJson.meta || state.currJson.versionTipOption"
         :meta="state.currJson.meta"
@@ -194,8 +194,6 @@
         </div>
       </div>
 
-      <h2 id="FAQ" v-if="state.cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
-      <div class="markdown-body" v-html="state.cmpFAQMd"></div>
       <div v-if="state.currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(state.currJson.owner)">
         {{ i18nByKey('doc-owner') }} : {{ state.currJson.owner }}
       </div>
@@ -210,13 +208,13 @@ import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import {
-  Anchor as TinyAnchor,
-  ButtonGroup as TinyButtonGroup,
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  Tabs as TinyTabs,
-  TabItem as TinyTabItem,
-  Tooltip as TinyTooltip
+  TinyAnchor,
+  TinyButtonGroup,
+  TinyGrid,
+  TinyGridColumn,
+  TinyTabs,
+  TinyTabItem,
+  TinyTooltip
 } from '@opentiny/vue'
 import { iconOuterLink } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
@@ -224,7 +222,7 @@ import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode
 import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'
 import { router } from '@/router.js'
-import { faqMdConfig, getWebdocPath } from './cmp-config'
+import { getWebdocPath } from './cmp-config'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
 
@@ -247,7 +245,6 @@ const state = reactive({
   observer: null,
   currJson: { column: 1, demos: [], apis: [], types: {} },
   cmpTopMd: null,
-  cmpFAQMd: null,
   currDemoId: '',
   demoAnchorLinks: computed(() => {
     const links =
@@ -256,13 +253,6 @@ const state = reactive({
         title: demo.name[state.langKey],
         link: `#${demo.demoId}`
       })) || []
-    if (state.cmpFAQMd) {
-      links.push({
-        key: 'FAQ',
-        title: 'FAQ',
-        link: '#FAQ'
-      })
-    }
     return links
   }),
   iframeUrl: '',
@@ -349,7 +339,7 @@ const demoMounted = () => {
   }
 }
 
-const getIframeConetent = (demoId, demoName) => {
+const getIframeContent = (demoId, demoName) => {
   const frameWindow = iframeRef.value.contentWindow
   frameWindow.postMessage({ from: 'tiny-vue-site', component: state.cmpId, demo: demoName })
   router.push(`#${demoId}`)
@@ -357,7 +347,7 @@ const getIframeConetent = (demoId, demoName) => {
 
 const getIframeDemo = (demo) => {
   if (demo?.codeFiles.length > 0) {
-    getIframeConetent(demo.demoId, demo.codeFiles[0])
+    getIframeContent(demo.demoId, demo.codeFiles[0])
     jumpToMobileDemoAndHash(demo.demoId)
     state.currDemoId = demo.demoId
   }
@@ -551,14 +541,8 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
     promiseArr[1] = fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
   }
 
-  if (faqMdConfig[state.cmpId]) {
-    promiseArr.push(
-      fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.faq.${lang}.md`)
-    )
-  }
-
   Promise.all(promiseArr)
-    .then(([mdData, jsData, apiData, faqData]) => {
+    .then(([mdData, jsData, apiData]) => {
       // 1、加载顶部md
       state.cmpTopMd = marked(mdData, {
         gfm: true,
@@ -567,11 +551,6 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
           return hljs.highlight(code, { language: validLanguage }).value
         }
       })
-
-      // 2、加载faq.md
-      if (faqData) {
-        state.cmpFAQMd = marked(faqData)
-      }
 
       // 3、加载cmpId.js 文件
       // eslint-disable-next-line no-eval
@@ -590,10 +569,13 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
 
       if (apiData) {
         // eslint-disable-next-line no-eval
-        const apiJson = eval('(' + apiData.slice(15) + ')')
+        let apiJson = eval('(' + apiData.slice(15) + ')')
         // pc、mobile、mobile-first三种模式
         const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
         const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
+        if (demoMode === 'mobile') {
+          apiJson = json
+        }
         state.currJson.apis = apiJson.apis.map((item) => {
           Object.keys(item).forEach((key) => {
             const apiItem = item[key]
@@ -742,7 +724,7 @@ const handleAnchorClick = (e, data) => {
   if (demoConfig.isMobile) {
     // 点击目录列表更新iframe显示
     const hashId = data.link.slice(1)
-    getIframeConetent(state.cmpId, hashId + '.vue')
+    getIframeContent(state.cmpId, hashId + '.vue')
   }
 
   if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
