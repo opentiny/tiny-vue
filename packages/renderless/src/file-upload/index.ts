@@ -30,7 +30,7 @@ import type {
 } from '@/types'
 
 import { extend } from '../common/object'
-import { xss, logger, crypt } from '@opentiny/utils'
+import { xss, logger, sha256 } from '@opentiny/utils'
 import uploadAjax from '../common/deps/upload-ajax'
 import { isObject } from '../common/type'
 import { isEmptyObject } from '../common/type'
@@ -513,7 +513,7 @@ export const getFileHash =
       reader.readAsArrayBuffer(file.raw)
       reader.onload = async (e) => {
         if (file.status === constants.FILE_STATUS.FAIL) return
-        const hash = await crypt.sha256(e.target && e.target.result)
+        const hash = sha256(e.target && e.target.result)
         file.hash = file.raw.hash = hash
         resolve(hash)
         emit('hash-progress', 100)
@@ -2046,7 +2046,7 @@ export const segmentUpload =
               reader.readAsArrayBuffer(file)
               reader.onload = async (e) => {
                 if (props.edm.isCheckCode === true) {
-                  const hash = await crypt.sha256(e.target && e.target.result)
+                  const hash = sha256(e.target && e.target.result)
                   file.hash = hash
                 }
                 resolve(file)
