@@ -118,19 +118,6 @@ export { emitEvent, getActualTarget, correctTarget } from './event'
 
 export { noop, callInterceptor } from './function'
 
-// 当真有人这么用的吗？  待移除
-export {
-  unknownProp,
-  numericProp,
-  truthProp,
-  makeRequiredProp,
-  makeArrayProp,
-  makeNumberProp,
-  makeNumericProp,
-  makeStringProp,
-  makeStringValidProp
-} from './prop-util'
-
 export { fastdom, fastdomAsync, fastdomSandbox } from './fastdom'
 
 // 待移除。  移到fullscreen组件 内部去， 或起个更好的名字
