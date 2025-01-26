@@ -12,9 +12,8 @@
 
 import { on, off, isDisplayNone } from '../dom'
 import { PopupManager } from '../popup-manager'
-import { globalConfig } from '../globalConfig'
+import { globalConfig, isServer } from '../globalConfig'
 import { typeOf } from '../type'
-import { isBrowser } from '../browser'
 
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
@@ -275,7 +274,7 @@ const stopFn = (ev: Event) => {
 
 /** 全局的resize观察器， 监听popper的大小改变  */
 const resizeOb =
-  isBrowser && typeof ResizeObserver === 'function'
+  !isServer && typeof ResizeObserver === 'function'
     ? new ResizeObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.target.popperVm && entry.contentRect.height > 50) {
@@ -377,7 +376,7 @@ export class Popper {
       return this[modifier]
     })
 
-    if (isBrowser) {
+    if (!isServer) {
       this._popper.setAttribute('x-placement', this._options.placement)
       this.state.position = this._getPopperPositionByRefernce(this._reference)
       setStyle(this._popper, { position: this.state.position, top: 0 })

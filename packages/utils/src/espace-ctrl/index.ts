@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { isBrowser } from '../browser'
+import { isServer } from '../globalConfig'
 
 let ws = null
 const url = 'ws://localhost'
@@ -381,7 +381,7 @@ out.addContactList = function (account, cb) {
   )
 }
 
-if (!isBrowser || !window.WebSocket) {
+if (isServer || !window.WebSocket) {
   const notFn = function () {
     return undefined
   }
@@ -400,7 +400,7 @@ if (!isBrowser || !window.WebSocket) {
 let initialized = false
 
 export function init() {
-  if (!initialized && isBrowser) {
+  if (!initialized && !isServer) {
     localStorage.setItem('eSpaceCtrl_initialized', 0)
     out.init({ timeout: 3000, pollingInterval: 1000 })
     out.ready(() => {

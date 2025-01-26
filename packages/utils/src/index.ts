@@ -5,7 +5,7 @@ import ResizeObserver from './resize-observer'
 export { xss, logger, ResizeObserver }
 
 export { sha256 } from './crypt'
-export { globalConfig, getViewportWindow } from './globalConfig'
+export { globalConfig, getViewportWindow, isServer, browser } from './globalConfig'
 
 export { getDays, getWeek, lastMonth, nextMonth, getCalendar, transformArray, parseDate } from './calendar'
 
@@ -70,9 +70,6 @@ export {
   isKorean,
   omitText
 } from './string'
-
-// 待转移到globalConfig
-export { isBrowser, globalEnvironment, browser } from './browser'
 
 export { roundFixed, Decimal, toFixed as toFixedDecimal, formatNumber, recoverNumber } from './decimal'
 export { each, getObj, setObj, copyField, copyArray, isEqual, isEachEqual, extend, toJsonStr, merge } from './object'
@@ -188,7 +185,6 @@ export { debounce } from './debounce'
 export { throttle } from './throttle'
 
 export {
-  isServer,
   on,
   off,
   once,

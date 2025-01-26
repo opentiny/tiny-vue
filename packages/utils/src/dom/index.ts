@@ -12,8 +12,8 @@
 
 import { hasOwn, isNull } from '../type'
 import { globalConfig } from '../globalConfig'
+import { isServer } from '../globalConfig'
 
-export const isServer = typeof window === 'undefined'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 

@@ -12,7 +12,7 @@
  */
 
 import { on, off } from '../dom'
-import { isBrowser } from '../browser'
+import { isServer } from '../globalConfig'
 
 const MapShim = (function () {
   if (typeof Map !== 'undefined') {
@@ -97,7 +97,7 @@ const MapShim = (function () {
   })()
 })()
 
-const func = isBrowser ? window.Function : global.Function
+const func = globalThis.Function
 
 const global$1 = (function () {
   const isMath = (val) => val.Math === Math
@@ -216,7 +216,7 @@ const ResizeObserverController = (function () {
   }
 
   ResizeObserverController.prototype.connect_ = function () {
-    if (!isBrowser || this.connected_) {
+    if (isServer || this.connected_) {
       return
     }
 
@@ -243,7 +243,7 @@ const ResizeObserverController = (function () {
   }
 
   ResizeObserverController.prototype.disconnect_ = function () {
-    if (!isBrowser || !this.connected_) {
+    if (isServer || !this.connected_) {
       return
     }
 
@@ -397,7 +397,7 @@ const isSVGGraphicsElement = (function () {
 })()
 
 const getContentRect = function (target) {
-  if (!isBrowser) {
+  if (isServer) {
     return emptyRect
   }
 

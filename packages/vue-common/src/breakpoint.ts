@@ -1,5 +1,5 @@
 import hooks from './adapter'
-import { isServer } from '@opentiny/vue-renderless/common/deps/dom'
+import { isServer } from '@opentiny/utils'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 /**

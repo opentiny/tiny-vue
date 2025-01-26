@@ -11,8 +11,8 @@
  */
 
 import ResizeObserver from '../resize-observer'
+import { isServer } from '../globalConfig'
 
-const isServer = typeof window === 'undefined'
 const cacheKey = '__resizeListeners__'
 
 /* istanbul ignore next */

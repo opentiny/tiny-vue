@@ -10,7 +10,7 @@
  *
  */
 
-import browser, { isBrowser } from '../common/browser'
+import { isServer, browser } from '@opentiny/utils'
 import { isNull } from '../common/type'
 import debounce from '../common/deps/debounce'
 import { isEqual } from '../common/object'
@@ -356,7 +356,7 @@ export const focusFirstNode =
 export const computePresentText =
   ({ props, state }: { props: ICascaderProps; state: ICascaderState }) =>
   () => {
-    if (isBrowser) {
+    if (!isServer) {
       if (!isEmpty(state.checkedValue)) {
         const node = state.panel.getNodeByValue(state.checkedValue)
 

@@ -13,7 +13,7 @@
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
 import { toFixed, Decimal } from './decimal'
-import { globalEnvironment, isBrowser } from './browser'
+import { isBrowser } from './browser'
 
 /**
  * 文本替换格式类型
@@ -243,7 +243,7 @@ export const fillChar = (string, length, append, chr = '0') => {
 
 export const random = () => {
   let MAX_UINT32_PLUS_ONE = 4294967296
-  return globalEnvironment.crypto.getRandomValues(new globalEnvironment.Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
+  return globalThis.crypto.getRandomValues(new Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
 }
 
 /**

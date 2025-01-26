@@ -1034,10 +1034,6 @@ export const hidePicker =
 export const showPicker =
   ({ api, nextTick, updatePopper, state }) =>
   () => {
-    if (state.$isServer) {
-      return
-    }
-
     if (!state.picker) {
       api.mountPicker()
     }

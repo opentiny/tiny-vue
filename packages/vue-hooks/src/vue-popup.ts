@@ -14,9 +14,9 @@ import { merge, PopupManager, addClass } from '@opentiny/utils'
 
 // todo
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
+import { isServer } from '@opentiny/utils'
 
 let idSeed = 1
-const isServer = typeof window === 'undefined'
 
 export interface IPopupState {
   opened: boolean

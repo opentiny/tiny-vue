@@ -1,14 +1,14 @@
-import { isBrowser } from '../browser'
+import { isServer } from '../globalConfig'
 
 let emulated = false
 let initiated = false
 let eventTarget = null
 let mouseTarget = null
 
-const matches = isBrowser ? Element.prototype.matches : null
+const matches = !isServer ? Element.prototype.matches : null
 
 const closest = (el, s) => {
-  if (isBrowser) {
+  if (!isServer) {
     do {
       if (matches.call(el, s)) return el
       el = el.parentElement || el.parentNode
@@ -114,7 +114,7 @@ const touchEmulator = () => {
 }
 
 export const emulate = () => {
-  if (isBrowser) {
+  if (!isServer) {
     const supportTouch = 'ontouchstart' in window
     if (!emulated && !supportTouch) {
       emulated = true

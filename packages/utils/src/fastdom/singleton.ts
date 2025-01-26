@@ -8,10 +8,10 @@
  * @author Wilson Page <wilsonpage@me.com>
  * @author Kornel Lesinski <kornel.lesinski@ft.com>
  */
-import { isBrowser } from '../browser'
+import { isServer } from '../globalConfig'
 
 const RAF = (function () {
-  if (isBrowser) {
+  if (!isServer) {
     return window.requestAnimationFrame.bind(window)
   }
   return function (callback) {

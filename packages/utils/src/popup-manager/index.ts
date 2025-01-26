@@ -12,8 +12,7 @@
 
 import { KEY_CODE } from '../common'
 import { addClass, removeClass, on } from '../dom'
-
-const isServer = typeof window === 'undefined'
+import { isServer } from '../globalConfig'
 
 const instances = {} as Record<string, any>
 

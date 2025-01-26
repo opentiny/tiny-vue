@@ -10,7 +10,7 @@
  *
  */
 
-const isServer = typeof window === 'undefined'
+import { isServer } from '../globalConfig'
 
 export const scrollIntoView = (container, selected) => {
   if (isServer) {

@@ -24,7 +24,7 @@ import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
 import { on, off } from '../common/deps/dom'
 import { xss } from '@opentiny/utils'
-import { isBrowser } from '../common/browser'
+import { isServer } from '@opentiny/utils'
 
 const { nextZIndex } = PopupManager
 
@@ -491,7 +491,7 @@ export const skip =
 export const getPoint =
   ({ api, parent }: Pick<INavMenuRenderlessParams, 'api' | 'parent'>) =>
   (): number => {
-    if (!isBrowser) return 0
+    if (isServer) return 0
     else {
       const items = parent.$el.querySelectorAll('.menu>li') as NodeListOf<HTMLElement>
       let index = 0

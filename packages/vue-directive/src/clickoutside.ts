@@ -10,9 +10,8 @@
  *
  */
 
-import { on } from '@opentiny/utils'
+import { on, isServer } from '@opentiny/utils'
 
-const isServer = typeof window === 'undefined'
 const nodeList = []
 const nameSpace = '@@clickoutsideContext'
 let startClick

@@ -11,7 +11,7 @@
  */
 
 import { on, off } from '../dom'
-import { isBrowser } from '../browser'
+import { isServer } from '../globalConfig'
 
 const fullscreenApi = [
   'fullscreenElement',
@@ -56,7 +56,7 @@ const document = typeof window !== 'undefined' && typeof window.document !== 'un
 let fullscreenEvents = null
 
 const getFullScreenEvents = () => {
-  if (!isBrowser) return
+  if (isServer) return
 
   for (let i = 0, len = fullscreenApiMap.length; i < len; i++) {
     let eventName = fullscreenApiMap[i]
@@ -90,7 +90,7 @@ const screenfull = {
 
       this.on('change', onFullscreenEntered)
 
-      element = element || (isBrowser ? document.documentElement : null)
+      element = element || (!isServer ? document.documentElement : null)
 
       if (element && fullscreenEvents && element[fullscreenEvents.requestFullscreen]) {
         const promiseReturn = element[fullscreenEvents.requestFullscreen](options)
@@ -117,7 +117,7 @@ const screenfull = {
 
       this.on('change', onFullscreenExit)
 
-      if (isBrowser && fullscreenEvents && document[fullscreenEvents.exitFullscreen]) {
+      if (!isServer && fullscreenEvents && document[fullscreenEvents.exitFullscreen]) {
         const promiseReturn = document[fullscreenEvents.exitFullscreen]()
 
         if (promiseReturn instanceof Promise) {
@@ -140,14 +140,14 @@ const screenfull = {
   on(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName && isBrowser) {
+    if (eventName && !isServer) {
       on(document, eventName, callback)
     }
   },
   off(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName && isBrowser) {
+    if (eventName && !isServer) {
       off(document, eventName, callback)
     }
   },
@@ -155,7 +155,7 @@ const screenfull = {
 }
 
 // 处理屏幕全屏状态的方法
-if (isBrowser) {
+if (!isServer) {
   Object.defineProperties(screenfull, {
     isFullscreen: {
       get() {
