@@ -29,7 +29,7 @@
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
-    "@opentiny/vue-vite-import": "workspace:~",
+    "@opentiny/vue-vite-import": "~1.2.0",
     "@playwright/test": "catalog:",
     "@tiptap/vue-3": "^2.1.0",
     "@unocss/core": "^0.48.0",
