@@ -23,7 +23,7 @@
  *
  */
 
-import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { isObject, isNull } from '@opentiny/utils'
 import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'

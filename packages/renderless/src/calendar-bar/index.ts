@@ -1,4 +1,4 @@
-import { lastMonth, nextMonth } from '../common/calendar/calendar'
+import { lastMonth, nextMonth } from '@opentiny/utils'
 import { getDirection } from '../common/deps/touch'
 
 const normalConfig = (config, state) => {

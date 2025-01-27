@@ -35,7 +35,7 @@ import {
   toBoolValue
 } from '@opentiny/vue-renderless/common/string'
 import { find } from '@opentiny/vue-renderless/grid/static/'
-import { isNumber, isDate, isNull } from '@opentiny/vue-renderless/common/type'
+import { isNumber, isDate, isNull } from '@opentiny/utils'
 import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'
 import { iconClose, iconYes } from '@opentiny/vue-icon'
 import { warn } from './logger'

@@ -12,13 +12,50 @@ export { getDays, getWeek, lastMonth, nextMonth, getCalendar, transformArray, pa
 export {
   isLeapYear,
   toDate,
-  format as formatDate,
+  format as formatDateByPattern,
   getDateWithNewTimezone,
   toDateStr,
   getWeekOfFirstDay,
   getLocalTimezone,
   getStrTimezone
 } from './date'
+
+// 与 date.ts 合并一下, 有几个重名变量，待整理, 如果功能一致就合并
+export {
+  getI18nSettings,
+  isDate as isDate1,
+  toDate as toDate1,
+  isDateObject,
+  formatDate,
+  parseDate as parseDate1,
+  getDayCountOfMonth,
+  getDayCountOfYear,
+  getFirstDayOfMonth,
+  prevDate,
+  nextDate,
+  getStartDateOfMonth,
+  getWeekNumber,
+  getRangeHours,
+  range,
+  getMonthDays,
+  getPrevMonthLastDays,
+  getRangeMinutes,
+  modifyDate,
+  modifyTime,
+  modifyWithTimeString,
+  clearTime,
+  clearMilliseconds,
+  limitTimeRange,
+  timeWithinRange,
+  changeYearMonthAndClampDate,
+  nextMonth as nextMonth1,
+  prevMonth,
+  nextYear,
+  prevYear,
+  extractTimeFormat,
+  extractDateFormat,
+  validateRangeInOneMonth
+} from './date-util'
 
 export {
   toString,
@@ -127,46 +164,6 @@ export { NODE_KEY, getNodeKey, markNodeData, getChildState, Node, TreeStore } fr
 
 // 待移除， 移到loading中去， 或起个更好的名字
 export { afterLeave } from './after-leave'
-
-// 原来位置  common/deps/data.ts
-export { fecha } from './fecha'
-
-// 与 date.ts 合并一下, 有几个重名变量，待整理, 如果功能一致就合并
-export {
-  getI18nSettings,
-  isDate as isDate1,
-  toDate as toDate1,
-  isDateObject,
-  formatDate as formatDate1,
-  parseDate as parseDate1,
-  getDayCountOfMonth,
-  getDayCountOfYear,
-  getFirstDayOfMonth,
-  prevDate,
-  nextDate,
-  getStartDateOfMonth,
-  getWeekNumber,
-  getRangeHours,
-  range,
-  getMonthDays,
-  getPrevMonthLastDays,
-  getRangeMinutes,
-  modifyDate,
-  modifyTime,
-  modifyWithTimeString,
-  clearTime,
-  clearMilliseconds,
-  limitTimeRange,
-  timeWithinRange,
-  changeYearMonthAndClampDate,
-  nextMonth as nextMonth1,
-  prevMonth,
-  nextYear,
-  prevYear,
-  extractTimeFormat,
-  extractDateFormat,
-  validateRangeInOneMonth
-} from './date-util'
 
 export { debounce } from './debounce'
 export { throttle } from './throttle'

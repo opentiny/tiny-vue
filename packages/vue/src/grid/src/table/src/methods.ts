@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -25,7 +26,7 @@
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isNull } from '@opentiny/utils'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
 import {

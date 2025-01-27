@@ -13,7 +13,7 @@
   <table class="tiny-month-table" @mousemove="handleMouseMove" @click="handleMonthTableClick">
     <tbody>
       <tr v-for="(row, key) in state.rows" :key="key">
-        <td v-for="(cell, key) in row" :class="getCellStyle(cell)" :key="key">
+        <td v-for="(cell, _key) in row" :class="getCellStyle(cell)" :key="_key">
           <div>
             <a class="cell" v-text="t('ui.datepicker.months.' + state.months[cell.text])"></a>
           </div>
@@ -26,7 +26,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/month-table/vue'
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { isDate1 } from '@opentiny/utils'
 
 export default defineComponent({
   name: $prefix + 'MonthTable',
@@ -34,7 +34,7 @@ export default defineComponent({
   props: {
     date: {},
     defaultValue: {
-      validator: (val) => val === null || isDate(val) || (Array.isArray(val) && val.every(isDate))
+      validator: (val) => val === null || isDate1(val) || (Array.isArray(val) && val.every(isDate1))
     },
     disabledDate: {},
     maxDate: {},

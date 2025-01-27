@@ -25,7 +25,7 @@
 
 import { isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { getClass, emitEvent, formatText, updateCellTitle } from '@opentiny/vue-renderless/grid/utils'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isNull } from '@opentiny/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
 const classMap = {

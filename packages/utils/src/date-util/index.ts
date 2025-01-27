@@ -10,7 +10,7 @@
  *
  */
 
-import { fecha } from '../fecha'
+import { fecha } from './fecha'
 import { isNull } from '../type'
 import { isLeapYear } from '../date'
 import { DATEPICKER } from '../index'

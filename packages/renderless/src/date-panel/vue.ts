@@ -58,7 +58,7 @@ import {
   getDisabledConfirm,
   getNowTime
 } from './index'
-import { toDate, getWeekNumber, modifyDate, extractDateFormat } from '../common/deps/date-util'
+import { toDate1, getWeekNumber, modifyDate, extractDateFormat } from '@opentiny/utils'
 import { DATEPICKER, DATE } from '../common'
 
 export const api = [
@@ -146,7 +146,7 @@ const initWatch = ({ watch, state, api, nextTick, props }) => {
   watch(
     () => props.modelValue,
     (value) => {
-      let newVal = toDate(value)
+      let newVal = toDate1(value)
       if (newVal) {
         const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate())
         state.date = newDate
