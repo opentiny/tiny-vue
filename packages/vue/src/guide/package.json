@@ -1,21 +1,22 @@
 {
   "name": "@opentiny/vue-guide",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
+  "dependencies": {
+    "@floating-ui/dom": "^1.0.10",
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "shepherd.js": "11.1.1"
+  },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "catalog:"
-  },
-  "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
-    "shepherd.js": "11.1.1",
-    "@floating-ui/dom": "^1.0.10",
-    "@opentiny/vue-theme": "workspace:~"
-  },
-  "license": "MIT"
+  }
 }
