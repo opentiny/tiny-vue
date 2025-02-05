@@ -11,7 +11,7 @@
  */
 import Picker from '@opentiny/vue-picker'
 import '@opentiny/vue-theme/time-picker/index.less'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { $prefix, $props } from '@opentiny/vue-common'
 import { version } from './package.json'
 

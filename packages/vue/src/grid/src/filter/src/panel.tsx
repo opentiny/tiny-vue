@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-use-computed-property-like-method */
 /* eslint-disable vue/no-mutating-props */
 /**
  * MIT License
@@ -28,7 +29,7 @@ import Radio from '../../radio'
 import Button from '@opentiny/vue-button'
 import PopperJS from '@opentiny/vue-renderless/common/deps/popper'
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { t } from '@opentiny/vue-locale'
 import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'

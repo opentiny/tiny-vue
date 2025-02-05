@@ -27,7 +27,7 @@ import Validator from '@opentiny/vue-renderless/common/validate'
 import { getFuncText, emitEvent, getCell } from '@opentiny/vue-renderless/grid/utils'
 import { get, isFunction, isObject, isUndefined, find } from '@opentiny/vue-renderless/grid/static/'
 import { adjustParams, realValid } from './utils/beginValidate'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 
 class Rule {
   constructor(rule) {

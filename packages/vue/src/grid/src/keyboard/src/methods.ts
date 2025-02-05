@@ -25,7 +25,7 @@
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { arrayEach, arrayIndexOf, findTree, find } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue, setCellValue, getCell, getRowNodes, getCellNodeIndex } from '@opentiny/vue-renderless/grid/utils'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { findLeft, findRight, processTarget } from './utils/moveTabSelected'
 import {
   onCellMousedownSelectEditable,
