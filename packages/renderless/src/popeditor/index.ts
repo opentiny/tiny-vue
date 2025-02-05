@@ -12,7 +12,7 @@
 
 import { find } from '@opentiny/utils'
 import { typeOf, isNull } from '../common/type'
-import { getDataset } from '../common/dataset'
+import { getDataset } from '@opentiny/utils'
 import { isNullOrEmpty } from '../common/string'
 import { isEqual } from '../common/object'
 import { eachTree } from '../grid/static'
