@@ -10,7 +10,7 @@
  *
  */
 
-import { find } from '../common/array'
+import { find } from '@opentiny/utils'
 import { typeOf, isNull } from '../common/type'
 import { getDataset } from '../common/dataset'
 import { isNullOrEmpty } from '../common/string'

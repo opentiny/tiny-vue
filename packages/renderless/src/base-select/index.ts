@@ -1,4 +1,4 @@
-import { find } from '../common/array'
+import { find } from '@opentiny/utils'
 import { getObj, isEqual } from '../common/object'
 import { isKorean } from '../common/string'
 import scrollIntoView from '../common/deps/scroll-into-view'
