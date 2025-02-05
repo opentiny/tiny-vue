@@ -25,15 +25,7 @@
  * ellipsis：显示成省略的内容，鼠标移到该单元格上，显示完整内容的提示信息。需要同时配置 format 的 len 属性
  */
 
-import {
-  tryToCurrency,
-  truncate,
-  tryToInt,
-  tryToDecimal,
-  toFileSize,
-  toRate,
-  toBoolValue
-} from '@opentiny/vue-renderless/common/string'
+import { tryToCurrency, truncate, tryToInt, tryToDecimal, toFileSize, toRate, toBoolValue } from '@opentiny/utils'
 import { find } from '@opentiny/vue-renderless/grid/static/'
 import { isNumber, isDate, isNull } from '@opentiny/utils'
 import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'

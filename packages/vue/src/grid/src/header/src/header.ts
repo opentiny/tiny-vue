@@ -28,7 +28,7 @@ import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
-import { random } from '@opentiny/vue-renderless/common/string'
+import { random } from '@opentiny/utils'
 
 function addListenerMousedown({ $table, mouseConfig, params, thOns }) {
   if (mouseConfig.checked) {
