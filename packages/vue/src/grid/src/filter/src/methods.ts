@@ -24,7 +24,7 @@
  */
 import { isArray, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getFilters, emitEvent } from '@opentiny/vue-renderless/grid/utils'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { getDataset } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
 import {
   handleFilterConditionCustom,

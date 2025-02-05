@@ -108,9 +108,11 @@ export {
   omitText
 } from './string'
 
+// 无直接引用
 export { roundFixed, Decimal, toFixed as toFixedDecimal, formatNumber, recoverNumber } from './decimal'
 export { each, getObj, setObj, copyField, copyArray, isEqual, isEachEqual, extend, toJsonStr, merge } from './object'
 
+// 无直接引用
 export {
   supportBigInt,
   trimNumber,

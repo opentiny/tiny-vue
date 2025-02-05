@@ -1,5 +1,5 @@
 import { getObj } from '@opentiny/utils'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { getDataset } from '@opentiny/utils'
 import { error } from '../../tools'
 
 export default {
