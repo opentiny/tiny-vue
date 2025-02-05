@@ -10,7 +10,7 @@
  *
  */
 
-import { useFloating } from './src/use-floating'
-import { useLazyShow } from './src/use-lazy-show'
-
-export { useFloating, useLazyShow }
+export { useFloating } from './src/use-floating'
+export { useLazyShow } from './src/use-lazy-show'
+export { userPopper } from './src/vue-popper'
+export { usePopup } from './src/vue-popup'

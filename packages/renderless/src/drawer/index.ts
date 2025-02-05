@@ -1,5 +1,5 @@
-import debounce from '../common/deps/debounce'
-import { addClass, removeClass } from '../common/deps/dom'
+import { debounce } from '@opentiny/utils'
+import { addClass, removeClass } from '@opentiny/utils'
 import type { IDrawerState, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils, IDrawerRenderlessParams } from '@/types'
 
 export const computedWidth =

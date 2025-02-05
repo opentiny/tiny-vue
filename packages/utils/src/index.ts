@@ -28,6 +28,7 @@ export {
   isDateObject,
   formatDate,
   parseDate as parseDate1,
+  nextMonth as nextMonth1,
   getDayCountOfMonth,
   getDayCountOfYear,
   getFirstDayOfMonth,
@@ -48,7 +49,6 @@ export {
   limitTimeRange,
   timeWithinRange,
   changeYearMonthAndClampDate,
-  nextMonth as nextMonth1,
   prevMonth,
   nextYear,
   prevYear,
@@ -89,7 +89,6 @@ export {
   escapeHtml,
   escape,
   fieldFormat,
-  format as formatString,
   truncate,
   tryToConvert,
   toInt,
@@ -105,14 +104,13 @@ export {
   toFileSize,
   formatFileSize,
   isKorean,
+  format as formatString,
   omitText
 } from './string'
 
-// 无直接引用
 export { roundFixed, Decimal, toFixed as toFixedDecimal, formatNumber, recoverNumber } from './decimal'
 export { each, getObj, setObj, copyField, copyArray, isEqual, isEachEqual, extend, toJsonStr, merge } from './object'
 
-// 无直接引用
 export {
   supportBigInt,
   trimNumber,

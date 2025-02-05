@@ -10,7 +10,7 @@
  *
  */
 
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
 import { isServer } from '@opentiny/utils'
 import type { IInputApi, IInputRenderlessParamUtils, IInputRenderlessParams, IInputState } from 'types/input.type'
 

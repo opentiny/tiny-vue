@@ -69,8 +69,8 @@ const getReferMaxZIndex = (reference) => {
 
   return max + 1 + ''
 }
-
-export default (options: IPopperInputParams) => {
+// 历史原因，暂时先命名为userPopper， 以后统一替换
+export const userPopper = (options: IPopperInputParams) => {
   const {
     parent,
     emit,

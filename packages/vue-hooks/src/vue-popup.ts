@@ -180,7 +180,7 @@ const closeFn =
 /** vue-popup 只是dialog-box 自己使用的包， 封装了一些state和几个方法，处理mount,unmount 和watch。 它内部封装了 PopupManager 的调用！
  * 计划：drawer/image 等组件均使用该函数
  */
-export default (options: IPopupInputParams) => {
+export const usePopup = (options: IPopupInputParams) => {
   const { api, nextTick, onBeforeUnmount, onMounted, props, reactive, toRefs, vm, watch } = options
   const state = reactive<IPopupState>({
     opened: false,
