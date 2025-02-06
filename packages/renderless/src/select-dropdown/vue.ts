@@ -21,9 +21,9 @@ import {
   cancelSearch,
   handleClear
 } from './index'
-import userPopper from '../common/deps/vue-popper'
+import { userPopper } from '@opentiny/vue-hooks'
 import PopupManager from '../common/deps/popup-manager'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { isServer } from '@opentiny/utils'
 
 export const api = [

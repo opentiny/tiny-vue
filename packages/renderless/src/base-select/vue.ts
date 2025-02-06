@@ -99,7 +99,7 @@ import {
   computedShowTagText,
   isTagClosable
 } from './index'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { isNumber } from '../common/type'
 
 export const api = [

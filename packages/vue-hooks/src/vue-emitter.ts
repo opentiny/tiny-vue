@@ -11,6 +11,7 @@
  *
  */
 
+//  全局未引用 ，待移除
 export default (vm) => {
   const broadcast = (vm, componentName, eventName, params) => {
     vm.$children.forEach((child) => {

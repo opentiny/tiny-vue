@@ -20,6 +20,7 @@
     "@opentiny/vue-col": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-dialog-box": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-dropdown": "workspace:~",
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",

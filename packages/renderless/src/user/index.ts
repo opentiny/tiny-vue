@@ -10,7 +10,7 @@
  *
  */
 
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { toDateStr } from '../common/date'
 import { toJsonStr } from '../common/object'
 import { toJson } from '../common/string'

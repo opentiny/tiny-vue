@@ -16,6 +16,7 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-button-group": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

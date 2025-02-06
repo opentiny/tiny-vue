@@ -1,5 +1,5 @@
 import { random } from '../common/string'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { fastdom } from '../common/deps/fastdom'
 
 // --- tabs ---

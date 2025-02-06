@@ -10,9 +10,9 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { on, off } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
+import { KEY_CODE } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 
 export const startTimer =
   ({ api, state }) =>

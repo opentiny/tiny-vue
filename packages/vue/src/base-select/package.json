@@ -15,6 +15,7 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-input": "workspace:~",

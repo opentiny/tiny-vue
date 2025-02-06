@@ -12,7 +12,7 @@
 
 import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '../common/date'
 import { isNumber, isDate } from '../common/type'
-import userPopper from '../common/deps/vue-popper'
+import { userPopper } from '@opentiny/vue-hooks'
 import { DATEPICKER } from '../common'
 import { formatDate, parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '../common/deps/date-util'
 import { extend } from '../common/object'

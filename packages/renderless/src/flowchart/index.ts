@@ -1,4 +1,4 @@
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { omitText as omit } from '../common/string'
 import { fastdom } from '../common/deps/fastdom'
 

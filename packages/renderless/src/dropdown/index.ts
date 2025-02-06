@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -11,8 +12,8 @@
  */
 
 import type { IDropdownRenderlessParams } from '@/types'
-import { KEY_CODE } from '../common'
-import { addClass, removeClass, on, off } from '../common/deps/dom'
+import { KEY_CODE } from '@opentiny/utils'
+import { addClass, removeClass, on, off } from '@opentiny/utils'
 
 export const watchVisible =
   ({ broadcast, emit, nextTick }: Pick<IDropdownRenderlessParams, 'broadcast' | 'emit' | 'nextTick'>) =>

@@ -15,7 +15,7 @@ import { omitText } from '../common/string'
 import { merge } from '../common/object'
 import Validator from '../common/validate'
 import { isNull } from '../common/type'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import type {
   IFormItemRenderlessParams,
   IFormInstance,

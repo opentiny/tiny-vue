@@ -12,7 +12,7 @@
 
 import { isServer, browser } from '@opentiny/utils'
 import { isNull } from '../common/type'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { isEqual } from '../common/object'
 import { addResizeListener } from '../common/deps/resize-event'
 import { KEY_CODE, CASCADER } from '../common'

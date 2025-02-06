@@ -1,4 +1,4 @@
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { on, off } from '../common/deps/dom'
 
 const getButtonPosition =

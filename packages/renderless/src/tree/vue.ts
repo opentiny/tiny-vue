@@ -79,7 +79,7 @@ import {
   handleClickPlainNode,
   setCheckedByNodeKey
 } from './index'
-import { random } from '../common/string'
+import { random } from '@opentiny/utils'
 
 export const api = [
   'state',

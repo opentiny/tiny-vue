@@ -1,9 +1,10 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import { find } from '@opentiny/utils'
 import { getObj, isEqual } from '../common/object'
 import { isKorean } from '../common/string'
 import scrollIntoView from '../common/deps/scroll-into-view'
 import PopupManager from '../common/deps/popup-manager'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { getDataset } from '@opentiny/utils'
 import Memorize from '../common/deps/memorize'
 import { isEmptyObject } from '../common/type'

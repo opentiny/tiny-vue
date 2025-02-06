@@ -11,7 +11,7 @@
  */
 
 import { getWeekData } from '../picker'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import {
   isDate1,
   parseDate1,

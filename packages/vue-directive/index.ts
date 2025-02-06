@@ -12,5 +12,6 @@
 
 import AutoTip from './src/auto-tip'
 import HighlightQuery from './src/highlight-query'
+import Clickoutside from './src/clickoutside'
 
-export { AutoTip, HighlightQuery }
+export { AutoTip, HighlightQuery, Clickoutside }

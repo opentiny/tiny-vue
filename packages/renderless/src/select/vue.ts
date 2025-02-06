@@ -112,7 +112,7 @@ import {
   isTagClosable,
   computedCurrentSizeMap
 } from './index'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { isNumber } from '../common/type'
 import { useUserAgent } from '../common/deps/useUserAgent'
 import { isServer } from '@opentiny/utils'
