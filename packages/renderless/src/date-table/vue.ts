@@ -27,7 +27,7 @@ import {
   getCellRangeClasses,
   getCell
 } from './index'
-import { getStartDateOfMonth } from '../common/deps/date-util'
+import { getStartDateOfMonth } from '@opentiny/utils'
 
 export const api = ['state', 'getCellClasses', 'getCssToken', 'isWeekActive', 'handleMouseMove', 'handleClick']
 

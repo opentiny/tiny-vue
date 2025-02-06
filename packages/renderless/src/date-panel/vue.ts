@@ -59,7 +59,7 @@ import {
   getNowTime
 } from './index'
 import { toDate1, getWeekNumber, modifyDate, extractDateFormat } from '@opentiny/utils'
-import { DATEPICKER, DATE } from '../common'
+import { DATEPICKER, DATE } from '@opentiny/utils'
 
 export const api = [
   'state',

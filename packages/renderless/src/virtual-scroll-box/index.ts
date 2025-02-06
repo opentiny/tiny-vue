@@ -1,10 +1,10 @@
-import getScrollbarSize from '../common/deps/scrollbar-width'
+import { calcScrollWidth } from '@opentiny/utils'
 
 export const computedBarSize = (props) => () => {
   let barSize = +props.scrollbarSize
 
   if (isNaN(barSize) || barSize < 0) {
-    barSize = getScrollbarSize()
+    barSize = calcScrollWidth()
   }
 
   return barSize

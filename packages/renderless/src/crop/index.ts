@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,8 +11,8 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
-import { toFileSize } from '../common/string'
+import { on, off } from '@opentiny/utils'
+import { toFileSize } from '@opentiny/utils'
 
 export const watchImageSrc = (state) => (value) => (state.src = value)
 

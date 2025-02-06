@@ -1,4 +1,4 @@
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
 import { getHiddenTags, handelItemClick } from './index'
 import type {

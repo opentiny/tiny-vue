@@ -11,7 +11,7 @@
  */
 
 import { xss } from '@opentiny/utils'
-import { isObject } from '../common/type'
+import { isObject } from '@opentiny/utils'
 
 export const filterNode = (props) => (value, data) => {
   const node = data[props.props.label || 'label'] || ''

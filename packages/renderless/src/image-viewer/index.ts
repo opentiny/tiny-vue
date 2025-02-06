@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
-import { KEY_CODE } from '../common'
-import PopupManager from '../common/deps/popup-manager'
+import { on, off } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 
 const mousewheelEventName = 'mousewheel'

@@ -11,12 +11,12 @@
  */
 
 import { find } from '@opentiny/utils'
-import { typeOf, isNull } from '../common/type'
+import { typeOf, isNull } from '@opentiny/utils'
 import { getDataset } from '@opentiny/utils'
-import { isNullOrEmpty } from '../common/string'
-import { isEqual } from '../common/object'
+import { isNullOrEmpty } from '@opentiny/utils'
+import { isEqual } from '@opentiny/utils'
 import { eachTree } from '../grid/static'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const computedGetTitle = ({ constants, props, t }) => props.title || t(constants.TITLE)
 

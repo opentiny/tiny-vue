@@ -11,7 +11,7 @@
  */
 
 import { getFormated, isObject } from '../chart-core/deps/utils'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 import { itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getTooltip = (args) => {

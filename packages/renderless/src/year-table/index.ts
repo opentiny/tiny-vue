@@ -10,9 +10,9 @@
  *
  */
 
-import { toDate } from '../common/date'
+import { toDate } from '@opentiny/utils'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
-import { DATEPICKER } from '../common'
+import { DATEPICKER } from '@opentiny/utils'
 
 export const getIsDefault =
   ({ props }) =>

@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -29,11 +30,11 @@ import type {
   IFileUploadLargeDocumentDownload
 } from '@/types'
 
-import { extend } from '../common/object'
+import { extend } from '@opentiny/utils'
 import { xss, logger, sha256 } from '@opentiny/utils'
-import uploadAjax from '../common/deps/upload-ajax'
-import { isObject } from '../common/type'
-import { isEmptyObject } from '../common/type'
+import { uploadAjax } from '@opentiny/utils'
+import { isObject } from '@opentiny/utils'
+import { isEmptyObject } from '@opentiny/utils'
 
 let initTokenPromise = null
 

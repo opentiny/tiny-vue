@@ -10,9 +10,9 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { addClass, removeClass, on } from '../dom'
-import { isServer } from '../globalConfig'
+import { KEY_CODE } from '@opentiny/utils'
+import { addClass, removeClass, on } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 const instances = {} as Record<string, any>
 

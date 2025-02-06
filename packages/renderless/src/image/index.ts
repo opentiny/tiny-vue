@@ -11,8 +11,8 @@
  */
 
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
-import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
-import { typeOf } from '../common/type'
+import { on, off, getScrollContainer, isInContainer } from '@opentiny/utils'
+import { typeOf } from '@opentiny/utils'
 import { rafThrottle } from '../image-viewer'
 import { xss } from '@opentiny/utils'
 

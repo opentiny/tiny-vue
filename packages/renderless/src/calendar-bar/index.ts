@@ -1,5 +1,5 @@
 import { lastMonth, nextMonth } from '@opentiny/utils'
-import { getDirection } from '../common/deps/touch'
+import { getDirection } from '@opentiny/utils'
 
 const normalConfig = (config, state) => {
   let { disabled, holiday, workday, mark } = config || {}

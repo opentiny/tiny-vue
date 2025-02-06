@@ -10,7 +10,7 @@
  *
  */
 
-import { DATEPICKER } from '../common'
+import { DATEPICKER } from '@opentiny/utils'
 import { isNull, isDate } from '../type'
 
 /** 西班牙语的“日期，日子”，此处为日期辅助对象，其下有i18n,masks,format,parse等辅助方法 */

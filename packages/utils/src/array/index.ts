@@ -10,7 +10,7 @@
  *
  */
 
-import { SORT } from '../common'
+import { SORT } from '@opentiny/utils'
 import { isSame } from '../type'
 import { getObj } from '../object'
 

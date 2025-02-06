@@ -31,7 +31,7 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../file-upload'
-import { formatFileSize } from '../common/string'
+import { formatFileSize } from '@opentiny/utils'
 import { getApi } from '../file-upload/vue'
 import { isServer } from '@opentiny/utils'
 

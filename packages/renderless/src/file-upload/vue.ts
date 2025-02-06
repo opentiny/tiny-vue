@@ -21,7 +21,7 @@ import type {
 } from '@/types'
 
 import { downloadFile as ordinaryDownload } from '../upload-list'
-import { formatFileSize } from '../common/string'
+import { formatFileSize } from '@opentiny/utils'
 
 import {
   initService,
@@ -98,7 +98,7 @@ import {
   closeRecordPanel,
   getTipMessage
 } from './index'
-import { isEmptyObject } from '../common/type'
+import { isEmptyObject } from '@opentiny/utils'
 
 export const api = [
   'state',

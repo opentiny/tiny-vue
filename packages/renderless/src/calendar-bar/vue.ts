@@ -27,7 +27,7 @@ import {
   touchmove,
   touchend
 } from './index'
-import throttle from '../common/deps/throttle'
+import { throttle } from '@opentiny/utils'
 
 export const api = [
   'state',

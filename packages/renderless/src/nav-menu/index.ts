@@ -17,12 +17,12 @@ import type {
   menuItemType,
   whitchSubMenuType
 } from '@/types'
-import { omitText } from '../common/string'
-import { isEmptyObject, isObject } from '../common/type'
-import PopupManager from '../common/deps/popup-manager'
+import { omitText } from '@opentiny/utils'
+import { isEmptyObject, isObject } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 import { mapTree } from '../grid/static'
 import { transformTreeData } from '@opentiny/utils'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 import { isServer } from '@opentiny/utils'
 

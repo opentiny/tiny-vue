@@ -11,7 +11,7 @@
  */
 
 import type { IRateProps, IRateRenderlessParams, IRateState } from 'types/rate.type'
-import { KEY_CODE } from '../common'
+import { KEY_CODE } from '@opentiny/utils'
 
 export const computedActiveColor = (props: IRateProps) => (state: IRateState) => {
   let result = ''

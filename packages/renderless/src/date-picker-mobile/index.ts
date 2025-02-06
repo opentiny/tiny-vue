@@ -1,4 +1,4 @@
-import { format } from '../common/date'
+import { formatDateByPattern as format } from '@opentiny/utils'
 
 const getFormatTime = (time) => {
   return ('0' + time).slice(-2)

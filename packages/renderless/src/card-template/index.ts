@@ -10,7 +10,7 @@
  *
  */
 
-import PopupManager from '../common/deps/popup-manager'
+import { PopupManager } from '@opentiny/utils'
 
 export const toolClick = (showMoreTools) => (cb) => {
   typeof cb === 'function' && cb()

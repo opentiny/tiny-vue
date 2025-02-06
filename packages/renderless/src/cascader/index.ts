@@ -11,11 +11,11 @@
  */
 
 import { isServer, browser } from '@opentiny/utils'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
-import { isEqual } from '../common/object'
-import { addResizeListener } from '../common/deps/resize-event'
-import { KEY_CODE, CASCADER } from '../common'
+import { isEqual } from '@opentiny/utils'
+import { addResizeListener } from '@opentiny/utils'
+import { KEY_CODE, CASCADER } from '@opentiny/utils'
 import type {
   ICascaderState,
   ICascaderProps,

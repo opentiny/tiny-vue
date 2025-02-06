@@ -11,7 +11,7 @@
  */
 
 import { mapTree } from '../grid/static'
-import { copyArray } from '../common/object'
+import { copyArray } from '@opentiny/utils'
 
 export const dialogTitle =
   ({ constants, props, t }) =>

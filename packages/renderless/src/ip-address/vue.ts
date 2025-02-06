@@ -25,7 +25,7 @@ import {
   keyup,
   keydown
 } from './index'
-import { KEY_CODE } from '../common'
+import { KEY_CODE } from '@opentiny/utils'
 import type {
   IIpAddressProps,
   IIpAddressState,
