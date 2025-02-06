@@ -27,7 +27,7 @@ import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/utils'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
 import { isNull } from '@opentiny/utils'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
 import {
   isNumber,

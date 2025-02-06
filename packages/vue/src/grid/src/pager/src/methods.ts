@@ -1,4 +1,4 @@
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'

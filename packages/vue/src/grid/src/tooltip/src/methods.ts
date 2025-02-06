@@ -1,4 +1,4 @@
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
 import { createTooltipRange, processContentMethod } from './handleTooltip'
 

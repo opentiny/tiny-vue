@@ -40,7 +40,7 @@ import {
 } from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 
 const { themes, viewConfig } = GlobalConfig
 const { SAAS: T_SAAS } = themes

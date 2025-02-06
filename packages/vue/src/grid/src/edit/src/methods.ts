@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
 import { addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import browser from '@opentiny/vue-renderless/common/browser'

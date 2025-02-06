@@ -33,7 +33,7 @@ import { extend } from '@opentiny/utils'
 import { t } from '@opentiny/vue-locale'
 import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 
 const renderInputArgs = ({ _vm, inputFilter }) => {
   let isAddbyProgram = false
