@@ -44,7 +44,7 @@
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
-    "@opentiny/vue-vite-import": "workspace:~",
+    "@opentiny/vue-vite-import": "~1.2.0",
     "@unocss/reset": "0.38.2",
     "@vue/repl": "^2.5.5",
     "@vueuse/head": "0.7.13",
