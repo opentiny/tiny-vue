@@ -1,5 +1,5 @@
-import { random } from '../common/string'
-import { useRelation } from '../common/deps/useRelation'
+import { random } from '@opentiny/utils'
+import { useRelation } from '@opentiny/vue-hooks'
 import {
   setActive,
   addItem,

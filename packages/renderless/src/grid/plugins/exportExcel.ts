@@ -1,3 +1,4 @@
+/* eslint-disable prefer-rest-params */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,10 +11,10 @@
  *
  */
 
-import { extend } from '../../common/object'
-import browser from '../../common/browser'
+import { extend } from '@opentiny/utils'
+import { browserInfo } from '@opentiny/utils'
 
-const isIE = browser.name === 'ie'
+const isIE = browserInfo.name === 'ie'
 const rgbRegExp = /^rgba?\((\d+),\s(\d+),\s(\d+)([\s\S]*)\)$/
 const hexRegExp = /^#([a-zA-Z0-9]{3}|[a-zA-Z0-9]{6})$/
 

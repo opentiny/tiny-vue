@@ -23,7 +23,7 @@
  *
  */
 
-import browser from '../../common/browser'
+import { browserInfo } from '@opentiny/utils'
 import { remove } from '../static'
 
 let resizeTimeout
@@ -94,6 +94,6 @@ class ResizeObserverPolyfill {
   }
 }
 
-const Resize = browser.isDoc ? window.ResizeObserver || ResizeObserverPolyfill : ResizeObserverPolyfill
+const Resize = browserInfo.isDoc ? window.ResizeObserver || ResizeObserverPolyfill : ResizeObserverPolyfill
 
 export default Resize

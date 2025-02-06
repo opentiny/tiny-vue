@@ -10,7 +10,7 @@
  *
  */
 
-import { PopupManager, Popper as PopperJS, on, off, isDisplayNone } from '@opentiny/utils'
+import { PopupManager, PopperJS, on, off, isDisplayNone } from '@opentiny/utils'
 
 // todo
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'

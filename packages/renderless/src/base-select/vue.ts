@@ -100,7 +100,7 @@ import {
   isTagClosable
 } from './index'
 import { debounce } from '@opentiny/utils'
-import { isNumber } from '../common/type'
+import { isNumber } from '@opentiny/utils'
 
 export const api = [
   'state',

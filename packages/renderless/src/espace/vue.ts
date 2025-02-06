@@ -10,7 +10,7 @@
  *
  */
 
-import { init } from '../common/deps/eSpaceCtrl'
+import { initEspace } from '@opentiny/utils'
 import { getUserHref, getUserTitle, doUserAction, initEspaceLink, openEspace, testUID, soundEspace } from './index'
 
 export const api = [
@@ -29,7 +29,7 @@ export const renderless = (props, { reactive }, { service }) => {
   const { widgets = {} } = setting
 
   const eSpaceCtrlDisabled = widgets.ESpaceCtrl && !widgets.ESpaceCtrl.autoLink
-  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : init()
+  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : initEspace()
 
   const state = reactive({
     initialized: false,
