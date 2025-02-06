@@ -11,7 +11,7 @@
  */
 import service from './src/service'
 import directive from './src/directive'
-import { setupComponent } from '../../vue-common'
+import { setupComponent } from '@mobile-root/common'
 
 const Loadings: any = {
   install(app) {

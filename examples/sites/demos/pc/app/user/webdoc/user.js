@@ -57,12 +57,12 @@ export default {
     {
       demoId: 'multiple-users-hover-expand',
       name: {
-        'zh-CN': '折叠 Tag， hover 展开',
+        'zh-CN': '折叠 Tag，hover 展开',
         'en-US': 'Collapse Tag'
       },
       desc: {
         'zh-CN':
-          '<p>多选时通过设置 <code>hover-expand</code> 为 true ，默认折叠 tag, hover 时展示所有 tag。tag 超出隐藏并展示 tooltip。</p>\n',
+          '<p>多选时通过设置 <code>hover-expand</code> 为 true，默认折叠 tag, hover 时展示所有 tag。tag 超出隐藏并展示 tooltip。</p>\n',
         'en-US': '<p></p>\n'
       },
       codeFiles: ['multiple-users-hover-expand.vue']
@@ -96,7 +96,7 @@ export default {
     {
       demoId: 'tag-copy-all',
       name: {
-        'zh-CN': 'user选择器选项可一键复制',
+        'zh-CN': 'user 选择器选项可一键复制',
         'en-US': 'User selector options can be copied'
       },
       desc: {
@@ -182,7 +182,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>cache</code> 属性指定用户数据是否缓存，默认为缓存。\n\n<code>cache-key</code> 属性可以自定义缓存的 key 值，默认为 tiny-user 。\n\n<code>cache-fields</code> 属性用于指定缓存哪些用户数据。</p>\n',
+          '<p>通过 <code>cache</code> 属性指定用户数据是否缓存，默认为缓存。\n\n<code>cache-key</code> 属性可以自定义缓存的 key 值，默认为 tiny-user。\n\n<code>cache-fields</code> 属性用于指定缓存哪些用户数据。</p>\n',
         'en-US':
           '<p>The <code>cache</code> attribute specifies whether user data is cached. The default value is cached. The \n\n<code>cache-key</code> attribute can be used to customize the cache key value. The default value is tiny-user. The \n\n<code>cache-fields</code> property is used to specify which user data is cached. </p>\n'
       },
@@ -269,7 +269,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>service</code> 属性可自定义用户服务,当用户在文本框中输入准确的账号时,会在下拉菜单中出现此用户。\n通过 <code>sort-by-fetch-data</code> 联想时下拉框的数据顺序和接口返回的数据顺序一致</p>\n',
+          '<p>通过 <code>service</code> 属性可自定义用户服务，当用户在文本框中输入准确的账号时，会在下拉菜单中出现此用户。\n通过 <code>sort-by-fetch-data</code> 联想时下拉框的数据顺序和接口返回的数据顺序一致</p>\n',
         'en-US':
           '<p>You can customize the user service through the <code>service</code> attribute. When a user enters an accurate account in the text box, the user is displayed in the drop-down menu. \nThe data sequence in the drop-down list box during <code>sort-by-fetch-data</code> association is the same as that returned by the interface.</p>\n'
       },
@@ -308,7 +308,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>设置 <code>show-tips</code> 属性可展示用户信息，默认展示。</p>\n<p>设置 <code>max-width</code> 属性可设置 tips 展示信息最大宽度，默认`200`。</p>\n',
+          '<p>设置 <code>show-tips</code> 属性可展示用户信息，默认展示。</p>\n<p>设置 <code>max-width</code> 属性可设置 tips 展示信息最大宽度，默认 `200`。</p>\n',
         'en-US': '<p></p>\n'
       },
       codeFiles: ['hidden-tips-disable.vue']

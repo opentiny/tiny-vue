@@ -17,7 +17,7 @@ const propsAuto = ref({
     setTimeout(() => {
       const nodes = Array.from({ length: level + 1 }).map(() => ({
         value: ++id,
-        label: `选项${id}`,
+        label: `选项 ${id}`,
         leaf: level >= 2
       }))
 

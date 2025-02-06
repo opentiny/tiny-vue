@@ -11,5 +11,5 @@ test('fetch-role', async ({ page }) => {
   await expect(list).toBeVisible()
   await page.getByRole('listitem').filter({ hasText: 'Guest' }).click()
   await page.waitForTimeout(500)
-  await expect(page.getByText('当前选中的角色id是1003')).toBeVisible()
+  await expect(page.getByText('当前选中的角色 id 是 1003')).toBeVisible()
 })

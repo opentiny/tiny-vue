@@ -48,7 +48,7 @@ export default {
         'zh-CN': `
           按钮区包含默认转移按钮和全部转移按钮。按钮的高亮与禁用，组件内部会自动识别处理。<br>
           通过 <code>show-all-btn</code> 属性设置展示全部转移按钮，属性默认值为<code>false</code>。<br>
-          通过 <code>button-texts</code> 属性自定义左右穿梭的默认转移按钮文本，接受包含2个字符串的数组值。全部转移按钮不能自定义文本。<br>
+          通过 <code>button-texts</code> 属性自定义左右穿梭的默认转移按钮文本，接受包含 2 个字符串的数组值。全部转移按钮不能自定义文本。<br>
           你可以通过<code>to-left-disable</code> 和 <code>to-right-disable</code> 属性来指定默认转移按钮没有选中项时的状态。
           `,
         'en-US': `
@@ -81,9 +81,9 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过 <code> props </code> 属性,可以指定<code> key / label /disabled </code>的映射列，以支持用户传入非标准格式的数据到<code>data</code>属性。<br>
-          通过 <code> default </code> 插槽,自定义数据项渲染的 dom 结构，推荐使用插槽的方式。<br>
-          通过 <code> render-content </code> 属性函数,使用 JSX 功能，去自定义数据项渲染的 dom 结构。<br>
+          通过 <code> props </code> 属性，可以指定<code> key / label /disabled </code>的映射列，以支持用户传入非标准格式的数据到<code>data</code>属性。<br>
+          通过 <code> default </code> 插槽，自定义数据项渲染的 dom 结构，推荐使用插槽的方式。<br>
+          通过 <code> render-content </code> 属性函数，使用 JSX 功能，去自定义数据项渲染的 dom 结构。<br>
           <div class="tip custom-block">
             <p class="custom-block-title">如果数据格式不是标准属性格式，则一定要通过<code>props</code>做属性映射！</p>
           </div>
@@ -111,7 +111,7 @@ export default {
           通过 <code>filterable</code> 属性开启左右侧列表的搜索功能，默认是根据 label 内容过滤。<br>
           通过 <code>filter-placeholder</code> 属性自定义左右搜索框占位符。<br>
           通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。<br>
-          调用 <code>clearQuery()</code> 方法，可清空左右侧列表的搜索框，参数为 left 或者 right 。<br>
+          调用 <code>clearQuery()</code> 方法，可清空左右侧列表的搜索框，参数为 left 或者 right。<br>
           `,
         'en-US': `
           At the top of the left and right lists, you can display an input field to filter the data items that display the left and right lists. <br>
@@ -169,7 +169,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-        通过 <code>target-order</code> 属性设置右侧列表元素的排序策略，有 original 、push 、unshift 三个选项，默认为 original 。
+        通过 <code>target-order</code> 属性设置右侧列表元素的排序策略，有 original、push、unshift 三个选项，默认为 original。
           <div class="tip custom-block">
             <p class="custom-block-title">排序策略</p>
             <div>
@@ -262,7 +262,7 @@ export default {
           <p class="custom-block-title"> Event description </p>
           <div>
             change:Triggered when the elements in the list on the right change.<br>
-            left-check-change：left-check-change fires when the right side of the list changes.<br>
+            left-check-change: left-check-change fires when the right side of the list changes.<br>
             right-check-change: Fires when the left list element is selected/deselected by the user.
           </div>
         </div>`

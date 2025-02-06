@@ -25,7 +25,7 @@
   position: relative;
   font-size: var(--tv-TreeMenu-font-size);
   transition: width 0.5s;
-  background: #fff;
+  background: var(--tv-TreeMenu-background-color);
 
   &__toggle-button {
     position: absolute;
@@ -136,28 +136,29 @@
   }
 
   .@{input-prefix-cls} {
-    margin: var(--tv-TreeMenu-padding-top) var(--tv-TreeMenu-padding-left);
     position: relative;
-    max-width: 188px;
+    padding-right: var(--tv-TreeMenu-input-padding-right);
+    margin: var(--tv-TreeMenu-input-margin);
 
     &:before {
       content: '';
       position: absolute;
       left: 0;
       right: 0;
-      top: 48px;
+      top: var(--tv-TreeMenu-input-before-top);
       bottom: 0;
       z-index: 2;
       border-top: 1px solid var(--tv-TreeMenu-border-top-color);
+      margin-right: var(--tv-TreeMenu-input-before-margin-right);
     }
   }
 
   .@{tree-prefix-cls} {
-    padding-top: 8px;
+    padding-top: var(--tv-TreeMenu-padding-top);
 
     &::-webkit-scrollbar {
-      width: 8px;
-      margin-right: 4px;
+      width: var(--tv-TreeMenu-scrollbar-width);
+      margin-right: var(--tv-TreeMenu-scrollbar-margin-right);
     }
 
     .@{tree-node-prefix-cls} {
@@ -191,8 +192,8 @@
         .tree-node-number {
           order: 1;
           position: absolute;
-          right: 16px;
-          max-width: 36px;
+          right: var(--tv-TreeMenu-node-number-right);
+          max-width: var(--tv-TreeMenu-node-number-max-width);
           overflow: hidden;
           font-size: var(--tv-TreeMenu-node-number-font-size);
           color: var(--tv-TreeMenu-node-number-color);
@@ -207,7 +208,7 @@
           padding: 0 var(--tv-TreeMenu-node-body-text-padding-x);
 
           &:hover {
-            font-weight: 700;
+            font-weight: var(--tv-TreeMenu-node-name-hover-font-weight);
           }
 
           svg {
@@ -250,7 +251,7 @@
           left: 0;
           top: 50%;
           display: inline-block;
-          height: 32px;
+          height: var(--tv-TreeMenu-node-content-height);
           transform: translateY(-50%);
           border-left: 2px solid var(--tv-TreeMenu-square-left-border-color);
         }

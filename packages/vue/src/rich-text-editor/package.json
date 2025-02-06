@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-rich-text-editor",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -15,11 +15,10 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
-  },
-  "devDependencies": {
+    "@opentiny/vue-icon": "workspace:~",
     "@tiptap/core": "~2.1.16",
     "@tiptap/extension-code-block-lowlight": "~2.1.16",
+    "@tiptap/extension-code-block": "~2.1.16",
     "@tiptap/extension-collaboration": "~2.1.16",
     "@tiptap/extension-color": "~2.1.16",
     "@tiptap/extension-highlight": "~2.1.16",
@@ -43,7 +42,9 @@
     "@tiptap/vue-2": "~2.1.16",
     "@tiptap/vue-3": "~2.1.16",
     "highlight.js": "^11.8.0",
-    "lowlight": "^2.9.0",
+    "lowlight": "^2.9.0"
+  },
+  "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "catalog:"
   }

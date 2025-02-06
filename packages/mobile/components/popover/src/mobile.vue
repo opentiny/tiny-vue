@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { popoverProps } from './popover'
 import '@opentiny/vue-theme-mobile/popover/index.less'
 

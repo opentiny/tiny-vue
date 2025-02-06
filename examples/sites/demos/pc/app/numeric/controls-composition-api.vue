@@ -1,8 +1,8 @@
 <template>
   <div class="numeric-controls-demo">
-    <p>隐藏加减按钮:</p>
+    <p>隐藏加减按钮：</p>
     <tiny-numeric v-model="value1" :controls="controls" show-left class="numeric-class"></tiny-numeric>
-    <p>加减按钮全置于右侧:</p>
+    <p>加减按钮全置于右侧：</p>
     <tiny-numeric v-model="value2" controls-position="right" class="numeric-class"></tiny-numeric>
   </div>
 </template>

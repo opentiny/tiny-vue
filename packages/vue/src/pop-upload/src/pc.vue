@@ -36,17 +36,17 @@
                   :key="index"
                   class="tiny-popupload__dialog-tips-item"
                 >
-                  {{ item.count !== undefined ? state.limitCountTips + ':' + item.count : '' }}
-                  {{ item.type !== undefined ? state.limitTypeTips + ':' + item.type : '' }}
-                  {{ item.size !== undefined ? state.limitSizeTips + ':' + item.size : '' }}
+                  {{ item.count !== undefined ? state.limitCountTips + ': ' + item.count : '' }}
+                  {{ item.type !== undefined ? state.limitTypeTips + ': ' + item.type : '' }}
+                  {{ item.size !== undefined ? state.limitSizeTips + ': ' + item.size : '' }}
                 </p>
               </div>
             </tiny-alert>
             <tiny-alert type="error" size="large" v-if="state.errorTips.length > 0" @close="closeErrorTips">
               <div class="tiny-popupload__dialog-tips">
                 <p v-for="(item, index) in state.errorTips" :key="index" class="tiny-popupload__dialog-tips-item">
-                  {{ item.size !== undefined ? item.size + ':' + state.errorSizeTips : '' }}
-                  {{ item.type !== undefined ? item.type + ':' + state.errorTypeTips : '' }}
+                  {{ item.size !== undefined ? item.size + ': ' + state.errorSizeTips : '' }}
+                  {{ item.type !== undefined ? item.type + ': ' + state.errorTypeTips : '' }}
                   {{ item.num !== undefined ? state.errorNumTips : '' }}
                   {{ item.error !== undefined ? state.uploadErrorTips : '' }}
                 </p>

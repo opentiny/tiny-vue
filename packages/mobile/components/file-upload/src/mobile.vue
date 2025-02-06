@@ -11,52 +11,24 @@
  -->
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, h, defineComponent } from '../../../vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import UploadList from '../../upload-list'
 import Upload from '../../upload'
-import Progress from '../../progress'
 import { iconUpload } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/file-upload/index.less'
 import '@opentiny/vue-theme-mobile/upload-list/index.less'
 import '@opentiny/vue-theme-mobile/upload-dragger/index.less'
 import '@opentiny/vue-theme-mobile/upload/index.less'
 import type { IFileUploadApi } from './file-upload'
+import { fileUploadProps } from './file-upload'
 
 export default defineComponent({
   inheritAttrs: false,
-  props: [
-    ...props,
-    'size',
-    'action',
-    'drag',
-    'headers',
-    'data',
-    'multiple',
-    'name',
-    'withCredentials',
-    'showFileList',
-    'accept',
-    'type',
-    'beforeUpload',
-    'beforeRemove',
-    'fileList',
-    'autoUpload',
-    'listType',
-    'httpRequest',
-    'disabled',
-    'limit',
-    'fileIconList',
-    'display',
-    'fileTitle',
-    'headerShow',
-    'successStatistics',
-    'uploadIcon'
-  ],
+  props: fileUploadProps,
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFileUploadApi
   },
   components: {
-    Progress,
     UploadList,
     Upload,
     IconUpload: iconUpload()
@@ -78,6 +50,7 @@ export default defineComponent({
         if (item.status === 'success') {
           successNum += 1
         }
+        return pictureArr
       })
 
     if (this.showFileList) {

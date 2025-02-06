@@ -374,7 +374,6 @@ export const close =
       setTimeout(() => {
         state.visible = false
         let params = { type, $modal: parent }
-        emit('close', params)
         if (events.hide) {
           events.hide.call(parent, params)
         } else {

@@ -292,7 +292,7 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup, props, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import Progress from '../../progress'
 import Button from '../../button'

@@ -31,7 +31,7 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../../../file-upload/src/renderless'
-import { formatFileSize } from '@opentiny/mobile-utils/string'
+import { formatFileSize } from '@mobile-root/utils/string'
 import { getApi } from '../../../file-upload/src/renderless/vue'
 
 export const api = [
@@ -64,8 +64,8 @@ export const renderless = (
   { Modal }: IFileUploadModalVm
 ): IUploadListApi => {
   const api = { getApi } as IUploadListApi
-  parent = inject('uploader').$children[0]
-  const constants = parent.$constants as IFileUploadConstants
+  vm = inject('uploader')
+  const constants = vm.$constants as IFileUploadConstants
   const $service = initService({ props, service })
   const { current } = useBreakpoint()
 

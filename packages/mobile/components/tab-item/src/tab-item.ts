@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
 import type { ITabsVm } from '../../tabs/src/tabs'
 import type { computedIsClosable, computedActive, computedPaneName, watchTitle } from './renderless'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export { ITabsVm }
 

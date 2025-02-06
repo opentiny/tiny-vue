@@ -9,19 +9,19 @@ test('自定义服务数据', async ({ page }) => {
   await page.getByText('无线网络业务架构与设计部').click()
   await page
     .locator('div')
-    .filter({ hasText: /^公司SZ技术SZ海洋网络天闻数媒贝托SZ鼎桥通信$/ })
+    .filter({ hasText: /^公司SZ 技术SZ 海洋网络天闻数媒贝托 SZ鼎桥通信$/ })
     .getByRole('textbox')
     .click()
   await page.getByRole('listitem').filter({ hasText: 'SZ 技术' }).click()
   await page
     .locator('div')
-    .filter({ hasText: /^一级部门测试数据室XX中国XX测试数据部测试数据XX管理部$/ })
+    .filter({ hasText: /^一级部门测试数据室 XX中国 XX 测试数据部测试数据 XX 管理部$/ })
     .getByRole('textbox')
     .click()
   await page.getByRole('listitem').filter({ hasText: '测试数据室 XX' }).click()
   await page
     .locator('div')
-    .filter({ hasText: /^五级部门测试数据室XX中国XX测试数据部测试数据XX管理部$/ })
+    .filter({ hasText: /^五级部门测试数据室 XX中国 XX 测试数据部测试数据 XX 管理部$/ })
     .getByRole('textbox')
     .click()
   await page.getByRole('listitem').filter({ hasText: '测试数据室 XX' }).click()

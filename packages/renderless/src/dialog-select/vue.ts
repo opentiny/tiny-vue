@@ -130,10 +130,13 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
   watch(
     () => props.visible,
     (value) => {
-      if (value && !state.multiGridStore.inited) {
-        api.queryGridData()
-      }
-    }
+      nextTick(() => {
+        if (value && !state.multiGridStore.inited) {
+          api.queryGridData()
+        }
+      })
+    },
+    { immediate: true }
   )
 
   watch(

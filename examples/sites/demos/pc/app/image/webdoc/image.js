@@ -17,7 +17,7 @@ export default {
           'contain：被替换的内容大小可以填充元素的内容框<br>' +
           'cover：被替换的内容大小保持其宽高比，同时填充元素的整个内容框<br>' +
           'none：被替换的内容尺寸不会被改变<br>' +
-          'scale-down：内容的尺寸就像是指定了none 或 contain，取决于哪一个将导致更小的对象尺寸。',
+          'scale-down：内容的尺寸就像是指定了 none 或 contain，取决于哪一个将导致更小的对象尺寸。',
         'en-US':
           'Use <code>src</code> to set the image path.<br>' +
           'The <code>fit</code> attribute determines how the image fits into the container box, which is the same as the object-fit attribute of the native CSS.<br>' +
@@ -68,7 +68,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>preview-src-list</code> 属性 ，传入一组图片 url 的数组，点击图片后，会进入预览大图的模式。<br>' +
+          '通过 <code>preview-src-list</code> 属性，传入一组图片 url 的数组，点击图片后，会进入预览大图的模式。<br>' +
           '通过 <code>z-index</code> 设置预览图片的元素的 z-index。<br>' +
           '通过添加 <code>show-index</code> 开启图片序号展示。<br>',
         'en-US':
@@ -136,7 +136,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code> placeholder</code> 插槽，定义图片在加载中时的占位内容。通常由于图片加载快，会看不到这个插槽的出现,只有大图片时，会看到加载中的插槽。 <br>' +
+          '通过 <code> placeholder</code> 插槽，定义图片在加载中时的占位内容。通常由于图片加载快，会看不到这个插槽的出现，只有大图片时，会看到加载中的插槽。 <br>' +
           ' 通过 <code> error </code> 插槽，定义图片在加载失败后的占位内容。',
         'en-US':
           'The <code> placeholder</code> slot defines the placeholder content for images when loaded. Usually, because the image loads quickly, you will not see the appearance of this slot, only a large image, you will see the loading slot. <br>' +
@@ -151,7 +151,7 @@ export default {
         'en-US': 'Events'
       },
       desc: {
-        'zh-CN': '<code>load</code> 事件: 图片加载成功触发 。<br><code>error</code> 事件: 图片加载失败触发 。',
+        'zh-CN': '<code>load</code> 事件：图片加载成功触发。<br><code>error</code> 事件：图片加载失败触发。',
         'en-US':
           '<code>load</code> event: The image is successfully loaded. <br>' +
           '<code>error</code> event: The image failed to be loaded. '

@@ -4,7 +4,6 @@ dist/
 dist2/
 dist2.7/
 dist3/
-dist-react/
 allDist/
 packages/**/runtime
 coverage/
@@ -23,12 +22,6 @@ test-results
 /packages/vue-runtime/mobile-first.ts
 /packages/vue-runtime/all.ts
 /packages/vue-runtime/simple.ts
-
-/packages/react/index.ts
-/packages/react/pc.ts
-/packages/react/mobile.ts
-/packages/react/app.ts
-/packages/react/mobile-first.ts
 
 /examples/**/playwright-report
 /examples/**/test-results
@@ -58,16 +51,6 @@ yarn-error.log*
 tgzs
 *.tgz
 
-
-# 以下用不到了
-packages/theme/scripts/theme.json
-packages/theme/scripts/theme-result.txt
-packages/theme/scripts/themeExcel.xlsx
-packages/theme/src/theme/*-theme/component.js
-packages/theme/src/aurora-theme
-packages/theme/src/smb-theme
-#------------------------------
-
 # theme 的汇总文件是自动生成的
 packages/theme/src/old-theme-index.less
 packages/theme/src/index.less
@@ -86,3 +69,7 @@ examples/sites/public/tiny-vue*.mjs
 examples/sites/public/tailwind.css
 examples/sites/public/index.css
 
+
+# next 屏蔽
+next/cloud-icons/categorys.ts
+next/scene-theme/docs/.vitepress/cache

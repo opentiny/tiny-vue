@@ -1,6 +1,7 @@
 import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const actionSheetProps = {
   menus: {

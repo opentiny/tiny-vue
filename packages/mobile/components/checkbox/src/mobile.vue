@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import { checkboxProps } from './checkbox'
 import '@opentiny/vue-theme-mobile/checkbox/index.less'
 

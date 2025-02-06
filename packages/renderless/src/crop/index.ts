@@ -76,7 +76,7 @@ export const createCrop =
   ({ emit, props, refs, state }) =>
   () => {
     const Cropper = props.plugin
-    const cropImage = refs.cropImage
+    const cropImage = refs.cropImageRef
 
     state.cropper = new Cropper(cropImage, {
       modal: props.modal,

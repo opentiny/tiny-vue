@@ -20,6 +20,6 @@
     "sortablejs": "1.15.0"
   },
   "devDependencies": {
-    "@playwright/test": "~1.42.0"
+    "@playwright/test": "catalog:"
   }
 }

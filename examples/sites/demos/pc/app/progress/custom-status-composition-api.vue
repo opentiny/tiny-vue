@@ -2,7 +2,7 @@
   <div class="custom-status">
     <div class="error">
       <div class="tiny-progress-demo">
-        <span class="tiny-progress-demo-title">失败:</span>
+        <span class="tiny-progress-demo-title">失败：</span>
         <div class="tiny-progress-content">
           <div class="tiny-progress-content-des">
             <div class="tiny-progress-content-des-title">安装进度</div>
@@ -23,7 +23,7 @@
 
       <div class="loading">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">上传中:</span>
+          <span class="tiny-progress-demo-title">上传中：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
@@ -39,7 +39,7 @@
 
       <div class="reloading">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">失败可重试:</span>
+          <span class="tiny-progress-demo-title">失败可重试：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
@@ -63,7 +63,7 @@
 
       <div class="success">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">成功:</span>
+          <span class="tiny-progress-demo-title">成功：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>

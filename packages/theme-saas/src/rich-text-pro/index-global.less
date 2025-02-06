@@ -18,7 +18,7 @@
     @apply table-fixed;
     @apply border-collapse;
     td {
-      border: 1px solid #000;
+      @apply border border-solid border-color-text-primary;
       padding: 2px 5px;
     }
   }
@@ -31,7 +31,7 @@
       @apply content-[''];
       width: 5px;
       height: 5px;
-      background-color: #0589f3;
+      @apply bg-color-brand-hover;
       border-radius: 5px;
     }
 
@@ -42,7 +42,7 @@
       @apply content-[''];
       width: 5px;
       height: 5px;
-      background-color: #0589f3;
+      @apply bg-color-brand-hover;
       border-radius: 5px;
     }
   }
@@ -114,11 +114,10 @@
     & &-cell {
       @apply relative;
       @apply bg-color-bg-1;
-      border-top: 1px solid #000;
-      border-right: 1px solid #000;
-      border-bottom: 1px solid #000;
+      @apply border border-solid border-color-text-primary;
+      @apply border-t-0;
       &:first-child {
-        border-left: 1px solid #000;
+        @apply border-t;
       }
     }
 
@@ -132,7 +131,7 @@
       @apply bg-transparent;
       @apply cursor-ew-resize;
       &:hover {
-        background-color: #0589f3;
+        @apply bg-color-brand-hover;
       }
 
       &::before {
@@ -163,11 +162,10 @@
     @apply flex-col;
     & &-cell {
       @apply relative;
-      border-right: 1px solid #000;
-      border-bottom: 1px solid #000;
-      border-left: 1px solid #000;
+      @apply border border-solid border-color-text-primary;
+      @apply border-t-0;
       &:first-child {
-        border-top: 1px solid #000;
+        @apply border-t;
       }
     }
 
@@ -181,7 +179,7 @@
       @apply bg-transparent;
       @apply cursor-ns-resize;
       &:hover {
-        background-color: #0589f3;
+        @apply bg-color-brand-hover;
       }
       &::before {
         @apply content-[''];

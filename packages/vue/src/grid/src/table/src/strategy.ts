@@ -204,9 +204,10 @@ const getTreeShowKey = ({ scrollYLoad, treeConfig }) => {
   return treeShowKey
 }
 
-const sliceVisibleColumn = (args) => {
-  const { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn, columnStore } = args
-  const { treeConfig, visibleColumn, visibleColumnChanged } = args
+const sliceVisibleColumn = (tableVm) => {
+  const { treeConfig, visibleColumn, tableColumn, columnStore, visibleColumnChanged, scrollXLoad, scrollXStore } =
+    tableVm
+  const { lastStartIndex = -1, renderSize, startIndex } = scrollXStore
   const { leftList, rightList } = columnStore
 
   let tableColumn2 = tableColumn
@@ -215,7 +216,8 @@ const sliceVisibleColumn = (args) => {
   let sliced = false
 
   if (scrollXLoad && treeConfig) {
-    if (visibleColumnChanged || !~lastStartIndex || lastStartIndex !== startIndex) {
+    if (visibleColumnChanged || !~lastStartIndex || lastStartIndex !== startIndex || tableVm.restoreScollFlag) {
+      tableVm.restoreScollFlag = false
       tableColumn2 = visibleColumn.slice(startIndex, startIndex + renderSize)
       lastStartIndex2 = startIndex
       visibleColumnChanged2 = false

@@ -12,7 +12,7 @@
 <template>
   <transition name="viewer-fade">
     <div
-      class="tiny-mobile-image-viewer__wrapper"
+      class="tiny-mobile-image-viewer tiny-mobile-image-viewer__wrapper"
       ref="imagePreview"
       :style="{ 'z-index': zIndex }"
       v-show="state.previewVisible"
@@ -112,7 +112,7 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { props, setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import {
   iconClose,
   iconChevronLeft,

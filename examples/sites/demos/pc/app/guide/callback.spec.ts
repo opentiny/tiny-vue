@@ -14,27 +14,27 @@ test('窗口的事件回调', async ({ page }) => {
 
   await start.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题1/)
+  await expect(guide).toHaveText(/新手引导标题 1/)
   await expect(text).toHaveText(/展示之前/)
 
   await showBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题2/)
+  await expect(guide).toHaveText(/新手引导标题 2/)
   await expect(text.nth(2)).toHaveText(/下一步/)
 
   await nextBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题3/)
+  await expect(guide).toHaveText(/新手引导标题 3/)
   await expect(text.nth(4)).toHaveText(/下一步/)
 
   await nextBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题4/)
+  await expect(guide).toHaveText(/新手引导标题 4/)
   await expect(text.nth(6)).toHaveText(/隐藏/)
 
   await nextBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题5/)
+  await expect(guide).toHaveText(/新手引导标题 5/)
   await expect(text.nth(9)).toHaveText(/下一步/)
 
   await cancelBtn.click()
@@ -47,7 +47,7 @@ test('窗口的事件回调', async ({ page }) => {
   await nextBtn.click()
   await nextBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveText(/新手引导标题6/)
+  await expect(guide).toHaveText(/新手引导标题 6/)
   await expect(text.nth(11)).toHaveText(/完成/)
   await completeBtn.click()
   await expect(guide).toBeHidden()

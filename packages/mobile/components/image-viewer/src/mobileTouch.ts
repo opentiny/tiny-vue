@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { directive } from '../../../vue-common'
-import { isObject } from '@opentiny/mobile-utils/type'
+import { directive } from '@mobile-root/common'
+import { isObject } from '@mobile-root/utils/type'
 
 class TinyTouch {
   constructor(element, tinyBinding, type) {
@@ -49,7 +49,7 @@ class TinyTouch {
 
     this.time = setTimeout(() => {
       if (this.tinyVueLeave && this.tinyVueMoves) {
-        this.touchType == 'longtap' && this.tinyVueCallBack(this.tinyBinding.value, e)
+        this.touchType === 'longtap' && this.tinyVueCallBack(this.tinyBinding.value, e)
         this.tinyLongTouch = false
       }
     }, 1000)
@@ -66,28 +66,28 @@ class TinyTouch {
     clearTimeout(this.time)
 
     if (Math.abs(disX) > 10 || Math.abs(disY) > 100) {
-      this.touchType == 'swipe' && this.tinyVueCallBack(this.tinyBinding.value, e)
+      this.touchType === 'swipe' && this.tinyVueCallBack(this.tinyBinding.value, e)
 
       if (Math.abs(disX) > Math.abs(disY)) {
         if (disX > 10) {
-          this.touchType == 'swiperight' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swiperight' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
 
         if (disX < -10) {
-          this.touchType == 'swipeleft' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipeleft' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
       } else {
         if (disY > 10) {
-          this.touchType == 'swipedown' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipedown' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
 
         if (disY < -10) {
-          this.touchType == 'swipeup' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipeup' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
       }
     } else {
       if (this.tinyLongTouch && this.tinyVueMoves) {
-        this.touchType == 'tap' && this.tinyVueCallBack(this.tinyBinding.value, e)
+        this.touchType === 'tap' && this.tinyVueCallBack(this.tinyBinding.value, e)
         this.tinyVueLeave = false
       }
     }
@@ -106,6 +106,7 @@ const mapDirective = () => {
     deactives[name] = directive({
       vTouch: {
         bind(el, tinyBinding) {
+          // eslint-disable-next-line no-new
           new TinyTouch(el, tinyBinding, name)
         }
       }

@@ -18,7 +18,7 @@ export default {
       showStep: false,
       domData: [
         {
-          title: '新手引导标题1',
+          title: '新手引导标题 1',
           text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导',
           domElement: '.auto-size',
           button: [

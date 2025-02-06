@@ -35,7 +35,7 @@ export default {
         'en-US': 'marks'
       },
       desc: {
-        'zh-CN': '使用marks属性，给滑杆的值添加标记。',
+        'zh-CN': '使用 marks 属性，给滑杆的值添加标记。',
         'en-US': 'Mark the value of the slider.'
       },
       codeFiles: ['marks.vue']
@@ -86,7 +86,7 @@ export default {
         'zh-CN':
           '<p>通过配置<code>show-input</code>，开启滑块输入框模式。可以通过配置<code>unit</code>来决定输入框后面显示的单位。</p>',
         'en-US':
-          '<p>Enable the slider text box mode by configuring <code>show-input</code>。You can determine the units displayed after the input box by configuring<code>unit</code>.</p>'
+          '<p>Enable the slider text box mode by configuring <code>show-input</code>. You can determine the units displayed after the input box by configuring<code>unit</code>.</p>'
       },
       codeFiles: ['show-input.vue']
     },
@@ -100,7 +100,7 @@ export default {
         'zh-CN':
           '<p>通过设置<code>num-pages</code>总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是 "⌈(max-min)/num-pages⌉"。</p>',
         'en-US':
-          '<p>Set <code>num-pages</code>the total number of steps. That is, when you press the shortcut key PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉"。</p>'
+          '<p>Set <code>num-pages</code>the total number of steps. That is, when you press the shortcut key PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉".</p>'
       },
       codeFiles: ['shortcut-operation.vue']
     },
@@ -112,7 +112,7 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过设置属性<code>disabled</code> ,设置滑动滑块禁止滑动。</p>',
-        'en-US': '<p>Set the attribute <code>disabled</code> to disable the sliding slider。</p>'
+        'en-US': '<p>Set the attribute <code>disabled</code> to disable the sliding slider.</p>'
       },
       codeFiles: ['dynamic-disable.vue']
     },
@@ -125,7 +125,7 @@ export default {
       desc: {
         'zh-CN': '<p>通过设定<code>:show-tip=&quot;false&quot;</code>，关闭滑块提示。(默认开启)。</p>',
         'en-US':
-          '<p>Disable the slider prompt by setting <code>:show-tip=&quot;false&quot;</code> . (enabled by default)。</p>'
+          '<p>Disable the slider prompt by setting <code>:show-tip=&quot;false&quot;</code> . (enabled by default).</p>'
       },
       codeFiles: ['show-tip.vue']
     },
@@ -137,7 +137,7 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过设置<code>step</code>来配置滑块滑动的步长。</p>',
-        'en-US': '<p>Set <code>step</code> to configure the slider sliding step。</p>'
+        'en-US': '<p>Set <code>step</code> to configure the slider sliding step.</p>'
       },
       codeFiles: ['about-step.vue']
     },
@@ -149,7 +149,7 @@ export default {
       },
       desc: {
         'zh-CN': '显示滑块值的插槽。',
-        'en-US': 'A slot for displaying details。'
+        'en-US': 'A slot for displaying details.'
       },
       codeFiles: ['slider-slot.vue']
     },

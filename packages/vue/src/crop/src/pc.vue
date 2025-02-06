@@ -15,7 +15,7 @@
       <div class="tiny-crop__dialog">
         <input ref="cropInput" type="file" name="image" accept="image/*" @change="setImage" />
         <div class="tiny-crop__dialog-cropper">
-          <img :src="state.src" ref="cropImage" id="crops" :alt="alt" />
+          <img :src="state.src" ref="cropImageRef" id="crops" :alt="alt" />
         </div>
         <div class="tiny-crop__dialog-content__handle">
           <div class="tiny-crop__dialog-content__handle__button">

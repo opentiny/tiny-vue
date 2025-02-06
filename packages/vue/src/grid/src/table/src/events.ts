@@ -94,9 +94,9 @@ export function handleEscKeyDown({ event, actived, mouseConfig }) {
 
 export function handleEnterKeyDown({ event, selected, actived }) {
   const { highlightCurrentRow, currentRow, treeConfig } = this
-  let isLeftArrow = event.keyCode === 37
-  let isUpArrow = event.keyCode === 38
-  let isRightArrow = event.keyCode === 39
+  const isLeftArrow = event.keyCode === 37
+  const isUpArrow = event.keyCode === 38
+  const isRightArrow = event.keyCode === 39
   // 如果是激活状态，退则出到下一行
   if (selected.row || actived.row) {
     this.moveSelected({
@@ -104,15 +104,15 @@ export function handleEnterKeyDown({ event, selected, actived }) {
       isLeftArrow,
       isUpArrow,
       isRightArrow,
-      isDwArrow: true,
+      isDownArrow: true,
       event
     })
   } else if (treeConfig && highlightCurrentRow && currentRow) {
     // 如果是树形表格当前行回车移动到子节点
-    let childrens = currentRow[treeConfig.children]
-    if (childrens && childrens.length) {
+    const children = currentRow[treeConfig.children]
+    if (children && children.length) {
       event.preventDefault()
-      let targetRow = childrens[0]
+      const targetRow = children[0]
       this.setTreeExpansion(currentRow, true)
         .then(() => this.scrollToRow(targetRow))
         .then(() => this.triggerCurrentRowEvent(event, { $table: this, row: targetRow }))
@@ -230,7 +230,6 @@ export function handleOtherKeyDown({ event, selected }) {
     (!keyboardConfig.editMethod || !(keyboardConfig.editMethod(selected.args, event) === false))
   ) {
     // 如果是按下非功能键之外允许直接编辑
-    setCellValue(selected.row, selected.column, null)
     this.handleActived(selected.args, event)
   }
 }

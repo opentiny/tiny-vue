@@ -121,7 +121,7 @@ const toggleLoading = (el, binding, maskInstance) => {
 }
 
 const vLoading = {
-  bind(el, binding, vnode) {
+  inserted(el, binding, vnode) {
     const vm = vnode.context
     const textExr = el.getAttribute(constants.TEXT_ATTR)
     const spinnerExr = el.getAttribute(constants.TEXT_SPINNER)
@@ -132,7 +132,7 @@ const vLoading = {
       component: Loading,
       propsData: {
         _constants: constants,
-        tiny_mode: vm.tiny_mode?.value || appProperties().tiny_mode?.value
+        tiny_mode: vm?.tiny_mode?.value || appProperties().tiny_mode?.value
       },
       el: document.createElement('div')
     })

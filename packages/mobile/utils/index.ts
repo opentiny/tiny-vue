@@ -262,8 +262,6 @@ export const CASCADER = {
   MenuConnector: 'cascader-menu-'
 }
 
-export const version = process.env.RUNTIME_VERSION
-
 export const log = (data, type = 'log') => {
   uLog.logger[type](data)
 }

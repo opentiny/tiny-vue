@@ -4,15 +4,15 @@
       <template #left>
         <tiny-split v-model="split2" trigger-simple collapse-left-top three-areas>
           <template #left>
-            <div class="split-content">内容A区</div>
+            <div class="split-content">内容 A 区</div>
           </template>
           <template #right>
-            <div class="split-content">内容B区</div>
+            <div class="split-content">内容 B 区</div>
           </template>
         </tiny-split>
       </template>
       <template #right>
-        <div class="split-content">内容C区</div>
+        <div class="split-content">内容 C 区</div>
       </template>
     </tiny-split>
   </div>

@@ -247,6 +247,36 @@ export default {
           pcDemo: 'dialog-width'
         },
         {
+          name: 'custom-style',
+          type: 'string',
+          defaultValue: ``,
+          desc: {
+            'zh-CN': '自定义实现双层抽屉',
+            'en-US': 'Custom Styles'
+          },
+          meta: {
+            stable: '3.21.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'double-dialog-height',
+          mfDemo: 'double-dialog-height'
+        },
+        {
+          name: 'no-animation',
+          type: 'string',
+          defaultValue: ``,
+          desc: {
+            'zh-CN': '是否开启动画',
+            'en-US': 'Indicates whether to enable animation'
+          },
+          meta: {
+            stable: '3.21.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'double-dialog-height',
+          mfDemo: 'double-dialog-height'
+        },
+        {
           name: 'dialog-transition',
           type: 'string',
           defaultValue: ``,

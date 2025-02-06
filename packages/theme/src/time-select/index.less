@@ -19,10 +19,14 @@
 
 .@{time-select-prefix-cls} {
   .inject-TimeSelect-vars();
-  
+
+  &.not-match-height {
+    height: 36px;
+  }
   height: 242px;
+  padding-top: var(--tv-TimeSelect-content-padding-top);
   .@{time-select-scrollbar-cls} {
-    height: 242px;
+    height: 100%;
     .@{css-prefix}scrollbar__wrap {
       max-height: unset;
     }
@@ -54,7 +58,9 @@
     &__content {
       padding-left: 0;
       padding-right: 0;
-      padding-top: var(--tv-TimeSelect-content-padding-top);
+      .no-match {
+        text-align: center;
+      }
     }
   }
 }

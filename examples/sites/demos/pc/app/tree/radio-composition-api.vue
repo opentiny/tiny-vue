@@ -76,7 +76,7 @@ function setCurrentRadio() {
 }
 
 function checkChange(data, checked, indeterminate) {
-  console.log('checkChange事件：', { data, checked, indeterminate })
+  console.log('checkChange 事件：', { data, checked, indeterminate })
 }
 </script>
 

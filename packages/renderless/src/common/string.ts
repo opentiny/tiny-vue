@@ -780,7 +780,7 @@ export const formatFileSize = (size, baseUnit = '') => {
     return size + baseUnit
   }
 
-  const unitArr = ['B', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
+  const unitArr = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
   let unitIndex = Math.max(unitArr.indexOf((baseUnit + '').toLocaleUpperCase()), 0)
 
   while (size >= 1024 && unitIndex < unitArr.length - 1) {
@@ -793,7 +793,7 @@ export const formatFileSize = (size, baseUnit = '') => {
     unitIndex--
   }
 
-  return parseFloat(toDecimal(size, 2, true)) + unitArr[unitIndex]
+  return parseFloat(toDecimal(size, 2, true)) + ' ' + unitArr[unitIndex]
 }
 
 /**

@@ -82,6 +82,19 @@ export default {
         'en-US': '<p>code>default</code>: content default slot. <code>footer</code>: bottom slot</p>'
       },
       codeFiles: ['dialog-slot.vue']
+    },
+    {
+      demoId: 'double-dialog-height',
+      name: {
+        'zh-CN': '右侧双层弹框',
+        'en-US': 'Double-layer dialog box on the right'
+      },
+      desc: {
+        'zh-CN': '右侧弹窗分两种情况，父级弹框自动缩进，子级弹框高度撑满。父级弹框不缩进，子级弹框高度自适应。',
+        'en-US':
+          'There are two types of pop-up windows on the right. The parent pop-up boxes are automatically indented, and the child pop-up boxes are full. The parent dialog box is not indented, and the height of the child dialog box is adaptive.'
+      },
+      codeFiles: ['double-dialog-height.vue']
     }
   ]
 }

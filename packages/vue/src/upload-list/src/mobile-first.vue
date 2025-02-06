@@ -57,7 +57,7 @@
                 v-if="~['fail'].indexOf(file.status)"
                 class="relative w-full h-full bg-black/50 rounded"
               >
-                <icon-cue-l-o class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
+                <icon-cue-l class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
               </div>
             </div>
             <div

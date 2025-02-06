@@ -10,7 +10,7 @@ import { getAlias, pathFromWorkspaceRoot } from '../../config/vite'
 import { external } from '../../shared/config'
 import type { Module } from '../../shared/module-utils'
 import { getAllIcons, getAllModules, getByName } from '../../shared/module-utils'
-import { logGreen, kebabCase, capitalizeKebabCase, getPatchVersion, isValidVersion } from '../../shared/utils'
+import { capitalizeKebabCase, getPatchVersion, isValidVersion, kebabCase, logGreen } from '../../shared/utils'
 import generatePackageJsonPlugin from './rollup/generate-package-json'
 import inlineChunksPlugin from './rollup/inline-chunks'
 import replaceModuleNamePlugin from './rollup/replace-module-name'
@@ -257,11 +257,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
         ...getAlias(vueVersion, '', design),
-        '@tiptap/vue': `${
-          vueVersion === '2'
-            ? path.resolve(pathFromPackages(''), 'vue/src/rich-text-editor/node_modules/@tiptap/vue-2')
-            : path.resolve(pathFromPackages(''), 'vue/src/rich-text-editor/node_modules/@tiptap/vue-3')
-        }`,
+        '@tiptap/vue': `${vueVersion === '2' ? '@tiptap/vue-2' : '@tiptap/vue-3'}`,
         '@vue/babel-helper-vue-jsx-merge-props': 'node_modules/@vue/babel-helper-vue-jsx-merge-props/dist/helper.js'
       }
     },

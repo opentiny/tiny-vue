@@ -39,7 +39,7 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     ...getComponentAlias()
   }
 
-  if (!design) {
+  if (!design && vueVersion === 3) {
     map['@opentiny/vue-icon'] = pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/src`)
   }
 

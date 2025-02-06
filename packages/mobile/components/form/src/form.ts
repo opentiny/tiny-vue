@@ -11,8 +11,28 @@
  */
 
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from '@mobile-root/shared.type'
 import type { IFormItemInstance, IFormItemRule } from '../../form-item/src/form-item'
+
+import type {
+  updateTip,
+  computedAutoLabelWidth,
+  computedHideRequiredAsterisk,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
+  created,
+  resetFields,
+  clearValidate,
+  validate,
+  validateField,
+  getLabelWidthIndex,
+  registerLabelWidth,
+  deregisterLabelWidth,
+  watchRules,
+  showTooltip,
+  hideTooltip
+} from './renderless'
 
 export const formProps = {
   model: Object,
@@ -109,26 +129,6 @@ export const formProps = {
     default: false
   }
 }
-
-import type {
-  updateTip,
-  computedAutoLabelWidth,
-  computedHideRequiredAsterisk,
-  computedValidateIcon,
-  computedIsErrorInline,
-  computedIsErrorBlock,
-  created,
-  resetFields,
-  clearValidate,
-  validate,
-  validateField,
-  getLabelWidthIndex,
-  registerLabelWidth,
-  deregisterLabelWidth,
-  watchRules,
-  showTooltip,
-  hideTooltip
-} from './renderless'
 
 export interface IFormRules {
   [prop: string]: IFormItemRule

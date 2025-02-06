@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import { iconRadioselected, iconRadio, iconCheck, iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'
 import { tableProps } from './table'
 import '@opentiny/vue-theme-mobile/table/index.less'

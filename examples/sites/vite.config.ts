@@ -45,6 +45,7 @@ export default defineConfig((config) => {
   const isSaas = env.VITE_TINY_THEME === 'saas'
   const isPlus = env.VITE_APP_MODE === 'plus'
   const isInner = env.VITE_BUILD_TARGET === 'inner'
+  const isMobile = env.VITE_APP_MODE === 'mobile'
   const demosPath = isPlus ? '../plusdocs/pc' : `./demos/${env.VITE_APP_MODE}`
   const apisPath = isPlus ? '../plusdocs/apis' : './demos/apis'
   const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(demosPath)
@@ -64,6 +65,19 @@ export default defineConfig((config) => {
       dest: '@demos/mobile-first'
     })
   }
+
+  const buildInput = () => {
+    // design-server中一个路由对应一个页面
+    const input = {
+      index: path.resolve(__dirname, './index.html'),
+      playground: path.resolve(__dirname, './playground.html')
+    }
+    if (isMobile) {
+      input.mobile = path.resolve(__dirname, './mobile.html')
+    }
+    return input
+  }
+
   const viteConfig = {
     envDir: './env',
     base: env.VITE_APP_BUILD_BASE_URL || '/tiny-vue/',
@@ -125,16 +139,13 @@ export default defineConfig((config) => {
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {
-        input: {
-          index: path.resolve(__dirname, './index.html'),
-          // design-server中添加一个专门路由指向 playground.html
-          playground: path.resolve(__dirname, './playground.html')
-        }
+        input: buildInput()
       }
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
+        '@mobile-root': pathFromWorkspaceRoot('packages/mobile'),
         '@': path.resolve('src'),
         '@demos': path.resolve(`${demosPath}`),
         '@menu': menuPath,

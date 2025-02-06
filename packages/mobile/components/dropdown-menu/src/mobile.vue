@@ -68,10 +68,10 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent, directive } from '../../../vue-common'
+import { setup, defineComponent, directive } from '@mobile-root/common'
 import { iconUp, iconDown, iconUnfilter, iconSort, iconDeltaDown, iconDeltaUp } from '@opentiny/vue-icon'
 import { dropdownMenuProps } from './dropdown-menu'
-import Clickoutside from '@opentiny/mobile-utils/deps/clickoutside'
+import Clickoutside from '@mobile-root/utils/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-menu/index.less'
 
 export default defineComponent({

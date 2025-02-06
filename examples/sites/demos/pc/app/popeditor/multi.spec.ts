@@ -8,8 +8,8 @@ test('PopEditor 多选', async ({ page }) => {
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })
-  const select1 = dialogBox.getByRole('row', { name: '1 GFD科技YX公司 福建 福州' }).locator('span')
-  const select2 = dialogBox.getByRole('row', { name: '2 WWW科技YX公司 广东 深圳' }).locator('span')
+  const select1 = dialogBox.getByRole('row', { name: '1 GFD 科技 YX 公司 福建 福州' }).locator('span')
+  const select2 = dialogBox.getByRole('row', { name: '2 WWW 科技 YX 公司 广东 深圳' }).locator('span')
 
   // 允许多选
   await textBox.click()

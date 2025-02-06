@@ -17,8 +17,8 @@
     <div class="content">
       <tiny-modal v-model="show1" title="基本提示框" message="窗口内容1" show-footer> </tiny-modal>
       <tiny-modal v-model="show2" title="基本提示框" message="窗口内容2" status="success" show-footer> </tiny-modal>
-      <tiny-button @click="show1 = true"> 打开弹窗1 </tiny-button>
-      <tiny-button @click="show2 = true"> 打开弹窗2 </tiny-button>
+      <tiny-button @click="show1 = true"> 打开弹窗 1 </tiny-button>
+      <tiny-button @click="show2 = true"> 打开弹窗 2 </tiny-button>
     </div>
   </div>
 </template>

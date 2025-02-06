@@ -9,21 +9,21 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '<p>通过引用组件标签即可，默认从框架服务读取数据 。</p>\n',
-        'en-US': '<p>By referencing component labels, data is read from the framework service by default. </p>\n'
+        'zh-CN': '<p>通过 <code>data</code> 属性设置静态数据。</p>\n',
+        'en-US': '<p>Set static data through the <code>data</code> attribute. </p>\n'
       },
       codeFiles: ['basic-usage.vue']
     },
     {
       demoId: 'data-resource',
       name: {
-        'zh-CN': '数据源',
-        'en-US': 'Data Source'
+        'zh-CN': '服务端数据',
+        'en-US': 'Server data'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>data</code> 属性设置静态数据，<code>get-menu-data-sync</code> 设置服务端数据，直接返回数据源 。</p>\n',
-        'en-US': '<p>Set static data in the tree menu through <code>data</code> attributes. </p>\n'
+        'zh-CN': '<p>通过 <code>get-menu-data-sync</code> 设置服务端数据，直接返回数据源。</p>\n',
+        'en-US':
+          '<p>Set server data through <code>get menu data sync</code> and directly return the data source. </p>\n'
       },
       codeFiles: ['data-resource.vue']
     },
@@ -35,7 +35,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>setCurrentKey</code> 或 <code>setCurrentNode</code>方法设置当前节点，结合 <code>default-expanded-keys</code> 属性设置展开当前节点。<code>getCurrentKey</code> 方法获取当前节点的唯一标识 ， <code>getCurrentNode</code> 方法获取当前节点的数据。</p>',
+          '<p>通过 <code>setCurrentKey</code> 或 <code>setCurrentNode</code>方法设置当前节点，结合 <code>default-expanded-keys</code> 属性设置展开当前节点。<code>getCurrentKey</code> 方法获取当前节点的唯一标识， <code>getCurrentNode</code> 方法获取当前节点的数据。</p>',
         'en-US':
           '<p>Set the current node through the <code>setCurrentKey</code> or <code>setCurrentNode</code> method, and expand the current node by combining the <code>default-expanded-keys</code> attribute settings.<code>getCurrentKey</code> method retrieves the unique identifier of the current node, while the <code>getCurrentNode</code> method retrieves the current node.</p>'
       },
@@ -62,7 +62,7 @@ export default {
         'en-US': 'Expand a node by default'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>default-expanded-keys</code> 设置初始化时默认展开某一节点 。</p>\n',
+        'zh-CN': '<p>通过 <code>default-expanded-keys</code> 设置初始化时默认展开某一节点。</p>\n',
         'en-US':
           '<p>Expand a node by default during initialization through <code>default-expanded-keys</code> settings. </p>\n'
       },
@@ -275,7 +275,7 @@ export default {
         'en-US': 'Horizontal indent'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>indent</code> 属性设置子级相对于父级菜单的水平缩进距离，单位 px 。</p>\n',
+        'zh-CN': '<p>通过 <code>indent</code> 属性设置子级相对于父级菜单的水平缩进距离，单位 px。</p>\n',
         'en-US':
           '<p>Set the horizontal indentation distance of children relative to the parent menu through the <code>indent</code> attribute, in px.</p>\n'
       },
@@ -341,7 +341,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click： 监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand： 监听节点展开的事件。</p>\n<p>node-collapse： 监听节点收起的事件。</p>\n<p>check-change： 可勾选时，监听勾选节点变化的事件。</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click：监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand：监听节点展开的事件。</p>\n<p>node-collapse：监听节点收起的事件。</p>\n<p>check-change：可勾选时，监听勾选节点变化的事件。</p>\n</div>\n',
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n</div>\n'
       },

@@ -9,11 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { PropType } from '../../../vue-common'
+import type { PropType } from '@mobile-root/common'
 import { iconClose } from '@opentiny/vue-icon'
 import type { ComputedRef, ExtractPropTypes } from 'vue'
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
-export type { ISharedRenderlessParamHooks } from '../../../types/shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '@mobile-root/shared.type'
+
+export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 const currentYear = new Date().getFullYear()
 

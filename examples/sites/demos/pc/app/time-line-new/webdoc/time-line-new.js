@@ -18,7 +18,7 @@ export default {
     {
       demoId: 'vertical1',
       name: {
-        'zh-CN': '竖向时间线1',
+        'zh-CN': '竖向时间线 1',
         'en-US': 'Timeline Node Component'
       },
       desc: {
@@ -31,7 +31,7 @@ export default {
     {
       demoId: 'vertical2',
       name: {
-        'zh-CN': '竖向时间线2',
+        'zh-CN': '竖向时间线 2',
         'en-US': 'Vertical Timeline'
       },
       desc: {
@@ -48,7 +48,7 @@ export default {
         'en-US': 'Status of Node'
       },
       desc: {
-        'zh-CN': '通过 space属性设置步骤条的宽度。',
+        'zh-CN': '通过 space 属性设置步骤条的宽度。',
         'en-US':
           '<p>Specify the state of timeline nodes by setting the <code>autoColor</code> or <code>type</code> attribute, and use the <code>disabled</code> attribute to enable or disable them.</p>'
       },
@@ -57,7 +57,7 @@ export default {
     {
       demoId: 'different-data1',
       name: {
-        'zh-CN': '数据映射1',
+        'zh-CN': '数据映射 1',
         'en-US': 'Node name position'
       },
       desc: {
@@ -71,7 +71,7 @@ export default {
     {
       demoId: 'different-data2',
       name: {
-        'zh-CN': '数据映射2',
+        'zh-CN': '数据映射 2',
         'en-US': 'Appearance of Node'
       },
       desc: {
@@ -107,11 +107,11 @@ export default {
     {
       demoId: 'node-toset1',
       name: {
-        'zh-CN': '节点配置图标1',
+        'zh-CN': '节点配置图标 1',
         'en-US': 'Custom Field'
       },
       desc: {
-        'zh-CN': '通过在data里面的属性autoColor设置自定义状态',
+        'zh-CN': '通过在 data 里面的属性 autoColor 设置自定义状态',
         'en-US':
           '<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, the <code>time-field</code> attribute is used to set the field name corresponding to the node time information and the <code>auto-color-field</code> attribute is used to set the field name corresponding to the icon. </p>'
       },
@@ -120,11 +120,11 @@ export default {
     {
       demoId: 'node-toset2',
       name: {
-        'zh-CN': '节点配置图标2',
+        'zh-CN': '节点配置图标 2',
         'en-US': 'Start value of the sequence number'
       },
       desc: {
-        'zh-CN': '通过在data里面的属性autoColor设置自定义图标',
+        'zh-CN': '通过在 data 里面的属性 autoColor 设置自定义图标',
         'en-US': '<p>Set the start sequence number through the <code>start</code> attribute. </p>\n'
       },
       codeFiles: ['node-toset2.vue']
@@ -149,7 +149,7 @@ export default {
         'en-US': 'Customizing a Horizontal Timeline'
       },
       desc: {
-        'zh-CN': 'slot 为 top可以自定义步骤条顶部内容，slot 为 bottom 可以自定义步骤条底部内容。',
+        'zh-CN': 'slot 为 top 可以自定义步骤条顶部内容，slot 为 bottom 可以自定义步骤条底部内容。',
         'en-US':
           'If <p><code>slot</code> is <code>top</code>, you can customize the top content of the timeline. If <p><code>slot</code> is <code>slot</code>, you can customize the bottom content of the timeline. </p>\n'
       },
@@ -162,7 +162,7 @@ export default {
         'en-US': 'Customized Vertical Timeline'
       },
       desc: {
-        'zh-CN': 'slot 为 left可以自定义步骤条左侧内容，slot 为 right 可以自定义步骤条右侧内容。',
+        'zh-CN': 'slot 为 left 可以自定义步骤条左侧内容，slot 为 right 可以自定义步骤条右侧内容。',
         'en-US':
           'If <p><code>slot</code> is set to <code>left</code>, you can customize the content on the left of the timeline. If <p><code>slot</code> is set to <code>right</code>, you can customize the content on the right of the timeline. </p>\n'
       },

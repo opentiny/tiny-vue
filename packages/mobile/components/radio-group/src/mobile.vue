@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { renderless, api } from './renderless/vue'
-import { setup, defineComponent } from '../../../vue-common'
+import { setup, defineComponent } from '@mobile-root/common'
 import Radio from '../../radio'
 import { radioGroupProps } from './radio-group'
 import type { IRadioGroupApi } from './radio-group'

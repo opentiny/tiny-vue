@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { setup, $prefix, defineComponent } from '../../../vue-common'
+import { setup, $prefix, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import { tabbarProps } from './tabbar'
 import '@opentiny/vue-theme-mobile/tabbar/index.less'

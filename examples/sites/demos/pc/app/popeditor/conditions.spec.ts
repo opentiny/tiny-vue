@@ -17,7 +17,7 @@ test('PopEditor 自定义查询条件', async ({ page }) => {
   await searchBtn.click()
   await expect(dialogBox.locator('.tiny-grid__empty-block')).toBeVisible()
 
-  // 或者按enter键搜索
+  // 或者按 enter 键搜索
   await company.fill('')
   await city.fill('福州')
   await searchBtn.press('Enter')

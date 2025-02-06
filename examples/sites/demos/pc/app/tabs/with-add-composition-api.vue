@@ -40,7 +40,7 @@ function handleAdd() {
   tabs.value.push({
     title: 'Tab ++',
     name: ++tabIndex.value + '',
-    content: '动态增加tabitem'
+    content: '动态增加 tabitem'
   })
 }
 </script>

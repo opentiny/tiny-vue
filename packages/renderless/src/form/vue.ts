@@ -116,7 +116,7 @@ export const renderless = (
 
   onBeforeUnmount(unbindDialogEvent)
 
-  watch(() => props.rules, api.watchRules)
+  watch(() => props.rules, api.watchRules, { deep: props.validateOnRuleChange === 'deep' })
 
   return api
 }

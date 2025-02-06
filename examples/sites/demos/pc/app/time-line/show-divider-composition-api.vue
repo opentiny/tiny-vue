@@ -13,6 +13,6 @@ const data = reactive([{ name: 'Basic Info' }, { name: 'BOQ Info' }, { name: 'In
 const normalClick = (index, node) => {
   normalActive.value = index
 
-  TinyModal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
+  TinyModal.message({ message: `节点 index: ${index}; 节点信息：${JSON.stringify(node)}`, status: 'info' })
 }
 </script>

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-numeric",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -22,7 +22,6 @@
     "@opentiny/vue-radio": "workspace:~",
     "@opentiny/vue-radio-group": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

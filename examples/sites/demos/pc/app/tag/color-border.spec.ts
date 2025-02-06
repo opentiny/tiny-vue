@@ -5,7 +5,7 @@ test('边框和自定义背景色', async ({ page }) => {
   await page.goto('tag#color-border')
 
   const tags = page.locator('.all-demos-container').locator('.tiny-tag')
-  const red = tags.getByText('red标签')
+  const red = tags.getByText('red 标签')
   const custom = tags.getByText('自定义背景色', { exact: true })
 
   await expect(red).toHaveClass(/tiny-tag--red/)

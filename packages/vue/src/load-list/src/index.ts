@@ -4,7 +4,7 @@ import template from 'virtual-template?mobile-first'
 
 export const loadListProps = {
   ...$props,
-  direction: { type: String, default: 'down', validator: (value) => ['down', 'up'].indexOf(value) > -1 },
+  direction: { type: String, default: 'down', validator: (value) => ['down', 'up'].includes(value) },
   offset: { type: [String, Number], default: 300 },
   disabled: Boolean,
   scroller: Object,
@@ -19,7 +19,7 @@ export const loadListProps = {
 }
 
 export default defineComponent({
-  name: $prefix + 'List',
+  name: $prefix + 'LoadList',
   props: loadListProps,
   setup(props, context) {
     return $setup({ props, context, template })

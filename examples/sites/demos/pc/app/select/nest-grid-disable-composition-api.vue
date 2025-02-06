@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：嵌套表格禁用某项（单选）</p>
+    <p>场景 1：嵌套表格禁用某项（单选）</p>
     <br />
     <tiny-select
       v-model="value1"
@@ -11,7 +11,7 @@
       :radio-config="radioConfig"
     ></tiny-select>
     <br /><br />
-    <p>场景2：嵌套表格禁用某项（多选）</p>
+    <p>场景 2：嵌套表格禁用某项（多选）</p>
     <br />
     <tiny-select
       v-model="value2"

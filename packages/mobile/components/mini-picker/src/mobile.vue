@@ -45,7 +45,7 @@
 <script lang="tsx">
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import PickerColumn from '../../picker-column'
 import '@opentiny/vue-theme-mobile/mini-picker/index.less'
 

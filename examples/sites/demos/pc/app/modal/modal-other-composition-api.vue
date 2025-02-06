@@ -2,11 +2,11 @@
   <div>
     <h2>函数式调用</h2>
     <div class="content">
-      <tiny-button @click="btnClick">弹窗esc关闭</tiny-button>
+      <tiny-button @click="btnClick">弹窗 esc 关闭</tiny-button>
     </div>
     <h2>标签式调用</h2>
     <div class="content">
-      <tiny-button @click="openModal">弹窗esc关闭,保留表单数据</tiny-button>
+      <tiny-button @click="openModal">弹窗 esc 关闭，保留表单数据</tiny-button>
       <tiny-modal
         v-model="show"
         type="confirm"
@@ -16,6 +16,7 @@
         show-footer
         v-bind="options"
         :esc-closable="true"
+        show-close
       >
         <tiny-form :model="createData" label-width="100px">
           <tiny-form-item label="用户名" prop="username">
@@ -58,6 +59,7 @@ function btnClick() {
     title: '自定义弹窗标题',
     showHeader: true,
     showFooter: true,
+    showClose: false,
     ...options.value
   })
 }

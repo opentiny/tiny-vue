@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>场景1：一键复制所有标签</p>
+    <p>场景 1：一键复制所有标签</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple copyable></tiny-tree-select>
-    <p>场景2：设置复制文本分隔符</p>
+    <p>场景 2：设置复制文本分隔符</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple copyable text-split="/"></tiny-tree-select>
     <p>粘贴至此处：</p>
     <tiny-input v-model="inputVal" class="copy-value" type="text"></tiny-input>

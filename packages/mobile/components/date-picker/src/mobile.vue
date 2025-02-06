@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '../../../vue-common'
+import { props, setup, defineComponent } from '@mobile-root/common'
 import { renderless, api } from './renderless/vue'
 import MiniPicker from '../../mini-picker'
 import Input from '../../input'

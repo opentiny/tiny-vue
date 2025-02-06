@@ -53,7 +53,7 @@ export default {
         'en-US': 'Custom Title'
       },
       desc: {
-        'zh-CN': `当 <code>size</code> 为 <code>large</code> 时，通过 <code>title </code>属性或 <code>title </code>插槽，可以自定义组件的标题。<br>
+        'zh-CN': `当 <code>size</code> 为 <code>large</code> 时，通过 <code>title </code>属性或 <code>title </code>插槽，可以自定义组件的标题 ，通过 <code> show-title </code>属性控制标题是否显示<br>
            如果未自定义标题，会根据对应的 <code>type</code> 显示相应的默认标题。`,
         'en-US':
           '<p>When <code>size</code> is set to large, the title is displayed. You can set <code>title</code> or <code>slot</code> to customize the title. <br>The default title is displayed according to the set <code>type</code> . </p>'

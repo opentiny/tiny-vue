@@ -5,7 +5,7 @@ test('自定义旗帜内容', async ({ page }) => {
   await page.goto('milestone#custom-flag')
 
   const flags = page.locator('.tiny-milestone__flag-content > span')
-  const flagContents = ['引导用户按照流程完成任务', '欢迎使用vui', 'test8', 'test6']
+  const flagContents = ['引导用户按照流程完成任务', '欢迎使用 vui', 'test8', 'test6']
   const flagCount = 4
 
   await expect(flags).toHaveCount(flagCount)

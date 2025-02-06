@@ -11,10 +11,10 @@
  -->
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { setup, h, defineComponent } from '../../../vue-common'
+import { setup, h, defineComponent } from '@mobile-root/common'
 import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
-import { touchStart, touchMove } from '@opentiny/mobile-utils/deps/touch'
+import { touchStart, touchMove } from '@mobile-root/utils/deps/touch'
 import '@opentiny/vue-theme-mobile/tabs/index.less'
 import type { ITabsApi } from './tabs'
 import { tabsProps } from './tabs'

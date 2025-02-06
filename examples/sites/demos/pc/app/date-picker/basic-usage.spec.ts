@@ -62,15 +62,15 @@ test('[DatePicker] 测试月份/年份选择', async ({ page }) => {
   // 选择月份
   await dateInput.click()
   await page.getByRole('button', { name: '4 月' }).click()
-  await page.getByText('六月').click()
-  await page.getByRole('row', { name: '4 5 6 7 8 9 10' }).getByText('4').click()
+  await page.getByRole('cell', { name: '六月' }).locator('a').click()
+  await page.getByRole('rowgroup').getByText('4').first().click()
   await expect(dateInput).toHaveValue('2023-06-04')
 
   // 选择年份
   await dateInput.click()
   await page.getByRole('button', { name: '2023 年' }).click()
   await page.getByRole('cell', { name: '2024' }).getByText('2024').click()
-  await page.getByText('二月', { exact: true }).click()
-  await page.getByRole('row', { name: '4 5 6 7 8 9 10' }).getByText('7').click()
+  await page.getByRole('cell', { name: '二月', exact: true }).locator('a').click()
+  await page.getByRole('rowgroup').getByText('7').first().click()
   await expect(dateInput).toHaveValue('2024-02-07')
 })

@@ -55,7 +55,7 @@ test('基本用法', async ({ page }) => {
     }
   ]
   const titles = ['completed 状态', 'completed 状态', 'doing 状态', 'cancel 状态', 'back 状态', 'end 状态']
-  const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
+  const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用 vui/, /test8/, /test6/]
   const flagLineColors = ['rgb(237, 247, 223)', 'rgb(237, 247, 223)', 'rgb(232, 250, 255)', 'rgba(242, 48, 48, 0.1)']
 
   await expect(nodes).toHaveCount(nodeCount)

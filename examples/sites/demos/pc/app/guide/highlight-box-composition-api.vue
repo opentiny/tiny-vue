@@ -5,9 +5,9 @@
         <tiny-button type="primary" @click="stepStart">开始引导</tiny-button>
         <tiny-divider color="var(--ti-common-color-line-dividing)"></tiny-divider>
         <div>
-          <tiny-button plain class="hight1">新手引导1</tiny-button>
-          <tiny-button plain class="hight2">新手引导2</tiny-button>
-          <tiny-button plain class="hight3">新手引导3</tiny-button>
+          <tiny-button plain class="hight1">新手引导 1</tiny-button>
+          <tiny-button plain class="hight2">新手引导 2</tiny-button>
+          <tiny-button plain class="hight3">新手引导 3</tiny-button>
         </div>
         <div>
           <tiny-alert class="hight4" :closable="false" description="type 为默认值 info。"></tiny-alert>

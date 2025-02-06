@@ -9,7 +9,7 @@ test('PopEditor 开启树模式', async ({ page }) => {
   const dialogBox = page.locator('.tiny-dialog-box')
   const tree = dialogBox.locator('.tiny-tree')
 
-  // tree模式
+  // tree 模式
   await textBox.click()
   await expect(dialogBox).toBeVisible()
   await expect(tree).toBeVisible()

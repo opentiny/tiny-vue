@@ -24,281 +24,125 @@ export default {
       let menuData = [
         {
           label: '首页',
-          urlField: ''
+          urlField: '',
+          id: '1'
         },
         {
           label: '指南',
           urlField: '',
+          id: '2',
           children: [
             {
               label: '引入组件',
               urlField: '',
-              children: [
-                {
-                  label: '按需引入',
-                  urlField: ''
-                },
-                {
-                  label: '完整引入',
-                  urlField: ''
-                }
-              ]
+              id: '2-1'
             },
             {
               label: '后端适配器',
               urlField: '',
-              children: [
-                {
-                  label: 'Gateway 适配器',
-                  urlField: ''
-                },
-                {
-                  label: 'Jalor 适配器',
-                  urlField: ''
-                },
-                {
-                  label: 'Standalone 适配器',
-                  urlField: ''
-                }
-              ]
-            },
-            {
-              label: '服务代理',
-              urlField: '',
-              children: [
-                {
-                  label: '本地代理',
-                  urlField: ''
-                },
-                {
-                  label: '远程代理',
-                  urlField: ''
-                }
-              ]
-            },
-            {
-              label: '构建部署',
-              urlField: '',
-              children: [
-                {
-                  label: '本地构建',
-                  urlField: ''
-                },
-                {
-                  label: '查看构建报告',
-                  urlField: ''
-                },
-                {
-                  label: '静态资源构建',
-                  urlField: ''
-                },
-                {
-                  label: '多环境部署',
-                  urlField: ''
-                },
-                {
-                  label: '静态资源部署',
-                  urlField: ''
-                },
-                {
-                  label: 'CI 部署',
-                  urlField: ''
-                },
-                {
-                  label: '引入静态资源',
-                  urlField: ''
-                }
-              ]
+              id: '2-2'
             }
           ]
         },
         {
           label: '组件',
           urlField: '',
+          id: '3',
           children: [
             {
               label: '表单组件',
               urlField: '',
+              id: '3-1',
               children: [
                 {
-                  label: 'Button 按钮',
-                  urlField: 'button'
-                },
-                {
                   label: 'Datepicker 日期',
-                  urlField: 'datepicker'
+                  urlField: 'datepicker',
+                  id: '3-1-1'
                 },
                 {
-                  label: 'Dropdown 下拉框',
-                  urlField: 'dropdown'
+                  label: 'Cascader 级联选择器',
+                  urlField: 'cascader',
+                  id: '3-1-2'
                 },
                 {
                   label: 'DropTimes 下拉时间',
-                  urlField: 'droptimes'
-                },
-                {
-                  label: 'Input 输入框',
-                  urlField: 'input'
-                },
-                {
-                  label: 'Textarea 文本域',
-                  urlField: 'textarea'
+                  urlField: 'droptimes',
+                  id: '3-1-3'
                 }
               ]
             },
             {
-              label: '数据组件',
+              label: '数据展示',
               urlField: '',
+              id: '3-2',
               children: [
                 {
-                  label: 'Chart 图表',
-                  urlField: 'chart'
+                  label: 'Card 卡片',
+                  urlField: 'card',
+                  id: '3-2-1'
                 },
                 {
-                  label: 'Grid 数据表格',
-                  urlField: 'grid'
+                  label: 'Collapse 折叠面板',
+                  urlField: 'collapse',
+                  id: '3-2-2'
                 },
                 {
-                  label: 'Pager 分页',
-                  urlField: 'pager'
-                },
-                {
-                  label: 'Tree 树形控件',
-                  urlField: 'tree'
+                  label: 'Guide 引导',
+                  urlField: 'guide',
+                  id: '3-2-3'
                 }
               ]
             },
             {
               label: '导航组件',
               urlField: '',
+              id: '3-3',
               children: [
                 {
                   label: 'ToggleMenu 收缩菜单',
-                  urlField: 'toggleMenu'
+                  urlField: 'toggleMenu',
+                  id: '3-3-1'
                 },
                 {
                   label: 'TreeMenu 树型菜单',
-                  urlField: 'treemenu'
+                  urlField: 'treemenu',
+                  id: '3-3-2'
+                },
+                {
+                  label: 'Breadcrumb 面包屑',
+                  urlField: 'breadcrumb',
+                  id: '3-3-3'
                 }
               ]
             },
             {
               label: '业务组件',
               urlField: '',
+              id: '3-4',
               children: [
                 {
                   label: 'Amount 金额',
-                  urlField: 'amount'
+                  urlField: 'amount',
+                  id: '3-4-1'
                 },
                 {
                   label: 'Area 片区',
-                  urlField: 'area'
+                  urlField: 'area',
+                  id: '3-4-2'
                 },
                 {
                   label: 'Company 公司',
-                  urlField: 'company'
-                },
-                {
-                  label: 'Dept 部门',
-                  urlField: 'dept'
-                },
-                {
-                  label: 'eDoc 企业文档',
-                  urlField: 'Edoc'
-                },
-                {
-                  label: 'User 用户',
-                  urlField: 'user'
+                  urlField: 'company',
+                  id: '3-4-3'
                 }
               ]
             }
           ]
         },
         {
-          label: '教程',
-          urlField: '',
-          children: [
-            {
-              label: '页面布局',
-              urlField: '',
-              children: [
-                {
-                  label: '添加标签页',
-                  urlField: '#/zh-CN/tutorial/addtabs'
-                },
-                {
-                  label: '标签页配置',
-                  urlField: '#/zh-CN/tutorial/tabsattr'
-                }
-              ]
-            },
-            {
-              label: '查询功能',
-              urlField: '',
-              children: [
-                {
-                  label: '添加查询页面',
-                  urlField: '#/zh-CN/tutorial/addlist'
-                },
-                {
-                  label: '列表属性配置',
-                  urlField: '#/zh-CN/tutorial/listattr'
-                },
-                {
-                  label: '通讯录查询',
-                  urlField: '#/zh-CN/tutorial/searchfunc'
-                }
-              ]
-            },
-            {
-              label: '新增功能',
-              urlField: '',
-              children: [
-                {
-                  label: '表单新增功能',
-                  urlField: '#/zh-CN/tutorial/addservice'
-                },
-                {
-                  label: '表单数据验证',
-                  urlField: '#/zh-CN/tutorial/valid'
-                }
-              ]
-            },
-            {
-              label: '编辑功能',
-              urlField: '',
-              children: [
-                {
-                  label: '开启编辑功能',
-                  urlField: '#/zh-CN/tutorial/editattr'
-                },
-                {
-                  label: '保存表格数据',
-                  urlField: '#/zh-CN/tutorial/savefunc'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: '规范',
-          urlField: ''
-        },
-        {
-          label: '性能',
-          urlField: ''
-        },
-        {
-          label: '案例',
-          urlField: ''
-        },
-        {
-          label: '更新日志',
-          urlField: ''
-        },
-        {
-          label: '测试',
-          urlField: ''
+          label: '其他',
+          urlField: 'crop',
+          id: '4'
         }
       ]
 

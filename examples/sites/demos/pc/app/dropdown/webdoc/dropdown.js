@@ -112,6 +112,19 @@ export default {
       codeFiles: ['trigger.vue']
     },
     {
+      demoId: 'visible',
+      name: {
+        'zh-CN': '手动控制显隐',
+        'en-US': 'Manual control of display and concealment'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>visible</code> 属性手动控制下拉菜单显隐，优先级高于trigger。</p>\n',
+        'en-US':
+          '<p>Manually control the visibility of the dropdown menu through the<code>visible</code>attribute, with priority over trigger.</p>\n'
+      },
+      codeFiles: ['visible.vue']
+    },
+    {
       demoId: 'tip',
       name: {
         'zh-CN': '提示信息',

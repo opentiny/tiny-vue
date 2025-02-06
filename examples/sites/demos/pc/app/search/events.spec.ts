@@ -14,7 +14,7 @@ test('事件是否正常触发', async ({ page }) => {
   await button.click()
   await modal.getByText('111').isVisible()
 
-  // change事件
+  // change 事件
   await input.nth(1).fill('111')
   await input.nth(1).press('Enter')
   await modal.getByText('change: 111').isVisible()
@@ -24,7 +24,7 @@ test('事件是否正常触发', async ({ page }) => {
   await page.locator('#events a').nth(2).click()
   await modal.getByText('clear').isVisible()
 
-  // select事件
+  // select 事件
   const search = page.locator('.tiny-search').nth(3)
   const expand = search.locator('.icon-outer')
   const option = search.locator('.tiny-search__poplist-item').filter({ hasText: '找谁' })

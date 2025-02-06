@@ -40,7 +40,7 @@ export default {
               id: 'c9ee9a4e8f3f83c5'
             },
             {
-              topic: 'Javascript权威指南',
+              topic: 'Javascript 权威指南',
               id: 'c9ee9b8e87958282'
             },
             {

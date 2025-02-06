@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test'
 test('[DatePicker] 测试选择器打开时默认时间设置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#default-value')
+  await page.locator('.settings-btn').first().click()
+  await page.locator('label').filter({ hasText: '单示例' }).click()
 
   // default-value: 打开日期面板，默认显示的日期
   await page.getByRole('textbox').nth(1).click()

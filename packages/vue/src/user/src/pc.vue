@@ -16,6 +16,7 @@
       :size="size"
       :placeholder="placeholder"
       :collapse-tags="collapseTags"
+      :hover-expand="hoverExpand"
       :multiple="multiple"
       :multipleLimit="multipleLimit"
       @change="userChange"
@@ -95,6 +96,7 @@ export default defineComponent({
     'valueField',
     'textField',
     'collapseTags',
+    'hoverExpand',
     'showOverflowTooltip',
     'placeholder',
     'cache',

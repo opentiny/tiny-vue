@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>场景1：文字超长点点点</p>
+    <p>场景 1：文字超长点点点</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" ellipsis></tiny-tree-menu>
     <br /><br />
-    <p>场景2：文字超长换行</p>
+    <p>场景 2：文字超长换行</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" wrap></tiny-tree-menu>
   </div>
 </template>

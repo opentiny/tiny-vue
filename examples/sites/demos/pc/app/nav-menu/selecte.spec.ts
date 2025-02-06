@@ -5,7 +5,7 @@ test('基础用法', async ({ page }) => {
   await page.goto('nav-menu#selecte')
   const preview = page.locator('#selecte')
   const popMenu = preview.locator('.popmenu')
-  const components = preview.getByText('指南')
+  const components = preview.getByText('组件')
   await expect(components).toHaveClass(/selected/)
   await components.hover()
   await expect(popMenu).toBeVisible()

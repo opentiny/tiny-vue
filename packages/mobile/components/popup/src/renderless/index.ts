@@ -10,10 +10,10 @@
  *
  */
 
-import { on, off } from '@opentiny/mobile-utils/deps/dom'
-import { touchStart, touchMove } from '@opentiny/mobile-utils/deps/touch'
+import { on, off } from '@mobile-root/utils/deps/dom'
+import { touchStart, touchMove } from '@mobile-root/utils/deps/touch'
 import { getScroller } from '../../../dropdown-menu/src/renderless'
-import { isNull } from '@opentiny/mobile-utils/type'
+import { isNull } from '@mobile-root/utils/type'
 
 export const getStyle = (props) => () => {
   const style = { ...props.popupStyle }

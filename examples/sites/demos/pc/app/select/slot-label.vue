@@ -30,33 +30,33 @@ export default {
     return {
       options: [
         {
-          value: '选项1',
+          value: '选项 1',
           label: '北京超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`
         },
         {
-          value: '选项2',
+          value: '选项 2',
           label: '上海',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
         },
         {
-          value: '选项3',
+          value: '选项 3',
           label: '天津',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/2.jpg`
         },
         {
-          value: '选项4',
+          value: '选项 4',
           label: '重庆',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/3.jpg`
         },
         {
-          value: '选项5',
+          value: '选项 5',
           label: '深圳',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/4.jpg`
         }
       ],
-      value1: ['选项1', '选项2'],
-      value2: ['选项3']
+      value1: ['选项 1', '选项 2'],
+      value2: ['选项 3']
     }
   },
   methods: {

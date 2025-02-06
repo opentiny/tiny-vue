@@ -18,13 +18,13 @@ export default {
   },
   methods: {
     blur() {
-      TinyModal.message({ message: 'blur事件', status: 'info' })
+      TinyModal.message({ message: 'blur 事件', status: 'info' })
     },
     change() {
-      TinyModal.message({ message: 'change事件', status: 'info' })
+      TinyModal.message({ message: 'change 事件', status: 'info' })
     },
     focus() {
-      TinyModal.message({ message: 'focus事件', status: 'info' })
+      TinyModal.message({ message: 'focus 事件', status: 'info' })
     }
   }
 }

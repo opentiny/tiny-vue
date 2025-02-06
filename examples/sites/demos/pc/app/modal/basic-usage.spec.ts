@@ -21,13 +21,13 @@ test('基本用法', async ({ page }) => {
   await page.getByRole('button', { name: '消息提示' }).click()
   await expect(content.nth(3)).toHaveText(/简单的消息/)
 
-  // 打开弹窗1
-  await page.getByRole('button', { name: '打开弹窗1' }).click()
+  // 打开弹窗 1
+  await page.getByRole('button', { name: '打开弹窗 1' }).click()
   await expect(content.nth(1)).toHaveText(/窗口内容1/)
   await page.getByRole('button', { name: '确定' }).click()
 
-  // 打开弹窗2
-  await page.getByRole('button', { name: '打开弹窗2' }).click()
+  // 打开弹窗 2
+  await page.getByRole('button', { name: '打开弹窗 2' }).click()
   await expect(content.nth(2)).toHaveText(/窗口内容2/)
   await page.getByRole('button', { name: '确定' }).click()
 })

@@ -9,7 +9,7 @@ test('测试延迟显示隐藏', async ({ page }) => {
   const button2 = page.getByRole('button', { name: '延迟 2s 关闭' })
   const tip2 = page.getByRole('tooltip', { name: '延迟 2000ms 关闭' })
   const button3 = page.getByRole('button', { name: '2s 后自动隐藏' })
-  const tip3 = page.getByRole('tooltip', { name: '2000ms后自动隐藏' })
+  const tip3 = page.getByRole('tooltip', { name: '2000ms 后自动隐藏' })
 
   // 延迟出现
   await button1.hover()

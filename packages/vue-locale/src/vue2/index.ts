@@ -6,15 +6,17 @@ import { extend as _extend } from '@opentiny/vue-renderless/common/object'
 
 let lang = zhCN
 
-let i18nHandler = function (this: any, key, value) {
+let i18nHandler = function (this: any) {
   const vuei18n = Object.getPrototypeOf(this || Vue).$t
 
   if (typeof vuei18n === 'function' && vuei18n !== t) {
+    // eslint-disable-next-line prefer-rest-params
     return vuei18n.apply(this, arguments)
   }
 }
 
 export const t = function (this: any, path, options = undefined as any) {
+  // eslint-disable-next-line prefer-rest-params
   let message = i18nHandler.apply(this, arguments as any)
 
   if (message === null || message === undefined || message === path) {
@@ -56,6 +58,7 @@ export const extend = _extend
 
 export const initI18n = ({ VueI18n, messages = {}, i18n = {} as any, merge }) => {
   if (typeof merge !== 'function') {
+    // eslint-disable-next-line no-useless-call
     merge = ({ lang, i18n, messages }) => extend.call(null, true, lang, i18n.messages, messages)
   }
 

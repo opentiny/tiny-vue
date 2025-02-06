@@ -5,9 +5,9 @@
       <tiny-button @click="getChecks">查询勾选状态</tiny-button>
       <tiny-button @click="clear">清除全部勾选</tiny-button><br /><br />
       <tiny-button @click="setChecked">根据节点数据勾选/反勾选</tiny-button>
-      <tiny-button @click="setCheckedByNodeKey">根据node-key勾选/反勾选 </tiny-button><br /><br />
-      <tiny-button @click="setCheckedKeys">根据node-key,多值勾选</tiny-button>
-      <tiny-button @click="setCheckedNodes">根据node,多值勾选</tiny-button><br /><br />
+      <tiny-button @click="setCheckedByNodeKey">根据 node-key 勾选/反勾选 </tiny-button><br /><br />
+      <tiny-button @click="setCheckedKeys">根据 node-key，多值勾选</tiny-button>
+      <tiny-button @click="setCheckedNodes">根据 node，多值勾选</tiny-button><br /><br />
     </div>
     <tiny-tree
       ref="treeRef"
@@ -80,7 +80,7 @@ function clear() {
   treeRef.value.setCheckedKeys([])
 }
 function setChecked() {
-  // setChecked: (data, checked, deep) => void， deep为true时，深度勾选
+  // setChecked: (data, checked, deep) => void，deep 为 true 时，深度勾选
   treeRef.value.setChecked({ id: '1-1' }, true, true)
   treeRef.value.setChecked({ id: '3' }, true, false)
 }
@@ -97,10 +97,10 @@ function setCheckedNodes() {
   treeRef.value.setCheckedNodes([{ id: '1-1' }, { id: '2-1' }, { id: '3-1' }], true)
 }
 function check(data, currentChecked) {
-  console.log('check事件：', data, currentChecked)
+  console.log('check 事件：', data, currentChecked)
 }
 function checkChange(data, checked, indeterminate) {
-  console.log('checkChange事件：', data, checked, indeterminate)
+  console.log('checkChange 事件：', data, checked, indeterminate)
 }
 </script>
 

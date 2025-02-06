@@ -159,7 +159,7 @@
             <span>{{ t('ui.page.item') }}</span>
           </template>
           <template v-else>
-            <span>{{ t('ui.page.totals') }}</span>
+            <span>{{ t('ui.page.totals') + ' ' }}</span>
             <span :class="{ 'tiny-pager__total-num': !customTotal }">
               {{ customTotal ? state.totalText : state.internalTotal }}
             </span>
@@ -207,7 +207,8 @@ export default defineComponent({
     'size',
     'align',
     'totalFixedLeft',
-    'pageSizeText'
+    'pageSizeText',
+    'changeCompat'
   ],
   directives: {
     loading: Loading.directive

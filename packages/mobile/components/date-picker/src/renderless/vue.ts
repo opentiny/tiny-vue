@@ -27,7 +27,7 @@ import {
   onChange,
   updateColumnValue
 } from './index'
-import { DATE } from '@opentiny/mobile-utils'
+import { DATE } from '@mobile-root/utils'
 import type {
   IDatePickerApi,
   IDatePickerProps,

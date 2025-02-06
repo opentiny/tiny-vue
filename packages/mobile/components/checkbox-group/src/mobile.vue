@@ -26,7 +26,7 @@
 
 <script lang="tsx">
 import { renderless, api } from './renderless/vue'
-import { $prefix, setup, defineComponent } from '../../../vue-common'
+import { $prefix, setup, defineComponent } from '@mobile-root/common'
 import Checkbox from '../../checkbox'
 import { CheckboxGroupProps } from './checkbox-group'
 import '@opentiny/vue-theme-mobile/checkbox-group/index.less'

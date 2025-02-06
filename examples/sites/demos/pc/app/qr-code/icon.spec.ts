@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('自定义icon', async ({ page }) => {
+test('自定义 icon', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('qr-code#icon')
 

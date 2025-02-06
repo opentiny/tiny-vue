@@ -97,6 +97,7 @@
   @apply whitespace-pre-wrap;
   white-space-collapse: preserve-breaks;
   word-wrap: break-word;
+  word-break: break-word;
 
   & > * {
     @apply cursor-text;
@@ -436,11 +437,11 @@
   }
 
   .ql-bg-red {
-    background-color: #e60000;
+    @apply bg-color-error;
   }
 
   .ql-bg-orange {
-    background-color: #f90;
+    @apply bg-color-alert;
   }
 
   .ql-bg-yellow {
@@ -464,7 +465,7 @@
   }
 
   .ql-color-red {
-    color: #e60000;
+    @apply text-color-error;
   }
 
   .ql-color-orange {

@@ -1,11 +1,11 @@
-import uploadAjax from '@opentiny/mobile-utils/deps/upload-ajax'
+import uploadAjax from '@mobile-root/utils/deps/upload-ajax'
 import type { ExtractPropTypes } from 'vue'
 import type {
   ISharedRenderlessFunctionParams,
   ISharedRenderlessParamUtils,
   ITinyVm,
   ISharedRenderlessParamHooks
-} from '../../../types/shared.type'
+} from '@mobile-root/shared.type'
 import type {
   isImage,
   abort,

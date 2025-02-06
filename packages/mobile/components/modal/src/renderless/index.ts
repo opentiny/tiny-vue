@@ -10,11 +10,11 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/mobile-utils'
-import { on, off, addClass, hasClass, removeClass } from '@opentiny/mobile-utils/deps/dom'
-import PopupManager from '@opentiny/mobile-utils/deps/popup-manager'
-import { getDomNode } from '@opentiny/mobile-utils/deps/dom'
-import { getViewportWindow } from '@opentiny/mobile-utils/global'
+import { KEY_CODE } from '@mobile-root/utils'
+import { on, off, addClass, hasClass, removeClass } from '@mobile-root/utils/deps/dom'
+import PopupManager from '@mobile-root/utils/deps/popup-manager'
+import { getDomNode } from '@mobile-root/utils/deps/dom'
+import { getViewportWindow } from '@mobile-root/utils/global'
 
 import type {
   IModalProps,

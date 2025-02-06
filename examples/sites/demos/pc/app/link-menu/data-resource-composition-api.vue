@@ -22,7 +22,7 @@ const expandIcon = iconPutAway()
 const datas = ref([
   {
     id: 1,
-    label: '菜单内容超长时换行显示，默认为 false菜单内容超长时换行显示，默认为 false。添加属性wrap显示换行'
+    label: '菜单内容超长时换行显示，默认为 false 菜单内容超长时换行显示，默认为 false。添加属性 wrap 显示换行'
   },
   {
     id: 2,

@@ -24,8 +24,7 @@ test.describe('树表增删改功能', () => {
       .first()
       .click()
     await page.getByRole('row', { name: '3 WWWW 科技股份有限子公司 华南区 720' }).getByText('华南区').first().click()
-    await page.getByRole('row', { name: '3 WWWW 科技股份有限子公司 720' }).getByRole('textbox').first().click()
-    await page.getByRole('row', { name: '3 WWWW 科技股份有限子公司 720' }).getByRole('textbox').fill('华南区 ee')
+    await page.locator('.tiny-grid-default-input').fill('华南区 ee')
     await page.getByText('WWWW 科技 YX 公司').first().click()
     await page.getByRole('button', { name: '获取修改' }).click()
 

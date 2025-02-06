@@ -23,7 +23,7 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
-    "@opentiny/vue-vite-import": "workspace:~",
+    "@opentiny/vue-vite-import": "~1.2.0",
     "@tiptap/vue-3": "^2.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "js-sha256": "^0.9.0",

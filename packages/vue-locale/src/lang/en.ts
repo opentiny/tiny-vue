@@ -12,7 +12,7 @@
 export default {
   'en-US': 'English',
   'zh-CN': 'Chinese',
-  'zh-TW': '中国台湾',
+  'zh-TW': 'China Taiwan',
   hello: 'Hello {name}',
   code: 'en-US',
   yes: 'Yes',
@@ -45,14 +45,14 @@ export default {
       submit: 'Submit'
     },
     linkMenu: {
-      title: '',
+      title: 'Messages',
       placeholder: 'Enter a keyword.',
       sure: 'OK',
       cancel: 'Cancel'
     },
     todoList: {
       add: 'Add',
-      placeholder: 'please input your todo things'
+      placeholder: 'Please enter content...'
     },
     alert: {
       error: 'Error',
@@ -103,7 +103,7 @@ export default {
       placeholder: '--Select--'
     },
     cascader: {
-      noMatch: 'No matches',
+      noMatch: 'No matches.',
       loading: 'Loading',
       placeholder: '--Select--',
       noData: 'No data available.'
@@ -111,7 +111,7 @@ export default {
     chart: {
       auxiliary: 'Auxiliary',
       emptyText: 'No Data',
-      kName: 'Day K',
+      kName: 'Daily K-line',
       other: 'Other',
       summation: 'Summation',
       total: 'Total',
@@ -125,15 +125,15 @@ export default {
       empty: 'None'
     },
     crop: {
-      choose: 'choose image',
-      zoomOut: 'zoom out 10%',
-      zoomIn: 'zoom in 10%',
+      choose: 'Select Picture',
+      zoomOut: 'Reduced by 10%',
+      zoomIn: 'Zoom in by 10%',
       rotate_45: 'rotate -45°',
       rotate45: 'rotate 45°',
       closeCropArea: 'hide selection',
       reset: 'reset',
-      cropImage: 'crop image',
-      croppedImage: 'Target image'
+      closeCrop: 'Exit cropping',
+      cropImage: 'Selecting a Region'
     },
     datepicker: {
       clear: 'Clear',
@@ -190,11 +190,11 @@ export default {
         fri: 'Fri'
       },
       timezone: 'Select a time zone.',
-      year: 'Year',
-      hour: 'hour',
-      minute: 'minute',
-      second: 'second',
-      to: '',
+      year: '',
+      hour: 'Hour',
+      minute: 'Minute',
+      second: 'Second',
+      to: '-',
       yearMonth: '{month} {year}',
       yearMonthDay: '{month} {day}, {year}'
     },
@@ -215,7 +215,7 @@ export default {
       quote: 'Reference',
       codeBlock: 'Code Block',
       formatClear: 'Clear Formatting',
-      nodeDelete: 'node delete',
+      nodeDelete: 'Delete Node',
       undo: 'Undo',
       redo: 'Redo',
       left: 'Left-Aligned',
@@ -260,7 +260,7 @@ export default {
       dot: 'Loading…'
     },
     exception: {
-      build: 'Building',
+      build: 'The module is under construction.',
       busy: 'The network is busy. Please wait',
       noperm: 'Not find the page',
       weaknet: 'Poor network performance',
@@ -482,8 +482,8 @@ export default {
       moreText: 'More'
     },
     logout: {
-      in: 'Logged in',
-      out: 'Logged out'
+      in: 'Login',
+      out: 'Logout'
     },
     page: {
       goto: 'Go to',
@@ -526,16 +526,16 @@ export default {
       uploadsButtonText: 'Select Files',
       errorTypeTips: 'Invalid file format.',
       errorSizeTips: 'File too large.',
-      confirmDeleteTips: 'Are you sure you want to delete this file?',
+      confirmDeleteTips: 'Delete This File?',
       delete: 'Delete',
       waitUpload: 'Waiting for upload',
       operation: 'Operation',
       success: 'Upload successful',
       listTip: 'There are a total of {0} pieces of data: ',
       errorListTip: 'There are {0} errors in them. Please modify them and try again',
-      limitUploadFileType: 'Supported file formats: ',
-      limitUploadFileNumber: 'Maximum files allowed: ',
-      limitUploadFileSize: 'Maximum file size: ',
+      limitUploadFileType: 'Supported file formats',
+      limitUploadFileNumber: 'Maximum files allowed',
+      limitUploadFileSize: 'Maximum file size',
       errorNumTips: 'The number of uploaded files exceeds the limit. The operation has been cancelled'
     },
     rate: {
@@ -599,8 +599,8 @@ export default {
       delete: 'Delete',
       addChild: 'Add Child',
       newNodeTitle: 'Add Child Node',
-      deleteTip1: 'Deleted data cannot be restored. Are you sure you want to continue?',
-      deleteTip2: 'This node has child nodes. Do you want to retain the child nodes?',
+      deleteTip1: 'Deleted data cannot be restored. Continue?',
+      deleteTip2: 'This node has child nodes. Retain them?',
       deleteTip3: 'Retain child nodes'
     },
     usercard: {
@@ -809,7 +809,7 @@ export default {
     },
     date: {
       format: 'The date %s does not match the %s format.',
-      invalid: '%s is invalid.',
+      invalid: '%s field verification error.',
       parse: 'Unable to parse %s, %s is invalid'
     },
     default: '%s field verification error.',
@@ -837,7 +837,7 @@ export default {
       boolean: 'Invalid boolean value.',
       date: 'Invalid date format.',
       dateTime: 'Invalid date and time format.',
-      dateYM: 'The date format (y-mm) does not comply with the rule.',
+      dateYM: 'The date format (yyyy-mm) does not comply with the rule.',
       dateYMD: 'The date format (y-MM-dd) does not comply with the rule.',
       digits: 'Invalid number only.',
       email: 'Invalid email address.',
