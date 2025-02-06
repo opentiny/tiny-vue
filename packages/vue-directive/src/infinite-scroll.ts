@@ -211,7 +211,7 @@ const unbind = (el) => {
   stopObserver(el)
 }
 
-const InfiniteScroll = {
+export const InfiniteScroll = {
   bind,
   update,
   unbind,
@@ -219,5 +219,3 @@ const InfiniteScroll = {
   updated: update,
   unmounted: unbind
 }
-
-export default InfiniteScroll

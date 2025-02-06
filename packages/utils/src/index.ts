@@ -5,7 +5,7 @@ import ResizeObserver from './resize-observer'
 export { xss, logger, ResizeObserver }
 
 export { sha256 } from './crypt'
-export { globalConfig, getViewportWindow, isServer, browser } from './globalConfig'
+export { globalConfig, getViewportWindow, isServer, browserInfo } from './globalConfig'
 
 export { getDays, getWeek, lastMonth, nextMonth, getCalendar, transformArray, parseDate } from './calendar'
 
@@ -196,14 +196,14 @@ export { init as initEspace, espaceCtrl } from './espace-ctrl'
 export { Memorize } from './memorize'
 
 // 待修改名称
-export { getScrollParent as getScrollParent1, Popper } from './popper'
+export { getScrollParent as getScrollParent1, PopperJS } from './popper'
 
 export { PopupManager } from './popup-manager'
 
 export { addResizeListener, removeResizeListener } from './resize-event'
 
 // 这些为什么不移到dom中去呢
-export { scrollWidth } from './scroll-width'
+export { calcScrollWidth } from './scroll-width'
 
 export { scrollIntoView } from './scroll-into-view'
 

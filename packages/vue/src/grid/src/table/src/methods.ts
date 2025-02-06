@@ -25,10 +25,10 @@
  */
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/utils'
-import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
+import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
-import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
+import { fastdom } from '@opentiny/utils'
 import {
   isNumber,
   filterTree,

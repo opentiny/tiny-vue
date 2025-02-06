@@ -28,7 +28,7 @@
 import { tryToCurrency, truncate, tryToInt, tryToDecimal, toFileSize, toRate, toBoolValue } from '@opentiny/utils'
 import { find } from '@opentiny/vue-renderless/grid/static/'
 import { isNumber, isDate, isNull } from '@opentiny/utils'
-import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'
+import { toDateStr, getDateWithNewTimezone, toDate, formatDateByPattern as format } from '@opentiny/utils'
 import { iconClose, iconYes } from '@opentiny/vue-icon'
 import { warn } from './logger'
 

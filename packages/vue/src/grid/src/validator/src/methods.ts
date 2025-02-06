@@ -23,7 +23,7 @@
  *
  */
 import { t } from '@opentiny/vue-locale'
-import Validator from '@opentiny/vue-renderless/common/validate'
+import { Validator } from '@opentiny/utils'
 import { getFuncText, emitEvent, getCell } from '@opentiny/vue-renderless/grid/utils'
 import { get, isFunction, isObject, isUndefined, find } from '@opentiny/vue-renderless/grid/static/'
 import { adjustParams, realValid } from './utils/beginValidate'

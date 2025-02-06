@@ -1,7 +1,7 @@
 import zhCN from '../lang/zh-CN'
 import enUS from '../lang/en'
 import format from '../format'
-import { extend as _extend } from '@opentiny/vue-renderless/common/object'
+import { extend as _extend } from '@opentiny/utils'
 
 let lang = zhCN
 let i18nHandler = null as any

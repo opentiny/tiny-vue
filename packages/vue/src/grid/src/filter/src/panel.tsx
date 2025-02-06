@@ -27,8 +27,8 @@
 
 import Radio from '../../radio'
 import Button from '@opentiny/vue-button'
-import PopperJS from '@opentiny/vue-renderless/common/deps/popper'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+import { PopperJS } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 import { extend } from '@opentiny/utils'
 import { t } from '@opentiny/vue-locale'
 import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'

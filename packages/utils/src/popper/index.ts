@@ -356,7 +356,7 @@ export interface UpdateData {
 /** Popper 类是用于处理 reference 和 popper 两个dom，让popper悬浮的功能
  * 调用后就popper就'absolute' | 'fixed' 定位，并立即计算一次popper后的位置，并绑定scroll 和 resize事件！
  */
-export class Popper {
+export class PopperJS {
   _reference: HTMLElement
   _popper: HTMLElement
   state: PopperState

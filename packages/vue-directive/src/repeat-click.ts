@@ -12,6 +12,7 @@
 
 import { on, once } from '@opentiny/utils'
 
+// 这个不是标准的指令，待整改为对象格式
 export default (el, binding) => {
   // fix issue#919
   const LONG_PRESS_INTERVAL = 200

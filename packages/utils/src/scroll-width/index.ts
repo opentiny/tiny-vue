@@ -15,7 +15,7 @@ import { isServer } from '../globalConfig'
 let scrollBarWidth: number
 
 // 通过构造2层div,计算出来滚动条的宽度,并全局缓存值
-export function scrollWidth() {
+export function calcScrollWidth() {
   if (isServer) {
     return 0
   }

@@ -24,7 +24,7 @@
  */
 
 import { isObject, isNull } from '@opentiny/utils'
-import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { removeClass, addClass } from '@opentiny/utils'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'

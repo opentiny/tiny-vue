@@ -1,26 +1,26 @@
 {
   "name": "@opentiny/vue-action-sheet",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
+    "@better-scroll/core": "2.5.0",
+    "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-drawer": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@better-scroll/core": "2.5.0",
-    "@opentiny/vue-button": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
 }

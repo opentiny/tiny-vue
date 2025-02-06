@@ -24,8 +24,8 @@
  */
 import { debounce } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
-import { addClass } from '@opentiny/vue-renderless/common/deps/dom'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { addClass } from '@opentiny/utils'
+import { browserInfo } from '@opentiny/utils'
 import {
   isArray,
   destructuring,
@@ -480,10 +480,10 @@ export default {
       inputElem.type = type
       inputElem[autoselect ? 'select' : 'focus']()
 
-      if (browser.name !== 'ie') {
+      if (browserInfo.name !== 'ie') {
         return
       }
-
+      // 以下3行应该是兼容IE的,待移除
       let textRange = inputElem.createTextRange()
 
       textRange.collapse(false)

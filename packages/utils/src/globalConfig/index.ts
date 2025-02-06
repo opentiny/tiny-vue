@@ -32,8 +32,8 @@ const isEdge = (browser) => {
   }
 }
 
-/** 分析浏览器的版本信息 */
-export const browser = (() => {
+/** 分析浏览器的版本信息 只在select用一下 */
+export const browserInfo = (() => {
   if (isServer) return null
 
   const browser = {

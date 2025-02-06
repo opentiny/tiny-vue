@@ -22,7 +22,7 @@ import {
   handleClear
 } from './index'
 import { userPopper } from '@opentiny/vue-hooks'
-import PopupManager from '../common/deps/popup-manager'
+import { PopupManager } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
 import { isServer } from '@opentiny/utils'
 

@@ -113,8 +113,8 @@ import {
   computedCurrentSizeMap
 } from './index'
 import { debounce } from '@opentiny/utils'
-import { isNumber } from '../common/type'
-import { useUserAgent } from '../common/deps/useUserAgent'
+import { isNumber } from '@opentiny/utils'
+import { useUserAgent } from '@opentiny/vue-hooks'
 import { isServer } from '@opentiny/utils'
 
 export const api = [

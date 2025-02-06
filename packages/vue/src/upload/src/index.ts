@@ -1,5 +1,5 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import uploadAjax from '@opentiny/vue-renderless/common/deps/upload-ajax'
+import { uploadAjax } from '@opentiny/utils'
 import template from 'virtual-template?pc|mobile-first'
 
 export const uploadProps = {
