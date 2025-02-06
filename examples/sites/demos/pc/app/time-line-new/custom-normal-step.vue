@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { TinyTimeLineNew, TinyModal } from '@opentiny/vue'
+import { TinyModal } from '@opentiny/vue'
+import TinyTimeLineNew from '@opentiny/vue-time-line-new'
 
 export default {
   components: {

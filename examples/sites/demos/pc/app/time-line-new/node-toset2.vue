@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { TinyTimeLineNew, TinyModal } from '@opentiny/vue'
+import { TinyModal } from '@opentiny/vue'
+import TinyTimeLineNew from '@opentiny/vue-time-line-new'
 import { IconLoading, IconTime } from '@opentiny/vue-icon'
 
 export default {

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { TinyTimeLineNew } from '@opentiny/vue'
+import TinyTimeLineNew from '@opentiny/vue-time-line-new'
 
 export default {
   components: {
