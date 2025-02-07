@@ -9,8 +9,11 @@
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"
   },
-  "main": "dist/opentiny-utils.es.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
+  "publishConfig": {
+    "main": "dist/opentiny-utils.es.js",
+    "types": "dist/index.d.ts"
+  },
   "files": [
     "dist"
   ],
