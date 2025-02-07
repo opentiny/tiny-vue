@@ -19,6 +19,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-exception": "workspace:~"
   },
   "license": "MIT"

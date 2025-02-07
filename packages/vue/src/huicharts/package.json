@@ -46,7 +46,9 @@
     "@opentiny/vue-huicharts-sunburst": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/huicharts": "1.0.1",
+    "@opentiny/utils": "workspace:~"
   },
   "license": "MIT"
 }
