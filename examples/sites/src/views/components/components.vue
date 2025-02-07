@@ -96,7 +96,7 @@
 import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { TinyButtonGroup, TinyGrid, TinyGridColumn, TinyTabs, TinyTabItem, TinyTooltip } from '@opentiny/vue'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'

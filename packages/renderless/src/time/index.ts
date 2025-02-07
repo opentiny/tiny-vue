@@ -10,7 +10,7 @@
  *
  */
 
-import { limitTimeRange, formatDate, clearMilliseconds, timeWithinRange } from '../common/deps/date-util'
+import { limitTimeRange, formatDate, clearMilliseconds, timeWithinRange } from '@opentiny/utils'
 
 export const watchValue =
   ({ api, nextTick, state }) =>

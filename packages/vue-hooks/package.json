@@ -2,8 +2,11 @@
   "name": "@opentiny/vue-hooks",
   "version": "3.21.0",
   "description": "",
-  "module": "index.ts",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.ts",
+  "module": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,9 +15,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.9",
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

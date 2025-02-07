@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import { addClass as addCls, removeClass as rmvCls } from '@opentiny/vue-renderless/common/deps/dom'
+import { addClass as addCls, removeClass as rmvCls } from '@opentiny/utils'
 
 export default {
-  name: 'menuTransition',
+  name: 'MenuTransition',
   setup() {
     return {
       on: {

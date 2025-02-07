@@ -1,4 +1,4 @@
-import ResizeObserver from '@opentiny/vue-renderless/common/deps/ResizeObserver'
+import { ResizeObserver } from '@opentiny/utils'
 
 const resizeMixin = ({ apiPrefix, refName, nodeWrapperSize }) => {
   apiPrefix = apiPrefix || 'rszmx'

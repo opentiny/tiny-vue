@@ -1,4 +1,4 @@
-import emulate from '../common/deps/touch-emulator'
+import { emulate } from '@opentiny/utils'
 import { onTouchstart, onTouchmove, clearScroll } from './index'
 
 emulate()

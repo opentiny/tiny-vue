@@ -36,8 +36,10 @@
     "release": "esno ./scripts/postbuild.ts && shx cp README.md dist"
   },
   "dependencies": {
-    "color": "4.2.3",
-    "@opentiny/utils": "workspace:~"
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-hooks": "workspace:~",
+    "color": "4.2.3"
   },
   "devDependencies": {
     "esno": "^4.7.0",

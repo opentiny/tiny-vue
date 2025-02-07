@@ -1,4 +1,4 @@
-import { off, on } from '../common/deps/dom'
+import { off, on } from '@opentiny/utils'
 
 export const getClientWidth =
   ({ state, vm }) =>

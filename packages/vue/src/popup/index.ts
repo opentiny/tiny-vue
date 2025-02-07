@@ -10,7 +10,6 @@
  *
  */
 import Popup from './src/pc.vue'
-import '@opentiny/vue-theme-mobile/popup/index.less'
 import { version } from './package.json'
 
 Popup.model = {

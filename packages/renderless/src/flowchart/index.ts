@@ -1,6 +1,6 @@
-import debounce from '../common/deps/debounce'
-import { omitText as omit } from '../common/string'
-import { fastdom } from '../common/deps/fastdom'
+import { debounce } from '@opentiny/utils'
+import { omitText as omit } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 
 export const compute =
   ({ api, markRaw, props, state }) =>

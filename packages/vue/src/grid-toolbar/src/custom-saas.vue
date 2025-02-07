@@ -288,11 +288,11 @@
 
                           <ul v-if="column.children">
                             <li
-                              v-for="(column, index) in column.children"
-                              :key="column.property + index"
-                              :class="[column.fixed, getRowClassName(column)]"
-                              :data-row="column.property"
-                              v-show="column.visible"
+                              v-for="(columnLi, indexLi) in column.children"
+                              :key="columnLi.property + indexLi"
+                              :class="[columnLi.fixed, getRowClassName(columnLi)]"
+                              :data-row="columnLi.property"
+                              v-show="columnLi.visible"
                             >
                               <div class="column-container">
                                 <p
@@ -300,7 +300,7 @@
                                   @mouseenter="handleMouseenter"
                                   @mouseleave="handleMouseleave"
                                 >
-                                  <title-render :column="column"></title-render>
+                                  <title-render :column="columnLi"></title-render>
                                 </p>
                               </div>
                             </li>
@@ -385,9 +385,9 @@ import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
 import CustomSwitch from './custom-switch.vue'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { isNull } from '@opentiny/vue-renderless/grid/static'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { $props, isVue2, directive, useDefer, h, defineComponent } from '@opentiny/vue-common'
 import { GridConfig } from '@opentiny/vue-grid'
 import { mergeArray } from './multiple-history'
@@ -441,6 +441,7 @@ export default defineComponent({
       default: null
     }
   },
+  emits: ['delete-template', 'input', 'saveSettings', 'resetSettings', 'cancelSettings', 'showModal'],
   props: {
     ...$props,
     data: {
@@ -794,14 +795,14 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-              ? [this.opt.asc, this.opt.cancelSort]
-              : [this.opt.asc, this.opt.desc]
+            ? [this.opt.asc, this.opt.cancelSort]
+            : [this.opt.asc, this.opt.desc]
         column.fixedOption =
           column.fixed === 'left'
             ? [this.opt.right, this.opt.cancelFixed]
             : column.fixed === 'right'
-              ? [this.opt.left, this.opt.cancelFixed]
-              : [this.opt.left, this.opt.right]
+            ? [this.opt.left, this.opt.cancelFixed]
+            : [this.opt.left, this.opt.right]
       })
     },
     initSortingColumns(columns) {
@@ -967,8 +968,8 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-              ? [this.opt.asc, this.opt.cancelSort]
-              : [this.opt.asc, this.opt.desc]
+            ? [this.opt.asc, this.opt.cancelSort]
+            : [this.opt.asc, this.opt.desc]
       }
     },
     // TODO: 待完善具体类型  vm dropdown组件示例

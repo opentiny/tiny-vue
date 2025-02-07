@@ -18,8 +18,36 @@ export default defineComponent({
       default: false
     },
     formatWeeks: Function,
+    firstDayOfWeek: {
+      type: Number,
+      default: 7
+    },
     nowClick: {
       type: Function
+    },
+    modelValue: {
+      type: [Date, String, Number],
+      default: ''
+    },
+    format: {
+      type: String,
+      default: ''
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    shortcuts: {
+      type: Array,
+      default: () => []
+    },
+    disabledDate: {
+      type: Function,
+      default: () => null
+    },
+    popperClass: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

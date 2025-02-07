@@ -358,7 +358,7 @@ import { lowlight } from 'lowlight'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 
 function initLowLight() {
   lowlight.registerLanguage('html', html)

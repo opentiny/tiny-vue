@@ -12,7 +12,7 @@
 
 import { getFormated, setArrayValue, cloneDeep } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 const pieRadius = 100
 const ringRadius = [90, 100]

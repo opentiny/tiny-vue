@@ -8,7 +8,7 @@
 **解决方案：** 引入 `popup` 全局配置，将主应用的 `window` 赋值给全局配置的 `viewportWindow` 用于边界判断
 
 ```js
-import globalConfig from '@opentiny/vue-renderless/common/global'
+import { globalConfig } from '@opentiny/utils'
 
 // 需要判断是否在子应用当中
 if (window.__POWERED_BY_WUJIE__) {

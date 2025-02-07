@@ -25,8 +25,7 @@
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

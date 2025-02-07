@@ -10,8 +10,8 @@
  *
  */
 import { toStringJSON, toJSONString } from '@opentiny/vue-renderless/grid/static/'
-import { format } from '@opentiny/vue-renderless/common/date'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { formatDateByPattern as format } from '@opentiny/utils'
+import { extend } from '@opentiny/utils'
 
 export function getStorage(storageKey, storageType, remoteMethod) {
   return new Promise((resolve, reject) => {

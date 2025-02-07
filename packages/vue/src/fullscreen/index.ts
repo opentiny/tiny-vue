@@ -10,7 +10,7 @@
  *
  */
 import Fullscreen from './src/pc.vue'
-import FullscreenApi from '@opentiny/vue-renderless/common/deps/fullscreen/apis'
+import { FullscreenApi } from '@opentiny/utils'
 import '@opentiny/vue-theme/fullscreen/index.less'
 import { version } from './package.json'
 

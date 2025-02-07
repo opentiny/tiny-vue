@@ -331,7 +331,7 @@ import Grid from '@opentiny/vue-grid'
 import Pager from '@opentiny/vue-pager'
 import Tree from '@opentiny/vue-tree'
 import SelectedBox from '@opentiny/vue-selected-box'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 
 export default defineComponent({
   components: {

@@ -1,9 +1,9 @@
-import { extend } from '../common/object'
-import { isNull } from '../common/type'
+import { extend } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
-import { on, off } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
+import { on, off } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 
 export const init =
   ({
@@ -377,6 +377,8 @@ const getOption = (url, headers, method, fd, callbackOK, callbackKO, callback) =
       res = res.data
       let resData = {}
 
+      // 遗留代码
+      // eslint-disable-next-line no-unreachable-loop
       for (let key in res) {
         resData = res[key]
         break
@@ -406,6 +408,8 @@ const getOnloadOfFileOperToSev =
       let res = JSON.parse(xmlhr.responseText)
       let resData = {}
 
+      // 遗留代码，为什么这样写
+      // eslint-disable-next-line no-unreachable-loop
       for (let key in res) {
         resData = res[key]
         break
@@ -647,6 +651,7 @@ export const uploadImageToSev =
       if (xhr.status === 200) {
         let { res = JSON.parse(xhr.responseText), resData = {} } = {}
 
+        // eslint-disable-next-line no-unreachable-loop
         for (let key in res) {
           resData = res[key]
           break

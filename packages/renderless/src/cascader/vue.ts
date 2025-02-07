@@ -44,9 +44,9 @@ import {
   handleMouseenter,
   handleMouseleave
 } from './index'
-import { removeResizeListener } from '../common/deps/resize-event'
-import userPopper from '../common/deps/vue-popper'
-import { DATEPICKER } from '../common'
+import { removeResizeListener } from '@opentiny/utils'
+import { userPopper } from '@opentiny/vue-hooks'
+import { DATEPICKER } from '@opentiny/utils'
 import type {
   ICascaderProps,
   ICascaderApi,

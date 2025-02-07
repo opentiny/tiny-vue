@@ -1,4 +1,4 @@
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 const fontFamilyConfig = [
   'songti',
@@ -102,44 +102,47 @@ export const mention = (mentionObj) => ({
   }
 })
 
-const listAutofillHandler = ({ FluentEditor, state }) => (range, context) => {
-  const formats = state.quill.getFormat(range)
-  if (formats['table-cell-line']) {
-    return true
-  }
-  if (isNull(state.quill.scroll.query('list'))) {
-    return true
-  }
-  const { length } = context.prefix
-  const [line, offset] = state.quill.getLine(range.index)
-  if (offset > length) {
-    return true
-  }
-  let value
-  let prefix = context.prefix.trim()
+const listAutofillHandler =
+  ({ FluentEditor, state }) =>
+  (range, context) => {
+    const formats = state.quill.getFormat(range)
+    if (formats['table-cell-line']) {
+      return true
+    }
+    if (isNull(state.quill.scroll.query('list'))) {
+      return true
+    }
+    const { length } = context.prefix
+    const [line, offset] = state.quill.getLine(range.index)
+    if (offset > length) {
+      return true
+    }
+    let value
+    let prefix = context.prefix.trim()
 
-  if (~['[]', '[ ]'].indexOf(prefix)) {
-    value = 'unchecked'
-  } else if (prefix === '[x]') {
-    value = 'checked'
-  } else if (~['-', '*'].indexOf(prefix)) {
-    value = 'bullet'
-  } else {
-    value = 'ordered'
-  }
+    if (~['[]', '[ ]'].indexOf(prefix)) {
+      value = 'unchecked'
+    } else if (prefix === '[x]') {
+      value = 'checked'
+    } else if (~['-', '*'].indexOf(prefix)) {
+      value = 'bullet'
+    } else {
+      value = 'ordered'
+    }
 
-  state.quill.insertText(range.index, ' ', FluentEditor.sources.USER)
-  state.quill.history.cutoff()
-  const delta = new FluentEditor.imports['delta']()
-    .retain(range.index - offset)
-    .delete(length + 1)
-    .retain(line.length() - 2 - offset)
-    .retain(1, { list: { value: value } })
-  state.quill.updateContents(delta, FluentEditor.sources.USER)
-  state.quill.history.cutoff()
-  state.quill.setSelection(range.index - length, FluentEditor.sources.SILENT)
-  return false
-}
+    state.quill.insertText(range.index, ' ', FluentEditor.sources.USER)
+    state.quill.history.cutoff()
+    // eslint-disable-next-line new-cap
+    const delta = new FluentEditor.imports.delta()
+      .retain(range.index - offset)
+      .delete(length + 1)
+      .retain(line.length() - 2 - offset)
+      .retain(1, { list: { value } })
+    state.quill.updateContents(delta, FluentEditor.sources.USER)
+    state.quill.history.cutoff()
+    state.quill.setSelection(range.index - length, FluentEditor.sources.SILENT)
+    return false
+  }
 
 const listAutofill = ({ FluentEditor, state }) => ({
   key: ' ',
@@ -299,7 +302,7 @@ export const iconOptionMobileFirst = {
   },
   redo: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="path4 (边框)" d="M16 6.11L19.4 8.53L6.43 8.53C6.12 8.53 5.81 8.56 5.5 8.62C5.15 8.69 4.82 8.81 4.49 8.96C4.31 9.04 4.15 9.13 3.99 9.23C3.6 9.47 3.24 9.77 2.92 10.12C2.77 10.29 2.63 10.45 2.51 10.63C2.25 11 2.04 11.39 1.87 11.82C1.78 12.06 1.71 12.3 1.65 12.54C1.55 12.98 1.5 13.43 1.5 13.89C1.5 14.35 1.55 14.8 1.65 15.23C1.71 15.48 1.78 15.71 1.87 15.95C2.04 16.38 2.25 16.78 2.51 17.14C2.63 17.32 2.77 17.49 2.92 17.65C3.24 18 3.6 18.3 3.99 18.54C4.15 18.64 4.31 18.73 4.49 18.81C4.82 18.97 5.15 19.08 5.5 19.15C5.81 19.21 6.12 19.25 6.43 19.25L19.97 19.25C20.39 19.25 20.72 18.91 20.72 18.5C20.72 18.07 20.39 17.75 19.97 17.75L6.43 17.75C6.23 17.75 6.02 17.73 5.83 17.69C5.58 17.64 5.35 17.56 5.12 17.45C5.04 17.41 4.96 17.37 4.88 17.33C4.56 17.15 4.28 16.92 4.03 16.64C3.94 16.55 3.86 16.45 3.79 16.35C3.58 16.07 3.41 15.75 3.27 15.41C3.22 15.26 3.17 15.11 3.13 14.96C3.04 14.61 3 14.26 3 13.89C3 13.52 3.04 13.16 3.13 12.82C3.17 12.66 3.22 12.51 3.27 12.36C3.41 12.02 3.58 11.71 3.79 11.42C3.86 11.32 3.94 11.23 4.03 11.13C4.28 10.85 4.56 10.62 4.88 10.45C4.96 10.4 5.04 10.36 5.12 10.32C5.35 10.21 5.58 10.14 5.83 10.09C6.02 10.05 6.23 10.03 6.43 10.03L21.75 10.03C21.87 10.03 21.98 10 22.09 9.95C22.2 9.89 22.29 9.81 22.36 9.71C22.48 9.55 22.52 9.36 22.48 9.15C22.45 8.95 22.35 8.79 22.18 8.67L16.87 4.88C16.53 4.64 16.07 4.72 15.82 5.06C15.58 5.4 15.66 5.86 16 6.11Z"/></svg>`,
   size: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>`,
-  undo: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="path4 (边框)" d="M7.99 6.11L4.59 8.53L17.56 8.53C17.87 8.53 18.18 8.56 18.49 8.62C18.84 8.69 19.17 8.81 19.5 8.96C19.68 9.04 19.84 9.13 20 9.23C20.39 9.47 20.75 9.77 21.07 10.12C21.22 10.29 21.36 10.45 21.48 10.63C21.74 11 21.95 11.39 22.12 11.82C22.21 12.06 22.28 12.3 22.34 12.54C22.44 12.98 22.5 13.43 22.5 13.89C22.5 14.35 22.44 14.8 22.34 15.23C22.28 15.48 22.21 15.71 22.12 15.95C21.95 16.38 21.74 16.78 21.48 17.14C21.36 17.32 21.22 17.49 21.07 17.65C20.75 18 20.39 18.3 20 18.54C19.84 18.64 19.68 18.73 19.5 18.81C19.17 18.97 18.84 19.08 18.49 19.15C18.18 19.21 17.87 19.25 17.56 19.25L4.02 19.25C3.6 19.25 3.27 18.91 3.27 18.5C3.27 18.07 3.6 17.75 4.02 17.75L17.56 17.75C17.76 17.75 17.97 17.73 18.16 17.69C18.41 17.64 18.64 17.56 18.87 17.45C18.95 17.41 19.03 17.37 19.11 17.33C19.43 17.15 19.71 16.92 19.96 16.64C20.05 16.55 20.13 16.45 20.2 16.35C20.41 16.07 20.58 15.75 20.72 15.41C20.77 15.26 20.82 15.11 20.86 14.96C20.95 14.61 21 14.26 21 13.89C21 13.52 20.95 13.16 20.86 12.82C20.82 12.66 20.77 12.51 20.72 12.36C20.58 12.02 20.41 11.71 20.2 11.42C20.13 11.32 20.05 11.23 19.96 11.13C19.71 10.85 19.43 10.62 19.11 10.45C19.03 10.4 18.95 10.36 18.87 10.32C18.64 10.21 18.41 10.14 18.16 10.09C17.97 10.05 17.76 10.03 17.56 10.03L2.25 10.03C2.12 10.03 2.01 10 1.9 9.95C1.79 9.89 1.7 9.81 1.63 9.71C1.51 9.55 1.47 9.36 1.51 9.15C1.54 8.95 1.64 8.79 1.81 8.67L7.12 4.88C7.46 4.64 7.92 4.72 8.17 5.06C8.41 5.4 8.33 5.86 7.99 6.11Z"/></svg>`,
+  undo: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="path4 (边框)" d="M7.99 6.11L4.59 8.53L17.56 8.53C17.87 8.53 18.18 8.56 18.49 8.62C18.84 8.69 19.17 8.81 19.5 8.96C19.68 9.04 19.84 9.13 20 9.23C20.39 9.47 20.75 9.77 21.07 10.12C21.22 10.29 21.36 10.45 21.48 10.63C21.74 11 21.95 11.39 22.12 11.82C22.21 12.06 22.28 12.3 22.34 12.54C22.44 12.98 22.5 13.43 22.5 13.89C22.5 14.35 22.44 14.8 22.34 15.23C22.28 15.48 22.21 15.71 22.12 15.95C21.95 16.38 21.74 16.78 21.48 17.14C21.36 17.32 21.22 17.49 21.07 17.65C20.75 18 20.39 18.3 20 18.54C19.84 18.64 19.68 18.73 19.5 18.81C19.17 18.97 18.84 19.08 18.49 19.15C18.18 19.21 17.87 19.25 17.56 19.25L4.02 19.25C3.6 19.25 3.27 18.91 3.27 18.5C3.27 18.07 3.6 17.75 4.02 17.75L17.56 17.75C17.76 17.75 17.97 17.73 18.16 17.69C18.41 17.64 18.64 17.56 18.87 17.45C18.95 17.41 19.03 17.37 19.11 17.33C19.43 17.15 19.71 16.92 19.96 16.64C20.05 16.55 20.13 16.45 20.2 16.35C20.41 16.07 20.58 15.75 20.72 15.41C20.77 15.26 20.82 15.11 20.86 14.96C20.95 14.61 21 14.26 21 13.89C21 13.52 20.95 13.16 20.86 12.82C20.82 12.66 20.77 12.51 20.72 12.36C20.58 12.02 20.41 11.71 20.2 11.42C20.13 11.32 20.05 11.23 19.96 11.13C19.71 10.85 19.43 10.62 19.11 10.45C19.03 10.4 18.95 10.36 18.87 10.32C18.64 10.21 18.41 10.14 18.16 10.09C17.97 10.05 17.76 10.03 17.56 10.03L2.25 10.03C2.12 10.03 2.01 10 1.9 9.95C1.79 9.89 1.7 9.81 1.63 9.71C1.51 9.55 1.47 9.36 1.51 9.15C1.54 8.95 1.64 8.79 1.81 8.67L7.12 4.88C7.46 4.64 7.92 4.72 8.17 5.06C8.41 5.4 8.33 5.86 7.99 6.11Z"/></svg>`
 }
 
 export const simpleToolbar = [

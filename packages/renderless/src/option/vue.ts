@@ -36,7 +36,7 @@ const initState = ({ reactive, computed, props, api, markRaw, select, parent }) 
     disabled: computed(() => props.disabled || state.groupDisabled),
     isObject: computed(() => Object.prototype.toString.call(props.value).toLowerCase() === '[object object]'),
     currentLabel: computed(() => props.label || (state.isObject ? '' : props.value)),
-    currentValue: computed(() => props.value || props.label || ''),
+    currentValue: props.value || props.label || '',
 
     itemSelected: computed(() => {
       if (!select.multiple) {
@@ -90,7 +90,7 @@ const initWatch = ({ watch, props, state, select, constants }) => {
     () => props.value,
     (value, oldVal) => {
       const { remote, valueKey } = select
-
+      state.currentValue = value || props.label || ''
       if (!props.created && !remote) {
         if (
           valueKey &&

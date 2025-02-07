@@ -10,7 +10,14 @@
  *
  */
 
-import { useFloating } from './src/use-floating'
-import { useLazyShow } from './src/use-lazy-show'
-
-export { useFloating, useLazyShow }
+export { useFloating } from './src/use-floating'
+export { useLazyShow } from './src/use-lazy-show'
+export { useEventListener } from './src/useEventListener'
+export { useInstanceSlots } from './src/useInstanceSlots'
+export { useRect } from './src/useRect'
+export { useRelation } from './src/useRelation'
+export { useTouch } from './src/useTouch'
+export { useUserAgent } from './src/useUserAgent'
+export { useWindowSize } from './src/useWindowSize'
+export { userPopper } from './src/vue-popper'
+export { usePopup } from './src/vue-popup'

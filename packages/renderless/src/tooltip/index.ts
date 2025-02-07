@@ -11,8 +11,8 @@
  */
 
 import type { ITooltipApi, ITooltipRenderlessParams, ITooltipState } from '@/types'
-import debounce from '../common/deps/debounce'
-import { on, off, addClass, removeClass } from '../common/deps/dom'
+import { debounce } from '@opentiny/utils'
+import { on, off, addClass, removeClass } from '@opentiny/utils'
 
 export const show =
   ({ api, state, props }: Pick<ITooltipRenderlessParams, 'api' | 'state' | 'props'>) =>

@@ -1,4 +1,4 @@
-import { useRelation as createUseRelation } from '../common/deps/useRelation'
+import { useRelation as createUseRelation } from '@opentiny/vue-hooks'
 
 export const renderless = (props, hooks, { slots, vm }) => {
   const { inject, onBeforeUnmount, reactive, toRef, markRaw } = hooks

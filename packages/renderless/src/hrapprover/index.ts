@@ -10,7 +10,7 @@
  *
  */
 
-import { extend } from '../common/object'
+import { extend } from '@opentiny/utils'
 
 export const getHrList =
   ({ api, props, state }) =>

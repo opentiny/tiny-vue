@@ -1,5 +1,5 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   PROCESS_DONE_CLS: 'process-done',

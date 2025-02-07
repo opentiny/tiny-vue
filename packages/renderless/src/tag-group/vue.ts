@@ -1,5 +1,5 @@
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
-import debounce from '../common/deps/debounce'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 import { getHiddenTags, handelItemClick } from './index'
 import type {
   ISharedRenderlessParamHooks,

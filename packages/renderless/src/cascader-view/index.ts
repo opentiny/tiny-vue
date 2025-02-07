@@ -1,4 +1,5 @@
-import TreeStore from '../common/deps/tree-model/tree-store'
+/* eslint-disable no-cond-assign */
+import { TreeStore } from '@opentiny/utils'
 
 export const close =
   ({ state, emit }) =>

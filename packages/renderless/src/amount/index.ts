@@ -10,10 +10,10 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
-import { formatNumber } from '../common/decimal'
-import { getMiniDecimal, equalsDecimal } from '../common/bigInt'
-import { isNumber } from '../common/type'
+import { on, off } from '@opentiny/utils'
+import { formatNumber } from '@opentiny/utils'
+import { getMiniDecimal, equalsDecimal } from '@opentiny/utils'
+import { isNumber } from '@opentiny/utils'
 
 export const initService = (service) => {
   const { utils = {} } = service || {}

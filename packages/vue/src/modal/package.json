@@ -22,7 +22,6 @@
     "@opentiny/vue-checkbox-group": "workspace:~",
     "@opentiny/vue-popconfirm": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

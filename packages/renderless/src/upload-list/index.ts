@@ -12,7 +12,7 @@
 import type { IUploadListRenderlessParams, IFileUploadFile, IUploadListVideoParam } from '@/types'
 
 import { xss } from '@opentiny/utils'
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 
 export const parsePercentage =
   () =>

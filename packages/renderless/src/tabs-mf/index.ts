@@ -1,6 +1,6 @@
-import { random } from '../common/string'
-import debounce from '../common/deps/debounce'
-import { fastdom } from '../common/deps/fastdom'
+import { random } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 
 // --- tabs ---
 export const setActive =
