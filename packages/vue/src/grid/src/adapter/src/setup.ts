@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import GlobalConfig from '../../config'
 
 // 全局参数设置

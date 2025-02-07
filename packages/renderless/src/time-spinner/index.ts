@@ -11,9 +11,9 @@
  *
  */
 
-import { modifyTime } from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
-import { isBrowser } from '../common/browser'
+import { modifyTime } from '@opentiny/utils'
+import { DATEPICKER } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 export const getArrowHourList = (state) => () => {
   const hours = state.hours
@@ -205,7 +205,7 @@ export const adjustCurrentSpinner =
 export const adjustSpinner =
   ({ api, props, vm, state }) =>
   (type, value) => {
-    if (props.arrowControl || !isBrowser) {
+    if (props.arrowControl || isServer) {
       return
     }
 

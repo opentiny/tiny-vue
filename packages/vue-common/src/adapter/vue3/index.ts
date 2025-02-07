@@ -11,7 +11,7 @@
  */
 import * as hooks from 'vue'
 
-import { camelize, capitalize, hyphenate } from '@opentiny/vue-renderless/common/string'
+import { camelize, capitalize, hyphenate } from '@opentiny/utils'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
 
 const Teleport = hooks.Teleport

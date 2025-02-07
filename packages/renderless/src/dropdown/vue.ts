@@ -10,7 +10,7 @@
  *
  */
 
-import { guid } from '../common/string'
+import { guid } from '@opentiny/utils'
 import type {
   IDropdownState,
   IDropdownApi,

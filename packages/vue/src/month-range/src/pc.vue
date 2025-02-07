@@ -109,7 +109,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/month-range/vue'
 import { $prefix, setup, directive, $props, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import MonthTable from '@opentiny/vue-month-table'
 import { iconDoubleRight, iconDoubleLeft } from '@opentiny/vue-icon'
 

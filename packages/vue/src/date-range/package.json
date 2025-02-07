@@ -1,28 +1,29 @@
 {
   "name": "@opentiny/vue-date-range",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-time": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-date-table": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-time": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
 }

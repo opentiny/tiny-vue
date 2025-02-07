@@ -15,7 +15,7 @@ import { renderless, api } from '@opentiny/vue-renderless/dropdown/vue'
 import { setup, $prefix, directive, defineComponent, h, $props } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import { iconDownWard } from '@opentiny/vue-icon'
 

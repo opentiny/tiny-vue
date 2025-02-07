@@ -1,4 +1,4 @@
-import ResizeObserver from '../common/deps/ResizeObserver'
+import { ResizeObserver } from '@opentiny/utils'
 import type {
   IAsyncFlowchartState,
   IAsyncFlowchartProps,

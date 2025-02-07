@@ -1,5 +1,5 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc'
 
 const $constants = {}
 
@@ -20,7 +20,7 @@ export default defineComponent({
       type: String,
       default: '',
       validator(val: string) {
-        return [' large', 'medium', 'small', 'mini', ''].includes(val)
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
       }
     },
     format: {

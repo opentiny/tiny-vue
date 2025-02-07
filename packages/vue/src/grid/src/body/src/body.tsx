@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -24,7 +25,7 @@
  */
 
 import { isFunction, find } from '@opentiny/vue-renderless/grid/static/'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isNull } from '@opentiny/utils'
 import {
   updateCellTitle,
   emitEvent,

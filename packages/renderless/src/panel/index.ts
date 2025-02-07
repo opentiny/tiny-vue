@@ -10,7 +10,7 @@
  *
  */
 
-import { emitEvent } from '../common/event'
+import { emitEvent } from '@opentiny/utils'
 
 export const toggle =
   ({ api, state }) =>

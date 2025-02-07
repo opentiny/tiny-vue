@@ -95,7 +95,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/year-range/vue'
 import { setup, directive, props, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import YearTable from '@opentiny/vue-year-table'
 import { IconDoubleRight, IconDoubleLeft } from '@opentiny/vue-icon'
 

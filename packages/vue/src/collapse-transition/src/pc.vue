@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { addClass as addCls, removeClass as rmvCls } from '@opentiny/vue-renderless/common/deps/dom'
+import { addClass as addCls, removeClass as rmvCls } from '@opentiny/utils'
 import { $prefix, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({

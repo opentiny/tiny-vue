@@ -16,9 +16,9 @@ import type {
   ICascaderPanelNodeValue
 } from '@/types'
 
-import { isEqual } from '../common/object'
-import { capitalize } from '../common/string'
-import { isNull } from '../common/type'
+import { isEqual } from '@opentiny/utils'
+import { capitalize } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
 
 let uid = 0
 
@@ -178,7 +178,6 @@ export default class Node {
   }
 
   syncCheckState(checkedValue: ICascaderPanelNodePropValue) {
-    const value = this.getValueByOption()
     const checked = this.isSameNode(checkedValue)
 
     this.doCheck(checked)

@@ -1,5 +1,5 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { browserInfo } from '@opentiny/utils'
 import template from 'virtual-template?pc'
 
 export default defineComponent({
@@ -45,7 +45,7 @@ export default defineComponent({
     },
     width: {
       type: String,
-      default: browser.isMobile ? '350' : '510'
+      default: browserInfo.isMobile ? '350' : '510'
     },
     height: {
       type: String,

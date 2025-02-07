@@ -12,7 +12,7 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 const DEF_MA = [5, 10, 20, 30]
 const DEF_DOWN_COLOR = '#eb171f'

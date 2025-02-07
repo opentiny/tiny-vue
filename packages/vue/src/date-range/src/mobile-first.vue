@@ -271,7 +271,7 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/date-range/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import Input from '@opentiny/vue-input'

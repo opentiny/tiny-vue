@@ -1,20 +1,21 @@
 {
   "name": "@opentiny/vue-year-range",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-year-table": "workspace:~"
+  },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "catalog:"
-  },
-  "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-year-table": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
-  },
-  "license": "MIT"
+  }
 }

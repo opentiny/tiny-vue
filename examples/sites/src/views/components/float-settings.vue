@@ -5,9 +5,8 @@
     :style="settingsStyle"
   >
     <!-- 切换主题样式 暂时隐藏 -->
-    <tiny-popover
+    <!-- <tiny-popover
       width="404"
-      v-if="false"
       placement="left-end"
       trigger="click"
       :visible-arrow="false"
@@ -38,11 +37,10 @@
           <theme-settings-icon class="settings-icon theme-settings-icon"></theme-settings-icon>
         </div>
       </template>
-    </tiny-popover>
+    </tiny-popover> -->
 
     <!-- demo风格设置 -->
     <tiny-popover
-      v-if="!templateModeState.isSaas"
       width="180"
       placement="left-end"
       trigger="manual"
@@ -91,12 +89,13 @@
 import { defineComponent, reactive, toRefs, onMounted, onUnmounted, watch, nextTick, ref } from 'vue'
 import { Tooltip, Radio, RadioGroup, Popover, Notify } from '@opentiny/vue'
 import { iconUpWard } from '@opentiny/vue-icon'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
 import { router } from '@/router'
 import useStyleSettings from '@/tools/useStyleSettings'
-import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
+
+// import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
 import StyleSettingsIcon from '@/assets/images/style-settings.svg'
 
 export default defineComponent({
@@ -107,7 +106,7 @@ export default defineComponent({
     TinyRadioGroup: RadioGroup,
     IconUpWard: iconUpWard(),
     TinyPopover: Popover,
-    ThemeSettingsIcon,
+    // ThemeSettingsIcon,
     StyleSettingsIcon
   },
   setup() {
@@ -117,8 +116,6 @@ export default defineComponent({
     const { getStyleSettings } = useStyleSettings()
     const { templateModeState } = useTemplateMode()
     const floatSettings = ref(null)
-    const isPlus = import.meta.env.VITE_APP_MODE === 'plus'
-    const isMobile = import.meta.env.VITE_APP_MODE === 'mobile'
 
     const state = reactive({
       demoStyleVisible: false,
@@ -131,6 +128,13 @@ export default defineComponent({
       initBottomVal: null, // 初始底部偏移
       isSettingsAside: false // 是否贴边
     })
+
+    const isPC = import.meta.env.VITE_APP_MODE === 'pc'
+    // 只有pc才有切换代码写法功能，其他模式屏蔽
+    if (!isPC || templateModeState.isSaas) {
+      state.styleSettings = state.styleSettings.filter((item) => item.name !== 'apiMode')
+      apiModeState.apiMode = 'Options'
+    }
     let isShowTip = false
     const showTip = () => {
       Notify({
@@ -141,20 +145,6 @@ export default defineComponent({
         duration: 3000
       })
       isShowTip = true
-    }
-
-    if (isMobile) {
-      // mobile模式暂无组合式api
-      state.styleSettings = state.styleSettings.map((item) => ({
-        ...item,
-        options: item.options.filter((elem) => elem.value !== 'Composition')
-      }))
-      apiModeState.apiMode = 'Options'
-    }
-
-    if (isPlus) {
-      state.styleSettings = state.styleSettings.filter((item) => item.name !== 'apiMode')
-      apiModeState.apiMode = 'Options'
     }
 
     const funcs = {

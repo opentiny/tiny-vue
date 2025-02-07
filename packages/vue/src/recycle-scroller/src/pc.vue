@@ -51,7 +51,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/recycle-scroller/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import ObserveVisibility from '@opentiny/vue-renderless/common/deps/observe-visibility'
+import { ObserveVisibility } from '@opentiny/vue-directive'
 import '@opentiny/vue-theme/recycle-scroller/index.less'
 
 export default defineComponent({

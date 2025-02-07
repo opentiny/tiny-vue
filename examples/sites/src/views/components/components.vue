@@ -1,22 +1,14 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <header class="flex-horizontal docs-header">
-    <div class="docs-title-wrap">
-      <div class="markdown-body markdown-top-body" v-html="state.cmpTopMd"></div>
-      <version-tip
-        v-if="state.currJson.meta || state.currJson.versionTipOption"
-        :meta="state.currJson.meta"
-        v-bind="state.currJson.versionTipOption"
-      >
-      </version-tip>
-    </div>
-    <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
-      <span class="cmp-mode-title">文档类型： </span>
-      <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
-    </div>
-    <span class="docs-header-spacer"></span>
-  </header>
-  <div class="docs-content" id="doc-layout-scroller">
+  <ComponentHeader :current-json="state.currJson" :md-string="state.mdString" class="flex-horizontal">
+    <template #header-right>
+      <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
+        <span class="cmp-mode-title">文档类型： </span>
+        <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
+      </div>
+    </template>
+  </ComponentHeader>
+  <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -51,19 +43,7 @@
               </template>
 
               <!-- 贡献者 -->
-              <div class="cmp-contributor" v-if="state.contributors.length">
-                <h2 class="cmp-contributor-title">{{ i18nByKey('contributor') }}</h2>
-                <template v-for="item in state.contributors" :key="item.id">
-                  <tiny-tooltip popper-class="docs-tooltip" placement="top" effect="light">
-                    <template #content>
-                      <span class="cmp-contributor-tip">{{ item.nickname }}</span>
-                    </template>
-                    <a :href="item.homepage" class="cmp-contributor-item" rel="noopener noreferrer" target="_blank">
-                      <img class="cmp-contributor-avatar" :src="item.avatar" :alt="item.nickname" />
-                    </a>
-                  </tiny-tooltip>
-                </template>
-              </div>
+              <component-contributor :componentId="state.cmpId" />
             </tiny-tab-item>
             <tiny-tab-item
               v-if="state.showApiTab && !isRunningTest && state.currJson.apis?.length"
@@ -71,101 +51,15 @@
               name="api"
             >
               <!-- api文档 -->
-              <div id="API" class="all-api-container">
-                <div class="ti-f-c ti-f-wrap api-list">
-                  <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-                  <div class="mt20 wp100" v-for="oneGroup in state.currJson.apis" :key="oneGroup.name">
-                    <div class="ti-f-r ti-f-pos-start ti-fw-bold">
-                      <h2 :id="`cmp-${oneGroup.name}`" class="ti-f18">
-                        {{ oneGroup.name }}
-                      </h2>
-                      <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">
-                        {{ oneGroup.type }}
-                      </div>
-                    </div>
-                    <div v-for="(oneApiArr, key) in oneGroup" :key="key">
-                      <template v-if="!['name', 'type'].includes(key) && oneApiArr.length > 0">
-                        <h3 class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
-                          {{ key }}
-                        </h3>
-                        <div class="api-table-box">
-                          <tiny-grid
-                            ref="apiTableRef"
-                            class="api-table"
-                            :data="state.tableData[oneGroup.name][key]"
-                            :expand-config="state.apiExpandConf"
-                            row-id="name"
-                          >
-                            <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
-                              <template #default="{ row }">
-                                <async-highlight
-                                  v-if="row.code"
-                                  :code="row.code.trim()"
-                                  :types="state.chartCode ? 'html' : 'ts'"
-                                ></async-highlight>
-                                <div v-if="row.depTypes">
-                                  <async-highlight
-                                    v-for="(k, i) in row.depTypes"
-                                    :key="i"
-                                    :code="state.currJson.types[k]?.code"
-                                    types="ts"
-                                  ></async-highlight>
-                                </div>
-                              </template>
-                            </tiny-grid-column>
-                            <tiny-grid-column
-                              field="name"
-                              :title="i18nByKey('name')"
-                              :width="state.columnWidth[key][0]"
-                            >
-                              <template #default="{ row }">
-                                <span class="api-table-name">
-                                  <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
-                                  <span v-else>{{ row.name }}</span>
-                                </span>
-                                <version-tip
-                                  v-if="row.meta || row.versionTipOption"
-                                  :meta="row.meta"
-                                  v-bind="row.versionTipOption"
-                                  render-type="tag"
-                                  tip-subject="api"
-                                >
-                                </version-tip>
-                              </template>
-                            </tiny-grid-column>
-                            <tiny-grid-column
-                              v-if="state.tableData[oneGroup.name][key].find((i) => i.type)"
-                              field="type"
-                              :title="i18nByKey('propType')"
-                              :width="state.columnWidth[key][1]"
-                            >
-                              <template #default="{ row }">
-                                <span
-                                  :class="{ 'type-link': row.typeAnchorName || row.linkTo }"
-                                  :id="row.typeAnchorName ? row.type : ''"
-                                  @click="toOuterType(row)"
-                                  >{{ row.type }} <IconOuterLink v-if="row.linkTo"></IconOuterLink
-                                ></span>
-                              </template>
-                            </tiny-grid-column>
-                            <tiny-grid-column
-                              v-if="key === 'props' || key === 'options'"
-                              field="defaultValue"
-                              :title="i18nByKey('defValue')"
-                              :width="state.columnWidth[key][2]"
-                            ></tiny-grid-column>
-                            <tiny-grid-column field="desc" :title="i18nByKey('desc')">
-                              <template #default="data">
-                                <span v-html="data.row.desc"></span>
-                              </template>
-                            </tiny-grid-column>
-                          </tiny-grid>
-                        </div>
-                      </template>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <api-docs
+                ref="apiDocsRef"
+                :current-json="state.currJson"
+                :chart-code="state.chartCode"
+                :table-data="state.tableData"
+                id="API"
+                class="all-api-container"
+                @jump-to-demo="jumpToDemo"
+              ></api-docs>
             </tiny-tab-item>
           </tiny-tabs>
           <div v-if="demoConfig.isMobile" class="mobile-view-container">
@@ -179,19 +73,15 @@
         </div>
 
         <!-- demo与api目录锚点 -->
-        <div class="cmp-page-anchor catalog" v-if="state.currAnchorLinks.length">
-          <tiny-anchor
-            id="anchor"
-            :offset-top="56"
-            :links="state.currAnchorLinks"
-            :key="anchorRefreshKey"
-            :is-affix="state.anchorAffix"
-            type="dot"
-            container-id="#doc-layout-scroller"
-            @link-click="handleAnchorClick"
-          >
-          </tiny-anchor>
-        </div>
+        <aside-anchor
+          :active-tab="state.activeTab"
+          :current-json="state.currJson"
+          :anchor-affix="state.anchorAffix"
+          :api-types="state.currApiTypes"
+          :lang-key="state.langKey"
+          :key="anchorRefreshKey"
+          @link-click="handleAnchorClick"
+        ></aside-anchor>
       </div>
 
       <div v-if="state.currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(state.currJson.owner)">
@@ -203,40 +93,32 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, watch, onMounted, onUnmounted, nextTick, ref } from 'vue'
+import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { marked } from 'marked'
-import hljs from 'highlight.js'
-import {
-  TinyAnchor,
-  TinyButtonGroup,
-  TinyGrid,
-  TinyGridColumn,
-  TinyTabs,
-  TinyTabItem,
-  TinyTooltip
-} from '@opentiny/vue'
-import { iconOuterLink } from '@opentiny/vue-icon'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode, getCmpContributors } from '@/tools'
+import { TinyButtonGroup, TinyGrid, TinyGridColumn, TinyTabs, TinyTabItem, TinyTooltip } from '@opentiny/vue'
+import { debounce } from '@opentiny/utils'
+import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
+import AsideAnchor from './anchor.vue'
+import ComponentHeader from './header.vue'
+import ComponentContributor from './contributor.vue'
+import ApiDocs from './api-docs.vue'
 
 defineOptions({
   name: 'CmpPageVue'
 })
 
+const scrollRef = ref()
 const { apiModeState } = useApiMode()
 const { templateModeState, staticPath, optionsList } = useTemplateMode()
-const IconOuterLink = iconOuterLink()
 const iframeRef = ref()
 const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
-const apiTableRef = ref()
 const route = useRoute()
 const state = reactive({
   webDocPath: computed(() => ''),
@@ -244,44 +126,16 @@ const state = reactive({
   cmpId: '',
   observer: null,
   currJson: { column: 1, demos: [], apis: [], types: {} },
-  cmpTopMd: null,
+  mdString: '',
   currDemoId: '',
-  demoAnchorLinks: computed(() => {
-    const links =
-      state.currJson?.demos?.map((demo) => ({
-        key: demo.demoId,
-        title: demo.name[state.langKey],
-        link: `#${demo.demoId}`
-      })) || []
-    return links
-  }),
   iframeUrl: '',
-  apiAnchorLinks: computed(() => getApiAnchorLinks()),
   anchorAffix: true,
-  currAnchorLinks: computed(() => (state.activeTab === 'demos' ? state.demoAnchorLinks : state.apiAnchorLinks)),
   // 单demo显示时
   singleDemo: null,
   activeTab: route.hash === '#api' ? 'api' : 'demos',
   tableData: {},
   currApiTypes: [],
   showApiTab: computed(() => state.currApiTypes.length),
-  columnWidth: {
-    props: ['15%', '20%', '15%'],
-    options: ['15%', '20%', '15%'],
-    events: ['15%', '25%', 0],
-    methods: ['15%', '20%', 0],
-    slots: ['15%', 0, 0],
-    format: ['15%', 0, 0]
-  },
-  apiExpandConf: {
-    expandAll: false,
-    trigger: 'row',
-    expandRowKeys: [],
-    accordion: false,
-    activeMethod: (row) => row.typeAnchorName,
-    showIcon: true // 配置是否显示展开图标
-  },
-  contributors: [], // 贡献者
   chartCode: false
 })
 let finishNum = ref(0)
@@ -325,10 +179,6 @@ onMounted(() => {
   const common = new window.TDCommon(['#footer'], {})
   common.renderFooter()
   setScrollListener()
-})
-
-onUnmounted(() => {
-  removeScrollListener()
 })
 
 const demoMounted = () => {
@@ -377,34 +227,6 @@ const allDemoMounted = async () => {
   })
 }
 
-const getApiAnchorLinks = () => {
-  if (!state.currJson.apis?.length) {
-    return []
-  }
-
-  const apiAnchorLinks = []
-  state.currJson.apis?.forEach((apiGroup) => {
-    const { name } = apiGroup
-    const typeLinks = state.currApiTypes
-      .filter((i) => apiGroup[i]?.length)
-      .map((i) => ({
-        key: i,
-        link: `#${name}--${i}`,
-        title: i
-      }))
-
-    const linkItem = {
-      key: name,
-      link: `#cmp-${name}`,
-      title: name,
-      children: typeLinks
-    }
-    apiAnchorLinks.push(linkItem)
-  })
-
-  return apiAnchorLinks
-}
-
 // 封装api表格数据
 const parseApiData = () => {
   if (!state.currJson.apis?.length) {
@@ -447,38 +269,17 @@ const parseApiData = () => {
   state.tableData = tableData
 }
 
-const getRowData = (type) => {
-  const tableData = state.tableData
-  let rowData
-  for (const comp of Object.values(tableData)) {
-    for (const apiGroup of Object.values(comp)) {
-      rowData = apiGroup.find((i) => i.type === type)
-      if (rowData) {
-        return rowData
-      }
-    }
-  }
-}
-
+const apiDocsRef = ref()
 const jumpToApi = (hash) => {
   state.activeTab = 'api'
-  nextTick(() => {
-    const rowData = getRowData(hash)
-    const row = document.getElementById(hash).closest('.tiny-grid-body__row')
-    if (row) {
-      apiTableRef.value.forEach((i) => {
-        i.setCurrentRow(rowData)
-        i.setRowExpansion(rowData, true)
-      })
-    }
-  })
+  apiDocsRef.value.jumpToApi(hash)
 }
 
 // 页面加载/点击api中的链接，根据hash滚动。
 const scrollByHash = (hash) => {
   setTimeout(() => {
     if (!hash) {
-      document.getElementById('doc-layout-scroller').scrollTo({
+      scrollRef.value.scrollTo({
         top: 0,
         left: 0
       })
@@ -494,7 +295,7 @@ const scrollByHash = (hash) => {
       if (scrollTarget && !isRunningTest) {
         // doc-layout-scroller(滚动) > tabs > tab-content(relative)， 造成  scrollTarget.offsetTop 是相对于 tab-content的距离
         // 所以滚动需要修正 tab-title的占位高度才行
-        document.getElementById('doc-layout-scroller').scrollTo({
+        scrollRef.value.scrollTo({
           top: scrollTarget.offsetTop,
           left: 0,
           behavior: 'smooth'
@@ -507,9 +308,9 @@ const scrollByHash = (hash) => {
 // 在singleDemo情况时，才需要滚动示例区域到顶
 const scrollToLayoutTop = () => {
   let hash = router.currentRoute.value.hash?.slice(1)
-  if (hash !== 'API') {
+  if (hash !== 'api') {
     setTimeout(() => {
-      document.getElementById('doc-layout-scroller').scrollTo({
+      scrollRef.value.scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
@@ -524,11 +325,17 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
   state.cmpId = router.currentRoute.value.params.cmpId
 
   // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
+  // const testUrl = `/@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
+  const testUrl = `https://res.hc-cdn.com/tiny-vue-web-doc/3.20.7.20250117141151/@demos/apis/cascader.js`
   const promiseArr = [
     fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
     null,
     fetchDemosFile(
       `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
+    ),
+    import(
+      /* @vite-ignore */
+      testUrl
     )
   ]
 
@@ -541,103 +348,85 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
     promiseArr[1] = fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
   }
 
-  Promise.all(promiseArr)
-    .then(([mdData, jsData, apiData]) => {
-      // 1、加载顶部md
-      state.cmpTopMd = marked(mdData, {
-        gfm: true,
-        highlight(code, language) {
-          const validLanguage = hljs.getLanguage(language) ? language : 'plaintext'
-          return hljs.highlight(code, { language: validLanguage }).value
-        }
-      })
+  Promise.all(promiseArr).then(([mdData, jsData, apiData, testImport]) => {
+    console.log('testImport', testImport.default)
+    // 1、加载顶部md
+    state.mdString = mdData
 
-      // 3、加载cmpId.js 文件
+    // 3、加载cmpId.js 文件
+    // eslint-disable-next-line no-eval
+    const json = jsData ? eval('(' + jsData.slice(15) + ')') : {}
+
+    // 默认设置每个实例demo都不和视图相交
+    json.demos?.forEach((item) => {
+      item.isIntersecting = false
+    })
+
+    state.currJson = {
+      ...json,
+      demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
+      column: json.column || '1' // columns可能为空
+    }
+
+    if (apiData) {
       // eslint-disable-next-line no-eval
-      const json = jsData ? eval('(' + jsData.slice(15) + ')') : {}
-
-      // 默认设置每个实例demo都不和视图相交
-      json.demos?.forEach((item) => {
-        item.isIntersecting = false
-      })
-
-      state.currJson = {
-        ...json,
-        demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
-        column: json.column || '1' // columns可能为空
+      let apiJson = eval('(' + apiData.slice(15) + ')')
+      // pc、mobile、mobile-first三种模式
+      const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
+      const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
+      if (demoMode === 'mobile') {
+        apiJson = json
       }
-
-      if (apiData) {
-        // eslint-disable-next-line no-eval
-        let apiJson = eval('(' + apiData.slice(15) + ')')
-        // pc、mobile、mobile-first三种模式
-        const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
-        const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
-        if (demoMode === 'mobile') {
-          apiJson = json
-        }
-        state.currJson.apis = apiJson.apis.map((item) => {
-          Object.keys(item).forEach((key) => {
-            const apiItem = item[key]
-            if (Array.isArray(apiItem)) {
-              item[key] = apiItem
-                .filter((i) => !i.mode || i.mode.includes(demoMode))
-                .map((filterItem) => ({ ...filterItem, demoId: filterItem[demoKey] }))
-            }
-          })
-          return item
+      state.currJson.apis = apiJson.apis.map((item) => {
+        Object.keys(item).forEach((key) => {
+          const apiItem = item[key]
+          if (Array.isArray(apiItem)) {
+            item[key] = apiItem
+              .filter((i) => !i.mode || i.mode.includes(demoMode))
+              .map((filterItem) => ({ ...filterItem, demoId: filterItem[demoKey] }))
+          }
         })
-        state.currJson.types =
-          apiJson.types?.reduce((res, cur) => {
-            res[cur.name] = cur
-            return res
-          }, {}) || {}
-        parseApiData()
-      }
+        return item
+      })
+      state.currJson.types =
+        apiJson.types?.reduce((res, cur) => {
+          res[cur.name] = cur
+          return res
+        }, {}) || {}
+      parseApiData()
+    }
 
-      let hash = router.currentRoute.value.hash?.slice(1)
+    let hash = router.currentRoute.value.hash?.slice(1)
 
-      // 单demo处理，如果有hash,取hash的demo, 没有hash, 取第1项
-      if (hash) {
-        state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-        if (!state.singleDemo) {
-          state.singleDemo = state.currJson.demos[0]
-        }
-      } else {
+    // 单demo处理，如果有hash,取hash的demo, 没有hash, 取第1项
+    if (hash) {
+      state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+      if (!state.singleDemo) {
         state.singleDemo = state.currJson.demos[0]
       }
+    } else {
+      state.singleDemo = state.currJson.demos[0]
+    }
 
-      if (demoConfig.isMobile && !hash) {
-        // 初始化iframe,当前组件第一个demo展示
-        state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${
-          state.currJson?.demos[0].codeFiles[0]
-        }`
-      } else {
-        state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${hash}.vue`
-      }
+    if (demoConfig.isMobile && !hash) {
+      // 初始化iframe,当前组件第一个demo展示
+      state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${
+        state.currJson?.demos[0].codeFiles[0]
+      }`
+    } else {
+      state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${hash}.vue`
+    }
 
-      // F5刷新加载时，跳到当前示例
-      // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-      return allDemoMounted().then(() => {
-        scrollByHash(hash)
-      })
+    // F5刷新加载时，跳到当前示例
+    // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
+    return allDemoMounted().then(() => {
+      scrollByHash(hash)
     })
-    .finally(() => {
-      // 获取组件贡献者
-      getContributors()
-    })
+  })
 })
 
-/**
- * 获取贡献者
- */
-const getContributors = () => {
-  const cmpId = state.cmpId?.includes('grid') ? 'grid' : state.cmpId
-  state.contributors = getCmpContributors(cmpId)
-}
-
 const onDocLayoutScroll = debounce(100, false, () => {
-  const docLayout = document.getElementById('doc-layout-scroller')
+  const docLayout = scrollRef.value
   const { scrollTop, scrollHeight, clientHeight: layoutHeight } = docLayout
   const headerHeight = document.querySelector('.docs-header')?.clientHeight || 0
   const footerHeight = document.getElementById('footer')?.clientHeight || 0
@@ -648,10 +437,7 @@ const onDocLayoutScroll = debounce(100, false, () => {
 
 const setScrollListener = () => {
   nextTick(() => {
-    const docLayout = document.getElementById('doc-layout-scroller')
-    if (docLayout) {
-      docLayout.addEventListener('scroll', onDocLayoutScroll)
-    }
+    const docLayout = scrollRef.value
 
     const options = {
       root: docLayout,
@@ -674,13 +460,6 @@ const setScrollListener = () => {
 
     state.observer = new IntersectionObserver(callback, options)
   })
-}
-
-const removeScrollListener = () => {
-  const docLayout = document.getElementById('doc-layout-scroller')
-  if (docLayout) {
-    docLayout.removeEventListener('scroll', onDocLayoutScroll)
-  }
 }
 
 const copyText = (text) => {
@@ -708,15 +487,6 @@ const jumpToDemo = (demoId) => {
     }
     scrollByHash(demoId)
   }
-}
-
-// 跳转到其他组件的api
-const toOuterType = (row) => {
-  if (!row.linkTo) {
-    return
-  }
-
-  router.push(row.linkTo)
 }
 
 // 目录列表上的点击
@@ -752,42 +522,6 @@ const handleAnchorClick = (e, data) => {
 </script>
 
 <style lang="less" scoped>
-.docs-header {
-  padding: 16px 40px;
-  min-height: 102px;
-  background-color: #fff;
-  box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
-
-  .docs-title-wrap {
-    flex: 1;
-    min-width: var(--layout-content-main-min-width);
-    max-width: var(--layout-content-main-max-width);
-    margin: 0 auto;
-  }
-
-  .markdown-top-body {
-    z-index: var(--docs-markdown-top-body-zindex);
-    font-size: 14px;
-    transition: all ease-in-out 0.3s;
-
-    :deep(h1) {
-      margin: 0;
-      padding: 0;
-      font-size: 24px;
-      line-height: 40px;
-    }
-  }
-
-  .version-tip {
-    width: 100%;
-  }
-
-  .docs-header-spacer {
-    flex: none;
-    width: 200px;
-  }
-}
-
 .docs-content {
   flex: 1;
   overflow: hidden auto;
@@ -844,89 +578,10 @@ const handleAnchorClick = (e, data) => {
   }
 }
 
-.api-table-box {
-  border-left: 1px solid rgb(239, 239, 245);
-  border-right: 1px solid rgb(239, 239, 245);
-  overflow-x: auto;
-  width: 100%;
-}
-
-.api-table {
-  width: 100%;
-  min-width: 640px;
-  table-layout: fixed;
-  border-collapse: collapse;
-
-  a,
-  .type-link {
-    text-decoration: none;
-    color: #5e7ce0;
-    cursor: pointer;
-    word-wrap: break-word;
-
-    .tiny-svg {
-      fill: #5e7ce0;
-    }
-  }
-
-  &-name:has(+ .version-tip) {
-    margin-right: 4px;
-  }
-
-  :deep(.api-table-expand-col) {
-    padding-left: 16px;
-  }
-
-  :deep(.tiny-grid-body__expanded-cell) {
-    background-color: #fafafa;
-  }
-
-  :deep(code) {
-    color: #476582;
-    padding: 4px 8px;
-    margin: 0 4px;
-    font-size: 0.85em;
-    background-color: rgba(27, 31, 35, 0.05);
-    border-radius: 3px;
-  }
-}
-
 .cmp-mode-title {
   font-size: 18px;
   vertical-align: middle;
   font-weight: 600;
-}
-
-.catalog {
-  flex: none;
-  width: 200px;
-  height: calc(100vh - 280px);
-  padding-top: 16px;
-  overflow: hidden;
-
-  .tiny-anchor__dot {
-    max-height: calc(100vh - 300px);
-    width: 200px;
-
-    :deep(.tiny-anchor) {
-      --ti-anchor-width: auto;
-      background-color: transparent;
-    }
-  }
-}
-
-.catalog:hover {
-  overflow-y: auto;
-}
-
-.catalog::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-
-.catalog::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #c1c1c1;
 }
 
 .one-demo-col2 {
@@ -968,61 +623,6 @@ const handleAnchorClick = (e, data) => {
   }
 }
 
-.cmp-page-anchor {
-  :deep(.tiny-anchor__affix) {
-    top: unset !important;
-    overflow-y: auto;
-    max-height: calc(100vh - 300px);
-  }
-
-  :deep(.tiny-anchor-link) {
-    font-size: 12px;
-
-    a {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-}
-
-.cmp-contributor {
-  margin-top: 48px;
-
-  .cmp-contributor-title {
-    margin-bottom: 32px;
-    font-size: 20px;
-    font-weight: Semibold;
-    color: #191919;
-  }
-
-  .cmp-contributor-item {
-    width: 42px;
-    height: 42px;
-    margin-right: 12px;
-    margin-bottom: 20px;
-    display: inline-block;
-    border-radius: 50%;
-    overflow: hidden;
-    transition: all linear 0.2s;
-
-    &:hover {
-      transform: scale(110%);
-    }
-  }
-
-  .cmp-contributor-avatar {
-    width: 100%;
-    height: 100%;
-  }
-
-  .cmp-contributor-tip {
-    font-size: 14px;
-    color: #191919;
-  }
-}
-
 @media (max-width: 1279px) {
   .catalog,
   .docs-header-spacer {
@@ -1037,35 +637,6 @@ const handleAnchorClick = (e, data) => {
 @media (max-width: 767px) {
   .one-demo-col2 {
     grid-template-columns: 100%;
-  }
-}
-
-.custom-block.tip {
-  background-color: #f3f5f7;
-  border-color: #42b983;
-  border-radius: 0.3rem;
-  padding: 0.5rem 1rem;
-  border-left-width: 0.3rem;
-  border-left-style: solid;
-  margin: 1rem 0;
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 2;
-
-  .custom-block-title {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 14px;
-  }
-
-  ul {
-    li {
-      padding: 5px 0;
-    }
   }
 }
 

@@ -24,8 +24,8 @@
  */
 
 import { getRowid } from './common'
-import { hasClass, getDomNode } from '../../common/deps/dom'
-import { getActualTarget } from '../../common/event'
+import { hasClass, getDomNode } from '@opentiny/utils'
+import { getActualTarget } from '@opentiny/utils'
 import { arrayIndexOf } from '../static'
 
 const ATTR_NAME = 'data-rowid'

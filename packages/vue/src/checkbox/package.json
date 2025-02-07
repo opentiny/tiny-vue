@@ -19,7 +19,6 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

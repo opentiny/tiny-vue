@@ -1,5 +1,5 @@
-import { getScrollContainer } from '../common/deps/infinite-scroll'
-import { isNull } from '../common/type'
+import { getScrollContainer } from '@opentiny/vue-directive'
+import { isNull } from '@opentiny/utils'
 
 let supportsPassive = false
 

@@ -1,4 +1,4 @@
-import { extend } from '../common/object'
+import { extend } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
 
 import { getToolbarTips, defaultOptions } from './options'

@@ -10,15 +10,12 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
-import { KEY_CODE } from '../common'
-import PopupManager from '../common/deps/popup-manager'
+import { on, off } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 import { xss } from '@opentiny/utils'
-import { isBrowser } from '../common/browser'
 
-const isFirefox = () => (isBrowser ? !!window.navigator.userAgent.match(/firefox/i) : false)
-
-const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel'
+const mousewheelEventName = 'mousewheel'
 
 export const rafThrottle = (fn) => {
   let locked = false

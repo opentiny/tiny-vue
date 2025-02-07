@@ -70,7 +70,7 @@ import {
   formatInputValue
 } from './index'
 import { dateMobileToggle, timeMobileToggle, dateToTimeArray, timeArrayToDate, timeMobileConfirm } from './mb'
-import { DATEPICKER } from '../common'
+import { DATEPICKER } from '@opentiny/utils'
 import type {
   IPickerProps,
   IPickerApi,

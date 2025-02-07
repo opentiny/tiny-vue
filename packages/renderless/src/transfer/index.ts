@@ -10,7 +10,7 @@
  *
  */
 import type { ITransferProps, ITransferRenderlessParams } from '@/types'
-import { copyArray } from '../common/object'
+import { copyArray } from '@opentiny/utils'
 
 /** 生成全量数据对应的一个大对象 */
 export const getObj = (props: ITransferProps) => () =>

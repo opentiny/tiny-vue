@@ -1,4 +1,4 @@
-import { random } from '@opentiny/vue-renderless/common/string'
+import { random } from '@opentiny/utils'
 
 const cryptoModule = globalThis.crypto
 

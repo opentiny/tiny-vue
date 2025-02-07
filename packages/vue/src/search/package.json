@@ -19,7 +19,6 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-button": "workspace:~"

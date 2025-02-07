@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+import { isNumber } from '@opentiny/utils'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent, appProperties, $props } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'

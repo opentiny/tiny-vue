@@ -10,7 +10,7 @@
  *
  */
 import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
-import { addClass, removeClass } from '../common/deps/dom'
+import { addClass, removeClass } from '@opentiny/utils'
 
 const getEleMentBySelect = (parent, selector) =>
   selector?.startsWith('#') ? document.getElementById(selector.slice(1)) : parent.querySelector(selector)

@@ -49,7 +49,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 
     const { mode, libPath } = tasks[0]
 
-    const modeList = ['pc', 'mobile', 'mobile-first']
+    const modeList = ['pc', 'mobile-first']
 
     const entry = toEntry(tasks)
     const baseConfig = getBaseConfig({
@@ -182,11 +182,6 @@ function getEntryTasks() {
       path: 'vue-runtime/pc.ts',
       libPath: 'tiny-vue-pc',
       mode: 'pc'
-    },
-    {
-      path: 'vue-runtime/mobile.ts',
-      libPath: 'tiny-vue-mobile',
-      mode: 'mobile'
     },
     {
       path: 'vue-runtime/mobile-first.ts',

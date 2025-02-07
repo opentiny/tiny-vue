@@ -130,6 +130,7 @@ export const cmpMenus = [
       { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
       { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' },
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
+      { 'nameCn': '日期选择面板', 'name': 'DatePanel', 'key': 'date-panel' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
@@ -236,8 +237,6 @@ export const cmpMenus = [
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '时间线', 'name': 'Timeline', 'key': 'time-line' },
-      //  测试时打开该行---------------
-      // { 'nameCn': '时间线AUI', 'name': 'TimelineNew', 'key': 'time-line-new' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       {
         'nameCn': '虚拟化树形控件',

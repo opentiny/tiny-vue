@@ -1,4 +1,4 @@
-import TreeStore from '../common/deps/tree-model/tree-store'
+import { TreeStore } from '@opentiny/utils'
 
 export const close =
   ({ state, emit }) =>

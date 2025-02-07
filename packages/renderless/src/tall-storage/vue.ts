@@ -11,7 +11,7 @@
  */
 
 import { mousedown, selectItem, keydown } from './index'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const api = ['state', 'mousedown', 'selectItem']
 

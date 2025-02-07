@@ -12,8 +12,8 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/scrollbar/vue'
 import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
-import scrollbarWidth from '@opentiny/vue-renderless/common/deps/scrollbar-width'
-import { toObject } from '@opentiny/vue-renderless/common/array'
+import { calcScrollWidth } from '@opentiny/utils'
+import { toObject } from '@opentiny/utils'
 import Bar from './bar.vue'
 
 export default defineComponent({
@@ -58,7 +58,7 @@ export default defineComponent({
       show,
       marginBottomAdjust
     } = this
-    const gutter = scrollbarWidth()
+    const gutter = calcScrollWidth()
     let style = wrapStyle
 
     if (gutter) {

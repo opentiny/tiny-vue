@@ -1,8 +1,9 @@
-import { formatNumber, recoverNumber } from '@opentiny/vue-renderless/common/decimal'
-import { toDate, getDateWithNewTimezone } from '@opentiny/vue-renderless/common/date'
-import { isPlainObject, isDate, isNull } from '@opentiny/vue-renderless/common/type'
-import { formatDate } from '@opentiny/vue-renderless/common/deps/date-util'
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+/* eslint-disable prefer-rest-params */
+import { formatNumber, recoverNumber } from '@opentiny/utils'
+import { toDate, getDateWithNewTimezone } from '@opentiny/utils'
+import { isPlainObject, isDate, isNull } from '@opentiny/utils'
+import { formatDate } from '@opentiny/utils'
+import { isNumber } from '@opentiny/utils'
 
 export const getNumberFormat = (config) => {
   const groupSize = 3

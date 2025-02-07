@@ -1,37 +1,38 @@
 {
   "name": "@opentiny/vue-picker",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-date-panel": "workspace:~",
-    "@opentiny/vue-date-range": "workspace:~",
-    "@opentiny/vue-month-range": "workspace:~",
-    "@opentiny/vue-quarter-panel": "workspace:~",
-    "@opentiny/vue-time": "workspace:~",
-    "@opentiny/vue-time-range": "workspace:~",
-    "@opentiny/vue-time-panel": "workspace:~",
-    "@opentiny/vue-year-range": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~",
-    "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-date-picker-mobile-first": "workspace:~",
-    "@opentiny/vue-time-picker-mobile": "workspace:~",
+    "@opentiny/vue-date-range": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-month-range": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-quarter-panel": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-time": "workspace:~",
+    "@opentiny/vue-time-panel": "workspace:~",
+    "@opentiny/vue-time-picker-mobile": "workspace:~",
+    "@opentiny/vue-time-range": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-year-range": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
 }

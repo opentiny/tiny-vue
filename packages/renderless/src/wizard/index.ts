@@ -11,9 +11,9 @@
  */
 import type { IWizardRenderlessParams, IWizardPropsDataNode, IWizardNodesItem } from '@/types'
 
-import { format } from '../common/date'
-import { copyArray, extend } from '../common/object'
-import { isObject } from '../common/type'
+import { formatDateByPattern as format } from '@opentiny/utils'
+import { copyArray, extend } from '@opentiny/utils'
+import { isObject } from '@opentiny/utils'
 
 export const lastStepHandle =
   ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>

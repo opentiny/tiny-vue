@@ -1,6 +1,6 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?mobile|mobile-first'
+import template from 'virtual-template?mobile-first'
 
 const $constants = {
   DEFAULT_HEAD_HEIGHT: 50,

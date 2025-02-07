@@ -122,13 +122,14 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/numeric/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
-import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
+import { RepeatClick } from '@opentiny/vue-directive'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
 import { classes } from './token'
 
 export default defineComponent({
   directives: directive({
-    repeatClick: { bind }
+    // 待整改
+    repeatClick: { bind: RepeatClick }
   }),
   components: {
     IconChevronDown: iconChevronDown(),
