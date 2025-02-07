@@ -1,4 +1,4 @@
-import { isBrowser } from '../common/browser'
+import { isServer } from '@opentiny/utils'
 
 export const getAddWheelListener = (window, document) => {
   const { addApiName, removeApiName, prefix } = detectEventModel(window)
@@ -22,7 +22,7 @@ export const getAddWheelListener = (window, document) => {
 }
 
 const detectEventModel = (window) => {
-  const flag = isBrowser ? window.addEventListener : null
+  const flag = !isServer ? window.addEventListener : null
 
   const addApiName = flag ? 'addEventListener' : 'attachEvent'
   const removeApiName = flag ? 'removeEventListener' : 'detachEvent'
@@ -32,7 +32,7 @@ const detectEventModel = (window) => {
 }
 
 const detectAvailableWheelEvent = (document) => {
-  if (!isBrowser) return null
+  if (isServer) return null
   else {
     let support
     if ('onwheel' in document.createElement('div')) {

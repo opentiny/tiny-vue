@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,7 +11,7 @@
  *
  */
 import { directive } from '@opentiny/vue-common'
-import { isObject } from '@opentiny/vue-renderless/common/type'
+import { isObject } from '@opentiny/utils'
 
 class TinyTouch {
   constructor(element, tinyBinding, type) {
@@ -49,7 +50,7 @@ class TinyTouch {
 
     this.time = setTimeout(() => {
       if (this.tinyVueLeave && this.tinyVueMoves) {
-        this.touchType == 'longtap' && this.tinyVueCallBack(this.tinyBinding.value, e)
+        this.touchType === 'longtap' && this.tinyVueCallBack(this.tinyBinding.value, e)
         this.tinyLongTouch = false
       }
     }, 1000)
@@ -66,28 +67,28 @@ class TinyTouch {
     clearTimeout(this.time)
 
     if (Math.abs(disX) > 10 || Math.abs(disY) > 100) {
-      this.touchType == 'swipe' && this.tinyVueCallBack(this.tinyBinding.value, e)
+      this.touchType === 'swipe' && this.tinyVueCallBack(this.tinyBinding.value, e)
 
       if (Math.abs(disX) > Math.abs(disY)) {
         if (disX > 10) {
-          this.touchType == 'swiperight' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swiperight' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
 
         if (disX < -10) {
-          this.touchType == 'swipeleft' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipeleft' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
       } else {
         if (disY > 10) {
-          this.touchType == 'swipedown' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipedown' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
 
         if (disY < -10) {
-          this.touchType == 'swipeup' && this.tinyVueCallBack(this.tinyBinding.value, e)
+          this.touchType === 'swipeup' && this.tinyVueCallBack(this.tinyBinding.value, e)
         }
       }
     } else {
       if (this.tinyLongTouch && this.tinyVueMoves) {
-        this.touchType == 'tap' && this.tinyVueCallBack(this.tinyBinding.value, e)
+        this.touchType === 'tap' && this.tinyVueCallBack(this.tinyBinding.value, e)
         this.tinyVueLeave = false
       }
     }

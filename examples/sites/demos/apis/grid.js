@@ -2490,24 +2490,12 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              '表格校验函数，如果指定 row 或 rows 则校验指定一行或多行，否则校验整个表格。该回调函数会在校验结束后被调用，并传入两个参数：（是否校验成功，最近一列未通过校验的字段）。若不传入回调函数，则会返回一个 promise',
+              '表格校验函数，如果指定 row 或 rows 则校验指定一行或多行，否则校验整个表格。该回调函数会在校验结束后被调用，并传入两个参数：（是否校验成功，最近一列未通过校验的字段）。若不传入回调函数，则会返回一个 promise, 校验成功返回 true (3.22.0新增)，校验失败返回错误信息对象',
             'en-US':
               'Table verification function. If a row or rows is specified, the specified row or multiple rows are verified. Otherwise, the entire table is verified. This callback function is called after the verification is complete and the following parameters are transferred: (Whether the verification is successful. The fields in the latest column fail the verification.) If no callback function is passed in, a promise is returned'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-validation#validation-before-submit-validation'
-        },
-        {
-          name: 'validate(rows, callback)',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN':
-              '表格校验函数，如果指定 row 或 rows 则校验指定一行或多行，否则校验整个表格。该回调函数会在校验结束后被调用，并传入两个参数：（是否校验成功，最近一列未通过校验的字段）。若不传入回调函数，则会返回一个 promise',
-            'en-US': ''
-          },
-          mode: ['mobile-first'],
-          mfDemo: ''
         }
       ],
       slots: [

@@ -1,5 +1,5 @@
-import { isDate, nextYear, nextMonth } from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
+import { isDate1 as isDate, nextYear, nextMonth1 as nextMonth } from '@opentiny/utils'
+import { DATEPICKER } from '@opentiny/utils'
 
 export const calcDefaultValue = (value) => {
   if (Array.isArray(value)) {

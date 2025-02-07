@@ -1,5 +1,5 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { isDate1 } from '@opentiny/utils'
 import template from 'virtual-template?pc|mobile-first'
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
     defaultValue: {
       validator(val) {
         // null or valid Date Object
-        return val === null || (val instanceof Date && isDate(val))
+        return val === null || (val instanceof Date && isDate1(val))
       }
     },
     date: [Date, Array],

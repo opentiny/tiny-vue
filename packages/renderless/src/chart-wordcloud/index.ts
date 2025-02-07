@@ -1,3 +1,4 @@
+/* eslint-disable prefer-spread */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,7 +11,7 @@
  *
  */
 
-import { random } from '../common/string'
+import { random } from '@opentiny/utils'
 import { itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const isArr = Array.isArray

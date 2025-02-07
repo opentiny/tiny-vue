@@ -1,4 +1,4 @@
-import { find } from '../common/array'
+import { find } from '@opentiny/utils'
 
 /**
  * 树节点过滤事件

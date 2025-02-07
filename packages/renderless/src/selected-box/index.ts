@@ -1,4 +1,4 @@
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
 
 const normal = (n) => (n < 0 ? 0 : n)
 

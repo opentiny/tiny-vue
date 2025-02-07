@@ -24,7 +24,7 @@
  */
 
 import { xss } from '@opentiny/utils'
-import browser from '../../common/browser'
+import { browserInfo } from '@opentiny/utils'
 import { toTreeArray } from '../static'
 import { getCellValue, getFuncText } from '../utils'
 import { exportExcel } from './exportExcel'
@@ -120,7 +120,7 @@ const getCsvContent = ($table, opts, oColumns, oData) => {
 }
 
 const getCsvUrl = (opts, content) => {
-  if (window.Blob && window.URL && window.URL.createObjectURL && browser.name !== 'safari') {
+  if (window.Blob && window.URL && window.URL.createObjectURL && browserInfo.name !== 'safari') {
     return URL.createObjectURL(new Blob([content], { type: 'text/csv;charset=utf-8' }))
   }
 

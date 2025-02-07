@@ -244,7 +244,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/date-panel/vue'
 import { $prefix, setup, directive, defineComponent, $props } from '@opentiny/vue-common'
 import { language } from '@opentiny/vue-locale'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import YearTable from '@opentiny/vue-year-table'

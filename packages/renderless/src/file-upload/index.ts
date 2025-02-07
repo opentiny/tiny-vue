@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -29,11 +30,11 @@ import type {
   IFileUploadLargeDocumentDownload
 } from '@/types'
 
-import { extend } from '../common/object'
-import { xss, logger, crypt } from '@opentiny/utils'
-import uploadAjax from '../common/deps/upload-ajax'
-import { isObject } from '../common/type'
-import { isEmptyObject } from '../common/type'
+import { extend } from '@opentiny/utils'
+import { xss, logger, sha256 } from '@opentiny/utils'
+import { uploadAjax } from '@opentiny/utils'
+import { isObject } from '@opentiny/utils'
+import { isEmptyObject } from '@opentiny/utils'
 
 let initTokenPromise = null
 
@@ -513,7 +514,7 @@ export const getFileHash =
       reader.readAsArrayBuffer(file.raw)
       reader.onload = async (e) => {
         if (file.status === constants.FILE_STATUS.FAIL) return
-        const hash = await crypt.sha256(e.target && e.target.result)
+        const hash = sha256(e.target && e.target.result)
         file.hash = file.raw.hash = hash
         resolve(hash)
         emit('hash-progress', 100)
@@ -2046,7 +2047,7 @@ export const segmentUpload =
               reader.readAsArrayBuffer(file)
               reader.onload = async (e) => {
                 if (props.edm.isCheckCode === true) {
-                  const hash = await crypt.sha256(e.target && e.target.result)
+                  const hash = sha256(e.target && e.target.result)
                   file.hash = hash
                 }
                 resolve(file)

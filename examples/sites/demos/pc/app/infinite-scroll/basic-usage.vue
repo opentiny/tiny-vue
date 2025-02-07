@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import InfiniteScroll from '@opentiny/vue-renderless/common/deps/infinite-scroll'
+import { InfiniteScroll } from '@opentiny/vue-directive'
 
 export default {
   directives: { InfiniteScroll },

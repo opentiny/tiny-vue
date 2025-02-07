@@ -10,8 +10,8 @@
  *
  */
 
-import { copyArray } from '../common/object'
-import { lastMonth, nextMonth, getCalendar, transformArray, parseDate } from '../common/calendar/calendar'
+import { copyArray } from '@opentiny/utils'
+import { lastMonth, nextMonth, getCalendar, transformArray, parseDate } from '@opentiny/utils'
 
 export const computedCalendar =
   ({ state }) =>

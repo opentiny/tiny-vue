@@ -1,8 +1,8 @@
 import { clickList, check, clickErrorText } from './index'
-import { getScrollParent } from '../common/deps/dom'
-import { useRect } from '../common/deps/useRect'
-import { useEventListener } from '../common/deps/useEventListener'
-import debounce from '../common/deps/debounce'
+import { getScrollParent } from '@opentiny/utils'
+import { useRect } from '@opentiny/vue-hooks'
+import { useEventListener } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 import type { ILoadListProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 
 export const api = ['state', 'clickList', 'check', 'clickErrorText']

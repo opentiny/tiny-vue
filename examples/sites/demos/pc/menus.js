@@ -237,8 +237,6 @@ export const cmpMenus = [
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '时间线', 'name': 'Timeline', 'key': 'time-line' },
-      //  测试时打开该行---------------
-      // { 'nameCn': '时间线AUI', 'name': 'TimelineNew', 'key': 'time-line-new' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       {
         'nameCn': '虚拟化树形控件',

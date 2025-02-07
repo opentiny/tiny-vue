@@ -10,10 +10,10 @@
  *
  */
 
-import debounce from '../common/deps/debounce'
-import { toDateStr } from '../common/date'
-import { toJsonStr } from '../common/object'
-import { toJson } from '../common/string'
+import { debounce } from '@opentiny/utils'
+import { toDateStr } from '@opentiny/utils'
+import { toJsonStr } from '@opentiny/utils'
+import { toJson } from '@opentiny/utils'
 import { logger } from '@opentiny/utils'
 
 const toLowerCase = (val) => {

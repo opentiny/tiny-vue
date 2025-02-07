@@ -10,7 +10,7 @@
  *
  */
 
-import { isObject, isNull } from '../common/type'
+import { isObject, isNull } from '@opentiny/utils'
 
 export const getRouteActive =
   ({ props, route }) =>

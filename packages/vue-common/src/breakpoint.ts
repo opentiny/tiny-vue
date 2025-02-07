@@ -1,6 +1,6 @@
 import hooks from './adapter'
-import { isServer } from '@opentiny/vue-renderless/common/deps/dom'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { isServer } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 
 /**
  * 组合使用 Tailwind 的响应性断点状态

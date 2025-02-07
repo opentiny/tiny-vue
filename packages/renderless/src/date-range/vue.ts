@@ -53,7 +53,7 @@ import {
   watchPickerVisible,
   watchModelValue
 } from './index'
-import { nextMonth, extractDateFormat, extractTimeFormat } from '../common/deps/date-util'
+import { nextMonth1, extractDateFormat, extractTimeFormat } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -97,7 +97,7 @@ const initState = ({ reactive, computed, api, constants, designConfig, props }) 
     minRangeDate: constants.startDate,
     maxRangeDate: constants.endDate,
     leftDate: new Date(),
-    rightDate: nextMonth(new Date()),
+    rightDate: nextMonth1(new Date()),
     rangeState: { endDate: null, selecting: false, row: null, column: null },
     showTime: props.type === 'datetimerange' || false,
     format: props.format || '',

@@ -10,10 +10,10 @@
  *
  */
 import type { ITabNavRenderlessParams } from '@/types'
-import { KEY_CODE, POSITION } from '../common'
-import { capitalize } from '../common/string'
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
-import { on, off } from '../common/deps/dom'
+import { KEY_CODE, POSITION } from '@opentiny/utils'
+import { capitalize } from '@opentiny/utils'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
 
 export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string; width?: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'

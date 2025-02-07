@@ -1,5 +1,5 @@
-import { callInterceptor } from '@opentiny/vue-renderless/common/function'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { callInterceptor } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
 import { initDrag } from './dnd'
 

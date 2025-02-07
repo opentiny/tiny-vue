@@ -23,9 +23,9 @@
  *
  */
 import { toNumber } from '@opentiny/vue-renderless/grid/static/'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { browserInfo } from '@opentiny/utils'
 
-let isWebkit = browser['-webkit']
+let isWebkit = browserInfo['-webkit']
 
 export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem }) {
   if (scrollYLoad || scrollLoad) {

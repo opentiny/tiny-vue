@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -24,8 +25,8 @@
  */
 import { h, hooks, $prefix, resolveTheme, defineComponent, useInstanceSlots, useRelation } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
-import { extend } from '@opentiny/vue-renderless/common/object'
-import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { extend } from '@opentiny/utils'
+import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
@@ -41,7 +42,7 @@ import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 import { useDrag, useRowGroup } from '../../composable'
-import { isBrowser } from '@opentiny/vue-renderless/common/browser'
+import { isServer } from '@opentiny/utils'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
@@ -1011,7 +1012,7 @@ export default defineComponent({
     useRelation({
       relationKey: `${columnLevelKey}-${id.value}`,
       childrenKey: 'childColumns',
-      relationContainer: () => (isBrowser ? $table.$el.querySelector(`.${hiddenContainerClass}`) : null),
+      relationContainer: () => (!isServer ? $table.$el.querySelector(`.${hiddenContainerClass}`) : null),
       onChange: () => {
         const collectKey = $table.computeCollectKey()
 

@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
 import type { IconPosition } from '@opentiny/vue-checkbox/src'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   FORM_ITEM: 'FormItem',

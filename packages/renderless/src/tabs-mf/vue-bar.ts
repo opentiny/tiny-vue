@@ -1,4 +1,4 @@
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 import { wheelListener, getBoundRect, handleClickDropdownItem, key, emitAdd } from './index'
 import { getAddWheelListener } from './wheel'
 

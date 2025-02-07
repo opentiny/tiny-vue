@@ -24,7 +24,7 @@ import {
   handleConfirm
 } from './index'
 import { compuAmPmMode } from '../time-range'
-import { isDate } from '../common/deps/date-util'
+import { isDate1 as isDate } from '@opentiny/utils'
 
 export const api = ['state', 'handleChange', 'setSelectionRange', 'handleCancel', 'handleConfirm', 'adjustSpinners']
 

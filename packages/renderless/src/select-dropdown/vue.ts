@@ -21,10 +21,10 @@ import {
   cancelSearch,
   handleClear
 } from './index'
-import userPopper from '../common/deps/vue-popper'
-import PopupManager from '../common/deps/popup-manager'
-import debounce from '../common/deps/debounce'
-import { isBrowser } from '../common/browser'
+import { userPopper } from '@opentiny/vue-hooks'
+import { PopupManager } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -96,7 +96,7 @@ const initApi = ({ api, popper, state, selectEmitter, constants, selectVm, paren
 
 const initWatch = ({ watch, selectVm, state, nextTick }) => {
   watch(
-    () => (isBrowser ? selectVm.state.inputWidth : undefined),
+    () => (!isServer ? selectVm.state.inputWidth : undefined),
     (val) => {
       nextTick(() => {
         state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'

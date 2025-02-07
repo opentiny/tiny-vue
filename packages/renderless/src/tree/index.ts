@@ -10,13 +10,13 @@
  *
  */
 
-import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
-import { KEY_CODE } from '../common'
-import TreeStore from '../common/deps/tree-model/tree-store'
-import { addClass, removeClass } from '../common/deps/dom'
-import { on, off } from '../common/deps/dom'
-import { getDataset } from '../common/dataset'
-import { copyArray } from '../common/object'
+import { getNodeKey as innerGetNodekey } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/utils'
+import { TreeStore } from '@opentiny/utils'
+import { addClass, removeClass } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { copyArray } from '@opentiny/utils'
 
 import { logger } from '@opentiny/utils'
 

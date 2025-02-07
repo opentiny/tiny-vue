@@ -112,10 +112,10 @@ import {
   isTagClosable,
   computedCurrentSizeMap
 } from './index'
-import debounce from '../common/deps/debounce'
-import { isNumber } from '../common/type'
-import { useUserAgent } from '../common/deps/useUserAgent'
-import { isBrowser } from '../common/browser'
+import { debounce } from '@opentiny/utils'
+import { isNumber } from '@opentiny/utils'
+import { useUserAgent } from '@opentiny/vue-hooks'
+import { isServer } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -206,7 +206,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     optionsAllDisabled: computed(() => api.computedOptionsAllDisabled()),
     collapseTagSize: computed(() => api.computedCollapseTagSize()),
     showNewOption: computed(() => api.computedShowNewOption()),
-    selectSize: computed(() => (isBrowser ? props.size || state.formItemSize : 0)),
+    selectSize: computed(() => (!isServer ? props.size || state.formItemSize : 0)),
     optimizeOpts: computed(() => api.computeOptimizeOpts()),
     optimizeStore: { valueIndex: 0, recycleScrollerHeight: computed(() => api.recycleScrollerHeight()) },
 

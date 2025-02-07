@@ -11,28 +11,28 @@
  */
 
 import { getWeekData } from '../picker'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import {
-  isDate,
-  parseDate,
+  isDate1,
+  parseDate1,
   modifyDate,
   modifyTime,
   clearTime,
   prevYear,
   nextYear,
   prevMonth,
-  nextMonth,
+  nextMonth1,
   timeWithinRange,
   clearMilliseconds,
   modifyWithTimeString,
   changeYearMonthAndClampDate,
   formatDate,
   extractTimeFormat
-} from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
-import { on, off } from '../common/deps/dom'
-import { getDateWithNewTimezone, getLocalTimezone } from '../common/date'
-import { fillChar } from '../common/string'
+} from '@opentiny/utils'
+import { DATEPICKER } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { getDateWithNewTimezone, getLocalTimezone } from '@opentiny/utils'
+import { fillChar } from '@opentiny/utils'
 
 export const getYearLabel =
   ({ state, t }) =>
@@ -60,7 +60,7 @@ export const watchValue =
       return
     }
 
-    if (isDate(value)) {
+    if (isDate1(value)) {
       state.date = state.selectionMode === 'week' ? getWeekData(value) : new Date(value)
     } else {
       state.date = api.getDefaultValue()
@@ -70,7 +70,7 @@ export const watchValue =
 export const watchDefaultValue =
   ({ state }) =>
   (value) => {
-    if (!isDate(state.value)) {
+    if (!isDate1(state.value)) {
       state.date = value ? new Date(value) : new Date()
     }
   }
@@ -192,7 +192,7 @@ export const cusPrevMonth =
 export const cusNextMonth =
   ({ state }) =>
   () =>
-    (state.date = nextMonth(state.date))
+    (state.date = nextMonth1(state.date))
 
 export const cusPrevYear =
   ({ state }) =>
@@ -238,7 +238,7 @@ export const doPick = (emit) => (date) => {
 export const handleTimePick =
   ({ api, state, t }) =>
   (value, visible, first) => {
-    if (isDate(value)) {
+    if (isDate1(value)) {
       const newDate = state.value
         ? modifyTime(state.value, value.getHours(), value.getMinutes(), value.getSeconds())
         : modifyWithTimeString(api.getDefaultValue(), state.defaultTime, t)
@@ -487,7 +487,7 @@ export const handleKeyControl =
 export const handleVisibleTimeChange =
   ({ api, vm, state, t }) =>
   (value) => {
-    const time = parseDate(value, state.timeFormat, t)
+    const time = parseDate1(value, state.timeFormat, t)
 
     if (time && api.checkDateWithinRange(time)) {
       state.date = modifyDate(time, state.year, state.month, state.monthDate)
@@ -505,7 +505,7 @@ export const handleVisibleTimeChange =
 export const handleVisibleDateChange =
   ({ api, state, t }) =>
   (value) => {
-    const date = parseDate(value, state.dateFormat, t)
+    const date = parseDate1(value, state.dateFormat, t)
 
     if (date) {
       if (typeof state.disabledDate === 'function' && state.disabledDate(date)) {

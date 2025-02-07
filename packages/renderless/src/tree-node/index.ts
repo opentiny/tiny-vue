@@ -10,7 +10,7 @@
  *
  */
 
-import { getNodeKey as getTreeNodeKey } from '../common/deps/tree-model/util'
+import { getNodeKey as getTreeNodeKey } from '@opentiny/utils'
 
 export const watchIndeterminate =
   ({ api, props }) =>
