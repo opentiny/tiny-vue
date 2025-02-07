@@ -6,15 +6,23 @@
   "license": "ISC",
   "keywords": [],
   "main": "index.ts",
-  "module": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "pub": "pnpm publish --no-git-checks --access=public",
+    "test": "vitest"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "dist/index.js"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.9",
     "@opentiny/utils": "workspace:~"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "~4.3.0",
+    "vitest": "catalog:"
   }
 }
