@@ -17,16 +17,11 @@ import { on, off } from '@mobile-root/utils/deps/dom'
 
 export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string; width?: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
-
   if (state.mode === 'mobile') {
     const { offset, width } = state.lineStyle
     return {
       width: `${width}px`,
       transform: `translate${dir}(${offset}px) translate${dir}(-50%)`
-    }
-  } else {
-    return {
-      transform: `translate${dir}(-${state.navOffset}px)`
     }
   }
 }

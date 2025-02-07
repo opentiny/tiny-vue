@@ -53,9 +53,9 @@
         <div v-if="isMobileFirst" class="pc-demo-container">
           <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
         </div>
-        <div v-else-if="demoConfig.isMobile" class="mobile-demo-container">
+        <div v-else-if="demoConfig.isMobile" class="pc-demo-container">
           <div class="mobile-view-btn">
-            <tiny-button tiny_mode="pc" @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
+            <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
           </div>
         </div>
         <div v-else class="pc-demo-container">
@@ -367,15 +367,6 @@ onBeforeUnmount(() => {
     flex: 1;
     padding: 6px;
   }
-}
-
-.mobile-demo-container {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: 6px;
-  border: 1px solid #dcdfe6;
-  padding: 26px 18px 42px;
 }
 
 .demo-content {

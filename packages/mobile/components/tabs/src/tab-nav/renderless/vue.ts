@@ -87,7 +87,7 @@ export const renderless = (
     showExpandItem: false,
     showExpandTabs: props.showExpandTabs,
     expandHeaderStyle: {},
-    mode: props._mode || parent.$mode || tinyMode || 'pc',
+    mode: props._mode || 'mobile',
     rootTabs: inject('rootTabs'),
     sizeName: computed(() => api.computedSizeName(state)),
     navStyle: computed(() => api.computedNavStyle(state)),
