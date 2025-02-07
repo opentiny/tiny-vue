@@ -10,7 +10,7 @@
  *
  */
 
-import { isServer, browser } from '@opentiny/utils'
+import { isServer, browserInfo } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
 import { isEqual } from '@opentiny/utils'
@@ -293,7 +293,7 @@ export const handleInput =
     const reference = vm.$refs.reference
     const key = 'init-flag'
     const value = 'true'
-    const isIE = browser.name === 'ie'
+    const isIE = browserInfo.name === 'ie'
 
     if (isIE && reference.getAttribute(key) !== value && !event.target.value) {
       reference.setAttribute(key, value)
