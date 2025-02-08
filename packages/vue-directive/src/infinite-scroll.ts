@@ -1,4 +1,5 @@
 import { throttle } from '@opentiny/utils'
+import { getScrollContainer } from '@opentiny/utils'
 
 const CONTEXT_KEY = '@@infinitescrollContext'
 const OBSERVER_CHECK_INTERVAL = 50
@@ -107,56 +108,6 @@ function observerChecker(el, cb) {
   }
 }
 
-const cached = (fn) => {
-  const cache = Object.create(null)
-  return (str) => cache[str] || (cache[str] = fn(str))
-}
-
-const camelizeRE = /-(\w)/g
-
-const camelize = cached((str) => str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : '')))
-
-/** TINY_DUP  dom.ts */
-const getElementStyle = (elem, styleKey) => {
-  if (!elem || !styleKey) return ''
-
-  let key = camelize(styleKey)
-
-  if (key === 'float') key = 'cssFloat'
-
-  try {
-    const styleValue = elem.style[key]
-
-    if (styleValue) return styleValue
-
-    const computedStyle = document.defaultView ? document.defaultView.getComputedStyle(elem, '') : null
-
-    return computedStyle ? computedStyle[key] : ''
-  } catch (e) {
-    return elem.style[key]
-  }
-}
-/** TINY_DUP  dom.ts */
-const canScroll = (el, isVertical) => {
-  const overflowKey = { undefined: 'overflow', true: 'overflow-y', false: 'overflow-x' }[String(isVertical)]
-  const overflowVal = getElementStyle(el, overflowKey)
-  return ['scroll', 'auto', 'overlay'].some((s) => overflowVal.includes(s))
-}
-/** TINY_DUP  dom.ts */
-export const getScrollContainer = (el, isVertical) => {
-  let parentEl = el
-
-  while (parentEl) {
-    if ([window, document, document.documentElement].includes(parentEl)) return window
-
-    if (canScroll(parentEl, isVertical)) return parentEl
-
-    parentEl = parentEl.parentNode
-  }
-
-  return parentEl
-}
-
 const bind = (el, binding, vnode) => {
   const instance = binding.instance || vnode.context
   const { value: cb } = binding
@@ -211,7 +162,7 @@ const unbind = (el) => {
   stopObserver(el)
 }
 
-export const InfiniteScroll = {
+export default {
   bind,
   update,
   unbind,

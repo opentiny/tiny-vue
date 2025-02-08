@@ -13,8 +13,8 @@
 import AutoTip from './src/auto-tip'
 import Clickoutside from './src/clickoutside'
 import HighlightQuery from './src/highlight-query'
+import InfiniteScroll from './src/infinite-scroll'
 import ObserveVisibility from './src/observe-visibility'
 import RepeatClick from './src/repeat-click'
 
-export { InfiniteScroll, getScrollContainer } from './src/infinite-scroll'
-export { AutoTip, HighlightQuery, Clickoutside, RepeatClick, ObserveVisibility }
+export { AutoTip, HighlightQuery, Clickoutside, RepeatClick, ObserveVisibility, InfiniteScroll }

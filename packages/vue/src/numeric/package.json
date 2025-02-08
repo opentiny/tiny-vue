@@ -12,7 +12,6 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-filter-panel": "workspace:~",
