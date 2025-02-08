@@ -1,5 +1,5 @@
 <template>
-  <ComponentDocs :load-data="loadData" app-mode="pc" demo-key="pcDemo" />
+  <ComponentDocs :load-data="loadData" demo-key="demoId" />
 </template>
 
 <script setup>
@@ -13,7 +13,7 @@ const loadData = ({ cmpId, lang }) => {
     fetchDemosFile(`@demos/app/${getWebdocPath(cmpId)}/webdoc/${cmpId}.${lang}.md`),
     import(
       /* @vite-ignore */
-      `${baseUrl}@demos/apis/${getWebdocPath(cmpId) === 'chart' ? cmpId : getWebdocPath(cmpId)}.js`
+      `${baseUrl}@demos/apis/${cmpId}.js`
     ),
     import(
       /* @vite-ignore */
@@ -21,11 +21,16 @@ const loadData = ({ cmpId, lang }) => {
     )
   ]
 
+  // 兼容ts文档, 如果是ts文档则不拉取demos配置
+  if (['interfaces', 'types', 'classes'].includes(cmpId)) {
+    promiseArr.pop()
+  }
+
   return Promise.all(promiseArr).then(([mdString, apisJson, demosJson]) => {
     return {
       mdString,
       apisJson: apisJson.default,
-      demosJson: demosJson.default
+      demosJson: demosJson?.default
     }
   })
 }

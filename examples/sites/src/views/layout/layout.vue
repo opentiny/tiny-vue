@@ -63,8 +63,8 @@ import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import FloatSettings from '@/views/components/float-settings.vue'
-import VersionTip from '../components/VersionTip.vue'
+import FloatSettings from '@/views/components/components/float-settings.vue'
+import VersionTip from '@/views/components/components/version-tip.vue'
 
 export default defineComponent({
   name: 'LayoutVue',

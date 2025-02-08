@@ -92,10 +92,10 @@ import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
-import AsideAnchor from './anchor.vue'
-import ComponentHeader from './header.vue'
-import ComponentContributor from './contributor.vue'
-import ApiDocs from './api-docs.vue'
+import AsideAnchor from './components/anchor.vue'
+import ComponentHeader from './components/header.vue'
+import ComponentContributor from './components/contributor.vue'
+import ApiDocs from './components/api-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
 
 defineOptions({
@@ -280,14 +280,18 @@ const loadPage = () => {
     // 1、加载顶部md
     state.mdString = mdString
 
-    // 默认设置每个实例demo都不和视图相交
-    demosJson.demos?.forEach((item) => {
-      item.isIntersecting = false
-    })
-    state.currJson = {
-      ...demosJson,
-      demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
-      column: demosJson.column || '1' // columns可能为空
+    if (demosJson) {
+      // 默认设置每个实例demo都不和视图相交
+      demosJson.demos?.forEach((item) => {
+        item.isIntersecting = false
+      })
+      state.currJson = {
+        ...demosJson,
+        demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
+        column: demosJson.column || '1' // columns可能为空
+      }
+    } else {
+      state.activeTab = 'api'
     }
 
     const { finishTask, waitTasks: allDemoMounted } = useTasksFinish(state.currJson.demos.length)
@@ -478,12 +482,6 @@ defineExpose({ loadPage })
       overflow: visible;
     }
   }
-}
-
-.cmp-mode-title {
-  font-size: 18px;
-  vertical-align: middle;
-  font-weight: 600;
 }
 
 .one-demo-col2 {

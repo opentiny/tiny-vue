@@ -91,7 +91,7 @@ import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
 import { useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import AsyncHighlight from './async-highlight.vue'
+import AsyncHighlight from './components/async-highlight.vue'
 
 const props = defineProps({
   demo: {

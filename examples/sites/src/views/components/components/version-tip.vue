@@ -25,7 +25,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, computed } from 'vue'
 import { Tag as TinyTag, Alert as TinyAlert, Tooltip as TinyTooltip } from '@opentiny/vue'
-import { getWord } from '../../i18n/index'
+import { getWord } from '@/tools'
 
 enum STAGE {
   // 实验性阶段（api属性不具备此阶段）
