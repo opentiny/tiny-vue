@@ -30,7 +30,11 @@ export default defineComponent({
     },
     showWeekNumber: {
       type: Boolean,
-      default: () => false
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     },
     value: {},
     formatWeeks: Function

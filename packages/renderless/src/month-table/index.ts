@@ -10,11 +10,8 @@
  *
  */
 
-import { toDate } from '@opentiny/utils'
-import { hasClass } from '@opentiny/utils'
-import { range as rangeDate, getDayCountOfMonth, nextDate } from '@opentiny/utils'
+import { range as rangeDate, getDayCountOfMonth, nextDate, toDate, hasClass, DATEPICKER } from '@opentiny/utils'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
-import { DATEPICKER } from '@opentiny/utils'
 
 export const datesInMonth = (year, month) => {
   const numOfDays = getDayCountOfMonth(year, month)

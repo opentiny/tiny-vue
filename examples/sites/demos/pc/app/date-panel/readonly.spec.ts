@@ -3,12 +3,17 @@ import { test, expect } from '@playwright/test'
 test('[DatePanel] 测试只读', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-panel#readonly')
-  await page.getByText('21', { exact: true }).click()
-  await expect(page.getByText('-01-05')).toBeVisible()
 
-  await page.getByLabel('上个月').click()
-  await page.getByText('18').click()
-  await page.getByLabel('下个月').click()
-  await expect(page.getByText('-01-05')).toBeVisible()
-  await expect(page.getByText('5', { exact: true }).first()).toHaveCSS('background-color', 'rgb(20, 118, 255)')
+  // datePanel
+  await page.locator('#readonly').getByLabel('上个月').click()
+  await page.locator('#readonly').getByText('19').first().click()
+  await page.locator('#readonly').getByLabel('下个月').click()
+  await page.locator('#readonly div').filter({ hasText: /^21$/ }).first().click()
+  await page.locator('#readonly div').filter({ hasText: /^23$/ }).first().click()
+  await expect(page.locator('.value')).toHaveText('2025-01-15')
+
+  // dateRange
+  await page.locator('#readonly').getByText('14').nth(1).click()
+  await page.locator('#readonly').getByText('25', { exact: true }).nth(2).click()
+  await expect(page.locator('.value1')).toHaveText('[ "2025-01-15", "2025-02-15" ]')
 })

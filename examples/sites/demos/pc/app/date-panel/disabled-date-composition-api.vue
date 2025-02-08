@@ -1,15 +1,18 @@
 <template>
   <div class="demo-date-panel-wrap">
-    <div>{{ value }}</div>
+    <div class="value">{{ value }}</div>
     <tiny-date-panel v-model="value" :disabledDate="disabledDate"></tiny-date-panel>
+    <div class="value1">{{ value1 }}</div>
+    <tiny-date-range type="daterange" v-model="value1" :disabledDate="disabledDate"></tiny-date-range>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TinyDatePanel } from '@opentiny/vue'
+import { TinyDatePanel, TinyDateRange } from '@opentiny/vue'
 
-const value = ref('2025-01-02')
+const value = ref('2025-01-15')
+const value1 = ref(['2025-01-15', '2025-02-15'])
 const disabledDate = (val) => {
   return val.getFullYear() < 2025
 }
@@ -18,5 +21,11 @@ const disabledDate = (val) => {
 <style scoped lang="less">
 .demo-date-panel-wrap {
   width: 560px;
+  & > * {
+    margin-top: 12px;
+  }
+  .tiny-date-range-picker {
+    width: 668px;
+  }
 }
 </style>

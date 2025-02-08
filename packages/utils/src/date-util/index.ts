@@ -13,7 +13,7 @@
 import { fecha } from './fecha'
 import { isNull } from '../type'
 import { isLeapYear } from '../date'
-import { DATEPICKER } from '../index'
+import { DATEPICKER } from '../common'
 
 const weeks = DATEPICKER.Weeks
 const months = DATEPICKER.MonhtList

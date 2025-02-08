@@ -208,13 +208,13 @@ export default {
       demoId: 'unlink-panels',
       name: {
         'zh-CN': '面板联动',
-        'en-US': 'Default time setting when the selector is enabled'
+        'en-US': 'Panel linkage'
       },
       desc: {
         'zh-CN':
           '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
         'en-US':
-          '<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n'
+          '<p>When selecting a range, by default, when clicking the previous month or year arrow icon in the start date panel, the date in the end date panel will also switch to the previous month or year. When switching to the next month or year in the end date panel, the start date panel will also be linked accordingly. But if the<code>unlink panels</code>attribute is set to true, the panels will no longer be linked and will only be effective for the current panel when switching year and month. </p>\n'
       },
       codeFiles: ['unlink-panels.vue']
     },
