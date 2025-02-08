@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否添加到body上',
             'en-US': 'Whether to add it to the body'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'arrow-offset',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '弹出层的箭头偏移位置',
             'en-US': "the layer's arrow offset "
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'close-delay',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '触发方式为 hover 时的隐藏延迟，单位为毫秒',
             'en-US': 'The close delay when the trigger mode is hover, in milliseconds'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'content',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '弹出层的内容',
             'en-US': 'Layer Content.'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'disabled',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Whether the status is visible'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'listData',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>内容对象列表，对象字段包含：icon图片地址、label标题、subLabel子标题</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'maxHeight',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>最大高度</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'modelValue / v-model',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>状态是否可见</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'offset',
@@ -94,7 +94,7 @@ export default {
             'zh-CN': '弹出层的偏移量',
             'en-US': 'Layer offset'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'open-delay',
@@ -104,7 +104,7 @@ export default {
             'zh-CN': '触发方式为 hover 时的显示延迟，单位为毫秒',
             'en-US': 'The display delay when the trigger mode is hover, in milliseconds'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'placement',
@@ -115,7 +115,7 @@ export default {
             'zh-CN': '弹出层出现的位置',
             'en-US': 'Layer Placement'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'popper-class',
@@ -125,7 +125,7 @@ export default {
             'zh-CN': '为弹出层添加类名',
             'en-US': 'Add a class name for the pop-up layer.'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'popper-options',
@@ -136,7 +136,7 @@ export default {
             'zh-CN': '弹出层参数',
             'en-US': 'layer parameters; Refer to the description of IPopperOption'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'title',
@@ -146,7 +146,7 @@ export default {
             'zh-CN': '弹出层的标题',
             'en-US': 'Layer Title'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'transform-origin',
@@ -156,7 +156,7 @@ export default {
             'zh-CN': '<p>组件的旋转中心点</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'transition',
@@ -166,7 +166,7 @@ export default {
             'zh-CN': '定义渐变动画',
             'en-US': 'Define gradient animation'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'trigger',
@@ -176,7 +176,7 @@ export default {
             'zh-CN': '触发方式',
             'en-US': 'Trigger mode'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'visible-arrow',
@@ -186,7 +186,7 @@ export default {
             'zh-CN': '是否显示弹出层的箭头',
             'en-US': "whether to show layer's arrow"
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'width',
@@ -196,7 +196,7 @@ export default {
             'zh-CN': '弹出层宽度',
             'en-US': 'Layer width'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -208,7 +208,7 @@ export default {
             'zh-CN': '进入的动画播放完毕后触发',
             'en-US': 'This event is triggered after the animation is played.'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'after-leave',
@@ -218,7 +218,7 @@ export default {
             'zh-CN': '离开的动画播放完毕后触发',
             'en-US': 'Triggered after the hidden animation is played.'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'hide',
@@ -228,7 +228,7 @@ export default {
             'zh-CN': '隐藏时触发',
             'en-US': 'Triggered when hidden'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'show',
@@ -238,7 +238,7 @@ export default {
             'zh-CN': '显示时触发',
             'en-US': 'Triggered when display'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       methods: [],
@@ -251,7 +251,7 @@ export default {
             'zh-CN': '弹出层元素插槽',
             'en-US': 'The layer element slot'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'reference',
@@ -261,7 +261,7 @@ export default {
             'zh-CN': '触发源元素插槽，该插槽是必传插槽。',
             'en-US': "The layer's reference element slot"
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ]
     }

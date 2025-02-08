@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>是否禁用下拉刷新</p>',
             'en-US': 'disablde pull down'
           },
-          mobileDemo: 'disabled-pull-down'
+          demoId: 'disabled-pull-down'
         },
         {
           name: 'disabled-pull-up',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>是否禁用上拉</p>',
             'en-US': 'disablded pull up'
           },
-          mobileDemo: 'disabled-pull-up'
+          demoId: 'disabled-pull-up'
         },
         {
           name: 'has-more',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>是否有更多数据</p>',
             'en-US': 'has more'
           },
-          mobileDemo: 'has-more'
+          demoId: 'has-more'
         },
         {
           name: 'loosing-text',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>下拉高度大于等于head-height时的提示文字，默认为：释放即可刷新</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'loosing-text'
+          demoId: 'loosing-text'
         },
         {
           name: 'pull-down-loading-text',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>下拉加载文字</p>',
             'en-US': 'pull down loading text'
           },
-          mobileDemo: 'pulling-text'
+          demoId: 'pulling-text'
         },
         {
           name: 'pull-up-distance',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>触发上拉刷新的距离</p>',
             'en-US': 'pull up distance'
           },
-          mobileDemo: 'pull-up-distance'
+          demoId: 'pull-up-distance'
         },
         {
           name: 'pull-up-loading-text',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>上拉加载文字</p>',
             'en-US': 'pull up loading text'
           },
-          mobileDemo: 'pulling-text'
+          demoId: 'pulling-text'
         },
         {
           name: 'v-model',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>是否刷新状态，可以手动设置false来关闭刷新</p>',
             'en-US': 'is refreshing'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -96,7 +96,7 @@ export default {
             'zh-CN': '<p>下拉时触发的事件</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         },
         {
           name: 'pull-up',
@@ -106,7 +106,7 @@ export default {
             'zh-CN': '<p>上拉时触发的事件</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],
@@ -118,7 +118,7 @@ export default {
             'zh-CN': '<p>上拉加载更多插槽</p>',
             'en-US': 'pull up slot'
           },
-          mobileDemo: 'pull-refresh-slot'
+          demoId: 'pull-refresh-slot'
         },
         {
           name: 'header',
@@ -127,7 +127,7 @@ export default {
             'zh-CN': '<p>下拉刷新插槽</p>',
             'en-US': 'pull down slot'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     },

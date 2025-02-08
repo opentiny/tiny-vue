@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>是否禁用，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'disabled'
+          demoId: 'disabled'
         },
         {
           name: 'max',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>可被勾选的 checkbox 的最大数量</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'min-max'
+          demoId: 'min-max'
         },
         {
           name: 'min',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>可被勾选的 checkbox 的最小数量</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'min-max'
+          demoId: 'min-max'
         },
         {
           name: 'value / v-model',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>绑定值</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'dedisabled'
+          demoId: 'dedisabled'
         },
         {
           name: 'vertical',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>是否竖向模式</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'vertical'
+          demoId: 'vertical'
         }
       ],
       events: [
@@ -65,7 +65,7 @@ export default {
             'zh-CN': '<p>当绑定值变化时触发的事件,该事件可获取更新后的值</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'event-change'
+          demoId: 'event-change'
         }
       ],
       methods: [],

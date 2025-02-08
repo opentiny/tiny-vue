@@ -1,5 +1,5 @@
 <template>
-  <ComponentDocs :load-data="loadData" />
+  <ComponentDocs :load-data="loadData" app-mode="pc" demo-key="demoId" />
 </template>
 
 <script setup>

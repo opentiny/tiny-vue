@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>自定义搜索框按钮的文本内容，默认是‘搜索’</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'button-text'
+          demoId: 'button-text'
         },
         {
           name: 'placeholder',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '搜索输入框内的提示占位文本',
             'en-US': 'Search for prompt placeholder text in the input box'
           },
-          mobileDemo: 'button-text'
+          demoId: 'button-text'
         },
         {
           name: 'search-types',
@@ -35,7 +35,7 @@ export default {
             'zh-CN': '搜索类型的选项列表',
             'en-US': 'List of options for search types'
           },
-          mobileDemo: 'default-value'
+          demoId: 'default-value'
         },
         {
           name: 'themeType',
@@ -45,7 +45,7 @@ export default {
             'zh-CN': '<p>配置主题色，primary:蓝 gray:灰</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'v-model/value',
@@ -55,7 +55,7 @@ export default {
             'zh-CN': '<p>设置搜索输入框内的默认搜索值</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'default-value'
+          demoId: 'default-value'
         }
       ],
       events: [
@@ -69,7 +69,7 @@ export default {
             'en-US':
               'The callback function triggered upon input completion; value is the search type, input is the current input value'
           },
-          mobileDemo: 'events'
+          demoId: 'events'
         },
         {
           name: 'clear',
@@ -79,7 +79,7 @@ export default {
             'zh-CN': '清空值触发的回调函数',
             'en-US': 'Callback function triggered by clearing values'
           },
-          mobileDemo: 'clear'
+          demoId: 'clear'
         },
         {
           name: 'search',
@@ -91,7 +91,7 @@ export default {
             'en-US':
               'The callback function triggered when clicking the search button in expansion mode; value is the search type, input is the current input value'
           },
-          mobileDemo: 'events'
+          demoId: 'events'
         },
         {
           name: 'select',
@@ -102,7 +102,7 @@ export default {
             'zh-CN': '切换类型时触发的回调函数； value 为搜索类型',
             'en-US': 'The callback function triggered when switching types; value is a search type'
           },
-          mobileDemo: 'clear'
+          demoId: 'clear'
         }
       ],
       methods: [],
@@ -114,7 +114,7 @@ export default {
             'zh-CN': '<p>自定义搜索框右侧内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     }

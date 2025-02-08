@@ -2,10 +2,7 @@
   <!-- 一个组件的文档:  描述md + demos + apis -->
   <ComponentHeader :current-json="state.currJson" :md-string="state.mdString" class="flex-horizontal">
     <template #header-right>
-      <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
-        <span class="cmp-mode-title">文档类型： </span>
-        <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
-      </div>
+      <slot name="header-right" />
     </template>
   </ComponentHeader>
   <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
@@ -88,9 +85,9 @@
 <script setup lang="ts">
 import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { TinyButtonGroup, TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
-import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode } from '@/tools'
 import DemoBox from '@/views/components/demo'
 import demoConfig from '@demos/config.js'
 import { router } from '@/router.js'
@@ -105,16 +102,14 @@ defineOptions({
   name: 'CmpPageVue'
 })
 
-const props = defineProps({ loadData: {} })
+const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
 const scrollRef = ref()
 const { apiModeState } = useApiMode()
-const { templateModeState, staticPath, optionsList } = useTemplateMode()
 const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
 const route = useRoute()
 const state = reactive({
-  webDocPath: computed(() => ''),
   langKey: getWord('zh-CN', 'en-US'),
   cmpId: '',
   observer: null,
@@ -161,13 +156,6 @@ watch(
     if (value) {
       scrollToLayoutTop()
     }
-  }
-)
-
-watch(
-  () => templateModeState.mode,
-  () => {
-    loadPage()
   }
 )
 
@@ -281,8 +269,7 @@ const demoMounted = () => {
   finishMountTask()
 }
 
-// saas下切换mode和组价示例都会触发loadPage,需要防抖
-const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
+const loadPage = () => {
   const lang = getWord('cn', 'en')
   state.cmpId = router.currentRoute.value.params.cmpId
 
@@ -307,16 +294,13 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
     finishMountTask = finishTask
 
     if (apisJson) {
-      // pc、mobile、mobile-first三种模式
-      const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
-      const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
       state.currJson.apis = apisJson.apis.map((item) => {
         Object.keys(item).forEach((key) => {
           const apiItem = item[key]
           if (Array.isArray(apiItem)) {
             item[key] = apiItem
-              .filter((i) => !i.mode || i.mode.includes(demoMode))
-              .map((filterItem) => ({ ...filterItem, demoId: filterItem[demoKey] }))
+              .filter((i) => !i.mode || i.mode.includes(props.appMode))
+              .map((filterItem) => ({ ...filterItem, demoId: filterItem[props.demoKey] }))
           }
         })
         return item
@@ -345,7 +329,7 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
       scrollByHash(hash)
     })
   })
-})
+}
 
 const onDocLayoutScroll = debounce(100, false, () => {
   const docLayout = scrollRef.value
@@ -435,6 +419,8 @@ const handleAnchorClick = (e, data) => {
     scrollByHash(hash)
   }
 }
+
+defineExpose({ loadPage })
 </script>
 
 <style lang="less" scoped>

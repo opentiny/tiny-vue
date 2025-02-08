@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否隐藏标记',
             'en-US': 'Whether to hide badge'
           },
-          mobileDemo: 'hidden'
+          demoId: 'hidden'
         },
         {
           name: 'href',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '指定跳转的目标页面地址',
             'en-US': 'Specify the URL of the target page.'
           },
-          mobileDemo: 'href-target'
+          demoId: 'href-target'
         },
         {
           name: 'is-dot',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '是否以小圆点的形式来显示标记',
             'en-US': 'Set whether to display the badge in the form of small dots'
           },
-          mobileDemo: 'is-dot'
+          demoId: 'is-dot'
         },
         {
           name: 'is-mini',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>设置小尺寸，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'is-mini'
+          demoId: 'is-mini'
         },
         {
           name: 'max',
@@ -56,7 +56,7 @@ export default {
             'en-US':
               'Specifies the maximum number of badges to be displayed. If the actual badge value exceeds the maximum value, the number of badges is displayed in the format of "+". The value must be of the number type.'
           },
-          mobileDemo: 'is-mini'
+          demoId: 'is-mini'
         },
         {
           name: 'target',
@@ -67,7 +67,7 @@ export default {
             'en-US':
               'Set the jump method for linking to the target page when clicking on the tag, only used when the href attribute exists'
           },
-          mobileDemo: 'href-target'
+          demoId: 'href-target'
         },
         {
           name: 'value',
@@ -77,7 +77,7 @@ export default {
             'zh-CN': '相关数据条目数',
             'en-US': 'Set the number of related data entries'
           },
-          mobileDemo: 'content'
+          demoId: 'content'
         }
       ],
       events: [],
@@ -91,7 +91,7 @@ export default {
             'zh-CN': '消息提示内容',
             'en-US': 'Message Content'
           },
-          mobileDemo: 'content'
+          demoId: 'content'
         },
         {
           name: 'default',
@@ -101,7 +101,7 @@ export default {
             'zh-CN': '默认插槽，有data属性时，默认插槽不生效',
             'en-US': 'Default slot. When there is a data attribute, the default slot is not valid'
           },
-          mobileDemo: 'content'
+          demoId: 'content'
         }
       ]
     }

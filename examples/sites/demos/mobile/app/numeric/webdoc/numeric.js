@@ -14,7 +14,7 @@ export default {
             'zh-CN': '向上到达最大值后，是否从最小值开始，或反过来',
             'en-US': 'When the maximum value is reached, start from the minimum value, or vice versa'
           },
-          mobileDemo: 'circulate'
+          demoId: 'circulate'
         },
         {
           name: 'controls',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '是否使用加减按钮',
             'en-US': 'Whether to use the control button'
           },
-          mobileDemo: 'controls'
+          demoId: 'controls'
         },
         {
           name: 'controls-position',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '加减按钮位置，可选值为 right，表示加减按钮均位于最右侧',
             'en-US': 'Control button position; The optional value of this attribute is right'
           },
-          mobileDemo: 'controls-position'
+          demoId: 'controls-position'
         },
         {
           name: 'disabled',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '禁用',
             'en-US': 'Whether to disable the counter'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'label',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '组件 arial-label 属性取值',
             'en-US': 'The value of arial-label attribute'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'max',
@@ -65,7 +65,7 @@ export default {
             'en-US':
               'Maximum value that can be entered in a component to create a valid value range. Integers and decimals are supported'
           },
-          mobileDemo: 'max'
+          demoId: 'max'
         },
         {
           name: 'min',
@@ -76,7 +76,7 @@ export default {
             'en-US':
               'Specify the minimum value that can be entered for a component to create a valid value range. Integers and decimals are supported'
           },
-          mobileDemo: 'max'
+          demoId: 'max'
         },
         {
           name: 'placeholder',
@@ -86,7 +86,7 @@ export default {
             'zh-CN': '输入框内的提示占位文本',
             'en-US': 'Set the placeholder text in the text box'
           },
-          mobileDemo: 'placeholder'
+          demoId: 'placeholder'
         },
         {
           name: 'precision',
@@ -96,7 +96,7 @@ export default {
             'zh-CN': '数值精度',
             'en-US': 'Numeric precision'
           },
-          mobileDemo: 'precision'
+          demoId: 'precision'
         },
         {
           name: 'step',
@@ -110,7 +110,7 @@ export default {
             'zh-CN': '步长',
             'en-US': 'Increment or decrement value each time'
           },
-          mobileDemo: 'step'
+          demoId: 'step'
         },
         {
           name: 'step-strictly',
@@ -120,7 +120,7 @@ export default {
             'zh-CN': '是否只能输入 step 的倍数',
             'en-US': 'Whether to enter only multiples of step'
           },
-          mobileDemo: 'step'
+          demoId: 'step'
         },
         {
           name: 'change-compat',
@@ -149,7 +149,7 @@ export default {
             'zh-CN': '<p>设置输入组件的默认值，该属性默认为 0。</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ],
       events: [
@@ -161,7 +161,7 @@ export default {
             'zh-CN': '组件失去焦点时触发的回调函数',
             'en-US': 'The callback function triggered when a component loses focus'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         },
         {
           name: 'change',
@@ -171,7 +171,7 @@ export default {
             'zh-CN': '组件的值变化时触发的回调函数',
             'en-US': 'The callback function triggered when the value of a component changes'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         },
         {
           name: 'focus',
@@ -181,7 +181,7 @@ export default {
             'zh-CN': '组件获得焦点时触发的回调函数',
             'en-US': 'The callback function triggered when a component obtains the focus'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],

@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>小数点的位数</p>',
             'en-US': 'decimal'
           },
-          mobileDemo: 'decimal'
+          demoId: 'decimal'
         },
         {
           name: 'ellipsis',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>支持超出省略号显示的行数</p>',
             'en-US': 'ellipsis'
           },
-          mobileDemo: 'ellipsis'
+          demoId: 'ellipsis'
         },
         {
           name: 'is-required',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>是否添加*号</p>',
             'en-US': 'is required'
           },
-          mobileDemo: 'required'
+          demoId: 'required'
         },
         {
           name: 'label',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>文本</p>',
             'en-US': 'text'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'limit',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>限制文本的字数</p>',
             'en-US': 'text limit'
           },
-          mobileDemo: 'limit'
+          demoId: 'limit'
         },
         {
           name: 'position',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>整行显示时的位置:left,center,right</p>',
             'en-US': 'position of whole line dispaly'
           },
-          mobileDemo: 'position'
+          demoId: 'position'
         },
         {
           name: 'size',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>文本大小:large,normal,small,mini</p>',
             'en-US': 'text size'
           },
-          mobileDemo: 'size'
+          demoId: 'size'
         },
         {
           name: 'type',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>类型 \n base, number</p>',
             'en-US': 'type'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         },
         {
           name: 'wholeline',
@@ -94,7 +94,7 @@ export default {
             'zh-CN': '<p>是否整行显示</p>',
             'en-US': 'whole line display'
           },
-          mobileDemo: 'wholeline'
+          demoId: 'wholeline'
         }
       ],
       events: [],

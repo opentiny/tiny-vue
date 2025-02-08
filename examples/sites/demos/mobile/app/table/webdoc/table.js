@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>列数据</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'data',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>表格数据</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'defaultChecked',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>默认选中项</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'keys',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>数据标识</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'width',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>表格宽度</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [],

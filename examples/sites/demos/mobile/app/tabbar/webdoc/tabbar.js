@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>选中标签的颜色</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'active-inactive-color'
+          demoId: 'active-inactive-color'
         },
         {
           name: 'border',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>是否显示外边框，该属性默认为true</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'border'
+          demoId: 'border'
         },
         {
           name: 'fixed',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>是否固定在底部，该属性默认为true</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'border'
+          demoId: 'border'
         },
         {
           name: 'inactive-color',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>未选中标签的颜色</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'active-inactive-color'
+          demoId: 'active-inactive-color'
         },
         {
           name: 'route',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>是否开启路由模式，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'route'
+          demoId: 'route'
         },
         {
           name: 'z-index',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>元素 z-index</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'border'
+          demoId: 'border'
         }
       ],
       events: [
@@ -76,7 +76,7 @@ export default {
             'zh-CN': '<p>切换标签时触发,value: 当前选中标签的名称或索引值</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'event-change'
+          demoId: 'event-change'
         }
       ],
       methods: [],
@@ -88,7 +88,7 @@ export default {
             'zh-CN': '<p>自定义图标</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot-icon'
+          demoId: 'slot-icon'
         }
       ]
     },

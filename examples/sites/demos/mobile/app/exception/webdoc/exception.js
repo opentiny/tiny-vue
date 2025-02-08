@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>按钮文字/p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'buttonText'
+          demoId: 'buttonText'
         },
         {
           name: 'exceptionClass',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>自定义缺省页类名</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'exceptionClass'
+          demoId: 'exceptionClass'
         },
         {
           name: 'imageUrl',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>自定义图片</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'buttonText'
+          demoId: 'buttonText'
         },
         {
           name: 'message',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>主图片文字，在图片下方</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'message'
+          demoId: 'message'
         },
         {
           name: 'subMessage',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>副文本内容,在描述文字的下方</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'subMessage'
+          demoId: 'subMessage'
         },
         {
           name: 'type',
@@ -65,7 +65,7 @@ export default {
               '<p>设置缺省页类型，默认为nodata,可选值有 weaknet || noperm || busy || build || weaknet || pcview</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         }
       ],
       events: [
@@ -77,7 +77,7 @@ export default {
             'zh-CN': '<p>点击按钮时触发，type 为 nodata 时启用</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'message'
+          demoId: 'message'
         }
       ],
       methods: [],
@@ -90,7 +90,7 @@ export default {
             'zh-CN': '<p>设置内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'mobileexception'
+          demoId: 'mobileexception'
         },
         {
           name: 'footer',
@@ -99,7 +99,7 @@ export default {
             'zh-CN': '<p>设置底部内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'mobileexception'
+          demoId: 'mobileexception'
         }
       ]
     }

@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否默认勾选',
             'en-US': 'Currently selected'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'disabled',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mobileDemo: 'disabled'
+          demoId: 'disabled'
         },
         {
           name: 'false-label',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '没有选中时的值',
             'en-US': 'Value when no option is selected'
           },
-          mobileDemo: 'custom-value'
+          demoId: 'custom-value'
         },
         {
           name: 'icon-position',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': "<p>图标与文本的对齐方式，可选值：'center' | 'top'</p>",
             'en-US': "<p>Alignment of icon and text, optional value: 'center' | 'top'</p>"
           },
-          mobileDemo: 'icon-position'
+          demoId: 'icon-position'
         },
         {
           name: 'indeterminate',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '设置 indeterminate 状态，只负责样式控制',
             'en-US': 'Sets the indeterminate state and controls only the style.'
           },
-          mobileDemo: 'indeterminate'
+          demoId: 'indeterminate'
         },
         {
           name: 'label',
@@ -65,7 +65,7 @@ export default {
             'en-US':
               'Selected value (This parameter is valid only when checkbox-group or the bound object type is array)'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'name',
@@ -75,7 +75,7 @@ export default {
             'zh-CN': '原生 name 属性',
             'en-US': 'Native name attribute'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'true-label',
@@ -85,7 +85,7 @@ export default {
             'zh-CN': '选中时的值',
             'en-US': 'Value when selected'
           },
-          mobileDemo: 'custom-value'
+          demoId: 'custom-value'
         },
         {
           name: 'v-model / modelValue',
@@ -95,7 +95,7 @@ export default {
             'zh-CN': '<p>绑定值</p>',
             'en-US': '<p>value</p>'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         }
       ],
       events: [
@@ -107,7 +107,7 @@ export default {
             'zh-CN': '当绑定值变化时触发的事件',
             'en-US': 'This event is triggered when the binding value changes'
           },
-          mobileDemo: 'event-change'
+          demoId: 'event-change'
         }
       ],
       methods: [],
@@ -120,7 +120,7 @@ export default {
             'zh-CN': 'checkbox的内容',
             'en-US': 'Checkbox content'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     },

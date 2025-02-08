@@ -1,5 +1,11 @@
 <template>
-  <ComponentDocs :load-data="loadData" @single-demo-change="changeDemo" @load-page="pageInit">
+  <ComponentDocs
+    :load-data="loadData"
+    app-mode="mobile"
+    demo-key="demoId"
+    @single-demo-change="changeDemo"
+    @load-page="pageInit"
+  >
     <template #main-right>
       <div class="mobile-view-container">
         <!-- 移动端展示内容 -->

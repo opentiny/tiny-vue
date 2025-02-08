@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否被禁用按钮',
             'en-US': 'Sets whether the button is disabled'
           },
-          mobileDemo: 'disabled'
+          demoId: 'disabled'
         },
         {
           name: 'icon',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '按钮左侧展示的图标，接收为<code>Icon</code>组件',
             'en-US': 'The icon displayed by the button is received as an <code>Icon</code> component'
           },
-          mobileDemo: 'icon'
+          demoId: 'icon'
         },
         {
           name: 'loading',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '是否加载中状态',
             'en-US': 'Loading status'
           },
-          mobileDemo: 'loading'
+          demoId: 'loading'
         },
         {
           name: 'reset-time',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '设置按钮禁用时间，防止重复提交，单位毫秒',
             'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission'
           },
-          mobileDemo: 'reset-time'
+          demoId: 'reset-time'
         },
         {
           name: 'size',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '定义按钮尺寸',
             'en-US': 'Define the button size'
           },
-          mobileDemo: 'size'
+          demoId: 'size'
         },
         {
           name: 'text',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '按钮显示的文本',
             'en-US': 'Set the text displayed by the button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'type',
@@ -75,7 +75,7 @@ export default {
             'zh-CN': '展示按钮不同的状态，设置为<code>text</code>则展示为文本按钮',
             'en-US': 'Display different states of buttons, set to <code>text</code> to display as text buttons'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -87,7 +87,7 @@ export default {
             'zh-CN': '当按钮被点击时触发的回调函数',
             'en-US': 'Sets the callback function triggered when a button is clicked'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],
@@ -100,7 +100,7 @@ export default {
             'zh-CN': '默认插槽，自定义按钮展示内容',
             'en-US': 'Default slot'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     }

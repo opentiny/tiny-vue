@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>是否显示图片切换按钮,该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'image-full-current'
+          demoId: 'image-full-current'
         },
         {
           name: 'async-close',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>是否开启异步关闭，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'close-show',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>是否显示关闭按钮，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'image-full-current'
+          demoId: 'image-full-current'
         },
         {
           name: 'image-full-current',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>是否全屏显示，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'image-full-current'
+          demoId: 'image-full-current'
         },
         {
           name: 'preview-visible',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>设置图片预览显示隐藏</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'image-full-current'
+          demoId: 'image-full-current'
         },
         {
           name: 'show-index',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>是否显示当前图片下标，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'slot-index'
+          demoId: 'slot-index'
         },
         {
           name: 'start-position',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>图片预览起始位置索引,该属性默认为0</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'start-position'
+          demoId: 'start-position'
         },
         {
           name: 'tool-show',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>是否显示工具栏钮，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'url-list',
@@ -94,7 +94,7 @@ export default {
             'zh-CN': '<p>配置图片路径</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'image-full-current'
+          demoId: 'image-full-current'
         },
         {
           name: 'z-index',
@@ -104,7 +104,7 @@ export default {
             'zh-CN': '<p>设置图片预览的 z-index，该属性默认为2000</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'slot-index'
+          demoId: 'slot-index'
         }
       ],
       events: [
@@ -115,7 +115,7 @@ export default {
             'zh-CN': '<p>切换当前图片时触发，{ index:切换时图片索引, url: 切换时图片链接 }</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'events-change-close'
+          demoId: 'events-change-close'
         },
         {
           name: 'close',
@@ -124,7 +124,7 @@ export default {
             'zh-CN': '<p>close，{ index: 关闭时图片索引, url: 关闭时图片链接 }</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'events-change-close'
+          demoId: 'events-change-close'
         }
       ],
       methods: [],
@@ -136,7 +136,7 @@ export default {
             'zh-CN': '<p>自定义页码内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot-index'
+          demoId: 'slot-index'
         }
       ]
     }

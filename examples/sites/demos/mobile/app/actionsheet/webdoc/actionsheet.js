@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>是否省略显示，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'ellipsis'
+          demoId: 'ellipsis'
         },
         {
           name: 'menus',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>列表数组</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'ellipsis'
+          demoId: 'ellipsis'
         },
         {
           name: 'visible',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>上划列表显示隐藏,该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'ellipsis'
+          demoId: 'ellipsis'
         },
         {
           name: 'content-position',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '是否显示action插槽',
             'en-US': 'Whether to display action slots '
           },
-          mobileDemo: 'slot-action'
+          demoId: 'slot-action'
         }
       ],
       events: [
@@ -56,7 +56,7 @@ export default {
             'zh-CN': '<p>设置组件点击列表项时触发的回调函数</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'clickfn'
+          demoId: 'clickfn'
         }
       ],
       methods: [
@@ -68,7 +68,7 @@ export default {
             'zh-CN': '<p>菜单列表隐藏方法</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot-item'
+          demoId: 'slot-item'
         }
       ],
       slots: [
@@ -79,7 +79,7 @@ export default {
             'zh-CN': '<p>action插槽</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot-action'
+          demoId: 'slot-action'
         },
         {
           name: 'item',
@@ -88,7 +88,7 @@ export default {
             'zh-CN': '<p>item插槽</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot-item'
+          demoId: 'slot-item'
         }
       ]
     }

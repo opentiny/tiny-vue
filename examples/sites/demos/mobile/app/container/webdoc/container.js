@@ -14,7 +14,7 @@ export default {
             'zh-CN': '左侧宽度',
             'en-US': 'Left width'
           },
-          mobileDemo: 'custom-width'
+          demoId: 'custom-width'
         },
         {
           name: 'pattern',
@@ -25,7 +25,7 @@ export default {
             'zh-CN': '版型类型',
             'en-US': 'Measurement type'
           },
-          mobileDemo: 'basic-usaage'
+          demoId: 'basic-usaage'
         },
         {
           name: 'right-width',
@@ -35,7 +35,7 @@ export default {
             'zh-CN': '右侧宽度',
             'en-US': 'right width'
           },
-          mobileDemo: 'custom-width'
+          demoId: 'custom-width'
         }
       ],
       events: [],
@@ -48,7 +48,7 @@ export default {
             'zh-CN': '中部内容插槽',
             'en-US': 'Renter Slot'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'left',
@@ -57,7 +57,7 @@ export default {
             'zh-CN': '左侧内容插槽',
             'en-US': 'Title Slot'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'right',
@@ -66,7 +66,7 @@ export default {
             'zh-CN': '右侧内容插槽',
             'en-US': 'Right Slot'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         }
       ]
     }

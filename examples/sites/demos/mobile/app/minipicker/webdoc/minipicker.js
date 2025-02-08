@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>取消按钮内容设置，该属性默认为‘取消’</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'cancel-button-text'
+          demoId: 'cancel-button-text'
         },
         {
           name: 'columns',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>配置每一列显示的数据</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'multicolumn'
+          demoId: 'multicolumn'
         },
         {
           name: 'confirm-button-text',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>确定按钮内容设置，该属性默认为‘确定’</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'confirm-button-text'
+          demoId: 'confirm-button-text'
         },
         {
           name: 'default-index',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>单列选择时,选择的初始值索引，该属性默认为0</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'defaultindex'
+          demoId: 'defaultindex'
         },
         {
           name: 'item-height',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>选项高度，该属性默认为34</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'itemheight'
+          demoId: 'itemheight'
         },
         {
           name: 'swipe-duration',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>快速滑动时惯性滚动的时长，单位 ms,该属性默认为1000</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'cancel-button-text'
+          demoId: 'cancel-button-text'
         },
         {
           name: 'title',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>标题</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'cancel-button-text'
+          demoId: 'cancel-button-text'
         },
         {
           name: 'value-key',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>选项对象中，选项文字对应的键名，该属性默认为"text"</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'visible',
@@ -94,7 +94,7 @@ export default {
             'zh-CN': '<p>选择器组件显示或隐藏，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'cancel-button-text'
+          demoId: 'cancel-button-text'
         },
         {
           name: 'visible-item-count',
@@ -104,7 +104,7 @@ export default {
             'zh-CN': '<p>可见的选项个数，该属性默认为5</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'visibleitemcount'
+          demoId: 'visibleitemcount'
         }
       ],
       events: [
@@ -115,7 +115,7 @@ export default {
             'zh-CN': '<p>点击取消按钮时触发</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'change',
@@ -124,7 +124,7 @@ export default {
             'zh-CN': '<p>选项改变时触发。</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'change'
+          demoId: 'change'
         },
         {
           name: 'confirm',
@@ -133,7 +133,7 @@ export default {
             'zh-CN': '<p>点击确定按钮时触发</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'cancel'
+          demoId: 'cancel'
         }
       ],
       methods: [
@@ -145,7 +145,7 @@ export default {
             'zh-CN': '<p>下拉时触发的事件</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'methods'
+          demoId: 'methods'
         },
         {
           name: 'getColumnValue',
@@ -154,7 +154,7 @@ export default {
             'zh-CN': '<p>获取对应列选中的值，参数columnIndex，返回值value</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'methods'
+          demoId: 'methods'
         },
         {
           name: 'getColumnValues',
@@ -163,7 +163,7 @@ export default {
             'zh-CN': '<p>获取对应列中所有选项，参数columnIndex，返回值values</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'methods'
+          demoId: 'methods'
         },
         {
           name: 'getIndexes',
@@ -172,7 +172,7 @@ export default {
             'zh-CN': '<p>获取所有列选中值对应的索引</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'column'
+          demoId: 'column'
         },
         {
           name: 'getValues',
@@ -181,7 +181,7 @@ export default {
             'zh-CN': '<p>获取所有列选中的值</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'column'
+          demoId: 'column'
         }
       ],
       slots: [
@@ -192,7 +192,7 @@ export default {
             'zh-CN': '<p>自定义工具栏</p>',
             'en-US': 'toolbar'
           },
-          mobileDemo: 'toolbar'
+          demoId: 'toolbar'
         }
       ]
     }
