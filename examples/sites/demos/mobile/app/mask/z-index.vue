@@ -5,21 +5,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyMask, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMask,
-    TinyButton
-  },
-  data() {
-    return {
-      visible: false,
-      zIndex: 9999
-    }
-  }
-}
+const visible = ref(false)
+const zIndex = ref(9999)
 </script>
 
 <style scoped>

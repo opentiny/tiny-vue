@@ -12,7 +12,7 @@
 
 import { getFormated } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 const getTooltip = (args) => {
   const { digit, itemDataType, linksDataType } = args

@@ -19,19 +19,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyAvatar } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyAvatar
-  },
-  data() {
-    return {
-      circleUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/circle.png`
-    }
-  }
-}
+const circleUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/circle.png`)
 </script>
 
 <style>
@@ -58,5 +50,9 @@ export default {
   height: calc(100% - 118px);
   overflow: hidden;
   overflow-y: auto;
+}
+
+.tiny-mobile-avatar {
+  margin-right: 4px;
 }
 </style>

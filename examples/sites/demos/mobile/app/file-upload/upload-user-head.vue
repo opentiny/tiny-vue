@@ -7,30 +7,21 @@
     :header-show="false"
   >
     <img v-if="imageUrl" :src="imageUrl" class="upload-avatar-demo" />
-    <icon-plus class="tiny-svg-size" />
+    <tiny-icon-plus class="tiny-svg-size" />
   </tiny-file-upload>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyFileUpload } from '@opentiny/vue-mobile'
 import { iconPlus } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyFileUpload,
-    IconPlus: iconPlus()
-  },
-  data() {
-    return {
-      action: 'http://localhost:3000/api/upload',
-      imageUrl: ''
-    }
-  },
-  methods: {
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    }
-  }
+const action = ref('http://localhost:3000/api/upload')
+const imageUrl = ref('')
+const TinyIconPlus = iconPlus()
+
+function handleAvatarSuccess(res, file) {
+  imageUrl.value = URL.createObjectURL(file.raw)
 }
 </script>
 

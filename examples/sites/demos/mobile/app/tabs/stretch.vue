@@ -5,18 +5,9 @@
   </tiny-tabs>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTabs,
-    TinyTabItem
-  },
-  data() {
-    return {
-      activeName: 'second'
-    }
-  }
-}
+const activeName = ref('second')
 </script>

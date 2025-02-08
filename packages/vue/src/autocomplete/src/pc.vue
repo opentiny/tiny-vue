@@ -107,7 +107,7 @@ import { renderless, api } from '@opentiny/vue-renderless/autocomplete/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinyInput from '@opentiny/vue-input'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { IconLoadingShadow } from '@opentiny/vue-icon'
 
 export default defineComponent({

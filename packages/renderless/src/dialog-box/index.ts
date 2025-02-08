@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '../common/deps/dom'
-import { emitEvent } from '../common/event'
-import { getDomNode } from '../common/deps/dom'
+import { on, off, addClass, removeClass } from '@opentiny/utils'
+import { emitEvent } from '@opentiny/utils'
+import { getDomNode } from '@opentiny/utils'
 import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '@/types'
 
 export const computedAnimationName =

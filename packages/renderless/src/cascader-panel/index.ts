@@ -10,11 +10,11 @@
  *
  */
 
-import { isNull } from '../common/type'
-import { isEqual } from '../common/object'
+import { isNull } from '@opentiny/utils'
+import { isEqual } from '@opentiny/utils'
 import { isEmpty } from '../cascader'
-import { KEY_CODE, CASCADER } from '../common'
-import scrollIntoViewCommon from '../common/deps/scroll-into-view'
+import { KEY_CODE, CASCADER } from '@opentiny/utils'
+import { scrollIntoView as scrollIntoViewCommon } from '@opentiny/utils'
 import type {
   ICascaderPanelApi,
   ICascaderPanelData,

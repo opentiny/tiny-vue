@@ -27,7 +27,7 @@ import {
   onChange,
   updateColumnValue
 } from './index'
-import { DATE } from '../common'
+import { DATE } from '@opentiny/utils'
 import type {
   IDatePickerApi,
   IDatePickerProps,

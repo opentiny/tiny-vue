@@ -19,8 +19,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-time-spinner": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-input": "workspace:~"
+    "@opentiny/vue-button": "workspace:~"
   },
   "license": "MIT"
 }

@@ -6,24 +6,15 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySwitch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySwitch
-  },
-  data() {
-    return {
-      value1: '1',
-      status: '已开启'
-    }
-  },
-  methods: {
-    handleChange(val) {
-      this.status = val ? '已开启' : '已关闭'
-    }
-  }
+const value1 = ref('1')
+const status = ref('已开启')
+
+function handleChange(val) {
+  status.value = val ? '已开启' : '已关闭'
 }
 </script>
 

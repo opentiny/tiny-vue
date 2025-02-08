@@ -25,23 +25,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      autofocusVal: '',
-      input: 'readonly',
-      inputStep: 2,
-      inputAutocomplete: '',
-      username: ''
-    }
-  }
-}
+const autofocusVal = ref('')
+const input = ref('readonly')
+const inputStep = ref(2)
+const inputAutocomplete = ref('')
+const username = ref('')
 </script>
 
 <style scoped>

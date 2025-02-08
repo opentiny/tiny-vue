@@ -1,15 +1,15 @@
 .inject-Timeline-vars() {
-  --tvm-Timeline-font-size: 14px;
-  --tvm-Timeline-color: #333;
-  --tvm-Timeline-hairline-color: #ddd;
-  --tvm-Timeline-user-color: #191919;
-  --tvm-Timeline-cycle-color: #666;
-  --tvm-Timeline-tip-color: #ef4f4f;
+  --tvm-Timeline-font-size: var(--tvm-font-size-default, 14px);
+  --tvm-Timeline-text-color: var(--tvm-color-text, #191919);
+  --tvm-Timeline-hairline-border-color: var(--tvm-color-border-divider, #f0f0f0);
+  --tvm-Timeline-user-text-color: var(--tvm-color-text, #191919);
+  --tvm-Timeline-cycle-text-color: var(--tvm-color-text-secondary, #595959);
+  --tvm-Timeline-tip-text-color: var(--tvm-color-error-text, #f23030);
   --tvm-Timeline-icon-size: 20px;
-  --tvm-Timeline-complete-color: #ccc;
-  --tvm-Timeline-complete-icon-border-color: #ccc;
-  --tvm-Timeline-complete-icon-bgcolor: #f8f8f8;
-  --tvm-Timeline-fail-icon-color: #f36f64;
-  --tvm-Timeline-success-icon-color: #50e3c2;
-  --tvm-Timeline-current-icon-color: radial-gradient(#fff, #fff 15%, #36b2ef, #90d3f3, #cdebfa, #fff);
+  --tvm-Timeline-complete-text-color: var(--tvm-color-text-weaken, #808080);
+  --tvm-Timeline-complete-icon-border-color: var(--tvm-color-border);
+  --tvm-Timeline-complete-icon-bg-color: var(--tvm-color-bg, #f5f5f5);
+  --tvm-Timeline-fail-icon-color: var(--tvm-color-error-icon, #f23030);
+  --tvm-Timeline-success-icon-color: var(--tvm-color-success-icon, #5cb300);
+  --tvm-Timeline-current-icon-color: radial-gradient(#fff, #fff 15%, #1476ff, #7eb7fc, #b3d6ff, #fff);
 }

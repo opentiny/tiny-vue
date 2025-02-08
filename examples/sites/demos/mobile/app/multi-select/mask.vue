@@ -6,50 +6,42 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyMultiSelect } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMultiSelect
-  },
-  data() {
-    return {
-      value: ['公有云'],
-      maskOptions: {
-        'z-index': 100,
-        'cancel-touch': true
+const value = ref(['公有云'])
+const maskOptions = ref({
+  'z-index': 100,
+  'cancel-touch': true
+})
+const data = ref([
+  {
+    title: '云类型',
+    options: [
+      {
+        label: '公有云',
+        value: '公有云'
       },
-      data: [
-        {
-          title: '云类型',
-          options: [
-            {
-              label: '公有云',
-              value: '公有云'
-            },
-            {
-              label: '私有云',
-              value: '私有云'
-            },
-            {
-              label: '伙伴云',
-              value: '伙伴云'
-            },
-            {
-              label: '公有云1',
-              value: '公有云1'
-            },
-            {
-              label: '公有云2',
-              value: '公有云2'
-            }
-          ]
-        }
-      ]
-    }
+      {
+        label: '私有云',
+        value: '私有云'
+      },
+      {
+        label: '伙伴云',
+        value: '伙伴云'
+      },
+      {
+        label: '公有云1',
+        value: '公有云1'
+      },
+      {
+        label: '公有云2',
+        value: '公有云2'
+      }
+    ]
   }
-}
+])
 </script>
 
 <style scoped>

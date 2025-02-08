@@ -10,7 +10,7 @@
  *
  */
 
-import { init } from '../common/deps/eSpaceCtrl'
+import { initEspace } from '@opentiny/utils'
 import { getUserHref, doUserAction, initEspaceLink, openEspace } from './index'
 import { testUID } from '../espace'
 import type {
@@ -33,7 +33,7 @@ export const renderless = (
   const { widgets = {} } = setting
 
   const eSpaceCtrlDisabled = widgets.ESpaceCtrl && !widgets.ESpaceCtrl.autoLink
-  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : init()
+  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : initEspace()
 
   const state: IUserContactState = reactive({
     initialized: false

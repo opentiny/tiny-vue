@@ -37,21 +37,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyContainer,
-    TinyRadio,
-    TinyRadioGroup
-  },
-  data() {
-    return {
-      pattern: 'default'
-    }
-  }
-}
+const pattern = ref('default')
 </script>
 
 <style scoped>

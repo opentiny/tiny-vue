@@ -16,6 +16,7 @@
         show-footer
         v-bind="options"
         :esc-closable="true"
+        show-close
       >
         <tiny-form :model="createData" label-width="100px">
           <tiny-form-item label="用户名" prop="username">
@@ -62,6 +63,7 @@ export default {
         title: '自定义弹窗标题',
         showHeader: true,
         showFooter: true,
+        showClose: false,
         ...this.options
       })
     },

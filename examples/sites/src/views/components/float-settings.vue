@@ -5,9 +5,8 @@
     :style="settingsStyle"
   >
     <!-- 切换主题样式 暂时隐藏 -->
-    <tiny-popover
+    <!-- <tiny-popover
       width="404"
-      v-if="false"
       placement="left-end"
       trigger="click"
       :visible-arrow="false"
@@ -38,7 +37,7 @@
           <theme-settings-icon class="settings-icon theme-settings-icon"></theme-settings-icon>
         </div>
       </template>
-    </tiny-popover>
+    </tiny-popover> -->
 
     <!-- demo风格设置 -->
     <tiny-popover
@@ -91,12 +90,13 @@
 import { defineComponent, reactive, toRefs, onMounted, onUnmounted, watch, nextTick, ref } from 'vue'
 import { Tooltip, Radio, RadioGroup, Popover, Notify } from '@opentiny/vue'
 import { iconUpWard } from '@opentiny/vue-icon'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
 import { router } from '@/router'
 import useStyleSettings from '@/tools/useStyleSettings'
-import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
+
+// import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
 import StyleSettingsIcon from '@/assets/images/style-settings.svg'
 
 export default defineComponent({
@@ -107,7 +107,7 @@ export default defineComponent({
     TinyRadioGroup: RadioGroup,
     IconUpWard: iconUpWard(),
     TinyPopover: Popover,
-    ThemeSettingsIcon,
+    // ThemeSettingsIcon,
     StyleSettingsIcon
   },
   setup() {

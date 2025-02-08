@@ -1,5 +1,5 @@
 import { $prefix } from '../common/util'
-import { isObject } from '../common/type'
+import { isObject } from '@opentiny/utils'
 import setExtend from '../common/extend'
 import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
 import IntegrateChart from '@opentiny/huicharts'
@@ -26,7 +26,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default() { } },
+    events: { type: Object, default() {} },
     initOptions: {
       type: Object,
       default() {
@@ -72,7 +72,7 @@ export default {
     },
     extend: {
       type: Object,
-      default() { }
+      default() {}
     },
     tooltipFormatter: { type: Function },
 
@@ -120,7 +120,7 @@ export default {
     },
     setOptionOpts: {
       type: Object,
-      default() { }
+      default() {}
     },
     colorMode: {
       type: String,

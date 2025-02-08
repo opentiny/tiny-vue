@@ -12,8 +12,8 @@ import {
   handleClear,
   doPick
 } from './index'
-import { DATEPICKER } from '../common'
-import { nextYear } from '../common/deps/date-util'
+import { DATEPICKER } from '@opentiny/utils'
+import { nextYear } from '@opentiny/utils'
 
 export const api = [
   'state',

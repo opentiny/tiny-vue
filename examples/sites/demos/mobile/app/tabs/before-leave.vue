@@ -9,26 +9,16 @@
   </tiny-tabs>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyTabs, TinyTabItem, TinyToast } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTabs,
-    TinyTabItem
-  },
-  data() {
-    return {
-      activeName: 'second'
-    }
-  },
-  methods: {
-    beforeLeave(activeName, oldActiveName) {
-      TinyToast.service({
-        text: '页签切换被阻止'
-      })
-      return false
-    }
-  }
+const activeName = ref('second')
+
+function beforeLeave(activeName, oldActiveName) { // NISVUE3 FIXME: activeName重复定义，请手工修改
+  TinyToast.service({
+    text: '页签切换被阻止'
+  })
+  return false
 }
 </script>

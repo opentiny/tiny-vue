@@ -21,18 +21,9 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress
-  },
-
-  data() {
-    return {
-      lineWidth: 26
-    }
-  }
-}
+const lineWidth = ref(26)
 </script>

@@ -8,51 +8,42 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyDropdownMenu,
-    TinyDropdownItem
+const value2 = ref('a')
+const value3 = ref('')
+const value4 = ref([[1, 2], [], []])
+const activeColor = ref('violet')
+const option2 = ref([
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' }
+])
+const options4 = ref([
+  {
+    title: '性别',
+    data: [
+      { value: 1, text: '女' },
+      { value: 2, text: '男' }
+    ]
   },
-  data() {
-    return {
-      value2: 'a',
-      value3: '',
-      value4: [[1, 2], [], []],
-      activeColor: 'violet',
-      option2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' }
-      ],
-      options4: [
-        {
-          title: '性别',
-          data: [
-            { value: 1, text: '女' },
-            { value: 2, text: '男' }
-          ]
-        },
-        {
-          title: '店铺类型',
-          data: [
-            { value: '1', text: '旗舰店' },
-            { value: 2, text: '专卖店' },
-            { value: 3, text: '专营店' }
-          ]
-        },
-        {
-          title: '商品类型',
-          data: [
-            { value: '1', text: '通用排序' },
-            { value: 2, text: '天猫直送' },
-            { value: 3, text: '公益宝贝' }
-          ]
-        }
-      ]
-    }
+  {
+    title: '店铺类型',
+    data: [
+      { value: '1', text: '旗舰店' },
+      { value: 2, text: '专卖店' },
+      { value: 3, text: '专营店' }
+    ]
+  },
+  {
+    title: '商品类型',
+    data: [
+      { value: '1', text: '通用排序' },
+      { value: 2, text: '天猫直送' },
+      { value: 3, text: '公益宝贝' }
+    ]
   }
-}
+])
 </script>

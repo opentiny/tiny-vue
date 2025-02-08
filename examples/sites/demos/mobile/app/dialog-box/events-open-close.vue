@@ -14,29 +14,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyDialogBox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyDialogBox
-  },
-  data() {
-    return {
-      boxVisibility: false
-    }
-  },
-  methods: {
-    open() {
-      console.log('窗口弹出')
-    },
-    close() {
-      console.log('窗口关闭')
-    },
-    getTime(now) {
-      return [now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()].join(':')
-    }
-  }
+const boxVisibility = ref(false)
+
+function open() {
+  console.log('窗口弹出')
+}
+
+function close() {
+  console.log('窗口关闭')
+}
+
+function getTime(now) {
+  return [now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()].join(':')
 }
 </script>

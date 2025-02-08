@@ -10,21 +10,13 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { Exception } from '@opentiny/vue'
 
-export default {
-  components: {
-    TinyException: Exception
-  },
-  data() {
-    return {
-      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`,
-      exceptionClass: 'no-problem'
-    }
-  },
-  methods: {}
-}
+const imageUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`)
+const exceptionClass = ref('no-problem')
+const TinyException = Exception
 </script>
 
 <style lang="less">

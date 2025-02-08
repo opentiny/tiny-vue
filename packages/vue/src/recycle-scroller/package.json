@@ -1,19 +1,21 @@
 {
   "name": "@opentiny/vue-recycle-scroller",
+  "type": "module",
   "version": "3.21.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "catalog:"
-  },
   "dependencies": {
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
 }

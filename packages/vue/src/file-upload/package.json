@@ -25,7 +25,6 @@
     "@opentiny/vue-upload-list": "workspace:~",
     "@opentiny/vue-switch": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "streamsaver": "2.0.6"
   },
   "devDependencies": {

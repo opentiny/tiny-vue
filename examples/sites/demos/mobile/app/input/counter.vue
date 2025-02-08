@@ -6,20 +6,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      input1: 'counter 示例',
-      input2: 'show-word-limit 示例'
-    }
-  }
-}
+const input1 = ref('counter 示例')
+const input2 = ref('show-word-limit 示例')
 </script>
 
 <style scoped>

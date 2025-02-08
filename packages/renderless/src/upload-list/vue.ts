@@ -31,9 +31,9 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../file-upload'
-import { formatFileSize } from '../common/string'
+import { formatFileSize } from '@opentiny/utils'
 import { getApi } from '../file-upload/vue'
-import { isBrowser } from '../common/browser'
+import { isServer } from '@opentiny/utils'
 
 export const api = [
   't',
@@ -66,7 +66,7 @@ export const renderless = (
 ): IUploadListApi => {
   const api = { getApi } as IUploadListApi
   parent = inject('uploader').$children[0]
-  const constants = isBrowser ? (parent.$constants as IFileUploadConstants) : null
+  const constants = !isServer ? (parent.$constants as IFileUploadConstants) : null
   const $service = initService({ props, service })
   const { current } = useBreakpoint()
 

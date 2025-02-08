@@ -1,19 +1,20 @@
 {
   "name": "@opentiny/vue-locale",
-  "private": true,
+  "type": "module",
   "version": "3.21.0",
+  "private": true,
   "description": "",
-  "main": "src/index.ts",
   "license": "MIT",
   "sideEffects": false,
-  "type": "module",
-  "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
-  },
+  "main": "src/index.ts",
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   }
 }

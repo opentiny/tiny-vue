@@ -22,7 +22,7 @@ import {
   disabledTreeNode,
   initService
 } from './index'
-import { copyArray } from '../common/object'
+import { copyArray } from '@opentiny/utils'
 import { setMenuKey } from '../tree-menu'
 
 export const api = [

@@ -1,13 +1,13 @@
 import hooks from './adapter'
-import { isServer } from '@opentiny/vue-renderless/common/deps/dom'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { isServer } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 
 /**
  * 组合使用 Tailwind 的响应性断点状态
  *
  * @example
  * const breakpoint = useBreakpoint()
- * watch(breakpoint.current, (current) => { console.log(current) })
+ * watch(breakpoint.current, (current) => { ...... })
  */
 export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')

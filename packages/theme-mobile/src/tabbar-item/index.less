@@ -36,7 +36,7 @@
       display: block;
       min-width: 1em;
       font-size: var(--tvm-TabbarItem-icon-size, 18px);
-      fill: var(--tvm-TabbarItem-color, #666);
+      fill: var(--tvm-TabbarItem-icon-color);
     }
 
     img {
@@ -47,17 +47,17 @@
 
   &__text {
     font-size: var(--tvm-TabbarItem-text-font-size, 10px);
-    color: var(--tvm-TabbarItem-color, #666);
+    color: var(--tvm-TabbarItem-text-color);
   }
 
   &.is-active &__icon {
     .@{svg-prefix-cls} {
-      fill: var(--tvm-TabbarItem-active-color, #f04b3d);
+      fill: var(--tvm-TabbarItem-active-icon-color);
     }
   }
 
   &.is-active &__text {
-    color: var(--tvm-TabbarItem-active-color, #f04b3d);
+    color: var(--tvm-TabbarItem-active-text-color);
   }
 
   .@{info-prefix-cls} {
@@ -74,7 +74,7 @@
     font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
     line-height: 14px;
     text-align: center;
-    background-color: var(--tvm-TabbarItem-info-bgcolor, #ee0a24);
+    background-color: var(--tvm-TabbarItem-info-bg-color, #ee0a24);
     border: 1px solid #fff;
     border-radius: var(--tvm-TabbarItem-info-border-radius, 16px);
     transform: translate(50%, -50%);
@@ -85,7 +85,7 @@
     width: 8px;
     min-width: 0;
     height: 8px;
-    background-color: var(--tvm-TabbarItem-info-bgcolor, #ee0a24);
+    background-color: var(--tvm-TabbarItem-info-bg-color, #ee0a24);
     border-radius: 100%;
   }
 }

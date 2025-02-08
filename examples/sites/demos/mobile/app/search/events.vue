@@ -5,27 +5,19 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySearch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySearch
-  },
-  data() {
-    return {
-      searchValue: ''
-    }
-  },
-  methods: {
-    handleChange(obj, val) {
-      this.searchValue = val
-      console.log('当前改变的值为：' + val)
-    },
-    handleSearch(val) {
-      console.log('搜索内容为：' + val)
-    }
-  }
+const searchValue = ref('')
+
+function handleChange(obj, val) {
+  searchValue.value = val
+  console.log('当前改变的值为：' + val)
+}
+
+function handleSearch(val) {
+  console.log('搜索内容为：' + val)
 }
 </script>
 

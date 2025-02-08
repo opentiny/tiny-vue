@@ -11,154 +11,146 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyTable } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTable
+const columns = ref([
+  {
+    width: 100,
+    title: '业务',
+    field: 'business'
   },
-  data() {
-    return {
-      columns: [
-        {
-          width: 100,
-          title: '业务',
-          field: 'business'
-        },
-        {
-          width: 90,
-          title: '空间（万/年）',
-          field: 'space'
-        },
-        {
-          width: 60,
-          title: 'IDC',
-          field: 'idc'
-        },
-        {
-          width: 60,
-          title: '阿里云',
-          field: 'aliy'
-        },
-        {
-          width: 60,
-          title: '腾讯云',
-          field: 'txy'
-        }
-      ],
-      columns2: [
-        {
-          width: 100,
-          title: '业务',
-          field: 'business',
-          fixed: true
-        },
-        {
-          width: 110,
-          title: '空间（万/年）',
-          field: 'space',
-          fixed: true
-        },
-        {
-          width: 60,
-          title: 'IDC',
-          field: 'idc'
-        },
-        {
-          width: 60,
-          title: '阿里云',
-          field: 'aliy'
-        },
-        {
-          width: 60,
-          title: '腾讯云',
-          field: 'txy'
-        }
-      ],
-      columns3: [
-        {
-          width: 30,
-          title: '业务',
-          field: 'business',
-          type: 'index'
-        },
-        {
-          width: 50,
-          title: '空间（万/年）',
-          field: 'space',
-          type: 'selection'
-        },
-        {
-          width: 50,
-          title: 'IDC',
-          field: 'idc',
-          type: 'radio'
-        },
-        {
-          width: 60,
-          title: '阿里云',
-          field: 'aliy'
-        },
-        {
-          width: 60,
-          title: '腾讯云',
-          field: 'txy'
-        }
-      ],
-      tableData: [
-        {
-          id: '1',
-          business: '直播/点播源站',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        },
-        {
-          id: '1',
-          business: '大数据',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        },
-        {
-          id: '1',
-          business: 'web业务',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        },
-        {
-          id: '1',
-          business: '应用加速',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        },
-        {
-          id: '1',
-          business: '边缘计算',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        },
-        {
-          id: '1',
-          business: 'Live/点播源站',
-          space: 80,
-          idc: 80,
-          aliy: '99',
-          txy: '11'
-        }
-      ]
-    }
+  {
+    width: 90,
+    title: '空间（万/年）',
+    field: 'space'
+  },
+  {
+    width: 60,
+    title: 'IDC',
+    field: 'idc'
+  },
+  {
+    width: 60,
+    title: '阿里云',
+    field: 'aliy'
+  },
+  {
+    width: 60,
+    title: '腾讯云',
+    field: 'txy'
   }
-}
+])
+const columns2 = ref([
+  {
+    width: 100,
+    title: '业务',
+    field: 'business',
+    fixed: true
+  },
+  {
+    width: 110,
+    title: '空间（万/年）',
+    field: 'space',
+    fixed: true
+  },
+  {
+    width: 60,
+    title: 'IDC',
+    field: 'idc'
+  },
+  {
+    width: 60,
+    title: '阿里云',
+    field: 'aliy'
+  },
+  {
+    width: 60,
+    title: '腾讯云',
+    field: 'txy'
+  }
+])
+const columns3 = ref([
+  {
+    width: 30,
+    title: '业务',
+    field: 'business',
+    type: 'index'
+  },
+  {
+    width: 50,
+    title: '空间（万/年）',
+    field: 'space',
+    type: 'selection'
+  },
+  {
+    width: 50,
+    title: 'IDC',
+    field: 'idc',
+    type: 'radio'
+  },
+  {
+    width: 60,
+    title: '阿里云',
+    field: 'aliy'
+  },
+  {
+    width: 60,
+    title: '腾讯云',
+    field: 'txy'
+  }
+])
+const tableData = ref([
+  {
+    id: '1',
+    business: '直播/点播源站',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  },
+  {
+    id: '1',
+    business: '大数据',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  },
+  {
+    id: '1',
+    business: 'web业务',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  },
+  {
+    id: '1',
+    business: '应用加速',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  },
+  {
+    id: '1',
+    business: '边缘计算',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  },
+  {
+    id: '1',
+    business: 'Live/点播源站',
+    space: 80,
+    idc: 80,
+    aliy: '99',
+    txy: '11'
+  }
+])
 </script>
 
 <style scoped>

@@ -6,25 +6,16 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue-mobile'
 import { iconAdministrator } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyDropdownMenu,
-    TinyDropdownItem
-  },
-  data() {
-    return {
-      icon: iconAdministrator(),
-      value2: 'a',
-      option2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' }
-      ]
-    }
-  }
-}
+const icon = ref(iconAdministrator())
+const value2 = ref('a')
+const option2 = ref([
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' }
+])
 </script>

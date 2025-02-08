@@ -12,28 +12,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyButton } from '@opentiny/vue-mobile'
 import { iconMail } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      IconMail: iconMail(),
-      loading: false
-    }
-  },
-  methods: {
-    btnClick() {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 2000)
-    }
-  }
+const IconMail = iconMail()
+const loading = ref(false)
+
+function btnClick() {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 2000)
 }
 </script>
 

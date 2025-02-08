@@ -3,7 +3,7 @@
     <tiny-button @click="fn">cliclk me!</tiny-button>
     <tiny-mini-picker
       title="设置初始值索引"
-      ref="picker"
+      ref="pickerRef"
       @change="change"
       :columns="columns1"
       :visible="boxVisibility"
@@ -13,29 +13,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyMiniPicker, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMiniPicker,
-    TinyButton
-  },
-  data() {
-    return {
-      boxVisibility: false,
-      columns1: ['小花', '小草', '小叶', '小树', '小星', '小月']
-    }
-  },
-  methods: {
-    change() {
-      let indexes = this.$refs.picker.getIndexes()
-      let values = this.$refs.picker.getValues()
-      console.log(indexes, values)
-    },
-    fn() {
-      this.boxVisibility = true
-    }
-  }
+const boxVisibility = ref(false)
+const columns1 = ref(['小花', '小草', '小叶', '小树', '小星', '小月'])
+const pickerRef = ref()
+
+function change() {
+  let indexes = pickerRef.value.getIndexes()
+  let values = pickerRef.value.getValues()
+  console.log(indexes, values)
+}
+
+function fn() {
+  boxVisibility.value = true
 }
 </script>

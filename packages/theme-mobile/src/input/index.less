@@ -26,7 +26,7 @@
   position: relative;
 
   &__inner {
-    padding: var(--tvm-textarea-padding-vertical) var(--tvm-textarea-padding-horizontal);
+    padding: var(--tvm-textarea-padding-y) var(--tvm-textarea-padding-x);
     font-size: var(--tvm-textarea-inner-font-size, 16px);
     font-family: var(--tvm-Input-font-family);
     color: var(--tvm-textarea-inner-text-color);
@@ -61,8 +61,8 @@
 
   &__count {
     position: absolute;
-    right: var(--tvm-textarea-padding-horizontal);
-    bottom: var(--tvm-textarea-padding-vertical);
+    right: var(--tvm-textarea-padding-x);
+    bottom: var(--tvm-textarea-padding-y);
     color: var(--tvm-Input-count-text-color);
     font-size: var(--tvm-Input-count-font-size);
   }
@@ -73,7 +73,7 @@
   }
 
   &.is-showlimit &__inner {
-    padding-bottom: calc(var(--tvm-Input-count-font-size) * 1.5 + var(--tvm-textarea-padding-vertical));
+    padding-bottom: calc(var(--tvm-Input-count-font-size) * 1.5 + var(--tvm-textarea-padding-y));
   }
 
   &.is-disabled {
@@ -194,7 +194,7 @@
     order: 3;
     width: 100%;
     height: 100%;
-    padding: 0 var(--tvm-Input-padding-horizontal);
+    padding: 0 var(--tvm-Input-padding-x);
     font-size: var(--tvm-Input-font-size);
     font-family: var(--tvm-Input-font-family);
     color: var(--tvm-Input-text-color);
@@ -368,14 +368,14 @@
 
   &__prepend {
     order: 1;
-    padding: 0 var(--tvm-Input-prepend-padding-horizontal);
+    padding: 0 var(--tvm-Input-prepend-padding-x);
     color: var(--tvm-Input-prepend-text-color);
     background-color: var(--tvm-Input-prepend-bg-color);
   }
 
   &__append {
     order: 5;
-    padding: 0 var(--tvm-Input-append-padding-horizontal);
+    padding: 0 var(--tvm-Input-append-padding-x);
     color: var(--tvm-Input-append-text-color);
     background-color: var(--tvm-Input-append-bg-color);
   }
@@ -422,7 +422,7 @@
     position: absolute;
     overflow: hidden;
     font-size: 13px;
-    color: var(--tvm-common-color-error-text-1);
+    color: var(--tvm-color-error-text);
     text-overflow: ellipsis;
     bottom: -36px;
     background: var(--tvm-Input-form-bg-color-error);

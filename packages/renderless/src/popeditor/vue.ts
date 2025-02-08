@@ -10,8 +10,8 @@
  *
  */
 
-import debounce from '../common/deps/debounce'
-import userPopper from '../common/deps/vue-popper'
+import { debounce } from '@opentiny/utils'
+import { userPopper } from '@opentiny/vue-hooks'
 import {
   computedGetTitle,
   computedTreeOp,

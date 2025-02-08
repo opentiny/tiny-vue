@@ -1,4 +1,4 @@
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 import {
   panelToggle,

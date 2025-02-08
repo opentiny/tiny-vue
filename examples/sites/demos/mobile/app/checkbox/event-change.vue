@@ -4,23 +4,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyCheckbox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyCheckbox
-  },
-  data() {
-    return {
-      checked: true
-    }
-  },
-  methods: {
-    handleChange(val) {
-      console.log('当前值为：' + val)
-    }
-  }
+const checked = ref(true)
+
+function handleChange(val) {
+  console.log('当前值为：' + val)
 }
 </script>
 

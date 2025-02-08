@@ -1,4 +1,5 @@
 import { pathFromPackages } from '../build/build-ui'
+import { pathFromExamples } from './releaseE2EConfig'
 import path from 'node:path'
 import fs from 'fs-extra'
 import semver from 'semver'
@@ -35,7 +36,9 @@ const findAllpage = (packagesPath, updateVersion) => {
     })
   } else {
     const content = fs.readFileSync(packagesPath).toString('UTF-8' as BufferEncoding)
-    const result = content.replace(/@opentiny\/vue/g, '@opentinyvue/vue')
+    const result = content
+      .replace(/@opentiny\/vue/g, '@opentinyvue/vue')
+      .replace(/@opentiny\/utils/g, '@opentinyvue/utils')
 
     if (packagesPath.endsWith('package.json') && updateVersion) {
       const packageJSON = JSON.parse(result)
@@ -47,9 +50,33 @@ const findAllpage = (packagesPath, updateVersion) => {
   }
 }
 
+const releaseSiteAlpha = (updateVersion) => {
+  const PKG_PATH = pathFromExamples('sites/package.json')
+  const PKGContent = fs.readJSONSync(PKG_PATH)
+
+  PKGContent.name = PKGContent.name.replace('@opentiny', '@opentinyvue')
+  if (updateVersion) {
+    PKGContent.version = getPatchVersion(PKGContent.name, PKGContent.version)
+  }
+  PKGContent.devDependencies = { ...PKGContent.devDependencies, ...PKGContent.dependencies }
+  delete PKGContent.dependencies
+
+  fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
+}
+
 export const releaseAlpha = ({ updateVersion }) => {
-  const distLists = ['dist3/', 'dist2/', 'renderless/dist', 'theme/dist', 'theme-mobile/dist', 'theme-saas/dist']
+  const distLists = [
+    'dist3/',
+    'dist2/',
+    'renderless/dist',
+    'theme/dist',
+    'theme-mobile/dist',
+    'theme-saas/dist',
+    'utils',
+    'vue-hooks'
+  ]
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item), updateVersion)
   })
+  releaseSiteAlpha(updateVersion)
 }

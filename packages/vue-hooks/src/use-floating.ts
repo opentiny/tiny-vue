@@ -1,10 +1,6 @@
 import type { Placement, Strategy, OffsetOptions, RootBoundary, Boundary, ReferenceElement } from '@floating-ui/dom'
 import { computePosition, autoUpdate, flip, offset, shift, arrow, hide, limitShift } from '@floating-ui/dom'
 
-import { hooks } from '@opentiny/vue-common'
-
-const { reactive, watch, markRaw, onBeforeUnmount } = hooks
-
 interface IFloatOption {
   reference: null | ReferenceElement
   popper: null | HTMLElement
@@ -330,7 +326,7 @@ const emit = (state: IFloatOption, eventName: string, params?: any) => {
 }
 
 /** 快速构建虚拟元素的辅助方法， 适于右键菜单，区域选择， 跟随光标等场景 */
-const virtualEl = (x: number, y: number, w: number = 0, h: number = 0) => ({
+const virtualEl = (x: number, y: number, w = 0, h = 0) => ({
   getBoundingClientRect() {
     return {
       width: 0,
@@ -346,66 +342,68 @@ const virtualEl = (x: number, y: number, w: number = 0, h: number = 0) => ({
 })
 
 /** 响应式的弹出层管理函数，适用于场景： tooltip, poppover, select, 右键菜单, floatbar, notify, 或 canvas上跟随鼠标等 */
-export const useFloating = (option: Partial<IFloatOption> = {}) => {
-  const state = reactive(option) as IFloatOption
+export const useFloating =
+  ({ reactive, watch, markRaw, onBeforeUnmount }) =>
+  (option: Partial<IFloatOption> = {}) => {
+    const state = reactive(option) as IFloatOption
 
-  let cleanup: null | (() => void) = null
+    let cleanup: null | (() => void) = null
 
-  // 0、标准化state
-  Object.keys(defaultOption).forEach((key) => {
-    if (!Object.prototype.hasOwnProperty.call(state, key)) {
-      state[key] = defaultOption[key]
-    }
-  })
-  state._last = markRaw({}) as any
-  state._events = markRaw({ show: [], hide: [], update: [] })
+    // 0、标准化state
+    Object.keys(defaultOption).forEach((key) => {
+      if (!Object.prototype.hasOwnProperty.call(state, key)) {
+        state[key] = defaultOption[key]
+      }
+    })
+    state._last = markRaw({}) as any
+    state._events = markRaw({ show: [], hide: [], update: [] })
 
-  const watchState = () => {
-    // 1、引用和弹窗同时存在
-    if (state.popper && state.reference) {
-      // 1.1 当前需要显示， 可能是show变化了，也可能是其它任意值变化了， 都需要重新的一次update
-      if (state.show) {
-        appendPopper(state)
-        if (state.autoUpdate) {
+    const watchState = () => {
+      // 1、引用和弹窗同时存在
+      if (state.popper && state.reference) {
+        // 1.1 当前需要显示， 可能是show变化了，也可能是其它任意值变化了， 都需要重新的一次update
+        if (state.show) {
+          appendPopper(state)
+          if (state.autoUpdate) {
+            cleanup && cleanup()
+            cleanup = autoUpdatePopper(state)
+          } else {
+            updatePopper(state)
+          }
+        }
+        // 1.2 当前不需要显示
+        else {
           cleanup && cleanup()
-          cleanup = autoUpdatePopper(state)
-        } else {
-          updatePopper(state)
+          closePopper(state)
         }
       }
-      // 1.2 当前不需要显示
+      // 2、引用和弹窗不全。 可能前一次是全的，所以要释放一下
       else {
         cleanup && cleanup()
         closePopper(state)
       }
+
+      state._last.popper = state.popper
+      state._last.reference = state.reference
+      state._last.show = (state.show && state.popper && state.reference) as boolean // 真实的是否show变量
+      state._last.appendToBody = state.appendToBody
+      state._last.timestamp = new Date().getTime()
     }
-    // 2、引用和弹窗不全。 可能前一次是全的，所以要释放一下
-    else {
+
+    watch(state, watchState, { immediate: true })
+
+    const on = (eventName, cb) => state._events[eventName].push(cb)
+    const off = (eventName, cb) => (state._events[eventName] = state._events[eventName].filter((i) => i !== cb))
+
+    // 3、组件卸载前，移除元素
+    onBeforeUnmount(() => {
       cleanup && cleanup()
       closePopper(state)
-    }
+    })
 
-    state._last.popper = state.popper
-    state._last.reference = state.reference
-    state._last.show = (state.show && state.popper && state.reference) as boolean // 真实的是否show变量
-    state._last.appendToBody = state.appendToBody
-    state._last.timestamp = new Date().getTime()
+    // 4、返回state 及辅助方法
+    // 正常修改state去触发更新，但如果某些业务想在state不变时，仍想执行一次更新， 则使用forceUpdate即可
+    // 比如select 懒加载： popper, show都不变， 但popper 的大小变化了，可以forceUpdate一下。
+    // 【autoUpdate 理论上会监听 popper的resize的， 这层考虑可能是多余。】
+    return { state, on, off, virtualEl, forceUpdate: watchState }
   }
-
-  watch(state, watchState, { immediate: true })
-
-  const on = (eventName, cb) => state._events[eventName].push(cb)
-  const off = (eventName, cb) => (state._events[eventName] = state._events[eventName].filter((i) => i !== cb))
-
-  // 3、组件卸载前，移除元素
-  onBeforeUnmount(() => {
-    cleanup && cleanup()
-    closePopper(state)
-  })
-
-  // 4、返回state 及辅助方法
-  // 正常修改state去触发更新，但如果某些业务想在state不变时，仍想执行一次更新， 则使用forceUpdate即可
-  // 比如select 懒加载： popper, show都不变， 但popper 的大小变化了，可以forceUpdate一下。
-  // 【autoUpdate 理论上会监听 popper的resize的， 这层考虑可能是多余。】
-  return { state, on, off, virtualEl, forceUpdate: watchState }
-}

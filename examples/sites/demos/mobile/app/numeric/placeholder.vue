@@ -11,19 +11,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyNumeric } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyNumeric
-  },
-  data() {
-    return {
-      num1: ''
-    }
-  }
-}
+const num1 = ref('')
 </script>
 
 <style scoped>

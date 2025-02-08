@@ -10,7 +10,7 @@
  *
  */
 
-import { format } from '../common/date'
+import { formatDateByPattern as format } from '@opentiny/utils'
 
 export const init =
   ({ state, props }) =>

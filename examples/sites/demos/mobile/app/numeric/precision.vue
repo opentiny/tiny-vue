@@ -2,18 +2,10 @@
   <tiny-numeric v-model="stepNum" :precision="precision"></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyNumeric } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyNumeric
-  },
-  data() {
-    return {
-      stepNum: 1,
-      precision: 2
-    }
-  }
-}
+const stepNum = ref(1)
+const precision = ref(2)
 </script>

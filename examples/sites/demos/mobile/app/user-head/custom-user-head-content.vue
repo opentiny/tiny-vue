@@ -2,23 +2,18 @@
   <tiny-user-head>
     <div class="content">
       <span>
-        <icon-mail></icon-mail>
+        <tiny-icon-mail></tiny-icon-mail>
       </span>
       Mail
     </div>
   </tiny-user-head>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyUserHead } from '@opentiny/vue-mobile'
 import { iconMail } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyUserHead,
-    IconMail: iconMail()
-  }
-}
+const TinyIconMail = iconMail()
 </script>
 
 <style scoped>

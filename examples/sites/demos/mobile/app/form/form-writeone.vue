@@ -5,7 +5,7 @@
       <p class="page__desc">表单（文本框）</p>
     </div>
     <div class="demo-form-writeone-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120px" :hide-required-asterisk="true">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="120px" :hide-required-asterisk="true">
         <tiny-form-item label="标题" prop="title1" vertical>
           <tiny-input v-model="createData.title1" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
@@ -32,7 +32,7 @@
     </div>
     <div class="demo-form-writeone-padds">
       <tiny-form
-        ref="ruleForm1"
+        ref="ruleForm1Ref"
         :model="createData"
         :rules="rules"
         label-width="60px"
@@ -70,40 +70,30 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput, TinyDialogBox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyForm,
-    TinyFormItem,
-    TinyInput,
-    TinyDialogBox
-  },
-  data() {
-    return {
-      rules: {
-        title3: [{ required: true, message: '错误信息文本，右对齐', trigger: 'change' }],
-        title5: [{ required: true, message: '错误信息文本左对齐', trigger: 'change' }]
-      },
-      createData: {
-        title1: '',
-        title2: '已填写有内容',
-        title3: '',
-        title4: ''
-      },
-      boxVisibility: false
+const rules = ref({
+  title3: [{ required: true, message: '错误信息文本，右对齐', trigger: 'change' }],
+  title5: [{ required: true, message: '错误信息文本左对齐', trigger: 'change' }]
+})
+const createData = ref({
+  title1: '',
+  title2: '已填写有内容',
+  title3: '',
+  title4: ''
+})
+const boxVisibility = ref(false)
+const formNameRef = ref()
+
+function handleSubmit(formName) {
+  // FIXIME $refs自动转换失败，请手工修改
+$refs[formName].validate((valid) => {
+    if (valid) {
+      boxVisibility.value = true
     }
-  },
-  methods: {
-    handleSubmit(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.boxVisibility = true
-        }
-      })
-    }
-  }
+  })
 }
 </script>
 

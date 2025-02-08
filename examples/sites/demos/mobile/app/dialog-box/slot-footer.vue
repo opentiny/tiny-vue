@@ -15,18 +15,9 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyDialogBox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyDialogBox
-  },
-  data() {
-    return {
-      boxVisibility: false
-    }
-  }
-}
+const boxVisibility = ref(false)
 </script>

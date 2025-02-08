@@ -8,7 +8,7 @@ import {
   filterInput,
   computeData
 } from './index'
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 
 export const api = ['state', 'setIsCurrent', 'filterNodes', 'filterInput']
 const initState = ({ reactive, computed, props, api }) => {

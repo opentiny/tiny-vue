@@ -10,20 +10,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyButton } from '@opentiny/vue-mobile'
 import { iconMail } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      IconMail: iconMail()
-    }
-  }
-}
+const IconMail = iconMail()
 </script>
 
 <style scoped>

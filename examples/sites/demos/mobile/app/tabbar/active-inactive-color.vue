@@ -9,23 +9,14 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue-mobile'
 import { iconDialog, iconEmailAdd, iconGroup, iconSetting } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyTabbar,
-    TinyTabbarItem
-  },
-  data() {
-    return {
-      activeName: 3,
-      IconDialog: iconDialog(),
-      IconEmailAdd: iconEmailAdd(),
-      IconGroup: iconGroup(),
-      IconSetting: iconSetting()
-    }
-  }
-}
+const activeName = ref(3)
+const IconDialog = iconDialog()
+const IconEmailAdd = iconEmailAdd()
+const IconGroup = iconGroup()
+const IconSetting = iconSetting()
 </script>

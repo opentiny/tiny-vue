@@ -2,19 +2,18 @@
   <div id="demo-loading"></div>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from 'vue'
 import { TinyLoading } from '@opentiny/vue-mobile'
 
-export default {
-  mounted() {
-    TinyLoading.service({
-      text: '自定义 loading 类名',
-      customClass: 'my-loading',
-      target: document.getElementById('demo-loading'),
-      tiny_mode: 'mobile'
-    })
-  }
-}
+onMounted(() => {
+  TinyLoading.service({
+    text: '自定义 loading 类名',
+    customClass: 'my-loading',
+    target: document.getElementById('demo-loading'),
+    tiny_mode: 'mobile'
+  })
+})
 </script>
 
 <style scoped>

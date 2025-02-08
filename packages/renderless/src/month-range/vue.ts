@@ -26,7 +26,7 @@ import {
   handleShortcutClick,
   doPick
 } from './index'
-import { nextYear } from '../common/deps/date-util'
+import { nextYear } from '@opentiny/utils'
 
 export const api = [
   'state',

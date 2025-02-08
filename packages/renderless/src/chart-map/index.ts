@@ -12,7 +12,7 @@
 
 import { getFormated, getMapJSON, getLegend as getLegendMap } from '../chart-core/deps/utils'
 import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 const getTooltip = ({ dataType, digit, dataStore, metrics, color, labelMap }) => {
   function formatter(item) {

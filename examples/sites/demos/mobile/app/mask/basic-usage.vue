@@ -8,25 +8,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyMask, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMask,
-    TinyButton
-  },
-  data() {
-    return {
-      visible: false,
-      showMsg: false
-    }
-  },
-  methods: {
-    handleClick() {
-      this.showMsg = true
-    }
-  }
+const visible = ref(false)
+const showMsg = ref(false)
+
+function handleClick() {
+  showMsg.value = true
 }
 </script>
 

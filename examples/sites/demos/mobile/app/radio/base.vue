@@ -5,19 +5,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyRadio } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyRadio
-  },
-  data() {
-    return {
-      value: false
-    }
-  }
-}
+const value = ref(false)
 </script>
 
 <style>

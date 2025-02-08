@@ -18,23 +18,13 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyDialogBox, TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyDialogBox,
-    TinyInput
-  },
-  data() {
-    return {
-      boxVisibility1: false,
-      boxVisibility2: false,
-      input: ''
-    }
-  }
-}
+const boxVisibility1 = ref(false)
+const boxVisibility2 = ref(false)
+const input = ref('')
 </script>
 
 <style>

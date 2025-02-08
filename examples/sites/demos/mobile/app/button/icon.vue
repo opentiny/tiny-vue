@@ -10,25 +10,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyButton } from '@opentiny/vue-mobile'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      IconDel: iconDel(),
-      IconYes: iconYes(),
-      IconEdit: iconEdit(),
-      IconMail: iconMail(),
-      IconStarO: iconStarO(),
-      IconSearch: iconSearch()
-    }
-  }
-}
+const IconDel = iconDel()
+const IconYes = iconYes()
+const IconEdit = iconEdit()
+const IconMail = iconMail()
+const IconStarO = iconStarO()
+const IconSearch = iconSearch()
 </script>
 
 <style scoped>

@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -23,11 +24,11 @@
  *
  */
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
-import { toDecimal } from '@opentiny/vue-renderless/common/string'
-import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
+import { toDecimal } from '@opentiny/utils'
+import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 import {
   isNumber,
   filterTree,
@@ -1644,8 +1645,10 @@ const Methods = {
       // 设置新的渲染列触发Vue渲染
       this.tableColumn = ret.tableColumn
       this.visibleColumnChanged = ret.visibleColumnChanged
-
-      this.$nextTick(this.updateStyle)
+      this.$nextTick(() => {
+        this.updateFooter()
+        this.updateStyle()
+      })
     })
   },
   // 更新横向 X 可视渲染上下剩余空间大小

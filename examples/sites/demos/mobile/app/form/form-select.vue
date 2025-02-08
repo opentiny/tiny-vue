@@ -5,7 +5,7 @@
       <p class="page__desc">表单（选择）</p>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules">
         <tiny-form-item label="标题">
           <tiny-input
             v-model="createData.user1"
@@ -18,7 +18,7 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
           <tiny-input
             v-model="createData.user1"
@@ -31,7 +31,7 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
           <tiny-input
             v-model="createData.user1"
@@ -47,7 +47,7 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
           <tiny-input
             v-model="createData.user1"
@@ -81,7 +81,7 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="top">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-position="top">
         <tiny-form-item label="标题" vertical>
           <tiny-input
             v-model="createData.user2"
@@ -116,50 +116,39 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyForm,
-    TinyFormItem,
-    TinyInput
+const menus = ref([
+  {
+    id: '小花',
+    label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
   },
-  data() {
-    return {
-      menus: [
-        {
-          id: '小花',
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-        },
-        {
-          id: '小树',
-          label: '我是小树'
-        },
-        {
-          id: '小草',
-          label: '我是小草'
-        },
-        {
-          id: '小叶',
-          label: '我是小叶',
-          warn: true
-        }
-      ],
-      createData: {
-        users: '',
-        user1: '',
-        user2: '',
-        user3: '',
-        user4: ''
-      },
-      rules: {
-        users: [{ required: true, message: '必填', trigger: 'change' }]
-      }
-    }
+  {
+    id: '小树',
+    label: '我是小树'
   },
-  methods: {}
-}
+  {
+    id: '小草',
+    label: '我是小草'
+  },
+  {
+    id: '小叶',
+    label: '我是小叶',
+    warn: true
+  }
+])
+const createData = ref({
+  users: '',
+  user1: '',
+  user2: '',
+  user3: '',
+  user4: ''
+})
+const rules = ref({
+  users: [{ required: true, message: '必填', trigger: 'change' }]
+})
 </script>
 
 <style scoped>

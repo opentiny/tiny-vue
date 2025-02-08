@@ -15,28 +15,15 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyModal, TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyModal,
-    TinyForm,
-    TinyFormItem,
-    TinyInput
-  },
-  data() {
-    return {
-      value1: false,
-      createData: {
-        username: '',
-        password: ''
-      }
-    }
-  },
-  methods: {
-    closeClick() {}
-  }
-}
+const value1 = ref(false)
+const createData = ref({
+  username: '',
+  password: ''
+})
+
+function closeClick() {}
 </script>

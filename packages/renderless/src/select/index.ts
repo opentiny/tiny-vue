@@ -1,22 +1,23 @@
-import { find } from '../common/array'
-import { getObj, isEqual } from '../common/object'
-import { isKorean } from '../common/string'
-import scrollIntoView from '../common/deps/scroll-into-view'
-import PopupManager from '../common/deps/popup-manager'
-import debounce from '../common/deps/debounce'
-import { getDataset } from '../common/dataset'
-import Memorize from '../common/deps/memorize'
-import { isEmptyObject } from '../common/type'
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
-import { extend } from '../common/object'
-import { BROWSER_NAME } from '../common'
-import browserInfo from '../common/browser'
-import { isNull } from '../common/type'
-import { fastdom } from '../common/deps/fastdom'
+/* eslint-disable unused-imports/no-unused-vars */
+import { find } from '@opentiny/utils'
+import { getObj, isEqual } from '@opentiny/utils'
+import { isKorean } from '@opentiny/utils'
+import { scrollIntoView } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { Memorize } from '@opentiny/utils'
+import { isEmptyObject } from '@opentiny/utils'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
+import { extend } from '@opentiny/utils'
+import { BROWSER_NAME } from '@opentiny/utils'
+import { browserInfo } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 import { deepClone } from '../picker-column'
 import { escapeRegexpString } from '../option'
-import { correctTarget } from '../common/event'
-import { isBrowser } from '../common/browser'
+import { correctTarget } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -2398,7 +2399,7 @@ export const watchInitValue =
 export const watchShowClose =
   ({ nextTick, state, parent }) =>
   () => {
-    if (!isBrowser) return
+    if (isServer) return
     nextTick(() => {
       const parentEl = parent.$el
       const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')

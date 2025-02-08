@@ -52,7 +52,9 @@ export default defineConfig((config) => {
           ...['icon', 'icon-saas'].map((lib) => ({
             libraryName: `@opentiny/vue-${lib}`,
             customName: (name: string) => {
-              return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
+              return name === 'default'
+                ? `@opentiny/vue-${lib}$`
+                : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}/index.ts`
             }
           }))
         ],
@@ -82,6 +84,7 @@ export default defineConfig((config) => {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
+        '@mobile-root': pathFromWorkspaceRoot('packages/mobile'),
         '@vue/composition-api': path.resolve('node_modules/@vue/composition-api'),
         'vue': path.resolve('node_modules/vue/dist/vue.esm.js'),
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),

@@ -11,7 +11,7 @@
  */
 import type { PropType } from 'vue'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export const $constants = {
   RADIO_GROUP: 'RadioGroup'

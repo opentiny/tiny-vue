@@ -18,35 +18,27 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyPullRefresh } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyPullRefresh
-  },
-  data() {
-    return {
-      data: [...Array(30)].map((i, index) => {
-        return { label: `${index} list data` }
-      }),
-      value: true,
-      hasMore: true
-    }
-  },
-  methods: {
-    handlerPullUpLoad() {
-      setTimeout(() => {
-        this.value = false
-        this.hasMore = false
-      }, 3000)
-    },
-    handlerPullDownRefresh() {
-      setTimeout(() => {
-        this.value = false
-      }, 3000)
-    }
-  }
+const data = ref([...Array(30)].map((i, index) => {
+  return { label: `${index} list data` }
+}))
+const value = ref(true)
+const hasMore = ref(true)
+
+function handlerPullUpLoad() {
+  setTimeout(() => {
+    value.value = false
+    hasMore.value = false
+  }, 3000)
+}
+
+function handlerPullDownRefresh() {
+  setTimeout(() => {
+    value.value = false
+  }, 3000)
 }
 </script>
 

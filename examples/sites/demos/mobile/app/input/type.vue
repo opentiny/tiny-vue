@@ -15,33 +15,25 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      text: '',
-      password: '',
-      textarea: '',
-      email: '',
-      number: '',
-      tel: '',
-      url: '',
-      color: '#000000',
-      date: '',
-      month: '',
-      week: '',
-      datetime: '',
-      time: '',
-      file: '',
-      range: ''
-    }
-  }
-}
+const text = ref('')
+const password = ref('')
+const textarea = ref('')
+const email = ref('')
+const number = ref('')
+const tel = ref('')
+const url = ref('')
+const color = ref('#000000')
+const date = ref('')
+const month = ref('')
+const week = ref('')
+const datetime = ref('')
+const time = ref('')
+const file = ref('')
+const range = ref('')
 </script>
 
 <style scoped>

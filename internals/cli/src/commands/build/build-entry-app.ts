@@ -112,6 +112,7 @@ const notSimpleComponents = [
   'QueryBuilder',
   'RichText',
   'RichTextEditor',
+  'TimeLineNew',
   'River',
   'TextPopup',
   'ToggleMenu',

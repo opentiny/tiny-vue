@@ -330,12 +330,16 @@ export default {
         {
           name: 'show-close',
           type: 'Boolean',
-          defaultValue: '',
+          defaultValue: 'true',
           desc: {
             'zh-CN': '是否显示关闭按钮，默认值为 true',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          meta: {
+            stable: '3.22.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'modal-other',
           mfDemo: ''
         },
         {

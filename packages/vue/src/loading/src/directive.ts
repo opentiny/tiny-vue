@@ -9,9 +9,9 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import afterLeave from '@opentiny/vue-renderless/common/deps/after-leave'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { addClass, getStyle, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { afterLeave } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { addClass, getStyle, removeClass } from '@opentiny/utils'
 import Loading from './index'
 import { hooks, directive, createComponent, appProperties } from '@opentiny/vue-common'
 import { constants, defaults } from './service'

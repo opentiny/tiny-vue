@@ -4,38 +4,30 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
+const input = ref('hello mobile')
+const menus = ref([
+  {
+    id: 1,
+    label: '很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。'
   },
-  data() {
-    return {
-      input: 'hello mobile',
-      menus: [
-        {
-          id: 1,
-          label: '很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。很长的选项。'
-        },
-        {
-          id: 2,
-          label: '选项2'
-        },
-        {
-          id: 3,
-          label: '选项3'
-        },
-        {
-          id: 4,
-          label: 'warn 为true的选项',
-          warn: true
-        }
-      ]
-    }
+  {
+    id: 2,
+    label: '选项2'
+  },
+  {
+    id: 3,
+    label: '选项3'
+  },
+  {
+    id: 4,
+    label: 'warn 为true的选项',
+    warn: true
   }
-}
+])
 </script>
 
 <style scoped>

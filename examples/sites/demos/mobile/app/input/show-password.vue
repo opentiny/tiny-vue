@@ -4,19 +4,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      input: 'abcdefg'
-    }
-  }
-}
+const input = ref('abcdefg')
 </script>
 
 <style scoped>

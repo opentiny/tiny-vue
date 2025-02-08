@@ -10,7 +10,7 @@
  *
  */
 
-import debounce from '../common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import {
   computedShowEmptyText,
   closeMenu,
@@ -79,7 +79,7 @@ import {
   handleClickPlainNode,
   setCheckedByNodeKey
 } from './index'
-import { random } from '../common/string'
+import { random } from '@opentiny/utils'
 
 export const api = [
   'state',

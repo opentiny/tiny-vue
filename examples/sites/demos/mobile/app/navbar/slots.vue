@@ -2,26 +2,18 @@
   <tiny-nav-bar>
     自定义标题
     <template #left>
-      <icon-arrow-left></icon-arrow-left>
+      <tiny-icon-arrow-left></tiny-icon-arrow-left>
     </template>
     <template #right>
-      <icon-more></icon-more>
+      <tiny-icon-more></tiny-icon-more>
     </template>
   </tiny-nav-bar>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyNavBar } from '@opentiny/vue-mobile'
 import { iconArrowLeft, iconMore } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyNavBar,
-    IconArrowLeft: iconArrowLeft(),
-    IconMore: iconMore()
-  },
-  data() {
-    return {}
-  }
-}
+const TinyIconArrowLeft = iconArrowLeft()
+const TinyIconMore = iconMore()
 </script>

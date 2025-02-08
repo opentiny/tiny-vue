@@ -1,4 +1,4 @@
-import { isBrowser } from '../common/browser'
+import { isServer } from '@opentiny/utils'
 
 const DEFAULT_DURATION = 200
 
@@ -42,7 +42,7 @@ export const setRollerStyle =
 export const onTouchStart =
   ({ state, props, touch, vm }) =>
   (event) => {
-    if (!isBrowser) return
+    if (isServer) return
     touch.start(event)
     if (state.moving) {
       const dom = vm.$refs.roller

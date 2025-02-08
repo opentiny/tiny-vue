@@ -10,7 +10,7 @@
  *
  */
 
-import { isDate, modifyWithTimeString, prevYear, nextYear, nextMonth } from '../common/deps/date-util'
+import { isDate1 as isDate, modifyWithTimeString, prevYear, nextYear, nextMonth1 as nextMonth } from '@opentiny/utils'
 
 export const calcDefaultValue = (defaultValue) => {
   if (Array.isArray(defaultValue)) {

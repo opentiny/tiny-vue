@@ -9,14 +9,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyAlert } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyAlert
-  }
-}
+
 </script>
 
 <style scoped>

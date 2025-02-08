@@ -25,7 +25,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--tvm-MiniPicker-mask-background, rgba(0, 0, 0, 0.6));
+    background: var(--tvm-MiniPicker-mask-bg-color, rgba(0, 0, 0, 0.6));
     z-index: 1000;
   }
 
@@ -34,7 +34,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--tvm-MiniPicker-content-bgcolor, #ddd);
+    background-color: var(--tvm-MiniPicker-content-bg-color, #ddd);
     transform: translate(0, 100%);
     backface-visibility: hidden;
     transition: transform 0.3s;
@@ -51,7 +51,7 @@
     height: var(--tvm-MiniPicker-toolbar-height, 44px);
     line-height: var(--tvm-MiniPicker-toolbar-height, 44px);
     padding: 0 17px;
-    background-color: var(--tvm-MiniPicker-toolbar-bgcolor, #fff);
+    background-color: var(--tvm-MiniPicker-toolbar-bg-color, #fff);
     font-size: var(--tvm-MiniPicker-toolbar-font-size, 14px);
     text-align: center;
     .hairline(
@@ -62,16 +62,16 @@
     .picker_action {
       display: block;
       flex: 1;
-      color: var(--tvm-MiniPicker-toolbar-action-color, #039be5);
+      color: var(--tvm-MiniPicker-toolbar-action-text-color, #039be5);
     }
 
     .picker_cancel {
-      color: var(--tvm-MiniPicker-toolbar-cancel-color, #666);
+      color: var(--tvm-MiniPicker-toolbar-cancel-text-color, #666);
       text-align: left;
     }
 
     .picker_title {
-      color: var(--tvm-MiniPicker-toolbar-title-color, #333);
+      color: var(--tvm-MiniPicker-toolbar-title-text-color, #333);
       font-size: var(--tvm-MiniPicker-toolbar-title-font-size, 17px);
       font-family: 'PingFangSC-Regular';
     }
@@ -85,7 +85,7 @@
     position: relative;
     display: flex;
     height: 238px;
-    background-color: var(--tvm-MiniPicker-columns-bgcolor, #fff);
+    background-color: var(--tvm-MiniPicker-columns-bg-color, #fff);
     overflow: hidden;
   }
 }

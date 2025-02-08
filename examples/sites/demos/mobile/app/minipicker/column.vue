@@ -3,7 +3,7 @@
     <tiny-button @click="fn">cliclk me!</tiny-button>
     <tiny-mini-picker
       title="触发change事件"
-      ref="picker"
+      ref="pickerRef"
       @confirm="getVal"
       :columns="columns1"
       :visible="boxVisibility"
@@ -12,33 +12,25 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyMiniPicker, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMiniPicker,
-    TinyButton
-  },
-  data() {
-    return {
-      optionIndex: '0',
-      boxVisibility: false,
-      columns1: ['小花', '小草', '小叶', '小树', '小星', '小月']
-    }
-  },
-  methods: {
-    fn() {
-      this.boxVisibility = true
-    },
-    getVal() {
-      const values = this.$refs.picker.getColumnValues(this.optionIndex)
-      const value = this.$refs.picker.getColumnValue(this.optionIndex)
-      const index = this.$refs.picker.getColumnIndex(this.optionIndex)
-      console.log('对应列中所有选项', values)
-      console.log('对应列选中的值:', value)
-      console.log('对应列选中项的索引', index)
-    }
-  }
+const optionIndex = ref('0')
+const boxVisibility = ref(false)
+const columns1 = ref(['小花', '小草', '小叶', '小树', '小星', '小月'])
+const pickerRef = ref()
+
+function fn() {
+  boxVisibility.value = true
+}
+
+function getVal() {
+  const values = pickerRef.value.getColumnValues(optionIndex.value)
+  const value = pickerRef.value.getColumnValue(optionIndex.value)
+  const index = pickerRef.value.getColumnIndex(optionIndex.value)
+  console.log('对应列中所有选项', values)
+  console.log('对应列选中的值:', value)
+  console.log('对应列选中项的索引', index)
 }
 </script>

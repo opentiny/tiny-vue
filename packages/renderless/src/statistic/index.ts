@@ -1,4 +1,4 @@
-import { isFunction } from '../common/type'
+import { isFunction } from '@opentiny/utils'
 
 export const isNumber =
   ({ props }) =>

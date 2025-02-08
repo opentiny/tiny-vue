@@ -26,7 +26,7 @@
     display: flex;
     border-radius: var(--tvm-UploadList-item-border-radius, 2px);
     margin: 0 10px 8px 10px;
-    background-color: var(--tvm-UploadList-item-bgcolor, #f9f9f9);
+    background-color: var(--tvm-UploadList-item-bg-color, #f9f9f9);
     line-height: 48px;
 
     &:focus {
@@ -34,7 +34,7 @@
     }
 
     .icon-close {
-      fill: var(--tvm-UploadList-icon-close-color, #606266);
+      fill: var(--tvm-UploadList-icon-color-close, #606266);
       font-size: var(--tvm-UploadList-icon-size, 24px);
       opacity: 0.75;
       cursor: pointer;
@@ -56,8 +56,8 @@
     float: left;
 
     .card-close {
-      font-size: var(--tvm-UploadList-picture-card-close-size, 16px);
-      fill: var(--tvm-UploadList-picture-card-close-color, #f36f64);
+      font-size: var(--tvm-UploadList-picture-card-close-icon-size, 16px);
+      fill: var(--tvm-UploadList-picture-card-close-icon-color, #f36f64);
       position: absolute;
       top: 0;
       right: 0;
@@ -141,20 +141,20 @@
 
     .file-name {
       margin-top: 4px;
-      color: var(--tvm-UploadList-file-name-color, #333);
-      font-size: var(--tvm-UploadList-file-name-font-size, 14px);
+      color: var(--tvm-UploadList-file-name-text-color);
+      font-size: var(--tvm-UploadList-file-name-font-size);
       line-height: 1.42857143;
     }
 
     .file-size {
-      color: var(--tvm-UploadList-file-size-color, #999);
-      font-size: var(--tvm-UploadList-file-size-font-size, 12px);
+      color: var(--tvm-UploadList-file-size-text-color);
+      font-size: var(--tvm-UploadList-file-size-font-size);
       line-height: 1.41666667;
     }
   }
 
   .@{progress-prefix-cls}-bar__outer {
-    background-color: var(--tvm-UploadList-progress-outer-bgcolor, #e6e6e6);
+    background-color: var(--tvm-UploadList-progress-outer-bg-color, #e6e6e6);
   }
 
   .@{image-viewer-prefix-cls}__btn {

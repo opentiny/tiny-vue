@@ -11,27 +11,18 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyMiniPicker, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMiniPicker,
-    TinyButton
-  },
-  data() {
-    return {
-      boxVisibility: false,
-      columns1: ['小花', '小草', '小叶', '小树', '小星', '小月']
-    }
-  },
-  methods: {
-    fn() {
-      this.boxVisibility = true
-    },
-    Echange(value) {
-      console.log(value, '改变后的值')
-    }
-  }
+const boxVisibility = ref(false)
+const columns1 = ref(['小花', '小草', '小叶', '小树', '小星', '小月'])
+
+function fn() {
+  boxVisibility.value = true
+}
+
+function Echange(value) {
+  console.log(value, '改变后的值')
 }
 </script>

@@ -10,17 +10,17 @@
  *
  */
 
-import { formatDate } from '../common/deps/date-util'
+import { formatDate } from '@opentiny/utils'
 import {
   getFirstDayOfMonth,
   getDayCountOfMonth,
   getWeekNumber,
   prevDate,
   nextDate,
-  isDate,
+  isDate1 as isDate,
   clearTime
-} from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
+} from '@opentiny/utils'
+import { DATEPICKER } from '@opentiny/utils'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
   const nodfpm = day + offset <= 0 ? 7 + day + offset : day + offset
