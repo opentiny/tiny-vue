@@ -1,5 +1,5 @@
 <template>
-  <ComponentDocs>
+  <ComponentDocs :load-data="loadData" @single-demo-change="changeDemo" @load-page="pageInit">
     <template #main-right>
       <div class="mobile-view-container">
         <!-- 移动端展示内容 -->
@@ -15,10 +15,45 @@
 
 <script setup>
 import { ref } from 'vue'
+import { router } from '@/router.js'
+import { fetchDemosFile } from '@/tools'
 import ComponentDocs from './components.vue'
+import { getWebdocPath } from './cmp-config'
+
+const baseUrl = import.meta.env.BASE_URL
+const loadData = ({ cmpId, lang }) => {
+  const promiseArr = [
+    fetchDemosFile(`@demos/app/${getWebdocPath(cmpId)}/webdoc/${cmpId}.${lang}.md`),
+    import(
+      /* @vite-ignore */
+      `${baseUrl}@demos/app/${getWebdocPath(cmpId)}/webdoc/${cmpId}.js`
+    )
+  ]
+
+  return Promise.all(promiseArr).then(([mdString, cmpJson]) => {
+    return {
+      mdString,
+      apisJson: cmpJson.default,
+      demosJson: cmpJson.default
+    }
+  })
+}
 
 const iframeUrl = ref('')
 const iframeRef = ref()
+
+const changeDemo = (demo) => {
+  const { cmpId } = router.currentRoute.value.params
+  const frameWindow = iframeRef.value.contentWindow
+  frameWindow.postMessage({ from: 'tiny-vue-site', component: cmpId, demo: demo.codeFiles[0] })
+  router.push(`#${demo.demoId}`)
+}
+
+const mobilePreview = import.meta.env.VITE_MOBILE_URL
+const pageInit = (demo) => {
+  const { cmpId } = router.currentRoute.value.params
+  iframeUrl.value = `${mobilePreview}?component=${cmpId}&demo=${demo.codeFiles[0]}`
+}
 </script>
 
 <style scoped lang="less">

@@ -99,15 +99,17 @@ import AsideAnchor from './anchor.vue'
 import ComponentHeader from './header.vue'
 import ComponentContributor from './contributor.vue'
 import ApiDocs from './api-docs.vue'
+import useTasksFinish from './composition/useTasksFinish'
 
 defineOptions({
   name: 'CmpPageVue'
 })
 
+const props = defineProps({ loadData: {} })
+
 const scrollRef = ref()
 const { apiModeState } = useApiMode()
 const { templateModeState, staticPath, optionsList } = useTemplateMode()
-const iframeRef = ref()
 const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
 const route = useRoute()
@@ -129,9 +131,14 @@ const state = reactive({
   showApiTab: computed(() => state.currApiTypes.length),
   chartCode: false
 })
-let finishNum = ref(0)
-let isAllMounted = ref(false)
-let demoMountedResolve
+
+const emit = defineEmits(['single-demo-change', 'load-page'])
+watch(
+  () => state.singleDemo,
+  (val) => {
+    emit('single-demo-change', val)
+  }
+)
 
 watch(
   () => router.currentRoute.value.params.cmpId,
@@ -172,34 +179,9 @@ onMounted(() => {
   setScrollListener()
 })
 
-const demoMounted = () => {
-  finishNum.value++
-  if (finishNum.value === state.currJson.demos.length) {
-    isAllMounted.value = true
-    demoMountedResolve(true)
-  }
-}
-
-const getIframeContent = (demoId, demoName) => {
-  const frameWindow = iframeRef.value.contentWindow
-  frameWindow.postMessage({ from: 'tiny-vue-site', component: state.cmpId, demo: demoName })
-  router.push(`#${demoId}`)
-}
-
 const getIframeDemo = (demo) => {
-  if (demo?.codeFiles.length > 0) {
-    getIframeContent(demo.demoId, demo.codeFiles[0])
-    state.currDemoId = demo.demoId
-  }
-}
-
-const allDemoMounted = async () => {
-  if (isAllMounted.value) {
-    return isAllMounted.value
-  }
-  return new Promise((resolve) => {
-    demoMountedResolve = resolve
-  })
+  state.singleDemo = demo
+  state.currDemoId = demo.demoId
 }
 
 // 封装api表格数据
@@ -294,64 +276,41 @@ const scrollToLayoutTop = () => {
   }
 }
 
+let finishMountTask
+const demoMounted = () => {
+  finishMountTask()
+}
+
 // saas下切换mode和组价示例都会触发loadPage,需要防抖
 const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
   const lang = getWord('cn', 'en')
   state.cmpId = router.currentRoute.value.params.cmpId
 
-  // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
-  // const testUrl = `/@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
-  const testUrl = `https://res.hc-cdn.com/tiny-vue-web-doc/3.20.7.20250117141151/@demos/apis/cascader.js`
-  const promiseArr = [
-    fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
-    null,
-    fetchDemosFile(
-      `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
-    ),
-    import(
-      /* @vite-ignore */
-      testUrl
-    )
-  ]
-
   state.chartCode = getWebdocPath(state.cmpId) === 'chart'
 
-  // 兼容ts文档
-  if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
-    state.activeTab = 'api'
-  } else {
-    promiseArr[1] = fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
-  }
-
-  Promise.all(promiseArr).then(([mdData, jsData, apiData, testImport]) => {
+  // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
+  props.loadData({ cmpId: state.cmpId, lang }).then(({ mdString, apisJson, demosJson }) => {
     // 1、加载顶部md
-    state.mdString = mdData
-
-    // 3、加载cmpId.js 文件
-    // eslint-disable-next-line no-eval
-    const json = jsData ? eval('(' + jsData.slice(15) + ')') : {}
+    state.mdString = mdString
 
     // 默认设置每个实例demo都不和视图相交
-    json.demos?.forEach((item) => {
+    demosJson.demos?.forEach((item) => {
       item.isIntersecting = false
     })
-
     state.currJson = {
-      ...json,
-      demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
-      column: json.column || '1' // columns可能为空
+      ...demosJson,
+      demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
+      column: demosJson.column || '1' // columns可能为空
     }
 
-    if (apiData) {
-      // eslint-disable-next-line no-eval
-      let apiJson = eval('(' + apiData.slice(15) + ')')
+    const { finishTask, waitTasks: allDemoMounted } = useTasksFinish(state.currJson.demos.length)
+    finishMountTask = finishTask
+
+    if (apisJson) {
       // pc、mobile、mobile-first三种模式
       const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
       const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
-      if (demoMode === 'mobile') {
-        apiJson = json
-      }
-      state.currJson.apis = apiJson.apis.map((item) => {
+      state.currJson.apis = apisJson.apis.map((item) => {
         Object.keys(item).forEach((key) => {
           const apiItem = item[key]
           if (Array.isArray(apiItem)) {
@@ -363,7 +322,7 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
         return item
       })
       state.currJson.types =
-        apiJson.types?.reduce((res, cur) => {
+        apisJson.types?.reduce((res, cur) => {
           res[cur.name] = cur
           return res
         }, {}) || {}
@@ -372,24 +331,13 @@ const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
 
     let hash = router.currentRoute.value.hash?.slice(1)
 
-    // 单demo处理，如果有hash,取hash的demo, 没有hash, 取第1项
-    if (hash) {
-      state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-      if (!state.singleDemo) {
-        state.singleDemo = state.currJson.demos[0]
-      }
-    } else {
+    // 如果有hash,取hash的demo, 没有hash, 取第1项
+    state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+    if (!state.singleDemo) {
       state.singleDemo = state.currJson.demos[0]
     }
 
-    if (demoConfig.isMobile && !hash) {
-      // 初始化iframe,当前组件第一个demo展示
-      state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${
-        state.currJson?.demos[0].codeFiles[0]
-      }`
-    } else {
-      state.iframeUrl = `${import.meta.env.VITE_MOBILE_URL}?component=${state.cmpId}&demo=${hash}.vue`
-    }
+    emit('load-page', state.singleDemo)
 
     // F5刷新加载时，跳到当前示例
     // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
@@ -465,12 +413,6 @@ const jumpToDemo = (demoId) => {
 
 // 目录列表上的点击
 const handleAnchorClick = (e, data) => {
-  if (demoConfig.isMobile) {
-    // 点击目录列表更新iframe显示
-    const hashId = data.link.slice(1)
-    getIframeContent(state.cmpId, hashId + '.vue')
-  }
-
   if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
     e.preventDefault()
     const hash = data.link.slice(1)
