@@ -5,21 +5,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 import { iconSearch } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      value: '',
-      IconSearch: iconSearch()
-    }
-  }
-}
+const value = ref('')
+const IconSearch = iconSearch()
 </script>
 
 <style scoped>

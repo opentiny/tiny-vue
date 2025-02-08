@@ -7,100 +7,96 @@
     <h3 class="title">12*12</h3>
     <div class="icon-demo">
       <div>
-        <icon-share class="size12 ico"></icon-share>
+        <tiny-icon-share class="size12 ico"></tiny-icon-share>
         <p>IconShare</p>
       </div>
       <div>
-        <icon-del class="size12 ico"></icon-del>
+        <tiny-icon-del class="size12 ico"></tiny-icon-del>
         <p>IconDel</p>
       </div>
       <div>
-        <icon-writing class="size12 ico"></icon-writing>
+        <tiny-icon-writing class="size12 ico"></tiny-icon-writing>
         <p>IconWriting</p>
       </div>
       <div>
-        <icon-ascending class="size12 ico"></icon-ascending>
+        <tiny-icon-ascending class="size12 ico"></tiny-icon-ascending>
         <p>IconAscending</p>
       </div>
       <div>
-        <icon-clock-work class="size12 ico"></icon-clock-work>
+        <tiny-icon-clock-work class="size12 ico"></tiny-icon-clock-work>
         <p>IconClockWork</p>
       </div>
       <div>
-        <icon-calculator class="size12 ico"></icon-calculator>
+        <tiny-icon-calculator class="size12 ico"></tiny-icon-calculator>
         <p>IconCalculator</p>
       </div>
     </div>
     <h3 class="title">16*16</h3>
     <div class="icon-demo">
       <div>
-        <icon-share class="size16 ico"></icon-share>
+        <tiny-icon-share class="size16 ico"></tiny-icon-share>
         <p>IconShare</p>
       </div>
       <div>
-        <icon-del class="size16 ico"></icon-del>
+        <tiny-icon-del class="size16 ico"></tiny-icon-del>
         <p>IconDel</p>
       </div>
       <div>
-        <icon-writing class="size16 ico"></icon-writing>
+        <tiny-icon-writing class="size16 ico"></tiny-icon-writing>
         <p>IconWriting</p>
       </div>
       <div>
-        <icon-ascending class="size16 ico"></icon-ascending>
+        <tiny-icon-ascending class="size16 ico"></tiny-icon-ascending>
         <p>IconAscending</p>
       </div>
       <div>
-        <icon-clock-work class="size16 ico"></icon-clock-work>
+        <tiny-icon-clock-work class="size16 ico"></tiny-icon-clock-work>
         <p>IconClockWork</p>
       </div>
       <div>
-        <icon-calculator class="size16 ico"></icon-calculator>
+        <tiny-icon-calculator class="size16 ico"></tiny-icon-calculator>
         <p>IconCalculator</p>
       </div>
     </div>
     <h3 class="title">24*24</h3>
     <div class="icon-demo">
       <div>
-        <icon-share class="size24 ico"></icon-share>
+        <tiny-icon-share class="size24 ico"></tiny-icon-share>
         <p>IconShare</p>
       </div>
       <div>
-        <icon-del class="size24 ico"></icon-del>
+        <tiny-icon-del class="size24 ico"></tiny-icon-del>
         <p>IconDel</p>
       </div>
       <div>
-        <icon-writing class="size24 ico"></icon-writing>
+        <tiny-icon-writing class="size24 ico"></tiny-icon-writing>
         <p>IconWriting</p>
       </div>
       <div>
-        <icon-ascending class="size24 ico"></icon-ascending>
+        <tiny-icon-ascending class="size24 ico"></tiny-icon-ascending>
         <p>IconAscending</p>
       </div>
       <div>
-        <icon-clock-work class="size24 ico"></icon-clock-work>
+        <tiny-icon-clock-work class="size24 ico"></tiny-icon-clock-work>
         <p>IconClockWork</p>
       </div>
       <div>
-        <icon-calculator class="size24 ico"></icon-calculator>
+        <tiny-icon-calculator class="size24 ico"></tiny-icon-calculator>
         <p>IconCalculator</p>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { iconShare, iconDel, iconWriting, iconAscending, iconClockWork, iconCalculator } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    IconShare: iconShare(),
-    IconDel: iconDel(),
-    IconWriting: iconWriting(),
-    IconAscending: iconAscending(),
-    IconClockWork: iconClockWork(),
-    IconCalculator: iconCalculator()
-  }
-}
+const TinyIconShare = iconShare()
+const TinyIconDel = iconDel()
+const TinyIconWriting = iconWriting()
+const TinyIconAscending = iconAscending()
+const TinyIconClockWork = iconClockWork()
+const TinyIconCalculator = iconCalculator()
 </script>
 
 <style scoped>

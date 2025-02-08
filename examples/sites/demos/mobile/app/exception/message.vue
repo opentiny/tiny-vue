@@ -4,20 +4,10 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyException } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyException
-  },
-  data() {
-    return {}
-  },
-  methods: {
-    test() {
-      alert(11)
-    }
-  }
+function test() {
+  alert(11)
 }
 </script>

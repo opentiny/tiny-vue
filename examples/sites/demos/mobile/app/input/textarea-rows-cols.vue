@@ -5,21 +5,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      value: '杭州西湖是我国著名的旅游胜地，其位于浙江省杭州市西部。西湖是中国最美丽的湖泊之一。',
-      rows: 3,
-      cols: 30
-    }
-  }
-}
+const value = ref('杭州西湖是我国著名的旅游胜地，其位于浙江省杭州市西部。西湖是中国最美丽的湖泊之一。')
+const rows = ref(3)
+const cols = ref(30)
 </script>
 
 <style scoped>

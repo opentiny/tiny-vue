@@ -5,29 +5,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
 import { TinyLoading, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      loadingInstance: null
-    }
-  },
-  mounted() {
-    this.loadingInstance = TinyLoading.service({
-      tiny_mode: 'mobile',
-      target: document.getElementById('loading-box')
-    })
-  },
-  methods: {
-    closeLoading() {
-      this.loadingInstance.close()
-    }
-  }
+const loadingInstance = ref(null)
+
+onMounted(() => {
+  loadingInstance.value = TinyLoading.service({
+    tiny_mode: 'mobile',
+    target: document.getElementById('loading-box')
+  })
+})
+
+function closeLoading() {
+  loadingInstance.value.close()
 }
 </script>
 

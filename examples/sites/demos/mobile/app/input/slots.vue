@@ -30,22 +30,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 import { IconSearch, IconCalendar } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyInput,
-    TinyIconSearch: IconSearch(),
-    TinyIconCalendar: IconCalendar()
-  },
-  data() {
-    return {
-      input: ''
-    }
-  }
-}
+const input = ref('')
+const TinyIconSearch = IconSearch()
+const TinyIconCalendar = IconCalendar()
 </script>
 
 <style scoped>

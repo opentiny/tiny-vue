@@ -6,38 +6,28 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress
-  },
+const customColor = ref('#409eff')
+// 在什么进度显示什么样的颜色
+const customColors = ref([
+  { color: '#f56c6c', percentage: 25 },
+  { color: '#e6a23c', percentage: 35 },
+  { color: '#5cb87a', percentage: 55 },
+  { color: '#1989fa', percentage: 75 },
+  { color: '#6f7ad3', percentage: 100 }
+])
 
-  data() {
-    return {
-      customColor: '#409eff',
-      // 在什么进度显示什么样的颜色
-      customColors: [
-        { color: '#f56c6c', percentage: 25 },
-        { color: '#e6a23c', percentage: 35 },
-        { color: '#5cb87a', percentage: 55 },
-        { color: '#1989fa', percentage: 75 },
-        { color: '#6f7ad3', percentage: 100 }
-      ]
-    }
-  },
-  methods: {
-    // 在什么进度显示什么样的颜色
-    customColorMethod(percentage) {
-      if (percentage < 45) {
-        return '#909399'
-      } else if (percentage < 75) {
-        return '#e6a23c'
-      } else {
-        return '#67c23a'
-      }
-    }
+// 在什么进度显示什么样的颜色
+function customColorMethod(percentage) {
+  if (percentage < 45) {
+    return '#909399'
+  } else if (percentage < 75) {
+    return '#e6a23c'
+  } else {
+    return '#67c23a'
   }
 }
 </script>

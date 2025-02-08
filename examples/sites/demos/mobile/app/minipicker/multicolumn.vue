@@ -15,39 +15,28 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput, TinyMiniPicker } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMiniPicker,
-    TinyForm,
-    TinyFormItem,
-    TinyInput
+const boxVisibility = ref(false)
+const val = ref('')
+const columns2 = ref([
+  {
+    values: ['周一', '周二', '周三', '周四', '周五'],
+    defaultIndex: 2
   },
-  data() {
-    return {
-      boxVisibility: false,
-      val: '',
-      columns2: [
-        {
-          values: ['周一', '周二', '周三', '周四', '周五'],
-          defaultIndex: 2
-        },
-        {
-          values: ['上午', '下午', '晚上'],
-          defaultIndex: 1
-        }
-      ]
-    }
-  },
-  methods: {
-    fn() {
-      this.boxVisibility = true
-    },
-    getVal(val) {
-      this.val = val.join(',')
-    }
+  {
+    values: ['上午', '下午', '晚上'],
+    defaultIndex: 1
   }
+])
+
+function fn() {
+  boxVisibility.value = true
+}
+
+function getVal(val) { // NISVUE3 FIXME: val重复定义，请手工修改
+  val.value = val.join(',')
 }
 </script>

@@ -8,7 +8,7 @@
         :action="action"
         list-type="picture-card"
       >
-        <icon-plus class="tiny-svg-size" />
+        <tiny-icon-plus class="tiny-svg-size" />
       </tiny-file-upload>
       <tiny-dialog-box v-model="dialogVisible1">
         <img width="100%" :src="dialogImageUrl1" alt="" />
@@ -23,7 +23,7 @@
         :action="action"
         list-type="picture-card"
       >
-        <icon-plus class="tiny-svg-size" />
+        <tiny-icon-plus class="tiny-svg-size" />
       </tiny-file-upload>
       <tiny-dialog-box v-model="dialogVisible1">
         <img width="100%" :src="dialogImageUrl1" alt="" />
@@ -32,60 +32,51 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyFileUpload, TinyDialogBox } from '@opentiny/vue-mobile'
 import { iconPlus } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyFileUpload,
-    TinyDialogBox,
-    IconPlus: iconPlus()
+const action = ref('http://localhost:3000/api/upload')
+const dialogVisible1 = ref(false)
+const dialogImageUrl1 = ref('')
+const fileList1 = ref([
+  {
+    name: 'test1',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
   },
-  data() {
-    return {
-      action: 'http://localhost:3000/api/upload',
-      dialogVisible1: false,
-      dialogImageUrl1: '',
-      fileList1: [
-        {
-          name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        },
-        {
-          name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
-        },
-        {
-          name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        },
-        {
-          name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
-        },
-        {
-          name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        },
-        {
-          name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
-        }
-      ],
-      fileList2: [
-        {
-          name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        },
-        {
-          name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
-        }
-      ]
-    }
+  {
+    name: 'test2',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+  },
+  {
+    name: 'test1',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+  },
+  {
+    name: 'test2',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+  },
+  {
+    name: 'test1',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+  },
+  {
+    name: 'test2',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
   }
-}
+])
+const fileList2 = ref([
+  {
+    name: 'test1',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+  },
+  {
+    name: 'test2',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+  }
+])
+const TinyIconPlus = iconPlus()
 </script>
 
 <style scoped>

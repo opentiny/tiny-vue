@@ -2,17 +2,9 @@
   <tiny-numeric v-model="stepNum" controls></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyNumeric } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyNumeric
-  },
-  data() {
-    return {
-      stepNum: 2
-    }
-  }
-}
+const stepNum = ref(2)
 </script>

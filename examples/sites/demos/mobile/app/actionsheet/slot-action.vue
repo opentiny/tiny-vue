@@ -22,63 +22,55 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyActionSheet, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyActionSheet,
-    TinyButton
+const activeName = ref(1)
+const boxVisibility = ref(false)
+const menus = ref([
+  {
+    id: 1,
+    label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
   },
-  data() {
-    return {
-      activeName: 1,
-      boxVisibility: false,
-      menus: [
-        {
-          id: 1,
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-        },
-        {
-          id: 2,
-          label: '我是小树'
-        },
-        {
-          id: 3,
-          label: '我是小草'
-        },
-        {
-          id: 4,
-          label: '我是小叶',
-          warn: true
-        },
-        {
-          id: 5,
-          label: '我是小茎'
-        },
-        {
-          id: 6,
-          label: '我是小根'
-        },
-        {
-          id: 7,
-          label: '我是小枝'
-        },
-        {
-          id: 8,
-          label: '我是小木'
-        }
-      ]
-    }
+  {
+    id: 2,
+    label: '我是小树'
   },
-  methods: {
-    visibleHandle() {
-      this.$refs.action.visibleHandle()
-    },
-    fn() {
-      this.boxVisibility = true
-    }
+  {
+    id: 3,
+    label: '我是小草'
+  },
+  {
+    id: 4,
+    label: '我是小叶',
+    warn: true
+  },
+  {
+    id: 5,
+    label: '我是小茎'
+  },
+  {
+    id: 6,
+    label: '我是小根'
+  },
+  {
+    id: 7,
+    label: '我是小枝'
+  },
+  {
+    id: 8,
+    label: '我是小木'
   }
+])
+const actionRef = ref()
+
+function visibleHandle() {
+  actionRef.value.visibleHandle()
+}
+
+function fn() {
+  boxVisibility.value = true
 }
 </script>
 

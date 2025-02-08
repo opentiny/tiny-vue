@@ -8,28 +8,23 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyAvatar } from '@opentiny/vue-mobile'
 import { iconClockWork } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyAvatar
-  },
-  data() {
-    const urlPrefix = import.meta.env.VITE_APP_BUILD_BASE_URL
-    return {
-      IconClockWork: iconClockWork(),
-      circleUrl: `${urlPrefix}static/images/circle.png`,
-      circleUrlfit: `${urlPrefix}static/images/dog1.png`,
-      srcSet: `${urlPrefix}static/images/dog1.png 100w,${urlPrefix}static/images/dog2.png 300w,${urlPrefix}static/images/dog3.png 500w`,
-      errorUrl: 'error.png', // 使用错误路径
-      onError() {
-        console.log('加载失败')
-      }
-    }
-  }
-}
+const urlPrefix = import.meta.env.VITE_APP_BUILD_BASE_URL
+const IconClockWork = iconClockWork()
+const circleUrl = ref(`${urlPrefix}static/images/circle.png`)
+const circleUrlfit = ref(`${urlPrefix}static/images/dog1.png`)
+const srcSet = ref(
+  `${urlPrefix}static/images/dog1.png 100w,${urlPrefix}static/images/dog2.png 300w,${urlPrefix}static/images/dog3.png 500w`
+)
+const errorUrl = ref('error.png')
+// 使用错误路径
+const onError = ref(function onError() {
+  console.log('加载失败')
+})
 </script>
 
 <style>

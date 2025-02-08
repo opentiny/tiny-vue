@@ -13,29 +13,20 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref, onMounted } from 'vue'
 import { TinyIndexBar, TinyIndexBarAnchor } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyIndexBar,
-    TinyIndexBarAnchor
-  },
-  data() {
-    return {
-      indexList: [],
-      num: 8
-    }
-  },
-  mounted() {
-    this.indexList = Array.from(new Array(this.num), (ele, index) => String.fromCharCode(65 + index))
-  },
-  methods: {
-    addData() {
-      this.num += 2
-      this.indexList = Array.from(new Array(this.num), (ele, index) => String.fromCharCode(65 + index))
-    }
-  }
+const indexList = ref([])
+const num = ref(8)
+
+onMounted(() => {
+  indexList.value = Array.from(new Array(num.value), (ele, index) => String.fromCharCode(65 + index))
+})
+
+function addData() {
+  num.value += 2
+  indexList.value = Array.from(new Array(num.value), (ele, index) => String.fromCharCode(65 + index))
 }
 </script>
 

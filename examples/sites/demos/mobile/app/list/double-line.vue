@@ -7,39 +7,31 @@
     <div class="demo-item">
       <tiny-list v-for="item of dataList" :key="item.id" :content="item.content" :content-des="item.des">
         <template #suffix>
-          <icon-chevron-right />
+          <tiny-icon-chevron-right />
         </template>
       </tiny-list>
     </div>
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyList } from '@opentiny/vue-mobile'
 import { iconChevronRight } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyList,
-    IconChevronRight: iconChevronRight()
+const dataList = ref([
+  {
+    id: 1,
+    content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
+    des: '此处是辅助说明文体，说明文本'
   },
-  data() {
-    return {
-      dataList: [
-        {
-          id: 1,
-          content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
-          des: '此处是辅助说明文体，说明文本'
-        },
-        {
-          id: 2,
-          content: '主文本',
-          des: '此处是辅助说明文体，说明文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变'
-        }
-      ]
-    }
+  {
+    id: 2,
+    content: '主文本',
+    des: '此处是辅助说明文体，说明文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变'
   }
-}
+])
+const TinyIconChevronRight = iconChevronRight()
 </script>
 
 <style scoped>

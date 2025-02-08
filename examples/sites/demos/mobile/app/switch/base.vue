@@ -5,19 +5,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySwitch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySwitch
-  },
-  data() {
-    return {
-      value1: '1'
-    }
-  }
-}
+const value1 = ref('1')
 </script>
 
 <style scoped>

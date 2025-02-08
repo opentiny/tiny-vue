@@ -6,26 +6,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      loading: false
-    }
-  },
-  methods: {
-    btnClick() {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 2000)
-    }
-  }
+const loading = ref(false)
+
+function btnClick() {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 2000)
 }
 </script>
 

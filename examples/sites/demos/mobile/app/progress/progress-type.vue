@@ -2,14 +2,10 @@
   <tiny-progress class="progress" type="line" :percentage="50"></tiny-progress>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyProgress } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress
-  }
-}
+
 </script>
 
 <style scoped>

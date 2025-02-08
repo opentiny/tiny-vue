@@ -12,27 +12,18 @@
   </tiny-tabbar>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue-mobile'
 import { iconDialog, iconEmailAdd, iconGroup, iconSetting } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyTabbar,
-    TinyTabbarItem
-  },
-  data() {
-    return {
-      activeName: 3,
-      IconDialog: iconDialog(),
-      IconEmailAdd: iconEmailAdd(),
-      IconGroup: iconGroup(),
-      IconSetting: iconSetting(),
-      icon: {
-        active: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`,
-        inactive: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
-      }
-    }
-  }
-}
+const activeName = ref(3)
+const IconDialog = iconDialog()
+const IconEmailAdd = iconEmailAdd()
+const IconGroup = iconGroup()
+const IconSetting = iconSetting()
+const icon = ref({
+  active: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`,
+  inactive: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
+})
 </script>

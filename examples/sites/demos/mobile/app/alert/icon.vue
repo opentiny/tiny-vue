@@ -4,20 +4,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyAlert } from '@opentiny/vue-mobile'
 import { iconCustom } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyAlert
-  },
-  data() {
-    return {
-      IconCustom: iconCustom()
-    }
-  }
-}
+const IconCustom = iconCustom()
 </script>
 
 <style>

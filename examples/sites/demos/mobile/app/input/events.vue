@@ -7,38 +7,33 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      inputValue: '',
-      inputChange: '',
-      focusBlur: '',
-      clearValue: 'clear event'
-    }
-  },
-  methods: {
-    onChange() {
-      TinyModal.message('change')
-    },
-    onInput() {
-      TinyModal.message('input')
-    },
-    onBlur() {
-      TinyModal.message('blur')
-    },
-    onFocus() {
-      TinyModal.message('focus')
-    },
-    onClear() {
-      TinyModal.message('clear')
-    }
-  }
+const inputValue = ref('')
+const inputChange = ref('')
+const focusBlur = ref('')
+const clearValue = ref('clear event')
+
+function onChange() {
+  TinyModal.message('change')
+}
+
+function onInput() {
+  TinyModal.message('input')
+}
+
+function onBlur() {
+  TinyModal.message('blur')
+}
+
+function onFocus() {
+  TinyModal.message('focus')
+}
+
+function onClear() {
+  TinyModal.message('clear')
 }
 </script>
 

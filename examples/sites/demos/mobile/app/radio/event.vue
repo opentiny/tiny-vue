@@ -7,24 +7,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyRadio } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyRadio
-  },
-  data() {
-    return {
-      value: '1',
-      text: '男'
-    }
-  },
-  methods: {
-    changeAction(value) {
-      this.text = value === '1' ? '男' : '女'
-    }
-  }
+const value = ref('1')
+const text = ref('男')
+
+function changeAction(value) { // NISVUE3 FIXME: value重复定义，请手工修改
+  text.value = value === '1' ? '男' : '女'
 }
 </script>
 

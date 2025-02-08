@@ -100,21 +100,12 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyException, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyException
-  },
-  data() {
-    return {
-      gits: false,
-      types: ''
-    }
-  }
-}
+const gits = ref(false)
+const types = ref('')
 </script>
 
 <style>

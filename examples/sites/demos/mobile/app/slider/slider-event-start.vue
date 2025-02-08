@@ -10,23 +10,14 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySlider } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySlider
-  },
-  data() {
-    return {
-      value: 40
-    }
-  },
-  methods: {
-    start(val) {
-      console.log(`触发开始滑动事件${JSON.stringify(val)}`)
-    }
-  }
+const value = ref(40)
+
+function start(val) {
+  console.log(`触发开始滑动事件${JSON.stringify(val)}`)
 }
 </script>
 

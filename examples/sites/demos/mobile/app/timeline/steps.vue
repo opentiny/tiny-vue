@@ -36,45 +36,38 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyTimeLine, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTimeLine
-  },
-  data() {
-    return {
-      timeActive1: 1,
-      timeActive2: 0,
-      timeActive3: 0,
-      data3: [
-        { name: '已下单', state: 'normal', fold: true, time: '2019-11-12 14:20:15' },
-        { name: '运输中', state: 'success', fold: false, showFoldBtn: true, time: '2019-11-12 14:20:15' },
-        { name: '已签收', state: 'error', time: '2019-11-12 14:20:15' },
-        { name: '已确认收货', state: 'handing', time: '2019-11-12 14:20:15' }
-      ],
-      data4: [
-        { name: '已下单', state: 'normal', showFoldBtn: true, fold: false },
-        { name: '运输中', state: 'success', showFoldBtn: true, fold: true },
-        { name: '已签收', state: 'error', showFoldBtn: true, fold: true },
-        { name: '已确认收货', state: 'handing', showFoldBtn: true, fold: true }
-      ]
-    }
-  },
-  methods: {
-    timeClick1(index, node) {
-      this.timeActive1 = index
+const timeActive1 = ref(1)
+const timeActive2 = ref(0)
+const timeActive3 = ref(0)
+const data3 = ref([
+  { name: '已下单', state: 'normal', fold: true, time: '2019-11-12 14:20:15' },
+  { name: '运输中', state: 'success', fold: false, showFoldBtn: true, time: '2019-11-12 14:20:15' },
+  { name: '已签收', state: 'error', time: '2019-11-12 14:20:15' },
+  { name: '已确认收货', state: 'handing', time: '2019-11-12 14:20:15' }
+])
+const data4 = ref([
+  { name: '已下单', state: 'normal', showFoldBtn: true, fold: false },
+  { name: '运输中', state: 'success', showFoldBtn: true, fold: true },
+  { name: '已签收', state: 'error', showFoldBtn: true, fold: true },
+  { name: '已确认收货', state: 'handing', showFoldBtn: true, fold: true }
+])
 
-      TinyModal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
-    },
-    timeClick2(index) {
-      this.timeActive2 = index
-    },
-    timeClick3(index) {
-      this.timeActive3 = index
-    }
-  }
+function timeClick1(index, node) {
+  timeActive1.value = index
+
+  TinyModal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+}
+
+function timeClick2(index) {
+  timeActive2.value = index
+}
+
+function timeClick3(index) {
+  timeActive3.value = index
 }
 </script>
 

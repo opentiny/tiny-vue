@@ -12,30 +12,22 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref, onMounted } from 'vue'
 import { TinyIndexBar, TinyIndexBarAnchor, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyIndexBar,
-    TinyIndexBarAnchor
-  },
-  data() {
-    return {
-      indexList: []
-    }
-  },
-  mounted() {
-    this.indexList = Array.from(new Array(26), (ele, index) => String.fromCharCode(65 + index))
-  },
-  methods: {
-    indexChange(value) {
-      TinyModal.message({ message: 'change事件:' + value })
-    },
-    selectIndex(value) {
-      TinyModal.message({ message: 'select事件:' + value })
-    }
-  }
+const indexList = ref([])
+
+onMounted(() => {
+  indexList.value = Array.from(new Array(26), (ele, index) => String.fromCharCode(65 + index))
+})
+
+function indexChange(value) {
+  TinyModal.message({ message: 'change事件:' + value })
+}
+
+function selectIndex(value) {
+  TinyModal.message({ message: 'select事件:' + value })
 }
 </script>
 

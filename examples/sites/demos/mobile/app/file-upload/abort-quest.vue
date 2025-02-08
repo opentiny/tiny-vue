@@ -1,9 +1,9 @@
 <template>
   <div class="content">
-    <tiny-file-upload ref="upload" :action="action">
+    <tiny-file-upload ref="uploadRef" :action="action">
       <template #trigger>
         <div>
-          <icon-upload></icon-upload>
+          <tiny-icon-upload></tiny-icon-upload>
         </div>
       </template>
     </tiny-file-upload>
@@ -12,25 +12,16 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyFileUpload, TinyButton } from '@opentiny/vue-mobile'
 import { iconUpload } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyFileUpload,
-    TinyButton,
-    IconUpload: iconUpload()
-  },
-  data() {
-    return {
-      action: '' // 此处可写自定义服务
-    }
-  },
-  methods: {
-    cancelUpload() {
-      this.$refs.upload.abort()
-    }
-  }
+const action = ref('')
+const uploadRef = ref()
+const TinyIconUpload = iconUpload()
+
+function cancelUpload() {
+  uploadRef.value.abort()
 }
 </script>

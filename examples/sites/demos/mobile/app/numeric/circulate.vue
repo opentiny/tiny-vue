@@ -7,19 +7,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyNumeric } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyNumeric
-  },
-  data() {
-    return {
-      num1: 1,
-      step: 2,
-      stepNum: 1
-    }
-  }
-}
+const num1 = ref(1)
+const step = ref(2)
+const stepNum = ref(1)
 </script>

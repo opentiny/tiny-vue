@@ -18,28 +18,18 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyAlert, TinySwitch, TinyToast } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyAlert,
-    TinySwitch
-  },
-  data() {
-    return {
-      autoHide: false,
-      closeText: '自定义关闭'
-    }
-  },
-  methods: {
-    close() {
-      TinyToast.service({
-        text: 'close事件!',
-        time: 100000
-      })
-    }
-  }
+const autoHide = ref(false)
+const closeText = ref('自定义关闭')
+
+function close() {
+  TinyToast.service({
+    text: 'close事件!',
+    time: 100000
+  })
 }
 </script>
 
