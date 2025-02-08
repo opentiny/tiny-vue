@@ -210,7 +210,6 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -224,7 +223,6 @@ export default {
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: '',
           mfDemo: ''
         }
       ],
