@@ -89,7 +89,7 @@ jobs:
           npm install -g @playwright/test
 
       - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: all-blob-reports
           path: all-blob-reports
