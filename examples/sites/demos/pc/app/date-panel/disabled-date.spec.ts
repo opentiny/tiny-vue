@@ -26,4 +26,20 @@ test('[DatePanel] 测试时间禁用', async ({ page }) => {
   await page.locator('#disabled-date').getByText('15').nth(3).click()
   await page.locator('#disabled-date').getByText('19').nth(2).click()
   await expect(page.locator('.value1')).toHaveText('[ "2025-02-15", "2025-02-19" ]')
+
+  // monthRange
+  await page.getByText('一月', { exact: true }).nth(1).click()
+  await page
+    .locator('#disabled-date div')
+    .filter({ hasText: /^2024 年一月二月三月四月五月六月七月八月九月十月十一月十二月$/ })
+    .getByRole('button')
+    .click()
+  await page.locator('#disabled-date').getByText('五月').nth(1).click()
+  await expect(page.locator('.value2')).toHaveText('[ "2024-05", "2025-01" ]')
+
+  // yearRange
+  await page.getByText('2020', { exact: true }).click()
+  await page.getByText('2027').click()
+  await page.getByText('2042').click()
+  await expect(page.locator('.value3')).toHaveText('[ "2027", "2042" ]')
 })

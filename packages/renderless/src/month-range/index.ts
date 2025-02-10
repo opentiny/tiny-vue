@@ -10,7 +10,17 @@
  *
  */
 
-import { isDate1 as isDate, modifyWithTimeString, prevYear, nextYear, nextMonth1 as nextMonth } from '@opentiny/utils'
+import {
+  DATEPICKER,
+  isDate1 as isDate,
+  toDate1,
+  modifyDate,
+  formatDate,
+  modifyWithTimeString,
+  prevYear,
+  nextYear,
+  nextMonth1 as nextMonth
+} from '@opentiny/utils'
 
 export const calcDefaultValue = (defaultValue) => {
   if (Array.isArray(defaultValue)) {
@@ -92,8 +102,11 @@ export const handleChangeRange = (state) => (val) => {
 }
 
 export const handleRangePick =
-  ({ api, state, t }) =>
+  ({ api, state, props, t }) =>
   (val, close = true) => {
+    if (props.readonly) {
+      return
+    }
     const defaultTime = state.defaultTime || []
     const max = modifyWithTimeString(val.maxDate, defaultTime[1], t)
     const min = modifyWithTimeString(val.minDate, defaultTime[0], t)
@@ -121,11 +134,19 @@ export const handleRangePick =
     api.handleConfirm()
   }
 
-export const handleShortcutClick = (api) => (shortcutObj) => {
+export const handleShortcutClick = (state, api, props) => (shortcutObj) => {
   if (shortcutObj.onClick) {
     const choose = {
       $emit: (type, [start, end]) => {
-        api.doPick(start, end)
+        // 面板直接使用快捷选项
+        if (props.shortcuts?.length) {
+          state.value = [start, end]
+          state.leftDate = start
+          state.rightDate = end
+          api.handleRangePick({ minDate: start, maxDate: end })
+        } else {
+          api.doPick(start, end)
+        }
       }
     }
 
@@ -158,10 +179,15 @@ export const leftNextYear = (state) => () => (state.leftDate = nextYear(state.le
 export const rightPrevYear = (state) => () => (state.rightDate = prevYear(state.rightDate))
 
 export const handleConfirm =
-  ({ api, emit, state }) =>
+  ({ api, emit, state, props, t }) =>
   (visible = false) => {
     if (api.isValidValue([state.minDate, state.maxDate])) {
       emit('pick', [state.minDate, state.maxDate], visible)
+      const defaultFormat = DATEPICKER.DateFormats.monthrange
+      const start = formatDate(state.minDate, props.format || defaultFormat, t)
+      const end = formatDate(state.maxDate, props.format || defaultFormat, t)
+      emit('update:modelValue', [start, end])
+      emit('select-change', [start, end])
     }
   }
 
@@ -179,3 +205,19 @@ export const resetView = (state) => () => {
   state.minDate = state.value && isDate(state.value[0]) ? new Date(state.value[0]) : null
   state.maxDate = state.value && isDate(state.value[0]) ? new Date(state.value[1]) : null
 }
+
+export const watchModelValue =
+  ({ state }) =>
+  (val) => {
+    const newVal = toDate1(val?.[0])
+    const newVal1 = toDate1(val?.[1])
+    if (newVal && newVal1) {
+      const start = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth() + 1, newVal.getUTCDate())
+      const end = modifyDate(newVal1, newVal1.getFullYear(), newVal1.getMonth() + 1, newVal1.getUTCDate())
+      state.value = [start, end]
+      state.minDate = start
+      state.maxDate = end
+      state.leftDate = start
+      state.rightDate = end
+    }
+  }

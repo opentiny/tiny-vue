@@ -1,5 +1,4 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import { isDate1 } from '@opentiny/utils'
 import template from 'virtual-template?pc|mobile-first'
 
 export default defineComponent({
@@ -21,6 +20,10 @@ export default defineComponent({
     minDate: {},
     rangeState: {
       default: () => ({ endDate: null, selecting: false })
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

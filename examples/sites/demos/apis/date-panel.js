@@ -461,6 +461,211 @@ export default {
           mode: ['pc']
         }
       ]
+    },
+    {
+      name: 'month-range',
+      type: 'component',
+      props: [
+        {
+          name: 'modelValue / v-model',
+          type: 'Array<T>',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '绑定值',
+            'en-US': 'Set the initial value of the calendar component. ;Bound Value'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'disabled-date',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置部分禁用',
+            'en-US': 'Configuration section disabled.'
+          },
+          mode: ['pc'],
+          pcDemo: 'disabled-date'
+        },
+        {
+          name: 'format',
+          type: 'string',
+          defaultValue: "'yyyy-MM'",
+          desc: {
+            'zh-CN': '显示在输入框中的格式',
+            'en-US': 'Display format in the text box'
+          },
+          mode: ['pc'],
+          pcDemo: 'format'
+        },
+        {
+          name: 'popper-class',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '为 MonthRange 下拉弹框添加的 class 类名',
+            'en-US': 'Class name added for MonthRange.'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-suffix-icon'
+        },
+        {
+          name: 'readonly',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置日期是否只读',
+            'en-US': 'Set whether the calendar component is read-only.'
+          },
+          mode: ['pc'],
+          pcDemo: 'disabled'
+        },
+        {
+          name: 'shortcuts',
+          type: 'Array<T>',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': `设置快捷选项`,
+            'en-US': 'Set shortcut options'
+          },
+          mode: ['pc'],
+          pcDemo: 'shortcuts'
+        },
+        {
+          name: 'unlink-panels',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '在范围选择器里取消两个日期面板之间的联动',
+            'en-US': 'Unlink the two date panels in the range selector'
+          },
+          mode: ['pc'],
+          pcDemo: 'unlink-panels'
+        }
+      ],
+      events: [
+        {
+          name: 'select-change',
+          type: '(value: Date) => void',
+          desc: {
+            'zh-CN': '用户确认选定的值时触发',
+            'en-US': 'This event is triggered when the user confirms the selected values.'
+          },
+          mode: ['pc'],
+          pcDemo: 'events'
+        }
+      ],
+      format: [
+        {
+          name: 'M',
+          desc: {
+            'zh-CN': '月，不补0',
+            'en-US': ''
+          },
+          mode: ['pc']
+        },
+        {
+          name: 'MM',
+          desc: {
+            'zh-CN': '月',
+            'en-US': ''
+          },
+          mode: ['pc']
+        },
+        {
+          name: 'yyyy',
+          desc: {
+            'zh-CN': '年',
+            'en-US': ''
+          },
+          mode: ['pc']
+        }
+      ]
+    },
+    {
+      name: 'year-range',
+      type: 'component',
+      props: [
+        {
+          name: 'modelValue / v-model',
+          type: 'Array<T>',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '绑定值',
+            'en-US': 'Set the initial value of the calendar component. ;Bound Value'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
+          name: 'disabled-date',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置部分禁用',
+            'en-US': 'Configuration section disabled.'
+          },
+          mode: ['pc'],
+          pcDemo: 'disabled-date'
+        },
+        {
+          name: 'popper-class',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '为 YearRange 下拉弹框添加的 class 类名',
+            'en-US': 'Class name added for YearRange.'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-suffix-icon'
+        },
+        {
+          name: 'readonly',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置日期是否只读',
+            'en-US': 'Set whether the calendar component is read-only.'
+          },
+          mode: ['pc'],
+          pcDemo: 'readonly'
+        },
+        {
+          name: 'shortcuts',
+          type: 'Array<T>',
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': `设置快捷选项`,
+            'en-US': 'Set shortcut options'
+          },
+          mode: ['pc'],
+          pcDemo: 'shortcuts'
+        },
+        {
+          name: 'unlink-panels',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '在范围选择器里取消两个日期面板之间的联动',
+            'en-US': 'Unlink the two date panels in the range selector'
+          },
+          mode: ['pc'],
+          pcDemo: 'unlink-panels'
+        }
+      ],
+      events: [
+        {
+          name: 'select-change',
+          type: '(value: Date) => void',
+          desc: {
+            'zh-CN': '用户确认选定的值时触发',
+            'en-US': 'This event is triggered when the user confirms the selected values.'
+          },
+          mode: ['pc'],
+          pcDemo: 'events'
+        }
+      ]
     }
   ]
 }

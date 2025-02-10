@@ -12,21 +12,21 @@ test('时间格式化', async ({ page }) => {
 
   await page.getByRole('textbox', { name: '19:40:00 pm' }).click()
   await page.waitForTimeout(100)
-  await page.locator('.tiny-time-panel[visible=true]').getByText('08 pm').click()
+  await page.getByText('08 pm').nth(1).click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '20:40:00 pm' })).toBeVisible()
 
   await page.getByRole('textbox', { name: '8:40:0 PM' }).click()
   await page.waitForTimeout(100)
-  await page.locator('.tiny-time-panel[visible=true]').getByText('09 PM').click()
+  await page.getByText('09 PM', { exact: true }).click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '9:40:0 PM' })).toBeVisible()
 
   await page.getByRole('textbox', { name: '21:40:0 PM' }).click()
   await page.waitForTimeout(100)
-  await page.locator('.tiny-time-panel[visible=true]').getByText('10 PM').click()
+  await page.getByText('10 PM').nth(3).click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '22:40:0 PM' })).toBeVisible()
@@ -34,14 +34,25 @@ test('时间格式化', async ({ page }) => {
   // value-format: 选中值的格式
   await page.getByRole('textbox', { name: '18:30:00' }).click()
   await page.waitForTimeout(100)
-  await page.locator('.tiny-time-panel[visible=true]').getByText('19').first().click()
+  await page
+    .locator(
+      'div:nth-child(13) > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(20)'
+    )
+    .first()
+    .click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '19:30:00' })).toBeVisible()
 
   // picker-options.format: 下拉框中显示的格式
-  const timePickerHour = page.locator('.tiny-time-panel[visible=true]').getByText('18').first()
-  const timePickerMinute = page.locator('.tiny-time-panel[visible=true]').getByText('40').first()
+  const timePickerHour = page
+    .locator(
+      'div:nth-child(14) > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(19)'
+    )
+    .first()
+  const timePickerMinute = page.locator(
+    'div:nth-child(14) > .tiny-time-panel__content > .tiny-time-spinner > div:nth-child(2) > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(41)'
+  )
   const timePickerSecond = page.locator('.of-hidden > div:nth-child(12) .tiny-scrollbar').nth(2)
   await page.getByRole('textbox', { name: '18:40:00' }).click()
   await page.waitForTimeout(200)

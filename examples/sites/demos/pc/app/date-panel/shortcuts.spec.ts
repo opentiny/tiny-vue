@@ -15,4 +15,16 @@ test('[DatePanel] 测试快捷选项', async ({ page }) => {
   await page.getByRole('button', { name: '最近一个月' }).click()
   await page.getByRole('button', { name: '最近一周' }).click()
   await expect(page.locator('.value1')).not.toHaveText('')
+
+  // monthRange
+  await page.getByRole('button', { name: '本月' }).click()
+  await page.getByRole('button', { name: '今年至今' }).click()
+  await page.getByRole('button', { name: '最近六个月' }).click()
+  await expect(page.locator('.value2')).not.toHaveText('')
+
+  // yearRange
+  await page.getByRole('button', { name: '本年' }).click()
+  await page.getByRole('button', { name: '近五年' }).click()
+  await page.getByRole('button', { name: '近十年' }).click()
+  await expect(page.locator('.value3')).not.toHaveText('')
 })
