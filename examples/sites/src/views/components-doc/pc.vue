@@ -1,10 +1,10 @@
 <template>
-  <ComponentDocs :load-data="loadData" demo-key="demoId" />
+  <ComponentDocs :load-data="loadData" app-mode="pc" demo-key="pcDemo" />
 </template>
 
 <script setup>
 import { fetchDemosFile } from '@/tools'
-import ComponentDocs from './components.vue'
+import ComponentDocs from './common.vue'
 import { getWebdocPath } from './cmp-config'
 
 const baseUrl = import.meta.env.BASE_URL
@@ -13,7 +13,7 @@ const loadData = ({ cmpId, lang }) => {
     fetchDemosFile(`@demos/app/${getWebdocPath(cmpId)}/webdoc/${cmpId}.${lang}.md`),
     import(
       /* @vite-ignore */
-      `${baseUrl}@demos/apis/${cmpId}.js`
+      `${baseUrl}@demos/apis/${getWebdocPath(cmpId) === 'chart' ? cmpId : getWebdocPath(cmpId)}.js`
     ),
     import(
       /* @vite-ignore */
@@ -21,16 +21,11 @@ const loadData = ({ cmpId, lang }) => {
     )
   ]
 
-  // 兼容ts文档, 如果是ts文档则不拉取demos配置
-  if (['interfaces', 'types', 'classes'].includes(cmpId)) {
-    promiseArr.pop()
-  }
-
   return Promise.all(promiseArr).then(([mdString, apisJson, demosJson]) => {
     return {
       mdString,
       apisJson: apisJson.default,
-      demosJson: demosJson?.default
+      demosJson: demosJson.default
     }
   })
 }

@@ -13,7 +13,7 @@
 import { watch, computed, ref } from 'vue'
 import { TinyButtonGroup } from '@opentiny/vue'
 import { fetchDemosFile, useTemplateMode } from '@/tools'
-import ComponentDocs from './components.vue'
+import ComponentDocs from './common.vue'
 import { getWebdocPath } from './cmp-config'
 
 const { templateModeState, staticPath, optionsList } = useTemplateMode()

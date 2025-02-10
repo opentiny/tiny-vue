@@ -7,7 +7,7 @@
 <script setup lang="tsx">
 import { shallowRef, onMounted, onBeforeUnmount } from 'vue'
 import { TinyLoading } from '@opentiny/vue-mobile'
-import { vueComponents } from '@/views/components/cmp-config'
+import { vueComponents } from '@/views/components-doc/cmp-config'
 
 const showComponent = shallowRef(null)
 const notFoundDemo = (demoPath) => <div>{`${demoPath}示例资源不存在，请检查文件名是否正确？`}</div>

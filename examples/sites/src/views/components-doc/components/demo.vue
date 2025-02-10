@@ -86,12 +86,12 @@ import { ref, reactive, computed, shallowRef, onMounted, onBeforeUnmount, watch,
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
-import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmp-config'
+import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from '../cmp-config'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
 import { useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import AsyncHighlight from './components/async-highlight.vue'
+import AsyncHighlight from './async-highlight.vue'
 
 const props = defineProps({
   demo: {

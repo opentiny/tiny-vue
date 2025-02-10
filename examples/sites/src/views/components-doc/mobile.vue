@@ -23,7 +23,7 @@
 import { ref } from 'vue'
 import { router } from '@/router.js'
 import { fetchDemosFile } from '@/tools'
-import ComponentDocs from './components.vue'
+import ComponentDocs from './common.vue'
 import { getWebdocPath } from './cmp-config'
 
 const baseUrl = import.meta.env.BASE_URL
