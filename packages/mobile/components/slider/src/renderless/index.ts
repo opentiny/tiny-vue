@@ -223,16 +223,9 @@ export const setTipStyle =
       tipStyle.top = -constants.TIP_HEIGHT - constants.BUTTON_SIZE / 2 + constants.HALF_BAR_HEIGHT
       tipStyle.left = moveSize - tipEl.getBoundingClientRect().width / 2
     }
-
-    if (mode === 'mobile-first') {
-      state.tipStyle = {
-        left: tipStyle.left + 'px'
-      }
-    } else {
-      state.tipStyle = {
-        top: tipStyle.top + 'px',
-        left: tipStyle.left + 'px'
-      }
+    state.tipStyle = {
+      top: tipStyle.top + 'px',
+      left: tipStyle.left + 'px'
     }
   }
 
@@ -245,17 +238,11 @@ const getActiveButtonIndexFlag = ({
   const cls = constants.buttonCls(mode)
   const { previousElementSibling } = event.target as HTMLElement
 
-  if (mode === 'mobile-first') {
-    const role = Array.from(previousElementSibling.attributes).find((attr) => attr.name === 'role')
-    const name = role && role.value
-    return state.isDouble && name === constants.PC_BUTTON_CLS
-  } else {
-    return (
-      state.isDouble &&
-      (hasClass(previousElementSibling, cls) ||
-        (event.target as SVGAElement).className.baseVal === 'tiny-slider-right-svg')
-    )
-  }
+  return (
+    state.isDouble &&
+    (hasClass(previousElementSibling, cls) ||
+      (event.target as SVGAElement).className.baseVal === 'tiny-slider-right-svg')
+  )
 }
 
 export const getActiveButtonIndex =
@@ -632,7 +619,7 @@ export const updateSlotValue =
 
 export const handleSlotInput =
   ({ state, api }: Pick<ISliderRenderlessParams, 'api' | 'state'>) =>
-  (event: Event, isLeftInput: boolean = true): void => {
+  (event: Event, isLeftInput = true): void => {
     const inputValue = (event.target as HTMLInputElement).value
 
     api.changeActiveValue(state.isDouble ? isLeftInput : true)

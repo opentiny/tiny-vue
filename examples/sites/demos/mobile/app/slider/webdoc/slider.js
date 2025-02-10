@@ -174,11 +174,11 @@ export default {
       demoId: 'about-step',
       name: {
         'zh-CN': '步长',
-        'en-US': 'button type'
+        'en-US': 'step length'
       },
       desc: {
-        'zh-CN': '<p>通过设置<code>step</code>来配置滑块滑动的步长</p>',
-        'en-US': '<p>button type</p>'
+        'zh-CN': '<p>通过设置<code>step</code>来配置滑块滑动的步长。</p>',
+        'en-US': '<p>Configure the step size of slider sliding by setting<code>step</code>.</p>'
       },
       codeFiles: ['about-step.vue']
     },
@@ -186,11 +186,11 @@ export default {
       demoId: 'dynamic-disable',
       name: {
         'zh-CN': '禁用',
-        'en-US': 'button round'
+        'en-US': 'disable'
       },
       desc: {
-        'zh-CN': '<p>通过设置属性<code>disabled</code>,设置滑动滑块禁止滑动</p>',
-        'en-US': '<p>button round</p>'
+        'zh-CN': '<p>通过设置属性<code>disabled</code>,设置滑动滑块禁止滑动。</p>',
+        'en-US': '<p>By setting the attribute<code>disabled</code>, set the slider to prevent sliding.</p>'
       },
       codeFiles: ['dynamic-disable.vue']
     },
@@ -198,11 +198,11 @@ export default {
       demoId: 'max-min',
       name: {
         'zh-CN': '最大最小值',
-        'en-US': 'events'
+        'en-US': 'max/min'
       },
       desc: {
-        'zh-CN': '<p>通过设置<code>min max</code>来设置滑块取值范围</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过设置<code>min</code> <code>max</code>来设置滑块取值范围。</p>',
+        'en-US': '<p>Set the slider value range by setting <code>min</code> <code>max</code></p>'
       },
       codeFiles: ['max-min.vue']
     },
@@ -210,11 +210,11 @@ export default {
       demoId: 'range-select',
       name: {
         'zh-CN': '范围选择',
-        'en-US': 'events'
+        'en-US': 'range selection'
       },
       desc: {
-        'zh-CN': '<p>通过<code>v-model</code>为数组 设定初始范围选择</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过<code>v-model</code>为数组 设定初始范围选择。</p>',
+        'en-US': '<p>Set the initial range selection for the array using <code>v-model</code></p>'
       },
       codeFiles: ['range-select.vue']
     },
@@ -222,24 +222,25 @@ export default {
       demoId: 'shortcut-operation',
       name: {
         'zh-CN': '总步数',
-        'en-US': 'events'
+        'en-US': 'Total steps'
       },
       desc: {
         'zh-CN':
           '<p>通过<code>num-pages</code>属性设置总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是(最大值-最小值)/分页数。</p>',
-        'en-US': '<p>bbutton click</p>'
+        'en-US':
+          'Set the total number of steps through the<code>num pages</code>property, which means that when pressing the shortcut keys PageDown/PageUp, the distance moved each time is (maximum - minimum) divided by the number of pages.'
       },
       codeFiles: ['shortcut-operation.vue']
     },
     {
       demoId: 'format-tooltip',
       name: {
-        'zh-CN': '总步数',
-        'en-US': 'events'
+        'zh-CN': '格式化',
+        'en-US': 'format'
       },
       desc: {
-        'zh-CN': '<p>通过<code>format-tooltip</code>属性设置 value。</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过<code>format-tooltip</code>属性设置<code>value</code>。</p>',
+        'en-US': '<p>Set the value through the<code>format tooltip</code>attribute.</p>'
       },
       codeFiles: ['format-tooltip.vue']
     },
@@ -247,59 +248,59 @@ export default {
       demoId: 'show-input',
       name: {
         'zh-CN': '输入框模式',
-        'en-US': 'events'
+        'en-US': 'Input box mode'
       },
       desc: {
-        'zh-CN': '<p>通过配置<code>show-input<code>开启滑块输入框模式</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过配置<code>show-input<code>开启滑块输入框模式。</p>',
+        'en-US': '<p>Enable slider input box mode by configuring<code>show input<code>.</p>'
       },
       codeFiles: ['show-input.vue']
     },
     {
       demoId: 'show-tip',
       name: {
-        'zh-CN': '提示',
-        'en-US': 'events'
+        'zh-CN': '提示语',
+        'en-US': 'prompt'
       },
       desc: {
         'zh-CN': '<p>通过设定<code>show-tip="false"</code>，关闭滑块提示。(默认开启)</p>',
-        'en-US': '<p>bbutton click</p>'
+        'en-US': '<p>Turn off slider prompts by setting<code>show-tip="false"</code>. (default enabled)</p>'
       },
       codeFiles: ['show-tip.vue']
     },
     {
       demoId: 'slider-event-change',
       name: {
-        'zh-CN': '事件',
-        'en-US': 'events'
+        'zh-CN': 'change事件',
+        'en-US': 'change events'
       },
       desc: {
-        'zh-CN': '<p><code>change</code>事件</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过设置<code>change</code>事件滑块值改变。</p>',
+        'en-US': '<p>By setting the<code>change</code>event slider value to change.</p>'
       },
       codeFiles: ['slider-event-change.vue']
     },
     {
       demoId: 'slider-event-start',
       name: {
-        'zh-CN': '事件',
-        'en-US': 'events'
+        'zh-CN': 'start事件',
+        'en-US': 'start events'
       },
       desc: {
-        'zh-CN': '<p><code>start</code>滑块开始滑动事件</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过设置<code>start</code>事件滑块开始滑动。</p>',
+        'en-US': '<p>Start sliding events by setting the<code>start</code> slider</p>'
       },
       codeFiles: ['slider-event-start.vue']
     },
     {
       demoId: 'slider-event-stop',
       name: {
-        'zh-CN': '事件',
-        'en-US': 'events'
+        'zh-CN': 'stop 事件',
+        'en-US': 'stop events'
       },
       desc: {
-        'zh-CN': '<p><code>stop</code>滑块停止滑动事件</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过设置<code>stop</code>滑块停止滑动。</p>',
+        'en-US': '<p>Stop the sliding event by setting the<code>stop</code> slider.</p>'
       },
       codeFiles: ['slider-event-stop.vue']
     },
@@ -307,11 +308,11 @@ export default {
       demoId: 'slider-slot',
       name: {
         'zh-CN': '自定义插槽',
-        'en-US': 'events'
+        'en-US': 'Custom Slot'
       },
       desc: {
         'zh-CN': '<p>自定义插槽</p>',
-        'en-US': '<p>bbutton click</p>'
+        'en-US': '<p>Custom Slot</p>'
       },
       codeFiles: ['slider-slot.vue']
     },
@@ -319,12 +320,13 @@ export default {
       demoId: 'vertical-mode',
       name: {
         'zh-CN': '竖向模式',
-        'en-US': 'events'
+        'en-US': 'Vertical mode'
       },
       desc: {
         'zh-CN':
           '<p>通过设置<code>vertical</code>属性来展示滑块竖向模式（不设置，默认为横向模式）<br>竖向模式可以通过<code>height</code>设置组件高度</p>',
-        'en-US': '<p>bbutton click</p>'
+        'en-US':
+          '<p>Display the slider vertical mode by setting the<code>vertical</code>attribute (no setting, default is horizontal mode)<br>Vertical mode can be set by<code>height</code>to set the component height.</p>'
       },
       codeFiles: ['vertical-mode.vue']
     }
