@@ -4,6 +4,4 @@
 
 <script setup lang="jsx">
 import { TinySearch } from '@opentiny/vue-mobile'
-
-
 </script>

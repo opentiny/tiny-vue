@@ -7,8 +7,6 @@
 
 <script setup>
 import { TinyButton } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style scoped>

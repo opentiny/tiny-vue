@@ -6,6 +6,4 @@
 
 <script setup lang="jsx">
 import { TinyException } from '@opentiny/vue-mobile'
-
-
 </script>

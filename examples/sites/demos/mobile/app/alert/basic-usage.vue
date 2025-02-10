@@ -11,8 +11,6 @@
 
 <script setup>
 import { TinyAlert } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style scoped>

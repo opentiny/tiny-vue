@@ -10,8 +10,6 @@
 
 <script setup>
 import { TinyLabel } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style scoped>

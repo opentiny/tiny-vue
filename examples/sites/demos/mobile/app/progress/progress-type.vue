@@ -4,8 +4,6 @@
 
 <script setup lang="jsx">
 import { TinyProgress } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style scoped>

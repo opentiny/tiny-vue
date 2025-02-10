@@ -9,8 +9,6 @@
 
 <script setup lang="jsx">
 import { TinySwitch } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style scoped>

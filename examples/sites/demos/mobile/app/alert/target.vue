@@ -13,8 +13,6 @@
 
 <script setup>
 import { TinyAlert, TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style>

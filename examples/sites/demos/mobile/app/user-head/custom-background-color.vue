@@ -4,6 +4,4 @@
 
 <script setup lang="jsx">
 import { TinyUserHead } from '@opentiny/vue-mobile'
-
-
 </script>

@@ -10,8 +10,6 @@
 
 <script setup>
 import { TinyTag } from '@opentiny/vue-mobile'
-
-
 </script>
 
 <style>

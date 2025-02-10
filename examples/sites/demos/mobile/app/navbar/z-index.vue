@@ -4,6 +4,4 @@
 
 <script setup lang="jsx">
 import { TinyNavBar } from '@opentiny/vue-mobile'
-
-
 </script>
