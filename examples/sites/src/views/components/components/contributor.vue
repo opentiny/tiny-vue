@@ -20,8 +20,7 @@ import { i18nByKey, getCmpContributors } from '@/tools'
 
 const props = defineProps({ componentId: {} })
 const contributors = computed(() => {
-  const id = props.componentId?.includes('grid') ? 'grid' : props.componentId
-  return getCmpContributors(id)
+  return getCmpContributors(props.componentId)
 })
 </script>
 <style scoped lang="less">

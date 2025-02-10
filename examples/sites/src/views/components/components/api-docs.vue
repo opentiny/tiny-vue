@@ -98,7 +98,7 @@ import { iconOuterLink } from '@opentiny/vue-icon'
 import { i18nByKey } from '@/tools'
 import { router } from '@/router.js'
 import AsyncHighlight from './async-highlight.vue'
-import VersionTip from './VersionTip.vue'
+import VersionTip from './version-tip.vue'
 
 const props = defineProps({ currentJson: {}, chartCode: {}, tableData: {} })
 

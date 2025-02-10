@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>设置主文本</p>',
             'en-US': 'Is fixed top'
           },
-          mobileDemo: 'double-line'
+          demoId: 'double-line'
         },
         {
           name: 'sub-text',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>设置次文本</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'single-line'
+          demoId: 'single-line'
         }
       ],
       events: [],
@@ -37,7 +37,7 @@ export default {
             'zh-CN': '<p>自定义主文本内容</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'description',
@@ -46,7 +46,7 @@ export default {
             'zh-CN': '<p>自定义描述内容</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'slots'
+          demoId: 'slots'
         },
         {
           name: 'prefix',
@@ -55,7 +55,7 @@ export default {
             'zh-CN': '<p>自定义头部内容</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'slots'
+          demoId: 'slots'
         },
         {
           name: 'suffix',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>自定义尾部内容</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'slots'
+          demoId: 'slots'
         }
       ]
     }

@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>是否固定在顶部，该属性默认为true</p>',
             'en-US': 'Is fixed top'
           },
-          mobileDemo: 'left-right-arrow'
+          demoId: 'left-right-arrow'
         },
         {
           name: 'left-arrow',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>是否显示左侧箭头，该属性默认为false</p>',
             'en-US': 'Is show left arrow'
           },
-          mobileDemo: 'left-right-arrow'
+          demoId: 'left-right-arrow'
         },
         {
           name: 'left-text',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>设置左侧文本</p>',
             'en-US': 'Is show left text'
           },
-          mobileDemo: 'left-right-text'
+          demoId: 'left-right-text'
         },
         {
           name: 'right-arrow',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>是否显示右侧箭头</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'left-right-arrow'
+          demoId: 'left-right-arrow'
         },
         {
           name: 'right-text',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>设置右侧文本</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: 'left-right-text'
+          demoId: 'left-right-text'
         },
         {
           name: 'sub-title',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>设置副标题</p>',
             'en-US': 'set sub-title'
           },
-          mobileDemo: 'left-right-text'
+          demoId: 'left-right-text'
         },
         {
           name: 'title',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>设置主标题</p>',
             'en-US': 'set main-title'
           },
-          mobileDemo: 'z-index'
+          demoId: 'z-index'
         },
         {
           name: 'z-index',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>设置z-index</p>',
             'en-US': 'set z-index'
           },
-          mobileDemo: 'z-index'
+          demoId: 'z-index'
         }
       ],
       events: [],
@@ -97,7 +97,7 @@ export default {
             'zh-CN': '<p>自定义标题</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'left-right-arrow'
+          demoId: 'left-right-arrow'
         },
         {
           name: 'left',
@@ -106,7 +106,7 @@ export default {
             'zh-CN': '<p>自定义左侧内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'left-right-text'
+          demoId: 'left-right-text'
         },
         {
           name: 'right',
@@ -115,7 +115,7 @@ export default {
             'zh-CN': '<p>自定义右侧内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'left-right-text'
+          demoId: 'left-right-text'
         }
       ]
     }

@@ -17,7 +17,7 @@ export default {
             'en-US':
               'Control the text color and background color of the label. You can use the preset value in the IColor type or customize the value. If the customized value is a character string, you can only set the background color of the label. If it is an array, the first value sets the background color and the second sets the text color. [Note: The array type is supported in 3.15.0]'
           },
-          mobileDemo: 'different-color'
+          demoId: 'different-color'
         },
         {
           name: 'max-width',
@@ -27,7 +27,7 @@ export default {
             'zh-CN': '最大宽度',
             'en-US': 'max width'
           },
-          mobileDemo: 'max-width'
+          demoId: 'max-width'
         },
         {
           name: 'mini',
@@ -37,7 +37,7 @@ export default {
             'zh-CN': '小尺寸',
             'en-US': 'mini'
           },
-          mobileDemo: 'mini'
+          demoId: 'mini'
         },
         {
           name: 'text',
@@ -47,7 +47,7 @@ export default {
             'zh-CN': '文字',
             'en-US': 'Text'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'theme',
@@ -70,7 +70,7 @@ export default {
             'zh-CN': '标签内容',
             'en-US': 'Label Content'
           },
-          mobileDemo: 'slot-default'
+          demoId: 'slot-default'
         }
       ]
     }

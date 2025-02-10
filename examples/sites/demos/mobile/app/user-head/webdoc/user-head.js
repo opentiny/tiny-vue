@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>设置背景色</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'custom-background-color'
+          demoId: 'custom-background-color'
         },
         {
           name: 'color',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '文字颜色',
             'en-US': 'Text color'
           },
-          mobileDemo: 'color'
+          demoId: 'color'
         },
         {
           name: 'messageTotal',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>右上角消息计数</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'message-count-limit'
+          demoId: 'message-count-limit'
         },
         {
           name: 'messageType',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>右上角消息提醒类型，basic显示小圆点不显示消息数量</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'message-count-type'
+          demoId: 'message-count-type'
         },
         {
           name: 'messageUpperLimit',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>右上角消息显示上限</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'message-count-limit'
+          demoId: 'message-count-limit'
         },
         {
           name: 'min',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '小尺寸模式',
             'en-US': 'Small size mode'
           },
-          mobileDemo: 'min-user-head'
+          demoId: 'min-user-head'
         },
         {
           name: 'round',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '圆形模式',
             'en-US': 'Circular mode'
           },
-          mobileDemo: 'round-user-head'
+          demoId: 'round-user-head'
         },
         {
           name: 'size',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>设置头像尺寸</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'type',
@@ -95,7 +95,7 @@ export default {
             'en-US':
               'Avatar type. The options are icon, image, and label. ;The value of this attribute can be icon / image / label'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'v-model/modelValue',
@@ -105,7 +105,7 @@ export default {
             'zh-CN': '<p>设type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         }
       ],
       events: [],
@@ -119,7 +119,7 @@ export default {
             'zh-CN': '自定义图像内容',
             'en-US': 'Customized image content'
           },
-          mobileDemo: 'round-user-head'
+          demoId: 'round-user-head'
         }
       ]
     }

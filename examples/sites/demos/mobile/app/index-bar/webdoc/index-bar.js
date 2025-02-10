@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>索引文字列表</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -26,7 +26,7 @@ export default {
             'zh-CN': '<p>\t当前索引改变触发</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         },
         {
           name: 'select',
@@ -36,7 +36,7 @@ export default {
             'zh-CN': '<p>选中新的索引触发</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],
@@ -48,7 +48,7 @@ export default {
             'zh-CN': '<p>\t自定义内容</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ]
     },
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>索引文字</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [],

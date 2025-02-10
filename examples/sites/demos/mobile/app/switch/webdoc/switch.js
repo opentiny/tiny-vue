@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mobileDemo: 'disabled'
+          demoId: 'disabled'
         },
         {
           name: 'false-value',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': 'switch 关闭时的值',
             'en-US': 'Value when switch is disabled'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'mini',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '设置是否显示为 mini 模式，mini 模式下不会显示 slot 的内容',
             'en-US': 'Sets whether to display in mini mode. In mini mode, the content of the slot is not displayed'
           },
-          mobileDemo: 'mini'
+          demoId: 'mini'
         },
         {
           name: 'true-value',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': 'switch 打开时的值',
             'en-US': 'Value when switch is enabled'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'v-model',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>绑定值</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -66,7 +66,7 @@ export default {
             'zh-CN': 'switch 状态发生变化时的回调函数',
             'en-US': 'Callback function for switch changes'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],

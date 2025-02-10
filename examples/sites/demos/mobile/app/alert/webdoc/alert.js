@@ -14,7 +14,7 @@ export default {
             'zh-CN': '文字是否居中',
             'en-US': 'Whether the text is centered'
           },
-          mobileDemo: 'center'
+          demoId: 'center'
         },
         {
           name: 'closable',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '警告是否可以关闭',
             'en-US': 'Set whether alarms can be disabled.'
           },
-          mobileDemo: 'custom-close'
+          demoId: 'custom-close'
         },
         {
           name: 'close-text',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '关闭按钮自定义文本',
             'en-US': 'Customized text of the close button'
           },
-          mobileDemo: 'custom-close'
+          demoId: 'custom-close'
         },
         {
           name: 'description',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '警告的提示内容',
             'en-US': 'Set the warning prompt content'
           },
-          mobileDemo: 'custom-close'
+          demoId: 'custom-close'
         },
         {
           name: 'icon',
@@ -55,7 +55,7 @@ export default {
             'en-US':
               'The icon for the custom warning of the incoming icon component will be automatically used based on the type value by default'
           },
-          mobileDemo: 'icon'
+          demoId: 'icon'
         },
         {
           name: 'size',
@@ -65,7 +65,7 @@ export default {
             'zh-CN': '警告的尺寸大小',
             'en-US': 'Set the size of the warning'
           },
-          mobileDemo: 'size'
+          demoId: 'size'
         },
         {
           name: 'target',
@@ -76,7 +76,7 @@ export default {
             'en-US':
               'Mounted container reference, this property allows the component to be displayed at the top of the corresponding container.'
           },
-          mobileDemo: 'target'
+          demoId: 'target'
         },
         {
           name: 'type',
@@ -87,7 +87,7 @@ export default {
             'zh-CN': '警告的类型',
             'en-US': 'Set the alarm type'
           },
-          mobileDemo: 'size'
+          demoId: 'size'
         }
       ],
       events: [
@@ -99,7 +99,7 @@ export default {
             'zh-CN': '关闭 alert 时触发的事件',
             'en-US': 'Event triggered when the alert function is disabled'
           },
-          mobileDemo: 'custom-close'
+          demoId: 'custom-close'
         }
       ],
       methods: [],
@@ -112,7 +112,7 @@ export default {
             'zh-CN': '组件默认插槽，当 size 设置为 large 时有效，显示在 <code>description</code>下方 ',
             'en-US': 'The default slot for the component is valid when size is set to large'
           },
-          mobileDemo: 'slot-default'
+          demoId: 'slot-default'
         }
       ]
     }

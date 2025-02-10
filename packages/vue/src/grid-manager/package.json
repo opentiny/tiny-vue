@@ -12,7 +12,6 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-grid": "workspace:~"
   },
   "devDependencies": {

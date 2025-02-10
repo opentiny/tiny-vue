@@ -28,7 +28,7 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'display-only',
-          mfDemo: ''
+          mfDemo: 'form-display-only'
         },
         {
           name: 'form-item',

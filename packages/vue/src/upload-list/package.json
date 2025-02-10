@@ -23,8 +23,7 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-action-sheet": "workspace:~",
-    "@opentiny/vue-record": "workspace:~",
-    "@opentiny/vue-image-viewer": "workspace:~"
+    "@opentiny/vue-record": "workspace:~"
   },
   "license": "MIT"
 }

@@ -14,7 +14,7 @@ export default {
             'zh-CN': "自动关闭的延时，仅当 type 为 'message' 有效",
             'en-US': "Delay for automatic shutdown, only valid when type is 'message'"
           },
-          mobileDemo: 'duration'
+          demoId: 'duration'
         },
         {
           name: 'esc-closable',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '是否允许按 Esc 键关闭窗口',
             'en-US': 'Whether to allow pressing the Esc key to close a window'
           },
-          mobileDemo: 'mask-closable'
+          demoId: 'mask-closable'
         },
         {
           name: 'fullscreen',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '是否最大化显示',
             'en-US': 'Whether to maximize the display'
           },
-          mobileDemo: 'fullscreen'
+          demoId: 'fullscreen'
         },
         {
           name: 'height',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '窗口的高度',
             'en-US': 'window height'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'id',
@@ -55,7 +55,7 @@ export default {
             'en-US':
               "If you don't want the window to be clicked repeatedly, you can set a unique id to prevent repeated prompts. This is only valid when type is 'message'"
           },
-          mobileDemo: 'id'
+          demoId: 'id'
         },
         {
           name: 'is-form-reset',
@@ -65,7 +65,7 @@ export default {
             'zh-CN': '关闭弹窗时，是否重置表单数据',
             'en-US': 'Whether to reset the form data when closing the pop-up window'
           },
-          mobileDemo: 'is-form-reset'
+          demoId: 'is-form-reset'
         },
         {
           name: 'lock-scroll',
@@ -75,7 +75,7 @@ export default {
             'zh-CN': '是否锁住滚动条，不允许页面滚动',
             'en-US': 'Whether to lock the scroll bar and not allow the page to scroll'
           },
-          mobileDemo: 'lock-scroll'
+          demoId: 'lock-scroll'
         },
         {
           name: 'lock-view',
@@ -85,7 +85,7 @@ export default {
             'zh-CN': '是否锁住页面，不允许窗口之外的任何操作',
             'en-US': 'Whether to lock the page and not allow any operations outside the window'
           },
-          mobileDemo: 'lock-view'
+          demoId: 'lock-view'
         },
         {
           name: 'mask',
@@ -95,7 +95,7 @@ export default {
             'zh-CN': '是否显示遮罩层',
             'en-US': 'Whether to display the mask layer'
           },
-          mobileDemo: 'mask-closable'
+          demoId: 'mask-closable'
         },
         {
           name: 'mask-closable',
@@ -105,7 +105,7 @@ export default {
             'zh-CN': '是否允许点击遮罩层关闭窗口',
             'en-US': 'Whether to allow clicking on the mask layer to close the window'
           },
-          mobileDemo: 'mask-closable'
+          demoId: 'mask-closable'
         },
         {
           name: 'message',
@@ -115,7 +115,7 @@ export default {
             'zh-CN': '窗口的内容',
             'en-US': 'Window contents'
           },
-          mobileDemo: 'message'
+          demoId: 'message'
         },
         {
           name: 'min-height',
@@ -125,7 +125,7 @@ export default {
             'zh-CN': '窗口的最小高度',
             'en-US': 'Minimum height of window'
           },
-          mobileDemo: 'min-height'
+          demoId: 'min-height'
         },
         {
           name: 'min-width',
@@ -135,7 +135,7 @@ export default {
             'zh-CN': '窗口的最小宽度',
             'en-US': 'The minimum width of the window'
           },
-          mobileDemo: 'min-width'
+          demoId: 'min-width'
         },
         {
           name: 'modelValue / v-model',
@@ -145,7 +145,7 @@ export default {
             'zh-CN': '是否显示',
             'en-US': 'Whether to display'
           },
-          mobileDemo: 'cancel-event'
+          demoId: 'cancel-event'
         },
         {
           name: 'resize',
@@ -155,7 +155,7 @@ export default {
             'zh-CN': '是否允许拖动调整窗口大小',
             'en-US': 'Whether to allow dragging to resize the window'
           },
-          mobileDemo: 'resize'
+          demoId: 'resize'
         },
         {
           name: 'show-header',
@@ -165,7 +165,7 @@ export default {
             'zh-CN': '是否显示头部',
             'en-US': 'Display Header'
           },
-          mobileDemo: 'showHeader'
+          demoId: 'showHeader'
         },
         {
           name: 'status',
@@ -176,7 +176,7 @@ export default {
             'zh-CN': "消息状态，当 type 为 'alert'、'message'、'confirm' 时有效",
             'en-US': "Message status, valid when type is 'alert', 'message', 'confirm'"
           },
-          mobileDemo: 'status'
+          demoId: 'status'
         },
         {
           name: 'title',
@@ -186,7 +186,7 @@ export default {
             'zh-CN': '窗口的标题',
             'en-US': 'Window title'
           },
-          mobileDemo: 'title'
+          demoId: 'title'
         },
         {
           name: 'top',
@@ -196,7 +196,7 @@ export default {
             'zh-CN': "消息距离顶部的位置，仅当 type 为 'message' 时有效",
             'en-US': "The position of the message from the top, only valid when type is 'message'"
           },
-          mobileDemo: 'top'
+          demoId: 'top'
         },
         {
           name: 'type',
@@ -206,7 +206,7 @@ export default {
             'zh-CN': '窗口类型',
             'en-US': 'Window type'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         },
         {
           name: 'width',
@@ -217,7 +217,7 @@ export default {
             'en-US':
               'The width of the window(Set the width in pixels or percentages, and the browser window size can be changed to display in the center)'
           },
-          mobileDemo: 'grid'
+          demoId: 'grid'
         },
         {
           name: 'z-index',
@@ -227,7 +227,7 @@ export default {
             'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）',
             'en-US': 'Customize the stacking order (may be used in some special scenarios, such as when it is blocked)'
           },
-          mobileDemo: 'zIndex'
+          demoId: 'zIndex'
         }
       ],
       events: [
@@ -240,7 +240,7 @@ export default {
             'zh-CN': '点击取消按钮时会触发该事件',
             'en-US': 'This event is triggered when the Cancel button is clicked'
           },
-          mobileDemo: 'cancel-event'
+          demoId: 'cancel-event'
         },
         {
           name: 'close',
@@ -251,7 +251,7 @@ export default {
             'zh-CN': '点击关闭按钮时会触发该事件',
             'en-US': 'This event is triggered when the close button is clicked'
           },
-          mobileDemo: 'close-event'
+          demoId: 'close-event'
         },
         {
           name: 'confirm',
@@ -262,7 +262,7 @@ export default {
             'zh-CN': '点击确定按钮时会触发该事件',
             'en-US': 'This event is triggered when the OK button is clicked'
           },
-          mobileDemo: 'confirm-event'
+          demoId: 'confirm-event'
         },
         {
           name: 'hide',
@@ -273,7 +273,7 @@ export default {
             'zh-CN': '在窗口关闭时会触发该事件',
             'en-US': 'This event is triggered when the window is closed'
           },
-          mobileDemo: 'hide-event'
+          demoId: 'hide-event'
         },
         {
           name: 'show',
@@ -284,7 +284,7 @@ export default {
             'zh-CN': '在窗口显示时会触发该事件',
             'en-US': 'This event is triggered when the window is displayed'
           },
-          mobileDemo: 'show-event'
+          demoId: 'show-event'
         },
         {
           name: 'zoom',
@@ -295,7 +295,7 @@ export default {
             'zh-CN': '窗口缩放时会触发该事件',
             'en-US': 'This event is triggered when a window is zoomed in or out'
           },
-          mobileDemo: 'zoom-event'
+          demoId: 'zoom-event'
         }
       ],
       methods: [],
@@ -308,7 +308,7 @@ export default {
             'zh-CN': '默认插槽',
             'en-US': 'Default slot'
           },
-          mobileDemo: 'cancel-event'
+          demoId: 'cancel-event'
         },
         {
           name: 'footer',
@@ -318,7 +318,7 @@ export default {
             'zh-CN': '窗口底部的模板',
             'en-US': 'Template at the bottom of the window'
           },
-          mobileDemo: 'footer-slot'
+          demoId: 'footer-slot'
         }
       ]
     }

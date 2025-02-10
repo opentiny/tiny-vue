@@ -15,7 +15,6 @@
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-picker": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"

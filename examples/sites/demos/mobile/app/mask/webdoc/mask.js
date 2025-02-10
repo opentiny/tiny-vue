@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否禁用touch事件，设为 <code>true</code> 后点击遮罩层不会关闭',
             'en-US': "whether to disable touch events, and mask wouldn't close when it was set <code>true</code>"
           },
-          mobileDemo: 'cancel-touch'
+          demoId: 'cancel-touch'
         },
         {
           name: 'visible',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '是否展示遮罩层',
             'en-US': 'whether to show mask layer'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'z-index',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '层叠数值',
             'en-US': 'z-index property'
           },
-          mobileDemo: 'z-index'
+          demoId: 'z-index'
         }
       ],
       events: [
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '点击遮罩层触发',
             'en-US': 'Click'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         }
       ],
       methods: [],
@@ -55,7 +55,7 @@ export default {
             'zh-CN': '默认插槽',
             'en-US': 'Default slot'
           },
-          mobileDemo: 'slot-default'
+          demoId: 'slot-default'
         }
       ]
     }

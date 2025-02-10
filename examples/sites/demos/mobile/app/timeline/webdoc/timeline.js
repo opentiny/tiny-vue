@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>设置步骤条的选中步骤</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: 'different-data'
+          demoId: 'different-data'
         },
         {
           name: 'data',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>设置时间线步骤条数据',
             'en-US': 'data'
           },
-          mobileDemo: 'different-data'
+          demoId: 'different-data'
         },
         {
           name: 'horizontal',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>是否为横向步骤条</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'name-field',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>设置节点信息中名称对应的字段名</p>',
             'en-US': 'Is show left arrow'
           },
-          mobileDemo: 'different-data'
+          demoId: 'different-data'
         },
         {
           name: 'reverse',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>设置竖向步骤条的方向</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: 'mobileTimeLine'
+          demoId: 'mobileTimeLine'
         },
         {
           name: 'show-number',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>设置未完成的状态是否显示序号',
             'en-US': 'data'
           },
-          mobileDemo: 'different-data'
+          demoId: 'different-data'
         },
         {
           name: 'showStatus',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>是否展示状态文字</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'space',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>设置步骤条的宽度</p>',
             'en-US': 'Is show right arrow'
           },
-          mobileDemo: 'space'
+          demoId: 'space'
         },
         {
           name: 'start',
@@ -94,7 +94,7 @@ export default {
             'zh-CN': '<p>设置步骤条序号起始值</p>',
             'en-US': 'Is show left arrow'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'time-field',
@@ -104,7 +104,7 @@ export default {
             'zh-CN': '<p>设置节点时间信息对应的字段名</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: 'different-data'
+          demoId: 'different-data'
         },
         {
           name: 'vertical',
@@ -114,7 +114,7 @@ export default {
             'zh-CN': '<p>竖式步骤条</p>',
             'en-US': 'Is show right text'
           },
-          mobileDemo: 'steps'
+          demoId: 'steps'
         }
       ],
       events: [
@@ -126,7 +126,7 @@ export default {
             'zh-CN': '<p>节点的点击事件;arguments: arg1:点击节点的下标, arg2:{ name: 节点名称, time: 时间 }</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'mobileTimeLine'
+          demoId: 'mobileTimeLine'
         }
       ],
       methods: [],
@@ -138,7 +138,7 @@ export default {
             'zh-CN': '<p>定义横向步骤条底部</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'conternt',
@@ -147,7 +147,7 @@ export default {
             'zh-CN': '<p>定义竖向步骤条内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'header',
@@ -156,7 +156,7 @@ export default {
             'zh-CN': '<p>定义竖向步骤条头部内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'left',
@@ -165,7 +165,7 @@ export default {
             'zh-CN': '<p>定义步骤条左侧内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot'
+          demoId: 'slot'
         },
         {
           name: 'right',
@@ -174,7 +174,7 @@ export default {
             'zh-CN': '<p>定义步骤条右侧内容</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'slot'
+          demoId: 'slot'
         },
         {
           name: 'top',
@@ -183,7 +183,7 @@ export default {
             'zh-CN': '<p>定义横向步骤条顶部</p>',
             'en-US': 'Click'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     }

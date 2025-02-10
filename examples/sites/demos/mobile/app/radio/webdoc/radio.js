@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mobileDemo: 'disabled'
+          demoId: 'disabled'
         },
         {
           name: 'label',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': 'radio 选中时的值',
             'en-US': 'Value when radio is selected'
           },
-          mobileDemo: 'label'
+          demoId: 'label'
         },
         {
           name: 'name',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '原生 name 属性',
             'en-US': 'Native name attribute'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'text',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '单选框文本内容',
             'en-US': 'Radio Box Text Content'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         },
         {
           name: 'value',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>绑定值，该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'base'
+          demoId: 'base'
         }
       ],
       events: [
@@ -66,7 +66,7 @@ export default {
             'zh-CN': '绑定值变化时触发的事件',
             'en-US': 'Event triggered when the binding value changes'
           },
-          mobileDemo: 'event'
+          demoId: 'event'
         }
       ],
       methods: [],
@@ -79,7 +79,7 @@ export default {
             'zh-CN': 'radio 的默认插槽',
             'en-US': 'Radio default slot'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     },

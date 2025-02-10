@@ -17,7 +17,7 @@
 import { computed } from 'vue'
 import hljs from 'highlight.js'
 import { marked } from 'marked'
-import VersionTip from './VersionTip.vue'
+import VersionTip from './version-tip.vue'
 const props = defineProps({ currentJson: {}, mdString: {} })
 const mdContent = computed(() =>
   marked(props.mdString, {

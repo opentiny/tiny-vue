@@ -16,7 +16,7 @@ export default {
             'en-US':
               'Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         },
         {
           name: 'tiny_mode',
@@ -26,7 +26,7 @@ export default {
             'zh-CN': '<p>通配置项pc,mobile表示不同设备</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         },
         {
           name: 'type',
@@ -36,7 +36,7 @@ export default {
             'zh-CN': '<p>通过type设置不同的加载样式</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         }
       ],
       events: [],
@@ -49,7 +49,7 @@ export default {
             'zh-CN': '<p>关闭Loading</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'type'
+          demoId: 'type'
         }
       ],
       slots: []

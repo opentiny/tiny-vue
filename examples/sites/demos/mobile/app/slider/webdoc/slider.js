@@ -14,7 +14,7 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mobileDemo: 'dynamic-disable'
+          demoId: 'dynamic-disable'
         },
         {
           name: 'format-tooltip',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '格式化 tooltip 提示',
             'en-US': 'Format tooltip message'
           },
-          mobileDemo: 'format-tooltip'
+          demoId: 'format-tooltip'
         },
         {
           name: 'max',
@@ -35,7 +35,7 @@ export default {
             'en-US':
               'Set the maximum value. The value must be an integer and can be a negative number. The value must be greater than the minimum value set'
           },
-          mobileDemo: 'max-min'
+          demoId: 'max-min'
         },
         {
           name: 'min',
@@ -45,7 +45,7 @@ export default {
             'zh-CN': '设置最小值',
             'en-US': 'Set the minimum value'
           },
-          mobileDemo: 'max-min'
+          demoId: 'max-min'
         },
         {
           name: 'num-pages',
@@ -56,7 +56,7 @@ export default {
             'en-US':
               'Set the total number of steps. That is, when you press PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉".'
           },
-          mobileDemo: 'shortcut-operation'
+          demoId: 'shortcut-operation'
         },
         {
           name: 'range',
@@ -66,7 +66,7 @@ export default {
             'zh-CN': '<p>是否为范围选择</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'show-input',
@@ -76,7 +76,7 @@ export default {
             'zh-CN': '是否显示输入框',
             'en-US': 'Indicates whether to display the text box.'
           },
-          mobileDemo: 'show-input'
+          demoId: 'show-input'
         },
         {
           name: 'show-tip',
@@ -86,7 +86,7 @@ export default {
             'zh-CN': '是否显示 tooltip',
             'en-US': 'Whether to display tooltip'
           },
-          mobileDemo: 'show-tip'
+          demoId: 'show-tip'
         },
         {
           name: 'step',
@@ -97,7 +97,7 @@ export default {
             'en-US':
               'Displacement distance of each step when the slider moves. The value must be a positive integer greater than 0'
           },
-          mobileDemo: 'about-step'
+          demoId: 'about-step'
         },
         {
           name: 'value',
@@ -107,7 +107,7 @@ export default {
             'zh-CN': '<p>设置单滑块的当前值，必需是整数或数组。</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: ''
+          demoId: ''
         },
         {
           name: 'vertical',
@@ -117,7 +117,7 @@ export default {
             'zh-CN': '是否竖向模式',
             'en-US': 'Whether the vertical mode is used'
           },
-          mobileDemo: 'vertical-mode'
+          demoId: 'vertical-mode'
         }
       ],
       events: [
@@ -130,7 +130,7 @@ export default {
             'en-US':
               'Triggered when the value changes (When you drag the mouse, it is triggered only after you release the mouse).'
           },
-          mobileDemo: 'slider-event-change'
+          demoId: 'slider-event-change'
         },
         {
           name: 'start',
@@ -140,7 +140,7 @@ export default {
             'zh-CN': '设置滑块滑动开始时，触发该事件',
             'en-US': 'This event is triggered when the slider starts to slide.'
           },
-          mobileDemo: 'slider-event-start'
+          demoId: 'slider-event-start'
         },
         {
           name: 'stop',
@@ -150,7 +150,7 @@ export default {
             'zh-CN': '设置滑块滑动结束时，触发该事件',
             'en-US': 'This event is triggered when the slider sliding ends. '
           },
-          mobileDemo: 'slider-event-stop'
+          demoId: 'slider-event-stop'
         }
       ],
       methods: [],
@@ -164,7 +164,7 @@ export default {
             'en-US':
               'Slot for displaying slider values, valid only if v-model is a single value. Slot parameters are: slotArg: {slotScope: number}'
           },
-          mobileDemo: ''
+          demoId: ''
         }
       ]
     }

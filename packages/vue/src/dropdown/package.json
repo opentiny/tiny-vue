@@ -12,7 +12,6 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-button-group": "workspace:~",
     "@opentiny/vue-common": "workspace:~",

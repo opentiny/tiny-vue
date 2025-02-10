@@ -14,7 +14,6 @@
   "dependencies": {
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "devDependencies": {

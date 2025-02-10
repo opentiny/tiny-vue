@@ -14,7 +14,7 @@ export default {
             'zh-CN': '<p>设置图片的备用文字描述</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'error',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '<p>设置img 标签的 onerror 函数</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'fit',
@@ -34,7 +34,7 @@ export default {
             'zh-CN': '<p>设置图片的 object-fit</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'icon',
@@ -44,7 +44,7 @@ export default {
             'zh-CN': '<p>设置显示内容为icon</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'shape',
@@ -54,7 +54,7 @@ export default {
             'zh-CN': '<p>该属性的可选值为 circle | square</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'size',
@@ -64,7 +64,7 @@ export default {
             'zh-CN': '<p>该属性的可选值为 large|medium|small</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-size'
+          demoId: 'avatar-size'
         },
         {
           name: 'src',
@@ -74,7 +74,7 @@ export default {
             'zh-CN': '<p>设置图片链接地址</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         },
         {
           name: 'src-set',
@@ -84,7 +84,7 @@ export default {
             'zh-CN': '<p>设置源图容器</p>',
             'en-US': 'display different button'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         }
       ],
       events: [],
@@ -97,7 +97,7 @@ export default {
             'zh-CN': '<p>组件默认插槽</p>',
             'en-US': 'Click'
           },
-          mobileDemo: 'avatar-src-set'
+          demoId: 'avatar-src-set'
         }
       ]
     }

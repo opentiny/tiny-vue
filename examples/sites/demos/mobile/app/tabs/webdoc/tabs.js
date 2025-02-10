@@ -14,7 +14,7 @@ export default {
             'zh-CN': '当前页签的字体颜色',
             'en-US': 'active tab color'
           },
-          mobileDemo: 'active-color'
+          demoId: 'active-color'
         },
         {
           name: 'active-name',
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '设置初始选中的页签项',
             'en-US': 'Set initially selected label items'
           },
-          mobileDemo: 'active-name'
+          demoId: 'active-name'
         },
         {
           name: 'before-leave',
@@ -36,7 +36,7 @@ export default {
             'en-US':
               'The hook before the tag is switched. If false is returned or Promise is returned and rejected, the switch is blocked; ActiveName: The name of the label item that is about to be switched, oldActiveName: The name of the current label item'
           },
-          mobileDemo: 'before-leave'
+          demoId: 'before-leave'
         },
         {
           name: 'expand-tabs-mode',
@@ -47,7 +47,7 @@ export default {
             'en-US':
               "The arrangement of content can be displayed in either a single column format, which is referred to as 'column', or in multiple columns, which is referred to as 'columns'."
           },
-          mobileDemo: 'expend'
+          demoId: 'expend'
         },
         {
           name: 'expand-tabs-title',
@@ -57,7 +57,7 @@ export default {
             'zh-CN': '展开内容的标题',
             'en-US': 'Expand Content Title'
           },
-          mobileDemo: 'expend'
+          demoId: 'expend'
         },
         {
           name: 'show-expand-tabs',
@@ -67,7 +67,7 @@ export default {
             'zh-CN': '页签可展开',
             'en-US': 'tabs expandable'
           },
-          mobileDemo: 'expend'
+          demoId: 'expend'
         },
         {
           name: 'swipeable',
@@ -77,7 +77,7 @@ export default {
             'zh-CN': '滑动页签内容切换页签',
             'en-US': 'slide tab content to switch tab'
           },
-          mobileDemo: 'swipe'
+          demoId: 'swipe'
         },
         {
           name: 'v-model / modelValue',
@@ -87,7 +87,7 @@ export default {
             'zh-CN': '选中选项卡的 name',
             'en-US': 'the name of the selected item'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         },
         {
           name: 'with-add',
@@ -97,7 +97,7 @@ export default {
             'zh-CN': '是否显示添加按钮，用来添加页签项',
             'en-US': 'Do you want to display the add button to add tab item'
           },
-          mobileDemo: 'add-delete-tab'
+          demoId: 'add-delete-tab'
         },
         {
           name: 'with-close',
@@ -107,7 +107,7 @@ export default {
             'zh-CN': '是否显示页签项的关闭按钮，用来删除页签项',
             'en-US': 'Do you want to display the close button for label items to delete them'
           },
-          mobileDemo: 'add-delete-tab'
+          demoId: 'add-delete-tab'
         }
       ],
       events: [
@@ -119,7 +119,7 @@ export default {
             'zh-CN': '点击"添加"按钮后触发，用于编写增加页签项的逻辑',
             'en-US': 'Triggered after clicking the "Add" button, used to write logic for adding tab items'
           },
-          mobileDemo: 'tabs-events'
+          demoId: 'tabs-events'
         },
         {
           name: 'click',
@@ -130,7 +130,7 @@ export default {
             'en-US':
               'Trigger an event when clicking on a tab item, Triggered when tab is selected; TabItem: Click on the Component object information of the tab item in the middle'
           },
-          mobileDemo: 'tabs-events'
+          demoId: 'tabs-events'
         },
         {
           name: 'close',
@@ -141,7 +141,7 @@ export default {
             'en-US':
               'Triggered after clicking the tab item close button, used to write logic for deleting tab items; name: The name value of the tab item to be deleted'
           },
-          mobileDemo: 'tabs-events'
+          demoId: 'tabs-events'
         }
       ],
       methods: [],
@@ -154,7 +154,7 @@ export default {
             'zh-CN': '默认插槽',
             'en-US': 'default slot'
           },
-          mobileDemo: 'basic-usage'
+          demoId: 'basic-usage'
         }
       ]
     },
