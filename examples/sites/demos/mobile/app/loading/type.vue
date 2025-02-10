@@ -4,26 +4,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref, onMounted } from 'vue'
 import { TinyLoading } from '@opentiny/vue-mobile'
 
-export default {
-  data() {
-    return {
-      loadingInstance: null
-    }
-  },
-  mounted() {
-    this.loadingInstance = TinyLoading.service({
-      tiny_mode: 'mobile',
-      target: document.getElementById('tiny-mobile-loading2'),
-      type: 'simple'
-    })
-  },
-  methods: {
-    closeLoading() {
-      this.loadingInstance.close()
-    }
-  }
+const loadingInstance = ref(null)
+
+onMounted(() => {
+  loadingInstance.value = TinyLoading.service({
+    tiny_mode: 'mobile',
+    target: document.getElementById('tiny-mobile-loading2'),
+    type: 'simple'
+  })
+})
+
+function closeLoading() {
+  loadingInstance.value.close()
 }
 </script>

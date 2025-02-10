@@ -14,32 +14,24 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyList } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyList
+const dataList = ref([
+  {
+    id: 1,
+    content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
+    contentdes: '此处是辅助说明文体，说明文本',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
   },
-  data() {
-    return {
-      dataList: [
-        {
-          id: 1,
-          content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
-          contentdes: '此处是辅助说明文体，说明文本',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
-        },
-        {
-          id: 2,
-          content: '主文本',
-          contentdes: '此处是辅助说明文体，说明文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
-        }
-      ]
-    }
+  {
+    id: 2,
+    content: '主文本',
+    contentdes: '此处是辅助说明文体，说明文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
   }
-}
+])
 </script>
 
 <style scoped>

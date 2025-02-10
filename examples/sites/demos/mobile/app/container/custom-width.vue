@@ -23,23 +23,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyContainer,
-    TinyRadio,
-    TinyRadioGroup
-  },
-  data() {
-    return {
-      pattern: 'default',
-      leftWidth: 80,
-      rightWidth: 80
-    }
-  }
-}
+const pattern = ref('default')
+const leftWidth = ref(80)
+const rightWidth = ref(80)
 </script>
 
 <style scoped>

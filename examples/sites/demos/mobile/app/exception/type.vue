@@ -9,22 +9,13 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyException } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyException
-  },
-  data() {
-    return {
-      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`
-    }
-  },
-  methods: {
-    test() {
-      alert(11)
-    }
-  }
+const imageUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`)
+
+function test() {
+  alert(11)
 }
 </script>

@@ -25,20 +25,12 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyUserHead } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyUserHead
-  },
-  data() {
-    return {
-      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
-      name: '小明'
-    }
-  }
-}
+const imageUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`)
+const name = ref('小明')
 </script>
 
 <style lang="less" scoped>

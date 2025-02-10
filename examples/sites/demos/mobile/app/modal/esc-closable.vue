@@ -2,17 +2,10 @@
   <tiny-button @click="btnClick" :reset-time="0">按 Esc 键可以关闭弹出框</tiny-button>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  },
-  methods: {
-    btnClick() {
-      TinyModal.alert({ message: '按 Esc 键可以关闭', escClosable: true, tiny_mode: 'mobile' })
-    }
-  }
+function btnClick() {
+  TinyModal.alert({ message: '按 Esc 键可以关闭', escClosable: true, tiny_mode: 'mobile' })
 }
 </script>

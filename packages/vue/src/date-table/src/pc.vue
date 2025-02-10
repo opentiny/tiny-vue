@@ -62,7 +62,8 @@ export default defineComponent({
     'selectionMode',
     'showWeekNumber',
     'value',
-    'formatWeeks'
+    'formatWeeks',
+    'readonly'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

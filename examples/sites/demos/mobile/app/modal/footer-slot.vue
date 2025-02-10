@@ -9,18 +9,9 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyModal
-  },
-  data() {
-    return {
-      value1: false
-    }
-  }
-}
+const value1 = ref(false)
 </script>

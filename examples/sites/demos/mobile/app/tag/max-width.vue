@@ -4,14 +4,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyTag } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTag
-  }
-}
+
 </script>
 
 <style>

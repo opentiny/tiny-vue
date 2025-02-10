@@ -15,47 +15,37 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyTabbar, TinyTabbarItem, TinyButton } from '@opentiny/vue-mobile'
 import { iconDialog, iconEmailAdd, iconGroup, iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyTabbar,
-    TinyTabbarItem,
-    TinyButton
-  },
-  data() {
-    return {
-      activeName: 3,
-      IconDialog: iconDialog(),
-      IconEmailAdd: iconEmailAdd(),
-      IconGroup: iconGroup(),
-      IconSetting: iconSetting(),
-      IconAdministrator: iconAdministrator(),
-      pagename: '',
-      list: [
-        { title: '消息', ico: iconDialog() },
-        { title: '邮件', ico: iconEmailAdd() }
-      ],
-      itemList: [
-        { title: '消息', ico: iconDialog() },
-        { title: '邮件', ico: iconEmailAdd() },
-        { title: '人员', ico: iconGroup() },
-        { title: '设置', ico: iconSetting() },
-        { title: '我的', ico: iconAdministrator() }
-      ]
-    }
-  },
-  methods: {
-    change(num) {
-      this.pagename = ''
-      this.list = this.itemList.slice(0, num)
-    },
-    tab(name) {
-      this.pagename = '当前点击的是------' + name + '   标签栏'
-    }
-  }
+const activeName = ref(3)
+const IconDialog = iconDialog()
+const IconEmailAdd = iconEmailAdd()
+const IconGroup = iconGroup()
+const IconSetting = iconSetting()
+const IconAdministrator = iconAdministrator()
+const pagename = ref('')
+const list = ref([
+  { title: '消息', ico: iconDialog() },
+  { title: '邮件', ico: iconEmailAdd() }
+])
+const itemList = ref([
+  { title: '消息', ico: iconDialog() },
+  { title: '邮件', ico: iconEmailAdd() },
+  { title: '人员', ico: iconGroup() },
+  { title: '设置', ico: iconSetting() },
+  { title: '我的', ico: iconAdministrator() }
+])
+
+function change(num) {
+  pagename.value = ''
+  list.value = itemList.value.slice(0, num)
+}
+
+function tab(name) {
+  pagename.value = '当前点击的是------' + name + '   标签栏'
 }
 </script>
 

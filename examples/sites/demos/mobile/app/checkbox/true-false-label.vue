@@ -6,19 +6,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyCheckbox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyCheckbox
-  },
-  data() {
-    return {
-      checked: 'yes'
-    }
-  }
-}
+const checked = ref('yes')
 </script>
 
 <style scoped>

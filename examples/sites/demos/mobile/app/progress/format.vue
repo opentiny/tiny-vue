@@ -12,23 +12,14 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress
-  },
-  data() {
-    return {
-      percentage: 20
-    }
-  },
-  methods: {
-    formatText() {
-      return `自定义内容 ${this.percentage}%`
-    }
-  }
+const percentage = ref(20)
+
+function formatText() {
+  return `自定义内容 ${percentage.value}%`
 }
 </script>
 

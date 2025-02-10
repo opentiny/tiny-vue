@@ -17,7 +17,7 @@ jobs:
         with:
           script: |
             const tag = `${{ github.ref_name }}`
-            const branchVersion = tag.slice(1)
+            const branchVersion = tag.slice(1).split('.').slice(0, 2).join('.') + '.0'
             core.setOutput('branchVersion', branchVersion)
 
       - name: CheckOut Code

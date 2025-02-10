@@ -14,9 +14,15 @@ test('[DatePanel] 测试月份/年份/日期选择', async ({ page }) => {
 
   // 选择月份展示日期面板
   await page.getByRole('cell', { name: '一月', exact: true }).click()
-  await expect(page.getByRole('cell', { name: '15' }).locator('div')).toBeVisible()
+  await expect(page.getByRole('cell', { name: '15' }).locator('div').first()).toBeVisible()
 
   // 选择日期
-  await page.getByRole('cell', { name: '15' }).locator('div').click()
-  await expect(page.getByText('-01-15')).toBeVisible()
+  await page.getByText('16').first().click()
+  await expect(page.getByText('-01-16')).toBeVisible()
+
+  // dateRange
+  await page.locator('.tiny-date-range-picker__header > button:nth-child(2)').first().click()
+  await page.locator('div').filter({ hasText: /^19$/ }).nth(1).click()
+  await page.getByRole('cell', { name: '28' }).nth(3).click()
+  await expect(page.getByText('[ "2024-12-19", "2025-01-28" ]')).toBeVisible()
 })

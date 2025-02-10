@@ -9,20 +9,12 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyNumeric } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyNumeric
-  },
-  data() {
-    return {
-      size: 'small',
-      value: 0,
-      tatolPrice: 0,
-      price: 10
-    }
-  }
-}
+const size = ref('small')
+const value = ref(0)
+const tatolPrice = ref(0)
+const price = ref(10)
 </script>

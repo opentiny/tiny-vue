@@ -26,16 +26,8 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyProgress } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress
-  },
 
-  data() {
-    return {}
-  }
-}
 </script>

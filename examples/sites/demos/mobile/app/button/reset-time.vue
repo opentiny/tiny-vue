@@ -5,14 +5,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  }
-}
+
 </script>
 
 <style scoped>

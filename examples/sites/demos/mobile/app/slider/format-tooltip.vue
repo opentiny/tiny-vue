@@ -10,23 +10,14 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySlider } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySlider
-  },
-  data() {
-    return {
-      value: 20
-    }
-  },
-  methods: {
-    format(value) {
-      return '当前值为：' + value
-    }
-  }
+const value = ref(20)
+
+function format(value) { // NISVUE3 FIXME: value重复定义，请手工修改
+  return '当前值为：' + value
 }
 </script>
 

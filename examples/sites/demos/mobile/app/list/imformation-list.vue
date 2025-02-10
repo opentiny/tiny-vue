@@ -41,7 +41,9 @@
           </div>
         </template>
         <template #description>
-          <div class="demo-description"><icon-dialog class="demo-icon"></icon-dialog> {{ item.contentdes }}</div>
+          <div class="demo-description">
+            <tiny-icon-dialog class="demo-icon"></tiny-icon-dialog> {{ item.contentdes }}
+          </div>
         </template>
       </tiny-list>
     </div>
@@ -58,7 +60,7 @@
             </div>
           </template>
           <template #description>
-            <div class="demo-description"><icon-dialog></icon-dialog> {{ item.contentdes }}</div>
+            <div class="demo-description"><tiny-icon-dialog></tiny-icon-dialog> {{ item.contentdes }}</div>
           </template>
         </tiny-list>
       </div>
@@ -81,83 +83,75 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyList } from '@opentiny/vue-mobile'
 import { iconDialog } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyList,
-    IconDialog: iconDialog()
-  },
-  data() {
-    return {
-      dataList: [
-        {
-          id: 1,
-          content: 'AI系列培训-Introduction to AI & ML-分布式',
-          subtext: '',
-          contentdes: '',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/px.png`
-        }
-      ],
-      dataList1: [
-        {
-          id: 1,
-          content:
-            'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
-          subtext: '',
-          contentdes: '01-14 00:00',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/zh.png`
-        }
-      ],
-      dataList2: [
-        {
-          id: 1,
-          content:
-            'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
-          subtext: '',
-          contentdes: '1235评论',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`
-        }
-      ],
-      dataList3: [
-        {
-          id: 1,
-          content:
-            'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
-          subtext: '',
-          contentdes: '1235播放',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
-        },
-        {
-          id: 2,
-          content: 'AI系列培训',
-          subtext: '',
-          contentdes: '1235播放',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        }
-      ],
-      dataList4: [
-        {
-          id: 1,
-          content:
-            'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
-          subtext: '',
-          contentdes: '1235播放',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/jz.png`
-        },
-        {
-          id: 2,
-          content: 'AI系列培训',
-          subtext: '',
-          contentdes: '1235播放',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dh.png`
-        }
-      ]
-    }
+const dataList = ref([
+  {
+    id: 1,
+    content: 'AI系列培训-Introduction to AI & ML-分布式',
+    subtext: '',
+    contentdes: '',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/px.png`
   }
-}
+])
+const dataList1 = ref([
+  {
+    id: 1,
+    content:
+      'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
+    subtext: '',
+    contentdes: '01-14 00:00',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/zh.png`
+  }
+])
+const dataList2 = ref([
+  {
+    id: 1,
+    content:
+      'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
+    subtext: '',
+    contentdes: '1235评论',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`
+  }
+])
+const dataList3 = ref([
+  {
+    id: 1,
+    content:
+      'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
+    subtext: '',
+    contentdes: '1235播放',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+  },
+  {
+    id: 2,
+    content: 'AI系列培训',
+    subtext: '',
+    contentdes: '1235播放',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+  }
+])
+const dataList4 = ref([
+  {
+    id: 1,
+    content:
+      'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
+    subtext: '',
+    contentdes: '1235播放',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/jz.png`
+  },
+  {
+    id: 2,
+    content: 'AI系列培训',
+    subtext: '',
+    contentdes: '1235播放',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dh.png`
+  }
+])
+const TinyIconDialog = iconDialog()
 </script>
 
 <style scoped>

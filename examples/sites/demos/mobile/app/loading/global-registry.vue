@@ -8,39 +8,31 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, getCurrentInstance } from 'vue'
 import { TinyLoading, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  },
-  directives: {
-    loading: TinyLoading.directive
-  },
-  data() {
-    return {
-      showLoading: false
-    }
-  },
-  methods: {
-    handleClick() {
-      this.showLoading = true
-      setTimeout(() => {
-        this.showLoading = false
-      }, 3000)
-    },
-    handleClick2() {
-      const loading = this.$loading({
-        lock: true,
-        text: 'Loading',
-        tiny_mode: 'mobile'
-      })
-      setTimeout(() => {
-        loading.close()
-      }, 3000)
-    }
-  }
+const showLoading = ref(false)
+const instance = getCurrentInstance()
+const { $loading } = instance.appContext.config.globalProperties
+const vLoading = TinyLoading.directive
+
+function handleClick() {
+  showLoading.value = true
+  setTimeout(() => {
+    showLoading.value = false
+  }, 3000)
+}
+
+function handleClick2() {
+  const loading = $loading({
+    lock: true,
+    text: 'Loading',
+    tiny_mode: 'mobile'
+  })
+  setTimeout(() => {
+    loading.close()
+  }, 3000)
 }
 </script>
 

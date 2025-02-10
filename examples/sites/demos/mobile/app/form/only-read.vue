@@ -5,7 +5,7 @@
       <p class="page__desc">表单（纯展示）</p>
     </div>
     <div class="padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120px">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="120px">
         <tiny-form-item label="个人交养老险" prop="users">
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
@@ -21,7 +21,7 @@
       </tiny-form>
     </div>
     <div class="padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120px">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="120px">
         <tiny-form-item label="个人交养老险" prop="users" vertical>
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
@@ -37,7 +37,7 @@
       </tiny-form>
     </div>
     <div class="padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120px" label-position="top">
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="120px" label-position="top">
         <tiny-form-item label="个人交养老险" prop="users" vertical>
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
@@ -65,50 +65,39 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyForm,
-    TinyFormItem,
-    TinyInput
+const menus = ref([
+  {
+    id: 1,
+    label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
   },
-  data() {
-    return {
-      menus: [
-        {
-          id: 1,
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-        },
-        {
-          id: 2,
-          label: '我是小树'
-        },
-        {
-          id: 3,
-          label: '我是小草'
-        },
-        {
-          id: 4,
-          label: '我是小叶',
-          warn: true
-        }
-      ],
-      createData: {
-        users: '-500.00',
-        user: '',
-        one: '-200.00',
-        two: '-252.50',
-        three: '-1458.60',
-        text1:
-          '很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本'
-      },
-      rules: {}
-    }
+  {
+    id: 2,
+    label: '我是小树'
   },
-  methods: {}
-}
+  {
+    id: 3,
+    label: '我是小草'
+  },
+  {
+    id: 4,
+    label: '我是小叶',
+    warn: true
+  }
+])
+const createData = ref({
+  users: '-500.00',
+  user: '',
+  one: '-200.00',
+  two: '-252.50',
+  three: '-1458.60',
+  text1:
+    '很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本'
+})
+const rules = ref({})
 </script>
 
 <style scoped>

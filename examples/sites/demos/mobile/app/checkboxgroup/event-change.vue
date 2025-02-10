@@ -6,25 +6,15 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyCheckbox,
-    TinyCheckboxGroup
-  },
-  data() {
-    return {
-      checkboxGroup: ['北京'],
-      cities: ['上海', '北京', '广州', '深圳']
-    }
-  },
-  methods: {
-    handleChange(val) {
-      console.log('当前值为：' + val)
-    }
-  }
+const checkboxGroup = ref(['北京'])
+const cities = ref(['上海', '北京', '广州', '深圳'])
+
+function handleChange(val) {
+  console.log('当前值为：' + val)
 }
 </script>
 

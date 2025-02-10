@@ -9,23 +9,13 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyModal
-  },
-  data() {
-    return {
-      value1: false
-    }
-  },
-  methods: {
-    zoomClick() {
-      TinyModal.message({ message: '窗口缩放时触发事件', tiny_mode: 'mobile' })
-    }
-  }
+const value1 = ref(false)
+
+function zoomClick() {
+  TinyModal.message({ message: '窗口缩放时触发事件', tiny_mode: 'mobile' })
 }
 </script>

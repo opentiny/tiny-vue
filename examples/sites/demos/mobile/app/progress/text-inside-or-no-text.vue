@@ -8,19 +8,9 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyProgress,
-    TinyButton
-  },
-
-  data() {
-    return {
-      showTest: true
-    }
-  }
-}
+const showTest = ref(true)
 </script>

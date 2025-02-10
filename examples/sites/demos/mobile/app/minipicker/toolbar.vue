@@ -23,31 +23,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput, TinyMiniPicker } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyMiniPicker,
-    TinyForm,
-    TinyFormItem,
-    TinyInput
-  },
-  data() {
-    return {
-      boxVisibility: false,
-      columns1: ['小花', '小草', '小叶', '小树', '小星', '小月'],
-      val: ''
-    }
-  },
-  methods: {
-    fn() {
-      this.boxVisibility = true
-    },
-    getVal(val) {
-      this.val = val
-    }
-  }
+const boxVisibility = ref(false)
+const columns1 = ref(['小花', '小草', '小叶', '小树', '小星', '小月'])
+const val = ref('')
+
+function fn() {
+  boxVisibility.value = true
+}
+
+function getVal(val) { // NISVUE3 FIXME: val重复定义，请手工修改
+  // NISVUE3 FIXME: val重复定义，请手工修改
+  val.value = val
 }
 </script>
 

@@ -7,14 +7,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyLabel } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyLabel
-  }
-}
+
 </script>
 
 <style scoped>

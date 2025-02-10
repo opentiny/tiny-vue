@@ -7,44 +7,32 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue'
 import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyCheckbox,
-    TinyCheckboxGroup
+const checkboxGroup = ref(['北京'])
+const cities = ref(['上海', '北京', '广州', '深圳'])
+const isIndeterminate = computed({
+  get() {
+    return !(checkboxGroup.value.length === 0 || checkboxGroup.value.length === cities.value.length)
+  }
+})
+const checkAll = computed({
+  get() {
+    return checkboxGroup.value.length === cities.value.length
   },
-  data() {
-    return {
-      checkboxGroup: ['北京'],
-      cities: ['上海', '北京', '广州', '深圳']
-    }
-  },
-  methods: {
-    all() {
-      this.checkAll = this.isIndeterminate
-    }
-  },
-  computed: {
-    isIndeterminate: {
-      get() {
-        return !(this.checkboxGroup.length === 0 || this.checkboxGroup.length === this.cities.length)
-      }
-    },
-    checkAll: {
-      get() {
-        return this.checkboxGroup.length === this.cities.length
-      },
-      set(val) {
-        if (val) {
-          this.checkboxGroup = [...this.cities]
-        } else {
-          this.checkboxGroup = []
-        }
-      }
+  set(val) {
+    if (val) {
+      checkboxGroup.value = [...cities.value]
+    } else {
+      checkboxGroup.value = []
     }
   }
+})
+
+function all() {
+  checkAll.value = isIndeterminate.value
 }
 </script>
 

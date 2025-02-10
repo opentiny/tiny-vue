@@ -7,25 +7,15 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyBadge, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyBadge,
-    TinyButton
-  },
-  data() {
-    return {
-      unread: 2
-    }
-  },
-  methods: {
-    read() {
-      if (this.unread > 0) {
-        this.unread = this.unread - 1
-      }
-    }
+const unread = ref(2)
+
+function read() {
+  if (unread.value > 0) {
+    unread.value = unread.value - 1
   }
 }
 </script>

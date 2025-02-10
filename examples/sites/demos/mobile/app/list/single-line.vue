@@ -8,7 +8,7 @@
       <p>主文本+次文本(可选)+提示性图标</p>
       <tiny-list v-for="item of dataList" :key="item.id" :content="content" :sub-text="text">
         <template #suffix>
-          <icon-chevron-right />
+          <tiny-icon-chevron-right />
         </template>
       </tiny-list>
     </div>
@@ -16,7 +16,7 @@
       <p>操作性图标+主文本</p>
       <tiny-list v-for="item of dataList" :key="item.id" :content="content">
         <template #prefix>
-          <icon-help />
+          <tiny-icon-help />
         </template>
       </tiny-list>
     </div>
@@ -24,10 +24,10 @@
       <p>主文本+次文本(可选)+提示性图标</p>
       <tiny-list v-for="item of dataList" :key="item.id" :content="content">
         <template #prefix>
-          <icon-help />
+          <tiny-icon-help />
         </template>
         <template #suffix>
-          <icon-chevron-right />
+          <tiny-icon-chevron-right />
         </template>
       </tiny-list>
     </div>
@@ -38,7 +38,7 @@
           <img :src="item.img" alt="list des" style="display: block; width: 100px" />
         </template>
         <template #suffix>
-          <icon-chevron-right />
+          <tiny-icon-chevron-right />
         </template>
       </tiny-list>
     </div>
@@ -59,37 +59,29 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyList } from '@opentiny/vue-mobile'
 import { iconHelp, iconChevronRight } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyList,
-    IconHelp: iconHelp(),
-    IconChevronRight: iconChevronRight()
+const content = ref('主文本')
+const text = ref('次文本')
+const des = ref('辅助说明文字')
+const imgsrc = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/icon.png`)
+const dataList = ref([
+  {
+    id: 1,
+    content: '相机胶卷（2023）',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`
   },
-  data() {
-    return {
-      content: '主文本',
-      text: '次文本',
-      des: '辅助说明文字',
-      imgsrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/icon.png`,
-      dataList: [
-        {
-          id: 1,
-          content: '相机胶卷（2023）',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`
-        },
-        {
-          id: 2,
-          content: '相机胶卷（2023）',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
-        }
-      ]
-    }
+  {
+    id: 2,
+    content: '相机胶卷（2023）',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
   }
-}
+])
+const TinyIconHelp = iconHelp()
+const TinyIconChevronRight = iconChevronRight()
 </script>
 
 <style scoped>

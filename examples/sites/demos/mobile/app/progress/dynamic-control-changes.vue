@@ -9,37 +9,27 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress, TinyButton } from '@opentiny/vue-mobile'
 import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyProgress,
-    TinyButton
-  },
+const testInside = ref(true)
+const percentage = ref(20)
+const IconMinus = iconMinus()
+const IconPlus = iconPlus()
 
-  data() {
-    return {
-      testInside: true,
-      percentage: 20,
-      IconMinus: iconMinus(),
-      IconPlus: iconPlus()
-    }
-  },
-  methods: {
-    increase() {
-      this.percentage += 10
-      if (this.percentage > 100) {
-        this.percentage = 100
-      }
-    },
-    decrease() {
-      this.percentage -= 10
-      if (this.percentage < 0) {
-        this.percentage = 0
-      }
-    }
+function increase() {
+  percentage.value += 10
+  if (percentage.value > 100) {
+    percentage.value = 100
+  }
+}
+
+function decrease() {
+  percentage.value -= 10
+  if (percentage.value < 0) {
+    percentage.value = 0
   }
 }
 </script>

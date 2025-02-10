@@ -1,30 +1,22 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :mini-mode="true">
+  <tiny-file-upload ref="uploadRef" :action="action" :file-list="fileList" :mini-mode="true">
     <template #trigger>
-      <icon-upload></icon-upload>
+      <tiny-icon-upload></tiny-icon-upload>
     </template>
   </tiny-file-upload>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyFileUpload } from '@opentiny/vue-mobile'
 import { iconUpload } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyFileUpload,
-    IconUpload: iconUpload()
-  },
-  data() {
-    return {
-      action: '',
-      fileList: [
-        {
-          name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
-        }
-      ]
-    }
+const action = ref('')
+const fileList = ref([
+  {
+    name: 'test1',
+    url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
   }
-}
+])
+const TinyIconUpload = iconUpload()
 </script>

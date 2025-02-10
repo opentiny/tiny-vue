@@ -1,6 +1,6 @@
 <template>
   <div class="alert-target-demo">
-    <div class="alert-wrap" ref="target">
+    <div class="alert-wrap" ref="targetRef">
       <tiny-tabs activeName="first" activeColor="blue">
         <tiny-tab-item title="标签1" name="first"> 内容1 </tiny-tab-item>
         <tiny-tab-item title="标签2" name="second"> 内容2 </tiny-tab-item>
@@ -11,16 +11,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { TinyAlert, TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyAlert,
-    TinyTabs,
-    TinyTabItem
-  }
-}
+
 </script>
 
 <style>

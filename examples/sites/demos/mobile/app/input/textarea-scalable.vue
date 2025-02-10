@@ -17,24 +17,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: ''
-    }
-  }
-}
+const value1 = ref('')
+const value2 = ref('')
+const value3 = ref('')
+const value4 = ref('')
+const value5 = ref('')
+const value6 = ref('')
 </script>
 
 <style scoped>

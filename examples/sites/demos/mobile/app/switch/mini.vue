@@ -5,14 +5,10 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinySwitch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySwitch
-  }
-}
+
 </script>
 
 <style scoped>

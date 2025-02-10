@@ -6,21 +6,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      input: '',
-      textareaVal: '',
-      placeholder: '请输入内容'
-    }
-  }
-}
+const input = ref('')
+const textareaVal = ref('')
+const placeholder = ref('请输入内容')
 </script>
 
 <style scoped>

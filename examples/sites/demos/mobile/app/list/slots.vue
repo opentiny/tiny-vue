@@ -9,47 +9,39 @@
         <img :src="item.img" style="height: 40px; width: 40px" />
       </template>
       <template #suffix>
-        <icon-rightward></icon-rightward>
+        <tiny-icon-rightward></tiny-icon-rightward>
       </template>
     </tiny-list>
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyList } from '@opentiny/vue-mobile'
 import { iconRightward } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinyList,
-    IconRightward: iconRightward()
+const dataList = ref([
+  {
+    id: 1,
+    content: '主文本1',
+    subtext: '次文本1',
+    contentdes: '这是描述文本1',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`
   },
-  data() {
-    return {
-      dataList: [
-        {
-          id: 1,
-          content: '主文本1',
-          subtext: '次文本1',
-          contentdes: '这是描述文本1',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`
-        },
-        {
-          id: 2,
-          content: '主文本2',
-          subtext: '次文本2',
-          contentdes: '这是描述文本2',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
-        },
-        {
-          id: 3,
-          content: '主文本3',
-          subtext: '次文本3',
-          contentdes: '这是描述文本3',
-          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog3.png`
-        }
-      ]
-    }
+  {
+    id: 2,
+    content: '主文本2',
+    subtext: '次文本2',
+    contentdes: '这是描述文本2',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
+  },
+  {
+    id: 3,
+    content: '主文本3',
+    subtext: '次文本3',
+    contentdes: '这是描述文本3',
+    img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog3.png`
   }
-}
+])
+const TinyIconRightward = iconRightward()
 </script>

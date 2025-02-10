@@ -4,25 +4,17 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
 import { TinyToast, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton,
-    TinyToast
-  },
-  methods: {
-    showTextToast() {
-      TinyToast.service({
-        text: 'Toast',
-        type: 'text',
-        time: 2000,
-        timeout: () => {
-          alert('timeout')
-        }
-      })
+function showTextToast() {
+  TinyToast.service({
+    text: 'Toast',
+    type: 'text',
+    time: 2000,
+    timeout: () => {
+      alert('timeout')
     }
-  }
+  })
 }
 </script>

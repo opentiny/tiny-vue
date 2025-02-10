@@ -5,7 +5,7 @@
       <p class="page__desc">表单校验</p>
     </div>
     <div class="demo-form-validate-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" inline-message>
+      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" inline-message>
         <tiny-form-item label="优秀" prop="users" vertical>
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
@@ -36,63 +36,56 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyForm, TinyFormItem, TinyInput, TinyButton, TinyDialogBox } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyForm,
-    TinyFormItem,
-    TinyInput,
-    TinyButton,
-    TinyDialogBox
+const menus = ref([
+  {
+    id: 1,
+    label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
   },
-  data() {
-    return {
-      menus: [
-        {
-          id: 1,
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-        },
-        {
-          id: 2,
-          label: '我是小树'
-        },
-        {
-          id: 3,
-          label: '我是小草'
-        },
-        {
-          id: 4,
-          label: '我是小叶',
-          warn: true
-        }
-      ],
-      createData: {
-        users: '',
-        user: ''
-      },
-      rules: {
-        users: [{ required: true, message: '必填', trigger: 'change' }]
-      },
-      boxVisibility: false
-    }
+  {
+    id: 2,
+    label: '我是小树'
   },
-  methods: {
-    clearValidate(formName) {
-      this.$refs[formName].clearValidate()
-    },
-    resetFields(formName) {
-      this.$refs[formName].resetFields()
-    },
-    handleSubmit(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.boxVisibility = true
-        }
-      })
-    }
+  {
+    id: 3,
+    label: '我是小草'
+  },
+  {
+    id: 4,
+    label: '我是小叶',
+    warn: true
   }
+])
+const createData = ref({
+  users: '',
+  user: ''
+})
+const rules = ref({
+  users: [{ required: true, message: '必填', trigger: 'change' }]
+})
+const boxVisibility = ref(false)
+const formNameRef = ref()
+
+function clearValidate(formName) {
+  // FIXIME $refs自动转换失败，请手工修改
+$refs[formName].clearValidate()
+}
+
+function resetFields(formName) {
+  // FIXIME $refs自动转换失败，请手工修改
+$refs[formName].resetFields()
+}
+
+function handleSubmit(formName) {
+  // FIXIME $refs自动转换失败，请手工修改
+$refs[formName].validate((valid) => {
+    if (valid) {
+      boxVisibility.value = true
+    }
+  })
 }
 </script>
 

@@ -7,44 +7,43 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from 'vue'
 import { TinyLoading } from '@opentiny/vue-mobile'
 
-export default {
-  mounted() {
-    // mini 尺寸
-    TinyLoading.service({
-      size: 'mini',
-      text: 'mini 尺寸',
-      target: '#loading-box0',
-      tiny_mode: 'mobile'
-    })
+onMounted(() => {
+  // mini 尺寸
+  TinyLoading.service({
+    size: 'mini',
+    text: 'mini 尺寸',
+    target: '#loading-box0',
+    tiny_mode: 'mobile'
+  })
 
-    // small 尺寸
-    TinyLoading.service({
-      size: 'small',
-      text: 'small 尺寸',
-      target: '#loading-box1',
-      tiny_mode: 'mobile'
-    })
+  // small 尺寸
+  TinyLoading.service({
+    size: 'small',
+    text: 'small 尺寸',
+    target: '#loading-box1',
+    tiny_mode: 'mobile'
+  })
 
-    // medium 尺寸
-    TinyLoading.service({
-      size: 'medium',
-      text: 'medium 尺寸',
-      target: '#loading-box2',
-      tiny_mode: 'mobile'
-    })
+  // medium 尺寸
+  TinyLoading.service({
+    size: 'medium',
+    text: 'medium 尺寸',
+    target: '#loading-box2',
+    tiny_mode: 'mobile'
+  })
 
-    // large 尺寸
-    TinyLoading.service({
-      size: 'large',
-      text: 'large 尺寸',
-      target: '#loading-box3',
-      tiny_mode: 'mobile'
-    })
-  }
-}
+  // large 尺寸
+  TinyLoading.service({
+    size: 'large',
+    text: 'large 尺寸',
+    target: '#loading-box3',
+    tiny_mode: 'mobile'
+  })
+})
 </script>
 
 <style scoped>

@@ -11,41 +11,31 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyProgress, TinyButton } from '@opentiny/vue-mobile'
 
 // import { setInterval, clearInterval } from 'timers'
 
-export default {
-  components: {
-    TinyProgress,
-    TinyButton
-  },
-  data() {
-    return {
-      percentage: 0,
-      action: '上传',
-      timeId: null
-    }
-  },
-  methods: {
-    run() {
-      const that = this
-      if (this.timeId) {
-        clearInterval(this.timeId)
-        this.action = '上传'
-        this.timeId = null
+const percentage = ref(0)
+const action = ref('上传')
+const timeId = ref(null)
+
+function run() {
+  const that = this
+  if (timeId.value) {
+    clearInterval(timeId.value)
+    action.value = '上传'
+    timeId.value = null
+  } else {
+    action.value = '暂停'
+    timeId.value = setInterval(() => {
+      if (that.percentage < 100) {
+        that.percentage += 10
       } else {
-        this.action = '暂停'
-        this.timeId = setInterval(() => {
-          if (that.percentage < 100) {
-            that.percentage += 10
-          } else {
-            that.percentage = 0
-          }
-        }, 500)
+        that.percentage = 0
       }
-    }
+    }, 500)
   }
 }
 </script>

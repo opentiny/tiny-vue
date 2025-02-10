@@ -15,44 +15,36 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinySearch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySearch
+const value = ref('')
+const dataList = ref([
+  {
+    id: 1,
+    content: '实时搜索文本1'
   },
-  data() {
-    return {
-      value: '',
-      dataList: [
-        {
-          id: 1,
-          content: '实时搜索文本1'
-        },
-        {
-          id: 2,
-          content: '实时搜索文本2'
-        },
-        {
-          id: 3,
-          content: '实时搜索文本3'
-        },
-        {
-          id: 4,
-          content: '实时搜索文本4'
-        }
-      ]
-    }
+  {
+    id: 2,
+    content: '实时搜索文本2'
   },
-  methods: {
-    handleChange(obj, val) {
-      this.value = val
-    },
-    handleSearch(obj, val) {
-      alert(val)
-    }
+  {
+    id: 3,
+    content: '实时搜索文本3'
+  },
+  {
+    id: 4,
+    content: '实时搜索文本4'
   }
+])
+
+function handleChange(obj, val) {
+  value.value = val
+}
+
+function handleSearch(obj, val) {
+  alert(val)
 }
 </script>
 

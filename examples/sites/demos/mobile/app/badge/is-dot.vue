@@ -4,19 +4,11 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyBadge } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyBadge
-  },
-  data() {
-    return {
-      value1: 2
-    }
-  }
-}
+const value1 = ref(2)
 </script>
 
 <style>

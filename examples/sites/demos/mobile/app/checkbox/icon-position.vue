@@ -23,21 +23,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyCheckbox,
-    TinyCheckboxGroup
-  },
-  data() {
-    return {
-      checked1: ['复选框1'],
-      checked2: false
-    }
-  }
-}
+const checked1 = ref(['复选框1'])
+const checked2 = ref(false)
 </script>
 
 <style scoped>

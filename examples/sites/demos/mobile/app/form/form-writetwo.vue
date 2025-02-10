@@ -40,30 +40,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyInput } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput
-  },
-  data() {
-    return {
-      createData: {
-        title1: '标题',
-        text1: '',
-        ttext2: '已填写有内容',
-        text3: '',
-        title4: '',
-        arr: ['常用', '备用', '常用3']
-      }
-    }
-  },
-  methods: {
-    check(val) {
-      this.createData.text3 += val
-    }
-  }
+const createData = ref({
+  title1: '标题',
+  text1: '',
+  ttext2: '已填写有内容',
+  text3: '',
+  title4: '',
+  arr: ['常用', '备用', '常用3']
+})
+
+function check(val) {
+  createData.value.text3 += val
 }
 </script>
 

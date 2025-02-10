@@ -3,40 +3,34 @@
     <section>
       <tiny-button plain @click="focus">focus</tiny-button>
       <tiny-button plain @click="blur">blur</tiny-button>
-      <tiny-input ref="inputRef" v-model="value" placeholder="Please input"></tiny-input>
+      <tiny-input ref="inputRefRef" v-model="value" placeholder="Please input"></tiny-input>
     </section>
     <section>
       <tiny-button plain @click="select">select</tiny-button>
-      <tiny-input ref="selectRef" v-model="selectValue" placeholder="Please input"></tiny-input>
+      <tiny-input ref="selectRefRef" v-model="selectValue" placeholder="Please input"></tiny-input>
     </section>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyInput, TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyInput,
-    TinyButton
-  },
-  data() {
-    return {
-      value: '',
-      selectValue: '123456'
-    }
-  },
-  methods: {
-    select() {
-      this.$refs.selectRef.select()
-    },
-    blur() {
-      this.$refs.inputRef.blur()
-    },
-    focus() {
-      this.$refs.inputRef.focus()
-    }
-  }
+const value = ref('')
+const selectValue = ref('123456')
+const selectRefRef = ref()
+const inputRefRef = ref()
+
+function select() {
+  selectRefRef.value.select()
+}
+
+function blur() {
+  inputRefRef.value.blur()
+}
+
+function focus() {
+  inputRefRef.value.focus()
 }
 </script>
 

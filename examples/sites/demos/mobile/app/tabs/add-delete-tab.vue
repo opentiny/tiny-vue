@@ -20,62 +20,53 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyTabs, TinyTabItem } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTabs,
-    TinyTabItem
+const tabsData = ref([
+  {
+    title: '标签 1',
+    name: '1',
+    content: '内容 1'
   },
-  data() {
-    return {
-      tabsData: [
-        {
-          title: '标签 1',
-          name: '1',
-          content: '内容 1'
-        },
-        {
-          title: '标签 2',
-          name: '2',
-          content: '内容 2'
-        },
-        {
-          title: '标签 3',
-          name: '3',
-          content: '内容 3'
-        },
-        {
-          title: '标签 4',
-          name: '4',
-          content: '内容 4'
-        }
-      ],
-      activeName1: '1',
-      activeName2: '2',
-      tabIndex: 5
-    }
+  {
+    title: '标签 2',
+    name: '2',
+    content: '内容 2'
   },
-  methods: {
-    handleAdd() {
-      this.tabsData.push({
-        title: `标签 ${this.tabIndex}`,
-        name: String(this.tabIndex),
-        content: '动态增加页签'
-      })
-      this.tabIndex++
-    },
-    handleClose(name) {
-      let index = 0
-      this.tabsData.map((tab, inx) => {
-        if (tab.name === name) {
-          index = inx
-        }
-      })
-      this.tabsData.splice(index, 1)
-    }
+  {
+    title: '标签 3',
+    name: '3',
+    content: '内容 3'
+  },
+  {
+    title: '标签 4',
+    name: '4',
+    content: '内容 4'
   }
+])
+const activeName1 = ref('1')
+const activeName2 = ref('2')
+const tabIndex = ref(5)
+
+function handleAdd() {
+  tabsData.value.push({
+    title: `标签 ${tabIndex.value}`,
+    name: String(tabIndex.value),
+    content: '动态增加页签'
+  })
+  tabIndex.value++
+}
+
+function handleClose(name) {
+  let index = 0
+  tabsData.value.map((tab, inx) => {
+    if (tab.name === name) {
+      index = inx
+    }
+  })
+  tabsData.value.splice(index, 1)
 }
 </script>
 

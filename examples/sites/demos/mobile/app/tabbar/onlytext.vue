@@ -18,31 +18,21 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyTabbar, TinyTabbarItem } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyTabbar,
-    TinyTabbarItem
-  },
-  data() {
-    return {
-      activeName: 3,
-      pagename: 'Page 1',
-      pagetitle: '1.1 Title',
-      itemList: [
-        { title: '上一页', pagename: 'Page 1', pagetitle: '1.1 Title' },
-        { title: '下一页', pagename: 'Page 2', pagetitle: '2.1 Title' }
-      ]
-    }
-  },
-  methods: {
-    tab(name, title) {
-      this.pagename = name
-      this.pagetitle = title
-    }
-  }
+const activeName = ref(3)
+const pagename = ref('Page 1')
+const pagetitle = ref('1.1 Title')
+const itemList = ref([
+  { title: '上一页', pagename: 'Page 1', pagetitle: '1.1 Title' },
+  { title: '下一页', pagename: 'Page 2', pagetitle: '2.1 Title' }
+])
+
+function tab(name, title) {
+  pagename.value = name
+  pagetitle.value = title
 }
 </script>
 

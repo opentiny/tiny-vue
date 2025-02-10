@@ -7,33 +7,25 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySwitch } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinySwitch
-  },
-  data() {
-    return {
-      loading1: false,
-      loading2: false
-    }
-  },
-  methods: {
-    handleChangeLoading1() {
-      this.loading1 = true
-      setTimeout(() => {
-        this.loading1 = false
-      }, 2000)
-    },
-    handleChangeLoading2() {
-      this.loading2 = true
-      setTimeout(() => {
-        this.loading2 = false
-      }, 2000)
-    }
-  }
+const loading1 = ref(false)
+const loading2 = ref(false)
+
+function handleChangeLoading1() {
+  loading1.value = true
+  setTimeout(() => {
+    loading1.value = false
+  }, 2000)
+}
+
+function handleChangeLoading2() {
+  loading2.value = true
+  setTimeout(() => {
+    loading2.value = false
+  }, 2000)
 }
 </script>
 

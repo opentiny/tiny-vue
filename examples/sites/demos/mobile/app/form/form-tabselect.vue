@@ -38,24 +38,15 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinyButton } from '@opentiny/vue-mobile'
 
-export default {
-  components: {
-    TinyButton
-  },
-  data() {
-    return {
-      dat: 0,
-      active: 0
-    }
-  },
-  methods: {
-    change(activeVal) {
-      this.active = activeVal
-    }
-  }
+const dat = ref(0)
+const active = ref(0)
+
+function change(activeVal) {
+  active.value = activeVal
 }
 </script>
 
