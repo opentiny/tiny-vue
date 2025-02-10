@@ -899,7 +899,7 @@ export const setSoftFocus =
     state.softFocus = true
     const input = vm.$refs.input || vm.$refs.reference
 
-    // tiny 新增： 解决获焦即弹出时，关闭不了下拉面板，增加了!props.automaticDropdown条件
+    // tiny 新增： 解决获焦即弹出时，关闭不了下拉面板，所以增加了!props.automaticDropdown条件
     if (!props.automaticDropdown) {
       if (input) {
         input.focus()
