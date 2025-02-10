@@ -55,7 +55,14 @@ export const rowToVisible = ($table, row) => {
 
       // 处理虚拟滚动
       if ($table.scrollYLoad) {
-        if (!trEl) {
+        // 对应行是否在表格视图外
+        const isOutOfBody = () => {
+          const bodyRect = $table.$el.getBoundingClientRect()
+          const trRect = trEl.getBoundingClientRect()
+          return trRect.top + trRect.height / 2 > bodyRect.top + bodyRect.height
+        }
+
+        if (!trEl || isOutOfBody()) {
           gridbodyEl.scrollTop = ($table.afterFullData.indexOf(row) - 1) * $table.scrollYStore.rowHeight
         }
       } else if (trEl) {
