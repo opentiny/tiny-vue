@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-time-spinner",
   "type": "module",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,

@@ -48,14 +48,14 @@
     &.today {
       .cell {
         color: var(--tv-MonthTable-text-color);
-        border: solid 1px var(--tv-MonthTable-cell-border-color-today);
+        box-shadow: 0 0 1px 1px var(--tv-MonthTable-cell-border-color-today);
       }
 
       &.end-date,
       &.start-date {
         .cell {
           color: var(--tv-MonthTable-td-text-color-emphasize);
-          border-color: transparent;
+          box-shadow: none;
         }
       }
     }
@@ -83,7 +83,7 @@
 
       &:hover {
         background: var(--tv-MonthTable-bg-color-hover);
-        border-color: transparent;
+        box-shadow: none;
       }
     }
 
@@ -152,7 +152,7 @@
       &:hover {
         color: var(--tv-DateTable-td-normal-text-color);
         background: var(--tv-MonthTable-bg-color-emphasize);
-        border-color: transparent;
+        box-shadow: none;
       }
     }
   }

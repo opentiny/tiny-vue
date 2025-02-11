@@ -381,7 +381,7 @@ const initApi = ({
     toggleMenu: toggleMenu({ vm, state, props, api, isMobileFirstMode }),
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
-    setSoftFocus: setSoftFocus({ vm, state }),
+    setSoftFocus: setSoftFocus({ vm, state, props }),
     getcheckedData: getcheckedData({ props, state }),
     resetInputWidth: resetInputWidth({ vm, state }),
     resetHoverIndex: resetHoverIndex({ props, state }),

@@ -894,16 +894,17 @@ export const initValue =
   }
 
 export const setSoftFocus =
-  ({ vm, state }) =>
+  ({ vm, state, props }) =>
   () => {
     state.softFocus = true
-
     const input = vm.$refs.input || vm.$refs.reference
 
-    if (input) {
-      input.focus()
+    // tiny 新增： 解决获焦即弹出时，关闭不了下拉面板，所以增加了!props.automaticDropdown条件
+    if (!props.automaticDropdown) {
+      if (input) {
+        input.focus()
+      }
     }
-
     // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
     state.softFocus = false
   }
