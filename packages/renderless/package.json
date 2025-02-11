@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-hooks": "workspace:~",
     "color": "4.2.3"
   },
