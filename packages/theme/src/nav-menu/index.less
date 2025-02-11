@@ -87,7 +87,7 @@
   }
 
   > .more {
-    padding: 0 12px;
+    padding: 0 10px;
     font-size: var(--tv-NavMenu-item-font-size);
     text-align: center;
     color: var(--tv-NavMenu-item-text-color);
@@ -217,7 +217,9 @@
     }
 
     > .sub-menu {
+      border-left: 1px solid var(--tv-NavMenu-popmenu-more-menu-border-color-right);
       float: left;
+      margin-left: -1px;
       width: calc(100% - 160px);
       padding-left: 14px;
       box-sizing: border-box;
@@ -358,7 +360,7 @@
         margin: 0;
 
         .@{nav-menu-prefix-cls}__sub-menu-title {
-          padding: 18px 35px 0 12px;
+          margin: 18px 35px 0 12px;
 
           &.@{nav-menu-prefix-cls}__sub-menu-title-blank {
             padding: 0 35px 0 12px;
