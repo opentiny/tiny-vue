@@ -13,6 +13,7 @@
     </template>
   </div>
 </template>
+
 <script setup>
 import { computed } from 'vue'
 import { TinyTooltip } from '@opentiny/vue'
@@ -23,6 +24,7 @@ const contributors = computed(() => {
   return getCmpContributors(props.componentId)
 })
 </script>
+
 <style scoped lang="less">
 .cmp-contributor {
   margin-top: 48px;

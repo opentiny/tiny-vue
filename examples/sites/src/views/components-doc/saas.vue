@@ -53,6 +53,7 @@ const loadData = ({ cmpId, lang }) => {
   })
 }
 </script>
+
 <style scoped lang="less">
 .cmp-mode-title {
   font-size: 18px;
