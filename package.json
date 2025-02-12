@@ -1,6 +1,6 @@
 {
   "name": "opentiny-vue",
-  "version": "3.14.0",
+  "version": "3.22.0",
   "private": true,
   "packageManager": "pnpm@9.14.2",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",

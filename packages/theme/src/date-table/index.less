@@ -127,7 +127,7 @@
         min-width: var(--tv-DateTable-td-today-width);
         height: var(--tv-DateTable-td-today-height);
         border-radius: var(--tv-DateTable-td-today-border-radius);
-        border: 1px solid var(--tv-DateTable-td-today-circle-border-color);
+        box-shadow: 0 0 1px 1px var(--tv-DateTable-td-today-circle-border-color);
       }
 
       &.end-date,
@@ -141,13 +141,13 @@
     &.available:not(.today):hover span {
       background-color: var(--tv-DateTable-hover-bg-color);
       border-radius: var(--tv-DateTable-border-radius-current-select);
-      border-color: transparent;
+      box-shadow: none;
     }
     &.current.available:not(.today):hover span {
       color: var(--tv-DateTable-td-normal-text-color);
       background-color: var(--tv-DateTable-bg-color-current-select);
       border-radius: var(--tv-DateTable-border-radius-current-select);
-      border-color: transparent;
+      box-shadow: none;
     }
 
     &.current:not(.disabled) {
@@ -155,7 +155,7 @@
         color: var(--tv-DateTable-td-normal-text-color);
         background-color: var(--tv-DateTable-bg-color-current-select);
         border-radius: var(--tv-DateTable-border-radius-current-select);
-        border-color: transparent;
+        box-shadow: none;
       }
 
       &:after {
@@ -172,7 +172,7 @@
       span {
         background-color: var(--tv-DateTable-bg-color-current-select);
         border-radius: var(--tv-DateTable-start-date-border-radius);
-        border: 0;
+        box-shadow: none;
       }
     }
 

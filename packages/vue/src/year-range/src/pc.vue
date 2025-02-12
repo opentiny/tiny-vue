@@ -1,7 +1,6 @@
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
     <div
-      v-show="state.visible"
       class="tiny-picker-panel tiny-date-range-picker tiny-popper"
       :class="[
         {
@@ -12,7 +11,7 @@
     >
       <div class="tiny-picker-panel__body-wrapper">
         <slot name="sidebar" class="tiny-picker-panel__sidebar"></slot>
-        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
+        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts?.length">
           <button
             type="button"
             class="tiny-picker-panel__shortcut"
@@ -30,6 +29,16 @@
               <button type="button" @click="leftPrevYear" class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-left">
                 <icon-double-left></icon-double-left>
               </button>
+              <button
+                v-if="unlinkPanels"
+                type="button"
+                :disabled="!state.enableYearArrow"
+                :class="{ 'is-disabled': !state.enableYearArrow }"
+                class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-right"
+                @click="leftNextYear"
+              >
+                <icon-double-right></icon-double-right>
+              </button>
               <div>{{ state.leftLabel }}</div>
             </div>
             <div class="tiny-date-range-picker__table">
@@ -43,6 +52,7 @@
                 :range-state="state.rangeState"
                 :disabled-date="state.disabledDate"
                 :start-year="state.leftStartYear"
+                :readonly="readonly"
                 @changerange="handleChangeRange"
                 @pick="handleRangePick"
               >
@@ -51,6 +61,16 @@
           </div>
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-right">
             <div class="tiny-date-range-picker__header">
+              <button
+                v-if="unlinkPanels"
+                type="button"
+                :disabled="!state.enableYearArrow"
+                :class="{ 'is-disabled': !state.enableYearArrow }"
+                class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-left"
+                @click="rightPrevYear"
+              >
+                <icon-double-left></icon-double-left>
+              </button>
               <button type="button" @click="rightNextYear" class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-right">
                 <icon-double-right></icon-double-right>
               </button>
@@ -67,6 +87,7 @@
                 :range-state="state.rangeState"
                 :disabled-date="state.disabledDate"
                 :start-year="state.rightStartYear"
+                :readonly="readonly"
                 @changerange="handleChangeRange"
                 @pick="handleRangePick"
               >
@@ -93,8 +114,18 @@ export default defineComponent({
     IconDoubleRight: IconDoubleRight(),
     IconDoubleLeft: IconDoubleLeft()
   },
-  props: [...props, 'emitter'],
-  emits: ['dodestroy', 'pick'],
+  props: [
+    ...props,
+    'emitter',
+    'modelValue',
+    'format',
+    'readonly',
+    'shortcuts',
+    'disabledDate',
+    'popperClass',
+    'unlinkPanels'
+  ],
+  emits: ['dodestroy', 'pick', 'select-change', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

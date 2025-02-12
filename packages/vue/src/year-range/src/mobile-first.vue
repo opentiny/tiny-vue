@@ -5,7 +5,7 @@
       class="w-[552px] text-color-text-primary text-xs shadow-md bg-color-bg-1 rounded leading-4 my-0.5 mx-0"
       :class="[
         {
-          'w-[664px]': slots.sidebar || state.shortcuts
+          'w-[664px]': slots.sidebar || state.shortcuts?.length
         },
         state.popperClass
       ]"
@@ -17,7 +17,7 @@
         ></slot>
         <div
           class="absolute top-0 bottom-0 w-28 border-r border-r-color-bg-3 box-border pt-5 bg-color-bg-1 overflow-auto"
-          v-if="state.shortcuts"
+          v-if="state.shortcuts?.length"
         >
           <button
             type="button"
@@ -107,7 +107,7 @@ export default defineComponent({
     IconDoubleLeft: IconDoubleLeft()
   },
   props: [...props, 'emitter'],
-  emits: ['dodestroy', 'pick'],
+  emits: ['dodestroy', 'pick', 'select-change', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

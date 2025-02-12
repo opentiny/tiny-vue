@@ -10,7 +10,7 @@
  *
  */
 
-import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '@opentiny/utils'
+import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '@opentiny/utils'
 import { isNumber, isDate } from '@opentiny/utils'
 import { userPopper } from '@opentiny/vue-hooks'
 import { DATEPICKER } from '@opentiny/utils'
@@ -213,7 +213,7 @@ export const parsedValue =
       return getDateWithNewTimezone(result || props.modelValue, from, to, timezoneOffset)
     }
 
-    const trans = (value) => (typeof value === 'string' || isNumber(value) ? toDate(value) : value)
+    const trans = (value) => (typeof value === 'string' || isNumber(value) ? toDate1(value) : value)
     const values = []
       .concat(props.modelValue)
       .map((val) => getDateWithNewTimezone(trans(val), from, to, timezoneOffset))

@@ -200,10 +200,8 @@ export const handleCompositionend =
       let range = state.quill.getSelection(true)
       const [mentionItem, offset] = state.quill.getLeaf(range.index)
 
-      if (mentionItem.statics.blotName === 'break' || (mentionItem.statics.blotName === 'text' && offset === 0)) {
-        state.quill.clipboard.dangerouslyPasteHTML(data)
-      }
       if (mentionItem.statics.blotName === 'break') {
+        state.quill.clipboard.dangerouslyPasteHTML(data)
         state.quill.setSelection(range.index + event.data.length)
       } else {
         let pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/

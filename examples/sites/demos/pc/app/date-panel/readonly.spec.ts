@@ -16,4 +16,14 @@ test('[DatePanel] 测试只读', async ({ page }) => {
   await page.locator('#readonly').getByText('14').nth(1).click()
   await page.locator('#readonly').getByText('25', { exact: true }).nth(2).click()
   await expect(page.locator('.value1')).toHaveText('[ "2025-01-15", "2025-02-15" ]')
+
+  // monthRange
+  await page.getByText('二月').first().click()
+  await page.getByText('九月').nth(1).click()
+  await expect(page.locator('.value2')).toHaveText('[ "2024-03", "2025-02" ]')
+
+  // yearRange
+  await page.getByText('2043', { exact: true }).click()
+  await page.getByText('2039').click()
+  await expect(page.locator('.value3')).toHaveText('[ "2024", "2028" ]')
 })

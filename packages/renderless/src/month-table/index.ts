@@ -10,7 +10,7 @@
  *
  */
 
-import { range as rangeDate, getDayCountOfMonth, nextDate, toDate, hasClass, DATEPICKER } from '@opentiny/utils'
+import { range as rangeDate, getDayCountOfMonth, nextDate, toDate1, hasClass, DATEPICKER } from '@opentiny/utils'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
 
 export const datesInMonth = (year, month) => {
@@ -176,6 +176,9 @@ export const handleMouseMove =
 export const handleMonthTableClick =
   ({ api, emit, props }) =>
   (event) => {
+    if (props.readonly) {
+      return
+    }
     const target = getTarget(event)
 
     if (!target) {
@@ -232,7 +235,7 @@ export const getCellStyle =
     style.disabled =
       typeof props.disabledDate === 'function' ? datesInMonth(year, month).every(props.disabledDate) : false
 
-    const execDate = typeof props.value === 'object' ? props.value : toDate(props.value)
+    const execDate = typeof props.value === 'object' ? props.value : toDate1(props.value)
 
     style.current =
       arrayFindIndex(
