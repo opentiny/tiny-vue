@@ -32,7 +32,7 @@ import {
 } from './index'
 import { getScrollParent } from '@opentiny/utils'
 import { useTouch } from '@opentiny/vue-hooks'
-import { useEventListener } from '@opentiny/utils'
+import { useEventListener } from '@opentiny/vue-hooks'
 import { emulate } from '@opentiny/utils'
 
 emulate()
