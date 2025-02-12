@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: ['src/index.ts'],
       formats: ['es'],
-      fileName: (format) => `opentiny-utils.${format}.js`
+      fileName: (format) => `index.${format}.js`
     }
   }
 })
