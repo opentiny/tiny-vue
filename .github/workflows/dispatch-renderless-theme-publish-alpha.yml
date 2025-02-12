@@ -73,10 +73,6 @@ jobs:
         if: contains(inputs.components, 'theme-saas') == true
         run: pnpm build:themeSaas
 
-      - name: Run Build ThemeMobile
-        if: contains(inputs.components, 'theme-mobile') == true
-        run: pnpm build:themeMobile
-
       - name: Run Build Runtime
         if: contains(inputs.components, 'runtime') == true
         run: pnpm build:runtime
