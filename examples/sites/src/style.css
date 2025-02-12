@@ -28,6 +28,13 @@ strong {
 
 /* Algolia 搜索 */
 
+/** 大屏幕时，有副标题的占位，所以向后移除 */
+@media screen and (min-width: 1150px){
+  .search-box{
+    left: 340px!important;
+  }
+}
+
 .search-box {
   position: absolute;
   z-index: 1000;
