@@ -54,8 +54,8 @@ export const install = (app, opts = {}) => {
  * mobile 包含素有mobile组件
  * mobile-first 包含所有多端组件
  */
-type RunTimeModeType = 'all' | 'pc' | 'mobile' | 'mobile-first' | 'simple'
-const runtimeModeList: Array<RunTimeModeType> = ['all', 'pc', 'mobile', 'mobile-first', 'simple']
+type RunTimeModeType = 'all' | 'pc' | 'mobile-first' | 'simple'
+const runtimeModeList: Array<RunTimeModeType> = ['all', 'pc', 'mobile-first', 'simple']
 
 // 简易模式下需要排除的组件列表，包括chart、业务组件、冷门组件等
 const notSimpleComponents = [
