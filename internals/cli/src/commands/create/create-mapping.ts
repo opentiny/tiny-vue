@@ -52,6 +52,9 @@ const makeModules = () => {
     isDeep: true,
     dirPath: pathFromWorkspaceRoot(packagesStr),
     fileFilter({ file }) {
+      if (file.includes('huicharts')) {
+        return false
+      }
       return !/node_modules|helper|common|assets/.test(file)
     },
     // file:模块文件名称，subPath:处于同一文件夹的文件集合，dirs:文件所在的绝对路径
