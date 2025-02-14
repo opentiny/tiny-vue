@@ -564,7 +564,7 @@ function renderRow(args) {
         attrs: {
           'data-rowid': rowid
         },
-        key: rowKey || treeConfig ? rowid : $rowIndex,
+        key: rowid,
         on: trOn
       },
       tableColumn.map((column, $columnIndex) => {
@@ -608,7 +608,7 @@ function renderRowExpanded(args) {
           'tr',
           {
             class: 'tiny-grid-body__expanded-row',
-            key: `expand_${rowid}`,
+            key: `expand_${rowid}${rowIndex}`,
             on: trOn
           },
           [
@@ -897,7 +897,8 @@ export default defineComponent({
   render() {
     let { $parent: $table } = this as any
     let { $grid, isCenterEmpty, keyboardConfig = {}, mouseConfig = {}, renderEmpty } = $table
-    let { scrollLoad, tableColumn, tableData, tableLayout } = $table
+    let { scrollLoad, tableColumn, tableLayout } = $table
+    const tableData = $table.$grid.data || $table.tableData
     let $slots = $grid.slots
     let isCenterCls = isCenterEmpty ? 'is__center' : ''
 
