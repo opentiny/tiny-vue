@@ -897,8 +897,7 @@ export default defineComponent({
   render() {
     let { $parent: $table } = this as any
     let { $grid, isCenterEmpty, keyboardConfig = {}, mouseConfig = {}, renderEmpty } = $table
-    let { scrollLoad, tableColumn, tableLayout } = $table
-    const tableData = $table.$grid.data || $table.tableData
+    let { scrollLoad, tableColumn, tableData, tableLayout } = $table
     let $slots = $grid.slots
     let isCenterCls = isCenterEmpty ? 'is__center' : ''
 
