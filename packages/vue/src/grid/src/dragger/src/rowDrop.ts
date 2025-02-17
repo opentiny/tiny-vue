@@ -26,6 +26,7 @@ import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { isVue2 } from '@opentiny/vue-common'
+import { getRowUniqueId } from '../../table/src/strategy'
 
 function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem }) {
   if (!isScrollYLoad) {
@@ -59,21 +60,23 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     }
     const options = { children: (_vm.treeConfig || {}).children || 'children' }
     const targetTrElem = event.item
-    const { parentNode: wrapperElem, previousElementSibling } = targetTrElem
-    let prevTrElem = previousElementSibling
+    const { parentNode: wrapperElem, previousElementSibling: prevEl, nextElementSibling: nextEl } = targetTrElem
+    // 获取真实的上一个拖拽元素
+    let prevTrElem =
+      prevEl && prevEl.classList.contains('tiny-grid-body__row') ? prevEl : prevEl && prevEl.previousElementSibling
     // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据
     const tableTreeData = _vm.data || _vm.tableData
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
     const isScrollYLoad = _vm.scrollYLoad
+    const rowIdKey = _vm.$props.rowId
     if (!isScrollYLoad) {
+      selfNode.item[rowIdKey] = getRowUniqueId()
       if (prevTrElem) {
-        if (prevTrElem.classList.contains('tiny-grid-body__expanded-row')) {
-          prevTrElem = prevTrElem.previousElementSibling
-        }
         // 移动到节点
         const prevRow = _vm.getRowNode(prevTrElem).item
         const prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
+        prevNode.item[rowIdKey] = getRowUniqueId()
         if (findTree(selfRow[options.children], (row) => prevRow === row, options)) {
           // 错误的移动
           const oldTrElem = wrapperElem.children[event.oldIndex]
@@ -94,7 +97,8 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
           prevNode.items.splice(prevNode.index + (selfNode.index < prevNode.index ? 0 : 1), 0, currRow)
           prevNode.items = [].concat(prevNode.items)
         }
-      } else {
+        // 过滤表格外拖拽
+      } else if (nextEl && nextEl.classList.contains('tiny-grid-body__row')) {
         // 移动到第一行
         const currRow = selfNode.items.splice(selfNode.index, 1)[0]
         tableTreeData.unshift(currRow)

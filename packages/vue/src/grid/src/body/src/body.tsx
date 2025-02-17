@@ -608,7 +608,7 @@ function renderRowExpanded(args) {
           'tr',
           {
             class: 'tiny-grid-body__expanded-row',
-            key: `expand_${rowid}${rowIndex}`,
+            key: `expand_${rowid}`,
             on: trOn
           },
           [
