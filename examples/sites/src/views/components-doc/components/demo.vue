@@ -354,6 +354,10 @@ onBeforeUnmount(() => {
     overflow: auto;
   }
 }
+// 暗黑主题
+:global(html.dark-theme .pc-demo-container) {
+  background: #000;
+}
 
 .pc-demo-container {
   display: flex;

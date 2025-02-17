@@ -1,4 +1,4 @@
-import { tinyOldTheme, tinyAuroraTheme } from '@opentiny/vue-theme/theme-tool'
+import { tinyOldTheme, tinyAuroraTheme, tinyDarkTheme } from '@opentiny/vue-theme/theme-tool'
 
 // localStorage中保存语言的key
 export const LANG_KEY = '_lang'
@@ -18,13 +18,15 @@ export const DEFAULT_THEME = 'os-theme'
 export const AURORA_THEME = 'aurora-theme'
 export const SMB_THEME = 'smb-theme'
 export const OLD_THEME = 'old-theme'
+export const DARK_THEME = 'dark-theme'
 
 // 主题工具导出主题变量和主题的映射关系
 export const themeToolValuesMap = {
   [DEFAULT_THEME]: '',
   [AURORA_THEME]: tinyAuroraTheme,
   [SMB_THEME]: '',
-  [OLD_THEME]: tinyOldTheme
+  [OLD_THEME]: tinyOldTheme,
+  [DARK_THEME]: tinyDarkTheme
 }
 
 /**
