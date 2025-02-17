@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsProcess as TinyChartProcess } from '@opentiny/vue'
+import { TinyHuichartsProcess as TinyChartProcess } from '@opentiny/vue-huicharts'
 
 const options = ref({
   // 图表名称

@@ -102,3 +102,28 @@ export default defineComponent({
     )
   }
 })
+
+export {
+  HuiChartsPie,
+  HuiChartsRing,
+  HuiChartsBar,
+  HuiChartsHistogram,
+  HuiChartsRadar,
+  HuiChartsLine,
+  AutonaviMap,
+  BaiduMap,
+  HuiChartsBoxplot,
+  HuiChartsCandle,
+  HuiChartsFunnel,
+  HuiChartsGauge,
+  HuiChartsGraph,
+  HuiChartsHeatmap,
+  HuiChartsLiquidfill,
+  HuiChartsMap,
+  HuiChartsSankey,
+  HuiChartsScatter,
+  HuiChartsSunburst,
+  HuiChartsTree,
+  HuiChartsWaterfall,
+  HuiChartsWordcloud
+}

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyHuichartsBmap } from '@opentiny/vue'
+import { TinyHuichartsBmap } from '@opentiny/vue-huicharts'
 
 export default {
   components: {

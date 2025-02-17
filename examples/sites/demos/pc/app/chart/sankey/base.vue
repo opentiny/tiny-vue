@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyHuichartsSankey } from '@opentiny/vue'
+import { TinyHuichartsSankey } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
