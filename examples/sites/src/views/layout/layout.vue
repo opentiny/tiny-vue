@@ -2,6 +2,9 @@
   <div class="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
     <div class="content-layout ti-fi-1" :has-sider="!isFrame">
       <div id="layoutSider" class="layout-sider" :class="{ 'saas-border': templateModeState.isSaas }" v-if="!isFrame">
+        <div style="padding: 10px 0; text-align: center">
+          <tiny-button :reset-time="0" type="info" @click="toggleDark()">{{ isDark ? 'dark' : 'light' }}</tiny-button>
+        </div>
         <tiny-tree-menu
           ref="treeMenuRef"
           class="main-menu"
@@ -65,6 +68,7 @@ import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from 
 import useTheme from '@/tools/useTheme'
 import FloatSettings from '@/views/components-doc/components/float-settings.vue'
 import VersionTip from '@/views/components-doc/components/version-tip.vue'
+import { useDark, useToggle } from '@vueuse/core'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -103,6 +107,8 @@ export default defineComponent({
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
 
     const isThemeSaas = import.meta.env.VITE_TINY_THEME === 'saas'
+    const isDark = useDark()
+    const toggleDark = useToggle(isDark)
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -191,6 +197,8 @@ export default defineComponent({
       getWord,
       i18nByKey,
       isThemeSaas,
+      isDark,
+      toggleDark,
       isShowFilter
     }
   }

@@ -355,7 +355,7 @@ onBeforeUnmount(() => {
   }
 }
 // 暗黑主题
-:global(html.dark-theme .pc-demo-container) {
+:global(html.dark .pc-demo-container) {
   background: #000;
 }
 
