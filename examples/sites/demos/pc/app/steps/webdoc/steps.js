@@ -53,6 +53,19 @@ export default {
       codeFiles: ['advanced-steps.vue']
     },
     {
+      demoId: 'content-center',
+      name: {
+        'zh-CN': '内容居中',
+        'en-US': 'Content center'
+      },
+      desc: {
+        'zh-CN': '<p>添加 <code>content-center</code> 使步骤条内容默认居中显示。</p>',
+        'en-US':
+          '<p>Adding the attribute<code>content center</code>can make the step bar content appear centered by default.</p>'
+      },
+      codeFiles: ['content-center.vue']
+    },
+    {
       demoId: 'size',
       name: {
         'zh-CN': '尺寸',

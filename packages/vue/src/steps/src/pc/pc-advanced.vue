@@ -48,7 +48,7 @@
                 :class="[
                   'tiny-steps-text',
                   node[statusField] === 'error' ? 'fault' : node[statusField],
-                  { 'active': index === active }
+                  { 'active': index === active, 'content-center': contentCenter }
                 ]"
               >
                 <div
@@ -118,7 +118,8 @@ export default defineComponent({
     'duration',
     'noArrow',
     'flex',
-    'size'
+    'size',
+    'contentCenter'
   ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api })

@@ -530,6 +530,8 @@ import IconWaitingForSubmission from './src/waiting-for-submission'
 import IconWaitingToPick from './src/waiting-to-pick'
 import IconWriteProductioPlan from './src/write-production-plan'
 import IconXml from './src/xml'
+import IconLightning from './src/lightning'
+import IconLightningLine from './src/lightning-line'
 
 export {
   IconActivation,
@@ -1506,6 +1508,10 @@ export {
   IconImageAdd as iconImageAdd,
   IconListMode,
   IconListMode as iconListMode,
+  IconLightning,
+  IconLightning as iconLightning,
+  IconLightningLine,
+  IconLightningLine as iconLightningLine,
   IconMaterial,
   IconMaterial as iconMaterial,
   IconMilestone,
@@ -2051,6 +2057,8 @@ export default {
   IconHistoryRecord,
   IconImageAdd,
   IconListMode,
+  IconLightning,
+  IconLightningLine,
   IconMaterial,
   IconMilestone,
   IconMinscreenRight,

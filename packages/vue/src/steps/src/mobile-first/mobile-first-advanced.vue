@@ -89,7 +89,8 @@
                 data-tag="tiny-steps-text"
                 :class="
                   m(gcls('steps-text'), gcls(`steps-text-${node[statusField]}`), {
-                    'text-color-text-inverse': index === active && node[statusField] !== 'disabled'
+                    'text-color-text-inverse': index === active && node[statusField] !== 'disabled',
+                    'flex-none': contentCenter
                   })
                 "
               >
@@ -199,7 +200,8 @@ export default defineComponent({
     'duration',
     'noArrow',
     'flex',
-    'size'
+    'size',
+    'contentCenter'
   ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes })

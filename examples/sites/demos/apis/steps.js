@@ -30,6 +30,21 @@ export default {
           mfDemo: 'advanced-steps'
         },
         {
+          name: 'content-center',
+          type: 'string',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '使步骤条内容默认居中显示',
+            'en-US': 'Make the step bar content appear centered by default'
+          },
+          meta: {
+            stable: '3.22.0'
+          },
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'content-center',
+          mfDemo: 'content-center'
+        },
+        {
           name: 'count-field',
           type: 'string',
           defaultValue: "'count'",
