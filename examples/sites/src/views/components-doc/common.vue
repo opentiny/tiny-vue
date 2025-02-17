@@ -87,22 +87,23 @@ import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
-import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode } from '@/tools'
-import demoConfig from '@demos/config.js'
+import { i18nByKey, getWord, $clone, useApiMode } from '@/tools'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
-import DemoBox from './components/demo'
+import DemoBox from './components/demo.vue'
 import AsideAnchor from './components/anchor.vue'
 import ComponentHeader from './components/header.vue'
 import ComponentContributor from './components/contributor.vue'
 import ApiDocs from './components/api-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
 
+const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
+
+const emit = defineEmits(['single-demo-change', 'load-page'])
+
 defineOptions({
   name: 'CmpPageVue'
 })
-
-const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
 const scrollRef = ref()
 const { apiModeState } = useApiMode()
@@ -127,7 +128,6 @@ const state = reactive({
   chartCode: false
 })
 
-const emit = defineEmits(['single-demo-change', 'load-page'])
 watch(
   () => state.singleDemo,
   (val) => {

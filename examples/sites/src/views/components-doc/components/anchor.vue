@@ -12,10 +12,14 @@
     </tiny-anchor>
   </div>
 </template>
+
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { TinyAnchor } from '@opentiny/vue'
+
 const props = defineProps({ anchorAffix: {}, currentJson: {}, activeTab: {}, langKey: {}, apiTypes: {} })
+
+const emit = defineEmits(['link-click'])
 
 // 实例锚点
 const demoAnchorLinks = computed(() => {
@@ -57,11 +61,11 @@ const apiAnchorLinks = computed(() => {
   return apiAnchorLinks
 })
 const links = computed(() => (props.activeTab === 'demos' ? demoAnchorLinks.value : apiAnchorLinks.value))
-const emit = defineEmits(['link-click'])
 const handleAnchorClick = (...args) => {
   emit('link-click', ...args)
 }
 </script>
+
 <style scoped lang="less">
 .cmp-page-anchor {
   :deep(.tiny-anchor__affix) {

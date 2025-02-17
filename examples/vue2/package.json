@@ -24,7 +24,6 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-vite-import": "~1.2.0",
     "@playwright/test": "catalog:",

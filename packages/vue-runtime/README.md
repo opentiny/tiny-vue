@@ -9,7 +9,6 @@ In order to meet different business needs, `TinyVue` provides multiple forms of 
 | Runtime name              | Instructions                                                      |
 | ------------------------- | ----------------------------------------------------------------- |
 | tiny-vue-pc.mjs           | A collection of components including all pc templates             |
-| tiny-vue-mobile.mjs       | A collection of components including all mobile templates         |
 | tiny-vue-mobile-first.mjs | A collection of components including all multi-terminal templates |
 | tiny-vue-simple.mjs       | A collection of commonly used components                          |
 

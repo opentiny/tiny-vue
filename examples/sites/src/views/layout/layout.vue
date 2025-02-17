@@ -318,7 +318,7 @@ export default defineComponent({
     line-height: 1.5;
 
     .node-name-container {
-      color: #191919;
+      color: var(--tv-color-text-control);
       display: flex;
       align-items: center;
       flex-wrap: nowrap;
@@ -336,6 +336,7 @@ export default defineComponent({
         width: 12px;
         height: 12px;
         display: inline-block;
+        fill: var(--tv-color-icon-control);
       }
     }
   }
@@ -388,7 +389,7 @@ export default defineComponent({
     & > .tiny-svg {
       font-size: 18px;
       margin-left: 8px;
-      fill: #191919;
+      fill: var(--tv-color-text-control);
     }
   }
 }

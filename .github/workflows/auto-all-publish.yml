@@ -64,9 +64,6 @@ jobs:
       - name: Run Build ThemeSaas
         run: pnpm build:themeSaas
 
-      - name: Run Build ThemeMobile
-        run: pnpm build:themeMobile
-
       - name: Run Build Utils
         run: pnpm build:utils
 

@@ -296,7 +296,7 @@
                 <div class="mb-1.5 px-2 text-color-text-placeholder">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
-                <p class="px-2 text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
+                <p class="px-2 text-xs text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
               </div>
             </slot>
             <div

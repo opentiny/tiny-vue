@@ -13,11 +13,13 @@
     <span class="docs-header-spacer"></span>
   </header>
 </template>
+
 <script setup>
 import { computed } from 'vue'
 import hljs from 'highlight.js'
 import { marked } from 'marked'
 import VersionTip from './version-tip.vue'
+
 const props = defineProps({ currentJson: {}, mdString: {} })
 const mdContent = computed(() =>
   marked(props.mdString, {
@@ -29,6 +31,7 @@ const mdContent = computed(() =>
   })
 )
 </script>
+
 <style scoped lang="less">
 .docs-header {
   padding: 16px 40px;

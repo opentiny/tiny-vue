@@ -943,6 +943,9 @@ export const handleFocus =
   ({ emit, vm, state, api }) =>
   () => {
     const type = state.type
+    if (state.pickerDisabled) {
+      return
+    }
 
     if (DATEPICKER.TriggerTypes.includes(type)) {
       if (state.isMobileScreen && state.isDateMobileComponent) {

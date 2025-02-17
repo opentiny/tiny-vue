@@ -1,7 +1,7 @@
 import { clickList, check, clickErrorText } from './index'
 import { getScrollParent } from '@opentiny/utils'
 import { useRect } from '@opentiny/vue-hooks'
-import { useEventListener } from '@opentiny/utils'
+import { useEventListener } from '@opentiny/vue-hooks'
 import { debounce } from '@opentiny/utils'
 import type { ILoadListProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 

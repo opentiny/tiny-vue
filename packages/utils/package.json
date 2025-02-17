@@ -11,7 +11,7 @@
   },
   "main": "src/index.ts",
   "publishConfig": {
-    "main": "dist/opentiny-utils.es.js",
+    "main": "dist/index.es.js",
     "types": "dist/index.d.ts"
   },
   "files": [

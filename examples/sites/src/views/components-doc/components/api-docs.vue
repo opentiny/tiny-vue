@@ -91,6 +91,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
@@ -101,6 +102,8 @@ import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './version-tip.vue'
 
 const props = defineProps({ currentJson: {}, chartCode: {}, tableData: {} })
+
+const emit = defineEmits(['jump-to-demo'])
 
 const OuterLink = iconOuterLink()
 
@@ -122,7 +125,6 @@ const apiExpandConf = {
   showIcon: true // 配置是否显示展开图标
 }
 
-const emit = defineEmits(['jump-to-demo'])
 // 点击 api区域的 name列时
 const jumpToDemo = (demoId) => {
   emit('jump-to-demo', demoId)
@@ -163,6 +165,7 @@ const jumpToApi = (hash) => {
 
 defineExpose({ jumpToApi })
 </script>
+
 <style scoped lang="less">
 .api-list {
   flex-wrap: wrap;
