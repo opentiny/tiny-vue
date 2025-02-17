@@ -508,6 +508,20 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['display-only-content.vue']
+    },
+    {
+      demoId: 'display-only-popup-more',
+      name: {
+        'zh-CN': '文本域只读超出显示更多按钮',
+        'en-US': 'Text field read-only beyond Show more button'
+      },
+      desc: {
+        'zh-CN':
+          '在只读的基础上增加<code>popup-more</code>属性，可使文本域超出显示更多按钮，点击更多按钮可以查看详细信息。',
+        'en-US':
+          'The <code>popup-more</code> attribute is added to enable the text field to exceed the display of more buttons. You can click more buttons to view details.'
+      },
+      codeFiles: ['display-only-popup-more.vue']
     }
   ]
 }

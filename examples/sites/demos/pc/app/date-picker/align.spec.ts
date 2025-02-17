@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test'
 
+test.use({
+  viewport: { width: 1920, height: 1080 }
+})
 test('[DatePicker] 测试对齐方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#align')

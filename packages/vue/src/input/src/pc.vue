@@ -193,7 +193,7 @@
         :append-to-body="true"
         @update:visible="state.showDisplayOnlyBox = $event"
       >
-        <div>{{ state.displayOnlyText }}</div>
+        <pre>{{ state.displayOnlyText }}</pre>
         <template #footer>
           <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
         </template>

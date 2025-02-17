@@ -4,13 +4,26 @@ test('[DatePanel] 测试事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-panel#event')
 
-  await page.getByRole('button', { name: '2025 年' }).click()
-  await expect(page.getByRole('cell', { name: '2025' })).toBeVisible()
+  // datePanel
+  await page.locator('#event').getByText('17').first().click()
+  await expect(page.getByText('触发 面板选中 事件，组件绑定值为：2025-01-')).toBeVisible()
 
-  await page.getByText('2025').click()
-  await expect(page.getByRole('cell', { name: '一月', exact: true })).toBeVisible()
+  // dateRange
+  await page.waitForTimeout(1000)
+  await page.locator('#event').getByText('9', { exact: true }).nth(2).click()
+  await page.locator('#event').getByText('16').nth(2).click()
+  await expect(page.getByText('触发 区间面板选中 事件，组件绑定值为：2025-02-')).toBeVisible()
 
-  await page.getByText('六月').click()
-  await page.getByRole('cell', { name: '11' }).locator('div').click()
-  await expect(page.getByText('触发 面板选中 事件，组件绑定值为：2025-06-')).toBeVisible()
+  // monthRange
+  await page.waitForTimeout(1000)
+
+  await page.locator('#event').getByText('七月').nth(1).click()
+  await page.locator('#event').getByText('五月').nth(1).click()
+  await expect(page.getByText('触发 月份区间面板选中 事件，组件绑定值为：2025-05,2025-')).toBeVisible()
+
+  // yearRange
+  await page.waitForTimeout(1000)
+  await page.getByText('2027').click()
+  await page.getByText('2042').click()
+  await expect(page.getByText('[ "2027", "2042" ]')).toBeVisible()
 })

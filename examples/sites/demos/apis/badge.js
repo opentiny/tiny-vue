@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'badge',
@@ -36,9 +36,8 @@ export default {
             'zh-CN': '是否隐藏标记',
             'en-US': 'Whether to hide badge'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'dynamic-hidden',
-          mobileDemo: 'hidden',
           mfDemo: ''
         },
         {
@@ -49,9 +48,8 @@ export default {
             'zh-CN': '指定跳转的目标页面地址',
             'en-US': 'Specify the URL of the target page.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'link',
-          mobileDemo: 'href-target',
           mfDemo: ''
         },
         {
@@ -62,21 +60,9 @@ export default {
             'zh-CN': '是否以小圆点的形式来显示标记',
             'en-US': 'Set whether to display the badge in the form of small dots'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'is-dot',
-          mobileDemo: 'is-dot',
           mfDemo: ''
-        },
-        {
-          name: 'is-mini',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>设置小尺寸，该属性默认为false</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'is-mini'
         },
         {
           name: 'max',
@@ -88,9 +74,8 @@ export default {
             'en-US':
               'Specifies the maximum number of badges to be displayed. If the actual badge value exceeds the maximum value, the number of badges is displayed in the format of "+". The value must be of the number type.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max',
-          mobileDemo: 'is-mini',
           mfDemo: ''
         },
         {
@@ -106,7 +91,7 @@ export default {
         },
         {
           name: 'show-Left',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置是否向左展示，仅对圆点生效。',
@@ -124,9 +109,8 @@ export default {
             'en-US':
               'Set the jump method for linking to the target page when clicking on the tag, only used when the href attribute exists'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'link',
-          mobileDemo: 'href-target',
           mfDemo: ''
         },
         {
@@ -161,9 +145,8 @@ export default {
             'zh-CN': '相关数据条目数',
             'en-US': 'Set the number of related data entries'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'content',
           mfDemo: ''
         }
       ],
@@ -178,9 +161,8 @@ export default {
             'zh-CN': '消息提示内容',
             'en-US': 'Message Content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-content',
-          mobileDemo: 'content',
           mfDemo: ''
         },
         {
@@ -191,9 +173,8 @@ export default {
             'zh-CN': '默认插槽，有data属性时，默认插槽不生效',
             'en-US': 'Default slot. When there is a data attribute, the default slot is not valid'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
-          mobileDemo: 'content',
           mfDemo: ''
         }
       ]

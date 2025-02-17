@@ -251,11 +251,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
             const find = props.options.find((opt) => opt[props.valueField] === state.selected.value)
             return find ? find[props.textField] : ''
           } else {
-            return (
-              (state.selected.state
-                ? state.selected.state.currentLabel
-                : state.selected.currentLabel || state.selected.label) || ''
-            )
+            return state.selected.state?.currentLabel || state.selected.currentLabel || state.selected.label || ''
           }
         } else {
           return ''
@@ -381,7 +377,7 @@ const initApi = ({
     toggleMenu: toggleMenu({ vm, state, props, api, isMobileFirstMode }),
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
-    setSoftFocus: setSoftFocus({ vm, state }),
+    setSoftFocus: setSoftFocus({ vm, state, props }),
     getcheckedData: getcheckedData({ props, state }),
     resetInputWidth: resetInputWidth({ vm, state }),
     resetHoverIndex: resetHoverIndex({ props, state }),

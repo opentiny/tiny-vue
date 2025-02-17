@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -15,6 +15,7 @@
     "build:saas:open": "vite build --mode saasopen",
     "build:saas:prod": "vite build --mode saasprod",
     "build": "vite build --mode pages && cp cp-component-md.sh ./dist",
+    "build:mobile:page": "vite build --mode mobilepages && cp cp-component-md.sh ./dist",
     "build:visualizer": "vite build --mode visualizer",
     "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
@@ -33,7 +34,6 @@
     "@opentiny/vue-design-smb": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-flowchart": "workspace:~",
-    "@opentiny/vue-hooks": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-icon-multicolor": "workspace:~",
     "@opentiny/vue-icon-saas": "workspace:~",
@@ -42,7 +42,6 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-repl": "^1.1.2",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-vite-import": "~1.2.0",
     "@unocss/reset": "0.38.2",
@@ -60,7 +59,6 @@
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
-    "@opentiny/vue-mobile": "workspace:~",
     "@playwright/test": "catalog:",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",

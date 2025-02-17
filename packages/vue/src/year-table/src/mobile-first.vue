@@ -61,7 +61,8 @@ export default defineComponent({
     'startYear',
     'maxDate',
     'minDate',
-    'rangeState'
+    'rangeState',
+    'readonly'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

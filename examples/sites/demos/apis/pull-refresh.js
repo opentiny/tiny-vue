@@ -1,146 +1,13 @@
 export default {
-  mode: ['mobile', 'mobile-first'],
+  mode: ['mobile-first'],
   apis: [
     {
       name: 'pull-refresh ',
       type: 'component',
-      props: [
-        {
-          name: 'disabled-pull-down',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否禁用下拉刷新</p>',
-            'en-US': 'disablde pull down'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'disabled-pull-down'
-        },
-        {
-          name: 'disabled-pull-up',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否禁用上拉</p>',
-            'en-US': 'disablded pull up'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'disabled-pull-up'
-        },
-        {
-          name: 'has-more',
-          type: 'boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>是否有更多数据</p>',
-            'en-US': 'has more'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'has-more'
-        },
-        {
-          name: 'loosing-text',
-          type: 'string',
-          defaultValue: '释放即可刷新',
-          desc: {
-            'zh-CN': '<p>下拉高度大于等于head-height时的提示文字，默认为：释放即可刷新</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'loosing-text'
-        },
-        {
-          name: 'pull-down-loading-text',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉加载文字</p>',
-            'en-US': 'pull down loading text'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'pulling-text'
-        },
-        {
-          name: 'pull-up-distance',
-          type: 'number',
-          defaultValue: '18',
-          desc: {
-            'zh-CN': '<p>触发上拉刷新的距离</p>',
-            'en-US': 'pull up distance'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'pull-up-distance'
-        },
-        {
-          name: 'pull-up-loading-text',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>上拉加载文字</p>',
-            'en-US': 'pull up loading text'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'pulling-text'
-        },
-        {
-          name: 'v-model',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否刷新状态，可以手动设置false来关闭刷新</p>',
-            'en-US': 'is refreshing'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'base'
-        }
-      ],
-      events: [
-        {
-          name: 'pull-down',
-          type: '(event: PullEvent) => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉时触发的事件</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'event'
-        },
-        {
-          name: 'pull-up',
-          type: '(event: PullEvent) => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>上拉时触发的事件</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'event'
-        }
-      ],
+      props: [],
+      events: [],
       methods: [],
-      slots: [
-        {
-          name: 'footer',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>上拉加载更多插槽</p>',
-            'en-US': 'pull up slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'pull-refresh-slot'
-        },
-        {
-          name: 'header',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉刷新插槽</p>',
-            'en-US': 'pull down slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        }
-      ]
+      slots: []
     },
     {
       name: 'pull-refresh',
@@ -151,7 +18,7 @@ export default {
         },
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '默认值是false',
           desc: {
             'zh-CN': '是否禁用下拉刷新',
@@ -185,7 +52,7 @@ export default {
         },
         {
           name: 'loadingText',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '数据刷新过程的提示文本',
@@ -196,7 +63,7 @@ export default {
         },
         {
           name: 'loosingText',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '向下拖动超过阈值后可松开进行刷新的提示文本',
@@ -207,7 +74,7 @@ export default {
         },
         {
           name: 'modelValue',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '默认值是false',
           desc: {
             'zh-CN': '是否正在进行下拉刷新',
@@ -229,7 +96,7 @@ export default {
         },
         {
           name: 'pullingText',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '向下拖动过程的提示文本',
@@ -240,7 +107,7 @@ export default {
         },
         {
           name: 'selfSimulate',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '默认值是false',
           desc: {
             'zh-CN':
@@ -264,7 +131,7 @@ export default {
         },
         {
           name: 'successText',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '刷新成功的提示文本',

@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'form',
@@ -28,7 +28,7 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'display-only',
-          mfDemo: ''
+          mfDemo: 'form-display-only'
         },
         {
           name: 'form-item',
@@ -61,9 +61,8 @@ export default {
             'zh-CN': '行内布局模式',
             'en-US': 'In-line layout mode'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-in-row',
-          mobileDemo: 'hide-required-asterisk',
           mfDemo: ''
         },
         {
@@ -75,9 +74,8 @@ export default {
             'en-US':
               ' Whether to display the verification information inline form when validate-type is set to text,(It is recommended to use message-type setting)'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: '',
-          mobileDemo: 'validate'
+          mode: ['pc'],
+          pcDemo: ''
         },
         {
           name: 'label-align',
@@ -98,9 +96,8 @@ export default {
             'zh-CN': '表单中标签的布局位置',
             'en-US': 'Layout position of the label in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'label-position',
-          mobileDemo: 'label-width',
           mfDemo: ''
         },
         {
@@ -111,9 +108,8 @@ export default {
             'zh-CN': '表单中标签后缀',
             'en-US': 'Label suffix in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-in-row',
-          mobileDemo: 'form-label-suffix',
           mfDemo: ''
         },
         {
@@ -124,9 +120,8 @@ export default {
             'zh-CN': '表单中标签占位宽度',
             'en-US': 'Label placeholder width in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'label-position',
-          mobileDemo: 'label-width',
           mfDemo: ''
         },
         {
@@ -150,9 +145,8 @@ export default {
             'zh-CN': '表单数据对象',
             'en-US': 'Form data object'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -188,9 +182,8 @@ export default {
             'zh-CN': '表单验证规则',
             'en-US': 'Form validation rule'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -201,9 +194,8 @@ export default {
             'zh-CN': '是否显示校验错误信息',
             'en-US': 'Display verification error information.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'novalid-tip',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -225,9 +217,8 @@ export default {
             'zh-CN': '是否在 rules 属性改变后立即触发一次验证（"deep"选项新增于3.21.0）',
             'en-US': 'Whether to trigger a verification immediately after the rules attribute is changed'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-validation-rule',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -244,7 +235,7 @@ export default {
         },
         {
           name: 'validate-tag',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': 'vue2下面原生html标签支持显示tooltip校验提示信息',
@@ -274,9 +265,8 @@ export default {
             'zh-CN': '任一表单项被校验后触发',
             'en-US': 'Triggered after any form item is verified'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mobileDemo: '',
           mfDemo: ''
         }
       ],
@@ -291,9 +281,8 @@ export default {
             'en-US':
               'The verification result of removing a form item is transferred to the prop attribute of the form item to be removed or an array consisting of prop. If this parameter is not transferred, the verification result of the entire form is removed.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validate-field',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -304,9 +293,8 @@ export default {
             'zh-CN': '对整个表单进行重置，将所有字段值重置为初始值并移除校验结果',
             'en-US': 'Reset all field values to the initial values and remove the verification result.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -320,9 +308,8 @@ export default {
             'en-US':
               'Method for verifying the entire form. The parameter is a callback function. The callback function will be invoked after the verification is complete and two parameters are transferred: whether the verification is successful and whether the verification fails. If the callback function is not transferred, a promise is returned.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -336,9 +323,8 @@ export default {
             'en-US':
               'A method for verifying some form fields. The first parameter is a single prop or a prop array, and the second parameter is a callback function. After each form item is verified, the callback will be called in sequence'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validate-field',
-          mobileDemo: '',
           mfDemo: ''
         }
       ],
@@ -351,9 +337,8 @@ export default {
             'zh-CN': '默认插槽，自定义表单内容',
             'en-US': 'Default slot'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: '',
           mfDemo: ''
         },
         {

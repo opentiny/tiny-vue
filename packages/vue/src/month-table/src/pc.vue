@@ -13,7 +13,7 @@
   <table class="tiny-month-table" @mousemove="handleMouseMove" @click="handleMonthTableClick">
     <tbody>
       <tr v-for="(row, key) in state.rows" :key="key">
-        <td v-for="(cell, _key) in row" :class="getCellStyle(cell)" :key="_key">
+        <td v-for="(cell, key) in row" :class="getCellStyle(cell)" :key="key">
           <div>
             <a class="cell" v-text="t('ui.datepicker.months.' + state.months[cell.text])"></a>
           </div>
@@ -36,7 +36,10 @@ export default defineComponent({
     defaultValue: {
       validator: (val) => val === null || isDate1(val) || (Array.isArray(val) && val.every(isDate1))
     },
-    disabledDate: {},
+    disabledDate: {
+      type: Function,
+      default: null
+    },
     maxDate: {},
     minDate: {},
     rangeState: {
@@ -45,7 +48,10 @@ export default defineComponent({
     selectionMode: {
       default: 'month'
     },
-
+    readonly: {
+      type: Boolean,
+      default: false
+    },
     value: {}
   },
   setup(props, context) {

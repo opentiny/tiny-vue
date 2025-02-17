@@ -1,21 +1,10 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'tabs',
       type: 'component',
       props: [
-        {
-          name: 'active-color',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '当前页签的字体颜色',
-            'en-US': 'active tab color'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'active-color'
-        },
         {
           name: 'active-name',
           type: 'string',
@@ -24,9 +13,8 @@ export default {
             'zh-CN': '设置初始选中的页签项',
             'en-US': 'Set initially selected label items'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'tab-style-card',
-          mobileDemo: 'active-name',
           mfDemo: ''
         },
         {
@@ -39,9 +27,8 @@ export default {
             'en-US':
               'The hook before the tag is switched. If false is returned or Promise is returned and rejected, the switch is blocked; ActiveName: The name of the label item that is about to be switched, oldActiveName: The name of the current label item'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'before-leave',
-          mobileDemo: 'before-leave',
           mfDemo: ''
         },
         {
@@ -69,29 +56,6 @@ export default {
           pcDemo: 'tabs-events-edit'
         },
         {
-          name: 'expand-tabs-mode',
-          type: 'string',
-          defaultValue: 'columns',
-          desc: {
-            'zh-CN': '展开内容的排列方式，可选值 column：为单列，columns：为多列',
-            'en-US':
-              "The arrangement of content can be displayed in either a single column format, which is referred to as 'column', or in multiple columns, which is referred to as 'columns'."
-          },
-          mode: ['mobile'],
-          mobileDemo: 'expend'
-        },
-        {
-          name: 'expand-tabs-title',
-          type: 'string',
-          defaultValue: '请选择',
-          desc: {
-            'zh-CN': '展开内容的标题',
-            'en-US': 'Expand Content Title'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'expend'
-        },
-        {
           name: 'modelValue / v-model',
           type: 'string',
           defaultValue: '',
@@ -104,7 +68,7 @@ export default {
         },
         {
           name: 'optimized',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启优化渲染，默认值为true，表示开启优化渲染，此时只会渲染当前标签项',
@@ -150,17 +114,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'show-expand-tabs',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '页签可展开',
-            'en-US': 'tabs expandable'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'expend'
-        },
-        {
           name: 'show-more-tabs',
           type: 'boolean',
           defaultValue: 'false',
@@ -195,17 +148,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'stretch-wh'
-        },
-        {
-          name: 'swipeable',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '滑动页签内容切换页签',
-            'en-US': 'slide tab content to switch tab'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'swipe'
         },
         {
           name: 'tab-style',
@@ -245,17 +187,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'v-model / modelValue',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '选中选项卡的 name',
-            'en-US': 'the name of the selected item'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
-        },
-        {
           name: 'with-add',
           type: 'boolean',
           defaultValue: 'false',
@@ -263,9 +194,8 @@ export default {
             'zh-CN': '是否显示添加按钮，用来添加页签项',
             'en-US': 'Do you want to display the add button to add tab item'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'with-add',
-          mobileDemo: 'add-delete-tab',
           mfDemo: ''
         },
         {
@@ -276,9 +206,8 @@ export default {
             'zh-CN': '是否显示页签项的关闭按钮，用来删除页签项',
             'en-US': 'Do you want to display the close button for label items to delete them'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'tabs-events-close',
-          mobileDemo: 'add-delete-tab',
           mfDemo: ''
         },
         {
@@ -299,7 +228,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': `'更多'按钮触发的下拉面板是否展示全部页签项，适用于超大数据量的情况`,
+            'zh-CN': "'更多'按钮触发的下拉面板是否展示全部页签项，适用于超大数据量的情况",
             'en-US':
               'Indicates whether to display all tab items in the drop-down panel triggered by the More button. This parameter applies to the scenario where the data volume is large.'
           },
@@ -365,9 +294,8 @@ export default {
             'zh-CN': '点击"添加"按钮后触发，用于编写增加页签项的逻辑',
             'en-US': 'Triggered after clicking the "Add" button, used to write logic for adding tab items'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'with-add',
-          mobileDemo: 'tabs-events',
           mfDemo: ''
         },
         {
@@ -379,9 +307,8 @@ export default {
             'en-US':
               'Trigger an event when clicking on a tab item, Triggered when tab is selected; TabItem: Click on the Component object information of the tab item in the middle'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'tabs-events-click',
-          mobileDemo: 'tabs-events',
           mfDemo: ''
         },
         {
@@ -393,9 +320,8 @@ export default {
             'en-US':
               'Triggered after clicking the tab item close button, used to write logic for deleting tab items; name: The name value of the tab item to be deleted'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'tabs-events-close',
-          mobileDemo: 'tabs-events',
           mfDemo: ''
         },
         {
@@ -455,8 +381,7 @@ export default {
             'zh-CN': '默认插槽',
             'en-US': 'default slot'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'basic-usage',
+          mode: ['mobile-first'],
           mfDemo: ''
         },
         {

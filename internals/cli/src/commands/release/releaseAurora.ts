@@ -55,7 +55,16 @@ const findAllpage = (packagesPath) => {
 }
 
 export const releaseAurora = () => {
-  const distLists = ['dist2/@aurora', 'renderless/dist', 'theme/dist', 'theme-mobile/dist', 'theme-saas/dist']
+  const distLists = [
+    'dist2/@aurora',
+    'renderless/dist',
+    'theme/dist',
+    'theme-saas/dist',
+    'utils/dist',
+    'utils/package.json',
+    'vue-hooks/dist',
+    'vue-hooks/package.json'
+  ]
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item))
   })

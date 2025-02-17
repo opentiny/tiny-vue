@@ -1,4 +1,4 @@
 export default {
-  mode: ['pc', 'mobile'],
+  mode: ['pc'],
   apis: []
 }

@@ -48,7 +48,8 @@ export const stepsProps = {
     default: 300
   },
   noArrow: Boolean,
-  flex: Boolean
+  flex: Boolean,
+  contentCenter: Boolean
 }
 
 export default defineComponent({

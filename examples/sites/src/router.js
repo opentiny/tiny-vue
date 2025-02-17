@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
 import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
 
-const Components = () => import('@/views/components/components.vue')
+const Components = () => import('@/views/components-doc/index.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
 

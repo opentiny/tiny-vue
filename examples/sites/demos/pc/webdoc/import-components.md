@@ -14,95 +14,26 @@ npm i @opentiny/unplugin-tiny-vue -D
 
 然后把以下代码插入到你项目的 `Vite` 或 `Webpack` 配置文件中。
 
-Vite
-
-```ts
-// vite.config.ts
-
-import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
-
-export default {
-  plugins: [autoImportPlugin('vite')]
-}
-```
-
-Webpack
-
-```js
-// vue.config.js
-
-const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
-
-module.exports = defineConfig({
-  configureWebpack: {
-    plugins: [autoImportPlugin('webpack')]
-  }
-})
-```
-
-这样你就能直接在项目中使用 TinyVue 的组件，这些组件都是自动按需导入的，无需手动导入，且不用担心项目体积变得太大。
-
-你也可以只使用 TinyVueResolver，这样就可以和其他组件库一起使用。
-
-Vite
-
-```ts
-// vite.config.ts
-
-import Components from 'unplugin-vue-components/vite'
-import { TinyVueResolver } from '@opentiny/unplugin-tiny-vue'
-
-export default {
-  plugins: [
-    Components({
-      resolvers: [TinyVueResolver]
-    })
-  ]
-}
-```
-
-Webpack
-
-```js
-// vue.config.js
-
-const Components = require('unplugin-vue-components/webpack').default
-const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
-
-module.exports = defineConfig({
-  configureWebpack: {
-    plugins: [
-      Components({
-        resolvers: [TinyVueResolver]
-      })
-    ]
-  }
-})
-```
-
-#### 关于函数式组件
-
-TinyModal，TinyNotify，TinyLoading 可使用函数形式调用，在使用时，需使用 `unplugin-auto-import` 实现自动导入。
+实现效果类似于单组件引入：`TinyVueSingleResolver('TinyModal') => import TinyModal from '@opentiny/vue-modal'`
 
 Vite
 
 ```js
 // vite.config.js
+import { defineConfig } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { TinyVueResolver } from '@opentiny/unplugin-tiny-vue'
+import { TinyVueSingleResolver } from '@opentiny/unplugin-tiny-vue'
 
-module.exports = defineConfig({
-  configureWebpack: {
-    plugins: [
-      Components({
-        resolvers: [TinyVueResolver]
-      }),
-      AutoImport({
-        resolvers: [TinyVueResolver]
-      })
-    ]
-  }
+export default defineConfig({
+  plugins: [
+    Components({
+      resolvers: [TinyVueSingleResolver]
+    }),
+    AutoImport({
+      resolvers: [TinyVueSingleResolver]
+    })
+  ]
 })
 ```
 
@@ -110,25 +41,40 @@ Webpack
 
 ```js
 // webpack.config.js
-const Components = require('unplugin-vue-components/webpack').default
-const AutoImport = require('unplugin-auto-import/webpack').default
-const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
+const Components = require('unplugin-vue-components/webpack')
+const AutoImport = require('unplugin-auto-import/webpack')
+const { TinyVueSingleResolver } = require('@opentiny/unplugin-tiny-vue')
 
-module.exports = defineConfig({
-  configureWebpack: {
-    plugins: [
-      Components({
-        resolvers: [TinyVueResolver]
-      }),
-      AutoImport({
-        resolvers: [TinyVueResolver]
-      })
-    ]
-  }
-})
+module.exports = {
+  plugins: [
+    Components({
+      resolvers: [TinyVueSingleResolver]
+    }),
+    AutoImport({
+      resolvers: [TinyVueSingleResolver]
+    })
+  ]
+}
 ```
 
-想了解更多自动按需导入的信息，请参考：[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 和 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)。
+#### 温馨提示
+
+因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
+
+```json
+{
+  "dependencies": {
+    "@opentiny/vue-button": "~3.x.x",
+    "@opentiny/vue-alert": "~3.x.x",
+    "@opentiny/vue-input": "~3.x.x",
+    ...
+  }
+}
+```
+
+想了解更多自动按需导入的信息，请参考：
+[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
 
 ## 多组件引入
 
@@ -197,25 +143,7 @@ export default {
       ],
       'pc' // 此配置非必选，按需配置 (pc|mobile|mobile-first)
     )
-  ],
-  define: {
-    'process.env': { ...process.env }
-  }
-}
-```
-
-### 温馨提示
-
-因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
-
-```json
-{
-  "dependencies": {
-    "@opentiny/vue-button": "~3.x.x",
-    "@opentiny/vue-alert": "~3.x.x",
-    "@opentiny/vue-input": "~3.x.x",
-    ...
-  }
+  ]
 }
 ```
 

@@ -65,7 +65,10 @@ export default {
           name: 'drag-outside-window',
           type: 'boolean',
           defaultValue: 'false',
-          desc: { 'zh-CN': '可将弹窗拖出窗口', 'en-US': 'Pop ups can be dragged out of the window' },
+          desc: {
+            'zh-CN': '可将弹窗拖出窗口',
+            'en-US': 'Pop ups can be dragged out of the window'
+          },
           mode: ['pc'],
           pcDemo: 'draggable'
         },
@@ -216,7 +219,7 @@ export default {
         {
           name: 'top',
           type: 'string',
-          defaultValue: `'15vh'`,
+          defaultValue: "'15vh'",
           desc: {
             'zh-CN': '设置弹出框距离窗口顶部的高度',
             'en-US': 'Set the height of the popup from the top of the window'
@@ -238,7 +241,7 @@ export default {
         {
           name: 'width',
           type: 'string',
-          defaultValue: `'500px'`,
+          defaultValue: "'500px'",
           desc: {
             'zh-CN': '弹出框的宽度',
             'en-US': 'Wideness of the dialog box that is displayed'
@@ -249,7 +252,7 @@ export default {
         {
           name: 'custom-style',
           type: 'string',
-          defaultValue: ``,
+          defaultValue: '',
           desc: {
             'zh-CN': '自定义实现双层抽屉',
             'en-US': 'Custom Styles'
@@ -264,7 +267,7 @@ export default {
         {
           name: 'no-animation',
           type: 'string',
-          defaultValue: ``,
+          defaultValue: '',
           desc: {
             'zh-CN': '是否开启动画',
             'en-US': 'Indicates whether to enable animation'
@@ -279,7 +282,7 @@ export default {
         {
           name: 'dialog-transition',
           type: 'string',
-          defaultValue: ``,
+          defaultValue: '',
           desc: {
             'zh-CN': '启动弹出动效由小变大',
             'en-US': 'Startup pop-up effect from small to large'

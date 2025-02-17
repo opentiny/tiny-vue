@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../date-picker/index.less';
 
 @picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
 
@@ -28,6 +29,10 @@
     @apply content-[''];
     @apply table;
     @apply clear-both;
+  }
+
+  &__body-wrapper {
+    position: relative;
   }
 
   &__content {
