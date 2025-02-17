@@ -52,7 +52,7 @@ export interface Module {
  */
 const getAllModules = (isSort: boolean) => {
   const callback = (item) => {
-    return item.path.toLowerCase().includes('huicharts') === -1
+    return !item.path.split('/').includes('huicharts')
   }
   return getSortModules({ filterIntercept: callback, isSort })
 }
