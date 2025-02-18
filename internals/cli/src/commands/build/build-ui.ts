@@ -383,7 +383,7 @@ export interface BuildUiOption {
 
 function getEntryTasks(): Module[] {
   // 读取TinyVue组件库入口文件
-  return ['index', 'pc', 'mobile'].map((mode) => ({
+  return ['index', 'pc', 'mobile-first'].map((mode) => ({
     path: `vue/${mode}.ts`,
     dtsRoot: true,
     libPath: `vue/${mode}`,
