@@ -108,6 +108,10 @@ if (process.env.BUILD_TARGET === 'runtime') {
 export default HuiCharts
 
 export {
+  HuiCharts,
+  HuiCharts as TinyHuicharts,
+  HuiCharts as TinyCharts,
+  HuiCharts as Charts,
   HuiChartsPie,
   HuichartsPie,
   ChartPie,
