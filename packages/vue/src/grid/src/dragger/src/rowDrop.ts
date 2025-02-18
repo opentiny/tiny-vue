@@ -26,7 +26,6 @@ import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { isVue2 } from '@opentiny/vue-common'
-import { getRowUniqueId } from '../../table/src/strategy'
 
 function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem }) {
   if (!isScrollYLoad) {
@@ -69,14 +68,11 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
     const isScrollYLoad = _vm.scrollYLoad
-    const rowIdKey = _vm.$props.rowId
     if (!isScrollYLoad) {
-      selfNode.item[rowIdKey] = getRowUniqueId()
       if (prevTrElem) {
         // 移动到节点
         const prevRow = _vm.getRowNode(prevTrElem).item
         const prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
-        prevNode.item[rowIdKey] = getRowUniqueId()
         if (findTree(selfRow[options.children], (row) => prevRow === row, options)) {
           // 错误的移动
           const oldTrElem = wrapperElem.children[event.oldIndex]

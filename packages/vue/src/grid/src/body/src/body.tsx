@@ -45,6 +45,8 @@ import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 const isOperateMouse = ($table) =>
   $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
 
+let renderRowFlag = false
+
 // 解决静态扫描驼峰变量问题
 const classMap = {
   colEdit: 'col__edit',
@@ -608,7 +610,7 @@ function renderRowExpanded(args) {
           'tr',
           {
             class: 'tiny-grid-body__expanded-row',
-            key: `expand_${rowid}`,
+            key: renderRowFlag ? `expand_${rowid}` : `expand_${rowid}${rowIndex}`,
             on: trOn
           },
           [
@@ -732,6 +734,7 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     // 如果是树形表格，则会递归渲染已展开行的子节点
     renderRowTree(args, renderRows)
   })
+  renderRowFlag = !renderRowFlag
 
   return rows
 }
