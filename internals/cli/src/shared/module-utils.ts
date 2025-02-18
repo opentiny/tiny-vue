@@ -14,31 +14,7 @@ const moduleMap = require(pathFromWorkspaceRoot('packages/modules.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
 // 需要在入口文件中排除的组件，比如：富文本
-export const excludeComponents = [
-  'RichText',
-  'HuiChartsPie',
-  'HuiChartsRing',
-  'HuiChartsBar',
-  'HuiChartsHistogram',
-  'HuiChartsRadar',
-  'HuiChartsLine',
-  'AutonaviMap',
-  'BaiduMap',
-  'HuiChartsBoxplot',
-  'HuiChartsCandle',
-  'HuiChartsFunnel',
-  'HuiChartsGauge',
-  'HuiChartsGraph',
-  'HuiChartsHeatmap',
-  'HuiChartsLiquidfill',
-  'HuiChartsMap',
-  'HuiChartsSankey',
-  'HuiChartsScatter',
-  'HuiChartsSunburst',
-  'HuiChartsTree',
-  'HuiChartsWaterfall',
-  'HuiChartsWordcloud'
-]
+export const excludeComponents = ['RichText']
 
 export interface Module {
   /** 源码路径，如 vue/src/button/index.ts */
