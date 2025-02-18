@@ -22,6 +22,7 @@ import { HuiChartsSunburst } from '../huicharts-sunburst'
 import { HuiChartsTree } from '../huicharts-tree'
 import { HuiChartsWaterfall } from '../huicharts-waterfall'
 import { HuiChartsWordcloud } from '../huicharts-wordcloud'
+import { HuiChartsProcess } from '../huicharts-process'
 
 import Core from '@opentiny/vue-huicharts-core'
 
@@ -58,7 +59,8 @@ export default defineComponent({
       sunburst: HuiChartsSunburst,
       tree: HuiChartsTree,
       waterfall: HuiChartsWaterfall,
-      wordcloud: HuiChartsWordcloud
+      wordcloud: HuiChartsWordcloud,
+      process: HuiChartsProcess
     }
     return {}
   },
@@ -125,5 +127,6 @@ export {
   HuiChartsSunburst,
   HuiChartsTree,
   HuiChartsWaterfall,
-  HuiChartsWordcloud
+  HuiChartsWordcloud,
+  HuiChartsProcess
 }
