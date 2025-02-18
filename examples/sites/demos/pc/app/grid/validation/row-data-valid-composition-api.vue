@@ -28,9 +28,9 @@ const validRules = {
         }
 
         if (Number(value) > Number(max)) {
-          reject(new Error('数值不能大于' + max))
+          reject(new Error('数值不能大于 ' + max))
         } else if (Number(value) < Number(min)) {
-          reject(new Error('数值不能小于' + min))
+          reject(new Error('数值不能小于 ' + min))
         } else {
           resolve()
         }

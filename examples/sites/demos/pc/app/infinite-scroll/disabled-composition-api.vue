@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import InfiniteScroll from '@opentiny/vue-renderless/common/deps/infinite-scroll'
+import { InfiniteScroll } from '@opentiny/vue-directive'
 import { ref, computed } from 'vue'
 
 const count = ref(0)

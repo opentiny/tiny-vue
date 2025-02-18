@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my20">自定义节点,为节点添加提示</div>
+    <div class="my20">自定义节点，为节点添加提示</div>
     <tiny-cascader v-model="value1" :options="options">
       <template #default="{ node }">
         <span :title="node.label"> {{ node.label }} <tiny-icon-fillet-external-link /></span>

@@ -34,7 +34,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>get-menu-data-sync</code> 自定义菜单数据服务。(deprecated v3.4.0废弃, v3.16.0移除；移除原因：如果是同步数据则和:data功能重复)。</p>\n',
+          '<p>通过 <code>get-menu-data-sync</code> 自定义菜单数据服务。(deprecated v3.4.0 废弃，v3.16.0 移除；移除原因：如果是同步数据则和:data 功能重复)。</p>\n',
         'en-US':
           '<p>Customize menu data services through<code>get menu data sync</code>. (deprecated v3.4.0 abandoned, v3.16.0 removed; removal reason: if it is synchronized data, it is duplicated with the: data function).</p>\n'
       },
@@ -129,7 +129,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>placeholder</code> 属性设置输入框的占位符。 通过设置 <code>automatic-filtering</code> 为<code>false</code>关闭输入时自动过滤功能，默认值为<code>true</code>。</p>\n',
+          '<p>通过 <code>placeholder</code> 属性设置输入框的占位符。通过设置 <code>automatic-filtering</code> 为<code>false</code>关闭输入时自动过滤功能，默认值为<code>true</code>。</p>\n',
         'en-US':
           '<p>Set the placeholder for the input box through the<code>placeholder</code>property. By setting<code>automatic filtering</code>to<code>false</code>, the automatic filtering function on input is turned off, and the default value is<code>true</code>.</p>'
       },

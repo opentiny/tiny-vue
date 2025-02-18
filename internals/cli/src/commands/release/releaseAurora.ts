@@ -38,8 +38,6 @@ const findAllpage = (packagesPath) => {
       .replace(/-openaui/g, '-opentiny')
       // 解决在linkjs环境z-index无法统一导致下拉框被遮挡问题
       .replace(/"(.*?\/popup-manager)"/g, '"@aurora/renderless/common/deps/popup-manager"')
-      // 修复使用@aurora/utils配置xss白名单失效问题
-      .replace(/"(.*?\/xss)"/g, '"@aurora/utils"')
       // @opentiny/fluent-editor 包是与框架无关的包
       .replace(/@aurora\/fluent-editor/g, '@opentiny/fluent-editor')
       .replace(/@aurora\/huicharts/g, '@opentiny/huicharts')
@@ -57,7 +55,16 @@ const findAllpage = (packagesPath) => {
 }
 
 export const releaseAurora = () => {
-  const distLists = ['dist2/@aurora', 'renderless/dist', 'theme/dist', 'theme-mobile/dist', 'theme-saas/dist']
+  const distLists = [
+    'dist2/@aurora',
+    'renderless/dist',
+    'theme/dist',
+    'theme-saas/dist',
+    'utils/dist',
+    'utils/package.json',
+    'vue-hooks/dist',
+    'vue-hooks/package.json'
+  ]
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item))
   })

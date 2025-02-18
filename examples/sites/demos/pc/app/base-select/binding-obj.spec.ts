@@ -12,10 +12,10 @@ test('binding-obj', async ({ page }) => {
   await input.click()
   await dropdown.getByRole('listitem').filter({ hasText: '重庆' }).click()
   await expect(input).toHaveValue('重庆')
-  await expect(valueLocator).toHaveText('{ "val": "选项4", "id": 4 }')
+  await expect(valueLocator).toHaveText('{ "val": "选项 4", "id": 4 }')
 
   await input.click()
   await dropdown.getByRole('listitem').filter({ hasText: '天津' }).click()
   await expect(input).toHaveValue('天津')
-  await expect(valueLocator).toHaveText('{ "val": "选项3", "id": 3 }')
+  await expect(valueLocator).toHaveText('{ "val": "选项 3", "id": 3 }')
 })

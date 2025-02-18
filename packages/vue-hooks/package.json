@@ -1,20 +1,28 @@
 {
   "name": "@opentiny/vue-hooks",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
-  "module": "index.ts",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "pub": "pnpm publish --no-git-checks --access=public",
+    "test": "vitest"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "dist/index.js"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.9",
-    "@opentiny/vue-common": "workspace:~"
+    "@opentiny/utils": "workspace:~"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "~4.3.0",
+    "vitest": "catalog:"
+  }
 }

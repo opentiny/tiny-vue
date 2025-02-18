@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <div class="group-form-title">分组标题1</div>
+    <div class="group-form-title">分组标题 1</div>
     <tiny-form ref="groupForm1Ref" :model="createData" :rules="rules" label-position="top" label-width="100px">
       <tiny-form-item label="站点名称" prop="name">
         <tiny-input v-model="createData.name" placeholder="请输入"></tiny-input>
@@ -14,7 +14,7 @@
         <help-circle title="站点地址（可选）" class="icon-help"></help-circle>
       </tiny-form-item>
     </tiny-form>
-    <div class="group-form-title second-title">分组标题2</div>
+    <div class="group-form-title second-title">分组标题 2</div>
     <tiny-form ref="groupForm2Ref" :model="createData" :rules="rules" label-position="top" label-width="100px">
       <tiny-form-item label="国家" prop="country">
         <tiny-input v-model="createData.country" placeholder="请输入"></tiny-input>

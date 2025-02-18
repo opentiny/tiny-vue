@@ -47,27 +47,27 @@ export default {
     loadAll() {
       return [
         {
-          name: 'GFDDDDDDD科技YX公司',
+          name: 'GFDDDDDDD 科技 YX 公司',
           address: '福州'
         },
         {
-          name: 'WWWWWWWWWW科技YX公司',
+          name: 'WWWWWWWWWW 科技 YX 公司',
           address: '深圳福田区'
         },
         {
-          name: 'RFVVVVVV有限责任公司',
+          name: 'RFVVVVVV 有限责任公司',
           address: '中山市'
         },
         {
-          name: 'TGBGBBBBBBBBYX公司',
+          name: 'TGBGBBBBBBBBYX 公司',
           address: '梅州'
         },
         {
-          name: 'YHNNNNNNN科技YX公司',
+          name: 'YHNNNNNNN 科技 YX 公司',
           address: '韶关'
         },
         {
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           address: '广州天河区'
         }
       ]

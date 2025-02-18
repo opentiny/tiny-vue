@@ -136,11 +136,11 @@ const pickerOptionsMonthRange = {
 const pickerOptionsStartFrom = {
   shortcuts: [
     {
-      text: '某日起始', // text可以自定义
+      text: '某日起始', // text 可以自定义
       type: 'startFrom'
     },
     {
-      text: '某日为止', // text可以自定义
+      text: '某日为止', // text 可以自定义
       type: 'endAt'
     },
     {

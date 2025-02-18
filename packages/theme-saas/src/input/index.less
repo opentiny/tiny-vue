@@ -47,7 +47,7 @@
   &.is-disabled &__inner {
     @apply cursor-not-allowed;
     @apply border border-solid border-color-border-separator;
-    @apply text-color-text-secondary;
+    @apply text-color-text-disabled;
     @apply bg-color-bg-6;
     .placeholder(@color:theme('colors.color.text.disabled'));
 
@@ -107,7 +107,7 @@
     }
   }
 
-   &__inner {
+  &__inner {
     @apply w-full;
     @apply border border-solid border-color-border;
     @apply rounded;

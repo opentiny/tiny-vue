@@ -144,9 +144,9 @@
   --tv-color-act-primary-text-hover: var(--tv-base-color-brand); // #191919 主要hover文本色-1
   --tv-color-act-primary-text-active: var(--tv-base-color-brand); // #191919 主要active文本色-1
 
-  --tv-color-act-primary-text-white: var(--tv-base-color-common-1); // #fff 主要文本色-2（白色）
-  --tv-color-act-primary-text-white-hover: var(--tv-base-color-common-1); // #fff 主要hover文本色-2（白色）
-  --tv-color-act-primary-text-white-active: var(--tv-base-color-common-1); // #fff 主要active文本色-2（白色）
+  --tv-color-act-primary-text-inverse-tint: var(--tv-base-color-common-1); // #fff 主要文本色-2（白色）
+  --tv-color-act-primary-text-inverse-tint-hover: var(--tv-base-color-common-1); // #fff 主要hover文本色-2（白色）
+  --tv-color-act-primary-text-inverse-tint-active: var(--tv-base-color-common-1); // #fff 主要active文本色-2（白色）
 
   --tv-color-act-primary-bg: var(--tv-base-color-brand); // #191919 主要背景色-1（品牌色）: 默认
   --tv-color-act-primary-bg-hover: var(--tv-base-color-common-9); // #595959  主要hover背景色-1
@@ -282,7 +282,7 @@
   --tv-color-act-info-border-light-hover: var(--tv-base-color-info-1); // #f0f7ff  信息hover边框色
   --tv-color-act-info-border-light-active: var(--tv-base-color-info-1); // #f0f7ff  信息active边框色
 
-  --tv-color-act-info-plain-text-hover:  var(--tv-base-color-info-6); // #1476ff 
+  --tv-color-act-info-plain-text-hover: var(--tv-base-color-info-6); // #1476ff 
 
   /** 2.4 文本色 **/
   --tv-color-text: var(--tv-base-color-common-11); // #191919 一级文本色-正文主色，重要信息、标题颜色、输入类文本颜色、导航栏文字图标
@@ -292,25 +292,37 @@
   --tv-color-text-disabled: var(--tv-base-color-common-7); // #c2c2c2  禁用文本色
   --tv-color-text-active: var(--tv-base-color-brand-6); // #1476ff 选中文本色 / 文本高亮色（搜索关键字高亮）
   --tv-color-text-important: var(--tv-base-color-common-11); // #191919 重要文本色-文本_金额
-  --tv-color-text-white: var(--tv-base-color-common-1); // #fff 深色背景上-文本色
   --tv-color-text-link: var(--tv-base-color-brand-6); // #1476ff 链接色（链接按钮）
   --tv-color-text-link-hover: var(--tv-base-color-brand-6); // #1476ff 链接悬浮色
 
   --tv-color-plain-text-hover: var(--tv-base-color-common-11); // #191919
+  // -- 暗色新增 --
+  --tv-color-text-control: var(--tv-base-color-common-11); // #191919 左侧导航默认文本色/主要图标按钮/主要图标+按钮
+  --tv-color-text-inverse: var(--tv-base-color-common-1); // #fff 亮色暗色都是白色场景
+  --tv-color-text-inverse-tint: var(--tv-base-color-common-1); // #fff 暗色反色成黑色：主要按钮文本色
+  --tv-color-text-active-1: var(--tv-base-color-common-11); // #191919 卡片式tab页签激活文本色
+  --tv-color-text-active-2: var(--tv-base-color-info-6); // #1476ff  tree选中文本色
+  --tv-color-text-active-3: var(--tv-base-color-common-11); // #191919 tab页签激活色
+  --tv-color-text-inverse-active: var(--tv-base-color-common-1); // #fff buttonGrounp激活色
+  --tv-color-text-hover: var(--tv-base-color-common-11); // #191919 片式tab页签悬浮文本色/深色背景卡片式链接悬浮色
+  --tv-color-text-link-1: var(--tv-base-color-common-11); // #191919  面包屑/主要链接
+  --tv-color-text-link-1-hover: var(--tv-base-color-common-11); // #191919 面包屑/主要链接悬浮色
 
   /** 2.5 图标色 **/
   --tv-color-icon: var(--tv-base-color-common-8); // #808080 默认图标色
   --tv-color-icon-hover: var(--tv-base-color-common-11); // #191919 图标悬浮色
   --tv-color-icon-active: var(--tv-base-color-common-11); // #191919 图标激活色
   --tv-color-icon-disabled: var(--tv-base-color-common-7); // #c2c2c2  图标禁用色
-  --tv-color-icon-checked-disabled:var(--tv-base-color-common-6); // #dbdbdb 图标禁用色-1 checkbox选中且禁用
+  --tv-color-icon-checked-disabled: var(--tv-base-color-common-6); // #dbdbdb 图标禁用色-1 checkbox选中且禁用
   --tv-color-icon-control: var(--tv-base-color-brand); // #191919 图标按钮 / 图标+文本按钮图标色,主要在按钮场景（稳定态图标色， hover时不用变化）
   --tv-color-icon-control-active: var(--tv-base-color-brand-6); // #1476ff 控件图标激活色，主要在checkbox、radio图标激活场景
   --tv-color-icon-control-disabled: var(--tv-base-color-common-6); // #dbdbdb 控件图标禁用色，主要在checkbox、radio图标激活场景
-  --tv-color-icon-white: var(--tv-base-color-common-1); // #fff 深色背景白色图标
   --tv-color-icon-link: var(--tv-base-color-brand-6); // #1476ff 链接图标色
   --tv-color-icon-warn-secondary: var(--tv-base-color-warn-secondary-1); // #ffb700 次要警告图标色 / 评分组件rate-图标色/状态图标-异常
-
+  // -- 暗色新增 --
+  --tv-color-icon-inverse: var(--tv-base-color-common-1); // #fff 亮色暗色都是白色场景
+  --tv-color-icon-inverse-tint: var(--tv-base-color-common-1); // #fff 暗色反色成黑色：按钮下拉线头
+  --tv-color-icon-inverse-disabled: var(--tv-base-color-common-1); // #fff 复选框禁用/开个按钮禁用/滑块按钮禁用（此3类场景图标白色部分反色成#999）
 
   /** 2.6 背景色 **/
 
@@ -324,8 +336,8 @@
   --tv-color-bg-gray-2: var(--tv-base-color-common-5); // #e6e6e6 灰色背景-2灰色标签背景色
   --tv-color-bg-header: var(--tv-base-color-common-4); // #f0f0f0 表头背景色(如果只有表格使用，就转成组件级变量）
   --tv-color-bg-mask: rgba(0, 0, 0, 30%); // 遮罩层带有透明度的背景色
-  --tv-color-bg-dark:var(--tv-base-color-brand);// #191919; 深色背景色 顶部导航/ 深色tab/深色提示背景色(目前使用的这个色，找设计师确认）
-  --tv-color-bg-active-dark:var(--tv-base-color-common-3);// #f5f5f5 深色背景悬浮色
+  --tv-color-bg-dark: var(--tv-base-color-brand); // #191919; 深色背景色 顶部导航/ 深色tab/深色提示背景色(目前使用的这个色，找设计师确认）
+  --tv-color-bg-active-dark: var(--tv-base-color-common-3); // #f5f5f5 深色背景悬浮色
 
   /* 2.6.2 禁用 */
   --tv-color-bg-disabled: var(--tv-base-color-common-4); // #f0f0f0 禁用背景色
@@ -339,7 +351,7 @@
   --tv-color-bg-hover-secondary: var(--tv-base-color-common-1); // #fff 次要背景色悬浮色 / 穿梭框头部/折叠面板背景色
   --tv-color-bg-hover-1: var(--tv-base-color-brand-2); // #deecff  浅蓝色场景：悬浮背景色-日期悬浮 /选块悬浮态背景色
   --tv-color-bg-hover-2: var(--tv-base-color-common-5); // #e6e6e6 轮播箭头背景悬浮色
-  --tv-color-bg-hover-dark:var(--tv-base-color-common-11); // #191919 深色背景悬浮色 （这个颜色待和设计师确认，原本tab用的#191919）
+  --tv-color-bg-hover-dark: var(--tv-base-color-common-11); // #191919 深色背景悬浮色 （这个颜色待和设计师确认，原本tab用的#191919）
 
   /* 2.6.4 active/选中 */
   --tv-color-bg-active: var(--tv-base-color-common-3); // #f5f5f5  分页选中背景色/左侧导航选中背景色
@@ -348,6 +360,18 @@
   --tv-color-bg-active-secondary: var(--tv-base-color-common-1); // #fff 次要背景色active色/下拉选中的背景色/一级tab页签背景-选中色/树控件选中背景颜色
   --tv-color-bg-active-emphasize: var(--tv-base-color-brand-2); // #deecff 时间选择选中背景色
   --tv-color-bg-active-emphasize-light: var(--tv-base-color-brand-1); // #f0f7ff 表格选中背景色
+
+  // -- 暗色新增 -- 
+  --tv-color-bg-2: var(--tv-base-color-common-1); // #fff下拉面板/tip背景色
+  --tv-color-bg-3: var(--tv-base-color-common-1); //  #fff 顶部导航背景色/顶部导航下拉背景色/折叠面板背景色/容器二级背景色:左侧导航/折叠面板/表格下展背景
+  --tv-color-bg-4: var(--tv-base-color-common-7); // #c2c2c2 时间线实心圆点
+  --tv-color-bg-progressbar: var(--tv-base-color-success-6); // #5cb300 step当前进度背景色
+  --tv-color-bg-active-emphasize-1: var(--tv-base-color-common-1); // #fff 下拉选中背景色、tab二级选中背景色
+  --tv-color-bg-container-hover: var(--tv-base-color-common-1); // #fff 卡片选中悬浮背景色（区块背景）
+  --tv-color-bg-hover-3: var(--tv-base-color-brand-2); // #deecff 日期悬浮
+  --tv-color-bg-hover-4: var(--tv-base-color-common-1); // #ffffff 表格悬浮/下拉悬浮/左侧导航悬浮
+  --tv-color-bg-active-primary-1: var(--tv-base-color-common-9); // #595959  主要按钮悬浮
+  --tv-color-bg-inverse: var(--tv-base-color-common-1); // #fff 不发生反色的背景色：switch/slider按钮控件背景色
 
   /** 2.7 边框色/分割线颜色 **/
 
@@ -364,6 +388,11 @@
   /* 2.7.2 分割线 */
   --tv-color-border-divider: var(--tv-base-color-common-4); // #f0f0f0 分割线1（较长分割线场景）
   --tv-color-border-divider-short: var(--tv-base-color-common-6); // #dbdbdb 分割线2（较短分割线场景）
+  // -- 暗色新增 --
+  --tv-color-border-secondary-hover: var(--tv-base-color-common-7); // #c2c2c2 次要按钮边框悬浮色
+  --tv-color-border-container: var(--tv-base-color-common-4); // #f0f0f0 卡片选择默认边框
+  --tv-color-border-container-hover: var(--tv-base-color-common-1); // #fff 卡片选择悬浮边框
+  --tv-color-border-container-active: var(--tv-base-color-brand-6); //  #1476ff 卡片选择选中边框
 
   /**  3. 字体变量 **/
 

@@ -148,6 +148,7 @@
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"
           @load-data="computePresentContent"
+          :onlyUsePanel="false"
         ></tiny-cascader-panel>
         <tiny-scrollbar
           ref="suggestionPanel"
@@ -189,7 +190,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { HighlightQuery } from '@opentiny/vue-directive'
 
 // 没有进行vue3，vue2适配

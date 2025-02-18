@@ -1,4 +1,4 @@
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { deepClone } from '../picker-column'
 
 export const filterInput =

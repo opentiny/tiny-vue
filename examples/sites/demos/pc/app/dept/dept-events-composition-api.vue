@@ -15,7 +15,7 @@ function open() {
 }
 
 function change(value) {
-  TinyModal.message({ message: '改变的部门值: ' + value, status: 'info' })
+  TinyModal.message({ message: '改变的部门值：' + value, status: 'info' })
 }
 </script>
 

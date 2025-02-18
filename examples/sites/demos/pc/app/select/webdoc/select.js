@@ -48,7 +48,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, <code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签，<code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
         'en-US':
           '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags are displayed in a thumbnail. Set <code>show-proportion</code> to display the current number of selected items and the proportion of total items, with a default value of <code>false</code> . By setting <code>hover-expand</code> to <code>true</code> , the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
@@ -61,10 +61,14 @@ export default {
         'en-US': 'Display only'
       },
       desc: {
-        'zh-CN':
-          '<p>Form 表单内 Select 组件不同尺寸设置 <code>hover-expand</code> 和 <code>display-only</code> 属性的综合应用。</p>\n',
-        'en-US':
-          '<p>Comprehensive application of the <code>hover-expand</code> and <code>display-only</code> attributes of the Select component in the form. </p>\n'
+        'zh-CN': `
+            通过<code>display-only</code> 属性，设置组件只显示文字。仅展示时，如果组件的选项要通过<code>options</code> 属性传入，可以优化组件加载速度。<br>  
+            通过 <code>hover-expand</code> 设置多选时，鼠标移入触发标签的自动展开。
+          `,
+        'en-US': `
+            Use the <code>display-only</code> attribute to set the widget to display only text. If the options of a component are transferred through the <code>options</code> attribute, the component loading speed can be optimized.<br>
+            Click <code>hover-expand</code> to set the automatic expansion of the trigger label.
+          `
       },
       codeFiles: ['multiple-mix.vue']
     },
@@ -76,7 +80,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>tag-type</code> 属性设置标签类型，同 Tag 组件的 type 属性。可选值：success / info / warning / danger 。</p>\n',
+          '<p>通过 <code>tag-type</code> 属性设置标签类型，同 Tag 组件的 type 属性。可选值：success / info / warning / danger。</p>\n',
         'en-US':
           '<p>Set the label type through the <code>tag-type</code> attribute, which is the same as the type attribute of the Tag component. Optional values: success/info/warning/danger.</p>\n'
       },
@@ -89,7 +93,7 @@ export default {
         'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini 。</p>',
+        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini。</p>',
         'en-US':
           '<p>Set the input box size through the <code>size</code> attribute, with optional values of medium / small / mini.</p>'
       },
@@ -128,10 +132,22 @@ export default {
         'en-US': 'Filterable'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>filterable</code> 属性启用搜索功能。<code>filter-method</code> 自定义过滤方法。 <code>no-match-text</code> 属性自定义与搜索条件无匹配项时显示的文字。</p>\n',
-        'en-US':
-          '<p>Enable search functionality through the <code>filterable</code> attribute <code>filter-method</code> customize the filtering method <code>no-match-text</code> the text displayed when there is no match between attribute customization and search criteria.</p>\n'
+        'zh-CN': `
+          通过 <code>filterable</code> 属性，启用搜索功能。<br>
+          通过 <code>filter-method</code> 方法属性，自定义过滤方法。 <br>
+          通过 <code>no-match-text</code> 属性，自定义与搜索条件无匹配项时显示的文字。<br>
+          <div class="danger custom-block">
+           在<code>filter-method</code>方法属性中，禁止通过修改组件的 <code>options</code>的个数，去控制过滤下拉列表选项。这样不匹配的<code>Option</code>组件会卸载，造成<code>Select</code>组件引用到被卸载的选项值时引发错误。正确的过滤函数应该参考本示例的用法。
+          </div>
+          `,
+        'en-US': `
+          Enable the search function using the <code>filterable</code> attribute. <br>
+          Use the <code>filter-method</code> method attribute to customize the filtering method. <br>
+          You can use the <code>no-match-text</code> attribute to customize the text that is displayed if there is no match with the search criteria. <br>
+          <div class="danger custom-block">
+          In the <code>filter-method</code> method property, you cannot change the number of <code>options</code> of a component to control the filtering drop-down list options. This uninstalls the mismatched <code>Option</code> component, causing an error when the <code>Select</code> component references the uninstalled option value. The correct filter function should follow the usage in this example.
+          </div>
+        `
       },
       codeFiles: ['filter-method.vue']
     },
@@ -223,7 +239,7 @@ export default {
         'en-US': 'Hide Select All'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>show-alloption</code> 属性设置多选时不展示 <code>全选</code> 选项，默认展示 。</p>\n',
+        'zh-CN': '<p>通过 <code>show-alloption</code> 属性设置多选时不展示 <code>全选</code> 选项，默认展示。</p>\n',
         'en-US':
           '<p>By setting the <code>show-allocation</code> attribute, do not display the <code>select all</code> option when multiple selections are made, and display by default.</p>\n'
       },
@@ -399,7 +415,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>shape</code> 属性设置为 <code>filter</code> 切换至过滤器模式。 过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮，placeholder 显示占位符。</p>\n<p>通过 <code>blank</code> 属性将过滤器背景设置为透明。</p>',
+          '<p>通过 <code>shape</code> 属性设置为 <code>filter</code> 切换至过滤器模式。过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮，placeholder 显示占位符。</p>\n<p>通过 <code>blank</code> 属性将过滤器背景设置为透明。</p>',
         'en-US':
           '<p>Set the <code>shape</code> attribute to <code>filter</code> to switch to filter mode. In filter mode, you can transfer the label display title, tip display prompt information, clearable whether to display the clear button, and placeholder display placeholder.</p>\n<p>Set the filter background to transparent with the <code>blank</code> attribute.</p>'
       },
@@ -476,7 +492,7 @@ export default {
         'en-US': 'Select table Remote Search'
       },
       desc: {
-        'zh-CN': `<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。</p>
+        'zh-CN': `<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3 个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。</p>
           <p>在多选模式下，可通过 <code>reserve-keyword</code>设置选中一个选项后依然保留搜索关键字。</p>`,
         'en-US': `<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>
           <p>In multiple selection mode, <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>`
@@ -640,7 +656,7 @@ export default {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：监听 v-model 的值发生变化。</p>\n<p>clear：监听单选时，点击清空按钮。</p>\n<p>blur：监听 input 失去焦点。</p>\n<p>focus：监听 input 获得焦点。</p>\n<p>visible-change：监听下拉框可见状态的变化。</p>\n<p>remove-tag：监听多选移除选中的标签。</p>\n<p>dropdown-click：监听下拉图标的点击事件。</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change：Listen for changes in the value of the v-model.</p><p>clear：When listening to radio selection, click the clear button.</p>\n<p>blur：Listening to input losing focus.</p>\n<p>focus：Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag：Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click：Listens to the click event of the drop-down icon.</p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change: Listen for changes in the value of the v-model.</p><p>clear: When listening to radio selection, click the clear button.</p>\n<p>blur: Listening to input losing focus.</p>\n<p>focus: Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag: Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click: Listens to the click event of the drop-down icon.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
     }

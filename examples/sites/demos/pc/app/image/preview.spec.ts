@@ -8,7 +8,7 @@ test('测试图片预览大图', async ({ page }) => {
   await preview.locator('.tiny-image__inner').click()
   await page.waitForTimeout(50)
 
-  // viewerImage 是插入到body末尾的。
+  // viewerImage 是插入到 body 末尾的。
   const viewerImage = page.locator('.tiny-image-viewer')
   const mask = viewerImage.locator('.tiny-image-viewer__mask')
   const toolbar = viewerImage.locator('.tiny-image-viewer__actions-inner')

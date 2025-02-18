@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'numeric',
@@ -49,9 +49,8 @@ export default {
             'zh-CN': '向上到达最大值后，是否从最小值开始，或反过来',
             'en-US': 'When the maximum value is reached, start from the minimum value, or vice versa'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-min',
-          mobileDemo: 'circulate',
           mfDemo: ''
         },
         {
@@ -62,9 +61,8 @@ export default {
             'zh-CN': '是否使用加减按钮',
             'en-US': 'Whether to use the control button'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'controls',
-          mobileDemo: 'controls',
           mfDemo: ''
         },
         {
@@ -75,9 +73,8 @@ export default {
             'zh-CN': '加减按钮位置，可选值为 right，表示加减按钮均位于最右侧',
             'en-US': 'Control button position; The optional value of this attribute is right'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'controls',
-          mobileDemo: 'controls-position',
           mfDemo: ''
         },
         {
@@ -88,14 +85,13 @@ export default {
             'zh-CN': '禁用',
             'en-US': 'Whether to disable the counter'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'dynamic-disabled',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
           name: 'display-only',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置只读态',
@@ -120,7 +116,7 @@ export default {
         },
         {
           name: 'hide-unit',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '隐藏单位',
@@ -131,7 +127,7 @@ export default {
         },
         {
           name: 'hold-zero',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '精度细化，默认值为 true ',
@@ -148,9 +144,8 @@ export default {
             'zh-CN': '组件 arial-label 属性取值',
             'en-US': 'The value of arial-label attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -162,9 +157,8 @@ export default {
             'en-US':
               'Maximum value that can be entered in a component to create a valid value range. Integers and decimals are supported'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-min',
-          mobileDemo: 'max',
           mfDemo: ''
         },
         {
@@ -176,14 +170,13 @@ export default {
             'en-US':
               'Specify the minimum value that can be entered for a component to create a valid value range. Integers and decimals are supported'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-min',
-          mobileDemo: 'max',
           mfDemo: ''
         },
         {
           name: 'model-truncation',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '在配置了精度情况下，是否对v-model绑字值进行精度截取，配为false时，精度仅用来作展示',
@@ -224,9 +217,8 @@ export default {
             'zh-CN': '输入框内的提示占位文本',
             'en-US': 'Set the placeholder text in the text box'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'placeholder',
           mfDemo: ''
         },
         {
@@ -248,9 +240,8 @@ export default {
             'zh-CN': '数值精度',
             'en-US': 'Numeric precision'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'precision',
-          mobileDemo: 'precision',
           mfDemo: ''
         },
         {
@@ -299,9 +290,8 @@ export default {
             'zh-CN': '步长',
             'en-US': 'Increment or decrement value each time'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'about-step',
-          mobileDemo: 'step',
           mfDemo: ''
         },
         {
@@ -312,9 +302,8 @@ export default {
             'zh-CN': '是否只能输入 step 的倍数',
             'en-US': 'Whether to enter only multiples of step'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'about-step',
-          mobileDemo: 'step',
           mfDemo: ''
         },
         {
@@ -330,7 +319,7 @@ export default {
         },
         {
           name: 'string-mode',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '使用字符串模式，精度超过JS限制时使用',
@@ -341,7 +330,7 @@ export default {
         },
         {
           name: 'tabindex',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': 'Numeric组件的 tabindex ',
@@ -364,7 +353,7 @@ export default {
         },
         {
           name: 'unit-center',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '配置unit属性后，设置输入框内的数字是否居中显示，默认值为 false',
@@ -394,13 +383,13 @@ export default {
             'en-US':
               'Set whether to trigger the change event after the value is changed, except for the plus and minus buttons and direct input of values.'
           },
-          mode: ['pc', 'mobile-first', 'mobile'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'change-event',
           mfDemo: ''
         },
         {
           name: 'validate-event',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '验证事件，默认值为true',
@@ -411,26 +400,15 @@ export default {
         },
         {
           name: 'string-mode',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '使用字符串模式，精度超过JS限制时使用',
             'en-US': ''
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'string-mode',
           mfDemo: ''
-        },
-        {
-          name: 'value',
-          type: 'Number',
-          defaultValue: '0',
-          desc: {
-            'zh-CN': '<p>设置输入组件的默认值，该属性默认为 0。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
         }
       ],
       events: [
@@ -442,9 +420,8 @@ export default {
             'zh-CN': '组件失去焦点时触发的回调函数',
             'en-US': 'The callback function triggered when a component loses focus'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'blur-event',
-          mobileDemo: 'event',
           mfDemo: ''
         },
         {
@@ -455,9 +432,8 @@ export default {
             'zh-CN': '组件的值变化时触发的回调函数',
             'en-US': 'The callback function triggered when the value of a component changes'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'change-event',
-          mobileDemo: 'event',
           mfDemo: ''
         },
         {
@@ -478,9 +454,8 @@ export default {
             'zh-CN': '组件获得焦点时触发的回调函数',
             'en-US': 'The callback function triggered when a component obtains the focus'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'focus-event',
-          mobileDemo: 'event',
           mfDemo: ''
         },
         {

@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'file-upload',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '限制文件类型（thumbnail-mode 模式下此参数无效）',
             'en-US': 'Restrict the types of files. This parameter is invalid in thumbnail-mode mode'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'accept-file-image',
-          mobileDemo: 'accept-file-image',
           mfDemo: ''
         },
         {
@@ -26,9 +25,8 @@ export default {
             'zh-CN': '上传的地址，必填参数',
             'en-US': 'The address for uploading files, required parameter'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'accept-file',
           mfDemo: ''
         },
         {
@@ -39,9 +37,8 @@ export default {
             'zh-CN': '是否在选取文件后立即进行上传',
             'en-US': 'Whether to upload a file immediately after it is selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'manual-upload',
-          mobileDemo: 'manual-upload',
           mfDemo: ''
         },
         {
@@ -69,9 +66,8 @@ export default {
             'en-US':
               'Hook before deleting files. The parameters are the uploaded files and file list. If false is returned or Promise is returned and rejected, the deletion stops'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'prevent-delete-file',
-          mobileDemo: 'custom-prefix',
           mfDemo: ''
         },
         {
@@ -84,25 +80,13 @@ export default {
             'en-US':
               'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'before-upload-limit',
-          mobileDemo: 'custom-prefix',
           mfDemo: ''
         },
         {
-          name: 'buttons',
-          type: 'Boolean',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置组件基本按钮禁用或启用。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
-        {
           name: 'cache-token',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -114,7 +98,7 @@ export default {
         },
         {
           name: 'custom-class',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '自定义class',
@@ -132,9 +116,8 @@ export default {
             'zh-CN': '上传时附带的额外参数，参数自定义',
             'en-US': 'Extra parameters attached during upload, parameter customization'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'data',
           mfDemo: ''
         },
         {
@@ -145,25 +128,13 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Is it disabled'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'disabled',
-          mobileDemo: 'dynamic-disable',
           mfDemo: ''
         },
         {
-          name: 'display',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>显示删除文件功能，该属性默认为true</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'manual-upload'
-        },
-        {
           name: 'display-only',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '文件上传模式，通过 display-only 设置组件是否只读',
@@ -219,28 +190,6 @@ export default {
           pcDemo: 'encrypt-config'
         },
         {
-          name: 'ext-icons',
-          type: 'Object',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置自定义文件类型图标，根据扩展名定义，默认由组件内部提供。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'placeholder'
-        },
-        {
-          name: 'file-icon-list',
-          type: 'Array',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>配置文件上传显示的图标路径，未配置会默认显示组件内部配置图标</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'file-icon-list'
-        },
-        {
           name: 'file-list',
           typeAnchorName: 'IFileListItem',
           type: 'IFileListItem[]',
@@ -249,9 +198,8 @@ export default {
             'zh-CN': '上传的文件列表',
             'en-US': 'List of uploaded files'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-file-list',
-          mobileDemo: 'upload-file-list',
           mfDemo: ''
         },
         {
@@ -267,28 +215,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'file-title',
-          type: 'String',
-          defaultValue: '附件',
-          desc: {
-            'zh-CN': '<p>头部标题，该属性默认为‘附件’</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'file-title'
-        },
-        {
-          name: 'header-show',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>是否显示头部，该属性默认为true</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'header-show'
-        },
-        {
           name: 'headers',
           typeAnchorName: 'IHeaders',
           type: 'IHeaders',
@@ -297,24 +223,22 @@ export default {
             'zh-CN': '设置上传的请求头部;通过设置 headers 为头部请求信息',
             'en-US': 'Set the upload request header. You can set headers to the header request information'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-request',
-          mobileDemo: 'upload-request',
           mfDemo: ''
         },
         {
           name: 'http-request',
-          type: '(file: IFile) => Promise<any>',
-          typeAnchorName: 'IFile',
+          type: '(file: ICustomParam) => Promise<any>',
+          typeAnchorName: 'ICustomParam',
           defaultValue: '',
           desc: {
             'zh-CN': '覆盖默认的上传行为，可以自定义上传的实现; 由于 TinyVue 官网为 Mock 上传不能执行上传',
             'en-US':
               'Overwrite the default upload behavior. You can customize the upload implementation. The upload cannot be performed because the TinyVue official website uses Mock upload'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'http-request',
-          mobileDemo: 'upload-http-request',
           mfDemo: ''
         },
         {
@@ -342,7 +266,7 @@ export default {
         },
         {
           name: 'is-folder-title',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -366,7 +290,7 @@ export default {
         },
         {
           name: 'isFolder',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -384,9 +308,8 @@ export default {
             'zh-CN': '最大允许上传个数',
             'en-US': 'Maximum number of files that can be uploaded'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-file-count',
-          mobileDemo: 'upload-limit',
           mfDemo: ''
         },
         {
@@ -409,21 +332,9 @@ export default {
             'zh-CN': '文件列表的类型',
             'en-US': 'File list type'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-file-list-thumb',
-          mobileDemo: 'file-picture-card',
           mfDemo: ''
-        },
-        {
-          name: 'max_file_count',
-          type: 'Number',
-          defaultValue: 'Infinity',
-          desc: {
-            'zh-CN': '<p>设置文件上传数量的最大值，默认无限制，要大于0的正整数。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
         },
         {
           name: 'max-name-length',
@@ -452,7 +363,7 @@ export default {
         },
         {
           name: 'mergeService',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '配置 mergeService 为true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
@@ -462,19 +373,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'mini-mode',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>设置 mini 模式。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'mini-mode'
-        },
-        {
           name: 'mode',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '气泡上传，在 list-type 为默认值 text 时，设置 mode 为 bubble 时进行气泡模式的上传',
@@ -491,9 +391,8 @@ export default {
             'zh-CN': '是否支持多选文件',
             'en-US': 'Specifies whether multiple files can be selected'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'multiple-file',
-          mobileDemo: 'multiple-file',
           mfDemo: ''
         },
         {
@@ -504,9 +403,8 @@ export default {
             'zh-CN': '上传的文件字段名',
             'en-US': 'Field name of the uploaded file'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-file-list-slot',
-          mobileDemo: 'data',
           mfDemo: ''
         },
         {
@@ -533,7 +431,7 @@ export default {
         },
         {
           name: 'paramsWhitelist',
-          type: 'Array',
+          type: 'array',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -612,14 +510,13 @@ export default {
             'zh-CN': '是否显示已上传文件列表',
             'en-US': 'Whether to display the list of uploaded files'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-file-list',
-          mobileDemo: 'upload-user-head',
           mfDemo: ''
         },
         {
           name: 'show-name',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '上传请求参数，默认为 false',
@@ -630,7 +527,7 @@ export default {
         },
         {
           name: 'show-title',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '配置 show-title 为 false 隐藏标题，默认为 true',
@@ -640,19 +537,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'size',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>为单个按钮且按钮为TinyVue的Button组件时生效，值可设置为：medium，small，mini</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'size'
-        },
-        {
           name: 'source-type',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '数据源类型',
@@ -660,17 +546,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
-        },
-        {
-          name: 'success-statistics',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>文件上传成功数量展示，该属性默认为true</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
         },
         {
           name: 'thumb-option',
@@ -687,7 +562,7 @@ export default {
         },
         {
           name: 'title',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '通过 title 可自定义标题',
@@ -708,19 +583,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'type',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>文本，该属性默认为select</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
-        {
           name: 'updateId',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': 'EDM 需要更新文档的 docId',
@@ -741,17 +605,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'upload-icon',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '<p>是否显示头部文件上传按钮，该属性默认为true</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'data'
-        },
-        {
           name: 'with-credentials',
           type: 'boolean',
           defaultValue: 'false',
@@ -759,9 +612,8 @@ export default {
             'zh-CN': '支持发送 cookie 凭证信息',
             'en-US': 'Cookie credential information can be sent'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-request',
-          mobileDemo: 'with-credentials',
           mfDemo: ''
         }
       ],
@@ -776,9 +628,8 @@ export default {
             'en-US':
               'The event triggered when the file status changes, including adding a file, successfully uploading, and failing to upload, will be triggered'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -817,9 +668,8 @@ export default {
             'en-US':
               'Event triggered when file upload fails; Message is the error message event object, file is the current upload failure file information, and fileList is the upload success file array'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -831,9 +681,8 @@ export default {
             'zh-CN': '文件超出个数限制时触发的事件； files 为上传的文件',
             'en-US': 'Event triggered when the number of files exceeds the limit; Files are uploaded files'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -857,9 +706,8 @@ export default {
             'zh-CN': '点击文件列表中已上传的文件时触发的事件',
             'en-US': 'Event triggered when clicking on an uploaded file in the file list'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -871,9 +719,8 @@ export default {
             'zh-CN': '文件上传时触发的事件； message 为进度条事件对象',
             'en-US': 'Event triggered during file upload; Message is the progress bar event object'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -886,9 +733,8 @@ export default {
             'en-US':
               'Event triggered when removing a file from the file list; File is the information of the currently removed file'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         },
         {
@@ -902,9 +748,8 @@ export default {
             'en-US':
               'Event triggered when the file is successfully uploaded; Res is the response information event object after successful upload, file is the current uploaded file, and fileList is an array of all uploaded files'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'upload-events',
-          mobileDemo: 'upload-events',
           mfDemo: ''
         }
       ],
@@ -917,9 +762,8 @@ export default {
             'zh-CN': '取消上传请求',
             'en-US': 'Cancel the upload request'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'abort-quest',
-          mobileDemo: 'event',
           mfDemo: ''
         },
         {
@@ -941,9 +785,8 @@ export default {
             'zh-CN': '清空已上传的文件列表（该方法不支持在 before-upload 中调用）',
             'en-US': 'Clear the list of uploaded files. (This method cannot be invoked in before-upload)'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'clear-files',
-          mobileDemo: 'clear-files',
           mfDemo: ''
         },
         {
@@ -987,9 +830,8 @@ export default {
             'zh-CN': '手动上传文件列表',
             'en-US': 'List of manually uploaded files'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'manual-upload',
-          mobileDemo: 'manual-upload',
           mfDemo: ''
         }
       ],
@@ -1014,9 +856,8 @@ export default {
             'zh-CN': '提示说明文字',
             'en-US': 'Prompt Description'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-upload-tip',
-          mobileDemo: 'custom-upload-tip',
           mfDemo: ''
         },
         {
@@ -1027,9 +868,8 @@ export default {
             'zh-CN': '触发文件选择框的内容',
             'en-US': 'Content of the triggering file selection box'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-trigger',
-          mobileDemo: 'custom-upload-tip',
           mfDemo: ''
         }
       ]
@@ -1058,6 +898,22 @@ interface IFile {
   uid: string // uid 
 }
       `
+    },
+    {
+      name: 'ICustomParam',
+      type: 'interface',
+      code: `
+interface ICustomParam {
+  action: string
+  data: IData // 上传时附带的额外参数
+  file: IFile
+  filename: string
+  headers: object // 头部请求信息
+  onError: (error: any) => void // 上传失败回调函数，自定义入参
+  onProgress: (event: any) => void // 上传中回调函数
+  onSuccess: (res: any) => void // 上传成功回调函数
+  withCredentials: boolean // 是否支持发送 cookie 凭证信息
+}`
     },
     {
       name: 'IEncryptConfig',

@@ -28,14 +28,14 @@ const tableData = ref([
   {
     id: '1',
     pid: '0',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     area: '华东区',
     employees: '800',
     children: [
       {
         id: '15',
         pid: '1',
-        name: 'GFD科技股份有限子公司',
+        name: 'GFD 科技股份有限子公司',
         area: '华东区',
         employees: '700'
       }
@@ -44,14 +44,14 @@ const tableData = ref([
   {
     id: '2',
     pid: '0',
-    name: 'WWWW科技YX公司',
+    name: 'WWWW 科技 YX 公司',
     area: '华南区',
     employees: '500',
     children: [
       {
         id: '22',
         pid: '2',
-        name: 'WWWW科技股份有限子公司',
+        name: 'WWWW 科技股份有限子公司',
         area: '华南区',
         employees: '720'
       }
@@ -60,35 +60,35 @@ const tableData = ref([
   {
     id: '4',
     pid: '0',
-    name: 'TGBYX公司',
+    name: 'TGBYX 公司',
     area: '华南区',
     employees: '360',
     children: [
       {
         id: '3',
         pid: '4',
-        name: 'RFV有限责任公司',
+        name: 'RFV 有限责任公司',
         area: '华南区',
         employees: '300'
       },
       {
         id: '5',
         pid: '4',
-        name: 'YHN科技YX公司',
+        name: 'YHN 科技 YX 公司',
         area: '华南区',
         employees: '810',
         children: [
           {
             id: '6',
             pid: '5',
-            name: 'WSX科技YX公司',
+            name: 'WSX 科技 YX 公司',
             area: '华南区',
             employees: '800'
           },
           {
             id: '9',
             pid: '5',
-            name: 'UJM有限责任公司',
+            name: 'UJM 有限责任公司',
             area: '华南区',
             employees: '750'
           }
@@ -99,28 +99,28 @@ const tableData = ref([
   {
     id: '7',
     pid: '0',
-    name: '康康物业YX公司',
+    name: '康康物业 YX 公司',
     area: '华南区',
     employees: '400',
     children: [
       {
         id: '8',
         pid: '7',
-        name: '深圳市福德宝网络技术YX公司',
+        name: '深圳市福德宝网络技术 YX 公司',
         area: '华南区',
         employees: '540'
       },
       {
         id: '10',
         pid: '7',
-        name: 'IK有限责任公司',
+        name: 'IK 有限责任公司',
         area: '华南区',
         employees: '400',
         children: [
           {
             id: '23',
             pid: '10',
-            name: 'IK有限责任股份YX公司',
+            name: 'IK 有限责任股份 YX 公司',
             area: '华南区',
             employees: '455'
           }

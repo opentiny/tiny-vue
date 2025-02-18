@@ -38,6 +38,21 @@ jsStr = jsStr.replace('#CSS#', cssStr)
 fs.writeFileSync(path.resolve(root, 'src/aurora-theme-index.js'), jsStr) // 供开发时(pnpm site)， 可以访问到最新的定制主题变量
 fs.writeFileSync(path.resolve(root, 'dist/aurora-theme-index.js'), jsStr) // 打包发布用
 
+// 2.2、读取 dark-theme-index.js , dist/dark-theme-index.less， 合并后写入 dist/ dark-theme-index.js
+jsStr = `
+export default {
+  id: 'tiny-dark-theme',
+  name: 'DarkTheme',
+  cnName: '暗黑主题',
+  css: \`#CSS#\`
+}
+`
+cssStr = fs.readFileSync(path.resolve(root, 'dist/dark-theme-index.css'), 'utf8')
+
+jsStr = jsStr.replace('#CSS#', cssStr)
+fs.writeFileSync(path.resolve(root, 'src/dark-theme-index.js'), jsStr) // 供开发时(pnpm site)， 可以访问到最新的定制主题变量
+fs.writeFileSync(path.resolve(root, 'dist/dark-theme-index.js'), jsStr) // 打包发布用
+
 // 3、复制 package.json
 const content = fs.readFileSync(path.resolve(root, 'package.json'), 'utf8')
 const packageJson = JSON.parse(content)

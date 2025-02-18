@@ -11,7 +11,7 @@ test('测试表单尺寸', async ({ page }) => {
   const input = form.locator('.tiny-numeric__input')
   const firstLabel = form.locator('.tiny-form-item__label').first()
 
-  // mini表单
+  // mini 表单
   const miniHeight = '24px'
   await getBtnByText('mini').click()
   await expect(form.locator('.tiny-form-item--mini')).toHaveCount(7)
@@ -22,7 +22,7 @@ test('测试表单尺寸', async ({ page }) => {
   await expect(firstLabel).toHaveCSS('height', miniHeight)
   await expect(firstLabel).toHaveCSS('line-height', miniHeight)
 
-  // small表单
+  // small 表单
   const smallHeight = '28px'
   await getBtnByText('small').click()
   await expect(form.locator('.tiny-form-item--small')).toHaveCount(7)
@@ -33,7 +33,7 @@ test('测试表单尺寸', async ({ page }) => {
   await expect(firstLabel).toHaveCSS('height', smallHeight)
   await expect(firstLabel).toHaveCSS('line-height', smallHeight)
 
-  // medium表单
+  // medium 表单
   const mediumHeight = '40px'
   await getBtnByText('medium').click()
   await expect(form.locator('.tiny-form-item--medium')).toHaveCount(7)

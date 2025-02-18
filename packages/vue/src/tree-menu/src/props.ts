@@ -63,6 +63,10 @@ export const treeMenuProps = {
     type: Boolean,
     default: true
   },
+  showExpand: {
+    type: Boolean,
+    default: false
+  },
   collapsible: {
     type: Boolean,
     default: true

@@ -10,7 +10,7 @@
  *
  */
 
-import { KEY_CODE, IPTHRESHOLD } from '../common'
+import { KEY_CODE, IPTHRESHOLD } from '@opentiny/utils'
 import type { IIpAddressProps, IIpAddressApi, IIpAddressRenderlessParamUtils, IIpAddressState } from '@/types'
 
 export const isIP6 = (str: string) => /^IPv6$/i.test(str)

@@ -33,7 +33,7 @@ export default {
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+          children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
         }
       ]
     }
@@ -49,7 +49,7 @@ export default {
     },
     visibleChange(status) {
       TinyNotify({
-        message: `触发 visible-change 事件,下拉状态为 ${status}`,
+        message: `触发 visible-change 事件，下拉状态为 ${status}`,
         position: 'top-right',
         duration: 2000
       })

@@ -193,7 +193,7 @@
         :append-to-body="true"
         @update:visible="state.showDisplayOnlyBox = $event"
       >
-        <div>{{ state.displayOnlyText }}</div>
+        <pre>{{ state.displayOnlyText }}</pre>
         <template #footer>
           <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
         </template>
@@ -245,7 +245,7 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TinyTallStorage from './tall-storage.vue'
 import { IconClose, IconEyeopen, IconEyeclose } from '@opentiny/vue-icon'
 import Tooltip from '@opentiny/vue-tooltip'

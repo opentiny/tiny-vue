@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('节点状态', () => {
-  test('autoColor属性设置节点状态', async ({ page }) => {
+  test('autoColor 属性设置节点状态', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('time-line#status')
 
@@ -34,7 +34,7 @@ test.describe('节点状态', () => {
     await expect(timelineItems.nth(5).locator('.icon .number')).toHaveCSS('color', 'rgb(194, 194, 194)')
   })
 
-  test('type属性设置节点状态', async ({ page }) => {
+  test('type 属性设置节点状态', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('time-line#status')
 

@@ -22,8 +22,8 @@ const data1 = reactive([
   { name: '进行中 BOQ Info', status: 'disabled', description: 'disabled 禁用' },
   { name: 'BBQ Info', status: 'error', description: 'error 错误' },
   { name: 'BBQ Info', description: '默认无状态' },
-  { name: '隐藏的节点1', description: '我是隐藏的' },
-  { name: '隐藏的节点2', description: '我也是隐藏的' }
+  { name: '隐藏的节点 1', description: '我是隐藏的' },
+  { name: '隐藏的节点 2', description: '我也是隐藏的' }
 ])
 const data2 = reactive([
   {
@@ -38,6 +38,6 @@ const data2 = reactive([
 
 const advancedClick = (index, node) => {
   active.value = index
-  TinyModal.message({ message: `节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`, status: 'info' })
+  TinyModal.message({ message: `节点 index: ${index}; 节点信息：${JSON.stringify(node)}.`, status: 'info' })
 }
 </script>

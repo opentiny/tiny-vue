@@ -128,7 +128,7 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:'remote'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。
-         注意:如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。</p>`,
+         注意：如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。</p>`,
         'en-US': ''
       },
       'codeFiles': ['custom/server-storage.vue']
@@ -164,7 +164,7 @@ export default {
       'name': { 'zh-CN': '个性化面板拖拽前事件', 'en-US': 'Number of records on each page' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名，拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
         'en-US':
           '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
       },

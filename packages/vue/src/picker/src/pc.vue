@@ -138,6 +138,7 @@
       </tiny-tooltip>
     </div>
     <component
+      v-show="state.pickerVisible"
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
@@ -145,7 +146,6 @@
       :format-weeks="formatWeeks"
       :now-click="nowClick"
       ref="picker"
-      :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
@@ -159,7 +159,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/picker/vue'
 import { setup, directive, defineComponent } from '@opentiny/vue-common'
 import Input from '@opentiny/vue-input'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import DatePanel from '@opentiny/vue-date-panel'
 import DateRangePanel from '@opentiny/vue-date-range'
 import MonthRangePanel from '@opentiny/vue-month-range'

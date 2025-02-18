@@ -10,7 +10,8 @@
  *
  */
 
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 import type { IInputApi, IInputRenderlessParamUtils, IInputRenderlessParams, IInputState } from 'types/input.type'
 
 const HIDDEN_STYLE = `
@@ -46,7 +47,6 @@ const STYLE = {
   BorderBottomWidth: 'border-bottom-width'
 }
 
-const isServer = typeof window === 'undefined'
 const isKorean = (text: string): boolean => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
 
 export const showBox = (state: IInputState) => (): void => {
@@ -455,10 +455,10 @@ export const handleEnterDisplayOnlyContent =
         const rect = target.getBoundingClientRect()
         const iconWidth = 16 + 15 // 减去图标的宽度加上右边距
         /*
-          1、omitText使用canvas来计算文字渲染后宽度来计算有没有文本超长
-          2、html标签换行情况下，会导致textContent比原文本多出前后空格，导致canvas计算宽度比html实际渲染宽度大，最终误判
-          3、将文本内容去除前后空格，再交给canvas计算宽度，消除空格带来的误差
-        */
+            1、omitText使用canvas来计算文字渲染后宽度来计算有没有文本超长
+            2、html标签换行情况下，会导致textContent比原文本多出前后空格，导致canvas计算宽度比html实际渲染宽度大，最终误判
+            3、将文本内容去除前后空格，再交给canvas计算宽度，消除空格带来的误差
+          */
         const calcText = text?.trim() || ''
         isOverTextWhenMask = omitText(calcText, font, rect.width - iconWidth).o
       }

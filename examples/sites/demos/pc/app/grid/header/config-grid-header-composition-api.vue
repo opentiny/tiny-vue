@@ -35,24 +35,24 @@ const op = ref({
       title: '交易日期'
     },
     {
-      title: '父表头1',
+      title: '父表头 1',
       children: [
         {
           field: 'a1',
-          title: '子表头1-1'
+          title: '子表头 1-1'
         },
         {
           field: 'a2',
-          title: '子表头1-2'
+          title: '子表头 1-2'
         }
       ]
     },
     {
-      title: '父表头2',
+      title: '父表头 2',
       children: [
         {
           field: 'a3',
-          title: '子表头2-1'
+          title: '子表头 2-1'
         },
         {
           field: 'a4',

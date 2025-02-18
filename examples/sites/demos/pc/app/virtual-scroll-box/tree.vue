@@ -41,7 +41,7 @@ export default {
         // scrollbarSize: 17
       },
       treeData: [],
-      treeExpandeds: [1, 21], // 树默认展开项的id
+      treeExpandeds: [1, 21], // 树默认展开项的 id
       rowOffset: '',
       nodeKey: 'id',
       rowHeight: 36
@@ -130,7 +130,7 @@ export default {
       this.config.rowSizes = chart.map(() => this.rowHeight) // 树的每一项高度
 
       // 这两项没有实际作用，只是为了保证组件正常工作
-      this.config.columns = ['c-1'] // 只有1列
+      this.config.columns = ['c-1'] // 只有 1 列
       this.config.columnSizes = [this.config.width - 17] // 这个列的宽度为 `虚滚区域宽度` 减去 `垂直滚动条宽度`
     },
     genTreeData() {

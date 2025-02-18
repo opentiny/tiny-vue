@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="button-container">
-      <tiny-radio v-model="size" label="">size为空</tiny-radio>
-      <tiny-radio v-model="size" label="medium">size为medium</tiny-radio>
-      <tiny-radio v-model="size" label="small">size为small</tiny-radio>
-      <tiny-radio v-model="size" label="mini">size为mini</tiny-radio>
+      <tiny-radio v-model="size" label="">size 为空</tiny-radio>
+      <tiny-radio v-model="size" label="medium">size 为 medium</tiny-radio>
+      <tiny-radio v-model="size" label="small">size 为 small</tiny-radio>
+      <tiny-radio v-model="size" label="mini">size 为 mini</tiny-radio>
     </div>
     <tiny-grid
       :data="tableData"
@@ -66,35 +66,35 @@ const tableData = ref([
     name: '',
     area: '',
     address: '',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '2',
-    name: 'WWW科技有限公司',
+    name: 'WWW 科技有限公司',
     area: '华南区',
     address: '深圳福田区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     area: '华南区',
     address: '中山市',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '4',
-    name: 'TGB科技有限公司',
+    name: 'TGB 科技有限公司',
     area: '华东区',
     address: '龙岩',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '5',
-    name: 'YHN科技有限公司',
+    name: 'YHN 科技有限公司',
     area: '华南区',
     address: '韶关',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 </script>

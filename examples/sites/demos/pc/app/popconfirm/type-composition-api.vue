@@ -38,7 +38,7 @@ import { TinyPopconfirm, TinyButton } from '@opentiny/vue'
 import { iconDel } from '@opentiny/vue-icon'
 
 const title = ref('提示标题')
-const message = ref('安全组规则是推荐的，确定要删除该安全组规则吗?')
+const message = ref('安全组规则是推荐的，确定要删除该安全组规则吗？')
 const TinyIconDel = iconDel()
 </script>
 

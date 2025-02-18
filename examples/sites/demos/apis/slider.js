@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'slider',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'dynamic-disable',
-          mobileDemo: 'dynamic-disable',
           mfDemo: ''
         },
         {
@@ -37,9 +36,8 @@ export default {
             'zh-CN': '格式化 tooltip 提示',
             'en-US': 'Format tooltip message'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'show-tip',
-          mobileDemo: 'format-tooltip',
           mfDemo: ''
         },
         {
@@ -63,9 +61,8 @@ export default {
             'en-US':
               'Set the maximum value. The value must be an integer and can be a negative number. The value must be greater than the minimum value set'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-min',
-          mobileDemo: 'max-min',
           mfDemo: ''
         },
         {
@@ -76,9 +73,8 @@ export default {
             'zh-CN': '设置最小值',
             'en-US': 'Set the minimum value'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'max-min',
-          mobileDemo: 'max-min',
           mfDemo: ''
         },
         {
@@ -90,21 +86,9 @@ export default {
             'en-US':
               'Set the total number of steps. That is, when you press PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉".'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'shortcut-operation',
-          mobileDemo: 'shortcut-operation',
           mfDemo: ''
-        },
-        {
-          name: 'range',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否为范围选择</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
         },
         {
           name: 'show-input',
@@ -114,14 +98,13 @@ export default {
             'zh-CN': '是否显示输入框',
             'en-US': 'Indicates whether to display the text box.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'show-input',
-          mobileDemo: 'show-input',
           mfDemo: ''
         },
         {
           name: 'show-label',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '显示 Label，需结合show-steps一起使用',
@@ -132,7 +115,7 @@ export default {
         },
         {
           name: 'show-steps',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '显示刻度，需结合 step 一起使用，最前与最后的刻度默认不显示',
@@ -149,9 +132,8 @@ export default {
             'zh-CN': '是否显示 tooltip',
             'en-US': 'Whether to display tooltip'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'show-tip',
-          mobileDemo: 'show-tip',
           mfDemo: ''
         },
         {
@@ -163,9 +145,8 @@ export default {
             'en-US':
               'Displacement distance of each step when the slider moves. The value must be a positive integer greater than 0'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'about-step',
-          mobileDemo: 'about-step',
           mfDemo: ''
         },
         {
@@ -193,19 +174,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'value',
-          type: 'Number | Array',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置单滑块的当前值，必需是整数或数组。</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
-        {
           name: 'marks',
-          type: `{ [key:number]: string }`,
+          type: '{ [key:number]: string }',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>设置滑杆的刻度值</p>',
@@ -222,9 +192,8 @@ export default {
             'zh-CN': '是否竖向模式',
             'en-US': 'Whether the vertical mode is used'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'vertical-mode',
-          mobileDemo: 'vertical-mode',
           mfDemo: ''
         }
       ],
@@ -238,9 +207,8 @@ export default {
             'en-US':
               'Triggered when the value changes (When you drag the mouse, it is triggered only after you release the mouse).'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slider-event',
-          mobileDemo: 'slider-event-change',
           mfDemo: ''
         },
         {
@@ -251,9 +219,8 @@ export default {
             'zh-CN': '设置滑块滑动开始时，触发该事件',
             'en-US': 'This event is triggered when the slider starts to slide.'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: 'slider-event',
-          mobileDemo: 'slider-event-start'
+          mode: ['pc'],
+          pcDemo: 'slider-event'
         },
         {
           name: 'Start',
@@ -274,9 +241,8 @@ export default {
             'zh-CN': '设置滑块滑动结束时，触发该事件',
             'en-US': 'This event is triggered when the slider sliding ends. '
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: 'slider-event',
-          mobileDemo: 'slider-event-stop'
+          mode: ['pc'],
+          pcDemo: 'slider-event'
         },
         {
           name: 'Stop',
@@ -301,9 +267,8 @@ export default {
             'en-US':
               'Slot for displaying slider values, valid only if v-model is a single value. Slot parameters are: slotArg: {slotScope: number}'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slider-slot',
-          mobileDemo: '',
           mfDemo: ''
         }
       ]

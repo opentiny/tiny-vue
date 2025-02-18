@@ -4,7 +4,8 @@ html {
 }
 
 /* reset.css 引入后造成site官网中 b 和 strong 标签没有粗体，此处还原粗体  */
-b, strong {
+b,
+strong {
   font-weight: 700;
 }
 
@@ -13,20 +14,26 @@ b, strong {
   --docs-tabs-header-zindex: 100;
   --docs-float-settings-zindex: 999;
   --docs-header-zindex: 200;
-  --docs-header-zindex-highlight: 2002;
   --docs-layout-sider-zindex: 201;
-  --docs-layout-sider-zindex-highlight: 2001;
 }
 
 .tinyui-design-header {
   z-index: 1000 !important;
 }
 
-.tiny-grid td,.tiny-grid th {
+.tiny-grid td,
+.tiny-grid th {
   vertical-align: middle;
 }
 
 /* Algolia 搜索 */
+
+/** 大屏幕时，有副标题的占位，所以向后移除 */
+@media screen and (min-width: 1150px){
+  .search-box{
+    left: 360px!important;
+  }
+}
 
 .search-box {
   position: absolute;
@@ -35,14 +42,14 @@ b, strong {
   left: 210px;
 }
 
-.DocSearch-Container {
+.DocSearch.DocSearch-Container {
   z-index: 1000;
   font-size: 14px;
 }
 
 .DocSearch-Button {
   border-radius: 6px;
-  transition: 0.4s
+  transition: 0.4s;
 }
 
 .DocSearch-Button:hover {
@@ -70,11 +77,11 @@ b, strong {
 }
 
 @media screen and (max-width: 768px) {
-  .DocSearch-Modal {
-    margin-top: 60px;
-  }
-
   .search-box {
     left: 230px;
+  }
+
+  .search-box .DocSearch-Button {
+    padding: 0 11px;
   }
 }

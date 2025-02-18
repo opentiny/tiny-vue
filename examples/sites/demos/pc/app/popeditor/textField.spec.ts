@@ -8,7 +8,7 @@ test('PopEditor 显示字段映射', async ({ page }) => {
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })
-  const seletItem = dialogBox.getByRole('row', { name: '1 GFD科技YX公司 福建 福州' }).locator('span')
+  const seletItem = dialogBox.getByRole('row', { name: '1 GFD 科技 YX 公司 福建 福州' }).locator('span')
 
   // 显示城市的字段映射
   await textBox.click()

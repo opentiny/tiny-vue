@@ -19,9 +19,10 @@ import type {
   IMilestoneIconStyle,
   IMilestoneFlagOperateParams
 } from '@/types'
+import { isServer } from '@opentiny/utils'
 
 export const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
-  if (hex.includes('var')) {
+  if (hex.includes('var') && !isServer) {
     hex = hex.replace(/var\(|\)/g, '')
     hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
   }

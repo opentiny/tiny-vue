@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     cancel() {
-      TinyModal.message({ message: 'Dept部门 cancel 事件' })
+      TinyModal.message({ message: 'Dept 部门 cancel 事件' })
     }
   }
 }

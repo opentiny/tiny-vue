@@ -23,7 +23,7 @@ export default {
         'en-US': 'Delimiter'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>delimiter</code> 设置分隔符(图标类)，或通过默认插槽设置分隔符。</p>',
+        'zh-CN': '<p>通过 <code>delimiter</code> 设置分隔符 (图标类)，或通过默认插槽设置分隔符。</p>',
         'en-US':
           '<p>The delimiter can be set through the <code>delimiter</code> property (icon class) or through the default slot. </p>'
       },

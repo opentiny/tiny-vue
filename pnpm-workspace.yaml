@@ -1,11 +1,11 @@
 packages:
   - packages/**
-  - examples/*
+  - examples/**
   - internals/*
-  - solid-demo/*
 
   # 统一版本，方便维护
 catalog:
-  'vitest': '^0.31.0'
-  'vite': '^4.3.8'
+  'vitest': '^2.1.8'
+  'vite': '^6.0.0'
   'typescript': '~5.3.3'
+  '@playwright/test': '~1.49.0'

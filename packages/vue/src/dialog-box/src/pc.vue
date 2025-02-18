@@ -10,7 +10,12 @@
  *
  -->
 <template>
-  <transition :name="state.animationName" @after-enter="afterEnter" @after-leave="afterLeave">
+  <transition
+    :duration="noAnimation ? 0 : undefined"
+    :name="state.animationName"
+    @after-enter="afterEnter"
+    @after-leave="afterLeave"
+  >
     <div
       v-show="visible"
       :class="['tiny-dialog-box__wrapper', dialogClass]"
@@ -32,6 +37,8 @@
           ]"
           :style="state.style"
           class="tiny-dialog-box"
+          data-tag="tiny-dialog-box"
+          :data-dialog-box-draggable="draggable"
           :key="state.key"
         >
           <div v-if="showHeader" ref="header" class="tiny-dialog-box__header" @mousedown="handleDrag">
@@ -134,7 +141,9 @@ export default defineComponent({
     'dialogClass',
     'beforeClose',
     'maxHeight',
-    'dialogTransition'
+    'dialogTransition',
+    'customStyle',
+    'noAnimation'
   ],
   model: {
     prop: 'visible',

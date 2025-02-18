@@ -11,18 +11,19 @@
  */
 
 import {
-  isDate,
+  toDate1,
   nextDate,
-  parseDate,
+  parseDate1,
   formatDate,
   modifyDate,
   modifyTime,
   nextYear,
   prevYear,
-  nextMonth,
+  nextMonth1,
   prevMonth,
-  modifyWithTimeString
-} from '../common/deps/date-util'
+  modifyWithTimeString,
+  DATEPICKER
+} from '@opentiny/utils'
 
 export const calcDefaultValue = (defaultVal) => {
   if (Array.isArray(defaultVal)) {
@@ -115,7 +116,7 @@ export const watchMinDate =
       const format = 'HH:mm:ss'
 
       minTimePicker.state.selectableRange = [
-        [parseDate(formatDate(state.minDate, format, t), format, t), parseDate('23:59:59', format, t)]
+        [parseDate1(formatDate(state.minDate, format, t), format, t), parseDate1('23:59:59', format, t)]
       ]
     }
 
@@ -164,8 +165,8 @@ export const watchValue =
       state.minDate = null
       state.maxDate = null
     } else if (Array.isArray(value)) {
-      state.minDate = isDate(value[0]) ? new Date(value[0]) : null
-      state.maxDate = isDate(value[1]) ? new Date(value[1]) : null
+      state.minDate = toDate1(value[0]) ? new Date(value[0]) : null
+      state.maxDate = toDate1(value[1]) ? new Date(value[1]) : null
 
       if (state.minDate) {
         state.leftDate = state.minDate
@@ -177,13 +178,13 @@ export const watchValue =
           const maxDateMonth = state.maxDate.getMonth()
 
           state.rightDate =
-            minDateYear === maxDateYear && minDateMonth === maxDateMonth ? nextMonth(state.maxDate) : state.maxDate
+            minDateYear === maxDateYear && minDateMonth === maxDateMonth ? nextMonth1(state.maxDate) : state.maxDate
         } else {
-          state.rightDate = nextMonth(state.leftDate)
+          state.rightDate = nextMonth1(state.leftDate)
         }
       } else {
         state.leftDate = calcDefaultValue(state.defaultValue)[0]
-        state.rightDate = nextMonth(state.leftDate)
+        state.rightDate = nextMonth1(state.leftDate)
       }
     }
   }
@@ -195,7 +196,7 @@ export const watchDefault =
       const [left, right] = calcDefaultValue(value)
 
       state.leftDate = left
-      state.rightDate = value && value[1] && state.unlinkPanels ? right : nextMonth(state.leftDate)
+      state.rightDate = value && value[1] && state.unlinkPanels ? right : nextMonth1(state.leftDate)
     }
   }
 
@@ -205,7 +206,7 @@ export const handleClear =
     state.minDate = null
     state.maxDate = null
     state.leftDate = calcDefaultValue(state.defaultValue)[0]
-    state.rightDate = nextMonth(state.leftDate)
+    state.rightDate = nextMonth1(state.leftDate)
     state.rangeState.selecting = false
     // tiny 新增下面行
     state.rangeState.endDate = null
@@ -213,7 +214,10 @@ export const handleClear =
     emit('pick', null)
   }
 
-export const handleChangeRange = (state) => (val) => {
+export const handleChangeRange = (state, props) => (val) => {
+  if (props.readonly) {
+    return
+  }
   state.minDate = val.minDate
   state.maxDate = val.maxDate
   state.rangeState = val.rangeState
@@ -228,7 +232,7 @@ export const handleDateInput =
       return
     }
 
-    const parsedValue = parseDate(value, state.dateFormat, t)
+    const parsedValue = parseDate1(value, state.dateFormat, t)
 
     if (parsedValue) {
       if (typeof state.disabledDate === 'function' && state.disabledDate(new Date(parsedValue))) {
@@ -246,7 +250,7 @@ export const handleDateInput =
         state.leftDate = new Date(parsedValue)
 
         if (!state.unlinkPanels) {
-          state.rightDate = nextMonth(state.leftDate)
+          state.rightDate = nextMonth1(state.leftDate)
         }
       } else {
         state.maxDate = modifyDate(
@@ -268,7 +272,7 @@ export const handleDateInput =
 export const handleDateChange =
   ({ state, t }) =>
   (value, type) => {
-    const parsedValue = parseDate(value, state.dateFormat, t)
+    const parsedValue = parseDate1(value, state.dateFormat, t)
 
     if (parsedValue) {
       if (type === 'min') {
@@ -306,7 +310,7 @@ export const handleTimeInput =
       return
     }
 
-    const parsedValue = parseDate(value, state.timeFormat, t)
+    const parsedValue = parseDate1(value, state.timeFormat, t)
 
     if (parsedValue) {
       if (type === 'min') {
@@ -330,7 +334,7 @@ export const handleTimeInput =
 export const handleTimeChange =
   ({ state, t, vm }) =>
   (value, type) => {
-    const parsedValue = parseDate(value, state.timeFormat, t)
+    const parsedValue = parseDate1(value, state.timeFormat, t)
 
     if (parsedValue) {
       if (type === 'min') {
@@ -366,8 +370,11 @@ export const handleTimeChange =
   }
 
 export const handleRangePick =
-  ({ api, state, t }) =>
+  ({ api, state, props, t }) =>
   (val, close = true) => {
+    if (props.readonly) {
+      return
+    }
     const defaultTime = state.defaultTime || []
     let minDateVal = val.minDate
     let maxDateVal = val.maxDate
@@ -404,16 +411,16 @@ export const handleRangePick =
     api.handleConfirm()
   }
 
-export const handleShortcutClick = (state, api) => (shortcut) => {
+export const handleShortcutClick = (state, api, props) => (shortcut) => {
   if (shortcut.type) {
     state.singleSelect = true
     state.shortcutType = shortcut.type
     state.shortcutText = shortcut.text
 
-    if (shortcut.type === 'startFrom' && shortcut.endDate && isDate(shortcut.endDate)) {
+    if (shortcut.type === 'startFrom' && shortcut.endDate && toDate1(shortcut.endDate)) {
       state.maxRangeDate = shortcut.endDate
     }
-    if (shortcut.type === 'endAt' && shortcut.startDate && isDate(shortcut.startDate)) {
+    if (shortcut.type === 'endAt' && shortcut.startDate && toDate1(shortcut.startDate)) {
       state.minRangeDate = shortcut.startDate
     }
 
@@ -424,7 +431,15 @@ export const handleShortcutClick = (state, api) => (shortcut) => {
   if (shortcut.onClick) {
     const picker = {
       $emit: (type, [start, end]) => {
-        api.doPick(start, end)
+        // 面板直接使用快捷选项
+        if (props.shortcuts?.length) {
+          state.value = [start, end]
+          state.leftDate = start
+          state.rightDate = end
+          api.handleRangePick({ minDate: start, maxDate: end })
+        } else {
+          api.doPick(start, end)
+        }
       }
     }
 
@@ -480,7 +495,7 @@ export const leftPrevYear =
     state.leftDate = prevYear(state.leftDate)
 
     if (!state.unlinkPanels) {
-      state.rightDate = nextMonth(state.leftDate)
+      state.rightDate = nextMonth1(state.leftDate)
     }
   }
 
@@ -490,7 +505,7 @@ export const leftPrevMonth =
     state.leftDate = prevMonth(state.leftDate)
 
     if (!state.unlinkPanels) {
-      state.rightDate = nextMonth(state.leftDate)
+      state.rightDate = nextMonth1(state.leftDate)
     }
   }
 
@@ -501,7 +516,7 @@ export const rightNextYear =
 
     if (!unlinkPanels) {
       state.leftDate = nextYear(leftDate)
-      state.rightDate = nextMonth(state.leftDate)
+      state.rightDate = nextMonth1(state.leftDate)
     } else {
       state.rightDate = nextYear(rightDate)
     }
@@ -511,10 +526,10 @@ export const rightNextMonth =
   ({ state }) =>
   () => {
     if (!state.unlinkPanels) {
-      state.leftDate = nextMonth(state.leftDate)
-      state.rightDate = nextMonth(state.leftDate)
+      state.leftDate = nextMonth1(state.leftDate)
+      state.rightDate = nextMonth1(state.leftDate)
     } else {
-      state.rightDate = nextMonth(state.rightDate)
+      state.rightDate = nextMonth1(state.rightDate)
     }
   }
 
@@ -526,7 +541,7 @@ export const leftNextYear =
 export const leftNextMonth =
   ({ state }) =>
   () =>
-    (state.leftDate = nextMonth(state.leftDate))
+    (state.leftDate = nextMonth1(state.leftDate))
 
 export const rightPrevYear =
   ({ state }) =>
@@ -539,10 +554,15 @@ export const rightPrevMonth =
     (state.rightDate = prevMonth(state.rightDate))
 
 export const handleConfirm =
-  ({ api, emit, state }) =>
+  ({ api, emit, state, props, t }) =>
   (visible = false) => {
     if (api.isValidValue([state.minDate, state.maxDate])) {
       emit('pick', [state.minDate, state.maxDate], visible)
+      const defaultFormat = props.type === 'daterange' ? DATEPICKER.DateFormats.date : DATEPICKER.DateFormats.datetime
+      const start = formatDate(state.minDate, props.format || defaultFormat, t)
+      const end = formatDate(state.maxDate, props.format || defaultFormat, t)
+      emit('update:modelValue', [start, end])
+      emit('select-change', [start, end])
     }
   }
 
@@ -553,16 +573,16 @@ export const isValidValue =
     value &&
     value[0] &&
     value[1] &&
-    isDate(value[0]) &&
-    isDate(value[1]) &&
+    toDate1(value[0]) &&
+    toDate1(value[1]) &&
     value[0].getTime() <= value[1].getTime() &&
     (typeof state.disabledDate === 'function' ? !state.disabledDate(value[0]) && !state.disabledDate(value[1]) : true)
 
 export const resetView =
   ({ state }) =>
   () => {
-    state.minDate = state.value && isDate(state.value[0]) ? new Date(state.value[0]) : null
-    state.maxDate = state.value && isDate(state.value[0]) ? new Date(state.value[1]) : null
+    state.minDate = state.value && toDate1(state.value[0]) ? new Date(state.value[0]) : null
+    state.maxDate = state.value && toDate1(state.value[0]) ? new Date(state.value[1]) : null
   }
 
 export const setTimeFormat =
@@ -594,5 +614,21 @@ export const watchPickerVisible =
       state.singleSelect = false
       state.minRangeDate = constants.startDate
       state.maxRangeDate = constants.endDate
+    }
+  }
+
+export const watchModelValue =
+  ({ state }) =>
+  (val) => {
+    const newVal = toDate1(val?.[0])
+    const newVal1 = toDate1(val?.[1])
+    if (newVal && newVal1) {
+      const start = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate())
+      const end = modifyDate(newVal1, newVal1.getFullYear(), newVal1.getMonth(), newVal1.getUTCDate())
+      state.value = [start, end]
+      state.minDate = start
+      state.maxDate = end
+      state.leftDate = start
+      state.rightDate = end
     }
   }

@@ -71,7 +71,7 @@ export default {
       'name': { 'zh-CN': '列异步数据渲染', 'en-US': 'Column Asynchronous Data Rendering' },
       'desc': {
         'zh-CN':
-          '<p>将列<code>format-config</code>的 <code>async</code>属性配置为<code>true</code>后，支持动态修改其<code>data</code>数据自动渲染。 这种整列异步渲染一般将<code>type</code>设置为<code>enum</code>，通过<code>value</code>与<code>label</code>可以配置渲染单元格的映射。</p>\n',
+          '<p>将列<code>format-config</code>的 <code>async</code>属性配置为<code>true</code>后，支持动态修改其<code>data</code>数据自动渲染。这种整列异步渲染一般将<code>type</code>设置为<code>enum</code>，通过<code>value</code>与<code>label</code>可以配置渲染单元格的映射。</p>\n',
         'en-US':
           '<p>After the <code>async</code> attribute of the <code>format-config</code> column is set to <code>true</code>, the <code>data</code> data can be dynamically modified for automatic rendering. Generally, <code>type</code> is set to <code>enum</code>, and <code>value</code> and <code>label</code> can be used to configure the mapping of rendering cells. </p>\n'
       },

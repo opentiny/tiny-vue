@@ -13,7 +13,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过 <code>v-auto-tip</code> 自定义指令,可以在鼠标移入<code>Dom</code>元素时探测文本是否超长，当超长时自动添加<code>tooltip</code>提示。
+          通过 <code>v-auto-tip</code> 自定义指令，可以在鼠标移入<code>Dom</code>元素时探测文本是否超长，当超长时自动添加<code>tooltip</code>提示。
           <div class="tip custom-block">
             需要用户给<code>Dom</code>元素添加超出省略的样式，详见示例！
           </div>
@@ -38,8 +38,8 @@ export default {
         指令 <code>v-auto-tip</code> 可以接收一个指令参数，用法如下： <br>
         1、如果参数为对象，其类型声明为<code>{always:boolean; content:string | VNode | Vnode[]; effect: string; placement: string }</code>   <br>
         <ul>
-          <li><code>always</code>属性，指定显示方式。 值为<code>true</code>时，表示无论内容是否超长，都自动显示<code>tooltip</code>。 默认值为<code>false</code>, 表示自动探测超长。  </li>  
-          <li><code>content</code>属性，指定提示的内容,支持传入<code>string</code>，<code>VNode</code> 或<code>VNode数组</code>。不传入值时，使用当前<code>Dom</code>元素的内容。  </li>  
+          <li><code>always</code>属性，指定显示方式。值为<code>true</code>时，表示无论内容是否超长，都自动显示<code>tooltip</code>。默认值为<code>false</code>, 表示自动探测超长。  </li>  
+          <li><code>content</code>属性，指定提示的内容，支持传入<code>string</code>，<code>VNode</code> 或<code>VNode 数组</code>。不传入值时，使用当前<code>Dom</code>元素的内容。  </li>  
           <li><code>effect</code> 属性，指定提示的效果，支持 <code>light</code> 和 <code>dark</code> ，默认是<code>light</code>亮色主题  </li>  
           <li><code>placement</code> 属性，指定提示的位置，默认值为<code>top</code> 。参见<code>tooltip</code> 组件的<code>placement</code> 属性。   </li>  
         </ul>

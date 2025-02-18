@@ -48,7 +48,7 @@ export default {
 interface IChartSettings {
   dataName: object // 表盘上显示的单位
   dataType: object // 数据类型
-  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为 2
   dimension: string // 维度，默认 columns[0]
   labelMap: object // 设置指标的别名
   metrics: string // 指标，默认 columns[1]

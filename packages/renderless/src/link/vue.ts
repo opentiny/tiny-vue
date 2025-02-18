@@ -10,7 +10,7 @@
  *
  */
 import type { ILinkState, ILinkProps, ILinkRenderlessParamUtils, ISharedRenderlessParamHooks, ILinkApi } from '@/types'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 import { handleClick } from './index'
 
 export const api = ['state', 'handleClick']

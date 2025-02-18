@@ -3,6 +3,8 @@ import { expect, test } from '@playwright/test'
 test('[DatePicker] 测试事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#events')
+  await page.locator('.settings-btn').first().click()
+  await page.locator('label').filter({ hasText: '单示例' }).click()
 
   // focus 事件
   await page.locator('input[type="text"]').nth(1).click()

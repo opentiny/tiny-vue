@@ -28,8 +28,8 @@ export default {
           <div class="tip custom-block">
             <p class="custom-block-title"> 尺寸模式区别 </p>
             <ul>
-              <li> normal模式下，不会显示标题和交互操作的区域，相当于简单模式。</li> 
-              <li> large模式下，显示全部元素，相当于完整模式。</li> 
+              <li> normal 模式下，不会显示标题和交互操作的区域，相当于简单模式。</li> 
+              <li> large 模式下，显示全部元素，相当于完整模式。</li> 
             </ul>
           </div>
         `,
@@ -53,8 +53,8 @@ export default {
         'en-US': 'Custom Title'
       },
       desc: {
-        'zh-CN': `当 <code>size</code> 为 <code>large</code> 时，通过 <code>title </code>属性或 <code>title </code>插槽，可以自定义组件的标题。<br>
-           如果未自定义标题， 会根据对应的 <code>type</code> 显示相应的默认标题。`,
+        'zh-CN': `当 <code>size</code> 为 <code>large</code> 时，通过 <code>title </code>属性或 <code>title </code>插槽，可以自定义组件的标题 ，通过 <code> show-title </code>属性控制标题是否显示<br>
+           如果未自定义标题，会根据对应的 <code>type</code> 显示相应的默认标题。`,
         'en-US':
           '<p>When <code>size</code> is set to large, the title is displayed. You can set <code>title</code> or <code>slot</code> to customize the title. <br>The default title is displayed according to the set <code>type</code> . </p>'
       },
@@ -121,8 +121,8 @@ export default {
       desc: {
         'zh-CN': `
           通过 <code>closable</code> 属性，启用内置的关闭图标，默认值为 <code>true</code>。<br />
-          通过 <code>close-text</code> 设置关闭按钮显示为文本，仅当<code>closable</code>为<code>true</code>时生效 。<br />
-          将 <code>closable</code> 设置为 <code>false</code> 时, 取消内置的关闭功能。此时可通过 <code>close</code> 插槽,完全自定义关闭按钮区域的展示。
+          通过 <code>close-text</code> 设置关闭按钮显示为文本，仅当<code>closable</code>为<code>true</code>时生效。<br />
+          将 <code>closable</code> 设置为 <code>false</code> 时，取消内置的关闭功能。此时可通过 <code>close</code> 插槽，完全自定义关闭按钮区域的展示。
           <div class="tip custom-block">
             <p class="custom-block-title"> 组件关闭或隐藏时，会有渐隐动画，详见示例！ </p>
           </div>

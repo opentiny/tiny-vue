@@ -219,6 +219,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'v-model:visible',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '手动控制下拉弹框显隐，优先级高于trigger',
+            'en-US': 'Manually control the display and hide of the dropdown menu, with priority higher than the trigger'
+          },
+          mode: ['pc'],
+          pcDemo: 'visible'
+        },
+        {
           name: 'visible-arrow',
           type: 'boolean',
           defaultValue: 'false',
@@ -371,7 +382,10 @@ export default {
             'en-US': 'Menu pop-up location '
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          pcDemo: 'placement',
+          meta: {
+            experimental: '3.21.0'
+          }
         },
         {
           name: 'popper-class',
@@ -551,7 +565,7 @@ type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'i
       name: 'IPlacementType',
       type: 'type',
       code: `        
-type IPlacementType =  'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
+type IPlacementType =  'bottom-start' | 'bottom-end'
 `
     }
   ]

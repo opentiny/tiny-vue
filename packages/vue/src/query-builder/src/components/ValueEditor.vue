@@ -66,6 +66,38 @@
       :events="{ change }"
     ></custom-input>
   </span>
+  <span v-else-if="type === 'custom' && allProps.fieldData.component">
+    <div v-if="['between', 'notBetween'].includes(operator)">
+      <div v-for="(key, i) in ['from', 'to']" :key="key">
+        <component
+          :is="allProps.fieldData.component"
+          v-bind="getProps(allProps.fieldData)"
+          :data-id="id"
+          :field-name="field"
+          :modelValue="value[i]"
+          :key="key"
+          @update:modelValue="change"
+          @change="change"
+          :operator="operator"
+          :path="path"
+        >
+        </component>
+      </div>
+    </div>
+    <component
+      v-else
+      :is="allProps.fieldData.component"
+      v-bind="getProps(allProps.fieldData)"
+      :data-id="id"
+      :field-name="field"
+      :modelValue="value"
+      @update:modelValue="change"
+      @change="change"
+      :operator="operator"
+      :path="path"
+    >
+    </component>
+  </span>
 
   <span v-else class="rule-value-editor">
     <custom-input
@@ -90,7 +122,7 @@ import { standardClassnames } from '../defaults'
 import { getFirstOption, parseNumber } from '../utils'
 import { useValueEditor } from '../hooks'
 import ValueSelector from './ValueSelector.vue'
-import Input from './input'
+import Input from './input.vue'
 
 export default defineComponent({
   components: {
@@ -98,7 +130,8 @@ export default defineComponent({
   },
   props: {
     field: String,
-    operator: {},
+    id: String,
+    operator: String,
     value: {},
     valueSource: {},
     fieldData: {},
@@ -130,7 +163,10 @@ export default defineComponent({
     testID: {},
     schema: {}
   }, // :ValueEditorProps
-  setup() {
+  setup(props) {
+    const getProps = (options) => {
+      return options.props || {}
+    }
     return {
       standardClassnames,
       getFirstOption,
@@ -138,7 +174,8 @@ export default defineComponent({
       modelValue: {
         from: '',
         to: ''
-      }
+      },
+      getProps
     }
   },
   computed: {
@@ -191,7 +228,6 @@ export default defineComponent({
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.modelValue.to = ''
       }
-
       return {
         operator,
         value,
@@ -210,9 +246,7 @@ export default defineComponent({
         testID,
         SelectorComponent,
         props,
-
         multiValueHandler,
-
         placeHolderText,
         inputTypeCoerced
       }

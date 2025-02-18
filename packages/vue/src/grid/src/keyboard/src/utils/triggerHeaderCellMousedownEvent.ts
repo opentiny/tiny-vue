@@ -22,8 +22,8 @@
  * SOFTWARE.
  *
  */
-import { addClass, removeClass, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
-import throttle from '@opentiny/vue-renderless/common/deps/throttle'
+import { addClass, removeClass, hasClass } from '@opentiny/utils'
+import { throttle } from '@opentiny/utils'
 import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
 
 export function handleHeaderCellMousedownEvent({ $el, _vm, bodyList, cell, headerList, startCell }) {

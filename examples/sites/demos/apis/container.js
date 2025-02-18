@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile'],
+  mode: ['pc'],
   apis: [
     {
       name: 'container',
@@ -39,17 +39,6 @@ export default {
           pcDemo: 'custom-with-height'
         },
         {
-          name: 'left-width',
-          type: 'number | string',
-          defaultValue: '60',
-          desc: {
-            'zh-CN': '左侧宽度',
-            'en-US': 'Left width'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'custom-width'
-        },
-        {
           name: 'pattern',
           typeAnchorName: 'IContainerPattern',
           type: 'IContainerPattern',
@@ -58,20 +47,8 @@ export default {
             'zh-CN': '版型类型',
             'en-US': 'Measurement type'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: 'basic-usage',
-          mobileDemo: 'basic-usaage'
-        },
-        {
-          name: 'right-width',
-          type: 'number | string',
-          defaultValue: '44',
-          desc: {
-            'zh-CN': '右侧宽度',
-            'en-US': 'right width'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'custom-width'
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         }
       ],
       events: [],
@@ -86,16 +63,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
-        },
-        {
-          name: 'center',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '中部内容插槽',
-            'en-US': 'Renter Slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
         },
         {
           name: 'default',
@@ -126,26 +93,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
-        },
-        {
-          name: 'left',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '左侧内容插槽',
-            'en-US': 'Title Slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
-        },
-        {
-          name: 'right',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '右侧内容插槽',
-            'en-US': 'Right Slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
         }
       ]
     }

@@ -46,7 +46,7 @@
 
 <script>
 import { TinyQueryBuilder, TinyButton } from '@opentiny/vue'
-import { random } from '@opentiny/vue-renderless/common/string'
+import { random } from '@opentiny/utils'
 
 export default {
   components: {

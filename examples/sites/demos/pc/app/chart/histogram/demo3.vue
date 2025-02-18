@@ -15,7 +15,7 @@ export default {
     return {
       options: {
         itemStyle: {
-          barMinHeight: 2 // 最小高度为2
+          barMinHeight: 2 // 最小高度为 2
         },
         data: [
           { Month: 'Jan', Value: 100 },

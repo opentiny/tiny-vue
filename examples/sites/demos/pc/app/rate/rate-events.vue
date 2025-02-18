@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     onchange(v) {
-      TinyModal.message({ message: `选中的值是${v}`, status: 'info' })
+      TinyModal.message({ message: `选中的值是 ${v}`, status: 'info' })
     }
   }
 }

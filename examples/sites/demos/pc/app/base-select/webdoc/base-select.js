@@ -48,7 +48,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, <code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签，<code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
         'en-US':
           '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags are displayed in a thumbnail. Set <code>show-proportion</code> to display the current number of selected items and the proportion of total items, with a default value of <code>false</code> . By setting <code>hover-expand</code> to <code>true</code> , the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
@@ -76,7 +76,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>tag-type</code> 属性设置标签类型，同 Tag 组件的 type 属性。可选值：success / info / warning / danger 。</p>\n',
+          '<p>通过 <code>tag-type</code> 属性设置标签类型，同 Tag 组件的 type 属性。可选值：success / info / warning / danger。</p>\n',
         'en-US':
           '<p>Set the label type through the <code>tag-type</code> attribute, which is the same as the type attribute of the Tag component. Optional values: success/info/warning/danger.</p>\n'
       },
@@ -89,7 +89,7 @@ export default {
         'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini 。</p>',
+        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini。</p>',
         'en-US':
           '<p>Set the input box size through the <code>size</code> attribute, with optional values of medium / small / mini.</p>'
       },
@@ -223,7 +223,7 @@ export default {
         'en-US': 'Hide Select All'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>show-alloption</code> 属性设置多选时不展示 <code>全选</code> 选项，默认展示 。</p>\n',
+        'zh-CN': '<p>通过 <code>show-alloption</code> 属性设置多选时不展示 <code>全选</code> 选项，默认展示。</p>\n',
         'en-US':
           '<p>By setting the <code>show-allocation</code> attribute, do not display the <code>select all</code> option when multiple selections are made, and display by default.</p>\n'
       },
@@ -399,7 +399,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>shape</code> 属性设置为 <code>filter</code> 切换至过滤器模式。 过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮，placeholder 显示占位符。</p>\n<p>通过 <code>blank</code> 属性将过滤器背景设置为透明。</p>',
+          '<p>通过 <code>shape</code> 属性设置为 <code>filter</code> 切换至过滤器模式。过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮，placeholder 显示占位符。</p>\n<p>通过 <code>blank</code> 属性将过滤器背景设置为透明。</p>',
         'en-US':
           '<p>Set the <code>shape</code> attribute to <code>filter</code> to switch to filter mode. In filter mode, you can transfer the label display title, tip display prompt information, clearable whether to display the clear button, and placeholder display placeholder.</p>\n<p>Set the filter background to transparent with the <code>blank</code> attribute.</p>'
       },
@@ -539,7 +539,7 @@ export default {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：监听 v-model 的值发生变化。</p>\n<p>clear：监听单选时，点击清空按钮。</p>\n<p>blur：监听 input 失去焦点。</p>\n<p>focus：监听 input 获得焦点。</p>\n<p>visible-change：监听下拉框可见状态的变化。</p>\n<p>remove-tag：监听多选移除选中的标签。</p>\n<p>dropdown-click：监听下拉图标的点击事件。</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change：Listen for changes in the value of the v-model.</p><p>clear：When listening to radio selection, click the clear button.</p>\n<p>blur：Listening to input losing focus.</p>\n<p>focus：Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag：Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click：Listens to the click event of the drop-down icon.</p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change: Listen for changes in the value of the v-model.</p><p>clear: When listening to radio selection, click the clear button.</p>\n<p>blur: Listening to input losing focus.</p>\n<p>focus: Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag: Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click: Listens to the click event of the drop-down icon.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
     }

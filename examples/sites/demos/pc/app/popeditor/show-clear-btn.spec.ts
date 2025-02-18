@@ -8,7 +8,7 @@ test('PopEditor 是否可清除', async ({ page }) => {
   const textBox = preview.getByRole('textbox')
   const del = preview.getByRole('img')
 
-  await expect(textBox).toHaveValue('GFD科技YX公司')
+  await expect(textBox).toHaveValue('GFD 科技 YX 公司')
   await del.click()
   await expect(textBox).toHaveValue('')
 })

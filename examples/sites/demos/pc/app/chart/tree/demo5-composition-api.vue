@@ -12,18 +12,18 @@ const options = ref({
   // 图表类型（线型树图）
   type: 'LineTreeChart',
 
-  // padding控制图表距离容器的上、右、下、左padding值
+  // padding 控制图表距离容器的上、右、下、左 padding 值
   padding: [20, 80, 20, 80],
-  // 图元的大小，默认值10
+  // 图元的大小，默认值 10
   symbolSize: 10,
 
-  // 连线的形状，仅type为LineTreeChart有效，'curve'或'polyline',默认值'curve'
+  // 连线的形状，仅 type 为 LineTreeChart 有效，'curve'或'polyline',默认值'curve'
   lineType: 'polyline',
 
-  // 初始树图的展开层级，最小值为1，默认值1
+  // 初始树图的展开层级，最小值为 1，默认值 1
   initialTreeDepth: 2,
 
-  // 树图的起点方向，仅type为LineTreeChart有效，取值'left','right','top','bottom',默认值'left'
+  // 树图的起点方向，仅 type 为 LineTreeChart 有效，取值'left','right','top','bottom',默认值'left'
   direction: 'left',
   data: [
     {

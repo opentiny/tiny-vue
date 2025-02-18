@@ -3,13 +3,15 @@ import { test, expect } from '@playwright/test'
 test('[DatePicker] 测试选择器打开时默认时间设置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#default-value')
+  await page.locator('.settings-btn').first().click()
+  await page.locator('label').filter({ hasText: '单示例' }).click()
 
   // default-value: 打开日期面板，默认显示的日期
   await page.getByRole('textbox').nth(1).click()
   await expect(page.getByRole('button', { name: '2000 年' })).toBeVisible()
   await expect(page.getByRole('button', { name: '11 月' })).toBeVisible()
 
-  // default-time: 日期时间(范围)，选择日期之后默认显示的时间(范围)
+  // default-time: 日期时间 (范围)，选择日期之后默认显示的时间 (范围)
   const dateInputDefaultTime = page.getByRole('textbox').nth(2)
   await dateInputDefaultTime.fill('2023-05-20 09:00:00')
   await dateInputDefaultTime.press('Enter')

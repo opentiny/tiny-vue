@@ -139,7 +139,6 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrol
     const ths = headerEl?.querySelectorAll(`[data-colid=${column.id}]`) || []
     const tds = bodyEl.querySelectorAll(`[data-colid=${column.id}]`)
     const allFixed = [...Array.from(ths), ...Array.from(tds)]
-
     allFixed.forEach((td) => {
       // 有纵向滚动条时，表头右冻结列需要补偿right定位
       let compensatingWidth = 0
@@ -161,7 +160,7 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrol
 const setGroupHeaderPosition = ({ columnChart, direction }) => {
   // 这里需要浅拷贝一份，避免改变原始数据的顺序
   const colChart = columnChart.slice()
-
+  const finishColumns = new Set()
   // 如果是右测冻结则需要反转数组后再进行循环
   if (direction === 'right') {
     colChart.reverse()
@@ -177,11 +176,15 @@ const setGroupHeaderPosition = ({ columnChart, direction }) => {
     const leafDirectionPos = leafColumn?.style?.[direction] ?? null
 
     if (leafDirectionPos !== null) {
-      columns.forEach((column) => {
+      columns.forEach((column, index) => {
+        // 叶子节点则返回
+        if (index === columns.length - 1) {
+          return
+        }
         column.style = column.style || {}
-        const pos = column.style[direction] ?? null
-        if (pos === null) {
+        if (!finishColumns.has(column.id)) {
           column.style[direction] = leafDirectionPos
+          finishColumns.add(column.id)
         }
       })
     }

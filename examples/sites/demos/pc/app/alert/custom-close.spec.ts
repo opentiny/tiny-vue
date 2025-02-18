@@ -46,7 +46,7 @@ test('关闭按钮事件', async ({ page }) => {
   const alertWarning = page.locator('.tiny-alert--warning')
   const close = alertWarning.locator('.tiny-alert__close')
 
-  // 点击关闭后警告消失，自定义事件modalBox提示出现
+  // 点击关闭后警告消失，自定义事件 modalBox 提示出现
   await close.click()
   await expect(alertWarning).not.toBeVisible()
   await expect(page.locator('.tiny-notify__content').getByText('触发关闭事件')).toBeVisible()

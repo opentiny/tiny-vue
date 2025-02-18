@@ -5,7 +5,7 @@ test('SaaS 风格文件列表', async ({ page }) => {
   await page.goto('file-upload#upload-file-list-saas')
 
   const upload = page.getByRole('button', { name: '文件上传' })
-  const lists = page.locator('div').filter({ hasText: /^test2\.doc删除16\.84M$/ })
+  const lists = page.locator('div').filter({ hasText: /^test2\.doc删除16\.84 MB$/ })
 
   await upload.isVisible()
   await expect(lists).toHaveCount(2)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：远程搜索单选</div>
+    <div>场景 1：远程搜索单选</div>
     <br />
     <tiny-base-select
       v-model="value1"
@@ -14,7 +14,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景2：远程搜索多选 + 保留搜索关键字</div>
+    <div>场景 2：远程搜索多选 + 保留搜索关键字</div>
     <br />
     <tiny-base-select
       v-model="value2"
@@ -31,7 +31,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景3：获焦时触发远程搜索</div>
+    <div>场景 3：获焦时触发远程搜索</div>
     <br />
     <tiny-base-select
       v-model="value3"
@@ -46,7 +46,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景4：失焦清空查询数据，显示下拉图标</div>
+    <div>场景 4：失焦清空查询数据，显示下拉图标</div>
     <br />
     <tiny-base-select
       v-model="value4"
@@ -61,7 +61,7 @@
     </tiny-base-select>
     <br />
     <br />
-    <div>场景5：聚焦时触发搜索，失焦清空查询数据，显示下拉图标</div>
+    <div>场景 5：聚焦时触发搜索，失焦清空查询数据，显示下拉图标</div>
     <br />
     <tiny-base-select
       v-model="value5"
@@ -79,7 +79,7 @@
 
     <br />
     <br />
-    <div>场景6：远程搜索配置 trim 属性去除绑定值空格</div>
+    <div>场景 6：远程搜索配置 trim 属性去除绑定值空格</div>
     <br />
     <tiny-button @click="trim = !trim">trim 为：{{ trim }}</tiny-button>
     <tiny-button @click="changeVal">改变成有空格的值</tiny-button>

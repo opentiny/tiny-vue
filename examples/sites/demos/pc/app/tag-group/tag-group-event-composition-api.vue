@@ -16,6 +16,6 @@ const data = ref([
 ])
 
 function itemClick(item, i, e) {
-  TinyModal.message(`当前点击的是第${i + 1}个标签`)
+  TinyModal.message(`当前点击的是第 ${i + 1} 个标签`)
 }
 </script>

@@ -8,7 +8,7 @@
  * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
- */
+ */ import { isServer } from '@opentiny/utils'
 
 export const px2percent = ({ numerator, denominator }) => parseFloat(numerator) / parseFloat(denominator)
 
@@ -42,8 +42,8 @@ export const getAnotherOffset =
     return isPercent
       ? 100 - value
       : state.valueIsPx
-        ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px`
-        : 1 - value
+      ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px`
+      : 1 - value
   }
 
 export const handleMove =
@@ -172,7 +172,7 @@ export const computeOffset =
   () => {
     setTimeout(() => {
       // 防止当split组件销毁时，state为undefined导致的报错
-      if (state) {
+      if (state && !isServer) {
         state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
         state.leftTopPane = state.totalPane * (state.offset / 100)
       }

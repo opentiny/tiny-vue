@@ -11,7 +11,7 @@
       v-model:visible="visible"
       height="600px"
     >
-      <div>left或者right内容区域</div>
+      <div>left 或者 right 内容区域</div>
     </tiny-drawer>
 
     <tiny-drawer
@@ -21,7 +21,7 @@
       v-model:visible="visible"
       height="400px"
     >
-      <div>top或者bottom区域</div>
+      <div>top 或者 bottom 区域</div>
     </tiny-drawer>
   </div>
 </template>

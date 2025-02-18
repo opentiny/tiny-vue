@@ -6,6 +6,19 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'before-editor-init',
+          type: '(FluentEditor) => void',
+          defaultValue: '',
+          meta: {
+            stable: '3.21.0'
+          },
+          desc: {
+            'zh-CN': 'FluentEditor 初始化之前执行的钩子，用于注册自定义 FluentEditor 模块和格式。',
+            'en-US': ''
+          },
+          pcDemo: 'before-editor-init'
+        },
+        {
           name: 'data-type',
           type: 'boolean',
           defaultValue: 'true',
@@ -64,7 +77,7 @@ export default {
         {
           name: 'options',
           type: 'object',
-          defaultValue: "",
+          defaultValue: '',
           desc: {
             'zh-CN': '编辑器配置项，参考 Quill 文档：https://quilljs.com/docs/configuration#options',
             'en-US': ''
@@ -75,7 +88,7 @@ export default {
         {
           name: 'zIndex',
           type: 'number',
-          defaultValue: "",
+          defaultValue: '',
           desc: {
             'zh-CN': '编辑器的 z-index',
             'en-US': ''
@@ -105,6 +118,6 @@ interface IImageUploadOptions {
   fail: (serverError: string) => void // 上传失败回调信息
 }
       `
-    },
+    }
   ]
 }

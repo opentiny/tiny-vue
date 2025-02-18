@@ -9,14 +9,14 @@ import { ref } from 'vue'
 import { TinyHuichartsWordcloud as TinyChartWordcloud } from '@opentiny/vue'
 
 const options = ref({
-  // 网格大小， 各文本之间距离，默认值16
+  // 网格大小，各文本之间距离，默认值 16
   gridSize: 5,
 
-  // 字体大小范围，默认值[16，64]
+  // 字体大小范围，默认值 [16，64]
   sizeRange: [14, 60],
-  // 文字旋转角度范围，默认[0,0]
+  // 文字旋转角度范围，默认 [0,0]
   rotationRange: [-90, 90],
-  // 文字旋转步值，默认0
+  // 文字旋转步值，默认 0
   rotationStep: 45,
   data: [
     {

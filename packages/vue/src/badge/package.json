@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-badge",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

@@ -9,7 +9,7 @@ test('Breadcrumb 基础用法', async ({ page }) => {
   const currentItem = breadcrumbItem.last()
   const separator = page.locator('.tiny-breadcrumb__separator')
 
-  // 面包屑导航、导航项出现,当前页导航加粗
+  // 面包屑导航、导航项出现，当前页导航加粗
   await expect(breadcrumb).toBeVisible()
   await expect(breadcrumbItem).toHaveCount(3)
   await expect(currentItem.last().locator('.is-link')).toHaveCSS('font-weight', '600')

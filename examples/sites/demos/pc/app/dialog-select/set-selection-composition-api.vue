@@ -49,22 +49,22 @@ import Sortable from 'sortablejs'
 
 // 模拟服务侧数据
 const datas = [
-  { id: '1', name: 'GFD科技有限公司', city: '福州', province: '福建' },
-  { id: '2', name: 'WWW科技有限公司', city: '深圳', province: '广东' },
-  { id: '3', name: 'RFV有限责任公司', city: '中山', province: '广东' },
-  { id: '4', name: 'TGB科技有限公司', city: '龙岩', province: '福建' },
-  { id: '5', name: 'YHN科技有限公司', city: '韶关', province: '广东' },
-  { id: '6', name: 'WSX科技有限公司', city: '黄冈', province: '湖北' },
-  { id: '7', name: 'KBG物业有限公司', city: '赤壁', province: '湖北' },
+  { id: '1', name: 'GFD 科技有限公司', city: '福州', province: '福建' },
+  { id: '2', name: 'WWW 科技有限公司', city: '深圳', province: '广东' },
+  { id: '3', name: 'RFV 有限责任公司', city: '中山', province: '广东' },
+  { id: '4', name: 'TGB 科技有限公司', city: '龙岩', province: '福建' },
+  { id: '5', name: 'YHN 科技有限公司', city: '韶关', province: '广东' },
+  { id: '6', name: 'WSX 科技有限公司', city: '黄冈', province: '湖北' },
+  { id: '7', name: 'KBG 物业有限公司', city: '赤壁', province: '湖北' },
   { id: '8', name: '深圳市福德宝网络技术有限公司', city: '深圳', province: '广东' },
-  { id: '9', name: 'KBG物业有限公司', city: '赤壁', province: '湖北' },
+  { id: '9', name: 'KBG 物业有限公司', city: '赤壁', province: '湖北' },
   { id: '10', name: '深圳市福德宝网络技术有限公司', city: '深圳', province: '广东' }
 ]
 
-// 接口1：根据一组数据id查询这组数据
+// 接口 1：根据一组数据 id 查询这组数据
 const queryRowsByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
-// 接口2：分页过滤查询
+// 接口 2：分页过滤查询
 const queryFilter = (pager, search) => {
   const { currentPage, pageSize } = pager
   const { name, city } = search
@@ -161,7 +161,7 @@ const remoteSearch = () => {
 
       state.gridOp.data = copy
       state.pagerOp.total = res.total
-      // promise返回执行下一步
+      // promise 返回执行下一步
       resolve()
     }, 300)
   })
@@ -187,7 +187,7 @@ function saveSelection() {
 }
 function setSelection() {
   let value = true
-  // 分页时，深拷贝了，因此需要用id判断
+  // 分页时，深拷贝了，因此需要用 id 判断
   if (state.selectedDatas.map((i) => i.id).includes(datas[1].id)) {
     value = false
   }

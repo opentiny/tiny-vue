@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "\n          <div class=\"tip custom-block\">\n           <p class=\"custom-block-title\"> config 属性说明 </p>\n       <code>autoSelectField</code>：范围域是否会默认选择，勾选则默认为第一个选项；反之则默认为-----  <br>\n       <code>autoSelectOperator</code>：运算符是否会默认选择，勾选则默认选择第一个选项，反之则默认为-----  <br>\n       <code>disabled</code>：禁用所有规则  <br>\n       <code>parsenumbers</code>：数字会被转化为 Number 类型，而非 String 类型  <br>\n       <code>showCloneButtons</code>：展示复制按钮，即整条规则可以被复制  <br>\n       <code>showCombinatorsBetweenRules</code>：组合子数组统一修改，且不再展示在连线上，以下拉选择形式出现  <br>\n       <code>showLockButtons</code>：展示锁定按钮，即整条规则可以被锁定  <br>\n       <code>showNotToggle</code>：展示 not 条件切换框  <br>\n       <code>displayOnlyField</code>：是否仅展示字段选择器  <br>\n       </div>  <br>\n       二、fields 数据配置  <br>\n      <pre> <code>\n       fields中的数据（只用于说明各字段含义，无业务特定性）  <br>\n       {  <br>\n         name: 'isMusician', //name：格式化数据中的值（形参）  <br>\n         label: 'Is a musician', //label：范围域在规则生成器中对外展示名称  <br>\n         valueEditorType: 'checkbox', //placeholder：值域的默认缺省值  <br>\n         operators: [ //运算符自定义，name为格式化数据中的值，label为范围域对外展示的名称  <br>\n           {  <br>\n             name: '=',  <br>\n             label: '='  <br>\n           }  <br>\n         ],  <br>\n         bindProps: { // 通过bindProps参数可对某一类组件进行参数控制  <br>\n           input:{  <br>\n             clearable:true  <br>\n           },  <br>\n           select:{  <br>\n             filterable:true  <br>\n           }  <br>\n         },  <br>\n         defaultValue: false, //defaultOperator：运算符的默认缺省选择  <br>\n         validator: (r) => !!r.value //validator：校验规则（该功能点还在迭代开发中……）  <br>\n         inputType: 'number', //值域的数值类型  <br>\n         valueEditorType: 'radio' //值域编辑器的类型  <br>\n         defaultValue: false, //值域的默认值  <br>\n         values: [ //值域的可选域配置（下拉）  <br>\n           {  <br>\n              label: 'Percussion instruments',  <br>\n              options: [  <br>\n               {  <br>\n                    name: 'Clapstick',  <br>\n                    label: 'Clapstick'  <br>\n               }  <br>\n             ]  <br>\n           }  <br>\n         ],  <br>\n         values: [ //值域的可选域配置（单选）  <br>\n           {  <br>\n              name: 'M',  <br>\n              label: 'Male'  <br>\n           },  <br>\n           {  <br>\n              name: 'F',  <br>\n              label: 'Female'  <br>\n           },  <br>\n           {  <br>\n              name: 'O',  <br>\n              label: 'Other'  <br>\n           }  <br>\n         ],  <br>\n         valueSources: ['field', 'value'], //值域类型可选择  <br>\n         comparator: 'groupNumber', //分组时的比较器  <br>\n         groupNumber: 'group1', //分组的组别  <br>\n       },  <br>\n       // 组合子数组配置，label为展示字符，name为数据值  <br>\n       combinators: [  <br>\n         {  <br>\n           name: 'and',  <br>\n           label: '且'  <br>\n         },  <br>\n         {  <br>\n           name: 'or',  <br>\n           label: '或'  <br>\n         }  <br>\n       ]  <br>\n       </code></pre>  <br>\n       ",
+          "\n          <div class=\"tip custom-block\">\n           <p class=\"custom-block-title\"> config 属性说明 </p>\n       <code>autoSelectField</code>：范围域是否会默认选择，勾选则默认为第一个选项；反之则默认为-----  <br>\n       <code>autoSelectOperator</code>：运算符是否会默认选择，勾选则默认选择第一个选项，反之则默认为-----  <br>\n       <code>disabled</code>：禁用所有规则  <br>\n       <code>parsenumbers</code>：数字会被转化为 Number 类型，而非 String 类型  <br>\n       <code>showCloneButtons</code>：展示复制按钮，即整条规则可以被复制  <br>\n       <code>showCombinatorsBetweenRules</code>：组合子数组统一修改，且不再展示在连线上，以下拉选择形式出现  <br>\n       <code>showLockButtons</code>：展示锁定按钮，即整条规则可以被锁定  <br>\n       <code>showNotToggle</code>：展示 not 条件切换框  <br>\n       <code>displayOnlyField</code>：是否仅展示字段选择器  <br>\n       </div>  <br>\n       二、fields 数据配置  <br>\n      <pre> <code>\n       fields 中的数据（只用于说明各字段含义，无业务特定性）  <br>\n       {  <br>\n         name: 'isMusician', //name：格式化数据中的值（形参）  <br>\n         label: 'Is a musician', //label：范围域在规则生成器中对外展示名称  <br>\n         valueEditorType: 'checkbox', //placeholder：值域的默认缺省值  <br>\n         operators: [ //运算符自定义，name 为格式化数据中的值，label 为范围域对外展示的名称  <br>\n           {  <br>\n             name: '=',  <br>\n             label: '='  <br>\n           }  <br>\n         ],  <br>\n         bindProps: { // 通过 bindProps 参数可对某一类组件进行参数控制  <br>\n           input:{  <br>\n             clearable:true  <br>\n           },  <br>\n           select:{  <br>\n             filterable:true  <br>\n           }  <br>\n         },  <br>\n         defaultValue: false, //defaultOperator：运算符的默认缺省选择  <br>\n         validator: (r) => !!r.value //validator：校验规则（该功能点还在迭代开发中……）  <br>\n         inputType: 'number', //值域的数值类型  <br>\n         valueEditorType: 'radio' //值域编辑器的类型  <br>\n         defaultValue: false, //值域的默认值  <br>\n         values: [ //值域的可选域配置（下拉）  <br>\n           {  <br>\n              label: 'Percussion instruments',  <br>\n              options: [  <br>\n               {  <br>\n                    name: 'Clapstick',  <br>\n                    label: 'Clapstick'  <br>\n               }  <br>\n             ]  <br>\n           }  <br>\n         ],  <br>\n         values: [ //值域的可选域配置（单选）  <br>\n           {  <br>\n              name: 'M',  <br>\n              label: 'Male'  <br>\n           },  <br>\n           {  <br>\n              name: 'F',  <br>\n              label: 'Female'  <br>\n           },  <br>\n           {  <br>\n              name: 'O',  <br>\n              label: 'Other'  <br>\n           }  <br>\n         ],  <br>\n         valueSources: ['field', 'value'], //值域类型可选择  <br>\n         comparator: 'groupNumber', //分组时的比较器  <br>\n         groupNumber: 'group1', //分组的组别  <br>\n       },  <br>\n       // 组合子数组配置，label 为展示字符，name 为数据值  <br>\n       combinators: [  <br>\n         {  <br>\n           name: 'and',  <br>\n           label: '且'  <br>\n         },  <br>\n         {  <br>\n           name: 'or',  <br>\n           label: '或'  <br>\n         }  <br>\n       ]  <br>\n       </code></pre>  <br>\n       ",
         'en-US': ''
       },
       codeFiles: ['basic-usage.vue']
@@ -47,7 +47,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '添加 max-height 属性设置组件最大高度，超出内容显示滚动条，属性值支持 数值 和 数值+单位，如 500、500px、50rem 等。',
+          '添加 max-height 属性设置组件最大高度，超出内容显示滚动条，属性值支持 数值 和 数值 + 单位，如 500、500px、50rem 等。',
         'en-US': ' '
       },
       codeFiles: ['max-height.vue']
@@ -64,6 +64,19 @@ export default {
         'en-US': ' '
       },
       codeFiles: ['sub-component-param.vue']
+    },
+    {
+      demoId: 'advanced-mode',
+      name: {
+        'zh-CN': '高级模式',
+        'en-US': 'Advanced Mode'
+      },
+      desc: {
+        'zh-CN':
+          '高级模式，用法详见示例:<br> \n 自定义组件必须实现:<strong> value</strong>属性和<strong>change</strong>事件，<br> \n <strong>自定义组件的其他额外属性：</strong><br> \n data-id: string，数据 ID <br> \n operator: string, 操作符<br> \n filed-name: string, 字段名 <br> \n path: Array<number> 字段在 queryBuilder 中的父子路径，<br> \n key: to| from',
+        'en-US': ' '
+      },
+      codeFiles: ['advanced-mode.vue']
     }
   ]
 }

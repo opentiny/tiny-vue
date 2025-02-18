@@ -1,5 +1,7 @@
 import * as vue from 'virtual:locale/vue'
 import glob from './glob'
+import esLA from './lang/es-LA'
+import ptBR from './lang/pt-BR'
 
 export { version } from '../package.json'
 
@@ -11,5 +13,7 @@ const locale = /* @__PURE__ */ Object.assign({}, vue.default, {
   language,
   globalization
 })
+
+export { esLA, ptBR }
 
 export default locale

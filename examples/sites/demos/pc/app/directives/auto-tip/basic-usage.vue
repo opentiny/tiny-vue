@@ -1,5 +1,5 @@
 <template>
-  <div class="auto-tip" v-auto-tip>超出省略隐藏，鼠标移入是会有ToolTip提示</div>
+  <div class="auto-tip" v-auto-tip>超出省略隐藏，鼠标移入是会有 ToolTip 提示</div>
 </template>
 
 <script>

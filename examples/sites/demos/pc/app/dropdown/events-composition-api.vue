@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="demo-dropdown">场景1：按钮类型 + 循环 tiny-dropdown-item</p>
+    <p class="demo-dropdown">场景 1：按钮类型 + 循环 tiny-dropdown-item</p>
 
     <tiny-dropdown split-button @item-click="itemClick" @button-click="buttonClick" @visible-change="visibleChange">
       <template #dropdown>
@@ -18,7 +18,7 @@
       </template>
     </tiny-dropdown>
     <br /><br />
-    <p class="demo-dropdown">场景2：配置式</p>
+    <p class="demo-dropdown">场景 2：配置式</p>
     <tiny-dropdown class="options-event" @item-click="itemClick" @visible-change="visibleChange">
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
@@ -53,13 +53,13 @@ const options = [
 ]
 
 const itemClick = (data, vm) => {
-  // Aurora主题 item-click 有第二个参数，其他主题只有第一个参数
+  // Aurora 主题 item-click 有第二个参数，其他主题只有第一个参数
   const label = vm?.label || data.vm.label
 
   TinyNotify({
     type: 'info',
     title: 'itemClick 回调事件',
-    message: `使用 dropdown-item 的label属性：${label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
+    message: `使用 dropdown-item 的 label 属性：${label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
     position: 'top-right',
     duration: 2000
   })

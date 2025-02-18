@@ -1,5 +1,5 @@
 <template>
-  <p>场景1：下拉树单选</p>
+  <p>场景 1：下拉树单选</p>
   <tiny-base-select v-model="value">
     <template #panel="{ methods: { updateSelectedData, hidePanel } }">
       <tiny-tree
@@ -24,7 +24,7 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
-  <p>场景2：下拉树多选</p>
+  <p>场景 2：下拉树多选</p>
   <tiny-base-select v-model="value2" multiple>
     <template #panel="{ methods: { updateSelectedData } }">
       <tiny-tree
@@ -50,7 +50,7 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
-  <p>场景3：下拉树可搜索</p>
+  <p>场景 3：下拉树可搜索</p>
   <tiny-base-select v-model="value3" filterable clearable :filter-method="filterMethod">
     <template #panel="{ methods: { updateSelectedData, hidePanel } }">
       <tiny-tree

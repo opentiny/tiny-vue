@@ -24,7 +24,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          通过 <code>headerHeight</code> 控制 header（头部区域）的高度。<br>\n          通过 <code>footerHeight</code> 控制 footer（底部区域）的高度。<br>\n          通过 <code>asideWidth</code> 控制 aside（左侧区域）的宽度。<br>\n          而 main（主体区域） 的宽度和高度是自适应的。\n        ',
+          '\n          通过 <code>headerHeight</code> 控制 header（头部区域）的高度。<br>\n          通过 <code>footerHeight</code> 控制 footer（底部区域）的高度。<br>\n          通过 <code>asideWidth</code> 控制 aside（左侧区域）的宽度。<br>\n          而 main（主体区域）的宽度和高度是自适应的。\n        ',
         'en-US':
           '\n          The header (header area) height is controlled by <code>headerHeight</code>. <br>\n          Control the height of footer (bottom area) by <code>footerHeight</code>. <br>\n          Control the aside(left area) width using <code>asideWidth</code>. <br>\n          The width and height of <code>main </code> are adaptive.\n        '
       },

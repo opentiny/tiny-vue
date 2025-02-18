@@ -10,15 +10,15 @@
  *
  */
 
-import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
-import { KEY_CODE } from '../common'
-import TreeStore from '../common/deps/tree-model/tree-store'
-import { addClass, removeClass } from '../common/deps/dom'
-import { on, off } from '../common/deps/dom'
-import { getDataset } from '../common/dataset'
-import { copyArray } from '../common/object'
+import { getNodeKey as innerGetNodekey } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/utils'
+import { TreeStore } from '@opentiny/utils'
+import { addClass, removeClass } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { copyArray } from '@opentiny/utils'
 
-import { log } from '../common'
+import { logger } from '@opentiny/utils'
 
 export const setChildren = (props) => (data) => (props.data = data)
 
@@ -823,7 +823,7 @@ export const addNode =
     }
 
     if (state.allNodeKeys.includes(nodeId) && !props.editConfig.noWarning) {
-      log.logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
+      logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
     }
 
     state.allNodeKeys.push(nodeId)

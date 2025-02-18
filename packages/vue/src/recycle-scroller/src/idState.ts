@@ -1,5 +1,5 @@
 import { hooks } from '@opentiny/vue-common'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isNull } from '@opentiny/utils'
 
 const { reactive } = hooks
 

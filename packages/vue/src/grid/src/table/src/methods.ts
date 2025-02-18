@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -23,11 +24,11 @@
  *
  */
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
-import { toDecimal } from '@opentiny/vue-renderless/common/string'
-import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
+import { toDecimal } from '@opentiny/utils'
+import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 import {
   isNumber,
   filterTree,
@@ -340,7 +341,7 @@ const Methods = {
     return new Promise((resolve) => {
       this.loadTableData(datas)
       resolve()
-    }).then(this.recalculate)
+    })
   },
   reloadRow(row, record, field) {
     let { tableData, tableSourceData } = this
@@ -563,8 +564,8 @@ const Methods = {
     return result
   },
   hasRowChange(row, field) {
-    const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig = {} } = this
-    const { insertChanged = false } = editConfig
+    const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig } = this
+    const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     const rowId = getRowid(this, row)
     let originRow
@@ -1627,14 +1628,10 @@ const Methods = {
   },
   // 处理x轴方向虚拟滚动列数据加载
   updateScrollXData() {
-    let { scrollXLoad, scrollXStore, tableColumn, treeConfig, visibleColumn, visibleColumnChanged, columnStore } = this
-    let { lastStartIndex = -1, renderSize, startIndex } = scrollXStore
-    let args = { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn, columnStore }
-
-    Object.assign(args, { treeConfig, visibleColumn, visibleColumnChanged })
+    let { scrollXStore } = this
 
     // 获取需要渲染的列数和最后一次渲染列的index值
-    let ret = sliceVisibleColumn(args)
+    let ret = sliceVisibleColumn(this)
 
     if (ret.sliced) {
       // 更新DOM样式保证表格滚动时的对齐，初始化表格时也需要计算x轴方向滚动条占位符的尺寸
@@ -1648,8 +1645,10 @@ const Methods = {
       // 设置新的渲染列触发Vue渲染
       this.tableColumn = ret.tableColumn
       this.visibleColumnChanged = ret.visibleColumnChanged
-
-      this.$nextTick(this.updateStyle)
+      this.$nextTick(() => {
+        this.updateFooter()
+        this.updateStyle()
+      })
     })
   },
   // 更新横向 X 可视渲染上下剩余空间大小
@@ -2076,6 +2075,7 @@ const Methods = {
         lastScrollLeft = Math.min(lastScrollLeft, maxScrollLeft)
 
         fastdom.mutate(() => {
+          this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
 
           scrollXLoad && this.triggerScrollXEvent()

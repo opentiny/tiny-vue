@@ -23,7 +23,7 @@ const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/moun
 
 function setAspectRatio(aspectRatio) {
   Modal.message({
-    message: `宽高比数据: ${JSON.stringify(aspectRatio)}`,
+    message: `宽高比数据：${JSON.stringify(aspectRatio)}`,
     status: 'info'
   })
 }

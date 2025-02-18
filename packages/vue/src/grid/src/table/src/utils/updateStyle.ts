@@ -44,6 +44,7 @@ function getTableWidth({ scrollXLoad, tWidth, tableColumn }) {
 }
 
 function layoutFooter({
+  elemStore,
   customHeight,
   footerHeight,
   headerHeight,
@@ -61,6 +62,11 @@ function layoutFooter({
   let tWidth = tableWidth
   // 如果是固定列与设置了超出隐藏
   let ret = getTableWidth({ scrollXLoad, tWidth, tableColumn })
+  // 为表尾设置虚拟滚动占位宽度
+  const spaceElem = elemStore['main-footer-x-space']
+  if (spaceElem) {
+    spaceElem.style.width = `${tableWidth}px`
+  }
 
   tableColumn = ret.tableColumn
   tWidth = ret.tWidth
@@ -242,6 +248,7 @@ export function handleLayout(params) {
     tableColumn = ret.tableColumn
   } else if (layout === 'footer') {
     tableColumn = layoutFooter({
+      elemStore,
       customHeight,
       fixedWrapperElem,
       footerHeight,

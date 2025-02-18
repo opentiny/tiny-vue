@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试tooltip主题', async ({ page }) => {
+test('测试 tooltip 主题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tooltip#theme')
   await page.waitForTimeout(20)

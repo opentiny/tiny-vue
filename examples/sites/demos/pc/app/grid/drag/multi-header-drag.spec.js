@@ -7,7 +7,7 @@ test('多级表头拖拽', async ({ page }) => {
     width: 2000,
     height: 1000
   })
-  const draggerDom = page.getByRole('cell', { name: '创建日期1' })
+  const draggerDom = page.getByRole('cell', { name: '创建日期 1' })
   // 获取拖拽元素位置
   const { x, y } = await draggerDom.boundingBox()
   // 验证不可拖拽
@@ -20,7 +20,7 @@ test('多级表头拖拽', async ({ page }) => {
   await page.mouse.up()
   await page.waitForTimeout(200)
   await expect(page.locator('.tiny-grid-header__row').nth(1).locator('.tiny-grid-header__column').nth(3)).toContainText(
-    '创建日期1'
+    '创建日期 1'
   )
 
   // 获取拖拽元素位置
@@ -35,6 +35,6 @@ test('多级表头拖拽', async ({ page }) => {
   await page.mouse.up()
   await page.waitForTimeout(200)
   await expect(page.locator('.tiny-grid-header__row').nth(1).locator('.tiny-grid-header__column').nth(2)).toContainText(
-    '创建日期1'
+    '创建日期 1'
   )
 })

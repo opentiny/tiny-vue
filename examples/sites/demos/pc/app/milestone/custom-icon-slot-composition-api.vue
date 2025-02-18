@@ -24,38 +24,38 @@ const statusMap = ref({
 // 数据源
 const milestoneData = ref([
   {
-    name: '自定义数据1',
+    name: '自定义数据 1',
     time: '2018-9-7',
     status: 'completed',
     icon: iconShare()
   },
   {
-    name: '自定义数据2',
+    name: '自定义数据 2',
     time: '2018-9-8',
     status: 'completed',
     icon: iconYes()
   },
   {
-    name: '自定义数据3',
+    name: '自定义数据 3',
     time: '2018-9-10',
     status: 'doing',
     content: null,
     icon: iconDel()
   },
   {
-    name: '自定义数据4',
+    name: '自定义数据 4',
     time: '2018-9-9',
     status: 'cancel',
     icon: iconWriting()
   },
   {
-    name: '自定义数据5',
+    name: '自定义数据 5',
     time: '2018-9-11',
     status: 'back',
     icon: iconAscending()
   },
   {
-    name: '自定义数据6',
+    name: '自定义数据 6',
     time: '2018-9-9',
     status: 'end',
     icon: iconShare()

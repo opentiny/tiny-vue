@@ -40,7 +40,7 @@ export default {
       'demoId': 'row-grouping-colspan',
       'name': { 'zh-CN': '分组行的列合并', 'en-US': 'Group grid colspan' },
       'desc': {
-        'zh-CN': `<p>3.17版本新增：配置 <code>rowGroup.colspan</code> 可以自定义分组行的列合并数量。列合并从 <code>rowGroup.field</code> 所指定的列开始合并。<br />
+        'zh-CN': `<p>3.17 版本新增：配置 <code>rowGroup.colspan</code> 可以自定义分组行的列合并数量。列合并从 <code>rowGroup.field</code> 所指定的列开始合并。<br />
         如果 <code>rowGroup.field</code> 所指定的列不存在或不可见，就从第一个指定了 <code>field</code> 属性的列开始合并，同时 <code>rowGroup.render</code> 指定的是此列的自定义渲染。</p>`,
         'en-US': ''
       },

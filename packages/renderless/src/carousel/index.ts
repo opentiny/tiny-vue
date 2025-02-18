@@ -1,7 +1,7 @@
-import throttle from '../common/deps/throttle'
-import { getDirection } from '../common/deps/touch'
-import { POSITION } from '../common'
-import emulate from '../common/deps/touch-emulator'
+import { throttle } from '@opentiny/utils'
+import { getDirection } from '@opentiny/utils'
+import { POSITION } from '@opentiny/utils'
+import { emulate } from '@opentiny/utils'
 
 // 鼠标进入幻灯片事件
 export const handleMouseEnter =

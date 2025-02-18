@@ -54,7 +54,8 @@ export default defineComponent({
     },
     popperClass: String,
     prevText: String,
-    total: Number
+    total: Number,
+    changeCompat: Boolean
   },
   data() {
     return {

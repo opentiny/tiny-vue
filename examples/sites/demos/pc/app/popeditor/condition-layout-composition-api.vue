@@ -79,7 +79,7 @@ function remoteSearch({ page }) {
   const data = Array.from({ length: page.pageSize }).map((item, i) => {
     return {
       id: pageSize * (currentPage - 1) + i + 1,
-      name: randomAlphabets() + 'YX公司',
+      name: randomAlphabets() + 'YX 公司',
       city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
       employees: Math.ceil(Math.random() * 10000)
     }

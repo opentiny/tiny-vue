@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('gutter栅格间隔', async ({ page }) => {
+test('gutter 栅格间隔', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('layout#gutter')
   const preview = page.locator('.pc-demo-container')

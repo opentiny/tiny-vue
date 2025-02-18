@@ -1,4 +1,4 @@
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
 
 const isArr = Array.isArray
 const some = (arr, predicate) => arr.some(predicate)

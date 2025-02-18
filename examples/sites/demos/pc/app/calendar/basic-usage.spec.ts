@@ -11,10 +11,10 @@ test('基本用法', async ({ page }) => {
   // 校验日期，查看页面显示是否是月
   await pcDemo.getByRole('listitem').filter({ hasText: '月' }).nth(2).click()
   await expect(pcDemo.locator('.tiny-calendar > div').last()).toHaveClass(/month/)
-  // 校验日期选择，选中的样式有selected
+  // 校验日期选择，选中的样式有 selected
   await selectedDay.click()
   await expect(selectedDay).toHaveClass(/selected/)
-  // 校验今天按钮，选中的样式有selected today
+  // 校验今天按钮，选中的样式有 selected today
   await pcDemo.getByRole('button', { name: '今天' }).click()
   await expect(today).toHaveClass(/selected/)
 

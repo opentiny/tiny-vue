@@ -30,6 +30,38 @@ export default defineComponent({
     timeEditable: {
       type: Boolean,
       default: true
+    },
+    type: {
+      type: String,
+      default: 'daterange'
+    },
+    modelValue: {
+      type: Array,
+      default: () => []
+    },
+    format: {
+      type: String,
+      default: ''
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    shortcuts: {
+      type: Array,
+      default: () => []
+    },
+    disabledDate: {
+      type: Function,
+      default: null
+    },
+    popperClass: {
+      type: String,
+      default: ''
+    },
+    unlinkPanels: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

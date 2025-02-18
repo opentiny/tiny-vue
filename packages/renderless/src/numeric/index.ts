@@ -18,12 +18,11 @@ import type {
   INumericGetEmitValueParams,
   INumericUnitPrecision
 } from '@/types'
-import type { BigIntDecimal } from '../common/bigInt'
-import { formatNumber, roundFixed } from '../common/decimal'
-import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
-import { isNumber, isNull } from '../common/type'
-import { MOUSEDELTA } from '../common'
-import { on, off } from '../common/deps/dom'
+import { formatNumber, roundFixed } from '@opentiny/utils'
+import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/utils'
+import { isNumber, isNull } from '@opentiny/utils'
+import { MOUSEDELTA } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
 
 export const initService = (
   service: INumericRenderlessParamUtils['service']
@@ -40,10 +39,7 @@ export const initService = (
   }
 }
 
-export const getDecimal =
-  (props: INumericProps) =>
-  (value: number): BigIntDecimal =>
-    getMiniDecimal(value, props.plugin)
+export const getDecimal = (props: INumericProps) => (value: number) => getMiniDecimal(value, props.plugin)
 
 export const watchValue =
   ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
@@ -264,7 +260,7 @@ export const setCurrentValue =
     props,
     state
   }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
-  (newVal: number, emitChangeFlag: boolean = true): void => {
+  (newVal: number, emitChangeFlag = true): void => {
     const { max, min, allowEmpty, validateEvent, stringMode, plugin, emptyValue } = props
     const { format } = state
     const oldVal = state.currentValue

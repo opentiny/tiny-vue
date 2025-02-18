@@ -17,7 +17,7 @@ export default {
       'name': { 'zh-CN': '单选配置项', 'en-US': 'Disable a single option' },
       'desc': {
         'zh-CN':
-          '<p> <code>radio-config</code> 配置项,可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
+          '<p> <code>radio-config</code> 配置项，可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
         'en-US':
           '<p>Single choice mode. The attribute <code>checkMethod</code> of the <code>radio-config</code> configuration item is used to determine which data items are disabled. The method determines each data item. If the return value is <code>true</code> or <code>false</code>, the data item is enabled or disabled. </p>\n'
       },

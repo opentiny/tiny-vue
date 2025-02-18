@@ -1,4 +1,4 @@
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
 import type { IStepsRenderlessParams, IStepsVisibleConfig, IStepsNodePosConfig } from '@/types'
 
 export const updateStartIndex =

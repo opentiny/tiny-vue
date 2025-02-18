@@ -26,7 +26,7 @@ test('折叠标签 collapse-tags', async ({ page }) => {
   await expect(tag.filter({ hasText: '+ 1' })).toBeHidden()
   await expect(tag).toHaveCount(1)
 
-  // 再选中2个
+  // 再选中 2 个
   await page.getByRole('treeitem', { name: '三级 1-1-1' }).locator('path').nth(1).click()
   await page.getByRole('treeitem', { name: '三级 1-1-2' }).locator('path').nth(1).click()
   await expect(tag.filter({ hasText: '+ 4' })).toBeVisible()

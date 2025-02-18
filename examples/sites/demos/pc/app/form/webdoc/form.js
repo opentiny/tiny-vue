@@ -51,7 +51,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>当 <code>label-position</code> 为 <code>left</code> 时， 通过 <code>label-align</code> 设置必填星号出现时标签文本是否对齐。</p>',
+          '<p>当 <code>label-position</code> 为 <code>left</code> 时，通过 <code>label-align</code> 设置必填星号出现时标签文本是否对齐。</p>',
         'en-US':
           '<p>When <code>label-position</code> is <code>left</code> , Set whether the label text is aligned when a mandatory asterisk appears by<code>label align</code>.</p>'
       },
@@ -195,7 +195,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件（ <code>input</code> 、<code>select</code> 等）设置的 <code>size</code> 。</p>',
+          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的 size 优先级高于数据录入组件（ <code>input</code> 、<code>select</code> 等）设置的 <code>size</code> 。</p>',
         'en-US':
           '<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code> . If this parameter is not transferred, the verification result of the entire form is removed. </p>'
       },

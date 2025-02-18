@@ -1,14 +1,14 @@
 <template>
   <div class="tiny-tag-demo">
     <div class="mb5">color 预设值：</div>
-    <tiny-tag color="red">red标签</tiny-tag>
-    <tiny-tag color="orange">orange标签</tiny-tag>
-    <tiny-tag color="green">green标签</tiny-tag>
-    <tiny-tag color="blue">blue标签</tiny-tag>
-    <tiny-tag color="purple">purple标签</tiny-tag>
-    <tiny-tag color="brown">brown标签</tiny-tag>
-    <tiny-tag color="grey">grey标签</tiny-tag>
-    <tiny-tag color="gold">gold标签</tiny-tag>
+    <tiny-tag color="red">red 标签</tiny-tag>
+    <tiny-tag color="orange">orange 标签</tiny-tag>
+    <tiny-tag color="green">green 标签</tiny-tag>
+    <tiny-tag color="blue">blue 标签</tiny-tag>
+    <tiny-tag color="purple">purple 标签</tiny-tag>
+    <tiny-tag color="brown">brown 标签</tiny-tag>
+    <tiny-tag color="grey">grey 标签</tiny-tag>
+    <tiny-tag color="gold">gold 标签</tiny-tag>
     <div class="mb5">自定义背景：</div>
     <tiny-tag color="rgba(82,196,26,0.8)">自定义背景色</tiny-tag>
     <div class="mb5">自定义背景和文本色：</div>

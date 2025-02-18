@@ -26,8 +26,8 @@ import { useBreakpoint } from './breakpoint'
 import { useDefer } from './usedefer'
 import { GRADIENT_ICONS_LIST, generateIcon } from './generateIcon'
 
-import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
-import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
+import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-hooks'
+import { useRelation as createUseRelation } from '@opentiny/vue-hooks'
 
 export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
 export const useRelation = createUseRelation({ ...hooks, isVue2 })
@@ -176,7 +176,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
   let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
   // globalDesignConfig 可能是响应式对象，比如 computed
-  globalDesignConfig = globalDesignConfig.value || globalDesignConfig
+  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
   const utils = {

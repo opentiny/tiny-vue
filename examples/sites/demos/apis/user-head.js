@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'user-head',
@@ -18,17 +18,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'backgroundColor',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置背景色</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'custom-background-color'
-        },
-        {
           name: 'color',
           type: 'string',
           defaultValue: "'#ffffff'",
@@ -36,9 +25,8 @@ export default {
             'zh-CN': '文字颜色',
             'en-US': 'Text color'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'color',
-          mobileDemo: 'color',
           mfDemo: ''
         },
         {
@@ -78,39 +66,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'messageTotal',
-          type: 'number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>右上角消息计数</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'message-count-limit'
-        },
-        {
-          name: 'messageType',
-          type: 'string',
-          defaultValue: 'details',
-          desc: {
-            'zh-CN': '<p>右上角消息提醒类型，basic显示小圆点不显示消息数量</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'message-count-type'
-        },
-        {
-          name: 'messageUpperLimit',
-          type: 'number',
-          defaultValue: '0',
-          desc: {
-            'zh-CN': '<p>右上角消息显示上限</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'message-count-limit'
-        },
-        {
           name: 'min',
           type: 'boolean',
           defaultValue: 'false',
@@ -118,9 +73,8 @@ export default {
             'zh-CN': '小尺寸模式',
             'en-US': 'Small size mode'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'min-user-head',
-          mobileDemo: 'min-user-head',
           mfDemo: ''
         },
         {
@@ -142,9 +96,8 @@ export default {
             'zh-CN': '圆形模式',
             'en-US': 'Circular mode'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'round-user-head',
-          mobileDemo: 'round-user-head',
           mfDemo: ''
         },
         {
@@ -155,8 +108,7 @@ export default {
             'zh-CN': '<p>设置头像尺寸</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'basic-usage',
+          mode: ['mobile-first'],
           mfDemo: ''
         },
         {
@@ -168,9 +120,8 @@ export default {
             'en-US':
               'Avatar type. The options are icon, image, and label. ;The value of this attribute can be icon / image / label'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'image-user-head',
-          mobileDemo: 'basic-usage',
           mfDemo: ''
         },
         {
@@ -187,19 +138,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'v-model/modelValue',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
-        },
-        {
           name: 'value',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': 'type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径',
@@ -220,9 +160,8 @@ export default {
             'zh-CN': '自定义图像内容',
             'en-US': 'Customized image content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-user-head-content',
-          mobileDemo: 'round-user-head',
           mfDemo: ''
         }
       ]

@@ -11,7 +11,7 @@ import { ref } from 'vue'
 import { TinyTooltip } from '@opentiny/vue'
 
 const options = ref({
-  bubbling: true, // 监听元素所有上级有滚动元素的scroll事件,防止弹出层与页面分离
-  removeOnDestroy: true // 弹出层消失后，自动从页面上移除相应的DOM元素
+  bubbling: true, // 监听元素所有上级有滚动元素的 scroll 事件，防止弹出层与页面分离
+  removeOnDestroy: true // 弹出层消失后，自动从页面上移除相应的 DOM 元素
 })
 </script>

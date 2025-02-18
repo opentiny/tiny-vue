@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 export const showList = (state) => () => (state.showPopover = true)
 

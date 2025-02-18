@@ -63,8 +63,8 @@ import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import FloatSettings from '@/views/components/float-settings.vue'
-import VersionTip from '../components/VersionTip.vue'
+import FloatSettings from '@/views/components-doc/components/float-settings.vue'
+import VersionTip from '@/views/components-doc/components/version-tip.vue'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -261,9 +261,15 @@ export default defineComponent({
       .tiny-tree-node__content:hover {
         border-radius: 20px;
       }
+
       .tiny-tree-node__content {
         height: 40px;
         line-height: 40px;
+
+        .tiny-tree-node__content-left {
+          padding-left: 16px;
+        }
+
         &::before {
           display: none;
         }
@@ -301,8 +307,8 @@ export default defineComponent({
   }
   .absolute-tag {
     position: absolute;
-    right: 4px;
-    top: 18px;
+    right: 8px;
+    top: 13px;
   }
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -312,7 +318,7 @@ export default defineComponent({
     line-height: 1.5;
 
     .node-name-container {
-      color: #191919;
+      color: var(--tv-color-text-control);
       display: flex;
       align-items: center;
       flex-wrap: nowrap;
@@ -330,6 +336,7 @@ export default defineComponent({
         width: 12px;
         height: 12px;
         display: inline-block;
+        fill: var(--tv-color-icon-control);
       }
     }
   }
@@ -382,7 +389,7 @@ export default defineComponent({
     & > .tiny-svg {
       font-size: 18px;
       margin-left: 8px;
-      fill: #191919;
+      fill: var(--tv-color-text-control);
     }
   }
 }

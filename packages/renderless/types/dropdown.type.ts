@@ -20,7 +20,7 @@ export interface IDropdownState {
   visible: boolean
   timeout: null | NodeJS.Timeout
   focusing: false
-  menuItems: NodeListOf<HTMLElement> | undefined | null
+  menuItems: NodeListOf<HTMLElement> | undefined | null | []
   menuItemsArray: HTMLElement[] | null
   triggerElm: HTMLElement | null
   dropdownElm: HTMLElement | null
@@ -28,6 +28,8 @@ export interface IDropdownState {
   showIcon: boolean
   showSelfIcon: boolean
   designConfig: IDropdownRenderlessParamUtils['designConfig']
+  trigger: 'click' | 'hover'
+  visibleIsBoolean: boolean
 }
 
 export interface IDropdownApi {
@@ -50,6 +52,8 @@ export interface IDropdownApi {
   initDomOperation: () => void
   beforeDistory: () => void
   clickOutside: () => void
+  toggleFocusOnTrue: () => void
+  toggleFocusOnFalse: () => void
 }
 
 export type IDropdownRenderlessParams = ISharedRenderlessFunctionParams<null> & {

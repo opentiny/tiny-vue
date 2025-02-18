@@ -1,5 +1,5 @@
-import { random } from '../common/string'
-import { isNull } from '../common/type'
+import { random } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
 
 function cellName() {
   return random().toString(36).slice(2)

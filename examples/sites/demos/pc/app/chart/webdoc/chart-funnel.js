@@ -37,25 +37,25 @@ export default {
     },
     {
       'demoId': 'funnel-demo6',
-      'name': { 'zh-CN': '自定义legend', 'en-US': 'Customized Legend' },
+      'name': { 'zh-CN': '自定义 legend', 'en-US': 'Customized Legend' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['funnel/demo6.vue']
     },
     {
       'demoId': 'funnel-demo7',
-      'name': { 'zh-CN': '自定义tooltip', 'en-US': 'Customized tooltip' },
+      'name': { 'zh-CN': '自定义 tooltip', 'en-US': 'Customized tooltip' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['funnel/demo7.vue']
     },
     {
       'demoId': 'funnel-demo7',
-      'name': { 'zh-CN': '自定义tooltip', 'en-US': 'Customized tooltip' },
+      'name': { 'zh-CN': '自定义 tooltip', 'en-US': 'Customized tooltip' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['funnel/demo7.vue']
     },
     {
       'demoId': 'funnel-demo7',
-      'name': { 'zh-CN': '自定义tooltip', 'en-US': 'Customized tooltip' },
+      'name': { 'zh-CN': '自定义 tooltip', 'en-US': 'Customized tooltip' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['funnel/demo7.vue']
     }
@@ -68,10 +68,10 @@ export default {
       code: `
 interface IChartSettings {
   ascending: boolean // 是否显示为金字塔，默认为 false 
-  dataType: string // 数据类型，可选值: KMB , normal , percent 
-  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  dataType: string // 数据类型，可选值：KMB , normal , percent 
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为 2
   dimension: string // 维度，默认 columns 第一项为维度
-  filterZero: boolean // 是否过滤指标为0的数据，默认为 false 
+  filterZero: boolean // 是否过滤指标为 0 的数据，默认为 false 
   itemStyle: object // 设置图形样式
   label: object // 设置文本标签样式
   labelLine: object // 设置标签的视觉引导线样式

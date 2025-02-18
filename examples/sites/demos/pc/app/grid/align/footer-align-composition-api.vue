@@ -16,56 +16,56 @@ import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     wages: 6300,
     employees: 800,
     age: 35
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     wages: 8600,
     employees: 300,
     age: 30
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     wages: 4800,
     employees: 1300,
     age: 43
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB 科技 YX 公司',
     wages: 6500,
     employees: 360,
     age: 26
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     wages: 7100,
     employees: 810,
     age: 36
   },
   {
     id: '6',
-    name: 'WSX科技YX公司',
+    name: 'WSX 科技 YX 公司',
     wages: 5800,
     employees: 800,
     age: 29
   },
   {
     id: '7',
-    name: 'KBG物业YX公司',
+    name: 'KBG 物业 YX 公司',
     wages: 8800,
     employees: 400,
     age: 44
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术YX公司',
+    name: '深圳市福德宝网络技术 YX 公司',
     wages: 9100,
     employees: 540,
     age: 25

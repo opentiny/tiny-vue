@@ -1,7 +1,12 @@
 <template>
   <div>
     <div v-if="state.current !== 'default'">
-      <transition :name="state.animationName" @after-enter="afterEnter" @after-leave="afterLeave">
+      <transition
+        :duration="noAnimation ? 0 : undefined"
+        :name="state.animationName"
+        @after-enter="afterEnter"
+        @after-leave="afterLeave"
+      >
         <div
           v-show="visible"
           :class="['fixed inset-0 m-0 flex items-center', dialogClass]"
@@ -26,7 +31,7 @@
             <div
               v-if="showHeader"
               data-tag="tiny-dialog-box__header"
-              class="px-6 py-4 h-12 leading-4 bg-color-bg-1 flex justify-between items-center border-b border-b-color-bg-3"
+              class="px-6 py-4 leading-5.5 bg-color-bg-1 flex justify-between items-center border-b border-b-color-bg-3"
               @mousedown="handleDrag"
             >
               <slot name="title">
@@ -171,7 +176,9 @@ export default defineComponent({
     'destroyOnClose',
     'dialogClass',
     'beforeClose',
-    'maxHeight'
+    'maxHeight',
+    'customStyle',
+    'noAnimation'
   ],
   model: {
     prop: 'visible',

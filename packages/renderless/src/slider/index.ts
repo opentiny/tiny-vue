@@ -10,10 +10,10 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { emitEvent } from '../common/event'
-import { on, off, hasClass } from '../common/deps/dom'
-import { toNumber } from '../common/string'
+import { KEY_CODE } from '@opentiny/utils'
+import { emitEvent } from '@opentiny/utils'
+import { on, off, hasClass } from '@opentiny/utils'
+import { toNumber } from '@opentiny/utils'
 import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
 
 export const bindEvent = (api: ISliderApi) => () => {

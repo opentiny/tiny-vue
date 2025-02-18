@@ -4,7 +4,7 @@ import type {
   IPopconfirmRenderlessParamUtils,
   ISharedRenderlessParamHooks
 } from '@/types'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 import { show, hide, confirm, handleEmit, handleDocumentClick } from './index'
 
 export const api = ['state', 'show', 'hide', 'confirm', 'handleEmit']

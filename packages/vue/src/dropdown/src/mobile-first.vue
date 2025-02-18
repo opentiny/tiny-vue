@@ -3,7 +3,7 @@ import { renderless, api } from '@opentiny/vue-renderless/dropdown/vue'
 import { setup, $prefix, directive, h, $props, defineComponent } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { IconChevronDown, IconChevronUp, IconArrowBottom } from '@opentiny/vue-icon'
 
 export default defineComponent({
@@ -160,8 +160,8 @@ export default defineComponent({
             type === 'primary'
               ? '[&_svg]:fill-color-bg-1'
               : state.visible
-                ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
-                : '[&_svg]:fill-color-icon-placeholder'
+              ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
+              : '[&_svg]:fill-color-icon-placeholder'
           ]}
           reset-time={0}>
           {defaultSlot}

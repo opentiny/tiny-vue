@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false 。',
+          '通过 <code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
         'en-US':
           'Set the component size through<code>media</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
       },
@@ -65,7 +65,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>dialog-title</code> 设置弹框的标题，<code>cancel-button-text</code> 设置取消按钮的文本, \n          <code>submit-button-text</code> 设置提交按钮的文本， <code>upload-button-text</code> 设置上传按钮的文本。',
+          '通过 <code>dialog-title</code> 设置弹框的标题，<code>cancel-button-text</code> 设置取消按钮的文本，\n          <code>submit-button-text</code> 设置提交按钮的文本， <code>upload-button-text</code> 设置上传按钮的文本。',
         'en-US':
           'Set the title of the pop-up box through<code>dialog-title</code>, and set the text of the cancel button through<code>cancel-button-text</code>,\n          <code>submit-button-text</code>Set the text for the submit button,<code>upload-button-text</code>Set the text for the upload button.'
       },

@@ -1,6 +1,6 @@
 <template>
   <div class="demo-select">
-    <div>场景1：下拉表格远程搜索初始化查询（单选）</div>
+    <div>场景 1：下拉表格远程搜索初始化查询（单选）</div>
     <br />
     <tiny-select
       ref="select"
@@ -20,7 +20,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景2：下拉表格远程搜索初始化查询（多选）</div>
+    <div>场景 2：下拉表格远程搜索初始化查询（多选）</div>
     <br />
     <tiny-select
       ref="select"

@@ -61,7 +61,8 @@ export default defineComponent({
       default: 'medium'
     },
     noArrow: Boolean,
-    flex: Boolean
+    flex: Boolean,
+    contentCenter: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

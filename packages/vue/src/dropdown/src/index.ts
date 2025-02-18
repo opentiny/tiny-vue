@@ -4,6 +4,11 @@ import template from 'virtual-template?pc|mobile-first'
 export const dropdownProps = {
   ...$props,
   modelValue: [String, Number],
+  // tiny新增
+  visible: {
+    type: [Boolean, undefined],
+    default: undefined
+  },
   type: String,
   trigger: String, // 默认主题为 'hover'
   size: {

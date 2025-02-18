@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="position: relative">
-      <p>颜色值: {{ color }}</p>
+      <p>颜色值：{{ color }}</p>
       <tiny-color-picker
         v-model="color"
         :visible="visible"

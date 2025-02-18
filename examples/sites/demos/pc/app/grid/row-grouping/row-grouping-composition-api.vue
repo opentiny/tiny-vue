@@ -19,7 +19,7 @@ import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 const data = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     area: '华东区',
     province: '福建省',
     city: '福州',
@@ -27,7 +27,7 @@ const data = ref([
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     area: '华南区',
     province: '广东省',
     city: '深圳',
@@ -35,7 +35,7 @@ const data = ref([
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     area: '华南区',
     province: '广东省',
     city: '中山',
@@ -43,7 +43,7 @@ const data = ref([
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB 科技 YX 公司',
     area: '华东区',
     province: '福建省',
     city: '龙岩',
@@ -51,7 +51,7 @@ const data = ref([
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     area: '华南区',
     province: '广东省',
     city: '韶关',
@@ -59,7 +59,7 @@ const data = ref([
   },
   {
     id: '6',
-    name: 'WSX科技YX公司',
+    name: 'WSX 科技 YX 公司',
     area: '华中区',
     province: '湖北省',
     city: '黄冈',
@@ -67,7 +67,7 @@ const data = ref([
   },
   {
     id: '7',
-    name: 'KBG物业YX公司',
+    name: 'KBG 物业 YX 公司',
     area: '华中区',
     province: '湖北省',
     city: '赤壁',
@@ -75,7 +75,7 @@ const data = ref([
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术YX公司',
+    name: '深圳市福德宝网络技术 YX 公司',
     address: '厦门岛内',
     area: '华东区',
     city: '厦门',
@@ -83,7 +83,7 @@ const data = ref([
   },
   {
     id: '9',
-    name: 'UJM有限责任公司',
+    name: 'UJM 有限责任公司',
     area: '华南区',
     province: '广西省',
     city: '南宁',
@@ -91,7 +91,7 @@ const data = ref([
   },
   {
     id: '10',
-    name: 'IKA有限责任公司',
+    name: 'IKA 有限责任公司',
     area: '华南区',
     province: '广西省',
     city: '北海',
@@ -99,7 +99,7 @@ const data = ref([
   },
   {
     id: '11',
-    name: 'TIG管理YX公司',
+    name: 'TIG 管理 YX 公司',
     area: '华南区',
     province: '广西省',
     city: '桂林',
@@ -107,7 +107,7 @@ const data = ref([
   },
   {
     id: '12',
-    name: 'GGT科技YX公司',
+    name: 'GGT 科技 YX 公司',
     area: '西南区',
     province: '云南省',
     city: '昆明',

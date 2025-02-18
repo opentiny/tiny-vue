@@ -37,14 +37,13 @@
       gap: 0.5rem;
       align-items: center;
     }
-  
+
     .rule .rule-value:has(.rule-value-list-item) {
       display: flex;
       gap: 0.5rem;
       align-items: baseline;
     }
   }
-
 
   [data-inlinecombinators='disabled'] .dndOver.rule,
   [data-inlinecombinators='disabled'] .dndOver.ruleGroup-header {
@@ -95,12 +94,12 @@
     .ruleGroup-body {
       margin-left: calc(2 * 0.5rem);
     }
-  
+
     .rule,
     .ruleGroup .ruleGroup {
       position: relative;
     }
-  
+
     .rule::before,
     .rule::after,
     .ruleGroup .ruleGroup::before,
@@ -113,49 +112,49 @@
       border-radius: 0;
       position: absolute;
     }
-  
+
     .rule::before,
     .ruleGroup .ruleGroup::before {
       top: -0.5rem;
       height: calc(50% + 0.5rem);
       border-width: 0 0 1px 1px;
     }
-  
+
     .rule::after,
     .ruleGroup .ruleGroup::after {
       top: 50%;
       height: 50%;
       border-width: 0 0 0 1px;
     }
-  
+
     [data-draggable='true']:last-child > .rule:last-child::before,
     [data-draggable='true']:last-child > .ruleGroup:last-child::before {
       border-bottom-left-radius: 0.25rem;
     }
-  
+
     [data-draggable='true']:last-child > .rule:last-child::after,
     [data-draggable='true']:last-child > .ruleGroup:last-child::after {
       display: none;
     }
-  
+
     .ruleGroup .ruleGroup::before,
     .ruleGroup .ruleGroup::after {
       left: calc(calc(-0.5rem - 1px) - 1px);
     }
-  
+
     .ruleGroup .ruleGroup::before {
       top: calc(-0.5rem - 1px);
       height: calc(50% + 0.5rem + 1px);
     }
-  
+
     .ruleGroup .ruleGroup::after {
       height: calc(50% + 1px);
     }
-  
+
     .betweenRules {
       position: relative;
     }
-  
+
     .betweenRules::before {
       content: '';
       width: 0.5rem;
@@ -169,7 +168,6 @@
       border-width: 0 0 0 1px;
     }
   }
-  
 
   .queryBuilder .ruleGroup.queryBuilder-invalid {
     background-color: #66339966;

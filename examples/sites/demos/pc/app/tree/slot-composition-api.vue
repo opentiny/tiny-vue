@@ -5,7 +5,7 @@
       <tiny-button @click="clearData">清除数据</tiny-button>
     </div>
     <div>
-      <div class="tips">提示：5个插槽示例</div>
+      <div class="tips">提示：5 个插槽示例</div>
       <tiny-tree :data="data" default-expand-all>
         <!-- 前缀插槽 -->
         <template #prefix="{ node }">

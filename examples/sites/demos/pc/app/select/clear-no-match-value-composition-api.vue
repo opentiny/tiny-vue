@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      场景1：单选，val 找不到匹配值，val为： ,<span class="val">{{ val }}</span>
+      场景 1：单选，val 找不到匹配值，val 为： ,<span class="val">{{ val }}</span>
     </p>
     <br />
     <tiny-select v-model="val" :clear-no-match-value="true">
@@ -10,7 +10,7 @@
     <br /><br />
 
     <p>
-      场景2：多选，multiVal 找不到匹配值，multiVal 为：<span class="multi-val">{{ multiVal }}</span>
+      场景 2：多选，multiVal 找不到匹配值，multiVal 为：<span class="multi-val">{{ multiVal }}</span>
     </p>
     <br />
     <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple>
@@ -24,15 +24,15 @@ import { ref } from 'vue'
 import { TinySelect, TinyOption } from '@opentiny/vue'
 
 const options = ref([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 
 const val = ref('11')
-const multiVal = ref(['选项2', '11'])
+const multiVal = ref(['选项 2', '11'])
 </script>
 
 <style lang="less" scoped>

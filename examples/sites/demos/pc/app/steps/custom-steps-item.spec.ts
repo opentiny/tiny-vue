@@ -7,10 +7,10 @@ test('自定义数据项', async ({ page }) => {
   const advancedSteps = page.locator('.pc-demo .tiny-steps')
   const nodes = advancedSteps.locator('li')
 
-  await expect(nodes.first()).toContainText('name属性内容1')
+  await expect(nodes.first()).toContainText('name 属性内容 1')
   await expect(nodes.first().locator('.dot')).toHaveClass(/done/)
   await expect(nodes.first().locator('.count')).not.toBeVisible()
-  await expect(nodes.nth(1)).toContainText('name属性内容2')
+  await expect(nodes.nth(1)).toContainText('name 属性内容 2')
   await expect(nodes.nth(1).locator('.dot')).toHaveClass(/done/)
   await expect(nodes.nth(1).locator('.count')).toHaveText('9')
   await expect(nodes.nth(2).locator('.dot')).toHaveClass(/doing/)

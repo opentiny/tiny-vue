@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('简化版筛选面板-时间日期菜单', async ({ page }) => {
+test('简化版筛选面板 - 时间日期菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-filter#filter-simple-date-filter')
   await page.setViewportSize({

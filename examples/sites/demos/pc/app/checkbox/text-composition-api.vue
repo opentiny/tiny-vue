@@ -13,7 +13,7 @@ const checked = ref('假文本')
 
 function getValue() {
   TinyModal.message({
-    message: '当前状态对应的值为:' + checked.value,
+    message: '当前状态对应的值为：' + checked.value,
     top: 200,
     status: 'info'
   })

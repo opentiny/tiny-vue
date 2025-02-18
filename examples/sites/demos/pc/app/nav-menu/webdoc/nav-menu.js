@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '当一级菜单内容过多溢出时，通过 <code>overflow</code> 配置显示方式，共有 <code>auto</code>、<code>retract</code>、<code>fixed</code>、<code>hidden</code> 4种方式，默认为 <code>auto</code>。\n          <div class="tip custom-block"><p class="custom-block-title">overflow 选项说明</p>\n<p>\n          auto：菜单栏右侧显示 <code>更多</code> 菜单，鼠标悬停该菜单时，将显示剩余未展示的菜单；<br/>\n          fixed：菜单栏左侧显示 <code>三明治折叠/展开</code> 图标，鼠标悬停该图标时，将显示所有菜单；<br/>\n          retract：菜单栏不显示任何菜单，只显示 <code>三明治折叠/展开</code> 图标，鼠标悬停该图标时，将显示所有菜单；<br/>\n          hidden：剩余未展示的菜单隐藏不显示。</p></div>',
+          '当一级菜单内容过多溢出时，通过 <code>overflow</code> 配置显示方式，共有 <code>auto</code>、<code>retract</code>、<code>fixed</code>、<code>hidden</code> 4 种方式，默认为 <code>auto</code>。\n          <div class="tip custom-block"><p class="custom-block-title">overflow 选项说明</p>\n<p>\n          auto：菜单栏右侧显示 <code>更多</code> 菜单，鼠标悬停该菜单时，将显示剩余未展示的菜单；<br/>\n          fixed：菜单栏左侧显示 <code>三明治折叠/展开</code> 图标，鼠标悬停该图标时，将显示所有菜单；<br/>\n          retract：菜单栏不显示任何菜单，只显示 <code>三明治折叠/展开</code> 图标，鼠标悬停该图标时，将显示所有菜单；<br/>\n          hidden：剩余未展示的菜单隐藏不显示。</p></div>',
         'en-US':
           'When there is too much content in the first level menu that overflows, configure the display mode through<code>overflow</code>. There are four modes:<code>auto</code>,<code>retract</code>,<code>fixed</code>, and<code>hidden</code>. The default is<code>auto</code>.\n        <div class="tip custom-block"><p class="custom-block-title">Overview Options Description</p>\n<p>\n        auto: The<code>More</code>menu is displayed on the right side of the menu bar. When the mouse hovers over this menu, the remaining undisclosed menus will be displayed< br/>\n        fixed: The<code>sandwich fold/expand</code>icon is displayed on the left side of the menu bar. When the mouse hovers over this icon, all menus will be displayed< br/>\n        retract: The menu bar does not display any menus, only displays the<code>sandwich fold/expand</code>icon. When the mouse hovers over this icon, all menus will be displayed< br/>\n        hidden: The remaining undisclosed menus are hidden and not displayed.</p> </div>'
       },
@@ -43,11 +43,11 @@ export default {
     {
       demoId: 'slot-logo',
       name: {
-        'zh-CN': '定义Logo',
+        'zh-CN': '定义 Logo',
         'en-US': 'Custom Logo'
       },
       desc: {
-        'zh-CN': '通过 <code>logo</code> 插槽自定义 Logo 。',
+        'zh-CN': '通过 <code>logo</code> 插槽自定义 Logo。',
         'en-US': 'Customize the logo through the<code>logo</code>slot.'
       },
       codeFiles: ['slot-logo.vue']
@@ -81,6 +81,18 @@ export default {
       codeFiles: ['before-skip-prevent.vue']
     },
     {
+      demoId: 'selecte',
+      name: {
+        'zh-CN': '自定义选中菜单',
+        'en-US': 'Customize selected menu'
+      },
+      desc: {
+        'zh-CN': '通过 <code>default-active</code> 自定义当前选中的菜单。',
+        'en-US': 'Customize the currently selected menu through<code>default active</code>.'
+      },
+      codeFiles: ['selecte.vue']
+    },
+    {
       demoId: 'custom-service',
       name: {
         'zh-CN': '自定义服务',
@@ -109,7 +121,7 @@ export default {
     {
       demoId: 'allow-full-url',
       name: {
-        'zh-CN': '支持完整URL',
+        'zh-CN': '支持完整 URL',
         'en-US': 'Support complete URL'
       },
       desc: {
@@ -117,18 +129,6 @@ export default {
         'en-US': 'Use <code>allow-full-url</code> to support the inclusion of a complete URL in the data.'
       },
       codeFiles: ['allow-full-url.vue']
-    },
-    {
-      demoId: 'crm-demo',
-      name: {
-        'zh-CN': '自定义样式',
-        'en-US': 'Custom Style'
-      },
-      desc: {
-        'zh-CN': '通过修改 <code>css</code> 变量名自定义导航菜单样式。',
-        'en-US': 'Customizing the NavMenu style by changing the <code>CSS</code> variable name. '
-      },
-      codeFiles: ['crm-demo.vue']
     }
   ]
 }

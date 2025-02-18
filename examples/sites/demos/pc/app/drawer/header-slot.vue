@@ -5,7 +5,7 @@
       <template #header>
         <div class="my-header">
           <h3>自定义头部标题</h3>
-          <p>自定义副标题xxxxxx</p>
+          <p>自定义副标题 xxxxxx</p>
         </div>
       </template>
       <span>内容区域</span>

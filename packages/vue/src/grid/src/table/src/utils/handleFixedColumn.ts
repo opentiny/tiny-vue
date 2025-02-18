@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { addClass, removeClass } from '@opentiny/utils'
 
 export const generateFixedClassName = ({ $table, bodyElem, leftList, rightList }) => {
   if (!$table || !bodyElem) {

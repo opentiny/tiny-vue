@@ -45,7 +45,7 @@ test('多选一键复制所有标签', async ({ page }) => {
   // TODO: 因为执行测试用例时，官网抖动导致定位不通过
   // await copyIcon.click()
   // await copyValueInput.press('Control+V')
-  // await expect(copyValueInput).toHaveValue('北京,上海')
+  // await expect(copyValueInput).toHaveValue('北京，上海')
 })
 
 test('多选设置复制文本分隔符', async ({ page }) => {

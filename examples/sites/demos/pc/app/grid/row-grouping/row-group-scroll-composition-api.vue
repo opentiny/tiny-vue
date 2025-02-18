@@ -16,35 +16,35 @@
     <tiny-grid-column field="name" title="公司名称" sortable></tiny-grid-column>
     <tiny-grid-column field="telephone" title="联系电话" sortable></tiny-grid-column>
 
-    <tiny-grid-column field="city" title="城市1" sortable></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域1" sortable></tiny-grid-column>
-    <tiny-grid-column field="province" title="省份1" sortable></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称1" sortable></tiny-grid-column>
-    <tiny-grid-column field="telephone" title="联系电话1" sortable></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市  1" sortable></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域  1" sortable></tiny-grid-column>
+    <tiny-grid-column field="province" title="省份  1" sortable></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称  1" sortable></tiny-grid-column>
+    <tiny-grid-column field="telephone" title="联系电话  1" sortable></tiny-grid-column>
 
-    <tiny-grid-column field="city" title="城市2" sortable></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域2" sortable></tiny-grid-column>
-    <tiny-grid-column field="province" title="省份2" sortable></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称2" sortable></tiny-grid-column>
-    <tiny-grid-column field="telephone" title="联系电话2" sortable></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市  2" sortable></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域  2" sortable></tiny-grid-column>
+    <tiny-grid-column field="province" title="省份  2" sortable></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称  2" sortable></tiny-grid-column>
+    <tiny-grid-column field="telephone" title="联系电话  2" sortable></tiny-grid-column>
 
-    <tiny-grid-column field="city" title="城市3" sortable></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域3" sortable></tiny-grid-column>
-    <tiny-grid-column field="province" title="省份3" sortable></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称3" sortable></tiny-grid-column>
-    <tiny-grid-column field="telephone" title="联系电话3" sortable></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市 3" sortable></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域 3" sortable></tiny-grid-column>
+    <tiny-grid-column field="province" title="省份 3" sortable></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称 3" sortable></tiny-grid-column>
+    <tiny-grid-column field="telephone" title="联系电话 3" sortable></tiny-grid-column>
 
-    <tiny-grid-column field="city" title="城市4" sortable></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域4" sortable></tiny-grid-column>
-    <tiny-grid-column field="province" title="省份4" sortable></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称4" sortable></tiny-grid-column>
-    <tiny-grid-column field="telephone" title="联系电话4" sortable></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市 4" sortable></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域 4" sortable></tiny-grid-column>
+    <tiny-grid-column field="province" title="省份 4" sortable></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称 4" sortable></tiny-grid-column>
+    <tiny-grid-column field="telephone" title="联系电话 4" sortable></tiny-grid-column>
 
-    <tiny-grid-column field="city" title="城市5" sortable></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域5" sortable></tiny-grid-column>
-    <tiny-grid-column field="province" title="省份5" sortable></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称5" sortable></tiny-grid-column>
-    <tiny-grid-column field="telephone" title="联系电话5" sortable></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市 5" sortable></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域 5" sortable></tiny-grid-column>
+    <tiny-grid-column field="province" title="省份 5" sortable></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称 5" sortable></tiny-grid-column>
+    <tiny-grid-column field="telephone" title="联系电话 5" sortable></tiny-grid-column>
   </tiny-grid>
 </template>
 

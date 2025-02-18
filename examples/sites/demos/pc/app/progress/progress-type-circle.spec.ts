@@ -19,7 +19,7 @@ test.describe('环形', () => {
     await expect(cirlePath).toHaveCSS('d', 'path("M 50 50 M 50 3 A 47 47 0 1 1 50 97 A 47 47 0 1 1 50 3")')
   })
 
-  test('是否C型圆环类型', async ({ page }) => {
+  test('是否 C 型圆环类型', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).not.toBeNull())
     await page.goto('progress#progress-type-circle')
 

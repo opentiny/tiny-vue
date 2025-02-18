@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import type { asyncFlowchartProps } from '@/async-flowchart/src'
-import type ResizeObserver from '../src/common/deps/ResizeObserver'
+import type { ResizeObserver } from '@opentiny/utils'
 import type {
   observeContainerSize,
   unobserveContainerSize,

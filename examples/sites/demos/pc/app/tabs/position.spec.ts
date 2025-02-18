@@ -27,21 +27,21 @@ test('位置：四种显示', async ({ page }) => {
   await expect(item2).toHaveClass(/is-active/)
   await expect(content).toHaveText(/2/)
 
-  // top显示
+  // top 显示
   await container.getByRole('radio', { name: 'top 显示' }).filter({ hasText: 'top 显示' }).click()
   await expect(tabs).toHaveClass(/tiny-tabs--top/)
   await expect(tabsList).toHaveCount(2)
   await expect(top).toHaveClass(/tiny-tabs__header/)
   await expect(bottom).toHaveClass('tiny-tabs__content')
 
-  // bottom显示
+  // bottom 显示
   await container.getByRole('radio', { name: 'bottom 显示' }).filter({ hasText: 'bottom 显示' }).click()
   await expect(tabs).toHaveClass(/tiny-tabs--bottom/)
   await expect(tabsList).toHaveCount(2)
   await expect(top).toHaveClass('tiny-tabs__content')
   await expect(bottom).toHaveClass(/tiny-tabs__header/)
 
-  // right显示
+  // right 显示
   await container.getByRole('radio', { name: 'right 显示' }).filter({ hasText: 'right 显示' }).click()
   await expect(tabs).toHaveClass(/tiny-tabs--right/)
   await expect(tabsList).toHaveCount(2)

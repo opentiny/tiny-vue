@@ -14,29 +14,29 @@ export default {
   data() {
     return {
       options: {
-        // 图表类型(矩形热力图)
+        // 图表类型 (矩形热力图)
         type: 'CalendarHeatMapChart',
 
-        // padding控制图表距离容器的上，右，下，左padding值
+        // padding 控制图表距离容器的上，右，下，左 padding 值
         padding: [50, 120, 20, 20],
         // 矩形的颜色，默认值'#1F55B5'
         color: '#1F55B5',
 
         // 视觉滑块的配置，本属性显示视觉滑块，不传不显示
         handle: {
-          // 是否反转显示文本，默认值false
+          // 是否反转显示文本，默认值 false
           inverse: true,
 
-          // 两端的文本，默认值为data第三个属性值的最大值和最小值
+          // 两端的文本，默认值为 data 第三个属性值的最大值和最小值
           text: ['亮', '暗'],
-          // 水平与垂直放置，默认值vertical
+          // 水平与垂直放置，默认值 vertical
           // vertical 或者 horizontal
           orient: 'vertical',
 
-          // 视觉滑块的宽度，默认值20
+          // 视觉滑块的宽度，默认值 20
           width: 16,
 
-          // 视觉滑块的高度，默认值400
+          // 视觉滑块的高度，默认值 400
           height: 390,
 
           // 是否显示手柄，默认值不显示

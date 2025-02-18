@@ -1,15 +1,15 @@
 <template>
   <div>
     <p>设置为下划线类型</p>
-    <p>场景1：下划线默认</p>
+    <p>场景 1：下划线默认</p>
     <tiny-base-select v-model="value1" input-box-type="underline" clearable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
-    <p>场景2：下划线禁用</p>
+    <p>场景 2：下划线禁用</p>
     <tiny-base-select v-model="value2" input-box-type="underline" disabled>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
-    <p>场景3：下划线多选</p>
+    <p>场景 3：下划线多选</p>
     <tiny-base-select v-model="value3" input-box-type="underline" multiple>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
@@ -27,11 +27,11 @@ export default {
   data() {
     return {
       options: [
-        { value: '选项1', label: '北京' },
-        { value: '选项2', label: '上海' },
-        { value: '选项3', label: '天津' },
-        { value: '选项4', label: '重庆' },
-        { value: '选项5', label: '深圳' }
+        { value: '选项 1', label: '北京' },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
       ],
       value1: '',
       value2: '',

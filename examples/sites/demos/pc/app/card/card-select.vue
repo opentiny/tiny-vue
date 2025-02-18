@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrap">
-    <!-- 单选demo -->
+    <!-- 单选 demo -->
     <tiny-card-group v-model="radioValue" check-type="radio">
       <tiny-card
         id="smb-card"
@@ -25,7 +25,7 @@
       </tiny-card>
     </tiny-card-group>
 
-    <!-- 多选demo -->
+    <!-- 多选 demo -->
     <tiny-card-group v-model="checkboxValue" check-type="checkbox">
       <tiny-card
         id="smb-card"
@@ -114,7 +114,7 @@ export default {
   height: 80px;
   margin-right: 20px;
 }
-/* 业务功能demo */
+/* 业务功能 demo */
 .smb-card {
   display: inline-block;
   position: relative;
@@ -169,10 +169,12 @@ export default {
 .card-stlecting {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-</style>
-
-<style>
-#smb-card .tiny-card--small-padding {
+#smb-card :deep(.tiny-card--small-padding) {
   padding: 0;
+}
+.card-wrap :deep(.tiny-input__inner) {
+  border: none;
+  border-radius: 6px;
+  background-color: #fafafa;
 }
 </style>

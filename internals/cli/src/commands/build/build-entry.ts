@@ -19,7 +19,6 @@ const outputDir = 'packages/vue'
 const fileNames = {
   all: 'index.ts',
   pc: 'pc.ts',
-  mobile: 'mobile.ts',
   'mobile-first': 'mobile-first.ts'
 }
 
@@ -128,9 +127,7 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile-first'].forEach(createEntry)
 
-  logGreen(
-    `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`
-  )
+  logGreen(`npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile-first.ts]`)
 }

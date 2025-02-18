@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：下拉树（单选）</div>
+    <div>场景 1：下拉树（单选）</div>
     <br />
     <tiny-select
       v-model="treeValue1"
@@ -11,7 +11,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景2：下拉树（多选）</div>
+    <div>场景 2：下拉树（多选）</div>
     <br />
     <tiny-select
       v-model="treeValue2"
@@ -23,7 +23,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景3：下拉树可搜索</div>
+    <div>场景 3：下拉树可搜索</div>
     <br />
     <tiny-select
       v-model="treeValue3"
@@ -37,7 +37,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景4：下拉树懒加载（单选）</div>
+    <div>场景 4：下拉树懒加载（单选）</div>
     <br />
     <tiny-select
       v-model="treeValue4"
@@ -49,7 +49,7 @@
     ></tiny-select>
     <br />
     <br />
-    <div>场景5：下拉树懒加载（多选）</div>
+    <div>场景 5：下拉树懒加载（多选）</div>
     <br />
     <tiny-select
       v-model="treeValue5"

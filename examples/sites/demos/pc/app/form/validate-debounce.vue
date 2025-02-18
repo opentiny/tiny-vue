@@ -51,7 +51,7 @@ export default {
     validateUser(rule, value, callback) {
       /**
        * 模拟异步校验
-       * 如果validate-debounce为false，在连续输入的情况下，这里会创建很多校验请求
+       * 如果 validate-debounce 为 false，在连续输入的情况下，这里会创建很多校验请求
        */
       new Promise((resolve, reject) => {
         setTimeout(() => {

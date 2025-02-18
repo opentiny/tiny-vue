@@ -249,9 +249,11 @@ export default {
       await _switchDemo()
     }
     async function _switchDemo() {
+      if (!state.currDemo) {
+        return
+      }
       modeState.demoId = state.currDemo.demoId
       const path = `../../sites/demos/pc/app/${getPath(modeState.pathName)}/${state.currDemo?.codeFiles[0]}`
-
       // 查找源码  查找组件
       state.currDemoSrc = await demoStr[path]()
       const comp = await demoVue[path]()

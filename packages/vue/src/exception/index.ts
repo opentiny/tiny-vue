@@ -10,7 +10,6 @@
  *
  */
 import Exception from './src/index'
-import '@opentiny/vue-theme-mobile/exception/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试手动控制tooltip', async ({ page }) => {
+test('测试手动控制 tooltip', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tooltip#control')
 
@@ -13,7 +13,7 @@ test('测试手动控制tooltip', async ({ page }) => {
   const pop2 = page.getByText('手动控制模式的提示内容')
   const pop3 = page.getByText('禁用的提示内容')
 
-  // 测试visible
+  // 测试 visible
   await preview.getByText('内容不超长').hover()
   await expect(pop1).toBeVisible()
   await page.waitForTimeout(20)
@@ -24,7 +24,7 @@ test('测试手动控制tooltip', async ({ page }) => {
 
   await page.waitForTimeout(20)
 
-  // 测试manual
+  // 测试 manual
   await expect(pop2).toBeHidden()
   await manualSwitch.click()
   await expect(pop2).toBeVisible()

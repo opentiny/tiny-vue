@@ -7,7 +7,7 @@ test('basic-usage', async ({ page }) => {
   await expect(autocomplete).toBeVisible()
 
   await page.getByRole('textbox', { name: '请输入内容', exact: true }).click()
-  await page.getByRole('option', { name: 'GFD科技YX公司' }).click()
+  await page.getByRole('option', { name: 'GFD 科技 YX 公司' }).click()
 
-  await expect(page.getByRole('textbox', { name: '请输入内容', exact: true })).toHaveValue('GFD科技YX公司')
+  await expect(page.getByRole('textbox', { name: '请输入内容', exact: true })).toHaveValue('GFD 科技 YX 公司')
 })

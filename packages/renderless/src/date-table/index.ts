@@ -10,17 +10,17 @@
  *
  */
 
-import { formatDate } from '../common/deps/date-util'
 import {
   getFirstDayOfMonth,
   getDayCountOfMonth,
   getWeekNumber,
   prevDate,
   nextDate,
-  isDate,
-  clearTime
-} from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
+  isDate1 as isDate,
+  clearTime,
+  formatDate,
+  DATEPICKER
+} from '@opentiny/utils'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
   const nodfpm = day + offset <= 0 ? 7 + day + offset : day + offset
@@ -448,6 +448,9 @@ const getTarget = (event) => {
 export const handleClick =
   ({ api, emit, props, state }) =>
   (event) => {
+    if (props.readonly) {
+      return
+    }
     let target = getTarget(event)
 
     if (target.tagName !== 'TD') {

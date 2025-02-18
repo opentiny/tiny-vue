@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'loading',
@@ -97,9 +97,8 @@ export default {
             'en-US':
               'Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'type',
           mfDemo: ''
         },
         {
@@ -113,44 +112,10 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'loading-tip-text',
           mfDemo: ''
-        },
-        {
-          name: 'tiny_mode',
-          type: 'string',
-          defaultValue: 'pc',
-          desc: {
-            'zh-CN': '<p>通配置项pc,mobile表示不同设备</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'type'
-        },
-        {
-          name: 'type',
-          type: 'string',
-          defaultValue: 'primary',
-          desc: {
-            'zh-CN': '<p>通过type设置不同的加载样式</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'type'
         }
       ],
       events: [],
-      methods: [
-        {
-          name: 'closeLoading',
-          type: 'Function',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>关闭Loading</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'type'
-        }
-      ],
+      methods: [],
       slots: []
     }
   ]

@@ -1,21 +1,23 @@
-import { find } from '../common/array'
-import { getObj, isEqual } from '../common/object'
-import { isKorean } from '../common/string'
-import scrollIntoView from '../common/deps/scroll-into-view'
-import PopupManager from '../common/deps/popup-manager'
-import debounce from '../common/deps/debounce'
-import { getDataset } from '../common/dataset'
-import Memorize from '../common/deps/memorize'
-import { isEmptyObject } from '../common/type'
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
-import { extend } from '../common/object'
-import { BROWSER_NAME } from '../common'
-import browserInfo from '../common/browser'
-import { isNull } from '../common/type'
-import { fastdom } from '../common/deps/fastdom'
+/* eslint-disable unused-imports/no-unused-vars */
+import { find } from '@opentiny/utils'
+import { getObj, isEqual } from '@opentiny/utils'
+import { isKorean } from '@opentiny/utils'
+import { scrollIntoView } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { Memorize } from '@opentiny/utils'
+import { isEmptyObject } from '@opentiny/utils'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
+import { extend } from '@opentiny/utils'
+import { BROWSER_NAME } from '@opentiny/utils'
+import { browserInfo } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 import { deepClone } from '../picker-column'
 import { escapeRegexpString } from '../option'
-import { correctTarget } from '../common/event'
+import { correctTarget } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -215,6 +217,8 @@ export const handleQueryChange =
       })
     }
 
+    // 嵌套树时， filterMehod传递给tree组件，然后在上面：  vm.$refs.selectTree.filter(value) 强制让tree去过滤了。
+    // 如果不return,那么 api.defaultOnQueryChange 内部会再次过滤，而触发错误。
     if (props.renderType === constants.TYPE.Tree) {
       return
     }
@@ -561,20 +565,33 @@ export const toggleCheckAll =
 export const handleFocus =
   ({ emit, props, state }) =>
   (event) => {
-    if (!state.softFocus) {
-      if (props.automaticDropdown || props.filterable || props.searchable) {
-        state.visible = true
-        state.softFocus = true
-      }
+    state.willFocusRun = true
+    state.willFocusTimer && clearTimeout(state.willFocusTimer)
 
-      emit('focus', event)
-    } else {
-      if (state.searchSingleCopy && state.selectedLabel) {
+    state.willFocusTimer = setTimeout(() => {
+      state.willFocusTimer = 0
+      if (!state.willFocusRun) return // 立即触发了blur,则不执行focus了
+
+      if (!state.softFocus) {
+        // tiny 新增 shape条件: 防止过滤器模式，且filterable时， 面板无法关闭的bug
+        if (props.shape === 'filter') {
+          return
+        }
+
+        if (props.automaticDropdown || props.filterable || props.searchable) {
+          state.visible = true
+          state.softFocus = true
+        }
+
         emit('focus', event)
-      }
+      } else {
+        if (state.searchSingleCopy && state.selectedLabel) {
+          emit('focus', event)
+        }
 
-      state.softFocus = false
-    }
+        state.softFocus = false
+      }
+    }, 10)
   }
 
 export const focus =
@@ -595,6 +612,8 @@ export const blur =
 export const handleBlur =
   ({ constants, dispatch, emit, state, designConfig }) =>
   (event) => {
+    state.willFocusRun = false
+
     clearTimeout(state.timer)
     const target = event.target
 
@@ -875,16 +894,17 @@ export const initValue =
   }
 
 export const setSoftFocus =
-  ({ vm, state }) =>
+  ({ vm, state, props }) =>
   () => {
     state.softFocus = true
-
     const input = vm.$refs.input || vm.$refs.reference
 
-    if (input) {
-      input.focus()
+    // tiny 新增： 解决获焦即弹出时，关闭不了下拉面板，所以增加了!props.automaticDropdown条件
+    if (!props.automaticDropdown) {
+      if (input) {
+        input.focus()
+      }
     }
-
     // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
     state.softFocus = false
   }
@@ -2307,13 +2327,11 @@ export const computedOptionsAllDisabled = (state) => () =>
   state.options.filter((option) => option.visible).every((option) => option.disabled)
 
 export const computedDisabledTooltipContent =
-  ({ props, state }) =>
+  ({ state }) =>
   () => {
-    if (props.multiple) {
-      return state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(';')
-    } else {
-      return state.selected.state ? state.selected.state.currentLabel : state.selected.currentLabel
-    }
+    // tiny 新增： 仅displayOnly且传入options属性时， 不需要渲染option
+    // 禁用的tooltip内容 和 仅展示的显示内容，都应该是当前label值，共用即可！
+    return state.displayOnlyContent
   }
 
 export const computedSelectDisabled =
@@ -2382,6 +2400,7 @@ export const watchInitValue =
 export const watchShowClose =
   ({ nextTick, state, parent }) =>
   () => {
+    if (isServer) return
     nextTick(() => {
       const parentEl = parent.$el
       const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
@@ -2389,7 +2408,7 @@ export const watchShowClose =
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
 
-        state.inputPaddingRight = parseFloat(paddingRight)
+        state.inputPaddingRight = parseFloat(paddingRight) || 0
       }
     })
   }

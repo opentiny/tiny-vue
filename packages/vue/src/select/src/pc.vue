@@ -37,17 +37,12 @@
     @click="toggleMenu"
     v-clickoutside="handleClose"
   >
+    <!-- tiny新增：title 简化处理 -->
     <div
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
-      :title="
-        multiple && !state.selectDisabled && state.selected.length
-          ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
-          : !multiple && state.selectDisabled
-            ? state.selectedLabel
-            : ''
-      "
+      :title="state.displayOnlyContent"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -215,30 +210,12 @@
           </span>
 
           <span v-else :class="['tiny-select__tags-text', 'is-display-only', { 'is-disabled': state.isDisabled }]">
-            <tiny-tooltip
-              :effect="tooltipConfig.effect || 'light'"
-              :placement="tooltipConfig.placement || 'top'"
-              :popper-class="tooltipConfig.popperClass || ''"
-              :disabled="!showTips"
-            >
-              <span>
-                <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
-                  >;
-                </span>
+            <span>
+              <span v-for="item in state.selected" :key="item.value">
+                <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
+                >;
               </span>
-
-              <template #content>
-                <div :class="[state.showTips && 'tiny-select__show-tips', 'tiny-select__show-common']">
-                  <span v-if="slots.label">
-                    <span v-for="item in state.selected" :key="getValueKey(item)">
-                      <slot name="label" :item="item"></slot>
-                    </span>
-                  </span>
-                  <span v-else>{{ disabledTooltipContent || state.disabledTooltipContent }}</span>
-                </div>
-              </template>
-            </tiny-tooltip>
+            </span>
           </span>
           <!-- tiny 新增：searchable时, 这里不显示 state.query -->
           <input
@@ -283,6 +260,7 @@
           :id="id"
           :autocomplete="autocomplete"
           :size="state.selectSize"
+          :showTooltip="false"
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
           :display-only="state.isDisplayOnly"
@@ -486,7 +464,7 @@
           </template>
 
           <tiny-scrollbar
-            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType)"
+            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType) && !(state.isDisplayOnly && options)"
             ref="scrollbar"
             show
             tag="ul"
@@ -609,7 +587,7 @@ import TinyOption from '@opentiny/vue-option'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinySelectDropdown from '@opentiny/vue-select-dropdown'
 import TinyButton from '@opentiny/vue-button'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import {
   iconClose,
   iconHalfselect,

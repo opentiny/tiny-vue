@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -29,11 +30,11 @@ import type {
   IFileUploadLargeDocumentDownload
 } from '@/types'
 
-import { extend } from '../common/object'
-import { xss, log } from '../common/xss'
-import uploadAjax from '../common/deps/upload-ajax'
-import { isObject } from '../common/type'
-import { isEmptyObject } from '../common/type'
+import { extend } from '@opentiny/utils'
+import { xss, logger, sha256 } from '@opentiny/utils'
+import { uploadAjax } from '@opentiny/utils'
+import { isObject } from '@opentiny/utils'
+import { isEmptyObject } from '@opentiny/utils'
 
 let initTokenPromise = null
 
@@ -377,13 +378,15 @@ export const properFileSize =
       maxSize = state.isEdm ? Math.min(state.singleMaxSize) : props.fileSize / 1024
     }
 
-    if (!isNaN(Number(maxSize)) && file.size > maxSize * 1024 * 1024) {
-      Modal.message({
-        message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024)) }),
-        status: 'warning'
-      })
+    if (state.isEdm || (Array.isArray(props.fileSize) && props.fileSize[1])) {
+      if (!isNaN(Number(maxSize)) && file.size > maxSize * 1024 * 1024) {
+        Modal.message({
+          message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024)) }),
+          status: 'warning'
+        })
 
-      return false
+        return false
+      }
     }
 
     if (file.size <= 0) {
@@ -399,7 +402,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), 'K'), sizeUnit: '' })}`,
+        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), ' KB'), sizeUnit: '' })}`,
         status: 'warning'
       })
 
@@ -431,7 +434,9 @@ export const addFileToList =
 
       file = Object.assign(file, fileBase)
 
-      props.edm.upload.isFolder && (file.path = rawFile.webkitRelativePath.match(/.*\//g)[0])
+      props.edm.upload.isFolder &&
+        rawFile.webkitRelativePath &&
+        (file.path = rawFile.webkitRelativePath.match(/.*\//g)[0])
     }
 
     state.cacheDocuments[file.uid] = file
@@ -494,11 +499,9 @@ export const getFileHash =
     Modal,
     constants,
     t,
-    CryptoJS,
     state
-  }: Pick<IFileUploadRenderlessParams, 'emit' | 'constants' | 't' | 'state'> &
-    IFileUploadModalVm & { CryptoJS: object }) =>
-  ({ file, chunkSize, showTips }: { file: IFileUploadFile; chunkSize: number; showTips: boolean }) => {
+  }: Pick<IFileUploadRenderlessParams, 'emit' | 'constants' | 't' | 'state'> & IFileUploadModalVm) =>
+  ({ file, showTips }: { file: IFileUploadFile; showTips: boolean }) => {
     if (showTips) {
       Modal.message({
         message: `${t(constants.EDM.CALCHASH)}`,
@@ -506,39 +509,15 @@ export const getFileHash =
       })
     }
 
-    const chunks = Math.ceil(file.size / chunkSize)
-    let chunkIndex = 0
-    let start = chunkIndex * chunkSize
-    let end = Math.min(file.size, start + chunkSize)
-    let chunk = file.raw.slice(start, end)
-
-    const hasher = CryptoJS.algo.SHA256.create()
-    let calculated = 0
-
     return new Promise((resolve) => {
       const reader = new FileReader()
-      reader.readAsArrayBuffer(chunk)
-      reader.onload = (e) => {
+      reader.readAsArrayBuffer(file.raw)
+      reader.onload = async (e) => {
         if (file.status === constants.FILE_STATUS.FAIL) return
-        chunkIndex++
-
-        let wordArray = CryptoJS.lib.WordArray.create(e.target.result)
-        hasher.update(wordArray)
-        wordArray = null
-
-        if (chunkIndex < chunks) {
-          start = chunkIndex * chunkSize
-          end = Math.min(file.size, start + chunkSize)
-          calculated += end - start
-          emit('hash-progress', Math.min(Math.floor((calculated / file.size) * 100), 100))
-          chunk = file.raw.slice(start, end)
-          reader.readAsArrayBuffer(chunk)
-        } else {
-          const hash = hasher.finalize().toString()
-          file.hash = file.raw.hash = hash
-          resolve(hash)
-          emit('hash-progress', 100)
-        }
+        const hash = sha256(e.target && e.target.result)
+        file.hash = file.raw.hash = hash
+        resolve(hash)
+        emit('hash-progress', 100)
       }
       reader.onerror = (err) => {
         file.status = constants.FILE_STATUS.FAIL
@@ -577,7 +556,7 @@ export const handleStart =
     state,
     vm
   }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'vm'>) =>
-  (rawFiles: IFileUploadFile[], updateId: string, reUpload: boolean = false) => {
+  (rawFiles: IFileUploadFile[], updateId: string, reUpload = false) => {
     if (state.isHwh5) {
       rawFiles = handleHwh5Files(rawFiles, props.hwh5)
     }
@@ -609,9 +588,7 @@ export const handleStart =
               }
             }
 
-            api
-              .getFileHash({ file, chunkSize: state.chunkSize, showTips: isLargeFileHash })
-              .then((hash) => resolve(hash))
+            api.getFileHash({ file, showTips: isLargeFileHash }).then((hash) => resolve(hash))
           }).then(() => {
             if (props.autoUpload) {
               const tokenParams = { token: props.edm.upload.token, file, type: 'upload' }
@@ -808,6 +785,7 @@ export const handleError =
     file.status = constants.FILE_STATUS.FAIL
     file.percentage = 100
 
+    // reUploadable乃tiny独有
     if (!state.isEdm && !props.reUploadable) {
       state.uploadFiles.splice(state.uploadFiles.indexOf(file), 1)
     }
@@ -923,7 +901,7 @@ export const abort =
 
 export const abortDownload =
   ({ state }: Pick<IFileUploadRenderlessParams, 'state'>) =>
-  (file: IFileUploadFile, batch: boolean = false) => {
+  (file: IFileUploadFile, batch = false) => {
     const cancel = (docId) => {
       if (!docId) return
       const cancels = state.downloadCancelToken[docId]
@@ -1290,7 +1268,7 @@ export const downloadFileSingle =
         onDownloadProgress(evt) {
           let progress = calcProgress(evt, isChunk)
           if (progress !== 100) {
-            !isChunk && emit('download', progress, evt)
+            !isChunk && emit('download', progress, evt, {}, file)
           }
 
           if (typeof file === 'object') {
@@ -1308,7 +1286,7 @@ export const downloadFileSingle =
           handleSuccess(data, '', range.index)
 
           const { checkcode, 'content-size': fileSize } = data.headers
-          !isChunk && emit('download', 100, '', { checkcode, fileSize })
+          !isChunk && emit('download', 100, '', { checkcode, fileSize }, file)
 
           if (typeof file === 'object') {
             file.percentage = 100
@@ -1376,7 +1354,7 @@ export const downloadFileBatch =
               onDownloadProgress(evt) {
                 let progress = calcProgress(evt)
                 if (progress !== 100) {
-                  emit('download', progress, evt)
+                  emit('download', progress, evt, {}, file)
                 }
               }
             }
@@ -1385,13 +1363,14 @@ export const downloadFileBatch =
             if (api.getKiaScanTip({ data })) return
             if (api.validateDownloadStatus({ downloadOps: props.edm.download || {}, file, isLessThan17G, data })) return
             const { 'content-size': fileSize, checkcode } = data.headers
-            emit('download', 100, '', { fileSize, checkcode })
+            emit('download', 100, '', { fileSize, checkcode }, file)
             handleSuccess(data, 'zip')
           })
       })
     })
   }
 
+// EDM 跨站批量下载
 export const downloadAsyncPackage =
   ({ state, props, service, api, constants }) =>
   (params) => {
@@ -1447,6 +1426,7 @@ export const downloadAsyncPackage =
         })
     })
   }
+
 export const downloadFileSingleHwh5 =
   ({ state, props, emit, constants }: Pick<IFileUploadRenderlessParams, 'state' | 'props' | 'emit' | 'constants'>) =>
   ({ file }: { file: IFileUploadFile }) => {
@@ -1464,13 +1444,13 @@ export const downloadFileSingleHwh5 =
       onProgress: (event) => {
         const { progress } = JSON.parse(event)
         if (progress * 1 !== 100) {
-          emit('download', progress)
+          emit('download', progress, event, {}, file)
         }
       }
     }
 
     downloadToEDM(options).then((data) => {
-      emit('download', 100, '', { data })
+      emit('download', 100, '', { data }, file)
     })
   }
 
@@ -1514,7 +1494,8 @@ export const downloadFileSingleInner =
         return
       }
 
-      const promise = state.hasFileInfoInterface ? api.getDownloadFileInfo({ docId: file.docId }) : Promise.resolve()
+      const param = { docId: file.docId, docVersion: file.docVersion }
+      const promise = state.hasFileInfoInterface ? api.getDownloadFileInfo(param) : Promise.resolve()
 
       promise.then((fileInfo) => {
         const { fileSize } = fileInfo || {}
@@ -1531,7 +1512,7 @@ export const downloadFileSingleInner =
 
 export const getDownloadFileInfo =
   ({ api, state, props, service }: Pick<IFileUploadRenderlessParams, 'api' | 'state' | 'props' | 'service'>) =>
-  ({ docId }: { docId: string }) => {
+  ({ docId, docVersion }: { docId: string; docVersion: string }) => {
     return service.getDocumentInfoUrl().then((url) => {
       return new Promise((resolve, reject) => {
         service
@@ -1541,7 +1522,7 @@ export const getDownloadFileInfo =
             withCredentials: props.withCredentials,
             headers: Object.assign(props.headers, state.headers),
             cancelToken: api.createDownloadCancelToken({ docId }),
-            data: { docInfoVO: { ids: [docId], docType: '', docVersion: '' } }
+            data: { docInfoVO: { ids: [docId], docType: '', docVersion: docVersion || '' } }
           })
           .then((res) => {
             const { data } = res || {}
@@ -1584,7 +1565,7 @@ export const sliceDownloadChunk =
 
     for (let i = 0; i < chunkSize; i++) {
       startRange = endRange + 1
-      endRange = Math.min(file.fileSize, startRange + state.chunkSize)
+      endRange = Math.min(file.fileSize, startRange + state.chunkSize - 1)
 
       if (endRange < startRange) {
         return downloadChunkArray
@@ -1687,10 +1668,14 @@ export const afterDownload =
   ({ batchIndex, range, data, file, isBatch, isChunk, isLessThan17G }: IFileUploadAfterDownload) => {
     if (data.status === 200) {
       const key = file.docId + '-' + batchIndex
-      const count = state.downloadBatchQueue[key]
-      state.downloadBatchQueue[key] = count + 1
+      if (state.downloadBatchQueue[key] !== undefined) {
+        state.downloadBatchQueue[key] += 1
+      } else {
+        state.downloadBatchQueue[key] = 0
+      }
     } else {
-      const countDownloadReplay = state.downloadReplayAtoms[file.docId + '-' + range.index]
+      const key = file.docId + '-' + range.index
+      const countDownloadReplay = state.downloadReplayAtoms[key]
 
       if (countDownloadReplay && countDownloadReplay >= 2) {
         const msgArray = [
@@ -1701,14 +1686,18 @@ export const afterDownload =
           ']'
         ]
 
-        log.logger.warn(msgArray.join(''))
-        delete state.downloadReplayAtoms[file.docId + '-' + range.index]
+        logger.warn(msgArray.join(''))
+        delete state.downloadReplayAtoms[key]
       } else {
+        if (state.downloadReplayAtoms[key] === undefined) {
+          state.downloadReplayAtoms[key] = 0
+        }
+
         const msgArray = ['replay ', countDownloadReplay, '! [docId:', file.docId, ', chunk:', range.index, ']']
 
-        log.logger.warn(msgArray.join(''))
+        logger.warn(msgArray.join(''))
 
-        state.downloadReplayAtoms[file.docId + '-' + range.index] = countDownloadReplay + 1
+        state.downloadReplayAtoms[key] += 1
 
         api.downloadFileInner({ batchIndex, range, file, isBatch, isChunk, isLessThan17G })
       }
@@ -1725,7 +1714,6 @@ export const setWriterFile =
     let { fileStream, writer, fileData = [], downloaded = 0 } = {}
     const { checkcode } = data.headers
     const content = data.headers['content-disposition']
-
     let { chunkNum, fileSize, docName } = state.downloadChunkFile[file.docId]
 
     if (content) {
@@ -1751,11 +1739,11 @@ export const setWriterFile =
             if (index + 1 >= chunkNum) {
               delete state.downloadChunkFile[file.docId]
 
-              emit('download', 100, '', { fileSize, checkcode })
+              emit('download', 100, '', { fileSize, checkcode }, file)
               writer.close()
             } else {
               const progress = Math.ceil((downloaded / fileSize) * 100) || 0
-              progress !== 100 && emit('download', progress)
+              progress !== 100 && emit('download', progress, '', { fileSize, checkcode }, file)
               index++
               writerStreamSaver()
             }
@@ -1768,10 +1756,10 @@ export const setWriterFile =
           if (index + 1 >= chunkNum) {
             delete state.downloadChunkFile[file.docId]
             aLinkDownload({ blob: new Blob(fileData), name: docName })
-            emit('download', 100, '', { fileSize, checkcode })
+            emit('download', 100, '', { fileSize, checkcode }, file)
           } else {
             const progress = Math.ceil((downloaded / fileSize) * 100) || 0
-            progress !== 100 && emit('download', progress)
+            progress !== 100 && emit('download', progress, '', { fileSize, checkcode }, file)
             index++
             writerStreamSaver()
           }
@@ -1927,11 +1915,15 @@ const afterUpload = ({
 }: Pick<IFileUploadRenderlessParams, 'api' | 'state'> & IFileUploadSegmentUploadInner & { data: any }) => {
   if (data.status === 200) {
     const key = file.docId + '-' + batchIndex
-    const count = state.batchQueue[key]
 
-    state.batchQueue[key] = count + 1
+    if (state.batchQueue[key] !== undefined) {
+      state.batchQueue[key] += 1
+    } else {
+      state.batchQueue[key] = 0
+    }
   } else {
-    const countReplay = state.replayAtoms[file.docId + '-' + file.chunk]
+    const key = file.docId + '-' + file.chunk
+    const countReplay = state.replayAtoms[key]
 
     if (countReplay && countReplay >= 2) {
       const msgArray = [
@@ -1941,15 +1933,19 @@ const afterUpload = ({
         file.chunk,
         ']'
       ]
-      log.logger.warn(msgArray.join(''))
+      logger.warn(msgArray.join(''))
 
-      delete state.replayAtoms[file.docId + '-' + file.chunk]
+      delete state.replayAtoms[key]
     } else {
+      if (state.replayAtoms[key] === undefined) {
+        state.replayAtoms[key] = 0
+      }
+
       const msgArray = ['replay ', countReplay, '! [docId:', file.docId, ', chunk:', file.chunk, ']']
 
-      log.logger.warn(msgArray.join(''))
+      logger.warn(msgArray.join(''))
 
-      state.replayAtoms[file.docId + '-' + file.chunk] = countReplay + 1
+      state.replayAtoms[key] += 1
 
       api.segmentUpload(batchIndex, file, progress)
     }
@@ -2031,11 +2027,8 @@ export const segmentUpload =
     service,
     state,
     emit,
-    constants,
-    CryptoJS
-  }: Pick<IFileUploadRenderlessParams, 'api' | 'props' | 'service' | 'state' | 'emit' | 'constants'> & {
-    CryptoJS: object
-  }) =>
+    constants
+  }: Pick<IFileUploadRenderlessParams, 'api' | 'props' | 'service' | 'state' | 'emit' | 'constants'>) =>
   (
     batchIndex: number,
     file: IFileUploadFile,
@@ -2052,10 +2045,9 @@ export const segmentUpload =
               const reader = new FileReader()
 
               reader.readAsArrayBuffer(file)
-              reader.onload = (e) => {
+              reader.onload = async (e) => {
                 if (props.edm.isCheckCode === true) {
-                  let wordArray = CryptoJS.lib.WordArray.create(e.target.result)
-                  const hash = CryptoJS.SHA256(wordArray).toString()
+                  const hash = sha256(e.target && e.target.result)
                   file.hash = hash
                 }
                 resolve(file)
@@ -2238,7 +2230,21 @@ export const getToken =
           if (['preview', 'download'].includes(type) && props.accept) {
             state.accept = props.accept
           } else if (whitelist) {
-            state.accept = `${whitelist}${props.accept ? `,${props.accept}` : ''}`
+            if (props.accept) {
+              let propsAccept = ''
+              props.accept
+                .toString()
+                .split(',')
+                .forEach((item) => {
+                  if (!whitelist.includes(item)) {
+                    propsAccept += `,${item}`
+                  }
+                })
+
+              state.accept = whitelist + propsAccept
+            } else {
+              state.accept = whitelist
+            }
           }
 
           state.headers[constants.EDM.EDMTOKEN] = result.edmToken || ''
@@ -2258,7 +2264,7 @@ export const getToken =
 
 export const previewFile =
   ({ api, props }: Pick<IFileUploadRenderlessParams, 'api' | 'props'>) =>
-  (file: IFileUploadFile, open: boolean = false) => {
+  (file: IFileUploadFile, open = false) => {
     return new Promise((resolve, reject) => {
       try {
         const tokenParams = { isOnlinePreview: true, file, type: 'preview', token: props.edm.preview.token }
