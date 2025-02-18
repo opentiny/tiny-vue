@@ -9,9 +9,9 @@ test('旗子数据来源', async ({ page }) => {
   const flagLineDots = flagLines.locator('.tiny-milestone__dot')
   const nodes = page.locator('.tiny-milestone__icon.tiny-milestone__icon-custom')
   const flagCount = 4
-  const flagAfterContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
-  const flagBeforeContents = [/test1已完成/, /引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/]
-  const button = page.getByRole('button').filter({ hasText: '设置flag-before值为true' })
+  const flagAfterContents = [/引导用户按照流程完成任务/, /test7欢迎使用 vui/, /test8/, /test6/]
+  const flagBeforeContents = [/test1已完成/, /引导用户按照流程完成任务/, /test7欢迎使用 vui/, /test8/]
+  const button = page.getByRole('button').filter({ hasText: '设置 flag-before 值为 true' })
   const flagAfterLineColors = ['rgb(194, 194, 194)', 'rgb(194, 194, 194)', 'rgb(158, 219, 88)', 'rgb(179, 214, 255)']
   const flagBeforeLineColors = ['rgb(179, 214, 255)', 'rgb(194, 194, 194)', 'rgb(194, 194, 194)', 'rgb(158, 219, 88)']
 

@@ -2,7 +2,7 @@
   <div>
     <div class="tiny-demo-flex">
       <div class="tiny-demo-label">前端过滤示例</div>
-      <tiny-button @click="relaodData">Relaod数据</tiny-button>
+      <tiny-button @click="relaodData">Relaod 数据</tiny-button>
     </div>
     <tiny-grid ref="gridFilter" :fetch-data="fetchData" :pager="pagerConfig">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -15,7 +15,7 @@
     <br />
     <div class="tiny-demo-flex">
       <div class="tiny-demo-label">后端过滤示例</div>
-      <tiny-button @click="relaodRemoteData">Relaod数据</tiny-button>
+      <tiny-button @click="relaodRemoteData">Relaod 数据</tiny-button>
     </div>
     <tiny-grid ref="gridRemoteFilter" :fetch-data="fetchData" :pager="pagerConfig" remote-filter>
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
@@ -34,45 +34,45 @@ import { ref } from 'vue'
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     area: '华东区',
     address: '福州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '2',
-    name: 'WWWW科技有限公司',
+    name: 'WWWW 科技有限公司',
     area: '华南区',
     address: '深圳福田区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     area: '华南区',
     address: '中山市',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '4',
-    name: 'TGB有限公司',
+    name: 'TGB 有限公司',
     area: '华北区',
     address: '梅州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '5',
-    name: 'YHN科技有限公司',
+    name: 'YHN 科技有限公司',
     area: '华南区',
     address: '韶关',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '6',
-    name: 'KANG物业有限公司',
+    name: 'KANG 物业有限公司',
     area: '华北区',
     address: '广州天河区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 

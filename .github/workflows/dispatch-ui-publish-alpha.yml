@@ -1,0 +1,61 @@
+name: Dispatch Alpha Ui Publish
+run-name: Dispatch Alpha Ui--${{ inputs.components }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      components:
+        description: |
+          输入需要打包的组件名称，多个以空格分隔,
+          例如： `input alert`.
+        required: true
+        type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: CheckOut Code
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: Run Build Components
+        run: pnpm build:ui ${{ inputs.components }}
+
+      - name: Run Release alpha
+        run: pnpm release:alpha -u
+
+      - name: Publish
+        run: |
+          pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}

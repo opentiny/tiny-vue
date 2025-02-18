@@ -32,14 +32,14 @@ const weekChange = (weekDate) => {
 }
 
 const yearChange = (newVal, oldVal) => {
-  TinyModal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
+  TinyModal.message({ message: `年改变事件：${newVal}年，${oldVal}年`, status: 'info' })
 }
 
 const monthChange = (newVal, oldVal) => {
-  TinyModal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+  TinyModal.message({ message: `月改变事件：${newVal}月，${oldVal}月`, status: 'info' })
 }
 
 const modeChange = (val) => {
-  TinyModal.message({ message: `模式切换事件: ${val}`, status: 'info' })
+  TinyModal.message({ message: `模式切换事件：${val}`, status: 'info' })
 }
 </script>

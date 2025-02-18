@@ -23,8 +23,8 @@
  *
  */
 
-import { isNull } from '../../common/type'
-import { find } from '../../common/array'
+import { isNull } from '@opentiny/utils'
+import { find } from '@opentiny/utils'
 import { get, isFunction, set } from '../static'
 
 export const gridSize = ['medium', 'small', 'mini']

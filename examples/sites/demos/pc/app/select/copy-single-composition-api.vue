@@ -1,16 +1,16 @@
 <template>
   <div>
-    <p>场景1：单选无需配置可复制</p>
+    <p>场景 1：单选无需配置可复制</p>
     <br />
     <tiny-select v-model="value1" :options="options1"> </tiny-select>
     <br /><br />
-    <p>场景2：单选可搜索配置 allow-copy 可复制</p>
+    <p>场景 2：单选可搜索配置 allow-copy 可复制</p>
     <br />
     <tiny-select ref="selectRef" v-model="value1" :options="options1" filterable :filter-method="filter" allow-copy>
     </tiny-select>
     <br /><br />
 
-    <p>场景3：单选远程搜索配置 allow-copy 可复制</p>
+    <p>场景 3：单选远程搜索配置 allow-copy 可复制</p>
     <br />
     <tiny-select
       v-model="value2"
@@ -36,14 +36,14 @@ import { ref, onMounted } from 'vue'
 import { TinySelect, TinyOption, TinyInput } from '@opentiny/vue'
 
 const options1 = ref([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 const options2 = ref([])
-const value1 = ref('选项1')
+const value1 = ref('选项 1')
 const value2 = ref('Alabama')
 const inputVal = ref('')
 const selectRef = ref(null)

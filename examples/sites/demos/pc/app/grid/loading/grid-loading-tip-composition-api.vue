@@ -17,27 +17,27 @@ import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 const tableDataRaw = [
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     city: '福州'
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     city: '深圳'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     city: '中山'
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB 科技 YX 公司',
     city: '龙岩'
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     city: '韶关'
   }
 ]

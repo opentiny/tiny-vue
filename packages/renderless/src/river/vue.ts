@@ -16,7 +16,7 @@ import {
   getContainerWidth,
   resizeListener
 } from './index'
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 
 export const api = ['state', 'lightUp', 'style']
 

@@ -19,7 +19,7 @@ import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 const activeName = ref('1')
 const tabs = reactive([])
 
-// 创建tabs
+// 创建 tabs
 for (let i = 1; i < 5; i++) {
   const title = `Tab ${i}`
   tabs.push({

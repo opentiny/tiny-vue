@@ -12,18 +12,18 @@ const options = ref({
   // 图表类型（线型树图）
   type: 'RingTreeChart',
 
-  // padding控制图表距离容器的上、右、下、左padding值
+  // padding 控制图表距离容器的上、右、下、左 padding 值
   padding: [20, 80, 20, 80],
-  // 图元的大小，默认值10
+  // 图元的大小，默认值 10
   symbolSize: 10,
 
-  // 初始树图的展开层级，最小值为1，默认值1
+  // 初始树图的展开层级，最小值为 1，默认值 1
   initialTreeDepth: 2,
 
-  // data数据采用树状结构
+  // data 数据采用树状结构
   // name：节点的名称
   // value：节点的数值
-  // children： 子节点
+  // children：子节点
   data: [
     {
       name: '节点',

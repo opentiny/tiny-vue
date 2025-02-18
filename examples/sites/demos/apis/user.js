@@ -73,6 +73,21 @@ export default {
           pcDemo: 'multiple-users-tag'
         },
         {
+          name: 'hover-expand',
+          type: 'boolean',
+          defaultValue: '该属性的默认值为 false',
+          desc: {
+            'zh-CN': '默认折叠tag, hover时展示所有tag。多选用户multiple为true时生效',
+            'en-US':
+              'By default, tags are collapsed. When tags are hovered, all tags are displayed. This parameter is valid only when multiple is set to true for multiple users.'
+          },
+          mode: ['pc'],
+          pcDemo: '',
+          meta: {
+            stable: '3.22.0'
+          }
+        },
+        {
           name: 'delay',
           type: 'number',
           defaultValue: '该属性的默认值为 600 毫秒',

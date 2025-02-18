@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-dropdown-item",
   "type": "module",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -12,14 +12,11 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-popup": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

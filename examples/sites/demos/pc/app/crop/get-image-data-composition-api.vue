@@ -23,7 +23,7 @@ function getImageData() {
 }
 function getCanvasData() {
   TinyModal.message({
-    message: `画布位置和大小数据: ${JSON.stringify(cropRef.value.getCanvasData())}`,
+    message: `画布位置和大小数据：${JSON.stringify(cropRef.value.getCanvasData())}`,
     status: 'info'
   })
 }

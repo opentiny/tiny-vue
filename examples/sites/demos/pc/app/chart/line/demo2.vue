@@ -15,7 +15,7 @@ export default {
     return {
       options: {
         padding: [50, 30, 50, 20],
-        smooth: true, // smooth属性配置曲线
+        smooth: true, // smooth 属性配置曲线
         legend: {
           show: true,
           icon: 'line'

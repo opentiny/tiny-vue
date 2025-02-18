@@ -33,15 +33,15 @@ export default {
       },
       milestoneData: [
         {
-          name: 'POR1', // name-field设置的键名
-          date: '2018-9-7', // time-field设置的键名
-          progress: 'completed', // status-field设置的键名，completed-field设置的键值
-          // flag-field设置的键名
+          name: 'POR1', // name-field 设置的键名
+          date: '2018-9-7', // time-field 设置的键名
+          progress: 'completed', // status-field 设置的键名，completed-field 设置的键值
+          // flag-field 设置的键名
           flags: [
             {
-              progress: 'completed', // flag-status-field设置的键名
-              title: '第一阶段', // flag-name-field设置的键名
-              describe: 'flag-content-field' // flag-content-field设置的键名
+              progress: 'completed', // flag-status-field 设置的键名
+              title: '第一阶段', // flag-name-field 设置的键名
+              describe: 'flag-content-field' // flag-content-field 设置的键名
             }
           ]
         },
@@ -71,12 +71,12 @@ export default {
             {
               progress: 'back',
               describe: 'flag-content-field',
-              title: '第四阶段1'
+              title: '第四阶段 1'
             },
             {
               progress: 'doing',
               describe: 'flag-content-field',
-              title: '第四阶段2'
+              title: '第四阶段 2'
             }
           ]
         },

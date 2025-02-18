@@ -23,6 +23,7 @@
         :show-checkbox="multiple"
         @check="check"
         @node-click="nodeClick"
+        v-bind="treeOp"
       ></tiny-tree>
     </template>
   </tiny-base-select>

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-renderless",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "private": true,
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
@@ -36,8 +36,9 @@
     "release": "esno ./scripts/postbuild.ts && shx cp README.md dist"
   },
   "dependencies": {
-    "color": "4.2.3",
-    "xss": "1.0.11"
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-hooks": "workspace:~",
+    "color": "4.2.3"
   },
   "devDependencies": {
     "esno": "^4.7.0",

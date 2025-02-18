@@ -10,7 +10,7 @@
  *
  */
 import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITreeMenuNewData } from '@/types'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
@@ -25,6 +25,12 @@ export const initData =
 
       state.data = api.setMenuKey({ newData: [], menuData })
     }
+  }
+
+export const getTree =
+  ({ vm }) =>
+  () => {
+    return vm.$refs.tree
   }
 
 export const setMenuKey =

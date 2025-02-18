@@ -34,22 +34,22 @@ const options = ref({
       },
       data: [
         {
-          name: '节点1',
+          name: '节点 1',
           x: 300,
           y: 300
         },
         {
-          name: '节点2',
+          name: '节点 2',
           x: 800,
           y: 300
         },
         {
-          name: '节点3',
+          name: '节点 3',
           x: 550,
           y: 100
         },
         {
-          name: '节点4',
+          name: '节点 4',
           x: 550,
           y: 500
         }
@@ -72,8 +72,8 @@ const options = ref({
           }
         },
         {
-          source: '节点2',
-          target: '节点1',
+          source: '节点 2',
+          target: '节点 1',
           label: {
             normal: {
               show: true
@@ -86,20 +86,20 @@ const options = ref({
           }
         },
         {
-          source: '节点1',
-          target: '节点3'
+          source: '节点 1',
+          target: '节点 3'
         },
         {
-          source: '节点2',
-          target: '节点3'
+          source: '节点 2',
+          target: '节点 3'
         },
         {
-          source: '节点2',
-          target: '节点4'
+          source: '节点 2',
+          target: '节点 4'
         },
         {
-          source: '节点1',
-          target: '节点4'
+          source: '节点 1',
+          target: '节点 4'
         }
       ],
       lineStyle: {

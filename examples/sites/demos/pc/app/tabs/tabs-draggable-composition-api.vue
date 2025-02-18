@@ -63,7 +63,7 @@ function handleAdd() {
   tabs.value.push({
     title: 'Tab ' + String(tabs.value.length + 1),
     name: String(tabs.value.length + 1),
-    content: '动态增加tabitem'
+    content: '动态增加 tabitem'
   })
 }
 </script>

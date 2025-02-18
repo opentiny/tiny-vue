@@ -22,8 +22,8 @@
  * SOFTWARE.
  *
  */
-import throttle from '@opentiny/vue-renderless/common/deps/throttle'
-import { hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { throttle } from '@opentiny/utils'
+import { hasClass } from '@opentiny/utils'
 import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
 
 export function onCellMousedownGridEl(args) {

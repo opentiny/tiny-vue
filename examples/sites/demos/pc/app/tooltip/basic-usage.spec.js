@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试Tooltip的是否能出现', async ({ page }) => {
+test('测试 Tooltip 的是否能出现', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
   await page.goto('tooltip#basic-usage')
@@ -13,7 +13,7 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
   await button.hover()
   await expect(tooltip).toBeVisible()
 
-  // 测试Tooltip的位置是否正确
+  // 测试 Tooltip 的位置是否正确
   button = preview.getByRole('button', { name: '上右' })
   tooltip = page.getByRole('tooltip', { name: 'Top Right 提示文字' })
 
@@ -21,7 +21,7 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
   let buttonBox = await button.boundingBox()
   let tooltipBox = await tooltip.boundingBox()
 
-  // tooltip + 高度 要小于button的y
+  // tooltip + 高度 要小于 button 的 y
   expect(tooltipBox.y + tooltipBox.height).toBeLessThan(buttonBox.y)
 
   button = preview.getByRole('button', { name: '下左' })
@@ -31,6 +31,6 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
   buttonBox = await button.boundingBox()
   tooltipBox = await tooltip.boundingBox()
 
-  // button + 高度 要小于 tooltip 的y
+  // button + 高度 要小于 tooltip 的 y
   expect(buttonBox.y + buttonBox.height).toBeLessThan(tooltipBox.y)
 })

@@ -112,30 +112,16 @@ export default defineComponent({
         data-tag="tiny-upload"
         class={[
           !displayOnly && listType === 'text'
-            ? `flex justify-between mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
+            ? `flex mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
             : 'h-full',
           showFileList ? 'sm:mb-3' : 'sm:mb-0'
         ]}>
         {state.currentBreakpoint === 'default' && tipSlot && (
           <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
         )}
-        {state.currentBreakpoint === 'default' && (
-          <div
-            data-tag="tiny-upload-drag-single"
-            class="h-full"
-            onClick={($event) => handleClick($event, sourceType)}
-            onKeydown={handleKeydown}
-            tabindex="0">
-            {listType === 'drag-single' ? (
-              <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
-                {defaultSlot}
-              </UploadDragger>
-            ) : (
-              defaultSlot
-            )}
-          </div>
-        )}
+        {state.currentBreakpoint === 'default' && uploadTrigger()}
         {state.currentBreakpoint !== 'default' &&
+          !displayOnly &&
           (promptTip && tipMessage ? (
             <div class="hidden sm:inline-flex sm:items-center">
               {uploadTrigger()}
@@ -147,8 +133,8 @@ export default defineComponent({
             <div class="hidden sm:inline-flex sm:items-center">
               {uploadTrigger()}
               <div
-                title={tipMessage}
-                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer">
+                title={typeof tipMessage === 'string' ? tipMessage : ''}
+                class="hidden sm:block text-xs leading-4 overflow-hidden whitespace-nowrap text-ellipsis text-color-text-placeholder ml-2 cursor-pointer">
                 {tipMessage}
               </div>
             </div>

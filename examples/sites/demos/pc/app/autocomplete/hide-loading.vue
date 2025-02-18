@@ -34,7 +34,7 @@ export default {
       let list = this.list
       let res = queryString ? list.filter(this.createFilter(queryString)) : list
 
-      // 为了演示加载图标的效果，增加1s的延时
+      // 为了演示加载图标的效果，增加 1s 的延时
       await new Promise((resolve) => setTimeout(resolve, 1000))
       // 返回建议列表的数据
       cb(res)
@@ -45,23 +45,23 @@ export default {
     loadAll() {
       return [
         {
-          value: 'GFD科技公司',
+          value: 'GFD 科技公司',
           address: '福州'
         },
         {
-          value: 'WWWW科技公司',
+          value: 'WWWW 科技公司',
           address: '深圳福田区'
         },
         {
-          value: 'RFV有限责任公司',
+          value: 'RFV 有限责任公司',
           address: '中山市'
         },
         {
-          value: 'TGB公司',
+          value: 'TGB 公司',
           address: '梅州'
         },
         {
-          value: 'YHN科技公司',
+          value: 'YHN 科技公司',
           address: '韶关'
         },
         {

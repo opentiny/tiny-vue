@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-huicharts-core",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -14,7 +14,8 @@
   "dependencies": {
     "echarts": "5.4.1",
     "@opentiny/huicharts": "1.0.1",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/utils": "workspace:~"
   },
   "license": "MIT"
 }

@@ -27,7 +27,7 @@ function mockData() {
     const data = Array.from({ length: 1000 }).map((item, i) => {
       return {
         id: randomAlphabets() + i + 1,
-        name: randomAlphabets() + '科技YX公司',
+        name: randomAlphabets() + '科技 YX 公司',
         city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
         createdDate: '2011-11-11 11:11:11'
       }

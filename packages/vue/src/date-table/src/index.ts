@@ -1,6 +1,6 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { isDate1 } from '@opentiny/utils'
 
 export default defineComponent({
   name: $prefix + 'DateTable',
@@ -11,7 +11,7 @@ export default defineComponent({
     date: {},
     defaultValue: {
       validator(val) {
-        return val === null || isDate(val) || (Array.isArray(val) && val.every(isDate))
+        return val === null || isDate1(val) || (Array.isArray(val) && val.every(isDate1))
       }
     },
     disabledDate: {},
@@ -30,7 +30,11 @@ export default defineComponent({
     },
     showWeekNumber: {
       type: Boolean,
-      default: () => false
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     },
     value: {},
     formatWeeks: Function

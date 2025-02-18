@@ -6,7 +6,7 @@ test('表格导出功能测试', async ({ page }) => {
   const downloadPromise = page.waitForEvent('download')
   await page.getByRole('button', { name: '导出数据' }).click()
   const download = await downloadPromise
-  // 检查文件是否被下载并含有名称table.csv
+  // 检查文件是否被下载并含有名称 table.csv
   await expect(download._suggestedFilename).toBe('table.csv')
   await page.getByRole('button', { name: '清空数据' }).click()
 

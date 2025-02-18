@@ -2,12 +2,12 @@
   <tiny-checkbox-group v-model="checked">
     <tiny-checkbox label="复选框1">
       <template #default>
-        <span class="primary-bg">复选框1</span>
+        <span class="primary-bg">复选框 1</span>
       </template>
     </tiny-checkbox>
     <tiny-checkbox label="复选框2">
       <template #default>
-        <span class="warning-bg">复选框2</span>
+        <span class="warning-bg">复选框 2</span>
       </template>
     </tiny-checkbox>
   </tiny-checkbox-group>
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      checked: ['复选框1']
+      checked: ['复选框 1']
     }
   }
 }

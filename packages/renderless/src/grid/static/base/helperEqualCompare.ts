@@ -23,7 +23,7 @@
  *
  */
 
-import { isDate, isRegExp } from '../../../common/type'
+import { isDate, isRegExp } from '@opentiny/utils'
 import isNumber from './isNumber'
 import isString from './isString'
 import isBoolean from './isBoolean'

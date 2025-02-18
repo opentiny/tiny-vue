@@ -1,12 +1,13 @@
 import zhCN from '../lang/zh-CN'
 import enUS from '../lang/en'
 import format from '../format'
-import { extend as _extend } from '@opentiny/vue-renderless/common/object'
+import { extend as _extend } from '@opentiny/utils'
 
 let lang = zhCN
 let i18nHandler = null as any
 
 export const t = function (this: any, path, options = undefined as any) {
+  // eslint-disable-next-line prefer-rest-params
   if (i18nHandler) return i18nHandler.apply(this, arguments)
 
   const array = path.split('.')
@@ -45,7 +46,10 @@ export interface InitI18nOption {
   app?: any
   createI18n?: Function
   messages?: Record<string, any>
-  i18n?: { locale: string }
+  i18n?: {
+    legacy: boolean
+    locale: string
+  }
   merge?: Function
 }
 
@@ -58,6 +62,7 @@ export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, mer
 
   if (typeof createI18n === 'function') {
     const vueI18n = createI18n({
+      legacy: i18n.legacy,
       locale: i18n.locale || 'zhCN',
       messages: merge({ lang, i18n, messages })
     })

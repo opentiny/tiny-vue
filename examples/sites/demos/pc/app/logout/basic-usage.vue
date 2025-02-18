@@ -29,7 +29,7 @@ export default {
     },
     getLogoutUrl() {
       return new Promise((resolve, reject) => {
-        /* 自定义注销逻辑，返回注销完成后的重定向url */
+        /* 自定义注销逻辑，返回注销完成后的重定向 url */
         setTimeout(() => {
           window.localStorage.setItem('isLogin', false)
           const url = window.location.href
@@ -39,7 +39,7 @@ export default {
       })
     },
     isGuestUser() {
-      /* 此处为用户自定义获取当前登录状态，未登录为访客，返回true,已登录返回false */
+      /* 此处为用户自定义获取当前登录状态，未登录为访客，返回 true，已登录返回 false */
       this.isLogin = window.localStorage.getItem('isLogin') === 'true'
 
       return !this.isLogin

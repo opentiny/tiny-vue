@@ -51,7 +51,7 @@ function fetchUser() {
   return new Promise((resolve, reject) => {
     const result = {
       sex: 'M',
-      l0_Name: 'SZ技术',
+      l0_Name: 'SZ 技术',
       effective_Start_Date: '2011/10/14 00:00:00',
       l3_Dept_Code: '038384',
       person_Notes_Cn: 'test1 12345678',
@@ -61,7 +61,7 @@ function fetchUser() {
       person_Mail: '',
       name: '公共技术测试数据部门',
       location_second_area: 'Shenzhen',
-      upper_Name: 'IT技术架构与测试数据部',
+      upper_Name: 'IT 技术架构与测试数据部',
       coa_Combination: '0021.000.0001.038759',
       l4_Name: '公共技术测试数据部门',
       english_Name: 'zhang san',

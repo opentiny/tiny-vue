@@ -46,13 +46,13 @@ const createData = reactive({
   email: '',
   datepicker: '',
   textarea: '',
-  cascader: [] // 注意:级联选择器放在表单中校验时，默认值必须是数组
+  cascader: [] // 注意：级联选择器放在表单中校验时，默认值必须是数组
 })
 const rules = ref({
   radio: [{ required: true, message: '必填', trigger: 'blur' }],
   users: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: 'change' }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'change' }
   ],
   datepicker: { type: 'date' },
   url: { type: 'url' },

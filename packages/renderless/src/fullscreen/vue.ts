@@ -10,7 +10,7 @@
  *
  */
 
-import sf from '../common/deps/fullscreen/screenfull'
+import { sf } from '@opentiny/utils'
 import {
   exit,
   enter,

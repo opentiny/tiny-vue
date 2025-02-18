@@ -11,10 +11,10 @@
  */
 
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
-import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
-import { typeOf } from '../common/type'
+import { on, off, getScrollContainer, isInContainer } from '@opentiny/utils'
+import { typeOf } from '@opentiny/utils'
 import { rafThrottle } from '../image-viewer'
-import { xss } from '../common/xss'
+import { xss } from '@opentiny/utils'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
 
@@ -185,7 +185,7 @@ export const mounted =
   }
 
 export const filterImageUrl = (props) => () => {
-  const isBase64 = /^data:image\/(png|jpg|jpeg|gif);base64,([a-zA-Z0-9+/]+={0,2})/
+  const isBase64 = /^data:(image|application)\/(png|jpg|jpeg|gif|octet-stream|svg\+xml);base64,([a-zA-Z0-9+/]+={0,2})/
 
   return isBase64.test(props.src) ? props.src : xss.filterUrl(props.src)
 }

@@ -6,15 +6,15 @@ test('基础用法', async ({ page }) => {
 
   const activeDom = page.getByRole('button', { name: '基础新手引导' })
   const startGuide = page.getByRole('button', { name: '开始引导' })
-  const step1 = page.getByRole('heading', { name: '新手引导标题1' })
-  const step2 = page.getByRole('heading', { name: '新手引导标题2' })
+  const step1 = page.getByRole('heading', { name: '新手引导标题 1' })
+  const step2 = page.getByRole('heading', { name: '新手引导标题 2' })
   const step3 = page.getByRole('dialog').locator('div').nth(2)
   const next = page.getByRole('button', { name: '下一步' })
   const finished = page.getByRole('button', { name: '完成' })
   const showBtn = page.getByRole('button', { name: '带滚动条新手引导' })
   const closeBtn = page.getByRole('button', { name: 'Close Tour' })
 
-  // 打开页面即显示guide
+  // 打开页面即显示 guide
   await expect(activeDom).toBeVisible()
   await startGuide.click()
 

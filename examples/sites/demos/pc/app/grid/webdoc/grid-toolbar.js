@@ -75,7 +75,7 @@ export default {
       'name': { 'zh-CN': '工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 属性设置工具栏尺寸大小,包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>',
+          '<p>通过 <code>size</code> 属性设置工具栏尺寸大小，包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Set the table event <code>@toolbar-button-click</code> to obtain the <code>buttons</code> event on the toolbar. You can customize the service logic for copying rows. The </p>\n<ul>\n<li><code>size</code> property specifies the size of the toolbar. The options are large, medium, small, and mini. If this parameter is not set, the default size is used. </li>\n</ul>\n'
       },

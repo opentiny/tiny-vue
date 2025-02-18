@@ -7,6 +7,6 @@ test('测试自定义映射列', async ({ page }) => {
   const tree = page.locator('.pc-demo-container')
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
 
-  // 测试disabled
+  // 测试 disabled
   await expect(tree.getByText('数据 2-2')).toHaveCSS('color', 'rgb(194, 194, 194)')
 })

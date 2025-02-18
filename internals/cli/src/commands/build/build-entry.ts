@@ -19,7 +19,6 @@ const outputDir = 'packages/vue'
 const fileNames = {
   all: 'index.ts',
   pc: 'pc.ts',
-  mobile: 'mobile.ts',
   'mobile-first': 'mobile-first.ts'
 }
 
@@ -103,7 +102,7 @@ const createEntry = (mode) => {
         .map((component) => {
           if (component.includes('Hui')) {
             return `${component}${joinStr}${component} as ${component
-              .replace('Huicharts', 'Charts')
+              .replace('Huicharts', 'Chart')
               .trim()}${joinStr}${component} as Tiny${component.trim()}`
           }
           return `${component}${joinStr}${component} as Tiny${component.trim()}`
@@ -113,7 +112,7 @@ const createEntry = (mode) => {
         .map((component) => {
           if (component.includes('Hui')) {
             return `${component}${joinStr}${component
-              .replace('Huicharts', 'Charts')
+              .replace('Huicharts', 'Chart')
               .trim()}: ${component}${joinStr}Tiny${component.trim()}: ${component}`
           }
           return `${component}${joinStr}Tiny${component.trim()}: ${component}`
@@ -128,9 +127,7 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile-first'].forEach(createEntry)
 
-  logGreen(
-    `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`
-  )
+  logGreen(`npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile-first.ts]`)
 }

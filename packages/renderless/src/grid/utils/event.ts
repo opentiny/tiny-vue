@@ -23,12 +23,12 @@
  *
  */
 
-import browser from '../../common/browser'
+import { browserInfo } from '@opentiny/utils'
 import { remove } from '../static'
-import { on } from '../../common/deps/dom'
+import { on } from '@opentiny/utils'
 
 // 监听全局事件
-const wheelName = browser.isDoc && /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'
+const wheelName = browserInfo.isDoc && /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'
 const eventStore = []
 
 const invoke = ({ comp, type, cb }, event) => {
@@ -54,7 +54,7 @@ const GlobalEvent = {
   }
 }
 
-if (browser.isDoc) {
+if (browserInfo.isDoc) {
   on(document, 'keydown', GlobalEvent.trigger)
   on(document, 'contextmenu', GlobalEvent.trigger)
   on(window, 'mousedown', GlobalEvent.trigger)

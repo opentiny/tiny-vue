@@ -20,9 +20,6 @@ import {
   IconStartCircle,
   IconHelpQuery
 } from '@opentiny/vue-icon'
-import CryptoJS from 'crypto-js/core'
-import 'crypto-js/sha256.js'
-import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'
@@ -93,7 +90,7 @@ export default defineComponent({
       context,
       renderless,
       api,
-      extendOptions: { Modal, CryptoJS, Streamsaver }
+      extendOptions: { Modal, Streamsaver }
     }) as unknown as IFileUploadApi
   },
   components: {
@@ -389,7 +386,7 @@ export default defineComponent({
       if (listType === 'text') {
         operateContent = downloadAll ? (
           <div class="hidden sm:inline-block align-middle">
-            <tiny-button class="ml-2" onClick={() => downloadAll(uploadFiles)}>
+            <tiny-button onClick={() => downloadAll(uploadFiles)}>
               <div class="flex items-center">
                 <icon-download />
                 <span class="ml-2">{t('ui.fileUpload.downloadAll')}</span>

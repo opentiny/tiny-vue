@@ -5,13 +5,13 @@ import '@opentiny/vue-repl/dist/style.css'
 
 import Editor from '@vue/repl/codemirror-editor'
 import { TinyButtonGroup, TinyButton, TinySelect, TinyOption, TinySwitch, Notify } from '@opentiny/vue'
-import { staticDemoPath, getWebdocPath } from '@/views/components/cmp-config'
+import { staticDemoPath, getWebdocPath } from '@/views/components-doc/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version-3.19'
+const VERSION = 'tiny-vue-version-3.21'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
@@ -23,7 +23,7 @@ const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
 
-const versions = ['3.19', '3.18', '3.17']
+const versions = ['3.21', '3.20', '3.19']
 const getVersion = () => {
   if (isPreview) {
     return versions[0]
@@ -83,13 +83,15 @@ const createImportMap = (version) => {
     '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless${versionDelimiter}${version}/${fileDelimiter}`,
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
-  if (['aurora', 'saas'].includes(tinyTheme)) {
+  if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
     imports[
       `@opentiny/vue-design-${tinyTheme}`
     ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
+    imports['@opentiny/vue-common'] = `${getRuntime(version)}tiny-vue-saas-common.mjs`
+    imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-all.mjs`
   }
   return {
     imports
@@ -144,7 +146,7 @@ const state = reactive({
 
 const designThemeMap = {
   aurora: 'tinyAuroraTheme',
-  infinity: 'tinyInfinityTheme'
+  old: 'tinyOldTheme'
 }
 
 function setTinyDesign() {
@@ -155,16 +157,16 @@ function setTinyDesign() {
     useCode += 'app.provide("TinyMode", "mobile-first");\n'
   }
 
-  if (['aurora', 'saas'].includes(tinyTheme)) {
+  if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig);\n'
   }
 
-  if (['aurora', 'infinity'].includes(tinyTheme)) {
+  if (['aurora', 'old'].includes(tinyTheme)) {
     const designTheme = designThemeMap[tinyTheme]
     importCode += `import TinyThemeTool from '@opentiny/vue-theme/theme-tool';
-      import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`
+      import ${designTheme} from '@opentiny/vue-theme/${tinyTheme}-theme-index.js';\n`
     useCode += `const theme = new TinyThemeTool(${designTheme});\n`
   }
 

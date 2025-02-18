@@ -49,67 +49,67 @@ const fetchData = ref({
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     city: 'FZ',
     employees: 800,
     createdDate: '2014-04-30 00:56:00',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     city: 'SZ',
     employees: 300,
     createdDate: '2016-07-08 12:36:22',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     city: 'ZS',
     employees: 1300,
     createdDate: '2014-02-14 14:14:14',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB 科技 YX 公司',
     city: 'LY',
     employees: 360,
     createdDate: '2013-01-13 13:13:13',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     city: 'SG',
     employees: 810,
     createdDate: '2012-12-12 12:12:12',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '6',
-    name: 'WSX科技YX公司',
+    name: 'WSX 科技 YX 公司',
     city: 'HG',
     employees: 800,
     createdDate: '2011-11-11 11:11:11',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '7',
-    name: 'KBG物业YX公司',
+    name: 'KBG 物业 YX 公司',
     city: 'CB',
     employees: 400,
     createdDate: '2016-04-30 23:56:00',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术YX公司',
+    name: '深圳市福德宝网络技术 YX 公司',
     city: 'XM',
     createdDate: '2016-06-03 13:53:25',
     employees: 540,
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 
@@ -169,7 +169,7 @@ function fetchMethod() {
   }
 
   return new Promise((resolve) => {
-    // 模拟发起请求，500毫秒后生效
+    // 模拟发起请求，500 毫秒后生效
     setTimeout(() => {
       resolve(randomFN())
       // 模拟请求完成

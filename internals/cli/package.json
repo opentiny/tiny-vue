@@ -1,9 +1,47 @@
 {
   "name": "internal-cli",
-  "private": true,
   "type": "commonjs",
   "version": "1.0.5-mf.0",
+  "private": true,
   "description": "internal-cli",
+  "main": "./dist/cjs/index.js",
+  "bin": {
+    "cli": "./dist/cjs/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "// -------注意带 # 开头的脚本命令不要直接执行------- ": "",
+    "build:entry": "esno src/index.ts build:entry",
+    "#build:entry1": "node dist/index.js build:entry",
+    "build:entry-app": "esno src/commands/build/build-entry-app.ts",
+    "// ---------------------build 构建--------------------- ": "",
+    "build:ui": "esno src/index.ts build:ui",
+    "build:ui1": "pnpm build && node dist/index.js build:ui",
+    "// #build:runtime-vue 构建适用于 Vue2/Vue3 的组件 Runtime (按需加载)": "",
+    "build:runtime": "pnpm build:entry-app && esno src/index.ts build:runtime",
+    "// ---------------------全局适配@aurora包名--------------------- ": "",
+    "release:aurora": "esno src/index.ts release:aurora",
+    "release:alpha": "esno src/index.ts release:alpha",
+    "release:e2eConfig": "esno src/index.ts release:e2eConfig",
+    "// ----------------------辅助脚本---------------------- ": "",
+    "create:ui": "esno src/commands/create/create-ui.ts",
+    "sync-icons": "esno src/commands/create/sync-icons.ts",
+    "create:icon-saas": "esno src/index.ts create:icon-saas",
+    "clean:build": "esno src/commands/clean.ts",
+    "create:mapping": "esno src/commands/create/create-mapping.ts",
+    "build:chartTheme": "esno src/index.ts build:chartTheme"
+  },
+  "dependencies": {
+    "@opentiny/huicharts": "~1.0.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "esno": "^4.7.0",
+    "fast-glob": "^3.2.12",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "vite-plugin-dts": "~3.0.0",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-svg-loader": "^3.6.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "7.16.7",
@@ -22,48 +60,9 @@
     "prettier": "^2.7.1",
     "rollup": "^3.7.3",
     "semver": "^7.3.8",
+    "tailwindcss": "^3.2.4",
     "tsup": "7.2.0",
-    "vite": "catalog:",
     "typescript": "catalog:",
-    "tailwindcss": "^3.2.4"
-  },
-  "bin": {
-    "cli": "./dist/cjs/index.js"
-  },
-  "main": "./dist/cjs/index.js",
-  "scripts": {
-    "build": "tsup",
-    "// -------注意带 # 开头的脚本命令不要直接执行------- ": "",
-    "build:entry": "esno src/index.ts build:entry",
-    "#build:entry1": "node dist/index.js build:entry",
-    "build:entry-app": "esno src/commands/build/build-entry-app.ts",
-    "// ---------------------build 构建--------------------- ": "",
-    "build:ui": "esno src/index.ts build:ui",
-    "build:ui1": "pnpm build && node dist/index.js build:ui",
-    "// #build:runtime-vue 构建适用于 Vue2/Vue3 的组件 Runtime (按需加载)": "",
-    "build:runtime": "pnpm build:entry-app && esno src/index.ts build:runtime",
-    "// ---------------------全局适配@aurora包名--------------------- ": "",
-    "release:aurora": "esno src/index.ts release:aurora",
-    "// ----------------------辅助脚本---------------------- ": "",
-    "create:ui": "esno src/commands/create/create-ui.ts",
-    "sync-icons": "esno src/commands/create/sync-icons.ts",
-    "create:icon-saas": "esno src/index.ts create:icon-saas",
-    "clean:build": "esno src/commands/clean.ts",
-    "create:mapping": "esno src/commands/create/create-mapping.ts",
-    "build:entry-react": "esno src/index.ts build:entry-react",
-    "create:mapping-react": "esno src/commands/create/create-mapping-react.ts",
-    "build:react": "esno src/index.ts build:react",
-    "build:chartTheme": "esno src/index.ts build:chartTheme"
-  },
-  "dependencies": {
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
-    "esno": "^4.7.0",
-    "fast-glob": "^3.2.12",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-visualizer": "^5.12.0",
-    "vite-plugin-dts": "~3.0.0",
-    "vite-plugin-svgr": "^3.2.0",
-    "vite-svg-loader": "^3.6.0",
-    "@opentiny/huicharts": "~1.0.0"
+    "vite": "catalog:"
   }
 }

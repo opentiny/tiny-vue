@@ -1,4 +1,4 @@
-import { preventDefault } from '../common/deps/dom'
+import { preventDefault } from '@opentiny/utils'
 
 const getOffsetPosition = ({ touch, state }) => {
   let offsetY = 0

@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'value',
-          type: 'number',
+          type: 'number | string',
           defaultValue: '0',
           desc: {
             'zh-CN': '数字显示内容',
@@ -20,7 +20,7 @@ export default {
         {
           name: 'precision',
           type: 'number',
-          defaultValue: '0',
+          defaultValue: '',
           desc: {
             'zh-CN': '精度值',
             'en-US': 'Take precision value'

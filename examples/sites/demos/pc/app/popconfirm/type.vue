@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       title: '提示标题',
-      message: '安全组规则是推荐的，确定要删除该安全组规则吗?',
+      message: '安全组规则是推荐的，确定要删除该安全组规则吗？',
       TinyIconDel: iconDel()
     }
   }

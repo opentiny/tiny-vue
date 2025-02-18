@@ -19,7 +19,7 @@ const tableData = ref(
   Array.from({ length: 30 }, (a, i) => {
     return {
       id: `${i + 1}`,
-      name: 'GFD科技YX公司',
+      name: 'GFD 科技 YX 公司',
       city: '福州',
       employees: 800 + i,
       createdDate: '2014-04-30 00:56:00'

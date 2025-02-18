@@ -1,7 +1,7 @@
-import { useRect } from '../common/deps/useRect'
-import { useWindowSize } from '../common/deps/useWindowSize'
-import { useEventListener } from '../common/deps/useEventListener'
-import { useScrollParent } from '../common/deps/dom'
+import { useRect } from '@opentiny/vue-hooks'
+import { useWindowSize } from '@opentiny/vue-hooks'
+import { useEventListener } from '@opentiny/vue-hooks'
+import { useScrollParent } from '@opentiny/utils'
 import { computedRootStyle, computedStickyStyle, updateRoot, unitToPx, getRootRect, getTarget } from './index'
 
 export const api = ['state']

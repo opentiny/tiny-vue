@@ -31,7 +31,7 @@ const options = ref([
     label: '网络设置',
     children: [
       { label: '更改安全组', disabled: true },
-      { label: '切换VPC', divided: true }
+      { label: '切换 VPC', divided: true }
     ]
   }
 ])
@@ -55,7 +55,7 @@ const options1 = ref([
   },
   {
     label: '网络设置',
-    children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+    children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
   }
 ])
 </script>

@@ -47,7 +47,7 @@ export default {
         'en-US': 'Set Disabled'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>disabled</code> 设置组件禁用默认值为 false 。</p>\n',
+        'zh-CN': '<p>通过 <code>disabled</code> 设置组件禁用默认值为 false。</p>\n',
         'en-US': '<p>Use <code>disabled</code> to disable the component. The default value is false. </p>\n'
       },
       codeFiles: ['disabled.vue']

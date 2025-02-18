@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-menu",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -19,6 +19,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-exception": "workspace:~"
   },
   "license": "MIT"

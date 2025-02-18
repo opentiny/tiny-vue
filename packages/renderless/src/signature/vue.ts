@@ -1,5 +1,5 @@
-import emulate from '../common/deps/touch-emulator'
-import { useRect as _useRect } from '../common/deps/useRect'
+import { emulate } from '@opentiny/utils'
+import { useRect as _useRect } from '@opentiny/vue-hooks'
 import {
   touchStart,
   touchMove,

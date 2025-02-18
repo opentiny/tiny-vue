@@ -5,6 +5,8 @@
 @custom-prefix-cls: ~'@{css-prefix}custom';
 
 .@{modal-prefix-cls} {
+  overflow-wrap: break-word;
+
   &__wrapper {
     @apply hidden;
     @apply fixed;
@@ -141,8 +143,7 @@
     &.type__confirm {
       .@{modal-prefix-cls}__body {
         @apply whitespace-normal;
-        word-wrap: break-word;
-        @apply break-all;
+        word-break: break-word;
         @apply overflow-auto;
       }
     }

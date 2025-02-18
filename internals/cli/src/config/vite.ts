@@ -23,7 +23,6 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
-    '@opentiny/vue-theme-mobile': pathFromWorkspaceRoot('packages/theme-mobile/src'),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
     '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src/index-dev'),
@@ -39,7 +38,7 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     ...getComponentAlias()
   }
 
-  if (!design) {
+  if (!design && vueVersion === 3) {
     map['@opentiny/vue-icon'] = pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/src`)
   }
 
@@ -75,9 +74,6 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'echarts/renderers',
       'echarts-wordcloud',
       'echarts',
-      'crypto-js/core',
-      'crypto-js/sha256.js',
-      'crypto-js/lib-typedarrays.js',
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
     ].filter((item) => !!item)

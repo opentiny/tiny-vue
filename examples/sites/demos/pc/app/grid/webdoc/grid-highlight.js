@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '高亮悬停行', 'en-US': 'Highlight Hover Line' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>highlight-hover-row</code> 属性控制鼠标悬停到当前行是否开启高亮。 默认为 <code>true</code> 开启高亮, 如果不需要悬停高亮设置 <code>highlight-hover-row</code> 为 <code>false</code>。</p>\n',
+          '<p>设置 <code>highlight-hover-row</code> 属性控制鼠标悬停到当前行是否开启高亮。默认为 <code>true</code> 开启高亮，如果不需要悬停高亮设置 <code>highlight-hover-row</code> 为 <code>false</code>。</p>\n',
         'en-US':
           '<p>Set the <code>highlight-hover-row</code> attribute to control whether to enable the highlight function when the cursor is moved to the current line. The default value is <code>true</code>. If you do not need to hover and highlight, set <code>highlight-hover-row</code> to <code>false</code>. </p>\n'
       },

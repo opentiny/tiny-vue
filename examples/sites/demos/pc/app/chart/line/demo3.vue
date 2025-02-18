@@ -15,7 +15,7 @@ export default {
     return {
       options: {
         padding: [50, 30, 50, 20],
-        step: true, // true属性配置阶梯线
+        step: true, // true 属性配置阶梯线
         legend: {
           show: true,
           icon: 'line'

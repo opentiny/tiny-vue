@@ -61,7 +61,7 @@
     bottom: 14px;
     right: -16px;
     left: 50%;
-    border: 1px solid #e8ebef;
+    @apply border border-solid border-color-border-separator;
     border-radius: 4px;
     border-right: 0;
   }
@@ -71,10 +71,10 @@
     z-index: 1;
     width: 24px;
     height: 24px;
-    background: #f5f6f8;
+    @apply bg-color-bg-2;
     border-radius: 2px;
     cursor: pointer;
-    color: #0067d1;
+    @apply text-color-brand;
     font-size: 12px;
     display: flex;
     align-items: center;
@@ -83,7 +83,7 @@
   }
 
   .combinator-btn.is-disabled {
-    color: #8081a2;
+    @apply text-color-text-disabled;
     cursor: not-allowed;
   }
 
@@ -102,17 +102,17 @@
     & > .btn-icon {
       font-size: 16px;
       fill: currentColor;
-      color: #b5bbc1;
+      @apply text-color-icon-tertiary;
     }
 
     & > .btn-font {
       font-size: 14px;
-      color: #b5bbc1;
+      @apply text-color-icon-tertiary;
     }
 
     &:hover > .btn-icon,
     &:hover > .btn-font {
-      color: #78828d;
+      @apply text-color-icon-hover;
       fill: currentColor;
     }
 
@@ -196,7 +196,7 @@
   .ruleGroup-notToggle {
     display: flex;
     align-items: center;
-    color: #0067d1;
+    @apply text-color-brand;
   }
 
   .ruleGroup-notToggle input {
@@ -231,7 +231,7 @@
     }
 
     .ruleGroup .ruleGroup {
-      border: 1px solid #e8ebef;
+      @apply border border-solid border-color-border-separator;
 
       .group-rule-branches {
         top: 12px;

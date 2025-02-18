@@ -71,10 +71,10 @@
         {{ state.tipValue }}
       </div>
       <div v-if="state.markList">
-        <template v-for="mark in state.markList" :key="mark.value">
+        <span v-for="mark in state.markList" :key="mark.value">
           <div class="tiny-slider__mark-point" :style="mark.positionStyle"></div>
           <div class="tiny-slider__mark-label" :style="mark.positionStyle">{{ mark.label }}</div>
-        </template>
+        </span>
       </div>
     </div>
 

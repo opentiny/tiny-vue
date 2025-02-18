@@ -23,7 +23,10 @@ import type {
   setCurrentKey,
   getCurrentKey,
   setCurrentNode,
-  getCurrentNode
+  getCurrentNode,
+  handleToggleMenu,
+  computedTreeStyle,
+  getTree
 } from '../src/tree-menu'
 import type { ISharedRenderlessParamUtils } from './shared.type'
 
@@ -51,6 +54,7 @@ export interface ITreeMenuApi {
   currentChange: ReturnType<typeof currentChange>
   watchFilterText: ReturnType<typeof watchFilterText>
   getTitle: ReturnType<typeof getTitle>
+  getTree: ReturnType<typeof getTree>
   setMenuKey: ReturnType<typeof setMenuKey>
   initData: ReturnType<typeof initData>
   collapseChange: ReturnType<typeof collapseChange>
@@ -60,6 +64,8 @@ export interface ITreeMenuApi {
   getCurrentKey: ReturnType<typeof getCurrentKey>
   setCurrentNode: ReturnType<typeof setCurrentNode>
   getCurrentNode: ReturnType<typeof getCurrentNode>
+  handleToggleMenu: ReturnType<typeof handleToggleMenu>
+  computedTreeStyle: ReturnType<typeof computedTreeStyle>
 }
 
 export interface ITreeMenuData {

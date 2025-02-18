@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过 <code>left</code> 属性设置插槽自定义左侧切换图标为 IconLeft ， <code>right</code> 属性设置插槽右侧切换图标 IconRight 。</p>\n',
+          '<p>可通过 <code>left</code> 属性设置插槽自定义左侧切换图标为 IconLeft， <code>right</code> 属性设置插槽右侧切换图标 IconRight。</p>\n',
         'en-US':
           '<p>Use the <code>left</code> slot to set the left switch icon to IconLeft, and use the <code>right</code> slot to set the right switch icon to IconRight. </p>\n'
       },

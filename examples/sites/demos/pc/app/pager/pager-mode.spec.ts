@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('分页complete模式', async ({ page }) => {
+test('分页 complete 模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('pager#pager-mode')
 

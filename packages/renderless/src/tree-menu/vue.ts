@@ -35,7 +35,8 @@ import {
   setCurrentNode,
   getCurrentNode,
   handleToggleMenu,
-  computedTreeStyle
+  computedTreeStyle,
+  getTree
 } from './index'
 import type {
   ISharedRenderlessParamUtils,
@@ -70,7 +71,8 @@ export const api = [
   'getCurrentKey',
   'setCurrentNode',
   'getCurrentNode',
-  'handleToggleMenu'
+  'handleToggleMenu',
+  'getTree'
 ]
 
 export const renderless = (
@@ -121,6 +123,7 @@ export const renderless = (
     getCurrentKey: getCurrentKey({ vm }),
     setCurrentNode: setCurrentNode({ vm }),
     getCurrentNode: getCurrentNode({ vm }),
+    getTree: getTree({ vm }),
     handleToggleMenu: handleToggleMenu({ state, vm }),
     computedTreeStyle: computedTreeStyle({ props })
   })

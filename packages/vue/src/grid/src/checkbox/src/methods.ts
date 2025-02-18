@@ -106,6 +106,8 @@ export default {
         : (row) => get(row, checkField)
       someHandler = (row) => get(row, checkField) || ~treeIndeterminates.indexOf(row)
       this.isAllSelected = false
+      this.headerCheckDisabled =
+        checkMethod && afterFullData.length && afterFullData.every((row, rowIndex) => !checkMethod({ row, rowIndex }))
       afterFullData.length && (this.isAllSelected = afterFullData.every(everyHandler))
       this.isIndeterminate = !this.isAllSelected && afterFullData.some(someHandler)
     } else {

@@ -21,9 +21,9 @@ test('测试有密码校验', async ({ page }) => {
   const validPassword = 'Test1234'
   await username.click()
   await username.fill(noValidUsername)
-  await expect(page.locator('.tiny-tooltip').getByText('长度必须不小于2')).toBeVisible()
+  await expect(page.locator('.tiny-tooltip').getByText('长度必须不小于 2')).toBeVisible()
   await username.fill(validUsername)
-  await expect(page.locator('.tiny-tooltip').getByText('长度必须不小于2')).not.toBeVisible()
+  await expect(page.locator('.tiny-tooltip').getByText('长度必须不小于 2')).not.toBeVisible()
   await password.click()
   await password.fill(noValidPassword)
   await password.blur()

@@ -15,11 +15,10 @@
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-saas": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
     "sortablejs": "1.15.0"
   },
   "devDependencies": {
-    "@playwright/test": "~1.42.0"
+    "@playwright/test": "catalog:"
   }
 }

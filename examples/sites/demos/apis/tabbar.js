@@ -1,5 +1,5 @@
 export default {
-  mode: ['mobile', 'mobile-first'],
+  mode: ['mobile-first'],
   apis: [
     {
       name: 'Tabbar',
@@ -7,49 +7,35 @@ export default {
       props: [
         {
           name: 'active-color',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>选中标签的颜色</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'active-inactive-color',
+          mode: ['mobile-first'],
           mfDemo: 'active-inactive-color'
         },
         {
           name: 'border',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>是否显示外边框，该属性默认为true</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'border',
+          mode: ['mobile-first'],
           mfDemo: 'custom-close'
         },
         {
-          name: 'fixed',
-          type: 'Boolen',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>是否固定在底部，该属性默认为true</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'border'
-        },
-        {
           name: 'inactive-color',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>未选中标签的颜色</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'active-inactive-color',
+          mode: ['mobile-first'],
           mfDemo: 'active-inactive-color'
         },
         {
@@ -64,19 +50,8 @@ export default {
           mfDemo: 'options'
         },
         {
-          name: 'route',
-          type: 'Boolean',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>是否开启路由模式，该属性默认为false</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'route'
-        },
-        {
           name: 'show-number',
-          type: 'Number',
+          type: 'number',
           defaultValue: '5',
           desc: {
             'zh-CN': '设置底部导航需要展示的项数',
@@ -95,17 +70,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: 'base'
-        },
-        {
-          name: 'z-index',
-          type: 'Number | String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>元素 z-index</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'border'
         }
       ],
       events: [
@@ -117,8 +81,7 @@ export default {
             'zh-CN': '<p>切换标签时触发,value: 当前选中标签的名称或索引值</p>',
             'en-US': 'Click'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'event-change',
+          mode: ['mobile-first'],
           mfDemo: 'event-change'
         }
       ],
@@ -134,16 +97,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: 'base'
-        },
-        {
-          name: 'icon',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>自定义图标</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'slot-icon'
         }
       ]
     },
@@ -164,7 +117,7 @@ export default {
         },
         {
           name: 'custom-icon',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置底部导航个性化图标',
@@ -174,7 +127,7 @@ export default {
         },
         {
           name: 'dot',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置底部导航选项点',
@@ -207,7 +160,7 @@ export default {
         },
         {
           name: 'text',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置底部导航循环时设定的标题',

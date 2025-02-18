@@ -24,7 +24,7 @@ import { TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 const data = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     area: '华东区',
     province: '福建省',
     city: '福州',
@@ -32,7 +32,7 @@ const data = ref([
   },
   {
     id: '2',
-    name: 'WWW科技有限公司',
+    name: 'WWW 科技有限公司',
     area: '华南区',
     province: '广东省',
     city: '深圳',
@@ -40,7 +40,7 @@ const data = ref([
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     area: '华南区',
     province: '广东省',
     city: '中山',
@@ -48,7 +48,7 @@ const data = ref([
   },
   {
     id: '4',
-    name: 'TGB科技有限公司',
+    name: 'TGB 科技有限公司',
     area: '华东区',
     province: '福建省',
     city: '龙岩',
@@ -56,7 +56,7 @@ const data = ref([
   },
   {
     id: '5',
-    name: 'YHN科技有限公司',
+    name: 'YHN 科技有限公司',
     area: '华南区',
     province: '广东省',
     city: '韶关',
@@ -64,7 +64,7 @@ const data = ref([
   },
   {
     id: '6',
-    name: 'WSX科技有限公司',
+    name: 'WSX 科技有限公司',
     area: '华中区',
     province: '湖北省',
     city: '黄冈',
@@ -72,7 +72,7 @@ const data = ref([
   },
   {
     id: '7',
-    name: 'KBG物业有限公司',
+    name: 'KBG 物业有限公司',
     area: '华中区',
     province: '湖北省',
     city: '赤壁',
@@ -88,7 +88,7 @@ const data = ref([
   },
   {
     id: '9',
-    name: 'UJM有限责任公司',
+    name: 'UJM 有限责任公司',
     area: '华南区',
     province: '广西省',
     city: '南宁',
@@ -96,7 +96,7 @@ const data = ref([
   },
   {
     id: '10',
-    name: 'IKA有限责任公司',
+    name: 'IKA 有限责任公司',
     area: '华南区',
     province: '广西省',
     city: '北海',
@@ -104,7 +104,7 @@ const data = ref([
   },
   {
     id: '11',
-    name: 'TIG管理有限公司',
+    name: 'TIG 管理有限公司',
     area: '华南区',
     province: '广西省',
     city: '桂林',
@@ -112,7 +112,7 @@ const data = ref([
   },
   {
     id: '12',
-    name: 'GGT科技有限公司',
+    name: 'GGT 科技有限公司',
     area: '西南区',
     province: '云南省',
     city: '昆明',
@@ -124,7 +124,7 @@ function renderGroup(h, { value, header, children }) {
   return (
     <span>
       {header}:{value}
-      <a>{'当前分组行数为' + children.length}</a>
+      <a>{'当前分组行数为 ' + children.length}</a>
     </span>
   )
 }

@@ -6,11 +6,11 @@ test('自定义下拉搜索类型项', async ({ page }) => {
 
   const search = page.locator('.tiny-search')
   const expand = search.locator('.icon-outer')
-  const option = search.locator('.tiny-search__poplist-item').filter({ hasText: '插槽3' })
+  const option = search.locator('.tiny-search__poplist-item').filter({ hasText: '插槽 3' })
   const text = search.locator('.tiny-search__text')
 
-  await expect(text).toHaveText('插槽1')
+  await expect(text).toHaveText('插槽 1')
   await expand.click()
   await option.click() // 下拉选择
-  await expect(text).toHaveText('插槽3')
+  await expect(text).toHaveText('插槽 3')
 })

@@ -6,7 +6,7 @@ test('可清除', async ({ page }) => {
 
   const demo = page.locator('#clearable')
   await demo.getByRole('textbox', { name: '请输入内容', exact: true }).click()
-  await page.getByRole('option', { name: 'WWWW科技YX公司' }).click()
+  await page.getByRole('option', { name: 'WWWW 科技 YX 公司' }).click()
   await demo.getByRole('textbox', { name: '请输入内容', exact: true }).hover()
   await demo.getByRole('combobox').locator('.tiny-input__clear').click()
 

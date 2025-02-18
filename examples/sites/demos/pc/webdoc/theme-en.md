@@ -101,7 +101,7 @@ themeTool.changeTheme(
 )
 ```
 
-## OLD主题配置
+## OLD 主题配置
 
 We do not recommend that users continue to use the old theme, but for historical projects, we provide a set of 'CSS variables' of the old theme that users need to adapt in the project.
 

@@ -165,6 +165,19 @@ export default {
       codeFiles: ['right-dialog.vue']
     },
     {
+      demoId: 'double-dialog-height',
+      name: {
+        'zh-CN': '右侧双层弹框',
+        'en-US': 'Double-layer dialog box on the right'
+      },
+      desc: {
+        'zh-CN': '右侧弹窗分两种情况，父级弹框自动缩进，子级弹框高度撑满。父级弹框不缩进，子级弹框高度自适应。',
+        'en-US':
+          'There are two types of pop-up windows on the right. The parent pop-up boxes are automatically indented, and the child pop-up boxes are full. The parent dialog box is not indented, and the height of the child dialog box is adaptive.'
+      },
+      codeFiles: ['double-dialog-height.vue']
+    },
+    {
       demoId: 'hidden-header',
       name: {
         'zh-CN': '隐藏标题区域',
@@ -184,7 +197,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>lock-scroll</code>属性设置<code>true</code>,允许滚动遮罩内容,禁止滚动背景内容，单击遮罩层可关闭弹窗。设置<code>lock-scroll</code>为<code>false</code>,允许滚动遮罩内容、背景内容。</p>\n',
+          '<p>可通过<code>lock-scroll</code>属性设置<code>true</code>,允许滚动遮罩内容，禁止滚动背景内容，单击遮罩层可关闭弹窗。设置<code>lock-scroll</code>为<code>false</code>,允许滚动遮罩内容、背景内容。</p>\n',
         'en-US':
           '<p>By setting<code>lock-scroll</code>to<code>true</code>, allow scrolling of mask content and prohibit scrolling of background content,Click on the mask layer to close the pop-up window.Set<code>:lock-scroll</code>to<code>false</code>,allowing scrolling of mask content and background content.</p>\n'
       },
@@ -225,8 +238,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          可通过<code>fullscreen</code>属性设置弹窗是否为全屏状态, 默认值 为 <code>false</code>。<br>
-          可通过<code>resize</code>属性设置弹窗是否有切换全屏的功能, 默认值 为 <code>false</code>。<br>
+          可通过<code>fullscreen</code>属性设置弹窗是否为全屏状态，默认值 为 <code>false</code>。<br>
+          可通过<code>resize</code>属性设置弹窗是否有切换全屏的功能，默认值 为 <code>false</code>。<br>
           可通过<code>resize</code>事件，监听弹窗切换全屏的事件。<br>
           `,
         'en-US': `
@@ -273,7 +286,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过设置事件<code>@open</code>：对话框打开时触发,<code>@opened</code>：对话框打开动画结束时触发,<code>@close</code>：对话框关闭时触发,<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
+          '<p>可通过设置事件<code>@open</code>：对话框打开时触发，<code>@opened</code>：对话框打开动画结束时触发，<code>@close</code>：对话框关闭时触发，<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
         'en-US':
           '<p>By setting the event<code>@open</code>: triggered when the dialog box is opened<code>@opened</code>: triggered when the animation ends when the dialog box is opened<code>@close</code>: triggered when the dialog box is closed<code>@closed</code>: triggered when the animation ends when the dialog box is closed.</p>\n'
       },

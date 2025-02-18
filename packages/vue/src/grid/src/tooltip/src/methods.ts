@@ -1,5 +1,5 @@
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
+import { debounce } from '@opentiny/utils'
+import { getStyle } from '@opentiny/utils'
 import { createTooltipRange, processContentMethod } from './handleTooltip'
 
 let focusSingle = null

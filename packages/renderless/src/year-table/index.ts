@@ -10,9 +10,8 @@
  *
  */
 
-import { toDate } from '../common/date'
+import { DATEPICKER, toDate1 } from '@opentiny/utils'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
-import { DATEPICKER } from '../common'
 
 export const getIsDefault =
   ({ props }) =>
@@ -28,14 +27,14 @@ export const getIsDisabled =
   ({ props }) =>
   (year) => {
     return props.selectionMode.startsWith('year') && typeof props.disabledDate === 'function'
-      ? props.disabledDate(year)
+      ? props.disabledDate(new Date(year, 0, 1, 0))
       : false
   }
 
 export const getIsCurrent =
   ({ props }) =>
   (year) => {
-    const execDate = typeof props.value === 'object' ? props.value : toDate(props.value)
+    const execDate = typeof props.value === 'object' ? props.value : toDate1(props.value)
 
     return arrayFindIndex(coerceTruthyValueToArray(execDate), (date) => date.getFullYear() === year) >= 0
   }
@@ -87,7 +86,7 @@ export const getRows =
         cell.text = year
         cell.type = isToday ? DATEPICKER.Today : DATEPICKER.Normal
         if (props.selectionMode.startsWith('year')) {
-          cell.disabled = typeof disabledDate === 'function' && disabledDate(year)
+          cell.disabled = typeof disabledDate === 'function' && disabledDate(new Date(year, 0, 1, 0))
         }
 
         if (selectionMode === DATEPICKER.YearRange) {
@@ -145,7 +144,10 @@ export const handleYearTableClick =
   ({ emit, props }) =>
   (event) => {
     const target = event.target
-    const { selectionMode } = props
+    const { selectionMode, readonly } = props
+    if (readonly) {
+      return
+    }
 
     if (target.tagName === 'A') {
       if (target.hasAttribute('aria-disabled')) {

@@ -8,7 +8,12 @@
     >
       <div data-tag="tiny-picker-panel__body-wrapper" class="relative">
         <slot name="sidebar" data-tag="tiny-picker-panel__sidebar" :class="gcls('sidebar')"></slot>
-        <div v-if="state.shortcuts" ref="shortcut" data-tag="tiny-picker-panel__sidebar" :class="gcls('sidebar')">
+        <div
+          v-if="state.shortcuts?.length"
+          ref="shortcut"
+          data-tag="tiny-picker-panel__sidebar"
+          :class="gcls('sidebar')"
+        >
           <button
             type="button"
             data-tag="tiny-picker-panel__shortcut"
@@ -271,7 +276,7 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/date-range/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import Input from '@opentiny/vue-input'

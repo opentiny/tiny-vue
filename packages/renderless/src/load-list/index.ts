@@ -1,4 +1,4 @@
-import { isDisplayNone } from '../common/deps/dom'
+import { isDisplayNone } from '@opentiny/utils'
 
 export const clickList =
   ({ emit, props }) =>

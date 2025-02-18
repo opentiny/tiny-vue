@@ -7,7 +7,7 @@ test('面板阈值', async ({ page }) => {
   const topPanel = page.locator('.top-pane')
   const bottomPanel = page.locator('.bottom-pane')
   const { x, y } = await triggerBtn.boundingBox()
-  // 向上滑动时判断下上面面板高度是否为50
+  // 向上滑动时判断下上面面板高度是否为 50
   await triggerBtn.hover()
   await page.mouse.down()
   await page.mouse.move(x, y - 100)
@@ -15,7 +15,7 @@ test('面板阈值', async ({ page }) => {
   const { height: afterHeight } = await topPanel.boundingBox()
   await expect(50).toEqual(Math.ceil(afterHeight))
   await page.waitForTimeout(300)
-  // 向下滑动时判断下面面板高度是否为80
+  // 向下滑动时判断下面面板高度是否为 80
   await triggerBtn.hover()
   await page.mouse.down()
   await page.mouse.move(x, y + 200)

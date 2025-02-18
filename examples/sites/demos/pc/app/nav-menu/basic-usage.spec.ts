@@ -11,7 +11,4 @@ test('基础用法', async ({ page }) => {
   const components = preview.getByText('组件')
   await components.hover()
   await expect(popMenu).toBeVisible()
-  const showMore = preview.getByText('更多')
-  await showMore.hover()
-  await expect(popMenu).toBeVisible()
 })

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-huicharts",
-  "version": "3.20.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -46,7 +46,9 @@
     "@opentiny/vue-huicharts-sunburst": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/huicharts": "1.0.1",
+    "@opentiny/utils": "workspace:~"
   },
   "license": "MIT"
 }

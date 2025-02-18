@@ -14,84 +14,84 @@
       <tiny-grid-column field="name" title="公司名称" fixed="left"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group1">
-      <tiny-grid-column field="employees" title="员工数1"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期1"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 1"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 1"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group2">
-      <tiny-grid-column field="employees" title="员工数2"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期2"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 2"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 2"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group3">
-      <tiny-grid-column field="employees" title="员工数3"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期3"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 3"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 3"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group4">
-      <tiny-grid-column field="employees" title="员工数4"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期4"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 4"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 4"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group5">
-      <tiny-grid-column field="employees" title="员工数5"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期5"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 5"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 5"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group6">
-      <tiny-grid-column field="employees" title="员工数6"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期6"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 6"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 6"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group7">
-      <tiny-grid-column field="employees" title="员工数7"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期7"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 7"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 7"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group8">
-      <tiny-grid-column field="employees" title="员工数8"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期8"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 8"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 8"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group9">
-      <tiny-grid-column field="employees" title="员工数9"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期9"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 9"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 9"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group10">
-      <tiny-grid-column field="employees" title="员工数10"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期10"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 10"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 10"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group11">
-      <tiny-grid-column field="employees" title="员工数11"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期11"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 11"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 11"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group12">
-      <tiny-grid-column field="employees" title="员工数12"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期12"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 12"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 12"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group13">
-      <tiny-grid-column field="employees" title="员工数13"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期13"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 13"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 13"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group14">
-      <tiny-grid-column field="employees" title="员工数14"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期14"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 14"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 14"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group15">
-      <tiny-grid-column field="employees" title="员工数15"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期15"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 15"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 15"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group16">
-      <tiny-grid-column field="employees" title="员工数16"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期16"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 16"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 16"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group17">
-      <tiny-grid-column field="employees" title="员工数17"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期17"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 17"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 17"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group18">
-      <tiny-grid-column field="employees" title="员工数18"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期18"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 18"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 18"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group19">
-      <tiny-grid-column field="employees" title="员工数19"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期19"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 19"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 19"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column title="group20">
-      <tiny-grid-column field="employees" title="员工数20"></tiny-grid-column>
-      <tiny-grid-column field="created_date" title="创建日期20"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数 20"></tiny-grid-column>
+      <tiny-grid-column field="created_date" title="创建日期 20"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column field="city" title="城市" fixed="right"></tiny-grid-column>
   </tiny-grid>
@@ -119,21 +119,21 @@ const dropConfig = ref({
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     city: '福州',
     employees: 800,
     created_date: '2014-04-30 00:56:00'
   },
   {
     id: '2',
-    name: 'WWW科技有限公司',
+    name: 'WWW 科技有限公司',
     city: '深圳',
     employees: 300,
     created_date: '2016-07-08 12:36:22'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     city: '中山',
     employees: 1300,
     created_date: '2014-02-14 14:14:14'

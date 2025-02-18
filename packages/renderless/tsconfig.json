@@ -12,16 +12,10 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "../vue/src/*"
-      ],
-      "@/types": [
-        "./types"
-      ],
-      "@opentiny/vue-*": [
-        "../vue-*"
-      ]
+      "@/*": ["../vue/src/*"],
+      "@/types": ["./types"],
+      "@opentiny/vue-*": ["../vue-*"]
     }
   },
-  "include": ["src/**/*.ts","src/button/react.js"]
+  "include": ["src/**/*.ts", "src/button/react.js"]
 }

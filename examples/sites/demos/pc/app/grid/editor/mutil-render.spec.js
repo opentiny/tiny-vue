@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('Grid-编辑器-下拉多选', async ({ page }) => {
+test('Grid-编辑器 - 下拉多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-editor#editor-mutil-render')
   await page.setViewportSize({

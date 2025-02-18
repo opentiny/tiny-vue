@@ -1,7 +1,7 @@
 <template>
   <div class="demo-milestone">
     <tiny-button @click="handleClick(!isBefore)" style="max-width: unset"
-      >设置flag-before值为{{ !isBefore }}</tiny-button
+      >设置 flag-before 值为 {{ !isBefore }}</tiny-button
     >
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :flag-before="isBefore"></tiny-milestone>
   </div>
@@ -57,7 +57,7 @@ export default {
           flags: [
             {
               status: 'back',
-              content: '欢迎使用vui',
+              content: '欢迎使用 vui',
               name: 'test7'
             },
             {

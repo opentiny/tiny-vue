@@ -9,7 +9,6 @@
 | Runtime 名称              | 使用说明                   |
 | ------------------------- | -------------------------- |
 | tiny-vue-pc.mjs           | 包含所有pc模板的组件集合   |
-| tiny-vue-mobile.mjs       | 包含所有移动模板的组件集合 |
 | tiny-vue-mobile-first.mjs | 包含所有多端模板的组件集合 |
 | tiny-vue-simple.mjs       | 包含常用组件的集合         |
 

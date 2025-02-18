@@ -10,7 +10,7 @@
  *
  */
 
-import { getObj } from '../common/object'
+import { getObj } from '@opentiny/utils'
 
 export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 

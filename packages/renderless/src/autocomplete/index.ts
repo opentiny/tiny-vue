@@ -18,7 +18,7 @@ import type {
   IAutoCompleteRenderlessParams,
   IAutoCompleteRenderlessParamUtils
 } from '@/types'
-import { FORM_ITEM, FORM_EVENT } from '../common/form/const'
+import { FORM_ITEM, FORM_EVENT } from '@opentiny/utils'
 
 export const getData =
   ({

@@ -1,6 +1,7 @@
-import { getObj } from '@opentiny/vue-renderless/common/object'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { getObj } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
 import { error } from '../../tools'
+
 export default {
   /**
    * 初始化fetch-data配置项

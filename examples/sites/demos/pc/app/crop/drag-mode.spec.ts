@@ -11,12 +11,12 @@ test('拖拽模式', async ({ page }) => {
 
   const crops = demo.locator('.cropper-wrap-box').boundingBox()
   const { x, y } = await crops
-  // 开始拖拽50px
+  // 开始拖拽 50px
   await page.mouse.move(x, y)
   await page.mouse.down()
   await page.mouse.move(x + 50, y)
   await page.mouse.up()
 
-  // 验证css是否存在
+  // 验证 css 是否存在
   expect(demo.locator('.cropper-wrap-box .cropper-canvas')).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 109.333, 0)')
 })

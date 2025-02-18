@@ -21,7 +21,8 @@ export default defineComponent({
       type: Array,
       required: true
     },
-    index: Number
+    index: Number,
+    onlyUsePanel: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

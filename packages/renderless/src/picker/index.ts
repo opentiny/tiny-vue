@@ -10,12 +10,12 @@
  *
  */
 
-import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '../common/date'
-import { isNumber, isDate } from '../common/type'
-import userPopper from '../common/deps/vue-popper'
-import { DATEPICKER } from '../common'
-import { formatDate, parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '../common/deps/date-util'
-import { extend } from '../common/object'
+import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '@opentiny/utils'
+import { isNumber, isDate } from '@opentiny/utils'
+import { userPopper } from '@opentiny/vue-hooks'
+import { DATEPICKER } from '@opentiny/utils'
+import { formatDate, parseDate1 as parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '@opentiny/utils'
+import { extend } from '@opentiny/utils'
 import globalTimezone from './timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
@@ -213,7 +213,7 @@ export const parsedValue =
       return getDateWithNewTimezone(result || props.modelValue, from, to, timezoneOffset)
     }
 
-    const trans = (value) => (typeof value === 'string' || isNumber(value) ? toDate(value) : value)
+    const trans = (value) => (typeof value === 'string' || isNumber(value) ? toDate1(value) : value)
     const values = []
       .concat(props.modelValue)
       .map((val) => getDateWithNewTimezone(trans(val), from, to, timezoneOffset))
@@ -543,6 +543,12 @@ export const handleInput =
     } else {
       const val = event.target.value
       state.userInput = val
+    }
+
+    // time-selelt 组件中，输入值开启过滤逻辑，将值传递给生成选项数据的计算属性中生成过滤后的数据面板
+    if (state.type === 'time-select') {
+      state.picker.state.isFilter = true
+      state.picker.state.filterVal = state.userInput
     }
   }
 
@@ -937,6 +943,9 @@ export const handleFocus =
   ({ emit, vm, state, api }) =>
   () => {
     const type = state.type
+    if (state.pickerDisabled) {
+      return
+    }
 
     if (DATEPICKER.TriggerTypes.includes(type)) {
       if (state.isMobileScreen && state.isDateMobileComponent) {
@@ -986,6 +995,11 @@ export const handleKeydown =
     // Enter
     if (keyCode === 13) {
       if (state.userInput === '' || api.isValidValue(api.parseString(state.displayValue))) {
+        // time-select组件中，对输入的数据进行校验，如果有效则取默认过滤后数据的第一个。
+        if (state.type === 'time-select') {
+          state.userInput = state.picker.state.items.length ? state.picker.state.items[0].value : ''
+        }
+
         api.handleChange()
         state.pickerVisible = state.picker.state.visible = false
         api.blur()
@@ -1010,6 +1024,10 @@ export const hidePicker =
   ({ destroyPopper, state }) =>
   () => {
     if (state.picker) {
+      // time-select组件中，选中面板关闭则清除过滤，保证下次面板打开时原始items数据。
+      if (state.type === 'time-select') {
+        state.picker.state.isFilter = false
+      }
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
       destroyPopper()
@@ -1019,10 +1037,6 @@ export const hidePicker =
 export const showPicker =
   ({ api, nextTick, updatePopper, state }) =>
   () => {
-    if (state.$isServer) {
-      return
-    }
-
     if (!state.picker) {
       api.mountPicker()
     }

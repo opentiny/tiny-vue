@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       options: {
-        bubbling: true, // 监听元素所有上级有滚动元素的scroll事件,防止弹出层与页面分离
+        bubbling: true, // 监听元素所有上级有滚动元素的 scroll 事件，防止弹出层与页面分离
         removeOnDestroy: true // 当你想要在调用 `destroy` 方法时不自动移除 popper 时，应当将此项设置为 false
       }
     }

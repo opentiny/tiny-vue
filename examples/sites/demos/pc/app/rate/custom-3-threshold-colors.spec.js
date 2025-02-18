@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('rate 自定义 3 分段颜色', () => {
-  test('hover或选中时三分段呈现不同颜色', async ({ page }) => {
+  test('hover 或选中时三分段呈现不同颜色', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('rate#custom-3-threshold-colors')
 

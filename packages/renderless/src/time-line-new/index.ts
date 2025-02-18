@@ -1,4 +1,4 @@
-import { format } from '../common/date'
+import { formatDateByPattern as format } from '@opentiny/utils'
 
 export const getDate = (dateTime) => {
   return {

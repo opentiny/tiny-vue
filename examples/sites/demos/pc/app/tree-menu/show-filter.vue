@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：默认 可过滤 + 原生 title 属性提示</p>
+    <p>场景 1：默认 可过滤 + 原生 title 属性提示</p>
     <div class="option-row">
       <span> 搜索后是否高亮关键字：</span>
       <tiny-radio-group v-model="highlightQuery">
@@ -14,7 +14,7 @@
       :data="treeData"
     ></tiny-tree-menu>
     <br /><br />
-    <p>场景2：不可过滤 + 不设置原生 title 属性</p>
+    <p>场景 2：不可过滤 + 不设置原生 title 属性</p>
     <tiny-tree-menu class="demo-tree-menu" :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
   </div>
 </template>

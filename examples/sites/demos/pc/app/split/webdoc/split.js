@@ -35,7 +35,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>同个mode设置分割类型，可选值为 <code>horizontal</code>（横向） 或 <code>vertical</code>（纵向）；默认值<code>horizontal</code>。</p>\n',
+          '<p>同个 mode 设置分割类型，可选值为 <code>horizontal</code>（横向）或 <code>vertical</code>（纵向）；默认值<code>horizontal</code>。</p>\n',
         'en-US':
           '<p>Split type of the same mode. The options are <code>horizontal</code> (horizontal) and <code>vertical</code> (vertical). The default value is <code>horizontal</code>. </p>\n'
       },
@@ -192,7 +192,7 @@ export default {
     {
       demoId: 'three-areas',
       name: {
-        'zh-CN': '支持配置3个区块',
+        'zh-CN': '支持配置 3 个区块',
         'en-US': 'Three blocks can be configured'
       },
       desc: {

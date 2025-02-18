@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('change事件', async ({ page }) => {
+test('change 事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('anchor#change')
 

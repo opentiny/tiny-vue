@@ -23,7 +23,7 @@
  *
  */
 import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
-import { random } from '@opentiny/vue-renderless/common/string'
+import { random } from '@opentiny/utils'
 import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
@@ -225,7 +225,7 @@ export const Cell = {
       renderHeader: this.renderHeader,
       renderCell: getCellRender(isTreeNode, 'renderTreeCell', 'renderCell', this)
     }
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
+
     let _vm = this
     let ruleChains = [
       getColumnRuleTypeIndex({ _vm, isTreeNode, renMaps, type }),

@@ -62,7 +62,7 @@ test('多选，禁用项默认选中', async ({ page }) => {
   const tag = select.locator('.tiny-tag')
   const option = dropdown.locator('.tiny-option')
 
-  // 默认值显示tag数
+  // 默认值显示 tag 数
   await expect(tag).toHaveCount(2)
   // 禁用项默认选中不显示关闭图标
   await expect(tag.filter({ hasText: '上海' }).locator('svg')).toHaveCount(1)

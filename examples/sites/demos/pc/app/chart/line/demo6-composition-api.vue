@@ -30,7 +30,7 @@ const options = ref({
   ],
   xAxis: 'Month',
 
-  // 自定义y轴
+  // 自定义 y 轴
   yAxis: [
     {
       name: 'Percent(%)', // 名称

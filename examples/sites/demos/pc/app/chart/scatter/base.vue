@@ -24,8 +24,8 @@ export default {
           }
         },
 
-        // 气泡大小范围，默认值为[10，70]
-        // 气泡半径维度决定了气泡的大小，bubbleSize决定了气泡大小的上下限
+        // 气泡大小范围，默认值为 [10，70]
+        // 气泡半径维度决定了气泡的大小，bubbleSize 决定了气泡大小的上下限
         bubbleSize: [20, 100],
         xAxisType: 'value',
         data: {

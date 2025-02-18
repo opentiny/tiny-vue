@@ -11,11 +11,11 @@ test('测试自定义图标', async ({ page }) => {
   const icon1 = tree1.locator('svg path').nth(0)
   const icon2 = tree2.locator('svg').nth(0)
 
-  // 测试tree1
+  // 测试 tree1
   await expect(tree1.getByText('数据 2')).toHaveCount(1)
   await expect(icon2).toHaveClass(/tiny-tree-node__expand-icon/)
 
-  // 测试tree2
+  // 测试 tree2
   await expect(tree2.getByText('数据 2')).toHaveCount(1)
   await expect(icon2).toHaveClass(/tiny-tree-node__expand-icon/)
 })

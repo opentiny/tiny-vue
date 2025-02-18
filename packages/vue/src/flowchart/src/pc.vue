@@ -1,6 +1,6 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/flowchart/vue'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { props, setup, h, directive, emitter, defineComponent } from '@opentiny/vue-common'
 import { IconYes as iconYes, IconClose as iconClose } from '@opentiny/vue-icon'
 

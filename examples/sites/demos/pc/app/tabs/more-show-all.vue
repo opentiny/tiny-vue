@@ -25,7 +25,7 @@ export default {
     }
   },
   created() {
-    // 创建tabs
+    // 创建 tabs
     for (let i = 1; i < 101; i++) {
       const title = `Tab ${i}`
       this.tabs.push({

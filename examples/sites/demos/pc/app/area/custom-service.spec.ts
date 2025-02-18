@@ -34,7 +34,7 @@ test('测试自定义服务', async ({ page }) => {
   await getSelectItem(areaRep).first().click()
   await areaInput.nth(3).click()
   await getSelectItem(areaOffice).first().click()
-  await expect(areaInput.first()).toHaveValue('A公司销售服务部')
+  await expect(areaInput.first()).toHaveValue('A 公司销售服务部')
   await expect(areaInput.nth(1)).toHaveValue('火星终端子公司')
   await expect(areaInput.nth(2)).toHaveValue('北京代表处')
   await expect(areaInput.nth(3)).toHaveValue('牙买加办事处')

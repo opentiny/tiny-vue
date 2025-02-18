@@ -46,7 +46,7 @@ export default {
         ]
       },
       options: [
-        { id: '001', area: '华南区', province: '广东省', city: '深圳1' },
+        { id: '001', area: '华南区', province: '广东省', city: '深圳 1' },
         { id: '002', area: '华东区', province: '广东省', city: '深圳市' },
         { id: '003', area: '华北区', province: '广东省', city: '珠海市' },
         { id: '004', area: '华北区', province: '广东省', city: '佛山市' },

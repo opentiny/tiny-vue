@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>场景1：初始全加载</div>
+    <div>场景 1：初始全加载</div>
     <br />
     <tiny-dropdown>
       <span>下拉菜单</span>
@@ -16,7 +16,7 @@
     </tiny-dropdown>
     <br />
     <br />
-    <div>场景2：初始不加载菜单及子项，适合表格等大数量的场景</div>
+    <div>场景 2：初始不加载菜单及子项，适合表格等大数量的场景</div>
     <br />
     <tiny-dropdown lazy-show-popper>
       <span>下拉菜单</span>

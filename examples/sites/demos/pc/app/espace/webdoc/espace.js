@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p><code>data</code> 属性设置组件数据，数组对象中包含选项有 type、value、icon。其中 type 的可选择值有：im、sip、mailto 。单击图标，将会打开 type 选项值对应的外部应用。</p>\n',
+          '<p><code>data</code> 属性设置组件数据，数组对象中包含选项有 type、value、icon。其中 type 的可选择值有：im、sip、mailto。单击图标，将会打开 type 选项值对应的外部应用。</p>\n',
         'en-US':
           'The <p><code>data</code> attribute sets the component data. The array object contains the options type, value, and icon. The value of type can be im, sip, or mailto. Click to open the external application corresponding to the value of type. </p>\n'
       },

@@ -19,7 +19,6 @@
     </div>
     <div class="fi-1 of-auto">
       <tiny-pc v-if="modeState.mode === 'pc'" :show-fixed-menu="state.showFixedMenu"></tiny-pc>
-      <tiny-mobile v-else-if="modeState.mode === 'mobile'" :show-fixed-menu="state.showFixedMenu"></tiny-mobile>
       <tiny-mobile-first v-else :show-fixed-menu="state.showFixedMenu"></tiny-mobile-first>
     </div>
   </div>
@@ -30,7 +29,6 @@ import './style.css'
 import { ButtonGroup, Link } from '@opentiny/vue'
 import { iconEditorMenuRight, iconEditorMenuLeft } from '@opentiny/vue-icon'
 import TinyPc from './pc.vue'
-import TinyMobile from './mobile.vue'
 import TinyMobileFirst from './mobile-first.vue'
 import { hooks } from '@opentiny/vue-common'
 import { useModeCtx } from './uses'
@@ -38,7 +36,6 @@ import { useModeCtx } from './uses'
 export default {
   components: {
     TinyPc,
-    TinyMobile,
     TinyMobileFirst,
     TinyButtonGroup: ButtonGroup,
     TinyLink: Link,
@@ -50,7 +47,6 @@ export default {
     const state = hooks.reactive({
       groupData: [
         { text: 'PC', value: 'pc' },
-        { text: 'Mobile', value: 'mobile' },
         { text: 'Mobile-first', value: 'mobile-first' }
       ],
       vueVersion: hooks.version,

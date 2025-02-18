@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>需要为body添加滚动条之后，再验证锁定功能</h2>
+    <h2>需要为 body 添加滚动条之后，再验证锁定功能</h2>
     <div class="content">
       <tiny-button @click="addBodyScroll">添加滚动条</tiny-button>
       <tiny-button @click="removeBodyScroll">还原滚动条</tiny-button>

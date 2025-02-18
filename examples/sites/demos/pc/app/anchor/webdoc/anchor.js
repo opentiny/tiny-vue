@@ -43,7 +43,7 @@ export default {
     {
       demoId: 'change',
       name: {
-        'zh-CN': 'change事件',
+        'zh-CN': 'change 事件',
         'en-US': 'change event'
       },
       desc: {

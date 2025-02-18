@@ -1,6 +1,6 @@
 <template>
   <div class="demo10">
-    <tiny-button @click="addDataZoomImg">点击添加dataZoom自定义图片</tiny-button>
+    <tiny-button @click="addDataZoomImg">点击添加 dataZoom 自定义图片</tiny-button>
     <tiny-line
       ref="chartRef"
       :options="options"

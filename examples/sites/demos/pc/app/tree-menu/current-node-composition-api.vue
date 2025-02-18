@@ -1,18 +1,18 @@
 <template>
   <div>
-    <p class="demo-node">场景1：通过 setCurrentKey(key:string|number) 设置当前节点</p>
+    <p class="demo-node">场景 1：通过 setCurrentKey(key:string|number) 设置当前节点</p>
     <tiny-button @click="setCurrentKey" title="点击设置当前节点">setCurrentKey</tiny-button>
     <br />
-    <p class="demo-node">场景2：通过 setCurrentNode(node:ITreeNode) 设置当前节点</p>
+    <p class="demo-node">场景 2：通过 setCurrentNode(node:ITreeNode) 设置当前节点</p>
     <tiny-button @click="setCurrentNode" title="点击设置当前节点">setCurrentNode</tiny-button>
     <br />
     <p class="demo-node">
-      场景3：通过 getCurrentKey() 获取当前节点的 key 为：<span class="current-node-key">{{ currentKey }}</span>
+      场景 3：通过 getCurrentKey() 获取当前节点的 key 为：<span class="current-node-key">{{ currentKey }}</span>
     </p>
     <tiny-button @click="getCurrentKey" title="点击获取当前节点的 key">getCurrentKey</tiny-button>
     <br />
     <p class="demo-node">
-      场景4：通过 getCurrentNode() 获取当前节点的数据为：<span class="current-node">{{ currentNode }}</span>
+      场景 4：通过 getCurrentNode() 获取当前节点的数据为：<span class="current-node">{{ currentNode }}</span>
     </p>
     <tiny-button @click="getCurrentNode" title="点击获取当前节点数据">getCurrentNode</tiny-button>
 

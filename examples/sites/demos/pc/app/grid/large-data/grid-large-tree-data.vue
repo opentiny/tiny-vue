@@ -95,32 +95,32 @@
       <template #header="{ column }">{{ column.title }}</template>
       <template #default="{ row, column }">{{ row[column.property] }}</template>
     </tiny-grid-column>
-    <tiny-grid-column field="appid" title="所属APPID">
+    <tiny-grid-column field="appid" title="所属 APPID">
       <template #header="{ column }">{{ column.title }}</template>
       <template #default="{ row, column }">{{ row[column.property] }}</template>
     </tiny-grid-column>
-    <tiny-grid-column field="requireSource" title="需求来源2"></tiny-grid-column>
-    <tiny-grid-column field="isRequireDev" title="是否需要开发2"></tiny-grid-column>
-    <tiny-grid-column field="isRequireDec" title="是否需要分解2"></tiny-grid-column>
-    <tiny-grid-column field="requireType" title="需求类型2"></tiny-grid-column>
-    <tiny-grid-column field="requireSubcat" title="需求子类2"></tiny-grid-column>
-    <tiny-grid-column field="budgetAuth" title="预算是否授予2"></tiny-grid-column>
-    <tiny-grid-column field="userStoryCat" title="用户故事类别2"></tiny-grid-column>
-    <tiny-grid-column field="product" title="产品2"></tiny-grid-column>
-    <tiny-grid-column field="subProd" title="子产品2"></tiny-grid-column>
-    <tiny-grid-column field="module" title="模块2"></tiny-grid-column>
-    <tiny-grid-column field="appid" title="所属APPID2"></tiny-grid-column>
-    <tiny-grid-column field="requireSource" title="需求来源3"></tiny-grid-column>
-    <tiny-grid-column field="isRequireDev" title="是否需要开发3"></tiny-grid-column>
-    <tiny-grid-column field="isRequireDec" title="是否需要分解3"></tiny-grid-column>
-    <tiny-grid-column field="requireType" title="需求类型3"></tiny-grid-column>
-    <tiny-grid-column field="requireSubcat" title="需求子类3"></tiny-grid-column>
-    <tiny-grid-column field="budgetAuth" title="预算是否授予3"></tiny-grid-column>
-    <tiny-grid-column field="userStoryCat" title="用户故事类别3"></tiny-grid-column>
-    <tiny-grid-column field="product" title="产品3"></tiny-grid-column>
-    <tiny-grid-column field="subProd" title="子产品3"></tiny-grid-column>
-    <tiny-grid-column field="module" title="模块3"></tiny-grid-column>
-    <tiny-grid-column field="appid" title="所属APPID3"></tiny-grid-column>
+    <tiny-grid-column field="requireSource" title="需求来源 2"></tiny-grid-column>
+    <tiny-grid-column field="isRequireDev" title="是否需要开发 2"></tiny-grid-column>
+    <tiny-grid-column field="isRequireDec" title="是否需要分解 2"></tiny-grid-column>
+    <tiny-grid-column field="requireType" title="需求类型 2"></tiny-grid-column>
+    <tiny-grid-column field="requireSubcat" title="需求子类 2"></tiny-grid-column>
+    <tiny-grid-column field="budgetAuth" title="预算是否授予 2"></tiny-grid-column>
+    <tiny-grid-column field="userStoryCat" title="用户故事类别 2"></tiny-grid-column>
+    <tiny-grid-column field="product" title="产品 2"></tiny-grid-column>
+    <tiny-grid-column field="subProd" title="子产品 2"></tiny-grid-column>
+    <tiny-grid-column field="module" title="模块 2"></tiny-grid-column>
+    <tiny-grid-column field="appid" title="所属 APPID2"></tiny-grid-column>
+    <tiny-grid-column field="requireSource" title="需求来源 3"></tiny-grid-column>
+    <tiny-grid-column field="isRequireDev" title="是否需要开发 3"></tiny-grid-column>
+    <tiny-grid-column field="isRequireDec" title="是否需要分解 3"></tiny-grid-column>
+    <tiny-grid-column field="requireType" title="需求类型 3"></tiny-grid-column>
+    <tiny-grid-column field="requireSubcat" title="需求子类 3"></tiny-grid-column>
+    <tiny-grid-column field="budgetAuth" title="预算是否授予 3"></tiny-grid-column>
+    <tiny-grid-column field="userStoryCat" title="用户故事类别 3"></tiny-grid-column>
+    <tiny-grid-column field="product" title="产品 3"></tiny-grid-column>
+    <tiny-grid-column field="subProd" title="子产品 3"></tiny-grid-column>
+    <tiny-grid-column field="module" title="模块 3"></tiny-grid-column>
+    <tiny-grid-column field="appid" title="所属 APPID3"></tiny-grid-column>
   </tiny-grid>
 </template>
 
@@ -133,7 +133,7 @@ const template = {
   irTitle: 'IR-0',
   team: 'kweuat110',
   pi: '八月版本',
-  rollup: '3人天',
+  rollup: '3 人天',
   progress: '初始',
   prior: '中',
   microServ: 'MS012601',
@@ -178,16 +178,16 @@ const buildArr = ({ type, start, idStart }) =>
 const buildDatas = () => {
   const datas = buildArr({ type: 'IR', start: 20220812243395, idStart: 1 })
 
-  datas[0].irTitle += `-${count}个子US`
+  datas[0].irTitle += `-${count} 个子 US`
   datas[0].children = buildArr({ type: 'US', start: 20220712243395, idStart: count + 1 })
 
-  datas[1].irTitle += `-${count}个子US`
+  datas[1].irTitle += `-${count} 个子 US`
   datas[1].children = buildArr({ type: 'US', start: 20220612243395, idStart: count * 2 + 1 })
 
-  datas[2].irTitle += `-${count}个子US`
+  datas[2].irTitle += `-${count} 个子 US`
   datas[2].children = buildArr({ type: 'US', start: 20220512243395, idStart: count * 3 + 1 })
 
-  datas[0].children[0].irTitle += `-${count}个子TASK`
+  datas[0].children[0].irTitle += `-${count} 个子 TASK`
   datas[0].children[0].children = buildArr({ type: 'TK', start: 20220412243395, idStart: count * 4 + 1 })
 
   return datas

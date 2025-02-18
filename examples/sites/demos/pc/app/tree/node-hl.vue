@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="node-tip">点击节点后， 在开发者控制台中查看它的打印信息：</div>
+    <div class="node-tip">点击节点后，在开发者控制台中查看它的打印信息：</div>
     <div>
       <tiny-button @click="setHighlight">手动高亮节点</tiny-button>
     </div>
@@ -58,7 +58,7 @@ export default {
       const data = treeRef.getCurrentNode()
       // 节点对象
       const node = treeRef.getNode(id)
-      // 节点node-key
+      // 节点 node-key
       const nodeKey = treeRef.getCurrentKey()
       // 组件内部生成的节点唯一键值
       const innerKey = treeRef.getNodeKey(node)

@@ -116,7 +116,27 @@ export const useRule = (props: RuleProps) => {
     onPropChange('field', '', path)
   }
 
-  const fieldData = fieldMap?.[field] ?? { name: field, label: field }
+  const findFieldData = (field: string, fieldList: Array<any>) => {
+    const len = fieldList.length
+    for (let i = 0; i < len; i++) {
+      const rules = fieldList[i]
+      if (rules.name === field) {
+        return rules
+      }
+      if (!(rules.children && rules.children.length)) {
+        continue
+      }
+      let clen = rules.children.length
+      for (let j = 0; j < clen; j++) {
+        const rule = rules.children[j]
+        if (rule.name === field) {
+          return rule
+        }
+      }
+    }
+    return { name: field, label: field }
+  }
+  let fieldData = fieldMap?.[field] ? fieldMap[field] : findFieldData(field, fields)
   const inputType = fieldData.inputType ?? getInputType(field, operator)
   const operators = getOperators(field)
   const operatorObject = getOption(operators, operator)
@@ -125,18 +145,18 @@ export const useRule = (props: RuleProps) => {
   const valueSources =
     typeof fieldData.valueSources === 'function'
       ? fieldData.valueSources(operator)
-      : fieldData.valueSources ?? getValueSources(field, operator)
+      : (fieldData.valueSources ?? getValueSources(field, operator))
   const valueEditorType =
     valueSource === 'field'
       ? 'select'
-      : (typeof fieldData.valueEditorType === 'function'
+      : ((typeof fieldData.valueEditorType === 'function'
           ? fieldData.valueEditorType(operator)
-          : fieldData.valueEditorType) ?? getValueEditorType(field, operator)
+          : fieldData.valueEditorType) ?? getValueEditorType(field, operator))
   const valueEditorSeparator = getValueEditorSeparator(field, operator)
   const values =
     valueSource === 'field'
       ? filterFieldsByComparator(fieldData, fields, operator)
-      : fieldData.values ?? getValues(field, operator)
+      : (fieldData.values ?? getValues(field, operator))
   const valueSourceOptions = valueSources.map((vs) => ({ name: vs, label: vs }))
 
   const validationResult =

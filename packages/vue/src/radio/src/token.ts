@@ -28,7 +28,7 @@ export const classes = {
   'mobile-icon-radio-disabled':
     '[&_path:nth-of-type(2)]:fill-color-icon-disabled [&_path:nth-of-type(1)]:fill-color-bg-3 cursor-not-allowed',
   'radio-input': 'absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0',
-  'radio-text-common': 'sm:h-4 text-center text-color-text-primary align-middle text-sm',
+  'radio-text-common': 'sm:h-4 text-color-text-primary align-middle text-sm',
   'radio-text-size-common': 'sm:text-xs',
   'radio-text-size-medium': 'sm:text-sm',
   'radio-hover': 'sm:[&_path:nth-of-type(1)]:hover:fill-color-brand-hover',

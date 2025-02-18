@@ -10,9 +10,9 @@ test('测试多选勾选 ', async ({ page }) => {
   const btn1 = preview.getByText('查询勾选状态')
   const btn2 = preview.getByText('清除全部勾选')
   const btn3 = preview.getByText('根据节点数据勾选')
-  const btn4 = preview.getByText('根据node-key勾选')
-  const btn5 = preview.getByText('根据node-key,多值勾选')
-  const btn6 = preview.getByText('根据node,多值勾选')
+  const btn4 = preview.getByText('根据 node-key 勾选')
+  const btn5 = preview.getByText('根据 node-key，多值勾选')
+  const btn6 = preview.getByText('根据 node，多值勾选')
 
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
   await expect(treeChecked).toHaveCount(0)

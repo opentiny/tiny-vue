@@ -15,22 +15,22 @@ export default {
     return {
       stepsData: [
         {
-          reName: 'name属性内容1',
+          reName: 'name 属性内容 1',
           reCount: 0,
           reStatus: 'done'
         },
         {
-          reName: 'name属性内容2',
+          reName: 'name 属性内容 2',
           reCount: 9,
           reStatus: 'done'
         },
         {
-          reName: 'name属性内容3',
+          reName: 'name 属性内容 3',
           reCount: 0,
           reStatus: 'doing'
         },
         {
-          reName: 'name属性内容4',
+          reName: 'name 属性内容 4',
           reCount: 5,
           reStatus: 'done'
         }

@@ -10,8 +10,8 @@
  *
  */
 
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { PopupManager } from '@opentiny/utils'
+import { getStyle, addClass } from '@opentiny/utils'
 import { createComponent, hooks, appProperties } from '@opentiny/vue-common'
 import Loading from './index'
 

@@ -12,10 +12,10 @@ test('隐藏显示事件', async ({ page }) => {
 
   await popConfirm.hover()
   await expect(popConfirmPopover).toBeVisible()
-  await expect(modal.filter({ hasText: 'show事件触发了' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'show 事件触发了' })).toBeVisible()
   await confirmBtn.click()
   await expect(popConfirmPopover).not.toBeVisible()
-  await expect(modal.filter({ hasText: 'hide事件触发了' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'hide 事件触发了' })).toBeVisible()
 })
 
 test('点击确认事件', async ({ page }) => {
@@ -30,9 +30,9 @@ test('点击确认事件', async ({ page }) => {
 
   await popConfirm.hover()
   await expect(popConfirmPopover).toBeVisible()
-  await expect(modal.filter({ hasText: 'show事件触发了' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'show 事件触发了' })).toBeVisible()
   await confirmBtn.click()
   await expect(popConfirmPopover).not.toBeVisible()
-  await expect(modal.filter({ hasText: 'confirm事件触发了' })).toBeVisible()
-  await expect(modal.filter({ hasText: 'hide事件触发了' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'confirm 事件触发了' })).toBeVisible()
+  await expect(modal.filter({ hasText: 'hide 事件触发了' })).toBeVisible()
 })

@@ -180,7 +180,7 @@ export default {
       },
       desc: {
         'zh-CN': ` 
-          通过<code>swipeable</code> 属性,让多端模板支持触屏轮播。<br>
+          通过<code>swipeable</code> 属性，让多端模板支持触屏轮播。<br>
           通过 <code>lite</code> 属性打开精简模式，不显示切换按钮和指示器。
         `,
         'en-US': `

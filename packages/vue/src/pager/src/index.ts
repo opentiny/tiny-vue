@@ -68,6 +68,11 @@ export const pagerProps = {
   totalFixedLeft: {
     type: Boolean,
     default: undefined
+  },
+  // tiny新增
+  changeCompat: {
+    type: Boolean,
+    default: false
   }
 }
 

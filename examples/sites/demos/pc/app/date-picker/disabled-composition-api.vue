@@ -58,7 +58,7 @@ const pickerOptions = {
 }
 const yearPickerOptions = {
   disabledDate(year) {
-    return year > 2025 || year < 2022
+    return year.getTime() > new Date(2025, 0, 1, 0).getTime() || year.getTime() < new Date(2022, 0, 1, 0).getTime()
   }
 }
 </script>

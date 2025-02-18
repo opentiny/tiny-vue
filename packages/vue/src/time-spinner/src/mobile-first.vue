@@ -152,7 +152,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/time-spinner/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import Scrollbar from '@opentiny/vue-scrollbar'
-import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
+import { RepeatClick } from '@opentiny/vue-directive'
 import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 import { classes } from './token'
 
@@ -164,7 +164,7 @@ export default defineComponent({
     IconChevronUp: IconChevronUp()
   },
   directives: directive({
-    repeatClick: { bind }
+    repeatClick: { bind: RepeatClick }
   }),
   props: [...props, 'date', 'defaultValue', 'showSeconds', 'arrowControl', 'amPmMode', 'step'],
   setup(props, context) {

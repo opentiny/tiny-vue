@@ -14,7 +14,7 @@ test('测试穿梭拦截的功能', async ({ page }) => {
 
   // 1、从左交换至右
   let labels = leftPanel.locator('label').filter({ hasText: '备选项 2' }).locator('span')
-  // 选中"备选项2"
+  // 选中"备选项 2"
   await labels.nth(1).click()
   await expect(labels.first()).toHaveClass(/is-checked/)
   await page.waitForTimeout(10)

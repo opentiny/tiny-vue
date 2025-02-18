@@ -1,5 +1,5 @@
-import debounce from '../common/deps/debounce'
-import { on, off } from '../common/deps/dom'
+import { debounce } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
 
 const getButtonPosition =
   ({ sliderState }) =>

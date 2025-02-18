@@ -30,7 +30,7 @@ export default {
   methods: {
     changeMode() {
       this.num = (this.num + 1) % 4
-      TinyModal.message({ message: '模式:' + this.num })
+      TinyModal.message({ message: '模式：' + this.num })
     }
   }
 }

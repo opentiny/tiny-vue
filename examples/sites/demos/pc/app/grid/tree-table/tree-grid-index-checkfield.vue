@@ -34,7 +34,7 @@ export default {
         {
           id: '1',
           pid: '0',
-          name: 'GFD科技有限公司',
+          name: 'GFD 科技有限公司',
           area: '华东区',
           employees: '800',
           checked: true,
@@ -42,7 +42,7 @@ export default {
             {
               id: '15',
               pid: '1',
-              name: 'GFD科技股份有限子公司',
+              name: 'GFD 科技股份有限子公司',
               area: '华东区',
               employees: '700',
               checked: true
@@ -52,7 +52,7 @@ export default {
         {
           id: '2',
           pid: '0',
-          name: 'WWWW科技有限公司',
+          name: 'WWWW 科技有限公司',
           area: '华南区',
           employees: '500',
           checked: false,
@@ -60,7 +60,7 @@ export default {
             {
               id: '22',
               pid: '2',
-              name: 'WWWW科技股份有限子公司',
+              name: 'WWWW 科技股份有限子公司',
               area: '华南区',
               employees: '720',
               checked: false
@@ -70,7 +70,7 @@ export default {
         {
           id: '4',
           pid: '0',
-          name: 'TGB有限公司',
+          name: 'TGB 有限公司',
           area: '华南区',
           employees: '360',
           checked: false,
@@ -78,7 +78,7 @@ export default {
             {
               id: '3',
               pid: '4',
-              name: 'RFV有限责任公司',
+              name: 'RFV 有限责任公司',
               area: '华南区',
               employees: '300',
               checked: false
@@ -86,7 +86,7 @@ export default {
             {
               id: '5',
               pid: '4',
-              name: 'YHN科技有限公司',
+              name: 'YHN 科技有限公司',
               area: '华南区',
               employees: '810',
               checked: false,
@@ -94,7 +94,7 @@ export default {
                 {
                   id: '6',
                   pid: '5',
-                  name: 'WSX科技有限公司',
+                  name: 'WSX 科技有限公司',
                   area: '华南区',
                   employees: '800',
                   checked: false
@@ -102,7 +102,7 @@ export default {
                 {
                   id: '9',
                   pid: '5',
-                  name: 'UJM有限责任公司',
+                  name: 'UJM 有限责任公司',
                   area: '华南区',
                   employees: '750',
                   checked: false
@@ -130,7 +130,7 @@ export default {
             {
               id: '10',
               pid: '7',
-              name: 'IK有限责任公司',
+              name: 'IK 有限责任公司',
               area: '华南区',
               employees: '400',
               checked: false,
@@ -138,7 +138,7 @@ export default {
                 {
                   id: '23',
                   pid: '10',
-                  name: 'IK有限责任股份有限公司',
+                  name: 'IK 有限责任股份有限公司',
                   area: '华南区',
                   employees: '455',
                   checked: false

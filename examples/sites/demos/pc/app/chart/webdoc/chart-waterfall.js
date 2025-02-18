@@ -34,8 +34,8 @@ export default {
       type: 'interface',
       code: `
 interface IChartSettings {
-  dataType: string // 数据类型，可选值: KMB , normal , percent 
-  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  dataType: string // 数据类型，可选值：KMB , normal , percent 
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为 2
   dimension: string // 维度，默认 columns 第一项为维度
   metrics: string // 指标，默认 columns 第二项为指标
   remainName: string // 剩余的显示文案，默认显示其他

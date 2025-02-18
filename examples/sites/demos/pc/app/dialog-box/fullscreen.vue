@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     onResize(event) {
-      console.log('触发了resize事件', event)
+      console.log('触发了 resize 事件', event)
     }
   }
 }

@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     confirm() {
-      TinyModal.message({ message: 'Dept部门 confirm 事件' })
+      TinyModal.message({ message: 'Dept 部门 confirm 事件' })
     }
   }
 }

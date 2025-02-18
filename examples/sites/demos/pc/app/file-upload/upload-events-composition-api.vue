@@ -64,6 +64,6 @@ function handleChange() {
 }
 
 function handleHashProgress() {
-  TinyModal.message({ message: '文件上传生成hash值时的回调 返回进程', status: 'info' })
+  TinyModal.message({ message: '文件上传生成 hash 值时的回调 返回进程', status: 'info' })
 }
 </script>

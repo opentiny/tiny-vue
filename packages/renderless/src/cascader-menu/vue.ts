@@ -18,8 +18,8 @@ import type {
   ICascaderMenuRenderlessParamUtils
 } from '@/types'
 import { handleExpand, handleMouseMove, clearHoverZone } from './index'
-import { CASCADER } from '../common'
-import { random } from '../common/string'
+import { CASCADER } from '@opentiny/utils'
+import { random } from '@opentiny/utils'
 
 export const api = ['state', 'handleMouseMove', 'handleExpand']
 

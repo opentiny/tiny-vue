@@ -9,9 +9,9 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import afterLeave from '@opentiny/vue-renderless/common/deps/after-leave'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { addClass, getStyle, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { afterLeave } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { addClass, getStyle, removeClass } from '@opentiny/utils'
 import Loading from './index'
 import { hooks, directive, createComponent, appProperties } from '@opentiny/vue-common'
 import { constants, defaults } from './service'
@@ -121,7 +121,7 @@ const toggleLoading = (el, binding, maskInstance) => {
 }
 
 const vLoading = {
-  bind(el, binding, vnode) {
+  inserted(el, binding, vnode) {
     const vm = vnode.context
     const textExr = el.getAttribute(constants.TEXT_ATTR)
     const spinnerExr = el.getAttribute(constants.TEXT_SPINNER)
@@ -132,7 +132,7 @@ const vLoading = {
       component: Loading,
       propsData: {
         _constants: constants,
-        tiny_mode: vm.tiny_mode?.value || appProperties().tiny_mode?.value
+        tiny_mode: vm?.tiny_mode?.value || appProperties().tiny_mode?.value
       },
       el: document.createElement('div')
     })

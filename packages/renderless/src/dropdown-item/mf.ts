@@ -1,4 +1,4 @@
-import { omitText } from '../common/string'
+import { omitText } from '@opentiny/utils'
 
 export const api = ['dataStore', 'handleClick', 'dataStore', 'mouseEnter', 'mouseLeave']
 

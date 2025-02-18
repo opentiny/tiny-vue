@@ -10,7 +10,7 @@
  *
  */
 import type { ITransferProps, ITransferRenderlessParams } from '@/types'
-import { copyArray } from '../common/object'
+import { copyArray } from '@opentiny/utils'
 
 /** 生成全量数据对应的一个大对象 */
 export const getObj = (props: ITransferProps) => () =>
@@ -168,11 +168,7 @@ export const addToRight =
       const key = props.props.key
 
       if (props.render && props.render.plugin.name === Tree) {
-        if (!props.treeOp.checkStrictly) {
-          currentValue = refs.leftPanel.$refs.plugin.getCheckedKeys()
-        } else {
-          state.leftChecked.forEach((item) => !currentValue.includes(item) && currentValue.push(item))
-        }
+        state.leftChecked.forEach((item) => !currentValue.includes(item) && currentValue.push(item))
       } else {
         if (value === 'all') {
           state.leftData.forEach((item) => {

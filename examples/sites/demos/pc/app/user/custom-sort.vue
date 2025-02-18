@@ -124,8 +124,8 @@ export default {
       })
     },
     fetchW3Accounts(userId) {
-      /* 此为初始化时，v-model值不为空时，根据默认值查询用户数据，数据返回格式如下 */
-      TinyModal.message(`v-model默认值为：${userId}`)
+      /* 此为初始化时，v-model 值不为空时，根据默认值查询用户数据，数据返回格式如下 */
+      TinyModal.message(`v-model 默认值为：${userId}`)
 
       return new Promise((resolve) => {
         const result = [

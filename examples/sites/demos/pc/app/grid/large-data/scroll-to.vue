@@ -2,8 +2,8 @@
   <div>
     <div>
       <tiny-button @click="scrollTo">滚动到对应的位置</tiny-button>
-      <tiny-button @click="scrollToRow">滚动到第50行</tiny-button>
-      <tiny-button @click="scrollToColumn">滚动到500列</tiny-button>
+      <tiny-button @click="scrollToRow">滚动到第 50 行</tiny-button>
+      <tiny-button @click="scrollToColumn">滚动到 500 列</tiny-button>
     </div>
     <br />
     <tiny-grid ref="tinyGrid" height="300" column-width="100"> </tiny-grid>

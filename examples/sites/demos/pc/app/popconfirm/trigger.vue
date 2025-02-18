@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      title: '确定要删除该安全组规则吗?'
+      title: '确定要删除该安全组规则吗？'
     }
   }
 }

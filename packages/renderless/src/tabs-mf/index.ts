@@ -1,6 +1,6 @@
-import { random } from '../common/string'
-import debounce from '../common/deps/debounce'
-import { fastdom } from '../common/deps/fastdom'
+import { random } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 
 // --- tabs ---
 export const setActive =
@@ -300,7 +300,7 @@ export const emitAdd = (tabs) => () => {
 // --- tab-nav-item ---
 export const handleNavItemClick =
   ({ tabs, props, vm }) =>
-  () => {
+  (event: Event) => {
     const index = tabs.state.navs.indexOf(vm)
     const newTab = props.navItem.name
     const oldTab = tabs.state.currentItem ? tabs.state.currentItem.name : ''
@@ -314,7 +314,7 @@ export const handleNavItemClick =
         }
       })
 
-    tabs.$emit('click', props.navItem)
+    tabs.$emit('click', props.navItem, event)
   }
 
 export const getBoundRectNV =

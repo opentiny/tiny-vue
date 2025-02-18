@@ -19,11 +19,11 @@ test('菜单项点击事件', async ({ page }) => {
   // more-click 更多按钮点击事件
   await expect(notify.filter({ hasText: '触发 moreClick 事件' })).toBeVisible()
   // visible-change 下拉面板显示隐藏事件
-  await expect(notify.filter({ hasText: '触发 visible-change 事件,下拉状态为 true' })).toBeVisible()
+  await expect(notify.filter({ hasText: '触发 visible-change 事件，下拉状态为 true' })).toBeVisible()
   // item-click 菜单项点击事件
   await dropDownMenuItem.filter({ hasText: '关机' }).click()
   await expect(notify.filter({ hasText: '{"label":"关机"}' })).toBeVisible()
   // visible-change 下拉面板显示隐藏事件
-  await expect(notify.filter({ hasText: '触发 visible-change 事件,下拉状态为 false' })).toBeVisible()
+  await expect(notify.filter({ hasText: '触发 visible-change 事件，下拉状态为 false' })).toBeVisible()
   await expect(dropDownMenu).not.toBeVisible()
 })

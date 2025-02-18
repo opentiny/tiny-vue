@@ -183,7 +183,7 @@ export default {
       },
       desc: {
         'zh-CN': '<p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>',
-        'en-US': '<p>You can set <code>disabled</code> to true, you can disabled the time picker。</p>'
+        'en-US': '<p>You can set <code>disabled</code> to true, you can disabled the time picker.</p>'
       },
       codeFiles: ['editable.vue']
     },

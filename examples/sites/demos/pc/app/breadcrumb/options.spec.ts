@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('Breadcrumb options配置', async ({ page }) => {
+test('Breadcrumb options 配置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('breadcrumb#options')
 
@@ -9,7 +9,7 @@ test('Breadcrumb options配置', async ({ page }) => {
   const currentItem = breadcrumbItem.last()
   const separator = breadcrumb.locator('.tiny-breadcrumb__separator')
 
-  // 面包屑导航、导航项出现,当前页导航加粗
+  // 面包屑导航、导航项出现，当前页导航加粗
   await expect(breadcrumb).toBeVisible()
   await expect(breadcrumbItem).toHaveCount(3)
   await expect(currentItem.last().getByRole('link')).toHaveCSS('font-weight', '600')

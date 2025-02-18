@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过属性 <code>min-crop-box-width</code> 、<code>min-crop-box-height</code> 设置裁剪框最小宽高。设置后，调整裁剪框宽高时，调整到最小值后将不能再调整。\n通过属性 <code>min-container-width</code> 、<code>min-container-height</code> 设置容器的最小宽度,最小高度。</p>\n',
+          '<p>通过属性 <code>min-crop-box-width</code> 、<code>min-crop-box-height</code> 设置裁剪框最小宽高。设置后，调整裁剪框宽高时，调整到最小值后将不能再调整。\n通过属性 <code>min-container-width</code> 、<code>min-container-height</code> 设置容器的最小宽度，最小高度。</p>\n',
         'en-US':
           '<p>Set the minimum width and height of the cropping frame through the <code>min-crop-box-width</code> and <code>min-crop-box-height</code> attributes. After this parameter is set, the width and height of the cropping box cannot be adjusted after the width and height are adjusted to the minimum value. \n Set the minimum width and height of the container through the <code>min-container-width</code> and <code>min-container-height</code> attributes. </p>\n'
       },
@@ -215,7 +215,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper 。 通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
+          '<p>通过调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper。通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
         'en-US':
           '<p>Invoke the <code>replace</code> method to replace the image src and rebuild the cropper. The <code>rotatable</code> attribute is used to control image rotation. The default value is true. </p>\n'
       },
