@@ -172,7 +172,15 @@ export const panelEmit =
   (value, ...args) => {
     state.date = value
     state.value = value
-    const formatVal = formatDate(value, props.format, t)
+    let format
+    if (props.type === 'month') {
+      format = props.format || DATEPICKER.DateFormats.month
+    } else if (props.type === 'year') {
+      format = props.format || DATEPICKER.DateFormats.year
+    } else {
+      format = props.format
+    }
+    const formatVal = formatDate(value, format, t)
     emit('select-change', formatVal, ...args)
     emit('update:modelValue', formatVal, ...args)
   }
@@ -216,13 +224,22 @@ export const cusNextYear =
     }
   }
 
-export const handleShortcutClick = (api, props) => (shortcut) => {
+export const handleShortcutClick = (api, props, state) => (shortcut) => {
   if (shortcut.onClick) {
     const picker = {
       $emit: (type, start, end) => {
         // 面板直接使用快捷选项
         if (props.shortcuts?.length) {
-          api.handleDatePick(start, end)
+          if (props.type === 'month') {
+            state.date = start
+            api.handleMonthPick(start.getMonth())
+          } else if (props.type === 'year') {
+            state.date = start
+            state.startYear = Math.floor(start.getFullYear() / 10) * 10
+            api.handleYearPick(start.getFullYear())
+          } else {
+            api.handleDatePick(start, end)
+          }
         } else {
           api.doPick(start, end)
         }
@@ -261,8 +278,18 @@ export const handleTimePickClose = (state) => () => {
 }
 
 export const handleMonthPick =
-  ({ api, state }) =>
+  ({ api, state, props, t }) =>
   (month) => {
+    if (props.readonly) {
+      return
+    }
+    if (props.type === DATEPICKER.Month) {
+      state.date = modifyDate(state.date, state.date.getFullYear(), month, 2)
+      state.value = state.date
+      api.cusEmit(state.date)
+      api.panelEmit(state.date, t, props)
+      return
+    }
     if (state.selectionMode === DATEPICKER.Month) {
       state.date = modifyDate(state.date, state.year, month, 1)
       api.cusEmit(state.date)
@@ -289,20 +316,21 @@ export const handleDatePick =
 
       state.date = newDate
       api.cusEmit(state.date, state.showTime)
-      api.panelEmit(state.date, t, props)
     } else if (state.selectionMode === DATEPICKER.Week) {
       api.cusEmit(value.date)
     } else if (state.selectionMode === DATEPICKER.Dates) {
       api.cusEmit(value, true)
     }
+    api.panelEmit(state.date, t, props)
   }
 
 export const handleYearPick =
-  ({ api, state }) =>
+  ({ api, state, props, t }) =>
   (value) => {
     if (state.selectionMode === DATEPICKER.Year) {
       state.date = modifyDate(state.date, value, 0, 2)
       api.cusEmit(state.date)
+      api.panelEmit(state.date, t, props)
     } else if ([DATEPICKER.Years].includes(state.selectionMode)) {
       state.date = value.map((year) => new Date(year, 0, 2))
 

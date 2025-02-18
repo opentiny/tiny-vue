@@ -2,6 +2,10 @@
   <div class="demo-date-panel-wrap">
     <div class="value">{{ value }}</div>
     <tiny-date-panel v-model="value" :shortcuts="shortcuts"></tiny-date-panel>
+    <div class="month">{{ month }}</div>
+    <tiny-date-panel v-model="month" type="month" :shortcuts="shortcutsMonth"></tiny-date-panel>
+    <div class="year">{{ year }}</div>
+    <tiny-date-panel v-model="year" type="year" :shortcuts="shortcutsYear"></tiny-date-panel>
     <div class="value1">{{ value1 }}</div>
     <tiny-date-range type="daterange" v-model="value1" :shortcuts="shortcuts1"></tiny-date-range>
     <div class="value2">{{ value2 }}</div>
@@ -16,6 +20,8 @@ import { ref } from 'vue'
 import { TinyDatePanel, TinyDateRange, TinyMonthRange, TinyYearRange } from '@opentiny/vue'
 
 const value = ref('2025-01-15')
+const month = ref('2025-01')
+const year = ref('2025')
 const value1 = ref(['2025-01-15', '2025-02-15'])
 const value2 = ref(['2024-03', '2025-02'])
 const value3 = ref(['2024', '2028'])
@@ -44,6 +50,61 @@ const shortcuts = [
     }
   }
 ]
+
+const shortcutsMonth = [
+  {
+    text: '一个月前',
+    onClick(picker) {
+      const date = new Date()
+      date.setMonth(date.getMonth() - 1)
+      picker.$emit('pick', date)
+    }
+  },
+  {
+    text: '三个月前',
+    onClick(picker) {
+      const date = new Date()
+      date.setMonth(date.getMonth() - 3)
+      picker.$emit('pick', date)
+    }
+  },
+  {
+    text: '六个月前',
+    onClick(picker) {
+      const date = new Date()
+      date.setMonth(date.getMonth() - 6)
+      picker.$emit('pick', date)
+    }
+  }
+]
+
+const shortcutsYear = [
+  {
+    text: '一年前',
+    onClick(picker) {
+      const date = new Date()
+      date.setFullYear(date.getFullYear() - 1)
+      picker.$emit('pick', date)
+    }
+  },
+  {
+    text: '五年前',
+    onClick(picker) {
+      const date = new Date()
+      date.setFullYear(date.getFullYear() - 5)
+      picker.$emit('pick', date)
+    }
+  },
+  {
+    text: '十年前',
+    onClick(picker) {
+      const date = new Date()
+      date.setFullYear(date.getFullYear() - 10)
+      picker.$emit('pick', date)
+    }
+  }
+]
+
 const shortcuts1 = [
   {
     text: '最近一周',
