@@ -67,6 +67,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     const tableTreeData = _vm.data || _vm.tableData
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
+    selfRow._isDraging = true
     const isScrollYLoad = _vm.scrollYLoad
     if (!isScrollYLoad) {
       if (prevTrElem) {

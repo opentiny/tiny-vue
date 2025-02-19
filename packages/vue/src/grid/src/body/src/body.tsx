@@ -544,6 +544,17 @@ function renderRow(args) {
     return
   }
 
+  let key = rowid
+  if (row._isDraging) {
+    // 防止数据多次刷新导致key回归rowid
+    _vm.$nextTick(() => {
+      delete row._isDraging
+    })
+    if (renderRowFlag) {
+      key = `${rowid}${rowKey}`
+    }
+  }
+
   rows.push(
     h(
       'tr',
@@ -566,7 +577,7 @@ function renderRow(args) {
         attrs: {
           'data-rowid': rowid
         },
-        key: rowid,
+        key,
         on: trOn
       },
       tableColumn.map((column, $columnIndex) => {
@@ -610,7 +621,7 @@ function renderRowExpanded(args) {
           'tr',
           {
             class: 'tiny-grid-body__expanded-row',
-            key: renderRowFlag ? `expand_${rowid}` : `expand_${rowid}${rowIndex}`,
+            key: `expand_${rowid}`,
             on: trOn
           },
           [
