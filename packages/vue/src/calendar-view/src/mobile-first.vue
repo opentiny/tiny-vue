@@ -292,7 +292,7 @@
                 :key="idx"
                 class="py-1.5 h-auto border border-color-border-separator rounded mb-2 shadow-sm"
               >
-                <div class="px-1.5 mb-1.5 border-l-2 border-color-brand">{{ event.title }}</div>
+                <div class="px-1.5 mb-1.5 border-l-2 border-color-brand break-all">{{ event.title }}</div>
                 <div class="mb-1.5 px-2 text-color-text-placeholder">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
