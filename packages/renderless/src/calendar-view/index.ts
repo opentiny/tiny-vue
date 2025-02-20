@@ -104,15 +104,31 @@ export const parseDate = (time) => {
   } else {
     date = new Date()
   }
-
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hours: date.getHours(),
-    minutes: date.getMinutes(),
-    seconds: date.getSeconds()
+  // 识别无时分秒的日期时间
+  const timeParts = hasNoTime(time)
+  let timesPartsOne = {}
+  let timesPartsTwo = {}
+  if (!timeParts.hours) {
+    timesPartsOne = {
+      year: timeParts.year,
+      month: timeParts.month,
+      day: timeParts.day,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    }
+  } else {
+    timesPartsTwo = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds()
+    }
   }
+  const timePartsList = Object.assign(timesPartsOne, timesPartsTwo)
+  return timePartsList
 }
 
 export const computedCalendar =
@@ -160,6 +176,36 @@ const getCalendarItem = function (item, props, isFunction, type, isNext, isLast)
   return res
 }
 
+const hasNoTime = (date) => {
+  const datetimeStr = date
+  let hoursTime = 0
+  let minutesTime = 0
+  let secondsTime = 0
+  const [datePart, timePart] = datetimeStr.split(' ')
+  const [year, month, day] = datePart && datePart.split('-')
+  if (timePart) {
+    const [hours, minutes, seconds] = timePart && timePart.split(':')
+    hoursTime = hours
+    minutesTime = minutes
+    secondsTime = seconds
+  }
+  // 提取时间
+  return {
+    year: Number(year),
+    month: Number(month),
+    day: Number(day),
+    hours: hoursTime,
+    minutes: minutesTime,
+    seconds: secondsTime
+  }
+}
+// 时间转GMT8
+const timesToGMT8 = (date) => {
+  const originalDate = new Date(date)
+  const gmt8 = new Date(originalDate.getTime() + 15 * 60 * 60 * 1000)
+  return gmt8
+}
+
 export const handleEvents =
   ({ props, state }) =>
   () => {
@@ -197,14 +243,23 @@ export const handleEvents =
           ([lastYear, +state.activeYear, nextYear].includes(endYear) &&
             [lastMon, +state.activeMonth, nextMon].includes(endMonth))
         ) {
-          item.start = getTime(item.start)
-          item.end = getTime(item.end)
-          item.startTime = makeUpZero(startHours) + ':' + makeUpZero(startMinutes) + ':' + makeUpZero(startSeconds)
-          item.endTime = makeUpZero(endHours) + ':' + makeUpZero(endMinutes) + ':' + makeUpZero(endSeconds)
+          const timeStartPart = hasNoTime(item.start)
+          const timeEndPart = hasNoTime(item.end)
+
+          item.start = timeStartPart.hours ? getTime(item.start) : timesToGMT8(item.start)
+          item.end = timeEndPart.hours ? getTime(item.end) : timesToGMT8(item.end)
+
+          item.startTime = timeStartPart.hours
+            ? makeUpZero(startHours) + ':' + makeUpZero(startMinutes) + ':' + makeUpZero(startSeconds)
+            : ''
+          item.endTime = timeEndPart.hours
+            ? makeUpZero(endHours) + ':' + makeUpZero(endMinutes) + ':' + makeUpZero(endSeconds)
+            : ''
+
           item.startDay = startYear + '-' + startMonth + '-' + startDay
           item.endDay = endYear + '-' + endMonth + '-' + endDay
-          const startTimestamp = getTime(startYear + '-' + startMonth + '-' + startDay)
-          const endTimestamp = getTime(endYear + '-' + endMonth + '-' + endDay)
+          const startTimestamp = getTime(item.startDay)
+          const endTimestamp = getTime(item.endDay)
           const days = Math.abs(endTimestamp - startTimestamp) / dayMillisecond
           item.dayNumber = days >= 1 ? days + 1 : 1
 
