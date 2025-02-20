@@ -494,7 +494,7 @@ export default {
       item: 'itens',
       next: 'Próximo',
       page: 'Artigo/Página',
-      pageClassifier: '',
+      pageClassifier: 'página',
       pagesize: 'Artigo/Página',
       prev: 'Anterior',
       total: 'Total:',
