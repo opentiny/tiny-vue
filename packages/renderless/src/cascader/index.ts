@@ -81,10 +81,12 @@ export const computePresentContent =
     }
   }
 
+/** 用户在修改值，不必触发change */
 export const watchValue =
   ({ api, state }: { api: ICascaderApi; state: ICascaderState }) =>
   (value) => {
     if (!isEqual(value, state.checkedValue as any)) {
+      state.userChangeValue = true
       state.checkedValue = value
       setTimeout(api.computePresentContent)
     }
@@ -97,7 +99,8 @@ export const watchCheckedValue =
     dispatch,
     api,
     emit,
-    state
+    state,
+    props
   }: {
     api: ICascaderApi
     emit: ICascadeRenderlessParamUtils['emit']
@@ -122,8 +125,18 @@ export const watchCheckedValue =
       ])
     })
 
-    emit('update:modelValue', value)
-    emit('change', value)
+    // 用户触发的modelValue变化时： props.changeCompat=true， 则emit， 否则忽略
+    if (state.userChangeValue) {
+      if (props.changeCompat) {
+        emit('update:modelValue', value)
+        emit('change', value)
+        state.userChangeValue = false
+      }
+    } else {
+      // 非用户触发modelValue, 表明是用户操作click, delete时的动作。
+      emit('update:modelValue', value)
+      emit('change', value)
+    }
 
     setTimeout(api.updateStyle)
   }

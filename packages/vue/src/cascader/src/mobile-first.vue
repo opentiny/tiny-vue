@@ -40,6 +40,7 @@ import { IconChevronRight } from '@opentiny/vue-icon'
 
 import CascaderMobile from '@opentiny/vue-cascader-mobile'
 import PcFirst from './pc-first.vue'
+
 export default defineComponent({
   props: [
     ...props,
@@ -91,7 +92,8 @@ export default defineComponent({
     'expand-change',
     'active-item-change',
     'remove-tag',
-    'created'
+    'created',
+    'changeCompat'
   ],
   setup(props, ctx) {
     const bp = useBreakpoint().current

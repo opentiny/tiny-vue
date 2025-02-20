@@ -133,7 +133,8 @@ const initState = ({
     isHidden: false,
     tooltipVisible: false,
     tooltipContent: '',
-    tagTypeWhenMultiple: designConfig?.tagTypeWhenMultiple || ''
+    tagTypeWhenMultiple: designConfig?.tagTypeWhenMultiple || '',
+    userChangeValue: false
   })
 
   return state as ICascaderState
@@ -188,7 +189,7 @@ const initApi = ({
     watchValue: watchValue({ api, state }),
     computePresentTags: computePresentTags({ api, props, state }),
     computePresentContent: computePresentContent({ api, state }),
-    watchCheckedValue: watchCheckedValue({ constants, dispatch, api, nextTick, emit, state }),
+    watchCheckedValue: watchCheckedValue({ constants, dispatch, api, nextTick, emit, state, props }),
     toggleDropDownVisible: toggleDropDownVisible({ emit, vm, state, updatePopper }),
     selfMounted: selfMounted({ api, parent, props, vm, state }),
     handleBeforeUpdate: handleBeforeUpdate({ props, api, state }),
@@ -217,7 +218,7 @@ const initWatch = ({
 }) => {
   watch(() => state.disabled, api.computePresentContent)
 
-  watch(() => props.modelValue, api.watchValue)
+  watch(() => props.modelValue, api.watchValue) // 用户在修改值，不必触发change
 
   watch(() => state.checkedValue, api.watchCheckedValue)
 
