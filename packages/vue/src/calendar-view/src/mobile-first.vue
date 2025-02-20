@@ -20,10 +20,10 @@
       </template>
     </tiny-tooltip>
     <div data-tag="tiny-calendar-view-today" class="flex justify-around items-center mb-3">
-      <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
       <tiny-date-picker
         v-model="state.currentDate"
-        class="ml-5 shrink-0"
+        :class="[showBackToday ? 'ml-5' : '', 'shrink-0']"
         shape="filter"
         type="month"
         :clearable="false"
@@ -376,7 +376,8 @@ export default defineComponent({
     'events',
     'height',
     'mark-color',
-    'multi-select'
+    'multi-select',
+    'showBackToday'
   ],
   setup(props, context) {
     return setup({
