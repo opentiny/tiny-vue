@@ -130,8 +130,8 @@ export const watchCheckedValue =
       if (props.changeCompat) {
         emit('update:modelValue', value)
         emit('change', value)
-        state.userChangeValue = false
       }
+      state.userChangeValue = false
     } else {
       // 非用户触发modelValue, 表明是用户操作click, delete时的动作。
       emit('update:modelValue', value)
