@@ -898,7 +898,7 @@ export const setSoftFocus =
   () => {
     // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
     // 如果有reference时， 它就没有Input这套机制了，没机会让softFocus为假了。
-    if (state.hasReferenceSlot) {
+    if (vm.$slots.reference) {
       return
     }
 
@@ -2123,8 +2123,6 @@ export const mounted =
     if (props.dataset) {
       api.watchPropsOption()
     }
-
-    state.hasReferenceSlot = !!vm.$slots.reference
   }
 
 export const unMount =
