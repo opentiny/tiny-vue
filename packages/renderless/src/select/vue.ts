@@ -273,7 +273,8 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
       return true // tiny 默认为true
     })(),
     designConfig,
-    currentSizeMap: computed(() => api.computedCurrentSizeMap())
+    currentSizeMap: computed(() => api.computedCurrentSizeMap()),
+    hasReferenceSlot: false
   })
 
   return state
