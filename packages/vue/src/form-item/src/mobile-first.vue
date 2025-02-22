@@ -26,7 +26,7 @@
         v-if="slots.label || label"
         :class="
           m(
-            'py-3 sm:py-0 sm:min-h-[theme(spacing.5)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
+            'py-3 sm:py-0 sm:min-h-[theme(spacing.5)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border',
             'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
               ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-1 sm:min-h-[theme(spacing.0)]'
@@ -34,7 +34,7 @@
             state.labelPosition === 'right' ? 'text-right sm:text-right' : '',
             state.labelPosition === 'left' ? 'text-left sm:text-left' : '',
             state.formInline && state.labelPosition === 'top' ? 'block' : '',
-            state.isDisplayOnly ? 'leading-none h-auto align-[inherit] pr-4' : '',
+            state.isDisplayOnly ? 'h-auto align-[inherit] pr-4' : '',
             tipContent ? 'pr-5 sm:pr-7' : '',
             state.labelPosition === 'top' && !state.hideRequiredAsterisk
               ? 'overflow-visible relative before:absolute before:-left-2.5'
@@ -49,11 +49,11 @@
         <span
           :class="
             m(
-              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px leading-normal sm:leading-5.5',
+              'max-h-[theme(spacing.12)] line-clamp-2 inline-block relative leading-normal',
               (state.isRequired || required) && !state.hideRequiredAsterisk
                 ? `before:content-['*'] before:text-color-error before:relative before:mr-1`
                 : '',
-              state.isDisplayOnly ? 'pl-0 before:hidden' : ''
+              state.isDisplayOnly ? 'pl-0 before:hidden sm:leading-5.5' : 'sm:leading-7'
             )
           "
         >
@@ -73,10 +73,11 @@
       data-tag="tiny-form-item-inline"
       :class="
         m(
-          `flex-1 m-0 relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2 [&_[data-tag=tiny-rate]]:h-6`,
+          `flex-1 m-0 relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
           '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full [&_[data-tag=tiny-input]]:block [&_[data-tag=tiny-input-inner]]:block [&_[data-tag=tiny-input-inner]]:leading-5',
           '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-1 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
           state.formInline ? 'align-sub leading-none' : '',
+          state.isDisplayOnly ? '[&_[data-tag=tiny-rate]]:h-[22px]' : '[&_[data-tag=tiny-rate]]:h-7',
           state.labelPosition === 'top' && !state.hideRequiredAsterisk
             ? state.isDisplayOnly
               ? 'pl-0'
@@ -108,8 +109,8 @@
           '[&_[class^=tiny-autocomplete]]:w-full',
           '[&_[class^=tiny-cascader]]:w-full',
           state.isDisplayOnly
-            ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
-            : ''
+            ? 'sm:leading-5.5 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
+            : '[&_[data-tag=tiny-checkbox]]:h-7 [&_[data-tag=tiny-radio]]:h-7'
         ]"
       >
         <slot></slot>

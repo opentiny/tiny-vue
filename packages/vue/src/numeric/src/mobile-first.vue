@@ -103,7 +103,7 @@
     <div
       data-tag="numeric-display-only"
       v-if="state.isDisplayOnly"
-      class="sm:leading-normal text-color-text-primary"
+      class="sm:leading-5.5 text-color-text-primary"
       :class="state.inputSize !== 'mini' ? 'text-sm' : 'text-xs'"
     >
       <span>{{ state.displayOnlyText }}</span
