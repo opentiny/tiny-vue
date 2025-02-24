@@ -25,7 +25,7 @@ export const classes = {
   'numeric_input-disabled':
     'bg-inherit sm:bg-color-bg-6 sm:[&_input]:bg-transparent cursor-not-allowed sm:border border-0.5 border-solid rounded border-color-border-separator text-color-text-disabled sm:text-color-text-secondary',
 
-  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-sm inline-block overflow-hidden outline-0',
+  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-sm inline-block overflow-hidden outline-0 bg-color-bg-1',
   'numeric-text-center': 'text-center',
   'numeric-text-left': 'text-left',
   'numeric_input_inner_size': 'leading-7 text-sm',
