@@ -74,10 +74,12 @@
       :class="
         m(
           `flex-1 m-0 relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
-          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full [&_[data-tag=tiny-input]]:block [&_[data-tag=tiny-input-inner]]:block [&_[data-tag=tiny-input-inner]]:leading-5',
+          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full',
           '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-1 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
           state.formInline ? 'align-sub leading-none' : '',
-          state.isDisplayOnly ? '[&_[data-tag=tiny-rate]]:h-[22px]' : '[&_[data-tag=tiny-rate]]:h-7',
+          state.isDisplayOnly
+            ? '[&_[data-tag=tiny-input]]:block [&_[data-tag=tiny-input-inner]]:block [&_[data-tag=tiny-input-inner]]:leading-5 [&_[data-tag=tiny-rate]]:h-[22px]'
+            : '[&_[data-tag=tiny-rate]]:h-7',
           state.labelPosition === 'top' && !state.hideRequiredAsterisk
             ? state.isDisplayOnly
               ? 'pl-0'
