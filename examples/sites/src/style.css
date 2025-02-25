@@ -1,7 +1,14 @@
 /* saas 官网的尺寸单位是rem */
 html {
   font-size: 16px;
-}
+ }
+
+ #app{
+  background-color: #fff;
+ }
+ .dark #app{
+  background-color: #000;
+ }
 
 /* reset.css 引入后造成site官网中 b 和 strong 标签没有粗体，此处还原粗体  */
 b,

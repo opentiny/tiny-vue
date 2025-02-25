@@ -402,8 +402,11 @@ export default defineComponent({
   }
 }
 
+.dark #layoutSider {
+  border-right: 1px solid #1a1a1a; // 没有常用变量
+}
+
 #layoutSider {
-  background: #fff;
   height: calc(100vh - 60px);
   border-right: 1px solid #f0f0f0;
 

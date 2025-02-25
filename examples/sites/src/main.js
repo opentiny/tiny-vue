@@ -10,7 +10,7 @@ import 'uno.css'
 import 'highlight.js/styles/default.css'
 
 // 只使用markdown的亮色主题
-import 'github-markdown-css/github-markdown-light.css'
+import 'github-markdown-css/github-markdown.css'
 import './assets/index.less'
 import './style.css'
 

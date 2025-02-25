@@ -48,7 +48,7 @@
             </tiny-tooltip>
           </div>
         </div>
-        <component :is="getDescMd(demo)" class="demo-desc markdown-body" />
+        <component :is="getDescMd(demo)" class="demo-desc" />
 
         <div v-if="isMobileFirst" class="pc-demo-container">
           <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
@@ -303,7 +303,7 @@ onBeforeUnmount(() => {
     padding: 4px 8px;
     margin: 0 4px;
     font-size: 0.85em;
-    background-color: rgba(27, 31, 35, 0.05);
+    background-color: var(--tv-color-bg-header);
     border-radius: 3px;
   }
 
@@ -317,14 +317,6 @@ onBeforeUnmount(() => {
   ol {
     list-style: disc;
     list-style-position: inside;
-  }
-}
-
-.theme-dark {
-  .demo-desc {
-    code {
-      background: #333333;
-    }
   }
 }
 
@@ -354,17 +346,16 @@ onBeforeUnmount(() => {
     overflow: auto;
   }
 }
-// 暗黑主题
-:global(html.dark .pc-demo-container) {
-  background: #000;
-}
 
+:global(.dark .pc-demo-container.pc-demo-container) {
+  background-color: #1a1a1a;
+}
 .pc-demo-container {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  color: var(--tv-color-text);
+  background: var(--tv-color-bg);
   border-radius: 6px;
-  border: 1px solid #dcdfe6;
   padding: 26px 18px 42px;
 
   .pc-demo {
@@ -378,7 +369,7 @@ onBeforeUnmount(() => {
 
   .demo-title {
     font-size: 20px;
-    color: #191919;
+    color: var(--tv-color-text);
     font-weight: bold;
   }
 
