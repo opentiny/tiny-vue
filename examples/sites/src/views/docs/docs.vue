@@ -71,6 +71,10 @@ onMounted(() => {
   background-color: #000;
 }
 
+.dark .docs-container .markdown-body pre {
+  background-color: #1a1a1a;
+}
+
 .dark .docs-container .markdown-body code {
   text-shadow: none;
   color: var(--tv-color-text);
