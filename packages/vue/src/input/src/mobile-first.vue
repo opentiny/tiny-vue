@@ -284,7 +284,7 @@
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="flex">
+        <div class="inline-flex">
           <span
             ref="textBox"
             class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
