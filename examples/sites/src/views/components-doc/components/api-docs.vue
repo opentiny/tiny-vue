@@ -4,16 +4,16 @@
       <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
       <div class="mt20 wp100" v-for="oneGroup in props.currentJson.apis" :key="oneGroup.name">
         <div class="ti-f-r ti-f-pos-start ti-fw-bold">
-          <h2 :id="`cmp-${oneGroup.name}`" class="ti-f18">
+          <h2 :id="`cmp-${oneGroup.name}`" class="api-groupname ti-f18">
             {{ oneGroup.name }}
           </h2>
-          <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">
+          <div class="api-groupname-tag ti-ml12 ti-px8 ti-py4">
             {{ oneGroup.type }}
           </div>
         </div>
         <div v-for="(oneApiArr, key) in oneGroup" :key="key">
           <template v-if="!['name', 'type'].includes(key) && oneApiArr.length > 0">
-            <h3 class="ti-f18 ti-py28" :id="`${oneGroup.name}--${key}`">
+            <h3 class="ti-f18 ti-py28 api-groupname-key" :id="`${oneGroup.name}--${key}`">
               {{ key }}
             </h3>
             <div class="api-table-box">
@@ -173,9 +173,23 @@ defineExpose({ jumpToApi })
   flex-direction: column;
 }
 
+.api-groupname {
+  color: var(--tv-color-text);
+}
+.api-groupname-key {
+  color: var(--tv-color-text-secondary);
+}
+
+.api-groupname-tag {
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.dark .api-groupname-tag {
+  color: var(--tv-color-text-secondary);
+  background-color: var(--tv-color-bg-header);
+  border: none;
+}
 .api-table-box {
-  border-left: 1px solid rgb(239, 239, 245);
-  border-right: 1px solid rgb(239, 239, 245);
   overflow-x: auto;
   width: 100%;
 }
@@ -215,7 +229,8 @@ defineExpose({ jumpToApi })
     padding: 4px 8px;
     margin: 0 4px;
     font-size: 0.85em;
-    background-color: rgba(27, 31, 35, 0.05);
+    color: var(--tv-color-text-secondary);
+    background-color: var(--tv-color-bg-header);
     border-radius: 3px;
   }
 }
