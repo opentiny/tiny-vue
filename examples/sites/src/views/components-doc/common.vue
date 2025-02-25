@@ -457,7 +457,6 @@ defineExpose({ loadPage })
       position: sticky;
       top: 0;
       z-index: var(--docs-tabs-header-zindex);
-      background-color: #fff;
 
       &::after {
         content: '';
@@ -467,7 +466,7 @@ defineExpose({ loadPage })
         display: block;
         width: 100%;
         height: 16px;
-        background: linear-gradient(to bottom, #fff, transparent);
+        background: linear-gradient(to bottom, var(--tv-color-bg-secondary), transparent);
         transform: translateY(100%);
       }
 
