@@ -292,12 +292,17 @@ export default defineComponent({
   cursor: pointer;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 
+  .settings-icon {
+    color: var(--tv-color-icon);
+    fill: var(--tv-color-icon);
+  }
+
   &:hover {
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
 
     .settings-icon {
-      color: #191919;
-      fill: #191919;
+      color: var(--tv-color-icon-hover);
+      fill: var(--tv-color-icon-hover);
     }
   }
 

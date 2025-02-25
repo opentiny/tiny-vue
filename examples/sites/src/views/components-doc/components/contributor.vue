@@ -32,8 +32,7 @@ const contributors = computed(() => {
   .cmp-contributor-title {
     margin-bottom: 32px;
     font-size: 20px;
-    font-weight: Semibold;
-    color: #191919;
+    color: var(--tv-color-text);
   }
 
   .cmp-contributor-item {
