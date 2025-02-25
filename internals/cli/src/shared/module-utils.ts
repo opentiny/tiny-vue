@@ -51,7 +51,10 @@ export interface Module {
  * @returns 模块对象
  */
 const getAllModules = (isSort: boolean) => {
-  return getSortModules({ filterIntercept: () => true, isSort })
+  const callback = (item) => {
+    return !item.path.split('/').includes('huicharts')
+  }
+  return getSortModules({ filterIntercept: callback, isSort })
 }
 
 /**

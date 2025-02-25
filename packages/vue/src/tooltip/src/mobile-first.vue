@@ -114,7 +114,7 @@ export default defineComponent({
       if (vm.renderContent) {
         attrContent = vm.renderContent(h, vm.content)
       } else if (vm.pre) {
-        attrContent = vm.content ? h('pre', { class: 'whitespace-pre-wrap' }, vm.content) : null
+        attrContent = vm.content ? h('pre', { class: 'tiny-tooltip-text-pre whitespace-pre-wrap' }, vm.content) : null
       } else {
         attrContent = vm.content
       }

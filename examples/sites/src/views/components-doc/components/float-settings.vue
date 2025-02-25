@@ -274,42 +274,45 @@ export default defineComponent({
     line-height: 1;
     margin-right: 0;
   }
+}
+.dark .settings-btn {
+  background-color: var(--tv-color-bg-dark);
+}
 
-  .settings-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    margin-bottom: 8px;
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
-    background-color: #fff;
-    cursor: pointer;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+  border: 1px solid var(--tv-color-border);
+  border-radius: 12px;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 
-    &:hover {
-      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
-
-      .settings-icon {
-        color: #191919;
-        fill: #191919;
-      }
-    }
-
-    &.style-settings-btn {
-      margin-bottom: 24px;
-    }
-
-    &.back-top-btn {
-      margin-bottom: 0;
-    }
+  &:hover {
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
 
     .settings-icon {
-      width: 16px;
-      height: 16px;
-      color: #595959;
+      color: #191919;
+      fill: #191919;
     }
+  }
+
+  &.style-settings-btn {
+    margin-bottom: 24px;
+  }
+
+  &.back-top-btn {
+    margin-bottom: 0;
+  }
+
+  .settings-icon {
+    width: 16px;
+    height: 16px;
+    color: #595959;
   }
 }
 

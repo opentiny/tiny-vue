@@ -15,7 +15,8 @@
 <script>
 // 使用前需先引入对应模块
 import 'echarts/lib/component/dataZoom'
-import { TinyHuichartsLine, TinyButton } from '@opentiny/vue'
+import { TinyHuichartsLine } from '@opentiny/vue-huicharts'
+import { TinyButton } from '@opentiny/vue'
 
 export default {
   components: {

@@ -25,7 +25,7 @@ and `ChartBar` components as examples):
   </div>
 </template>
 <script>
-  import { HuichartsLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -70,7 +70,7 @@ After the complete introduction and assembly, the desired chart can be obtained 
   </div>
 </template>
 <script>
-  import { Huicharts } from '@opentiny/vue'
+  import { Huicharts } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChart: Chart
@@ -91,7 +91,7 @@ Here is a simple example
   </div>
 </template>
 <script>
-  import { HuichartsLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChartLine: ChartLine,

@@ -17,7 +17,7 @@ import { IconHeartempty } from '@opentiny/vue-icon'
 const TinyIconHeartempty = IconHeartempty()
 </script>
 
-<style>
+<style scoped>
 .tiny-tag-demo .tiny-tag {
   margin-right: 10px;
   margin-bottom: 10px;

@@ -18,6 +18,10 @@ export default defineComponent({
       default: false
     },
     formatWeeks: Function,
+    type: {
+      type: String,
+      default: ''
+    },
     firstDayOfWeek: {
       type: Number,
       default: 7

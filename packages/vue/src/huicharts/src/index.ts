@@ -22,6 +22,7 @@ import { HuiChartsSunburst } from '@opentiny/vue-huicharts-sunburst'
 import { HuiChartsTree } from '@opentiny/vue-huicharts-tree'
 import { HuiChartsWaterfall } from '@opentiny/vue-huicharts-waterfall'
 import { HuiChartsWordcloud } from '@opentiny/vue-huicharts-wordcloud'
+import { HuiChartsProcess } from '@opentiny/vue-huicharts-process'
 
 import Core from '@opentiny/vue-huicharts-core'
 
@@ -58,7 +59,8 @@ export default defineComponent({
       sunburst: HuiChartsSunburst,
       tree: HuiChartsTree,
       waterfall: HuiChartsWaterfall,
-      wordcloud: HuiChartsWordcloud
+      wordcloud: HuiChartsWordcloud,
+      process: HuiChartsProcess
     }
     return {}
   },
@@ -102,3 +104,29 @@ export default defineComponent({
     )
   }
 })
+
+export {
+  HuiChartsPie,
+  HuiChartsRing,
+  HuiChartsBar,
+  HuiChartsHistogram,
+  HuiChartsRadar,
+  HuiChartsLine,
+  AutonaviMap,
+  BaiduMap,
+  HuiChartsBoxplot,
+  HuiChartsCandle,
+  HuiChartsFunnel,
+  HuiChartsGauge,
+  HuiChartsGraph,
+  HuiChartsHeatmap,
+  HuiChartsLiquidfill,
+  HuiChartsMap,
+  HuiChartsSankey,
+  HuiChartsScatter,
+  HuiChartsSunburst,
+  HuiChartsTree,
+  HuiChartsWaterfall,
+  HuiChartsWordcloud,
+  HuiChartsProcess
+}

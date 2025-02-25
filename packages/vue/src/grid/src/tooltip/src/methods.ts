@@ -53,7 +53,8 @@ export default {
     const rangeWidth = range.getBoundingClientRect().width
     const padding =
       (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
-    const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
+    const isOverflow =
+      rangeWidth + padding > cell.getBoundingClientRect().width || wrapperElem.scrollWidth > wrapperElem.clientWidth
 
     // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示
     if ((contentMethod || content) && (showTip || isOverflow)) {

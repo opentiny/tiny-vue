@@ -51,7 +51,7 @@
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span
-            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-5.5 text-color-text-primary"
             v-if="type === 'password'"
             >{{ state.hiddenPassword }}</span
           >
@@ -68,7 +68,7 @@
             ></component>
           </span>
           <span
-            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-5.5 text-color-text-primary"
             v-else
           >
             {{ state.displayOnlyText }}
@@ -279,11 +279,12 @@
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
+        pre
         :popper-class="state.tooltipConfig.popperClass || ''"
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="flex">
+        <div class="inline-flex">
           <span
             ref="textBox"
             class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"

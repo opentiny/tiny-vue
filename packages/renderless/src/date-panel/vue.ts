@@ -58,8 +58,7 @@ import {
   getDisabledConfirm,
   getNowTime
 } from './index'
-import { toDate1, getWeekNumber, modifyDate, extractDateFormat } from '@opentiny/utils'
-import { DATEPICKER, DATE } from '@opentiny/utils'
+import { DATEPICKER, DATE, toDate1, getWeekNumber, modifyDate, extractDateFormat } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -100,7 +99,7 @@ const initState = ({ reactive, computed, api, i18n, designConfig, props }) => {
     shortcuts: props.shortcuts || [],
     visible: false,
     currentView: DATEPICKER.Date,
-    disabledDate: props.disabledDate || '',
+    disabledDate: props.disabledDate || null,
     cellClassName: '',
     selectableRange: [],
     firstDayOfWeek: props.firstDayOfWeek || 7,
@@ -146,11 +145,27 @@ const initWatch = ({ watch, state, api, nextTick, props }) => {
   watch(
     () => props.modelValue,
     (value) => {
-      let newVal = toDate1(value)
+      let newVal
+      const val = toDate1(value)
+      if (val) {
+        const localOffset = val.getTimezoneOffset() * 60000
+        newVal = toDate1(val - localOffset)
+      }
       if (newVal) {
-        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate())
+        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate() + 1)
         state.date = newDate
         state.value = newDate
+      }
+    },
+    { immediate: true }
+  )
+
+  watch(
+    () => props.type,
+    (value) => {
+      if (['date', 'month', 'year'].includes(value)) {
+        state.selectionMode = value
+        state.currentView = value
       }
     },
     { immediate: true }
@@ -236,13 +251,13 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch, props }) => {
     watchValue: watchValue({ api, state }),
     handleKeydown: handleKeydown({ api, state }),
     confirm: confirm({ api, state, t }),
-    handleMonthPick: handleMonthPick({ api, state }),
+    handleMonthPick: handleMonthPick({ api, state, props, t, emit }),
     handleVisibleDateChange: handleVisibleDateChange({ api, state, t }),
     handleTimePick: handleTimePick({ api, state, t }),
-    handleYearPick: handleYearPick({ api, state }),
+    handleYearPick: handleYearPick({ api, state, props, t }),
     handleDatePick: handleDatePick({ api, state, t, props }),
     computerVisibleTime: computerVisibleTime({ state, t }),
-    handleShortcutClick: handleShortcutClick(api, props),
+    handleShortcutClick: handleShortcutClick(api, props, state),
     computerVisibleDate: computerVisibleDate({ state, t }),
     handleVisibleTimeChange: handleVisibleTimeChange({ api, vm, state, t }),
     computerTimeFormat: computerTimeFormat({ state }),

@@ -27,8 +27,8 @@ export default {
 </script>
 
 <style scoped>
-.tiny-tag-demo > * {
-  margin-bottom: 8px;
-  margin-top: 8px;
+.tiny-tag-demo .tiny-tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 </style>

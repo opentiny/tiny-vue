@@ -44,6 +44,7 @@
     "@opentiny/vue-huicharts-bmap": "workspace:~",
     "@opentiny/vue-huicharts-graph": "workspace:~",
     "@opentiny/vue-huicharts-sunburst": "workspace:~",
+    "@opentiny/vue-huicharts-process": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",

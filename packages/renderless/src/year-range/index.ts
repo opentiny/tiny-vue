@@ -119,6 +119,8 @@ export const handleShortcutClick = (state, api, props) => (shortcutEvent) => {
         // 面板直接使用快捷选项
         if (props.shortcuts?.length) {
           state.value = [start, end]
+          state.leftStartYear = Math.floor(start.getFullYear() / 10) * 10
+          state.rightStartYear = state.leftStartYear + DATEPICKER.PanelYearNum
           state.leftDate = start
           state.rightDate = end
           api.handleRangePick({
