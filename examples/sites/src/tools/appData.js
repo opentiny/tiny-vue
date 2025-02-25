@@ -25,11 +25,6 @@ const appFn = {
     appData.theme = appData.theme === 'light' ? 'dark' : 'light'
   }
 }
-// // 减少页面处理
-// watchEffect(() => {
-//   document.body.classList.remove('theme-light', 'theme-dark')
-//   document.body.classList.add('theme-' + appData.theme)
-// })
 // 为了和tiny-vue共享同一个响应变量
 window.appData = appData
 export { appData, appFn, isZhCn }
