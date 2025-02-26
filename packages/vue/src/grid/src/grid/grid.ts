@@ -372,6 +372,9 @@ export default defineComponent({
     const optimizOpt = { ...GlobalConfig.optimization, ...optimization }
     const props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
 
+    // 初始化 tooltip 配置
+    props.tooltipConfig = Object.assign({}, GlobalConfig.tooltip || {}, designConfig.tooltip || {}, props.tooltipConfig || {})
+
     // 在用户没有配置stripe时读取design配置
     if (designConfig?.stripe !== undefined && !props.stripe) {
       // aurora规范默认带斑马条纹

@@ -105,7 +105,7 @@ const GlobalConfig = {
   menu: {},
   tooltip: {
     trigger: 'hover',
-    theme: 'dark'
+    effect: 'light'
   },
   pager: {},
   toolbar: {
