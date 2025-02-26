@@ -292,12 +292,17 @@ export default defineComponent({
   cursor: pointer;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 
+  .settings-icon {
+    color: var(--tv-color-icon);
+    fill: var(--tv-color-icon);
+  }
+
   &:hover {
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
 
     .settings-icon {
-      color: #191919;
-      fill: #191919;
+      color: var(--tv-color-icon-hover);
+      fill: var(--tv-color-icon-hover);
     }
   }
 
@@ -333,7 +338,7 @@ export default defineComponent({
         font-size: 14px;
         line-height: 32px;
         font-weight: 600;
-        color: #000000;
+        color: var(--tv-color-text);
       }
 
       .style-settings-options-group {
@@ -356,7 +361,10 @@ export default defineComponent({
 }
 .tiny-popover.tiny-popper.theme-settings-popover {
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--tv-color-bg);
+}
+.dark .tiny-popover.tiny-popper.theme-settings-popover {
+  background-color: var(--tv-color-bg-dark);
 }
 
 .theme-settings-menu {
