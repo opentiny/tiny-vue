@@ -101,19 +101,17 @@ describe('PC Mode', () => {
 
   test('slot', async () => {
     const value = 'pppppppppp'
-    const text = '请输入内容'
     const wrapper = mount(() => (
       <Cascader
         v-model={value}
         options={options}
         filterable={true}
         v-slots={{
-          empty: () => <div>没有选项</div>
-        }}
-      ></Cascader>
+          empty: () => <div class="custom_empty">没有选项</div>
+        }}></Cascader>
     ))
 
-    expect(wrapper.find('.tiny-cascader__empty-text').exists()).toBe(true)
+    expect(wrapper.find('.custom_empty').exists()).toBe(true)
   })
 
   // 通过 options 属性指定选项数组即可渲染出一个级联选择器
