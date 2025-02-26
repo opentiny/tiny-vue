@@ -44,7 +44,7 @@
           transparent
             ? {
                 border: 'transparent',
-                background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
+                background: 'inherit'
               }
             : {}
         "
