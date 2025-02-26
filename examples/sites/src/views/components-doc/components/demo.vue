@@ -337,13 +337,15 @@ onBeforeUnmount(() => {
 
 :global(.dark .pc-demo-container.pc-demo-container) {
   background-color: #1a1a1a;
+  border: none;
 }
 .pc-demo-container {
   display: flex;
   flex-direction: column;
   color: var(--tv-color-text);
-  background: var(--tv-color-bg);
+  background: #fff;
   border-radius: 6px;
+  border: 1px solid #dcdfe6;
   padding: 26px 18px 42px;
 
   .pc-demo {

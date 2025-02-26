@@ -338,7 +338,7 @@ export default defineComponent({
         font-size: 14px;
         line-height: 32px;
         font-weight: 600;
-        color: #000000;
+        color: var(--tv-color-text);
       }
 
       .style-settings-options-group {
@@ -361,7 +361,10 @@ export default defineComponent({
 }
 .tiny-popover.tiny-popper.theme-settings-popover {
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--tv-color-bg);
+}
+.dark .tiny-popover.tiny-popper.theme-settings-popover {
+  background-color: var(--tv-color-bg-dark);
 }
 
 .theme-settings-menu {
