@@ -1,6 +1,7 @@
 @import '../../custom.less';
 
 @grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-cell-prefix: ~'@{css-prefix}grid';
 @grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
 
 .TextEllipsis() {
@@ -34,7 +35,7 @@
       .TextEllipsis();
       @apply leading-normal;
       // 表头布局从block改为了flex，此处兼容插槽文本溢出不显示省略号问题
-      &:not(:has(.tiny-grid-cell-text)) > span:only-of-type {
+      &:not(:has(.tiny-grid-cell-text)) > span:only-of-type:not(.@{grid-cell-prefix}__expanded) {
         @apply text-ellipsis;
         @apply overflow-hidden;
       }
