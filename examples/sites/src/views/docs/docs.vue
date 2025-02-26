@@ -67,6 +67,23 @@ onMounted(() => {
   }
 }
 
+.dark .docs-container .markdown-body {
+  background-color: #000;
+}
+
+.dark .docs-container .markdown-body pre {
+  background-color: #1a1a1a;
+}
+
+.dark .docs-container .markdown-body code {
+  text-shadow: none;
+  color: var(--tv-color-text);
+
+  .token.operator {
+    background-color: transparent;
+  }
+}
+
 .docs-page-anchor {
   .tiny-anchor__affix {
     overflow-y: auto;

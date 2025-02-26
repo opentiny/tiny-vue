@@ -1,7 +1,7 @@
 export const classes = {
   'input-label': 'text-color-text-placeholder text-xs sm:text-sm mr-2 inline-block text-left max-w-[100px] truncate',
   'range-editor':
-    'bg-color-bg-1 relative inline-flex items-center py-1 sm:px-3 border-0 sm:border border-color-border hover:border-color-border-hover rounded mt-0.5',
+    'bg-color-bg-1 relative flex items-center py-1 sm:px-3 border-0 sm:border border-color-border hover:border-color-border-hover rounded mt-0.5',
   'range-input':
     'appearance-none border-none outline-0 p-0 w-[35%] text-color-text-primary focus:border-color-brand-focus disabled:border-color-border placeholder:text-color-text-placeholder disabled:cursor-not-allowed text-sm sm:placeholder:text-sm sm:text-sm h-full m-0 truncate disabled:text-color-icon-placeholder disabled:bg-transparent sm:disabled:bg-color-border-disabled',
   'datetimerange': 'w-full sm:w-96 sm:max-w-full',

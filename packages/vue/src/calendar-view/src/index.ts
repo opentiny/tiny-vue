@@ -76,6 +76,10 @@ export const calendarViewProps = {
   multiSelect: {
     type: Boolean,
     default: false
+  },
+  showBackToday: {
+    type: Boolean,
+    default: true
   }
 }
 

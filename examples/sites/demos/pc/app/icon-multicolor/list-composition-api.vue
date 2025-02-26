@@ -6,7 +6,7 @@
           <component
             :is="icon.component"
             class="svgs-icon"
-            style="width: 2em; fill: #000; height: 2em"
+            style="width: 2em; height: 2em"
             @click="click(icon.name)"
           ></component>
           <span class="svgs-text">{{ icon.name }}</span>

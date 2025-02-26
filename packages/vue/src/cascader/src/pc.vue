@@ -234,7 +234,8 @@ export default defineComponent({
     'label',
     'tip',
     'hoverExpand',
-    'blank'
+    'blank',
+    'changeCompat'
   ],
   emits: [
     'update:modelValue',

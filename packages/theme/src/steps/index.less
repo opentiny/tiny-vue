@@ -245,11 +245,11 @@
       &.done,
       &.doing {
         background-color: var(--tv-Steps-node-bg-color-active);
-        color: #fff;
+        color: #000;
       }
 
       &.active:not(.disabled) {
-        color: var(--tv-Steps-advance-active-text-color);
+        color: #000;
         background-color: #fff;
       }
 
@@ -266,7 +266,7 @@
       .icon {
         width: 10px;
         height: 10px;
-        fill: currentColor;
+        fill: var(--tv-Steps-line-doing-active-icon-color);
       }
     }
 
@@ -286,7 +286,7 @@
       white-space: nowrap;
 
       &.active:not(.disabled) {
-        color: #fff;
+        color: var(--tv-Steps-line-doing-active-icon-color);
       }
 
       .@{steps-prefix-cls}-text-name {
@@ -453,7 +453,6 @@
         flex: none;
         border-radius: 9999px;
         border: 1px solid var(--tv-Steps-line-bg-color);
-        background-color: #fff;
       }
 
       .@{steps-prefix-cls}-icon {
@@ -504,7 +503,7 @@
 
         &.active {
           background-color: var(--tv-Steps-node-bg-color-active);
-          color: #fff;
+          color: var(--tv-Steps-line-doing-active-icon-color);
           border-color: var(--tv-Steps-advance-active-border-color);
         }
 
@@ -524,7 +523,7 @@
           fill: var(--tv-Steps-done-icon-color);
 
           &.active {
-            fill: #fff;
+            fill: var(--tv-Steps-line-doing-active-icon-color);
           }
         }
 
@@ -590,8 +589,6 @@
       &.doing {
         .@{steps-prefix-cls}-icon {
           border: 1px solid var(--tv-Steps-doing-border-color);
-          background-color: var(--tv-Steps-line-doing-icon-bg-color);
-          color: var(--tv-Steps-line-doing-icon-color);
 
           &:hover {
             border-color: var(--tv-Steps-line-doing-border-color-hover);
@@ -885,7 +882,7 @@
           transform: translateX(100%);
           border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
-          border-left: 9px solid #fff;
+          border-left: 9px solid var(--tv-Steps-border-left-color);
           z-index: 1;
         }
 

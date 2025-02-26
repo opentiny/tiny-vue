@@ -48,7 +48,7 @@ const handleClose = (i) => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .tiny-filter-panel-demo {
   display: flex;
   height: 194px;
@@ -74,6 +74,12 @@ const handleClose = (i) => {
 }
 .tiny-filter-panel-textarea :deep(.tiny-textarea) {
   margin-top: 8px;
+}
+.tiny-filter-panel-textarea :deep(.tiny-textarea) {
+  &:before,
+  &:after {
+    background: inherit;
+  }
 }
 :deep(.tiny-filter-panel-button) {
   margin-top: 16px;

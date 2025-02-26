@@ -1,5 +1,11 @@
 <template>
-  <tiny-calendar-view :events="eventslist" :year="2023" :month="6" :modes="['month', 'timeline', 'schedule']">
+  <tiny-calendar-view
+    :show-back-today="false"
+    :events="eventslist"
+    :year="2023"
+    :month="6"
+    :modes="['month', 'timeline', 'schedule']"
+  >
   </tiny-calendar-view>
 </template>
 
