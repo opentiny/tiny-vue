@@ -108,19 +108,21 @@
             <span v-if="typeof format !== 'function'" :style="{ fontSize: state.percentTextSize + 'px' }">%</span>
           </div>
         </template>
-        <component
-          v-else
-          :is="state.iconClass"
-          :class="[
-            status === 'success' && 'fill-color-success',
-            status === 'warning' && 'fill-color-warning',
-            status === 'exception' && 'fill-color-error',
-            size === 'small' ? (type === 'line' ? 'w-3 h-3' : 'w-6 h-6') : '',
-            size === 'medium' ? (type === 'line' ? 'w-4 h-4' : 'w-10 h-10') : '',
-            size === 'large' ? (type === 'line' ? 'w-6 h-6' : 'w-20 h-20') : ''
-          ]"
-          :style="state.iconStyle"
-        />
+
+        <slot v-else :name="status + 'Icon'">
+          <component
+            :is="state.iconClass"
+            :class="[
+              status === 'success' && 'fill-color-success',
+              status === 'warning' && 'fill-color-warning',
+              status === 'exception' && 'fill-color-error',
+              size === 'small' ? (type === 'line' ? 'w-3 h-3' : 'w-6 h-6') : '',
+              size === 'medium' ? (type === 'line' ? 'w-4 h-4' : 'w-10 h-10') : '',
+              size === 'large' ? (type === 'line' ? 'w-6 h-6' : 'w-20 h-20') : ''
+            ]"
+            :style="state.iconStyle"
+          />
+        </slot>
       </div>
     </div>
     <div

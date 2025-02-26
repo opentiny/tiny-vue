@@ -140,7 +140,17 @@ export default {
       ],
       events: [],
       methods: [],
-      slots: []
+      slots: [
+        {
+          name: 'statusIcon',
+          desc: {
+            'zh-CN': '状态插槽，successIcon / exceptionIcon / warningIcon',
+            'en-US': 'Status slot, successIcon / exceptionIcon / warningIcon'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-icon-status'
+        }
+      ]
     }
   ],
   types: [
