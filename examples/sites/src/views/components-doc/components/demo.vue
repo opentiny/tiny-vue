@@ -10,42 +10,29 @@
         <div class="ti-f-r ti-f-pos-between ti-f-box-end">
           <h2 class="demo-title">{{ demo.name[state.langKey] }}</h2>
           <div class="demo-options">
-            <tiny-tooltip
-              placement="top"
-              effect="light"
-              popper-class="docs-tooltip"
-              :append-to-body="false"
-              :content="state.copyTip"
-            >
-              <i
-                :class="state.copyIcon"
-                class="h:c-success ti-w16 ti-h16 ti-cur-hand"
-                @click="copyCode(demo)"
-                @mouseout="resetTip()"
-              />
-            </tiny-tooltip>
-            <tiny-tooltip
-              placement="top"
-              effect="light"
-              popper-class="docs-tooltip"
-              :append-to-body="false"
-              :content="demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode')"
-            >
-              <i
-                :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
-                class="ti-ml8 h:c-success ti-w16 ti-h16 ti-cur-hand"
-                @click="toggleDemoCode(demo)"
-              />
-            </tiny-tooltip>
-            <tiny-tooltip
-              placement="top"
-              effect="light"
-              popper-class="docs-tooltip"
-              :append-to-body="false"
-              :content="i18nByKey('playground')"
-            >
-              <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
-            </tiny-tooltip>
+            <i
+              v-auto-tip="{ content: state.copyTip, effect: 'light', always: true }"
+              :class="state.copyIcon"
+              class="ti-w16 ti-h16 ti-cur-hand"
+              @click="copyCode(demo)"
+              @mouseout="resetTip()"
+            />
+            <i
+              v-auto-tip="{
+                content: demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode'),
+                effect: 'light',
+                always: true
+              }"
+              :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
+              class="ti-ml8 ti-w16 ti-h16 ti-cur-hand"
+              @click="toggleDemoCode(demo)"
+            />
+
+            <i
+              v-auto-tip="{ content: i18nByKey('playground'), effect: 'light', always: true }"
+              class="i-ti-playground ml8 ti-w16 ti-h16 ti-cur-hand"
+              @click="openPlayground(demo)"
+            />
           </div>
         </div>
         <component :is="getDescMd(demo)" class="demo-desc" />
@@ -85,7 +72,8 @@
 import { ref, reactive, computed, shallowRef, onMounted, onBeforeUnmount, watch, nextTick, inject, h } from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, fetchDemosFile } from '@/tools'
-import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
+import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
+import { AutoTip as vAutoTip } from '@opentiny/vue-directive'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from '../cmp-config'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
@@ -349,13 +337,15 @@ onBeforeUnmount(() => {
 
 :global(.dark .pc-demo-container.pc-demo-container) {
   background-color: #1a1a1a;
+  border: none;
 }
 .pc-demo-container {
   display: flex;
   flex-direction: column;
   color: var(--tv-color-text);
-  background: var(--tv-color-bg);
+  background: #fff;
   border-radius: 6px;
+  border: 1px solid #dcdfe6;
   padding: 26px 18px 42px;
 
   .pc-demo {
@@ -385,6 +375,13 @@ onBeforeUnmount(() => {
     position: absolute;
     right: 32px;
     bottom: 16px;
+
+    i {
+      color: var(--tv-color-text);
+      &:hover {
+        color: var(--tv-color-act-success-text-hover);
+      }
+    }
   }
 }
 

@@ -220,10 +220,6 @@ defineExpose({ jumpToApi })
     padding-left: 16px;
   }
 
-  :deep(.tiny-grid-body__expanded-cell) {
-    background-color: #fafafa;
-  }
-
   :deep(code) {
     color: #476582;
     padding: 4px 8px;
