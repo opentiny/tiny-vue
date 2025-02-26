@@ -24,8 +24,8 @@ test('disabled', async ({ page }) => {
   await page.locator('.tiny-button').click()
 
   const searchLocators = await page.locator('.tiny-search').all()
-  searchLocators.forEach((search) => {
+  for (const search of searchLocators) {
     const input = search.locator('input')
     await expect(input).toBeDisabled()
-  })
+  }
 })
