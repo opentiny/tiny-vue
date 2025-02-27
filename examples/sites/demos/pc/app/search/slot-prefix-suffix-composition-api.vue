@@ -11,7 +11,7 @@
 
     <tiny-search class="mb10" v-model="value" placeholder="请输入关键字搜索" :disabled="disabled" clearable>
       <template #suffix>
-        <tiny-icon-calendar class="mr10" />
+        <tiny-icon-calendar class="mr10 tiny-search__suffix" />
       </template>
     </tiny-search>
     <tiny-search v-model="value" placeholder="请输入关键词" :disabled="disabled"></tiny-search>

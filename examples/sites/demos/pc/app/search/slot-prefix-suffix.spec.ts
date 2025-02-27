@@ -11,10 +11,10 @@ test('插槽是否正常显示', async ({ page }) => {
   await expect(prefixLocator).toHaveCSS('font-size', '16px')
 
   const suffixSlotSearch = page.locator('.tiny-search').nth(1)
-  const suffixLocator = suffixSlotSearch.locator('.tiny-search__suffix > svg')
+  const suffixLocator = suffixSlotSearch.locator('svg.tiny-search__suffix')
 
   await expect(suffixLocator).toBeVisible()
-  await expect(suffixLocator).toHaveCSS('font-size', '16px')
+  await expect(suffixLocator).toHaveCSS('font-size', '14px')
 })
 
 test('disabled', async ({ page }) => {
