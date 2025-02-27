@@ -3,7 +3,7 @@
     data-tag="tiny-checkbox"
     :class="
       m(
-        'inline-flex sm:items-center text-sm leading-5.5 cursor-pointer',
+        'inline-flex sm:items-center text-sm leading-5 cursor-pointer',
         state.size !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
         { 'sm:py-2': state.vertical },
         state.isDisplayOnly || state.isGroupDisplayOnly
