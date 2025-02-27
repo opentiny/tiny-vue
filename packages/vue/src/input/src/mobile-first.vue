@@ -51,7 +51,7 @@
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span
-            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-5.5 text-color-text-primary"
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
             v-if="type === 'password'"
             >{{ state.hiddenPassword }}</span
           >
@@ -68,7 +68,7 @@
             ></component>
           </span>
           <span
-            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-5.5 text-color-text-primary"
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
             v-else
           >
             {{ state.displayOnlyText }}
