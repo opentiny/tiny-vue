@@ -107,6 +107,7 @@
           v-model.trim="state.inputValue"
           type="text"
           class="tiny-cascader__search-input"
+          :placeholder="state.presentTags.length ? '' : placeholder"
           @input="(e) => handleInput(state.inputValue, e)"
           @click.stop="toggleDropDownVisible(true)"
           @keydown.delete="handleDelete"
