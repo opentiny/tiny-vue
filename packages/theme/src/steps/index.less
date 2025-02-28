@@ -46,7 +46,7 @@
         display: flex;
 
         > div {
-          background-color: #fff;
+          background-color: var(--tv-Steps-advance-node-done-bg-color);
         }
       }
 
@@ -99,8 +99,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 6px;
-    color: #c9c9c9;
-    background-color: #f5f6f8;
+    border: 1px solid var(--tv-Steps-advance-node-disable-bg-color);
 
     &.left {
       margin-right: 6px;
@@ -114,27 +113,25 @@
       color: #161e26;
 
       &:hover {
-        background-color: #b0bffd;
-        color: #1890ff;
+        background-color: var(--tv-Steps-advance-node-disable-bg-color);
       }
     }
 
     .icon {
       width: 12px;
       height: 12px;
-      fill: currentColor;
+      fill: var(--tv-Steps-done-icon-color);
     }
   }
 
   .@{steps-prefix-cls}-block {
     position: relative;
-    margin: 0 1px;
     height: 32px;
     display: flex;
     overflow: hidden;
     cursor: pointer;
     color: var(--tv-Steps-text-color);
-    background-color: var(--tv-Steps-advance-node-bg-color);
+    background-color: var(--tv-Steps-advance-node-done-bg-color);
 
     .right-arrow.hide {
       display: none;
@@ -171,15 +168,24 @@
         }
       }
     }
+
     &.done {
-      .block-status-mixin(var(--tv-Steps-advance-node-done-bg-color), var(--tv-Steps-advance-node-done-bg-color-hover), var(--tv-Steps-node-bg-color-active));
+      .block-status-mixin(var(--tv-Steps-advance-node-done-bg-color), var(--tv-Steps-advance-node-bg-color-hover), var(--tv-Steps-node-bg-color-active));
     }
+
     &.doing {
       .block-status-mixin(var(--tv-Steps-advance-node-doing-bg-color), var(--tv-Steps-advance-node-doing-bg-color-hover), var(--tv-Steps-node-bg-color-active));
     }
+
     &.fault {
-      .block-status-mixin(var(--tv-Steps-advance-node-error-bg-color), var(--tv-Steps-advance-node-error-bg-color-hover), var(--tv-Steps-advance-node-error-bg-color-active));
+      .block-status-mixin(var(--tv-Steps-advance-node-error-bg-color), var(--tv-Steps-advance-node-error-bg-color-hover),var(--tv-Steps-advance-node-error-bg-color));
+      color: var(--tv-Steps-advance-error-icon-color);
+
+      .@{steps-prefix-cls}-text-name {
+        color: var(--tv-Steps-advance-error-icon-color);
+      }
     }
+
     &.disabled {
       color: var(--tv-Steps-disabled-icon-color);
       .block-status-mixin(var(--tv-Steps-advance-node-disable-bg-color), var(--tv-Steps-advance-node-disable-bg-color-hover), var(--tv-Steps-advance-node-disable-bg-color-active));
@@ -227,7 +233,7 @@
 
     &:hover .@{steps-prefix-cls}-icon.doing {
       background-color: #fff;
-      color: #1890ff;
+      color: var(--tv-Steps-advance-li-hover-text-color);
     }
 
     .@{steps-prefix-cls}-icon {
@@ -239,34 +245,48 @@
       align-items: center;
       justify-content: center;
       border-radius: 9999px;
-      background-color: #c9c9c9;
-      color: #fff;
+      border: 1px solid var(--tv-Steps-advance-node-disable-bg-color);
 
       &.done,
       &.doing {
-        background-color: var(--tv-Steps-node-bg-color-active);
-        color: #000;
+        background-color: var(--tv-Steps-node-done-bg-color);
+        color: var(--tv-Steps-advance-text-color);
+        border: 1px solid var(--tv-Steps-node-done-border-color);
       }
 
       &.active:not(.disabled) {
-        color: #000;
+        color: var(--tv-Steps-done-text-color-black);
         background-color: #fff;
+        border: 1px solid var(--tv-Steps-done-text-color-black);
+
+        .icon-finish {
+          fill: var(--tv-Steps-done-text-color-black);
+        }
       }
 
       &.fault {
-        background-color: var(--tv-Steps-advance-error-icon-color);
-        color: #fff;
+        background-color: inherit;
+        color: var(--tv-Steps-advance-error-icon-color);
+        border: 1px solid var(--tv-Steps-advance-error-icon-color);
+
+        .icon {
+          fill: var(--tv-Steps-advance-error-icon-color);
+        }
 
         &.active {
           color: var(--tv-Steps-error-icon-color);
-          background-color: #fff;
+          background-color: inherit;
+          border: 1px solid var(--tv-Steps-error-icon-color);
         }
+      }
+      .fault.@{steps-prefix-cls}-text.active {
+        color: var(--tv-Steps-error-icon-color);
       }
 
       .icon {
         width: 10px;
         height: 10px;
-        fill: var(--tv-Steps-line-doing-active-icon-color);
+        fill: var(--tv-Steps-done-icon-color);
       }
     }
 
@@ -950,7 +970,7 @@
 
       &.current .dot svg,
       &.current .dot svg:hover {
-        fill: var(--tv-Steps-advance-li-bg-color);
+        fill: var(--tv-Steps-advance-li-text-color);
       }
 
       &:hover .dot svg {
