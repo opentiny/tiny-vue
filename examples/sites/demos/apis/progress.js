@@ -148,7 +148,10 @@ export default {
             'en-US': 'Status slot, successIcon / exceptionIcon / warningIcon'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'slot-icon-status'
+          pcDemo: 'slot-icon-status',
+          meta: {
+            stable: '3.22.0'
+          }
         }
       ]
     }
