@@ -240,7 +240,8 @@
 
   &__suggestion-panel {
     border-radius: calc(var(--tv-Cascader-border-radius) + 4px);
-    min-height: 240px;
+    // scroll最大高度支持200，滚动条8px，避免横向滚动条出现在中间
+    min-height: 192px;
     background: var(--tv-Cascader-dropdown-bg-color);
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
   }
@@ -297,6 +298,7 @@
     margin-top: var(--tv-Cascader-empty-margin-top);
     margin-bottom: var(--tv-Cascader-empty-margin-bottom);
     color: var(--tv-Cascader-empty-text-color);
+    line-height: 200px;
   }
 
   &__search-input {
