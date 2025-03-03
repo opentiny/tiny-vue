@@ -104,4 +104,10 @@ describe('PC Mode', () => {
     await wrapper.setProps({ hidden: true })
     expect(wrapper.find('.tiny-badge').exists()).toBe(false)
   })
+
+  test('is-dot with value', () => {
+    const wrapper = mount(() => <Badge value={2} is-dot />)
+    expect(wrapper.find('.tiny-badge').exists()).toBe(true)
+    expect(wrapper.find('.tiny-badge__content-text').text()).toBe('')
+  })
 })
