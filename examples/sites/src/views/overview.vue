@@ -159,7 +159,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      const common = new window.TDCommon(['#footer'], {})
+      const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
       common.renderFooter()
     })
     return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
