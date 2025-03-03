@@ -73,7 +73,8 @@ export const releaseAlpha = ({ updateVersion }) => {
     'theme-mobile/dist',
     'theme-saas/dist',
     'utils',
-    'vue-hooks'
+    'vue-hooks',
+    'vue-runtime'
   ]
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item), updateVersion)
