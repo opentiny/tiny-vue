@@ -1693,6 +1693,20 @@ export default {
           pcDemo: 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
         {
+          name: 'getTreeExpandeds',
+          type: '() => IRow[]',
+          defaultValue: '',
+          meta: {
+            stable: '3.22.0'
+          },
+          desc: {
+            'zh-CN': '获取展开的行数据',
+            'en-US': 'Get the expanded row data'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-tree-table#tree-table-tree-grid-expand'
+        },
+        {
           name: 'closeFilter',
           type: '() => void',
           defaultValue: '',
