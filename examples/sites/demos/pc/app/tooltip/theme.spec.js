@@ -5,10 +5,11 @@ test('测试 tooltip 主题', async ({ page }) => {
   await page.goto('tooltip#theme')
   await page.waitForTimeout(20)
 
-  await page.getByRole('button', { name: 'Dark' }).hover()
+  const tooltipBtn = page.locator('.box')
+  await tooltipBtn.getByRole('button', { name: 'Dark' }).hover()
   await expect(page.getByRole('tooltip', { name: 'dark 提示文字' })).toHaveClass(/is-dark/)
 
-  await page.getByRole('button', { name: 'Light' }).hover()
+  await tooltipBtn.getByRole('button', { name: 'Light' }).hover()
   await expect(page.getByRole('tooltip', { name: 'light 提示文字' })).toHaveClass(/is-light/)
 
   await page.getByRole('button', { name: 'normal' }).hover()
