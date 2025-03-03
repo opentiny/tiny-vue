@@ -108,7 +108,7 @@ export default {
 .vs-cell {
   display: table-cell;
   font-size: 12px;
-  background-color: white;
+  background-color: var(--docs-color-bg);
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.2) 1px 100%);
   background-position:
