@@ -27,6 +27,7 @@ const headerHtml = `
       <span class="header-detail-name">TinyVue</span>
 
       <div class="nav-menus nav-menus-left"></div>
+      <button id="switchTheme" style="margin-left:150px">切换主题</button>
     </div>
   </div>
 </div>`
@@ -147,6 +148,10 @@ class DesignCommon {
     link.href = '/static/css/design-common.css'
     link.rel = 'stylesheet'
     document.head.append(link)
+
+    document.getElementById('switchTheme').addEventListener('click', () => {
+      document.querySelector('html').classList.toggle('dark')
+    })
   }
   renderFooter() {
     document.getElementById('footer').innerHTML = footerHtml
