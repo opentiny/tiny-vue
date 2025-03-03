@@ -95,3 +95,26 @@ body .markdown-body {
   --color-attention-subtle: #fff8c5;
   --color-danger-fg: #cf222e;
 }
+.markdown-body code {
+  text-shadow: none !important;
+}
+
+.dark.dark .markdown-body {
+  background-color: #000;
+}
+
+.dark.dark .markdown-body pre {
+  background-color: #1a1a1a;
+}
+
+.dark.dark .markdown-body code {
+  color: var(--tv-color-text);
+
+  .token.operator {
+    background-color: transparent;
+  }
+
+  .hljs-string {
+    color: #6f42c1;
+  }
+}

@@ -7,7 +7,7 @@ import 'prismjs/themes/prism.css'
 import 'uno.css'
 
 // highlight默认样式
-import 'highlight.js/styles/default.css'
+// import 'highlight.js/styles/default.css'
 
 // 只使用markdown的亮色主题
 import 'github-markdown-css/github-markdown.css'
@@ -17,7 +17,6 @@ import './style.css'
 // 覆盖默认的github markdown样式
 import './assets/custom-markdown.css'
 import './assets/custom-block.less'
-import './assets/markdown.less'
 import './assets/md-preview.less'
 
 import { i18n } from './i18n/index'
