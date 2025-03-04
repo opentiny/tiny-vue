@@ -6,9 +6,6 @@ import '@unocss/reset/eric-meyer.css'
 import 'prismjs/themes/prism.css'
 import 'uno.css'
 
-// highlight默认样式
-// import 'highlight.js/styles/default.css'
-
 // 只使用markdown的亮色主题
 import 'github-markdown-css/github-markdown.css'
 import './assets/index.less'
