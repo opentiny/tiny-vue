@@ -3,9 +3,9 @@
 推荐使用`npm`或者`yarn`方式进行开发
 
 ```javascript
-npm i @opentiny/vue
+npm i @opentiny/vue-huicharts
 # 或者
-yarn add @opentiny/vue
+yarn add @opentiny/vue-huicharts
 ```
 
 ## 使用
@@ -46,8 +46,8 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import ChartLine from '@opentiny/vue/ChartLine'
-  import ChartBar from '@opentiny/vue/chartBar'
+  import ChartLine from '@opentiny/vue-huicharts/ChartLine'
+  import ChartBar from '@opentiny/vue-huicharts/chartBar'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -93,7 +93,7 @@ yarn add @opentiny/vue
   import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
-      TinyChartLine: ChartLine,
+      TinyChartLine: HuichartsLine,
       TinyChartBar: ChartBar
     },
     data() {
