@@ -31,6 +31,6 @@ const options = ref([
 
 <style>
 .custom-action-menu {
-  background-color: antiquewhite;
+  background-color: var(--tv-color-bg-3);
 }
 </style>

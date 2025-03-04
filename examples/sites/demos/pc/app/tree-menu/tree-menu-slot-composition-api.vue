@@ -120,7 +120,6 @@ const treeData = ref([
 <style scoped>
 .tree-menu-demo a,
 .tree-menu-demo a:hover {
-  color: #333;
   text-decoration: none;
 }
 .custom-icon {

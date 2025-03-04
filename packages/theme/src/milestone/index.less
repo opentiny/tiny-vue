@@ -39,6 +39,7 @@
     }
 
     &.is-solid {
+
       &::before {
         background: var(--tv-Milestone-bg-color);
       }
@@ -64,8 +65,6 @@
     font-size: var(--tv-Milestone-font-size);
     text-align: center;
     border-radius: 50%;
-    color: #191919;
-    background: #fff;
     cursor: pointer;
     z-index: 15;
     border: var(--tv-Milestone-icon-border-width) solid;
@@ -75,12 +74,26 @@
 
     .@{svg-prefix-cls} {
       font-size: var(--tv-Milestone-icon-size);
-      fill: var(--tv-Milestone-icon-color);
+      fill: currentColor;
       vertical-align: baseline;
     }
 
-    &.is-completed {
-      border: var(--tv-Milestone-icon-border-width-completed) solid;
+    .custom-milestone {
+      fill: var(--tv-Milestone-status-completed-border-color);
+    }
+
+    &.status-doing {
+      background-color: var(--tv-Milestone-icon-color);
+      color: var(--tv-Milestone-doing-text-color);
+    }
+
+    &.is-completed,
+    &.status-cancel,
+    &.status-back,
+    &.status-end {
+      border: var(--tv-Milestone-icon-border-width-completed) solid var(--tv-Milestone-status-completed-border-color);
+      background-color: var(--tv-Milestone-status-completed-bg-color);
+      color: var(--tv-Milestone-icon-color);
     }
   }
 
@@ -111,13 +124,14 @@
     margin-top: 8px;
     overflow: hidden;
     text-align: center;
+
     // 标题
     &-name {
       float: left;
       width: 100%;
-      color: #333;
       font-size: var(--tv-Milestone-font-size);
     }
+
     // 日期
     &-status {
       float: left;

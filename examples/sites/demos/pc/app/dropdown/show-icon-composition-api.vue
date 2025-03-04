@@ -58,14 +58,20 @@ p {
   margin-top: 30px;
 }
 
-.tiny-dropdown.only-icon {
-  :deep(.tiny-dropdown__trigger) {
-    .tiny-svg {
-      fill: #191919;
-      &:hover {
-        fill: #191919;
+.tiny-dropdown {
+  &.only-icon {
+    :deep(.tiny-dropdown__trigger) {
+      .tiny-svg {
+        fill: var(--tv-color-icon-control);
+        &:hover {
+          fill: var(--tv-color-icon-control);
+        }
       }
     }
+  }
+
+  :deep(.tiny-dropdown__prefix-inner) {
+    fill: var(--tv-color-icon-control);
   }
 }
 </style>

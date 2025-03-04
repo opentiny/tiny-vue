@@ -33,9 +33,6 @@ const mdContent = computed(() =>
 </script>
 
 <style scoped lang="less">
-.dark .docs-header {
-  background-color: #1a1a1a;
-}
 .docs-header {
   padding: 16px 40px;
   min-height: 102px;
@@ -52,7 +49,6 @@ const mdContent = computed(() =>
   .markdown-top-body {
     z-index: var(--docs-markdown-top-body-zindex);
     font-size: 14px;
-    transition: all ease-in-out 0.3s;
 
     :deep(h1) {
       margin: 0;
@@ -69,6 +65,16 @@ const mdContent = computed(() =>
   .docs-header-spacer {
     flex: none;
     width: 200px;
+  }
+}
+</style>
+
+<style lang="less">
+.dark .docs-header {
+  background-color: #1a1a1a;
+
+  .markdown-top-body {
+    background-color: #1a1a1a;
   }
 }
 </style>

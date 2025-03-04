@@ -162,7 +162,7 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], {})
+  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
   common.renderFooter()
   setScrollListener()
 })

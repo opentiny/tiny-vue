@@ -78,7 +78,7 @@
     "pub:runtime": "pnpm --filter=\"./packages/vue-runtime/\" publish --no-git-checks --access=public",
     "pub:utils": "pnpm --filter=\"./packages/utils/\" publish --no-git-checks --access=public",
     "pub:hooks": "pnpm --filter=\"./packages/vue-hooks/\" publish --no-git-checks --access=public",
-    "pub:all": "pnpm pub2 && pnpm pub3 && pnpm pub:theme && pnpm pub:themeSaas && pnpm pub:renderless && pnpm pub:runtime",
+    "pub:all": "pnpm pub2 && pnpm pub3 && pnpm pub:theme && pnpm pub:themeSaas && pnpm pub:renderless",
     "pub:site": "pnpm -C examples/sites pub",
     "// ---------- 自动化发测试包 ----------": "",
     "auto-build-pub": "pnpm -C internals/automate auto-build-pub",

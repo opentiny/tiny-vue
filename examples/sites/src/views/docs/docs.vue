@@ -48,7 +48,7 @@ watch([() => router.currentRoute.value, () => router.currentRoute.value.params.d
 
 onMounted(() => {
   loadPage()
-  const common = new window.TDCommon(['#footer'], {})
+  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
   common.renderFooter()
 })
 </script>
@@ -64,23 +64,6 @@ onMounted(() => {
     flex: 1;
     min-width: var(--layout-content-main-min-width);
     max-width: var(--layout-content-main-max-width);
-  }
-}
-
-.dark .docs-container .markdown-body {
-  background-color: #000;
-}
-
-.dark .docs-container .markdown-body pre {
-  background-color: #1a1a1a;
-}
-
-.dark .docs-container .markdown-body code {
-  text-shadow: none;
-  color: var(--tv-color-text);
-
-  .token.operator {
-    background-color: transparent;
   }
 }
 

@@ -24,7 +24,7 @@ const languageMap = {
 }
 
 const getWebdocPath = (path) => {
-  if (path?.startsWith('grid-') && path !== 'grid-select') {
+  if (path?.startsWith('grid-') && path !== 'grid-select' && path !== 'grid-kit') {
     return 'grid'
   } else if (path?.startsWith('chart-')) {
     return 'chart'

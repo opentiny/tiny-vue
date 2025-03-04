@@ -80,7 +80,7 @@ export default defineComponent({
       value || (slots.default && slots.default()) ? (
         <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
           {value ? <span>{value}</span> : slots.default && slots.default()}
-          {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
+          {closable && <icon-close class="tiny-svg-size tiny-tag__close" onClick={handleClose}></icon-close>}
         </span>
       ) : (
         <span></span>

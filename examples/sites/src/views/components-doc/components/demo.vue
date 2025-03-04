@@ -335,10 +335,6 @@ onBeforeUnmount(() => {
   }
 }
 
-:global(.dark .pc-demo-container.pc-demo-container) {
-  background-color: #1a1a1a;
-  border: none;
-}
 .pc-demo-container {
   display: flex;
   flex-direction: column;
@@ -398,5 +394,16 @@ onBeforeUnmount(() => {
 .code-preview-box {
   overflow: auto;
   padding: 20px 5px;
+}
+</style>
+
+<style lang="less">
+.dark .pc-demo-container.pc-demo-container {
+  background-color: #1a1a1a;
+  border: none;
+}
+
+.dark .demo-content.demo-content .demo-desc {
+  color: #b3b3b3;
 }
 </style>

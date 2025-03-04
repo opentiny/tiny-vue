@@ -97,6 +97,15 @@ export default {
       'codeFiles': ['tree-table/has-tree-expand.vue']
     },
     {
+      'demoId': 'tree-table-tree-grid-expand',
+      'name': { 'zh-CN': '获取展开的行数据', 'en-US': 'Get the expanded row data' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>getTreeExpandeds</code> 方法可以获取展开的行数据</p>',
+        'en-US': '<p>You can use the <code>getTreeExpandeds</code> method to get the expanded row data</p>'
+      },
+      'codeFiles': ['tree-table/tree-table-tree-grid-expand.vue']
+    },
+    {
       'demoId': 'tree-table-tree-grid-index',
       'name': { 'zh-CN': '树表展开序号列配置', 'en-US': 'Expand Row No. Column Configuration' },
       'desc': {
