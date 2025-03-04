@@ -198,8 +198,8 @@ const sortFields = (fileds, val) => {
   if (Object.prototype.toString.call(val) === '[object Object]') {
     const keys = Object.keys(val)
     const sortKeys = keys.sort((a, b) => arrField.indexOf(a) - arrField.indexOf(b))
-    const sortedObject = sortKeys.reduce((acc, index) => {
-      acc[index] = val[index]
+    const sortedObject = sortKeys.reduce((acc, key) => {
+      acc[key] = val[key]
       return acc
     }, {})
     return sortedObject
