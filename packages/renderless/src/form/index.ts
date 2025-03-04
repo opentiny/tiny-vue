@@ -179,11 +179,10 @@ export const validate =
           Object.keys(field).forEach((item) => invalidFieldArr.push(item))
         }
 
-        // 排序
-        const sortField = sortFields(state.fields, invalidFields)
-        const sortFieldArr = sortFields(state.fields, invalidFieldArr)
-
         if (typeof callback === 'function' && ++count === state.fields.length) {
+          // 排序
+          const sortField = sortFields(state.fields, invalidFields)
+          const sortFieldArr = sortFields(state.fields, invalidFieldArr)
           callback(valid, sortField, sortFieldArr)
         }
       })
