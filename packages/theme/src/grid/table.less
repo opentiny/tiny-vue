@@ -831,6 +831,7 @@
 
           svg {
             font-size: var(--tv-Grid-icon-size);
+            fill: var(--tv-Grid-text-color);
           }
         }
       }
@@ -953,6 +954,7 @@
       color: var(--tv-Grid-text-color);
       border-radius: var(--tv-Grid-input-border-radius);
       border: 1px solid var(--tv-Grid-divider-color);
+      background-color: var(--tv-Grid-Input-bg-color);
 
       &:focus {
         border: 1px solid var(--tv-Grid-input-border-color-hover);
@@ -964,6 +966,7 @@
       height: var(--tv-Grid-input-height);
       line-height: normal;
       color: var(--tv-Grid-text-color);
+      background-color: var(--tv-Grid-Input-bg-color);
 
       .@{input-prefix-cls} {
         width: 100%;
@@ -1063,7 +1066,7 @@
     margin-right: 1.5rem;
     font-size: 0.875rem;
     cursor: pointer;
-    color: #161e26;
+    color: var(--tv-Grid-column-anchor-text-color);
 
     &:last-child {
       margin-right: 0px;
