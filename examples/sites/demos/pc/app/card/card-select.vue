@@ -169,10 +169,12 @@ export default {
 .card-stlecting {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-</style>
-
-<style>
-#smb-card .tiny-card--small-padding {
+#smb-card :deep(.tiny-card--small-padding) {
   padding: 0;
+}
+.card-wrap :deep(.tiny-input__inner) {
+  border: none;
+  border-radius: 6px;
+  background-color: #fafafa;
 }
 </style>

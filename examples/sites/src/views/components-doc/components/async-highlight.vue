@@ -68,6 +68,7 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 400;
     padding: 0px 12px;
+    color: var(--tv-color-text);
   }
 
   .hljs-tag {
@@ -80,7 +81,7 @@ export default defineComponent({
     }
 
     .hljs-attr {
-      color: #00c;
+      color: rgb(20, 20, 219);
     }
   }
 
@@ -94,7 +95,7 @@ export default defineComponent({
   }
 
   .hljs-title {
-    color: #00f;
+    color: #170;
     font-weight: 400;
   }
 

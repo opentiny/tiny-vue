@@ -80,6 +80,6 @@ const disabled = ref(false)
   cursor: pointer;
 }
 .ellipsis:hover {
-  background-color: #f1f1f1;
+  background-color: #c0c0c0;
 }
 </style>

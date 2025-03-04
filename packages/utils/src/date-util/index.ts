@@ -33,8 +33,8 @@ const newArray = (start, end) => {
 export const getI18nSettings = (t) => ({
   dayNamesShort: weeks.map((week) => t(`ui.datepicker.weeks.${week}`)),
   dayNames: weeks.map((week) => t(`ui.datepicker.weeks.${week}`)),
-  monthNamesShort: months.map((month) => t(`ui.datepicker.months.${month}`)),
-  monthNames: months.map((month, index) => t(`ui.datepicker.month${index + 1}`)),
+  monthNamesShort: months.map((month, index) => t(`ui.datepicker.month${index + 1}`).replace(' ', '')),
+  monthNames: months.map((month) => t(`ui.datepicker.months.${month}`)),
   amPm: ['am', 'pm']
 })
 

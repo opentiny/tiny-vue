@@ -156,6 +156,7 @@
                 :disabled-date="state.disabledDate"
                 :selection-mode="state.selectionMode"
                 :start-year="state.startYear"
+                :readonly="readonly"
                 @pick="handleYearPick"
               >
               </year-table>
@@ -293,6 +294,10 @@ export default defineComponent({
       default: false
     },
     formatWeeks: Function,
+    type: {
+      type: String,
+      default: ''
+    },
     firstDayOfWeek: {
       type: Number,
       default: 7

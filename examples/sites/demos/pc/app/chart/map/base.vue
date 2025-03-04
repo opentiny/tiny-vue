@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyHuichartsMap } from '@opentiny/vue'
+import { TinyHuichartsMap } from '@opentiny/vue-huicharts'
 import chinaData from './china.js'
 
 export default {

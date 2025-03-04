@@ -45,6 +45,8 @@ import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 const isOperateMouse = ($table) =>
   $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
 
+let renderRowFlag = false
+
 // 解决静态扫描驼峰变量问题
 const classMap = {
   colEdit: 'col__edit',
@@ -542,6 +544,17 @@ function renderRow(args) {
     return
   }
 
+  let key = rowid
+  if (row._isDraging) {
+    // 防止数据多次刷新导致key回归rowid
+    _vm.$nextTick(() => {
+      delete row._isDraging
+    })
+    if (renderRowFlag) {
+      key = `${rowid}${rowKey}`
+    }
+  }
+
   rows.push(
     h(
       'tr',
@@ -564,7 +577,7 @@ function renderRow(args) {
         attrs: {
           'data-rowid': rowid
         },
-        key: rowKey || treeConfig ? rowid : $rowIndex,
+        key,
         on: trOn
       },
       tableColumn.map((column, $columnIndex) => {
@@ -732,6 +745,7 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     // 如果是树形表格，则会递归渲染已展开行的子节点
     renderRowTree(args, renderRows)
   })
+  renderRowFlag = !renderRowFlag
 
   return rows
 }

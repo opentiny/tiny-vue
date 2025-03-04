@@ -32,7 +32,7 @@
         </div>
         <div
           class="after:content-[''] after:table after:clear-both min-w-[513px]"
-          :class="{ 'ml-28': slots.sidebar || state.shortcuts }"
+          :class="{ 'ml-28': slots.sidebar || state.shortcuts?.length }"
         >
           <div class="m-0 float-left w-1/2 border-r border-r-color-bg-3 relative py-0 px-4">
             <div class="relative text-center h-12 p-4">

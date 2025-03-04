@@ -19,8 +19,9 @@ interface ThemeData {
 
 declare const tinyOldTheme: ThemeData
 declare const tinyAuroraTheme: ThemeData
+declare const tinyDarkTheme: ThemeData
 
-export { tinyOldTheme, tinyAuroraTheme }
+export { tinyOldTheme, tinyAuroraTheme, tinyDarkTheme }
 /**
  * 动态切换文档或影子根节点的样式类
  * @example

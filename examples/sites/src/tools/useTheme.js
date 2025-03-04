@@ -87,6 +87,7 @@ const watchRoute = () => {
         currentThemeKey.value = val
         const themeTool = new TinyThemeTool()
         themeTool.changeTheme(themeToolValuesMap[val])
+        document.documentElement.classList.add(val)
         loadedTheme = true
       }
     }

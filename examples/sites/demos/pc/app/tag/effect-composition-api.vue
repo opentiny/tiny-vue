@@ -29,3 +29,10 @@ const items = ref([
   { type: 'warning', label: '标签五' }
 ])
 </script>
+
+<style scoped>
+.tiny-tag-demo .tiny-tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+</style>

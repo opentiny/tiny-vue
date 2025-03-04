@@ -33,6 +33,10 @@
     .tiny-svg {
       font-size: var(--tv-Picker-icon-size);
       fill: var(--tv-Picker-icon-color);
+
+      &:hover {
+        fill: var(--tv-Picker-icon-color-hover);
+      }
     }
 
     &.@{input-prefix-cls},
@@ -47,6 +51,7 @@
     }
 
     &.show-auto-width {
+
       &.@{input-prefix-cls},
       &.@{input-prefix-cls}__inner {
         width: 100%;
@@ -71,7 +76,7 @@
 
       .baseClearicon {
         position: absolute;
-        background-color: #ffffff;
+        background-color: var(--tv-Picker-input-clear-icon-bg);
 
         &:hover {
           fill: var(--tv-Picker-icon-color-hover);
@@ -99,6 +104,7 @@
       outline: 0;
       padding: 0;
       width: 39%;
+      background: inherit;
       color: var(--tv-Picker-text-color);
       .text-overflow();
       .placeholder();
@@ -121,15 +127,10 @@
         width: var(--tv-Picker-icon-size);
         height: var(--tv-Picker-icon-size);
         cursor: pointer;
-        fill: var(--tv-Picker-icon-color);
-
-        &:hover {
-          fill: var(--tv-Picker-icon-color-hover);
-        }
       }
     }
 
-    .@{range-prefix-cls}__close-icon:has(> svg) + .@{range-prefix-cls}__icon {
+    .@{range-prefix-cls}__close-icon:has(> svg)+.@{range-prefix-cls}__icon {
       display: none;
     }
   }

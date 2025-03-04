@@ -6,7 +6,7 @@
         gcls(`switch-${size ? size : 'small'}`),
         gcls(
           `${state.currentValue === trueValue ? 'switch-true' : 'switch-false'}${
-            disabled || types === 'loading' ? '-disabled' : '-not-disabled'
+            state.disabled || types === 'loading' ? '-disabled' : '-not-disabled'
           }`
         )
       )
@@ -25,8 +25,8 @@
           gcls(
             `${
               state.currentValue === trueValue
-                ? `switch-handle-true-${size ? size : 'small'}${disabled || types === 'loading' ? '-disabled' : ''}`
-                : `switch-handle-false-${size ? size : 'small'}${disabled || types === 'loading' ? '-disabled' : ''}`
+                ? `switch-handle-true-${size ? size : 'small'}${state.disabled || types === 'loading' ? '-disabled' : ''}`
+                : `switch-handle-false-${size ? size : 'small'}${state.disabled || types === 'loading' ? '-disabled' : ''}`
             }`
           )
         )
@@ -62,7 +62,7 @@
             viewBox="0 0 24 24"
             :class="[
               gcls(`switch-icon-${size ? size : 'small'}`),
-              gcls(`switch-icon-true-${disabled ? 'disabled' : 'default'}`)
+              gcls(`switch-icon-true-${state.disabled ? 'disabled' : 'default'}`)
             ]"
           >
             <path
@@ -75,7 +75,7 @@
             viewBox="0 0 24 24"
             :class="[
               gcls(`switch-icon-${size ? size : 'small'}`),
-              gcls(`switch-icon-false-${disabled ? 'disabled' : 'default'}`)
+              gcls(`switch-icon-false-${state.disabled ? 'disabled' : 'default'}`)
             ]"
           >
             <path

@@ -13,6 +13,8 @@
 .inject-Milestone-vars() {
   // 默认字号(不含旗子部分)
   --tv-Milestone-font-size: var(--tv-font-size-default, 14px);
+  // doing状态文本色
+  --tv-Milestone-doing-text-color: var(--tv-color-text-inverse-tint, #fff);
 
   /* 图标节点部分 */
   // 实心显示节点光晕背景色
@@ -41,6 +43,10 @@
   --tv-Milestone-status-text-color: var(--tv-color-text-weaken, #808080);
   // 节点下方日期文本字号
   --tv-Milestone-status-font-size: var(--tv-font-size-sm, 12px);
+  // 已完成节点边框色
+  --tv-Milestone-status-completed-border-color: var(--tv-color-border-active, #191919);
+  // 已完成节点背景色
+  --tv-Milestone-status-completed-bg-color: var(--tv-color-bg-active-secondary, #ffffff);
 
   /* 旗子部分 */
   // 旗子宽度
@@ -56,13 +62,13 @@
   // 旗子圆角
   --tv-Milestone-flag-border-radius: 0 var(--tv-border-radius-lg, 8px) var(--tv-border-radius-lg, 8px) 0;
   // 旗子文本色
-  --tv-Milestone-text-color: var(--tv-color-text, #191919);
+  --tv-Milestone-text-color: var(--tv-color-text-active-1, #191919);
   // 旗子背景色
   --tv-Milestone-flag-bg-color: var(--tv-color-bg, #f5f5f5);
   // 旗子标题字重
   --tv-Milestone-flag-name-font-weight: var(--tv-font-weight-bold, 600);
   // 旗子描述文本色
-  --tv-Milestone-flag-desc-text-color: var(--tv-color-text-secondary, #595959);
+  --tv-Milestone-flag-desc-text-color: var(--tv-color-text-active-1, #191919);
   // 旗子描述字号大小
   --tv-Milestone-flag-desc-font-size: var(--tv-font-size-sm, 12px);
 

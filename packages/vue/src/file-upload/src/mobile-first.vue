@@ -386,7 +386,7 @@ export default defineComponent({
       if (listType === 'text') {
         operateContent = downloadAll ? (
           <div class="hidden sm:inline-block align-middle">
-            <tiny-button class="ml-2" onClick={() => downloadAll(uploadFiles)}>
+            <tiny-button onClick={() => downloadAll(uploadFiles)}>
               <div class="flex items-center">
                 <icon-download />
                 <span class="ml-2">{t('ui.fileUpload.downloadAll')}</span>

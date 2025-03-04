@@ -33,6 +33,9 @@ const mdContent = computed(() =>
 </script>
 
 <style scoped lang="less">
+.dark .docs-header {
+  background-color: #1a1a1a;
+}
 .docs-header {
   padding: 16px 40px;
   min-height: 102px;

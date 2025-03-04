@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsBmap as TinyBaiduMap } from '@opentiny/vue'
+import { TinyHuichartsBmap as TinyBaiduMap } from '@opentiny/vue-huicharts'
 
 const options = ref({
   key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',

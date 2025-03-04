@@ -112,7 +112,7 @@ export default defineComponent({
         data-tag="tiny-upload"
         class={[
           !displayOnly && listType === 'text'
-            ? `flex justify-between mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
+            ? `flex mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
             : 'h-full',
           showFileList ? 'sm:mb-3' : 'sm:mb-0'
         ]}>
@@ -123,14 +123,14 @@ export default defineComponent({
         {state.currentBreakpoint !== 'default' &&
           !displayOnly &&
           (promptTip && tipMessage ? (
-            <div class="hidden sm:inline-flex sm:items-center w-full">
+            <div class="hidden sm:inline-flex sm:items-center">
               {uploadTrigger()}
               <tiny-tooltip effect="light" content={tipMessage} placement="right" popper-options={popperConfig}>
                 <tiny-icon-help-circle custom-class="ml-2 cursor-pointer fill-color-icon-tertiary"></tiny-icon-help-circle>
               </tiny-tooltip>
             </div>
           ) : listType === 'text' ? (
-            <div class="hidden sm:inline-flex sm:items-center w-full">
+            <div class="hidden sm:inline-flex sm:items-center">
               {uploadTrigger()}
               <div
                 title={typeof tipMessage === 'string' ? tipMessage : ''}

@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="overview-layout">
-      <h1 class="ti-mb20 ti-f24 ti-fw-600">
+      <h1 class="overview-title ti-mb20 ti-f24 ti-fw-600">
         {{ i18nByKey('overview') }}
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
-      <h1 class="ti-f14 ti-my20 ti-lh21">
+      <h1 v-if="!isPlus" class="overview-desc ti-f14 ti-my20 ti-lh21">
         {{ i18nByKey('overviewDesc') }}
       </h1>
       <!-- 搜索 -->
@@ -28,7 +28,7 @@
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">
         <div class="ti-rel ti-mt25">
-          <h2 class="ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ getWord(menu.label, menu.labelEn) }}</h2>
+          <h2 class="overview-groupname ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ getWord(menu.label, menu.labelEn) }}</h2>
           <span v-if="searchMenus?.length !== 0" class="cell-title">{{ menu.children.length }}</span>
         </div>
         <div class="ti-f-r ti-f-wrap ti-f-pos-between overview-card">
@@ -47,7 +47,7 @@
                     `@demos/overviewimage/${cell.key.includes('chart') ? 'dev-chart' : 'dev'}.svg`
                   )}'`"
                 />
-                <h2 class="ti-f16 overview-card-label">
+                <h2 class="overview-componentname ti-f16 overview-card-label">
                   {{ cell.name }}
                   <span v-if="isZhCn">{{ cell.nameCn }}</span>
                 </h2>
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="js">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
 import { TinyInput } from '@opentiny/vue'
@@ -85,6 +85,8 @@ export default defineComponent({
       value: '',
       palceMenus: new Array(14)
     })
+
+    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {
@@ -159,10 +161,10 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      const common = new window.TDCommon(['#footer'], {})
+      const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl, isPlus }
   }
 })
 </script>
@@ -170,6 +172,15 @@ export default defineComponent({
 <style lang="less">
 .overview-layout {
   padding: 48px 10% 10%;
+
+  .overview-title,
+  .overview-componentname {
+    color: var(--tv-color-text);
+  }
+  .overview-desc,
+  .overview-groupname {
+    color: var(--tv-color-text-secondary);
+  }
 }
 
 .cell-title {
@@ -203,6 +214,12 @@ export default defineComponent({
   }
 }
 
+.dark .component-card {
+  &:hover {
+    box-shadow: 1px 1px 6px 6px rgba(255, 255, 255, 0.08);
+  }
+}
+
 .overview-card {
   justify-content: flex-start;
   gap: 1%;
@@ -210,6 +227,10 @@ export default defineComponent({
 
 .overview-card-container {
   width: 24.25%;
+}
+
+.dark .overview-card-container {
+  background-color: var(--tv-color-bg-dark);
 }
 
 .overview-card-label {

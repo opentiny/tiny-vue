@@ -28,30 +28,6 @@
   vertical-align: bottom;
   font-size: var(--tv-Textarea-font-size);
 
-  &:before {
-    content: '';
-    width: calc(100% - 20px);
-    height: 8px;
-    position: absolute;
-    left: 2px;
-    top: 1px;
-    z-index: 1;
-    background: #fff;
-    border-radius: var(--tv-Textarea-border-radius);
-  }
-
-  &:after {
-    content: '';
-    width: calc(100% - 20px);
-    height: 16px;
-    position: absolute;
-    left: 2px;
-    bottom: 1px;
-    z-index: 1;
-    background: #fff;
-    border-radius: var(--tv-Textarea-border-radius);
-  }
-
   &.is-disabled &__inner {
     background-color: var(--tv-Textarea-disabled-bg-color);
     border-color: var(--tv-Textarea-disabled-border-color);
@@ -61,16 +37,6 @@
   }
 
   &.is-disabled {
-    background-color: var(--tv-Textarea-disabled-bg-color);
-
-    &:before {
-      background-color: var(--tv-Textarea-disabled-bg-color);
-    }
-
-    &:after {
-      background-color: var(--tv-Textarea-disabled-bg-color);
-    }
-
     &:hover {
       border-color: var(--tv-Textarea-disabled-border-color);
     }
@@ -180,32 +146,6 @@
   }
 
   &.is-display-only {
-    .@{textarea-prefix-cls}-display-only.@{textarea-prefix-cls}__inner-con
-      .@{textarea-prefix-cls}-display-only__content,
-    .@{textarea-prefix-cls}-autosize-display-only.@{textarea-prefix-cls}__inner-con
-      .@{textarea-prefix-cls}-display-only__content {
-      position: relative;
-      left: 0;
-      max-width: 100%;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      /* autoprefixer: ignore next */
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      line-height: 1.5;
-    }
-
-    &:before {
-      display: none;
-    }
-
-    &:after {
-      display: none;
-    }
-
     .@{textarea-prefix-cls}__inner-con {
       height: auto;
 
@@ -221,10 +161,10 @@
 
       .@{textarea-prefix-cls}-display-only__content {
         left: 0;
+        color: var(--tv-Textarea-text-color);
         max-width: 100%;
         text-overflow: ellipsis;
         display: -webkit-box;
-        /* autoprefixer: ignore next */
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 5;
         overflow: hidden;
@@ -250,15 +190,6 @@
       }
     }
 
-    .@{textarea-prefix-cls}-autosize-display-only {
-      .@{textarea-prefix-cls}-display-only__content {
-        left: 0;
-        max-width: 100%;
-        position: absolute;
-        white-space: pre-line;
-        line-height: 1.5;
-      }
-    }
     .@{textarea-prefix-cls}__inner {
       height: 0;
       padding: 0;

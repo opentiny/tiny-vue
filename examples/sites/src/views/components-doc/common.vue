@@ -162,7 +162,7 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], {})
+  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
   common.renderFooter()
   setScrollListener()
 })
@@ -457,7 +457,7 @@ defineExpose({ loadPage })
       position: sticky;
       top: 0;
       z-index: var(--docs-tabs-header-zindex);
-      background-color: #fff;
+      background-color: var(--docs-color-bg);
 
       &::after {
         content: '';
@@ -467,7 +467,7 @@ defineExpose({ loadPage })
         display: block;
         width: 100%;
         height: 16px;
-        background: linear-gradient(to bottom, #fff, transparent);
+        background: linear-gradient(to bottom, var(--docs-color-bg), transparent);
         transform: translateY(100%);
       }
 

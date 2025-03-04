@@ -25,5 +25,7 @@ export default {
 .icon-demo .tiny-svg {
   margin: 20px 40px;
   font-size: 24px;
+  fill: var(--tv-color-icon-control);
+  color: var(--tv-color-icon-control);
 }
 </style>

@@ -78,7 +78,7 @@ export const renderless = (
     progressWidth:
       designConfig?.state && Object.hasOwnProperty.call(designConfig.state, 'progressWidth')
         ? designConfig.state.progressWidth
-        : '68',
+        : 68,
     progressStrokeWidth: designConfig?.state?.progressStrokeWidth || 4,
     tooltipDisabled: designConfig?.state?.tooltipDisabled ?? false,
     closeComponent: designConfig?.icons?.closeComponent || 'icon-del',
