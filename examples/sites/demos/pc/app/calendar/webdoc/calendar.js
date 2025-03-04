@@ -42,6 +42,19 @@ export default {
       codeFiles: ['show-selected-date.vue']
     },
     {
+      demoId: 'calendar-year-month',
+      name: {
+        'zh-CN': '指定年月',
+        'en-US': 'Specify Month and Year'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>year</code> 属性指定年份，通过 <code>month</code> 属性指定月份。</p>\n',
+        'en-US':
+          '<p>Specify the year through the <code>year</code> attribute and the month through the <code>month</code> attribute. </p>\n'
+      },
+      codeFiles: ['calendar-year-month.vue']
+    },
+    {
       demoId: 'custom-day-cell',
       name: {
         'zh-CN': '自定义日期单元格',
