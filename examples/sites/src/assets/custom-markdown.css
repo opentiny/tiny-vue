@@ -109,12 +109,12 @@ body .markdown-body {
 
 .dark.dark .markdown-body code {
   color: var(--tv-color-text);
+}
 
-  .token.operator {
-    background-color: transparent;
-  }
+.dark.dark .markdown-body code .token.operator {
+  background-color: transparent;
+}
 
-  .hljs-string {
-    color: #6f42c1;
-  }
+.dark.dark .markdown-body code .hljs-string {
+  color: #6f42c1;
 }
