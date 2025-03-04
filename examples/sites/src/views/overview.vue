@@ -6,7 +6,7 @@
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
-      <h1 class="overview-desc ti-f14 ti-my20 ti-lh21">
+      <h1 v-if="!isPlus" class="overview-desc ti-f14 ti-my20 ti-lh21">
         {{ i18nByKey('overviewDesc') }}
       </h1>
       <!-- 搜索 -->
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="js">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
 import { TinyInput } from '@opentiny/vue'
@@ -85,6 +85,8 @@ export default defineComponent({
       value: '',
       palceMenus: new Array(14)
     })
+
+    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {
@@ -162,7 +164,7 @@ export default defineComponent({
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl, isPlus }
   }
 })
 </script>
