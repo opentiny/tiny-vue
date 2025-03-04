@@ -70,7 +70,7 @@
       <span class="tiny-checkbox__inner">
         <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="tiny-svg-size icon-halfselect" />
         <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
-        <icon-check v-else class="tiny-svg-size icon-not-check" />
+        <icon-not-check v-else class="tiny-svg-size icon-not-check" />
       </span>
     </span>
     <span
@@ -118,7 +118,7 @@ export default defineComponent({
   components: {
     IconHalfselect: iconHalfselect(),
     IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck()
+    IconNotCheck: iconCheck()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICheckboxApi

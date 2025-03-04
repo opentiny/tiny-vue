@@ -152,12 +152,11 @@
   &__input {
     .@{checkbox-prefix-cls}__inner{
       svg {
-        width: var(--tv-Checkbox-svg-width);
-        height: var(--tv-Checkbox-svg-height);
+        font-size: var(--tv-Checkbox-svg-size);
       }
       .icon-checked-sur,.icon-halfselect {
         path:first-child {
-          fill: var(--tv-Checkbox-bg-active-color);
+          fill: var(--tv-Checkbox-bg-color-active);
         }
         path:last-child {
           fill: var(--tv-Checkbox-border-color-inverse);
@@ -165,7 +164,7 @@
       }
       .icon-not-check {
         path:first-child {
-          fill: rgba(255,255,255,0.02);
+          fill: transparent;
         }
         path:last-child {
           fill: var(--tv-Checkbox-unchecked-border-color);
@@ -173,7 +172,7 @@
       }
       .icon-not-check:hover {
         path:last-child {
-          fill: var(--tv-Checkbox-unchecked-border-hover-color);
+          fill: var(--tv-Checkbox-unchecked-border-color-hover);
         }
       }
     }
