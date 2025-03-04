@@ -10,11 +10,11 @@
  *
  */
 
-import * as util from '../util'
 import { hasOwn } from '../../type'
+import * as util from '../util'
 
 export default function ({ rule, checkValue, source, errors, options, type }) {
   if (rule.required && (!hasOwn.call(source, rule.field) || util.isEmptyValue(checkValue, type || rule.type))) {
-    errors.push(util.format(options.messages.required, ''))
+    errors.push(util.format(options.messages.required))
   }
 }
