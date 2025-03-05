@@ -89,6 +89,6 @@ jobs:
         run: pnpm release:alpha
 
       - name: Publish Vue3 And Vue2 components
-        run: pnpm pub:all && pnpm pub:utils && pnpm pub:hooks && pnpm pub:site
+        run: pnpm pub:all && pnpm pub:runtime && pnpm pub:utils && pnpm pub:hooks && pnpm pub:site
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}

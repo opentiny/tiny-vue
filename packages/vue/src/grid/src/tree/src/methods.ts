@@ -122,5 +122,8 @@ export default {
     this.treeExpandeds = []
     setTreeScrollYCache(this)
     return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
+  },
+  getTreeExpandeds() {
+    return this.treeExpandeds
   }
 }

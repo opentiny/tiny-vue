@@ -25,7 +25,7 @@ export const api = ['state', 'handleBlur', 'searchMethod', 'userChange', 'visibl
 export const renderless = (
   props,
   { reactive, watch, computed, provide },
-  { emit, nextTick, vm, service, constants, dispatch }
+  { emit, nextTick, vm, service, constants, dispatch, useBreakpoint, isMobileFirstMode }
 ) => {
   const api = {}
   const $service = initService({ props, service })
@@ -42,9 +42,11 @@ export const renderless = (
     sortable: null,
     overflow: false,
     addevnet: false,
+    device: '',
     batch: props.batch === false ? false : props.batch || $service.batch,
     textField: computed(() => api.computedTextField()),
-    valueField: computed(() => api.computedValueField())
+    valueField: computed(() => api.computedValueField()),
+    breakpoint: useBreakpoint ? useBreakpoint().current : ''
   })
 
   Object.assign(api, {
@@ -75,6 +77,18 @@ export const renderless = (
   props.cache && api.updateCache()
 
   watch(() => props.modelValue, api.initUser, { immediate: true })
+
+  watch(
+    () => state.breakpoint,
+    (val) => {
+      if (val === 'default' && isMobileFirstMode) {
+        state.device = 'mb'
+      } else {
+        state.device = 'pc'
+      }
+    },
+    { immediate: true, deep: true }
+  )
 
   provide('showContent', props.showTips)
   provide('tips-max-width', props.maxWidth)

@@ -79,10 +79,10 @@ const modeModifyMap = {
     viteConfig.build.rollupOptions.input.mobile = path.resolve(__dirname, './mobile.html')
   },
   plus(viteConfig) {
-    const demosPath = '../plusdocs/pc'
+    const demosPath = '../plusdocs'
     const apisPath = '../plusdocs/apis'
     viteConfig.resolve.alias['@menu'] = path.resolve(demosPath)
-    viteConfig.resolve.alias['@demo'] = path.resolve(demosPath)
+    viteConfig.resolve.alias['@demos'] = path.resolve(demosPath)
     viteConfig.tinyCustom.copyTarget = [
       {
         src: `${demosPath}/*`,

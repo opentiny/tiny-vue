@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsRing as TinyChartRing } from '@opentiny/vue'
+import { TinyHuichartsRing as TinyChartRing } from '@opentiny/vue-huicharts'
 
 const options = ref({
   type: 'nulti-circle',

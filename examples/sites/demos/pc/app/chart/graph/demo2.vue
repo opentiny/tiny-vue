@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { TinyHuichartsGraph } from '@opentiny/vue'
+import { TinyHuichartsGraph } from '@opentiny/vue-huicharts'
 
 let axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日']
 const data = [800, 600, 900, 1500, 3200, 4800, 900]

@@ -56,6 +56,18 @@ export default {
       codeFiles: ['progress-status.vue']
     },
     {
+      demoId: 'slot-icon-status',
+      name: {
+        'zh-CN': '图标状态插槽',
+        'en-US': 'Icon Status Slot'
+      },
+      desc: {
+        'zh-CN': '通过插槽自定义状态图标。',
+        'en-US': 'Customize the status icon through a slot.'
+      },
+      codeFiles: ['slot-icon-status.vue']
+    },
+    {
       demoId: 'custom-status',
       name: {
         'zh-CN': '自定义状态场景',

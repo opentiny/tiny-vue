@@ -100,6 +100,10 @@ export const cascaderProps = {
   blank: {
     type: Boolean,
     default: false
+  },
+  changeCompat: {
+    type: Boolean,
+    default: false
   }
 }
 

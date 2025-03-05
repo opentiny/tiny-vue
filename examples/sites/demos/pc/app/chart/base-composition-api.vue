@@ -28,7 +28,8 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuicharts as TinyChart, TinyButton } from '@opentiny/vue'
+import { TinyHuicharts as TinyChart } from '@opentiny/vue-huicharts'
+import { TinyButton } from '@opentiny/vue'
 
 const colorMode = ref('default')
 const key = ref(0)

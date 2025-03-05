@@ -89,7 +89,6 @@
         display: flex;
         align-items: center;
         position: relative;
-        margin-bottom: -1px;
         width: 100%;
 
         &.is-scrollable {
@@ -301,6 +300,7 @@
   &__content {
     position: relative;
     margin: var(--tv-Tabs-content-margin-vertical) var(--tv-Tabs-content-margin-horizontal);
+    color: var(--tv-Tabs-header-font-normal-text-color);
   }
 
   .is-show-more {
@@ -433,11 +433,9 @@
         }
 
         &.is-active {
-          top: -1px;
           border-top: var(--tv-Tabs-item-top-right-border-weight) solid var(--tv-Tabs-border-color); // aurora新增
           border-left: 1px solid var(--tv-Tabs-border-color);
           border-right: var(--tv-Tabs-item-top-right-border-weight) solid var(--tv-Tabs-border-color); // aurora新增
-          background-color: var(--tv-Tabs-item-card-active-bg-color);
           border-radius: 0;
 
           &:before {
@@ -455,7 +453,7 @@
     &.@{tabs-prefix-cls}--bottom {
       & > .@{tabs-prefix-cls}__header .@{tabs-prefix-cls}__item {
         &.is-active {
-          box-shadow: 0 -2px 0 0 #fff;
+          box-shadow: none;
 
           &:before {
             left: 0;
@@ -496,7 +494,7 @@
 
   // bordercard类型
   &&--border-card {
-    background: #fff;
+    background: inherit;
     border-top: 1px solid var(--tv-Tabs-border-color);
     box-shadow: none;
 

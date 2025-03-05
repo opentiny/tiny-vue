@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsFunnel as TinyChartFunnel } from '@opentiny/vue'
+import { TinyHuichartsFunnel as TinyChartFunnel } from '@opentiny/vue-huicharts'
 
 const options = ref({
   gap: 10,

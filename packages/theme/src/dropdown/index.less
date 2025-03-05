@@ -42,14 +42,13 @@
       margin-left: var(--tv-Dropdown-icon-margin-x);
 
       .@{svg-prefix-cls} {
-        fill: var(--tv-Dropdown-icon-color-link);
         font-size: var(--tv-Dropdown-icon-size);
       }
     }
 
-    &.@{css-prefix}button {
+    &:not(.tiny-button) {
       .@{svg-prefix-cls} {
-        fill: var(--tv-Dropdown-icon-color-white);
+        fill: var(--tv-Dropdown-icon-color-link);
       }
     }
 
@@ -121,7 +120,7 @@
 
   &__trigger:hover {
     &.@{css-prefix}button {
-      &.tiny-button--default {
+      &.tiny-button--default:not(.is-disabled) {
         .tiny-svg {
           fill: var(--tv-Dropdown-icon-color-hover);
         }

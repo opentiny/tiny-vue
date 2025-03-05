@@ -558,7 +558,7 @@ export const resetInputHeight =
       const sizeInMap = designConfig?.state.initialInputHeight || state.initialInputHeight || 32
       const noSelected = state.selected.length === 0
       // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
-      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
+      const spacingHeight = designConfig?.state?.spacingHeight ?? constants.SPACING_HEIGHT
 
       if (!state.isDisplayOnly) {
         if (!noSelected && tags) {

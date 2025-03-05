@@ -32,6 +32,7 @@
   "backTop": "Back To Top",
   "overview": "Components Overview",
   "overviewDesc": "TinyVue provides a wealth of basic UI components for web applications, and we will continue to explore the best UI practices for enterprise-level applications. Welcome to try TinyVue.",
+  "overviewDescPlus": "TinyVuePlus is a component library for Cloud business scenarios based on TinyVue, following the new design specifications of Cloud CloudDesign and utilizing Vite+Vue3+TypeScript technology stack.",
   "searchComponents": "search components",
   "apiType": "Components demos code style",
   "apiStyleOptions": "Options",

@@ -1261,11 +1261,6 @@
     "type": "template",
     "exclude": false
   },
-  "Hooks": {
-    "path": "vue-hooks/index.ts",
-    "type": "module",
-    "exclude": false
-  },
   "Hrapprover": {
     "path": "vue/src/hrapprover/index.ts",
     "type": "component",

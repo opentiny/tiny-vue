@@ -74,7 +74,7 @@ jobs:
         run: pnpm build:runtime
 
       - name: Publish Vue3 And Vue2 components
-        run: pnpm pub:all && pnpm pub:utils && pnpm pub:hooks
+        run: pnpm pub:all && pnpm pub:runtime && pnpm pub:utils && pnpm pub:hooks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

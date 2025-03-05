@@ -26,7 +26,11 @@
     >
       <slot name="content">
         <a v-if="state.href" :href="state.href" :target="target" rel="noopener noreferrer">{{ state.content }}</a>
-        <span class="tiny-badge__content-text" v-if="!state.href">{{ state.content }}</span>
+        <span class="tiny-badge__content-text" v-if="!state.href">
+          <template v-if="!isDot">
+            {{ state.content }}
+          </template>
+        </span>
       </slot>
     </div>
   </div>

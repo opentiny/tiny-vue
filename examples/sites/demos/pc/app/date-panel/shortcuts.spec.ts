@@ -10,6 +10,18 @@ test('[DatePanel] 测试快捷选项', async ({ page }) => {
   await page.getByRole('button', { name: '一周前' }).click()
   await expect(page.locator('.value')).not.toHaveText('')
 
+  // datePanel-month
+  await page.getByRole('button', { name: '一个月前' }).click()
+  await page.getByRole('button', { name: '三个月前' }).click()
+  await page.getByRole('button', { name: '六个月前' }).click()
+  await expect(page.locator('.month')).not.toHaveText('')
+
+  // datePanel-year
+  await page.getByRole('button', { name: '一年前' }).click()
+  await page.getByRole('button', { name: '五年前' }).click()
+  await page.getByRole('button', { name: '十年前' }).click()
+  await expect(page.locator('.year')).not.toHaveText('')
+
   // dateRange
   await page.getByRole('button', { name: '最近三个月' }).click()
   await page.getByRole('button', { name: '最近一个月' }).click()

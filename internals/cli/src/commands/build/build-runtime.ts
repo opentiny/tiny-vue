@@ -203,6 +203,10 @@ function getEntryTasks() {
     {
       path: 'vue-directive/index.ts',
       libPath: 'tiny-vue-directive'
+    },
+    {
+      path: 'vue/src/huicharts/index.ts',
+      libPath: 'tiny-vue-huicharts'
     }
   ]
   return entry
