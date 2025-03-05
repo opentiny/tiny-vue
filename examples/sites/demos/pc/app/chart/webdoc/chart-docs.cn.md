@@ -3,9 +3,9 @@
 推荐使用`npm`或者`yarn`方式进行开发
 
 ```javascript
-npm i @opentiny/vue
+npm i @opentiny/vue-huicharts
 # 或者
-yarn add @opentiny/vue
+yarn add @opentiny/vue-huicharts
 ```
 
 ## 使用
@@ -14,7 +14,7 @@ yarn add @opentiny/vue
 
 ### 多组件引入
 
-`TinyChart`多组件引用即从依赖包 @opentiny/vue 中引用多个组件，参考示例如下 (以 `ChartLine` 和 `ChartBar` 组件为例):
+`TinyChart`多组件引用即从依赖包 @opentiny/vue-huicharts 中引用多个组件，参考示例如下 (以 `ChartLine` 和 `ChartBar` 组件为例):
 
 ```html
 <template>
@@ -24,7 +24,7 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { HuichartsLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -46,8 +46,8 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import ChartLine from '@opentiny/vue/ChartLine'
-  import ChartBar from '@opentiny/vue/chartBar'
+  import ChartLine from '@opentiny/vue-huicharts/ChartLine'
+  import ChartBar from '@opentiny/vue-huicharts/chartBar'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -69,7 +69,7 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { Huicharts } from '@opentiny/vue'
+  import { Huicharts } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChart: Chart
@@ -90,10 +90,10 @@ yarn add @opentiny/vue
   </div>
 </template>
 <script>
-  import { HuichartsLine, ChartBar } from '@opentiny/vue'
+  import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
-      TinyChartLine: ChartLine,
+      TinyChartsLine: ChartLine,
       TinyChartBar: ChartBar
     },
     data() {
