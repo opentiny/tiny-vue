@@ -6,8 +6,8 @@
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
-      <h1 v-if="!isPlus" class="overview-desc ti-f14 ti-my20 ti-lh21">
-        {{ i18nByKey('overviewDesc') }}
+      <h1 class="overview-desc ti-f14 ti-my20 ti-lh21">
+        {{ i18nByKey(isPlus ? 'overviewDescPlus' : 'overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input

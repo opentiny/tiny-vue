@@ -32,6 +32,7 @@
   "backTop": "返回顶部",
   "overview": "组件总览",
   "overviewDesc": "TinyVue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用 TinyVue。",
+  "overviewDescPlus": "TinyVuePlus 是一款基于 TinyVue 的面向云业务场景的组件库，遵循 CloudDesign 新设计规范，基于 Vite + Vue3 + TypeScript 技术栈。",
   "searchComponents": "搜索组件",
   "apiType": "组件示例代码风格",
   "apiStyleOptions": "选项式",
