@@ -275,7 +275,7 @@ export default defineComponent({
     margin-right: 0;
   }
 }
-.dark .settings-btn {
+html.dark .settings-btn {
   background-color: var(--tv-color-bg-dark);
 }
 
@@ -363,7 +363,7 @@ export default defineComponent({
   border-radius: 12px;
   background-color: var(--tv-color-bg);
 }
-.dark .tiny-popover.tiny-popper.theme-settings-popover {
+html.dark .tiny-popover.tiny-popper.theme-settings-popover {
   background-color: var(--tv-color-bg-dark);
 }
 
