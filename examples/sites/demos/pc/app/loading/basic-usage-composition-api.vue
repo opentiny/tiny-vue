@@ -26,7 +26,6 @@ onMounted(() => {
 #tiny-basic-loading1 {
   width: 100%;
   height: 120px;
-  border: 1px solid beige;
   margin-top: 10px;
 }
 </style>
