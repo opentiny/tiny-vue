@@ -2,6 +2,10 @@
   <div class="demo-date-panel-wrap">
     <div class="value">{{ value }}</div>
     <tiny-date-panel v-model="value"></tiny-date-panel>
+    <div class="month">{{ month }}</div>
+    <tiny-date-panel v-model="month" type="month"></tiny-date-panel>
+    <div class="year">{{ year }}</div>
+    <tiny-date-panel v-model="year" type="year"></tiny-date-panel>
     <div class="value1">{{ value1 }}</div>
     <tiny-date-range type="daterange" v-model="value1"></tiny-date-range>
     <div class="value2">{{ value2 }}</div>
@@ -16,6 +20,8 @@ import { ref } from 'vue'
 import { TinyDatePanel, TinyDateRange, TinyMonthRange, TinyYearRange } from '@opentiny/vue'
 
 const value = ref('2025-01-15')
+const month = ref('2025-01')
+const year = ref('2025')
 const value1 = ref(['2025-01-15', '2025-02-15'])
 const value2 = ref(['2024-03', '2025-02'])
 const value3 = ref(['2024', '2028'])
@@ -27,7 +33,7 @@ const value3 = ref(['2024', '2028'])
   & > * {
     margin-top: 12px;
   }
-  tiny-date-range-picker {
+  .tiny-date-range-picker {
     width: 668px;
   }
 }

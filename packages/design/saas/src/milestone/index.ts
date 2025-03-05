@@ -2,16 +2,16 @@ export default {
   renderless: (props, hooks, { constants }, api) => {
     return {
       getMileIcon: (node) => {
-        const status = props.milestonesStatus[node[props.statusField]] || constants.DEFAULT_COLOR
+        const status = node[props.statusField]
+        const statusColor = props.milestonesStatus[status]
+        const isCompleted = status === constants.STATUS_COMPLETED
 
-        const isCompleted = node[props.statusField] === props.completedField
-        const switchColor = isCompleted && !props.solid
-        const { r, g, b } = api.hexToRgb(status)
-
-        return {
-          background: (switchColor ? constants.DEFAULT_BACK_COLOR : status) + '!important',
-          color: (switchColor ? status : constants.DEFAULT_BACK_COLOR) + '!important',
-          boxShadow: `rgba(${r},${g},${b},.4) ${constants.BOX_SHADOW_PX}`
+        if (statusColor) {
+          return {
+            background: props.solid ? statusColor : '',
+            color: props.solid && !isCompleted ?  '#ffffff' : statusColor,
+            'border-color': statusColor
+          }
         }
       },
       getFlagStyle: ({ index, idx }) => {

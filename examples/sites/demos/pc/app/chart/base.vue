@@ -27,7 +27,8 @@
 </template>
 
 <script lang="jsx">
-import { TinyHuicharts, TinyButton } from '@opentiny/vue'
+import { TinyHuicharts } from '@opentiny/vue-huicharts'
+import { TinyButton } from '@opentiny/vue'
 
 export default {
   components: {

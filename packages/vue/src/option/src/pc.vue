@@ -17,6 +17,7 @@
       },
       highlightClass
     ]"
+    :title="state.currentLabel || ''"
   >
     <span v-if="state.selectMultiple" class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
       <component :is="`icon-${state.selectCls}`" :class="`tiny-svg-size ${state.selectCls}`" />

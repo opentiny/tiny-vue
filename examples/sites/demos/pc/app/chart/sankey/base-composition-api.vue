@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsSankey as TinyChartSankey } from '@opentiny/vue'
+import { TinyHuichartsSankey as TinyChartSankey } from '@opentiny/vue-huicharts'
 
 const options = ref({
   // 页面节点是否可被拖动，布尔值，默认值为 true

@@ -84,20 +84,6 @@ export default {
       codeFiles: ['show-icon.vue']
     },
     {
-      demoId: 'split-button',
-      name: {
-        'zh-CN': '按钮类型',
-        'en-US': 'Button type'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>split-button</code> 属性，设置下拉菜单显示为按钮类型。仅按钮类型时，支持 <code>type</code> 属性设置按钮状态。</p>\n',
-        'en-US':
-          '<p>Set the drop-down menu to display as a button type through the <code>split-button</code> attribute. When only button types are used, the <code>type</code> attribute setting button status is supported.</p>\n'
-      },
-      codeFiles: ['split-button.vue']
-    },
-    {
       demoId: 'trigger',
       name: {
         'zh-CN': '触发方式',

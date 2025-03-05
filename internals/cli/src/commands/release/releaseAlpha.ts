@@ -40,9 +40,22 @@ const findAllpage = (packagesPath, updateVersion) => {
       .replace(/@opentiny\/vue/g, '@opentinyvue/vue')
       .replace(/@opentiny\/utils/g, '@opentinyvue/utils')
 
-    if (packagesPath.endsWith('package.json') && updateVersion) {
+    if (packagesPath.endsWith('package.json')) {
       const packageJSON = JSON.parse(result)
-      packageJSON.version = getPatchVersion(packageJSON.name, packageJSON.version)
+      const dependenciesVersion = `~${packageJSON.version.split('.').slice(0, 2).join('.')}.0`
+
+      if (updateVersion) {
+        packageJSON.version = getPatchVersion(packageJSON.name, packageJSON.version)
+      }
+
+      if (packageJSON.dependencies) {
+        Object.keys(packageJSON.dependencies).forEach((key) => {
+          if (packageJSON.dependencies[key] === 'workspace:~') {
+            packageJSON.dependencies[key] = dependenciesVersion
+          }
+        })
+      }
+
       fs.writeFileSync(packagesPath, JSON.stringify(packageJSON, null, 2) + '\n')
     } else {
       fs.writeFileSync(packagesPath, result)
@@ -73,7 +86,8 @@ export const releaseAlpha = ({ updateVersion }) => {
     'theme-mobile/dist',
     'theme-saas/dist',
     'utils',
-    'vue-hooks'
+    'vue-hooks',
+    'vue-runtime'
   ]
   distLists.forEach((item) => {
     findAllpage(pathFromPackages(item), updateVersion)

@@ -87,11 +87,7 @@
 
   &--highlight-current {
     .@{tree-node-prefix-cls}.is-current > .@{tree-node-prefix-cls}__content {
-      background-color: var(--tv-Tree-node-highlight-bg-color);
-    }
-
-    .@{tree-node-prefix-cls}.is-current:not(.show-checkbox) > .@{tree-node-prefix-cls}__content {
-      .@{tree-node-prefix-cls}__label,
+      .@{tree-node-prefix-cls}__content-left,
       .@{tree-node-prefix-cls}__content-right {
         background-color: var(--tv-Tree-node-highlight-bg-color);
       }
@@ -342,9 +338,6 @@
         background-color: var(--tv-Tree-node-content-hover-bg-color);
       }
 
-      .@{tree-node-prefix-cls}__content-right {
-        background-color: var(--tv-Tree-node-content-hover-bg-color);
-      }
     }
 
     & label.@{css-prefix}checkbox,
@@ -367,6 +360,12 @@
     overflow: hidden;
     padding-left: var(--tv-Tree-node-padding-left);
 
+    svg {
+      fill: var(--tv-Tree-node-operate-icon-color);
+      &:hover {
+        fill: var(--tv-Tree-node-checked-icon-color);
+      }
+    }
     input {
       height: calc(var(--tv-Tree-node-content-height) - 2px);
       font-size: var(--tv-Tree-node-label-font-size);

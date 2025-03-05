@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsWaterfall as TinyChartWaterfall } from '@opentiny/vue'
+import { TinyHuichartsWaterfall as TinyChartWaterfall } from '@opentiny/vue-huicharts'
 
 const options = ref({
   padding: [50, 30, 20, 20],

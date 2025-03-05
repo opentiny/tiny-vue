@@ -97,7 +97,7 @@
             </Popover>
           </li>
           <li>
-            <Button type="primary" @click="toToday">{{
+            <Button @click="toToday">{{
               state.displayMode === 'month' ? t('ui.datepicker.today') : t('ui.datepicker.currentMonth')
             }}</Button>
           </li>

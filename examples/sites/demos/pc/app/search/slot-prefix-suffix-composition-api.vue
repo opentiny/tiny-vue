@@ -8,31 +8,28 @@
         <tiny-icon-search />
       </template>
     </tiny-search>
+
+    <tiny-search class="mb10" v-model="value" placeholder="请输入关键字搜索" :disabled="disabled" clearable>
+      <template #suffix>
+        <tiny-icon-calendar class="mr10 tiny-search__suffix" />
+      </template>
+    </tiny-search>
     <tiny-search v-model="value" placeholder="请输入关键词" :disabled="disabled"></tiny-search>
     <div class="mt10">{{ value }}</div>
   </div>
 </template>
 
-<script lang="jsx">
+<script setup lang="jsx">
+import { ref } from 'vue'
 import { TinySearch, TinyButton } from '@opentiny/vue'
-import { iconSearch } from '@opentiny/vue-icon'
+import { IconCalendar, IconSearch } from '@opentiny/vue-icon'
 
-export default {
-  components: {
-    TinySearch,
-    TinyButton,
-    TinyIconSearch: iconSearch()
-  },
-  data() {
-    return {
-      value: '',
-      disabled: false
-    }
-  },
-  methods: {
-    changeDisabled() {
-      this.disabled = !this.disabled
-    }
-  }
+const value = ref('')
+const disabled = ref(false)
+
+const TinyIconSearch = IconSearch()
+const TinyIconCalendar = IconCalendar()
+const changeDisabled = () => {
+  disabled.value = !disabled.value
 }
 </script>

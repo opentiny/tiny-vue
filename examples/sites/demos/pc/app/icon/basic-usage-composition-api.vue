@@ -22,6 +22,8 @@ const TinyIconClockWork = iconClockWork()
 .icon-demo .tiny-svg {
   margin: 20px 40px;
   vertical-align: middle;
+  fill: var(--tv-color-icon-control);
+  color: var(--tv-color-icon-control);
 }
 .icon-demo .icon-shared {
   font-size: 14px;

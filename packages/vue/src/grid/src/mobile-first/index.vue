@@ -7,15 +7,18 @@
     :style="wrapperStyle"
     @scroll="scrollEvent"
   >
+    <template v-if="slotEmpty || renderEmpty">
+      <custom-empty />
+    </template>
     <exception
       tiny_mode="mobile-first"
       tiny_mode_root
-      v-if="exceptionVisible"
+      v-else-if="exceptionVisible"
       class="min-h-[theme(spacing.72)]"
       component-page
       type="nodata"
     ></exception>
-    <div data-tag="tiny-table" :class="[tableClass, cardClass]" ref="table">
+    <div v-else data-tag="tiny-table" :class="[tableClass, cardClass]" ref="table">
       <template v-if="listView">
         <list-view />
       </template>
@@ -52,9 +55,10 @@ import GlobalConfig from '../config'
 import ListView from './list-view.vue'
 import GanttView from './gantt-view.vue'
 import CustomView from './custom-view.vue'
+import CustomEmpty from './empty.vue'
 
 export default defineComponent({
-  components: { TableRow, Tooltip, Exception, ListView, GanttView, CustomView },
+  components: { TableRow, Tooltip, Exception, ListView, GanttView, CustomView, CustomEmpty },
   provide() {
     return { $mftable: this }
   },
@@ -165,12 +169,9 @@ export default defineComponent({
       return `${displayStyle}${heightStyle}${maxHeightStyle}`
     },
     exceptionVisible() {
-      const { config, tableData } = this as any
-      const { viewType } = config?.tableVm?.$grid
-      const { CARD, LIST, MF } = GlobalConfig.viewConfig
+      const { tableData } = this as any
       const isException = tableData.length === 0
-
-      return isException && (viewType === CARD || viewType === LIST || viewType === MF)
+      return isException
     }
   },
   watch: {
@@ -218,7 +219,7 @@ export default defineComponent({
       const { renderList } = listConfig
       const { renderGantt } = ganttConfig
       const { renderCustom } = customConfig
-      let fieldName: string = ''
+      let fieldName = ''
       let fieldNames: Array<string> = []
       let propCols: Array<Column> = firstFewPropertyColumn(tableColumn, few)
 
@@ -230,6 +231,7 @@ export default defineComponent({
       let slotList: Function
       let slotGantt: Function
       let slotCustom: Function
+      let slotEmpty: Function
 
       if (primaryField) {
         fieldName = fnField(primaryField)
@@ -263,9 +265,11 @@ export default defineComponent({
       slotList = config?.tableVm?.$grid?.slots?.list || renderList
       slotGantt = config?.tableVm?.$grid?.slots?.gantt || renderGantt
       slotCustom = config?.tableVm?.$grid?.slots?.custom || renderCustom
+      slotEmpty = config?.tableVm?.$grid?.slots?.empty
+      const renderEmpty = config?.tableVm?.$grid?.renderEmpty
 
       Object.assign(this, { primaryColumn, contentColumns, operationColumn, selectionColumn })
-      Object.assign(this, { slotLink, slotList, slotGantt, slotCustom })
+      Object.assign(this, { slotLink, slotList, slotGantt, slotCustom, slotEmpty, renderEmpty })
     },
     typeColumns(columns: Array<Column>, types: Array<String>, field?: string) {
       const cols = types.map((type) => columns.find((column) => column.visible && column[field || 'property'] === type))

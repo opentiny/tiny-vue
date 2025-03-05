@@ -90,17 +90,18 @@ export default {
       codeFiles: ['show-selected-types.vue']
     },
     {
-      demoId: 'slot-prefix',
+      demoId: 'slot-prefix-suffix',
       name: {
-        'zh-CN': '左侧插槽与禁用',
-        'en-US': 'Left slot and Disabled'
+        'zh-CN': '插槽与禁用',
+        'en-US': 'slot and Disabled'
       },
       desc: {
-        'zh-CN': '通过 <code>prefix</code> 插槽自定义左侧内容，<code>disabled</code> 控制禁用状态。',
+        'zh-CN':
+          '通过 <code>prefix</code> 插槽自定义左侧内容，通过 <code>suffix</code> 插槽自定义右侧内容，通过 <code>disabled</code> 控制禁用状态。',
         'en-US':
-          'Customize the left content through the <code>prefix</code> slot, <code>disabled</code>Control the disabled state.'
+          'Customize the left content through the <code>prefix</code> slot, customize the right content through the <code>suffix</code> slot, and control the disabled state through <code>disabled</code>.'
       },
-      codeFiles: ['slot-prefix.vue']
+      codeFiles: ['slot-prefix-suffix.vue']
     },
     {
       demoId: 'events',

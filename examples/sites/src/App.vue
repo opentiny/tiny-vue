@@ -31,6 +31,7 @@ export default defineComponent({
     onMounted(() => {
       // 加载header
       const common = new window.TDCommon(['#header'], {
+        allowDarkTheme: true,
         searchConfig: {
           show: true
         },

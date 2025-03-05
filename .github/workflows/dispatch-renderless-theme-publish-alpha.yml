@@ -101,6 +101,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
 
+      - name: Publish Runtime
+        if: contains(inputs.components, 'runtime') == true
+        run: |
+          pnpm pub:runtime
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
+
       - name: Publish Hooks
         if: contains(inputs.components, 'hooks') == true
         run: |

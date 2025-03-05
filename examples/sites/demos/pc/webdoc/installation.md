@@ -92,17 +92,19 @@ export default defineConfig({
   <script type="importmap">
     {
       "imports": {
-        "vue": "https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.runtime.esm-browser.js",
+        "vue": "https://registry.npmmirror.com/vue/3.5/files/dist/vue.runtime.esm-browser.js",
         "echarts": "https://registry.npmmirror.com/echarts/5.4.1/files/dist/echarts.esm.js",
-        "@opentiny/vue": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-pc.mjs",
-        "@opentiny/vue-icon": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-icon.mjs",
-        "@opentiny/vue-locale": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-locale.mjs",
-        "@opentiny/vue-common": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-common.mjs"
+        // v3.22.0版本新增
+        "@opentiny/vue-huicharts": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-huicharts.mjs",
+        "@opentiny/vue": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-pc.mjs",
+        "@opentiny/vue-icon": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-icon.mjs",
+        "@opentiny/vue-locale": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-locale.mjs",
+        "@opentiny/vue-common": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-common.mjs"
       }
     }
   </script>
   <!-- 引入 @opentiny/vue 样式 -->
-  <link rel="stylesheet" href="https://registry.npmmirror.com/@opentiny/vue-theme/3.17/files/index.css" />
+  <link rel="stylesheet" href="https://registry.npmmirror.com/@opentiny/vue-theme/3.22/files/index.css" />
 </head>
 ```
 

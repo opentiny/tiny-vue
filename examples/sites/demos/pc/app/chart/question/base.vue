@@ -16,7 +16,8 @@
 </template>
 
 <script lang="jsx">
-import { TinyTabs, TinyTabItem, TinyHuichartsLine } from '@opentiny/vue'
+import { TinyHuichartsLine } from '@opentiny/vue-huicharts'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {

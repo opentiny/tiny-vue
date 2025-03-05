@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyHuichartsFunnel } from '@opentiny/vue'
+import { TinyHuichartsFunnel } from '@opentiny/vue-huicharts'
 
 export default {
   components: {

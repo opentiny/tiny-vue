@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyHuichartsGauge as TinyChartGauge } from '@opentiny/vue'
+import { TinyHuichartsGauge as TinyChartGauge } from '@opentiny/vue-huicharts'
 
 const options = ref({
   position: {

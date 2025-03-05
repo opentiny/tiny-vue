@@ -6,7 +6,7 @@
 import Saas from './saas.vue'
 import Mobile from './mobile.vue'
 import Pc from './pc.vue'
-import Plus from './pc.vue'
+import Plus from './plus.vue'
 
 let componentDocs
 const mode = import.meta.env.VITE_APP_MODE

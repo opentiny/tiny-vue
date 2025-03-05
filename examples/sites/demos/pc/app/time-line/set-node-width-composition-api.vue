@@ -43,6 +43,7 @@ function normalClick2(index) {
 <style lang="less" scoped>
 code {
   padding: 4px;
+  color: #000;
   background-color: var(--lightless);
 }
 

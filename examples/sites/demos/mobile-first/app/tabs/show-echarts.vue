@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { TinyTabs, TinyTabItem, TinyHuichartsBar, TinyHuichartsGauge } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyHuichartsBar, TinyHuichartsGauge } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
