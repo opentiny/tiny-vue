@@ -90,10 +90,10 @@ yarn add @opentiny/vue-huicharts
   </div>
 </template>
 <script>
-  import { TinychartsLine, ChartBar } from '@opentiny/vue-huicharts'
+  import { ChartLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
-      TinyChartLine: TinychartsLine,
+      TinyChartLine: ChartLine,
       TinyChartBar: ChartBar
     },
     data() {
