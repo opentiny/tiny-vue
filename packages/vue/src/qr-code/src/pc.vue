@@ -1,7 +1,7 @@
 <template>
   <div
     ref="wrapperRef"
-    class="tiny-qr-code-container"
+    class="tiny-qr-code"
     :class="bordered ? 'border' : ''"
     :style="{ width: state.sizeStr, height: state.sizeStr }"
   >

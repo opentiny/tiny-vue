@@ -53,7 +53,7 @@ const options = ref([
 
 <style scoped>
 .card-wrap {
-  background: #f5f5f5;
+  background: var(--tv-color-bg-gray-1);
   padding: 16px;
 }
 </style>

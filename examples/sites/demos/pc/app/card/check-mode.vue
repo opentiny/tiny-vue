@@ -85,7 +85,7 @@ export default {
 <style scoped>
 .card-wrap {
   width: 100%;
-  background: #f5f5f5;
+  background: var(--tv-color-bg-gray-1);
   padding: 16px;
 }
 .card-wrap :deep(.tiny-card-group) {
