@@ -513,6 +513,7 @@ defineExpose({ loadPage })
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
+  overflow: auto;
 }
 
 .cmp-container {

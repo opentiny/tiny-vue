@@ -15,7 +15,7 @@ import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
 export default function (rule, checkValue, callback, source, options) {
-  const errors = []
+  const errors = [] as any[]
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

@@ -16,7 +16,11 @@ import type { IButtonGroupNode } from '@opentiny/vue-renderless/types/button-gro
 
 export const buttonGroupProps = {
   ...$props,
-  size: String,
+  size: {
+    type: String,
+    default: '',
+    validator: (val: string) => ['medium', 'small', 'mini', ''].includes(val)
+  },
   data: {
     type: Array as PropType<IButtonGroupNode[]>,
     default: () => []
