@@ -44,16 +44,6 @@
     transition:
       border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
       background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
-
-    svg {
-      width: var(--tv-Checkbox-svg-width);
-      height: var(--tv-Checkbox-svg-height);
-      fill: var(--tv-Checkbox-icon-color);
-    }
-
-    svg.icon-check:hover {
-      fill: var(--tv-Checkbox-icon-color-hover);
-    }
   }
 
   &.is-filter {
@@ -98,38 +88,10 @@
     line-height: 1;
     cursor: pointer;
 
-    &.is-checked,
-    &.is-indeterminate {
-      .@{checkbox-prefix-cls}__inner {
-        svg {
-          fill: var(--tv-Checkbox-icon-selected);
-        }
-      }
-    }
-
     &.is-disabled {
       & + span.@{checkbox-prefix-cls}__label {
         color: var(--tv-Checkbox-label-text-color-disabled);
         cursor: not-allowed;
-      }
-
-      .@{checkbox-prefix-cls}__inner {
-        svg {
-          fill: var(--tv-Checkbox-icon-selected-disabled);
-          cursor: not-allowed;
-        }
-
-        svg:hover {
-          fill: var(--tv-Checkbox-icon-selected-disabled);
-        }
-      }
-
-      &:not(.is-checked):not(.is-indeterminate) {
-        svg {
-          > path:first-child {
-            fill: var(--tv-Checkbox-bg-color-disabled);
-          }
-        }
       }
     }
   }
@@ -184,6 +146,55 @@
     & .@{checkbox-prefix-cls}__label {
       margin: 0;
       padding: 0;
+    }
+  }
+
+  &__input {
+    .@{checkbox-prefix-cls}__inner{
+      svg {
+        font-size: var(--tv-Checkbox-icon-size);
+      }
+      .icon-checked-sur,.icon-halfselect {
+        path:first-child {
+          fill: var(--tv-Checkbox-bg-color-active);
+        }
+        path:last-child {
+          fill: var(--tv-Checkbox-border-color-inverse);
+        }
+      }
+      .icon-check {
+        path:first-child {
+          fill: transparent;
+        }
+        path:last-child {
+          fill: var(--tv-Checkbox-unchecked-border-color);
+        }
+      }
+      .icon-check:hover {
+        path:last-child {
+          fill: var(--tv-Checkbox-unchecked-border-color-hover);
+        }
+      }
+    }
+  }
+  &__input.is-disabled {
+    .@{checkbox-prefix-cls}__inner{
+      .icon-checked-sur,.icon-halfselect{
+        path:first-child {
+          fill: var(--tv-Checkbox-checked-disabled-bg-color);
+        }
+        path:last-child {
+          fill: #FFFFFF;
+        }
+      }
+      .icon-check {
+        path:first-child {
+          fill: var(--tv-Checkbox-bg-color-disabled);
+        }
+        path:last-child {
+          fill: var(--tv-Checkbox-checked-disabled-border-color);
+        }
+      }
     }
   }
 }

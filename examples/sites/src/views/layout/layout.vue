@@ -394,7 +394,7 @@ export default defineComponent({
   }
 }
 
-.dark #layoutSider {
+html.dark #layoutSider {
   border-right: 1px solid #1a1a1a; // 没有常用变量
 }
 

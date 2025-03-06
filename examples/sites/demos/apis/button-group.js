@@ -66,7 +66,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'string',
+          type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
             'zh-CN': '按钮组尺寸大小',

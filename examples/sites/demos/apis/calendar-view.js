@@ -91,7 +91,7 @@ export default {
         },
         {
           name: 'month',
-          type: 'string',
+          type: 'number',
           defaultValue: '',
           desc: {
             'zh-CN': '日历当前显示月份',

@@ -70,7 +70,7 @@ const mdContent = computed(() =>
 </style>
 
 <style lang="less">
-.dark .docs-header {
+html.dark .docs-header {
   background-color: #1a1a1a;
 
   .markdown-top-body {
