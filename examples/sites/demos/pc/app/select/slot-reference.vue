@@ -31,3 +31,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.custom-reference {
+  font-size: 24px;
+  fill: #8b949e;
+  cursor: pointer;
+}
+</style>

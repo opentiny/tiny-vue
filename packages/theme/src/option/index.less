@@ -38,6 +38,7 @@
   }
 
   // 复选框
+  &.@{option-prefix-cls}_all,
   .@{option-prefix-cls}__checkbox-wrap {
     .tiny-svg {
       fill: var(--tv-Option-icon-color-unchecked);
@@ -97,6 +98,10 @@
       &.checked-sur,
       &.halfselect {
         fill: var(--tv-Option-icon-color-checked-disabled);
+
+        path:nth-of-type(2) {
+          fill: var(--tv-Option-icon-color-checked-disabled-inverse);
+        }
       }
 
       &.check {
