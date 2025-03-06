@@ -1,6 +1,7 @@
 import xss from './xss'
 import logger from './logger'
 import ResizeObserver from './resize-observer'
+import * as nanoid from './nanoid/index'
 
 export { xss, logger, ResizeObserver }
 
@@ -213,3 +214,8 @@ export { getDirection, touchStart, touchMove, resetTouchStatus } from './touch'
 export { emulate } from './touch-emulator'
 
 export { uploadAjax } from './upload-ajax'
+
+// 以下兼容metaErp的变量
+export const log = { logger }
+
+export { nanoid }
