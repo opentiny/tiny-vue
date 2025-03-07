@@ -6,9 +6,6 @@ import '@unocss/reset/eric-meyer.css'
 import 'prismjs/themes/prism.css'
 import 'uno.css'
 
-// highlight默认样式
-import 'highlight.js/styles/default.css'
-
 // 只使用markdown的亮色主题
 import 'github-markdown-css/github-markdown.css'
 import './assets/index.less'
@@ -17,7 +14,6 @@ import './style.css'
 // 覆盖默认的github markdown样式
 import './assets/custom-markdown.css'
 import './assets/custom-block.less'
-import './assets/markdown.less'
 import './assets/md-preview.less'
 
 import { i18n } from './i18n/index'
@@ -41,13 +37,15 @@ hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', html)
 
-docsearch({
-  appId: 'AGPA5UXHMH',
-  apiKey: '5fa09fc20270efa61d68e2c2eb0f56df',
-  indexName: 'opentiny',
-  container: '.search-box',
-  debug: false
-})
+if (!location.href.includes('tiny-vue-plus')) {
+  docsearch({
+    appId: 'AGPA5UXHMH',
+    apiKey: '5fa09fc20270efa61d68e2c2eb0f56df',
+    indexName: 'opentiny',
+    container: '.search-box',
+    debug: false
+  })
+}
 
 if (envTarget !== 'open') {
   // 支持本地开发和内网使用全局搜索

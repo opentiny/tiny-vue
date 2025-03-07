@@ -43,9 +43,9 @@
       <tiny-input
         v-if="shape !== 'filter'"
         ref="input"
-        :model-value="state.multiple ? state.presentText : state.inputValue"
+        :model-value="state.multiple && filterable ? '' : state.inputValues"
         :size="state.realSize"
-        :placeholder="state.placeholder"
+        :placeholder="state.multiple && filterable ? '' : state.placeholder"
         :readonly="state.readonly"
         :disabled="state.isDisabled"
         :display-only="displayOnly"

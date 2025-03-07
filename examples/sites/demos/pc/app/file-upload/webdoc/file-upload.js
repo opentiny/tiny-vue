@@ -220,9 +220,9 @@ export default {
         'en-US': 'tip Hints'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>propmtTip</code> 为 `true` 设置提示为 tip 类型，悬浮图标时显示 tip 提示。<p>',
+        'zh-CN': '<p>通过 <code>promptTip</code> 为 `true` 设置提示为 tip 类型，悬浮图标时显示 tip 提示。<p>',
         'en-US':
-          '<p>Set the prompt to the tip type by setting <code>propmtTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
+          '<p>Set the prompt to the tip type by setting <code>promptTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
       },
       codeFiles: ['prompt-tip.vue']
     },

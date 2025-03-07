@@ -62,33 +62,8 @@ const notSimpleComponents = [
   'Amount',
   'Area',
   'AsyncFlowchart',
-  'HuichartsAmap',
-  'HuichartsBmap',
   'BulletinBoard',
   'CascaderMobile',
-  'Huicharts',
-  'HuichartsBar',
-  'HuichartsBoxplot',
-  'HuichartsCandle',
-  'HuichartsCore',
-  'HuichartsFunnel',
-  'HuichartsGauge',
-  'HuichartsGraph',
-  'HuichartsHeatmap',
-  'HuichartsHistogram',
-  'HuichartsLine',
-  'HuichartsLiquidfill',
-  'HuichartsMap',
-  'HuichartsPie',
-  'HuichartsProcess',
-  'HuichartsRadar',
-  'HuichartsRing',
-  'HuichartsSankey',
-  'HuichartsScatter',
-  'HuichartsSunburst',
-  'HuichartsTree',
-  'HuichartsWaterfall',
-  'HuichartsWordcloud',
   'Company',
   'Country',
   'Crop',
@@ -132,8 +107,8 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
     if (item.inEntry !== false) {
       const component = capitalizeKebabCase(item.name)
       if (
-        (mode !== 'simple' && !excludeComponents.includes(item.name)) ||
-        (mode === 'simple' && !notSimpleComponents.includes(item.name))
+        (mode !== 'simple' && !excludeComponents.includes(item.name) && !item.name.includes('Huicharts')) ||
+        (mode === 'simple' && !notSimpleComponents.includes(item.name) && !item.name.includes('Huicharts'))
       ) {
         componentsTemplate.push(`  ${component}`)
         includeTemplate.push(`import ${item.name} from '${item.importName}'`)
@@ -149,21 +124,11 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
       components: componentsTemplate.join(',' + endOfLine),
       exportComponents: componentsTemplate
         .map((component) => {
-          if (component.includes('Hui')) {
-            return `${component}${joinStr}${component} as ${component
-              .replace('Huicharts', 'Chart')
-              .trim()}${joinStr}${component} as Tiny${component.trim()}`
-          }
           return `${component}${joinStr}${component} as Tiny${component.trim()}`
         })
         .join(joinStr),
       defaultComponents: componentsTemplate
         .map((component) => {
-          if (component.includes('Hui')) {
-            return `${component}${joinStr}${component
-              .replace('Huicharts', 'Chart')
-              .trim()}: ${component}${joinStr}Tiny${component.trim()}: ${component}`
-          }
           return `${component}${joinStr}Tiny${component.trim()}: ${component}`
         })
         .join(joinStr)

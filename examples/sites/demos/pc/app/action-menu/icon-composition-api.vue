@@ -76,22 +76,22 @@ p {
   :deep(.tiny-action-menu__wrap) {
     .tiny-action-menu__item {
       .tiny-dropdown-item__wrap {
-        color: #191919;
+        color: var(--tv-color-icon-control);
         .tiny-svg {
-          fill: #191919;
+          fill: var(--tv-color-icon-control);
         }
       }
 
       &:hover {
         .tiny-dropdown-item__wrap > .tiny-dropdown-item__content .tiny-svg {
-          fill: #191919;
+          fill: var(--tv-color-icon-control);
         }
       }
 
       .tiny-dropdown {
-        color: #191919;
+        color: var(--tv-color-icon-control);
         .tiny-svg {
-          fill: #191919;
+          fill: var(--tv-color-icon-control);
         }
       }
     }

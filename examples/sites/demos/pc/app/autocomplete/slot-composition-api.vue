@@ -4,6 +4,8 @@
       <template #prepend>前置内容</template>
       <template #append>后置内容</template>
     </tiny-autocomplete>
+    <br />
+    <br />
     <tiny-autocomplete class="fix-slot" v-model="value" placeholder="请输入内容" :fetch-suggestions="querySearch">
       <template #prefix>
         <tiny-icon-edit />
@@ -12,6 +14,8 @@
         <tiny-icon-association />
       </template>
     </tiny-autocomplete>
+    <br />
+    <br />
     <tiny-autocomplete class="default-slot" v-model="value" :fetch-suggestions="querySearch">
       <template #default="{ slotScope }">
         <div>{{ slotScope.value }}</div>

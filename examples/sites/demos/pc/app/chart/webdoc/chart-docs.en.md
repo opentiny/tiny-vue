@@ -3,9 +3,9 @@
 recommend using the `npm` or `yarn` methods for development
 
 ```javascript
-npm i @opentiny/vue
+npm i @opentiny/vue-huicharts
 # 或者
-yarn add @opentiny/vue
+yarn add @opentiny/vue-huicharts
 ```
 
 ## Used
@@ -25,7 +25,7 @@ and `ChartBar` components as examples):
   </div>
 </template>
 <script>
-  import { HuichartsLine, ChartBar } from '@opentiny/vue-huicharts'
+  import { ChartLine, ChartBar } from '@opentiny/vue-huicharts'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -47,8 +47,8 @@ Each component of `TinyChart` can be installed and used independently, that is, 
   </div>
 </template>
 <script>
-  import ChartLine from '@opentiny/vue/ChartLine'
-  import ChartBar from '@opentiny/vue/chartBar'
+  import ChartLine from '@opentiny/vue-huicharts/ChartLine'
+  import ChartBar from '@opentiny/vue-huicharts/chartBar'
   export default {
     components: {
       TinyChartLine: ChartLine,

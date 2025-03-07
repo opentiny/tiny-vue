@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options">
     <template #item="{ data }">
       <icon-smile></icon-smile>
-      <span style="vertical-align: middle"> {{ data.name }}</span>
+      <span style="vertical-align: middle; margin-left: 4px"> {{ data.name }}</span>
     </template>
   </tiny-action-menu>
 </template>

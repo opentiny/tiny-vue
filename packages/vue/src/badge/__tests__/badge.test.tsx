@@ -45,8 +45,7 @@ describe('PC Mode', () => {
         value={5}
         v-slots={{
           content: () => <div class="badge__content">自定义</div>
-        }}
-      >
+        }}>
         自定义内容插槽
       </Badge>
     ))
@@ -56,10 +55,14 @@ describe('PC Mode', () => {
   test('href', () => {
     const num = 1
     const text = '跳转链接'
-    const wrapper = mount(() => <Badge value={num} href={"/"}>{text}</Badge>)
+    const wrapper = mount(() => (
+      <Badge value={num} href={'/'}>
+        {text}
+      </Badge>
+    ))
+
     expect(wrapper.find('.tiny-badge a').exists()).toBe(true)
   })
-
 
   test('default slot', () => {
     const wrapper = mount(() => {
@@ -69,7 +72,7 @@ describe('PC Mode', () => {
           v-slots={{
             default: () => <div class="badge__default__slot">插槽内容</div>
           }}
-        ></Badge>
+        />
       )
     })
     expect(wrapper.find('.badge__default__slot').exists()).toBe(true)
@@ -84,7 +87,7 @@ describe('PC Mode', () => {
       },
       slots: {
         default: () => <div class="badge__default__slot">我的待办</div>
-      },
+      }
     })
 
     expect(wrapper.find('.tiny-badge').exists()).toBe(true)
@@ -92,12 +95,19 @@ describe('PC Mode', () => {
     expect(wrapper.find('.badge__default__slot').text()).toEqual('我的待办')
 
     await wrapper.setProps({ value: 1 })
-    await wrapper.setProps({ hidden: 1 === 0 })
+    await wrapper.setProps({ hidden: false })
     expect(wrapper.find('.tiny-badge').exists()).toBe(true)
     expect(wrapper.find('.tiny-badge__content-text').text()).toEqual('1')
 
     await wrapper.setProps({ value: 0 })
-    await wrapper.setProps({ hidden: 0 === 0 })
+
+    await wrapper.setProps({ hidden: true })
     expect(wrapper.find('.tiny-badge').exists()).toBe(false)
+  })
+
+  test('is-dot with value', () => {
+    const wrapper = mount(() => <Badge value={2} is-dot />)
+    expect(wrapper.find('.tiny-badge').exists()).toBe(true)
+    expect(wrapper.find('.tiny-badge__content-text').text()).toBe('')
   })
 })

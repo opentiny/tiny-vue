@@ -184,11 +184,7 @@ defineExpose({ jumpToApi })
   color: var(--primary);
   border: 1px solid var(--primary);
 }
-.dark .api-groupname-tag {
-  color: var(--tv-color-text-secondary);
-  background-color: var(--tv-color-bg-header);
-  border: none;
-}
+
 .api-table-box {
   overflow-x: auto;
   width: 100%;
@@ -229,5 +225,13 @@ defineExpose({ jumpToApi })
     background-color: var(--tv-color-bg-header);
     border-radius: 3px;
   }
+}
+</style>
+
+<style lang="less">
+html.dark .api-groupname-tag {
+  color: var(--tv-color-text-secondary);
+  background-color: var(--tv-color-bg-header);
+  border: none;
 }
 </style>

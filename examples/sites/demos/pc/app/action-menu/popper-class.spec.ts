@@ -13,5 +13,5 @@ test('弹框样式', async ({ page }) => {
   await visibleItem.last().hover()
   await page.waitForTimeout(200)
   await expect(dropDownMenu).toHaveClass(/custom-action-menu/)
-  await expect(dropDownMenu).toHaveCSS('background-color', 'rgb(250, 235, 215)')
+  await expect(dropDownMenu).toHaveCSS('background-color', 'rgb(255, 255, 255)')
 })

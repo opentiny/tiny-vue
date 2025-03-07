@@ -67,7 +67,7 @@ export function format(i18nTemplate: Function | string, ...rest: string[]) {
             return '[Circular]'
           }
         case '%d':
-          return Number(rest[i++])
+          return Number(rest[i++]).toString()
         case '%s':
           return String(rest[i++])
         default:
@@ -109,7 +109,7 @@ function isNativeStringType(type) {
 /**
  * @description 判断对应的类型是否是空值
  */
-export function isEmptyValue(data, dataType) {
+export function isEmptyValue(data, dataType?) {
   if (isNull(data)) {
     return true
   }
@@ -135,7 +135,7 @@ export function isEmptyObject(data) {
  */
 function asyncParallelArray(arrData, func, callback) {
   let count = 0
-  const results = []
+  const results = [] as any[]
   const arrLength = arrData.length
 
   function checkCount(errors) {
@@ -183,7 +183,7 @@ function asyncSerialArray(arr, fn, cb) {
  * @description 将一层数据平铺开
  */
 function flattenObjArr(objArr) {
-  const result = []
+  const result = [] as any[]
 
   Object.keys(objArr).forEach((item) => {
     result.push(...objArr[item])
@@ -197,7 +197,7 @@ function flattenObjArr(objArr) {
  */
 export function asyncMap(objArray, option, func, callback) {
   if (option.first) {
-    const pending = new Promise((resolve, reject) => {
+    const pending = new Promise<void>((resolve, reject) => {
       const errorFn = reject
       const next = (errors) => {
         callback(errors)
@@ -221,8 +221,8 @@ export function asyncMap(objArray, option, func, callback) {
   let total = 0
   const objArrayKeys = Object.keys(objArray)
   const objArrLength = objArrayKeys.length
-  const results = []
-  const pending = new Promise((resolve, reject) => {
+  const results = [] as any[]
+  const pending = new Promise<void>((resolve, reject) => {
     const errorFn = reject
     const next = (errors) => {
       results.push(...errors)

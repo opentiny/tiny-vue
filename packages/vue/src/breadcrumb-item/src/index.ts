@@ -19,7 +19,11 @@ export const breadcrumbItemProps = {
     type: Boolean,
     default: false
   },
-  size: String,
+  size: {
+    type: String,
+    default: '',
+    validator: (val: string) => [/* 'large', */ 'medium', /* 'small', 'mini',  */ ''].includes(val)
+  },
   option: {
     type: Object,
     default: () => ({})

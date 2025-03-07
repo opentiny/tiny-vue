@@ -66,7 +66,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'string',
+          type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
             'zh-CN': '按钮组尺寸大小',
@@ -163,7 +163,7 @@ export default {
       code: `
 interface IButtonGroupData {
   text: string // 显示文本
-  value: number | number // 选中的值
+  value: number | string // 选中的值
   disabled?: boolean // 是否禁用
   tip?: string // 按钮悬浮提示 v3.17.0版本增加此功能
   // 配置选块角标
