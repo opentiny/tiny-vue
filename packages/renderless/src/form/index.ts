@@ -180,7 +180,10 @@ export const validate =
         }
 
         if (typeof callback === 'function' && ++count === state.fields.length) {
-          callback(valid, invalidFields, invalidFieldArr)
+          // 排序
+          const sortField = sortFields(state.fields, invalidFields)
+          const sortFieldArr = sortFields(state.fields, invalidFieldArr)
+          callback(valid, sortField, sortFieldArr)
         }
       })
     })
@@ -189,6 +192,23 @@ export const validate =
       return promise
     }
   }
+
+const sortFields = (fileds, val) => {
+  const arrField = fileds.map((item) => item.prop)
+  if (Object.prototype.toString.call(val) === '[object Object]') {
+    const keys = Object.keys(val)
+    const sortKeys = keys.sort((a, b) => arrField.indexOf(a) - arrField.indexOf(b))
+    const sortedObject = sortKeys.reduce((acc, key) => {
+      acc[key] = val[key]
+      return acc
+    }, {})
+    return sortedObject
+  }
+  if (Array.isArray(val)) {
+    val.sort((x, y) => arrField.indexOf(x) - arrField.indexOf(y))
+    return val
+  }
+}
 
 export const validateField =
   (state: IFormRenderlessParams['state']) =>
