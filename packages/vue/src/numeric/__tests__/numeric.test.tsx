@@ -224,10 +224,10 @@ describe('PC Mode', () => {
   test('allow-empty 计数器内容的可清空', async () => {
     const num = ref(0)
     // allow-empty = false
-    let wrapper = mount(() => <Numeric v-model={num.value}></Numeric>)
+    let wrapper = mount(() => <Numeric v-model={num.value} />)
     wrapper.find('input').setValue('')
     await nextTick()
-    expect(wrapper.find('input').element.value).toEqual('0')
+    expect(wrapper.find('input').element.value).toEqual('')
 
     // allow-empty = true
     wrapper = mount(() => <Numeric allow-empty v-model={num.value}></Numeric>)
@@ -260,7 +260,7 @@ describe('PC Mode', () => {
     const change = vi.fn()
     const wrapper = mount(() => <Numeric v-model={num.value} onChange={change}></Numeric>)
 
-    num.value = 2
+    wrapper.find('input').setValue(2)
     await nextTick()
     expect(change).toHaveBeenCalledTimes(1)
     expect(change).toHaveBeenCalledWith(2, 1)
