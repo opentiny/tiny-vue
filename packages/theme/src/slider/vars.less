@@ -19,6 +19,8 @@
   --tv-Slider-bg-color-disabled: var(--tv-color-bg-disabled);
   // 滑块线条高度
   --tv-Slider-height: 8px;
+  // 滑块行高
+  --tv-Slider-line-height: var(--tv-line-height-number, 1.5);
   // 滑块线条圆角
   --tv-Slider-border-radius: var(--tv-border-radius-sm);
 
@@ -33,7 +35,7 @@
   // 滑块提示框top
   --tv-Slider-range-top: -4px;
   // 滑块进度条禁用时背景色
-  --tv-Slider-range-disabled-bg-color: var(--tv-color-icon-disabled);
+  --tv-Slider-range-disabled-bg-color: var(--tv-color-bg-disabled-control);
 
   // 滑块点宽度
   --tv-Slider-handle-width: 24px;
@@ -41,8 +43,10 @@
   --tv-Slider-handle-height: 24px;
   // 滑块点背景色
   --tv-Slider-handle-bg-color: var(--tv-color-bg-inverse);
+  // 滑块点禁用色
+  --tv-Slider-handle-bg-color-disabled: var(--tv-color-bg-inverse-disabled);
   // 滑块点边框色
-  --tv-Slider-handle-border-color: var(--tv-color-border-disabled);
+  --tv-Slider-handle-border-color: var(--tv-color-border-1);
   // 滑块点圆角
   --tv-Slider-handle-border-radius: var(--tv-border-radius-round);
 
@@ -52,8 +56,6 @@
   --tv-Slider-handle-border-color-hover: var(--tv-color-border-active-control);
   // 滑块点阴影
   --tv-Slider-handle-box-shadow: var(--tv-shadow-1-down);
-  // 滑块点禁用时边框颜色
-  --tv-Slider-handle-disabled-border-color: var(--tv-color-border);
 
   // 滑块输入框高度
   --tv-Slider-input-height: var(--tv-size-height-md);
@@ -77,13 +79,22 @@
   --tv-Slider-input-unit-text-color-disabled: var(--tv-color-text-disabled);
 
   // 滑块刻度背景色
-  --tv-Slider-mark-point-bg-color: var(--tv-color-bg-secondary);
+  --tv-Slider-mark-point-bg-color: var(--tv-color-bg-3);
+  // 滑块刻度文本色
+  --tv-Slider-mark-label-text-color: var(--tv-color-text-weaken);
+  // 滑块刻度字号
+  --tv-Slider-mark-label-font-size: var(--tv-font-size-sm, 12px);
+  // 滑块刻度文本顶部外间距
+  --tv-Slider-mark-label-margin-top: var(--tv-space-lg, 12px);
+
   // 滑块活动时提示框背景色
-  --tv-Slider-tips-bg-color: var(--tv-color-bg-secondary);
+  --tv-Slider-tips-bg-color: var(--tv-color-bg-2);
   // 滑块活动时提示框边框圆角
   --tv-Slider-tips-border-radius: var(--tv-border-radius-xs);
   // 滑块活动时提示框边框色
   --tv-Slider-tips-border-color: var(--tv-Slider-tips-bg-color);
   // 滑块活动时提示框文本色
   --tv-Slider-tips-text-color: var(--tv-color-text);
+  // 滑块提示框阴影
+  --tv-Slider-tips-box-shadow: var(--tv-shadow-3-down);
 }
