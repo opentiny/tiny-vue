@@ -1,7 +1,6 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Numeric from '@opentiny/vue-numeric'
-import { IconChevronUp } from '@opentiny/vue-icon'
 import { nextTick, ref } from 'vue'
 
 const mouseup = new Event('mouseup')
@@ -166,11 +165,10 @@ describe('PC Mode', () => {
     expect(wrapper.find('.tiny-numeric__increase').exists()).toBe(false)
   })
 
-  test('controls-position 控制按钮位置', async () => {
+  test('controls-position = right', async () => {
     const num = ref(0)
-    const wrapper = mount(() => <Numeric controls-position="rigint" v-model={num.value}></Numeric>)
-    expect(wrapper.find('.tiny-numeric__decrease').findComponent(IconChevronUp).exists()).toBe(false)
-    expect(wrapper.find('.tiny-numeric__increase').findComponent(IconChevronUp).exists()).toBe(false)
+    const wrapper = mount(() => <Numeric controls-position="right" v-model={num.value} />)
+    expect(wrapper.find('.is-controls-right').exists()).toBe(true)
   })
 
   test('name 原生属性', async () => {
