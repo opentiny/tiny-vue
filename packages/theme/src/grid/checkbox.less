@@ -73,6 +73,14 @@
         }
       }
     }
+
+    &:not(:checked) + .@{grid-checkbox-prefix-cls}__icon {
+      > svg {
+        path:first-child {
+          fill: transparent;
+        }
+      }
+    }
   }
 
   &.is__indeterminate {
@@ -84,6 +92,10 @@
           > svg {
             fill: var(--tv-Grid-checkbox-icon-color-selected);
             border-radius: var(--tv-Grid-checkbox-border-radius);
+
+            path:first-child {
+              fill: var(--tv-Grid-checkbox-icon-color-selected);
+            }
           }
         }
       }
