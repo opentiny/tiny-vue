@@ -24,6 +24,22 @@ describe('PC Mode', () => {
 
   test.todo('value ，设置文本显示的默认值')
 
+  test('invalid value in ipv6', async () => {
+    value = '127.0.0.1'
+    const wrapper = mount(() => <IpAddress v-model={value} type={'ipv6'} />)
+    const values = wrapper.findAll('input').map((inputEl) => inputEl.element.value)
+    expect(values).toHaveLength(8)
+    expect(values).toEqual(Array.from({ length: 8 }, () => ''))
+  })
+
+  test('invalid value in ipv4', async () => {
+    value = 'fe80::204:61ff:fe9d:f156'
+    const wrapper = mount(() => <IpAddress v-model={value} />)
+    const values = wrapper.findAll('input').map((inputEl) => inputEl.element.value)
+    expect(values).toHaveLength(4)
+    expect(values).toEqual(Array.from({ length: 4 }, () => ''))
+  })
+
   // slots
   test('default slot', async () => {
     const wrapper = mount(() => (
@@ -32,7 +48,7 @@ describe('PC Mode', () => {
         v-slots={{
           default: () => <i>--</i>
         }}
-      ></IpAddress>
+      />
     ))
     expect(wrapper.find('i').text()).toBe('--')
   })
@@ -40,7 +56,7 @@ describe('PC Mode', () => {
   // events
   test('events', async () => {
     const focus = vi.fn()
-    const wrapper = mount(() => <IpAddress v-model={value} onFocus={focus}></IpAddress>)
+    const wrapper = mount(() => <IpAddress v-model={value} onFocus={focus} />)
     await wrapper.find('input').trigger('focus')
     await nextTick()
     expect(focus).toHaveBeenCalled()
