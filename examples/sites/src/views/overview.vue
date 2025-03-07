@@ -7,7 +7,7 @@
       </h1>
 
       <h1 class="ti-f14 ti-my20 ti-lh21">
-        {{ i18nByKey('overviewDesc') }}
+        {{ i18nByKey(isPlus ? 'overviewDescPlus' : 'overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="js">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
@@ -85,6 +85,7 @@ export default defineComponent({
       value: '',
       palceMenus: new Array(14)
     })
+    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {
@@ -162,7 +163,7 @@ export default defineComponent({
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, isPlus, pubUrl }
   }
 })
 </script>
@@ -198,6 +199,7 @@ export default defineComponent({
   font-size: 14px;
   color: rgb(51, 54, 57);
   line-height: 1.6;
+
   &:hover {
     box-shadow: 1px 1px 6px 6px rgba(31, 52, 121, 0.08);
   }
@@ -227,6 +229,7 @@ export default defineComponent({
   .overview-card {
     gap: 2%;
   }
+
   .overview-card-container {
     width: 49%;
   }
