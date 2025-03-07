@@ -2,6 +2,7 @@ import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import IpAddress from '@opentiny/vue-ip-address'
 import { nextTick } from 'vue'
+import { iconBoat } from '@opentiny/vue-icon'
 
 let value = ''
 
@@ -14,15 +15,47 @@ describe('PC Mode', () => {
     expect(wrapper.find('input').attributes()).toHaveProperty('readonly')
   })
 
-  test.todo('delimiter ，设置IP段之间的分隔符，默认为 "." ')
+  describe('delimiter ，设置IP段之间的分隔符', () => {
+    test('默认为 "." ', async () => {
+      const wrapper = mount(() => <IpAddress v-model={value} />)
+      expect(wrapper.findAll('svg')).toHaveLength(3)
+    })
 
-  test.todo('size ,设置组件大小;该属性的可选值为 medium / small / mini')
+    test('设置为 "-" ', async () => {
+      const wrapper = mount(() => (
+        <IpAddress v-model={value}>
+          <span>-</span>
+        </IpAddress>
+      ))
+      expect(wrapper.findAll('span').map((i) => i.text())).toEqual(['-', '-', '-'])
+    })
 
-  test.todo('disabled ,设置文本的禁用属性，默认为 false ')
+    test('设置为 icon', async () => {
+      const IconBoat = iconBoat()
+      const wrapper = mount(() => <IpAddress v-model={value} delimiter={IconBoat} />)
+      expect(wrapper.findAll('svg')).toHaveLength(3)
+    })
+  })
 
-  test.todo('type ，设置IpAddress框的类型，默认是IPv4，当为IPv6时，只有一个IP端输入框，无分隔符')
+  describe('size, 设置组件大小', () => {
+    ;['medium', 'small', 'mini'].forEach((size) => {
+      test(size, async () => {
+        const wrapper = mount(() => <IpAddress v-model={value} size={size} />)
+        expect(wrapper.find('.tiny-ip-address__input').classes()).toContain(size)
+      })
+    })
+  })
 
-  test.todo('value ，设置文本显示的默认值')
+  test('disabled ,设置文本的禁用属性，默认为 false ', async () => {
+    const wrapper = mount(() => <IpAddress v-model={value} disabled={true} />)
+    expect(wrapper.find('input').attributes()).toHaveProperty('disabled')
+  })
+
+  test('value ，设置文本显示的默认值', async () => {
+    value = '127.0.0.1'
+    const wrapper = mount(() => <IpAddress v-model={value} />)
+    expect(wrapper.findAll('input').map((inputEl) => inputEl.element.value)).toEqual(['127', '0', '0', '1'])
+  })
 
   test('invalid value in ipv6', async () => {
     value = '127.0.0.1'
@@ -40,7 +73,6 @@ describe('PC Mode', () => {
     expect(values).toEqual(Array.from({ length: 4 }, () => ''))
   })
 
-  // slots
   test('default slot', async () => {
     const wrapper = mount(() => (
       <IpAddress
