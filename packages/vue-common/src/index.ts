@@ -21,7 +21,7 @@ import {
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './csscls'
 import '@opentiny/vue-theme/base/index.less'
-import { defineComponent, isVue2, isVue3 } from './adapter'
+import { defineComponent, isVue2, isVue3, WithDesignConfigPropsDefineComponent } from './adapter'
 import { useBreakpoint } from './breakpoint'
 import { useDefer } from './usedefer'
 import { GRADIENT_ICONS_LIST, generateIcon } from './generateIcon'
@@ -37,7 +37,7 @@ export { useBreakpoint, useDefer }
 
 export { version } from '../package.json'
 
-export { defineComponent, isVue2, isVue3, appProperties }
+export { defineComponent, isVue2, isVue3, appProperties, WithDesignConfigPropsDefineComponent }
 
 export const $prefix = 'Tiny'
 

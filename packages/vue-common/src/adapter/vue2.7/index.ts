@@ -13,6 +13,7 @@ import Vue from 'vue'
 import * as hooks from 'vue'
 import { emitter, bindFilter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
+import DesignConfigPropsHOC from './hoc'
 
 const Teleport = teleport(hooks)
 
@@ -340,6 +341,15 @@ export const createComponentFn = (design) => {
 }
 
 export const defineComponent = hooks.defineComponent
+
+// 简便用法
+// export default WithDesignConfigPropsDefineComponent({
+//   name: 'xxx',
+//   setup() {}
+// })
+export function WithDesignConfigPropsDefineComponent(BaseComponent: any) {
+  return DesignConfigPropsHOC(hooks.defineComponent(BaseComponent))
+}
 
 export default hooks
 

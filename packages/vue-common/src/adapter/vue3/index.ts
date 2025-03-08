@@ -13,6 +13,7 @@ import * as hooks from 'vue'
 
 import { camelize, capitalize, hyphenate } from '@opentiny/utils'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
+import DesignConfigPropsHOC from './hoc'
 
 const Teleport = hooks.Teleport
 
@@ -476,6 +477,15 @@ export const createComponentFn = (design) => {
 }
 
 export const defineComponent = hooks.defineComponent
+
+// 简便用法
+// export default WithDesignConfigPropsDefineComponent({
+//   name: 'xxx',
+//   setup() {}
+// })
+export function WithDesignConfigPropsDefineComponent(BaseComponent: any) {
+  return DesignConfigPropsHOC(hooks.defineComponent(BaseComponent))
+}
 
 export default hooks
 
