@@ -421,11 +421,20 @@ const documentOnmouseup = function ({
     if (!headerElm) {
       return
     }
+    const elemStore = $table.elemStore
     if (bodyElm) {
       bodyElm.scrollLeft = headerElm.scrollLeft
     }
     if (footerElm) {
       footerElm.scrollLeft = headerElm.scrollLeft
+    }
+
+    if (!elemStore['main-header-repair']) {
+      return
+    }
+    elemStore['main-body-xSpace'].style.width = elemStore['main-header-repair'].style.width
+    if (elemStore['main-footer-xSpace']) {
+      elemStore['main-footer-xSpace'].style.width = elemStore['main-header-repair'].style.width
     }
   })
   updateResizableToolbar($table)
