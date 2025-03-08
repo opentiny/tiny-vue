@@ -2,12 +2,14 @@
   <tiny-layout>
     <p>基本按钮</p>
     <tiny-row>
-      <tiny-button type="primary"> 主要按钮 </tiny-button>
-      <tiny-button> 次要按钮 </tiny-button>
-      <tiny-button type="success"> 成功按钮 </tiny-button>
-      <tiny-button type="info"> 信息按钮 </tiny-button>
-      <tiny-button type="warning"> 警告按钮 </tiny-button>
-      <tiny-button type="danger"> 危险按钮 </tiny-button>
+      <config-provider :design="design">
+        <tiny-button type="primary"> 主要按钮 </tiny-button>
+        <tiny-button> 次要按钮 </tiny-button>
+        <tiny-button type="success"> 成功按钮 </tiny-button>
+        <tiny-button type="info"> 信息按钮 </tiny-button>
+        <tiny-button type="warning"> 警告按钮 </tiny-button>
+        <tiny-button type="danger"> 危险按钮 </tiny-button>
+      </config-provider>
     </tiny-row>
     <p>朴素按钮</p>
     <tiny-row>
@@ -40,14 +42,15 @@
 </template>
 
 <script>
-import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow, ConfigProvider } from '@opentiny/vue'
 import { IconDeleteL, IconYes, IconEditor, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButton,
     TinyLayout,
-    TinyRow
+    TinyRow,
+    ConfigProvider
   },
   data() {
     return {
@@ -56,7 +59,17 @@ export default {
       IconEditor: IconEditor(),
       IconMail: IconMail(),
       IconStarO: IconStarO(),
-      IconSearch: IconSearch()
+      IconSearch: IconSearch(),
+      design: {
+        components: {
+          Button: {
+            props: {
+              resetTime: 0,
+              size: 'mini'
+            }
+          }
+        }
+      }
     }
   }
 }
