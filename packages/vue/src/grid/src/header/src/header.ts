@@ -412,7 +412,22 @@ const documentOnmouseup = function ({
   Object.assign($table, { _isResize: false, _lastResizeTime: Date.now() })
 
   $table.analyColumnWidth()
-  $table.recalculate()
+  $table.recalculate().then(() => {
+    // 拖拽后，需要同步表头的scrollLeft
+    const { tableBody, tableFooter, tableHeader } = $table.$refs || {}
+    const headerElm = tableHeader?.$el
+    const bodyElm = tableBody?.$el
+    const footerElm = tableFooter?.$el
+    if (!headerElm) {
+      return
+    }
+    if (bodyElm) {
+      bodyElm.scrollLeft = headerElm.scrollLeft
+    }
+    if (footerElm) {
+      footerElm.scrollLeft = headerElm.scrollLeft
+    }
+  })
   updateResizableToolbar($table)
   emitEvent($table, 'resizable-change', [params])
 }
