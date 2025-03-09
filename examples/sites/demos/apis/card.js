@@ -77,7 +77,7 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'card-type',
           mfDemo: 'card-type'
-          // 以下IPI暂不暴露
+          // 以下API暂不暴露
           // {
           //   name: 'check-type',
           //   type: 'string',
