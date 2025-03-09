@@ -12,7 +12,7 @@ const getComponentAlias = (alias = {}) => {
   return alias
 }
 
-const getAlias = (vueVersion: string | number, theme = '', design) => {
+const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
   const ns = (t: string) => (t ? '-' + t : '')
 
   const map = {
