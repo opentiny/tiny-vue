@@ -236,6 +236,22 @@ export const userPopper = (options: IPopperInputParams) => {
     }
   )
 
+  watch(
+    () => props.placement,
+    (val?: string) => {
+      state.currentPlacement = val
+      state.popperJS?.setOptions({ placement: val })
+
+      if (props.disabled) {
+        return
+      }
+      if (val) {
+        nextTick(updatePopper)
+      }
+      props.trigger === 'manual' && emit('update:modelValue', val)
+    }
+  )
+
   onBeforeUnmount(() => {
     nextTick(() => {
       doDestroy(true)

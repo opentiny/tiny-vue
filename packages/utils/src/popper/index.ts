@@ -901,4 +901,9 @@ export class PopperJS {
 
     return boundaries
   }
+
+  // https://popper.js.org/docs/v2/lifecycle/#set-new-options
+  setOptions(options: PopperOptions) {
+    Object.assign(this._options, options)
+  }
 }
