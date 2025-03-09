@@ -237,7 +237,7 @@ export default {
         },
         {
           name: 'size',
-          type: "'mini'",
+          type: '"mini"',
           defaultValue: '',
           desc: {
             'zh-CN': '定义分页尺寸',

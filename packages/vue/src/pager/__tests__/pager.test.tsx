@@ -1,6 +1,7 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Pager from '@opentiny/vue-pager'
+import { ref, nextTick } from 'vue'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
@@ -28,6 +29,30 @@ describe('PC Mode', () => {
       </Pager>
     ))
     expect(wrapper.findComponent(SlotContent).exists()).toBe(true)
+  })
+
+  describe('align 设置分页组件对齐方式', () => {
+    ;['left', 'center', 'right'].forEach((align) => {
+      test(`对齐方式为${align}`, () => {
+        const wrapper = mount(() => <Pager align={align} />)
+        expect(wrapper.find('.tiny-pager').attributes('style')).toContain(`text-align: ${align}`)
+      })
+    })
+
+    test('align 为响应式属性', async () => {
+      const align = ref('left')
+      const wrapper = mount(() => <Pager align={align.value} />)
+      expect(wrapper.find('.tiny-pager').attributes('style')).toContain(`text-align: left`)
+      align.value = 'center'
+      await nextTick()
+
+      expect(wrapper.find('.tiny-pager').attributes('style')).toContain(`text-align: center`)
+
+      align.value = 'right'
+      await nextTick()
+
+      expect(wrapper.find('.tiny-pager').attributes('style')).toContain(`text-align: right`)
+    })
   })
 
   test.todo('number 设置分页组件为number渲染模式')
