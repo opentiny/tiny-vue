@@ -68,11 +68,11 @@ export default {
         },
         {
           name: 'type',
-          type: 'string',
+          type: '"text" | "image" | "video" | "logo"',
           defaultValue: 'text',
           desc: {
-            'zh-CN': '设置卡片类型，支持 text、image、video、logo 4 种类型',
-            'en-US': 'Set the card type. The options are text, image, video, and logo.'
+            'zh-CN': '设置卡片类型',
+            'en-US': 'Set the card type.'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'card-type',
