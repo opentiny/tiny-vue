@@ -365,8 +365,8 @@ export default {
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
-            'zh-CN': '输入框尺寸，只在 type 为 "text" 时有效',
-            'en-US': 'Input box size, only valid when type is "text"'
+            'zh-CN': '输入框尺寸，只在 type 不为 "textarea" 时有效',
+            'en-US': 'Input box size, only valid when type is not "textarea"'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'size',
