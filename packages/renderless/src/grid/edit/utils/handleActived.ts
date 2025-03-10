@@ -52,7 +52,7 @@ export function handleActivedDoActive({
       _vm.clearSelected(event)
     }
 
-    _vm.clostTooltip()
+    _vm.closeTooltip()
     _vm.clearActived(event)
 
     type = 'edit-actived'
@@ -63,9 +63,9 @@ export function handleActivedDoActive({
     actived.column = column
 
     if (editConfig.mode === 'row') {
-      tableColumn.forEach((column) => _vm._getColumnModel(row, column))
+      tableColumn.forEach((column) => _vm.getColumnModel(row, column))
     } else {
-      _vm._getColumnModel(row, column)
+      _vm.getColumnModel(row, column)
     }
 
     _vm.$nextTick(() => {
