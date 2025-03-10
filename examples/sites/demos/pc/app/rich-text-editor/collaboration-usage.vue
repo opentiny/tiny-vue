@@ -38,4 +38,7 @@ export default {
 .editor-container {
   display: flex;
 }
+.editor-container .tiny-rich-text-editor {
+  max-width: 50%;
+}
 </style>
