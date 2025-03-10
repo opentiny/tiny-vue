@@ -1,0 +1,37 @@
+{
+  "name": "@opentiny/tiny-bpmn",
+  "version": "3.18.0",
+  "private": true,
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "module": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "tsup": "7.2.0"
+  },
+  "dependencies": {
+    "bpmn-js": "^17.11.0",
+    "bpmn-js-properties-panel": "^5.23.2",
+    "diagram-js": "^14.11.0"
+  }
+}

@@ -1,0 +1,61 @@
+@import '../custom.less';
+@import './var.less';
+@import './bpmn-embedded.less';
+@import './bpmn-js.less';
+@import './diagram-js.less';
+@import './properties-panel.less';
+
+@process-designer-prefix-cls: ~'@{css-prefix}process-designer';
+
+.@{process-designer-prefix-cls} {
+  .component-css-vars-process-designer();
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  #render {
+    height: 100%;
+  }
+
+  .djs-context-pad {
+    background: var(--tv-process-designer-context-pad-bg-color);
+    border: 1px solid var(--tv-process-designer-context-pad-border-color);
+    padding: 4px;
+    width: var(--tv-process-designer-context-pad-width);
+    display: flex;
+    flex-flow: column wrap;
+    gap: var(--tv-process-designer-context-pad-common-gap);
+    border-radius: var(--tv-process-designer-context-pad-border-radius);
+
+    .group {
+      display: flex;
+      gap: var(--tv-process-designer-context-pad-common-gap);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .entry {
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      border-radius: var(--tv-process-designer-context-pad-entry-border-radius);
+      width: var(--tv-process-designer-context-pad-entry-width);
+      margin: 0;
+      padding: var(--tv-process-designer-context-pad-entry-padding);
+      box-sizing: var(--tv-process-designer-context-pad-entry-box-sizing);
+      transition: background var(--tv-process-designer-context-pad-bg-color-transition-time) var(--tv-process-designer-context-pad-bg-color-transition-function);
+
+      &:hover {
+        background: var(--tv-process-designer-context-pad-entry-hover-bg-color);
+      }
+    }
+  }
+
+  #properties {
+    position: absolute;
+    right: var(--tv-process-designer-context-properties-right);
+    width: var(--tv-process-designer-context-properties-width);
+    top: var(--tv-process-designer-context-properties-top);
+    z-index: var(--tv-process-designer-process-designer--zindex);
+  }
+}

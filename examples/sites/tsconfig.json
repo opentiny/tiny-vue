@@ -4,7 +4,11 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "allowJs": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -19,7 +23,14 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["demos/**/*.ts", "demos/**/*.d.ts", "demos/**/*.tsx", "demos/**/*.vue"],
+  "include": [
+    "demos/**/*.ts",
+    "demos/**/*.d.ts",
+    "demos/**/*.tsx",
+    "demos/**/*.vue",
+    "demos/pc/app/process-designer/modeler/renderer.js",
+    "demos/pc/app/process-designer/modeler/*.js"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

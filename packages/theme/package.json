@@ -92,5 +92,11 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "@bpmn-io/properties-panel": "^3.23.0",
+    "bpmn-js": "^17.11.0",
+    "bpmn-js-properties-panel": "^5.23.2",
+    "diagram-js": "^14.11.0"
   }
 }

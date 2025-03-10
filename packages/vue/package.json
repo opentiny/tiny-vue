@@ -184,6 +184,7 @@
     "@opentiny/vue-popeditor": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-popup": "workspace:~",
+    "@opentiny/vue-process-designer": "workspace:~",
     "@opentiny/vue-progress": "workspace:~",
     "@opentiny/vue-pull-refresh": "workspace:~",
     "@opentiny/vue-qr-code": "workspace:~",

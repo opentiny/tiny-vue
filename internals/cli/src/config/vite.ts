@@ -28,6 +28,7 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
     '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src'),
     '@opentiny/vue-locale': pathFromWorkspaceRoot('packages/vue-locale/src'),
+    '@opentiny/tiny-bpmn': pathFromWorkspaceRoot('packages/tiny-bpmn/src'),
 
     // 虚拟映射
     'virtual:locale/vue': pathFromWorkspaceRoot(`packages/vue-locale/src/vue${vueVersion}/index`),

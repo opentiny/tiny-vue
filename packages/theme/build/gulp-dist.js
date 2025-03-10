@@ -66,6 +66,10 @@ gulp.task('copyimage', () => {
   return gulp.src([`${source}/images/**`]).pipe(gulp.dest(`${dist}/images`))
 })
 
+gulp.task('copyFont', () => {
+  return gulp.src([`${source}/font/**`]).pipe(gulp.dest(`${dist}/font`))
+})
+
 // 6、将 dist 目录 index.css 图片资源路径 ../images/ 改为 images
 function replaceImagesUrl(cb) {
   const entryFile = path.join('../dist', 'index.css')
@@ -75,4 +79,7 @@ function replaceImagesUrl(cb) {
   cb()
 }
 
-gulp.task('build', gulp.series(concatIndex, concatOldTheme, 'compile', 'copysvgs', 'copyimage', replaceImagesUrl))
+gulp.task(
+  'build',
+  gulp.series(concatIndex, concatOldTheme, 'compile', 'copysvgs', 'copyimage', 'copyFont', replaceImagesUrl)
+)

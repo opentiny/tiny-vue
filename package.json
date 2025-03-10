@@ -59,6 +59,7 @@
     "// ---------- 打包运行时组件库 ----------": "",
     "build:runtime": "pnpm -C internals/cli build:runtime",
     "// ---------- 构建相关脚本 ----------": "",
+    "build:tiny-bpmn": "pnpm -C packages/tiny-bpmn build",
     "build:ui": "pnpm create:icon-saas && pnpm create:mapping && pnpm build:entry && pnpm -C internals/cli build:ui",
     "build:chartTheme": "pnpm -C internals/cli build:chartTheme",
     "build:renderless": "pnpm -C packages/renderless build:fast",
