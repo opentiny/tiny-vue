@@ -24,9 +24,22 @@
  */
 import { eachTree, find, findTree, get, remove, set } from '@opentiny/vue-renderless/grid/static/'
 
+/**
+ * 处理树形结构数据的半选中状态
+ *
+ * @param {Object} options - 参数对象
+ * @param {Boolean} options.checkStrictly - 是否严格检查
+ * @param {String} options.property - 属性名
+ * @param {Object} options.row - 当前行数据
+ * @param {Object} options.treeConfig - 树形结构配置
+ * @param {Array} options.treeIndeterminates - 树节点不确定状态的列表
+ * @param {Number} options.value - 选中状态值（-1 表示半选中）
+ */
 function onHalfSelectionProperty({ checkStrictly, property, row, treeConfig, treeIndeterminates, value }) {
+  // 如果属性存在、树形结构配置存在、非严格检查且值为-1，则处理半选中状态
   if (property && treeConfig && !checkStrictly && value === -1) {
     treeIndeterminates.push(row)
+    // 将当前行数据的指定属性设置为 false
     set(row, property, false)
   }
 }
@@ -132,9 +145,12 @@ function getParentStatusOnParentSelection({ indeterminatesItem, matchObj, select
 }
 
 export function hasCheckField({ row }, value, _vm) {
-  let { tableFullData, selectConfig = {}, treeConfig, treeIndeterminates } = _vm
+  const { tableFullData, treeIndeterminates } = _vm.state
+  const selectConfig = _vm.selectConfig || {}
+  const treeConfig = _vm.treeConfig
   let { checkField: property, checkStrictly, checkMethod } = selectConfig
 
+  // 树表行半选
   onHalfSelectionProperty({
     checkStrictly,
     property,
@@ -144,6 +160,7 @@ export function hasCheckField({ row }, value, _vm) {
     value
   })
 
+  // 树表行全选
   onFullSelectionProperty({
     checkMethod,
     checkStrictly,
@@ -179,7 +196,8 @@ export function hasCheckField({ row }, value, _vm) {
 }
 
 function onSelectTreeCheckStrictly({ row }, value, _vm) {
-  let { selection, tableFullData, selectConfig = {}, treeConfig, treeIndeterminates } = _vm
+  let { selectConfig = {}, treeConfig } = _vm
+  const { selection, tableFullData, treeIndeterminates } = _vm.state
   let { checkField: property, checkStrictly, checkMethod } = selectConfig
   // 树表行半选
   onHalfSelection({
@@ -224,7 +242,8 @@ function onSelectTreeCheckStrictly({ row }, value, _vm) {
 }
 
 function onSelectOther({ row }, value, _vm) {
-  let { selection, selectConfig = {}, treeConfig } = _vm
+  let { selectConfig = {}, treeConfig } = _vm
+  const { selection } = _vm.state
   let { checkField: property, checkStrictly } = selectConfig
 
   if (!property && !(treeConfig && !checkStrictly)) {
