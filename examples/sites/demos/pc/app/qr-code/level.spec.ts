@@ -4,7 +4,7 @@ test('二维码纠错等级', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('qr-code#level')
 
-  const canvas = page.locator('.tiny-qr-code-container canvas')
+  const canvas = page.locator('.tiny-qr-code canvas')
   await expect(canvas).toBeVisible()
 
   const button = page.locator('.tiny-radio-button--small')
