@@ -23,7 +23,7 @@
   height: var(--tv-NavMenu-height);
   position: relative;
   padding: 0 var(--tv-NavMenu-padding);
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid  var(--tv-color-border-disabled);
 
   > .slot-logo {
     float: left;
@@ -125,7 +125,7 @@
 
   > .popmenu {
     position: absolute;
-    background: var(--tv-NavMenu-popmenu-bg-color);
+    background: var(--tv-color-bg-hover-4);
     width: 100%;
     box-shadow: var(--tv-NavMenu-popmenu-box-shadow);
     max-height: calc(100vh - var(--tv-NavMenu-height));
@@ -390,10 +390,6 @@
     overflow: hidden;
     fill: var(--tv-NavMenu-item-more-button-fill);
     font-size: var(--tv-NavMenu-item-font-size);
-
-    &:hover {
-      background: var(--tv-NavMenu-item-hover-bg-color);
-    }
 
     &.float-right {
       float: right;
