@@ -93,7 +93,7 @@ export const renderless = (
     totalText: computed(() => api.computedTotalText()),
     internalPageCount: computed(() => api.computedInternalPageCount()),
     showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
-    align: props.align || designConfig?.state?.align || 'right',
+    align: computed(() => props.align || designConfig?.state?.align || 'right'),
     totalI18n: designConfig?.state?.totalI18n || 'totals',
     totalFixedLeft: computed(
       () => props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? props.mode !== 'simplest' ?? true

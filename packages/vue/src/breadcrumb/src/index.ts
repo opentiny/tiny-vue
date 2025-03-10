@@ -35,7 +35,11 @@ export const breadcrumbProps = {
     type: String,
     default: 'label'
   },
-  size: String,
+  size: {
+    type: String,
+    default: '',
+    validator: (val: string) => [/* 'large', */ 'medium', /* 'small', 'mini',  */ ''].includes(val)
+  },
   options: {
     type: Array,
     default: () => []

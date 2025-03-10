@@ -120,7 +120,7 @@
     .icon {
       width: 12px;
       height: 12px;
-      fill: var(--tv-Steps-done-icon-color);
+      fill: var(--tv-Steps-text-color);
     }
   }
 
@@ -174,7 +174,7 @@
     }
 
     &.doing {
-      .block-status-mixin(var(--tv-Steps-advance-node-doing-bg-color), var(--tv-Steps-advance-node-doing-bg-color-hover), var(--tv-Steps-node-bg-color-active));
+      .block-status-mixin(var(--tv-Steps-advance-node-done-bg-color), var(--tv-Steps-advance-node-doing-bg-color-hover), var(--tv-Steps-node-bg-color-active));
     }
 
     &.fault {
@@ -189,6 +189,10 @@
     &.disabled {
       color: var(--tv-Steps-disabled-icon-color);
       .block-status-mixin(var(--tv-Steps-advance-node-disable-bg-color), var(--tv-Steps-advance-node-disable-bg-color-hover), var(--tv-Steps-advance-node-disable-bg-color-active));
+
+      .@{steps-prefix-cls}-icon {
+        border: 1px solid var(--tv-Steps-disabled-icon-color);
+      }
     }
 
     .arrow {
@@ -245,7 +249,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 9999px;
-      border: 1px solid var(--tv-Steps-advance-node-disable-bg-color);
+      border: 1px solid var(--tv-Steps-node-done-border-color);
 
       &.done,
       &.doing {
@@ -875,7 +879,7 @@
         .label {
           font-weight: bold;
           background: var(--tv-Steps-node-bg-color-active);
-          color: var(--tv-Steps-advance-li-text-color);
+          color: var(--tv-Steps-line-doing-active-icon-color);
 
           &::after {
             border-left-color: var(--tv-Steps-node-bg-color-active);
@@ -892,7 +896,6 @@
         text-align: center;
         text-decoration: none;
         white-space: nowrap;
-        color: var(--tv-Steps-advance-text-color);
 
         &::after {
           content: '';
@@ -902,7 +905,7 @@
           transform: translateX(100%);
           border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
-          border-left: 9px solid var(--tv-Steps-border-left-color);
+          border-left: 9px solid var(--tv-Steps-advance-mark-bg-color);
           z-index: 1;
         }
 
@@ -970,7 +973,7 @@
 
       &.current .dot svg,
       &.current .dot svg:hover {
-        fill: var(--tv-Steps-advance-li-text-color);
+        fill: var(--tv-Steps-line-doing-active-icon-color);
       }
 
       &:hover .dot svg {
@@ -1210,11 +1213,11 @@
     .icon {
       font-size: var(--tv-Steps-font-size);
       border-color: var(--tv-Steps-advance-active-border-color);
-      color: var(--tv-Steps-advance-li-text-color);
+      color: var(--tv-Steps-line-doing-active-icon-color);
       background: var(--tv-Steps-node-bg-color-active);
 
       .fixicons {
-        fill: var(--tv-Steps-advance-li-text-color);
+        fill: var(--tv-Steps-line-doing-active-icon-color);
       }
     }
 

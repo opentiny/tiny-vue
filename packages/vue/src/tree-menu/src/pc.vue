@@ -27,6 +27,7 @@
     <tiny-input
       v-if="showFilter"
       v-model="state.filterText"
+      :class="(state.isExpand || state.isCollapsed) && 'is-hidden'"
       :placeholder="placeholder || t('ui.treeMenu.placeholder')"
       :prefix-icon="searchIcon"
       :clearable="state.clearable"

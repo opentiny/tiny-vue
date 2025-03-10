@@ -17,9 +17,9 @@ import { TinyFloatbar } from '@opentiny/vue'
 .custom {
   position: static;
   width: 120px;
-  background-color: #dbdbdb;
+  background-color: gray;
 }
 .custom li:hover {
-  background: #fff;
+  background: darkgray;
 }
 </style>

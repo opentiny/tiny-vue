@@ -5,7 +5,8 @@ packages:
 
   # 统一版本，方便维护
 catalog:
-  'vitest': '^2.1.8'
+  'vitest': '^3.0.8'
+  '@vitest/ui': '^3.0.8'
   'vite': '^6.0.0'
   'typescript': '~5.3.3'
   '@playwright/test': '~1.49.0'
