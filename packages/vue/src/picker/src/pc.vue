@@ -60,7 +60,11 @@
               class="baseClearicon"
             />
           </transition>
-          <component :is="state.triggerClass" @click="handleFocus" class="tiny-svg-size" />
+          <component
+            :is="state.triggerClass"
+            @click="handleFocus"
+            class="tiny-svg-size"
+          />
         </i>
       </template>
     </tiny-input>
