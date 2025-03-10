@@ -45,6 +45,7 @@
 
     .tiny-svg {
       margin-left: 2px;
+      margin-top: 2px;
       fill: var(--tv-TreeMenu-collapse-icon-fill-color);
       font-size: 16px;
 
@@ -140,6 +141,11 @@
     padding-right: var(--tv-TreeMenu-input-padding-right);
     margin: var(--tv-TreeMenu-input-margin);
 
+    &.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -233,6 +239,10 @@
       .@{tree-node-prefix-cls}__content-left {
         position: relative;
         padding-left: var(--tv-TreeMenu-node-vertical-line-margin-right);
+
+        &:hover {
+          background-color: transparent;
+        }
       }
 
       &.is-current {
