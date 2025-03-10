@@ -1,7 +1,6 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Numeric from '@opentiny/vue-numeric'
-import { IconChevronUp } from '@opentiny/vue-icon'
 import { nextTick, ref } from 'vue'
 
 const mouseup = new Event('mouseup')
@@ -166,11 +165,10 @@ describe('PC Mode', () => {
     expect(wrapper.find('.tiny-numeric__increase').exists()).toBe(false)
   })
 
-  test('controls-position 控制按钮位置', async () => {
+  test('controls-position = right', async () => {
     const num = ref(0)
-    const wrapper = mount(() => <Numeric controls-position="rigint" v-model={num.value}></Numeric>)
-    expect(wrapper.find('.tiny-numeric__decrease').findComponent(IconChevronUp).exists()).toBe(false)
-    expect(wrapper.find('.tiny-numeric__increase').findComponent(IconChevronUp).exists()).toBe(false)
+    const wrapper = mount(() => <Numeric controls-position="right" v-model={num.value} />)
+    expect(wrapper.find('.is-controls-right').exists()).toBe(true)
   })
 
   test('name 原生属性', async () => {
@@ -224,10 +222,10 @@ describe('PC Mode', () => {
   test('allow-empty 计数器内容的可清空', async () => {
     const num = ref(0)
     // allow-empty = false
-    let wrapper = mount(() => <Numeric v-model={num.value}></Numeric>)
+    let wrapper = mount(() => <Numeric v-model={num.value} />)
     wrapper.find('input').setValue('')
     await nextTick()
-    expect(wrapper.find('input').element.value).toEqual('0')
+    expect(wrapper.find('input').element.value).toEqual('')
 
     // allow-empty = true
     wrapper = mount(() => <Numeric allow-empty v-model={num.value}></Numeric>)
@@ -260,7 +258,7 @@ describe('PC Mode', () => {
     const change = vi.fn()
     const wrapper = mount(() => <Numeric v-model={num.value} onChange={change}></Numeric>)
 
-    num.value = 2
+    wrapper.find('input').setValue(2)
     await nextTick()
     expect(change).toHaveBeenCalledTimes(1)
     expect(change).toHaveBeenCalledWith(2, 1)

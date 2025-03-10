@@ -402,7 +402,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), ' KB'), sizeUnit: '' })}`,
+        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), 'KB'), sizeUnit: '' })}`,
         status: 'warning'
       })
 

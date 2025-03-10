@@ -59,11 +59,12 @@ export const pagerProps = {
   total: Number,
   size: {
     type: String,
-    default: ''
+    default: '',
+    validator: (value: string) => ['mini', ''].includes(value)
   },
   align: {
     type: String,
-    validator: (value) => ['left', 'center', 'right'].includes(value)
+    validator: (value: string) => ['left', 'center', 'right'].includes(value)
   },
   totalFixedLeft: {
     type: Boolean,

@@ -56,7 +56,8 @@ export const numericProps = {
   },
   controlsPosition: {
     type: String,
-    default: ''
+    default: '',
+    validator: (value: string) => ['', 'right'].includes(value)
   },
   disabled: Boolean,
   format: [Object, String],

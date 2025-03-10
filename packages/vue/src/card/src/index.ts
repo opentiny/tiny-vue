@@ -58,7 +58,8 @@ export const cardProps = {
   },
   type: {
     type: String,
-    default: 'text'
+    default: 'text',
+    validator: (value: string) => ['text', 'image', 'video', 'logo'].includes(value)
   },
   disabled: {
     type: Boolean,
