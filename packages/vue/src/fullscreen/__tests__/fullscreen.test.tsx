@@ -1,5 +1,5 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import Fullscreen from '@opentiny/vue-fullscreen'
 
 describe('PC Mode', () => {
@@ -23,7 +23,7 @@ describe('PC Mode', () => {
 
   test.todo('exit-on-click-wrapper ，组件式使用时，点击组件 wrapper 是否关闭全屏显示。默认为 true')
 
-  //slots
+  // slots
   test('default', async () => {
     const wrapper = mount(() => (
       <Fullscreen>
