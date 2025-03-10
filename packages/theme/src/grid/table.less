@@ -295,12 +295,12 @@
     &:before {
       top: 0;
       z-index: 2;
-      border-top: 1px solid var(--tv-Grid-divider-color);
+      border-top: 1px solid var(--tv-Grid-border-color-divider);
     }
 
     &:after {
       bottom: 0;
-      border-bottom: 1px solid var(--tv-Grid-divider-color);
+      border-bottom: 1px solid var(--tv-Grid-border-color-divider);
     }
 
     .@{grid-prefix-cls}__header {
@@ -312,8 +312,8 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      background-image: linear-gradient(-90deg, var(--tv-Grid-divider-color), var(--tv-Grid-divider-color)),
-        linear-gradient(-180deg, var(--tv-Grid-divider-color), var(--tv-Grid-divider-color));
+      background-image: linear-gradient(-90deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider)),
+        linear-gradient(-180deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider));
       background-repeat: no-repeat;
       background-size:
         1px 100%,
@@ -341,12 +341,12 @@
 
       &:before {
         left: 0;
-        border-left: 1px solid var(--tv-Grid-divider-color);
+        border-left: 1px solid var(--tv-Grid-border-color-divider);
       }
 
       &:after {
         right: 0;
-        border-right: 1px solid var(--tv-Grid-divider-color);
+        border-right: 1px solid var(--tv-Grid-border-color-divider);
       }
     }
   }
@@ -390,7 +390,7 @@
   }
 
   & &__footer-wrapper {
-    border-top: 1px solid var(--tv-Grid-divider-color);
+    border-top: 1px solid var(--tv-Grid-border-color-divider);
     border-bottom: none;
     overflow: hidden !important;
 
@@ -444,7 +444,7 @@
   & &-footer__column {
     // 默认文字居左对齐
     text-align: left;
-    border-bottom: 1px solid var(--tv-Grid-divider-color);
+    border-bottom: 1px solid var(--tv-Grid-border-color-divider);
 
     .DefaultTdPadding();
 
@@ -692,7 +692,7 @@
 
   // 展开行td
   & &-body__expanded-column {
-    border-bottom: 1px solid var(--tv-Grid-divider-color);
+    border-bottom: 1px solid var(--tv-Grid-border-color-divider);
   }
 
   & &-body__expanded-cell {
@@ -953,7 +953,7 @@
       width: 100%;
       color: var(--tv-Grid-text-color);
       border-radius: var(--tv-Grid-input-border-radius);
-      border: 1px solid var(--tv-Grid-divider-color);
+      border: 1px solid var(--tv-Grid-border-color-divider);
       background-color: var(--tv-Grid-Input-bg-color);
 
       &:focus {
