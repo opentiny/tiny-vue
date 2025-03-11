@@ -43,16 +43,13 @@ npm install @opentiny/vue@3
 Then modify the`vite.config.js`, add the following code highlighted section:
 
 ```js {8-10}
-//vite.config.js
+// vite.config.js
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  plugins: [vue()],
-  define: {
-    'process.env': { ...process.env }
-  }
+  plugins: [vue()]
 })
 ```
 

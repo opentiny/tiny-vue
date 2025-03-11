@@ -1,5 +1,24 @@
 <template>
   <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48 docs-container">
+    <tiny-modal v-model="showModal" title="请注意" show-footer>
+      <div class="modal-body">
+        TinyVue 从 <span class="modal-body-keyword">3.13.0</span> 开始不需要在
+        <span class="modal-body-keyword">vite.config.js</span> 文件中配置
+        <span class="modal-body-keyword">define: { 'process.env': { ...process.env } }</span>
+        这段代码，这段代码会导致环境变量被打包到构建产物中，引起信息安全风险，请业务尽快升级到
+        <span class="modal-body-keyword">3.13.0</span> 或以上版本！如果不升级版本可以改成：<span
+          class="modal-body-keyword"
+          >define: { 'process.env': { }}</span
+        >
+        同样也可以解决此问题！感谢您对 TinyVue 支持！
+      </div>
+      <template #footer>
+        <tiny-button type="primary" :disabled="disabled" @click="handleConfirm">{{
+          disabled ? `${time}S后可关闭此提示` : '确认将不再弹出此提示'
+        }}</tiny-button>
+        <tiny-button @click="handleCancel">取消</tiny-button>
+      </template>
+    </tiny-modal>
     <component id="doc_wrap" :is="docCmp" class="ti-w0 ti-fi-1" />
     <!-- 目录列表 TODO: 需要锚点组件配置整改，处理id中的特殊字符 -->
     <!-- <div v-if="anchorLinks.length > 0" class="docs-page-anchor catalog w128 sticky top32 ml24">
@@ -11,10 +30,33 @@
 
 <script setup>
 import { ref, nextTick, watch, onMounted, shallowRef } from 'vue'
+import { Modal as TinyModal, Button as TinyButton } from '@opentiny/vue'
 import { getWord } from '@/tools'
 import docMDs from './docConfig.js'
 import { router } from '@/router.js'
 
+const tipFlag = localStorage.getItem('tiny-vue-env-tip')
+const showModal = ref(tipFlag !== 'never')
+const disabled = ref(true)
+let time = ref(5)
+if (showModal.value) {
+  let timer = setInterval(() => {
+    if (time.value > 0) {
+      time.value = time.value - 1
+    } else {
+      disabled.value = false
+      clearInterval(timer)
+      timer = null
+    }
+  }, 1000)
+}
+const handleConfirm = () => {
+  showModal.value = false
+  localStorage.setItem('tiny-vue-env-tip', 'never')
+}
+const handleCancel = () => {
+  showModal.value = false
+}
 const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
 const openDocMap = {
   'envpreparation': 'envpreparation-open'
@@ -54,6 +96,9 @@ onMounted(() => {
 </script>
 
 <style lang="less">
+.modal-body .modal-body-keyword {
+  color: #905;
+}
 .docs-container {
   flex: 1;
   display: flex;
