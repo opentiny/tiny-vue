@@ -1,6 +1,10 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <ComponentHeader :current-json="state.currJson" :md-string="state.mdString" class="flex-horizontal">
+  <ComponentHeader
+    :current-json="state.currJson"
+    :md-string="state.mdString"
+    class="flex-horizontal flex-horizontal--header"
+  >
     <template #header-right>
       <slot name="header-right" />
     </template>
@@ -519,6 +523,9 @@ defineExpose({ loadPage })
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
+}
+
+.flex-horizontal--header {
   overflow: auto;
 }
 
