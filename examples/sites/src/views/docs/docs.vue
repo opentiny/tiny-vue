@@ -1,6 +1,6 @@
 <template>
   <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48 docs-container">
-    <tiny-modal v-model="showModal" title="请注意" show-footer>
+    <tiny-modal v-model="showModal" title="请注意" status="warning" show-footer>
       <div class="modal-body">
         TinyVue 从 <span class="modal-body-keyword">3.13.0</span> 开始不需要在
         <span class="modal-body-keyword">vite.config.js</span> 文件中配置
@@ -10,11 +10,11 @@
           class="modal-body-keyword"
           >define: { 'process.env': { }}</span
         >
-        同样也可以解决此问题！感谢您对 TinyVue 支持！
+        同样也可以解决此问题！感谢您对 TinyVue 的支持！
       </div>
       <template #footer>
         <tiny-button type="primary" :disabled="disabled" @click="handleConfirm">{{
-          disabled ? `${time}S后可关闭此提示` : '确认将不再弹出此提示'
+          disabled ? `${time} S后可关闭此提示` : '确认将不再弹出此提示'
         }}</tiny-button>
         <tiny-button @click="handleCancel">取消</tiny-button>
       </template>
