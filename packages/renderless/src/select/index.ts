@@ -769,7 +769,6 @@ export const resetInputHeight =
 
             fastdom.mutate(() => {
               input.style.height = Math.max(tagsClientHeight + spacingHeight, state.currentSizeMap) + 'px'
-              vm.$refs.select.style.height = input.style.height
             })
           })
         } else {

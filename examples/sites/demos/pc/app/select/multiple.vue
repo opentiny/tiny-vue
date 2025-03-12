@@ -81,9 +81,21 @@
     <br />
     <br />
     <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div>场景 11：点击展开 + 必选项 + 禁用项</div>
     <br />
     <tiny-select v-model="value5" multiple :options="options1" click-expand> </tiny-select>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 
