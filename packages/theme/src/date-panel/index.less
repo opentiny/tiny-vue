@@ -38,7 +38,8 @@
   }
 
   &.has-sidebar {
-    width: 398px;
+    min-width: 398px;
+    width: min-content;
   }
 
   &.has-time {
@@ -173,6 +174,7 @@
         bottom: 77px;
         max-height: 260px;
         box-shadow: var(--tv-DatePanel-box-shadow);
+        background-color: var(--tv-DatePanel-bg-color);
       }
     }
 
