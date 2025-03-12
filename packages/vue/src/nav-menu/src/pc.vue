@@ -36,8 +36,14 @@
             @mouseenter="showSubMenu(item.children, { index }, $event)"
             @mouseleave="willHideSubMenu"
             @click="clickMenu(item, index)"
-            >{{ item.title }}</component
           >
+            <div v-if="slots.icon || item.icon" class="menu-icon">
+              <slot name="icon" :item="item" :index="index" :selected="getTabSelected(item, index)">
+                <component :is="item.icon" class="tiny-svg-size tiny-nav-menu__icon" />
+              </slot>
+            </div>
+            {{ item.title }}
+          </component>
         </li>
       </ul>
     </div>
@@ -85,6 +91,11 @@
                 @mouseleave="leaveMoreMune"
                 @click="clickMenu(item, index)"
               >
+                <div v-if="slots.icon || item.icon" class="menu-icon">
+                  <slot name="icon" :item="item" :index="index" :selected="getLeftSelected(item, index)">
+                    <component :is="item.icon" class="tiny-svg-size tiny-nav-menu__icon" />
+                  </slot>
+                </div>
                 {{ item.title }}
               </component>
               <icon-chevron-right v-if="item.children" class="more-icon"></icon-chevron-right>
@@ -115,6 +126,16 @@
                     @mouseleave="handleTitleMouseleave"
                     :class="{ selected: index === state.subIndex && state.subItemSelectedIndex === -1 }"
                   >
+                    <div v-if="slots.icon || group.icon" class="menu-icon">
+                      <slot
+                        name="icon"
+                        :item="group"
+                        :index="index"
+                        :selected="index === state.subIndex && state.subItemSelectedIndex === -1"
+                      >
+                        <component :is="group.icon" class="tiny-svg-size tiny-nav-menu__icon" />
+                      </slot>
+                    </div>
                     {{ group.title }}
                   </component>
                   <icon-chevron-right v-if="group.url" class="go-to-icon"></icon-chevron-right>
@@ -136,6 +157,11 @@
                       selected: getLastChildSelected(item, i, index)
                     }"
                   >
+                    <div v-if="slots.icon || item.icon" class="menu-icon">
+                      <slot name="icon" :item="item" :index="index" :selected="getLastChildSelected(item, i, index)">
+                        <component :is="item.icon" class="tiny-svg-size tiny-nav-menu__icon" />
+                      </slot>
+                    </div>
                     {{ item.title }}
                   </component>
 

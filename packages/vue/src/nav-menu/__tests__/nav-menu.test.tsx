@@ -1,10 +1,13 @@
-import { IconTotal } from '@opentiny/vue-icon'
+import { IconTotal, IconShare } from '@opentiny/vue-icon'
 import NavMenu from '@opentiny/vue-nav-menu'
 import { describe, expect, test } from 'vitest'
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
+
+  const IconTotalComponent = IconTotal()
+  const IconShareComponent = IconShare()
 
   const navMenuMockData = [
     {
@@ -200,8 +203,18 @@ describe('PC Mode', () => {
       ]
     }
   ]
-
-  const IconTotalComponent = IconTotal()
+  const navMenuMockDataWithIcon = [
+    {
+      title: '首页',
+      url: '',
+      icon: IconShareComponent
+    },
+    {
+      title: '导航',
+      url: '',
+      icon: ''
+    }
+  ]
 
   /**
    * attrs
@@ -211,6 +224,12 @@ describe('PC Mode', () => {
     const navMenu = wrapper.findComponent({ name: 'TinyNavMenu' })
     expect(navMenu).toBeTruthy()
     expect(navMenu.vm.state.data.length).toBe(3)
+  })
+
+  test('menu icon', async () => {
+    const wrapper = mount(() => <NavMenu data={navMenuMockDataWithIcon}></NavMenu>)
+    const iconCom = wrapper.findComponent({ name: 'TinyIconShare' })
+    expect(iconCom.vm).toBeTruthy()
   })
 
   test.todo(
@@ -236,5 +255,31 @@ describe('PC Mode', () => {
     ))
     const iconTotalSvg = wrapper.find('.slot-logo')
     expect(iconTotalSvg.exists()).toBeTruthy()
+  })
+
+  test('icon slot', async () => {
+    const wrapper = mount(() => (
+      <NavMenu data={navMenuMockDataWithIcon}>
+        {{
+          icon: () => <IconTotalComponent></IconTotalComponent>
+        }}
+      </NavMenu>
+    ))
+    const menuIconDom = wrapper.find('.menu-icon')
+    expect(menuIconDom.exists()).toBeTruthy()
+  })
+
+  test('slot prioity higher than icon attr', async () => {
+    const wrapper = mount(() => (
+      <NavMenu data={navMenuMockDataWithIcon}>
+        {{
+          icon: () => <IconTotalComponent class="icon-total"></IconTotalComponent>
+        }}
+      </NavMenu>
+    ))
+    const iconTotalSvg = wrapper.findComponent({ name: 'TinyIconTotal' })
+    const iconShareSvg = wrapper.findComponent({ name: 'TinyIconShare' })
+    expect(iconTotalSvg.vm).toBeTruthy()
+    expect(iconShareSvg.exists()).toBe(false)
   })
 })

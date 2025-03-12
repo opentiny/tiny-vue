@@ -169,7 +169,8 @@ export const initData =
         id: item.id,
         pid: item.pid,
         isFullUrl: props.allowFullUrl && isFullUrl(router),
-        target: item.target
+        target: item.target,
+        icon: item.icon
       }
     }
 
@@ -577,7 +578,7 @@ export const handleTitleMouseenter =
     const text = target.textContent
     const font = window.getComputedStyle(target).font
     const rect = target.getBoundingClientRect()
-    const res = omitText(text, font, rect.width + 2)
+    const res = omitText(text, font, rect.width + 4)
 
     if (target && res.o) {
       const tooltip = vm.$refs.tooltip
