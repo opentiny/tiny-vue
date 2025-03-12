@@ -97,7 +97,7 @@ onMounted(() => {
 
 <style lang="less">
 .modal-body .modal-body-keyword {
-  color: #905;
+  color: var(--tv-base-color-error-6);
 }
 .docs-container {
   flex: 1;
