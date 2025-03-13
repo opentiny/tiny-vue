@@ -78,17 +78,26 @@
       @current-change="currentChange"
     >
       <template #default="{ node, data }">
-        <div class="tree-node">
-          <div class="tree-menus-link tiny-tree-node__label">
-            <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0">
-              <span class="tree-node-name">
-                <component v-if="!data.customIcon && suffixIcon" :is="suffixIcon"></component>
-                <component v-if="data.customIcon" :is="data.customIcon"></component>
-                <slot :node="node" :data="data" :label="data.label">{{ data.label || node.label }} </slot>
-              </span>
-            </a>
-          </div>
-        </div>
+        <template v-if="expandMenuPopable && state.isExpand">
+          <TinyTooltip placement="right" v-if="!node.childNodes || node.childNodes.length === 0">
+            <template #content>
+              <span>{{ data.label || node.label }}</span>
+            </template>
+            <template #default>
+              <TinyTreeMenuNode :node="node" :data="data" :getTitle="getTitle" />
+            </template>
+          </TinyTooltip>
+
+          <TinyTreeMenuPopMenu :node="node" :data="data" :getTitle="getTitle" v-else>
+            <template #reference>
+              <TinyTreeMenuNode :node="node" :data="data" :getTitle="getTitle" />
+            </template>
+          </TinyTreeMenuPopMenu>
+        </template>
+
+        <template v-else>
+          <TinyTreeMenuNode :node="node" :data="data" :getTitle="getTitle" />
+        </template>
       </template>
     </tiny-tree>
     <div v-if="showExpand" class="tiny-tree-menu__expand">
@@ -105,6 +114,9 @@ import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-menu/vue'
 import Tree from '@opentiny/vue-tree'
 import Input from '@opentiny/vue-input'
+import Tooltip from '@opentiny/vue-tooltip'
+import PopMenu from './pop-menu.vue'
+import MenuNode from './menu-node.vue'
 import { iconLeftWardArrow, iconEditorMenuLeft, iconEditorMenuRight } from '@opentiny/vue-icon'
 import { treeMenuProps } from './props'
 import '@opentiny/vue-theme/tree-menu/index.less'
@@ -129,6 +141,9 @@ export default defineComponent({
   components: {
     TinyTree: Tree,
     TinyInput: Input,
+    TinyTooltip: Tooltip,
+    TinyTreeMenuPopMenu: PopMenu,
+    TinyTreeMenuNode: MenuNode,
     IconArrow: iconLeftWardArrow(),
     IconEditorMenuLeft: iconEditorMenuLeft(),
     IconEditorMenuRight: iconEditorMenuRight()

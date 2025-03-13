@@ -67,6 +67,10 @@ export const treeMenuProps = {
     type: Boolean,
     default: false
   },
+  expandMenuPopable: {
+    type: Boolean,
+    default: false
+  },
   collapsible: {
     type: Boolean,
     default: true

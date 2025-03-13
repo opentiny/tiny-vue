@@ -149,6 +149,18 @@ export default {
       codeFiles: ['show-expand.vue']
     },
     {
+      demoId: 'pop-sub-menu',
+      name: {
+        'zh-CN': '折叠弹出',
+        'en-US': 'Pop Sub Menu'
+      },
+      desc: {
+        'zh-CN': '<p>折叠模式下，支持弹出子菜单列表。</p>\n',
+        'en-US': '<p>support pop sub menus when collapsed. </p>\n'
+      },
+      codeFiles: ['pop-sub-menu.vue']
+    },
+    {
       demoId: 'custom-icon',
       name: {
         'zh-CN': '自定义图标',

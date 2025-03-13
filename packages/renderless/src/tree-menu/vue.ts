@@ -77,7 +77,7 @@ export const api = [
 
 export const renderless = (
   props: ITreeMenuProps,
-  { computed, watch, reactive, onMounted }: ISharedRenderlessFunctionParams,
+  { computed, watch, reactive, onMounted, provide }: ISharedRenderlessFunctionParams,
   { t, service, emit, vm }: ISharedRenderlessParamUtils
 ) => {
   service = service || { base: {} }
@@ -127,6 +127,8 @@ export const renderless = (
     handleToggleMenu: handleToggleMenu({ state, vm }),
     computedTreeStyle: computedTreeStyle({ props })
   })
+
+  provide('tree-menu', vm)
 
   watch(
     () => props.data,
