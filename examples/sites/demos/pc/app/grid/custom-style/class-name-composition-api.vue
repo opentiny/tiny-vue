@@ -75,6 +75,6 @@ const tableData = ref([
 
 <style>
 .gridClassName {
-  background: #e6f7ff;
+  background-color: #2db7f5;
 }
 </style>
