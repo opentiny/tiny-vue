@@ -6,7 +6,7 @@
         <icon-help-circle></icon-help-circle>
       </tiny-tooltip>
     </p>
-    <p class="value" :class="['value', !value && value !== 0 && 'placeholder']">
+    <p :class="['value', !value && value !== 0 && 'placeholder']">
       {{ value || value === 0 ? value : placeholder }}
     </p>
     <icon-error v-if="value && showClose && !disabled" class="filter-icon-close" @click.stop="handleClear"></icon-error>

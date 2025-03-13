@@ -44,8 +44,7 @@ describe('PC Mode', () => {
         options={options}
         v-slots={{
           default: (data) => <span class="custom-label"> {data.name}</span>
-        }}
-      ></ActionMenu>
+        }}></ActionMenu>
     ))
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')

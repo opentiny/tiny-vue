@@ -3,6 +3,7 @@ import { describe, test, expect, vi } from 'vitest'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 import { ref } from 'vue'
+
 describe('PC Mode', () => {
   const mount = mountPcMode
 

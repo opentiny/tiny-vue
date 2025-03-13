@@ -78,6 +78,7 @@
 
     .@{input-prefix-cls}__inner {
       padding: var(--tv-SelectDropdown-search-padding);
+      border-color: var(--tv-SelectDropdown-border-color-divider);
     }
 
     .@{input-prefix-cls}__suffix {
@@ -183,13 +184,9 @@
 
   // tiny 新增,空数据图片
   .@{select-dropdown-prefix-cls}__empty-images {
-    background-image: url('../images/empty-nodata.png');
-    width: 64px;
-    height: 64px;
-    margin-bottom: var(--tv-SelectDropdown-image-margin-bottom);
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: inline-block;
-    vertical-align: bottom;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    background: var(--tv-SelectDropdown-empty-img) 50% no-repeat;
   }
 }

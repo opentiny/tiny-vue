@@ -1,5 +1,5 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 

@@ -9,6 +9,11 @@ import svgInline from 'gulp-svg-inline'
 import prefixer from 'gulp-autoprefixer'
 import fg from 'fast-glob'
 import fs from 'node:fs'
+import buildVarToObj from './buildVarToObj.js'
+import writeDefaultValue from './writeDefaultValue.js'
+
+buildVarToObj()
+writeDefaultValue()
 
 const source = '../src'
 const dist = '../dist'
