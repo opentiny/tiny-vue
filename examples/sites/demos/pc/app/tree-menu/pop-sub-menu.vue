@@ -1,5 +1,22 @@
 <template>
-  <tiny-tree-menu :data="treeData" show-expand expand-menu-popable></tiny-tree-menu>
+  <div class="wrapper">
+    <div class="menu-fix">
+      <h4>浅色模式</h4>
+      <tiny-tree-menu :data="treeData" show-expand expand-menu-popable :show-filter="false"></tiny-tree-menu>
+    </div>
+
+    <div class="menu-fix">
+      <h4>深色模式</h4>
+      <tiny-tree-menu
+        class="my-dark-menu"
+        :show-filter="false"
+        :data="treeData"
+        show-expand
+        expand-menu-popable
+        popperClass="my-dark-menu"
+      ></tiny-tree-menu>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -130,3 +147,38 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-fix {
+  margin-right: 300px;
+}
+</style>
+
+<style lang="less">
+.my-dark-menu {
+  --tv-TreeMenu-background-color: #284570 !important;
+  --tv-TreeMenu-node-body-text-color: rgba(255, 255, 255, 0.85) !important;
+  --tv-TreeMenu-node-hover-bg-color: transparent !important;
+  --tv-TreeMenu-node-selected-bg-color: #2e71e6 !important;
+  --tv-TreeMenu-collapse-icon-fill-color: rgba(255, 255, 255, 0.85) !important;
+  --tv-TreeMenu-collapse-icon-hover-color: #ffffff !important;
+  --tv-TreeMenu-pop-item-active-text-color: #ffffff !important;
+  --tv-TreeMenu-pop-item-selected-bg: #2e71e6 !important;
+  --tv-TreeMenu-pop-item-selected-text-color: #ffffff !important;
+  --tv-Tree-bg-color: #284570 !important;
+  --tv-Popover-bg-color: #284570 !important;
+
+  .tiny-tree {
+    --tv-Tree-bg-color: #284570;
+  }
+
+  .tiny-tree-menu__expand {
+    background-color: var(--tv-Tree-bg-color);
+  }
+}
+</style>

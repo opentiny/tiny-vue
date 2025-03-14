@@ -355,6 +355,17 @@ export default {
           pcDemo: 'pop-sub-menu'
         },
         {
+          name: 'popper-class',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '悬浮展示子菜单时，弹窗的类名',
+            'en-US': 'when hovering to display submenus, the class name of the pop-up window'
+          },
+          mode: ['pc'],
+          pcDemo: 'pop-sub-menu'
+        },
+        {
           name: 'show-filter',
           type: 'boolean',
           defaultValue: 'true',

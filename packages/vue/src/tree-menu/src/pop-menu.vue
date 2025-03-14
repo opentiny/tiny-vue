@@ -17,9 +17,13 @@
       trigger="hover"
       placement="right"
       :visible-arrow="false"
-      :popperClass="'tiny-tree-menu-pop-menu-panel ' + (node.level === 1 && 'tiny-tree-menu-pop-menu-panel__first')"
+      :popperClass="
+        'tiny-tree-menu-pop-menu-panel ' +
+        (node.level === 1 && 'tiny-tree-menu-pop-menu-panel__first') +
+        ' ' +
+        (popperClass || '')
+      "
       class="tiny-tree-menu-pop-menu"
-      :append-to-body="false"
     >
       <template #default>
         <div class="tree-menu-pop-menu__list">
@@ -30,7 +34,7 @@
             :key="'pop-menu-item-' + index"
             @click="onClickItem(item)"
           >
-            <TreeMenuPopMenu :node="item" :data="item.data" :getTitle="getTitle">
+            <TreeMenuPopMenu :node="item" :data="item.data" :getTitle="getTitle" :popperClass="popperClass">
               <template #reference="{ node: childNode, data: childData }">
                 <TinyTreeMenuNode :node="childNode" :data="childData" :getTitle="getTitle" />
               </template>
@@ -65,7 +69,8 @@ export default defineComponent({
     node: {},
     data: {},
     getTitle: {},
-    suffixIcon: {}
+    suffixIcon: {},
+    popperClass: {}
   },
 
   setup() {

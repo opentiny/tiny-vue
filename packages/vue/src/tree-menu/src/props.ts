@@ -71,6 +71,7 @@ export const treeMenuProps = {
     type: Boolean,
     default: false
   },
+  popperClass: String,
   collapsible: {
     type: Boolean,
     default: true

@@ -88,7 +88,7 @@
             </template>
           </TinyTooltip>
 
-          <TinyTreeMenuPopMenu :node="node" :data="data" :getTitle="getTitle" v-else>
+          <TinyTreeMenuPopMenu :node="node" :data="data" :getTitle="getTitle" :popperClass="popperClass" v-else>
             <template #reference>
               <TinyTreeMenuNode :node="node" :data="data" :getTitle="getTitle" />
             </template>
