@@ -19,6 +19,7 @@
       :visible-arrow="false"
       :popperClass="'tiny-tree-menu-pop-menu-panel ' + (node.level === 1 && 'tiny-tree-menu-pop-menu-panel__first')"
       class="tiny-tree-menu-pop-menu"
+      :append-to-body="false"
     >
       <template #default>
         <div class="tree-menu-pop-menu__list">
