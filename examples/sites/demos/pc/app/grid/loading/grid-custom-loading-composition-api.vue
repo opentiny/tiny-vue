@@ -70,6 +70,6 @@ const loadingComponent = () => (
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--tv-color-bg-active-dark);
+  background: var(--tv-color-bg-mask);
 }
 </style>
