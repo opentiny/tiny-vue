@@ -17,33 +17,54 @@ import { isServer } from '../globalConfig'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 
-/** 处理style的名字。
- * 把 moz : - _ 等位置，转换为大写驼峰格式, 比如 ：camelCase("moz:moz_abc:def-hjk_lmnOpqRst") = MozMozAbcDefHjkLmnOpqRst
+/**
+ * 将字符串转换为驼峰格式
+ * 处理style的名字，把 moz : - _ 等位置，转换为大写驼峰格式
+ * 例如：camelCase("moz:moz_abc:def-hjk_lmnOpqRst") = MozMozAbcDefHjkLmnOpqRst
+ * @param name 需要转换的字符串
+ * @returns 转换后的驼峰格式字符串
  */
 const camelCase = (name: string) =>
   name
     .replace(SPECIAL_CHARS_REGEXP, (_, separator, letter, offset) => (offset ? letter.toUpperCase() : letter))
     .replace(MOZ_HACK_REGEXP, 'Moz$1')
 
-/** 绑定事件 */
+/**
+ * 为元素绑定事件监听器
+ * @param el 目标DOM元素
+ * @param event 事件名称
+ * @param handler 事件处理函数
+ * @param options 事件选项，默认为false
+ */
 export const on = (el: EventTarget, event: any, handler: (this: HTMLElement, ev: any) => any, options = false) => {
   if (el && event && handler) {
     el.addEventListener(event, handler, options)
   }
 }
-/** 移除事件 */
+
+/**
+ * 移除元素的事件监听器
+ * @param el 目标DOM元素
+ * @param event 事件名称
+ * @param handler 事件处理函数
+ * @param options 事件选项，默认为false
+ */
 export const off = (el: EventTarget, event: any, handler: (this: HTMLElement, ev: any) => any, options = false) => {
   if (el && event) {
     el.removeEventListener(event, handler, options)
   }
 }
 
-/** 执行一次就立即移除事件 */
+/**
+ * 为元素绑定一次性事件，触发后自动移除
+ * @param el 目标DOM元素
+ * @param event 事件名称
+ * @param fn 事件处理函数
+ */
 export const once = (el: HTMLElement, event: any, fn: (this: HTMLElement, ev: any) => any) => {
-  const listener = function () {
+  const listener = function (this: HTMLElement, ev: any) {
     if (fn) {
-      // eslint-disable-next-line prefer-rest-params
-      fn.apply(this, arguments)
+      fn.call(this, ev)
     }
 
     off(el, event, listener)
@@ -52,7 +73,13 @@ export const once = (el: HTMLElement, event: any, fn: (this: HTMLElement, ev: an
   on(el, event, listener)
 }
 
-/** 判断是否有class,  只能查询单个类名， 且不能有空格 */
+/**
+ * 判断元素是否包含指定的类名
+ * 只能查询单个类名，且不能有空格
+ * @param el 目标DOM元素
+ * @param clazz 要检查的类名
+ * @returns 如果元素包含该类名则返回true，否则返回false
+ */
 export const hasClass = (el: HTMLElement, clazz: string) => {
   if (!el || !clazz) {
     return false
@@ -67,7 +94,12 @@ export const hasClass = (el: HTMLElement, clazz: string) => {
   }
 }
 
-/** 给el添加一组classes,  clazz 允许为用空格分隔的多个类名  */
+/**
+ * 为元素添加一个或多个类名
+ * clazz允许为用空格分隔的多个类名
+ * @param el 目标DOM元素
+ * @param clazz 要添加的类名，多个类名用空格分隔
+ */
 export const addClass = (el: HTMLElement, clazz = '') => {
   if (!el) {
     return
@@ -78,7 +110,12 @@ export const addClass = (el: HTMLElement, clazz = '') => {
   classes.forEach((clsName) => el.classList.add(clsName))
 }
 
-/** 移除el上的classes， clazz 允许为用空格分隔的多个类名  */
+/**
+ * 从元素移除一个或多个类名
+ * clazz允许为用空格分隔的多个类名
+ * @param el 目标DOM元素
+ * @param clazz 要移除的类名，多个类名用空格分隔
+ */
 export const removeClass = (el: HTMLElement, clazz: string) => {
   if (!el || !clazz) {
     return
@@ -89,7 +126,13 @@ export const removeClass = (el: HTMLElement, clazz: string) => {
   classes.forEach((clsName) => el.classList.remove(clsName))
 }
 
-/** 查询元素的style的值。 优先找el.style, 找不到则调用getComputedStyle(el)  */
+/**
+ * 获取元素的样式值
+ * 优先查找el.style，找不到则调用getComputedStyle(el)
+ * @param el 目标DOM元素
+ * @param styleName 样式属性名
+ * @returns 样式属性值
+ */
 export const getStyle = (el: HTMLElement, styleName: string) => {
   if (isServer) {
     return
@@ -116,8 +159,11 @@ export const getStyle = (el: HTMLElement, styleName: string) => {
   }
 }
 
-/** 给元素赋值style。
- * @param name  当它是对象时，遍历所有属性；当它是字符串时，需要传入第3个参数 value
+/**
+ * 设置元素的样式
+ * @param el 目标DOM元素
+ * @param name 样式属性名或样式对象。当它是对象时，遍历所有属性；当它是字符串时，需要传入第3个参数value
+ * @param value 样式属性值，当name为字符串时使用
  */
 export const setStyle = (el: HTMLElement, name: string | object, value?: any) => {
   if (!el || !name) {
@@ -137,17 +183,21 @@ export const setStyle = (el: HTMLElement, name: string | object, value?: any) =>
   }
 }
 
-/** 判断元素是否有滚动的style TINY_NO_USED
- * @param vertical  true时，只判断overflow-y属性；  false时，只判断overflow-x属性；  不传入时，只判断overflow属性！
+/**
+ * 判断元素是否有滚动样式
+ * @param el 目标DOM元素
+ * @param vertical true时只判断overflow-y属性；false时只判断overflow-x属性；不传入时只判断overflow属性
+ * @returns 如果元素有滚动样式则返回匹配结果，否则返回null
  */
 export const isScroll = (el: HTMLElement, vertical?: boolean) => {
   if (isServer) {
     return
   }
 
-  /** 是否需要判断方向
-   * 它的值为false: 当vertical = null / undefinded。
-   * 它的值为 true: 当vertical =true /false
+  /**
+   * 是否需要判断方向
+   * 它的值为false: 当vertical = null / undefinded
+   * 它的值为true: 当vertical = true / false
    */
   const determinedDirection = !isNull(vertical)
   let overflow
@@ -161,8 +211,11 @@ export const isScroll = (el: HTMLElement, vertical?: boolean) => {
   return overflow.match(/(scroll|auto)/)
 }
 
-/** 查找离元素最近的父级滚动元素
- * @param vertical  true时，只判断overflow-y属性；  false时，只判断overflow-x属性；  不传入时，只判断overflow属性！
+/**
+ * 查找离元素最近的可滚动父元素
+ * @param el 目标DOM元素
+ * @param vertical true时只判断overflow-y属性；false时只判断overflow-x属性；不传入时只判断overflow属性
+ * @returns 最近的可滚动父元素，如果没有则返回元素自身
  */
 export const getScrollContainer = (el: HTMLElement, vertical?: boolean) => {
   if (isServer) {
@@ -186,7 +239,13 @@ export const getScrollContainer = (el: HTMLElement, vertical?: boolean) => {
   return parent
 }
 
-/** 判断是否 el 完全在  container 中。  四个边有重合都不行，必须完全在里面。 */
+/**
+ * 判断元素是否完全在容器内部
+ * 四个边有重合都不行，必须完全在里面
+ * @param el 目标DOM元素
+ * @param container 容器元素
+ * @returns 如果元素完全在容器内部则返回true，否则返回false
+ */
 export const isInContainer = (el: HTMLElement, container: HTMLElement) => {
   if (isServer || !el || !container) {
     return false
@@ -214,11 +273,13 @@ export const isInContainer = (el: HTMLElement, container: HTMLElement) => {
   )
 }
 
-/** 查询页面的位置和尺寸
- * @returns scrollTop ： document 或 body的滚动位置
- * @returns scrollLeft ： document 或 body的滚动位置
- * @returns visibleHeight ： 可视区高度 （不含滚动条）
- * @returns visibleWidth ： 可视区宽度（不含滚动条）
+/**
+ * 获取页面的位置和尺寸信息
+ * @returns 包含滚动位置和可视区域尺寸的对象
+ * - scrollTop: document或body的垂直滚动位置
+ * - scrollLeft: document或body的水平滚动位置
+ * - visibleHeight: 可视区高度（不含滚动条）
+ * - visibleWidth: 可视区宽度（不含滚动条）
  */
 export const getDomNode = () => {
   const viewportWindow = globalConfig.viewportWindow || window
@@ -233,14 +294,29 @@ export const getDomNode = () => {
   }
 }
 
+/**
+ * 获取元素的垂直滚动位置
+ * 处理iOS滚动反弹导致的负scrollTop值
+ * @param el 目标DOM元素
+ * @returns 元素的垂直滚动位置，最小为0
+ */
 export const getScrollTop = (el) => {
   const top = 'scrollTop' in el ? el.scrollTop : el.pageYOffset
   // iOS scroll bounce cause minus scrollTop
   return Math.max(top, 0)
 }
 
+/**
+ * 阻止事件冒泡
+ * @param event 事件对象
+ */
 export const stopPropagation = (event) => event.stopPropagation()
 
+/**
+ * 阻止事件默认行为
+ * @param event 事件对象
+ * @param isStopPropagation 是否同时阻止事件冒泡
+ */
 export const preventDefault = (event, isStopPropagation) => {
   /* istanbul ignore else */
   if (typeof event.cancelable !== 'boolean' || event.cancelable) {
@@ -255,8 +331,19 @@ export const preventDefault = (event, isStopPropagation) => {
 const overflowScrollReg = /scroll|auto|overlay/i
 const defaultRoot = isServer ? undefined : window
 
+/**
+ * 判断节点是否为元素节点
+ * @param node DOM节点
+ * @returns 如果是元素节点则返回true，否则返回false
+ */
 const isElement = (node) => node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === 1
 
+/**
+ * 获取元素的可滚动父元素
+ * @param el 目标DOM元素
+ * @param root 根元素，默认为window
+ * @returns 可滚动的父元素，如果没有则返回root
+ */
 export const getScrollParent = (el, root = defaultRoot) => {
   let node = el
 
@@ -273,6 +360,11 @@ export const getScrollParent = (el, root = defaultRoot) => {
   return root
 }
 
+/**
+ * 创建一个用于获取元素可滚动父元素的组合式函数
+ * @param hooks 包含onMounted、ref和watch的对象
+ * @returns 返回一个函数，该函数接收元素引用和根元素，返回可滚动父元素的ref
+ */
 export const useScrollParent =
   ({ onMounted, ref, watch }) =>
   (elRef, root = defaultRoot) => {
@@ -285,7 +377,12 @@ export const useScrollParent =
     return scrollParent
   }
 
-// 判断body的后代元素是否是隐藏的
+/**
+ * 判断元素是否处于隐藏状态
+ * 递归检查元素及其父元素的display和position属性
+ * @param elm 目标DOM元素
+ * @returns 如果元素处于隐藏状态则返回true，否则返回false
+ */
 export const isDisplayNone = (elm) => {
   if (isServer) return false
 
