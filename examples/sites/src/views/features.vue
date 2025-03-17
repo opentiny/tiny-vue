@@ -26,8 +26,35 @@
             :style="{ marginTop: index === 0 ? '20px' : '0' }"
             :gutter="8"
           >
-            <tiny-col v-for="feature of groupFeature" :key="feature.id" :span="8">
+            <tiny-col v-for="feature of groupFeature" :key="feature.id" :span="8" class="ti-f-r ti-f-box-center">
               {{ feature.name }}
+              <tiny-popover trigger="hover" placement="top">
+                <p>{{ feature.description }}</p>
+                <div>
+                  Demos:
+                  <span v-for="(demo, demoIndex) of feature.demos" :key="demoIndex">
+                    <a
+                      :href="origin + '/tiny-vue/zh-CN/os-theme/components/' + component.name + '#' + demo"
+                      target="'_blank'"
+                      >{{ demo }}</a
+                    ><tiny-divider direction="vertical" v-if="demoIndex !== feature.demos.length - 1"></tiny-divider>
+                  </span>
+                </div>
+                <div>
+                  APIs:
+                  <span v-for="(api, apiIndex) of feature.apis" :key="apiIndex">
+                    <a
+                      :href="origin + '/tiny-vue/zh-CN/os-theme/components/' + component.name + '#api'"
+                      target="'_blank'"
+                      >{{ api }}</a
+                    ><tiny-divider direction="vertical" v-if="apiIndex !== feature.apis.length - 1"></tiny-divider>
+                  </span>
+                </div>
+                <template #reference>
+                  <tiny-icon-info-circle class="ti-ml4"></tiny-icon-info-circle>
+                </template>
+              </tiny-popover>
+              <i class="i-ti-cloud ml4" v-if="feature.cloud.value"></i>
             </tiny-col>
           </tiny-row>
         </tiny-layout>
@@ -37,8 +64,13 @@
 </template>
 
 <script setup>
-import { TinyLayout, TinyRow, TinyCol, TinySwitch } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinySwitch, TinyPopover, TinyDivider } from '@opentiny/vue'
+import { IconInfoCircle } from '@opentiny/vue-icon'
 import { onMounted, ref } from 'vue'
+
+const TinyIconInfoCircle = IconInfoCircle()
+
+const origin = ref('')
 
 const componentCount = ref(0)
 const featureCount = ref(0)
@@ -46,6 +78,8 @@ const components = ref([])
 const isCloud = ref(false)
 
 onMounted(async () => {
+  origin.value = location.origin
+
   const componentDocs = import.meta.glob(`@demos/app/**/webdoc/*.js`)
 
   for (const item in componentDocs) {
