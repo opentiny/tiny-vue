@@ -73,6 +73,9 @@
     }
     .@{cascader-node-prefix-cls}__label {
       font-weight: var(--tv-CascaderNode-active-font-weight);
+      svg {
+        fill: var(--tv-CascaderNode-active-icon-color);
+      }
     }
   }
 
@@ -99,7 +102,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    svg {
+      font-size: var(--tv-CascaderNode-icon-font-size);
+      fill: var(--tv-CascaderNode-icon-color);
+    }
     // 兼容ie10-ie11
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       flex-basis: auto;

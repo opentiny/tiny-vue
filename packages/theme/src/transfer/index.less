@@ -153,7 +153,9 @@
     text-align: left;
     padding-right: var(--tv-Transfer-panel-body-padding-right);
     padding-left: var(--tv-Transfer-panel-body-padding-left);
-
+    .tiny-table.simple table tbody tr:has(td svg.is-check) {
+      background-color: var(--tv-Transfer-panel-item-active-bg-color);
+    }
     &.is-with-footer {
       padding-bottom: var(--tv-Transfer-panel-body-footer-padding-bottom);
       height: var(--tv-Transfer-panel-body-footer-height);
