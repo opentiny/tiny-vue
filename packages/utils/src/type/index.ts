@@ -14,37 +14,37 @@
  * 获取对象的字符串表示形式
  * 用于类型判断，等同于 Object.prototype.toString
  */
-export const toString = Object.prototype.toString
+export const toString: () => string = Object.prototype.toString
 
 /**
  * 检查对象是否具有指定的属性
  * 等同于 Object.prototype.hasOwnProperty
  */
-export const hasOwn = Object.prototype.hasOwnProperty
+export const hasOwn: (prop: PropertyKey) => boolean = Object.prototype.hasOwnProperty
 
 /**
  * 获取对象的原型
  * 等同于 Object.getPrototypeOf
  */
-const getProto = Object.getPrototypeOf
+const getProto: <T>(obj: T) => object | null = Object.getPrototypeOf
 
 /**
  * 获取函数的字符串表示
  * 用于判断对象构造函数
  */
-const fnToString = hasOwn.toString
+const fnToString: () => string = hasOwn.toString
 
 /**
  * Object函数的字符串表示
  * 用于判断纯粹对象
  */
-const ObjectFunctionString = fnToString.call(Object)
+const ObjectFunctionString: string = fnToString.call(Object)
 
 /**
  * 类型映射表
  * 将Object.prototype.toString的结果映射为对应的类型字符串
  */
-const class2type = {
+const class2type: Record<string, string> = {
   '[object Error]': 'error',
   '[object Object]': 'object',
   '[object RegExp]': 'regExp',
@@ -69,7 +69,7 @@ const class2type = {
  * isNull(0)         // false
  * isNull('')        // false
  */
-export const isNull = (x: any) => x === null || x === undefined
+export const isNull = (x: any): boolean => x === null || x === undefined
 
 /**
  * 返回 JavaScript 对象的类型。
@@ -93,8 +93,7 @@ export const isNull = (x: any) => x === null || x === undefined
  * typeOf(/test/)          // 'regExp'
  * typeOf({})              // 'object'
  */
-export const typeOf: (obj: any) => string = (obj) =>
-  isNull(obj) ? String(obj) : class2type[toString.call(obj)] || 'object'
+export const typeOf = (obj: any): string => (isNull(obj) ? String(obj) : class2type[toString.call(obj)] || 'object')
 
 /**
  * 判断对象是否为纯粹的对象类型（通过{}或new Object创建的对象）
@@ -108,7 +107,7 @@ export const typeOf: (obj: any) => string = (obj) =>
  * isObject([])           // false
  * isObject(null)         // false
  */
-export const isObject = (obj: any) => typeOf(obj) === 'object'
+export const isObject = (obj: any): boolean => typeOf(obj) === 'object'
 
 /**
  * 判断对象是否为函数类型（包括普通函数和异步函数）
@@ -122,7 +121,7 @@ export const isObject = (obj: any) => typeOf(obj) === 'object'
  * isFunction(() => {})           // true
  * isFunction({})                 // false
  */
-export const isFunction = (fn: any) => ['asyncFunction', 'function'].includes(typeOf(fn))
+export const isFunction = (fn: any): boolean => ['asyncFunction', 'function'].includes(typeOf(fn))
 
 /**
  * 判断对象是否为简单对象（纯粹的对象）
@@ -140,17 +139,17 @@ export const isFunction = (fn: any) => ['asyncFunction', 'function'].includes(ty
  * isPlainObject([])                // false
  * isPlainObject(new Date())        // false
  */
-export const isPlainObject = (obj: any) => {
+export const isPlainObject = (obj: any): boolean => {
   if (!obj || toString.call(obj) !== '[object Object]') {
     return false
   }
 
-  const proto = getProto(obj)
+  const proto: object | null = getProto(obj)
   if (!proto) {
     return true
   }
 
-  const Ctor = hasOwn.call(proto, 'constructor') && proto.constructor
+  const Ctor: any = hasOwn.call(proto, 'constructor') && proto.constructor
   return typeof Ctor === 'function' && fnToString.call(Ctor) === ObjectFunctionString
 }
 
@@ -169,8 +168,8 @@ export const isPlainObject = (obj: any) => {
  * isEmptyObject({a: 1})  // false
  * isEmptyObject([1, 2])  // false
  */
-export const isEmptyObject = (obj: any) => {
-  const type = typeOf(obj)
+export const isEmptyObject = (obj: any): boolean => {
+  const type: string = typeOf(obj)
 
   if (type === 'object' || type === 'array') {
     for (const name in obj) {
@@ -199,7 +198,7 @@ export const isEmptyObject = (obj: any) => {
  * isNumber(Infinity) // false
  * isNumber('123')    // false
  */
-export const isNumber = (value: any) => typeof value === 'number' && isFinite(value)
+export const isNumber = (value: any): boolean => typeof value === 'number' && isFinite(value)
 
 /**
  * 判断对象是否代表一个数值（可以是数字类型或可转换为数字的字符串）
@@ -223,7 +222,7 @@ export const isNumber = (value: any) => typeof value === 'number' && isFinite(va
  * isNumeric(Infinity)  // false
  * isNumeric(undefined) // false
  */
-export const isNumeric = (value: any) => value - parseFloat(value) >= 0
+export const isNumeric = (value: any): boolean => value - parseFloat(value) >= 0
 
 /**
  * 判断对象是否为日期类型
@@ -236,7 +235,7 @@ export const isNumeric = (value: any) => value - parseFloat(value) >= 0
  * isDate(Date.now())  // false
  * isDate('2023-01-01') // false
  */
-export const isDate = (value) => typeOf(value) === 'date'
+export const isDate = (value: any): boolean => typeOf(value) === 'date'
 
 /**
  * 判断两个值是否值相同且类型相同
@@ -254,7 +253,7 @@ export const isDate = (value) => typeOf(value) === 'date'
  * isSame({}, {})   // false (引用不同)
  * isSame(1, '1')   // false (类型不同)
  */
-export const isSame = (x: any, y: any) =>
+export const isSame = (x: any, y: any): boolean =>
   x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y))
 
 /**
@@ -268,7 +267,7 @@ export const isSame = (x: any, y: any) =>
  * isRegExp(new RegExp('test')) // true
  * isRegExp('/test/')       // false (这是字符串)
  */
-export const isRegExp = (value: any) => typeOf(value) === 'regExp'
+export const isRegExp = (value: any): boolean => typeOf(value) === 'regExp'
 
 /**
  * 判断值是否是Promise对象或类Promise对象
@@ -284,4 +283,4 @@ export const isRegExp = (value: any) => typeOf(value) === 'regExp'
  * isPromise({then: () => {}, catch: () => {}}) // true
  * isPromise({then: () => {}})   // false (缺少catch方法)
  */
-export const isPromise = (val) => isObject(val) && isFunction(val.then) && isFunction(val.catch)
+export const isPromise = (val: any): boolean => isObject(val) && isFunction(val.then) && isFunction(val.catch)
