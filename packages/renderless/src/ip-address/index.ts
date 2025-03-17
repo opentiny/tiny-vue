@@ -89,32 +89,31 @@ export const getValue =
 export const setValue =
   ({ api, props, state }: { api: IIpAddressApi; props: IIpAddressProps; state: IIpAddressState }) =>
   (value: string) => {
-    if (value) {
-      /* istanbul ignore else */
-      if (api?.ipValidator?.(value)) {
-        if (api.isIP6(props.type)) {
-          state.address = value.split(':').map((item) => ({ value: item }))
-          if (state.address.length < 8) {
-            let insertIndex = 0
-            state.address.forEach((item, index) => {
-              if (item.value === '') {
-                item.value = '0000'
-                insertIndex = index
-              }
-            })
-            for (let i = 0; i <= 8 - state.address.length; i++) {
-              state.address.splice(insertIndex, 0, { value: '0000' })
-            }
-          }
-        } else {
-          state.address = value.split('.').map((item) => ({ value: item }))
-        }
-      }
-    } else {
+    if (!value || !api?.ipValidator?.(value)) {
       const createValue = () => ({ value: '' })
       state.address = api.isIP6(props.type)
-        ? new Array(8).fill('').map(createValue)
-        : new Array(4).fill('').map(createValue)
+        ? Array.from({ length: 8 }, createValue)
+        : Array.from({ length: 4 }, createValue)
+
+      return
+    }
+
+    if (api.isIP6(props.type)) {
+      state.address = value.split(':').map((item) => ({ value: item }))
+      if (state.address.length < 8) {
+        const missingCount = 8 - state.address.length
+        const emptyIndex = state.address.findIndex((item) => item.value === '')
+        const insertIndex = emptyIndex >= 0 ? emptyIndex : 0
+
+        if (emptyIndex >= 0) {
+          state.address[emptyIndex].value = '0000'
+        }
+
+        const newItems = Array(missingCount).fill({ value: '0000' })
+        state.address.splice(insertIndex, 0, ...newItems)
+      }
+    } else {
+      state.address = value.split('.').map((item) => ({ value: item }))
     }
   }
 
