@@ -144,6 +144,7 @@ export default {
       codeFiles: ['click.vue']
     }
   ],
+  show: true, // 是否展示在官网文档中
   cloud: true, // 是否是规范内的组件
   features: [
     {

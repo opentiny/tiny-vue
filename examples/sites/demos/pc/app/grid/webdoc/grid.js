@@ -1,6 +1,8 @@
 export default {
   column: '1',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'base-basic-usage',

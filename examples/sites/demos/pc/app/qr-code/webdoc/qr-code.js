@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   meta: {
     stable: '3.12.0'
   },
