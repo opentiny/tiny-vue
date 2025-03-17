@@ -12,11 +12,11 @@
       <div><tiny-switch v-model="isCloud"></tiny-switch> 是否规范内组件</div>
 
       <div
-        v-for="component of isCloud ? components.filter((item) => item.config.cloud) : components"
+        v-for="(component, componentIndex) of isCloud ? components.filter((item) => item.config.cloud) : components"
         :key="component.name"
       >
         <h3 class="flex-center">
-          {{ toUpperCamelCase(component.name) }}
+          {{ componentIndex + 1 }}. {{ toUpperCamelCase(component.name) }}
           <span class="component-count mr-xs">{{ component.config.features?.length || 0 }}</span>
         </h3>
         <tiny-layout v-if="component.config.features" :cols="24">
