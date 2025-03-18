@@ -85,3 +85,28 @@ module.exports = {
   transpileDependencies: ['@opentiny/fluent-editor', 'quill']
 }
 ```
+
+## 4、通过 `@opentiny/utils` 配置 `xss` 白名单（v3.21.0 开始支持）
+
+目前进行严格的过滤，建议使用 `JS-XSS` 进行处理。对不符合要求的代码片段做删除处理，若开发者在开发期间有其他 `HTML` 标签确认安全（富文本场景）的需求场景，由开发者手动配置 `xss` 白名单。
+
+使用 `@opentiny/utils` 中的 `setXssOption` 方法传入自定义的 `xss` 白名单，示例：
+
+```js
+import { xss } from '@opentiny/utils'
+
+const options = {
+  enableAttrs: true,
+  enableHtml: true,
+  enableUrl: true,
+
+  html: {
+    whiteList: {
+      a: ['class', 'style', 'contenteditable', 'data-id', 'data-title', 'data-size', 'href', 'data-last-modified'],
+      img: ['class', 'style', 'devui-editorx-image', 'style', 'data-image-id', 'src']
+    }
+  }
+}
+
+xss.setXssOption(options)
+```
