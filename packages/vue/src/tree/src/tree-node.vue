@@ -114,7 +114,8 @@
             :validate-event="false"
             :label="node.id"
             :disabled="!!node.disabled"
-          ></tiny-radio>
+            class="tiny-tree-node__content-left__radio"
+          />
           <icon-loading v-if="node.loading" class="tiny-tree-node__loading" />
           <slot name="prefix" :node="node"></slot>
           <template v-if="action.type === 'edit' && action.node && action.node === node">

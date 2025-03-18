@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'base',
@@ -41,6 +43,34 @@ export default {
         'en-US': 'Container labels can be customized through<code>tag</code>.'
       },
       codeFiles: ['tag.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'text-direction',
+      name: '文本方向',
+      support: {
+        value: true
+      },
+      description: '支持设置全局文本方向，包括从左到右和从右到左。',
+      cloud: {
+        value: true
+      },
+      apis: ['text-direction'],
+      demos: ['text-direct']
+    },
+    {
+      id: 'component-config',
+      name: '组件配置',
+      support: {
+        value: true
+      },
+      description: '支持配置全局组件属性，如标签、按钮等组件的默认属性。',
+      cloud: {
+        value: true
+      },
+      apis: ['component-config'],
+      demos: ['tag']
     }
   ]
 }

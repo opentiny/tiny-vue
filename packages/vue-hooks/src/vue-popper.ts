@@ -58,6 +58,11 @@ const getReferMaxZIndex = (reference) => {
   do {
     reference = reference.parentNode
 
+    // 处理遇到shadowRoot的情况
+    if (reference && reference instanceof ShadowRoot && reference.host) {
+      reference = reference.host
+    }
+
     if (reference) {
       z = getZIndex(reference)
     } else {

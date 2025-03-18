@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -659,6 +661,60 @@ export default {
           '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change: Listen for changes in the value of the v-model.</p><p>clear: When listening to radio selection, click the clear button.</p>\n<p>blur: Listening to input losing focus.</p>\n<p>focus: Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag: Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click: Listens to the click event of the drop-down icon.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定变量，placeholder 设置占位符文本。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'placeholder'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'options',
+      name: '选项配置',
+      support: {
+        value: true
+      },
+      description: '通过 options 属性配置选项数据，支持禁用、分组等配置。',
+      cloud: {
+        value: true
+      },
+      apis: ['options'],
+      demos: ['options']
+    },
+    {
+      id: 'multiple',
+      name: '多选',
+      support: {
+        value: true
+      },
+      description: '通过 multiple 属性启用多选模式，可设置最大选择数量。',
+      cloud: {
+        value: true
+      },
+      apis: ['multiple', 'max-collapse-tags'],
+      demos: ['multiple']
+    },
+    {
+      id: 'filterable',
+      name: '可搜索',
+      support: {
+        value: true
+      },
+      description: '通过 filterable 属性启用搜索功能，可自定义搜索方法。',
+      cloud: {
+        value: true
+      },
+      apis: ['filterable', 'filter-method'],
+      demos: ['filterable']
     }
   ]
 }

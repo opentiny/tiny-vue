@@ -430,7 +430,7 @@
     }
   }
 
-  &.row__highlight &-body__row:hover {
+  &.row__highlight &-body__row:not(.row__selected):hover {
     background-color: var(--tv-Grid-bg-color-hover);
 
     .fixed__column {
@@ -954,11 +954,15 @@
       color: var(--tv-Grid-text-color);
       border-radius: var(--tv-Grid-input-border-radius);
       border: 1px solid var(--tv-Grid-border-color-divider);
-      background-color: var(--tv-Grid-Input-bg-color);
+      background-color: var(--tv-Grid-input-bg-color);
 
       &:focus {
         border: 1px solid var(--tv-Grid-input-border-color-hover);
       }
+    }
+
+    select.@{grid-prefix-cls}-default-select option {
+      background-color: var(--tv-Grid-select-option-bg-color);
     }
 
     .@{grid-prefix-cls}-editor {
@@ -966,7 +970,7 @@
       height: var(--tv-Grid-input-height);
       line-height: normal;
       color: var(--tv-Grid-text-color);
-      background-color: var(--tv-Grid-Input-bg-color);
+      background-color: var(--tv-Grid-input-bg-color);
 
       .@{input-prefix-cls} {
         width: 100%;

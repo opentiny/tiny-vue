@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -92,6 +94,86 @@ export default {
           'Set<code>type="circle"</code>to the circular type, and<code>type="dashboard"</code>to the C-shaped circular type< Code>width</code>Set the width of the circular progress bar canvas, with a default value of 126px.'
       },
       codeFiles: ['progress-type-circle.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 percentage 设置进度值，stroke-width 设置进度条的宽度。',
+      cloud: {
+        value: true
+      },
+      apis: ['percentage', 'stroke-width'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'color',
+      name: '颜色配置',
+      support: {
+        value: true
+      },
+      description: '通过 color 设置进度条颜色，会覆盖 status 状态颜色。',
+      cloud: {
+        value: true
+      },
+      apis: ['color'],
+      demos: ['custom-color']
+    },
+    {
+      id: 'text',
+      name: '文字配置',
+      support: {
+        value: true
+      },
+      description: '通过 show-text 设置文字显隐，text-inside 设置文字内置显示，format 自定义进度条文字。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-text', 'text-inside', 'format'],
+      demos: ['format-text']
+    },
+    {
+      id: 'status',
+      name: '状态',
+      support: {
+        value: true
+      },
+      description: '通过 status 设置当前状态，可选值：success、exception、warning。',
+      cloud: {
+        value: true
+      },
+      apis: ['status'],
+      demos: ['progress-status']
+    },
+    {
+      id: 'icon',
+      name: '图标状态',
+      support: {
+        value: true
+      },
+      description: '通过插槽自定义状态图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-icon-status'],
+      demos: ['slot-icon-status']
+    },
+    {
+      id: 'type',
+      name: '类型',
+      support: {
+        value: true
+      },
+      description: '通过 type 设置进度条类型，支持 line、circle、dashboard，width 设置环形进度条画布宽度。',
+      cloud: {
+        value: true
+      },
+      apis: ['type', 'width'],
+      demos: ['progress-type-circle']
     }
   ]
 }

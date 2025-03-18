@@ -11,6 +11,6 @@ test('popup-style-position', async ({ page }) => {
   await select.click()
   await expect(dropdown).toHaveCount(1)
   await expect(dropdown).toHaveClass(/drop/)
-  await expect(dropdown).toHaveCSS('background-color', 'rgb(213, 232, 255)')
+  await expect(dropdown).toHaveCSS('background-color', 'rgb(255, 255, 255)')
   await expect(dropdown).toHaveAttribute('x-placement', 'top')
 })

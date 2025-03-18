@@ -7,7 +7,7 @@
     :style="wrapperStyle"
     @scroll="scrollEvent"
   >
-    <template v-if="slotEmpty || renderEmpty">
+    <template v-if="exceptionVisible && (slotEmpty || renderEmpty)">
       <custom-empty />
     </template>
     <exception
