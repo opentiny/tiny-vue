@@ -103,7 +103,7 @@ const options = {
   html: {
     whiteList: {
       a: ['class', 'style', 'contenteditable', 'data-id', 'data-title', 'data-size', 'href', 'data-last-modified'],
-      img: ['class', 'style', 'devui-editorx-image', 'style', 'data-image-id', 'src']
+      img: ['class', 'style', 'style', 'data-image-id', 'src']
     }
   }
 }
