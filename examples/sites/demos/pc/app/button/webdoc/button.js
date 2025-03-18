@@ -144,8 +144,8 @@ export default {
       codeFiles: ['click.vue']
     }
   ],
-  show: true, // 是否展示在官网文档中
-  cloud: true, // 是否是规范内的组件
+  show: true,
+  cloud: true,
   features: [
     {
       id: 'type',
@@ -154,15 +154,13 @@ export default {
         value: true
       },
       description: '支持主要按钮、次要按钮、成功按钮、警告按钮、危险按钮、信息按钮、文字按钮7种类型。',
-
-      // 是否是规范内的特性
       cloud: {
         value: true,
-        remark: '规范只支持主要按钮、次要按钮、危险按钮、文本按钮4种，不支持成功按钮、警告按钮、信息按钮。' // 有些特性并非全部在规范内，所以需要进行备注
+        remark: '规范只支持主要按钮、次要按钮、危险按钮、文本按钮4种，不支持成功按钮、警告按钮、信息按钮。'
       },
 
-      apis: ['type'], // 该特性涉及到哪些 API
-      demos: ['basic-usage'] // 该特性在哪些 Demo 中体现
+      apis: ['type'],
+      demos: ['basic-usage']
     },
     {
       id: 'round',
@@ -172,7 +170,7 @@ export default {
       },
       description: '按钮两边都是半圆形。',
       cloud: {
-        value: true // 规范默认就是圆角
+        value: true
       },
       apis: ['round'],
       demos: ['round']

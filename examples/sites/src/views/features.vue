@@ -97,7 +97,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { TinyLayout, TinyRow, TinyCol, TinySwitch, TinyPopover, TinyDivider, TinyTag } from '@opentiny/vue'
 import { IconInfoCircle } from '@opentiny/vue-icon'
 import { onMounted, ref } from 'vue'
