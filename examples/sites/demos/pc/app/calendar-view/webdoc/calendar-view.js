@@ -188,5 +188,204 @@ export default {
       },
       codeFiles: ['calendar-event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '默认以月的形式展示当月的每一天。',
+      cloud: {
+        value: false
+      },
+      apis: [],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'mode',
+      name: '显示模式',
+      support: {
+        value: true
+      },
+      description: '通过 mode 属性指定以年的形式显示，将展示当年的每个月份。可选值有 month、timeline、schedule。',
+      cloud: {
+        value: false
+      },
+      apis: ['mode'],
+      demos: ['calendar-mode']
+    },
+    {
+      id: 'disabled',
+      name: '日期禁用',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 回调函数来禁用某些日期。',
+      cloud: {
+        value: false
+      },
+      apis: ['disabled'],
+      demos: ['calendar-disabled-day']
+    },
+    {
+      id: 'schedule-slot',
+      name: '日程模式插槽',
+      support: {
+        value: true
+      },
+      description: '日程模式下内容区提供 weekday1-weekday7 这 7 个插槽，方便用户自定义日程展示。',
+      cloud: {
+        value: false
+      },
+      apis: [
+        'slot-weekday1',
+        'slot-weekday2',
+        'slot-weekday3',
+        'slot-weekday4',
+        'slot-weekday5',
+        'slot-weekday6',
+        'slot-weekday7'
+      ],
+      demos: ['calendar-schedule-slot']
+    },
+    {
+      id: 'timeline-slot',
+      name: '时间线插槽',
+      support: {
+        value: true
+      },
+      description: '时间下模式下提供 timeline1-timeline7 这 7 个插槽，方便用户自定义日程展示。',
+      cloud: {
+        value: false
+      },
+      apis: [
+        'slot-timeline1',
+        'slot-timeline2',
+        'slot-timeline3',
+        'slot-timeline4',
+        'slot-timeline5',
+        'slot-timeline6',
+        'slot-timeline7'
+      ],
+      demos: ['calendar-timeline-slot']
+    },
+    {
+      id: 'timeline-range',
+      name: '时间线范围配置',
+      support: {
+        value: true
+      },
+      description: '通过 dayTimes 属性配置时间线模式下所展示的时间范围，默认为 [8,18]，可配范围 [0,23]。',
+      cloud: {
+        value: false
+      },
+      apis: ['dayTimes'],
+      demos: ['calendar-timeline-range']
+    },
+    {
+      id: 'multi-select',
+      name: '日期多选',
+      support: {
+        value: true
+      },
+      description: '设置 mult-select = true 属性后，可开启日期多选。',
+      cloud: {
+        value: false
+      },
+      apis: ['mult-select'],
+      demos: ['multi-select']
+    },
+    {
+      id: 'day-mark',
+      name: '日期标记',
+      support: {
+        value: true
+      },
+      description:
+        '通过 showMark 回调函数来标记某些日期，markColor 属性设置标记的颜色，此功能只在时间线模式和日程模式生效。',
+      cloud: {
+        value: false
+      },
+      apis: ['showMark', 'markColor'],
+      demos: ['calendar-day-mark']
+    },
+    {
+      id: 'custom-header',
+      name: '自定义头部显示',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 header 自定义需要显示的头部区域。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-header'],
+      demos: ['custom-header']
+    },
+    {
+      id: 'custom-toolbar',
+      name: '自定义工具栏',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 tool 自定义需要的工具栏。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-tool'],
+      demos: ['custom-calendar-toolbar']
+    },
+    {
+      id: 'day-bg-color',
+      name: '自定义单元格背景色',
+      support: {
+        value: true
+      },
+      description:
+        '自定义日期单元格背景色，目前只支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey。',
+      cloud: {
+        value: false
+      },
+      apis: ['day-bg-color'],
+      demos: ['custom-day-bg-color']
+    },
+    {
+      id: 'working-day',
+      name: '设置工作日或节假日',
+      support: {
+        value: true
+      },
+      description: '可以结合日期多选，自定义背景色，工具栏插槽等功能实现设置工作日或节假日的功能。',
+      cloud: {
+        value: false
+      },
+      apis: [],
+      demos: ['set-working-day']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description:
+        '日历抛出的事件包括：new-schedule、selected-date-change、prev-week-click、next-week-click、week-change、year-change、month-change、mode-change。',
+      cloud: {
+        value: false
+      },
+      apis: [
+        'new-schedule',
+        'selected-date-change',
+        'prev-week-click',
+        'next-week-click',
+        'week-change',
+        'year-change',
+        'month-change',
+        'mode-change'
+      ],
+      demos: ['calendar-event']
+    }
   ]
 }

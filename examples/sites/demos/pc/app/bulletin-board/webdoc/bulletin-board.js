@@ -119,5 +119,124 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置公告牌公告信息数据，tab-title 属性设置每个公告牌标题。',
+      cloud: {
+        value: false
+      },
+      apis: ['data', 'tab-title'],
+      demos: ['base']
+    },
+    {
+      id: 'title',
+      name: '公告牌标题',
+      support: {
+        value: true
+      },
+      description: '通过 title 设置公告牌标题。',
+      cloud: {
+        value: false
+      },
+      apis: ['title'],
+      demos: ['title']
+    },
+    {
+      id: 'active-name',
+      name: '默认激活选项卡',
+      support: {
+        value: true
+      },
+      description: '通过 active-name 设置默认激活的选项卡，从 1 开始计算。',
+      cloud: {
+        value: false
+      },
+      apis: ['active-name'],
+      demos: ['active-name']
+    },
+    {
+      id: 'tab-title',
+      name: '选项卡标题',
+      support: {
+        value: true
+      },
+      description: '通过 tab-title 设置自定义选项卡标题。',
+      cloud: {
+        value: false
+      },
+      apis: ['tab-title'],
+      demos: ['tab-title']
+    },
+    {
+      id: 'url',
+      name: 'URL跳转',
+      support: {
+        value: true
+      },
+      description: '基于 Url 的跳转是通过数据中的 url 和 target 字段进行设置的。',
+      cloud: {
+        value: false
+      },
+      apis: ['url', 'target'],
+      demos: ['url']
+    },
+    {
+      id: 'route',
+      name: '路由跳转',
+      support: {
+        value: true
+      },
+      description: '基于 Route 的跳转是通过数据中的 route 字段进行设置的。',
+      cloud: {
+        value: false
+      },
+      apis: ['route'],
+      demos: ['route']
+    },
+    {
+      id: 'more-link',
+      name: '更多链接',
+      support: {
+        value: true
+      },
+      description: '通过 more-link 显示并设置更多链接，show-more 设置是否显示更多按钮。',
+      cloud: {
+        value: false
+      },
+      apis: ['more-link', 'show-more'],
+      demos: ['more-link']
+    },
+    {
+      id: 'icon',
+      name: '公告前缀',
+      support: {
+        value: true
+      },
+      description: '通过 icon 自定义新公告前缀图标。',
+      cloud: {
+        value: false
+      },
+      apis: ['icon'],
+      demos: ['icon']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当点击内容后会触发 contentClick 事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['contentClick'],
+      demos: ['events']
+    }
   ]
 }

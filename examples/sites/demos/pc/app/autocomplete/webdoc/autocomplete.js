@@ -213,5 +213,203 @@ export default {
       },
       codeFiles: ['select-event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'fetch-suggestions',
+      name: '输入建议',
+      support: {
+        value: true
+      },
+      description: '通过 fetch-suggestions 方法设置输入建议，支持远程搜索。',
+      cloud: {
+        value: true
+      },
+      apis: ['fetch-suggestions'],
+      demos: ['basic-usage', 'remote-search']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 属性可以设置为禁用状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'size',
+      name: '尺寸设置',
+      support: {
+        value: true
+      },
+      description: '可选择值为 medium、default、small、mini，不传递就是默认尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'clearable',
+      name: '可清除',
+      support: {
+        value: true
+      },
+      description: '配置 clearable 属性后，输入内容后会显示清除图标，单击可以清除输入框内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['clearable'],
+      demos: ['clearable']
+    },
+    {
+      id: 'icon',
+      name: '图标设置',
+      support: {
+        value: true
+      },
+      description: '配置 prefix-icon 和 suffix-icon 属性可分别自定义输入框前后置图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['prefix-icon', 'suffix-icon'],
+      demos: ['custom-icon']
+    },
+    {
+      id: 'debounce',
+      name: '去抖延时',
+      support: {
+        value: true
+      },
+      description: '通过 debounce 属性可以设置获取输入建议的去抖延时，默认值为 300 毫秒。',
+      cloud: {
+        value: true
+      },
+      apis: ['debounce'],
+      demos: ['debounce']
+    },
+    {
+      id: 'loading',
+      name: '加载状态',
+      support: {
+        value: true
+      },
+      description: '设置 hide-loading 属性为 true 可以隐藏加载图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['hide-loading'],
+      demos: ['hide-loading']
+    },
+    {
+      id: 'display-only',
+      name: '只读状态',
+      support: {
+        value: true
+      },
+      description: '通过 display-only 属性添加只读状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['display-only'],
+      demos: ['display-only']
+    },
+    {
+      id: 'value-key',
+      name: '显示键名',
+      support: {
+        value: true
+      },
+      description: '通过 value-key 属性指定显示的键名，默认显示输入建议对象中 value 键名对应的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['value-key'],
+      demos: ['value-key']
+    },
+    {
+      id: 'popper',
+      name: '下拉列表',
+      support: {
+        value: true
+      },
+      description:
+        '通过 popper-class 自定义建议列表样式，通过 popper-append-to-body 设置是否将下拉列表插入至 body 元素。',
+      cloud: {
+        value: true
+      },
+      apis: ['popper-class', 'popper-append-to-body'],
+      demos: ['popper-class']
+    },
+    {
+      id: 'placement',
+      name: '弹出位置',
+      support: {
+        value: true
+      },
+      description: '通过 placement 属性可以设置菜单弹出位置，默认为 bottom-start。',
+      cloud: {
+        value: true
+      },
+      apis: ['placement'],
+      demos: ['placement']
+    },
+    {
+      id: 'highlight',
+      name: '高亮设置',
+      support: {
+        value: true
+      },
+      description: '设置 highlight-first-item 属性为 true 可以突出显示远程搜索建议中的第一项。',
+      cloud: {
+        value: true
+      },
+      apis: ['highlight-first-item'],
+      demos: ['highlight-first-item']
+    },
+    {
+      id: 'trigger',
+      name: '触发方式',
+      support: {
+        value: true
+      },
+      description: '通过 trigger-on-focus 属性设置是否在输入框聚焦时显示建议列表。',
+      cloud: {
+        value: true
+      },
+      apis: ['trigger-on-focus'],
+      demos: ['no-trigger-on-focus']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '提供 select 事件，点击选中建议项时触发，可通过 select-when-unmatched 设置未匹配时的行为。',
+      cloud: {
+        value: true
+      },
+      apis: ['select', 'select-when-unmatched'],
+      demos: ['select-event']
+    },
+    {
+      id: 'slot',
+      name: '插槽功能',
+      support: {
+        value: true
+      },
+      description: '支持 prepend、append、prefix、suffix、default 等插槽自定义内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-prepend', 'slot-append', 'slot-prefix', 'slot-suffix', 'slot-default'],
+      demos: ['slot']
+    }
   ]
 }

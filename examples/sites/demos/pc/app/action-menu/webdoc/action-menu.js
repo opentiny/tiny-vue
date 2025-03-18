@@ -148,5 +148,150 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'options',
+      name: '菜单配置',
+      support: {
+        value: true
+      },
+      description: '通过 options 属性配置菜单内容，label 定义节点的显示文本。',
+      cloud: {
+        value: true
+      },
+      apis: ['options', 'label'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 字段设置当前下拉选项是否为禁用状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'icon',
+      name: '图标配置',
+      support: {
+        value: true
+      },
+      description: '支持设置菜单项图标、下拉触发源图标，以及控制图标显示。',
+      cloud: {
+        value: true
+      },
+      apis: ['icon', 'suffix-icon', 'show-icon'],
+      demos: ['icon']
+    },
+    {
+      id: 'text-field',
+      name: '文本映射',
+      support: {
+        value: true
+      },
+      description: '通过 text-field 属性设置菜单项文本的键值，默认为 label。',
+      cloud: {
+        value: true
+      },
+      apis: ['text-field'],
+      demos: ['text-field']
+    },
+    {
+      id: 'more-text',
+      name: '下拉按钮文本',
+      support: {
+        value: true
+      },
+      description: '通过 more-text 属性设置下拉按钮文本，默认为"更多"。',
+      cloud: {
+        value: true
+      },
+      apis: ['more-text'],
+      demos: ['more-text']
+    },
+    {
+      id: 'spacing',
+      name: '间距设置',
+      support: {
+        value: true
+      },
+      description: '通过 spacing 属性设置菜单按钮之间的间距，默认为 5px。',
+      cloud: {
+        value: true
+      },
+      apis: ['spacing'],
+      demos: ['spacing']
+    },
+    {
+      id: 'mode',
+      name: '菜单模式',
+      support: {
+        value: true
+      },
+      description: '支持设置菜单模式以适配不同场景，如卡片模式等。',
+      cloud: {
+        value: true
+      },
+      apis: ['mode'],
+      demos: ['card-mode']
+    },
+    {
+      id: 'popper-class',
+      name: '弹框样式',
+      support: {
+        value: true
+      },
+      description: '通过 popper-class 属性设置下拉面板的类名，支持自定义样式。',
+      cloud: {
+        value: true
+      },
+      apis: ['popper-class'],
+      demos: ['popper-class']
+    },
+    {
+      id: 'max-show-num',
+      name: '显示个数限制',
+      support: {
+        value: true
+      },
+      description: '通过 max-show-num 属性设置最多显示菜单按钮的个数，默认为 2。',
+      cloud: {
+        value: true
+      },
+      apis: ['max-show-num'],
+      demos: ['max-show-num']
+    },
+    {
+      id: 'slot',
+      name: '插槽功能',
+      support: {
+        value: true
+      },
+      description: '支持通过 item 插槽自定义下拉选项的 HTML 模板。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-item'],
+      demos: ['slot-item']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '支持监听菜单项点击、下拉按钮点击、弹框显示状态变化等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['item-click', 'more-click', 'visible-change'],
+      demos: ['events']
+    }
   ]
 }

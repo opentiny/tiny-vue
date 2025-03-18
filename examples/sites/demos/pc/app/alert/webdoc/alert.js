@@ -154,5 +154,138 @@ export default {
       },
       codeFiles: ['custom-class.vue']
     }
+  ],
+  features: [
+    {
+      id: 'type',
+      name: '类型',
+      support: {
+        value: true
+      },
+      description: '通过 type 属性设置不同的提示类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸模式',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置不同的尺寸模式，可选值：normal（简单模式）、large（完整模式）。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'title',
+      name: '标题设置',
+      support: {
+        value: true
+      },
+      description: '当 size 为 large 时，通过 title 属性或 title 插槽自定义组件标题，通过 show-title 控制标题显示。',
+      cloud: {
+        value: true
+      },
+      apis: ['title', 'show-title'],
+      demos: ['title']
+    },
+    {
+      id: 'description',
+      name: '内容设置',
+      support: {
+        value: true
+      },
+      description: '通过 description 属性或 description 插槽设置提示内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['description'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'center',
+      name: '内容居中',
+      support: {
+        value: true
+      },
+      description: '通过 center 属性设置内容显示居中。',
+      cloud: {
+        value: true
+      },
+      apis: ['center'],
+      demos: ['center']
+    },
+    {
+      id: 'icon',
+      name: '图标设置',
+      support: {
+        value: true
+      },
+      description: '通过 icon 属性设置自定义图标，未设置时根据 type 自动使用对应图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['icon'],
+      demos: ['icon']
+    },
+    {
+      id: 'show-icon',
+      name: '图标显示控制',
+      support: {
+        value: true
+      },
+      description: '通过 show-icon 属性控制左侧图标是否显示。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-icon'],
+      demos: ['show-icon']
+    },
+    {
+      id: 'closable',
+      name: '关闭功能',
+      support: {
+        value: true
+      },
+      description:
+        '通过 closable 属性启用内置关闭图标，通过 close-text 设置关闭按钮文本，支持通过 close 插槽自定义关闭按钮。',
+      cloud: {
+        value: true
+      },
+      apis: ['closable', 'close-text'],
+      demos: ['custom-close']
+    },
+    {
+      id: 'custom-class',
+      name: '自定义类名',
+      support: {
+        value: true
+      },
+      description: '通过 custom-class 设置自定义类名。',
+      cloud: {
+        value: true
+      },
+      apis: ['custom-class'],
+      demos: ['custom-class']
+    },
+    {
+      id: 'slot',
+      name: '插槽功能',
+      support: {
+        value: true
+      },
+      description: '支持通过默认插槽自定义交互操作区域，通过 title 插槽自定义标题，通过 close 插槽自定义关闭按钮。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-default', 'slot-title', 'slot-close'],
+      demos: ['slot-default', 'custom-close']
+    }
   ]
 }

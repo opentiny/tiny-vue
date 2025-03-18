@@ -54,5 +54,85 @@ export default {
       },
       codeFiles: ['change.vue']
     }
+  ],
+  features: [
+    {
+      id: 'links',
+      name: '导航数据',
+      support: {
+        value: true
+      },
+      description: '通过 links 属性设置导航数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['links'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'type',
+      name: '类型设置',
+      support: {
+        value: true
+      },
+      description: '通过 type 属性设置导航类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'is-affix',
+      name: '固定模式',
+      support: {
+        value: true
+      },
+      description: '通过 is-affix 属性设置固定定位，使导航不随页面滚动。',
+      cloud: {
+        value: true
+      },
+      apis: ['is-affix'],
+      demos: ['is-affix']
+    },
+    {
+      id: 'container',
+      name: '滚动容器',
+      support: {
+        value: true
+      },
+      description: '通过 container-id 设置滚动容器，实现指定容器内的滚动效果。',
+      cloud: {
+        value: true
+      },
+      apis: ['container-id'],
+      demos: ['set-container']
+    },
+    {
+      id: 'mark-class',
+      name: '高亮样式',
+      support: {
+        value: true
+      },
+      description: '通过 mark-class 设置自定义类名，用于高亮显示导航的目标元素。',
+      cloud: {
+        value: true
+      },
+      apis: ['mark-class'],
+      demos: ['set-container']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '支持监听锚点点击事件（link-click）和锚点改变事件（change）。',
+      cloud: {
+        value: true
+      },
+      apis: ['link-click', 'change'],
+      demos: ['set-container', 'change']
+    }
   ]
 }

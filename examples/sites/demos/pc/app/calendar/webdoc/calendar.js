@@ -94,5 +94,98 @@ export default {
       },
       codeFiles: ['dynamic-add-schedule.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '默认以月的形式展示当月的每一天。',
+      cloud: {
+        value: false
+      },
+      apis: [],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'mode',
+      name: '显示模式',
+      support: {
+        value: true
+      },
+      description: '通过 mode 属性指定以年的形式显示，将展示当年的每个月份。可选值有 year、month。',
+      cloud: {
+        value: false
+      },
+      apis: ['mode'],
+      demos: ['calendar-mode']
+    },
+    {
+      id: 'show-selected',
+      name: '显示选中日期',
+      support: {
+        value: true
+      },
+      description: '以月的形式展示时，指定 show-selected 属性后，单击日期单元格，将会在日历框上方展示当前选中的日期。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-selected'],
+      demos: ['show-selected-date']
+    },
+    {
+      id: 'year-month',
+      name: '指定年月',
+      support: {
+        value: true
+      },
+      description: '通过 year 属性指定年份，通过 month 属性指定月份。',
+      cloud: {
+        value: false
+      },
+      apis: ['year', 'month'],
+      demos: ['calendar-year-month']
+    },
+    {
+      id: 'day-cell',
+      name: '自定义日期单元格',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 day 自定义日期单元格。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-day'],
+      demos: ['custom-day-cell']
+    },
+    {
+      id: 'toolbar',
+      name: '自定义工具栏',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 tool 自定义需要的工具栏。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-tool'],
+      demos: ['custom-calendar-toolbar']
+    },
+    {
+      id: 'events',
+      name: '日程事件',
+      support: {
+        value: true
+      },
+      description: '通过 events 属性可以指定事件列表，它是一个对象数组，对象中包含 time、title、content、type 等字段。',
+      cloud: {
+        value: false
+      },
+      apis: ['events'],
+      demos: ['dynamic-add-schedule']
+    }
   ]
 }

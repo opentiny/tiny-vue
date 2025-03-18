@@ -72,5 +72,72 @@ export default {
       },
       codeFiles: ['options.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 select 监听面包屑选中事件，通过 to 设置选项路由跳转对象，通过 label 设置选项名称。',
+      cloud: {
+        value: true
+      },
+      apis: ['select', 'to', 'label'],
+      demos: ['base']
+    },
+    {
+      id: 'size',
+      name: '尺寸设置',
+      support: {
+        value: true
+      },
+      description: '通过 size 自定义尺寸，仅支持 medium 尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'separator',
+      name: '分隔符',
+      support: {
+        value: true
+      },
+      description: '通过 separator 或 separator-icon 自定义分隔符。',
+      cloud: {
+        value: true
+      },
+      apis: ['separator', 'separator-icon'],
+      demos: ['separator']
+    },
+    {
+      id: 'options',
+      name: '配置式',
+      support: {
+        value: true
+      },
+      description: '通过 options 配置每个 BreadcrumbItem，通过 text-field 指定显示键值，默认显示键值为 label。',
+      cloud: {
+        value: true
+      },
+      apis: ['options', 'text-field'],
+      demos: ['options']
+    },
+    {
+      id: 'slot',
+      name: '插槽功能',
+      support: {
+        value: true
+      },
+      description: '通过默认插槽自定义节点内容，支持 replace 设置不向浏览器历史添加新记录。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-default', 'replace'],
+      demos: ['slot-default']
+    }
   ]
 }
