@@ -1,4 +1,4 @@
-import { nextTick, ref } from 'vue'
+import { ref } from 'vue'
 import Transfer from '@opentiny/vue-transfer'
 import { describe, expect, test, vi } from 'vitest'
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
@@ -117,7 +117,6 @@ describe('PC Mode', () => {
         onLeftCheckChange: leftChangeEvent
       }
     })
-    await nextTick()
     const tinyTransfer = wrapper.findComponent({ name: 'TinyTransfer' })
     await tinyTransfer.find('.tiny-transfer-panel__body .tiny-transfer-panel__list label').trigger('click')
     expect(leftChangeEvent).toBeCalled()
