@@ -12,7 +12,7 @@ import {
   isSame,
   isRegExp,
   isPromise
-} from '../src/type'
+} from '..'
 
 describe('类型判断工具函数测试', () => {
   describe('isNull', () => {
@@ -155,13 +155,25 @@ describe('类型判断工具函数测试', () => {
   })
 
   describe('isRegExp', () => {
-    it('应该正确判断正则表达式', () => {
-      expect(isRegExp(/test/)).toBe(true)
-      expect(isRegExp(/test/)).toBe(true)
-      expect(isRegExp('/test/')).toBe(false)
-      expect(isRegExp({})).toBe(false)
-      expect(isRegExp(null)).toBe(false)
-      expect(isRegExp(undefined)).toBe(false)
+    const testCases = [
+      { input: /test/, expected: true, description: '字面量正则表达式应该返回true' },
+      { input: /test/i, expected: true, description: '带修饰符的正则表达式应该返回true' },
+      { input: /\d+/g, expected: true, description: '带特殊字符和修饰符的正则表达式应该返回true' },
+      { input: '/test/', expected: false, description: '字符串不应该被识别为正则表达式' },
+      { input: {}, expected: false, description: '空对象不应该被识别为正则表达式' },
+      {
+        input: { source: 'test', flags: 'g' },
+        expected: false,
+        description: '类似正则表达式的对象不应该被识别为正则表达式'
+      },
+      { input: null, expected: false, description: 'null不应该被识别为正则表达式' },
+      { input: undefined, expected: false, description: 'undefined不应该被识别为正则表达式' },
+      { input: 123, expected: false, description: '数字不应该被识别为正则表达式' },
+      { input: true, expected: false, description: '布尔值不应该被识别为正则表达式' }
+    ]
+
+    it.each(testCases)('$description', ({ input, expected }) => {
+      expect(isRegExp(input)).toBe(expected)
     })
   })
 
