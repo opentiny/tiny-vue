@@ -111,5 +111,72 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置当前激活的面板。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'accordion',
+      name: '手风琴效果',
+      support: {
+        value: true
+      },
+      description: '通过 accordion 设置是否以手风琴模式显示。',
+      cloud: {
+        value: true
+      },
+      apis: ['accordion'],
+      demos: ['accordion']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用折叠面板。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'custom-title',
+      name: '自定义标题',
+      support: {
+        value: true
+      },
+      description: '通过 title 插槽可以自定义标题。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-title'],
+      demos: ['custom-title']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当前激活面板改变时会触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['events']
+    }
   ]
 }

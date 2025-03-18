@@ -96,5 +96,72 @@ export default {
       },
       codeFiles: ['format.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置颜色值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'show-alpha',
+      name: '透明度选择',
+      support: {
+        value: true
+      },
+      description: '通过 show-alpha 设置是否支持透明度选择。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-alpha'],
+      demos: ['show-alpha']
+    },
+    {
+      id: 'color-format',
+      name: '颜色格式',
+      support: {
+        value: true
+      },
+      description: '通过 color-format 设置颜色格式，可选值为 hex、rgb、hsl。',
+      cloud: {
+        value: true
+      },
+      apis: ['color-format'],
+      demos: ['color-format']
+    },
+    {
+      id: 'predefine',
+      name: '预定义颜色',
+      support: {
+        value: true
+      },
+      description: '通过 predefine 设置预定义颜色。',
+      cloud: {
+        value: true
+      },
+      apis: ['predefine'],
+      demos: ['predefine']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当颜色值改变时会触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['events']
+    }
   ]
 }

@@ -32,5 +32,33 @@ export default {
       },
       codeFiles: ['custom-with-height.vue']
     }
+  ],
+  features: [
+    {
+      id: 'layout',
+      name: '布局容器',
+      support: {
+        value: true
+      },
+      description: '提供基础的页面布局结构，包括头部、侧边栏、主体区域和底部。',
+      cloud: {
+        value: true
+      },
+      apis: ['layout'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'height',
+      name: '高度设置',
+      support: {
+        value: true
+      },
+      description: '支持自定义容器高度，可以设置固定高度或百分比高度。',
+      cloud: {
+        value: true
+      },
+      apis: ['height'],
+      demos: ['custom-with-height']
+    }
   ]
 }

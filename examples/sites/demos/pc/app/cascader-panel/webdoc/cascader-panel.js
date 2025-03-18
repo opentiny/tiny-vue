@@ -72,5 +72,85 @@ export default {
       },
       codeFiles: ['change.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置级联面板的数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用级联面板。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'change-on-select',
+      name: '选择即改变',
+      support: {
+        value: true
+      },
+      description: '通过 change-on-select 设置选择即改变。',
+      cloud: {
+        value: true
+      },
+      apis: ['change-on-select'],
+      demos: ['show-all-levels']
+    },
+    {
+      id: 'multiple',
+      name: '多选功能',
+      support: {
+        value: true
+      },
+      description: '通过 multiple 设置是否为多选。',
+      cloud: {
+        value: true
+      },
+      apis: ['multiple'],
+      demos: ['multiple']
+    },
+    {
+      id: 'custom-option',
+      name: '自定义选项',
+      support: {
+        value: true
+      },
+      description: '通过 scoped slot 可以自定义备选项。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-default'],
+      demos: ['custom-option']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当选中节点变化时会触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['events']
+    }
   ]
 }

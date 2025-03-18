@@ -216,5 +216,72 @@ export default {
       },
       codeFiles: ['dialog-show.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置轮播图数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'auto-play',
+      name: '自动播放',
+      support: {
+        value: true
+      },
+      description: '通过 auto-play 设置是否自动播放，interval 设置自动播放的时间间隔。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-play', 'interval'],
+      demos: ['auto-play']
+    },
+    {
+      id: 'indicator',
+      name: '指示器',
+      support: {
+        value: true
+      },
+      description: '通过 indicator 设置指示器的位置，可选值为 inside、outside、none。',
+      cloud: {
+        value: true
+      },
+      apis: ['indicator'],
+      demos: ['indicator']
+    },
+    {
+      id: 'arrow',
+      name: '切换箭头',
+      support: {
+        value: true
+      },
+      description: '通过 arrow 设置切换箭头的显示时机，可选值为 hover、always、never。',
+      cloud: {
+        value: true
+      },
+      apis: ['arrow'],
+      demos: ['arrow']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当轮播图切换时会触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['events']
+    }
   ]
 }

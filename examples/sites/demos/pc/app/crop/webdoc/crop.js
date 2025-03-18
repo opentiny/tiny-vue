@@ -303,5 +303,72 @@ export default {
       },
       codeFiles: ['event-about-crop.vue']
     }
+  ],
+  features: [
+    {
+      id: 'image-crop',
+      name: '图片裁剪',
+      support: {
+        value: true
+      },
+      description: '支持图片上传、预览、裁剪等基本功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['image-crop'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'aspect-ratio',
+      name: '裁剪比例',
+      support: {
+        value: true
+      },
+      description: '支持设置裁剪框的宽高比，如 1:1、16:9 等。',
+      cloud: {
+        value: true
+      },
+      apis: ['aspect-ratio'],
+      demos: ['aspect-ratio']
+    },
+    {
+      id: 'auto-crop',
+      name: '自动裁剪',
+      support: {
+        value: true
+      },
+      description: '支持设置自动裁剪区域的比例，优化裁剪体验。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-crop-area'],
+      demos: ['auto-crop-area']
+    },
+    {
+      id: 'drag-mode',
+      name: '拖拽模式',
+      support: {
+        value: true
+      },
+      description: '支持设置拖拽模式，包括裁剪框拖拽和图片拖拽。',
+      cloud: {
+        value: true
+      },
+      apis: ['drag-mode'],
+      demos: ['drag-mode']
+    },
+    {
+      id: 'zoom',
+      name: '缩放功能',
+      support: {
+        value: true
+      },
+      description: '支持滚轮缩放和缩放比例设置。',
+      cloud: {
+        value: true
+      },
+      apis: ['zoom-on-wheel', 'wheel-zoom-ratio'],
+      demos: ['zoom-on-wheel']
+    }
   ]
 }

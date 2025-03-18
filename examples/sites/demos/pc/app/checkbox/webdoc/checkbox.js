@@ -229,5 +229,215 @@ export default {
       },
       codeFiles: ['checkbox-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置是否选中。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'indeterminate',
+      name: '不确定状态',
+      support: {
+        value: true
+      },
+      description: '通过 indeterminate 设置是否为不确定状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['indeterminate'],
+      demos: ['indeterminate']
+    },
+    {
+      id: 'checkbox-group',
+      name: '多选框组',
+      support: {
+        value: true
+      },
+      description: '通过 checkbox-group 组件包裹多个 checkbox 组件。',
+      cloud: {
+        value: true
+      },
+      apis: ['checkbox-group'],
+      demos: ['checkbox-group']
+    },
+    {
+      id: 'group-data',
+      name: '配置式多选框组',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置多选框组数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['data'],
+      demos: ['checkbox-group-data']
+    },
+    {
+      id: 'min-max',
+      name: '可选数量限制',
+      support: {
+        value: true
+      },
+      description: '通过 min 和 max 设置可选数量的限制。',
+      cloud: {
+        value: true
+      },
+      apis: ['min', 'max'],
+      demos: ['min-max']
+    },
+    {
+      id: 'checked',
+      name: '是否默认勾选',
+      support: {
+        value: true
+      },
+      description: '通过 checked 设置是否默认选中。',
+      cloud: {
+        value: true
+      },
+      apis: ['checked'],
+      demos: ['checked']
+    },
+    {
+      id: 'vertical-checkbox',
+      name: '垂直布局',
+      support: {
+        value: true
+      },
+      description: '通过 vertical 设置是否为垂直布局。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical'],
+      demos: ['vertical-checkbox']
+    },
+    {
+      id: 'text',
+      name: '状态对应的值',
+      support: {
+        value: true
+      },
+      description: '通过 true-label 和 false-label 设置选中值和未选中值。',
+      cloud: {
+        value: true
+      },
+      apis: ['true-label', 'false-label'],
+      demos: ['text']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置尺寸，可选项有 medium、small、mini，不设置则为默认样式。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'shape',
+      name: '过滤器模式',
+      support: {
+        value: true
+      },
+      description: '通过 shape 设置过滤器模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['shape'],
+      demos: ['shape']
+    },
+    {
+      id: 'custom-color',
+      name: '自定义颜色',
+      support: {
+        value: true
+      },
+      description: '通过 fill 自定义选中时背景和边框颜色，通过 text-color 自定义选中时的文本颜色。',
+      cloud: {
+        value: true
+      },
+      apis: ['fill', 'text-color'],
+      demos: ['custom-color']
+    },
+    {
+      id: 'checkbox-slot',
+      name: '默认插槽',
+      support: {
+        value: true
+      },
+      description: '通过 default slot 自定义文本内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot'],
+      demos: ['checkbox-slot']
+    },
+    {
+      id: 'checkbox-button-multiple',
+      name: '多行按钮',
+      support: {
+        value: true
+      },
+      description: '多行按钮组，超出最大宽度后，换行显示。',
+      cloud: {
+        value: true
+      },
+      apis: [],
+      demos: ['checkbox-button-multiple']
+    },
+    {
+      id: 'dynamic-create-checkbox',
+      name: '动态生成复选框组',
+      support: {
+        value: true
+      },
+      description: '复选框组所需数据可通过请求服务从后台取得，然后动态生成。',
+      cloud: {
+        value: true
+      },
+      apis: [],
+      demos: ['dynamic-create-checkbox']
+    },
+    {
+      id: 'checkbox-events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '勾选值改变后将触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['checkbox-events']
+    }
   ]
 }
