@@ -52,7 +52,6 @@ export default {
 
 <style scoped>
 .card-wrap {
-  background: var(--tv-color-bg-gray-1);
   padding: 16px;
 }
 </style>

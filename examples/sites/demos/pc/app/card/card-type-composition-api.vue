@@ -41,7 +41,6 @@ const userHead = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/us
 
 <style scoped>
 .card-wrap {
-  background: var(--tv-color-bg-gray-1);
   padding: 16px;
 }
 </style>
