@@ -132,5 +132,72 @@ export default {
       },
       codeFiles: ['allow-full-url.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的导航菜单功能，可通过 data 配置菜单数据。',
+      cloud: {
+        value: false
+      },
+      apis: ['data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'overflow',
+      name: '溢出处理',
+      support: {
+        value: true
+      },
+      description: '支持菜单项溢出时的显示处理，包括自动、收起、固定和隐藏四种模式。',
+      cloud: {
+        value: false
+      },
+      apis: ['overflow'],
+      demos: ['overflow']
+    },
+    {
+      id: 'customization',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '支持自定义工具栏和 Logo。',
+      cloud: {
+        value: false
+      },
+      apis: ['toolbar', 'logo'],
+      demos: ['slot-toolbar', 'slot-logo']
+    },
+    {
+      id: 'navigation',
+      name: '导航控制',
+      support: {
+        value: true
+      },
+      description: '支持导航跳转前的处理逻辑和自定义服务。',
+      cloud: {
+        value: false
+      },
+      apis: ['before-skip', 'fetch-menu-data'],
+      demos: ['before-skip', 'custom-service']
+    },
+    {
+      id: 'data-structure',
+      name: '数据结构',
+      support: {
+        value: true
+      },
+      description: '支持普通数组转树结构数据和完整 URL 支持。',
+      cloud: {
+        value: false
+      },
+      apis: ['parent-key', 'allow-full-url'],
+      demos: ['parent-key', 'allow-full-url']
+    }
   ]
 }

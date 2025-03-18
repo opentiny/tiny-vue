@@ -308,5 +308,72 @@ export default {
       },
       codeFiles: ['transition-effect.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的弹窗显示和隐藏功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['visible'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'customization',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '支持自定义标题、内容区域和底部操作区。',
+      cloud: {
+        value: true
+      },
+      apis: ['title', 'default', 'footer'],
+      demos: ['custom-dialog-title', 'custom-dialog-content', 'custom-dialog-footer']
+    },
+    {
+      id: 'position',
+      name: '位置控制',
+      support: {
+        value: true
+      },
+      description: '支持控制弹窗位置，包括距离顶部高度、宽度和最大高度。',
+      cloud: {
+        value: true
+      },
+      apis: ['top', 'width', 'max-height'],
+      demos: ['dialog-top-height', 'dialog-width']
+    },
+    {
+      id: 'interaction',
+      name: '交互控制',
+      support: {
+        value: true
+      },
+      description: '支持多种交互控制，如点击遮罩关闭、ESC关闭、拖拽等。',
+      cloud: {
+        value: true
+      },
+      apis: ['close-on-click-modal', 'close-on-press-escape', 'draggable'],
+      demos: ['close-on-click-modal', 'close-on-press-escape', 'draggable']
+    },
+    {
+      id: 'fullscreen',
+      name: '全屏模式',
+      support: {
+        value: true
+      },
+      description: '支持全屏显示和切换全屏功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['fullscreen', 'resize'],
+      demos: ['fullscreen']
+    }
   ]
 }

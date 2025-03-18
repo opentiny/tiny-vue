@@ -499,5 +499,72 @@ export default {
       },
       codeFiles: ['other.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的树形结构展示功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'selection',
+      name: '选择功能',
+      support: {
+        value: true
+      },
+      description: '支持单选和多选功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-checkbox', 'multiple'],
+      demos: ['selection']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个树或单个节点。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'expand',
+      name: '展开控制',
+      support: {
+        value: true
+      },
+      description: '支持控制节点的展开和收起状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['expand-on-click-node', 'default-expand-all'],
+      demos: ['expand']
+    },
+    {
+      id: 'customization',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '支持自定义节点内容和图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['render-content', 'icon'],
+      demos: ['custom-content']
+    }
   ]
 }

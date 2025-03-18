@@ -260,5 +260,72 @@ export default {
       },
       codeFiles: ['lazy-show-popper.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的下拉菜单功能，可通过 tiny-dropdown-item 定义菜单节点。',
+      cloud: {
+        value: true
+      },
+      apis: ['tiny-dropdown-item'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个菜单或单个菜单项。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'placement',
+      name: '展开位置',
+      support: {
+        value: true
+      },
+      description: '支持自定义下拉菜单的展开位置，默认为左侧展开。',
+      cloud: {
+        value: true
+      },
+      apis: ['placement'],
+      demos: ['placement']
+    },
+    {
+      id: 'trigger',
+      name: '触发方式',
+      support: {
+        value: true
+      },
+      description: '支持点击和悬停两种触发方式。',
+      cloud: {
+        value: true
+      },
+      apis: ['trigger'],
+      demos: ['trigger']
+    },
+    {
+      id: 'customization',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '支持自定义工具栏、Logo 和触发源内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['toolbar', 'logo', 'slots'],
+      demos: ['slot-toolbar', 'slot-logo', 'slots']
+    }
   ]
 }

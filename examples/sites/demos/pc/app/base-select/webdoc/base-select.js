@@ -545,5 +545,72 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的单选和多选功能，可通过 v-model 进行数据绑定。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'multiple'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '支持 medium、small、mini 三种尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个选择器或单个选项。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'clearable',
+      name: '可清空',
+      support: {
+        value: true
+      },
+      description: '支持清空已选择的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['clearable'],
+      demos: ['clearable']
+    },
+    {
+      id: 'filterable',
+      name: '可搜索',
+      support: {
+        value: true
+      },
+      description: '支持输入关键字进行选项搜索。',
+      cloud: {
+        value: true
+      },
+      apis: ['filterable'],
+      demos: ['filterable']
+    }
   ]
 }

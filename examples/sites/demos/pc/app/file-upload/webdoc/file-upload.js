@@ -438,5 +438,72 @@ export default {
       },
       codeFiles: ['upload-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的文件上传功能，可配置上传地址和附加参数。',
+      cloud: {
+        value: true
+      },
+      apis: ['action', 'data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'multiple',
+      name: '多文件上传',
+      support: {
+        value: true
+      },
+      description: '支持同时上传多个文件。',
+      cloud: {
+        value: true
+      },
+      apis: ['multiple'],
+      demos: ['multiple']
+    },
+    {
+      id: 'file-type',
+      name: '文件类型限制',
+      support: {
+        value: true
+      },
+      description: '支持限制上传文件的类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['accept'],
+      demos: ['file-type']
+    },
+    {
+      id: 'file-size',
+      name: '文件大小限制',
+      support: {
+        value: true
+      },
+      description: '支持限制上传文件的大小。',
+      cloud: {
+        value: true
+      },
+      apis: ['limit-size'],
+      demos: ['file-size']
+    },
+    {
+      id: 'upload-mode',
+      name: '上传模式',
+      support: {
+        value: true
+      },
+      description: '支持自动上传和手动上传两种模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-upload'],
+      demos: ['upload-mode']
+    }
   ]
 }

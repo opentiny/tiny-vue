@@ -1,5 +1,5 @@
 <template>
-  <div class="ti-pt48 ti-pl48 ti-pr48">
+  <div class="ti-p48">
     <div class="w1000 !mx-auto markdown-body">
       <h1 class="ti-f-r ti-f-box-center">
         组件特性列表
