@@ -14,8 +14,32 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, callback, source, options) {
-  const errors = []
+/**
+ * 数字类型验证函数
+ *
+ * @description 用于验证数字类型字段是否符合规则，包括必填、类型和范围验证
+ * @param rule - 验证规则对象
+ * @param checkValue - 需要验证的值
+ * @param callback - 验证完成后的回调函数，传入错误数组
+ * @param source - 包含所有字段的源对象
+ * @param options - 验证选项
+ * @returns void
+ */
+export default function (
+  rule: {
+    required?: boolean
+    field: string
+    type?: string
+    min?: number
+    max?: number
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options?: Record<string, any>
+): void {
+  const errors: any[] = []
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

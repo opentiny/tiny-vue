@@ -14,9 +14,31 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, callback, source, options) {
+/**
+ * 类型验证函数
+ *
+ * 根据规则验证数据类型，如果数据为空且非必填则直接通过，否则进行类型校验
+ *
+ * @param rule - 验证规则对象，包含类型、是否必填等信息
+ * @param checkValue - 需要验证的值
+ * @param callback - 回调函数，用于返回验证结果
+ * @param source - 源数据对象
+ * @param options - 验证选项配置
+ */
+export default function (
+  rule: {
+    type: string
+    required?: boolean
+    field: string
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options: Record<string, any>
+): void {
   const ruleType = rule.type
-  const errors = []
+  const errors: any[] = []
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

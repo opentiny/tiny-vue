@@ -376,71 +376,86 @@ export const toDate = (value, dateFormat, minDate) => {
 }
 
 /**
- * 将 Date 实例转换成日期字符串。
- * 当 date 为日期字符串时，如果只有2个参数，则第2个参数为格式化后的格式化字符串
- * 如果有3个参数，则第2个参数为转换的格式化参数，第3个参数为格式化后的格式化参数
- *
- *     let date = new Date(2014, 4, 4, 1, 2, 3, 4)
- *     format(date)                                     // "2014/05/04 01:02:03"
- *     format(date, 'yyyy/MM/dd hh:mm:ss.SSS')          // "2014/05/04 01:02:03.004"
- *     format(date, 'yyyy/MM/dd hh:mm:ss.SSSZ')         // "2014/05/04 01:02:03.004+0800"
- *     format(date, 'yyyy年MM月dd日 hh时mm分ss秒SSS毫秒')  // "2014年05月04日 01时02分03秒004毫秒"
- *     format('2008/01/02', 'yyyy/MM/dd hh:mm:ss.SSS')  // "2008/02/02 00:00:00.000"
- *     format('2014/01/02/03/04/05/06', 'yyyy/MM/dd/hh/mm/ss', 'yyyy年MM月dd日 hh时mm分ss秒') // "2014年01月02日 03时04分05秒006毫秒"
- *
- * @param {Date|String} date Date 实例或日期字符串
- * @param {String} [dateFormat='yyyy/MM/dd hh:mm:ss'] 转换格式
- *
- * 常见格式为 yyyy[/-]MM[/-]dd hh:mm:ss.SSS， MM[/-]dd [/-]yyyy hh:mm:ss.SSS 及 ISO8601 时间格式。
- *
- * 如果提供，则按具体格式严格匹配解析，并且年份必须为4位。
- *  - yyyy 代表年份
- *  - M 或 MM 代表1位或2位的月份
- *  - d 或 dd 代表1位或2位的天数
- *  - h 或 hh 代表24小时的1位或2位的小时
- *  - m 或 mm 代表1位或2位的分钟，
- *  - s 或 ss 代表1位或2位的秒
- *  - S 或 SS 或 SSS 代表1位或2位或3位的毫秒
- *
- * @returns {String}
+ * 日期数据接口
  */
-export const format = function (date, dateFormat = 'yyyy/MM/dd hh:mm:ss') {
+interface DateData {
+  year: number
+  month: number
+  date: number
+  hours: number
+  minutes: number
+  seconds: number
+  milliseconds: number
+}
+
+/**
+ * 日期格式化的正则表达式映射
+ */
+interface DateFormatRegs {
+  [key: string]: RegExp
+}
+
+/**
+ * 日期各部分的最大值
+ */
+interface MaxDateValues {
+  YEAR: number
+  MONTH: number
+  DATE: number
+  HOUR: number
+  MINUTE: number
+  SECOND: number
+  MILLISECOND: number
+}
+
+/**
+ * 将 Date 实例转换成日期字符串
+ * @param date - Date 实例或日期字符串
+ * @param dateFormat - 转换格式，默认为 'yyyy/MM/dd hh:mm:ss'
+ * @param afterFormat - 转换后的格式（仅当date为字符串且有3个参数时有效）
+ * @returns 格式化后的日期字符串
+ */
+export const format = function (date: Date | string, dateFormat = 'yyyy/MM/dd hh:mm:ss', afterFormat?: string): string {
   if (isDate(date)) {
     if (typeof dateFormat === 'string') {
-      const o = {
-        'y{1,4}': date.getFullYear(),
-        'M{1,2}': date.getMonth() + 1,
-        'd{1,2}': date.getDate(),
-        'h{1,2}': date.getHours(),
-        'H{1,2}': date.getHours(),
-        'm{1,2}': date.getMinutes(),
-        's{1,2}': date.getSeconds(),
-        'S{1,3}': date.getMilliseconds(),
-        'Z{1,1}': getTimezone(date)
+      const o: Record<string, number | string> = {
+        'y{1,4}': (date as Date).getFullYear(),
+        'M{1,2}': (date as Date).getMonth() + 1,
+        'd{1,2}': (date as Date).getDate(),
+        'h{1,2}': (date as Date).getHours(),
+        'H{1,2}': (date as Date).getHours(),
+        'm{1,2}': (date as Date).getMinutes(),
+        's{1,2}': (date as Date).getSeconds(),
+        'S{1,3}': (date as Date).getMilliseconds(),
+        'Z{1,1}': getTimezone(date as Date)
       }
 
       Object.keys(o).forEach((k) => {
         const m = dateFormat.match(dateFormatRegs[k])
 
         if (k && m && m.length) {
-          dateFormat = dateFormat.replace(m[0], k === 'Z{1,1}' ? o[k] : fillChar(o[k].toString(), m[0].length))
+          const replacement = k === 'Z{1,1}' ? (o[k] as string) : fillChar(o[k].toString(), m[0].length, false, '0')
+          dateFormat = dateFormat.replace(m[0], replacement)
         }
       })
 
       return dateFormat
     }
   } else if (typeof date === 'string' && arguments.length >= 2) {
-    let afterFormat = dateFormat
+    let actualDateFormat = dateFormat
+    let actualAfterFormat = dateFormat
 
     if (arguments.length === 2) {
-      dateFormat = undefined
+      actualDateFormat = ''
     } else {
-      afterFormat = arguments[2]
+      actualAfterFormat = arguments[2] as string
     }
 
-    const dateValue = toDate(date, dateFormat)
-    return dateValue ? format(dateValue, afterFormat) : ''
+    const dateValue = toDate(date, actualDateFormat)
+    return dateValue ? format(dateValue, actualAfterFormat) : ''
   }
+
+  return ''
 }
 
 /**
@@ -469,21 +484,19 @@ export const getDateWithNewTimezone = (date, otz, ntz, timezoneOffset = 0) => {
 }
 
 /**
- * 按时区将 Date 实例转换成字符串。
- *
- *     toDateStr(new Date(2017, 0, 1, 12, 30), 'yyyy/MM/dd hh:mm', 3) // "2017/01/01 15:30"
- *     toDateStr('2008/01/02', 'yyyy/MM/dd hh:mm', 3)                 // "2008/01/02 03:00"
- *
- * @param {Date|String} date Date 实例或日期字符串
- * @param {String} dateFormat 转换格式
- * @param {Number} [timezone] 时区
- * @returns {String}
+ * 按时区将 Date 实例转换成字符串
+ * @param date - Date 实例或日期字符串
+ * @param dateFormat - 转换格式
+ * @param timezone - 时区
+ * @returns 格式化的日期字符串
  */
-export const toDateStr = (date, dateFormat, timezone) => {
+export const toDateStr = (date: Date | string, dateFormat: string, timezone?: number): string => {
   if (date && isNumeric(timezone)) {
-    timezone = parseFloat(parseFloat(timezone).toFixed(2))
+    const parsedTimezone = parseFloat(timezone.toString())
+    timezone = parseFloat(parsedTimezone.toFixed(2))
 
-    date = getDateWithNewTimezone(isDate(date) ? date : new Date(toDate(date)), 0, timezone)
+    const dateObj = isDate(date) ? (date as Date) : new Date(toDate(date as string) as Date)
+    date = getDateWithNewTimezone(dateObj, 0, timezone) as Date
   }
 
   return format(date, dateFormat)

@@ -10,7 +10,11 @@
  *
  */
 
-export const KEY_CODE = {
+/**
+ * 键盘按键对应的键码常量
+ * @type {Record<string, number>}
+ */
+export const KEY_CODE: Record<string, number> = {
   Backspace: 8,
   Tab: 9,
   Clear: 12,
@@ -106,16 +110,36 @@ export const KEY_CODE = {
   NumpadComma: 190
 }
 
-export const POSITION = { Left: 'left', Right: 'right', Top: 'top', Bottom: 'bottom' }
+/**
+ * 组件定位方向常量
+ * @type {Record<string, string>}
+ */
+export const POSITION: Record<string, string> = { Left: 'left', Right: 'right', Top: 'top', Bottom: 'bottom' }
 
-// 只使用在 array.ts中， 待移除
-export const SORT = { Asc: 'asc', Desc: 'desc' }
+/**
+ * 排序方向常量
+ * 只使用在 array.ts中， 待移除
+ * @type {Record<string, string>}
+ */
+export const SORT: Record<string, string> = { Asc: 'asc', Desc: 'desc' }
 
+/**
+ * 刷新间隔时间（毫秒）
+ * @type {number}
+ */
 export const REFRESH_INTERVAL = 100
 
-export const IPTHRESHOLD = { Min: 0, Max: 255, NonNumeric: 25 }
+/**
+ * IP地址输入阈值常量
+ * @type {Record<string, number>}
+ */
+export const IPTHRESHOLD: Record<string, number> = { Min: 0, Max: 255, NonNumeric: 25 }
 
-export const DATE = {
+/**
+ * 日期格式常量
+ * @type {Record<string, string>}
+ */
+export const DATE: Record<string, string> = {
   FullDatetime: 'yyyy-MM-dd hh:mm:ss.SSS',
   LongDatetime: 'yyyy-MM-dd hh:mm:ss',
   Datetime: 'yyyy-MM-dd hh:mm',
@@ -126,10 +150,18 @@ export const DATE = {
   YearMonth: 'yyyy-MM'
 }
 
+/**
+ * 日期选择器可用的触发类型
+ * @type {string}
+ */
 const TriggerTypes =
   'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates,quarter'
 
-export const DATEPICKER = {
+/**
+ * 日期选择器相关常量
+ * @type {Record<string, any>}
+ */
+export const DATEPICKER: Record<string, any> = {
   Day: 'day',
   Date: 'date',
   Dates: 'dates',
@@ -220,22 +252,38 @@ export const DATEPICKER = {
   TimePicker: 'TimePicker'
 }
 
-export const BROWSER_NAME = {
+/**
+ * 浏览器名称常量
+ * @type {Record<string, string>}
+ */
+export const BROWSER_NAME: Record<string, string> = {
   IE: 'ie',
   Edge: 'edge',
   Chrome: 'chrome',
   Firefox: 'firefox'
 }
 
+/**
+ * 鼠标滚轮增量值
+ * @type {number}
+ */
 export const MOUSEDELTA = 120
 
-export const VALIDATE_STATE = {
+/**
+ * 表单验证状态常量
+ * @type {Record<string, string>}
+ */
+export const VALIDATE_STATE: Record<string, string> = {
   Validating: 'validating',
   Success: 'success',
   Error: 'error'
 }
 
-export const CASCADER = {
+/**
+ * 级联选择器相关常量
+ * @type {Record<string, any>}
+ */
+export const CASCADER: Record<string, any> = {
   SvgStr: '<path style="pointer-events: auto;" fill="transparent" d="M',
   CascaderNodeExpand: '.tiny-cascader-node[aria-expanded="true"]',
   CascaderNodeTab: '.tiny-cascader-node[tabindex="-1"]',
@@ -261,4 +309,8 @@ export const CASCADER = {
   MenuConnector: 'cascader-menu-'
 }
 
-export const version = process.env.RUNTIME_VERSION
+/**
+ * 当前项目版本号
+ * @type {string | undefined}
+ */
+export const version: string | undefined = process.env.RUNTIME_VERSION

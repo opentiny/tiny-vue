@@ -23,12 +23,12 @@ import { getObj } from '../object'
  *     indexOf(arr1, 2)   // 1
  *     indexOf(arr2, NaN) // 2
  *
- * @param {Array} arr 要查找的数组
- * @param {Object} data  需要查找的数据
+ * @param {Array<T>} arr 要查找的数组
+ * @param {T} data  需要查找的数据
  * @param {Function} [predicate] 断言函数，缺省为 isSame, 两个参数为数组的元素和查找的数据
- * @returns {Number}
+ * @returns {number} 元素在数组中的索引，如果不存在则返回-1
  */
-export const indexOf = (arr, data, predicate = isSame) => {
+export const indexOf = <T>(arr: T[], data: T, predicate: (item: T, target: T) => boolean = isSame): number => {
   if (Array.isArray(arr) && typeof predicate === 'function') {
     for (let i = 0, len = arr.length; i < len; i++) {
       if (predicate(arr[i], data)) {
@@ -46,12 +46,12 @@ export const indexOf = (arr, data, predicate = isSame) => {
  *     let arr = [1, 2, 3, 4]
  *     find(arr, function (value) { return value > 2 })   // 3
  *
- * @param {Array} arr 要查找的数组
+ * @param {Array<T>} arr 要查找的数组
  * @param {Function} predicate 断言函数
- * @returns {Object}
+ * @returns {T | undefined} 找到的元素，如果没有找到则返回undefined
  */
-export const find = (arr, predicate) => {
-  const index = indexOf(arr, undefined, predicate)
+export const find = <T>(arr: T[], predicate: (item: T, index: number) => boolean): T | undefined => {
+  const index = indexOf(arr, undefined as any, predicate as any)
   return index !== -1 ? arr[index] : undefined
 }
 
@@ -63,12 +63,12 @@ export const find = (arr, predicate) => {
  *     remove(arr1, 2, 2) // [1, 4]
  *     remove(arr2, NaN)  // [1, 2, 4]
  *
- * @param {Array} arr 源数组
- * @param {Object} data  需要删除的数据
- * @param {Number} count 删除元素个数，默认为 1
- * @returns {Array}
+ * @param {Array<T>} arr 源数组
+ * @param {T} data  需要删除的数据
+ * @param {number} count 删除元素个数，默认为 1
+ * @returns {Array<T>} 处理后的数组
  */
-export const remove = (arr, data, count = 1) => {
+export const remove = <T>(arr: T[], data: T, count = 1): T[] => {
   if (Array.isArray(arr) && arr.length) {
     const index = indexOf(arr, data)
     if (index > -1) {
@@ -85,12 +85,12 @@ export const remove = (arr, data, count = 1) => {
  *     sort([ {a:100}, {a:1}, {a:NaN}, {a:10} ], 'a')        // [ {a:1}, {a:10}, {a:100}, {a:NaN} ]
  *     sort([ {a:100}, {a:1}, {a:NaN}, {a:10} ], 'a','desc') // [ {a:100}, {a:10}, {a:1}, {a:NaN} ]
  *
- * @param {Array} arr 需要排序的对象数组
+ * @param {Array<T>} arr 需要排序的对象数组
  * @param {string} field 要排序的对象字段
- * @param {String} sort 排序方向，取值为 "asc" 或 "desc"
- * @returns {Array} 排好序的对象数组
+ * @param {string} sort 排序方向，取值为 "asc" 或 "desc"
+ * @returns {Array<T>} 排好序的对象数组
  */
-export const sort = (arr, field, sort = SORT.Asc) => {
+export const sort = <T extends Record<string, any>>(arr: T[], field: string, sort: string = SORT.Asc): T[] => {
   if (Array.isArray(arr) && arr.length > 1) {
     arr.sort((x, y) => {
       const compare = sort === SORT.Asc ? [1, -1] : [-1, 1]
@@ -118,11 +118,11 @@ export const sort = (arr, field, sort = SORT.Asc) => {
  *     push(arr, NaN) // [ 1, 2, NaN, 4]
  *     push(arr, 5)   // [ 1, 2, NaN, 4, 5]
  *
- * @param {Array} arr 源数组
- * @param {Object} data 需要增加的数据
- * @returns {Array}
+ * @param {Array<T>} arr 源数组
+ * @param {T} data 需要增加的数据
+ * @returns {Array<T>} 处理后的数组
  */
-export const push = (arr, data) => {
+export const push = <T>(arr: T[], data: T): T[] => {
   if (Array.isArray(arr) && !arr.some((value) => isSame(value, data))) {
     arr.push(data)
   }
@@ -136,12 +136,12 @@ export const push = (arr, data) => {
  *     let arr = [ 1, NaN, 2, NaN, 2, 3, 4]
  *     unique(arr) // [ 1, NaN, 2, 3, 4]
  *
- * @param {Array} arr
- * @returns {Array}
+ * @param {Array<T>} arr 源数组
+ * @returns {Array<T>} 去重后的新数组
  */
-export const unique = (arr) => {
+export const unique = <T>(arr: T[]): T[] => {
   if (Array.isArray(arr)) {
-    const array = []
+    const array: T[] = []
 
     for (let i = 0, len = arr.length; i < len; i++) {
       const value = arr[i]
@@ -156,7 +156,14 @@ export const unique = (arr) => {
   return arr
 }
 
-const extend = (to, _from) => {
+/**
+ * 将一个对象的属性复制到另一个对象
+ *
+ * @param {Record<string, any>} to 目标对象
+ * @param {Record<string, any>} _from 源对象
+ * @returns {Record<string, any>} 目标对象
+ */
+const extend = (to: Record<string, any>, _from: Record<string, any>): Record<string, any> => {
   Object.keys(_from).forEach((key) => (to[key] = _from[key]))
 
   return to
@@ -168,11 +175,11 @@ const extend = (to, _from) => {
  *     let arr = [ { key1: value1 }, { key2: value2 } ]
  *     toObject(arr) // { key1: value1, key2: value2 }
  *
- * @param {Array} arr
- * @returns {Object}
+ * @param {Array<Record<string, any>>} arr 包含对象的数组
+ * @returns {Record<string, any>} 合并后的对象
  */
-export const toObject = (arr) => {
-  const res = {}
+export const toObject = (arr: Record<string, any>[]): Record<string, any> => {
+  const res: Record<string, any> = {}
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i]) {
@@ -189,14 +196,19 @@ export const toObject = (arr) => {
  *     let data = [{ id: 100, pId: 0, label: '首页'}, { id: 101, pId: 100, label: '指南'}]
  *     transformPidToChildren(data) // [ 0: { id: 100, label: "首页", children: [ 0: { id: 101, label: "指南" } ] } ]
  *
- * @param {Array} data id 与 pid 构成的扁平数据的数组
- * @param {String} [pidName] pid 的属性名，缺省为 pId
- * @param {String} [childrenName] children 的属性名，缺省为 children
- * @param {String} [idName] id 的属性名，缺省为 id
- * @returns {Array}
+ * @param {Array<Record<string, any>>} data id 与 pid 构成的扁平数据的数组
+ * @param {string} [pidName] pid 的属性名，缺省为 pId
+ * @param {string} [childrenName] children 的属性名，缺省为 children
+ * @param {string} [idName] id 的属性名，缺省为 id
+ * @returns {Array<Record<string, any>>} 树状结构数据
  */
-export const transformPidToChildren = (data, pidName = 'pId', childrenName = 'children', idName = 'id') => {
-  const result = []
+export const transformPidToChildren = (
+  data: Record<string, any>[],
+  pidName = 'pId',
+  childrenName = 'children',
+  idName = 'id'
+): Record<string, any>[] => {
+  const result: Record<string, any>[] = []
 
   Array.isArray(data) &&
     data.forEach((item) => {
@@ -224,17 +236,27 @@ export const transformPidToChildren = (data, pidName = 'pId', childrenName = 'ch
 
 /**
  * 将pid标识的普通数组转换树结构数据
- * @param {*} data
- * @param {*} key
- * @param {*} parentKey
+ *
+ * @param {Record<string, any> | Record<string, any>[]} data 需要转换的数据
+ * @param {string} key id的属性名，默认为'id'
+ * @param {string} parentKey 父id的属性名，默认为'pId'
+ * @returns {Record<string, any>[]} 树状结构数据
  */
-export const transformTreeData = (data, key = 'id', parentKey = 'pId') => {
+export const transformTreeData = (
+  data: Record<string, any> | Record<string, any>[],
+  key = 'id',
+  parentKey = 'pId'
+): Record<string, any>[] => {
+  let dataArray: Record<string, any>[]
+
   if (!Array.isArray(data)) {
-    data = [data]
+    dataArray = [data]
+  } else {
+    dataArray = data
   }
 
-  data = data.map((item) => ({ ...item }))
+  dataArray = dataArray.map((item) => ({ ...item }))
 
-  const treeData = transformPidToChildren(data, parentKey, 'children', key)
+  const treeData = transformPidToChildren(dataArray, parentKey, 'children', key)
   return treeData
 }
