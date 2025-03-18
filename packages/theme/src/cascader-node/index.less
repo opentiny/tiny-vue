@@ -29,12 +29,12 @@
     background: var(--tv-CascaderNode-selectable-active-bg-color);
     color: var(--tv-CascaderNode-selectable-text-color);
     &:hover {
-      background: var(--tv-CascaderNode-selectable-hover-bg-color);
+      background: var(--tv-CascaderNode-hover-bg-color);
     }
   }
 
   &.in-active-path:hover {
-    background: var(--tv-CascaderNode-selectable-hover-bg-color);
+    background: var(--tv-CascaderNode-hover-bg-color);
   }
 
   &:not(.is-disabled):not(.in-active-path):not(.is-active) {
@@ -62,7 +62,7 @@
 
   &__prefix,
   &__postfix {
-    font-size: var(--tv-CascaderNode-icon-font-size);
+    font-size: var(--tv-CascaderNode-icon-size);
     fill: var(--tv-CascaderNode-icon-color);
   }
 
@@ -103,7 +103,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     svg {
-      font-size: var(--tv-CascaderNode-icon-font-size);
+      font-size: var(--tv-CascaderNode-icon-size);
       fill: var(--tv-CascaderNode-icon-color);
     }
     // 兼容ie10-ie11

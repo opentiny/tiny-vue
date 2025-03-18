@@ -55,6 +55,6 @@ header {
 }
 :deep(.red) {
   font-weight: bold;
-  color: red;
+  color: #d94838;
 }
 </style>
