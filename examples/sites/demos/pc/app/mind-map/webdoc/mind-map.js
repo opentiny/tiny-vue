@@ -68,5 +68,57 @@ export default {
           '<code>expandNode</code> Expand the node to trigger an event;<br/>'
       }
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description:
+        '支持通过 Tab 键增加子节点，Enter 键增加同级节点，Delete 键删除节点，Ctrl+C/V 复制粘贴节点，鼠标滚轮+Shift 左右滚动，鼠标滚轮上下滚动，鼠标点击拖动移动节点。',
+      cloud: {
+        value: false
+      },
+      apis: ['keyboard', 'mouse'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'data',
+      name: '数据处理',
+      support: {
+        value: true
+      },
+      description: '通过对实例的获取实现对数据的导出、导入、清空等功能。',
+      cloud: {
+        value: false
+      },
+      apis: ['export', 'import', 'clear'],
+      demos: ['export-data']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description:
+        '支持 create、operation、selectNode、selectNewNode、selectNodes、unselectNode、unselectNodes、expandNode 等事件。',
+      cloud: {
+        value: false
+      },
+      apis: [
+        'create',
+        'operation',
+        'selectNode',
+        'selectNewNode',
+        'selectNodes',
+        'unselectNode',
+        'unselectNodes',
+        'expandNode'
+      ],
+      demos: ['event']
+    }
   ]
 }

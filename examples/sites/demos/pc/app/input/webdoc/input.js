@@ -319,5 +319,124 @@ export default {
       },
       codeFiles: ['event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定输入值，placeholder 设置占位文本。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'placeholder'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置输入框大小，可选值：medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置输入框禁用状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'readonly',
+      name: '只读状态',
+      support: {
+        value: true
+      },
+      description: '通过 readonly 设置输入框只读状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['readonly'],
+      demos: ['readonly']
+    },
+    {
+      id: 'clearable',
+      name: '可清空',
+      support: {
+        value: true
+      },
+      description: '通过 clearable 设置是否可清空。',
+      cloud: {
+        value: true
+      },
+      apis: ['clearable'],
+      demos: ['clearable']
+    },
+    {
+      id: 'password',
+      name: '密码框',
+      support: {
+        value: true
+      },
+      description: '通过 type="password" 设置密码输入框，show-password 显示切换密码图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['type', 'show-password'],
+      demos: ['password']
+    },
+    {
+      id: 'icon',
+      name: '带图标',
+      support: {
+        value: true
+      },
+      description: '通过 prefix-icon 或 suffix-icon 设置输入框前后图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['prefix-icon', 'suffix-icon'],
+      demos: ['icon']
+    },
+    {
+      id: 'textarea',
+      name: '文本域',
+      support: {
+        value: true
+      },
+      description: '通过 type="textarea" 设置文本域，rows 设置行数，autosize 自适应内容高度。',
+      cloud: {
+        value: true
+      },
+      apis: ['type', 'rows', 'autosize'],
+      demos: ['textarea']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 focus、blur、change、input、clear 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['focus', 'blur', 'change', 'input', 'clear'],
+      demos: ['events']
+    }
   ]
 }

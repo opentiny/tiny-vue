@@ -137,5 +137,120 @@ export default {
       },
       codeFiles: ['milestone-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置每个节点的标题、日期和状态，通过 milestones-status 设置每种状态对应的颜色值。',
+      cloud: {
+        value: false
+      },
+      apis: ['data', 'milestones-status'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'flag',
+      name: '旗子数据',
+      support: {
+        value: true
+      },
+      description: '通过 flag-before 设置旗子的数据来源，是来自前面还是后面的节点。',
+      cloud: {
+        value: false
+      },
+      apis: ['flag-before'],
+      demos: ['flag-before']
+    },
+    {
+      id: 'style',
+      name: '样式配置',
+      support: {
+        value: true
+      },
+      description: '通过 line-style 设置线条颜色，space 设置节点间距。',
+      cloud: {
+        value: false
+      },
+      apis: ['line-style', 'space'],
+      demos: ['line-style']
+    },
+    {
+      id: 'number',
+      name: '序号配置',
+      support: {
+        value: true
+      },
+      description: '通过 show-number 设置是否显示序号，start 设置序号的起始值。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-number', 'start'],
+      demos: ['show-number']
+    },
+    {
+      id: 'solid',
+      name: '实心显示',
+      support: {
+        value: true
+      },
+      description: '通过 solid 设置已完成状态的节点是否实心显示。',
+      cloud: {
+        value: false
+      },
+      apis: ['solid'],
+      demos: ['solid-style']
+    },
+    {
+      id: 'field-mapping',
+      name: '数据字段映射',
+      support: {
+        value: true
+      },
+      description: '支持自定义 data 属性的键名和键值，包括完成状态、旗子信息等字段的映射。',
+      cloud: {
+        value: false
+      },
+      apis: [
+        'completed-field',
+        'flag-field',
+        'flag-content-field',
+        'flag-name-field',
+        'flag-status-field',
+        'name-field',
+        'status-field',
+        'time-field'
+      ],
+      demos: ['data-field-mapping']
+    },
+    {
+      id: 'slots',
+      name: '插槽定制',
+      support: {
+        value: true
+      },
+      description: '支持通过 icon、bottom、top、flag 等插槽自定义节点的图标、上下方内容和旗帜内容。',
+      cloud: {
+        value: false
+      },
+      apis: ['icon', 'bottom', 'top', 'flag'],
+      demos: ['custom-icon-slot', 'custom-bottom-top', 'custom-flag']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 click 监听单击节点事件，flag-click 监听单击旗子事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['click', 'flag-click'],
+      demos: ['milestone-events']
+    }
   ]
 }

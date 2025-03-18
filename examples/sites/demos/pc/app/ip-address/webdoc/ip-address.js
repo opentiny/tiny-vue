@@ -83,5 +83,85 @@ export default {
       },
       codeFiles: ['event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基础用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置绑定值，type 设置类型，可选值为 IPv4、IPv6。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'type'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'delimiter',
+      name: '分隔符',
+      support: {
+        value: true
+      },
+      description: '通过 delimiter 设置分隔符(图标类)，或通过默认插槽设置分隔符。',
+      cloud: {
+        value: true
+      },
+      apis: ['delimiter'],
+      demos: ['delimiter']
+    },
+    {
+      id: 'readonly',
+      name: '只读状态',
+      support: {
+        value: true
+      },
+      description: '通过 readonly 设置文本的只读状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['readonly'],
+      demos: ['readonly']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置文本是否禁用。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置尺寸，可选值有 medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 focus、blur、change、input、select 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['focus', 'blur', 'change', 'input', 'select'],
+      demos: ['event']
+    }
   ]
 }

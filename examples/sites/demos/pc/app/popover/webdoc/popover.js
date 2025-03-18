@@ -199,5 +199,125 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description:
+        '通过 reference 插槽指定触发源，通过 content 属性指定提示内容，通过 title 属性指定标题，通过 width 属性指定弹出面板宽度。',
+      cloud: {
+        value: true
+      },
+      apis: ['reference', 'content', 'title', 'width'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'trigger',
+      name: '触发方式',
+      support: {
+        value: true
+      },
+      description: '通过 trigger 设置弹出框的触发方式，支持 click、hover、manual、focus，默认值为 click。',
+      cloud: {
+        value: true
+      },
+      apis: ['trigger', 'v-model'],
+      demos: ['trigger']
+    },
+    {
+      id: 'content',
+      name: '弹出层内容',
+      support: {
+        value: true
+      },
+      description: '通过 content 属性设置字符串内容，通过 default 插槽支持自定义复杂的内容结构。',
+      cloud: {
+        value: true
+      },
+      apis: ['content', 'default'],
+      demos: ['content']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用弹出框。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'position',
+      name: '位置配置',
+      support: {
+        value: true
+      },
+      description: '通过 placement 设置弹出框位置，通过 arrow-offset 设置箭头偏移量，通过 offset 设置弹框偏移量。',
+      cloud: {
+        value: true
+      },
+      apis: ['placement', 'arrow-offset', 'offset'],
+      demos: ['offset', 'custom-popper']
+    },
+    {
+      id: 'delay',
+      name: '延迟控制',
+      support: {
+        value: true
+      },
+      description: '通过 open-delay 设置弹出框打开延迟时长，通过 close-delay 设置关闭延迟时长。',
+      cloud: {
+        value: true
+      },
+      apis: ['open-delay', 'close-delay'],
+      demos: ['delay']
+    },
+    {
+      id: 'transition',
+      name: '动画效果',
+      support: {
+        value: true
+      },
+      description: '通过 transition 设置弹框的显示隐藏淡入淡出动画。',
+      cloud: {
+        value: true
+      },
+      apis: ['transition'],
+      demos: ['transition']
+    },
+    {
+      id: 'popper',
+      name: '高级配置',
+      support: {
+        value: true
+      },
+      description: '通过 popper-options 配置弹出框高级选项，通过 ignore-boundaries 忽略边界判断。',
+      cloud: {
+        value: true
+      },
+      apis: ['popper-options', 'ignore-boundaries'],
+      demos: ['popper-options', 'ignore-boundaries']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 hide、show、after-leave、after-enter 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['hide', 'show', 'after-leave', 'after-enter'],
+      demos: ['events']
+    }
   ]
 }

@@ -160,5 +160,98 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 src 设置图片路径，通过 fit 属性确定图片如何适应到容器框。',
+      cloud: {
+        value: false
+      },
+      apis: ['src', 'fit'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'placeholder',
+      name: '占位内容',
+      support: {
+        value: true
+      },
+      description: '通过 slot = placeholder 自定义占位内容。',
+      cloud: {
+        value: false
+      },
+      apis: ['placeholder-slot'],
+      demos: ['custom-placeholder']
+    },
+    {
+      id: 'lazy',
+      name: '懒加载',
+      support: {
+        value: true
+      },
+      description: '通过 lazy 开启懒加载功能，当图片滚动到可视范围内才会加载。',
+      cloud: {
+        value: false
+      },
+      apis: ['lazy', 'scroll-container'],
+      demos: ['lazy']
+    },
+    {
+      id: 'preview',
+      name: '预览功能',
+      support: {
+        value: true
+      },
+      description: '通过 preview-src-list 属性，传入一组图片 url 的数组，点击图片后进入预览大图模式。',
+      cloud: {
+        value: false
+      },
+      apis: ['preview-src-list', 'z-index', 'show-index'],
+      demos: ['preview']
+    },
+    {
+      id: 'style',
+      name: '样式保持',
+      support: {
+        value: true
+      },
+      description: '通过 keep-style 属性可以让图片切换时样式保持一致。',
+      cloud: {
+        value: false
+      },
+      apis: ['keep-style'],
+      demos: ['keep-style']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '支持 change-index、load、error 等事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['change-index', 'load', 'error'],
+      demos: ['index-change', 'events']
+    },
+    {
+      id: 'slots',
+      name: '插槽',
+      support: {
+        value: true
+      },
+      description: '支持 placeholder、error、count 等插槽。',
+      cloud: {
+        value: false
+      },
+      apis: ['placeholder-slot', 'error-slot', 'count-slot'],
+      demos: ['slot', 'count-slot']
+    }
   ]
 }

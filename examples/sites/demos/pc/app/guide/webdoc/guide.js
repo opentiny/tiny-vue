@@ -117,5 +117,113 @@ export default {
       },
       codeFiles: ['callback.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基础用法',
+      support: {
+        value: true
+      },
+      description: '通过 dom-data 设置每一个步骤要显示的内容，show-step 设置为 true 即可开启指引。',
+      cloud: {
+        value: true
+      },
+      apis: ['dom-data', 'show-step'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'arrow-position',
+      name: '箭头位置',
+      support: {
+        value: true
+      },
+      description:
+        '通过 pop-position 属性设置箭头位置，若存在多个步骤，可以在 dom-data 里面添加 popPosition 属性并赋值。',
+      cloud: {
+        value: true
+      },
+      apis: ['pop-position'],
+      demos: ['arrow-position']
+    },
+    {
+      id: 'content',
+      name: '内容展示',
+      support: {
+        value: true
+      },
+      description: '支持纯段落用户引导、图文结合用户引导等多种内容展示方式。',
+      cloud: {
+        value: true
+      },
+      apis: ['only-content', 'text'],
+      demos: ['only-content', 'image-text']
+    },
+    {
+      id: 'highlight',
+      name: '高亮配置',
+      support: {
+        value: true
+      },
+      description: '通过 hightBox 属性添加需要高亮的元素，支持多处高亮。',
+      cloud: {
+        value: true
+      },
+      apis: ['hightBox'],
+      demos: ['highlight-box']
+    },
+    {
+      id: 'offset',
+      name: '偏移配置',
+      support: {
+        value: true
+      },
+      description: '通过 main-axis、cross-axis、alignment-axis 设置纵轴、横轴和对齐轴的偏移量。',
+      cloud: {
+        value: true
+      },
+      apis: ['main-axis', 'cross-axis', 'alignment-axis'],
+      demos: ['offset']
+    },
+    {
+      id: 'size',
+      name: '尺寸配置',
+      support: {
+        value: true
+      },
+      description: '通过 width 和 height 来自定义宽高。',
+      cloud: {
+        value: true
+      },
+      apis: ['width', 'height'],
+      demos: ['size']
+    },
+    {
+      id: 'modal',
+      name: '模态层配置',
+      support: {
+        value: true
+      },
+      description:
+        '通过 modal-overlay-opening-padding 和 modal-overlay-opening-radius 配置模态叠加层开口的填充量和边界半径。',
+      cloud: {
+        value: true
+      },
+      apis: ['modal-overlay-opening-padding', 'modal-overlay-opening-radius'],
+      demos: ['modal-overlay-opening']
+    },
+    {
+      id: 'events',
+      name: '事件回调',
+      support: {
+        value: true
+      },
+      description: '支持在 dom-data 中配置各种事件回调。',
+      cloud: {
+        value: true
+      },
+      apis: ['events'],
+      demos: ['callback']
+    }
   ]
 }

@@ -341,5 +341,111 @@ export default {
       },
       codeFiles: ['message-event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 控制弹窗显示，title 设置标题，content 设置内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'title', 'content'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置弹窗大小，可选值：large、medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'custom',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '通过 default 插槽自定义弹窗内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-default'],
+      demos: ['custom-content']
+    },
+    {
+      id: 'header',
+      name: '自定义头部',
+      support: {
+        value: true
+      },
+      description: '通过 header 插槽自定义弹窗头部。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-header'],
+      demos: ['custom-header']
+    },
+    {
+      id: 'footer',
+      name: '自定义底部',
+      support: {
+        value: true
+      },
+      description: '通过 footer 插槽自定义弹窗底部。',
+      cloud: {
+        value: true
+      },
+      apis: ['slot-footer'],
+      demos: ['custom-footer']
+    },
+    {
+      id: 'close',
+      name: '关闭按钮',
+      support: {
+        value: true
+      },
+      description: '通过 show-close 设置是否显示关闭按钮，close-on-click-modal 设置点击遮罩层是否关闭。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-close', 'close-on-click-modal'],
+      demos: ['close']
+    },
+    {
+      id: 'fullscreen',
+      name: '全屏',
+      support: {
+        value: true
+      },
+      description: '通过 fullscreen 设置是否全屏显示。',
+      cloud: {
+        value: true
+      },
+      apis: ['fullscreen'],
+      demos: ['fullscreen']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 open、close、confirm、cancel 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['open', 'close', 'confirm', 'cancel'],
+      demos: ['events']
+    }
   ]
 }

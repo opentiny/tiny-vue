@@ -101,5 +101,98 @@ export default {
       },
       codeFiles: ['tag.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 Layout 组件嵌套使用 Row、Col 组件，实现 12/24 栅格布局。',
+      cloud: {
+        value: false
+      },
+      apis: ['cols', 'span'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'responsive',
+      name: '响应式布局',
+      support: {
+        value: true
+      },
+      description: '在 Col 组件预设了五个响应尺寸：xs、sm、md、lg 和 xl。',
+      cloud: {
+        value: false
+      },
+      apis: ['xs', 'sm', 'md', 'lg', 'xl'],
+      demos: ['responsive-layout']
+    },
+    {
+      id: 'order',
+      name: '排序',
+      support: {
+        value: true
+      },
+      description: '通过 Row 组件的 flex 布局和 order 属性给 Col 组件排序。',
+      cloud: {
+        value: false
+      },
+      apis: ['flex', 'order', 'no'],
+      demos: ['order']
+    },
+    {
+      id: 'alignment',
+      name: '对齐方式',
+      support: {
+        value: true
+      },
+      description: '通过 justify 和 align 属性指定主轴和副轴的对齐方式。',
+      cloud: {
+        value: false
+      },
+      apis: ['justify', 'align'],
+      demos: ['alignment']
+    },
+    {
+      id: 'offset',
+      name: '偏移',
+      support: {
+        value: true
+      },
+      description: '通过 Col 组件的 offset 属性指定当前列偏移的栏数。',
+      cloud: {
+        value: false
+      },
+      apis: ['offset'],
+      demos: ['offset']
+    },
+    {
+      id: 'gutter',
+      name: '栅格间隔',
+      support: {
+        value: true
+      },
+      description: '通过 Row 组件的 gutter 属性实现栅格间隔。',
+      cloud: {
+        value: false
+      },
+      apis: ['gutter', 'noSpace'],
+      demos: ['gutter']
+    },
+    {
+      id: 'tag',
+      name: '自定义元素标签',
+      support: {
+        value: true
+      },
+      description: '通过 Layout、Row、Col 组件的 tag 属性实现自定义元素标签。',
+      cloud: {
+        value: false
+      },
+      apis: ['tag'],
+      demos: ['tag']
+    }
   ]
 }

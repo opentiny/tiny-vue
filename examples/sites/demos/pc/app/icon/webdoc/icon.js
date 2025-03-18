@@ -62,5 +62,85 @@ export default {
       },
       codeFiles: ['list.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 name 设置图标名称，size 设置图标大小。',
+      cloud: {
+        value: true
+      },
+      apis: ['name', 'size'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'color',
+      name: '颜色配置',
+      support: {
+        value: true
+      },
+      description: '通过 color 设置图标颜色。',
+      cloud: {
+        value: true
+      },
+      apis: ['color'],
+      demos: ['custom-color']
+    },
+    {
+      id: 'animation',
+      name: '动画效果',
+      support: {
+        value: true
+      },
+      description: '通过 animation 设置图标动画效果，可选值：spin、pulse、bounce。',
+      cloud: {
+        value: true
+      },
+      apis: ['animation'],
+      demos: ['animation']
+    },
+    {
+      id: 'rotation',
+      name: '旋转',
+      support: {
+        value: true
+      },
+      description: '通过 rotation 设置图标旋转角度。',
+      cloud: {
+        value: true
+      },
+      apis: ['rotation'],
+      demos: ['rotation']
+    },
+    {
+      id: 'flip',
+      name: '翻转',
+      support: {
+        value: true
+      },
+      description: '通过 flip 设置图标翻转方向，可选值：horizontal、vertical。',
+      cloud: {
+        value: true
+      },
+      apis: ['flip'],
+      demos: ['flip']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 click 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['click'],
+      demos: ['events']
+    }
   ]
 }

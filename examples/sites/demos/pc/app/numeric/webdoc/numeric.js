@@ -229,5 +229,176 @@ export default {
       },
       codeFiles: ['filter-mode-change.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 属性设置绑定输入值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'max-min',
+      name: '最值与数值循环',
+      support: {
+        value: true
+      },
+      description: '通过 max 设置最大值，min 设置最小值，circulate 设置是否从最小值开始循环。',
+      cloud: {
+        value: true
+      },
+      apis: ['max', 'min', 'circulate'],
+      demos: ['max-min']
+    },
+    {
+      id: 'step',
+      name: '步长',
+      support: {
+        value: true
+      },
+      description: '通过 step 设置加减数值，mode 设置模式，step-strictly 设置是否只能输入 step 的倍数。',
+      cloud: {
+        value: true
+      },
+      apis: ['step', 'mode', 'step-strictly'],
+      demos: ['about-step']
+    },
+    {
+      id: 'precision',
+      name: '数值精度及格式',
+      support: {
+        value: true
+      },
+      description: '通过 precision 设置精度值，format 设置数字显示格式。',
+      cloud: {
+        value: true
+      },
+      apis: ['precision', 'format'],
+      demos: ['precision']
+    },
+    {
+      id: 'disabled',
+      name: '禁用',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用计数器。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['dynamic-disabled']
+    },
+    {
+      id: 'empty',
+      name: '可清空',
+      support: {
+        value: true
+      },
+      description: '通过 allow-empty 设置是否可清空，empty-value 设置清空后的绑定值。',
+      cloud: {
+        value: true
+      },
+      apis: ['allow-empty', 'empty-value'],
+      demos: ['allow-empty', 'empty-value']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置尺寸，可选值：medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['numeric-size']
+    },
+    {
+      id: 'controls',
+      name: '加减按钮',
+      support: {
+        value: true
+      },
+      description: '通过 controls 设置是否显示加减按钮，controls-position 设置按钮位置，show-left 设置左对齐。',
+      cloud: {
+        value: true
+      },
+      apis: ['controls', 'controls-position', 'show-left'],
+      demos: ['controls']
+    },
+    {
+      id: 'mouse-wheel',
+      name: '鼠标滚轮',
+      support: {
+        value: true
+      },
+      description: '通过 mouse-wheel 设置是否支持鼠标滚轮改变值。',
+      cloud: {
+        value: true
+      },
+      apis: ['mouse-wheel'],
+      demos: ['mouse-wheel']
+    },
+    {
+      id: 'unit',
+      name: '单位',
+      support: {
+        value: true
+      },
+      description: '通过 unit 设置计数器的单位，设置单位后加减按钮将不可用。',
+      cloud: {
+        value: true
+      },
+      apis: ['unit'],
+      demos: ['unit']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 change、focus、blur 等事件，change-compat 控制 change 事件的触发时机。',
+      cloud: {
+        value: true
+      },
+      apis: ['change', 'focus', 'blur', 'change-compat'],
+      demos: ['change-event', 'focus-event', 'blur-event']
+    },
+    {
+      id: 'string-mode',
+      name: '高精度',
+      support: {
+        value: true
+      },
+      description: '通过 string-mode 设置高精度模式，用于处理超出 JS Number 精度范围的数值。',
+      cloud: {
+        value: true
+      },
+      apis: ['string-mode'],
+      demos: ['string-mode']
+    },
+    {
+      id: 'filter',
+      name: '过滤器模式',
+      support: {
+        value: true
+      },
+      description: '通过 shape="filter" 设置过滤器模式，支持 title、tip、clearable、blank 等属性配置。',
+      cloud: {
+        value: true
+      },
+      apis: ['shape', 'title', 'tip', 'clearable', 'blank'],
+      demos: ['filter-mode', 'filter-mode-change']
+    }
   ]
 }

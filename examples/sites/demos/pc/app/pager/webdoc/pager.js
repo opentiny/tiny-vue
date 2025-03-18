@@ -242,5 +242,113 @@ export default {
       },
       codeFiles: ['pager-event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 total 设置总条数，current-page 设置当前页码。',
+      cloud: {
+        value: true
+      },
+      apis: ['total', 'current-page'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'page-size',
+      name: '每页显示数量',
+      support: {
+        value: true
+      },
+      description: '通过 page-size 设置每页显示条目数，page-sizes 设置可选择的 page-size 列表。',
+      cloud: {
+        value: true
+      },
+      apis: ['page-size', 'page-sizes'],
+      demos: ['page-size']
+    },
+    {
+      id: 'layout',
+      name: '自定义布局',
+      support: {
+        value: true
+      },
+      description:
+        '通过 layout 设置分页想要显示的子组件和顺序，支持 total、sizes、prev、pager、next、slot、jumper、current 等组件。',
+      cloud: {
+        value: true
+      },
+      apis: ['layout'],
+      demos: ['custom-layout']
+    },
+    {
+      id: 'mode',
+      name: '分页模式',
+      support: {
+        value: true
+      },
+      description: '通过 mode 设置分页组件渲染模式，不同模式是组件内置的 layout 设置。',
+      cloud: {
+        value: true
+      },
+      apis: ['mode'],
+      demos: ['pager-mode']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置分页禁用，通过 size 设置分页尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled', 'size'],
+      demos: ['disabled-and-size']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description:
+        '支持 current-change、size-change、prev-click、next-click 等事件，change-compat 控制 change 事件的触发时机。',
+      cloud: {
+        value: true
+      },
+      apis: ['current-change', 'size-change', 'prev-click', 'next-click', 'change-compat'],
+      demos: ['pager-event']
+    },
+    {
+      id: 'before-change',
+      name: '分页变更前置处理',
+      support: {
+        value: true
+      },
+      description: '通过 is-before-page-change 开启前置处理特性，翻页或者改变页大小时会触发 before-page-change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['is-before-page-change', 'before-page-change'],
+      demos: ['before-page-change']
+    },
+    {
+      id: 'custom',
+      name: '自定义配置',
+      support: {
+        value: true
+      },
+      description: '支持自定义总条数显示、页码按钮数量、上下页按钮文本、单页隐藏等功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['custom-total', 'pager-count', 'prev-text', 'next-text', 'hide-on-single-page'],
+      demos: ['custom-total', 'pager-count', 'custom-next-prev-text', 'hide-on-single-page']
+    }
   ]
 }

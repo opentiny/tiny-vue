@@ -97,5 +97,85 @@ export default {
       'en-US': '<p></p>'
     },
     codeFiles: ['size.vue']
-  }
+  },
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 value 或者默认插槽设置链接显示内容，绑定 click 事件监听点击。',
+      cloud: {
+        value: true
+      },
+      apis: ['value', 'click'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'style',
+      name: '主题样式',
+      support: {
+        value: true
+      },
+      description: '通过 type 设置链接的主题类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['link-style']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用链接。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['dynamic-disable']
+    },
+    {
+      id: 'underline',
+      name: '下划线',
+      support: {
+        value: true
+      },
+      description: '通过 underline 设置鼠标悬浮是否显示下划线。',
+      cloud: {
+        value: true
+      },
+      apis: ['underline'],
+      demos: ['focus-no-underline']
+    },
+    {
+      id: 'icon',
+      name: '图标',
+      support: {
+        value: true
+      },
+      description: '通过属性 icon、默认插槽、icon 插槽都可以自定义图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['icon'],
+      demos: ['custom-icon']
+    },
+    {
+      id: 'href',
+      name: '链接地址',
+      support: {
+        value: true
+      },
+      description: '通过 href 设置跳转连接，可配合原生属性 target 一起使用。',
+      cloud: {
+        value: true
+      },
+      apis: ['href', 'target'],
+      demos: ['config-href']
+    }
+  ]
 }

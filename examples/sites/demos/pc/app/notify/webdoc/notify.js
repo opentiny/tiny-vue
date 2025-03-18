@@ -187,5 +187,163 @@ export default {
       },
       codeFiles: ['notify-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 Notify 函数弹出通知框，支持通过 title 设置标题，message 设置内容，支持 jsx 和 h 函数的写法。',
+      cloud: {
+        value: false
+      },
+      apis: ['Notify', 'title', 'message'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'type',
+      name: '消息类型',
+      support: {
+        value: true
+      },
+      description: '通过 type 设置不同的类型，可选值：success、warning、info、error。',
+      cloud: {
+        value: false
+      },
+      apis: ['type'],
+      demos: ['type']
+    },
+    {
+      id: 'duration',
+      name: '自动关闭延时',
+      support: {
+        value: true
+      },
+      description: '通过 duration 设置自动关闭的延迟时间，success/info 默认 5 秒，warning/error 默认 10 秒。',
+      cloud: {
+        value: false
+      },
+      apis: ['duration'],
+      demos: ['duration']
+    },
+    {
+      id: 'position',
+      name: '显示位置',
+      support: {
+        value: true
+      },
+      description: '通过 position 设置通知框显示位置，默认值：bottom-right。',
+      cloud: {
+        value: false
+      },
+      apis: ['position'],
+      demos: ['position']
+    },
+    {
+      id: 'show-close',
+      name: '关闭按钮',
+      support: {
+        value: true
+      },
+      description: '通过 showClose 设置是否显示关闭按钮，默认值：true。',
+      cloud: {
+        value: false
+      },
+      apis: ['showClose'],
+      demos: ['showClose']
+    },
+    {
+      id: 'show-icon',
+      name: '类型图标',
+      support: {
+        value: true
+      },
+      description: '通过 showIcon 设置是否显示类型图标，默认值：true。',
+      cloud: {
+        value: false
+      },
+      apis: ['showIcon'],
+      demos: ['showIcon']
+    },
+    {
+      id: 'close-icon',
+      name: '关闭图标',
+      support: {
+        value: true
+      },
+      description: '通过 closeIcon 设置通知框关闭图标，默认值：IconClose。',
+      cloud: {
+        value: false
+      },
+      apis: ['closeIcon'],
+      demos: ['closeIcon']
+    },
+    {
+      id: 'status-icon',
+      name: '类型图标',
+      support: {
+        value: true
+      },
+      description: '通过 statusIcon 设置通知框类型图标，默认值：IconInfoSolid。',
+      cloud: {
+        value: false
+      },
+      apis: ['statusIcon'],
+      demos: ['statusIcon']
+    },
+    {
+      id: 'debounce',
+      name: '防抖',
+      support: {
+        value: true
+      },
+      description: '通过 debounceDelay 设置防抖时间。',
+      cloud: {
+        value: false
+      },
+      apis: ['debounceDelay'],
+      demos: ['debounceDelay']
+    },
+    {
+      id: 'offset',
+      name: '垂直偏移',
+      support: {
+        value: true
+      },
+      description: '通过 verticalOffset 设置垂直方向偏离距离。',
+      cloud: {
+        value: false
+      },
+      apis: ['verticalOffset'],
+      demos: ['verticalOffset']
+    },
+    {
+      id: 'manual-close',
+      name: '手动关闭',
+      support: {
+        value: true
+      },
+      description: '支持通过 instance.close() 关闭指定通知，Notify.close 关闭指定通知，Notify.closeAll 关闭所有通知。',
+      cloud: {
+        value: false
+      },
+      apis: ['close', 'closeAll'],
+      demos: ['manual-close']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 beforeClose 设置关闭前事件，onClose 设置点击关闭按钮时触发事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['beforeClose', 'onClose'],
+      demos: ['notify-events']
+    }
   ]
 }
