@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import Transfer from '@opentiny/vue-transfer'
 import { describe, expect, test, vi } from 'vitest'
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
