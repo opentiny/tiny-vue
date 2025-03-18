@@ -188,9 +188,13 @@ export const colToVisible = ($table, column, move) => {
 }
 
 export const hasDataTag = (el, value) => {
-  // el可能为shadow-root，shadow-root没有getAttribute方法
-  if (!el || !value || !el.getAttribute) {
+  if (!el || !value) {
     return false
+  }
+
+  // 处理遇到 shadowRoot的情况
+  if (el.host) {
+    el = el.host
   }
 
   return (' ' + el.getAttribute('data-tag') + ' ').includes(' ' + value + ' ')

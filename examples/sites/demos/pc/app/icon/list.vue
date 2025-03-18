@@ -120,10 +120,6 @@ export default {
   color: #191919;
 }
 
-.svgs-item:hover .svgs-icon {
-  fill: #191919;
-}
-
 .svgs-text {
   margin-top: 12px;
   display: block;

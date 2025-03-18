@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -101,6 +103,73 @@ export default {
         'en-US': '<p>Use <code>target</code> to specify the DOM node to be overwritten by Loading. </p>\n'
       },
       codeFiles: ['spinner.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的加载状态显示功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['loading'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '支持 medium、small、large 三种尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'customization',
+      name: '自定义样式',
+      support: {
+        value: true
+      },
+      description: '支持自定义加载文本、背景色和样式类。',
+      cloud: {
+        value: true
+      },
+      apis: ['text', 'background', 'custom-class'],
+      demos: ['customization']
+    },
+    {
+      id: 'directive',
+      name: '指令方式',
+      support: {
+        value: true
+      },
+      description: '支持通过 v-loading 指令使用加载状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-loading'],
+      demos: ['directive']
+    },
+    {
+      id: 'fullscreen',
+      name: '全屏加载',
+      support: {
+        value: true
+      },
+      description: '支持全屏显示加载状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['fullscreen'],
+      demos: ['fullscreen']
     }
   ]
 }

@@ -83,6 +83,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--tv-color-bg-mask);
 }
 </style>

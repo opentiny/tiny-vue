@@ -73,3 +73,15 @@ export default defineConfig({
   }
 </style>
 ```
+
+## 4、`webpack` 无法解析富文本组件相关依赖包
+
+`webpack`、`vue-cli` 默认不会解析转换 `node_modules` 中的依赖包，导致在工程中无法识别 `quill` 和 `@opentiny/fluent-editor` 包中的 `javascript` 高级语法。
+
+可以通过在 `vue.config.js` 文件中增加如下配置解决：
+
+```js
+module.exports = {
+  transpileDependencies: ['@opentiny/fluent-editor', 'quill']
+}
+```

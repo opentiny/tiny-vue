@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -270,6 +272,73 @@ export default {
         'en-US': '<p>The main events are focus, blur and change.</p>'
       },
       codeFiles: ['events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'type',
+      name: '日期类型',
+      support: {
+        value: true
+      },
+      description: '支持选择日期、日期时间、周、月份、年份等多种类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'range',
+      name: '范围选择',
+      support: {
+        value: true
+      },
+      description: '支持日期范围、日期时间范围、月份范围、年份范围的选择。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['date-range']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个日期选择器或部分日期。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled', 'picker-options.disabledDate'],
+      demos: ['disabled']
+    },
+    {
+      id: 'shortcuts',
+      name: '快捷选项',
+      support: {
+        value: true
+      },
+      description: '支持设置快捷选项，方便快速选择常用日期范围。',
+      cloud: {
+        value: true
+      },
+      apis: ['picker-options.shortcuts'],
+      demos: ['shortcuts']
+    },
+    {
+      id: 'format',
+      name: '格式化',
+      support: {
+        value: true
+      },
+      description: '支持自定义日期显示格式、时间显示格式和绑定值格式。',
+      cloud: {
+        value: true
+      },
+      apis: ['format', 'value-format', 'time-format'],
+      demos: ['format']
     }
   ]
 }

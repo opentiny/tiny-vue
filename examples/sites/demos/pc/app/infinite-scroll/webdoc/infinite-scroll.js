@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -28,6 +30,34 @@ export default {
           '<p>Adds the property <code>infinite-scroll-disabled</code> to the scrolling load list to control whether loading is disabled. For details, see the example. </p>\n'
       },
       codeFiles: ['disabled.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '在列表上添加指令 v-infinite-scroll 并指定加载方法，实现滚动加载。',
+      cloud: {
+        value: false
+      },
+      apis: ['v-infinite-scroll'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用加载',
+      support: {
+        value: true
+      },
+      description: '通过 infinite-scroll-disabled 属性控制是否禁用加载。',
+      cloud: {
+        value: false
+      },
+      apis: ['infinite-scroll-disabled'],
+      demos: ['disabled']
     }
   ]
 }

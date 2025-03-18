@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   meta: {
     stable: '3.12.0'
   },
@@ -30,6 +32,34 @@ export default {
         'en-US': 'Set the watermark image through the <code>image</code> property. '
       },
       codeFiles: ['image.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 content 设置水印文字，font 设置水印样式。',
+      cloud: {
+        value: false
+      },
+      apis: ['content', 'font'],
+      demos: ['basic']
+    },
+    {
+      id: 'image',
+      name: '图片水印',
+      support: {
+        value: true
+      },
+      description: '通过 image 属性设置水印图片。',
+      cloud: {
+        value: false
+      },
+      apis: ['image'],
+      demos: ['image']
     }
   ]
 }

@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -500,6 +502,60 @@ export default {
         'en-US': 'Event triggered when the <p><code>close</code> dialog box is closed. </p>'
       },
       codeFiles: ['events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定变量，变量值对应 label 属性的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用单选框。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['dynamic-disable']
+    },
+    {
+      id: 'vertical',
+      name: '垂直布局',
+      support: {
+        value: true
+      },
+      description: '可在 radio-group 组件上设置 vertical 属性，使单选框垂直布局。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical'],
+      demos: ['vertical']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '可对按钮形式的 radio 设置 size 属性，以改变其尺寸，可选值有：medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['radio-size']
     }
   ]
 }
