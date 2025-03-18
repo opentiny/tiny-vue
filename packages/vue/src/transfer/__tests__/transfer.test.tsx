@@ -117,6 +117,7 @@ describe('PC Mode', () => {
         onLeftCheckChange: leftChangeEvent
       }
     })
+    await nextTick()
     const tinyTransfer = wrapper.findComponent({ name: 'TinyTransfer' })
     await tinyTransfer.find('.tiny-transfer-panel__body .tiny-transfer-panel__list label').trigger('click')
     expect(leftChangeEvent).toBeCalled()
