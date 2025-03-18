@@ -37,6 +37,11 @@ const docMenusChildren = [
       theme: ['default']
     }
   },
+  {
+    'title': '暗黑模式',
+    'titleEn': 'theme-dark',
+    'key': 'theme-dark'
+  },
   { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
   { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
   {
