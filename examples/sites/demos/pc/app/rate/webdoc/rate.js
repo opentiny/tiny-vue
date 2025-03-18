@@ -215,5 +215,59 @@ export default {
       },
       codeFiles: ['rate-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定变量，变量值对应评分值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用评分组件。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置评分组件的尺寸大小。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'max',
+      name: '最大值',
+      support: {
+        value: true
+      },
+      description: '通过 max 设置评分组件的最大值。',
+      cloud: {
+        value: true
+      },
+      apis: ['max'],
+      demos: ['max']
+    }
   ]
 }

@@ -119,5 +119,59 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置双向绑定搜索值，placeholder 设置默认占位符文本。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'placeholder'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'clearable',
+      name: '可清除',
+      support: {
+        value: true
+      },
+      description: '通过 clearable 设置显示清空图标按钮。',
+      cloud: {
+        value: true
+      },
+      apis: ['clearable'],
+      demos: ['clearable']
+    },
+    {
+      id: 'mini',
+      name: '迷你模式',
+      support: {
+        value: true
+      },
+      description: '通过 mini 设置为 mini 模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['mini'],
+      demos: ['mini-mode']
+    },
+    {
+      id: 'search-types',
+      name: '搜索类型',
+      support: {
+        value: true
+      },
+      description: '通过 search-types 设置可选的搜索类型，type-value 设置搜索类型的默认值。',
+      cloud: {
+        value: true
+      },
+      apis: ['search-types', 'type-value'],
+      demos: ['search-types']
+    }
   ]
 }

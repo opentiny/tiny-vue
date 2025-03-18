@@ -203,5 +203,59 @@ export default {
       },
       codeFiles: ['three-areas.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '支持左右或上下分割面板，可设置最小高度和宽度。',
+      cloud: {
+        value: false
+      },
+      apis: ['left-top-min', 'right-bottom-min'],
+      demos: ['basic-usage', 'split-threshold']
+    },
+    {
+      id: 'mode',
+      name: '分割方式',
+      support: {
+        value: true
+      },
+      description: '支持横向和纵向两种分割方式，默认为横向。',
+      cloud: {
+        value: false
+      },
+      apis: ['mode'],
+      demos: ['split-mode']
+    },
+    {
+      id: 'event',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持移动开始、移动中、移动结束等事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['movestart', 'moving', 'moveend'],
+      demos: ['movestart-event', 'moving-event', 'moveend-event']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义左右面板、拖拽区域和折叠按钮。',
+      cloud: {
+        value: false
+      },
+      apis: ['slots'],
+      demos: ['left-right-slot', 'trigger-slot', 'trigger-simple']
+    }
   ]
 }

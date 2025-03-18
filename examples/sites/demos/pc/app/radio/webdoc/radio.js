@@ -151,5 +151,59 @@ export default {
       },
       codeFiles: ['display-only.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定变量，变量值对应 label 属性的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'label'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'group',
+      name: '单选框组',
+      support: {
+        value: true
+      },
+      description: 'radio-group 可以将 radio 或者 radio-button 组合起来，通过 v-model 绑定选中的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['radio-group', 'v-model'],
+      demos: ['radio-group']
+    },
+    {
+      id: 'options',
+      name: '单选组',
+      support: {
+        value: true
+      },
+      description: '通过 options 配置式渲染单选组，type 属性可以配置为 button，配置后单选组将以按钮的形式展示。',
+      cloud: {
+        value: true
+      },
+      apis: ['options', 'type'],
+      demos: ['group-options']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用单选框。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['dynamic-disable']
+    }
   ]
 }

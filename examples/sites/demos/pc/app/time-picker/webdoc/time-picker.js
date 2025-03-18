@@ -201,5 +201,59 @@ export default {
       },
       codeFiles: ['event.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '默认通过滚动的方式选择时间，arrow-control 属性可以设置通过箭头的方式选择时间。',
+      cloud: {
+        value: true
+      },
+      apis: ['arrow-control'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'range',
+      name: '时间范围',
+      support: {
+        value: true
+      },
+      description: '通过 is-range 设置是否为范围选择，range-separator 设置范围选择分隔符。',
+      cloud: {
+        value: true
+      },
+      apis: ['is-range', 'range-separator'],
+      demos: ['is-range']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 禁用时间输入框，picker-options 的 selectableRange 属性可实现部分禁用。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled', 'picker-options'],
+      demos: ['disabled']
+    },
+    {
+      id: 'format',
+      name: '时间格式化',
+      support: {
+        value: true
+      },
+      description: '通过 format 设置时间格式化显示，支持 12/24 小时制、分钟、秒等格式。',
+      cloud: {
+        value: true
+      },
+      apis: ['format'],
+      demos: ['format']
+    }
   ]
 }

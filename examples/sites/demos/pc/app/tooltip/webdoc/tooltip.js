@@ -178,5 +178,59 @@ export default {
       },
       codeFiles: ['content-max-height.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 content 属性设置提示内容，placement 设置显示位置。',
+      cloud: {
+        value: true
+      },
+      apis: ['content', 'placement'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'theme',
+      name: '主题',
+      support: {
+        value: true
+      },
+      description: '通过 effect 设置明暗效果，type 设置主题类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['effect', 'type'],
+      demos: ['theme']
+    },
+    {
+      id: 'control',
+      name: '控制显示',
+      support: {
+        value: true
+      },
+      description: '通过 visible 控制显示状态，manual 设置手动控制模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['visible', 'manual'],
+      demos: ['control']
+    },
+    {
+      id: 'content',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '通过 renderContent 函数或 content 插槽自定义提示内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['renderContent', 'slots'],
+      demos: ['content']
+    }
   ]
 }

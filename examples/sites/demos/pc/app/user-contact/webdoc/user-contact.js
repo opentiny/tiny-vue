@@ -70,5 +70,59 @@ export default {
       },
       codeFiles: ['contact-espace.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '支持设置用户头像、名称、职位等基本信息。',
+      cloud: {
+        value: false
+      },
+      apis: ['modelValue', 'name', 'position'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'avatar',
+      name: '头像设置',
+      support: {
+        value: true
+      },
+      description: '支持设置头像大小、形状、颜色等样式。',
+      cloud: {
+        value: false
+      },
+      apis: ['size', 'shape', 'color'],
+      demos: ['avatar']
+    },
+    {
+      id: 'status',
+      name: '状态',
+      support: {
+        value: true
+      },
+      description: '支持设置在线、离线、忙碌等状态。',
+      cloud: {
+        value: false
+      },
+      apis: ['status'],
+      demos: ['status']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义头像、名称、职位等内容。',
+      cloud: {
+        value: false
+      },
+      apis: ['slots'],
+      demos: ['custom']
+    }
   ]
 }

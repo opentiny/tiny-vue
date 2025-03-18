@@ -37,5 +37,33 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '支持树虚拟滚动，可设置滚动容器高度、行高、宽度等。',
+      cloud: {
+        value: false
+      },
+      apis: ['height', 'row-height', 'width', 'scrollbar-size'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'tree',
+      name: '树配置',
+      support: {
+        value: true
+      },
+      description: '通过 tree-op 配置树组件属性，支持展开状态保持、滚动位置保持等。',
+      cloud: {
+        value: false
+      },
+      apis: ['tree-op', 'keepExpandStatus', 'keepScrollTop'],
+      demos: ['basic-usage']
+    }
   ]
 }

@@ -77,5 +77,59 @@ export default {
       },
       codeFiles: ['slots.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '可通过 text 自定义文本内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['text'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'direction',
+      name: '滚动方向',
+      support: {
+        value: true
+      },
+      description: '可通过 direction 设置文字滚动方向。',
+      cloud: {
+        value: true
+      },
+      apis: ['direction'],
+      demos: ['scroll-direction']
+    },
+    {
+      id: 'hover-stop',
+      name: '悬停停止',
+      support: {
+        value: true
+      },
+      description: '可通过 hover-stop 设鼠标悬停时文本是否停止滚动。',
+      cloud: {
+        value: true
+      },
+      apis: ['hover-stop'],
+      demos: ['hover-stop']
+    },
+    {
+      id: 'time',
+      name: '滚动时间',
+      support: {
+        value: true
+      },
+      description: '可通过 time 设置滚动时间间隔。',
+      cloud: {
+        value: true
+      },
+      apis: ['time'],
+      demos: ['scroll-time']
+    }
   ]
 }

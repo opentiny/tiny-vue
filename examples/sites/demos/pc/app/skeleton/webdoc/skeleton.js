@@ -120,5 +120,59 @@ export default {
       },
       codeFiles: ['fine-grained-mode.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '基础的骨架效果。',
+      cloud: {
+        value: true
+      },
+      apis: [],
+      demos: ['base']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 属性可以控制骨架屏的尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'avatar',
+      name: '头像模式',
+      support: {
+        value: true
+      },
+      description: '通过 avatar 属性控制骨架段落左侧出现头像占位。',
+      cloud: {
+        value: true
+      },
+      apis: ['avatar'],
+      demos: ['complex-demo']
+    },
+    {
+      id: 'rows',
+      name: '段落行数',
+      support: {
+        value: true
+      },
+      description: '段落默认渲染 4 行，通过 rows 属性控制段落行数。',
+      cloud: {
+        value: true
+      },
+      apis: ['rows'],
+      demos: ['custom-rows']
+    }
   ]
 }

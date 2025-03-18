@@ -90,5 +90,59 @@ export default {
       },
       codeFiles: ['width.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 value 或 v-model 设置绑定值，通过 placeholder 设置提示占位文本。',
+      cloud: {
+        value: false
+      },
+      apis: ['value', 'v-model', 'placeholder'],
+      demos: ['basic-usage', 'value', 'placeholder']
+    },
+    {
+      id: 'readonly',
+      name: '只读',
+      support: {
+        value: true
+      },
+      description: '通过 readonly 设置是否只读。',
+      cloud: {
+        value: false
+      },
+      apis: ['readonly'],
+      demos: ['readonly']
+    },
+    {
+      id: 'separator',
+      name: '分隔符',
+      support: {
+        value: true
+      },
+      description: '通过 separator 设置分隔符，在文本框中输入回车就是分隔符的位置。',
+      cloud: {
+        value: false
+      },
+      apis: ['separator'],
+      demos: ['separtor']
+    },
+    {
+      id: 'width',
+      name: '宽度',
+      support: {
+        value: true
+      },
+      description: '通过 width 设置宽度。',
+      cloud: {
+        value: false
+      },
+      apis: ['width'],
+      demos: ['width']
+    }
   ]
 }

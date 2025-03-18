@@ -187,5 +187,59 @@ export default {
       },
       codeFiles: ['slot-description.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 属性设置时间线的节点数据，active 属性设置当前节点，click 监听单节点的点击事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['data', 'active', 'click'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'vertical',
+      name: '竖向时间线',
+      support: {
+        value: true
+      },
+      description: '通过 vertical 属性设置为竖直方向时间线，reverse 设置是否逆序展示数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical', 'reverse'],
+      demos: ['vertical-timeline']
+    },
+    {
+      id: 'status',
+      name: '节点状态',
+      support: {
+        value: true
+      },
+      description: '通过指定时间线节点的 autoColor 或 type 属性指定其状态，disabled 属性可设置是否禁用。',
+      cloud: {
+        value: true
+      },
+      apis: ['autoColor', 'type', 'disabled'],
+      demos: ['status']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '通过插槽自定义时间线内容，包括顶部、底部、左侧、右侧和描述信息。',
+      cloud: {
+        value: true
+      },
+      apis: ['slots'],
+      demos: ['custom-horizontal-timeline', 'custom-vertical-timeline', 'slot-description']
+    }
   ]
 }

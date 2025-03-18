@@ -127,5 +127,61 @@ export default {
       },
       codeFiles: ['tag-event-click.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过默认插槽，可以将文字和图标显示为一个标签。通过 value 属性，也可以设置标签值。',
+      cloud: {
+        value: true
+      },
+      apis: ['value'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'effect',
+      name: '主题',
+      support: {
+        value: true
+      },
+      description:
+        '通过 effect 设置主题，可选值：dark、light、plain；type 设置类型，可选值：success、info、warning、danger。',
+      cloud: {
+        value: true
+      },
+      apis: ['effect', 'type'],
+      demos: ['effect']
+    },
+    {
+      id: 'color',
+      name: '自定义颜色',
+      support: {
+        value: true
+      },
+      description:
+        '通过 color 设置颜色，可使用预设值，也可自定义颜色值。当自定义颜色值为字符串时，则设置背景色；当自定义颜色值为数组则第一个值为背景色，第二个为文本色。',
+      cloud: {
+        value: true
+      },
+      apis: ['color'],
+      demos: ['color-border']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置尺寸大小，可选值：medium、small。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    }
   ]
 }

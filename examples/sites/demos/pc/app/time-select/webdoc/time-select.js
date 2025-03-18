@@ -129,5 +129,59 @@ export default {
       },
       codeFiles: ['focus.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置双向绑定搜索值，placeholder 设置默认占位符文本。',
+      cloud: {
+        value: false
+      },
+      apis: ['v-model', 'placeholder'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'range',
+      name: '时间范围',
+      support: {
+        value: true
+      },
+      description: '通过 picker-options 设置固定时间范围，包括起始时间、结束时间、步长等。',
+      cloud: {
+        value: false
+      },
+      apis: ['picker-options'],
+      demos: ['picker-options']
+    },
+    {
+      id: 'clearable',
+      name: '可清除',
+      support: {
+        value: true
+      },
+      description: '通过 clearable 显示清空图标，clear-icon 自定义清空图标。',
+      cloud: {
+        value: false
+      },
+      apis: ['clearable', 'clear-icon'],
+      demos: ['clear-icon']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 属性可调整输入框尺寸，提供 medium、small、mini 三个固定属性值。',
+      cloud: {
+        value: false
+      },
+      apis: ['size'],
+      demos: ['size-medium']
+    }
   ]
 }

@@ -223,7 +223,7 @@ export default {
         'en-US': 'Combining with Grid'
       },
       desc: {
-        'zh-CN': 'Grid 组件需要设置 <code>:auto-resize=“true”</code> ，自适应父元素 <code>TabItem</code> 相应变化。',
+        'zh-CN': 'Grid 组件需要设置 <code>:auto-resize="true"</code> ，自适应父元素 <code>TabItem</code> 相应变化。',
         'en-US':
           'The Grid component needs to set <code>:auto-resize="true"</code> to adapt to the corresponding changes of the parent element <code>TabItem</code> .'
       },
@@ -282,6 +282,60 @@ export default {
           'Use <code>overflow-title</code> to set the title to hide and show when it exceeds a certain length (default 256px)... , move the cursor to the title to display the tooltip, and set <code>title-width</code> to the excess length of the title.'
       },
       codeFiles: ['overflow-title.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置选中的页签项，对应 TabItem 页签项中 name 属性的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'style',
+      name: '风格类型',
+      support: {
+        value: true
+      },
+      description: '通过 tab-style 设置风格类型，可选值有 card、bordercard。',
+      cloud: {
+        value: true
+      },
+      apis: ['tab-style'],
+      demos: ['tab-style-card', 'tab-style-bordercard']
+    },
+    {
+      id: 'position',
+      name: '显示位置',
+      support: {
+        value: true
+      },
+      description: '通过 position 设置显示位置，可选值有 top、right、bottom、left。',
+      cloud: {
+        value: true
+      },
+      apis: ['position'],
+      demos: ['position']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 改变尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
     }
   ]
 }

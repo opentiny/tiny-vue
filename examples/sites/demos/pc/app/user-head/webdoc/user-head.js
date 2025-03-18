@@ -163,5 +163,59 @@ export default {
       },
       codeFiles: ['render-user-head-in-grid.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '支持设置头像值，包括图片、文字、图标等。',
+      cloud: {
+        value: false
+      },
+      apis: ['modelValue'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'style',
+      name: '样式设置',
+      support: {
+        value: true
+      },
+      description: '支持设置大小、形状、颜色、背景色等样式。',
+      cloud: {
+        value: false
+      },
+      apis: ['size', 'shape', 'color', 'backgroundColor'],
+      demos: ['style']
+    },
+    {
+      id: 'message',
+      name: '消息提示',
+      support: {
+        value: true
+      },
+      description: '支持显示消息数量和通知。',
+      cloud: {
+        value: false
+      },
+      apis: ['messageTotal', 'messageType'],
+      demos: ['message']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义头像内容。',
+      cloud: {
+        value: false
+      },
+      apis: ['slots'],
+      demos: ['custom']
+    }
   ]
 }

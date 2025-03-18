@@ -271,5 +271,59 @@ export default {
       },
       codeFiles: ['transfer-events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 属性提供数据源，value 属性指定右侧列表值。',
+      cloud: {
+        value: true
+      },
+      apis: ['data', 'value'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义标题、按钮文本、列表底部等内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['titles', 'button-texts', 'left-footer', 'right-footer'],
+      demos: ['custom-titles', 'custom-btns', 'custom-footer']
+    },
+    {
+      id: 'filter',
+      name: '过滤搜索',
+      support: {
+        value: true
+      },
+      description: '通过 filterable 开启搜索功能，可自定义搜索方法。',
+      cloud: {
+        value: true
+      },
+      apis: ['filterable', 'filter-method'],
+      demos: ['custom-filter']
+    },
+    {
+      id: 'sort',
+      name: '排序策略',
+      support: {
+        value: true
+      },
+      description: '通过 target-order 设置右侧列表元素的排序策略。',
+      cloud: {
+        value: true
+      },
+      apis: ['target-order'],
+      demos: ['target-order']
+    }
   ]
 }

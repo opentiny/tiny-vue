@@ -118,5 +118,59 @@ export default {
       },
       codeFiles: ['event-change.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定开关值。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'mini',
+      name: '迷你尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 mini 设置小尺寸开关。',
+      cloud: {
+        value: true
+      },
+      apis: ['mini'],
+      demos: ['mini-mode']
+    },
+    {
+      id: 'loading',
+      name: '加载中状态',
+      support: {
+        value: true
+      },
+      description: '通过 loading 设置开关显示加载状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['loading'],
+      demos: ['loading']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置开关禁用状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['dynamic-disable']
+    }
   ]
 }

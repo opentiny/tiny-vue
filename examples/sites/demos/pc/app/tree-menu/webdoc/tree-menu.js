@@ -375,5 +375,59 @@ export default {
       },
       codeFiles: ['width-adapt.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 属性设置静态数据，支持服务端数据加载。',
+      cloud: {
+        value: false
+      },
+      apis: ['data', 'get-menu-data-sync'],
+      demos: ['basic-usage', 'data-resource']
+    },
+    {
+      id: 'node',
+      name: '节点操作',
+      support: {
+        value: true
+      },
+      description: '支持设置当前节点、展开/收起节点、节点高亮等操作。',
+      cloud: {
+        value: false
+      },
+      apis: ['setCurrentKey', 'default-expanded-keys', 'default-expanded-keys-highlight'],
+      demos: ['current-node', 'default-expanded-keys', 'default-expanded-keys-highlight']
+    },
+    {
+      id: 'filter',
+      name: '节点过滤',
+      support: {
+        value: true
+      },
+      description: '通过 show-filter 显示搜索框，支持自定义过滤方法。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-filter', 'filter-node-method'],
+      demos: ['show-filter', 'filter-node-method']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义图标、文字样式、节点内容等。',
+      cloud: {
+        value: false
+      },
+      apis: ['customIcon', 'ellipsis', 'slots'],
+      demos: ['custom-icon', 'text-ellipsis', 'tree-menu-slot']
+    }
   ]
 }

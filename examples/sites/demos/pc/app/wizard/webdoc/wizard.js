@@ -93,11 +93,65 @@ export default {
       },
       desc: {
         'zh-CN':
-          '页向导模式下：通过 <code>btn-prev</code> 监听“上一步”按钮点击事件；<br /> \n        <code>btn-next</code> 监听“下一步”按钮点击事件；<br />\n        <code>btn-save</code> 监听“保存”按钮点击事件；<br />\n        <code>btn-submit</code> 监听“提交”按钮点击事件，流程需要走到最后一步才会显示此按钮。<br />',
+          '页向导模式下：通过 <code>btn-prev</code> 监听"上一步"按钮点击事件；<br /> \n        <code>btn-next</code> 监听"下一步"按钮点击事件；<br />\n        <code>btn-save</code> 监听"保存"按钮点击事件；<br />\n        <code>btn-submit</code> 监听"提交"按钮点击事件，流程需要走到最后一步才会显示此按钮。<br />',
         'en-US':
           'In page wizard mode: listen for the "Previous" button click event through<code>btn-prev</code><br/>\n        <code>btn-next</code>Listen for the "Next" button click event<br/>\n        <code>btn-save</code>Listen for the "save" button click event<br/>\n        <code>btn-submit</code>Listen for the "submit" button click event, and the process needs to go to the last step to display this button<br/>.'
       },
       codeFiles: ['btn-events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置流程节点信息，支持节点名称和状态设置。',
+      cloud: {
+        value: false
+      },
+      apis: ['data', 'node-click'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'mode',
+      name: '向导模式',
+      support: {
+        value: true
+      },
+      description: '支持页向导、垂直、时间线等多种展示模式。',
+      cloud: {
+        value: false
+      },
+      apis: ['page-guide', 'vertical', 'time-line-flow'],
+      demos: ['page-guide', 'vertical', 'time-line-flow']
+    },
+    {
+      id: 'slot',
+      name: '插槽',
+      support: {
+        value: true
+      },
+      description: '支持自定义节点名称、步骤按钮和内容等。',
+      cloud: {
+        value: false
+      },
+      apis: ['slots'],
+      demos: ['slot-base', 'slot-step-button']
+    },
+    {
+      id: 'event',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持上一步、下一步、保存、提交等按钮事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['btn-prev', 'btn-next', 'btn-save', 'btn-submit'],
+      demos: ['btn-events']
     }
   ]
 }
