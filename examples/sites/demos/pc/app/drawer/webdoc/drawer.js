@@ -225,5 +225,190 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'service',
+      name: '方法调用',
+      support: {
+        value: true
+      },
+      description: '通过 Drawer.service 方法可配置并打开抽屉，方法返回组件实例，可调用其 close 方法关闭组件。',
+      cloud: {
+        value: true
+      },
+      apis: ['Drawer.service'],
+      demos: ['use-through-method']
+    },
+    {
+      id: 'placement',
+      name: '抽屉方向',
+      support: {
+        value: true
+      },
+      description: '通过 placement 属性设置抽屉的方向，可选值有 left、right、top、bottom，默认值为 right。',
+      cloud: {
+        value: true
+      },
+      apis: ['placement'],
+      demos: ['placement']
+    },
+    {
+      id: 'tips-props',
+      name: '帮助提示',
+      support: {
+        value: true
+      },
+      description: '通过 tips-props 属性可自定义标题帮助提示信息。',
+      cloud: {
+        value: true
+      },
+      apis: ['tips-props'],
+      demos: ['tips-props']
+    },
+    {
+      id: 'width',
+      name: '抽屉宽度',
+      support: {
+        value: true
+      },
+      description: '通过 width 属性设置抽屉的宽度，默认值为 500px。',
+      cloud: {
+        value: true
+      },
+      apis: ['width'],
+      demos: ['width']
+    },
+    {
+      id: 'dragable',
+      name: '宽高可拖拽',
+      support: {
+        value: true
+      },
+      description: '通过 dragable 属性开启抽屉宽度/高度拖拽功能。当抽屉位于左右两侧时可拖拽宽度，上下两侧可拖拽高度。',
+      cloud: {
+        value: true
+      },
+      apis: ['dragable'],
+      demos: ['dragable']
+    },
+    {
+      id: 'mask',
+      name: '遮罩层显示隐藏',
+      support: {
+        value: true
+      },
+      description: '通过 mask 属性可以控制遮罩层显示隐藏，默认值为 true。',
+      cloud: {
+        value: true
+      },
+      apis: ['mask'],
+      demos: ['mask']
+    },
+    {
+      id: 'before-close',
+      name: '拦截抽屉关闭',
+      support: {
+        value: true
+      },
+      description:
+        '通过 before-close 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 false 值，则拦截弹窗关闭；否则不拦截。',
+      cloud: {
+        value: true
+      },
+      apis: ['before-close'],
+      demos: ['before-close']
+    },
+    {
+      id: 'mask-closable',
+      name: '点击遮罩层关闭',
+      support: {
+        value: true
+      },
+      description: '通过 mask-closable 属性控制是否可以通过点击遮罩层关闭抽屉，默认值为 true。',
+      cloud: {
+        value: true
+      },
+      apis: ['mask-closable'],
+      demos: ['mask-closable']
+    },
+    {
+      id: 'show-close',
+      name: '关闭图标显示',
+      support: {
+        value: true
+      },
+      description: '通过 show-close 控制是否显示关闭图标，默认值为 true。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-close'],
+      demos: ['show-close']
+    },
+    {
+      id: 'show-header',
+      name: '头部显示',
+      support: {
+        value: true
+      },
+      description: '通过 show-header 控制是否显示头部，默认值为 true。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-header'],
+      demos: ['show-header']
+    },
+    {
+      id: 'show-footer',
+      name: '底部显示',
+      support: {
+        value: true
+      },
+      description: '通过 show-footer 控制是否显示底部，默认值为 false。',
+      cloud: {
+        value: true
+      },
+      apis: ['show-footer'],
+      demos: ['show-footer']
+    },
+    {
+      id: 'z-index',
+      name: '自定义堆叠顺序',
+      support: {
+        value: true
+      },
+      description: '通过 z-index 属性设置自定义堆叠顺序。',
+      cloud: {
+        value: true
+      },
+      apis: ['z-index'],
+      demos: ['z-index']
+    },
+    {
+      id: 'slots',
+      name: '插槽',
+      support: {
+        value: true
+      },
+      description: '支持 header、header-right、footer 等插槽自定义内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['header-slot', 'header-right-slot', 'footer-slot'],
+      demos: ['header-slot', 'header-right-slot', 'footer-slot']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 open、confirm、close 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['open', 'confirm', 'close'],
+      demos: ['events']
+    }
   ]
 }

@@ -328,5 +328,166 @@ export default {
       },
       codeFiles: ['events.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '在 Form 组件中，每一个表单域由一个 form-item 组件构成，表单域中可以放置各种类型的表单控件。',
+      cloud: {
+        value: true
+      },
+      apis: ['form-item'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'inline',
+      name: '行内表单',
+      support: {
+        value: true
+      },
+      description: '通过 inline 设置行内表单，当垂直方向空间受限且表单较简单时，可以在一行内放置表单项。',
+      cloud: {
+        value: true
+      },
+      apis: ['inline', 'label-suffix'],
+      demos: ['form-in-row']
+    },
+    {
+      id: 'label',
+      name: '标签配置',
+      support: {
+        value: true
+      },
+      description:
+        '通过 label-width 设置标签宽度，label-position 设置文本标签的位置，label-align 设置必填星号文本对齐。',
+      cloud: {
+        value: true
+      },
+      apis: ['label-width', 'label-position', 'label-align'],
+      demos: ['label-position', 'label-align']
+    },
+    {
+      id: 'validation',
+      name: '表单校验',
+      support: {
+        value: true
+      },
+      description: '通过 rules 设置校验规则，支持 validateField、clearValidate、resetField 等方法进行表单校验。',
+      cloud: {
+        value: true
+      },
+      apis: ['rules', 'validateField', 'clearValidate', 'resetField'],
+      demos: ['form-validation', 'form-validate-field']
+    },
+    {
+      id: 'custom-validation',
+      name: '自定义校验',
+      support: {
+        value: true
+      },
+      description:
+        '通过 rules 的 validator 选项进行自定义校验，支持 validate-on-rule-change 配置规则改变时是否立即触发验证。',
+      cloud: {
+        value: true
+      },
+      apis: ['validator', 'validate-on-rule-change'],
+      demos: ['custom-validation-rule']
+    },
+    {
+      id: 'validation-style',
+      name: '校验样式',
+      support: {
+        value: true
+      },
+      description:
+        '通过 validate-position 自定义错误提示位置，validate-type 设置校验提示形式，message-type 设置文本类型错误提示位置。',
+      cloud: {
+        value: true
+      },
+      apis: ['validate-position', 'validate-type', 'message-type'],
+      demos: ['validation-position', 'validate-type', 'message-type']
+    },
+    {
+      id: 'size',
+      name: '表单尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置表单内组件尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'slots',
+      name: '插槽',
+      support: {
+        value: true
+      },
+      description: '支持 label、error 等插槽自定义内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['label-slot', 'error-slot'],
+      demos: ['slot-label', 'error-slot']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置表单是否禁用，display-only 配置表单是否开启仅展示模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled', 'display-only'],
+      demos: ['form-disabled', 'display-only']
+    },
+    {
+      id: 'layout',
+      name: '布局',
+      support: {
+        value: true
+      },
+      description: '通过配合 row 和 col 组件来实现复杂布局，支持分组表单。',
+      cloud: {
+        value: true
+      },
+      apis: ['row', 'col'],
+      demos: ['form-row-col', 'group-form']
+    },
+    {
+      id: 'required',
+      name: '必填项',
+      support: {
+        value: true
+      },
+      description: '通过 hide-required-asterisk 设置是否隐藏标签前的红色星号。',
+      cloud: {
+        value: true
+      },
+      apis: ['hide-required-asterisk'],
+      demos: ['hide-required']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 validate 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['validate'],
+      demos: ['events']
+    }
   ]
 }

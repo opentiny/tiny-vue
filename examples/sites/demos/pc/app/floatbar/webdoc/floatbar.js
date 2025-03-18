@@ -52,5 +52,59 @@ export default {
       },
       codeFiles: ['operation-floatbar-item.vue']
     }
+  ],
+  features: [
+    {
+      id: 'position',
+      name: '固定位置',
+      support: {
+        value: true
+      },
+      description: '默认固定在屏幕右侧固定位置。',
+      cloud: {
+        value: true
+      },
+      apis: ['position'],
+      demos: ['base']
+    },
+    {
+      id: 'custom-style',
+      name: '自定义样式',
+      support: {
+        value: true
+      },
+      description: '可通过配置 css 样式，设置浮动块的样式。',
+      cloud: {
+        value: true
+      },
+      apis: ['style'],
+      demos: ['custom-style']
+    },
+    {
+      id: 'custom-content',
+      name: '自定义内容',
+      support: {
+        value: true
+      },
+      description: '通过默认插槽设置浮动块的内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['default-slot'],
+      demos: ['custom-floatbar-item']
+    },
+    {
+      id: 'operation',
+      name: '操作功能',
+      support: {
+        value: true
+      },
+      description: '支持对浮动块内容进行操作。',
+      cloud: {
+        value: true
+      },
+      apis: ['operation'],
+      demos: ['operation-floatbar-item']
+    }
   ]
 }

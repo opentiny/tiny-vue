@@ -18,5 +18,72 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     }
+  ],
+  features: [
+    {
+      id: 'slots',
+      name: '插槽定制',
+      support: {
+        value: true
+      },
+      description: '节点支持 icon、label、content 插槽定制内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['icon-slot', 'label-slot', 'content-slot'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'node-position',
+      name: '节点位置',
+      support: {
+        value: true
+      },
+      description: '节点使用 row、col 属性进行行列配置。',
+      cloud: {
+        value: true
+      },
+      apis: ['row', 'col'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'link-path',
+      name: '连线路径',
+      support: {
+        value: true
+      },
+      description: '连线使用 p 属性进行相对路径配置。',
+      cloud: {
+        value: true
+      },
+      apis: ['p'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'config',
+      name: '流程图配置',
+      support: {
+        value: true
+      },
+      description: '流程图的其它设置通过 config 进行配置，包括 width、height、cols、rows 等属性。',
+      cloud: {
+        value: true
+      },
+      apis: ['config'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'static-methods',
+      name: '静态方法',
+      support: {
+        value: true
+      },
+      description: '组件预置了 createItem、createNode、createLink、createConfig 静态方法，以便于快速构建选项。',
+      cloud: {
+        value: true
+      },
+      apis: ['createItem', 'createNode', 'createLink', 'createConfig'],
+      demos: ['basic-usage']
+    }
   ]
 }

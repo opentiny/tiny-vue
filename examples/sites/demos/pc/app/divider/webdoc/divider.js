@@ -82,5 +82,72 @@ export default {
       },
       codeFiles: ['status.vue']
     }
+  ],
+  features: [
+    {
+      id: 'vertical',
+      name: '垂直分隔线',
+      support: {
+        value: true
+      },
+      description: '通过设置 vertical 属性为 true 可以设置分隔线的方向。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical'],
+      demos: ['direction']
+    },
+    {
+      id: 'text-position',
+      name: '分隔线文案位置',
+      support: {
+        value: true
+      },
+      description: '通过 text-position 属性设置分隔线文案的位置，offset 属性设置左右偏移量。',
+      cloud: {
+        value: true
+      },
+      apis: ['text-position', 'offset'],
+      demos: ['content-position']
+    },
+    {
+      id: 'custom-style',
+      name: '自定义样式',
+      support: {
+        value: true
+      },
+      description: '通过 line-color、content-background-color、content-color、height、margin 等属性自定义分隔线样式。',
+      cloud: {
+        value: true
+      },
+      apis: ['line-color', 'content-background-color', 'content-color', 'height', 'margin'],
+      demos: ['custom-style']
+    },
+    {
+      id: 'type',
+      name: '分隔线类型',
+      support: {
+        value: true
+      },
+      description: '通过 type 设置分割线显示类型，可选值为 solid、dashed、dotted。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['divider-type']
+    },
+    {
+      id: 'status',
+      name: '分隔线状态',
+      support: {
+        value: true
+      },
+      description: '通过 status 属性设置分割线显示状态颜色。',
+      cloud: {
+        value: true
+      },
+      apis: ['status'],
+      demos: ['status']
+    }
   ]
 }

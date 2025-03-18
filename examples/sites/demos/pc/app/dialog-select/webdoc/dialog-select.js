@@ -74,5 +74,85 @@ export default {
       },
       codeFiles: ['set-selection.vue']
     }
+  ],
+  features: [
+    {
+      id: 'auto-lookup',
+      name: '数据反查回显',
+      support: {
+        value: true
+      },
+      description: '通过 auto-lookup、lookup-method 属性和 change 事件设置初始化时数据的反查回显功能。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-lookup', 'lookup-method'],
+      demos: ['nest-grid-multi', 'nest-grid-single', 'nest-tree-multi', 'nest-tree-single']
+    },
+    {
+      id: 'grid-multi',
+      name: '表格多选',
+      support: {
+        value: true
+      },
+      description: '表格多选场景需要设置 popselector 为 grid，multi 为 true，checkRowKeys 设置默认选中数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['popselector', 'multi', 'checkRowKeys'],
+      demos: ['nest-grid-multi']
+    },
+    {
+      id: 'grid-single',
+      name: '表格单选',
+      support: {
+        value: true
+      },
+      description: '表格单选场景需要设置 popselector 为 grid，multi 为 false，checkRowKey 设置默认选中数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['popselector', 'multi', 'checkRowKey'],
+      demos: ['nest-grid-single']
+    },
+    {
+      id: 'tree-multi',
+      name: '树多选',
+      support: {
+        value: true
+      },
+      description: '树多选场景需要设置 popselector 为 tree，multi 为 true，defaultCheckedKeys 设置默认选中数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['popselector', 'multi', 'defaultCheckedKeys'],
+      demos: ['nest-tree-multi']
+    },
+    {
+      id: 'tree-single',
+      name: '树单选',
+      support: {
+        value: true
+      },
+      description: '树单选场景需要设置 popselector 为 tree，multi 为 false，defaultCheckedKeys 设置默认选中数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['popselector', 'multi', 'defaultCheckedKeys'],
+      demos: ['nest-tree-single']
+    },
+    {
+      id: 'set-selection',
+      name: '设置多选状态',
+      support: {
+        value: true
+      },
+      description: '通过 setSelection 方法设置多选状态。',
+      cloud: {
+        value: true
+      },
+      apis: ['setSelection'],
+      demos: ['set-selection']
+    }
   ]
 }
