@@ -22,11 +22,11 @@ test('序号显示', async ({ page }) => {
   ]
   const iconStyles = [
     {
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(179, 214, 255)',
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(179, 214, 255)',
       'box-shadow': 'none'
     },
     {
@@ -34,15 +34,15 @@ test('序号显示', async ({ page }) => {
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(217, 217, 217)',
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(245, 34, 45)',
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(25, 25, 25)',
+      'color': 'rgb(250, 173, 20)',
       'box-shadow': 'none'
     }
   ]

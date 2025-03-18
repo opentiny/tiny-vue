@@ -20,10 +20,10 @@ export default {
       isBefore: false,
       statusMap: {
         completed: 'var(--tv-color-bg-disabled-control-active)', // 组件库基础变量
-        doing: '#9edb58',
-        back: '#c2c2c2',
-        end: '#edf7df',
-        cancel: '#f23030'
+        doing: '#86edff',
+        back: '#93fda6',
+        end: '#faad18',
+        cancel: '#f230305A'
       },
       milestoneData: [
         {
