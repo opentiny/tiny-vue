@@ -13,10 +13,16 @@
 
       <p>TinyVue 组件库包含 {{ componentCount }} 个灵活、易用、功能强大的组件。</p>
 
-      <div><tiny-switch v-model="isCloud"></tiny-switch> 是否规范内组件</div>
+      <div>
+        <tiny-base-select v-model="cloudValue" :options="options" class="!ti-w200"></tiny-base-select>
+      </div>
 
       <div
-        v-for="(component, componentIndex) of isCloud ? components.filter((item) => item.config.cloud) : components"
+        v-for="(component, componentIndex) of cloudValue === 'cloud'
+          ? components.filter((item) => item.config.cloud)
+          : cloudValue === 'notCloud'
+            ? components.filter((item) => !item.config.cloud)
+            : components"
         :key="component.name"
       >
         <h3 class="ti-f-r ti-f-box-center">
@@ -98,7 +104,7 @@
 </template>
 
 <script setup lang="ts">
-import { TinyLayout, TinyRow, TinyCol, TinySwitch, TinyPopover, TinyDivider, TinyTag } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol, TinyPopover, TinyDivider, TinyTag, TinyBaseSelect } from '@opentiny/vue'
 import { IconInfoCircle } from '@opentiny/vue-icon'
 import { onMounted, ref } from 'vue'
 
@@ -109,7 +115,13 @@ const origin = ref('')
 const componentCount = ref(0)
 const featureCount = ref(0)
 const components = ref([])
-const isCloud = ref(false)
+const cloudValue = ref('all')
+
+const options = ref([
+  { value: 'all', label: '全部组件' },
+  { value: 'cloud', label: '规范内组件' },
+  { value: 'notCloud', label: '规范外组件' }
+])
 
 onMounted(async () => {
   origin.value = location.origin
