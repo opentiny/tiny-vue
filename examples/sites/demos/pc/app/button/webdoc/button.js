@@ -158,7 +158,6 @@ export default {
         value: true,
         remark: '规范只支持主要按钮、次要按钮、危险按钮、文本按钮4种，不支持成功按钮、警告按钮、信息按钮。'
       },
-
       apis: ['type'],
       demos: ['basic-usage']
     },

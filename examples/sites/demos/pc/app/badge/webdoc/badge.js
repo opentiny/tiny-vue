@@ -130,5 +130,112 @@ export default {
       },
       codeFiles: ['offset.vue']
     }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基础',
+      description:
+        '通过 value 设置角标内容（一般是数字），通过 default 插槽或者 data 属性设置需要显示角标的元素或文本。',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: true
+      },
+      apis: ['value', 'data', '#default'],
+      demos: ['basic-usage', 'slot-default']
+    },
+    {
+      id: 'type',
+      name: '类型',
+      description: '支持 primary / success / warning / danger(默认) / info 5种类型。',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: false
+      },
+      apis: ['type'],
+      demos: ['type']
+    },
+    {
+      id: 'dot',
+      name: '小圆点',
+      description: '只显示一个小圆点，不显示数字',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: true
+      },
+      apis: ['is-dot'],
+      demos: ['is-dot']
+    },
+    {
+      id: 'max',
+      name: '最大值',
+      description: '超出最大值会显示 {max}+',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: true
+      },
+      apis: ['max'],
+      demos: ['max']
+    },
+    {
+      id: 'link',
+      name: '超链接',
+      description: '可以设置 href / target 进行超链接跳转，效果同 <a> 标签',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: false
+      },
+      apis: ['href', 'target'],
+      demos: ['link']
+    },
+    {
+      id: 'custom',
+      name: '自定义标记',
+      description: '自定义标记内容和类型',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: false
+      },
+      apis: ['badge-class', '#content'],
+      demos: ['badge-class', 'slot-content']
+    },
+    {
+      id: 'hidden',
+      name: '隐藏标记',
+      description: '动态隐藏标记',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: false
+      },
+      apis: ['hidden'],
+      demos: ['dynamic-hidden']
+    },
+    {
+      id: 'offset',
+      name: '标记位置',
+      description: '标记位置的偏移量，可以设置x、y轴的偏移量，支持字符串、数字、百分比，格式：[0, -8]',
+      support: {
+        value: true
+      },
+      cloud: {
+        value: false
+      },
+      apis: ['offset'],
+      demos: ['offset']
+    }
   ]
 }
