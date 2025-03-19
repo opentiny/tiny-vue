@@ -96,7 +96,6 @@ export default {
 <style scoped>
 .card-wrap {
   width: 100%;
-  background: var(--tv-color-bg-gray-1);
   padding: 16px;
   display: flex;
   justify-content: space-between;

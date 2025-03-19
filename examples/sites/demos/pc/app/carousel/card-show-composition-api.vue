@@ -157,9 +157,6 @@ const disableStatus = () => {
   &:last-child {
     margin-right: 0;
   }
-  &:hover {
-    border-color: #1476ff;
-  }
 }
 .btn-layout {
   position: relative;
@@ -185,7 +182,7 @@ const disableStatus = () => {
   }
   &:not(.is-disabled) {
     .tiny-svg:hover {
-      fill: #191919;
+      fill: #b3b3b3;
     }
   }
 }

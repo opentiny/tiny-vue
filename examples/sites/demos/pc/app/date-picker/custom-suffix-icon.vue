@@ -27,6 +27,6 @@ export default {
 }
 
 .my-date-picker {
-  background-color: #f0f0f0;
+  background-color: #a1a1a1;
 }
 </style>

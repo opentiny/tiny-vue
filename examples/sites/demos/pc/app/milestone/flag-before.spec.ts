@@ -12,8 +12,8 @@ test('旗子数据来源', async ({ page }) => {
   const flagAfterContents = [/引导用户按照流程完成任务/, /test7欢迎使用 vui/, /test8/, /test6/]
   const flagBeforeContents = [/test1已完成/, /引导用户按照流程完成任务/, /test7欢迎使用 vui/, /test8/]
   const button = page.getByRole('button').filter({ hasText: '设置 flag-before 值为 true' })
-  const flagAfterLineColors = ['rgb(194, 194, 194)', 'rgb(194, 194, 194)', 'rgb(158, 219, 88)', 'rgb(179, 214, 255)']
-  const flagBeforeLineColors = ['rgb(179, 214, 255)', 'rgb(194, 194, 194)', 'rgb(194, 194, 194)', 'rgb(158, 219, 88)']
+  const flagAfterLineColors = ['rgb(147, 253, 166)', 'rgb(147, 253, 166)', 'rgb(134, 237, 255)', 'rgb(179, 214, 255)']
+  const flagBeforeLineColors = ['rgb(179, 214, 255)', 'rgb(147, 253, 166)', 'rgb(147, 253, 166)', 'rgb(134, 237, 255)']
 
   for (let i = 0; i < flagCount; i++) {
     const { x, y, width, height } = await flags.nth(i).boundingBox()

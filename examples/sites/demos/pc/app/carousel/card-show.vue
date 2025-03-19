@@ -160,9 +160,6 @@ export default {
   &:last-child {
     margin-right: 0;
   }
-  &:hover {
-    border-color: #1476ff;
-  }
 }
 .btn-layout {
   position: relative;
@@ -188,7 +185,7 @@ export default {
   }
   &:not(.is-disabled) {
     .tiny-svg:hover {
-      fill: #191919;
+      fill: #b3b3b3;
     }
   }
 }
