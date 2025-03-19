@@ -28,7 +28,7 @@ import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderle
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
-import { hooks, isVnode } from '@opentiny/vue-common'
+import { hooks, isVnode, h } from '@opentiny/vue-common'
 import {
   iconCheckedSur,
   iconHalfselect,
@@ -285,7 +285,7 @@ export const Cell = {
 
     return [h('div', { class: 'tiny-grid-cell-text' }, [formatText(getFuncText(own.title), 1)])]
   },
-  renderCell(h, params) {
+  renderCell({ params }) {
     let { $table, row, column } = params
     let { slots, renderer } = column
     const format = column.format || {}
@@ -392,7 +392,7 @@ export const Cell = {
   renderTreeIndexCell(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
-  renderIndexCell(h, params) {
+  renderIndexCell({ params }) {
     const { $table, column, row, seq, $seq, level } = params
     // startIndex：序号列的起始值
     const { startIndex, treeConfig, scrollYLoad, treeOrdered } = $table
@@ -423,7 +423,7 @@ export const Cell = {
 
     return [formatText(value, 1)]
   },
-  renderRadioCell(h, params) {
+  renderRadioCell({ params }) {
     let {
       $table,
       column: { slots },
@@ -521,7 +521,7 @@ export const Cell = {
 
     return [vnode, dropdownVnode]
   },
-  renderSelectionCell(h, params) {
+  renderSelectionCell({ params }) {
     let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
@@ -599,7 +599,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderSelectionCell(h, params))
   },
   // TODO: 与renderSelectionCell代码方法高度相似，待提取公共逻辑。
-  renderSelectionCellByProp(h, params) {
+  renderSelectionCellByProp({ params }) {
     let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
@@ -850,10 +850,10 @@ export const Cell = {
     return vNodes
   },
   renderTreeRowEdit(h, params) {
-    return Cell.renderTreeIcon(h, params).concat(Cell.renderRowEdit(h, params))
+    return Cell.renderTreeIcon(h, params).concat(Cell.renderRowEdit({ params }))
   },
   // 行格编辑模式
-  renderRowEdit(h, params) {
+  renderRowEdit({ params }) {
     let { actived } = params.$table.editStore
 
     const { editConfig } = params.$table
@@ -864,7 +864,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderCellEdit(h, params))
   },
   // 单元格编辑模式
-  renderCellEdit(h, params) {
+  renderCellEdit({ params }) {
     let { actived } = params.$table.editStore
 
     return Cell.runRenderer(h, params, this, actived && actived.row === params.row && actived.column === params.column)
@@ -912,7 +912,7 @@ export const Cell = {
       return [cellValue]
     }
 
-    return Cell.renderCell.call(_vm, h, params)
+    return Cell.renderCell.call(_vm, { params })
   },
   getSuffixCls(params) {
     return params.$table.headerSuffixIconAbsolute ? ['suffix-icon-1', 'suffix-icon-0'] : ['', '']
