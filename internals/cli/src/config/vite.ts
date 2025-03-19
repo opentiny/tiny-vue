@@ -23,7 +23,7 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
-    '@opentiny/vue-theme/base/dark-theme.css': pathFromWorkspaceRoot(
+    '@opentiny/vue-theme/dark-theme-index.css': pathFromWorkspaceRoot(
       `packages/theme${ns(design || theme)}/src/base/dark-theme.less`
     ),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
