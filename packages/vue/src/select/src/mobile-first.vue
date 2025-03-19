@@ -27,8 +27,8 @@
         multiple && !state.selectDisabled && state.selected.length
           ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
           : !multiple && state.selectDisabled
-          ? state.selectedLabel
-          : ''
+            ? state.selectedLabel
+            : ''
       "
     >
       <tiny-filter-box
@@ -87,6 +87,7 @@
               :class="gcls('tag-info')"
               @close="deleteTag($event, state.selectedVal[0])"
               disable-transitions
+              :maxWidth="maxTagWidth"
             >
               <tiny-tooltip
                 :effect="tooltipConfig.effect || 'light'"
@@ -120,6 +121,7 @@
               :class="gcls('tag-info')"
               type="info"
               disable-transitions
+              :maxWidth="maxTagWidth"
             >
               <span :class="gcls('tags-text')">+ {{ state.selectedVal.length - 1 }}</span>
             </tiny-tag>
@@ -139,6 +141,7 @@
               key="tags-collapse"
               :closable="false"
               :size="state.collapseTagSize"
+              :maxWidth="maxTagWidth"
               >+ {{ state.collapseTagsLength }}</tiny-tag
             >
             <tiny-tag
@@ -151,6 +154,7 @@
               type="info"
               @close="deleteTag($event, item)"
               disable-transitions
+              :maxWidth="maxTagWidth"
             >
               <tiny-tooltip
                 :effect="tooltipConfig.effect || 'light'"
@@ -711,7 +715,8 @@ export default defineComponent({
     'showEmptyValue',
     'tooltipConfig',
     'dropdownHeight',
-    'allText'
+    'allText',
+    'maxTagWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
