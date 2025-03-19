@@ -1,6 +1,6 @@
 <template>
   <div class="ti-p48">
-    <div class="w1000 !mx-auto markdown-body">
+    <div class="ti-mw1000 !mx-auto markdown-body">
       <h1 class="ti-f-r ti-f-box-center">
         组件特性列表
         <tiny-tag size="small" type="success" :title="`${componentCount} components`" class="ml8">{{
