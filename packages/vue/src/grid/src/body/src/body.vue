@@ -2,7 +2,7 @@
   <div
     ref="body"
     class="tiny-grid__body-wrapper body__wrapper"
-    :class="{ [classMap.isScrollload]: $table.scrollLoad }"
+    :class="{ 'is__scrollload': $table.scrollLoad }"
     @scroll="scrollEvent"
   >
     <!-- 表格主体内容x轴方向虚拟滚动条占位元素 -->
@@ -83,10 +83,10 @@
             class="tiny-grid-body__row"
             :class="[
               { [`row__level-${rowLevel}`]: treeConfig },
-              { [classMap.rowNew]: editStore.insertList.includes(row) },
-              { [classMap.rowSelected]: selection.includes(row) },
-              { [classMap.rowRadio]: selectRow === row },
-              { [classMap.rowActived]: rowActived },
+              { 'row__new': editStore.insertList.includes(row) },
+              { 'row__selected': selection.includes(row) },
+              { 'row__radio': selectRow === row },
+              { 'row__actived': rowActived },
               rowClassName
                 ? typeof rowClassName === 'function'
                   ? rowClassName({ $table: $table as TableInstance, $seq: 0, seq: 0, rowLevel, row, rowIndex: 0 })
@@ -103,15 +103,15 @@
               :class="[
                 column.id,
                 { [`col__${cellAlign}`]: cellAlign },
-                { [classMap.colEdit]: editor },
-                { [classMap.colIndex]: column.type === 'index' },
-                { [classMap.colRadio]: column.type === 'radio' },
-                { [classMap.colSelection]: column.type === 'selection' },
-                { [classMap.colEllipsis]: hasEllipsis },
-                { [classMap.editVisible]: editor && editor.type === 'visible' },
-                { [classMap.fixedColumn]: fixedHiddenColumn },
-                { [classMap.colDirty]: isDirty },
-                { [classMap.colActived]: columnActived },
+                { 'col__edit': editor },
+                { 'col__index': column.type === 'index' },
+                { 'col__radio': column.type === 'radio' },
+                { 'col__selection': column.type === 'selection' },
+                { 'col__ellipsis': hasEllipsis },
+                { 'edit__visible': editor && editor.type === 'visible' },
+                { 'fixed__column': fixedHiddenColumn },
+                { 'col__dirty': isDirty },
+                { 'col__actived': columnActived },
                 { 'col__valid-error': validError && validated },
                 { 'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated },
                 { 'col__treenode': column.treeNode },
@@ -342,24 +342,6 @@ const isOperateMouse = ($table: TableConfig) =>
 
 let renderRowFlag = false
 
-// 解决静态扫描驼峰变量问题
-const classMap = {
-  colEdit: 'col__edit',
-  colIndex: 'col__index',
-  colRadio: 'col__radio',
-  colSelection: 'col__selection',
-  colEllipsis: 'col__ellipsis',
-  editVisible: 'edit__visible',
-  fixedColumn: 'fixed__column',
-  colDirty: 'col__dirty',
-  colActived: 'col__actived',
-  rowNew: 'row__new',
-  rowSelected: 'row__selected',
-  rowRadio: 'row__radio',
-  rowActived: 'row__actived',
-  isScrollload: 'is__scrollload'
-}
-
 export default defineComponent({
   name: 'TinyGridBody',
   props: {
@@ -574,7 +556,6 @@ export default defineComponent({
     return {
       slots,
       rowSortable,
-      classMap,
       GlobalConfig
     }
   },
