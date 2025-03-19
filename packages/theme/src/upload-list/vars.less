@@ -12,41 +12,41 @@
 
 .inject-UploadList-vars() {
   // 上传文件列表字号
-  --tv-UploadList-item-font-size: var(--tv-font-size-default);
+  --tv-UploadList-item-font-size: var(--tv-font-size-default, 14px);
   // 上传文件列表文本色
-  --tv-UploadList-item-text-color: var(--tv-color-text-secondary);
+  --tv-UploadList-item-text-color: var(--tv-color-text-secondary, #595959);
   // 上传文件列表项(图片框|悬浮背景)圆角
-  --tv-UploadList-item-border-radius: var(--tv-border-radius-lg);
+  --tv-UploadList-item-border-radius: var(--tv-border-radius-lg, 8px);
   // 上传文件列表项悬浮背景色
-  --tv-UploadList-item-hover-background-color: var(--tv-color-bg-hover);
+  --tv-UploadList-item-hover-background-color: var(--tv-color-bg-hover, #f5f5f5);
   // 上传成功列表项悬浮文本色
-  --tv-UploadList-item-hover-text-color: var(--tv-color-text-secondary);
+  --tv-UploadList-item-hover-text-color: var(--tv-color-text-secondary, #595959);
   // 上传文件列表项前置图标色
-  --tv-UploadList-item-name-icon-color: var(--tv-color-icon-control);
+  --tv-UploadList-item-name-icon-color: var(--tv-color-icon-control, #191919);
   // 上传文件列表项前置图标尺寸
-  --tv-UploadList-item-name-icon-font-size: var(--tv-icon-size);
+  --tv-UploadList-item-name-icon-font-size: var(--tv-icon-size, 16px);
   // 上传文件列表项右侧图标色
-  --tv-UploadList-svg-close-icon-color: var(--tv-color-icon);
+  --tv-UploadList-svg-close-icon-color: var(--tv-color-icon, #808080);
   // 上传文件列表项右侧悬浮图标色
-  --tv-UploadList-svg-close-hover-icon-color: var(--tv-color-icon-hover);
+  --tv-UploadList-svg-close-hover-icon-color: var(--tv-color-icon-hover, #191919);
   // 上传文件列表项悬浮背景色
-  --tv-UploadList-bg-color: var(--tv-color-bg);
+  --tv-UploadList-bg-color: var(--tv-color-bg, #f5f5f5);
   // 上传文件列表项悬浮背景色hover
-  --tv-UploadList-bg-color-hover: var(--tv-color-bg-hover-secondary);
+  --tv-UploadList-bg-color-hover: var(--tv-color-bg-hover-secondary, #ffffff);
   // 上传文件列表项图标尺寸
-  --tv-UploadList-svg-icon-font-size: var(--tv-icon-size);
+  --tv-UploadList-svg-icon-font-size: var(--tv-icon-size, 16px);
   // 上传文件列表项成功图标尺寸
-  --tv-UploadList-successful-icon-font-size: var(--tv-font-size-default);
+  --tv-UploadList-successful-icon-font-size: var(--tv-font-size-default, 14px);
   // 照片墙上传列表项边框色
-  --tv-UploadList-picture-card-item-border-color: var(--tv-color-border);
+  --tv-UploadList-picture-card-item-border-color: var(--tv-color-border, #c2c2c2);
   // 照片墙上传列表项背景色
-  --tv-UploadList-picture-card-item-bg-color: var(--tv-color-bg-secondary);
+  --tv-UploadList-picture-card-item-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 照片墙上传列表项背景色hover
-  --tv-UploadList-picture-card-item-bg-color-hover: var(--tv-color-bg-mask);
+  --tv-UploadList-picture-card-item-bg-color-hover: var(--tv-color-bg-mask, rgba(0, 0, 0, 20%));
   // 照片墙上传列表项右上角图标填充色
-  --tv-UploadList-picture-card-item-icon-color: var(--tv-color-icon-inverse);
+  --tv-UploadList-picture-card-item-icon-color: var(--tv-color-icon-inverse, #ffffff);
   // 上传列表项成功状态图标色或背景色
-  --tv-UploadList-successful-status-bg-color: var(--tv-color-success-bg);
+  --tv-UploadList-successful-status-bg-color: var(--tv-color-success-bg, #5cb300);
   // 照片墙上传列表项宽度(new)
   --tv-UploadList-picture-card-width: 100px;
   // 照片墙上传列表项高度(new)
@@ -54,9 +54,9 @@
   // 照片墙上传列表项进度条尺寸(new)
   --tv-UploadList-picture-card-progress-size: 68px;
   // 非picturecard模式上传文件列表文本行高(new)
-  --tv-UploadList-item-line-height: var(--tv-line-height-number);
+  --tv-UploadList-item-line-height: var(--tv-line-height-number, 1.5);
   // 非picturecard模式上传文件列表文本上外边距(new)
-  --tv-UploadList-item-margin-top: var(--tv-space-md);
+  --tv-UploadList-item-margin-top: var(--tv-space-md, 8px);
   // 上传文件列表项失败文本和图标色
-  --tv-UploadList-item-fail-text-color: var(--tv-color-error-text);
+  --tv-UploadList-item-fail-text-color: var(--tv-color-error-text, #f23030);
 }

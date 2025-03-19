@@ -12,7 +12,7 @@
 
 .inject-Card-vars() {
   // 卡片背景色
-  --tv-Card-bg-color: var(--tv-color-bg-gray-1);
+  --tv-Card-bg-color: var(--tv-color-bg-gray-1, #fafafa);
 
   // 大尺寸卡片的宽度
   --tv-Card-large-width: calc(var(--tv-size-base, 4px) * 144);
@@ -24,28 +24,28 @@
   --tv-Card-mini-width: calc(var(--tv-size-base, 4px) * 54);
 
   // 大尺寸卡片的圆角
-  --tv-Card-large-border-radius: var(--tv-border-radius-lg);
+  --tv-Card-large-border-radius: var(--tv-border-radius-lg, 8px);
   // 中尺寸卡片的圆角
-  --tv-Card-medium-border-radius: var(--tv-border-radius-sm);
+  --tv-Card-medium-border-radius: var(--tv-border-radius-sm, 4px);
   // 小尺寸卡片的圆角
-  --tv-Card-small-border-radius: var(--tv-border-radius-sm);
+  --tv-Card-small-border-radius: var(--tv-border-radius-sm, 4px);
   // 迷你尺寸卡片的圆角
-  --tv-Card-mini-border-radius: var(--tv-border-radius-xs);
+  --tv-Card-mini-border-radius: var(--tv-border-radius-xs, 2px);
 
   // 成功状态的卡片的边框颜色
-  --tv-Card-success-border-color: var(--tv-color-act-success-border);
+  --tv-Card-success-border-color: var(--tv-color-act-success-border, #5cb300);
   // 警告状态的卡片的边框颜色
-  --tv-Card-warning-border-color: var(--tv-color-act-warning-border);
+  --tv-Card-warning-border-color: var(--tv-color-act-warning-border, #ff8800);
   // 报警状态的卡片的边框颜色
   --tv-Card-alerting-border-color: #fac20a;
   // 危险状态的卡片的边框颜色
-  --tv-Card-danger-border-color: var(--tv-color-act-danger-border);
+  --tv-Card-danger-border-color: var(--tv-color-act-danger-border, #f23030);
   // 默认状态的卡片的边框颜色
-  --tv-Card-default-border-color: var(--tv-color-border-container);
+  --tv-Card-default-border-color: var(--tv-color-border-container, #f0f0f0);
   // 选中状态的卡片的边框颜色
-  --tv-Card-checked-border-color: var(--tv-color-border-active-control);
+  --tv-Card-checked-border-color: var(--tv-color-border-active-control, #1476ff);
   // 禁用状态的卡片的背景颜色
-  --tv-Card-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-Card-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
 
   // 大尺寸卡片的logo状态下，body区域的padding值
   --tv-Card-large-body-padding: 32px;
@@ -57,26 +57,26 @@
   --tv-Card-mini-body-padding: var(--tv-space-lg, 12px);
 
   // 卡片的标题的字体大小
-  --tv-Card-title-font-size: var(--tv-font-size-lg);
+  --tv-Card-title-font-size: var(--tv-font-size-lg, 16px);
   // 卡片的标题的字体颜色
-  --tv-Card-title-text-color: var(--tv-color-text);
+  --tv-Card-title-text-color: var(--tv-color-text, #191919);
   // 卡片的标题的字重
-  --tv-Card-title-font-weight: var(--tv-font-weight-bold);
+  --tv-Card-title-font-weight: var(--tv-font-weight-bold, 600);
   // 卡片的正文的字体大小
-  --tv-Card-main-font-size: var(--tv-font-size-default);
+  --tv-Card-main-font-size: var(--tv-font-size-default, 14px);
   // 卡片的正文的字体颜色
-  --tv-Card-main-text-color: var(--tv-color-text-weaken);
+  --tv-Card-main-text-color: var(--tv-color-text-weaken, #808080);
 
   // 卡片的选项的文本色
-  --tv-Card-option-text-color: var(--tv-color-bg-primary);
+  --tv-Card-option-text-color: var(--tv-color-bg-primary, #191919);
   // 卡片的选项的文本大小
-  --tv-Card-option-font-size: var(--tv-font-size-lg);
+  --tv-Card-option-font-size: var(--tv-font-size-lg, 16px);
   // 卡片的选项的文本大小
-  --tv-Card-option-top-border-color: var(--tv-color-bg-header);
+  --tv-Card-option-top-border-color: var(--tv-color-bg-header, #f5f5f5);
   // 卡片的选项禁用时的文本色
-  --tv-Card-option-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-Card-option-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 卡片的'更多'的字体颜色
-  --tv-Card-footer-more-text-color: var(--tv-color-act-primary-text);
+  --tv-Card-footer-more-text-color: var(--tv-color-act-primary-text, #191919);
   // 卡片标题下边距
-  --tv-Card-title-mg-bottom: var(--tv-space-xl);
+  --tv-Card-title-mg-bottom: var(--tv-space-xl, 16px);
 }

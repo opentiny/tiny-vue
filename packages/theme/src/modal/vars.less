@@ -12,51 +12,51 @@
 .inject-Modal-vars() {
   //---------------------------------------------------- 弹窗场景
   // 弹窗的遮罩层色
-  --tv-Modal-mask-bg-color: var(--tv-color-bg-mask);
+  --tv-Modal-mask-bg-color: var(--tv-color-bg-mask, rgba(0, 0, 0, 20%));
   // Modal的行高
-  --tv-Modal-line-height: var(--tv-line-height-number);
+  --tv-Modal-line-height: var(--tv-line-height-number, 1.5);
 
   // --------------------------------------- box 全局
   // 弹窗的默认宽度
   --tv-Modal-box-width: 400px;
   // 弹窗的背景色
-  --tv-Modal-box-bg-color: var(--tv-color-bg-3);
+  --tv-Modal-box-bg-color: var(--tv-color-bg-3, #ffffff);
   // 弹窗的圆角
-  --tv-Modal-box-border-radius: var(--tv-border-radius-lg);
+  --tv-Modal-box-border-radius: var(--tv-border-radius-lg, 8px);
   // 弹窗的外阴影
-  --tv-Modal-box-box-shadow: var(--tv-shadow-4-down);
+  --tv-Modal-box-box-shadow: var(--tv-shadow-4-down, 0 8px 24px 0 rgba(0, 0, 0, 0.16));
 
   // ---------------------------------------状态图标色
   // 成功状态时，图标的颜色
-  --tv-Modal-status-icon-color-success: var(--tv-color-success-icon);
+  --tv-Modal-status-icon-color-success: var(--tv-color-success-icon, #5cb300);
   // 错误状态时，图标的颜色
-  --tv-Modal-status-icon-color-error: var(--tv-color-error-icon);
+  --tv-Modal-status-icon-color-error: var(--tv-color-error-icon, #f23030);
   // 警告状态时，图标的颜色
-  --tv-Modal-status-icon-color-warning: var(--tv-color-warn-icon);
+  --tv-Modal-status-icon-color-warning: var(--tv-color-warn-icon, #ff8800);
   // 信息状态时，图标的颜色
-  --tv-Modal-status-icon-color-info: var(--tv-color-info-icon);
+  --tv-Modal-status-icon-color-info: var(--tv-color-info-icon, #1476ff);
   // 询问状态时，图标的颜色
-  --tv-Modal-status-icon-color-question: var(--tv-color-icon-control);
+  --tv-Modal-status-icon-color-question: var(--tv-color-icon-control, #191919);
 
   // --------------------------------------- header【 status-icon  title  close-icon】
   // 弹窗头部的水平内边距
-  --tv-Modal-box-header-padding-x: var(--tv-space-xxxl);
+  --tv-Modal-box-header-padding-x: var(--tv-space-xxxl, 32px);
   // 弹窗头部的上内边距
-  --tv-Modal-box-header-padding-top: var(--tv-space-xxxl);
+  --tv-Modal-box-header-padding-top: var(--tv-space-xxxl, 32px);
   // 弹窗头部的下内边距
   --tv-Modal-box-header-padding-bottom: 24px;
 
   // 弹窗头部状态图标的大小
   --tv-Modal-box-status-icon-font-size: 21px;
   // 弹窗头部状态图标的右外边距
-  --tv-Modal-box-status-icon-margin-right: var(--tv-space-md);
+  --tv-Modal-box-status-icon-margin-right: var(--tv-space-md, 8px);
 
   // 弹窗头部标题的字体颜色
-  --tv-Modal-box-title-text-color: var(--tv-color-text);
+  --tv-Modal-box-title-text-color: var(--tv-color-text, #191919);
   // 弹窗头部标题的字体大小
-  --tv-Modal-box-title-font-size: var(--tv-font-size-xxl);
+  --tv-Modal-box-title-font-size: var(--tv-font-size-xxl, 20px);
   // 弹窗头部标题的字重
-  --tv-Modal-box-title-font-weight: var(--tv-font-weight-bold);
+  --tv-Modal-box-title-font-weight: var(--tv-font-weight-bold, 600);
 
   // 弹窗头部关闭按钮的顶部距离
   --tv-Modal-box-close-icon-top: 20px;
@@ -65,59 +65,59 @@
   // 弹窗头部关闭按钮的大小
   --tv-Modal-box-close-icon-size: 24px;
   // 弹窗头部关闭按钮的颜色
-  --tv-Modal-box-close-icon-color: var(--tv-color-icon);
+  --tv-Modal-box-close-icon-color: var(--tv-color-icon, #808080);
   // 弹窗头部关闭按钮的悬浮颜色
-  --tv-Modal-box-close-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Modal-box-close-icon-color-hover: var(--tv-color-icon-hover, #191919);
 
   // 弹窗头部zoom按钮的右边距离
   --tv-Modal-box-zoom-icon-right: 48px;
   // -----------------------------------------body
   // 弹窗内容区的水平内边距
-  --tv-Modal-box-body-padding-x: var(--tv-space-xxxl);
+  --tv-Modal-box-body-padding-x: var(--tv-space-xxxl, 32px);
   // 弹窗内容区的垂直内边距
   --tv-Modal-box-body-padding-y: 0;
   // 弹窗内容区的消息文本字体大小
-  --tv-Modal-box-body-text-font-size: var(--tv-font-size-md);
+  --tv-Modal-box-body-text-font-size: var(--tv-font-size-md, 14px);
   // 弹窗内容区的消息文本字体颜色
-  --tv-Modal-box-body-text-text-color: var(--tv-color-text-secondary);
+  --tv-Modal-box-body-text-text-color: var(--tv-color-text-secondary, #595959);
   // ------------------------------------------footer
   // 弹窗底部的水平内边距
-  --tv-Modal-box-footer-padding-x: var(--tv-space-xxxl);
+  --tv-Modal-box-footer-padding-x: var(--tv-space-xxxl, 32px);
   // 弹窗底部的上内边距
   --tv-Modal-box-footer-padding-top: 24px;
   // 弹窗底部的下内边距
-  --tv-Modal-box-footer-padding-bottom: var(--tv-space-xxxl);
+  --tv-Modal-box-footer-padding-bottom: var(--tv-space-xxxl, 32px);
 
   // ------------------------------------- 消息场景
   // 消息的背景色
-  --tv-Modal-msg-box-bg-color: var(--tv-color-bg-2);
+  --tv-Modal-msg-box-bg-color: var(--tv-color-bg-2, #ffffff);
   // 消息的圆角
-  --tv-Modal-msg-box-border-radius: var(--tv-border-radius-lg);
+  --tv-Modal-msg-box-border-radius: var(--tv-border-radius-lg, 8px);
   // 消息的外阴影
-  --tv-Modal-msg-box-box-shadow: var(--tv-shadow-2-down);
+  --tv-Modal-msg-box-box-shadow: var(--tv-shadow-2-down, 0 2px 12px 0 rgba(0, 0, 0, 0.16));
   // 消息的水平内边距
-  --tv-Modal-msg-box-box-padding-x: var(--tv-space-xl);
+  --tv-Modal-msg-box-box-padding-x: var(--tv-space-xl, 16px);
   // 消息的垂直内边距
-  --tv-Modal-msg-box-box-padding-y: var(--tv-space-lg);
+  --tv-Modal-msg-box-box-padding-y: var(--tv-space-lg, 12px);
 
   // 消息头部状态图标的大小
-  --tv-Modal-msg-box-status-icon-size: var(--tv-icon-size);
+  --tv-Modal-msg-box-status-icon-size: var(--tv-icon-size, 16px);
   // 消息头部状态图标的右外边距
-  --tv-Modal-msg-box-status-icon-margin-right: var(--tv-space-md);
+  --tv-Modal-msg-box-status-icon-margin-right: var(--tv-space-md, 8px);
 
   // 消息的字体颜色
-  --tv-Modal-msg-box-text-color: var(--tv-color-text);
+  --tv-Modal-msg-box-text-color: var(--tv-color-text, #191919);
   // 消息的字体大小
-  --tv-Modal-msg-box-font-size: var(--tv-font-size-default);
+  --tv-Modal-msg-box-font-size: var(--tv-font-size-default, 14px);
   // 消息的字重
-  --tv-Modal-msg-box-font-weight: var(--tv-font-weight-regular);
+  --tv-Modal-msg-box-font-weight: var(--tv-font-weight-regular, 400);
 
   // 消息关闭按钮的左外边距
-  --tv-Modal-msg-box-close-icon-margin-left: var(--tv-space-lg);
+  --tv-Modal-msg-box-close-icon-margin-left: var(--tv-space-lg, 12px);
   // 消息关闭按钮的大小
-  --tv-Modal-msg-box-close-icon-size: var(--tv-icon-size);
+  --tv-Modal-msg-box-close-icon-size: var(--tv-icon-size, 16px);
   // 消息关闭按钮的颜色
-  --tv-Modal-msg-box-close-icon-color: var(--tv-color-icon);
+  --tv-Modal-msg-box-close-icon-color: var(--tv-color-icon, #808080);
   //消息关闭按钮的悬浮颜色
-  --tv-Modal-msg-box-close-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Modal-msg-box-close-icon-color-hover: var(--tv-color-icon-hover, #191919);
 }

@@ -12,19 +12,19 @@
 
 .inject-Switch-vars() {
   // 开关开启状态背景色
-  --tv-Switch-on-bg-color: var(--tv-color-bg-active-control);
+  --tv-Switch-on-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 开关关闭状态背景色
-  --tv-Switch-off-bg-color: var(--tv-color-bg-control-unactive);
+  --tv-Switch-off-bg-color: var(--tv-color-bg-control-unactive, #c2c2c2);
   // 开关关闭禁用状态背景色
-  --tv-Switch-disabled-bg-color: var(--tv-color-bg-disabled-control-unactive);
+  --tv-Switch-disabled-bg-color: var(--tv-color-bg-disabled-control-unactive, #dbdbdb);
   // 开关开启禁用状态背景色
   --tv-Switch-checked-disabled-bg-color: var(--tv-color-bg-disabled-control-active, #AEAEAE);
   // 开关禁用状态文本色
-  --tv-Switch-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-Switch-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 开关禁用状态圆点色
-  --tv-Switch-disabled-dot-bg-color: var(--tv-color-bg-secondary);
+  --tv-Switch-disabled-dot-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 开关默认圆点色
-  --tv-Switch-dot-bg-color: var(--tv-color-bg-inverse);
+  --tv-Switch-dot-bg-color: var(--tv-color-bg-inverse, #ffffff);
   // 开关圆点尺寸
   --tv-Switch-dot-size: 16px;
   // 开关圆点左边距(hide)
@@ -34,7 +34,7 @@
   // 开关圆点偏移量(hide)
   --tv-Switch-dot-offset: calc(var(--tv-Switch-dot-size) + 2px);
   // 开关文本色
-  --tv-Switch-text-color: var(--tv-color-text-inverse);
+  --tv-Switch-text-color: var(--tv-color-text-inverse, #ffffff);
   // 默认开关宽度
   --tv-Switch-width: 40px;
   // 开关高度
@@ -42,9 +42,9 @@
   // 开关圆角
   --tv-Switch-border-radius: 15px;
   // 开关字号
-  --tv-Switch-inner-font-size: var(--tv-font-size-sm);
+  --tv-Switch-inner-font-size: var(--tv-font-size-sm, 12px);
   // 开关内部button圆角
-  --tv-Switch-inner-border-radius: var(--tv-border-radius-round);
+  --tv-Switch-inner-border-radius: var(--tv-border-radius-round, 999px);
   // 自定义文本开关宽度
   --tv-Switch-text-width: 46px;
   // mini尺寸高度
@@ -58,13 +58,13 @@
   // mini尺寸内部button宽度度
   --tv-Switch-mini-button-left: 18px;
   // 开启loading字体大小
-  --tv-Switch-on-loading-font-size: var(--tv-font-size-sm);
+  --tv-Switch-on-loading-font-size: var(--tv-font-size-sm, 12px);
   // 开启loading图标填充色
   --tv-Switch-on-loading-fill: var(--tv-color-bg-disabled-control-active, #AEAEAE);
   // 关闭loading字体大小
-  --tv-Switch-off-loading-font-size: var(--tv-font-size-sm);
+  --tv-Switch-off-loading-font-size: var(--tv-font-size-sm, 12px);
   // 关闭loading图标填充色
-  --tv-Switch-off-loading-fill: var(--tv-color-bg-disabled-control-unactive);
+  --tv-Switch-off-loading-fill: var(--tv-color-bg-disabled-control-unactive, #dbdbdb);
   // mini尺寸loading大小
   --tv-Switch-loading-mini-font-size: 8px;
 }

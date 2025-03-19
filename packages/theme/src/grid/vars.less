@@ -12,212 +12,212 @@
 
 .inject-Grid-vars() {
   // 表格字号
-  --tv-Grid-font-size: var(--tv-font-size-default);
+  --tv-Grid-font-size: var(--tv-font-size-default, 14px);
   // 表格行高
-  --tv-Grid-line-height: var(--tv-line-height-number);
+  --tv-Grid-line-height: var(--tv-line-height-number, 1.5);
   // 表格文本色
-  --tv-Grid-text-color: var(--tv-color-text);
+  --tv-Grid-text-color: var(--tv-color-text, #191919);
   // 表格禁用文本色
-  --tv-Grid-text-color-disabled: var(--tv-color-text-disabled);
+  --tv-Grid-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
   // 表格二级文本颜色，页码项文本色
-  --tv-Grid-text-color-secondary: var(--tv-color-text-secondary);
+  --tv-Grid-text-color-secondary: var(--tv-color-text-secondary, #595959);
   // 表格辅助文本色
-  --tv-Grid-text-color-weaken: var(--tv-color-text-weaken);
+  --tv-Grid-text-color-weaken: var(--tv-color-text-weaken, #808080);
   // 页码悬浮文本色
-  --tv-Grid-list-item-hover-text-color: var(--tv-color-text);
+  --tv-Grid-list-item-hover-text-color: var(--tv-color-text, #191919);
   // 表格图标大小
-  --tv-Grid-icon-size: var(--tv-icon-size);
+  --tv-Grid-icon-size: var(--tv-icon-size, 16px);
   // 表格图标颜色
-  --tv-Grid-icon-color: var(--tv-color-icon);
+  --tv-Grid-icon-color: var(--tv-color-icon, #808080);
   // 表格图标悬浮颜色
-  --tv-Grid-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Grid-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 表格图标激活颜色
-  --tv-Grid-icon-color-active: var(--tv-color-icon-active);
+  --tv-Grid-icon-color-active: var(--tv-color-icon-active, #191919);
   // 表格图标禁用颜色
-  --tv-Grid-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Grid-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
   // 表格分割线颜色
-  --tv-Grid-border-color-divider: var(--tv-color-border-divider);
+  --tv-Grid-border-color-divider: var(--tv-color-border-divider, #f0f0f0);
   // 表格边框颜色
-  --tv-Grid-border-color: var(--tv-color-border);
+  --tv-Grid-border-color: var(--tv-color-border, #c2c2c2);
   // 表格边框激活态颜色
-  --tv-Grid-border-color-active: var(--tv-color-border-active);
+  --tv-Grid-border-color-active: var(--tv-color-border-active, #191919);
   // 表格背景颜色
-  --tv-Grid-bg-color: var(--tv-color-bg-3);
+  --tv-Grid-bg-color: var(--tv-color-bg-3, #ffffff);
   // 表格激活态背景色
-  --tv-Grid-bg-color-active: var(--tv-color-bg-active-emphasize-light);
+  --tv-Grid-bg-color-active: var(--tv-color-bg-active-emphasize-light, #f0f7ff);
   // 表格悬浮背景色
-  --tv-Grid-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Grid-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 表格禁用背景色
-  --tv-Grid-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Grid-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 表格选中背景色
-  --tv-Grid-bg-color-selected: var(--tv-color-bg-active-emphasize-light);
+  --tv-Grid-bg-color-selected: var(--tv-color-bg-active-emphasize-light, #f0f7ff);
   // 表格浅灰色背景颜色（展开行、斑马纹等）
-  --tv-Grid-gray-bg-color: var(--tv-color-bg-gray-1);
+  --tv-Grid-gray-bg-color: var(--tv-color-bg-gray-1, #fafafa);
   // -------表头相关样式-------
   // 表头高度
-  --tv-Grid-header-height: var(--tv-size-height-lg);
+  --tv-Grid-header-height: var(--tv-size-height-lg, 40px);
   // 表头垂直间距
   --tv-Grid-header-padding-y: 4px;
   // 表头背景颜色
-  --tv-Grid-header-bg-color: var(--tv-color-bg-header);
+  --tv-Grid-header-bg-color: var(--tv-color-bg-header, #f5f5f5);
   // 表头悬浮高亮背景色
-  --tv-Grid-header-bg-color-hover: var(--tv-color-bg-hover-1);
+  --tv-Grid-header-bg-color-hover: var(--tv-color-bg-hover-1, #deecff);
   // 表头字体颜色
-  --tv-Grid-header-text-color: var(--tv-color-text-secondary);
+  --tv-Grid-header-text-color: var(--tv-color-text-secondary, #595959);
   // 表头分割线颜色
-  --tv-Grid-header-divider-color: var(--tv-color-border-divider-short);
+  --tv-Grid-header-divider-color: var(--tv-color-border-divider-short, #dbdbdb);
   // 表头字重
-  --tv-Grid-header-font-weight: var(--tv-font-weight-bold);
+  --tv-Grid-header-font-weight: var(--tv-font-weight-bold, 600);
   // 表头必填星号颜色
-  --tv-Grid-header-required-icon-color: var(--tv-color-error-text);
+  --tv-Grid-header-required-icon-color: var(--tv-color-error-text, #f23030);
   // -------校验相关样式-------
   // 错误检验文本颜色
-  --tv-Grid-error-text-color: var(--tv-color-error-text);
+  --tv-Grid-error-text-color: var(--tv-color-error-text, #f23030);
   // 错误检验边框颜色
-  --tv-Grid-error-border-color: var(--tv-color-error-border);
+  --tv-Grid-error-border-color: var(--tv-color-error-border, #f23030);
   // 错误检验浅色背景颜色
-  --tv-Grid-error-bg-color-light: var(--tv-color-error-bg-light);
+  --tv-Grid-error-bg-color-light: var(--tv-color-error-bg-light, #fce3e1);
   // 错误检验背景颜色
-  --tv-Grid-error-bg-color: var(--tv-color-error-bg);
+  --tv-Grid-error-bg-color: var(--tv-color-error-bg, #f23030);
   // 错误检验图标颜色
-  --tv-Grid-error-icon-color: var(--tv-color-error-icon);
+  --tv-Grid-error-icon-color: var(--tv-color-error-icon, #f23030);
   // 成功校验边框颜色
-  --tv-Grid-success-border-color: var(--tv-color-success-border);
+  --tv-Grid-success-border-color: var(--tv-color-success-border, #5cb300);
   // 成功校验图标颜色
-  --tv-Grid-success-icon-color: var(--tv-color-success-icon);
+  --tv-Grid-success-icon-color: var(--tv-color-success-icon, #5cb300);
   // 成功校验背景颜色
-  --tv-Grid-success-bg-color: var(--tv-color-success-bg);
+  --tv-Grid-success-bg-color: var(--tv-color-success-bg, #5cb300);
   // 告警背景颜色
-  --tv-Grid-warn-bg-color: var(--tv-color-warn-bg);
+  --tv-Grid-warn-bg-color: var(--tv-color-warn-bg, #ff8800);
   // 主要背景颜色
-  --tv-Grid-primary-bg-color: var(--tv-color-info-text-primary);
+  --tv-Grid-primary-bg-color: var(--tv-color-info-text-primary, #191919);
   // -------单元格样式-------
   // 单元格高度
-  --tv-Grid-cell-height: var(--tv-size-height-xl);
+  --tv-Grid-cell-height: var(--tv-size-height-xl, 48px);
   // 单元格垂直内边距
   --tv-Grid-cell-padding-y: calc(var(--tv-space-table-y, 4px) * 3);
   // 单元格水平内边距
   --tv-Grid-cell-padding-x: calc(var(--tv-space-table-x, 4px) * 4);
   // 单元格选中时边框颜色
-  --tv-Grid-cell-border-color-selected: var(--tv-color-border-active);
+  --tv-Grid-cell-border-color-selected: var(--tv-color-border-active, #191919);
   // -------多选框相关样式-------
   // 多选框图标大小
-  --tv-Grid-checkbox-icon-size: calc(var(--tv-icon-size) + 2px);
+  --tv-Grid-checkbox-icon-size: calc(var(--tv-icon-size, 16px) + 2px);
   // 多选框图标颜色
-  --tv-Grid-checkbox-icon-color: var(--tv-color-border);
+  --tv-Grid-checkbox-icon-color: var(--tv-color-border, #c2c2c2);
   // 多选框图标悬浮颜色
-  --tv-Grid-checkbox-icon-color-hover: var(--tv-color-border-hover);
+  --tv-Grid-checkbox-icon-color-hover: var(--tv-color-border-hover, #191919);
   // 多选框图标选中颜色
-  --tv-Grid-checkbox-icon-color-selected: var(--tv-color-bg-active-control);
+  --tv-Grid-checkbox-icon-color-selected: var(--tv-color-bg-active-control, #1476ff);
   // 多选框图标禁用颜色
-  --tv-Grid-checkbox-icon-color-disabled: var(--tv-color-bg-active-control);
+  --tv-Grid-checkbox-icon-color-disabled: var(--tv-color-bg-active-control, #1476ff);
   // 多选框禁用背景颜色
-  --tv-Grid-checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Grid-checkbox-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 多选框禁用边框颜色
-  --tv-Grid-checkbox-border-color-disabled: var(--tv-color-border-disabled);
+  --tv-Grid-checkbox-border-color-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 多选框边框圆角
-  --tv-Grid-checkbox-border-radius: var(--tv-border-radius-sm);
+  --tv-Grid-checkbox-border-radius: var(--tv-border-radius-sm, 4px);
   // ------单选框相关样式-------
   // 单选框图标大小
-  --tv-Grid-radio-icon-size: calc(var(--tv-icon-size) + 2px);
+  --tv-Grid-radio-icon-size: calc(var(--tv-icon-size, 16px) + 2px);
   // 单选框图标颜色
-  --tv-Grid-radio-icon-color: var(--tv-color-border);
+  --tv-Grid-radio-icon-color: var(--tv-color-border, #c2c2c2);
   // 单选框图标悬浮颜色
-  --tv-Grid-radio-icon-color-hover: var(--tv-color-border-hover);
+  --tv-Grid-radio-icon-color-hover: var(--tv-color-border-hover, #191919);
   // 单选框图标选中颜色
-  --tv-Grid-radio-icon-color-selected: var(--tv-color-bg-active-control);
+  --tv-Grid-radio-icon-color-selected: var(--tv-color-bg-active-control, #1476ff);
   // 单选框禁用颜色
-  --tv-Grid-radio-icon-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Grid-radio-icon-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 单选框禁用边框色
-  --tv-Grid-radio-border-color-disabled: var(--tv-color-border-disabled);
+  --tv-Grid-radio-border-color-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // -------筛选相关样式-------
   // 筛选一般背景色
-  --tv-Grid-filter-bg-color: var(--tv-color-bg);
+  --tv-Grid-filter-bg-color: var(--tv-color-bg, #f5f5f5);
   // 筛选悬浮背景色
-  --tv-Grid-filter-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Grid-filter-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 筛选输入框悬浮边框颜色
-  --tv-Grid-filter-input-border-color-hover: var(--tv-color-border-hover);
+  --tv-Grid-filter-input-border-color-hover: var(--tv-color-border-hover, #191919);
   // 筛选输入框边框圆角
-  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-md, 6px);
   // 筛选输入框边框背景
-  --tv-Grid-filter-input-bg-color: var(--tv-color-bg-secondary);
+  --tv-Grid-filter-input-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // -------工具栏相关样式-------
   // 工具栏垂直边距
-  --tv-Grid-toolbar-padding-y: var(--tv-space-xl);
+  --tv-Grid-toolbar-padding-y: var(--tv-space-xl, 16px);
   // 工具栏图标按钮大小
   --tv-Grid-toolbar-btn-icon-size: 14px;
   // 工具栏图标容器大小
-  --tv-Grid-toolbar-btn-container-size: var(--tv-size-height-md);
+  --tv-Grid-toolbar-btn-container-size: var(--tv-size-height-md, 32px);
   // 工具栏图标按钮颜色
-  --tv-Grid-toolbar-btn-icon-color: var(--tv-color-icon-control);
+  --tv-Grid-toolbar-btn-icon-color: var(--tv-color-icon-control, #191919);
   // 工具栏图标按钮边框色
-  --tv-Grid-toolbar-btn-icon-border-color: var(--tv-color-border);
+  --tv-Grid-toolbar-btn-icon-border-color: var(--tv-color-border, #c2c2c2);
   // 工具栏图标按钮悬浮边框色
-  --tv-Grid-toolbar-btn-icon-border-color-hover: var(--tv-color-border-hover);
+  --tv-Grid-toolbar-btn-icon-border-color-hover: var(--tv-color-border-hover, #191919);
   // 工具栏图标按钮边框圆角
-  --tv-Grid-toolbar-btn-icon-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-toolbar-btn-icon-border-radius: var(--tv-border-radius-md, 6px);
   // 工具栏字体颜色
-  --tv-Grid-column-anchor-text-color: var(--tv-color-text);
+  --tv-Grid-column-anchor-text-color: var(--tv-color-text, #191919);
   // -------mini/small表格-------
   // mini表格表头高度
-  --tv-Grid-header-height-mini: var(--tv-size-height-sm);
+  --tv-Grid-header-height-mini: var(--tv-size-height-sm, 28px);
   // mini单元格高度
-  --tv-Grid-cell-height-mini: var(--tv-size-height-md);
+  --tv-Grid-cell-height-mini: var(--tv-size-height-md, 32px);
   // mini表格单元格水平内边距
   --tv-Grid-cell-padding-x-mini: calc(var(--tv-space-table-x, 4px) * 4);
   // mini表格单元格垂直内边距
   --tv-Grid-cell-padding-y-mini: calc(var(--tv-space-table-y, 4px) * 1);
   // small表格表头高度
-  --tv-Grid-header-height-small: var(--tv-size-height-md);
+  --tv-Grid-header-height-small: var(--tv-size-height-md, 32px);
   // small单元格高度
-  --tv-Grid-cell-height-small: var(--tv-size-height-lg);
+  --tv-Grid-cell-height-small: var(--tv-size-height-lg, 40px);
   // small表格单元格水平内边距
   --tv-Grid-cell-padding-x-small: calc(var(--tv-space-table-x, 4px) * 4);
   // small表格单元格垂直内边距
   --tv-Grid-cell-padding-y-small: calc(var(--tv-space-table-y, 4px) * 2);
   // -------其他-------
   // 树节点图标右侧内边距
-  --tv-Grid-tree-expand-icon-padding-right: var(--tv-space-md);
+  --tv-Grid-tree-expand-icon-padding-right: var(--tv-space-md, 8px);
   // 内置输入框高度
-  --tv-Grid-input-height: var(--tv-size-height-md);
+  --tv-Grid-input-height: var(--tv-size-height-md, 32px);
   // 内置输入框垂直方向内边距
   --tv-Grid-input-padding-x: 0;
   // 内置输入框水平方向内边距
   --tv-Grid-input-padding-y: 12px;
   // 内置输入框文本颜色
-  --tv-Grid-input-text-color: var(--tv-color-text);
+  --tv-Grid-input-text-color: var(--tv-color-text, #191919);
   // 内置输入框边框色
-  --tv-Grid-input-border-color: var(--tv-color-border);
+  --tv-Grid-input-border-color: var(--tv-color-border, #c2c2c2);
   // 内置输入框框字体大小
-  --tv-Grid-input-font-size: var(--tv-font-size-default);
+  --tv-Grid-input-font-size: var(--tv-font-size-default, 14px);
   // 内置输入框背景色
-  --tv-Grid-input-bg-color: var(--tv-color-bg-3);
+  --tv-Grid-input-bg-color: var(--tv-color-bg-3, #ffffff);
   // 内置输入框边框圆角
-  --tv-Grid-input-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-input-border-radius: var(--tv-border-radius-md, 6px);
   // 内置输入框悬浮边框颜色
-  --tv-Grid-input-border-color-hover: var(--tv-color-border-hover);
+  --tv-Grid-input-border-color-hover: var(--tv-color-border-hover, #191919);
   // 内置按钮背景色
-  --tv-Grid-button-bg-color-default: var(--tv-color-bg-secondary);
+  --tv-Grid-button-bg-color-default: var(--tv-color-bg-secondary, #ffffff);
   // 内置按钮行号
-  --tv-Grid-button-line-height: var(--tv-line-height-number);
+  --tv-Grid-button-line-height: var(--tv-line-height-number, 1.5);
   // 内置按钮高度
-  --tv-Grid-button-height: var(--tv-size-height-md);
+  --tv-Grid-button-height: var(--tv-size-height-md, 32px);
   // 内置按钮边框色
-  --tv-Grid-button-border-color-default: var(--tv-color-border-secondary);
+  --tv-Grid-button-border-color-default: var(--tv-color-border-secondary, #595959);
   // 内置按钮文字色
-  --tv-Grid-button-text-color-default: var(--tv-color-text);
+  --tv-Grid-button-text-color-default: var(--tv-color-text, #191919);
   // 内置按钮文字色
-  --tv-Grid-button-border-radius: var(--tv-border-radius-md);
+  --tv-Grid-button-border-radius: var(--tv-border-radius-md, 6px);
   // 内置按钮激活状态边框色
-  --tv-Grid-button-border-color-active-default: var(--tv-color-border-secondary-hover);
+  --tv-Grid-button-border-color-active-default: var(--tv-color-border-secondary-hover, #c2c2c2);
   // 内置按钮padding
   --tv-Grid-button-padding-x: 24px;
   // 内置select的下拉框背景色
-  --tv-Grid-select-option-bg-color: var(--tv-color-bg-2);
+  --tv-Grid-select-option-bg-color: var(--tv-color-bg-2, #ffffff);
   // 内置select的下拉框选中状态背景色
-  --tv-Grid-select-option-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Grid-select-option-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 加载中背景色
-  --tv-Grid-loading-mask-bg-color: var(--tv-color-bg-mask);
+  --tv-Grid-loading-mask-bg-color: var(--tv-color-bg-mask, rgba(0, 0, 0, 20%));
   // 表格无数据背景图片
   --tv-Grid-empty-img: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiIGQ9Ik0wIDBoODB2ODBIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik01Ni45MiAyNXY0NS4wNmMwIDIuMTctMS43NyAzLjkzLTMuOTUgMy45M0gxMC45NEEzLjk0IDMuOTQgMCAwIDEgNyA3MC4wNlYzOS4zOWguODh2MzAuNjdhMy4wNiAzLjA2IDAgMCAwIDMuMDYgMy4wNmg0Mi4wM2MxLjcgMCAzLjA3LTEuMzcgMy4wNy0zLjA2VjI1Ljg3SDEwLjY3VjI1aDQ2LjI1eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik05LjQzIDI1Yy0uNiAwLTEuMTUuMzEtMS40Ni44MkwuMTMgMzguNjRjLS4yNi40Mi0uMTMuOTYuMjcgMS4yMi4xNC4wOS4yOS4xNC40Ni4xNGg0NC44MmMxLjE3IDAgMi4yNi0uNjEgMi45LTEuNjJMNTcuMDQgMjVIOS40M3ptLjIyIDFoNDUuNTJsLTcuNTIgMTEuODFjLS40Ny43NC0xLjI4IDEuMTktMi4xNCAxLjE5SDEuMTdsNy43NS0xMi42Yy4xNi0uMjUuNDMtLjQuNzMtLjR6IiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTcwLjc1IDI1Yy41NiAwIDEuMDguMyAxLjM5LjhsNy43MiAxMi43MmMuMjUuNDEuMTQuOTUtLjI1IDEuMjEtLjEzLjA5LS4yOC4xNC0uNDQuMTRINjYuMTRjLTEuMTcgMC0yLjI1LS42Ni0yLjg1LTEuNzNMNTUuOTggMjVoMTQuNzd6bS0uMDMgMUg1Ny44bDYuMzggMTEuNzFjLjQzLjggMS4yMiAxLjI5IDIuMDggMS4yOWgxMi42M0w3MS40IDI2LjM5YS44MDIuODAyIDAgMCAwLS42OC0uMzl6IiBmaWxsPSJncmF5Ii8+PHJlY3QgeD0iMTMuNSIgeT0iNTYiIHJ4PSIxLjg4NiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxNDc2RkYiLz48cGF0aCBkPSJNMjMuNTYgNjNjLjI0IDAgLjQ0LjIyLjQ0LjUgMCAuMjctLjIuNS0uNDQuNWgtOS42M2MtLjI0IDAtLjQzLS4yMy0uNDMtLjUgMC0uMjguMTktLjUuNDMtLjVoOS42M3oiIGZpbGw9ImdyYXkiLz48cmVjdCB4PSIxMy41IiB5PSI2NiIgcng9Ii41IiB3aWR0aD0iNSIgaGVpZ2h0PSIxIiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTQwIDZjLjI3IDAgLjUuMTkuNS40NHY2LjE2YzAgLjI1LS4yMy40NC0uNS40NC0uMjggMC0uNTEtLjE5LS41MS0uNDRWNi40NGMwLS4yNS4yMy0uNDQuNTEtLjQ0ek01Ni41NSA4LjY0Yy4yNC4xNC4zMy40Mi4yMS42M2wtMy4wOCA1LjM0Yy0uMTIuMjEtLjQyLjI3LS42Ni4xMy0uMjQtLjE0LS4zMy0uNDItLjIxLS42M2wzLjA4LTUuMzRjLjEyLS4yMS40Mi0uMjcuNjYtLjEzek0yMy40NCA4LjY0Yy4yNC0uMTQuNTQtLjA4LjY2LjEzbDMuMDggNS4zNGMuMTIuMjEuMDMuNDktLjIxLjYzcy0uNTQuMDgtLjY2LS4xM2wtMy4wOC01LjM0Yy0uMTItLjIxLS4wMy0uNDkuMjEtLjYzeiIgZmlsbD0iZ3JheSIvPjwvZz48L3N2Zz4=');
 }

@@ -12,19 +12,19 @@
 
 .inject-Crop-vars() {
   // 弹窗蒙层的背景色，实际为该值的0.5的透明度
-  --tv-Crop-modal-bg-color: var(--tv-color-bg-mask);
+  --tv-Crop-modal-bg-color: var(--tv-color-bg-mask, rgba(0, 0, 0, 20%));
   // 设置裁剪框在图片正中心加号背景色
-  --tv-Crop-center-bg-color: var(--tv-color-bg-control-unactive);
+  --tv-Crop-center-bg-color: var(--tv-color-bg-control-unactive, #c2c2c2);
   // 弹窗裁剪框的背景色，实际为该值的0.1透明度
-  --tv-Crop-face-bg-color: var(--tv-color-bg-secondary);
+  --tv-Crop-face-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 条框选择背景颜色
-  --tv-Crop-select-bg-color: var(--tv-color-bg);
+  --tv-Crop-select-bg-color: var(--tv-color-bg, #f5f5f5);
   // 条框字体颜色
-  --tv-Crop-select-icon-color: var(--tv-color-icon);
+  --tv-Crop-select-icon-color: var(--tv-color-icon, #808080);
   // 条框悬浮颜色
-  --tv-Crop-select-icon-color-hover: var(--tv-color-bg-hover);
+  --tv-Crop-select-icon-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 条框的阴影
-  --tv-Crop-select-box-shadow-color: var(--tv-shadow-2-down);
+  --tv-Crop-select-box-shadow-color: var(--tv-shadow-2-down, 0 2px 12px 0 rgba(0, 0, 0, 0.16));
   // 条框的分割线颜色
-  --tv-Crop-select-box-split-bg-color: var(--tv-color-border-divider-short);
+  --tv-Crop-select-box-split-bg-color: var(--tv-color-border-divider-short, #dbdbdb);
 }

@@ -13,7 +13,7 @@
 .inject-Tag-vars() {
   //-------------------------------------------------------全局场景：------------------------------------------
   // 标签字体的行高
-  --tv-Tag-line-height: var(--tv-line-height-number);
+  --tv-Tag-line-height: var(--tv-line-height-number, 1.5);
 
   //------------------------------------------------------- 尺寸 场景：font-size, border-radius ,padding-x,y   -------
 
@@ -22,52 +22,52 @@
   */
 
   // 超小标签字号
-  --tv-Tag-font-size-mini: var(--tv-font-size-sm);
+  --tv-Tag-font-size-mini: var(--tv-font-size-sm, 12px);
   // 超小标签水平间距
   --tv-Tag-padding-x-mini: 3px;
   // 超小标签垂直间距
   --tv-Tag-padding-y-mini: 0;
   // 超小标签圆角
-  --tv-Tag-border-radius-mini: var(--tv-border-radius-xs);
+  --tv-Tag-border-radius-mini: var(--tv-border-radius-xs, 2px);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size-mini: 12px;
   // 标签在仅图标模式时，标签的内边距
   --tv-Tag-only-icon-padding-mini: 2px;
 
   // 小型标签字号
-  --tv-Tag-font-size-small: var(--tv-font-size-sm);
+  --tv-Tag-font-size-small: var(--tv-font-size-sm, 12px);
   // 小型标签水平间距
   --tv-Tag-padding-x-small: 3px;
   // 小型标签垂直间距
   --tv-Tag-padding-y-small: 0;
   // 小型标签圆角
-  --tv-Tag-border-radius-small: var(--tv-border-radius-xs);
+  --tv-Tag-border-radius-small: var(--tv-border-radius-xs, 2px);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size-small: 12px;
   // 标签在仅图标模式时，标签的内边距
   --tv-Tag-only-icon-padding-small: 2px;
 
   // 默认标签字号
-  --tv-Tag-font-size: var(--tv-font-size-sm);
+  --tv-Tag-font-size: var(--tv-font-size-sm, 12px);
   // 默认标签水平间距
   --tv-Tag-padding-x: 7px;
   // 默认标签垂直间距
   --tv-Tag-padding-y: 2px;
   // 默认标签圆角
-  --tv-Tag-border-radius: var(--tv-border-radius-sm);
+  --tv-Tag-border-radius: var(--tv-border-radius-sm, 4px);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size: 14px;
   // 标签在仅图标模式时，标签的内边距
   --tv-Tag-only-icon-padding: 4px;
 
   // 中等标签字号
-  --tv-Tag-font-size-medium: var(--tv-font-size-default);
+  --tv-Tag-font-size-medium: var(--tv-font-size-default, 14px);
   // 中等标签水平间距
   --tv-Tag-padding-x-medium: 11px;
   // 中等标签垂直间距
   --tv-Tag-padding-y-medium: 4.5px;
   // 中等标签圆角
-  --tv-Tag-border-radius-medium: var(--tv-border-radius-md);
+  --tv-Tag-border-radius-medium: var(--tv-border-radius-md, 6px);
   // 标签在仅图标模式时，图标的大小
   --tv-Tag-only-icon-font-size-medium: 16px;
   // 标签在仅图标模式时，标签的内边距
@@ -77,99 +77,99 @@
 
   // type × effect的  场景：  default success,danger ,warning,info   light,dark,plain
   // 默认标签light的文本色
-  --tv-Tag-text-color-light: var(--tv-color-text);
+  --tv-Tag-text-color-light: var(--tv-color-text, #191919);
   // 默认标签light的背景色
-  --tv-Tag-bg-color-light: var(--tv-color-bg);
+  --tv-Tag-bg-color-light: var(--tv-color-bg, #f5f5f5);
   // 默认标签light的边框色
-  --tv-Tag-border-color-light: var(--tv-color-bg); // 规范不需要边框
+  --tv-Tag-border-color-light: var(--tv-color-bg, #f5f5f5); // 规范不需要边框
   // 默认标签dark的文本色
-  --tv-Tag-text-color-dark: var(--tv-color-text-inverse-tint);
+  --tv-Tag-text-color-dark: var(--tv-color-text-inverse-tint, #ffffff);
   // 默认标签dark的背景色
-  --tv-Tag-bg-color-dark: var(--tv-color-bg-primary);
+  --tv-Tag-bg-color-dark: var(--tv-color-bg-primary, #191919);
   // 默认标签dark的边框色
-  --tv-Tag-border-color-dark: var(--tv-color-bg-primary);
+  --tv-Tag-border-color-dark: var(--tv-color-bg-primary, #191919);
   // 默认标签plain的文本色
-  --tv-Tag-text-color-plain: var(--tv-color-text);
+  --tv-Tag-text-color-plain: var(--tv-color-text, #191919);
   // 默认标签plain的背景色
   --tv-Tag-bg-color-plain: transparent;
   // 默认标签plain的边框色
-  --tv-Tag-border-color-plain: var(--tv-color-border-hover); // 没有正确的边框色
+  --tv-Tag-border-color-plain: var(--tv-color-border-hover, #191919); // 没有正确的边框色
 
   // success 主题时标签light的文本色
-  --tv-Tag-text-color-light-success: var(--tv-color-success-text);
+  --tv-Tag-text-color-light-success: var(--tv-color-success-text, #5cb300);
   // success 主题时标签light的背景色
-  --tv-Tag-bg-color-light-success: var(--tv-color-success-bg-light);
+  --tv-Tag-bg-color-light-success: var(--tv-color-success-bg-light, #e6f2d5);
   // success 主题时标签light的边框色
-  --tv-Tag-border-color-light-success: var(--tv-color-success-border-light);
+  --tv-Tag-border-color-light-success: var(--tv-color-success-border-light, #e6f2d5);
   // success 主题时标签dark的文本色
-  --tv-Tag-text-color-dark-success: var(--tv-color-success-text-white);
+  --tv-Tag-text-color-dark-success: var(--tv-color-success-text-white, #ffffff);
   // success 主题时标签dark的背景色
-  --tv-Tag-bg-color-dark-success: var(--tv-color-success-bg);
+  --tv-Tag-bg-color-dark-success: var(--tv-color-success-bg, #5cb300);
   // success 主题时标签dark的边框色
-  --tv-Tag-border-color-dark-success: var(--tv-color-success-bg);
+  --tv-Tag-border-color-dark-success: var(--tv-color-success-bg, #5cb300);
   // success 主题时标签plain的文本色
-  --tv-Tag-text-color-plain-success: var(--tv-color-success-text);
+  --tv-Tag-text-color-plain-success: var(--tv-color-success-text, #5cb300);
   // success 主题时标签plain的背景色
   --tv-Tag-bg-color-plain-success: transparent;
   // success 主题时标签plain的边框色
-  --tv-Tag-border-color-plain-success: var(--tv-color-success-border);
+  --tv-Tag-border-color-plain-success: var(--tv-color-success-border, #5cb300);
 
   // error 主题时标签light的文本色
-  --tv-Tag-text-color-light-danger: var(--tv-color-error-text);
+  --tv-Tag-text-color-light-danger: var(--tv-color-error-text, #f23030);
   // error 主题时标签light的背景色
-  --tv-Tag-bg-color-light-danger: var(--tv-color-error-bg-light);
+  --tv-Tag-bg-color-light-danger: var(--tv-color-error-bg-light, #fce3e1);
   // error 主题时标签light的边框色
-  --tv-Tag-border-color-light-danger: var(--tv-color-error-border-light);
+  --tv-Tag-border-color-light-danger: var(--tv-color-error-border-light, #fce3e1);
   // error 主题时标签dark的文本色
-  --tv-Tag-text-color-dark-danger: var(--tv-color-error-text-white);
+  --tv-Tag-text-color-dark-danger: var(--tv-color-error-text-white, #ffffff);
   // error 主题时标签dark的背景色
-  --tv-Tag-bg-color-dark-danger: var(--tv-color-error-bg);
+  --tv-Tag-bg-color-dark-danger: var(--tv-color-error-bg, #f23030);
   // error 主题时标签dark的边框色
-  --tv-Tag-border-color-dark-danger: var(--tv-color-error-border);
+  --tv-Tag-border-color-dark-danger: var(--tv-color-error-border, #f23030);
   // error 主题时标签plain的文本色
-  --tv-Tag-text-color-plain-danger: var(--tv-color-error-text);
+  --tv-Tag-text-color-plain-danger: var(--tv-color-error-text, #f23030);
   // error 主题时标签plain的背景色
   --tv-Tag-bg-color-plain-danger: transparent;
   // error 主题时标签plain的边框色
-  --tv-Tag-border-color-plain-danger: var(--tv-color-error-border);
+  --tv-Tag-border-color-plain-danger: var(--tv-color-error-border, #f23030);
 
   // warning 主题时标签light的文本色
-  --tv-Tag-text-color-light-warning: var(--tv-color-warn-text);
+  --tv-Tag-text-color-light-warning: var(--tv-color-warn-text, #ff8800);
   // warning 主题时标签light的背景色
-  --tv-Tag-bg-color-light-warning: var(--tv-color-warn-bg-light);
+  --tv-Tag-bg-color-light-warning: var(--tv-color-warn-bg-light, #ffebd1);
   // warning 主题时标签light的边框色
-  --tv-Tag-border-color-light-warning: var(--tv-color-warn-border-light);
+  --tv-Tag-border-color-light-warning: var(--tv-color-warn-border-light, #ffebd1);
   // warning 主题时标签dark的文本色
-  --tv-Tag-text-color-dark-warning: var(--tv-color-warn-text-white);
+  --tv-Tag-text-color-dark-warning: var(--tv-color-warn-text-white, #ffffff);
   // warning 主题时标签dark的背景色
-  --tv-Tag-bg-color-dark-warning: var(--tv-color-warn-bg);
+  --tv-Tag-bg-color-dark-warning: var(--tv-color-warn-bg, #ff8800);
   // warning 主题时标签dark的边框色
-  --tv-Tag-border-color-dark-warning: var(--tv-color-warn-border);
+  --tv-Tag-border-color-dark-warning: var(--tv-color-warn-border, #ff8800);
   // warning 主题时标签plain的文本色
-  --tv-Tag-text-color-plain-warning: var(--tv-color-warn-text);
+  --tv-Tag-text-color-plain-warning: var(--tv-color-warn-text, #ff8800);
   // warning 主题时标签plain的背景色
   --tv-Tag-bg-color-plain-warning: transparent;
   // warning 主题时标签plain的边框色
-  --tv-Tag-border-color-plain-warning: var(--tv-color-warn-border);
+  --tv-Tag-border-color-plain-warning: var(--tv-color-warn-border, #ff8800);
 
   // info 主题时标签light的文本色
-  --tv-Tag-text-color-light-info: var(--tv-color-info-text);
+  --tv-Tag-text-color-light-info: var(--tv-color-info-text, #1476ff);
   // info 主题时标签light的背景色
-  --tv-Tag-bg-color-light-info: var(--tv-color-info-bg-light);
+  --tv-Tag-bg-color-light-info: var(--tv-color-info-bg-light, #deecff);
   // info 主题时标签light的边框色
-  --tv-Tag-border-color-light-info: var(--tv-color-info-border-light);
+  --tv-Tag-border-color-light-info: var(--tv-color-info-border-light, #deecff);
   // info 主题时标签dark的文本色
-  --tv-Tag-text-color-dark-info: var(--tv-color-info-bg-white);
+  --tv-Tag-text-color-dark-info: var(--tv-color-info-bg-white, #ffffff);
   // info 主题时标签dark的背景色
-  --tv-Tag-bg-color-dark-info: var(--tv-color-info-bg);
+  --tv-Tag-bg-color-dark-info: var(--tv-color-info-bg, #1476ff);
   // info 主题时标签dark的边框色
-  --tv-Tag-border-color-dark-info: var(--tv-color-info-border);
+  --tv-Tag-border-color-dark-info: var(--tv-color-info-border, #1476ff);
   // info 主题时标签plain的文本色
-  --tv-Tag-text-color-plain-info: var(--tv-color-info-text);
+  --tv-Tag-text-color-plain-info: var(--tv-color-info-text, #1476ff);
   // info 主题时标签plain的背景色
   --tv-Tag-bg-color-plain-info: transparent;
   // info 主题时标签plain的边框色
-  --tv-Tag-border-color-plain-info: var(--tv-color-info-border);
+  --tv-Tag-border-color-plain-info: var(--tv-color-info-border, #1476ff);
 
   // color 场景：'red orange green blue purple brown grey gold'  规范变化时，也不需要变更的变量
   // 红色时标签文本色
@@ -206,23 +206,23 @@
   --tv-Tag-bg-color-gold: linear-gradient(to right, #e8cda4, #f8eddb);
   // disabled 场景：
   // 标签禁用时的文本色
-  --tv-Tag-text-color-disabled: var(--tv-color-text-disabled);
+  --tv-Tag-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
   // 标签禁用时的背景色
-  --tv-Tag-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Tag-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
 
   //------------------------------------------------------- 关闭图标 场景：-----------------------------------
   // 标签的关闭按钮大小
-  --tv-Tag-close-icon-size: var(--tv-icon-size);
+  --tv-Tag-close-icon-size: var(--tv-icon-size, 16px);
   // 标签的关闭按钮的颜色
-  --tv-Tag-close-icon-color: var(--tv-color-icon);
+  --tv-Tag-close-icon-color: var(--tv-color-icon, #808080);
   // 标签的关闭按钮的悬浮颜色
-  --tv-Tag-close-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Tag-close-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 标签的关闭按钮的禁用颜色
-  --tv-Tag-close-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Tag-close-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
   // 标签的关闭按钮的左外边距
-  --tv-Tag-close-icon-margin-left: var(--tv-space-sm);
+  --tv-Tag-close-icon-margin-left: var(--tv-space-sm, 4px);
 
   //------------------------------------------------------- 其它 场景：-----------------------------------
   // 标签插槽有前置图标时，图标的右间距
-  --tv-Tag-slot-icon-margin-right: var(--tv-space-sm);
+  --tv-Tag-slot-icon-margin-right: var(--tv-space-sm, 4px);
 }

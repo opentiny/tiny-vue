@@ -1,14 +1,14 @@
 .inject-SkeletonItem-vars() {
   // 骨架屏元素背景设置
-  --tv-SkeletonItem-bg-color: var(--tv-color-bg);
+  --tv-SkeletonItem-bg-color: var(--tv-color-bg, #f5f5f5);
   // 骨架屏元素半径设置
-  --tv-SkeletonItem-border-radius: var(--tv-border-radius-sm);
+  --tv-SkeletonItem-border-radius: var(--tv-border-radius-sm, 4px);
   // 图片颜色设置
-  --tv-SkeletonItem-image-icon-color: var(--tv-color-bg);
+  --tv-SkeletonItem-image-icon-color: var(--tv-color-bg, #f5f5f5);
   // 方形高度设置
-  --tv-SkeletonItem-square-height: var(--tv-size-height-sm);
+  --tv-SkeletonItem-square-height: var(--tv-size-height-sm, 28px);
   // 圆角半径设置
-  --tv-SkeletonItem-circle-border-radius: var(--tv-border-radius-round);
+  --tv-SkeletonItem-circle-border-radius: var(--tv-border-radius-round, 999px);
   // 圆形中大尺寸
   --tv-SkeletonItem-circle-large-size: 60px;
   // 圆形中尺寸设置
@@ -28,5 +28,5 @@
   // 大图片宽度设置
   --tv-SkeletonItem-image-large-size-width: 200px;
   // 渐变颜色设置(hide)
-  --tv-SkeletonItem-linear-gradient: linear-gradient(to right, var(--tv-color-bg-hover), var(--tv-color-border-container), var(--tv-color-bg-hover));
+  --tv-SkeletonItem-linear-gradient: linear-gradient(to right, var(--tv-color-bg-hover, #f5f5f5), var(--tv-color-border-container, #f0f0f0), var(--tv-color-bg-hover, #f5f5f5));
 }

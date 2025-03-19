@@ -12,43 +12,43 @@
 
 .inject-Loading-vars() {
   // 加载图标色
-  --tv-Loading-icon-color: var(--tv-color-icon-active);
+  --tv-Loading-icon-color: var(--tv-color-icon-active, #191919);
   // 加载文本色
-  --tv-Loading-text-color: var(--tv-color-text-secondary);
+  --tv-Loading-text-color: var(--tv-color-text-secondary, #595959);
   // 加载背景色
-  --tv-Loading-mask-bg-color: var(--tv-color-bg-mask);
+  --tv-Loading-mask-bg-color: var(--tv-color-bg-mask, rgba(0, 0, 0, 20%));
   // 加载文本字号
-  --tv-Loading-text-font-size: var(--tv-font-size-lg);
+  --tv-Loading-text-font-size: var(--tv-font-size-lg, 16px);
   // 加载图标文本垂直方向外边距
-  --tv-Loading-text-margin-y: var(--tv-space-xl);
+  --tv-Loading-text-margin-y: var(--tv-space-xl, 16px);
   // 加载图标文本水平方向外边距
   --tv-Loading-text-margin-x: 0;
 
   // 全屏加载图标small尺寸时的宽度
-  --tv-Loading-fullscreen-small-width: var(--tv-icon-size);
+  --tv-Loading-fullscreen-small-width: var(--tv-icon-size, 16px);
   // 全屏加载图标medium尺寸时的宽度
-  --tv-Loading-fullscreen-medium-width: var(--tv-size-height-xs);
+  --tv-Loading-fullscreen-medium-width: var(--tv-size-height-xs, 24px);
   // 全屏加载图标large尺寸时的宽度
-  --tv-Loading-fullscreen-large-width: var(--tv-size-height-md);
+  --tv-Loading-fullscreen-large-width: var(--tv-size-height-md, 32px);
 
   // 全屏加载图标small尺寸时的高度
-  --tv-Loading-fullscreen-small-height: var(--tv-icon-size);
+  --tv-Loading-fullscreen-small-height: var(--tv-icon-size, 16px);
   // 全屏加载图标medium尺寸时的高度
-  --tv-Loading-fullscreen-medium-height: var(--tv-size-height-xs);
+  --tv-Loading-fullscreen-medium-height: var(--tv-size-height-xs, 24px);
   // 全屏加载图标large尺寸时的高度
-  --tv-Loading-fullscreen-large-height: var(--tv-size-height-md);
+  --tv-Loading-fullscreen-large-height: var(--tv-size-height-md, 32px);
 
   // 默认加载图标small尺寸时的高度
-  --tv-Loading-spinner-small-height: var(--tv-icon-size);
+  --tv-Loading-spinner-small-height: var(--tv-icon-size, 16px);
   // 默认加载图标medium尺寸时的高度
-  --tv-Loading-spinner-medium-height: var(--tv-size-height-xs);
+  --tv-Loading-spinner-medium-height: var(--tv-size-height-xs, 24px);
   // 默认加载图标large尺寸时的高度
-  --tv-Loading-spinner-large-height: var(--tv-size-height-md);
+  --tv-Loading-spinner-large-height: var(--tv-size-height-md, 32px);
 
   // 默认加载图标small尺寸时的宽度
-  --tv-Loading-spinner-small-width: var(--tv-icon-size);
+  --tv-Loading-spinner-small-width: var(--tv-icon-size, 16px);
   // 默认加载图标medium尺寸时的宽度
-  --tv-Loading-spinner-medium-width: var(--tv-size-height-xs);
+  --tv-Loading-spinner-medium-width: var(--tv-size-height-xs, 24px);
   // 默认加载图标large尺寸时的宽度
-  --tv-Loading-spinner-large-width: var(--tv-size-height-md);
+  --tv-Loading-spinner-large-width: var(--tv-size-height-md, 32px);
 }

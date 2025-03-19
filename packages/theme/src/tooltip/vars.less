@@ -12,69 +12,69 @@
 
 .inject-Tooltip-vars() {
   // 弹框字体行高
-  --tv-Tooltip-popper-font-line-height: var(--tv-line-height-number);
+  --tv-Tooltip-popper-font-line-height: var(--tv-line-height-number, 1.5);
   // 悬浮弹出框圆角
-  --tv-Tooltip-popper-border-radius: var(--tv-border-radius-lg);
+  --tv-Tooltip-popper-border-radius: var(--tv-border-radius-lg, 8px);
   // 悬浮弹出框字号
-  --tv-Tooltip-popper-font-size: var(--tv-font-size-default);
+  --tv-Tooltip-popper-font-size: var(--tv-font-size-default, 14px);
 
   // 正常背景色
-  --tv-Tooltip-popper-normal-bg-color: var(--tv-color-bg-2);
+  --tv-Tooltip-popper-normal-bg-color: var(--tv-color-bg-2, #ffffff);
   // 文字提示正常文本色(hide)
-  --tv-Tooltip-popper-normal-text-color: var(--tv-color-text);
+  --tv-Tooltip-popper-normal-text-color: var(--tv-color-text, #191919);
   // 弹框正常边框色 (hide)
   --tv-Tooltip-popper-normal-border-color: var(--tv-Tooltip-popper-normal-bg-color);
 
   // info类型弹框背景色
-  --tv-Tooltip-popper-info-bg-color: var(--tv-color-info-bg);
+  --tv-Tooltip-popper-info-bg-color: var(--tv-color-info-bg, #1476ff);
   // info类型弹框文本色
-  --tv-Tooltip-popper-info-text-color: var(--tv-color-info-text-white);
+  --tv-Tooltip-popper-info-text-color: var(--tv-color-info-text-white, #ffffff);
   // info类型弹框三角边框色
-  --tv-Tooltip-popper-info-border-color: var(--tv-color-info-border);
+  --tv-Tooltip-popper-info-border-color: var(--tv-color-info-border, #1476ff);
 
   // error类型弹框背景色
-  --tv-Tooltip-popper-error-bg-color: var(--tv-color-error-bg);
+  --tv-Tooltip-popper-error-bg-color: var(--tv-color-error-bg, #f23030);
   // error类型弹框文本色
-  --tv-Tooltip-popper-error-text-color: var(--tv-color-error-text-white);
+  --tv-Tooltip-popper-error-text-color: var(--tv-color-error-text-white, #ffffff);
   // error类型弹框三角边框色
-  --tv-Tooltip-popper-error-border-color: var(--tv-color-error-border);
+  --tv-Tooltip-popper-error-border-color: var(--tv-color-error-border, #f23030);
 
   // warning类型弹框背景色
-  --tv-Tooltip-popper-warning-bg-color: var(--tv-color-warn-bg);
+  --tv-Tooltip-popper-warning-bg-color: var(--tv-color-warn-bg, #ff8800);
   // warning类型弹框文本色
-  --tv-Tooltip-popper-warning-text-color: var(--tv-color-warn-text-white);
+  --tv-Tooltip-popper-warning-text-color: var(--tv-color-warn-text-white, #ffffff);
   // warning类型弹框三角边框色
-  --tv-Tooltip-popper-warning-border-color: var(--tv-color-warn-border);
+  --tv-Tooltip-popper-warning-border-color: var(--tv-color-warn-border, #ff8800);
 
   // success类型弹框背景色
-  --tv-Tooltip-popper-success-bg-color: var(--tv-color-success-bg);
+  --tv-Tooltip-popper-success-bg-color: var(--tv-color-success-bg, #5cb300);
   // success类型弹框文本色
-  --tv-Tooltip-popper-success-text-color: var(--tv-color-success-text-white);
+  --tv-Tooltip-popper-success-text-color: var(--tv-color-success-text-white, #ffffff);
   // success类型弹框三角边框色
-  --tv-Tooltip-popper-success-border-color: var(--tv-color-success-border);
+  --tv-Tooltip-popper-success-border-color: var(--tv-color-success-border, #5cb300);
 
   // dark主题弹框背景色
-  --tv-Tooltip-popper-dark-bg-color: var(--tv-color-bg-dark);
+  --tv-Tooltip-popper-dark-bg-color: var(--tv-color-bg-dark, #191919);
   // dark主题弹框文本色
-  --tv-Tooltip-popper-dark-text-color: var(--tv-color-text-inverse);
+  --tv-Tooltip-popper-dark-text-color: var(--tv-color-text-inverse, #ffffff);
   // dark主题|禁用时弹框边框色
-  --tv-Tooltip-popper-dark-border-color: var(--tv-color-border-hover);
+  --tv-Tooltip-popper-dark-border-color: var(--tv-color-border-hover, #191919);
 
   // light主题弹框背景色
-  --tv-Tooltip-popper-light-bg-color: var(--tv-color-bg-inverse);
+  --tv-Tooltip-popper-light-bg-color: var(--tv-color-bg-inverse, #ffffff);
   // light主题|禁用弹框文本色
-  --tv-Tooltip-popper-light-text-color: var(--tv-color-text-inverse-black);
+  --tv-Tooltip-popper-light-text-color: var(--tv-color-text-inverse-black,  #191919);
   // light主题|禁用时弹框边框色
   --tv-Tooltip-popper-light-border-color: var(--tv-Tooltip-popper-light-bg-color);
 
   // 弹框阴影
-  --tv-Tooltip-box-shadow: var(--tv-shadow-2-down);
+  --tv-Tooltip-box-shadow: var(--tv-shadow-2-down, 0 2px 12px 0 rgba(0, 0, 0, 0.16));
   // 弹框垂直内边距
-  --tv-Tooltip-padding-y: var(--tv-space-lg);
+  --tv-Tooltip-padding-y: var(--tv-space-lg, 12px);
   // 弹框水平内边距
-  --tv-Tooltip-padding-x: var(--tv-space-xl);
+  --tv-Tooltip-padding-x: var(--tv-space-xl, 16px);
   // 文字提示错误图标色
-  --tv-Tooltip-validate-icon-color: var(--tv-color-error-icon);
+  --tv-Tooltip-validate-icon-color: var(--tv-color-error-icon, #f23030);
   // 文本内容容器最大高度
   --tv-Tooltip-content-max-height: 50vh;
 }

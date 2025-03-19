@@ -12,89 +12,89 @@
 
 .inject-Slider-vars() {
   // 字号大小
-  --tv-Slider-font-size: var(--tv-font-size-default);
+  --tv-Slider-font-size: var(--tv-font-size-default, 14px);
   // 滑块线条默认背景色
-  --tv-Slider-bg-color: var(--tv-color-bg);
+  --tv-Slider-bg-color: var(--tv-color-bg, #f5f5f5);
   // 滑块线条禁用背景色
-  --tv-Slider-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Slider-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 滑块线条高度
   --tv-Slider-height: 8px;
   // 滑块行高
   --tv-Slider-line-height: var(--tv-line-height-number, 1.5);
   // 滑块线条圆角
-  --tv-Slider-border-radius: var(--tv-border-radius-sm);
+  --tv-Slider-border-radius: var(--tv-border-radius-sm, 4px);
 
   // 滑块进度条已完成部分的高度
   --tv-Slider-range-height: 8px;
   // 横向滑块进度条圆角
-  --tv-Slider-range-border-radius: var(--tv-border-radius-sm);
+  --tv-Slider-range-border-radius: var(--tv-border-radius-sm, 4px);
   // 滑块进度条背景色
-  --tv-Slider-range-bg-color: var(--tv-color-bg-active-control);
+  --tv-Slider-range-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 滑块进度条悬浮背景色
-  --tv-Slider-range-hover-bg-color: var(--tv-color-bg-active-control);
+  --tv-Slider-range-hover-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 滑块提示框top
   --tv-Slider-range-top: -4px;
   // 滑块进度条禁用时背景色
-  --tv-Slider-range-disabled-bg-color: var(--tv-color-bg-disabled-control);
+  --tv-Slider-range-disabled-bg-color: var(--tv-color-bg-disabled-control, #c2c2c2);
 
   // 滑块点宽度
   --tv-Slider-handle-width: 24px;
   // 滑块点高度
   --tv-Slider-handle-height: 24px;
   // 滑块点背景色
-  --tv-Slider-handle-bg-color: var(--tv-color-bg-inverse);
+  --tv-Slider-handle-bg-color: var(--tv-color-bg-inverse, #ffffff);
   // 滑块点禁用色
-  --tv-Slider-handle-bg-color-disabled: var(--tv-color-bg-inverse-disabled);
+  --tv-Slider-handle-bg-color-disabled: var(--tv-color-bg-inverse-disabled, #ffffff);
   // 滑块点边框色
-  --tv-Slider-handle-border-color: var(--tv-color-border-1);
+  --tv-Slider-handle-border-color: var(--tv-color-border-1, #dbdbdb);
   // 滑块点圆角
-  --tv-Slider-handle-border-radius: var(--tv-border-radius-round);
+  --tv-Slider-handle-border-radius: var(--tv-border-radius-round, 999px);
 
   // 滑块点悬浮文本色
-  --tv-Slider-handle-text-color-hover: var(--tv-color-text-secondary);
+  --tv-Slider-handle-text-color-hover: var(--tv-color-text-secondary, #595959);
   // 滑块点悬浮边框色
-  --tv-Slider-handle-border-color-hover: var(--tv-color-border-active-control);
+  --tv-Slider-handle-border-color-hover: var(--tv-color-border-active-control, #1476ff);
   // 滑块点阴影
-  --tv-Slider-handle-box-shadow: var(--tv-shadow-1-down);
+  --tv-Slider-handle-box-shadow: var(--tv-shadow-1-down, 0 1px 4px 0 rgba(0, 0, 0, 0.08));
 
   // 滑块输入框高度
-  --tv-Slider-input-height: var(--tv-size-height-md);
+  --tv-Slider-input-height: var(--tv-size-height-md, 32px);
   // 滑块输入框宽度
   --tv-Slider-input-width: 80px;
   // 滑块输入框边框圆角
-  --tv-Slider-input-border-radius: var(--tv-border-radius-lg);
+  --tv-Slider-input-border-radius: var(--tv-border-radius-lg, 8px);
   // 滑块输入框边框色
-  --tv-Slider-input-border-color: var(--tv-color-border);
+  --tv-Slider-input-border-color: var(--tv-color-border, #c2c2c2);
   // 滑块输入框文本色
-  --tv-Slider-input-text-color: var(--tv-color-text);
+  --tv-Slider-input-text-color: var(--tv-color-text, #191919);
   // 滑块输入框背景色
-  --tv-Slider-input-bg-color: var(--tv-color-bg-secondary);
+  --tv-Slider-input-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 滑块输入框左边外间距
-  --tv-Slider-input-margin-left: var(--tv-space-xl);
+  --tv-Slider-input-margin-left: var(--tv-space-xl, 16px);
   // 滑块输入框单位左边padding
-  --tv-Slider-input-unit-margin-left: var(--tv-space-sm);
+  --tv-Slider-input-unit-margin-left: var(--tv-space-sm, 4px);
   // 滑块输入框单位文本色
-  --tv-Slider-input-unit-text-color: var(--tv-color-text);
+  --tv-Slider-input-unit-text-color: var(--tv-color-text, #191919);
   // 滑块输入框单位禁用文本色
-  --tv-Slider-input-unit-text-color-disabled: var(--tv-color-text-disabled);
+  --tv-Slider-input-unit-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
 
   // 滑块刻度背景色
-  --tv-Slider-mark-point-bg-color: var(--tv-color-bg-3);
+  --tv-Slider-mark-point-bg-color: var(--tv-color-bg-3, #ffffff);
   // 滑块刻度文本色
-  --tv-Slider-mark-label-text-color: var(--tv-color-text-weaken);
+  --tv-Slider-mark-label-text-color: var(--tv-color-text-weaken, #808080);
   // 滑块刻度字号
   --tv-Slider-mark-label-font-size: var(--tv-font-size-sm, 12px);
   // 滑块刻度文本顶部外间距
   --tv-Slider-mark-label-margin-top: var(--tv-space-lg, 12px);
 
   // 滑块活动时提示框背景色
-  --tv-Slider-tips-bg-color: var(--tv-color-bg-2);
+  --tv-Slider-tips-bg-color: var(--tv-color-bg-2, #ffffff);
   // 滑块活动时提示框边框圆角
-  --tv-Slider-tips-border-radius: var(--tv-border-radius-xs);
+  --tv-Slider-tips-border-radius: var(--tv-border-radius-xs, 2px);
   // 滑块活动时提示框边框色
   --tv-Slider-tips-border-color: var(--tv-Slider-tips-bg-color);
   // 滑块活动时提示框文本色
-  --tv-Slider-tips-text-color: var(--tv-color-text);
+  --tv-Slider-tips-text-color: var(--tv-color-text, #191919);
   // 滑块提示框阴影
-  --tv-Slider-tips-box-shadow: var(--tv-shadow-3-down);
+  --tv-Slider-tips-box-shadow: var(--tv-shadow-3-down, 0 4px 16px 0 rgba(0, 0, 0, 0.08));
 }

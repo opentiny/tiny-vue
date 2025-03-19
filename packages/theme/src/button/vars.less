@@ -13,24 +13,24 @@
   //-------------------------------------------------------全局场景：------------------------------------------
 
   // 默认时按钮字重
-  --tv-Button-font-weight: var(--tv-font-weight-regular);
+  --tv-Button-font-weight: var(--tv-font-weight-regular, 400);
   // 默认时按钮边框宽度
-  --tv-Button-border-width: var(--tv-border-width);
+  --tv-Button-border-width: var(--tv-border-width, 1px);
   // 按钮的文本行高
-  --tv-Button-line-height: var(--tv-line-height-number);
+  --tv-Button-line-height: var(--tv-line-height-number, 1.5);
   // --------------------------------------------------- 场景1、圆角--------------------------------------------
   // 默认时按钮圆角
-  --tv-Button-border-radius: var(--tv-border-radius-md); // 默认还原为6px
+  --tv-Button-border-radius: var(--tv-border-radius-md, 6px); // 默认还原为6px
   // 大圆角时按钮圆角
-  --tv-Button-border-radius-round: var(--tv-border-radius-round);
+  --tv-Button-border-radius-round: var(--tv-border-radius-round, 999px);
   // 圆形时按钮圆角
-  --tv-Button-border-radius-circle: var(--tv-border-radius-round); // 50%  会造成椭圆，此次common变量用 999px代替
+  --tv-Button-border-radius-circle: var(--tv-border-radius-round, 999px); // 50%  会造成椭圆，此次common变量用 999px代替
 
   //--------------------------------------------------- 场景2、尺寸  height, font-size,padding-x,min-width,仅图标时的 icon-size
   // 默认时按钮字号
-  --tv-Button-font-size: var(--tv-font-size-default);
+  --tv-Button-font-size: var(--tv-font-size-default, 14px);
   // 默认时按钮高度
-  --tv-Button-height: var(--tv-size-height-md);
+  --tv-Button-height: var(--tv-size-height-md, 32px);
   // 默认时按钮水平间距
   --tv-Button-padding-x: 24px; // space变量不存在，是否替换成 space-base * 6 这种？
   // 默认时按钮最小宽度
@@ -38,9 +38,9 @@
   // 默认时按钮内图标的大小
   --tv-Button-size-icon-font-size: 18px;
   // 超大按钮字号
-  --tv-Button-font-size-large: var(--tv-font-size-default);
+  --tv-Button-font-size-large: var(--tv-font-size-default, 14px);
   // 超大按钮高度
-  --tv-Button-height-large: var(--tv-size-height-xl);
+  --tv-Button-height-large: var(--tv-size-height-xl, 48px);
   // 超大按钮水平间距
   --tv-Button-padding-x-large: 48px;
   // 超大按钮最小宽度
@@ -48,9 +48,9 @@
   // 超大按钮内图标的大小
   --tv-Button-size-icon-font-size-large: 28px;
   // 中等按钮字号
-  --tv-Button-font-size-medium: var(--tv-font-size-default);
+  --tv-Button-font-size-medium: var(--tv-font-size-default, 14px);
   // 中等按钮高度
-  --tv-Button-height-medium: var(--tv-size-height-lg);
+  --tv-Button-height-medium: var(--tv-size-height-lg, 40px);
   // 中等按钮水平间距
   --tv-Button-padding-x-medium: 32px;
   // 中等按钮最小宽度
@@ -58,9 +58,9 @@
   // 中等按钮内图标的大小
   --tv-Button-size-icon-font-size-medium: 24px;
   // 小型按钮字号
-  --tv-Button-font-size-small: var(--tv-font-size-sm);
+  --tv-Button-font-size-small: var(--tv-font-size-sm, 12px);
   // 小型按钮高度
-  --tv-Button-height-small: var(--tv-size-height-sm);
+  --tv-Button-height-small: var(--tv-size-height-sm, 28px);
   // 小型按钮水平间距
   --tv-Button-padding-x-small: 16px;
   // 小型按钮最小宽度
@@ -68,9 +68,9 @@
   // 小型按钮内图标的大小
   --tv-Button-size-icon-font-size-small: 16px;
   // 超小按钮字号
-  --tv-Button-font-size-mini: var(--tv-font-size-sm);
+  --tv-Button-font-size-mini: var(--tv-font-size-sm, 12px);
   // 超小按钮高度
-  --tv-Button-height-mini: var(--tv-size-height-xs);
+  --tv-Button-height-mini: var(--tv-size-height-xs, 24px);
   // 超小按钮水平间距
   --tv-Button-padding-x-mini: 16px;
   // 超小按钮最小宽度
@@ -83,102 +83,102 @@
   // 1、ghost中只影响 bg       2、active 只影响（主题+plain)   3、 disabled 优先级高过 （主题+plain+激活)
 
   // 默认时按钮文本色
-  --tv-Button-text-color-default: var(--tv-color-text);
+  --tv-Button-text-color-default: var(--tv-color-text, #191919);
   // 默认时按钮背景色
-  --tv-Button-bg-color-default: var(--tv-color-bg-secondary);
+  --tv-Button-bg-color-default: var(--tv-color-bg-secondary, #ffffff);
   // 默认时按钮边框色
-  --tv-Button-border-color-default: var(--tv-color-border-secondary);
+  --tv-Button-border-color-default: var(--tv-color-border-secondary, #595959);
   // 默认时按钮图标色
-  --tv-Button-icon-color-default: var(--tv-color-icon-control);
+  --tv-Button-icon-color-default: var(--tv-color-icon-control, #191919);
 
   // primary 主题时按钮文本色
-  --tv-Button-text-color-primary: var(--tv-color-act-primary-text-inverse-tint);
+  --tv-Button-text-color-primary: var(--tv-color-act-primary-text-inverse-tint, #ffffff);
   // primary 主题时按钮背景色
-  --tv-Button-bg-color-primary: var(--tv-color-act-primary-bg);
+  --tv-Button-bg-color-primary: var(--tv-color-act-primary-bg, #191919);
   // primary 主题时按钮边框色
-  --tv-Button-border-color-primary: var(--tv-color-act-primary-border);
+  --tv-Button-border-color-primary: var(--tv-color-act-primary-border, #191919);
   // primary 主题时按钮图标色
-  --tv-Button-icon-color-primary: var(--tv-color-icon-inverse-tint);
+  --tv-Button-icon-color-primary: var(--tv-color-icon-inverse-tint, #ffffff);
 
   // success 主题时按钮文本色
-  --tv-Button-text-color-success: var(--tv-color-act-success-text-white);
+  --tv-Button-text-color-success: var(--tv-color-act-success-text-white, #ffffff);
   // success 主题时按钮背景色
-  --tv-Button-bg-color-success: var(--tv-color-act-success-bg);
+  --tv-Button-bg-color-success: var(--tv-color-act-success-bg, #5cb300);
   // success 主题时按钮边框色
-  --tv-Button-border-color-success: var(--tv-color-act-success-border);
+  --tv-Button-border-color-success: var(--tv-color-act-success-border, #5cb300);
   // success 主题时按钮图标色
-  --tv-Button-icon-color-success: var(--tv-color-icon-inverse);
+  --tv-Button-icon-color-success: var(--tv-color-icon-inverse, #ffffff);
 
   // warning 主题时按钮文本色
-  --tv-Button-text-color-warning: var(--tv-color-act-warning-text-white);
+  --tv-Button-text-color-warning: var(--tv-color-act-warning-text-white, #ffffff);
   // warning 主题时按钮背景色
-  --tv-Button-bg-color-warning: var(--tv-color-act-warning-bg);
+  --tv-Button-bg-color-warning: var(--tv-color-act-warning-bg, #ff8800);
   // warning 主题时按钮边框色
-  --tv-Button-border-color-warning: var(--tv-color-act-warning-border);
+  --tv-Button-border-color-warning: var(--tv-color-act-warning-border, #ff8800);
   // warning 主题时按钮图标色
-  --tv-Button-icon-color-warning: var(--tv-color-icon-inverse);
+  --tv-Button-icon-color-warning: var(--tv-color-icon-inverse, #ffffff);
 
   // danger 主题时按钮文本色
-  --tv-Button-text-color-danger: var(--tv-color-act-danger-text-white);
+  --tv-Button-text-color-danger: var(--tv-color-act-danger-text-white, #ffffff);
   // danger 主题时按钮背景色
-  --tv-Button-bg-color-danger: var(--tv-color-act-danger-bg);
+  --tv-Button-bg-color-danger: var(--tv-color-act-danger-bg, #f23030);
   // danger 主题时按钮边框色
-  --tv-Button-border-color-danger: var(--tv-color-act-danger-border);
+  --tv-Button-border-color-danger: var(--tv-color-act-danger-border, #f23030);
   // danger 主题时按钮图标色
-  --tv-Button-icon-color-danger: var(--tv-color-icon-inverse);
+  --tv-Button-icon-color-danger: var(--tv-color-icon-inverse, #ffffff);
 
   // info 主题时按钮文本色
-  --tv-Button-text-color-info: var(--tv-color-act-info-text-white);
+  --tv-Button-text-color-info: var(--tv-color-act-info-text-white, #ffffff);
   // info 主题时按钮背景色
-  --tv-Button-bg-color-info: var(--tv-color-act-info-bg);
+  --tv-Button-bg-color-info: var(--tv-color-act-info-bg, #1476ff);
   // info 主题时按钮边框色
-  --tv-Button-border-color-info: var(--tv-color-act-info-border);
+  --tv-Button-border-color-info: var(--tv-color-act-info-border, #1476ff);
   // info 主题时按钮图标色
-  --tv-Button-icon-color-info: var(--tv-color-icon-inverse);
+  --tv-Button-icon-color-info: var(--tv-color-icon-inverse, #ffffff);
 
   // ------------------------------------------------------------- level 1结束 -----------------------------------
 
   // 默认时按钮朴素文本色
-  --tv-Button-text-color-plain-default: var(--tv-color-text);
+  --tv-Button-text-color-plain-default: var(--tv-color-text, #191919);
   // 默认时按钮朴素背景色
-  --tv-Button-bg-color-plain-default: var(--tv-color-bg);
+  --tv-Button-bg-color-plain-default: var(--tv-color-bg, #f5f5f5);
   // 默认时按钮朴素边框色
-  --tv-Button-border-color-plain-default: var(--tv-color-border);
+  --tv-Button-border-color-plain-default: var(--tv-color-border, #c2c2c2);
 
   // primary 主题时按钮朴素文本色
-  --tv-Button-text-color-plain-primary: var(--tv-color-act-primary-text);
+  --tv-Button-text-color-plain-primary: var(--tv-color-act-primary-text, #191919);
   // primary 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-primary: var(--tv-color-act-primary-bg-white);
+  --tv-Button-bg-color-plain-primary: var(--tv-color-act-primary-bg-white, #ffffff);
   // primary 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-primary: var(--tv-color-act-primary-border-light);
+  --tv-Button-border-color-plain-primary: var(--tv-color-act-primary-border-light, #595959);
 
   // success 主题时按钮朴素文本色
-  --tv-Button-text-color-plain-success: var(--tv-color-act-success-text);
+  --tv-Button-text-color-plain-success: var(--tv-color-act-success-text, #5cb300);
   // success 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-light);
+  --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-light, #edf7df);
   // success 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-light);
+  --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-light, #daf2bb);
 
   // warning 主题时按钮朴素文本色
-  --tv-Button-text-color-plain-warning: var(--tv-color-act-warning-text);
+  --tv-Button-text-color-plain-warning: var(--tv-color-act-warning-text, #ff8800);
   // warning 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-warning: var(--tv-color-act-warning-bg-light);
+  --tv-Button-bg-color-plain-warning: var(--tv-color-act-warning-bg-light, #fff4e8);
   // warning 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-warning: var(--tv-color-act-warning-border-light);
+  --tv-Button-border-color-plain-warning: var(--tv-color-act-warning-border-light, #ffebd1);
 
   // danger 主题时按钮朴素文本色
-  --tv-Button-text-color-plain-danger: var(--tv-color-act-danger-text);
+  --tv-Button-text-color-plain-danger: var(--tv-color-act-danger-text, #f23030);
   // danger 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-danger: var(--tv-color-act-danger-bg-light);
+  --tv-Button-bg-color-plain-danger: var(--tv-color-act-danger-bg-light, #fff1f0);
   // danger 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-light);
+  --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-light, #fce2e0);
 
   // info 主题时按钮朴素文本色
-  --tv-Button-text-color-plain-info: var(--tv-color-act-info-text);
+  --tv-Button-text-color-plain-info: var(--tv-color-act-info-text, #1476ff);
   // info 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-info: var(--tv-color-act-info-bg-light);
+  --tv-Button-bg-color-plain-info: var(--tv-color-act-info-bg-light, #f0f7ff);
   // info 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-light);
+  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-light, #deecff);
 
   // 幽灵态和plain是平级的关系. 如果同时存在，优先级不能保证稳定。
 
@@ -186,137 +186,137 @@
   --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
 
   // 默认时按钮幽灵文本色
-  --tv-Button-text-color-ghost-default: var(--tv-color-text-secondary);
+  --tv-Button-text-color-ghost-default: var(--tv-color-text-secondary, #595959);
   // 默认时按钮幽灵边框色
-  --tv-Button-border-color-ghost-default: var(--tv-color-border-ghost);
+  --tv-Button-border-color-ghost-default: var(--tv-color-border-ghost, #808080);
 
   // primary 主题时按钮幽灵文本色
-  --tv-Button-text-color-ghost-primary: var(--tv-color-act-primary-text);
+  --tv-Button-text-color-ghost-primary: var(--tv-color-act-primary-text, #191919);
   // primary 主题时按钮幽灵边框色
-  --tv-Button-border-color-ghost-primary: var(--tv-color-act-primary-border-light);
+  --tv-Button-border-color-ghost-primary: var(--tv-color-act-primary-border-light, #595959);
 
   // success 主题时按钮幽灵文本色
-  --tv-Button-text-color-ghost-success: var(--tv-color-act-success-text);
+  --tv-Button-text-color-ghost-success: var(--tv-color-act-success-text, #5cb300);
   // success 主题时按钮幽灵边框色
-  --tv-Button-border-color-ghost-success: var(--tv-color-act-success-border);
+  --tv-Button-border-color-ghost-success: var(--tv-color-act-success-border, #5cb300);
 
   // warning 主题时按钮幽灵文本色
-  --tv-Button-text-color-ghost-warning: var(--tv-color-act-warning-text);
+  --tv-Button-text-color-ghost-warning: var(--tv-color-act-warning-text, #ff8800);
   // warning 主题时按钮幽灵边框色
-  --tv-Button-border-color-ghost-warning: var(--tv-color-act-warning-border);
+  --tv-Button-border-color-ghost-warning: var(--tv-color-act-warning-border, #ff8800);
 
   // danger 主题时按钮幽灵文本色
-  --tv-Button-text-color-ghost-danger: var(--tv-color-act-danger-text);
+  --tv-Button-text-color-ghost-danger: var(--tv-color-act-danger-text, #f23030);
   // danger 主题时按钮幽灵边框色
-  --tv-Button-border-color-ghost-danger: var(--tv-color-act-danger-border);
+  --tv-Button-border-color-ghost-danger: var(--tv-color-act-danger-border, #f23030);
 
   // info 主题时按钮幽灵文本色
-  --tv-Button-text-color-ghost-info: var(--tv-color-act-info-text);
+  --tv-Button-text-color-ghost-info: var(--tv-color-act-info-text, #1476ff);
   // info 主题时按钮幽灵边框色
-  --tv-Button-border-color-ghost-info: var(--tv-color-act-info-border);
+  --tv-Button-border-color-ghost-info: var(--tv-color-act-info-border, #1476ff);
 
   //------------------------------------------------------------------------------ // level 2结束 ----------------
 
   // 默认时按钮激活的背景色
-  --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary); // 现规范，激活态时，只影响边框和背景
+  --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary, #ffffff); // 现规范，激活态时，只影响边框和背景
   // 默认时按钮激活的边框色
-  --tv-Button-border-color-active-default: var(--tv-color-border-secondary-hover);
+  --tv-Button-border-color-active-default: var(--tv-color-border-secondary-hover, #c2c2c2);
   // 默认时按钮激活的文本
-  --tv-Button-text-color-active-default: var(--tv-color-text);
+  --tv-Button-text-color-active-default: var(--tv-color-text, #191919);
   // 默认时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-default: var(--tv-color-bg);
+  --tv-Button-bg-color-plain-active-default: var(--tv-color-bg, #f5f5f5);
   // 默认时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-default: var(--tv-color-bg); // 朴素激活都无边框，所以等于背景色。
+  --tv-Button-border-color-plain-active-default: var(--tv-color-bg, #f5f5f5); // 朴素激活都无边框，所以等于背景色。
   // 默认时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-default: var(--tv-color-plain-text-hover);
+  --tv-Button-text-color-plain-active-default: var(--tv-color-plain-text-hover, #191919);
   // 默认时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-default: var(--tv-color-border-ghost-active);
+  --tv-Button-border-color-ghost-active-default: var(--tv-color-border-ghost-active, #dbdbdb);
 
   // primary 主题时按钮激活的背景色
-  --tv-Button-bg-color-active-primary: var(--tv-color-act-primary-bg-hover);
+  --tv-Button-bg-color-active-primary: var(--tv-color-act-primary-bg-hover, #595959);
   // primary 主题时按钮激活的边框色
-  --tv-Button-border-color-active-primary: var(--tv-color-act-primary-border-hover);
+  --tv-Button-border-color-active-primary: var(--tv-color-act-primary-border-hover, #595959);
   // primary 主题时按钮激活的文本色
-  --tv-Button-text-color-active-primary: var(--tv-color-act-primary-text-inverse-tint-active);
+  --tv-Button-text-color-active-primary: var(--tv-color-act-primary-text-inverse-tint-active, #ffffff);
   // primary 主题时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-primary: var(--tv-color-act-primary-bg-white-hover);
+  --tv-Button-bg-color-plain-active-primary: var(--tv-color-act-primary-bg-white-hover, #ffffff);
   // primary 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-primary: var(--tv-color-act-primary-bg-white-hover); // 无边框
+  --tv-Button-border-color-plain-active-primary: var(--tv-color-act-primary-bg-white-hover, #ffffff); // 无边框
   // primary 主题时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-primary: var(--tv-color-act-primary-plain-text-hover);
+  --tv-Button-text-color-plain-active-primary: var(--tv-color-act-primary-plain-text-hover, #191919);
   // primary 主题时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-primary: var(--tv-color-act-primary-plain-text-hover);
+  --tv-Button-border-color-ghost-active-primary: var(--tv-color-act-primary-plain-text-hover, #191919);
 
   // success 主题时按钮激活的背景色
-  --tv-Button-bg-color-active-success: var(--tv-color-act-success-bg-hover);
+  --tv-Button-bg-color-active-success: var(--tv-color-act-success-bg-hover, #7dcc29);
   // success 主题时按钮激活的边框色
-  --tv-Button-border-color-active-success: var(--tv-color-act-success-border-hover);
+  --tv-Button-border-color-active-success: var(--tv-color-act-success-border-hover, #7dcc29);
   // success 主题时按钮激活的文本色
-  --tv-Button-text-color-active-success: var(--tv-color-act-success-text-white-active);
+  --tv-Button-text-color-active-success: var(--tv-color-act-success-text-white-active, #ffffff);
   // success 主题时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-success: var(--tv-color-act-success-bg-light-hover);
+  --tv-Button-bg-color-plain-active-success: var(--tv-color-act-success-bg-light-hover, #edf7df);
   // success 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-success: var(--tv-color-act-success-bg-light-hover); // 无边框
+  --tv-Button-border-color-plain-active-success: var(--tv-color-act-success-bg-light-hover, #edf7df); // 无边框
   // success 主题时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-success: var(--tv-color-act-success-plain-text-hover);
+  --tv-Button-text-color-plain-active-success: var(--tv-color-act-success-plain-text-hover, #5cb300);
   // success 主题时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-success: var(--tv-color-act-success-border-hover-1);
+  --tv-Button-border-color-ghost-active-success: var(--tv-color-act-success-border-hover-1, #daf2bb);
 
   // warning 主题时按钮激活的背景色
-  --tv-Button-bg-color-active-warning: var(--tv-color-act-warning-bg-active);
+  --tv-Button-bg-color-active-warning: var(--tv-color-act-warning-bg-active, #ff9a2e);
   // warning 主题时按钮激活的边框色
-  --tv-Button-border-color-active-warning: var(--tv-color-act-warning-border-hover);
+  --tv-Button-border-color-active-warning: var(--tv-color-act-warning-border-hover, #ff9a2e);
   // warning 主题时按钮激活的文本色
-  --tv-Button-text-color-active-warning: var(--tv-color-act-warning-text-white-active);
+  --tv-Button-text-color-active-warning: var(--tv-color-act-warning-text-white-active, #ffffff);
   // warning 主题时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-warning: var(--tv-color-act-warning-bg-light-hover);
+  --tv-Button-bg-color-plain-active-warning: var(--tv-color-act-warning-bg-light-hover, #fff4e8);
   // warning 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-warning: var(--tv-color-act-warning-bg-light-hover); // 无边框
+  --tv-Button-border-color-plain-active-warning: var(--tv-color-act-warning-bg-light-hover, #fff4e8); // 无边框
   // warning 主题时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-warning: var(--tv-color-act-warning-plain-text-hover);
+  --tv-Button-text-color-plain-active-warning: var(--tv-color-act-warning-plain-text-hover, #ff8800);
   // warning 主题时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-warning: var(--tv-color-act-warning-border-active-1);
+  --tv-Button-border-color-ghost-active-warning: var(--tv-color-act-warning-border-active-1, #ffebd1);
 
   // danger 主题时按钮激活的背景色
-  --tv-Button-bg-color-active-danger: var(--tv-color-act-danger-bg-hover);
+  --tv-Button-bg-color-active-danger: var(--tv-color-act-danger-bg-hover, #f76360);
   // danger 主题时按钮激活的边框色
-  --tv-Button-border-color-active-danger: var(--tv-color-act-danger-border-hover);
+  --tv-Button-border-color-active-danger: var(--tv-color-act-danger-border-hover, #f76360);
   // danger 主题时按钮激活的文本色
-  --tv-Button-text-color-active-danger: var(--tv-color-act-danger-text-white-active);
+  --tv-Button-text-color-active-danger: var(--tv-color-act-danger-text-white-active, #ffffff);
   // danger 主题时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-danger: var(--tv-color-act-danger-bg-light-hover);
+  --tv-Button-bg-color-plain-active-danger: var(--tv-color-act-danger-bg-light-hover, #fff1f0);
   // danger 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-danger: var(--tv-color-act-danger-bg-light-hover);
+  --tv-Button-border-color-plain-active-danger: var(--tv-color-act-danger-bg-light-hover, #fff1f0);
   // danger 主题时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-danger: var(--tv-color-act-danger-plain-text-hover);
+  --tv-Button-text-color-plain-active-danger: var(--tv-color-act-danger-plain-text-hover, #f23030);
   // danger 主题时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-danger: var(--tv-color-act-danger-border-hover-1);
+  --tv-Button-border-color-ghost-active-danger: var(--tv-color-act-danger-border-hover-1, #fce2e0);
 
   // info 主题时按钮激活的背景色
-  --tv-Button-bg-color-active-info: var(--tv-color-act-info-bg-active);
+  --tv-Button-bg-color-active-info: var(--tv-color-act-info-bg-active, #4191fa);
   // info 主题时按钮激活的边框色
-  --tv-Button-border-color-active-info: var(--tv-color-act-info-border-active);
+  --tv-Button-border-color-active-info: var(--tv-color-act-info-border-active, #4191fa);
   // info 主题时按钮激活的文本色
-  --tv-Button-text-color-active-info: var(--tv-color-act-info-text-white-active);
+  --tv-Button-text-color-active-info: var(--tv-color-act-info-text-white-active, #ffffff);
   // info 主题时按钮激活的朴素背景色
-  --tv-Button-bg-color-plain-active-info: var(--tv-color-act-info-bg-light-hover);
+  --tv-Button-bg-color-plain-active-info: var(--tv-color-act-info-bg-light-hover, #f0f7ff);
   // info 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-active);
+  --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-active, #f0f7ff);
   // info 主题时按钮激活的朴素文本色
-  --tv-Button-text-color-plain-active-info: var(--tv-color-act-info-plain-text-hover);
+  --tv-Button-text-color-plain-active-info: var(--tv-color-act-info-plain-text-hover, #1476ff);
   // info 主题时按钮激活的幽灵边框色
-  --tv-Button-border-color-ghost-active-info: var(--tv-color-act-info-border-active-1); // level3 结束------
+  --tv-Button-border-color-ghost-active-info: var(--tv-color-act-info-border-active-1, #deecff); // level3 结束------
 
   // 禁用时按钮文本色
-  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前规则下，disabled优先级最高，所以变量少
+  --tv-Button-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2); //  目前规则下，disabled优先级最高，所以变量少
   // 禁用时按钮背景色
-  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 禁用时按钮边框色
-  --tv-Button-border-color-disabled: var(--tv-color-bg-disabled); // 设计边框是f0f0f0，没这个值，用背景色代替。
+  --tv-Button-border-color-disabled: var(--tv-color-bg-disabled, #f0f0f0); // 设计边框是f0f0f0，没这个值，用背景色代替。
   // 禁用时, 幽灵按钮的边框色
-  --tv-Button-border-color-ghost-disabled: var(--tv-color-border-disabled);
+  --tv-Button-border-color-ghost-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 禁用时按钮图标色
-  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束---------------------------
+  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2); // level4 结束---------------------------
 
   //------------------------------------------------------ 场景4、图标 + text----------------------------------------------
   // 仅图标：
@@ -330,45 +330,45 @@
   // <img>+ 文字
 
   // 仅图标且default主题时， 外边框的颜色
-  --tv-Button-border-color-only-icon-default: var(--tv-color-border);
+  --tv-Button-border-color-only-icon-default: var(--tv-color-border, #c2c2c2);
   // 仅图标且default主题时， 外边框的悬浮色
-  --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-hover);
+  --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-hover, #191919);
   // 仅图标且有边框时，边框的圆角大
-  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md);
+  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md, 6px);
 
   // 仅图标且无边框时，背景阴影的圆角
-  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm);
+  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm, 4px);
   // 仅图标-无边框的背景色
   --tv-Button-bg-color-only-icon-ontext: transparent;
   // 仅图标-无边框的悬浮时的背景色
-  --tv-Button-bg-color-only-icon-ontext-hover: var(--tv-color-bg);
+  --tv-Button-bg-color-only-icon-ontext-hover: var(--tv-color-bg, #f5f5f5);
 
   // 有图标-图标颜色
-  --tv-Button-icon-color: var(--tv-color-icon);
+  --tv-Button-icon-color: var(--tv-color-icon, #808080);
 
   // 纯文字时，文字颜色
-  --tv-Button-text-color-ontext: var(--tv-color-text-link); // 蓝色文字
+  --tv-Button-text-color-ontext: var(--tv-color-text-link, #1476ff); // 蓝色文字
   // 纯文字时，文字的禁用色
-  --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled);
+  --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled, #c2c2c2);
   //  纯文字时，字体大小
-  --tv-Button-font-size-ontext: var(--tv-font-size-default);
+  --tv-Button-font-size-ontext: var(--tv-font-size-default, 14px);
 
   // 混排有边框和无边框时，图标右边距
-  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm);
+  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm, 4px);
 
   // 混排无边框时,文字的颜色
-  --tv-Button-text-color-isicon-ontext: var(--tv-color-text-control); // 黑色文字
+  --tv-Button-text-color-isicon-ontext: var(--tv-color-text-control, #191919); // 黑色文字
   // 混排无边框时,文字的禁用色
-  --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled);
+  --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled, #c2c2c2);
   //混排无边框时，字体大小
-  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-default);
+  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-default, 14px);
 
   //------------------------------------------------------ 场景5、 其它场景-----------------------------------------
   // 相邻按钮的默认的左外边距
-  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
+  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md, 8px);
   // 相邻大按钮的默认的左外边距
-  --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
+  --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl, 16px);
 
   // loading时，svg的右外边距
-  --tv-Button-margin-right-isloading-svg: var(--tv-space-sm); // loading时，svg的右外边距
+  --tv-Button-margin-right-isloading-svg: var(--tv-space-sm, 4px); // loading时，svg的右外边距
 }

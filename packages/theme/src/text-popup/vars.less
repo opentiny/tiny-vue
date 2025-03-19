@@ -12,21 +12,21 @@
 
 .inject-TextPopup-vars() {
   // 输入框圆角
-  --tv-TextPopup-border-radius: var(--tv-border-radius-md);
+  --tv-TextPopup-border-radius: var(--tv-border-radius-md, 6px);
   // 输入框高度
-  --tv-TextPopup-height: var(--tv-size-height-md);
+  --tv-TextPopup-height: var(--tv-size-height-md, 32px);
   // 输入框字号
-  --tv-TextPopup-font-size: var(--tv-font-size-default);
+  --tv-TextPopup-font-size: var(--tv-font-size-default, 14px);
   // 输入框边框色
-  --tv-TextPopup-border-color: var(--tv-color-border);
+  --tv-TextPopup-border-color: var(--tv-color-border, #c2c2c2);
   // 输入框边背景色
-  --tv-TextPopup-bg-color: var(--tv-color-bg-secondary);
+  --tv-TextPopup-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 输入框边文字颜色
-  --tv-TextPopup-text-color: var(--tv-color-text);
+  --tv-TextPopup-text-color: var(--tv-color-text, #191919);
   // 输入框聚焦展开时阴影
-  --tv-TextPopup-box-shadow: var(--tv-shadow-1);
+  --tv-TextPopup-box-shadow: var(--tv-shadow-1, 0 0 0 0 rgba(0, 0, 0, 0));
   // 输入框悬浮边框色
-  --tv-TextPopup-hover-border-color: var(--tv-color-border-hover);
+  --tv-TextPopup-hover-border-color: var(--tv-color-border-hover, #191919);
   //输入框聚焦边框色
-  --tv-TextPopup-focus-border-color: var(--tv-color-border-active);
+  --tv-TextPopup-focus-border-color: var(--tv-color-border-active, #191919);
 }
