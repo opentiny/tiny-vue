@@ -55,6 +55,7 @@ export default defineComponent({
 
     if (maxWidth) {
       styles.maxWidth = maxWidth
+      styles.display = 'inline-block'
     }
     const tagElement =
       value || (slots.default && slots.default()) ? (

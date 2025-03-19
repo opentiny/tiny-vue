@@ -18,7 +18,11 @@
 .@{tag-prefix-cls} {
   .inject-Tag-vars();
 
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   display: inline-flex;
+
   align-items: center;
   vertical-align: middle;
   height: fit-content; // 避免 flex时，高度拉伸

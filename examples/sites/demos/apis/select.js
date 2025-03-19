@@ -545,6 +545,20 @@ export default {
           mfDemo: 'tag-type'
         },
         {
+          name: 'max-tag-width',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '多选时，设置最大标签宽度',
+            'en-US': 'When multiple selections are made, set the maximum label width.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          meta: {
+            stable: '3.22.0'
+          }
+        },
+        {
           name: 'text-field',
           type: 'string',
           defaultValue: "'label'",
