@@ -147,10 +147,22 @@
                     row,
                     column,
                     $table: $table as TableInstance,
-                    $seq: row.$seq,
-                    seq: row.seq,
-                    rowIndex: row.rowIndex,
-                    $rowIndex: row.$rowIndex
+                    $seq: isOrdered
+                      ? seqCount.value
+                      : scrollYLoad
+                        ? rowIndex + startIndex + 1
+                        : hasVirtualRow && !virtualRow
+                          ? afterFullData.indexOf(row) + 1
+                          : rowIndex + 1,
+                    seq: isOrdered
+                      ? seqCount.value
+                      : scrollYLoad
+                        ? rowIndex + startIndex + 1
+                        : hasVirtualRow && !virtualRow
+                          ? afterFullData.indexOf(row) + 1
+                          : rowIndex + 1,
+                    rowIndex: ($table as TableInstance).getRowIndex(row),
+                    $rowIndex: tableData.indexOf(row)
                   }"
                 />
               </div>
@@ -540,6 +552,38 @@ export default defineComponent({
     find: {
       type: Function as PropType<FindFn>,
       default: <T,>(array: T[], predicate: (item: T) => boolean) => array.find(predicate)
+    },
+    isOrdered: {
+      type: Boolean,
+      default: false
+    },
+    seqCount: {
+      type: Object as PropType<{ value: number }>,
+      default: () => ({ value: 0 })
+    },
+    scrollYLoad: {
+      type: Boolean,
+      default: false
+    },
+    rowIndex: {
+      type: Number,
+      default: 0
+    },
+    startIndex: {
+      type: Number,
+      default: 0
+    },
+    hasVirtualRow: {
+      type: Boolean,
+      default: false
+    },
+    virtualRow: {
+      type: Object as PropType<TableRow | null>,
+      default: null
+    },
+    afterFullData: {
+      type: Array as PropType<TableRow[]>,
+      default: () => []
     }
   },
   setup(props, { slots }) {
