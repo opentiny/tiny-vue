@@ -260,7 +260,7 @@ type FindFn = <T>(array: T[], predicate: (item: T) => boolean) => T | undefined
 
 // 定义组件参数类型
 interface ComponentParams {
-  $table: any
+  $table: TableInstance
   $seq: number
   seq: number
   rowLevel: number
@@ -284,6 +284,8 @@ interface ValidationRule {
 interface ValidationStore {
   rule?: ValidationRule
   content?: string
+  row?: TableRow
+  column?: TableColumn
   [key: string]: any
 }
 
@@ -318,8 +320,7 @@ interface Editor {
 // 定义表格实例类型
 interface TableInstance {
   isShapeTable?: boolean
-  _rowGroupTargetColumn?: TableColumn
-  getColumnIndex?: (column: TableColumn) => number
+  scrollLoad?: boolean
   _isResize?: boolean
   lastScrollTime?: number
   optimizeOpts?: {
@@ -345,6 +346,9 @@ interface TableInstance {
   tableListeners?: {
     [key: string]: any
   }
+  getRowIndex?: (row: TableRow) => number
+  getColumnIndex?: (column: TableColumn) => number
+  _rowGroupTargetColumn?: TableColumn
   [key: string]: any
 }
 
