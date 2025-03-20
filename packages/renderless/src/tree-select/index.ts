@@ -130,7 +130,7 @@ export const getCheckedData =
     }
   }
 
-export const mounted =
+export const updateSelectedData =
   ({ api, state, props, vm }) =>
   () => {
     if (!state.value || state.value.length === 0) return
@@ -156,6 +156,8 @@ export const mounted =
       )
 
       state.defaultCheckedKeys = api.getCheckedData()[0]
+
+      vm.$refs.treeRef.setCheckedKeys(state.defaultCheckedKeys)
     } else {
       const data = api.getPluginOption(state.value)[0]
       vm.$refs.baseSelectRef.updateSelectedData({
@@ -168,5 +170,11 @@ export const mounted =
       })
 
       state.currentKey = data[props.valueField]
+      vm.$refs.treeRef.setCurrentKey(state.currentKey)
     }
   }
+
+export const mounted =
+  ({ api }) =>
+  () =>
+    api.updateSelectedData()

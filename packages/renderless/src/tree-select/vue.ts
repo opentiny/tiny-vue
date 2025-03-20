@@ -1,4 +1,13 @@
-import { check, filter, getCheckedData, getPluginOption, getTreeData, mounted, nodeClick } from './index'
+import {
+  check,
+  filter,
+  getCheckedData,
+  getPluginOption,
+  getTreeData,
+  mounted,
+  nodeClick,
+  updateSelectedData
+} from './index'
 
 export const api = ['state', 'check', 'filter', 'nodeClick']
 
@@ -21,7 +30,8 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
     getCheckedData: getCheckedData({ props, state }),
     getPluginOption: getPluginOption({ api, props, state }),
     getTreeData: getTreeData({ props, state }),
-    mounted: mounted({ api, state, props, vm }),
+    mounted: mounted({ api }),
+    updateSelectedData: updateSelectedData({ api, state, props, vm }),
     nodeClick: nodeClick({ props, vm, emit })
   })
 
@@ -30,6 +40,8 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
     (data) => data && (state.treeData = data),
     { immediate: true, deep: true }
   )
+
+  watch(() => props.modelValue, api.updateSelectedData)
 
   onMounted(api.mounted)
 
