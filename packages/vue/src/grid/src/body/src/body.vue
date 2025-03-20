@@ -147,20 +147,8 @@
                     row,
                     column,
                     $table: $table as TableInstance,
-                    $seq: isOrdered
-                      ? seqCount.value
-                      : scrollYLoad
-                        ? rowIndex + startIndex + 1
-                        : hasVirtualRow && !virtualRow
-                          ? afterFullData.indexOf(row) + 1
-                          : rowIndex + 1,
-                    seq: isOrdered
-                      ? seqCount.value
-                      : scrollYLoad
-                        ? rowIndex + startIndex + 1
-                        : hasVirtualRow && !virtualRow
-                          ? afterFullData.indexOf(row) + 1
-                          : rowIndex + 1,
+                    $seq: ($table as TableInstance).getRowIndex(row) + 1,
+                    seq: ($table as TableInstance).getRowIndex(row) + 1,
                     rowIndex: ($table as TableInstance).getRowIndex(row),
                     $rowIndex: tableData.indexOf(row)
                   }"
