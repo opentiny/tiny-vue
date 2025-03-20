@@ -4,12 +4,12 @@ labels:
   - label: "enhancement"
     sync: true
     matcher:
-      title: "^feat.*: ?.*"
+      title: "^[feat|✨].*: ?.*"
       commit: "^feat.*: ?.*"
   - label: "bug"
     sync: true
     matcher:
-      title: "^fix.*: ?.*"
+      title: "^[fix|🐛].*: ?.*"
       commit: "^fix.*: ?.*"
   - label: "documentation"
     sync: true
