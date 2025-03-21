@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('各型号尺寸是否正常', async ({ page }) => {
+test('测试最大宽度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('tag#max-width')
 
