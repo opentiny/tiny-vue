@@ -415,7 +415,7 @@ interface MaxDateValues {
  * @param afterFormat - 转换后的格式（仅当date为字符串且有3个参数时有效）
  * @returns 格式化后的日期字符串
  */
-export const format = function (date: Date | string, dateFormat = 'yyyy/MM/dd hh:mm:ss', afterFormat?: string): string {
+export const format = function (date: Date | string, dateFormat = 'yyyy/MM/dd hh:mm:ss'): any {
   if (isDate(date)) {
     if (typeof dateFormat === 'string') {
       const o: Record<string, number | string> = {
@@ -434,28 +434,24 @@ export const format = function (date: Date | string, dateFormat = 'yyyy/MM/dd hh
         const m = dateFormat.match(dateFormatRegs[k])
 
         if (k && m && m.length) {
-          const replacement = k === 'Z{1,1}' ? (o[k] as string) : fillChar(o[k].toString(), m[0].length, false, '0')
-          dateFormat = dateFormat.replace(m[0], replacement)
+          dateFormat = dateFormat.replace(m[0], k === 'Z{1,1}' ? o[k] : fillChar(o[k].toString(), m[0].length))
         }
       })
 
       return dateFormat
     }
   } else if (typeof date === 'string' && arguments.length >= 2) {
-    let actualDateFormat = dateFormat
-    let actualAfterFormat = dateFormat
+    let afterFormat = dateFormat
 
     if (arguments.length === 2) {
-      actualDateFormat = ''
+      dateFormat = undefined
     } else {
-      actualAfterFormat = arguments[2] as string
+      afterFormat = arguments[2]
     }
 
-    const dateValue = toDate(date, actualDateFormat)
-    return dateValue ? format(dateValue, actualAfterFormat) : ''
+    const dateValue = toDate(date, dateFormat)
+    return dateValue ? format(dateValue, afterFormat) : ''
   }
-
-  return ''
 }
 
 /**
