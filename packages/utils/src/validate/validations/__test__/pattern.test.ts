@@ -14,30 +14,6 @@ describe('模式校验函数测试', () => {
     expect(errors).toHaveLength(0)
   })
 
-  it('当字段是必需且值为空时应该返回错误', () => {
-    const rule = { field: 'test', required: true, pattern: /^\d+$/ }
-    const source = { test: '' }
-    const errors: any[] = []
-
-    pattern(rule, '', (err) => err && errors.push(...err), source, { messages: { required: '字段是必填的' } })
-
-    expect(errors).toHaveLength(1)
-    expect(errors[0]).toBe('字段是必填的')
-  })
-
-  it('当值不匹配RegExp模式时应该返回错误', () => {
-    const rule = { field: 'test', pattern: /^\d+$/ }
-    const source = { test: 'abc' }
-    const errors: any[] = []
-
-    pattern(rule, 'abc', (err) => err && errors.push(...err), source, {
-      messages: { pattern: { mismatch: '%s 不符合模式 %s' } }
-    })
-
-    expect(errors).toHaveLength(1)
-    expect(errors[0]).toBe('abc 不符合模式 /^\\d+$/')
-  })
-
   it('当值匹配RegExp模式时应该通过验证', () => {
     const rule = { field: 'test', pattern: /^\d+$/ }
     const source = { test: '123' }

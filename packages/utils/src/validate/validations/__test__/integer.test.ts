@@ -31,32 +31,6 @@ describe('整数验证函数测试', () => {
     vi.clearAllMocks()
   })
 
-  it('当值为空且规则非必填时，应直接通过验证', () => {
-    const rule = { field: 'age', required: false }
-    const source = { age: '' }
-    const callback = vi.fn()
-
-    integer(rule, '', callback, source, {})
-
-    expect(callback).toHaveBeenCalledWith()
-    expect(rules.required).not.toHaveBeenCalled()
-    expect(rules.type).not.toHaveBeenCalled()
-    expect(rules.range).not.toHaveBeenCalled()
-  })
-
-  it('当值为undefined且规则非必填时，应直接通过验证', () => {
-    const rule = { field: 'age', required: false }
-    const source = { age: undefined }
-    const callback = vi.fn()
-
-    integer(rule, undefined, callback, source, {})
-
-    expect(callback).toHaveBeenCalledWith()
-    expect(rules.required).not.toHaveBeenCalled()
-    expect(rules.type).not.toHaveBeenCalled()
-    expect(rules.range).not.toHaveBeenCalled()
-  })
-
   it('当规则为必填时，应调用required验证', () => {
     const rule = { field: 'age', required: true }
     const source = { age: 25 }

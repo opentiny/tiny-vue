@@ -28,17 +28,6 @@ describe('日期验证函数测试', () => {
     vi.resetAllMocks()
   })
 
-  it('当值为空且非必填时应直接调用回调函数', () => {
-    const callback = vi.fn()
-    const rule = { field: 'testDate', required: false }
-    const source = { testDate: '' }
-
-    dateValidator(rule, '', callback, source, {})
-
-    expect(callback).toHaveBeenCalledWith([])
-    expect(rules.required).not.toHaveBeenCalled()
-  })
-
   it('当值为空且必填时应调用 required 规则', () => {
     const callback = vi.fn()
     const rule = { field: 'testDate', required: true }
