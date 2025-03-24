@@ -381,7 +381,10 @@ export const properFileSize =
     if (state.isEdm || (Array.isArray(props.fileSize) && props.fileSize[1])) {
       if (!isNaN(Number(maxSize)) && file.size > maxSize * 1024 * 1024) {
         Modal.message({
-          message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024)) }),
+          message: t(constants.EDM.EXCEED, {
+            fileName: file.name,
+            maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024))
+          }),
           status: 'warning'
         })
 
@@ -402,7 +405,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), 'KB'), sizeUnit: '' })}`,
+        message: `${t(constants.EDM.SIZE, { fileName: file.name, minSize: api.formatFileSize(Number(userMin), 'KB'), sizeUnit: '' })}`,
         status: 'warning'
       })
 
