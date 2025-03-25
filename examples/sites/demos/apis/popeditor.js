@@ -164,7 +164,7 @@ export default {
         },
         {
           name: 'popseletor',
-          type: 'string',
+          type: `'grid' | 'tree'`,
           defaultValue: `'grid'`,
           desc: {
             'zh-CN': '设置弹出面板中可显示的树或者表格组件',
