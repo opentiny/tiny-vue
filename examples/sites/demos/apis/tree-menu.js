@@ -343,6 +343,29 @@ export default {
           pcDemo: 'show-expand'
         },
         {
+          name: 'expand-menu-popable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '启用一键展开/收起功能下。是否支持悬浮展示子菜单',
+            'en-US':
+              'when the one click expand/collapse function enabled. whether to support hovering to display submenus'
+          },
+          mode: ['pc'],
+          pcDemo: 'pop-sub-menu'
+        },
+        {
+          name: 'popper-class',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '悬浮展示子菜单时，弹窗的类名',
+            'en-US': 'when hovering to display submenus, the class name of the pop-up window'
+          },
+          mode: ['pc'],
+          pcDemo: 'pop-sub-menu'
+        },
+        {
           name: 'show-filter',
           type: 'boolean',
           defaultValue: 'true',

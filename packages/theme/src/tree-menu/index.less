@@ -17,6 +17,8 @@
 @tree-node-prefix-cls: ~'@{css-prefix}tree-node';
 @input-prefix-cls: ~'@{css-prefix}input';
 @tree-menu-prefix-cls: ~'@{css-prefix}tree-menu';
+@tree-pop-menu-prefix-cls: ~'@{css-prefix}tree-menu-pop-menu';
+@tree-pop-menu-panel-prefix-cls: ~'@{css-prefix}tree-menu-pop-menu-panel';
 
 .@{tree-menu-prefix-cls} {
   .inject-TreeMenu-vars();
@@ -212,6 +214,7 @@
         .tree-node-name {
           align-items: center;
           padding: 0 var(--tv-TreeMenu-node-body-text-padding-x);
+          display: flex;
 
           &:hover {
             font-weight: var(--tv-TreeMenu-node-name-hover-font-weight);
@@ -220,6 +223,7 @@
 
           svg {
             margin-right: var(--tv-TreeMenu-prefix-icon-margin-right);
+            flex-shrink: 0;
           }
         }
       }
@@ -336,5 +340,74 @@
         word-break: break-all;
       }
     }
+  }
+
+  .@{tree-pop-menu-prefix-cls} {
+    line-height: initial;
+  }
+}
+
+.@{tree-pop-menu-panel-prefix-cls} {
+  .inject-TreeMenu-vars();
+  padding: var(--tv-TreeMenu-pop-padding) !important;
+  border-radius: var(--tv-TreeMenu-pop-radius) !important;
+  box-shadow: var(--tv-TreeMenu-pop-shadow) !important;
+  width: var(--tv-TreeMenu-pop-width);
+  transform: translateX(var(--tv-TreeMenu-pop-panel-margin-left));
+
+  .tree-menu-pop-menu__list {
+    width: 100%;
+
+    .tiny-tree-menu-pop-menu {
+      width: 100%;
+    }
+
+    .reference-wrapper {
+      display: block;
+    }
+  
+    &-item {
+      width: 100%;
+      height: var(--tv-TreeMenu-pop-item-height);
+      display: flex;
+      align-items: center;
+
+      .tree-node-name {
+        svg {
+          margin-right: var(--tv-TreeMenu-prefix-icon-margin-right);
+        }
+      }
+
+      &.hover,
+      &:hover,
+      &:active {
+        background-color: var(--tv-TreeMenu-pop-item-active-bg);
+        color: var(--tv-TreeMenu-pop-item-active-text-color);
+      }
+
+      &.has-current {
+        background-color: var(--tv-TreeMenu-pop-item-active-bg);
+        color: var(--tv-TreeMenu-pop-item-active-text-color);
+      }
+
+      &.is-current {
+        background-color: var(--tv-TreeMenu-pop-item-selected-bg);
+        color: var(--tv-TreeMenu-pop-item-selected-text-color);
+      }
+
+      .tree-node {
+        padding-left: var(--tv-TreeMenu-pop-item-padding-left);
+        display: flex;
+        align-items: center;
+
+        &-body {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  &__first {
+    transform: translateX(var(--tv-TreeMenu-pop-panel-first-margin-left));
   }
 }
