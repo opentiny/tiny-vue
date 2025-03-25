@@ -40,7 +40,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
+          '通过 <code>large</code>，<code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
         'en-US':
           'Set the component size through<code>media</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
       },
@@ -189,11 +189,11 @@ export default {
       support: {
         value: true
       },
-      description: '通过 medium、small、mini 设置组件尺寸，disabled 设置是否禁用。',
+      description: '通过 large、medium、small、mini 设置组件尺寸，disabled 设置是否禁用。',
       cloud: {
         value: false
       },
-      apis: ['medium', 'small', 'mini', 'disabled'],
+      apis: ['large', 'medium', 'small', 'mini', 'disabled'],
       demos: ['size']
     },
     {
