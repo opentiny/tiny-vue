@@ -3,7 +3,7 @@
     <p>基本按钮</p>
     <tiny-row>
       <config-provider :design="design">
-        <tiny-button type="primary"> 主要按钮 </tiny-button>
+        <tiny-button type="primary" tiny_experimetal_props_hoc> 主要按钮 </tiny-button>
         <tiny-button> 次要按钮 </tiny-button>
         <tiny-button type="success"> 成功按钮 </tiny-button>
         <tiny-button type="info"> 信息按钮 </tiny-button>
@@ -64,7 +64,6 @@ export default {
         components: {
           Button: {
             props: {
-              resetTime: 0,
               size: 'mini'
             }
           }

@@ -32,6 +32,7 @@ export default defineConfig((config) => {
     },
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
+      // hocPlugin({}),
       vue3Plugin({
         include: [/\.vue$/, /\.md$/]
       }),

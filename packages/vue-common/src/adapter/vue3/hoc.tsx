@@ -1,13 +1,13 @@
 import { type SetupContext } from 'vue'
-import { design, hooks, $prefix } from '../../index'
+import { design, hooks, $prefix, $setup } from '../../index'
 import { getComponentName } from '../index'
 
 // 修改组件 props ，注入 Design Config
 export default function DesignConfigPropsHOC(BaseComponent: any) {
   return {
     ...BaseComponent,
-    props: {},
-    setup(props, { attrs, slots, expose }: SetupContext) {
+    setup(props, context) {
+      const { attrs, slots, expose }: SetupContext = context
       const innerRef = hooks.ref()
       // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
       let globalDesignConfig = hooks.inject(design.configKey, {})
@@ -31,13 +31,25 @@ export default function DesignConfigPropsHOC(BaseComponent: any) {
         )
       )
 
-      return () => {
-        return (
-          <BaseComponent {...mergedProps} ref={innerRef}>
-            {slots}
-          </BaseComponent>
-        )
-      }
+      return $setup({
+        props,
+        context,
+        template: () => {
+          return (
+            <BaseComponent {...mergedProps} ref={innerRef}>
+              {slots}
+            </BaseComponent>
+          )
+        }
+      })
+
+      // return () => {
+      //   return (
+      //     <BaseComponent {...mergedProps} ref={innerRef}>
+      //       {slots}
+      //     </BaseComponent>
+      //   )
+      // }
     }
   }
 }

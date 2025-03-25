@@ -1,0 +1,133 @@
+// Vitest Snapshot v1
+
+exports[`index > transformVirtualTemplate > pc|mobile=pc|mobile-first 1`] = `
+"
+const template = (mode) => {
+  let result
+
+  // #v-ifndef VITE_TINY_MODE
+  result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
+  // #v-endif
+
+    
+  // #v-ifdef VITE_TINY_MODE=pc
+  result = import.meta.glob('./pc.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile
+  result = import.meta.glob('./pc.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile-first
+  result = import.meta.glob('./mobile-first.vue', { eager: true })
+  // #v-endif
+        
+
+  const finalMode = {\\"pc\\":\\"pc\\",\\"mobile\\":\\"pc\\",\\"mobile-first\\":\\"mobile-first\\"}[mode?.value || mode]
+
+  return result[\`./\${finalMode}.vue\`].default
+}
+  "
+`;
+
+exports[`index > transformVirtualTemplate > pc|mobile|mobile-first 1`] = `
+"
+const template = (mode) => {
+  let result
+
+  // #v-ifndef VITE_TINY_MODE
+  result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
+  // #v-endif
+
+    
+  // #v-ifdef VITE_TINY_MODE=pc
+  result = import.meta.glob('./pc.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile
+  result = import.meta.glob('./mobile.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile-first
+  result = import.meta.glob('./mobile-first.vue', { eager: true })
+  // #v-endif
+        
+
+  const finalMode = {\\"pc\\":\\"pc\\",\\"mobile\\":\\"mobile\\",\\"mobile-first\\":\\"mobile-first\\"}[mode?.value || mode]
+
+  return result[\`./\${finalMode}.vue\`].default
+}
+  "
+`;
+
+exports[`index > transformVirtualTemplate > pc|mobile|mobile-first=pc 1`] = `
+"
+const template = (mode) => {
+  let result
+
+  // #v-ifndef VITE_TINY_MODE
+  result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
+  // #v-endif
+
+    
+  // #v-ifdef VITE_TINY_MODE=pc
+  result = import.meta.glob('./pc.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile
+  result = import.meta.glob('./mobile.vue', { eager: true })
+  // #v-endif
+          
+  // #v-ifdef VITE_TINY_MODE=mobile-first
+  result = import.meta.glob('./pc.vue', { eager: true })
+  // #v-endif
+        
+
+  const finalMode = {\\"pc\\":\\"pc\\",\\"mobile\\":\\"mobile\\",\\"mobile-first\\":\\"pc\\"}[mode?.value || mode]
+
+  return result[\`./\${finalMode}.vue\`].default
+}
+  "
+`;
+
+exports[`index > transformVirtualTemplateForBuild > pc|mobile=pc|mobile-first 1`] = `
+"
+import PcTemplate from './pc.vue'
+import MobileTemplate from './pc.vue'
+import MobileFirstTemplate from './mobile-first.vue'
+
+const template = (mode) => {
+  if ('mobile' === (process.env.TINY_MODE || mode)) return MobileTemplate
+  else if ('mobile-first' === (process.env.TINY_MODE || mode)) return MobileFirstTemplate
+  else return PcTemplate
+}
+  "
+`;
+
+exports[`index > transformVirtualTemplateForBuild > pc|mobile|mobile-first 1`] = `
+"
+import PcTemplate from './pc.vue'
+import MobileTemplate from './mobile.vue'
+import MobileFirstTemplate from './mobile-first.vue'
+
+const template = (mode) => {
+  if ('mobile' === (process.env.TINY_MODE || mode)) return MobileTemplate
+  else if ('mobile-first' === (process.env.TINY_MODE || mode)) return MobileFirstTemplate
+  else return PcTemplate
+}
+  "
+`;
+
+exports[`index > transformVirtualTemplateForBuild > pc|mobile|mobile-first=pc 1`] = `
+"
+import PcTemplate from './pc.vue'
+import MobileTemplate from './mobile.vue'
+import MobileFirstTemplate from './pc.vue'
+
+const template = (mode) => {
+  if ('mobile' === (process.env.TINY_MODE || mode)) return MobileTemplate
+  else if ('mobile-first' === (process.env.TINY_MODE || mode)) return MobileFirstTemplate
+  else return PcTemplate
+}
+  "
+`;

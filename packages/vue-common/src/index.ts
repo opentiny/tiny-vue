@@ -44,6 +44,7 @@ export const $prefix = 'Tiny'
 export const $props = {
   'tiny_mode': String,
   'tiny_mode_root': Boolean,
+  'tiny_experimetal_props_hoc': Boolean,
   'tiny_template': [Function, Object],
   'tiny_renderless': Function,
   'tiny_theme': String,
@@ -53,12 +54,22 @@ export const $props = {
 export const props: Array<
   | 'tiny_mode'
   | 'tiny_mode_root'
+  | 'tiny_experimetal_props_hoc'
   | 'tiny_template'
   | 'tiny_renderless'
   | '_constants'
   | 'tiny_theme'
   | 'tiny_chart_theme'
-> = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants', 'tiny_theme', 'tiny_chart_theme']
+> = [
+  'tiny_mode',
+  'tiny_mode_root',
+  'tiny_experimetal_props_hoc',
+  'tiny_template',
+  'tiny_renderless',
+  '_constants',
+  'tiny_theme',
+  'tiny_chart_theme'
+]
 
 export const resolveMode = (props, context) => {
   let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)
@@ -123,6 +134,7 @@ const resolveChartTheme = (props, context) => {
 }
 
 export const $setup = ({ props, context, template, extend = {} }) => {
+  // console.log('props', props)
   const mode = resolveMode(props, context)
   const view = hooks.computed(() => {
     if (typeof props.tiny_template !== 'undefined') return props.tiny_template
@@ -132,7 +144,30 @@ export const $setup = ({ props, context, template, extend = {} }) => {
     return typeof component === 'function' ? defineAsyncComponent(component) : component
   })
 
-  return renderComponent({ view, props, context, extend })
+  // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
+  let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
+  // globalDesignConfig 可能是响应式对象，比如 computed
+  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
+  const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
+  const designConfigProps = designConfig?.props || {}
+  const mergedProps = { ...designConfigProps, ...props }
+
+  let instance = hooks.getCurrentInstance()
+
+  if (isVue2) {
+    instance = instance.proxy
+  }
+
+  // console.log('props', instance.propsOptions)
+  // console.log('props', instance.propsDefaults)
+
+  return renderComponent({
+    view,
+    props: mergedProps,
+    context,
+    extend,
+    globalDesignConfig
+  })
 }
 
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）

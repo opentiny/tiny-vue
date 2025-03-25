@@ -1,0 +1,35 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 3cc0b53d09e234fe4dc9f632c0d084d540b5bc80..8a635e04d464ba14e4de84a6c0cffae7c20bddc6 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -53,8 +53,10 @@ function vitePluginBabelImport(plgOptions, modeType) {
+       if (Array.isArray(exclude) && matchExclude(exclude, id)) {
+         return code;
+       }
+-      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id) && code.includes(`./${mode}`);
+-      if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
++                   // 不处理node_modules内的依赖
++                   const idWithoutQuery = id.replace('?withPropsHOC=true', '')
++      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(idWithoutQuery) && code.includes(`./${mode}`);
++      if (/\.(?:[jt]sx?|vue)$/.test(idWithoutQuery) && !/(node_modules)/.test(idWithoutQuery)) {
+         return {
+           code: transformCode(code, transformOptions(pluginOption)),
+           map: null
+diff --git a/dist/index.js b/dist/index.js
+index fc9633c1a014990d1afb34084307c4d57790949f..ae652f89e6dce79984282bcf30914aefa6213dc2 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -19,8 +19,11 @@ function vitePluginBabelImport(plgOptions, modeType) {
+       if (Array.isArray(exclude) && matchExclude(exclude, id)) {
+         return code;
+       }
+-      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id) && code.includes(`./${mode}`);
+-      if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
++             // 不处理node_modules内的依赖
++             const idWithoutQuery = id.replace('?withPropsHOC=true', '')
++      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(idWithoutQuery) && code.includes(`./${mode}`);
++
++      if (/\.(?:[jt]sx?|vue)$/.test(idWithoutQuery) && !/(node_modules)/.test(idWithoutQuery)) {
+         return {
+           code: transformCode(code, transformOptions(pluginOption)),
+           map: null

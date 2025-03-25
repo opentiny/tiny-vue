@@ -13,7 +13,13 @@ export function transformVirtualTemplate(code: string) {
         .map(([key, value]) => {
           return `  
   // #v-ifdef VITE_TINY_MODE=${key}
-  result = import.meta.glob('./${value}.vue', { eager: true })
+  const params = {}
+  if(props.tiny_experimetal_props_hoc) {
+    result = import.meta.glob('./${value}.vue', { eager: true, query: { withPropsHOC: true } })
+  } else {
+    result = import.meta.glob('./${value}.vue', { eager: true, query: params })
+  }
+
   // #v-endif
         `
         })
@@ -21,16 +27,23 @@ export function transformVirtualTemplate(code: string) {
     }
 
     const result = `
-const ${localName} = (mode) => {
+const ${localName} = (mode, props) => {
   let result
 
   // #v-ifndef VITE_TINY_MODE
-  result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
+    const params = {}
+  if(props.tiny_experimetal_props_hoc) {
+    result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true, query: { withPropsHOC: true } })
+  } else {
+    result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
+  }
   // #v-endif
 
   ${getTemplate(params)}
 
   const finalMode = ${JSON.stringify(params)}[mode?.value || mode] || '${params[Object.keys(params)[0]]}'
+
+  console.log(props)
 
   return result[\`./\${finalMode}.vue\`].default
 }

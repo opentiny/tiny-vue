@@ -9,8 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, WithDesignConfigPropsDefineComponent as defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
+
+// console.log(template)
 
 export const buttonProps = {
   ...$props,
@@ -101,6 +103,7 @@ export default defineComponent({
     default: {}
   }>,
   setup(props, context) {
+    // console.log(props.tiny_experimetal_props_hoc)
     return $setup({ props, context, template })
   }
 })
