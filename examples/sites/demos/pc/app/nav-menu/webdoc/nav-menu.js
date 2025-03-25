@@ -55,6 +55,18 @@ export default {
       codeFiles: ['slot-logo.vue']
     },
     {
+      demoId: 'menu-icon',
+      name: {
+        'zh-CN': '菜单图标',
+        'en-US': 'Menu Icon'
+      },
+      desc: {
+        'zh-CN': '通过 <code>icon</code> 字段配置展示菜单图标。',
+        'en-US': 'Display menu icon through <code>icon</code> field of data.'
+      },
+      codeFiles: ['menu-icon.vue']
+    },
+    {
       demoId: 'before-skip',
       name: {
         'zh-CN': '跳转前处理',

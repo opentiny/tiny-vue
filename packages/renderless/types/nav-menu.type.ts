@@ -13,6 +13,7 @@ export interface menuItemType {
   url: string
   children?: menuItemType[]
   target?: string
+  icon?: any
 }
 
 export interface whitchSubMenuType {

@@ -127,6 +127,16 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'slot-toolbar'
+        },
+        {
+          name: 'icon',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义菜单图标插槽',
+            'en-US': 'Customize the menu icon'
+          },
+          mode: ['pc'],
+          pcDemo: 'menu-icon'
         }
       ]
     }
@@ -153,6 +163,7 @@ interface IMenuItem {
 interface IDataItem {
   title: string
   url: string
+  icon?: Commonent 
   children?: IDataItem[]
 }`
     },
