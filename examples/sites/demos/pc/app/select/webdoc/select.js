@@ -568,17 +568,18 @@ export default {
       codeFiles: ['slot-default.vue']
     },
     {
-      demoId: 'slot-footer',
+      demoId: 'slot-header-footer',
       name: {
-        'zh-CN': '底部插槽',
-        'en-US': 'Footer slot'
+        'zh-CN': '下拉框顶部和底部插槽',
+        'en-US': 'Dropdown top and bottom slots'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>footer</code> 插槽自定义下拉弹框底部的 HTML 模板。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>footer</code> 插槽自定义下拉弹框底部的 HTML 模板。通过 <code>dropdown</code> 插槽自定义下拉弹框顶部的 HTML 模板。</p>\n',
         'en-US':
-          '<p>Customize the HTML template at the bottom of the dropdown pop-up box through the <code>footer</code> slot.</p>'
+          '<p>Customize the HTML template at the bottom of the dropdown pop-up box through the <code>footer</code> slot. Customize the HTML template at the top of the dropdown pop-up box through the <code>dropdown</code> slot.</p>'
       },
-      codeFiles: ['slot-footer.vue']
+      codeFiles: ['slot-header-footer.vue']
     },
     {
       demoId: 'slot-empty',

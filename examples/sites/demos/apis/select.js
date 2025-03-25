@@ -843,8 +843,19 @@ export default {
             'en-US': 'Pull down the bottom slot of the pop-up box'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'slot-footer',
+          pcDemo: 'slot-header-footer',
           mfDemo: 'slot-footer'
+        },
+        {
+          name: 'dropdown',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '下拉弹框顶部插槽',
+            'en-US': 'Pull down the pop-up box slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-header-footer'
         },
         {
           name: 'prefix',

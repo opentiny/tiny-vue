@@ -13,4 +13,5 @@ test('底部插槽', async ({ page }) => {
   await input.click()
   await expect((await option.all()).length).toEqual(5)
   await expect(page.locator('.select-footer')).toHaveText('底部插槽')
+  await expect(page.locator('.select-header')).toHaveText('顶部插槽')
 })
