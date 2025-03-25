@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Table from './src/table'
+import Table from './src/Table.vue'
 import TINYGrid from '../adapter'
 
 Table.install = function (Vue) {
