@@ -95,6 +95,7 @@
     &.@{button-prefix-cls}:not(.is-circle) .@{svg-prefix-cls} {
       font-size: var(--tv-Transfer-svg-font-size);
       margin-right: 0;
+      fill:var(--tv-Transfer-svg-color)
     }
 
     &.@{button-prefix-cls}:not(.is-disabled) {
@@ -114,6 +115,7 @@
       font-size: var(--tv-Transfer-font-size);
       transform: translateY(-3px); // 适配 xdesign, 让span居中
       display: inline-block;
+      color:var(--tv-Transfer-text-color),
     }
 
     [class*='tiny-icon'] + span {
@@ -150,6 +152,7 @@
   &__body {
     position: relative;
     height: var(--tv-Transfer-panel-body-height);
+    overflow: auto;
     text-align: left;
     padding-right: var(--tv-Transfer-panel-body-padding-right);
     padding-left: var(--tv-Transfer-panel-body-padding-left);
@@ -186,8 +189,7 @@
     padding-top: var(--tv-Transfer-panel-body-list-padding-top);
     padding-bottom: var(--tv-Transfer-panel-body-list-padding-bottom);
     list-style: none;
-    height: var(--tv-Transfer-panel-body-height);
-    overflow: auto;
+    height: var(--tv-Transfer-panel-body-height);  
     box-sizing: border-box;
     display: block;
 
@@ -251,7 +253,7 @@
       display: inline-block;
       box-sizing: border-box;
       border-radius: var(--tv-Transfer-panel-filter-border-radius);
-      border-bottom-color: #f0f0f0 !important;
+      border-bottom-color: var(--tv-Transfer-header-border-color) !important;
       padding-left: 24px;
       padding-right: 0;
     }
