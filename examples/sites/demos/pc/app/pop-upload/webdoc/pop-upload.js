@@ -42,7 +42,7 @@ export default {
         'zh-CN':
           '通过 <code>large</code>，<code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
         'en-US':
-          'Set the component size through<code>media</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
+          'Set the component size through<code>large</code>,<code>medium</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
       },
       codeFiles: ['size.vue']
     },
