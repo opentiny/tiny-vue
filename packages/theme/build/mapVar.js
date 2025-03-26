@@ -98,42 +98,43 @@ export const mapVar = {
   /** 2.2 提示类型组件  ----Alert组件、Modal（message）组件、Tag 标签组件、Notify 通知、Tooltip、Badge、-错误校验等场景 **/
   '--tv-color-success-text': 'var(--tv-base-color-success-6)', // #5cb300 成功-文本色 tag的light、plain类型
   '--tv-color-success-text-primary': 'var(--tv-base-color-common-11)', // #191919 常规一级文本色（非主题色）
-  '--tv-color-success-text-white': 'var(--tv-base-color-common-1)', // #fff 深彩色背景文本色：tag的dark类型/tooltip/badge
   '--tv-color-success-bg': 'var(--tv-base-color-success-6)', // #5cb300 成功-背景色(深) tag的dark类型/tooltip/badge
   '--tv-color-success-bg-light': 'var(--tv-base-color-success-14)', // #e6f2d5 成功-背景色(浅) alert/tag的light类型
-  '--tv-color-success-bg-white': 'var(--tv-base-color-common-1)', // #fff 常规背景色（非主题色） 确认是否去掉？
+  '--tv-color-success-bg-1': 'var(--tv-base-color-success-14)', // #e6f2d5 tag的light类型
   '--tv-color-success-border': 'var(--tv-base-color-success-6)', // #5cb300 成功-边框色(深)  tooltip/badge/tag的dark、plain类型
   '--tv-color-success-border-light': 'var(--tv-base-color-success-14)', // #e6f2d5 成功-边框色（浅） alert/tag的light类型
+  '--tv-color-success-border-1': 'var(--tv-base-color-success-14)', // #e6f2d5 tag的light类型
   '--tv-color-success-icon': 'var(--tv-base-color-success-6)', // #5cb300 成功-图标色
 
   '--tv-color-error-text': 'var(--tv-base-color-error-6)', // #f23030  #f23030  错误-文本色/交易金额色/错误校验/tag的light、plain类型
   '--tv-color-error-text-primary': 'var(--tv-base-color-common-11)', // #191919 常规一级文本色（非主题色）
-  '--tv-color-error-text-white': 'var(--tv-base-color-common-1)', // #fff 深彩色背景文本色： tag的dark类型/tooltip/badge
   '--tv-color-error-bg': 'var(--tv-base-color-error-6)', // #f23030  #f23030  错误-背景色(深) tag的dark类型/tooltip/badge
+  '--tv-color-error-bg-1': 'var(--tv-base-color-error-13)', // #fce3e1 tag的light类型
   '--tv-color-error-bg-light': 'var(--tv-base-color-error-13)', // #fce3e1  错误-背景色(浅)": "错误校验背景色/alert/tag的light类型
-  '--tv-color-error-bg-white': 'var(--tv-base-color-common-1)', // #fff 常规背景色（非主题色）
   '--tv-color-error-border': 'var(--tv-base-color-error-6)', // #f23030  #f23030  错误-边框色(深) tooltip/badge/tag的dark、plain类型/错误校验边框色
   '--tv-color-error-border-light': 'var(--tv-base-color-error-13)', // #fce3e1  错误-边框色（浅） alert/tag的light类型
+  '--tv-color-error-border-1': 'var(--tv-base-color-error-13)', // #fce3e1 tag的light类型
   '--tv-color-error-icon': 'var(--tv-base-color-error-6)', // #f23030  #f23030   错误-图标色
 
   '--tv-color-warn-text': 'var(--tv-base-color-warn-6)', // #ff8800  告警-文本色  tag的light、plain类型
   '--tv-color-warn-text-primary': 'var(--tv-base-color-common-11)', // #191919 常规一级文本色（非主题色）
-  '--tv-color-warn-text-white': 'var(--tv-base-color-common-1)', // #fff 深彩色背景文本色：tag的dark类型/tooltip/badge
   '--tv-color-warn-bg': 'var(--tv-base-color-warn-6)', // #ff8800  告警-背景色(深) tag的dark类型/tooltip/badge
   '--tv-color-warn-bg-light': 'var(--tv-base-color-warn-2)', // #ffebd1 告警-背景色(浅) alert/tag的light类型
-  '--tv-color-warn-bg-white': 'var(--tv-base-color-common-1)', // #fff 常规背景色（非主题色）
+  '--tv-color-warn-bg-1': 'var(--tv-base-color-warn-2)', // #ffebd1 tag的light类型
   '--tv-color-warn-border': 'var(--tv-base-color-warn-6)', // #ff8800  告警-边框色(深)  tooltip/badge/tag的dark、plain类型
   '--tv-color-warn-border-light': 'var(--tv-base-color-warn-2)', // #ffebd1 告警-边框色（浅） alert/tag的light类型
+  '--tv-color-warn-border-1': 'var(--tv-base-color-warn-2)', // #ffebd1 tag的light类型
   '--tv-color-warn-icon': 'var(--tv-base-color-warn-6)', // #ff8800   告警-图标色
 
   '--tv-color-info-text': 'var(--tv-base-color-info-6)', // #1476ff 信息-文本色 tag的light、plain类型
   '--tv-color-info-text-primary': 'var(--tv-base-color-common-11)', // #191919 常规一级文本色（非主题色） tag的dark类型/tooltip/badge
-  '--tv-color-info-text-white': 'var(--tv-base-color-common-1)', // #fff 深彩色背景文本色：tag的dark类型/tooltip/badge
+  '--tv-color-info-text-1': 'var(--tv-base-color-info-6)', // #1476ff
   '--tv-color-info-bg': 'var(--tv-base-color-info-6)', // #1476ff 信息-背景色(深) alert/tag的light类型
+  '--tv-color-info-bg-1': 'var(--tv-base-color-info-2)', // #deecff
   '--tv-color-info-bg-light': 'var(--tv-base-color-info-2)', // #deecff 信息-背景色(浅) alert/tag的light类型
-  '--tv-color-info-bg-white': 'var(--tv-base-color-common-1)', // #fff 常规背景色（非主题色）
   '--tv-color-info-border': 'var(--tv-base-color-info-6)', // #1476ff 信息-边框色(深) tooltip/badge/tag的dark、plain类型
   '--tv-color-info-border-light': 'var(--tv-base-color-info-2)', // #deecff 信息-边框色（浅） alert/tag的light类型
+  '--tv-color-info-border-1': 'var(--tv-base-color-info-2)', // #deecff tag的light类型
   '--tv-color-info-icon': 'var(--tv-base-color-info-6)', // #1476ff  信息-图标色
 
   /** 2.3 交互类型颜色---- Button组件、Link 文字链接 **/
@@ -298,7 +299,7 @@ export const mapVar = {
   '--tv-color-text-control': 'var(--tv-base-color-common-11)', // #191919 左侧导航默认文本色/主要图标按钮/主要图标+按钮
   '--tv-color-text-inverse': 'var(--tv-base-color-common-1)', // #fff 亮色暗色都是白色场景
   '--tv-color-text-inverse-tint': 'var(--tv-base-color-common-1)', // #fff 暗色反色成黑色：主要按钮文本色
-  '--tv-color-text-inverse-black': ' var(--tv-base-color-common-11)', // #191919 tooltip的light文字
+  '--tv-color-text-inverse-black': 'var(--tv-base-color-common-11)', // #191919 tooltip的light文字
   '--tv-color-text-active-1': 'var(--tv-base-color-common-11)', // #191919 卡片式tab页签激活文本色
   '--tv-color-text-active-2': 'var(--tv-base-color-info-6)', // #1476ff  tree选中文本色
   '--tv-color-text-active-3': 'var(--tv-base-color-common-11)', // #191919 tab页签激活色
@@ -472,8 +473,8 @@ export const mapVar = {
   /** 8. 阴影变量 box-shadow **/
   '--tv-shadow-0': '0 4px 16px 0 rgba(0, 0, 0, 0.08)', //  页面布局容器组件（layout-section）阴影
   '--tv-shadow-1': '0 0 0 0 rgba(0, 0, 0, 0)', //  页面布局容器组件（layout-section）阴影
-  '--tv-shadow-cell-left': '-5px 0 5px 0 rgba(0,0,0,0.10)', // 表格固定列阴影
-  '--tv-shadow-cell-right': '5px 0 5px 0 rgba(0,0,0,0.10)', // 表格固定列阴影
+  '--tv-shadow-cell-left': '-5px 0 5px 0 rgba(0, 0, 0, 0.10)', // 表格固定列阴影
+  '--tv-shadow-cell-right': '5px 0 5px 0 rgba(0, 0, 0, 0.10)', // 表格固定列阴影
 
   '--tv-shadow-1-up': '0 -1px 4px 0 rgba(0, 0, 0, 0.08)', // 购买浮层
   '--tv-shadow-1-down': '0 1px 4px 0 rgba(0, 0, 0, 0.08)', // 页面卡片、滑块、顶部导航
