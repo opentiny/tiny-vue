@@ -266,7 +266,7 @@ export default {
         },
         {
           name: 'no-animation',
-          type: 'string',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启动画',
