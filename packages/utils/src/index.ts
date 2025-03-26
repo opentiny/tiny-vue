@@ -110,7 +110,19 @@ export {
 } from './string'
 
 export { roundFixed, Decimal, toFixed as toFixedDecimal, formatNumber, recoverNumber } from './decimal'
-export { each, getObj, setObj, copyField, copyArray, isEqual, isEachEqual, extend, toJsonStr, merge } from './object'
+export {
+  each,
+  getObj,
+  setObj,
+  copyField,
+  copyArray,
+  isEqual,
+  isEachEqual,
+  extend,
+  toJsonStr,
+  merge,
+  deepMerge
+} from './object'
 
 export {
   supportBigInt,

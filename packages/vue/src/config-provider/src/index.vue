@@ -1,8 +1,17 @@
 <script lang="ts">
-import { provideDesignConfig, hooks, props as _props, isVue2, $prefix, defineComponent } from '@opentiny/vue-common'
+import {
+  provideDesignConfig,
+  hooks,
+  props as _props,
+  isVue2,
+  $prefix,
+  defineComponent,
+  design as designSymbol
+} from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
 import type { Tag, TextDirection, breakPoint } from './props'
 import { configProviderContextKey } from '../index'
+import { deepMerge } from '@opentiny/utils'
 import '@opentiny/vue-theme/config-provider/index.less'
 
 export default defineComponent({
@@ -59,7 +68,15 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const { direction, design } = hooks.toRefs(props)
-    provideDesignConfig(design)
+
+    const parentDesign = hooks.inject(designSymbol.configKey, {})
+
+    const currentDesign = hooks.computed(() => {
+      const parentValue = parentDesign?.value || parentDesign || {}
+      return deepMerge(parentValue, design.value)
+    })
+
+    provideDesignConfig(currentDesign)
     const isRTL = hooks.computed(() => direction.value === 'rtl')
     const cssVar = hooks.computed(() => {
       return {

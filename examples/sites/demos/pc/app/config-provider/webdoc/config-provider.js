@@ -19,6 +19,19 @@ export default {
       codeFiles: ['base.vue']
     },
     {
+      demoId: 'merge',
+      name: {
+        'zh-CN': '嵌套使用',
+        'en-US': 'Merge'
+      },
+      desc: {
+        'zh-CN': '支持嵌套使用',
+        'en-US':
+          'Icons and logic for different design specifications can be customized through the <code>design</code> attribute configuration.'
+      },
+      codeFiles: ['merge.vue']
+    },
+    {
       demoId: 'text-direct',
       name: {
         'zh-CN': '改变文字方向',

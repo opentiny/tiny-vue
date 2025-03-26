@@ -434,3 +434,43 @@ export const merge = function (target: object, ...rest: object[]) {
 
   return target
 }
+
+/**
+ * 深度合并普通对象：递归合并所有普通对象的属性，嵌套对象也会被合并。
+ * 覆盖非对象值：数组、日期、函数等非普通对象值会被直接覆盖。
+ * 不修改原对象：所有合并操作都在新对象上进行，原对象保持不变。
+ * 处理null和undefined源：忽略null和undefined类型的源对象。
+ */
+export function deepMerge(...sources) {
+  function merge(target, source) {
+    if (!isObject(source)) {
+      return
+    }
+    Object.keys(source).forEach((key) => {
+      const sourceValue = source[key]
+      const targetValue = target[key]
+
+      if (isObject(sourceValue)) {
+        if (isObject(targetValue)) {
+          // 递归合并对象
+          merge(targetValue, sourceValue)
+        } else {
+          // 目标属性不是对象，创建新对象并递归合并
+          target[key] = {}
+          merge(target[key], sourceValue)
+        }
+      } else {
+        // 直接赋值非对象或数组等类型的值
+        target[key] = sourceValue
+      }
+    })
+  }
+
+  const target = {}
+  for (const source of sources) {
+    if (source !== null && source !== undefined) {
+      merge(target, source)
+    }
+  }
+  return target
+}
