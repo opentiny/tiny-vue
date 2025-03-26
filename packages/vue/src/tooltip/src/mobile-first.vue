@@ -136,6 +136,8 @@ export default defineComponent({
                 component: {
                   render: () => {
                     let content = getContent(this)
+                    // 当内容为纯文本时，添加一层wrapper，其他情况（插槽、renderContent）原样输出
+                    const addWrapper = typeof content === 'string'
                     let propsData = { on: { 'after-leave': this.doDestroy } }
                     let mouseenter = () => this.setExpectedState(true)
                     let mouseleave = () => {
@@ -163,7 +165,11 @@ export default defineComponent({
                         aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
-                        <div style={`overflow:auto; max-height:${this.contentMaxHeight}`}>{content}</div>
+                        {addWrapper ? (
+                          <div style={`overflow:auto;max-height:${this.contentMaxHeight}`}>{content}</div>
+                        ) : (
+                          content
+                        )}
                         {this.visibleArrow ? (
                           <div
                             x-arrow

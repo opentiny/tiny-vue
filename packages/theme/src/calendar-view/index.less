@@ -630,12 +630,17 @@
   .inject-CalendarView-vars();
   position: absolute;
   max-width: 320px;
+
   .tooltip-main {
+    overflow: auto;
+    max-height: 80vh;
     padding: var(--tv-CalendarView-tooltip-title-font-size);
+
     .title {
       font-size: var(--tv-CalendarView-tooltip-title-font-size);
       font-weight: var(--tv-CalendarView-tooltip-title-font-weight);
     }
+
     .date {
       margin: 6px 0;
       color: var(--tv-CalendarView-tooltip-date-text-color);

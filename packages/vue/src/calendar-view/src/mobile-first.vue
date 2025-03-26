@@ -3,7 +3,7 @@
     <tiny-tooltip
       ref="tooltip"
       v-model="state.eventTipVisible"
-      popper-class="absolute max-w-[theme(spacing.80)]"
+      popper-class="absolute max-w-[theme(spacing.80)] max-h-[80vh] overflow-auto"
       :manual="true"
       effect="light"
       placement="right"
