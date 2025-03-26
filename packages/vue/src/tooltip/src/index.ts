@@ -86,7 +86,8 @@ export const tooltipProps = {
     default: () => 'next'
   },
   contentMaxHeight: {
-    type: String
+    type: String,
+    default: () => '80vh'
   }
 }
 export default defineComponent({

@@ -96,6 +96,9 @@ export default defineComponent({
     zIndex: {
       type: String,
       default: () => 'next'
+    },
+    contentMaxHeight: {
+      type: String
     }
   },
   setup(props, context) {
@@ -160,7 +163,7 @@ export default defineComponent({
                         aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
-                        {content}
+                        <div style={`overflow:auto; max-height:${this.contentMaxHeight}`}>{content}</div>
                         {this.visibleArrow ? (
                           <div
                             x-arrow
