@@ -4,8 +4,8 @@
     <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%">
       <span>dialog-box 内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"> 确定 </tiny-button>
-        <tiny-button @click="boxVisibility = false"> 取消 </tiny-button>
+        <tiny-button @click="boxVisibility = false">取 消</tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>

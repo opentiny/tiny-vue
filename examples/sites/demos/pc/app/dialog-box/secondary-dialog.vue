@@ -10,8 +10,8 @@
         </template>
       </tiny-dialog-box>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility2 = true">子弹窗</tiny-button>
         <tiny-button @click="boxVisibility = false">取 消</tiny-button>
+        <tiny-button type="primary" @click="boxVisibility2 = true">子弹窗</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
