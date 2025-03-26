@@ -67,7 +67,7 @@ export default {
         },
         {
           name: 'controls-position',
-          type: '"right"',
+          type: "'' | 'right'",
           defaultValue: '',
           desc: {
             'zh-CN': '加减按钮位置，可选值为 right，表示加减按钮均位于最右侧',
