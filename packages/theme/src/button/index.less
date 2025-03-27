@@ -223,8 +223,7 @@
   &.is-disabled.is-disabled.is-disabled.is-disabled.is-disabled,
   &.is-loading.is-loading.is-loading.is-loading.is-loading,
   &[disabled][disabled][disabled][disabled][disabled] {
-    color: var(--tv-Button-text-color-disabled);
-    background-color: var(--tv-Button-bg-color-disabled);
+    color: var(--tv-Button-text-color-disabled); 
     border-color: var(--tv-Button-border-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
     cursor: not-allowed;
@@ -267,12 +266,17 @@
     justify-content: center;
     &.@{button-prefix-cls}--default {
       border-color: var(--tv-Button-border-color-only-icon-default);
-
+      svg {
+        fill: var(--tv-Button-color-only-icon-default);
+      }
       &:active,
       &:focus,
       &:hover,
       &.is-active {
         border-color: var(--tv-Button-border-color-only-icon-default-hover);
+        svg {
+          fill: var(--tv-Button-color-only-icon-default-hover);
+        }
       }
     }
 
@@ -303,12 +307,17 @@
       border-radius: var(--tv-Button-border-radius-only-icon-ontext); // 影响hover时的阴影
 
       background-color: var(--tv-Button-bg-color-only-icon-ontext);
-
+      svg {
+        fill: var(--tv-Button-bg-color-only-icon)
+      }
       &:active,
       &:focus,
       &:hover,
       &.is-active {
         background-color: var(--tv-Button-bg-color-only-icon-ontext-hover);
+        svg {
+          fill: var(--tv-Button-bg-color-only-icon-hover)
+        }
       }
       // 不同的尺寸，icon大小 为高度。 原型稿不包含
       .size-only-icon-ontext-iconsize-mixin(e(''));
@@ -329,6 +338,13 @@
       & .@{svg-prefix-cls} {
         fill: var(--tv-Button-icon-color);
         color: var(--tv-Button-icon-color);
+      }
+    }
+    &.@{button-prefix-cls}--text.is-disabled {
+      &:hover {
+        svg {
+          fill: var(--tv-Button-disabled-color-only-icon-hover)
+        }
       }
     }
   }
@@ -366,6 +382,7 @@
 
     .tiny-svg {
       margin-right: var(--tv-Button-margin-right-isicon-svg);
+      fill: var(--tv-Button-color-icon-svg);
     }
   }
 
