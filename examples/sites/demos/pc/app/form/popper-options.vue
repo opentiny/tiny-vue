@@ -1,7 +1,7 @@
 <template>
   <div class="demo-form">
     <div class="scroll-parent">
-      <tiny-form ref="form" :model="createData" label-width="60px" :popper-options="{ bubbling: true }">
+      <tiny-form ref="form" :model="createData" label-width="70px" :popper-options="{ bubbling: true }">
         <tiny-form-item label="姓名" prop="name" required>
           <tiny-input v-model="createData.name"> </tiny-input>
         </tiny-form-item>

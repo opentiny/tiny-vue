@@ -190,7 +190,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
     hidePicker: hidePicker({ destroyPopper, state }),
     handleSelectChange: ({ tz, date }) => !state.ranged && emit('select-change', { tz, date }),
     getPanel: getPanel(others),
-    handleFocus: handleFocus({ emit, vm, state, api }),
+    handleFocus: handleFocus({ emit, vm, state, api, props }),
     getTimezone: getTimezone({ props, utils }),
     emitChange: emitChange({ api, dispatch, emit, props, state }),
     parsedValue: parsedValue({ api, props, state, t }),

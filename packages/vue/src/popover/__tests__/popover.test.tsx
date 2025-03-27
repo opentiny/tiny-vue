@@ -1,7 +1,8 @@
 import { mountPcMode as mount } from '@opentiny-internal/vue-test-utils'
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, afterEach } from 'vitest'
 import Button from '@opentiny/vue-button'
 import Popover from '@opentiny/vue-popover'
+import { ref } from 'vue'
 
 describe('PC Mode', () => {
   document.body.innerHTML = `
@@ -9,9 +10,16 @@ describe('PC Mode', () => {
     <div id="app"></div>
   </div>
 `
+
+  let wrapper
+
+  afterEach(() => {
+    wrapper?.unmount()
+  })
+
   // attrs
   test('trigger 触发方式', async () => {
-    const wrapper = mount(
+    wrapper = mount(
       () => (
         <Popover placement="top-start" title="标题" width="200" trigger="hover" append-to-body content="这是一段内容">
           {{
@@ -36,8 +44,35 @@ describe('PC Mode', () => {
 
   test.todo('height 高度')
 
-  test.todo('placement 出现位置')
+  test('placement 出现位置', async () => {
+    wrapper = mount(() => (
+      <Popover placement="top-start" trigger="hover" content="这是一段内容">
+        {{
+          reference: () => <Button>悬浮我提示</Button>
+        }}
+      </Popover>
+    ))
 
+    await wrapper.find('button').trigger('mouseenter')
+    expect(document.querySelector('.tiny-popover')!.getAttribute('x-placement')).toBe('top-start')
+  })
+
+  test('响应式 placement', async () => {
+    const placement = ref('bottom')
+    wrapper = mount(() => (
+      <Popover placement={placement.value} content="这是一段内容">
+        {{ reference: () => <Button>点击我</Button> }}
+      </Popover>
+    ))
+
+    await wrapper.find('button').trigger('click')
+    expect(document.querySelector('.tiny-popover')!.getAttribute('x-placement')).toBe('bottom')
+    await wrapper.find('button').trigger('click')
+
+    placement.value = 'right'
+    await wrapper.find('button').trigger('click')
+    expect(document.querySelector('.tiny-popover')!.getAttribute('x-placement')).toBe('right')
+  })
   test.todo('disabled  是否可用')
 
   test.todo('modelValue 状态是否可见')

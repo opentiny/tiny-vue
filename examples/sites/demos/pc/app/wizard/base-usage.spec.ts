@@ -36,7 +36,7 @@ test('基本用法', async ({ page }) => {
       await expect(middle).toHaveCSS('background-color', 'rgb(255, 255, 255)')
     } else {
       await expect(first).toHaveCSS('background-color', 'rgb(219, 219, 219)')
-      await expect(middle).toHaveCSS('background-color', 'rgb(240, 240, 240)')
+      await expect(middle).toHaveCSS('background-color', 'rgb(245, 245, 245)')
     }
   }
 })

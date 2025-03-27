@@ -283,9 +283,9 @@ export default {
       folder: '文件所在文件夹层数已超过 5 层，将不会上传该文件',
       init: '服务报错，请重试',
       token: '请先进行 EDM 鉴权，获取 token',
-      exceed: '文件大小超过限制（{maxSize}）',
+      exceed: '{fileName} 文件大小超过限制（{maxSize}）',
       largeFile: '文件大小超出限制 2G ！！',
-      fileSize: '文件大小低于限制（{minSize}{sizeUnit}）',
+      fileSize: '{fileName} 文件大小低于限制（{minSize}{sizeUnit}）',
       deleteTip: '按 delete 键可删除',
       downloadFile: '下载文件',
       previewFile: '预览文件',
@@ -773,33 +773,33 @@ export default {
   },
   validation: {
     array: {
-      len: '%s 的长度必须为 %s',
-      min: '%s 长度不能小于 %s',
-      max: '%s 的长度不能大于 %s',
-      range: '%s 的长度必须介于 %s 和 %s 之间'
+      len: '长度必须为 %s',
+      min: '长度不能小于 %s',
+      max: '长度不能大于 %s',
+      range: '长度必须介于 %s 和 %s 之间'
     },
     date: {
-      format: '%s 日期 %s 对于格式 %s 无效',
-      invalid: '%s 日期 %s 无效',
+      format: '日期 %s 对于格式 %s 无效',
+      invalid: '日期 %s 无效',
       parse: '无法分析 %s 日期， %s 无效'
     },
     default: '%s 字段校验错误',
-    enum: '%s 必须是 %s 中的一个',
+    enum: '必须是 %s 中的一个',
     number: {
-      len: '%s 必须等于 %s',
-      min: '%s 不能小于 %s',
-      max: '%s 不能大于 %s',
-      range: '%s 必须介于 %s 和 %s 之间'
+      len: '必须等于 %s',
+      min: '不能小于 %s',
+      max: '不能大于 %s',
+      range: '必须介于 %s 和 %s 之间'
     },
     pattern: {
-      mismatch: '%s 值%s 与模式 %s 不匹配'
+      mismatch: '值%s 与模式 %s 不匹配'
     },
     required: '必填',
     string: {
-      len: '%s 必须是 %s 个字符',
-      min: '%s 必须至少为 %s 个字符',
-      max: '%s 不能大于 %s 个字符',
-      range: '%s 必须介于 %s 和 %s 个字符之间'
+      len: '必须是 %s 个字符',
+      min: '必须至少为 %s 个字符',
+      max: '不能大于 %s 个字符',
+      range: '必须介于 %s 和 %s 个字符之间'
     },
     types: {
       acceptFile: '只接受文件',
@@ -829,6 +829,6 @@ export default {
       url: '非法 URL 地址',
       version: '非法版本格式'
     },
-    whitespace: '%s 不能为空'
+    whitespace: '不能为空'
   }
 } as any

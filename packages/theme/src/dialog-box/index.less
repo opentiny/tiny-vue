@@ -199,13 +199,14 @@
 }
 
 .v-modal {
+  .inject-DialogBox-vars();
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   opacity: 0.3;
-  background: #000;
+  background: var(--tv-DialogBox-mask-bg-color);
 }
 
 .v-modal-enter {

@@ -26,7 +26,7 @@ export const getIsDefault =
 export const getIsDisabled =
   ({ props }) =>
   (year) => {
-    return props.selectionMode.startsWith('year') && typeof props.disabledDate === 'function'
+    return typeof props.disabledDate === 'function'
       ? props.disabledDate(new Date(year, 0, 1, 0))
       : false
   }

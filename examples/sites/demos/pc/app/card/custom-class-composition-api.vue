@@ -16,6 +16,6 @@ import { TinyCard } from '@opentiny/vue'
 <style scoped>
 .demo-card-custom-class {
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
 }
 </style>

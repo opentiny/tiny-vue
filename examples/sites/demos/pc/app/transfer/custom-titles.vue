@@ -4,8 +4,8 @@
     :data="data"
     :titles="['数据列表', '已选列表']"
     :format="{
-      noChecked: '未勾选 / 共${total}',
-      hasChecked: '已选择${checked} / 共${total}'
+      noChecked: '未选 / 共${total}',
+      hasChecked: '已选${checked} / 共${total}'
     }"
   ></tiny-transfer>
 </template>

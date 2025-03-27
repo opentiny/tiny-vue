@@ -14,62 +14,62 @@
   // 默认宽度
   --tv-Numeric-input-width: 126px;
   // 默认高度
-  --tv-Numeric-input-normal-height: var(--tv-size-height-md);
+  --tv-Numeric-input-normal-height: var(--tv-size-height-md, 32px);
   // 边框圆角
-  --tv-Numeric-input-border-radius: var(--tv-border-radius-md);
+  --tv-Numeric-input-border-radius: var(--tv-border-radius-md, 6px);
   // 边框默认色
-  --tv-Numeric-input-normal-border-color: var(--tv-color-border);
+  --tv-Numeric-input-normal-border-color: var(--tv-color-border, #c2c2c2);
   // 分隔线颜色
-  --tv-Numeric-input-dividing-border-color: var(--tv-color-border-divider);
+  --tv-Numeric-input-dividing-border-color: var(--tv-color-border-divider, #f0f0f0);
   // 分割线高度
   --tv-Numeric-input-dividing-border-height: 20px;
   // 输入框字号
-  --tv-Numeric-input-normal-font-size: var(--tv-font-size-default);
+  --tv-Numeric-input-normal-font-size: var(--tv-font-size-default, 14px);
   // 输入框字体色
-  --tv-Numeric-input-normal-text-color: var(--tv-color-text);
+  --tv-Numeric-input-normal-text-color: var(--tv-color-text, #191919);
   // 默认背景色
-  --tv-Numeric-input-normal-bg-color: var(--tv-color-bg-secondary);
+  --tv-Numeric-input-normal-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 按钮默认宽度
   --tv-Numeric-input-icon-width: calc(var(--tv-Numeric-input-normal-height) - 1px);
   // 悬浮边框色
-  --tv-Numeric-input-normal-active-border-color: var(--tv-color-border-hover);
+  --tv-Numeric-input-normal-active-border-color: var(--tv-color-border-hover, #191919);
   // 按钮图标色
-  --tv-Numeric-input-icon-color: var(--tv-color-icon);
+  --tv-Numeric-input-icon-color: var(--tv-color-icon, #808080);
   // 提示占位符文本色
-  --tv-Numeric-input-placeholder-text-color: var(--tv-color-text-placeholder);
+  --tv-Numeric-input-placeholder-text-color: var(--tv-color-text-placeholder, #808080);
   // 按钮悬浮图标色
-  --tv-Numeric-input-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Numeric-input-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 按钮禁用图标色
-  --tv-Numeric-input-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Numeric-input-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
   // 聚焦时边框色
-  --tv-Numeric-input-border-color-active: var(--tv-color-border-active);
+  --tv-Numeric-input-border-color-active: var(--tv-color-border-active, #191919);
   // 图标大小
-  --tv-Numeric-input-icon-size: var(--tv-icon-size);
+  --tv-Numeric-input-icon-size: var(--tv-icon-size, 16px);
 
   // 禁用文本色
-  --tv-Numeric-input-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-Numeric-input-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 禁用背景色
-  --tv-Numeric-input-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-Numeric-input-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
   // 禁用时边框色
-  --tv-Numeric-input-border-color-disabled: var(--tv-color-border-disabled);
+  --tv-Numeric-input-border-color-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 按钮禁用时背景色
-  --tv-Numeric-input-btn-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-Numeric-input-btn-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
 
   // medium尺寸宽度
   --tv-Numeric-input-width-medium: 158px;
   // medium尺寸高度
-  --tv-Numeric-input-height-medium: var(--tv-size-height-lg);
+  --tv-Numeric-input-height-medium: var(--tv-size-height-lg, 40px);
   // medium尺寸按钮宽度
   --tv-Numeric-input-icon-width-medium: var(--tv-Numeric-input-height-medium);
   // medium尺寸图标大小
-  --tv-Numeric-input-icon-size-medium: var(--tv-icon-size);
+  --tv-Numeric-input-icon-size-medium: var(--tv-icon-size, 16px);
   // medium尺寸分割线高度
   --tv-Numeric-input-divider-height-medium: 24px;
 
   // small尺寸宽度
   --tv-Numeric-input-width-small: 112px;
   // small尺寸高度
-  --tv-Numeric-input-height-small: var(--tv-size-height-sm);
+  --tv-Numeric-input-height-small: var(--tv-size-height-sm, 28px);
   // small尺寸按钮宽度
   --tv-Numeric-input-icon-width-small: var(--tv-Numeric-input-height-small);
   // small尺寸图标大小
@@ -80,7 +80,7 @@
   // mini尺寸宽度
   --tv-Numeric-input-width-mini: 102px;
   // mini尺寸高度
-  --tv-Numeric-input-height-mini: var(--tv-size-height-xs);
+  --tv-Numeric-input-height-mini: var(--tv-size-height-xs, 24px);
   // mini尺寸按钮宽度
   --tv-Numeric-input-icon-width-mini: var(--tv-Numeric-input-height-mini);
   // mini尺寸图标大小
@@ -91,11 +91,11 @@
   // 单位内容宽度
   --tv-Numeric-input-unit-width: 50px;
   // 单位字体色
-  --tv-Numeric-input-unit-text-color: var(--tv-color-text-secondary);
+  --tv-Numeric-input-unit-text-color: var(--tv-color-text-secondary, #595959);
   // 单位字号
-  --tv-Numeric-input-unit-font-size: var(--tv-font-size-default);
+  --tv-Numeric-input-unit-font-size: var(--tv-font-size-default, 14px);
   // 单位左边框颜色
-  --tv-Numeric-input-unit-border-left-color: var(--tv-color-border);
+  --tv-Numeric-input-unit-border-left-color: var(--tv-color-border, #c2c2c2);
   // 单位背景色
-  --tv-Numeric-input-unit-bg-color: var(--tv-color-bg-gray-1);
+  --tv-Numeric-input-unit-bg-color: var(--tv-color-bg-gray-1, #fafafa);
 }

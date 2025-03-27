@@ -13,7 +13,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/scrollbar/vue'
 import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { calcScrollWidth } from '@opentiny/utils'
-import { toObject } from '@opentiny/utils'
+import { toObject, isObject } from '@opentiny/utils'
 import Bar from './bar.vue'
 
 export default defineComponent({
@@ -68,6 +68,9 @@ export default defineComponent({
 
       if (Array.isArray(wrapStyle)) {
         style = toObject(wrapStyle)
+        style.marginRight = gutterWith
+        style.marginBottom = gutterHeight
+      } else if (isObject(wrapStyle)) {
         style.marginRight = gutterWith
         style.marginBottom = gutterHeight
       } else if (typeof wrapStyle === 'string') {

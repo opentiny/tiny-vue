@@ -58,6 +58,11 @@ const getReferMaxZIndex = (reference) => {
   do {
     reference = reference.parentNode
 
+    // 处理遇到shadowRoot的情况
+    if (reference && reference instanceof ShadowRoot && reference.host) {
+      reference = reference.host
+    }
+
     if (reference) {
       z = getZIndex(reference)
     } else {
@@ -222,10 +227,26 @@ export const userPopper = (options: IPopperInputParams) => {
     }
   }
 
-  // 注意： 一直以来，state.showPopper 为false时，并未调用doDestory. 像popover只是依赖这个值来 给reference元素 v-show一下
+  // 注意： 一直以来，state.showPopper 为false时，并未调用doDestroy. 像popover只是依赖这个值来 给reference元素 v-show一下
   watch(
     () => state.showPopper,
     (val) => {
+      if (props.disabled) {
+        return
+      }
+      if (val) {
+        nextTick(updatePopper)
+      }
+      props.trigger === 'manual' && emit('update:modelValue', val)
+    }
+  )
+
+  watch(
+    () => props.placement,
+    (val?: string) => {
+      state.currentPlacement = val
+      state.popperJS?.setOptions({ placement: val })
+
       if (props.disabled) {
         return
       }

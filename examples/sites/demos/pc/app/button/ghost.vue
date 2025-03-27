@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .gray-bg {
-  background: #fafafa;
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 20px 10px 10px;
 }
 .tiny-button {

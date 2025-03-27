@@ -6,10 +6,11 @@
 
 ## 自动导入（推荐）
 
-首先你需要安装 `@opentiny/unplugin-tiny-vue` 这款插件。
+首先你需要安装 `@opentiny/unplugin-tiny-vue` 这款插件，还需要安装两个 `unplugin` 官方的插件包。
 
 ```bash
-npm i @opentiny/unplugin-tiny-vue -D
+# 注意 @opentiny/unplugin-tiny-vue 版本号需要大于等于v1.0.0
+npm i @opentiny/unplugin-tiny-vue unplugin-auto-import unplugin-vue-components -D
 ```
 
 然后把以下代码插入到你项目的 `Vite` 或 `Webpack` 配置文件中。
@@ -73,8 +74,9 @@ module.exports = {
 ```
 
 想了解更多自动按需导入的信息，请参考：
-[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
-[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
+[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)、
+[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)、
+[unplugin-tiny-vue](https://github.com/opentiny/unplugin-tiny-vue)
 
 ## 多组件引入
 

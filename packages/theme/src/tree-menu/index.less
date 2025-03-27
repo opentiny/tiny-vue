@@ -39,12 +39,13 @@
     border-radius: 50%;
     font-size: 18px;
     line-height: 18px;
-    background-color: #fff;
+    background-color: var(--tv-TreeMenu-toggle-button-background-color);
     box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.06);
     border: 1px solid var(--tv-TreeMenu-border-color);
 
     .tiny-svg {
       margin-left: 2px;
+      margin-top: 2px;
       fill: var(--tv-TreeMenu-collapse-icon-fill-color);
       font-size: 16px;
 
@@ -67,7 +68,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--tv-TreeMenu-toggle-button-background-color);
 
     svg {
       width: 22px;
@@ -140,6 +141,11 @@
     padding-right: var(--tv-TreeMenu-input-padding-right);
     margin: var(--tv-TreeMenu-input-margin);
 
+    &.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -209,6 +215,7 @@
 
           &:hover {
             font-weight: var(--tv-TreeMenu-node-name-hover-font-weight);
+            color: var(--tv-TreeMenu-node-name-hover-color);
           }
 
           svg {
@@ -233,6 +240,10 @@
       .@{tree-node-prefix-cls}__content-left {
         position: relative;
         padding-left: var(--tv-TreeMenu-node-vertical-line-margin-right);
+
+        &:hover {
+          background-color: transparent;
+        }
       }
 
       &.is-current {
@@ -242,6 +253,7 @@
 
           .tree-node-body {
             font-weight: bold;
+            color: var(--tv-TreeMenu-node-body-selected-color);
           }
         }
 

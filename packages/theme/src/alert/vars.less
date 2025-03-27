@@ -22,11 +22,11 @@
   //-------------------------------------------------------全局场景：------------------------------------------
 
   // 警告的圆角
-  --tv-Alert-border-radius: var(--tv-border-radius-lg);
+  --tv-Alert-border-radius: var(--tv-border-radius-lg, 8px);
   // 警告的水平内边距
-  --tv-Alert-padding-x: var(--tv-space-xl);
+  --tv-Alert-padding-x: var(--tv-space-xl, 16px);
   // 警告的垂直内边距
-  --tv-Alert-padding-y: var(--tv-space-xl);
+  --tv-Alert-padding-y: var(--tv-space-xl, 16px);
   // 警告的水平外边距
   --tv-Alert-margin-x: 0; // 规范上外边距不应该设置，但由于历史原因，normal时有固定的上下外边距，保留这个特性。
   // 警告的垂直外边距
@@ -37,75 +37,75 @@
   // 警告的图标大小
   --tv-Alert-icon-size: 20px;
   // 警告的图标右外边距
-  --tv-Alert-icon-margin-right: var(--tv-space-md);
+  --tv-Alert-icon-margin-right: var(--tv-space-md, 8px);
 
   //-------------------------------------------------------content 场景：title/description/opration------------
 
   // 警告的标题字号
-  --tv-Alert-title-font-size: var(--tv-font-size-lg);
+  --tv-Alert-title-font-size: var(--tv-font-size-lg, 16px);
   // 警告的标题字重
-  --tv-Alert-title-font-weight: var(--tv-font-weight-bold);
+  --tv-Alert-title-font-weight: var(--tv-font-weight-bold, 600);
   // 警告的标题颜色
-  --tv-Alert-title-text-color: var(--tv-color-text);
+  --tv-Alert-title-text-color: var(--tv-color-text, #191919);
   // 警告的标题下边距
-  --tv-Alert-title-margin-bottom: var(--tv-space-sm);
+  --tv-Alert-title-margin-bottom: var(--tv-space-sm, 4px);
 
   // 警告的描述字号
-  --tv-Alert-desc-font-size: var(--tv-font-size-default);
+  --tv-Alert-desc-font-size: var(--tv-font-size-default, 14px);
   // 警告的描述字重
-  --tv-Alert-desc-font-weight: var(--tv-font-weight-regular);
+  --tv-Alert-desc-font-weight: var(--tv-font-weight-regular, 400);
   // 警告的描述颜色
-  --tv-Alert-desc-text-color: var(--tv-color-text-secondary);
+  --tv-Alert-desc-text-color: var(--tv-color-text-secondary, #595959);
 
   //-------------------------------------------------------close-icon 场景：----------------------------------
 
   // 警告的关闭按钮的大小
-  --tv-Alert-close-icon-font-size: var(--tv-icon-size);
+  --tv-Alert-close-icon-font-size: var(--tv-icon-size, 16px);
   // 警告的关闭按钮的颜色
-  --tv-Alert-close-icon-color: var(--tv-color-icon);
+  --tv-Alert-close-icon-color: var(--tv-color-icon, #808080);
   // 警告的关闭按钮的悬浮颜色
-  --tv-Alert-close-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Alert-close-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 警告的关闭按钮距上边的距离
-  --tv-Alert-close-icon-top: var(--tv-space-lg);
+  --tv-Alert-close-icon-top: var(--tv-space-lg, 12px);
   // 警告的关闭按钮距右边的距离
-  --tv-Alert-close-icon-right: var(--tv-space-lg);
+  --tv-Alert-close-icon-right: var(--tv-space-lg, 12px);
 
   // 警告的关闭文本的大小
-  --tv-Alert-close-text-font-size: var(--tv-font-size-default);
+  --tv-Alert-close-text-font-size: var(--tv-font-size-default, 14px);
 
   //-------------------------------------------------------Normal 场景：---------------------------------------
 
   // 警告的Normal时，图标大小
-  --tv-Alert-icon-size-normal: var(--tv-icon-size);
+  --tv-Alert-icon-size-normal: var(--tv-icon-size, 16px);
   // 警告的Normal时，水平内边距
-  --tv-Alert-padding-x-normal: var(--tv-space-xl);
+  --tv-Alert-padding-x-normal: var(--tv-space-xl, 16px);
   // 警告的Normal时，垂直内边距
   --tv-Alert-padding-y-normal: 9px;
   // 警告的Normal时,水平外边距
   --tv-Alert-margin-x-normal: 0;
   // 警告的Normal时,垂直外边距
-  --tv-Alert-margin-y-normal: var(--tv-space-xl);
+  --tv-Alert-margin-y-normal: var(--tv-space-xl, 16px);
 
   //-------------------------------------------------------type 场景：------------------------------------------
 
   // success 主题时警告背景色
-  --tv-Alert-bg-color-success: var(--tv-color-success-bg-light);
+  --tv-Alert-bg-color-success: var(--tv-color-success-bg-light, #e6f2d5);
   // success 主题时警告图标色
-  --tv-Alert-icon-color-success: var(--tv-color-success-icon);
+  --tv-Alert-icon-color-success: var(--tv-color-success-icon, #5cb300);
   // error 主题时警告背景色
-  --tv-Alert-bg-color-error: var(--tv-color-error-bg-light);
+  --tv-Alert-bg-color-error: var(--tv-color-error-bg-light, #fce3e1);
   // error 主题时警告图标色
-  --tv-Alert-icon-color-error: var(--tv-color-error-icon);
+  --tv-Alert-icon-color-error: var(--tv-color-error-icon, #f23030);
   // warning 主题时警告背景色
-  --tv-Alert-bg-color-warning: var(--tv-color-warn-bg-light);
+  --tv-Alert-bg-color-warning: var(--tv-color-warn-bg-light, #ffebd1);
   // warning 主题时警告图标色
-  --tv-Alert-icon-color-warning: var(--tv-color-warn-icon);
+  --tv-Alert-icon-color-warning: var(--tv-color-warn-icon, #ff8800);
   // info 主题时警告背景色
-  --tv-Alert-bg-color-info: var(--tv-color-info-bg-light);
+  --tv-Alert-bg-color-info: var(--tv-color-info-bg-light, #deecff);
   // info 主题时警告图标色
-  --tv-Alert-icon-color-info: var(--tv-color-info-icon);
+  --tv-Alert-icon-color-info: var(--tv-color-info-icon, #1476ff);
   // simple 主题时警告背景色
-  --tv-Alert-bg-color-simple: var(--tv-color-bg);
+  --tv-Alert-bg-color-simple: var(--tv-color-bg, #f5f5f5);
   // simple 主题时警告图标色
-  --tv-Alert-icon-color-simple: var(--tv-color-icon);
+  --tv-Alert-icon-color-simple: var(--tv-color-icon, #808080);
 }

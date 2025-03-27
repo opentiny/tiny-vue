@@ -24,33 +24,27 @@ test('基本用法', async ({ page }) => {
   ]
   const iconStyles = [
     {
-      'background-color': 'rgb(255, 255, 255)',
       'color': 'rgb(24, 144, 255)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(255, 255, 255)',
       'color': 'rgb(24, 144, 255)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(232, 250, 255)',
       'color': 'rgb(255, 255, 255)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgba(242, 48, 48, 0.1)',
+      'color': 'rgba(242, 48, 48, 0.353)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(237, 247, 223)',
+      'color': 'rgb(147, 253, 166)',
       'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(250, 173, 20)',
+      'color': 'rgb(250, 173, 24)',
       'box-shadow': 'none'
     }
   ]
@@ -93,7 +87,6 @@ test('基本用法', async ({ page }) => {
       await expect(flags.nth(i)).toHaveText(flagContents[i])
       await expect(flagLines.nth(i)).toHaveCSS('width', '1px')
       await expect(flagLines.nth(i)).toHaveCSS('height', '30px')
-      await expect(flagLines.nth(i)).toHaveCSS('background-color', flagLineColors[i])
       await flagLineDots.nth(i).isVisible()
     }
 

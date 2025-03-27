@@ -18,11 +18,11 @@ export default {
   data() {
     return {
       statusMap: {
-        completed: '#f0f7ff',
-        doing: '#e8faff',
-        back: '#edf7df',
-        end: '#faad14',
-        cancel: '#f230301A'
+        completed: '#1890ff',
+        doing: '#86edff',
+        back: '#93fda6',
+        end: '#faad18',
+        cancel: '#f230305A'
       },
       milestoneData: [
         {

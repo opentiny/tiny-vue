@@ -5,10 +5,10 @@ test('dialogBox 基础用法', async ({ page }) => {
   await page.goto('dialog-box#basic-usage')
 
   await page.getByRole('button', { name: /Dialog/ }).click()
-  await page.getByRole('button', { name: '确定' }).click()
+  await page.getByRole('button', { name: '确 定' }).click()
 
   await page.getByRole('button', { name: /Dialog/ }).click()
-  await page.getByRole('button', { name: '取消' }).click()
+  await page.getByRole('button', { name: '取 消' }).click()
 
   // 点击 x 图标
   await page.getByRole('button', { name: /Dialog/ }).click()

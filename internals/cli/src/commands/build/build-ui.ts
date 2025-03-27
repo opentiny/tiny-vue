@@ -135,8 +135,16 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
   let versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
-  let themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
-  const isThemeOrRenderless = (key) => key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
+  let onlyHasV3Version = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
+  const isOnlyHasV3 = (key) => {
+    const onlyHasV3Packages = [
+      '@opentiny/vue-theme',
+      '@opentiny/vue-renderless',
+      '@opentiny/vue-hooks',
+      '@opentiny/utils'
+    ]
+    return onlyHasV3Packages.includes(key)
+  }
 
   return defineConfig({
     publicDir: false,
@@ -181,14 +189,14 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
 
             // 如果没有指定版本号，则按源码版本发布
             if (!buildTarget) {
-              themeAndRenderlessVersion = packageVersion
+              onlyHasV3Version = packageVersion
               versionTarget = `${vueVersion}${packageVersion.slice(1)}`
             }
 
             Object.entries(content.dependencies).forEach(([key, value]) => {
               // dependencies里的@opentiny,统一使用：~x.x.0
-              if (isThemeOrRenderless(key)) {
-                dependencies[key] = getPatchVersion(themeAndRenderlessVersion)
+              if (isOnlyHasV3(key)) {
+                dependencies[key] = getPatchVersion(onlyHasV3Version)
               } else if ((value as string).includes('workspace:~')) {
                 dependencies[key] = getPatchVersion(versionTarget)
               } else {

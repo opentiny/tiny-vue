@@ -2,7 +2,7 @@
   <div>
     <h4 class="title">开启编辑状态：</h4>
     <div class="btn-box">
-      <tiny-butotn @click="addRow">新增行</tiny-butotn>
+      <tiny-button @click="addRow">新增行</tiny-button>
     </div>
     <tiny-grid
       :data="tableData"
@@ -48,7 +48,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TinyGrid, TinyGridColumn, TinyButton as TinyButotn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton } from '@opentiny/vue'
 
 const insertGrid = ref('insertGrid')
 

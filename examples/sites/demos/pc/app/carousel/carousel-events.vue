@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .tiny-carousel__item h3 {
-  color: #475669;
+  color: #808080;
   opacity: 0.75;
   line-height: 150px;
   margin: 0;
@@ -44,11 +44,11 @@ export default {
 }
 
 .carousel-item-demo:nth-child(2n) {
-  background-color: #fafafa;
+  background-color: rgba(221, 221, 221, 0.2);
 }
 
 .carousel-item-demo:nth-child(2n + 1) {
-  background-color: #edf0f3;
+  background-color: rgba(221, 221, 221, 0.1);
 }
 .carousel-tip {
   margin: 16px 0 0;

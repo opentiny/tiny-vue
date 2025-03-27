@@ -10,11 +10,11 @@
  *
  */
 
-import * as util from '../util'
-import required from './required'
 import { format } from '../../date'
 import { isNullOrEmpty } from '../../string'
-import { isNumber, isObject, isDate, typeOf } from '../../type'
+import { isDate, isNumber, isObject, typeOf } from '../../type'
+import * as util from '../util'
+import required from './required'
 
 const emailReg1 = '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))'
 const emailReg = new RegExp(
@@ -85,7 +85,8 @@ const types = {
 
 export default function (rule, value, source, errors, options) {
   if (rule.required && value === undefined) {
-    required(rule, value, source, errors, options)
+    let checkValue = value
+    required({ rule, checkValue, source, errors, options })
     return
   }
 
@@ -120,9 +121,9 @@ export default function (rule, value, source, errors, options) {
 
   if (custom.includes(ruleType)) {
     if (!types[ruleType](value)) {
-      errors.push(util.format(options.messages.types[ruleType], '', rule.type))
+      errors.push(util.format(options.messages.types[ruleType], rule.type))
     }
   } else if (ruleType && typeof value !== rule.type) {
-    errors.push(util.format(options.messages.types[ruleType], '', rule.type))
+    errors.push(util.format(options.messages.types[ruleType], rule.type))
   }
 }

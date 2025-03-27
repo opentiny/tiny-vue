@@ -940,10 +940,10 @@ export const handleClose =
   }
 
 export const handleFocus =
-  ({ emit, vm, state, api }) =>
+  ({ emit, vm, state, api, props }) =>
   () => {
     const type = state.type
-    if (state.pickerDisabled) {
+    if (props.readonly || state.pickerDisabled) {
       return
     }
 

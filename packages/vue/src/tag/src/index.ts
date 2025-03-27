@@ -39,15 +39,14 @@ export const tagProps = {
   },
   beforeDelete: Function,
   value: [Number, String],
-
+  maxWidth: {
+    type: [String, Number],
+    default: null
+  },
   // mobile
   mini: {
     type: Boolean,
     default: false
-  },
-  maxWidth: {
-    type: [String, Number],
-    default: null
   }
 }
 

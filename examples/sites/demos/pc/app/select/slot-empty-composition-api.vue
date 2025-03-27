@@ -20,15 +20,14 @@ const value = ref('')
 .tiny-select {
   width: 280px;
 }
+
 .custom-empty {
-  padding: 87px 0;
   text-align: center;
 
   p {
-    font-size: 12px;
-    color: #595959;
-    line-height: 1.5;
+    color: var(--tv-color-text-secondary);
   }
+
   .tiny-button {
     margin-top: 8px;
   }

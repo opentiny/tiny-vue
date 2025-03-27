@@ -32,7 +32,8 @@ export default defineComponent({
     'effect',
     'value',
     'beforeDelete',
-    'onlyIcon'
+    'onlyIcon',
+    'maxWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
@@ -51,7 +52,8 @@ export default defineComponent({
       disabled,
       state,
       value,
-      onlyIcon
+      onlyIcon,
+      maxWidth
     } = this
 
     let styles = {}
@@ -76,11 +78,16 @@ export default defineComponent({
       }
     }
 
+    if (maxWidth) {
+      styles.maxWidth = maxWidth
+      styles.display = 'inline-block' // 显示省略号
+    }
+
     const tagElement =
       value || (slots.default && slots.default()) ? (
         <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
           {value ? <span>{value}</span> : slots.default && slots.default()}
-          {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
+          {closable && <icon-close class="tiny-svg-size tiny-tag__close" onClick={handleClose}></icon-close>}
         </span>
       ) : (
         <span></span>

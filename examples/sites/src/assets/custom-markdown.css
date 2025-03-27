@@ -4,7 +4,7 @@
 }
 
 /* 以下为 github-markdown-css 包的预制颜色，根据暗色主题再修改 */
-.dark .markdown-body {
+html.dark .markdown-body {
   color-scheme: dark;
   --color-prettylights-syntax-comment: #8b949e;
   --color-prettylights-syntax-constant: #79c0ff;
@@ -94,4 +94,27 @@ body .markdown-body {
   --color-accent-emphasis: #0969da;
   --color-attention-subtle: #fff8c5;
   --color-danger-fg: #cf222e;
+}
+.markdown-body code {
+  text-shadow: none !important;
+}
+
+html.dark.dark .markdown-body {
+  background-color: #000;
+}
+
+html.dark.dark .markdown-body pre {
+  background-color: #1a1a1a;
+}
+
+html.dark.dark .markdown-body code {
+  color: var(--tv-color-text);
+}
+
+html.dark.dark .markdown-body code .token.operator {
+  background-color: transparent;
+}
+
+html.dark.dark .markdown-body code .hljs-string {
+  color: #6f42c1;
 }

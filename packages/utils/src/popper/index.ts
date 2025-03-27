@@ -76,6 +76,10 @@ const isFixed = (el: HTMLElement) => {
     return true
   }
 
+  // 处理遇到 shadowRoot的情况
+  if (el.host) {
+    el = el.host
+  }
   return el.parentNode ? isFixed(el.parentNode as HTMLElement) : false
 }
 
@@ -900,5 +904,10 @@ export class PopperJS {
     boundaries.top = boundaries.top + padding
 
     return boundaries
+  }
+
+  // https://popper.js.org/docs/v2/lifecycle/#set-new-options
+  setOptions(options: PopperOptions) {
+    Object.assign(this._options, options)
   }
 }

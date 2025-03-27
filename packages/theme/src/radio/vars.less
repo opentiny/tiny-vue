@@ -12,41 +12,41 @@
 
 .inject-radio-vars() {
   // 单选框默认文本色
-  --tv-Radio-text-color: var(--tv-color-text);
+  --tv-Radio-text-color: var(--tv-color-text, #191919);
   // 单选框字号
-  --tv-Radio-font-size: var(--tv-font-size-sm);
+  --tv-Radio-font-size: var(--tv-font-size-sm, 12px);
   // 带边框类单选框圆角
-  --tv-Radio-bordered-border-radius: var(--tv-border-radius-md);
+  --tv-Radio-bordered-border-radius: var(--tv-border-radius-md, 6px);
   // 单选框默认边框色
-  --tv-Radio-bordered-border-color: var(--tv-color-border);
+  --tv-Radio-bordered-border-color: var(--tv-color-border, #c2c2c2);
   // 单选框默认禁用边框色
-  --tv-Radio-input-disabled-border-color: var(--tv-color-border-disabled);
+  --tv-Radio-input-disabled-border-color: var(--tv-color-border-disabled, #dbdbdb);
   // 单选框的选中状态时的边框色
-  --tv-Radio-bordered-checked-border-color: var(--tv-color-border-active-control);
+  --tv-Radio-bordered-checked-border-color: var(--tv-color-border-active-control, #1476ff);
   // 单选框的带有边框时悬浮时的边框色
-  --tv-Radio-bordered-hover-border-color: var(--tv-color-border-hover);
+  --tv-Radio-bordered-hover-border-color: var(--tv-color-border-hover, #191919);
   // 单选框的带有边框时选中时的边框色
-  --tv-Radio-bordered-checked-hover-border-color: var(--tv-color-border-active-control);
+  --tv-Radio-bordered-checked-hover-border-color: var(--tv-color-border-active-control, #1476ff);
   // 单选框的带有边框时激活时的边框色
-  --tv-Radio-bordered-active-border-color: var(--tv-color-border-active-control);
+  --tv-Radio-bordered-active-border-color: var(--tv-color-border-active-control, #1476ff);
   // 单选框的禁用状态时的背景色
-  --tv-Radio-input-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-Radio-input-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
   // 单选框为选中且禁用状态时的背景色
-  --tv-Radio-input-checked-disabled-bg-color: var(--tv-color-bg-secondary);
+  --tv-Radio-input-checked-disabled-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 单选框为选中且禁用状态时的边框色
   --tv-Radio-input-checked-disabled-border-color: var(--tv-color-bg-disabled-control-checked-1); // dark: 264dab, smb: #dbdbdb
   // 单选框为输入框样式时禁用状态时的文本色
-  --tv-Radio-input-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-Radio-input-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 单选框单选按钮的背景色
-  --tv-Radio-inner-bg-color: var(--tv-color-bg-secondary);
+  --tv-Radio-inner-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 单选框单选按钮选中时的背景色
-  --tv-Radio-inner-checked-bg-color: var(--tv-color-bg-active-control);
+  --tv-Radio-inner-checked-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 单选框单选按钮的尺寸
   --tv-Radio-inner-size: 8px;
   // 单选框单选按钮为选中且禁用状态时的背景色
   --tv-Radio-inner-checked-disabled-bg-color: var(--tv-color-bg-disabled-control-checked-1); // dark: 264dab, smb: #dbdbdb
   // 单选框单选按钮的边框圆角半径
-  --tv-Radio-inner-border-radius: var(--tv-border-radius-round);
+  --tv-Radio-inner-border-radius: var(--tv-border-radius-round, 999px);
   // 单选框单选按钮宽度
   --tv-Radio-inner-width: 16px;
   // 单选框单选按钮宽度
@@ -54,5 +54,5 @@
   // 单选组每个选项之间的间距
   --tv-Radio-margin-right: 24px;
   // 单选按钮底部外边距
-  --tv-Radio-button-margin-bottom: var(--tv-space-xl);
+  --tv-Radio-button-margin-bottom: var(--tv-space-xl, 16px);
 }

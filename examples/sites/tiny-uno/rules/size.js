@@ -5,6 +5,8 @@ const _s = {
 
   w: 'width',
   h: 'height',
+  mw: 'max-width',
+  mh: 'max-height',
 
   r: '-right',
   l: '-left',
@@ -18,9 +20,9 @@ export default function builder(option) {
   return {
     rules: [
       // 高宽， 字体，行高                       f12  lh20   w200  h200  box78
-      [/^(w|h)(\d+)$/, ([, attr, num]) => ({ [`${_s[attr]}`]: $t(num) })],
+      [/^(w|h|mw|mh)(\d+)$/, ([, attr, num]) => ({ [`${_s[attr]}`]: $t(num) })],
       // 高宽百分比                             wp33  hp50
-      [/^(w|h)p(\d+)$/, ([, attr, num]) => ({ [`${_s[attr]}`]: `${num}%` })],
+      [/^(w|h|mw|mh)p(\d+)$/, ([, attr, num]) => ({ [`${_s[attr]}`]: `${num}%` })],
 
       // 内外边距   *可负*                        m10  mr10 mt-10 mx20 my-10  p10 pr10
       [/^([mp])([rlbt]?)(-?\d+)$/, ([, attr, pos, num]) => ({ [`${_s[attr]}${pos ? _s[pos] : ''}`]: $t(num) })],

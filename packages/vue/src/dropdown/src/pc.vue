@@ -184,6 +184,7 @@ export default defineComponent({
         <tiny-button
           ref="trigger"
           round={round}
+          size={size}
           disabled={disabled}
           type={type}
           class={`tiny-dropdown__border ${state.visible ? 'is-expand' : ''}${
@@ -197,9 +198,7 @@ export default defineComponent({
       ) : (
         <span
           ref="trigger"
-          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${
-            disabled ? ' is-disabled' : ''
-          } ${triggerClass}`}>
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}>
           {prefixInner}
           {defaultTriggerElm}
           {suffixInner}

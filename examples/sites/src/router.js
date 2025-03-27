@@ -5,6 +5,7 @@ import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
 const Components = () => import('@/views/components-doc/index.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
+const Features = () => import('@/views/features.vue')
 
 const context = import.meta.env.VITE_CONTEXT
 
@@ -29,6 +30,13 @@ let routes = [
     component: Layout,
     name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
+  },
+  // 组件特性列表（不对外）
+  {
+    path: `${context}:all?/zh-CN/:theme/features`,
+    component: Layout,
+    name: 'features',
+    children: [{ name: 'Features', path: '', component: Features, meta: { title: '组件特性列表 | TinyVue' } }]
   },
   // 未匹配到目标地址时，进行路由重定向
   {

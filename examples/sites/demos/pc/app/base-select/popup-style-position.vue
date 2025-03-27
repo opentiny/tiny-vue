@@ -36,6 +36,6 @@ export default {
 
 <style>
 .drop {
-  background-color: #d5e8ff;
+  background-color: var(--tv-color-bg-3);
 }
 </style>

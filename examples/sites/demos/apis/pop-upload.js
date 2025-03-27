@@ -158,7 +158,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'string',
+          type: `'large' | 'medium' | 'small' | 'mini'`,
           defaultValue: '',
           desc: {
             'zh-CN': '设置组件大小',
