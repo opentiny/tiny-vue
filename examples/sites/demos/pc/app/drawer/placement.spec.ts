@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 test('抽屉方向', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('drawer#placement')
-
-  const drawer = page.locator('.tiny-drawer__main')
+  const demo = page.locator('#placement')
+  const drawer = demo.locator('.tiny-drawer__main')
 
   await page.getByRole('button', { name: 'left' }).click()
   await expect(drawer).toHaveCSS('left', '0px')
