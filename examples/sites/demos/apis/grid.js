@@ -384,7 +384,7 @@ export default {
         },
         {
           name: 'header-suffix-icon-absolute',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '表格属性 header-suffix-icon-absolute 设置为 true，表头后置图标使用绝对定位。默认值为 false',
@@ -508,7 +508,7 @@ export default {
         },
         {
           name: 'is-drag-header-sorting',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否拖拽表头调整列顺序。默认值为 false',
@@ -519,7 +519,7 @@ export default {
         },
         {
           name: 'is-multiple-history',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启模板管理服务端存储功能。默认值为 false',
@@ -641,7 +641,7 @@ export default {
         },
         {
           name: 'prefetch',
-          type: 'Boolean|Array',
+          type: 'boolean|Array',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启数据预加载',
@@ -779,7 +779,7 @@ export default {
         },
         {
           name: 'row-key',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否需要为每一行的 VNode 设置 key 属性（非特殊情况下没必要设置）',
