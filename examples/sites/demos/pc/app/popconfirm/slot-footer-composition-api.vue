@@ -5,7 +5,7 @@
         <tiny-button>悬浮我提示</tiny-button>
       </template>
       <template #footer>
-        <tiny-button @click="handleClose" round> 自定义关闭按钮 </tiny-button>
+        <tiny-button @click="handleClose"> 自定义关闭按钮 </tiny-button>
       </template>
     </tiny-popconfirm>
   </div>
