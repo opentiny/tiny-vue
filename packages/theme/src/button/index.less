@@ -225,11 +225,15 @@
   &[disabled][disabled][disabled][disabled][disabled] {
     color: var(--tv-Button-text-color-disabled); 
     border-color: var(--tv-Button-border-color-disabled);
+    background-color: var(--tv-Button-bg-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
     cursor: not-allowed;
 
     &.is-ghost {
       border-color: var(--tv-Button-border-color-ghost-disabled);
+    }
+    &.is-only-icon {
+      background-color: transparent;
     }
   }
 
