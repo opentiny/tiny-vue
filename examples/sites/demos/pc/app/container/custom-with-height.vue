@@ -49,27 +49,27 @@ export default {
 }
 
 .demo-container .tiny-container :deep(.tiny-container__header) {
-  background-color: #ecf8ff;
-  border: 3px solid #ffffff;
-  color: #5b90af;
+  background-color: var(--tv-color-info-bg-light);
+  border: 3px solid var(--tv-color-border-container);
+  color: var(--tv-color-info-text);
 }
 
 .demo-container .tiny-container :deep(.tiny-container__aside) {
-  background-color: #fff0f0;
-  border: 3px solid #ffffff;
-  color: #d27070;
+  background-color: var(--tv-color-error-bg-light);
+  border: 3px solid var(--tv-color-border-container);
+  color: var(--tv-color-error-text);
 }
 
 .demo-container .tiny-container :deep(.tiny-container__main) {
-  background-color: #fffdec;
-  border: 3px solid #ffffff;
-  color: #b1a859;
+  background-color: var(--tv-color-warn-bg-light);
+  border: 3px solid var(--tv-color-border-container);
+  color: var(--tv-color-warn-text);
 }
 
 .demo-container .tiny-container :deep(.tiny-container__footer) {
-  background-color: #e8ffed;
-  border: 3px solid #ffffff;
-  color: #84a18a;
+  background-color: var(--tv-color-success-bg-light);
+  border: 3px solid var(--tv-color-border-container);
+  color: var(--tv-color-success-text);
 }
 
 .demo-container .tiny-container :deep(.main .changePattern .tiny-radio) {
