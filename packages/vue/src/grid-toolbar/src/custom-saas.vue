@@ -714,8 +714,10 @@ export default defineComponent({
         this.hideOrShowColumns(false)
       }
     },
-    checkNode(node, data, checked) {
-      node.visible = checked
+    // 勿同步，tree组件check事件参数不一致
+    checkNode(node, data) {
+      const isCheck = data?.checkedNodes?.includes(node)
+      node.visible = isCheck
 
       if (node.children && Array.isArray(node.children)) {
         node.children.forEach((item) => {
@@ -795,14 +797,14 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-            ? [this.opt.asc, this.opt.cancelSort]
-            : [this.opt.asc, this.opt.desc]
+              ? [this.opt.asc, this.opt.cancelSort]
+              : [this.opt.asc, this.opt.desc]
         column.fixedOption =
           column.fixed === 'left'
             ? [this.opt.right, this.opt.cancelFixed]
             : column.fixed === 'right'
-            ? [this.opt.left, this.opt.cancelFixed]
-            : [this.opt.left, this.opt.right]
+              ? [this.opt.left, this.opt.cancelFixed]
+              : [this.opt.left, this.opt.right]
       })
     },
     initSortingColumns(columns) {
@@ -968,8 +970,8 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-            ? [this.opt.asc, this.opt.cancelSort]
-            : [this.opt.asc, this.opt.desc]
+              ? [this.opt.asc, this.opt.cancelSort]
+              : [this.opt.asc, this.opt.desc]
       }
     },
     // TODO: 待完善具体类型  vm dropdown组件示例
