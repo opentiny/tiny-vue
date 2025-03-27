@@ -31,10 +31,22 @@
           </div>
           <div class="tiny-popconfirm-popover__footer">
             <slot name="footer">
-              <tiny-button v-if="cancelButton" class="tiny-popconfirm-popover__cancel-button" size="mini" @click="hide">
+              <tiny-button
+                v-if="cancelButton"
+                class="tiny-popconfirm-popover__cancel-button"
+                size="mini"
+                round
+                @click="hide"
+              >
                 {{ t('ui.button.cancel') }}
               </tiny-button>
-              <tiny-button class="tiny-popconfirm-popover__confirm-button" size="mini" type="primary" @click="confirm">
+              <tiny-button
+                class="tiny-popconfirm-popover__confirm-button"
+                size="mini"
+                type="primary"
+                round
+                @click="confirm"
+              >
                 {{ t('ui.button.confirm') }}
               </tiny-button>
             </slot>
