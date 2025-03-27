@@ -271,7 +271,6 @@ const Methods = {
   handleTableData(force) {
     // 这里处理是否强制刷新afterFullData：经过筛选排序后的数据
     force && this.updateAfterFullData()
-
     // 判断是否有虚拟滚动，有即剪切数据
     this.tableData = sliceFullData(this)
 

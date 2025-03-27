@@ -74,7 +74,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onBeforeUnmount, onActivated, nextTick, watch, reactive } from 'vue'
+import { defineComponent, ref, computed, onBeforeUnmount, onActivated, nextTick, watch } from 'vue'
 import { $prefix, resolveTheme, useInstanceSlots, useRelation, hooks } from '@opentiny/vue-common'
 import { extend } from '@opentiny/utils'
 import Tooltip from '@opentiny/vue-tooltip'
@@ -195,192 +195,6 @@ function getTableStyles(tableVm) {
   }
 
   return style
-}
-
-const getTableData = () => {
-  return {
-    // 条件处理后数据
-    afterFullData: [],
-    // 分组表场景全量数据（包含虚拟行）
-    groupFullData: [],
-    elemStore: {},
-    // 表尾高度
-    footerHeight: 0,
-    // 缓存数据集 rowid --> { row, rowid: rowId, index }
-    fullAllDataRowIdData: {},
-    // 缓存数据集 row --> { row, rowid: rowId, index }
-    fullAllDataRowMap: new Map(),
-    // 缓存数据集 columnId --> { colid: column.id, column, index }
-    fullColumnIdData: {},
-    // 缓存数据集 column --> { colid: column.id, column, index }
-    fullColumnMap: new Map(),
-    fullDataRowIdData: {},
-    fullDataRowMap: new Map(),
-    // 缓存树形表格行数据以及其父级行数据的映射关系
-    parentRowMap: new Map(),
-    // 临时插入数据集
-    temporaryRows: [],
-    // 表头高度
-    headerHeight: 0,
-    // 最后滚动位置
-    lastScrollLeft: 0,
-    lastScrollTop: 0,
-    // 表格父容器的高度
-    parentHeight: 0,
-    scrollDirection: 'N', // N,X,Y （滚动方向）
-    // 存放横向 X 虚拟滚动相关的信息
-    scrollXStore: {},
-    // 存放纵向 Y 虚拟滚动相关信息
-    scrollYStore: {},
-    // 完整数据
-    tableFullData: [],
-    // 表格高度
-    tableHeight: 0,
-    // 表格宽度
-    tableWidth: 0,
-    // 存放 tooltip 相关信息
-    tooltipStore: {},
-    // 表格已挂载完成
-    afterMounted: false,
-    // 临时任务
-    tasks: {},
-    // 列初始就绪
-    isColumnInitReady: false,
-    // 列就绪
-    isColumnReady: false,
-    // 分组表场景是否具有虚拟行
-    hasVirtualRow: false,
-    // 是否是标签式用法场景
-    isTagUsageSence: false,
-    // 收集列信息（列数量和列顺序）
-    columnCollectKey: '',
-    // treeConfig.ordered的取值处理
-    treeOrdered: true
-  }
-}
-
-// 初始化表格状态数据
-const gridData = {
-  // 存储异步加载过的行\列数据
-  asyncRenderMap: {},
-  // 存放列相关的信息
-  columnStore: {
-    // 自适应的列表集合
-    autoList: [],
-    centerList: [],
-    // 左侧冻结列表集合
-    leftList: [],
-    // 右侧冻结列表集合
-    rightList: [],
-    // 固定像素宽度列表集合
-    pxList: [],
-    // 设置了最小宽度列表集合
-    pxMinList: [],
-    // 可调整列宽列表集合
-    resizeList: [],
-    // 百分比宽度列表集合
-    scaleList: [],
-    // 百分比最小宽度列表集合
-    scaleMinList: []
-  },
-  // 存放快捷菜单的信息
-  ctxMenuStore: {
-    list: [],
-    selectChild: null,
-    selected: null,
-    showChild: false,
-    style: null,
-    visible: false
-  },
-  // 当前行
-  currentRow: null,
-  // 存放可编辑相关信息
-  editStore: {
-    editorAutoRefreshKey: 0,
-    // 激活
-    actived: { column: null, row: null },
-    // 所有选中
-    checked: { columns: [], rows: [], tColumns: [], tRows: [] },
-    // 已复制源
-    copyed: { columns: [], cut: false, rows: [] },
-    indexs: { columns: [] },
-    insertList: [],
-    removeList: [],
-    // 选中源
-    selected: { column: null, row: null },
-    titles: { columns: [] }
-  },
-  // 已展开的行
-  expandeds: [],
-  // 当前选中的筛选列
-  filterStore: {
-    column: null,
-    condition: { input: '', relation: 'equals' },
-    id: '',
-    multi: false,
-    options: [],
-    visible: false
-  },
-  // 表尾合计数据
-  footerData: [],
-  // 所有列已禁用
-  headerCheckDisabled: false,
-  // 是否全选
-  isAllSelected: false,
-  // 多选属性，有选中且非全选状态
-  isIndeterminate: false,
-  // 是否存在横向滚动条
-  overflowX: false,
-  // 是否存在纵向滚动条
-  overflowY: true,
-  // 存储滚动加载，上次滚动的位置
-  scrollLoadStore: { bodyHeight: 0, scrollHeight: 0 },
-  // 是否启用了横向 X 可视渲染方式加载
-  scrollXLoad: false,
-  // 是否启用了纵向 Y 可视渲染方式加载
-  scrollYLoad: false,
-  // 横向滚动条的高度
-  scrollbarHeight: 0,
-  // 纵向滚动条的宽度
-  scrollbarWidth: 0,
-  // 单选属性，选中行
-  selectRow: null,
-  // 存放多选工具栏相关信息
-  selectToolbarStore: {
-    layout: { height: 0, left: 0, top: 0, width: 0, zIndex: 1 },
-    visible: false
-  },
-  // 多选属性，已选中的列
-  selection: [],
-  // 渲染中的数据
-  tableData: [],
-  // tooltip提示内容
-  tooltipContent: '',
-  // tooltip提示内容是否处理换行字符
-  tooltipContentPre: false,
-  // 已展开树节点
-  treeExpandeds: [],
-  // 树节点不确定状态的列表
-  treeIndeterminates: [],
-  // 存放数据校验相关信息
-  validStore: {
-    column: null,
-    content: '',
-    isArrow: false,
-    row: null,
-    rule: null,
-    visible: false
-  },
-  // 校验tip提示内容
-  validTipContent: '',
-  // 在编辑模式下 单元格在失去焦点验证的状态
-  validatedMap: {},
-  // 表尾边框线是否显示和位置
-  showFooterBorder: false,
-  footerBorderBottom: 0,
-  tableBodyHeight: 0,
-  // 表格父容器的高度
-  parentHeight: 0
 }
 
 const bindEvent = (ctx) => {
@@ -609,7 +423,7 @@ export default defineComponent({
     // 自动清空键盘复制
     autoClearKeyboardCopy: { type: Boolean, default: false },
     // 自定义列组件名称（列表）
-    customColumnNames: { type: [String, Array], default: GlobalConfig.defaultColumnName }
+    customColumnNames: { type: [String, Array], default: defaultColumnName }
   },
   provide() {
     return {
@@ -633,11 +447,181 @@ export default defineComponent({
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
 
-    // 状态初始化
-    const state = reactive({
-      ...gridData,
-      ...getTableData()
+    // 条件处理后数据
+    const afterFullData = ref([])
+    // 分组表场景全量数据（包含虚拟行）
+    const groupFullData = ref([])
+    const elemStore = ref({})
+    // 表尾高度
+    const footerHeight = ref(0)
+    // 缓存数据集 rowid --> { row, rowid: rowId, index }
+    const fullAllDataRowIdData = ref({})
+    // 缓存数据集 row --> { row, rowid: rowId, index }
+    const fullAllDataRowMap = new Map()
+    // 缓存数据集 columnId --> { colid: column.id, column, index }
+    const fullColumnIdData = ref({})
+    // 缓存数据集 column --> { colid: column.id, column, index }
+    const fullColumnMap = new Map()
+    const fullDataRowIdData = ref({})
+    const fullDataRowMap = new Map()
+    // 缓存树形表格行数据以及其父级行数据的映射关系
+    const parentRowMap = new Map()
+    // 临时插入数据集
+    const temporaryRows = ref([])
+    // 表头高度
+    const headerHeight = ref(0)
+    // 最后滚动位置
+    const lastScrollLeft = ref(0)
+    const lastScrollTop = ref(0)
+    // 表格父容器的高度
+    const parentHeight = ref(0)
+    const scrollDirection = ref('N') // N,X,Y （滚动方向）
+    // 存放横向 X 虚拟滚动相关的信息
+    const scrollXStore = ref({})
+    // 存放纵向 Y 虚拟滚动相关信息
+    const scrollYStore = ref({})
+    // 完整数据
+    const tableFullData = ref([])
+    // 表格高度
+    const tableHeight = ref(0)
+    // 表格宽度
+    const tableWidth = ref(0)
+    // 存放 tooltip 相关信息
+    const tooltipStore = ref({})
+    // 表格已挂载完成
+    const afterMounted = ref(false)
+    // 临时任务
+    const tasks = ref({})
+    // 列初始就绪
+    const isColumnInitReady = ref(false)
+    // 列就绪
+    const isColumnReady = ref(false)
+    // 分组表场景是否具有虚拟行
+    const hasVirtualRow = ref(false)
+    // 是否是标签式用法场景
+    const isTagUsageSence = ref(false)
+    // 收集列信息（列数量和列顺序）
+    const columnCollectKey = ref('')
+    // treeConfig.ordered的取值处理
+    const treeOrdered = ref(true)
+    // 存储异步加载过的行\列数据
+    const asyncRenderMap = ref({})
+    // 存放列相关的信息
+    const columnStore = ref({
+      // 自适应的列表集合
+      autoList: [],
+      centerList: [],
+      // 左侧冻结列表集合
+      leftList: [],
+      // 右侧冻结列表集合
+      rightList: [],
+      // 固定像素宽度列表集合
+      pxList: [],
+      // 设置了最小宽度列表集合
+      pxMinList: [],
+      // 可调整列宽列表集合
+      resizeList: [],
+      // 百分比宽度列表集合
+      scaleList: [],
+      // 百分比最小宽度列表集合
+      scaleMinList: []
     })
+    // 存放快捷菜单的信息
+    const ctxMenuStore = ref({
+      list: [],
+      selectChild: null,
+      selected: null,
+      showChild: false,
+      style: null,
+      visible: false
+    })
+    // 当前行
+    const currentRow = ref(null)
+    // 存放可编辑相关信息
+    const editStore = ref({
+      editorAutoRefreshKey: 0,
+      // 激活
+      actived: { column: null, row: null },
+      // 所有选中
+      checked: { columns: [], rows: [], tColumns: [], tRows: [] },
+      // 已复制源
+      copyed: { columns: [], cut: false, rows: [] },
+      indexs: { columns: [] },
+      insertList: [],
+      removeList: [],
+      // 选中源
+      selected: { column: null, row: null },
+      titles: { columns: [] }
+    })
+    // 已展开的行
+    const expandeds = ref([])
+    // 当前选中的筛选列
+    const filterStore = ref({
+      column: null,
+      condition: { input: '', relation: 'equals' },
+      id: '',
+      multi: false,
+      options: [],
+      visible: false
+    })
+    // 表尾合计数据
+    const footerData = ref([])
+    // 所有列已禁用
+    const headerCheckDisabled = ref(false)
+    // 是否全选
+    const isAllSelected = ref(false)
+    // 多选属性，有选中且非全选状态
+    const isIndeterminate = ref(false)
+    // 是否存在横向滚动条
+    const overflowX = ref(false)
+    // 是否存在纵向滚动条
+    const overflowY = ref(true)
+    // 存储滚动加载，上次滚动的位置
+    const scrollLoadStore = ref({ bodyHeight: 0, scrollHeight: 0 })
+    // 是否启用了横向 X 可视渲染方式加载
+    const scrollXLoad = ref(false)
+    // 是否启用了纵向 Y 可视渲染方式加载
+    const scrollYLoad = ref(false)
+    // 横向滚动条的高度
+    const scrollbarHeight = ref(0)
+    // 纵向滚动条的宽度
+    const scrollbarWidth = ref(0)
+    // 单选属性，选中行
+    const selectRow = ref(null)
+    // 存放多选工具栏相关信息
+    const selectToolbarStore = ref({
+      layout: { height: 0, left: 0, top: 0, width: 0, zIndex: 1 },
+      visible: false
+    })
+    // 多选属性，已选中的列
+    const selection = ref([])
+    // 渲染中的数据
+    const tableData = ref([])
+    // tooltip提示内容
+    const tooltipContent = ref('')
+    // tooltip提示内容是否处理换行字符
+    const tooltipContentPre = ref(false)
+    // 已展开树节点
+    const treeExpandeds = ref([])
+    // 树节点不确定状态的列表
+    const treeIndeterminates = ref([])
+    // 存放数据校验相关信息
+    const validStore = ref({
+      column: null,
+      content: '',
+      isArrow: false,
+      row: null,
+      rule: null,
+      visible: false
+    })
+    // 校验tip提示内容
+    const validTipContent = ref('')
+    // 在编辑模式下 单元格在失去焦点验证的状态
+    const validatedMap = ref({})
+    // 表尾边框线是否显示和位置
+    const showFooterBorder = ref(false)
+    const footerBorderBottom = ref(0)
+    const tableBodyHeight = ref(0)
 
     // 创建ID
     const id = ref(uniqueId())
@@ -647,7 +631,6 @@ export default defineComponent({
     const tableFullColumn = ref([])
     const visibleColumn = ref([])
     const tableColumn = ref([])
-
     // 主题相关
     const tinyTheme = ref(resolveTheme(props))
 
@@ -677,7 +660,7 @@ export default defineComponent({
     })
 
     const computerTableBodyHeight = computed(() => {
-      return state.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${state.tableBodyHeight}px`
+      return tableBodyHeight.value === 0 ? 'calc(100% - 36px)' : `${tableBodyHeight.value}px`
     })
 
     const vSize = computed(() => {
@@ -706,7 +689,7 @@ export default defineComponent({
     const tableClasses = computed(() =>
       getTableClasses({
         ...props,
-        ...state,
+
         isShapeTable: isShapeTable.value,
         vSize: vSize.value,
         isGroup: isGroup.value,
@@ -728,13 +711,13 @@ export default defineComponent({
     })
 
     const resizeBarStyle = computed(() => {
-      return state.overflowX ? { 'padding-bottom': `${state.scrollbarHeight}px` } : null
+      return overflowX.value ? { 'padding-bottom': `${scrollbarHeight.value}px` } : null
     })
 
     // 多端表格属性
     const mfTableProps = computed(() => {
       return {
-        tableData: state.tableData,
+        tableData: tableData.value,
         tableColumn: tableColumn.value,
         visibleColumn: visibleColumn.value,
         collectColumn: collectColumn.value,
@@ -751,7 +734,7 @@ export default defineComponent({
     // 表头属性
     const headerProps = computed(() => {
       return {
-        tableData: state.tableData,
+        tableData: tableData.value,
         tableColumn: tableColumn.value,
         visibleColumn: visibleColumn.value,
         collectColumn: collectColumn.value,
@@ -764,7 +747,7 @@ export default defineComponent({
     // 表体属性
     const bodyProps = computed(() => {
       return {
-        tableData: state.tableData,
+        tableData: tableData.value,
         tableColumn: tableColumn.value,
         visibleColumn: visibleColumn.value,
         collectColumn: collectColumn.value,
@@ -777,7 +760,7 @@ export default defineComponent({
     // 表尾属性
     const footerProps = computed(() => {
       return {
-        footerData: state.footerData,
+        footerData: footerData.value,
         footerMethod: props.footerMethod,
         tableColumn: tableColumn.value,
         visibleColumn: visibleColumn.value,
@@ -790,8 +773,8 @@ export default defineComponent({
       return extend(
         true,
         {
-          content: state.tooltipContent,
-          pre: state.tooltipContentPre,
+          content: tooltipContent.value,
+          pre: tooltipContentPre.value,
           placement: 'right',
           type: props.tooltipConfig.effect ? undefined : 'normal'
         },
@@ -806,7 +789,7 @@ export default defineComponent({
           isArrow: false,
           placement: 'top',
           type: 'error',
-          content: state.validTipContent
+          content: validTipContent.value
         },
         props.tooltipConfig
       )
@@ -821,7 +804,7 @@ export default defineComponent({
     })
 
     const selectToolbarStyle = computed(() => {
-      const { visible, layout } = state.selectToolbarStore
+      const { visible, layout } = selectToolbarStore.value
       return [
         layout,
         {
@@ -843,9 +826,12 @@ export default defineComponent({
     })
 
     const isCtxMenu = computed(() => {
-      return state.ctxMenuStore?.list?.some((item) => item.length > 0)
+      return ctxMenuStore.value?.list?.some((item) => item.length > 0)
     })
 
+    const sortOpts = computed(() => {
+      return extend(true, {}, GlobalConfig.sortConfig, props.sortConfig)
+    })
     // 初始化列
     const initColumns = () => {
       // 使用 useRelation 进行列关系处理
@@ -858,8 +844,8 @@ export default defineComponent({
         onChange: () => {
           const collectKey = instance.computeCollectKey()
 
-          if (collectKey !== state.columnCollectKey) {
-            state.columnCollectKey = collectKey
+          if (collectKey !== columnCollectKey.value) {
+            columnCollectKey.value = collectKey
             instance.assembleColumns()
           }
         }
@@ -891,6 +877,13 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => collectColumn.value,
+      (value) => {
+        instance.watchColumn(value)
+      }
+    )
+
     // 生命周期钩子
     onBeforeUnmount(() => {
       const tableWrapper = instance.$refs.tableWrapper
@@ -911,12 +904,10 @@ export default defineComponent({
     })
 
     onActivated(() => {
-      const { lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad } = state
-
-      if (lastScrollLeft || lastScrollTop) {
-        instance.scrollTo(lastScrollLeft, lastScrollTop)
-        scrollXLoad && instance.triggerScrollXEvent()
-        scrollYLoad && instance.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
+      if (lastScrollLeft.value || lastScrollTop.value) {
+        instance.scrollTo(lastScrollLeft.value, lastScrollTop.value)
+        scrollXLoad.value && instance.triggerScrollXEvent()
+        scrollYLoad.value && instance.triggerScrollYEvent({ target: { scrollTop: lastScrollTop.value } })
       }
 
       bindEvent(instance)
@@ -930,8 +921,8 @@ export default defineComponent({
       verifyConfig(instance)
 
       // 合并用户传递过来的虚拟滚动相关逻辑
-      mergeScrollDirStore(optimizeProps.scrollX, state.scrollXStore)
-      mergeScrollDirStore(optimizeProps.scrollY, state.scrollYStore)
+      mergeScrollDirStore(optimizeProps.scrollX, scrollXStore.value)
+      mergeScrollDirStore(optimizeProps.scrollY, scrollYStore.value)
 
       // 合并树表配置项
       mergeTreeConfig(instance)
@@ -959,7 +950,7 @@ export default defineComponent({
     nextTick().then(() => {
       // 初始化表格
       initialize()
-      state.afterMounted = true
+      afterMounted.value = true
 
       if (props.autoResize && TINYGrid._resize) {
         instance.bindResize()
@@ -967,20 +958,82 @@ export default defineComponent({
 
       setTimeout(() => {
         const tableFooter = instance.$refs.tableFooter
-        state.showFooterBorder = !!tableFooter
-        state.footerBorderBottom = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
+        showFooterBorder.value = !!tableFooter
+        footerBorderBottom.value = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
       })
     })
     const tableListeners = getListeners(attrs, listeners)
     return {
-      // 状态数据
-      ...state,
-      // 计算属性
-      id,
-      collectColumn,
+      afterFullData,
+      afterMounted,
+      asyncRenderMap,
+      columnCollectKey,
+      columnStore,
+      ctxMenuStore,
+      currentRow,
+      editStore,
+      expandeds,
+      filterStore,
+      footerData,
+      headerCheckDisabled,
+      isAllSelected,
+      isIndeterminate,
+      overflowX,
+      overflowY,
+      scrollLoadStore,
+      scrollXLoad,
+      scrollYLoad,
+      scrollbarHeight,
+      scrollbarWidth,
+      selectRow,
+      selectToolbarStore,
+      selection,
+      tableData,
+      tooltipContent,
+      tooltipContentPre,
+      treeExpandeds,
+      treeIndeterminates,
+      validStore,
+      validTipContent,
+      validatedMap,
+      showFooterBorder,
+      footerBorderBottom,
+      tableBodyHeight,
+      parentHeight,
+      fullDataRowIdData,
+      tableListeners,
+      groupFullData,
+      elemStore,
+      fullAllDataRowIdData,
+      fullAllDataRowMap,
+      fullColumnIdData,
+      fullColumnMap,
+      fullDataRowMap,
+      parentRowMap,
+      temporaryRows,
+      headerHeight,
+      lastScrollLeft,
+      lastScrollTop,
+      scrollDirection,
+      scrollXStore,
+      scrollYStore,
+      tableFullData,
+      tableHeight,
+      tableWidth,
+      footerHeight,
+      tooltipStore,
       tableFullColumn,
       visibleColumn,
       tableColumn,
+      tasks,
+      isColumnInitReady,
+      isColumnReady,
+      hasVirtualRow,
+      isTagUsageSence,
+      treeOrdered,
+      collectColumn,
+      // 计算属性
+      id,
       tinyTheme,
       isShapeTable,
       isCardOrListView,
@@ -1008,7 +1061,7 @@ export default defineComponent({
       selectToolbarStyle,
       staticClass,
       emptyText,
-      tableListeners
+      sortOpts
     }
   }
 })
