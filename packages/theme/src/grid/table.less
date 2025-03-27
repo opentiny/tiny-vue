@@ -30,7 +30,7 @@
 
   // 展开行背景颜色
   .@{grid-prefix-cls}-body__expanded-row {
-    background-color: var(--tv-Grid-gray-bg-color);
+    background-color: var(--tv-Grid-expanded-row-bg-color);
   }
 
   // 显示表尾
@@ -482,6 +482,11 @@
   & &-header__column {
     padding: var(--tv-Grid-header-padding-y) var(--tv-Grid-cell-padding-x);
     height: var(--tv-Grid-header-height);
+
+    svg {
+      fill: var(--tv-Grid-icon-color);
+    }
+
     // 文字居中
     &.col__center {
       .@{grid-prefix-cls}-cell {
@@ -832,7 +837,11 @@
 
           svg {
             font-size: var(--tv-Grid-icon-size);
-            fill: var(--tv-Grid-text-color);
+            fill: var(--tv-Grid-icon-color);
+
+            &:hover {
+              fill: var(--tv-Grid-icon-color-hover);
+            }
           }
         }
       }
