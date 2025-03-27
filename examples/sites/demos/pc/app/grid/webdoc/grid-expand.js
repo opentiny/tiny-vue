@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'expand-has-row-expand',
+      demoId: 'expand-has-row-expand',
       'name': { 'zh-CN': '展开行', 'en-US': 'Check whether the row is expanded.' },
       'desc': {
         'zh-CN': `
@@ -13,10 +13,10 @@ export default {
         'en-US':
           '<p>You can invoke the <code>hasRowExpand(row)</code> method to check whether a row is expanded. The row parameter is the row data object. </p>\n'
       },
-      'codeFiles': ['expand/has-row-expand.vue']
+      codeFiles: ['expand/has-row-expand.vue']
     },
     {
-      'demoId': 'expand-expand-config',
+      demoId: 'expand-expand-config',
       'name': { 'zh-CN': '展开行配置项', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN': `
@@ -26,20 +26,20 @@ export default {
         `,
         'en-US': '<p>Table property<code>expand-config</code>Set the configuration item of the expanded line. </p>\n'
       },
-      'codeFiles': ['expand/expand-config.vue']
+      codeFiles: ['expand/expand-config.vue']
     },
     {
-      'demoId': 'expand-nested-grid',
+      demoId: 'expand-nested-grid',
       'name': { 'zh-CN': '嵌套表格', 'en-US': 'Nested Table' },
       'desc': {
         'zh-CN': '<p>通过在默认插槽 <code>default</code>中使用表格组件，实现嵌套表格功能。</p>\n',
         'en-US':
           '<p>Implements the nested table function by using the table component in the default slot <code>default</code>. </p>\n'
       },
-      'codeFiles': ['expand/nested-grid.vue']
+      codeFiles: ['expand/nested-grid.vue']
     },
     {
-      'demoId': 'expand-set-row-expansion',
+      demoId: 'expand-set-row-expansion',
       'name': { 'zh-CN': '展开行手动操作', 'en-US': 'Set to expand a specified line' },
       'desc': {
         'zh-CN': `
@@ -50,7 +50,7 @@ export default {
         'en-US':
           '<p>You can invoke the <code>setRowExpansion(rows, checked)</code> method to expand a specified row. The second parameter specifies whether to expand a specified row. When expanding a specified row, you can invoke the clearRowExpand() method to close the expanded row. </p>\n'
       },
-      'codeFiles': ['expand/set-row-expansion.vue']
+      codeFiles: ['expand/set-row-expansion.vue']
     }
   ],
   apis: [{ 'name': 'grid-expand', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

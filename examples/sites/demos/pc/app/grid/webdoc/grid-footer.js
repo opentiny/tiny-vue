@@ -3,25 +3,25 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'footer-footer-summation-empty',
+      demoId: 'footer-footer-summation-empty',
       'name': { 'zh-CN': '表尾统计（空数据）', 'en-US': 'Table tail statistics (empty data)' },
       'desc': {
         'zh-CN': '通过 <code>footer-method</code> 和 <code>show-footer</code> 配置自定义统计。',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['footer/footer-summation-empty.vue']
+      codeFiles: ['footer/footer-summation-empty.vue']
     },
     {
-      'demoId': 'footer-configuration-summary',
+      demoId: 'footer-configuration-summary',
       'name': { 'zh-CN': '配置式的统计', 'en-US': 'Set Profile Statistics' },
       'desc': {
         'zh-CN': '<p>通过 <code>summary-config</code> 设置配置式的统计。</p>\n',
         'en-US': '<p>Set the profile statistics using <code>summary-config</code>. </p>\n'
       },
-      'codeFiles': ['footer/configuration-summary.vue']
+      codeFiles: ['footer/configuration-summary.vue']
     },
     {
-      'demoId': 'footer-footer-row-or-column-span',
+      demoId: 'footer-footer-row-or-column-span',
       'name': { 'zh-CN': '表尾合并行或列', 'en-US': 'Merge Rows or Columns at the Table Foot' },
       'desc': {
         'zh-CN':
@@ -29,10 +29,10 @@ export default {
         'en-US':
           '<p>Use <code>footer-method</code> and <code>footer-span-method</code> to set the total row or column logic of the table tail. <code>show-footer</code></p>\n must be configured'
       },
-      'codeFiles': ['footer/footer-row-or-column-span.vue']
+      codeFiles: ['footer/footer-row-or-column-span.vue']
     },
     {
-      'demoId': 'update-footer',
+      demoId: 'update-footer',
       'name': { 'zh-CN': '手动更新表尾数据', 'en-US': 'Manually Update Footer Data' },
       'desc': {
         'zh-CN':
@@ -40,7 +40,7 @@ export default {
         'en-US':
           '<p>By default, footer data is only updated when editing loses focus. You can manually update footer data using the <code>updateFooter</code> method.</p>\n'
       },
-      'codeFiles': ['footer/update-footer.vue']
+      codeFiles: ['footer/update-footer.vue']
     }
   ],
   apis: [{ 'name': 'grid-footer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
