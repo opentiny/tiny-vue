@@ -296,7 +296,7 @@ export default defineComponent({
                                 on: {
                                   click: this.cancelEvent
                                 },
-                                props: { ...cancelButtonProps }
+                                props: { round: true, ...cancelButtonProps }
                               },
                               cancelButtonText
                             )
@@ -306,6 +306,7 @@ export default defineComponent({
                           {
                             props: {
                               type: 'primary',
+                              round: true,
                               ...confirmButtonProps
                             },
                             on: {
