@@ -76,6 +76,10 @@
     margin: var(--tv-SelectDropdown-search-margin);
     width: var(--tv-SelectDropdown-search-width);
 
+    &:hover .tiny-input__inner:not(:disabled) {
+      border-color: var(--tv-SelectDropdown-border-color-divider);
+    }
+
     .@{input-prefix-cls}__inner {
       padding: var(--tv-SelectDropdown-search-padding);
       border-color: var(--tv-SelectDropdown-border-color-divider);
