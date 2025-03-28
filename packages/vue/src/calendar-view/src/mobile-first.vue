@@ -1,13 +1,6 @@
 <template>
   <div data-tag="tiny-calendar-view" class="w-full h-auto">
-    <tiny-tooltip
-      ref="tooltip"
-      v-model="state.eventTipVisible"
-      popper-class="absolute max-w-[theme(spacing.80)]"
-      :manual="true"
-      effect="light"
-      placement="right"
-    >
+    <tiny-tooltip ref="tooltip" popper-class="absolute max-w-[theme(spacing.80)]" effect="light" placement="right">
       <template #content>
         <div class="p-2 max-h-[80vh] overflow-auto">
           <div class="px-1.5 mb-1.5 border-l-2 border-color-brand">{{ state.eventTipContent.title }}</div>
