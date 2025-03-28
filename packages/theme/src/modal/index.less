@@ -77,6 +77,10 @@
           .@{modal-prefix-cls}__status-wrapper {
             font-size: var(--tv-Modal-box-status-icon-font-size);
             margin-right: var(--tv-Modal-box-status-icon-margin-right);
+
+            .@{modal-prefix-cls}-svg__refresh {
+              fill: var(--tv-Modal-loading-status-icon-color);
+            }
           }
           .@{modal-prefix-cls}__title {
             color: var(--tv-Modal-box-title-text-color);
@@ -288,6 +292,10 @@
 
             svg {
               font-size: var(--tv-Modal-msg-box-status-icon-size);
+            }
+
+            .@{modal-prefix-cls}-svg__refresh {
+              fill: var(--tv-Modal-loading-status-icon-color);
             }
           }
           .@{modal-prefix-cls}__content {

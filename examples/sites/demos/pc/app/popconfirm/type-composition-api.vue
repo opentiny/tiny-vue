@@ -24,7 +24,7 @@
       </template>
     </tiny-popconfirm>
 
-    <tiny-popconfirm :title="title" :type="TinyIconDel" :message="message">
+    <tiny-popconfirm :title="title" :type="TinyIconDel" :message="message" custom-class="custom-icon">
       <template #reference>
         <tiny-button>自定义</tiny-button>
       </template>
@@ -49,5 +49,11 @@ const TinyIconDel = iconDel()
 
 .tiny-button {
   margin-bottom: 10px;
+}
+</style>
+
+<style>
+.custom-icon svg {
+  fill: var(--tv-color-icon-active);
 }
 </style>

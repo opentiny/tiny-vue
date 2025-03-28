@@ -120,7 +120,7 @@ import { TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 .row-bg {
   padding: 10px 0;
-  background-color: #f9fafc;
+  background-color: var(--tv-color-bg);
 }
 
 .row-bg .col {

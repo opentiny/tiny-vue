@@ -101,7 +101,7 @@ function asteriskMethod({ column }) {
 .demo-body {
   height: 400px;
   overflow: scroll;
-  background: #e5edbc;
+  background: var(--tv-color-warn-bg-light, #ffebd1);
 }
 .demo-body > .demo-container {
   height: 3000px;

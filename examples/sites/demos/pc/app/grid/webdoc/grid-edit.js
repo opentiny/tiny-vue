@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'edit-editing',
+      demoId: 'edit-editing',
       'name': { 'zh-CN': '编辑方式', 'en-US': 'Cell Edit' },
       'desc': {
         'zh-CN': `
@@ -12,10 +12,10 @@ export default {
         'en-US':
           "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'cell'</code> in the attribute object to enable line editing, that is, <code>:edit-config=&quot;{mode: 'cell'}&; </code>. \nTable Column Attribute Settings<code>show-icon</code> Sets whether to display the editing icon in the column header. This parameter is valid during editing. </p>\n"
       },
-      'codeFiles': ['edit/editing.vue']
+      codeFiles: ['edit/editing.vue']
     },
     {
-      'demoId': 'edit-revert-data',
+      demoId: 'edit-revert-data',
       'name': { 'zh-CN': '还原更改', 'en-US': 'Restore Changes' },
       'desc': {
         'zh-CN':
@@ -23,20 +23,20 @@ export default {
         'en-US':
           '<p>Invoke the <code>revertData(rows, field)</code> method to restore the data of a specified row or the entire table. If rows is an object, one row of data is restored. If rows is an array, multiple rows of data are restored. The field is optional. If no parameter is specified, the entire table data is restored. </p>\n'
       },
-      'codeFiles': ['edit/revert-data.vue']
+      codeFiles: ['edit/revert-data.vue']
     },
     {
-      'demoId': 'edit-has-row-change',
+      demoId: 'edit-has-row-change',
       'name': { 'zh-CN': '检查数据是否改变', 'en-US': 'Check whether data is changed.' },
       'desc': {
         'zh-CN': '<p> <code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n',
         'en-US':
           '<p> <code>hasRowChange(row, field)</code> Checks whether the row or column data is changed. The field is optional. </p>\n'
       },
-      'codeFiles': ['edit/has-row-change.vue']
+      codeFiles: ['edit/has-row-change.vue']
     },
     {
-      'demoId': 'edit-trigger-mode-hm-editing',
+      demoId: 'edit-trigger-mode-hm-editing',
       'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
       'desc': {
         'zh-CN': `<p> <code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
@@ -44,10 +44,10 @@ export default {
           `,
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['edit/trigger-mode-hm-editing.vue']
+      codeFiles: ['edit/trigger-mode-hm-editing.vue']
     },
     {
-      'demoId': 'edit-custom-editing',
+      demoId: 'edit-custom-editing',
       'name': { 'zh-CN': '自定义编辑规则', 'en-US': 'Custom Editing Rule' },
       'desc': {
         'zh-CN':
@@ -55,10 +55,10 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>activeMethod</code> custom editing rules in the attribute object. </p>\n'
       },
-      'codeFiles': ['edit/custom-editing.vue']
+      codeFiles: ['edit/custom-editing.vue']
     },
     {
-      'demoId': 'edit-editor-is-valid-always',
+      demoId: 'edit-editor-is-valid-always',
       'name': { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
       'desc': {
         'zh-CN':
@@ -66,10 +66,10 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode and configure the <code>edit-rules</code> object to set the validation object and validation rule. Set <code>isValidAlways</code> in the <code>editor</code> object to enable real-time editing verification. </p>\n'
       },
-      'codeFiles': ['edit/editor-is-valid-always.vue']
+      codeFiles: ['edit/editor-is-valid-always.vue']
     },
     {
-      'demoId': 'edit-status-of-editing',
+      demoId: 'edit-status-of-editing',
       'name': { 'zh-CN': '开启和关闭编辑状态', 'en-US': 'Enable editing' },
       'desc': {
         'zh-CN':
@@ -77,10 +77,10 @@ export default {
         'en-US':
           '<p>Table attribute settings<code>edit-config</code>Enable the editing mode, Set <code>showStatus</code> in the attribute object to enable or disable the cell update status (inverted triangle update flag in the upper left corner of the cell). The default value is <code>true</code>. </p>\n'
       },
-      'codeFiles': ['edit/status-of-editing.vue']
+      codeFiles: ['edit/status-of-editing.vue']
     },
     {
-      'demoId': 'edit-grid-equals',
+      demoId: 'edit-grid-equals',
       'name': { 'zh-CN': '自定义比较方法', 'en-US': 'Enable editing' },
       'desc': {
         'zh-CN':
@@ -88,10 +88,10 @@ export default {
         'en-US':
           '<p>Table attribute settings<code>edit-config</code>Enable the editing mode, Set <code>showStatus</code> in the attribute object to enable or disable the cell update status (inverted triangle update flag in the upper left corner of the cell). The default value is <code>true</code>. </p>\n'
       },
-      'codeFiles': ['edit/grid-equals.vue']
+      codeFiles: ['edit/grid-equals.vue']
     },
     {
-      'demoId': 'edit-trigger-mode-for-editing',
+      demoId: 'edit-trigger-mode-for-editing',
       'name': { 'zh-CN': '触发编辑方式', 'en-US': 'Click to trigger editing' },
       'desc': {
         'zh-CN':
@@ -99,7 +99,7 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>trigger</code> in the attribute object to modify the triggering mode. The options are as follows: <code>click trigger (click), double-click trigger (dblclick), and manual trigger (manual)</code>. The default value is <code>click trigger</code>. </p>\n'
       },
-      'codeFiles': ['edit/trigger-mode-for-editing.vue']
+      codeFiles: ['edit/trigger-mode-for-editing.vue']
     }
   ],
   apis: [{ 'name': 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

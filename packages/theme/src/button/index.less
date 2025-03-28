@@ -223,7 +223,7 @@
   &.is-disabled.is-disabled.is-disabled.is-disabled.is-disabled,
   &.is-loading.is-loading.is-loading.is-loading.is-loading,
   &[disabled][disabled][disabled][disabled][disabled] {
-    color: var(--tv-Button-text-color-disabled);
+    color: var(--tv-Button-text-color-disabled); 
     background-color: var(--tv-Button-bg-color-disabled);
     border-color: var(--tv-Button-border-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
@@ -231,6 +231,10 @@
 
     &.is-ghost {
       border-color: var(--tv-Button-border-color-ghost-disabled);
+    }
+    // 仅图标，禁用时无背景
+    &.is-only-icon {
+      background-color: transparent;
     }
   }
 
@@ -267,12 +271,19 @@
     justify-content: center;
     &.@{button-prefix-cls}--default {
       border-color: var(--tv-Button-border-color-only-icon-default);
-
+      // 为适配暗色主题，仅图标增加默认图标颜色
+      svg {
+        fill: var(--tv-Button-color-only-icon-default);
+      }
       &:active,
       &:focus,
       &:hover,
       &.is-active {
         border-color: var(--tv-Button-border-color-only-icon-default-hover);
+        // 为适配暗色主题，仅图标增加图标悬浮颜色
+        svg {
+          fill: var(--tv-Button-color-only-icon-default-hover);
+        }
       }
     }
 
@@ -303,12 +314,19 @@
       border-radius: var(--tv-Button-border-radius-only-icon-ontext); // 影响hover时的阴影
 
       background-color: var(--tv-Button-bg-color-only-icon-ontext);
-
+      // 无边框时的仅图标按钮，增加图标默认颜色
+      svg {
+        fill: var(--tv-Button-bg-color-only-icon)
+      }
       &:active,
       &:focus,
       &:hover,
       &.is-active {
         background-color: var(--tv-Button-bg-color-only-icon-ontext-hover);
+        // 无边框时的仅图标按钮，增加图标悬浮颜色
+        svg {
+          fill: var(--tv-Button-bg-color-only-icon-hover)
+        }
       }
       // 不同的尺寸，icon大小 为高度。 原型稿不包含
       .size-only-icon-ontext-iconsize-mixin(e(''));
@@ -329,6 +347,14 @@
       & .@{svg-prefix-cls} {
         fill: var(--tv-Button-icon-color);
         color: var(--tv-Button-icon-color);
+      }
+      // 上面为图标加上悬浮颜色，这里禁用时去掉图标hover颜色
+      &.is-disabled {
+        &:hover {
+          svg {
+            fill: var(--tv-Button-disabled-color-only-icon-hover)
+          }
+        }
       }
     }
   }
@@ -366,6 +392,8 @@
 
     .tiny-svg {
       margin-right: var(--tv-Button-margin-right-isicon-svg);
+      // 混排时 适配图标浅色暗色主题，增加图标默认颜色
+      fill: var(--tv-Button-color-icon-svg);
     }
   }
 
