@@ -9,7 +9,7 @@
       :before-close="onBeforeClose"
       @update:visible="visible = $event"
     >
-      <tiny-button type="primary" round @click="forceClose"> 强制关闭 Drawer </tiny-button>
+      <tiny-button type="primary" @click="forceClose"> 强制关闭 Drawer </tiny-button>
     </tiny-drawer>
   </div>
 </template>
