@@ -56,7 +56,7 @@
     </div>
 
     <!-- 多选工具栏 -->
-    <div v-if="selectToolbar" ref="selectToolbar" class="tiny-grid__select-toolbar" :style="selectToolbarStyle">
+    <div v-if="$grid.selectToolbar" ref="selectToolbar" class="tiny-grid__select-toolbar" :style="selectToolbarStyle">
       <slot name="toolbar"></slot>
     </div>
 
@@ -446,7 +446,6 @@ export default defineComponent({
   setup(props, { slots, attrs, listeners }) {
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
-
     // 条件处理后数据
     const afterFullData = ref([])
     // 分组表场景全量数据（包含虚拟行）
@@ -688,14 +687,36 @@ export default defineComponent({
 
     const tableClasses = computed(() =>
       getTableClasses({
+        // 从props传入的参数
         ...props,
+        // 从state中解构的参数
+        editConfig: props.editConfig,
+        showHeader: props.showHeader,
+        showFooter: props.showFooter,
+        overflowY: overflowY.value,
+        overflowX: overflowX.value,
+        loading: props.loading,
+        editRules: props.editRules,
+        mouseConfig: props.mouseConfig || {},
+        dropConfig: props.dropConfig || {},
+        rowSpan: props.rowSpan,
 
+        // 计算属性的值
         isShapeTable: isShapeTable.value,
         vSize: vSize.value,
         isGroup: isGroup.value,
         isThemeSaas: isThemeSaas.value,
         validOpts: validOpts.value,
-        optimizeOpts: optimizeOpts.value
+        optimizeOpts: optimizeOpts.value,
+
+        // 其他必要的状态值
+        stripe: props.stripe,
+        border: props.border,
+        borderSaas: props.borderSaas,
+        borderVertical: props.borderVertical,
+        highlightCell: props.highlightCell,
+        highlightHoverRow: props.highlightHoverRow,
+        highlightHoverColumn: props.highlightHoverColumn
       })
     )
 
