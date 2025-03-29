@@ -41,7 +41,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'string',
+          type: "'medium'",
           defaultValue: "'medium'",
           desc: {
             'zh-CN': '设置面包屑尺寸大小',
@@ -107,7 +107,7 @@ export default {
         },
         {
           name: 'size',
-          type: 'string',
+          type: "'medium'",
           defaultValue: "'medium'",
           desc: {
             'zh-CN': '设置面包屑尺寸大小',

@@ -30,6 +30,7 @@ import html from 'highlight.js/lib/languages/xml'
 import docsearch from '@docsearch/js'
 import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
+import '@opentiny/vue-theme/dark-theme-index.css'
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 

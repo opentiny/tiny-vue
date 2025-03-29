@@ -25,22 +25,6 @@ const data = ref([
   {
     name: '标签五',
     type: 'danger'
-  },
-  {
-    name: '标签六',
-    type: 'info'
-  },
-  {
-    name: '标签七',
-    type: 'success'
-  },
-  {
-    name: '标签八',
-    type: 'warning'
-  },
-  {
-    name: '标签九',
-    type: 'danger'
   }
 ])
 </script>

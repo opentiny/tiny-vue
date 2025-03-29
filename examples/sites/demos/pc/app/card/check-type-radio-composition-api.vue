@@ -25,7 +25,6 @@ const value = ref('1')
 
 <style scoped>
 .card-wrap {
-  background: #f5f5f5;
   padding: 16px;
 }
 </style>

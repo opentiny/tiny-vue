@@ -12,7 +12,7 @@ const getComponentAlias = (alias = {}) => {
   return alias
 }
 
-const getAlias = (vueVersion: string | number, theme = '', design) => {
+const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
   const ns = (t: string) => (t ? '-' + t : '')
 
   const map = {
@@ -23,6 +23,9 @@ const getAlias = (vueVersion: string | number, theme = '', design) => {
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
+    '@opentiny/vue-theme/dark-theme-index.css': pathFromWorkspaceRoot(
+      `packages/theme${ns(design || theme)}/src/base/dark-theme.less`
+    ),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
     '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src/index-dev'),

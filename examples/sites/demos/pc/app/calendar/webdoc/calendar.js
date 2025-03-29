@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -42,6 +44,19 @@ export default {
       codeFiles: ['show-selected-date.vue']
     },
     {
+      demoId: 'calendar-year-month',
+      name: {
+        'zh-CN': '指定年月',
+        'en-US': 'Specify Month and Year'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>year</code> 属性指定年份，通过 <code>month</code> 属性指定月份。</p>\n',
+        'en-US':
+          '<p>Specify the year through the <code>year</code> attribute and the month through the <code>month</code> attribute. </p>\n'
+      },
+      codeFiles: ['calendar-year-month.vue']
+    },
+    {
       demoId: 'custom-day-cell',
       name: {
         'zh-CN': '自定义日期单元格',
@@ -78,6 +93,99 @@ export default {
           '<p>You can use the events attribute to specify the event list. It is an object array that contains the following fields: </p>\n<div class="tip custom-block"><p class="custom-block-title">events Description</p>\n<p>time: specifies the date of the event to be displayed.\ntitle: Specifies the event title. \ncontent: specifies the event content. type: specifies the theme of the dialog box that displays the event content when you hover the cursor over the event title. The options are warning, error, info, and success</p>\n</div>\n'
       },
       codeFiles: ['dynamic-add-schedule.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '默认以月的形式展示当月的每一天。',
+      cloud: {
+        value: false
+      },
+      apis: [],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'mode',
+      name: '显示模式',
+      support: {
+        value: true
+      },
+      description: '通过 mode 属性指定以年的形式显示，将展示当年的每个月份。可选值有 year、month。',
+      cloud: {
+        value: false
+      },
+      apis: ['mode'],
+      demos: ['calendar-mode']
+    },
+    {
+      id: 'show-selected',
+      name: '显示选中日期',
+      support: {
+        value: true
+      },
+      description: '以月的形式展示时，指定 show-selected 属性后，单击日期单元格，将会在日历框上方展示当前选中的日期。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-selected'],
+      demos: ['show-selected-date']
+    },
+    {
+      id: 'year-month',
+      name: '指定年月',
+      support: {
+        value: true
+      },
+      description: '通过 year 属性指定年份，通过 month 属性指定月份。',
+      cloud: {
+        value: false
+      },
+      apis: ['year', 'month'],
+      demos: ['calendar-year-month']
+    },
+    {
+      id: 'day-cell',
+      name: '自定义日期单元格',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 day 自定义日期单元格。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-day'],
+      demos: ['custom-day-cell']
+    },
+    {
+      id: 'toolbar',
+      name: '自定义工具栏',
+      support: {
+        value: true
+      },
+      description: '通过作用域插槽 tool 自定义需要的工具栏。',
+      cloud: {
+        value: false
+      },
+      apis: ['slot-tool'],
+      demos: ['custom-calendar-toolbar']
+    },
+    {
+      id: 'events',
+      name: '日程事件',
+      support: {
+        value: true
+      },
+      description: '通过 events 属性可以指定事件列表，它是一个对象数组，对象中包含 time、title、content、type 等字段。',
+      cloud: {
+        value: false
+      },
+      apis: ['events'],
+      demos: ['dynamic-add-schedule']
     }
   ]
 }

@@ -105,16 +105,15 @@ function mergeTreeConfig(_vm) {
 }
 
 const renderEmptyPartFn = (opt) => {
-  const { _vm, tableData } = opt
-  const { $grid = {}, renderEmpty } = _vm
-  const { slots } = $grid
+  const { _vm } = opt
   return () => {
     let emptyPartVnode = null
-    let { computerTableBodyHeight } = _vm
 
-    if (_vm.isCenterEmpty && !tableData.length) {
+    if (_vm.viewType === V_DEFAULT && _vm.isCenterEmpty && !opt.tableData.length) {
+      const { $grid = {}, renderEmpty } = _vm
+      const { slots } = $grid
+      let { computerTableBodyHeight } = _vm
       let emptyVnodes
-      let noEmptyClass = _vm.viewType === V_CARD || _vm.viewType === V_LIST
 
       if (slots.empty) {
         emptyVnodes = slots.empty.call(_vm, h)
@@ -130,7 +129,7 @@ const renderEmptyPartFn = (opt) => {
       emptyPartVnode = h(
         'div',
         {
-          class: [{ 'empty-center-block': !noEmptyClass }, _vm.viewCls('emptyData')],
+          class: [{ 'empty-center-block': true }, _vm.viewCls('emptyData')],
           style: {
             height: computerTableBodyHeight
           }

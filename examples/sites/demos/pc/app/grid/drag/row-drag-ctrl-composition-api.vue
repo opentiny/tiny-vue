@@ -102,7 +102,7 @@ function rowClassName({ rowIndex }) {
   background: red !important;
 }
 .tiny-grid :deep(.row__drag-disable) {
-  background: #f1f1f1 !important;
+  background: var(--tv-color-bg-disabled) !important;
 }
 .only-me-can-drag {
   cursor: move;

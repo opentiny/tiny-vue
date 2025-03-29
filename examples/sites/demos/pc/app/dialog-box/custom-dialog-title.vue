@@ -3,7 +3,7 @@
     <tiny-button @click="boxVisibility = true" title="弹出 Dialog">弹出 Dialog</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility" width="30%">
       <template #title>
-        <div style="width: 80%; height: 100%; background: #dddddd">自定义 title 区域</div>
+        <div style="width: 80%; height: 100%">自定义 title 区域</div>
       </template>
       <span>dialog-box 内容</span>
       <template #footer>

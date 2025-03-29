@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'dynamically-columns-dynamically-columns',
+      demoId: 'dynamically-columns-dynamically-columns',
       'name': {
         'zh-CN': '根据日期动态生成列',
         'en-US': 'Grid-Dynamic column generation based on the selected date'
@@ -12,10 +12,10 @@ export default {
         'zh-CN': '根据日期范围选择框的日期范围动态的生成表格列。',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['dynamically-columns/dynamically-columns.vue']
+      codeFiles: ['dynamically-columns/dynamically-columns.vue']
     },
     {
-      'demoId': 'column-switching-scroll',
+      demoId: 'column-switching-scroll',
       'name': {
         'zh-CN': '新增列滚动位置',
         'en-US': 'New columns scroll positon'
@@ -24,16 +24,16 @@ export default {
         'zh-CN': '根据日期范围选择框的日期范围动态的生成表格列。',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['dynamically-columns/column-switching-scroll.vue']
+      codeFiles: ['dynamically-columns/column-switching-scroll.vue']
     },
     {
-      'demoId': 'column-columns-dynamic',
+      demoId: 'column-columns-dynamic',
       'name': { 'zh-CN': '动态列数据', 'en-US': '' },
       'desc': { 'zh-CN': '兼容低版本的动态列数据。', 'en-US': '' },
-      'codeFiles': ['dynamically-columns/columns-dynamic.vue']
+      codeFiles: ['dynamically-columns/columns-dynamic.vue']
     },
     {
-      'demoId': 'dynamically-columns-reverse-row',
+      demoId: 'dynamically-columns-reverse-row',
       'name': { 'zh-CN': '表格行列反转', 'en-US': 'Grid-Inverting Rows and Columns in a Table' },
       'desc': {
         'zh-CN':
@@ -41,25 +41,25 @@ export default {
         'en-US':
           "<p>You need to configure <code>:columns=&quot;tableColumn&quot;</code> <code>:show-header=&quot;false&quot;</code> on the <code>grid</code> tag. Click the 'Reverse Table' button to view the effect. Currently, the operation can only be performed once. If the operation is performed multiple times, problems may occur. For details, see the following example. </p>\n"
       },
-      'codeFiles': ['dynamically-columns/reverse-row.vue']
+      codeFiles: ['dynamically-columns/reverse-row.vue']
     },
     {
-      'demoId': 'dynamically-columns-reverse-columns',
+      demoId: 'dynamically-columns-reverse-columns',
       'name': { 'zh-CN': '表格列顺序转换', 'en-US': '' },
       'desc': {
         'zh-CN': '<p></p>\n',
         'en-US': '<p></p>\n'
       },
-      'codeFiles': ['dynamically-columns/reverse-columns.vue']
+      codeFiles: ['dynamically-columns/reverse-columns.vue']
     },
     {
-      'demoId': 'dynamic-slot',
+      demoId: 'dynamic-slot',
       'name': { 'zh-CN': '动态修改列插槽', 'en-US': '' },
       'desc': {
         'zh-CN': '<p></p>\n',
         'en-US': '<p></p>\n'
       },
-      'codeFiles': ['dynamically-columns/dynamic-slot.vue']
+      codeFiles: ['dynamically-columns/dynamic-slot.vue']
     }
   ],
   apis: [{ 'name': 'grid-dynamically-columns', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

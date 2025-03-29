@@ -1,6 +1,10 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <ComponentHeader :current-json="state.currJson" :md-string="state.mdString" class="flex-horizontal">
+  <ComponentHeader
+    :current-json="state.currJson"
+    :md-string="state.mdString"
+    class="flex-horizontal flex-horizontal--header"
+  >
     <template #header-right>
       <slot name="header-right" />
     </template>
@@ -279,8 +283,10 @@ const loadPage = () => {
   props.loadData({ cmpId: state.cmpId, lang }).then(({ mdString, apisJson, demosJson }) => {
     // 1、加载顶部md
     state.mdString = mdString
+    // plus隐藏头部集合
+    const hideTabHeader = ['interfaces', 'types', 'classes'].includes(state.cmpId)
 
-    if (demosJson) {
+    if (demosJson && !hideTabHeader) {
       // 默认设置每个实例demo都不和视图相交
       demosJson.demos?.forEach((item) => {
         item.isIntersecting = false
@@ -292,6 +298,10 @@ const loadPage = () => {
       }
     } else {
       state.activeTab = 'api'
+      // 隐藏tab的头部
+      if (hideTabHeader) {
+        document.querySelector('.tiny-tabs__header').style.display = 'none'
+      }
     }
 
     const { finishTask, waitTasks: allDemoMounted } = useTasksFinish(state.currJson.demos.length)
@@ -513,6 +523,10 @@ defineExpose({ loadPage })
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
+}
+
+.flex-horizontal--header {
+  overflow: auto;
 }
 
 .cmp-container {

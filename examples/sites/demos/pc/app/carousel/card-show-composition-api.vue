@@ -157,9 +157,6 @@ const disableStatus = () => {
   &:last-child {
     margin-right: 0;
   }
-  &:hover {
-    border-color: #1476ff;
-  }
 }
 .btn-layout {
   position: relative;
@@ -169,6 +166,9 @@ const disableStatus = () => {
   z-index: 10;
   padding: 0 76px;
 }
+.card-demo {
+  border: 0;
+}
 /deep/ .tiny-button.tiny-button--text.tiny-button.is-only-icon {
   font-size: 16px;
   border: none;
@@ -177,7 +177,7 @@ const disableStatus = () => {
   }
   &.is-disabled {
     .tiny-svg {
-      fill: #c2c2c2;
+      fill: #808080;
     }
   }
   &:hover {
@@ -185,7 +185,7 @@ const disableStatus = () => {
   }
   &:not(.is-disabled) {
     .tiny-svg:hover {
-      fill: #191919;
+      fill: #b3b3b3;
     }
   }
 }

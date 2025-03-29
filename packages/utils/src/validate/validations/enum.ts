@@ -16,9 +16,33 @@ import { hasOwn } from '../../type'
 
 const ENUM = 'enum'
 
-export default function (rule, checkValue, callback, source, options) {
-  const errors = []
-  const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
+/**
+ * 枚举验证函数
+ *
+ * @description 验证值是否在指定的枚举范围内
+ * @param rule - 验证规则对象，包含验证的字段和验证选项
+ * @param checkValue - 需要验证的值
+ * @param callback - 回调函数，用于返回验证结果
+ * @param source - 数据源对象
+ * @param options - 验证选项
+ */
+export default function (
+  rule: {
+    field: string
+    required?: boolean
+    enum?: any[]
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options: {
+    messages: Record<string, any>
+    [key: string]: any
+  }
+): void {
+  const errors: any[] = []
+  const validate: boolean = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {
     if (isEmptyValue(checkValue) && !rule.required) {

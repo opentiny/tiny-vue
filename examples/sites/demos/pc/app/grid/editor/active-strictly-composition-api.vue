@@ -78,6 +78,6 @@ function cellClassName({ row, column }) {
 
 <style>
 .disable-cell-edit {
-  background-color: #e8ebef;
+  background-color: var(--tv-color-bg-disabled);
 }
 </style>

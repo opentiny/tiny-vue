@@ -6,6 +6,7 @@
     @keydown="handleKeydown"
     ref="group"
     data-tag="tiny-radio-group"
+    v-bind="a($attrs, ['class', 'style'], true)"
   >
     <slot>
       <template v-if="type === 'radio'">

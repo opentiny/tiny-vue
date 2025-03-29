@@ -11,53 +11,53 @@
 
 .inject-Input-vars() {
   // 输入框文本颜色
-  --tv-Input-text-color: var(--tv-color-text);
+  --tv-Input-text-color: var(--tv-color-text, #191919);
   // 输入框背景颜色
-  --tv-Input-bg-color: var(--tv-color-bg-secondary);
+  --tv-Input-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 输入框字体大小
-  --tv-Input-font-size: var(--tv-font-size-default);
+  --tv-Input-font-size: var(--tv-font-size-default, 14px);
   // 输入框计数器字体大小
-  --tv-Input-count-font-size: var(--tv-font-size-sm);
+  --tv-Input-count-font-size: var(--tv-font-size-sm, 12px);
   // small和mini尺寸字体大小
-  --tv-Input-small-font-size: var(--tv-font-size-sm);
+  --tv-Input-small-font-size: var(--tv-font-size-sm, 12px);
   // 输入框高度v
-  --tv-Input-height: var(--tv-size-height-md);
+  --tv-Input-height: var(--tv-size-height-md, 32px);
   // 输入框边框圆角
-  --tv-Input-border-radius: var(--tv-border-radius-md);
+  --tv-Input-border-radius: var(--tv-border-radius-md, 6px);
   // 输入框边框色
-  --tv-Input-border-color: var(--tv-color-border);
+  --tv-Input-border-color: var(--tv-color-border, #c2c2c2);
   // 输入框hover时边框色
-  --tv-Input-hover-border-color: var(--tv-color-border-hover);
+  --tv-Input-hover-border-color: var(--tv-color-border-hover, #191919);
   // 输入框active时边框色
-  --tv-Input-active-border-color: var(--tv-color-border-active);
+  --tv-Input-active-border-color: var(--tv-color-border-active, #191919);
   // icon颜色
-  --tv-Input-icon-color: var(--tv-color-icon);
+  --tv-Input-icon-color: var(--tv-color-icon, #808080);
   // icon图标hover时颜色
-  --tv-Input-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Input-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 输入框聚焦时icon颜色
-  --tv-Input-focus-icon-color: var(--tv-color-icon-active);
+  --tv-Input-focus-icon-color: var(--tv-color-icon-active, #191919);
   // suffix图标颜色
-  --tv-Input-suffix-icon-color: var(--tv-color-icon);
+  --tv-Input-suffix-icon-color: var(--tv-color-icon, #808080);
   // 输入框占位符文本颜色
-  --tv-Input-placeholder-text-color: var(--tv-color-text-placeholder);
+  --tv-Input-placeholder-text-color: var(--tv-color-text-placeholder, #808080);
   // 输入框disabled时的文本颜色
-  --tv-Input-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-Input-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 输入框medium尺寸的高度
-  --tv-Input-medium-height: var(--tv-size-height-lg);
+  --tv-Input-medium-height: var(--tv-size-height-lg, 40px);
   // 输入框small尺寸的高度
-  --tv-Input-small-height: var(--tv-size-height-sm);
+  --tv-Input-small-height: var(--tv-size-height-sm, 28px);
   // 输入框mini尺寸的高度
-  --tv-Input-mini-height: var(--tv-size-height-xs);
+  --tv-Input-mini-height: var(--tv-size-height-xs, 24px);
   // 输入框disabled时的背景颜色
-  --tv-Input-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-Input-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
   // 输入框disabled时的边框颜色
-  --tv-Input-disabled-border-color: var(--tv-color-border-disabled);
+  --tv-Input-disabled-border-color: var(--tv-color-border-disabled, #dbdbdb);
   // 输入框exceed时的文本颜色
-  --tv-Input-exceed-text-color: var(--tv-color-error-text);
+  --tv-Input-exceed-text-color: var(--tv-color-error-text, #f23030);
   // 输入框的icon图标的大小
-  --tv-Input-icon-font-size: var(--tv-icon-size);
+  --tv-Input-icon-font-size: var(--tv-icon-size, 16px);
   // 输入框计数器的颜色
-  --tv-Input-count-font-color: var(--tv-color-text-weaken);
+  --tv-Input-count-font-color: var(--tv-color-text-weaken, #808080);
   // 输入框垂直方向内边距
   --tv-Input-padding-x: 0;
   // 输入框水平方向内边距
@@ -77,5 +77,5 @@
   // 输入框suffix的高度
   --tv-Input-suffix-icon-height: 16px;
   // displayOnly 时文本行高
-  --tv-Input-display-content-line-height: var(--tv-line-height-number);
+  --tv-Input-display-content-line-height: var(--tv-line-height-number, 1.5);
 }

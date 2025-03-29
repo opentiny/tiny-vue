@@ -3,10 +3,11 @@ import { test, expect } from '@playwright/test'
 test('dialogBox 可拖拽的弹窗', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dialog-box#draggable')
+  const demo = page.locator('#draggable')
 
-  const button = page.getByRole('button', { name: '可拖拽弹窗' })
+  const button = demo.getByRole('button', { name: '可拖拽弹窗' })
   const notify = page.locator('.tiny-notify')
-  const dialogBox = page.locator('.tiny-dialog-box')
+  const dialogBox = demo.locator('.tiny-dialog-box')
   const header = dialogBox.locator('.tiny-dialog-box__header')
 
   await button.click()

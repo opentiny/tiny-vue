@@ -58,8 +58,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                    ? 'is-selected'
-                    : '',
+                      ? 'is-selected'
+                      : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >
@@ -212,14 +212,7 @@
         </ul>
       </div>
     </div>
-    <tiny-tooltip
-      ref="tooltip"
-      v-model="state.eventTipVisible"
-      popper-class="tiny-calendar-view-tooltip"
-      :manual="true"
-      effect="light"
-      placement="right"
-    >
+    <tiny-tooltip ref="tooltip" popper-class="tiny-calendar-view-tooltip" effect="light" placement="right">
       <template #content>
         <div class="tooltip-main">
           <div class="title">{{ state.eventTipContent.title }}</div>

@@ -55,6 +55,20 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'max-width',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置最大宽度',
+            'en-US': 'set max width'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'max-width',
+          meta: {
+            stable: '3.22.0'
+          }
+        },
+        {
           name: 'disabled',
           type: 'boolean',
           defaultValue: 'false',

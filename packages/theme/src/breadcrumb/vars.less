@@ -12,15 +12,15 @@
 
 .inject-Breadcrumb-vars() {
   // 字号
-  --tv-Breadcrumb-font-size: var(--tv-font-size-default);
+  --tv-Breadcrumb-font-size: var(--tv-font-size-default, 14px);
   // 文本行高
-  --tv-Breadcrumb-text-line-height: var(--tv-line-height-number);
+  --tv-Breadcrumb-text-line-height: var(--tv-line-height-number, 1.5);
   // 文本色
-  --tv-Breadcrumb-text-color: var(--tv-color-text-control);
+  --tv-Breadcrumb-text-color: var(--tv-color-text-control, #191919);
   // 选中文本色
-  --tv-Breadcrumb-last-text-color: var(--tv-color-text-active-3);
+  --tv-Breadcrumb-last-text-color: var(--tv-color-text-active-3, #191919);
   // 分隔符填充色
-  --tv-Breadcrumb-separator-icon-color: var(--tv-color-text-placeholder);
+  --tv-Breadcrumb-separator-icon-color: var(--tv-color-text-placeholder, #808080);
   // 分割箭头宽度
   --tv-Breadcrumb-separator-width: 16px;
   // 分隔图标的水平外边距
@@ -28,5 +28,5 @@
   // 分隔图标的垂直外边距
   --tv-Breadcrumb-separator-margin-y: 0;
   // 当前节点字重
-  --tv-Breadcrumb-text-font-weight: var(--tv-font-weight-bold);
+  --tv-Breadcrumb-text-font-weight: var(--tv-font-weight-bold, 600);
 }

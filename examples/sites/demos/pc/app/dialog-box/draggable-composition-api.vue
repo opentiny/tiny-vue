@@ -22,7 +22,7 @@
       </template>
       <span>dialog-box 内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"> 确 定 </tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>

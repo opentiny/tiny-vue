@@ -26,12 +26,12 @@
       >
         <span>子弹窗内容</span>
         <template #footer>
-          <tiny-button type="primary" @click="boxVisibility2 = false"> 确定 </tiny-button>
+          <tiny-button type="primary" @click="boxVisibility2 = false">确 定</tiny-button>
         </template>
       </tiny-dialog-box>
       <template #footer>
-        <tiny-button @click="boxVisibility = false">取消</tiny-button>
-        <tiny-button type="primary" @click="openDialog"> 子弹窗 </tiny-button>
+        <tiny-button @click="boxVisibility = false">取 消</tiny-button>
+        <tiny-button type="primary" @click="openDialog">子弹窗</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>

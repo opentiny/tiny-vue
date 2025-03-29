@@ -11,7 +11,10 @@
  -->
 
 <template>
-  <div class="tiny-transfer-panel" :class="[state.renderType === 'TinyTable' ? 'transferGrid' : '']">
+  <div
+    class="tiny-transfer-panel"
+    :class="[state.renderType === 'TinyTable' ? 'transferGrid' : '', { 'is-filterable': filterable }]"
+  >
     <p class="tiny-transfer-panel__header">
       <tiny-checkbox v-model="state.allChecked" @change="handleAllCheckedChange" :indeterminate="state.isIndeterminate">
         {{ title }}

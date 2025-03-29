@@ -12,65 +12,65 @@
 
 .inject-ButtonGroup-vars() {
   // 按钮组圆角
-  --tv-ButtonGroup-border-radius: var(--tv-border-radius-md);
+  --tv-ButtonGroup-border-radius: var(--tv-border-radius-md, 6px);
   // 按钮组字体行高
-  --tv-ButtonGroup-line-height-number: var(--tv-line-height-number);
+  --tv-ButtonGroup-line-height-number: var(--tv-line-height-number, 1.5);
   // 默认按钮未选中项背景色
-  --tv-ButtonGroup-item-bg-color: var(--tv-color-bg);
+  --tv-ButtonGroup-item-bg-color: var(--tv-color-bg, #f5f5f5);
   // 按钮非选中项文本色
-  --tv-ButtonGroup-item-btn-text-color: var(--tv-color-text-secondary);
+  --tv-ButtonGroup-item-btn-text-color: var(--tv-color-text-secondary, #595959);
   // 空数据文本色
-  --tv-ButtonGroup-empty-text-color: var(--tv-color-text-weaken);
+  --tv-ButtonGroup-empty-text-color: var(--tv-color-text-weaken, #808080);
   // 未指定尺寸的按钮项高度
-  --tv-ButtonGroup-item-btn-height: var(--tv-size-height-md);
+  --tv-ButtonGroup-item-btn-height: var(--tv-size-height-md, 32px);
   // 按钮组默认字号
-  --tv-ButtonGroup-item-btn-font-size: var(--tv-font-size-default);
+  --tv-ButtonGroup-item-btn-font-size: var(--tv-font-size-default, 14px);
   // 按钮项禁用背景色
-  --tv-ButtonGroup-item-btn-disabled-bg-color: var(--tv-color-bg-disabled);
+  --tv-ButtonGroup-item-btn-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
   // 按钮项禁用文本色
-  --tv-ButtonGroup-item-disabled-text-color: var(--tv-color-text-disabled);
+  --tv-ButtonGroup-item-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 默认按钮项悬浮背景色
-  --tv-ButtonGroup-item-btn-hover-bg-color: var(--tv-color-bg-hover-1);
+  --tv-ButtonGroup-item-btn-hover-bg-color: var(--tv-color-bg-hover-1, #deecff);
   // 默认按钮非选中项悬浮文本色
-  --tv-ButtonGroup-item-btn-hover-text-color: var(--tv-color-text);
+  --tv-ButtonGroup-item-btn-hover-text-color: var(--tv-color-text, #191919);
 
   // 朴素按钮非选中项悬浮/选中文本色
-  --tv-ButtonGroup-item-btn-plain-text-color: var(--tv-color-text-active);
+  --tv-ButtonGroup-item-btn-plain-text-color: var(--tv-color-text-active, #1476ff);
   // 按钮组圆角
-  --tv-ButtonGroup-plain-border-color: var(--tv-color-border);
+  --tv-ButtonGroup-plain-border-color: var(--tv-color-border, #c2c2c2);
   // 朴素按钮项悬浮背景色
-  --tv-ButtonGroup-item-btn-plain-bg-color: var(--tv-color-bg-hover-1);
+  --tv-ButtonGroup-item-btn-plain-bg-color: var(--tv-color-bg-hover-1, #deecff);
   // 朴素按钮非选中项悬浮边框色
-  --tv-ButtonGroup-item-btn-plain-border-color: var(--tv-color-border-active-control);
+  --tv-ButtonGroup-item-btn-plain-border-color: var(--tv-color-border-active-control, #1476ff);
 
   // 默认按钮选中项背景色
-  --tv-ButtonGroup-item-active-bg-color: var(--tv-color-bg-active-control);
+  --tv-ButtonGroup-item-active-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 默认按钮选中项禁用时背景色
-  --tv-ButtonGroup-item-active-disabled-bg-color: var(--tv-color-bg-disabled-control-checked);
+  --tv-ButtonGroup-item-active-disabled-bg-color: var(--tv-color-bg-disabled-control-checked, #dbdbdb);
   // 默认按钮选中项文本色
-  --tv-ButtonGroup-item-active-text-color: var(--tv-color-text-inverse-active);
+  --tv-ButtonGroup-item-active-text-color: var(--tv-color-text-inverse-active, #ffffff);
   // 默认按钮内间距
   --tv-ButtonGroup-btn-padding-x: 24px;
   // 按钮角标高度
   --tv-ButtonGroup-item-sup-height: 18px;
   // 小尺寸按钮圆角
-  --tv-ButtonGroup-mini-border-radius: var(--tv-border-radius-sm);
+  --tv-ButtonGroup-mini-border-radius: var(--tv-border-radius-sm, 4px);
   // 按钮角标字体颜色
-  --tv-ButtonGroup-item-sup-font-color: var(--tv-color-text-inverse);
+  --tv-ButtonGroup-item-sup-font-color: var(--tv-color-text-inverse, #ffffff);
   // 按钮角标字体大小
-  --tv-ButtonGroup-item-sup-font-size: var(--tv-font-size-default);
+  --tv-ButtonGroup-item-sup-font-size: var(--tv-font-size-default, 14px);
 
   // medium尺寸
-  --tv-ButtonGroup-medium-size: var(--tv-size-height-lg);
+  --tv-ButtonGroup-medium-size: var(--tv-size-height-lg, 40px);
   // small尺寸
-  --tv-ButtonGroup-small-size: var(--tv-size-height-sm);
+  --tv-ButtonGroup-small-size: var(--tv-size-height-sm, 28px);
   // mini 尺寸
-  --tv-ButtonGroup-mini-size: var(--tv-size-height-xs);
+  --tv-ButtonGroup-mini-size: var(--tv-size-height-xs, 24px);
   // mini 尺寸按钮组按钮字号
-  --tv-ButtonGroup-mini-font-size: var(--tv-font-size-sm);
+  --tv-ButtonGroup-mini-font-size: var(--tv-font-size-sm, 12px);
   // mini 尺寸按钮内间距
   --tv-ButtonGroup-mini-padding-x: 16px;
 
   // 更多下拉框选项悬浮背景色
-  --tv-ButtonGroup-more-item-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-ButtonGroup-more-item-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
 }

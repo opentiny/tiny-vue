@@ -24,7 +24,8 @@ export default defineComponent({
     'size',
     'effect',
     'customClass',
-    'value'
+    'value',
+    'maxWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, classes }) as unknown as ITagApi
@@ -50,9 +51,15 @@ export default defineComponent({
       customClass
     )
 
+    const styles = { backgroundColor: color }
+
+    if (maxWidth) {
+      styles.maxWidth = maxWidth
+      styles.display = 'inline-block'
+    }
     const tagElement =
       value || (slots.default && slots.default()) ? (
-        <span data-tag="tiny-tag" class={classes} style={{ backgroundColor: color }} onClick={handleClick}>
+        <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
           {value ? <span>{value}</span> : slots.default && slots.default()}
           {closable && (
             <icon-close

@@ -89,10 +89,10 @@ export default {
 }
 .demo-custom-column svg {
   font-size: 16px;
-  fill: var(--ti-common-color-line-active);
+  fill: var(--tv-color-icon);
 }
 .demo-custom-column svg:hover {
-  fill: #40a9ff;
+  fill: var(--tv-color-icon-hover);
   cursor: pointer;
 }
 .demo-custom-column svg:not(:last-child) {

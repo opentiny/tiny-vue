@@ -58,6 +58,10 @@
       margin-left: auto;
       color: var(--tv-CollapseItem-title-right-text-color);
       fill: var(--tv-CollapseItem-title-right-icon-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &.is-active {
@@ -99,5 +103,6 @@
     padding: 24px 20px;
     font-size: var(--tv-CollapseItem-content-font-size);
     line-height: 1.5;
+    border-top: 1px solid var(--tv-CollapseItem-header-border-color);
   }
 }

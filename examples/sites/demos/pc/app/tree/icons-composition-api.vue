@@ -5,9 +5,9 @@
       :data="data"
       show-checkbox
       :expand-icon="expandIcon"
-      expand-icon-color="#c2c2c2"
+      expand-icon-color="#5291FF"
       :shrink-icon="shrinkIcon"
-      shrink-icon-color="#191919"
+      shrink-icon-color="#5291FF"
     >
       <template #prefix="{ node }">
         <component v-if="node.data.icon === 'file'" :is="tinyIconFile"></component>

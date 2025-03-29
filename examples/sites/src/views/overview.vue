@@ -6,8 +6,8 @@
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
-      <h1 v-if="!isPlus" class="overview-desc ti-f14 ti-my20 ti-lh21">
-        {{ i18nByKey('overviewDesc') }}
+      <h1 class="overview-desc ti-f14 ti-my20 ti-lh21">
+        {{ i18nByKey(isPlus ? 'overviewDescPlus' : 'overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
@@ -214,7 +214,7 @@ export default defineComponent({
   }
 }
 
-.dark .component-card {
+html.dark .component-card {
   &:hover {
     box-shadow: 1px 1px 6px 6px rgba(255, 255, 255, 0.08);
   }
@@ -229,7 +229,7 @@ export default defineComponent({
   width: 24.25%;
 }
 
-.dark .overview-card-container {
+html.dark .overview-card-container {
   background-color: var(--tv-color-bg-dark);
 }
 

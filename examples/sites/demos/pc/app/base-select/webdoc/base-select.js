@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -542,6 +544,73 @@ export default {
           '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change: Listen for changes in the value of the v-model.</p><p>clear: When listening to radio selection, click the clear button.</p>\n<p>blur: Listening to input losing focus.</p>\n<p>focus: Listening for input to gain focus.</p>\n<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n<p>remove-tag: Listen for multiple selections to remove selected tags.</p>\n<p>dropdown-click: Listens to the click event of the drop-down icon.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的单选和多选功能，可通过 v-model 进行数据绑定。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model', 'multiple'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '支持 medium、small、mini 三种尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个选择器或单个选项。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'clearable',
+      name: '可清空',
+      support: {
+        value: true
+      },
+      description: '支持清空已选择的值。',
+      cloud: {
+        value: true
+      },
+      apis: ['clearable'],
+      demos: ['clearable']
+    },
+    {
+      id: 'filterable',
+      name: '可搜索',
+      support: {
+        value: true
+      },
+      description: '支持输入关键字进行选项搜索。',
+      cloud: {
+        value: true
+      },
+      apis: ['filterable'],
+      demos: ['filterable']
     }
   ]
 }

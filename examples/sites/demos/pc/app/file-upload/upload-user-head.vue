@@ -34,7 +34,7 @@ export default {
   height: 87px;
   line-height: 87px;
   text-align: center;
-  background: #fafafa;
+  background: var(--tv-color-bg);
   border: 1px dashed #d9d9d9;
   border-radius: 2px;
   position: relative;
@@ -43,6 +43,6 @@ export default {
 
 .upload-demo .tiny-upload .tiny-svg {
   font-size: 16px;
-  fill: #bfbfbf;
+  fill: var(--tv-color-icon);
 }
 </style>

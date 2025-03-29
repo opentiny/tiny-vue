@@ -146,6 +146,22 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'keep-style',
           mfDemo: ''
+        },
+        {
+          name: 'appendToBody',
+          type: 'boolean',
+          defaultValue: 'true',
+          meta: {
+            stable: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '预览弹框是否显示在 body 下面。\n为 <code>false</code> 时显示在当前节点下面',
+            'en-US':
+              'Indicates whether the preview dialog box is displayed under the body.\nWhen <code>false</code>, it is displayed under the current node.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'preview',
+          mfDemo: ''
         }
       ],
       events: [
@@ -221,21 +237,6 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'count-slot',
-          mfDemo: ''
-        },
-        {
-          name: 'appendToBody',
-          type: 'boolean',
-          defaultValue: 'true',
-          meta: {
-            stable: '3.19.0'
-          },
-          desc: {
-            'zh-CN': '预览弹框是否显示在当前节点下面',
-            'en-US': 'Indicates whether the preview dialog box is displayed under the current node.'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'preview',
           mfDemo: ''
         }
       ]

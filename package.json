@@ -104,7 +104,7 @@
   "dependencies": {
     "@vue/composition-api": "1.7.2",
     "color": "^4.2.3",
-    "cropperjs": "1.5.12",
+    "cropperjs": "~1.6.2",
     "echarts": "5.4.1",
     "echarts-liquidfill": "3.1.0",
     "echarts-wordcloud": "2.0.0",
@@ -160,7 +160,7 @@
       "@vue/runtime-core@3": "3.4.38",
       "@vue/runtime-dom@3": "3.4.38",
       "@vue/shared@3": "3.4.38",
-      "cropperjs": "1.5.12",
+      "cropperjs": "1.6.2",
       "echarts": "5.4.1",
       "follow-redirects": "1.14.8",
       "regenerator-runtime": "0.13.9",

@@ -80,6 +80,17 @@ export default {
           pcDemo: 'before-skip-prevent'
         },
         {
+          name: 'parent-key',
+          type: 'string',
+          defaultValue: 'undefined',
+          desc: {
+            'zh-CN': '设置父级菜单的标识字段',
+            'en-US': 'Set the identifier field of the parent menu'
+          },
+          mode: ['pc'],
+          pcDemo: 'parent-key'
+        },
+        {
           name: 'default-active',
           type: 'string',
           defaultValue: '',

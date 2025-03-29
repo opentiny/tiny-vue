@@ -9,7 +9,7 @@ export default {
         if (statusColor) {
           return {
             background: props.solid ? statusColor : '',
-            color: props.solid && !isCompleted ?  '#ffffff' : statusColor,
+            color: props.solid && !isCompleted ? '#ffffff' : statusColor,
             'border-color': statusColor
           }
         }

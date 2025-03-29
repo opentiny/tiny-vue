@@ -27,29 +27,6 @@ import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { isVue2 } from '@opentiny/vue-common'
 
-function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem }) {
-  if (!isScrollYLoad) {
-    return
-  }
-
-  // 虚拟滚动拖拽处理
-  const actIndex = _vm.tableFullData.indexOf(selfRow)
-
-  _vm.tableFullData.splice(actIndex, 1)
-
-  if (prevTrElem) {
-    const prevRow = _vm.getRowNode(prevTrElem).item
-    const parentIdx = _vm.tableFullData.indexOf(prevRow)
-    const sleftIdx = _vm.tableFullData.indexOf(selfRow)
-
-    _vm.tableFullData.splice(parentIdx + (sleftIdx < parentIdx ? 1 : 0), 0, selfRow)
-  } else {
-    _vm.tableFullData.unshift(selfRow)
-  }
-
-  targetTrElem.remove()
-}
-
 export const createHandlerOnEnd = ({ _vm, refresh }) => {
   return (event) => {
     const insertRecords = _vm.getInsertRecords()
@@ -68,42 +45,38 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
     selfRow._isDraging = true
-    const isScrollYLoad = _vm.scrollYLoad
-    if (!isScrollYLoad) {
-      if (prevTrElem) {
-        // 移动到节点
-        const prevRow = _vm.getRowNode(prevTrElem).item
-        const prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
-        if (findTree(selfRow[options.children], (row) => prevRow === row, options)) {
-          // 错误的移动
-          const oldTrElem = wrapperElem.children[event.oldIndex]
-          wrapperElem.insertBefore(targetTrElem, oldTrElem)
+    if (prevTrElem) {
+      // 移动到节点
+      const prevRow = _vm.getRowNode(prevTrElem).item
+      const prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
+      if (findTree(selfRow[options.children], (row) => prevRow === row, options)) {
+        // 错误的移动
+        const oldTrElem = wrapperElem.children[event.oldIndex]
+        wrapperElem.insertBefore(targetTrElem, oldTrElem)
 
-          return Modal.message({
-            message: GlobalConfig.i18n('ui.grid.error.notAllowDragSelf'),
-            status: 'error'
-          })
-        }
-
-        const currRow = selfNode.items.splice(selfNode.index, 1)[0]
-        if (_vm.hasTreeExpand(prevRow)) {
-          // 移动到当前的子节点
-          prevRow[options.children].splice(0, 0, currRow)
-        } else {
-          // 移动到相邻节点
-          prevNode.items.splice(prevNode.index + (selfNode.index < prevNode.index ? 0 : 1), 0, currRow)
-          prevNode.items = [].concat(prevNode.items)
-        }
-        // 过滤表格外拖拽
-      } else if (nextEl && nextEl.classList.contains('tiny-grid-body__row')) {
-        // 移动到第一行
-        const currRow = selfNode.items.splice(selfNode.index, 1)[0]
-        tableTreeData.unshift(currRow)
-        _vm.tableFullData = [].concat(tableTreeData)
+        return Modal.message({
+          message: GlobalConfig.i18n('ui.grid.error.notAllowDragSelf'),
+          status: 'error'
+        })
       }
+
+      const currRow = selfNode.items.splice(selfNode.index, 1)[0]
+      if (_vm.hasTreeExpand(prevRow)) {
+        // 移动到当前的子节点
+        prevRow[options.children].splice(0, 0, currRow)
+      } else {
+        // 移动到相邻节点
+        prevNode.items.splice(prevNode.index + (selfNode.index < prevNode.index ? 0 : 1), 0, currRow)
+        prevNode.items = [].concat(prevNode.items)
+      }
+      // 过滤表格外拖拽
+    } else if (nextEl && nextEl.classList.contains('tiny-grid-body__row')) {
+      // 移动到第一行
+      const currRow = selfNode.items.splice(selfNode.index, 1)[0]
+      tableTreeData.unshift(currRow)
+      _vm.tableFullData = [].concat(tableTreeData)
     }
 
-    handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem })
     // 如果变动了树层级，需要刷新数据
     _vm.$emit('row-drop-end', event, _vm, _vm.scrollYLoad ? tableTreeData : _vm.tableFullData)
     // 因为vue2劫持了数组方法，所以在data通过splice改变数组时（数组长度不变）会触发更新，但是vue3是浅层响应，所以需要通过传递数据让表格更新

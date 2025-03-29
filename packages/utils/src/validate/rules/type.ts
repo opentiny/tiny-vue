@@ -85,7 +85,8 @@ const types = {
 
 export default function (rule, value, source, errors, options) {
   if (rule.required && value === undefined) {
-    required(rule, value, source, errors, options)
+    let checkValue = value
+    required({ rule, checkValue, source, errors, options })
     return
   }
 

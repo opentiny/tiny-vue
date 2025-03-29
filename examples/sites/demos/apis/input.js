@@ -58,7 +58,7 @@ export default {
         },
         {
           name: 'cols',
-          type: 'string',
+          type: 'string | number',
           defaultValue: '',
           desc: {
             'zh-CN': '原生属性，设置宽度，在 type ="textarea" 时有效',
@@ -310,7 +310,7 @@ export default {
         },
         {
           name: 'rows',
-          type: 'number',
+          type: 'string | number',
           defaultValue: '2',
           desc: {
             'zh-CN': '输入框行数，只对 type="textarea" 有效',
@@ -365,8 +365,8 @@ export default {
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
-            'zh-CN': '输入框尺寸，只在 type 为 "textarea" 时有效',
-            'en-US': 'Size of the text box. This parameter is valid only when type!="textarea". '
+            'zh-CN': '输入框尺寸，只在 type 不为 "textarea" 时有效',
+            'en-US': 'Input box size, only valid when type is not "textarea"'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'size',
@@ -460,7 +460,7 @@ export default {
         },
         {
           name: 'input-box-type',
-          type: 'string',
+          type: '"normal" | "underline"',
           defaultValue: 'normal',
           desc: {
             'zh-CN': '设置边框模式',

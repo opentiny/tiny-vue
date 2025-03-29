@@ -278,7 +278,7 @@ export class Node {
     return walkTree(this)
   }
 
-  insertChild(child, index, batch) {
+  insertChild(child, index?, batch?) {
     if (!child) {
       throw new Error('[TINY-Tree] insertChild error: child is required.')
     }

@@ -14,10 +14,40 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, callback, source, options) {
-  const errors = []
-  const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
-  const isValidDateStr = (value) => value && typeof value === 'string' && new Date(value).toString() !== 'Invalid Date'
+/**
+ * 日期验证函数
+ *
+ * @description 验证字段值是否为有效的日期格式，支持日期对象和日期字符串
+ * @param rule - 验证规则对象
+ * @param checkValue - 待验证的值
+ * @param callback - 验证完成后的回调函数
+ * @param source - 包含所有字段的源对象
+ * @param options - 验证选项
+ */
+export default function dateValidator(
+  rule: {
+    required?: boolean
+    field: string
+    type?: string
+    min?: number
+    max?: number
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options: Record<string, any>
+): void {
+  const errors: any[] = []
+  const validate: boolean = rule.required || (!rule.required && hasOwn.call(source, rule.field))
+
+  /**
+   * 判断是否为有效的日期字符串
+   * @param value - 待检查的值
+   * @returns 是否为有效的日期字符串
+   */
+  const isValidDateStr = (value: any): boolean =>
+    value && typeof value === 'string' && new Date(value).toString() !== 'Invalid Date'
 
   if (validate) {
     if (isEmptyValue(checkValue) && !rule.required) {
@@ -27,7 +57,7 @@ export default function (rule, checkValue, callback, source, options) {
     rules.required({ rule, checkValue, source, errors, options })
 
     if (!isEmptyValue(checkValue)) {
-      let dateObject
+      let dateObject: Date
 
       if (typeof checkValue === 'number' || isValidDateStr(checkValue)) {
         dateObject = new Date(checkValue)

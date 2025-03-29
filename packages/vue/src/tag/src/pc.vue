@@ -32,7 +32,8 @@ export default defineComponent({
     'effect',
     'value',
     'beforeDelete',
-    'onlyIcon'
+    'onlyIcon',
+    'maxWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
@@ -51,7 +52,8 @@ export default defineComponent({
       disabled,
       state,
       value,
-      onlyIcon
+      onlyIcon,
+      maxWidth
     } = this
 
     let styles = {}
@@ -74,6 +76,11 @@ export default defineComponent({
       } else {
         styles = { background: color }
       }
+    }
+
+    if (maxWidth) {
+      styles.maxWidth = maxWidth
+      styles.display = 'inline-block' // 显示省略号
     }
 
     const tagElement =

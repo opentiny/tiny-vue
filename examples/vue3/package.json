@@ -37,7 +37,7 @@
     "@unocss/transformer-directives": "^0.48.0",
     "@vitejs/plugin-vue": "4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "@vitest/ui": "^0.31.0",
+    "@vitest/ui": "catalog:",
     "@vue/runtime-core": "3.2.31",
     "@vue/test-utils": "^2.2.7",
     "jsdom": "^21.0.0",

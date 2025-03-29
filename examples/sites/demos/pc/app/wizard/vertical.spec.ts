@@ -22,7 +22,7 @@ test('垂直流程图', async ({ page }) => {
 
     if (i === 4) {
       await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
-      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(240, 240, 240)')
+      await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(245, 245, 245)')
     } else if (i === 3) {
       await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(219, 219, 219)')
       await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(255, 255, 255)')

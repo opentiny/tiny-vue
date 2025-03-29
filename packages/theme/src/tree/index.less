@@ -360,8 +360,10 @@
     overflow: hidden;
     padding-left: var(--tv-Tree-node-padding-left);
 
-    svg {
+    & > svg {
       fill: var(--tv-Tree-node-operate-icon-color);
+      font-size: var(--tv-Tree-node-operate-icon-font-size);
+      margin-right: calc(var(--tv-Tree-node-label-margin-left) / 2);
       &:hover {
         fill: var(--tv-Tree-node-checked-icon-color);
       }
@@ -460,7 +462,7 @@
     }
   }
 
-  .@{radio-prefix-cls} {
+  &__content-left__radio.@{radio-prefix-cls} {
     .@{radio-prefix-cls}__label {
       display: none;
     }

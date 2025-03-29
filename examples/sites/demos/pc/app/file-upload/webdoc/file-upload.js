@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -220,9 +222,9 @@ export default {
         'en-US': 'tip Hints'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>propmtTip</code> 为 `true` 设置提示为 tip 类型，悬浮图标时显示 tip 提示。<p>',
+        'zh-CN': '<p>通过 <code>promptTip</code> 为 `true` 设置提示为 tip 类型，悬浮图标时显示 tip 提示。<p>',
         'en-US':
-          '<p>Set the prompt to the tip type by setting <code>propmtTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
+          '<p>Set the prompt to the tip type by setting <code>promptTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
       },
       codeFiles: ['prompt-tip.vue']
     },
@@ -435,6 +437,73 @@ export default {
           '<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />\n        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />\n        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>'
       },
       codeFiles: ['upload-events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的文件上传功能，可配置上传地址和附加参数。',
+      cloud: {
+        value: true
+      },
+      apis: ['action', 'data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'multiple',
+      name: '多文件上传',
+      support: {
+        value: true
+      },
+      description: '支持同时上传多个文件。',
+      cloud: {
+        value: true
+      },
+      apis: ['multiple'],
+      demos: ['multiple']
+    },
+    {
+      id: 'file-type',
+      name: '文件类型限制',
+      support: {
+        value: true
+      },
+      description: '支持限制上传文件的类型。',
+      cloud: {
+        value: true
+      },
+      apis: ['accept'],
+      demos: ['file-type']
+    },
+    {
+      id: 'file-size',
+      name: '文件大小限制',
+      support: {
+        value: true
+      },
+      description: '支持限制上传文件的大小。',
+      cloud: {
+        value: true
+      },
+      apis: ['limit-size'],
+      demos: ['file-size']
+    },
+    {
+      id: 'upload-mode',
+      name: '上传模式',
+      support: {
+        value: true
+      },
+      description: '支持自动上传和手动上传两种模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-upload'],
+      demos: ['upload-mode']
     }
   ]
 }

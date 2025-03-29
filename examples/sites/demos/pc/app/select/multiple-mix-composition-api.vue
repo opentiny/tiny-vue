@@ -1,7 +1,8 @@
 <template>
   <div class="demo-box">
     <tiny-button @click="displayOnly = !displayOnly">{{ displayOnly ? '解除' : '设置' }} 只读</tiny-button>
-
+    <br />
+    <br />
     <tiny-form class="custom-form" :inline="inline" label-position="top" :display-only="displayOnly">
       <tiny-form-item label="单选只读">
         <tiny-select v-model="formData.value" :options="options"> </tiny-select>

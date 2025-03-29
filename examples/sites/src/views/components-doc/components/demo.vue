@@ -398,12 +398,12 @@ onBeforeUnmount(() => {
 </style>
 
 <style lang="less">
-.dark .pc-demo-container.pc-demo-container {
+html.dark .pc-demo-container.pc-demo-container {
   background-color: #1a1a1a;
   border: none;
 }
 
-.dark .demo-content.demo-content .demo-desc {
+html.dark .demo-content.demo-content .demo-desc {
   color: #b3b3b3;
 }
 </style>

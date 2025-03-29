@@ -12,49 +12,49 @@
 
 .inject-Pager-vars() {
   // 分页字号
-  --tv-Pager-font-size: var(--tv-font-size-default);
+  --tv-Pager-font-size: var(--tv-font-size-default, 14px);
   // 分页文本色
-  --tv-Pager-text-color: var(--tv-color-text);
+  --tv-Pager-text-color: var(--tv-color-text, #191919);
   // 分页禁用文本色
-  --tv-Pager-text-color-disabled: var(--tv-color-text-disabled);
+  --tv-Pager-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
   // 分页二级文本颜色，页码项文本色
-  --tv-Pager-text-color-secondary: var(--tv-color-text-secondary);
+  --tv-Pager-text-color-secondary: var(--tv-color-text-secondary, #595959);
   // 分页图标大小
   --tv-Pager-icon-size: 16px;
   // 分页图标颜色
-  --tv-Pager-icon-color: var(--tv-color-icon);
+  --tv-Pager-icon-color: var(--tv-color-icon, #808080);
   // 分页图标悬浮颜色
-  --tv-Pager-icon-color-hover: var(--tv-color-icon-hover);
+  --tv-Pager-icon-color-hover: var(--tv-color-icon-hover, #191919);
   // 分页图标禁用颜色
-  --tv-Pager-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Pager-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
   // 分页边框颜色
-  --tv-Pager-border-color: var(--tv-color-border);
+  --tv-Pager-border-color: var(--tv-color-border, #c2c2c2);
   // 分页边框悬浮颜色
-  --tv-Pager-border-color-hover: var(--tv-color-border-hover);
+  --tv-Pager-border-color-hover: var(--tv-color-border-hover, #191919);
   // 分页边框激活颜色
-  --tv-Pager-border-color-active: var(--tv-color-border-active);
+  --tv-Pager-border-color-active: var(--tv-color-border-active, #191919);
   // 分页边框禁用颜色
-  --tv-Pager-border-color-disabled: var(--tv-color-border-disabled);
+  --tv-Pager-border-color-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 分页悬浮背景颜色
-  --tv-Pager-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Pager-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 分页禁用背景颜色
-  --tv-Pager-bg-color-disabled: var(--tv-color-bg-disabled);
+  --tv-Pager-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 分页高度
-  --tv-Pager-height: var(--tv-size-height-md);
+  --tv-Pager-height: var(--tv-size-height-md, 32px);
   // 分页纵向内边距
-  --tv-Pager-padding-y: var(--tv-space-md);
+  --tv-Pager-padding-y: var(--tv-space-md, 8px);
   // -------mini分页相关样式-------
   // mini分页字号
-  --tv-Pager-font-size-xs: var(--tv-font-size-sm);
+  --tv-Pager-font-size-xs: var(--tv-font-size-sm, 12px);
   // mini分页选择框|输入框|前往按钮高度
-  --tv-Pager-input-height-xs: var(--tv-size-height-xs);
+  --tv-Pager-input-height-xs: var(--tv-size-height-xs, 24px);
   // 小尺寸分页页码项最小宽度
   --tv-Pager-min-width-xs: 24px;
   // -------分页页码相关样式-------
   // 分页页码选中时背景色
-  --tv-Pager-page-item-bg-color-active: var(--tv-color-bg-active);
+  --tv-Pager-page-item-bg-color-active: var(--tv-color-bg-active, #f5f5f5);
   // 分页页码悬浮时背景色
-  --tv-Pager-page-item-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Pager-page-item-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 分页页码边框颜色
   --tv-Pager-page-item-border-color: transparent;
   // 分页页码禁用状态下边框颜色
@@ -62,49 +62,49 @@
   // 分页页码项默认悬浮边框色
   --tv-Pager-page-item-border-color-hover: transparent;
   // 分页页码项项圆角
-  --tv-Pager-page-item-border-radius: var(--tv-border-radius-brand);
+  --tv-Pager-page-item-border-radius: var(--tv-border-radius-brand, 999px);
   // 分页页码悬浮字重
-  --tv-Pager-page-item-font-weight-hover: var(--tv-font-weight-bold);
+  --tv-Pager-page-item-font-weight-hover: var(--tv-font-weight-bold, 600);
   // 分页页码项最小宽度
   --tv-Pager-page-item-min-width: 32px;
   // 分页页码项水平内边距
-  --tv-Pager-page-item-padding-x: var(--tv-space-md);
+  --tv-Pager-page-item-padding-x: var(--tv-space-md, 8px);
   // 分页页码选中文本色
-  --tv-Pager-page-item-text-color-active: var(--tv-color-text-active-1);
+  --tv-Pager-page-item-text-color-active: var(--tv-color-text-active-1, #191919);
   // 分页页码悬浮文本色
-  --tv-Pager-page-item-text-color-hover: var(--tv-color-text);
+  --tv-Pager-page-item-text-color-hover: var(--tv-color-text, #191919);
   // -------上一页、下一页相关样式-------
   // 分页前进和后退按钮悬浮背景色
   --tv-Pager-prev-next-bg-color-hover: transparent;
   // 自定义上下页按钮文本色
-  --tv-Pager-custom-prev-next-text-color: var(--tv-color-text-link);
+  --tv-Pager-custom-prev-next-text-color: var(--tv-color-text-link, #1476ff);
   // 分页上一页左侧外边距
-  --tv-Pager-prev-margin-left: var(--tv-space-xl);
+  --tv-Pager-prev-margin-left: var(--tv-space-xl, 16px);
   // 分页上一页右侧外边距
-  --tv-Pager-prev-margin-right: var(--tv-space-md);
+  --tv-Pager-prev-margin-right: var(--tv-space-md, 8px);
   // 分页下一页右侧外边距
   --tv-Pager-next-margin-right: 0;
   // 分页下一页左侧外边距
-  --tv-Pager-next-margin-left: var(--tv-space-md);
+  --tv-Pager-next-margin-left: var(--tv-space-md, 8px);
   // -------分页输入框相关样式-------
   // 分页输入框圆角
-  --tv-Pager-input-border-radius: var(--tv-border-radius-md);
+  --tv-Pager-input-border-radius: var(--tv-border-radius-md, 6px);
   // 分页选择框|输入框|前往按钮高度
-  --tv-Pager-input-height: var(--tv-size-height-md);
+  --tv-Pager-input-height: var(--tv-size-height-md, 32px);
   // -------跳至相关样式------
   // 跳至左侧文字左侧内边距
-  --tv-Pager-goto-left-padding-left: var(--tv-space-xl);
+  --tv-Pager-goto-left-padding-left: var(--tv-space-xl, 16px);
   // -------分页大小下拉面板相关样式
   // 分页大小下拉图标水平内边距
-  --tv-Pager-sizes-arrow-padding-x: var(--tv-space-md);
+  --tv-Pager-sizes-arrow-padding-x: var(--tv-space-md, 8px);
   // 分页大小数字右侧外边距
-  --tv-Pager-sizes-num-margin-right: var(--tv-space-sm);
+  --tv-Pager-sizes-num-margin-right: var(--tv-space-sm, 4px);
   // 分页大小选项悬浮背景色
-  --tv-Pager-sizes-popup-bg-color-hover: var(--tv-color-bg-hover);
+  --tv-Pager-sizes-popup-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 分页大小下拉框选项选中字体颜色
-  --tv-Pager-sizes-popup-text-color-active: var(--tv-color-text-active);
+  --tv-Pager-sizes-popup-text-color-active: var(--tv-color-text-active, #1476ff);
   // 分页下拉项最小高度
   --tv-Pager-sizes-popup-item-height: 32px;
   // 分页下输入框背景色
-  --tv-Pager-input-background: var(--tv-color-bg-3);
+  --tv-Pager-input-background: var(--tv-color-bg-3, #ffffff);
 }

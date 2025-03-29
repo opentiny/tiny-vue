@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import type { popConfirmProps, $constants } from '@/popconfirm/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import type { show, hide, confirm, handleEmit } from '../src/popconfirm'
+import type { show, hide, confirm, handleEmit, handleDocumentClick } from '../src/popconfirm'
 
 export interface IPopconfirmState {
   isLock: boolean
@@ -25,6 +25,7 @@ export interface IPopconfirmApi {
   hide: ReturnType<typeof hide>
   confirm: ReturnType<typeof confirm>
   handleEmit: ReturnType<typeof handleEmit>
+  handleDocumentClick: ReturnType<typeof handleDocumentClick>
 }
 
 export type IPopconfirmRenderlessParamUtils = ISharedRenderlessParamUtils<IPopconfirmConstants>

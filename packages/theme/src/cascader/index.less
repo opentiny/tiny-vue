@@ -114,13 +114,10 @@
       .@{cascader-prefix-cls}-panel {
         justify-content: flex-start;
         align-items: flex-start;
+        border: solid 1px var(--tv-Cascader-border-color);
       }
-      .@{cascader-prefix-cls}-menu {
-        border: 1px solid #e4e7ed;
-        background:var(--tv-Cascader-dropdown-bg-color);
-        &:not(:first-child) {
-          margin-left: -1px;
-        }
+      .@{cascader-prefix-cls}-menu {  
+        background:var(--tv-Cascader-dropdown-bg-color);   
         .@{cascader-prefix-cls}-menu__wrap {
           height: auto;
           padding-bottom: 6px;

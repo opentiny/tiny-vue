@@ -3,20 +3,21 @@ import { test, expect } from '@playwright/test'
 test('拦截弹窗关闭', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('drawer#before-close')
+  const demo = page.locator('#before-close')
 
-  const drawer = page.locator('.tiny-drawer__main')
+  const drawer = demo.locator('.tiny-drawer__main')
   const message = page.locator('.tiny-modal__text')
 
-  await page.getByRole('button', { name: '点击展开 Drawer' }).click()
+  await demo.getByRole('button', { name: '点击展开 Drawer' }).click()
   await expect(drawer).toBeVisible()
 
   // 点击关闭按钮
-  await page.getByRole('button', { name: 'Close' }).click()
+  await demo.getByRole('button', { name: 'Close' }).click()
   await expect(message).toContainText('close')
   await expect(drawer).toBeVisible()
 
   // 点击遮罩层
-  await page.locator('.tiny-drawer__mask').click()
+  await demo.locator('.tiny-drawer__mask').click()
   await expect(drawer).toBeVisible()
 
   // 点击底部确定按钮
@@ -24,10 +25,10 @@ test('拦截弹窗关闭', async ({ page }) => {
   await expect(drawer).toBeVisible()
 
   // 点击底部取消按钮
-  await page.getByRole('button', { name: '取消' }).click()
+  await demo.getByRole('button', { name: '取消' }).click()
   await expect(drawer).toBeVisible()
 
   // 自定义关闭方法
-  await page.getByRole('button', { name: '关闭 Drawer' }).click()
+  await demo.getByRole('button', { name: '关闭 Drawer' }).click()
   await expect(drawer).not.toBeVisible()
 })

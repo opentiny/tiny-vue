@@ -25,13 +25,13 @@ const statusMap = ref({
   // 对应 status = completed
   completed: '#1890ff',
   // 对应 status = doing
-  doing: '#e8faff',
+  doing: '#86edff',
   // 对应 status = back
-  back: '#edf7df',
+  back: '#93fda6',
   // 对应 status = end
-  end: '#faad14',
+  end: '#faad18',
   // 对应 status = cancel
-  cancel: '#f230301A'
+  cancel: '#f230305A'
 })
 
 // 数据源

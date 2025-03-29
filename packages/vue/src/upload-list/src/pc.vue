@@ -301,11 +301,14 @@
       </li>
     </transition-group>
     <div v-if="reUploadable && state.failUploadFileCount && listType === 'text'" class="tiny-upload-list__text-title">
-      <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-        typeof reUploadTip === 'function'
-          ? reUploadTip(state.failUploadFileCount)
-          : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
-      }}
+      <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />
+      <span class="tiny-upload-list__text-desc">
+        {{
+          typeof reUploadTip === 'function'
+            ? reUploadTip(state.failUploadFileCount)
+            : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
+        }}
+      </span>
       <tiny-button type="text" @click="$emit('ReUploadTotal', files)">{{
         t('ui.fileUpload.reUploadFile')
       }}</tiny-button>
