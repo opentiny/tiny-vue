@@ -17,7 +17,7 @@
             @click="click(name)"
           >
             <component :is="Svgs[name] && Svgs[name]()" class="svgs-icon"></component>
-            <span class="svgs-text">{{ name }}</span>
+            <span class="svgs-text" :title="name">{{ name }}</span>
           </div>
         </template>
       </div>
@@ -116,8 +116,7 @@ export default {
 }
 
 .svgs-item:hover {
-  background-color: #f6f8fa;
-  color: #191919;
+  background-color: var(--tv-color-bg-hover);
 }
 
 .svgs-text {
@@ -125,6 +124,8 @@ export default {
   display: block;
   font-size: 12px;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .svgs-box:has(> .svg-visible) .group-name {

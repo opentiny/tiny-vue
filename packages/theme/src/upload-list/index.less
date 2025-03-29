@@ -290,6 +290,10 @@
     color: var(--tv-UploadList-item-fail-text-color);
   }
 
+  &__text-desc {
+    padding-top: 4px;
+  }
+
   &__icon-operationfaild {
     fill: #f23030;
     margin-right: 8px;
@@ -392,10 +396,10 @@
       &.is-fail {
         border-style: solid;
         border-color: var(--tv-UploadList-item-fail-text-color);
-        background-color: #fce3e1;
+        background-color: var(--tv-UploadList-item-fail-bg-color);
 
         .@{upload-list-prefix-cls}__item-actions:hover {
-          background-color: #fce3e1;
+          background-color: var(--tv-UploadList-item-fail-bg-color);
 
           & span .tiny-svg {
             fill: var(--tv-UploadList-svg-close-hover-icon-color);
@@ -517,11 +521,16 @@
       bottom: 16px;
       transform: translateX(-50%);
       font-size: 14px;
-      color: #1476ff;
+      color: var(--tv-UploadList-item-cancel-text-color);
       line-height: 22px;
       letter-spacing: 0;
       white-space: nowrap;
       cursor: pointer;
+
+      &:hover {
+        color: var(--tv-UploadList-item-cancel-text-color-hover);
+        text-decoration: underline;
+      }
     }
   }
 

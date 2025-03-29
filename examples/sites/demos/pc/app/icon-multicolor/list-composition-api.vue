@@ -9,7 +9,7 @@
             style="width: 2em; height: 2em"
             @click="click(icon.name)"
           ></component>
-          <span class="svgs-text">{{ icon.name }}</span>
+          <span class="svgs-text" :title="name">{{ icon.name }}</span>
         </div>
       </div>
     </div>
@@ -116,5 +116,7 @@ function click(name) {
   display: block;
   font-size: 14px;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

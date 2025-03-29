@@ -24,7 +24,7 @@
 
   &__head {
     cursor: pointer;
-    color: #343434;
+    color: var(--tv-FileUpload-item-text-color);
     font-size: var(--tv-FileUpload-font-size);
 
     .thumb-icon {
@@ -38,6 +38,8 @@
   }
 
   &__body {
+    .inject-FileUpload-vars();
+
     .thumb-item {
       display: flex;
       justify-content: flex-start;
@@ -50,7 +52,7 @@
 
     .thumb-item-name {
       padding: 4px 8px;
-      color: #333;
+      color: var(--tv-FileUpload-item-text-color);
       flex: 1;
       white-space: nowrap;
       overflow: hidden;

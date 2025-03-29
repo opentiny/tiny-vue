@@ -735,7 +735,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: var(--tv-Steps-line-vertical-title-margin-top) 20px 0;
+        padding: var(--tv-Steps-line-vertical-title-margin-top) 20px 0;
 
         &.not-vertical {
           display: none;
@@ -1043,7 +1043,7 @@
       & > .block-right {
         .title-vertical,
         .description {
-          color: #c2c2c2;
+          color: var(--tv-Steps-disabled-text-color);
         }
       }
     }
@@ -1083,16 +1083,16 @@
         & .left-dot {
           width: 10px;
           height: 10px;
-          border: 2px solid #c2c2c2;
+          border: 1px solid var(--tv-Steps-dot-vertical-current-bg-color);
           border-radius: 50%;
           box-sizing: border-box;
         }
 
         & .left-line {
-          margin: 4px auto 0px;
+          margin: 4px auto 0;
           height: calc(100% - 11.5px);
           width: 1px;
-          background-color: #dbdbdb;
+          background-color: var(--tv-Steps-dot-vertical-current-bg-color);
         }
       }
 

@@ -33,3 +33,8 @@ const changeDisabled = () => {
   disabled.value = !disabled.value
 }
 </script>
+<style lang="less">
+  .tiny-search__suffix {
+    fill: var(--tv-color-icon);
+  }
+</style>

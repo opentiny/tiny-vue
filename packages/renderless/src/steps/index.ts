@@ -32,7 +32,6 @@ export const computedRightNodePos =
 
     return Array.from({ length: nodesLength }).map((item, index) => ({
       zIndex: dataLength - index,
-      right: -(index + 1) * 4 + 'px'
     }))
   }
 

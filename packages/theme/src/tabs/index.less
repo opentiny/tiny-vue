@@ -33,6 +33,7 @@
   &__nav-wrap {
     overflow: hidden;
   }
+
   &__nav-scroll {
     margin-right: 16px;
   }
@@ -44,6 +45,7 @@
     padding: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .@{tabs-prefix-cls} {
 
@@ -61,15 +63,13 @@
 
       // 添加按钮
       &__new-tab {
-        float: right;
-        margin: 12px 0 9px 10px;
-        height: var(--tv-Tabs-new-height);
-        line-height: var(--tv-Tabs-new-height);
-        width: var(--tv-Tabs-new-width);
-        font-size: var(--tv-Tabs-font-size-base);
+        margin-left: 16px;
+        margin-top: 3px;
+        height: 16px;
+        padding: 0 16px;
+        font-size: var(--tv-Tabs-header-separator-height);
         display: inline-flex;
-        border: 1px solid var(--tv-Tabs-border-color);
-        border-radius: var(--tv-Tabs-new-border-radius);
+        border-left: 1px solid var(--tv-Tabs-border-color);
         justify-content: center;
         align-items: center;
         cursor: pointer;
@@ -77,11 +77,13 @@
         outline: none;
 
         svg {
-          fill: var(--tv-Tabs-new-svg-text-color);
-        }
+          fill: var(--tv-Tabs-header-icon-color);
 
-        &:hover svg {
-          fill: var(--tv-Tabs-header-text-color);
+          &:hover {
+            fill: var(--tv-Tabs-header-icon-color-hover);
+            border-radius: 4px;
+            background-color: var(--tv-Tabs-header-icon-color-bg-hover);
+          }
         }
       }
 
@@ -120,6 +122,7 @@
         font-size: var(--tv-Tabs-prev-next-btn-icon-size);
         cursor: pointer;
         color: var(--tv-Tabs-header-font-normal-text-color);
+        fill: var(--tv-Tabs-header-font-normal-text-color);
       }
 
       &__nav-next {
@@ -238,6 +241,7 @@
       }
 
       .@{tabs-prefix-cls}__icon-close {
+
         &,
         &:hover {
           background-color: transparent;
@@ -250,6 +254,7 @@
     }
 
     &.is-closable {
+
       // 修复自定义标签配置:with-close="true"样式错乱问题
       > div {
         display: inline-block;
@@ -272,8 +277,7 @@
       border-radius: 50%;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-      margin: var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-right)
-        var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-left);
+      margin: var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-right) var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-left);
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -284,7 +288,7 @@
         font-size: var(--tv-Tabs-font-size-base);
         transform: scale(0.9);
         vertical-align: middle;
-        fill: var(--tv-Tabs-icon-close-default-text-color);
+        fill: var(--tv-Tabs-icon-close-icon-color);
       }
 
       &:hover {
@@ -315,6 +319,7 @@
     font-size: var(--tv-Tabs-font-size-base);
     color: var(--tv-Tabs-header-font-normal-text-color);
     line-height: var(--tv-Tabs-height);
+
     .tiny-dropdown__suffix-inner {
       display: none;
     }
@@ -339,6 +344,7 @@
         justify-content: center;
         align-items: center;
         font-size: 18px;
+
         &::before {
           content: '';
           position: absolute;
@@ -349,9 +355,16 @@
           height: var(--tv-Tabs-more-left-box-height);
           box-shadow: -3px 0px 4px 0px rgba(0, 0, 0, 0.08);
         }
-        .tiny-svg.icon {
+
+        .tiny-svg {
           font-size: var(--tv-Tabs-more-icon-size);
           vertical-align: middle;
+          fill: var(--tv-Tabs-more-icon-color);
+
+          &:hover {
+            border-radius: 4px;
+            background-color: var(--tv-Tabs-header-icon-color-bg-hover);
+          }
         }
       }
     }
@@ -371,6 +384,10 @@
     &.@{dropdown-menu-prefix-cls}.@{popper-prefix-cls} {
       margin-top: var(--tv-Tabs-dropdown-more-margin-top); // smb新增
       overflow: auto; // smb新增
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 
@@ -378,6 +395,7 @@
   &&--large {
     .@{tabs-prefix-cls}__item {
       font-size: 16px;
+
       &.is-active {
         font-size: 16px;
       }
@@ -403,8 +421,7 @@
       font-size: var(--tv-Tabs-prev-next-btn-icon-size);
     }
 
-    .@{tabs-prefix-cls}__nav.is-show-active-bar
-      .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
+    .@{tabs-prefix-cls}__nav.is-show-active-bar .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
       margin-right: var(--tv-Tabs-small-item-margin-right);
     }
 
@@ -421,6 +438,7 @@
 
   // 一层tab页签: card类型
   &&--card {
+
     &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__nav,
     &.@{tabs-prefix-cls}--right .@{tabs-prefix-cls}__nav {
       width: 120px;
@@ -744,6 +762,7 @@
     .@{tabs-prefix-cls}__header {
       float: right;
       margin-left: 10px;
+
       &.is-left {
         margin-left: 0;
       }
@@ -751,6 +770,7 @@
 
     .@{tabs-prefix-cls}__nav-wrap {
       margin-left: -1px;
+
       &.is-left {
         margin-left: 0;
       }
@@ -842,6 +862,7 @@
         .@{tabs-prefix-cls}__item {
           &.is-top {
             margin: 0 0 -1px -1px;
+
             &.is-active {
               border-right: 1px solid var(--tv-Tabs-border-color);
             }
@@ -849,6 +870,7 @@
 
           &.is-bottom {
             margin: -1px;
+
             &.is-active {
               border-right: 1px solid var(--tv-Tabs-border-color);
             }
@@ -856,6 +878,7 @@
 
           &.is-right {
             margin: -1px 0 -1px 0;
+
             &.is-active {
               border-top: 1px solid var(--tv-Tabs-border-color);
               border-bottom: 1px solid var(--tv-Tabs-border-color);
@@ -863,6 +886,7 @@
             }
           }
         }
+
         .@{tabs-prefix-cls}__nav {
           &.is-bottom {
             border-bottom: 0;
@@ -890,9 +914,11 @@
       .@{tabs-prefix-cls}__active-bar {
         left: auto;
         right: 0;
+
         &.is-bottom {
           left: 0;
         }
+
         &.is-left {
           left: 0;
           right: auto;
@@ -904,6 +930,7 @@
           left: auto;
           right: 0;
         }
+
         &.is-left::after {
           left: 0;
           right: auto;
@@ -955,6 +982,7 @@
       &.@{tabs-prefix-cls}--border-card {
         .@{tabs-prefix-cls}__item.is-active {
           border: 1px solid var(--tv-Tabs-border-color);
+
           &.is-left {
             border-left: 3px solid var(--tv-Tabs-header-font-active-border-color);
           }
@@ -966,6 +994,7 @@
   &&--left,
   &&--right {
     .@{tabs-prefix-cls} {
+
       &__header,
       &__nav-wrap {
         height: 100%;
@@ -978,12 +1007,14 @@
       bottom: auto;
       width: 2px;
       height: auto;
+
       &.is-top {
         height: 3px;
         bottom: 0;
         left: 0;
         top: auto;
       }
+
       &.is-bottom {
         top: auto;
         bottom: 0;
@@ -1041,6 +1072,7 @@
           }
         }
       }
+
       .@{tabs-prefix-cls}__nav {
         border-left: none;
       }
@@ -1076,10 +1108,12 @@
     }
 
     .@{tab-pane-prefix-cls} {
+
       .@{tabs-prefix-cls}__header,
       .@{tabs-prefix-cls}__nav-wrap {
         float: inherit;
         margin-bottom: -1px;
+
         &.is-top,
         &.is-bottom {
           float: none;
@@ -1100,6 +1134,7 @@
 
       .@{tabs-prefix-cls}__item {
         display: inline-block;
+
         &.is-left,
         &.is-right {
           display: inherit;
@@ -1113,15 +1148,18 @@
 
     &.@{tabs-prefix-cls}--border-card {
       border-top: 0;
+
       .@{tabs-prefix-cls}__nav-wrap {
         &.is-scrollable {
           padding: 0;
         }
       }
+
       .@{tabs-prefix-cls}__nav-prev,
       .@{tabs-prefix-cls}__nav-next {
         display: none;
       }
+
       .@{tabs-prefix-cls}__header {
         border: 1px solid var(--tv-Tabs-border-color);
       }
@@ -1156,6 +1194,7 @@
 
     &.@{tabs-prefix-cls}--border-card {
       border-top: 0;
+
       .@{tabs-prefix-cls}__header {
         background: var(--tv-Tabs-header-bg-color);
         border-bottom: 1px solid var(--tv-Tabs-border-color);
@@ -1166,6 +1205,7 @@
       .@{tabs-prefix-cls}__nav-wrap {
         margin-top: -1px;
         margin-bottom: 0;
+
         &.is-top {
           margin-bottom: -1px;
         }
@@ -1174,10 +1214,12 @@
       .@{tabs-prefix-cls}__item {
         border: 1px solid transparent;
         margin: 0 -1px -1px;
+
         &.is-active {
           background-color: var(--tv-Tabs-dropdown-bg-color);
           border-right-color: var(--tv-Tabs-border-color);
           border-left-color: var(--tv-Tabs-border-color);
+
           &:before {
             left: 0;
             bottom: 0;
@@ -1194,12 +1236,15 @@
       .@{tabs-prefix-cls}__header {
         background: transparent;
         border: 0;
+
         &.is-left,
         &.is-right {
+
           .@{tabs-prefix-cls}__nav-prev,
           .@{tabs-prefix-cls}__nav-next {
             display: none;
           }
+
           .@{tabs-prefix-cls}__nav-wrap {
             padding: 0;
           }
