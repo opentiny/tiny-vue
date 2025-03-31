@@ -238,6 +238,7 @@ import { defineComponent, ref, onBeforeUnmount, getCurrentInstance } from 'vue'
 import { updateCellTitle, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import GlobalConfig from '../../config'
 import { handleRowGroupFold } from '../../table/src/strategy'
+import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 import type { TableColumn, TableRow, TableConfig, EventParams, GridBodyInstance } from './types'
 
 // 定义工具函数类型
@@ -639,41 +640,48 @@ export default defineComponent({
   methods: {
     // 滚动处理
     scrollEvent(event: Event) {
+      // 获取表格实例
       const { $parent: $table } = this as GridBodyInstance
       if (!$table) return
 
+      // 从表格实例中获取相关状态和引用
       const { $refs, lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad, columnStore } = $table
       const { leftList, rightList } = columnStore
       const { tableBody, tableFooter, tableHeader } = $refs
 
-      // 获取主表头，主表体，主表尾，左表体，右表体
+      // 获取表格各个部分的DOM元素
+      // 表头元素(可能不存在)
       const headerElem = tableHeader ? tableHeader.$el : null
+      // 表体元素
       const bodyElem = tableBody.$el
+      // 表尾元素(可能不存在)
       const footerElem = tableFooter ? tableFooter.$el : null
 
-      // 获取主表体元素的滚动位置
-      const scrollLeft = bodyElem.scrollLeft
-      const scrollTop = bodyElem.scrollTop
+      // 获取当前表体的滚动位置
+      const scrollLeft = bodyElem.scrollLeft // 水平滚动距离
+      const scrollTop = bodyElem.scrollTop // 垂直滚动距离
 
-      // 对比当前滚动位置和最后一次滚动位置，来得到当前滚动的是哪个方向上的滚动条
-      const isY = scrollTop !== lastScrollTop
-      const isX = scrollLeft !== lastScrollLeft
+      // 判断滚动方向
+      // 通过对比上一次的滚动位置,判断是垂直滚动还是水平滚动
+      const isY = scrollTop !== lastScrollTop // 是否垂直滚动
+      const isX = scrollLeft !== lastScrollLeft // 是否水平滚动
 
-      // 记录新的滚动位置和时间
-      $table.lastScrollTime = Date.now()
-      $table.lastScrollLeft = scrollLeft
-      $table.lastScrollTop = scrollTop
-      $table.scrollDirection = isX ? 'X' : 'Y'
+      // 更新表格实例中的滚动相关状态
+      $table.lastScrollTime = Date.now() // 记录最后滚动时间
+      $table.lastScrollLeft = scrollLeft // 更新最后水平滚动位置
+      $table.lastScrollTop = scrollTop // 更新最后垂直滚动位置
+      $table.scrollDirection = isX ? 'X' : 'Y' // 记录滚动方向
 
-      // 同步滚动条状态
+      // 同步表头和表尾的滚动位置,保持三者滚动同步
       this.syncHeaderAndFooterScroll({ bodyElem, footerElem, headerElem, isX })
 
-      // 处理关于冻结列最外层div类名
+      // 如果存在固定列(左固定或右固定),则处理固定列相关的类名
       if (leftList.length || rightList.length) {
-        this.generateFixedClassName({ $table, bodyElem, leftList, rightList })
+        generateFixedClassName({ $table, bodyElem, leftList, rightList })
       }
 
-      // 处理x和y轴方法虚拟滚动数据加载逻辑
+      // 处理虚拟滚动的数据加载
+      // 根据滚动方向(X/Y)和是否开启了对应方向的虚拟滚动来加载数据
       this.doScrollLoad({
         $table,
         _vm: this,
@@ -687,8 +695,8 @@ export default defineComponent({
         scrollYLoad
       })
 
-      // 触发用户监听的表格滚动事件
-      this.emitEvent($table, 'scroll', [{ type: 'body', scrollTop, scrollLeft, isX, isY, $table }, event])
+      // 触发表格的scroll事件,传递滚动相关的参数
+      emitEvent($table, 'scroll', [{ type: 'body', scrollTop, scrollLeft, isX, isY, $table }, event])
     },
 
     // 同步表头和表尾滚动
@@ -736,20 +744,26 @@ export default defineComponent({
       scrollXLoad: boolean
       scrollYLoad: boolean
     }) {
+      // 判断是否触发横向虚拟滚动加载,需同时满足开启了横向虚拟滚动且当前是横向滚动
       const isScrollX = scrollXLoad && isX
 
+      // 如果是横向虚拟滚动,触发横向滚动事件,加载数据
       if (isScrollX) {
         $table.triggerScrollXEvent(event)
       }
 
+      // 当横向滚动到最右侧时,需要同步表头的滚动位置
+      // scrollLeft + clientWidth >= scrollWidth 表示滚动到最右侧
       if (isScrollX && headerElem && scrollLeft + bodyElem.clientWidth >= bodyElem.scrollWidth) {
         _vm.$nextTick(() => {
+          // 如果表头和表体的滚动位置不一致,则同步表头的滚动位置
           if (bodyElem.scrollLeft !== headerElem.scrollLeft) {
             headerElem.scrollLeft = bodyElem.scrollLeft
           }
         })
       }
 
+      // 如果开启了纵向虚拟滚动且当前是纵向滚动,触发纵向滚动事件加载数据
       if (scrollYLoad && isY) {
         $table.triggerScrollYEvent(event)
       }
@@ -757,11 +771,15 @@ export default defineComponent({
 
     // 处理单元格事件
     handleCellMouseenter(event: MouseEvent, row: TableRow, column: TableColumn) {
+      // 获取表格实例
       const $table = this.$parent
+
+      // 如果表格正在进行拖动或滚动操作,则不触发鼠标事件
       if (this.isOperateMouse($table)) {
         return
       }
 
+      // 构造事件参数对象,包含当前单元格元素、行数据、列配置和表格实例
       const evntParams: EventParams = {
         cell: event.currentTarget as HTMLElement,
         row,
@@ -769,32 +787,44 @@ export default defineComponent({
         $table
       }
 
+      // 如果配置了显示单元格标题
       if (column.showTitle) {
+        // 更新单元格的title属性
         updateCellTitle(event)
-      } else if (column.showTip || column.showTooltip) {
+      }
+      // 如果配置了显示tooltip提示
+      else if (column.showTip || column.showTooltip) {
+        // 触发tooltip显示事件
         $table.triggerTooltipEvent(event, evntParams)
       }
 
+      // 触发单元格鼠标进入自定义事件
       emitEvent($table, 'cell-mouseenter', [evntParams, event])
     },
 
     handleCellMouseleave(event: MouseEvent, row: TableRow, column: TableColumn) {
+      // 获取表格实例
       const $table = this.$parent
+
+      // 如果表格正在进行拖动或滚动操作,则不触发鼠标事件
       if (this.isOperateMouse($table)) {
         return
       }
 
+      // 如果配置了显示tooltip提示,则关闭tooltip
       if (column.showTip || column.showTooltip) {
         $table.clostTooltip()
       }
 
+      // 构造事件参数对象,包含当前单元格元素、行数据、列配置和表格实例
       const evntParams: EventParams = {
-        cell: event.currentTarget as HTMLElement,
-        row,
-        column,
-        $table
+        cell: event.currentTarget as HTMLElement, // 当前单元格DOM元素
+        row, // 当前行数据
+        column, // 当前列配置
+        $table // 表格实例
       }
 
+      // 触发单元格鼠标离开自定义事件
       emitEvent($table, 'cell-mouseleave', [evntParams, event])
     },
 
