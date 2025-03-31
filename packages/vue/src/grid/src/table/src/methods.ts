@@ -314,9 +314,14 @@ const Methods = {
 
     // 对全量数据进行筛选、排序、虚拟滚动切割数据等一系列操作
     this.handleTableData(true)
-    // reserveCheckSelection：处理分页切换保留选中状态的逻辑，checkSelectionStatus：处理全选、半选等选中状态
+    // reserveCheckSelection：处理分页切换保留选中状态的逻辑
+    // checkSelectionStatus：处理全选、半选等选中状态
     run(['reserveCheckSelection', 'checkSelectionStatus'], this)
+
+    // 定义第一个处理函数：如果不是notRefresh模式，则重新计算表格尺寸和布局
     let first = () => !notRefresh && this.recalculate()
+
+    // 定义第二个处理函数：尝试恢复滚动位置
     let second = () => {
       // 让表格滚动条滚动到最后一次滚动到的位置
       if (lastScrollLeft || lastScrollTop) {
@@ -327,71 +332,103 @@ const Methods = {
         headerElem && (headerElem.scrollLeft = 0)
       }
     }
+
+    // 链式执行两个处理函数
     return this.$nextTick().then(first).then(second)
   },
-  // 重新加载数据
+
+  // 重新加载数据：先清空所有状态，然后加载新数据，最后处理默认设置
   reloadData(datas) {
     return this.clearAll()
       .then(() => this.loadTableData(datas))
       .then(() => this.handleDefault())
   },
-  // 加载全量数据
+
+  // 加载全量数据：直接加载数据而不清空状态
   loadData(datas) {
     return new Promise((resolve) => {
       this.loadTableData(datas)
       resolve()
     })
   },
+
+  // 重新加载指定行的数据
+  // row: 目标行数据对象
+  // record: 新的行数据对象
+  // field: 指定字段名（如果只更新某个字段）
   reloadRow(row, record, field) {
     let { tableData, tableSourceData } = this
     let rowIndex = this.getRowIndex(row)
     let originRow = tableSourceData[rowIndex]
     let hasSrc = originRow && row
     let hasSrcNoField = hasSrc && !field
+
+    // 如果指定了字段，只更新该字段值
     if (hasSrc && field) {
       set(originRow, field, get(record || row, field))
     }
+
+    // 如果有源数据且提供了新记录，但没有指定字段，则用新记录替换整行
     if (hasSrcNoField && record) {
       tableSourceData[rowIndex] = record
       clear(row, undefined)
       Object.assign(row, this.defineField({ ...record }))
       this.updateCache(true)
     }
+
+    // 如果有源数据但没有新记录也没有指定字段，则用源数据替换当前行
     if (hasSrcNoField && !record) {
       destructuring(originRow, clone(row, true))
     }
+
+    // 触发表格重新渲染
     this.tableData = tableData.slice(0)
     return this.$nextTick()
   },
-  // 从新加载列配置
+
+  // 重新加载列配置：先清除所有状态，然后加载新列配置
   reloadColumn(columns) {
     return this.clearAll().then(() => this.loadColumn(columns))
   },
+
+  // 加载列配置
   loadColumn(columns) {
     return new Promise((resolve) => {
+      // 通过mapTree函数处理每个列配置，创建列实例
       this.collectColumn = mapTree(columns, (column) => Cell.createColumn(this, column), headerProps)
       resolve()
     }).then(() => this.$nextTick())
   },
-  // 更新数据的 Map
+
+  // 更新数据的映射缓存（优化查询效率）
   updateCache(source) {
     let { fullAllDataRowIdData, fullAllDataRowMap, fullDataRowIdData, fullDataRowMap, tableFullData, treeConfig } = this
     let rowKey = getTableRowKey(this)
+
+    // 构建行数据缓存的函数
     let buildRowCache = (row, index) => {
+      // 获取行ID，如果没有则生成
       let rowId = getRowid(this, row)
       if (isNull(rowId) || rowId === '') {
         rowId = getRowUniqueId()
         set(row, rowKey, rowId)
       }
+
+      // 创建行缓存对象
       let rowCache = { row, rowid: rowId, index }
+
+      // 根据source参数决定是否更新完整数据缓存
       if (source) {
         fullDataRowIdData[rowId] = rowCache
         fullDataRowMap.set(row, rowCache)
       }
+
+      // 更新全部数据缓存
       fullAllDataRowIdData[rowId] = rowCache
       fullAllDataRowMap.set(row, rowCache)
     }
 
+    // 清空缓存的函数
     let clearCache = () => {
       fullAllDataRowIdData = {}
       this.fullAllDataRowIdData = fullAllDataRowIdData
@@ -402,7 +439,11 @@ const Methods = {
         fullDataRowMap.clear()
       }
     }
+
+    // 执行清空缓存
     clearCache()
+
+    // 根据数据是否为树结构，使用不同方式遍历数据并构建缓存
     if (treeConfig) {
       eachTree(tableFullData, buildRowCache, treeConfig)
     } else {
@@ -414,27 +455,33 @@ const Methods = {
     let { fullColumnMap, tableFullColumn: fullColumn } = this
     let fullColumnIdData = {}
     this.fullColumnIdData = fullColumnIdData
+    // 清空列映射
     Map.prototype.clear.apply(fullColumnMap)
+    // 为每列创建缓存对象
     fullColumn.forEach((column, index) => {
       let colCache = { colid: column.id, column, index }
       fullColumnIdData[column.id] = colCache
       fullColumnMap.set(column, colCache)
     })
   },
-  // 通过tr的dom元素获取行数据等相关信息
+  // 通过tr的DOM元素获取对应的行数据及相关信息
   getRowNode(tr) {
     if (!tr) {
       return null
     }
 
     const { fullAllDataRowIdData, tableFullData, treeConfig } = this
+    // 获取行DOM元素上存储的行ID属性
     const dataRowid = tr.getAttribute('data-rowid')
+
+    // 如果是树形结构，使用findTree查找对应的行数据
     if (treeConfig) {
       const matches = findTree(tableFullData, (row) => getRowid(this, row) === dataRowid, treeConfig)
       if (matches) {
         return matches
       }
     } else {
+      // 如果是普通表格，直接从缓存中获取
       if (fullAllDataRowIdData[dataRowid]) {
         const rowCache = fullAllDataRowIdData[dataRowid]
         return {
@@ -446,19 +493,25 @@ const Methods = {
     }
     return null
   },
+
+  // 通过单元格DOM元素获取对应的列信息
   getColumnNode(cell) {
     if (!cell) {
       return null
     }
     const { isGroup, fullColumnIdData, tableFullColumn } = this
+    // 获取单元格DOM元素上存储的列ID属性
     const dataColid = cell.getAttribute('data-colid')
     const colCache = fullColumnIdData?.[dataColid]
+
+    // 如果是分组表头，使用findTree查找对应的列
     if (isGroup) {
       let matches = findTree(tableFullColumn, (column) => column.id === dataColid, headerProps)
       if (matches) {
         return matches
       }
     } else if (colCache) {
+      // 如果是普通表头，直接从缓存中获取
       return {
         index: colCache.index,
         item: colCache.column,
@@ -467,27 +520,37 @@ const Methods = {
     }
     return null
   },
+
+  // 获取行在数据数组中的索引
   getRowIndex(row) {
     let { fullDataRowMap } = this
     return fullDataRowMap.has(row) ? fullDataRowMap.get(row).index : -1
   },
+
+  // 获取列在列数组中的索引
   getColumnIndex(column) {
     let { fullColumnMap } = this
     return fullColumnMap.has(column) ? fullColumnMap.get(column).index : -1
   },
+
+  // 判断列是否为序号列
   hasIndexColumn(column) {
     return column && column.type === 'index'
   },
+
+  // 定义行数据字段，确保行数据具有所有必要字段
   defineField(row, copy) {
     if (!row || typeof row !== 'object') {
       return row
     }
+    // 如果需要复制，则创建行数据的深拷贝
     if (copy) {
       row = clone(row, true)
     }
     let { visibleColumn } = this
     let rowKey = getTableRowKey(this)
 
+    // 为每个可见列，如果行中没有对应的属性，则设置默认值
     visibleColumn.forEach(({ property, editor }) => {
       let propNotExist = property && !has(row, property)
       let propDefaultValue = editor && !isUndefined(editor.defaultValue) ? editor.defaultValue : null
@@ -495,27 +558,35 @@ const Methods = {
         set(row, property, propDefaultValue)
       }
     })
-    // 如果行数据的唯一主键不存在，则生成
+
+    // 如果行数据的唯一主键不存在，则生成新的唯一ID
     const rowId = get(row, rowKey)
     if (isNull(rowId) || rowId === '') {
       set(row, rowKey, getRowUniqueId())
     }
     return row
   },
+
+  // 判断行是否为临时行（如新增的未保存行）
   isTemporaryRow(row) {
     let rowid = getRowid(this, row)
     return find(this.temporaryRows, (r) => rowid === getRowid(this, r))
   },
+
+  // 创建新的数据记录
   createData(records, copy) {
     let isArr = isArray(records)
     if (!isArr) {
       records = [records]
     }
+    // 对每条记录应用defineField处理
     let tmp = records.map((record) => this.defineField(record, copy))
     return new Promise((resolve) => {
       resolve(isArr ? tmp : tmp[0])
     })
   },
+
+  // 创建新行(会创建副本)
   createRow(records) {
     return this.createData(records, true)
   },
@@ -528,11 +599,14 @@ const Methods = {
    * 如果还额外传了field，则清空指定单元格内容；
    */
   clearData(rows, field) {
+    // 根据参数决定清空范围
     rows = !arguments.length ? this.tableFullData : rows && !isArray(rows) ? [rows] : rows
     rows.forEach((row) => {
       if (field) {
+        // 清空指定字段
         set(row, field, null)
       } else {
+        // 清空行的所有字段
         this.visibleColumn.forEach((column) => {
           column.property && setCellValue(row, column, null)
         })
@@ -540,9 +614,13 @@ const Methods = {
     })
     return this.$nextTick()
   },
+
+  // 判断行是否为插入的新行
   hasRowInsert(row) {
     return ~this.editStore.insertList.indexOf(row)
   },
+
+  // 比较行数据的指定字段值是否相等
   compareRow(row, originalRow, field) {
     const value = get(row, field)
     const originalValue = get(originalRow, field)
@@ -562,16 +640,21 @@ const Methods = {
 
     return result
   },
+
+  // 判断行数据是否有变更
   hasRowChange(row, field) {
     const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig } = this
     const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     const rowId = getRowid(this, row)
     let originRow
-    // 新增的数据不需要检测
+
+    // 新增的数据不需要检测变更，直接根据配置返回
     if (this.isTemporaryRow(row)) {
       return insertChanged
     }
+
+    // 处理树形结构的行比较
     if (treeConfig) {
       const children = treeConfig.children
       const cacheRow = backupMap.get(row)
@@ -582,13 +665,17 @@ const Methods = {
         originRow = { ...cacheRow, [children]: null }
       }
     } else {
+      // 获取原始行数据
       originRow = find(tableSourceData, (item) => rowId === getRowid(this, item))
     }
+
     if (originRow) {
+      // 如果指定了字段，只比较该字段
       if (argsLength > 1) {
         return !this.compareRow(row, originRow, field)
       }
 
+      // 否则比较所有可见列的字段
       for (let i = 0; i < visibleColumn.length; i++) {
         let { property } = visibleColumn[i]
         if (property && !this.compareRow(row, originRow, property)) {
@@ -598,22 +685,28 @@ const Methods = {
     }
     return false
   },
+
   // 获取表格所有列
   getColumns(columnIndex) {
     let { visibleColumn: columns } = this
     let argsLength = arguments.length
     return argsLength ? columns[columnIndex] : columns.slice(0)
   },
+
+  // 根据列ID获取列对象
   getColumnById(colid) {
     let { fullColumnIdData } = this
     let colCache = fullColumnIdData[colid]
     return colCache ? colCache.column : null
   },
+
+  // 根据字段名获取列对象
   getColumnByField(field) {
     let { visibleColumn: columns } = this
     return typeof field === 'string' && field ? find(columns, (column) => column.property === field) : null
   },
-  // 获取当前表格的列（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）
+
+  // 获取当前表格的列配置（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）
   getTableColumn() {
     let { collectColumn, tableColumn, tableFullColumn, visibleColumn } = this
     return {
@@ -623,6 +716,7 @@ const Methods = {
       collectColumn: collectColumn.slice(0)
     }
   },
+
   // 获取表格所有数据
   getData(rowIndex) {
     let tableSynchData = this.data || this.tableSynchData
@@ -1650,7 +1744,8 @@ const Methods = {
       })
     })
   },
-  // 更新横向 X 可视渲染上下剩余空间大小
+  // 更新横向 X 可视渲染上下剩余空间大小(续)
+  // 设置主表头/主表体/主表尾表格元素的marginLeft（已滚动出渲染范围的列，不渲染但是保留宽度占位，保证对齐）
   updateScrollXSpace() {
     const { elemStore, scrollXLoad, scrollXStore, scrollbarWidth, tableWidth, visibleColumn } = this
     const { startIndex } = scrollXStore
@@ -1673,6 +1768,8 @@ const Methods = {
     headerElem && (headerElem.style.marginLeft = marginLeft)
     bodyElem.style.marginLeft = marginLeft
     footerElem && (footerElem.style.marginLeft = marginLeft)
+
+    // 设置各个区域的横向占位元素宽度
     const layouts = ['header', 'body', 'footer']
     layouts.forEach((layout) => {
       const xSpaceElem = elemStore[`main-${layout}-xSpace`]
@@ -1686,11 +1783,14 @@ const Methods = {
 
     this.$nextTick(this.updateStyle)
   },
+  // 使用requestAnimationFrame实现防抖
   debounceRaf(handlerKey, callback) {
+    // 如果已有请求帧，先取消
     if (this[handlerKey]) {
       cancelAnimationFrame(this[handlerKey])
     }
 
+    // 请求新的动画帧
     this[handlerKey] = requestAnimationFrame(() => {
       this[handlerKey] = null
       callback()
@@ -1700,12 +1800,12 @@ const Methods = {
   updateScrollYData() {
     // 更新DOM样式保证表格滚动时的对齐
     this.updateScrollYSpace()
-    // 节流更新响应数据
+    // 使用requestAnimationFrame优化渲染
     this.debounceRaf('updateScrollYDataHandler', () => {
       this.handleTableData().then(() => this.$nextTick(this.updateStyle))
     })
   },
-  // 更新纵向虚拟滚动 Y 可视渲染上下剩余空间大小（使用tiny-grid-body__y-space元素撑开足够空间）
+  // 更新纵向虚拟滚动 Y 可视渲染上下剩余空间大小
   updateScrollYSpace() {
     let { $grid, elemStore, scrollLoad, scrollLoadStore, scrollYLoad } = this
     let { rowHeight, startIndex } = this.scrollYStore
@@ -1715,75 +1815,92 @@ const Methods = {
     let isVScrollOrLoad = scrollYLoad || scrollLoad
     let { marginTop, ySpaceHeight } = {}
 
-    // 通过开始渲染下标startIndex和表格的行高度来计算marginTop，虚滚场景为已滚动出渲染范围的行的总高度，滚动分页场景为空
+    // 计算marginTop和空间高度
     marginTop = isVScrollOrLoad && scrollYLoad ? `${Math.max(startIndex * rowHeight, 0)}px` : ''
-    // 虚滚场景的滚动高度，滚动分页场景的视口高度
     ySpaceHeight = isVScrollOrLoad ? `${bodyHeight}px` : ''
 
-    // 滚动分页场景的视口高度和滚动高度缓存
+    // 存储滚动分页相关数据
     scrollLoadStore.bodyHeight = bodyHeight
     scrollLoadStore.scrollHeight = scrollHeight
 
     const tableElem = elemStore['main-body-table']
 
-    // 这里最好使用transform3D,使用gpu加速，防止页面重绘
+    // 使用transform设置表格偏移位置，更高效
     if (tableElem) {
       tableElem.style.transform = marginTop ? `translateY(${marginTop})` : ''
     }
 
+    // 设置Y轴空间元素高度
     const ySpaceElem = elemStore['main-body-ySpace']
     ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
 
-    // 滚动分页加载逻辑
+    // 滚动分页加载逻辑设置
     if (ySpaceElem && scrollLoad && $grid) {
       Object.assign(scrollLoadStore, { bodyHeight, scrollHeight })
       ySpaceElem.firstChild.style.height = `${scrollHeight}px`
       ySpaceElem.onscroll = this.debounceScrollLoad
     }
   },
+  // 更新滚动加载条位置
   updateScrollLoadBar(event) {
     let { $el, elemStore, scrollLoad, scrollLoadStore } = this
     if (scrollLoad && $el.contains(event.target)) {
+      // 处理鼠标滚轮事件，更新滚动位置
       let wheelDelta = event.wheelDelta ? event.wheelDelta : -event.detail * 40
       let scrollElm = elemStore['main-body-ySpace']
       let { scrollHeight, bodyHeight } = scrollLoadStore
       let max = scrollHeight - bodyHeight
       let top = scrollElm.scrollTop - wheelDelta
+
+      // 确保滚动位置在有效范围内
       top = max < top ? max : top
       top = top < 0 ? 0 : top
       scrollElm.scrollTop = top
     }
   },
+  // 滚动到指定位置
   scrollTo(scrollLeft, scrollTop) {
     const { elemStore } = this
     const tableBodyElem = elemStore['main-body-wrapper']
     const tableHeaderElem = elemStore['main-header-wrapper']
     const tableFooterElem = elemStore['main-footer-wrapper']
+
+    // 滚动到指定的水平位置
     if (isNumber(scrollLeft)) {
       tableBodyElem && (tableBodyElem.scrollLeft = scrollLeft)
       tableFooterElem && (tableFooterElem.scrollLeft = scrollLeft)
       tableHeaderElem && (tableHeaderElem.scrollLeft = scrollLeft)
     }
+
+    // 滚动到指定的垂直位置
     if (isNumber(scrollTop)) {
       tableBodyElem && (tableBodyElem.scrollTop = scrollTop)
     }
+
     return this.$nextTick()
   },
+  // 滚动到指定行
   scrollToRow(row, column, isDelay, move) {
     let hasRowCache = this.fullAllDataRowMap.has(row)
     let isDelayArg = isDelay || isBoolean(column)
+    // 如果存在行，滚动到可见位置
     row && hasRowCache && rowToVisible(this, row)
     return this.scrollToColumn(column, isDelayArg, move)
   },
+  // 滚动到树形结构的指定行
   scrollToTreeRow(row) {
     let { tableFullData, treeConfig, treeOpts } = this
     if (!treeConfig) {
       return this.$nextTick()
     }
+
+    // 查找目标行在树中的路径
     let matchObj = findTree(tableFullData, (item) => item === row, treeOpts)
     if (!matchObj) {
       return this.$nextTick()
     }
+
+    // 展开路径上的所有节点
     let nodes = matchObj.nodes
     nodes.forEach((row, index) => {
       if (index === nodes.length - 1 || this.hasTreeExpand(row)) {
@@ -1791,62 +1908,79 @@ const Methods = {
       }
       this.setTreeExpansion(row, true)
     })
+
     return this.$nextTick()
   },
+  // 滚动到指定列
   scrollToColumn(column, isDelay, move) {
     let hasColCache = this.fullColumnMap.has(column)
+    // 如果列存在，滚动到可见位置
     column && hasColCache && colToVisible(this, column, move)
 
-    // 虚滚场景 DOM 元素会延时渲染，DOM 元素不存在时校验会显示异常
+    // 虚拟滚动场景下，DOM元素延迟渲染，需要额外等待
     return isDelay && (this.scrollXLoad || this.scrollYLoad)
       ? new Promise((resolve) => setTimeout(() => resolve(this.$nextTick()), 50))
       : this.$nextTick()
   },
+  // 重置滚动顶部位置
   resetScrollTop() {
     this.lastScrollTop = 0
   },
+  // 清除滚动状态
   clearScroll() {
     let { scrollXStore, scrollYStore, elemStore } = this
+    // 重置滚动位置记录
     Object.assign(this, { lastScrollLeft: 0, lastScrollTop: 0 })
+    // 重置虚拟滚动存储
     Object.assign(scrollXStore, { startIndex: 0, visibleIndex: 0 })
     Object.assign(scrollYStore, { startIndex: 0, visibleIndex: 0 })
+
     this.$nextTick(() => {
-      // 从缓存中拿 DOM 元素
+      // 从缓存中获取DOM元素
       const tableBodyElem = elemStore['main-body-wrapper']
       const tableHeaderElem = elemStore['main-header-wrapper']
       const tableFooterElem = elemStore['main-footer-wrapper']
 
+      // 重置所有区域的滚动位置
       if (this.afterMounted) {
         tableBodyElem && Object.assign(tableBodyElem, { scrollLeft: 0, scrollTop: 0 })
         tableFooterElem && Object.assign(tableFooterElem, { scrollLeft: 0 })
         tableHeaderElem && Object.assign(tableHeaderElem, { scrollLeft: 0 })
       }
     })
+
     return this.$nextTick()
   },
-  // 更新表尾合计
+  // 更新表尾合计行
   updateFooter() {
     let { afterFullData, footerMethod, showFooter, summaryConfig, tableColumn } = this
+
+    // 如果设置了自定义表尾方法
     if (footerMethod && showFooter) {
       let data = footerMethod({ columns: tableColumn, data: afterFullData })
+      // 如果返回的不是二维数组，转换为二维数组
       if (data.length && data.some((value) => !isArray(value))) {
         data = [data]
       }
       this.footerData = tableColumn.length ? data : []
     }
+
+    // 如果设置了汇总配置
     if (summaryConfig) {
       let { fields, fraction, text, truncate } = summaryConfig
+      // 构建汇总行数据
       let summary = tableColumn.map((column, columnIndex) => {
         if (columnIndex === 0) {
-          return text || ''
+          return text || '' // 第一列显示汇总文本
         }
         if (~fields.indexOf(column.property)) {
-          return toDecimal(sum(this.afterFullData, column.property), fraction, truncate)
+          return toDecimal(sum(this.afterFullData, column.property), fraction, truncate) // 计算汇总值
         }
         return null
       })
       this.footerData = [summary]
     }
+
     return this.$nextTick()
   },
   // 更新列状态：如果组件值v-model发生change，调用该函数更新列的编辑状态。如果单元格配置了校验规则，则进行校验
@@ -1859,15 +1993,19 @@ const Methods = {
         return
       }
 
+      // 如果设置了始终验证
       if (renderOpts && renderOpts.isValidAlways) {
         validStore.visible = true
       }
 
       let { column, row } = scope
       let type = 'change'
+      // 如果没有相关校验规则，直接返回
       if (!this.hasCellRules(type, row, column)) {
         return
       }
+
+      // 获取单元格元素并执行校验
       let rowIndex = tableData.indexOf(row)
       getCell(this, { row, rowIndex, column }).then((cell) => {
         if (!cell) {
@@ -1875,22 +2013,26 @@ const Methods = {
         }
         return this.validCellRules(type, row, column, cellValue)
           .then(() => {
+            // 校验通过，设置新值并清除验证提示
             customValue && validStore.visible && setCellValue(row, column, cellValue)
             this.clearValidate()
           })
           .catch(({ rule }) => {
+            // 校验失败，设置新值并显示验证提示
             customValue && setCellValue(row, column, cellValue)
             this.showValidTooltip({ rule, row, column, cell })
           })
       })
     })
   },
-  /* X/Y 方向滚动 */
+  /* X/Y 方向滚动状态更新 */
   updateScrollStatus() {
+    // 防抖处理滚动状态更新
     if (!this.tasks.updateScrollStatus) {
       this.tasks.updateScrollStatus = debounce(AsyncCollectTimeout, () => {
         const { scrollXLoad, scrollYLoad, isAsyncColumn } = this
 
+        // 如果存在异步列并且开启了虚拟滚动
         if (isAsyncColumn && (scrollXLoad || scrollYLoad)) {
           const { tableData, scrollXStore, scrollYStore, tableFullData, scrollDirection = 'N' } = this
           const isInit =
@@ -1911,85 +2053,114 @@ const Methods = {
   getAsyncColumnUniqueKey(property, row) {
     return `${property}_${row[this.rowId]}`
   },
+
   // 获取异步列名称
   getAsyncColumnName(property) {
     return GlobalConfig.constant.asyncPrefix + property
   },
+
   // 收集异步列
   collectAsyncColumn(tableData) {
     const fetchColumns = []
     const { rowId, asyncRenderMap, tableColumn } = this
+
+    // 确保rowId存在
     if (!rowId) {
       warn('The (grid-props:rowId) is required for the asynchronous column.')
       return fetchColumns
     }
+
+    // 遍历所有列，找出需要异步渲染的列
     tableColumn.forEach((col) => {
       const { async } = col.format || {}
       const { fetch, splitConfig = {} } = async || {}
+
       if (typeof fetch === 'function') {
         const columnValues = []
+
+        // 收集列中所有行的值
         tableData.forEach((row) => {
           let cellValue = row[col.property]
           if (typeof cellValue !== 'string' || (typeof cellValue === 'string' && !cellValue)) {
             cellValue = ' '
           }
+
           let cellValuesCount = 1
           let cellValues = [cellValue]
           const uniqueKey = this.getAsyncColumnUniqueKey(col.property, row)
-          // 默认不开启
+
+          // 支持值分割配置
           if (splitConfig.enabled === true) {
             cellValues = cellValue.split(splitConfig.valueSplit || ',')
             cellValuesCount = cellValues.length
           }
+
+          // 缓存单元格值计数，避免重复加载
           if (!asyncRenderMap[uniqueKey]) {
-            // 以行主键、列名作为缓存的 Key 防止重复加载（缓存单元格显示值的个数）
             asyncRenderMap[uniqueKey] = cellValuesCount
-            // 单元格多值支持
+            // 添加所有单元格值到列值集合
             cellValues.forEach((value) => columnValues.push(value))
           }
         })
+
+        // 如果有需要异步处理的值，将列添加到结果中
         if (columnValues.length) {
           fetchColumns.push({ ...col, columnValues })
         }
       }
     })
+
     return fetchColumns
   },
-  // fetchData 执行
+
+  // 处理异步列数据加载
   handleAsyncColumn(tableData) {
     if (this.isAsyncColumn && tableData.length) {
       // 每次请求都需要清空加载缓存
       this.asyncRenderMap = {}
+      // 收集并处理异步列
       this.handleResolveColumn(tableData, this.collectAsyncColumn(tableData))
     }
   },
-  // 查询异步列
+
+  // 处理异步列数据解析
   handleResolveColumn(tableData, fetchColumns) {
     const { tableColumn, scrollYStore, asyncRenderMap, scrollXLoad, scrollYLoad } = this
     const { startIndex } = scrollYStore
     const isScrollLoad = scrollXLoad || scrollYLoad
+
+    // 如果没有需要处理的列，直接返回
     if (fetchColumns.length === 0) {
       return
     }
+
+    // 创建所有列数据获取的Promise
     const promises = mapFetchColumnPromise({ _vm: this, fetchColumns, tableColumn })
+
+    // 处理所有Promise结果
     Promise.all(promises).then(
       handleAllColumnPromises({ startIndex, fetchColumns, tableData, asyncRenderMap, isScrollLoad }, this)
     )
   },
-  // Publish methods 与工具栏对接
+
+  // 与工具栏组件对接
   connect({ toolbar }) {
     this.$toolbar = toolbar
   },
+
   // 检查触发源是否属于目标节点
   getEventTargetNode,
+
   // 可见性改变事件处理
   handleVisibilityChange(visible, entry) {
     if (visible) {
+      // 可见时更新高度和布局
       this.updateParentHeight()
       this.updateTableBodyHeight()
       this.recalculate()
     }
 
+    // 触发可见性变化事件
     emitEvent(this, 'visible-change', [{ $table: this, visible, entry }])
   },
 
@@ -1997,6 +2168,7 @@ const Methods = {
   updateTableBodyHeight() {
     if (!this.tasks.updateTableBodyHeight) {
       this.tasks.updateTableBodyHeight = () => {
+        // 使用fastdom避免布局抖动
         fastdom.measure(() => {
           const tableBodyElem = this.elemStore['main-body-wrapper']
           this.tableBodyHeight = tableBodyElem ? tableBodyElem.clientHeight : 0
@@ -2006,13 +2178,17 @@ const Methods = {
 
     this.tasks.updateTableBodyHeight()
   },
+
   // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
   toggleColumnOrder(column) {
     return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   },
+
+  // 为Vue3监听数据变化
   watchDataForVue3() {
     if (isVue2) return
 
+    // 创建侦听器，监控数组及其长度变化
     const stopWatch = hooks.watch(
       [() => this.data, () => this.data && this.data.length],
       ([newData, newLength], [oldData, oldLength]) => {
@@ -2023,28 +2199,37 @@ const Methods = {
       }
     )
 
+    // 组件卸载时清除侦听器
     hooks.onBeforeUnmount(() => stopWatch())
   },
+
+  // 获取特定名称的vm实例
   getVm(name) {
     return this.$grid.getVm(name)
   },
+
+  // 组装列配置
   assembleColumns() {
     // 如果没有初始化任何列实例就不进行列组装
     if (!this.isTagUsageSence) return
 
     assemColumn(this)
   },
+
+  // 验证列名是否有效
   isValidCustomColumn(columnName) {
     return columnName && this.columnNames.includes(columnName)
   },
+
+  // 计算列集合的唯一键
   computeCollectKey() {
     const columnIds = []
 
+    // 遍历列树结构收集列ID
     const traverse = (columns) => {
       if (Array.isArray(columns) && columns.length > 0) {
         columns.forEach((column) => {
           columnIds.push(column.columnConfig.id)
-
           traverse(column.childColumns)
         })
       }
@@ -2052,12 +2237,15 @@ const Methods = {
 
     traverse(this.childColumns)
 
+    // 生成逗号分隔的ID字符串作为键
     return columnIds.join(',')
   },
+
   // 获取所有多选数据状态
   getAllSelection() {
     return this.selection
   },
+
   // 尝试恢复滚动位置，规范了最大滚动位置的取值
   attemptRestoreScoll(options) {
     let { lastScrollTop, lastScrollLeft } = options || this
@@ -2065,18 +2253,24 @@ const Methods = {
     const { scrollXLoad, scrollYLoad, elemStore } = this
     const tableBodyElem = elemStore['main-body-wrapper']
 
+    // 如果有上次滚动位置并且表格主体存在
     if ((lastScrollTop || lastScrollLeft) && tableBodyElem) {
+      // 使用fastdom避免布局抖动
       fastdom.measure(() => {
+        // 计算最大滚动范围
         const maxScrollTop = tableBodyElem.scrollHeight - tableBodyElem.offsetHeight
         const maxScrollLeft = tableBodyElem.scrollWidth - tableBodyElem.offsetWidth
 
+        // 确保滚动位置不超过最大范围
         lastScrollTop = Math.min(lastScrollTop, maxScrollTop)
         lastScrollLeft = Math.min(lastScrollLeft, maxScrollLeft)
 
+        // 设置滚动位置
         fastdom.mutate(() => {
           this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
 
+          // 触发滚动事件更新虚拟滚动渲染
           scrollXLoad && this.triggerScrollXEvent()
           scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
         })
@@ -2086,9 +2280,12 @@ const Methods = {
     return this.$nextTick()
   }
 }
+
+// 添加所有功能方法
 funcs.forEach((name) => {
   Methods[name] = function (...args) {
     return this[`_${name}`] ? this[`_${name}`](...args) : null
   }
 })
+
 export default Methods
