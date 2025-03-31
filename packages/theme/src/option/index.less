@@ -49,6 +49,20 @@
   .checked-sur.tiny-svg,
   .halfselect.tiny-svg {
     fill: var(--tv-Option-icon-color-checked);
+    path:first-child {
+      fill: var(--tv-Option-icon-color-checked);
+    }
+    path:last-child {
+      fill: var(--tv-Option-icon-inverse-disabled);
+    }
+  }
+  .check.tiny-svg {
+    path:first-child {
+      fill: transparent;
+    }
+    path:last-child {
+      fill: var(--tv-Option-unchecked-border-color);
+    }
   }
 
   // 文本区域
@@ -97,18 +111,23 @@
     .tiny-svg {
       &.checked-sur,
       &.halfselect {
-        fill: var(--tv-Option-icon-color-checked-disabled);
-
-        path:nth-of-type(2) {
-          fill: var(--tv-Option-icon-color-checked-disabled-inverse);
+        fill: var(--tv-Option-checked-disabled-bg-color);
+        path:first-child {
+          fill: var(--tv-Option-bg-color-active);
+        }
+        path:last-child {
+          fill: var(--tv-Option-icon-inverse-disabled);
         }
       }
 
       &.check {
-        fill: var(--tv-Option-icon-color-unchecked-disabled); /* #bfbfbf */
-
-        path:first-of-type {
-          fill: var(--tv-Option-icon-bg-color-disabled);
+        path:first-child {
+          fill: var(--tv-Option-bg-color-disabled);
+        }
+        &:hover {
+          path:last-child {
+            fill: var(--tv-Option-unchecked-border-color);
+          }
         }
       }
     }

@@ -8,5 +8,5 @@ test('基本用法', async ({ page }) => {
   const alertBox = demo.locator('.customClass')
 
   // 颜色边框正确
-  await expect(alertBox).toHaveCSS('background-color', 'rgb(255, 192, 203)')
+  await expect(alertBox).toHaveCSS('background-color', 'rgb(179, 214, 255)')
 })

@@ -46,9 +46,13 @@
         transform: translate(-50%, -50%);
         fill: var(--tv-Grid-checkbox-icon-color);
         font-size: var(--tv-Grid-checkbox-icon-size);
-
+        path:last-child {
+          fill: var(--tv-Grid-unchecked-border-color);
+        }
         &:hover {
-          fill: var(--tv-Grid-checkbox-icon-color-hover);
+          path:last-child {
+            fill: var(--tv-Grid-unchecked-border-color-hover);
+          }
         }
 
         &.icon-checked-sur {
@@ -69,13 +73,16 @@
 
         &.icon-checked-sur {
           display: block;
-          fill: var(--tv-Grid-checkbox-icon-color-selected);
+          fill: var(--tv-Grid-bg-color-active);
+          path:last-child {
+            fill: var(--tv-Grid-border-color-inverse);
+          }
         }
       }
     }
 
     &:not(:checked) + .@{grid-checkbox-prefix-cls}__icon {
-      > svg {
+      .icon-check {
         path:first-child {
           fill: transparent;
         }
@@ -90,11 +97,11 @@
           border: none;
 
           > svg {
-            fill: var(--tv-Grid-checkbox-icon-color-selected);
-            border-radius: var(--tv-Grid-checkbox-border-radius);
-
-            path:first-child {
-              fill: var(--tv-Grid-checkbox-icon-color-selected);
+            &.icon-half-select {
+              fill: var(--tv-Grid-bg-color-active);
+              path:last-child {
+                fill: var(--tv-Grid-border-color-inverse);
+              }
             }
           }
         }
@@ -109,16 +116,7 @@
       & + .@{grid-checkbox-prefix-cls}__icon {
         > svg {
           fill: var(--tv-Grid-checkbox-border-color-disabled);
-
-          path {
-            fill: var(--tv-Grid-icon-color-disabled);
-          }
-
-          path:first-of-type {
-            fill: var(--tv-Grid-checkbox-bg-color-disabled);
-          }
         }
-
         & + .@{grid-checkbox-prefix-cls}__label {
           color: var(--tv-Grid-checkbox-border-color-disabled);
         }
@@ -129,7 +127,7 @@
           fill: var(--tv-Grid-checkbox-border-color-disabled);
 
           path:first-child {
-            fill: var(--tv-Grid-checkbox-border-color-disabled);
+            fill: var(--tv-Grid-checked-disabled-bg-color);
           }
         }
       }
@@ -144,6 +142,16 @@
         > svg {
           fill: var(--tv-Grid-checkbox-border-color-disabled);
         }
+      }
+    }
+  }
+  &.is__disabled > input:not(:checked) + .tiny-grid-checkbox__icon .icon-check {
+    path:first-child {
+      fill: var(--tv-Grid-bg-color-disable);
+    }
+    &:hover {
+      path:last-child {
+        fill: var(--tv-Grid-unchecked-border-color);
       }
     }
   }
