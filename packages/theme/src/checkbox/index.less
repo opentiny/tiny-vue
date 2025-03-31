@@ -150,11 +150,14 @@
   }
 
   &__input {
-    .@{checkbox-prefix-cls}__inner{
+    .@{checkbox-prefix-cls}__inner {
       svg {
         font-size: var(--tv-Checkbox-icon-size);
       }
-      .icon-checked-sur,.icon-halfselect {
+      .icon-checked-sur,
+      .icon-halfselect {
+        fill: var(--tv-Checkbox-bg-color-active);
+
         path:first-child {
           fill: var(--tv-Checkbox-bg-color-active);
         }
@@ -178,8 +181,11 @@
     }
   }
   &__input.is-disabled {
-    .@{checkbox-prefix-cls}__inner{
-      .icon-checked-sur,.icon-halfselect{
+    .@{checkbox-prefix-cls}__inner {
+      .icon-checked-sur,
+      .icon-halfselect {
+        fill: var(--tv-Checkbox-checked-disabled-bg-color);
+
         path:first-child {
           fill: var(--tv-Checkbox-checked-disabled-bg-color);
         }
@@ -188,11 +194,15 @@
         }
       }
       .icon-check {
+        fill: var(--tv-Checkbox-bg-color-disabled);
+
         path:first-child {
           fill: var(--tv-Checkbox-bg-color-disabled);
         }
-        path:last-child {
-          fill: var(--tv-Checkbox-checked-disabled-border-color);
+        &:hover {
+          path:last-child {
+            fill: var(--tv-Checkbox-unchecked-border-color);
+          }
         }
       }
     }

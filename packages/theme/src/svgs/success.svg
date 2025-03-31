@@ -1,14 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
-</style>
-<rect id="矩形备份-4" class="st0"/>
-<path id="形状结合" class="st1" d="M8,1c3.87,0,7,3.13,7,7s-3.13,7-7,7s-7-3.13-7-7S4.13,1,8,1z M11.02,5.98
-	c-0.18-0.18-0.46-0.18-0.64,0l0,0L7.1,9.26L5.62,7.78L5.55,7.72c-0.17-0.12-0.41-0.1-0.57,0.06c-0.18,0.18-0.18,0.46,0,0.64l0,0
-	L6.46,9.9l0.09,0.08c0.12,0.1,0.27,0.16,0.43,0.18l0,0l0.12,0.01l0.12-0.01c0.2-0.03,0.38-0.11,0.52-0.26l0,0l3.28-3.28l0.06-0.07
-	C11.19,6.37,11.17,6.14,11.02,5.98z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #5cb300;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="_路径" data-name="路径" class="cls-1" d="m8,1c-3.87,0-7,3.13-7,7s3.13,7,7,7,7-3.14,7-7S11.86,1,8,1Z"/>
+  <path id="_形状结合" data-name="形状结合" class="cls-2" d="m10.38,5.97c.18-.16.46-.16.63,0h0c.16.19.16.46,0,.65l-3.28,3.28c-.18.17-.4.26-.63.26s-.46-.09-.65-.26l-1.48-1.48c-.16-.18-.16-.46,0-.64.18-.16.46-.16.64,0l1.48,1.48,3.28-3.28Z"/>
 </svg>
