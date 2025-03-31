@@ -21,7 +21,11 @@ module.exports = {
     borderRadius: layoutToken.borderRadius,
     borderWidth: layoutToken.borderWidth,
     opacity: layoutToken.opacity,
+    backgroundSize: layoutToken.backgroundSize,
     extend: {
+      animation: {
+        'skeleton-loading-1500ms': '1.5s skeleton-loading-1500ms ease-in-out infinite'
+      },
       keyframes: {
         leftMove: {
           '0%': { transform: 'translateX(0)' },
@@ -39,6 +43,14 @@ module.exports = {
           '100%': {
             'stroke-dasharray': '90, 150',
             'stroke-dashoffset': '-120px'
+          }
+        },
+        'skeleton-loading-1500ms': {
+          'from': {
+            'background-position-x': '180%'
+          },
+          'to': {
+            'background-position-x': '-20%'
           }
         }
       }

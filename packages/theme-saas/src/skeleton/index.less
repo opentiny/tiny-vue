@@ -1,0 +1,41 @@
+@import '../custom.less';
+
+@skeleton-prefix-cls: ~'@{css-prefix}skeleton';
+.@{skeleton-prefix-cls} {
+  @apply w-full;
+
+  &__article {
+    @apply flex;
+    @apply w-full;
+  }
+
+  &__avatar {
+    @apply relative;
+    @apply overflow-hidden;
+    @apply shrink-0;
+    @apply mr-4;
+  }
+
+  &__section {
+    @apply w-full;
+  }
+
+  &-item__title {
+    @apply w-60;
+    @apply h-12;
+  }
+
+  &-item__rows {
+    @apply mt-6;
+    @apply mb-6;
+  }
+
+  &-item--square {
+    @apply mb-3;
+
+    &:last-child {
+      @apply w-3/5;
+      @apply mb-0;
+    }
+  }
+}

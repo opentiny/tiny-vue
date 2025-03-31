@@ -1,0 +1,74 @@
+@import '../custom.less';
+
+@skeleton-item-prefix-cls: ~'@{css-prefix}skeleton-item';
+
+.@{skeleton-item-prefix-cls} {
+  @apply bg-color-fill-3;
+  @apply rounded-sm;
+
+  &--active {
+    &.@{skeleton-item-prefix-cls} {
+      @apply bg-gradient-to-r;
+      @apply from-color-border-separator;
+      @apply via-color-bg-2;
+      @apply to-color-border-separator;
+      @apply bg-200-100;
+      @apply animate-skeleton-loading-1500ms;
+    }
+  }
+
+  &--square {
+    @apply mb-3;
+    @apply w-full;
+    @apply h-12;
+  }
+
+  &--circle {
+    @apply rounded-full;
+    &.@{skeleton-item-prefix-cls} {
+      &--small {
+        @apply w-6;
+        @apply h-6;
+      }
+
+      &--medium {
+        @apply w-7;
+        @apply h-7;
+      }
+
+      &--large {
+        @apply w-8;
+        @apply h-8;
+      }
+    }
+  }
+
+  &--image {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+
+    svg {
+      @apply w-2/5;
+      @apply h-2/5;
+      @apply fill-color-border;
+    }
+
+    &.@{skeleton-item-prefix-cls} {
+      &--small {
+        @apply w-6;
+        @apply h-6;
+      }
+
+      &--medium {
+        @apply w-7;
+        @apply h-7;
+      }
+
+      &--large {
+        @apply w-8;
+        @apply h-8;
+      }
+    }
+  }
+}

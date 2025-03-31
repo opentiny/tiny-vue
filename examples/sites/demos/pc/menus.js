@@ -298,7 +298,7 @@ export const cmpMenus = [
       { 'nameCn': 'K线图', 'name': 'Candle Chart', 'key': 'chart-candle' },
       { 'nameCn': '仪表盘', 'name': 'Gauge Chart', 'key': 'chart-gauge' },
       { 'nameCn': '树图', 'name': 'Tree Chart', 'key': 'chart-tree' },
-      { 'nameCn': '水球图', 'name': 'liquidfill Chart', 'key': 'chart-liquidfill' },
+      { 'nameCn': '水球图', 'name': 'Liquidfill Chart', 'key': 'chart-liquidfill' },
       { 'nameCn': '词云图', 'name': 'Wordcloud Chart', 'key': 'chart-wordcloud' },
       { 'nameCn': '旭日图', 'name': 'Sunburst Chart', 'key': 'chart-sunburst' },
       { 'nameCn': '拓扑图', 'name': 'Graph Chart', 'key': 'chart-graph' },

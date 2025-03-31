@@ -127,6 +127,7 @@ function loadLayout(designToken) {
   const space = Layout.space
   const boxShadow = Layout.boxShadow
   const opacity = Layout.opacity
+  const backgroundSize = Layout.backgroundSize
 
   layoutToken.fontSize = getToken('fontSize', fontSize)
   layoutToken.lineHeight = getToken('lineHeight', lineHeight)
@@ -135,6 +136,7 @@ function loadLayout(designToken) {
   layoutToken.spacing = getToken('spacing', space)
   layoutToken.boxShadow = getToken('boxShadow', boxShadow)
   layoutToken.opacity = getToken('opacity', opacity)
+  layoutToken.backgroundSize = getToken('backgroundSize', {})
 
   return layoutToken
 }
