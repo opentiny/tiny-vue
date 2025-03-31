@@ -388,7 +388,15 @@ const setSliceColumnTree = (_vm) => _vm.isGroup && (_vm._sliceColumnTree = slice
 /** 判断是否是虚拟行 */
 const isVirtualRow = (row) => row && row[VIRTUAL_ROW_KEY]
 
-/** 普通表分组场景，按数据顺序对数据进行分组 */
+/**
+ * 对表格数据进行分组处理
+ * @param {Array} arr - 原始数据数组
+ * @param {string} key - 分组键
+ * @param {Function} equals - 比较函数
+ * @param {Function} active - 激活状态判断函数
+ * @param {string} rowKey - 行键
+ * @returns {Array} 分组后的数据数组
+ */
 const orderingGroupBy = (arr, key, equals, active, rowKey) => {
   const result = []
   const virtualItems = []

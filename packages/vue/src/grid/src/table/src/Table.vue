@@ -991,6 +991,13 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => props.height,
+      () => {
+        instance.recalculate()
+      }
+    )
+
     // 监听列配置变化
     watch(
       // 监听收集的列配置
@@ -1003,6 +1010,23 @@ export default defineComponent({
         // 2. 更新固定列
         // 3. 处理列的显示/隐藏状态
         instance.watchColumn(value)
+      }
+    )
+
+    watch(
+      () => tableColumn.value,
+      () => {
+        // 对所有列的列宽进行分类：百分比/px
+        instance.analyColumnWidth()
+        // 处理空数据时表头是否禁用
+        instance.handleSelectionHeader()
+      }
+    )
+
+    watch(
+      () => parentHeight.value,
+      () => {
+        instance.recalculate()
       }
     )
 

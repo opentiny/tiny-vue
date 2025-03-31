@@ -1028,33 +1028,64 @@ const Methods = {
   },
   // 指定列宽的列进行拆分
   analyColumnWidth() {
-    let { columnMinWidth, columnStore, columnWidth, tableFullColumn } = this
-    let [autoList, pxList, pxMinList, resizeList, scaleList, scaleMinList] = [[], [], [], [], [], []]
-    let ruleChains = [
+    // 从实例中获取列相关的配置参数
+    const { columnMinWidth, columnStore, columnWidth, tableFullColumn } = this
+
+    // 初始化不同类型列的数组:
+    // autoList - 自适应宽度的列
+    // pxList - 固定像素宽度的列
+    // pxMinList - 最小像素宽度的列
+    // resizeList - 用户手动调整过宽度的列
+    // scaleList - 百分比宽度的列
+    // scaleMinList - 最小百分比宽度的列
+    const [autoList, pxList, pxMinList, resizeList, scaleList, scaleMinList] = [[], [], [], [], [], []]
+
+    // 定义列宽度规则链,按优先级从高到低排序
+    const ruleChains = [
       {
+        // 规则1: 用户手动调整过宽度的列
         match: (col) => col.resizeWidth,
         action: (col) => resizeList.push(col)
       },
-      { match: (col) => isPx(col.width), action: (col) => pxList.push(col) },
       {
+        // 规则2: 设置了固定像素宽度的列
+        match: (col) => isPx(col.width),
+        action: (col) => pxList.push(col)
+      },
+      {
+        // 规则3: 设置了百分比宽度的列
         match: (col) => isScale(col.width),
         action: (col) => scaleList.push(col)
       },
       {
+        // 规则4: 设置了最小像素宽度的列
         match: (col) => isPx(col.minWidth),
         action: (col) => pxMinList.push(col)
       },
       {
+        // 规则5: 设置了最小百分比宽度的列
         match: (col) => isScale(col.minWidth),
         action: (col) => scaleMinList.push(col)
       },
-      { match: () => true, action: (col) => autoList.push(col) }
+      {
+        // 规则6: 默认规则,将列加入自适应列表
+        match: () => true,
+        action: (col) => autoList.push(col)
+      }
     ]
+
+    // 遍历所有列,根据规则链分配到对应的列表中
     for (let i = 0; i < tableFullColumn.length; i++) {
       let column = tableFullColumn[i]
+
+      // 如果列没有设置宽度,使用全局columnWidth
       columnWidth && !column.width && (column.width = columnWidth)
+      // 如果列没有设置最小宽度,使用全局columnMinWidth
       columnMinWidth && !column.minWidth && (column.minWidth = columnMinWidth)
+
+      // 只处理可见的列
       if (column.visible) {
+        // 遍历规则链,匹配第一个符合的规则
         for (let j = 0; j < ruleChains.length; j++) {
           let ruleChain = ruleChains[j]
           if (ruleChain.match(column)) {
@@ -1064,6 +1095,8 @@ const Methods = {
         }
       }
     }
+
+    // 更新columnStore中的列分类数据
     Object.assign(columnStore, { autoList, pxList, pxMinList, resizeList, scaleList, scaleMinList })
   },
 
