@@ -1,14 +1,14 @@
 <template>
   <div :class="tableClasses" :style="tableStyles">
-    <!-- 隐藏列 -->
+    <!-- 隐藏列容器 - 用于存放列组件以便收集列信息 -->
     <div class="tiny-grid-hidden-column" ref="hideColumn">
       <slot></slot>
     </div>
 
-    <!-- 表头 -->
+    <!-- 表头组件 -->
     <grid-header v-if="showHeader" ref="tableHeader" v-bind="headerProps" :class="viewCls('tableHeader')" />
 
-    <!-- 空数据提示 -->
+    <!-- 空数据提示区域 -->
     <div
       v-if="isCenterEmpty && !tableData.length"
       :class="[{ 'empty-center-block': !isCardOrListView }, viewCls('emptyData')]"
@@ -20,10 +20,10 @@
       </slot>
     </div>
 
-    <!-- 表格主体 -->
+    <!-- 表格主体区域 -->
     <grid-body ref="tableBody" v-bind="bodyProps" :class="viewCls('tableBody')" />
 
-    <!-- 表尾 -->
+    <!-- 表尾合计区域 -->
     <grid-footer v-if="showFooter" ref="tableFooter" v-bind="footerProps" :class="viewCls('tableFooter')" />
 
     <!-- 边框线 -->
@@ -37,12 +37,12 @@
       :style="resizeBarStyle"
     />
 
-    <!-- 加载中 -->
+    <!-- 加载中遮罩 -->
     <grid-loading :visible="loading" :loading-component="loadingComponent" :class="viewCls('gridLoading')" />
 
-    <!-- 插件包装器 -->
+    <!-- 插件包装器容器 -->
     <div :class="`tiny-grid${id}-wrapper ${staticClass}`" ref="tableWrapper">
-      <!-- 筛选 -->
+      <!-- 筛选面板 -->
       <grid-filter v-if="hasFilter" ref="filterWrapper" :optimize-opts="optimizeOpts" :filter-store="filterStore" />
 
       <!-- 右键菜单 -->
@@ -60,7 +60,7 @@
       <slot name="toolbar"></slot>
     </div>
 
-    <!-- 多端表格 -->
+    <!-- 多端表格组件 -->
     <mf-table v-if="!isShapeTable" ref="mfTable" v-bind="mfTableProps" />
 
     <!-- 表尾边框线 -->
@@ -95,36 +95,48 @@ import { clearOnTableUnmount } from './strategy'
 import methods from './methods'
 import { useDrag, useRowGroup } from '../../composable'
 
+// 导入全局配置常量
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
 const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
-const hiddenContainerClass = 'tiny-grid-hidden-column'
-
-// 校验插件是否被注册
+/**
+ * 校验必要的插件是否已注册
+ * @param {Object} _vm - 组件实例
+ */
 function verifyConfig(_vm) {
+  // 校验是否设置了行主键
   if (!getRowkey(_vm)) {
     error('ui.grid.error.rowIdEmpty', true)
   }
 
+  // 校验编辑插件
   if (!TINYGrid._edit && _vm.editConfig) {
     throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Edit' }))
   }
 
+  // 校验验证插件
   if (!TINYGrid._valid && _vm.editRules) {
     throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Validator' }))
   }
 
+  // 校验键盘操作插件
   if (!TINYGrid._keyboard && (_vm.keyboardConfig || _vm.mouseConfig)) {
     throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Keyboard' }))
   }
 
+  // 校验自适应插件
   if (!TINYGrid._resize && _vm.autoResize) {
     throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Resize' }))
   }
 }
 
+/**
+ * 合并虚拟滚动配置
+ * @param {Object} scrollDir - 滚动方向配置
+ * @param {Object} scrollDirStore - 滚动存储对象
+ */
 function mergeScrollDirStore(scrollDir, scrollDirStore) {
   if (scrollDir) {
     Object.assign(scrollDirStore, {
@@ -137,6 +149,10 @@ function mergeScrollDirStore(scrollDir, scrollDirStore) {
   }
 }
 
+/**
+ * 合并树形表格配置
+ * @param {Object} _vm - 组件实例
+ */
 function mergeTreeConfig(_vm) {
   if (_vm.treeConfig) {
     const { ordered } = _vm.treeConfig
@@ -144,7 +160,11 @@ function mergeTreeConfig(_vm) {
   }
 }
 
-// 设置表格最外层元素类名
+/**
+ * 获取表格的样式类
+ * @param {Object} tableVm - 表格组件实例
+ * @returns {Object} 样式类对象
+ */
 function getTableClasses(tableVm) {
   const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
   const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
@@ -185,6 +205,11 @@ function getTableClasses(tableVm) {
   }
 }
 
+/**
+ * 获取表格的内联样式
+ * @param {Object} tableVm - 表格组件实例
+ * @returns {Object} 样式对象
+ */
 function getTableStyles(tableVm) {
   const { isShapeTable, maxHeight } = tableVm
   const style = {}
@@ -197,6 +222,10 @@ function getTableStyles(tableVm) {
   return style
 }
 
+/**
+ * 绑定全局事件
+ * @param {Object} ctx - 组件上下文
+ */
 const bindEvent = (ctx) => {
   GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownEvent)
   // 因为冒泡事件部分情况下被阻止继续传播，导致处理异常，因此注册 mousedown 捕获事件
@@ -208,6 +237,10 @@ const bindEvent = (ctx) => {
   GlobalEvent.on(ctx, 'contextmenu', ctx.handleGlobalContextmenuEvent)
 }
 
+/**
+ * 解绑全局事件
+ * @param {Object} table - 表格实例
+ */
 const unbindEvent = (table) => {
   GlobalEvent.off(table, 'mousedown')
   GlobalEvent.off(table, 'mousedown', true)
@@ -218,6 +251,7 @@ const unbindEvent = (table) => {
   GlobalEvent.off(table, 'contextmenu')
 }
 
+// 导出表格组件
 export default defineComponent({
   name: `${$prefix}GridTable`,
   components: {
@@ -230,6 +264,7 @@ export default defineComponent({
     MfTable,
     Tooltip
   },
+  // 组件属性定义
   props: {
     // 所有的列对齐方式
     align: { type: String, default: () => GlobalConfig.align },
@@ -425,24 +460,31 @@ export default defineComponent({
     // 自定义列组件名称（列表）
     customColumnNames: { type: [String, Array], default: defaultColumnName }
   },
+
+  // 提供注入
   provide() {
     return {
       $table: this,
-      // 嵌套表格屏蔽父表格列
-      $column: null
+      $column: null // 嵌套表格场景下屏蔽父表格列
     }
   },
+
+  // 注入依赖
   inject: {
     $grid: {
       default: null
     }
   },
+
+  // 组件方法
   methods: {
     ...methods,
     viewCls(module) {
       return (this as any).$grid.viewCls(module)
     }
   },
+
+  // 组件逻辑设置
   setup(props, { slots, attrs, listeners }) {
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
@@ -834,103 +876,179 @@ export default defineComponent({
       ]
     })
 
+    /**
+     * 判断表格是否有过滤功能
+     * 通过检查每一列的filter属性是否为非空对象来判断
+     * @returns {boolean} 是否有过滤功能
+     */
     const hasFilter = computed(() => {
       return tableColumn.value.some((column) => isObject(column.filter) && !isEmptyObject(column.filter))
     })
 
+    /**
+     * 判断表格是否有tooltip功能
+     * 通过检查TINYGrid是否注册了tooltip插件来判断
+     * @returns {boolean} 是否有tooltip功能
+     */
     const hasTip = computed(() => {
       return TINYGrid._tooltip
     })
 
+    /**
+     * 判断表格是否可调整列宽
+     * 当全局resizable为true或任一列的resizable为true时返回true
+     * @returns {boolean} 是否可调整列宽
+     */
     const isResizable = computed(() => {
       return props.resizable || tableFullColumn.value.some((column) => column.resizable)
     })
 
+    /**
+     * 判断表格是否有右键菜单
+     * 通过检查右键菜单列表中是否有菜单项来判断
+     * @returns {boolean} 是否有右键菜单
+     */
     const isCtxMenu = computed(() => {
       return ctxMenuStore.value?.list?.some((item) => item.length > 0)
     })
 
+    /**
+     * 获取排序配置
+     * 将全局排序配置与组件传入的排序配置深度合并
+     * @returns {Object} 合并后的排序配置对象
+     */
     const sortOpts = computed(() => {
       return extend(true, {}, GlobalConfig.sortConfig, props.sortConfig)
     })
     // 初始化列
     const initColumns = () => {
-      // 使用 useRelation 进行列关系处理
+      // 初始化表格实例的插槽
       useInstanceSlots()
 
+      // 使用 useRelation 处理列与列之间的关系
+      // 主要用于处理多级表头、列分组等场景
       useRelation({
+        // 关系标识,由列级别key和表格id组成,用于标识列之间的层级关系
         relationKey: `${columnLevelKey}-${id.value}`,
+        // 子列的属性名称
         childrenKey: 'childColumns',
-        relationContainer: () => (!isServer ? instance.$el.querySelector(`.${hiddenContainerClass}`) : null),
+        // 获取隐藏列容器DOM元素
+        relationContainer: () => (!isServer ? instance.$el.querySelector('.tiny-grid-hidden-column') : null),
+        // 当列关系发生变化时的回调函数
         onChange: () => {
+          // 计算列收集的key值
           const collectKey = instance.computeCollectKey()
 
+          // 如果key值发生变化,说明列结构有更新
           if (collectKey !== columnCollectKey.value) {
+            // 更新列收集key值
             columnCollectKey.value = collectKey
+            // 重新组装列配置
             instance.assembleColumns()
           }
         }
       })
 
-      // 拖拽相关初始化
+      // 初始化列拖拽功能
+      // 用于实现列的拖拽排序、拖拽调整宽度等功能
       useDrag({
+        // 拖拽配置,响应式获取props中的dropConfig
         dropConfig: computed(() => props.dropConfig),
+        // 收集的列配置
         collectColumn,
+        // 表格当前显示的列
         tableColumn
       })
 
-      // 行分组相关初始化
+      // 初始化行分组功能
+      // 用于实现表格数据的分组展示
       useRowGroup({
+        // 行分组配置,响应式获取props中的rowGroup
         rowGroup: computed(() => props.rowGroup),
+        // 当前可见的列
         visibleColumn,
+        // 完整的表格列配置
         tableFullColumn,
+        // 表格当前显示的列
         tableColumn
       })
     }
 
     // 监听数据变化
+    // 监听表格数据变化
     watch(
+      // 监听props中的data属性
       () => props.data,
+      // 当data发生变化时的回调函数
       (newData) => {
+        // 判断新数据是否为数组类型
         if (Array.isArray(newData)) {
+          // 1. 加载新的表格数据,第二个参数true表示重置表格状态
+          // 2. 处理默认行为,如默认选中、展开等
+          // 3. 处理表头选择框状态
           instance.loadTableData(newData, true).then(instance.handleDefault).then(instance.handleSelectionHeader)
         }
       }
     )
 
+    // 监听列配置变化
     watch(
+      // 监听收集的列配置
       () => collectColumn.value,
+      // 当列配置发生变化时的回调函数
       (value) => {
+        // 调用实例方法处理列变化
+        // 主要用于:
+        // 1. 重新计算列宽
+        // 2. 更新固定列
+        // 3. 处理列的显示/隐藏状态
         instance.watchColumn(value)
       }
     )
 
     // 生命周期钩子
     onBeforeUnmount(() => {
+      // 获取表格包装器DOM引用
       const tableWrapper = instance.$refs.tableWrapper
 
+      // 如果表格包装器存在且有父节点,从DOM中移除表格包装器
       if (tableWrapper && tableWrapper.parentNode) {
         tableWrapper.parentNode.removeChild(tableWrapper)
       }
 
+      // 如果启用了表格大小调整功能,解绑相关事件监听
       if (TINYGrid._resize) {
         instance.unbindResize()
       }
 
+      // 关闭筛选面板
       instance.closeFilter()
+      // 关闭右键菜单
       instance.closeMenu()
 
+      // 解绑所有表格相关的事件监听器
       unbindEvent(instance)
+      // 清理表格卸载时的状态和缓存
       clearOnTableUnmount(instance)
     })
 
     onActivated(() => {
+      // 检查是否存在上次滚动位置的记录
       if (lastScrollLeft.value || lastScrollTop.value) {
+        // 恢复表格到上次的滚动位置
         instance.scrollTo(lastScrollLeft.value, lastScrollTop.value)
+
+        // 如果启用了横向虚拟滚动,触发横向滚动事件
+        // 用于加载新的列数据
         scrollXLoad.value && instance.triggerScrollXEvent()
+
+        // 如果启用了纵向虚拟滚动,触发纵向滚动事件
+        // 传入上次的滚动位置,用于加载新的行数据
         scrollYLoad.value && instance.triggerScrollYEvent({ target: { scrollTop: lastScrollTop.value } })
       }
 
+      // 重新绑定表格相关的事件监听器
+      // 包括滚动、点击、键盘等事件
       bindEvent(instance)
     })
 
@@ -969,17 +1087,25 @@ export default defineComponent({
 
     // 挂载后处理
     nextTick().then(() => {
-      // 初始化表格
+      // 调用初始化函数,完成表格的初始化配置和数据加载
       initialize()
+      // 标记表格已完成挂载
       afterMounted.value = true
 
+      // 如果开启了自动调整大小功能且已注册了resize插件
       if (props.autoResize && TINYGrid._resize) {
+        // 绑定resize事件监听器,用于响应容器大小变化
         instance.bindResize()
       }
 
+      // 延迟执行表格底部边框相关的处理
       setTimeout(() => {
+        // 获取表格底部组件实例
         const tableFooter = instance.$refs.tableFooter
+        // 根据是否存在底部组件来设置是否显示底部边框
         showFooterBorder.value = !!tableFooter
+        // 获取底部组件的实际高度,用于设置底部边框的位置
+        // 如果底部组件存在则获取其高度,否则为0
         footerBorderBottom.value = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
       })
     })
