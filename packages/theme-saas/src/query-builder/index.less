@@ -171,6 +171,28 @@
     flex: auto;
   }
 
+  .custom-rule-value-editor {
+    display: flex;
+    width: 40%;
+
+    & > div {
+      width: 100%;
+    }
+
+    &_multi {
+      display: flex;
+      gap: 8px;
+
+      &-item {
+        width: 50%;
+
+        & > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+
   .rule-item--wrap {
     display: flex;
     padding: 0 10px;
