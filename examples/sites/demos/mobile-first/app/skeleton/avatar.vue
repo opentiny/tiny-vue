@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-skeleton avatar></tiny-skeleton>
+    <tiny-skeleton avatar :animated="false"></tiny-skeleton>
   </div>
 </template>
 

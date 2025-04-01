@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      animated: true
+      animated: false
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <tiny-skeleton>
+  <tiny-skeleton :animated="false">
     <template #placeholder>
       <br />
       <tiny-skeleton-item variant="image" size="small"></tiny-skeleton-item>

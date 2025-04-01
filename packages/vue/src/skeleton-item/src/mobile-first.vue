@@ -5,7 +5,7 @@
       m(
         'bg-color-fill-3',
         variant === 'image' && 'fill-color-border',
-        variant === 'square' && 'rounded',
+        variant !== 'circle' && 'rounded',
         gcls(`shape-${variant}`),
         variant !== 'square' ? gcls(`${variant}-${size}`) : '',
         state.isActive &&

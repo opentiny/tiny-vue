@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-skeleton>
+    <tiny-skeleton :animated="false">
       <template #placeholder>
         <h6>方形按钮</h6>
         <tiny-skeleton-item style="width: 64px; height: 24px"></tiny-skeleton-item>

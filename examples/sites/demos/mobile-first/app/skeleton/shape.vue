@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-skeleton>
+    <tiny-skeleton :animated="false">
       <template #placeholder>
         <tiny-skeleton-item variant="square"></tiny-skeleton-item>
         <br />

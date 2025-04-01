@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-skeleton :rows="4"></tiny-skeleton>
+    <tiny-skeleton :rows="0" :animated="false"></tiny-skeleton>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div>
     <tiny-button @click="handler">{{ loading ? '显示' : '隐藏' }}</tiny-button>
     <br /><br />
-    <tiny-skeleton :loading="loading">
+    <tiny-skeleton :loading="loading" :animated="false">
       <template #default>
         <p class="paragraph">内容比较短的一段文字</p>
       </template>
