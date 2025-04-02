@@ -49,9 +49,7 @@
   .checked-sur.tiny-svg,
   .halfselect.tiny-svg {
     fill: var(--tv-Option-icon-color-checked);
-    path:first-child {
-      fill: var(--tv-Option-icon-color-checked);
-    }
+
     path:last-child {
       fill: var(--tv-Option-icon-inverse-disabled);
     }
@@ -112,11 +110,9 @@
       &.checked-sur,
       &.halfselect {
         fill: var(--tv-Option-checked-disabled-bg-color);
-        path:first-child {
-          fill: var(--tv-Option-bg-color-active);
-        }
+
         path:last-child {
-          fill: var(--tv-Option-icon-inverse-disabled);
+          fill: var(--tv-Option-icon-color-checked-disabled-inverse);
         }
       }
 
