@@ -235,7 +235,7 @@
             content: '';
             position: absolute;
             top: calc(-1 * var(--tv-Tree-node-content-height) / 2);
-            left: calc(var(--tv-Tree-node-padding-left) + var(--tv-Tree-node-showline-icon-size) / 2);
+            left: calc(var(--tv-Tree-node-padding-x) + var(--tv-Tree-node-showline-icon-size) / 2);
             height: 100%;
             border-left: 1px solid var(--tv-Tree-node-guide-line-border-color);
           }
@@ -249,7 +249,7 @@
           &::before {
             content: '';
             position: absolute;
-            left: calc(var(--tv-Tree-node-padding-left) + var(--tv-Tree-node-showline-icon-size) / 2);
+            left: calc(var(--tv-Tree-node-padding-x) + var(--tv-Tree-node-showline-icon-size) / 2);
             top: 0;
             width: var(--tv-Tree-node-guide-line-width);
             height: calc(var(--tv-Tree-node-content-height) / 2);
@@ -337,7 +337,6 @@
       .@{tree-node-prefix-cls}__content-right {
         background-color: var(--tv-Tree-node-content-hover-bg-color);
       }
-
     }
 
     & label.@{css-prefix}checkbox,
@@ -358,7 +357,7 @@
     flex: 1 1 auto;
     height: 100%;
     overflow: hidden;
-    padding-left: var(--tv-Tree-node-padding-left);
+    padding: 0 var(--tv-Tree-node-padding-x);
 
     & > svg {
       fill: var(--tv-Tree-node-operate-icon-color);
