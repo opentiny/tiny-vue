@@ -12,7 +12,7 @@
         gcls(`size-${size || 'default'}`),
         gcls(
           `type-${type || 'default'}${icon ? '-icon' : state.plain ? '-plain' : ''}${
-            state.buttonDisabled ? '-disabled' : ''
+            state.buttonDisabled || loading ? '-disabled' : ''
           }`
         ),
         gcls(state.round ? 'is-round' : 'no-round'),
