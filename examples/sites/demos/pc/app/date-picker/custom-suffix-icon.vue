@@ -27,6 +27,6 @@ export default {
 }
 
 .my-date-picker {
-  background: var(--tv-color-bg-active-emphasize);
+  background: var(--tv-color-bg-2);
 }
 </style>

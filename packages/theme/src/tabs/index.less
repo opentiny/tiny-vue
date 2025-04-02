@@ -34,9 +34,6 @@
     overflow: hidden;
   }
 
-  &__nav-scroll {
-    margin-right: 16px;
-  }
 
   /** 头部场景 */
   &__header {
@@ -44,7 +41,6 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     .@{tabs-prefix-cls} {
@@ -63,10 +59,9 @@
 
       // 添加按钮
       &__new-tab {
-        margin-left: 16px;
         margin-top: 3px;
         height: 16px;
-        padding: 0 16px;
+        padding-left: 12px;
         font-size: var(--tv-Tabs-header-separator-height);
         display: inline-flex;
         border-left: 1px solid var(--tv-Tabs-border-color);
@@ -78,6 +73,8 @@
 
         svg {
           fill: var(--tv-Tabs-header-icon-color);
+          font-size: var(--tv-Tabs-more-icon-size);
+          padding: 4px;
 
           &:hover {
             fill: var(--tv-Tabs-header-icon-color-hover);
@@ -92,7 +89,6 @@
         display: flex;
         align-items: center;
         position: relative;
-        width: 100%;
 
         &.is-scrollable {
           padding: 0 20px;
@@ -292,8 +288,6 @@
       }
 
       &:hover {
-        background-color: var(--tv-Tabs-icon-close-hover-bg-color);
-
         svg {
           fill: var(--tv-Tabs-icon-close-hover-text-color);
         }
@@ -315,10 +309,11 @@
   // 更多按钮场景
   &__more-container {
     position: absolute;
-    right: 0px;
+    right: 0;
     font-size: var(--tv-Tabs-font-size-base);
     color: var(--tv-Tabs-header-font-normal-text-color);
     line-height: var(--tv-Tabs-height);
+    padding-top: 5px;
 
     .tiny-dropdown__suffix-inner {
       display: none;
@@ -358,6 +353,7 @@
 
         .tiny-svg {
           font-size: var(--tv-Tabs-more-icon-size);
+          padding: 4px;
           vertical-align: middle;
           fill: var(--tv-Tabs-more-icon-color);
 
