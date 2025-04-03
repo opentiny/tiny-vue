@@ -24,8 +24,4 @@ export default {
 .demo-input {
   width: 150px;
 }
-
-.demo-input > * {
-  margin-bottom: 10px;
-}
 </style>
