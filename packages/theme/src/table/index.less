@@ -29,6 +29,7 @@
         display: table-row;
         vertical-align: inherit;
         border-color: inherit;
+        border-bottom: 1px solid var(--tv-Table-border-color);
       }
 
       tbody {
@@ -57,7 +58,7 @@
             text-align: center;
             vertical-align: middle;
             color: var(--tv-Table-nodata-text-color);
-            background-color: transparent;
+            background-color: transparent;        
           }
         }
       }
@@ -115,10 +116,22 @@
     .@{table-cell-prefix-cls} {
       .@{svg-prefix-cls} {
         font-size: var(--tv-Table-icon-font-size);
-        fill: var(--tv-Table-border-color);
+        border-radius: var(--tv-Table-check-icon-border-radius);
+          & path:last-child{
+            fill: var(--tv-Table-border-color);
+          }
 
-        &.is-check {
-          fill: var(--tv-Table-check-icon-color);
+          & path:first-child {
+            fill: transparent;
+          }
+           &.is-check {
+              & path:last-child{
+                fill: var(--tv-Table-half-check-icon-color);
+              }
+          
+              & path:first-child {
+                fill: var(--tv-Table-check-icon-color);
+              } 
         }
       }
     }
