@@ -380,8 +380,8 @@
           margin-right: 12px;
 
           .icon {
-            width: var(--tv-Steps-node-circle-size);
-            height: var(--tv-Steps-node-circle-size);
+            width: var(--tv-Steps-node-circle-size-lg);
+            height: var(--tv-Steps-node-circle-size-lg);
           }
         }
       }
@@ -482,6 +482,7 @@
       .@{steps-prefix-cls}-main {
         display: flex;
         align-items: center;
+        height: var(--tv-Steps-node-circle-size-lg);
       }
     }
 
@@ -700,6 +701,7 @@
         margin-left: var(--tv-Steps-text-margin-left);
         font-weight: 500;
         padding-top: 2px;
+        line-height: 1.5;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -821,7 +823,7 @@
       }
 
       &.large {
-        .block-size-mixin(32px, 16px, 18px, 16px, 32px, 12px);
+        .block-size-mixin(40px, 16px, 26px, 16px, 40px, 12px);
       }
     }
 
