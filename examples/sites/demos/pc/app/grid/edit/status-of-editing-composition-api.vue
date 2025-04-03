@@ -96,6 +96,6 @@ const addRow = () => {
   font-size: 16px;
   padding: 15px;
   font-weight: bolder;
-  color: var(--tv-color-text-secondary, #191919);
+  color: var(--tv-color-text, #191919);
 }
 </style>

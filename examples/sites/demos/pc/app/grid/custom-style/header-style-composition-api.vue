@@ -106,7 +106,7 @@ const headerClassName = () => {
   font-size: 16px;
   padding: 15px;
   font-weight: bolder;
-  color: #444;
+  color: var(--tv-color-text, #191919);
 }
 .header-style :deep(.tiny-grid-header__row.header__row--red) {
   background-color: palevioletred;

@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TinyGrid, TinyGridColumn, TinyPager, TinyGridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -107,6 +107,6 @@ const multiSortMethod = ({ $table, tableData, sortColumns }) => {
   font-size: 16px;
   padding: 15px;
   font-weight: bolder;
-  color: #444;
+  color: var(--tv-color-text, #191919);
 }
 </style>
