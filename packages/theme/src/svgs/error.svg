@@ -3,7 +3,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #f23030;
+        fill: var(--tv-color-error-icon);
       }
 
       .cls-1, .cls-2 {
