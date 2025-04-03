@@ -150,46 +150,43 @@
     }
   }
 
-   &__input {
+  &__input {
     .@{checkbox-prefix-cls}__inner {
       svg {
         font-size: var(--tv-Checkbox-icon-size);
       }
+
       .icon-checked-sur,
       .icon-halfselect {
         fill: var(--tv-Checkbox-bg-color-active);
 
-        path:first-child {
-          fill: var(--tv-Checkbox-bg-color-active);
-        }
         path:last-child {
           fill: var(--tv-Checkbox-border-color-inverse);
         }
       }
+
       .icon-check {
+        fill: var(--tv-Checkbox-unchecked-border-color);
+
         path:first-child {
           fill: transparent;
         }
-        path:last-child {
-          fill: var(--tv-Checkbox-unchecked-border-color);
-        }
       }
+
       .icon-check:hover {
-        path:last-child {
-          fill: var(--tv-Checkbox-unchecked-border-color-hover);
-        }
+        fill: var(--tv-Checkbox-unchecked-border-color-hover);
       }
     }
   }
+
   &__input.is-disabled {
+    cursor: not-allowed;
+
     .@{checkbox-prefix-cls}__inner {
       .icon-checked-sur,
       .icon-halfselect {
         fill: var(--tv-Checkbox-checked-disabled-bg-color);
 
-        path:first-child {
-          fill: var(--tv-Checkbox-checked-disabled-bg-color);
-        }
         path:last-child {
           fill: var(--tv-Checkbox-icon-inverse-disabled);
         }
@@ -199,11 +196,6 @@
 
         path:first-child {
           fill: var(--tv-Checkbox-bg-color-disabled);
-        }
-        &:hover {
-          path:last-child {
-            fill: var(--tv-Checkbox-unchecked-border-color);
-          }
         }
       }
     }

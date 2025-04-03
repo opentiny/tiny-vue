@@ -54,12 +54,16 @@
       fill: var(--tv-Option-icon-inverse-disabled);
     }
   }
+
   .check.tiny-svg {
+    fill: var(--tv-Option-icon-color-unchecked);
+
     path:first-child {
       fill: transparent;
     }
-    path:last-child {
-      fill: var(--tv-Option-unchecked-border-color);
+
+    &:hover {
+      fill: var(--tv-Option-icon-color-hover);
     }
   }
 
@@ -117,13 +121,10 @@
       }
 
       &.check {
+        fill: var(--tv-Option-icon-color-unchecked-disabled);
+
         path:first-child {
           fill: var(--tv-Option-bg-color-disabled);
-        }
-        &:hover {
-          path:last-child {
-            fill: var(--tv-Option-unchecked-border-color);
-          }
         }
       }
     }
