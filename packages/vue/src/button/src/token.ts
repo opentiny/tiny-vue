@@ -53,7 +53,7 @@ export const classes = {
   'button-icon': '-mt-0.5 sm:text-base fill-current',
   'button-icon-default': 'text-color-icon-primary hover:text-color-icon-hover active:text-color-icon-active',
   'button-icon-disabled': 'text-color-icon-disabled hover:cursor-not-allowed',
-  'loading-svg': 'animate-spin-2 mr-1 fill-current -left-0.5 -right-0.5 -top-0.5 -bottom-0.5',
+  'loading-svg': 'animate-spin mr-1 fill-current -left-0.5 -right-0.5 -top-0.5 -bottom-0.5',
   'button-link':
     'text-color-link hover:text-color-link-hover active:color-link-hover active:hover:text-color-link-hover sm:hover:text-color-link-hover',
   'button-banner': ' w-[calc(100%-theme(spacing.8))] mx-4'

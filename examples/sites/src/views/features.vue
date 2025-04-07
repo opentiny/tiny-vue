@@ -1,6 +1,6 @@
 <template>
   <div class="ti-p48">
-    <div class="ti-mw1000 !mx-auto markdown-body">
+    <div class="ti-mw1000 !mx-auto markdown-body feature-list-container">
       <h1 class="ti-f-r ti-f-box-center">
         组件特性列表
         <tiny-tag size="small" type="success" :title="`${componentCount} components`" class="ml8">{{
@@ -95,6 +95,8 @@
                   <i :class="[feature.cloud.remark ? 'i-ti-cloud' : 'i-ti-cloud-full', 'ml4']"></i>
                 </template>
               </tiny-popover>
+              <i :class="[feature['e2e-test'] ? 'i-ti-e2e-test' : '', 'ml4']" title="E2E 测试用例已覆盖"></i>
+              <i :class="[feature['unit-test'] ? 'i-ti-unit-test' : '', 'ml4']" title="单元测试用例已覆盖"></i>
             </tiny-col>
           </tiny-row>
         </tiny-layout>
@@ -164,3 +166,11 @@ const toUpperCamelCase = (str) =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join('')
 </script>
+
+<style lang="scss" scoped>
+.feature-list-container :deep(.reference-wrapper) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

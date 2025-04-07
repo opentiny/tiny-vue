@@ -10,8 +10,7 @@ import {
   BROWSER_NAME,
   MOUSEDELTA,
   VALIDATE_STATE,
-  CASCADER,
-  version
+  CASCADER
 } from '../index'
 
 describe('通用常量工具测试', () => {
@@ -126,13 +125,6 @@ describe('通用常量工具测试', () => {
 
     it('应该包含事件映射对象', () => {
       expect(CASCADER.EventObject).toHaveProperty('active-item-change')
-    })
-  })
-
-  describe('version', () => {
-    it('应该匹配环境变量中的版本号', () => {
-      const envVersion = process.env.RUNTIME_VERSION
-      expect(version).toBe(envVersion)
     })
   })
 })

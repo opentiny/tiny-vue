@@ -308,9 +308,3 @@ export const CASCADER: Record<string, any> = {
   PropsHover: 'hoverThreshold',
   MenuConnector: 'cascader-menu-'
 }
-
-/**
- * 当前项目版本号
- * @type {string | undefined}
- */
-export const version: string | undefined = process.env.RUNTIME_VERSION

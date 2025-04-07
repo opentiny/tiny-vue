@@ -90,6 +90,8 @@
   --tv-Button-border-color-default: var(--tv-color-border-secondary, #595959);
   // 默认时按钮图标色
   --tv-Button-icon-color-default: var(--tv-color-icon-control, #191919);
+  // 默认时按钮加载图标色
+  --tv-Button-icon-color-default-loading: var(--tv-color-icon-control, #191919);
 
   // primary 主题时按钮文本色
   --tv-Button-text-color-primary: var(--tv-color-act-primary-text-inverse-tint, #ffffff);
@@ -99,6 +101,8 @@
   --tv-Button-border-color-primary: var(--tv-color-act-primary-border, #191919);
   // primary 主题时按钮图标色
   --tv-Button-icon-color-primary: var(--tv-color-icon-inverse-tint, #ffffff);
+  // primary 主题时按钮加载图标色
+  --tv-Button-icon-color-primary-loading: var(--tv-color-icon-inverse-tint, #ffffff);
 
   // success 主题时按钮文本色
   --tv-Button-text-color-success: var(--tv-color-act-success-text-white, #ffffff);
@@ -218,7 +222,10 @@
   //------------------------------------------------------------------------------ // level 2结束 ----------------
 
   // 默认时按钮激活的背景色
-  --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary, #ffffff); // 现规范，激活态时，只影响边框和背景
+  --tv-Button-bg-color-active-default: var(
+    --tv-color-bg-hover-secondary,
+    #ffffff
+  ); // 现规范，激活态时，只影响边框和背景
   // 默认时按钮激活的边框色
   --tv-Button-border-color-active-default: var(--tv-color-border-secondary-hover, #c2c2c2);
   // 默认时按钮激活的文本
@@ -308,11 +315,14 @@
   --tv-Button-border-color-ghost-active-info: var(--tv-color-act-info-border-active-1, #deecff); // level3 结束------
 
   // 禁用时按钮文本色
-  --tv-Button-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2); //  目前规则下，disabled优先级最高，所以变量少
+  --tv-Button-text-color-disabled: var(
+    --tv-color-text-disabled,
+    #c2c2c2
+  ); //  目前规则下，disabled优先级最高，所以变量少
   // 禁用时按钮背景色
   --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 禁用时按钮边框色
-  --tv-Button-border-color-disabled: var(--tv-color-bg-disabled, #f0f0f0); // 设计边框是f0f0f0，没这个值，用背景色代替。
+  --tv-Button-border-color-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 禁用时, 幽灵按钮的边框色
   --tv-Button-border-color-ghost-disabled: var(--tv-color-border-disabled, #dbdbdb);
   // 禁用时按钮图标色

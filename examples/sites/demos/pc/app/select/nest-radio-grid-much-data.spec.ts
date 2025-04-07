@@ -32,5 +32,6 @@ test('下拉表格大数据', async ({ page }) => {
   await expect(row).toHaveCount(6)
   await row.nth(5).scrollIntoViewIfNeeded()
   await expect(row).toHaveCount(6)
+  await page.waitForTimeout(500)
   await page.getByRole('row', { name: '华南区 12 广东省 广州市' }).getByRole('cell').first().click()
 })

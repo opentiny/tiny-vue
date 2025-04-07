@@ -19,7 +19,7 @@ import {
   iconHelpSolid,
   iconSuccess,
   iconError,
-  iconInfoSolid,
+  iconHelp,
   iconLoadingShadow,
   iconWarning,
   iconClose,
@@ -122,7 +122,7 @@ export default defineComponent({
 
     const STATUS_MAPPING_COMPINENT = {
       QUESTION: iconHelpSolid(),
-      INFO: iconInfoSolid(),
+      INFO: iconHelp(),
       SUCCESS: iconSuccess(),
       WARNING: iconWarning(),
       ERROR: iconError(),

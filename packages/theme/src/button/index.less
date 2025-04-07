@@ -111,12 +111,14 @@
     &:active,
     &:focus,
     &:hover,
-    &.is-active {
+    &.is-active,
+    &.is-loading.is-loading.is-loading.is-loading.is-loading {
       background-color: e(@bg);
       border-color: e(@border);
       color: e(@c);
     }
   }
+
   // 激活态： 叠加到 ghost 状态上。
   .color-ghost-active-mixin(@theme) {
     @border: %('var(--tv-Button-border-color-ghost-active-%a)', @theme);
@@ -221,9 +223,8 @@
 
   // 禁用态+loading  优先级最高， 五优先级
   &.is-disabled.is-disabled.is-disabled.is-disabled.is-disabled,
-  &.is-loading.is-loading.is-loading.is-loading.is-loading,
   &[disabled][disabled][disabled][disabled][disabled] {
-    color: var(--tv-Button-text-color-disabled); 
+    color: var(--tv-Button-text-color-disabled);
     background-color: var(--tv-Button-bg-color-disabled);
     border-color: var(--tv-Button-border-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
@@ -232,9 +233,29 @@
     &.is-ghost {
       border-color: var(--tv-Button-border-color-ghost-disabled);
     }
-    // 仅图标，禁用时无背景
+
     &.is-only-icon {
-      background-color: transparent;
+      .tiny-svg {
+        fill: var(--tv-Button-icon-color-disabled);
+      }
+      // 仅图标且无边框类型，禁用时无背景
+      &.tiny-button--text {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.is-loading {
+    &.@{button-prefix-cls}--default {
+      .tiny-svg {
+        fill: var(--tv-Button-icon-color-default-loading);
+      }
+    }
+
+    &.@{button-prefix-cls}--primary {
+      .tiny-svg {
+        fill: var(--tv-Button-icon-color-primary-loading);
+      }
     }
   }
 
@@ -316,7 +337,7 @@
       background-color: var(--tv-Button-bg-color-only-icon-ontext);
       // 无边框时的仅图标按钮，增加图标默认颜色
       svg {
-        fill: var(--tv-Button-bg-color-only-icon)
+        fill: var(--tv-Button-bg-color-only-icon);
       }
       &:active,
       &:focus,
@@ -325,7 +346,7 @@
         background-color: var(--tv-Button-bg-color-only-icon-ontext-hover);
         // 无边框时的仅图标按钮，增加图标悬浮颜色
         svg {
-          fill: var(--tv-Button-bg-color-only-icon-hover)
+          fill: var(--tv-Button-bg-color-only-icon-hover);
         }
       }
       // 不同的尺寸，icon大小 为高度。 原型稿不包含
@@ -352,7 +373,7 @@
       &.is-disabled {
         &:hover {
           svg {
-            fill: var(--tv-Button-disabled-color-only-icon-hover)
+            fill: var(--tv-Button-disabled-color-only-icon-hover);
           }
         }
       }

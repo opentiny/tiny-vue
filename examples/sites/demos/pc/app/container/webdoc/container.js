@@ -2,7 +2,7 @@ export default {
   column: '2',
   owner: '',
   show: true,
-  cloud: false,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',

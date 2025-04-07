@@ -68,7 +68,7 @@
                     .filter((item, i, arr) => arr.length - 1 > i || arr.length === 1)
                     .join('.')
                 }}</span>
-                <span>.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
+                <span v-if="file.name.includes('.')">.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
               </div>
               <div class="operate-panel">
                 <slot name="operate" :file="file">
