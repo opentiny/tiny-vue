@@ -158,7 +158,9 @@
 
       .icon-checked-sur,
       .icon-halfselect {
-        fill: var(--tv-Checkbox-bg-color-active);
+        path:first-child {
+          fill: var(--tv-Checkbox-bg-color-active);
+        }
 
         path:last-child {
           fill: var(--tv-Checkbox-border-color-inverse);
@@ -166,15 +168,19 @@
       }
 
       .icon-check {
-        fill: var(--tv-Checkbox-unchecked-border-color);
-
         path:first-child {
           fill: transparent;
+        }
+
+        path:nth-child(2) {
+          fill: var(--tv-Checkbox-unchecked-border-color);
         }
       }
 
       .icon-check:hover {
-        fill: var(--tv-Checkbox-unchecked-border-color-hover);
+        path:nth-child(2) {
+          fill: var(--tv-Checkbox-unchecked-border-color-hover);
+        }
       }
     }
   }
@@ -185,17 +191,21 @@
     .@{checkbox-prefix-cls}__inner {
       .icon-checked-sur,
       .icon-halfselect {
-        fill: var(--tv-Checkbox-checked-disabled-bg-color);
+        path:first-child {
+          fill: var(--tv-Checkbox-checked-disabled-bg-color);
+        }
 
         path:last-child {
           fill: var(--tv-Checkbox-icon-inverse-disabled);
         }
       }
       .icon-check {
-        fill: var(--tv-Checkbox-bg-color-disabled);
-
         path:first-child {
           fill: var(--tv-Checkbox-bg-color-disabled);
+        }
+
+        path:nth-child(2) {
+          fill: var(--tv-Checkbox-border-color-disabled);
         }
       }
     }

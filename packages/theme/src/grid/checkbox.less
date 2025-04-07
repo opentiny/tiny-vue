@@ -73,7 +73,11 @@
 
         &.icon-checked-sur {
           display: block;
-          fill: var(--tv-Grid-bg-color-active);
+
+          path:first-child {
+            fill: var(--tv-Grid-bg-color-active);
+          }
+
           path:last-child {
             fill: var(--tv-Grid-border-color-inverse);
           }
@@ -98,7 +102,10 @@
 
           > svg {
             &.icon-half-select {
-              fill: var(--tv-Grid-bg-color-active);
+              path:first-child {
+                fill: var(--tv-Grid-bg-color-active);
+              }
+
               path:last-child {
                 fill: var(--tv-Grid-border-color-inverse);
               }
@@ -124,10 +131,12 @@
 
       &:checked + .@{grid-checkbox-prefix-cls}__icon {
         > svg {
-          fill: var(--tv-Grid-checkbox-border-color-disabled);
-
           path:first-child {
             fill: var(--tv-Grid-checked-disabled-bg-color);
+          }
+
+          path:nth-child(2) {
+            fill: var(--tv-Grid-icon-inverse-disabled);
           }
         }
       }
@@ -143,12 +152,29 @@
           fill: var(--tv-Grid-checkbox-border-color-disabled);
         }
       }
+
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        svg.icon-half-select {
+          path:first-child {
+            fill: var(--tv-Grid-checked-disabled-bg-color);
+          }
+
+          path:nth-child(2) {
+            fill: var(--tv-Grid-icon-inverse-disabled);
+          }
+        }
+      }
     }
   }
   &.is__disabled > input:not(:checked) + .tiny-grid-checkbox__icon .icon-check {
     path:first-child {
       fill: var(--tv-Grid-bg-color-disabled);
     }
+
+    path:nth-child(2) {
+      fill: var(--tv-Grid-border-color-disabled);
+    }
+
     &:hover {
       path:last-child {
         fill: var(--tv-Grid-unchecked-border-color);

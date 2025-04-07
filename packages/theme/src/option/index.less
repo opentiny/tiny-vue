@@ -48,7 +48,9 @@
   &.selected .tiny-svg,
   .checked-sur.tiny-svg,
   .halfselect.tiny-svg {
-    fill: var(--tv-Option-icon-color-checked);
+    path:first-child {
+      fill: var(--tv-Option-icon-color-checked);
+    }
 
     path:last-child {
       fill: var(--tv-Option-icon-inverse-disabled);
@@ -56,14 +58,18 @@
   }
 
   .check.tiny-svg {
-    fill: var(--tv-Option-icon-color-unchecked);
-
     path:first-child {
       fill: transparent;
     }
 
+    path:nth-child(2) {
+      fill: var(--tv-Option-icon-color-unchecked);
+    }
+
     &:hover {
-      fill: var(--tv-Option-icon-color-hover);
+      path:nth-child(2) {
+        fill: var(--tv-Option-icon-color-hover);
+      }
     }
   }
 
@@ -113,7 +119,9 @@
     .tiny-svg {
       &.checked-sur,
       &.halfselect {
-        fill: var(--tv-Option-checked-disabled-bg-color);
+        path:first-child {
+          fill: var(--tv-Option-checked-disabled-bg-color);
+        }
 
         path:last-child {
           fill: var(--tv-Option-icon-color-checked-disabled-inverse);
@@ -121,10 +129,12 @@
       }
 
       &.check {
-        fill: var(--tv-Option-icon-color-unchecked-disabled);
-
         path:first-child {
           fill: var(--tv-Option-bg-color-disabled);
+        }
+
+        path:nth-child(2) {
+          fill: var(--tv-Option-icon-color-unchecked-disabled);
         }
       }
     }
