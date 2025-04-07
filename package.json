@@ -53,7 +53,7 @@
     "sync-icons": "pnpm -C internals/cli sync-icons",
     "build:entry-app": "pnpm -C internals/cli build:entry-app",
     "// ---------- 打包运行时组件库 ----------": "",
-    "build:runtime": "pnpm -C internals/cli build:runtime",
+    "build:runtime": "pnpm create:icon-saas && pnpm -C internals/cli build:runtime",
     "// ---------- 构建相关脚本 ----------": "",
     "build:ui": "pnpm create:icon-saas && pnpm create:mapping && pnpm build:entry && pnpm -C internals/cli build:ui",
     "build:chartTheme": "pnpm -C internals/cli build:chartTheme",
