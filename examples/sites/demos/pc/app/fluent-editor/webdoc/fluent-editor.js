@@ -89,7 +89,7 @@ export default {
       },
       description: '通过 v-model 设置绑定值，默认数据保存格式为 Delta 数据格式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['v-model'],
       demos: ['basic-usage']
@@ -102,7 +102,7 @@ export default {
       },
       description: '通过 disabled 属性可设置编辑器为不可编辑状态。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['disabled'],
       demos: ['disabled']
@@ -115,7 +115,7 @@ export default {
       },
       description: '通过 image-upload 设置图片上传模块的配置项。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['image-upload'],
       demos: ['image-upload']
@@ -128,7 +128,7 @@ export default {
       },
       description: '通过 options 设置编辑器的配置项，支持的配置项和 Quill 的相同。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['options'],
       demos: ['options']
@@ -141,7 +141,7 @@ export default {
       },
       description: '通过 data-type 指定富文本数据保存的格式，支持 Delta 和 HTML 格式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['data-type', 'data-upgrade'],
       demos: ['data-switch']
@@ -154,7 +154,7 @@ export default {
       },
       description: '通过 before-editor-init 设置 FluentEditor 初始化前的钩子函数，用于注册自定义格式和模块。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['before-editor-init'],
       demos: ['before-editor-init']

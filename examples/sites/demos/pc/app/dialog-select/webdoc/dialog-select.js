@@ -84,7 +84,7 @@ export default {
       },
       description: '通过 auto-lookup、lookup-method 属性和 change 事件设置初始化时数据的反查回显功能。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['auto-lookup', 'lookup-method'],
       demos: ['nest-grid-multi', 'nest-grid-single', 'nest-tree-multi', 'nest-tree-single']
@@ -97,7 +97,7 @@ export default {
       },
       description: '表格多选场景需要设置 popselector 为 grid，multi 为 true，checkRowKeys 设置默认选中数据。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['popselector', 'multi', 'checkRowKeys'],
       demos: ['nest-grid-multi']
@@ -110,7 +110,7 @@ export default {
       },
       description: '表格单选场景需要设置 popselector 为 grid，multi 为 false，checkRowKey 设置默认选中数据。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['popselector', 'multi', 'checkRowKey'],
       demos: ['nest-grid-single']
@@ -123,7 +123,7 @@ export default {
       },
       description: '树多选场景需要设置 popselector 为 tree，multi 为 true，defaultCheckedKeys 设置默认选中数据。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['popselector', 'multi', 'defaultCheckedKeys'],
       demos: ['nest-tree-multi']
@@ -136,7 +136,7 @@ export default {
       },
       description: '树单选场景需要设置 popselector 为 tree，multi 为 false，defaultCheckedKeys 设置默认选中数据。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['popselector', 'multi', 'defaultCheckedKeys'],
       demos: ['nest-tree-single']
@@ -149,7 +149,7 @@ export default {
       },
       description: '通过 setSelection 方法设置多选状态。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['setSelection'],
       demos: ['set-selection']
