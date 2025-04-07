@@ -58,7 +58,7 @@ export const classes = {
   'pc-search-input-btn-a-mini': 'w-11 leading-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]',
   'pc-search-input-btn-a-unbig': 'w-10 leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]',
   'pc-search-input-btn-icon-search-transparent': 'fill-color-bg-1',
-  'pc-search-input-btn-icon-search': 'text-base fill-color-none',
+  'pc-search-input-btn-icon-search': 'text-base fill-color-none align-text-bottom',
   'search-selector':
     'absolute top-full left-0 overflow-hidden min-w-[theme(spacing.18)] border border-solid border-color-border rounded text-xs shadow bg-color-bg-1 text-color-text-primary mt-0.5 py-1 hidden sm:block',
   'search-selector-body': 'max-h-[theme(spacing.72)] overflow-x-hidden overflow-y-auto',
