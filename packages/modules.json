@@ -2237,6 +2237,7 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
   },
@@ -2245,11 +2246,22 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
   },
+  "SkeletonItemMobileFirst": {
+    "path": "vue/src/skeleton-item/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
   "SkeletonItemPc": {
     "path": "vue/src/skeleton-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SkeletonMobileFirst": {
+    "path": "vue/src/skeleton/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
