@@ -158,6 +158,8 @@ export default {
         value: true,
         remark: '规范只支持主要按钮、次要按钮、危险按钮、文本按钮4种，不支持成功按钮、警告按钮、信息按钮。'
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['type'],
       demos: ['basic-usage']
     },
@@ -171,6 +173,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['round'],
       demos: ['round']
     },
@@ -184,6 +188,8 @@ export default {
       cloud: {
         value: false
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['circle'],
       demos: ['circle']
     },
@@ -197,6 +203,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': false,
       apis: ['ghost'],
       demos: ['ghost']
     },
@@ -210,6 +218,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['disabled'],
       demos: ['dynamic-disabled']
     },
@@ -223,6 +233,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['icon'],
       demos: ['icon']
     },
@@ -236,6 +248,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['loading'],
       demos: ['loading']
     },
@@ -249,6 +263,8 @@ export default {
       cloud: {
         value: true
       },
+      'e2e-test': true,
+      'unit-test': true,
       apis: ['size'],
       demos: ['size']
     },
@@ -262,6 +278,8 @@ export default {
       cloud: {
         value: false
       },
+      'e2e-test': true,
+      'unit-test': false,
       apis: ['reset-time'],
       demos: ['reset-time']
     }
