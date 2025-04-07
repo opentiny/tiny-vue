@@ -119,8 +119,5 @@ module.exports = {
     sm: '0.125rem',
     DEFAULT: '0.25rem',
     none: '0px'
-  },
-  backgroundSize: {
-    '200-100': '200% 100%'
   }
 }

@@ -21,8 +21,10 @@ module.exports = {
     borderRadius: layoutToken.borderRadius,
     borderWidth: layoutToken.borderWidth,
     opacity: layoutToken.opacity,
-    backgroundSize: layoutToken.backgroundSize,
     extend: {
+      backgroundSize: {
+        'w200h100': '200% 100%'
+      },
       animation: {
         'skeleton-loading-1500ms': '1.5s skeleton-loading-1500ms ease-in-out infinite'
       },

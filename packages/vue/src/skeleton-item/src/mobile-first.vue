@@ -9,7 +9,7 @@
         gcls(`shape-${variant}`),
         variant !== 'square' ? gcls(`${variant}-${size}`) : '',
         state.isActive &&
-          'bg-200-100 bg-gradient-to-r from-color-border-separator via-color-bg-2 to-color-border-separator animate-skeleton-loading-1500ms'
+          'bg-w200h100 bg-gradient-to-r from-color-border-separator via-color-bg-2 to-color-border-separator animate-skeleton-loading-1500ms'
       )
     "
   >
