@@ -455,6 +455,7 @@ import IconMaterial from './src/material'
 import IconMilestone from './src/milestone'
 import IconMinscreenRight from './src/minscreen-right'
 import IconNoData from './src/no-data'
+import IconGridNoData from './src/grid-no-data'
 import IconNoNews from './src/no-news'
 import IconNoPerm from './src/no-perm'
 import IconNoResult from './src/no-result'
@@ -1520,6 +1521,8 @@ export {
   IconMinscreenRight as iconMinscreenRight,
   IconNoData,
   IconNoData as iconNoData,
+  IconGridNoData,
+  IconGridNoData as iconGridNoData,
   IconNoNews,
   IconNoNews as iconNoNews,
   IconNoPerm,
@@ -2063,6 +2066,7 @@ export default {
   IconMilestone,
   IconMinscreenRight,
   IconNoData,
+  IconGridNoData,
   IconNoNews,
   IconNoPerm,
   IconNoResult,

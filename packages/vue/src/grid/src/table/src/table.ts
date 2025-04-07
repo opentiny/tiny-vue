@@ -43,6 +43,7 @@ import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 import { useDrag, useRowGroup } from '../../composable'
 import { isServer } from '@opentiny/utils'
+import { iconGridNoData } from '@opentiny/vue-icon'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
@@ -50,6 +51,7 @@ const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
 const hiddenContainerClass = 'tiny-grid-hidden-column'
+const GridNoData = iconGridNoData()
 
 // 校验插件是否被注册
 function verifyConfig(_vm) {
@@ -121,7 +123,7 @@ const renderEmptyPartFn = (opt) => {
         emptyVnodes = [renderEmpty(h, _vm)]
       } else {
         emptyVnodes = [
-          h('p', { class: 'tiny-grid__empty-img' }),
+          h(GridNoData, { class: 'tiny-grid__empty-img' }),
           h('span', { class: 'tiny-grid__empty-text' }, GlobalConfig.i18n('ui.grid.emptyText'))
         ]
       }

@@ -36,11 +36,11 @@ import {
 } from '@opentiny/vue-renderless/grid/utils'
 import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
-import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
+import { iconChevronRight, iconChevronDown, iconGridNoData } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 import { getTreeChildrenKey, getTreeShowKey, handleRowGroupFold, isVirtualRow } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
-
+const GridNoData = iconGridNoData()
 // 滚动、拖动过程中不需要触发鼠标移入移出事件
 const isOperateMouse = ($table) =>
   $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
@@ -752,7 +752,7 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
 
 function renderDefEmpty(h) {
   return [
-    h('p', {
+    h(GridNoData, {
       class: 'tiny-grid__empty-img'
     }),
     h(
