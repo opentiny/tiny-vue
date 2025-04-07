@@ -167,7 +167,7 @@ const toUpperCamelCase = (str) =>
     .join('')
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .feature-list-container :deep(.reference-wrapper) {
   display: flex;
   align-items: center;
