@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { isBoolean, toNumber } from '@opentiny/vue-renderless/grid/static/'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend, debounce } from '@opentiny/utils'
@@ -429,9 +429,10 @@ export default defineComponent({
       const tableOns = { ...this.listeners, ...this.tableListeners }
 
       // fetchApi状态下初始化 remoteSort、remoteFilter
-      if (this.fetchOption) {
-        if (this.remoteSort) tableOns['sort-change'] = this.sortChangeEvent
-        if (this.remoteFilter) tableOns['filter-change'] = this.filterChangeEvent
+      if (this.fetchOption && (this.remoteSort || this.remoteFilter)) {
+        const { remoteSort, remoteFilter } = this
+        remoteSort && (tableOns['sort-change'] = this.sortChangeEvent)
+        remoteFilter && (tableOns['filter-change'] = this.filterChangeEvent)
       }
 
       // 处理表格工具栏和个性化数据
@@ -519,25 +520,42 @@ export default defineComponent({
 
     // 处理编辑方法
     handleActiveMethod(params) {
-      return (
-        !this.pendingRecords.includes(params.row) &&
-        (!this.editConfig.activeMethod || this.editConfig.activeMethod(params))
-      )
+      const { row } = params
+      const { activeMethod } = this.editConfig
+
+      // 如果行在待处理记录中，不允许编辑
+      if (this.pendingRecords.includes(row)) {
+        return false
+      }
+
+      // 如果没有配置activeMethod或activeMethod返回true，则允许编辑
+      return !activeMethod || activeMethod(params)
     },
 
     // 排序变更事件
     sortChangeEvent(params) {
+      // 获取表格的远程排序配置
       let remoteSort = this.remoteSort
+      // 获取当前排序的列对象
       let column = params.column
+      // 扩展排序参数,添加$grid引用
       let eventParams = extend(false, { $grid: this }, params)
 
-      // 如果是服务端排序
+      // 判断是否使用远程排序:
+      // 1. 优先使用列的remoteSort配置
+      // 2. 如果列没有配置remoteSort,则使用表格的remoteSort配置
       if (isBoolean(column.remoteSort) ? column.remoteSort : remoteSort) {
+        // 保存当前排序参数
         this.sortData = params
+        // 重置当前页码为第一页
         this.tablePage.currentPage = 1
+        // 触发远程查询
         this.commitProxy('query')
       }
 
+      // 触发排序变更事件
+      // 1. 通过emitEvent触发sort-change事件
+      // 2. 通过事件总线触发sort-change事件
       emitEvent(this, 'sort-change', eventParams)
       this.emitter.emit('sort-change', eventParams)
     },
@@ -549,12 +567,17 @@ export default defineComponent({
 
     // 监听某个元素是否出现在视口中
     addIntersectionObserver() {
+      // 如果禁用了交叉观察器选项或浏览器不支持IntersectionObserver API,则直接返回
       if ((this.intersectionOption && this.intersectionOption.disabled) || typeof IntersectionObserver === 'undefined')
         return
 
+      // 创建新的交叉观察器实例
+      // 当目标元素与视口交叉状态发生变化时触发回调
       this.intersectionObserver = new IntersectionObserver((entries) => {
+        // 默认取第一个entry
         let entry = entries[0]
 
+        // 如果有多个entry,优先使用isIntersecting为true的entry
         if (entries.length > 1) {
           const intersectingEntry = entries.find((entry) => entry.isIntersecting)
           if (intersectingEntry) {
@@ -562,9 +585,12 @@ export default defineComponent({
           }
         }
 
+        // 调用可见性变化处理函数
+        // 传入是否可见的布尔值和entry对象
         this.handleVisibilityChange(entry.isIntersecting, entry)
       }, this.intersectionOption)
 
+      // 开始观察当前组件的根元素
       this.intersectionObserver.observe(this.$el)
     },
 

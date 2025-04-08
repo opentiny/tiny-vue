@@ -119,11 +119,10 @@ import {
 import { updateRowStatus, getCellStatus } from '../../composable'
 
 // 分组表头的属性
-export const headerProps = {
+const headerProps = {
   children: 'children'
 }
 
-let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let debounceScrollLoadDuration = 200
 let AsyncCollectTimeout = 100
 
@@ -202,22 +201,13 @@ const Methods = {
     const { fetchOption = {} } = this.$grid
     const { isReloadFilter, isReloadScroll = false } = fetchOption
 
-    let functionNames = [
-      'clearScroll',
-      'clearSort',
-      'clearCurrentRow',
-      'clearCurrentColumn',
-      'clearSelection',
-      'clearRowExpand',
-      'clearTreeExpand'
-    ]
-
-    // 存在配置时，移除 clearScroll, 重载数据时不清除滚动位置
-    if (isReloadScroll) {
-      functionNames = functionNames.filter((i) => i !== 'clearScroll')
-    }
-
-    run(functionNames, this)
+    this.clearActived()
+    this.clearCurrentRow()
+    this.clearCurrentColumn()
+    this.clearRadioRow()
+    this.clearRowExpand()
+    !isReloadScroll && this.clearScroll()
+    this.clearSort()
     this.cellStatus.clear()
 
     // 根据配置决定是否重新加载过滤
@@ -227,7 +217,11 @@ const Methods = {
 
     // 清除选中状态
     if (this.keyboardConfig || this.mouseConfig) {
-      run(['clearIndexChecked', 'clearHeaderChecked', 'clearChecked', 'clearSelected', 'clearCopyed'], this)
+      this.clearIndexChecked()
+      this.clearHeaderChecked()
+      this.clearChecked()
+      this.clearSelected()
+      this.clearCopyed()
     }
 
     return this.clearActived()
@@ -335,7 +329,8 @@ const Methods = {
     this.handleTableData(true)
     // reserveCheckSelection：处理分页切换保留选中状态的逻辑
     // checkSelectionStatus：处理全选、半选等选中状态
-    run(['reserveCheckSelection', 'checkSelectionStatus'], this)
+    this.reserveCheckSelection()
+    this.checkSelectionStatus()
 
     // 定义第一个处理函数：如果不是notRefresh模式，则重新计算表格尺寸和布局
     let first = () => !notRefresh && this.recalculate()
@@ -919,7 +914,8 @@ const Methods = {
     this.$emit('update:customs', fullColumn)
   },
   resetAll() {
-    run(['resetCustoms', 'resetResizable'], this)
+    this.resetCustoms()
+    this.resetResizable()
   },
   hideColumn(tableColumn) {
     // 返回隐藏的列
@@ -1350,7 +1346,8 @@ const Methods = {
   },
   // 高亮行，设置某一行为高亮状态，如果调不加参数，则会取消目前高亮行的选中状态
   setCurrentRow(row) {
-    run(['clearCurrentRow', 'clearCurrentColumn'], this)
+    this.clearCurrentRow()
+    this.clearCurrentColumn()
     this.currentRow = row
     if (this.highlightCurrentRow) {
       let rowElems = this.$el.querySelectorAll(`[data-rowid="${getRowid(this, row)}"]`)
@@ -1409,7 +1406,8 @@ const Methods = {
     return this.$nextTick()
   },
   setCurrentColumn(column) {
-    run(['clearCurrentRow', 'clearCurrentColumn'], this)
+    this.clearCurrentRow()
+    this.clearCurrentColumn()
     this.currentColumn = column
     let colElems = this.$el.querySelectorAll(`.${column.id}`)
     arrayEach(colElems, (elem) => addClass(elem, 'col__current'))
@@ -2218,11 +2216,6 @@ const Methods = {
 
     // 触发可见性变化事件
     emitEvent(this, 'visible-change', [{ $table: this, visible, entry }])
-  },
-
-  // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
-  toggleColumnOrder(column) {
-    return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   },
 
   // 为Vue3监听数据变化

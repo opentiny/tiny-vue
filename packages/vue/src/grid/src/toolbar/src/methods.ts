@@ -177,34 +177,49 @@ export default {
     })
   },
   commitProxy(code, ...args) {
+    // 从按钮配置中获取对应code的方法
     let btnMethod = Buttons.get(code)
 
+    // 根据不同的操作码执行相应的操作
     if (code === 'insert') {
+      // 插入新行
       this.insert()
     } else if (code === 'insert_actived') {
+      // 插入新行并激活该行
       this.insert().then(({ row }) => this.setActiveRow(row))
     } else if (code === 'mark_cancel') {
+      // 触发待处理事件
       this.triggerPendingEvent(code)
     } else if (code === 'delete_selection') {
+      // 删除选中行,删除后会调用delete接口
       this.handleDeleteRow(code, 'ui.grid.deleteSelectRecord', () => this.commitProxy(['delete', ...args]))
     } else if (code === 'remove_selection') {
+      // 移除选中行,仅从界面移除不调用接口
       this.handleDeleteRow(code, 'ui.grid.removeSelectRecord', () => this.removeSelecteds())
     } else if (code === 'export') {
+      // 导出CSV文件
       this.exportCsv()
     } else if (code === 'reset_custom') {
+      // 重置表格配置
       this.resetAll()
     } else if (~['reload', 'query', 'prefetch'].indexOf(code)) {
+      // 处理数据刷新相关的操作
       this.handleFetch(code, args)
     } else if (code === 'delete') {
+      // 删除数据
       this.handleDelete(code, args)
     } else if (code === 'save') {
+      // 保存数据
       this.handleSave()
     } else if (code === 'fullscreen') {
+      // 切换全屏显示
       this.handleFullScreen(args)
     } else if (btnMethod) {
+      // 如果是自定义按钮方法,则调用对应的方法
       btnMethod.call(this, { code, $grid: this }, ...args)
     }
 
+    // 等待DOM更新完成后返回Promise
     return this.$nextTick()
   },
   handleDeleteRow(code, i18nKey, callback) {

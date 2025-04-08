@@ -47,5 +47,9 @@ export default {
     }
 
     return rows
+  },
+  // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
+  toggleColumnOrder(column) {
+    return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   }
 }
