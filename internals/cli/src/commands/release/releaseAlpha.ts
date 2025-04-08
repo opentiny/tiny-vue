@@ -77,6 +77,7 @@ const releaseSiteAlpha = (updateVersion) => {
   fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
 }
 
+const needDistDirPackages = ['utils', 'vue-hooks', 'vue-runtime']
 export const releaseAlpha = ({ updateVersion }) => {
   const distLists = [
     'dist3/',
@@ -90,7 +91,17 @@ export const releaseAlpha = ({ updateVersion }) => {
     'vue-runtime'
   ]
   distLists.forEach((item) => {
-    findAllpage(pathFromPackages(item), updateVersion)
+    if (needDistDirPackages.includes(item)) {
+      // 检查是否存在dist或dist3文件夹
+      const hasDistDir = fs.existsSync(pathFromPackages(`${item}/dist`))
+      const hasDist3Dir = fs.existsSync(pathFromPackages(`${item}/dist3`))
+
+      if (hasDistDir || hasDist3Dir) {
+        findAllpage(pathFromPackages(item), updateVersion)
+      }
+    } else {
+      findAllpage(pathFromPackages(item), updateVersion)
+    }
   })
   releaseSiteAlpha(updateVersion)
 }
