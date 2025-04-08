@@ -127,42 +127,6 @@ let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let debounceScrollLoadDuration = 200
 let AsyncCollectTimeout = 100
 
-// 多字段排序
-const sortMultiple = (rows, columns, _vm) => {
-  const greaterThan = (valueP, valueQ) => {
-    const typeP = typeof valueP
-    const typeQ = typeof valueQ
-    if (typeP === typeQ && ['number', 'string', 'boolean'].includes(typeP)) {
-      return valueP > valueQ
-    } else {
-      return String(valueP) > String(valueQ)
-    }
-  }
-
-  const { multipleColumnSort } = _vm.sortOpts
-
-  if (typeof multipleColumnSort === 'function') {
-    rows = multipleColumnSort({ $table: _vm, tableData: rows, sortColumns: columns })
-  } else {
-    rows = rows.sort((p, q) => {
-      for (let i = 0; i < columns.length; i++) {
-        const { property, order } = columns[i]
-        const flag = order === 'asc' ? 1 : -1
-        const valueP = p[property]
-        const valueQ = q[property]
-
-        if (!Object.is(valueP, valueQ)) {
-          return greaterThan(valueP, valueQ) ? flag : -flag
-        }
-      }
-
-      return 0
-    })
-  }
-
-  return rows
-}
-
 // 创建快速缓存
 const buildCache = (tableData, { treeConfig, treeOrdered }) => {
   const backupMap = new WeakMap()
@@ -849,7 +813,7 @@ const Methods = {
         let sortColumns = visibleColumn.filter(({ order }) => !!order)
 
         if (sortColumns.length > 1) {
-          tableData = sortMultiple(tableData, sortColumns, this)
+          tableData = this.sortMultiple(tableData, sortColumns, this)
           sortedFlag = true
         }
       }
@@ -884,13 +848,13 @@ const Methods = {
     return tableData
   },
   getRowById(rowid) {
-    let { fullDataRowIdData } = this
-    let rowCache = fullDataRowIdData[rowid]
+    const { fullDataRowIdData } = this
+    const rowCache = fullDataRowIdData[rowid]
     return rowCache ? rowCache.row : null
   },
   // 获取处理后的表格数据
   getTableData() {
-    let { afterFullData, footerData, tableData, tableFullData } = this
+    const { afterFullData, footerData, tableData, tableFullData } = this
     return {
       visibleData: afterFullData.slice(0),
       footerData: footerData.slice(0),
