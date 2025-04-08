@@ -66,7 +66,7 @@
             >
               <div class="flex" data-tag="tiny-upload-list-name">
                 <div
-                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-5.5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
+                  class="flex-1 sm:mr-6 text-xs sm:text-sm leading-5.5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
                     file.name
@@ -115,10 +115,10 @@
                       t('ui.uploadList.uploadFailedAndReupload')
                     }}</span>
                   </span>
-                  <span v-else-if="~['uploading'].indexOf(file.status)" class="text-color-text-placeholder">{{
+                  <span v-else-if="~['uploading'].indexOf(file.status)" class="text-color-text-secondary">{{
                     formatFileSize((file.size * file.percentage) / 100) + '/' + formatFileSize(file.size)
                   }}</span>
-                  <span v-else class="text-color-text-placeholder">{{ formatFileSize(file.size) }}</span>
+                  <span v-else class="text-color-text-secondary">{{ formatFileSize(file.size) }}</span>
                 </span>
                 <span class="flex-1 ml-2 overflow-hidden text-ellipsis whitespace-nowrap text-right text-color-none">
                   <slot name="assist-content" :file="file"></slot>
