@@ -18,7 +18,7 @@
     <component v-if="columnAnchor" :is="renderColumnAnchor(columnAnchorParams, this)" />
 
     <!-- 表格主体 -->
-    <tiny-grid-table ref="tinyTable" v-bind="tableOptions" v-on="tableEvents">
+    <tiny-grid-table ref="tinyTable" v-bind="tableOptions" :loading="loading" v-on="tableEvents">
       <slot></slot>
     </tiny-grid-table>
 
