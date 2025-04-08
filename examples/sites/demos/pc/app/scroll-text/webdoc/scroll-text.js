@@ -87,7 +87,7 @@ export default {
       },
       description: '可通过 text 自定义文本内容。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['text'],
       demos: ['basic-usage']
@@ -100,7 +100,7 @@ export default {
       },
       description: '可通过 direction 设置文字滚动方向。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['direction'],
       demos: ['scroll-direction']
@@ -113,7 +113,7 @@ export default {
       },
       description: '可通过 hover-stop 设鼠标悬停时文本是否停止滚动。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['hover-stop'],
       demos: ['hover-stop']
@@ -126,7 +126,7 @@ export default {
       },
       description: '可通过 time 设置滚动时间间隔。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['time'],
       demos: ['scroll-time']

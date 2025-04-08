@@ -377,7 +377,8 @@ export type {
   DefineComponent,
   ComponentPublicInstance,
   SetupContext,
-  ComputedRef
+  ComputedRef,
+  App
 } from './adapter'
 
 export {

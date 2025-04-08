@@ -3,16 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'appearance-settings-grid-border',
+      demoId: 'appearance-settings-grid-border',
       'name': { 'zh-CN': '边框', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN': '<p>表格属性设置 <code>border</code> 给表格加上边框。</p>\n',
         'en-US': '<p>Table property setting <code>border</code>Adds a border to the table. </p>\n'
       },
-      'codeFiles': ['appearance-settings/grid-border.vue']
+      codeFiles: ['appearance-settings/grid-border.vue']
     },
     {
-      'demoId': 'appearance-settings-stripe',
+      demoId: 'appearance-settings-stripe',
       'name': { 'zh-CN': '斑马条纹', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
@@ -20,7 +20,7 @@ export default {
         'en-US':
           'Whether the <p> <code>stripe</code> has zebra prints is disabled by default. Enabled when <code>:stripe="true" </code> is set. (Note: In the editable table scenario, the data inserted temporarily does not have the zebra pattern.) </p>\n'
       },
-      'codeFiles': ['appearance-settings/stripe.vue']
+      codeFiles: ['appearance-settings/stripe.vue']
     }
   ],
   apis: [{ 'name': 'grid-appearance-settings', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

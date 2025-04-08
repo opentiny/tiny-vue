@@ -1,6 +1,11 @@
 <template>
   <tiny-select v-model="value">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    <template #dropdown>
+      <div class="select-header">
+        <tiny-button type="success" round> 顶部插槽 </tiny-button>
+      </div>
+    </template>
     <template #footer>
       <div class="select-footer">
         <tiny-button type="success" round> 底部插槽 </tiny-button>
@@ -28,6 +33,11 @@ const value = ref('')
   width: 280px;
 }
 .select-footer {
+  text-align: center;
+  background-color: rgb(207, 243, 232, 0.3);
+  padding: 8px;
+}
+.select-header {
   text-align: center;
   background-color: rgb(207, 243, 232, 0.3);
   padding: 8px;

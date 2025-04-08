@@ -14,6 +14,7 @@
     :aria-disabled="state.isDisabled"
     :tabindex="state.tabIndex"
     @keydown.space.stop.prevent="keydownHandle"
+    v-bind="a($attrs, ['class', 'style'], true)"
   >
     <input
       ref="radio"

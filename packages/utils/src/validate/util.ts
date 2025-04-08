@@ -15,17 +15,25 @@ import logger from '../logger'
 
 const formatRegExp = /%[sdj%]/g
 
-export const warning = () => undefined
+/**
+ * @description 警告函数（当前未实现）
+ * @returns undefined
+ */
+export const warning = (): undefined => undefined
 
 /**
- * @description 转换返回错误的数据结构
+ * @description 转换返回错误的数据结构，将错误数组转换为按字段分组的对象
+ * @param errors 错误数组
+ * @returns 按字段分组的错误对象或null
  */
-export function convertFieldsError(errors) {
+export function convertFieldsError(
+  errors: Array<{ field: string; [key: string]: any }> | null | undefined
+): Record<string, any[]> | null {
   if (!errors || !errors.length) {
     return null
   }
 
-  const fields = {}
+  const fields: Record<string, any[]> = {}
 
   errors.forEach((error) => {
     const field = error.field
@@ -37,12 +45,13 @@ export function convertFieldsError(errors) {
 }
 
 /**
- * @description 生成校验错误的提示信息
- * @param i18nTemplate 带占位符的字符串
- * @param rest 替换占位符的字符串
+ * @description 生成校验错误的提示信息，支持格式化占位符
+ * @param i18nTemplate 带占位符的字符串或函数
+ * @param rest 替换占位符的字符串参数
+ * @returns 格式化后的字符串
  * 例：format('%s 必须等于 %s', 'A', 'B') 返回 A 必须等于 B
  */
-export function format(i18nTemplate: Function | string, ...rest: string[]) {
+export function format(i18nTemplate: Function | string, ...rest: string[]): string {
   if (typeof i18nTemplate === 'function') {
     return i18nTemplate(...rest)
   }
@@ -78,13 +87,17 @@ export function format(i18nTemplate: Function | string, ...rest: string[]) {
     return str
   }
 
-  return i18nTemplate
+  return String(i18nTemplate)
 }
 
 /**
- * @description 判断是否string类型
+ * @description 判断是否为原生字符串类型
+ * @param type 类型名称
+ * @returns 是否为原生字符串类型
  */
-function isNativeStringType(type) {
+function isNativeStringType(type: string | undefined): boolean {
+  if (!type) return false
+
   return [
     'string',
     'url',
@@ -106,10 +119,14 @@ function isNativeStringType(type) {
     'fileSize'
   ].includes(type)
 }
+
 /**
  * @description 判断对应的类型是否是空值
+ * @param data 要检查的数据
+ * @param dataType 数据类型
+ * @returns 是否为空值
  */
-export function isEmptyValue(data, dataType?) {
+export function isEmptyValue(data: any, dataType?: string): boolean {
   if (isNull(data)) {
     return true
   }
@@ -125,20 +142,31 @@ export function isEmptyValue(data, dataType?) {
   return false
 }
 
-/** TINY_DUP  type.ts  TINY_NO_USED */
-export function isEmptyObject(data) {
+/**
+ * @description 判断对象是否为空
+ * @param data 要检查的对象
+ * @returns 对象是否为空
+ */
+export function isEmptyObject(data: Record<string, any>): boolean {
   return Object.keys(data).length === 0
 }
 
 /**
  * @description 并行处理校验规则
+ * @param arrData 规则数组
+ * @param func 处理函数
+ * @param callback 完成回调
  */
-function asyncParallelArray(arrData, func, callback) {
+function asyncParallelArray(
+  arrData: any[],
+  func: (rule: any, callback: (errors: any[]) => void) => void,
+  callback: (errors: any[]) => void
+): void {
   let count = 0
-  const results = [] as any[]
+  const results: any[] = []
   const arrLength = arrData.length
 
-  function checkCount(errors) {
+  function checkCount(errors: any[]): void {
     results.push(...errors)
 
     count++
@@ -155,12 +183,19 @@ function asyncParallelArray(arrData, func, callback) {
 
 /**
  * @description 串行处理校验规则
+ * @param arr 规则数组
+ * @param fn 处理函数
+ * @param cb 完成回调
  */
-function asyncSerialArray(arr, fn, cb) {
+function asyncSerialArray(
+  arr: any[],
+  fn: (rule: any, callback: (errors: any[]) => void) => void,
+  cb: (errors: any[]) => void
+): void {
   let idx = 0
   const arrLength = arr.length
 
-  function checkNext(errorList) {
+  function checkNext(errorList: any[]): void {
     if (errorList && errorList.length) {
       cb(errorList)
       return
@@ -180,10 +215,12 @@ function asyncSerialArray(arr, fn, cb) {
 }
 
 /**
- * @description 将一层数据平铺开
+ * @description 将对象数组扁平化处理
+ * @param objArr 对象数组
+ * @returns 扁平化后的数组
  */
-function flattenObjArr(objArr) {
-  const result = [] as any[]
+function flattenObjArr(objArr: Record<string, any[]>): any[] {
+  const result: any[] = []
 
   Object.keys(objArr).forEach((item) => {
     result.push(...objArr[item])
@@ -193,13 +230,23 @@ function flattenObjArr(objArr) {
 }
 
 /**
- * @description 转换返回错误的数据结构
+ * @description 异步映射处理对象数组，支持串行或并行处理
+ * @param objArray 对象数组
+ * @param option 选项配置
+ * @param func 处理函数
+ * @param callback 完成回调
+ * @returns Promise对象
  */
-export function asyncMap(objArray, option, func, callback) {
+export function asyncMap(
+  objArray: Record<string, any[]>,
+  option: { first?: boolean; firstFields?: boolean | string[] },
+  func: (rule: any, callback: (errors: any[]) => void) => void,
+  callback: (errors: any[]) => void
+): Promise<void> {
   if (option.first) {
     const pending = new Promise<void>((resolve, reject) => {
       const errorFn = reject
-      const next = (errors) => {
+      const next = (errors: any[]) => {
         callback(errors)
         return errors.length ? errorFn({ errors, fields: convertFieldsError(errors) }) : resolve()
       }
@@ -212,19 +259,19 @@ export function asyncMap(objArray, option, func, callback) {
     return pending
   }
 
-  let firstFields = option.firstFields || []
+  let firstFields: string[] = Array.isArray(option.firstFields) ? option.firstFields : []
 
-  if (firstFields === true) {
+  if (option.firstFields === true) {
     firstFields = Object.keys(objArray)
   }
 
   let total = 0
   const objArrayKeys = Object.keys(objArray)
   const objArrLength = objArrayKeys.length
-  const results = [] as any[]
+  const results: any[] = []
   const pending = new Promise<void>((resolve, reject) => {
     const errorFn = reject
-    const next = (errors) => {
+    const next = (errors: any[]) => {
       results.push(...errors)
       total++
       if (total === objArrLength) {
@@ -250,26 +297,34 @@ export function asyncMap(objArray, option, func, callback) {
 }
 
 /**
- * @description 处理返回的错误
+ * @description 处理返回的错误，补充错误信息
+ * @param rule 规则对象
+ * @returns 处理函数
  */
-export function complementError(rule) {
+export function complementError(rule: {
+  fullField?: string
+  [key: string]: any
+}): (onError: string | Function | { message?: string; field?: string }) => { message: string; field: string } {
   return (onError) => {
-    if (onError && onError.message) {
-      onError.field = onError.field || rule.fullField
-      return onError
+    if (onError && (onError as any).message) {
+      ;(onError as any).field = (onError as any).field || rule.fullField
+      return onError as { message: string; field: string }
     }
 
     return {
-      message: typeof onError === 'function' ? onError() : onError,
-      field: onError.field || rule.fullField
+      message: typeof onError === 'function' ? (onError as Function)() : String(onError),
+      field: (onError as any)?.field || rule.fullField
     }
   }
 }
 
 /**
- * @description 深度合并
+ * @description 深度合并对象
+ * @param target 目标对象
+ * @param sources 源对象
+ * @returns 合并后的对象
  */
-export function deepMerge(target, sources) {
+export function deepMerge(target: Record<string, any>, sources: Record<string, any>): Record<string, any> {
   if (!sources) {
     return target
   }

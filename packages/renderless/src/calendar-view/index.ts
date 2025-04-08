@@ -57,18 +57,17 @@ export const handleMouseenter =
   ($event, val) => {
     const tooltip = vm.$refs.tooltip
     tooltip.state.referenceElm = $event.target
-    tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-    tooltip.doDestroy()
 
     state.eventTipContent = val
-    state.eventTipVisible = true
-    setTimeout(tooltip.updatePopper, 20)
+    setTimeout(tooltip.show(), 20)
   }
 
 export const handleMouseleave =
-  ({ state }) =>
+  ({ vm }) =>
   () => {
-    state.eventTipVisible = false
+    const tooltip = vm.$refs.tooltip
+    tooltip.setExpectedState(false)
+    tooltip.debounceClose()
   }
 
 export const isSelectedDate =

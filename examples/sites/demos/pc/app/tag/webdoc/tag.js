@@ -77,6 +77,18 @@ export default {
       codeFiles: ['size.vue']
     },
     {
+      demoId: 'max-width',
+      name: {
+        'zh-CN': '最大宽度',
+        'en-US': 'Max width'
+      },
+      desc: {
+        'zh-CN': '通过 <code>maxWidth</code> 设置最大宽度 。',
+        'en-US': 'Set the maxWidth through <code>maxWidth</code>.'
+      },
+      codeFiles: ['max-width.vue']
+    },
+    {
       demoId: 'disabled',
       name: {
         'zh-CN': '禁用',

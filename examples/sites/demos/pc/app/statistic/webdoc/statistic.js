@@ -62,7 +62,7 @@ export default {
       },
       description: '通过 value 设置数字内容，precision 设置数字精度值。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['value', 'precision'],
       demos: ['basic-usage']
@@ -75,7 +75,7 @@ export default {
       },
       description: 'prefix 设置前缀，suffix 设置后缀。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['prefix', 'suffix'],
       demos: ['prefix-suffix-slot']
@@ -88,7 +88,7 @@ export default {
       },
       description: '通过 title 设置标题。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['title'],
       demos: ['statistic-slot']
@@ -101,7 +101,7 @@ export default {
       },
       description: '通过 value-style 设置数字样式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['value-style'],
       demos: ['statistic-style']

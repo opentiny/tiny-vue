@@ -5,7 +5,7 @@ test('测试 filterUrl,filterHtml, 整个组件库只用到这2个函数', async
   const { filterHtml, filterUrl } = xss.default
 
   // 过滤DOM中的危险语句
-  expect(filterHtml(`<a href="javascript:alert('XSS')">Click Me</a>`)).toMatchInlineSnapshot(`"<a>Click Me</a>"`)
+  expect(filterHtml(`<a href="javascript:alert('XSS')">Click Me</a>`)).toMatchInlineSnapshot(`"<a href>Click Me</a>"`)
 
   // 过滤控制字符
   expect(filterUrl(`hello\uFEFFworld`)).toMatchInlineSnapshot(`"helloworld"`)

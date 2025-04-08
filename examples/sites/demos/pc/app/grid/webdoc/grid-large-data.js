@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'large-data-virtual-rolling',
+      demoId: 'large-data-virtual-rolling',
       'name': { 'zh-CN': '虚拟滚动', 'en-US': 'Virtual Scrolling' },
       'desc': {
         'zh-CN': `
@@ -23,10 +23,10 @@ export default {
       `,
         'en-US': ''
       },
-      'codeFiles': ['large-data/virtual-rolling.vue']
+      codeFiles: ['large-data/virtual-rolling.vue']
     },
     {
-      'demoId': 'large-data-grid-large-tree-data',
+      demoId: 'large-data-grid-large-tree-data',
       'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
       'desc': {
         'zh-CN': `
@@ -34,10 +34,10 @@ export default {
         `,
         'en-US': ''
       },
-      'codeFiles': ['large-data/grid-large-tree-data.vue']
+      codeFiles: ['large-data/grid-large-tree-data.vue']
     },
     {
-      'demoId': 'large-data-full-data-loading',
+      demoId: 'large-data-full-data-loading',
       'name': { 'zh-CN': '全量加载', 'en-US': 'Full Load' },
       'desc': {
         'zh-CN':
@@ -45,10 +45,10 @@ export default {
         'en-US':
           '<p>Performance problems may occur when there is too much data in a table. You can use <code>$refs</code> to obtain table objects and set the <code>loadData</code> method of the table objects to enable full loading to optimize performance. </p>\n'
       },
-      'codeFiles': ['large-data/full-data-loading.vue']
+      codeFiles: ['large-data/full-data-loading.vue']
     },
     {
-      'demoId': 'large-data-load-column',
+      demoId: 'large-data-load-column',
       'name': { 'zh-CN': '生成 1000 列', 'en-US': 'Generate 1000 columns' },
       'desc': {
         'zh-CN':
@@ -56,10 +56,10 @@ export default {
         'en-US':
           '<p>You can use the <code>loadColumn(columns)</code> method to load column configurations. This method may be used in scenarios where columns need to be reloaded. </p>\n'
       },
-      'codeFiles': ['large-data/load-column.vue']
+      codeFiles: ['large-data/load-column.vue']
     },
     {
-      'demoId': 'large-data-scroll-to',
+      demoId: 'large-data-scroll-to',
       'name': { 'zh-CN': '滚动到指定位置', 'en-US': 'Scroll to the specified position' },
       'desc': {
         'zh-CN':
@@ -67,10 +67,10 @@ export default {
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
       },
-      'codeFiles': ['large-data/scroll-to.vue']
+      codeFiles: ['large-data/scroll-to.vue']
     },
     {
-      'demoId': 'large-data-column-anchor',
+      demoId: 'large-data-column-anchor',
       'name': { 'zh-CN': '表格列锚点', 'en-US': 'table column anchor' },
       'desc': {
         'zh-CN':
@@ -78,10 +78,10 @@ export default {
         'en-US':
           '<p>Set the table column anchor point through <code>column-anchor</code>. Click to quickly scroll to the corresponding column. When the table is initialized, it will scroll to the first item of the anchor point by default. </p>'
       },
-      'codeFiles': ['large-data/column-anchor.vue']
+      codeFiles: ['large-data/column-anchor.vue']
     },
     {
-      'demoId': 'column-anchor-clear-active',
+      demoId: 'column-anchor-clear-active',
       'name': {
         'zh-CN': '再次加载数据时清除活跃列锚点',
         'en-US': 'Clear active column anchors when loading data again'
@@ -91,7 +91,7 @@ export default {
         'en-US':
           '<p>When loading data using <code>fetch-data</code>, active column anchors are cleared when the data is loaded again.</p>'
       },
-      'codeFiles': ['large-data/column-anchor-clear-active.vue']
+      codeFiles: ['large-data/column-anchor-clear-active.vue']
     }
   ],
   apis: [{ 'name': 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

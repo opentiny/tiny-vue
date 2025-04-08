@@ -92,7 +92,7 @@ export default defineConfig({
   <script type="importmap">
     {
       "imports": {
-        "vue": "https://registry.npmmirror.com/vue/3.5/files/dist/vue.runtime.esm-browser.js",
+        "vue": "https://registry.npmmirror.com/vue/3.5/files/dist/vue.esm-browser.js",
         "echarts": "https://registry.npmmirror.com/echarts/5.4.1/files/dist/echarts.esm.js",
         // v3.22.0版本新增
         "@opentiny/vue-huicharts": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-huicharts.mjs",
@@ -112,18 +112,16 @@ export default defineConfig({
 
 ```html
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <tiny-button>TinyVue</tiny-button>
+    <tiny-alert description="TinyVue"></tiny-alert>
+  </div>
   <script type="module">
     import { createApp } from 'vue'
     // 引入 @opentiny/vue 组件
     import TinyVue from '@opentiny/vue'
 
-    createApp({
-      template: `
-        <tiny-button>TinyVue</tiny-button>
-        <tiny-alert description="TinyVue"></tiny-alert>
-      `
-    })
+    createApp()
       // 注册 @opentiny/vue 组件
       .use(TinyVue)
       .mount('#app')

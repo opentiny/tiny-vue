@@ -86,6 +86,7 @@
                 :type="state.getTagType"
                 @close="deleteTag($event, state.selected[0])"
                 disable-transitions
+                :maxWidth="maxTagWidth"
               >
                 <tiny-tooltip
                   :effect="tooltipConfig.effect || 'light'"
@@ -119,6 +120,7 @@
                 :disabled="state.isDisabled"
                 disable-transitions
                 class="tiny-select__tags-number"
+                :maxWidth="maxTagWidth"
               >
                 <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
               </tiny-tag>
@@ -135,6 +137,7 @@
                 :closable="true"
                 :size="state.collapseTagSize"
                 @close="toggleCheckAll(false)"
+                :maxWidth="maxTagWidth"
               >
                 {{ allText || t('ui.base.all') }}
               </tiny-tag>
@@ -150,6 +153,7 @@
                   :closable="false"
                   :size="state.collapseTagSize"
                   @click="onClickCollapseTag($event)"
+                  :maxWidth="maxTagWidth"
                 >
                   <template v-if="hoverExpand"> + {{ state.collapseTagsLength }} </template>
                   <icon-ellipsis v-else></icon-ellipsis>
@@ -168,6 +172,7 @@
                   :type="state.getTagType"
                   @close="deleteTag($event, item)"
                   disable-transitions
+                  :maxWidth="maxTagWidth"
                 >
                   <tiny-tooltip
                     :effect="tooltipConfig.effect || 'light'"
@@ -762,7 +767,8 @@ export default defineComponent({
     'clickExpand',
     'maxVisibleRows',
     'showAllTextTag',
-    'allText'
+    'allText',
+    'maxTagWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

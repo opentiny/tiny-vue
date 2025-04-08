@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'empty-empty-data-tip',
+      demoId: 'empty-empty-data-tip',
       'name': { 'zh-CN': '自定义提示', 'en-US': 'Custom Prompt' },
       'desc': {
         'zh-CN':
@@ -11,19 +11,19 @@ export default {
         'en-US':
           '<p>When the data is empty, the <code> icon + text </code> prompt is displayed by default. You can also set the slot <code>v-slot:empty</code> or the <code>render-empty</code> attribute to define the prompt content. </p>\n'
       },
-      'codeFiles': ['empty/empty-data-tip.vue']
+      codeFiles: ['empty/empty-data-tip.vue']
     },
     {
-      'demoId': 'empty-empty-data-default-tip',
+      demoId: 'empty-empty-data-default-tip',
       'name': { 'zh-CN': '默认提示', 'en-US': 'Default Prompt' },
       'desc': {
         'zh-CN': '默认情况下就展示表格组件的默认提示图标和文字。',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['empty/empty-data-default-tip.vue']
+      codeFiles: ['empty/empty-data-default-tip.vue']
     },
     {
-      'demoId': 'empty-empty-data-iscenter',
+      demoId: 'empty-empty-data-iscenter',
       'name': { 'zh-CN': '固定居中', 'en-US': 'Fix Center' },
       'desc': {
         'zh-CN':
@@ -31,7 +31,7 @@ export default {
         'en-US':
           '<p>When <code>is-center-empty</code> is set to <code>true</code>, drag the horizontal scroll bar to keep the empty data prompt so that the final data is displayed in the center of the table width</p>\n'
       },
-      'codeFiles': ['empty/empty-data-iscenter.vue']
+      codeFiles: ['empty/empty-data-iscenter.vue']
     }
   ],
   apis: [{ 'name': 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

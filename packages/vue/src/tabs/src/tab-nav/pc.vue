@@ -251,7 +251,7 @@ export default defineComponent({
     })
 
     // 根据生成的子元素宽度动态设置tabslist盒子的padding-right
-    const paddingRight = this.$refs.more ? `${this.$refs.more.offsetWidth}px` : '46px'
+    const paddingRight = this.$refs.more ? `${this.$refs.more.offsetWidth}px` : '0'
 
     return (
       <div

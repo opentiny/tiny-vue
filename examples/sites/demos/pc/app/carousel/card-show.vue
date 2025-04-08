@@ -169,6 +169,9 @@ export default {
   z-index: 10;
   padding: 0 76px;
 }
+.card-demo {
+  border: 0;
+}
 /deep/ .tiny-button.tiny-button--text.tiny-button.is-only-icon {
   font-size: 16px;
   border: none;
@@ -177,7 +180,7 @@ export default {
   }
   &.is-disabled {
     .tiny-svg {
-      fill: #c2c2c2;
+      fill: #808080;
     }
   }
   &:hover {

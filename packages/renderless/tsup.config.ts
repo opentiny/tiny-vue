@@ -1,5 +1,4 @@
 import { defineConfig } from 'tsup'
-import { version } from './package.json'
 
 export default defineConfig([
   {
@@ -8,10 +7,7 @@ export default defineConfig([
     clean: true,
     format: ['esm'],
     dts: false,
-    outExtension: () => ({ js: '.js' }),
-    esbuildOptions(options) {
-      if (options.define) options.define['process.env.RUNTIME_VERSION'] = JSON.stringify(version)
-    }
+    outExtension: () => ({ js: '.js' })
   },
   {
     entry: ['types/*.type.ts'],

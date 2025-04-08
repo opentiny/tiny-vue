@@ -62,7 +62,7 @@ export default {
       },
       description: '默认固定在屏幕右侧固定位置。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['position'],
       demos: ['base']
@@ -75,7 +75,7 @@ export default {
       },
       description: '可通过配置 css 样式，设置浮动块的样式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['style'],
       demos: ['custom-style']
@@ -88,7 +88,7 @@ export default {
       },
       description: '通过默认插槽设置浮动块的内容。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['default-slot'],
       demos: ['custom-floatbar-item']
@@ -101,7 +101,7 @@ export default {
       },
       description: '支持对浮动块内容进行操作。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['operation'],
       demos: ['operation-floatbar-item']

@@ -353,7 +353,8 @@ export type {
   ExtractPropTypes,
   ComponentPublicInstance,
   SetupContext,
-  ComputedRef
+  ComputedRef,
+  App
 } from '@vue/composition-api'
 
 export type DefineComponent = typeof defineComponent

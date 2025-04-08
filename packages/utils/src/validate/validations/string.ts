@@ -14,8 +14,34 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, callback, source, options) {
-  const errors = []
+/**
+ * 字符串验证函数
+ *
+ * @description 根据规则验证字符串类型的值是否合法，支持必填验证、类型验证、范围验证、模式匹配和空白字符验证
+ * @param rule - 验证规则对象，包含验证条件
+ * @param checkValue - 需要验证的值
+ * @param callback - 验证完成后的回调函数
+ * @param source - 验证源对象，包含所有需要验证的字段
+ * @param options - 验证选项配置
+ * @returns void
+ */
+export default function stringValidation(
+  rule: {
+    required?: boolean
+    field: string
+    type?: string
+    pattern?: RegExp | string
+    whitespace?: boolean
+    min?: number
+    max?: number
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options: Record<string, any>
+): void {
+  const errors: any[] = []
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

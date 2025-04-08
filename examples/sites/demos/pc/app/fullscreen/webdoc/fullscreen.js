@@ -2,7 +2,7 @@ export default {
   column: '2',
   owner: '',
   show: true,
-  cloud: true,
+  cloud: false,
   demos: [
     {
       demoId: 'example-component',
@@ -50,7 +50,7 @@ export default {
       },
       description: '支持组件式使用方式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['component'],
       demos: ['example-component']
@@ -63,7 +63,7 @@ export default {
       },
       description: '支持函数式使用方式。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['api'],
       demos: ['example-api']
@@ -76,7 +76,7 @@ export default {
       },
       description: '支持在切换全屏前进行拦截。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['before-change'],
       demos: ['before-change']

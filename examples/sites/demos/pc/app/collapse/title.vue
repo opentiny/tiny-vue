@@ -65,6 +65,7 @@ export default {
 
 .tiny-icon-star-o {
   margin-left: 12px;
+  fill: var(--tv-color-icon, #808080);
 }
 
 .tiny-icon-star-o,

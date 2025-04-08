@@ -18,7 +18,7 @@
         :esc-closable="true"
         show-close
       >
-        <tiny-form :model="createData" label-width="100px">
+        <tiny-form :model="createData" label-position="top">
           <tiny-form-item label="用户名" prop="username">
             <tiny-input v-model="createData.username"></tiny-input>
           </tiny-form-item>

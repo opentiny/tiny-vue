@@ -2,7 +2,7 @@ export default {
   column: '2',
   owner: '',
   show: true,
-  cloud: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -186,7 +186,7 @@ export default {
       },
       description: '基础卡片组件，用于展示内容。',
       cloud: {
-        value: true
+        value: false
       },
       apis: [],
       demos: ['basic-usage']
@@ -199,7 +199,7 @@ export default {
       },
       description: '支持 text、image、video、logo 4 种类型。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['type'],
       demos: ['card-type']
@@ -212,7 +212,7 @@ export default {
       },
       description: '属性 card-class 可自定义卡片的 class，属性 height 可设置卡片内容区的高度。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['card-class', 'height'],
       demos: ['custom-class']
@@ -225,7 +225,7 @@ export default {
       },
       description: '组件提供 default、title-left、title、title-right、footer 5 个插槽。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['slot-default', 'slot-title-left', 'slot-title', 'slot-title-right', 'slot-footer'],
       demos: ['slot']

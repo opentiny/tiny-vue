@@ -50,7 +50,7 @@ export default {
 cssStr = fs.readFileSync(path.resolve(root, 'dist/dark-theme-index.css'), 'utf8')
 
 // 2.3、把 :root.dark 替换为 :root
-cssStr = cssStr.replace(':root.dark', ':root')
+cssStr = cssStr.replace(':root.dark', ':root').replace(':host.dark', ':host')
 
 jsStr = jsStr.replace('#CSS#', cssStr)
 fs.writeFileSync(path.resolve(root, 'src/dark-theme-index.js'), jsStr) // 供开发时(pnpm site)， 可以访问到最新的定制主题变量

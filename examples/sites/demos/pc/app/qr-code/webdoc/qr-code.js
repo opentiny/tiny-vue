@@ -65,7 +65,7 @@ export default {
       },
       description: '通过 value 设置二维码内容，size 设置二维码大小。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['value', 'size'],
       demos: ['basic-usage']
@@ -78,7 +78,7 @@ export default {
       },
       description: '通过 logo 设置二维码中心图片，logo-size 设置 logo 大小。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['logo', 'logo-size'],
       demos: ['logo']
@@ -91,7 +91,7 @@ export default {
       },
       description: '通过 foreground 设置前景色，background 设置背景色。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['foreground', 'background'],
       demos: ['custom-color']
@@ -104,7 +104,7 @@ export default {
       },
       description: '通过 level 设置纠错级别，可选值：L、M、Q、H。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['level'],
       demos: ['error-level']
@@ -117,7 +117,7 @@ export default {
       },
       description: '通过 download 设置是否可下载，filename 设置下载文件名。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['download', 'filename'],
       demos: ['download']
@@ -130,7 +130,7 @@ export default {
       },
       description: '支持 click、error 等事件。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['click', 'error'],
       demos: ['events']

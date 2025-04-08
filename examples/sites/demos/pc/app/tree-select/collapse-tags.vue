@@ -6,8 +6,24 @@
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple hover-expand></tiny-tree-select>
     <br />
     <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <p>场景 3：click-expand 折叠</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple click-expand :max-visible-rows="1"></tiny-tree-select>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <br />
     <br />
   </div>

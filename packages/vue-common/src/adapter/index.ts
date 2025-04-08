@@ -8,7 +8,8 @@ export type {
   DefineComponent,
   ComponentPublicInstance,
   SetupContext,
-  ComputedRef
+  ComputedRef,
+  App
 } from 'virtual:common/adapter/vue'
 
 export default vue

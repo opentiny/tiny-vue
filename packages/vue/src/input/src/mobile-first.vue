@@ -149,7 +149,7 @@
       <span
         data-tag="tiny-input-prefix"
         ref="prefix"
-        class="left-2 transition-all duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
+        class="left-2 transition-all fill-color-icon-placeholder duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
         v-if="(slots.prefix || prefixIcon) && !state.isDisplayOnly"
       >
         <slot name="prefix"></slot>
@@ -171,7 +171,7 @@
         class="right-2 transition-all duration-300 ease-in-out pointer-events-none text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center z-[1]"
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
-        <span class="pointer-events-auto text-xs flex justify-start items-center">
+        <span class="pointer-events-auto text-xs fill-color-icon-placeholder flex justify-start items-center">
           <icon-close
             v-if="state.showClear"
             :class="

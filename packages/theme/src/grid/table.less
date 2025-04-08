@@ -31,7 +31,7 @@
 
   // 展开行背景颜色
   .@{grid-prefix-cls}-body__expanded-row {
-    background-color: var(--tv-Grid-gray-bg-color);
+    background-color: var(--tv-Grid-expanded-row-bg-color);
   }
 
   // 显示表尾
@@ -381,7 +381,8 @@
         background-color: var(--tv-Grid-header-bg-color);
 
         &.col__index-checked {
-          background-color: #dcdcdc;
+          background-color: var(--tv-Grid-col-active-bg-color);
+          border: 1px solid var(--tv-Grid-col-body-active-border-color);
         }
       }
     }
@@ -486,6 +487,15 @@
   & &-header__column {
     padding: var(--tv-Grid-header-padding-y) var(--tv-Grid-cell-padding-x);
     height: var(--tv-Grid-header-height);
+
+    svg {
+      fill: var(--tv-Grid-icon-color);
+
+      &:hover {
+        fill: var(--tv-Grid-icon-color-hover);
+      }
+    }
+
     // 文字居中
     &.col__center {
       .@{grid-prefix-cls}-cell {
@@ -726,7 +736,6 @@
     width: 100%;
     height: 100px;
     margin: 0;
-    background: var(--tv-Grid-empty-img) 50% no-repeat;
   }
 
   & &__empty-text {
@@ -740,7 +749,7 @@
   & &-body__column {
     &.col__selected {
       &:not(.col__checked) {
-        box-shadow: inset 0 0 0 2px var(--tv-Grid-cell-border-color-selected);
+        border: 1px solid var(--tv-Grid-cell-border-color-selected);
       }
     }
 
@@ -811,7 +820,11 @@
 
           svg {
             font-size: var(--tv-Grid-icon-size);
-            fill: var(--tv-Grid-text-color);
+            fill: var(--tv-Grid-icon-color);
+
+            &:hover {
+              fill: var(--tv-Grid-icon-color-hover);
+            }
           }
         }
       }
@@ -947,8 +960,7 @@
 
     .@{grid-prefix-cls}-editor {
       width: 100%;
-      height: var(--tv-Grid-input-height);
-      line-height: normal;
+      height: 100%;
       color: var(--tv-Grid-text-color);
       background-color: var(--tv-Grid-input-bg-color);
 

@@ -14,8 +14,33 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, callback, source, options) {
-  const errors = [] as any[]
+/**
+ * 模式校验函数
+ *
+ * @description 根据规则验证值是否匹配指定的模式（正则表达式）
+ * @param rule 校验规则对象，包含校验字段和条件
+ * @param checkValue 需要校验的值
+ * @param callback 校验完成后的回调函数
+ * @param source 包含校验字段的源对象
+ * @param options 校验选项
+ * @returns void
+ */
+export default function pattern(
+  rule: {
+    field: string
+    required?: boolean
+    pattern?: RegExp | string
+    [key: string]: any
+  },
+  checkValue: any,
+  callback: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options: {
+    messages: Record<string, any>
+    [key: string]: any
+  }
+): void {
+  const errors: any[] = []
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

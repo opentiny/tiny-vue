@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'span-row-span-easy',
+      demoId: 'span-row-span-easy',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
@@ -11,19 +11,19 @@ export default {
         'en-US':
           '<p>Set the built-in row combination rule through the table column attribute <code>row-span</code>. This attribute applies only to common tables and does not apply to nested tree tables. </p>\n'
       },
-      'codeFiles': ['span/row-span-easy.vue']
+      codeFiles: ['span/row-span-easy.vue']
     },
     {
-      'demoId': 'span-row-span',
+      demoId: 'span-row-span',
       'name': { 'zh-CN': '自定义合并规则', 'en-US': 'Custom Combination Rule' },
       'desc': {
         'zh-CN': '<p>通过表格列属性 <code>span-method</code> 设置自定义合并规则。</p>\n',
         'en-US': '<p>Set a custom combination rule through the table column attribute <code>span-method</code>. </p>\n'
       },
-      'codeFiles': ['span/row-span.vue']
+      codeFiles: ['span/row-span.vue']
     },
     {
-      'demoId': 'span-column-span',
+      demoId: 'span-column-span',
       'name': { 'zh-CN': '列合并', 'en-US': 'Column Merge' },
       'desc': {
         'zh-CN':
@@ -31,7 +31,7 @@ export default {
         'en-US':
           '<p>Column combination is a user-defined combination rule implemented by using the <code>span-method</code> table column setting method. For example, </p>\n<blockquote>\n<p> can combine two columns into </p>\n</blockquote>\n'
       },
-      'codeFiles': ['span/column-span.vue']
+      codeFiles: ['span/column-span.vue']
     }
   ],
   apis: [{ 'name': 'grid-span', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
