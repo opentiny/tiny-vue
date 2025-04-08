@@ -23,6 +23,7 @@
  *
  */
 import { get } from '@opentiny/vue-renderless/grid/static/'
+import { warn } from '../../../tools'
 
 /**
  * 将列数据获取的Promise进行映射处理
@@ -134,5 +135,55 @@ export function preventDupRender({
 export function handleResolveColumnComplete({ _vm, columnData, complete }) {
   if (typeof complete === 'function') {
     complete({ columnData, $table: _vm })
+  }
+}
+
+export const handleAllColumnPromises = (opt, ctx) => {
+  let { startIndex, fetchColumns, tableData, asyncRenderMap, isScrollLoad } = opt
+  return (data) => {
+    if (data.length) {
+      // 【data属性设置表格数据且开启可视区】防止 渲染导致滚动条跳动（跳到初始位置）
+      ctx._isUpdateData = true
+      data.forEach((item, i) => {
+        let columnValues = []
+        let columnValuesMap = {}
+        let k = startIndex // 查找起始位置
+        let renderCount = 0
+        let columnCount = 0
+        const columnData = []
+        const { format = {}, property } = fetchColumns[i]
+        const { splitConfig = {}, fields = {}, complete } = format.async || {}
+
+        columnValues = Array.isArray(item) ? item : get(item, fields.data || 'values')
+        columnCount = columnValues.length
+        // 预处理数据对象格式
+        preprocessDataObjectFormat({ columnCount, columnValues, columnValuesMap, fields })
+        for (let len = tableData.length; k < len; k++) {
+          const row = tableData[k]
+          const cellTexts = []
+          const uniqueKey = ctx.getAsyncColumnUniqueKey(property, row)
+          const cellValuesCount = asyncRenderMap[uniqueKey]
+          const asyncColumnName = ctx.getAsyncColumnName(property)
+          const isRender = !!row[asyncColumnName]
+          let args = { asyncColumnName, cellTexts, cellValuesCount, columnData }
+          Object.assign(args, { columnValuesMap, isRender, property, renderCount, row, splitConfig })
+          // 防止重复渲染
+          renderCount = preventDupRender(args)
+          // 针对可视区滚动优化
+          if (isScrollLoad && renderCount >= columnCount) {
+            break
+          }
+        }
+        format.data = columnData
+        // 用户自定义缓存机制的接口
+        handleResolveColumnComplete({ _vm: ctx, columnData, complete })
+      })
+      ctx.tableData = ctx.tableData.slice(0)
+      ctx.$nextTick(() => {
+        ctx._isUpdateData = false
+      })
+    } else {
+      warn('Unknown error：the query data is empty.')
+    }
   }
 }

@@ -82,12 +82,11 @@ import {
   showGroupFixedError,
   onScrollXLoad
 } from './utils/refreshColumn'
-import { mapFetchColumnPromise } from './utils/handleResolveColumn'
+import { mapFetchColumnPromise, handleAllColumnPromises } from './utils/handleResolveColumn'
 import { hooks, isVue2 } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
-import { headerProps, handleAllColumnPromises } from './funcs'
 import {
   handleGlobalMousedownEvent,
   handleGlobalBlurEvent,
@@ -118,6 +117,11 @@ import {
   buildRowGroupFullData
 } from './strategy'
 import { updateRowStatus, getCellStatus } from '../../composable'
+
+// 分组表头的属性
+export const headerProps = {
+  children: 'children'
+}
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let debounceScrollLoadDuration = 200
