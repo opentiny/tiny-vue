@@ -111,7 +111,7 @@ const renderEmptyPartFn = (opt) => {
   return () => {
     let emptyPartVnode = null
 
-    if (_vm.viewType === V_DEFAULT && _vm.isCenterEmpty && !opt.tableData.length) {
+    if ([V_DEFAULT, V_MF].includes(_vm.viewType) && _vm.isCenterEmpty && !opt.tableData.length) {
       const { $grid = {}, renderEmpty } = _vm
       const { slots } = $grid
       let { computerTableBodyHeight } = _vm
