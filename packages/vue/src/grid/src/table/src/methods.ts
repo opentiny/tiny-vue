@@ -199,10 +199,20 @@ const buildCache = (tableData, { treeConfig, treeOrdered }) => {
 }
 
 const Methods = {
+  /**
+   * 获取父级元素
+   * @returns {HTMLElement} 父级DOM元素
+   */
   getParentElem() {
     let $el = this.$grid ? this.$grid.$el : this.$el
     return $el.parentNode
   },
+
+  /**
+   * 更新父级元素高度
+   * 如果存在$grid则调用其updateParentHeight方法
+   * 否则直接获取父元素高度
+   */
   updateParentHeight() {
     if (this.$grid) {
       this.$grid.updateParentHeight()
@@ -210,9 +220,20 @@ const Methods = {
       this.parentHeight = this.getParentElem().clientHeight
     }
   },
+
+  /**
+   * 获取父级元素高度
+   * @returns {number} 父级元素高度
+   */
   getParentHeight() {
     return this.parentHeight
   },
+
+  /**
+   * 清除所有状态
+   * @param {boolean} silent - 是否静默清除(不触发事件)
+   * @returns {Promise} 清除完成后的Promise
+   */
   clearAll(silent) {
     const { fetchOption = {} } = this.$grid
     const { isReloadFilter, isReloadScroll = false } = fetchOption
@@ -235,16 +256,24 @@ const Methods = {
     run(functionNames, this)
     this.cellStatus.clear()
 
+    // 根据配置决定是否重新加载过滤
     if (typeof isReloadFilter === 'undefined' ? TINYGrid._filter : !isReloadFilter) {
       this.clearFilter(silent)
     }
 
+    // 清除选中状态
     if (this.keyboardConfig || this.mouseConfig) {
       run(['clearIndexChecked', 'clearHeaderChecked', 'clearChecked', 'clearSelected', 'clearCopyed'], this)
     }
 
     return this.clearActived()
   },
+
+  /**
+   * 刷新表格数据
+   * @param {Array} data - 新的表格数据
+   * @returns {Promise} 刷新完成后的Promise
+   */
   refreshData(data) {
     const next = () => {
       this.tableData = []
@@ -252,6 +281,12 @@ const Methods = {
     }
     return this.$nextTick().then(next)
   },
+
+  /**
+   * 刷新表格样式
+   * 主要用于处理合并单元格的情况
+   * @returns {Promise} 刷新完成后的Promise
+   */
   refreshStyle() {
     let { $el, rowSpan, spanMethod } = this
     // 存在合并时才刷新样式
@@ -266,12 +301,22 @@ const Methods = {
     }
     return this.$nextTick()
   },
+
+  /**
+   * 更新表格数据
+   * @returns {Promise} 更新完成后的Promise
+   */
   updateData() {
     return this.handleTableData(true)
       .then(() => this.updateFooter())
       .then(() => this.recalculate())
   },
-  // 处理表格数据（过滤，排序，虚拟滚动需要渲染数据的条数）
+
+  /**
+   * 处理表格数据
+   * @param {boolean} force - 是否强制更新
+   * @returns {Promise} 处理完成后的Promise
+   */
   handleTableData(force) {
     // 这里处理是否强制刷新afterFullData：经过筛选排序后的数据
     force && this.updateAfterFullData()
@@ -283,7 +328,13 @@ const Methods = {
 
     return this.$nextTick()
   },
-  // 全量加载表格数据
+
+  /**
+   * 加载表格数据
+   * @param {Array} datas - 要加载的数据
+   * @param {boolean} notRefresh - 是否不刷新表格状态
+   * @returns {Promise} 加载完成后的Promise
+   */
   loadTableData(datas, notRefresh) {
     let { $grid, $refs, editStore, height, maxHeight, treeConfig, lastScrollLeft, lastScrollTop, optimizeOpts } =
       this as any
@@ -341,14 +392,23 @@ const Methods = {
     return this.$nextTick().then(first).then(second)
   },
 
-  // 重新加载数据：先清空所有状态，然后加载新数据，最后处理默认设置
+  /**
+   * 重新加载数据
+   * 先清空所有状态，然后加载新数据，最后处理默认设置
+   * @param {Array} datas - 要加载的数据
+   * @returns {Promise} 加载完成后的Promise
+   */
   reloadData(datas) {
     return this.clearAll()
       .then(() => this.loadTableData(datas))
       .then(() => this.handleDefault())
   },
 
-  // 加载全量数据：直接加载数据而不清空状态
+  /**
+   * 加载数据
+   * @param {Array} datas - 要加载的数据
+   * @returns {Promise} 加载完成后的Promise
+   */
   loadData(datas) {
     return new Promise((resolve) => {
       this.loadTableData(datas)
@@ -356,10 +416,13 @@ const Methods = {
     })
   },
 
-  // 重新加载指定行的数据
-  // row: 目标行数据对象
-  // record: 新的行数据对象
-  // field: 指定字段名（如果只更新某个字段）
+  /**
+   * 重新加载行数据
+   * @param {Object} row - 要更新的行
+   * @param {Object} record - 新的行数据
+   * @param {string} field - 指定字段名(如果只更新某个字段)
+   * @returns {Promise} 更新完成后的Promise
+   */
   reloadRow(row, record, field) {
     let { tableData, tableSourceData } = this
     let rowIndex = this.getRowIndex(row)
@@ -390,12 +453,20 @@ const Methods = {
     return this.$nextTick()
   },
 
-  // 重新加载列配置：先清除所有状态，然后加载新列配置
+  /**
+   * 重新加载列配置
+   * @param {Array} columns - 新的列配置
+   * @returns {Promise} 加载完成后的Promise
+   */
   reloadColumn(columns) {
     return this.clearAll().then(() => this.loadColumn(columns))
   },
 
-  // 加载列配置
+  /**
+   * 加载列配置
+   * @param {Array} columns - 要加载的列配置
+   * @returns {Promise} 加载完成后的Promise
+   */
   loadColumn(columns) {
     return new Promise((resolve) => {
       // 通过mapTree函数处理每个列配置，创建列实例
@@ -404,7 +475,10 @@ const Methods = {
     }).then(() => this.$nextTick())
   },
 
-  // 更新数据的映射缓存（优化查询效率）
+  /**
+   * 更新数据的映射缓存
+   * @param {boolean} source - 是否更新源数据
+   */
   updateCache(source) {
     let { fullAllDataRowIdData, fullAllDataRowMap, fullDataRowIdData, fullDataRowMap, tableFullData, treeConfig } = this
     let rowKey = getTableRowKey(this)
