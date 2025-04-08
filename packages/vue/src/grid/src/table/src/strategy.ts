@@ -1,3 +1,8 @@
+/**
+ * 表格策略相关工具函数
+ * 包含表格行键管理、树形结构处理、虚拟滚动、分组等功能
+ */
+
 import { hooks } from '@opentiny/vue-common'
 import { getRowkey } from '@opentiny/vue-renderless/grid/utils'
 import { arrayEach, isEqual } from '@opentiny/vue-renderless/grid/static'
@@ -5,18 +10,33 @@ import { warn } from '../../tools'
 
 const { toRaw } = hooks
 
-const TEMPORARY_CHILDREN = '_$children_'
-const TEMPORARY_SHOW = '_$show_'
-const ROWKEY_MAP = new WeakMap()
-const TOTALROWS_MAP = new WeakMap()
-const CHART_MAP = new WeakMap()
-const VIRTUAL_ROW_KEY = '_$virtual_'
+// 常量定义
+const TEMPORARY_CHILDREN = '_$children_' // 临时子节点属性名
+const TEMPORARY_SHOW = '_$show_' // 临时显示属性名
+const ROWKEY_MAP = new WeakMap() // 存储表格行键的WeakMap
+const TOTALROWS_MAP = new WeakMap() // 存储表格总行数的WeakMap
+const CHART_MAP = new WeakMap() // 存储树形结构图的WeakMap
+const VIRTUAL_ROW_KEY = '_$virtual_' // 虚拟行标识符
 
-let rowUniqueId = 0
+let rowUniqueId = 0 // 行唯一ID计数器
 
+/**
+ * 生成行唯一ID
+ * @returns {string} 格式为 'row_数字' 的唯一ID
+ */
 const getRowUniqueId = () => `row_${++rowUniqueId}`
+
+/**
+ * 检查数组是否有效（非空数组）
+ * @param {Array} arr - 待检查的数组
+ * @returns {boolean} 是否为有效数组
+ */
 const isValidArray = (arr) => Array.isArray(arr) && arr.length
 
+/**
+ * 设置表格行键
+ * @param {Object} $table - 表格实例
+ */
 const setTableRowKey = ($table) => {
   if (!ROWKEY_MAP.has($table)) {
     ROWKEY_MAP.set($table, getRowkey($table))
@@ -25,6 +45,11 @@ const setTableRowKey = ($table) => {
   return ROWKEY_MAP.get($table)
 }
 
+/**
+ * 获取表格行键
+ * @param {Object} $table - 表格实例
+ * @returns {string} 行键
+ */
 const getTableRowKey = ($table) => {
   if (!ROWKEY_MAP.has($table)) {
     setTableRowKey($table)
@@ -33,6 +58,14 @@ const getTableRowKey = ($table) => {
   return ROWKEY_MAP.get($table)
 }
 
+/**
+ * 获取单元格唯一键
+ * @param {Object} params - 参数对象
+ * @param {Object} params.$table - 表格实例
+ * @param {Object} params.column - 列配置
+ * @param {Object} params.row - 行数据
+ * @returns {string} 单元格唯一键
+ */
 const getTableCellKey = ({ $table, column, row }) => {
   if (!ROWKEY_MAP.has($table)) {
     setTableRowKey($table)
@@ -41,11 +74,20 @@ const getTableCellKey = ({ $table, column, row }) => {
   return `${row[ROWKEY_MAP.get($table)]}-${column.id}`
 }
 
+/**
+ * 设置树形结构滚动Y轴缓存
+ * @param {Object} _vm - 组件实例
+ */
 const setTreeScrollYCache = (_vm) => {
   setCacheChartMap(_vm)
   setTotalRows(_vm)
 }
 
+/**
+ * 构建树形结构图
+ * @param {Object} _vm - 组件实例
+ * @returns {Array} 树形结构图
+ */
 const buildChart = (_vm) => {
   const { afterFullData, scrollYLoad, treeConfig, treeExpandeds } = _vm
 
@@ -385,7 +427,11 @@ const sliceColumnTree = (_vm) => {
 
 const setSliceColumnTree = (_vm) => _vm.isGroup && (_vm._sliceColumnTree = sliceColumnTree(_vm))
 
-/** 判断是否是虚拟行 */
+/**
+ * 判断是否是虚拟行
+ * @param {Object} row - 行数据
+ * @returns {boolean} 是否为虚拟行
+ */
 const isVirtualRow = (row) => row && row[VIRTUAL_ROW_KEY]
 
 /**
@@ -400,8 +446,9 @@ const isVirtualRow = (row) => row && row[VIRTUAL_ROW_KEY]
 const orderingGroupBy = (arr, key, equals, active, rowKey) => {
   const result = []
   const virtualItems = []
-  // 虚拟行id计数
   let virtualRowId = 0
+
+  // 创建虚拟行
   const createVirtualItem = (vItem) => {
     vItem = {
       [VIRTUAL_ROW_KEY]: true,

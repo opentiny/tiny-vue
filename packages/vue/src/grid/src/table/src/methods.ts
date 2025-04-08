@@ -28,11 +28,9 @@ import { toDecimal } from '@opentiny/utils'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
-import { fastdom } from '@opentiny/utils'
+import { fastdom, isNumber } from '@opentiny/utils'
 import {
-  isNumber,
   filterTree,
-  isArray,
   isBoolean,
   findTree,
   set,
@@ -289,7 +287,7 @@ const Methods = {
     let { isReloadScroll = false } = fetchOption
     let { scrollY } = optimizeOpts
     // 浅拷贝原始全量数据
-    let tableFullData = isArray(datas) ? datas.slice(0) : []
+    let tableFullData = Array.isArray(datas) ? datas.slice(0) : []
     // 是否开启纵向的虚拟滚动，默认大于等于500条开启纵向的虚拟滚动
     let scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
@@ -577,7 +575,7 @@ const Methods = {
 
   // 创建新的数据记录
   createData(records, copy) {
-    let isArr = isArray(records)
+    let isArr = Array.isArray(records)
     if (!isArr) {
       records = [records]
     }
@@ -602,7 +600,7 @@ const Methods = {
    */
   clearData(rows, field) {
     // 根据参数决定清空范围
-    rows = !arguments.length ? this.tableFullData : rows && !isArray(rows) ? [rows] : rows
+    rows = !arguments.length ? this.tableFullData : rows && !Array.isArray(rows) ? [rows] : rows
     rows.forEach((row) => {
       if (field) {
         // 清空指定字段
@@ -1248,7 +1246,7 @@ const Methods = {
         let blurClass = []
         if (typeof blurClassConfig === 'string') {
           blurClass.push(blurClassConfig)
-        } else if (isArray(blurClassConfig)) {
+        } else if (Array.isArray(blurClassConfig)) {
           blurClass = blurClassConfig.slice(0)
         }
 
@@ -1540,7 +1538,7 @@ const Methods = {
     if (!rows) {
       return this.$nextTick().then(this.recalculate)
     }
-    if (!isArray(rows)) {
+    if (!Array.isArray(rows)) {
       rows = [rows]
     }
     // 手风琴模式只能同时展开一个
@@ -1972,7 +1970,7 @@ const Methods = {
     if (footerMethod && showFooter) {
       let data = footerMethod({ columns: tableColumn, data: afterFullData })
       // 如果返回的不是二维数组，转换为二维数组
-      if (data.length && data.some((value) => !isArray(value))) {
+      if (data.length && data.some((value) => !Array.isArray(value))) {
         data = [data]
       }
       this.footerData = tableColumn.length ? data : []

@@ -25,6 +25,13 @@
 import { arrayEach, toNumber } from '@opentiny/vue-renderless/grid/static/'
 import { isScale } from '@opentiny/vue-renderless/grid/utils'
 
+/**
+ * 设置表格元素的宽度
+ * @param {Object} params - 参数对象
+ * @param {number} params.scrollbarWidth - 滚动条宽度
+ * @param {number} params.tWidth - 表格宽度
+ * @param {HTMLElement} params.tableElem - 表格元素
+ */
 function setTableElemWidth({ scrollbarWidth, tWidth, tableElem }) {
   if (tableElem && tWidth === null) {
     tableElem.style.width = tWidth
@@ -35,6 +42,14 @@ function setTableElemWidth({ scrollbarWidth, tWidth, tableElem }) {
   }
 }
 
+/**
+ * 获取表格宽度
+ * @param {Object} params - 参数对象
+ * @param {boolean} params.scrollXLoad - 是否启用横向滚动加载
+ * @param {number} params.tWidth - 表格宽度
+ * @param {Array} params.tableColumn - 表格列配置
+ * @returns {Object} 返回表格列配置和宽度
+ */
 function getTableWidth({ scrollXLoad, tWidth, tableColumn }) {
   if (scrollXLoad) {
     tWidth = tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
@@ -43,6 +58,24 @@ function getTableWidth({ scrollXLoad, tWidth, tableColumn }) {
   return { tableColumn, tWidth }
 }
 
+/**
+ * 布局表尾
+ * @param {Object} params - 参数对象
+ * @param {Object} params.elemStore - 元素存储对象
+ * @param {number} params.customHeight - 自定义高度
+ * @param {number} params.footerHeight - 表尾高度
+ * @param {number} params.headerHeight - 表头高度
+ * @param {boolean} params.scrollXLoad - 是否启用横向滚动加载
+ * @param {number} params.scrollbarWidth - 滚动条宽度
+ * @param {HTMLElement} params.tableElem - 表格元素
+ * @param {number} params.scrollbarHeight - 滚动条高度
+ * @param {Array} params.tableColumn - 表格列配置
+ * @param {number} params.tableHeight - 表格高度
+ * @param {number} params.tableWidth - 表格宽度
+ * @param {HTMLElement} params.wrapperElem - 包装元素
+ * @param {HTMLElement} params.fixedWrapperElem - 固定列包装元素
+ * @returns {Array} 返回表格列配置
+ */
 function layoutFooter({
   elemStore,
   customHeight,
@@ -84,7 +117,14 @@ function layoutFooter({
   return tableColumn
 }
 
-// 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
+/**
+ * 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
+ * @param {Object} params - 参数对象
+ * @param {Object} params.elemStore - 元素存储对象
+ * @param {Object} params.fullColumnIdData - 完整的列ID数据
+ * @param {string} params.layout - 布局类型
+ * @param {number} params.scrollbarWidth - 滚动条宽度
+ */
 function layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth }) {
   let colgroupElem = elemStore[`main-${layout}-colgroup`]
   let colElemHandler = (colElem) => {
@@ -105,6 +145,18 @@ function layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth })
   }
 }
 
+/**
+ * 布局表头
+ * @param {Object} params - 参数对象
+ * @param {Object} params.elemStore - 元素存储对象
+ * @param {string} params.layout - 布局类型
+ * @param {boolean} params.scrollXLoad - 是否启用横向滚动加载
+ * @param {number} params.scrollbarWidth - 滚动条宽度
+ * @param {Array} params.tableColumn - 表格列配置
+ * @param {HTMLElement} params.tableElem - 表格元素
+ * @param {number} params.tableWidth - 表格宽度
+ * @returns {Array} 返回表格列配置
+ */
 function layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth }) {
   let tWidth = tableWidth
   let repairElem = elemStore[`main-${layout}-repair`]
@@ -122,12 +174,31 @@ function layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableCol
   return tableColumn
 }
 
+/**
+ * 布局表格
+ * @param {Object} params - 参数对象
+ * @param {number} params.tWidth - 表格宽度
+ * @param {HTMLElement} params.tableElem - 表格元素
+ */
 function layoutTable({ tWidth, tableElem }) {
   if (tableElem) {
     tableElem.style.width = tWidth ? `${tWidth}px` : tWidth
   }
 }
 
+/**
+ * 布局表格体包装器
+ * @param {Object} params - 参数对象
+ * @param {number} params.footerHeight - 表尾高度
+ * @param {number} params.customHeight - 自定义高度
+ * @param {number} params.headerHeight - 表头高度
+ * @param {number} params.maxHeight - 最大高度
+ * @param {number} params.minHeight - 最小高度
+ * @param {number} params.parentHeight - 父元素高度
+ * @param {HTMLElement} params.wrapperElem - 包装元素
+ * @param {number} params.scrollbarWidth - 滚动条宽度
+ * @returns {Object} 返回最大高度和最小高度
+ */
 function layoutBodyWrapper({
   footerHeight,
   customHeight,
@@ -163,12 +234,23 @@ function layoutBodyWrapper({
   return { maxHeight, minHeight }
 }
 
+/**
+ * 布局空数据块
+ * @param {Object} params - 参数对象
+ * @param {HTMLElement} params.emptyBlockElem - 空数据块元素
+ * @param {number} params.tWidth - 表格宽度
+ */
 function layoutEmptyBlock({ emptyBlockElem, tWidth }) {
   if (emptyBlockElem) {
     emptyBlockElem.style.width = tWidth ? `${tWidth}px` : tWidth || ''
   }
 }
 
+/**
+ * 布局表格体
+ * @param {Object} options - 配置对象
+ * @returns {Object} 返回最大高度、最小高度和表格列配置
+ */
 function layoutBody(options) {
   let { customHeight, elemStore, footerHeight, headerHeight, layout } = options
   let { maxHeight, minHeight, parentHeight, scrollXLoad } = options
@@ -200,6 +282,11 @@ function layoutBody(options) {
   return { maxHeight, minHeight, tableColumn }
 }
 
+/**
+ * 处理布局
+ * @param {Object} params - 参数对象
+ * @returns {Object} 返回表格列配置、最大高度和最小高度
+ */
 export function handleLayout(params) {
   let {
     _vm,
