@@ -10,7 +10,7 @@
  *
  */
 import { $install } from '@opentiny/vue-common'
-import Loading from './src/loading'
+import Loading from './src/loading.vue'
 
 $install(Loading)
 
