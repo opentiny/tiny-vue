@@ -89,7 +89,7 @@ import { hooks, isVue2 } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
-import { funcs, headerProps, handleAllColumnPromises } from './funcs'
+import { headerProps, handleAllColumnPromises } from './funcs'
 import {
   handleGlobalMousedownEvent,
   handleGlobalBlurEvent,
@@ -2287,12 +2287,5 @@ const Methods = {
     getCellStatus(this, row, column)
   }
 }
-
-// 添加所有功能方法
-funcs.forEach((name) => {
-  Methods[name] = function (...args) {
-    return this[`_${name}`] ? this[`_${name}`](...args) : null
-  }
-})
 
 export default Methods

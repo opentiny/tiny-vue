@@ -100,11 +100,11 @@ const onRejected = (opt, _this) => {
 
 export default {
   // 对表格数据进行校验
-  _validate(rows, cb) {
+  validate(rows, cb) {
     return this.beginValidate(rows, cb)
   },
   // 与validate一致行为，区别就是会校验所有并返回所有不通过的列
-  _fullValidate(rows, cb) {
+  fullValidate(rows, cb) {
     return this.beginValidate(rows, cb, true)
   },
   // 聚焦到校验通过的单元格并弹出校验错误提示
@@ -262,7 +262,7 @@ export default {
 
     return new Promise(executor).then(onFulfilled).catch(onRejected)
   },
-  _clearValidate() {
+  clearValidate() {
     Object.assign(this.validStore, { column: null, content: '', isArrow: false, row: null, rule: null, visible: false })
     this.clostValidTooltip(undefined)
 

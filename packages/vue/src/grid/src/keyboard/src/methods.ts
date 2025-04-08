@@ -342,7 +342,7 @@ export default {
     onCellMousedownSelect({ _vm: this, editConfig, event, mouseConfig, params })
   },
   // 清除所选中源状态
-  _clearSelected(keep) {
+  clearSelected(keep) {
     let {
       editStore: { selected },
       elemStore
@@ -368,7 +368,7 @@ export default {
     return this.$nextTick()
   },
   // 清除所有选中状态
-  _clearChecked() {
+  clearChecked() {
     let { $refs, editStore, mouseConfig } = this
     let checked = editStore.checked
 
@@ -386,7 +386,7 @@ export default {
 
     return this.$nextTick()
   },
-  _getMouseCheckeds() {
+  getMouseCheckeds() {
     let { rowNodes = [] } = this.editStore.checked
     let { rows = [], columns = [] } = {}
     let res = {
@@ -402,7 +402,7 @@ export default {
 
     return res
   },
-  _getMouseSelecteds() {
+  getMouseSelecteds() {
     let { args, column } = this.editStore.selected
 
     if (!args || !column) {
@@ -524,7 +524,7 @@ export default {
 
     this.editStore.indexs.rowNodes = rowNodes
   },
-  _clearIndexChecked() {
+  clearIndexChecked() {
     let indexCheckeds = this.elemStore['main-body-list'].querySelectorAll('.col__index-checked')
     let eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
 
@@ -545,7 +545,7 @@ export default {
 
     this.editStore.titles.rowNodes = rowNodes
   },
-  _clearHeaderChecked() {
+  clearHeaderChecked() {
     let headerElem = this.elemStore['main-body-headerList']
 
     if (headerElem) {
@@ -557,7 +557,7 @@ export default {
     return this.$nextTick()
   },
   // 清空已复制的内容
-  _clearCopyed() {
+  clearCopyed() {
     let { $refs, editStore, keyboardConfig } = this
     let { copyed: editStoreCopyed } = editStore
 

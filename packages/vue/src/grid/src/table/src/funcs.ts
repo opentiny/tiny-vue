@@ -13,39 +13,6 @@ import { warn } from '../../tools'
 import { isArray, get } from '@opentiny/vue-renderless/grid/static/'
 import { preprocessDataObjectFormat, preventDupRender, handleResolveColumnComplete } from './utils/handleResolveColumn'
 
-// Module methods
-export const funcs = [
-  'closeMenu',
-  'getMouseSelecteds',
-  'getMouseCheckeds',
-  'clearCopyed',
-  'clearChecked',
-  'clearHeaderChecked',
-  'clearIndexChecked',
-  'clearSelected',
-  'insert',
-  'insertAt',
-  'remove',
-  'removeSelecteds',
-  'revert',
-  'revertData',
-  'getRecordset',
-  'getInsertRecords',
-  'getRemoveRecords',
-  'getUpdateRecords',
-  'clearActived',
-  'getActiveRow',
-  'hasActiveRow',
-  'setActiveRow',
-  'setActiveCell',
-  'setSelectCell',
-  'clearValidate',
-  'fullValidate',
-  'validate',
-  'exportCsv',
-  'exportExcel'
-]
-
 // 分组表头的属性
 export const headerProps = {
   children: 'children'

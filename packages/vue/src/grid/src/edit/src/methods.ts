@@ -91,7 +91,7 @@ export function removeFromTableSourceData({ _vm, rows, tableSourceData }) {
   }
 }
 
-const _setActiveCell = function (row, field) {
+const setActiveCell = function (row, field) {
   let next1 = () => {
     if (!row || !field) {
       return this.$nextTick()
@@ -124,11 +124,11 @@ const _setActiveCell = function (row, field) {
 }
 
 export default {
-  _insert(records) {
+  insert(records) {
     return this.insertAt(records)
   },
   // 根据位置从指定行添加数据
-  _insertAt(records, row) {
+  insertAt(records, row) {
     let { afterFullData, editStore, isAsyncColumn, scrollYLoad, tableFullData, tableSourceData = [], treeConfig } = this
 
     if (treeConfig) {
@@ -178,7 +178,7 @@ export default {
    * 如果传 row 则删除一行
    * 如果传 rows 则删除多行
    */
-  _remove(rows) {
+  remove(rows) {
     let { afterFullData, scrollYLoad, selectConfig = {} } = this
     let { selection, tableFullData, treeConfig, tableSourceData = [] } = this
     let { insertList, removeList } = this.editStore
@@ -257,7 +257,7 @@ export default {
   /**
    * 删除选中数据
    */
-  _removeSelecteds() {
+  removeSelecteds() {
     let selectRecords = this.getSelectRecords(true)
     let callback = (params) => {
       this.clearSelection()
@@ -266,7 +266,7 @@ export default {
 
     return this.remove(selectRecords).then(callback)
   },
-  _revert(...args) {
+  revert(...args) {
     warn('ui.grid.error.delRevert')
     return this.revertData(...args)
   },
@@ -278,7 +278,7 @@ export default {
    * 如果传rows则还原多行；
    * 如果还额外传了field则还原指定单元格。
    */
-  _revertData(rows, field) {
+  revertData(rows, field) {
     let { tableSourceData, tableSynchData } = this
 
     if (arguments.length && rows && !isArray(rows)) {
@@ -314,7 +314,7 @@ export default {
   /**
    * 获取表格操作数据集
    */
-  _getRecordset() {
+  getRecordset() {
     let res = {}
 
     res.insertRecords = this.getInsertRecords()
@@ -327,14 +327,14 @@ export default {
   /**
    * 获取删除数据列表
    */
-  _getRemoveRecords() {
+  getRemoveRecords() {
     return this.editStore.removeList
   },
 
   /**
    * 获取新增数据列表
    */
-  _getInsertRecords() {
+  getInsertRecords() {
     return this.editStore.insertList
   },
 
@@ -342,7 +342,7 @@ export default {
    * 获取更新数据列表
    * 只精准匹配row的更改。如果是树表格，子节点更改状态不会影响父节点的更新状态
    */
-  _getUpdateRecords() {
+  getUpdateRecords() {
     let { tableFullData, treeConfig } = this
     let handler = (row) => !this.isTemporaryRow(row) && this.hasRowChange(row)
     let updateRecords = treeConfig ? filterTree(tableFullData, handler, treeConfig) : tableFullData.filter(handler)
@@ -378,7 +378,7 @@ export default {
 
     return this.$nextTick()
   },
-  _getColumnModel(row, column) {
+  getColumnModel(row, column) {
     let { model, editor } = column
 
     if (editor) {
@@ -386,7 +386,7 @@ export default {
       model.update = false
     }
   },
-  _setColumnModel(row, column) {
+  setColumnModel(row, column) {
     let { model, editor } = column
 
     if (editor && model.update) {
@@ -395,7 +395,7 @@ export default {
       model.value = null
     }
   },
-  _getActiveRow() {
+  getActiveRow() {
     let { $el, editStore, tableData } = this
     let { actived } = editStore
     let { args, row } = actived
@@ -407,7 +407,7 @@ export default {
   /**
    * 清除已激活的编辑
    */
-  _clearActived(event) {
+  clearActived(event) {
     let { editConfig = {}, editStore, tableColumn } = this
     let { actived } = editStore
     let { args, column, row } = actived
@@ -441,7 +441,7 @@ export default {
 
     return this.clearValidate().then(this.recalculate)
   },
-  _hasActiveRow(row) {
+  hasActiveRow(row) {
     return this.editStore.actived.row === row
   },
 
@@ -499,12 +499,12 @@ export default {
   /**
    * 激活单元格编辑
    */
-  _setActiveCell,
+  setActiveCell,
 
   /**
    * 激活行编辑
    */
-  _setActiveRow(row) {
+  setActiveRow(row) {
     let editColumn = find(this.visibleColumn, (column) => column.editor)
     return this.setActiveCell(row, editColumn.property)
   },
@@ -512,7 +512,7 @@ export default {
   /**
    * 只对trigger为dblclick有效，选中单元格
    */
-  _setSelectCell(row, field) {
+  setSelectCell(row, field) {
     let { editConfig, tableData, visibleColumn } = this
 
     if (!row || !field || editConfig.trigger === 'manual') {

@@ -26,7 +26,7 @@ import { findIndexOf } from '@opentiny/vue-renderless/grid/static/'
 import { hasChildrenList, getDomNode, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { Menus } from '../../adapter'
 
-let getSelectItem = (subList) => {
+const getSelectItem = (subList) => {
   for (let i = 0; i < subList.length; i++) {
     let menu = subList[i]
 
@@ -38,7 +38,7 @@ let getSelectItem = (subList) => {
 
 export default {
   // 关闭快捷菜单
-  _closeMenu() {
+  closeMenu() {
     Object.assign(this.ctxMenuStore, {
       visible: false,
       selected: null,
