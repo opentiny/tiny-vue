@@ -3,7 +3,7 @@ export default {
   // 处理列拖拽
   columnDrop(headerEl) {
     const { plugin, onBeforeMove, filter } = this.dropConfig || {}
-    const columnDropContainer = headerEl.querySelector('.tiny-grid__header .tiny-grid-header__row')
+    const columnDropContainer = headerEl.querySelector('.tiny-grid-header__row')
 
     const columnDropOptions = {
       handle: '.tiny-grid-header__column:not(.col__fixed)',

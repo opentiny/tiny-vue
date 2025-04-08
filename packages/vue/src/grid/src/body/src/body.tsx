@@ -894,10 +894,6 @@ export default defineComponent({
   beforeUnmount() {
     this.rowSortable && this.rowSortable.destroy()
   },
-  updated() {
-    const { $parent: $table, fixedType } = this
-    !fixedType && $table.updateTableBodyHeight()
-  },
   setup(props, { slots }) {
     hooks.onBeforeUnmount(() => {
       const table = hooks.getCurrentInstance().proxy

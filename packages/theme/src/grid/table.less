@@ -19,6 +19,7 @@
 @input-prefix-cls: ~'@{css-prefix}input';
 @select-prefix-cls: ~'@{css-prefix}select';
 @pager-prefix-cls: ~'@{css-prefix}pager';
+@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
 
 // table
 .@{grid-prefix-cls} {
@@ -312,7 +313,11 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      background-image: linear-gradient(-90deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider)),
+      background-image: linear-gradient(
+          -90deg,
+          var(--tv-Grid-border-color-divider),
+          var(--tv-Grid-border-color-divider)
+        ),
         linear-gradient(-180deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider));
       background-repeat: no-repeat;
       background-size:
@@ -708,38 +713,12 @@
 
   // 暂无数据
   & &__empty-block {
-    display: none;
-    opacity: 0;
-    height: 100%;
-    min-height: 60px;
-    padding: 60px 0;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    &.is__visible {
-      display: flex;
-      flex-flow: column wrap;
-      opacity: 1;
-      &.is__center {
-        opacity: 0;
-      }
-    }
-  }
-
-  .empty-center-block {
-    z-index: 1;
     display: flex;
+    align-items: center;
+    position: sticky;
+    left: 0;
+    flex: auto;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 60px);
-
-    .@{grid-prefix-cls}__empty-text {
-      width: 100%;
-    }
   }
 
   // 表格无数据背景图
@@ -753,7 +732,8 @@
   & &__empty-text {
     display: block;
     margin-top: 8px;
-    width: 50%;
+    text-align: center;
+    width: 100%;
   }
 
   // 校验不通过
@@ -862,13 +842,13 @@
   & &__body-wrapper {
     &.body__wrapper.is__scrollload {
       overflow-y: hidden;
-      position: static;
     }
   }
 
   & .is__scrollload &-body__y-space {
     position: absolute;
     right: 0;
+    bottom: 0;
     width: 12px;
     overflow-y: scroll;
 
@@ -1207,6 +1187,51 @@
             2px 14px;
           background-repeat: no-repeat;
         }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}__body {
+    .tiny-grid-header__column {
+      background-color: var(--tv-Grid-header-bg-color);
+      position: sticky;
+    }
+
+    .tiny-grid-header__column:last-child {
+      contain: layout;
+    }
+
+    .tiny-grid-header__column .tiny-grid-thead-partition,
+    .tiny-grid-header__column .tiny-grid-resizable {
+      transform: translateX(calc(50% - 1px));
+    }
+
+    .tiny-grid-custom-footer {
+      width: 100%;
+      position: sticky;
+      bottom: 0;
+    }
+
+    .tiny-grid-footer__column {
+      position: sticky;
+      background-color: var(--tv-Grid-bg-color);
+    }
+
+    .@{grid-prefix-cls}-cell-text {
+      font-weight: var(--tv-Grid-header-font-weight);
+    }
+    .@{header-suffix} {
+      position: relative;
+      min-height: 16px;
+
+      .suffix-icon-1 {
+        position: absolute;
+        right: 12px;
+      }
+
+      .suffix-icon-0 {
+        position: absolute;
+        right: 0;
       }
     }
   }

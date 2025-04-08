@@ -93,12 +93,12 @@ const sliceTreeData = (_vm) => {
   const chart = getCacheChartMap(_vm)
   const { scrollYStore, treeConfig } = _vm
   const { renderSize, startIndex } = scrollYStore
-  const subChart = chart.slice(startIndex, startIndex + renderSize)
+  const subChart = chart?.slice(startIndex, startIndex + renderSize)
   const subTree = []
   const { temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
   const pushIfNot = (arr, item) => !arr.includes(item) && arr.push(item)
 
-  subChart.forEach((chartItem) => {
+  subChart?.forEach((chartItem) => {
     const lastIndex = chartItem.length - 1
 
     for (let i = lastIndex; i > -1; i--) {

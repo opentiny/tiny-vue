@@ -25,3 +25,13 @@ export default function (string, ...args) {
     }
   })
 }
+
+export const memoize = (callback) => {
+  const cache = {}
+
+  return (key, ...args) => {
+    cache[key] = cache[key] || callback(key, ...args)
+
+    return cache[key]
+  }
+}

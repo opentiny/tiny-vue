@@ -119,6 +119,7 @@ import {
   setSliceColumnTree,
   buildRowGroupFullData
 } from './strategy'
+import { updateRowStatus, getCellStatus } from '../../composable'
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let debounceScrollLoadDuration = 200
@@ -230,6 +231,7 @@ const Methods = {
     }
 
     run(functionNames, this)
+    this.cellStatus.clear()
 
     if (typeof isReloadFilter === 'undefined' ? TINYGrid._filter : !isReloadFilter) {
       this.clearFilter(silent)
@@ -1711,29 +1713,7 @@ const Methods = {
     })
   },
   getRowHeight() {
-    const { $refs, vSize } = this
-    const { scrollY } = this.optimizeOpts
-    let { tableBody, tableHeader } = $refs
-    let rHeight = scrollY.rHeight
-    if (!rHeight) {
-      // 获取表头或者表格体第一个tr的高度
-      let firstTrElem =
-        (tableBody && tableBody.$el.querySelector('tbody>tr')) ||
-        (tableHeader && tableHeader.$el.querySelector('thead>tr')) ||
-        null
-      if (firstTrElem) {
-        rHeight = firstTrElem.clientHeight
-      }
-    }
-    // 默认的行高，默认行高需要跟 css 样式一致
-    if (!rHeight) {
-      let vSizeList = ['medium', 'small', 'mini']
-      // 这里因为需要适配多套主题配置方案，所以这里的默认高度写死不合适，待整改
-      let defSizeList = [44, 40, 36]
-      let i = vSizeList.indexOf(vSize)
-      rHeight = ~i ? defSizeList[i] : 48
-    }
-    return rHeight
+    return this.rowHeight
   },
   // 计算可视渲染相关数据
   computeScrollLoad() {
@@ -2018,44 +1998,48 @@ const Methods = {
   },
   // 更新列状态：如果组件值v-model发生change，调用该函数更新列的编辑状态。如果单元格配置了校验规则，则进行校验
   updateStatus(scope, cellValue, renderOpts) {
-    let customValue = !isUndefined(cellValue)
-    return this.$nextTick().then(() => {
-      let { $refs, editRules, tableData, validStore } = this
-      let { tableBody } = $refs
-      if (!scope || !tableBody || !editRules) {
+    let { $refs, editRules, tableData, validStore } = this
+    let { tableBody } = $refs
+    if (!scope || !tableBody) {
+      return this.$nextTick()
+    }
+
+    let { column, row } = scope
+    let type = 'change'
+
+    let refreshStatus = () => {
+      if (!isUndefined(cellValue)) {
+        this.updateRowStatus(row)
+        this.$refs.tableBody?.$forceUpdate()
+      }
+    }
+    // 如果没有相关校验规则，直接返回
+    if (!editRules || !this.hasCellRules(type, row, column)) {
+      refreshStatus()
+      return this.$nextTick()
+    }
+
+    // 如果设置了始终验证
+    if (renderOpts && renderOpts.isValidAlways) {
+      validStore.visible = true
+    }
+
+    // 获取单元格元素并执行校验
+    let rowIndex = tableData.indexOf(row)
+    getCell(this, { row, rowIndex, column }).then((cell) => {
+      if (!cell) {
         return
       }
-
-      // 如果设置了始终验证
-      if (renderOpts && renderOpts.isValidAlways) {
-        validStore.visible = true
-      }
-
-      let { column, row } = scope
-      let type = 'change'
-      // 如果没有相关校验规则，直接返回
-      if (!this.hasCellRules(type, row, column)) {
-        return
-      }
-
-      // 获取单元格元素并执行校验
-      let rowIndex = tableData.indexOf(row)
-      getCell(this, { row, rowIndex, column }).then((cell) => {
-        if (!cell) {
-          return
-        }
-        return this.validCellRules(type, row, column, cellValue)
-          .then(() => {
-            // 校验通过，设置新值并清除验证提示
-            customValue && validStore.visible && setCellValue(row, column, cellValue)
-            this.clearValidate()
-          })
-          .catch(({ rule }) => {
-            // 校验失败，设置新值并显示验证提示
-            customValue && setCellValue(row, column, cellValue)
-            this.showValidTooltip({ rule, row, column, cell })
-          })
-      })
+      return this.validCellRules(type, row, column, cellValue)
+        .then(() => {
+          // 校验通过，设置新值并清除验证提示
+          refreshStatus()
+          this.clearValidate()
+        })
+        .catch(({ rule }) => {
+          refreshStatus()
+          this.showValidTooltip({ rule, row, column, cell })
+        })
     })
   },
   /* X/Y 方向滚动状态更新 */
@@ -2189,27 +2173,11 @@ const Methods = {
     if (visible) {
       // 可见时更新高度和布局
       this.updateParentHeight()
-      this.updateTableBodyHeight()
       this.recalculate()
     }
 
     // 触发可见性变化事件
     emitEvent(this, 'visible-change', [{ $table: this, visible, entry }])
-  },
-
-  // 更新表体高度
-  updateTableBodyHeight() {
-    if (!this.tasks.updateTableBodyHeight) {
-      this.tasks.updateTableBodyHeight = () => {
-        // 使用fastdom避免布局抖动
-        fastdom.measure(() => {
-          const tableBodyElem = this.elemStore['main-body-wrapper']
-          this.tableBodyHeight = tableBodyElem ? tableBodyElem.clientHeight : 0
-        })
-      }
-    }
-
-    this.tasks.updateTableBodyHeight()
   },
 
   // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
@@ -2311,6 +2279,12 @@ const Methods = {
     }
 
     return this.$nextTick()
+  },
+  updateRowStatus(row) {
+    updateRowStatus(this, row)
+  },
+  getCellStatus(row, column) {
+    getCellStatus(this, row, column)
   }
 }
 

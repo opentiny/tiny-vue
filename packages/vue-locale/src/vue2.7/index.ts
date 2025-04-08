@@ -1,6 +1,6 @@
 import zhCN from '../lang/zh-CN'
 import enUS from '../lang/en'
-import format from '../format'
+import format, { memoize } from '../format'
 import { extend as _extend } from '@opentiny/utils'
 
 let lang = zhCN
@@ -57,7 +57,7 @@ export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, mer
       messages: merge({ lang, i18n, messages })
     })
 
-    i18nHandler = (key, value) => vueI18n.global.t(key, value)
+    i18nHandler = memoize((key, value) => vueI18n.global.t(key, value))
 
     return vueI18n
   }

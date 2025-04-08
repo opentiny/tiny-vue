@@ -36,8 +36,8 @@ export const isPx = (val) => val && /^\d+(px)?$/.test(val)
 
 export const isScale = (val) => val && /^\d+%$/.test(val)
 
-export const updateCellTitle = (event) => {
-  const cellEl = event.currentTarget.querySelector(CELL_CLS)
+export const updateCellTitle = (event, td) => {
+  const cellEl = td ? td.querySelector(CELL_CLS) : event.currentTarget.querySelector(CELL_CLS)
   const content = cellEl.innerText
 
   if (cellEl.getAttribute('title') !== content) {

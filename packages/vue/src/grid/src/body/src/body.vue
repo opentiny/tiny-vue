@@ -14,7 +14,15 @@
     </div>
 
     <!-- 表格主体 -->
-    <table ref="table" class="tiny-grid__body" :style="{ tableLayout }" cellspacing="0" cellpadding="0" border="0">
+    <table
+      ref="table"
+      class="tiny-grid__body"
+      :style="{ tableLayout }"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      :data-tableid="$table.id"
+    >
       <!-- 列宽设置 -->
       <colgroup ref="colgroup">
         <col v-for="(column, columnIndex) in tableColumn" :key="columnIndex" :name="column.id" />
@@ -110,10 +118,14 @@
                 { 'col__ellipsis': hasEllipsis },
                 { 'edit__visible': editor && editor.type === 'visible' },
                 { 'fixed__column': fixedHiddenColumn },
-                { 'col__dirty': isDirty },
+                { 'col__dirty': getIsDirty(row, column) },
                 { 'col__actived': columnActived },
                 { 'col__valid-error': validError && validated },
-                { 'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated },
+                {
+                  'col__valid-success': columnActived
+                    ? !validError && !validated
+                    : getIsDirty(row, column) && !validated
+                },
                 { 'col__treenode': column.treeNode },
                 { 'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column },
                 { 'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column }
@@ -216,6 +228,7 @@
 
     <!-- 空数据 -->
     <div
+      v-if="!tableData.length"
       ref="emptyBlock"
       class="tiny-grid__empty-block"
       :class="{ 'is__visible': !tableData.length, 'is__center': isCenterEmpty }"
@@ -234,18 +247,26 @@
 
 <script lang="ts">
 import type { PropType } from 'vue'
-import { defineComponent, ref, onBeforeUnmount, getCurrentInstance } from 'vue'
-import { updateCellTitle, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { $prefix, defineComponent, hooks } from '@opentiny/vue-common'
+import { isObject, isNull, isFunction, removeClass, addClass } from '@opentiny/utils'
+import { isBoolean, find } from '@opentiny/vue-renderless/grid/static'
+import {
+  updateCellTitle,
+  emitEvent,
+  getClass,
+  getFuncText,
+  getRowid,
+  formatText,
+  getOffsetPos
+} from '@opentiny/vue-renderless/grid/utils'
+import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
-import { handleRowGroupFold } from '../../table/src/strategy'
+import { handleRowGroupFold, getTreeChildrenKey, getTreeShowKey, isVirtualRow } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 import type { TableColumn, TableRow, TableConfig, EventParams, GridBodyInstance } from './types'
 
 // 定义工具函数类型
 type FormatTextFn = (text: string) => string
-type GetFuncTextFn = (text: string) => string
-type GetCellLabelFn = (row: TableRow, column: TableColumn, params: any) => string
-type FindFn = <T>(array: T[], predicate: (item: T) => boolean) => T | undefined
 
 // 定义组件参数类型
 interface ComponentParams {
@@ -323,7 +344,6 @@ interface TableInstance {
     row?: boolean
   }
   rowDrop?: (el: HTMLElement) => any
-  updateTableBodyHeight?: () => void
   triggerScrollXEvent?: (event: Event) => void
   triggerScrollYEvent?: (event: Event) => void
   triggerTooltipEvent?: (event: MouseEvent, params: any) => void
@@ -348,7 +368,7 @@ const isOperateMouse = ($table: TableConfig) =>
 let renderRowFlag = false
 
 export default defineComponent({
-  name: 'TinyGridBody',
+  name: $prefix + 'GridBody',
   props: {
     collectColumn: {
       type: Array as PropType<TableColumn[]>,
@@ -458,10 +478,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    isDirty: {
-      type: Boolean,
-      default: false
-    },
     columnActived: {
       type: Boolean,
       default: false
@@ -534,18 +550,6 @@ export default defineComponent({
       type: Function as PropType<FormatTextFn>,
       default: (text: string) => text
     },
-    getFuncText: {
-      type: Function as PropType<GetFuncTextFn>,
-      default: (text: string) => text
-    },
-    getCellLabel: {
-      type: Function as PropType<GetCellLabelFn>,
-      default: (row: TableRow, column: TableColumn, params: any) => ''
-    },
-    find: {
-      type: Function as PropType<FindFn>,
-      default: <T,>(array: T[], predicate: (item: T) => boolean) => array.find(predicate)
-    },
     isOrdered: {
       type: Boolean,
       default: false
@@ -580,10 +584,10 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const rowSortable = ref<any>(null)
+    const rowSortable = hooks.ref<any>(null)
 
-    onBeforeUnmount(() => {
-      const table = getCurrentInstance()?.proxy
+    hooks.onBeforeUnmount(() => {
+      const table = hooks.getCurrentInstance()?.proxy
       if (table) {
         table.$el._onscroll = null
         table.$el.onscroll = null
@@ -630,12 +634,6 @@ export default defineComponent({
   },
   beforeUnmount() {
     this.rowSortable?.destroy()
-  },
-  updated() {
-    const { $parent: $table, fixedType } = this as GridBodyInstance
-    if ($table && !fixedType) {
-      $table.updateTableBodyHeight()
-    }
   },
   methods: {
     // 滚动处理
@@ -881,6 +879,12 @@ export default defineComponent({
         $table._isResize ||
         ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
       )
+    },
+
+    // ----------- columns相关方法 -----------
+    getIsDirty(row, column) {
+      const $table = this.$parent
+      return $table.getCellStatus(row, column)?.isDirty
     }
   }
 })

@@ -7,6 +7,8 @@
 @input-prefix-cls: ~'@{css-prefix}input';
 @select-prefix-cls: ~'@{css-prefix}select';
 @pager-prefix-cls: ~'@{css-prefix}pager';
+@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
+@cell-tooltip: ~'@{grid-prefix-cls}-cell__tooltip';
 
 // table
 .@{grid-prefix-cls} {
@@ -372,7 +374,7 @@
   }
 
   &&__group-saas {
-    .@{grid-prefix-cls}__header {
+    .@{grid-prefix-cls}__body thead {
       @apply relative;
 
       &::before {
@@ -418,7 +420,7 @@
   }
 
   &&__border-vertical {
-    .@{grid-prefix-cls}__body {
+    .@{grid-prefix-cls}__body tbody {
       @apply relative;
 
       &::before {
@@ -861,37 +863,12 @@
   }
 
   & &__empty-block {
-    @apply hidden;
-    @apply opacity-0;
-    @apply h-full;
-    @apply ~"min-h-[theme('spacing.16')]";
-    @apply py-16 px-0;
-    @apply justify-center;
-    @apply items-center;
-    @apply text-center;
-
-    &.is__visible {
-      @apply flex;
-      @apply flex-col;
-      @apply opacity-100;
-      &.is__center {
-        @apply opacity-0;
-      }
-    }
-  }
-
-  .empty-center-block {
-    @apply ~'z-[1]';
     @apply flex;
     @apply flex-col;
-    @apply justify-center;
-    @apply text-center;
-    @apply absolute;
-    @apply w-full;
-
-    .@{grid-prefix-cls}__empty-text {
-      @apply w-full;
-    }
+    @apply flex-auto;
+    @apply items-center;
+    @apply sticky;
+    @apply left-0;
   }
 
   & &__empty-img {
@@ -904,8 +881,8 @@
 
   & &__empty-text {
     @apply block;
-    @apply mt-2;
-    @apply ~'w-1/2';
+    @apply w-full;
+    @apply text-center;
   }
 
   & &-body__column {
@@ -1012,12 +989,12 @@
   & &__body-wrapper {
     &.body__wrapper.is__scrollload {
       @apply overflow-y-hidden;
-      @apply static;
     }
   }
   & .is__scrollload &-body__y-space {
     @apply absolute;
     @apply right-0;
+    @apply bottom-0;
     @apply w-3;
     @apply overflow-y-scroll;
 
@@ -1371,6 +1348,83 @@
           background-position: 0 0, 2px 0, 6px 0;
           background-size: 2px 14px, 4px 14px, 2px 14px;
           @apply bg-no-repeat;
+        }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}__body {
+    .tiny-grid-header__column {
+      @apply sticky;
+      /* --tiny-color-fill-8 真实对应 rgba(31, 85, 181, .05) */
+      background-color: var(--tiny-color-fill-8-solid, #f4f6fb);
+    }
+
+    .tiny-grid-header__column:last-child {
+      contain: layout;
+    }
+
+    .tiny-grid-header__column .tiny-grid-thead-partition,
+    .tiny-grid-header__column .tiny-grid-resizable {
+      transform: translateX(calc(50% - 1px));
+    }
+
+    .tiny-grid-custom-footer {
+      @apply w-full;
+      @apply sticky;
+      @apply bottom-0;
+    }
+
+    .tiny-grid-footer__column {
+      @apply sticky;
+      @apply bg-color-bg-1;
+    }
+
+    .@{header-suffix} {
+      @apply relative;
+      min-height: 16px;
+
+      .suffix-icon-1 {
+        @apply absolute;
+        @apply right-3;
+      }
+
+      .suffix-icon-0 {
+        @apply absolute;
+        @apply right-0;
+      }
+    }
+
+    .col__ellipsis {
+      &.is__editable.is__sortable.is__filter {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-7;
+        }
+      }
+
+      &.is__editable.is__sortable:not(.is__filter),
+      &.is__editable.is__filter:not(.is__sortable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply ~'pr-3.5';
+        }
+      }
+
+      &:not(.is__sortable):not(.is__filter) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-2;
+        }
+      }
+
+      &.is__sortable.is__filter:not(.is__editable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          padding-right: 26px;
+        }
+      }
+
+      &.is__sortable:not(.is__filter):not(.is__editable),
+      &.is__filter:not(.is__sortable):not(.is__editable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-3;
         }
       }
     }

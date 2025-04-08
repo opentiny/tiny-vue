@@ -9,6 +9,8 @@ const headerTh = 'th.tiny-grid-header__column:not(.col__gutter):not(.fixed__hidd
 const groupKey = 'dndGroup'
 const idKey = 'colid'
 const pidKey = 'pColid'
+let timer = null
+const time = 2000
 
 let dndGroup = 0
 
@@ -74,6 +76,8 @@ const getColidMap = (treeArray) => {
 }
 
 const createDragHander = (state, $table) => {
+  const dropConfig = $table.dropConfig || {}
+  const dropable = dropConfig.column && dropConfig.schema === 'v2'
   // 开始拖拽处理
   const dragStart = (dragTarget) => {
     const dragColid = dragTarget.dataset.colid
@@ -84,6 +88,7 @@ const createDragHander = (state, $table) => {
     const dragIndex = dragParentChildren.indexOf(dragColumn)
 
     $table.$emit('column-drag-start', { dragParentChildren, dragColumn, dragIndex })
+    clearTimeout(timer)
   }
 
   // 放置结束处理
@@ -123,6 +128,12 @@ const createDragHander = (state, $table) => {
             scrollYLoad && $table.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
           }
         })
+
+        if ($table.getVm('toolbar') && dropable) {
+          timer = setTimeout(() => {
+            $table.getVm('toolbar').$refs.custom.saveSetting('drag')
+          }, time)
+        }
       }
     })
   }

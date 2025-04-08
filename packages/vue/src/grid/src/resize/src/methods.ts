@@ -29,7 +29,6 @@ export default {
   bindResize() {
     const resizeObserver = new Resize(() => {
       this.updateParentHeight()
-      this.updateTableBodyHeight()
       this.recalculate()
     }, GlobalConfig.resizeInterval)
 

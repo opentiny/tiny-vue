@@ -210,14 +210,16 @@ export default {
       let selected = this.getSelectRecords()
       let position = typeof selectToolbar === 'object' ? selectToolbar.position : ''
       if (selectColumn && selected && selected.length) {
-        let selectTh = this.$el.querySelector('th.tiny-grid-header__column.col__selection')
-        let headerWrapper = this.$el.querySelector('.tiny-grid>.tiny-grid__header-wrapper')
+        const { tinyTheme, vSize, $el } = this
+        // TODO: 适配不同主题行高
+        const rowHeight = 36
+        let selectTh = $el.querySelector('th.tiny-grid-header__column.col__selection')
         let tr = selectTh.parentNode
         let thArr = toArray(tr.childNodes)
         let range = document.createRange()
         let rangeBoundingRect
-        let headerBoundingRect = headerWrapper.getBoundingClientRect()
-        let layout = { width: 0, height: 0, left: 0, top: 0, zIndex: 1 }
+        let headerBoundingRect = { width: $el.getBoundingClientRect().width, height: rowHeight }
+        let layout = { width: 0, height: 0, left: 0, top: 0, zIndex: 20 }
         let adjust = 1
         if (selectColumn.fixed === 'right') {
           range.setStart(tr, thArr.indexOf(selectTh))

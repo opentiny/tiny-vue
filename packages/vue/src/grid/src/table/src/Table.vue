@@ -8,18 +8,6 @@
     <!-- 表头组件 -->
     <grid-header v-if="showHeader" ref="tableHeader" v-bind="headerProps" :class="viewCls('tableHeader')" />
 
-    <!-- 空数据提示区域 -->
-    <div
-      v-if="isCenterEmpty && !tableData.length"
-      :class="[{ 'empty-center-block': !isCardOrListView }, viewCls('emptyData')]"
-      :style="{ height: computerTableBodyHeight }"
-    >
-      <slot name="empty">
-        <p class="tiny-grid__empty-img"></p>
-        <span class="tiny-grid__empty-text">{{ emptyText }}</span>
-      </slot>
-    </div>
-
     <!-- 表格主体区域 -->
     <grid-body ref="tableBody" v-bind="bodyProps" :class="viewCls('tableBody')" />
 
@@ -74,16 +62,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onBeforeUnmount, onActivated, nextTick, watch } from 'vue'
-import { $prefix, resolveTheme, useInstanceSlots, useRelation, hooks } from '@opentiny/vue-common'
+import { $prefix, resolveTheme, useInstanceSlots, useRelation, hooks, defineComponent } from '@opentiny/vue-common'
 import { extend } from '@opentiny/utils'
 import Tooltip from '@opentiny/vue-tooltip'
 import { isNull, isObject, isEmptyObject, isServer } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
-import GridHeader from '../../header'
-import GridFooter from '../../footer'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
 import GridMenu from '../../menu'
@@ -255,9 +240,9 @@ const unbindEvent = (table) => {
 export default defineComponent({
   name: `${$prefix}GridTable`,
   components: {
-    GridHeader,
+    GridHeader: () => {},
     GridBody,
-    GridFooter,
+    GridFooter: () => {},
     GridFilter,
     GridMenu,
     GridLoading,
@@ -488,67 +473,68 @@ export default defineComponent({
   setup(props, { slots, attrs, listeners }) {
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
+    const cellStatus = hooks.ref(new Map())
     // 条件处理后数据
-    const afterFullData = ref([])
+    const afterFullData = hooks.ref([])
     // 分组表场景全量数据（包含虚拟行）
-    const groupFullData = ref([])
-    const elemStore = ref({})
+    const groupFullData = hooks.ref([])
+    const elemStore = hooks.ref({})
     // 表尾高度
-    const footerHeight = ref(0)
+    const footerHeight = hooks.ref(0)
     // 缓存数据集 rowid --> { row, rowid: rowId, index }
-    const fullAllDataRowIdData = ref({})
+    const fullAllDataRowIdData = hooks.ref({})
     // 缓存数据集 row --> { row, rowid: rowId, index }
     const fullAllDataRowMap = new Map()
     // 缓存数据集 columnId --> { colid: column.id, column, index }
-    const fullColumnIdData = ref({})
+    const fullColumnIdData = hooks.ref({})
     // 缓存数据集 column --> { colid: column.id, column, index }
     const fullColumnMap = new Map()
-    const fullDataRowIdData = ref({})
+    const fullDataRowIdData = hooks.ref({})
     const fullDataRowMap = new Map()
     // 缓存树形表格行数据以及其父级行数据的映射关系
     const parentRowMap = new Map()
     // 临时插入数据集
-    const temporaryRows = ref([])
+    const temporaryRows = hooks.ref([])
     // 表头高度
-    const headerHeight = ref(0)
+    const headerHeight = hooks.ref(0)
     // 最后滚动位置
-    const lastScrollLeft = ref(0)
-    const lastScrollTop = ref(0)
+    const lastScrollLeft = hooks.ref(0)
+    const lastScrollTop = hooks.ref(0)
     // 表格父容器的高度
-    const parentHeight = ref(0)
-    const scrollDirection = ref('N') // N,X,Y （滚动方向）
+    const parentHeight = hooks.ref(0)
+    const scrollDirection = hooks.ref('N') // N,X,Y （滚动方向）
     // 存放横向 X 虚拟滚动相关的信息
-    const scrollXStore = ref({})
+    const scrollXStore = hooks.ref({})
     // 存放纵向 Y 虚拟滚动相关信息
-    const scrollYStore = ref({})
+    const scrollYStore = hooks.ref({})
     // 完整数据
-    const tableFullData = ref([])
+    const tableFullData = hooks.ref([])
     // 表格高度
-    const tableHeight = ref(0)
+    const tableHeight = hooks.ref(0)
     // 表格宽度
-    const tableWidth = ref(0)
+    const tableWidth = hooks.ref(0)
     // 存放 tooltip 相关信息
-    const tooltipStore = ref({})
+    const tooltipStore = hooks.ref({})
     // 表格已挂载完成
-    const afterMounted = ref(false)
+    const afterMounted = hooks.ref(false)
     // 临时任务
-    const tasks = ref({})
+    const tasks = hooks.ref({})
     // 列初始就绪
-    const isColumnInitReady = ref(false)
+    const isColumnInitReady = hooks.ref(false)
     // 列就绪
-    const isColumnReady = ref(false)
+    const isColumnReady = hooks.ref(false)
     // 分组表场景是否具有虚拟行
-    const hasVirtualRow = ref(false)
+    const hasVirtualRow = hooks.ref(false)
     // 是否是标签式用法场景
-    const isTagUsageSence = ref(false)
+    const isTagUsageSence = hooks.ref(false)
     // 收集列信息（列数量和列顺序）
-    const columnCollectKey = ref('')
+    const columnCollectKey = hooks.ref('')
     // treeConfig.ordered的取值处理
-    const treeOrdered = ref(true)
+    const treeOrdered = hooks.ref(true)
     // 存储异步加载过的行\列数据
-    const asyncRenderMap = ref({})
+    const asyncRenderMap = hooks.ref({})
     // 存放列相关的信息
-    const columnStore = ref({
+    const columnStore = hooks.ref({
       // 自适应的列表集合
       autoList: [],
       centerList: [],
@@ -568,7 +554,7 @@ export default defineComponent({
       scaleMinList: []
     })
     // 存放快捷菜单的信息
-    const ctxMenuStore = ref({
+    const ctxMenuStore = hooks.ref({
       list: [],
       selectChild: null,
       selected: null,
@@ -577,9 +563,9 @@ export default defineComponent({
       visible: false
     })
     // 当前行
-    const currentRow = ref(null)
+    const currentRow = hooks.ref(null)
     // 存放可编辑相关信息
-    const editStore = ref({
+    const editStore = hooks.ref({
       editorAutoRefreshKey: 0,
       // 激活
       actived: { column: null, row: null },
@@ -595,9 +581,9 @@ export default defineComponent({
       titles: { columns: [] }
     })
     // 已展开的行
-    const expandeds = ref([])
+    const expandeds = hooks.ref([])
     // 当前选中的筛选列
-    const filterStore = ref({
+    const filterStore = hooks.ref({
       column: null,
       condition: { input: '', relation: 'equals' },
       id: '',
@@ -606,48 +592,48 @@ export default defineComponent({
       visible: false
     })
     // 表尾合计数据
-    const footerData = ref([])
+    const footerData = hooks.ref([])
     // 所有列已禁用
-    const headerCheckDisabled = ref(false)
+    const headerCheckDisabled = hooks.ref(false)
     // 是否全选
-    const isAllSelected = ref(false)
+    const isAllSelected = hooks.ref(false)
     // 多选属性，有选中且非全选状态
-    const isIndeterminate = ref(false)
+    const isIndeterminate = hooks.ref(false)
     // 是否存在横向滚动条
-    const overflowX = ref(false)
+    const overflowX = hooks.ref(false)
     // 是否存在纵向滚动条
-    const overflowY = ref(true)
+    const overflowY = hooks.ref(true)
     // 存储滚动加载，上次滚动的位置
-    const scrollLoadStore = ref({ bodyHeight: 0, scrollHeight: 0 })
+    const scrollLoadStore = hooks.ref({ bodyHeight: 0, scrollHeight: 0 })
     // 是否启用了横向 X 可视渲染方式加载
-    const scrollXLoad = ref(false)
+    const scrollXLoad = hooks.ref(false)
     // 是否启用了纵向 Y 可视渲染方式加载
-    const scrollYLoad = ref(false)
+    const scrollYLoad = hooks.ref(false)
     // 横向滚动条的高度
-    const scrollbarHeight = ref(0)
+    const scrollbarHeight = hooks.ref(0)
     // 纵向滚动条的宽度
-    const scrollbarWidth = ref(0)
+    const scrollbarWidth = hooks.ref(0)
     // 单选属性，选中行
-    const selectRow = ref(null)
+    const selectRow = hooks.ref(null)
     // 存放多选工具栏相关信息
-    const selectToolbarStore = ref({
+    const selectToolbarStore = hooks.ref({
       layout: { height: 0, left: 0, top: 0, width: 0, zIndex: 1 },
       visible: false
     })
     // 多选属性，已选中的列
-    const selection = ref([])
+    const selection = hooks.ref([])
     // 渲染中的数据
-    const tableData = ref([])
+    const tableData = hooks.ref([])
     // tooltip提示内容
-    const tooltipContent = ref('')
+    const tooltipContent = hooks.ref('')
     // tooltip提示内容是否处理换行字符
-    const tooltipContentPre = ref(false)
+    const tooltipContentPre = hooks.ref(false)
     // 已展开树节点
-    const treeExpandeds = ref([])
+    const treeExpandeds = hooks.ref([])
     // 树节点不确定状态的列表
-    const treeIndeterminates = ref([])
+    const treeIndeterminates = hooks.ref([])
     // 存放数据校验相关信息
-    const validStore = ref({
+    const validStore = hooks.ref({
       column: null,
       content: '',
       isArrow: false,
@@ -656,63 +642,64 @@ export default defineComponent({
       visible: false
     })
     // 校验tip提示内容
-    const validTipContent = ref('')
+    const validTipContent = hooks.ref('')
     // 在编辑模式下 单元格在失去焦点验证的状态
-    const validatedMap = ref({})
+    const validatedMap = hooks.ref({})
     // 表尾边框线是否显示和位置
-    const showFooterBorder = ref(false)
-    const footerBorderBottom = ref(0)
-    const tableBodyHeight = ref(0)
+    const showFooterBorder = hooks.ref(false)
+    const footerBorderBottom = hooks.ref(0)
+    const tableBodyHeight = hooks.ref(0)
 
     // 创建ID
-    const id = ref(uniqueId())
+    const id = hooks.ref(uniqueId())
 
     // 列相关状态
-    const collectColumn = ref([])
-    const tableFullColumn = ref([])
-    const visibleColumn = ref([])
-    const tableColumn = ref([])
+    const collectColumn = hooks.ref([])
+    const tableFullColumn = hooks.ref([])
+    const visibleColumn = hooks.ref([])
+    const tableColumn = hooks.ref([])
+
     // 主题相关
-    const tinyTheme = ref(resolveTheme(props))
+    const tinyTheme = hooks.ref(resolveTheme(props))
 
     // 静态样式类
     const staticClass = attrs.class || ''
 
     // 计算属性
-    const isGroup = computed(() => {
+    const isGroup = hooks.computed(() => {
       return collectColumn.value.some((column) => hasChildrenList(column))
     })
 
-    const isShapeTable = computed(() => {
+    const isShapeTable = hooks.computed(() => {
       // 表格处于默认视图或mf视图大屏时显示为普通表格；其它视图都显示为多端形式
       return props.viewType === V_DEFAULT || (props.viewType === V_MF && props.$grid?.currentBreakpoint !== 'default')
     })
 
-    const isCardOrListView = computed(() => {
+    const isCardOrListView = hooks.computed(() => {
       return props.viewType === V_CARD || props.viewType === V_LIST
     })
 
-    const isThemeSaas = computed(() => {
+    const isThemeSaas = hooks.computed(() => {
       return tinyTheme.value === T_SAAS
     })
 
-    const isThemeTiny = computed(() => {
+    const isThemeTiny = hooks.computed(() => {
       return tinyTheme.value === T_TINY
     })
 
-    const computerTableBodyHeight = computed(() => {
+    const computerTableBodyHeight = hooks.computed(() => {
       return tableBodyHeight.value === 0 ? 'calc(100% - 36px)' : `${tableBodyHeight.value}px`
     })
 
-    const vSize = computed(() => {
+    const vSize = hooks.computed(() => {
       return props.size
     })
 
-    const emptyText = computed(() => {
+    const emptyText = hooks.computed(() => {
       return GlobalConfig.i18n('ui.grid.emptyText')
     })
 
-    const validOpts = computed(() => {
+    const validOpts = hooks.computed(() => {
       const config = Object.assign(
         { message: 'tooltip' },
         GlobalConfig.validConfig,
@@ -727,7 +714,7 @@ export default defineComponent({
       return config
     })
 
-    const tableClasses = computed(() =>
+    const tableClasses = hooks.computed(() =>
       getTableClasses({
         // 从props传入的参数
         ...props,
@@ -762,23 +749,23 @@ export default defineComponent({
       })
     )
 
-    const tableStyles = computed(() =>
+    const tableStyles = hooks.computed(() =>
       getTableStyles({
         isShapeTable: isShapeTable.value,
         maxHeight: props.maxHeight
       })
     )
 
-    const optimizeOpts = computed(() => {
+    const optimizeOpts = hooks.computed(() => {
       return extend(true, {}, GlobalConfig.optimization, props.optimization)
     })
 
-    const resizeBarStyle = computed(() => {
+    const resizeBarStyle = hooks.computed(() => {
       return overflowX.value ? { 'padding-bottom': `${scrollbarHeight.value}px` } : null
     })
 
     // 多端表格属性
-    const mfTableProps = computed(() => {
+    const mfTableProps = hooks.computed(() => {
       return {
         tableData: tableData.value,
         tableColumn: tableColumn.value,
@@ -795,7 +782,7 @@ export default defineComponent({
     })
 
     // 表头属性
-    const headerProps = computed(() => {
+    const headerProps = hooks.computed(() => {
       return {
         tableData: tableData.value,
         tableColumn: tableColumn.value,
@@ -808,7 +795,7 @@ export default defineComponent({
     })
 
     // 表体属性
-    const bodyProps = computed(() => {
+    const bodyProps = hooks.computed(() => {
       return {
         tableData: tableData.value,
         tableColumn: tableColumn.value,
@@ -821,7 +808,7 @@ export default defineComponent({
     })
 
     // 表尾属性
-    const footerProps = computed(() => {
+    const footerProps = hooks.computed(() => {
       return {
         footerData: footerData.value,
         footerMethod: props.footerMethod,
@@ -832,7 +819,7 @@ export default defineComponent({
     })
 
     // tooltip相关
-    const tooltipContentOpts = computed(() => {
+    const tooltipContentOpts = hooks.computed(() => {
       return extend(
         true,
         {
@@ -845,7 +832,7 @@ export default defineComponent({
       )
     })
 
-    const validTooltipOpts = computed(() => {
+    const validTooltipOpts = hooks.computed(() => {
       return extend(
         true,
         {
@@ -858,7 +845,7 @@ export default defineComponent({
       )
     })
 
-    const showValidTooltip = computed(() => {
+    const showValidTooltip = hooks.computed(() => {
       return (
         props.hasTip &&
         props.editRules &&
@@ -866,7 +853,7 @@ export default defineComponent({
       )
     })
 
-    const selectToolbarStyle = computed(() => {
+    const selectToolbarStyle = hooks.computed(() => {
       const { visible, layout } = selectToolbarStore.value
       return [
         layout,
@@ -881,7 +868,7 @@ export default defineComponent({
      * 通过检查每一列的filter属性是否为非空对象来判断
      * @returns {boolean} 是否有过滤功能
      */
-    const hasFilter = computed(() => {
+    const hasFilter = hooks.computed(() => {
       return tableColumn.value.some((column) => isObject(column.filter) && !isEmptyObject(column.filter))
     })
 
@@ -890,7 +877,7 @@ export default defineComponent({
      * 通过检查TINYGrid是否注册了tooltip插件来判断
      * @returns {boolean} 是否有tooltip功能
      */
-    const hasTip = computed(() => {
+    const hasTip = hooks.computed(() => {
       return TINYGrid._tooltip
     })
 
@@ -899,7 +886,7 @@ export default defineComponent({
      * 当全局resizable为true或任一列的resizable为true时返回true
      * @returns {boolean} 是否可调整列宽
      */
-    const isResizable = computed(() => {
+    const isResizable = hooks.computed(() => {
       return props.resizable || tableFullColumn.value.some((column) => column.resizable)
     })
 
@@ -908,7 +895,7 @@ export default defineComponent({
      * 通过检查右键菜单列表中是否有菜单项来判断
      * @returns {boolean} 是否有右键菜单
      */
-    const isCtxMenu = computed(() => {
+    const isCtxMenu = hooks.computed(() => {
       return ctxMenuStore.value?.list?.some((item) => item.length > 0)
     })
 
@@ -917,7 +904,7 @@ export default defineComponent({
      * 将全局排序配置与组件传入的排序配置深度合并
      * @returns {Object} 合并后的排序配置对象
      */
-    const sortOpts = computed(() => {
+    const sortOpts = hooks.computed(() => {
       return extend(true, {}, GlobalConfig.sortConfig, props.sortConfig)
     })
     // 初始化列
@@ -953,7 +940,7 @@ export default defineComponent({
       // 用于实现列的拖拽排序、拖拽调整宽度等功能
       useDrag({
         // 拖拽配置,响应式获取props中的dropConfig
-        dropConfig: computed(() => props.dropConfig),
+        dropConfig: hooks.computed(() => props.dropConfig),
         // 收集的列配置
         collectColumn,
         // 表格当前显示的列
@@ -964,7 +951,7 @@ export default defineComponent({
       // 用于实现表格数据的分组展示
       useRowGroup({
         // 行分组配置,响应式获取props中的rowGroup
-        rowGroup: computed(() => props.rowGroup),
+        rowGroup: hooks.computed(() => props.rowGroup),
         // 当前可见的列
         visibleColumn,
         // 完整的表格列配置
@@ -976,7 +963,7 @@ export default defineComponent({
 
     // 监听数据变化
     // 监听表格数据变化
-    watch(
+    hooks.watch(
       // 监听props中的data属性
       () => props.data,
       // 当data发生变化时的回调函数
@@ -991,7 +978,7 @@ export default defineComponent({
       }
     )
 
-    watch(
+    hooks.watch(
       () => props.height,
       () => {
         instance.recalculate()
@@ -999,7 +986,7 @@ export default defineComponent({
     )
 
     // 监听列配置变化
-    watch(
+    hooks.watch(
       // 监听收集的列配置
       () => collectColumn.value,
       // 当列配置发生变化时的回调函数
@@ -1013,7 +1000,7 @@ export default defineComponent({
       }
     )
 
-    watch(
+    hooks.watch(
       () => tableColumn.value,
       () => {
         // 对所有列的列宽进行分类：百分比/px
@@ -1023,7 +1010,7 @@ export default defineComponent({
       }
     )
 
-    watch(
+    hooks.watch(
       () => parentHeight.value,
       () => {
         instance.recalculate()
@@ -1031,7 +1018,7 @@ export default defineComponent({
     )
 
     // 生命周期钩子
-    onBeforeUnmount(() => {
+    hooks.onBeforeUnmount(() => {
       // 获取表格包装器DOM引用
       const tableWrapper = instance.$refs.tableWrapper
 
@@ -1056,7 +1043,7 @@ export default defineComponent({
       clearOnTableUnmount(instance)
     })
 
-    onActivated(() => {
+    hooks.onActivated(() => {
       // 检查是否存在上次滚动位置的记录
       if (lastScrollLeft.value || lastScrollTop.value) {
         // 恢复表格到上次的滚动位置
@@ -1110,7 +1097,7 @@ export default defineComponent({
     initColumns()
 
     // 挂载后处理
-    nextTick().then(() => {
+    hooks.nextTick().then(() => {
       // 调用初始化函数,完成表格的初始化配置和数据加载
       initialize()
       // 标记表格已完成挂载
@@ -1135,6 +1122,7 @@ export default defineComponent({
     })
     const tableListeners = getListeners(attrs, listeners)
     return {
+      cellStatus,
       afterFullData,
       afterMounted,
       asyncRenderMap,

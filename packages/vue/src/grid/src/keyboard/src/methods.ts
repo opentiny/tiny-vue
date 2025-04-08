@@ -242,7 +242,7 @@ export default {
   // 表头按下事件
   triggerHeaderCellMousedownEvent(event, params) {
     let { $el, elemStore, mouseConfig = {}, tableData } = this
-    let headerList = elemStore['main-header-list'].children
+    let headerList = elemStore['main-body-headerList'].children
     let bodyList = elemStore['main-body-list'].children
     let cell = params.cell
     let column = params.column
@@ -317,12 +317,12 @@ export default {
 
       let isIndex = column.type === 'index'
       let startCellNode = getCellNodeIndex(cell)
-      let headerList = elemStore['main-header-list'].children
+      let headerList = elemStore['main-body-headerList'].children
       let bodyList = elemStore['main-body-list'].children
       let cellFirstElementChild = cell.parentNode.firstElementChild
       let cellLastElementChild = cell.parentNode.lastElementChild
       let colIndex = Array.from(cell.parentNode.children).indexOf(cell)
-      let headStart = headerList[0].children[colIndex]
+      let headStart = headerList?.[0].children[colIndex]
       args = { $el, _vm: this, bodyList, cell, cellFirstElementChild }
 
       Object.assign(args, { cellLastElementChild, headStart, headerList, isIndex, startCellNode })
@@ -354,7 +354,7 @@ export default {
     }
 
     let bodyElem = elemStore['main-body-list']
-    let headerElem = elemStore['main-header-list']
+    let headerElem = elemStore['main-body-headerList']
 
     if (bodyElem) {
       let elem = bodyElem.querySelector('.col__selected')
@@ -477,9 +477,9 @@ export default {
 
     let column = find(visibleColumn, (col) => col.type === 'index') || visibleColumn[0]
     let selectorColumnId = `.${column.id}`
-    let headerListElem = elemStore['main-header-list']
-    let headerList = headerListElem.children
-    let cell = headerListElem.querySelector(selectorColumnId)
+    let headerListElem = elemStore['main-body-headerList']
+    let headerList = headerListElem?.children
+    let cell = headerListElem?.querySelector(selectorColumnId)
     let bodyList = elemStore['main-body-list'].children
     let firstTrElem = bodyList[0]
     let firstCell = firstTrElem.querySelector(selectorColumnId)
@@ -546,7 +546,7 @@ export default {
     this.editStore.titles.rowNodes = rowNodes
   },
   _clearHeaderChecked() {
-    let headerElem = this.elemStore['main-header-list']
+    let headerElem = this.elemStore['main-body-headerList']
 
     if (headerElem) {
       let eachHandler = (colNode) => removeClass(colNode, 'col__title-checked')
