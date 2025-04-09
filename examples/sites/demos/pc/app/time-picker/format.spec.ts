@@ -34,12 +34,7 @@ test('时间格式化', async ({ page }) => {
   // value-format: 选中值的格式
   await page.getByRole('textbox', { name: '18:30:00' }).click()
   await page.waitForTimeout(100)
-  await page
-    .locator(
-      'div:nth-child(13) > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(20)'
-    )
-    .first()
-    .click()
+  await page.getByText('19').nth(11).click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '19:30:00' })).toBeVisible()
