@@ -216,7 +216,7 @@
       <template #content>
         <div class="tooltip-main">
           <div class="title">{{ state.eventTipContent.title }}</div>
-          <div class="date">
+          <div v-if="showTipTime" class="date">
             {{ state.eventTipContent.startDay }} {{ state.eventTipContent.startTime }} ~
             {{ state.eventTipContent.endDay }} {{ state.eventTipContent.endTime }}
           </div>
@@ -284,7 +284,8 @@ export default defineComponent({
     'events',
     'height',
     'markColor',
-    'multiSelect'
+    'multiSelect',
+    'showTipTime'
   ],
   setup(props, context) {
     return setup({

@@ -150,6 +150,20 @@ export default {
           mfDemo: 'basic-usage'
         },
         {
+          name: 'show-tip-time',
+          type: 'Boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '显示日程tips时间',
+            'en-US': 'Show schedule tips time'
+          },
+          meta: {
+            stable: '3.23.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'v-model',
           type: 'String',
           defaultValue: '',
