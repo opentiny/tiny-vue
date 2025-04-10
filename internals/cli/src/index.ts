@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 import { Command, Option } from 'commander'
 import { createIconSaas } from './commands/create/index.js'
-import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact, chartTheme } from './commands/build'
+import { buildUi, buildEntry, buildRuntime, chartTheme } from './commands/build'
 import { releaseAurora } from './commands/release/releaseAurora'
 import { releaseAlpha } from './commands/release/releaseAlpha'
 import { releaseE2EConfig } from './commands/release/releaseE2EConfig'
 
 const program = new Command()
 
-program.command('release:aurora').description('转换为aurora的包').action(releaseAurora)
+program
+  .command('release:aurora')
+  .description('转换为aurora的包')
+  .option('-v3, --vue3version', '是否使用vue3版本', false)
+  .action(releaseAurora)
 
 program
   .command('release:alpha')
@@ -23,8 +27,6 @@ program
   .action(releaseE2EConfig)
 
 program.command('create:icon-saas').description('同步生成 icon-saas').action(createIconSaas)
-
-program.command('build:entry-react').description('生成 react 组件库入口').action(buildEntryReact)
 
 program.command('build:entry').description('生成组件库入口').action(buildEntry)
 
@@ -51,16 +53,5 @@ program
   .option('-vi, --isVisualizer', '是否分析打包产物', false)
   .option('--tiny_mode', '输出的模板类型', 'pc')
   .action(buildRuntime)
-
-program
-  .command('build:react')
-  .description('打包 react 组件库')
-  .argument('[names...]', '构建指定组件，如 button alert；不指定则构建全量组件')
-  .addOption(new Option('-f --formats <formats...>', '目标格式，默认 ["es"]').choices(['es', 'cjs']))
-  .addOption(new Option('-t --build-target <buildTarget>', '组件的目标版本'))
-  .option('-s, --scope <scope>', 'npm scope，默认是 opentiny，会以 @opentiny 发布到 npm')
-  .option('-c, --clean', '清空构建目录')
-  .option('--no-dts', '不生成 dts')
-  .action(buildReact)
 
 program.parse()
