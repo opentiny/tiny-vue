@@ -348,7 +348,7 @@ export default defineComponent({
                 <span class="ml-2">{t('ui.fileUpload.uploadFile')}</span>
               </div>
             </tiny-button>
-            <icon-plus-circle custom-class="sm:hidden w-5 h-5" />
+            <icon-plus-circle custom-class="sm:hidden w-5 h-5 absolute top-0.5 right-5" />
           </div>
         )
       } else if (listType === 'drag-single') {
