@@ -30,6 +30,7 @@
       :default-checked="leftDefaultChecked"
       :placeholder="filterPlaceholder || t('ui.transfer.filterPlaceholder')"
       @checked-change="onSourceCheckedChange"
+      :show-left="true"
     >
       <slot name="left-footer"></slot>
       <slot name="filter"></slot>
@@ -53,7 +54,7 @@
             type="primary"
             :class="['tiny-transfer__button', state.hasButtonTexts ? 'is-with-texts' : '']"
             @click="addToRight"
-            :disabled="toLeftDisable && state.leftChecked.length === 0"
+            :disabled="state.isToLeftBtnDisabled"
           >
             <span v-if="buttonTexts[1] !== undefined">{{ buttonTexts[1] }}</span>
             <icon-chevron-right class="tiny-svg-size"></icon-chevron-right>
@@ -98,6 +99,7 @@
       :default-checked="rightDefaultChecked"
       :placeholder="filterPlaceholder || t('ui.transfer.filterPlaceholder')"
       @checked-change="onTargetCheckedChange"
+      :show-left="false"
     >
       <slot name="right-footer"></slot>
       <slot name="filter"></slot>
