@@ -645,6 +645,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Darkingtail",
+      "name": "Darkingtail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51188676?v=4",
+      "profile": "https://github.com/Darkingtail",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 8,
