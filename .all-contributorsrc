@@ -662,7 +662,16 @@
       "profile": "https://github.com/Darkingtail",
       "contributions": [
         "bug"
-       ]
+      ]
+    },
+    {
+      "login": "hashiqi12138",
+      "name": "hashiqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52161363?v=4",
+      "profile": "https://github.com/hashiqi12138",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 8,
