@@ -102,6 +102,25 @@ export default {
       codeFiles: ['custom-render.vue']
     },
     {
+      demoId: 'custom-size',
+      name: {
+        'zh-CN': '自定义面板大小',
+        'en-US': 'Customized Panel Size'
+      },
+      desc: {
+        'zh-CN': `
+          通过 <code> panelStyle </code> 属性，可以指定面板容器的样式。<br>
+          通过 <code> panelBodyStyle </code> 属性，可以指定面板内容区域的样式。<br>
+          通过 <code> panelTableHeight </code> 属性，可以指定嵌套表格时，表格的高度值。表格的默认高度为400px, 当自定义<code> panelBody </code>的高度之后，可能会与表格高度不匹配。 可以通过该属性设置一个匹配的表格高度。<br>
+          `,
+        'en-US': `
+          The style of the panel container can be specified through the <code>panelStyle</code> attribute. <br>
+          The style of the panel's content area can be specified through the <code>panelBodyStyle</code> attribute. <br>
+          `
+      },
+      codeFiles: ['custom-size.vue']
+    },
+    {
       demoId: 'custom-filter',
       name: {
         'zh-CN': '过滤搜索',
