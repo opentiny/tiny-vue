@@ -636,6 +636,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hu-qi",
+      "name": "huqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17986122?v=4",
+      "profile": "https://github.com/hu-qi",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
