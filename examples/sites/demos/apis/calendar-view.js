@@ -239,6 +239,19 @@ export default {
           mfDemo: 'multi-select'
         },
         {
+          name: 'date-click',
+          desc: {
+            'zh-CN': '日期点击事件，回调参数为当前点击日期和日程事件',
+            'en-US': 'Date click event, The callback parameters are the current click date and schedule event'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'calendar-event',
+          mfDemo: 'calendar-event',
+          meta: {
+            stable: '3.23.0'
+          }
+        },
+        {
           name: 'week-change',
           desc: {
             'zh-CN': '周改变事件',

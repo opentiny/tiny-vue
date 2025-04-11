@@ -159,7 +159,8 @@
             data-tag="tiny-calendar-view-weekitem"
             v-for="(date, index) in state.weekDates"
             :key="date.value"
-            class="leading-10"
+            class="leading-10 cursor-pointer"
+            @click="selectDay(date)"
           >
             <slot
               name="header"
@@ -170,7 +171,7 @@
             >
               <span
                 class="relative mr-2.5 text-base"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-primary']"
+                :class="[dateIsToday(date.value) || computedSelectDay(date)  ? 'text-color-brand' : 'text-color-text-primary']"
               >
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
@@ -181,7 +182,7 @@
               </span>
               <span
                 class="text-sm"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-placeholder']"
+                :class="[dateIsToday(date.value) || computedSelectDay(date) ? 'text-color-brand' : 'text-color-text-placeholder']"
                 >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
               >
             </slot>

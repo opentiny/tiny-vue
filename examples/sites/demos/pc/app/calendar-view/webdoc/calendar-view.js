@@ -167,6 +167,7 @@ export default {
       desc: {
         'zh-CN':
           '<p>日历抛出的事件有以下这些：</p>\n' +
+          '<p>date-click：日期点击事件</p>\n' +
           '<p>new-schedule：新增日程按钮点击事件</p>\n' +
           '<p>selected-date-change：选中日期改变事件</p>\n' +
           '<p>prev-week-click：上一周按钮点击事件</p>\n' +
@@ -177,6 +178,7 @@ export default {
           '<p>mode-change：模式切换事件</p>',
         'en-US':
           '<p>Calendar throws the following events:</p>\n' +
+          '<p>date-click：日期点击事件: Date click event</p>\n' +
           '<p>new-schedule: Add a schedule button click event</p>\n' +
           '<p>selected-date-change: selected date change event</p>\n' +
           '<p>prev-week-click: button click event of the last week</p>\n' +
@@ -371,11 +373,12 @@ export default {
         value: true
       },
       description:
-        '日历抛出的事件包括：new-schedule、selected-date-change、prev-week-click、next-week-click、week-change、year-change、month-change、mode-change。',
+        '日历抛出的事件包括：date-click、new-schedule、selected-date-change、prev-week-click、next-week-click、week-change、year-change、month-change、mode-change。',
       cloud: {
         value: false
       },
       apis: [
+        'date-click',
         'new-schedule',
         'selected-date-change',
         'prev-week-click',

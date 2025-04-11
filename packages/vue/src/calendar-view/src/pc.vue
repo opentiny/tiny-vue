@@ -107,7 +107,7 @@
           <icon-chevron-left></icon-chevron-left>
         </div>
         <ul class="header-main">
-          <li v-for="(date, index) in state.weekDates" :key="date.value">
+          <li v-for="(date, index) in state.weekDates" :key="date.value" @click="selectDay(date)">
             <slot
               name="header"
               :slot-scope="{
@@ -115,7 +115,7 @@
                 weekDay: t(`ui.calendarView.weekDays.${index}`)
               }"
             >
-              <span class="date" :class="dateIsToday(date.value) && 'is-today'">
+              <span class="date" :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]">
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
                   v-if="isShowMark(date.value)"
@@ -123,7 +123,7 @@
                   :class="[date.value.split('-')[2] > 9 ? 'is-two-digit' : '', markColor ? `mark-${markColor}` : '']"
                 ></span>
               </span>
-              <span class="week-day" :class="dateIsToday(date.value) && 'is-today'">{{
+              <span class="week-day" :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]">{{
                 dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`)
               }}</span>
             </slot>

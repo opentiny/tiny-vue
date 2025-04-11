@@ -4,7 +4,7 @@
       class="tiny-picker-panel tiny-date-range-picker tiny-popper"
       :class="[
         {
-          'has-sidebar': slots.sidebar || state.shortcuts
+          'has-sidebar': slots.sidebar || state.shortcuts?.length,
         },
         state.popperClass
       ]"

@@ -62,6 +62,7 @@
 
         >li{
           @apply leading-10;
+          @apply cursor-pointer;
 
           >span{
             @apply text-sm;
@@ -351,6 +352,7 @@
 
       >li{
         @apply leading-10;
+        @apply cursor-pointer;
 
         .date{
           @apply relative;
@@ -358,7 +360,11 @@
           @apply text-base;
           @apply text-color-text-primary;
 
-          &.is-today{
+          &.is-today {
+            @apply text-color-brand;
+          }
+
+          &.current {
             @apply text-color-brand;
           }
         }
@@ -407,7 +413,11 @@
         .week-day{
           @apply text-sm;
           @apply text-color-text-placeholder;
-          &.is-today{
+          &.is-today {
+            @apply text-color-brand;
+          }
+
+          &.current {
             @apply text-color-brand;
           }
         }
