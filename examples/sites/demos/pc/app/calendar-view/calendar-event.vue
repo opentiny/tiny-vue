@@ -3,6 +3,7 @@
     :events="eventslist"
     :year="2023"
     :month="5"
+    @date-click="dateClick"
     @prev-week-click="prevWeekClick"
     @next-week-click="nextWeekClick"
     @week-change="weekChange"
@@ -26,6 +27,9 @@ export default {
     }
   },
   methods: {
+    dateClick(date, events) {
+      TinyModal.message({ message: `点击日期： ${date}；日程事件：${JSON.stringify(events)}`, status: 'info' })
+    },
     prevWeekClick(date) {
       TinyModal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
     },

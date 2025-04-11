@@ -360,6 +360,7 @@
 
       > li {
         line-height: 40px;
+        cursor: pointer;
 
         .date {
           position: relative;
@@ -368,6 +369,10 @@
           color: var(--tv-CalendarView-week-date-text-color);
 
           &.is-today {
+            color: var(--tv-CalendarView-week-date-today-text-color);
+          }
+
+          &.current {
             color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
@@ -418,7 +423,11 @@
           color: #8d959e;
 
           &.is-today {
-            color: #1890ff;
+            color: var(--tv-CalendarView-week-date-today-text-color);
+          }
+
+          &.current {
+            color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
       }
