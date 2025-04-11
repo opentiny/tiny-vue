@@ -175,7 +175,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/tsinghua-lau"><img src="https://avatars.githubusercontent.com/u/43164478?v=4?s=100" width="100px;" alt="Mao Tao"/><br /><sub><b>Mao Tao</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=tsinghua-lau" title="Documentation">📖</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Darkingtail"><img src="https://avatars.githubusercontent.com/u/51188676?v=4?s=100" width="100px;" alt="Darkingtail"/><br /><sub><b>Darkingtail</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3ADarkingtail" title="Bug reports">🐛</a> <a href="https://github.com/opentiny/tiny-vue/commits?author=Darkingtail" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Darkingtail"><img src="https://avatars.githubusercontent.com/u/51188676?v=4?s=100" width="100px;" alt="Darkingtail"/><br /><sub><b>Darkingtail</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3ADarkingtail" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/hashiqi12138"><img src="https://avatars.githubusercontent.com/u/52161363?v=4?s=100" width="100px;" alt="hashiqi"/><br /><sub><b>hashiqi</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3Ahashiqi12138" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
