@@ -74,6 +74,7 @@ export default {
       return data
     }
     return {
+      // 自定义面板样式
       panelStyle: {
         width: '650px'
       },
