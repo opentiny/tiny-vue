@@ -645,6 +645,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tsinghua-lau",
+      "name": "Mao Tao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43164478?v=4",
+      "profile": "https://github.com/tsinghua-lau",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
