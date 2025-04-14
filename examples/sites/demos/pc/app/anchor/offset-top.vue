@@ -1,5 +1,5 @@
 <template>
-  <tiny-anchor :links="links" @change="handleChange"></tiny-anchor>
+  <tiny-anchor :links="links" :offsetTop="500"></tiny-anchor>
 </template>
 
 <script>
@@ -38,11 +38,6 @@ export default {
           title: 'change 事件'
         }
       ]
-    }
-  },
-  methods: {
-    handleChange(link) {
-      console.log(`当前锚点${link}`)
     }
   }
 }
