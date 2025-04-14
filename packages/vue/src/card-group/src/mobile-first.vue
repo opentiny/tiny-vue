@@ -1,17 +1,23 @@
 <template>
   <div data-tag="tiny-card-group" class="w-full grid gap-4" :class="gcls(`size-${state.size}`)">
     <slot></slot>
+    <icon-grid-no-data class="tiny-card-group-empty">无数据</icon-grid-no-data>
   </div>
 </template>
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/card-group/vue'
 import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
+import { iconGridNoData } from '@opentiny/vue-icon'
+
 import { classes } from './token'
 
 export default defineComponent({
   name: $prefix + 'CardGroup',
   componentName: 'CardGroup',
+  components: {
+    IconGridNoData: iconGridNoData()
+  },
   emits: ['update:modelValue', 'change'],
   props: [
     ...props,
