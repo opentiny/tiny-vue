@@ -106,7 +106,6 @@ export const onSourceCheckedChange =
     if (movedKeys === undefined) {
       return
     }
-
     emit('left-check-change', val, movedKeys)
   }
 
@@ -312,3 +311,44 @@ export const getRightCheckedData =
   ({ props, state }: Pick<ITransferRenderlessParams, 'state' | 'props'>) =>
   () =>
     state.targetData.filter((item) => !item[props.props.disabled])
+
+// 递归处理tree数据
+export const recurseTreeDataToDisabled = (treeData, childrenProp, idProp, currentValue = []) => {
+  treeData.forEach((item) => {
+    if (item[childrenProp]) {
+      recurseTreeDataToDisabled(item[childrenProp], childrenProp, idProp, currentValue)
+    }
+    if (currentValue.includes(item[idProp])) {
+      item.disabled = true
+    } else if (item.__disabled) {
+      item.disabled = true
+    } else {
+      item.disabled = false
+    }
+  })
+}
+// 递归处理tree数据，初始化哪些数据项的默认是disabled, 哪些数据是默认已经选中的
+export const recurseTreeDataToFlagInitDisabled = (treeData, childrenProp, idProp, modelValue) => {
+  if (treeData.__inited) return
+  treeData.__inited = true
+
+  treeData.forEach((item) => {
+    if (item[childrenProp]) {
+      recurseTreeDataToFlagInitDisabled(item[childrenProp], childrenProp, idProp, modelValue)
+    }
+    if (item.disabled) {
+      item.__disabled = true
+    }
+    if (modelValue.includes(item[idProp])) {
+      item.disabled = true
+    }
+  })
+}
+
+export const setCheckedOnMounted =
+  ({ props, vm, Tree }) =>
+  () => {
+    if (props.render && props.render.plugin.name === Tree) {
+      vm.$refs.leftPanel?.$refs?.plugin?.setCheckedKeys(props.modelValue)
+    }
+  }

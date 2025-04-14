@@ -80,6 +80,10 @@ export const calendarViewProps = {
   showBackToday: {
     type: Boolean,
     default: true
+  },
+  showTipTime: {
+    type: Boolean,
+    default: true
   }
 }
 

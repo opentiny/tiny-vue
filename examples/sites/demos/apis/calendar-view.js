@@ -150,6 +150,20 @@ export default {
           mfDemo: 'basic-usage'
         },
         {
+          name: 'show-tip-time',
+          type: 'Boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '显示日程tips时间',
+            'en-US': 'Show schedule tips time'
+          },
+          meta: {
+            stable: '3.23.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'v-model',
           type: 'String',
           defaultValue: '',
@@ -237,6 +251,19 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'multi-select',
           mfDemo: 'multi-select'
+        },
+        {
+          name: 'date-click',
+          desc: {
+            'zh-CN': '日期点击事件，回调参数为当前点击日期和日程事件',
+            'en-US': 'Date click event, The callback parameters are the current click date and schedule event'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'calendar-event',
+          mfDemo: 'calendar-event',
+          meta: {
+            stable: '3.23.0'
+          }
         },
         {
           name: 'week-change',

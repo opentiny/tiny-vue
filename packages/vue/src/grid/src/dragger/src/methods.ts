@@ -1,3 +1,4 @@
+import Modal from '@opentiny/vue-modal'
 import { createHandlerOnEnd, getSortColumns } from './rowDrop'
 export default {
   // 处理列拖拽

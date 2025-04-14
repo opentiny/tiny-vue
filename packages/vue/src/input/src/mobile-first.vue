@@ -301,8 +301,7 @@
               v-if="state.showMoreBtn"
               class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
               >{{ t('ui.input.more') }}></span
-            >
-            <span>{{ state.displayOnlyText }}</span>
+            >{{ state.displayOnlyText }}
           </span>
         </div>
       </tiny-tooltip>
