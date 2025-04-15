@@ -1,5 +1,5 @@
 <template>
-  <tiny-number-animation ref="numberAnimationRef" :from="fr" :to="toVal" :active="false" />
+  <tiny-number-animation ref="numberAnimationRef" :from="fromVal" :to="toVal" :active="false" />
   <tiny-button @click="handleClick">播放</tiny-button>
 </template>
 
