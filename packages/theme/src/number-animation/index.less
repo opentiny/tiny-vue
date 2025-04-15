@@ -1,0 +1,11 @@
+@import '../custom.less';
+@import './vars.less';
+
+@number-animation-item-prefix-cls: ~'@{css-prefix}number-animation';
+
+.@{number-animation-item-prefix-cls} {
+  .inject-NumberAnimation-vars();
+  font-size: var(--tv-NumberAnimation-font-size);
+  font-weight: var(--tv-NumberAnimation-font-weight);
+  margin-bottom: var(--tv-NumberAnimation-margin-bottom);
+}

@@ -137,6 +137,7 @@
     "@opentiny/vue-month-table": "workspace:~",
     "@opentiny/vue-nav-menu": "workspace:~",
     "@opentiny/vue-notify": "workspace:~",
+    "@opentiny/vue-number-animation": "workspace:~",
     "@opentiny/vue-numeric": "workspace:~",
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-option-group": "workspace:~",
