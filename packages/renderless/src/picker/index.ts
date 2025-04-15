@@ -1053,16 +1053,22 @@ export const showPicker =
 
 export const handlePick =
   ({ state, api }) =>
-  (date = '', visible = false) => {
+  (date = '', visible = false, chooseOne = false) => {
     if (!state.picker) return
 
-    state.userInput = null
-    state.pickerVisible = state.picker.state.visible = visible
+    if (chooseOne) {
+      const minDate = date && date[0] || ''
 
-    api.emitInput(date, visible)
-
-    state.date = date
-    state.picker.resetView && state.picker.resetView()
+      state.userInput = [api.formatToString(minDate), null]
+    } else {
+      state.userInput = null
+      state.pickerVisible = state.picker.state.visible = visible
+  
+      api.emitInput(date, visible)
+  
+      state.date = date
+      state.picker.resetView && state.picker.resetView()
+    }
   }
 
 export const handleSelectRange = (state) => (start, end, pos) => {
