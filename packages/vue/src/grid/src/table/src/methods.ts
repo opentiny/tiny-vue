@@ -489,17 +489,21 @@ const Methods = {
   },
   // 更新列的 Map
   cacheColumnMap() {
-    let { fullColumnMap, tableFullColumn: fullColumn } = this
-    let fullColumnIdData = {}
-    this.fullColumnIdData = fullColumnIdData
-    // 清空列映射
-    Map.prototype.clear.apply(fullColumnMap)
-    // 为每列创建缓存对象
-    fullColumn.forEach((column, index) => {
-      let colCache = { colid: column.id, column, index }
+    const { fullColumnMap, tableFullColumn } = this
+    const fullColumnIdData = {}
+
+    // 清空旧的列映射
+    fullColumnMap.clear()
+
+    // 为每列创建缓存对象并同时更新映射
+    tableFullColumn.forEach((column, index) => {
+      const colCache = { colid: column.id, column, index }
       fullColumnIdData[column.id] = colCache
       fullColumnMap.set(column, colCache)
     })
+
+    // 更新实例的列ID数据
+    this.fullColumnIdData = fullColumnIdData
   },
   // 通过tr的DOM元素获取对应的行数据及相关信息
   getRowNode(tr) {

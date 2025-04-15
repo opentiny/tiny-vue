@@ -138,26 +138,48 @@ export const emitEvent = (vm, type, args) => {
   }
 }
 
+/**
+ * 组装列配置，这里很重要，会触发表格collectColumn的watch，从而刷新表格
+ * @param {Object} $table - 表格实例
+ * @returns {void}
+ */
 export const assemColumn = ($table) => {
+  // 用于存储收集到的所有列配置
   const collectColumn = []
 
+  /**
+   * 递归组装列配置
+   * @param {Array} columnVms - 列虚拟节点数组
+   * @param {Array} columns - 用于存储组装后的列配置数组
+   */
   const assem = (columnVms, columns) => {
+    // 检查columnVms是否为数组
     if (Array.isArray(columnVms)) {
+      // 遍历每个列虚拟节点
       columnVms.forEach((columnVm) => {
+        // 获取列的配置信息
         const column = columnVm.columnConfig
+        // 用于存储子列配置的数组
         const children = []
 
+        // 如果存在列配置
         if (column) {
+          // 将当前列配置添加到columns数组
           columns.push(column)
+          // 递归处理子列,将结果存储到children数组
           assem(columnVm.childColumns, children)
-          // 兼容旧实现，如果当前列没有子列，children 为 falsy 值
+          // 设置children属性:
+          // 1. 如果有子列,则设置为子列数组
+          // 2. 如果没有子列,则设置为null(兼容旧版本实现)
           column.children = children.length > 0 ? children : null
         }
       })
     }
   }
 
+  // 从表格实例的childColumns开始递归组装列配置
   assem($table.childColumns, collectColumn)
+  // 将组装好的列配置赋值给表格实例的collectColumn属性
   $table.collectColumn = collectColumn
 }
 

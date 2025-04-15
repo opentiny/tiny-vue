@@ -89,9 +89,15 @@ export default defineComponent({
     if ($table && !$table.isTagUsageSence) {
       $table.isTagUsageSence = true
     }
-
+    // 使用 useInstanceSlots hook 来处理插槽兼容性
+    // 在 Vue2 中将 $scopedSlots 作为插槽方法使用
+    // 在 Vue3 中将 $slots 作为插槽方法使用
+    // 统一通过 instanceSlots 属性访问插槽
     useInstanceSlots()
 
+    // 使用 useRelation hook 建立列与表格的关联关系
+    // relationKey 由 columnLevelKey 前缀和表格 id 组成
+    // 用于维护列与表格之间的层级结构
     useRelation({ relationKey: `${columnLevelKey}-${$table.id}` })
 
     // 创建响应式状态对象
