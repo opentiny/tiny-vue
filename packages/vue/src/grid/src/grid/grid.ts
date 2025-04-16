@@ -521,8 +521,8 @@ export default defineComponent({
         this.commitProxy('query')
       }
 
-      emitEvent(this, 'sort-change', eventParams)
-      this.emitter.emit('sort-change', eventParams)
+      emitEvent(this, 'sort-change', eventParams) // 触发正常vue监听的事件比如@sort-change
+      this.emitter.emit('sort-change', eventParams) // 触发配置式监听的事件比如@sort-change
     },
     viewCls(module) {
       return GlobalConfig.viewConfig[module][this.viewType] || ''
@@ -563,8 +563,8 @@ export default defineComponent({
         this.commitProxy('query')
       }
 
-      emitEvent(this, 'filter-change', eventParams)
-      this.emitter.emit('filter-change', eventParams)
+      emitEvent(this, 'filter-change', eventParams) // 触发正常vue监听的事件比如@filter-change
+      this.emitter.emit('filter-change', eventParams) // 触发配置式监听的事件
     }
   }
 })

@@ -119,8 +119,8 @@ export default {
     if (!this.showSaveMsg) {
       let eventParams = extend(false, { $grid: this }, params)
 
-      emitEvent(this, 'before-page-change', eventParams)
-      this.emitter.emit('before-page-change', eventParams)
+      emitEvent(this, 'before-page-change', eventParams) // 触发正常vue监听的事件比如@before-page-change
+      this.emitter.emit('before-page-change', eventParams) // 触发配置式监听的事件比如@before-page-change
 
       return
     }
@@ -132,8 +132,8 @@ export default {
       let next = (res) => {
         if (res === 'confirm') {
           rollback && rollback()
-          emitEvent(this, 'cancel-page-change', this)
-          this.emitter.emit('cancel-page-change', this)
+          emitEvent(this, 'cancel-page-change', this) // 触发正常vue监听的事件比如@cancel-page-change
+          this.emitter.emit('cancel-page-change', this) // 触发配置式监听的事件
         } else {
           callback && callback()
         }

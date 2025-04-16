@@ -122,12 +122,12 @@ function getEvents(renderOpts, params, context) {
 
       // 对原生组件调用input和change回调
       if (native) {
-        input && input.apply(null, [params].concat.apply(params, arguments))
-        change && change.apply(null, [params].concat.apply(params, arguments))
+        input?.(...[params, ...Array.from(arguments)])
+        change?.(...[params, ...Array.from(arguments)])
       }
 
       // 如果需要自动刷新,增加刷新计数器
-      if (autoRefresh(renderOpts, params, context)) {
+      if (autoRefresh(renderOpts, params)) {
         $table.editStore.editorAutoRefreshKey++
       }
     }
@@ -145,7 +145,7 @@ function getEvents(renderOpts, params, context) {
       // 调用原始事件处理器
       // 将params作为第一个参数
       // 将原始事件参数展开作为后续参数
-      cb.apply(null, [params].concat.apply(params, arguments))
+      cb(...[params, ...Array.from(arguments)])
     }
 
   // 将包装后的事件处理器对象合并到on中

@@ -37,11 +37,23 @@ export default {
       return { api, dataset, fields, loading, isReloadFilter, isReloadScroll }
     }
   },
+  // 初始化数据获取
+  initFetchData(prefetch, fetchOption, autoLoad) {
+    if (!prefetch && fetchOption) {
+      if (this.$pageSizeChangeCallback) {
+        this.$pageSizeChangeCallback()
+        this.$pageSizeChangeCallback = null
+      } else if (autoLoad) {
+        const toolbarVm = this.getVm('toolbar')
+        this.commitProxy('query', toolbarVm && toolbarVm.orderSetting())
+      }
+    }
+  },
   handleFetch(code, sortArg) {
     // 从组件实例中解构获取相关配置和数据
     let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this as any
 
-    // 处理初始加载状态
+    // 处理初始加载状态,isInitialLoading: 是否首次加载数据
     if (this.isInitialLoading) {
       this.isInitialLoading = false
     } else {

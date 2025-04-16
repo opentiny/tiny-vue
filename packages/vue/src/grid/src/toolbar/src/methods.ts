@@ -172,8 +172,8 @@ export default {
     this.fullScreenClass = show ? 'tiny-fullscreen-full' : ''
     this.$nextTick(() => {
       this.recalculate(true)
-      emitEvent(this, 'fullscreen', show)
-      this.emitter.emit('fullscreen', show)
+      emitEvent(this, 'fullscreen', show) // 触发正常vue监听的事件比如@fullscreen
+      this.emitter.emit('fullscreen', show) // 触发配置式监听的事件
     })
   },
   commitProxy(code, ...args) {
@@ -202,7 +202,7 @@ export default {
     } else if (code === 'reset_custom') {
       // 重置表格配置
       this.resetAll()
-    } else if (~['reload', 'query', 'prefetch'].indexOf(code)) {
+    } else if (['reload', 'query', 'prefetch'].includes(code)) {
       // 处理数据刷新相关的操作
       this.handleFetch(code, args)
     } else if (code === 'delete') {

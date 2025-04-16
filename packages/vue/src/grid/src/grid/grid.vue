@@ -18,7 +18,7 @@
     <component v-if="columnAnchor" :is="renderColumnAnchor(columnAnchorParams, this)" />
 
     <!-- 表格主体 -->
-    <tiny-grid-table ref="tinyTable" v-bind="tableOptions" :loading="loading" v-on="tableEvents">
+    <tiny-grid-table ref="tinyTable" v-bind="tableOptions" :data="tableData" :loading="loading" v-on="tableEvents">
       <slot></slot>
     </tiny-grid-table>
 
@@ -142,7 +142,7 @@ export default defineComponent({
   computed: {
     // 工具栏按钮保存和删除时是否弹出提示信息
     isMsg() {
-      return this.proxyOpts.message !== false
+      return this.proxyConfig?.message !== false
     },
 
     // 表格属性收集
@@ -152,11 +152,6 @@ export default defineComponent({
       return rest
     },
 
-    // 代理配置选项
-    proxyOpts() {
-      return extend(true, {}, GlobalConfig.grid.proxyConfig, this.proxyConfig)
-    },
-
     // 组件尺寸
     vSize() {
       return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
@@ -164,7 +159,7 @@ export default defineComponent({
 
     // 序号计算
     seqIndex() {
-      let { seqSerial, scrollLoad, pagerConfig: oldPage, startIndex, tablePageLoading, realTimeTablePage } = this
+      const { seqSerial, scrollLoad, pagerConfig: oldPage, startIndex, tablePageLoading, realTimeTablePage } = this
       let seqIndexValue = startIndex
       const pagerConfig = tablePageLoading ? realTimeTablePage : oldPage
 
@@ -222,7 +217,7 @@ export default defineComponent({
 
   created() {
     // 实例缓存，解决grid/toolbar/table等相互关联问题
-    this.vmStore = Object.create(null)
+    this.vmStore = {}
 
     // 初始化fetchApi选项
     this.fetchOption = this.initFetchOption()
@@ -242,6 +237,7 @@ export default defineComponent({
     // 在created生命周期阶段执行fetch-data
     if (prefetch && fetchOption && autoLoad !== false) {
       if (Array.isArray(prefetch)) {
+        // prefetch 为数组，指定后端排序字段参数，作为数据接口方法参数 sortBy。例如：[{ property: 'name', order: 'desc' }]
         this.commitProxy('prefetch', prefetch)
       } else {
         this.commitProxy('prefetch')
@@ -303,20 +299,24 @@ export default defineComponent({
     initEvents(events) {
       if (!events) return
 
-      const listeners = {}
+      // 需要注册到emitter的事件列表
+      const emitterEvents = ['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick']
 
-      for (let event in events) {
-        if (Object.prototype.hasOwnProperty.call(events, event)) {
-          let evkey = event.replace(/\B([A-Z])/g, '-$1').toLowerCase()
-          listeners[evkey] = events[event]
+      // 转换事件名并注册监听器
+      this.listeners = Object.entries(events).reduce((listeners, [event, handler]) => {
+        // 驼峰转连字符
+        const evkey = event.replace(/\B([A-Z])/g, '-$1').toLowerCase()
 
-          if (['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick'].includes(event)) {
-            this.emitter.on(evkey, events[event])
-          }
+        // 注册事件监听
+        listeners[evkey] = handler
+
+        // 如果是需要注册到emitter的事件,则同时注册到emitter
+        if (emitterEvents.includes(event)) {
+          this.emitter.on(evkey, handler)
         }
-      }
 
-      this.listeners = listeners
+        return listeners
+      }, {})
     },
 
     // 初始化分页器插槽
@@ -334,19 +334,6 @@ export default defineComponent({
 
       if (!listeners['current-change']) {
         componentInstance.$on('current-change', this.pageCurrentChange)
-      }
-    },
-
-    // 初始化数据获取
-    initFetchData(prefetch, fetchOption, autoLoad) {
-      if (!prefetch && fetchOption) {
-        if (this.$pageSizeChangeCallback) {
-          this.$pageSizeChangeCallback()
-          this.$pageSizeChangeCallback = null
-        } else if (autoLoad) {
-          const toolbarVm = this.getVm('toolbar')
-          this.commitProxy('query', toolbarVm && toolbarVm.orderSetting())
-        }
       }
     },
 
@@ -420,7 +407,6 @@ export default defineComponent({
           activeMethod: this.handleActiveMethod
         }
       }
-
       this.tableOptions = props
     },
 
@@ -556,8 +542,8 @@ export default defineComponent({
       // 触发排序变更事件
       // 1. 通过emitEvent触发sort-change事件
       // 2. 通过事件总线触发sort-change事件
-      emitEvent(this, 'sort-change', eventParams)
-      this.emitter.emit('sort-change', eventParams)
+      emitEvent(this, 'sort-change', eventParams) // 触发正常vue监听的事件比如@sort-change
+      this.emitter.emit('sort-change', eventParams) // 触发配置式监听的事件比如@sort-change
     },
 
     // 获取视图类名
@@ -613,8 +599,8 @@ export default defineComponent({
         this.commitProxy('query')
       }
 
-      emitEvent(this, 'filter-change', eventParams)
-      this.emitter.emit('filter-change', eventParams)
+      emitEvent(this, 'filter-change', eventParams) // 触发正常vue监听的事件比如@filter-change
+      this.emitter.emit('filter-change', eventParams) // 触发配置式监听的事件
     }
   }
 })
