@@ -18,7 +18,13 @@
     <component v-if="columnAnchor" :is="renderColumnAnchor(columnAnchorParams, this)" />
 
     <!-- 表格主体 -->
-    <tiny-grid-table ref="tinyTable" v-bind="tableOptions" :data="tableData" :loading="loading" v-on="tableEvents">
+    <tiny-grid-table
+      ref="tinyTable"
+      v-bind="tableOptions"
+      :data="fetchOption ? tableData : data"
+      :loading="loading"
+      v-on="tableEvents"
+    >
       <slot></slot>
     </tiny-grid-table>
 
@@ -159,14 +165,29 @@ export default defineComponent({
 
     // 序号计算
     seqIndex() {
+      // 从组件实例中解构需要的属性:
+      // - seqSerial: 是否启用序号连续模式
+      // - scrollLoad: 是否启用滚动加载
+      // - pagerConfig: 分页配置
+      // - startIndex: 序号起始值
+      // - tablePageLoading: 表格分页加载状态
+      // - realTimeTablePage: 实时分页数据
       const { seqSerial, scrollLoad, pagerConfig: oldPage, startIndex, tablePageLoading, realTimeTablePage } = this
+
+      // 初始化序号值为起始值
       let seqIndexValue = startIndex
+
+      // 根据表格是否在分页加载中选择使用实时分页数据还是原始分页配置
       const pagerConfig = tablePageLoading ? realTimeTablePage : oldPage
 
+      // 当启用了序号连续模式或滚动加载,且存在分页配置时
+      // 计算实际的序号起始值:
+      // (当前页码 - 1) * 每页条数 + 起始值
       if ((seqSerial || scrollLoad) && pagerConfig) {
         seqIndexValue = (pagerConfig.currentPage - 1) * pagerConfig.pageSize + startIndex
       }
 
+      // 返回计算后的序号值
       return seqIndexValue
     },
 
@@ -295,7 +316,7 @@ export default defineComponent({
   },
 
   methods: {
-    // 初始化事件配置
+    // 初始配置化表格传入的事件
     initEvents(events) {
       if (!events) return
 
@@ -543,7 +564,7 @@ export default defineComponent({
       // 1. 通过emitEvent触发sort-change事件
       // 2. 通过事件总线触发sort-change事件
       emitEvent(this, 'sort-change', eventParams) // 触发正常vue监听的事件比如@sort-change
-      this.emitter.emit('sort-change', eventParams) // 触发配置式监听的事件比如@sort-change
+      this.emitter.emit('sort-change', eventParams) // 触发配置式监听的事件
     },
 
     // 获取视图类名

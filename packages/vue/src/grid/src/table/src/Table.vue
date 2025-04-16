@@ -62,7 +62,15 @@
 </template>
 
 <script lang="ts">
-import { $prefix, resolveTheme, useInstanceSlots, useRelation, hooks, defineComponent } from '@opentiny/vue-common'
+import {
+  $prefix,
+  resolveTheme,
+  useInstanceSlots,
+  useRelation,
+  hooks,
+  defineComponent,
+  isVue2
+} from '@opentiny/vue-common'
 import { extend } from '@opentiny/utils'
 import Tooltip from '@opentiny/vue-tooltip'
 import { isNull, isObject, isEmptyObject, isServer } from '@opentiny/utils'
@@ -252,11 +260,11 @@ export default defineComponent({
   // 组件属性定义
   props: {
     // 所有的列对齐方式
-    align: { type: String, default: () => GlobalConfig.align },
+    align: { type: String },
     // 是否自动监听父容器变化去更新响应式表格宽高
     autoResize: Boolean,
     // 是否带有纵向边框
-    border: { type: Boolean, default: () => GlobalConfig.border },
+    border: { type: Boolean },
     // 给单元格附加 className
     cellClassName: [String, Function],
     // 主键配置
@@ -282,7 +290,7 @@ export default defineComponent({
     // 列的宽度是否自撑开
     fit: { type: Boolean, default: () => GlobalConfig.fit },
     // 所有的表尾列的对齐方式
-    footerAlign: { type: String, default: () => GlobalConfig.footerAlign },
+    footerAlign: { type: String },
     // 给表尾的单元格附加 className
     footerCellClassName: [String, Function],
     // 表尾合计的计算方法
@@ -292,7 +300,7 @@ export default defineComponent({
     // 表尾合并行或列
     footerSpanMethod: Function,
     // 所有的表头列的对齐方式
-    headerAlign: { type: String, default: () => GlobalConfig.headerAlign },
+    headerAlign: { type: String },
     // 给表头的单元格附加 className
     headerCellClassName: [String, Function],
     // 给表头的行附加 className
@@ -305,18 +313,15 @@ export default defineComponent({
     highlightCell: Boolean,
     // 是否要高亮当前选中列
     highlightCurrentColumn: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightCurrentColumn
+      type: Boolean
     },
     // 是否要高亮当前选中行
     highlightCurrentRow: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightCurrentRow
+      type: Boolean
     },
     // 鼠标移到列是否要高亮显示
     highlightHoverColumn: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightHoverColumn
+      type: Boolean
     },
     // 鼠标移到行是否要高亮显示
     highlightHoverRow: {
@@ -961,23 +966,6 @@ export default defineComponent({
       })
     }
 
-    // 监听数据变化
-    // 监听表格数据变化
-    hooks.watch(
-      // 监听props中的data属性
-      () => props.data,
-      // 当data发生变化时的回调函数
-      (newData) => {
-        // 判断新数据是否为数组类型
-        if (Array.isArray(newData)) {
-          // 1. 加载新的表格数据,第二个参数true表示重置表格状态
-          // 2. 处理默认行为,如默认选中、展开等
-          // 3. 处理表头选择框状态
-          instance.loadTableData(newData, true).then(instance.handleDefault).then(instance.handleSelectionHeader)
-        }
-      }
-    )
-
     hooks.watch(
       () => props.height,
       () => {
@@ -1016,6 +1004,39 @@ export default defineComponent({
         instance.recalculate()
       }
     )
+
+    if (isVue2) {
+      // 监听数据变化
+      // 监听表格数据变化
+      hooks.watch(
+        // 监听props中的data属性
+        () => props.data,
+        // 当data发生变化时的回调函数
+        (newData) => {
+          // 判断新数据是否为数组类型
+          if (Array.isArray(newData)) {
+            // 1. 加载新的表格数据,第二个参数true表示重置表格状态
+            // 2. 处理默认行为,如默认选中、展开等
+            // 3. 处理表头选择框状态
+            instance.loadTableData(newData, true).then(instance.handleDefault).then(instance.handleSelectionHeader)
+          }
+        }
+      )
+    } else {
+      hooks.watch(
+        [() => props.data, () => (Array.isArray(props.data) ? props.data.length : 0)],
+        ([newData, newLength], [oldData, oldLength]) => {
+          // 只在数组长度变化且数据引用相同时触发更新
+          if ((newData === oldData && newLength !== oldLength) || newData !== oldData) {
+            // 链式处理表格数据更新
+            instance
+              .loadTableData(newData, true)
+              .then(() => instance.handleDefault())
+              .then(() => instance.handleSelectionHeader())
+          }
+        }
+      )
+    }
 
     // 生命周期钩子
     hooks.onBeforeUnmount(() => {
