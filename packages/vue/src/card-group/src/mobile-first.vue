@@ -1,7 +1,7 @@
 <template>
   <div data-tag="tiny-card-group" class="w-full grid gap-4" :class="gcls(`size-${state.size}`)">
     <slot></slot>
-    <icon-grid-no-data class="tiny-card-group-empty">无数据</icon-grid-no-data>
+    <icon-grid-no-data data-tag="tiny-card-group-empty" class="hidden first:block w-full !h-28"></icon-grid-no-data>
   </div>
 </template>
 
