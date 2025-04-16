@@ -78,6 +78,7 @@ const createImportMap = (version) => {
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-directive': `${getRuntime(version)}tiny-vue-directive.mjs`,
+    '@opentiny/vue-huicharts': `${getRuntime(version)}tiny-vue-huicharts.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}`,
     '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile${versionDelimiter}${version}/${fileDelimiter}`,
     '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless${versionDelimiter}${version}/${fileDelimiter}`,
