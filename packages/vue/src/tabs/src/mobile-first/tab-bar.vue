@@ -1,7 +1,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue-bar'
 import { props, setup, defineComponent, h } from '@opentiny/vue-common'
-import { IconPopup, IconPlus } from '@opentiny/vue-icon'
+import { IconPopup, IconPlus, IconChevronLeft } from '@opentiny/vue-icon'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
@@ -14,9 +14,11 @@ export default defineComponent({
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const { state, handleClickDropdownItem, key, emitAdd } = this
-    const tabNavClass =
-      state.moreList.length > 0 ? 'w-max inline-block' : 'w-full inline-flex justify-around sm:w-max sm:inline-block'
+    const { state, handleClickDropdownItem, key, emitAdd, scrollToLeft } = this
+    const isShowLeftButton = state.moreList.length > 0
+    const tabNavClass = isShowLeftButton
+      ? 'w-max inline-block'
+      : 'w-full inline-flex justify-around sm:w-max sm:inline-block'
 
     return h('div', { attrs: { 'data-tag': 'tiny-tab-bar' }, class: 'w-full h-11 sm:h-10 overflow-hidden relative' }, [
       h(
@@ -27,10 +29,11 @@ export default defineComponent({
             'scrollbar-size-0 w-full overflow-x-auto whitespace-nowrap',
             'before:block before:absolute before:w-0 before:h-11 sm:before:h-10',
             'after:block after:absolute after:top-0 after:right-0 after:w-0 after:h-11 sm:after:h-10',
-            'before:shadow-[1px_-10px_4px_4px_rgba(0,0,0,0.08)] after:shadow-[-1px_-10_4px_4px_rgba(0,0,0,0.08)]',
+            'after:shadow-[-1px_-10_4px_4px_rgba(0,0,0,0.08)]',
             !state.moreLeft && !state.moreRight ? 'before:hidden after:hidden' : '',
             !state.moreLeft ? 'before:hidden' : '',
-            !state.moreRight ? 'after:hidden' : ''
+            !state.moreRight ? 'after:hidden' : '',
+            isShowLeftButton ? 'sm:ml-6' : 'before:shadow-[1px_-10px_4px_4px_rgba(0,0,0,0.08)]'
           ]
         },
         [
@@ -41,6 +44,22 @@ export default defineComponent({
           })
         ]
       ),
+      // 左滑按钮改为绝对定位
+      isShowLeftButton
+        ? h(
+            'div',
+            {
+              class:
+                'hidden sm:inline-flex w-6 h-11 sm:h-10 text-sm cursor-pointer items-center justify-center absolute left-0 top-0 z-10 bg-color-bg-1',
+              on: { click: scrollToLeft }
+            },
+            [
+              h(IconChevronLeft(), {
+                class: 'fill-color-icon-primary hover:fill-color-icon-focus'
+              })
+            ]
+          )
+        : null,
       h('div', {
         class: [
           state.separator
