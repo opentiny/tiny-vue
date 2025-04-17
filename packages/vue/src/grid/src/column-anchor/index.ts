@@ -10,6 +10,9 @@
  *
  */
 import Methods from './src/methods'
+import ColumnAnchor from './src/index.vue'
+
+export { ColumnAnchor }
 
 export default {
   host: 'grid',

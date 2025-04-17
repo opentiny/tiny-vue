@@ -15,7 +15,7 @@
     </template>
 
     <!-- 列锚点 -->
-    <component v-if="columnAnchor" :is="renderColumnAnchor(columnAnchorParams, this)" />
+    <column-anchor v-if="columnAnchor" :params="columnAnchorParams" />
 
     <!-- 表格主体 -->
     <tiny-grid-table
@@ -52,6 +52,7 @@ import { extend, debounce } from '@opentiny/utils'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
 import TinyPager from '@opentiny/vue-pager'
+import { ColumnAnchor } from '../column-anchor'
 import {
   emitter,
   $prefix,
@@ -74,7 +75,8 @@ export default defineComponent({
 
   components: {
     TinyGridTable,
-    TinyPager
+    TinyPager,
+    ColumnAnchor
   },
 
   provide() {
@@ -324,9 +326,6 @@ export default defineComponent({
   mounted() {
     const { columns, fetchOption, autoLoad, pagerSlot, prefetch } = this
 
-    // 处理分页器插槽
-    this.initPagerSlot(pagerSlot)
-
     // 处理列配置
     if (columns && columns.length) {
       this.loadColumn(columns)
@@ -393,24 +392,6 @@ export default defineComponent({
 
         return listeners
       }, {})
-    },
-
-    // 初始化分页器插槽
-    initPagerSlot(pagerSlot) {
-      if (!pagerSlot) return
-
-      const {
-        componentOptions: { listeners = {} },
-        componentInstance
-      } = pagerSlot
-
-      if (!listeners['size-change']) {
-        componentInstance.$on('size-change', this.pageSizeChange)
-      }
-
-      if (!listeners['current-change']) {
-        componentInstance.$on('current-change', this.pageCurrentChange)
-      }
     },
 
     // 更新渲染组件
@@ -502,18 +483,29 @@ export default defineComponent({
 
     // 配置高度减去（表格锚点+工具栏+分页）计算得出表格高度
     updateParentHeight() {
+      // 如果还没有创建更新父容器高度的任务
       if (!this.tasks.updateParentHeight) {
+        // 创建一个防抖任务,延迟10ms执行,避免频繁计算
         this.tasks.updateParentHeight = debounce(10, () => {
+          // 获取组件实例的DOM元素和refs引用
           const { $el, $refs } = this
+          // 获取表格和列锚点的ref引用
           const { tinyTable, tinyGridColumnAnchor } = $refs
+          // 获取工具栏组件实例
           const toolbarVm = this.getVm('toolbar')
 
           if (tinyTable) {
+            // 初始化列锚点高度为0
             let columnAnchorHeight = 0
+
+            // 如果存在列锚点,计算其实际占用的总高度(包含margin)
             if (tinyGridColumnAnchor) {
               const { height, marginTop, marginBottom } = getComputedStyle(tinyGridColumnAnchor)
               columnAnchorHeight = toNumber(height) + toNumber(marginTop) + toNumber(marginBottom)
             }
+
+            // 计算表格的父容器高度:
+            // 父节点总高度 - 工具栏高度(如果有) - 列锚点高度 - 分页器高度(如果有)
             tinyTable.parentHeight =
               $el.parentNode.clientHeight -
               (toolbarVm ? toolbarVm.$el.clientHeight : 0) -
@@ -523,6 +515,7 @@ export default defineComponent({
         })
       }
 
+      // 执行更新父容器高度的任务
       this.tasks.updateParentHeight()
     },
 

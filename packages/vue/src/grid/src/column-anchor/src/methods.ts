@@ -1,35 +1,4 @@
-import { iconMarkOn } from '@opentiny/vue-icon'
-import { h } from '@opentiny/vue-common'
-
 export default {
-  renderColumnAnchor(params, _vm) {
-    const { anchors = [], action = () => {} } = params || {}
-    const { viewType } = _vm
-
-    return h(
-      'div',
-      {
-        class: ['tiny-grid__column-anchor', _vm.viewCls('columnAnchor')],
-        style: viewType === 'default' ? 'display:flex' : '',
-        key: _vm.columnAnchorKey,
-        ref: 'tinyGridColumnAnchor'
-      },
-      anchors.map((anchor) => {
-        const { active = false, label = '', field = '', render } = anchor
-
-        if (typeof render === 'function') {
-          return render({ h, anchor, action })
-        }
-
-        const itemClass = { 'tiny-grid__column-anchor-item': true, 'tiny-grid__column-anchor-item--active': active }
-        const itemOn = { click: (e) => action(field, e) }
-        const iconVnode = active ? h(iconMarkOn(), { class: 'tiny-grid__column-anchor-item-icon' }) : null
-        const spanVnode = h('span', label)
-
-        return h('div', { class: itemClass, on: itemOn }, [iconVnode, spanVnode])
-      })
-    )
-  },
   buildColumnAnchor({ property, label, anchors, activeAnchor }) {
     let visibleColumn = this.getColumns()
     let column = visibleColumn.find((col) => !col.type && col.property === property)
