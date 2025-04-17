@@ -120,7 +120,7 @@ export default {
       let eventParams = extend(false, { $grid: this }, params)
 
       emitEvent(this, 'before-page-change', eventParams) // 触发正常vue监听的事件比如@before-page-change
-      this.emitter.emit('before-page-change', eventParams) // 触发配置式监听的事件比如@before-page-change
+      this.emitter.emit('before-page-change', eventParams) // 触发配置式监听的事件
 
       return
     }

@@ -362,6 +362,7 @@ export default defineComponent({
     updateRenderComponents() {
       this.updateTableOptions()
       this.updateTableEvents()
+
       this.renderedToolbar = this.getRenderedToolbar({
         $slots: this.$slots,
         _vm: this,
@@ -369,6 +370,7 @@ export default defineComponent({
         tableLoading: this.tableLoading,
         toolbar: this.toolbar
       })
+
       this.pagerComponent = this.renderPager({
         $slots: this.$slots,
         _vm: this,
