@@ -57,9 +57,7 @@
             )
           "
         >
-          <slot name="label">
-            {{ label + state.labelSuffix }}
-          </slot>
+          <slot name="label">{{ label + state.labelSuffix }}</slot>
         </span>
         <tiny-tooltip v-if="tipContent" effect="light" :content="tipContent" placement="top">
           <icon-help-circle
