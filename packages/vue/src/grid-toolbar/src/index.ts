@@ -399,7 +399,6 @@ export default defineComponent({
     }
 
     const defaultSlot = () => (typeof $slots.default === 'function' ? $slots.default() : $slots.default)
-
     let childrenArg = [
       renderButtonWrapper({ _vm: this, $buttons, $grid, table, buttons, vSize }),
       setting ? renderCustomWrapper(args) : null,

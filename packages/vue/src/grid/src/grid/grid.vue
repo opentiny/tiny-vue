@@ -10,7 +10,7 @@
     }"
   >
     <!-- 工具栏 -->
-    <!-- 配置式使用 -->
+    <!-- 配置式工具栏插槽 -->
     <component
       v-if="!$slots.toolbar && toolbar"
       :is="toolbar?.component"
@@ -20,10 +20,10 @@
       :class="viewCls('toolbar')"
     >
       <template v-for="(slot, name) in toolbar.slots" #[name]="slotProps">
-        <slot :name="name" v-bind="slotProps" />
+        <component :is="slot" v-bind="slotProps" :key="name" />
       </template>
     </component>
-    <!-- 插槽式使用 -->
+    <!-- 正常的工具栏插槽 -->
     <slot v-else name="toolbar" />
 
     <!-- 列锚点 -->
