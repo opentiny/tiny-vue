@@ -29,7 +29,19 @@
     </tiny-grid-table>
 
     <!-- 分页器 -->
-    <component v-if="pagerComponent" :is="pagerComponent" />
+    <tiny-pager
+      v-if="pager && fetchOption"
+      :size="vSize"
+      :loading="loading || tableLoading"
+      :is-before-page-change="isBeforePageChange || showSaveMsg"
+      :accurate-jumper="autoLoad"
+      v-bind="pagerConfig"
+      :style="pagerStyle"
+      @size-change="pageSizeChange"
+      @current-change="pageCurrentChange"
+      @before-page-change="beforePageChangeHandler"
+      ref="pager"
+    ></tiny-pager>
   </div>
 </template>
 
@@ -39,6 +51,7 @@ import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend, debounce } from '@opentiny/utils'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
+import TinyPager from '@opentiny/vue-pager'
 import {
   emitter,
   $prefix,
@@ -60,7 +73,8 @@ export default defineComponent({
   name: `${$prefix}Grid`,
 
   components: {
-    TinyGridTable
+    TinyGridTable,
+    TinyPager
   },
 
   provide() {
@@ -68,80 +82,99 @@ export default defineComponent({
   },
 
   props: {
+    // 继承基础组件属性
     ...$props,
+    // 表格列配置，用于定义表格的列结构和属性
     columns: Array,
+    // 代理配置，用于配置数据请求代理
     proxyConfig: Object,
+    // 获取数据的配置，用于配置数据请求接口
     fetchData: Object,
+    // 保存数据的配置，用于配置数据保存接口
     saveData: Object,
+    // 删除数据的配置，用于配置数据删除接口
     deleteData: Object,
+    // 工具栏配置，用于配置表格顶部的工具栏
     toolbar: Object,
+    // 分页器配置，用于配置表格底部的分页
     pager: Object,
+    // 数据集配置，用于配置本地数据
     dataset: Object,
+    // 是否自动加载数据，默认为true
     autoLoad: {
       type: Boolean,
       default: true
     },
+    // 是否开启序号连续，默认为false。开启后序号将跨页连续
     seqSerial: {
       type: Boolean,
       default: false
     },
+    // 事件配置，用于配置表格的事件监听
     events: Object,
+    // 继承表格组件的所有属性
     ...TinyGridTable.props,
+    // 是否在页码改变前进行确认，用于防止误操作
     isBeforePageChange: Boolean,
+    // 是否显示保存提示信息，默认为false
     showSaveMsg: {
       type: Boolean,
       default: false
     },
+    // 是否启用多历史记录，用于支持多次撤销/重做操作
     isMultipleHistory: Boolean,
+    // 选择工具栏配置，可以是布尔值或对象，用于配置选择列的工具栏
     selectToolbar: [Boolean, Object]
   },
 
   data() {
     return {
-      // 常量引用
-      V_GANTT,
-      V_MF,
-      V_CARD,
-      V_DEFAULT,
-      V_CUSTOM,
+      // 视图类型常量引用
+      V_GANTT, // 甘特图视图类型
+      V_MF, // 移动优先视图类型
+      V_CARD, // 卡片视图类型
+      V_DEFAULT, // 默认视图类型
+      V_CUSTOM, // 自定义视图类型
 
-      // 数据和状态
-      emitter: emitter(),
-      fetchOption: null,
-      filterData: [],
-      listeners: {},
-      pagerConfig: null,
-      pendingRecords: [], // 存放标记为删除的行数据
-      sortData: {},
-      tableCustoms: [],
-      tableData: [],
-      tableLoading: false,
+      // 数据和状态相关
+      emitter: emitter(), // 事件发射器实例,用户配置时表格事件处理
+      fetchOption: null, // 数据获取配置选项
+      filterData: [], // 过滤条件数据
+      listeners: {}, // 事件监听器集合
+      pagerConfig: null, // 分页器配置
+      pendingRecords: [], // 存放标记为删除但尚未提交的行数据
+      sortData: {}, // 排序数据
+      tableCustoms: [], // 表格自定义配置数据
+      tableData: [], // 表格展示数据
+      tableLoading: false, // 表格加载状态
       tablePage: {
-        total: 0,
-        pageSize: 10,
-        currentPage: 1
+        // 表格分页基础配置
+        total: 0, // 总记录数
+        pageSize: 10, // 每页显示条数
+        currentPage: 1 // 当前页码
       },
-      tablePageLoading: false,
+      tablePageLoading: false, // 表格分页加载状态
       realTimeTablePage: {
-        total: 0,
-        pageSize: 10,
-        currentPage: 1
+        // 实时分页数据,用于分页切换时的临时状态
+        total: 0, // 总记录数
+        pageSize: 10, // 每页显示条数
+        currentPage: 1 // 当前页码
       },
-      columnAnchorParams: {},
-      columnAnchorKey: '',
-      tasks: {},
-      fullScreenClass: '',
-      isInitialLoading: true, // 是否首次加载数据
+      columnAnchorParams: {}, // 列锚点参数
+      columnAnchorKey: '', // 列锚点标识
+      tasks: {}, // 任务队列,用于存储防抖/节流等任务
+      fullScreenClass: '', // 全屏模式样式类
+      isInitialLoading: true, // 标记是否为首次加载数据
 
       // 回调函数存储
-      $pageSizeChangeCallback: null,
-      $updateCustomsCallback: null,
+      $pageSizeChangeCallback: null, // 页码大小改变回调
+      $updateCustomsCallback: null, // 更新自定义配置回调
 
-      // 渲染相关
-      renderedToolbar: null,
-      pagerComponent: null,
-      tableOptions: {},
-      tableEvents: {}
+      // 渲染相关配置
+      renderedToolbar: null, // 渲染后的工具栏组件
+      pagerComponent: null, // 渲染后的分页器组件
+      tableOptions: {}, // 表格配置选项
+      tableEvents: {} // 表格事件配置
     }
   },
 
@@ -149,6 +182,28 @@ export default defineComponent({
     // 工具栏按钮保存和删除时是否弹出提示信息
     isMsg() {
       return this.proxyConfig?.message !== false
+    },
+
+    pagerStyle() {
+      const style = { display: 'none' }
+
+      if (this.isThemeSaas && this.isModeMobileFirst) {
+        if (
+          !(this.isViewGantt || this.isViewCustom) ||
+          ((this.isViewGantt || this.isViewCustom) && this.currentBreakpoint !== 'default')
+        ) {
+          style.display = 'flex'
+          style.justifyContent = 'flex-end'
+        }
+
+        if (this.currentBreakpoint === 'default') {
+          style.justifyContent = 'center'
+        }
+      } else {
+        style.display = 'block'
+      }
+
+      return style
     },
 
     // 表格属性收集
@@ -369,16 +424,6 @@ export default defineComponent({
         loading: this.loading,
         tableLoading: this.tableLoading,
         toolbar: this.toolbar
-      })
-
-      this.pagerComponent = this.renderPager({
-        $slots: this.$slots,
-        _vm: this,
-        loading: this.loading,
-        pager: this.pager,
-        pagerConfig: this.pagerConfig,
-        tableLoading: this.tableLoading,
-        vSize: this.vSize
       })
     },
 
