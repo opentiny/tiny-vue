@@ -1,5 +1,5 @@
 <template>
-  <tiny-anchor :links="links" @change="handleChange"></tiny-anchor>
+  <tiny-anchor :links="links" :offset-top="500"></tiny-anchor>
 </template>
 
 <script setup>
@@ -33,8 +33,4 @@ const links = ref([
     title: 'change 事件'
   }
 ])
-
-function handleChange(link) {
-  console.log(`当前锚点${link}`)
-}
 </script>

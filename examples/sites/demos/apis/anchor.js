@@ -56,6 +56,21 @@ export default {
           pcDemo: 'set-container',
           mfDemo: 'set-container'
         },
+        // 添加offset-top属性文档
+        {
+          name: 'offset-top',
+          type: 'number',
+          defaultValue: '0',
+          desc: {
+            'zh-CN': '锚点距离顶部的偏移量，用于调整滚动定位的位置',
+            'en-US': 'Offset from the top of the anchor, used to adjust the scroll position'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'offset-top'
+        },
         {
           name: 'type',
           type: "'line' | 'dot'",

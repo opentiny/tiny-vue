@@ -11,7 +11,7 @@
  -->
 
 <template>
-  <div class="tiny-transfer">
+  <div class="tiny-transfer" :style="panelTableHeight ? { '--tv-Transfer-table-dyn-height': panelTableHeight } : {}">
     <tiny-transfer-panel
       id="leftPanel"
       v-if="!slots['right-panel'] && !slots['left-panel']"
@@ -157,7 +157,10 @@ export default defineComponent({
     'showPager',
     'render',
     'treeOp',
-    'beforeTransfer'
+    'beforeTransfer',
+    'panelStyle',
+    'panelBodyStyle',
+    'panelTableHeight'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ITransferApi

@@ -43,6 +43,18 @@ export default {
       codeFiles: ['set-container.vue']
     },
     {
+      demoId: 'offset-top',
+      name: {
+        'zh-CN': '顶部偏移量',
+        'en-US': 'Offset Top'
+      },
+      desc: {
+        'zh-CN': '通过 <code>offset-top</code> 设置锚点距离顶部的偏移量。',
+        'en-US': 'Set the offset from the top of the anchor through <code>offset-top</code>.'
+      },
+      codeFiles: ['offset-top.vue']
+    },
+    {
       demoId: 'change',
       name: {
         'zh-CN': 'change 事件',
@@ -133,6 +145,20 @@ export default {
       },
       apis: ['link-click', 'change'],
       demos: ['set-container', 'change']
+    },
+    // 在features数组中添加新的特性说明
+    {
+      id: 'offset-top',
+      name: '顶部偏移量',
+      support: {
+        value: true
+      },
+      description: '通过 offset-top 属性设置锚点距离顶部的偏移量。',
+      cloud: {
+        value: true
+      },
+      apis: ['offset-top'],
+      demos: ['offset-top']
     }
   ]
 }

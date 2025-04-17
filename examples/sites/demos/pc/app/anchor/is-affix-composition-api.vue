@@ -15,36 +15,29 @@ import { TinyAnchor, TinySwitch } from '@opentiny/vue'
 const isAffix = ref(false)
 const links = ref([
   {
-    key: 'demonstrate',
-    link: '#demonstrate',
-    title: '演示',
-    children: [
-      {
-        key: 'basic-usage',
-        link: '#basic-usage',
-        title: '基本用法'
-      },
-      {
-        key: 'is-affix',
-        link: '#is-affix',
-        title: '固定模式'
-      },
-      {
-        key: 'set-container',
-        link: '#set-container',
-        title: '滚动容器'
-      },
-      {
-        key: 'on-change',
-        link: '#change',
-        title: 'change 事件'
-      }
-    ]
+    key: 'basic-usage',
+    link: '#basic-usage',
+    title: '基本用法'
   },
   {
-    key: 'api',
-    link: '#API',
-    title: 'API'
+    key: 'is-affix',
+    link: '#is-affix',
+    title: '固定模式'
+  },
+  {
+    key: 'set-container',
+    link: '#set-container',
+    title: '滚动容器'
+  },
+  {
+    key: 'offset-top',
+    link: '#offset-top',
+    title: '顶部偏移量'
+  },
+  {
+    key: 'on-change',
+    link: '#change',
+    title: 'change 事件'
   }
 ])
 </script>

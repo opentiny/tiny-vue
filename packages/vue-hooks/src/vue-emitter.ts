@@ -12,9 +12,9 @@
  */
 
 //  全局未引用 ，待移除
-export default (vm) => {
-  const broadcast = (vm, componentName, eventName, params) => {
-    vm.$children.forEach((child) => {
+export default (vm: any) => {
+  const broadcast = (vm: any, componentName: string, eventName: string, params: any) => {
+    vm.$children.forEach((child: any) => {
       const name = child.$options.componentName
 
       if (name === componentName) {
@@ -26,7 +26,7 @@ export default (vm) => {
   }
 
   return {
-    dispatch(componentName, eventName, params) {
+    dispatch(componentName: string, eventName: string, params: any) {
       let parent = vm.$parent || vm.$root
       let name = parent.$options.componentName
 
@@ -42,7 +42,7 @@ export default (vm) => {
         parent.$emit.apply(parent, [eventName].concat(params))
       }
     },
-    broadcast(componentName, eventName, params) {
+    broadcast(componentName: string, eventName: string, params: any) {
       broadcast(vm, componentName, eventName, params)
     }
   }

@@ -29,6 +29,7 @@
             />
 
             <i
+              v-if="!isPlus" 
               v-auto-tip="{ content: i18nByKey('playground'), effect: 'light', always: true }"
               class="i-ti-playground ml8 ti-w16 ti-h16 ti-cur-hand"
               @click="openPlayground(demo)"
@@ -115,6 +116,7 @@ const { currentThemeKey } = useTheme()
 const isMobileFirst = computed(() => {
   return templateModeState.mode === 'mobile-first'
 })
+const isPlus = computed(() => import.meta.env.VITE_APP_MODE === 'plus')
 const demoContainer = ref(null)
 const cmp = shallowRef(null)
 const showPreview = inject('showPreview')
