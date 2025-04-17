@@ -42,11 +42,11 @@ export default defineComponent({
       }
     },
     startDate: {
-      type: [Date, String, Number],
+      type: [Object, Date, String, Number],
       default: () => ''
     },
     endDate: {
-      type: [Date, String, Number],
+      type: [Object, Date, String, Number],
       default: () => ''
     }
   },
