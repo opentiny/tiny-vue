@@ -912,6 +912,26 @@ export default defineComponent({
     const sortOpts = hooks.computed(() => {
       return extend(true, {}, GlobalConfig.sortConfig, props.sortConfig)
     })
+
+    const columnNames = hooks.computed(() => {
+      const { customColumnNames } = props
+      const columnNames = [defaultColumnName]
+
+      const pushIfNot = (columnName) => {
+        if (typeof columnName === 'string' && !columnNames.includes(columnName)) {
+          columnNames.push(columnName)
+        }
+      }
+
+      if (Array.isArray(customColumnNames) && customColumnNames.length > 0) {
+        customColumnNames.forEach(pushIfNot)
+      } else if (typeof customColumnNames === 'string') {
+        pushIfNot(customColumnNames)
+      }
+
+      return columnNames
+    })
+
     // 初始化列
     const initColumns = () => {
       // 初始化表格实例的插槽
@@ -1241,7 +1261,8 @@ export default defineComponent({
       selectToolbarStyle,
       staticClass,
       emptyText,
-      sortOpts
+      sortOpts,
+      columnNames
     }
   }
 })

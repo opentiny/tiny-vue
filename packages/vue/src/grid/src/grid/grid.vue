@@ -10,9 +10,21 @@
     }"
   >
     <!-- 工具栏 -->
-    <template v-if="!selectToolbar">
-      <component :is="renderedToolbar" />
-    </template>
+    <!-- 配置式使用 -->
+    <component
+      v-if="!$slots.toolbar && toolbar"
+      :is="toolbar?.component"
+      ref="toolbar"
+      :loading="loading || tableLoading"
+      v-bind="toolbar"
+      :class="viewCls('toolbar')"
+    >
+      <template v-for="(slot, name) in toolbar.slots" #[name]="slotProps">
+        <slot :name="name" v-bind="slotProps" />
+      </template>
+    </component>
+    <!-- 插槽式使用 -->
+    <slot v-else name="toolbar" />
 
     <!-- 列锚点 -->
     <column-anchor v-if="columnAnchor" :params="columnAnchorParams" />
@@ -324,7 +336,7 @@ export default defineComponent({
   },
 
   mounted() {
-    const { columns, fetchOption, autoLoad, pagerSlot, prefetch } = this
+    const { columns, fetchOption, autoLoad, prefetch } = this
 
     // 处理列配置
     if (columns && columns.length) {
@@ -398,14 +410,6 @@ export default defineComponent({
     updateRenderComponents() {
       this.updateTableOptions()
       this.updateTableEvents()
-
-      this.renderedToolbar = this.getRenderedToolbar({
-        $slots: this.$slots,
-        _vm: this,
-        loading: this.loading,
-        tableLoading: this.tableLoading,
-        toolbar: this.toolbar
-      })
     },
 
     // 更新表格选项
@@ -532,8 +536,9 @@ export default defineComponent({
         this.$pageSizeChangeCallback = callback
       } else if (type === 'updateCustomsCallback') {
         // 表格可能有多个工具栏，因此工具栏个性化配置的回调应该是个数组
-        this.$updateCustomsCallback = this.$updateCustomsCallback || []
-        this.$updateCustomsCallback.push(callback)
+        this.$updateCustomsCallback = this.$updateCustomsCallback
+          ? this.$updateCustomsCallback.concat(callback)
+          : [callback]
       }
     },
 

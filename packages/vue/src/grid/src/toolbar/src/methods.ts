@@ -3,7 +3,6 @@ import { error } from '../../tools'
 import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
-import { h, hooks } from '@opentiny/vue-common'
 import { extend } from '@opentiny/utils'
 
 export function setBodyRecords({ body, insertRecords, pendingRecords }) {
@@ -71,25 +70,6 @@ export function invokeSaveDataApi({ _vm, args, body, code, removeRecords, resolv
 }
 
 export default {
-  // 表格工具栏渲染器
-  getRenderedToolbar({ $slots, _vm, loading, tableLoading, toolbar }) {
-    return (_vm.renderedToolbar = (() => {
-      let res = null
-
-      if ($slots.toolbar) {
-        res = $slots.toolbar()
-      } else if (toolbar) {
-        res = h(hooks.toRaw(toolbar.component), {
-          ref: 'toolbar',
-          props: { loading: loading || tableLoading, ...toolbar },
-          class: _vm.viewCls('toolbar'),
-          scopedSlots: toolbar.slots || {}
-        })
-      }
-
-      return res
-    })())
-  },
   handleSave(code, args) {
     let { saveData, isMsg } = this
 
