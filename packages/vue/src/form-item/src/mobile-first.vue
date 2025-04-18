@@ -4,7 +4,7 @@
     :class="
       m(
         `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-border-separator sm:border-none`,
-        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-5' : '',
+        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-4' : '',
         state.formInline ? 'align-sub' : '',
         state.labelPosition === 'top' ? 'block mb-4' : '',
         state.validateState === 'error'
