@@ -13,8 +13,29 @@
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
 import { hasOwn, isFunction } from '../type'
 
-function Schema(descriptor, translate?) {
-  Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)
+// 添加Schema的接口定义
+interface SchemaType {
+  rules: Record<string, any> | null
+  _messages: Record<string, any>
+  define(descriptor: Record<string, any>): void
+  messages(messages?: Record<string, any>): Record<string, any>
+  getSeries(options: any, source: any, source_: any): Record<string, any>
+  mergeMessage(options: any): void
+  validate(source_: any, o?: any, oc?: Function): Promise<any>
+  getValidationMethod(rule: any): any
+  getType(rule: any): string
+}
+
+function Schema(this: SchemaType, descriptor: Record<string, any>, translate?: any) {
+  Schema.getDefaultMessage = (trans?: any) => {
+    // 返回一个默认消息对象而不是undefined
+    return trans ? { ...trans } : ({} as Record<string, any>)
+  }
+
+  Schema.getSystemMessage = (trans?: any) => {
+    return Schema.getDefaultMessage(trans)
+  }
+
   Schema.messages = Schema.getSystemMessage(translate)
   Schema.systemMessages = Schema.messages
 
@@ -204,7 +225,8 @@ const asyncCallback =
 Schema.prototype = {
   messages(messages) {
     if (messages) {
-      this._messages = deepMerge(Schema.getSystemMessage(), messages)
+      const systemMessages = Schema.getSystemMessage() || {}
+      this._messages = deepMerge(systemMessages, messages)
     }
 
     return this._messages
@@ -385,16 +407,16 @@ Schema.register = (type, validator) => {
   Schema.validators[type] = validator
 }
 
-Schema.validators = {} as any
+Schema.validators = {} as Record<string, any>
 
 Schema.warning = warning
 
-Schema.messages = {} as any
+Schema.messages = {} as Record<string, any>
 
-Schema.systemMessages = {} as any
+Schema.systemMessages = {} as Record<string, any>
 
-Schema.getDefaultMessage = () => undefined
+Schema.getDefaultMessage = (trans?: any) => ({}) as Record<string, any>
 
-Schema.getSystemMessage = () => undefined
+Schema.getSystemMessage = (trans?: any) => Schema.getDefaultMessage(trans)
 
 export default Schema

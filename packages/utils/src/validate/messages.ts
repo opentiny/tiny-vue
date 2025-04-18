@@ -10,7 +10,9 @@
  *
  */
 
-const getTypesObj = (translate) => ({
+type TranslateFunction = (value: string) => string
+
+const getTypesObj = (translate: TranslateFunction) => ({
   string: translate('validation.types.string'),
   method: translate('validation.types.method'),
   array: translate('validation.types.array'),
@@ -38,7 +40,7 @@ const getTypesObj = (translate) => ({
   acceptFile: translate('validation.types.acceptFile'),
   fileSize: translate('validation.types.fileSize')
 })
-export default (translate = (value) => value) => ({
+export default (translate: TranslateFunction = (value: string) => value) => ({
   default: translate('validation.default'),
   required: translate('validation.required'),
   enum: translate('validation.enum'),
