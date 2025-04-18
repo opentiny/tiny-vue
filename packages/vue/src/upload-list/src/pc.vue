@@ -63,12 +63,8 @@
             <div class="file-name">
               <div class="file-name-box">
                 <span :title="file.name">{{
-                  file.name
-                    .split('.')
-                    .filter((item, i, arr) => arr.length - 1 > i || arr.length === 1)
-                    .join('.')
+                  file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name
                 }}</span>
-                <span v-if="file.name.includes('.')">.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
               </div>
               <div class="operate-panel">
                 <slot name="operate" :file="file">
