@@ -17,31 +17,22 @@ import { hasOwn, isFunction } from '../type'
 interface SchemaType {
   rules: Record<string, any> | null
   _messages: Record<string, any>
-  define(descriptor: Record<string, any>): void
-  messages(messages?: Record<string, any>): Record<string, any>
-  getSeries(options: any, source: any, source_: any): Record<string, any>
-  mergeMessage(options: any): void
-  validate(source_: any, o?: any, oc?: Function): Promise<any>
-  getValidationMethod(rule: any): any
-  getType(rule: any): string
+  define: (descriptor: Record<string, any>) => void
+  messages: (messages?: Record<string, any>) => Record<string, any>
+  getSeries: (options: any, source: any, source_: any) => Record<string, any>
+  mergeMessage: (options: any) => void
+  validate: (source_: any, o?: any, oc?: Function) => Promise<any>
+  getValidationMethod: (rule: any) => any
+  getType: (rule: any) => string
 }
 
-function Schema(this: SchemaType, descriptor: Record<string, any>, translate?: any) {
-  Schema.getDefaultMessage = (trans?: any) => {
-    // 返回一个默认消息对象而不是undefined
-    return trans ? { ...trans } : ({} as Record<string, any>)
-  }
-
-  Schema.getSystemMessage = (trans?: any) => {
-    return Schema.getDefaultMessage(trans)
-  }
-
+function Schema(descriptor: Record<string, any>, translate?: any) {
+  Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)
   Schema.messages = Schema.getSystemMessage(translate)
   Schema.systemMessages = Schema.messages
-
-  this.rules = null
-  this._messages = Schema.systemMessages
-  this.define(descriptor)
+  ;(this as SchemaType).rules = null
+  ;(this as SchemaType)._messages = Schema.systemMessages
+  ;(this as SchemaType).define(descriptor)
 }
 
 /**
@@ -225,8 +216,7 @@ const asyncCallback =
 Schema.prototype = {
   messages(messages) {
     if (messages) {
-      const systemMessages = Schema.getSystemMessage() || {}
-      this._messages = deepMerge(systemMessages, messages)
+      this._messages = deepMerge(Schema.getSystemMessage(), messages)
     }
 
     return this._messages
