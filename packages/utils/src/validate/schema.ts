@@ -415,8 +415,8 @@ Schema.messages = {} as Record<string, any>
 
 Schema.systemMessages = {} as Record<string, any>
 
-Schema.getDefaultMessage = (trans?: any) => ({}) as Record<string, any>
+Schema.getDefaultMessage = () => undefined
 
-Schema.getSystemMessage = (trans?: any) => Schema.getDefaultMessage(trans)
+Schema.getSystemMessage = () => undefined
 
 export default Schema
