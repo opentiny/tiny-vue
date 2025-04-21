@@ -28,7 +28,7 @@ function createFilter(queryString) {
 function loadAll() {
   return [
     {
-      value: 'GFD 科技 YX 公司',
+      value: 'GFD 科技 YX 公司1',
       address: '福州'
     },
     {

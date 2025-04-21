@@ -29,8 +29,6 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v41
-        with:
-          files_separator: ',' # 使用逗号分隔文件列表
 
       # 根据变更的文件自动识别受影响的组件
       - name: Find changed components
@@ -39,7 +37,6 @@ jobs:
         with:
           script: |
             const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(' ').filter(file => file.trim() !== '');
-            console.log('xxxx', '${{ steps.changed-files.outputs.all_changed_files }}');
             console.log('变更的文件列表:', changedFiles);
 
             // 增强组件路径匹配规则，确保能正确识别各种路径格式
@@ -61,6 +58,12 @@ jobs:
                 pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)/, 
                 group: 1,
                 type: 'demo'
+              },
+              // 匹配 packages/theme/src/{组件名} 样式路径
+              {
+                pattern: /^packages\/theme\/src\/([^/]+)/,
+                group: 1,
+                type: 'theme'
               }
             ];
 
@@ -71,8 +74,12 @@ jobs:
 
             changedFiles.forEach(file => {
               // 跳过工作流文件等非组件相关文件
-              if (file.startsWith('.github/') || file.includes('README') || file.includes('.md')) {
-                console.log(`跳过非组件文件: ${file}`);
+              if (file.startsWith('.github/') || 
+                  file.includes('README') || 
+                  file.includes('.md') ||
+                  file.includes('theme-saas') || // 跳过theme-saas相关文件
+                  file.includes('theme/src/common/')) { // 跳过组件通用样式文件
+                console.log(`跳过非测试相关文件: ${file}`);
                 return;
               }
               
@@ -95,8 +102,43 @@ jobs:
                     };
                   }
                   detectedComponents[componentName].files.push(file);
-                  console.log(`成功匹配组件 ${componentName}: ${file}`);
+                  console.log(`成功匹配组件 ${componentName}: ${file} (类型: ${rule.type})`);
                   break; // 一个文件只匹配一个组件
+                }
+              }
+              
+              // 检查theme目录中的特殊路径格式
+              if (!matched && file.includes('/theme/src/') && !file.includes('/common/')) {
+                // 尝试从theme路径中提取组件名
+                const themePath = file.split('/');
+                // 常见的组件样式文件命名模式
+                const possibleComponentNames = [];
+                
+                for (let i = 0; i < themePath.length; i++) {
+                  // 跳过明显不是组件名的路径部分
+                  if (['src', 'lib', 'theme', 'packages'].includes(themePath[i])) {
+                    continue;
+                  }
+                  // 检查是否像是组件名（小写字母，可能包含连字符）
+                  if (/^[a-z][a-z0-9\-]*$/.test(themePath[i])) {
+                    possibleComponentNames.push(themePath[i]);
+                  }
+                }
+                
+                if (possibleComponentNames.length > 0) {
+                  // 使用最后一个可能的组件名（通常最具体）
+                  const componentName = possibleComponentNames[possibleComponentNames.length - 1];
+                  components.add(componentName);
+                  
+                  if (!detectedComponents[componentName]) {
+                    detectedComponents[componentName] = {
+                      type: 'theme',
+                      files: []
+                    };
+                  }
+                  detectedComponents[componentName].files.push(file);
+                  console.log(`通过主题样式路径分析匹配到组件 ${componentName}: ${file}`);
+                  matched = true;
                 }
               }
               
