@@ -4,106 +4,175 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
 
+# 并发控制，确保相同PR的工作流不会同时运行多个实例
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
   cancel-in-progress: true
 
 jobs:
-  parse-components:
-    name: Parse Affected Components
+  detect-changed-files:
+    name: Detect Changed Files
     runs-on: ubuntu-latest
     outputs:
-      testComponents: ${{ steps.parseTitle.outputs.testComponents }}
-      testclis: ${{ steps.parsetestCli.outputs.testClis }}
+      # 输出三个变量供后续任务使用
+      changed_components: ${{ steps.find-changed-components.outputs.changed_components }} # 自动检测到的变更组件
+      manual_components: ${{ steps.parse-title.outputs.manual_components }} # 从PR标题手动指定的组件
+      testclis: ${{ steps.parse-test-cli.outputs.testClis }} # 测试命令列表
     steps:
-      - name: Parse Title
-        id: parseTitle
+      # 检出代码，需要完整历史以便比较变更
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 获取完整的git历史，用于检测文件变更
+
+      # 使用tj-actions/changed-files获取PR中所有变更的文件
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files_separator: ',' # 使用逗号分隔文件列表
+
+      # 根据变更的文件自动识别受影响的组件
+      - name: Find changed components
+        id: find-changed-components
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',');
+
+            // 定义组件文件路径的匹配规则，用于从文件路径中提取组件名称
+            const componentPaths = [
+              { pattern: /^packages\/renderless\/src\/(.+?)\//, group: 1 }, // 逻辑层组件
+              { pattern: /^packages\/vue\/src\/(.+?)\//, group: 1 },        // Vue组件
+              { pattern: /^examples\/sites\/demos\/pc\/app\/(.+?)\//, group: 1 } // 示例组件
+            ];
+
+            // 从文件路径中提取组件名称
+            const components = new Set();
+            changedFiles.forEach(file => {
+              for (const rule of componentPaths) {
+                const match = file.match(rule.pattern);
+                if (match && match[rule.group]) {
+                  // 获取组件名，去除可能的子目录
+                  const componentName = match[rule.group].split('/')[0];
+                  components.add(componentName);
+                }
+              }
+            });
+
+            // 构建E2E测试的组件过滤器表达式
+            if (components.size > 0) {
+              // 构建符合E2E测试命令需要的过滤表达式格式
+              const componentFilters = Array.from(components)
+                .map(comp => `"\\/app\\/${comp}\\/"`)
+                .join(' ');
+              
+              console.log(`检测到变更的组件: ${Array.from(components).join(', ')}`);
+              core.setOutput('changed_components', componentFilters);
+            } else {
+              console.log('没有检测到变更的组件');
+              core.setOutput('changed_components', '');
+            }
+
+      # 从PR标题中解析手动指定的组件列表
+      - name: Parse Title for Manual Components
+        id: parse-title
         uses: actions/github-script@v6
         with:
           script: |
             const prTitle = context.payload.pull_request.title
+            // 匹配PR标题中的 [component1, component2] 格式
             const regex = /\[(.*?)\]/
             const matches = prTitle.match(regex)
             if (matches && matches.length > 1 && matches[1]) {
+              // 处理和格式化手动指定的组件列表
               let components = matches[1]
                 .split(',')
                 .map((c) => c.trim())
-                .filter((c) => /^[a-z\-\/]+$/.test(c))
+                .filter((c) => /^[a-z\-\/]+$/.test(c)) // 确保组件名符合规范
                 .map((c) => `"\\/app\\/${c}\\/"`)
-              components = [...new Set(components)].join(' ')
-              core.setOutput('testComponents', components)
+              components = [...new Set(components)].join(' ') // 去重并转为字符串
+              core.setOutput('manual_components', components)
             } else {
-              const warningString =`**[e2e-test-warn]**
-              The component to be tested is missing.
-
-              The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
-              
-              Please make sure you've read our [contributing guide](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
-              `
-              core.setOutput('tip', warningString)
-              core.warning(warningString)
+              core.setOutput('manual_components', '')
             }
-      - name: generate user-tip.txt
-        if: ${{ steps.parseTitle.outputs.tip }}
+
+      # 当没有检测到任何组件时，生成警告提示
+      - name: Generate warning if no components detected
+        id: warning
+        if: ${{ steps.find-changed-components.outputs.changed_components == '' && steps.parse-title.outputs.manual_components == '' }}
         run: |
           cat << EOF > user-tip.txt
-          ${{ steps.parseTitle.outputs.tip }}
+          **[e2e-test-warn]**
+          没有检测到要测试的组件。
+
+          系统会自动检测PR中变更的组件文件，或者您可以在PR标题中使用[component1, component2]格式手动指定要测试的组件。
+          例如: "fix(vue-renderless): [action-menu, alert] fix xxx bug"
+
+          请确保您已阅读我们的[贡献指南](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
           EOF
-      - name: Upload User Tip
-        if: ${{ steps.parseTitle.outputs.tip }}
+          echo "warning=true" >> $GITHUB_OUTPUT
+
+      # 上传警告信息作为工作流制品
+      - name: Upload warning
+        if: ${{ steps.warning.outputs.warning }}
         uses: actions/upload-artifact@v4
         with:
           name: user-tip
           path: user-tip.txt
-          retention-days: 1
-      - name: Save PR number
-        if: ${{ steps.parseTitle.outputs.tip }}
-        run: echo ${{ github.event.number }} > ./pr-id.txt
+          retention-days: 1 # 保留1天
 
-      - name: Upload PR number
-        if: ${{ steps.parseTitle.outputs.tip }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: pr
-          path: ./pr-id.txt
+      # 解析测试命令配置
       - name: Parse Test Cli
-        id: parsetestCli
+        id: parse-test-cli
         uses: actions/github-script@v6
         with:
           script: |
+            // 从GitHub变量中获取测试命令列表，如果未配置则使用默认命令
             const testClis = '${{ vars.PLAYWRIGHT_CLIS }}' ? '${{ vars.PLAYWRIGHT_CLIS }}'.split(',') : ['pnpm test:e2e3']
-            core.setOutput('testclis', JSON.stringify(testClis))
+            core.setOutput('testClis', JSON.stringify(testClis))
 
+  # PR测试任务，运行实际的E2E测试
   pr-test:
-    if: ${{ needs.parse-components.outputs.testComponents }}
+    name: PR E2E Test
+    needs: detect-changed-files # 依赖前一个任务的输出
+    runs-on: ubuntu-latest
+    # 只有当检测到变更组件或手动指定组件时才运行测试
+    if: ${{ needs.detect-changed-files.outputs.changed_components != '' || needs.detect-changed-files.outputs.manual_components != '' }}
     strategy:
       matrix:
-        testcli: ${{ fromJson(needs.parse-components.outputs.testclis) }}
-
-    name: PR E2E Test
-    needs: parse-components
-    runs-on: ubuntu-latest
+        testcli: ${{ fromJson(needs.detect-changed-files.outputs.testclis) }} # 使用矩阵策略运行多个测试命令
     env:
-      TEST_COMPONENTS: ${{ needs.parse-components.outputs.testComponents }}
+      # 合并自动检测和手动指定的组件列表
+      TEST_COMPONENTS: ${{ needs.detect-changed-files.outputs.changed_components }} ${{ needs.detect-changed-files.outputs.manual_components }}
     steps:
+      # 检出代码
       - uses: actions/checkout@v3
+
+      # 设置pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
+      # 设置Node.js环境
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      # 缓存Playwright浏览器安装，加速工作流
       - name: Cache Playwright Installation
         uses: actions/cache@v3
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      # 获取pnpm缓存目录
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
+      # 设置pnpm缓存
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -112,11 +181,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      # 安装依赖
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
 
+      # 安装Playwright浏览器
       - name: Install Playwright browsers
         run: pnpm install:browser --with-deps chromium
 
+      # 显示要测试的组件列表，便于调试
+      - name: Show detected components
+        run: |
+          echo "Testing components: $TEST_COMPONENTS"
+
+      # 运行E2E测试
       - name: E2E Test
-        run: ${{ matrix.testcli }} ${{ env.TEST_COMPONENTS }} --retries=1 --workers=2
+        run: ${{ matrix.testcli }} ${{ env.TEST_COMPONENTS }} --retries=1 --workers=2 # 带重试和并行工作进程
