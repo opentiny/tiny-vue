@@ -38,27 +38,67 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',');
+            const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',').filter(file => file.trim() !== '');
+            console.log('变更的文件列表:', changedFiles);
 
-            // 定义组件文件路径的匹配规则，用于从文件路径中提取组件名称
-            const componentPaths = [
-              { pattern: /^packages\/renderless\/src\/(.+?)\//, group: 1 }, // 逻辑层组件
-              { pattern: /^packages\/vue\/src\/(.+?)\//, group: 1 },        // Vue组件
-              { pattern: /^examples\/sites\/demos\/pc\/app\/(.+?)\//, group: 1 } // 示例组件
+            // 增强组件路径匹配规则，确保能正确识别各种路径格式
+            const componentPathRules = [
+              // 匹配 packages/renderless/src/{组件名}/ 路径
+              { 
+                pattern: /^packages\/renderless\/src\/([^/]+)(?:\/|$)/, 
+                group: 1,
+                type: 'renderless'
+              },
+              // 匹配 packages/vue/src/{组件名}/ 路径
+              { 
+                pattern: /^packages\/vue\/src\/([^/]+)(?:\/|$)/, 
+                group: 1,
+                type: 'vue'
+              },
+              // 匹配示例目录下的组件路径
+              { 
+                pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)(?:\/|$)/, 
+                group: 1,
+                type: 'demo'
+              }
             ];
 
             // 从文件路径中提取组件名称
             const components = new Set();
+            const detectedComponents = {}; // 用于记录检测到的组件和相关文件
+
             changedFiles.forEach(file => {
-              for (const rule of componentPaths) {
+              let matched = false;
+              
+              for (const rule of componentPathRules) {
                 const match = file.match(rule.pattern);
                 if (match && match[rule.group]) {
-                  // 获取组件名，去除可能的子目录
-                  const componentName = match[rule.group].split('/')[0];
+                  matched = true;
+                  const componentName = match[rule.group];
+                  
+                  // 记录找到的组件
                   components.add(componentName);
+                  
+                  // 记录组件来源和相关文件，用于调试
+                  if (!detectedComponents[componentName]) {
+                    detectedComponents[componentName] = {
+                      type: rule.type,
+                      files: []
+                    };
+                  }
+                  detectedComponents[componentName].files.push(file);
+                  break; // 一个文件只匹配一个组件
                 }
               }
+              
+              // 记录未匹配到的文件，用于调试
+              if (!matched) {
+                console.log(`未能匹配组件: ${file}`);
+              }
             });
+
+            // 打印详细的检测结果，方便调试
+            console.log('检测结果详情:', JSON.stringify(detectedComponents, null, 2));
 
             // 构建E2E测试的组件过滤器表达式
             if (components.size > 0) {
