@@ -43,21 +43,21 @@ jobs:
 
             // 增强组件路径匹配规则，确保能正确识别各种路径格式
             const componentPathRules = [
-              // 匹配 packages/renderless/src/{组件名}/ 路径
+              // 匹配 packages/renderless/src/{组件名} 路径，支持更深层次的子目录
               { 
-                pattern: /^packages\/renderless\/src\/([^/]+)(?:\/|$)/, 
+                pattern: /^packages\/renderless\/src\/([^/]+)/, 
                 group: 1,
                 type: 'renderless'
               },
-              // 匹配 packages/vue/src/{组件名}/ 路径
+              // 匹配 packages/vue/src/{组件名} 路径，支持更深层次的子目录
               { 
-                pattern: /^packages\/vue\/src\/([^/]+)(?:\/|$)/, 
+                pattern: /^packages\/vue\/src\/([^/]+)/, 
                 group: 1,
                 type: 'vue'
               },
               // 匹配示例目录下的组件路径
               { 
-                pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)(?:\/|$)/, 
+                pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)/, 
                 group: 1,
                 type: 'demo'
               }
@@ -66,8 +66,15 @@ jobs:
             // 从文件路径中提取组件名称
             const components = new Set();
             const detectedComponents = {}; // 用于记录检测到的组件和相关文件
+            const unmatchedFiles = []; // 记录未匹配的文件
 
             changedFiles.forEach(file => {
+              // 跳过工作流文件等非组件相关文件
+              if (file.startsWith('.github/') || file.includes('README') || file.includes('.md')) {
+                console.log(`跳过非组件文件: ${file}`);
+                return;
+              }
+              
               let matched = false;
               
               for (const rule of componentPathRules) {
@@ -87,18 +94,21 @@ jobs:
                     };
                   }
                   detectedComponents[componentName].files.push(file);
+                  console.log(`成功匹配组件 ${componentName}: ${file}`);
                   break; // 一个文件只匹配一个组件
                 }
               }
               
               // 记录未匹配到的文件，用于调试
               if (!matched) {
+                unmatchedFiles.push(file);
                 console.log(`未能匹配组件: ${file}`);
               }
             });
 
             // 打印详细的检测结果，方便调试
             console.log('检测结果详情:', JSON.stringify(detectedComponents, null, 2));
+            console.log('未匹配文件列表:', unmatchedFiles);
 
             // 构建E2E测试的组件过滤器表达式
             if (components.size > 0) {
