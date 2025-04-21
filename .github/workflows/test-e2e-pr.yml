@@ -39,6 +39,7 @@ jobs:
         with:
           script: |
             const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',').filter(file => file.trim() !== '');
+            console.log('xxxx', '${{ steps.changed-files.outputs.all_changed_files }}');
             console.log('变更的文件列表:', changedFiles);
 
             // 增强组件路径匹配规则，确保能正确识别各种路径格式
