@@ -17,7 +17,7 @@ import {
 describe('类型判断工具函数测试', () => {
   describe('isNull', () => {
     it('应该正确判断null和undefined', () => {
-      expect(isNull(null)).toBe(false)
+      expect(isNull(null)).toBe(true)
       expect(isNull(undefined)).toBe(true)
       expect(isNull('')).toBe(false)
       expect(isNull(0)).toBe(false)
