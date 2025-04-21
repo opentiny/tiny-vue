@@ -86,6 +86,7 @@
     "test:unit": "pnpm test:unit3",
     "test:unit2": "pnpm -C examples/vue2 test:unit",
     "test:unit3": "pnpm -C examples/vue3 test:unit",
+    "test:utils": "pnpm -C packages/utils test",
     "// ---------- e2e自动化测试 ----------": "",
     "test:e2e": "pnpm test:e2e3",
     "test:e2e2": "pnpm -C examples/vue2 test:e2e --project=chromium",
