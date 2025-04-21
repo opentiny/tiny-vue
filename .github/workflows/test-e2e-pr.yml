@@ -38,7 +38,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',').filter(file => file.trim() !== '');
+            const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(' ').filter(file => file.trim() !== '');
             console.log('xxxx', '${{ steps.changed-files.outputs.all_changed_files }}');
             console.log('变更的文件列表:', changedFiles);
 
