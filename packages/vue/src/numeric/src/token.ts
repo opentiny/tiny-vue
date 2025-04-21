@@ -1,5 +1,5 @@
 export const classes = {
-  'numeric': 'relative flex items-center w-24 h-7 text-sm bg-color-bg-1 leading-none',
+  'numeric': 'relative flex items-center w-full h-7 text-sm bg-color-bg-1 leading-none',
   'numeric_display_none': 'hidden',
   'numeric_size': 'sm:w-full sm:h-7 sm:text-sm',
   'numeric_medium': 'sm:w-full sm:h-8 sm:text-sm',
