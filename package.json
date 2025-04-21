@@ -97,7 +97,7 @@
     "format": "prettier --write --cache packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx,*.less} examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} internals/**/{*.js,*.ts}",
     "lint": "eslint \"packages/**/{*.vue,*.js,*.ts}\" --quiet --fix",
     "lint:doc": "eslint \"examples/**/{*.vue,*.js,*.ts}\" --quiet --fix",
-    "clean:build": "rimraf packages/dist2 packages/dist3 packages/dist2.7 packages/renderless/dist packages/theme/dist packages/theme-saas/dist",
+    "clean:build": "rimraf packages/dist2 packages/dist3 packages/utils/dist packages/vue-hooks/dist packages/renderless/dist packages/theme/dist packages/theme-saas/dist",
     "clean:dependencies": "rm -rf node_modules /**/node_modules",
     "prettier": "prettier --config .prettierrc --write ."
   },
