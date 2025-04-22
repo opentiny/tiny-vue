@@ -165,10 +165,7 @@ export const cmpMenus = [
       {
         'nameCn': '树形选择器',
         'name': 'TreeSelect',
-        'key': 'tree-select',
-        'meta': {
-          'experimental': '3.17.0'
-        }
+        'key': 'tree-select'
       }
     ]
   },
