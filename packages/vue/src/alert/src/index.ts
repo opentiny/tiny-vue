@@ -26,7 +26,7 @@ export const $constants = {
     info: 'ui.alert.info',
     warning: 'ui.alert.warning'
   },
-  CONTENT_MAXHEUGHT: 250
+  CONTENT_MAXHEUGHT: 252
 }
 
 export const alertProps = {
