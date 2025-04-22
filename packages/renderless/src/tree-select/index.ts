@@ -48,8 +48,7 @@ export const check =
           return {
             ...node,
             currentLabel: node[props.textField],
-            value: node[props.valueField],
-            isTree: true
+            value: node[props.valueField]
           }
         })
       )
@@ -172,8 +171,7 @@ export const mounted =
         return {
           ...node,
           currentLabel: node[props.textField],
-          value: node[props.valueField],
-          isTree: true
+          value: node[props.valueField]
         }
       })
 
@@ -234,8 +232,7 @@ export const watchValue =
         return {
           ...node,
           currentLabel: node[props.textField],
-          value: node[props.valueField],
-          isTree: true
+          value: node[props.valueField]
         }
       })
 
