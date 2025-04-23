@@ -11,7 +11,7 @@
  */
 import FormItem from './src/index'
 
-/* istanbul ignore next 测试e2e-action */
+/* istanbul ignore next */
 FormItem.install = function (Vue) {
   Vue.component(FormItem.name, FormItem)
 }
