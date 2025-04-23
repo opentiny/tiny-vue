@@ -4096,8 +4096,9 @@ interface IExportCsvOptions {
 interface IEditorConfig {
   // 内置组件名称或者自定义组件实例
   component: 'input' | 'select' | Component
-  // 传递给组件的事件集合
+  // 传递给组件的事件集合(v3.23.0开始支持)
   events?: {
+    // change、click等
     [event]: () => void
   }
   // 传递给编辑器组件的属性集合
