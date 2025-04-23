@@ -70,7 +70,6 @@ jobs:
             // 定义子组件到父组件的映射关系
             const subComponentMapping = {
               'picker': 'date-picker', // picker子组件映射到date-picker
-              'picker': 'date-picker', // picker子组件映射到date-picker
               'form-item': 'form',     // form-item子组件映射到form
               'grid-toolbar': 'grid', // grid-toolbar子组件映射到grid
               'calendar-bar': 'calendar', // calendar-bar子组件映射到calendar
@@ -105,10 +104,6 @@ jobs:
               'timeline-item': 'timeline', // timeline-item子组件映射到timeline
               'tree-node': 'tree', // tree-node子组件映射到tree
               'transfer-panel': 'transfer', // transfer-panel子组件映射到transfer
-              
-              
-              
-              // 添加更多子组件到父组件的映射
             };
 
             // 从文件路径中提取组件名称
