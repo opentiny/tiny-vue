@@ -26,7 +26,7 @@
         v-if="slots.label || label"
         :class="
           m(
-            'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5 shrink-0',
+            'py-3 sm:py-0 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5 shrink-0',
             'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
               ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-1 sm:min-h-[theme(spacing.0)]'
@@ -120,12 +120,10 @@
         <div
           :class="
             m(
-              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1 break-all',
+              'relative sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
-                : '',
-              state.formItemSize === 'small' ? 'pt-0.5' : '',
-              state.formItemSize === 'mini' ? 'pt-px' : ''
+                : ''
             )
           "
           :title="state.validateMessage"
