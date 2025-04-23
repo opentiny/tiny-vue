@@ -1016,7 +1016,8 @@ const Methods = {
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
-    let bodyW = bodyEl.clientWidth
+    // 解决缩放时会出现滚动条的问题
+    let bodyW = Math.floor(bodyEl.getBoundingClientRect().width)
     let { leftList, rightList } = columnStore
 
     // 此处操作很重要，这里会计算所有列的宽度并且计算出表格整体宽度
