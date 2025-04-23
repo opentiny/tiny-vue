@@ -59,7 +59,7 @@ let xssOptions: any = {
       header: ['class', 'style'],
       hr: ['class', 'style'],
       i: ['class', 'style', 'data-image-id', 'data-image'],
-      img: ['class', 'style', 'devui-editorx-image', 'style', 'data-image-id', 'src'],
+      img: ['class', 'style', 'data-image-id', 'src'],
       input: ['class', 'style', 'data-formula', 'data-link', 'data-video'],
       ins: ['class', 'style'],
       li: ['class', 'style'],
