@@ -67,6 +67,45 @@ jobs:
               }
             ];
 
+            // 定义子组件到父组件的映射关系
+            const subComponentMapping = {
+              'picker': 'date-picker', // picker子组件映射到date-picker
+              'form-item': 'form',     // form-item子组件映射到form
+              'grid-toolbar': 'grid', // grid-toolbar子组件映射到grid
+              'calendar-bar': 'calendar', // calendar-bar子组件映射到calendar
+              'carousel-item': 'carousel', // carousel-item子组件映射到carousel,
+              'cascader-menu': 'cascader', // cascader-menu子组件映射到cascader
+              'cascader-node': 'cascader', // cascader-node子组件映射到cascader
+              'cascader-panel': 'cascader', // cascader-panel子组件映射到cascader
+              'checkbox-button': 'checkbox', // checkbox-button子组件映射到checkbox
+              'checkbox-group': 'checkbox', // checkbox-group子组件映射到checkbox
+              'radio-button': 'radio', // radio-button子组件映射到radio
+              'radio-group': 'radio', // radio-group子组件映射到radio,
+              'collapse-item': 'collapse', // collapse-item子组件映射到collapse
+              'date-range': 'date-picker', // date-range子组件映射到date-picker
+              'date-table': 'date-picker', // date-table子组件映射到date-picker
+              'month-range': 'date-picker', // month-range子组件映射到date-picker
+              'month-table': 'date-picker', // month-table子组件映射到date-picker
+              'quarter-panel': 'date-picker', // quarter-panel子组件映射到date-picker
+              'year-range': 'date-picker', // year-range子组件映射到date-picker
+              'year-table': 'date-picker', // year-table子组件映射到date-picker
+              'dropdown-item': 'dropdown', // dropdown-item子组件映射到dropdown
+              'dropdown-menu': 'dropdown', // dropdown-menu子组件映射到dropdown
+              'image-viewer': 'image', // image-viewer子组件映射到image
+              'option': 'select', // option子组件映射到select
+              'option-group': 'select', // option-group子组件映射到select
+              'select-dropdown': 'select', // select-dropdown子组件映射到select
+              'pager-item': 'pager', // pager-item子组件映射到pager
+              'skeleton-item': 'skeleton', // skeleton-item子组件映射到skeleton
+              'tab-item': 'tabs', // tab-item子组件映射到tabs
+              'time-range': 'time-picker', // time-range子组件映射到time-picker
+              'time-panel': 'time-picker', // time-panel子组件映射到time-picker
+              'time-spinner': 'time-picker', // time-spinner子组件映射到time-picker
+              'timeline-item': 'timeline', // timeline-item子组件映射到timeline
+              'tree-node': 'tree', // tree-node子组件映射到tree
+              'transfer-panel': 'transfer', // transfer-panel子组件映射到transfer
+            };
+
             // 从文件路径中提取组件名称
             const components = new Set();
             const detectedComponents = {}; // 用于记录检测到的组件和相关文件
@@ -89,7 +128,13 @@ jobs:
                 const match = file.match(rule.pattern);
                 if (match && match[rule.group]) {
                   matched = true;
-                  const componentName = match[rule.group];
+                  let componentName = match[rule.group];
+                  
+                  // 检查是否是需要映射的子组件
+                  if (subComponentMapping[componentName]) {
+                    console.log(`检测到子组件 ${componentName}，映射到父组件 ${subComponentMapping[componentName]}`);
+                    componentName = subComponentMapping[componentName];
+                  }
                   
                   // 记录找到的组件
                   components.add(componentName);
@@ -127,7 +172,14 @@ jobs:
                 
                 if (possibleComponentNames.length > 0) {
                   // 使用最后一个可能的组件名（通常最具体）
-                  const componentName = possibleComponentNames[possibleComponentNames.length - 1];
+                  let componentName = possibleComponentNames[possibleComponentNames.length - 1];
+                  
+                  // 检查是否是需要映射的子组件
+                  if (subComponentMapping[componentName]) {
+                    console.log(`检测到子组件 ${componentName}，映射到父组件 ${subComponentMapping[componentName]}`);
+                    componentName = subComponentMapping[componentName];
+                  }
+                  
                   components.add(componentName);
                   
                   if (!detectedComponents[componentName]) {
