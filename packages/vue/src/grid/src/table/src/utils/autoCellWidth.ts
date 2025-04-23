@@ -1,22 +1,22 @@
 /**
  * 处理自适应列宽的函数
- * @param autoArr - 需要自适应的列数组
+ * @param autoList - 需要自适应的列数组
  * @param meanWidth - 平均宽度
  * @param minCellWidth - 最小单元格宽度
  * @param tableWidth - 表格总宽度
  * @param fit - 是否需要填充满容器
  * @param bodyWidth - 表格容器宽度
  */
-const adaptive = ({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth }) => {
-  autoArr.forEach((column, index) => {
-    let width = Math.max(meanWidth, minCellWidth)
+const adaptive = ({ autoList, meanWidth, minCellWidth, tableWidth, fit, bodyWidth }) => {
+  autoList.forEach((column, index) => {
+    const width = Math.max(meanWidth, minCellWidth)
 
     column.renderWidth = width
     tableWidth += width
 
-    if (fit && index === autoArr.length - 1) {
+    if (fit && index === autoList.length - 1) {
       // 如果所有列足够放的情况下，修补列之间的误差
-      let odiffer = bodyWidth - tableWidth
+      const odiffer = bodyWidth - tableWidth
 
       if (odiffer > 0) {
         column.renderWidth += odiffer
@@ -39,52 +39,52 @@ const initTableWidth = ({ remainWidth, columnStore }) => {
   let tableWidth = 0
 
   // 从columnStore中解构出不同类型的列数组:
-  // resizeArr - 用户手动调整过宽度的列
-  // pxMinArr - 设置了最小像素宽度(min-width="100px")的列
-  // pxArr - 设置了固定像素宽度(width="100px")的列
-  let { resizeList: resizeArr, pxMinList: pxMinArr, pxList: pxArr } = columnStore
+  // resizeList - 用户手动调整过宽度的列
+  // pxMinList - 设置了最小像素宽度(min-width="100px")的列
+  // pxList - 设置了固定像素宽度(width="100px")的列
+  const { resizeList, pxMinList, pxList } = columnStore
 
-  // scaleArr - 设置了百分比宽度(width="20%")的列
+  // scaleList - 设置了百分比宽度(width="20%")的列
   // scaleMinArr - 设置了最小百分比宽度(min-width="20%")的列
-  let { scaleList: scaleArr, scaleMinList: scaleMinArr } = columnStore
+  const { scaleList, scaleMinList } = columnStore
 
   // 1. 首先处理设置了最小像素宽度的列
   // 这些列的宽度不能小于设定的最小宽度
-  pxMinArr.forEach((column) => {
-    let minWidth = parseInt(column.minWidth)
+  pxMinList.forEach((column) => {
+    const minWidth = parseInt(column.minWidth)
     tableWidth += minWidth
     column.renderWidth = minWidth
   })
 
   // 计算1%宽度对应的像素值,用于处理百分比宽度
-  let meanWidth = remainWidth / 100
+  const meanWidth = remainWidth / 100
 
   // 2. 处理设置了最小百分比宽度的列
   // 将百分比转换为实际像素值
-  scaleMinArr.forEach((column) => {
-    let scaleWidth = Math.floor(parseInt(column.minWidth) * meanWidth)
+  scaleMinList.forEach((column) => {
+    const scaleWidth = Math.floor(parseInt(column.minWidth) * meanWidth)
     tableWidth += scaleWidth
     column.renderWidth = scaleWidth
   })
 
   // 3. 处理设置了固定百分比宽度的列
-  scaleArr.forEach((column) => {
-    let scaleWidth = Math.floor(parseInt(column.width) * meanWidth)
+  scaleList.forEach((column) => {
+    const scaleWidth = Math.floor(parseInt(column.width) * meanWidth)
     tableWidth += scaleWidth
     column.renderWidth = scaleWidth
   })
 
   // 4. 处理设置了固定像素宽度的列
-  pxArr.forEach((column) => {
-    let width = parseInt(column.width)
+  pxList.forEach((column) => {
+    const width = parseInt(column.width)
     tableWidth += width
     column.renderWidth = width
   })
 
   // 5. 最后处理用户手动调整过宽度的列
   // 这些列的宽度优先级最高
-  resizeArr.forEach((column) => {
-    let width = parseInt(column.resizeWidth)
+  resizeList.forEach((column) => {
+    const width = parseInt(column.resizeWidth)
     tableWidth += width
     column.renderWidth = width
   })
@@ -107,21 +107,21 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth }) =>
   // 初始化表格宽度和平均宽度
   let { tableWidth, meanWidth } = initTableWidth({ remainWidth: bodyWidth, columnStore })
   // 获取最小像素宽度列、最小百分比宽度列和自适应列
-  let { pxMinList: pxMinArr, scaleMinList: scaleMinArr, autoList: autoArr } = columnStore
+  let { pxMinList, scaleMinList, autoList } = columnStore
 
   // 计算剩余可用宽度
   const remainWidth = bodyWidth - tableWidth
   // 计算每列平均可分配宽度
   // 如果有剩余宽度,则平均分配给最小宽度列和自适应列
   // 如果没有剩余宽度,则为0
-  meanWidth = remainWidth > 0 ? Math.floor(remainWidth / (scaleMinArr.length + pxMinArr.length + autoArr.length)) : 0
+  meanWidth = remainWidth > 0 ? Math.floor(remainWidth / (scaleMinList.length + pxMinList.length + autoList.length)) : 0
 
   // 如果需要填充满容器
   if (fit) {
     // 如果有剩余宽度
     if (remainWidth > 0) {
       // 将剩余宽度平均分配给最小百分比宽度列和最小像素宽度列
-      scaleMinArr.concat(pxMinArr).forEach((column) => {
+      scaleMinList.concat(pxMinList).forEach((column) => {
         tableWidth += meanWidth
         column.renderWidth += meanWidth
       })
@@ -132,7 +132,7 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth }) =>
   }
 
   // 处理自适应列的宽度
-  tableWidth = adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
+  tableWidth = adaptive({ autoList, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
 
   // 计算处理完自适应列后与容器的剩余空间
   const remainingSpace = bodyWidth - tableWidth
@@ -141,8 +141,8 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth }) =>
   if (fit && remainingSpace > 0) {
     // 将剩余空间以1px为单位分配给最小百分比宽度列和最小像素宽度列
     // 分配数量不超过剩余空间大小
-    scaleMinArr
-      .concat(pxMinArr)
+    scaleMinList
+      .concat(pxMinList)
       .slice(0, remainingSpace)
       .forEach((column) => {
         tableWidth += 1
