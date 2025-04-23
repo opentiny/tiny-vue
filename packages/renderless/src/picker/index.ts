@@ -6,7 +6,7 @@
  *
  * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
  * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS. 测试e2e-action
  *
  */
 
@@ -1057,15 +1057,15 @@ export const handlePick =
     if (!state.picker) return
 
     if (chooseOne) {
-      const minDate = date && date[0] || ''
+      const minDate = (date && date[0]) || ''
 
       state.userInput = [api.formatToString(minDate), null]
     } else {
       state.userInput = null
       state.pickerVisible = state.picker.state.visible = visible
-  
+
       api.emitInput(date, visible)
-  
+
       state.date = date
       state.picker.resetView && state.picker.resetView()
     }
