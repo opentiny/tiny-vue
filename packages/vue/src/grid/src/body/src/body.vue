@@ -25,7 +25,12 @@
     >
       <!-- 列宽设置 -->
       <colgroup ref="colgroup">
-        <col v-for="(column, columnIndex) in tableColumn" :key="columnIndex" :name="column.id" />
+        <col
+          v-for="(column, columnIndex) in tableColumn"
+          :key="columnIndex"
+          :width="column.renderWidth"
+          :name="column.id"
+        />
       </colgroup>
 
       <!-- 表格内容 -->
@@ -248,20 +253,9 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { $prefix, defineComponent, hooks } from '@opentiny/vue-common'
-import { isObject, isNull, isFunction, removeClass, addClass } from '@opentiny/utils'
-import { isBoolean, find } from '@opentiny/vue-renderless/grid/static'
-import {
-  updateCellTitle,
-  emitEvent,
-  getClass,
-  getFuncText,
-  getRowid,
-  formatText,
-  getOffsetPos
-} from '@opentiny/vue-renderless/grid/utils'
-import { getCellLabel } from '../../tools'
+import { updateCellTitle, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import GlobalConfig from '../../config'
-import { handleRowGroupFold, getTreeChildrenKey, getTreeShowKey, isVirtualRow } from '../../table/src/strategy'
+import { handleRowGroupFold } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 import type { TableColumn, TableRow, TableConfig, EventParams, GridBodyInstance } from './types'
 

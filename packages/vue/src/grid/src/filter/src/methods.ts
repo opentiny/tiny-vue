@@ -287,7 +287,7 @@ export default {
 
     this.closeFilter()
     this.clearSelection()
-    this.$nextTick().then(this.recalculate).then(restoreScrollLeft)
+    this.$nextTick().then(restoreScrollLeft)
   },
   clearFilter(field) {
     let column = arguments.length ? this.getColumnByField(field) : null

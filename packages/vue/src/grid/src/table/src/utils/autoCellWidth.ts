@@ -1,29 +1,4 @@
 /**
- * MIT License
- *
- * Copyright (c) 2019 Xu Liangzhan
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- */
-
-/**
  * 处理自适应列宽的函数
  * @param autoArr - 需要自适应的列数组
  * @param meanWidth - 平均宽度
@@ -126,17 +101,16 @@ const initTableWidth = ({ remainWidth, columnStore }) => {
  * @param columnStore - 列配置存储对象
  * @param fit - 是否需要填充满容器
  * @param minCellWidth - 最小单元格宽度
- * @param remainWidth - 剩余可用宽度
  * @returns {number} 返回计算后的表格总宽度
  */
-export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, remainWidth }) => {
+export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth }) => {
   // 初始化表格宽度和平均宽度
-  let { tableWidth, meanWidth } = initTableWidth({ remainWidth, columnStore })
+  let { tableWidth, meanWidth } = initTableWidth({ remainWidth: bodyWidth, columnStore })
   // 获取最小像素宽度列、最小百分比宽度列和自适应列
   let { pxMinList: pxMinArr, scaleMinList: scaleMinArr, autoList: autoArr } = columnStore
 
   // 计算剩余可用宽度
-  remainWidth -= tableWidth
+  const remainWidth = bodyWidth - tableWidth
   // 计算每列平均可分配宽度
   // 如果有剩余宽度,则平均分配给最小宽度列和自适应列
   // 如果没有剩余宽度,则为0

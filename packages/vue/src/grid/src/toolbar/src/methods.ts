@@ -151,7 +151,6 @@ export default {
   handleFullScreen([show]) {
     this.fullScreenClass = show ? 'tiny-fullscreen-full' : ''
     this.$nextTick(() => {
-      this.recalculate(true)
       emitEvent(this, 'fullscreen', show) // 触发正常vue监听的事件比如@fullscreen
       this.emitter.emit('fullscreen', show) // 触发配置式监听的事件
     })

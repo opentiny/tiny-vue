@@ -1,5 +1,5 @@
 <template>
-  <div :class="tableClasses" :style="tableStyles">
+  <div :class="tableClasses" ref="tableContainer" :style="tableStyles">
     <!-- 隐藏列容器 - 用于存放列组件以便收集列信息 -->
     <div class="tiny-grid-hidden-column" ref="hideColumn">
       <slot></slot>
@@ -8,8 +8,15 @@
     <!-- 表头组件 -->
     <grid-header v-if="showHeader" ref="tableHeader" v-bind="headerProps" :class="viewCls('tableHeader')" />
 
+    <!-- 加载中遮罩 -->
+    <grid-loading
+      :visible="loading"
+      v-if="!isMounted"
+      :loading-component="loadingComponent"
+      :class="viewCls('gridLoading')"
+    />
     <!-- 表格主体区域 -->
-    <grid-body ref="tableBody" v-bind="bodyProps" :class="viewCls('tableBody')" />
+    <grid-body v-else ref="tableBody" v-bind="bodyProps" :class="viewCls('tableBody')" />
 
     <!-- 表尾合计区域 -->
     <grid-footer v-if="showFooter" ref="tableFooter" v-bind="footerProps" :class="viewCls('tableFooter')" />
@@ -24,9 +31,6 @@
       :class="['tiny-grid__resizable-bar', viewCls('resizeBar')]"
       :style="resizeBarStyle"
     />
-
-    <!-- 加载中遮罩 -->
-    <grid-loading :visible="loading" :loading-component="loadingComponent" :class="viewCls('gridLoading')" />
 
     <!-- 插件包装器容器 -->
     <div :class="`tiny-grid${id}-wrapper ${staticClass}`" ref="tableWrapper">
@@ -87,6 +91,7 @@ import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import methods from './methods'
 import { useDrag, useRowGroup } from '../../composable'
+import { calcTableWidth } from './utils/autoCellWidth'
 
 // 导入全局配置常量
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
@@ -475,7 +480,7 @@ export default defineComponent({
   },
 
   // 组件逻辑设置
-  setup(props, { slots, attrs, listeners }) {
+  setup(props, { attrs, listeners }) {
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
     const cellStatus = hooks.ref(new Map())
@@ -988,9 +993,7 @@ export default defineComponent({
 
     hooks.watch(
       () => props.height,
-      () => {
-        instance.recalculate()
-      }
+      () => {}
     )
 
     // 监听列配置变化
@@ -1020,9 +1023,7 @@ export default defineComponent({
 
     hooks.watch(
       () => parentHeight.value,
-      () => {
-        instance.recalculate()
-      }
+      () => {}
     )
 
     if (isVue2) {
@@ -1136,6 +1137,22 @@ export default defineComponent({
 
     // 初始化列
     initColumns()
+
+    const isMounted = hooks.ref(false)
+
+    hooks.onMounted(() => {
+      // 在表格外层容器挂载完成和列配置收集完成之后再去渲染body
+      setTimeout(() => {
+        const tableWidth = instance.$refs.tableContainer.getBoundingClientRect().width
+        calcTableWidth({
+          bodyWidth: tableWidth,
+          columnStore: columnStore.value,
+          fit: true,
+          minCellWidth: 72
+        })
+        isMounted.value = true
+      })
+    })
 
     // 挂载后处理
     hooks.nextTick().then(() => {
@@ -1262,7 +1279,8 @@ export default defineComponent({
       staticClass,
       emptyText,
       sortOpts,
-      columnNames
+      columnNames,
+      isMounted
     }
   }
 })

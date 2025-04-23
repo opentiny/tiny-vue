@@ -542,7 +542,7 @@ const handleRowGroupFold = (row, _vm) => {
   }
 
   _vm.groupFullData = copy
-  _vm.handleTableData().then(_vm.recalculate)
+  _vm.handleTableData()
 }
 
 export {

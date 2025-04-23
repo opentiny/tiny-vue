@@ -265,9 +265,7 @@ const Methods = {
    * @returns {Promise} 更新完成后的Promise
    */
   updateData() {
-    return this.handleTableData(true)
-      .then(() => this.updateFooter())
-      .then(() => this.recalculate())
+    return this.handleTableData(true).then(() => this.updateFooter())
   },
 
   /**
@@ -332,9 +330,6 @@ const Methods = {
     this.reserveCheckSelection()
     this.checkSelectionStatus()
 
-    // 定义第一个处理函数：如果不是notRefresh模式，则重新计算表格尺寸和布局
-    let first = () => !notRefresh && this.recalculate()
-
     // 定义第二个处理函数：尝试恢复滚动位置
     let second = () => {
       // 让表格滚动条滚动到最后一次滚动到的位置
@@ -348,7 +343,7 @@ const Methods = {
     }
 
     // 链式执行两个处理函数
-    return this.$nextTick().then(first).then(second)
+    return this.$nextTick().then(second)
   },
 
   /**
@@ -869,7 +864,6 @@ const Methods = {
     this.expandConfig && this.handleDefaultRowExpand()
     this.treeConfig && this.handleDefaultTreeExpand()
     this.updateFooter()
-    this.$nextTick(() => setTimeout(this.recalculate))
   },
   // 动态列处理
   mergeCustomColumn(customColumns, sort, colWidth) {
@@ -1057,7 +1051,6 @@ const Methods = {
     return this.$nextTick()
       .then(() => {
         this.updateFooter()
-        this.recalculate()
       })
       .then(() => {
         // 在列初始化、列动态改变后都会抛出
@@ -1215,20 +1208,14 @@ const Methods = {
       generateFixedClassName({ $table: this, bodyElem: bodyEl, leftList, rightList })
     }
   },
-  // 同步headerHeight
-  syncHeaderHeight() {
-    let headerEl = this.$refs.tableHeader?.$el
-    if (headerEl) this.headerHeight = headerEl.offsetHeight
-  },
   resetResizable() {
     const toolbarVm = this.getVm('toolbar')
     this.visibleColumn.forEach((col) => (col.resizeWidth = 0))
     if (toolbarVm) {
       toolbarVm.resetResizable()
     }
-    this.analyColumnWidth()
 
-    return this.recalculate()
+    return this.analyColumnWidth()
   },
   updateStyle() {
     let { columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn, scrollbarWidth } = this
@@ -1258,8 +1245,6 @@ const Methods = {
       minHeight = ret.minHeight
     })
     currentRow && this.setCurrentRow(currentRow)
-    // Fixed issue #129
-    this.syncHeaderHeight()
     return this.$nextTick(() => {
       const { leftList, rightList } = columnStore
       // 只有在虚拟滚动+冻结列同时存在的情况下才重新计算冻结列位置
@@ -1566,7 +1551,7 @@ const Methods = {
   },
   setAllRowExpansion(expanded) {
     this.expandeds = !expanded ? [] : this.tableFullData.slice(0)
-    return this.$nextTick().then(this.recalculate)
+    return this.$nextTick()
   },
   // 设置展开行，二个参数设置这一行展开与否；支持单行；支持多行
   setRowExpansion(rows, expanded) {
@@ -1580,7 +1565,7 @@ const Methods = {
     let isAccordionCloseAll = false
 
     if (!rows) {
-      return this.$nextTick().then(this.recalculate)
+      return this.$nextTick()
     }
     if (!Array.isArray(rows)) {
       rows = [rows]
@@ -1609,7 +1594,7 @@ const Methods = {
         expandeds.push(row)
       }
     })
-    return this.$nextTick().then(this.recalculate)
+    return this.$nextTick()
   },
   hasRowExpand(row) {
     return ~this.expandeds.indexOf(row)
@@ -1617,7 +1602,7 @@ const Methods = {
   clearRowExpand() {
     let hasExpand = this.expandeds.length
     this.expandeds = []
-    return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
+    return this.$nextTick()
   },
   // 获取虚拟滚动状态
   getVirtualScroller() {
@@ -2215,7 +2200,6 @@ const Methods = {
     if (visible) {
       // 可见时更新高度和布局
       this.updateParentHeight()
-      this.recalculate()
     }
 
     // 触发可见性变化事件

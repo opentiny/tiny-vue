@@ -71,7 +71,7 @@ export default {
 
     setTreeScrollYCache(this)
 
-    return this.$nextTick().then(this.recalculate)
+    return this.$nextTick()
   },
   // 设置展开树形节点，二个参数设置这一行展开与否：支持单行，支持多行
   setTreeExpansion(rows, expanded) {
@@ -79,7 +79,7 @@ export default {
     let { accordion, children } = treeConfig
     let isToggle = arguments.length === 1
     if (!rows) {
-      return this.$nextTick().then(this.recalculate)
+      return this.$nextTick()
     }
     if (!isArray(rows)) {
       rows = [rows]
@@ -112,7 +112,7 @@ export default {
 
     setTreeScrollYCache(this)
 
-    return this.$nextTick().then(this.recalculate)
+    return this.$nextTick()
   },
   hasTreeExpand(row) {
     return ~this.treeExpandeds.indexOf(row)
@@ -121,7 +121,7 @@ export default {
     const hasExpand = this.treeExpandeds.length
     this.treeExpandeds = []
     setTreeScrollYCache(this)
-    return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
+    return this.$nextTick()
   },
   getTreeExpandeds() {
     return this.treeExpandeds

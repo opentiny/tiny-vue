@@ -378,5 +378,4 @@ export function handleGlobalKeydownEvent(event) {
 export function handleGlobalResizeEvent() {
   // 窗口resize后，调用recalculate父容器高度还是初始值，需要update一下
   this.updateParentHeight()
-  this.recalculate()
 }

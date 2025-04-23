@@ -333,8 +333,6 @@ export default {
         validTip.setExpectedState(true)
 
         this.activateTooltipValid(validTip)
-      } else if (isMessageInline) {
-        this.$nextTick(() => this.recalculate())
       }
 
       emitEvent(this, 'valid-error', [params])

@@ -29,7 +29,6 @@ export default {
   bindResize() {
     const resizeObserver = new Resize(() => {
       this.updateParentHeight()
-      this.recalculate()
     }, GlobalConfig.resizeInterval)
 
     const parentElem = this.getParentElem()

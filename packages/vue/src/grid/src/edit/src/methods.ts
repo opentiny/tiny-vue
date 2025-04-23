@@ -168,7 +168,6 @@ export default {
       rows: newRecords
     }
     return this.$nextTick().then(() => {
-      this.recalculate()
       return res
     })
   },
@@ -249,7 +248,6 @@ export default {
     }
 
     return this.$nextTick().then(() => {
-      this.recalculate()
       return res
     })
   },
@@ -414,11 +412,11 @@ export default {
     let isActived = row || column
 
     if (isActived && editConfig.mode === 'row') {
-      tableColumn.forEach((column) => this._setColumnModel(row, column))
+      tableColumn.forEach((column) => this.setColumnModel(row, column))
     }
 
     if (isActived && editConfig.mode !== 'row') {
-      this._setColumnModel(row, column)
+      this.setColumnModel(row, column)
     }
 
     if (isActived) {
@@ -439,7 +437,7 @@ export default {
     actived.column = null
     actived.row = null
 
-    return this.clearValidate().then(this.recalculate)
+    return this.clearValidate()
   },
   hasActiveRow(row) {
     return this.editStore.actived.row === row

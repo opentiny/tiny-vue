@@ -300,7 +300,7 @@ export default defineComponent({
     viewType(value) {
       // 在全屏状态下切换到表格视图时额外刷新一次表格布局，解决此场景下列宽未自动撑开问题
       if (value === V_MF && this.fullScreenClass) {
-        this.$nextTick(() => this.recalculate(true))
+        // this.$nextTick(() => this.recalculate(true))
       }
     }
   },
