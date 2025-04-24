@@ -349,6 +349,8 @@ export const setCheckedOnMounted =
   ({ props, vm, Tree }) =>
   () => {
     if (props.render && props.render.plugin.name === Tree) {
-      vm.$refs.leftPanel?.$refs?.plugin?.setCheckedKeys(props.modelValue)
+      setTimeout(() => {
+        vm.$refs.leftPanel?.$refs?.plugin?.setCheckedKeys(props.modelValue)
+      }, 50)
     }
   }
