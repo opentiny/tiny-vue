@@ -68,27 +68,29 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    input:not([type='radio']) {
-      border: 1px solid var(--tv-Grid-input-border-color);
-      border-radius: var(--tv-Grid-input-border-radius);
-      color: var(--tv-Grid-input-text-color);
-      background-color: var(--tv-Grid-input-bg-color);
-      font-size: var(--tv-Grid-input-font-size);
-      height: var(--tv-Grid-input-height);
-      line-height: var(--tv-Grid-input-height);
-      padding: var(--tv-Grid-input-padding-x) var(--tv-Grid-input-padding-y);
-      outline: 0;
-      display: inline-block;
-      box-sizing: border-box;
-      appearance: none;
-      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      margin-right: 24px;
-
-      &:hover,
-      &:focus,
-      &:active {
+    input {
+      &:not([type='radio'], [class*='tiny-']) {
+        border: 1px solid var(--tv-Grid-input-border-color);
+        border-radius: var(--tv-Grid-input-border-radius);
+        color: var(--tv-Grid-input-text-color);
+        background-color: var(--tv-Grid-input-bg-color);
+        font-size: var(--tv-Grid-input-font-size);
+        height: var(--tv-Grid-input-height);
+        line-height: var(--tv-Grid-input-height);
+        padding: var(--tv-Grid-input-padding-x) var(--tv-Grid-input-padding-y);
         outline: 0;
-        border-color: var(--tv-Grid-input-border-color-hover);
+        display: inline-block;
+        box-sizing: border-box;
+        appearance: none;
+        transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        margin-right: 24px;
+
+        &:hover,
+        &:focus,
+        &:active {
+          outline: 0;
+          border-color: var(--tv-Grid-input-border-color-hover);
+        }
       }
     }
 
@@ -110,8 +112,6 @@
         border-color: var(--tv-Grid-button-border-color-active-default);
       }
     }
-
-
 
     .@{grid-prefix-cls}__filter-panel {
       margin: 0;
@@ -239,7 +239,7 @@
               max-width: 80%;
             }
 
-            &+.@{grid-radio-prefix-cls} {
+            & + .@{grid-radio-prefix-cls} {
               margin-left: 0;
             }
 
@@ -274,7 +274,7 @@
       }
     }
 
-    .filter-option__input>input {
+    .filter-option__input > input {
       width: 100%;
       border: solid 1px var(--tv-Grid-border-color);
       border-radius: var(--tv-Grid-filter-input-border-radius);
