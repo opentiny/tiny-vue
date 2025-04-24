@@ -166,7 +166,7 @@ export default defineComponent({
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
                         {addWrapper ? (
-                          <div style={`overflow:auto;max-height:${this.contentMaxHeight}`}>{content}</div>
+                          <div class={`leading-5`} style={`overflow:auto;max-height:${this.contentMaxHeight}`}>{content}</div>
                         ) : (
                           content
                         )}

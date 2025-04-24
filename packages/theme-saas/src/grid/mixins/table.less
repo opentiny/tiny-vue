@@ -33,7 +33,7 @@
   &:not(.col__actived) {
     .@{grid-cell-prefix-cls} {
       .TextEllipsis();
-      @apply leading-normal;
+      line-height: 1.375rem;
       // 表头布局从block改为了flex，此处兼容插槽文本溢出不显示省略号问题
       &:not(:has(.tiny-grid-cell-text)) > span:only-of-type:not(.@{grid-cell-prefix}__expanded) {
         @apply text-ellipsis;
