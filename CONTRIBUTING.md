@@ -57,17 +57,15 @@ The commit message should be in the form of a `type(scope): description of the m
 
 1. The specification of the title is the same as the commit information, which is entered in the form of `type(scope): description information`.
 
-2. **e2e test** of trigger components: Adding '[componentName1, componentName2]' to the Pull Request title will execute test cases for componentName1, componentName2, and declare this structure when changes to code affect components.
+2. Trigger component **e2e test**: CI will automatically trigger the test cases of the corresponding components according to the files modified by the PR. If you need to manually trigger the test of a specific component, you can add the component name in the format of `[componentName1, componentName2]` in the Pull Request title, and the system will execute the test cases of these specified components.
 
-   - Note: The `github action` in this project identifies test e2e use cases to be executed by matching the component names declared by `[componentName1, componentName2]` with the path names in the `examples/sites/demos` directory. (Because running the full test case is too time consuming)
-
-   - When modifying a sub-component of a component, such as the `col` component, which has no corresponding examples and test cases, the `layout` component should be tested, because the `col` component is a sub-component of the `layout` component. The PR title can be: `fix(col): [layout] xxxxxxxxxxxxxx`
+- Note: The `github action` under this project will use the component name declared by `[componentName1, componentName2]` to match the path name under the `examples/sites/demos` directory to identify the test e2e cases to be executed. (Because running all test cases is too time-consuming)
 
 3. Example title:
 
-- Supplement alert component document: `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-- Supplement alert component test case: `test(alert): [alert] xxxxxxxxxxxxxx`
-- Fixed bug in alert component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+- Added alert component documentation: `docs(alert): xxxxxxxxxxxxxxx`, `docs(site):xxxxxxxxxxxxxxx`
+- Added alert component test cases: `test(alert): xxxxxxxxxxxxxx`
+- Fixed the defect of alert component @opentiny/vue-renderless (manually trigger e2e test cases): `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxxx`
 
 #### Pull Request Description
 

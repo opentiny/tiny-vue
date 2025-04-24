@@ -57,17 +57,15 @@ commit 信息要以 `type(scope): 描述信息` 的形式填写，例如 `fix(vu
 
 1. 标题的规范与 commit 信息一样，以`type(scope): 描述信息` 的形式填写。
 
-2. 触发组件的 **e2e 测试**: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+2. 触发组件的 **e2e 测试**: CI 会自动根据 PR 修改的文件来触发相应组件的测试用例。如果需要手动触发特定组件的测试，可以在 Pull Request 标题中添加 `[componentName1, componentName2]` 格式的组件名称，系统将会执行这些指定组件的测试用例。
 
    - 注：本项目下的 `github action` 会用`[componentName1, componentName2]`声明的组件名匹配 `examples/sites/demos` 目录下的路径名称，识别要执行的测试e2e用例。（因为全量跑测试用例太耗费时间）
 
-   - 当修改了某个组件的子组件，比如`col`组件，它本身没有对应的示例以及测试用例，这时应该要测试的是`layout`组件，因为`col`组件是`layout`组件的子组件，PR 标题可以这样： `fix(col): [layout] xxxxxxxxxxxxxx`
-
 3. 标题示例:
 
-- 补充 alert 组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-- 补充 alert 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
-- 修复 alert 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+- 补充 alert 组件文档： `docs(alert): xxxxxxxxxxxxxxx`, `docs(site):xxxxxxxxxxxxxxx`
+- 补充 alert 组件测试用例: `test(alert): xxxxxxxxxxxxxx`
+- 修复 alert 组件 @opentiny/vue-renderless 下的缺陷（手动触发 e2e 测试用例）: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
 #### Pull Request 的描述
 
