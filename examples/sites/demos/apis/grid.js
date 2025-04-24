@@ -3544,6 +3544,9 @@ interface IDropConfig {
   filter?: string
   // 如果变动了树层级，可以指定是否需要刷新数据
   refresh?: boolean
+  // 配置 filter 时，设置为 false 可以允许输入框正常聚焦
+  preventOnFilter?: boolean
+  // 更多其余参数请参考 sortablejs 插件配置
   }
       `
     },

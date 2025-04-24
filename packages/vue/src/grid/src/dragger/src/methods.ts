@@ -8,6 +8,7 @@ export default {
     const columnDropContainer = headerEl.querySelector('.tiny-grid__header .tiny-grid-header__row')
 
     const columnDropOptions = {
+      ...this.dropConfig,
       handle: '.tiny-grid-header__column:not(.col__fixed)',
       filter,
       onEnd: (event) => {
@@ -76,6 +77,7 @@ export default {
       handle = '.tiny-grid-body__row>td.col__index>.row__drop-handle'
     }
     const rowDropOptions = {
+      ...this.dropConfig,
       handle,
       filter,
       onEnd: createHandlerOnEnd({ _vm: this, refresh }),
