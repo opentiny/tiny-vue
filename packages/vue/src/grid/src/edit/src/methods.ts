@@ -50,9 +50,9 @@ import {
 
 function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData }) {
   if (row === -1) {
-    Array.prototype.push.apply(nowData, newRecords)
-    Array.prototype.push.apply(tableFullData, newRecords)
-    Array.prototype.push.apply(tableSourceData, newRecordsCopy)
+    nowData.push(...newRecords)
+    tableFullData.push(...newRecords)
+    tableSourceData.push(...newRecordsCopy)
   }
 
   if (row && row !== -1) {
@@ -64,19 +64,19 @@ function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, ta
 
     let insertIndex = tableFullData.indexOf(row)
 
-    Array.prototype.splice.apply(nowData, [targetIndex, 0].concat(newRecords))
-    Array.prototype.splice.apply(tableFullData, [insertIndex, 0].concat(newRecords))
-    Array.prototype.splice.apply(tableSourceData, [insertIndex, 0].concat(newRecordsCopy))
+    nowData.splice(targetIndex, 0, ...newRecords)
+    tableFullData.splice(insertIndex, 0, ...newRecords)
+    tableSourceData.splice(insertIndex, 0, ...newRecordsCopy)
   }
 
   if (!row) {
-    Array.prototype.unshift.apply(nowData, newRecords)
-    Array.prototype.unshift.apply(tableFullData, newRecords)
-    Array.prototype.unshift.apply(tableSourceData, newRecordsCopy)
+    nowData.unshift(...newRecords)
+    tableFullData.unshift(...newRecords)
+    tableSourceData.unshift(...newRecordsCopy)
   }
 
-  Array.prototype.unshift.apply(editStore.insertList, newRecords)
-  Array.prototype.push.apply(_vm.temporaryRows, newRecordsCopy)
+  editStore.insertList.unshift(...newRecords)
+  _vm.temporaryRows.push(...newRecordsCopy)
 }
 
 export function removeFromTableSourceData({ _vm, rows, tableSourceData }) {

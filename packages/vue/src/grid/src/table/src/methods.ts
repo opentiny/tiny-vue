@@ -56,7 +56,6 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise, handleAllColumnPromises } from './utils/handleResolveColumn'
-import { hooks, isVue2 } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
@@ -213,14 +212,24 @@ const Methods = {
    * @returns {Promise} 加载完成后的Promise
    */
   loadTableData(datas, notRefresh) {
-    let { $grid, editStore, height, maxHeight, lastScrollLeft, lastScrollTop, optimizeOpts } = this as any
-    let { fetchOption = {} } = $grid
-    let { isReloadScroll = false } = fetchOption
-    let { scrollY } = optimizeOpts
+    const {
+      $grid,
+      editStore,
+      height,
+      maxHeight,
+      lastScrollLeft,
+      lastScrollTop,
+      optimizeOpts,
+      treeConfig,
+      treeOrdered
+    } = this as any
+    const { fetchOption = {} } = $grid
+    const { isReloadScroll = false } = fetchOption
+    const { scrollY } = optimizeOpts
     // 浅拷贝原始全量数据
-    let tableFullData = Array.isArray(datas) ? datas.slice(0) : []
+    const tableFullData = Array.isArray(datas) ? datas.slice(0) : []
     // 是否开启纵向的虚拟滚动，默认大于等于500条开启纵向的虚拟滚动
-    let scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
+    const scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
     // 初始化新增和删除数据列表
     editStore.insertList = []
@@ -230,7 +239,7 @@ const Methods = {
     // 缓存数据
     this.updateCache(true)
     // 深拷贝原始数据，并建立表格行数据和行数据对应的原始数据的映射关系，可以极大的提高检查编辑态单元格status和还原行数据的速度
-    const { backupData, backupMap } = buildCache(tableFullData, this)
+    const { backupData, backupMap } = buildCache(tableFullData, { treeConfig, treeOrdered })
     // tableSynchData：用户传递拖来的原始数据，tableSourceData：深拷贝用户传递过来的初始原始数据
     Object.assign(this, { tableSynchData: datas, tableSourceData: backupData, backupMap, scrollYLoad })
 
@@ -245,13 +254,14 @@ const Methods = {
 
     // 对全量数据进行筛选、排序、虚拟滚动切割数据等一系列操作
     this.handleTableData(true)
+
     // reserveCheckSelection：处理分页切换保留选中状态的逻辑
     // checkSelectionStatus：处理全选、半选等选中状态
     this.reserveCheckSelection()
     this.checkSelectionStatus()
 
     // 定义第二个处理函数：尝试恢复滚动位置
-    let second = () => {
+    const second = () => {
       // 让表格滚动条滚动到最后一次滚动到的位置
       if (lastScrollLeft || lastScrollTop) {
         return this.attemptRestoreScoll({ lastScrollLeft, lastScrollTop })
@@ -2083,25 +2093,6 @@ const Methods = {
 
     // 触发可见性变化事件
     emitEvent(this, 'visible-change', [{ $table: this, visible, entry }])
-  },
-
-  // 为Vue3监听数据变化
-  watchDataForVue3() {
-    if (isVue2) return
-
-    // 创建侦听器，监控数组及其长度变化
-    const stopWatch = hooks.watch(
-      [() => this.data, () => this.data && this.data.length],
-      ([newData, newLength], [oldData, oldLength]) => {
-        // vue3下额外监控数组长度改变，解决push无响应等问题
-        if (Array.isArray(this.data) && newData === oldData && newLength !== oldLength) {
-          this.handleDataChange()
-        }
-      }
-    )
-
-    // 组件卸载时清除侦听器
-    hooks.onBeforeUnmount(() => stopWatch())
   },
 
   // 获取特定名称的vm实例

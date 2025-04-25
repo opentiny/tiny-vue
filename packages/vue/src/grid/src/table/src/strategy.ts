@@ -162,17 +162,16 @@ const sliceTreeData = (_vm) => {
   return subTree
 }
 
-const sliceFullData = (_vm) => {
-  let { afterFullData, scrollYLoad, scrollYStore, treeConfig, hasVirtualRow, groupFullData } = _vm
-  let { renderSize, startIndex } = scrollYStore
+const sliceFullData = (vm) => {
+  const { afterFullData, scrollYLoad, scrollYStore, treeConfig, hasVirtualRow, groupFullData } = vm
+  const { renderSize, startIndex } = scrollYStore
   let result
-  let fullData
   // 分组表场景使用groupFullData
-  fullData = hasVirtualRow ? groupFullData : afterFullData
+  const fullData = hasVirtualRow ? groupFullData : afterFullData
 
   if (scrollYLoad) {
     if (treeConfig) {
-      result = sliceTreeData(_vm)
+      result = sliceTreeData(vm)
     } else {
       result = fullData.slice(startIndex, startIndex + renderSize)
     }
