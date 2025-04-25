@@ -38,6 +38,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'tag'
+        },
+        {
+          name: 'theme',
+          type: 'object',
+          defaultValue: '--',
+          meta: {
+            stable: '3.23.0'
+          },
+          desc: {
+            'zh-CN': '自定义主题色,格式：{data:{"tv-base-color-brand":"#595959",....}}',
+            'en-US': 'Customized theme color, in {data:"tv-base-color-brand":"#595959",....} format.'
+          },
+          mode: ['pc'],
+          pcDemo: 'theme'
         }
       ],
       events: [],

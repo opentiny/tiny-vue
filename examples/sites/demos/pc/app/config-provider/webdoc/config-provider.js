@@ -43,6 +43,18 @@ export default {
         'en-US': 'Container labels can be customized through<code>tag</code>.'
       },
       codeFiles: ['tag.vue']
+    },
+    {
+      demoId: 'theme',
+      name: {
+        'zh-CN': '自定义主题色',
+        'en-US': 'Custom Colors'
+      },
+      desc: {
+        'zh-CN': '可通过<code>theme</code>属性设置自定义主题色常量。',
+        'en-US': 'You can use the <code>theme</code> property to set a custom theme color constant.'
+      },
+      codeFiles: ['theme.vue']
     }
   ],
   features: [
