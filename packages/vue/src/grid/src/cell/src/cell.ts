@@ -60,12 +60,13 @@ function processRenderer({ h, params, renderer, value }) {
     }
 
     if (renderer.component) {
-      const { component, attrs } = renderer
+      const { component, attrs, events } = renderer
 
       result.flag = true
       result.vnodes = [
         h(hooks.toRaw(component), {
           class: 'grid-cell',
+          on: events,
           attrs: {
             value,
             modelValue: value,

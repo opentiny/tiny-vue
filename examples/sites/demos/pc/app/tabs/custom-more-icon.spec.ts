@@ -18,7 +18,7 @@ test('"定义更多按钮"', async ({ page }) => {
 
   await expect(listWidth).toBeGreaterThan(boxWidth)
   await expect(tabItems).toHaveCount(8)
-  await expect(dropdownItems).toHaveCount(3)
+  await expect(dropdownItems).toHaveCount(2)
   await expect(headerBox).toHaveCSS('overflow', 'hidden')
   await moreIcon.hover()
   await dropdownLastItem.click()

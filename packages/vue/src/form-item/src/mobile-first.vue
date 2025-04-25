@@ -4,7 +4,7 @@
     :class="
       m(
         `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-border-separator sm:border-none`,
-        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-5' : '',
+        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-4' : '',
         state.formInline ? 'align-sub' : '',
         state.labelPosition === 'top' ? 'block mb-4' : '',
         state.validateState === 'error'
@@ -26,7 +26,7 @@
         v-if="slots.label || label"
         :class="
           m(
-            'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
+            'py-3 sm:py-0 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5 shrink-0',
             'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
               ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-1 sm:min-h-[theme(spacing.0)]'
@@ -57,9 +57,7 @@
             )
           "
         >
-          <slot name="label">
-            {{ label + state.labelSuffix }}
-          </slot>
+          <slot name="label">{{ label + state.labelSuffix }}</slot>
         </span>
         <tiny-tooltip v-if="tipContent" effect="light" :content="tipContent" placement="top">
           <icon-help-circle
@@ -73,7 +71,7 @@
       data-tag="tiny-form-item-inline"
       :class="
         m(
-          `flex-1 m-0 sm:m-auto relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
+          `min-w-0 flex-1 m-0 sm:m-auto relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
           '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full',
           '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-1 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
           state.formInline ? 'align-sub leading-none' : '',
@@ -122,12 +120,10 @@
         <div
           :class="
             m(
-              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1 break-all',
+              'relative sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
-                : '',
-              state.formItemSize === 'small' ? 'pt-0.5' : '',
-              state.formItemSize === 'mini' ? 'pt-px' : ''
+                : ''
             )
           "
           :title="state.validateMessage"

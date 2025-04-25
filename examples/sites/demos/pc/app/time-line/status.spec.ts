@@ -11,7 +11,7 @@ test.describe('节点状态', () => {
     // 默认状态
     await expect(timelineItems.first()).toHaveClass(/process-wait/)
     await expect(timelineItems.first().locator('.icon')).toHaveCSS('border-color', 'rgb(219, 219, 219)')
-    await expect(timelineItems.first().locator('.icon .number')).toHaveCSS('color', 'rgb(128, 128, 128)')
+    await expect(timelineItems.first().locator('.icon .number')).toHaveCSS('color', 'rgb(25, 25, 25)')
 
     // 成功状态
     await expect(timelineItems.nth(1)).toBeVisible()

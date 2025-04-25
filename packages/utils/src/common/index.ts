@@ -310,7 +310,25 @@ export const CASCADER: Record<string, any> = {
 }
 
 /**
- * 当前项目版本号
- * @type {string | undefined}
+ * 检查对象是否具有任何一个指定的键
+ * @param obj 需要检查的对象
+ * @param keys 需要检查的键的数组
+ * @return 如果对象具有任何一个指定的键，返回true，否则返回false
  */
-export const version: string | undefined = process.env.RUNTIME_VERSION
+export const hasAnyKey = (obj: any, keys: string[]): boolean => {
+  if (obj == null) {
+    return false
+  }
+
+  if (keys.length === 0) {
+    return false
+  }
+
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      return true
+    }
+  }
+
+  return false
+}

@@ -636,6 +636,60 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hu-qi",
+      "name": "huqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17986122?v=4",
+      "profile": "https://github.com/hu-qi",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "tsinghua-lau",
+      "name": "Mao Tao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43164478?v=4",
+      "profile": "https://github.com/tsinghua-lau",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Darkingtail",
+      "name": "Darkingtail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51188676?v=4",
+      "profile": "https://github.com/Darkingtail",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "hashiqi12138",
+      "name": "hashiqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52161363?v=4",
+      "profile": "https://github.com/hashiqi12138",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "discreted66",
+      "name": "liukun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/190872652?v=4",
+      "profile": "https://github.com/discreted66",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lcy0620",
+      "name": "lcy0620",
+      "avatar_url": "https://avatars.githubusercontent.com/u/188683944?v=4",
+      "profile": "https://github.com/lcy0620",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,

@@ -48,20 +48,28 @@
   &.selected .tiny-svg,
   .checked-sur.tiny-svg,
   .halfselect.tiny-svg {
-    fill: var(--tv-Option-icon-color-checked);
     path:first-child {
       fill: var(--tv-Option-icon-color-checked);
     }
+
     path:last-child {
       fill: var(--tv-Option-icon-inverse-disabled);
     }
   }
+
   .check.tiny-svg {
     path:first-child {
       fill: transparent;
     }
-    path:last-child {
-      fill: var(--tv-Option-unchecked-border-color);
+
+    path:nth-child(2) {
+      fill: var(--tv-Option-icon-color-unchecked);
+    }
+
+    &:hover {
+      path:nth-child(2) {
+        fill: var(--tv-Option-icon-color-hover);
+      }
     }
   }
 
@@ -111,12 +119,12 @@
     .tiny-svg {
       &.checked-sur,
       &.halfselect {
-        fill: var(--tv-Option-checked-disabled-bg-color);
         path:first-child {
-          fill: var(--tv-Option-bg-color-active);
+          fill: var(--tv-Option-checked-disabled-bg-color);
         }
+
         path:last-child {
-          fill: var(--tv-Option-icon-inverse-disabled);
+          fill: var(--tv-Option-icon-color-checked-disabled-inverse);
         }
       }
 
@@ -124,10 +132,9 @@
         path:first-child {
           fill: var(--tv-Option-bg-color-disabled);
         }
-        &:hover {
-          path:last-child {
-            fill: var(--tv-Option-unchecked-border-color);
-          }
+
+        path:nth-child(2) {
+          fill: var(--tv-Option-icon-color-unchecked-disabled);
         }
       }
     }

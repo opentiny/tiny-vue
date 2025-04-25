@@ -22,13 +22,13 @@ test('折叠标签 collapse-tags', async ({ page }) => {
   await expect(treeNode.nth(6)).toHaveClass(/is-checked/)
 
   // 取消选中一个
-  await page.getByRole('treeitem', { name: '三级 1-1-1' }).locator('path').nth(1).click()
+  await page.getByRole('treeitem', { name: '三级 1-1-1' }).locator('.tiny-checkbox__inner svg').click()
   await expect(tag.filter({ hasText: '+ 1' })).toBeHidden()
   await expect(tag).toHaveCount(1)
 
   // 再选中 2 个
-  await page.getByRole('treeitem', { name: '三级 1-1-1' }).locator('path').nth(1).click()
-  await page.getByRole('treeitem', { name: '三级 1-1-2' }).locator('path').nth(1).click()
+  await page.getByRole('treeitem', { name: '三级 1-1-1' }).locator('.tiny-checkbox__inner svg').click()
+  await page.getByRole('treeitem', { name: '三级 1-1-2' }).locator('.tiny-checkbox__inner svg').click()
   await expect(tag.filter({ hasText: '+ 4' })).toBeVisible()
   await expect(tag).toHaveCount(2)
 })

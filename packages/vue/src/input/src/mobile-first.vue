@@ -149,7 +149,7 @@
       <span
         data-tag="tiny-input-prefix"
         ref="prefix"
-        class="left-2 transition-all duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
+        class="left-2 transition-all fill-color-icon-placeholder duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
         v-if="(slots.prefix || prefixIcon) && !state.isDisplayOnly"
       >
         <slot name="prefix"></slot>
@@ -171,7 +171,7 @@
         class="right-2 transition-all duration-300 ease-in-out pointer-events-none text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center z-[1]"
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
-        <span class="pointer-events-auto text-xs flex justify-start items-center">
+        <span class="pointer-events-auto text-xs fill-color-icon-placeholder flex justify-start items-center">
           <icon-close
             v-if="state.showClear"
             :class="
@@ -284,7 +284,7 @@
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="inline-flex">
+        <div class="inline-flex max-w-full">
           <span
             ref="textBox"
             class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
@@ -301,8 +301,7 @@
               v-if="state.showMoreBtn"
               class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
               >{{ t('ui.input.more') }}></span
-            >
-            <span>{{ state.displayOnlyText }}</span>
+            >{{ state.displayOnlyText }}
           </span>
         </div>
       </tiny-tooltip>

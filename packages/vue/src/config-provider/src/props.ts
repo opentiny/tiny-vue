@@ -20,4 +20,5 @@ export interface ConfigProviderProps {
     enable?: boolean
     name?: string
   }
+  theme?: Object | null
 }

@@ -139,6 +139,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'swipeable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启滑动内容切换标签页',
+            'en-US': 'Do you want to enable the sliding content switching tab function'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'swipeable'
+        },
+        {
           name: 'stretch',
           type: 'boolean',
           defaultValue: 'false',

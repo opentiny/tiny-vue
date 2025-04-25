@@ -79,6 +79,6 @@ const toolbarButtonClickEvent = ({ code, $grid }) => {
   font-size: 16px;
   padding: 15px;
   font-weight: bolder;
-  color: #444;
+  color: var(--tv-color-text, #191919);
 }
 </style>

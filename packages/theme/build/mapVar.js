@@ -322,6 +322,11 @@ export const mapVar = {
   // -- 暗色新增 --
   '--tv-color-icon-inverse': 'var(--tv-base-color-common-1)', // #fff 亮色暗色都是白色场景
   '--tv-color-icon-inverse-tint': 'var(--tv-base-color-common-1)', // #fff 暗色反色成黑色：按钮下拉线头
+  // -- 空状态图标 --
+  '--tv-color-no-data-gary-1': 'var(--tv-base-color-common-4)', // #f0f0f0
+  '--tv-color-no-data-gary-2': 'var(--tv-base-color-common-1)', // #ffffff
+  '--tv-color-no-data-border': 'var(--tv-base-color-common-8)', // #808080
+  '--tv-color-no-data-brand': 'var(--tv-base-color-brand-6)', // #317af7
 
   /** 2.6 背景色 **/
 
@@ -335,8 +340,8 @@ export const mapVar = {
   '--tv-color-bg-gray-2': 'var(--tv-base-color-common-5)', // #e6e6e6 灰色背景-2：灰色标签背景色/进度条灰色背景
   '--tv-color-bg-header': 'var(--tv-base-color-common-3)', // #f5f5f5 表头背景色
   '--tv-color-bg-mask': 'rgba(0, 0, 0, 20%)', // 全局加载蒙层/抽屉弹窗蒙层
-  '--tv-color-bg-mask-block': 'rgba(255, 255, 255, 70%)', // 模块加载蒙层
-  '--tv-color-bg-dark': 'var(--tv-base-color-brand)', // #191919", 深色背景色 顶部导航/ 深色tab/深色提示背景色
+  '--tv-color-bg-mask-block': 'rgba(255, 255, 255, 70%)', // 模块内容加载蒙层
+  '--tv-color-bg-dark': 'var(--tv-base-color-brand)', // #191919", 深色背景色 顶部导航/ 深色tab
 
   /* 2.6.2 禁用 */
   '--tv-color-bg-disabled': 'var(--tv-base-color-common-4)', // #f0f0f0 禁用背景色
@@ -362,7 +367,7 @@ export const mapVar = {
   '--tv-color-bg-active-dark': 'var(--tv-base-color-common-3)', // #f5f5f5 深色背景悬浮色
 
   // -- 暗色新增 --
-  '--tv-color-bg-2': 'var(--tv-base-color-common-1)', // #fff下拉面板/tip背景色
+  '--tv-color-bg-2': 'var(--tv-base-color-common-1)', // #fff下拉面板/tip的normal背景色
   '--tv-color-bg-3': 'var(--tv-base-color-common-1)', //  #fff 顶部导航背景色/顶部导航下拉背景色/折叠面板背景色/modal,dialogbox背景色/容器二级背景色": "左侧导航/折叠面板/表格下展背景
   '--tv-color-bg-4': 'var(--tv-base-color-common-7)', // #c2c2c2 时间线实心圆点
   '--tv-color-bg-progressbar': 'var(--tv-base-color-success-6)', // #5cb300 step当前进度背景色 （考虑去掉，成功主色替代）
@@ -378,6 +383,7 @@ export const mapVar = {
   '--tv-color-bg-inverse-tint-1': 'var(--tv-base-color-common-1)', // #fff 图片工具栏背景色
   '--tv-color-bg-disabled-control': 'var(--tv-base-color-common-7)', // #c2c2c2 滑块高亮部分禁用色
   '--tv-color-bg-inverse-disabled': 'var(--tv-base-color-common-1)', // #fff 复选框禁用/开个按钮禁用/滑块按钮禁用（此3类场景图标白色部分反色成#999）
+  '--tv-color-bg-dark-1': 'var(--tv-base-color-common-11)', // #191919 tip的dark背景色
 
   /** 2.7 边框色/分割线颜色 **/
 

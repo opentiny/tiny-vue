@@ -13,6 +13,31 @@
 import { on, off } from '../dom'
 import { isServer } from '../globalConfig'
 
+// 添加接口定义
+interface FullscreenEvents {
+  fullscreenElement: string
+  fullscreenEnabled: string
+  requestFullscreen: string
+  exitFullscreen: string
+  fullscreenchange: string
+  fullscreenerror: string
+  [key: string]: string
+}
+
+interface Screenfull {
+  request: (element?: any, options?: any) => Promise<void>
+  exit: () => Promise<void>
+  toggle: (element?: any, options?: any) => Promise<void>
+  onchange: (callback: any) => void
+  onerror: (callback: any) => void
+  on: (event: string, callback: any) => void
+  off: (event: string, callback: any) => void
+  raw: FullscreenEvents | {}
+  isFullscreen?: boolean
+  element?: any
+  isEnabled?: boolean
+}
+
 const fullscreenApi = [
   'fullscreenElement',
   'fullscreenEnabled',
@@ -53,7 +78,7 @@ const fullscreenApiMap = [fullscreenApi, fullscreenApiWebkit, fullscreenApiMoz, 
 
 const document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {}
 
-let fullscreenEvents = null
+let fullscreenEvents: FullscreenEvents | null = null
 
 const getFullScreenEvents = () => {
   if (isServer) return
@@ -75,12 +100,12 @@ const getFullScreenEvents = () => {
 
 getFullScreenEvents()
 
-const eventNameMap = {
+const eventNameMap: { [key: string]: string | undefined } = {
   change: fullscreenEvents && fullscreenEvents.fullscreenchange,
   error: fullscreenEvents && fullscreenEvents.fullscreenerror
 }
 
-const screenfull = {
+const screenfull: Screenfull = {
   request(element, options) {
     return new Promise((resolve, reject) => {
       const onFullscreenEntered = () => {

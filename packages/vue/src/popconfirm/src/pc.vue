@@ -27,7 +27,9 @@
             </div>
           </div>
           <div class="tiny-popconfirm-popover__content">
-            {{ message }}
+            <slot name="message">
+              {{ message }}
+            </slot>
           </div>
           <div class="tiny-popconfirm-popover__footer">
             <slot name="footer">

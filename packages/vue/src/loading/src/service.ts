@@ -14,8 +14,29 @@ import { PopupManager } from '@opentiny/utils'
 import { getStyle, addClass } from '@opentiny/utils'
 import { createComponent, hooks, appProperties } from '@opentiny/vue-common'
 import Loading from './index'
+import type { ILoadingState } from '@opentiny/vue-renderless/types/loading.type'
 
-export const defaults = {
+interface LoadingConfig {
+  text?: string | null
+  body?: boolean
+  lock?: boolean
+  customClass?: string
+  fullscreen?: boolean
+  iconSize?: string
+  target?: HTMLElement | string
+  size?: string
+  loadingImg?: string
+  tiny_mode?: string
+}
+
+interface LoadingInstance {
+  state: ILoadingState
+  $el: HTMLElement
+  originalPosition?: string
+  originalOverflow?: string
+}
+
+export const defaults: LoadingConfig = {
   text: null,
   body: false,
   lock: false,
@@ -24,7 +45,7 @@ export const defaults = {
   iconSize: ''
 }
 
-let fullscreenLoading = null
+let fullscreenLoading: LoadingInstance | null = null
 
 export const constants = {
   TEXT_ATTR: 'tiny-loading__text',
@@ -36,33 +57,36 @@ export const constants = {
   PARENT_RELATIVE_CLS: 'tiny-loading__parent-relative',
   LOAD_ICON_TEXT: 'ui.load.dot'
 }
-const addStyle = (options, parent, instance) => {
-  let maskStyle = {}
+
+const addStyle = (options: LoadingConfig, parent: HTMLElement, instance: LoadingInstance) => {
+  let maskStyle: Record<string, string> = {}
 
   if (options.fullscreen) {
-    instance.originalPosition = getStyle(document.body, 'position')
-    instance.originalOverflow = getStyle(document.body, 'overflow')
-    maskStyle.zIndex = PopupManager.nextZIndex()
+    instance.originalPosition = getStyle(document.body, 'position') || ''
+    instance.originalOverflow = getStyle(document.body, 'overflow') || ''
+    maskStyle.zIndex = PopupManager.nextZIndex().toString()
   } else if (options.body) {
-    const clientRect = options.target.getBoundingClientRect()
+    const target = options.target as HTMLElement
+    const clientRect = target?.getBoundingClientRect()
 
-    instance.originalPosition = getStyle(document.body, 'position')
+    instance.originalPosition = getStyle(document.body, 'position') || ''
 
     const direction = ['top', 'left']
 
     direction.forEach((property) => {
       let scroll = property === 'top' ? 'scrollTop' : 'scrollLeft'
 
-      maskStyle[property] = clientRect[property] + document.body[scroll] + document.documentElement[scroll] + 'px'
+      maskStyle[property] =
+        (clientRect?.[property] || 0) + document.body[scroll] + document.documentElement[scroll] + 'px'
     })
 
     const size = ['height', 'width']
 
     size.forEach((property) => {
-      maskStyle[property] = clientRect[property] + 'px'
+      maskStyle[property] = (clientRect?.[property] || 0) + 'px'
     })
   } else {
-    instance.originalPosition = getStyle(parent, 'position')
+    instance.originalPosition = getStyle(parent, 'position') || ''
   }
 
   Object.keys(maskStyle).forEach((property) => {
@@ -70,11 +94,11 @@ const addStyle = (options, parent, instance) => {
   })
 }
 
-export default (configs = {}) => {
+export default (configs: LoadingConfig = {}) => {
   configs = { ...defaults, ...configs }
 
   if (typeof configs.target === 'string') {
-    configs.target = document.querySelector(configs.target)
+    configs.target = document.querySelector(configs.target) as HTMLElement
   }
 
   configs.target = configs.target || document.body
@@ -104,7 +128,7 @@ export default (configs = {}) => {
       tiny_mode: configs.tiny_mode || appProperties().tiny_mode?.value
     },
     el: document.createElement('div')
-  })
+  }) as LoadingInstance
 
   for (const key in configs) {
     if (Object.prototype.hasOwnProperty.call(configs, key)) {

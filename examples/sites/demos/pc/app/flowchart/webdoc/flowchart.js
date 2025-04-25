@@ -28,7 +28,7 @@ export default {
       },
       description: '节点支持 icon、label、content 插槽定制内容。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['icon-slot', 'label-slot', 'content-slot'],
       demos: ['basic-usage']
@@ -41,7 +41,7 @@ export default {
       },
       description: '节点使用 row、col 属性进行行列配置。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['row', 'col'],
       demos: ['basic-usage']
@@ -54,7 +54,7 @@ export default {
       },
       description: '连线使用 p 属性进行相对路径配置。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['p'],
       demos: ['basic-usage']
@@ -67,7 +67,7 @@ export default {
       },
       description: '流程图的其它设置通过 config 进行配置，包括 width、height、cols、rows 等属性。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['config'],
       demos: ['basic-usage']
@@ -80,7 +80,7 @@ export default {
       },
       description: '组件预置了 createItem、createNode、createLink、createConfig 静态方法，以便于快速构建选项。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['createItem', 'createNode', 'createLink', 'createConfig'],
       demos: ['basic-usage']

@@ -30,6 +30,19 @@ export default {
       codeFiles: ['align-center.vue']
     },
     {
+      demoId: 'swipeable',
+      name: {
+        'zh-CN': '滑动切换内容',
+        'en-US': 'Slide to switch content'
+      },
+      desc: {
+        'zh-CN':
+          '<p>在关闭优化渲染并且所有标签项都不开启延时加载时，可通过 <code>:swipeable=true</code> 开启滑动内容切换标签页。在此模式下，标签项内容区可以是一个水平滚动列表，参考示例中 `表单组件` 标签项。</p>',
+        'en-US': `<p>When optimizing rendering is turned off and all label items do not enable lazy loading, you can use<code>: swift=true</code>to enable sliding content to switch tabs. In this mode, the tag item content area can be a horizontally scrolling list, as shown in the example of the 'form component' tag item.</p>`
+      },
+      codeFiles: ['swipeable.vue']
+    },
+    {
       demoId: 'tab-style-card',
       name: {
         'zh-CN': 'card 类型',

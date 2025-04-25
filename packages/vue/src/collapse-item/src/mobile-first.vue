@@ -65,7 +65,7 @@
         :aria-labelledby="`tiny-collapse-head-${state.id}`"
         :id="`tiny-collapse-content-${state.id}`"
       >
-        <div class="pb-6 pt-0 px-4 sm:pt-0 sm:pr-0 sm:pl-4 sm:pb-4 text-xs text-color-text-primary leading-relaxed">
+        <div class="pb-3 pt-0 px-4 sm:pt-0 sm:pr-0 sm:pl-4 sm:pb-4 text-xs text-color-text-primary leading-relaxed">
           <slot></slot>
         </div>
       </div>

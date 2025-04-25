@@ -87,7 +87,7 @@ export default {
       description:
         '将需要粘性布局的标签或者组件放入 sticky 组件的默认插槽中，则组件滚出屏幕范围时，始终会固定在屏幕顶部。',
       cloud: {
-        value: true
+        value: false
       },
       apis: [],
       demos: ['basic-usage']
@@ -100,7 +100,7 @@ export default {
       },
       description: '通过设置 offset 属性来改变吸顶或吸底距离，默认值为 0。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['offset'],
       demos: ['offset']
@@ -113,7 +113,7 @@ export default {
       },
       description: '通过设置 position 属性来改变固定位置，可选值有 top 和 bottom，默认值为 top。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['position'],
       demos: ['position']
@@ -126,7 +126,7 @@ export default {
       },
       description: '通过 target 属性可以指定组件的容器，页面滚动时，组件会始终保持在容器范围内。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['target'],
       demos: ['target']

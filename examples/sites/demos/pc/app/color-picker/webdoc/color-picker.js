@@ -132,7 +132,7 @@ export default {
       },
       description: '通过 v-model 设置颜色值。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['v-model'],
       demos: ['basic-usage']
@@ -145,7 +145,7 @@ export default {
       },
       description: '通过 disabled 设置是否禁用。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['disabled'],
       demos: ['disabled']
@@ -158,7 +158,7 @@ export default {
       },
       description: '通过 size 设置尺寸，可选值为 medium、small、mini。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['size'],
       demos: ['size']
@@ -171,7 +171,7 @@ export default {
       },
       description: '通过 show-alpha 设置是否支持透明度选择。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['show-alpha'],
       demos: ['show-alpha']
@@ -184,7 +184,7 @@ export default {
       },
       description: '通过 color-format 设置颜色格式，可选值为 hex、rgb、hsl。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['color-format'],
       demos: ['color-format']
@@ -197,7 +197,7 @@ export default {
       },
       description: '通过 predefine 设置预定义颜色。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['predefine'],
       demos: ['predefine']
@@ -210,7 +210,7 @@ export default {
       },
       description: '当颜色值改变时会触发 change 事件。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['change'],
       demos: ['events']

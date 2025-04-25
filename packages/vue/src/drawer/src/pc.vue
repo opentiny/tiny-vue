@@ -98,7 +98,7 @@
               <slot-wrapper v-if="customSlots?.footer" :node="customSlots.footer"></slot-wrapper>
 
               <template v-else>
-                <tiny-button plain class="tiny-drawer__cancel-btn" @click="handleClose('cancel')">{{
+                <tiny-button class="tiny-drawer__cancel-btn" @click="handleClose('cancel')">{{
                   t('ui.button.cancel')
                 }}</tiny-button>
                 <tiny-button type="primary" class="tiny-drawer__confirm-btn" @click="handleClose('confirm')">{{

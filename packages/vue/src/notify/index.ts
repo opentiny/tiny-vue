@@ -15,41 +15,71 @@ import NotifyConstructor from './src/pc.vue'
 import '@opentiny/vue-theme/notify/index.less'
 import { IconSuccess, iconError, IconPrompt, iconWarningTriangle } from '@opentiny/vue-icon'
 
-let seed = 1
-let instances = []
+type NotifyType = 'warning' | 'error' | 'info' | 'success'
+type NotifyPosition = 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
 
-const IconMap = {
+interface NotifyOptions {
+  type?: NotifyType
+  duration?: number
+  position?: NotifyPosition
+  statusIcon?: any
+  offset?: number
+  verticalOffset?: number
+  debounceDelay?: number
+  onClose?: (instance: NotifyInstance) => void
+  [key: string]: any
+}
+
+interface NotifyState {
+  position: NotifyPosition
+  verticalOffset: number
+  visible: boolean
+  verticalProperty: string
+}
+
+interface NotifyInstance {
+  id: string
+  $el: HTMLElement
+  dom: HTMLElement
+  state: NotifyState
+  position: NotifyPosition
+  getZindex: () => number
+  close: (id: string) => void
+}
+
+let seed = 1
+let instances: NotifyInstance[] = []
+
+const IconMap: Record<NotifyType, any> = {
   warning: iconWarningTriangle(),
   error: iconError(),
   info: IconPrompt(),
   success: IconSuccess()
 }
 
-const durationMap = {
+const durationMap: Record<NotifyType, number> = {
   info: 5000,
   success: 5000,
   warning: 10000,
   error: 10000
 }
 
-const positionList = ['top-right', 'bottom-right', 'top-left', 'bottom-left']
+const positionList: NotifyPosition[] = ['top-right', 'bottom-right', 'top-left', 'bottom-left']
 
-const debounce = (fn, debounceDelay) => {
-  let timer = null
+const debounce = (fn: (options: NotifyOptions) => NotifyInstance, debounceDelay: number) => {
+  let timer: NodeJS.Timeout | null = null
 
-  return async function () {
+  return async function (this: any, ...args: any[]) {
     if (timer) {
       clearTimeout(timer)
     }
 
-    let instance = null
+    let instance: NotifyInstance | null = null
 
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       timer = setTimeout(() => {
-        // eslint-disable-next-line prefer-rest-params
-        instance = fn.apply(this, arguments)
+        instance = fn.apply(this, args)
         timer = null
-
         resolve()
       }, debounceDelay)
     })
@@ -58,18 +88,18 @@ const debounce = (fn, debounceDelay) => {
   }
 }
 
-const notify = (options) => {
-  if (!~Object.keys(IconMap).indexOf(options.type)) {
+const notify = (options: NotifyOptions): NotifyInstance => {
+  if (!Object.keys(IconMap).includes(options.type as NotifyType)) {
     options.type = 'info'
   }
 
-  options.duration = options.duration ? options.duration : durationMap[options.type]
-  options.position = !~positionList.indexOf(options.position) ? 'bottom-right' : options.position
-  !options.statusIcon && options.type && (options.statusIcon = IconMap[options.type])
+  options.duration = options.duration ? options.duration : durationMap[options.type as NotifyType]
+  options.position = !positionList.includes(options.position as NotifyPosition) ? 'bottom-right' : options.position
+  !options.statusIcon && options.type && (options.statusIcon = IconMap[options.type as NotifyType])
 
   const id = 'notify_' + seed++
   const userOnClose = options.onClose
-  const position = options.position
+  const position = options.position as NotifyPosition
 
   options.onClose = function () {
     Notify.close(id, userOnClose)
@@ -79,7 +109,7 @@ const notify = (options) => {
     el: document.createElement('div'),
     propsData: options,
     component: NotifyConstructor
-  })
+  }) as NotifyInstance
   instance.id = id
   document.body.appendChild(instance.$el)
 
@@ -95,7 +125,7 @@ const notify = (options) => {
   instances.push(instance)
 
   instance.dom = instance.$el
-  instance.dom.style.zIndex = instance.getZindex()
+  instance.dom.style.zIndex = instance.getZindex().toString()
   instance.state.verticalOffset = verticalOffset
   instance.state.visible = true
 
@@ -106,7 +136,7 @@ const notify = (options) => {
   return instance
 }
 
-const Notify = (options) => {
+const Notify = (options: NotifyOptions): NotifyInstance | ((options: NotifyOptions) => Promise<NotifyInstance>) => {
   let { debounceDelay } = options
 
   if (debounceDelay) {
@@ -115,10 +145,11 @@ const Notify = (options) => {
     return notify(options)
   }
 }
-Notify.close = function (id, userOnClose) {
+
+Notify.close = function (id: string, userOnClose?: (instance: NotifyInstance) => void): void {
   let index = -1
   let len = instances.length
-  let instance
+  let instance: NotifyInstance | undefined
 
   for (let i = 0; i < len; i++) {
     let tmp = instances[i]
@@ -135,7 +166,7 @@ Notify.close = function (id, userOnClose) {
 
   typeof userOnClose === 'function' && userOnClose(instance)
   let lastHeight = instance.$el.offsetHeight
-  instance.$el.parentNode.removeChild(instance.$el)
+  instance.$el.parentNode?.removeChild(instance.$el)
   instances.splice(index, 1)
 
   if (len <= 1) {
@@ -161,7 +192,7 @@ Notify.close = function (id, userOnClose) {
   })
 }
 
-Notify.closeAll = function () {
+Notify.closeAll = function (): void {
   let copys = instances.slice(0)
 
   copys = copys.reverse()

@@ -3,9 +3,6 @@ export default {
   owner: '',
   show: true,
   cloud: true,
-  meta: {
-    experimental: '3.17.0'
-  },
   demos: [
     {
       demoId: 'basic-usage',

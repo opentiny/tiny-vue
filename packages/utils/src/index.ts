@@ -144,8 +144,7 @@ export {
   BROWSER_NAME,
   MOUSEDELTA,
   VALIDATE_STATE,
-  CASCADER,
-  version
+  CASCADER
 } from './common'
 
 // 待移除 ，写到各自组件内部中去

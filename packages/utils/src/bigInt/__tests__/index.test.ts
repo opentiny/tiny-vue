@@ -183,6 +183,11 @@ describe('bigInt 功能测试', () => {
         expect(decimal3.lessEquals(decimal1)).toBe(true)
         expect(decimal1.lessEquals(decimal3)).toBe(false)
       })
+
+      it('应该处理科学计数法', () => {
+        const decimal = new BigIntDecimal(2.3444444444444443e21)
+        expect(decimal.toString()).toBe('2.344444444444444273768701288456912896')
+      })
     } else {
       it('环境不支持BigInt，跳过BigIntDecimal测试', () => {
         expect(supportBigInt()).toBe(false)

@@ -312,7 +312,11 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      background-image: linear-gradient(-90deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider)),
+      background-image: linear-gradient(
+          -90deg,
+          var(--tv-Grid-border-color-divider),
+          var(--tv-Grid-border-color-divider)
+        ),
         linear-gradient(-180deg, var(--tv-Grid-border-color-divider), var(--tv-Grid-border-color-divider));
       background-repeat: no-repeat;
       background-size:
@@ -485,6 +489,10 @@
 
     svg {
       fill: var(--tv-Grid-icon-color);
+
+      &:hover {
+        fill: var(--tv-Grid-icon-color-hover);
+      }
     }
 
     // 文字居中
@@ -753,7 +761,6 @@
     width: 100%;
     height: 100px;
     margin: 0;
-    background: var(--tv-Grid-empty-img) 50% no-repeat;
   }
 
   & &__empty-text {
@@ -977,8 +984,8 @@
 
     .@{grid-prefix-cls}-editor {
       width: 100%;
-      height: var(--tv-Grid-input-height);
-      line-height: normal;
+      height: 100%;
+      padding: 4px 0;
       color: var(--tv-Grid-text-color);
       background-color: var(--tv-Grid-input-bg-color);
 

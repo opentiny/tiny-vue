@@ -8,7 +8,7 @@ on:
         description: |
           输入需要打包的组件名称，多个以空格分隔,
           例如： `input alert`.
-        required: true
+        required: false
         type: string
 concurrency:
   group: ${{ github.workflow }}-${{ github.sha }}
@@ -49,7 +49,12 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: Run Build Components
+        if: inputs.components != ''
         run: pnpm build:ui ${{ inputs.components }}
+
+      - name: Run Build All Components
+        if: inputs.components == ''
+        run: pnpm build:ui
 
       - name: Run Release alpha
         run: pnpm release:alpha -u

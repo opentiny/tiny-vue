@@ -225,7 +225,7 @@ export default {
       },
       description: '通过 v-model 绑定变量，变量值对应评分值。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['v-model'],
       demos: ['basic-usage']
@@ -238,7 +238,7 @@ export default {
       },
       description: '通过 disabled 设置是否禁用评分组件。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['disabled'],
       demos: ['disabled']
@@ -251,7 +251,7 @@ export default {
       },
       description: '通过 size 设置评分组件的尺寸大小。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['size'],
       demos: ['size']
@@ -264,7 +264,7 @@ export default {
       },
       description: '通过 max 设置评分组件的最大值。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['max'],
       demos: ['max']

@@ -95,7 +95,7 @@ export default {
       description:
         '通过 label 设置标题，value 设置标题右侧内容，disabled 设置是否禁用；通过默认插槽自定义过滤面板内容。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['label', 'value', 'disabled'],
       demos: ['basic-usage']
@@ -109,7 +109,7 @@ export default {
       description:
         '通过 placement 控制下拉面板的位置，popper-class 设置类名，popper-append-to-body 设置弹下拉面板是否插入至 body 元素。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['placement', 'popper-class', 'popper-append-to-body'],
       demos: ['popper-class']
@@ -122,7 +122,7 @@ export default {
       },
       description: '通过 blank 控制过滤器背景是否透明，clearable 控制是否显示清空按钮，tip 添加标题右侧提示信息。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['blank', 'clearable', 'tip'],
       demos: ['tip']
@@ -135,7 +135,7 @@ export default {
       },
       description: '手动调用 hide 实例方法完成收起下拉面板功能。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['hide'],
       demos: ['manual-hide']
@@ -148,7 +148,7 @@ export default {
       },
       description: '支持 handle-clear 清空按钮点击事件和 visible-change 下拉面板显隐事件。',
       cloud: {
-        value: true
+        value: false
       },
       apis: ['handle-clear', 'visible-change'],
       demos: ['event']

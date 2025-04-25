@@ -64,7 +64,6 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.RUNTIME_VERSION': JSON.stringify(requireModules('packages/renderless/package.json').version),
       'process.env.COMPONENT_VERSION': JSON.stringify(requireModules('packages/vue/package.json').version)
     })
 

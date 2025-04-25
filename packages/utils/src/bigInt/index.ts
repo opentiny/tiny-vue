@@ -214,49 +214,62 @@ export class BigIntDecimal {
    * @param {string | number} value 数值
    */
   constructor(value: string | number) {
+    // 检查输入值是否为空或者全是空格
     if ((!value && value !== 0) || !String(value).trim()) {
-      this.empty = true
-      this.origin = String(value || '')
+      this.empty = true // 标记为空值
+      this.origin = String(value || '') // 保存原始值的字符串形式
       return
     }
 
-    this.origin = String(value)
-    this.negative = undefined
-    this.integer = undefined
-    this.decimal = undefined
-    this.decimalLen = undefined
-    this.empty = undefined
-    this.nan = undefined
+    // 初始化所有属性
+    this.origin = String(value) // 保存原始输入值
+    this.negative = undefined // 是否为负数
+    this.integer = undefined // 整数部分
+    this.decimal = undefined // 小数部分
+    this.decimalLen = undefined // 小数位数
+    this.empty = undefined // 是否为空
+    this.nan = undefined // 是否为非数字
 
+    // 检查是否只输入了负号
     if (value === '-') {
-      this.nan = true
-
+      this.nan = true // 标记为非数字
       return
     }
 
+    // 处理科学计数法,如果是科学计数法则转为数字
     let mergedValue = isE(value) ? Number(value) : value
 
+    // 如果不是字符串类型,转换为字符串
     if (typeof mergedValue !== 'string') {
       num2str(mergedValue)
     }
+
     const f = Function
+    // 定义转换BigInt的辅助函数
     const convertBigInt = (str: string): bigint => {
-      // 将以多个零开头的整数前置零清空 '0000000000000003e+21' --> '3e+21' ,解决BigInt(0000000000000003e+21)报错问题
+      // 将以多个零开头的整数前置零清空 '0000000000000003e+21' --> '3e+21'
+      // 解决BigInt(0000000000000003e+21)报错问题
       const validStr = str.replace(/^0+/, '') || '0'
-      return f(`return BigInt('${validStr}')`)()
+      return f(`return BigInt(${validStr})`)()
     }
+
+    // 验证是否为合法数字
     if (validateNumber(mergedValue)) {
-      const trimRet = trimNumber(mergedValue)
-      this.negative = trimRet.negative
-      const numbers = trimRet.trimStr.split('.')
+      const trimRet = trimNumber(mergedValue) // 去除数字字符串两端空格
+      this.negative = trimRet.negative // 设置正负号
+      const numbers = trimRet.trimStr.split('.') // 分割整数和小数部分
+
+      // 处理整数部分:如果包含科学计数法则保持字符串形式,否则转为BigInt
       this.integer = !numbers[0].includes('e') ? BigInt(numbers[0]) : numbers[0]
+
+      // 获取小数部分,如果没有则默认为'0'
       const decimalStr = numbers[1] || '0'
 
-      // 如果小数点后有科学计数法，需要特殊处理，如果是正常数字则保留之前逻辑
+      // 处理小数部分:如果包含科学计数法需要特殊处理,否则直接转为BigInt
       this.decimal = decimalStr.includes('e') ? convertBigInt(decimalStr) : BigInt(decimalStr)
-      this.decimalLen = decimalStr.length
+      this.decimalLen = decimalStr.length // 记录小数位数
     } else {
-      this.nan = true
+      this.nan = true // 非法数字标记为NaN
     }
   }
 

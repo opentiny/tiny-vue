@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'skeleton',
@@ -14,8 +14,9 @@ export default {
             'en-US':
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
-          mode: ['pc'],
-          pcDemo: 'animation'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'animation',
+          mfDemo: 'animation'
         },
         {
           name: 'avatar',
@@ -26,8 +27,9 @@ export default {
             'en-US':
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
-          mode: ['pc'],
-          pcDemo: 'complex-demo'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'complex-demo',
+          mfDemo: 'avatar'
         },
         {
           name: 'loading',
@@ -38,8 +40,9 @@ export default {
             'en-US':
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
-          mode: ['pc'],
-          pcDemo: 'loading-completed'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'loading-completed',
+          mfDemo: 'loaded'
         },
         {
           name: 'rows',
@@ -49,8 +52,9 @@ export default {
             'zh-CN': '默认样式，可配置段落显示行数',
             'en-US': 'Default style. The number of lines displayed in a paragraph can be configured'
           },
-          mode: ['pc'],
-          pcDemo: 'custom-rows'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'custom-rows',
+          mfDemo: 'custom-rows'
         },
         {
           name: 'rows-width',
@@ -62,8 +66,9 @@ export default {
             'en-US':
               'Width of each line in a custom paragraph. Each item in the array can be a number or a string. If the value is a number, the component automatically increases the value by px'
           },
-          mode: ['pc'],
-          pcDemo: 'custom-paragraph-width'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'custom-paragraph-width',
+          mfDemo: 'rows-width'
         }
       ],
       events: [],
@@ -76,8 +81,9 @@ export default {
             'zh-CN': '加载完成后显示的内容',
             'en-US': 'Content displayed after the loading is complete'
           },
-          mode: ['pc'],
-          pcDemo: 'loading-completed'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'loading-completed',
+          mfDemo: 'loaded'
         },
         {
           name: 'placeholder',
@@ -86,8 +92,9 @@ export default {
             'zh-CN': '自定义骨架屏结构',
             'en-US': 'Custom Skeleton Screen Structure'
           },
-          mode: ['pc'],
-          pcDemo: 'custom-layout'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'custom-layout',
+          mfDemo: 'custom-layout'
         }
       ]
     },
@@ -105,8 +112,9 @@ export default {
             'en-US':
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
-          mode: ['pc'],
-          pcDemo: 'size'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'size',
+          mfDemo: 'size'
         },
         {
           name: 'variant',
@@ -118,13 +126,25 @@ export default {
             'en-US':
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
-          mode: ['pc'],
-          pcDemo: 'fine-grained-mode'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'fine-grained-mode',
+          mfDemo: 'shape'
         }
       ],
       events: [],
       methods: [],
-      slots: []
+      slots: [
+        {
+          name: 'default',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义图像',
+            'en-US': 'Custom image'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'image-item-slot'
+        }
+      ]
     }
   ],
   types: [

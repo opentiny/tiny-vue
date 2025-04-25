@@ -31,8 +31,21 @@ export default defineComponent({
     return setup({ props, context, renderless, api, h, classes }) as unknown as ITagApi
   },
   render() {
-    const { slots, selectable, disabled, color, handleClose, handleClick, customClass, hit, m, gcls, state, value } =
-      this
+    const {
+      slots,
+      selectable,
+      disabled,
+      color,
+      handleClose,
+      handleClick,
+      customClass,
+      hit,
+      m,
+      gcls,
+      state,
+      value,
+      maxWidth
+    } = this
     const size = selectable ? 'medium' : this.size || 'small'
     const type = selectable ? 'info' : state.type || 'info'
     const effect = selectable ? 'light' : this.effect || 'light'

@@ -105,10 +105,10 @@ export const cmpMenus = [
       { name: 'Loading', nameCn: '加载', key: 'loading' },
       { name: 'Tooltip', nameCn: '文字提示', key: 'tooltip' },
       { name: 'Popover', nameCn: '气泡框', key: 'popover' },
-
       { name: 'Popconfirm', nameCn: '气泡确认框', key: 'popconfirm' },
       { name: 'Message', nameCn: '提示框', key: 'message' },
-      { name: 'Modal', nameCn: '模态框', key: 'modal' }
+      { name: 'Modal', nameCn: '模态框', key: 'modal' },
+      { name: 'Skeleton', nameCn: '骨架屏', key: 'skeleton' }
     ]
   },
   {
