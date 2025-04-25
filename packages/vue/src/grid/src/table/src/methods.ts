@@ -1,28 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
-/**
- * MIT License
- *
- * Copyright (c) 2019 Xu Liangzhan
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- */
 import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/utils'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
@@ -44,8 +19,6 @@ import {
   isEqual,
   mapTree,
   clone,
-  destructuring,
-  clear,
   sum,
   find
 } from '@opentiny/vue-renderless/grid/static/'
@@ -117,49 +90,17 @@ import {
   buildRowGroupFullData
 } from './strategy'
 import { updateRowStatus, getCellStatus } from '../../composable'
+import { buildCache } from './utils/handleCacheData'
 
 // 分组表头的属性
 const headerProps = {
   children: 'children'
 }
 
-let debounceScrollLoadDuration = 200
-let AsyncCollectTimeout = 100
-
-// 创建快速缓存
-const buildCache = (tableData, { treeConfig, treeOrdered }) => {
-  const backupMap = new WeakMap()
-  const { children, temporaryIndex = '_$index_' } = treeConfig || {}
-  const isTreeOrderedFalse = treeConfig && !treeOrdered
-
-  const traverse = (arr, rowLevel, parentIndex) => {
-    const backup = []
-
-    if (Array.isArray(arr) && arr.length > 0) {
-      arr.forEach((row, rowIndex) => {
-        if (isTreeOrderedFalse) {
-          row[temporaryIndex] = `${parentIndex ? `${parentIndex}.` : ''}${rowIndex + 1}`
-        }
-
-        // 深拷贝
-        const backupRow = clone({ ...row, [children]: null }, true)
-
-        backup.push(backupRow)
-        backupMap.set(row, backupRow)
-
-        if (row[children]) {
-          backupRow[children] = traverse(row[children], rowLevel + 1, isTreeOrderedFalse ? row[temporaryIndex] : '')
-        }
-      })
-    }
-
-    return backup
-  }
-
-  const backupData = traverse(tableData, 0, '')
-
-  return { backupData, backupMap }
-}
+// 滚动加载防抖延迟时间(毫秒)
+const DEBOUNCE_SCROLL_LOAD_DURATION = 200
+// 异步列数据收集超时时间(毫秒)
+const ASYNC_COLLECT_TIMEOUT = 100
 
 const Methods = {
   /**
@@ -241,26 +182,6 @@ const Methods = {
   },
 
   /**
-   * 刷新表格样式
-   * 主要用于处理合并单元格的情况
-   * @returns {Promise} 刷新完成后的Promise
-   */
-  refreshStyle() {
-    let { $el, rowSpan, spanMethod } = this
-    // 存在合并时才刷新样式
-    if ($el && (rowSpan || spanMethod)) {
-      let transform = $el.style.transform
-      let restore = () =>
-        setTimeout(() => {
-          $el.style.transform = transform
-        })
-      $el.style.transform = 'scale(0.99999)'
-      return this.$nextTick().then(restore)
-    }
-    return this.$nextTick()
-  },
-
-  /**
    * 更新表格数据
    * @returns {Promise} 更新完成后的Promise
    */
@@ -292,8 +213,7 @@ const Methods = {
    * @returns {Promise} 加载完成后的Promise
    */
   loadTableData(datas, notRefresh) {
-    let { $grid, $refs, editStore, height, maxHeight, treeConfig, lastScrollLeft, lastScrollTop, optimizeOpts } =
-      this as any
+    let { $grid, editStore, height, maxHeight, lastScrollLeft, lastScrollTop, optimizeOpts } = this as any
     let { fetchOption = {} } = $grid
     let { isReloadScroll = false } = fetchOption
     let { scrollY } = optimizeOpts
@@ -335,10 +255,6 @@ const Methods = {
       // 让表格滚动条滚动到最后一次滚动到的位置
       if (lastScrollLeft || lastScrollTop) {
         return this.attemptRestoreScoll({ lastScrollLeft, lastScrollTop })
-      } else {
-        // 重置表头滚动条位置
-        let headerElem = $refs.tableHeader ? $refs.tableHeader.$el : null
-        headerElem && (headerElem.scrollLeft = 0)
       }
     }
 
@@ -368,52 +284,6 @@ const Methods = {
       this.loadTableData(datas)
       resolve()
     })
-  },
-
-  /**
-   * 重新加载行数据
-   * @param {Object} row - 要更新的行
-   * @param {Object} record - 新的行数据
-   * @param {string} field - 指定字段名(如果只更新某个字段)
-   * @returns {Promise} 更新完成后的Promise
-   */
-  reloadRow(row, record, field) {
-    let { tableData, tableSourceData } = this
-    let rowIndex = this.getRowIndex(row)
-    let originRow = tableSourceData[rowIndex]
-    let hasSrc = originRow && row
-    let hasSrcNoField = hasSrc && !field
-
-    // 如果指定了字段，只更新该字段值
-    if (hasSrc && field) {
-      set(originRow, field, get(record || row, field))
-    }
-
-    // 如果有源数据且提供了新记录，但没有指定字段，则用新记录替换整行
-    if (hasSrcNoField && record) {
-      tableSourceData[rowIndex] = record
-      clear(row, undefined)
-      Object.assign(row, this.defineField({ ...record }))
-      this.updateCache(true)
-    }
-
-    // 如果有源数据但没有新记录也没有指定字段，则用源数据替换当前行
-    if (hasSrcNoField && !record) {
-      destructuring(originRow, clone(row, true))
-    }
-
-    // 触发表格重新渲染
-    this.tableData = tableData.slice(0)
-    return this.$nextTick()
-  },
-
-  /**
-   * 重新加载列配置
-   * @param {Array} columns - 新的列配置
-   * @returns {Promise} 加载完成后的Promise
-   */
-  reloadColumn(columns) {
-    return this.clearAll().then(() => this.loadColumn(columns))
   },
 
   /**
@@ -635,25 +505,34 @@ const Methods = {
    * 如果还额外传了field，则清空指定单元格内容；
    */
   clearData(rows, field) {
-    // 根据参数决定清空范围
-    rows = !arguments.length ? this.tableFullData : rows && !Array.isArray(rows) ? [rows] : rows
-    rows.forEach((row) => {
+    // 获取需要清空的行数据
+    const targetRows = !rows
+      ? this.tableFullData // 不传参数时清空所有行
+      : Array.isArray(rows)
+        ? rows // 传入数组时直接使用
+        : rows
+          ? [rows]
+          : [] // 传入单行时转为数组,否则使用空数组
+
+    // 清空数据
+    targetRows.forEach((row) => {
       if (field) {
         // 清空指定字段
         set(row, field, null)
       } else {
-        // 清空行的所有字段
-        this.visibleColumn.forEach((column) => {
-          column.property && setCellValue(row, column, null)
-        })
+        // 清空所有可见列的字段值
+        this.visibleColumn
+          .filter((col) => col.property) // 过滤有property属性的列
+          .forEach((col) => setCellValue(row, col, null))
       }
     })
+
     return this.$nextTick()
   },
 
   // 判断行是否为插入的新行
   hasRowInsert(row) {
-    return ~this.editStore.insertList.indexOf(row)
+    return this.editStore.insertList.includes(row)
   },
 
   // 比较行数据的指定字段值是否相等
@@ -1506,7 +1385,7 @@ const Methods = {
         tableFullColumn.forEach((column) => (column.order = null))
         column.order = order
         // 如果是服务端排序，则跳过本地排序处理
-        !isRemote && this.handleTableData(true).then(this.refreshStyle)
+        !isRemote && this.handleTableData(true)
       }
       return this.$nextTick().then(this.updateStyle)
     }
@@ -1516,7 +1395,7 @@ const Methods = {
     arrayEach(this.tableFullColumn, (column) => (column.order = null))
     this.$grid && (this.$grid.sortData = {})
 
-    return this.handleTableData(true).then(this.refreshStyle)
+    return this.handleTableData(true)
   },
   toggleGroupExpansion(row) {
     this.groupExpandeds.push(row)
@@ -1683,7 +1562,7 @@ const Methods = {
   // 处理滚动分页相关逻辑
   debounceScrollLoad(event) {
     if (!this.tasks.debounceScrollLoad) {
-      this.tasks.debounceScrollLoad = debounce(debounceScrollLoadDuration, () => {
+      this.tasks.debounceScrollLoad = debounce(DEBOUNCE_SCROLL_LOAD_DURATION, () => {
         const { scrollHeight, bodyHeight } = this.scrollLoadStore
         const { currentPage, pageSize } = this.$grid.tablePage
         const max = scrollHeight - bodyHeight
@@ -2073,7 +1952,7 @@ const Methods = {
   updateScrollStatus() {
     // 防抖处理滚动状态更新
     if (!this.tasks.updateScrollStatus) {
-      this.tasks.updateScrollStatus = debounce(AsyncCollectTimeout, () => {
+      this.tasks.updateScrollStatus = debounce(ASYNC_COLLECT_TIMEOUT, () => {
         const { scrollXLoad, scrollYLoad, isAsyncColumn } = this
 
         // 如果存在异步列并且开启了虚拟滚动

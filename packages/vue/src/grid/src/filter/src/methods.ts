@@ -256,7 +256,7 @@ export default {
 
     // 如果是服务端筛选，则跳过本地筛选处理
     if (!remoteFilter) {
-      this.handleTableData(true).then(this.refreshStyle)
+      this.handleTableData(true)
     }
 
     // 服务端请求参数

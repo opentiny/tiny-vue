@@ -164,7 +164,7 @@ function mergeTreeConfig(_vm) {
  * @returns {Object} 样式类对象
  */
 function getTableClasses(tableVm) {
-  const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
+  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
   const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
   const { loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
   const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan } = tableVm
