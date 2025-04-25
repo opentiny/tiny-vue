@@ -23,7 +23,7 @@
       ></tiny-autocomplete>
     </div>
     <div>
-      <div class="title">small:</div>
+      <div class="title">mini:</div>
       <tiny-autocomplete
         size="mini"
         v-model="value"
