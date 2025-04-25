@@ -66,6 +66,9 @@ import Toolbar from './src/toolbar'
 // 导入列锚点插件
 import ColumnAnchor from './src/column-anchor'
 
+// 导入异步列插件
+import AsyncColumn from './src/async-column'
+
 // 导入拖拽功能插件
 import Dragger from './src/dragger'
 
@@ -107,7 +110,8 @@ const plugins: Plugin[] = [
   Sort,
   Tooltip,
   Checkbox,
-  Tree
+  Tree,
+  AsyncColumn
 ]
 
 // 设置全局参数,配置国际化方法
