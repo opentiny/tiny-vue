@@ -1979,11 +1979,6 @@ const Methods = {
     return columnIds.join(',')
   },
 
-  // 获取所有多选数据状态
-  getAllSelection() {
-    return this.selection
-  },
-
   // 尝试恢复滚动位置，规范了最大滚动位置的取值
   attemptRestoreScoll(options) {
     let { lastScrollTop, lastScrollLeft } = options || this

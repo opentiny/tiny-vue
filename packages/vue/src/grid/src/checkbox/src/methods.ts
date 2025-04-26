@@ -38,6 +38,10 @@ export default {
       this.setSelection(defCheckedRows, true)
     }
   },
+  // 获取所有多选数据状态
+  getAllSelection() {
+    return this.selection
+  },
   setSelection(rows, value) {
     if (rows) {
       if (!isArray(rows)) {
