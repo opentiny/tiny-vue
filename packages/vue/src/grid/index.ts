@@ -87,6 +87,9 @@ import { radioPlugin as Radio } from './src/radio'
 // 导入树形表格插件
 import Tree from './src/tree'
 
+// 导入虚拟滚动插件
+import VirtualScroll from './src/virtual-scroll'
+
 // 导入工具函数集合
 import * as GridTools from './src/tools'
 
@@ -115,7 +118,8 @@ const plugins: Plugin[] = [
   Checkbox,
   Tree,
   AsyncColumn,
-  Radio
+  Radio,
+  VirtualScroll
 ]
 
 // 设置全局参数,配置国际化方法

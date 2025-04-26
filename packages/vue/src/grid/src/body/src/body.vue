@@ -3,13 +3,14 @@
     ref="body"
     class="tiny-grid__body-wrapper body__wrapper"
     :class="{ 'is__scrollload': $table.scrollLoad }"
+    :style="computedStyle"
     @scroll="scrollEvent"
   >
     <!-- 表格主体内容x轴方向虚拟滚动条占位元素 -->
     <div class="tiny-grid-body__x-space" ref="xSpace"></div>
 
     <!-- y轴滚动条占位元素 -->
-    <div class="tiny-grid-body__y-space visual" ref="ySpace">
+    <div class="tiny-grid-body__y-space visual" v-if="$table.scrollYLoad" ref="ySpace" :style="computedYSpaceStyle">
       <div v-if="$table.scrollLoad" class="tiny-grid-body__y-scrollbar"></div>
     </div>
 
@@ -253,7 +254,7 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { $prefix, defineComponent, hooks } from '@opentiny/vue-common'
-import { updateCellTitle, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { updateCellTitle, emitEvent } from '../../utils/utils'
 import GlobalConfig from '../../config'
 import { handleRowGroupFold } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
@@ -375,6 +376,9 @@ export default defineComponent({
     isGroup: {
       type: Boolean,
       default: false
+    },
+    height: {
+      type: [String, Number]
     },
     size: {
       type: String,
@@ -588,10 +592,25 @@ export default defineComponent({
       }
     })
 
+    // 计算表格外层容器高度，拥有滚动条
+    const computedStyle = hooks.computed(() => {
+      return {
+        height: props.height ? (`${props.height}`.endsWith('px') ? props.height : `${props.height}px`) : undefined
+      }
+    })
+
     return {
       slots,
       rowSortable,
-      GlobalConfig
+      GlobalConfig,
+      computedStyle
+    }
+  },
+  computed: {
+    computedYSpaceStyle() {
+      return {
+        height: this.$table.tableFullData.length * 36 + 'px'
+      }
     }
   },
   inject: {
@@ -633,21 +652,19 @@ export default defineComponent({
     // 滚动处理
     scrollEvent(event: Event) {
       // 获取表格实例
-      const { $parent: $table } = this as GridBodyInstance
+      const { $table } = this as GridBodyInstance
       if (!$table) return
 
       // 从表格实例中获取相关状态和引用
       const { $refs, lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad, columnStore } = $table
       const { leftList, rightList } = columnStore
-      const { tableBody, tableFooter, tableHeader } = $refs
+      const { tableBody, tableHeader } = $refs
 
       // 获取表格各个部分的DOM元素
       // 表头元素(可能不存在)
       const headerElem = tableHeader ? tableHeader.$el : null
       // 表体元素
       const bodyElem = tableBody.$el
-      // 表尾元素(可能不存在)
-      const footerElem = tableFooter ? tableFooter.$el : null
 
       // 获取当前表体的滚动位置
       const scrollLeft = bodyElem.scrollLeft // 水平滚动距离
@@ -663,9 +680,6 @@ export default defineComponent({
       $table.lastScrollLeft = scrollLeft // 更新最后水平滚动位置
       $table.lastScrollTop = scrollTop // 更新最后垂直滚动位置
       $table.scrollDirection = isX ? 'X' : 'Y' // 记录滚动方向
-
-      // 同步表头和表尾的滚动位置,保持三者滚动同步
-      this.syncHeaderAndFooterScroll({ bodyElem, footerElem, headerElem, isX })
 
       // 如果存在固定列(左固定或右固定),则处理固定列相关的类名
       if (leftList.length || rightList.length) {
@@ -689,27 +703,6 @@ export default defineComponent({
 
       // 触发表格的scroll事件,传递滚动相关的参数
       emitEvent($table, 'scroll', [{ type: 'body', scrollTop, scrollLeft, isX, isY, $table }, event])
-    },
-
-    // 同步表头和表尾滚动
-    syncHeaderAndFooterScroll({
-      bodyElem,
-      footerElem,
-      headerElem,
-      isX
-    }: {
-      bodyElem: HTMLElement
-      footerElem: HTMLElement | null
-      headerElem: HTMLElement | null
-      isX: boolean
-    }) {
-      const scrollLeft = bodyElem.scrollLeft
-      if (isX && headerElem) {
-        headerElem.scrollLeft = scrollLeft
-      }
-      if (isX && footerElem) {
-        footerElem.scrollLeft = scrollLeft
-      }
     },
 
     // 处理滚动加载
@@ -742,17 +735,6 @@ export default defineComponent({
       // 如果是横向虚拟滚动,触发横向滚动事件,加载数据
       if (isScrollX) {
         $table.triggerScrollXEvent(event)
-      }
-
-      // 当横向滚动到最右侧时,需要同步表头的滚动位置
-      // scrollLeft + clientWidth >= scrollWidth 表示滚动到最右侧
-      if (isScrollX && headerElem && scrollLeft + bodyElem.clientWidth >= bodyElem.scrollWidth) {
-        _vm.$nextTick(() => {
-          // 如果表头和表体的滚动位置不一致,则同步表头的滚动位置
-          if (bodyElem.scrollLeft !== headerElem.scrollLeft) {
-            headerElem.scrollLeft = bodyElem.scrollLeft
-          }
-        })
       }
 
       // 如果开启了纵向虚拟滚动且当前是纵向滚动,触发纵向滚动事件加载数据

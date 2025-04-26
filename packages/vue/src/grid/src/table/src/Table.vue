@@ -483,7 +483,7 @@ export default defineComponent({
   setup(props, { attrs, listeners }) {
     // 获取实例
     const instance = hooks.getCurrentInstance().proxy
-    const cellStatus = hooks.ref(new Map())
+    const cellStatus = new Map()
     // 条件处理后数据
     const afterFullData = hooks.ref([])
     // 分组表场景全量数据（包含虚拟行）
@@ -813,6 +813,7 @@ export default defineComponent({
         collectColumn: collectColumn.value,
         size: vSize.value,
         isGroup: isGroup.value,
+        height: props.height,
         resizableConfig: props.resizableConfig
       }
     })
