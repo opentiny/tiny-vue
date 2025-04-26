@@ -1,7 +1,5 @@
 import { getColumnList, assemColumn } from '../../utils/utils'
-import { toDecimal } from '@opentiny/utils'
-import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
-import { isNull } from '@opentiny/utils'
+import { addClass, removeClass, isDisplayNone, isNull, toDecimal } from '@opentiny/utils'
 import { fastdom, isNumber } from '@opentiny/utils'
 import {
   isBoolean,
