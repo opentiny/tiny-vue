@@ -1,3 +1,6 @@
+import { isBoolean } from '../../utils/static/'
+import { emitEvent } from '../../utils/utils'
+
 // 比较两个值的大小
 // @param valueP - 第一个值
 // @param valueQ - 第二个值
@@ -15,6 +18,48 @@ const greaterThan = (valueP, valueQ) => {
 }
 
 export default {
+  // 点击排序事件
+  triggerSortEvent(event, column, order) {
+    let property = column.property
+    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+    if (this.sortable && isColumnSortable) {
+      let evntParams = { $table: this, column, order, property }
+
+      evntParams.prop = property
+      evntParams.field = evntParams.prop
+
+      if (order === column.order) {
+        evntParams.order = null
+        this.clearSort(column.property)
+      } else {
+        this.sort(property, order)
+      }
+      emitEvent(this, 'sort-change', [evntParams, event])
+    }
+  },
+  sort(field, order) {
+    const { remoteSort, tableFullColumn, visibleColumn } = this
+    const column = visibleColumn.find((item) => item.property === field)
+    const isRemote = isBoolean(column.remoteSort) ? column.remoteSort : remoteSort
+    const isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+
+    if (this.sortable && isColumnSortable) {
+      if (column.order !== order) {
+        tableFullColumn.forEach((column) => (column.order = null))
+        column.order = order
+        // 如果是服务端排序，则跳过本地排序处理
+        !isRemote && this.handleTableData(true)
+      }
+      return this.$nextTick().then(this.updateStyle)
+    }
+    return this.$nextTick()
+  },
+  clearSort() {
+    this.tableFullColumn.forEach((column) => (column.order = null))
+    this.$grid && (this.$grid.sortData = {})
+
+    return this.handleTableData(true)
+  },
   // 多字段排序
   sortMultiple: (rows, columns, _vm) => {
     // 获取多列排序配置

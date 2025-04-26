@@ -1280,48 +1280,7 @@ const Methods = {
 
     emitEvent(this, 'cell-dblclick', [params, event])
   },
-  // 点击排序事件
-  triggerSortEvent(event, column, order) {
-    let property = column.property
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
-    if (this.sortable && isColumnSortable) {
-      let evntParams = { $table: this, column, order, property }
 
-      evntParams.prop = property
-      evntParams.field = evntParams.prop
-
-      if (order === column.order) {
-        evntParams.order = null
-        this.clearSort(column.property)
-      } else {
-        this.sort(property, order)
-      }
-      emitEvent(this, 'sort-change', [evntParams, event])
-    }
-  },
-  sort(field, order) {
-    let { remoteSort, tableFullColumn, visibleColumn } = this
-    let column = find(visibleColumn, (item) => item.property === field)
-    let isRemote = isBoolean(column.remoteSort) ? column.remoteSort : remoteSort
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
-
-    if (this.sortable && isColumnSortable) {
-      if (column.order !== order) {
-        tableFullColumn.forEach((column) => (column.order = null))
-        column.order = order
-        // 如果是服务端排序，则跳过本地排序处理
-        !isRemote && this.handleTableData(true)
-      }
-      return this.$nextTick().then(this.updateStyle)
-    }
-    return this.$nextTick()
-  },
-  clearSort() {
-    arrayEach(this.tableFullColumn, (column) => (column.order = null))
-    this.$grid && (this.$grid.sortData = {})
-
-    return this.handleTableData(true)
-  },
   toggleGroupExpansion(row) {
     this.groupExpandeds.push(row)
   },
@@ -1404,7 +1363,6 @@ const Methods = {
     return ~this.expandeds.indexOf(row)
   },
   clearRowExpand() {
-    let hasExpand = this.expandeds.length
     this.expandeds = []
     return this.$nextTick()
   },
