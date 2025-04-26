@@ -90,6 +90,9 @@ import Tree from './src/tree'
 // 导入虚拟滚动插件
 import VirtualScroll from './src/virtual-scroll'
 
+// 导入展开行插件
+import Expand from './src/expand'
+
 // 导入工具函数集合
 import * as GridTools from './src/tools'
 
@@ -119,7 +122,8 @@ const plugins: Plugin[] = [
   Tree,
   AsyncColumn,
   Radio,
-  VirtualScroll
+  VirtualScroll,
+  Expand
 ]
 
 // 设置全局参数,配置国际化方法

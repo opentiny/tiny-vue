@@ -1,4 +1,4 @@
-import { get } from '@opentiny/vue-renderless/grid/static/'
+import { get } from '../../utils/static/'
 import { warn } from '../../tools'
 
 /**
