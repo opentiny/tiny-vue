@@ -1,4 +1,4 @@
-import { getRowid } from '@opentiny/vue-renderless/grid/utils'
+import { getRowid } from '../utils/utils'
 
 const isCellDirty = ($table, row, column) => {
   const { editConfig } = $table

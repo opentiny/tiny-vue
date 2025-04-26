@@ -24,7 +24,7 @@
  */
 import { addClass, removeClass, hasClass } from '@opentiny/utils'
 import { throttle } from '@opentiny/utils'
-import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
+import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '../../../utils/utils'
 
 export function handleHeaderCellMousedownEvent({ $el, _vm, bodyList, cell, headerList, startCell }) {
   let oldMousemove = document.onmousemove

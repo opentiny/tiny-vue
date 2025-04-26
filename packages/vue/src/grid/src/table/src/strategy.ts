@@ -4,8 +4,8 @@
  */
 
 import { hooks } from '@opentiny/vue-common'
-import { getRowkey } from '@opentiny/vue-renderless/grid/utils'
-import { arrayEach, isEqual } from '@opentiny/vue-renderless/grid/static'
+import { getRowkey } from '../../utils/utils'
+import { arrayEach, isEqual } from '../../utils/static'
 import { warn } from '../../tools'
 
 const { toRaw } = hooks

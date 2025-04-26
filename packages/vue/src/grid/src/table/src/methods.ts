@@ -1,4 +1,4 @@
-import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnList, assemColumn } from '../../utils/utils'
 import { toDecimal } from '@opentiny/utils'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
@@ -20,7 +20,7 @@ import {
   clone,
   sum,
   find
-} from '@opentiny/vue-renderless/grid/static/'
+} from '../../utils/static/'
 import {
   isPx,
   isScale,
@@ -31,7 +31,7 @@ import {
   setCellValue,
   getRowid,
   emitEvent
-} from '@opentiny/vue-renderless/grid/utils'
+} from '../../utils/utils'
 import Cell from '../../cell'
 import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'

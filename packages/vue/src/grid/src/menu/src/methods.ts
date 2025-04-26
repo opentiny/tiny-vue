@@ -22,8 +22,8 @@
  * SOFTWARE.
  *
  */
-import { findIndexOf } from '@opentiny/vue-renderless/grid/static/'
-import { hasChildrenList, getDomNode, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { findIndexOf } from '../../utils/static/'
+import { hasChildrenList, getDomNode, emitEvent } from '../../utils/utils'
 import { Menus } from '../../adapter'
 
 const getSelectItem = (subList) => {

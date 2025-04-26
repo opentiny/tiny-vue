@@ -1,5 +1,5 @@
 import { hooks } from '@opentiny/vue-common'
-import { find } from '@opentiny/vue-renderless/grid/static'
+import { find } from '../utils/static'
 
 const createUseRowGroup =
   ({ reactive, watch, getCurrentInstance, onBeforeUnmount }) =>

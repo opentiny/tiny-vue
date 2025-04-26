@@ -22,8 +22,8 @@
  * SOFTWARE.
  *
  */
-import { findTree } from '@opentiny/vue-renderless/grid/static'
-import { setColumnFormat } from '@opentiny/vue-renderless/grid/utils'
+import { findTree } from '../../utils/static'
+import { setColumnFormat } from '../../utils/utils'
 import { h, hooks, $props, defineComponent, useRelation, useInstanceSlots } from '@opentiny/vue-common'
 import Cell from '../../cell'
 import { warn } from '../../tools'

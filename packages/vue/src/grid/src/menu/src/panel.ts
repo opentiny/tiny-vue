@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { getFuncText } from '@opentiny/vue-renderless/grid/utils'
+import { getFuncText } from '../../utils/utils'
 import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 import Children from './children'
 
