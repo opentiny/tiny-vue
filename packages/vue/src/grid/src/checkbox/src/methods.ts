@@ -2,7 +2,17 @@ import { hasCheckField, hasNoCheckField } from './handleSelectRow'
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './setAllSelection'
 import { getTableRowKey } from '../../table/src/strategy'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
-import { isArray, set, get, eachTree, find, toStringJSON, toArray } from '@opentiny/vue-renderless/grid/static/'
+import {
+  isArray,
+  set,
+  get,
+  eachTree,
+  find,
+  toStringJSON,
+  toArray,
+  filterTree,
+  clone
+} from '@opentiny/vue-renderless/grid/static/'
 
 export default {
   // 处理默认勾选
@@ -74,6 +84,26 @@ export default {
   toggleRowSelection(row) {
     this.handleToggleCheckRowEvent({ row })
     return this.$nextTick()
+  },
+  // 获取选中数据。notCopy为true不返回数据副本，表格内部要继续处理其返回值时设置为true
+  getSelectRecords(notCopy) {
+    let { selectConfig = {}, selection } = this
+    let { tableFullData, treeConfig } = this
+    let { checkField } = selectConfig
+    let { rowList = [] } = {}
+    if (checkField && treeConfig) {
+      rowList = filterTree(tableFullData, (row) => get(row, checkField), treeConfig)
+    }
+    if (checkField && !treeConfig) {
+      rowList = tableFullData.filter((row) => get(row, checkField))
+    }
+    if (!checkField && treeConfig) {
+      rowList = filterTree(tableFullData, (row) => ~selection.indexOf(row), treeConfig)
+    }
+    if (!checkField && !treeConfig) {
+      rowList = tableFullData.filter((row) => ~selection.indexOf(row))
+    }
+    return notCopy ? rowList : clone(rowList, true)
   },
   setAllSelection(value) {
     let { afterFullData, selectConfig = {}, treeConfig, selection } = this

@@ -81,6 +81,9 @@ import Tooltip from './src/tooltip'
 // 导入多选功能插件
 import Checkbox from './src/checkbox'
 
+// 导入单选功能插件
+import { radioPlugin as Radio } from './src/radio'
+
 // 导入树形表格插件
 import Tree from './src/tree'
 
@@ -111,7 +114,8 @@ const plugins: Plugin[] = [
   Tooltip,
   Checkbox,
   Tree,
-  AsyncColumn
+  AsyncColumn,
+  Radio
 ]
 
 // 设置全局参数,配置国际化方法

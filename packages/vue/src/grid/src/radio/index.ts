@@ -10,6 +10,7 @@
  *
  */
 import { $install } from '@opentiny/vue-common'
+import Methods from './src/methods'
 import Radio from './src/radio'
 
 Radio.model = {
@@ -20,3 +21,10 @@ Radio.model = {
 $install(Radio)
 
 export default Radio
+
+export const radioPlugin = {
+  host: 'table',
+  install(host) {
+    Object.assign(host.methods, Methods)
+  }
+}

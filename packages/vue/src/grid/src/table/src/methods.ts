@@ -5,7 +5,6 @@ import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
 import { fastdom, isNumber } from '@opentiny/utils'
 import {
-  filterTree,
   isBoolean,
   findTree,
   set,
@@ -654,26 +653,6 @@ const Methods = {
     }
     return undefined
   },
-  // 获取选中数据。notCopy为true不返回数据副本，表格内部要继续处理其返回值时设置为true
-  getSelectRecords(notCopy) {
-    let { selectConfig = {}, selection } = this
-    let { tableFullData, treeConfig } = this
-    let { checkField } = selectConfig
-    let { rowList = [] } = {}
-    if (checkField && treeConfig) {
-      rowList = filterTree(tableFullData, (row) => get(row, checkField), treeConfig)
-    }
-    if (checkField && !treeConfig) {
-      rowList = tableFullData.filter((row) => get(row, checkField))
-    }
-    if (!checkField && treeConfig) {
-      rowList = filterTree(tableFullData, (row) => ~selection.indexOf(row), treeConfig)
-    }
-    if (!checkField && !treeConfig) {
-      rowList = tableFullData.filter((row) => ~selection.indexOf(row))
-    }
-    return notCopy ? rowList : clone(rowList, true)
-  },
   // 对数据进行筛选和排序，获取处理后数据。服务端筛选和排序，在接口调用时已传入参数
   updateAfterFullData() {
     let { remoteFilter, remoteSort, tableFullData, visibleColumn, sortOpts } = this
@@ -1190,29 +1169,6 @@ const Methods = {
   handleGlobalKeydownEvent,
   handleGlobalResizeEvent,
   handleGlobalMousedownCaptureEvent,
-  // 处理单选框默认勾选
-  handleRadioDefChecked() {
-    let { fullDataRowIdData } = this
-    let { checkRowKey } = this.radioConfig || {}
-    let rowid = checkRowKey && encodeURIComponent(checkRowKey)
-    let rowCache = fullDataRowIdData[rowid]
-    if (rowid && rowCache) {
-      this.setRadioRow(rowCache.row)
-    }
-  },
-  // 单选，行选中事件
-  triggerRadioRowEvent(event, params) {
-    let { selectRow } = this
-    let { checkMethod } = this.radioConfig || {}
-    if (checkMethod && !checkMethod(params)) {
-      return
-    }
-    this.setRadioRow(params.row)
-    this.setCurrentRow(params.row)
-    if (selectRow !== params.row) {
-      emitEvent(this, 'radio-change', [params, event])
-    }
-  },
   triggerCurrentRowEvent(event, params) {
     let { currentRow } = this
     this.setCurrentRow(params.row)
@@ -1231,29 +1187,15 @@ const Methods = {
     }
     return this.$nextTick()
   },
-  setRadioRow(row) {
-    row !== this.selectRow && this.clearRadioRow()
-    this.selectRow = row
-    return this.$nextTick()
-  },
   clearCurrentRow() {
     Object.assign(this, { currentRow: null, hoverRow: null })
     let rowElems = this.$el.querySelectorAll('.row__current')
     arrayEach(rowElems, (elem) => removeClass(elem, 'row__current'))
     return this.$nextTick()
   },
-  clearRadioRow() {
-    let { selectRow: radioRow } = this
-    radioRow && (this.selectRow = null)
-    return this.$nextTick()
-  },
   getCurrentRow() {
     let { currentRow } = this
     return currentRow
-  },
-  getRadioRow() {
-    let { selectRow: radioRow } = this
-    return radioRow
   },
   triggerHeaderCellClickEvent(event, params) {
     let { _lastResizeTime: lastTime, highlightCurrentColumn } = this
