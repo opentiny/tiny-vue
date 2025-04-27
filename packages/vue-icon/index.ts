@@ -260,6 +260,7 @@ import IconPanelMini from './src/panel-mini'
 import IconPanelNormal from './src/panel-normal'
 import IconPauseCircle from './src/pause-circle'
 import IconPause from './src/pause'
+import IconPersonHistory from './src/person-history'
 import IconPicture from './src/picture'
 import IconPieChart from './src/pie-chart'
 import IconPlusCircle from './src/plus-circle'
@@ -1199,6 +1200,8 @@ export {
   IconPauseCircle as iconPauseCircle,
   IconPause,
   IconPause as iconPause,
+  IconPersonHistory,
+  IconPersonHistory as iconPersonHistory,
   IconPicture,
   IconPicture as iconPicture,
   IconPieChart,
@@ -1905,6 +1908,7 @@ export default {
   IconPanelNormal,
   IconPauseCircle,
   IconPause,
+  IconPersonHistory,
   IconPicture,
   IconPieChart,
   IconPlusCircle,
