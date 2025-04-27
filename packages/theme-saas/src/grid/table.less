@@ -582,7 +582,7 @@
   }
 
   & &-cell {
-    line-height: normal;
+    line-height: 1.375rem;
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
@@ -645,11 +645,13 @@
       @apply flex;
       @apply items-center;
       @apply justify-start;
+      line-height: 1.375rem;
     }
 
     &.col__center {
       .@{grid-cell-prefix-cls} {
         @apply justify-center;
+        line-height: 1.375rem;
       }
     }
 
@@ -662,6 +664,7 @@
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
+        line-height: 1.375rem;
         @apply pl-0;
       }
     }

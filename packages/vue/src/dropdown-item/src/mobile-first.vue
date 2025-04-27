@@ -5,14 +5,14 @@
     @mouseleave="mouseLeave"
     :class="
       m(
-        'rounded-sm list-none leading-10 sm:leading-8 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
+        'mb-1 rounded-sm list-none leading-10 sm:leading-8 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
         disabled
           ? 'cursor-not-allowed text-color-text-disabled [&_svg]:fill-color-text-disabled'
           : 'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-2 focus:bg-color-bg-4 cursor-pointer',
         {
           'text-color-brand-focus bg-color-fill-6': dataStore.checkedStatus && selected
         },
-        dataStore.multiStage ? '!px-0 mb-1' : '[&:not(:last-of-type)]:mb-1'
+        dataStore.multiStage ? '!px-0' : '[&:not(:last-of-type)]:mb-1'
       )
     "
     @click.stop="handleClick"
