@@ -47,8 +47,8 @@
       <template v-for="key in ['title', 'subtitle', 'auxi']">
         <div
           v-if="state[key].show"
+          v-auto-tip
           :key="key"
-          :title="state[key].text"
           :class="[
             'truncate',
             state.layUpdown ? 'text-center' : 'text-left',
@@ -89,6 +89,7 @@ import {
   iconDone,
   iconDoneMini
 } from '@opentiny/vue-icon'
+import { AutoTip } from '@opentiny/vue-directive'
 
 const icons = {
   'not-started': { mini: iconNotStartedMini, other: iconNotStarted },
@@ -99,6 +100,7 @@ const icons = {
 
 export default defineComponent({
   props: [...props, 'node', 'config', 'titleClass'],
+  directives: { AutoTip },
   setup(props: any, context: any): any {
     return setup({ props, context, renderless, api, mono: true, extendOptions: { icons } })
   }
