@@ -83,7 +83,7 @@
           :class="
             m(
               'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
-                'sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator ' +
+                'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
                 'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled ' +
                 'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
@@ -323,7 +323,7 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
         :class="[
           readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 ',
           state.isDisplayOnly ? 'hidden' : '',
