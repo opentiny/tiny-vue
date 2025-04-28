@@ -43,25 +43,25 @@ jobs:
             const componentPathRules = [
               // 匹配 packages/renderless/src/{组件名} 路径，支持更深层次的子目录
               { 
-                pattern: /^packages\/renderless\/src\/([^/]+)/, 
+                pattern: /^packages\/renderless\/src\/([^/]+)\//, 
                 group: 1,
                 type: 'renderless'
               },
               // 匹配 packages/vue/src/{组件名} 路径，支持更深层次的子目录
               { 
-                pattern: /^packages\/vue\/src\/([^/]+)/, 
+                pattern: /^packages\/vue\/src\/([^/]+)\//, 
                 group: 1,
                 type: 'vue'
               },
-              // 匹配示例目录下的组件路径
+              // 匹配示例目录下的组件路径 - 只匹配目录，不匹配package.json等文件
               { 
-                pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)/, 
+                pattern: /^examples\/sites\/demos\/pc\/app\/([^/]+)\//, 
                 group: 1,
                 type: 'demo'
               },
               // 匹配 packages/theme/src/{组件名} 样式路径
               {
-                pattern: /^packages\/theme\/src\/([^/]+)/,
+                pattern: /^packages\/theme\/src\/([^/]+)\//,
                 group: 1,
                 type: 'theme'
               }
