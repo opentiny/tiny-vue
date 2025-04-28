@@ -88,7 +88,7 @@ export default defineConfig({
 
 ```html
 <head>
-  <!-- 引入 vue 和 @opentiny/vue 其中 @opentiny/vue-huicharts 包在v3.22.0版本新增 -->
+  <!-- 引入 vue 和 @opentiny/vue 其中 @opentiny/vue-huicharts 包在v3.22.0版本开始提供 -->
   <script type="importmap">
     {
       "imports": {
