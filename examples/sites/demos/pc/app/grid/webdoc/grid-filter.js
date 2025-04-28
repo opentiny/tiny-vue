@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'filter-default-filter',
-      'name': { 'zh-CN': '过滤', 'en-US': 'Filter' },
-      'desc': {
+      name: { 'zh-CN': '过滤', 'en-US': 'Filter' },
+      desc: {
         'zh-CN': `
         <div class="tip custom-block">
           <p class="custom-block-title">filter 配置</p>
@@ -29,8 +29,8 @@ export default {
     },
     {
       demoId: 'filter-dynamic-filter',
-      'name': { 'zh-CN': '动态改变筛选项', 'en-US': 'Filter' },
-      'desc': {
+      name: { 'zh-CN': '动态改变筛选项', 'en-US': 'Filter' },
+      desc: {
         'zh-CN': `<p>通过改变自定义的 <code>filter</code> 自定义筛选的规则中的 <code>values</code> 数组，或者将 <code>values</code> 定义成方法可以动态的返回筛选项。`,
         'en-US': ''
       },
@@ -38,8 +38,8 @@ export default {
     },
     {
       demoId: 'filter-simple-filter',
-      'name': { 'zh-CN': '简化版筛选 - 单选/多选菜单', 'en-US': 'Custom Parameter' },
-      'desc': {
+      name: { 'zh-CN': '简化版筛选 - 单选/多选菜单', 'en-US': 'Custom Parameter' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code> 。</p>\n',
         'en-US': '<p>Add custom parameters by <code>params</code>.</p>\n'
@@ -48,8 +48,8 @@ export default {
     },
     {
       demoId: 'filter-simple-date-filter',
-      'name': { 'zh-CN': '简化版筛选 - 时间日期菜单', 'en-US': 'Advanced Filter Settings' },
-      'desc': {
+      name: { 'zh-CN': '简化版筛选 - 时间日期菜单', 'en-US': 'Advanced Filter Settings' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code>。</p>\n',
         'en-US':
@@ -59,8 +59,8 @@ export default {
     },
     {
       demoId: 'filter-simple-default-value-filter',
-      'name': { 'zh-CN': '筛选面板默认选中值', 'en-US': 'Set Column Filtering Rules' },
-      'desc': {
+      name: { 'zh-CN': '筛选面板默认选中值', 'en-US': 'Set Column Filtering Rules' },
+      desc: {
         'zh-CN': '<p>通过 <code>condition.value</code>可以配置筛选默认的选中值。</p>\n',
         'en-US': '<p>Set the column filtering rule through the <code>filter</code> attribute</p>\n'
       },
@@ -68,8 +68,8 @@ export default {
     },
     {
       demoId: 'filter-advanced-filter',
-      'name': { 'zh-CN': '过滤高级设置', 'en-US': 'Custom Filter' },
-      'desc': {
+      name: { 'zh-CN': '过滤高级设置', 'en-US': 'Custom Filter' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>inputFilter</code> 可以给 <code>input</code> 过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表。</p>',
         'en-US': '<p>Set additional parameters through the <code>params</code> attribute</p>\n'
@@ -78,8 +78,8 @@ export default {
     },
     {
       demoId: 'filter-custom-filter',
-      'name': { 'zh-CN': '列筛选规则', 'en-US': 'Server Filter' },
-      'desc': {
+      name: { 'zh-CN': '列筛选规则', 'en-US': 'Server Filter' },
+      desc: {
         'zh-CN': '<p>通过 <code>filter</code> 属性设置列筛选规则。</p>\n',
         'en-US':
           '<p>Configure remote-filter to enable server-side filtering. The server-side filtering invokes the fetch-data table for query. The filter-change event is triggered after the server-side filtering.\nThe <code>services/getGridMockData</code> service in this example needs to be implemented. The example simulates the data returned by a remote service \n</p>\n'
@@ -88,8 +88,8 @@ export default {
     },
     {
       demoId: 'filter-server-filter',
-      'name': { 'zh-CN': '服务端过滤', 'en-US': 'Enter the default filtering options.' },
-      'desc': {
+      name: { 'zh-CN': '服务端过滤', 'en-US': 'Enter the default filtering options.' },
+      desc: {
         'zh-CN':
           '<p>配置 remote-filter 开启服务端过滤，服务端过滤会调用表格 fetch-data 进行查询，filter-change 服务端过滤后触发的事件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据。\n</p>\n',
         'en-US':
@@ -99,8 +99,8 @@ export default {
     },
     {
       demoId: 'server-filter-default',
-      'name': { 'zh-CN': '服务端过滤默认选中值', 'en-US': 'Server-side filtering default selected value' },
-      'desc': {
+      name: { 'zh-CN': '服务端过滤默认选中值', 'en-US': 'Server-side filtering default selected value' },
+      desc: {
         'zh-CN':
           '<p>配置 remote-filter 开启服务端过滤后，表格初始化时，如果设置了 <code>auto-load</code> 会在表格列初始化钱调用 <code>handleFetch</code>，因此此时无法获取到过滤参数，如果需要设置服务端过滤默认选中值，需将 <code>auto-load</code> 设置为 false 且手动调用一次 <code>handleFetch</code> 方法。</p>\n',
         'en-US':
@@ -110,8 +110,8 @@ export default {
     },
     {
       demoId: 'filter-default-relation',
-      'name': { 'zh-CN': '输入过滤的默认选项', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '输入过滤的默认选项', 'en-US': '' },
+      desc: {
         'zh-CN':
           '<p>通过属性 <code>inputFilter.relation</code> 配置输入过滤的默认选项。\n输入过滤的内置选项：<code>equals</code>，<code>unequal</code>，<code>greaterThan</code>，<code>lessThan</code>，<code>equalToGreaterThan</code>，<code>equalToLessThan</code>，<code>contains</code>，<code>startwith</code>，<code>endwith</code>；也可以配置自定义选项。\n配置自定义选项的同时要配置过滤方法，通过属性 <code>inputFilter.method</code> 配置。</p>\n',
         'en-US': ''
@@ -120,13 +120,13 @@ export default {
     },
     {
       demoId: 'filter-request-service-reload-filter',
-      'name': { 'zh-CN': '重载数据时不清除过滤', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '重载数据时不清除过滤', 'en-US': '' },
+      desc: {
         'zh-CN': `<p>在调用 <code>handleFetch('reload')</code> 重载表格数据时，默认会清除表格筛选。配置 <code>fetchData.reloadConfig.filter</code> 为 <code>true</code> 可以在重载时保持表格筛选。</p>`,
         'en-US': ''
       },
       codeFiles: ['filter/request-service-reload-filter.vue']
     }
   ],
-  apis: [{ 'name': 'grid-filter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-filter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

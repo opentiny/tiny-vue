@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'editor-inner-editor',
-      'name': { 'zh-CN': '内置编辑器', 'en-US': 'Grid-editor-built-in editor' },
-      'desc': {
+      name: { 'zh-CN': '内置编辑器', 'en-US': 'Grid-editor-built-in editor' },
+      desc: {
         'zh-CN': `
         <p>通过在 <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。</p>
         <div class="tip custom-block">
@@ -20,8 +20,8 @@ export default {
     },
     {
       demoId: 'editor-custom-editor-select',
-      'name': { 'zh-CN': '自定义编辑器', 'en-US': 'Introducing the TINY component as the editor' },
-      'desc': {
+      name: { 'zh-CN': '自定义编辑器', 'en-US': 'Introducing the TINY component as the editor' },
+      desc: {
         'zh-CN': `
         <p> <code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者 TinyVue 提供的组件。</p>
         `,
@@ -32,8 +32,8 @@ export default {
     },
     {
       demoId: 'editor-mutil-render',
-      'name': { 'zh-CN': '下拉多选', 'en-US': 'Grid-editor-drop-down list' },
-      'desc': {
+      name: { 'zh-CN': '下拉多选', 'en-US': 'Grid-editor-drop-down list' },
+      desc: {
         'zh-CN':
           '<p>配置列为下拉多选时，单元格渲染需要自行实现，如下例中使用<code>format-text</code>渲染多个枚举值。也可以使用<code>renderer</code>自己实现自定义的组件去渲染。</p>\n',
         'en-US':
@@ -43,11 +43,11 @@ export default {
     },
     {
       demoId: 'editor-popeditor-in-grid-remote-search',
-      'name': {
+      name: {
         'zh-CN': '弹窗编辑',
         'en-US': 'Edit the Popeditor pop-up window and configure remote search.'
       },
-      'desc': {
+      desc: {
         'zh-CN':
           '<p>在 <code>grid-column</code> 列元素上配置 <code>editor</code> 属性，该对象中可以指定 <code>component</code> 为 <code>Popeditor</code>、<code>attrs</code> 为 Popeditor 组件的属性。需要注意的是，引入 Popeditor 组件后，需要在 <code>data()</code> 中进行实例化。</p>\n',
         'en-US': 'For details, see the following example.'
@@ -56,8 +56,8 @@ export default {
     },
     {
       demoId: 'editor-editor-bg',
-      'name': { 'zh-CN': '维护编辑状态', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '维护编辑状态', 'en-US': '' },
+      desc: {
         'zh-CN':
           "<p>假设 <code>名称字段</code> 和 <code>id 为 '3' 的行</code> 不可编辑，可以通过 <code>editConfig.activeMethod</code> 设置其单元格不可进入编辑，通过 <code>cellClassName</code> 设置其单元格的背景底色。</p>",
         'en-US': ''
@@ -66,8 +66,8 @@ export default {
     },
     {
       demoId: 'active-strictly',
-      'name': { 'zh-CN': '行编辑禁用特定列', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '行编辑禁用特定列', 'en-US': '' },
+      desc: {
         'zh-CN':
           "<p>当 <code>editConfig.mode</code> 为'row'时，行编辑激活状态下默认会忽略 <code>editConfig.activeMethod</code> ，配置 <code>editConfig.activeStrictly</code> 为 true 使其生效",
         'en-US': ''
@@ -76,8 +76,8 @@ export default {
     },
     {
       demoId: 'editor-custom-edit',
-      'name': { 'zh-CN': '多行编辑', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '多行编辑', 'en-US': '' },
+      desc: {
         'zh-CN':
           '<p>表格编辑器场景，在表格内部维护编辑状态，只能使整行或单个单元格处于编辑状态。如果需要使多行处于编辑状态，需要使用渲染器自行实现，在自定义编辑状态时，表格内置的一些编辑行为，例如表头是否显示必填星号、编辑规则等将不可用，需要自行实现，参考示例：</p>',
         'en-US': ''
@@ -85,5 +85,5 @@ export default {
       codeFiles: ['editor/custom-edit.vue']
     }
   ],
-  apis: [{ 'name': 'grid-editor', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-editor', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

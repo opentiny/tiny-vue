@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'toolbar-insert-delete-update',
-      'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': {
+      name: { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
+      desc: {
         'zh-CN': `
         <div class="tip custom-block">
           <p class="custom-block-title">工具栏配置步骤：</p>
@@ -25,8 +25,8 @@ export default {
     },
     {
       demoId: 'toolbar-cancel-delete',
-      'name': { 'zh-CN': '取消删除', 'en-US': 'Cancel deletion' },
-      'desc': {
+      name: { 'zh-CN': '取消删除', 'en-US': 'Cancel deletion' },
+      desc: {
         'zh-CN':
           '<p>在工具栏中配置 <code>mark_cancel</code> 的 code，勾选数据后，单击 <code>删除/取消删除</code> 按钮，勾选的数据将标记删除线。再单击 <code>保存</code> 按钮请求服务删除标记的数据。已标记删除线的数据勾选后再次单击 <code>删除/取消删除</code> 按钮，会取消删除线。\n 需要配置 fetch-data 请求服务时才有标记删除线和取消删除线的效果。\n</p>\n',
         'en-US':
@@ -36,8 +36,8 @@ export default {
     },
     {
       demoId: 'toolbar-clear-data',
-      'name': { 'zh-CN': '清空数据', 'en-US': 'Clear Data' },
-      'desc': {
+      name: { 'zh-CN': '清空数据', 'en-US': 'Clear Data' },
+      desc: {
         'zh-CN':
           '<p>clearData 方法手动清空单元格内容，如果不传参数，则清空整个表格内容。如果传了行则清空指定行内容，如果传了指定字段，则清空该字段内容。具体参考下面示例。</p>\n',
         'en-US':
@@ -47,11 +47,11 @@ export default {
     },
     {
       demoId: 'toolbar-insert-remove-rows',
-      'name': {
+      name: {
         'zh-CN': '插入或删除指定行',
         'en-US': 'Insert data to a specified row and delete a specified row'
       },
-      'desc': {
+      desc: {
         'zh-CN':
           '<p>通过 <code>insertAt(records, row)</code> 方法可以在指定行插入一行或多行数据。<code>remove(rows)</code> 方法可以删除指定一行或多行数据，rows 为对象则是一行，数组则是多行数据，为空则删除所有数据。</p>\n',
         'en-US':
@@ -61,8 +61,8 @@ export default {
     },
     {
       demoId: 'toolbar-save-data',
-      'name': { 'zh-CN': '服务端数据保存和删除', 'en-US': 'Saving and Deleting Server Data' },
-      'desc': {
+      name: { 'zh-CN': '服务端数据保存和删除', 'en-US': 'Saving and Deleting Server Data' },
+      desc: {
         'zh-CN':
           '<p>通过表格属性 <code>save-data</code> 服务端数据保存方法。\n通过表格属性 <code>delete-data</code> 服务端数据删除方法。</p>\n',
         'en-US':
@@ -72,8 +72,8 @@ export default {
     },
     {
       demoId: 'toolbar-copy-row-data',
-      'name': { 'zh-CN': '工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
-      'desc': {
+      name: { 'zh-CN': '工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>size</code> 属性设置工具栏尺寸大小，包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>',
         'en-US':
@@ -83,8 +83,8 @@ export default {
     },
     {
       demoId: 'toolbar-refresh-grid',
-      'name': { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
-      'desc': {
+      name: { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
+      desc: {
         'zh-CN': `
         <p>设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
         <ul>
@@ -97,8 +97,8 @@ export default {
     },
     {
       demoId: 'toolbar-grid-full-screen',
-      'name': { 'zh-CN': '开启表格全屏功能', 'en-US': 'Enable the full-screen function of the table.' },
-      'desc': {
+      name: { 'zh-CN': '开启表格全屏功能', 'en-US': 'Enable the full-screen function of the table.' },
+      desc: {
         'zh-CN': '<p>设置工具栏组件属性 <code>full-screen</code> 开启表格全屏功能。</p>\n',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>full-screen</code> to enable the full-screen function. </p>\n'
@@ -107,8 +107,8 @@ export default {
     },
     {
       demoId: 'toolbar-grid-full-screen-height',
-      'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
-      'desc': {
+      name: { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
+      desc: {
         'zh-CN': '<p>通过表格属性 <code>height</code> 在全屏是动态改变表格高度。</p>',
         'en-US': 'For details, see the following example.'
       },
@@ -116,8 +116,8 @@ export default {
     },
     {
       demoId: 'toolbar-grid-full-screen-teleport',
-      'name': { 'zh-CN': '推荐基于 Teleport 的全屏方案', 'en-US': 'Change the table height in full screen mode' },
-      'desc': {
+      name: { 'zh-CN': '推荐基于 Teleport 的全屏方案', 'en-US': 'Change the table height in full screen mode' },
+      desc: {
         'zh-CN': '<p>通过 <code>teleport</code> 实现表格全屏。</p>',
         'en-US': 'For details, see the following example.'
       },
@@ -125,8 +125,8 @@ export default {
     },
     {
       demoId: 'toolbar-custom-toolbar',
-      'name': { 'zh-CN': '工具栏自定义插槽', 'en-US': 'Toolbar Custom Slot' },
-      'desc': {
+      name: { 'zh-CN': '工具栏自定义插槽', 'en-US': 'Toolbar Custom Slot' },
+      desc: {
         'zh-CN': '<p>通过工具栏组件的插槽 <code>#buttons</code> 自定义内容。</p>',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component slot <code>#toolbar</code>. \n2. Customize content through the slot <code>#buttons</code> of the toolbar component. </p>\n'
@@ -135,8 +135,8 @@ export default {
     },
     {
       demoId: 'toolbar-toolbar-op-config',
-      'name': { 'zh-CN': '配置式工具栏写法', 'en-US': 'Profile' },
-      'desc': {
+      name: { 'zh-CN': '配置式工具栏写法', 'en-US': 'Profile' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>v-bind</code> 绑定一个对象来实现配置式。在绑定的对象中 <code>toolbar</code> 字段用于工具栏配置，可配合 <code>events</code> 字段对工具栏中按钮进行 <code>toolbarButtonClick</code> 事件配置。另外，<code>pager</code> 字段用于分页配置，<code>fetchData</code> 字段用于请求服务。</p>\n',
         'en-US':
@@ -146,8 +146,8 @@ export default {
     },
     {
       demoId: 'toolbar-toolbar-op-config-slots',
-      'name': { 'zh-CN': '配置式工具栏插槽', 'en-US': 'Profile' },
-      'desc': {
+      name: { 'zh-CN': '配置式工具栏插槽', 'en-US': 'Profile' },
+      desc: {
         'zh-CN':
           '<p>通过表格属性 <code>toolbar.slots</code> 配置工具栏插槽 <code>buttons</code> 和 <code>tools</code>。</p>',
         'en-US':
@@ -156,5 +156,5 @@ export default {
       codeFiles: ['toolbar/toolbar-op-config-slots.vue']
     }
   ],
-  apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
