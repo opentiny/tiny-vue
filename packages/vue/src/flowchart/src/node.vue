@@ -16,7 +16,7 @@
       :class="[
         'w-4 h-4 absolute z-0 rounded-full flex items-center justify-center',
         'translate-x-1 translate-y-1 text-base',
-        { 'cursor-pointer': !state.statNotStarted },
+        { 'cursor-pointer': cursorPointerFn ? cursorPointerFn(state) : true },
         { 'sm:w-2 sm:h-2': state.icon.size === 'mini', 'sm:w-6 sm:h-6': state.icon.size === 'medium' }
       ]"
     >
@@ -100,7 +100,7 @@ const icons = {
 }
 
 export default defineComponent({
-  props: [...props, 'node', 'config', 'titleClass'],
+  props: [...props, 'node', 'config', 'titleClass', 'cursorPointerFn'],
   directives: { AutoTip },
   setup(props: any, context: any): any {
     return setup({ props, context, renderless, api, mono: true, extendOptions: { icons } })
