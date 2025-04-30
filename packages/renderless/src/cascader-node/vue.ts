@@ -52,14 +52,16 @@ export const renderless = (
     })
   }) as ICascaderNodeState
 
-  watch(
-    () => state.checkedValue,
-    (checkedValue) => {
-      if (checkedValue.includes(props.node.value)) {
-        api.handleExpand()
+  if (parent.state.config.expandTrigger !== 'click') {
+    watch(
+      () => state.checkedValue,
+      (checkedValue) => {
+        if (checkedValue.includes(props.node.value)) {
+          api.handleExpand()
+        }
       }
-    }
-  )
+    )
+  }
 
   Object.assign(api, {
     state,
