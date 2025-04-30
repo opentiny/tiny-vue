@@ -252,9 +252,7 @@
     @apply w-0;
     @apply h-0;
   }
-}
 
-#editor {
   .ql-tooltip {
     a.ql-preview,
     a.ql-remove {
@@ -271,12 +269,13 @@
       @apply ~'ml-1.5';
     }
   }
-}
-.fullscreen {
-  @apply fixed;
-  @apply top-0;
-  @apply left-0;
-  @apply w-full;
-  @apply h-full;
-  @apply bg-white;
+
+  &.fullscreen {
+    @apply fixed;
+    @apply top-0;
+    @apply left-0;
+    @apply w-full;
+    @apply h-full;
+    @apply bg-white;
+  }
 }
