@@ -74,7 +74,7 @@
 ### 7. 设计规范
 
 ├── design/ # 设计规范和资源  
- ├── aurora/ # 北极星设计规范
+ ├── aurora/ # Aurora设计规范
 ├── saas/ # SaaS设计规范  
  └── smb/ # SMB设计规范
 
