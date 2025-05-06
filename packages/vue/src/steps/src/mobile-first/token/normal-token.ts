@@ -29,7 +29,7 @@ export const classes = {
   'steps-title': 'hidden sm:block text-sm ml-2 font-medium truncate leading-5.5',
   'title-font-mini': 'text-xs',
   'title-font-small': 'text-xs',
-  'title-font-medium': 'text-sm',
+  'title-font-medium': 'text-sm leading-5.5',
   'title-font-large': 'text-base',
   'circle-wrap': 'flex-none flex relative z-10',
   'icon-circle': 'flex-none rounded-full border-0.5 border-color-brand bg-color-bg-1 font-medium absolute'
