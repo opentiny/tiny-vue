@@ -58,8 +58,8 @@
 </template>
 
 <script lang="ts">
-import { isBoolean, toNumber } from '@opentiny/vue-renderless/grid/static/'
-import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { isBoolean, toNumber } from '../utils/static/'
+import { getListeners, emitEvent } from '../utils/utils'
 import { extend, debounce } from '@opentiny/utils'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
