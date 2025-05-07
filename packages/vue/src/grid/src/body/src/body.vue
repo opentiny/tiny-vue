@@ -2,7 +2,7 @@
   <div
     ref="body"
     class="tiny-grid__body-wrapper body__wrapper"
-    :class="{ 'is__scrollload': $table.scrollLoad }"
+    :class="{ 'is__scrollload': $table?.scrollLoad }"
     :style="computedStyle"
     @scroll="scrollEvent"
   >
@@ -10,8 +10,8 @@
     <div class="tiny-grid-body__x-space" ref="xSpace"></div>
 
     <!-- y轴滚动条占位元素 -->
-    <div class="tiny-grid-body__y-space visual" v-if="$table.scrollYLoad" ref="ySpace" :style="computedYSpaceStyle">
-      <div v-if="$table.scrollLoad" class="tiny-grid-body__y-scrollbar"></div>
+    <div class="tiny-grid-body__y-space visual" v-if="$table?.scrollYLoad" ref="ySpace" :style="computedYSpaceStyle">
+      <div v-if="$table?.scrollLoad" class="tiny-grid-body__y-scrollbar"></div>
     </div>
 
     <!-- 表格主体 -->
@@ -22,7 +22,7 @@
       cellspacing="0"
       cellpadding="0"
       border="0"
-      :data-tableid="$table.id"
+      :data-tableid="$table?.id"
     >
       <!-- 列宽设置 -->
       <colgroup ref="colgroup">
@@ -33,6 +33,107 @@
           :name="column.id"
         />
       </colgroup>
+
+      <!-- 表头 -->
+      <thead ref="thead">
+        <tr
+          v-for="(cols, $rowIndex) in headerColumn"
+          :key="$rowIndex"
+          class="tiny-grid-header__row"
+          :class="[
+            headerRowClassName
+              ? typeof headerRowClassName === 'function'
+                ? headerRowClassName({ $table, $rowIndex })
+                : headerRowClassName
+              : ''
+          ]"
+        >
+          <th
+            v-for="(column, $columnIndex) in cols"
+            :key="columnKey ? column.id : $columnIndex"
+            class="tiny-grid-header__column"
+            :class="[
+              column.id,
+              {
+                [`col__${headAlign}`]: headAlign,
+                'col__fixed': column.fixed,
+                'col__index': column.type === 'index',
+                'col__radio': column.type === 'radio',
+                'col__selection': column.type === 'selection',
+                'col__group': column.children && column.children.length,
+                'col__ellipsis': hasEllipsis,
+                'fixed__column': column.fixed,
+                'is__sortable': !['index', 'radio', 'selection'].includes(column.type) && column.sortable,
+                'is__editable': column.editor,
+                'is__filter': isObject(column.filter),
+                'filter__active': column.filter && column.filter.hasFilter,
+                'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
+                'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column
+              },
+              getClass(headerClassName, params),
+              getClass(headerCellClassName, params)
+            ]"
+            :style="
+              column.fixed
+                ? {
+                    left: `${column.style?.left}px`,
+                    right: `${column.style?.right + scrollbarWidth}px`
+                  }
+                : null
+            "
+            :colspan="column.colSpan"
+            :rowspan="column.rowSpan"
+            :data-colid="column.id"
+            @mouseover="handleHeaderMouseover($event, column, $rowIndex, $columnIndex)"
+            @mouseout="handleHeaderMouseout($event, column)"
+            @click="handleHeaderClick($event, column, $rowIndex, $columnIndex)"
+            @dblclick="handleHeaderDblclick($event, column, $rowIndex, $columnIndex)"
+            @mousedown="handleHeaderMousedown($event, column, $rowIndex, $columnIndex)"
+          >
+            <div
+              class="tiny-grid-cell"
+              :class="{
+                'tiny-grid-cell__title': showTitle,
+                'tiny-grid-cell__tooltip': showTooltip || showHeaderTip,
+                'tiny-grid-cell__ellipsis': showEllipsis,
+                'tiny-grid-cell__header-suffix': headerSuffixIconAbsolute
+              }"
+            >
+              <component
+                v-if="$table?.isShapeTable"
+                :is="column.renderHeader"
+                :params="{
+                  isHidden: column.fixed,
+                  $table,
+                  $rowIndex,
+                  column,
+                  columnIndex: $table?.getColumnIndex?.(column),
+                  $columnIndex
+                }"
+              />
+            </div>
+            <!-- 列宽拖动 -->
+            <div
+              v-if="
+                !column.children?.length && isColResize && (isBoolean(column.resizable) ? column.resizable : resizable)
+              "
+              class="tiny-grid-resizable"
+              :class="{ 'is__line': !border }"
+              @mousedown="
+                resizeMousedown($event, {
+                  isHidden: column.fixed,
+                  $table,
+                  $rowIndex,
+                  column,
+                  columnIndex: $table?.getColumnIndex?.(column),
+                  $columnIndex
+                })
+              "
+            ></div>
+          </th>
+          <th class="col__gutter"></th>
+        </tr>
+      </thead>
 
       <!-- 表格内容 -->
       <tbody ref="tbody">
@@ -214,6 +315,73 @@
           </tr>
         </template>
       </tbody>
+
+      <!-- 表尾 -->
+      <tfoot ref="tfoot">
+        <tr
+          v-for="(list, $rowIndex) in footerData"
+          :key="$rowIndex"
+          class="tiny-grid-footer__row"
+          :class="[
+            footerRowClassName
+              ? typeof footerRowClassName === 'function'
+                ? footerRowClassName({ $table, $rowIndex })
+                : footerRowClassName
+              : ''
+          ]"
+        >
+          <td
+            v-for="(column, $columnIndex) in tableColumn"
+            :key="columnKey ? column.id : $columnIndex"
+            class="tiny-grid-footer__column"
+            :class="[
+              column.id,
+              {
+                [`col__${footAlign}`]: footAlign,
+                'fixed__column': column.fixed,
+                'col__ellipsis': hasEllipsis,
+                'filter__active': column.filter && column.filter.hasFilter,
+                'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
+                'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column,
+                'col__radio': column.type === 'radio',
+                'col__selection': column.type === 'selection'
+              },
+              getClass(footerClassName, params),
+              getClass(footerCellClassName, params)
+            ]"
+            :style="
+              column.fixed
+                ? {
+                    left: `${column.style?.left}px`,
+                    right: `${column.style?.right + scrollbarWidth}px`
+                  }
+                : null
+            "
+            :data-colid="column.id"
+            @mouseover="handleFooterMouseover($event, column, $rowIndex, $columnIndex)"
+            @mouseout="handleFooterMouseout($event, column)"
+            @click="handleFooterClick($event, column, $rowIndex, $columnIndex)"
+            @dblclick="handleFooterDblclick($event, column, $rowIndex, $columnIndex)"
+          >
+            <div
+              class="tiny-grid-cell"
+              :class="{
+                'cell__summary': $table?.summaryConfig,
+                'tiny-grid-cell__title': isShowTitle,
+                'tiny-grid-cell__tooltip': showTooltip || column.showTip,
+                'tiny-grid-cell__ellipsis': isShowEllipsis
+              }"
+            >
+              <component
+                v-if="$table?.isShapeTable"
+                :is="formatText"
+                :params="list[$table?.tableColumn?.indexOf(column)]"
+              />
+            </div>
+          </td>
+          <td class="col__gutter"></td>
+        </tr>
+      </tfoot>
     </table>
 
     <!-- 边框 -->
@@ -254,10 +422,12 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { $prefix, defineComponent, hooks } from '@opentiny/vue-common'
-import { updateCellTitle, emitEvent } from '../../utils/utils'
+import { updateCellTitle, emitEvent, getClass } from '../../utils/utils'
+import { isBoolean } from '../../utils/static'
 import GlobalConfig from '../../config'
 import { handleRowGroupFold } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
+import { isObject, isNull } from '@opentiny/utils'
 import type { TableColumn, TableRow, TableConfig, EventParams, GridBodyInstance } from './types'
 
 // 定义工具函数类型
@@ -579,6 +749,70 @@ export default defineComponent({
     afterFullData: {
       type: Array as PropType<TableRow[]>,
       default: () => []
+    },
+    headerColumn: {
+      type: Array as PropType<TableColumn[][]>,
+      default: () => []
+    },
+    footerData: {
+      type: Array as PropType<any[]>,
+      default: () => []
+    },
+    headerRowClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    footerRowClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    headerCellClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    footerCellClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    headerClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    footerClassName: {
+      type: [String, Function] as PropType<string | ((params: any) => string)>,
+      default: ''
+    },
+    headerSuffixIconAbsolute: {
+      type: Boolean,
+      default: false
+    },
+    highlightCurrentColumn: {
+      type: Boolean,
+      default: false
+    },
+    isDragHeaderSorting: {
+      type: Boolean,
+      default: false
+    },
+    columnKey: {
+      type: Boolean,
+      default: false
+    },
+    resizable: {
+      type: Boolean,
+      default: true
+    },
+    operationColumnResizable: {
+      type: Boolean,
+      default: false
+    },
+    border: {
+      type: Boolean,
+      default: false
+    },
+    sortOpts: {
+      type: Object,
+      default: () => ({})
     }
   },
   setup(props, { slots }) {
@@ -603,14 +837,33 @@ export default defineComponent({
       slots,
       rowSortable,
       GlobalConfig,
-      computedStyle
+      computedStyle,
+      isObject,
+      isNull,
+      isBoolean,
+      getClass
     }
   },
   computed: {
     computedYSpaceStyle() {
       return {
-        height: this.$table.tableFullData.length * 36 + 'px'
+        height: this.$table?.tableFullData.length * 36 + 'px'
       }
+    },
+    headAlign() {
+      return this.$table?.headerAlign || this.$table?.align
+    },
+    footAlign() {
+      return this.$table?.footerAlign || this.$table?.align
+    },
+    scrollbarWidth() {
+      return this.$table?.scrollbarWidth
+    },
+    leftList() {
+      return this.$table?.columnStore?.leftList || []
+    },
+    rightList() {
+      return this.$table?.columnStore?.rightList || []
     }
   },
   inject: {
@@ -861,6 +1114,296 @@ export default defineComponent({
     getIsDirty(row, column) {
       const $table = this.$parent
       return $table.getCellStatus(row, column)?.isDirty
+    },
+
+    // 表头相关方法
+    handleHeaderMouseover(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (!this.$table) return
+
+      const { showHeaderOverflow, showHeaderTip, headerAlign, align } = column
+      const headOverflow = isNull(showHeaderOverflow) ? this.$table.showHeaderOverflow : showHeaderOverflow
+      const showTitle = headOverflow === 'title'
+      const showTooltip = headOverflow === true || headOverflow === 'tooltip'
+      const showEllipsis = headOverflow === 'ellipsis'
+
+      if (showTitle || showTooltip || showHeaderTip) {
+        if (this.$table._isResize) {
+          return
+        }
+
+        if (showTitle) {
+          updateCellTitle(event, column)
+        } else if (showTooltip || showHeaderTip) {
+          this.$table.triggerHeaderTooltipEvent(event, {
+            showHeaderTip,
+            $table: this.$table,
+            rowIndex,
+            column,
+            columnIndex,
+            $columnIndex: columnIndex
+          })
+        }
+      }
+    },
+
+    handleHeaderMouseout(event: MouseEvent, column: TableColumn) {
+      const { showHeaderOverflow, showHeaderTip } = column
+      const headOverflow = isNull(showHeaderOverflow) ? this.$table.showHeaderOverflow : showHeaderOverflow
+      const showTooltip = headOverflow === true || headOverflow === 'tooltip'
+
+      if (showTooltip || showHeaderTip) {
+        if (this.$table._isResize) {
+          return
+        }
+
+        this.$table.clostTooltip()
+      }
+    },
+
+    handleHeaderClick(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (
+        this.highlightCurrentColumn ||
+        this.$table.tableListeners['header-cell-click'] ||
+        this.mouseConfig.checked ||
+        this.sortOpts.trigger === 'cell'
+      ) {
+        this.$table.triggerHeaderCellClickEvent(event, {
+          cell: event.currentTarget as HTMLElement,
+          $table: this.$table,
+          rowIndex,
+          column,
+          columnIndex,
+          $columnIndex: columnIndex
+        })
+      }
+    },
+
+    handleHeaderDblclick(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (this.$table.tableListeners['header-cell-dblclick']) {
+        emitEvent(this.$table, 'header-cell-dblclick', [
+          {
+            cell: event.currentTarget as HTMLElement,
+            $table: this.$table,
+            rowIndex,
+            column,
+            columnIndex,
+            $columnIndex: columnIndex
+          },
+          event
+        ])
+      }
+    },
+
+    handleHeaderMousedown(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (this.mouseConfig.checked) {
+        this.$table.triggerHeaderCellMousedownEvent(event, {
+          cell: event.currentTarget as HTMLElement,
+          $table: this.$table,
+          rowIndex,
+          column,
+          columnIndex,
+          $columnIndex: columnIndex
+        })
+      }
+    },
+
+    // 表尾相关方法
+    handleFooterMouseover(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      const { showOverflow, footerAlign, align } = column
+      const cellOverflowValue = isNull(showOverflow) ? this.$table.showOverflow : showOverflow
+      const isShowTitle = cellOverflowValue === 'title'
+      const showTooltip = cellOverflowValue === true || cellOverflowValue === 'tooltip'
+      const isShowEllipsis = cellOverflowValue === 'ellipsis'
+
+      if (isShowTitle || showTooltip) {
+        if (isShowTitle) {
+          updateCellTitle(event, column)
+        } else if (showTooltip) {
+          this.$table.triggerFooterTooltipEvent(event, {
+            $table: this.$table,
+            rowIndex,
+            column,
+            columnIndex,
+            $columnIndex: columnIndex
+          })
+        }
+      }
+    },
+
+    handleFooterMouseout(event: MouseEvent, column: TableColumn) {
+      const { showOverflow } = column
+      const cellOverflowValue = isNull(showOverflow) ? this.$table.showOverflow : showOverflow
+      const showTooltip = cellOverflowValue === true || cellOverflowValue === 'tooltip'
+
+      if (showTooltip) {
+        this.$table.clostTooltip()
+      }
+    },
+
+    handleFooterClick(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (this.$table.tableListeners['footer-cell-click']) {
+        emitEvent(this.$table, 'footer-cell-click', [
+          {
+            cell: event.currentTarget as HTMLElement,
+            $table: this.$table,
+            rowIndex,
+            column,
+            columnIndex,
+            $columnIndex: columnIndex
+          },
+          event
+        ])
+      }
+    },
+
+    handleFooterDblclick(event: MouseEvent, column: TableColumn, rowIndex: number, columnIndex: number) {
+      if (this.$table.tableListeners['footer-cell-dblclick']) {
+        emitEvent(this.$table, 'footer-cell-dblclick', [
+          {
+            cell: event.currentTarget as HTMLElement,
+            $table: this.$table,
+            rowIndex,
+            column,
+            columnIndex,
+            $columnIndex: columnIndex
+          },
+          event
+        ])
+      }
+    },
+
+    // 列宽调整相关方法
+    resizeMousedown(event: MouseEvent, params: any) {
+      if (!this.$table) return
+
+      const { $el, $parent: $table, resizableConfig } = this
+      const { clientX: dragClientX, target: dragBtnElem } = event
+      const { column } = params
+      const { dragLeft = 0, minInterval = 36, fixedOffsetWidth = 0 } = {}
+      const { resizeBar: resizeBarElem, tableBody } = $table.$refs
+      const cell = dragBtnElem?.parentNode as HTMLElement
+      const dragBtnWidth = (dragBtnElem as HTMLElement)?.clientWidth || 0
+      const startColumnLeft = cell?.offsetLeft || 0
+      const dragBtnOffsetWidth = Math.floor(dragBtnWidth / 2)
+      const tableBodyElem = tableBody?.$el
+      const btnLeft =
+        (dragBtnElem as HTMLElement)?.getBoundingClientRect()?.left - $el?.getBoundingClientRect()?.left || 0
+      const dragMinLeft = btnLeft - (cell?.clientWidth || 0) + dragBtnWidth + minInterval
+      const dragPosLeft = btnLeft + dragBtnOffsetWidth
+      const { oldMousemove = document.onmousemove, oldMouseup = document.onmouseup } = {}
+
+      // 处理拖动事件
+      const handleMousemoveEvent = (event: MouseEvent) => {
+        event.stopPropagation()
+        event.preventDefault()
+
+        const { offsetX = event.clientX - dragClientX, left = offsetX + dragPosLeft } = {}
+        const scrollLeft = tableBodyElem.scrollLeft
+        const args = {
+          cell,
+          dragMinLeft,
+          dragPosLeft,
+          fixedOffsetWidth,
+          resizableConfig,
+          scrollLeft,
+          column,
+          dragBtnOffsetWidth,
+          startColumnLeft,
+          left,
+          minInterval,
+          tableBodyElem
+        }
+
+        const ret = this.computeDragLeft(args)
+        const currentLeft = ret.dragLeft - scrollLeft
+
+        resizeBarElem.style.left = `${currentLeft}px`
+      }
+
+      resizeBarElem.style.display = 'block'
+      addClass($table.$el, 'tiny-grid-cell__resize')
+      $table._isResize = true
+
+      document.onmousemove = handleMousemoveEvent
+      document.onmouseup = () => {
+        this.documentOnmouseup({
+          oldMousemove,
+          oldMouseup,
+          column,
+          dragPosLeft,
+          dragLeft,
+          resizeBarElem,
+          $table,
+          params
+        })
+      }
+      handleMousemoveEvent(event)
+    },
+
+    computeDragLeft(args: any) {
+      const { dragMinLeft, resizableConfig, scrollLeft, column, startColumnLeft, left } = args
+
+      let dragLeft = Math.max(left, dragMinLeft)
+
+      if (resizableConfig?.limit instanceof Function) {
+        const currentMouseLeft = dragLeft - scrollLeft
+        const width = resizableConfig.limit({ field: column.own.field, width: currentMouseLeft - startColumnLeft })
+        dragLeft = startColumnLeft + width
+      }
+
+      return { left, dragMinLeft, dragLeft }
+    },
+
+    documentOnmouseup(args: any) {
+      const { oldMousemove, oldMouseup, column, dragPosLeft, dragLeft, resizeBarElem, $table, params } = args
+
+      document.onmousemove = oldMousemove
+      document.onmouseup = oldMouseup
+
+      let resizeWidth = column.renderWidth + dragLeft - dragPosLeft
+      resizeWidth = typeof resizeWidth === 'number' ? resizeWidth : parseInt(resizeWidth, 10) || 40
+      column.resizeWidth = resizeWidth < 40 ? 40 : resizeWidth
+
+      resizeBarElem.style.display = 'none'
+      removeClass($table.$el, 'tiny-grid-cell__resize')
+      Object.assign($table, { _isResize: false, _lastResizeTime: Date.now() })
+
+      $table.analyColumnWidth()
+      $table.recalculate().then(() => {
+        // 拖拽后，需要同步表头的scrollLeft
+        const { tableBody, tableFooter, tableHeader } = $table.$refs || {}
+        const headerElm = tableHeader?.$el
+        const bodyElm = tableBody?.$el
+        const footerElm = tableFooter?.$el
+        if (!headerElm) {
+          return
+        }
+        const elemStore = $table.elemStore
+        if (bodyElm) {
+          bodyElm.scrollLeft = headerElm.scrollLeft
+        }
+        if (footerElm) {
+          footerElm.scrollLeft = headerElm.scrollLeft
+        }
+
+        if (!elemStore['main-header-repair']) {
+          return
+        }
+        elemStore['main-body-xSpace'].style.width = elemStore['main-header-repair'].style.width
+        if (elemStore['main-footer-xSpace']) {
+          elemStore['main-footer-xSpace'].style.width = elemStore['main-header-repair'].style.width
+        }
+      })
+      this.updateResizableToolbar($table)
+      emitEvent($table, 'resizable-change', [params])
+    },
+
+    updateResizableToolbar($table: any) {
+      const toolbarVm = $table.getVm('toolbar')
+
+      if (toolbarVm) {
+        toolbarVm.updateResizable()
+      }
     }
   }
 })
