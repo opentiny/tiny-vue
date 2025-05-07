@@ -106,7 +106,8 @@ jobs:
               'transfer-panel': 'transfer',
               'col': 'layout',
               'row': 'layout',
-              'svgs': 'icon'
+              'svgs': 'icon',
+              'textarea': 'input'
             };
 
             // 从文件路径中提取组件名称
