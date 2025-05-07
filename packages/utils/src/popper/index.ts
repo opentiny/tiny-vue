@@ -188,10 +188,10 @@ const getOffsetRectRelativeToCustomParent = (
 }
 
 const getScrollTopValue = (el: HTMLElement) =>
-  el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
+  el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop || 0
 
 const getScrollLeftValue = (el: HTMLElement) =>
-  el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
+  el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft || 0
 
 const getMaxWH = (body, html) => {
   const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
@@ -620,17 +620,18 @@ export class PopperJS {
       placementOpposite = getOppositePlacement(placement)
 
       let popperOffsets = getPopperClientRect(data.offsets.popper)
-      // 变量起名不佳。 此处分2种情况： placement是right', 'bottom 或 left,top
-      let a = ~['right', 'bottom'].indexOf(placement)
-      let p = Math.floor(data.offsets.reference[placement])
-      let po = Math.floor(popperOffsets[placementOpposite])
+      let isRightOrBottom = ['right', 'bottom'].includes(placement)
+      // reference元素的对应的位置
+      let refPosition = Math.floor(data.offsets.reference[placement])
+      // 弹出层对应的位置
+      let popupPosition = Math.floor(popperOffsets[placementOpposite])
 
       // 如果right，  ref.right > pop.left
       //     bottom,  ref.bottom > pop.top
       //     left,    ref.left < pop.left
       //     top,     ref.top < pop.bottom
       // 则进行flip
-      if ((a && p > po) || (!a && p < po)) {
+      if ((isRightOrBottom && refPosition > popupPosition) || (!isRightOrBottom && refPosition < popupPosition)) {
         data.flipped = true
         data.placement = flipOrderArr[index + 1]
 
