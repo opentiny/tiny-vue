@@ -23,7 +23,7 @@
       data-tag="tiny-dropdown-level"
       ref="level"
       :class="[
-        'text-sm',
+        'text-xs',
         level === '2'
           ? 'mx-6 overflow-hidden text-ellipsis whitespace-nowrap'
           : 'mx-4 sm:mx-3 overflow-hidden text-ellipsis whitespace-nowrap'
