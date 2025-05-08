@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test.describe('设置上传请求', () => {
   const path1 = path.resolve(__dirname, '测试.jpg')

@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('手动取消上传请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())

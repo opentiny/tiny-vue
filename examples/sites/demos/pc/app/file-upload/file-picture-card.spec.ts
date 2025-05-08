@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('照片墙的预览、下载与删除', async ({ page, context }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
