@@ -9,7 +9,6 @@
 import { defineComponent, ref, watch } from 'vue'
 import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/github.css'
-import tsPath from 'highlight.js/lib/languages/typescript'
 
 export default defineComponent({
   name: 'AsyncHighlight',
@@ -18,7 +17,7 @@ export default defineComponent({
       type: String,
       default: ''
     },
-    types: {
+    filename: {
       type: String
     }
   },
@@ -26,21 +25,13 @@ export default defineComponent({
     const highlightFinish = ref(false)
     const highlightCode = ref('')
 
-    const getFormatCodes = (types) => {
-      hljs.registerLanguage('ts', tsPath)
-      const textHtml = hljs.highlight(props.code, { language: types }).value
-
-      return textHtml
-    }
     watch(
       props,
       () => {
         setTimeout(() => {
           // highlight和其他同步任务叠加容易形成长任务，改成异步消除长任务。
-          if (props.types && props.types === 'html') {
-            highlightCode.value = props.code
-          } else if (props.types && props.types === 'ts') {
-            highlightCode.value = getFormatCodes(props.types)
+          if (props.filename && props.filename.endsWith('.vue')) {
+            highlightCode.value = hljs.highlight(props.code, { language: 'html' }).value
           } else {
             highlightCode.value = hljs.highlightAuto(props.code).value
           }
