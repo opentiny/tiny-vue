@@ -11,7 +11,7 @@ export const classes = {
   'icon-large': 'w-8 h-8 text-base',
   'icon-error': 'text-color-error bg-color-bg-1',
   'icon-doing': 'text-color-brand bg-color-info-primary-subtler',
-  'icon-done': 'text-color-brand bg-color-info-primary-subtler',
+  'icon-done': 'text-color-brand bg-color-bg-1',
   'icon-disabled': 'bg-color-bg-3 text-color-border',
   'icon-error-active': 'bg-color-error-subtler border-color-error',
   'icon-doing-active': 'bg-color-brand border-color-brand text-color-text-inverse',
