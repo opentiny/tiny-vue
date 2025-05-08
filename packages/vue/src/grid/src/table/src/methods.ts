@@ -22,7 +22,6 @@ import {
   isPx,
   isScale,
   colToVisible,
-  getCell,
   getEventTargetNode,
   rowToVisible,
   setCellValue,
@@ -226,7 +225,7 @@ const Methods = {
     this.updateCache(true)
     // 深拷贝原始数据，并建立表格行数据和行数据对应的原始数据的映射关系，可以极大的提高检查编辑态单元格status和还原行数据的速度
     const { backupData, backupMap } = buildCache(tableFullData, { treeConfig, treeOrdered })
-    // tableSynchData：用户传递拖来的原始数据，tableSourceData：深拷贝用户传递过来的初始原始数据
+    // tableSynchData：用户传递过来的原始数据，tableSourceData：深拷贝用户传递过来的初始原始数据
     Object.assign(this, { tableSynchData: datas, tableSourceData: backupData, backupMap, scrollYLoad })
 
     if (scrollYLoad && !(height || maxHeight)) {
@@ -288,11 +287,12 @@ const Methods = {
    * @returns {Promise} 加载完成后的Promise
    */
   loadColumn(columns) {
-    return new Promise((resolve) => {
-      // 通过mapTree函数处理每个列配置，创建列实例
-      this.collectColumn = mapTree(columns, (column) => Cell.createColumn(this, column), headerProps)
-      resolve()
-    }).then(() => this.$nextTick())
+    return Promise.resolve()
+      .then(() => {
+        // 通过mapTree函数处理每个列配置，创建列实例
+        this.collectColumn = mapTree(columns, (column) => Cell.createColumn(this, column), headerProps)
+      })
+      .then(() => this.$nextTick())
   },
 
   /**
@@ -300,11 +300,12 @@ const Methods = {
    * @param {boolean} source - 是否更新源数据
    */
   updateCache(source) {
-    let { fullAllDataRowIdData, fullAllDataRowMap, fullDataRowIdData, fullDataRowMap, tableFullData, treeConfig } = this
-    let rowKey = getTableRowKey(this)
+    const { fullAllDataRowIdData, fullAllDataRowMap, fullDataRowIdData, fullDataRowMap, tableFullData, treeConfig } =
+      this
+    const rowKey = getTableRowKey(this)
 
     // 构建行数据缓存的函数
-    let buildRowCache = (row, index) => {
+    const buildRowCache = (row, index) => {
       // 获取行ID，如果没有则生成
       let rowId = getRowid(this, row)
       if (isNull(rowId) || rowId === '') {
@@ -313,7 +314,7 @@ const Methods = {
       }
 
       // 创建行缓存对象
-      let rowCache = { row, rowid: rowId, index }
+      const rowCache = { row, rowid: rowId, index }
 
       // 根据source参数决定是否更新完整数据缓存
       if (source) {
@@ -326,20 +327,14 @@ const Methods = {
       fullAllDataRowMap.set(row, rowCache)
     }
 
-    // 清空缓存的函数
-    let clearCache = () => {
-      fullAllDataRowIdData = {}
-      this.fullAllDataRowIdData = fullAllDataRowIdData
-      fullAllDataRowMap.clear()
-      if (source) {
-        fullDataRowIdData = {}
-        this.fullDataRowIdData = fullDataRowIdData
-        fullDataRowMap.clear()
-      }
-    }
+    // 清空缓存
+    this.fullAllDataRowIdData = {}
+    fullAllDataRowMap.clear()
 
-    // 执行清空缓存
-    clearCache()
+    if (source) {
+      this.fullDataRowIdData = {}
+      fullDataRowMap.clear()
+    }
 
     // 根据数据是否为树结构，使用不同方式遍历数据并构建缓存
     if (treeConfig) {
@@ -425,13 +420,13 @@ const Methods = {
 
   // 获取行在数据数组中的索引
   getRowIndex(row) {
-    let { fullDataRowMap } = this
+    const { fullDataRowMap } = this
     return fullDataRowMap.has(row) ? fullDataRowMap.get(row).index : -1
   },
 
   // 获取列在列数组中的索引
   getColumnIndex(column) {
-    let { fullColumnMap } = this
+    const { fullColumnMap } = this
     return fullColumnMap.has(column) ? fullColumnMap.get(column).index : -1
   },
 
@@ -471,7 +466,7 @@ const Methods = {
 
   // 判断行是否为临时行（如新增的未保存行）
   isTemporaryRow(row) {
-    let rowid = getRowid(this, row)
+    const rowid = getRowid(this, row)
     return find(this.temporaryRows, (r) => rowid === getRowid(this, r))
   },
 
@@ -1405,52 +1400,6 @@ const Methods = {
     }
 
     return this.$nextTick()
-  },
-  // 更新列状态：如果组件值v-model发生change，调用该函数更新列的编辑状态。如果单元格配置了校验规则，则进行校验
-  updateStatus(scope, cellValue, renderOpts) {
-    let { $refs, editRules, tableData, validStore } = this
-    let { tableBody } = $refs
-    if (!scope || !tableBody) {
-      return this.$nextTick()
-    }
-
-    let { column, row } = scope
-    let type = 'change'
-
-    let refreshStatus = () => {
-      if (!isUndefined(cellValue)) {
-        this.updateRowStatus(row)
-        this.$refs.tableBody?.$forceUpdate()
-      }
-    }
-    // 如果没有相关校验规则，直接返回
-    if (!editRules || !this.hasCellRules(type, row, column)) {
-      refreshStatus()
-      return this.$nextTick()
-    }
-
-    // 如果设置了始终验证
-    if (renderOpts && renderOpts.isValidAlways) {
-      validStore.visible = true
-    }
-
-    // 获取单元格元素并执行校验
-    let rowIndex = tableData.indexOf(row)
-    getCell(this, { row, rowIndex, column }).then((cell) => {
-      if (!cell) {
-        return
-      }
-      return this.validCellRules(type, row, column, cellValue)
-        .then(() => {
-          // 校验通过，设置新值并清除验证提示
-          refreshStatus()
-          this.clearValidate()
-        })
-        .catch(({ rule }) => {
-          refreshStatus()
-          this.showValidTooltip({ rule, row, column, cell })
-        })
-    })
   },
 
   // 与工具栏组件对接

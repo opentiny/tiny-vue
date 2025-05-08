@@ -1,27 +1,3 @@
-/**
- * MIT License
- *
- * Copyright (c) 2019 Xu Liangzhan
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- */
 import { debounce } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
 import { addClass } from '@opentiny/utils'
@@ -36,7 +12,7 @@ import {
   find,
   clone
 } from '@opentiny/vue-renderless/grid/static/'
-import { getCell, getCellValue, setCellValue, emitEvent, getRowid } from '@opentiny/vue-renderless/grid/utils'
+import { getCell, getCellValue, setCellValue, emitEvent, getRowid } from '../../utils/utils'
 import { Renderer } from '../../adapter'
 import { error, warn } from '../../tools'
 import GlobalConfig from '../../config'
@@ -126,6 +102,52 @@ const setActiveCell = function (row, field) {
 export default {
   insert(records) {
     return this.insertAt(records)
+  },
+  // 更新列状态：如果组件值v-model发生change，调用该函数更新列的编辑状态。如果单元格配置了校验规则，则进行校验
+  updateStatus(scope, cellValue, renderOpts) {
+    let { $refs, editRules, tableData, validStore } = this
+    let { tableBody } = $refs
+    if (!scope || !tableBody) {
+      return this.$nextTick()
+    }
+
+    let { column, row } = scope
+    let type = 'change'
+
+    let refreshStatus = () => {
+      if (!isUndefined(cellValue)) {
+        this.updateRowStatus(row)
+        this.$refs.tableBody?.$forceUpdate()
+      }
+    }
+    // 如果没有相关校验规则，直接返回
+    if (!editRules || !this.hasCellRules(type, row, column)) {
+      refreshStatus()
+      return this.$nextTick()
+    }
+
+    // 如果设置了始终验证
+    if (renderOpts && renderOpts.isValidAlways) {
+      validStore.visible = true
+    }
+
+    // 获取单元格元素并执行校验
+    let rowIndex = tableData.indexOf(row)
+    getCell(this, { row, rowIndex, column }).then((cell) => {
+      if (!cell) {
+        return
+      }
+      return this.validCellRules(type, row, column, cellValue)
+        .then(() => {
+          // 校验通过，设置新值并清除验证提示
+          refreshStatus()
+          this.clearValidate()
+        })
+        .catch(({ rule }) => {
+          refreshStatus()
+          this.showValidTooltip({ rule, row, column, cell })
+        })
+    })
   },
   // 根据位置从指定行添加数据
   insertAt(records, row) {
