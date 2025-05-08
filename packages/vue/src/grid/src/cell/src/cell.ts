@@ -388,7 +388,7 @@ export const Cell = {
     return [formatText(indexMethod ? indexMethod(params) : indexValue, 1)]
   },
   // 单选
-  renderRadioHeader(h, params) {
+  renderRadioHeader({ params }) {
     let { own, slots } = params.column
 
     if (slots && slots.header) {

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Methods from '@opentiny/vue-renderless/grid/plugins/export'
+import Methods from './src/export'
 import TINYGrid from '../adapter'
 
 export default {

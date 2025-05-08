@@ -12,9 +12,7 @@
  */
 
 import { extend } from '@opentiny/utils'
-import { browserInfo } from '@opentiny/utils'
 
-const isIE = browserInfo.name === 'ie'
 const rgbRegExp = /^rgba?\((\d+),\s(\d+),\s(\d+)([\s\S]*)\)$/
 const hexRegExp = /^#([a-zA-Z0-9]{3}|[a-zA-Z0-9]{6})$/
 
@@ -26,7 +24,7 @@ function computeColor(rgbColor) {
 function getBgc(dom) {
   const getComputedStyle = window.getComputedStyle
 
-  const backgroundColor = isIE ? dom.currentStyle.backgroundColor : getComputedStyle(dom).backgroundColor
+  const backgroundColor = getComputedStyle(dom).backgroundColor
 
   if (rgbRegExp.test(backgroundColor)) {
     return computeColor(backgroundColor)
