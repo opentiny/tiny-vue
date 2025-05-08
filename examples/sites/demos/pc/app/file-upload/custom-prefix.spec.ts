@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('文件选择前确认', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -12,8 +13,6 @@ test('文件选择前确认', async ({ page }) => {
   const confirmBtn = page.getByRole('button', { name: '确定' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), confirmBtn.click()])
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

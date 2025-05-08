@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -14,7 +15,6 @@ test('事件', async ({ page }) => {
     .getByTitle('删除文件')
     .locator('svg')
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

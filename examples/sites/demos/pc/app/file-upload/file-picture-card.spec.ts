@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('照片墙的预览、下载与删除', async ({ page, context }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -13,7 +14,6 @@ test('照片墙的预览、下载与删除', async ({ page, context }) => {
   const dowPic = page.locator('#file-picture-card svg').nth(1)
   const delbutton = page.locator('#file-picture-card svg').nth(2)
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(lists).toHaveCount(0)

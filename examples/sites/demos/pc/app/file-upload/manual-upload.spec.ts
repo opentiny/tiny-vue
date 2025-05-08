@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('手动上传', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -9,8 +10,6 @@ test('手动上传', async ({ page }) => {
   const lists = page.locator('.tiny-upload-list__item')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

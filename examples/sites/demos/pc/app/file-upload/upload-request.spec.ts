@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test.describe('设置上传请求', () => {
-  const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
 
   test('上传请求', async ({ page }) => {

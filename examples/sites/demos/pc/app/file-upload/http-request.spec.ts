@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('覆盖默认请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -9,7 +10,6 @@ test('覆盖默认请求', async ({ page }) => {
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
   const modal = page.locator('.tiny-modal')
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

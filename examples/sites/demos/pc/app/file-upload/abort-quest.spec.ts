@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('手动取消上传请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -10,7 +11,6 @@ test('手动取消上传请求', async ({ page }) => {
   const button = page.locator('button').filter({ hasText: '取消上传' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

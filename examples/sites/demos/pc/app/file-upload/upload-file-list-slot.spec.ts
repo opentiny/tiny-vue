@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import path from 'node:path'
 
 test('定义文件列表', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -8,7 +9,6 @@ test('定义文件列表', async ({ page }) => {
   const lists = page.locator('.tiny-upload-list__item')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(lists).toHaveCount(2)
