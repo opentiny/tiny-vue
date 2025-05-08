@@ -79,14 +79,6 @@
 
     <!-- 多端表格组件 -->
     <mf-table v-if="!isShapeTable" ref="mfTable" v-bind="mfTableProps" />
-
-    <!-- 表尾边框线 -->
-    <div
-      v-if="showFooterBorder"
-      ref="footerBorder"
-      :class="['tiny-grid__footer-border-line', viewCls('footerBorder')]"
-      :style="{ bottom: `${footerBorderBottom}px` }"
-    />
   </div>
 </template>
 
@@ -556,9 +548,6 @@ export default defineComponent({
     const validTipContent = hooks.ref('')
     // 在编辑模式下 单元格在失去焦点验证的状态
     const validatedMap = hooks.ref({})
-    // 表尾边框线是否显示和位置
-    const showFooterBorder = hooks.ref(false)
-    const footerBorderBottom = hooks.ref(0)
     const tableBodyHeight = hooks.ref(0)
 
     // 创建ID
@@ -662,19 +651,6 @@ export default defineComponent({
       }
     })
 
-    // 表头属性
-    const headerProps = hooks.computed(() => {
-      return {
-        tableData: tableData.value,
-        tableColumn: tableColumn.value,
-        visibleColumn: visibleColumn.value,
-        collectColumn: collectColumn.value,
-        size: vSize.value,
-        isGroup: isGroup.value,
-        resizableConfig: props.resizableConfig
-      }
-    })
-
     // 表体属性
     const bodyProps = hooks.computed(() => {
       return {
@@ -686,17 +662,6 @@ export default defineComponent({
         isGroup: isGroup.value,
         height: props.height,
         resizableConfig: props.resizableConfig
-      }
-    })
-
-    // 表尾属性
-    const footerProps = hooks.computed(() => {
-      return {
-        footerData: footerData.value,
-        footerMethod: props.footerMethod,
-        tableColumn: tableColumn.value,
-        visibleColumn: visibleColumn.value,
-        size: vSize.value
       }
     })
 
@@ -863,11 +828,6 @@ export default defineComponent({
       })
     }
 
-    hooks.watch(
-      () => props.height,
-      () => {}
-    )
-
     // 监听列配置变化
     hooks.watch(
       // 监听收集的列配置
@@ -891,11 +851,6 @@ export default defineComponent({
         // 处理空数据时表头是否禁用
         instance.handleSelectionHeader()
       }
-    )
-
-    hooks.watch(
-      () => parentHeight.value,
-      () => {}
     )
 
     if (isVue2) {
@@ -933,7 +888,7 @@ export default defineComponent({
 
     // 生命周期钩子
     hooks.onBeforeUnmount(() => {
-      // 获取表格包装器DOM引用
+      // 获取表格包装器（全局提示、弹窗、校验错误）DOM引用
       const tableWrapper = instance.$refs.tableWrapper
 
       // 如果表格包装器存在且有父节点,从DOM中移除表格包装器
@@ -1038,17 +993,6 @@ export default defineComponent({
         // 绑定resize事件监听器,用于响应容器大小变化
         instance.bindResize()
       }
-
-      // 延迟执行表格底部边框相关的处理
-      setTimeout(() => {
-        // 获取表格底部组件实例
-        const tableFooter = instance.$refs.tableFooter
-        // 根据是否存在底部组件来设置是否显示底部边框
-        showFooterBorder.value = !!tableFooter
-        // 获取底部组件的实际高度,用于设置底部边框的位置
-        // 如果底部组件存在则获取其高度,否则为0
-        footerBorderBottom.value = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
-      })
     })
     const tableListeners = getListeners(attrs, listeners)
     return {
@@ -1085,8 +1029,6 @@ export default defineComponent({
       validStore,
       validTipContent,
       validatedMap,
-      showFooterBorder,
-      footerBorderBottom,
       tableBodyHeight,
       parentHeight,
       fullDataRowIdData,
@@ -1139,9 +1081,7 @@ export default defineComponent({
       optimizeOpts,
       resizeBarStyle,
       mfTableProps,
-      headerProps,
       bodyProps,
-      footerProps,
       tooltipContentOpts,
       validOpts,
       validTooltipOpts,

@@ -73,7 +73,8 @@ import {
   resolveMode,
   resolveTheme,
   hooks,
-  useBreakpoint
+  useBreakpoint,
+  setup
 } from '@opentiny/vue-common'
 
 const { themes, viewConfig } = GlobalConfig
@@ -321,7 +322,7 @@ export default defineComponent({
       this.tableCustoms = customs
     }
 
-    // 处理事件配置
+    // 处理配置式表格的事件对象
     this.initEvents(events)
 
     // 在created生命周期阶段执行fetch-data
@@ -354,8 +355,10 @@ export default defineComponent({
     // 添加交叉观察器
     this.addIntersectionObserver()
 
-    // 更新渲染组件
-    this.updateRenderComponents()
+    // 更新table组件属性
+    this.updateTableOptions()
+    // 更新table组件事件
+    this.updateTableEvents()
   },
 
   beforeUnmount() {
@@ -372,17 +375,20 @@ export default defineComponent({
     const tinyMode = hooks.ref(resolveMode(props, context))
     const breakpoint = useBreakpoint()
 
-    return {
-      tableListeners,
-      designConfig: null,
-      tinyTheme,
-      tinyMode,
-      currentBreakpoint: breakpoint.current
+    const renderless = (props, hooks, { designConfig = null }) => {
+      return { tableListeners, designConfig, tinyTheme, tinyMode, currentBreakpoint: breakpoint.current }
     }
+
+    return setup({
+      props,
+      context,
+      renderless,
+      api: ['designConfig', 'tableListeners', 'tinyTheme', 'tinyMode', 'currentBreakpoint']
+    })
   },
 
   methods: {
-    // 初始配置化表格传入的事件
+    // 初始配置式表格传入的事件
     initEvents(events) {
       if (!events) return
 
@@ -404,12 +410,6 @@ export default defineComponent({
 
         return listeners
       }, {})
-    },
-
-    // 更新渲染组件
-    updateRenderComponents() {
-      this.updateTableOptions()
-      this.updateTableEvents()
     },
 
     // 更新表格选项
@@ -463,7 +463,7 @@ export default defineComponent({
       this.tableOptions = props
     },
 
-    // 更新表格事件
+    // 更新table组件监听事件集合
     updateTableEvents() {
       const tableOns = { ...this.listeners, ...this.tableListeners }
 
