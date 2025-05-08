@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('PopUpload 限制上传文件类型和大小', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -11,8 +16,6 @@ test('PopUpload 限制上传文件类型和大小', async ({ page }) => {
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const uploadsBtn = uploadModal.getByRole('button', { name: '开始上传' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
   const path2 = path.resolve(__dirname, '测试.png')
   const path3 = path.resolve(__dirname, '测试.svg')
