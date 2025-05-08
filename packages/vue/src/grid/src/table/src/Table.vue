@@ -5,9 +5,6 @@
       <slot></slot>
     </div>
 
-    <!-- 表头组件 -->
-    <grid-header v-if="showHeader" ref="tableHeader" v-bind="headerProps" :class="viewCls('tableHeader')" />
-
     <!-- 加载中遮罩 -->
     <grid-loading
       :visible="loading"
@@ -17,9 +14,6 @@
     />
     <!-- 表格主体区域 -->
     <grid-body v-else ref="tableBody" v-bind="bodyProps" :class="viewCls('tableBody')" />
-
-    <!-- 表尾合计区域 -->
-    <grid-footer v-if="showFooter" ref="tableFooter" v-bind="footerProps" :class="viewCls('tableFooter')" />
 
     <!-- 边框线 -->
     <div :class="['tiny-grid__border-line', viewCls('borderLine')]" />
@@ -77,9 +71,9 @@ import {
 } from '@opentiny/vue-common'
 import { extend } from '@opentiny/utils'
 import Tooltip from '@opentiny/vue-tooltip'
-import { isNull, isObject, isEmptyObject, isServer } from '@opentiny/utils'
-import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
+import { isObject, isEmptyObject, isServer } from '@opentiny/utils'
+import { uniqueId } from '../../utils/static/'
+import { GlobalEvent, hasChildrenList, getListeners } from '../../utils/utils'
 import TINYGrid from '../../adapter'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
@@ -87,76 +81,17 @@ import GridMenu from '../../menu'
 import GridLoading from '../../loading'
 import MfTable from '../../mobile-first/index.vue'
 import GlobalConfig from '../../config'
-import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import methods from './methods'
 import { useDrag, useRowGroup } from '../../composable'
 import { calcTableWidth } from './utils/autoCellWidth'
+import { verifyConfig, mergeScrollDirStore, mergeTreeConfig } from '../../utils'
 
 // 导入全局配置常量
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
 const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
-
-/**
- * 校验必要的插件是否已注册
- * @param {Object} _vm - 组件实例
- */
-function verifyConfig(_vm) {
-  // 校验是否设置了行主键
-  if (!getRowkey(_vm)) {
-    error('ui.grid.error.rowIdEmpty', true)
-  }
-
-  // 校验编辑插件
-  if (!TINYGrid._edit && _vm.editConfig) {
-    throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Edit' }))
-  }
-
-  // 校验验证插件
-  if (!TINYGrid._valid && _vm.editRules) {
-    throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Validator' }))
-  }
-
-  // 校验键盘操作插件
-  if (!TINYGrid._keyboard && (_vm.keyboardConfig || _vm.mouseConfig)) {
-    throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Keyboard' }))
-  }
-
-  // 校验自适应插件
-  if (!TINYGrid._resize && _vm.autoResize) {
-    throw new Error(template(error('ui.grid.error.reqModule', true), { name: 'Resize' }))
-  }
-}
-
-/**
- * 合并虚拟滚动配置
- * @param {Object} scrollDir - 滚动方向配置
- * @param {Object} scrollDirStore - 滚动存储对象
- */
-function mergeScrollDirStore(scrollDir, scrollDirStore) {
-  if (scrollDir) {
-    Object.assign(scrollDirStore, {
-      startIndex: 0,
-      visibleIndex: 0,
-      adaptive: isBoolean(scrollDir.adaptive) ? scrollDir.adaptive : true,
-      renderSize: toNumber(scrollDir.rSize),
-      offsetSize: toNumber(scrollDir.oSize)
-    })
-  }
-}
-
-/**
- * 合并树形表格配置
- * @param {Object} _vm - 组件实例
- */
-function mergeTreeConfig(_vm) {
-  if (_vm.treeConfig) {
-    const { ordered } = _vm.treeConfig
-    _vm.treeOrdered = isNull(ordered) ? true : Boolean(ordered)
-  }
-}
 
 /**
  * 获取表格的样式类
@@ -253,9 +188,7 @@ const unbindEvent = (table) => {
 export default defineComponent({
   name: `${$prefix}GridTable`,
   components: {
-    GridHeader: () => {},
     GridBody,
-    GridFooter: () => {},
     GridFilter,
     GridMenu,
     GridLoading,
