@@ -444,39 +444,6 @@ interface ComponentParams {
   $rowIndex: number
 }
 
-// 定义表格样式类型
-interface TableStyle {
-  tableLayout: string
-}
-
-// 定义验证规则类型
-interface ValidationRule {
-  width?: number
-  [key: string]: any
-}
-
-// 定义验证存储类型
-interface ValidationStore {
-  rule?: ValidationRule
-  content?: string
-  row?: TableRow
-  column?: TableColumn
-  [key: string]: any
-}
-
-// 定义验证选项类型
-interface ValidationOptions {
-  icon?: any
-  [key: string]: any
-}
-
-// 定义列样式类型
-interface ColumnStyle {
-  left?: number
-  right?: number
-  [key: string]: any
-}
-
 // 定义行组类型
 interface RowGroup {
   className?: string
@@ -525,12 +492,6 @@ interface TableInstance {
   _rowGroupTargetColumn?: TableColumn
   [key: string]: any
 }
-
-// 滚动、拖动过程中不需要触发鼠标移入移出事件
-const isOperateMouse = ($table: TableConfig) =>
-  $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
-
-let renderRowFlag = false
 
 export default defineComponent({
   name: $prefix + 'GridBody',
@@ -659,11 +620,11 @@ export default defineComponent({
       default: false
     },
     validStore: {
-      type: Object as PropType<ValidationStore>,
+      type: Object,
       default: () => ({})
     },
     validOpts: {
-      type: Object as PropType<ValidationOptions | null>,
+      type: Object,
       default: null
     },
     leftList: {
@@ -748,10 +709,6 @@ export default defineComponent({
     },
     afterFullData: {
       type: Array as PropType<TableRow[]>,
-      default: () => []
-    },
-    headerColumn: {
-      type: Array as PropType<TableColumn[][]>,
       default: () => []
     },
     footerData: {
@@ -864,6 +821,9 @@ export default defineComponent({
     },
     rightList() {
       return this.$table?.columnStore?.rightList || []
+    },
+    headerColumn() {
+      return this.isGroup ? this.sliceColumnTree(this.tableColumn) : [this.tableColumn]
     }
   },
   inject: {

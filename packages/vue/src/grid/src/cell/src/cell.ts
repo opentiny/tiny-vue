@@ -238,7 +238,7 @@ export const Cell = {
     return getColumnConfig(colProps, renMaps, GLOBAL_CONFIG)
   },
   // 单元格
-  renderHeader(h, params, type?: string) {
+  renderHeader({ params }, type) {
     let { column } = params
     let { slots, own, title } = column
 
@@ -352,7 +352,7 @@ export const Cell = {
     ]
   },
   // 索引
-  renderIndexHeader(h, params) {
+  renderIndexHeader({ params }) {
     let column = params.column
     let slots = column.slots
     let own = column.own
@@ -441,7 +441,7 @@ export const Cell = {
   renderTreeRadioCell(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderRadioCell(h, params))
   },
-  renderSelectionHeader(h, params) {
+  renderSelectionHeader({ params }) {
     let { $table, column } = params
     let { slots, own } = column
     let { headerCheckDisabled, isAllSelected, isIndeterminate, selectConfig, vSize } = $table
@@ -785,7 +785,7 @@ export const Cell = {
     ]
   },
   // 可编辑
-  renderEditHeader(h, params) {
+  renderEditHeader({ params }) {
     let { $table, column } = params
     let { editConfig, editRules, validOpts } = $table
     let { filter, remoteSort, sortable, type, own } = column
@@ -817,7 +817,7 @@ export const Cell = {
       !editConfig || !own.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
-    vNodes = vNodes.concat(Cell.renderHeader(h, params))
+    vNodes = vNodes.concat(Cell.renderHeader({ params }))
     vNodes = vNodes.concat(
       filter ? Cell.renderFilterIcon(h, params, isRenderSortIcon ? suffixCls[0] : suffixCls[1]) : []
     )
