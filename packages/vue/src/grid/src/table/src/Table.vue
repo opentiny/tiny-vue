@@ -1,5 +1,36 @@
 <template>
-  <div :class="tableClasses" ref="tableContainer" :style="tableStyles">
+  <div
+    :class="{
+      'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': true,
+      [`row__valid-${validOpts.message}`]: true,
+      [`size__${vSize}`]: vSize,
+      'tiny-grid-editable': editConfig,
+      'show__head': showHeader,
+      'show__foot': showFooter,
+      'scroll__y': overflowY,
+      'scroll__x': overflowX,
+      'all-overflow': showOverflow,
+      'all-head-overflow': showHeaderOverflow,
+      'tiny-grid-cell__highlight': highlightCell,
+      'tiny-grid__animat': optimizeOpts.animat,
+      'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
+      'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
+      'tiny-grid__border': border || isGroup,
+      'tiny-grid__border-saas': isThemeSaas && borderSaas,
+      'tiny-grid__group-saas': isThemeSaas && isGroup,
+      'tiny-grid__border-vertical': borderVertical,
+      'tiny-grid__checked': mouseConfig.checked,
+      'mark-insert': editConfig && editConfig.markInsert,
+      'edit__no-border': editConfig && editConfig.showBorder === false,
+      'is__loading': loading,
+      'row__highlight': highlightHoverRow,
+      'column__highlight': highlightHoverColumn,
+      'is__row-span': rowSpan && rowSpan.length > 0,
+      'row__drop-handle--index': dropConfig.rowHandle === 'index'
+    }"
+    ref="tableContainer"
+    :style="tableStyles"
+  >
     <!-- 隐藏列容器 - 用于存放列组件以便收集列信息 -->
     <div class="tiny-grid-hidden-column" ref="hideColumn">
       <slot></slot>
@@ -69,9 +100,8 @@ import {
   defineComponent,
   isVue2
 } from '@opentiny/vue-common'
-import { extend } from '@opentiny/utils'
 import Tooltip from '@opentiny/vue-tooltip'
-import { isObject, isEmptyObject, isServer } from '@opentiny/utils'
+import { isObject, isEmptyObject, isServer, extend } from '@opentiny/utils'
 import { uniqueId } from '../../utils/static/'
 import { GlobalEvent, hasChildrenList, getListeners } from '../../utils/utils'
 import TINYGrid from '../../adapter'
@@ -92,68 +122,6 @@ const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
 const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
-
-/**
- * 获取表格的样式类
- * @param {Object} tableVm - 表格组件实例
- * @returns {Object} 样式类对象
- */
-function getTableClasses(tableVm) {
-  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
-  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
-  const { loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
-  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan } = tableVm
-
-  // 当用户传null值，解构得到的值为null，因此需要使用fallback值
-  const dropConfig = tableVm.dropConfig || {}
-  const mouseConfig = tableVm.mouseConfig || {}
-
-  return {
-    'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': true,
-    [`row__valid-${validOpts.message}`]: true,
-    [`size__${vSize}`]: vSize,
-    'tiny-grid-editable': editConfig,
-    'show__head': showHeader,
-    'show__foot': showFooter,
-    'scroll__y': overflowY,
-    'scroll__x': overflowX,
-    'all-overflow': showOverflow,
-    'all-head-overflow': showHeaderOverflow,
-    'tiny-grid-cell__highlight': highlightCell,
-    'tiny-grid__animat': optimizeOpts.animat,
-    'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
-    'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
-    'tiny-grid__border': border || isGroup,
-    'tiny-grid__border-saas': isThemeSaas && borderSaas,
-    'tiny-grid__group-saas': isThemeSaas && isGroup,
-    'tiny-grid__border-vertical': borderVertical,
-    'tiny-grid__checked': mouseConfig.checked,
-    'mark-insert': editConfig && editConfig.markInsert,
-    'edit__no-border': editConfig && editConfig.showBorder === false,
-    'is__loading': loading,
-    'row__highlight': highlightHoverRow,
-    'column__highlight': highlightHoverColumn,
-    'is__row-span': rowSpan && rowSpan.length > 0,
-    'row__drop-handle--index': dropConfig.rowHandle === 'index'
-  }
-}
-
-/**
- * 获取表格的内联样式
- * @param {Object} tableVm - 表格组件实例
- * @returns {Object} 样式对象
- */
-function getTableStyles(tableVm) {
-  const { isShapeTable, maxHeight } = tableVm
-  const style = {}
-
-  // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
-  if (isShapeTable && maxHeight) {
-    style.maxHeight = Number(maxHeight) ? maxHeight + 'px' : maxHeight
-  }
-
-  return style
-}
 
 /**
  * 绑定全局事件
@@ -218,7 +186,7 @@ export default defineComponent({
     // 数据
     data: [Array, Object],
     // 行拖拽和列拖拽的配置
-    dropConfig: Object,
+    dropConfig: { type: Object, default: () => ({}) },
     // 编辑配置项
     editConfig: [Object, Boolean],
     // 校验规则配置项
@@ -281,7 +249,7 @@ export default defineComponent({
     // 表格的最小高度
     minHeight: [Number, String],
     // 鼠标配置项
-    mouseConfig: Object,
+    mouseConfig: { type: Object, default: () => ({}) },
     // 优化配置项
     optimization: Object,
     // 额外的参数
@@ -657,47 +625,17 @@ export default defineComponent({
       return config
     })
 
-    const tableClasses = hooks.computed(() =>
-      getTableClasses({
-        // 从props传入的参数
-        ...props,
-        // 从state中解构的参数
-        editConfig: props.editConfig,
-        showHeader: props.showHeader,
-        showFooter: props.showFooter,
-        overflowY: overflowY.value,
-        overflowX: overflowX.value,
-        loading: props.loading,
-        editRules: props.editRules,
-        mouseConfig: props.mouseConfig || {},
-        dropConfig: props.dropConfig || {},
-        rowSpan: props.rowSpan,
-
-        // 计算属性的值
-        isShapeTable: isShapeTable.value,
-        vSize: vSize.value,
-        isGroup: isGroup.value,
-        isThemeSaas: isThemeSaas.value,
-        validOpts: validOpts.value,
-        optimizeOpts: optimizeOpts.value,
-
-        // 其他必要的状态值
-        stripe: props.stripe,
-        border: props.border,
-        borderSaas: props.borderSaas,
-        borderVertical: props.borderVertical,
-        highlightCell: props.highlightCell,
-        highlightHoverRow: props.highlightHoverRow,
-        highlightHoverColumn: props.highlightHoverColumn
-      })
-    )
-
-    const tableStyles = hooks.computed(() =>
-      getTableStyles({
-        isShapeTable: isShapeTable.value,
-        maxHeight: props.maxHeight
-      })
-    )
+    const tableStyles = hooks.computed(() => {
+      // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
+      return {
+        maxHeight:
+          isShapeTable.value && props.maxHeight
+            ? Number(props.maxHeight)
+              ? props.maxHeight + 'px'
+              : props.maxHeight
+            : null
+      }
+    })
 
     const optimizeOpts = hooks.computed(() => {
       return extend(true, {}, GlobalConfig.optimization, props.optimization)
@@ -1197,7 +1135,6 @@ export default defineComponent({
       isThemeSaas,
       isThemeTiny,
       computerTableBodyHeight,
-      tableClasses,
       tableStyles,
       optimizeOpts,
       resizeBarStyle,
