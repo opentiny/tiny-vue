@@ -112,7 +112,7 @@ export default defineComponent({
         data-tag="tiny-upload"
         class={[
           !displayOnly && listType === 'text'
-            ? `flex mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
+            ? `flex mt-4 relative mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
             : 'h-full',
           showFileList ? 'sm:mb-3' : 'sm:mb-0'
         ]}>
