@@ -99,13 +99,19 @@ const getBoundingClientRect = (el: HTMLElement) => {
 
 /** 判断el的overflow是不是可能滚动的 */
 const isScrollElement = (el: HTMLElement) => {
-  const scrollTypes = ['scroll', 'auto']
+  if (!el || el.nodeType !== 1) {
+    return false
+  }
+  // 针对overflow的判断,并且增加了对元素是否有滚动条的判断
+  const css = window.getComputedStyle(el, null)
+  const overflow = css.overflow
+  const overflowX = css.overflowX
+  const overflowY = css.overflowY
+  const pattern = /(auto|scroll|overlay|clip)/
 
-  return (
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow')) ||
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow-x')) ||
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow-y'))
-  )
+  const hasScrollableContent = el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth
+
+  return hasScrollableContent && pattern.test(overflow + overflowY + overflowX)
 }
 
 /** 设置transform等样式后，fixed定位不再相对于视口，使用1X1PX透明元素获取fixed定位相对于视口的修正偏移量。 */
