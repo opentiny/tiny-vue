@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'header-hide-grid-header',
-      'name': { 'zh-CN': '控制隐藏表头', 'en-US': 'Hide table headers.' },
-      'desc': {
+      name: { 'zh-CN': '控制隐藏表头', 'en-US': 'Hide table headers.' },
+      desc: {
         'zh-CN':
           '<p>设置 <code>showHeader</code> 属性为 <code>fasle</code> 控制隐藏表头，默认为 <code>true</code>。</p>\n',
         'en-US':
@@ -15,8 +15,8 @@ export default {
     },
     {
       demoId: 'header-config-grid-header',
-      'name': { 'zh-CN': '配置式多级表头', 'en-US': 'Configure the template for customizing table header content' },
-      'desc': {
+      name: { 'zh-CN': '配置式多级表头', 'en-US': 'Configure the template for customizing table header content' },
+      desc: {
         'zh-CN': '<p>配置式多级表头。</p>\n',
         'en-US':
           '<p>Set the <code>header</code> slot and configure the template of the customized table header content. </p>\n'
@@ -25,8 +25,8 @@ export default {
     },
     {
       demoId: 'header-custom-grid-header',
-      'name': { 'zh-CN': '自定义表头', 'en-US': 'User-defined table header' },
-      'desc': {
+      name: { 'zh-CN': '自定义表头', 'en-US': 'User-defined table header' },
+      desc: {
         'zh-CN': '<p>列 <code>title</code> 可以传入函数用于返回自定义表头。</p>\n',
         'en-US': '<p>Customize the table header by column <code>slot</code> slot</p>\n'
       },
@@ -34,8 +34,8 @@ export default {
     },
     {
       demoId: 'header-slot-header',
-      'name': { 'zh-CN': '自定义表头内容模板', 'en-US': 'Basic Description' },
-      'desc': {
+      name: { 'zh-CN': '自定义表头内容模板', 'en-US': 'Basic Description' },
+      desc: {
         'zh-CN': '<p>设置 <code>header</code> 插槽，配置自定义表头内容的模板。</p>\n',
         'en-US':
           '<p>Add the class name to the cell of the table header through the column attribute <code>header-class-name</code>, or the function Function({$rowIndex, column, columnIndex, $columnIndex}) . \n</p>\n'
@@ -44,13 +44,13 @@ export default {
     },
     {
       demoId: 'many-header-switching',
-      'name': { 'zh-CN': '多级表头列动态切换', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '多级表头列动态切换', 'en-US': '' },
+      desc: {
         'zh-CN': '<p>动态的切换多级表头中子表头的显示与隐藏。</p>\n',
         'en-US': '<p></p>\n'
       },
       codeFiles: ['header/many-header-switching.vue']
     }
   ],
-  apis: [{ 'name': 'grid-header', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-header', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

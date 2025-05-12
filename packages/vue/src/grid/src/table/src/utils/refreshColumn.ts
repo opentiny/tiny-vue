@@ -134,11 +134,14 @@ export function onScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, tableCo
     }
 
     // 更新滚动状态
+    const renderSize = toNumber(scrollX.rSize || scrollXStore.renderSize)
+    const offsetSize = toNumber(scrollX.oSize || scrollXStore.offsetSize)
+
     Object.assign(scrollXStore, {
       startIndex: 0,
       visibleIndex: 0,
-      renderSize: toNumber(scrollX.rSize),
-      offsetSize: toNumber(scrollX.oSize)
+      renderSize,
+      offsetSize
     })
 
     // 根据滚动状态截取需要显示的列

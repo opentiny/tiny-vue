@@ -42,12 +42,12 @@ export default defineComponent({
       }
     },
     startDate: {
-      type: Object,
-      default: () => ({})
+      type: [Object, Date, String, Number],
+      default: () => ''
     },
     endDate: {
-      type: Object,
-      default: () => ({})
+      type: [Object, Date, String, Number],
+      default: () => ''
     }
   },
   setup(props, context) {

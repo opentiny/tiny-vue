@@ -151,7 +151,9 @@
                       'tiny-popeditor__tabs-selected': state.activeName === 'history'
                     }"
                   >
-                    <span>{{ t('ui.popeditor.historyLists') }}</span>
+                    <slot name="title-history">
+                      <span>{{ t('ui.popeditor.historyLists') }}</span>
+                    </slot>
                   </li>
                   <li
                     @click="state.activeName = 'source'"
@@ -159,7 +161,9 @@
                       'tiny-popeditor__tabs-selected': state.activeName === 'source'
                     }"
                   >
-                    <span>{{ t('ui.popeditor.sourceLists') }}</span>
+                    <slot name="title-source">
+                      <span>{{ t('ui.popeditor.sourceLists') }}</span>
+                    </slot>
                   </li>
                 </ul>
               </div>
@@ -227,7 +231,9 @@
               <div class="tiny-popeditor__tabs-head">
                 <ul>
                   <li class="tiny-popeditor__tabs-selected">
-                    <span>{{ t('ui.popeditor.selectionLists') }}</span>
+                    <slot name="title-selection">
+                      <span>{{ t('ui.popeditor.selectionLists') }}</span>
+                    </slot>
                   </li>
                 </ul>
               </div>

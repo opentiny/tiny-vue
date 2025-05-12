@@ -133,10 +133,11 @@
     @apply relative;
     @apply h-60;
     @apply text-left;
+    display: flex;
+    flex-direction: column;
 
     &.is-with-footer {
       @apply pb-10;
-      height: calc(100% - theme('spacing.10'));
     }
 
     .@{tree-prefix-cls} {
@@ -155,7 +156,6 @@
     @apply m-0;
     @apply py-2 px-0;
     @apply list-none;
-    @apply h-60;
     @apply overflow-auto;
     @apply box-border;
     @apply block;
@@ -165,16 +165,7 @@
     }
   }
 
-  &.is-filterable &__body {
-    @apply h-60;
-  }
-
-  &.is-filterable &__body.is-with-footer {
-    height: calc(100% - theme('spacing.10'));
-  }
-
   &.is-filterable &__list {
-    @apply h-52;
     @apply pt-0;
     @apply flex;
     @apply flex-col;
@@ -398,7 +389,7 @@
     .@{table-prefix-cls}.simple {
       @apply w-full;
       @apply py-0 px-2;
-      @apply h-108;
+      height: var(--tv-Transfer-table-dyn-height, 432px); // 从组件动态传入的高度值
       @apply overflow-y-auto;
 
       table {

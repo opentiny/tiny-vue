@@ -14,6 +14,7 @@
   <div
     class="tiny-transfer-panel"
     :class="[state.renderType === 'TinyTable' ? 'transferGrid' : '', { 'is-filterable': filterable }]"
+    :style="panelStyle"
   >
     <p class="tiny-transfer-panel__header">
       <tiny-checkbox v-model="state.allChecked" @change="handleAllCheckedChange" :indeterminate="state.isIndeterminate">
@@ -29,7 +30,11 @@
         <span>{{ state.checkedSummary }}</span>
       </tiny-checkbox>
     </p>
-    <div :class="['tiny-transfer-panel__body', state.hasFooter ? 'is-with-footer' : '']" ref="reference">
+    <div
+      :class="['tiny-transfer-panel__body', state.hasFooter ? 'is-with-footer' : '']"
+      ref="reference"
+      :style="panelBodyStyle"
+    >
       <tiny-input
         class="tiny-transfer-panel__filter"
         v-model="state.query"
@@ -136,7 +141,9 @@ export const transferPanelProps = {
     default() {
       return []
     }
-  }
+  },
+  panelStyle: Object,
+  panelBodyStyle: Object
 }
 
 export default defineComponent({

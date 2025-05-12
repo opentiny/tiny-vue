@@ -79,6 +79,18 @@ export default {
       codeFiles: ['slot-footer.vue']
     },
     {
+      demoId: 'slot-message',
+      name: {
+        'zh-CN': '消息插槽',
+        'en-US': 'Message slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>message</code> 插槽自定义消息内容。</p>',
+        'en-US': '<p>Customize the message content through the<code>message</code>slot.</p>'
+      },
+      codeFiles: ['slot-message.vue']
+    },
+    {
       demoId: 'width',
       name: {
         'zh-CN': '宽度',

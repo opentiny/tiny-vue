@@ -18,8 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TinyModal, TinyPopover } from '@opentiny/vue'
-import Flowchart from '@opentiny/vue-flowchart'
+import { TinyModal, TinyPopover, Flowchart } from '@opentiny/vue'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 
 const { createNode, createLink, createItem, createConfig } = Flowchart

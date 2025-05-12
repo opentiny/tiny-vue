@@ -91,17 +91,7 @@
           "
           v-if="state.showClear && !state.collapse"
         >
-          <a
-            :class="
-              m(
-                gcls('pc-search-input-btn-transtion-a'),
-                gcls({ 'pc-search-input-btn-transtion-a-big': big }),
-                gcls(`pc-search-input-btn-transtion-a-${size}`),
-                gcls({ 'pc-search-input-btn-transtion-a-unbig': size === 'small' && !big })
-              )
-            "
-            @click="clear"
-          >
+          <a :class="m(gcls('pc-search-input-btn-transtion-a'))" @click="clear">
             <icon-close
               @mousedown.prevent
               data-tag="tiny-svg-size"
@@ -121,17 +111,7 @@
           )
         "
       >
-        <a
-          :class="
-            m(
-              gcls('pc-search-input-btn-a'),
-              gcls({ 'pc-search-input-btn-a-big': big }),
-              gcls(`pc-search-input-btn-a-${size}`),
-              gcls({ 'pc-search-input-btn-a-unbig': size === 'small' && !big })
-            )
-          "
-          @click="searchClick"
-        >
+        <a :class="m(gcls('pc-search-input-btn-a'))" @click="searchClick">
           <icon-search
             :class="
               m(

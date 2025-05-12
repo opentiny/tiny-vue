@@ -99,13 +99,19 @@ const getBoundingClientRect = (el: HTMLElement) => {
 
 /** 判断el的overflow是不是可能滚动的 */
 const isScrollElement = (el: HTMLElement) => {
-  const scrollTypes = ['scroll', 'auto']
+  if (!el || el.nodeType !== 1) {
+    return false
+  }
+  // 针对overflow的判断,并且增加了对元素是否有滚动条的判断
+  const css = window.getComputedStyle(el, null)
+  const overflow = css.overflow
+  const overflowX = css.overflowX
+  const overflowY = css.overflowY
+  const pattern = /(auto|scroll|overlay|clip)/
 
-  return (
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow')) ||
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow-x')) ||
-    scrollTypes.includes(getStyleComputedProperty(el, 'overflow-y'))
-  )
+  const hasScrollableContent = el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth
+
+  return hasScrollableContent && pattern.test(overflow + overflowY + overflowX)
 }
 
 /** 设置transform等样式后，fixed定位不再相对于视口，使用1X1PX透明元素获取fixed定位相对于视口的修正偏移量。 */
@@ -188,10 +194,10 @@ const getOffsetRectRelativeToCustomParent = (
 }
 
 const getScrollTopValue = (el: HTMLElement) =>
-  el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
+  el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop || 0
 
 const getScrollLeftValue = (el: HTMLElement) =>
-  el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
+  el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft || 0
 
 const getMaxWH = (body, html) => {
   const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
@@ -620,17 +626,18 @@ export class PopperJS {
       placementOpposite = getOppositePlacement(placement)
 
       let popperOffsets = getPopperClientRect(data.offsets.popper)
-      // 变量起名不佳。 此处分2种情况： placement是right', 'bottom 或 left,top
-      let a = ~['right', 'bottom'].indexOf(placement)
-      let p = Math.floor(data.offsets.reference[placement])
-      let po = Math.floor(popperOffsets[placementOpposite])
+      let isRightOrBottom = ['right', 'bottom'].includes(placement)
+      // reference元素的对应的位置
+      let refPosition = Math.floor(data.offsets.reference[placement])
+      // 弹出层对应的位置
+      let popupPosition = Math.floor(popperOffsets[placementOpposite])
 
       // 如果right，  ref.right > pop.left
       //     bottom,  ref.bottom > pop.top
       //     left,    ref.left < pop.left
       //     top,     ref.top < pop.bottom
       // 则进行flip
-      if ((a && p > po) || (!a && p < po)) {
+      if ((isRightOrBottom && refPosition > popupPosition) || (!isRightOrBottom && refPosition < popupPosition)) {
         data.flipped = true
         data.placement = flipOrderArr[index + 1]
 
@@ -703,9 +710,10 @@ export class PopperJS {
     let center = reference[side] + (arrowOffset || reference[calcProp] / 2 - arrowSize / 2)
     let sideValue = center - popper[side]
 
-    // 猜测是上下边距留下8px的距离。 确保箭头不太靠顶靠底。
-    // 此时sideValue为“popper的顶- 箭头 - 8px” 的位置。
-    sideValue = Math.max(Math.min(popper[calcProp] - arrowSize - 8, sideValue), 8)
+    // 猜测是上下边距留下4px的距离。 确保箭头不太靠顶靠底。
+    // 此时sideValue为“popper的顶- 箭头 - 4px” 的位置。
+    const safeLeft = 4
+    sideValue = Math.max(Math.min(popper[calcProp] - arrowSize - safeLeft, sideValue), safeLeft)
     arrowStyle[side] = sideValue
     arrowStyle[altSide] = ''
 
@@ -713,7 +721,7 @@ export class PopperJS {
     const params = this._options.placement.split('-')
     if (this._options.adjustArrow && ~['top', 'bottom'].indexOf(params[0]) && side === 'left') {
       if (params[1] === 'start') {
-        arrowStyle.left = 8
+        arrowStyle.left = safeLeft
       } else if (!params[1]) {
         arrowStyle.left = (popperRect.width - arrowRect.width) / 2
       }

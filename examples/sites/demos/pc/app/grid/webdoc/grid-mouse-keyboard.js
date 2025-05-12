@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'mouse-keyboard-keyboard-navigation',
-      'name': { 'zh-CN': '键盘导航', 'en-US': 'Keyboard Navigation' },
-      'desc': {
+      name: { 'zh-CN': '键盘导航', 'en-US': 'Keyboard Navigation' },
+      desc: {
         'zh-CN': `
         <div class="tip custom-block">
           <p class="custom-block-title">按键说明：</p>
@@ -34,8 +34,8 @@ export default {
     },
     {
       demoId: 'mouse-keyboard-keyboard-config',
-      'name': { 'zh-CN': '按键配置项', 'en-US': 'Set key configuration items' },
-      'desc': {
+      name: { 'zh-CN': '按键配置项', 'en-US': 'Set key configuration items' },
+      desc: {
         'zh-CN': '<p>表格属性 <code>keyboard-config</code> 设置按键配置项。\n</p>\n',
         'en-US': '<p>Table property<code>keyboard-config</code>Set key configuration items. \n</p>\n'
       },
@@ -43,8 +43,8 @@ export default {
     },
     {
       demoId: 'mouse-keyboard-mouse-config',
-      'name': { 'zh-CN': '鼠标配置项', 'en-US': 'Setting Mouse Configuration Items' },
-      'desc': {
+      name: { 'zh-CN': '鼠标配置项', 'en-US': 'Setting Mouse Configuration Items' },
+      desc: {
         'zh-CN': `<p>表格属性 <code>mouse-config</code> 设置鼠标配置项。打开配置项 <code>mouseConfig.checked</code> 使表格可鼠标选中，打开 <code>keyboardConfig.isCut</code> 使鼠标选中内容可剪切。
         表格中被剪切内容默认放入页面剪切板，可设置 <code>keyboardConfig.clipboard</code> 为 <code>false</code> 关闭此特性。
         使用 <code>keyboardConfig.clipboard.writeMethod</code> 定制写入剪切板的内容。
@@ -54,5 +54,5 @@ export default {
       codeFiles: ['mouse-keyboard/mouse-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-mouse-keyboard', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-mouse-keyboard', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -73,6 +73,13 @@ module.exports = {
 }
 ```
 
+或者，你也可以在项目根目录的 `.npmrc` 文件中添加以下配置来提升所有 TinyVue 相关的依赖：
+
+```ini
+# 提升所有@opentiny开头的包
+public-hoist-pattern[]=@opentiny/*
+```
+
 想了解更多自动按需导入的信息，请参考：
 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)、
 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)、

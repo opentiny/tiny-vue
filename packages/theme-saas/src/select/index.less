@@ -168,6 +168,7 @@
     @apply flex;
     @apply items-center;
     @apply flex-wrap;
+    @apply overflow-hidden;
 
     &.is-showicon {
       @apply pl-9;
@@ -180,12 +181,9 @@
       @apply inline-flex;
       @apply justify-start;
       @apply items-center;
-      @apply border-transparent;
-      @apply text-color-text-primary;
-      @apply bg-color-bg-2;
 
       .@{tag-prefix-cls}__close {
-        @apply fill-color-none;
+        @apply fill-color-text-secondary;
       }
     }
 
@@ -344,7 +342,7 @@
 
       .tiny-select__close {
         @apply mr-2;
-        @apply fill-color-text-placeholder;
+        @apply fill-color-text-secondary;
 
         &:hover {
           @apply fill-color-icon-primary;
@@ -378,7 +376,7 @@
       @apply text-center;
       transform: rotateZ(180deg);
       @apply rounded-full;
-      @apply fill-color-icon-placeholder;
+      @apply fill-color-icon-secondary;
       transition: fill 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
       &:hover {
@@ -429,13 +427,13 @@
 
   .@{tag-prefix-cls} {
     @apply ~"max-w-[theme('spacing.36')]";
-    @apply rounded-sm;
-    @apply py-0 px-3;
+    @apply py-0 px-2;
     @apply whitespace-nowrap;
     @apply box-border;
     @apply border-transparent;
     @apply ~"my-0.5" mr-1 ml-0;
-    @apply text-sm;
+    @apply text-xs;
+    @apply leading-5;
 
     &:last-child {
       @apply mr-0;

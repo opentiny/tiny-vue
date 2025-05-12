@@ -96,15 +96,15 @@ export default defineComponent({
           <ul class="inline-flex m-0 p-0 list-none w-fit">
             <li
               class={[
-                'py-0 px-0 cursor-pointer box-border h-8 text-color-brand bg-color-bg-1 select-none flex items-center justify-center relative rounded',
-                prevText ? 'w-fit' : 'w-8'
+                'py-0 px-0 cursor-pointer box-border h-7 text-color-brand bg-color-bg-1 select-none flex items-center justify-center relative rounded',
+                prevText ? 'w-fit' : 'w-7'
               ]}>
               <button
                 type="button"
                 class={[
-                  'h-8 p-0 border border-solid rounded flex items-center justify-center group',
+                  'h-7 p-0 border border-solid rounded flex items-center justify-center group',
                   'cursor-pointer border-color-border bg-color-bg-1 sm:bg-transparent sm:border-0',
-                  prevText ? 'w-fit' : 'w-8',
+                  prevText ? 'w-fit' : 'w-7',
                   {
                     'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3 disabled:sm:bg-transparent':
                       prevDisabled,
@@ -117,7 +117,7 @@ export default defineComponent({
                 {prevText ? (
                   <span
                     class={[
-                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary',
+                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary text-xs',
                       {
                         'disabled:text-color-text-primary sm:text-color-border': prevDisabled,
                         'group-hover:text-color-link sm:group-hover:text-color-icon-hover sm:group-active:text-color-active':
@@ -140,22 +140,22 @@ export default defineComponent({
                 )}
               </button>
             </li>
-            <li class="h-8 text-color-text-primary flex items-center justify-center rounded !mx-4">
-              <span class="inline-block my-0 mx-0">
+            <li class="h-7 text-color-text-primary flex items-center justify-center rounded !mx-4">
+              <span class="inline-block my-0 mx-0 leading-5 text-xs">
                 {this.internalCurrentPage}/{this.internalPageCount}
               </span>
             </li>
             <li
               class={[
-                'py-0 px-0 cursor-pointer box-border h-8 text-color-brand bg-color-bg-1 select-none flex items-center justify-center relative rounded',
-                nextText ? 'w-fit' : 'w-8'
+                'py-0 px-0 cursor-pointer box-border h-7 text-color-brand bg-color-bg-1 select-none flex items-center justify-center relative rounded',
+                nextText ? 'w-fit' : 'w-7'
               ]}>
               <button
                 type="button"
                 class={[
-                  'h-8 p-0 border border-solid rounded flex items-center justify-center group',
+                  'h-7 p-0 border border-solid rounded flex items-center justify-center group',
                   'cursor-pointer border-color-border bg-color-bg-1 sm:bg-transparent sm:border-0',
-                  nextText ? 'w-fit' : 'w-8',
+                  nextText ? 'w-fit' : 'w-7',
                   {
                     'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3 disabled:sm:bg-transparent':
                       nextDisabled,
@@ -169,7 +169,7 @@ export default defineComponent({
                 {nextText ? (
                   <span
                     class={[
-                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary',
+                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary text-xs',
                       {
                         'disabled:text-color-text-primary disabled:sm:text-color-border': nextDisabled,
                         'group-hover:fill-color-brand sm:group-hover:fill-color-icon-hover sm:group-active:fill-color-icon-active':

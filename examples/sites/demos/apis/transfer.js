@@ -287,6 +287,51 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'panel-style',
+          type: 'Object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指定左右面板容器的样式,当面板的宽度大于外部容器的50%宽度时，面板会自适应容器的宽度。',
+            'en-US':
+              "Specify the style of the left and right panel containers. When the width of the panel is greater than 50% of the external container's width, the panel will adapt to the width of the container"
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-size',
+          meta: {
+            stable: '3.23.0'
+          }
+        },
+        {
+          name: 'panel-body-style',
+          type: 'Object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指定面板内容区域的样式',
+            'en-US': 'Specify the style of the content area of the designated panel.'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-size',
+          meta: {
+            stable: '3.23.0'
+          }
+        },
+        {
+          name: 'panel-table-height',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '嵌套表格时，设置表格的高度值。嵌套表格的默认高度为400px, 当自定义面板内容区域的高度之后，可能会与表格高度不匹配。 可以通过该属性设置一个匹配的表格高度。',
+            'en-US':
+              'When nesting tables, set the height value of the table. The default height of a nested table is 400px. After customizing the height of the panel content area, it may not match the height of the table. You can use this property to set a matching table height.'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-size',
+          meta: {
+            stable: '3.23.0'
+          }
         }
       ],
       events: [

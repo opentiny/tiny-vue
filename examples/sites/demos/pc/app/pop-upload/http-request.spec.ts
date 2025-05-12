@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('PopUpload 覆盖默认请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -10,7 +15,6 @@ test('PopUpload 覆盖默认请求', async ({ page }) => {
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const uploadsBtn = uploadModal.getByRole('button', { name: '开始上传' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await modalAppearBtn.click()

@@ -413,7 +413,14 @@ const getResult = ({ type, res, formatText, string, reg, args }) => {
   return res
 }
 
-const judgForFunc = (args, formatTypes, type) => {
+interface FormatTypesInterface {
+  text: string
+  url: string
+  html: string
+  [key: string]: string
+}
+
+const judgForFunc = (args: any[], formatTypes: FormatTypesInterface, type: string): { args: any[]; type: string } => {
   const lastArg = args[args.length - 1]
 
   if (lastArg !== formatTypes.text && lastArg !== formatTypes.url && lastArg !== formatTypes.html) {

@@ -31,7 +31,7 @@ export const api = ['state', 'handleMultiCheckChange', 'handleCheckChange', 'han
 
 export const renderless = (
   props: ICascaderNodeProps,
-  { computed, reactive, inject }: ISharedRenderlessParamHooks,
+  { computed, reactive, inject, watch }: ISharedRenderlessParamHooks,
   { dispatch }: ISharedRenderlessParamUtils
 ): ICascaderNodeApi => {
   const parent = inject('panel') as ICascaderNodeRenderlessParams['parent']
@@ -51,6 +51,17 @@ export const renderless = (
         : props.node.label
     })
   }) as ICascaderNodeState
+
+  if (parent.state.config.expandTrigger !== 'click') {
+    watch(
+      () => state.checkedValue,
+      (checkedValue) => {
+        if (checkedValue.includes(props.node.value)) {
+          api.handleExpand()
+        }
+      }
+    )
+  }
 
   Object.assign(api, {
     state,

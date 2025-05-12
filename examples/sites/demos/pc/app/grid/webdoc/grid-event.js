@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'event-click-event',
-      'name': { 'zh-CN': '点击事件', 'en-US': 'Table header click event' },
-      'desc': {
+      name: { 'zh-CN': '点击事件', 'en-US': 'Table header click event' },
+      desc: {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
         <p> <code>header-cell-click</code> 可以监听到表头的点击事件。</p>
@@ -22,8 +22,8 @@ export default {
     },
     {
       demoId: 'event-context-menu-event',
-      'name': { 'zh-CN': '右键相关事件', 'en-US': 'Event of right-clicking a cell at the end of the table' },
-      'desc': {
+      name: { 'zh-CN': '右键相关事件', 'en-US': 'Event of right-clicking a cell at the end of the table' },
+      desc: {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
           <p> <code>header-cell-context-menu</code> 可以监听右键点击表头事件。</p>
@@ -36,8 +36,8 @@ export default {
     },
     {
       demoId: 'event-cell-mouse-event',
-      'name': { 'zh-CN': '鼠标进入离开单元格事件', 'en-US': 'Indicates that the mouse moves to a cell.' },
-      'desc': {
+      name: { 'zh-CN': '鼠标进入离开单元格事件', 'en-US': 'Indicates that the mouse moves to a cell.' },
+      desc: {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
         <p> <code>cell-mouseenter</code> 可以监听到鼠标进入单元格事件。</p>
@@ -50,11 +50,11 @@ export default {
     },
     {
       demoId: 'event-edit-event',
-      'name': {
+      name: {
         'zh-CN': '单元格编辑相关事件',
         'en-US': 'This event is triggered when a cell is activated for editing.'
       },
-      'desc': {
+      desc: {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
           <p> <code>edit-actived</code> 单元格被激活编辑时触发的事件。</p>
@@ -68,8 +68,8 @@ export default {
     },
     {
       demoId: 'event-grid-scroll-event',
-      'name': { 'zh-CN': '表格滚动事件', 'en-US': 'Event' },
-      'desc': {
+      name: { 'zh-CN': '表格滚动事件', 'en-US': 'Event' },
+      desc: {
         'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>scroll</code> 事件，可以监听表格的滚动。</p>\n',
         'en-US':
           '<p>Configure the <code>scroll</code> event on the <code>grid</code> tag to listen to the scrolling of the table</p>\n'
@@ -78,8 +78,8 @@ export default {
     },
     {
       demoId: 'event-current-change-event',
-      'name': { 'zh-CN': '行选中事件', 'en-US': 'Row Selection Event' },
-      'desc': {
+      name: { 'zh-CN': '行选中事件', 'en-US': 'Row Selection Event' },
+      desc: {
         'zh-CN':
           '<p>只对 在 <code>grid</code> 标签上配置 <code>highlightCurrentRow</code> 有效，当手动选中行时触发的事件。</p>\n',
         'en-US':
@@ -89,8 +89,8 @@ export default {
     },
     {
       demoId: 'event-radio-change-event',
-      'name': { 'zh-CN': '单选行选中事件', 'en-US': 'Line Selection Event' },
-      'desc': {
+      name: { 'zh-CN': '单选行选中事件', 'en-US': 'Line Selection Event' },
+      desc: {
         'zh-CN':
           '<p>在 <code>grid</code> 标签上配置 <code>radio-change</code> 可以监听勾选行事件\n只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件。</p>\n',
         'en-US':
@@ -100,8 +100,8 @@ export default {
     },
     {
       demoId: 'event-select-event',
-      'name': { 'zh-CN': '多选行选中事件', 'en-US': 'Line Selection Event' },
-      'desc': {
+      name: { 'zh-CN': '多选行选中事件', 'en-US': 'Line Selection Event' },
+      desc: {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
           <p> <code>select-change</code> 可以监听到勾选行事件\n只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件。</p>
@@ -114,8 +114,8 @@ export default {
     },
     {
       demoId: 'event-page-change-event',
-      'name': { 'zh-CN': '分页发生改变事件', 'en-US': 'Paging change event' },
-      'desc': {
+      name: { 'zh-CN': '分页发生改变事件', 'en-US': 'Paging change event' },
+      desc: {
         'zh-CN': '<p>只对 在 <code>grid</code> 标签上配置 <code>page-change</code> 可以监听分页发生改变事件。</p>\n',
         'en-US':
           '<p>You can only configure <code>page-change</code> on the <code>grid</code> tag to listen to page change events.</p>\n'
@@ -124,8 +124,8 @@ export default {
     },
     {
       demoId: 'event-page-before-change-event',
-      'name': { 'zh-CN': '分页发生改变前的事件', 'en-US': 'Event before pagination changes' },
-      'desc': {
+      name: { 'zh-CN': '分页发生改变前的事件', 'en-US': 'Event before pagination changes' },
+      desc: {
         'zh-CN':
           '<p>通过在 <code>grid</code> 标签上配置 <code>is-before-page-change</code> 选择是否打开页面改变时的前置处理特性。在值为 <code>true</code> 时，翻页操作或者改变页大小操作不会立即生效，留给用户处理业务逻辑，之后通过调用预留的 <code>callback</code> 或者 <code>rollback</code> 使之生效或者失效；通过事件 <code>before-page-change</code> 在进行翻页操作或者改变页大小操作时触发，然后控制是否跳转分页。</p>\n',
         'en-US':
@@ -135,8 +135,8 @@ export default {
     },
     {
       demoId: 'event-resizable-change-event',
-      'name': { 'zh-CN': '列宽改变事件', 'en-US': 'Column width change event' },
-      'desc': {
+      name: { 'zh-CN': '列宽改变事件', 'en-US': 'Column width change event' },
+      desc: {
         'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>resizable-change</code> 可以监听列宽改变事件。</p>\n',
         'en-US':
           '<p>Configure <code>resizable-change</code> on the <code>grid</code> tag to listen to column width change events</p>\n'
@@ -145,8 +145,8 @@ export default {
     },
     {
       demoId: 'event-toggle-expand-change-event',
-      'name': { 'zh-CN': '行展开收起事件', 'en-US': 'Line expansion and collapse event' },
-      'desc': {
+      name: { 'zh-CN': '行展开收起事件', 'en-US': 'Line expansion and collapse event' },
+      desc: {
         'zh-CN':
           '<p>在 <code>grid</code> 标签上配置 <code>toggle-expand-change</code> 可以监听到行展开收起事件。</p>\n',
         'en-US':
@@ -156,8 +156,8 @@ export default {
     },
     {
       demoId: 'event-toggle-tree-change-event',
-      'name': { 'zh-CN': '树节点展开收起事件', 'en-US': 'Tree Node Expansion and Collapse Event' },
-      'desc': {
+      name: { 'zh-CN': '树节点展开收起事件', 'en-US': 'Tree Node Expansion and Collapse Event' },
+      desc: {
         'zh-CN':
           '<p>在 <code>grid</code> 标签上配置 <code>toggle-tree-change</code> 可以监听树节点展开收起事件。</p>\n',
         'en-US':
@@ -167,8 +167,8 @@ export default {
     },
     {
       demoId: 'event-toolbar-button-click-event',
-      'name': { 'zh-CN': '工具栏点击事件', 'en-US': 'Toolbar click event' },
-      'desc': {
+      name: { 'zh-CN': '工具栏点击事件', 'en-US': 'Toolbar click event' },
+      desc: {
         'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>toolbar-button-click</code> 可以监听工具栏点击事件。</p>\n',
         'en-US':
           '<p>Configure <code>resizable-change</code> on the <code>grid</code> tab to listen to toolbar click events</p>\n'
@@ -177,8 +177,8 @@ export default {
     },
     {
       demoId: 'event-valid-error-event',
-      'name': { 'zh-CN': '校验不通过事件', 'en-US': 'Verification failure event' },
-      'desc': {
+      name: { 'zh-CN': '校验不通过事件', 'en-US': 'Verification failure event' },
+      desc: {
         'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>valid-error</code> 监听校验不通过事件。</p>\n',
         'en-US':
           '<p>Configure <code>valid-error</code> on the <code>grid</code> tag to listen to verification failure events</p>\n'
@@ -187,8 +187,8 @@ export default {
     },
     {
       demoId: 'event-grid-events',
-      'name': { 'zh-CN': '事件对象', 'en-US': 'Event object' },
-      'desc': {
+      name: { 'zh-CN': '事件对象', 'en-US': 'Event object' },
+      desc: {
         'zh-CN': '<p>表格属性 <code>envents</code> 设置表格的事件对象。\n</p>\n',
         'en-US': '<p>Table Properties<code>envents</code>Sets the event object of the table. \n</p>\n'
       },
@@ -196,8 +196,8 @@ export default {
     },
     {
       demoId: 'event-get-row-method',
-      'name': { 'zh-CN': '获取表格行方法', 'en-US': 'Obtain table row method' },
-      'desc': {
+      name: { 'zh-CN': '获取表格行方法', 'en-US': 'Obtain table row method' },
+      desc: {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">获取行的方法</p>\n<p> <code>getCurrentRow</code> 获取当前行\n<code>getRowIndex</code> 获取当前行号\n<code>getRadioRow</code> Radio 单选选中行\n<code>getRowById</code> 通过 rowId 获取当前行\n<code>getRowNode</code> 通过 tr 元素获取行信息。</p>\n</div>\n',
         'en-US':
@@ -206,5 +206,5 @@ export default {
       codeFiles: ['event/get-row-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-event', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-event', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

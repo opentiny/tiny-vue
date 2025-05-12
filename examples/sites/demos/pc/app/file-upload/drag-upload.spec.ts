@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('是否可以拖拽上传', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -9,7 +14,6 @@ test('是否可以拖拽上传', async ({ page }) => {
   const input = page.locator('.tiny-upload__input')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), drag.click()])
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(drag).toHaveCSS('width', '100px')

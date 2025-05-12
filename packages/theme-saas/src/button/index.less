@@ -71,13 +71,13 @@
   &.is-disabled:focus,
   &.is-disabled:hover {
     @apply cursor-not-allowed;
-    .button-color(theme('colors.color.text.disabled'), theme('colors.color.text.disabled'), theme('colors.color.bg.4'));
+    .button-color(theme('colors.color.text.disabled'), theme('colors.color.border.disabled'), theme('colors.color.bg.4'));
   }
 
   &.is-disabled.is-plain,
   &.is-disabled.is-plain:focus,
   &.is-disabled.is-plain:hover {
-    .button-color(theme('colors.color.text.disabled'), theme('colors.color.text.disabled'), theme('colors.color.bg.1'));
+    .button-color(theme('colors.color.text.disabled'), theme('colors.color.border.disabled'), theme('colors.color.bg.1'));
   }
 
   & + & {

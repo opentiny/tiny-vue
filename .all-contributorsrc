@@ -636,6 +636,78 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hu-qi",
+      "name": "huqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17986122?v=4",
+      "profile": "https://github.com/hu-qi",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "tsinghua-lau",
+      "name": "Mao Tao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43164478?v=4",
+      "profile": "https://github.com/tsinghua-lau",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Darkingtail",
+      "name": "Darkingtail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51188676?v=4",
+      "profile": "https://github.com/Darkingtail",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "hashiqi12138",
+      "name": "hashiqi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52161363?v=4",
+      "profile": "https://github.com/hashiqi12138",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "discreted66",
+      "name": "liukun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/190872652?v=4",
+      "profile": "https://github.com/discreted66",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lcy0620",
+      "name": "lcy0620",
+      "avatar_url": "https://avatars.githubusercontent.com/u/188683944?v=4",
+      "profile": "https://github.com/lcy0620",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "sakurajiajia",
+      "name": "木斯佳",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37933037?v=4",
+      "profile": "https://github.com/sakurajiajia",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "552847957",
+      "name": "552847957",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8729901?v=4",
+      "profile": "https://github.com/552847957",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,

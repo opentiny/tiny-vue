@@ -181,8 +181,7 @@
           <span ref="textBox" class="tiny-textarea-display-only__content text-box">
             <span v-if="state.showMoreBtn" @click="state.showDisplayOnlyBox = true" class="more-btn"
               >{{ t('ui.input.more') }}></span
-            >
-            <span>{{ state.displayOnlyText }}</span>
+            >{{ state.displayOnlyText }}
           </span>
         </div>
       </tiny-tooltip>

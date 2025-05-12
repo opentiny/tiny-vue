@@ -13,14 +13,26 @@
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
 import { hasOwn, isFunction } from '../type'
 
-function Schema(descriptor, translate?) {
+// 添加Schema的接口定义
+interface SchemaType {
+  rules: Record<string, any> | null
+  _messages: Record<string, any>
+  define: (descriptor: Record<string, any>) => void
+  messages: (messages?: Record<string, any>) => Record<string, any>
+  getSeries: (options: any, source: any, source_: any) => Record<string, any>
+  mergeMessage: (options: any) => void
+  validate: (source_: any, o?: any, oc?: Function) => Promise<any>
+  getValidationMethod: (rule: any) => any
+  getType: (rule: any) => string
+}
+
+function Schema(descriptor: Record<string, any>, translate?: any) {
   Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)
   Schema.messages = Schema.getSystemMessage(translate)
   Schema.systemMessages = Schema.messages
-
-  this.rules = null
-  this._messages = Schema.systemMessages
-  this.define(descriptor)
+  ;(this as SchemaType).rules = null
+  ;(this as SchemaType)._messages = Schema.systemMessages
+  ;(this as SchemaType).define(descriptor)
 }
 
 /**
@@ -385,13 +397,13 @@ Schema.register = (type, validator) => {
   Schema.validators[type] = validator
 }
 
-Schema.validators = {} as any
+Schema.validators = {} as Record<string, any>
 
 Schema.warning = warning
 
-Schema.messages = {} as any
+Schema.messages = {} as Record<string, any>
 
-Schema.systemMessages = {} as any
+Schema.systemMessages = {} as Record<string, any>
 
 Schema.getDefaultMessage = () => undefined
 

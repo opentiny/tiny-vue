@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'edit-editing',
-      'name': { 'zh-CN': '编辑方式', 'en-US': 'Cell Edit' },
-      'desc': {
+      name: { 'zh-CN': '编辑方式', 'en-US': 'Cell Edit' },
+      desc: {
         'zh-CN': `
           <p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 或者<code>mode: 'row'</code> 开启单元格编辑或者行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>
           `,
@@ -16,8 +16,8 @@ export default {
     },
     {
       demoId: 'edit-revert-data',
-      'name': { 'zh-CN': '还原更改', 'en-US': 'Restore Changes' },
-      'desc': {
+      name: { 'zh-CN': '还原更改', 'en-US': 'Restore Changes' },
+      desc: {
         'zh-CN':
           '<p>调用方法 <code>revertData(rows, field)</code> 可以还原指定行 row 或者整个表格的数据。rows 为对象则还原一行数据，为数组则还原多行数据，field 可不指定。不指定任何参数时则还原整个表格数据。</p>\n',
         'en-US':
@@ -27,8 +27,8 @@ export default {
     },
     {
       demoId: 'edit-has-row-change',
-      'name': { 'zh-CN': '检查数据是否改变', 'en-US': 'Check whether data is changed.' },
-      'desc': {
+      name: { 'zh-CN': '检查数据是否改变', 'en-US': 'Check whether data is changed.' },
+      desc: {
         'zh-CN': '<p> <code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n',
         'en-US':
           '<p> <code>hasRowChange(row, field)</code> Checks whether the row or column data is changed. The field is optional. </p>\n'
@@ -37,8 +37,8 @@ export default {
     },
     {
       demoId: 'edit-trigger-mode-hm-editing',
-      'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
-      'desc': {
+      name: { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
+      desc: {
         'zh-CN': `<p> <code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
           <p>在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭。</p>
           `,
@@ -48,8 +48,8 @@ export default {
     },
     {
       demoId: 'edit-custom-editing',
-      'name': { 'zh-CN': '自定义编辑规则', 'en-US': 'Custom Editing Rule' },
-      'desc': {
+      name: { 'zh-CN': '自定义编辑规则', 'en-US': 'Custom Editing Rule' },
+      desc: {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>activeMethod</code> 自定义编辑规则。</p>\n',
         'en-US':
@@ -59,8 +59,8 @@ export default {
     },
     {
       demoId: 'edit-editor-is-valid-always',
-      'name': { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
-      'desc': {
+      name: { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
+      desc: {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，然后在 <code>editor</code> 对象中设置 <code>isValidAlways</code> 开启编辑实时校验。</p>\n',
         'en-US':
@@ -70,8 +70,8 @@ export default {
     },
     {
       demoId: 'edit-status-of-editing',
-      'name': { 'zh-CN': '开启和关闭编辑状态', 'en-US': 'Enable editing' },
-      'desc': {
+      name: { 'zh-CN': '开启和关闭编辑状态', 'en-US': 'Enable editing' },
+      desc: {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>showStatus</code> 开启或关闭单元格更新状态（单元格左上角倒三角形更新标识)，默认值为 <code>true</code> 开启状态。</p>\n',
         'en-US':
@@ -81,8 +81,8 @@ export default {
     },
     {
       demoId: 'edit-grid-equals',
-      'name': { 'zh-CN': '自定义比较方法', 'en-US': 'Enable editing' },
-      'desc': {
+      name: { 'zh-CN': '自定义比较方法', 'en-US': 'Enable editing' },
+      desc: {
         'zh-CN':
           '<p>配置列属性 <code>equals</code> 可实现列值自定义比较。此方法接收字段原始值和当前值等作为参数，期望用户返回布尔结果。返回 <code>false</code> 表示已改变，<code>true</code> 表示未改变，其它值表示使用内部预置比较。表格也支持 <code>equals</code> 属性，用于定义所有字段的比较方法，使用参数 <code>field</code> 区分具体的字段，此方式的影响范围是整个表格，需要谨慎使用。</p>',
         'en-US':
@@ -92,8 +92,8 @@ export default {
     },
     {
       demoId: 'edit-trigger-mode-for-editing',
-      'name': { 'zh-CN': '触发编辑方式', 'en-US': 'Click to trigger editing' },
-      'desc': {
+      name: { 'zh-CN': '触发编辑方式', 'en-US': 'Click to trigger editing' },
+      desc: {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>trigger</code> 修改触发方式。可选值有 <code>点击触发（click）/ 双击触发（dblclick）/ 手动触发（manual）</code>，默认值为 <code>click 点击触发</code>。</p>\n',
         'en-US':
@@ -102,5 +102,5 @@ export default {
       codeFiles: ['edit/trigger-mode-for-editing.vue']
     }
   ],
-  apis: [{ 'name': 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

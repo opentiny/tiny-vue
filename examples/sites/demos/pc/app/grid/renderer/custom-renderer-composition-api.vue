@@ -7,7 +7,7 @@
         field="boole"
         title="Vue 渲染器"
         align="center"
-        :renderer="{ component: TinySwitch }"
+        :renderer="{ component: TinySwitch, events: { change } }"
       ></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
       <tiny-grid-column field="createdDate" title="创建时间"></tiny-grid-column>
@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinySwitch, TinyGrid, TinyGridColumn } from '@opentiny/vue'
+import { TinySwitch, TinyGrid, TinyGridColumn, TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -116,5 +116,8 @@ const tableData = ref([
 
 function renderName(h, { row }) {
   return <span style="color:goldenrod">{row.name}</span>
+}
+const change = () => {
+  TinyModal.message('触发了change事件')
 }
 </script>

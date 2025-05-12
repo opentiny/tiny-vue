@@ -48,8 +48,7 @@ export const check =
           return {
             ...node,
             currentLabel: node[props.textField],
-            value: node[props.valueField],
-            isTree: true
+            value: node[props.valueField]
           }
         })
       )
@@ -115,14 +114,14 @@ export const getPluginOption =
  */
 export const getCheckedData =
   ({ props, state }) =>
-  () => {
+  (selected) => {
     const checkedKey = []
 
-    if (!Array.isArray(state.selected)) {
-      return props.modelValue ? [props.modelValue] : [state.selected[props.valueField]]
+    if (!Array.isArray(selected)) {
+      return props.modelValue ? [props.modelValue] : [selected[props.valueField]]
     } else {
-      state.selected.length > 0 &&
-        state.selected.forEach((item) => {
+      selected.length > 0 &&
+        selected.forEach((item) => {
           checkedKey.push(item[props.valueField])
         })
 
@@ -130,34 +129,57 @@ export const getCheckedData =
     }
   }
 
+/**
+ * 递归获取树节点的所有子节点 id 数组
+ * @params childNodes 树节点的子节点
+ * @params key value 映射字段（valueField）
+ * @return 示例：[{ value: 4, children: [{ value: 6 }, { value: 9 }] }] => [4, 6, 9]（其中 childNodes 的结构做了简化处理）
+ */
+export const getChildValue = () => (childNodes, key) => {
+  const ids = []
+
+  const getChild = (nodes) => {
+    nodes.forEach((node) => {
+      ids.push(node.data[key])
+
+      if (node.childNodes.length > 0) {
+        getChild(node.childNodes)
+      }
+    })
+  }
+
+  getChild(childNodes)
+
+  return ids
+}
+
 export const mounted =
   ({ api, state, props, vm }) =>
   () => {
-    if (!state.value || state.value.length === 0) return
+    if (!state.modelValue || state.modelValue.length === 0) return
 
     if (props.multiple) {
       let initialNodes = []
-      if (Array.isArray(state.value)) {
-        state.value.forEach((value) => {
+      if (Array.isArray(state.modelValue)) {
+        state.modelValue.forEach((value) => {
           const option = api.getPluginOption(value)
           initialNodes = initialNodes.concat(option)
         })
       }
 
-      vm.$refs.baseSelectRef.updateSelectedData(
-        initialNodes.map((node) => {
-          return {
-            ...node,
-            currentLabel: node[props.textField],
-            value: node[props.valueField],
-            isTree: true
-          }
-        })
-      )
+      const selected = initialNodes.map((node) => {
+        return {
+          ...node,
+          currentLabel: node[props.textField],
+          value: node[props.valueField]
+        }
+      })
 
-      state.defaultCheckedKeys = api.getCheckedData()[0]
+      vm.$refs.baseSelectRef.updateSelectedData(selected)
+
+      state.defaultCheckedKeys = api.getCheckedData(selected)
     } else {
-      const data = api.getPluginOption(state.value)[0]
+      const data = api.getPluginOption(state.modelValue)[0]
       vm.$refs.baseSelectRef.updateSelectedData({
         ...data,
         currentLabel: data[props.textField],
@@ -168,5 +190,56 @@ export const mounted =
       })
 
       state.currentKey = data[props.valueField]
+    }
+  }
+
+export const watchValue =
+  ({ api, props, vm, state }) =>
+  (newValue, oldValue) => {
+    if (props.multiple) {
+      // 取新旧值的差集，用来判断是否是删除标签的操作，如果差值只有一个值，说明是删除操作
+      // 如果是删除操作，且不是父子严格模式，则需要将父节点的值也删除（严格模式下父子节点勾选相互独立，不会相互影响）
+      const xorResult = oldValue.filter((item) => !newValue.includes(item))
+      const tagId = xorResult[0]
+      const treeIds = [tagId]
+      let checkedKeys = newValue
+
+      // 处理输入框中删除选中标签时，联动下拉面板的逻辑
+      if (xorResult.length === 1 && !props.treeOp.checkStrictly) {
+        let node = vm.$refs.treeRef.getNode(tagId)
+
+        if (!node.isLeaf) {
+          treeIds.push(...api.getChildValue(node.childNodes, props.valueField))
+        }
+
+        while (node.parent && !Array.isArray(node.parent.data)) {
+          node.parent.data && treeIds.push(node.parent.data[props.valueField])
+          node = node.parent
+        }
+
+        checkedKeys = newValue.filter((item) => !treeIds.includes(item))
+      }
+
+      let initialNodes = []
+      if (Array.isArray(checkedKeys)) {
+        checkedKeys.forEach((value) => {
+          const option = api.getPluginOption(value)
+          initialNodes = initialNodes.concat(option)
+        })
+      }
+
+      const selected = initialNodes.map((node) => {
+        return {
+          ...node,
+          currentLabel: node[props.textField],
+          value: node[props.valueField]
+        }
+      })
+
+      // 更新输入框中选中的标签
+      vm.$refs.baseSelectRef.updateSelectedData(selected)
+
+      // 更新下拉面板中选中的树节点
+      vm.$refs.treeRef.setCheckedKeys(checkedKeys)
     }
   }

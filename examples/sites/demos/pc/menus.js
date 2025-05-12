@@ -165,10 +165,7 @@ export const cmpMenus = [
       {
         'nameCn': '树形选择器',
         'name': 'TreeSelect',
-        'key': 'tree-select',
-        'meta': {
-          'experimental': '3.17.0'
-        }
+        'key': 'tree-select'
       }
     ]
   },
@@ -252,7 +249,15 @@ export const cmpMenus = [
         }
       },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
-      { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
+      { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' },
+      {
+        'nameCn': '数值动画',
+        'name': 'NumberAnimation',
+        'key': 'number-animation',
+        'meta': {
+          'stable': '3.23.0'
+        }
+      }
     ]
   },
   {

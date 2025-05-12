@@ -1708,6 +1708,19 @@
     "type": "template",
     "exclude": false
   },
+  "NumberAnimation": {
+    "path": "vue/src/number-animation/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "NumberAnimationPc": {
+    "path": "vue/src/number-animation/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Option": {
     "path": "vue/src/option/index.ts",
     "type": "component",

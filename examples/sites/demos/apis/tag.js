@@ -100,7 +100,7 @@ export default {
             'zh-CN': '是否有边框',
             'en-US': 'Whether there is a border stroke'
           },
-          mode: ['pc', 'mobile-first'],
+          mode: ['mobile-first'],
           pcDemo: 'color3',
           mfDemo: ''
         },

@@ -276,6 +276,12 @@ export const getFilterTreeData =
   (data) => {
     const getChild = (data, query) => {
       data.forEach((node) => {
+        // 由于左右的数据一样，左边增加了选中后禁用的功能 ， 但右侧不能显示为禁用。
+        if (node.__disabled) {
+          node.disabled = true
+        } else if (!props.showLeft) {
+          node.disabled = false
+        }
         const label = node[state.labelProp]
 
         if (typeof props.treeOp.filterNodeMethod === 'function') {

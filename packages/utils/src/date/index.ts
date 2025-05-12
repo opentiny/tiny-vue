@@ -54,7 +54,7 @@ const maxDateValues = {
 const timezone1 = '-12:00,-11:00,-10:00,-09:30,-08:00,-07:00,-06:00,-05:00,-04:30,-04:00,-03:30,-02:00,-01:00'
 const timezone2 = '-00:00,+00:00,+01:00,+02:00,+03:00,+03:30,+04:00,+04:30,+05:00,+05:30,+05:45,+06:00'
 const timezone3 = '+06:30,+07:00,+08:00,+09:00,+10:00,+10:30,+11:00,+11:30,+12:00,+12:45,+13:00,+14:00'
-const timezones = [].concat(timezone1.split(','), timezone2.split(','), timezone3.split(','))
+const timezones: string[] = [...timezone1.split(','), ...timezone2.split(','), ...timezone3.split(',')]
 
 const getTimezone = (date) => {
   const timezoneoffset = 0 - date.getTimezoneOffset() / 60
@@ -185,13 +185,17 @@ const iso8601DateParser = (m) => {
   }
 }
 
-const dateParsers = [
+// 添加适当的类型定义
+type DateParser = (m: any) => Date | undefined
+type DateParserTuple = [RegExp, DateParser]
+
+const dateParsers: DateParserTuple[] = [
   [yyyymmddReg, yyyymmddDateParser],
   [mmddyyyyReg, mmddyyyyDateParser],
   [iso8601Reg, iso8601DateParser]
 ]
 
-const parseDate = (str) => {
+const parseDate = (str: string) => {
   for (let i = 0, len = dateParsers.length; i < len; i++) {
     const m = dateParsers[i][0].exec(str)
 
@@ -279,7 +283,7 @@ const getDateArray = (str, dateFormat) => {
   return arr
 }
 
-const invalideTime = (time, min, max) => isNaN(time) || time < min || time > max
+const invalideTime = (time: number, min: number, max: number): boolean => isNaN(time) || time < min || time > max
 
 const invalideValue = ({ year, month, date, hours, minutes, seconds, milliseconds }) =>
   invalideTime(year, 0, maxDateValues.YEAR) ||

@@ -1,10 +1,10 @@
 import { addResizeListener, removeResizeListener } from '@opentiny/utils'
-import { wheelListener, getBoundRect, handleClickDropdownItem, key, emitAdd } from './index'
+import { wheelListener, getBoundRect, handleClickDropdownItem, key, emitAdd, scrollToLeft } from './index'
 import { getAddWheelListener } from './wheel'
 
 const { addWheelListener, removeWheelListener } = getAddWheelListener(window, document)
 
-export const api = ['state', 'wheelListener', 'handleClickDropdownItem', 'key', 'emitAdd']
+export const api = ['state', 'wheelListener', 'handleClickDropdownItem', 'key', 'emitAdd', 'scrollToLeft']
 
 export const renderless = (props, { onMounted, onBeforeUnmount, reactive, watch, inject, computed }, { vm }) => {
   const tabs = inject('tabs', null)
@@ -25,7 +25,8 @@ export const renderless = (props, { onMounted, onBeforeUnmount, reactive, watch,
     getBoundRect: getBoundRect(vm),
     handleClickDropdownItem: handleClickDropdownItem(tabs),
     key,
-    emitAdd: emitAdd(tabs)
+    emitAdd: emitAdd(tabs),
+    scrollToLeft: scrollToLeft(tabs)
   }
 
   Object.assign(api, {

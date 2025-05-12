@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('照片墙', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -16,8 +21,6 @@ test('照片墙', async ({ page }) => {
   const dialogClose = page.getByRole('button', { name: 'Close' })
   const { width, height } = await first.boundingBox()
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(width).toEqual(100)

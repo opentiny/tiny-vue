@@ -86,7 +86,7 @@ export default defineComponent({
       palceMenus: new Array(14)
     })
 
-    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
+    const isPlus = computed(() => import.meta.env.VITE_APP_MODE === 'plus')
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {

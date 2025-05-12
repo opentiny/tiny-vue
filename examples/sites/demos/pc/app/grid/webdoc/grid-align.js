@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'align-header-align',
-      'name': { 'zh-CN': '表头对齐', 'en-US': 'aligned table header' },
-      'desc': {
+      name: { 'zh-CN': '表头对齐', 'en-US': 'aligned table header' },
+      desc: {
         'zh-CN':
           '<p> <code>header-align</code> 设置表头对齐方式可选值为 <code>left</code> <code>center</code> <code>right</code>，默认值为 <code>left</code>。</p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>表格上配置 <code>header-align</code> 会被列配置的 <code>header-align</code> 覆盖。</p>\n</div>\n',
         'en-US':
@@ -15,8 +15,8 @@ export default {
     },
     {
       demoId: 'align-footer-align',
-      'name': { 'zh-CN': '表尾对齐', 'en-US': 'Left-aligned table tail' },
-      'desc': {
+      name: { 'zh-CN': '表尾对齐', 'en-US': 'Left-aligned table tail' },
+      desc: {
         'zh-CN':
           '<p> <code>footer-align</code> 设置表尾对齐方式的可选值为 <code>left</code> <code>center</code> <code>right</code>，默认值为 <code>left</code>。</p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>表格上配置 <code>footer-align</code> 会被列配置的 <code>footer-align</code> 覆盖。</p>\n</div>\n',
         'en-US':
@@ -26,8 +26,8 @@ export default {
     },
     {
       demoId: 'align-grid-align',
-      'name': { 'zh-CN': '表格对齐', 'en-US': 'Left-aligned table' },
-      'desc': {
+      name: { 'zh-CN': '表格对齐', 'en-US': 'Left-aligned table' },
+      desc: {
         'zh-CN':
           '<p> <code>align</code> 设置全部列对齐方式可选值为 <code>left</code> <code>center</code> <code>right</code>，默认值为 <code>left</code>。</p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>表格设置对齐方式优先级最低，会被单独设置对齐方式覆盖。</p>\n</div>\n',
         'en-US':
@@ -36,5 +36,5 @@ export default {
       codeFiles: ['align/grid-align.vue']
     }
   ],
-  apis: [{ 'name': 'grid-align', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-align', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

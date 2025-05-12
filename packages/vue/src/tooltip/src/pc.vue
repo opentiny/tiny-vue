@@ -195,7 +195,7 @@ export default defineComponent({
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
                         {addWrapper ? (
-                          <div class="tiny-tooltip__content-wrapper" style={`max-height:${this.contentMaxHeight}`}>
+                          <div class="tiny-tooltip__content-wrapper" style={`max-height:${this.contentMaxHeight};`}>
                             {content}
                           </div>
                         ) : (

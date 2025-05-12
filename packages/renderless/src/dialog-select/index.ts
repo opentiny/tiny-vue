@@ -61,7 +61,7 @@ export const queryGridData =
 
 export const multiGridSelectAll =
   ({ api, props, state }) =>
-  ({ selection, checked }) => {
+  ({ selection, checked, $table }, event) => {
     if (checked) {
       arrayEach(selection, (item) => {
         const index = findIndexOf(state.selectedValues, (val) => val === item[props.valueField])
@@ -87,11 +87,16 @@ export const multiGridSelectAll =
     }
 
     api.selectedBoxInit()
+
+    // 透传配置式表格selectAll事件
+    if (props.gridOp?.events?.selectAll) {
+      props.gridOp.events.selectAll({ selection, checked, $table }, event)
+    }
   }
 
 export const multiGridSelectChange =
   ({ api, props, state, vm }) =>
-  ({ row, checked }) => {
+  ({ row, checked, $table }, event) => {
     const property = props.valueField
     const grid = vm.$refs?.multiGrid
     const selectedRows = grid.getSelectRecords()
@@ -130,6 +135,11 @@ export const multiGridSelectChange =
     }
 
     api.selectedBoxInit()
+
+    // 透传配置式表格selectChange事件
+    if (props.gridOp?.events?.selectChange) {
+      props.gridOp.events.selectChange({ row, checked, $table }, event)
+    }
   }
 
 export const selectedBoxInit =
@@ -567,10 +577,15 @@ export const multiTreeRadio =
 
 export const multiGridRadioChange =
   ({ props, state }) =>
-  ({ row }) => {
+  ({ row, $table }, event) => {
     state.selectedValues = [row[props.valueField]]
     state.selectedDatas = [row]
     state.selectedChanged = true
+
+    // 透传配置式表格radioChange事件
+    if (props.gridOp?.events?.radioChange) {
+      props.gridOp.events.radioChange({ row, $table }, event)
+    }
   }
 
 export const watchMulti =

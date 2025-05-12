@@ -307,8 +307,19 @@ function splitEvent(props, event) {
   return result
 }
 
+export const computedSelectDay = ({ state }) =>
+(day) => {
+  if (!day || !day.value || day.disabled) return false
+
+  if (state.multiSelect) { 
+    return state.selectedDates.includes(day.value)
+  } else{
+    return state.selectedDate === day.value
+  }
+}
+
 export const selectDay =
-  ({ state, emit }) =>
+  ({ props, state, emit, api }) =>
   (day, i) => {
     if (!day || !day.value || day.disabled) return
 
@@ -323,9 +334,11 @@ export const selectDay =
         state.selectedDates.push(date)
       }
 
+      const dateEvent = dealEvents(props, api, state.selectedDates)
+
       emit('update:modelValue', state.selectedDates)
       emit('selected-date-change', state.selectedDates)
-      emit('date-click', date)
+      emit('date-click', state.selectedDates, dateEvent)
     } else {
       if (day.isNext) {
         const { year, month } = nextMonth(state.activeYear, state.activeMonth)
@@ -342,11 +355,25 @@ export const selectDay =
       state.selectedDate =
         day.value.toString().length > 2 ? day.value : `${state.activeYear}-${state.activeMonth}-${day.value}`
       state.showSelectedDateEvents = true
+      
+      const dateEvent = dealEvents(props, api, [state.selectedDate])
 
       emit('update:modelValue', state.selectedDate)
-      emit('date-click', state.selectedDate)
+      emit('date-click', state.selectedDate, dateEvent[0])
     }
   }
+
+const dealEvents = (props, api, date) => {
+  return date.map(item => {
+    let event = api.getEventByTime(item, props._constants.DAY_START_TIME, props._constants.DAY_END_TIME)
+    event.forEach(e => {
+      delete e.dayArr;
+      delete e.dayNumber;
+    });
+    return event
+  })
+  
+}
 
 export const getEventByMonth =
   ({ state }) =>
