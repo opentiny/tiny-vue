@@ -120,7 +120,7 @@
         <div
           :class="
             m(
-              'relative sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
+              'sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
                 : ''
