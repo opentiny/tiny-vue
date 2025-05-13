@@ -34,6 +34,7 @@ export const renderComponent = ({
   view = null as any,
   component = null as any,
   props,
+  customDesignProps,
   context: { attrs, listeners: on, slots },
   extend = {}
 }) => {
@@ -41,7 +42,14 @@ export const renderComponent = ({
     hooks.h(
       (view && view.value) || component,
       Object.assign(
-        { props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, ref: 'modeTemplate', scopedSlots: { ...slots } },
+        {
+          props,
+          attrs,
+          customDesignProps,
+          [extend.isSvg ? 'nativeOn' : 'on']: on,
+          ref: 'modeTemplate',
+          scopedSlots: { ...slots }
+        },
         extend
       )
     )
