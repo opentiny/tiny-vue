@@ -43,9 +43,8 @@ export const renderComponent = ({
       (view && view.value) || component,
       Object.assign(
         {
-          props,
+          props: { ...props, ...customDesignProps },
           attrs,
-          customDesignProps,
           [extend.isSvg ? 'nativeOn' : 'on']: on,
           ref: 'modeTemplate',
           scopedSlots: { ...slots }
