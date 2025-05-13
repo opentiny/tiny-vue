@@ -9,7 +9,6 @@
         :style="{ width: width + 'px' }"
         role="tooltip"
         :id="state.tooltipId"
-        :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'"
       >
         <div class="hidden sm:block leading-5.5" data-tag="tiny-popover-arrow">
           <slot v-if="slots.header" name="header"></slot>

@@ -1,13 +1,198 @@
-<script lang="tsx">
+<template>
+  <div class="text-right py-3 px-0 text-color-text-primary">
+    <template v-if="internalLayout">
+      <template v-if="!(hideOnSinglePage && (!internalPageCount || internalPageCount === 1))">
+        <!-- 上一页按钮 -->
+        <button
+          v-if="internalLayout.includes('prev')"
+          type="button"
+          class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+          :disabled="disabled || internalCurrentPage <= 1"
+          @click="prev"
+        >
+          <span
+            v-if="prevText"
+            class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+          >
+            {{ prevText }}
+          </span>
+          <tiny-icon-chevron-left
+            v-else
+            class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+          />
+        </button>
+
+        <!-- 分页器 -->
+        <pager
+          v-if="internalLayout.includes('pager')"
+          :is-before-page-change="isBeforePageChange"
+          @before-page-change="beforePagerChangeHandler"
+          :current-page="internalCurrentPage"
+          :page-count="internalPageCount || 0"
+          :pager-count="pagerCount"
+          @change="handleCurrentChange"
+          :disabled="disabled"
+        />
+
+        <!-- 下一页按钮 -->
+        <button
+          v-if="internalLayout.includes('next')"
+          type="button"
+          class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+          :disabled="disabled || internalCurrentPage === internalPageCount || internalPageCount === 0"
+          @click="next"
+        >
+          <span
+            v-if="nextText"
+            class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+          >
+            {{ nextText }}
+          </span>
+          <tiny-icon-chevron-right
+            v-else
+            class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+          />
+        </button>
+
+        <!-- 跳转器 -->
+        <div v-if="internalLayout.includes('jumper')" class="h-7 leading-7 inline-block align-middle text-xs">
+          <div class="text-[0] h-7">
+            <span class="text-xs pl-4 pr-2 text-color-text-primary">{{ $t('ui.page.jump') }}</span>
+            <input
+              ref="jumperInput"
+              type="tel"
+              :disabled="disabled"
+              class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus"
+              :value="jumperValue"
+              @focus="handleJumperFocus"
+              @input="handleJumperInput"
+              @change="handleJumperChange"
+            />
+          </div>
+        </div>
+
+        <!-- 每页条数选择器 -->
+        <div
+          v-if="internalLayout.includes('sizes')"
+          data-tag="tiny-pager-popover"
+          class="hidden sm:inline-block align-middle text-xs h-7 text-xs text-color-text-primary relative -top-px"
+        >
+          <popover
+            ref="sizesList"
+            placement="bottom-start"
+            :append-to-body="popperAppendToBody"
+            trigger="click"
+            :popper-class="
+              'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' + (popperClass ? ' ' + popperClass : '')
+            "
+            :visible-arrow="false"
+            :disabled="disabled"
+            @show="showSizes = true"
+            @hide="showSizes = false"
+          >
+            <template #reference>
+              <div class="m-0 ml-2" @click.stop>
+                <div
+                  ref="pageSize"
+                  :class="[
+                    'min-w-[theme(spacing.18)] max-w-[theme(spacing.40)] relative text-left h-7 leading-7 border border-solid border-color-border rounded text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
+                    showSizes
+                      ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
+                      : '',
+                    disabled
+                      ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
+                      : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
+                  ]"
+                >
+                  <span class="text-xs mr-1 relative -top-px">{{ internalPageSize }}</span>
+                  <span class="relative -top-px">{{ $t('ui.page.page') }}</span>
+                  <div
+                    class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer"
+                  >
+                    <tiny-icon-chevron-down
+                      class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+              </div>
+            </template>
+            <div class="max-h-[theme(spacing.72)] overflow-y-auto overflow-x-hidden">
+              <ul>
+                <li
+                  v-for="item in pageSizes"
+                  :key="String(item)"
+                  :class="[
+                    'min-h-[theme(spacing.8)] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded',
+                    item === internalPageSize
+                      ? 'text-color-brand bg-color-fill-6'
+                      : 'hover:bg-color-bg-2 text-color-text-primary'
+                  ]"
+                  :data-value="item"
+                  :title="String(item)"
+                  @click="handleSizeChange(Number(item))"
+                >
+                  {{ item }}
+                </li>
+              </ul>
+            </div>
+          </popover>
+        </div>
+
+        <!-- 总数显示 -->
+        <div
+          v-if="internalLayout.includes('total') && typeof internalTotal === 'number'"
+          class="inline-block align-middle text-xs h-7 leading-7 float-left"
+        >
+          <div v-if="showTotalLoading" class="h-7 leading-7 text-xs text-color-text-primary">
+            <div
+              data-tag="tiny-pager-total-loading"
+              class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"
+            ></div>
+            <span class="text-color-text-secondary">{{ $t('ui.page.loadingTotals') }}</span>
+          </div>
+          <div v-else class="h-7 leading-7 text-xs text-color-text-primary">
+            <span>{{ $t('ui.page.total') }}</span>
+            <span class="my-0 mx-1">
+              {{ customTotal ? totalText : internalTotal }}
+            </span>
+            <span>{{ $t('ui.page.item') }}</span>
+          </div>
+        </div>
+
+        <!-- 默认插槽 -->
+        <slot v-if="internalLayout.includes('slot')">
+          <template v-if="$parent?.$slots.default">
+            <template v-if="typeof $parent.$slots.default === 'function'">
+              {{ $parent.$slots.default() }}
+            </template>
+            <template v-else>
+              {{ $parent.$slots.default }}
+            </template>
+          </template>
+        </slot>
+      </template>
+    </template>
+  </div>
+</template>
+
+<script lang="ts">
 import Pager from '@opentiny/vue-pager-item'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { t } from '@opentiny/vue-locale'
-import { h, defineComponent, $props } from '@opentiny/vue-common'
+import { defineComponent, $props } from '@opentiny/vue-common'
 import { IconChevronDown, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 import { emitEvent } from '@opentiny/utils'
 
 export default defineComponent({
+  name: 'MobileFirstPager',
+  components: {
+    Pager,
+    Popover,
+    TinyIconChevronLeft: IconChevronLeft(),
+    TinyIconChevronRight: IconChevronRight(),
+    TinyIconChevronDown: IconChevronDown()
+  },
   props: {
     ...$props,
     accurateJumper: {
@@ -68,456 +253,124 @@ export default defineComponent({
       internalPageSize: 0,
       lastEmittedPage: -1,
       userChangePageSize: false,
-      internalTotal: this.total
+      internalTotal: this.total,
+      showSizes: false,
+      jumperValue: 1 as number
     }
-  },
-  render() {
-    const layout = this.internalLayout
-
-    if (!layout) return null
-
-    if (this.hideOnSinglePage && (!this.internalPageCount || this.internalPageCount === 1)) return null
-
-    const TEMPLATE_MAP = {
-      prev: <prev></prev>,
-      jumper: (
-        <jumper
-          ref="jumper"
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforeJumperChangeHandler}
-          max={this.internalPageCount}
-          disabled={this.disabled}></jumper>
-      ),
-      pager: (
-        <pager
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforePagerChangeHandler}
-          currentPage={this.internalCurrentPage}
-          pageCount={this.internalPageCount}
-          pagerCount={this.pagerCount}
-          onChange={this.handleCurrentChange}
-          disabled={this.disabled}></pager>
-      ),
-      next: <next></next>,
-      sizes: (
-        <sizes
-          ref="sizes"
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforeSizeChangeHandler}
-          popperAppendToBody={this.popperAppendToBody === false ? false : this.appendToBody}
-          popperClass={this.popperClass}
-          pageSizes={this.pageSizes}
-          disabled={this.disabled}></sizes>
-      ),
-      slot: (
-        <slot>
-          {typeof this.$parent.$slots.default === 'function'
-            ? this.$parent.$slots.default()
-            : this.$parent.$slots.default}
-        </slot>
-      ),
-      total: <total></total>
-    }
-
-    const components = layout.split(',').map((item) => item.trim())
-    const templateChildren = components.map((compo) => {
-      return TEMPLATE_MAP[compo]
-    })
-
-    return <div class={['text-right py-3 px-0 text-color-text-primary']}>{templateChildren}</div>
-  },
-  components: {
-    Prev: {
-      render() {
-        const ChevronLeft = IconChevronLeft()
-
-        return (
-          <button
-            type="button"
-            class={[
-              'group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2',
-              'align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default'
-            ]}
-            disabled={this.$parent.disabled || this.$parent.internalCurrentPage <= 1}
-            onClick={this.$parent.prev}>
-            {this.$parent.prevText ? (
-              <span
-                class={[
-                  'group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover'
-                ]}>
-                {this.$parent.prevText}
-              </span>
-            ) : (
-              <ChevronLeft class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active" />
-            )}
-          </button>
-        )
-      }
-    },
-    Next: {
-      render() {
-        const ChevronRight = IconChevronRight()
-
-        return (
-          <button
-            type="button"
-            class={[
-              'group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2',
-              'align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default'
-            ]}
-            disabled={
-              this.$parent.disabled ||
-              this.$parent.internalCurrentPage === this.$parent.internalPageCount ||
-              this.$parent.internalPageCount === 0
-            }
-            onClick={this.$parent.next}>
-            {this.$parent.nextText ? (
-              <span
-                class={[
-                  'group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover'
-                ]}>
-                {this.$parent.nextText}
-              </span>
-            ) : (
-              <ChevronRight class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active" />
-            )}
-          </button>
-        )
-      }
-    },
-    Sizes: {
-      props: {
-        pageSizes: Array,
-        appendToBody: Boolean,
-        isBeforePageChange: Boolean,
-        popperClass: String,
-        popperAppendToBody: {
-          type: Boolean,
-          default: true
-        },
-        disabled: Boolean
-      },
-      data() {
-        return {
-          showSizes: false
-        }
-      },
-      watch: {
-        pageSizes: {
-          immediate: true,
-          handler(newVal) {
-            if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
-                ? this.$parent.pageSize
-                : this.pageSizes[0]
-            }
-          }
-        },
-        showSizes(newVal) {
-          if (newVal) {
-            this.$nextTick(() => {
-              const width = this.$refs.pageSize.getBoundingClientRect().width
-              const popover = document.querySelectorAll('.data-tag-pager-selector')
-              Array.from(popover).forEach((ele) => {
-                ele.style.width = width + 'px'
-              })
-            })
-          }
-        }
-      },
-      render() {
-        const ChevronDown = IconChevronDown()
-        const scopedSlots = {
-          reference: () => (
-            <div slot="reference" class="m-0 ml-2" onClick={(e) => e.stopPropagation()}>
-              <div
-                class={[
-                  "min-w-[theme('spacing.18')] max-w-[theme('spacing.40')] relative text-left h-7 leading-7 border border-solid border-color-border ",
-                  'rounded  text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
-                  this.showSizes
-                    ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
-                    : '',
-                  this.disabled
-                    ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
-                    : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
-                ]}
-                ref="pageSize">
-                <span class="text-xs mr-1 relative -top-px">{this.$parent.internalPageSize}</span>
-                <span class="relative -top-px">{t('ui.page.page')}</span>
-                <div class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer">
-                  <ChevronDown class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300" />
-                </div>
-              </div>
-            </div>
-          ),
-          default: () => (
-            <div class="max-h-[theme('spacing.72')] overflow-y-auto overflow-x-hidden">
-              <ul>
-                {this.pageSizes.map((item) => (
-                  <li
-                    class={[
-                      "min-h-[theme('spacing.8')] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded",
-                      item === this.$parent.internalPageSize
-                        ? 'text-color-brand bg-color-fill-6'
-                        : 'hover:bg-color-bg-2 text-color-text-primary'
-                    ]}
-                    val={item}
-                    title={item}
-                    onClick={() => this.handleChange(item)}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
-
-        return (
-          <div
-            data-tag="tiny-pager-popover"
-            class={[
-              'hidden sm:inline-block align-middle text-xs h-7',
-              'text-xs text-color-text-primary relative -top-px'
-            ]}>
-            {h(Popover, {
-              props: {
-                placement: 'bottom-start',
-                appendToBody: this.popperAppendToBody,
-                trigger: 'click',
-                popperClass:
-                  'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' +
-                  (this.popperClass ? ' ' + this.popperClass : ''),
-                visibleArrow: false,
-                disabled: this.disabled
-              },
-              on: {
-                show: () => {
-                  this.showSizes = true
-                },
-                hide: () => {
-                  this.showSizes = false
-                }
-              },
-              scopedSlots,
-              ref: 'sizesList'
-            })}
-          </div>
-        )
-      },
-      methods: {
-        handleChange(val) {
-          if (val !== this.$parent.internalPageSize) {
-            const callback = () => {
-              if (!this.$parent.beforeChangeHandler()) {
-                return false
-              }
-
-              this.$parent.internalPageSize = val = parseInt(val, 10)
-              this.$parent.userChangePageSize = true
-              this.showSizes = false
-              this.$parent.$emit('update:pageSize', val)
-              this.$parent.$emit('size-change', val)
-              this.$parent.$emit('page-change', {
-                currentPage: this.$parent.internalCurrentPage,
-                pageSize: val,
-                total: this.$parent.internalTotal
-              })
-              this.$refs.sizesList.state.showPopper = false
-            }
-
-            if (this.isBeforePageChange) {
-              let newPageSize = val
-              let currentPageSize = this.$parent.internalPageSize
-              let params = { newPageSize, currentPageSize, callback }
-
-              this.$parent.beforeSizeChangeHandler(params)
-            } else {
-              callback()
-            }
-          }
-        }
-      }
-    },
-    Jumper: {
-      props: {
-        isBeforePageChange: Boolean,
-        disabled: Boolean,
-        min: {
-          type: Number,
-          default: 1
-        },
-        max: {
-          type: Number,
-          default: 10
-        },
-        initValue: {
-          type: Number,
-          default: 1
-        }
-      },
-      data() {
-        return {
-          backupValue: this.initValue,
-          value: this.initValue
-        }
-      },
-      watch: {
-        '$parent.internalCurrentPage': {
-          handler(currentPage) {
-            const value = currentPage
-
-            if (this.value !== value) {
-              this.value = value
-            }
-          },
-          immediate: true
-        }
-      },
-      methods: {
-        handleFocus(e) {
-          this.backupValue = Number(e.target.value)
-        },
-        handleInput(e) {
-          if (!e.target.value) {
-            this.value = ''
-          } else if (/^\d+$/.test(e.target.value)) {
-            this.value = Number(e.target.value) || 1
-          }
-          e.target.value = this.value
-        },
-        handleChange() {
-          this.parseValueNumber()
-
-          const callback = () => {
-            this.handleClick()
-          }
-          const rollback = () => {
-            this.value = this.backupValue
-          }
-          const newPage = this.value
-          const currentPage = this.backupValue
-
-          if (this.isBeforePageChange && newPage !== currentPage) {
-            const params = { newPage, currentPage, callback, rollback }
-
-            this.$parent.beforePagerChangeHandler(params)
-          } else {
-            callback()
-          }
-        },
-        handleClick() {
-          if (!this.$parent.canJumperGo()) return
-
-          this.$parent.internalCurrentPage = this.$parent.getValidCurrentPage(this.value)
-          this.$parent.emitChange()
-        },
-        isValueNumber() {
-          return !isNaN(Number(this.value))
-        },
-        parseValueNumber() {
-          let value = Number(
-            String(this.value)
-              .split(/[^0-9-+.]/)
-              .join('')
-          )
-
-          if (isNaN(value)) {
-            value = this.min
-          }
-
-          value = Number(value.toFixed(0))
-
-          const min = this.min
-          const max = this.max
-
-          if (value >= max) {
-            this.value = max
-          } else if (value <= min) {
-            this.value = min
-          } else {
-            this.value = value
-          }
-        }
-      },
-      render() {
-        return h('div', { class: ['h-7 leading-7 inline-block align-middle text-xs'] }, [
-          h('div', { class: ['text-[0] h-7'] }, [
-            h(
-              'span',
-              {
-                class: ['text-xs pl-4 pr-2 text-color-text-primary']
-              },
-              [t('ui.page.jump')]
-            ),
-            h('input', {
-              class: [
-                'w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary',
-                'text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus'
-              ],
-              domProps: {
-                value: this.value
-              },
-              attrs: {
-                type: 'tel',
-                disabled: this.disabled
-              },
-              on: {
-                focus: this.handleFocus,
-                input: this.handleInput,
-                change: this.handleChange
-              },
-              ref: 'input'
-            })
-          ])
-        ])
-      }
-    },
-    Total: {
-      mounted() {
-        if (document.querySelector('[data-tag="tiny-pager-total-loading"]')) {
-          Loading.service({
-            target: document.querySelector('[data-tag="tiny-pager-total-loading"]')
-          })
-        }
-      },
-      render() {
-        return typeof this.$parent.internalTotal === 'number' ? (
-          this.$parent.showTotalLoading ? (
-            <div class="inline-block align-middle text-xs h-7 leading-7 float-left">
-              <div class="h-7 leading-7 text-xs text-color-text-primary">
-                <div
-                  data-tag="tiny-pager-total-loading"
-                  class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"></div>
-                <span class="text-color-text-secondary">{t('ui.page.loadingTotals')}</span>
-              </div>
-            </div>
-          ) : (
-            <div class="inline-block align-middle text-xs h-7 leading-7 float-left">
-              {' '}
-              <div class="h-7 leading-7 text-xs text-color-text-primary">
-                <span>{t('ui.page.total')}</span>
-                <span class="my-0 mx-1">
-                  {this.$parent.customTotal ? this.$parent.totalText : this.$parent.internalTotal}
-                </span>
-                <span>{t('ui.page.item')}</span>
-              </div>
-            </div>
-          )
-        ) : (
-          ''
-        )
-      }
-    },
-    Pager
   },
   methods: {
+    // 国际化方法
+    $t(key: string): string {
+      return t(key)
+    },
+    // 跳转器相关方法
+    handleJumperFocus(e: FocusEvent) {
+      const target = e.target as HTMLInputElement
+      this.jumperValue = Number(target.value)
+    },
+    handleJumperInput(e: Event) {
+      const target = e.target as HTMLInputElement
+      const value = String(target.value)
+      if (!value) {
+        this.jumperValue = 1
+      } else if (/^\d+$/.test(value)) {
+        this.jumperValue = Number(value) || 1
+      }
+      target.value = String(this.jumperValue)
+    },
+    handleJumperChange() {
+      this.parseJumperValue()
+      const callback = () => {
+        this.handleJumperClick()
+      }
+      const rollback = () => {
+        this.jumperValue = this.internalCurrentPage
+      }
+      const newPage = this.jumperValue
+      const currentPage = this.internalCurrentPage
+
+      if (this.isBeforePageChange && newPage !== currentPage) {
+        const params = { newPage, currentPage, callback, rollback }
+        this.beforePagerChangeHandler(params)
+      } else {
+        callback()
+      }
+    },
+    handleJumperClick() {
+      if (!this.canJumperGo()) return
+      this.internalCurrentPage = this.getValidCurrentPage(Number(this.jumperValue))
+      this.emitChange()
+    },
+    parseJumperValue() {
+      let value = Number(
+        String(this.jumperValue)
+          .split(/[^0-9-+.]/)
+          .join('')
+      )
+
+      if (isNaN(value)) {
+        value = 1
+      }
+
+      value = Number(value.toFixed(0))
+
+      if (this.internalPageCount) {
+        if (value >= this.internalPageCount) {
+          this.jumperValue = this.internalPageCount
+        } else if (value <= 1) {
+          this.jumperValue = 1
+        } else {
+          this.jumperValue = value
+        }
+      }
+    },
+
+    // 每页条数选择器相关方法
+    handleSizeChange(val: number) {
+      if (val !== this.internalPageSize) {
+        const callback = () => {
+          if (!this.beforeChangeHandler()) {
+            return false
+          }
+
+          this.internalPageSize = val
+          this.userChangePageSize = true
+          this.showSizes = false
+          this.$emit('update:pageSize', val)
+          this.$emit('size-change', val)
+          this.$emit('page-change', {
+            currentPage: this.internalCurrentPage,
+            pageSize: val,
+            total: this.internalTotal
+          })
+          if (this.$refs.sizesList) {
+            ;(this.$refs.sizesList as any).state.showPopper = false
+          }
+        }
+
+        if (this.isBeforePageChange) {
+          const newPageSize = val
+          const currentPageSize = this.internalPageSize
+          const params = { newPageSize, currentPageSize, callback }
+          this.beforeSizeChangeHandler(params)
+        } else {
+          callback()
+        }
+      }
+    },
+
+    // 其他方法保持不变
     canJumperGo() {
-      const inputValue = Number(this.$refs.jumper.$refs.input.value || 0)
+      const inputValue = Number(this.jumperValue || 0)
       const currentPage = Number(this.internalCurrentPage || 0)
       return this.accurateJumper ? inputValue !== currentPage : true
     },
-    beforeSizeChangeHandler(params) {
-      const { newPageSize, currentPageSize, callback } = params
+    beforeSizeChangeHandler(params: any) {
+      const { newPageSize, currentPageSize, callback } = params as {
+        newPageSize: number
+        currentPageSize: number
+        callback: () => void
+      }
       const newPage = 1
       const currentPage = this.internalCurrentPage
       const temp = {
@@ -530,8 +383,13 @@ export default defineComponent({
 
       this.$emit('before-page-change', temp)
     },
-    beforePagerChangeHandler(params) {
-      const { newPage, currentPage, callback, rollback } = params
+    beforePagerChangeHandler(params: any) {
+      const { newPage, currentPage, callback, rollback } = params as {
+        newPage: number
+        currentPage: number
+        callback: () => void
+        rollback?: () => void
+      }
       const newPageSize = this.internalPageSize
       const currentPageSize = this.internalPageSize
       const temp = {
@@ -545,8 +403,13 @@ export default defineComponent({
 
       this.$emit('before-page-change', temp)
     },
-    beforeJumperChangeHandler(params) {
-      const { newPage, currentPage, callback, rollback } = params
+    beforeJumperChangeHandler(params: any) {
+      const { newPage, currentPage, callback, rollback } = params as {
+        newPage: number
+        currentPage: number
+        callback: () => void
+        rollback?: () => void
+      }
       const newPageSize = this.internalPageSize
       const currentPageSize = this.internalPageSize
       const temp = {
@@ -560,18 +423,17 @@ export default defineComponent({
 
       this.$emit('before-page-change', temp)
     },
-    copyEmit(...args) {
-      this.$emit.apply(this, args)
+    copyEmit(...args: any[]) {
+      ;(this.$emit as (...args: any[]) => void)(...args)
     },
     beforeChangeHandler(val = -1) {
-      return emitEvent(this.copyEmit, 'before-change', this.internalCurrentPage, this, val)
+      return emitEvent(this.copyEmit as (...args: any[]) => void, 'before-change', this.internalCurrentPage, this, val)
     },
-    handleCurrentChange(val) {
+    handleCurrentChange(val: number) {
       if (!this.beforeChangeHandler(val)) {
         return false
       }
-
-      this.internalCurrentPage = this.getValidCurrentPage(val)
+      this.internalCurrentPage = this.getValidCurrentPage(Number(val))
       this.userChangePageSize = true
       this.emitChange()
     },
@@ -619,15 +481,15 @@ export default defineComponent({
         callback()
       }
     },
-    buildBeforePageChangeParam(param) {
+    buildBeforePageChangeParam(param: any) {
       const currentPage = this.internalCurrentPage
       const newPageSize = this.internalPageSize
       const currentPageSize = this.internalPageSize
 
       return Object.assign({ currentPage, newPageSize, currentPageSize }, param)
     },
-    getValidCurrentPage(val) {
-      val = parseInt(val, 10)
+    getValidCurrentPage(val: number) {
+      val = parseInt(String(val), 10)
 
       const hasPageCount = typeof this.internalPageCount === 'number'
       let resetVal
@@ -639,7 +501,7 @@ export default defineComponent({
       } else {
         if (val < 1) {
           resetVal = 1
-        } else if (val > this.internalPageCount) {
+        } else if (this.internalPageCount && val > this.internalPageCount) {
           resetVal = this.internalPageCount
         }
       }
@@ -667,7 +529,7 @@ export default defineComponent({
         }
       })
     },
-    setTotal(val) {
+    setTotal(val: number) {
       this.internalTotal = val
     }
   },
@@ -675,7 +537,7 @@ export default defineComponent({
     totalText() {
       if (typeof this.customTotal === 'string') return this.customTotal
 
-      const totals = parseInt(this.total)
+      const totals = parseInt(String(this.total || 0))
 
       if (isNaN(totals)) return 0
 
@@ -731,7 +593,7 @@ export default defineComponent({
 
       if (pageCount > 0 && oldCurPage === 0) {
         this.internalCurrentPage = 1
-      } else if (oldCurPage > pageCount) {
+      } else if (pageCount && oldCurPage > pageCount) {
         this.internalCurrentPage = pageCount === 0 ? 1 : pageCount
         this.userChangePageSize && this.emitChange()
       }
@@ -753,6 +615,16 @@ export default defineComponent({
     },
     total(total) {
       this.internalTotal = total
+    }
+  },
+  mounted() {
+    if (document.querySelector('[data-tag="tiny-pager-total-loading"]')) {
+      const target = document.querySelector('[data-tag="tiny-pager-total-loading"]')
+      if (target) {
+        Loading.service({
+          target: target as HTMLElement
+        })
+      }
     }
   }
 })
