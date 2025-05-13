@@ -49,6 +49,11 @@ export const renderComponent = ({
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
 
+export const getCustomProps = () => {
+  const instance = hooks.getCurrentInstance()?.proxy
+  return instance?.$options?.propsData || {}
+}
+
 export const getComponentName = () => {
   // 此处组件最多为两层组件，所以对多获取到父级组件即可
   const instance = hooks.getCurrentInstance()

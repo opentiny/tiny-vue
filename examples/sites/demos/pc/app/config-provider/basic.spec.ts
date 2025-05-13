@@ -10,6 +10,9 @@ test('测试自定义事件', async ({ page }) => {
   await page.waitForTimeout(500)
   await expect(page.locator('.tiny-modal > .tiny-modal__box').nth(1)).toHaveText('触发自定方法')
 
+  // 验证文字居中
+  await expect(demo.locator('.tiny-alert')).toHaveCSS('text-align', 'center')
+
   // 验证必填星号
   await expect(demo.locator('.tiny-form')).toBeVisible()
   const beforeElement = await page.evaluate(() => {
