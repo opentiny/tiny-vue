@@ -15,7 +15,8 @@
       ref="icon"
       :class="[
         'w-4 h-4 absolute z-0 rounded-full flex items-center justify-center',
-        'translate-x-1 translate-y-1 text-base cursor-pointer',
+        'translate-x-1 translate-y-1 text-base',
+        { 'cursor-pointer': cursorPointerFn ? cursorPointerFn(state) : true },
         { 'sm:w-2 sm:h-2': state.icon.size === 'mini', 'sm:w-6 sm:h-6': state.icon.size === 'medium' }
       ]"
     >
@@ -47,8 +48,8 @@
       <template v-for="key in ['title', 'subtitle', 'auxi']">
         <div
           v-if="state[key].show"
+          v-auto-tip
           :key="key"
-          :title="state[key].text"
           :class="[
             'truncate',
             state.layUpdown ? 'text-center' : 'text-left',
@@ -89,6 +90,7 @@ import {
   iconDone,
   iconDoneMini
 } from '@opentiny/vue-icon'
+import { AutoTip } from '@opentiny/vue-directive'
 
 const icons = {
   'not-started': { mini: iconNotStartedMini, other: iconNotStarted },
@@ -98,7 +100,8 @@ const icons = {
 }
 
 export default defineComponent({
-  props: [...props, 'node', 'config', 'titleClass'],
+  props: [...props, 'node', 'config', 'titleClass', 'cursorPointerFn'],
+  directives: { AutoTip },
   setup(props: any, context: any): any {
     return setup({ props, context, renderless, api, mono: true, extendOptions: { icons } })
   }

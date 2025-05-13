@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('事件是否正常触发', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -11,7 +16,6 @@ test('事件是否正常触发', async ({ page }) => {
   const uploadsBtn = page.getByRole('button', { name: '开始上传' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
   const deleteIcon = lists.locator('.del-col')
-  const path = require('node:path')
   const currentPath1 = path.resolve(__dirname, '测试.jpg')
   const currentPath2 = path.resolve(__dirname, '测试.png')
   const currentPath3 = path.resolve(__dirname, '测试.svg')

@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('水印和加密弹窗', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -9,8 +14,6 @@ test('水印和加密弹窗', async ({ page }) => {
   const header = page.getByText('水印及加密设置')
   const footer = page.getByRole('button', { name: '选择文件' })
   const lists = page.locator('.tiny-upload-list__li')
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await upload.click()

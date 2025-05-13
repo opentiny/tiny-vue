@@ -27,6 +27,7 @@ import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import html from 'highlight.js/lib/languages/xml'
+import tsPath from 'highlight.js/lib/languages/typescript'
 import docsearch from '@docsearch/js'
 import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
@@ -37,6 +38,7 @@ const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', html)
+hljs.registerLanguage('ts', tsPath)
 
 if (!location.href.includes('tiny-vue-plus')) {
   docsearch({

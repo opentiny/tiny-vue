@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { TinyModal, TinyPopover } from '@opentiny/vue'
-import Flowchart from '@opentiny/vue-flowchart'
+import { TinyModal, TinyPopover, Flowchart } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 

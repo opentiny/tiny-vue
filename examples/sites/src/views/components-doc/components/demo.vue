@@ -29,7 +29,7 @@
             />
 
             <i
-              v-if="!isPlus" 
+              v-if="!isPlus"
               v-auto-tip="{ content: i18nByKey('playground'), effect: 'light', always: true }"
               class="i-ti-playground ml8 ti-w16 ti-h16 ti-cur-hand"
               @click="openPlayground(demo)"
@@ -57,12 +57,12 @@
         <template v-if="files?.length">
           <tiny-tabs v-model="state.tabValue" class="code-tabs">
             <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
-              <async-highlight :code="file.code"></async-highlight>
+              <async-highlight :code="file.code" :filename="file.fileName"></async-highlight>
             </tiny-tab-item>
           </tiny-tabs>
         </template>
         <div v-else-if="files[0]">
-          <async-highlight :code="files[0].code"></async-highlight>
+          <async-highlight :code="files[0].code" :filename="files[0].fileName"></async-highlight>
         </div>
       </div>
     </div>

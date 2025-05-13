@@ -443,6 +443,7 @@ export const iconGroups = {
     'IconNoPremission',
     'IconPagelink',
     'IconPushpin',
+    'IconPushpinSolid',
     'IconRenew',
     'IconRichTextNodeDelete',
     'IconSandwichCollapse',

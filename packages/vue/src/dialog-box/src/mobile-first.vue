@@ -31,7 +31,7 @@
             <div
               v-if="showHeader"
               data-tag="tiny-dialog-box__header"
-              class="px-6 py-4 leading-5.5 bg-color-bg-1 flex justify-between items-center border-b border-b-color-bg-3"
+              class="px-6 py-4 leading-5.5 bg-color-bg-1 flex justify-between items-center border-b border-color-fill-1"
               @mousedown="handleDrag"
             >
               <slot name="title">
@@ -89,7 +89,7 @@
             <div
               v-if="slots.footer"
               data-tag="tiny-dialog-box__footer"
-              class="pt-4 pr-6 pb-4 pl-6 text-right box-border border-t border-t-color-bg-3 [&_[data-tag=tiny-button]]:mx-1 [&_[data-tag=tiny-button]]:my-0 [&_[data-tag=tiny-toolbar]_[data-tag=tiny-button]]:my-0 [&_[data-tag=tiny-toolbar]_[data-tag=tiny-button]]:mx-1"
+              class="pt-4 pr-6 pb-4 pl-6 text-right box-border border-t border-color-fill-1 [&_[data-tag=tiny-button]]:mx-1 [&_[data-tag=tiny-button]]:my-0 [&_[data-tag=tiny-toolbar]_[data-tag=tiny-button]]:my-0 [&_[data-tag=tiny-toolbar]_[data-tag=tiny-button]]:mx-1"
             >
               <slot name="footer" :before-close="beforeClose"></slot>
             </div>

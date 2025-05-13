@@ -165,6 +165,7 @@
 
       <div
         data-tag="tiny-picker-panel__timezone"
+        class="tiny-picker-panel__timezone"
         v-if="state.isShowTz || state.timezone.isServiceTimezone"
         v-clickoutside="handleTzPickClose"
       >
@@ -178,7 +179,7 @@
             <component fill="#ccc" :is="state.showpopup ? 'IconChevronDown' : 'IconChevronUp'" @click="toggleTz" />
           </template>
         </tiny-input>
-        <div data-tag="tiny-picker-panel__tzlist">
+        <div data-tag="tiny-picker-panel__tzlist" class="tiny-picker-panel__tzlist">
           <tiny-popup
             v-model="state.showpopup"
             :overlay="false"
@@ -191,6 +192,7 @@
               <ul>
                 <li
                   data-tag="tiny-picker-panel__tzlist-li"
+                  class="tiny-picker-panel__tzlist-li"
                   :title="tz.name"
                   v-show="!tz.visible"
                   v-for="(tz, index) in state.renderTzdata"

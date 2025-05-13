@@ -80,10 +80,6 @@
         @apply h-4;
       }
     }
-
-    .@{grid-prefix-cls}-cell {
-      @apply leading-none;
-    }
   }
 
   &.size__small {
@@ -268,6 +264,23 @@
       &:after {
         @apply border-0;
       }
+    }
+  }
+
+  // tiny新增滚动条放置表格内
+  tbody tr:last-child {
+    @apply relative;
+
+    &::after {
+      @apply content-[''];
+      @apply absolute;
+      @apply bottom-0;
+      @apply left-0;
+      @apply right-0;
+      @apply bottom-0;
+      @apply h-px;
+      @apply bg-color-bg-1;
+      @apply ~'z-[3]';
     }
   }
 
@@ -582,7 +595,7 @@
   }
 
   & &-cell {
-    line-height: normal;
+    line-height: 1.375rem;
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
@@ -645,11 +658,13 @@
       @apply flex;
       @apply items-center;
       @apply justify-start;
+      line-height: 1.375rem;
     }
 
     &.col__center {
       .@{grid-cell-prefix-cls} {
         @apply justify-center;
+        line-height: 1.375rem;
       }
     }
 
@@ -662,6 +677,7 @@
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
+        line-height: 1.375rem;
         @apply pl-0;
       }
     }

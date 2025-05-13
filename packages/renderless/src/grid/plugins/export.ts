@@ -73,6 +73,15 @@ const getCsvContent = ($table, opts, oColumns, oData) => {
   const { columns, datas } = getCsvData(opts, oData, oColumns, tableEl)
   let content = '\uFEFF' // BOM字节序标记
   const transfrom = (str) => {
+    // 处理特殊值
+    if (str === null || str === undefined) {
+      return '' + tab
+    }
+
+    if (typeof str === 'number' && isNaN(str)) {
+      return '-' + tab
+    }
+
     if (typeof str === 'string' && str.replace(/ /g, '').match(/[\s,"]/)) {
       str = '"' + str.replace(/"/g, '""') + '"'
     }

@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'tip-column-header-tip',
-      'name': { 'zh-CN': '列头提示', 'en-US': 'Column Header Prompt' },
-      'desc': {
+      name: { 'zh-CN': '列头提示', 'en-US': 'Column Header Prompt' },
+      desc: {
         'zh-CN': `<p>列头提示有两种，一种是 <code>show-header-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-header-overflow</code> 内容超出当前行时隐藏并提示。</p>
           <div class="tip custom-block">
             <p class="custom-block-title">TIP</p>\n<p> <code>show-header-overflow</code> 可选值有：</p>
@@ -22,8 +22,8 @@ export default {
     },
     {
       demoId: 'tip-cell-tip',
-      'name': { 'zh-CN': '单元格提示', 'en-US': 'Cell Prompt' },
-      'desc': {
+      name: { 'zh-CN': '单元格提示', 'en-US': 'Cell Prompt' },
+      desc: {
         'zh-CN': `
         <p>单元格提示有两种，一种是 <code>show-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-overflow</code> 内容超出当前行时隐藏并提示。</p>
         <div class="tip custom-block">
@@ -42,8 +42,8 @@ export default {
     },
     {
       demoId: 'tip-cell-tip-config',
-      'name': { 'zh-CN': '自定义单元格提示', 'en-US': '' },
-      'desc': {
+      name: { 'zh-CN': '自定义单元格提示', 'en-US': '' },
+      desc: {
         'zh-CN':
           '<p> <code>tooltip</code> 提示可通过 <code>Grid</code> 属性 <code>:tooltip-config</code> 进行配置，配置中的<code>contentMethod</code>方法可以自定义提示内容，配置方式参考 <code>Tooltip</code> 组件。</p>\n',
         'en-US': ''
@@ -51,5 +51,5 @@ export default {
       codeFiles: ['tip/cell-tip-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tip', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-tip', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

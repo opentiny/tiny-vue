@@ -198,7 +198,7 @@
             >
               <div v-for="(event, idx) of state.curWeekEvents[date.value] || []" :key="idx" class="day-events">
                 <div class="title">{{ event.title }}</div>
-                <div class="date">
+                <div v-if="showTipTime" class="date">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
                 <p class="content">{{ event.content || '' }}</p>

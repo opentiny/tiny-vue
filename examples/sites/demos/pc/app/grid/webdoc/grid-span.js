@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'span-row-span-easy',
-      'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': {
+      name: { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
+      desc: {
         'zh-CN':
           '<p>通过表格列属性 <code>row-span</code> 设置内置的行合并规则，该属性仅适用于普通表格，嵌套树表不支持。</p>\n',
         'en-US':
@@ -15,8 +15,8 @@ export default {
     },
     {
       demoId: 'span-row-span',
-      'name': { 'zh-CN': '自定义合并规则', 'en-US': 'Custom Combination Rule' },
-      'desc': {
+      name: { 'zh-CN': '自定义合并规则', 'en-US': 'Custom Combination Rule' },
+      desc: {
         'zh-CN': '<p>通过表格列属性 <code>span-method</code> 设置自定义合并规则。</p>\n',
         'en-US': '<p>Set a custom combination rule through the table column attribute <code>span-method</code>. </p>\n'
       },
@@ -24,8 +24,8 @@ export default {
     },
     {
       demoId: 'span-column-span',
-      'name': { 'zh-CN': '列合并', 'en-US': 'Column Merge' },
-      'desc': {
+      name: { 'zh-CN': '列合并', 'en-US': 'Column Merge' },
+      desc: {
         'zh-CN':
           '<p>列合并是通过表格列设置方法 <code>span-method</code> 实现的自定义合并规则。例如：</p>\n<blockquote>\n<p>实现 2 列合并。</p>\n</blockquote>\n',
         'en-US':
@@ -34,5 +34,5 @@ export default {
       codeFiles: ['span/column-span.vue']
     }
   ],
-  apis: [{ 'name': 'grid-span', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-span', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

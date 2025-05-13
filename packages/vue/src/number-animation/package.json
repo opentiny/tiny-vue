@@ -1,0 +1,26 @@
+{
+  "name": "@opentiny/vue-number-animation",
+  "type": "module",
+  "version": "3.20.0",
+  "description": "",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-statistic": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
+}

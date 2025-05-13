@@ -690,6 +690,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sakurajiajia",
+      "name": "木斯佳",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37933037?v=4",
+      "profile": "https://github.com/sakurajiajia",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "552847957",
+      "name": "552847957",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8729901?v=4",
+      "profile": "https://github.com/552847957",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,

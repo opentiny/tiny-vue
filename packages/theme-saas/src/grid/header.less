@@ -77,12 +77,13 @@
 
   .@{grid-prefix-cls}-cell-text {
     @apply w-full;
+    line-height: 1.375rem;
   }
 
   .@{grid-prefix-cls}-edit-icon {
     @apply mr-1;
     order: -1;
-    @apply text-sm;
+    @apply text-base;
     @apply fill-color-icon-disabled;
     @apply shrink-0;
     + .@{grid-prefix-cls}-cell-text {

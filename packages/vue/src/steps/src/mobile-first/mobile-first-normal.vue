@@ -74,7 +74,12 @@
                 'opacity-0': index === 0 && state.startIndex === 0
               },
               { 'sm:hidden sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
-              { 'border-color-brand': ['done', 'doing'].includes(node[statusField]) }
+              {
+                'border-color-brand':
+                  data[index - 1] &&
+                  data[index - 1][statusField] === 'done' &&
+                  ['done', 'disabled'].includes(node[statusField])
+              }
             )
           "
         ></div>

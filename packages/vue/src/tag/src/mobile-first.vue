@@ -53,7 +53,7 @@ export default defineComponent({
     const operable = selectable ? false : this.operable
 
     const classes = m(
-      'text-xs inline-flex items-center rounded box-border border-0.5 sm:border mr-2',
+      'text-xs inline-flex items-center rounded box-border border-0.5 sm:border mr-1',
       effect === 'plain' || hit ? gcls(`${type}-border`) : 'border-transparent',
       gcls(`${effect}-${type}`),
       gcls(size),
