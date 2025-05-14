@@ -1,5 +1,13 @@
 <template>
-  <div class="text-right py-3 px-0 text-color-text-primary">
+  <!--
+    当 hideOnSinglePage 为 true 且 internalPageCount 小于等于 1 时，隐藏整个分页组件
+    这样可以实现 :hide-on-single-page="true" 时只有一页时不显示分页
+    增加 null 判断，保证类型安全
+  -->
+  <div
+    v-if="!(hideOnSinglePage && (!internalPageCount || internalPageCount <= 1))"
+    class="text-right py-3 px-0 text-color-text-primary"
+  >
     <template v-for="(item, index) in internalLayout.split(',')">
       <!-- 总数显示 -->
       <div
@@ -168,7 +176,7 @@
       </div>
 
       <!-- 默认插槽 -->
-      <slot v-else-if="item.trim() === 'slot'" :key="'slot' + index"></slot>
+      <slot v-else-if="item.trim() === 'slot'"></slot>
     </template>
   </div>
 </template>
@@ -378,8 +386,8 @@ export default defineComponent({
             pageSize: val,
             total: state.internalTotal
           })
-          if (sizesList.value) {
-            sizesList.value.hide()
+          if (Array.isArray(sizesList.value)) {
+            sizesList.value[0].state.showPopper = false
           }
         }
 
