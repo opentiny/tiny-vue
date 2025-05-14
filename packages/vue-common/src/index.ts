@@ -189,8 +189,14 @@ export const $setup = ({ props: propData, context, template, extend = {} }) => {
     const customProps = getCustomProps()
 
     Object.keys(designProps).forEach((key) => {
+      // 传递的属性可能是羊肉串格式也有可能是驼峰格式，需要兼容两种写法
+      const camelKey = key.replace(/-(\w)/g, (_, c) => c.toUpperCase())
+      const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
       // 用户没有配置的属性才进行覆盖
-      if (!Object.prototype.hasOwnProperty.call(customProps, key)) {
+      if (
+        !Object.prototype.hasOwnProperty.call(customProps, camelKey) &&
+        !Object.prototype.hasOwnProperty.call(customProps, kebabKey)
+      ) {
         customDesignProps[key] = designProps[key]
       }
     })
