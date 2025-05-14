@@ -1,187 +1,174 @@
 <template>
   <div class="text-right py-3 px-0 text-color-text-primary">
-    <template v-if="internalLayout">
-      <template v-if="!(hideOnSinglePage && (!internalPageCount || internalPageCount === 1))">
-        <template v-for="(item, index) in internalLayout.split(',')">
-          <!-- 总数显示 -->
+    <template v-for="(item, index) in internalLayout.split(',')">
+      <!-- 总数显示 -->
+      <div
+        v-if="item.trim() === 'total' && typeof internalTotal === 'number'"
+        :key="'total' + index"
+        class="inline-block align-middle text-xs h-7 leading-7 float-left"
+      >
+        <div v-if="showTotalLoading" class="h-7 leading-7 text-xs text-color-text-primary">
           <div
-            v-if="item.trim() === 'total' && typeof internalTotal === 'number'"
-            :key="'total' + index"
-            class="inline-block align-middle text-xs h-7 leading-7 float-left"
-          >
-            <div v-if="showTotalLoading" class="h-7 leading-7 text-xs text-color-text-primary">
+            data-tag="tiny-pager-total-loading"
+            class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"
+          ></div>
+          <span class="text-color-text-secondary">{{ t('ui.page.loadingTotals') }}</span>
+        </div>
+        <div v-else class="h-7 leading-7 text-xs text-color-text-primary">
+          <span>{{ t('ui.page.total') }}</span>
+          <span class="my-0 mx-1">
+            {{ customTotal ? totalText : internalTotal }}
+          </span>
+          <span>{{ t('ui.page.item') }}</span>
+        </div>
+      </div>
+
+      <!-- 每页条数选择器 -->
+      <div
+        v-else-if="item.trim() === 'sizes'"
+        :key="'sizes' + index"
+        data-tag="tiny-pager-popover"
+        class="hidden sm:inline-block align-middle text-xs h-7 text-xs text-color-text-primary relative -top-px"
+      >
+        <popover
+          ref="sizesList"
+          placement="bottom-start"
+          :append-to-body="popperAppendToBody"
+          trigger="click"
+          :popper-class="
+            'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' + (popperClass ? ' ' + popperClass : '')
+          "
+          :visible-arrow="false"
+          :disabled="disabled"
+          @show="showSizes = true"
+          @hide="showSizes = false"
+        >
+          <template #reference>
+            <div class="m-0 ml-2" @click.stop>
               <div
-                data-tag="tiny-pager-total-loading"
-                class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"
-              ></div>
-              <span class="text-color-text-secondary">{{ t('ui.page.loadingTotals') }}</span>
-            </div>
-            <div v-else class="h-7 leading-7 text-xs text-color-text-primary">
-              <span>{{ t('ui.page.total') }}</span>
-              <span class="my-0 mx-1">
-                {{ customTotal ? totalText : internalTotal }}
-              </span>
-              <span>{{ t('ui.page.item') }}</span>
-            </div>
-          </div>
-
-          <!-- 每页条数选择器 -->
-          <div
-            v-else-if="item.trim() === 'sizes'"
-            :key="'sizes' + index"
-            data-tag="tiny-pager-popover"
-            class="hidden sm:inline-block align-middle text-xs h-7 text-xs text-color-text-primary relative -top-px"
-          >
-            <popover
-              ref="sizesList"
-              placement="bottom-start"
-              :append-to-body="popperAppendToBody"
-              trigger="click"
-              :popper-class="
-                'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' + (popperClass ? ' ' + popperClass : '')
-              "
-              :visible-arrow="false"
-              :disabled="disabled"
-              @show="showSizes = true"
-              @hide="showSizes = false"
-            >
-              <template #reference>
-                <div class="m-0 ml-2" @click.stop>
-                  <div
-                    ref="pageSize"
-                    :class="[
-                      'min-w-[theme(spacing.18)] max-w-[theme(spacing.40)] relative text-left h-7 leading-7 border border-solid border-color-border rounded text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
-                      showSizes
-                        ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
-                        : '',
-                      disabled
-                        ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
-                        : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
-                    ]"
-                  >
-                    <span class="text-xs mr-1 relative -top-px">{{ internalPageSize }}</span>
-                    <span class="relative -top-px">{{ t('ui.page.page') }}</span>
-                    <div
-                      class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer"
-                    >
-                      <tiny-icon-chevron-down
-                        class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300"
-                      />
-                    </div>
-                  </div>
+                ref="pageSize"
+                :class="[
+                  'min-w-[theme(spacing.18)] max-w-[theme(spacing.40)] relative text-left h-7 leading-7 border border-solid border-color-border rounded text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
+                  showSizes
+                    ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
+                    : '',
+                  disabled
+                    ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
+                    : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
+                ]"
+              >
+                <span class="text-xs mr-1 relative -top-px">{{ internalPageSize }}</span>
+                <span class="relative -top-px">{{ t('ui.page.page') }}</span>
+                <div
+                  class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer"
+                >
+                  <tiny-icon-chevron-down
+                    class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300"
+                  />
                 </div>
-              </template>
-              <div class="max-h-[theme(spacing.72)] overflow-y-auto overflow-x-hidden">
-                <ul>
-                  <li
-                    v-for="sizeItem in pageSizes"
-                    :key="String(sizeItem)"
-                    :class="[
-                      'min-h-[theme(spacing.8)] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded',
-                      sizeItem === internalPageSize
-                        ? 'text-color-brand bg-color-fill-6'
-                        : 'hover:bg-color-bg-2 text-color-text-primary'
-                    ]"
-                    :data-value="sizeItem"
-                    :title="String(sizeItem)"
-                    @click="handleSizeChange(Number(sizeItem))"
-                  >
-                    {{ sizeItem }}
-                  </li>
-                </ul>
               </div>
-            </popover>
-          </div>
-
-          <!-- 上一页按钮 -->
-          <button
-            v-else-if="item.trim() === 'prev'"
-            :key="'prev' + index"
-            type="button"
-            class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
-            :disabled="disabled || internalCurrentPage <= 1"
-            @click="prev"
-          >
-            <span
-              v-if="prevText"
-              class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
-            >
-              {{ prevText }}
-            </span>
-            <tiny-icon-chevron-left
-              v-else
-              class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
-            />
-          </button>
-
-          <!-- 分页器 -->
-          <pager
-            v-else-if="item.trim() === 'pager'"
-            :key="'pager' + index"
-            :is-before-page-change="isBeforePageChange"
-            @before-page-change="beforePagerChangeHandler"
-            :current-page="internalCurrentPage"
-            :page-count="internalPageCount || 0"
-            :pager-count="pagerCount"
-            @change="handleCurrentChange"
-            :disabled="disabled"
-          />
-
-          <!-- 下一页按钮 -->
-          <button
-            v-else-if="item.trim() === 'next'"
-            :key="'next' + index"
-            type="button"
-            class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
-            :disabled="disabled || internalCurrentPage === internalPageCount || internalPageCount === 0"
-            @click="next"
-          >
-            <span
-              v-if="nextText"
-              class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
-            >
-              {{ nextText }}
-            </span>
-            <tiny-icon-chevron-right
-              v-else
-              class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
-            />
-          </button>
-
-          <!-- 跳转器 -->
-          <div
-            v-else-if="item.trim() === 'jumper'"
-            :key="'jumper' + index"
-            class="h-7 leading-7 inline-block align-middle text-xs"
-          >
-            <div class="text-[0] h-7">
-              <span class="text-xs pl-4 pr-2 text-color-text-primary">{{ t('ui.page.jump') }}</span>
-              <input
-                ref="jumperInput"
-                type="tel"
-                :disabled="disabled"
-                class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus"
-                :value="jumperValue"
-                @focus="handleJumperFocus"
-                @input="handleJumperInput"
-                @change="handleJumperChange"
-              />
             </div>
+          </template>
+          <div class="max-h-[theme(spacing.72)] overflow-y-auto overflow-x-hidden">
+            <ul>
+              <li
+                v-for="sizeItem in pageSizes"
+                :key="String(sizeItem)"
+                :class="[
+                  'min-h-[theme(spacing.8)] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded',
+                  sizeItem === internalPageSize
+                    ? 'text-color-brand bg-color-fill-6'
+                    : 'hover:bg-color-bg-2 text-color-text-primary'
+                ]"
+                :data-value="sizeItem"
+                :title="String(sizeItem)"
+                @click="handleSizeChange(Number(sizeItem))"
+              >
+                {{ sizeItem }}
+              </li>
+            </ul>
           </div>
+        </popover>
+      </div>
 
-          <!-- 默认插槽 -->
-          <slot v-else-if="item.trim() === 'slot'" :key="'slot' + index">
-            <template v-if="$parent?.$slots.default">
-              <template v-if="typeof $parent.$slots.default === 'function'">
-                {{ $parent.$slots.default() }}
-              </template>
-              <template v-else>
-                {{ $parent.$slots.default }}
-              </template>
-            </template>
-          </slot>
-        </template>
-      </template>
+      <!-- 上一页按钮 -->
+      <button
+        v-else-if="item.trim() === 'prev'"
+        :key="'prev' + index"
+        type="button"
+        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        :disabled="disabled || internalCurrentPage <= 1"
+        @click="prev"
+      >
+        <span
+          v-if="prevText"
+          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+        >
+          {{ prevText }}
+        </span>
+        <tiny-icon-chevron-left
+          v-else
+          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+        />
+      </button>
+
+      <!-- 分页器 -->
+      <pager
+        v-else-if="item.trim() === 'pager'"
+        :key="'pager' + index"
+        :is-before-page-change="isBeforePageChange"
+        @before-page-change="beforePagerChangeHandler"
+        :current-page="internalCurrentPage"
+        :page-count="internalPageCount || 0"
+        :pager-count="pagerCount"
+        @change="handleCurrentChange"
+        :disabled="disabled"
+      />
+
+      <!-- 下一页按钮 -->
+      <button
+        v-else-if="item.trim() === 'next'"
+        :key="'next' + index"
+        type="button"
+        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        :disabled="disabled || internalCurrentPage === internalPageCount || internalPageCount === 0"
+        @click="next"
+      >
+        <span
+          v-if="nextText"
+          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+        >
+          {{ nextText }}
+        </span>
+        <tiny-icon-chevron-right
+          v-else
+          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+        />
+      </button>
+
+      <!-- 跳转器 -->
+      <div
+        v-else-if="item.trim() === 'jumper'"
+        :key="'jumper' + index"
+        class="h-7 leading-7 inline-block align-middle text-xs"
+      >
+        <div class="text-[0] h-7">
+          <span class="text-xs pl-4 pr-2 text-color-text-primary">{{ t('ui.page.jump') }}</span>
+          <input
+            ref="jumperInput"
+            type="tel"
+            :disabled="disabled"
+            class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus"
+            :value="jumperValue"
+            @focus="handleJumperFocus"
+            @input="handleJumperInput"
+            @change="handleJumperChange"
+          />
+        </div>
+      </div>
+
+      <!-- 默认插槽 -->
+      <slot v-else-if="item.trim() === 'slot'" :key="'slot' + index"></slot>
     </template>
   </div>
 </template>
@@ -270,7 +257,7 @@ export default defineComponent({
     changeCompat: Boolean
   },
   setup(props, { emit }) {
-    const { ref, reactive, computed, watch, onMounted, nextTick } = hooks
+    const { ref, reactive, computed, watch, onMounted, nextTick, toRefs } = hooks
     const sizesList = ref<{ hide: () => void } | null>(null)
 
     // 响应式数据
@@ -767,7 +754,7 @@ export default defineComponent({
 
     return {
       // 状态
-      ...state,
+      ...toRefs(state),
       // 方法
       t,
       handleJumperFocus,
