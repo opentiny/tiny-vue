@@ -275,6 +275,9 @@ export const beforeUpload =
           }
           return type
         })
+        if (!fileRow.length) {
+          isValid = false
+        }
         file.raw = fileRow
       } else {
         fileType = getFileType({ file })
