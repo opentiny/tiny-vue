@@ -2534,12 +2534,6 @@
     "type": "template",
     "exclude": false
   },
-  "Test": {
-    "path": "vue/src/Test/src/undefined.vue",
-    "type": "template",
-    "exclude": false,
-    "mode": "all"
-  },
   "TextPopup": {
     "path": "vue/src/text-popup/index.ts",
     "type": "component",
