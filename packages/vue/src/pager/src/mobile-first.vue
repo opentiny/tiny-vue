@@ -1,9 +1,4 @@
 <template>
-  <!--
-    当 hideOnSinglePage 为 true 且 internalPageCount 小于等于 1 时，隐藏整个分页组件
-    这样可以实现 :hide-on-single-page="true" 时只有一页时不显示分页
-    增加 null 判断，保证类型安全
-  -->
   <div
     v-if="!(hideOnSinglePage && (!internalPageCount || internalPageCount <= 1))"
     class="text-right py-3 px-0 text-color-text-primary"
@@ -186,12 +181,12 @@ import Pager from '@opentiny/vue-pager-item'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { t } from '@opentiny/vue-locale'
-import { defineComponent, $props, hooks } from '@opentiny/vue-common'
+import { defineComponent, $props, hooks, $prefix } from '@opentiny/vue-common'
 import { IconChevronDown, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 import { emitEvent } from '@opentiny/utils'
 
 export default defineComponent({
-  name: 'MobileFirstPager',
+  name: $prefix + 'Pager',
   components: {
     Pager,
     Popover,
