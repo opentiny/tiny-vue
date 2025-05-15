@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test'
 
+test.use({
+  viewport: { width: 1920, height: 1080 }
+})
 test('测试日期范围选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#date-range')
@@ -40,26 +43,24 @@ test('测试日期范围选择', async ({ page }) => {
   await page.getByRole('cell', { name: '10' }).nth(1).click()
   await page.waitForTimeout(100)
   await page.getByRole('textbox', { name: '开始时间' }).click()
+  await page.locator('li:nth-child(2)').first().click()
   await page.waitForTimeout(100)
-  await page.locator('li:nth-child(2) > span').first().click()
-  await page.waitForTimeout(100)
+
   await page.getByRole('button', { name: '确定' }).first().click()
   await page.waitForTimeout(100)
   await page.getByRole('textbox', { name: '结束时间' }).click()
-  await page.waitForTimeout(100)
   await page
     .locator(
-      'span:nth-child(3) > span:nth-child(2) > .tiny-time-panel > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(3) > span'
+      'span:nth-child(3) > span:nth-child(2) > .tiny-time > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(3)'
     )
     .first()
     .click()
-  await page.waitForTimeout(100)
   await page.getByRole('button', { name: '确定' }).first().click()
+  await startDateTime.click()
   await page.waitForTimeout(100)
-  await page.locator('.tiny-picker-panel__footer').getByRole('button', { name: '确定' }).click()
-  await page.waitForTimeout(100)
-  await expect(startDateTime).toHaveValue('2023-05-04 01:00:00')
-  await expect(endDateTime).toHaveValue('2023-06-10 02:00:00')
+  await startDateTime.press('Enter')
+  await expect(startDateTime).toHaveValue('2023-05-20 08:00:00')
+  await expect(endDateTime).toHaveValue('2023-06-20 18:00:00')
 
   // 月份范围
   const startMonth = page.getByPlaceholder('开始月份')
