@@ -49,7 +49,11 @@ export const stepsProps = {
   },
   noArrow: Boolean,
   flex: Boolean,
-  contentCenter: Boolean
+  contentCenter: Boolean,
+  itemStyle: {
+    type: Object,
+    default: () => ({})
+  }
 }
 
 export default defineComponent({

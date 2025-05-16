@@ -116,6 +116,16 @@ export default {
           pcDemo: 'node-width'
         },
         {
+          name: 'itemStyle',
+          type: 'Object',
+          defaultValue: '{}',
+          desc: {
+            'zh-CN': '自定义单链型步骤条块的内联样式',
+            'en-US': 'Customize the inline style of single chain step blocks'
+          },
+          mode: ['mobile-first']
+        },
+        {
           name: 'line',
           type: 'boolean',
           defaultValue: 'false',

@@ -44,6 +44,7 @@
     <!-- visible step section -->
     <div
       data-tag="tiny-steps-block"
+      :style="itemStyle"
       v-for="(node, index) in data"
       v-show="isVisibleHandler(index) === 'visible'"
       :key="index"
@@ -232,7 +233,18 @@ export default defineComponent({
     IconFinish: IconFinish(),
     IconWarn: IconWarn()
   },
-  props: [...props, 'vertical', 'nameField', 'statusField', 'data', 'active', 'visibleNum', 'descriptionField', 'size'],
+  props: [
+    ...props,
+    'vertical',
+    'nameField',
+    'statusField',
+    'data',
+    'active',
+    'visibleNum',
+    'descriptionField',
+    'size',
+    'itemStyle'
+  ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes })
   }
