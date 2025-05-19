@@ -192,7 +192,9 @@ export default defineComponent({
     'before-page-change',
     'change',
     // tiny 新增
-    'resize'
+    'resize',
+    'clear',
+    'delete'
   ],
   props: [
     ...props,
