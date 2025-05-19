@@ -120,7 +120,7 @@ export default {
           type: 'Object',
           defaultValue: '{}',
           meta: {
-            stable: '3.23.0'
+            stable: '3.24.0'
           },
           desc: {
             'zh-CN':
