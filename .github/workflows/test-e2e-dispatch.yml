@@ -1,5 +1,5 @@
 name: E2E Test Dispatch
-run-name: E2E Test Dispatch--${{ inputs.testDemos }}--
+run-name: E2E Test Dispatch--${{ inputs.testDemos }}--origin--${{ inputs.origin }}
 on:
   workflow_dispatch:
     inputs:
@@ -8,6 +8,12 @@ on:
           Name of directory from "examples/sites/demos/pc/app",
           such as `input, alert`.
         required: true
+        type: string
+      origin:
+        description: |
+          输入需要测试的域名地址，包括微服务路径，如果不输入则采用本地启动服务测试,
+          例如： `https://opentiny.github.io/tiny-vue-web-doc`.
+        required: false
         type: string
 concurrency:
   group: ${{ github.workflow }}-${{ github.sha }}
@@ -44,7 +50,12 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: dev start
+        if: contains(inputs.origin, 'http') == false
         run: pnpm site & sleep 5
+
+      - name: Release E2E Config
+        if: contains(inputs.origin, 'http') == true
+        run: pnpm release:e2eConfig -o ${{ inputs.origin }} & sleep 5
 
       - name: Install Playwright browsers
         run: pnpm install:browser --with-deps chromium

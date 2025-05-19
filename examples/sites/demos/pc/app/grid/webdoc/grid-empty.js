@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'empty-empty-data-tip',
-      'name': { 'zh-CN': '自定义提示', 'en-US': 'Custom Prompt' },
-      'desc': {
+      name: { 'zh-CN': '自定义提示', 'en-US': 'Custom Prompt' },
+      desc: {
         'zh-CN':
           '<p>空数据时默认显示 <code>图标 + 文字</code> 提示，用户也可通过设置插槽 <code>v-slot:empty</code> 或者 属性 <code>render-empty</code> 来自定义提示内容。</p>\n',
         'en-US':
@@ -15,8 +15,8 @@ export default {
     },
     {
       demoId: 'empty-empty-data-default-tip',
-      'name': { 'zh-CN': '默认提示', 'en-US': 'Default Prompt' },
-      'desc': {
+      name: { 'zh-CN': '默认提示', 'en-US': 'Default Prompt' },
+      desc: {
         'zh-CN': '默认情况下就展示表格组件的默认提示图标和文字。',
         'en-US': 'For details, see the following example.'
       },
@@ -24,8 +24,8 @@ export default {
     },
     {
       demoId: 'empty-empty-data-iscenter',
-      'name': { 'zh-CN': '固定居中', 'en-US': 'Fix Center' },
-      'desc': {
+      name: { 'zh-CN': '固定居中', 'en-US': 'Fix Center' },
+      desc: {
         'zh-CN':
           '<p>配置 <code>is-center-empty</code> 为 <code>true</code> 时，拖动横向滚动条可以保持空数据提示使终相对表格宽度居中显示。</p>\n',
         'en-US':
@@ -34,5 +34,5 @@ export default {
       codeFiles: ['empty/empty-data-iscenter.vue']
     }
   ],
-  apis: [{ 'name': 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

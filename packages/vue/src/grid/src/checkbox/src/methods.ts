@@ -59,7 +59,7 @@ export default {
     let { checkMethod } = selectConfig
     if (!checkMethod || checkMethod(params)) {
       this.handleSelectRow(params, value)
-      emitEvent(this, 'select-change', [
+      const eventParams = [
         {
           selection: this.getSelectRecords(),
           checked: value,
@@ -67,7 +67,10 @@ export default {
           ...params
         },
         event
-      ])
+      ]
+      emitEvent(this, 'select-change', eventParams)
+      // 配置式表格事件监听
+      this.$grid?.emitter.emit('select-change', eventParams)
     }
   },
   // 多选，切换某一行的选中状态
@@ -143,6 +146,8 @@ export default {
       $table: this
     }
     emitEvent(this, 'select-all', [eventParams, event])
+    // 配置式表格事件监听
+    this.$grid?.emitter.emit('select-all', [eventParams, event])
   },
   // 多选，切换所有行的选中状态
   toggleAllSelection() {

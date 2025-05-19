@@ -1,6 +1,6 @@
 <template>
   <tiny-pager
-    @current-change="handleCurrentChange"
+    @size-change="handleSizeChange"
     :current-page="currentPage"
     @update:current-page="currentPage = $event"
     :page-size="100"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TinyPager, TinyModal } from '@opentiny/vue'
+import { TinyPager, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -23,9 +23,9 @@ export default {
     }
   },
   methods: {
-    handleCurrentChange(val) {
-      TinyModal.message({
-        message: `current-change 事件，当前页: ${val}`,
+    handleSizeChange(val) {
+      Modal.message({
+        message: `size-change 事件，每页 ${val} 条`,
         status: 'info'
       })
     }

@@ -102,6 +102,26 @@ export default {
       codeFiles: ['custom-render.vue']
     },
     {
+      demoId: 'custom-size',
+      name: {
+        'zh-CN': '自定义面板大小',
+        'en-US': 'Customized Panel Size'
+      },
+      desc: {
+        'zh-CN': `
+          通过 <code> panelStyle </code> 属性，可以指定左右面板容器的样式。当面板的宽度大于外部容器的50%宽度时，面板会自适应容器的宽度。<br>
+          通过 <code> panelBodyStyle </code> 属性，可以指定面板内容区域的样式。<br>
+          通过 <code> panelTableHeight </code> 属性，可以指定嵌套表格时，表格的高度值。嵌套表格的默认高度为400px, 当自定义面板内容区域的高度之后，可能会与表格高度不匹配。 可以通过该属性设置一个匹配的表格高度。<br>
+          `,
+        'en-US': `
+          By using the<code>panelStyle</code>property, you can specify the style of the left and right panel containers. When the width of the panel is greater than 50% of the width of the external container, the panel will adapt to the width of the container< br>
+          The<code>panelBodyStyle</code>property allows you to specify the style of the panel content area< br>
+          By using the<code>panelTableHeight</code>property, you can specify the height value of nested tables. The default height for nested tables is 400px, and when customizing the height of the panel content area, it may not match the height of the table. You can set a matching table height through this attribute< br> 
+          `
+      },
+      codeFiles: ['custom-size.vue']
+    },
+    {
       demoId: 'custom-filter',
       name: {
         'zh-CN': '过滤搜索',

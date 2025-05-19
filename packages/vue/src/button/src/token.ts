@@ -33,7 +33,7 @@ export const classes = {
   'type-danger-plain': `text-color-error border-color-error hover:text-color-error-hover hover:border-color-error-hover active:text-color-error-active active:border-color-error-active bg-color-bg-1 sm:cursor-pointer`,
   'type-text-plain': `text-color-brand hover:text-color-brand-hover active:text-color-brand-active`,
   'type-default-plain-disabled':
-    'text-color-text-disabled bg-color-bg-1 border-color-text-disabled hover:cursor-not-allowed',
+    'text-color-text-disabled bg-color-bg-1 border-color-border-disabled hover:cursor-not-allowed',
   'type-primary-plain-disabled':
     'text-color-brand-disabled bg-color-bg-1 border-color-brand-disabled hover:cursor-not-allowed',
   'type-success-plain-disabled':

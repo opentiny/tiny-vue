@@ -26,17 +26,31 @@ export const renderComponent = ({
   view = null as any,
   component = null as any,
   props,
+  customDesignProps,
   context: { attrs, listeners: on, slots },
   extend = {}
 }) => {
   return () =>
     hooks.h(
       (view && view.value) || component,
-      Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend)
+      Object.assign(
+        {
+          props: { ...props, ...customDesignProps },
+          attrs,
+          [extend.isSvg ? 'nativeOn' : 'on']: on,
+          scopedSlots: { ...slots }
+        },
+        extend
+      )
     )
 }
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
+
+export const getCustomProps = () => {
+  const instance = hooks.getCurrentInstance()?.proxy
+  return instance?.$options?.propsData || {}
+}
 
 export const getComponentName = () => {
   // 此处组件最多为两层组件，所以对多获取到父级组件即可

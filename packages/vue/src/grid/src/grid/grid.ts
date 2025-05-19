@@ -215,8 +215,8 @@ export default defineComponent({
       setTimeout(() => this.emitter.emit('active-anchor'), this.columnAnchorParams.activeAnchor.delay)
     },
     viewType(value) {
-      // 在全屏状态下切换到表格视图时额外刷新一次表格布局，解决此场景下列宽未自动撑开问题
-      if (value === V_MF && this.fullScreenClass) {
+      // 解决从卡片、列表视图切换至表格视图后，列宽未自动撑开问题
+      if (value === V_MF) {
         this.$nextTick(() => this.recalculate(true))
       }
     }

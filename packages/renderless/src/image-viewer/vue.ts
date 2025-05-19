@@ -237,7 +237,7 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
     () => {
       state.urlList = props.urlList
     },
-    { deep: true }
+    { deep: true, immediate: true }
   )
 }
 

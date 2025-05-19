@@ -4,8 +4,8 @@ export default {
   demos: [
     {
       demoId: 'context-menu-header-menu',
-      'name': { 'zh-CN': '表头菜单', 'en-US': 'Grid-right-click menu-header menu' },
-      'desc': {
+      name: { 'zh-CN': '表头菜单', 'en-US': 'Grid-right-click menu-header menu' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>:context-menu=&quot;{header: {options: headerMenus}, visibleMethod}&quot;</code> 对象来控制表头菜单。<code>headerMenus</code> 里面配置 <code>visible</code> 是否显示菜单， <code>disabled</code> 是否禁用菜单项。可配合 <code>visibleMethod</code> 方法来控制菜单权限。\n<code>@context-menu-click</code> 监控菜单点击事件。</p>',
         'en-US':
@@ -15,8 +15,8 @@ export default {
     },
     {
       demoId: 'context-menu-footer-menu',
-      'name': { 'zh-CN': '表尾菜单', 'en-US': 'Grid-right-click menu-table tail menu' },
-      'desc': {
+      name: { 'zh-CN': '表尾菜单', 'en-US': 'Grid-right-click menu-table tail menu' },
+      desc: {
         'zh-CN':
           '<p>通过配置 <code>:context-menu=&quot;{body: {options: bodyMenus}}&quot;</code> ，<code>show-footer</code>，<code>:footer-method=&quot;footerMethod&quot;</code> 才能展示表尾菜单。配置 <code>:context-menu=&quot;{body: {options: bodyMenus}, footer: {options: footerMenus}，visibleMethod}&quot;</code> 对象来控制表头菜单。<code>footerMenus</code> 里面配置 <code>visible</code> 是否显示菜单， <code>disabled</code> 是否禁用菜单项。可配合 <code>visibleMethod</code> 方法来控制菜单权限。<code>@context-menu-click</code> 监控菜单点击事件。</p>',
         'en-US':
@@ -26,8 +26,8 @@ export default {
     },
     {
       demoId: 'context-menu-cell-menu',
-      'name': { 'zh-CN': '单元格菜单', 'en-US': 'Grid-right-click menu-cell menu' },
-      'desc': {
+      name: { 'zh-CN': '单元格菜单', 'en-US': 'Grid-right-click menu-cell menu' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>context-menu=&quot;{body: {options: bodyMenus}，visibleMethod}&quot;</code> 对象来控制单元格菜单。<code>bodyMenus</code> 里面配置 <code>visible</code> 是否显示菜单，<code>disabled</code> 是否禁用菜单项。可配合 <code>visibleMethod</code> 方法来控制菜单权限。\n<code>@cell-context-menu</code> 监控菜单弹出前事件。<code>@context-menu-click</code> 监控菜单点击事件。</p>',
         'en-US':
@@ -37,8 +37,8 @@ export default {
     },
     {
       demoId: 'context-menu-menu-permissions',
-      'name': { 'zh-CN': '菜单权限', 'en-US': 'Grid-Right-click Menu-Menu Permission' },
-      'desc': {
+      name: { 'zh-CN': '菜单权限', 'en-US': 'Grid-Right-click Menu-Menu Permission' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>:context-menu=&quot;{header: {options: headerMenus},body: {options: bodyMenus}, footer: {options: footerMenus},visibleMethod}&quot;</code> 对象来控制表头菜单。<code>header，bodyMenus，footer</code> 里面配置 <code>visible</code> 是否显示菜单， <code>disabled</code> 是否禁用菜单项。使用配合 <code>visibleMethod</code> 方法来控制菜单权限。<code>@cell-context-menu</code> 监控菜单弹出前事件。<code>@context-menu-click</code> 监控菜单点击事件。</p>\n',
         'en-US':
@@ -47,5 +47,5 @@ export default {
       codeFiles: ['context-menu/menu-permissions.vue']
     }
   ],
-  apis: [{ 'name': 'grid-context-menu', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-context-menu', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

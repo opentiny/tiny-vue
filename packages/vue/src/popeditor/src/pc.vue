@@ -64,6 +64,7 @@
         <tiny-grid
           ref="suggest"
           v-if="state.showSuggestPanel"
+          v-bind="gridOp"
           auto-resize
           :loading="state.loading"
           max-height="300px"
@@ -151,7 +152,9 @@
                       'tiny-popeditor__tabs-selected': state.activeName === 'history'
                     }"
                   >
-                    <span>{{ t('ui.popeditor.historyLists') }}</span>
+                    <slot name="title-history">
+                      <span>{{ t('ui.popeditor.historyLists') }}</span>
+                    </slot>
                   </li>
                   <li
                     @click="state.activeName = 'source'"
@@ -159,7 +162,9 @@
                       'tiny-popeditor__tabs-selected': state.activeName === 'source'
                     }"
                   >
-                    <span>{{ t('ui.popeditor.sourceLists') }}</span>
+                    <slot name="title-source">
+                      <span>{{ t('ui.popeditor.sourceLists') }}</span>
+                    </slot>
                   </li>
                 </ul>
               </div>
@@ -168,6 +173,7 @@
                 <div v-if="state.activeName === 'history'" class="tabs-body-item">
                   <tiny-grid
                     ref="historyGrid"
+                    v-bind="gridOp"
                     height="290px"
                     size="mini"
                     :highlight-current-row="true"
@@ -183,6 +189,7 @@
                 <div v-if="state.activeName === 'source'" class="tabs-body-item">
                   <tiny-grid
                     v-if="multi"
+                    v-bind="gridOp"
                     auto-resize
                     :loading="state.loading"
                     ref="sourceGrid"
@@ -200,6 +207,7 @@
                   <tiny-grid
                     v-else
                     ref="sourceGrid"
+                    v-bind="gridOp"
                     auto-resize
                     :loading="state.loading"
                     height="290px"
@@ -227,7 +235,9 @@
               <div class="tiny-popeditor__tabs-head">
                 <ul>
                   <li class="tiny-popeditor__tabs-selected">
-                    <span>{{ t('ui.popeditor.selectionLists') }}</span>
+                    <slot name="title-selection">
+                      <span>{{ t('ui.popeditor.selectionLists') }}</span>
+                    </slot>
                   </li>
                 </ul>
               </div>
@@ -262,6 +272,7 @@
                   <tiny-grid
                     v-else
                     ref="selectedGrid"
+                    v-bind="gridOp"
                     auto-resize
                     :columns="state.baseColumns"
                     :data="state.selectedDatas"

@@ -31,7 +31,7 @@ export default {
         },
         {
           name: 'content-center',
-          type: 'string',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '使步骤条内容默认居中显示',

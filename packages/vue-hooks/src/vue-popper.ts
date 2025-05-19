@@ -11,14 +11,11 @@
  */
 
 import { PopupManager, PopperJS, on, off, isDisplayNone } from '@opentiny/utils'
-
-// todo
-import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
-
+import type { ISharedRenderlessFunctionParams } from '../types/shared.type'
 import { isServer } from '@opentiny/utils'
 
 export interface IPopperState {
-  popperJS: Popper
+  popperJS: PopperJS | null
   appended: boolean
   popperElm: HTMLElement
   showPopper: boolean
@@ -48,10 +45,10 @@ const getReference = ({ state, props, vm, slots }: Pick<IPopperInputParams, 'sta
   return reference
 }
 
-const getReferMaxZIndex = (reference) => {
+const getReferMaxZIndex = (reference: HTMLElement) => {
   if (!reference || !reference.nodeType) return
 
-  let getZIndex = (dom) => parseInt(window.getComputedStyle(dom).zIndex, 10) || 0
+  let getZIndex = (dom: HTMLElement) => parseInt(window.getComputedStyle(dom).zIndex, 10) || 0
   let max = getZIndex(reference)
   let z
 
@@ -90,14 +87,14 @@ export const userPopper = (options: IPopperInputParams) => {
     toRefs,
     popperVmRef
   } = options
-  const state = reactive<IPopperState>({
+  const state = reactive({
     popperJS: null as any,
     appended: false, // arrow 是否添加
     popperElm: null as any,
     showPopper: props.manual ? Boolean(props.modelValue) : false,
     referenceElm: null as any,
     currentPlacement: ''
-  })
+  }) as IPopperState
 
   /** 创建箭头函数 */
   const appendArrow = (el: HTMLElement) => {
@@ -123,11 +120,11 @@ export const userPopper = (options: IPopperInputParams) => {
     }
   }
 
-  const nextZIndex = (reference) => {
+  const nextZIndex = (reference: HTMLElement) => {
     return props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
   }
 
-  const createPopper = (dom) => {
+  const createPopper = (dom: HTMLElement) => {
     if (isServer) {
       return
     }
@@ -183,7 +180,7 @@ export const userPopper = (options: IPopperInputParams) => {
   /** 第一次 updatePopper 的时候，才真正执行创建
    * popperElmOrTrue===true的场景仅在select组件动态更新面版时，不更新zIndex
    */
-  const updatePopper = (popperElmOrTrue?: HTMLElement) => {
+  const updatePopper = (popperElmOrTrue?: HTMLElement | boolean) => {
     if (popperElmOrTrue && popperElmOrTrue !== true) {
       state.popperElm = popperElmOrTrue
     }
@@ -230,7 +227,7 @@ export const userPopper = (options: IPopperInputParams) => {
   // 注意： 一直以来，state.showPopper 为false时，并未调用doDestroy. 像popover只是依赖这个值来 给reference元素 v-show一下
   watch(
     () => state.showPopper,
-    (val) => {
+    (val: boolean) => {
       if (props.disabled) {
         return
       }

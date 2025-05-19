@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('图片列表缩略图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -12,8 +17,6 @@ test('图片列表缩略图', async ({ page }) => {
   const { width, height } = await item1.boundingBox()
   const images = container.locator('.tiny-upload-list__item-thumbnail')
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(width).toBeGreaterThanOrEqual(height)

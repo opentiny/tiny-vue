@@ -475,7 +475,6 @@
             tag="ul"
             :wrap-class="['tiny-select-dropdown__wrap']"
             :view-class="['tiny-select-dropdown__list']"
-            :wrapStyle="dropStyle"
             @mousedown.stop
             :class="{
               'is-empty': !allowCreate && state.query && state.filteredOptionsCount === 0

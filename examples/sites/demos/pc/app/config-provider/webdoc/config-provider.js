@@ -12,9 +12,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '可通过<code> design </code>属性设置自定义不同设计规范的图标和逻辑，例如：全局配置 Form 表单组件的必填星号是否默认显示、Button 组件的点击后的禁用时间和是否默认圆角。',
+          '通过 <code>design</code> 属性可以自定义不同设计规范的图标和逻辑。从 3.23.0 版本开始，支持全局配置组件的任意 <code>props</code> 属性（仅支持双层组件），例如：可以全局配置 Form 组件必填项星号的默认显示状态、Button 组件的点击防抖时间以及是否默认显示圆角等。',
         'en-US':
-          'Icons and logic for different design specifications can be customized through the <code>design</code> attribute configuration.'
+          'You can use the <code> design </code> property to set custom icons and logic for different design specifications, starting from version 3.23.0, the global configuration component (only supports double-layer components) supports the function of any <code> props </code> attribute, for example: the default display of the required star of the global configuration Form form component, the disabled time after the click of the Button component, and whether the default roundness is enabled.'
       },
       codeFiles: ['base.vue']
     },
@@ -43,6 +43,18 @@ export default {
         'en-US': 'Container labels can be customized through<code>tag</code>.'
       },
       codeFiles: ['tag.vue']
+    },
+    {
+      demoId: 'theme',
+      name: {
+        'zh-CN': '自定义主题色',
+        'en-US': 'Custom Colors'
+      },
+      desc: {
+        'zh-CN': '可通过<code>theme</code>属性设置自定义主题色常量。',
+        'en-US': 'You can use the <code>theme</code> property to set a custom theme color constant.'
+      },
+      codeFiles: ['theme.vue']
     }
   ],
   features: [

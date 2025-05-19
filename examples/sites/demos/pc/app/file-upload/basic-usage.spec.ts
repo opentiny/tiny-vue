@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -8,7 +13,6 @@ test('基本用法', async ({ page }) => {
   const lists = page.locator('.tiny-upload-list__li')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
 
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)

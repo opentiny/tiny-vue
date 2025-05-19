@@ -1,6 +1,6 @@
 <template>
   <div data-tag="tiny-pager-item" :class="gcls('pager-group')">
-    <ul data-tag="pager-item-content" class="inline-flex text-xs" @click="onPagerClick">
+    <ul data-tag="pager-item-content" class="hidden sm:inline-flex text-xs" @click="onPagerClick">
       <li
         data-tag="pager-item-hover"
         :class="m(gcls('li'), gcls('li-hover'), gcls({ 'is-active': currentPage === 1 }))"
@@ -10,7 +10,7 @@
       <li
         ref="prev"
         data-tag="pager-item-premore"
-        :class="m(gcls('li'), gcls('dot'))"
+        :class="m(gcls('li'), gcls('dot'), 'dot quickprev')"
         v-if="state.showPrevMore"
         @mouseenter="onMouseenter('left')"
         @mouseleave="state.quickprevIconClass = popupIcon"
@@ -27,7 +27,7 @@
       <li
         ref="next"
         data-tag="pager-item-nextmore"
-        :class="m(gcls('li'), gcls('dot'))"
+        :class="m(gcls('li'), gcls('dot'), 'dot quicknext')"
         v-if="state.showNextMore"
         @mouseenter="onMouseenter('right')"
         @mouseleave="state.quicknextIconClass = popupIcon"
@@ -42,6 +42,9 @@
         v-text="`${pageCount}`"
       ></li>
     </ul>
+    <li class="h-7 text-color-text-primary sm:hidden flex items-center justify-center rounded !mx-4">
+      <span class="inline-block my-0 mx-0">{{ currentPage }} / {{ pageCount }}</span>
+    </li>
   </div>
 </template>
 

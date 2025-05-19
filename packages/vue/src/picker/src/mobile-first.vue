@@ -111,6 +111,7 @@
           @input="handleStartInput"
           @change="handleStartChange"
           @focus="handleFocus"
+          tabindex="1"
           data-tag="tiny-range-input"
           :class="gcls('range-input')"
         />
@@ -141,6 +142,7 @@
           @input="handleEndInput"
           @change="handleEndChange"
           @focus="handleFocus"
+          tabindex="1"
           data-tag="tiny-range-input"
           :class="gcls('range-input')"
         />

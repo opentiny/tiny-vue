@@ -10,6 +10,8 @@
       <tiny-form-item label="多选只读">
         <tiny-select v-model="formData.select1" multiple :options="options" hover-expand> </tiny-select>
       </tiny-form-item>
+      <br />
+      <br />
     </tiny-form>
   </div>
 </template>

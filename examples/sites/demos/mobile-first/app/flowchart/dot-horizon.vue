@@ -89,7 +89,19 @@ Object.assign(chartConfig, {
   ongoingBackgroundColor: '#f3f8fe',
   popoverPlacement: 'bottom',
   renderOuter: (h, node) => {
-    return h(Node, { props: { node, config: chartConfig } })
+    return h(Node, {
+      props: {
+        node,
+        config: chartConfig,
+        cursorPointerFn: (state) => {
+          // 完成节点不显示手型鼠标
+          if (state.statCompleted) {
+            return false
+          }
+          return true
+        }
+      }
+    })
   },
   type: 'dot',
   nodeWrapperSize,

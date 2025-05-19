@@ -1,6 +1,6 @@
 <template>
   <tiny-pager
-    @next-click="nextClick"
+    @prev-click="prevClick"
     :current-page="currentPage"
     @update:current-page="currentPage = $event"
     :page-size="100"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TinyPager, TinyModal } from '@opentiny/vue'
+import { TinyPager, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -23,9 +23,9 @@ export default {
     }
   },
   methods: {
-    nextClick(val) {
-      TinyModal.message({
-        message: `next-click 事件，当前页: ${val}`,
+    prevClick(val) {
+      Modal.message({
+        message: `prev-click 事件，当前页: ${val}`,
         status: 'info'
       })
     }

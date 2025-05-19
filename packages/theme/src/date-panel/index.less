@@ -158,7 +158,6 @@
 
   // 时区选择
   &__timezone {
-    margin-bottom: 8px;
     padding: 8px 0;
 
     .@{picker-panel-prefix-cls}__tzlist {
@@ -169,11 +168,11 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding: var(--tv-DatePanel-timezone-li-padding);
+        padding: var(--tv-DatePanel-timezone-li-padding, 5.5px 16px);
         cursor: pointer;
 
         &:hover {
-          background-color: var(--tv-DatePanel-bg-color-hover);
+          background-color: var(--tv-DatePanel-bg-color-hover, #f5f5f5);
         }
       }
 
@@ -182,8 +181,8 @@
         width: 238px;
         bottom: 77px;
         max-height: 260px;
-        box-shadow: var(--tv-DatePanel-box-shadow);
-        background-color: var(--tv-DatePanel-bg-color);
+        box-shadow: var(--tv-DatePanel-box-shadow, 0 4px 16px 0 rgba(0, 0, 0, 0.08));
+        background-color: var(--tv-DatePanel-bg-color, #fff);
       }
     }
 

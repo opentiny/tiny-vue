@@ -14,7 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       testComponents: ${{ steps.parseTitle.outputs.testComponents }}
+      utilsModified: ${{ steps.check-utils-changes.outputs.modified }}
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Parse Title
         id: parseTitle
         uses: actions/github-script@v6
@@ -42,6 +46,26 @@ jobs:
               core.setOutput('tip', warningString)
               core.warning(warningString)
             }
+      - name: Check Utils Changes
+        id: check-utils-changes
+        run: |
+          # 从远程仓库获取目标分支的最新代码
+          git fetch origin ${{ github.base_ref }}
+
+          # 获取当前PR分支相对于目标分支的所有变更文件列表
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD)
+
+          # 使用grep检查变更文件列表中是否包含utils包的改动
+          # ^packages/utils/ 表示以packages/utils/开头的文件路径
+          if echo "$CHANGED_FILES" | grep -q "^packages/utils/"; then
+            # 如果检测到utils包有改动，设置modified输出变量为true
+            echo "modified=true" >> $GITHUB_OUTPUT
+            echo "Utils package has been modified, utils tests will be executed"
+          else
+            # 如果没有检测到utils包的改动，设置modified输出变量为false
+            echo "modified=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in utils package"
+          fi
       - name: generate user-tip.txt
         if: ${{ steps.parseTitle.outputs.tip }}
         run: |
@@ -72,6 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TEST_COMPONENTS: ${{ needs.parse-components.outputs.testComponents }}
+      UTILS_MODIFIED: ${{ needs.parse-components.outputs.utilsModified }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup pnpm
@@ -97,6 +122,10 @@ jobs:
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
 
-      - name: Unit Test
+      - name: Unit Test for Components
         if: ${{ env.TEST_COMPONENTS }}
         run: pnpm test:unit3 ${{ env.TEST_COMPONENTS }}
+
+      - name: Utils Unit Test
+        if: ${{ env.UTILS_MODIFIED == 'true' }}
+        run: pnpm test:utils

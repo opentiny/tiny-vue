@@ -445,6 +445,36 @@ export default {
       methods: [],
       slots: [
         {
+          name: 'title-selection',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '已选择数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'title-history',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '历史数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'title-source',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '所有数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
           name: 'footer',
           defaultValue: '',
           desc: {

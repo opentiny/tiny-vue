@@ -91,7 +91,10 @@ export const transferProps = {
     default: true
   },
   treeOp: Object,
-  beforeTransfer: Function
+  beforeTransfer: Function,
+  panelStyle: Object,
+  panelBodyStyle: Object,
+  panelTableHeight: String
 }
 export default defineComponent({
   name: $prefix + 'Transfer',

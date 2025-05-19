@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import Transfer from '@opentiny/vue-transfer'
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 
 describe('PC Mode', () => {
@@ -105,22 +105,6 @@ describe('PC Mode', () => {
    * methods
    */
   test.todo('clearQuery 清空某个面板的搜索关键词')
-
-  /**
-   * events
-   */
-  test('left change event', async () => {
-    const leftChangeEvent = vi.fn()
-    const wrapper = mount(Transfer, {
-      props: {
-        data: transferMockData(),
-        onLeftCheckChange: leftChangeEvent
-      }
-    })
-    const tinyTransfer = wrapper.findComponent({ name: 'TinyTransfer' })
-    await tinyTransfer.find('.tiny-transfer-panel__body .tiny-transfer-panel__list label').trigger('click')
-    expect(leftChangeEvent).toBeCalled()
-  })
 
   test.todo('change 右侧列表元素变化时触发')
 

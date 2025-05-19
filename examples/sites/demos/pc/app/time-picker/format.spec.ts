@@ -34,26 +34,15 @@ test('时间格式化', async ({ page }) => {
   // value-format: 选中值的格式
   await page.getByRole('textbox', { name: '18:30:00' }).click()
   await page.waitForTimeout(100)
-  await page
-    .locator(
-      'div:nth-child(13) > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(20)'
-    )
-    .first()
-    .click()
+  await page.getByText('19').nth(11).click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '19:30:00' })).toBeVisible()
 
   // picker-options.format: 下拉框中显示的格式
-  const timePickerHour = page
-    .locator(
-      'div:nth-child(14) > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(19)'
-    )
-    .first()
-  const timePickerMinute = page.locator(
-    'div:nth-child(14) > .tiny-time-panel__content > .tiny-time-spinner > div:nth-child(2) > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(41)'
-  )
-  const timePickerSecond = page.locator('.of-hidden > div:nth-child(12) .tiny-scrollbar').nth(2)
+  const timePickerHour = page.getByRole('list').first()
+  const timePickerMinute = page.getByRole('list').nth(1)
+  const timePickerSecond = page.getByRole('list').nth(2)
   await page.getByRole('textbox', { name: '18:40:00' }).click()
   await page.waitForTimeout(200)
   await expect(timePickerHour).toBeVisible()

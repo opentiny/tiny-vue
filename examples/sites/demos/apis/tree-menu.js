@@ -286,6 +286,7 @@ export default {
         },
         {
           name: 'only-check-children',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '父级是否不可选，只能展开不能跳转',

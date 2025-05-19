@@ -319,7 +319,7 @@ export const setSelected =
           : 'halfselect'
         : 'check'
 
-      if (!state.selected?.[0]?.isTree && !state.selected?.[0]?.isGrid) {
+      if (!vm.$slots.panel) {
         state.selected = result
       }
       state.selected.length && (state.selectedLabel = '')

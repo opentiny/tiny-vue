@@ -436,7 +436,7 @@
             <slot name="dropdown"></slot>
             <div
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
-              class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-3 my-1 sm:m-1 rounded cursor-pointer"
+              class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-2 my-1 sm:m-1 rounded cursor-pointer"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -451,7 +451,7 @@
               <component
                 :is="`icon-${state.selectCls}`"
                 :class="
-                  m(['-mt-0.5 mr-2 fill-color-icon-secondary', state.selectCls !== 'check' && 'fill-color-brand'])
+                  m(['-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ', state.selectCls !== 'check' && 'fill-color-brand text-color-brand'])
                 "
               />
               <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">
@@ -469,7 +469,7 @@
                 !state.emptyText &&
                 !remote
               "
-              class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-3 my-1 sm:m-1 rounded cursor-pointer"
+              class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-2 my-1 sm:m-1 rounded cursor-pointer"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'

@@ -19,7 +19,7 @@ test('可搜索时，获取焦点自动下拉', async ({ page }) => {
   await page.goto('base-select#automatic-dropdown')
   const wrap = page.locator('#automatic-dropdown')
   const input = wrap.locator('.tiny-input__inner').nth(1)
-  const dropdown = page.locator('.tiny-select-dropdown').nth(1)
+  const dropdown = page.locator('.tiny-select-dropdown')
 
   await wrap.getByRole('button').nth(1).click()
   // 聚焦下拉

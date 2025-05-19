@@ -53,6 +53,9 @@ const design = {
       icons: {
         warning: iconWarningTriangle()
       },
+      props: {
+        center: true
+      },
       /**
        *
        * @param {*} props 组件属性集合

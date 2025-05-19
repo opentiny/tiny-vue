@@ -69,14 +69,8 @@
                   class="flex-1 sm:mr-6 text-xs sm:text-sm leading-5.5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
-                    file.name
-                      .split('.')
-                      .filter((item, i, arr) => arr.length - 1 > i || arr.length === 1)
-                      .join('.')
+                    file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name
                   }}</span>
-                  <span v-if="file.name.includes('.')"
-                    >.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span
-                  >
                 </div>
                 <div
                   data-tag="tiny-upload-list-operate"

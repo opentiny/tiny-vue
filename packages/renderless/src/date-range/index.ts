@@ -564,6 +564,10 @@ export const handleConfirm =
       emit('update:modelValue', [start, end])
       emit('select-change', [start, end])
     }
+
+    if (state.minDate && !state.maxDate) {
+      emit('pick', [state.minDate, state.maxDate], visible, true)
+    }
   }
 
 export const isValidValue =

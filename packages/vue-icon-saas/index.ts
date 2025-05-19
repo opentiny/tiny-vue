@@ -260,6 +260,7 @@ import IconPanelMini from './src/panel-mini'
 import IconPanelNormal from './src/panel-normal'
 import IconPauseCircle from './src/pause-circle'
 import IconPause from './src/pause'
+import IconPersonHistory from './src/person-history'
 import IconPicture from './src/picture'
 import IconPieChart from './src/pie-chart'
 import IconPlusCircle from './src/plus-circle'
@@ -269,6 +270,7 @@ import IconPopup from './src/popup'
 import IconPreChecked from './src/pre-checked'
 import IconPrintPreview from './src/print-preview'
 import IconPushpin from './src/pushpin'
+import IconPushpinSolid from './src/pushpin-solid'
 import IconRadio from './src/radio'
 import IconRadioselected from './src/radioselected'
 import IconReactjs from './src/reactjs'
@@ -1199,6 +1201,8 @@ export {
   IconPauseCircle as iconPauseCircle,
   IconPause,
   IconPause as iconPause,
+  IconPersonHistory,
+  IconPersonHistory as iconPersonHistory,
   IconPicture,
   IconPicture as iconPicture,
   IconPieChart,
@@ -1217,6 +1221,8 @@ export {
   IconPrintPreview as iconPrintPreview,
   IconPushpin,
   IconPushpin as iconPushpin,
+  IconPushpinSolid,
+  IconPushpinSolid as iconPushpinSolid,
   IconRadio,
   IconRadio as iconRadio,
   IconRadioselected,
@@ -1905,6 +1911,7 @@ export default {
   IconPanelNormal,
   IconPauseCircle,
   IconPause,
+  IconPersonHistory,
   IconPicture,
   IconPieChart,
   IconPlusCircle,
@@ -1914,6 +1921,7 @@ export default {
   IconPreChecked,
   IconPrintPreview,
   IconPushpin,
+  IconPushpinSolid,
   IconRadio,
   IconRadioselected,
   IconReactjs,

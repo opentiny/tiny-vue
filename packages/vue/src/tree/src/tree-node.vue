@@ -121,6 +121,7 @@
           <template v-if="action.type === 'edit' && action.node && action.node === node">
             <tiny-input
               v-model="action.label"
+              class="tiny-tree-node__edit-input"
               ref="editInput"
               :autofocus="true"
               clearable

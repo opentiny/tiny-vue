@@ -11,6 +11,9 @@ test('事件', async ({ page }) => {
   const rightSvg = page.locator('.header-right > .tiny-svg')
   const mode = page.locator('label').nth(2)
   const modalVal = page.getByText('模式切换事件：schedule')
+  const date =  page.getByText('30周一')
+  const dateVal = page.locator('div').filter({ hasText: '点击日期： 2022-5-30；日程事件：[]' }).nth(1)
+
   await timeBtn.click()
   await page.waitForTimeout(100)
   await leftYear.click()
@@ -27,4 +30,7 @@ test('事件', async ({ page }) => {
   await mode.click()
   await page.waitForTimeout(100)
   await expect(modalVal).toBeVisible()
+  await date.click()
+  await page.waitForTimeout(100)
+  await expect(dateVal).toBeVisible()
 })

@@ -972,7 +972,7 @@
     "boxShadow": {
       "--tiny-boxShadow-sm": "0px 1px 6px 0px rgba(0, 0, 0, 0.08)",
       "--tiny-boxShadow-DEFAULT": "0px 4px 12px 0px rgba(0, 0, 0, 0.08)",
-      "--tiny-boxShadow-md": "1px 4px 12px 0px rgba(0, 0, 0, 0.16)",
+      "--tiny-boxShadow-md": "0 4px 12px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-lg": "0px 8px 24px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-xl": "0px 16px 48px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-2xl": "0px 24px 40px 0px rgba(0, 0, 0, 0.12)",

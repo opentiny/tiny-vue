@@ -16,6 +16,9 @@
     <br />
     <br />
     <br />
+    <br />
+    <br />
+    <br />
     <div>场景 3：click-expand 折叠</div>
     <br />
     <tiny-select v-model="value3" :max-visible-rows="2" :options="options" multiple click-expand> </tiny-select>

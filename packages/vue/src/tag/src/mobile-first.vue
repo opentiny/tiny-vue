@@ -31,8 +31,21 @@ export default defineComponent({
     return setup({ props, context, renderless, api, h, classes }) as unknown as ITagApi
   },
   render() {
-    const { slots, selectable, disabled, color, handleClose, handleClick, customClass, hit, m, gcls, state, value } =
-      this
+    const {
+      slots,
+      selectable,
+      disabled,
+      color,
+      handleClose,
+      handleClick,
+      customClass,
+      hit,
+      m,
+      gcls,
+      state,
+      value,
+      maxWidth
+    } = this
     const size = selectable ? 'medium' : this.size || 'small'
     const type = selectable ? 'info' : state.type || 'info'
     const effect = selectable ? 'light' : this.effect || 'light'
@@ -40,7 +53,7 @@ export default defineComponent({
     const operable = selectable ? false : this.operable
 
     const classes = m(
-      'text-xs inline-flex items-center rounded box-border border-0.5 sm:border mr-2',
+      'text-xs inline-flex items-center rounded box-border border-0.5 sm:border mr-1',
       effect === 'plain' || hit ? gcls(`${type}-border`) : 'border-transparent',
       gcls(`${effect}-${type}`),
       gcls(size),

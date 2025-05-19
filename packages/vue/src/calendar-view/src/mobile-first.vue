@@ -4,7 +4,7 @@
       <template #content>
         <div class="p-2 max-h-[80vh] overflow-auto">
           <div class="px-1.5 mb-1.5 border-l-2 border-color-brand">{{ state.eventTipContent.title }}</div>
-          <div class="mb-1.5 px-2 text-color-text-placeholder">
+          <div v-if="showTipTime" class="mb-1.5 px-2 text-color-text-placeholder">
             {{ state.eventTipContent.startDay }} {{ state.eventTipContent.startTime }} ~
             {{ state.eventTipContent.endDay }} {{ state.eventTipContent.endTime }}
           </div>
@@ -159,7 +159,8 @@
             data-tag="tiny-calendar-view-weekitem"
             v-for="(date, index) in state.weekDates"
             :key="date.value"
-            class="leading-10"
+            class="leading-10 cursor-pointer"
+            @click="selectDay(date)"
           >
             <slot
               name="header"
@@ -170,7 +171,7 @@
             >
               <span
                 class="relative mr-2.5 text-base"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-primary']"
+                :class="[dateIsToday(date.value) || computedSelectDay(date)  ? 'text-color-brand' : 'text-color-text-primary']"
               >
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
@@ -181,7 +182,7 @@
               </span>
               <span
                 class="text-sm"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-placeholder']"
+                :class="[dateIsToday(date.value) || computedSelectDay(date) ? 'text-color-brand' : 'text-color-text-placeholder']"
                 >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
               >
             </slot>
@@ -286,7 +287,7 @@
                 class="py-1.5 h-auto border border-color-border-separator rounded mb-2 shadow-sm"
               >
                 <div class="px-1.5 mb-1.5 border-l-2 border-color-brand break-all">{{ event.title }}</div>
-                <div class="mb-1.5 px-2 text-color-text-placeholder">
+                <div v-if="showTipTime" class="mb-1.5 px-2 text-color-text-placeholder">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
                 <p class="px-2 text-xs text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
@@ -370,7 +371,8 @@ export default defineComponent({
     'height',
     'mark-color',
     'multi-select',
-    'showBackToday'
+    'showBackToday',
+    'showTipTime'
   ],
   setup(props, context) {
     return setup({
