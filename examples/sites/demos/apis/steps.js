@@ -119,6 +119,9 @@ export default {
           name: 'itemStyle',
           type: 'Object',
           defaultValue: '{}',
+          meta: {
+            stable: '3.23.0'
+          },
           desc: {
             'zh-CN':
               '自定义单链型步骤条块的内联样式，数据类型为{ [statusName: string]: styleObject },，不同状态可根据key值差异化配置， key值为status字段的值，value值为对应节点的样式对象',

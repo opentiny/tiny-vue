@@ -45,7 +45,7 @@
     <div
       data-tag="tiny-steps-block"
       v-for="(node, index) in data"
-      :style="itemStyle[node.status]"
+      :style="itemStyle[node.status || 'none']"
       v-show="isVisibleHandler(index) === 'visible'"
       :key="index"
       :class="
@@ -79,7 +79,7 @@
                 'border-color-brand':
                   data[index - 1] &&
                   data[index - 1][statusField] === 'done' &&
-                  ['done', 'disabled'].includes(node[statusField])
+                  ['done', 'disabled', 'error', ''].includes(node[statusField])
               }
             )
           "
