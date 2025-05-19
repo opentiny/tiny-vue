@@ -378,6 +378,9 @@ export default {
         {
           name: 'delete',
           type: '(row: IData) => void',
+          meta: {
+            stable: '3.24.0'
+          },
           defaultValue: '',
           desc: {
             'zh-CN': '已选栏的选项的删除事件',
@@ -389,6 +392,9 @@ export default {
         {
           name: 'clear',
           type: '() => void',
+          meta: {
+            stable: '3.24.0'
+          },
           defaultValue: '',
           desc: {
             'zh-CN': '已选栏的清空事件',
