@@ -380,7 +380,7 @@ export default {
           type: '(row: IData) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '使用表格展示数据时，已选栏的选项的删除事件',
+            'zh-CN': '已选栏的选项的删除事件',
             'en-US': 'The delete event of the selected column options when displaying data in a table'
           },
           mode: ['pc'],
@@ -391,7 +391,7 @@ export default {
           type: '() => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '使用表格展示数据时，已选栏的清空事件',
+            'zh-CN': '已选栏的清空事件',
             'en-US': 'The clear event of the selected column when displaying data in a table'
           },
           mode: ['pc'],
