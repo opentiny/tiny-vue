@@ -76,10 +76,7 @@
               },
               { 'sm:hidden sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
               {
-                'border-color-brand':
-                  data[index - 1] &&
-                  data[index - 1][statusField] === 'done' &&
-                  ['done', 'disabled', 'error', ''].includes(node[statusField])
+                'border-color-brand': data[index - 1] && 'done' === data[index - 1][statusField]
               }
             )
           "
@@ -147,7 +144,7 @@
                 'opacity-0': index === data.length - 1
               },
               { 'sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
-              { 'border-color-brand': node[statusField] === 'done' }
+              { 'border-color-brand': 'done' === node[statusField] }
             )
           "
         ></div>
@@ -197,7 +194,7 @@
             'border-t-0.5 sm:border-t  flex-auto',
             { 'sm:hidden sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
             {
-              'border-color-brand': data[state.endIndex] && ['done', 'doing'].includes(data[state.endIndex].status)
+              'border-color-brand': data[state.endIndex] && 'done' === data[state.endIndex].status
             }
           ]"
         ></div>
