@@ -5,7 +5,7 @@
       v-show="state.showPopper"
       :class="
         m(
-          'min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] absoulte bg-color-bg-1',
+          'min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] absoulte bg-color-bg-1 tiny-dropdown-popper',
           { 'py-1.5': state.size === 'medium' },
           { 'py-1.5': state.size === 'small' },
           { 'py-0.75': state.size === 'mini' },
