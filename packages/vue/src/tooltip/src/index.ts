@@ -1,7 +1,13 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { ITooltipApi } from '@opentiny/vue-renderless/types/tooltip.type'
+import TooltipPc from './tooltip.vue'
+import TooltipMf from './mobile-first.vue'
 
-import template from 'virtual-template?pc|mobile-first'
+// 切换下面，以发布不同的tooltip组件
+
+// import template // from 'virtual-template?pc|mobile-first'
+
+const template = (mode) => (mode === 'pc' ? TooltipPc : TooltipMf) // 新PC, 老 MF
 
 export const tooltipProps = {
   ...$props,

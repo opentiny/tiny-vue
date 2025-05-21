@@ -12,7 +12,7 @@ import './assets/index.less'
 import './style.css'
 
 // 覆盖默认的github markdown样式
-import './assets/custom-markdown.css'
+import './assets/custom-markdown.less'
 import './assets/custom-block.less'
 import './assets/md-preview.less'
 
