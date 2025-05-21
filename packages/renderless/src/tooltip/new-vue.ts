@@ -6,12 +6,12 @@ export const api = ['state', 'handlePopEvent', 'handleRefEvent']
 
 export const renderless = (
   props,
-  { watch, toRefs, toRef, reactive, onBeforeUnmount, onDeactivated, onMounted, onUnmounted, inject },
+  { ref, watch, toRefs, toRef, reactive, onBeforeUnmount, onDeactivated, onMounted, onUnmounted, inject },
   { vm, emit, slots, nextTick, parent }
 ) => {
   const api = {} as any
   const popperVmRef = {}
-  const { showPopper, updatePopper, popperElm, referenceElm, doDestroy, popperJS } = userPopper({
+  const { showPopper, updatePopper, popperElm, referenceElm } = userPopper({
     emit,
     props,
     nextTick,
@@ -26,6 +26,7 @@ export const renderless = (
     popperVmRef
   } as any)
 
+  showPopper.value = false // 初始为false
   const state = reactive({
     showPopper,
     popperElm,
@@ -34,11 +35,12 @@ export const renderless = (
     showContent: inject('showContent', null),
     tipsMaxWidth: inject('tips-max-width', null)
   })
-  state.showPopper = false // 初始为false
 
-  const { start: delayShow, clear: cancelDelayShow } = useTimer(() => api.toggleShow(true), toRef(props, 'openDelay'))
-  const { start: delayHide, clear: cancelDelayHide } = useTimer(() => api.toggleShow(false), toRef(props, 'closeDelay'))
-  const { start: delayHideAfter } = useTimer(() => api.toggleShow(false), toRef(props, 'hideAfter'))
+  const useTimerFn = useTimer({ onUnmounted, ref })
+  const toggleShowFn = toggleShow({ state, props, emit, api })
+  const { start: delayShow, clear: cancelDelayShow } = useTimerFn(() => toggleShowFn(true), toRef(props, 'openDelay'))
+  const { start: delayHide, clear: cancelDelayHide } = useTimerFn(() => toggleShowFn(false), toRef(props, 'closeDelay'))
+  const { start: delayHideAfter } = useTimerFn(() => toggleShowFn(false), toRef(props, 'hideAfter'))
 
   Object.assign(api, {
     state,
@@ -48,8 +50,7 @@ export const renderless = (
     cancelDelayHide,
     delayHideAfter,
     handlePopEvent: handlePopEvent({ props, api }),
-    handleRefEvent: handleRefEvent({ props, api }),
-    toggleShow: toggleShow({ state, props, emit, api })
+    handleRefEvent: handleRefEvent({ props, api })
   })
   watch(
     () => props.modelValue,
@@ -69,8 +70,6 @@ export const renderless = (
   })
 
   vm.$on('tooltip-update', updatePopper())
-
-  onUnmounted(() => {})
 
   return api
 }

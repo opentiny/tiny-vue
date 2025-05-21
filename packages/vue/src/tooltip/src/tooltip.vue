@@ -10,31 +10,31 @@
     @mouseleave="handleRefEvent('mouseleave')"
   >
     <slot></slot>
+    <Transition :name="transition">
+      <div
+        ref="popperRef"
+        v-show="!disabled && state.showPopper"
+        :id="state.tooltipId"
+        class="tiny-tooltip tiny-tooltip__popper"
+        :class="['is-' + (type || effect || 'dark'), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
+        :style="{ ['max-width']: state.tipsMaxWidth }"
+        @mouseenter="handlePopEvent('mouseenter')"
+        @mouseleave="handlePopEvent('mouseleave')"
+      >
+        <slot name="content">
+          <template v-if="renderContent">
+            <render-content-node :renderContent="renderContent" :content="content" />
+          </template>
+          <template v-else>
+            <div v-if="!pre" class="tiny-tooltip__content-wrapper" :style="{ ['max-height']: contentMaxHeight }">
+              {{ content }}
+            </div>
+            <pre v-else>{{ content }}</pre>
+          </template>
+        </slot>
+      </div>
+    </Transition>
   </div>
-  <Transition :name="transition">
-    <div
-      ref="popperRef"
-      v-show="!disabled && state.showPopper"
-      :id="state.tooltipId"
-      class="tiny-tooltip tiny-tooltip__popper"
-      :class="['is-' + (type || effect || 'dark'), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
-      :style="{ ['max-width']: state.tipsMaxWidth }"
-      @mouseenter="handlePopEvent('mouseenter')"
-      @mouseleave="handlePopEvent('mouseleave')"
-    >
-      <slot name="content">
-        <template v-if="renderContent">
-          <render-content-node :renderContent="renderContent" :content="content" />
-        </template>
-        <template v-else>
-          <div v-if="!pre" class="tiny-tooltip__content-wrapper" :style="{ ['max-height']: contentMaxHeight }">
-            {{ content }}
-          </div>
-          <pre v-else>{{ content }}</pre>
-        </template>
-      </slot>
-    </div>
-  </Transition>
 </template>
 
 <script lang="tsx">

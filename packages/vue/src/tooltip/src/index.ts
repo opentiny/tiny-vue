@@ -7,7 +7,7 @@ import TooltipMf from './mobile-first.vue'
 
 // import template // from 'virtual-template?pc|mobile-first'
 
-const template = (mode) => (mode === 'pc' ? TooltipPc : TooltipMf) // 新PC, 老 MF
+const template = (mode) => (mode === 'mobile-first' ? TooltipMf : TooltipPc) // 新PC, 老 MF
 
 export const tooltipProps = {
   ...$props,
