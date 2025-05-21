@@ -378,7 +378,7 @@
           <tiny-grid
             v-if="renderType === 'grid'"
             auto-resize
-            :row-id="valueField"
+            :row-id="gridOp.rowId || valueField"
             :select-config="buildSelectConfig()"
             :radio-config="buildRadioConfig()"
             ref="selectGrid"
