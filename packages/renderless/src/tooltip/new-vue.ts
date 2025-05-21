@@ -1,17 +1,6 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
-
 import { handlePopEvent, handleRefEvent, toggleShow } from './new-index'
 import { userPopper, useTimer } from '@opentiny/vue-hooks'
+import { guid } from '@opentiny/utils'
 
 export const api = ['state', 'handlePopEvent', 'handleRefEvent']
 
@@ -21,7 +10,7 @@ export const renderless = (
   { vm, emit, slots, nextTick, parent }
 ) => {
   const api = {} as any
-
+  const popperVmRef = {}
   const { showPopper, updatePopper, popperElm, referenceElm, doDestroy, popperJS } = userPopper({
     emit,
     props,
@@ -33,19 +22,23 @@ export const renderless = (
     slots,
     onBeforeUnmount,
     onDeactivated,
-    watch
+    watch,
+    popperVmRef
   } as any)
 
   const state = reactive({
     showPopper,
     popperElm,
     referenceElm,
+    tooltipId: guid('tiny-tooltip-', 4),
     showContent: inject('showContent', null),
     tipsMaxWidth: inject('tips-max-width', null)
   })
+  state.showPopper = false // 初始为false
 
   const { start: delayShow, clear: cancelDelayShow } = useTimer(() => api.toggleShow(true), toRef(props, 'openDelay'))
   const { start: delayHide, clear: cancelDelayHide } = useTimer(() => api.toggleShow(false), toRef(props, 'closeDelay'))
+  const { start: delayHideAfter } = useTimer(() => api.toggleShow(false), toRef(props, 'hideAfter'))
 
   Object.assign(api, {
     state,
@@ -53,12 +46,27 @@ export const renderless = (
     cancelDelayShow,
     delayHide,
     cancelDelayHide,
+    delayHideAfter,
     handlePopEvent: handlePopEvent({ props, api }),
     handleRefEvent: handleRefEvent({ props, api }),
-    toggleShow: toggleShow({ state, props, emit })
+    toggleShow: toggleShow({ state, props, emit, api })
   })
-
-  onMounted(() => {})
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (props.manual) {
+        val ? delayShow() : delayHide()
+      }
+    }
+  )
+  onMounted(() => {
+    state.popperElm = vm.$refs.popperRef
+    state.referenceElm = vm.$refs.referenceRef
+    // 初始显示
+    if (props.manual && props.modelValue) {
+      state.showPopper = true
+    }
+  })
 
   vm.$on('tooltip-update', updatePopper())
 

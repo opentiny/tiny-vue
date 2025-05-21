@@ -1,31 +1,35 @@
 <template>
-  <span
+  <div
     ref="referenceRef"
     class="tiny-tooltip"
     v-bind="$attrs"
+    style="display: inline-block"
+    :tabindex="tabindex"
+    :aria-describeby="state.tooltipId"
     @mouseenter="handleRefEvent('mouseenter')"
     @mouseleave="handleRefEvent('mouseleave')"
   >
     <slot></slot>
-  </span>
+  </div>
   <Transition :name="transition">
     <div
       ref="popperRef"
       v-show="!disabled && state.showPopper"
+      :id="state.tooltipId"
       class="tiny-tooltip tiny-tooltip__popper"
-      :class="['is-' + (type || effect), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
+      :class="['is-' + (type || effect || 'dark'), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
       :style="{ ['max-width']: state.tipsMaxWidth }"
       @mouseenter="handlePopEvent('mouseenter')"
       @mouseleave="handlePopEvent('mouseleave')"
     >
       <slot name="content">
         <template v-if="renderContent">
-          <render-content-node />
+          <render-content-node :renderContent="renderContent" :content="content" />
         </template>
         <template v-else>
-          <span v-if="!pre" class="tiny-tooltip__content-wrapper" :style="{ ['max-height']: contentMaxHeight }">
+          <div v-if="!pre" class="tiny-tooltip__content-wrapper" :style="{ ['max-height']: contentMaxHeight }">
             {{ content }}
-          </span>
+          </div>
           <pre v-else>{{ content }}</pre>
         </template>
       </slot>
@@ -43,8 +47,9 @@ export default defineComponent({
   componentName: 'Tooltip',
   components: {
     RenderContentNode: {
+      props: ['renderContent', 'content'],
       render() {
-        return this.$parent.renderContent(h, this.$parent.content)
+        return this.renderContent(h, this.content)
       }
     }
   },
@@ -55,21 +60,22 @@ export default defineComponent({
       default: () => 'always',
       validator: (value: string) => ['always', 'auto'].includes(value)
     },
-    // 原来未暴露的属性
+    // 原来未暴露的属性, 自动传入vue-popper
     adjustArrow: {
       type: Boolean,
       default: () => false
     },
+    //  自动传入vue-popper
     appendToBody: {
       type: Boolean,
       default: () => true
     },
-    // 原来未暴露的属性
+    // 原来未暴露的属性, 自动传入vue-popper
     arrowOffset: {
       type: Number,
       default: () => 0
     },
-    // 原来未暴露的属性
+    // 原来未暴露的属性, 未入 vue-popper， 可能bug
     boundariesPadding: {
       type: Number,
       default: () => 5
@@ -94,6 +100,7 @@ export default defineComponent({
     },
     manual: { type: Boolean },
     modelValue: { type: Boolean },
+    //  自动传入vue-popper
     offset: {
       default: () => 0
     },
