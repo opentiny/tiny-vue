@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Textpopup 基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('text-popup#value')
+  await page.goto('text-popup#modelValue')
 
   const preview = page.locator('#modelValue')
   const small = preview.locator('input')
