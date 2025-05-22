@@ -18,8 +18,10 @@
         class="tiny-tooltip tiny-tooltip__popper"
         :class="['is-' + (type || effect || 'dark'), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
         :style="{ ['max-width']: state.tipsMaxWidth }"
+        role="tooltip"
         @mouseenter="handlePopEvent('mouseenter')"
         @mouseleave="handlePopEvent('mouseleave')"
+        @click.stop
       >
         <slot name="content">
           <template v-if="renderContent">
@@ -42,9 +44,12 @@ import { renderless, api } from '@opentiny/vue-renderless/tooltip/new-vue'
 import { $prefix, setup, defineComponent, $props, h } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/tooltip/index.less'
 
+// import Clickoutside from './clickoutside'
+
 export default defineComponent({
   name: $prefix + 'Tooltip',
   componentName: 'Tooltip',
+  // directives: directive({ Clickoutside }),
   components: {
     RenderContentNode: {
       props: ['renderContent', 'content'],

@@ -65,7 +65,7 @@ export const renderless = (
     state.referenceElm = vm.$refs.referenceRef
     // 初始显示
     if (props.manual && props.modelValue) {
-      state.showPopper = true
+      nextTick(() => (state.showPopper = true))
     }
   })
 

@@ -11,5 +11,5 @@ test('测试自定义 popper', async ({ page }) => {
   await expect(tooltip).toBeVisible()
 
   await page.mouse.move(0, 0)
-  await expect(tooltip).toHaveCount(0)
+  await expect(tooltip).toHaveCount(1) // 组件卸载时，会删除dom
 })
