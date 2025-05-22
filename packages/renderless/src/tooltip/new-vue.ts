@@ -69,7 +69,12 @@ export const renderless = (
     }
   })
 
-  vm.$on('tooltip-update', updatePopper())
+  // 历史遗留
+  vm.$on('tooltip-update', (el?: HTMLElement) => {
+    if (el) state.popperElm = el
+    if (props.modelValue) updatePopper()
+  })
+  onUnmounted(() => vm.$off('tooltip-update'))
 
   return api
 }

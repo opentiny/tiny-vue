@@ -29,7 +29,7 @@ export const toggleShow =
   ({ state, props, emit, api }) =>
   (isShow: boolean) => {
     // 智能识别模式
-    if (props.visible === 'auto' && state.referenceElm) {
+    if (props.visible === 'auto' && state.referenceElm?.firstElementChild) {
       const { clientWidth, scrollWidth } = state.referenceElm.firstElementChild
       if (scrollWidth <= clientWidth) {
         return

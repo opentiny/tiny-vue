@@ -5,7 +5,7 @@
     v-bind="$attrs"
     style="display: inline-block"
     :tabindex="tabindex"
-    :aria-describeby="state.tooltipId"
+    :aria-describedby="state.tooltipId"
     @mouseenter="handleRefEvent('mouseenter')"
     @mouseleave="handleRefEvent('mouseleave')"
   >
