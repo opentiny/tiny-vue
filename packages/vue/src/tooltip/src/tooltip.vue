@@ -44,12 +44,9 @@ import { renderless, api } from '@opentiny/vue-renderless/tooltip/new-vue'
 import { $prefix, setup, defineComponent, $props, h } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/tooltip/index.less'
 
-// import Clickoutside from './clickoutside'
-
 export default defineComponent({
   name: $prefix + 'Tooltip',
   componentName: 'Tooltip',
-  // directives: directive({ Clickoutside }),
   components: {
     RenderContentNode: {
       props: ['renderContent', 'content'],
@@ -122,7 +119,7 @@ export default defineComponent({
       default: () => ({ gpuAcceleration: false, boundariesPadding: 10 })
     },
     pre: { type: Boolean },
-    // 原来未暴露的属性， 不明确作用
+    // 原来未暴露的属性， 自动传入vue-popper
     reference: {},
     popper: {},
 

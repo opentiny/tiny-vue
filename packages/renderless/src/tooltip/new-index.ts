@@ -25,17 +25,21 @@ export const handlePopEvent =
     }
   }
 
+const isDomScroll = (el: HTMLElement) => {
+  if (!el) return false
+
+  const { clientWidth, scrollWidth } = el
+  return clientWidth < scrollWidth
+}
 export const toggleShow =
   ({ state, props, emit, api }) =>
   (isShow: boolean) => {
     // 智能识别模式
-    if (props.visible === 'auto' && state.referenceElm?.firstElementChild) {
-      const { clientWidth, scrollWidth } = state.referenceElm.firstElementChild
-      if (scrollWidth <= clientWidth) {
+    if (props.visible === 'auto') {
+      if (!isDomScroll(state.referenceElm) && !isDomScroll(state.referenceElm.firstElementChild)) {
         return
       }
     }
-
     state.showPopper = isShow
     if (props.manual) {
       emit('update:modelValue', isShow)
