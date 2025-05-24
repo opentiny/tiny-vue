@@ -21,17 +21,7 @@ export const renderless = (props, { reactive, watch, onMounted }, { vm, emit }, 
   })
 
   watch(
-    () => [
-      props.level,
-      props.value,
-      props.color,
-      props.style,
-      props.size,
-      props.icon,
-      props.level,
-      props.iconSize,
-      props.bordered
-    ],
+    () => [props.level, props.value, props.color, props.style, props.size, props.icon, props.iconSize, props.bordered],
     () => {
       api.draw()
       api.change()
