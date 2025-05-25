@@ -2,7 +2,16 @@ import { handlePopEvent, handleRefEvent, toggleShow } from './new-index'
 import { userPopper, useTimer } from '@opentiny/vue-hooks'
 import { guid } from '@opentiny/utils'
 
-export const api = ['state', 'handlePopEvent', 'handleRefEvent']
+export const api = [
+  'state',
+  'handlePopEvent',
+  'handleRefEvent',
+  'show',
+  'hide',
+  'updatePopper',
+  'setExpectedState',
+  'debounceClose'
+]
 
 export const renderless = (
   props,
@@ -11,7 +20,7 @@ export const renderless = (
 ) => {
   const api = {} as any
   const popperVmRef = {}
-  const { showPopper, updatePopper, popperElm, referenceElm } = userPopper({
+  const { showPopper, updatePopper, popperElm, referenceElm, currentPlacement } = userPopper({
     emit,
     props,
     nextTick,
@@ -31,6 +40,8 @@ export const renderless = (
     showPopper,
     popperElm,
     referenceElm,
+    // 适配以前用法
+    currentPlacement,
     tooltipId: guid('tiny-tooltip-', 4),
     showContent: inject('showContent', null),
     tipsMaxWidth: inject('tips-max-width', null)
@@ -50,7 +61,13 @@ export const renderless = (
     cancelDelayHide,
     delayHideAfter,
     handlePopEvent: handlePopEvent({ props, api }),
-    handleRefEvent: handleRefEvent({ props, api })
+    handleRefEvent: handleRefEvent({ props, api }),
+    // 适配以前用法
+    show: delayShow,
+    hide: delayHide,
+    updatePopper,
+    setExpectedState: () => {},
+    debounceClose: delayHide
   })
   watch(
     () => props.modelValue,
