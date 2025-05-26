@@ -79,7 +79,7 @@ export default {
         },
         {
           name: 'modelValue',
-          type: 'string',
+          type: Component | 'string',
           defaultValue: '',
           desc: {
             'zh-CN': 'type=icon 时为图标组件，type=label时为字体串，type=image时为资源路径',
