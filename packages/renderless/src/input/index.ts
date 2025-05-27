@@ -435,7 +435,7 @@ export const handleEnterDisplayOnlyContent =
     if (type === 'textarea' && props.popupMore) return
 
     const target = type === 'textarea' ? $event.target.querySelector('.text-box') : $event.target
-    state.displayOnlyTooltip = ''
+    state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
 
     if (!target) {
       return

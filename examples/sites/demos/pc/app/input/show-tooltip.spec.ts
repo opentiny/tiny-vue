@@ -6,5 +6,5 @@ test('只读态悬浮提示', async ({ page }) => {
 
   const demo = page.locator('#show-tooltip')
   await demo.locator('.tiny-input .tiny-input-display-only__content').hover()
-  await expect(page.locator('.tiny-tooltip.tiny-tooltip__popper')).not.toBeVisible()
+  await expect(page.locator('.tiny-tooltip.tiny-tooltip__popper:not(.docs-tooltip)')).not.toBeVisible()
 })

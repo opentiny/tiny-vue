@@ -11,7 +11,9 @@ export const api = [
   'updatePopper',
   'setExpectedState',
   'debounceClose',
-  'handleClosePopper'
+  'handleClosePopper',
+  'handleShowPopper',
+  'doDestroy'
 ]
 
 export const renderless = (
@@ -21,7 +23,7 @@ export const renderless = (
 ) => {
   const api = {} as any
   const popperVmRef = {}
-  const { showPopper, updatePopper, popperElm, referenceElm, currentPlacement } = userPopper({
+  const { showPopper, updatePopper, popperElm, referenceElm, currentPlacement, doDestroy } = userPopper({
     emit,
     props,
     nextTick,
@@ -67,9 +69,13 @@ export const renderless = (
     show: delayShow,
     hide: delayHide,
     updatePopper,
-    setExpectedState: () => {},
+    setExpectedState: (value) => {
+      state.showPopper = value
+    },
     debounceClose: delayHide,
-    handleClosePopper: delayHide
+    handleClosePopper: () => (state.showPopper = false),
+    handleShowPopper: () => (state.showPopper = true),
+    doDestroy: () => {}
   })
   watch(
     () => props.modelValue,
@@ -79,6 +85,7 @@ export const renderless = (
       }
     }
   )
+
   onMounted(() => {
     state.popperElm = vm.$refs.popperRef
     state.referenceElm = vm.$refs.referenceRef
