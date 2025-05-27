@@ -19,6 +19,7 @@
         :class="['is-' + (type || effect || 'dark'), popperClass, state.showContent ? 'tiny-tooltip__show-tips' : '']"
         :style="{ ['max-width']: state.tipsMaxWidth }"
         role="tooltip"
+        :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'"
         @mouseenter="handlePopEvent('mouseenter')"
         @mouseleave="handlePopEvent('mouseleave')"
         @click.stop

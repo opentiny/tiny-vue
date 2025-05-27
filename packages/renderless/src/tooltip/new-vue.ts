@@ -10,7 +10,8 @@ export const api = [
   'hide',
   'updatePopper',
   'setExpectedState',
-  'debounceClose'
+  'debounceClose',
+  'handleClosePopper'
 ]
 
 export const renderless = (
@@ -67,7 +68,8 @@ export const renderless = (
     hide: delayHide,
     updatePopper,
     setExpectedState: () => {},
-    debounceClose: delayHide
+    debounceClose: delayHide,
+    handleClosePopper: delayHide
   })
   watch(
     () => props.modelValue,
