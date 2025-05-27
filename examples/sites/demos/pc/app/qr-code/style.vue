@@ -1,13 +1,20 @@
 <template>
-  <tiny-qr-code v-bind="params"></tiny-qr-code>
+  <div class="qr-code-container">
+    <div>
+      <tiny-button @click="changeColor">改变颜色</tiny-button>
+    </div>
+    <br />
+    <tiny-qr-code v-bind="params"></tiny-qr-code>
+  </div>
 </template>
 
 <script>
-import { TinyQrCode } from '@opentiny/vue'
+import { TinyQrCode, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyQrCode
+    TinyQrCode,
+    TinyButton
   },
   data() {
     return {
@@ -17,6 +24,11 @@ export default {
         size: 250,
         style: { background: '#f5f5f5', padding: '24px' }
       }
+    }
+  },
+  methods: {
+    changeColor() {
+      this.params.color = '#666'
     }
   }
 }

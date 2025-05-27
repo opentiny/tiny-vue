@@ -210,16 +210,22 @@
         }
 
         .tree-node-name {
+          display: flex;
           align-items: center;
           padding: 0 var(--tv-TreeMenu-node-body-text-padding-x);
 
           &:hover {
             font-weight: var(--tv-TreeMenu-node-name-hover-font-weight);
             color: var(--tv-TreeMenu-node-name-hover-color);
+
+            svg {
+              fill: var(--tv-TreeMenu-node-icon-hover-color);
+            }
           }
 
           svg {
             margin-right: var(--tv-TreeMenu-prefix-icon-margin-right);
+            fill: var(--tv-TreeMenu-node-icon-fill-color);
           }
         }
       }
@@ -254,6 +260,10 @@
           .tree-node-body {
             font-weight: bold;
             color: var(--tv-TreeMenu-node-body-selected-color);
+
+            svg {
+              fill: var(--tv-TreeMenu-node-icon-hover-color);
+            }
           }
         }
 
