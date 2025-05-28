@@ -9,7 +9,13 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
-  <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
+  <div
+    class="docs-content"
+    :class="{ 'docs-on-robot-show': show }"
+    id="doc-layout-scroller"
+    ref="scrollRef"
+    @scroll="onDocLayoutScroll"
+  >
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -554,7 +560,7 @@ const {
 
 onMounted(() => {
   // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
-  const hasRobot = router.currentRoute.value.params['mcp-robot']
+  const hasRobot = router.currentRoute.value.query['mcp-robot'] !== undefined
   show.value = !!hasRobot
 })
 </script>
@@ -565,6 +571,10 @@ onMounted(() => {
   overflow: hidden auto;
   margin-top: 16px;
   transition: all ease-in-out 0.3s;
+
+  &.docs-on-robot-show {
+    margin-right: 480px;
+  }
 
   .docs-tabs-wrap {
     width: 100%;
@@ -674,5 +684,60 @@ onMounted(() => {
   .one-demo-col2 {
     grid-template-columns: 100%;
   }
+}
+</style>
+
+// mcp-robot的样式
+<style scoped lang="less">
+.chat-input {
+  margin-top: 8px;
+  padding: 10px 15px;
+}
+
+.tiny-container {
+  top: 64px;
+
+  container-type: inline-size;
+
+  :deep(.tr-welcome__title-wrapper) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.welcome-footer {
+  margin-top: 12px;
+  color: rgb(128, 128, 128);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.tiny-prompts {
+  padding: 16px 24px;
+
+  :deep(.prompt-item) {
+    width: 100%;
+    box-sizing: border-box;
+
+    @container (width >=64rem) {
+      width: calc(50% - 8px);
+    }
+
+    .tr-prompt__content-label {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+}
+
+.tr-history-demo {
+  position: absolute;
+  right: 100%;
+  top: 100%;
+  z-index: 100;
+  width: 300px;
+  height: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 </style>
