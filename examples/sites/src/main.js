@@ -2,6 +2,9 @@ import { createHead } from '@vueuse/head'
 import { createApp } from 'vue'
 import '@unocss/reset/eric-meyer.css'
 
+// tiny-robot 对话框
+import '@opentiny/tiny-robot/dist/style.css'
+
 // markdown文件内代码高亮
 import 'prismjs/themes/prism.css'
 import 'uno.css'
