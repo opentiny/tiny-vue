@@ -27,8 +27,8 @@ test('[DatePanel] 测试范围选择取消面板联动', async ({ page }) => {
   await page.getByText('2023 年').click()
   await expect(page.getByText('2023 年')).toBeVisible()
   // 联动
-  await page.getByText('一月', { exact: true }).first().click()
-  await page.getByText('六月').nth(1).click()
+  await page.getByText('1 月', { exact: true }).first().click()
+  await page.getByText('6 月').nth(1).click()
   await expect(page.locator('.value-link1')).toHaveText('[ "2023-01", "2024-06" ]')
 
   // 不联动
@@ -43,8 +43,8 @@ test('[DatePanel] 测试范围选择取消面板联动', async ({ page }) => {
       '.tiny-month-range > .tiny-picker-panel__body-wrapper > .tiny-picker-panel__body > div:nth-child(2) > .tiny-date-range-picker__header > button:nth-child(2)'
     )
     .click()
-  await page.getByText('六月').nth(2).click()
-  await page.getByText('五月').nth(3).click()
+  await page.getByText('6 月').nth(2).click()
+  await page.getByText('5 月').nth(3).click()
   await expect(page.locator('.value-unlink1')).toHaveText('[ "2023-06", "2025-05" ]')
 
   // yaerRange
