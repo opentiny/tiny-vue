@@ -117,13 +117,13 @@
               {
                 "title": "功能色 - 提醒 Functional Color - Warning",
                 "colors": {
-                  "color-warning": "yellow-600,100",
+                  "color-warning": "yellow-500,100",
                   "color-warning-hover": "yellow-400,100",
                   "color-warning-active": "yellow-600,100",
                   "color-warning-disabled": "yellow-100,100",
-                  "color-warning-bold": "yellow-700,100",
+                  "color-warning-bold": "yellow-800,100",
                   "color-warning-subtle": "yellow-200,100",
-                  "color-warning-subtler": "yellow-100,100"
+                  "color-warning-subtler": "yellow-50,100"
                 }
               },
               {
@@ -557,13 +557,13 @@
               {
                 "title": "功能色 - 提醒 Functional Color - Warning",
                 "colors": {
-                  "color-warning": "yellow-600,100",
+                  "color-warning": "yellow-500,100",
                   "color-warning-hover": "yellow-400,100",
                   "color-warning-active": "yellow-600,100",
                   "color-warning-disabled": "yellow-100,100",
-                  "color-warning-bold": "yellow-700,100",
+                  "color-warning-bold": "yellow-800,100",
                   "color-warning-subtle": "yellow-200,100",
-                  "color-warning-subtler": "yellow-100,100"
+                  "color-warning-subtler": "yellow-50,100"
                 }
               },
               {
