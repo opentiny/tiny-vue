@@ -186,7 +186,7 @@ import {
 } from '@opentiny/tiny-robot'
 import { GeneratingStatus } from '@opentiny/tiny-robot-kit'
 import { IconHistory, IconNewSession } from '@opentiny/tiny-robot-svgs'
-import { useTinyRobot } from './useTinyRobot.js'
+import { useTinyRobot } from './composition/useTinyRobot.js'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
