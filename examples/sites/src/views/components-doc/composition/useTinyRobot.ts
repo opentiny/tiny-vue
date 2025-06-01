@@ -1,13 +1,18 @@
+import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import { AIClient, useConversation } from '@opentiny/tiny-robot-kit'
 import { IconAi, IconUser } from '@opentiny/tiny-robot-svgs'
 import { h, nextTick, onMounted, reactive, ref, toRaw, watch } from 'vue'
+import { DifyModelProvider } from './DifyModelProvider.js'
 
+const difyConfig: AIModelConfig = {
+  provider: 'custom',
+  apiUrl: 'https://api.dify.ai/v1',
+  apiKey: 'app-H0VJI4LqZ4KskdcA5a07pjXf'
+}
 export function useTinyRobot() {
   const client = new AIClient({
-    provider: 'openai',
-    // apiKey: 'your-api-key',
-    defaultModel: 'gpt-3.5-turbo',
-    apiUrl: location.origin + '/cdocs/tiny-robot/'
+    providerImplementation: new DifyModelProvider(difyConfig),
+    ...difyConfig
   })
 
   const fullscreen = ref(false)
