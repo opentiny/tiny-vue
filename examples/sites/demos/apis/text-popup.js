@@ -39,7 +39,7 @@ export default {
           pcDemo: 'separtor'
         },
         {
-          name: 'value',
+          name: 'modelValue',
           type: 'string',
           defaultValue: '',
           desc: {
@@ -47,7 +47,7 @@ export default {
             'en-US': 'Bound Value'
           },
           mode: ['pc'],
-          pcDemo: 'value'
+          pcDemo: 'modelValue'
         },
         {
           name: 'width',

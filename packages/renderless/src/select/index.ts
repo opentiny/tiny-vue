@@ -875,7 +875,7 @@ export const handleOptionSelect =
 
     state.isSilentBlur = byClick
 
-    api.setSoftFocus()
+    if (!props.automaticDropdown) api.setSoftFocus()
 
     if (state.visible) {
       return
