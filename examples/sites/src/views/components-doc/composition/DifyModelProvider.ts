@@ -2,7 +2,7 @@ import type { ChatCompletionRequest } from '@opentiny/tiny-robot-kit'
 import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import type { ChatCompletionResponse } from '@opentiny/tiny-robot-kit'
 import type { StreamHandler } from '@opentiny/tiny-robot-kit'
-import { BaseModelProvider, handleRequestError } from '@opentiny/tiny-robot-kit'
+import { BaseModelProvider } from '@opentiny/tiny-robot-kit'
 import { handleSSEStream } from './utils.js'
 
 /**
@@ -57,7 +57,7 @@ export class DifyModelProvider extends BaseModelProvider {
         console.warn('Request was aborted:', error)
       } else {
         console.error('Error in chatStream:', error)
-        handler.onError(handleRequestError(error))
+        // handler.onError(handleRequestError(error))
       }
     }
   }
