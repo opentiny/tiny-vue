@@ -19,7 +19,7 @@ import './assets/custom-markdown.css'
 import './assets/custom-block.less'
 import './assets/md-preview.less'
 
-import { i18n } from './i18n/index'
+import { i18n, t } from './i18n/index'
 import { router } from './router'
 import App from './App.vue'
 import { appData } from './tools'
@@ -35,6 +35,12 @@ import docsearch from '@docsearch/js'
 import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
 import '@opentiny/vue-theme/dark-theme-index.css'
+
+import { registerMcpConfig } from '@opentiny/vue-common'
+import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
+
+// 注册TinyVue组件mcp配置
+registerMcpConfig(getTinyVueMcpConfig({ t }), createMcpTools)
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 

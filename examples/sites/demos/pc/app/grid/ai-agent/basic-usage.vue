@@ -105,7 +105,7 @@ export default {
     ]
 
     return {
-      server: null,
+      server: new McpServer({ name: 'base-config', version: '1.0.0' }, {}),
       sessionID: '',
       op: {
         editConfig: {
@@ -176,8 +176,7 @@ export default {
     window.$sessionId = this.sessionID
 
     // 3、
-    const server = new McpServer({ name: 'base-config', version: '1.0.0' }, {})
-    await server.connect(transport)
+    await this.server.connect(transport)
   }
 }
 </script>
