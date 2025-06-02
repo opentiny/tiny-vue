@@ -448,21 +448,22 @@ defineExpose({ loadPage })
 const show = ref(false)
 onMounted(() => {
   // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
-  const hasRobot = router.currentRoute.value.query['mcp-robot'] !== undefined
+  const hasRobot = router.currentRoute.value.hash === '#grid-ai-agent'
   show.value = !!hasRobot
+
+  document.body.classList.toggle('docs-on-robot-show', show.value)
 })
 </script>
 
 <style lang="less" scoped>
+:global(.docs-on-robot-show .docs-content) {
+  margin-right: 480px;
+}
 .docs-content {
   flex: 1;
   overflow: hidden auto;
   margin-top: 16px;
   transition: all ease-in-out 0.3s;
-
-  &.docs-on-robot-show {
-    margin-right: 480px;
-  }
 
   .docs-tabs-wrap {
     width: 100%;

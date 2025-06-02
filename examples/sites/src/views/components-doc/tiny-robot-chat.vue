@@ -33,7 +33,7 @@
         @item-click="handlePromptItemClick"
       ></tr-prompts>
     </div>
-    <tr-bubble-list v-else :items="messages" :roles="roles" auto-scroll></tr-bubble-list>
+    <tr-bubble-list v-else :items="messages" :roles="roles" auto-scroll type="markdown"></tr-bubble-list>
 
     <template #footer>
       <div class="chat-input">
@@ -115,12 +115,6 @@ const {
   handleSendMessage,
   handleMessageKeydown
 } = useTinyRobot()
-
-onMounted(() => {
-  // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
-  const hasRobot = router.currentRoute.value.query['mcp-robot'] !== undefined
-  show.value = !!hasRobot
-})
 </script>
 
 <style scoped lang="less">

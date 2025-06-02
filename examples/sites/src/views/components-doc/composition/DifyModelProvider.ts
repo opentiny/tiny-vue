@@ -2,7 +2,8 @@ import type { ChatCompletionRequest } from '@opentiny/tiny-robot-kit'
 import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import type { ChatCompletionResponse } from '@opentiny/tiny-robot-kit'
 import type { StreamHandler } from '@opentiny/tiny-robot-kit'
-import { BaseModelProvider, handleSSEStream, handleRequestError } from '@opentiny/tiny-robot-kit'
+import { BaseModelProvider, handleRequestError } from '@opentiny/tiny-robot-kit'
+import { handleSSEStream } from './utils.js'
 
 /**
  * 对接AIClient的自定义 Dify 大模型服务
@@ -42,14 +43,13 @@ export class DifyModelProvider extends BaseModelProvider {
         body: JSON.stringify({
           query: lastMessage,
           user: 'user',
-          response_mode: 'stream'
+          response_mode: 'streaming',
+          inputs: {
+            sessionId: window.$sessionId
+          }
           // conversation_id:''
         })
       })
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
 
       await handleSSEStream(response, handler, signal)
     } catch (error) {

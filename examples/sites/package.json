@@ -27,6 +27,8 @@
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@docsearch/react": "npm:@docsearch/css",
+    "@modelcontextprotocol/sdk": "1.12.1",
+    "@opentiny/next": "0.1.2",
     "@opentiny/tiny-robot": "0.2.0-alpha.7",
     "@opentiny/tiny-robot-kit": "0.2.0-alpha.7",
     "@opentiny/tiny-robot-svgs": "0.2.0-alpha.7",
