@@ -2,7 +2,7 @@ name: Auto Deploy Site
 
 on:
   push:
-    branches: [dev]
+    branches: [dev, shen/site-add-robot]
     paths:
       - 'examples/sites/**'
       - '!examples/sites/**/*.spec.ts'
