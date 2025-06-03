@@ -152,6 +152,7 @@ export function useTinyRobot() {
 
   const roles = {
     assistant: {
+      type: 'markdown',
       placement: 'start',
       avatar: aiAvatar,
       maxWidth: '80%'

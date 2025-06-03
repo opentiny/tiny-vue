@@ -64,6 +64,25 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
           if (!dataMatch) continue
 
           const data = JSON.parse(dataMatch[1])
+          if (data?.event === 'workflow_started') {
+            handler.onData({
+              id: data.workflow_run_id,
+              created: data.created_at,
+              choices: [
+                {
+                  index: messageIndex++,
+                  delta: {
+                    role: 'assistant',
+                    content: '**Workflow started** \r\n'
+                  },
+                  finish_reason: null
+                }
+              ],
+              object: '',
+              model: ''
+            })
+          }
+
           if (data?.event === 'message' && data?.answer) {
             handler.onData({
               id: data.id,
