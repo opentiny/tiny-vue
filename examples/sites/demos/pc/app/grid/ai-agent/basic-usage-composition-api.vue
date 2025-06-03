@@ -1,28 +1,36 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+  <tiny-grid
+    :data="tableData"
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    :tiny_mcp_config="{
+      server,
+      business: {
+        id: 'company-information',
+        description: '公司人员信息表'
+      }
+    }"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+    <tiny-grid-column field="company" title="公司名称"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
     <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-    <tiny-grid-column
-      field="boole"
-      title="布尔值"
-      align="center"
-      format-text="boole"
-      :editor="checkboxEdit"
-    ></tiny-grid-column>
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script setup>
+import { ref, onMounted } from 'vue'
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
-import { reactive } from 'vue'
+import { createTransportPair, createSseProxy } from '@opentiny/next'
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
+import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 
-const tableData = reactive([
+// 定义响应式数据
+const tableData = ref([
   {
     id: '1',
-    name: 'GFD 科技 YX 公司',
+    company: 'GFD 科技 YX 公司',
     city: '福州',
     employees: 800,
     createdDate: '2014-04-30 00:56:00',
@@ -30,7 +38,7 @@ const tableData = reactive([
   },
   {
     id: '2',
-    name: 'WWW 科技 YX 公司',
+    company: 'WWW 科技 YX 公司',
     city: '深圳',
     employees: 300,
     createdDate: '2016-07-08 12:36:22',
@@ -38,7 +46,7 @@ const tableData = reactive([
   },
   {
     id: '3',
-    name: 'RFV 有限责任公司',
+    company: 'RFV 有限责任公司',
     city: '中山',
     employees: 1300,
     createdDate: '2014-02-14 14:14:14',
@@ -46,7 +54,7 @@ const tableData = reactive([
   },
   {
     id: '4',
-    name: 'TGB 科技 YX 公司',
+    company: 'TGB 科技 YX 公司',
     city: '龙岩',
     employees: 360,
     createdDate: '2013-01-13 13:13:13',
@@ -54,7 +62,7 @@ const tableData = reactive([
   },
   {
     id: '5',
-    name: 'YHN 科技 YX 公司',
+    company: 'YHN 科技 YX 公司',
     city: '韶关',
     employees: 810,
     createdDate: '2012-12-12 12:12:12',
@@ -62,7 +70,7 @@ const tableData = reactive([
   },
   {
     id: '6',
-    name: 'WSX 科技 YX 公司',
+    company: 'WSX 科技 YX 公司',
     city: '黄冈',
     employees: 800,
     createdDate: '2011-11-11 11:11:11',
@@ -70,7 +78,7 @@ const tableData = reactive([
   },
   {
     id: '7',
-    name: 'KBG 物业 YX 公司',
+    company: 'KBG 物业 YX 公司',
     city: '赤壁',
     employees: 400,
     createdDate: '2016-04-30 23:56:00',
@@ -78,7 +86,7 @@ const tableData = reactive([
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术 YX 公司',
+    company: '深圳市福德宝网络技术 YX 公司',
     boole: true,
     city: '厦门',
     createdDate: '2016-06-03 13:53:25',
@@ -86,15 +94,63 @@ const tableData = reactive([
   }
 ])
 
-function checkboxEdit(h, { row }) {
-  return (
-    <input
-      type="checkbox"
-      checked={row.boole}
-      onChange={(event) => {
-        row.boole = event.target.checked
-      }}
-    />
-  )
-}
+const server = ref(new McpServer({ name: 'base-config', version: '1.0.0' }, {}))
+const sessionID = ref('')
+
+const op = ref({
+  editConfig: {
+    trigger: 'click',
+    mode: 'cell',
+    showStatus: true
+  },
+  columns: [
+    {
+      type: 'index',
+      width: 60
+    },
+    {
+      type: 'selection',
+      width: 60
+    },
+    {
+      field: 'employees',
+      title: '员工数'
+    },
+    {
+      field: 'createdDate',
+      title: '创建日期'
+    },
+    {
+      field: 'city',
+      title: '城市'
+    },
+    {
+      field: 'boole',
+      title: '布尔值',
+      align: 'center',
+      formatText: 'boole'
+    }
+  ],
+  data: tableData
+})
+
+// 生命周期钩子
+onMounted(async () => {
+  // 1、创建传输对
+  const [transport, clientTransport] = createTransportPair()
+
+  // 2、创建并连接客户端
+  const client = new Client({ name: 'ai-agent', version: '1.0.0' }, {})
+  await client.connect(clientTransport)
+  const { sessionId } = await createSseProxy({
+    client,
+    url: 'https://39.108.160.245/sse'
+  })
+
+  sessionID.value = sessionId
+  window.$sessionId = sessionID.value
+
+  // 3、连接服务器
+  await server.value.connect(transport)
+})
 </script>

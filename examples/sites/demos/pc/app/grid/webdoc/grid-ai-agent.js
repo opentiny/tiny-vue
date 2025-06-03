@@ -13,7 +13,7 @@ export default {
         - 选中表格数据：用户可以通过自然语言指令，选中表格数据。<br>    
         - 选中全部数据：用户可以通过自然语言指令，选中全部数据。<br>    
 
-        通过属性 <code>tiny-mcp-config</code> 可以配置表格的业务意义以及传入<code>server</code>对象，详见示例。`,
+        通过属性 <code>tiny_mcp_config</code> 可以配置表格的业务意义以及传入<code>server</code>对象，详见示例。`,
         'en-US': ``
       },
       codeFiles: ['ai-agent/basic-usage.vue']
