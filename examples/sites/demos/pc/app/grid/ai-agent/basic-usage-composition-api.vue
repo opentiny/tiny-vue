@@ -97,43 +97,6 @@ const tableData = ref([
 const server = ref(new McpServer({ name: 'base-config', version: '1.0.0' }, {}))
 const sessionID = ref('')
 
-const op = ref({
-  editConfig: {
-    trigger: 'click',
-    mode: 'cell',
-    showStatus: true
-  },
-  columns: [
-    {
-      type: 'index',
-      width: 60
-    },
-    {
-      type: 'selection',
-      width: 60
-    },
-    {
-      field: 'employees',
-      title: '员工数'
-    },
-    {
-      field: 'createdDate',
-      title: '创建日期'
-    },
-    {
-      field: 'city',
-      title: '城市'
-    },
-    {
-      field: 'boole',
-      title: '布尔值',
-      align: 'center',
-      formatText: 'boole'
-    }
-  ],
-  data: tableData
-})
-
 // 生命周期钩子
 onMounted(async () => {
   // 1、创建传输对
