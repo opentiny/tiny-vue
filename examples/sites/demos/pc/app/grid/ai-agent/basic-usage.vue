@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyBaseSelect } from '@opentiny/vue'
 import { createTransportPair, createSseProxy } from '@opentiny/next'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
@@ -46,7 +46,7 @@ export default {
   components: {
     TinyGrid,
     TinyGridColumn,
-    TinySelect
+    TinySelect: TinyBaseSelect
   },
   data() {
     const _table = [
