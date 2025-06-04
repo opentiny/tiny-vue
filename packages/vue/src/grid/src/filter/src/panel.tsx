@@ -642,7 +642,9 @@ export default defineComponent({
       } = this as any
 
       this.condition.type = type
-      this.condition.input = this.condition.input?.trim()
+      if (typeof this.condition.input === 'string') {
+        this.condition.input = this.condition.input?.trim()
+      }
       column.filter.condition = extend(true, {}, this.condition)
       this.$parent.confirmFilterEvent()
     },
