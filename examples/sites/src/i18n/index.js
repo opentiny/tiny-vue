@@ -1,10 +1,11 @@
 import { createI18n } from 'vue-i18n'
-import { initI18n } from '@opentiny/vue-locale'
+import { initI18n, t } from '@opentiny/vue-locale'
 import { $local } from '../tools'
 import zh from './zh.json'
 import en from './en.json'
+import { zhCN, enUS } from '@opentiny/tiny-vue-mcp'
 
-const messages = { enUS: en, zhCN: zh }
+const messages = { enUS: { ...en, ...enUS }, zhCN: { ...zh, ...zhCN } }
 // $local._lang = $local._lang !== 'zhCN' && $local._lang !== 'enUS' ? 'zhCN' : $local._lang
 $local._lang = 'zhCN'
 const customCreateI18n = ({ locale, messages }) =>
@@ -26,3 +27,5 @@ const i18nByKey = i18n.global.t
 const getWord = (cn, en) => (i18n.global.locale === 'zhCN' ? cn : en)
 
 export { i18n, i18nByKey, getWord }
+
+export { t }

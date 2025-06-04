@@ -9,7 +9,13 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
-  <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
+  <div
+    class="docs-content"
+    :class="{ 'docs-on-robot-show': show }"
+    id="doc-layout-scroller"
+    ref="scrollRef"
+    @scroll="onDocLayoutScroll"
+  >
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -84,6 +90,7 @@
     </div>
     <div id="footer"></div>
   </div>
+  <robotChat v-if="show"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -100,6 +107,8 @@ import ComponentHeader from './components/header.vue'
 import ComponentContributor from './components/contributor.vue'
 import ApiDocs from './components/api-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
+
+import robotChat from './tiny-robot-chat.vue'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -435,9 +444,21 @@ const handleAnchorClick = (e, data) => {
 }
 
 defineExpose({ loadPage })
+
+const show = ref(false)
+onMounted(() => {
+  // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
+  const hasRobot = router.currentRoute.value.fullPath.includes('grid-ai-agent')
+  show.value = !!hasRobot
+
+  document.body.classList.toggle('docs-on-robot-show', show.value)
+})
 </script>
 
 <style lang="less" scoped>
+:global(.docs-on-robot-show .docs-content) {
+  margin-right: 480px;
+}
 .docs-content {
   flex: 1;
   overflow: hidden auto;

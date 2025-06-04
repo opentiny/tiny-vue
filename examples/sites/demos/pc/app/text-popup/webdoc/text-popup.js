@@ -55,16 +55,16 @@ export default {
       codeFiles: ['separtor.vue']
     },
     {
-      demoId: 'value',
+      demoId: 'modelValue',
       name: {
         'zh-CN': '绑定值',
         'en-US': 'Bound Value'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
-        'en-US': '<p>You can set the binding value using <code>value</code> or <code>v-model</code>. </p>\n'
+        'zh-CN': '<p>通过 <code>modelValue</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
+        'en-US': '<p>You can set the binding value using <code>modelValue</code> or <code>v-model</code>. </p>\n'
       },
-      codeFiles: ['value.vue']
+      codeFiles: ['modelValue.vue']
     },
     {
       demoId: 'clear-value',
@@ -76,7 +76,7 @@ export default {
         'zh-CN': '详细用法参考如下示例',
         'en-US': 'For details, see the following example.'
       },
-      codeFiles: ['clear-value.vue']
+      codeFiles: ['clear-modelValue.vue']
     },
     {
       demoId: 'width',
@@ -98,12 +98,12 @@ export default {
       support: {
         value: true
       },
-      description: '通过 value 或 v-model 设置绑定值，通过 placeholder 设置提示占位文本。',
+      description: '通过 modelValue 或 v-model 设置绑定值，通过 placeholder 设置提示占位文本。',
       cloud: {
         value: false
       },
-      apis: ['value', 'v-model', 'placeholder'],
-      demos: ['basic-usage', 'value', 'placeholder']
+      apis: ['modelValue', 'v-model', 'placeholder'],
+      demos: ['basic-usage', 'modelValue', 'placeholder']
     },
     {
       id: 'readonly',

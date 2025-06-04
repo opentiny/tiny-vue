@@ -15,7 +15,7 @@
       <tr v-for="(row, key) in state.rows" :key="key">
         <td v-for="(cell, key) in row" :class="getCellStyle(cell)" :key="key">
           <div>
-            <a class="cell" v-text="t('ui.datepicker.months.' + state.months[cell.text])"></a>
+            <a class="cell" v-text="t(`ui.datepicker.month${cell.text + 1}`)"></a>
           </div>
         </td>
       </tr>

@@ -48,6 +48,7 @@ export const $props = {
   'tiny_template': [Function, Object],
   'tiny_renderless': Function,
   'tiny_theme': String,
+  'tiny_mcp_config': Object,
   'tiny_chart_theme': Object
 }
 
@@ -59,7 +60,17 @@ export const props: Array<
   | '_constants'
   | 'tiny_theme'
   | 'tiny_chart_theme'
-> = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants', 'tiny_theme', 'tiny_chart_theme']
+  | 'tiny_mcp_config'
+> = [
+  'tiny_mode',
+  'tiny_mode_root',
+  'tiny_template',
+  'tiny_renderless',
+  '_constants',
+  'tiny_theme',
+  'tiny_chart_theme',
+  'tiny_mcp_config'
+]
 
 export const resolveMode = (props, context) => {
   let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)
@@ -169,6 +180,22 @@ const getDesignConfig = () => {
   }
 }
 
+const getComponentMcpConfig = () => {
+  const mcpConfig = globalMcpConfig.mcpConfig
+  const componentName = getComponentName().replace($prefix, '')
+  return mcpConfig?.components?.[componentName]
+}
+
+const globalMcpConfig = {
+  mcpConfig: null,
+  createMcpTools: null
+}
+
+export const registerMcpConfig = (mcpConfig, defineTool) => {
+  globalMcpConfig.mcpConfig = mcpConfig
+  globalMcpConfig.createMcpTools = defineTool
+}
+
 export const $setup = ({ props: propData, context, template, extend = {} }) => {
   const mode = resolveMode(propData, context)
   const view = hooks.computed(() => {
@@ -275,6 +302,11 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
         }
       }
     })
+  }
+
+  const componentMcpConfig = getComponentMcpConfig()
+  if (componentMcpConfig && props.tiny_mcp_config && globalMcpConfig.createMcpTools) {
+    globalMcpConfig.createMcpTools(attrs.vm, props.tiny_mcp_config, componentMcpConfig)
   }
 
   return attrs

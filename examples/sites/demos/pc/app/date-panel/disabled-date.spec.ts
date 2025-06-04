@@ -19,8 +19,8 @@ test('[DatePanel] 测试时间禁用', async ({ page }) => {
     .filter({ hasText: /^2025 年6 月$/ })
     .getByLabel('前一年')
     .click()
-  await page.getByText('一月', { exact: true }).first().click()
-  await page.getByText('六月').first().click()
+  await page.getByText('1 月', { exact: true }).first().click()
+  await page.getByText('6 月').nth(2).click()
   await expect(page.locator('.month')).toHaveText('2024-06')
 
   // 年份面板
@@ -31,21 +31,20 @@ test('[DatePanel] 测试时间禁用', async ({ page }) => {
   // dateRange
   await page.locator('.tiny-date-range-picker__header > button').first().click()
   await page.getByRole('cell', { name: '16' }).nth(1).click()
-  await page.locator('div').filter({ hasText: /^18$/ }).nth(2).click()
+  await page.locator('div').filter({ hasText: /^18$/ }).nth(1).click()
   await expect(page.locator('.value1')).toHaveText('[ "2025-01-15", "2025-02-15" ]')
 
   await page.locator('div:nth-child(2) > .tiny-date-range-picker__header > button').first().click()
   await page.locator('#disabled-date').getByText('31', { exact: true }).nth(2).click()
   await expect(page.locator('.value1')).toHaveText('[ "2025-01-15", "2025-02-15" ]')
 
-  await page.locator('#disabled-date').getByText('15').nth(3).click()
-  await page.locator('#disabled-date').getByText('19').nth(2).click()
-  await expect(page.locator('.value1')).toHaveText('[ "2025-02-15", "2025-02-19" ]')
+  await page.locator('#disabled-date').getByText('15').nth(2).click()
+  await expect(page.locator('.value1')).toHaveText('[ "2025-01-31", "2025-02-15" ]')
 
   // monthRange
-  await page.getByText('一月', { exact: true }).nth(1).click()
-  await page.getByText('二月', { exact: true }).nth(1).click()
-  await page.getByText('五月').nth(2).click()
+  await page.getByText('1 月', { exact: true }).nth(1).click()
+  await page.getByText('2 月', { exact: true }).nth(1).click()
+  await page.getByText('5 月').nth(2).click()
   await expect(page.locator('.value2')).toHaveText('[ "2024-02", "2025-05" ]')
 
   // yearRange

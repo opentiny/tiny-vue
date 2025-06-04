@@ -13,7 +13,7 @@ test('[DatePanel] 测试只读', async ({ page }) => {
   await expect(page.locator('.value')).toHaveText('2025-01-15')
 
   // 月份面板
-  await page.getByText('七月').first().click()
+  await page.getByText('7 月').first().click()
   await expect(page.locator('.month')).toHaveText('2025-01')
 
   // 年份面板
@@ -26,8 +26,8 @@ test('[DatePanel] 测试只读', async ({ page }) => {
   await expect(page.locator('.value1')).toHaveText('[ "2025-01-15", "2025-02-15" ]')
 
   // monthRange
-  await page.getByText('二月').first().click()
-  await page.getByText('九月').nth(1).click()
+  await page.getByText('2 月').first().click()
+  await page.getByText('9 月').nth(1).click()
   await expect(page.locator('.value2')).toHaveText('[ "2024-03", "2025-02" ]')
 
   // yearRange

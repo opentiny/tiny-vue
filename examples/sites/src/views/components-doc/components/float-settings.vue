@@ -256,6 +256,10 @@ export default defineComponent({
 </script>
 
 <style lang="less">
+.docs-on-robot-show .float-settings {
+  right: 680px;
+}
+
 .float-settings {
   position: fixed;
   right: 200px;

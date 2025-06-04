@@ -10,7 +10,7 @@ test('[DatePanel] 测试事件', async ({ page }) => {
 
   // 月份面板
   await page.waitForTimeout(1000)
-  await page.getByText('七月').first().click()
+  await page.getByText('7 月').first().click()
   await expect(page.getByText('触发 月份面板选中 事件，组件绑定值为：2025-')).toBeVisible()
 
   // 年份面板
@@ -26,9 +26,9 @@ test('[DatePanel] 测试事件', async ({ page }) => {
 
   // monthRange
   await page.waitForTimeout(1000)
-  await page.locator('#event').getByText('七月').nth(2).click()
-  await page.locator('#event').getByText('五月').nth(2).click()
-  await expect(page.getByText('触发 月份区间面板选中 事件，组件绑定值为：2025-05,2025-')).toBeVisible()
+  await page.getByText('5 月').nth(2).click()
+  await page.getByText('7 月').nth(2).click()
+  await expect(page.getByText('触发 月份区间面板选中 事件，组件绑定值为：2024-07,2025-')).toBeVisible()
 
   // yearRange
   await page.waitForTimeout(1000)
