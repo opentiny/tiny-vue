@@ -18,10 +18,10 @@
       </span>
     </template>
     <div v-if="messages.length === 0">
-      <tr-welcome title="盘古助手" description="您好，我是盘古助手，您专属的华为云专家" :icon="welcomeIcon">
+      <tr-welcome title="智能助手" description="您好，我是Opentiny AI智能助手" :icon="welcomeIcon">
         <template #footer>
           <div class="welcome-footer">
-            <span>根据相关法律法规要求，您需要先 <a>登录</a>，若没有帐号，您可前往 <a>注册</a></span>
+            <!-- <span>根据相关法律法规要求，您需要先 <a>登录</a>，若没有帐号，您可前往 <a>注册</a></span> -->
           </div>
         </template>
       </tr-welcome>
@@ -37,31 +37,22 @@
 
     <template #footer>
       <div class="chat-input">
-        <tr-suggestion
-          v-model:open="suggestionOpen"
-          :items="suggestionItems"
-          :categories="categories"
-          @fill-template="handleFillTemplate"
-          :maxVisibleItems="5"
-        >
-          <template #trigger="{ onKeyDown, onTrigger }">
-            <tr-sender
-              ref="senderRef"
-              mode="single"
-              v-model="inputMessage"
-              :placeholder="GeneratingStatus.includes(messageState.status) ? '正在思考中...' : '请输入您的问题'"
-              :clearable="true"
-              :loading="GeneratingStatus.includes(messageState.status)"
-              :showWordLimit="true"
-              :maxLength="1000"
-              :template="currentTemplate"
-              @submit="handleSendMessage"
-              @cancel="abortRequest"
-              @keydown="handleMessageKeydown($event, onTrigger, onKeyDown)"
-              @reset-template="clearTemplate"
-            ></tr-sender>
-          </template>
-        </tr-suggestion>
+        <TrSuggestionPills :items="suggestionPillItems" @item-click="handleSuggestionPillItemClick" /><br />
+        <tr-sender
+          ref="senderRef"
+          mode="single"
+          v-model="inputMessage"
+          :placeholder="GeneratingStatus.includes(messageState.status) ? '正在思考中...' : '请输入您的问题'"
+          :clearable="true"
+          :loading="GeneratingStatus.includes(messageState.status)"
+          :showWordLimit="true"
+          :maxLength="1000"
+          :template="currentTemplate"
+          @submit="handleSendMessage"
+          @cancel="abortRequest"
+          @keydown="handleMessageKeydown($event, onTrigger, onKeyDown)"
+          @reset-template="clearTemplate"
+        ></tr-sender>
       </div>
     </template>
   </tr-container>
@@ -75,8 +66,8 @@ import {
   TrIconButton,
   TrPrompts,
   TrSender,
-  TrSuggestion,
-  TrWelcome
+  TrWelcome,
+  TrSuggestionPills
 } from '@opentiny/tiny-robot'
 import { GeneratingStatus } from '@opentiny/tiny-robot-kit'
 import { IconHistory, IconNewSession } from '@opentiny/tiny-robot-svgs'
@@ -90,8 +81,7 @@ const {
   userAvatar,
   welcomeIcon,
   promptItems,
-  templateSuggestions,
-  templateCategories,
+
   messageManager,
   createConversation,
   messages,
@@ -105,15 +95,16 @@ const {
   currentMessageId,
   handlePromptItemClick,
   handleHistorySelect,
-  suggestionItems,
-  categories,
+
   senderRef,
   currentTemplate,
   suggestionOpen,
   handleFillTemplate,
   clearTemplate,
   handleSendMessage,
-  handleMessageKeydown
+  handleMessageKeydown,
+  suggestionPillItems,
+  handleSuggestionPillItemClick
 } = useTinyRobot()
 </script>
 
