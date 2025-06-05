@@ -1,7 +1,7 @@
 import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import { AIClient, useConversation } from '@opentiny/tiny-robot-kit'
 import { IconAi, IconUser } from '@opentiny/tiny-robot-svgs'
-import { h, nextTick, onMounted, reactive, ref, toRaw, watch } from 'vue'
+import { h, nextTick, onMounted, ref, watch } from 'vue'
 import { DifyModelProvider } from './DifyModelProvider.js'
 import type { SuggestionItem } from '@opentiny/tiny-robot'
 
@@ -11,8 +11,9 @@ const difyConfig: AIModelConfig = {
   apiKey: 'app-H0VJI4LqZ4KskdcA5a07pjXf'
 }
 export function useTinyRobot() {
+  const difyModelProvider = new DifyModelProvider(difyConfig)
   const client = new AIClient({
-    providerImplementation: new DifyModelProvider(difyConfig),
+    providerImplementation: difyModelProvider,
     ...difyConfig
   })
 
@@ -27,25 +28,21 @@ export function useTinyRobot() {
     {
       label: '识别网页的内容',
       description: '公司人员表有多少列，有多少行数据，帮我统计一下！',
-      icon: h('span', { style: { fontSize: '18px' } }, '🧠')
+      icon: h('span', { style: { fontSize: '18px' } }, '💡')
     },
     {
       label: '智能操作网页',
-      description: '请勾选公司人员表最后一行”！',
-      icon: h('span', { style: { fontSize: '18px' } }, '🤔')
+      description: '请勾选公司人员表最后一行',
+      icon: h('span', { style: { fontSize: '18px' } }, '🕹')
     }
   ]
   const handlePromptItemClick = (ev, item) => {
     sendMessage(item.description)
   }
 
-  const { messageManager, createConversation } = useConversation({ client })
-
-  const randomId = () => Math.random().toString(36).substring(2, 15)
-
-  const currentMessageId = ref('')
-
+  const { messageManager } = useConversation({ client })
   const { messages, messageState, inputMessage, sendMessage, abortRequest } = messageManager
+  difyModelProvider._messages = messages
 
   const roles = {
     assistant: {
@@ -61,20 +58,17 @@ export function useTinyRobot() {
     }
   }
 
-  const showHistory = ref(false)
-  const historyData = reactive([])
-
   // 建议按钮组，设置对话的模板
   const suggestionPillItems = [
     {
       id: '1',
       text: '公司人员表',
-      icon: h('span', { style: { fontSize: '18px' } }, '🔍')
+      icon: h('span', { style: { fontSize: '18px' } }, '🏢')
     },
     {
       id: '2',
       text: '城市下拉框',
-      icon: h('span', { style: { fontSize: '18px' } }, '🛠️')
+      icon: h('span', { style: { fontSize: '18px' } }, '🌐')
     }
   ]
 
@@ -86,59 +80,10 @@ export function useTinyRobot() {
       senderRef.value.setTemplate(templateText, currentInitialValue)
     }
   }
-  watch(
-    () => messages.value[messages.value.length - 1]?.content,
-    () => {
-      if (!messages.value.length) {
-        return
-      }
-
-      if (messages.value.length === 1) {
-        currentMessageId.value = randomId()
-      }
-
-      const allSessions = historyData.flatMap((item) => item.items)
-      const currentSession = allSessions.find((item) => item.id === currentMessageId.value)
-
-      const data = toRaw(messages.value)
-      if (!currentSession) {
-        const today = historyData.find((item) => item.group === '今天')
-        if (today) {
-          today.items.unshift({ title: messages.value[0].content, id: currentMessageId.value, data })
-        } else {
-          historyData.unshift({
-            group: '今天',
-            items: [{ title: messages.value[0].content, id: currentMessageId.value, data }]
-          })
-        }
-      } else {
-        currentSession.data = data
-      }
-    }
-  )
-
-  const handleHistorySelect = (item) => {
-    currentMessageId.value = item.id
-    messages.value = item.data
-    showHistory.value = false
-  }
 
   const senderRef = ref(null)
   const currentTemplate = ref('')
   const suggestionOpen = ref(false)
-
-  // 设置指令
-  const handleFillTemplate = (templateText) => {
-    setTimeout(() => {
-      currentTemplate.value = templateText
-      inputMessage.value = ''
-
-      // 等待DOM更新后激活第一个字段
-      setTimeout(() => {
-        senderRef.value?.activateTemplateFirstField()
-      }, 100)
-    }, 300)
-  }
 
   // 清除当前指令
   const clearTemplate = () => {
@@ -207,23 +152,17 @@ export function useTinyRobot() {
     promptItems,
 
     messageManager,
-    createConversation,
     messages,
     messageState,
     inputMessage,
     sendMessage,
     abortRequest,
     roles,
-    showHistory,
-    historyData,
-    currentMessageId,
     handlePromptItemClick,
-    handleHistorySelect,
 
     senderRef,
     currentTemplate,
     suggestionOpen,
-    handleFillTemplate,
     clearTemplate,
     handleSendMessage,
     handleMessageKeydown,

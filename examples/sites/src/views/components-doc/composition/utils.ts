@@ -4,13 +4,23 @@
  */
 
 import type { ChatMessage, ChatCompletionResponse, StreamHandler } from '@opentiny/tiny-robot-kit'
+import type { ChatCompletionRequest } from '@opentiny/tiny-robot-kit'
+import type { Ref } from 'vue'
 
+export const globalConversation = {
+  id: ''
+}
 /**
  * 处理SSE流式响应
  * @param response fetch响应对象
  * @param handler 流处理器
  */
-export async function handleSSEStream(response: Response, handler: StreamHandler, signal?: AbortSignal): Promise<void> {
+export async function handleSSEStream(
+  response: Response,
+  handler: StreamHandler,
+  message: Ref<ChatCompletionRequest['messages']>,
+  signal?: AbortSignal
+): Promise<void> {
   // 获取ReadableStream
   const reader = response.body?.getReader()
   if (!reader) {
@@ -64,6 +74,7 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
           if (!dataMatch) continue
 
           const data = JSON.parse(dataMatch[1])
+          // console.log('SSE data:', data)
           if (data?.event === 'workflow_started') {
             handler.onData({
               id: data.workflow_run_id,
@@ -73,7 +84,7 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
                   index: messageIndex++,
                   delta: {
                     role: 'assistant',
-                    content: '**Workflow started** \r\n'
+                    content: ' '
                   },
                   finish_reason: null
                 }
@@ -81,6 +92,10 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
               object: '',
               model: ''
             })
+            message.value.slice(-1)[0].loading = true
+            if (!globalConversation.id) {
+              globalConversation.id = data.conversation_id
+            }
           }
 
           if (data?.event === 'message' && data?.answer) {
@@ -100,6 +115,7 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
               object: '',
               model: ''
             })
+            message.value.slice(-1)[0].loading = false
           }
           if (data?.event === 'message_end') {
             handler.onData({
@@ -118,6 +134,7 @@ export async function handleSSEStream(response: Response, handler: StreamHandler
               object: '',
               model: ''
             })
+            message.value.slice(-1)[0].loading = false
           }
           // handler.onData(data)
         } catch (error) {

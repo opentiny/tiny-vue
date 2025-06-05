@@ -3,7 +3,8 @@ import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import type { ChatCompletionResponse } from '@opentiny/tiny-robot-kit'
 import type { StreamHandler } from '@opentiny/tiny-robot-kit'
 import { BaseModelProvider } from '@opentiny/tiny-robot-kit'
-import { handleSSEStream } from './utils.js'
+import { globalConversation, handleSSEStream } from './utils.js'
+import type { Ref } from 'vue'
 
 /**
  * 对接AIClient的自定义 Dify 大模型服务
@@ -14,6 +15,8 @@ import { handleSSEStream } from './utils.js'
  * });
  */
 export class DifyModelProvider extends BaseModelProvider {
+  _messages: Ref<ChatCompletionRequest['messages']> = []
+
   constructor(config: AIModelConfig) {
     super(config)
   }
@@ -45,11 +48,12 @@ export class DifyModelProvider extends BaseModelProvider {
           response_mode: 'streaming',
           inputs: {
             sessionId: window.$sessionId
-          }
+          },
+          conversation_id: globalConversation.id
         })
       })
 
-      await handleSSEStream(response, handler, signal)
+      await handleSSEStream(response, handler, this._messages, signal)
     } catch (error) {
       if (signal && signal.aborted) {
         console.warn('Request was aborted:', error)

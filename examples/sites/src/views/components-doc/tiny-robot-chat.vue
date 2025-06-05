@@ -1,22 +1,6 @@
 <template>
   <!-- mcp-robot弹窗 -->
-  <tr-container v-model:show="show" v-model:fullscreen="fullscreen">
-    <template #operations>
-      <tr-icon-button :icon="IconNewSession" size="28" svgSize="20" @click="createConversation()" />
-      <span style="display: inline-flex; line-height: 0; position: relative">
-        <tr-icon-button :icon="IconHistory" size="28" svgSize="20" @click="showHistory = true" />
-        <tr-history
-          v-show="showHistory"
-          class="tr-history-demo"
-          tab-title="历史对话"
-          :selected="currentMessageId"
-          :search-bar="true"
-          :data="historyData"
-          @close="showHistory = false"
-          @item-click="handleHistorySelect"
-        ></tr-history>
-      </span>
-    </template>
+  <tr-container v-model:show="appData.showTinyRobot" v-model:fullscreen="fullscreen">
     <div v-if="messages.length === 0">
       <tr-welcome title="智能助手" description="您好，我是Opentiny AI智能助手" :icon="welcomeIcon">
         <template #footer>
@@ -33,8 +17,7 @@
         @item-click="handlePromptItemClick"
       ></tr-prompts>
     </div>
-    <tr-bubble-list v-else :items="messages" :roles="roles" auto-scroll type="markdown"></tr-bubble-list>
-
+    <tr-bubble-list v-else :items="messages" :roles="roles" auto-scroll></tr-bubble-list>
     <template #footer>
       <div class="chat-input">
         <TrSuggestionPills :items="suggestionPillItems" @item-click="handleSuggestionPillItemClick" /><br />
@@ -56,50 +39,37 @@
       </div>
     </template>
   </tr-container>
+  <div class="tr-toggle" v-if="!appData.showTinyRobot" title="AI智能助手" @click="appData.showTinyRobot = true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" class="tiny-svg" isSvg="true">
+      <path
+        d="m5.84 8.78-.09-.1a1.06 1.06 0 0 1 .09-1.46L9.6 3.65l.07-.06c.21-.13.49-.12.67.06.21.2.21.51 0 .71L6.58 7.93l-.02.03c-.02.04-.01.08.02.11l3.76 3.57.06.07c.14.19.12.46-.06.64-.21.2-.54.2-.74 0L5.84 8.78z"
+      ></path>
+    </svg>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {
-  TrBubbleList,
-  TrContainer,
-  TrHistory,
-  TrIconButton,
-  TrPrompts,
-  TrSender,
-  TrWelcome,
-  TrSuggestionPills
-} from '@opentiny/tiny-robot'
+import { TrBubbleList, TrContainer, TrPrompts, TrSender, TrWelcome, TrSuggestionPills } from '@opentiny/tiny-robot'
 import { GeneratingStatus } from '@opentiny/tiny-robot-kit'
-import { IconHistory, IconNewSession } from '@opentiny/tiny-robot-svgs'
 import { useTinyRobot } from './composition/useTinyRobot'
+import { appData } from '../../tools/appData'
 
 const {
   client,
   fullscreen,
   show,
-  aiAvatar,
-  userAvatar,
   welcomeIcon,
   promptItems,
-
-  messageManager,
-  createConversation,
+  computedMessages,
   messages,
   messageState,
   inputMessage,
   sendMessage,
   abortRequest,
   roles,
-  showHistory,
-  historyData,
-  currentMessageId,
   handlePromptItemClick,
-  handleHistorySelect,
-
   senderRef,
   currentTemplate,
-  suggestionOpen,
-  handleFillTemplate,
   clearTemplate,
   handleSendMessage,
   handleMessageKeydown,
@@ -114,8 +84,8 @@ const {
   padding: 10px 15px;
 }
 
-.tiny-container {
-  top: 64px;
+.tr-container {
+  top: 64px !important;
 
   container-type: inline-size;
 
@@ -159,5 +129,30 @@ const {
   width: 300px;
   height: 600px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.tr-toggle {
+  position: absolute;
+  cursor: pointer;
+  right: 30px;
+  top: 50%;
+  transform: translateX(50%) translateY(-50%);
+  z-index: 9;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 18px;
+  background-color: var(--tv-TreeMenu-toggle-button-background-color);
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--tv-TreeMenu-border-color);
+  transform: translateX(100%) translateY(-50%);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  svg {
+    margin-top: 2px;
+    fill: #808080;
+  }
 }
 </style>

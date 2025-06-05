@@ -87,7 +87,7 @@ export default {
     await client.connect(clientTransport)
     const { sessionId } = await createSseProxy({
       client,
-      url: 'http://39.108.160.245/sse'
+      url: 'https://39.108.160.245/sse'
     })
 
     this.sessionID = sessionId

@@ -90,7 +90,7 @@
     </div>
     <div id="footer"></div>
   </div>
-  <robotChat v-if="show"></robotChat>
+  <robotChat v-show="appData.showTinyRobot"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -107,6 +107,7 @@ import ComponentHeader from './components/header.vue'
 import ComponentContributor from './components/contributor.vue'
 import ApiDocs from './components/api-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
+import { appData } from '../../tools/appData'
 
 import robotChat from './tiny-robot-chat.vue'
 
@@ -445,13 +446,10 @@ const handleAnchorClick = (e, data) => {
 
 defineExpose({ loadPage })
 
-const show = ref(false)
 onMounted(() => {
   // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
   const hasRobot = router.currentRoute.value.fullPath.includes('grid-ai-agent')
-  show.value = !!hasRobot
-
-  document.body.classList.toggle('docs-on-robot-show', show.value)
+  appData.showTinyRobot = !!hasRobot
 })
 </script>
 
