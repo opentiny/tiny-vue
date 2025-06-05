@@ -79,11 +79,12 @@ export default {
         },
         {
           name: 'modelValue',
-          type: Component | 'string',
+          type: 'Component | string',
           defaultValue: '',
           desc: {
             'zh-CN': 'type=icon 时为图标组件，type=label时为字体串，type=image时为资源路径',
-            'en-US': 'If type is set to icon, it should be an icon component . If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path'
+            'en-US':
+              'If type is set to icon, it should be an icon component . If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
@@ -130,7 +131,8 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': 'type=icon 时为图标组件，type=label时为字体串，type=image时为资源路径',
-            'en-US': 'If type is set to icon, it should be an icon component . If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path'
+            'en-US':
+              'If type is set to icon, it should be an icon component . If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path'
           },
           mode: ['mobile-first'],
           mfDemo: ''
