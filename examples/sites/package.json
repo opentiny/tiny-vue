@@ -56,6 +56,7 @@
     "@opentiny/vue-vite-import": "~1.2.0",
     "@unocss/reset": "0.38.2",
     "@vue/repl": "^2.5.5",
+    "@vue/shared": "^3.4.31",
     "@vueuse/core": "^12.7.0",
     "@vueuse/head": "0.7.13",
     "github-markdown-css": "~5.1.0",

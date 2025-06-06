@@ -9,13 +9,7 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
-  <div
-    class="docs-content"
-    :class="{ 'docs-on-robot-show': show }"
-    id="doc-layout-scroller"
-    ref="scrollRef"
-    @scroll="onDocLayoutScroll"
-  >
+  <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -68,7 +62,11 @@
                 @jump-to-demo="jumpToDemo"
               ></api-docs>
             </tiny-tab-item>
+            <tiny-tab-item v-if="appData.hasFloatRobot" title="MCP" name="MCP">
+              <McpDocs :name="state.cmpId" />
+            </tiny-tab-item>
           </tiny-tabs>
+
           <slot name="main-right" />
         </div>
 
@@ -106,6 +104,7 @@ import AsideAnchor from './components/anchor.vue'
 import ComponentHeader from './components/header.vue'
 import ComponentContributor from './components/contributor.vue'
 import ApiDocs from './components/api-docs.vue'
+import McpDocs from './components/mcp-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
 import { appData } from '../../tools/appData'
 
@@ -178,7 +177,7 @@ onMounted(() => {
   // 加载公共尾部
   nextTick(() => {
     const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
-    common.loadFooter()
+    common.renderFooter()
   })
   setScrollListener()
 })
