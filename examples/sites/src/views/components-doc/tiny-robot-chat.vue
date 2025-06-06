@@ -39,13 +39,13 @@
       </div>
     </template>
   </tr-container>
-  <div class="tr-toggle" v-if="!appData.showTinyRobot" title="AI智能助手" @click="appData.showTinyRobot = true">
+  <!-- <div class="tr-toggle" v-if="!appData.showTinyRobot" title="AI智能助手" @click="appData.showTinyRobot = true">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" class="tiny-svg" isSvg="true">
       <path
         d="m5.84 8.78-.09-.1a1.06 1.06 0 0 1 .09-1.46L9.6 3.65l.07-.06c.21-.13.49-.12.67.06.21.2.21.51 0 .71L6.58 7.93l-.02.03c-.02.04-.01.08.02.11l3.76 3.57.06.07c.14.19.12.46-.06.64-.21.2-.54.2-.74 0L5.84 8.78z"
       ></path>
     </svg>
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -131,28 +131,28 @@ const {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
-.tr-toggle {
-  position: absolute;
-  cursor: pointer;
-  right: 30px;
-  top: 50%;
-  transform: translateX(50%) translateY(-50%);
-  z-index: 9;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  font-size: 18px;
-  line-height: 18px;
-  background-color: var(--tv-TreeMenu-toggle-button-background-color);
-  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.12);
-  border: 1px solid var(--tv-TreeMenu-border-color);
-  transform: translateX(100%) translateY(-50%);
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+// .tr-toggle {
+//   position: absolute;
+//   cursor: pointer;
+//   right: 30px;
+//   top: 50%;
+//   transform: translateX(50%) translateY(-50%);
+//   z-index: 9;
+//   width: 24px;
+//   height: 24px;
+//   border-radius: 50%;
+//   font-size: 18px;
+//   line-height: 18px;
+//   background-color: var(--tv-TreeMenu-toggle-button-background-color);
+//   box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.12);
+//   border: 1px solid var(--tv-TreeMenu-border-color);
+//   transform: translateX(100%) translateY(-50%);
+//   border-top-right-radius: 0;
+//   border-bottom-right-radius: 0;
 
-  svg {
-    margin-top: 2px;
-    fill: #808080;
-  }
-}
+//   svg {
+//     margin-top: 2px;
+//     fill: #808080;
+//   }
+// }
 </style>

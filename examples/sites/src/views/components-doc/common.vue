@@ -90,7 +90,7 @@
     </div>
     <div id="footer"></div>
   </div>
-  <robotChat v-show="appData.showTinyRobot"></robotChat>
+  <robotChat v-if="appData.showTinyRobot && appData.hasFloatRobot"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -176,8 +176,10 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
-  common.renderFooter()
+  nextTick(() => {
+    const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
+    common.loadFooter()
+  })
   setScrollListener()
 })
 
@@ -445,12 +447,6 @@ const handleAnchorClick = (e, data) => {
 }
 
 defineExpose({ loadPage })
-
-onMounted(() => {
-  // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
-  const hasRobot = router.currentRoute.value.fullPath.includes('grid-ai-agent')
-  appData.showTinyRobot = !!hasRobot
-})
 </script>
 
 <style lang="less" scoped>

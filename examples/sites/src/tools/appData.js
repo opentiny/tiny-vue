@@ -9,7 +9,8 @@ const appData = reactive({
   lang: useAutoStore('local', LANG_KEY, ZH_CN_LANG),
   theme: useAutoStore('local', '_theme', 'light'),
   bpState: useMediaQuery([640, 1024, 1280]).matches, // 3点4区间， bp0,bp1,bp2,bp3
-  showTinyRobot: false
+  showTinyRobot: false,
+  hasFloatRobot: false
 })
 const isZhCn = computed(() => appData.lang === ZH_CN_LANG)
 const appFn = {
