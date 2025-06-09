@@ -14,6 +14,7 @@
     modal-append-to-body
     :close-on-press-escape="false"
     :close-on-click-modal="false"
+    :lock-scroll="lockScroll"
     v-bind="dialogOp"
     @open="$emit('open', $event)"
     @close="$emit('close', $event)"
@@ -216,7 +217,8 @@ export default defineComponent({
     'beforeClose',
     'autoLookup',
     'lookupMethod',
-    'mainHeight'
+    'mainHeight',
+    'lockScroll'
   ],
   components: {
     TinyDialogBox: DialogBox,

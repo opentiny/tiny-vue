@@ -24,6 +24,7 @@
       value-field="id"
       text-field="name"
       :main-height="240"
+      :lock-scroll="false"
     >
       <template #search>
         <div class="tiny-demo-search">

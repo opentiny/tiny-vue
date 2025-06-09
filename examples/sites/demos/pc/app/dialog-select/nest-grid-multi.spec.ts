@@ -6,6 +6,7 @@ test('dialogSelect 表格多选', async ({ page }) => {
   const demo = page.locator('#nest-grid-multi')
 
   await demo.getByRole('button', { name: '打开窗口' }).click()
+  await expect(page.locator('body')).not.toHaveClass(/dialog-box__scroll-lock/)
   await page
     .locator('div')
     .filter({ hasText: /^GFD 科技有限公司福州WSX 科技有限公司黄冈暂无数据$/ })
