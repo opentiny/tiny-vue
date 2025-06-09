@@ -59,12 +59,21 @@
         </tiny-radio-group>
       </div>
       <template #reference>
-        <div
-          class="settings-btn style-settings-btn"
-          @click="demoStyleVisible = !demoStyleVisible"
-          @blur="demoStyleVisible = false"
-        >
-          <style-settings-icon class="settings-icon style-settings-icon"></style-settings-icon>
+        <div>
+          <div
+            v-if="appData.hasFloatRobot"
+            class="settings-btn style-settings-btn"
+            @click="appData.showTinyRobot = true"
+          >
+            <IconAi class="settings-icon style-settings-icon"></IconAi>
+          </div>
+          <div
+            class="settings-btn style-settings-btn"
+            @click="demoStyleVisible = !demoStyleVisible"
+            @blur="demoStyleVisible = false"
+          >
+            <style-settings-icon class="settings-icon style-settings-icon"></style-settings-icon>
+          </div>
         </div>
       </template>
     </tiny-popover>
@@ -92,8 +101,10 @@ import { iconUpWard } from '@opentiny/vue-icon'
 import { debounce } from '@opentiny/utils'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
+import { appData } from '@/tools/appData.js'
 import { router } from '@/router'
 import useStyleSettings from '@/tools/useStyleSettings'
+import { IconAi } from '@opentiny/tiny-robot-svgs'
 
 // import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
 import StyleSettingsIcon from '@/assets/images/style-settings.svg'
@@ -106,6 +117,7 @@ export default defineComponent({
     TinyRadioGroup: RadioGroup,
     IconUpWard: iconUpWard(),
     TinyPopover: Popover,
+    IconAi,
     // ThemeSettingsIcon,
     StyleSettingsIcon
   },
@@ -249,7 +261,8 @@ export default defineComponent({
       i18nByKey,
       apiModeState,
       currentThemeKey,
-      floatSettings
+      floatSettings,
+      appData
     }
   }
 })

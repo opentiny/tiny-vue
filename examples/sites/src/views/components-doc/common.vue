@@ -9,13 +9,7 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
-  <div
-    class="docs-content"
-    :class="{ 'docs-on-robot-show': show }"
-    id="doc-layout-scroller"
-    ref="scrollRef"
-    @scroll="onDocLayoutScroll"
-  >
+  <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
         <div class="docs-tabs-wrap">
@@ -68,7 +62,11 @@
                 @jump-to-demo="jumpToDemo"
               ></api-docs>
             </tiny-tab-item>
+            <tiny-tab-item v-if="appData.hasFloatRobot" title="MCP" name="MCP">
+              <McpDocs :name="state.cmpId" />
+            </tiny-tab-item>
           </tiny-tabs>
+
           <slot name="main-right" />
         </div>
 
@@ -90,7 +88,7 @@
     </div>
     <div id="footer"></div>
   </div>
-  <robotChat v-if="show"></robotChat>
+  <robotChat v-if="appData.showTinyRobot && appData.hasFloatRobot"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -106,7 +104,9 @@ import AsideAnchor from './components/anchor.vue'
 import ComponentHeader from './components/header.vue'
 import ComponentContributor from './components/contributor.vue'
 import ApiDocs from './components/api-docs.vue'
+import McpDocs from './components/mcp-docs.vue'
 import useTasksFinish from './composition/useTasksFinish'
+import { appData } from '../../tools/appData'
 
 import robotChat from './tiny-robot-chat.vue'
 
@@ -175,8 +175,10 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
-  common.renderFooter()
+  nextTick(() => {
+    const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
+    common.renderFooter()
+  })
   setScrollListener()
 })
 
@@ -444,15 +446,6 @@ const handleAnchorClick = (e, data) => {
 }
 
 defineExpose({ loadPage })
-
-const show = ref(false)
-onMounted(() => {
-  // tiny-robot 通过路由参数存在 mcp-robot, 则弹出对话容器
-  const hasRobot = router.currentRoute.value.fullPath.includes('grid-ai-agent')
-  show.value = !!hasRobot
-
-  document.body.classList.toggle('docs-on-robot-show', show.value)
-})
 </script>
 
 <style lang="less" scoped>
