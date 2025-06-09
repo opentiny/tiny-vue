@@ -41,6 +41,25 @@ export async function handleSSEStream(
     )
   }
 
+  let messageIndex = 0
+  function printMessage(data, str: string, endln = false) {
+    handler.onData({
+      id: '',
+      created: data.created_at,
+      choices: [
+        {
+          index: messageIndex++,
+          delta: {
+            role: 'assistant',
+            content: str + (endln ? '\n\n' : '')
+          },
+          finish_reason: null
+        }
+      ],
+      object: '',
+      model: ''
+    })
+  }
   try {
     while (true) {
       if (signal?.aborted) {
@@ -59,8 +78,6 @@ export async function handleSSEStream(
       const lines = buffer.split('\n\n')
       buffer = lines.pop() || ''
 
-      let messageIndex = 0
-
       for (const line of lines) {
         if (line.trim() === '') continue
         if (line.trim() === 'data: [DONE]') {
@@ -75,68 +92,19 @@ export async function handleSSEStream(
 
           const data = JSON.parse(dataMatch[1])
           // console.log('SSE data:', data)
-          if (data?.event === 'workflow_started') {
-            handler.onData({
-              id: data.workflow_run_id,
-              created: data.created_at,
-              choices: [
-                {
-                  index: messageIndex++,
-                  delta: {
-                    role: 'assistant',
-                    content: ' '
-                  },
-                  finish_reason: null
-                }
-              ],
-              object: '',
-              model: ''
-            })
-            message.value.slice(-1)[0].loading = true
-            if (!globalConversation.id) {
-              globalConversation.id = data.conversation_id
-            }
+          if (data?.event === 'node_started') {
+            printMessage(data, `${data.data.title} 节点运行...`, true)
           }
-
-          if (data?.event === 'message' && data?.answer) {
-            handler.onData({
-              id: data.id,
-              created: data.created_at,
-              choices: [
-                {
-                  index: messageIndex++,
-                  delta: {
-                    role: 'assistant',
-                    content: data.answer
-                  },
-                  finish_reason: null
-                }
-              ],
-              object: '',
-              model: ''
-            })
-            message.value.slice(-1)[0].loading = false
+          if (data?.event === 'node_finished') {
+            printMessage(
+              data,
+              `${data.data.title} 节点结束\n\n` +
+                (data.data.node_type === 'answer' ? `${data.data.outputs.answer}` : '')
+            )
           }
-          if (data?.event === 'message_end') {
-            handler.onData({
-              id: data.id,
-              created: data.created_at,
-              choices: [
-                {
-                  index: messageIndex++,
-                  delta: {
-                    role: 'assistant',
-                    content: ''
-                  },
-                  finish_reason: 'stop'
-                }
-              ],
-              object: '',
-              model: ''
-            })
-            message.value.slice(-1)[0].loading = false
+          if (data?.event === 'agent_log' && data.data.status === 'success' && data.data.label.startsWith('CALL')) {
+            printMessage(data, `--${data.data.label}(${JSON.stringify(data.data.data.output.tool_call_input)})`, true)
           }
-          // handler.onData(data)
         } catch (error) {
           console.error('Error parsing SSE message:', error)
         }
