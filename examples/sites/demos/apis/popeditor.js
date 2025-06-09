@@ -345,6 +345,20 @@ export default {
           pcDemo: 'title'
         },
         {
+          name: 'lock-scroll',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '设置弹出面板的锁定滚动',
+            'en-US': 'Set the lock scroll of the pop-up panel.'
+          },
+          meta: {
+            stable: '3.24.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'condition-layout'
+        },
+        {
           name: 'trigger',
           type: "'default' | 'cell' | 'row'",
           defaultValue: "'default'",

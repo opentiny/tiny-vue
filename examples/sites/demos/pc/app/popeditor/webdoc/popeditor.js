@@ -38,9 +38,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>conditions</code> 项目里属性里的 <code>span</code> 配置栅格，<code>labelWidth</code> 配置 label 宽度，<code>component</code>配置自定义组件，并通过 <code>attrs</code> 配置组件属性。</p>',
+          '<p>通过 <code>conditions</code> 项目里属性里的 <code>span</code> 配置栅格，<code>labelWidth</code> 配置 label 宽度，<code>component</code>配置自定义组件，并通过 <code>attrs</code> 配置组件属性。<code>lock-scroll</code> 配置弹出窗口时是否禁用滚动条。</p>',
         'en-US':
-          '<p>Set <code>span</code> in the attributes of the <code>condition</code> project to configure the grid and <code>labelWidth</code> to configure the label width. <code>component</code>Configure custom components and set component attributes through <code>attrs</code></p>'
+          '<p>Set <code>span</code> in the attributes of the <code>condition</code> project to configure the grid and <code>labelWidth</code> to configure the label width. <code>component</code>Configure custom components and set component attributes through <code>attrs</code>.<code>lock-scroll</code>Configure whether to disable the scrollbar when a pop-up window appears.</p>'
       },
       codeFiles: ['condition-layout.vue']
     },

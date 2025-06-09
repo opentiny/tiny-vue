@@ -97,6 +97,7 @@
       @closed="state.showContent = false"
       :before-close="handleBeforeClose"
       :dialog-class="dialogClass"
+      :lock-scroll="lockScroll"
     >
       <template v-if="state.showContent">
         <div class="tiny-popeditor-top" v-if="state.conditions.length && popseletor === 'grid'">
@@ -394,6 +395,7 @@ export default defineComponent({
     'dialogClass',
     'tabindex',
     'draggable',
+    'lockScroll',
     'placement',
     'popperAppendToBody',
     'suggest',

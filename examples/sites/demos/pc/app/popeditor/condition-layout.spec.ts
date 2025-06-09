@@ -11,6 +11,7 @@ test('PopEditor 布局与配置', async ({ page }) => {
   const rightLayout = dialogBox.locator('.tiny-popeditor-body__right')
 
   await textBox.click()
+  await expect(page.locator('body')).not.toHaveClass(/dialog-box__scroll-lock/)
   await expect(dialogBox).toBeVisible()
   await expect(leftLayout).toBeVisible()
   await expect(rightLayout).toBeVisible()

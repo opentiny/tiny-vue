@@ -8,6 +8,7 @@
     text-field="name"
     value-field="id"
     :conditions="conditions"
+    :lock-scroll="false"
   ></tiny-popeditor>
 </template>
 
