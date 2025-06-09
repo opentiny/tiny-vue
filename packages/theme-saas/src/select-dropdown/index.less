@@ -6,7 +6,7 @@
 @popper-prefix-cls: ~'@{css-prefix}popper';
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
 @recycle-scroller-prefix-cls: ~'@{css-prefix}recycle-scroller';
-@select-dropdown__item-prefix-cls:~'@{css-prefix}select-dropdown__item';
+@select-dropdown__item-prefix-cls: ~'@{css-prefix}select-dropdown__item';
 
 .@{select-dropdown-prefix-cls} {
   @apply absolute;
@@ -37,15 +37,15 @@
     }
   }
 
-  & .@{recycle-scroller-prefix-cls}{
+  & .@{recycle-scroller-prefix-cls} {
     list-style: none;
 
-    .@{select-dropdown__item-prefix-cls}{
+    .@{select-dropdown__item-prefix-cls} {
       margin-right: 0
     }
 
-    &__slot{
-      .tiny-select-dropdown__item{
+    &__slot {
+      .tiny-select-dropdown__item {
         margin-bottom: 0;
       }
     }
@@ -58,6 +58,7 @@
     @apply text-color-text-secondary;
     @apply text-xs;
   }
+
   // tiny 新增
   .@{select-dropdown-prefix-cls}__empty-images {
     background-image: url('../images/empty-nodata.png');
@@ -88,15 +89,9 @@
     @apply m-1;
     @apply rounded;
 
-    > .tiny-svg,
-    > span > .tiny-svg {
+    >.tiny-svg,
+    >span>.tiny-svg {
       @apply ~'-mt-0.5';
-    }
-    &:first-child {
-      > .tiny-svg,
-      > span > .tiny-svg {
-        margin-top: 1px
-      }
     }
   }
 
@@ -104,7 +99,7 @@
     @apply text-center;
     @apply ~'py-2.5 px-0';
 
-    > .circular {
+    >.circular {
       @apply fill-color-brand;
       @apply h-4;
       @apply w-4;
@@ -112,7 +107,7 @@
       @apply inline-block;
       @apply align-top;
 
-      circle{
+      circle {
         animation: loading-dash 1.5s ease-in-out infinite;
         stroke-dasharray: 90, 150;
         stroke-dashoffset: 0;

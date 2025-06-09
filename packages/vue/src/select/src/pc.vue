@@ -496,8 +496,12 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
-              <span>{{ allText || t('ui.base.all') }}</span>
+              <span class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
+                <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]"
+              /></span>
+              <div class="tiny-option-wrapper calc-width">
+                <span class="tiny-option-label">{{ allText || t('ui.base.all') }}</span>
+              </div>
             </li>
             <li
               v-if="
@@ -521,8 +525,12 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
-              <span>{{ allText || t('ui.base.all') }}</span>
+              <span class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
+                <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]"
+              /></span>
+              <div class="tiny-option-wrapper calc-width">
+                <span class="tiny-option-label">{{ allText || t('ui.base.all') }}</span>
+              </div>
             </li>
             <tiny-option :value="state.query" created v-if="state.showNewOption"> </tiny-option>
             <slot>
