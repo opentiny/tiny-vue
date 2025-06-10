@@ -32,8 +32,8 @@ export default defineComponent({
     const modalSHow = ref(false)
 
     const { sessionId } = useNextClient({
-      clientInfo: { name: 'my-project', version: '1.0.0' },
-      proxyOptions: { url: 'http://39.108.160.245/sse', token: '' }
+      clientInfo: { name: 'tiny-vue-website', version: '1.0.0' },
+      proxyOptions: { url: 'https://39.108.160.245/sse', token: '' }
     })
 
     watch(
