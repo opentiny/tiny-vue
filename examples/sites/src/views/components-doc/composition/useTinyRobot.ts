@@ -27,12 +27,12 @@ export function useTinyRobot() {
   const promptItems = [
     {
       label: '识别网页的内容',
-      description: '公司人员表有多少列，有多少行数据，帮我统计一下！',
+      description: '公司人员表中员工最多和最少的公司，帮我统计一下！',
       icon: h('span', { style: { fontSize: '18px' } }, '💡')
     },
     {
       label: '智能操作网页',
-      description: '请勾选公司人员表最后一行',
+      description: '请帮我选中公司人员表中员工最多的公司',
       icon: h('span', { style: { fontSize: '18px' } }, '🕹')
     }
   ]
@@ -64,11 +64,6 @@ export function useTinyRobot() {
       id: '1',
       text: '公司人员表',
       icon: h('span', { style: { fontSize: '18px' } }, '🏢')
-    },
-    {
-      id: '2',
-      text: '城市下拉框',
-      icon: h('span', { style: { fontSize: '18px' } }, '🌐')
     }
   ]
 

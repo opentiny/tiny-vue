@@ -8,7 +8,8 @@ import type { ChatCompletionRequest } from '@opentiny/tiny-robot-kit'
 import type { Ref } from 'vue'
 
 export const globalConversation = {
-  id: ''
+  id: '',
+  sessionId: ''
 }
 /**
  * 处理SSE流式响应

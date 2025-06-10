@@ -1,19 +1,5 @@
 <template>
   <div>
-    <label style="font-size: 1.5em; margin-right: 8px">选择城市:</label>
-    <tiny-select
-      v-model="queryCity"
-      :options="options"
-      style="width: 200px; margin-bottom: 20px"
-      placeholder="选择城市"
-      :tiny_mcp_config="{
-        server,
-        business: {
-          id: 'city-dropdown',
-          description: '城市下拉框'
-        }
-      }"
-    ></tiny-select>
     <tiny-grid
       :data="tableData"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
@@ -36,65 +22,34 @@
   </div>
 </template>
 
-<script>
-import { TinyGrid, TinyGridColumn, TinyBaseSelect } from '@opentiny/vue'
-import { createTransportPair, createSseProxy } from '@opentiny/next'
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { Client } from '@modelcontextprotocol/sdk/client/index.js'
+<script setup>
+import { ref } from 'vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
+import { useNextServer } from '@opentiny/next-vue'
 
-export default {
-  components: {
-    TinyGrid,
-    TinyGridColumn,
-    TinySelect: TinyBaseSelect
-  },
-  data() {
-    const _table = [
-      { company: 'GFD 有限责任公司', city: '广州', employees: 800, createdDate: '2014-04-30 00:56:00' },
-      { company: 'AWE 有限责任公司', city: '深圳', employees: 500, createdDate: '2015-05-01 01:01:01' },
-      { company: 'ASD 有限责任公司', city: '中山', employees: 200, createdDate: '2013-03-03 03:03:03' },
-      { company: 'ZXC 有限责任公司', city: '广州', employees: 1000, createdDate: '2012-02-02 02:02:02' },
-      { company: 'VBN 有限责任公司', city: '深圳', employees: 600, createdDate: '2011-01-01 01:01:01' },
-      { company: 'QWE 有限责任公司', city: '中山', employees: 700, createdDate: '2016-08-08 08:08:08' },
-      { company: 'RTY 有限责任公司', city: '广州', employees: 900, createdDate: '2015-09-09 09:09:09' },
-      { company: 'UIO 有限责任公司', city: '深圳', employees: 1100, createdDate: '2014-10-10 10:10:10' },
-      { company: 'HJK 有限责任公司', city: '中山', employees: 1200, createdDate: '2013-11-11 11:11:11' },
-      { company: 'WWW 有限责任公司', city: '深圳', employees: 300, createdDate: '2016-07-08 12:36:22' },
-      { company: 'RFV 有限责任公司', city: '中山', employees: 1300, createdDate: '2014-02-14 14:14:14' },
-      { company: 'TGB 有限责任公司', city: '广州', employees: 360, createdDate: '2013-01-13 13:13:13' },
-      { company: 'YHN 有限责任公司', city: '深圳', employees: 810, createdDate: '2012-12-12 12:12:12' },
-      { company: 'WSX 有限责任公司', city: '中山', employees: 800, createdDate: '2011-11-11 11:11:11' },
-      { company: 'KBG 有限责任公司', city: '深圳', employees: 400, createdDate: '2014-04-30 23:56:00' },
-      { company: 'SZB 有限责任公司', city: '深圳', employees: 1400, createdDate: '2016-06-03 13:53:25' }
-    ]
-    return {
-      server: new McpServer({ name: 'base-config', version: '1.0.0' }, {}),
-      sessionID: '',
-      tableData: _table,
-      queryCity: '',
-      options: Array.from(new Set(_table.map((item) => item.city))).map((city) => ({
-        label: city,
-        value: city
-      }))
-    }
-  },
-  async mounted() {
-    // 1、
-    const [transport, clientTransport] = createTransportPair()
+// 初始化表格数据
+const _table = [
+  { company: 'GFD 有限责任公司', city: '广州', employees: 800, createdDate: '2014-04-30 00:56:00' },
+  { company: 'AWE 有限责任公司', city: '深圳', employees: 500, createdDate: '2015-05-01 01:01:01' },
+  { company: 'ASD 有限责任公司', city: '中山', employees: 400, createdDate: '2013-03-03 03:03:03' },
+  { company: 'ZXC 有限责任公司', city: '广州', employees: 1000, createdDate: '2012-02-02 02:02:02' },
+  { company: 'VBN 有限责任公司', city: '深圳', employees: 600, createdDate: '2011-01-01 01:01:01' },
+  { company: 'QWE 有限责任公司', city: '中山', employees: 700, createdDate: '2016-08-08 08:08:08' },
+  { company: 'RTY 有限责任公司', city: '广州', employees: 900, createdDate: '2015-09-09 09:09:09' },
+  { company: 'UIO 有限责任公司', city: '深圳', employees: 1100, createdDate: '2014-10-10 10:10:10' },
+  { company: 'HJK 有限责任公司', city: '中山', employees: 1200, createdDate: '2013-11-11 11:11:11' },
+  { company: 'WWW 有限责任公司', city: '深圳', employees: 300, createdDate: '2016-07-08 12:36:22' },
+  { company: 'RFV 有限责任公司', city: '中山', employees: 1300, createdDate: '2014-02-14 14:14:14' },
+  { company: 'TGB 有限责任公司', city: '广州', employees: 360, createdDate: '2013-01-13 13:13:13' },
+  { company: 'YHN 有限责任公司', city: '深圳', employees: 810, createdDate: '2012-12-12 12:12:12' },
+  { company: 'WSX 有限责任公司', city: '中山', employees: 800, createdDate: '2011-11-11 11:11:11' },
+  { company: 'KBG 有限责任公司', city: '深圳', employees: 400, createdDate: '2014-04-30 23:56:00' },
+  { company: 'SZB 有限责任公司', city: '深圳', employees: 1400, createdDate: '2016-06-03 13:53:25' }
+]
 
-    // 2、
-    const client = new Client({ name: 'ai-agent', version: '1.0.0' }, {})
-    await client.connect(clientTransport)
-    const { sessionId } = await createSseProxy({
-      client,
-      url: 'https://39.108.160.245/sse'
-    })
+const tableData = ref(_table)
 
-    this.sessionID = sessionId
-    window.$sessionId = this.sessionID
-
-    // 3、
-    await this.server.connect(transport)
-  }
-}
+const { server } = useNextServer({
+  serverInfo: { name: 'company-information', version: '1.0.0' }
+})
 </script>

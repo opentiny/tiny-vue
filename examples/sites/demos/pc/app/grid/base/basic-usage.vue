@@ -1,31 +1,6 @@
 <template>
   <div>
-    <label style="font-size: 1.5em; margin-right: 8px">选择城市:</label>
-    <tiny-select
-      v-model="queryCity"
-      :options="options"
-      style="width: 200px; margin-bottom: 20px"
-      placeholder="选择城市"
-      :tiny_mcp_config="{
-        server,
-        business: {
-          id: 'city-dropdown',
-          description: '城市下拉框'
-        }
-      }"
-    ></tiny-select>
-    <tiny-grid
-      :data="tableData"
-      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-      height="420px"
-      :tiny_mcp_config="{
-        server,
-        business: {
-          id: 'company-information',
-          description: '公司人员信息表'
-        }
-      }"
-    >
+    <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }" height="420px">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="company" title="公司名称"></tiny-grid-column>
@@ -37,22 +12,18 @@
 </template>
 
 <script>
-import { TinyGrid, TinyGridColumn, TinyBaseSelect } from '@opentiny/vue'
-import { createTransportPair, createSseProxy } from '@opentiny/next'
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { Client } from '@modelcontextprotocol/sdk/client/index.js'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
     TinyGrid,
-    TinyGridColumn,
-    TinySelect: TinyBaseSelect
+    TinyGridColumn
   },
   data() {
     const _table = [
       { company: 'GFD 有限责任公司', city: '广州', employees: 800, createdDate: '2014-04-30 00:56:00' },
       { company: 'AWE 有限责任公司', city: '深圳', employees: 500, createdDate: '2015-05-01 01:01:01' },
-      { company: 'ASD 有限责任公司', city: '中山', employees: 200, createdDate: '2013-03-03 03:03:03' },
+      { company: 'ASD 有限责任公司', city: '中山', employees: 400, createdDate: '2013-03-03 03:03:03' },
       { company: 'ZXC 有限责任公司', city: '广州', employees: 1000, createdDate: '2012-02-02 02:02:02' },
       { company: 'VBN 有限责任公司', city: '深圳', employees: 600, createdDate: '2011-01-01 01:01:01' },
       { company: 'QWE 有限责任公司', city: '中山', employees: 700, createdDate: '2016-08-08 08:08:08' },
@@ -77,24 +48,6 @@ export default {
         value: city
       }))
     }
-  },
-  async mounted() {
-    // 1、
-    const [transport, clientTransport] = createTransportPair()
-
-    // 2、
-    const client = new Client({ name: 'ai-agent', version: '1.0.0' }, {})
-    await client.connect(clientTransport)
-    const { sessionId } = await createSseProxy({
-      client,
-      url: 'https://39.108.160.245/sse'
-    })
-
-    this.sessionID = sessionId
-    window.$sessionId = this.sessionID
-
-    // 3、
-    await this.server.connect(transport)
   }
 }
 </script>
