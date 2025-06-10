@@ -39,14 +39,7 @@ export default {
       { company: 'SZB 有限责任公司', city: '深圳', employees: 1400, createdDate: '2016-06-03 13:53:25' }
     ]
     return {
-      server: new McpServer({ name: 'base-config', version: '1.0.0' }, {}),
-      sessionID: '',
-      tableData: _table,
-      queryCity: '',
-      options: Array.from(new Set(_table.map((item) => item.city))).map((city) => ({
-        label: city,
-        value: city
-      }))
+      tableData: _table
     }
   }
 }
