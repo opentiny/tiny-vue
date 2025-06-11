@@ -33,7 +33,6 @@ export class DifyModelProvider extends BaseModelProvider {
     try {
       // 验证请求的messages属性，必须是数组，且每个消息必须有role\content属性
       const lastMessage = request.messages[request.messages.length - 1].content
-
       // 模拟异步流式响应
       const response = await fetch(`${this.config.apiUrl}/chat-messages`, {
         method: 'POST',

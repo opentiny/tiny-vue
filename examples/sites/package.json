@@ -58,6 +58,7 @@
     "@vue/shared": "^3.4.31",
     "@vueuse/core": "^12.7.0",
     "@vueuse/head": "0.7.13",
+    "crypto-js": "^4.2.0",
     "github-markdown-css": "~5.1.0",
     "highlight.js": "^11.5.1",
     "marked": "^4.3.0",
