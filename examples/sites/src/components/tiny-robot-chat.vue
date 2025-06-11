@@ -42,20 +42,16 @@
 <script setup lang="ts">
 import { TrBubbleList, TrContainer, TrPrompts, TrSender, TrWelcome, TrSuggestionPills } from '@opentiny/tiny-robot'
 import { GeneratingStatus } from '@opentiny/tiny-robot-kit'
-import { useTinyRobot } from './composition/useTinyRobot'
-import { appData } from '../../tools/appData'
+import { useTinyRobot } from '../composable/useTinyRobot'
+import { appData } from '../tools/appData'
 
 const {
-  client,
   fullscreen,
-  show,
   welcomeIcon,
   promptItems,
-  computedMessages,
   messages,
   messageState,
   inputMessage,
-  sendMessage,
   abortRequest,
   roles,
   handlePromptItemClick,

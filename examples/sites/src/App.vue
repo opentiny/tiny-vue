@@ -17,7 +17,7 @@ import { iconClose } from '@opentiny/vue-icon'
 import { appData } from './tools'
 import useTheme from './tools/useTheme'
 import { useNextClient } from '@opentiny/next-vue'
-import { globalConversation } from './views/components-doc/composition/utils'
+import { globalConversation } from './composable/utils'
 
 export default defineComponent({
   name: 'AppVue',
