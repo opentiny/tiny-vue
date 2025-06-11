@@ -56,7 +56,7 @@ import { globalConversation } from '@/composable/utils'
 import { IconAi } from '@opentiny/tiny-robot-svgs'
 import CryptoJS from 'crypto-js'
 import { TinyQrCode } from '@opentiny/vue'
-import Demo from './demo.vue'
+import Demo from './Demo.vue'
 import { appData } from '@/tools/appData'
 
 appData.showTinyRobot = true
