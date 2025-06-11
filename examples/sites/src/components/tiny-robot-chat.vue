@@ -2,13 +2,13 @@
   <!-- mcp-robot弹窗 -->
   <tr-container v-model:show="appData.showTinyRobot" v-model:fullscreen="fullscreen">
     <div v-if="messages.length === 0">
-      <tr-welcome title="智能助手" description="您好，我是Opentiny AI智能助手" :icon="welcomeIcon">
+      <tr-welcome title="智能助手" description="您好，我是OpenTiny AI智能助手" :icon="welcomeIcon">
         <template #footer>
           <div class="welcome-footer"></div>
         </template>
       </tr-welcome>
       <tr-prompts
-        :items="promptItems"
+        :items="customPromptItems"
         :wrap="true"
         item-class="prompt-item"
         class="tiny-prompts"
@@ -18,7 +18,7 @@
     <tr-bubble-list v-else :items="messages" :roles="roles" auto-scroll></tr-bubble-list>
     <template #footer>
       <div class="chat-input">
-        <TrSuggestionPills :items="suggestionPillItems" @item-click="handleSuggestionPillItemClick" /><br />
+        <TrSuggestionPills :items="customSuggestionPillItems" @item-click="handleSuggestionPillItemClick" /><br />
         <tr-sender
           ref="senderRef"
           mode="single"
@@ -45,10 +45,15 @@ import { GeneratingStatus } from '@opentiny/tiny-robot-kit'
 import { useTinyRobot } from '../composable/useTinyRobot'
 import { appData } from '../tools/appData'
 
+const props = defineProps<{
+  promptItems: any[]
+  suggestionPillItems: any[]
+}>()
+
 const {
   fullscreen,
   welcomeIcon,
-  promptItems,
+  promptItems: defaultPromptItems,
   messages,
   messageState,
   inputMessage,
@@ -60,9 +65,12 @@ const {
   clearTemplate,
   handleSendMessage,
   handleMessageKeydown,
-  suggestionPillItems,
+  suggestionPillItems: defaultSuggestionPillItems,
   handleSuggestionPillItemClick
 } = useTinyRobot()
+
+const customPromptItems = props.promptItems || defaultPromptItems
+const customSuggestionPillItems = props.suggestionPillItems || defaultSuggestionPillItems
 </script>
 
 <style scoped lang="less">

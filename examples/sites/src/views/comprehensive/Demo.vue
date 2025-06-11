@@ -156,8 +156,34 @@ const { server } = useNextServer({
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-    height: 32px;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid #edf2f7;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 4px;
+      height: 24px;
+      background: #1677ff;
+      border-radius: 2px;
+      transform: translateY(-50%);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1f2937;
+      position: relative;
+      padding-left: 20px;
+      letter-spacing: 0.3px;
+    }
   }
 }
 
