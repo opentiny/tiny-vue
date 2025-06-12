@@ -1,4 +1,4 @@
-# TinyVue 智能化 MCP 组件接入指南
+# TinyVue 智能化组件接入指南
 
 TinyVue 的智能化组件提供了一套完整的智能化解决方案，让您的应用具备 AI 对话、语音交互等能力。本文将指导您如何在项目中接入 TinyVue 的智能化组件。
 
@@ -16,7 +16,7 @@ npm install @opentiny/tiny-vue-mcp @opentiny/next-vue @opentiny/vue-common @open
 
 在应用入口文件（如 `main.js`）中初始化 MCP 配置：
 
-```javascript
+```js
 import { registerMcpConfig } from '@opentiny/vue-common'
 import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 
@@ -28,21 +28,21 @@ registerMcpConfig(getTinyVueMcpConfig(), createMcpTools)
 
 在 `App.vue` 中创建 NextClient 代理客户端，用于建立实时通信：
 
-```vue
+```html
 <script setup lang="ts">
-import { useNextClient } from '@opentiny/next-vue'
+  import { useNextClient } from '@opentiny/next-vue'
 
-const { sessionId } = useNextClient({
-  clientInfo: {
-    name: 'your-app-name', // 应用名称
-    version: '1.0.0', // 应用版本
-    sessionId: 'your-session-id' // 可选，不传会由后台生成；为了方便调试可以使用crypto.randomUUID()生成一个固定的方便调试
-  },
-  proxyOptions: {
-    url: 'your-sse-url', // SSE 服务地址，目前agent代理服务器代码未开源，如想使用可以在github给我们留言
-    token: 'your-token' // 认证 token
-  }
-})
+  const { sessionId } = useNextClient({
+    clientInfo: {
+      name: 'your-app-name', // 应用名称
+      version: '1.0.0', // 应用版本
+      sessionId: 'your-session-id' // 可选，不传会由后台生成；为了方便调试可以使用crypto.randomUUID()生成一个固定的方便调试
+    },
+    proxyOptions: {
+      url: 'your-sse-url', // SSE 服务地址，目前agent代理服务器代码未开源，如想进一步了解可以在github中提issue单
+      token: 'your-token' // 认证 token
+    }
+  })
 </script>
 
 <template>
@@ -57,13 +57,13 @@ const { sessionId } = useNextClient({
 
 在子页面中使用 Grid 等支持 MCP 的组件时，添加 MCP 配置：
 
-```vue
+```html
 <script setup lang="ts">
-import { useNextServer } from '@opentiny/next-vue'
+  import { useNextServer } from '@opentiny/next-vue'
 
-const { server } = useNextServer({
-  serverInfo: { name: 'your-server-name', version: '1.0.0' }
-})
+  const { server } = useNextServer({
+    serverInfo: { name: 'your-server-name', version: '1.0.0' }
+  })
 </script>
 
 <template>

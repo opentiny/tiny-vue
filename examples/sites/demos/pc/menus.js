@@ -42,6 +42,11 @@ const docMenusChildren = [
     'titleEn': 'theme-dark',
     'key': 'theme-dark'
   },
+  {
+    'title': '智能化',
+    'titleEn': 'mcp',
+    'key': 'mcp'
+  },
   { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
   { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
   {

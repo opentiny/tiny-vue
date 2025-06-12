@@ -1,4 +1,4 @@
-# TinyVue Intelligent MCP Component Access Guide
+# TinyVue Intelligent Component Access Guide
 
 TinyVue's intelligent components provide a complete intelligent solution, allowing your application to have AI conversation, voice interaction, and other capabilities. This guide will walk you through how to integrate TinyVue's intelligent components into your project.
 
@@ -16,7 +16,7 @@ npm install @opentiny/tiny-vue-mcp @opentiny/next-vue @opentiny/vue-common @open
 
 Initialize MCP configuration in the application entry file (e.g., `main.js`):
 
-```javascript
+```js
 import { registerMcpConfig } from '@opentiny/vue-common'
 import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 
@@ -28,21 +28,21 @@ registerMcpConfig(getTinyVueMcpConfig(), createMcpTools)
 
 Create a NextClient proxy client in `App.vue` to establish real-time communication:
 
-```vue
+```html
 <script setup lang="ts">
-import { useNextClient } from '@opentiny/next-vue'
+  import { useNextClient } from '@opentiny/next-vue'
 
-const { sessionId } = useNextClient({
-  clientInfo: {
-    name: 'your-app-name', // Application name
-    version: '1.0.0', // Application version
-    sessionId: 'your-session-id' // Optional, will be passed in by the backend if not provided; for debugging, you can use crypto.randomUUID() to generate a fixed one
-  },
-  proxyOptions: {
-    url: 'your-sse-url', // SSE service address
-    token: 'your-token' // Authentication token
-  }
-})
+  const { sessionId } = useNextClient({
+    clientInfo: {
+      name: 'your-app-name', // Application name
+      version: '1.0.0', // Application version
+      sessionId: 'your-session-id' // Optional, will be passed in by the backend if not provided; for debugging, you can use crypto.randomUUID() to generate a fixed one
+    },
+    proxyOptions: {
+      url: 'your-sse-url', // SSE service address
+      token: 'your-token' // Authentication token
+    }
+  })
 </script>
 
 <template>
@@ -57,13 +57,13 @@ const { sessionId } = useNextClient({
 
 When using
 
-```vue
+```html
 <script setup lang="ts">
-import { useNextServer } from '@opentiny/next-vue'
+  import { useNextServer } from '@opentiny/next-vue'
 
-const { server } = useNextServer({
-  serverInfo: { name: 'your-server-name', version: '1.0.0' }
-})
+  const { server } = useNextServer({
+    serverInfo: { name: 'your-server-name', version: '1.0.0' }
+  })
 </script>
 
 <template>
