@@ -36,7 +36,7 @@ registerMcpConfig(getTinyVueMcpConfig(), createMcpTools)
     clientInfo: {
       name: 'your-app-name', // 应用名称
       version: '1.0.0', // 应用版本
-      sessionId: 'your-session-id' // 可选，不传会由后台生成；为了方便调试可以使用crypto.randomUUID()生成一个固定的方便调试
+      sessionId: 'your-session-id' // 可选，不传由后台自动生成。调试时可使用 crypto.randomUUID() 生成固定值
     },
     proxyOptions: {
       url: 'your-sse-url', // SSE 服务地址，目前agent代理服务器代码未开源，如想进一步了解可以在github中提issue单
