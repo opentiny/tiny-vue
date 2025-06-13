@@ -5,16 +5,16 @@
 
 import type { ChatMessage, ChatCompletionResponse, StreamHandler } from '@opentiny/tiny-robot-kit'
 import type { ChatCompletionRequest } from '@opentiny/tiny-robot-kit'
-import { ref, type Ref } from 'vue'
+import { ref, reactive, type Ref } from 'vue'
 
-export { $local } from './storage'
+export { $local, $session } from './storage'
 
 export const showTinyRobot = ref(true)
 
-export const globalConversation = {
+export const globalConversation = reactive({
   id: '',
   sessionId: ''
-}
+})
 /**
  * 处理SSE流式响应
  * @param response fetch响应对象

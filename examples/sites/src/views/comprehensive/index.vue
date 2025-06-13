@@ -96,7 +96,7 @@ watch(
       const encryptedId = CryptoJS.AES.encrypt(newVal, 'secret-session-id').toString()
 
       const secretId = encodeURIComponent(encryptedId)
-      sessionUrl.value = 'http://39.108.160.245?id=' + secretId
+      sessionUrl.value = `${location.href.replace('comprehensive', 'remoter')}?id=${secretId}`
     }
   },
   { immediate: true }
