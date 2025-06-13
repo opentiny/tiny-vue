@@ -33,7 +33,7 @@ export default defineComponent({
 
     const { sessionId } = useNextClient({
       clientInfo: { name: 'tiny-vue-website', version: '1.0.0' },
-      proxyOptions: { url: 'https://39.108.160.245/sse', token: '', sessionId: $session.sessionId }
+      proxyOptions: { url: 'https://agent.icjs.ink/sse', token: '', sessionId: $session.sessionId }
     })
 
     watch(
