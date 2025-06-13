@@ -574,7 +574,7 @@
     @apply text-left;
 
     &:not(.col__ellipsis) {
-      @apply ~'py-0.5' px-2;
+      @apply ~'py-0.5' px-4;
     }
 
     &.col__current {
@@ -601,7 +601,9 @@
     word-break: break-word;
 
     .@{grid-prefix-cls}-checkbox {
-      @apply align-bottom;
+      @apply flex;
+      @apply items-center;
+      @apply justify-center;
     }
 
     .@{grid-prefix-cls}__data-boole,
@@ -696,9 +698,8 @@
 
   // 排序
   & &-sort-wrapper {
-    padding-left: 4px;
     position: absolute;
-    right: 6px;
+    right: 16px;
 
     .@{grid-prefix-cls}-sort__btn {
       @apply ~'h-3.5';
