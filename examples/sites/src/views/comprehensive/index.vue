@@ -96,7 +96,7 @@ watch(
       const encryptedId = CryptoJS.AES.encrypt(newVal, 'secret-session-id').toString()
 
       const secretId = encodeURIComponent(encryptedId)
-      sessionUrl.value = 'http://39.108.160.245?id=' + secretId
+      sessionUrl.value = `https://agent.icjs.ink?id=${secretId}`
     }
   },
   { immediate: true }
@@ -202,9 +202,7 @@ watch(
   border-radius: 12px;
   padding: 32px;
   width: 460px;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .qr-modal-header {
@@ -267,22 +265,13 @@ watch(
 
 @keyframes glow {
   0% {
-    box-shadow:
-      0 0 5px rgba(22, 119, 255, 0.2),
-      0 0 10px rgba(22, 119, 255, 0.2),
-      0 0 15px rgba(22, 119, 255, 0.2);
+    box-shadow: 0 0 5px rgba(22, 119, 255, 0.2), 0 0 10px rgba(22, 119, 255, 0.2), 0 0 15px rgba(22, 119, 255, 0.2);
   }
   50% {
-    box-shadow:
-      0 0 10px rgba(22, 119, 255, 0.3),
-      0 0 20px rgba(22, 119, 255, 0.3),
-      0 0 30px rgba(22, 119, 255, 0.3);
+    box-shadow: 0 0 10px rgba(22, 119, 255, 0.3), 0 0 20px rgba(22, 119, 255, 0.3), 0 0 30px rgba(22, 119, 255, 0.3);
   }
   100% {
-    box-shadow:
-      0 0 5px rgba(22, 119, 255, 0.2),
-      0 0 10px rgba(22, 119, 255, 0.2),
-      0 0 15px rgba(22, 119, 255, 0.2);
+    box-shadow: 0 0 5px rgba(22, 119, 255, 0.2), 0 0 10px rgba(22, 119, 255, 0.2), 0 0 15px rgba(22, 119, 255, 0.2);
   }
 }
 

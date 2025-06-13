@@ -8,6 +8,7 @@ const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
 const Features = () => import('@/views/features.vue')
 const Comprehensive = () => import('@/views/comprehensive/index.vue')
+const Remoter = () => import('@/views/remoter/index.vue')
 
 const context = import.meta.env.VITE_CONTEXT
 
@@ -23,6 +24,11 @@ let routes = [
     path: `${context}:all?/zh-CN/:theme/comprehensive`,
     component: Comprehensive,
     name: 'comprehensive'
+  },
+  {
+    path: `${context}:all?/zh-CN/:theme/remoter`,
+    component: Remoter,
+    name: 'remoter'
   },
   // 文档
   {
