@@ -2,7 +2,7 @@
 
 TinyVue's intelligent components provide a complete intelligent solution, allowing your application to have AI conversation, voice interaction, and other capabilities. This guide will walk you through how to integrate TinyVue's intelligent components into your project.
 
-## 安装依赖
+## Install dependencies
 
 First, you need to install the following core dependency packages:
 
@@ -10,7 +10,7 @@ First, you need to install the following core dependency packages:
 npm install @opentiny/tiny-vue-mcp @opentiny/next-vue @opentiny/vue-common @opentiny/vue
 ```
 
-## 接入步骤
+## Access steps
 
 ### 1. Initialize MCP Configuration
 
@@ -87,7 +87,7 @@ When using
 2. It is recommended to use HTTPS in production environments
 3. CORS needs to be correctly configured to support cross-origin requests
 
-## 常见问题
+## Common issues
 
 1. Session connection failed
 
