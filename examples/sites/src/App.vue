@@ -40,6 +40,7 @@ export default defineComponent({
       () => sessionId.value,
       (newVal) => {
         if (newVal) {
+          $session.sessionId = newVal
           globalConversation.sessionId = newVal
         }
       }
