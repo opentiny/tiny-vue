@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "version": "3.24.4",
+  "version": "3.24.5",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -31,7 +31,7 @@
     "@opentiny/tiny-robot": "0.2.1",
     "@opentiny/tiny-robot-kit": "0.2.1",
     "@opentiny/tiny-robot-svgs": "0.2.1",
-    "@opentiny/tiny-vue-mcp": "^0.0.1",
+    "@opentiny/tiny-vue-mcp": "^0.0.2",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
