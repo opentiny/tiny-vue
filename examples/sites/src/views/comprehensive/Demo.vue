@@ -27,7 +27,7 @@
         <tiny-grid-column type="selection" width="50" />
         <tiny-grid-column title="商品图片" width="100">
           <template #default="{ row }">
-            <tiny-image :src="row.image" :preview-src-list="[row.image]" class="product-image" />
+            <img :src="row.image" class="product-image" />
           </template>
         </tiny-grid-column>
 
@@ -93,7 +93,7 @@ import { ref } from 'vue'
 import productsData from './products.json'
 import { $local } from '../../composable/utils'
 import { useNextServer } from '@opentiny/next-vue'
-import { TinyGrid, TinyGridColumn, TinyButton, TinyTag, TinyModal, TinyImage } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyButton, TinyTag, TinyModal } from '@opentiny/vue'
 
 if (!$local.products) {
   $local.products = productsData
@@ -198,6 +198,7 @@ const { server } = useNextServer({
 }
 
 .product-image {
+  display: block;
   width: 40px;
   height: 40px;
   border-radius: 4px;
