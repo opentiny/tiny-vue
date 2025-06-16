@@ -111,7 +111,7 @@ const categoryLabels: Record<string, string> = {
 // 新增商品到编辑弹窗
 const addProductToEdit = async () => {
   gridRef?.value?.insert({
-    'image': 'https://img1.baidu.com/it/u=1559062020,1043707656&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
+    image: 'https://agent.icjs.ink/images/huawei-pura.jpg',
     price: 10000,
     stock: 100,
     category: 'phones',
