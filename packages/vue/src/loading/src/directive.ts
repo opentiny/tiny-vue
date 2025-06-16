@@ -31,8 +31,9 @@ const insertDom = (parent, el, binding) => {
     }
 
     el.domVisible = true
-
-    parent.appendChild(el.mask)
+    if (el.mask) {
+      parent.appendChild(el.mask)
+    }
 
     hooks.nextTick(() => {
       if (el.instance.hiding) {
