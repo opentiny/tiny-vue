@@ -1,6 +1,6 @@
 import { filterTree, remove, isArray, findTree, get, eachTree } from '@opentiny/vue-renderless/grid/static/'
-import { getTableRowKey, setTreeScrollYCache } from '../../table/src/strategy'
-import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { emitEvent, getRowkey } from '@opentiny/vue-renderless/grid/utils'
+import { graphFullData } from '../../composable'
 
 export default {
   // 展开树节点事件
@@ -25,12 +25,12 @@ export default {
   // 处理默认展开树节点
   handleDefaultTreeExpand() {
     let { tableFullData, treeConfig } = this
-    if (!treeConfig) {
-      return
-    }
+
+    if (!treeConfig) return
+
     let { children, expandAll, expandRowKeys: rowids } = treeConfig
     let treeExpandeds = []
-    let rowkey = getTableRowKey(this)
+    let rowkey = getRowkey(this)
     let isNonEmptyArr = (arr) => isArray(arr) && arr.length
     // 展开所有行
     let doExpandAll = () => {
@@ -44,16 +44,15 @@ export default {
 
         matchObj && isNonEmptyArr(matchObj.item[children]) && treeExpandeds.push(matchObj.item)
       })
+
       this.treeExpandeds = treeExpandeds
     }
 
-    if (expandAll) {
-      doExpandAll()
-    } else if (rowids) {
-      doExpandRows()
-    }
+    expandAll ? doExpandAll() : rowids ? doExpandRows() : ''
 
-    setTreeScrollYCache(this)
+    graphFullData(this)
+
+    return this.handleTableData()
   },
   setAllTreeExpansion(expanded) {
     let { tableFullData, treeConfig } = this
@@ -69,9 +68,9 @@ export default {
     }
     this.treeExpandeds = treeExpandeds
 
-    setTreeScrollYCache(this)
+    graphFullData(this)
 
-    return this.$nextTick().then(this.recalculate)
+    return this.handleTableData().then(this.recalculate)
   },
   // 设置展开树形节点，二个参数设置这一行展开与否：支持单行，支持多行
   setTreeExpansion(rows, expanded) {
@@ -110,9 +109,9 @@ export default {
 
     this.treeExpandeds = treeExpandedsCopy
 
-    setTreeScrollYCache(this)
+    graphFullData(this)
 
-    return this.$nextTick().then(this.recalculate)
+    return this.handleTableData().then(this.recalculate)
   },
   hasTreeExpand(row) {
     return ~this.treeExpandeds.indexOf(row)
@@ -120,8 +119,8 @@ export default {
   clearTreeExpand() {
     const hasExpand = this.treeExpandeds.length
     this.treeExpandeds = []
-    setTreeScrollYCache(this)
-    return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
+    graphFullData(this)
+    return this.handleTableData().then(() => (hasExpand ? this.recalculate() : 0))
   },
   getTreeExpandeds() {
     return this.treeExpandeds

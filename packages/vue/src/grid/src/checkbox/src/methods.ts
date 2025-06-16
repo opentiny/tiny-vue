@@ -1,7 +1,6 @@
 import { hasCheckField, hasNoCheckField } from './handleSelectRow'
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './setAllSelection'
-import { getTableRowKey } from '../../table/src/strategy'
-import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import { emitEvent, getRowkey } from '@opentiny/vue-renderless/grid/utils'
 import { isArray, set, get, eachTree, find, toStringJSON, toArray } from '@opentiny/vue-renderless/grid/static/'
 
 export default {
@@ -129,7 +128,7 @@ export default {
   reserveCheckSelection() {
     let { fullDataRowIdData, selection } = this
     let { reserve } = this.selectConfig || {}
-    let rowkey = getTableRowKey(this)
+    let rowkey = getRowkey(this)
     if (reserve && selection.length) {
       this.selection = selection.map((row) => {
         let rowCache = fullDataRowIdData[`${get(row, rowkey)}`]
@@ -215,14 +214,15 @@ export default {
       let selected = this.getSelectRecords()
       let position = typeof selectToolbar === 'object' ? selectToolbar.position : ''
       if (selectColumn && selected && selected.length) {
-        let selectTh = this.$el.querySelector('th.tiny-grid-header__column.col__selection')
-        let headerWrapper = this.$el.querySelector('.tiny-grid>.tiny-grid__header-wrapper')
+        const { tinyTheme, vSize, $el } = this
+        const rowHeight = GlobalConfig.rowHeight[tinyTheme]?.[vSize || 'default'] || 40
+        let selectTh = $el.querySelector('th.tiny-grid-header__column.col__selection')
         let tr = selectTh.parentNode
         let thArr = toArray(tr.childNodes)
         let range = document.createRange()
         let rangeBoundingRect
-        let headerBoundingRect = headerWrapper.getBoundingClientRect()
-        let layout = { width: 0, height: 0, left: 0, top: 0, zIndex: 1 }
+        let headerBoundingRect = { width: $el.getBoundingClientRect().width, height: rowHeight }
+        let layout = { width: 0, height: 0, left: 0, top: 0, zIndex: 20 }
         let adjust = 1
         if (selectColumn.fixed === 'right') {
           range.setStart(tr, thArr.indexOf(selectTh))

@@ -10,10 +10,10 @@ test('[DatePanel] 测试月份/年份/日期选择', async ({ page }) => {
 
   // 选择年份展示月份面板
   await page.getByRole('cell', { name: '2025' }).first().click()
-  await expect(page.getByRole('cell', { name: '一月', exact: true }).first()).toBeVisible()
+  await expect(page.getByRole('cell', { name: '1 月', exact: true }).first()).toBeVisible()
 
   // 选择月份展示日期面板
-  await page.getByRole('cell', { name: '一月', exact: true }).first().click()
+  await page.getByRole('cell', { name: '1 月', exact: true }).first().click()
   await expect(page.getByRole('cell', { name: '15' }).locator('div').first()).toBeVisible()
 
   // 选择日期
@@ -21,7 +21,7 @@ test('[DatePanel] 测试月份/年份/日期选择', async ({ page }) => {
   await expect(page.locator('.value')).toHaveText('2025-01-16')
 
   // 月份面板
-  await page.getByText('七月').first().click()
+  await page.getByText('7 月').first().click()
   await expect(page.locator('.month')).toHaveText('2025-07')
 
   // 年份面板
@@ -35,9 +35,9 @@ test('[DatePanel] 测试月份/年份/日期选择', async ({ page }) => {
   await expect(page.locator('.value1')).toHaveText('[ "2024-12-19", "2024-12-28" ]')
 
   // monthRange
-  await page.getByText('七月').nth(1).click()
-  await page.getByText('六月').nth(2).click()
-  await expect(page.locator('.value2')).toHaveText('[ "2024-07", "2025-06" ]')
+  await page.locator('#basic-usage').getByText('7 月').nth(1).click()
+  await page.locator('#basic-usage').getByText('6 月').nth(2).click()
+  await expect(page.locator('.value2')).toHaveText('[ "2024-03", "2025-02" ]')
 
   // yearRange
   await page.getByText('2037').click()

@@ -90,6 +90,7 @@ import IconDeltaLeftO from './src/delta-left-o'
 import IconDeltaLeft from './src/delta-left'
 import IconDeltaRightO from './src/delta-right-o'
 import IconDeltaRight from './src/delta-right'
+import IconDelegatedProcessing from './src/delegated-processing'
 import IconDeltaUpO from './src/delta-up-o'
 import IconDeltaUp from './src/delta-up'
 import IconDerive from './src/derive'
@@ -857,6 +858,8 @@ export {
   IconDeltaRightO as iconDeltaRightO,
   IconDeltaRight,
   IconDeltaRight as iconDeltaRight,
+  IconDelegatedProcessing,
+  IconDelegatedProcessing as iconDelegatedProcessing,
   IconDeltaUpO,
   IconDeltaUpO as iconDeltaUpO,
   IconDeltaUp,
@@ -1740,6 +1743,7 @@ export default {
   IconDeltaLeft,
   IconDeltaRightO,
   IconDeltaRight,
+  IconDelegatedProcessing,
   IconDeltaUpO,
   IconDeltaUp,
   IconDerive,

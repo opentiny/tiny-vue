@@ -81,7 +81,7 @@ function createRender(opt) {
       }
     },
     [
-      selectToolbar ? null : renderedToolbar,
+      selectToolbar ? null : renderedToolbar(),
       columnAnchor ? _vm.renderColumnAnchor(columnAnchorParams, _vm) : null,
       // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
       h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, slots.default && slots.default()),
@@ -159,7 +159,8 @@ export default defineComponent({
       columnAnchorKey: '',
       tasks: {},
       fullScreenClass: '',
-      isInitialLoading: true // 是否首次加载数据
+      isInitialLoading: true, // 是否首次加载数据
+      _delayActivateAnchor: undefined
     }
   },
   computed: {
@@ -201,6 +202,19 @@ export default defineComponent({
     },
     isViewCustom() {
       return this.viewType === V_CUSTOM
+    },
+    optimizOpt() {
+      return Object.assign(this.initOptimization, GlobalConfig.optimization, this.optimization)
+    },
+    editConfigOpt() {
+      return this.editConfig
+        ? Object.assign(this.initEditConfig, GlobalConfig.editConfig, this.editConfig, {
+            activeMethod: this.handleActiveMethod
+          })
+        : null
+    },
+    tooltipOpt() {
+      return Object.assign(this.initTooltipConfig, GlobalConfig.tooltip, this.designConfig?.tooltip, this.tooltipConfig)
     }
   },
   watch: {
@@ -211,13 +225,10 @@ export default defineComponent({
     tableCustoms() {
       this.toolbar && this.$refs.toolbar && this.$refs.toolbar.loadStorage()
     },
-    columnAnchorParams() {
-      setTimeout(() => this.emitter.emit('active-anchor'), this.columnAnchorParams.activeAnchor.delay)
-    },
     viewType(value) {
       // 解决从卡片、列表视图切换至表格视图后，列宽未自动撑开问题
       if (value === V_MF) {
-        this.$nextTick(() => this.recalculate(true))
+        this.$nextTick(() => this.recalculate())
       }
     }
   },
@@ -305,11 +316,12 @@ export default defineComponent({
     if (this.isMultipleHistory) {
       this.initMultipleHistory()
     }
-
-    this.addIntersectionObserver()
   },
   setup(props, context) {
     const { listeners, attrs } = context
+    const initEditConfig = hooks.ref({})
+    const initOptimization = hooks.ref({})
+    const initTooltipConfig = hooks.ref({})
     // 处理表格用户传递过来的事件监听
     const tableListeners = getListeners(attrs, listeners)
     const tinyTheme = hooks.ref(resolveTheme(props, context))
@@ -317,13 +329,20 @@ export default defineComponent({
     const breakpoint = useBreakpoint()
 
     const renderless = (props, hooks, { designConfig = null }) => {
-      return { tableListeners, designConfig, tinyTheme, tinyMode, currentBreakpoint: breakpoint.current }
+      return {
+        tableListeners,
+        designConfig,
+        tinyTheme,
+        tinyMode,
+        currentBreakpoint: breakpoint.current,
+        initEditConfig,
+        initOptimization,
+        initTooltipConfig
+      }
     }
 
     hooks.onBeforeUnmount(() => {
       const gridVm = hooks.getCurrentInstance().proxy
-
-      gridVm.removeIntersectionObserver()
       // 清空被缓存实例
       gridVm.vmStore = null
     })
@@ -332,16 +351,26 @@ export default defineComponent({
       props,
       context,
       renderless,
-      api: ['designConfig', 'tableListeners', 'tinyTheme', 'tinyMode', 'currentBreakpoint']
+      api: [
+        'designConfig',
+        'tableListeners',
+        'tinyTheme',
+        'tinyMode',
+        'currentBreakpoint',
+        'initEditConfig',
+        'initOptimization',
+        'initTooltipConfig'
+      ]
     })
   },
   render() {
     const {
-      editConfig,
       fetchOption,
       listeners,
       loading,
-      optimization,
+      optimizOpt,
+      editConfigOpt,
+      tooltipOpt,
       pager,
       pagerConfig,
       remoteFilter,
@@ -368,17 +397,12 @@ export default defineComponent({
       Object.assign(GlobalConfig.icon, designConfig.icons)
     }
 
-    // 初始化虚拟滚动优化配置
-    const optimizOpt = { ...GlobalConfig.optimization, ...optimization }
-    const props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
-
-    // 初始化 tooltip 配置
-    props.tooltipConfig = Object.assign(
-      {},
-      GlobalConfig.tooltip || {},
-      designConfig?.tooltip || {},
-      props.tooltipConfig || {}
-    )
+    const props = Object.assign(tableProps, {
+      optimization: optimizOpt,
+      startIndex: seqIndex,
+      editConfig: editConfigOpt,
+      tooltipConfig: tooltipOpt
+    })
 
     // 在用户没有配置stripe时读取design配置
     if (designConfig?.stripe !== undefined && !props.stripe) {
@@ -386,7 +410,7 @@ export default defineComponent({
       props.stripe = designConfig?.stripe
     }
 
-    const tableOns = { ...listeners, ...tableListeners }
+    const tableOns = Object.assign(listeners, tableListeners)
     const { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
     // fetchApi状态下初始化 loading、remoteSort、remoteFilter
@@ -402,19 +426,8 @@ export default defineComponent({
     // 列就绪事件处理
     tableOns['column-init-ready'] = this.handleColumnInitReady
 
-    // 这里handleActiveMethod处理一些编辑器的声明周期的拦截，用户传递过来的activeMethod优先级最高
-    if (editConfig) {
-      props.editConfig = {
-        trigger: 'click',
-        mode: 'cell',
-        showStatus: true,
-        ...editConfig,
-        activeMethod: this.handleActiveMethod
-      }
-    }
-
     // 获取工具栏的渲染器
-    const renderedToolbar = this.getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
+    const renderedToolbar = () => this.getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
 
     // 创建表格最外层容器，并加载table组件
     return createRender({
@@ -526,34 +539,6 @@ export default defineComponent({
     },
     viewCls(module) {
       return GlobalConfig.viewConfig[module][this.viewType] || ''
-    },
-    // 监听某个元素是否出现在视口中
-    addIntersectionObserver() {
-      if ((this.intersectionOption && this.intersectionOption.disabled) || typeof IntersectionObserver === 'undefined')
-        return
-
-      this.intersectionObserver = new IntersectionObserver((entries) => {
-        let entry = entries[0]
-
-        if (entries.length > 1) {
-          const intersectingEntry = entries.find((entry) => entry.isIntersecting)
-
-          if (intersectingEntry) {
-            entry = intersectingEntry
-          }
-        }
-
-        this.handleVisibilityChange(entry.isIntersecting, entry)
-      }, this.intersectionOption)
-
-      this.intersectionObserver.observe(this.$el)
-    },
-    removeIntersectionObserver() {
-      if (this.intersectionObserver) {
-        this.intersectionObserver.unobserve(this.$el)
-        this.intersectionObserver.disconnect()
-        this.intersectionObserver = null
-      }
     },
     filterChangeEvent(params) {
       let eventParams = extend(false, { $grid: this }, params)

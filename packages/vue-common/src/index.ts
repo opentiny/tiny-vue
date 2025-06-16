@@ -16,6 +16,7 @@ import {
   tools,
   useRouter,
   getComponentName,
+  getCustomProps,
   isVnode
 } from './adapter'
 import { t } from '@opentiny/vue-locale'
@@ -47,6 +48,7 @@ export const $props = {
   'tiny_template': [Function, Object],
   'tiny_renderless': Function,
   'tiny_theme': String,
+  'tiny_mcp_config': Object,
   'tiny_chart_theme': Object
 }
 
@@ -58,7 +60,17 @@ export const props: Array<
   | '_constants'
   | 'tiny_theme'
   | 'tiny_chart_theme'
-> = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants', 'tiny_theme', 'tiny_chart_theme']
+  | 'tiny_mcp_config'
+> = [
+  'tiny_mode',
+  'tiny_mode_root',
+  'tiny_template',
+  'tiny_renderless',
+  '_constants',
+  'tiny_theme',
+  'tiny_chart_theme',
+  'tiny_mcp_config'
+]
 
 export const resolveMode = (props, context) => {
   let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)
@@ -122,19 +134,6 @@ const resolveChartTheme = (props, context) => {
   return tinyChartTheme
 }
 
-export const $setup = ({ props, context, template, extend = {} }) => {
-  const mode = resolveMode(props, context)
-  const view = hooks.computed(() => {
-    if (typeof props.tiny_template !== 'undefined') return props.tiny_template
-
-    const component = template(mode, props)
-
-    return typeof component === 'function' ? defineAsyncComponent(component) : component
-  })
-
-  return renderComponent({ view, props, context, extend })
-}
-
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
 export const design = {
   configKey: Symbol('designConfigKey'),
@@ -168,17 +167,77 @@ export const customDesignConfig: CustomDesignConfig = {
   twMerge: () => ''
 }
 
+const getDesignConfig = () => {
+  // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
+  let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
+
+  // globalDesignConfig 可能是响应式对象，比如 computed
+  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
+  const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
+  return {
+    designConfig,
+    globalDesignConfig
+  }
+}
+
+const getComponentMcpConfig = () => {
+  const mcpConfig = globalMcpConfig.mcpConfig
+  const componentName = getComponentName().replace($prefix, '')
+  return mcpConfig?.components?.[componentName]
+}
+
+const globalMcpConfig = {
+  mcpConfig: null,
+  createMcpTools: null
+}
+
+export const registerMcpConfig = (mcpConfig, defineTool) => {
+  globalMcpConfig.mcpConfig = mcpConfig
+  globalMcpConfig.createMcpTools = defineTool
+}
+
+export const $setup = ({ props: propData, context, template, extend = {} }) => {
+  const mode = resolveMode(propData, context)
+  const view = hooks.computed(() => {
+    if (typeof propData.tiny_template !== 'undefined') return propData.tiny_template
+
+    const component = template(mode, propData)
+
+    return typeof component === 'function' ? defineAsyncComponent(component) : component
+  })
+
+  const { designConfig } = getDesignConfig()
+  const customDesignProps = {}
+
+  const designProps = designConfig?.props
+
+  if (designProps) {
+    // 获取用户传递的props
+    const customProps = getCustomProps()
+
+    Object.keys(designProps).forEach((key) => {
+      // 传递的属性可能是羊肉串格式也有可能是驼峰格式，需要兼容两种写法
+      const camelKey = key.replace(/-(\w)/g, (_, c) => c.toUpperCase())
+      const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
+      // 用户没有配置的属性才进行覆盖
+      if (
+        !Object.prototype.hasOwnProperty.call(customProps, camelKey) &&
+        !Object.prototype.hasOwnProperty.call(customProps, kebabKey)
+      ) {
+        customDesignProps[key] = designProps[key]
+      }
+    })
+  }
+
+  return renderComponent({ view, props: propData, customDesignProps, context, extend })
+}
+
 export const mergeClass = (...cssClasses) => customDesignConfig.twMerge(stringifyCssClass(cssClasses))
 
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
 
-  // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
-  let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
-  // globalDesignConfig 可能是响应式对象，比如 computed
-  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
-  const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
-
+  const { designConfig, globalDesignConfig } = getDesignConfig()
   const utils = {
     $prefix,
     t,
@@ -243,6 +302,11 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
         }
       }
     })
+  }
+
+  const componentMcpConfig = getComponentMcpConfig()
+  if (componentMcpConfig && props.tiny_mcp_config && globalMcpConfig.createMcpTools) {
+    globalMcpConfig.createMcpTools(attrs.vm, props.tiny_mcp_config, componentMcpConfig)
   }
 
   return attrs

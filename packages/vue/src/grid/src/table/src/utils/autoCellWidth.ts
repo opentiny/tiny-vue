@@ -22,86 +22,79 @@
  * SOFTWARE.
  *
  */
+import { calcHeader } from '../../../composable'
 
-// 自适应
-const adaptive = ({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth }) => {
-  autoArr.forEach((column, index) => {
-    let width = Math.max(meanWidth, minCellWidth)
+export const calcTableWidth = ($table) => {
+  // 列宽最少限制 72px, saas为40px
+  const minCellWidth = $table.$grid?.designConfig?.minWidth || 72
+  const { columnStore, fit, elemStore } = $table
+  const bodyWrapper = elemStore['main-body-wrapper']
+  const { clientWidth: bdoyClientWidth, offsetWidth, offsetHeight } = bodyWrapper
+  // 解决浏览器出现缩放时，出现滚动条的问题。
+  const clientWidth = bdoyClientWidth - 1
+  const bodyWidth = clientWidth
 
-    column.renderWidth = width
-    tableWidth += width
+  let {
+    pxList: pxArr,
+    scaleList: scaleArr,
+    pxMinList: pxMinArr,
+    scaleMinList: scaleMinArr,
+    autoList: autoArr,
+    resizeList: resizeArr
+  } = columnStore
 
-    if (fit && index === autoArr.length - 1) {
-      // 如果所有列足够放的情况下，修补列之间的误差
-      let odiffer = bodyWidth - tableWidth
+  let remainWidth = clientWidth
+  let totalWidth = 0
 
-      if (odiffer > 0) {
-        column.renderWidth += odiffer
-        tableWidth = bodyWidth
-      }
-    }
-  })
-
-  return tableWidth
-}
-
-// 计算每一列的渲染宽度：renderWidth
-const initTableWidth = ({ remainWidth, columnStore }) => {
-  let tableWidth = 0
-  let { resizeList: resizeArr, pxMinList: pxMinArr, pxList: pxArr } = columnStore
-  let { scaleList: scaleArr, scaleMinList: scaleMinArr } = columnStore
   // 最小宽
   pxMinArr.forEach((column) => {
-    let minWidth = parseInt(column.minWidth)
+    const width = parseInt(column.minWidth)
 
-    tableWidth += minWidth
-    column.renderWidth = minWidth
+    totalWidth += width
+    column.renderWidth = width
   })
+
   // 最小百分比
   let meanWidth = remainWidth / 100
 
   scaleMinArr.forEach((column) => {
-    let scaleWidth = Math.floor(parseInt(column.minWidth) * meanWidth)
+    const width = Math.floor(parseInt(column.minWidth) * meanWidth)
 
-    tableWidth += scaleWidth
-    column.renderWidth = scaleWidth
+    totalWidth += width
+    column.renderWidth = width
   })
+
   // 固定百分比
   scaleArr.forEach((column) => {
-    let scaleWidth = Math.floor(parseInt(column.width) * meanWidth)
+    const width = Math.floor(parseInt(column.width) * meanWidth)
 
-    tableWidth += scaleWidth
-    column.renderWidth = scaleWidth
+    totalWidth += width
+    column.renderWidth = width
   })
+
   // 固定宽
   pxArr.forEach((column) => {
-    let width = parseInt(column.width)
+    const width = parseInt(column.width)
 
-    tableWidth += width
+    totalWidth += width
     column.renderWidth = width
   })
+
   // 调整了列宽
   resizeArr.forEach((column) => {
-    let width = parseInt(column.resizeWidth)
+    const width = parseInt(column.resizeWidth)
 
-    tableWidth += width
+    totalWidth += width
     column.renderWidth = width
   })
 
-  return { tableWidth, meanWidth }
-}
-
-export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, remainWidth }) => {
-  let { tableWidth, meanWidth } = initTableWidth({ remainWidth, columnStore })
-  let { pxMinList: pxMinArr, scaleMinList: scaleMinArr, autoList: autoArr } = columnStore
-
-  remainWidth -= tableWidth
+  remainWidth -= totalWidth
   meanWidth = remainWidth > 0 ? Math.floor(remainWidth / (scaleMinArr.length + pxMinArr.length + autoArr.length)) : 0
 
   if (fit) {
     if (remainWidth > 0) {
       scaleMinArr.concat(pxMinArr).forEach((column) => {
-        tableWidth += meanWidth
+        totalWidth += meanWidth
         column.renderWidth += meanWidth
       })
     }
@@ -110,19 +103,36 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, rema
   }
 
   // 自适应修补一些列的宽度
-  tableWidth = adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
-  const remainingSpace = bodyWidth - tableWidth
+  autoArr.forEach((column, index) => {
+    let width = Math.max(meanWidth, minCellWidth)
+
+    column.renderWidth = width
+    totalWidth += width
+
+    if (fit && index === autoArr.length - 1) {
+      // 如果所有列足够放的情况下，修补列之间的误差
+      let odiffer = clientWidth - totalWidth
+
+      if (odiffer > 0) {
+        column.renderWidth += odiffer
+        totalWidth = clientWidth
+      }
+    }
+  })
+
+  const remainingSpace = bodyWidth - totalWidth
   // 如果还有空间剩余
   if (fit && remainingSpace > 0) {
     scaleMinArr
       .concat(pxMinArr)
       .slice(0, remainingSpace)
       .forEach((column) => {
-        tableWidth += 1
+        totalWidth += 1
         column.renderWidth += 1
       })
   }
-  return tableWidth
+
+  return { totalWidth, offsetWidth, offsetHeight }
 }
 
 const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrollbarWidth }) => {
@@ -140,13 +150,7 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrol
     const tds = bodyEl.querySelectorAll(`[data-colid=${column.id}]`)
     const allFixed = [...Array.from(ths), ...Array.from(tds)]
     allFixed.forEach((td) => {
-      // 有纵向滚动条时，表头右冻结列需要补偿right定位
-      let compensatingWidth = 0
-      if (direction === 'right' && scrollbarWidth && td.className.includes('header__column')) {
-        compensatingWidth = scrollbarWidth
-      }
-
-      td.style[direction] = `${pos + compensatingWidth}px`
+      td.style[direction] = `${pos}px`
     })
     column.style = column.style || {}
     column.style[direction] = pos
@@ -208,6 +212,7 @@ const setGroupHeaderLastOrFirst = ({ columnChart, leftList, rightList }) => {
 }
 
 export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollbarWidth, columnChart, isGroup }) => {
+  console.log('calcFixedStickyPosition')
   // 获取左侧和右侧冻结列
   const { leftList, rightList } = columnStore
   setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl, scrollbarWidth })
@@ -216,5 +221,98 @@ export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollb
     setGroupHeaderPosition({ columnChart, direction: 'left' })
     setGroupHeaderPosition({ columnChart, direction: 'right' })
     setGroupHeaderLastOrFirst({ columnChart, leftList, rightList })
+  }
+}
+
+export function calcFixedDetails(_vm) {
+  const { collectColumn, visibleColumn, columnStore, isGroup } = _vm
+  const { leftList, rightList } = columnStore
+
+  visibleColumn.forEach(({ fixedDetails }) => {
+    if (fixedDetails) {
+      fixedDetails.isLeftLast = false
+      fixedDetails.isRightFirst = false
+      fixedDetails.left = 0
+      fixedDetails.right = 0
+    }
+  })
+
+  let length = leftList.length
+  let value = 0
+
+  if (Array.isArray(leftList) && length > 0) {
+    leftList.forEach(({ fixedDetails, renderWidth }, i) => {
+      fixedDetails.isLeftLast = i === length - 1
+      fixedDetails.left = value
+
+      value += renderWidth
+    })
+  }
+
+  length = rightList.length
+  value = 0
+
+  if (Array.isArray(rightList) && length > 0) {
+    const reversed = [...rightList].reverse()
+
+    reversed.forEach(({ fixedDetails, renderWidth }, i) => {
+      fixedDetails.isRightFirst = i === length - 1
+      fixedDetails.right = value
+
+      value += renderWidth
+    })
+  }
+
+  if (isGroup) {
+    const header = calcHeader(collectColumn)
+    const leftWidth = []
+    const rightWidth = []
+    const leftIndices = leftList.map((col) => (leftWidth.push(col.renderWidth), header.leafColumns.indexOf(col)))
+    const rightIndices = rightList.map((col) => (rightWidth.push(col.renderWidth), header.leafColumns.indexOf(col)))
+    const leftTable = []
+    const rightTable = []
+
+    header.headerTable.forEach((levelCols, level) => {
+      if (level < header.maxLevel) {
+        leftTable.push(leftIndices.map((i) => levelCols[i]))
+        rightTable.push(rightIndices.map((i) => levelCols[i]))
+      }
+    })
+
+    leftTable.forEach((cols) => {
+      const row = cols.reduce((p, c) => (c && !p.includes(c) ? p.push(c) : null, p), [])
+
+      if (row.length > 0) {
+        row[row.length - 1].fixedDetails.isLeftLast = true
+
+        row.forEach((c) => {
+          const s = cols.indexOf(c)
+          const e = cols.lastIndexOf(c)
+
+          c.fixedDetails.left = leftWidth.slice(0, s).reduce((t, c) => (t += c), 0)
+          c.renderWidth = leftWidth.slice(s, e + 1).reduce((t, c) => (t += c), 0)
+        })
+      }
+    })
+
+    rightTable.forEach((cols) => {
+      const row = cols.reduce((p, c) => (c && !p.includes(c) ? p.push(c) : null, p), []).reverse()
+
+      if (row.length > 0) {
+        row[row.length - 1].fixedDetails.isRightFirst = true
+
+        let right = 0
+
+        row.forEach((c) => {
+          const s = cols.indexOf(c)
+          const e = cols.lastIndexOf(c)
+
+          c.renderWidth = rightWidth.slice(s, e + 1).reduce((t, c) => (t += c), 0)
+          c.fixedDetails.right = right
+
+          right += c.renderWidth
+        })
+      }
+    })
   }
 }

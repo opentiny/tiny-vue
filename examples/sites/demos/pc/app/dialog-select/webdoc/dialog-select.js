@@ -12,9 +12,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>auto-lookup</code>、<code>lookup-method</code> 属性 和 <code>change</code> 事件设置初始化时数据的反查回显功能。</p> \n<p>表格多选场景需要设置 <code>popselector</code> 为 <code>grid</code>，<code>multi</code> 为 <code>true</code>，<code>checkRowKeys</code> 设置默认选中数据。</p >\n',
+          '<p>通过 <code>auto-lookup</code>、<code>lookup-method</code> 属性 和 <code>change</code> 事件设置初始化时数据的反查回显功能。</p> \n<p>表格多选场景需要设置 <code>popselector</code> 为 <code>grid</code>，<code>multi</code> 为 <code>true</code>，<code>checkRowKeys</code> 设置默认选中数据。<code>lock-scroll</code> 配置弹出窗口时是否禁用滚动条。</p >\n',
         'en-US':
-          '<p>Use the <code>auto-lookup</code>,<code>lookup-method</code> attributes, and <code>change</code> event settings to perform data backtracking during initialization. <code>autoLookup</code>The default value is <code>true</code>. </p>\n<p> Multiple selection scenarios in the table require setting<code>popcollector</code>as grid,<code>multi</code>as true, and<code>checkRowKeys</code>as default selected data. </p >\n'
+          '<p>Use the <code>auto-lookup</code>,<code>lookup-method</code> attributes, and <code>change</code> event settings to perform data backtracking during initialization. <code>autoLookup</code>The default value is <code>true</code>. </p>\n<p> Multiple selection scenarios in the table require setting<code>popcollector</code>as grid,<code>multi</code>as true, and<code>checkRowKeys</code>as default selected data. <code>lock-scroll</code>Configure whether to disable the scrollbar when a pop-up window appears.</p >\n'
       },
       codeFiles: ['nest-grid-multi.vue']
     },

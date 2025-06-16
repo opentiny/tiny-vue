@@ -32,6 +32,20 @@ export default {
           pcDemo: 'nest-grid-multi'
         },
         {
+          name: 'lock-scroll',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '设置弹出面板的锁定滚动',
+            'en-US': 'Set the lock scroll of the pop-up panel.'
+          },
+          meta: {
+            stable: '3.24.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'nest-grid-multi'
+        },
+        {
           name: 'grid-op',
           typeAnchorName: 'IGridOption',
           type: 'IGridOption',
@@ -374,6 +388,34 @@ export default {
           },
           mode: ['pc'],
           pcDemo: ''
+        },
+        {
+          name: 'delete',
+          type: '(row: IData) => void',
+          meta: {
+            stable: '3.24.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '已选栏的选项的删除事件',
+            'en-US': 'The delete event of the selected column options when displaying data in a table'
+          },
+          mode: ['pc'],
+          pcDemo: 'nest-grid-multi'
+        },
+        {
+          name: 'clear',
+          type: '() => void',
+          meta: {
+            stable: '3.24.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '已选栏的清空事件',
+            'en-US': 'The clear event of the selected column when displaying data in a table'
+          },
+          mode: ['pc'],
+          pcDemo: 'nest-grid-multi'
         }
       ],
       methods: [

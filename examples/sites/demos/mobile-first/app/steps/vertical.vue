@@ -1,5 +1,12 @@
 <template>
-  <tiny-steps vertical :data="data" :visible-num="4" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <tiny-steps
+    :itemStyle="itemStyle"
+    vertical
+    :data="data"
+    :visible-num="4"
+    :active="advancedActive"
+    @click="advancedClick"
+  ></tiny-steps>
 </template>
 
 <script>
@@ -12,6 +19,12 @@ export default {
   data() {
     return {
       advancedActive: 1,
+      itemStyle: {
+        doing: { cursor: 'help' },
+        disabled: { cursor: 'not-allowed' },
+        done: { cursor: 'wait' },
+        none: { cursor: 'pointer' }
+      },
       data: [
         {
           name: 'Basic Info',

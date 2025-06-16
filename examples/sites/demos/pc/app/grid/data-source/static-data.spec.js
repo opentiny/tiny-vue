@@ -14,5 +14,5 @@ test('绑定静态数据', async ({ page }) => {
 
   // 改变 data 数据引用地址
   await page.getByRole('button', { name: '改变 tableData 引用地址' }).click()
-  await expect(page.locator('.tiny-grid-body__row')).toHaveCount(2)
+  await expect(page.locator('.tiny-grid-body__row:visible')).toHaveCount(2)
 })

@@ -26,16 +26,27 @@ export const renderComponent = ({
   view = undefined as any,
   component = undefined as any,
   props,
+  customDesignProps,
   context: { attrs, slots },
   extend = {}
 }) => {
-  return () => hooks.h((view && view.value) || component, { ref: 'modeTemplate', ...props, ...attrs, ...extend }, slots)
+  return () =>
+    hooks.h(
+      (view && view.value) || component,
+      { ref: 'modeTemplate', ...props, ...attrs, ...customDesignProps, ...extend },
+      slots
+    )
 }
 
 export const rootConfig = (context) => {
   const instance = hooks.getCurrentInstance()
   context && setInstanceEmitter(instance)
   return instance?.appContext.config.globalProperties
+}
+
+export const getCustomProps = () => {
+  const instance = hooks.getCurrentInstance()
+  return instance?.vnode?.props || {}
 }
 
 export const getComponentName = () => {

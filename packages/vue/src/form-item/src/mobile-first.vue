@@ -73,7 +73,7 @@
         m(
           `min-w-0 flex-1 m-0 sm:m-auto relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
           '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full',
-          '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-1 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
+          '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full',
           state.formInline ? 'align-sub leading-none' : '',
           state.labelPosition === 'top' && !state.hideRequiredAsterisk
             ? state.isDisplayOnly
@@ -120,7 +120,7 @@
         <div
           :class="
             m(
-              'relative sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
+              'sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
                 : ''

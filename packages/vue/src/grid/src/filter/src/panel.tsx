@@ -1,4 +1,3 @@
-/* eslint-disable vue/no-use-computed-property-like-method */
 /* eslint-disable vue/no-mutating-props */
 /**
  * MIT License
@@ -643,6 +642,9 @@ export default defineComponent({
       } = this as any
 
       this.condition.type = type
+      if (typeof this.condition.input === 'string') {
+        this.condition.input = this.condition.input?.trim()
+      }
       column.filter.condition = extend(true, {}, this.condition)
       this.$parent.confirmFilterEvent()
     },

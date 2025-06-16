@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
 import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
+import { appData } from './tools/appData.js'
 
 const Components = () => import('@/views/components-doc/index.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
 const Features = () => import('@/views/features.vue')
+const Comprehensive = () => import('@/views/comprehensive/index.vue')
+const Remoter = () => import('@/views/remoter/index.vue')
 
 const context = import.meta.env.VITE_CONTEXT
 
@@ -16,6 +19,16 @@ let routes = [
     component: Layout,
     name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
+  },
+  {
+    path: `${context}:all?/zh-CN/:theme/comprehensive`,
+    component: Comprehensive,
+    name: 'comprehensive'
+  },
+  {
+    path: `${context}:all?/zh-CN/:theme/remoter`,
+    component: Remoter,
+    name: 'remoter'
   },
   // 文档
   {
@@ -57,5 +70,7 @@ router.afterEach((to, from) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
+  // tiny-robot 通过路由,确定浮动区，是否显示AI按钮
+  appData.hasFloatRobot = to.path.endsWith('components/grid')
 })
 export { router }

@@ -1,2 +1,7 @@
 export * from './useDrag'
 export * from './useRowGroup'
+export * from './useCellStatus'
+export * from './useData'
+export * from './useHeader'
+export * from './useCellEvent'
+export * from './useCellSpan'

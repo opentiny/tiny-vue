@@ -3,7 +3,7 @@
 export const classes = {
   'dark-success': 'text-color-text-inverse bg-color-success',
   'dark-alerting': 'text-color-text-inverse bg-color-alert',
-  'dark-warning': 'text-color-text-inverse bg-color-warning',
+  'dark-warning': 'text-color-text-primary bg-color-warning',
   'dark-error': 'text-color-text-inverse bg-color-error',
   'dark-default': 'text-color-text-inverse bg-color-info-primary',
   'dark-info': 'text-color-text-inverse bg-color-text-placeholder',
@@ -13,7 +13,7 @@ export const classes = {
 
   'light-success': 'text-color-success bg-color-success-subtler',
   'light-alerting': 'text-color-alert bg-color-alert-subtler',
-  'light-warning': 'text-color-warning bg-color-warning-subtler',
+  'light-warning': 'text-color-warning-bold bg-color-warning-subtle',
   'light-error': 'text-color-error bg-color-error-subtler',
   'light-default': 'text-color-info-primary bg-color-info-primary-subtler',
   'light-info': 'text-color-text-primary bg-color-bg-3',
@@ -23,7 +23,7 @@ export const classes = {
 
   'plain-success': 'text-color-success bg-color-bg-1',
   'plain-alerting': 'text-color-alert bg-color-bg-1',
-  'plain-warning': 'text-color-warning bg-color-bg-1',
+  'plain-warning': 'text-color-warning-active bg-color-bg-1',
   'plain-error': 'text-color-error bg-color-bg-1',
   'plain-default': 'text-color-info-primary bg-color-bg-1',
   'plain-info': 'text-color-text-primary bg-color-bg-1',
@@ -33,7 +33,7 @@ export const classes = {
 
   'success-border': 'border-color-success-subtle',
   'alerting-border': 'border-color-alert-subtle',
-  'warning-border': 'border-color-warning-subtle',
+  'warning-border': 'border-color-warning',
   'error-border': 'border-color-error-subtle',
   'default-border': 'border-color-info-primary-subtle',
   'info-border': 'border-color-none',

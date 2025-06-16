@@ -19,9 +19,12 @@
       @size-change="onSizeChange"
       @current-change="onCurrentChange"
       @change="onDialogSelectChange"
+      @clear="onDialogSelectClear"
+      @delete="onDialogSelectDelete"
       value-field="id"
       text-field="name"
       :main-height="240"
+      :lock-scroll="false"
     >
       <template #search>
         <div class="tiny-demo-search">
@@ -45,7 +48,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect, TinyModal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 // 模拟服务侧数据
@@ -188,6 +191,21 @@ const lookupMethod = (values) => {
 const onDialogSelectChange = (values, texts, selectedDatas) => {
   // 打印 change 回调数据，控制台查看
   console.log({ values, texts, selectedDatas })
+}
+
+const onDialogSelectClear = () => {
+  TinyModal.message({
+    message: '清空成功',
+    type: 'success'
+  })
+}
+
+const onDialogSelectDelete = (row) => {
+  console.log('删除成功', row)
+  TinyModal.message({
+    message: '删除成功',
+    type: 'success'
+  })
 }
 </script>
 

@@ -50,7 +50,11 @@ export default defineComponent({
     },
     noArrow: Boolean,
     flex: Boolean,
-    contentCenter: Boolean
+    contentCenter: Boolean,
+    itemStyle: {
+      type: Object,
+      default: () => ({})
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

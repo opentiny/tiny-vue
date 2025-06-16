@@ -8,6 +8,7 @@
 .@{autocomplete-prefix-cls} {
   @apply relative;
   @apply inline-block;
+  @apply w-full;
 
   &.show-auto-width {
     @apply w-full;
@@ -30,7 +31,8 @@
     }
 
     // 兼容ie10-ie11
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
       &__wrap {
         margin-bottom: -17px !important;
         @apply ~'pb-1.5';
@@ -69,6 +71,7 @@
       }
 
       &:only-of-type {
+
         &,
         &:hover {
           @apply bg-color-bg-3;

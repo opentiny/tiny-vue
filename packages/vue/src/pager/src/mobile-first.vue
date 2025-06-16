@@ -1,13 +1,210 @@
-<script lang="tsx">
+<template>
+  <div
+    v-if="!(hideOnSinglePage && (!internalPageCount || internalPageCount <= 1))"
+    class="text-right py-3 px-0 text-color-text-primary"
+  >
+    <template v-for="(item, index) in internalLayout.split(',')">
+      <!-- 总数显示 -->
+      <div
+        v-if="item.trim() === 'total' && typeof internalTotal === 'number'"
+        :key="'total' + index"
+        class="inline-block align-middle text-xs h-7 leading-7 float-left"
+      >
+        <div v-if="showTotalLoading" class="h-7 leading-7 text-xs text-color-text-primary">
+          <div
+            data-tag="tiny-pager-total-loading"
+            class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"
+          ></div>
+          <span class="text-color-text-secondary">{{ t('ui.page.loadingTotals') }}</span>
+        </div>
+        <div v-else class="h-7 leading-7 text-xs text-color-text-primary">
+          <span>{{ t('ui.page.total') }}</span>
+          <span class="my-0 mx-1">
+            {{ customTotal ? totalText : internalTotal }}
+          </span>
+          <span>{{ t('ui.page.item') }}</span>
+        </div>
+      </div>
+
+      <!-- 每页条数选择器 -->
+      <div
+        v-else-if="item.trim() === 'sizes'"
+        :key="'sizes' + index"
+        data-tag="tiny-pager-popover"
+        class="hidden sm:inline-block align-middle text-xs h-7 text-xs text-color-text-primary relative -top-px"
+      >
+        <popover
+          ref="sizesList"
+          placement="bottom-start"
+          :append-to-body="popperAppendToBody"
+          trigger="click"
+          :popper-class="
+            'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' + (popperClass ? ' ' + popperClass : '')
+          "
+          :visible-arrow="false"
+          :disabled="disabled"
+          @show="showSizes = true"
+          @hide="showSizes = false"
+        >
+          <template #reference>
+            <div class="m-0 ml-2" @click.stop>
+              <div
+                ref="pageSize"
+                :class="[
+                  'min-w-[theme(spacing.18)] max-w-[theme(spacing.40)] relative text-left h-7 leading-7 border border-solid border-color-border rounded text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
+                  showSizes
+                    ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
+                    : '',
+                  disabled
+                    ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
+                    : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
+                ]"
+              >
+                <span class="text-xs mr-1 relative -top-px">{{ internalPageSize }}</span>
+                <span class="relative -top-px">{{ t('ui.page.page') }}</span>
+                <div
+                  class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer"
+                >
+                  <tiny-icon-chevron-down
+                    class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300"
+                  />
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="max-h-[theme(spacing.72)] overflow-y-auto overflow-x-hidden">
+            <ul>
+              <li
+                v-for="sizeItem in pageSizes"
+                :key="String(sizeItem)"
+                :class="[
+                  'min-h-[theme(spacing.8)] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded',
+                  sizeItem === internalPageSize
+                    ? 'text-color-brand bg-color-fill-6'
+                    : 'hover:bg-color-bg-2 text-color-text-primary'
+                ]"
+                :data-value="sizeItem"
+                :title="String(sizeItem)"
+                @click="handleSizeChange(Number(sizeItem))"
+              >
+                {{ sizeItem }}
+              </li>
+            </ul>
+          </div>
+        </popover>
+      </div>
+
+      <!-- 上一页按钮 -->
+      <button
+        v-else-if="item.trim() === 'prev'"
+        :key="'prev' + index"
+        type="button"
+        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        :disabled="disabled || internalCurrentPage <= 1"
+        @click="prev"
+      >
+        <span
+          v-if="prevText"
+          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+        >
+          {{ prevText }}
+        </span>
+        <tiny-icon-chevron-left
+          v-else
+          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+        />
+      </button>
+
+      <!-- 分页器 -->
+      <pager
+        v-else-if="item.trim() === 'pager'"
+        :key="'pager' + index"
+        :is-before-page-change="isBeforePageChange"
+        @before-page-change="beforePagerChangeHandler"
+        :current-page="internalCurrentPage"
+        :page-count="internalPageCount || 0"
+        :pager-count="pagerCount"
+        @change="handleCurrentChange"
+        :disabled="disabled"
+      />
+
+      <!-- 下一页按钮 -->
+      <button
+        v-else-if="item.trim() === 'next'"
+        :key="'next' + index"
+        type="button"
+        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        :disabled="disabled || internalCurrentPage === internalPageCount || internalPageCount === 0"
+        @click="next"
+      >
+        <span
+          v-if="nextText"
+          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+        >
+          {{ nextText }}
+        </span>
+        <tiny-icon-chevron-right
+          v-else
+          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+        />
+      </button>
+
+      <!-- 跳转器 -->
+      <div
+        v-else-if="item.trim() === 'jumper'"
+        :key="'jumper' + index"
+        class="h-7 leading-7 inline-block align-middle text-xs"
+      >
+        <div class="text-[0] h-7">
+          <span class="text-xs pl-4 pr-2 text-color-text-primary">{{ t('ui.page.jump') }}</span>
+          <input
+            ref="jumperInput"
+            type="tel"
+            :disabled="disabled"
+            class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus"
+            :value="jumperValue"
+            @focus="handleJumperFocus"
+            @input="handleJumperInput"
+            @change="handleJumperChange"
+          />
+        </div>
+      </div>
+
+      <!-- 默认插槽 -->
+      <slot v-else-if="item.trim() === 'slot'"></slot>
+    </template>
+  </div>
+</template>
+
+<script lang="ts">
 import Pager from '@opentiny/vue-pager-item'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { t } from '@opentiny/vue-locale'
-import { h, defineComponent, $props } from '@opentiny/vue-common'
+import { defineComponent, $props, hooks, $prefix } from '@opentiny/vue-common'
 import { IconChevronDown, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 import { emitEvent } from '@opentiny/utils'
 
 export default defineComponent({
+  name: $prefix + 'Pager',
+  components: {
+    Pager,
+    Popover,
+    TinyIconChevronLeft: IconChevronLeft(),
+    TinyIconChevronRight: IconChevronRight(),
+    TinyIconChevronDown: IconChevronDown()
+  },
+  emits: [
+    'update:currentPage',
+    'update:pageSize',
+    'size-change',
+    'page-change',
+    'before-change',
+    'before-page-change',
+    'current-change',
+    'prev-click',
+    'next-click'
+  ],
   props: {
     ...$props,
     accurateJumper: {
@@ -62,464 +259,166 @@ export default defineComponent({
     total: Number,
     changeCompat: Boolean
   },
-  data() {
-    return {
-      internalCurrentPage: 1,
-      internalPageSize: 0,
-      lastEmittedPage: -1,
-      userChangePageSize: false,
-      internalTotal: this.total
-    }
-  },
-  render() {
-    const layout = this.internalLayout
+  setup(props, { emit }) {
+    const { ref, reactive, computed, watch, onMounted, nextTick, toRefs } = hooks
+    const sizesList = ref<{ hide: () => void } | null>(null)
 
-    if (!layout) return null
-
-    if (this.hideOnSinglePage && (!this.internalPageCount || this.internalPageCount === 1)) return null
-
-    const TEMPLATE_MAP = {
-      prev: <prev></prev>,
-      jumper: (
-        <jumper
-          ref="jumper"
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforeJumperChangeHandler}
-          max={this.internalPageCount}
-          disabled={this.disabled}></jumper>
-      ),
-      pager: (
-        <pager
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforePagerChangeHandler}
-          currentPage={this.internalCurrentPage}
-          pageCount={this.internalPageCount}
-          pagerCount={this.pagerCount}
-          onChange={this.handleCurrentChange}
-          disabled={this.disabled}></pager>
-      ),
-      next: <next></next>,
-      sizes: (
-        <sizes
-          ref="sizes"
-          isBeforePageChange={this.isBeforePageChange}
-          onBeforePageChange={this.beforeSizeChangeHandler}
-          popperAppendToBody={this.popperAppendToBody === false ? false : this.appendToBody}
-          popperClass={this.popperClass}
-          pageSizes={this.pageSizes}
-          disabled={this.disabled}></sizes>
-      ),
-      slot: (
-        <slot>
-          {typeof this.$parent.$slots.default === 'function'
-            ? this.$parent.$slots.default()
-            : this.$parent.$slots.default}
-        </slot>
-      ),
-      total: <total></total>
-    }
-
-    const components = layout.split(',').map((item) => item.trim())
-    const templateChildren = components.map((compo) => {
-      return TEMPLATE_MAP[compo]
+    // 响应式数据
+    const state = reactive({
+      internalCurrentPage: 1, // 内部当前页码
+      internalPageSize: 0, // 内部每页条数
+      lastEmittedPage: -1, // 最后触发的页码
+      userChangePageSize: false, // 用户是否改变了每页条数
+      internalTotal: props.total, // 内部总条数
+      showSizes: false, // 是否显示每页条数选择器
+      jumperValue: 1 as number // 跳转器输入值
     })
 
-    return <div class={['text-right py-3 px-0 text-color-text-primary']}>{templateChildren}</div>
-  },
-  components: {
-    Prev: {
-      render() {
-        const ChevronLeft = IconChevronLeft()
+    /**
+     * 处理跳转器输入框获得焦点事件
+     * @param e - 焦点事件对象
+     */
+    const handleJumperFocus = (e: FocusEvent) => {
+      const target = e.target as HTMLInputElement
+      state.jumperValue = Number(target.value)
+    }
 
-        return (
-          <button
-            type="button"
-            class={[
-              'group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2',
-              'align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default'
-            ]}
-            disabled={this.$parent.disabled || this.$parent.internalCurrentPage <= 1}
-            onClick={this.$parent.prev}>
-            {this.$parent.prevText ? (
-              <span
-                class={[
-                  'group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover'
-                ]}>
-                {this.$parent.prevText}
-              </span>
-            ) : (
-              <ChevronLeft class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active" />
-            )}
-          </button>
-        )
+    /**
+     * 处理跳转器输入事件
+     * @param e - 输入事件对象
+     * 确保输入值为有效的数字
+     */
+    const handleJumperInput = (e: Event) => {
+      const target = e.target as HTMLInputElement
+      const value = String(target.value)
+      if (!value) {
+        state.jumperValue = 1
+      } else if (/^\d+$/.test(value)) {
+        state.jumperValue = Number(value) || 1
       }
-    },
-    Next: {
-      render() {
-        const ChevronRight = IconChevronRight()
+      target.value = String(state.jumperValue)
+    }
 
-        return (
-          <button
-            type="button"
-            class={[
-              'group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2',
-              'align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default'
-            ]}
-            disabled={
-              this.$parent.disabled ||
-              this.$parent.internalCurrentPage === this.$parent.internalPageCount ||
-              this.$parent.internalPageCount === 0
-            }
-            onClick={this.$parent.next}>
-            {this.$parent.nextText ? (
-              <span
-                class={[
-                  'group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover'
-                ]}>
-                {this.$parent.nextText}
-              </span>
-            ) : (
-              <ChevronRight class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active" />
-            )}
-          </button>
-        )
+    /**
+     * 处理跳转器值变化事件
+     * 在值变化时进行验证并触发页面跳转
+     */
+    const handleJumperChange = () => {
+      parseJumperValue()
+      const callback = () => {
+        handleJumperClick()
       }
-    },
-    Sizes: {
-      props: {
-        pageSizes: Array,
-        appendToBody: Boolean,
-        isBeforePageChange: Boolean,
-        popperClass: String,
-        popperAppendToBody: {
-          type: Boolean,
-          default: true
-        },
-        disabled: Boolean
-      },
-      data() {
-        return {
-          showSizes: false
-        }
-      },
-      watch: {
-        pageSizes: {
-          immediate: true,
-          handler(newVal) {
-            if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
-                ? this.$parent.pageSize
-                : this.pageSizes[0]
-            }
-          }
-        },
-        showSizes(newVal) {
-          if (newVal) {
-            this.$nextTick(() => {
-              const width = this.$refs.pageSize.getBoundingClientRect().width
-              const popover = document.querySelectorAll('.data-tag-pager-selector')
-              Array.from(popover).forEach((ele) => {
-                ele.style.width = width + 'px'
-              })
-            })
-          }
-        }
-      },
-      render() {
-        const ChevronDown = IconChevronDown()
-        const scopedSlots = {
-          reference: () => (
-            <div slot="reference" class="m-0 ml-2" onClick={(e) => e.stopPropagation()}>
-              <div
-                class={[
-                  "min-w-[theme('spacing.18')] max-w-[theme('spacing.40')] relative text-left h-7 leading-7 border border-solid border-color-border ",
-                  'rounded  text-xs py-0 pr-1 pl-3 block whitespace-nowrap transition-[border] duration-300 outline-0 box-border select-none',
-                  this.showSizes
-                    ? 'border-color-border-focus bg-color-fill-6 text-color-border-focus [&_svg]:rotate-180 [&_svg]:fill-color-brand-hover'
-                    : '',
-                  this.disabled
-                    ? 'bg-color-border-disabled text-color-border cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg]:cursor-not-allowed'
-                    : 'bg-color-bg-1 text-color-text-primary hover:bg-color-border-disabled hover:border-color-border active:border-color-border-focus active:bg-color-fill-6 active:text-color-brand'
-                ]}
-                ref="pageSize">
-                <span class="text-xs mr-1 relative -top-px">{this.$parent.internalPageSize}</span>
-                <span class="relative -top-px">{t('ui.page.page')}</span>
-                <div class="w-7 h-7 leading-7 relative float-right -top-px outline-0 box-border text-center overflow-hidden cursor-pointer">
-                  <ChevronDown class="fill-color-text-primary text-sm absolute top-0 left-0 right-0 bottom-0 m-auto hover:fill-color-icon-hover transition-transform duration-300" />
-                </div>
-              </div>
-            </div>
-          ),
-          default: () => (
-            <div class="max-h-[theme('spacing.72')] overflow-y-auto overflow-x-hidden">
-              <ul>
-                {this.pageSizes.map((item) => (
-                  <li
-                    class={[
-                      "min-h-[theme('spacing.8')] py-0 px-2 leading-8 max-w-full cursor-pointer overflow-hidden text-ellipsis text-center whitespace-nowrap m-1 rounded",
-                      item === this.$parent.internalPageSize
-                        ? 'text-color-brand bg-color-fill-6'
-                        : 'hover:bg-color-bg-2 text-color-text-primary'
-                    ]}
-                    val={item}
-                    title={item}
-                    onClick={() => this.handleChange(item)}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
+      const rollback = () => {
+        state.jumperValue = state.internalCurrentPage
+      }
+      const newPage = state.jumperValue
+      const currentPage = state.internalCurrentPage
 
-        return (
-          <div
-            data-tag="tiny-pager-popover"
-            class={[
-              'hidden sm:inline-block align-middle text-xs h-7',
-              'text-xs text-color-text-primary relative -top-px'
-            ]}>
-            {h(Popover, {
-              props: {
-                placement: 'bottom-start',
-                appendToBody: this.popperAppendToBody,
-                trigger: 'click',
-                popperClass:
-                  'w-24 sm:p-0 sm:!mt-1 sm:!mb-1 data-tag-pager-selector' +
-                  (this.popperClass ? ' ' + this.popperClass : ''),
-                visibleArrow: false,
-                disabled: this.disabled
-              },
-              on: {
-                show: () => {
-                  this.showSizes = true
-                },
-                hide: () => {
-                  this.showSizes = false
-                }
-              },
-              scopedSlots,
-              ref: 'sizesList'
-            })}
-          </div>
-        )
-      },
-      methods: {
-        handleChange(val) {
-          if (val !== this.$parent.internalPageSize) {
-            const callback = () => {
-              if (!this.$parent.beforeChangeHandler()) {
-                return false
-              }
+      if (props.isBeforePageChange && newPage !== currentPage) {
+        const params = { newPage, currentPage, callback, rollback }
+        beforePagerChangeHandler(params)
+      } else {
+        callback()
+      }
+    }
 
-              this.$parent.internalPageSize = val = parseInt(val, 10)
-              this.$parent.userChangePageSize = true
-              this.showSizes = false
-              this.$parent.$emit('update:pageSize', val)
-              this.$parent.$emit('size-change', val)
-              this.$parent.$emit('page-change', {
-                currentPage: this.$parent.internalCurrentPage,
-                pageSize: val,
-                total: this.$parent.internalTotal
-              })
-              this.$refs.sizesList.state.showPopper = false
-            }
+    /**
+     * 处理跳转器点击事件
+     * 验证并执行页面跳转
+     */
+    const handleJumperClick = () => {
+      if (!canJumperGo()) return
+      state.internalCurrentPage = getValidCurrentPage(Number(state.jumperValue))
+      emitChange()
+    }
 
-            if (this.isBeforePageChange) {
-              let newPageSize = val
-              let currentPageSize = this.$parent.internalPageSize
-              let params = { newPageSize, currentPageSize, callback }
+    /**
+     * 解析跳转器输入值
+     * 确保输入值在有效范围内
+     */
+    const parseJumperValue = () => {
+      let value = Number(
+        String(state.jumperValue)
+          .split(/[^0-9-+.]/)
+          .join('')
+      )
 
-              this.$parent.beforeSizeChangeHandler(params)
-            } else {
-              callback()
-            }
-          }
+      if (isNaN(value)) {
+        value = 1
+      }
+
+      value = Number(value.toFixed(0))
+
+      if (internalPageCount.value) {
+        if (value >= internalPageCount.value) {
+          state.jumperValue = internalPageCount.value
+        } else if (value <= 1) {
+          state.jumperValue = 1
+        } else {
+          state.jumperValue = value
         }
       }
-    },
-    Jumper: {
-      props: {
-        isBeforePageChange: Boolean,
-        disabled: Boolean,
-        min: {
-          type: Number,
-          default: 1
-        },
-        max: {
-          type: Number,
-          default: 10
-        },
-        initValue: {
-          type: Number,
-          default: 1
-        }
-      },
-      data() {
-        return {
-          backupValue: this.initValue,
-          value: this.initValue
-        }
-      },
-      watch: {
-        '$parent.internalCurrentPage': {
-          handler(currentPage) {
-            const value = currentPage
+    }
 
-            if (this.value !== value) {
-              this.value = value
-            }
-          },
-          immediate: true
-        }
-      },
-      methods: {
-        handleFocus(e) {
-          this.backupValue = Number(e.target.value)
-        },
-        handleInput(e) {
-          if (!e.target.value) {
-            this.value = ''
-          } else if (/^\d+$/.test(e.target.value)) {
-            this.value = Number(e.target.value) || 1
-          }
-          e.target.value = this.value
-        },
-        handleChange() {
-          this.parseValueNumber()
-
-          const callback = () => {
-            this.handleClick()
-          }
-          const rollback = () => {
-            this.value = this.backupValue
-          }
-          const newPage = this.value
-          const currentPage = this.backupValue
-
-          if (this.isBeforePageChange && newPage !== currentPage) {
-            const params = { newPage, currentPage, callback, rollback }
-
-            this.$parent.beforePagerChangeHandler(params)
-          } else {
-            callback()
-          }
-        },
-        handleClick() {
-          if (!this.$parent.canJumperGo()) return
-
-          this.$parent.internalCurrentPage = this.$parent.getValidCurrentPage(this.value)
-          this.$parent.emitChange()
-        },
-        isValueNumber() {
-          return !isNaN(Number(this.value))
-        },
-        parseValueNumber() {
-          let value = Number(
-            String(this.value)
-              .split(/[^0-9-+.]/)
-              .join('')
-          )
-
-          if (isNaN(value)) {
-            value = this.min
+    /**
+     * 处理每页条数变化事件
+     * @param val - 新的每页条数值
+     */
+    const handleSizeChange = (val: number) => {
+      if (val !== state.internalPageSize) {
+        const callback = () => {
+          if (!beforeChangeHandler()) {
+            return false
           }
 
-          value = Number(value.toFixed(0))
-
-          const min = this.min
-          const max = this.max
-
-          if (value >= max) {
-            this.value = max
-          } else if (value <= min) {
-            this.value = min
-          } else {
-            this.value = value
-          }
-        }
-      },
-      render() {
-        return h('div', { class: ['h-7 leading-7 inline-block align-middle text-xs'] }, [
-          h('div', { class: ['text-[0] h-7'] }, [
-            h(
-              'span',
-              {
-                class: ['text-xs pl-4 pr-2 text-color-text-primary']
-              },
-              [t('ui.page.jump')]
-            ),
-            h('input', {
-              class: [
-                'w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary',
-                'text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus'
-              ],
-              domProps: {
-                value: this.value
-              },
-              attrs: {
-                type: 'tel',
-                disabled: this.disabled
-              },
-              on: {
-                focus: this.handleFocus,
-                input: this.handleInput,
-                change: this.handleChange
-              },
-              ref: 'input'
-            })
-          ])
-        ])
-      }
-    },
-    Total: {
-      mounted() {
-        if (document.querySelector('[data-tag="tiny-pager-total-loading"]')) {
-          Loading.service({
-            target: document.querySelector('[data-tag="tiny-pager-total-loading"]')
+          state.internalPageSize = val
+          state.userChangePageSize = true
+          state.showSizes = false
+          emit('update:pageSize', val)
+          emit('size-change', val)
+          emit('page-change', {
+            currentPage: state.internalCurrentPage,
+            pageSize: val,
+            total: state.internalTotal
           })
+          if (Array.isArray(sizesList.value)) {
+            sizesList.value[0].state.showPopper = false
+          }
         }
-      },
-      render() {
-        return typeof this.$parent.internalTotal === 'number' ? (
-          this.$parent.showTotalLoading ? (
-            <div class="inline-block align-middle text-xs h-7 leading-7 float-left">
-              <div class="h-7 leading-7 text-xs text-color-text-primary">
-                <div
-                  data-tag="tiny-pager-total-loading"
-                  class="inline-block align-baseline h-3.5 w-3.5 mr-1.5 top-0.5 [&_[data-tag=tiny-loading-icon]]:h-3.5 [&_[data-tag=tiny-loading-icon]]:w-3.5"></div>
-                <span class="text-color-text-secondary">{t('ui.page.loadingTotals')}</span>
-              </div>
-            </div>
-          ) : (
-            <div class="inline-block align-middle text-xs h-7 leading-7 float-left">
-              {' '}
-              <div class="h-7 leading-7 text-xs text-color-text-primary">
-                <span>{t('ui.page.total')}</span>
-                <span class="my-0 mx-1">
-                  {this.$parent.customTotal ? this.$parent.totalText : this.$parent.internalTotal}
-                </span>
-                <span>{t('ui.page.item')}</span>
-              </div>
-            </div>
-          )
-        ) : (
-          ''
-        )
+
+        if (props.isBeforePageChange) {
+          const newPageSize = val
+          const currentPageSize = state.internalPageSize
+          const params = { newPageSize, currentPageSize, callback }
+          beforeSizeChangeHandler(params)
+        } else {
+          callback()
+        }
       }
-    },
-    Pager
-  },
-  methods: {
-    canJumperGo() {
-      const inputValue = Number(this.$refs.jumper.$refs.input.value || 0)
-      const currentPage = Number(this.internalCurrentPage || 0)
-      return this.accurateJumper ? inputValue !== currentPage : true
-    },
-    beforeSizeChangeHandler(params) {
-      const { newPageSize, currentPageSize, callback } = params
+    }
+
+    /**
+     * 检查跳转器是否可以执行跳转
+     * @returns {boolean} 是否可以跳转
+     */
+    const canJumperGo = () => {
+      const inputValue = Number(state.jumperValue || 0)
+      const currentPage = Number(state.internalCurrentPage || 0)
+      return props.accurateJumper ? inputValue !== currentPage : true
+    }
+
+    /**
+     * 处理每页条数变化前的钩子函数
+     * @param params - 包含新页码、当前页码和回调函数的参数对象
+     */
+    const beforeSizeChangeHandler = (params: any) => {
+      const { newPageSize, currentPageSize, callback } = params as {
+        newPageSize: number
+        currentPageSize: number
+        callback: () => void
+      }
       const newPage = 1
-      const currentPage = this.internalCurrentPage
+      const currentPage = state.internalCurrentPage
       const temp = {
         newPage,
         newPageSize,
@@ -528,12 +427,22 @@ export default defineComponent({
         callback
       }
 
-      this.$emit('before-page-change', temp)
-    },
-    beforePagerChangeHandler(params) {
-      const { newPage, currentPage, callback, rollback } = params
-      const newPageSize = this.internalPageSize
-      const currentPageSize = this.internalPageSize
+      emit('before-page-change', temp)
+    }
+
+    /**
+     * 处理页码变化前的钩子函数
+     * @param params - 包含新页码、当前页码和回调函数的参数对象
+     */
+    const beforePagerChangeHandler = (params: any) => {
+      const { newPage, currentPage, callback, rollback } = params as {
+        newPage: number
+        currentPage: number
+        callback: () => void
+        rollback?: () => void
+      }
+      const newPageSize = state.internalPageSize
+      const currentPageSize = state.internalPageSize
       const temp = {
         newPage,
         newPageSize,
@@ -543,12 +452,22 @@ export default defineComponent({
         rollback
       }
 
-      this.$emit('before-page-change', temp)
-    },
-    beforeJumperChangeHandler(params) {
-      const { newPage, currentPage, callback, rollback } = params
-      const newPageSize = this.internalPageSize
-      const currentPageSize = this.internalPageSize
+      emit('before-page-change', temp)
+    }
+
+    /**
+     * 处理跳转器变化前的钩子函数
+     * @param params - 包含新页码、当前页码和回调函数的参数对象
+     */
+    const beforeJumperChangeHandler = (params: any) => {
+      const { newPage, currentPage, callback, rollback } = params as {
+        newPage: number
+        currentPage: number
+        callback: () => void
+        rollback?: () => void
+      }
+      const newPageSize = state.internalPageSize
+      const currentPageSize = state.internalPageSize
       const temp = {
         newPage,
         newPageSize,
@@ -558,78 +477,114 @@ export default defineComponent({
         rollback
       }
 
-      this.$emit('before-page-change', temp)
-    },
-    copyEmit(...args) {
-      this.$emit.apply(this, args)
-    },
-    beforeChangeHandler(val = -1) {
-      return emitEvent(this.copyEmit, 'before-change', this.internalCurrentPage, this, val)
-    },
-    handleCurrentChange(val) {
-      if (!this.beforeChangeHandler(val)) {
+      emit('before-page-change', temp)
+    }
+
+    /**
+     * 复制并触发事件
+     * @param args - 事件参数数组
+     */
+    const copyEmit = (...args: any[]) => {
+      emit(args[0], ...args.slice(1))
+    }
+
+    /**
+     * 处理变化前的钩子函数
+     * @param val - 变化值
+     * @returns {boolean} 是否允许变化
+     */
+    const beforeChangeHandler = (val = -1) => {
+      return emitEvent(copyEmit, 'before-change', state.internalCurrentPage, null, val)
+    }
+
+    /**
+     * 处理当前页码变化事件
+     * @param val - 新的页码值
+     * @returns {boolean} 是否成功改变页码
+     */
+    const handleCurrentChange = (val: number) => {
+      if (!beforeChangeHandler(val)) {
         return false
       }
+      state.internalCurrentPage = getValidCurrentPage(Number(val))
+      state.userChangePageSize = true
+      emitChange()
+    }
 
-      this.internalCurrentPage = this.getValidCurrentPage(val)
-      this.userChangePageSize = true
-      this.emitChange()
-    },
-    prev() {
+    /**
+     * 处理上一页按钮点击事件
+     */
+    const prev = () => {
       const callback = () => {
-        if (this.disabled || !this.beforeChangeHandler(this.internalCurrentPage - 1)) {
+        if (props.disabled || !beforeChangeHandler(state.internalCurrentPage - 1)) {
           return false
         }
 
-        const newVal = this.internalCurrentPage - 1
+        const newVal = state.internalCurrentPage - 1
 
-        this.internalCurrentPage = this.getValidCurrentPage(newVal)
-        this.$emit('prev-click', this.internalCurrentPage)
-        this.emitChange()
+        state.internalCurrentPage = getValidCurrentPage(newVal)
+        emit('prev-click', state.internalCurrentPage)
+        emitChange()
       }
 
-      if (this.isBeforePageChange) {
-        const newPage = this.internalCurrentPage - 1
-        const temp = this.buildBeforePageChangeParam({ newPage, callback })
+      if (props.isBeforePageChange) {
+        const newPage = state.internalCurrentPage - 1
+        const temp = buildBeforePageChangeParam({ newPage, callback })
 
-        this.$emit('before-page-change', temp)
+        emit('before-page-change', temp)
       } else {
         callback()
       }
-    },
-    next() {
+    }
+
+    /**
+     * 处理下一页按钮点击事件
+     */
+    const next = () => {
       const callback = () => {
-        if (this.disabled || !this.beforeChangeHandler(this.internalCurrentPage + 1)) {
+        if (props.disabled || !beforeChangeHandler(state.internalCurrentPage + 1)) {
           return false
         }
 
-        const newVal = this.internalCurrentPage + 1
+        const newVal = state.internalCurrentPage + 1
 
-        this.internalCurrentPage = this.getValidCurrentPage(newVal)
-        this.$emit('next-click', this.internalCurrentPage)
-        this.emitChange()
+        state.internalCurrentPage = getValidCurrentPage(newVal)
+        emit('next-click', state.internalCurrentPage)
+        emitChange()
       }
 
-      if (this.isBeforePageChange) {
-        const newPage = this.internalCurrentPage + 1
-        const temp = this.buildBeforePageChangeParam({ newPage, callback })
+      if (props.isBeforePageChange) {
+        const newPage = state.internalCurrentPage + 1
+        const temp = buildBeforePageChangeParam({ newPage, callback })
 
-        this.$emit('before-page-change', temp)
+        emit('before-page-change', temp)
       } else {
         callback()
       }
-    },
-    buildBeforePageChangeParam(param) {
-      const currentPage = this.internalCurrentPage
-      const newPageSize = this.internalPageSize
-      const currentPageSize = this.internalPageSize
+    }
+
+    /**
+     * 构建页码变化前的参数对象
+     * @param param - 包含新页码和回调函数的参数对象
+     * @returns {Object} 完整的参数对象
+     */
+    const buildBeforePageChangeParam = (param: any) => {
+      const currentPage = state.internalCurrentPage
+      const newPageSize = state.internalPageSize
+      const currentPageSize = state.internalPageSize
 
       return Object.assign({ currentPage, newPageSize, currentPageSize }, param)
-    },
-    getValidCurrentPage(val) {
-      val = parseInt(val, 10)
+    }
 
-      const hasPageCount = typeof this.internalPageCount === 'number'
+    /**
+     * 获取有效的当前页码
+     * @param val - 输入的页码值
+     * @returns {number} 有效的页码值
+     */
+    const getValidCurrentPage = (val: number) => {
+      val = parseInt(String(val), 10)
+
+      const hasPageCount = typeof internalPageCount.value === 'number'
       let resetVal
 
       if (!hasPageCount) {
@@ -639,8 +594,8 @@ export default defineComponent({
       } else {
         if (val < 1) {
           resetVal = 1
-        } else if (val > this.internalPageCount) {
-          resetVal = this.internalPageCount
+        } else if (internalPageCount.value && val > internalPageCount.value) {
+          resetVal = internalPageCount.value
         }
       }
 
@@ -651,31 +606,44 @@ export default defineComponent({
       }
 
       return resetVal === undefined ? val : resetVal
-    },
-    emitChange() {
-      this.$nextTick(() => {
-        if (this.internalCurrentPage !== this.lastEmittedPage || this.userChangePageSize) {
-          this.$emit('current-change', this.internalCurrentPage)
-          this.$emit('update:current-page', this.internalCurrentPage)
-          this.$emit('page-change', {
-            currentPage: this.internalCurrentPage,
-            pageSize: this.internalPageSize,
-            total: this.internalTotal
+    }
+
+    /**
+     * 触发页码变化事件
+     */
+    const emitChange = () => {
+      nextTick(() => {
+        if (state.internalCurrentPage !== state.lastEmittedPage || state.userChangePageSize) {
+          emit('current-change', state.internalCurrentPage)
+          emit('update:currentPage', state.internalCurrentPage)
+          emit('page-change', {
+            currentPage: state.internalCurrentPage,
+            pageSize: state.internalPageSize,
+            total: state.internalTotal
           })
-          this.lastEmittedPage = this.internalCurrentPage
-          this.userChangePageSize = false
+          state.lastEmittedPage = state.internalCurrentPage
+          state.userChangePageSize = false
         }
       })
-    },
-    setTotal(val) {
-      this.internalTotal = val
     }
-  },
-  computed: {
-    totalText() {
-      if (typeof this.customTotal === 'string') return this.customTotal
 
-      const totals = parseInt(this.total)
+    /**
+     * 设置总条数
+     * @param val - 新的总条数值
+     */
+    const setTotal = (val: number) => {
+      state.internalTotal = val
+    }
+
+    // 计算属性
+    /**
+     * 计算总条数文本
+     * 根据总条数的大小返回不同的显示文本
+     */
+    const totalText = computed(() => {
+      if (typeof props.customTotal === 'string') return props.customTotal
+
+      const totals = parseInt(String(props.total || 0))
 
       if (isNaN(totals)) return 0
 
@@ -692,67 +660,131 @@ export default defineComponent({
       } else {
         return t('ui.page.tenMillion')
       }
-    },
-    internalPageCount() {
-      if (typeof this.internalTotal === 'number') {
-        return Math.max(1, Math.ceil(this.internalTotal / this.internalPageSize))
-      } else if (typeof this.pageCount === 'number') {
-        return Math.max(1, this.pageCount)
+    })
+
+    /**
+     * 计算内部总页数
+     * 根据总条数和每页条数计算
+     */
+    const internalPageCount = computed(() => {
+      if (typeof state.internalTotal === 'number') {
+        return Math.max(1, Math.ceil(state.internalTotal / state.internalPageSize))
+      } else if (typeof props.pageCount === 'number') {
+        return Math.max(1, props.pageCount)
       }
 
       return null
-    },
-    internalLayout() {
+    })
+
+    /**
+     * 计算内部布局
+     * 根据mode和layout属性确定分页器的布局
+     */
+    const internalLayout = computed(() => {
       let layout = ''
 
-      if (this.mode && !this.layout) {
-        this.mode === 'number' && (layout = 'sizes, prev, pager, next, jumper, total')
-        this.mode === 'simple' && (layout = 'sizes, prev, next')
-        this.mode === 'complete' && (layout = 'sizes, prev, pager, next, jumper,total')
-        this.mode === 'fixed' && (layout = 'prev, pager, next')
-      } else if ((!this.mode && this.layout) || (this.mode && this.layout)) {
-        layout = this.layout
+      if (props.mode && !props.layout) {
+        props.mode === 'number' && (layout = 'sizes, prev, pager, next, jumper, total')
+        props.mode === 'simple' && (layout = 'sizes, prev, next')
+        props.mode === 'complete' && (layout = 'sizes, prev, pager, next, jumper,total')
+        props.mode === 'fixed' && (layout = 'prev, pager, next')
+      } else if ((!props.mode && props.layout) || (props.mode && props.layout)) {
+        layout = props.layout
       } else {
         layout = 'prev, pager, next, jumper, total'
       }
 
       return layout
-    }
-  },
-  watch: {
-    currentPage: {
-      handler(curPage) {
-        this.internalCurrentPage = this.getValidCurrentPage(curPage)
-      },
-      immediate: true
-    },
-    internalPageCount(pageCount) {
-      const oldCurPage = this.internalCurrentPage
+    })
 
-      if (pageCount > 0 && oldCurPage === 0) {
-        this.internalCurrentPage = 1
-      } else if (oldCurPage > pageCount) {
-        this.internalCurrentPage = pageCount === 0 ? 1 : pageCount
-        this.userChangePageSize && this.emitChange()
+    // 监听器
+    watch(
+      () => props.currentPage,
+      (curPage) => {
+        state.internalCurrentPage = getValidCurrentPage(curPage)
+      },
+      { immediate: true }
+    )
+
+    watch(internalPageCount, (pageCount) => {
+      const oldCurPage = state.internalCurrentPage
+
+      if (pageCount && pageCount > 0 && oldCurPage === 0) {
+        state.internalCurrentPage = 1
+      } else if (pageCount && oldCurPage > pageCount) {
+        state.internalCurrentPage = pageCount === 0 ? 1 : pageCount
+        state.userChangePageSize && emitChange()
       }
 
-      this.userChangePageSize = false
-    },
-    internalCurrentPage: {
-      handler(curPage) {
-        this.$emit('update:currentPage', curPage)
-        this.lastEmittedPage = -1
+      state.userChangePageSize = false
+    })
+
+    watch(
+      () => state.internalCurrentPage,
+      (curPage) => {
+        emit('update:currentPage', curPage)
+        state.lastEmittedPage = -1
       },
-      immediate: true
-    },
-    pageSize: {
-      handler(pageSize) {
-        this.internalPageSize = isNaN(pageSize) ? 10 : pageSize
+      { immediate: true }
+    )
+
+    watch(
+      () => props.pageSize,
+      (pageSize) => {
+        state.internalPageSize = isNaN(pageSize) ? 10 : pageSize
       },
-      immediate: true
-    },
-    total(total) {
-      this.internalTotal = total
+      { immediate: true }
+    )
+
+    watch(
+      () => props.total,
+      (total) => {
+        state.internalTotal = total
+      }
+    )
+
+    // 生命周期钩子
+    onMounted(() => {
+      if (document.querySelector('[data-tag="tiny-pager-total-loading"]')) {
+        const target = document.querySelector('[data-tag="tiny-pager-total-loading"]')
+        if (target) {
+          Loading.service({
+            target: target as HTMLElement
+          })
+        }
+      }
+    })
+
+    return {
+      // 状态
+      ...toRefs(state),
+      // 方法
+      t,
+      handleJumperFocus,
+      handleJumperInput,
+      handleJumperChange,
+      handleJumperClick,
+      parseJumperValue,
+      handleSizeChange,
+      canJumperGo,
+      beforeSizeChangeHandler,
+      beforePagerChangeHandler,
+      beforeJumperChangeHandler,
+      copyEmit,
+      beforeChangeHandler,
+      handleCurrentChange,
+      prev,
+      next,
+      buildBeforePageChangeParam,
+      getValidCurrentPage,
+      emitChange,
+      setTotal,
+      // 计算属性
+      totalText,
+      internalPageCount,
+      internalLayout,
+      // refs
+      sizesList
     }
   }
 })

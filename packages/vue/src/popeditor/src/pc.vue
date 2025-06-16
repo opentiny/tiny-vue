@@ -64,6 +64,7 @@
         <tiny-grid
           ref="suggest"
           v-if="state.showSuggestPanel"
+          v-bind="gridOp"
           auto-resize
           :loading="state.loading"
           max-height="300px"
@@ -96,6 +97,7 @@
       @closed="state.showContent = false"
       :before-close="handleBeforeClose"
       :dialog-class="dialogClass"
+      :lock-scroll="lockScroll"
     >
       <template v-if="state.showContent">
         <div class="tiny-popeditor-top" v-if="state.conditions.length && popseletor === 'grid'">
@@ -172,6 +174,7 @@
                 <div v-if="state.activeName === 'history'" class="tabs-body-item">
                   <tiny-grid
                     ref="historyGrid"
+                    v-bind="gridOp"
                     height="290px"
                     size="mini"
                     :highlight-current-row="true"
@@ -187,6 +190,7 @@
                 <div v-if="state.activeName === 'source'" class="tabs-body-item">
                   <tiny-grid
                     v-if="multi"
+                    v-bind="gridOp"
                     auto-resize
                     :loading="state.loading"
                     ref="sourceGrid"
@@ -204,6 +208,7 @@
                   <tiny-grid
                     v-else
                     ref="sourceGrid"
+                    v-bind="gridOp"
                     auto-resize
                     :loading="state.loading"
                     height="290px"
@@ -268,6 +273,7 @@
                   <tiny-grid
                     v-else
                     ref="selectedGrid"
+                    v-bind="gridOp"
                     auto-resize
                     :columns="state.baseColumns"
                     :data="state.selectedDatas"
@@ -389,6 +395,7 @@ export default defineComponent({
     'dialogClass',
     'tabindex',
     'draggable',
+    'lockScroll',
     'placement',
     'popperAppendToBody',
     'suggest',

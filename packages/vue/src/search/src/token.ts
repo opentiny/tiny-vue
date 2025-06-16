@@ -52,10 +52,10 @@ export const classes = {
   'pc-search-input-btn-icon-search-transparent': 'fill-color-bg-1',
   'pc-search-input-btn-icon-search': 'text-base fill-color-none align-text-bottom',
   'search-selector':
-    'absolute top-full left-0 overflow-hidden min-w-[theme(spacing.18)] border border-solid border-color-border rounded text-xs shadow bg-color-bg-1 text-color-text-primary mt-0.5 py-1 hidden sm:block',
+    'absolute top-full left-0 overflow-hidden min-w-[theme(spacing.18)] border border-solid border-color-border rounded text-xs shadow bg-color-bg-1 text-color-text-primary mt-0.5 hidden sm:block',
   'search-selector-body': 'max-h-[theme(spacing.72)] overflow-x-hidden overflow-y-auto',
   'search-selector-poplist-item':
-    'px-3 min-h-[theme(spacing.6)] leading-6 max-w-full overflow-hidden text-left text-ellipsis whitespace-nowrap cursor-pointer hover:bg-color-bg-2',
+    'flex items-center h-8 !px-2 max-w-full overflow-hidden text-left text-ellipsis whitespace-nowrap cursor-pointer hover:bg-color-bg-2',
   'search-selector-poplist-item-big': 'text-sm',
   'search-selector-poplist-item-medium': 'text-sm',
   'search-selector-poplist-item-mini': 'text-xs',

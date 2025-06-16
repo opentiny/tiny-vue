@@ -63,54 +63,6 @@ export default {
       codeFiles: ['custom-next-prev-text.vue']
     },
     {
-      demoId: 'current-change',
-      name: {
-        'zh-CN': '当前页改变事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`current-change` 切换当前页码时触发',
-        'en-US': ''
-      },
-      codeFiles: ['current-change.vue']
-    },
-    {
-      demoId: 'prev-click',
-      name: {
-        'zh-CN': '上一页事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`prev-click` 切换至前一页时触发',
-        'en-US': ''
-      },
-      codeFiles: ['prev-click.vue']
-    },
-    {
-      demoId: 'next-click',
-      name: {
-        'zh-CN': '下一页事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`next-click` 切换至后一页时触发',
-        'en-US': ''
-      },
-      codeFiles: ['next-click.vue']
-    },
-    {
-      demoId: 'before-page-change',
-      name: {
-        'zh-CN': '切换分页前事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`before-page-change` 切换分页前事件',
-        'en-US': ''
-      },
-      codeFiles: ['before-page-change.vue']
-    },
-    {
       demoId: 'pager-show-total-loading',
       name: {
         'zh-CN': '总页数显示加载中的效果',

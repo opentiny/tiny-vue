@@ -62,7 +62,11 @@
                 @jump-to-demo="jumpToDemo"
               ></api-docs>
             </tiny-tab-item>
+            <tiny-tab-item v-if="appData.hasFloatRobot" title="MCP" name="MCP">
+              <McpDocs :name="state.cmpId" />
+            </tiny-tab-item>
           </tiny-tabs>
+
           <slot name="main-right" />
         </div>
 
@@ -84,6 +88,7 @@
     </div>
     <div id="footer"></div>
   </div>
+  <robotChat v-if="appData.showTinyRobot && appData.hasFloatRobot"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -94,12 +99,16 @@ import { debounce } from '@opentiny/utils'
 import { i18nByKey, getWord, $clone, useApiMode } from '@/tools'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
-import DemoBox from './components/demo.vue'
-import AsideAnchor from './components/anchor.vue'
-import ComponentHeader from './components/header.vue'
-import ComponentContributor from './components/contributor.vue'
-import ApiDocs from './components/api-docs.vue'
-import useTasksFinish from './composition/useTasksFinish'
+import DemoBox from '../../components/demo.vue'
+import AsideAnchor from '../../components/anchor.vue'
+import ComponentHeader from '../../components/header.vue'
+import ComponentContributor from '../../components/contributor.vue'
+import ApiDocs from '../../components/api-docs.vue'
+import McpDocs from '../../components/mcp-docs.vue'
+import useTasksFinish from '../../composable/useTasksFinish'
+import { appData } from '../../tools/appData'
+
+import robotChat from '../../components/tiny-robot-chat.vue'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -166,8 +175,10 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
-  common.renderFooter()
+  nextTick(() => {
+    const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
+    common.renderFooter()
+  })
   setScrollListener()
 })
 
@@ -438,6 +449,9 @@ defineExpose({ loadPage })
 </script>
 
 <style lang="less" scoped>
+:global(.docs-on-robot-show .docs-content) {
+  margin-right: 480px;
+}
 .docs-content {
   flex: 1;
   overflow: hidden auto;

@@ -116,6 +116,21 @@ export default {
           pcDemo: 'node-width'
         },
         {
+          name: 'itemStyle',
+          type: 'Object',
+          defaultValue: '{}',
+          meta: {
+            stable: '3.24.0'
+          },
+          desc: {
+            'zh-CN':
+              '自定义单链型步骤条块的内联样式，数据类型为{ [statusName: string]: styleObject },，不同状态可根据key值差异化配置， key值为status字段的值，value值为对应节点的样式对象',
+            'en-US':
+              'Customize the inline style of single chain step blocks, with data type {[statusName: string]: styleObject}. Different states can be configured differently based on key values, where the key value is the value of the status field and the value value is the style object of the corresponding node'
+          },
+          mode: ['mobile-first']
+        },
+        {
           name: 'line',
           type: 'boolean',
           defaultValue: 'false',

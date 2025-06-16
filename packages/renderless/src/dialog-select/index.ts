@@ -155,7 +155,7 @@ export const selectedBoxInit =
   }
 
 export const selectedBoxClear =
-  ({ props, state, vm }) =>
+  ({ props, state, vm, emit }) =>
   () => {
     const { multi, popseletor } = props
 
@@ -170,6 +170,8 @@ export const selectedBoxClear =
     state.selectedValues = []
     state.selectedDatas = []
     state.selectedChanged = true
+
+    emit('clear')
   }
 
 export const setTreeSelection =
@@ -260,7 +262,7 @@ export const getSelection =
     state.selectedDatas
 
 export const selectedBoxDelete =
-  ({ props, state, vm }) =>
+  ({ props, state, vm, emit }) =>
   ({ option: row }) => {
     const { multi, popseletor } = props
 
@@ -282,6 +284,8 @@ export const selectedBoxDelete =
       state.selectedDatas = [...state.selectedDatas.slice(0, index), ...state.selectedDatas.slice(index + 1)]
       state.selectedChanged = true
     }
+
+    emit('delete', row)
   }
 
 export const selectedBoxDrag =
