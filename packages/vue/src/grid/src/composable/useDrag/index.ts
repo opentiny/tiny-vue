@@ -9,6 +9,8 @@ const headerTh = 'th.tiny-grid-header__column:not(.col__gutter):not(.fixed__hidd
 const groupKey = 'dndGroup'
 const idKey = 'colid'
 const pidKey = 'pColid'
+let timer = null
+const time = 2000
 
 let dndGroup = 0
 
@@ -74,6 +76,9 @@ const getColidMap = (treeArray) => {
 }
 
 const createDragHander = (state, $table) => {
+  const dropConfig = state.dropConfig
+  const dropable = dropConfig?.column && dropConfig?.scheme === 'v2'
+
   // 开始拖拽处理
   const dragStart = (dragTarget) => {
     const dragColid = dragTarget.dataset.colid
@@ -84,6 +89,7 @@ const createDragHander = (state, $table) => {
     const dragIndex = dragParentChildren.indexOf(dragColumn)
 
     $table.$emit('column-drag-start', { dragParentChildren, dragColumn, dragIndex })
+    clearTimeout(timer)
   }
 
   // 放置结束处理
@@ -103,7 +109,7 @@ const createDragHander = (state, $table) => {
     // 拖拽信息参数
     const args = { dragParentChildren, dragColumn, dragIndex, dropParentChildren, dropColumn, dropIndex }
     // 放置前处理
-    callInterceptor(state.dropConfig.columnBeforeDrop, {
+    callInterceptor(state.dropConfig?.columnBeforeDrop, {
       args: [args],
       done: () => {
         // 移除被拖拽列，并插入到被放置的位置
@@ -123,6 +129,13 @@ const createDragHander = (state, $table) => {
             scrollYLoad && $table.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
           }
         })
+
+        // 2s后用户没有再次拖动排序再保存数据，防止事件频繁触发消耗性能
+        if ($table.getVm('toolbar') && dropable) {
+          timer = setTimeout(() => {
+            $table.getVm('toolbar').$refs.custom.saveSettings('drag')
+          }, time)
+        }
       }
     })
   }
@@ -132,78 +145,67 @@ const createDragHander = (state, $table) => {
 
 const createTableColumnWatch = ($table, state, isColumnGroupLevel, stopHandlerMap) =>
   debounce(100, () => {
-    const headers = ['table', 'left', 'right']
+    const dndProxy = $table.$el.querySelector('thead')
 
-    headers.forEach((key) => {
-      const headerVm = $table.$refs[`${key}Header`]
+    if (dndProxy) {
+      let dndThs = dndProxy.querySelectorAll(headerTh)
 
-      if (headerVm) {
-        const dndProxy = headerVm.$el
-
-        if (dndProxy) {
-          const dndThs = Array.from(dndProxy.querySelectorAll(headerTh))
-
-          // 表头th渲染时已添加data-colid属性，这里额外增加draggable、data-p-colid和data-dnd-group属性
-          setDndAttribute(dndThs, state.colidMap, isColumnGroupLevel)
-
-          if (stopHandlerMap.has(dndProxy)) {
-            stopHandlerMap.get(dndProxy).destroy()
-            stopHandlerMap.delete(dndProxy)
-          }
-
-          const { dragStart, drop } = createDragHander(state, $table)
-          const dropClass = state.dropConfig.columnDropClass || ''
-
-          stopHandlerMap.set(
-            dndProxy,
-            initDrag(dndProxy, dndThs, { dragStart, drop, dropClass, groupKey, idKey, pidKey })
-          )
-        }
+      if (dndThs.length > 0) {
+        dndThs = Array.from(dndThs)
       }
-    })
+
+      // 表头th渲染时已添加data-colid属性，这里额外增加draggable、data-p-colid和data-dnd-group属性
+      setDndAttribute(dndThs, state.colidMap, isColumnGroupLevel)
+
+      if (stopHandlerMap.has(dndProxy)) {
+        stopHandlerMap.get(dndProxy).destroy()
+        stopHandlerMap.delete(dndProxy)
+      }
+
+      const { dragStart, drop } = createDragHander(state, $table)
+      const dropClass = state.dropConfig?.columnDropClass || ''
+
+      stopHandlerMap.set(dndProxy, initDrag(dndProxy, dndThs, { dragStart, drop, dropClass, groupKey, idKey, pidKey }))
+    }
   })
 
-const createUseDrag =
-  ({ reactive, watch, getCurrentInstance, onBeforeUnmount }) =>
-  ({ dropConfig, collectColumn, tableColumn }) => {
-    const state = reactive({
-      dropConfig,
-      collectColumn,
-      tableColumn,
-      colidMap: null
+export const useDrag = ({ props, collectColumn, tableColumn }) => {
+  const state = hooks.reactive({
+    dropConfig: hooks.toRef(props, 'dropConfig'),
+    collectColumn,
+    tableColumn,
+    colidMap: null
+  })
+
+  // 在设置 scheme 标志位 v2 时，列拖拽使用新方案
+  if (!state.dropConfig || state.dropConfig?.scheme !== 'v2') return
+
+  const $table = hooks.getCurrentInstance()?.proxy
+
+  // 列拖拽处理
+  if (state.dropConfig?.column) {
+    // 是否只允许同层级拖拽
+    const isColumnGroupLevel = !state.dropConfig?.columnGroup || state.dropConfig?.columnGroup === 'level'
+    const stopHandlerMap = new Map()
+    const tableColumnWatch = createTableColumnWatch($table, state, isColumnGroupLevel, stopHandlerMap)
+
+    hooks.watch(collectColumn, () => {
+      state.colidMap = getColidMap(state.collectColumn)
     })
 
-    // 在设置 scheme 标志位 v2 时，列拖拽使用新方案
-    if (!state.dropConfig || (state.dropConfig && state.dropConfig.scheme !== 'v2')) return
+    hooks.watch(tableColumn, () => tableColumnWatch())
 
-    const $table = getCurrentInstance().proxy
+    hooks.onBeforeUnmount(() => {
+      if (stopHandlerMap.size > 0) {
+        const dndProxyList = []
 
-    // 列拖拽处理
-    if (state.dropConfig.column) {
-      // 是否只允许同层级拖拽
-      const isColumnGroupLevel = !state.dropConfig.columnGroup || state.dropConfig.columnGroup === 'level'
-      const stopHandlerMap = new Map()
-      const tableColumnWatch = createTableColumnWatch($table, state, isColumnGroupLevel, stopHandlerMap)
-
-      watch(collectColumn, () => {
-        state.colidMap = getColidMap(state.collectColumn)
-      })
-
-      watch(tableColumn, () => tableColumnWatch())
-
-      onBeforeUnmount(() => {
-        if (stopHandlerMap.size > 0) {
-          const dndProxyList = []
-
-          for (const [dndProxy, stopHander] of stopHandlerMap) {
-            dndProxyList.push(dndProxy)
-            stopHander.destroy()
-          }
-
-          dndProxyList.forEach((dndProxy) => stopHandlerMap.delete(dndProxy))
+        for (const [dndProxy, stopHander] of stopHandlerMap) {
+          dndProxyList.push(dndProxy)
+          stopHander.destroy()
         }
-      })
-    }
-  }
 
-export const useDrag = createUseDrag(hooks)
+        dndProxyList.forEach((dndProxy) => stopHandlerMap.delete(dndProxy))
+      }
+    })
+  }
+}

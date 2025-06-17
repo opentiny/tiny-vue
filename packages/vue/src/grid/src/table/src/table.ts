@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -23,15 +22,22 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, resolveTheme, defineComponent, useInstanceSlots, useRelation } from '@opentiny/vue-common'
+import {
+  h,
+  hooks,
+  $prefix,
+  $props,
+  resolveTheme,
+  defineComponent,
+  useInstanceSlots,
+  useRelation
+} from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
 import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
-import GridHeader from '../../header'
-import GridFooter from '../../footer'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
 import GridMenu from '../../menu'
@@ -39,19 +45,16 @@ import GridLoading from '../../loading'
 import methods from './methods'
 import GlobalConfig from '../../config'
 import { error } from '../../tools'
-import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 import { useDrag, useRowGroup } from '../../composable'
 import { isServer } from '@opentiny/utils'
-import { iconGridNoData } from '@opentiny/vue-icon'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
-const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
+const { DEFAULT: V_DEFAULT, MF: V_MF } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
 const hiddenContainerClass = 'tiny-grid-hidden-column'
-const GridNoData = iconGridNoData()
 
 // 校验插件是否被注册
 function verifyConfig(_vm) {
@@ -91,11 +94,8 @@ function mergeScrollDirStore(scrollDir, scrollDirStore) {
 function loadStatic(data, _vm) {
   // 此段代码与 watch(data) 功能重复，只在配置了 data 属性后生效
   if (data && data.length > 0) {
-    _vm.loadTableData(data, true).then(() => {
-      _vm.handleDefault()
-      // 需要等到表格的vnode渲染完成后再去计算样式，计算每一列的宽度和滚动条位置，这里也是可以优化的点，这样会导致页面重排，重绘
-      _vm.updateStyle()
-    })
+    _vm.loadTableData(data, true)
+    _vm.updateStyle()
   }
 }
 
@@ -106,457 +106,7 @@ function mergeTreeConfig(_vm) {
   }
 }
 
-const renderEmptyPartFn = (opt) => {
-  const { _vm } = opt
-  return () => {
-    let emptyPartVnode = null
-
-    if ([V_DEFAULT, V_MF].includes(_vm.viewType) && _vm.isCenterEmpty && !opt.tableData.length) {
-      const { $grid = {}, renderEmpty } = _vm
-      const { slots } = $grid
-      let { computerTableBodyHeight } = _vm
-      let emptyVnodes
-
-      if (slots.empty) {
-        emptyVnodes = slots.empty.call(_vm, h)
-      } else if (renderEmpty) {
-        emptyVnodes = [renderEmpty(h, _vm)]
-      } else {
-        emptyVnodes = [
-          h(GridNoData, { class: 'tiny-grid__empty-img' }),
-          h('span', { class: 'tiny-grid__empty-text' }, GlobalConfig.i18n('ui.grid.emptyText'))
-        ]
-      }
-
-      emptyPartVnode = h(
-        'div',
-        {
-          class: [{ 'empty-center-block': true }, _vm.viewCls('emptyData')],
-          style: {
-            height: computerTableBodyHeight
-          }
-        },
-        emptyVnodes
-      )
-    }
-
-    return emptyPartVnode
-  }
-}
-
-const renderFooterFn = (opt) => {
-  const { _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
-  return () => {
-    let tableFooterVnode = [null]
-
-    if (showFooter) {
-      tableFooterVnode = h(GridFooter, {
-        props: { footerData, footerMethod, tableColumn, visibleColumn, size: vSize },
-        ref: 'tableFooter',
-        class: _vm.viewCls('tableFooter')
-      })
-    }
-
-    return tableFooterVnode
-  }
-}
-
-const renderResizeBarFn = (opt) => {
-  const { _vm, isResizable, overflowX, scrollbarHeight } = opt
-  return () => {
-    let resizeBarVnode = [null]
-
-    if (isResizable) {
-      resizeBarVnode = h('div', {
-        class: ['tiny-grid__resizable-bar', _vm.viewCls('resizeBar')],
-        style: overflowX ? { 'padding-bottom': `${scrollbarHeight}px` } : null,
-        ref: 'resizeBar',
-        key: 'tinyGridResizeBar'
-      })
-    }
-
-    return resizeBarVnode
-  }
-}
-
-const renderPluginWrapperFn = (opt) => {
-  const { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts } = opt
-  const { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm } = opt
-
-  return () => {
-    // 筛选面板
-    let filterVnode = [null]
-    // 右键快捷面板
-    let ctxMenuVnode = [null]
-    // tips提示
-    let tooltipVnode = [null]
-    // 校验错误提示
-    let errorTooltipVnode = [null]
-    let { isMessageDefault, isMessageTooltip } = validOpts
-
-    if (hasFilter) {
-      filterVnode = h(GridFilter, {
-        props: { optimizeOpts, filterStore },
-        ref: 'filterWrapper'
-      })
-    }
-
-    if (isCtxMenu) {
-      ctxMenuVnode = h(GridMenu, { props: { ctxMenuStore }, ref: 'ctxWrapper' })
-    }
-    if (hasTip) {
-      tooltipVnode = h(Tooltip, { ref: 'tooltip', props: tooltipContentOpts })
-    }
-
-    if (hasTip && editRules && (isMessageDefault ? !height : isMessageTooltip)) {
-      errorTooltipVnode = h(Tooltip, {
-        class: 'tiny-grid__valid-error',
-        props: isMessageTooltip || tableData.length === 1 ? vaildTipOpts : null,
-        ref: 'validTip'
-      })
-    }
-
-    return h(
-      'div',
-      {
-        class: `tiny-grid${id}-wrapper ${_vm.$attrs.staticClass || ''}`,
-        ref: 'tableWrapper'
-      },
-      [
-        // 筛选
-        filterVnode,
-        // 快捷菜单
-        ctxMenuVnode,
-        // Ellipsis tooltip
-        tooltipVnode,
-        // valid error tooltip
-        errorTooltipVnode
-      ]
-    )
-  }
-}
-
-const renderSelectToolbarFn = (opt) => {
-  const { selectToolbar, selectToolbarStore, renderedToolbar } = opt
-  return () => {
-    let selectToolbarVnode = [null]
-
-    if (selectToolbar) {
-      selectToolbarVnode = h(
-        'div',
-        {
-          ref: 'selectToolbar',
-          class: 'tiny-grid__select-toolbar',
-          style: [
-            selectToolbarStore.layout,
-            {
-              visibility: selectToolbarStore.visible ? 'visible' : 'hidden'
-            }
-          ]
-        },
-        renderedToolbar || [null]
-      )
-    }
-
-    return selectToolbarVnode
-  }
-}
-
-function getRenderer(opt) {
-  const {
-    $slots,
-    _vm,
-    optimizeOpts,
-    overflowX,
-    props,
-    showFooter,
-    showHeader,
-    tableColumn,
-    tableData,
-    vSize,
-    visibleColumn
-  } = opt
-  const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const { isCtxMenu, isResizable, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } =
-    _vm
-  const { selectToolbar, renderedToolbar } = $grid
-
-  const renderHeader = () =>
-    showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
-  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData })
-  const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
-  const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
-  const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
-  const arg2 = { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm }
-  const renderPluginWrapper = renderPluginWrapperFn(Object.assign(arg1, arg2))
-
-  const renderSelectToolbar = renderSelectToolbarFn({ selectToolbar, selectToolbarStore, renderedToolbar })
-
-  return {
-    renderHeader,
-    renderEmptyPart,
-    renderFooter,
-    renderResizeBar,
-    renderPluginWrapper,
-    renderSelectToolbar
-  }
-}
-
-const renderFooterBorder = (_vm) => {
-  const { showFooterBorder, footerBorderBottom } = _vm
-  const cls = ['tiny-grid__footer-border-line', _vm.viewCls('footerBorder')]
-  const style = `bottom:${footerBorderBottom}px;`
-
-  return showFooterBorder ? h('div', { ref: 'footerBorder', class: cls, style }) : null
-}
-
-// 设置表格最外层元素类名
-function getTableAttrs(tableVm) {
-  const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
-  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
-  const { maxHeight, loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
-  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan } = tableVm
-
-  // 当用户传null值，解构得到的值为null，因此需要使用fallback值
-  const dropConfig = tableVm.dropConfig || {}
-  const mouseConfig = tableVm.mouseConfig || {}
-
-  const map = {
-    showHeader: 'show__head',
-    showFooter: 'show__foot',
-    overflowY: 'scroll__y',
-    overflowX: 'scroll__x',
-    loading: 'is__loading',
-    highlightHoverRow: 'row__highlight',
-    highlightHoverColumn: 'column__highlight'
-  }
-
-  const style = {}
-
-  // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
-  if (isShapeTable && maxHeight) {
-    style.maxHeight = Number(maxHeight) ? maxHeight + 'px' : maxHeight
-  }
-
-  return {
-    class: {
-      'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': true,
-      [`row__valid-${validOpts.message}`]: true,
-      [`size__${vSize}`]: vSize,
-      'tiny-grid-editable': editConfig,
-      [map.showHeader]: showHeader,
-      [map.showFooter]: showFooter,
-      [map.overflowY]: overflowY,
-      [map.overflowX]: overflowX,
-      'all-overflow': showOverflow,
-      'all-head-overflow': showHeaderOverflow,
-      'tiny-grid-cell__highlight': highlightCell,
-      'tiny-grid__animat': optimizeOpts.animat,
-      'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
-      'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
-      'tiny-grid__border': border || isGroup,
-      'tiny-grid__border-saas': isThemeSaas && borderSaas,
-      'tiny-grid__group-saas': isThemeSaas && isGroup,
-      'tiny-grid__border-vertical': borderVertical,
-      'tiny-grid__checked': mouseConfig.checked,
-      'mark-insert': editConfig && editConfig.markInsert,
-      'edit__no-border': editConfig && editConfig.showBorder === false,
-      [map.loading]: loading,
-      [map.highlightHoverRow]: highlightHoverRow,
-      [map.highlightHoverColumn]: highlightHoverColumn,
-      'is__row-span': rowSpan && rowSpan.length > 0,
-      'row__drop-handle--index': dropConfig.rowHandle === 'index'
-    },
-    style
-  }
-}
-
-const gridData = {
-  // 存储异步加载过的行\列数据
-  asyncRenderMap: {},
-  // 存放列相关的信息
-  columnStore: {
-    // 自适应的列表集合
-    autoList: [],
-    centerList: [],
-    // 左侧冻结列表集合
-    leftList: [],
-    // 右侧冻结列表集合
-    rightList: [],
-    // 固定像素宽度列表集合
-    pxList: [],
-    // 设置了最小宽度列表集合
-    pxMinList: [],
-    // 可调整列宽列表集合
-    resizeList: [],
-    // 百分比宽度列表集合
-    scaleList: [],
-    // 百分比最小宽度列表集合
-    scaleMinList: []
-  },
-  // 存放快捷菜单的信息
-  ctxMenuStore: {
-    list: [],
-    selectChild: null,
-    selected: null,
-    showChild: false,
-    style: null,
-    visible: false
-  },
-  // 当前行
-  currentRow: null,
-  // 存放可编辑相关信息
-  editStore: {
-    editorAutoRefreshKey: 0,
-    // 激活
-    actived: { column: null, row: null },
-    // 所有选中
-    checked: { columns: [], rows: [], tColumns: [], tRows: [] },
-    // 已复制源
-    copyed: { columns: [], cut: false, rows: [] },
-    indexs: { columns: [] },
-    insertList: [],
-    removeList: [],
-    // 选中源
-    selected: { column: null, row: null },
-    titles: { columns: [] }
-  },
-  // 已展开的行
-  expandeds: [],
-  // 当前选中的筛选列
-  filterStore: {
-    column: null,
-    condition: { input: '', relation: 'equals' },
-    id: '',
-    multi: false,
-    options: [],
-    visible: false
-  },
-  // 表尾合计数据
-  footerData: [],
-  // 所有列已禁用
-  headerCheckDisabled: false,
-  // 是否全选
-  isAllSelected: false,
-  // 多选属性，有选中且非全选状态
-  isIndeterminate: false,
-  // 是否存在横向滚动条
-  overflowX: false,
-  // 是否存在纵向滚动条
-  overflowY: true,
-  // 存储滚动加载，上次滚动的位置
-  scrollLoadStore: { bodyHeight: 0, scrollHeight: 0 },
-  // 是否启用了横向 X 可视渲染方式加载
-  scrollXLoad: false,
-  // 是否启用了纵向 Y 可视渲染方式加载
-  scrollYLoad: false,
-  // 横向滚动条的高度
-  scrollbarHeight: 0,
-  // 纵向滚动条的宽度
-  scrollbarWidth: 0,
-  // 单选属性，选中行
-  selectRow: null,
-  // 存放多选工具栏相关信息
-  selectToolbarStore: {
-    layout: { height: 0, left: 0, top: 0, width: 0, zIndex: 1 },
-    visible: false
-  },
-  // 多选属性，已选中的列
-  selection: [],
-  // 渲染中的数据
-  tableData: [],
-  // tooltip提示内容
-  tooltipContent: '',
-  // tooltip提示内容是否处理换行字符
-  tooltipContentPre: false,
-  // 已展开树节点
-  treeExpandeds: [],
-  // 树节点不确定状态的列表
-  treeIndeterminates: [],
-  // 存放数据校验相关信息
-  validStore: {
-    column: null,
-    content: '',
-    isArrow: false,
-    row: null,
-    rule: null,
-    visible: false
-  },
-  // 校验tip提示内容
-  validTipContent: '',
-  // 在编辑模式下 单元格在失去焦点验证的状态
-  validatedMap: {},
-  // 表尾边框线是否显示和位置
-  showFooterBorder: false,
-  footerBorderBottom: 0,
-  tableBodyHeight: 0,
-  // 表格父容器的高度
-  parentHeight: 0
-}
-const getTableData = () => {
-  const tableData = {
-    // 条件处理后数据
-    afterFullData: [],
-    // 分组表场景全量数据（包含虚拟行）
-    groupFullData: [],
-    elemStore: {},
-    // 表尾高度
-    footerHeight: 0,
-    // 缓存数据集 rowid --> { row, rowid: rowId, index }
-    fullAllDataRowIdData: {},
-    // 缓存数据集 row --> { row, rowid: rowId, index }
-    fullAllDataRowMap: new Map(),
-    // 缓存数据集 columnId --> { colid: column.id, column, index }
-    fullColumnIdData: {},
-    // 缓存数据集 column --> { colid: column.id, column, index }
-    fullColumnMap: new Map(),
-    fullDataRowIdData: {},
-    fullDataRowMap: new Map(),
-    // 缓存树形表格行数据以及其父级行数据的映射关系
-    parentRowMap: new Map(),
-    // 临时插入数据集
-    temporaryRows: [],
-    // 表头高度
-    headerHeight: 0,
-    // 最后滚动位置
-    lastScrollLeft: 0,
-    lastScrollTop: 0,
-    // 表格父容器的高度
-    parentHeight: 0,
-    scrollDirection: 'N', // N,X,Y （滚动方向）
-    // 存放横向 X 虚拟滚动相关的信息
-    scrollXStore: {},
-    // 存放纵向 Y 虚拟滚动相关信息
-    scrollYStore: {},
-    // 完整数据
-    tableFullData: [],
-    // 表格高度
-    tableHeight: 0,
-    // 表格宽度
-    tableWidth: 0,
-    // 存放 tooltip 相关信息
-    tooltipStore: {},
-    // 表格已挂载完成
-    afterMounted: false,
-    // 临时任务
-    tasks: {},
-    // 列初始就绪
-    isColumnInitReady: false,
-    // 列就绪
-    isColumnReady: false,
-    // 分组表场景是否具有虚拟行
-    hasVirtualRow: false,
-    // 是否是标签式用法场景
-    isTagUsageSence: false,
-    // 收集列信息（列数量和列顺序）
-    columnCollectKey: '',
-    // treeConfig.ordered的取值处理
-    treeOrdered: true
-  }
-  return tableData
-}
-
-const bindEvent = (ctx) => {
+function bindEvent(ctx) {
   GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownEvent)
   // 因为冒泡事件部分情况下被阻止继续传播，导致处理异常，因此注册 mousedown 捕获事件
   GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownCaptureEvent, true)
@@ -567,7 +117,7 @@ const bindEvent = (ctx) => {
   GlobalEvent.on(ctx, 'contextmenu', ctx.handleGlobalContextmenuEvent)
 }
 
-const unbindEvent = (table) => {
+function unbindEvent(table) {
   GlobalEvent.off(table, 'mousedown')
   GlobalEvent.off(table, 'mousedown', true)
   GlobalEvent.off(table, 'blur')
@@ -578,8 +128,9 @@ const unbindEvent = (table) => {
 }
 
 export default defineComponent({
-  name: `${$prefix}GridTable`,
+  name: $prefix + 'GridTable',
   props: {
+    ...$props,
     // 所有的列对齐方式
     align: { type: String, default: () => GlobalConfig.align },
     // 是否自动监听父容器变化去更新响应式表格宽高
@@ -601,7 +152,7 @@ export default defineComponent({
     // 数据
     data: [Array, Object],
     // 行拖拽和列拖拽的配置
-    dropConfig: Object,
+    dropConfig: { type: Object, default: () => ({}) },
     // 编辑配置项
     editConfig: [Object, Boolean],
     // 校验规则配置项
@@ -633,32 +184,20 @@ export default defineComponent({
     // 激活单元格编辑时是否高亮显示
     highlightCell: Boolean,
     // 是否要高亮当前选中列
-    highlightCurrentColumn: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightCurrentColumn
-    },
+    highlightCurrentColumn: { type: Boolean, default: () => GlobalConfig.highlightCurrentColumn },
     // 是否要高亮当前选中行
-    highlightCurrentRow: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightCurrentRow
-    },
+    highlightCurrentRow: { type: Boolean, default: () => GlobalConfig.highlightCurrentRow },
     // 鼠标移到列是否要高亮显示
-    highlightHoverColumn: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightHoverColumn
-    },
+    highlightHoverColumn: { type: Boolean, default: () => GlobalConfig.highlightHoverColumn },
     // 鼠标移到行是否要高亮显示
-    highlightHoverRow: {
-      type: Boolean,
-      default: () => GlobalConfig.highlightHoverRow
-    },
+    highlightHoverRow: { type: Boolean, default: () => GlobalConfig.highlightHoverRow },
     // 是否开启异步列功能
     isAsyncColumn: Boolean,
     isCenterEmpty: Boolean,
     // 是否拖拽表头调整列顺序
     isDragHeaderSorting: Boolean,
     // 按键配置项
-    keyboardConfig: Object,
+    keyboardConfig: { type: Object, default: () => ({}) },
     // 表格是否加载中
     loading: Boolean,
     loadingComponent: Object,
@@ -667,7 +206,7 @@ export default defineComponent({
     // 表格的最小高度
     minHeight: [Number, String],
     // 鼠标配置项
-    mouseConfig: Object,
+    mouseConfig: { type: Object, default: () => ({}) },
     // 优化配置项
     optimization: Object,
     // 额外的参数
@@ -703,15 +242,9 @@ export default defineComponent({
     // 是否显示表头
     showHeader: { type: Boolean, default: () => GlobalConfig.showHeader },
     // 设置表头所有内容过长时显示为省略号
-    showHeaderOverflow: {
-      type: [Boolean, String],
-      default: () => GlobalConfig.showHeaderOverflow
-    },
+    showHeaderOverflow: { type: [Boolean, String], default: () => GlobalConfig.showHeaderOverflow },
     // 设置所有内容过长时显示为省略号
-    showOverflow: {
-      type: [Boolean, String],
-      default: () => GlobalConfig.showOverflow
-    },
+    showOverflow: { type: [Boolean, String], default: () => GlobalConfig.showOverflow },
     // 表格的尺寸
     size: { type: String, default: () => GlobalConfig.size },
     // 排序配置项
@@ -765,10 +298,10 @@ export default defineComponent({
     intersectionOption: Object,
     // 值比较方法
     equals: Function,
-    // 操作列（type为index或radio或selection的列）是否可拖动列宽
-    operationColumnResizable: { type: Boolean, default: () => GlobalConfig.operationColumnResizable },
     // 自动清空鼠标选中
     autoClearMouseChecked: { type: Boolean, default: true },
+    // 操作列（type为index或radio或selection的列）是否可拖动列宽
+    operationColumnResizable: { type: Boolean, default: () => GlobalConfig.operationColumnResizable },
     // 自动清空键盘复制
     autoClearKeyboardCopy: { type: Boolean, default: false },
     // 自定义列组件名称（列表）
@@ -787,7 +320,98 @@ export default defineComponent({
     }
   },
   data() {
-    return extend(true, {}, gridData)
+    return {
+      // 存储异步加载过的行\列数据
+      asyncRenderMap: {},
+      // 存放快捷菜单的信息
+      ctxMenuStore: {
+        list: [],
+        selectChild: null,
+        selected: null,
+        showChild: false,
+        style: null,
+        visible: false
+      },
+      // 当前行
+      currentRow: null,
+      // 存放可编辑相关信息
+      editStore: {
+        editorAutoRefreshKey: 0,
+        // 激活
+        actived: { column: null, row: null },
+        // 所有选中
+        checked: { columns: [], rows: [], tColumns: [], tRows: [] },
+        // 已复制源
+        copyed: { columns: [], cut: false, rows: [] },
+        indexs: { columns: [] },
+        insertList: [],
+        removeList: [],
+        // 选中源
+        selected: { column: null, row: null },
+        titles: { columns: [] }
+      },
+      // 已展开的行
+      expandeds: [],
+      // 当前选中的筛选列
+      filterStore: {
+        column: null,
+        condition: { input: '', relation: 'equals' },
+        id: '',
+        multi: false,
+        options: [],
+        visible: false
+      },
+      // 所有列已禁用
+      headerCheckDisabled: false,
+      // 是否全选
+      isAllSelected: false,
+      // 多选属性，有选中且非全选状态
+      isIndeterminate: false,
+      // 是否存在横向滚动条
+      overflowX: false,
+      // 是否存在纵向滚动条
+      overflowY: true,
+      // 存储滚动加载，上次滚动的位置
+      scrollLoadStore: { bodyHeight: 0, scrollHeight: 0 },
+      // 横向滚动条的高度
+      scrollbarHeight: 0,
+      // 纵向滚动条的宽度
+      scrollbarWidth: 0,
+      // 单选属性，选中行
+      selectRow: null,
+      // 存放多选工具栏相关信息
+      selectToolbarStore: {
+        layout: { height: 0, left: 0, top: 0, width: 0, zIndex: 1 },
+        visible: false
+      },
+      // 多选属性，已选中的列
+      selection: [],
+      // tooltip提示内容
+      tooltipContent: '',
+      // tooltip提示内容是否处理换行字符
+      tooltipContentPre: false,
+      // 已展开树节点
+      treeExpandeds: [],
+      // 树节点不确定状态的列表
+      treeIndeterminates: [],
+      // 存放数据校验相关信息
+      validStore: {
+        column: null,
+        content: '',
+        isArrow: false,
+        row: null,
+        rule: null,
+        visible: false
+      },
+      // 校验tip提示内容
+      validTipContent: '',
+      // 在编辑模式下 单元格在失去焦点验证的状态
+      validatedMap: {},
+      // 表格父容器的高度
+      parentHeight: 0,
+      // 水平滚动条的状态
+      horizonScroll: { fixed: false, threshold: 2, max: 0, isLeft: true, isRight: false }
+    }
   },
   computed: {
     bodyCtxMenu() {
@@ -820,9 +444,6 @@ export default defineComponent({
     isResizable() {
       return this.resizable || this.tableFullColumn.some((column) => column.resizable)
     },
-    optimizeOpts() {
-      return extend(true, {}, GlobalConfig.optimization, this.optimization)
-    },
     sortOpts() {
       return extend(true, {}, GlobalConfig.sortConfig, this.sortConfig)
     },
@@ -831,16 +452,13 @@ export default defineComponent({
         true,
         {
           content: this.tooltipContent,
-          pre: this.tooltipContentPre, //  pre 元素可定义预格式化的文本
+          pre: this.tooltipContentPre,
+          renderContent: this.tooltipConfig.renderContent,
           placement: 'right',
           type: this.tooltipConfig.effect ? undefined : 'normal'
         },
         this.tooltipConfig
       )
-    },
-    // 表格尺寸（medium|small|mini）
-    vSize() {
-      return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
     },
     vaildTipOpts() {
       return extend(
@@ -867,9 +485,6 @@ export default defineComponent({
       config.isMessageInline = config.message === 'inline'
 
       return config
-    },
-    computerTableBodyHeight() {
-      return this.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${this.tableBodyHeight}px`
     },
     isThemeTiny() {
       return this.tinyTheme === T_TINY
@@ -912,14 +527,13 @@ export default defineComponent({
       !this.isUpdateCustoms && this.mergeCustomColumn(value)
       this.isUpdateCustoms = false
     },
-    height() {
-      this.$nextTick(this.recalculate)
-    },
     data() {
       // data的监控处理：a、在vue2中，数组对象替换、数组长度改变和数组项属性改变；b、在vue3中，数组对象替换
       this.handleDataChange()
     },
-    // 此属性暂时没有找到应用的demo，从语义上来说，觉得可以删除，官网有对应api但是没有对应的示例
+    height() {
+      this.$nextTick(this.recalculate)
+    },
     syncResize(value) {
       // 是否自动根据状态属性去更新响应式表格宽高
       value && this.$nextTick(this.recalculate)
@@ -935,7 +549,59 @@ export default defineComponent({
     }
   },
   created() {
-    let { scrollXStore, scrollYStore, optimizeOpts, data } = Object.assign(this, getTableData())
+    let { scrollXStore, scrollYStore, optimizeOpts, data } = Object.assign(this, {
+      // 条件处理后数据
+      afterFullData: [],
+      // 分组表场景全量数据（包含虚拟行）
+      groupFullData: [],
+      elemStore: {},
+      // 缓存数据集 columnId --> { colid: column.id, column, index }
+      fullColumnIdData: {},
+      // 缓存数据集 column --> { colid: column.id, column, index }
+      fullColumnMap: new Map(),
+      fullDataRowIdData: {},
+      fullDataRowMap: new Map(),
+      // 临时插入数据集
+      temporaryRows: [],
+      // 最后滚动位置
+      lastScrollLeft: 0,
+      lastScrollTop: 0,
+      scrollDirection: 'N', // N,X,Y （滚动方向）
+      // 存放横向 X 虚拟滚动相关的信息
+      scrollXStore: {},
+      // 存放纵向 Y 虚拟滚动相关信息
+      scrollYStore: {},
+      // 完整数据
+      tableFullData: [],
+      // 表格高度
+      tableHeight: 0,
+      // 可见列总宽度
+      totalWidth: 0,
+      // 存放 tooltip 相关信息
+      tooltipStore: {},
+      // 表格已挂载完成
+      afterMounted: false,
+      // 临时任务
+      tasks: {},
+      // 列初始就绪
+      isColumnInitReady: false,
+      // 列就绪
+      isColumnReady: false,
+      // 分组表场景是否具有虚拟行
+      hasVirtualRow: false,
+      // 是否是标签式用法场景
+      isTagUsageSence: false,
+      // 收集列信息（列数量和列顺序）
+      columnCollectKey: '',
+      // treeConfig.ordered的取值处理
+      treeOrdered: undefined,
+      // 水平滚动时新进入渲染的列
+      addedColumn: [],
+      // 单元格状态
+      cellStatus: new Map(),
+      // 是否具有type selection列
+      isCheckable: false
+    })
     let { scrollX, scrollY } = optimizeOpts
 
     // 判断表格对应的插件是否注册，没注册会报对应的警告（这块插件还没有进行解耦，待整改）
@@ -959,39 +625,6 @@ export default defineComponent({
     // 设置表格实例
     this.$grid.connect({ name: 'table', vm: this })
   },
-  mounted() {
-    // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
-    if (this.$refs.tableWrapper) {
-      // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
-      document.body.appendChild(this.$refs.tableWrapper)
-    }
-
-    this.$nextTick().then(() => {
-      this.afterMounted = true
-
-      if (this.autoResize && TINYGrid._resize) {
-        // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
-        this.bindResize()
-      }
-    })
-
-    setTimeout(() => {
-      const tableFooter = this.$refs.tableFooter
-      this.showFooterBorder = !!tableFooter
-      this.footerBorderBottom = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
-    })
-  },
-  activated() {
-    let { lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad } = this
-
-    if (lastScrollLeft || lastScrollTop) {
-      this.scrollTo(lastScrollLeft, lastScrollTop)
-      scrollXLoad && this.triggerScrollXEvent()
-      scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
-    }
-
-    bindEvent(this)
-  },
   setup(props, context) {
     const { slots, attrs, listeners } = context
     const id = hooks.ref(uniqueId())
@@ -1003,11 +636,85 @@ export default defineComponent({
     const visibleColumn = hooks.ref([])
     // 渲染的列
     const tableColumn = hooks.ref([])
+    // 渲染中的数据节点
+    const tableNode = hooks.ref([])
+    // 渲染中的数据
+    const tableData = hooks.ref([])
+    // 表尾合计数据
+    const footerData = hooks.ref([])
+    // 是否启用了横向 X 可视渲染方式加载
+    const scrollXLoad = hooks.ref(false)
+    // 是否启用了纵向 Y 可视渲染方式加载
+    const scrollYLoad = hooks.ref(false)
+    // 表头总体高度
+    const headerHeight = hooks.ref(0)
+    // 表尾高度
+    const footerHeight = hooks.ref(0)
+    // 是否已分配列宽
+    const isColumnWidthAssigned = hooks.ref(false)
+    // 外部设置的表体容器高度
+    const bodyWrapperHeight = hooks.ref()
+    // 外部设置的表体容器最小高度
+    const bodyWrapperMinHeight = hooks.ref()
+    // 外部设置的表体容器最大高度
+    const bodyWrapperMaxHeight = hooks.ref()
+    // 表体表格元素宽度
+    const bodyTableWidth = hooks.ref()
+    // 滚动加载滚动高度
+    const scrollLoadScrollHeight = hooks.ref()
+    // 存放列相关的信息
+    const columnStore = hooks.ref({
+      // 自适应的列表集合
+      autoList: [],
+      centerList: [],
+      // 左侧冻结列表集合
+      leftList: [],
+      // 右侧冻结列表集合
+      rightList: [],
+      // 固定像素宽度列表集合
+      pxList: [],
+      // 设置了最小宽度列表集合
+      pxMinList: [],
+      // 可调整列宽列表集合
+      resizeList: [],
+      // 百分比宽度列表集合
+      scaleList: [],
+      // 百分比最小宽度列表集合
+      scaleMinList: []
+    })
+
+    // body组件参数
+    const bodyProps = hooks.computed(() => ({
+      collectColumn: collectColumn.value,
+      tableColumn: tableColumn.value,
+      tableNode: tableNode.value,
+      tableData: tableData.value,
+      footerData: footerData.value
+    }))
+    // 多端表格组件参数
+    const mfTableProps = hooks.computed(() => ({
+      tableData: tableData.value,
+      cardConfig: props.cardConfig,
+      listConfig: props.listConfig,
+      ganttConfig: props.ganttConfig,
+      customConfig: props.customConfig
+    }))
+    // 模板引用
+    const tableWrapper = hooks.ref()
 
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))
     const $table = hooks.getCurrentInstance().proxy
-
+    const $grid = hooks.inject('$grid', null)
+    const vSize = hooks.computed(() => props.size || $grid?.size || $grid?.vSize)
+    const optimizeOpts = hooks.computed(() => extend(true, {}, GlobalConfig.optimization, props.optimization))
+    const rowHeight = hooks.computed(
+      () =>
+        optimizeOpts.value?.scrollY.rHeight || GlobalConfig.rowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
+    )
+    const headerRowHeight = hooks.computed(
+      () => GlobalConfig.headerRowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
+    )
     useInstanceSlots()
 
     useRelation({
@@ -1024,18 +731,32 @@ export default defineComponent({
       }
     })
 
-    useDrag({ dropConfig: hooks.toRef(props, 'dropConfig'), collectColumn, tableColumn })
+    useDrag({ props, collectColumn, tableColumn })
 
-    useRowGroup({ rowGroup: hooks.toRef(props, 'rowGroup'), visibleColumn, tableFullColumn, tableColumn })
+    useRowGroup({ props, visibleColumn, tableFullColumn, tableColumn, columnStore })
+
+    hooks.onMounted(() => {
+      $table.addIntersectionObserver()
+
+      // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
+      if (tableWrapper.value) {
+        document.body.appendChild(tableWrapper.value)
+      }
+
+      hooks.nextTick(() => {
+        $table.afterMounted = true
+
+        if (props.autoResize && TINYGrid._resize) {
+          $table.bindResize()
+        }
+      })
+    })
 
     hooks.onBeforeUnmount(() => {
-      const { elemStore, $refs } = $table
-      const containerList = ['main', 'left', 'right']
-      const tableWrapper = $refs.tableWrapper
-
-      if (tableWrapper && tableWrapper.parentNode) {
-        tableWrapper.parentNode.removeChild(tableWrapper)
+      if (tableWrapper.value?.parentNode) {
+        tableWrapper.value?.parentNode.removeChild(tableWrapper.value)
       }
+      $table.removeIntersectionObserver()
 
       if (TINYGrid._resize) {
         $table.unbindResize()
@@ -1044,16 +765,27 @@ export default defineComponent({
       $table.closeFilter()
       $table.closeMenu()
 
-      containerList.forEach((layout) => {
-        const ySpaceElem = elemStore[`${layout}-body-ySpace`]
+      const ySpaceElem = $table.elemStore[`main-body-ySpace`]
 
-        if (ySpaceElem) {
-          ySpaceElem.onscroll = null
-        }
-      })
+      if (ySpaceElem) {
+        ySpaceElem.onscroll = null
+      }
 
       unbindEvent($table)
-      clearOnTableUnmount($table)
+
+      $table._tileInfo = $table._graphInfo = null
+    })
+
+    hooks.onActivated(() => {
+      const { lastScrollLeft, lastScrollTop } = $table
+
+      if (lastScrollLeft || lastScrollTop) {
+        $table.scrollTo(lastScrollLeft, lastScrollTop)
+        scrollXLoad.value && $table.triggerScrollXEvent()
+        scrollYLoad.value && $table.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
+      }
+
+      bindEvent($table)
     })
 
     hooks.onDeactivated(() => {
@@ -1062,93 +794,152 @@ export default defineComponent({
 
     const tableListeners = getListeners(attrs, listeners)
 
-    return { slots, tableListeners, tinyTheme, id, collectColumn, tableFullColumn, visibleColumn, tableColumn }
+    return {
+      slots,
+      tableListeners,
+      tinyTheme,
+      id,
+      collectColumn,
+      tableFullColumn,
+      visibleColumn,
+      tableColumn,
+      tableNode,
+      tableData,
+      footerData,
+      bodyProps,
+      mfTableProps,
+      vSize,
+      optimizeOpts,
+      rowHeight,
+      headerRowHeight,
+      tableWrapper,
+      scrollXLoad,
+      scrollYLoad,
+      headerHeight,
+      footerHeight,
+      isColumnWidthAssigned,
+      bodyWrapperHeight,
+      bodyWrapperMinHeight,
+      bodyWrapperMaxHeight,
+      bodyTableWidth,
+      scrollLoadScrollHeight,
+      columnStore
+    }
   },
   render() {
-    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn, instanceSlots } =
-      this as any
-    let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
-    let {
-      overflowX,
-      overflowY,
-      showFooter,
-      showHeader,
-      showHeaderOverflow,
-      showOverflow,
-      dropConfig = {},
-      isThemeSaas
-    } = this as any
-    let {
-      stripe,
-      tableColumn,
-      tableData,
-      validOpts,
-      vSize,
-      visibleColumn,
-      slots,
-      stripeSaas,
-      borderSaas,
-      isShapeTable,
-      resizableConfig,
-      rowSpan
-    } = this as any
-    let { borderVertical, cardConfig, listConfig, ganttConfig, customConfig } = this
-    let { leftList, rightList } = columnStore
-    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup, resizableConfig }
+    const { $grid, bodyProps, border, borderSaas, borderVertical } = this
+    const { ctxMenuStore, dropConfig, editConfig, editRules, filterStore } = this
+    const { hasFilter, hasTip, height, highlightCell, highlightHoverColumn, highlightHoverRow } = this
+    const { horizonScroll, id, instanceSlots, isCtxMenu, isGroup, isResizable } = this
+    const { isShapeTable, isThemeTiny, isThemeSaas, loading, loadingComponent, mfTableProps } = this
+    const { mouseConfig, optimizeOpts, overflowX, overflowY, rowSpan } = this
+    const { scrollbarHeight, selectToolbarStore, showFooter, showHeader } = this
+    const { showHeaderOverflow, showOverflow, spanMethod, stripe, stripeSaas, tableData } = this
+    const { tooltipContentOpts, vSize, vaildTipOpts, validOpts } = this
 
-    Object.assign(props, { cardConfig, listConfig, ganttConfig, customConfig })
-    let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
+    const { isMessageDefault, isMessageTooltip } = validOpts
 
-    Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
-
-    const renders = getRenderer(args)
-    const { renderHeader, renderEmptyPart, renderFooter } = renders
-    const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders
-
-    return h('div', getTableAttrs(this), [
-      // 隐藏列
-      h(
-        'div',
-        { class: 'tiny-grid-hidden-column', ref: 'hideColumn' },
-        instanceSlots.default && instanceSlots.default()
-      ),
-      // 主头部
-      renderHeader(),
-      // 居中显示空数据
-      renderEmptyPart(),
-      // 主内容
-      h(GridBody, { ref: 'tableBody', props, class: this.viewCls('tableBody') }),
-      // 底部汇总
-      renderFooter(),
-      // 边框线
-      h('div', { class: ['tiny-grid__border-line', this.viewCls('borderLine')], key: 'tinyGridBorderLine' }),
-      // 列拖拽参考线
-      renderResizeBar(),
-      // 加载中
-      h(GridLoading, {
-        props: { visible: loading, loadingComponent },
-        class: this.viewCls('gridLoading')
-      }),
-      // 筛选、快捷菜单、Tip提示、校验提示
-      renderPluginWrapper(),
-      // 多选工具栏
-      renderSelectToolbar(),
-      // 多端表格（默认主题或默认视图/mf大屏下，不渲染）
-      !isShapeTable ? h(MfTable, { ref: 'mfTable', props }) : null,
-      // 表尾边框线
-      renderFooterBorder(this)
-    ])
+    return h(
+      'div',
+      {
+        class: {
+          'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': true,
+          [`row__valid-${validOpts.message}`]: true,
+          [`size__${vSize}`]: vSize,
+          'tiny-grid-editable': editConfig,
+          'show__head': showHeader,
+          'show__foot': showFooter,
+          'scroll__y': overflowY,
+          'scroll__x': overflowX,
+          'all-overflow': showOverflow,
+          'all-head-overflow': showHeaderOverflow,
+          'tiny-grid-cell__highlight': highlightCell,
+          'tiny-grid__animat': optimizeOpts.animat,
+          'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
+          'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
+          'tiny-grid__border': border || isGroup,
+          'tiny-grid__border-saas': isThemeSaas && borderSaas,
+          'tiny-grid__group-saas': isThemeSaas && isGroup,
+          'tiny-grid__border-vertical': borderVertical,
+          'tiny-grid__checked': mouseConfig.checked,
+          'mark-insert': editConfig && editConfig.markInsert,
+          'edit__no-border': editConfig && editConfig.showBorder === false,
+          'is__loading': loading,
+          'row__highlight': highlightHoverRow,
+          'column__highlight': highlightHoverColumn,
+          'is__row-span': (rowSpan && rowSpan.length > 0) || typeof spanMethod === 'function',
+          'row__drop-handle--index': dropConfig.rowHandle === 'index',
+          'fixed__sticky': horizonScroll.fixed,
+          'tiny-grid-fixed__left': !horizonScroll.isLeft,
+          'tiny-grid-fixed__right': !horizonScroll.isRight
+        }
+      },
+      [
+        // 隐藏列
+        h('div', { class: hiddenContainerClass, ref: 'hideColumn' }, instanceSlots.default && instanceSlots.default()),
+        // 主内容
+        h(GridBody, { ref: 'tableBody', props: bodyProps, class: this.viewCls('tableBody') }),
+        // 边框线
+        h('div', { class: ['tiny-grid__border-line', this.viewCls('borderLine')], key: 'tinyGridBorderLine' }),
+        // 列宽线
+        isResizable
+          ? h('div', {
+              class: ['tiny-grid__resizable-bar', this.viewCls('resizeBar')],
+              style: overflowX ? { 'padding-bottom': `${scrollbarHeight}px` } : null,
+              ref: 'resizeBar',
+              key: 'tinyGridResizeBar'
+            })
+          : null,
+        // 加载中
+        h(loadingComponent || GridLoading, { props: { visible: loading }, class: this.viewCls('gridLoading') }),
+        // 筛选、快捷菜单、Tip提示、校验提示
+        h(
+          'div',
+          {
+            class: [`tiny-grid${id}-wrapper ${this.$attrs.staticClass || ''}`, this.viewCls('tableWrapper')],
+            ref: 'tableWrapper'
+          },
+          [
+            // 筛选
+            hasFilter
+              ? h(GridFilter, {
+                  props: { optimizeOpts, filterStore },
+                  ref: 'filterWrapper'
+                })
+              : null,
+            // 快捷菜单
+            isCtxMenu ? h(GridMenu, { props: { ctxMenuStore }, ref: 'ctxWrapper' }) : null,
+            // Ellipsis tooltip
+            hasTip ? h(Tooltip, { ref: 'tooltip', props: tooltipContentOpts }) : null,
+            // valid error tooltip
+            hasTip && editRules && (isMessageDefault ? !height : isMessageTooltip)
+              ? h(Tooltip, {
+                  class: 'tiny-grid__valid-error',
+                  props: isMessageTooltip || tableData.length === 1 ? vaildTipOpts : null,
+                  ref: 'validTip'
+                })
+              : null
+          ]
+        ),
+        // 多选工具栏
+        $grid.selectToolbar
+          ? h(
+              'div',
+              {
+                ref: 'selectToolbar',
+                class: ['tiny-grid__select-toolbar', this.viewCls('selectToolbar')],
+                style: [selectToolbarStore.layout, { visibility: selectToolbarStore.visible ? 'visible' : 'hidden' }]
+              },
+              $grid.renderedToolbar ? $grid.renderedToolbar : [null]
+            )
+          : null,
+        // 多端表格（默认主题或默认视图/mf大屏下，不渲染）
+        !isThemeTiny && !isShapeTable ? h(MfTable, { ref: 'mfTable', props: mfTableProps }) : null
+      ]
+    )
   },
   methods: {
     ...methods,
-    handleDataChange() {
-      // handleDefault：处理一些默认值（默认选中、默认展开）
-      if (Array.isArray(this.data)) {
-        !this._isUpdateData &&
-          this.loadTableData(this.data, true).then(this.handleDefault).then(this.handleSelectionHeader)
-        this._isUpdateData = false
-      }
-    },
     viewCls(module) {
       return (this as any).$grid.viewCls(module)
     }

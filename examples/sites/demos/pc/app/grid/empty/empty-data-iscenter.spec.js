@@ -8,5 +8,5 @@ test('固定居中', async ({ page }) => {
   await expect(page.getByText('暂无数据').first()).toBeVisible()
 
   // 判断是否居中
-  await expect(page.locator('.empty-center-block')).toHaveCSS('justify-content', 'center')
+  await expect(page.locator('.tiny-grid__empty-block')).toHaveCSS('justify-content', 'center')
 })

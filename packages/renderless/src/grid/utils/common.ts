@@ -23,9 +23,8 @@
  *
  */
 
-import { isNull } from '@opentiny/utils'
-import { find } from '@opentiny/utils'
-import { get, isFunction, set } from '../static'
+import { isNull, find, isFunction } from '@opentiny/utils'
+import { get, set } from '../static'
 
 export const gridSize = ['medium', 'small', 'mini']
 
@@ -43,18 +42,56 @@ export const getRowid = ($table, row) => {
 }
 
 // 获取所有的列，排除分组
-export const getColumnList = (columns) => {
+export const getColumnList = (columns, options = {}, level = 0) => {
   const result = []
 
-  columns.forEach((column) => {
-    if (column.children && column.children.length) {
-      result.push(...getColumnList(column.children))
-    } else {
-      result.push(column)
+  columns.forEach((column, index) => {
+    const hasChildren = column.children?.length
+
+    // 所有层级中，存在固定列配置，就认为存在固定列
+    if (!options.hasFixed && column.fixed) {
+      options.hasFixed = true
     }
+
+    // 是否存在 type selection 列
+    if (!options.isCheckable && column.type === 'selection') {
+      options.isCheckable = true
+    }
+
+    // 第一层级存在子级，就认为是多级表头
+    if (level === 0 && !options.isGroup && hasChildren) {
+      options.isGroup = true
+    }
+
+    options.columnCaches.push({ colid: column.id, column, index })
+
+    result.push.apply(result, hasChildren ? getColumnList(column.children, options, level + 1) : [column])
   })
 
   return result
+}
+
+export const repairFixed = (root) => {
+  const subtree = []
+  let fixed
+
+  const recursive = (col) => {
+    subtree.push(col)
+
+    if (!fixed && col.fixed) {
+      fixed = col.fixed
+    }
+
+    if (Array.isArray(col.children) && col.children.length > 0) {
+      col.children.forEach((col) => recursive(col))
+    }
+  }
+
+  recursive(root)
+
+  if (fixed) {
+    subtree.forEach((c) => (c.fixed = fixed))
+  }
 }
 
 export const getClass = (property, params) => (property ? (isFunction(property) ? property(params) : property) : '')
@@ -69,19 +106,28 @@ export const getFilters = (filters) =>
   }))
 
 export const initFilter = (filter) => {
-  // 改成这种方式可以让用户配置一些筛选的默认行为，如果用户不配置就采用默认的
-  return {
-    condition: {
-      input: '',
-      relation: 'equals',
-      empty: null,
-      type: null,
-      value: []
-    },
-    hasFilter: false,
+  const {
+    values,
+    value: valueKey = 'value',
+    checked: checkedKey = 'checked',
+    condition,
+    enumable,
+    multi,
+    inputFilter
+  } = filter
+
+  const value: any[] = values?.filter?.((i) => i[checkedKey]).map((i) => i[valueKey]) || []
+
+  const hasChecked = values?.some?.((i) => i[checkedKey]) ?? false
+
+  const filterOptions = {
+    condition: { input: '', relation: 'equals', empty: null, type: null, value },
+    hasFilter: (inputFilter && !!condition?.input) || (enumable && multi && hasChecked) || false,
     custom: null,
-    ...filter
+    showClear: true
   }
+
+  return { ...filterOptions, ...filter }
 }
 
 export const formatText = (value) => `${isNull(value) ? '' : value}`
@@ -182,3 +228,38 @@ export const getListeners = ($attrs, $listeners) => {
 
   return listeners
 }
+
+/** DFS深度优先遍历树形结构，并生成备份 */
+export function dfsCopy(tree, callback, parent = undefined, isTree = false, childrenKey = 'children') {
+  let copy
+
+  if (Array.isArray(tree)) {
+    copy = []
+
+    tree.forEach((node, index) => {
+      const copyItem = callback(node, index, parent)
+
+      if (copyItem) {
+        copy.push(copyItem)
+      }
+
+      if (isTree) {
+        const children = node[childrenKey]
+
+        if (children) {
+          const childrenCopy = dfsCopy(children, callback, node, isTree, childrenKey)
+
+          if (copyItem) {
+            copyItem[childrenKey] = childrenCopy
+          }
+        }
+      }
+    })
+  }
+
+  return copy
+}
+
+let rowUniqueId = 0
+
+export const getRowUniqueId = () => `row_${++rowUniqueId}`

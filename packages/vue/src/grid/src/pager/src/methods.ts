@@ -37,30 +37,16 @@ export default {
   renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
     let res = null
 
-    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData, isViewCustom } = _vm
-    const style = { display: 'none' }
+    const { fetchData } = _vm
 
-    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt/custom视图或gantt/custom视图大屏下显示多端Pager
-    if (isThemeSaas && isModeMobileFirst) {
-      if (!(isViewGantt || isViewCustom) || ((isViewGantt || isViewCustom) && currentBreakpoint !== 'default')) {
-        style.display = 'flex'
-        style.justifyContent = 'flex-end'
-      }
-      // 在小屏下居中显示，大屏下居右显示
-      if (currentBreakpoint === 'default') {
-        style.justifyContent = 'center'
-      }
-    } else {
-      // 在其它场景，内置Pager使用PC模板。显示为block（因为Pager的PC模板外层是div）
-      style.display = 'block'
-    }
     if ($slots.pager) {
       res = $slots.pager()
     } else if (pager) {
       pager.component = pager.component || (fetchData && fetchData.api ? Pager : null)
       res = h(hooks.toRaw(pager.component), {
         props: {
-          size: vSize,
+          // tiny-grid 的 size 为 small/mini 时，pager 传 mini；为 medium 时，pager 传空字符串
+          size: vSize === 'medium' ? '' : ['small', 'mini'].includes(vSize) ? 'mini' : '', // 兼容 grid 的 size 传递
           loading: loading || tableLoading,
           isBeforePageChange: _vm.isBeforePageChange || _vm.showSaveMsg,
           accurateJumper: _vm.autoLoad,
@@ -71,8 +57,7 @@ export default {
           'current-change': _vm.pageCurrentChange,
           'before-page-change': _vm.beforePageChangeHandler
         },
-        ref: 'pager',
-        style
+        ref: 'pager'
       })
     }
 

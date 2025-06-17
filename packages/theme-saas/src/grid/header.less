@@ -4,8 +4,6 @@
 @grid-header-prefix-cls: ~'@{css-prefix}grid-header';
 @grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
 @grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
-@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
-@cell-tooltip: ~'@{grid-prefix-cls}-cell__tooltip';
 
 .@{grid-prefix-cls}__header-wrapper {
   @apply bg-color-fill-8;
@@ -163,57 +161,6 @@
         &:hover {
           @apply border-color-border-focus;
         }
-      }
-    }
-  }
-}
-
-.@{grid-prefix-cls}__header {
-  .@{header-suffix} {
-    @apply relative;
-    min-height: 16px;
-
-    .suffix-icon-1 {
-      @apply absolute;
-      @apply right-3;
-    }
-
-    .suffix-icon-0 {
-      @apply absolute;
-      @apply right-0;
-    }
-  }
-
-  .col__ellipsis {
-    &.is__editable.is__sortable.is__filter {
-      .@{header-suffix}.@{cell-tooltip} {
-        @apply pr-7;
-      }
-    }
-
-    &.is__editable.is__sortable:not(.is__filter),
-    &.is__editable.is__filter:not(.is__sortable) {
-      .@{header-suffix}.@{cell-tooltip} {
-        @apply ~'pr-3.5';
-      }
-    }
-
-    &:not(.is__sortable):not(.is__filter) {
-      .@{header-suffix}.@{cell-tooltip} {
-        @apply pr-2;
-      }
-    }
-
-    &.is__sortable.is__filter:not(.is__editable) {
-      .@{header-suffix}.@{cell-tooltip} {
-        padding-right: 26px;
-      }
-    }
-
-    &.is__sortable:not(.is__filter):not(.is__editable),
-    &.is__filter:not(.is__sortable):not(.is__editable) {
-      .@{header-suffix}.@{cell-tooltip} {
-        @apply pr-3;
       }
     }
   }

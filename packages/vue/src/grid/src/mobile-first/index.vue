@@ -45,7 +45,7 @@
 <script lang="ts">
 import { emitEvent, isScale, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { toNumber } from '@opentiny/vue-renderless/grid/static'
-import { hooks, defineComponent, mergeClass, $props } from '@opentiny/vue-common'
+import { hooks, defineComponent, mergeClass } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import Exception from '@opentiny/vue-exception'
 import type { Column, CardConfig, Datas } from './type'
@@ -63,7 +63,6 @@ export default defineComponent({
     return { $mftable: this }
   },
   props: {
-    ...$props,
     tableData: Array,
     cardConfig: Object,
     listConfig: Object,

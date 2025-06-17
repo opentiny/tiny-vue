@@ -21,6 +21,16 @@
 .@{grid-prefix-cls}__fixed-right-body-wrapper {
   overflow-y: auto;
   overflow-x: auto;
+
+  &.no-data {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+
+    > .@{grid-prefix-cls}-body__y-space {
+      display: none;
+    }
+  }
 }
 
 // 鼠标配置项开启后，选中单元格的边框样式（position：absolute）

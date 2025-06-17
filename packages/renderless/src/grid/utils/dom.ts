@@ -36,8 +36,13 @@ export const isPx = (val) => val && /^\d+(px)?$/.test(val)
 
 export const isScale = (val) => val && /^\d+%$/.test(val)
 
-export const updateCellTitle = (event) => {
-  const cellEl = event.currentTarget.querySelector(CELL_CLS)
+export const updateCellTitle = (event: Event, td: HTMLElement) => {
+  const cellEl = td
+    ? td.querySelector('.tiny-grid-cell-text') || td.querySelector(CELL_CLS)
+    : (event.currentTarget as HTMLElement)?.querySelector(CELL_CLS)
+  if (!cellEl) {
+    return
+  }
   const content = cellEl.innerText
 
   if (cellEl.getAttribute('title') !== content) {
@@ -47,142 +52,89 @@ export const updateCellTitle = (event) => {
 
 export const rowToVisible = ($table, row) => {
   $table.$nextTick(() => {
-    const tableBodyVnode = $table.$refs.tableBody
+    const { $refs, scrollYLoad, rowHeight, headerHeight, footerHeight, _tileInfo, _graphInfo } = $table
+    const { tableBody: bodyVm } = $refs
+    const { $el } = bodyVm
+    const { map } = _tileInfo
+    const { graphed } = _graphInfo
+    const trEl = $el.querySelector(`[${ATTR_NAME}="${getRowid($table, row)}"]`)
+    const visibleStart = headerHeight
+    const visibleEnd = $el.clientHeight - footerHeight
+    const scrollTop = $el.scrollTop
 
-    if (tableBodyVnode) {
-      const gridbodyEl = tableBodyVnode.$el
-      const trEl = gridbodyEl.querySelector(`[${ATTR_NAME}="${getRowid($table, row)}"]`)
+    let position, trHeight
+    let flag = false
 
-      // 处理虚拟滚动
-      if ($table.scrollYLoad) {
-        // 对应行是否在表格视图外
-        const isOutOfBody = () => {
-          const bodyRect = $table.$el.getBoundingClientRect()
-          const trRect = trEl.getBoundingClientRect()
-          return trRect.top + trRect.height / 2 > bodyRect.top + bodyRect.height
-        }
-
-        if (!trEl || isOutOfBody()) {
-          gridbodyEl.scrollTop = ($table.afterFullData.indexOf(row) - 1) * $table.scrollYStore.rowHeight
-        }
-      } else if (trEl) {
-        // 非虚拟滚动且有trEl元素
-        const bodyHeight = gridbodyEl.clientHeight
-        const bodySrcollTop = gridbodyEl.scrollTop
-        const trOffsetTop = trEl.offsetTop + (trEl.offsetParent ? trEl.offsetParent.offsetTop : 0)
-        const trHeight = trEl.clientHeight
-
-        if (trOffsetTop < bodySrcollTop || trOffsetTop > bodySrcollTop + bodyHeight) {
-          // 如果跨行滚动
-          gridbodyEl.scrollTop = trOffsetTop
-        } else if (trOffsetTop + trHeight >= bodyHeight + bodySrcollTop) {
-          gridbodyEl.scrollTop = bodySrcollTop + trHeight
-        }
-      }
-    }
-  })
-}
-
-function getFixedLeft($table, from, column, body, offset) {
-  let scrollLeft = $table.elemStore['main-body-wrapper'].scrollLeft + offset
-
-  if (!column.fixed) {
-    from.fixed === 'left' && (scrollLeft = 0)
-    from.fixed === 'right' && (scrollLeft = body.scrollWidth)
-  }
-
-  return scrollLeft
-}
-
-// 计算水平滚动位置（考虑存在冻结表的情况）
-function computeScrollLeft($table, td) {
-  const { tableBody } = $table.$refs
-  const { visibleColumn } = $table
-  const { scrollLeft: bodyLeft, clientWidth: bodyWidth } = tableBody.$el
-  // Tiny表格冻结列采用sticky，需遍历计算整体宽度
-  let leftWidth = 0
-  let rightWidth = 0
-  visibleColumn.forEach((column) => {
-    if (column.fixed === 'left') {
-      leftWidth += column.renderWidth
-    } else if (column.fixed === 'right') {
-      rightWidth += column.renderWidth
-    }
-  })
-  const tdLeft = td._accumulateRenderWidth || td.offsetLeft + (td.offsetParent ? td.offsetParent.offsetLeft : 0)
-  const tdWidth = td._renderWidth || td.clientWidth
-
-  let scrollLeft
-
-  // 列元素在主表体可视区左侧（包括被左冻结表部分遮挡的情况）
-  if (tdLeft < bodyLeft + leftWidth) {
-    scrollLeft = tdLeft - leftWidth
-  } else if (tdLeft + tdWidth > bodyLeft + bodyWidth - rightWidth) {
-    // 列元素在主表体可视区右侧（包括被右冻结表部分遮挡的情况）
-    scrollLeft = tdLeft + tdWidth - bodyWidth + rightWidth
-  } else {
-    // 列元素在主表体可视区内
-    scrollLeft = bodyLeft
-  }
-
-  return scrollLeft
-}
-
-function setBodyLeft(body, td, $table, column, move) {
-  const { isLeftArrow, isRightArrow, from } = move || {}
-
-  const bodyScollLeft = computeScrollLeft($table, td)
-  $table.scrollTo(bodyScollLeft)
-  $table.lastScrollLeft = bodyScollLeft
-  if (from) {
-    const direction = isLeftArrow ? 'left' : isRightArrow ? 'right' : null
-    const fixedDom = $table.elemStore[`${direction}-body-list`]
-    const mainBody = $table.elemStore['main-body-wrapper']
-    const { left, right } = td.getBoundingClientRect()
-    let offset = 0
-
-    if (isLeftArrow && fixedDom) {
-      const div = fixedDom.querySelector('td.fixed__column')
-      const division = div ? div.getBoundingClientRect().left : fixedDom.getBoundingClientRect().right
-
-      division > left && (offset = left - division)
-    }
-
-    if (isRightArrow && fixedDom) {
-      const div = fixedDom.querySelector('td:not(.fixed__column)') || fixedDom
-      const division = div.getBoundingClientRect().left
-
-      division < right && (offset = right - division)
-    }
-
-    mainBody.scrollLeft = getFixedLeft($table, from, column, body, offset)
-  }
-}
-
-export const colToVisible = ($table, column, move) => {
-  $table.$nextTick(() => {
-    const gridbodyEl = $table.$refs.tableBody.$el
-    const tdElem = gridbodyEl.querySelector(`.${column.id}`)
-
-    if (tdElem) {
-      setBodyLeft(gridbodyEl, tdElem, $table, column, move)
-    } else if ($table.scrollXLoad) {
+    if (scrollYLoad) {
       // 如果是虚拟渲染跨行滚动
-      const visibleColumn = $table.visibleColumn
-      let scrollLeft = 0
+      position = headerHeight + rowHeight * graphed.indexOf(map.get(row)) - scrollTop
+      trHeight = rowHeight
+      flag = true
+    } else if (trEl) {
+      position = trEl.offsetTop - scrollTop
+      trHeight = trEl.clientHeight
+      flag = true
+    }
 
-      for (let index = 0; index < visibleColumn.length; index++) {
-        if (visibleColumn[index] === column) {
-          break
-        }
-
-        scrollLeft += visibleColumn[index].renderWidth
+    if (flag) {
+      if (position < visibleStart) {
+        $el.scrollTop = scrollTop - (visibleStart - position)
+        return
       }
 
-      gridbodyEl.scrollLeft = computeScrollLeft($table, {
-        _accumulateRenderWidth: scrollLeft,
-        _renderWidth: column.renderWidth
-      })
+      position += trHeight
+
+      if (position > visibleEnd) {
+        $el.scrollTop = scrollTop + (position - visibleEnd)
+      }
+    }
+  })
+}
+
+export const colToVisible = ($table, column) => {
+  // 固定列始终可见，无需继续处理
+  if (column.fixed) {
+    return
+  }
+
+  $table.$nextTick(() => {
+    const { $refs, scrollXLoad, visibleColumn, columnStore } = $table
+    const { tableBody: bodyVm } = $refs
+    const { $el } = bodyVm
+    const { leftList, rightList } = columnStore
+    const tdEl = $el.querySelector(`.${column.id}`)
+    const visibleStart = leftList.reduce((p, c) => (p += c.renderWidth), 0)
+    const visibleEnd = $el.clientWidth - rightList.reduce((p, c) => (p += c.renderWidth), 0)
+    const scrollLeft = $el.scrollLeft
+    const colWidth = column.renderWidth
+
+    let position
+    let flag = false
+
+    if (scrollXLoad) {
+      flag = true
+      position = -scrollLeft
+
+      for (const col of visibleColumn) {
+        if (col === column) break
+        position += col.renderWidth
+      }
+    } else if (tdEl) {
+      flag = true
+      position = tdEl.offsetLeft - scrollLeft
+    }
+
+    if (flag) {
+      if (position < visibleStart) {
+        $el.scrollLeft = scrollLeft - (visibleStart - position)
+        return
+      }
+
+      position += colWidth
+
+      if (position > visibleEnd) {
+        $el.scrollLeft = scrollLeft + (position - visibleEnd)
+      }
     }
   })
 }

@@ -80,7 +80,6 @@ export default defineComponent({
 
     if (maxWidth) {
       styles.maxWidth = maxWidth
-      styles.display = 'inline-block' // 显示省略号
     }
 
     const tagElement =

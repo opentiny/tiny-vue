@@ -6,5 +6,5 @@ test('开启服务请求', async ({ page }) => {
   await page.getByRole('button', { name: '筛选华南区数据' }).click()
 
   // 判断筛选华南区数据成功
-  await expect(page.locator('.tiny-grid-body__row')).toHaveCount(3)
+  await expect(page.locator('.tiny-grid-body__row:visible')).toHaveCount(3)
 })

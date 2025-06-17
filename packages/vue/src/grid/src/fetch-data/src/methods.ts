@@ -25,6 +25,8 @@ export default {
   },
   handleFetch(code, sortArg) {
     let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this as any
+    let { reloadConfig = {} } = fetchData
+    let { scroll = false } = reloadConfig
 
     if (this.isInitialLoading) {
       this.isInitialLoading = false
@@ -34,7 +36,7 @@ export default {
 
     if (code !== 'prefetch') {
       this.clearRadioRow()
-      this.resetScrollTop()
+      !scroll && this.resetScrollTop()
     }
 
     if (!fetchOption) {

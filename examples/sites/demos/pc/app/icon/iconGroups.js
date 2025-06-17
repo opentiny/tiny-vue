@@ -291,6 +291,7 @@ export const iconGroups = {
     'IconTabletView',
     'IconUnlock',
     'IconUser',
+    'IconDelegatedProcessing',
     'IconVersiontree',
     'IconWebPlus',
     'IconJs',
