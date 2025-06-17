@@ -57,8 +57,8 @@ export default {
         },
         {
           name: 'cell-class-name',
-          typeAnchorName: 'IClassNameArgs',
-          type: 'string | (args: IClassNameArgs) => string',
+          typeAnchorName: 'ICellClassNameArgs',
+          type: 'string | (args: ICellClassNameArgs) => string',
           defaultValue: '',
           desc: {
             'zh-CN': '给单元格附加 className，也可以是函数',
@@ -3208,18 +3208,24 @@ interface IRow {
       depTypes: ['IValidRules'],
       code: `
 interface IColumnConfig {
-  type: 'index' | 'radio' | 'checkbox'
+  // 功能列的类型， 'index'行索引，'radio' 单选行， 'selection' 多选行
+  type: 'index' | 'radio' | 'selection'
+  // 列id
   id: string
-  prop: string
+  // 校验规则
   rules: IValidRules
+  // 是否必填
   required: boolean
   property: string
   title: string
-  label: string
+  // 列宽度
   width: string | number
+  // 自动分配宽度时的最小宽度
   minWidth: string | number
+  // 是否可以调整列宽
   resizable: boolean
-  fixed: boolean
+  // 是否左、右冻结
+  fixed: 'left' | 'right'
   align: 'left' | 'center' | 'right'
   headerAlign: 'left' | 'center' | 'right'
   footerAlign: 'left' | 'center' | 'right'
@@ -4167,6 +4173,30 @@ interface IFilterConfig {
         sortable?: Sortable 
       }
       `
+    },
+    {
+      name: 'ICellClassNameArgs',
+      type: 'type',
+      depTypes: ['IColumnConfig', 'IRow'],
+      code: `
+interface ICellClassNameArgs {
+  seq: number
+  // 当前行在树表中的层级
+  level: number
+  // 当前行数据
+  row: IRow
+  // 表格数据
+  data: IRow[]
+  // 表格行索引
+  rowIndex: number
+  $rowIndex: number
+  // 表格列配置
+  column: IColumnConfig
+  // 所有列中(包含隐藏列)索引
+  columnIndex: number
+  // 已渲染列中的索引
+  $columnIndex: number
+}`
     }
   ]
 }
