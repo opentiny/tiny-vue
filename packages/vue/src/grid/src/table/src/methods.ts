@@ -1133,6 +1133,10 @@ const Methods = {
         return Boolean(editor.blurOutside({ cell: args.cell, event }))
       }
 
+      if (typeof editConfig.blurOutside === 'function') {
+        return Boolean(editConfig.blurOutside({ cell: args.cell, event, $table: this }))
+      }
+
       const blurClassConfig = editor.blurClass || editConfig.blurClass
 
       if (blurClassConfig) {

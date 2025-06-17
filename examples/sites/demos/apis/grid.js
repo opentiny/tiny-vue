@@ -3563,9 +3563,11 @@ interface IEditConfig {
   showStatus?: boolean
   // 自定义编辑规则，返回true可以编辑返回false则禁止编辑
   activeMethod?: ({row: IRow, column: IColumnConfig})=> boolean
-  // （3.19新增）当mode为'row'时，行编辑激活状态下默认会忽略activeMethod，配置为true使其生效
+  // （3.19.0新增）当mode为'row'时，行编辑激活状态下默认会忽略activeMethod，配置为true使其生效
   activeStrictly?: boolean
-}
+  //（3.25.0新增）自定义编辑态的退出逻辑。当返回true时，不会退出编辑态。
+  blurOutside?: ({ cell, event, $table }: { cell: HTMLElement, event: Event, $table: Component }) => boolean
+} 
       `
     },
     {

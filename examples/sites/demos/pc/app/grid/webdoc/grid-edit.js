@@ -100,6 +100,18 @@ export default {
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>trigger</code> in the attribute object to modify the triggering mode. The options are as follows: <code>click trigger (click), double-click trigger (dblclick), and manual trigger (manual)</code>. The default value is <code>click trigger</code>. </p>\n'
       },
       codeFiles: ['edit/trigger-mode-for-editing.vue']
+    },
+    {
+      demoId: 'scrollbar-not-blur',
+      name: { 'zh-CN': '行编辑滚动不失焦', 'en-US': 'Scroll not blur' },
+      desc: {
+        'zh-CN': `
+          <p>配置 <code>edit-config</code> 的<code>blurOutside</code>自定义编辑态的退出逻辑。</p>
+          `,
+        'en-US':
+          '<p>Configure <code>blurOutside</code> of <code>edit-config</code> to customize the exit logic of the editing state. </p>\n'
+      },
+      codeFiles: ['edit/scrollbar-not-blur.vue']
     }
   ],
   apis: [{ name: 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
