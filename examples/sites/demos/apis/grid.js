@@ -2968,6 +2968,20 @@ export default {
           pcDemo: 'grid-slot#slot-editor-slot'
         },
         {
+          name: 'expand-trigger',
+          defaultValue: '',
+          meta: {
+            stable: '3.25.0'
+          },
+          desc: {
+            'zh-CN':
+              '自定义展开行图标，作用插槽参数说明：slots.expand-trigger({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'en-US': 'Customized expand row icon'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-expand#expand-trigger-slot'
+        },
+        {
           name: 'filter',
           defaultValue: '',
           desc: {

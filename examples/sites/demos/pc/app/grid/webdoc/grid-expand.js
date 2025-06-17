@@ -16,6 +16,17 @@ export default {
       codeFiles: ['expand/has-row-expand.vue']
     },
     {
+      demoId: 'expand-trigger-slot',
+      name: { 'zh-CN': '展开行触发器插槽', 'en-US': 'Expand row trigger slot' },
+      desc: {
+        'zh-CN': `
+        <p>通过 <code>expand-trigger</code> 插槽可以自定义展开行图标。</p>
+        `,
+        'en-US': '<p>You can customize the expand row icon through the <code>expand-trigger</code> slot. </p>\n'
+      },
+      codeFiles: ['expand/expand-trigger-slot.vue']
+    },
+    {
       demoId: 'expand-expand-config',
       name: { 'zh-CN': '展开行配置项', 'en-US': 'Basic Usage' },
       desc: {

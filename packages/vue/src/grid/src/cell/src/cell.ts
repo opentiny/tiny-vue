@@ -652,7 +652,7 @@ export const Cell = {
   },
   // 展开行
   renderExpandCell(h, params) {
-    let { $table, row } = params
+    let { $table, row, column } = params
     let { expandConfig = {} } = $table
     let { showIcon = true, activeMethod: expandMethod } = expandConfig
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
@@ -660,6 +660,9 @@ export const Cell = {
     const expandActive = $table.expandeds.includes(params.row)
 
     if (!showIcon) return null
+
+    const expandTrigger = column.slots?.['expand-trigger']
+    const triggerContent = expandTrigger ? expandTrigger(params, h) : h('i', { class: 'tiny-grid__expand-icon' })
 
     const map = {
       expandActive: 'expand__active'
@@ -684,7 +687,7 @@ export const Cell = {
             }
           }
         },
-        [hideExpand && h('i', { class: 'tiny-grid__expand-icon' })]
+        [hideExpand && triggerContent]
       )
     ]
   },
