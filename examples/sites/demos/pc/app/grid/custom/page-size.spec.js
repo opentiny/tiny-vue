@@ -9,5 +9,5 @@ test('分页条数', async ({ page }) => {
   await page.getByText('其他设置', { exact: true }).click()
   await page.locator('label').filter({ hasText: '5' }).locator('path').nth(1).click()
   await page.getByRole('button', { name: '确定' }).click()
-  await expect(demo.locator('.tiny-grid-body__row')).toHaveCount(5)
+  await expect(demo.locator('.tiny-grid-body__row:visible')).toHaveCount(5)
 })

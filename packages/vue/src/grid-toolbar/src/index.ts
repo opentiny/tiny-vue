@@ -555,7 +555,7 @@ export default defineComponent({
       if (comp) {
         const colWidth = this.loadColWidth()
 
-        comp.reloadCustoms(customs, sort, colWidth).then((fullColumn) => {
+        comp.reloadCustoms(customs, sort, colWidth)?.then((fullColumn) => {
           this.tableFullColumn = fullColumn
         })
       }
@@ -670,13 +670,7 @@ export default defineComponent({
       if (this.$grid) {
         if (columns && columns.length) {
           const colWidth = this.loadColWidth()
-          this.$grid.reloadCustoms(columns, sort, colWidth).then(() => {
-            // 处理表格数据，否则列排序不生效
-            this.$grid.handleTableData(true).then(() => {
-              // 重新计算内部元素的位置
-              this.$grid.recalculate()
-            })
-          })
+          this.$grid.reloadCustoms(columns, sort, colWidth)
         }
 
         if (isNumber(pageSize) && this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize !== pageSize) {

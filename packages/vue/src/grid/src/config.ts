@@ -41,6 +41,7 @@ const GlobalConfig = {
     message: 'tooltip',
     icon: iconError()
   },
+  editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
   // 默认开启点击头部单元格触发排序
   sortConfig: { multipleColumnSort: false },
   // 默认不开启隔行换色和行高亮，不暴露此配置
@@ -65,6 +66,7 @@ const GlobalConfig = {
   optimization: {
     animat: true,
     delayHover: 250,
+    scrollDelay: 60,
     scrollX: {
       gt: 100
     },
@@ -166,6 +168,16 @@ const GlobalConfig = {
     TINY: 'tiny',
     SAAS: 'saas'
   },
+  rowHeight: {
+    tiny: { mini: 32, small: 40, default: 48, medium: 52 },
+    saas: { mini: 32, small: 36, default: 36, medium: 40 }
+  },
+  headerRowHeight: {
+    tiny: { mini: 28, small: 32, default: 40, medium: 40 },
+    saas: { mini: 32, small: 36, default: 36, medium: 40 }
+  },
+  // 空数据最小表格高度
+  emptyMinHeight: 200,
   columnLevelKey: 'ColumnLevelProvideKey',
   defaultColumnName: $prefix + 'GridColumn'
 }

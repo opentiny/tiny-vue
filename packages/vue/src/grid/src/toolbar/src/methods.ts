@@ -171,7 +171,7 @@ export default {
   handleFullScreen([show]) {
     this.fullScreenClass = show ? 'tiny-fullscreen-full' : ''
     this.$nextTick(() => {
-      this.recalculate(true)
+      this.recalculate()
       emitEvent(this, 'fullscreen', show)
       this.emitter.emit('fullscreen', show)
     })

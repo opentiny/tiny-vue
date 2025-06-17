@@ -156,7 +156,7 @@ export default {
 
     operArrs({ _vm: this, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData })
 
-    this.updateCache(true)
+    this.updateCache()
     this.handleTableData(true)
     this.checkSelectionStatus()
     this.updateFooter()
@@ -234,7 +234,7 @@ export default {
     remove(insertList, (row) => inArr(row, rows))
 
     // 修改缓存
-    this.updateCache(true)
+    this.updateCache()
     this.handleTableData(true)
 
     this.checkSelectionStatus()
@@ -300,6 +300,8 @@ export default {
           destructuring(row, oRow)
         }
       }
+
+      this.updateRowStatus(row)
     }
 
     if (arguments.length) {
@@ -420,6 +422,7 @@ export default {
     }
 
     if (isActived) {
+      this.updateRowStatus(actived.row)
       this.updateFooter()
 
       // 处理数字输入框返回string类型数据，导致还原初始数字还是编辑状态的问题
@@ -558,7 +561,7 @@ export default {
   /**
    * 处理选中源
    */
-  handleSelected(params, event) {
+  handleSelected(params, event, noDebounce) {
     let { editConfig, editStore, elemStore, mouseConfig = {} } = this
     let { actived, selected } = editStore
     let { cell, column, row } = params || {}
@@ -589,7 +592,7 @@ export default {
         return this.$nextTick()
       }
       // 如果配置了批量选中功能，则为批量选中状态
-      let headerElem = elemStore['main-header-list']
+      let headerElem = elemStore['main-body-headerList']
 
       this.handleChecked([[cell]])
 
@@ -597,13 +600,13 @@ export default {
         return this.$nextTick()
       }
 
-      this.handleHeaderChecked([[headerElem.querySelector(`.${column && column.id}`)]])
-      this.handleIndexChecked([[cell && cell.parentNode && cell.parentNode.querySelector('.col__index')]])
+      this.handleHeaderChecked([[headerElem?.querySelector(`.${column?.id}`)]])
+      this.handleIndexChecked([[cell?.parentNode?.querySelector('.col__index')]])
 
       return this.$nextTick()
     }
 
-    selectMethod = debounce(20, selectMethod)
+    selectMethod = noDebounce ? selectMethod : debounce(20, selectMethod)
 
     return selectMethod()
   }

@@ -10,6 +10,16 @@
   @apply border-b border-b-color-bg-3;
   @apply overflow-y-auto;
   @apply overflow-x-auto;
+
+  &.no-data {
+    @apply overflow-y-hidden;
+    @apply flex;
+    @apply flex-col;
+
+    > .@{grid-prefix-cls}-body__y-space {
+      @apply hidden;
+    }
+  }
 }
 
 .@{grid-prefix-cls}__borders {

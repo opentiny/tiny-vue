@@ -100,14 +100,15 @@ export default {
   },
   // 快捷菜单事件处理
   handleGlobalContextmenuEvent(event) {
-    let { ctxMenuOpts, ctxMenuStore, isCtxMenu } = this
-    let layoutList = ['header', 'body', 'footer']
+    const { ctxMenuOpts, ctxMenuStore, isCtxMenu } = this
 
     if (!isCtxMenu) {
       this.closeMenu()
       this.closeFilter()
+
       return
     }
+
     if (
       ctxMenuStore.visible &&
       this.$refs.ctxWrapper &&
@@ -117,42 +118,47 @@ export default {
       return
     }
 
-    for (let i = 0; i < layoutList.length; i++) {
-      let layout = layoutList[i]
-      let eventTargetNode = this.getEventTargetNode(event, this.$el, `tiny-grid-${layout}__column`)
-      let eventParams = { $table: this, columns: this.visibleColumn.slice(0), type: layout }
+    let eventTargetNode
+    const eventParams = { $table: this, columns: this.visibleColumn.slice(0) }
+
+    for (let layout of ['header', 'body', 'footer']) {
+      eventTargetNode = this.getEventTargetNode(event, this.$el, `tiny-grid-${layout}__column`)
+      eventParams.type = layout
 
       if (eventTargetNode.flag) {
-        let cell = eventTargetNode.targetElem
-        let column = this.getColumnNode(cell)?.item
-        if (!column) {
-          return
-        }
+        const cell = eventTargetNode.targetElem
+        const column = this.getColumnNode(cell).item
         let typePrefix = `${layout}-`
+
         Object.assign(eventParams, { cell, column, columnIndex: this.getColumnIndex(column) })
 
         if (layout === 'body') {
-          let row = this.getRowNode(cell.parentNode).item
+          const row = this.getRowNode(cell.parentNode).item
+
           typePrefix = ''
           Object.assign(eventParams, { row, rowIndex: this.getRowIndex(row) })
         }
 
         this.openContextMenu(event, layout, eventParams)
         emitEvent(this, `${typePrefix}cell-context-menu`, [eventParams, event])
-        return
-      }
 
-      eventTargetNode = this.getEventTargetNode(event, this.$el, `tiny-grid__${layout}-wrapper`)
-
-      if (eventTargetNode.flag) {
-        if (ctxMenuOpts.trigger === 'cell') {
-          event.preventDefault()
-        } else {
-          this.openContextMenu(event, layout, eventParams)
-        }
         return
       }
     }
+
+    eventTargetNode = this.getEventTargetNode(event, this.$el, `tiny-grid__body-wrapper`)
+
+    if (eventTargetNode.flag) {
+      if (ctxMenuOpts.trigger === 'cell') {
+        event.preventDefault()
+      } else {
+        eventParams.type = 'body'
+        this.openContextMenu(event, layout, eventParams)
+      }
+
+      return
+    }
+
     this.closeMenu()
     this.closeFilter()
   },

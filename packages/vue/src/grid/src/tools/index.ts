@@ -24,6 +24,7 @@
  */
 import { isString } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue } from '@opentiny/vue-renderless/grid/utils'
+import { hooks } from '@opentiny/vue-common'
 import Formatter from './formatter'
 import GlobalConfig from '../config'
 
@@ -45,11 +46,11 @@ function getFormatData({ $table, cacheFormat, row }) {
   let rest, formatData
 
   if (cacheFormat) {
-    rest = $table.fullAllDataRowMap.get(row)
+    rest = $table.fullDataRowMap.get(hooks.toRaw(row))
     formatData = rest.formatData
 
     if (!formatData) {
-      formatData = $table.fullAllDataRowMap.get(row).formatData = {}
+      formatData = $table.fullDataRowMap.get(hooks.toRaw(row)).formatData = {}
     }
   }
 
@@ -95,7 +96,7 @@ export const getCellLabel = (row, column, params) => {
     let colid = column.id
     const { formatConfig = {} } = column.own
     const async = formatConfig.async === true
-    let cacheFormat = $table && $table.fullAllDataRowMap.has(row)
+    let cacheFormat = $table?.fullDataRowMap.has(hooks.toRaw(row))
     let { rest, formatData } = getFormatData({ $table, cacheFormat, row })
     // cache的值 与当前值相等 不是异步列或是异步列但有值时直接返回cache
     let hasCacheVal = hasCacheValue({

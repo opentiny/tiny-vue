@@ -394,16 +394,16 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $table, column, row, seq, $seq, level } = params
+    const { $table, column, row, seq, level } = params
     // startIndex：序号列的起始值
-    const { startIndex, treeConfig, scrollYLoad, treeOrdered } = $table
+    const { startIndex, treeConfig, treeOrdered } = $table
     const { indexMethod, slots } = column
     const { temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
     let indexValue = startIndex + seq
     // tree-config为false的情况下，序号为1.1这种形式
     if (isTreeOrderedFalse && level) {
-      indexValue = scrollYLoad ? row[temporaryIndex] : `${$seq}.${seq}`
+      indexValue = row[temporaryIndex]
     }
 
     if (slots && slots.default) {

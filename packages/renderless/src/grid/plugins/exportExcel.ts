@@ -11,8 +11,7 @@
  *
  */
 
-import { extend } from '@opentiny/utils'
-import { browserInfo } from '@opentiny/utils'
+import { extend, browserInfo } from '@opentiny/utils'
 
 const isIE = browserInfo.name === 'ie'
 const rgbRegExp = /^rgba?\((\d+),\s(\d+),\s(\d+)([\s\S]*)\)$/

@@ -30,7 +30,7 @@ let isWebkit = browserInfo['-webkit']
 export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem }) {
   if (scrollYLoad || scrollLoad) {
     // 获取表格体默认第一行的高度
-    scrollYStore.rowHeight = _vm.getRowHeight()
+    scrollYStore.rowHeight = _vm.rowHeight
   }
 
   if (scrollYLoad) {
@@ -94,7 +94,5 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
 
     // 处理x轴虚拟滚动渲染数据
     _vm.updateScrollXData()
-  } else {
-    _vm.updateScrollXSpace()
   }
 }
