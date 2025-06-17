@@ -45,8 +45,8 @@ export default {
       pager.component = pager.component || (fetchData && fetchData.api ? Pager : null)
       res = h(hooks.toRaw(pager.component), {
         props: {
-          // 只允许 'mini' 或 ''，否则传空字符串，防止分页组件报警告
-          size: ['mini', ''].includes(vSize) ? vSize : '', // 兼容 grid 的 size 传递
+          // tiny-grid 的 size 为 small/mini 时，pager 传 mini；为 medium 时，pager 传空字符串
+          size: vSize === 'medium' ? '' : ['small', 'mini'].includes(vSize) ? 'mini' : '', // 兼容 grid 的 size 传递
           loading: loading || tableLoading,
           isBeforePageChange: _vm.isBeforePageChange || _vm.showSaveMsg,
           accurateJumper: _vm.autoLoad,
