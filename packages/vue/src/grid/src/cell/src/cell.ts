@@ -402,7 +402,7 @@ export const Cell = {
     const isTreeOrderedFalse = treeConfig && !treeOrdered
     let indexValue = startIndex + seq
     // tree-config为false的情况下，序号为1.1这种形式
-    if (isTreeOrderedFalse && level) {
+    if (isTreeOrderedFalse) {
       indexValue = row[temporaryIndex]
     }
 
