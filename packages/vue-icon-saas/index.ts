@@ -11,6 +11,7 @@
  */
 
 import IconPromptExclamation from './src/prompt-exclamation'
+import IconAcceptance from './src/acceptance'
 import IconAdd from './src/add'
 import IconAdministrator from './src/administrator'
 import IconAgendaView from './src/agenda-view'
@@ -511,7 +512,9 @@ import IconMaintainInspectionRecords from './src/maintain-inspection-records'
 import IconItemPlanningProperties from './src/item-planning-properties'
 import IconMsg from './src/msg'
 import IconOfd from './src/ofd'
+import IconPaymentSlips from './src/payment-slips'
 import IconPendingReview from './src/pending-review'
+import IconPerformance from './src/performance'
 import IconProcessPlanRequirements from './src/process-plan-requirements'
 import IconPurchasePlannedOrder from './src/purchase-planned-order'
 import IconRequirementsPlanning from './src/requirements-planning'
@@ -540,6 +543,8 @@ import IconLightningLine from './src/lightning-line'
 export {
   IconActivation,
   IconActivation as iconActivation,
+  IconAcceptance,
+  IconAcceptance as iconAcceptance,
   IconGenerating,
   IconGenerating as iconGenerating,
   IconProcessing,
@@ -590,8 +595,12 @@ export {
   IconMsg as iconMsg,
   IconOfd,
   IconOfd as iconOfd,
+  IconPaymentSlips,
+  IconPaymentSlips as iconPaymentSlips,
   IconPendingReview,
   IconPendingReview as iconPendingReview,
+  IconPerformance,
+  IconPerformance as iconPerformance,
   IconProcessPlanRequirements,
   IconProcessPlanRequirements as iconProcessPlanRequirements,
   IconPurchasePlannedOrder,
@@ -1586,6 +1595,7 @@ export {
 
 export default {
   IconActivation,
+  IconAcceptance,
   IconGenerating,
   IconProcessing,
   IconReportSubmission,
@@ -1611,7 +1621,9 @@ export default {
   IconItemPlanningProperties,
   IconMsg,
   IconOfd,
+  IconPaymentSlips,
   IconPendingReview,
+  IconPerformance,
   IconProcessPlanRequirements,
   IconPurchasePlannedOrder,
   IconRequirementsPlanning,
