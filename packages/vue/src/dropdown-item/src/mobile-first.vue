@@ -12,7 +12,7 @@
         {
           'text-color-brand-focus bg-color-fill-6': dataStore.checkedStatus && selected
         },
-        dataStore.multiStage ? '!px-0' : '[&:not(:last-of-type)]:mb-1'
+        dataStore.multiStage ? '!px-0' : '[&:not(:last-of-type)]:!mb-1'
       )
     "
     @click.stop="handleClick"
