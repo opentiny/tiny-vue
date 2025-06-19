@@ -1,6 +1,9 @@
 ﻿<template>
+  <!-- 同步勿删，此处custom适配不了多端，因此需要固定Modal为pc端 -->
   <tiny-modal
     width="800"
+    tiny_mode="pc"
+    tiny_mode_root
     title=" "
     class="tiny-grid-toolbar-modal"
     v-model="visible"
