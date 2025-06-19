@@ -421,7 +421,7 @@ function renderRowExpanded(args) {
 
 function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
   typeof $table.renderRowAfter === 'function' &&
-    $table.renderRowAfter.call($table, { rows, row, data: _vm.tableData, rowIndex, renderColumn, id, used }, h)
+    $table.renderRowAfter({ rows, row, data: _vm.tableData, rowIndex, renderColumn, id, used }, h)
 }
 
 function renderRow(args) {
@@ -829,7 +829,7 @@ export default defineComponent({
         class={{
           'tiny-grid__body-wrapper body__wrapper': true,
           'is__scrollload': scrollLoad,
-          'no-data': isNoData
+          'no-data': isNoData && $table.isShapeTable
         }}
         style={{
           height: bodyWrapperHeight ? `${bodyWrapperHeight}px` : undefined,
@@ -868,7 +868,7 @@ export default defineComponent({
           isNoData ? (
             <div ref="emptyBlock" class="tiny-grid__empty-block">
               {$slots.empty
-                ? $slots.empty.call(_vm, { $table }, h)
+                ? $slots.empty({ $table }, h)
                 : $table.renderEmpty
                   ? [$table.renderEmpty(h, $table)]
                   : [
