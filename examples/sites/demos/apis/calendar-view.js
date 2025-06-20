@@ -195,9 +195,10 @@ export default {
             'en-US': 'Should the upper left button be displayed, Default Display'
           },
           meta: {
-            stable: '3.22.0'
+            stable: '3.25.0'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'calendar-mode',
           mfDemo: 'calendar-mode'
         }
       ],

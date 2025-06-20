@@ -2,7 +2,7 @@
   <div class="tiny-calendar-view" :style="{ 'height': typeof height === 'number' ? height + 'px' : height }">
     <div class="tiny-calendar-view__header">
       <div>
-        <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+        <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
       </div>
       <tiny-date-picker
         v-model="state.currentDate"
@@ -123,9 +123,11 @@
                   :class="[date.value.split('-')[2] > 9 ? 'is-two-digit' : '', markColor ? `mark-${markColor}` : '']"
                 ></span>
               </span>
-              <span class="week-day" :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]">{{
-                dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`)
-              }}</span>
+              <span
+                class="week-day"
+                :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]"
+                >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
+              >
             </slot>
           </li>
         </ul>
@@ -285,6 +287,7 @@ export default defineComponent({
     'height',
     'markColor',
     'multiSelect',
+    'showBackToday',
     'showTipTime'
   ],
   setup(props, context) {
