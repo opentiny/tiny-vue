@@ -1,6 +1,7 @@
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 
-export default function (version: string): Plugin {
+export default function (getVersion: () => string): Plugin {
+  const version = getVersion()
   return {
     name: 'opentiny-vue:replace-module-name',
     generateBundle: (output: NormalizedOutputOptions, bundle: OutputBundle) => {
