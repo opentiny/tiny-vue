@@ -23,6 +23,9 @@ export default {
       return { api, dataset, fields, loading, isReloadFilter, isReloadScroll }
     }
   },
+  /* 第二个参数sortArg参数可以移除，fetchData.args可以传递更加灵活的参数
+     但为避免破坏性变更，暂保留
+  */
   handleFetch(code, sortArg) {
     let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this as any
     let { reloadConfig = {} } = fetchData
@@ -34,6 +37,7 @@ export default {
       this.columnAnchor && this.clearActiveAnchor()
     }
 
+    // 文档暂不暴露prefetch，这里只清空单选不清空多选状态有点奇怪
     if (code !== 'prefetch') {
       this.clearRadioRow()
       !scroll && this.resetScrollTop()
@@ -84,7 +88,7 @@ export default {
     }
 
     if (fetchData && fetchData.api) {
-      search = fetchData.api.apply(this, [params])
+      search = fetchData.api(params)
     } else {
       search = getDataset({ dataset, service: this.$service }, params)
     }

@@ -2008,10 +2008,10 @@ export default {
         },
         {
           name: 'handleFetch',
-          type: '() => Promise',
+          type: '(code: "reload") => Promise<null>',
           defaultValue: '',
           desc: {
-            'zh-CN': '触发表格的 fetch-data ',
+            'zh-CN': '触发表格的 fetch-data，当 code="reload" 时会将分支重置为 1，且清除筛选、排序等条件',
             'en-US': 'Trigger the fetch-data of the table'
           },
           mode: ['pc', 'mobile-first'],
