@@ -13,6 +13,7 @@ import * as hooks from 'vue'
 
 import { camelize, capitalize, hyphenate } from '@opentiny/utils'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
+import { __TINY__ } from '../__longque__'
 
 const Teleport = hooks.Teleport
 
@@ -233,7 +234,7 @@ const generateChildren = (subTree) => {
   return children
 }
 
-const defineProperties = (vm, instance, property, filter) => {
+const originalDefineProperties = (vm, instance, property, filter) => {
   for (const name in instance[property]) {
     if (typeof filter === 'function' && filter(name)) continue
 
@@ -248,11 +249,18 @@ const defineProperties = (vm, instance, property, filter) => {
   return vm
 }
 
+const harmonyDefineProperties = (vm, instance, property) => {
+  const propertyFilterFlags = __TINY__.SKIP_PREFIX_UNDERSCORE
+  __TINY__.createDelegate(instance[property], vm, propertyFilterFlags)
+}
+
+const defineProperties = __TINY__ ? harmonyDefineProperties : originalDefineProperties
+
 const filter = (name) => name.indexOf('_') === 0
 
 const defineInstanceVm = (vm, instance) => {
-  defineProperties(vm, instance, 'setupState', null)
-  defineProperties(vm, instance, 'props', filter)
+  originalDefineProperties(vm, instance, 'setupState', null)
+  originalDefineProperties(vm, instance, 'props', filter)
   defineProperties(vm, instance, 'ctx', filter)
 
   return vm
