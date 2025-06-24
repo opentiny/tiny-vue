@@ -3,6 +3,7 @@ import * as compositionHooks from '@vue/composition-api'
 import * as vueHooks from 'vue'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
+import { __TINY__ } from '../__longque__'
 
 // vue2.7有version字段
 const isVueHooks = Boolean(Vue.version?.includes('2.7'))
@@ -179,7 +180,7 @@ const generateChildren = ($children) => {
   return children
 }
 
-const defineProperties = (vm, instance, filter) => {
+const originalDefineProperties = (vm, instance, filter) => {
   for (const name in instance) {
     if (typeof filter === 'function' && filter(name)) continue
 
@@ -193,6 +194,13 @@ const defineProperties = (vm, instance, filter) => {
 
   return vm
 }
+
+const harmonyDefineProperties = (vm, instance) => {
+  const propertyFilterFlags = __TINY__.SKIP_PREFIX_UNDERSCORE | __TINY__.SKIP_PREFIX_DOLLAR | __TINY__.SKIP_CONSTRUCTOR
+  __TINY__.createDelegate(instance, vm, propertyFilterFlags)
+}
+
+const defineProperties = __TINY__ ? harmonyDefineProperties : originalDefineProperties
 
 const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
 
