@@ -407,15 +407,15 @@ const Methods = {
     }
   },
   // 更新列的 Map
-  cacheColumnMap() {
-    let { fullColumnMap, tableFullColumn: fullColumn } = this
-    let fullColumnIdData = {}
+  cacheColumnMap(options) {
+    const { fullColumnMap } = this
+    const fullColumnIdData = {}
     this.fullColumnIdData = fullColumnIdData
-    Map.prototype.clear.apply(fullColumnMap)
-    fullColumn.forEach((column, index) => {
-      let colCache = { colid: column.id, column, index }
-      fullColumnIdData[column.id] = colCache
-      fullColumnMap.set(column, colCache)
+    fullColumnMap.clear()
+
+    options.columnCaches.forEach((cache) => {
+      fullColumnIdData[cache.colid] = cache
+      fullColumnMap.set(cache.column, cache)
     })
   },
   // 通过tr的dom元素获取行数据等相关信息
