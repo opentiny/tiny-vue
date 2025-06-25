@@ -8,7 +8,7 @@
   @apply overflow-hidden;
   @apply text-ellipsis;
   @apply whitespace-nowrap;
-  @apply pl-4;
+  @apply pl-2;
   @apply box-border;
   line-height: 1.375rem;
 }
@@ -35,7 +35,6 @@
     .@{grid-cell-prefix-cls} {
       .TextEllipsis();
       line-height: 1.375rem;
-      @apply pr-4;
 
       // 表头布局从block改为了flex，此处兼容插槽文本溢出不显示省略号问题
       &:not(:has(.tiny-grid-cell-text)) > span:only-of-type:not(.@{grid-cell-prefix}__expanded) {
