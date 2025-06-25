@@ -8,7 +8,7 @@
     :class="
       m(
         gcls('button'),
-        gcls(banner ? 'button-banner' : 'button-base-width'),
+        gcls(banner ? 'button-banner' : ''),
         gcls(`size-${size || 'default'}`),
         gcls(
           `type-${type || 'default'}${icon ? '-icon' : state.plain ? '-plain' : ''}${
