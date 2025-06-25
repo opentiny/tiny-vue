@@ -64,6 +64,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'custom-style',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置 custom-style 属性按钮样式',
+            'en-US': 'Set the custom-style attribute to customize the button style'
+          },
+          meta: {
+            stable: '3.25.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'icon',
+          mfDemo: 'type'
+        },
+        {
           name: 'ghost',
           type: 'boolean',
           defaultValue: 'false',

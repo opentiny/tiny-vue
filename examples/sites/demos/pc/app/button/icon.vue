@@ -3,7 +3,9 @@
     <tiny-layout>
       <tiny-row>
         <tiny-button type="primary" :icon="IconEdit"> 图标按钮 </tiny-button>
-        <tiny-button :icon="IconSearch"> 图标按钮 </tiny-button>
+        <tiny-button :icon="IconSearch" :custom-style="{ maxWidth: 'none' }">
+          图标按钮图标按钮图标按钮图标按钮
+        </tiny-button>
         <tiny-button type="success" :icon="IconYes"> 图标按钮 </tiny-button>
         <tiny-button type="info" :icon="IconMail"> 图标按钮 </tiny-button>
         <tiny-button type="warning" :icon="IconStarO"> 图标按钮 </tiny-button>

@@ -30,6 +30,7 @@
         'is-only-icon': icon && !loading && !(text || slots.default)
       }
     ]"
+    :style="customStyle"
     :tabindex="tabindex"
     v-bind="a($attrs, ['class', 'style', 'title', 'id'], true)"
   >
@@ -66,7 +67,8 @@ export default defineComponent({
     'circle',
     'tabindex',
     'customClass',
-    'ghost'
+    'ghost',
+    'customStyle'
   ],
   components: { IconLoading: iconLoadingShadow() },
   setup(props, context) {
