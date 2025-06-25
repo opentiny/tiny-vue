@@ -3,7 +3,7 @@
     <tiny-layout>
       <tiny-row>
         <tiny-button type="primary" :icon="TinyIconEdit"> 图标按钮 </tiny-button>
-        <tiny-button :icon="IconSearch" :custom-style="{ maxWidth: 'none' }">
+        <tiny-button :icon="TinyIconSearch" :custom-style="{ maxWidth: 'none' }">
           图标按钮图标按钮图标按钮图标按钮
         </tiny-button>
         <tiny-button type="success" :icon="TinyIconYes"> 图标按钮 </tiny-button>
