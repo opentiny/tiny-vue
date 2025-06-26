@@ -16,7 +16,12 @@
       )
     "
   >
-    <span :class="[node ? gcls('cascader-node__label_disabled') : '']">{{ state.nodeLabel }}</span>
+    <span v-if="typeof state.nodeLabel === 'string'" :class="[node ? gcls('cascader-node__label_disabled') : '']">
+      {{ state.nodeLabel }}
+    </span>
+    <span v-else :class="[node ? gcls('cascader-node__label_disabled') : '']">
+      <render-node-label :vnode="state.nodeLabel" />
+    </span>
     <icon-loading v-if="node.loading" :class="gcls('cascader-node__postfix')"></icon-loading>
     <icon-chevron-right
       v-else-if="!state.isLeaf"
@@ -43,7 +48,15 @@ export default defineComponent({
   name: $prefix + 'CascaderNode',
   components: {
     IconLoading: IconLoading(),
-    IconChevronRight: IconChevronRight()
+    IconChevronRight: IconChevronRight(),
+    RenderNodeLabel: {
+      name: 'AnyNode',
+      functional: true,
+      props: ['vnode'],
+      render(h, ctx) {
+        return h.vnode || ctx.props?.vnode // 兼容vue2,3的写法
+      }
+    }
   },
   inheritAttrs: false,
   emits: ['expand', 'update:modelValue', 'expand-change', 'active-item-change', 'change'],
