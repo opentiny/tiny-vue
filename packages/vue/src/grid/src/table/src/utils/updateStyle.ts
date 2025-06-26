@@ -28,7 +28,7 @@ import GlobalConfig from '../../../config'
 
 // 计算表格整体宽高
 export function handleLayout(_vm) {
-  const { tableFullData, height, parentHeight, scrollXLoad, tableColumn } = _vm
+  const { tableFullData, height, parentHeight, scrollXLoad, scrollYLoad, tableColumn } = _vm
   let { maxHeight, minHeight, totalWidth } = _vm
   let customHeight, scaleToPx
 
@@ -65,6 +65,10 @@ export function handleLayout(_vm) {
     }
 
     _vm.bodyWrapperMinHeight = minHeight
+  }
+
+  if (scrollYLoad && !_vm.bodyWrapperHeight) {
+    _vm.bodyWrapperHeight = maxHeight
   }
 
   _vm.bodyTableWidth = scrollXLoad
