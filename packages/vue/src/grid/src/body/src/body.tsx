@@ -750,6 +750,19 @@ export default defineComponent({
 
     hooks.watch(body, (body) => body && resizeObserver.observe(body))
 
+    hooks.watch(tbody, (tbody) => {
+      if (tbody && $table.dropConfig) {
+        // 初始化行列拖拽
+        const { plugin, row = true, column = true, scheme } = $table.dropConfig
+
+        plugin && row && (vm.rowSortable = $table.rowDrop(body.value))
+
+        if (scheme !== 'v2') {
+          plugin && column && (vm.columnSortable = $table.columnDrop(body.value))
+        }
+      }
+    })
+
     hooks.watch(customFooter, (customFooter) => customFooter && resizeObserver.observe(customFooter))
 
     hooks.watchEffect(() => {
@@ -767,21 +780,6 @@ export default defineComponent({
       vm._throttleScrollHandler = throttle($table.optimizeOpts.scrollDelay, vm.handleScroll)
 
       body.value?.addEventListener('scroll', vm._throttleScrollHandler)
-
-      // 初始化行列拖拽
-      setTimeout(() => {
-        const { dropConfig } = $table
-
-        if (dropConfig) {
-          const { plugin, row = true, column = true, scheme } = dropConfig
-
-          plugin && row && (vm.rowSortable = $table.rowDrop(body.value))
-
-          if (scheme !== 'v2') {
-            plugin && column && (vm.columnSortable = $table.columnDrop(body.value))
-          }
-        }
-      }, 50)
     })
 
     hooks.onBeforeUnmount(() => {
