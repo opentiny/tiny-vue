@@ -269,7 +269,7 @@ const Methods = {
     const { renderSize, startIndex } = scrollYStore
     const graphed = _graphInfo?.graphed
     const tableNode = scrollYLoad ? graphed?.slice(startIndex, startIndex + renderSize) : graphed
-    const tableData = tableNode?.map((node) => node.payload)
+    const tableData = tableNode?.map((node) => node.payload) || []
 
     this.tableNode = tableNode
     this.tableData = tableData
