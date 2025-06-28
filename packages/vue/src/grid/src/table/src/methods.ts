@@ -85,7 +85,7 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
-import { hooks, isVue2 } from '@opentiny/vue-common'
+import { hooks } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedDetails } from './utils/autoCellWidth'
 import { funcs, headerProps, handleAllColumnPromises } from './funcs'
@@ -1982,21 +1982,6 @@ const Methods = {
       !this._isUpdateData && this.loadTableData(this.data, true)
       this._isUpdateData = false
     }
-  },
-  watchDataForVue3() {
-    if (isVue2) return
-
-    const stopWatch = hooks.watch(
-      [() => this.data, () => this.data && this.data.length],
-      ([newData, newLength], [oldData, oldLength]) => {
-        // vue3下额外监控数组长度改变，解决push无响应等问题
-        if (Array.isArray(this.data) && newData === oldData && newLength !== oldLength) {
-          this.handleDataChange()
-        }
-      }
-    )
-
-    hooks.onBeforeUnmount(() => stopWatch())
   },
   getVm(name) {
     return this.$grid.getVm(name)

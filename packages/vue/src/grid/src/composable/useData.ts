@@ -1,3 +1,4 @@
+import { hooks } from '@opentiny/vue-common'
 import { getRowid } from '@opentiny/vue-renderless/grid/utils'
 
 const isContented = (array) => Array.isArray(array) && array.length > 0
@@ -102,7 +103,6 @@ export const buildRenderGraph = ($table) => {
 export const tileFullData = ($table) => {
   const { treeConfig, rowGroup, groupFullData, afterFullData } = $table
 
-  // @ts-expect-error
   const tileInfo = makeTile({
     list: !treeConfig && rowGroup?.field ? groupFullData : afterFullData,
     getID: (row) => getRowid($table, row),
@@ -123,4 +123,38 @@ export const graphFullData = ($table) => {
 
     $table._graphInfo = graphInfo
   }
+}
+
+const getTreeLength = (tree, childrenKey = 'children') => {
+  let length = tree.length
+
+  for (const node of tree) {
+    const children = node[childrenKey]
+
+    if (children && children.length > 0) {
+      length += getTreeLength(children, childrenKey)
+    }
+  }
+
+  return length
+}
+
+const getTiledLength = (props) => {
+  const data = props.data || []
+  const { children: childrenKey } = props.treeConfig || {}
+
+  return props.treeConfig ? getTreeLength(data, childrenKey) : data.length
+}
+
+export const useData = (props) => {
+  const $table = hooks.getCurrentInstance()?.proxy
+  // 原始数据展开长度
+  const tiledLength = hooks.ref(0)
+
+  hooks.watch([() => props.data, () => getTiledLength(props)], ([_, length]) => {
+    tiledLength.value = length
+    $table?.handleDataChange()
+  })
+
+  return { tiledLength }
 }
