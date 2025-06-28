@@ -752,6 +752,8 @@ export default defineComponent({
 
     hooks.watch(tbody, (tbody) => {
       if (tbody && $table.dropConfig) {
+        vm.rowSortable?.destroy()
+        vm.columnSortable?.destroy()
         // 初始化行列拖拽
         const { plugin, row = true, column = true, scheme } = $table.dropConfig
 
@@ -787,8 +789,8 @@ export default defineComponent({
 
       body.value?.removeEventListener('scroll', vm._throttleScrollHandler)
       vm._throttleScrollHandler = null
-      rowSortable && rowSortable.destroy()
-      columnSortable && columnSortable.destroy()
+      rowSortable?.destroy()
+      columnSortable?.destroy()
       resizeObserver.disconnect()
     })
 

@@ -325,25 +325,70 @@ const Methods = {
       resolve()
     })
   },
+  getOriginRow(row) {
+    const { backupMap } = this
+
+    return backupMap.has(row) ? backupMap.get(row) : null
+  },
+  setOriginRow(row, record) {
+    const { backupMap } = this
+
+    if (backupMap.has(row) && record) {
+      backupMap.set(row, record)
+    }
+  },
   reloadRow(row, record, field) {
-    let { tableData, tableSourceData } = this
-    let rowIndex = this.getRowIndex(row)
-    let originRow = tableSourceData[rowIndex]
-    let hasSrc = originRow && row
-    let hasSrcNoField = hasSrc && !field
+    const { tableData, treeConfig, treeOrdered } = this
+    const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
+    const rowKey = getRowkey(this)
+    const originRow = this.getOriginRow(row)
+    const hasSrc = originRow && row
+    const hasSrcNoField = hasSrc && !field
+
     if (hasSrc && field) {
       set(originRow, field, get(record || row, field))
     }
+
     if (hasSrcNoField && record) {
-      tableSourceData[rowIndex] = record
+      const backupRow = this.defineField({ ...record, [rowKey]: originRow[rowKey] })
+      let rowChildren, clonedRow
+
+      if (treeConfig) {
+        backupRow[childrenKey] = undefined
+        rowChildren = row[childrenKey]
+
+        if (!treeOrdered) {
+          backupRow[temporaryIndex] = originRow[temporaryIndex]
+        }
+      }
+
+      clonedRow = clone(backupRow, true)
+
+      if (treeConfig) {
+        backupRow[childrenKey] = originRow[childrenKey]
+      }
+
+      this.setOriginRow(row, backupRow)
       clear(row, undefined)
-      Object.assign(row, this.defineField({ ...record }))
+      Object.assign(row, clonedRow, treeConfig ? { [childrenKey]: rowChildren } : null)
       this.updateCache()
     }
+
     if (hasSrcNoField && !record) {
-      destructuring(originRow, clone(row, true))
+      let clonedRow
+
+      if (treeConfig) {
+        clonedRow = clone({ ...row, [childrenKey]: undefined }, true)
+        clonedRow[childrenKey] = originRow[childrenKey]
+      } else {
+        clonedRow = clone(row, true)
+      }
+
+      destructuring(originRow, clonedRow)
     }
+
     this.tableData = tableData.slice(0)
+
     return this.$nextTick()
   },
   // 从新加载列配置
