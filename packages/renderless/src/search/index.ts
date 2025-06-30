@@ -76,7 +76,11 @@ export const searchEnterKey =
 export const clickOutside =
   ({ parent, props, state }: Pick<ISearchRenderlessParams, 'parent' | 'props' | 'state'>) =>
   (event: Event) => {
-    if (!parent.$el.contains(event.target)) {
+    // 优先使用 event.composedPath() 来判断事件源是否在组件内部，以兼容 Shadow DOM。
+    // 在 Shadow DOM 中，事件冒泡穿过 Shadow Root 后，event.target 会被重定向为 host 元素，
+    // 导致传统的 contains 判断失效。composedPath 则能提供真实的事件路径。
+    const path = event.composedPath && event.composedPath()
+    if (path ? !path.includes(parent.$el) : !parent.$el.contains(event.target)) {
       state.show = false
       props.mini && !state.currentValue && (state.collapse = true)
     }

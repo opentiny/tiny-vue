@@ -35,16 +35,18 @@ if (!isServer) {
 
 const createDocumentHandler = (el, binding, vnode) =>
   function (mouseup = {}, mousedown = {}) {
-    let popperElm = vnode.context.popperElm || (vnode.context.state && vnode.context.state.popperElm)
+    const popperElm = vnode.context.popperElm || (vnode.context.state && vnode.context.state.popperElm)
 
-    if (
-      !mouseup?.target ||
-      !mousedown?.target ||
-      el.contains(mouseup.target) ||
-      el.contains(mousedown.target) ||
-      el === mouseup.target ||
-      (popperElm && (popperElm.contains(mouseup.target) || popperElm.contains(mousedown.target)))
-    ) {
+    // 使用 event.composedPath() 来处理 Shadow DOM 场景。
+    // composedPath() 会返回事件的完整路径，即使事件穿过了 Shadow DOM 的边界。
+    // 这确保了即使 popperElm 在 Shadow DOM 外部（或组件本身在 Shadow DOM 内部），
+    // 我们也能准确判断点击是否发生在组件或其 popper 内部。
+    const mousedownPath = (mousedown?.composedPath && mousedown.composedPath()) || [mousedown?.target]
+    const mouseupPath = (mouseup?.composedPath && mouseup.composedPath()) || [mouseup.target]
+    const isClickInEl = mousedownPath.includes(el) || mouseupPath.includes(el)
+    const isClickInPopper = popperElm && (mousedownPath.includes(popperElm) || mouseupPath.includes(popperElm))
+
+    if (!mousedown.target || !mouseup.target || isClickInEl || isClickInPopper) {
       return
     }
 
@@ -56,10 +58,6 @@ const createDocumentHandler = (el, binding, vnode) =>
   }
 
 /**
- * v-clickoutside
- * @desc 点击元素外面才会触发的事件
- * @example
- * 两个修饰符，mousedown、mouseup
  * 当没有修饰符时，需要同时满足在目标元素外同步按下和释放鼠标才会触发回调。
  * ```html
  * <div v-clickoutside="handleClose"> // 在元素外部点击时触发
@@ -110,7 +108,6 @@ export default {
     if (nodeList.length === 0 && startClick) {
       startClick = null
     }
-
     delete el[nameSpace]
   }
 }
