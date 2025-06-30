@@ -149,6 +149,10 @@ export const hasDataTag = (el, value) => {
     el = el.host
   }
 
+  if (!el?.getAttribute) {
+    return false
+  }
+
   return (' ' + el.getAttribute('data-tag') + ' ').includes(' ' + value + ' ')
 }
 
