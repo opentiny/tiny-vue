@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 import { hooks } from '@opentiny/vue-common'
-import { off, on, isNull } from '@opentiny/utils'
+import { off, on, isNull, fastdom } from '@opentiny/utils'
 import { isUndefined } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 
@@ -220,7 +220,10 @@ export const useCellEvent = ({ table, $table }) => {
           satisfy(({ type }) => type === 'selection', selectConfig.trigger) ||
           satisfy(({ treeNode }) => treeNode, treeConfig.trigger))
       ) {
-        $table.triggerCellClickEvent(e, params)
+        // 捕获阶段单元格进入编辑态，常显态的点击事件会被vue移除从而不会执行
+        fastdom.mutate(() => {
+          $table.triggerCellClickEvent(e, params)
+        })
       }
 
       if (source.part === 'footer' && tableListeners['footer-cell-click']) {
