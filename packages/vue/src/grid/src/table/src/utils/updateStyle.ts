@@ -67,10 +67,6 @@ export function handleLayout(_vm) {
     _vm.bodyWrapperMinHeight = minHeight
   }
 
-  if (scrollYLoad && !_vm.bodyWrapperHeight) {
-    _vm.bodyWrapperHeight = maxHeight
-  }
-
   _vm.bodyTableWidth = scrollXLoad
     ? tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
     : totalWidth

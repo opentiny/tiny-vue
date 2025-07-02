@@ -1130,6 +1130,11 @@ const Methods = {
       isScrollY = containerScrollHeight + scrollbarSize > containerHeight
     }
 
+    // 虚拟滚动如果没有height的话，表格滚动到底部表头会发生偏移，将height设置为max-height可避免
+    if (!this.height) {
+      this.bodyWrapperHeight = containerScrollHeight > this.bodyWrapperMaxHeight ? this.bodyWrapperMaxHeight : null
+    }
+
     Object.assign(this, {
       overflowX: isScrollX,
       overflowY: isScrollY,
@@ -1179,6 +1184,18 @@ const Methods = {
       }
 
       if (typeof editConfig.blurOutside === 'function') {
+        const bodyEl = document.body
+        if (
+          getEventTargetNode(event, bodyEl, 'tiny-autocomplete-suggestion').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-select-dropdown').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-cascader__dropdown').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-cascader-menus').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-picker-panel').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-popper').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-dialog-box').flag
+        ) {
+          return true
+        }
         return Boolean(editConfig.blurOutside({ cell: args.cell, event, $table: this }))
       }
 
