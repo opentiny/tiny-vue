@@ -351,7 +351,7 @@ export default defineComponent({
                                     'hidden sm:inline-block mr-2 fill-current',
                                     type === 'message' ? 'h-4.5 w-4.5 self-start shrink-0 mt-0.5' : 'h-6 w-auto',
                                     { 'text-color-success': status === 'success' },
-                                    { 'text-color-info-secondary': ['info', 'question'].includes(status) },
+                                    { 'text-color-info-primary': ['info', 'question'].includes(status) },
                                     { 'text-color-warning': status === 'warning' },
                                     { 'text-color-error': status === 'error' }
                                   )
@@ -364,7 +364,7 @@ export default defineComponent({
                                     'h-4 w-4 inline-block sm:hidden mr-1.5 fill-current',
                                     type === 'message' ? 'w-5 h-5 self-center shrink-0' : 'h-6 w-auto',
                                     { 'text-color-success': status === 'success' },
-                                    { 'text-color-info-secondary': ['info', 'question'].includes(status) },
+                                    { 'text-color-info-primary': ['info', 'question'].includes(status) },
                                     { 'text-color-warning': status === 'warning' },
                                     { 'text-color-error': status === 'error' }
                                   ]
