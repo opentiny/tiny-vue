@@ -1,4 +1,4 @@
-import { reactive, computed, watch } from 'vue'
+import { reactive, computed } from 'vue'
 import { useAutoStore } from './storage'
 import { useMediaQuery } from './useMediaQuery'
 import { ZH_CN_LANG, EN_US_LANG, LANG_KEY, LANG_PATH_MAP } from '../const'
@@ -8,9 +8,7 @@ const enPath = LANG_PATH_MAP[EN_US_LANG]
 const appData = reactive({
   lang: useAutoStore('local', LANG_KEY, ZH_CN_LANG),
   theme: useAutoStore('local', '_theme', 'light'),
-  bpState: useMediaQuery([640, 1024, 1280]).matches, // 3点4区间， bp0,bp1,bp2,bp3
-  showTinyRobot: false,
-  hasFloatRobot: false
+  bpState: useMediaQuery([640, 1024, 1280]).matches // 3点4区间， bp0,bp1,bp2,bp3
 })
 const isZhCn = computed(() => appData.lang === ZH_CN_LANG)
 const appFn = {
@@ -29,12 +27,5 @@ const appFn = {
 }
 // 为了和tiny-vue共享同一个响应变量
 window.appData = appData
-
-watch(
-  () => appData.showTinyRobot,
-  (value) => {
-    document.body.classList.toggle('docs-on-robot-show', value)
-  }
-)
 
 export { appData, appFn, isZhCn }

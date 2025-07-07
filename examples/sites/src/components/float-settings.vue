@@ -61,13 +61,6 @@
       <template #reference>
         <div>
           <div
-            v-if="appData.hasFloatRobot"
-            class="settings-btn style-settings-btn"
-            @click="appData.showTinyRobot = true"
-          >
-            <IconAi class="settings-icon style-settings-icon"></IconAi>
-          </div>
-          <div
             class="settings-btn style-settings-btn"
             @click="demoStyleVisible = !demoStyleVisible"
             @blur="demoStyleVisible = false"
@@ -104,7 +97,6 @@ import useTheme from '@/tools/useTheme'
 import { appData } from '@/tools/appData.js'
 import { router } from '@/router'
 import useStyleSettings from '@/tools/useStyleSettings'
-import { IconAi } from '@opentiny/tiny-robot-svgs'
 
 // import ThemeSettingsIcon from '@/assets/images/theme-settings.svg'
 import StyleSettingsIcon from '@/assets/images/style-settings.svg'
@@ -117,7 +109,6 @@ export default defineComponent({
     TinyRadioGroup: RadioGroup,
     IconUpWard: iconUpWard(),
     TinyPopover: Popover,
-    IconAi,
     // ThemeSettingsIcon,
     StyleSettingsIcon
   },
@@ -269,10 +260,6 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.docs-on-robot-show .float-settings {
-  right: 680px;
-}
-
 .float-settings {
   position: fixed;
   right: 200px;

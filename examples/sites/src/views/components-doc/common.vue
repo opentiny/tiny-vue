@@ -88,7 +88,6 @@
     </div>
     <div id="footer"></div>
   </div>
-  <robotChat v-if="appData.showTinyRobot && appData.hasFloatRobot"></robotChat>
 </template>
 
 <script setup lang="ts">
@@ -107,8 +106,6 @@ import ApiDocs from '../../components/api-docs.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import { appData } from '../../tools/appData'
-
-import robotChat from '../../components/tiny-robot-chat.vue'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -449,9 +446,6 @@ defineExpose({ loadPage })
 </script>
 
 <style lang="less" scoped>
-:global(.docs-on-robot-show .docs-content) {
-  margin-right: 480px;
-}
 .docs-content {
   flex: 1;
   overflow: hidden auto;
