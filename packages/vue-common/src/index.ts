@@ -360,11 +360,14 @@ export function svg({ name = 'Icon', component }) {
 
           // 解决多个相同的渐变图标svg中有相同id时，在display：none，情况下导致的样式异常问题
           if (GRADIENT_ICONS_LIST.includes(name)) {
-            const render = component.render
+            if (!component.__raw_render) {
+              component.__raw_render = component.render
+            }
+
             component.render = function (...args) {
               // 指向正确的this对象，保证vue2运行正常
-              const newRender = render.bind(this)
-              const vnode = newRender(args)
+              const newRender = component.__raw_render.bind(this) // 每次使用原始render, 以避免递归render函数。
+              const vnode = newRender(...args)
               generateIcon(vnode)
               return vnode
             }
