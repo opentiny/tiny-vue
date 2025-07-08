@@ -9,7 +9,7 @@ import { iconWebPlus, iconSuccessful, iconCloseSquare } from '@opentiny/vue-icon
 
 const options = ref([
   {
-    label: '远程登陆',
+    label: '远程登录',
     icon: iconWebPlus()
   },
   {
