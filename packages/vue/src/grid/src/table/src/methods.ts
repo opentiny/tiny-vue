@@ -230,6 +230,7 @@ const Methods = {
   refreshData(data) {
     const next = () => {
       this.tableData = []
+      this.cellStatus.clear()
       return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
