@@ -34,8 +34,7 @@ export const pagerProps = {
     type: String
   },
   pageSizes: {
-    type: Array as PropType<number[]>,
-    default: () => [10, 20, 30, 40, 50, 100]
+    type: Array as PropType<number[]>
   },
   pagerCount: {
     type: Number,

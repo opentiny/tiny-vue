@@ -91,6 +91,7 @@ export const renderless = (
     showPager: computed(() => api.computedShowPager()),
     internalLayout: computed(() => api.computedInternalLayout()),
     totalText: computed(() => api.computedTotalText()),
+    internalPageSizes: computed(() => props.pageSizes || [10, 20, 30, 40, 50, 100]),
     internalPageCount: computed(() => api.computedInternalPageCount()),
     showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
     align: computed(() => props.align || designConfig?.state?.align || 'right'),
