@@ -38,6 +38,10 @@ import IconArrowUp from './src/arrow-up'
 import IconAscending from './src/ascending'
 import IconAssociation from './src/association'
 import IconAttachment from './src/attachment'
+import IconBadgeHotCn from './src/badge-hot-cn'
+import IconBadgeHotEn from './src/badge-hot-en'
+import IconBadgeNewCn from './src/badge-new-cn'
+import IconBadgeNewEn from './src/badge-new-en'
 import IconBarChart from './src/bar-chart'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
@@ -761,6 +765,14 @@ export {
   IconAssociation as iconAssociation,
   IconAttachment,
   IconAttachment as iconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotCn as iconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeHotEn as iconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewCn as iconBadgeNewCn,
+  IconBadgeNewEn,
+  IconBadgeNewEn as iconBadgeNewEn,
   IconBarChart,
   IconBarChart as iconBarChart,
   IconBefilter,
@@ -1703,6 +1715,10 @@ export default {
   IconAscending,
   IconAssociation,
   IconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewEn,
   IconBarChart,
   IconBefilter,
   IconBoat,
