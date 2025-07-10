@@ -2949,8 +2949,14 @@ export default {
           name: 'default',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义显示内容模板，作用插槽参数说明：slots.default({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'zh-CN': `自定义显示内容模板，作用域插槽参数说明：<br/>
+            slots.default({ $table, column, row, level, data, rowIndex, $rowIndex, columnIndex, $columnIndex, seq }, h)，<br/>
+               $table：表格组件对象，column：当前列配置，row：当前行数据，<br/>
+               level：当前行在树表中的层级，data：表格数据，<br/>
+               rowIndex：所有行中(包含虚拟滚动等隐藏列)下标，$rowIndex:已渲染行中的下标，<br/>
+               columnIndex：所有列中(包含虚拟滚动等隐藏列)下标，$columnIndex:已渲染列中的下标，<br/>
+               seq：单元格所在行的序号，$seq:已弃用，<br/>
+               h：vue的渲染函数`,
             'en-US': 'Customized display content template'
           },
           mode: ['pc', 'mobile-first'],
@@ -2960,8 +2966,7 @@ export default {
           name: 'edit',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义可编辑组件模板，作用插槽参数说明：slots.edit({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'zh-CN': '自定义可编辑组件模板，作用域插槽参数同 <code>default</code> 插槽',
             'en-US': 'Customized Editable Component Template'
           },
           mode: ['pc', 'mobile-first'],
@@ -2974,8 +2979,7 @@ export default {
             stable: '3.25.0'
           },
           desc: {
-            'zh-CN':
-              '自定义展开行图标，作用插槽参数说明：slots.expand-trigger({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'zh-CN': '自定义展开行图标，作用域插槽参数同 <code>default</code> 插槽',
             'en-US': 'Customized expand row icon'
           },
           mode: ['pc', 'mobile-first'],
@@ -2996,8 +3000,11 @@ export default {
           name: 'header',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义表头内容的模板，作用插槽参数说明：slots.header({ $table, column, columnIndex，$rowIndex},h)，$table：表格组件对象，column：当前列配置，columnIndex：当前列索引,$rowIndex:当前行索引,h：vue的渲染函数',
+            'zh-CN': `自定义表头内容的模板，作用插槽参数说明：<br/>
+            slots.header({ $table, column, columnIndex，$columnIndex，} ,h)，<br/>
+              $table：表格组件对象，column：当前列配置，<br/>
+              columnIndex：所有列中(包含虚拟滚动等隐藏列)下标，$columnIndex:已渲染列中的下标，<br/>
+              h：vue的渲染函数`,
             'en-US': 'Template of custom table header content'
           },
           mode: ['pc', 'mobile-first'],
@@ -4155,6 +4162,8 @@ interface IFilterConfig {
     // 设置枚举数据的实际值属性字段， 默认'value'
     value: string 
   }[] | () => Promise
+  // 3.25.0新增，设置过滤面板根节点属性
+  attrs: { [props: string]: string }
 }
       `
     },
@@ -4182,22 +4191,25 @@ interface IFilterConfig {
       depTypes: ['IColumnConfig', 'IRow'],
       code: `
 interface ICellClassNameArgs {
-  seq: number
   // 当前行在树表中的层级
   level: number
   // 当前行数据
   row: IRow
   // 表格数据
   data: IRow[]
-  // 表格行索引
+  // 所有行中(包含虚拟滚动等隐藏列)下标
   rowIndex: number
+  // 已渲染行中的下标
   $rowIndex: number
   // 表格列配置
   column: IColumnConfig
-  // 所有列中(包含隐藏列)索引
+  // 所有列中(包含虚拟滚动等隐藏列)下标
   columnIndex: number
-  // 已渲染列中的索引
+  // 已渲染列中的下标
   $columnIndex: number
+  // 单元格所在行的序号
+  seq: number
+  $seq: string // 已弃用
 }`
     }
   ]
