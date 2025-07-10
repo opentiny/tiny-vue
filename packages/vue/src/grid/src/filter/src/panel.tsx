@@ -678,6 +678,8 @@ export default defineComponent({
       this.confirmFilter('empty')
     },
     filterExtends(item) {
+      this.condition.input = ''
+      this.condition.empty = null
       this.condition.value = item.value || item.label
       this.condition.method = item.method
       this.confirmFilter('extend')
