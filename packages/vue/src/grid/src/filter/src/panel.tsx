@@ -231,7 +231,7 @@ export default defineComponent({
       filterActive: 'filter__active'
     }
 
-    const wrapperAttrs = isVue2 ? { attrs: filterStore.rootAttrs } : filterStore.rootAttrs
+    const wrapperAttrs = isVue2 ? { attrs: filterStore.attrs } : filterStore.attrs
 
     return (
       <div
