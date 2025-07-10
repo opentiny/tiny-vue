@@ -23,7 +23,7 @@ import { iconWebPlus, iconSuccessful, iconShutdown, iconEllipsis } from '@openti
 
 const options = ref([
   {
-    label: '远程登陆',
+    label: '远程登录',
     icon: iconWebPlus()
   },
   {
@@ -45,7 +45,7 @@ const options = ref([
 
 const options1 = ref([
   {
-    label: '远程登陆'
+    label: '远程登录'
   },
   {
     label: '开机'
