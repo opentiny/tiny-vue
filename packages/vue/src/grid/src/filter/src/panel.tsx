@@ -30,7 +30,7 @@ import { PopperJS } from '@opentiny/utils'
 import { PopupManager } from '@opentiny/utils'
 import { extend } from '@opentiny/utils'
 import { t } from '@opentiny/vue-locale'
-import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'
+import { hooks, h, $prefix, defineComponent, isVue2 } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
 import { debounce } from '@opentiny/utils'
 
@@ -231,8 +231,11 @@ export default defineComponent({
       filterActive: 'filter__active'
     }
 
+    const wrapperAttrs = isVue2 ? { attrs: filterStore.rootAttrs } : filterStore.rootAttrs
+
     return (
       <div
+        {...wrapperAttrs}
         class={[
           'tiny-grid__wrapper',
           'tiny-grid__filter-wrapper',
