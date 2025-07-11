@@ -719,6 +719,13 @@ export default defineComponent({
       hooks.nextTick(() => (el.scrollTop = calcScrollTop($table, wrapperScrollTop)))
     })
 
+    const resetStickyWrapperScrollPos = () => {
+      const el = stickyWrapper.value
+      if (!el) return
+      el.scrollLeft = calcScrollLeft($table, wrapperScrollLeft.value)
+      el.scrollTop = calcScrollTop($table, wrapperScrollTop.value)
+    }
+
     useCellEvent({ table, $table })
     const { normalRows, footerRows } = useCellSpan(vm, props)
 
@@ -812,7 +819,8 @@ export default defineComponent({
       tbody,
       ySpace,
       normalRows,
-      footerRows
+      footerRows,
+      resetStickyWrapperScrollPos
     }
   },
   render() {

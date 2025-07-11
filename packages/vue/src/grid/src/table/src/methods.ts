@@ -2097,7 +2097,7 @@ const Methods = {
         fastdom.mutate(() => {
           this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
-
+          requestAnimationFrame(() => this.$refs.tableBody?.resetStickyWrapperScrollPos())
           scrollXLoad && this.triggerScrollXEvent()
           scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
         })

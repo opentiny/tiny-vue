@@ -8,7 +8,12 @@ export const useCellSpan = (bodyVm, bodyProps) => {
   const footerRows = hooks.shallowRef({})
 
   hooks.watch(
-    [() => $table.visibleColumn, () => bodyProps.tableData, () => $table.isColumnWidthAssigned],
+    [
+      () => $table.visibleColumn,
+      () => bodyProps.tableData,
+      () => $table.isColumnWidthAssigned,
+      () => $table.columnStore.resizeList
+    ],
     ([visibleColumn, tableData, isColumnWidthAssigned]) => {
       if (!Array.isArray(tableData) || !isColumnWidthAssigned) {
         return
@@ -74,7 +79,12 @@ export const useCellSpan = (bodyVm, bodyProps) => {
   )
 
   hooks.watch(
-    [() => $table.visibleColumn, () => bodyProps.footerData, () => $table.isColumnWidthAssigned],
+    [
+      () => $table.visibleColumn,
+      () => bodyProps.footerData,
+      () => $table.isColumnWidthAssigned,
+      () => $table.columnStore.resizeList
+    ],
     ([visibleColumn, footerData, isColumnWidthAssigned]) => {
       if (!Array.isArray(footerData) || !isColumnWidthAssigned) {
         return
@@ -209,14 +219,15 @@ const adjustColspan = (table, pos, isLeft) => {
       const oldColspan = attrs.colspan
       let k, posCol
 
-      if (oldColspan > 1 && (k = j + oldColspan - 1) > pos) {
+      const shouldAdjustColspan = oldColspan > 1 && (k = j + oldColspan - 1) > pos
+      if (shouldAdjustColspan) {
         attrs.colspan = pos - j + 1
 
         if (isLeft) {
           attrs._stickyClass = 'fixed-left-last__column'
         }
-
-        if ((posCol = row[pos + 1])) {
+        posCol = row[pos + 1]
+        if (posCol) {
           posCol.attrs.colspan = k - pos
 
           if (posCol.attrs.rowspan < 1) {
