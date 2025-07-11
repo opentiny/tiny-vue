@@ -324,12 +324,14 @@ export const Cell = {
   renderTreeIcon(h, params) {
     let { $table, level, row } = params
     let { treeConfig, treeExpandeds } = $table
-    let { children, indent, renderIcon, trigger } = treeConfig
+    let { children, indent, renderIcon, trigger, bubbling } = treeConfig
     let isActive = ~treeExpandeds.indexOf(row)
     let rowChildren = row[children]
     let listeners = {
       click: (event) => {
-        event.stopPropagation()
+        if (!bubbling) {
+          event.stopPropagation()
+        }
         $table.triggerTreeExpandEvent(event, params)
       }
     }

@@ -2,10 +2,10 @@
   <tiny-grid height="300" :data="tableData" :show-overflow="true">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称" width="500"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数" width="500"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期" width="500"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市右冻结" width="200" fixed="right"></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称" width="600"></tiny-grid-column>
+    <tiny-grid-column field="employees" title="员工数" width="600"></tiny-grid-column>
+    <tiny-grid-column field="createdDate" title="创建日期" width="600"></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市右冻结" width="600" fixed="right"></tiny-grid-column>
   </tiny-grid>
 </template>
 
