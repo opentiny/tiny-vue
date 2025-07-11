@@ -1004,7 +1004,9 @@ const Methods = {
     let scrollXLoad = scrollX && scrollX.gt && scrollX.gt < tableFullColumn.length
     let tableColumn = visibleColumn
 
+    // 对所有列的列宽进行分类：百分比/px
     Object.assign(columnStore, { leftList, centerList, rightList })
+    this.analyColumnWidth()
 
     showGroupFixedError({ isColspan, isGroup, leftStartIndex, rightEndIndex, visibleColumn })
 
