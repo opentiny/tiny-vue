@@ -3502,6 +3502,8 @@ interface ITreeConfig {
   expandRowKeys?: string[]
   // 对于同一级的多个子节点，是否只能同时展开一个子节点
   accordion?: boolean
+  // 3.25.0版本新新增，当trigger为 'default' 时，点击按钮事件是否冒泡，默认为false
+  bubbling?: boolean
 }
       `
     },
