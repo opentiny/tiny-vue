@@ -221,7 +221,11 @@ export const useCellEvent = ({ table, $table }) => {
           satisfy(({ treeNode }) => treeNode, treeConfig.trigger))
       ) {
         const { bubbling, trigger } = treeConfig
-        if (bubbling && trigger === 'default' && e.target.classList.contains('tiny-grid-tree__node-btn')) {
+        const isTreeNodeStopPropagation =
+          !bubbling &&
+          (!trigger || trigger === 'default') &&
+          $table.getEventTargetNode(e, hoverCell.value, 'tiny-grid-tree__node-btn').flag
+        if (!isTreeNodeStopPropagation) {
           // 捕获阶段单元格进入编辑态，常显态的点击事件会被vue移除从而不会执行
           fastdom.mutate(() => {
             $table.triggerCellClickEvent(e, params)
