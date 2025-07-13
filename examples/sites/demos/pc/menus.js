@@ -104,7 +104,8 @@ export const cmpMenus = [
         'meta': {
           'stable': '3.19.0'
         }
-      }
+      },
+      { 'nameCn': '间距', 'name': 'Space', 'key': 'space' }
     ]
   },
   {
