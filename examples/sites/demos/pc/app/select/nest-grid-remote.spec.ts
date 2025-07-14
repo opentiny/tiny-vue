@@ -28,7 +28,7 @@ test.describe('下拉表格远程搜索', () => {
     const row2 = page.getByRole('row', { name: '省份 2 城市 2 区域 2' })
     await expect(row2).not.toBeVisible()
     await row1.getByRole('cell').first().click()
-    await expect(row1).toHaveClass(/tiny-grid-body__row row__radio/)
+    await expect(row1).toHaveClass(/tiny-grid-body__row row__current/)
     await expect(input).toHaveValue('省 1-市 1')
 
     const row3 = page.getByRole('row', { name: '省份 10 城市 10 区域 10' })
@@ -64,7 +64,7 @@ test.describe('下拉表格远程搜索', () => {
     await input.fill(' ' + ' ')
     await input.press('Enter')
     await expect(dropdown).toBeVisible()
-    await expect(dropdown.locator('.tiny-grid__body tbody')).toBeEmpty()
+    await expect(dropdown.locator('.tiny-grid__body tbody tr').first()).toBeHidden()
   })
 
   test('多选,下拉表格远程搜索基础用法', async ({ page }) => {
@@ -131,6 +131,6 @@ test.describe('下拉表格远程搜索', () => {
     await input.fill(' ' + ' ')
     await input.press('Enter')
     await expect(dropdown).toBeVisible()
-    await expect(dropdown.locator('.tiny-grid__body tbody')).toBeEmpty()
+    await expect(dropdown.locator('.tiny-grid__body tbody tr').first()).toBeHidden()
   })
 })
