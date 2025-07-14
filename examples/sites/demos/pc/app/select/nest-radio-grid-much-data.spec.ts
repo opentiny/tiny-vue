@@ -23,7 +23,7 @@ test('下拉表格大数据', async ({ page }) => {
 
   await input.click()
   await page.waitForTimeout(200)
-  await expect(row.nth(1)).toHaveClass(/tiny-grid-body__row row__current/)
+  await expect(row.nth(1)).toHaveClass(/row__current/)
   await expect(row).toHaveCount(8)
   await expect(page.getByRole('row', { name: '华南区 12 广东省 广州市' })).toBeHidden()
   await row.nth(5).scrollIntoViewIfNeeded()

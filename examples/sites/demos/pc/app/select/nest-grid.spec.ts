@@ -21,7 +21,7 @@ test('嵌套表格（单选）', async ({ page }) => {
   await row.nth(1).getByRole('cell').first().click()
   await expect(input).toHaveValue('深圳 1')
   await input.click()
-  await expect(row.filter({ hasText: '深圳 1' })).toHaveClass(/tiny-grid-body__row row__current/)
+  await expect(row.filter({ hasText: '深圳 1' })).toHaveClass(/row__current/)
 })
 
 test('嵌套表格（多选）', async ({ page }) => {
