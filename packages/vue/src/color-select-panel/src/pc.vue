@@ -4,7 +4,7 @@
     <alpha-select v-if="alpha" :color="state.color" @ready="onAlphaReady" />
     <div class="tiny-color-select-panel__tools">
       <div class="tiny-color-select-panel__tools__format-select" v-if="state.formats.length">
-        <tiny-select v-model="state.currentFormat">
+        <tiny-select v-model="state.currentFormat" size="small">
           <tiny-option
             v-for="formatValue in state.formats"
             :key="formatValue"
