@@ -21,5 +21,5 @@ test('PopEditor 自定义查询条件', async ({ page }) => {
   await company.fill('')
   await city.fill('福州')
   await searchBtn.press('Enter')
-  await expect(dialogBox.locator('.tiny-grid-body__row')).toHaveCount(1)
+  await expect(dialogBox.locator('.tiny-grid-body__row:visible')).toHaveCount(1)
 })

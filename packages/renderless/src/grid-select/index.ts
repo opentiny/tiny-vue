@@ -24,11 +24,11 @@ export const filter =
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.gridRef.$refs.tinyTable
-      const fullData = table.afterFullData
+      const fullData = table.getTableData().fullData
 
       vm.$refs.gridRef.scrollTo(null, 0)
 
-      table.afterFullData = filterMethod(value, fullData) || []
+      table.loadTableData(filterMethod(value, fullData) || [])
 
       vm.$refs.gridRef.handleTableData(!value)
 
