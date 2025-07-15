@@ -9,11 +9,13 @@ test('虚拟滚动', async ({ page }) => {
   })
   await page.waitForTimeout(1000)
   await page.locator('.tiny-grid__body-wrapper').hover()
+  await page.locator('.tiny-grid__body-wrapper').click()
   // 先滚动 1000px
   await page.mouse.wheel(0, 1000)
   await expect(page.getByRole('cell', { name: '24' })).toBeVisible()
   await page.waitForTimeout(500)
   await page.locator('.tiny-grid__body-wrapper').hover()
+  await page.locator('.tiny-grid__body-wrapper').click()
   // 先滚动 4000px
   await page.mouse.wheel(0, 5000)
   await expect(page.getByRole('cell', { name: '124' })).toBeVisible()
