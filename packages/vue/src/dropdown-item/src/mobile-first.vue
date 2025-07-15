@@ -5,7 +5,7 @@
     @mouseleave="mouseLeave"
     :class="
       m(
-        'mb-1 rounded-sm list-none leading-10 sm:leading-5.5 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
+        '!mb-1 rounded-sm list-none leading-10 sm:leading-5.5 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
         disabled
           ? 'cursor-not-allowed text-color-text-disabled [&_svg]:fill-color-text-disabled'
           : 'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-2 focus:bg-color-bg-4 cursor-pointer',
@@ -23,7 +23,7 @@
       data-tag="tiny-dropdown-level"
       ref="level"
       :class="[
-        'text-xs',
+        'text-sm',
         level === '2'
           ? 'mx-6 overflow-hidden text-ellipsis whitespace-nowrap'
           : 'mx-4 sm:mx-3 overflow-hidden text-ellipsis whitespace-nowrap'
