@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-calendar-view" :style="{ 'height': typeof height === 'number' ? height + 'px' : height }">
+  <div class="tiny-calendar-view" :style="{ 'height': height ? `${parseInt(height)}px` : 'auto'}">
     <div class="tiny-calendar-view__header">
       <div>
         <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>

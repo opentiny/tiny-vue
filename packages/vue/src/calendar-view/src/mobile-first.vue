@@ -1,5 +1,9 @@
 <template>
-  <div data-tag="tiny-calendar-view" class="w-full h-auto">
+  <div
+    data-tag="tiny-calendar-view"
+    class="w-full h-auto overflow-auto"
+    :style="{ 'height': height ? `${parseInt(height)}px` : 'auto' }"
+  >
     <tiny-tooltip ref="tooltip" popper-class="absolute max-w-[theme(spacing.80)]" effect="light" placement="right">
       <template #content>
         <div class="p-2 max-h-[80vh] overflow-auto">
@@ -171,7 +175,9 @@
             >
               <span
                 class="relative mr-2.5 text-base"
-                :class="[dateIsToday(date.value) || computedSelectDay(date)  ? 'text-color-brand' : 'text-color-text-primary']"
+                :class="[
+                  dateIsToday(date.value) || computedSelectDay(date) ? 'text-color-brand' : 'text-color-text-primary'
+                ]"
               >
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
@@ -182,7 +188,11 @@
               </span>
               <span
                 class="text-sm"
-                :class="[dateIsToday(date.value) || computedSelectDay(date) ? 'text-color-brand' : 'text-color-text-placeholder']"
+                :class="[
+                  dateIsToday(date.value) || computedSelectDay(date)
+                    ? 'text-color-brand'
+                    : 'text-color-text-placeholder'
+                ]"
                 >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
               >
             </slot>
