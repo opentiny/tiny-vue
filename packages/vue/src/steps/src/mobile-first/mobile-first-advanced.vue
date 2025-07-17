@@ -38,7 +38,7 @@
               { 'bg-color-brand hover:bg-color-brand': index === active },
               index === active && gcls(`steps-block-${node[statusField]}-active`),
               {
-                'min-w-[theme(spacing.28)] max-w-[theme(spacing.56)]': !flex
+                'min-w-[theme(spacing.28)]': !flex
               },
               size === 'large' ? 'h-12' : 'h-8'
             )
