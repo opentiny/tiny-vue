@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-design-smb",
-  "version": "3.24.0",
+  "version": "3.25.0",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {

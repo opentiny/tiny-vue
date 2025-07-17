@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "version": "3.24.5",
+  "version": "3.25.0",
   "license": "MIT",
   "scripts": {
     "start": "vite",
