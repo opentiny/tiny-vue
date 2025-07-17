@@ -4,52 +4,52 @@
 
 .@{color-picker-prefix-cls} {
   @apply relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
+  @apply w-5;
+  @apply h-5;
+  @apply rounded;
+  @apply box-content;
+  @apply cursor-pointer;
   border: 1px solid #dfdfdf;
-  box-sizing: content-box;
   padding: 3px;
-  cursor: pointer;
 
   &:hover {
     @apply border-color-border-focus;
   }
 
   &--large {
-    width: 32px;
-    height: 32px;
+    @apply w-8;
+    @apply h-8;
   }
 
   &--small {
-    width: 20px;
-    height: 20px;
+    @apply w-5;
+    @apply h-5;
   }
 
   &--medium {
-    width: 24px;
-    height: 24px;
+    @apply w-6;
+    @apply h-6;
   }
 
   &--mini {
-    width: 16px;
-    height: 16px;
+    @apply w-4;
+    @apply h-4;
   }
 
   &__inner {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+    @apply flex;
+    @apply w-full;
+    @apply h-full;
+    @apply items-center;
+    @apply justify-center;
 
     svg {
-      display: none;
+      @apply hidden;
     }
   }
 
   &--large &__inner {
-    border-radius: 4px;
+    @apply rounded;
   }
 
   &--small &__inner {
@@ -61,6 +61,6 @@
   }
 
   &--mini &__inner {
-    border-radius: 2px;
+    @apply rounded-sm;
   }
 }
