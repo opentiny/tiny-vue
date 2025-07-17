@@ -4,11 +4,19 @@
     <div class="tiny-color-select-panel__inner__hue-select" ref="bar">
       <div
         ref="thumb"
+        class="tiny-color-select-panel__inner__hue-select-thumb"
         :style="{
-          top: state.thumbTop + 'px',
-          transform: 'translateY(-50%)'
+          left: state.thumbLeft + 'px',
+          transform: 'translateX(-50%)'
         }"
-      ></div>
+      >
+        <div
+          class="tiny-color-select-panel__inner__hue-select-thumb-heart"
+          :style="{
+            background: color.value
+          }"
+        ></div>
+      </div>
     </div>
   </div>
 </template>

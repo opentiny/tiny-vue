@@ -288,6 +288,7 @@ export class Color {
       .map((val, idx) => {
         return idx > 2 ? Number.parseFloat(val) : Number.parseInt(val, 10)
       })
+
     if (parts.length === 4) {
       this._alpha = Number.parseFloat(String(parts[3])) * 100
     } else {

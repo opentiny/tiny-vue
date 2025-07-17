@@ -1,0 +1,66 @@
+@import '../custom.less';
+
+@color-picker-prefix-cls: ~'@{css-prefix}color-picker';
+
+.@{color-picker-prefix-cls} {
+  @apply relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #dfdfdf;
+  box-sizing: content-box;
+  padding: 3px;
+  cursor: pointer;
+
+  &:hover {
+    @apply border-color-border-focus;
+  }
+
+  &--large {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--small {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--medium {
+    width: 24px;
+    height: 24px;
+  }
+
+  &--mini {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: none;
+    }
+  }
+
+  &--large &__inner {
+    border-radius: 4px;
+  }
+
+  &--small &__inner {
+    border-radius: 3px;
+  }
+
+  &--medium &__inner {
+    border-radius: 3px;
+  }
+
+  &--mini &__inner {
+    border-radius: 2px;
+  }
+}

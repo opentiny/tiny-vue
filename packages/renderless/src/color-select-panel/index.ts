@@ -125,6 +125,29 @@ export const initApi = (
     onClickOutside
   }
 }
+export const parseCustomRGBA = (str, type) => {
+  // 提取括号内的内容
+  let content = ''
+  if (type === 'hsl') {
+    content = str.match(/hsla?\(([^)]+)\)/)[1]
+  } else if (type === 'rgb') {
+    content = str.match(/rgba?\(([^)]+)\)/)[1]
+  } else if (type === 'hsv') {
+    content = str.match(/hsva?\(([^)]+)\)/)[1]
+  }
+  // 2. 按逗号分割并移除空格
+  const parts = content.split(',').map((item) => item.trim())
+
+  // 3. 转换数值部分（第一项和最后一项）
+  const result = parts.map((item, index) => {
+    if (index === 0 || index === parts.length - 1) {
+      return parseFloat(item) // 转为数字
+    }
+    return item // 保持带%的字符串
+  })
+
+  return result
+}
 
 export const initState = (props: IColorSelectPanelProps, { reactive, ref, computed }: ISharedRenderlessParamHooks) => {
   const stack = ref<string[]>([...(props.history ?? [])])
@@ -141,6 +164,12 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
     })
   ) as Color
   const input = ref<string>('')
+  const hexInput1 = ref<number | string | any>()
+  const hexInput2 = ref<number | string | any>()
+  const hexInput4 = ref<number | string | any>()
+  const hexInput5 = ref<number | string | any>()
+  const hexInput6 = ref<number | string | any>()
+  const hexInput7 = ref<number | string | any>()
   const showPicker = ref(props.visible)
   const showPanel = ref(false)
   const panelColor = computed(() => {
@@ -154,6 +183,12 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
   const state = reactive({
     color,
     input,
+    hexInput1,
+    hexInput2,
+    hexInput4,
+    hexInput5,
+    hexInput6,
+    hexInput7,
     showPicker,
     showPanel,
     panelColor,
@@ -213,6 +248,11 @@ export const initWatch = (
     () => state.currentColor,
     () => {
       state.input = state.currentColor
+      const result = parseCustomRGBA(state.currentColor, state.currentFormat) || [0, 0, 0, 0]
+      state.hexInput4 = Math.ceil(result[0])
+      state.hexInput5 = result[1]
+      state.hexInput6 = result[2]
+      state.hexInput7 = result[3] * 100 + '%'
       triggerColorUpdate(state.input, emit)
     },
     { flush: 'sync' }
