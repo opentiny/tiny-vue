@@ -1,5 +1,6 @@
 import Contributors from '@/data/contributors'
 import ContributorMap from '@/data/contributorMap'
+import { ZH_CN_LANG, EN_US_LANG, ES_LA_LANG, PT_BR_LANG, LANG_PATH_MAP } from '../const'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -103,4 +104,16 @@ const getCmpContributors = (cmpId) => {
   return contributorInfo
 }
 
-export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile, getCmpContributors }
+const getLocaleMode = () => {
+  const zhPath = LANG_PATH_MAP[ZH_CN_LANG]
+  const enPath = LANG_PATH_MAP[EN_US_LANG]
+  const esPath = LANG_PATH_MAP[ES_LA_LANG]
+  const ptPath = LANG_PATH_MAP[PT_BR_LANG]
+  const isZhCn = location.href.includes(`/${zhPath}`) || location.pathname.includes(`/${zhPath}/`)
+  const isEnUs = location.href.includes(`/${enPath}`) || location.pathname.includes(`/${enPath}/`)
+  const isEsLa = location.href.includes(`/${esPath}`) || location.pathname.includes(`/${esPath}/`)
+  const isPtBr = location.href.includes(`/${ptPath}`) || location.pathname.includes(`/${ptPath}/`)
+  return isEnUs ? EN_US_LANG : isZhCn ? ZH_CN_LANG : isEsLa ? ES_LA_LANG : isPtBr ? PT_BR_LANG : ZH_CN_LANG
+}
+
+export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile, getCmpContributors, getLocaleMode }

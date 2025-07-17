@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import zhCN from '../lang/zh-CN'
 import enUS from '../lang/en'
+import esLA from '../lang/es-LA'
+import ptBR from '../lang/pt-BR'
 import format from '../format'
 import { extend as _extend } from '@opentiny/utils'
 
@@ -62,7 +64,7 @@ export const initI18n = ({ VueI18n, messages = {}, i18n = {} as any, merge }) =>
     merge = ({ lang, i18n, messages }) => extend.call(null, true, lang, i18n.messages, messages)
   }
 
-  const lang = { zhCN, enUS }
+  const lang = { zhCN, enUS, esLA, ptBR }
 
   if (typeof VueI18n === 'function') {
     const vueI18n = new VueI18n({
@@ -86,7 +88,7 @@ export const isVue2 = true
 
 export const isVue3 = false
 
-export { zhCN, enUS }
+export { zhCN, enUS, esLA, ptBR }
 
 export default {
   isVue2,
@@ -97,5 +99,7 @@ export default {
   t,
   use,
   enUS,
-  zhCN
+  zhCN,
+  esLA,
+  ptBR
 }

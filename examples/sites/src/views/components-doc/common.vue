@@ -121,7 +121,7 @@ const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
 const route = useRoute()
 const state = reactive({
-  langKey: getWord('zh-CN', 'en-US'),
+  langKey: getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR'),
   cmpId: '',
   observer: null,
   currJson: { column: 1, demos: [], apis: [], types: {} },
@@ -282,7 +282,7 @@ const demoMounted = () => {
 }
 
 const loadPage = () => {
-  const lang = getWord('cn', 'en')
+  const lang = getWord('cn', 'en', 'es', 'pt')
   state.cmpId = router.currentRoute.value.params.cmpId
 
   state.chartCode = getWebdocPath(state.cmpId) === 'chart'
