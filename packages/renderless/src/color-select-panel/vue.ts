@@ -62,10 +62,10 @@ export const renderless = (
     if (props.modelValue) {
       state.input = state.currentColor
       const result = parseCustomRGBA(state.currentColor, state.currentFormat) || [0, 0, 0, 0]
-      state.hexInput4 = Math.ceil(result[0])
+      state.hexInput4 = Math.ceil(Number(result[0]))
       state.hexInput5 = result[1]
       state.hexInput6 = result[2]
-      state.hexInput7 = result[3] * 100 + '%'
+      state.hexInput7 = `${(Number(result[3]) || 1) * 100}%`
     }
   })
   return api
