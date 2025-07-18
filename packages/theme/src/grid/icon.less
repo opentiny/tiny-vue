@@ -13,6 +13,7 @@
 @import './mixins/common.less';
 @import './mixins/icon.less';
 @import '../custom.less';
+@import '../motion/index.less';
 
 @grid-icon-prefix-cls: ~'@{css-prefix}grid-icon';
 
@@ -286,7 +287,7 @@
     }
 
     &.roll {
-      animation: rollCircle 1s infinite linear;
+      animation: rotate-spin 1s infinite linear;
     }
   }
 
@@ -385,12 +386,12 @@
   }
 }
 
-@keyframes rollCircle {
-  0% {
-    transform: rotate(0deg);
-  }
+// @keyframes rollCircle {
+//   0% {
+//     transform: rotate(0deg);
+//   }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }

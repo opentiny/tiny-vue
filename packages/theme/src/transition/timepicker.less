@@ -11,35 +11,36 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 .@{css-prefix}transition-timepicker {
-  animation: fadein 0.3s;
+  animation: fade-in-timepicker 0.3s;
 }
 
 .@{css-prefix}transition-timepicker-up {
-  animation: fadeup 0.3s;
+  animation: fade-up-timepicker 0.3s;
 }
 
-@keyframes fadein {
-  0% {
-    transform: translateY(-200px);
-    z-index: -999;
-  }
+// @keyframes fadein {
+//   0% {
+//     transform: translateY(-200px);
+//     z-index: -999;
+//   }
 
-  100% {
-    transform: translateY(0);
-    z-index: 0;
-  }
-}
+//   100% {
+//     transform: translateY(0);
+//     z-index: 0;
+//   }
+// }
 
-@keyframes fadeup {
-  0% {
-    transform: translateY(200px);
-    z-index: -999;
-  }
+// @keyframes fadeup {
+//   0% {
+//     transform: translateY(200px);
+//     z-index: -999;
+//   }
 
-  100% {
-    transform: translateY(0);
-    z-index: 0;
-  }
-}
+//   100% {
+//     transform: translateY(0);
+//     z-index: 0;
+//   }
+// }

@@ -1,0 +1,139 @@
+/* ===========================
+   抽屉/对话框 滑动方向动画
+   来源: dialog-box, drawer
+=========================== */
+@keyframes slide-left-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-left-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-right-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-top-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-top-out {
+  0% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-bottom-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateY(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-bottom-out {
+  0% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateY(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+}

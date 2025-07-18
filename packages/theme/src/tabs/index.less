@@ -12,6 +12,7 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @tabs-prefix-cls: ~'@{css-prefix}tabs';
 @tab-pane-prefix-cls: ~'@{css-prefix}tab-pane';
@@ -1325,7 +1326,7 @@
 
   .slideInRight-enter {
     -webkit-animation: slideInRight-enter 0.3s;
-    animation: slideInRight-enter 0.3s;
+    animation: tab-slide-right-in 0.3s;
   }
 
   .slideInRight-leave {
@@ -1333,12 +1334,12 @@
     left: 0;
     right: 0;
     -webkit-animation: slideInRight-leave 0.3s;
-    animation: slideInRight-leave 0.3s;
+    animation: tab-slide-right-out 0.3s;
   }
 
   .slideInLeft-enter {
     -webkit-animation: slideInLeft-enter 0.3s;
-    animation: slideInLeft-enter 0.3s;
+    animation: tab-slide-left-in 0.3s;
   }
 
   .slideInLeft-leave {
@@ -1346,150 +1347,150 @@
     left: 0;
     right: 0;
     -webkit-animation: slideInLeft-leave 0.3s;
-    animation: slideInLeft-leave 0.3s;
+    animation: tab-slide-left-out 0.3s;
   }
 
-  @-webkit-keyframes slideInRight-enter {
-    0% {
-      opacity: 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-    }
+//   @-webkit-keyframes slideInRight-enter {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(100%);
+//       transform: translateX(100%);
+//     }
 
-    to {
-      opacity: 1;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-  }
+//     to {
+//       opacity: 1;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//     }
+//   }
 
-  @keyframes slideInRight-enter {
-    0% {
-      opacity: 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-    }
+//   @keyframes slideInRight-enter {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(100%);
+//       transform: translateX(100%);
+//     }
 
-    to {
-      opacity: 1;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-  }
+//     to {
+//       opacity: 1;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//     }
+//   }
 
-  @-webkit-keyframes slideInRight-leave {
-    0% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-      opacity: 1;
-    }
+//   @-webkit-keyframes slideInRight-leave {
+//     0% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//       opacity: 1;
+//     }
 
-    100% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
+//     100% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(100%);
+//       transform: translateX(100%);
+//       opacity: 0;
+//     }
+//   }
 
-  @keyframes slideInRight-leave {
-    0% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-      opacity: 1;
-    }
+//   @keyframes slideInRight-leave {
+//     0% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//       opacity: 1;
+//     }
 
-    100% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
+//     100% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(100%);
+//       transform: translateX(100%);
+//       opacity: 0;
+//     }
+//   }
 
-  @-webkit-keyframes slideInLeft-enter {
-    0% {
-      opacity: 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-    }
+//   @-webkit-keyframes slideInLeft-enter {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(-100%);
+//       transform: translateX(-100%);
+//     }
 
-    to {
-      opacity: 1;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-  }
+//     to {
+//       opacity: 1;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//     }
+//   }
 
-  @keyframes slideInLeft-enter {
-    0% {
-      opacity: 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-    }
+//   @keyframes slideInLeft-enter {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(-100%);
+//       transform: translateX(-100%);
+//     }
 
-    to {
-      opacity: 1;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-  }
+//     to {
+//       opacity: 1;
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//     }
+//   }
 
-  @-webkit-keyframes slideInLeft-leave {
-    0% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-      opacity: 1;
-    }
+//   @-webkit-keyframes slideInLeft-leave {
+//     0% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//       opacity: 1;
+//     }
 
-    100% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-  }
+//     100% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(-100%);
+//       transform: translateX(-100%);
+//       opacity: 0;
+//     }
+//   }
 
-  @keyframes slideInLeft-leave {
-    0% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-      opacity: 1;
-    }
+//   @keyframes slideInLeft-leave {
+//     0% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(0);
+//       transform: translateX(0);
+//       opacity: 1;
+//     }
 
-    100% {
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-  }
-}
+//     100% {
+//       -webkit-transform-origin: 0 0;
+//       transform-origin: 0 0;
+//       -webkit-transform: translateX(-100%);
+//       transform: translateX(-100%);
+//       opacity: 0;
+//     }
+//   }
+// }

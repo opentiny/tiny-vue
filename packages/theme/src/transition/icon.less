@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 // input右边icon显示隐藏动画
 .@{css-prefix}transition-icon-out-in-enter-active {
@@ -22,37 +23,37 @@
 }
 
 .@{css-prefix}transition-icon-scale-in-enter-active {
-  animation: scale-in 0.3s;
+  animation: bounce-in 0.3s;
 }
 
 .@{css-prefix}transition-icon-scale-in-leave-active {
-  animation: scale-in 0.3s reverse;
+  animation: bounce-in 0.3s reverse;
 }
 
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
+// @keyframes bounce-in {
+//   0% {
+//     transform: scale(0);
+//   }
 
-  50% {
-    transform: scale(1.2);
-  }
+//   50% {
+//     transform: scale(1.2);
+//   }
 
-  100% {
-    transform: scale(1);
-  }
-}
+//   100% {
+//     transform: scale(1);
+//   }
+// }
 
-@keyframes scale-in {
-  0% {
-    transform: scale(0);
-  }
+// @keyframes scale-in {
+//   0% {
+//     transform: scale(0);
+//   }
 
-  50% {
-    transform: scale(1.2);
-  }
+//   50% {
+//     transform: scale(1.2);
+//   }
 
-  100% {
-    transform: scale(1);
-  }
-}
+//   100% {
+//     transform: scale(1);
+//   }
+// }

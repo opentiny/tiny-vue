@@ -1,0 +1,116 @@
+/* ===========================
+   箭头移动动画
+   来源: fall-menu carousel-arrow
+=========================== */
+@keyframes arrow-left-pulse {
+  0% {
+    left: -17px;
+  }
+
+  50% {
+    left: -13px;
+  }
+
+  100% {
+    left: -17px;
+  }
+}
+
+@keyframes arrow-right-pulse {
+  0% {
+    right: -17px;
+  }
+
+  50% {
+    right: -13px;
+  }
+
+  100% {
+    right: -17px;
+  }
+}
+
+@keyframes arrow-right-carousel {
+  0% {
+    opacity: 0;
+    right: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+}
+
+@keyframes arrow-left-carousel {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+}
+/* =相关补充= */
+
+/* =补充结束= */
+
+@keyframes arrow-left-in {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+}
+
+@keyframes arrow-right-in {
+  0% {
+    opacity: 0;
+    right: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+}
+
+/* =相关补充= */
+
+@keyframes arrow-left-out {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+
+  100% {
+    opacity: 0;
+    left: 0;
+  }
+}
+
+@keyframes arrow-right-out {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+
+  100% {
+    opacity: 0;
+    right: 0;
+  }
+}
+
+/* =补充结束= */

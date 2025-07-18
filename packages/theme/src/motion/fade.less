@@ -1,0 +1,159 @@
+/* ===========================
+   淡入淡出动画 (透明度)
+   来源: dialog-box, popup, drawer
+=========================== */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   淡入淡出动画 + 向上位移
+   来源: dialog-box, image
+=========================== */
+@keyframes fade-in-up {
+  0% {
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-up {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}
+
+/* =相关补充= */
+
+@keyframes fade-in-down {
+  0% {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-down {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    transform: translate3d(-20px, 0, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-20px, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    transform: translate3d(20px, 0, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-right {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(20px, 0, 0);
+    opacity: 0;
+  }
+}
+
+/* =补充结束= */
+
+/* ===========================
+   timepicker 面板进入动画
+   来源: transition-timepicker
+=========================== */
+@keyframes fade-in-timepicker {
+  0% {
+    transform: translateY(-200px);
+    z-index: -999;
+  }
+
+  100% {
+    transform: translateY(0);
+    z-index: 0;
+  }
+}
+
+@keyframes fade-up-timepicker {
+  0% {
+    transform: translateY(200px);
+    z-index: -999;
+  }
+
+  100% {
+    transform: translateY(0);
+    z-index: 0;
+  }
+}
