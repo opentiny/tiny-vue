@@ -105,15 +105,33 @@ const getCmpContributors = (cmpId) => {
 }
 
 const getLocaleMode = () => {
-  const zhPath = LANG_PATH_MAP[ZH_CN_LANG]
-  const enPath = LANG_PATH_MAP[EN_US_LANG]
-  const esPath = LANG_PATH_MAP[ES_LA_LANG]
-  const ptPath = LANG_PATH_MAP[PT_BR_LANG]
-  const isZhCn = location.href.includes(`/${zhPath}`) || location.pathname.includes(`/${zhPath}/`)
-  const isEnUs = location.href.includes(`/${enPath}`) || location.pathname.includes(`/${enPath}/`)
-  const isEsLa = location.href.includes(`/${esPath}`) || location.pathname.includes(`/${esPath}/`)
-  const isPtBr = location.href.includes(`/${ptPath}`) || location.pathname.includes(`/${ptPath}/`)
-  return isEnUs ? EN_US_LANG : isZhCn ? ZH_CN_LANG : isEsLa ? ES_LA_LANG : isPtBr ? PT_BR_LANG : ZH_CN_LANG
+  const { href, pathname } = location
+  const DEFAULT_LANG = ZH_CN_LANG // 默认语言
+
+  const langCheckMap = new Map([
+    [
+      EN_US_LANG,
+      () => href.includes(`/${LANG_PATH_MAP[EN_US_LANG]}`) || pathname.includes(`/${LANG_PATH_MAP[EN_US_LANG]}/`)
+    ],
+    [
+      ZH_CN_LANG,
+      () => href.includes(`/${LANG_PATH_MAP[ZH_CN_LANG]}`) || pathname.includes(`/${LANG_PATH_MAP[ZH_CN_LANG]}/`)
+    ],
+    [
+      ES_LA_LANG,
+      () => href.includes(`/${LANG_PATH_MAP[ES_LA_LANG]}`) || pathname.includes(`/${LANG_PATH_MAP[ES_LA_LANG]}/`)
+    ],
+    [
+      PT_BR_LANG,
+      () => href.includes(`/${LANG_PATH_MAP[PT_BR_LANG]}`) || pathname.includes(`/${LANG_PATH_MAP[PT_BR_LANG]}/`)
+    ]
+  ])
+
+  for (const [lang, checkFn] of langCheckMap) {
+    if (checkFn()) return lang
+  }
+
+  return DEFAULT_LANG // 无匹配时返回默认
 }
 
 export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile, getCmpContributors, getLocaleMode }
