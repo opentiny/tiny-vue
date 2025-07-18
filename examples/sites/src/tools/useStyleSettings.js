@@ -2,30 +2,30 @@
 const getStyleSettings = (i18nByKey) => {
   const styleSettings = [
     /** 官网英文适配后放开 */
-    {
-      // 语言选择
-      name: 'localeMode',
-      defaultValue: 'zhCN',
-      title: i18nByKey('localeType'),
-      options: [
-        {
-          value: 'zhCN',
-          text: i18nByKey('zh-cn')
-        },
-        {
-          value: 'enUS',
-          text: i18nByKey('en-us')
-        },
-        {
-          value: 'esLA',
-          text: i18nByKey('es-la')
-        },
-        {
-          value: 'ptBR',
-          text: i18nByKey('pt-br')
-        }
-      ]
-    },
+    // {
+    //   // 语言选择
+    //   name: 'localeMode',
+    //   defaultValue: 'zhCN',
+    //   title: i18nByKey('localeType'),
+    //   options: [
+    //     {
+    //       value: 'zhCN',
+    //       text: i18nByKey('zh-cn')
+    //     },
+    //     {
+    //       value: 'enUS',
+    //       text: i18nByKey('en-us')
+    //     },
+    //     {
+    //       value: 'esLA',
+    //       text: i18nByKey('es-la')
+    //     },
+    //     {
+    //       value: 'ptBR',
+    //       text: i18nByKey('pt-br')
+    //     }
+    //   ]
+    // },
     {
       // 示例代码风格
       name: 'apiMode',
