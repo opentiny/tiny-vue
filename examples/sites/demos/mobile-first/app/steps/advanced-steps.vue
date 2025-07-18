@@ -1,5 +1,12 @@
 <template>
-  <tiny-steps ref="steps" advanced :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <tiny-steps
+    ref="steps"
+    advanced
+    :item-style="{ disabled: { background: 'yellow', maxWidth: '360px' } }"
+    :data="data"
+    :active="advancedActive"
+    @click="advancedClick"
+  ></tiny-steps>
 </template>
 
 <script>
