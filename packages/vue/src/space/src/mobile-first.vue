@@ -1,36 +1,49 @@
 <template>
-  <div class="tiny-space" :class="[direction, wrap && 'wrap']" :style="spaceStyle">
+  <div :style="spaceStyle">
     <slot />
   </div>
 </template>
 
-<script setup lang="ts">
-import { useSpace } from './index'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { renderless } from '@opentiny/vue-renderless/space/vue'
 
-const props = defineProps({
-  size: [String, Number, Array],
-  align: String,
-  justify: String,
-  direction: String,
-  wrap: Boolean,
-  order: Array
+export default defineComponent({
+  name: 'TinySpace',
+  props: {
+    size: {
+      type: [String, Number, Array],
+      default: 'small'
+    },
+    align: {
+      type: String,
+      default: 'stretch'
+    },
+    justify: {
+      type: String,
+      default: 'start'
+    },
+    direction: {
+      type: String,
+      default: 'column'
+    },
+    wrap: {
+      type: Boolean,
+      default: false
+    },
+    order: {
+      type: Array,
+      default: () => []
+    }
+  },
+  setup(props, context) {
+    const api = renderless(props, context)
+
+    const spaceStyle = api.getSpaceStyle
+
+    return {
+      spaceStyle
+    }
+  }
 })
-
-const { spaceStyle } = useSpace(props)
 </script>
-
-<style scoped>
-.tiny-space {
-  display: flex;
-  gap: var(--space-gap, 8px);
-}
-.row {
-  flex-direction: row;
-}
-.column {
-  flex-direction: column;
-}
-.wrap {
-  flex-wrap: wrap;
-}
-</style>

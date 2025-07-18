@@ -1,5 +1,6 @@
 <template>
-  <tiny-space :size="16">
+  <tiny-slider v-model="value" :min="0" :max="50" :step="2" style="width: 300px; margin-bottom: 20px" />
+  <tiny-space :size="value">
     <tiny-button type="primary">按钮1</tiny-button>
     <tiny-button type="success">按钮2</tiny-button>
     <tiny-button type="danger">按钮3</tiny-button>
@@ -7,12 +8,18 @@
 </template>
 
 <script>
-import { TinyButton, TinySpace } from '@opentiny/vue'
+import { TinyButton, TinySpace, TinySlider } from '@opentiny/vue'
 
 export default {
   components: {
     TinySpace,
-    TinyButton
+    TinyButton,
+    TinySlider
+  },
+  data() {
+    return {
+      value: 10
+    }
   }
 }
 </script>

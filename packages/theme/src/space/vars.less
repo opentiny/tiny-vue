@@ -1,0 +1,61 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+// 用于 Space 组件的全局变量注入
+.inject-Space-vars() {
+    //------------------------------------------ Space 通用变量 ------------------------------------------
+  
+    // 间距方向（行或列）的默认 gap 间距
+    --tv-Space-default-gap: var(--tv-space-md, 8px);
+  
+    // 水平布局（row）默认对齐方式
+    --tv-Space-justify-default: flex-start;
+  
+    // 垂直布局（column）默认对齐方式
+    --tv-Space-align-default: stretch;
+  
+    // Wrap 场景下是否换行
+    --tv-Space-wrap: wrap;
+  
+    //------------------------------------------ 间距尺寸场景（可覆盖） ------------------------------------------
+  
+    // 间距尺寸：小（sm）
+    --tv-Space-gap-sm: var(--tv-space-sm, 4px);
+    // 间距尺寸：中（md）
+    --tv-Space-gap-md: var(--tv-space-md, 8px);
+    // 间距尺寸：大（lg）
+    --tv-Space-gap-lg: var(--tv-space-lg, 12px);
+    // 间距尺寸：特大（xl）
+    --tv-Space-gap-xl: var(--tv-space-xl, 16px);
+  
+    //------------------------------------------ 方向场景 ------------------------------------------
+  
+    // 横向布局
+    --tv-Space-direction-row: row;
+    // 纵向布局
+    --tv-Space-direction-column: column;
+  
+    //------------------------------------------ 对齐场景 ------------------------------------------
+  
+    // 水平对齐（主轴）
+    --tv-Space-justify-start: flex-start;
+    --tv-Space-justify-center: center;
+    --tv-Space-justify-end: flex-end;
+    --tv-Space-justify-between: space-between;
+    --tv-Space-justify-around: space-around;
+  
+    // 垂直对齐（交叉轴）
+    --tv-Space-align-start: flex-start;
+    --tv-Space-align-center: center;
+    --tv-Space-align-end: flex-end;
+    --tv-Space-align-stretch: stretch;
+  }
