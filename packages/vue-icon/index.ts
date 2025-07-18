@@ -174,7 +174,9 @@ import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
 import IconFolder from './src/folder'
 import IconFolderClosed from './src/folder-closed'
+import IconFolderClosedSolid from './src/folder-closed-solid'
 import IconFolderOpened from './src/folder-opened'
+import IconFolderOpenedSolid from './src/folder-opened-solid'
 import IconFontColor from './src/font-color'
 import IconFontFamily from './src/font-family'
 import IconFontSize from './src/font-size'
@@ -1039,8 +1041,12 @@ export {
   IconFolder as iconFolder,
   IconFolderClosed,
   IconFolderClosed as iconFolderClosed,
+  IconFolderClosedSolid,
+  IconFolderClosedSolid as iconFolderClosedSolid,
   IconFolderOpened,
   IconFolderOpened as iconFolderOpened,
+  IconFolderOpenedSolid,
+  IconFolderOpenedSolid as iconFolderOpenedSolid,
   IconFontColor,
   IconFontColor as iconFontColor,
   IconFontFamily,
@@ -1851,7 +1857,9 @@ export default {
   IconFlag,
   IconFolder,
   IconFolderClosed,
+  IconFolderClosedSolid,
   IconFolderOpened,
+  IconFolderOpenedSolid,
   IconFontColor,
   IconFontFamily,
   IconFontSize,
