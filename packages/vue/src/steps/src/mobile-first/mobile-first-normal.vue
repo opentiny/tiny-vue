@@ -45,7 +45,7 @@
     <div
       data-tag="tiny-steps-block"
       v-for="(node, index) in data"
-      :style="itemStyle[node.status || 'none']"
+      :style="itemStyle[node.status]"
       v-show="isVisibleHandler(index) === 'visible'"
       :key="index"
       :class="

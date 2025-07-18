@@ -257,7 +257,7 @@ const Methods = {
   // 处理表格数据（过滤，排序，虚拟滚动需要渲染数据的条数）
   handleTableData(force) {
     // 在表格列就绪后，才处理数据过滤排序、保留选中、表头选中、多选禁用、默认状态
-    if (force && this.tableFullColumn?.length > 0) {
+    if (force && (this.tableFullColumn?.length > 0 || this.viewType !== GlobalConfig.viewConfig.DEFAULT)) {
       // 对表格全量数据进行过滤排序得到后全量数据，计算分组表数据，生成图形数据
       this.updateAfterFullData()
       // selectConfig.reserve保留多选状态，使用后全量数据计算表头多选状态
