@@ -31,7 +31,7 @@
           <tiny-input class="tiny-color-select-panel__tools-hex4" v-model="state.hexInput4" />
           <tiny-input class="tiny-color-select-panel__tools-hex5" v-model="state.hexInput5" />
           <tiny-input class="tiny-color-select-panel__tools-hex6" v-model="state.hexInput6" />
-          <tiny-input class="tiny-color-select-panel__tools-hex6" v-model="state.hexInput7" />
+          <tiny-input class="tiny-color-select-panel__tools-hex7" v-model="state.hexInput7" />
         </div>
       </div>
     </div>
