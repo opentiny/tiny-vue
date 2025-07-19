@@ -10,6 +10,6 @@
  *
  */
 import { svg } from '@opentiny/vue-common'
-import BadgeNewEn from '@opentiny/vue-theme/svgs/badge-new-en.svg'
+import BadgeHotEn from '@opentiny/vue-theme/svgs/badge-hot-en.svg'
 
-export default () => svg({ name: 'IconBadgeNewEn', component: BadgeNewEn })()
+export default () => svg({ name: 'IconBadgeHotEn', component: BadgeHotEn })()
