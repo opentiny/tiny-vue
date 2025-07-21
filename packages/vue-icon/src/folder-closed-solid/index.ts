@@ -10,6 +10,6 @@
  *
  */
 import { svg } from '@opentiny/vue-common'
-import BadgeHotEn from '@opentiny/vue-theme/svgs/badge-hot-en.svg'
+import FolderClosedSolid from '@opentiny/vue-theme/svgs/folder-closed-solid.svg'
 
-export default () => svg({ name: 'IconBadgeHotEn', component: BadgeHotEn })()
+export default () => svg({ name: 'IconFolderClosedSolid', component: FolderClosedSolid })()
