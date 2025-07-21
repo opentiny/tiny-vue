@@ -15,7 +15,7 @@ const onConfirm = (hex) => {
   TinyNotify({
     type: 'success',
     position: 'top-right',
-    title: '用户点击了选择',
+    title: '用户点击了确定',
     message: hex
   })
 }
