@@ -14,8 +14,8 @@ export default {
             'en-US': 'Set the spacing size. Can be a string, number, or an array like [horizontal, vertical]'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
-          mfDemo: 'basic-usage'
+          pcDemo: 'space-size',
+          mfDemo: 'space-size'
         },
         {
           name: 'align',
@@ -26,8 +26,8 @@ export default {
             'en-US': 'Set the alignment on the cross axis, corresponding to the CSS align-items property'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'align',
-          mfDemo: 'align'
+          pcDemo: 'space-align',
+          mfDemo: 'space-align'
         },
         {
           name: 'justify',
@@ -38,8 +38,8 @@ export default {
             'en-US': 'Set the alignment on the main axis, corresponding to the CSS justify-content property'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'justify',
-          mfDemo: 'justify'
+          pcDemo: 'space-justify',
+          mfDemo: 'space-justify'
         },
         {
           name: 'direction',
@@ -50,8 +50,8 @@ export default {
             'en-US': 'Set the layout direction, options are row or column'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'direction',
-          mfDemo: 'direction'
+          pcDemo: 'space-direction',
+          mfDemo: 'space-direction'
         },
         {
           name: 'wrap',
@@ -62,8 +62,8 @@ export default {
             'en-US': 'Whether to wrap to the next line automatically, default is false'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'wrap',
-          mfDemo: 'wrap'
+          pcDemo: 'space-wrap',
+          mfDemo: 'space-wrap'
         },
         {
           name: 'order',
@@ -75,8 +75,8 @@ export default {
               'Used to specify the display order of child elements; the array values correspond to the index of slot children'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'order',
-          mfDemo: 'order'
+          pcDemo: 'space-order',
+          mfDemo: 'space-order'
         }
       ],
       events: [],
@@ -90,8 +90,8 @@ export default {
             'en-US': 'Used to insert child elements to be laid out'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
-          mfDemo: 'basic-usage'
+          pcDemo: 'space-size',
+          mfDemo: 'space-size'
         }
       ]
     }

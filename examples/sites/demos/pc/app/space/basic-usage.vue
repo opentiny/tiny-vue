@@ -6,7 +6,6 @@
 
     <!-- 滑动条 -->
     <tiny-slider v-model="value" :min="0" :max="50" :step="2" style="width: 300px; margin-bottom: 20px" />
-    
     <!-- 使用 dynamic direction 值 -->
     <tiny-space :size="value" :direction="direction">
       <tiny-button type="primary">按钮1</tiny-button>
