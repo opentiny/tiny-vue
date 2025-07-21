@@ -45,7 +45,9 @@ export const renderless = (props, hooks, { vm, emit, nextTick }) => {
     swipeable: computed(() => api.computedSwipeable()),
     maxTabSwipeHeight: 0,
     itemOrderKey: '',
-    tabsId: ++uniqueId
+    tabsId: ++uniqueId,
+    tabPanelCache: {},
+    includeNames: computed(() => state.items.map((item) => item.name))
   })
 
   const api = {}

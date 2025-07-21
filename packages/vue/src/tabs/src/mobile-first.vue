@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue'
-import { props, setup, defineComponent, h, isVue2, KeepAlive } from '@opentiny/vue-common'
+import { props, setup, defineComponent, h, isVue2 } from '@opentiny/vue-common'
 import Carousel from '@opentiny/vue-carousel'
 import TabBar from './mobile-first/tab-bar.vue'
 import TabPanel from './mobile-first/tab-panel.vue'
@@ -40,31 +40,41 @@ export default defineComponent({
     let tabWrapper
 
     if (optimized) {
-      let defaultSlot, vnodes
-
-      if (state.currentItem) {
-        defaultSlot = isVue2 ? state.currentItem.vm.$scopedSlots.default : state.currentItem.slotDefault
+      if (!state.tabPanelCache) {
+        state.tabPanelCache = {}
       }
+      const panelCache = state.tabPanelCache
+      const currentName = state.currentItem?.name
 
-      vnodes = []
-
-      state.items.forEach((item) => {
-        if (item !== state.currentItem) {
-          return
+      const includeNames = state.includeNames
+      Object.keys(panelCache).forEach((name) => {
+        if (!includeNames.includes(name)) {
+          delete panelCache[name]
         }
-
-        vnodes.push(
-          isVue2
-            ? h(TabPanel, {
-                props: { item },
-                key: state.currentItem.name,
-                scopedSlots: { default: () => runFnuc(defaultSlot) }
-              })
-            : h(TabPanel, { props: { item }, key: state.currentItem.name }, () => runFnuc(defaultSlot))
-        )
       })
 
-      tabPanel.push(isVue2 ? <KeepAlive>{vnodes}</KeepAlive> : h(KeepAlive, {}, () => vnodes))
+      state.items.forEach((item) => {
+        const cacheKey = item.name
+        const itemDefSlot = isVue2 ? item.vm.$scopedSlots.default : item.slotDefault
+        const props = {
+          attrs: { 'data-tag': 'tiny-tab-panel' },
+          class: 'w-full',
+          props: { item },
+          key: item.name
+        }
+
+        if (!panelCache[cacheKey] && item === state.currentItem) {
+          panelCache[cacheKey] = isVue2
+            ? h(TabPanel, { scopedSlots: { default: () => runFnuc(itemDefSlot) }, ...props })
+            : h(TabPanel, props, () => runFnuc(itemDefSlot))
+        } else if (panelCache[cacheKey]) {
+          if (panelCache[cacheKey].elm) {
+            panelCache[cacheKey].elm.style.display = item.name === currentName ? 'block' : 'none'
+          }
+        }
+
+        tabPanel.push(panelCache[cacheKey])
+      })
     } else {
       state.items.forEach((item, i) => {
         if (item.lazy && item !== state.currentItem && !item.rendered) {
