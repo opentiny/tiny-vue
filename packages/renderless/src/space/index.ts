@@ -1,5 +1,3 @@
-import { computed } from 'vue'
-
 const sizeMap = {
   small: '8px',
   medium: '16px',
@@ -13,8 +11,9 @@ const parseGap = (gap: string | number): string => {
   return '0px'
 }
 
-export const getGapStyle = ({ props }) => {
-  return computed(() => {
+export const getGapStyle =
+  ({ props }) =>
+  () => {
     const gapProp = props.size
 
     if (Array.isArray(gapProp)) {
@@ -23,39 +22,42 @@ export const getGapStyle = ({ props }) => {
         gap: `${parseGap(vertical)} ${parseGap(horizontal)}`
       }
     }
-
     return {
       gap: parseGap(gapProp)
     }
-  })
-}
+  }
 
-export const getAlignStyle = ({ props }) =>
-  computed(() => ({
+export const getAlignStyle =
+  ({ props }) =>
+  () => ({
     alignItems: props.align || 'flex-start'
-  }))
+  })
 
-export const getJustifyStyle = ({ props }) =>
-  computed(() => ({
+export const getJustifyStyle =
+  ({ props }) =>
+  () => ({
     justifyContent: props.justify || 'flex-start'
-  }))
+  })
 
-export const getWrapStyle = ({ props }) =>
-  computed(() => ({
+export const getWrapStyle =
+  ({ props }) =>
+  () => ({
     flexWrap: props.wrap ? 'wrap' : 'nowrap'
-  }))
+  })
 
-export const getDirectionStyle = ({ props }) =>
-  computed(() => ({
+export const getDirectionStyle =
+  ({ props }) =>
+  () => ({
     flexDirection: props.direction || 'row'
-  }))
+  })
 
-export const getSpaceStyle = ({ api }) =>
-  computed(() => ({
+export const getSpaceStyle =
+  ({ api }) =>
+  () => ({
     display: 'flex',
     ...api.getDirectionStyle.value,
     ...api.getGapStyle.value,
     ...api.getAlignStyle.value,
     ...api.getJustifyStyle.value,
     ...api.getWrapStyle.value
-  }))
+  })

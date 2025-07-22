@@ -1,10 +1,10 @@
 /** 支持的 size 类型定义：预设值或 px 数字，或水平/垂直间距数组 */
-export type SpaceSize = 'small' | 'medium' | 'large' | string | number | [string | number, string | number]
+export type SpaceSize = 'small' | 'medium' | 'large' | string | number | Array<string | number>
 
-/** 交叉轴对齐方式，对应 CSS align-items */
+/** 交叉轴对齐方式 */
 export type SpaceAlign = 'stretch' | 'start' | 'center' | 'end' | 'baseline'
 
-/** 主轴对齐方式，对应 CSS justify-content */
+/** 主轴对齐方式 */
 export type SpaceJustify = 'start' | 'center' | 'end' | 'space-around' | 'space-between' | 'space-evenly'
 
 /** 布局方向：横向还是纵向 */
@@ -18,4 +18,13 @@ export interface SpaceProps {
   direction?: SpaceDirection
   wrap?: boolean
   order?: any[]
+}
+
+export interface SpaceApi {
+  getGapStyle: () => Record<string, string>
+  getAlignStyle: () => Record<string, string>
+  getJustifyStyle: () => Record<string, string>
+  getWrapStyle: () => Record<string, string>
+  getDirectionStyle: () => Record<string, string>
+  getSpaceStyle: () => Record<string, string>
 }

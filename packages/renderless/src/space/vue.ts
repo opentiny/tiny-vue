@@ -1,4 +1,4 @@
-import { getGapStyle, getAlignStyle, getJustifyStyle, getWrapStyle, getSpaceStyle, getDirectionStyle } from './index'
+import { getGapStyle, getAlignStyle, getJustifyStyle, getWrapStyle, getDirectionStyle, getSpaceStyle } from './index'
 
 export const api = [
   'getGapStyle',
@@ -8,16 +8,17 @@ export const api = [
   'getDirectionStyle',
   'getSpaceStyle'
 ]
-export const renderless = (props) => {
-  const api = {
-    getGapStyle: getGapStyle({ props }),
-    getAlignStyle: getAlignStyle({ props }),
-    getJustifyStyle: getJustifyStyle({ props }),
-    getWrapStyle: getWrapStyle({ props }),
-    getDirectionStyle: getDirectionStyle({ props })
+
+export const renderless = (props, { computed }) => {
+  const api: any = {
+    getGapStyle: computed(getGapStyle({ props })),
+    getAlignStyle: computed(getAlignStyle({ props })),
+    getJustifyStyle: computed(getJustifyStyle({ props })),
+    getWrapStyle: computed(getWrapStyle({ props })),
+    getDirectionStyle: computed(getDirectionStyle({ props }))
   }
 
-  api.getSpaceStyle = getSpaceStyle({ api })
+  api.getSpaceStyle = computed(getSpaceStyle({ api }))
 
   return api
 }

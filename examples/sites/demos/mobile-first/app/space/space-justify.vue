@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 150px; display: flex; flex-direction: column; justify-content: space-around">
+  <div style="display: flex; flex-direction: column; justify-content: space-around">
     <tiny-space justify="start" style="border: 1px dashed #ccc">
       <tiny-button>Start</tiny-button>
       <tiny-button style="height: 60px">高按钮</tiny-button>

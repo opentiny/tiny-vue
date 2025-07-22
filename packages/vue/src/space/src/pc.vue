@@ -1,49 +1,32 @@
 <template>
-  <div :style="spaceStyle">
+  <div class="tiny-space" :style="api.getSpaceStyle()">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from '@opentiny/vue-common'
 import { renderless } from '@opentiny/vue-renderless/space/vue'
-import type { SpaceProps } from '@opentiny/vue-renderless/types/space.type'
+import type { SpaceApi } from '@opentiny/vue-renderless/types/space.type'
 
 export default defineComponent({
   name: 'TinySpace',
   props: {
-    size: {
-      type: [String, Number, Array],
-      default: 'small'
-    },
-    align: {
-      type: String,
-      default: 'stretch'
-    },
-    justify: {
-      type: String,
-      default: 'start'
-    },
-    direction: {
-      type: String,
-      default: 'row'
-    },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
+    size: [String, Number, Array],
+    align: String,
+    justify: String,
+    direction: String,
+    wrap: Boolean,
     order: {
       type: Array,
       default: () => []
     }
   },
-  setup(props: SpaceProps, context) {
-    const api = renderless(props, context)
-
-    const spaceStyle = api.getSpaceStyle
+  setup(props) {
+    const api: SpaceApi = renderless(props)
 
     return {
-      spaceStyle
+      api
     }
   }
 })

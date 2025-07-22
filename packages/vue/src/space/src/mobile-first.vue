@@ -36,8 +36,8 @@ export default defineComponent({
       default: () => []
     }
   },
-  setup(props, context) {
-    const api = renderless(props, context)
+  setup(props) {
+    const api = renderless(props)
 
     const spaceStyle = api.getSpaceStyle
 

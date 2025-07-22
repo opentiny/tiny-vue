@@ -1,35 +1,67 @@
-import { computed } from 'vue'
-import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
+/**
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-// Props 定义
-export const spaceProps = {
-  ...$props,
-  size: [String, Number, Array],
-  align: String,
-  justify: String,
-  direction: String,
-  wrap: Boolean,
-  order: {
-    type: Array,
-    default: () => []
-  }
+// 定义常量
+const $constants = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+  ALIGN_START: 'flex-start',
+  ALIGN_CENTER: 'center',
+  ALIGN_END: 'flex-end',
+  JUSTIFY_START: 'flex-start',
+  JUSTIFY_CENTER: 'center',
+  JUSTIFY_END: 'flex-end',
+  JUSTIFY_SPACE_BETWEEN: 'space-between',
+  JUSTIFY_SPACE_AROUND: 'space-around',
+  ROW: 'row',
+  COLUMN: 'column'
 }
 
-// 封装 style logic（也可放 renderless 中）
-export function useSpace(props: any) {
-  const spaceStyle = computed(() => {
-    const gap = typeof props.size === 'number' ? `${props.size}px` : typeof props.size === 'string' ? props.size : '8px'
-    return { gap }
-  })
-
-  return { spaceStyle }
-}
-
-// 最终导出组件
 export default defineComponent({
   name: $prefix + 'Space',
-  props: spaceProps,
+  props: {
+    ...$props,
+    _constants: {
+      type: Object,
+      default: () => $constants
+    },
+    size: {
+      type: [String, Number, Array],
+      default: $constants.SMALL
+    },
+    align: {
+      type: String,
+      default: $constants.ALIGN_START
+    },
+    justify: {
+      type: String,
+      default: $constants.JUSTIFY_START
+    },
+    direction: {
+      type: String,
+      default: $constants.ROW
+    },
+    wrap: {
+      type: Boolean,
+      default: false
+    },
+    border: {
+      type: Boolean,
+      default: true
+    }
+  },
   setup(props, context) {
     return $setup({ props, context, template })
   }
