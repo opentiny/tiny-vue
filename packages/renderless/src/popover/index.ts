@@ -11,7 +11,7 @@
  */
 import type { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
 import { on, off, addClass, removeClass } from '@opentiny/utils'
-import { guid } from '@opentiny/utils'
+import { useId } from '@opentiny/vue-hooks'
 import { KEY_CODE } from '@opentiny/utils'
 
 const processTrigger = ({
@@ -255,7 +255,8 @@ export const destroyed =
     off(referenceElm, 'keydown', api.handleKeydown)
   }
 
-export const computedTooltipId = (constants: { IDPREFIX: string }) => () => `${constants.IDPREFIX}-${guid('', 4)}`
+export const computedTooltipId = (constants: { IDPREFIX: string }) => () =>
+  `${constants.IDPREFIX}-${useId({ length: 4 })}`
 
 export const wrapMounted =
   ({ api, props, vm, state }: Pick<IPopoverRenderlessParams, 'state' | 'api' | 'props' | 'vm'>) =>

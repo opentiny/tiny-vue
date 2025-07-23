@@ -13,7 +13,7 @@
 import { debounce } from '@opentiny/utils'
 import { userPopper } from '@opentiny/vue-hooks'
 import type { Ref } from 'vue'
-import { guid } from '@opentiny/utils'
+import { useId } from '@opentiny/vue-hooks'
 import {
   computedVisible,
   watchVisible,
@@ -68,7 +68,7 @@ const initState = ({
     loading: false,
     highlightedIndex: -1,
     suggestionDisabled: false,
-    id: $prefix + '-' + guid(),
+    id: $prefix + '-' + useId({}),
     suggestionVisible: computed(() => computedVisible(state)),
     // props.validateEvent优先级大于inject，都没有配置默认为true
     validateEvent: props.validateEvent ?? inject('validateEvent', true)
