@@ -1,12 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-</style>
-<rect id="矩形" class="st0"/>
-<path id="路径" class="st1" d="M3.16,5.36c0.22-0.22,0.55-0.24,0.79-0.07l0.09,0.07L8,9.32l3.96-3.96
-	c0.22-0.22,0.55-0.24,0.79-0.07l0.09,0.07c0.22,0.22,0.24,0.55,0.07,0.79l-0.07,0.09l-4.4,4.4c-0.22,0.22-0.55,0.24-0.79,0.07
-	l-0.09-0.07l-4.4-4.4C2.92,6,2.92,5.6,3.16,5.36z"/>
+<svg viewBox="0 8 24 24" xmlns="http://www.w3.org/2000/svg"
+	isSvg="true">
+	<path
+		d="M20.53 7.47a.75.75 0 0 0-.976-.073l-.084.073L12 14.939l-7.47-7.47a.75.75 0 0 0-.976-.072l-.084.073a.75.75 0 0 0-.073.976l.073.084 8 8a.75.75 0 0 0 .976.073l.084-.073 8-8a.75.75 0 0 0 0-1.06Z"
+		fill-rule="evenodd"></path>
 </svg>
