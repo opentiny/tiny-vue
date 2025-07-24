@@ -15,15 +15,21 @@ export default defineComponent({
     size: [String, Number, Array],
     align: String,
     justify: String,
-    direction: String,
-    wrap: Boolean,
+    direction: {
+      type: String,
+      default: 'row'
+    },
+    wrap: {
+      type: Boolean,
+      default: false
+    },
     order: {
       type: Array,
       default: () => []
     }
   },
   setup(props) {
-    const api: SpaceApi = renderless(props)
+    const api: SpaceApi = renderless({ props })
 
     return {
       api

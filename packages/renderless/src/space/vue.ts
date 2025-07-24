@@ -1,3 +1,4 @@
+import type { SpaceApi } from '@/types'
 import { getGapStyle, getAlignStyle, getJustifyStyle, getWrapStyle, getDirectionStyle, getSpaceStyle } from './index'
 
 export const api = [
@@ -9,18 +10,19 @@ export const api = [
   'getSpaceStyle'
 ]
 
-export const renderless = (props, { computed }) => {
-  const api: any = {
-    getGapStyle: computed(getGapStyle({ props })),
-    getAlignStyle: computed(getAlignStyle({ props })),
-    getJustifyStyle: computed(getJustifyStyle({ props })),
-    getWrapStyle: computed(getWrapStyle({ props })),
-    getDirectionStyle: computed(getDirectionStyle({ props }))
+export const renderless = ({ props }): SpaceApi => {
+  const partialApi = {
+    getGapStyle: () => getGapStyle(props),
+    getAlignStyle: () => getAlignStyle(props),
+    getJustifyStyle: () => getJustifyStyle(props),
+    getWrapStyle: () => getWrapStyle(props),
+    getDirectionStyle: () => getDirectionStyle(props)
   }
 
-  api.getSpaceStyle = computed(getSpaceStyle({ api }))
+  const api: SpaceApi = {
+    ...partialApi,
+    getSpaceStyle: () => getSpaceStyle(props)
+  }
 
   return api
 }
-
-export default renderless

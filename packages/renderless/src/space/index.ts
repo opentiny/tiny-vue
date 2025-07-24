@@ -1,3 +1,5 @@
+import type { SpaceProps } from '@/types'
+
 const sizeMap = {
   small: '8px',
   medium: '16px',
@@ -11,53 +13,42 @@ const parseGap = (gap: string | number): string => {
   return '0px'
 }
 
-export const getGapStyle =
-  ({ props }) =>
-  () => {
-    const gapProp = props.size
+export const getGapStyle = (props: SpaceProps) => {
+  const gapProp = props.size
 
-    if (Array.isArray(gapProp)) {
-      const [horizontal, vertical] = gapProp
-      return {
-        gap: `${parseGap(vertical)} ${parseGap(horizontal)}`
-      }
-    }
+  if (Array.isArray(gapProp)) {
+    const [horizontal, vertical] = gapProp
     return {
-      gap: parseGap(gapProp)
+      gap: `${parseGap(vertical)} ${parseGap(horizontal)}`
     }
   }
 
-export const getAlignStyle =
-  ({ props }) =>
-  () => ({
-    alignItems: props.align || 'flex-start'
-  })
+  return {
+    gap: parseGap(gapProp)
+  }
+}
 
-export const getJustifyStyle =
-  ({ props }) =>
-  () => ({
-    justifyContent: props.justify || 'flex-start'
-  })
+export const getAlignStyle = (props: SpaceProps) => ({
+  alignItems: props.align || 'flex-start'
+})
 
-export const getWrapStyle =
-  ({ props }) =>
-  () => ({
-    flexWrap: props.wrap ? 'wrap' : 'nowrap'
-  })
+export const getJustifyStyle = (props: SpaceProps) => ({
+  justifyContent: props.justify || 'flex-start'
+})
 
-export const getDirectionStyle =
-  ({ props }) =>
-  () => ({
-    flexDirection: props.direction || 'row'
-  })
+export const getWrapStyle = (props: SpaceProps) => ({
+  flexWrap: props.wrap ? 'wrap' : 'nowrap'
+})
 
-export const getSpaceStyle =
-  ({ api }) =>
-  () => ({
-    display: 'flex',
-    ...api.getDirectionStyle.value,
-    ...api.getGapStyle.value,
-    ...api.getAlignStyle.value,
-    ...api.getJustifyStyle.value,
-    ...api.getWrapStyle.value
-  })
+export const getDirectionStyle = (props: SpaceProps) => ({
+  flexDirection: props.direction || 'row'
+})
+
+export const getSpaceStyle = (props: SpaceProps) => ({
+  display: 'flex',
+  ...getDirectionStyle(props),
+  ...getGapStyle(props),
+  ...getAlignStyle(props),
+  ...getJustifyStyle(props),
+  ...getWrapStyle(props)
+})
