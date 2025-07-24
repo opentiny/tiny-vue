@@ -23,10 +23,9 @@ import {
   change,
   blur,
   keyup,
-  keydown,
-  getHeightOfSize
+  keydown
 } from './index'
-import { KEY_CODE } from '../common'
+import { KEY_CODE } from '@opentiny/utils'
 import type {
   IIpAddressProps,
   IIpAddressState,
@@ -66,9 +65,7 @@ const initState = ({
 
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
-    heightStyle: computed(() => getHeightOfSize(props.size)),
-    lineHeightStyle: computed(() => getHeightOfSize(props.size, 'line-height')),
-    allHeightStyle: computed(() => `${state.heightStyle}${state.lineHeightStyle}`)
+    size: computed(() => props.size)
   })
 
   return state as IIpAddressState

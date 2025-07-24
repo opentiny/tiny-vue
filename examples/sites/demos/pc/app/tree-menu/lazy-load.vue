@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
 
       if (node.data.label === '表单组件') {
         hasChild = true
-      } else if (node.data.label === '组件') {
+      } else if (node.data.label === '数据组件') {
         hasChild = false
       } else {
         hasChild = Math.random() > 0.5

@@ -28,16 +28,16 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, ButtonGroup } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyButtonGroup: ButtonGroup
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyButtonGroup
   },
   data() {
     return {
@@ -47,12 +47,12 @@ export default {
         datepicker: ''
       },
 
-      messageType: '',
+      messageType: 'block',
 
       messageTypeList: [
-        { text: '默认', value: '' },
+        { text: '块级', value: 'block' },
         { text: '行内', value: 'inline' },
-        { text: '块级', value: 'block' }
+        { text: '绝对定位', value: 'absolute' }
       ],
       rules: {
         users: { required: true, message: '必填', trigger: 'blur' },
@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 400px;
 }
 
 .demo-form :deep(.tiny-date-container) {

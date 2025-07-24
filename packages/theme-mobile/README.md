@@ -1,2 +1,0 @@
-# @opentiny/vue-theme-mobile
-

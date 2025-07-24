@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Pager } from '@opentiny/vue'
+import { TinyPager } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager
   }
 }
 </script>

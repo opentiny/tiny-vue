@@ -6,19 +6,20 @@
       <tiny-radio-button label="simple"></tiny-radio-button>
       <tiny-radio-button label="complete"></tiny-radio-button>
       <tiny-radio-button label="fixed"></tiny-radio-button>
+      <tiny-radio-button label="simplest"></tiny-radio-button>
     </tiny-radio-group>
     <tiny-pager :mode="mode" :total="100"></tiny-pager>
   </div>
 </template>
 
 <script>
-import { Pager, RadioButton, RadioGroup } from '@opentiny/vue'
+import { TinyPager, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager: Pager,
-    TinyRadioButton: RadioButton,
-    TinyRadioGroup: RadioGroup
+    TinyPager,
+    TinyRadioButton,
+    TinyRadioGroup
   },
   data() {
     return {

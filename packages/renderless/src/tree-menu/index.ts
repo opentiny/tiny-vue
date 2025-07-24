@@ -10,6 +10,7 @@
  *
  */
 import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITreeMenuNewData } from '@/types'
+import { xss } from '@opentiny/utils'
 
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
@@ -24,6 +25,12 @@ export const initData =
 
       state.data = api.setMenuKey({ newData: [], menuData })
     }
+  }
+
+export const getTree =
+  ({ vm }) =>
+  () => {
+    return vm.$refs.tree
   }
 
 export const setMenuKey =
@@ -118,7 +125,11 @@ export const check = (emit) => (data, checkedStatus) => {
   emit('check', data, checkedStatus)
 }
 
-export const currentChange = (emit) => (data, node) => {
+export const currentChange = (emit) => (data, node, e) => {
+  if (data && data.url && e.target.nodeName !== 'A' && e.target.nodeName !== 'SPAN') {
+    window.open(xss.filterUrl(data.url), '_self').opener = null
+  }
+
   emit('current-change', data, node)
 }
 

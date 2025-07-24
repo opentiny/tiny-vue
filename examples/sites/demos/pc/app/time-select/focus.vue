@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { TimeSelect, Button } from '@opentiny/vue'
+import { TinyTimeSelect, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeSelect: TimeSelect,
-    TinyButton: Button
+    TinyTimeSelect,
+    TinyButton
   },
   data() {
     return {

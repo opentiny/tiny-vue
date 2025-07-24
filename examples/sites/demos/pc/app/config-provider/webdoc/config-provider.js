@@ -9,7 +9,8 @@ export default {
         'en-US': 'Basic Use'
       },
       desc: {
-        'zh-CN': '可通过<code>design</code>属性设置自定义不同设计规范的图标和逻辑。',
+        'zh-CN':
+          '可通过<code> design </code>属性设置自定义不同设计规范的图标和逻辑，例如：全局配置 Form 表单组件的必填星号是否默认显示、Button 组件的点击后的禁用时间和是否默认圆角。',
         'en-US':
           'Icons and logic for different design specifications can be customized through the <code>design</code> attribute configuration.'
       },

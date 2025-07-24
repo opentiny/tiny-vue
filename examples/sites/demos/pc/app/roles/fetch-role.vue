@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Roles, Modal } from '@opentiny/vue'
+import { TinyRoles, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRoles: Roles
+    TinyRoles
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
   methods: {
     handleFetchRole() {
       return new Promise((resolve, reject) => {
-        /* 此处自定义切换角色的请求逻辑，resolve 切换成功后重定向的url */
+        /* 此处自定义切换角色的请求逻辑，resolve 切换成功后重定向的 url */
         setTimeout(() => {
           resolve(window.location.href)
         }, 2000)
@@ -170,7 +170,7 @@ export default {
       /* 选中值发生变化时触发 */
       this.roleId = roleId
 
-      Modal.message(`当前选中的角色id是${roleId}`)
+      TinyModal.message(`当前选中的角色 id 是 ${roleId}`)
     }
   }
 }

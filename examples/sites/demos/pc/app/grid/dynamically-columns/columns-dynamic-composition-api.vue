@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 const fetchData = ref({ api: getData })
 const tableColumnList = ref([])
@@ -24,7 +24,7 @@ function getData() {
   const tableData = [
     {
       id: '1',
-      name: 'GFD科技有限公司',
+      name: 'GFD 科技有限公司',
       city: '福州',
       employees: 800,
       created_date: '2014-04-30 00:56:00',

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,8 +11,8 @@
  *
  */
 import type { ITabBarPcRenderlessParams, ITabBarStyle } from '@/types'
-import { POSITION } from '../common'
-import { capitalize } from '../common/string'
+import { POSITION } from '@opentiny/utils'
+import { capitalize } from '@opentiny/utils'
 
 export const computedBarStyle =
   (parent: ITabBarPcRenderlessParams['parent']) =>

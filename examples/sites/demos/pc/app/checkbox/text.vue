@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { Checkbox, Modal, Button } from '@opentiny/vue'
+import { TinyCheckbox, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckbox: Checkbox,
-    TinyButton: Button
+    TinyCheckbox,
+    TinyButton
   },
   data() {
     return {
@@ -20,8 +20,8 @@ export default {
   },
   methods: {
     getValue() {
-      Modal.message({
-        message: '当前状态对应的值为:' + this.checked,
+      TinyModal.message({
+        message: '当前状态对应的值为：' + this.checked,
         top: 200,
         status: 'info'
       })

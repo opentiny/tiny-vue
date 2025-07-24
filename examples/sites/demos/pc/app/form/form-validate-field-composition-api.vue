@@ -12,8 +12,8 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="validateField"> 校验 </tiny-button>
-        <tiny-button type="primary" @click="clearValidate"> 移除校验 </tiny-button>
-        <tiny-button type="primary" @click="resetField"> 重置日期 </tiny-button>
+        <tiny-button @click="clearValidate"> 移除校验 </tiny-button>
+        <tiny-button @click="resetField"> 重置日期 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -21,14 +21,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  Modal
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyModal } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 const dateRef = ref()
@@ -41,7 +34,7 @@ const createData = reactive({
 const rules = ref({
   users: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
   ],
   datepicker: { type: 'date', required: true },
   url: { type: 'url', required: true }
@@ -65,13 +58,13 @@ async function validateField() {
   if (errArray.length > 0) {
     // empty
   } else {
-    Modal.alert('日期和url通过校验')
+    TinyModal.alert('日期和 url 通过校验')
   }
 }
 </script>
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 450px;
 }
 </style>

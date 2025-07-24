@@ -5,6 +5,7 @@
       <tiny-radio v-model="viewType" label="card">卡片视图</tiny-radio>
       <tiny-radio v-model="viewType" label="list">列表视图</tiny-radio>
       <tiny-radio v-model="viewType" label="gantt">甘特视图</tiny-radio>
+      <tiny-radio v-model="viewType" label="custom">custom视图</tiny-radio>
     </div>
     <tiny-grid
       highlight-current-row
@@ -43,6 +44,7 @@
             :image="row.logo"
             :flex-grow="[0, 0]"
             :flex-basis="['50%', '50%']"
+            operate-flex-basis="80px"
             :options="listOptions"
             class="mb-3"
           >
@@ -67,14 +69,17 @@
         </div>
       </template>
       <template #gantt="{ rows }">
-        <div class="gantt-container">{{ rows.length }}</div>
+        <div class="gantt-container">gantt视图，表格行数{{ rows.length }}</div>
+      </template>
+      <template #custom="{ rows }">
+        <div class="custom-container">custom视图，表格行数{{ rows.length }}</div>
       </template>
     </tiny-grid>
   </div>
 </template>
 
 <script>
-import { Grid, GridColumn, Modal, Tag, Radio, ColumnListItem, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyModal, TinyTag, TinyRadio, TinyColumnListItem, TinyPager } from '@opentiny/vue'
 import {
   IconChevronRight,
   IconAreaChart,
@@ -86,19 +91,19 @@ import {
 
 export default {
   components: {
-    TinyTag: Tag,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyRadio: Radio,
-    TinyColumnListItem: ColumnListItem,
+    TinyTag,
+    TinyGrid,
+    TinyGridColumn,
+    TinyRadio,
+    TinyColumnListItem,
     IconChevronRight: IconChevronRight()
   },
   methods: {
     clickHandler(e, { row, buttonConfig }) {
-      Modal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
+      TinyModal.message(`点击按钮 - ${row.name} - ${buttonConfig.name}`)
     },
     onCardClick(row, e) {
-      Modal.message('onCardClick')
+      TinyModal.message('onCardClick')
     },
     getData({ page }) {
       let curPage = page.currentPage
@@ -135,13 +140,13 @@ export default {
         }
       },
       pagerConfig: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 5,
           pageSizes: [5, 10],
           total: 0,
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       fetchData: {
@@ -163,7 +168,7 @@ export default {
             {
               render: ({ h, row, field, value, config, color }) =>
                 h(
-                  Tag,
+                  TinyTag,
                   {
                     props: { size: 'mini', type: color, customClass: 'inline-block truncate max-w-[6.25rem] h-[18px]' }
                   },
@@ -172,11 +177,17 @@ export default {
             }
           ]
         ],
+
         tagColorFields: ['tagColor1', 'tagColor2', 'tagColor3']
       },
       operationConfig: {
         buttons: [
-          { name: '操作1', icon: IconAreaChart(), click: this.clickHandler, disabled: true },
+          {
+            name: '操作',
+            icon: IconAreaChart(),
+            click: this.clickHandler,
+            disabled: true
+          },
           { name: '操作2', icon: IconBarChart(), click: this.clickHandler, disabled: (row) => row.id === '1' },
           { name: '操作3', icon: IconDotChart(), click: this.clickHandler, hidden: true },
           { name: '操作4', icon: IconLineChart(), click: this.clickHandler, hidden: (row) => row.id === '2' },

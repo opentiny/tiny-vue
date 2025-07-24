@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>场景1：设置按钮类型</div>
+  <div class="demo-drop">
+    <div>场景 1：设置按钮类型</div>
     <br />
     <tiny-dropdown split-button>
       更多菜单
@@ -16,7 +16,7 @@
     </tiny-dropdown>
     <br />
     <br />
-    <div>场景2：设置按钮状态</div>
+    <div>场景 2：设置按钮状态</div>
     <br />
     <tiny-dropdown split-button type="success">
       更多菜单
@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>

@@ -1,9 +1,15 @@
 <template>
   <div class="demo-form">
     <div class="title">
-      <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
+      <div>validate 用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
+      <tiny-form-item label="等级" prop="radio">
+        <tiny-radio-group v-model="createData.radio" :options="options"></tiny-radio-group>
+      </tiny-form-item>
+      <tiny-form-item label="IP字段" prop="ip">
+        <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
+      </tiny-form-item>
       <tiny-form-item label="必填" prop="users" :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
@@ -13,24 +19,19 @@
       <tiny-form-item label="URL" prop="url">
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="等级" prop="radio">
-        <tiny-radio-group v-model="createData.radio" :options="options"></tiny-radio-group>
-      </tiny-form-item>
+
       <tiny-form-item label="邮件" prop="email">
         <tiny-input v-model="createData.email"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="Numeric字段" prop="num1">
+      <tiny-form-item label="数字" prop="num1">
         <tiny-numeric v-model="createData.num1"></tiny-numeric>
-      </tiny-form-item>
-      <tiny-form-item label="IP字段" prop="ip">
-        <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="validType === 'callback' ? handleSubmit() : handleSubmitPromise()">
           提交
         </tiny-button>
-        <tiny-button type="primary" @click="clearFormValid"> 移除校验 </tiny-button>
-        <tiny-button type="primary" @click="resetForm"> 重置表单 </tiny-button>
+        <tiny-button @click="clearFormValid"> 移除校验 </tiny-button>
+        <tiny-button @click="resetForm"> 重置表单 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -38,30 +39,30 @@
 
 <script>
 import {
-  Form,
-  FormItem,
-  Input,
-  DatePicker,
-  Button,
-  Modal,
-  RadioGroup,
-  Numeric,
-  IpAddress,
-  ButtonGroup
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyRadioGroup,
+  TinyNumeric,
+  TinyIpAddress,
+  TinyButtonGroup
 } from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyRadioGroup: RadioGroup,
-    TinyNumeric: Numeric,
-    TinyIpAddress: IpAddress,
-    TinyButtonGroup: ButtonGroup
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyRadioGroup,
+    TinyNumeric,
+    TinyIpAddress,
+    TinyButtonGroup
   },
   data() {
     return {
@@ -88,14 +89,14 @@ export default {
         radio: [{ required: true, message: '必填', trigger: 'change' }],
         users: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
         ],
         datepicker: { type: 'date' },
         url: { type: 'url' },
         email: { type: 'email' },
         ip: [
           {
-            validator: (rule, value, cb) => (value === '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))),
+            validator: (rule, value, cb) => (value === '1.1.1.1' ? cb() : cb(new Error('必填 1.1.1.1'))),
             trigger: 'change'
           }
         ],
@@ -107,9 +108,9 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('回调用法：提交成功')
+          TinyModal.alert('回调用法：提交成功')
         } else {
-          Modal.alert('回调用法：提交失败')
+          TinyModal.alert('回调用法：提交失败')
         }
       })
     },
@@ -117,10 +118,10 @@ export default {
       this.$refs.ruleFormRef
         .validate()
         .then(() => {
-          Modal.alert('promise用法:提交成功')
+          TinyModal.alert('promise 用法：提交成功')
         })
         .catch(() => {
-          Modal.alert('promise用法:提交失败')
+          TinyModal.alert('promise 用法：提交失败')
         })
     },
     clearFormValid() {
@@ -135,7 +136,7 @@ export default {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 450px;
 }
 .title {
   margin-bottom: 20px;

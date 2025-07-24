@@ -9,7 +9,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Amount as TinyAmount } from '@opentiny/vue'
+import { TinyAmount } from '@opentiny/vue'
 
 const value = ref('')
 

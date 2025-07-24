@@ -16,17 +16,22 @@
 @filter-panel-prefix-cls: ~'@{css-prefix}filter-panel';
 
 .@{filter-panel-prefix-cls} {
+  &__popover {
+    .inject-FilterPanel-vars();
+  }
+
   &__popover.tiny-popover.tiny-popper {
     min-width: 200px;
+    padding: var(--tv-FilterPanel-padding-y) var(--tv-FilterPanel-padding-x);
 
     &[x-placement^='bottom'] {
-      margin-top: 4px;
-      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
+      margin-top: var(--tv-FilterPanel-margin-top);
+      box-shadow: var(--tv-FilterPanel-bottom-box-shadow);
     }
 
     &[x-placement^='top'] {
       margin-bottom: 4px;
-      box-shadow: 4px 0 12px 0 rgba(0, 0, 0, 0.16);
+      box-shadow: var(--tv-FilterPanel-top-box-shadow);
     }
   }
 }

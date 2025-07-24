@@ -34,7 +34,7 @@ export const classes = {
   'pc-search-input-mini':
     'pl-3 text-xs h-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))] leading-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))] placeholder:text-xs',
   'pc-search-input-unbig':
-    'text-xs h-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))] leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]',
+    'text-sm h-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))] leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]',
   'pc-search-input-btn-transtion': 'table-cell relative align-middle right-0 w-8 text-center z-10',
   'pc-search-input-btn-transtion-big': 'h-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))] translate-x-4',
   'pc-search-input-btn-transtion-medium': 'h-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))] translate-x-4',

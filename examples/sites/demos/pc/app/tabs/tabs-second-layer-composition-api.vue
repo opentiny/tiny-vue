@@ -15,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('first')
 const tabs = ref([
@@ -90,7 +90,6 @@ const tabs = ref([
 
 <style scoped>
 .item {
-  width: 14px;
   padding: 0 8px;
   text-align: center;
   font-weight: normal;

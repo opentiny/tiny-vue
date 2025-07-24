@@ -10,7 +10,7 @@ test('PopUpload 阻止删除文件', async ({ page }) => {
   const deleteModal = page.locator('.tiny-modal').nth(1)
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
-  const deleteIcon = lists.locator('.delIcon')
+  const deleteIcon = lists.locator('.del-col')
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
@@ -19,5 +19,6 @@ test('PopUpload 阻止删除文件', async ({ page }) => {
   await fileChooser.setFiles(currentPath)
   await expect(lists).toHaveCount(1)
   await deleteIcon.click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(deleteModal).toBeVisible()
 })

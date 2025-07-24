@@ -11,10 +11,10 @@
     </div>
   </div>
 </template>
-  
+
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyInput, TinyButton } from '@opentiny/vue'
 
 const input = ref('')
 const selectValue = ref('123456')

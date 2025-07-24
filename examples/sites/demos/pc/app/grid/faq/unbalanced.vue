@@ -2,10 +2,10 @@
   <tiny-grid
     :data="tableData"
     border
-    table-layout="auto"
     show-overflow
     show-header-overflow
     :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    column-width="100"
   >
     <tiny-grid-column title="操作" header-align="center">
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
@@ -39,7 +39,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 import {
   IconAdministrator,
   IconVersiontree,
@@ -51,8 +51,8 @@ import {
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {

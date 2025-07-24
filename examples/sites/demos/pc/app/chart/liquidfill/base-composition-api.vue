@@ -6,11 +6,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartLiquidfill as TinyChartLiquidfill } from '@opentiny/vue'
+import { TinyHuichartsLiquidfill as TinyChartLiquidfill } from '@opentiny/vue-huicharts'
 
 const options = ref({
   label: {
-    formatter: '{a}\n\n购房比: {c}',
+    formatter: '{a}\n\n购房比：{c}',
     fontSize: 40
   },
   legend: {

@@ -6,15 +6,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartWaterfall as TinyChartWaterfall } from '@opentiny/vue'
+import { TinyHuichartsWaterfall as TinyChartWaterfall } from '@opentiny/vue-huicharts'
 
 const options = ref({
   padding: [50, 30, 20, 20],
   legend: {
     show: false
   },
-
-  // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
+  // water-fall 表示为瀑布形态，此时图中会自动添加一个 Total(总和) 数据
   type: 'water-fall',
   data: [
     { Name: 'NLE', User: 10 },

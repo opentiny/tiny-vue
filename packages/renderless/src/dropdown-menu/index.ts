@@ -11,7 +11,7 @@
  */
 
 import type { IDropdownMenuRenderlessParams, IDropdownMenuPopperParams, IDropdownItemVm } from '@/types'
-import userPopper from '../common/deps/vue-popper'
+import { userPopper } from '@opentiny/vue-hooks'
 
 export const toggleItem =
   (state: IDropdownMenuRenderlessParams['state']) =>
@@ -132,12 +132,19 @@ export const useVuePopper = ({
 
   onMounted(() => {
     if (!dropdownVm) return
-    dropdownVm.popperElm = popper.popperElm.value = vm.$el
-    nextTick(() => (popper.referenceElm.value = dropdownVm.$el))
 
-    !props.multiStage && dropdownVm.initDomOperation()
+    if (popper.popperElm) {
+      dropdownVm.popperElm = popper.popperElm.value = vm.$el
+      nextTick(() => {
+        if (popper.referenceElm) {
+          popper.referenceElm.value = dropdownVm.$el
+        }
+      })
 
-    if (dropdownVm.inheritWidth) {
+      !props.multiStage && dropdownVm.initDomOperation()
+    }
+
+    if (dropdownVm.inheritWidth && popper.popperElm) {
       dropdownVm.popperElm.style.minWidth = dropdownVm.$el.clientWidth + 'px'
     }
   })
@@ -161,6 +168,10 @@ export const useVuePopper = ({
   parent.$on('visible', (value) => {
     state.showPopper = value
     popper.showPopper.value = value
+
+    if (state.showPopper) {
+      state.initShowPopper = true
+    }
   })
 
   watch(

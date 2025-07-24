@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { UserAccount } from '@opentiny/vue'
+import { TinyUserAccount } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserAccount: UserAccount
+    TinyUserAccount
   }
 }
 </script>

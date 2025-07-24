@@ -1,10 +1,10 @@
 <!--anchor:on-->
 
-## Introduction Components
+# Introduction Components
 
 `TinyVue` supports automatic import, multiple component import, single component import, and complete import.
 
-### Auto import (recommended)
+## Auto import (recommended)
 
 First, you need to install the plugin `@opentiny/unplugin-tiny-vue`.
 
@@ -22,19 +22,19 @@ Vite
 import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default {
-  plugins: [autoImportPlugin()]
+  plugins: [autoImportPlugin('vite')]
 }
 ```
 
 Webpack
 
 ```js
-// webpack.config.js
+// vue.config.js
 
 const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
 
 module.exports = {
-  plugins: [autoImportPlugin()]
+  plugins: [autoImportPlugin('webpack')]
 }
 ```
 
@@ -42,7 +42,12 @@ This way, you can directly use TinyVue components in your project. These compone
 
 For more information about automatic on-demand imports, please refer to [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import).
 
-### Multi-component introduction
+## Multi-component introduction
+
+<div class="tip custom-block">
+<p>Warm reminder: Exporting components with Tiny prefix is ​​supported since 3.17.0. If using previous versions, you need to use aliases.</p>
+<p>For example:<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+</div>
 
 Multi-component reference is from the dependency package.`@opentiny/vue`Multiple components are referenced in. The following is an example (in the following figure)`Button`and`Alert`Component as an example):
 
@@ -55,18 +60,18 @@ Multi-component reference is from the dependency package.`@opentiny/vue`Multiple
 </template>
 
 <script>
-  import { Button, Alert } from '@opentiny/vue'
+  import { TinyButton, TinyAlert } from '@opentiny/vue'
 
   export default {
     components: {
-      TinyButton: Button,
-      TinyAlert: Alert
+      TinyButton,
+      TinyAlert
     }
   }
 </script>
 ```
 
-### Single component introduction
+## Single component introduction
 
 `TinyVue`Each component can be installed and used independently. That is, only the dependency of a single component is installed and referenced independently.
 
@@ -101,7 +106,7 @@ Use in Pages`Button`and`Alert`An example of a component is as follows:
 </script>
 ```
 
-### Full introduction (not recommended)
+## Full introduction (not recommended)
 
 Once the component is fully introduced, you do not need to import the component and register it locally on every page.`main.js`Global registration in, but as a result, it loses`tree-shaking`Capabilities. Redundant code is available after packaging.
 

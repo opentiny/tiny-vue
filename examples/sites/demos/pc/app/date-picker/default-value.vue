@@ -5,7 +5,7 @@
       <tiny-date-picker v-model="value" :default-value="defaultDate"></tiny-date-picker>
     </div>
     <br />
-    <p>日期时间(范围)，选择日期之后默认显示的时间(范围)：</p>
+    <p>日期时间 (范围)，选择日期之后默认显示的时间 (范围)：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="dateTimeValue" type="datetime" :default-time="defaultTime"></tiny-date-picker>
       <tiny-date-picker
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import { DatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -39,12 +39,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 280px;
-
-  :deep(.tiny-date-editor--datetimerange.tiny-input__inner) {
-    width: 280px;
-  }
-
+  width: 360px;
   & > * {
     margin-top: 12px;
   }

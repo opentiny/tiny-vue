@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 
 const createData = ref({
   name: '',
@@ -26,7 +26,7 @@ const createData = ref({
 const rules = ref({
   name: [
     { required: true, message: '必填' },
-    { min: 2, max: 11, message: '长度必须不小于2' }
+    { min: 2, max: 11, message: '长度必须不小于 2' }
   ],
   age: { required: true }
 })

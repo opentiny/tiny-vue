@@ -2,7 +2,7 @@
   <div class="custom-status">
     <div class="error">
       <div class="tiny-progress-demo">
-        <span class="tiny-progress-demo-title">失败:</span>
+        <span class="tiny-progress-demo-title">失败：</span>
         <div class="tiny-progress-content">
           <div class="tiny-progress-content-des">
             <div class="tiny-progress-content-des-title">安装进度</div>
@@ -12,7 +12,7 @@
             type="line"
             :percentage="percentage"
             status="exception"
-            :stroke-width="24"
+            :stroke-width="12"
           ></tiny-progress>
           <div class="tiny-progress-demo-status">
             <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
@@ -23,7 +23,7 @@
 
       <div class="loading">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">上传中:</span>
+          <span class="tiny-progress-demo-title">上传中：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
@@ -32,14 +32,14 @@
                 <div class="tiny-progress-content-des-on" @click="cancel">取消</div>
               </div>
             </div>
-            <tiny-progress class="progress" type="line" :percentage="percentage1" :stroke-width="24"></tiny-progress>
+            <tiny-progress class="progress" type="line" :percentage="percentage1" :stroke-width="12"></tiny-progress>
           </div>
         </div>
       </div>
 
       <div class="reloading">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">失败可重试:</span>
+          <span class="tiny-progress-demo-title">失败可重试：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
@@ -49,7 +49,7 @@
               type="line"
               :percentage="percentage2"
               status="exception"
-              :stroke-width="24"
+              :stroke-width="12"
             ></tiny-progress>
             <div class="tiny-progress-demo-status">
               <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
@@ -63,7 +63,7 @@
 
       <div class="success">
         <div class="tiny-progress-demo">
-          <span class="tiny-progress-demo-title">成功:</span>
+          <span class="tiny-progress-demo-title">成功：</span>
           <div class="tiny-progress-content">
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
@@ -73,7 +73,7 @@
               type="line"
               :percentage="percentage3"
               status="success"
-              :stroke-width="24"
+              :stroke-width="12"
             ></tiny-progress>
             <div class="tiny-progress-demo-status">
               <tiny-icon-successfull class="tiny-progress-demo-status-icon"></tiny-icon-successfull>
@@ -87,12 +87,12 @@
 </template>
 
 <script>
-import { Progress } from '@opentiny/vue'
+import { TinyProgress } from '@opentiny/vue'
 import { iconOperationfaildL, iconSuccessful } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyProgress: Progress,
+    TinyProgress,
     TinyIconOperationfaildL: iconOperationfaildL(),
     TinyIconSuccessfull: iconSuccessful()
   },
@@ -146,6 +146,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.tiny-progress :deep(.tiny-progress__text) {
+  font-size: 14px !important;
+}
 .error {
   .tiny-progress-demo {
     display: flex;
@@ -180,8 +183,9 @@ export default {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -213,8 +217,9 @@ export default {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -272,8 +277,9 @@ export default {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -323,8 +329,9 @@ export default {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;

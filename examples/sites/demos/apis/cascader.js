@@ -59,7 +59,7 @@ export default {
           defaultValue: '300',
           desc: {
             'zh-CN': '搜索关键词输入的去抖延迟，单位毫秒',
-            'en-US': 'Dejitter delay of the search keyword, in milliseconds.'
+            'en-US': 'Debounce delay of the search keyword, in milliseconds.'
           },
           mode: ['pc'],
           pcDemo: 'filterable'
@@ -536,6 +536,7 @@ export default {
     {
       name: 'ICascaderPanelNodePropValue',
       type: 'type',
+      depTypes: ['ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelNodePropValue =
   | ICascaderPanelNodeValue
@@ -545,6 +546,7 @@ type ICascaderPanelNodePropValue =
     {
       name: 'ICascaderPanelData',
       type: 'type',
+      depTypes: ['ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelData = {
   value?: ICascaderPanelNodeValue
@@ -558,6 +560,7 @@ type ICascaderPanelData = {
     {
       name: 'ICascaderPanelConfig',
       type: 'interface',
+      depTypes: ['ICascaderPanelNode', 'ICascaderPanelData'],
       code: `
 interface ICascaderPanelConfig {
   emitPath: boolean
@@ -580,6 +583,7 @@ interface ICascaderPanelConfig {
     {
       name: 'ICascaderPanelNode',
       type: 'type',
+      depTypes: ['ICascaderPanelNode', 'ICascaderPanelData', 'ICascaderPanelConfig', 'ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelNode = {
   parent: ICascaderPanelNode | null
@@ -604,6 +608,7 @@ type ICascaderPanelNode = {
     {
       name: 'ICascaderPanelLazyLoad',
       type: 'type',
+      depTypes: ['ICascaderPanelNode', 'ICascaderPanelData'],
       code: `
 type ICascaderPanelLazyLoad = (node: ICascaderPanelNode, resolve: (dataList: ICascaderPanelData[]) => void) => void
       `

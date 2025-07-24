@@ -8,18 +8,18 @@
       @update:visible="visible = $event"
       @confirm="confirm"
     >
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
     </tiny-drawer>
   </div>
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       this.visible = true
     },
     confirm() {
-      Modal.message({ message: '确认事件', status: 'success' })
+      TinyModal.message({ message: '确认事件', status: 'success' })
       this.visible = false
     }
   }

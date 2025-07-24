@@ -43,9 +43,9 @@
       <tiny-input
         v-if="shape !== 'filter'"
         ref="input"
-        :model-value="state.multiple ? state.presentText : state.inputValue"
+        :model-value="state.multiple && filterable ? '' : state.inputValues"
         :size="state.realSize"
-        :placeholder="state.placeholder"
+        :placeholder="state.multiple && filterable ? '' : state.placeholder"
         :readonly="state.readonly"
         :disabled="state.isDisabled"
         :display-only="displayOnly"
@@ -83,15 +83,15 @@
         <tiny-tag
           v-if="hoverExpand"
           :class="['tiny-cascader__tags-collapse', { 'is-hidden': state.isHidden }]"
-          type="info"
+          :type="state.tagTypeWhenMultiple"
           :closable="false"
           :size="state.tagSize"
-          >+ {{ state.collapseTagsLength }}</tiny-tag
-        >
+          >+ {{ state.collapseTagsLength }}
+        </tiny-tag>
         <tiny-tag
           v-for="(tag, index) in state.presentTags"
           :key="tag.key"
-          type="info"
+          :type="state.tagTypeWhenMultiple"
           :size="state.tagSize"
           :hit="tag.hitState"
           :closable="tag.closable"
@@ -148,6 +148,7 @@
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"
           @load-data="computePresentContent"
+          :onlyUsePanel="false"
         ></tiny-cascader-panel>
         <tiny-scrollbar
           ref="suggestionPanel"
@@ -165,10 +166,11 @@
               :class="['tiny-cascader__suggestion-item', item.checked && 'is-checked']"
               :tabindex="-1"
               @click="handleSuggestionClick(index)"
+              v-highlight-query="state.multiple ? state.presentText : state.inputValue"
             >
               <!-- <span v-html="item.text"></span> -->
               <slot name="filter" :item="item.text">
-                {{ item.text }}
+                <span>{{ item.text }}</span>
               </slot>
               <icon-yes v-if="item.checked" class="icon-check"></icon-yes>
             </li>
@@ -188,7 +190,8 @@
 import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
+import { HighlightQuery } from '@opentiny/vue-directive'
 
 // 没有进行vue3，vue2适配
 import Input from '@opentiny/vue-input'
@@ -197,7 +200,7 @@ import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderPanel from '@opentiny/vue-cascader-panel'
 import FilterBox from '@opentiny/vue-filter-box'
 import Tooltip from '@opentiny/vue-tooltip'
-import { iconClose, iconChevronDown, iconChevronUp, iconYes } from '@opentiny/vue-icon'
+import { iconClose, IconTriangleDown, IconUpWard, iconYes } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/cascader/index.less'
 
 export default defineComponent({
@@ -231,7 +234,8 @@ export default defineComponent({
     'label',
     'tip',
     'hoverExpand',
-    'blank'
+    'blank',
+    'changeCompat'
   ],
   emits: [
     'update:modelValue',
@@ -244,7 +248,7 @@ export default defineComponent({
     'remove-tag',
     'created'
   ],
-  directives: directive({ Clickoutside }),
+  directives: { ...directive({ Clickoutside }), HighlightQuery },
   provide() {
     return {
       cascaderRoot: this
@@ -257,8 +261,8 @@ export default defineComponent({
     TinyFilterBox: FilterBox,
     TinyCascaderPanel: CascaderPanel,
     IconClose: iconClose(),
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp(),
+    IconChevronDown: IconTriangleDown(),
+    IconChevronUp: IconUpWard(),
     IconYes: iconYes(),
     TinyTooltip: Tooltip
   },

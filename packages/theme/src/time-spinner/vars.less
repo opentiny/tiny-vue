@@ -10,16 +10,37 @@
 *
 */
 
-.component-css-vars-time-spinner() {
-  --ti-time-spinner-arrow-text-color: #909399;
-  --ti-time-spinner-arrow-hover-text-color: var(--ti-base-color-brand-7, #526ecc);
-  --ti-time-spinner-item-active-text-color: #303133;
-  --ti-time-spinner-item-font-weight: 700;
-  --ti-time-spinner-item-bg-color: transparent;
-  --ti-time-spinner-list-border-color: transparent;
-  --ti-time-spinner-font-size: var(--ti-common-font-size-base, 12px);
-  --ti-time-spinner-text-color: var(--ti-base-color-info-normal);
-  --ti-time-spinner-bg-color: var(--ti-base-color-light);
-  --ti-time-spinner-selected-bg-color: #f2f2f3;
-  --ti-time-spinner-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+.inject-TimeSpinner-vars() {
+  // 字号
+  --tv-TimeSpinner-font-size: var(--tv-font-size-default, 14px);
+  // 文本色
+  --tv-TimeSpinner-text-color: var(--tv-color-text, #191919);
+  // 文本禁用色
+  --tv-TimeSpinner-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
+  // 最大高度
+  --tv-TimeSpinner-wrapper-max-height: 252px;
+  // 行高
+  --tv-TimeSpinner-line-height: var(--tv-line-height-number, 1.5);
+
+  // 图标色
+  --tv-TimeSpinner-icon-color: var(--tv-color-icon, #808088);
+  // 图标悬浮色
+  --tv-TimeSpinner-icon-color-hover: var(--tv-color-icon-hover, #191919);
+  // 图标尺寸
+  --tv-TimeSpinner-icon-size: var(--tv-icon-size, 16px);
+
+  // 列表外间距
+  --tv-TimeSpinner-list-margin: 10px 0 30px 0;
+  // 时间项外间距
+  --tv-TimeSpinner-item-margin: var(--tv-space-lg, 12px) 10px 0 10px;
+  // 时间项内间距
+  --tv-TimeSpinner-item-padding: 3.5px 0;
+  // 时间项圆角
+  --tv-TimeSpinner-item-border-radius: var(--tv-border-radius-brand, 999px);
+  // 时间项背景色（悬浮）
+  --tv-TimeSpinner-item-bg-color-hover: var(--tv-color-bg-hover-3);
+  // 时间项背景色（选中/激活）
+  --tv-TimeSpinner-item-bg-color-active: var(--tv-color-bg-active-emphasize, #deecff);
+  // 时间项背景色（禁用）
+  --tv-TimeSpinner-item-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
 }

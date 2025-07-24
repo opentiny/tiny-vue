@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p>1. <code>space</code>取值可以是带尺寸单位的具体数值。以下示例设置节点宽度为200px：</p>
+    <p>1. <code>space</code>取值可以是带尺寸单位的具体数值。以下示例设置节点宽度为 200px：</p>
     <div class="timeline-box">
       <tiny-time-line :data="data" :active="active1" space="200" @click="normalClick1"> </tiny-time-line>
     </div>
 
-    <p>2. <code>space</code>取值也可以是百分比数值，基准为组件父元素的宽度。以下示例设置引导线长度为20%：</p>
+    <p>2. <code>space</code>取值也可以是百分比数值，基准为组件父元素的宽度。以下示例设置引导线长度为 20%：</p>
     <div class="timeline-box">
       <tiny-time-line
         :data="data"
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 
 const active1 = ref(0)
 const active2 = ref(1)
@@ -43,11 +43,14 @@ function normalClick2(index) {
 <style lang="less" scoped>
 code {
   padding: 4px;
+  color: #000;
   background-color: var(--lightless);
 }
 
 .timeline-box {
   width: 800px;
   height: 100px;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 </style>

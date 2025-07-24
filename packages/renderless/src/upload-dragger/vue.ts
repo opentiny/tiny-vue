@@ -27,6 +27,7 @@ export const renderless = (
 ): IUploadDraggerApi => {
   const state = reactive({
     dragover: false,
+    uploadFiles: [],
     uploader: inject('uploader') || ref({ default: '' })
   }) as IUploadDraggerState
 

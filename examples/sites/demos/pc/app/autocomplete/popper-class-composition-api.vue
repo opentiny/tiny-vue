@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 
 const restaurants = ref([])
 const value = ref('')
@@ -41,27 +41,27 @@ function createFilter(queryString) {
 function loadAll() {
   return [
     {
-      name: 'GFDDDDDDD科技YX公司',
+      name: 'GFDDDDDDD 科技 YX 公司',
       address: '福州'
     },
     {
-      name: 'WWWWWWWWWW科技YX公司',
+      name: 'WWWWWWWWWW 科技 YX 公司',
       address: '深圳福田区'
     },
     {
-      name: 'RFVVVVVV有限责任公司',
+      name: 'RFVVVVVV 有限责任公司',
       address: '中山市'
     },
     {
-      name: 'TGBGBBBBBBBBYX公司',
+      name: 'TGBGBBBBBBBBYX 公司',
       address: '梅州'
     },
     {
-      name: 'YHNNNNNNN科技YX公司',
+      name: 'YHNNNNNNN 科技 YX 公司',
       address: '韶关'
     },
     {
-      name: '康康物业YX公司',
+      name: '康康物业 YX 公司',
       address: '广州天河区'
     }
   ]
@@ -69,18 +69,15 @@ function loadAll() {
 </script>
 
 <style>
-.my-autocomplete li {
-  line-height: normal !important;
-  padding: 7px !important;
-}
-
 .my-autocomplete li .name {
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
 .my-autocomplete li .addr {
+  display: block;
   font-size: 12px;
-  color: #a29b91;
+  line-height: 18px;
+  color: #c2c2c2;
 }
 </style>

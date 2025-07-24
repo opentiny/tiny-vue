@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <p>尺寸：medium</p>
     <tiny-user v-model="user" size="medium"></tiny-user>
     <p>尺寸：small</p>
@@ -10,11 +10,11 @@
 </template>
 
 <script lang="jsx">
-import { User } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -23,3 +23,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
+</style>

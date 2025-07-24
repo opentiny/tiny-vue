@@ -11,11 +11,11 @@ test('PopEditor 基本用法', async ({ page }) => {
   const cancelBtn = dialogBox.getByRole('button', { name: '取 消' })
   const dataItem = dialogBox
     .getByRole('row', {
-      name: '1 GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司 福建 福州'
+      name: '1 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 福建 福州'
     })
     .locator('span')
 
-  // 点击文本框，编辑弹出框弹出,数据渲染
+  // 点击文本框，编辑弹出框弹出，数据渲染
   await expect(textBox).toBeVisible()
   await textBox.click()
   await expect(dialogBox).toBeVisible()
@@ -26,7 +26,7 @@ test('PopEditor 基本用法', async ({ page }) => {
   await confirmBtn.click()
   await expect(dialogBox).not.toBeVisible()
   await expect(textBox).toHaveValue(
-    'GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司GFD科技YX公司'
+    'GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司 GFD 科技 YX 公司'
   )
 
   // 点击删除图标，清空文本框

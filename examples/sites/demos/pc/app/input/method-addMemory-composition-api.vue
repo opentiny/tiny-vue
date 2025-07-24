@@ -13,13 +13,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 const input = ref('')
 const textMemoryRef = ref()
 
 function addMemory(val) {
-  Modal.message({ message: val, status: 'success' })
+  TinyModal.message({ message: val, status: 'success' })
   textMemoryRef.value.addMemory(val)
 }
 </script>

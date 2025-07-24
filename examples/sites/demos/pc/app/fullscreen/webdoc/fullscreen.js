@@ -9,8 +9,8 @@ export default {
         'en-US': 'Component Use'
       },
       desc: {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US': 'For details, see the following example.'
+        'zh-CN': '组件式使用详细用法参考如下示例',
+        'en-US': 'For detailed usage of component-based usage, please refer to the following example.'
       },
       codeFiles: ['example-component.vue']
     },
@@ -21,8 +21,8 @@ export default {
         'en-US': 'Functional use'
       },
       desc: {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US': 'For details, see the following example.'
+        'zh-CN': '函数式使用详细用法参考如下示例',
+        'en-US': 'For detailed usage of functional expressions, please refer to the following example.'
       },
       codeFiles: ['example-api.vue']
     },

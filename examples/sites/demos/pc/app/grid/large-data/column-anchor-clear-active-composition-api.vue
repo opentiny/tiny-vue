@@ -1,7 +1,7 @@
 <template>
   <tiny-grid
     column-min-width="100"
-    auto-resize
+    show-overflow="tooltip"
     :column-anchor="columnAnchor"
     :optimization="{ scrollX: { gt: 20 } }"
     :fetch-data="fetchData"
@@ -66,7 +66,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager } from '@opentiny/vue'
 import { IconMarkOn } from '@opentiny/vue-icon'
 
 function getData({ page }) {
@@ -89,7 +89,7 @@ function getData({ page }) {
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     address: '福州',
     introduction: '公司技术和研发实力雄厚',
     employees: 800,
@@ -99,7 +99,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWW科技有限公司',
+    name: 'WWW 科技有限公司',
     address: '深圳福田区',
     introduction: '公司技术和研发实力雄厚',
     employees: 300,
@@ -109,7 +109,7 @@ const tableData = ref([
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     address: '中山市',
     introduction: '公司技术和研发实力雄厚',
     employees: 1300,
@@ -119,7 +119,7 @@ const tableData = ref([
   },
   {
     id: '4',
-    name: 'JKL科技有限公司',
+    name: 'JKL 科技有限公司',
     address: '福州',
     introduction: '公司技术和研发实力雄厚',
     employees: 1200,
@@ -129,7 +129,7 @@ const tableData = ref([
   },
   {
     id: '5',
-    name: 'TGB科技有限公司',
+    name: 'TGB 科技有限公司',
     address: '深圳福田区',
     introduction: '公司技术和研发实力雄厚',
     employees: 1400,
@@ -139,7 +139,7 @@ const tableData = ref([
   },
   {
     id: '6',
-    name: 'XDR有限责任公司',
+    name: 'XDR 有限责任公司',
     address: '中山市',
     introduction: '公司技术和研发实力雄厚',
     employees: 900,
@@ -155,7 +155,7 @@ const columnAnchor = ref([
   [
     'employees',
     [
-      '雇员数量-自定义渲染',
+      '雇员数量 - 自定义渲染',
       ({ h, anchor: { active, field, label }, action }) =>
         h(
           'div',
@@ -167,6 +167,7 @@ const columnAnchor = ref([
         )
     ]
   ],
+
   {
     field: 'address', // 列锚点字段
     label: null, // 列锚点名称
@@ -177,13 +178,13 @@ const columnAnchor = ref([
 ])
 
 const pagerConfig = ref({
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 3,
     pageSizes: [3, 5, 10],
     total: 0,
-    layout: 'total, prev, pager, next, jumper, sizes'
+    layout: 'total, sizes, prev, pager, next, jumper'
   }
 })
 const fetchData = { api: getData }

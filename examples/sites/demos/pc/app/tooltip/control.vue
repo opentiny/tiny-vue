@@ -56,12 +56,12 @@
 </template>
 
 <script lang="jsx">
-import { Tooltip, Switch } from '@opentiny/vue'
+import { TinyTooltip, TinySwitch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTooltip: Tooltip,
-    TinySwitch: Switch
+    TinyTooltip,
+    TinySwitch
   },
   data() {
     return {
@@ -89,6 +89,6 @@ export default {
   cursor: pointer;
 }
 .ellipsis:hover {
-  background-color: #f1f1f1;
+  background-color: #c0c0c0;
 }
 </style>

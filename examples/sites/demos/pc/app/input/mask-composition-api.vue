@@ -7,9 +7,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
-const input = ref('文字过长时会显示点点点，并且鼠标悬浮出现tip')
+const input = ref('文字过长时会显示点点点，并且鼠标悬浮出现 tip')
 </script>
 
 <style scoped>

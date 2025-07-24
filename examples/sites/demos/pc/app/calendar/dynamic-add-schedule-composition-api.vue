@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Calendar as TinyCalendar } from '@opentiny/vue'
+import { TinyCalendar } from '@opentiny/vue'
 
 const eventslist = ref([
   {
@@ -15,8 +15,8 @@ const eventslist = ref([
   },
   {
     time: 1567651320829,
-    title: '通知事项A',
-    content: '请注意该通知事项A',
+    title: '通知事项 A',
+    content: '请注意该通知事项 A',
     type: 'info'
   },
   {

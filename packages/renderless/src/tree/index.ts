@@ -10,15 +10,15 @@
  *
  */
 
-import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
-import { KEY_CODE } from '../common'
-import TreeStore from '../common/deps/tree-model/tree-store'
-import { addClass, removeClass } from '../common/deps/dom'
-import { on, off } from '../common/deps/dom'
-import { getDataset } from '../common/dataset'
-import { copyArray } from '../common/object'
+import { getNodeKey as innerGetNodekey } from '@opentiny/utils'
+import { KEY_CODE } from '@opentiny/utils'
+import { TreeStore } from '@opentiny/utils'
+import { addClass, removeClass } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { copyArray } from '@opentiny/utils'
 
-import { log } from '../common'
+import { logger } from '@opentiny/utils'
 
 export const setChildren = (props) => (data) => (props.data = data)
 
@@ -142,7 +142,7 @@ const setDropIndicatorTop = (dropNode, parent, dropType) => {
   dropType === 'inner' ? addClass(dropNode.$el, 'is-drop-inner') : removeClass(dropNode.$el, 'is-drop-inner')
 }
 
-const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState }) => {
+const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState, event }) => {
   let dropPrev = true
   let dropInner = true
   let dropNext = true
@@ -154,7 +154,6 @@ const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState }) => {
     userAllowDropInner = dropInner = allowDrop(draggingNode.node, dropNode.node, 'inner')
     dropNext = allowDrop(draggingNode.node, dropNode.node, 'next')
   }
-  // 这里访问window.event
   event.dataTransfer.dropEffect = dropInner ? 'copy' : 'none'
 
   if ((dropPrev || dropInner || dropNext) && oldDropNode !== dropNode) {
@@ -209,7 +208,8 @@ export const dragOver =
       dropNode,
       allowDrop: props.allowDrop,
       emit,
-      dragState
+      dragState,
+      event
     })
 
     const dropType = getDropType(dropPrev, dropInner, dropNext, dropNode)
@@ -442,6 +442,8 @@ export const filter =
     }
 
     state.store.filter(value)
+    // tiny 新增： 记录一下过滤的值
+    state.filterText = value
     // tiny 新增： 移除了watch,所以要手动调用一下该方法
     if (props.willChangeView) {
       api.initPlainNodeStore()
@@ -598,7 +600,7 @@ export const initTabIndex =
   }
 
 export const handleKeydown =
-  ({ vm, state }) =>
+  ({ vm, state, TreeAdapter }) =>
   (event) => {
     const currentItem = event.target
 
@@ -622,7 +624,19 @@ export const handleKeydown =
         nextIndex = currentIndex < state.treeItemArray.length - 1 ? currentIndex + 1 : 0
       }
 
-      state.treeItemArray[nextIndex].focus()
+      const treeNode = state.treeItemArray[nextIndex]
+
+      if (TreeAdapter) {
+        const nodeContent = treeNode.querySelector('div.tiny-tree-node__content')
+
+        treeNode.focus({ preventScroll: true })
+
+        if (nodeContent && nodeContent.scrollIntoView) {
+          nodeContent.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' })
+        }
+      } else {
+        treeNode.focus()
+      }
     } else if ([KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight].includes(keyCode)) {
       event.preventDefault()
       currentItem.click()
@@ -809,7 +823,7 @@ export const addNode =
     }
 
     if (state.allNodeKeys.includes(nodeId) && !props.editConfig.noWarning) {
-      log.logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
+      logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
     }
 
     state.allNodeKeys.push(nodeId)

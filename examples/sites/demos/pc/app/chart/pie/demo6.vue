@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartPie } from '@opentiny/vue'
+import { TinyHuichartsPie } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyPie: ChartPie
+    TinyPie: TinyHuichartsPie
   },
   data() {
     return {
@@ -35,16 +35,16 @@ export default {
           show: true
         },
         data: [
-          { value: 20, name: '系列1' },
-          { value: 9, name: '系列2' },
-          { value: 14, name: '系列3' },
-          { value: 8, name: '系列4' },
-          { value: 16, name: '系列5' },
-          { value: 10, name: '系列6' },
-          { value: 16, name: '系列7' },
-          { value: 4, name: '系列8' },
-          { value: 6, name: '系列9' },
-          { value: 13, name: '系列10' }
+          { value: 20, name: '系列 1' },
+          { value: 9, name: '系列 2' },
+          { value: 14, name: '系列 3' },
+          { value: 8, name: '系列 4' },
+          { value: 16, name: '系列 5' },
+          { value: 10, name: '系列 6' },
+          { value: 16, name: '系列 7' },
+          { value: 4, name: '系列 8' },
+          { value: 6, name: '系列 9' },
+          { value: 13, name: '系列 10' }
         ]
       }
     }

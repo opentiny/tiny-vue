@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartScatter as TinyChartScatter } from '@opentiny/vue'
+import { TinyHuichartsScatter as TinyChartScatter } from '@opentiny/vue-huicharts'
 
 const options = ref({
   padding: [50, 30, 50, 20],
@@ -19,8 +19,8 @@ const options = ref({
     }
   },
 
-  // 气泡大小范围，默认值为[10，70]
-  // 气泡半径维度决定了气泡的大小，bubbleSize决定了气泡大小的上下限
+  // 气泡大小范围，默认值为 [10，70]
+  // 气泡半径维度决定了气泡的大小，bubbleSize 决定了气泡大小的上下限
   bubbleSize: [20, 100],
   xAxisType: 'value',
   data: {

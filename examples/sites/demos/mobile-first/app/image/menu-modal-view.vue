@@ -39,13 +39,13 @@
 </template>
 
 <script>
-import { ImageViewer, Button, Fullscreen } from '@opentiny/vue'
+import { TinyImageViewer, TinyButton, TinyFullscreen } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyImageViewer: ImageViewer,
-    TinyButton: Button,
-    TinyFullscreen: Fullscreen
+    TinyImageViewer,
+    TinyButton,
+    TinyFullscreen
   },
   data() {
     return {

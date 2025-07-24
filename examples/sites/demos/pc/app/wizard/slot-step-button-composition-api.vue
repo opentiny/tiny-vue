@@ -10,7 +10,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Wizard as TinyWizard, Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyWizard, TinyButton, TinyModal } from '@opentiny/vue'
 
 const dataSet = ref([
   {
@@ -36,6 +36,6 @@ const dataSet = ref([
 ])
 
 function btnClick(arg) {
-  Modal.message(`步骤${arg}`)
+  TinyModal.message(`步骤${arg}`)
 }
 </script>

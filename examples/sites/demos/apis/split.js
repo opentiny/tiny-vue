@@ -14,7 +14,7 @@ export default {
             'en-US': 'Easy Mode Enables Left/Top Expand Collapse Button'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'horizontal-collapse'
         },
         {
           name: 'collapse-right-bottom',
@@ -25,7 +25,7 @@ export default {
             'en-US': 'Easy Mode Enables Right/Down Expand Collapse Button'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'horizontal-collapse'
         },
         {
           mode: []
@@ -84,7 +84,7 @@ export default {
             'en-US': 'Three blocks are configured.'
           },
           mode: ['pc'],
-          pcDemo: 'split-threshold'
+          pcDemo: 'three-areas'
         },
         {
           name: 'border',
@@ -114,18 +114,18 @@ export default {
       events: [
         {
           name: 'left-top-click',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '左箭头收起时触发',
             'en-US': 'Triggered when the left arrow is folded'
           },
           mode: ['pc'],
-          pcDemo: 'moving-event'
+          pcDemo: 'event-click'
         },
         {
           name: 'moveend',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '拖拽结束的事件',
@@ -136,7 +136,7 @@ export default {
         },
         {
           name: 'movestart',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '拖拽开始的事件',
@@ -165,7 +165,7 @@ export default {
             'en-US': 'Triggered when the right arrow is folded'
           },
           mode: ['pc'],
-          pcDemo: 'moving-event'
+          pcDemo: 'event-click'
         }
       ],
       methods: [],

@@ -57,7 +57,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tooltip as TinyTooltip, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyTooltip, TinySwitch } from '@opentiny/vue'
 
 const visible = ref(false)
 const manualShow = ref(false)
@@ -80,6 +80,6 @@ const disabled = ref(false)
   cursor: pointer;
 }
 .ellipsis:hover {
-  background-color: #f1f1f1;
+  background-color: #c0c0c0;
 }
 </style>

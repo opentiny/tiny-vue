@@ -9,21 +9,21 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit()"> 注册 </tiny-button>
-        <tiny-button type="primary" @click="changeRule"> 改变校验规则 </tiny-button>
+        <tiny-button @click="changeRule"> 改变校验规则 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script>
-import { Form, FormItem, Input, Button } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     let validatePass = (rule, value, callback) => {
@@ -43,7 +43,7 @@ export default {
       rules: {
         username: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
         ],
         password: [
           { required: true, message: '必填', trigger: 'blur' },
@@ -62,7 +62,7 @@ export default {
       this.rules = {
         username: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: 'change' }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'change' }
         ]
       }
     }

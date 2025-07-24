@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-pull-refresh",
-  "version": "3.17.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -8,7 +8,7 @@
   "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
+    "vitest": "catalog:"
   },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
@@ -18,8 +18,7 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-loading": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-loading": "workspace:~"
   },
   "license": "MIT"
 }

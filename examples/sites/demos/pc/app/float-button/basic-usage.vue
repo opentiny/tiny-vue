@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { FloatButton } from '@opentiny/vue'
+import { TinyFloatButton } from '@opentiny/vue'
 import { IconDel, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyFloatButton: FloatButton
+    TinyFloatButton
   },
   data() {
     return {

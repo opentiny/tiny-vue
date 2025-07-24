@@ -11,11 +11,11 @@
  */
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export const $constants = {
   ICON_MAP: {
-    leftWardArrow: 'icon-delta-left'
+    leftWardArrow: 'icon-left-ward-arrow'
   }
 }
 
@@ -84,6 +84,10 @@ export const dropdownItemProps = {
   tipPosition: {
     type: String,
     default: 'right'
+  },
+  effect: {
+    type: String,
+    default: 'light'
   }
 }
 

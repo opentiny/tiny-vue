@@ -16,35 +16,86 @@
 @time-range-picker-prefix-cls: ~'@{css-prefix}time-range-picker';
 
 .@{time-range-picker-prefix-cls} {
-  .component-css-vars-time-range-picker();
+  .inject-TimeRange-vars();
 
-  width: 354px;
+  width: 470px;
   overflow: visible;
 
   &__content {
     position: relative;
     text-align: center;
-    padding: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
   }
 
+  &__content-date {
+    border-right: 1px solid var(--tv-TimeRange-border-color-divider);
+  }
+
+  &__header-title {
+    font-size: var(--tv-TimeRange-font-size);
+    display: flex;
+    justify-content: space-around;
+    color: var(--tv-TimeRange-header-text-color);
+    padding: var(--tv-TimeRange-title-padding);
+    align-items: center;
+  }
+
   &__cell {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 4px 7px 7px;
     width: 50%;
+
+    .tiny-time-panel__content {
+      padding-bottom: var(--tv-TimeRange-cell-content-padding-bottom);
+    }
   }
 
   &__header {
-    margin-bottom: 5px;
-    text-align: center;
-    font-size: var(--ti-time-range-picker-header-font-size);
+    height: var(--tv-TimeRange-header-height);
+    color: var(--tv-TimeRange-header-text-color);
+    line-height: var(--tv-TimeRange-header-line-height);
+    padding: var(--tv-TimeRange-header-padding);
+    text-align: left;
+    font-size: var(--tv-TimeRange-font-size);
+    border-bottom: 1px solid var(--tv-TimeRange-border-color-divider);
   }
 
   &__body {
-    border-radius: var(--ti-date-picker-border-radius);
-    border: 1px solid var(--ti-date-picker-border-color);
+    border-radius: var(--tv-TimeRange-border-radius);
+  }
+
+  &__footer {
+    border-top: 1px solid var(--tv-TimeRange-border-color-divider);
+    padding: var(--tv-TimeRange-footer-padding);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__btn.tiny-button {
+    min-width: inherit;
+    border: none;
+    line-height: var(--tv-TimeRange-btn-height);
+    padding: var(--tv-TimeRange-btn-padding);
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: 0;
+    font-size: 12px;
+    color: var(--tv-TimeRange-btn-text-color);
+    border-radius: var(--tv-TimeRange-border-radius);
+    transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &.cancel {
+      display: inline-block;
+    }
+
+    &.confirm {
+      color: var(--tv-TimeRange-btn-confirm-text-color);
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }

@@ -24,8 +24,8 @@
  */
 
 import { getRowid } from './common'
-import { hasClass, getDomNode } from '../../common/deps/dom'
-import { getActualTarget } from '../../common/event'
+import { hasClass, getDomNode } from '@opentiny/utils'
+import { getActualTarget } from '@opentiny/utils'
 import { arrayIndexOf } from '../static'
 
 const ATTR_NAME = 'data-rowid'
@@ -53,7 +53,20 @@ export const rowToVisible = ($table, row) => {
       const gridbodyEl = tableBodyVnode.$el
       const trEl = gridbodyEl.querySelector(`[${ATTR_NAME}="${getRowid($table, row)}"]`)
 
-      if (trEl) {
+      // 处理虚拟滚动
+      if ($table.scrollYLoad) {
+        // 对应行是否在表格视图外
+        const isOutOfBody = () => {
+          const bodyRect = $table.$el.getBoundingClientRect()
+          const trRect = trEl.getBoundingClientRect()
+          return trRect.top + trRect.height / 2 > bodyRect.top + bodyRect.height
+        }
+
+        if (!trEl || isOutOfBody()) {
+          gridbodyEl.scrollTop = ($table.afterFullData.indexOf(row) - 1) * $table.scrollYStore.rowHeight
+        }
+      } else if (trEl) {
+        // 非虚拟滚动且有trEl元素
         const bodyHeight = gridbodyEl.clientHeight
         const bodySrcollTop = gridbodyEl.scrollTop
         const trOffsetTop = trEl.offsetTop + (trEl.offsetParent ? trEl.offsetParent.offsetTop : 0)
@@ -64,11 +77,6 @@ export const rowToVisible = ($table, row) => {
           gridbodyEl.scrollTop = trOffsetTop
         } else if (trOffsetTop + trHeight >= bodyHeight + bodySrcollTop) {
           gridbodyEl.scrollTop = bodySrcollTop + trHeight
-        }
-      } else {
-        // 如果是虚拟渲染跨行滚动
-        if ($table.scrollYLoad) {
-          gridbodyEl.scrollTop = ($table.afterFullData.indexOf(row) - 1) * $table.scrollYStore.rowHeight
         }
       }
     }
@@ -123,8 +131,9 @@ function computeScrollLeft($table, td) {
 function setBodyLeft(body, td, $table, column, move) {
   const { isLeftArrow, isRightArrow, from } = move || {}
 
-  body.scrollLeft = computeScrollLeft($table, td)
-
+  const bodyScollLeft = computeScrollLeft($table, td)
+  $table.scrollTo(bodyScollLeft)
+  $table.lastScrollLeft = bodyScollLeft
   if (from) {
     const direction = isLeftArrow ? 'left' : isRightArrow ? 'right' : null
     const fixedDom = $table.elemStore[`${direction}-body-list`]

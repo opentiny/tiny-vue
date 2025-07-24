@@ -5,25 +5,24 @@
 </template>
 
 <script lang="jsx">
-import { ChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyHeatmap: ChartHeatmap
+    TinyHeatmap: TinyHuichartsHeatmap
   },
   data() {
     return {
       options: {
-        // 图表类型(矩形热力图)
+        // 图表类型 (矩形热力图)
         type: 'CalendarHeatMapChart',
 
-        // padding控制图表距离容器的上，右，下，左padding值
+        // padding 控制图表距离容器的上，右，下，左 padding 值
         padding: [50, 120, 20, 20],
-
         // 矩形的颜色，默认值'#1F55B5'
         color: '#745ef7',
 
-        // 矩形的边框颜色，默认值和color一致
+        // 矩形的边框颜色，默认值和 color 一致
         borderColor: '#6D8FF0',
 
         showLabel: true,

@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartBar as TinyChartBar } from '@opentiny/vue'
+import { TinyHuichartsBar as TinyChartBar } from '@opentiny/vue-huicharts'
 
 const options = ref({
   data: [
@@ -21,7 +21,7 @@ const options = ref({
     data: '日期'
   },
   markLine: {
-    // markLine.top 表示顶部阈值线, markLine.bottom 表示底部阈值线
+    // markLine.top 表示顶部阈值线，markLine.bottom 表示底部阈值线
     top: 32
   },
   direction: 'horizontal' // 横向柱状图

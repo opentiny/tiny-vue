@@ -13,5 +13,5 @@ test('slot', async ({ page }) => {
   await expect(suffix).toBeVisible()
 
   await page.locator('.demo-autocomplete > .tiny-autocomplete.default-slot').click()
-  await expect(page.getByRole('option', { name: 'GFD科技YX公司 福州' })).toBeVisible()
+  await expect(page.getByRole('option', { name: 'GFD 科技 YX 公司 福州' })).toBeVisible()
 })

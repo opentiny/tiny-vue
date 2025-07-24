@@ -132,11 +132,12 @@ export default {
         },
         {
           name: 'default-expanded-keys',
-          type: 'boolean',
-          defaultValue: 'false',
+          type: 'string[]',
+          defaultValue: '[]',
           desc: {
-            'zh-CN': '默认展开节点的keys',
-            'en-US': 'The keys of the node are expanded by default'
+            'zh-CN': '默认展开节点的keys。当属性变化时，会自动收起全部并重新展开指定的数据项。 ',
+            'en-US':
+              'The keys of the node are expanded by default.When the property changes, it automatically collapses all and reexpands the specified data item.'
           },
           mode: ['pc'],
           pcDemo: 'expand-control'
@@ -491,6 +492,30 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'edit'
+        },
+        {
+          name: 'highlight-query',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。',
+            'en-US': 'Indicates whether to highlight the search text in the matched node.'
+          },
+          mode: ['pc'],
+          pcDemo: 'filter-view'
+        },
+        {
+          name: 'show-checked-mark',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN':
+              '通过设置 <code> showCheckedMark </code> 属性为true,且非多选模式时，可以在选中行的最右边显示 <code> √ </code> 号。',
+            'en-US':
+              'By setting the <code> showCheckedMark </code> property to true, you can display the <code> √ </code> number on the far right when a line is selected.'
+          },
+          mode: ['pc'],
+          pcDemo: ''
         }
       ],
       events: [
@@ -546,7 +571,7 @@ export default {
         },
         {
           name: 'close-edit',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '关闭编辑的事件',
@@ -741,7 +766,7 @@ export default {
         },
         {
           name: 'open-edit',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '进入编辑的事件',

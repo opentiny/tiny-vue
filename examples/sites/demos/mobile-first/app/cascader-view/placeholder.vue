@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { CascaderMobile, Button } from '@opentiny/vue'
+import { TinyCascaderMobile, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascaderMobile: CascaderMobile,
-    TinyButton: Button
+    TinyCascaderMobile,
+    TinyButton
   },
   data() {
     return {

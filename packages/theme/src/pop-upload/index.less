@@ -14,22 +14,23 @@
 @import './vars.less';
 
 @popupload-prefix-cls: ~'@{css-prefix}popupload';
+@file-upload-prefix-cls: ~'@{css-prefix}file-upload';
 @upload-list-prefix-cls: ~'@{css-prefix}upload-list';
+@popconfirm-prefix-cls: ~'@{css-prefix}popconfirm';
 @popupload__modal-prefix-cls: ~'@{css-prefix}popupload__modal';
 @alert-prefix-cls: ~'@{css-prefix}alert';
 
 .@{popupload__modal-prefix-cls} {
-  .component-css-vars-pop-upload();
+  .inject-PopUpload-vars();
 }
 
 .@{popupload-prefix-cls} {
-  .component-css-vars-pop-upload();
+  .inject-PopUpload-vars();
   display: flex;
   align-items: center;
-  font-size: var(--ti-popupload-font-size);
+  font-size: var(--tv-PopUpload-font-size);
 
   &__dialog {
-    max-height: 512px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -37,12 +38,12 @@
 
   &__dialog-header {
     .@{alert-prefix-cls} {
-      margin-bottom: var(--ti-popupload-dialog-header-alert-margin-bottom);
+      margin-bottom: 16px;
     }
   }
 
   &__dialog-body {
-    padding-bottom: var(--ti-popupload-dialog-table-body-padding-bottom);
+    padding-bottom: 10px;
 
     .@{upload-list-prefix-cls} {
       display: none;
@@ -54,71 +55,94 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: var(--ti-popupload-dialog-footer-padding-bottom);
+    padding-bottom: 24px;
   }
 
   &__dialog-tips {
     display: flex;
     flex-direction: column;
     margin: 12px 0;
+    color: var(--tv-PopUpload-table-body-col-color);
+  }
+
+  &__dialog-tips-item {
+    margin: 4px 0;
   }
 
   &__dialog-table {
-    font-size: var(--ti-popupload-dialog-table-font-size);
-    height: var(--ti-popupload-dialog-table-height);
+    font-size: var(--tv-PopUpload-dialog-table-font-size);
+    height: var(--tv-PopUpload-dialog-table-height);
     width: 100%;
-    margin-top: var(--ti-popupload-dialog-margin-top);
+    margin-top: 20px;
 
     .header-col {
-      border-right: 1px solid var(--ti-popupload-dialog-table-border-color);
-      padding: var(--ti-popupload-table-header-col-padding-vertical)
-        var(--ti-popupload-table-header-col-padding-horizontal);
+      position: relative;
+      padding: 0 12px;
 
-      &:last-child {
-        border-right: none;
+      &:not(:last-child):after {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        display: inline-block;
+        content: '';
+        width: 1px;
+        height: var(--tv-PopUpload-dialog-table-line-height);
+        background-color: transparent;
       }
     }
 
     .body-col {
-      padding: var(--ti-popupload-table-body-col-padding-vertical) var(--ti-popupload-table-body-col-padding-horizontal);
-      margin: var(--ti-popupload-table-body-col-margin-vertical) var(--ti-popupload-table-body-col-margin-horizontal);
-      line-height: var(--ti-popupload-table-body-col-line-height);
+      padding: 8px 12px;
+      margin: 0;
+      line-height: var(--tv-PopUpload-table-body-col-line-height);
+      color: var(--tv-PopUpload-table-body-col-color);
     }
 
     .col1 {
-      width: 60%;
+      width: 46%;
     }
 
     .col2 {
-      width: 20%;
+      width: 17%;
     }
 
     .col3 {
-      width: 20%;
+      width: 21%;
+    }
+
+    .col4 {
+      width: 16%;
     }
   }
 
   &__dialog-table-header {
-    height: var(--ti-popupload-dialog-table-header-height);
+    height: var(--tv-PopUpload-dialog-table-header-height);
     width: 100%;
-    color: var(--ti-popupload-dialog-table-header-text-color);
-    font-weight: var(--ti-popupload-dialog-table-header-font-weight);
+    color: var(--tv-PopUpload-dialog-table-header-text-color);
+    font-weight: var(--tv-PopUpload-dialog-table-header-font-weight);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--ti-popupload-dialog-table-header-bg-color);
-    border-bottom: 1px solid var(--ti-popupload-dialog-table-border-color);
+    background: var(--tv-PopUpload-dialog-table-header-bg-color);
   }
 
   &__dialog-table-body {
     width: 100%;
-    height: calc(100% - var(--ti-popupload-dialog-table-header-height));
+    height: calc(100% - var(--tv-PopUpload-dialog-table-header-height));
     overflow-y: auto;
-    border-bottom: 1px solid var(--ti-popupload-dialog-table-border-color);
   }
 
   &__dialog-table-list {
     list-style: none;
+
+    &-footer {
+      margin-top: 12px;
+
+      & > .footer-error-tip {
+        color: var(--tv-PopUpload-status-fail-icon-color);
+      }
+    }
   }
 
   &__dialog-table-item {
@@ -128,22 +152,51 @@
     justify-content: space-between;
 
     &:nth-child(even) {
-      background: var(--ti-popupload-table-item-even-bg-color);
+      background: var(--tv-PopUpload-table-item-even-bg-color);
     }
 
-    .delIcon {
-      width: var(--ti-popupload-dialog-table-icon-size);
-      fill: var(--ti-popupload-dialog-table-icon-color);
+    .del-col {
+      color: var(--tv-PopUpload-dialog-delete-text-color);
+      width: 100%;
       cursor: pointer;
-
-      &:hover {
-        width: var(--ti-popupload-dialog-table-icon-size-hover);
-        fill: var(--ti-popupload-dialog-table-icon-color-hover);
-      }
     }
   }
 
-  &__modal .@{popupload__modal-prefix-cls}__body {
-    overflow-y: auto;
+  &__modal {
+    & .@{popupload__modal-prefix-cls}__body {
+      overflow-y: auto;
+    }
+
+    .@{file-upload-prefix-cls} .@{upload-list-prefix-cls}__text-title {
+      display: none;
+    }
+
+    .@{popupload-prefix-cls}__dialog-footer {
+      justify-content: flex-end;
+    }
+  }
+
+  // 新规范适配
+  &__pop-confirm {
+    .@{popconfirm-prefix-cls}-popover__title {
+      white-space: nowrap;
+    }
+  }
+
+  &__status-icon {
+    display: inline-block;
+    margin-right: 7px;
+    height: 8px;
+    width: 8px;
+    border: 2px solid var(--tv-PopUpload-status-icon-border-color);
+    border-radius: 50%;
+
+    &&-success {
+      border-color: var(--tv-PopUpload-status-success-icon-border-color);
+    }
+
+    &&-fail {
+      border-color: var(--tv-PopUpload-status-fail-icon-color);
+    }
   }
 }

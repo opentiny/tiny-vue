@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('Textpopup 清空value值', async ({ page }) => {
+test('Textpopup 清空 value 值', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('text-popup#clear-value')
 

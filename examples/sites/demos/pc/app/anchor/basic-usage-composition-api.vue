@@ -1,14 +1,14 @@
 <template>
   <div class="demo-top mb10">
     <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
-    <span>当前类型：{{ type }}</span>
+    <span class="demo-anchor">当前类型：{{ type }}</span>
   </div>
   <tiny-anchor :links="links" :type="type"></tiny-anchor>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyAnchor, TinySwitch } from '@opentiny/vue'
 
 const links = ref([
   {
@@ -52,5 +52,9 @@ const type = ref('dot')
 .demo-top {
   display: flex;
   align-items: center;
+}
+.demo-anchor {
+  margin-left: 8px;
+  font-size: 14px;
 }
 </style>

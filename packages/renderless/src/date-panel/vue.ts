@@ -33,11 +33,11 @@ import {
   handleLeave,
   handleEnter,
   getYearLabel,
-  showYearPicker,
-  showMonthPicker,
+  showHeaderPicker,
   handleTimePick,
   checkDateWithinRange,
   cusEmit,
+  panelEmit,
   getDefaultValue,
   isValidValue,
   handleVisibleDateChange,
@@ -55,10 +55,10 @@ import {
   computerTimeFormat,
   watchVisible,
   getDisabledNow,
-  getDisabledConfirm
+  getDisabledConfirm,
+  getNowTime
 } from './index'
-import { getWeekNumber, extractDateFormat } from '../common/deps/date-util'
-import { DATEPICKER, DATE } from '../common'
+import { DATEPICKER, DATE, toDate1, getWeekNumber, modifyDate, extractDateFormat } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -76,33 +76,33 @@ export const api = [
   'handleMonthPick',
   'handleYearPick',
   'handleDatePick',
-  'showMonthPicker',
-  'showYearPicker',
+  'showHeaderPicker',
   'handleTimePick',
   'handleEnter',
   'handleVisibleTimeChange',
   'handleVisibleDateChange',
   'handleLeave',
   'handleShortcutClick',
-  'handleTimePickClose'
+  'handleTimePickClose',
+  'getNowTime'
 ]
 
-const initState = ({ reactive, computed, api, i18n }) => {
+const initState = ({ reactive, computed, api, i18n, designConfig, props }) => {
   const state = reactive({
-    popperClass: '',
+    popperClass: props.popperClass || '',
     date: new Date(),
     value: '',
     defaultValue: null,
     defaultTime: null,
-    showTime: false,
+    showTime: props.type === 'datetimerange' || false,
     selectionMode: DATEPICKER.Day,
-    shortcuts: '',
+    shortcuts: props.shortcuts || [],
     visible: false,
     currentView: DATEPICKER.Date,
-    disabledDate: '',
+    disabledDate: props.disabledDate || null,
     cellClassName: '',
     selectableRange: [],
-    firstDayOfWeek: 7,
+    firstDayOfWeek: props.firstDayOfWeek || 7,
     showWeekNumber: false,
     timePickerVisible: false,
     format: '',
@@ -131,7 +131,9 @@ const initState = ({ reactive, computed, api, i18n }) => {
     dateFormat: computed(() => (state.format ? extractDateFormat(state.format.replace(state.timefmt, '')) : DATE.Date)),
     lang: computed(() => (i18n ? i18n.locale.replace(/_/g, '-') : 'zh-CN')),
     isShowTz: computed(() => state.showTimezone && state.showTime),
-    isShowFooter: computed(() => state.footerVisible && [DATEPICKER.Date, DATEPICKER.Year].includes(state.currentView))
+    isShowFooter: computed(() => state.footerVisible && [DATEPICKER.Date, DATEPICKER.Year].includes(state.currentView)),
+    buttonType: designConfig?.state?.buttonType || 'default',
+    buttonSize: designConfig?.state?.buttonSize || ''
   })
 
   state.needChangeTimezoneData = true // 控制重新渲染时区列表
@@ -139,7 +141,44 @@ const initState = ({ reactive, computed, api, i18n }) => {
   return state
 }
 
-const initWatch = ({ watch, state, api, nextTick }) => {
+const initWatch = ({ watch, state, api, nextTick, props }) => {
+  watch(
+    () => props.modelValue,
+    (value) => {
+      let newVal
+      const val = toDate1(value)
+      if (val) {
+        const localOffset = val.getTimezoneOffset() * 60000
+        newVal = toDate1(val - localOffset)
+      }
+      if (newVal) {
+        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate() + 1)
+        state.date = newDate
+        state.value = newDate
+      }
+    },
+    { immediate: true }
+  )
+
+  watch(
+    () => props.type,
+    (value) => {
+      if (['date', 'month', 'year'].includes(value)) {
+        state.selectionMode = value
+        state.currentView = value
+      }
+    },
+    { immediate: true }
+  )
+
+  watch(
+    () => props.format,
+    (value) => {
+      state.format = value
+    },
+    { immediate: true }
+  )
+
   watch(
     () => state.isShowTz,
     () => {
@@ -175,7 +214,7 @@ const initWatch = ({ watch, state, api, nextTick }) => {
   watch(() => state.visible, api.watchVisible)
 }
 
-const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
+const initApi = ({ api, state, t, emit, nextTick, vm, watch, props }) => {
   Object.assign(api, {
     t,
     state,
@@ -186,17 +225,17 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
     selectTz: selectTz({ emit, state }),
     handleTzPickClose: handleTzPickClose(state),
     getDefaultValue: getDefaultValue(state),
-    showYearPicker: showYearPicker({ state }),
+    showHeaderPicker: showHeaderPicker({ state, props }),
     handleTimePickClose: handleTimePickClose(state),
     cusNextMonth: cusNextMonth({ state }),
     cusPrevMonth: cusPrevMonth({ state }),
     resetView: resetView({ state }),
-    showMonthPicker: showMonthPicker({ state }),
     cusNextYear: cusNextYear({ state }),
     cusPrevYear: cusPrevYear({ state }),
     watchDefaultValue: watchDefaultValue({ state }),
     getYearLabel: getYearLabel({ state, t }),
     cusEmit: cusEmit({ state, emit }),
+    panelEmit: panelEmit({ state, emit, t, props }),
     watchTimePickerVisible: watchTimePickerVisible({ nextTick, vm }),
     checkDateWithinRange: checkDateWithinRange({ state }),
     watchSelectionMode: watchSelectionMode({ state }),
@@ -206,34 +245,39 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
     searchTz: searchTz({ api, state }),
     handleEnter: handleEnter(api),
     handleLeave: handleLeave({ api, emit }),
-    changeToNow: changeToNow({ api, state }),
+    changeToNow: changeToNow({ api, state, props }),
     isValidValue: isValidValue({ api, state }),
     handleClear: handleClear({ api, state, emit }),
     watchValue: watchValue({ api, state }),
     handleKeydown: handleKeydown({ api, state }),
     confirm: confirm({ api, state, t }),
-    handleMonthPick: handleMonthPick({ api, state }),
+    handleMonthPick: handleMonthPick({ api, state, props, t, emit }),
     handleVisibleDateChange: handleVisibleDateChange({ api, state, t }),
     handleTimePick: handleTimePick({ api, state, t }),
-    handleYearPick: handleYearPick({ api, state }),
-    handleDatePick: handleDatePick({ api, state, t }),
+    handleYearPick: handleYearPick({ api, state, props, t }),
+    handleDatePick: handleDatePick({ api, state, t, props }),
     computerVisibleTime: computerVisibleTime({ state, t }),
-    handleShortcutClick: handleShortcutClick(api),
+    handleShortcutClick: handleShortcutClick(api, props, state),
     computerVisibleDate: computerVisibleDate({ state, t }),
     handleVisibleTimeChange: handleVisibleTimeChange({ api, vm, state, t }),
     computerTimeFormat: computerTimeFormat({ state }),
     getDisabledNow: getDisabledNow({ state }),
-    getDisabledConfirm: getDisabledConfirm({ state })
+    getDisabledConfirm: getDisabledConfirm({ state }),
+    getNowTime: getNowTime({ props })
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, i18n }) => {
+export const renderless = (
+  props,
+  { computed, reactive, watch, nextTick },
+  { t, emit: $emit, vm, i18n, designConfig }
+) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
-  const state = initState({ reactive, computed, api, i18n })
+  const state = initState({ reactive, computed, api, i18n, designConfig, props })
 
-  initApi({ api, state, t, emit, nextTick, vm, watch })
-  initWatch({ watch, state, api, nextTick })
+  initApi({ api, state, t, emit, nextTick, vm, watch, props })
+  initWatch({ watch, state, api, nextTick, props, t })
 
   return api
 }

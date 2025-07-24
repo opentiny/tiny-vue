@@ -10,6 +10,7 @@
         :highlight-class="item._highlightClass"
       ></tiny-option>
     </tiny-select>
+    <br /><br />
     <p class="cache-value">
       {{ cacheValue }}
     </p>
@@ -17,28 +18,28 @@
 </template>
 
 <script>
-import { Select, Option } from '@opentiny/vue'
-import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
+import { TinySelect, TinyOption } from '@opentiny/vue'
+import { Memorize } from '@opentiny/utils'
 
 const MemorizeInstance = new Memorize({ key: 'test456' })
 
 const options = MemorizeInstance.assemble([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option
+    TinySelect,
+    TinyOption
   },
   data() {
     return {
       options,
-      value: '选项3',
+      value: '选项 3',
       cacheValue: []
     }
   },

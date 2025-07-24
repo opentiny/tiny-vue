@@ -1,5 +1,5 @@
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
+import { debounce } from '@opentiny/utils'
+import { getStyle } from '@opentiny/utils'
 import { createTooltipRange, processContentMethod } from './handleTooltip'
 
 let focusSingle = null
@@ -35,9 +35,11 @@ export default {
   },
   // 显示 tooltip
   handleTooltip(event, column, row, showTip, isHeader) {
-    const cell = isHeader
-      ? event.currentTarget.querySelector('.tiny-grid-cell-text')
-      : event.currentTarget.querySelector('.tiny-grid-cell')
+    // 当title配置为函数时，文本不会包裹tiny-grid-cell-text类名
+    const cell =
+      isHeader && !(typeof column.title === 'function')
+        ? event.currentTarget.querySelector('.tiny-grid-cell-text')
+        : event.currentTarget.querySelector('.tiny-grid-cell')
 
     // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip，使用头部插槽且文本超长时也应该显示
     if (isHeader && event.target !== cell && !cell?.contains(event.target)) {
@@ -45,13 +47,16 @@ export default {
     }
     const tooltip = this.$refs.tooltip
     const wrapperElem = cell
-    const content = cell.innerText.trim() || cell.textContent.trim()
+    const content = cell.innerText.trim()
     const { contentMethod } = this.tooltipConfig
     const range = createTooltipRange({ _vm: this, cell, column, isHeader })
     const rangeWidth = range.getBoundingClientRect().width
     const padding =
       (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
-    const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
+    const isOverflow =
+      // 浏览器缩放情况下，会存在细微的像素无法，因此设置0.1像素作为误差量
+      rangeWidth + padding > cell.getBoundingClientRect().width + 0.1 ||
+      wrapperElem.scrollWidth > wrapperElem.clientWidth
 
     // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示
     if ((contentMethod || content) && (showTip || isOverflow)) {

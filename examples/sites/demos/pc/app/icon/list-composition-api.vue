@@ -4,15 +4,16 @@
       <tiny-input class="search-input" v-model="searchName" clearable autofocus size="small"></tiny-input>
     </div>
     <div class="svgs-wrapper">
-      <div v-for="(nameList, groupName) in iconGroups" :key="groupName">
+      <div v-for="(nameList, groupName) in iconGroups" :key="groupName" class="svgs-box">
         <div class="group-name">
           {{ groupName }}
         </div>
-        <template v-for="name in nameList">
+        <template v-for="name in nameList" :key="name">
           <div
-            v-if="searchName === '' || name.toLowerCase().includes(searchName.toLowerCase())"
-            :key="name"
-            class="svgs-item"
+            :class="{
+              'svg-visible': searchName === '' || name.toLowerCase().includes(searchName.toLowerCase()),
+              'svgs-item': true
+            }"
             @click="click(name)"
           >
             <component :is="Svgs[name] && Svgs[name]()" class="svgs-icon"></component>
@@ -27,7 +28,7 @@
 <script setup>
 import { ref } from 'vue'
 import Svgs from '@opentiny/vue-icon'
-import { Modal, Input as TinyInput } from '@opentiny/vue'
+import { TinyModal, TinyInput } from '@opentiny/vue'
 import { iconGroups } from './iconGroups.js'
 
 const all = Object.values(iconGroups).flat()
@@ -44,7 +45,7 @@ const searchName = ref('')
 
 function click(name) {
   window.navigator.clipboard.writeText(name)
-  Modal.message({
+  TinyModal.message({
     message: `成功复制图标名称 ${name} `,
     status: 'info'
   })
@@ -75,6 +76,7 @@ function click(name) {
 }
 
 .group-name {
+  display: none;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
@@ -86,8 +88,9 @@ function click(name) {
 .svgs-icon {
   cursor: pointer;
   transition: all 0.4s;
-  fill: #000;
   font-size: 24px;
+  fill: var(--tv-color-icon-control);
+  color: var(--tv-color-icon-control);
 }
 
 .svgs-icon:hover {
@@ -95,14 +98,19 @@ function click(name) {
 }
 
 .svgs-item {
+  display: none;
   width: 20%;
   text-align: center;
-  display: inline-block;
   padding: 24px;
 }
 
 .svgs-item:hover {
   background-color: #f6f8fa;
+  color: #191919;
+}
+
+.svgs-item:hover .svgs-icon {
+  fill: #191919;
 }
 
 .svgs-text {
@@ -110,5 +118,13 @@ function click(name) {
   display: block;
   font-size: 12px;
   font-weight: 600;
+}
+
+.svgs-box:has(> .svg-visible) .group-name {
+  display: block;
+}
+
+.svgs-item.svg-visible {
+  display: inline-block;
 }
 </style>

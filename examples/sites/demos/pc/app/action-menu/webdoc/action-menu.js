@@ -61,7 +61,7 @@ export default {
         'en-US': 'Dropdown button text'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>more-text</code> 属性设置下拉按钮文本,默认为 <code>更多</code>。</p>',
+        'zh-CN': '<p>通过 <code>more-text</code> 属性设置下拉按钮文本，默认为 <code>更多</code>。</p>',
         'en-US':
           '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to <code>More</code></p>'
       },
@@ -74,7 +74,7 @@ export default {
         'en-US': 'Spacing'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>spacing</code> 属性设置菜单按钮之间的间距,默认为 <code>5px</code>。</p>',
+        'zh-CN': '<p>通过 <code>spacing</code> 属性设置菜单按钮之间的间距，默认为 <code>5px</code>。</p>',
         'en-US':
           '<p>Set the spacing between menu buttons through the <code>spacing</code> attribute, which defaults to <code>5px</code>.</p>'
       },
@@ -88,7 +88,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>mode</code> 属性设置菜单模式以适配在不同场景中能够使用，例如：菜单按钮在卡片中使用，可以配置为 <code>card</code>，卡片模式字体为黑色，间距为10px。  <code>mode</code> 默认为值<code>default</code>。</p>',
+          '<p>通过 <code>mode</code> 属性设置菜单模式以适配在不同场景中能够使用，例如：菜单按钮在卡片中使用，可以配置为 <code>card</code>，卡片模式字体为黑色，间距为 10px。  <code>mode</code> 默认为值<code>default</code>。</p>',
         'en-US':
           '<p>Use the <code>mode</code> attribute to set the menu mode so that the vehicle can be used in different scenarios. For example, if the menu button is used in configuration, it can be configured as <code>card</code>, and the auxiliary mode font is Black with 10px spacing. <code>mode</code> defaults to <code>default</code>. </p>'
       },
@@ -142,7 +142,7 @@ export default {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>item-click：监听菜单项的点击事件。</p>\n<p>more-click：监听下拉按钮的点击事件。trigger 为 click 时生效。</p>\n<p>visible-change：监听下拉弹框的显示或隐藏状态变化。</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>item-click：Listen for click events on menu items.</p>\n<p>more-click：Listen for the click event of the drop-down button. Effective when trigger is click.</p>\n<p>visible-change：Monitor the display or hidden status changes of the dropdown pop-up.</p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>item-click: Listen for click events on menu items.</p>\n<p>more-click: Listen for the click event of the drop-down button. Effective when trigger is click.</p>\n<p>visible-change: Monitor the display or hidden status changes of the dropdown pop-up.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
     }

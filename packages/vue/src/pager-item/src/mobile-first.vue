@@ -8,6 +8,7 @@
         v-text="'1'"
       ></li>
       <li
+        ref="prev"
         data-tag="pager-item-premore"
         :class="m(gcls('li'), gcls('dot'))"
         v-if="state.showPrevMore"
@@ -24,6 +25,7 @@
         v-text="`${pager}`"
       ></li>
       <li
+        ref="next"
         data-tag="pager-item-nextmore"
         :class="m(gcls('li'), gcls('dot'))"
         v-if="state.showNextMore"

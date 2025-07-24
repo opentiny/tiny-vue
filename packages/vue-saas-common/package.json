@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-saas-common",
   "private": true,
-  "version": "3.17.0",
+  "version": "3.22.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -29,7 +29,8 @@
   "type": "module",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-design-saas": "workspace:~"
+    "@opentiny/vue-design-saas": "workspace:~",
+    "tailwind-merge": "^1.8.0"
   },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",

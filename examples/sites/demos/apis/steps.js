@@ -19,14 +19,30 @@ export default {
         },
         {
           name: 'advanced',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '是否开启高级向导模式',
             'en-US': 'Enable Advanced Wizard Mode'
           },
-          mode: ['mobile-first'],
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'advanced-steps',
           mfDemo: 'advanced-steps'
+        },
+        {
+          name: 'content-center',
+          type: 'string',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '使步骤条内容默认居中显示',
+            'en-US': 'Make the step bar content appear centered by default'
+          },
+          meta: {
+            stable: '3.22.0'
+          },
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'content-center',
+          mfDemo: 'content-center'
         },
         {
           name: 'count-field',
@@ -63,6 +79,20 @@ export default {
           mode: ['mobile-first']
         },
         {
+          name: 'dot',
+          type: 'Boolean',
+          defaultValue: 'false',
+          meta: {
+            stable: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '点状形步骤条，当值只支持垂直样式',
+            'en-US': 'Dot shaped step bar, values only support vertical style'
+          },
+          mode: ['pc'],
+          pcDemo: 'line-dot'
+        },
+        {
           name: 'duration',
           type: 'number',
           defaultValue: '300',
@@ -84,6 +114,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'node-width'
+        },
+        {
+          name: 'line',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 line 设置横向单链型步骤条',
+            'en-US': 'Set horizontal single chain step bar through line'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         },
         {
           name: 'name-field',
@@ -161,10 +202,11 @@ export default {
           type: 'Number',
           defaultValue: '5',
           desc: {
-            'zh-CN': '显示模块数量，超出隐藏',
-            'en-US': 'Display the number of modules. The number of modules exceeds the hidden value'
+            'zh-CN': '控制信息可见的节点数，默认可见5个',
+            'en-US': 'Control the number of visible nodes for information, with a default of 5 visible nodes'
           },
-          mode: ['mobile-first'],
+          mode: ['mobile-first', 'pc'],
+          pcDemo: 'line-horizontal',
           mfDemo: 'vertical'
         }
       ],
@@ -208,6 +250,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'itemFooter',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '步骤条数据项底部插槽，用于条形步骤条',
+            'en-US': 'Step bar data item bottom slot, used for bar steps'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-item-footer',
+          mfDemo: ''
+        },
+        {
           name: 'prefix',
           type: '',
           defaultValue: '',
@@ -225,6 +282,7 @@ export default {
     {
       name: 'IStepsItem',
       type: 'interface',
+      depTypes: ['IStepsStatus'],
       code: `
 interface IStepsItem {
   // 节点数据

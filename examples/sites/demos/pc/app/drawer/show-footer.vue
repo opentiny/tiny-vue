@@ -9,18 +9,18 @@
       @update:visible="visible = $event"
       @confirm="confirm"
     >
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
     </tiny-drawer>
   </div>
 </template>
 
 <script>
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {

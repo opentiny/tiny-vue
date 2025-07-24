@@ -10,7 +10,7 @@
  *
  */
 import { $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 export const anchorProps = {
   isAffix: {
@@ -32,6 +32,10 @@ export const anchorProps = {
   type: {
     type: String,
     default: 'line'
+  },
+  offsetTop: {
+    type: Number,
+    default: 0
   }
 }
 

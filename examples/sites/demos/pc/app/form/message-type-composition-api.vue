@@ -29,14 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton,
-  ButtonGroup as TinyButtonGroup
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 
@@ -46,12 +39,12 @@ const createData = ref({
   datepicker: ''
 })
 
-const messageType = ref('')
+const messageType = ref('block')
 
 const messageTypeList = ref([
-  { text: '默认', value: '' },
+  { text: '块级', value: 'block' },
   { text: '行内', value: 'inline' },
-  { text: '块级', value: 'block' }
+  { text: '绝对定位', value: 'absolute' }
 ])
 const rules = ref({
   users: { required: true, message: '必填', trigger: 'blur' },
@@ -66,7 +59,7 @@ function handleSubmit() {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 400px;
 }
 
 .demo-form :deep(.tiny-date-container) {

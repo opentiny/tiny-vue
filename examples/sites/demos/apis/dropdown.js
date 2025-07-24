@@ -219,6 +219,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'v-model:visible',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '手动控制下拉弹框显隐，优先级高于trigger',
+            'en-US': 'Manually control the display and hide of the dropdown menu, with priority higher than the trigger'
+          },
+          mode: ['pc'],
+          pcDemo: 'visible'
+        },
+        {
           name: 'visible-arrow',
           type: 'boolean',
           defaultValue: 'false',
@@ -228,6 +239,22 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'visible-arrow'
+        },
+        {
+          name: 'lazy-show-popper',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否懒加载下拉菜单及内部的项，以优化性能，默认初始全加载菜单及内部项。',
+            'en-US':
+              'Indicates whether to lazily load the drop-down menu and internal items to optimize performance. The default value is false. The menu and internal items are loaded initially.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'lazy-show-popper',
+          mfDemo: '',
+          meta: {
+            experimental: '3.18.0'
+          }
         }
       ],
       events: [
@@ -355,7 +382,10 @@ export default {
             'en-US': 'Menu pop-up location '
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          pcDemo: 'placement',
+          meta: {
+            experimental: '3.21.0'
+          }
         },
         {
           name: 'popper-class',
@@ -486,6 +516,7 @@ export default {
     {
       name: 'IMenuOption',
       type: 'interface',
+      depTypes: ['IItemData'],
       code: `
 interface IMenuOption {
   options: IItemData[]
@@ -498,6 +529,7 @@ interface IMenuOption {
     {
       name: 'IItemClickParam',
       type: 'interface',
+      depTypes: ['IItemData'],
       code: `        
 interface IItemClickParam {
   itemData: IItemData
@@ -526,14 +558,14 @@ interface IItemData {
       name: 'IButtonType',
       type: 'type',
       code: `        
-type IButtonType =  'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
 `
     },
     {
       name: 'IPlacementType',
       type: 'type',
       code: `        
-type IPlacementType =  'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
+type IPlacementType =  'bottom-start' | 'bottom-end'
 `
     }
   ]

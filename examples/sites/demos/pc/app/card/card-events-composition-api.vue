@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, Modal } from '@opentiny/vue'
+import { TinyCard, TinyModal } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 import { ref } from 'vue'
@@ -45,13 +45,13 @@ const options = ref([
   }
 ])
 function change(val) {
-  Modal.message({
+  TinyModal.message({
     message: val.toString(),
     status: 'info'
   })
 }
 function iconClick(item, index) {
-  Modal.message({
+  TinyModal.message({
     message: `当前点击的是第${index + 1}个图标`,
     status: 'info'
   })

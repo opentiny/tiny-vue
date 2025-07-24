@@ -92,12 +92,12 @@
 </template>
 
 <script>
-import { ColumnListItem, Modal } from '@opentiny/vue'
+import { TinyColumnListItem, TinyModal } from '@opentiny/vue'
 import { iconDel, iconWriting, iconAscending, iconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyColumnListItem: ColumnListItem
+    TinyColumnListItem
   },
   data() {
     return {
@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     iconClick(item, index) {
-      Modal.message({
+      TinyModal.message({
         message: `当前点击的是第${index + 1}个图标`,
         status: 'info'
       })

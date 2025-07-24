@@ -1,18 +1,15 @@
 <template>
   <div>
-    <p>场景1：静态数据</p>
-    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
-    <p>场景2：服务端数据</p>
     <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
   </div>
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {

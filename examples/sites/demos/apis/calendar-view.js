@@ -43,7 +43,7 @@ export default {
         },
         {
           name: 'height',
-          type: 'string',
+          type: 'string | number',
           defaultValue: '',
           desc: {
             'zh-CN': '日历高度',
@@ -171,6 +171,20 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
           mfDemo: 'basic-usage'
+        },
+        {
+          name: 'show-back-today',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否展示左上侧按钮显示，默认展示',
+            'en-US': 'Should the upper left button be displayed, Default Display'
+          },
+          meta: {
+            stable: '3.22.0'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'calendar-mode'
         }
       ],
       events: [

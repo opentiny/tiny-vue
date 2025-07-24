@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartPie } from '@opentiny/vue'
+import { TinyHuichartsPie } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyPie: ChartPie
+    TinyPie: TinyHuichartsPie
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
           },
           orient: 'horizontal',
 
-          // 同意对图例图标设置类型，默认circle, 可选值: rect, roundRect, triangle, diamond; 若定义了legend.data, 则此属性失效。
+          // 同意对图例图标设置类型，默认 circle, 可选值：rect, roundRect, triangle, diamond; 若定义了 legend.data, 则此属性失效。
           icon: 'circle',
 
           // 控制图例图标的高度

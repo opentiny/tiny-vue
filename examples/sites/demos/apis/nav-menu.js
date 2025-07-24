@@ -78,6 +78,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'before-skip-prevent'
+        },
+        {
+          name: 'default-active',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义当前选中的菜单，data数据中必须设置id',
+            'en-US': 'Customize the currently selected menu, and the ID must be set in the data data'
+          },
+          mode: ['pc'],
+          pcDemo: 'selecte',
+          meta: {
+            stable: '3.21.0'
+          }
         }
       ],
       events: [],

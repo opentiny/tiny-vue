@@ -1,6 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="icon/16/箭头/默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5,3 L10.8,3 C10.9104569,3 11,3.08954305 11,3.2 L11,9 L11,9" id="路径" stroke="currentColor" transform="translate(8.000000, 6.000000) rotate(135.000000) translate(-8.000000, -6.000000) "></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+</style>
+<rect id="矩形" class="st0"/>
+<path id="路径" class="st1" d="M3.16,5.36c0.22-0.22,0.55-0.24,0.79-0.07l0.09,0.07L8,9.32l3.96-3.96
+	c0.22-0.22,0.55-0.24,0.79-0.07l0.09,0.07c0.22,0.22,0.24,0.55,0.07,0.79l-0.07,0.09l-4.4,4.4c-0.22,0.22-0.55,0.24-0.79,0.07
+	l-0.09-0.07l-4.4-4.4C2.92,6,2.92,5.6,3.16,5.36z"/>
 </svg>

@@ -19,9 +19,10 @@ import type {
   IMilestoneIconStyle,
   IMilestoneFlagOperateParams
 } from '@/types'
+import { isServer } from '@opentiny/utils'
 
-const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
-  if (hex.includes('var')) {
+export const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
+  if (hex.includes('var') && !isServer) {
     hex = hex.replace(/var\(|\)/g, '')
     hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
   }
@@ -67,16 +68,20 @@ export const flagOperate =
 export const getMileIcon =
   ({ constants, props }: Pick<IMilestoneRenderlessParams, 'constants' | 'props'>) =>
   (node: IMilestoneNode): IMilestoneIconStyle => {
-    const status = props.milestonesStatus[node[props.statusField]] || constants.DEFAULT_COLOR
+    const status = node[props.statusField]
+    // 状态色
+    const statusColor = props.milestonesStatus[status]
 
-    const isCompleted = node[props.statusField] === props.completedField
-    const switchColor = isCompleted && !props.solid
-    const { r, g, b } = hexToRgb(status)
-
-    return {
-      background: (switchColor ? constants.DEFAULT_BACK_COLOR : status) + '!important',
-      color: (switchColor ? status : constants.DEFAULT_BACK_COLOR) + '!important',
-      boxShadow: `rgba(${r},${g},${b},.4) ${constants.BOX_SHADOW_PX}`
+    if (statusColor) {
+      return {
+        'background-color': props.solid || status === constants.STATUS_MAP.DOING ? statusColor : '',
+        color: (props.solid 
+          && status !== constants.STATUS_MAP.COMPLETED 
+          || status === constants.STATUS_MAP.DOING)
+          ? '#FFFFFF' : statusColor,
+        'border-color': statusColor,
+        boxShadow: 'unset'
+      }
     }
   }
 
@@ -114,4 +119,14 @@ export const handleFlagClick =
   ({ idx, flag }: IMilestoneHandleFlagClickParams) => {
     emit('flagclick', idx, flag) // deprecated 原事件flagclick v3.5.0废弃，v3.17.0移除；移除原因：命名规范
     emit('flag-click', idx, flag)
+  }
+
+export const getFlagStyle =
+  (props) =>
+  ({ index, idx }) => {
+    return {
+      left: `calc(${(100 / props.data[props.flagBefore ? index : index + 1][props.flagField].length) * idx}%  + ${
+        idx * 8
+      }px)`
+    }
   }

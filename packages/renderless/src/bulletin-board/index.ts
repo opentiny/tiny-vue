@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common/xss.js'
+import { xss } from '@opentiny/utils'
 
 export const getRoute = (route) => `/${route || ''}`.replace(/^\/+/, '/')
 
@@ -33,4 +33,10 @@ export const computedMoreLink =
       props.moreLink.url = xss.filterUrl(props.moreLink.url)
     }
     return props.moreLink
+  }
+
+export const handleBulletinBoardClick =
+  ({ emit }) =>
+  (item) => {
+    emit('contentClick', item)
   }

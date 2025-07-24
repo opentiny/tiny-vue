@@ -14,7 +14,7 @@
       ></tiny-tree>
     </div>
     <div style="margin-left: 30px">
-      <div class="tip">默认展开节点2，仅点击图标才展开节点</div>
+      <div class="tip">默认展开节点 2，仅点击图标才展开节点</div>
       <div class="tip">
         <tiny-button @click="expandHlNode">展开高亮</tiny-button>
         <tiny-button @click="collapseHlNode">收起高亮</tiny-button>
@@ -32,12 +32,12 @@
 </template>
 
 <script lang="jsx">
-import { Tree, Button } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyButton: Button
+    TinyTree,
+    TinyButton
   },
   data() {
     return {

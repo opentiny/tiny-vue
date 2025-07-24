@@ -59,8 +59,8 @@ export default {
         'en-US': 'Restrict file types'
       },
       desc: {
-        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式。',
-        'en-US': 'Limit the format of uploaded files by setting <code>accept</code> .'
+        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式只能为图片类型。',
+        'en-US': 'Set a limit on the format of uploaded files to only be image type through <code>accept</code>.'
       },
       codeFiles: ['accept-file-image.vue']
     },
@@ -188,6 +188,43 @@ export default {
           'Set the list of uploaded files through <code>file-list</code> , or turn off the display of the list through <code>: show-file-list="false"</code> ; <code>open-download-file</code> Set whether the file is downloadable.'
       },
       codeFiles: ['upload-file-list.vue']
+    },
+    {
+      demoId: 'file-size',
+      name: {
+        'zh-CN': '文件大小限制',
+        'en-US': 'Uploaded file size limit'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>file-size</code> 配置上传文件的大小。<p>',
+        'en-US': '<p>Use <code>file-size</code> to configure the size of the uploaded file.</p>'
+      },
+      codeFiles: ['file-size.vue']
+    },
+    {
+      demoId: 'file-size-array',
+      name: {
+        'zh-CN': '文件大小范围',
+        'en-US': 'Uploaded file size range'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>file-size</code> 配置为数组类型限制上传文件的大小范围。<p>',
+        'en-US': '<p>Set <code>file-size</code> to an array to limit the size of the file to be uploaded.</p>'
+      },
+      codeFiles: ['file-size-array.vue']
+    },
+    {
+      demoId: 'prompt-tip',
+      name: {
+        'zh-CN': 'tip 提示',
+        'en-US': 'tip Hints'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>propmtTip</code> 为 `true` 设置提示为 tip 类型，悬浮图标时显示 tip 提示。<p>',
+        'en-US':
+          '<p>Set the prompt to the tip type by setting <code>propmtTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
+      },
+      codeFiles: ['prompt-tip.vue']
     },
     {
       demoId: 'upload-file-list-slot',
@@ -328,7 +365,7 @@ export default {
         'en-US': 'User avatar upload'
       },
       desc: {
-        'zh-CN': '通过 <code>URL.createobjectURL</code> 创建出文件的URL对象，用来展示头像。',
+        'zh-CN': '通过 <code>URL.createobjectURL</code> 创建出文件的 URL 对象，用来展示头像。',
         'en-US': 'Create a URL object for the file through <code>URL.createobjectURL</code> to display the avatar.'
       },
       codeFiles: ['upload-user-head.vue']
@@ -393,7 +430,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>\n          <code>exceed</code> 监听文件超出个数限制事件；<br/> <code>progress</code> 监听文件上传过程事件；<br/> <code>change</code> 监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>\n          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成hash值事件。</div>',
+          '<div class="tip custom-block"><code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>\n          <code>exceed</code> 监听文件超出个数限制事件；<br/> <code>progress</code> 监听文件上传过程事件；<br/> <code>change</code> 监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>\n          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成 hash 值事件。</div>',
         'en-US':
           '<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />\n        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />\n        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>'
       },

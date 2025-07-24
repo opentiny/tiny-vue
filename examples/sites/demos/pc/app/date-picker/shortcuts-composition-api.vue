@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 const value = ref('')
 const dateRangeValue = ref('')
@@ -136,11 +136,11 @@ const pickerOptionsMonthRange = {
 const pickerOptionsStartFrom = {
   shortcuts: [
     {
-      text: '某日起始', // text可以自定义
+      text: '某日起始', // text 可以自定义
       type: 'startFrom'
     },
     {
-      text: '某日为止', // text可以自定义
+      text: '某日为止', // text 可以自定义
       type: 'endAt'
     },
     {
@@ -159,7 +159,7 @@ const pickerOptionsStartFrom = {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 350px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

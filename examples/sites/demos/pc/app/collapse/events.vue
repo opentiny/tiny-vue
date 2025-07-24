@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem, Modal } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapse,
+    TinyCollapseItem
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     change(activeNames) {
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，当前激活面板：' + activeNames,
         status: 'info'
       })
@@ -45,9 +45,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.demo-collapse-wrap {
-  .tiny-collapse-item__content > * {
-    line-height: 1.8;
-  }
+.demo-collapse-wrap ::v-deep .tiny-collapse-item__content > * {
+  line-height: 1.6;
 }
 </style>

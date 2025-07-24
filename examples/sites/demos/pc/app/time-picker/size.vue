@@ -2,8 +2,8 @@
   <div>
     <tiny-radio-group v-model="radioValue" size="mini" class="demo-time-picker__switch-size">
       <tiny-radio-button label="medium"></tiny-radio-button>
-      <tiny-radio-button label="small"></tiny-radio-button>
       <tiny-radio-button label="default"></tiny-radio-button>
+      <tiny-radio-button label="small"></tiny-radio-button>
       <tiny-radio-button label="mini"></tiny-radio-button>
     </tiny-radio-group>
     <div class="demo-date-picker-wrap">
@@ -14,17 +14,13 @@
 </template>
 
 <script>
-import {
-  TimePicker,
-  RadioGroup,
-  RadioButton
-} from '@opentiny/vue'
+import { TinyTimePicker, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker,
-    TinyRadioGroup: RadioGroup,
-    TinyRadioButton: RadioButton
+    TinyTimePicker,
+    TinyRadioGroup,
+    TinyRadioButton
   },
   data() {
     const startTime = new Date(2016, 9, 10, 18, 40)
@@ -45,7 +41,7 @@ export default {
 }
 
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 280px;
 
   & > * {
     margin-top: 12px;

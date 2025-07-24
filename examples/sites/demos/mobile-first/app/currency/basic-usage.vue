@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { Currency, Modal, Button } from '@opentiny/vue'
+import { TinyCurrency, TinyModal, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCurrency: Currency,
-    TinyButton: Button
+    TinyCurrency,
+    TinyButton
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
       this.visible = true
     },
     change(value) {
-      Modal.message({ message: `当前值为 ${value}`, status: 'info' })
+      TinyModal.message({ message: `当前值为 ${value}`, status: 'info' })
     }
   }
 }

@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import { Card } from '@opentiny/vue'
+import { TinyCard } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCard: Card
+    TinyCard
   },
   data() {
     return {
-      image: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/button-image.png`
+      image: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`
     }
   }
 }

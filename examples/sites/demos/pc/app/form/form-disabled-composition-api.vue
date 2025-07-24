@@ -2,20 +2,11 @@
   <div class="demo-form">
     <h3 class="title">是否禁用表单：<tiny-switch v-model="formDisabled"></tiny-switch></h3>
     <tiny-form :disabled="formDisabled" label-width="150px">
-      <tiny-form-item label="Input">
-        <tiny-input v-model="createData.user"></tiny-input>
-      </tiny-form-item>
-      <tiny-form-item label="Select">
-        <tiny-select v-model="createData.select" placeholder="请选择">
-          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
-          </tiny-option>
-        </tiny-select>
-      </tiny-form-item>
-      <tiny-form-item label="Numeric">
-        <tiny-numeric v-model="createData.quantity"></tiny-numeric>
-      </tiny-form-item>
       <tiny-form-item label="Switch">
         <tiny-switch v-model="createData.sw"></tiny-switch>
+      </tiny-form-item>
+      <tiny-form-item label="Link">
+        <tiny-link>默认链接</tiny-link>
       </tiny-form-item>
       <tiny-form-item label="Radio">
         <tiny-radio v-model="createData.sex" label="1"> 男 </tiny-radio>
@@ -23,13 +14,31 @@
       </tiny-form-item>
       <tiny-form-item label="Checkbox">
         <tiny-checkbox v-model="createData.checked"> 复选框 </tiny-checkbox>
-        <tiny-checkbox v-model="createData.checked2"> 复选框2 </tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked2"> 复选框 2 </tiny-checkbox>
       </tiny-form-item>
       <tiny-form-item label="CheckboxGroup">
         <tiny-checkbox-group v-model="createData.groupChecked">
           <tiny-checkbox label="复选框1" name="name1"></tiny-checkbox>
           <tiny-checkbox label="复选框2" name="name2"></tiny-checkbox>
         </tiny-checkbox-group>
+      </tiny-form-item>
+      <tiny-form-item label="IpAddress">
+        <tiny-ip-address v-model="createData.ipAddress"></tiny-ip-address>
+      </tiny-form-item>
+      <tiny-form-item label="ButtonGroup">
+        <tiny-button-group :data="groupData"></tiny-button-group>
+      </tiny-form-item>
+      <tiny-form-item label="Input">
+        <tiny-input v-model="createData.user"></tiny-input>
+      </tiny-form-item>
+      <tiny-form-item label="Select">
+        <tiny-select v-model="createData.select" placeholder="">
+          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
+          </tiny-option>
+        </tiny-select>
+      </tiny-form-item>
+      <tiny-form-item label="Numeric">
+        <tiny-numeric v-model="createData.quantity"></tiny-numeric>
       </tiny-form-item>
       <tiny-form-item label="Datepicker">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
@@ -38,7 +47,6 @@
         <tiny-time-picker
           v-model="createData.timePicker"
           :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
-          placeholder="任意时间点"
         ></tiny-time-picker>
       </tiny-form-item>
       <tiny-form-item label="Droptime">
@@ -46,35 +54,21 @@
       </tiny-form-item>
       <tiny-form-item label="Tooltip">
         <tiny-tooltip effect="light" content="TinyUI Form Demo" placement="right">
-          <tiny-input v-model="createData.input" placeholder="click"></tiny-input>
+          <tiny-input v-model="createData.input"></tiny-input>
         </tiny-tooltip>
       </tiny-form-item>
       <tiny-form-item label="Textarea">
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
       </tiny-form-item>
       <tiny-form-item label="Autocomplete">
-        <tiny-autocomplete
-          v-model="createData.autocomplete"
-          placeholder="请输入内容"
-          :fetch-suggestions="querySearch"
-        ></tiny-autocomplete>
-      </tiny-form-item>
-      <tiny-form-item label="ButtonGroup">
-        <tiny-button-group :data="groupData"></tiny-button-group>
+        <tiny-autocomplete v-model="createData.autocomplete" :fetch-suggestions="querySearch"></tiny-autocomplete>
       </tiny-form-item>
       <tiny-form-item label="Cascader">
-        <tiny-cascader :options="options" :props="{ emitPath: false }"></tiny-cascader>
-      </tiny-form-item>
-      <tiny-form-item label="IpAddress">
-        <tiny-ip-address v-model="createData.ipAddress"></tiny-ip-address>
-      </tiny-form-item>
-      <tiny-form-item label="Link">
-        <tiny-link>默认链接</tiny-link>
+        <tiny-cascader :options="options" :props="{ emitPath: false }" placeholder=" "></tiny-cascader>
       </tiny-form-item>
       <tiny-form-item label="PopEditor">
         <tiny-popeditor
           v-model="createData.popEditor"
-          placeholder="请选择"
           :grid-op="gridOp"
           text-field="name"
           value-field="id"
@@ -90,28 +84,27 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Switch as TinySwitch,
-  Checkbox as TinyCheckbox,
-  Numeric as TinyNumeric,
-  Radio as TinyRadio,
-  DatePicker as TinyDatePicker,
-  DropTimes as TinyDropTimes,
-  Tooltip as TinyTooltip,
-  Input as TinyInput,
-  Button as TinyButton,
-  Autocomplete as TinyAutocomplete,
-  ButtonGroup as TinyButtonGroup,
-  Cascader as TinyCascader,
-  CheckboxGroup as TinyCheckboxGroup,
-  IpAddress as TinyIpAddress,
-  Link as TinyLink,
-  Popeditor as TinyPopeditor,
-  Select as TinySelect,
-  Option as TinyOption,
-  Slider as TinySlider,
-  TimePicker as TinyTimePicker
+  TinyForm,
+  TinyFormItem,
+  TinySwitch,
+  TinyCheckbox,
+  TinyNumeric,
+  TinyRadio,
+  TinyDatePicker,
+  TinyDropTimes,
+  TinyTooltip,
+  TinyInput,
+  TinyAutocomplete,
+  TinyButtonGroup,
+  TinyCascader,
+  TinyCheckboxGroup,
+  TinyIpAddress,
+  TinyLink,
+  TinyPopeditor,
+  TinySelect,
+  TinyOption,
+  TinySlider,
+  TinyTimePicker
 } from '@opentiny/vue'
 
 const createData = reactive({
@@ -125,7 +118,7 @@ const createData = reactive({
   dropTimes: '',
   input: '',
   autocomplete: '',
-  groupChecked: ['复选框1'],
+  groupChecked: ['复选框 1'],
   ipAddress: '192.168.0.1',
   popEditor: '',
   select: '',
@@ -136,29 +129,29 @@ const createData = reactive({
 const formDisabled = ref(false)
 const restaurants = ref([
   {
-    value: 'GFD科技YX公司',
+    value: 'GFD 科技 YX 公司',
     address: '福州'
   },
   {
-    value: 'WWWW科技YX公司',
+    value: 'WWWW 科技 YX 公司',
     address: '深圳福田区'
   },
   {
-    value: 'RFV有限责任公司',
+    value: 'RFV 有限责任公司',
     address: '中山市'
   }
 ])
 const selectOptions = ref([
   {
-    value: '选项1',
+    value: '选项 1',
     label: '黄金糕'
   },
   {
-    value: '选项2',
+    value: '选项 2',
     label: '双皮奶'
   },
   {
-    value: '选项3',
+    value: '选项 3',
     label: '蚵仔煎'
   }
 ])
@@ -172,7 +165,7 @@ const gridOp = ref({
     {
       field: 'id',
       title: 'ID',
-      width: 40
+      width: 60
     },
     {
       field: 'name',
@@ -193,19 +186,19 @@ const gridOp = ref({
   data: [
     {
       id: '1',
-      name: 'GFD科技YX公司',
+      name: 'GFD 科技 YX 公司',
       city: '福州',
       province: '福建'
     },
     {
       id: '2',
-      name: 'WWW科技YX公司',
+      name: 'WWW 科技 YX 公司',
       city: '深圳',
       province: '广东'
     },
     {
       id: '3',
-      name: 'RFV有限责任公司',
+      name: 'RFV 有限责任公司',
       city: '中山',
       province: '广东'
     }
@@ -268,7 +261,7 @@ function createFilter(queryString) {
 
 .title {
   margin-bottom: 30px;
-  margin-left: 100px;
+  margin-left: 80px;
   font-size: 14px;
 }
 </style>

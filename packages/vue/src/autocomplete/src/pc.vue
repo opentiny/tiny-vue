@@ -24,9 +24,10 @@
       ref="input"
       v-bind="f($props, $attrs)"
       front-clear-icon
+      v-clickoutside="handleBlur"
       @update:modelValue="handleChange"
+      :validate-event="false"
       @focus="handleFocus"
-      @blur="handleBlur"
       @clear="handleClear"
       @keydown.up.prevent="highlight(state.highlightedIndex - 1)"
       @keydown.down.prevent="highlight(state.highlightedIndex + 1)"
@@ -50,7 +51,7 @@
       <div
         ref="popper"
         v-show="hideLoading ? suggestionState.showPopper && !state.loading : suggestionState.showPopper"
-        class="tiny-autocomplete tiny-autocomplete-suggestion tiny-popper"
+        class="tiny-autocomplete-suggestion tiny-popper"
         :class="[popperClass ? popperClass : '', { 'is-loading': !hideLoading && state.loading }]"
         :style="{ width: suggestionState.dropdownWidth }"
         role="region"
@@ -59,7 +60,6 @@
           tag="ul"
           wrap-class="tiny-autocomplete-suggestion__wrap"
           view-class="tiny-autocomplete-suggestion__list"
-          :margin-bottom-adjust="6"
         >
           <slot
             name="panel"
@@ -69,15 +69,22 @@
             :id="state.id"
             :select="select"
           >
-            <li v-if="!hideLoading && state.loading" class="tiny-autocomplete-suggestion__list-loading">
-              <icon-loading width="1em" height="1em" />
+            <li
+              v-if="!hideLoading && state.loading"
+              class="tiny-autocomplete-suggestion__list-item tiny-autocomplete-suggestion__list-loading"
+              role="loading"
+            >
+              <icon-loading-shadow></icon-loading-shadow>
             </li>
             <template v-else>
               <li
                 v-for="(item, index) in state.suggestions"
                 :key="index"
                 class="tiny-autocomplete-suggestion__list-item"
-                :class="{ highlighted: state.highlightedIndex === index }"
+                :class="{
+                  highlighted: state.highlightedIndex === index,
+                  selected: modelValue === item[valueKey]
+                }"
                 @click="select(item)"
                 :id="`${state.id}-item-${index}`"
                 role="option"
@@ -100,14 +107,14 @@ import { renderless, api } from '@opentiny/vue-renderless/autocomplete/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinyInput from '@opentiny/vue-input'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { IconLoading } from '@opentiny/vue-icon'
+import { Clickoutside } from '@opentiny/vue-directive'
+import { IconLoadingShadow } from '@opentiny/vue-icon'
 
 export default defineComponent({
   components: {
     TinyInput,
     TinyScrollbar,
-    IconLoading: IconLoading()
+    IconLoadingShadow: IconLoadingShadow()
   },
   directives: directive({ Clickoutside }),
   props: [
@@ -137,7 +144,8 @@ export default defineComponent({
     'hideLoading',
     'popperAppendToBody',
     'highlightFirstItem',
-    'displayOnly'
+    'displayOnly',
+    'validateEvent'
   ],
   emits: ['update:modelValue', 'focus', 'blur', 'clear', 'select', 'created'],
   setup(props, context) {

@@ -2,21 +2,22 @@
   <tiny-time-line
     :data="data"
     :active="active"
-    @click="click"
+    class="demo-timeline-custom"
     name-field="content"
     time-field="timestamp"
     auto-color-field="icon"
     vertical
+    @click="click"
   ></tiny-time-line>
 </template>
 
 <script>
-import { TimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 import { iconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -45,3 +46,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.demo-timeline-custom .tiny-timeline-item__content {
+  line-height: 28px;
+}
+</style>

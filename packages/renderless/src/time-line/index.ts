@@ -10,7 +10,7 @@
  *
  */
 
-import { format } from '../common/date'
+import { formatDateByPattern as format } from '@opentiny/utils'
 import type {
   ITimelineProps,
   ITimelineRenderlessParams,
@@ -76,8 +76,8 @@ export const computedData =
   (): ITimelineItem[] => {
     if (props.data && props.data.length > 0) {
       return state.isReverse
-        ? props.data.map((item, i) => ({ ...props.data[props.data.length - 1 - i], index: i }))
-        : props.data.map((item, i) => ({ ...item, index: i }))
+        ? props.data.map((item, i) => ({ ...props.data[props.data.length - 1 - i], _$index: i }))
+        : props.data.map((item, i) => ({ ...item, _$index: i }))
     }
 
     return state.itemsArray

@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { FileUpload as TinyFileUpload, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyModal } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = reactive([
@@ -42,12 +42,12 @@ const handleDownloadFile = (file) => {
     const timer = setInterval(() => {
       if (file.downloadPercentage >= 100) {
         clearInterval(timer)
-        // 下载完成后可以隐藏进度条，因为进度条有过渡动画，所以可以延迟1s再隐藏
+        // 下载完成后可以隐藏进度条，因为进度条有过渡动画，所以可以延迟 1s 再隐藏
         setTimeout(() => {
           file.showDownloadBar = false
         }, 1000)
 
-        Modal.message({ message: '下载成功', status: 'success' })
+        TinyModal.message({ message: '下载成功', status: 'success' })
         return
       }
       file.downloadPercentage += 10
@@ -64,7 +64,7 @@ const handleDownloadFile = (file) => {
         // file.showDownloadBar = false
         file.downloadStatus = 'exception'
 
-        Modal.message({ message: '下载失败', status: 'error' })
+        TinyModal.message({ message: '下载失败', status: 'error' })
         return
       }
       file.downloadPercentage += 10

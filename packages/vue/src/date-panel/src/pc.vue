@@ -12,7 +12,6 @@
 <template>
   <transition name="tiny-zoom-in-top" @after-enter="handleEnter" @after-leave="handleLeave">
     <div
-      v-show="state.visible"
       class="tiny-picker-panel tiny-date-picker tiny-popper"
       :class="[
         {
@@ -26,7 +25,7 @@
         <slot name="sidebar" class="tiny-picker-panel__sidebar"></slot>
 
         <!-- 快捷选项 -->
-        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
+        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts?.length">
           <button
             type="button"
             class="tiny-picker-panel__shortcut"
@@ -99,11 +98,11 @@
             >
               <icon-chevron-left></icon-chevron-left>
             </button>
-            <span @click="showYearPicker" role="button" class="tiny-date-picker__header-label">{{
-              state.yearLabel
-            }}</span>
+            <span @click="showHeaderPicker('Year')" role="button" class="tiny-date-picker__header-label">
+              {{ state.yearLabel }}
+            </span>
             <span
-              @click="showMonthPicker"
+              @click="showHeaderPicker('Month')"
               v-show="state.currentView === 'date'"
               role="button"
               class="tiny-date-picker__header-label"
@@ -131,43 +130,47 @@
 
           <!-- 日期表格 -->
           <div class="tiny-picker-panel__content">
-            <date-table
-              ref="dateTable"
-              v-if="state.currentView === 'date'"
-              @pick="handleDatePick"
-              :selection-mode="state.selectionMode"
-              :first-day-of-week="state.firstDayOfWeek"
-              :value="state.value"
-              :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
-              :date="state.date"
-              :cell-class-name="state.cellClassName"
-              :disabled-date="state.disabledDate"
-              :show-week-number="showWeekNumber"
-              :format-weeks="formatWeeks"
-            >
-            </date-table>
-            <year-table
-              ref="yearTable"
-              v-if="['year', 'years', 'yearrange'].includes(state.currentView)"
-              :value="state.value"
-              :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
-              :date="state.date"
-              :disabled-date="state.disabledDate"
-              :selection-mode="state.selectionMode"
-              :start-year="state.startYear"
-              @pick="handleYearPick"
-            >
-            </year-table>
-            <month-table
-              ref="monthTable"
-              v-if="state.currentView === 'month'"
-              @pick="handleMonthPick"
-              :value="state.value"
-              :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
-              :date="state.date"
-              :disabled-date="state.disabledDate"
-            >
-            </month-table>
+            <div class="tiny-picker-panel__table">
+              <date-table
+                ref="dateTable"
+                v-if="state.currentView === 'date'"
+                @pick="handleDatePick"
+                :selection-mode="state.selectionMode"
+                :first-day-of-week="state.firstDayOfWeek"
+                :value="state.value"
+                :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
+                :date="state.date"
+                :cell-class-name="state.cellClassName"
+                :disabled-date="state.disabledDate"
+                :show-week-number="showWeekNumber"
+                :format-weeks="formatWeeks"
+                :readonly="readonly"
+              >
+              </date-table>
+              <year-table
+                ref="yearTable"
+                v-if="['year', 'years', 'yearrange'].includes(state.currentView)"
+                :value="state.value"
+                :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
+                :date="state.date"
+                :disabled-date="state.disabledDate"
+                :selection-mode="state.selectionMode"
+                :start-year="state.startYear"
+                :readonly="readonly"
+                @pick="handleYearPick"
+              >
+              </year-table>
+              <month-table
+                ref="monthTable"
+                v-if="state.currentView === 'month'"
+                @pick="handleMonthPick"
+                :value="state.value"
+                :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
+                :date="state.date"
+                :disabled-date="state.disabledDate"
+              >
+              </month-table>
+            </div>
           </div>
         </div>
       </div>
@@ -209,17 +212,28 @@
       </div>
 
       <!-- 此刻/确认 -->
-      <div class="tiny-picker-panel__footer" v-show="state.isShowFooter">
+      <div
+        class="tiny-picker-panel__footer"
+        v-if="state.isShowFooter"
+        :style="{ justifyContent: !['dates', 'years'].includes(state.selectionMode) ? 'space-between' : 'right' }"
+      >
+        <slot>
+          <tiny-button
+            :size="state.buttonSize"
+            type="text"
+            class="tiny-picker-panel__link-btn"
+            @click="changeToNow"
+            v-show="!['dates', 'years'].includes(state.selectionMode)"
+          >
+            {{ t('ui.datepicker.now') }}
+          </tiny-button>
+        </slot>
         <tiny-button
-          size="mini"
-          type="text"
+          :type="state.buttonType"
+          :size="state.buttonSize"
           class="tiny-picker-panel__link-btn"
-          @click="changeToNow"
-          v-show="!['dates', 'years'].includes(state.selectionMode)"
+          @click="confirm"
         >
-          {{ t('ui.datepicker.now') }}
-        </tiny-button>
-        <tiny-button type="primary" size="mini" class="tiny-picker-panel__link-btn" @click="confirm">
           {{ t('ui.datepicker.confirm') }}
         </tiny-button>
       </div>
@@ -231,7 +245,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/date-panel/vue'
 import { $prefix, setup, directive, defineComponent, $props } from '@opentiny/vue-common'
 import { language } from '@opentiny/vue-locale'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import YearTable from '@opentiny/vue-year-table'
@@ -247,7 +261,6 @@ import {
   iconChevronUp
 } from '@opentiny/vue-icon'
 import Popup from '@opentiny/vue-popup'
-import '@opentiny/vue-theme/input/index.less'
 
 export default defineComponent({
   name: $prefix + 'DatePanel',
@@ -281,12 +294,47 @@ export default defineComponent({
       default: false
     },
     formatWeeks: Function,
+    type: {
+      type: String,
+      default: ''
+    },
+    firstDayOfWeek: {
+      type: Number,
+      default: 7
+    },
     timeEditable: {
       type: Boolean,
       default: true
+    },
+    nowClick: {
+      type: Function
+    },
+    modelValue: {
+      type: [Date, String, Number],
+      default: ''
+    },
+    format: {
+      type: String,
+      default: ''
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    shortcuts: {
+      type: Array,
+      default: () => []
+    },
+    disabledDate: {
+      type: Function,
+      default: () => null
+    },
+    popperClass: {
+      type: String,
+      default: ''
     }
   },
-  emits: ['pick', 'select-change', 'dodestroy'],
+  emits: ['pick', 'select-change', 'update:modelValue', 'dodestroy'],
   setup(props, context) {
     return setup({
       props,

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export const $constants = {
   MAX: 'aria-valuemax',
@@ -94,7 +94,7 @@ export const numericProps = {
   },
   size: String,
   step: {
-    type: [Number, String],
+    type: [Number, String, Object],
     default: 1
   },
   stepStrictly: {

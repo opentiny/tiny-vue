@@ -1,18 +1,19 @@
 <template>
   <tiny-breadcrumb @select="breadcrumbClick">
-    <tiny-breadcrumb-item :to="{ path: '/' }" @select="breadcrumbItemClick" label="首页"></tiny-breadcrumb-item>
+    <!-- path 可填写跳转的路由 -->
+    <tiny-breadcrumb-item :to="{ path: '' }" @select="breadcrumbItemClick" label="首页"></tiny-breadcrumb-item>
     <tiny-breadcrumb-item>
-      <a href="/"> 产品 </a>
+      <a href="#"> 产品 </a>
     </tiny-breadcrumb-item>
-    <tiny-breadcrumb-item :to="{ path: '/breadcrumb' }"> 软件 </tiny-breadcrumb-item>
+    <tiny-breadcrumb-item :to="{ path: '#' }"> 软件 </tiny-breadcrumb-item>
   </tiny-breadcrumb>
 </template>
 
 <script setup>
-import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem, Notify } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyBreadcrumbItem, TinyNotify } from '@opentiny/vue'
 
 function breadcrumbClick(value) {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: 'tiny-breadcrumb 触发选择面包屑事件',
     message: JSON.stringify(value),
@@ -22,7 +23,7 @@ function breadcrumbClick(value) {
 }
 
 function breadcrumbItemClick(value) {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: 'tiny-breadcrumb-item 触发选择面包屑事件',
     message: JSON.stringify(value),

@@ -44,6 +44,7 @@ function getTableWidth({ scrollXLoad, tWidth, tableColumn }) {
 }
 
 function layoutFooter({
+  elemStore,
   customHeight,
   footerHeight,
   headerHeight,
@@ -61,6 +62,11 @@ function layoutFooter({
   let tWidth = tableWidth
   // 如果是固定列与设置了超出隐藏
   let ret = getTableWidth({ scrollXLoad, tWidth, tableColumn })
+  // 为表尾设置虚拟滚动占位宽度
+  const spaceElem = elemStore['main-footer-x-space']
+  if (spaceElem) {
+    spaceElem.style.width = `${tableWidth}px`
+  }
 
   tableColumn = ret.tableColumn
   tWidth = ret.tWidth
@@ -142,7 +148,7 @@ function layoutBodyWrapper({
     if (maxHeight) {
       maxHeight = isScale(maxHeight) ? Math.floor((parseInt(maxHeight) / 100) * parentHeight) : toNumber(maxHeight)
 
-      const contentHeight = maxHeight - headerHeight
+      const contentHeight = maxHeight - headerHeight - footerHeight
 
       wrapperElem.style.maxHeight = `${contentHeight}px`
     }
@@ -150,15 +156,7 @@ function layoutBodyWrapper({
     if (minHeight) {
       minHeight = isScale(minHeight) ? Math.floor((parseInt(minHeight) / 100) * parentHeight) : toNumber(minHeight)
 
-      if (maxHeight) {
-        const outerHeight = headerHeight + scrollbarWidth
-
-        if (maxHeight - minHeight < outerHeight) {
-          minHeight = maxHeight - outerHeight
-        }
-      }
-
-      wrapperElem.style.minHeight = `${minHeight}px`
+      wrapperElem.style.minHeight = `${minHeight - headerHeight - footerHeight}px`
     }
   }
 
@@ -250,6 +248,7 @@ export function handleLayout(params) {
     tableColumn = ret.tableColumn
   } else if (layout === 'footer') {
     tableColumn = layoutFooter({
+      elemStore,
       customHeight,
       fixedWrapperElem,
       footerHeight,

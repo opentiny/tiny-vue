@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { Espace } from '@opentiny/vue'
+import { TinyEspace } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyEspace: Espace
+    TinyEspace
   },
   data() {
     return {

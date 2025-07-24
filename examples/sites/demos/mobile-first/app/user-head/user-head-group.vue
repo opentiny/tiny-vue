@@ -79,11 +79,11 @@
 </template>
 
 <script>
-import { UserHeadGroup } from '@opentiny/vue'
+import { TinyUserHeadGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUserHeadGroup: UserHeadGroup
+    TinyUserHeadGroup
   },
   data() {
     return {

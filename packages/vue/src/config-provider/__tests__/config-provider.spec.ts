@@ -13,7 +13,7 @@ describe('PC Mode', () => {
         direction: 'rtl'
       }
     })
-    expect(wrapper.classes()).toContain('tiny-config-provider--rtl')
+    expect(wrapper.classes()).toContain('tiny-config-provider__rtl')
   })
   describe('tag', () => {
     test('no tag', () => {

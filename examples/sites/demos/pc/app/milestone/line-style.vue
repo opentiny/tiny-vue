@@ -1,13 +1,20 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap" line-style="#f00" :space="88"></tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone
+      :data="milestoneData"
+      :milestones-status="statusMap"
+      line-style="#f00"
+      :space="150"
+    ></tiny-milestone>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Milestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone
+    TinyMilestone
   },
   data() {
     return {
@@ -54,3 +61,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

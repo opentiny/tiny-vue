@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
 <style type="text/css">
-	.st0{}
+	.st0{fill:none;}
 </style>
-<path class="st0" d="M12.76,10.93c-0.14,0-0.28-0.05-0.39-0.16L7.93,6.4l-4.31,4.37c-0.21,0.22-0.56,0.22-0.78,0.01
-	C2.63,10.56,2.63,10.21,2.84,10l4.69-4.76C7.75,5.02,8.1,5.01,8.31,5.23l4.84,4.76c0.22,0.21,0.22,0.56,0.01,0.78
-	C13.05,10.88,12.91,10.93,12.76,10.93z"/>
+<rect id="矩形" class="st0"/>
+<path id="路径" class="st1" d="M12.43,10.84c-0.16,0-0.32-0.06-0.44-0.18L8,6.66l-3.99,3.99c-0.24,0.24-0.63,0.24-0.88,0
+	c-0.25-0.24-0.24-0.63,0-0.88l4.43-4.43c0.23-0.23,0.64-0.23,0.88,0l4.43,4.43c0.24,0.24,0.24,0.63,0,0.88
+	C12.75,10.78,12.59,10.84,12.43,10.84z"/>
 </svg>

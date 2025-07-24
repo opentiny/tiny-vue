@@ -4,7 +4,8 @@ test('添加功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#with-add')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#with-add')
+  const tabs = container.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')
   const newTabItem = tabItems.last()
   const add = tabs.locator('.tiny-tabs__new-tab')

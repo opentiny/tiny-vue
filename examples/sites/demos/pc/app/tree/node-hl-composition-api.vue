@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="node-tip">点击节点后， 在开发者控制台中查看它的打印信息：</div>
+    <div class="node-tip">点击节点后，在开发者控制台中查看它的打印信息：</div>
     <div>
       <tiny-button @click="setHighlight">手动高亮节点</tiny-button>
     </div>
@@ -18,7 +18,7 @@
 
 <script setup lang="jsx">
 import { onMounted, ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 const treeRef = ref()
 const data = ref([
@@ -50,7 +50,7 @@ function getResultById(id) {
   const data = treeRef.value.getCurrentNode()
   // 节点对象
   const node = treeRef.value.getNode(id)
-  // 节点node-key
+  // 节点 node-key
   const nodeKey = treeRef.value.getCurrentKey()
   // 组件内部生成的节点唯一键值
   const innerKey = treeRef.value.getNodeKey(node)

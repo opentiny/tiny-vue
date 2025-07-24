@@ -1,22 +1,29 @@
 <template>
   <div>
     <p>搜索事件</p>
+    <br />
     <tiny-search @search="search" is-enter-search></tiny-search>
+    <br /><br />
     <p>值变化事件</p>
+    <br />
     <tiny-search @change="change" @input="input"></tiny-search>
+    <br /><br />
     <p>值清空事件</p>
+    <br />
     <tiny-search @clear="clear" clearable></tiny-search>
+    <br /><br />
     <p>类型选中事件</p>
+    <br />
     <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
   </div>
 </template>
 
 <script lang="jsx">
-import { Search, Modal } from '@opentiny/vue'
+import { TinySearch, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search
+    TinySearch
   },
   data() {
     return {
@@ -38,19 +45,19 @@ export default {
   },
   methods: {
     search(key, value) {
-      Modal.message({ message: `search: ${value}`, status: 'info' })
+      TinyModal.message({ message: `search: ${value}`, status: 'info' })
     },
     change(key, value) {
-      Modal.message({ message: `change: ${value}`, status: 'info' })
+      TinyModal.message({ message: `change: ${value}`, status: 'info' })
     },
     clear() {
-      Modal.message({ message: 'clear', status: 'info' })
+      TinyModal.message({ message: 'clear', status: 'info' })
     },
     input(key, value) {
-      Modal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
+      TinyModal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
     },
     select(value) {
-      Modal.message({ message: `${value.text}`, status: 'info' })
+      TinyModal.message({ message: `${value.text}`, status: 'info' })
     }
   }
 }

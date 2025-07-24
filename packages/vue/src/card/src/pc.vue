@@ -147,7 +147,6 @@ import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
-import { IconEllipsis } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/card/index.less'
 
 export default defineComponent({
@@ -158,8 +157,7 @@ export default defineComponent({
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
     TinyCheckbox: Checkbox,
-    TinyRadio: Radio,
-    IconEllipsis: IconEllipsis()
+    TinyRadio: Radio
   },
   props: [
     ...props,

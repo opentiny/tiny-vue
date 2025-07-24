@@ -1,19 +1,15 @@
 <template>
   <div class="demo-date-picker-wrap">
-    <tiny-time-picker
-      v-model="value1"
-      popper-class="picker-class"
-      :popper-append-to-body="false"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" popper-class="picker-class" :popper-append-to-body="false"></tiny-time-picker>
   </div>
 </template>
 
 <script>
-import { TimePicker } from '@opentiny/vue'
+import { TinyTimePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimePicker: TimePicker
+    TinyTimePicker
   },
   data() {
     return {
@@ -25,7 +21,7 @@ export default {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 280px;
 }
 
 .picker-class {

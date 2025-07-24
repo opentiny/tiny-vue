@@ -1,4 +1,4 @@
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 
 export const handelIconClick =
   ({ emit }) =>

@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n            通过在<code>Layout </code> 组件嵌套使用 <code>Row</code> , <code>Col</code> 组件, 来实现对一个区域进行 12/24 栅格布局。<br>\n            通过<code>Layout </code> 组件的<code> cols </code> 属性来指定布局的总栅格栏数，组件库默认为12栅格栏；<br>\n            通过 <code>Col</code> 组件的 <code>span</code> 属性指定每栏所占栅格数。当一行的栅格数之和大于总栅格栏数时，布局会自动换行显示。<br>\n          ',
+          '\n            通过在<code>Layout </code> 组件嵌套使用 <code>Row</code> , <code>Col</code> 组件，来实现对一个区域进行 12/24 栅格布局。<br>\n            通过<code>Layout </code> 组件的<code> cols </code> 属性来指定布局的总栅格栏数，组件库默认为 12 栅格栏；<br>\n            通过 <code>Col</code> 组件的 <code>span</code> 属性指定每栏所占栅格数。当一行的栅格数之和大于总栅格栏数时，布局会自动换行显示。<br>\n          ',
         'en-US':
           '\n          A 12/24 grid Layout of an area is implemented by nesting <code>Row</code>, <code>Col</code> components within <code>Layout </code> components. <br>\n          Use the <code> cols </code> property of the <code>Layout </code> component to specify the total number of grid columns for the layout. The component library defaults to 12 grid columns. <br>\n          The <code>span</code> property of the <code>Col</code> component specifies the number of grids per column. When the sum of the number of grids in a row is greater than the total number of grid columns, the layout is automatically wrapped. <br> \n        '
       },
@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n            在启用<code>Row</code> 组件的 <code>flex</code> 布局时，可通过设置它的 <code>order</code> 属性值为: <code>asc 或 desc</code>，给<code>Col</code> 组件排序。<br>\n            待排序的列需指定 <code>no</code> 属性为数字值，属性的默认值为0。\n          ',
+          '\n            在启用<code>Row</code> 组件的 <code>flex</code> 布局时，可通过设置它的 <code>order</code> 属性值为：<code>asc 或 desc</code>，给<code>Col</code> 组件排序。<br>\n            待排序的列需指定 <code>no</code> 属性为数字值，属性的默认值为 0。\n          ',
         'en-US':
           '\n            When you enable the <code>flex</code> layout of the <code>Row</code> component, you can do this by setting its <code>order</code> property to: <code>asc or desc</code>, which sorts <code>Col</code> components. <br>\n            The column to be sorted requires the <code>no</code> attribute to be numeric, which defaults to 0.\n          '
       },
@@ -79,7 +79,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n            通过使用 <code>Row</code> 组件的 <code>gutter</code> 属性实现栅格间隔。<br>\n            不设置 <code>gutter</code> 时，组件会默认为 <code>Col</code> 设置<code> 左右10px </code>的padding值<br>\n            通过 <code>noSpace</code> 属性，让子项间没有间距。\n          ',
+          '\n            通过使用 <code>Row</code> 组件的 <code>gutter</code> 属性实现栅格间隔。<br>\n            不设置 <code>gutter</code> 时，组件会默认为 <code>Col</code> 设置<code> 左右 10px </code>的 padding 值<br>\n            通过 <code>noSpace</code> 属性，让子项间没有间距。\n          ',
         'en-US':
           '\n            This is done by using the <code>gutter</code> property of the <code>Row</code> component.\n            Without setting the <code>gutter</code>, the component will default to <code>Col</code> and set the padding value to 10px </code> around the <code>. \n          '
       },

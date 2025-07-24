@@ -1,4 +1,4 @@
-import { reactive, computed, watchEffect } from 'vue'
+import { reactive, computed } from 'vue'
 import { useAutoStore } from './storage'
 import { useMediaQuery } from './useMediaQuery'
 import { ZH_CN_LANG, EN_US_LANG, LANG_KEY, LANG_PATH_MAP } from '../const'
@@ -11,27 +11,20 @@ const appData = reactive({
   bpState: useMediaQuery([640, 1024, 1280]).matches // 3点4区间， bp0,bp1,bp2,bp3
 })
 const isZhCn = computed(() => appData.lang === ZH_CN_LANG)
-let appFn = {
-  toggleLang() {
-    let url = location.href
-    if (appData.lang === ZH_CN_LANG) {
-      url = location.href.replace(zhPath, enPath)
-    } else {
-      url = location.href.replace(enPath, zhPath)
+const appFn = {
+  toggleLang(name) {
+    if (name !== appData.lang) {
+      let url = location.href
+      url = location.href.replace(LANG_PATH_MAP[appData.lang], LANG_PATH_MAP[name])
+      // appData.lang = name 官网先屏蔽英文内容
+      appData.lang = ZH_CN_LANG
+      location.replace(url)
     }
-    appData.lang = appData.lang === ZH_CN_LANG ? EN_US_LANG : ZH_CN_LANG
-    // router.push(url)
-    location.replace(url)
   },
   toggleTheme() {
     appData.theme = appData.theme === 'light' ? 'dark' : 'light'
   }
 }
-// 减少页面处理
-watchEffect(() => {
-  document.body.classList.remove('theme-light', 'theme-dark')
-  document.body.classList.add('theme-' + appData.theme)
-})
 // 为了和tiny-vue共享同一个响应变量
 window.appData = appData
 export { appData, appFn, isZhCn }

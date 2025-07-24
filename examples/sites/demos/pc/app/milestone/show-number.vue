@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-milestone">
     <tiny-button @click="handleClick(!showNum)" style="max-width: unset"
       >设置 show-number 值为 {{ !showNum }}</tiny-button
     >
@@ -13,18 +13,18 @@
 </template>
 
 <script lang="jsx">
-import { Milestone, Button } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
-    TinyButton: Button
+    TinyMilestone,
+    TinyButton
   },
   data() {
     return {
       showNum: true,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
+        completed: 'var(--tv-color-bg-disabled-control-active)',
         doing: '#7ED321',
         back: '#f5222d',
         end: '#faad14',
@@ -71,3 +71,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

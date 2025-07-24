@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const computedWrapperStyle = (state) => () => {
   const wrapperStyle = {

@@ -195,7 +195,7 @@ import Button from '@opentiny/vue-button'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Exception from '@opentiny/vue-exception'
 import Option from './option.vue'
-import InfiniteScroll from '@opentiny/vue-renderless/common/deps/infinite-scroll'
+import { InfiniteScroll } from '@opentiny/vue-directive'
 
 export default defineComponent({
   name: $prefix + 'SelectView',

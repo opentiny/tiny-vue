@@ -9,19 +9,19 @@
       :limit="3"
       :file-list="fileList"
     >
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </tiny-file-upload>
   </div>
 </template>
 
 <script>
-import { FileUpload, Button } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
 import Modal from '@opentiny/vue-modal'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {

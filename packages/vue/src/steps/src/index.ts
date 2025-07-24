@@ -42,12 +42,14 @@ export const stepsProps = {
     default: false
   },
   line: Boolean,
+  dot: Boolean, // tiny新增
   duration: {
     type: Number,
     default: 300
   },
   noArrow: Boolean,
-  flex: Boolean
+  flex: Boolean,
+  contentCenter: Boolean
 }
 
 export default defineComponent({

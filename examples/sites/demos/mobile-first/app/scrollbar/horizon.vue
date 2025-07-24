@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import { Scrollbar } from '@opentiny/vue'
+import { TinyScrollbar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyScrollbar: Scrollbar
+    TinyScrollbar
   }
 }
 </script>

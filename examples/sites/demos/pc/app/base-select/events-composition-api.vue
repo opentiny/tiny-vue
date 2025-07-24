@@ -33,62 +33,62 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BaseSelect as TinyBaseSelect, Option as TinyOption, Modal } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 const options = ref([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 const value1 = ref('')
 const value2 = ref([])
 
 const change = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 change 事件',
     status: 'info'
   })
 }
 
 const clear = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 clear 事件',
     status: 'info'
   })
 }
 
 const focus = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 focus 事件',
     status: 'info'
   })
 }
 
 const blur = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 blur 事件',
     status: 'info'
   })
 }
 
 const removeTag = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 remove-tag 事件',
     status: 'info'
   })
 }
 
 const visibleChange = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 visible-change 事件',
     status: 'info'
   })
 }
 
 const dropdownClick = () => {
-  Modal.message({
+  TinyModal.message({
     message: '触发 dropdown-click 事件',
     status: 'info'
   })

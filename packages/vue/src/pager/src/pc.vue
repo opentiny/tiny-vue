@@ -43,7 +43,7 @@
             @input="handleJumperInput"
             @change="handleJumperChange"
           />
-          <span v-if="state.showJumperSufix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
+          <span v-if="state.showJumperSuffix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
             t('ui.page.pageClassifier')
           }}</span>
         </div>
@@ -68,6 +68,20 @@
         @change="handleCurrentChange"
         @before-page-change="beforePagerChangeHandler"
       ></pager>
+
+      <!-- simplest-pager-item -->
+      <tiny-base-select
+        v-else-if="item === 'simplest-pager'"
+        :style="{ width: state.simplestPagerWidth + 'px' }"
+        :size="size"
+        :key="'simplest-pager' + index"
+        v-model="state.internalCurrentPage"
+        :disabled="disabled"
+        :options="state.simplestPagerOption"
+        popper-class="tiny-pager__simplest-pager-popover"
+        :optimization="state.simplestPagerOption.length > 30"
+        @change="handleCurrentChange"
+      ></tiny-base-select>
 
       <!-- next -->
       <button
@@ -99,7 +113,7 @@
             <div class="tiny-pager__popover" @click="clickSizes">
               <div ref="pageSize" class="tiny-pager__page-size" :class="{ disabled }">
                 <span class="sizes">{{ state.internalPageSize }}</span>
-                <span>{{ t('ui.page.page') }}</span>
+                <span>{{ state.pageSizeText ?? t('ui.page.page') }}</span>
                 <div class="tiny-pager__page-size-btn">
                   <triangle-down :class="['tiny-svg-size', state.showSizes ? 'tiny-svg-size__reverse-180' : '']" />
                 </div>
@@ -145,8 +159,10 @@
             <span>{{ t('ui.page.item') }}</span>
           </template>
           <template v-else>
-            <span>{{ t('ui.page.totals') }}</span>
-            <span> {{ customTotal ? state.totalText : state.internalTotal }} </span>
+            <span>{{ t('ui.page.totals') + ' ' }}</span>
+            <span :class="{ 'tiny-pager__total-num': !customTotal }">
+              {{ customTotal ? state.totalText : state.internalTotal }}
+            </span>
           </template>
         </div>
       </div>
@@ -156,6 +172,7 @@
 
 <script lang="tsx">
 import Pager from '@opentiny/vue-pager-item'
+import TinyBaseSelect from '@opentiny/vue-base-select'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
@@ -188,7 +205,10 @@ export default defineComponent({
     'prevText',
     'total',
     'size',
-    'align'
+    'align',
+    'totalFixedLeft',
+    'pageSizeText',
+    'changeCompat'
   ],
   directives: {
     loading: Loading.directive
@@ -198,6 +218,7 @@ export default defineComponent({
   },
   components: {
     TinyPopover: Popover,
+    TinyBaseSelect,
     ChevronLeft: iconChevronLeft(),
     ChevronRight: iconChevronRight(),
     TriangleDown: iconTriangleDown(),

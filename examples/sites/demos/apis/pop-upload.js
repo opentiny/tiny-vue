@@ -29,7 +29,7 @@ export default {
         },
         {
           name: 'before-remove',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(file: IFile) => void',
           defaultValue: '',
           desc: {
@@ -43,7 +43,7 @@ export default {
         },
         {
           name: 'before-upload',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(file: IFile) => void',
           defaultValue: '',
           desc: {
@@ -227,7 +227,7 @@ export default {
       events: [
         {
           name: 'error',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(file: IFile) => void',
           defaultValue: '',
           desc: {
@@ -239,7 +239,7 @@ export default {
         },
         {
           name: 'exceed',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(files: File | File[], fileList: IFile[]) => void',
           defaultValue: '',
           desc: {
@@ -251,7 +251,7 @@ export default {
         },
         {
           name: 'progress',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(file: IFile) => void',
           defaultValue: '',
           desc: {
@@ -263,7 +263,7 @@ export default {
         },
         {
           name: 'remove',
-          typeAnchorName: 'file-upload#IFile',
+          linkTo: 'file-upload#IFile',
           type: '(file: IFile, fileList: IFile[]) => void',
           defaultValue: '',
           desc: {
@@ -276,7 +276,7 @@ export default {
         },
         {
           name: 'success',
-          typeAnchorName: 'IFile',
+          linkTo: 'file-upload#IFile',
           type: '(res: ProgressEvent, file: IFile) => void',
           defaultValue: '',
           desc: {
@@ -289,7 +289,21 @@ export default {
         }
       ],
       methods: [],
-      slots: []
+      slots: [
+        {
+          name: 'uploadTip',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义上传提示内容',
+            'en-US': 'Customize upload prompt content'
+          },
+          meta: {
+            stable: '3.18.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'upload-tip'
+        }
+      ]
     }
   ],
   types: [

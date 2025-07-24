@@ -11,7 +11,7 @@
  */
 
 import { getFormated, getStackMap, getLegend, hexToRgb, set } from '../chart-core/deps/utils'
-import { isNull } from '../common/type'
+import { isNull } from '@opentiny/utils'
 import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
 
 const getLineXAxis = (args) => {

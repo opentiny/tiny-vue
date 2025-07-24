@@ -1,11 +1,32 @@
 <template>
   <div class="tiny-demo">
     <tiny-button @click="visible = !visible">{{ `${visible ? '关闭' : '打开'}窗口` }}</tiny-button>
+    <tiny-button @click="visible1 = !visible1">
+      {{ `${visible1 ? '关闭' : '打开'}窗口 (插槽自定义场景)` }}
+    </tiny-button>
     <tiny-dialog-select
       ref="dialogSelect"
       class="tiny-demo-tree-multi"
       :visible="visible"
       @update:visible="visible = $event"
+      popseletor="tree"
+      multi
+      :dialog-op="dialogOp"
+      :tree-op="treeOp"
+      :selected-box-op="selectedBoxOp"
+      :lookup-method="lookupMethod"
+      :before-close="beforeClose"
+      @change="onDialogSelectChange"
+      value-field="id"
+      text-field="label"
+      :main-height="290"
+    >
+    </tiny-dialog-select>
+    <tiny-dialog-select
+      ref="dialogSelect"
+      class="tiny-demo-tree-multi"
+      :visible="visible1"
+      @update:visible="visible1 = $event"
       popseletor="tree"
       multi
       :dialog-op="dialogOp"
@@ -36,7 +57,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import Sortable from 'sortablejs'
 
@@ -53,15 +74,15 @@ const datas = [
   { id: 9, pid: 4, label: '三级 9', isLeaf: true, children: [] }
 ]
 
-// 接口1：根据pid查询直接子节点
+// 接口 1：根据 pid 查询直接子节点
 const queryChildrenByPid = (pid) => datas.filter((record) => record.pid === pid)
 
-// 接口2：根据搜索文本找到匹配节点的所有父级节点id
-// （支持通过节点id搜索只是为了简化示例代码，业务使用时不必支持，可把接口3实现为批量接口提高查询效率）
+// 接口 2：根据搜索文本找到匹配节点的所有父级节点 id
+// （支持通过节点 id 搜索只是为了简化示例代码，业务使用时不必支持，可把接口 3 实现为批量接口提高查询效率）
 const queryPidsBySearchFn = (search) => {
   const ids = []
 
-  // 递归记录节点id
+  // 递归记录节点 id
   const ff = (node, path) => {
     path.unshift(node.id)
 
@@ -91,8 +112,8 @@ const queryPidsBySearchFn = (search) => {
   return dedup(ids)
 }
 
-// 接口3：根据一组节点id找到匹配节点的所有父级节点id
-// （使用了接口2只是为了简化示例代码，实现为批量接口可提高查询效率）
+// 接口 3：根据一组节点 id 找到匹配节点的所有父级节点 id
+// （使用了接口 2 只是为了简化示例代码，实现为批量接口可提高查询效率）
 const queryPidsByIdsFn = (ids, pids = []) => {
   let allPids = [...pids]
 
@@ -103,7 +124,7 @@ const queryPidsByIdsFn = (ids, pids = []) => {
   return dedup(allPids)
 }
 
-// 接口4：根据一组节点id查询这组节点
+// 接口 4：根据一组节点 id 查询这组节点
 const queryNodesByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
 // 去重
@@ -115,13 +136,14 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
+    TinyDialogSelect,
+    TinyButton,
     TinyIconClose: iconClose()
   },
   data() {
     return {
       visible: false,
+      visible1: false,
       dialogOp: {
         top: '20vh',
         width: '800px',
@@ -146,7 +168,8 @@ export default {
         load: this.remoteSearch,
         queryPidsBySearch: this.queryPidsBySearch,
         queryPidsByIds: this.queryPidsByIds,
-        defaultCheckedKeys: [1, 4, 8]
+        defaultCheckedKeys: [1, 4, 8],
+        showLine: true
       }
     }
   },
@@ -179,7 +202,7 @@ export default {
           const res = queryNodesByIds(values)
           // 序列化是为了模拟每次返回的都是新对象
           const copy = JSON.parse(JSON.stringify(res))
-          // 已选栏在插槽中使用字段_$title和_$auxi做定制显示，所以要在lookup接口内设置；如果使用其它字段，就不用设置
+          // 已选栏在插槽中使用字段_$title 和_$auxi 做定制显示，所以要在 lookup 接口内设置；如果使用其它字段，就不用设置
           copy.forEach((row) => {
             row._$title = row.label
             row._$auxi = '辅助文本'
@@ -189,10 +212,8 @@ export default {
       })
     },
     onDialogSelectChange(values, texts, selectedDatas) {
-      Modal.message({
-        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-        status: 'info'
-      })
+      // 打印 change 回调数据，控制台查看
+      console.log({ values, texts, selectedDatas })
     }
   }
 }
@@ -204,28 +225,29 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 28px;
+  line-height: 28px;
 }
 
 .tiny-demo-tree-multi .tiny-demo-tree-multi-option .title {
   color: #161e26;
-  position: relative;
-  top: 4px;
+  font-size: 14px;
 }
 
 .tiny-demo-tree-multi .tiny-demo-tree-multi-option .sub-text {
   color: #8d959e;
-  position: relative;
-  top: 4px;
   margin-left: 8px;
 }
 
 .tiny-demo-tree-multi-close {
   height: 28px;
+  line-height: 28px;
+  svg {
+    fill: #808080;
+  }
 }
 
 .tiny-demo-tree-multi-close > span {
   position: relative;
-  top: 2px;
   left: 12px;
 }
 </style>

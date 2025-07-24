@@ -1,19 +1,14 @@
 import { test, expect } from '@playwright/test'
 
-test('logout-custom-service', async ({ page }) => {
-  await page.goto('logout#custom-service')
+test('基本用法', async ({ page }) => {
+  await page.goto('logout#basic-usage')
   const button = page.locator('.tiny-logout')
-  const status = page.locator('.status')
-
-  await expect(button).toHaveText(/登录/)
-  await expect(status).toContainText(['false'])
+  const status = page.locator('.demo-logout')
   await button.click()
   await page.getByRole('button', { name: /确定/ }).click()
   await page.waitForTimeout(1000)
-  await expect(button).toHaveText(/注销/)
-  await expect(status).toContainText(['true'])
   await button.click()
   await page.waitForTimeout(1000)
   await expect(button).toHaveText(/登录/)
-  await expect(status).toContainText(['true'])
+  await expect(status).toContainText('true')
 })

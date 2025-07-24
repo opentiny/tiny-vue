@@ -11,7 +11,7 @@
  */
 
 import { setActiveItem, onChange, getChildrens, getItems, beforeDestroy, initPage } from './index'
-import { on } from '../common/deps/dom'
+import { on } from '@opentiny/utils'
 
 export const api = ['state', 'onChange', 'getChildrens']
 
@@ -39,7 +39,7 @@ export const renderless = (
     setActiveItem: setActiveItem({ props, state }),
     getChildrens: getChildrens({ childrenHandler, api }),
     getItems: getItems(state),
-    beforeDestroy: beforeDestroy(api),
+    beforeDestroy: beforeDestroy({ vm, api }),
     initPage: initPage({ state, vm })
   })
 

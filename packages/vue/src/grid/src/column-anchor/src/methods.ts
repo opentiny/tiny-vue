@@ -11,7 +11,8 @@ export default {
       {
         class: ['tiny-grid__column-anchor', _vm.viewCls('columnAnchor')],
         style: viewType === 'default' ? 'display:flex' : '',
-        key: _vm.columnAnchorKey
+        key: _vm.columnAnchorKey,
+        ref: 'tinyGridColumnAnchor'
       },
       anchors.map((anchor) => {
         const { active = false, label = '', field = '', render } = anchor

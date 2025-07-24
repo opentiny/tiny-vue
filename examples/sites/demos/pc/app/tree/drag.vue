@@ -29,13 +29,13 @@
 </template>
 
 <script lang="jsx">
-import { Tree, RadioGroup, Radio } from '@opentiny/vue'
+import { TinyTree, TinyRadioGroup, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyTree,
+    TinyRadio,
+    TinyRadioGroup
   },
   data() {
     return {

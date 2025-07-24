@@ -19,16 +19,16 @@
 </template>
 
 <script>
-import { Form, FormItem, Select, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinySelect, TinyModal } from '@opentiny/vue'
 
 const buildOptions = () =>
   Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"黄金糕${i}"}`))
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinySelect: Select
+    TinyForm,
+    TinyFormItem,
+    TinySelect
   },
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     onChange(e) {
-      Modal.message(e.toString())
+      TinyModal.message(e.toString())
     }
   }
 }

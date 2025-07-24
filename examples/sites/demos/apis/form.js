@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'form',
@@ -28,7 +28,7 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'display-only',
-          mfDemo: ''
+          mfDemo: 'form-display-only'
         },
         {
           name: 'form-item',
@@ -46,9 +46,8 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号，SMB 主题下默认值为true',
-            'en-US':
-              'Whether to hide the red asterisk next to the label of mandatory fields, The default value for SMB theme is true'
+            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号',
+            'en-US': 'Whether to hide the red asterisk next to the label of mandatory fields'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'smb-required',
@@ -62,9 +61,8 @@ export default {
             'zh-CN': '行内布局模式',
             'en-US': 'In-line layout mode'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-in-row',
-          mobileDemo: 'hide-required-asterisk',
           mfDemo: ''
         },
         {
@@ -76,9 +74,8 @@ export default {
             'en-US':
               ' Whether to display the verification information inline form when validate-type is set to text,(It is recommended to use message-type setting)'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: '',
-          mobileDemo: 'validate'
+          mode: ['pc'],
+          pcDemo: ''
         },
         {
           name: 'label-align',
@@ -99,9 +96,8 @@ export default {
             'zh-CN': '表单中标签的布局位置',
             'en-US': 'Layout position of the label in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'label-position',
-          mobileDemo: 'label-width',
           mfDemo: ''
         },
         {
@@ -112,31 +108,29 @@ export default {
             'zh-CN': '表单中标签后缀',
             'en-US': 'Label suffix in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-in-row',
-          mobileDemo: 'form-label-suffix',
           mfDemo: ''
         },
         {
           name: 'label-width',
           type: 'string',
-          defaultValue: "'80px'",
+          defaultValue: "'84px'",
           desc: {
             'zh-CN': '表单中标签占位宽度',
             'en-US': 'Label placeholder width in the form'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'label-position',
-          mobileDemo: 'label-width',
           mfDemo: ''
         },
         {
           name: 'message-type',
-          type: "'inline' | 'block'",
-          defaultValue: '',
+          type: "'inline' | 'block' | 'absolute'",
+          defaultValue: "'block'",
           desc: {
             'zh-CN':
-              '当 validate-type 设置为 text 时，配置文本类型错误类型，可配置行内或者块级，不设置则为 absolute 定位',
+              '当 validate-type 设置为 text 时，配置文本类型错误类型，可配置行内或者块级，其他值都为 absolute 定位',
             'en-US':
               'Configure the text type error type, which can be configured at the inline or block level when validate-type is set to text. The default is absolute positioning'
           },
@@ -151,9 +145,8 @@ export default {
             'zh-CN': '表单数据对象',
             'en-US': 'Form data object'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -170,7 +163,7 @@ export default {
         },
         {
           name: 'popper-options',
-          typeAnchorName: 'popover#IPopperOption',
+          linkTo: 'popover#IPopperOption',
           type: 'Popover.IPopperOption',
           defaultValue: '',
           desc: {
@@ -189,9 +182,8 @@ export default {
             'zh-CN': '表单验证规则',
             'en-US': 'Form validation rule'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -202,9 +194,8 @@ export default {
             'zh-CN': '是否显示校验错误信息',
             'en-US': 'Display verification error information.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'novalid-tip',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -220,15 +211,14 @@ export default {
         },
         {
           name: 'validate-on-rule-change',
-          type: 'boolean',
+          type: 'boolean | "deep"',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '是否在 rules 属性改变后立即触发一次验证',
+            'zh-CN': '是否在 rules 属性改变后立即触发一次验证（"deep"选项新增于3.21.0）',
             'en-US': 'Whether to trigger a verification immediately after the rules attribute is changed'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-validation-rule',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -245,7 +235,7 @@ export default {
         },
         {
           name: 'validate-tag',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': 'vue2下面原生html标签支持显示tooltip校验提示信息',
@@ -275,9 +265,8 @@ export default {
             'zh-CN': '任一表单项被校验后触发',
             'en-US': 'Triggered after any form item is verified'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mobileDemo: '',
           mfDemo: ''
         }
       ],
@@ -292,9 +281,8 @@ export default {
             'en-US':
               'The verification result of removing a form item is transferred to the prop attribute of the form item to be removed or an array consisting of prop. If this parameter is not transferred, the verification result of the entire form is removed.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validate-field',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -305,9 +293,8 @@ export default {
             'zh-CN': '对整个表单进行重置，将所有字段值重置为初始值并移除校验结果',
             'en-US': 'Reset all field values to the initial values and remove the verification result.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -321,9 +308,8 @@ export default {
             'en-US':
               'Method for verifying the entire form. The parameter is a callback function. The callback function will be invoked after the verification is complete and two parameters are transferred: whether the verification is successful and whether the verification fails. If the callback function is not transferred, a promise is returned.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validation',
-          mobileDemo: 'validate',
           mfDemo: ''
         },
         {
@@ -337,9 +323,8 @@ export default {
             'en-US':
               'A method for verifying some form fields. The first parameter is a single prop or a prop array, and the second parameter is a callback function. After each form item is verified, the callback will be called in sequence'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'form-validate-field',
-          mobileDemo: '',
           mfDemo: ''
         }
       ],
@@ -352,9 +337,8 @@ export default {
             'zh-CN': '默认插槽，自定义表单内容',
             'en-US': 'Default slot'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -632,14 +616,14 @@ type IFormTrigger = 'change' | 'blur'
 
 interface IFormRules {
   required?: boolean // 是否必填
-  message?: number // 校验错误的提示
+  message?: string // 校验错误的提示
   // 内置的类型校验
   type?: 'date' | 'dateTime' | 'float' | 'array' | 'string' | 'number' | 'url' | 'time' | 'email' | 'object' | 'boolean' | 'enum'
   // 校验触发时机， 默认为 ['change', 'blur'] 两种场景都触发，如果仅在主动调用校验方式时触发，可设置为空数组 []。
   trigger?: IFormTrigger | IFormTrigger[] 
   // 同步检验函数，调用回调传递错误信息。
   validator?: (
-    rule: IFormInnerRule, // from内部处理后的rule
+    rule: IFormInnerRule, // form内部处理后的rule
     value: any, // 表单model对应的值，根据表单项prop获取
     callback: (e: Error) => void
     data: object, // prop和value构造的对象
@@ -679,6 +663,7 @@ interface IFormErrorField {
     {
       name: 'IFormValidateMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) => void ): Promise<boolean>
 `
@@ -686,6 +671,7 @@ function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) =>
     {
       name: 'IFormValidateFieldMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateFieldMethod(
   prop: string | string[],

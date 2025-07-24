@@ -5,7 +5,7 @@
       <template #header>
         <div class="my-header">
           <h3>自定义头部标题</h3>
-          <p>自定义副标题xxxxxx</p>
+          <p>自定义副标题 xxxxxx</p>
         </div>
       </template>
       <span>内容区域</span>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { Drawer, Button } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -36,8 +36,7 @@ export default {
 
 <style scoped>
 .my-header {
-  padding: 0 32px;
-  border-bottom: 1px solid #ccc;
+  padding: 32px 32px 24px;
 }
 
 .my-header h3 {

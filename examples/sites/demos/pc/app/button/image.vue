@@ -1,16 +1,16 @@
 <template>
-  <tiny-button>
-    <img :src="image" width="26" />
+  <tiny-button class="demo-button">
+    <img :src="image" />
     <span>图片按钮</span>
   </tiny-button>
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {
@@ -19,3 +19,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-button img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+.demo-button span {
+  height: 16px;
+  line-height: 16px;
+}
+</style>

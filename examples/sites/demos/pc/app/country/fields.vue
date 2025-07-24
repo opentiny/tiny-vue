@@ -1,13 +1,15 @@
 <template>
-  <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  <div class="demo-country-class">
+    <tiny-country v-model="value" :fetch-country="getCountryData" :fields="fields" :disabled="false"></tiny-country>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Country } from '@opentiny/vue'
+import { TinyCountry } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCountry: Country
+    TinyCountry
   },
   data() {
     return {
@@ -48,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-country-class {
+  width: 280px;
+}
+</style>

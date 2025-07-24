@@ -24,7 +24,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Transfer as TinyTransfer, Table } from '@opentiny/vue'
+import { TinyTransfer, TinyTable } from '@opentiny/vue'
 
 const getGridData = () => {
   const data = []
@@ -32,8 +32,8 @@ const getGridData = () => {
   for (let i = 1; i <= 20; i++) {
     data.push({
       id: i.toString(),
-      name: 'GFD科技YX公司' + i,
-      area: '华东区' + i,
+      name: 'GFD 科技 YX 公司 ' + i,
+      area: '华东区 ' + i,
       disabled: i % 4 === 0
     })
   }
@@ -42,7 +42,7 @@ const getGridData = () => {
 }
 
 const render = ref({
-  plugin: Table
+  plugin: TinyTable
 })
 const value = ref(['5', '6', '14', '10', '9', '11', '12'])
 const data = ref(getGridData())

@@ -1,5 +1,5 @@
 <template>
-  <div>场景1：下拉树单选</div>
+  <p>场景 1：下拉树单选</p>
   <tiny-base-select v-model="value">
     <template #panel="{ methods: { updateSelectedData, hidePanel } }">
       <tiny-tree
@@ -24,7 +24,7 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
-  <div>场景2：下拉树多选</div>
+  <p>场景 2：下拉树多选</p>
   <tiny-base-select v-model="value2" multiple>
     <template #panel="{ methods: { updateSelectedData } }">
       <tiny-tree
@@ -40,7 +40,8 @@
                 return {
                   ...node,
                   currentLabel: node.label,
-                  value: node.id
+                  value: node.id,
+                  isTree: true
                 }
               })
             )
@@ -49,7 +50,7 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
-  <div>场景3：下拉树可搜索</div>
+  <p>场景 3：下拉树可搜索</p>
   <tiny-base-select v-model="value3" filterable clearable :filter-method="filterMethod">
     <template #panel="{ methods: { updateSelectedData, hidePanel } }">
       <tiny-tree
@@ -79,12 +80,12 @@
 </template>
 
 <script>
-import { BaseSelect, Tree } from '@opentiny/vue'
+import { TinyBaseSelect, TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyTree: Tree
+    TinyBaseSelect,
+    TinyTree
   },
   data() {
     return {
@@ -145,5 +146,10 @@ export default {
 <style scoped>
 .tiny-base-select {
   width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
 }
 </style>

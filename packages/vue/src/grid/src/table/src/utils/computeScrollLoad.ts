@@ -23,9 +23,9 @@
  *
  */
 import { toNumber } from '@opentiny/vue-renderless/grid/static/'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { browserInfo } from '@opentiny/utils'
 
-let isWebkit = browser['-webkit']
+let isWebkit = browserInfo['-webkit']
 
 export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem }) {
   if (scrollYLoad || scrollLoad) {
@@ -35,7 +35,10 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
 
   if (scrollYLoad) {
     // scrollY.vSize用户配置的可视区域渲染行数
-    let visibleYSize = toNumber(scrollY.vSize || Math.ceil(tableBodyElem.clientHeight / scrollYStore.rowHeight))
+    const bodyHeight = toNumber(
+      tableBodyElem.style?.height || tableBodyElem.style?.maxHeight || tableBodyElem.clientHeight
+    )
+    let visibleYSize = toNumber(scrollY.vSize || Math.ceil(bodyHeight / scrollYStore.rowHeight))
 
     scrollYStore.visibleSize = visibleYSize
 
@@ -66,13 +69,12 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
     const clientWidth = tableBodyElem.clientWidth
     let width = 0
     let visibleXSize = 0
-
-    for (let i = 0; i < visibleColumn.length; i++) {
-      const column = visibleColumn[i]
-
-      width += column.renderWidth
-
-      if (width > clientWidth) {
+    const len = visibleColumn.length
+    const colsWidth = visibleColumn?.map((i) => i.renderWidth).sort((a, b) => a - b) || []
+    for (let i = 0; i < len; i++) {
+      width += colsWidth[i]
+      // 当虚拟滚动可见列宽度大于表格宽度或者循环结束，保存可见列大小
+      if (width > clientWidth || i === len - 1) {
         visibleXSize = i + 1
         break
       }

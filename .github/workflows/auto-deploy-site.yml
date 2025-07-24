@@ -1,0 +1,66 @@
+name: Auto Deploy Site
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - 'examples/sites/**'
+      - '!examples/sites/**/*.spec.ts'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Install deps
+        run: pnpm i --no-frozen-lockfile
+      - name: Build site
+        run: export NODE_OPTIONS="--max-old-space-size=8192" && pnpm -F @opentiny/vue-docs build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./examples/sites/dist
+          destination: ./_site
+      - name: Repair build artifact
+        run: |
+          sudo chmod -R 777 ./_site
+          cp ./examples/sites/dist/assets/_commonjsHelpers*.js ./_site/assets
+          cp ./_site/index.html ./_site/404.html
+          sed -i 's/\/static/\/tiny-vue\/static/' ./_site/static/js/design-common.js
+          sh ./examples/sites/dist/cp-component-md.sh
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  # Deployment job
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}

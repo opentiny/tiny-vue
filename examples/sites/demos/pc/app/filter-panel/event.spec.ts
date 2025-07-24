@@ -10,16 +10,16 @@ test('事件', async ({ page }) => {
   const modal = page.locator('.tiny-modal')
   const clear = panel.locator('.filter-icon-close')
 
-  // handle-clear事件
+  // handle-clear 事件
   await button.click()
   await popPanel.isVisible()
-  await page.getByRole('radio', { name: '等于' }).click()
+  await page.locator('label').filter({ hasText: '等于' }).click()
   await expect(button).toHaveText('物品数量等于')
   await clear.click()
   await expect(button).toHaveText('物品数量')
   await button.click()
 
-  // visible-change事件
+  // visible-change 事件
   await button.click()
   await expect(modal.nth(1)).toHaveText('true visibleChange')
   await button.click()

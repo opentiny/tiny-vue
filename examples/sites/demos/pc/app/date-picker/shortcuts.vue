@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import { DatePicker } from '@opentiny/vue'
+import { TinyDatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker: DatePicker
+    TinyDatePicker
   },
   data() {
     return {
@@ -137,11 +137,11 @@ export default {
       pickerOptionsStartFrom: {
         shortcuts: [
           {
-            text: '某日起始', // text可以自定义
+            text: '某日起始', // text 可以自定义
             type: 'startFrom'
           },
           {
-            text: '某日为止', // text可以自定义
+            text: '某日为止', // text 可以自定义
             type: 'endAt'
           },
           {
@@ -163,7 +163,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 350px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

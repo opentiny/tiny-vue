@@ -6,17 +6,6 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'border',
-          type: 'boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '是否显示边框线',
-            'en-US': 'Remove button border.'
-          },
-          mode: ['pc'],
-          pcDemo: 'border'
-        },
-        {
           name: 'data',
           typeAnchorName: 'IButtonGroupData',
           type: 'IButtonGroupData[]',
@@ -63,18 +52,6 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'plain',
           mfDemo: ''
-        },
-        {
-          name: 'show-edit',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示编辑按钮，只有在显示更多的情况下生效',
-            'en-US':
-              'Whether to display the edit button. This parameter takes effect only when more buttons are displayed'
-          },
-          mode: ['pc'],
-          pcDemo: 'show-edit'
         },
         {
           name: 'show-more',
@@ -146,17 +123,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'change-event'
-        },
-        {
-          name: 'edit',
-          type: '() => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '当编辑按钮被点击时触发',
-            'en-US': 'Set the callback function triggered when the edit button is clicked'
-          },
-          mode: ['pc'],
-          pcDemo: 'show-edit'
         }
       ],
       methods: [],
@@ -181,6 +147,9 @@ export default {
             'zh-CN': '自定义数据为空时展示内容',
             'en-US': 'customize content when data is empty'
           },
+          meta: {
+            stable: '3.17.0'
+          },
           mode: ['pc'],
           pcDemo: 'slot-empty'
         }
@@ -194,7 +163,7 @@ export default {
       code: `
 interface IButtonGroupData {
   text: string // 显示文本
-  value: number | number // 选中的值
+  value: number | string // 选中的值
   disabled?: boolean // 是否禁用
   tip?: string // 按钮悬浮提示 v3.17.0版本增加此功能
   // 配置选块角标

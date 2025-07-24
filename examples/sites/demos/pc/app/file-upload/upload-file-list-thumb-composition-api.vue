@@ -8,14 +8,14 @@
     :open-download-file="true"
     :thumb-option="options"
   >
-    <tiny-button type="primary"> 点击上传 </tiny-button>
+    <tiny-button> 点击上传 </tiny-button>
   </tiny-file-upload>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload, Button as TinyButton } from '@opentiny/vue'
-import { iconEditorListNum } from '@opentiny/vue-icon'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
+import { IconEditorList } from '@opentiny/vue-icon'
 
 const options = ref({
   width: 300,
@@ -27,7 +27,7 @@ const options = ref({
   // downloadFile: (file) => {
   //   console.log('file', file)
   // },
-  icon: iconEditorListNum()
+  icon: IconEditorList()
 })
 const fileList = ref([
   {

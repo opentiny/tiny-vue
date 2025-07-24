@@ -18,12 +18,11 @@ import type {
   INumericGetEmitValueParams,
   INumericUnitPrecision
 } from '@/types'
-import type { BigIntDecimal } from '../common/bigInt'
-import { formatNumber, roundFixed } from '../common/decimal'
-import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
-import { isNumber, isNull } from '../common/type'
-import { MOUSEDELTA } from '../common'
-import { on, off } from '../common/deps/dom'
+import { formatNumber, roundFixed } from '@opentiny/utils'
+import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/utils'
+import { isNumber, isNull } from '@opentiny/utils'
+import { MOUSEDELTA } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
 
 export const initService = (
   service: INumericRenderlessParamUtils['service']
@@ -40,10 +39,7 @@ export const initService = (
   }
 }
 
-export const getDecimal =
-  (props: INumericProps) =>
-  (value: number): BigIntDecimal =>
-    getMiniDecimal(value, props.plugin)
+export const getDecimal = (props: INumericProps) => (value: number) => getMiniDecimal(value, props.plugin)
 
 export const watchValue =
   ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
@@ -84,26 +80,26 @@ export const getPrecision =
 
 export const internalIncrease =
   ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
-  ({ val, step }: { val: number; step: number }): string => {
+  ({ val, step }: { val: number | string; step: number | string }): string => {
     const decimal = api.getDecimal(val)
-
     if (decimal.isNaN() && val !== undefined) {
       return state.currentValue
     }
-
-    return decimal.add(step).toString()
+    const addValue = decimal.add(step).toString()
+    return addValue
   }
 
 export const internalDecrease =
   ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
-  ({ val, step }: { val: number; step: number }): string | number => {
+  ({ val, step }: { val: number | string; step: number | string }): string | number => {
     const decimal = api.getDecimal(val)
 
     if (decimal.isNaN() && val !== undefined) {
       return state.currentValue
     }
 
-    return decimal.add(`-${step}`).toString()
+    const decreaseValue = decimal.add(`-${step}`).toString()
+    return decreaseValue
   }
 
 export const increase =
@@ -121,8 +117,10 @@ export const increase =
     if (value.toString().includes('e')) {
       return
     }
-
-    let newVal = api.internalIncrease({ val: value, step: props.step })
+    let newVal = api.internalIncrease({
+      val: value,
+      step: props.step?.value ?? props.step
+    })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
       api.setCurrentValue(newVal)
@@ -151,8 +149,10 @@ export const decrease =
     if (value.toString().includes('e')) {
       return
     }
-
-    let newVal = api.internalDecrease({ val: value, step: props.step })
+    let newVal = api.internalDecrease({
+      val: value,
+      step: props.step?.value ?? props.step
+    })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
       api.setCurrentValue(newVal)
@@ -260,7 +260,7 @@ export const setCurrentValue =
     props,
     state
   }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
-  (newVal: number, emitChangeFlag: boolean = true): void => {
+  (newVal: number, emitChangeFlag = true): void => {
     const { max, min, allowEmpty, validateEvent, stringMode, plugin, emptyValue } = props
     const { format } = state
     const oldVal = state.currentValue
@@ -301,6 +301,14 @@ export const setCurrentValue =
 
       if (validateEvent) {
         dispatch(constants.COMPONENT_NAME, constants.EVENT_NAME.change, [state.currentValue])
+      }
+
+      if (props.step instanceof Object && props.step?.mode === 'restore' && props.step?.value) {
+        const stepValue = Number(props.step.value)
+        if (stepValue > 1 && newVal % stepValue !== 0) {
+          state.currentValue = oldVal
+          state.userInput = oldVal
+        }
       }
     }
   }
@@ -351,10 +359,14 @@ export const handleInputChange =
   ({ api, state, props }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event): void => {
     const value = event.target?.value === '-' ? 0 : event.target?.value
-    if (props.stepStrictly) {
+    if (props.stepStrictly || (typeof props.step === 'object' && props.step?.mode === 'strictly')) {
       const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
-      if (Math.abs(previousValue - value) % Number(props.step) === 0) return api.setCurrentValue(value)
-      const step = Number(props.step)
+      if (
+        Math.abs(previousValue - value) % Number(props.step) === 0 ||
+        Math.abs(previousValue - value) % Number(props.step.value) === 0
+      )
+        return api.setCurrentValue(value)
+      const step = Number(props.step) || Number(props.step.value)
       const difference = value - previousValue
       const sign = difference >= 0 ? 1 : -1
       return api.setCurrentValue(sign * Math.round(Math.abs(difference) / step) * step + previousValue)
@@ -437,7 +449,8 @@ export const displayValue =
 export const getNumPecision =
   ({ api, props }: Pick<INumericRenderlessParams, 'api' | 'props'>) =>
   (): number => {
-    const stepPrecision = api.getPrecision(props.step)
+    const stepValue = props.step?.value ?? props.step
+    const stepPrecision = api.getPrecision(stepValue)
 
     if (props.precision !== undefined) {
       return props.precision

@@ -1,8 +1,8 @@
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { h, hooks } from '@opentiny/vue-common'
 import GlobalConfig from '../../config'
 
@@ -37,12 +37,12 @@ export default {
   renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
     let res = null
 
-    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData } = _vm
+    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData, isViewCustom } = _vm
     const style = { display: 'none' }
 
-    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt视图或gantt视图大屏下显示多端Pager
+    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt/custom视图或gantt/custom视图大屏下显示多端Pager
     if (isThemeSaas && isModeMobileFirst) {
-      if (!isViewGantt || (isViewGantt && currentBreakpoint !== 'default')) {
+      if (!(isViewGantt || isViewCustom) || ((isViewGantt || isViewCustom) && currentBreakpoint !== 'default')) {
         style.display = 'flex'
         style.justifyContent = 'flex-end'
       }
@@ -79,6 +79,7 @@ export default {
     return res
   },
   pageChangeEvent(params) {
+    this.tablePageLoading = true
     // 这里需要做下防抖操作，防止在pageSize从小变大的时候导致fetch-data触发多次
     if (!this.tasks.updatePage) {
       this.tasks.updatePage = debounce(200, () => {
@@ -89,9 +90,10 @@ export default {
 
         // 处理配置式表格的监听事件
         this.emitter.emit('page-change', eventParams)
-
-        // 触发fetchData
-        this.commitProxy('query')
+        this.handleFetch('query').then(() => {
+          this.realTimeTablePage = { ...this.tablePage }
+          this.tablePageLoading = false
+        })
 
         if (toolbarVm) {
           toolbarVm.orderSetting()

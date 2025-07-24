@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <p>场景1：默认</p>
-    <tiny-dropdown split-button type="success">
-      更多菜单
+  <div class="demo-drop">
+    <p class="demo-dropdown">场景 1：默认</p>
+    <tiny-dropdown border type="success">
+      更多菜单（标题很长示例）
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -13,9 +13,10 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：设置 inherit-width</p>
-    <tiny-dropdown split-button type="success" :inherit-width="true">
-      更多菜单
+    <br /><br />
+    <p class="demo-dropdown">场景 2：设置 inherit-width</p>
+    <tiny-dropdown type="success" border :inherit-width="true">
+      更多菜单（标题很长示例）
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -30,13 +31,13 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   }
 }
 </script>
@@ -45,5 +46,8 @@ export default {
 p {
   font-size: 14px;
   line-height: 1.5;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
 }
 </style>

@@ -61,7 +61,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 filter 属性切换至过滤器模式。 过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>',
+          '<p>通过 filter 属性切换至过滤器模式。过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>',
         'en-US':
           '<p>Use the filter attribute to switch to filter mode. In filter mode, you can pass the label to display the title, tip to display the prompt information, and clearable to display the clear button.</p>\n'
       },

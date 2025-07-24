@@ -111,12 +111,14 @@ export default {
     {
       demoId: 'dialog-width',
       name: {
-        'zh-CN': '弹窗的宽度',
-        'en-US': 'Wideness of the pop-up window'
+        'zh-CN': '弹窗的宽度和最大高度',
+        'en-US': 'The width and height of the pop-up window'
       },
       desc: {
-        'zh-CN': '<p>可通过<code>width</code>属性设置指定弹窗的宽度。</p>\n',
-        'en-US': '<p>The<code>width</code>attribute specifies the width of the pop-up window. </p>\n'
+        'zh-CN':
+          '<p>可通过<code>width</code>属性设置指定弹窗的宽度，<code>max-height</code>属性设置窗口最大高度。</p>\n',
+        'en-US':
+          '<p>The<code>width</code>attribute specifies the width of the pop-up window,<code>max-height</code> Property Setting the maximum height of the window.</p>\n'
       },
       codeFiles: ['dialog-width.vue']
     },
@@ -141,8 +143,10 @@ export default {
         'en-US': 'Disable the mask layer'
       },
       desc: {
-        'zh-CN': '<p>可通过<code>modal</code>属性设置<code>false</code>不启用遮罩层。</p>\n',
-        'en-US': '<p>Set the<code>modal</code>attribute to<code>false</code>to not enable mask layers.</p>\n'
+        'zh-CN':
+          '<p>可通过<code>modal</code>属性设置<code>false</code>不启用遮罩层。无遮罩层时，单击弹窗外部区域仍然可以关闭弹窗。</p>\n',
+        'en-US':
+          '<p>Set the<code>modal</code>attribute to<code>false</code>to not enable mask layers.When there is no masked layer, clicking on the outer area of the pop-up window can still close it.</p>\n'
       },
       codeFiles: ['no-modal.vue']
     },
@@ -159,6 +163,19 @@ export default {
           '<p>By setting the<code>right-slide</code>attribute to<code>true</code>, a pop-up window will pop up from the right side of the window< Code>modal apply to body</code>Properties default to<code>true</code>Mask layer applied to<code>body</code></p>'
       },
       codeFiles: ['right-dialog.vue']
+    },
+    {
+      demoId: 'double-dialog-height',
+      name: {
+        'zh-CN': '右侧双层弹框',
+        'en-US': 'Double-layer dialog box on the right'
+      },
+      desc: {
+        'zh-CN': '右侧弹窗分两种情况，父级弹框自动缩进，子级弹框高度撑满。父级弹框不缩进，子级弹框高度自适应。',
+        'en-US':
+          'There are two types of pop-up windows on the right. The parent pop-up boxes are automatically indented, and the child pop-up boxes are full. The parent dialog box is not indented, and the height of the child dialog box is adaptive.'
+      },
+      codeFiles: ['double-dialog-height.vue']
     },
     {
       demoId: 'hidden-header',
@@ -180,7 +197,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>lock-scroll</code>属性设置<code>true</code>,允许滚动遮罩内容,禁止滚动背景内容，单击遮罩层可关闭弹窗。设置<code>lock-scroll</code>为<code>false</code>,允许滚动遮罩内容、背景内容。</p>\n',
+          '<p>可通过<code>lock-scroll</code>属性设置<code>true</code>,允许滚动遮罩内容，禁止滚动背景内容，单击遮罩层可关闭弹窗。设置<code>lock-scroll</code>为<code>false</code>,允许滚动遮罩内容、背景内容。</p>\n',
         'en-US':
           '<p>By setting<code>lock-scroll</code>to<code>true</code>, allow scrolling of mask content and prohibit scrolling of background content,Click on the mask layer to close the pop-up window.Set<code>:lock-scroll</code>to<code>false</code>,allowing scrolling of mask content and background content.</p>\n'
       },
@@ -221,8 +238,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          可通过<code>fullscreen</code>属性设置弹窗是否为全屏状态, 默认值 为 <code>false</code>。<br>
-          可通过<code>resize</code>属性设置弹窗是否有切换全屏的功能, 默认值 为 <code>false</code>。<br>
+          可通过<code>fullscreen</code>属性设置弹窗是否为全屏状态，默认值 为 <code>false</code>。<br>
+          可通过<code>resize</code>属性设置弹窗是否有切换全屏的功能，默认值 为 <code>false</code>。<br>
           可通过<code>resize</code>事件，监听弹窗切换全屏的事件。<br>
           `,
         'en-US': `
@@ -241,9 +258,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>is-form-reset</code>属性设置<code>false</code>,关闭弹窗不重置数据，<code>resize</code>属性设置窗口最大化，<code>max-height</code>属性设置窗口最大高度。</p>',
+          '<p>可通过<code>is-form-reset</code>属性设置<code>false</code>,关闭弹窗不重置数据，<code>resize</code>属性设置窗口最大化。</p>',
         'en-US':
-          '<p>By setting the<code>is-form-reset</code>attribute to <code>false</code>, close the pop-up window without resetting the data,<code>resize</code> Property Setting Window Maximization,<code>max-height</code> Property Setting the maximum height of the window.</p>'
+          '<p>By setting the<code>is-form-reset</code>attribute to <code>false</code>, close the pop-up window without resetting the data,<code>resize</code> Property Setting Window Maximization.</p>'
       },
       codeFiles: ['form-in-dialog.vue']
     },
@@ -269,7 +286,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过设置事件<code>@open</code>：对话框打开时触发,<code>@opened</code>：对话框打开动画结束时触发,<code>@close</code>：对话框关闭时触发,<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
+          '<p>可通过设置事件<code>@open</code>：对话框打开时触发，<code>@opened</code>：对话框打开动画结束时触发，<code>@close</code>：对话框关闭时触发，<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
         'en-US':
           '<p>By setting the event<code>@open</code>: triggered when the dialog box is opened<code>@opened</code>: triggered when the animation ends when the dialog box is opened<code>@close</code>: triggered when the dialog box is closed<code>@closed</code>: triggered when the animation ends when the dialog box is closed.</p>\n'
       },

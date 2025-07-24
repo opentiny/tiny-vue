@@ -4,7 +4,7 @@
       <tiny-row :flex="true">
         <tiny-col :span="4">
           <tiny-statistic :value="306">
-            <template #prefix><div style="margin-right: 15px">已使用容量(GB)</div></template>
+            <template #prefix><div style="margin-right: 15px">已使用容量 (GB)</div></template>
             <template #suffix><div style="font-size: 24px">GB</div></template>
           </tiny-statistic>
         </tiny-col>
@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import { Statistic, Layout, Row, Col } from '@opentiny/vue'
+import { TinyStatistic, TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyStatistic: Statistic,
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyStatistic,
+    TinyLayout,
+    TinyRow,
+    TinyCol
   }
 }
 </script>

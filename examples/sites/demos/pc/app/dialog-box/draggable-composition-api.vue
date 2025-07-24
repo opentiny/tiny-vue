@@ -30,7 +30,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, DialogBox as TinyDialogBox, Notify, Input as TinyInput, Modal } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyNotify, TinyInput, TinyModal } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
 const isDragOutSideFlag = ref(false)
@@ -38,14 +38,14 @@ const isNotifyMoving = ref(false)
 const input = ref('鼠标移入标题区域单击拖拽')
 
 function dragStart() {
-  Notify({
+  TinyNotify({
     message: '拖拽开始',
     position: 'top-right'
   })
 }
 
 function dragEnd() {
-  Notify({
+  TinyNotify({
     message: '拖拽结束',
     position: 'top-right'
   })
@@ -53,7 +53,7 @@ function dragEnd() {
 
 function dragMove() {
   if (!isNotifyMoving.value) {
-    Notify({
+    TinyNotify({
       message: '拖拽移动',
       position: 'top-right'
     })
@@ -61,7 +61,7 @@ function dragMove() {
   }
 }
 function beforeClose() {
-  Modal.message({ message: 'before-close', status: 'info' })
+  TinyModal.message({ message: 'before-close', status: 'info' })
 }
 function dragDialog() {
   boxVisibility.value = true

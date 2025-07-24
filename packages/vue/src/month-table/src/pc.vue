@@ -26,7 +26,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/month-table/vue'
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { isDate1 } from '@opentiny/utils'
 
 export default defineComponent({
   name: $prefix + 'MonthTable',
@@ -34,9 +34,12 @@ export default defineComponent({
   props: {
     date: {},
     defaultValue: {
-      validator: (val) => val === null || isDate(val) || (Array.isArray(val) && val.every(isDate))
+      validator: (val) => val === null || isDate1(val) || (Array.isArray(val) && val.every(isDate1))
     },
-    disabledDate: {},
+    disabledDate: {
+      type: Function,
+      default: null
+    },
     maxDate: {},
     minDate: {},
     rangeState: {
@@ -45,7 +48,10 @@ export default defineComponent({
     selectionMode: {
       default: 'month'
     },
-
+    readonly: {
+      type: Boolean,
+      default: false
+    },
     value: {}
   },
   setup(props, context) {

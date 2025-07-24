@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrap">
-    <!-- 单选demo -->
+    <!-- 单选 demo -->
     <tiny-card-group v-model="radioValue" check-type="radio">
       <tiny-card
         id="smb-card"
@@ -25,7 +25,7 @@
       </tiny-card>
     </tiny-card-group>
 
-    <!-- 多选demo -->
+    <!-- 多选 demo -->
     <tiny-card-group v-model="checkboxValue" check-type="checkbox">
       <tiny-card
         id="smb-card"
@@ -53,13 +53,13 @@
 </template>
 
 <script>
-import { Card, CardGroup, Select } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup, TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCard: Card,
-    TinyCardGroup: CardGroup,
-    TinySelect: Select
+    TinyCard,
+    TinyCardGroup,
+    TinySelect
   },
   data() {
     return {
@@ -69,17 +69,17 @@ export default {
         {
           title: 'TinyVue',
           content: '^15.0.01',
-          imageSrc: ''
+          imageSrc: 'https://res.hc-cdn.com/tinyui-design-common/1.0.5.20240823150427/assets/tinyvue.svg'
         },
         {
           title: 'TinyNG',
           content: '^16.0.01',
-          imageSrc: ''
+          imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyng.svg'
         },
         {
           title: 'TinyEngine',
           content: '^14.0.01',
-          imageSrc: '',
+          imageSrc: 'https://res.hc-cdn.com/tinyui-design/1.0.7.20240711104855/home/images/tinyengine.svg',
           selectVal: 'TinyVue',
           options: [
             { value: 'TinyVue', label: 'TinyVue' },
@@ -114,7 +114,7 @@ export default {
   height: 80px;
   margin-right: 20px;
 }
-/* 业务功能demo */
+/* 业务功能 demo */
 .smb-card {
   display: inline-block;
   position: relative;
@@ -138,6 +138,9 @@ export default {
   display: block;
   width: 40px;
   height: 40px;
+  background-color: #2f5bea;
+  border-radius: 4px;
+  padding: 4px;
 }
 .card-text {
   margin-left: 16px;
@@ -166,10 +169,12 @@ export default {
 .card-stlecting {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-</style>
-
-<style>
-#smb-card .tiny-card--small-padding {
+#smb-card :deep(.tiny-card--small-padding) {
   padding: 0;
+}
+.card-wrap :deep(.tiny-input__inner) {
+  border: none;
+  border-radius: 6px;
+  background-color: #fafafa;
 }
 </style>

@@ -10,7 +10,7 @@ test('测试按钮禁用事件', async ({ page }) => {
   const noDisabled = demo.getByRole('button', { name: '无禁用' })
   const fiveSecondDisabled = demo.getByRole('button', { name: '禁用 5 秒' })
 
-  // 默认禁用1S
+  // 默认禁用 1S
   await defalutDisabled.click()
   await expect(defalutDisabled).toBeDisabled()
   await page.waitForTimeout(1000)
@@ -20,7 +20,7 @@ test('测试按钮禁用事件', async ({ page }) => {
   await noDisabled.click()
   await expect(noDisabled).not.toBeDisabled()
 
-  // 自定义禁用5s
+  // 自定义禁用 5s
   await fiveSecondDisabled.click()
   await expect(fiveSecondDisabled).toBeDisabled()
   await page.waitForTimeout(5000)

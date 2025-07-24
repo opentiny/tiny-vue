@@ -72,7 +72,20 @@ export default {
           pcDemo: 'basic-usage'
         }
       ],
-      events: [],
+      events: [
+        {
+          name: 'click',
+          type: '(ev: MouseEvent) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击事件',
+            'en-US': 'click event'
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        }
+      ],
       methods: [],
       slots: [
         {

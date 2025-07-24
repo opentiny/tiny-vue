@@ -5,5 +5,5 @@ test('分页发生改变事件', async ({ page }) => {
   await page.goto('grid-event#event-page-change-event')
   await page.getByRole('listitem').filter({ hasText: '2' }).click()
 
-  await expect(page.getByText('触发分页change事件')).toBeVisible()
+  await expect(page.getByText('触发分页 change 事件')).toBeVisible()
 })

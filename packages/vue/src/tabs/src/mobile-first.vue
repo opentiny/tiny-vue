@@ -21,7 +21,7 @@ export default defineComponent({
     'beforeClose',
     'swipeable'
   ],
-  emits: ['update:activeName', 'update:modelValue', 'click', 'edit', 'close', 'add'],
+  emits: ['update:activeName', 'update:modelValue', 'click', 'edit', 'close'],
   components: { TabBar },
   setup(props, context): any {
     return setup({ props, context, renderless, api }) as unknown as ITabsApi

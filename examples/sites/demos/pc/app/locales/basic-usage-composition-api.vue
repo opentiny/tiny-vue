@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="jsx">
-import { Locales as TinyLocales } from '@opentiny/vue'
+import { TinyLocales } from '@opentiny/vue'
 </script>

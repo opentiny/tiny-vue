@@ -6,14 +6,15 @@ const EXTENERAL = [
   'echarts-wordcloud',
   '@vue/composition-api',
   '@opentiny/vue-renderless',
-  '@originjs/fluent-editor',
   'streamsaver',
   'shepherd.js',
   './label-wrap',
-  './tall-storage.vue'
+  './tall-storage.vue',
+  'highlight.js',
+  'lowlight'
 ]
 const external = (deps) => {
-  return EXTENERAL.includes(deps) || /^@opentiny[\\/]|@originjs|echarts|cropperjs|@better-scroll|crypto-js/.test(deps)
+  return EXTENERAL.includes(deps) || /^@opentiny[\\/]|@originjs|@tiptap|echarts|cropperjs|@better-scroll/.test(deps)
 }
 
 export { external }

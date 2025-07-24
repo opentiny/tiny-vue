@@ -6,7 +6,7 @@
       <template #title>通过 slot 设置自定义 title</template>
     </tiny-alert>
     <br />
-    <tiny-alert size="large" description="描述内容"></tiny-alert>
+    <tiny-alert size="large" :show-title="false" description="描述内容"></tiny-alert>
     <br />
     <tiny-alert size="large" type="success" description="描述内容"></tiny-alert>
     <br />
@@ -17,5 +17,5 @@
 </template>
 
 <script setup>
-import { Alert as TinyAlert } from '@opentiny/vue'
+import { TinyAlert } from '@opentiny/vue'
 </script>

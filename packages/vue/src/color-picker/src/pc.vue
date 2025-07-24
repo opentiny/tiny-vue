@@ -11,7 +11,7 @@
     <div
       class="tiny-color-picker__inner"
       :style="{
-        background: state.triggerBg ?? ''
+        background: state.hex ?? ''
       }"
     >
       <IconChevronDown />
@@ -20,14 +20,17 @@
       <color-select
         @confirm="onConfirm"
         @cancel="onCancel"
-        @hue-update="onHueUpdate"
-        @sv-update="onSVUpdate"
-        @color-update="onColorUpdate"
         v-model="state.hex"
         :visible="state.isShow"
         :alpha="alpha"
         :predefine="state.predefineStack"
         :history="state.stack"
+        :format="format"
+        :style="{
+          'min-width': '420px'
+        }"
+        :enable-history="state.enableHistory"
+        :enable-predefine-color="state.enablePredefineColor"
       />
     </Transition>
   </div>
@@ -42,7 +45,18 @@ import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size'],
+  props: [
+    ...props,
+    'modelValue',
+    'visible',
+    'alpha',
+    'predefine',
+    'history',
+    'size',
+    'format',
+    'enableHistory',
+    'enablePredefineColor'
+  ],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect

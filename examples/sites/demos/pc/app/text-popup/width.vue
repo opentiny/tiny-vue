@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { TextPopup } from '@opentiny/vue'
+import { TinyTextPopup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTextPopup: TextPopup
+    TinyTextPopup
   }
 }
 </script>

@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Badge as TinyBadge, Button as TinyButton } from '@opentiny/vue'
+import { TinyBadge, TinyButton } from '@opentiny/vue'
 
 const unread = ref(2)
 

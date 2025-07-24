@@ -8,39 +8,38 @@
 </template>
 
 <script lang="jsx">
-import { Notify, Button } from '@opentiny/vue'
+import { TinyNotify, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     infoClick() {
-      Notify({
+      TinyNotify({
         type: 'info',
-        title: (h, params) => <h4>通知消息的标题</h4>,
+        title: '通知消息的标题',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right',
-        duration: 500000,
         customClass: 'my-custom-cls'
       })
     },
     successClick() {
-      Notify({
+      TinyNotify({
         type: 'success',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right'
       })
     },
     errorClick() {
-      Notify({
+      TinyNotify({
         type: 'error',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right'
       })
     },
     warningClick() {
-      Notify({
+      TinyNotify({
         type: 'warning',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right'

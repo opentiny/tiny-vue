@@ -59,11 +59,15 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     }
     const options = { children: (_vm.treeConfig || {}).children || 'children' }
     const targetTrElem = event.item
-    const { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem
+    const { parentNode: wrapperElem, previousElementSibling: prevEl, nextElementSibling: nextEl } = targetTrElem
+    // 获取真实的上一个拖拽元素
+    let prevTrElem =
+      prevEl && prevEl.classList.contains('tiny-grid-body__row') ? prevEl : prevEl && prevEl.previousElementSibling
     // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据
     const tableTreeData = _vm.data || _vm.tableData
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
+    selfRow._isDraging = true
     const isScrollYLoad = _vm.scrollYLoad
     if (!isScrollYLoad) {
       if (prevTrElem) {
@@ -76,7 +80,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
           wrapperElem.insertBefore(targetTrElem, oldTrElem)
 
           return Modal.message({
-            message: GlobalConfig.i18n('ui.grid.error.dargSelf'),
+            message: GlobalConfig.i18n('ui.grid.error.notAllowDragSelf'),
             status: 'error'
           })
         }
@@ -90,7 +94,8 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
           prevNode.items.splice(prevNode.index + (selfNode.index < prevNode.index ? 0 : 1), 0, currRow)
           prevNode.items = [].concat(prevNode.items)
         }
-      } else {
+        // 过滤表格外拖拽
+      } else if (nextEl && nextEl.classList.contains('tiny-grid-body__row')) {
         // 移动到第一行
         const currRow = selfNode.items.splice(selfNode.index, 1)[0]
         tableTreeData.unshift(currRow)
@@ -149,7 +154,7 @@ export const onEndEvent = ({ event, _this }) => {
     }
 
     return Modal.message({
-      message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
+      message: GlobalConfig.i18n('ui.grid.error.notAllowDragFixed'),
       status: 'error'
     })
   }

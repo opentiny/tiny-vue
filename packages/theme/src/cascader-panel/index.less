@@ -17,26 +17,26 @@
 @cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
 
 .@{cascader-panel-prefix-cls} {
-  .component-css-vars-cascader-panel();
+  .inject-CascaderPanel-vars();
 
   display: flex;
-  border-radius: var(--ti-cascader-panel-border-radius);
-  font-size: var(--ti-cascader-panel-font-size);
+  border-radius: var(--tv-CascaderPanel-border-radius);
+  font-size: var(--tv-CascaderPanel-font-size);
   &.is-bordered {
-    border: 1px solid var(--ti-cascader-panel-border-color);
-    border-radius: var(--ti-cascader-panel-border-radius);
+    border: 1px solid var(--tv-CascaderPanel-border-color);
+    border-radius: var(--tv-CascaderPanel-border-radius);
   }
 
   .@{cascader-node-prefix-cls} {
     position: relative;
     display: flex;
     align-items: center;
-    padding: var(--ti-cascader-panel-node-label-padding-vertical) var(--ti-cascader-panel-node-label-padding-right)
-      var(--ti-cascader-panel-node-label-padding-vertical) var(--ti-cascader-panel-node-label-padding-left);
-    height: var(--ti-cascader-panel-node-height);
-    line-height: var(--ti-cascader-panel-node-height);
+    padding: var(--tv-CascaderPanel-node-label-padding-x) var(--tv-CascaderPanel-node-label-padding-right)
+      var(--tv-CascaderPanel-node-label-padding-x) var(--tv-CascaderPanel-node-label-padding-left);
+    height: var(--tv-CascaderPanel-node-height);
+    line-height: var(--tv-CascaderPanel-node-height);
     outline: 0;
-    border-radius: var(--ti-cascader-panel-node-border-radius);
-    margin-top: var(--ti-cascader-panel-node-margin-top);
+    border-radius: var(--tv-CascaderPanel-node-border-radius);
+    margin-top: var(--tv-CascaderPanel-node-margin-top);
   }
 }

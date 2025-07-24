@@ -16,11 +16,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Loading, Button as TinyButton } from '@opentiny/vue'
+import { TinyLoading, TinyButton } from '@opentiny/vue'
 
 const isLoading = ref(false)
 
-const vLoading = Loading.directive
+const vLoading = TinyLoading.directive
 
 function handleClick() {
   isLoading.value = !isLoading.value

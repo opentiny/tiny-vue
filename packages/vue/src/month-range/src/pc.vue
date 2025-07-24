@@ -12,18 +12,17 @@
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="$emit('dodestroy')">
     <div
-      v-show="state.visible"
-      class="tiny-picker-panel tiny-date-range-picker tiny-popper"
+      class="tiny-month-range tiny-picker-panel tiny-date-range-picker tiny-popper"
       :class="[
         {
-          'has-sidebar': slots.sidebar || state.shortcuts
+          'has-sidebar': slots.sidebar || state.shortcuts?.length
         },
         state.popperClass
       ]"
     >
       <div class="tiny-picker-panel__body-wrapper">
         <slot name="sidebar" class="tiny-picker-panel__sidebar"></slot>
-        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
+        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts?.length">
           <button
             type="button"
             class="tiny-picker-panel__shortcut"
@@ -53,18 +52,21 @@
               </button>
               <div>{{ state.leftLabel }}</div>
             </div>
-            <month-table
-              selection-mode="range"
-              :date="state.leftDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </month-table>
+            <div class="tiny-date-range-picker__table">
+              <month-table
+                selection-mode="range"
+                :date="state.leftDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :readonly="readonly"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </month-table>
+            </div>
           </div>
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-right">
             <div class="tiny-date-range-picker__header">
@@ -83,18 +85,21 @@
               </button>
               <div>{{ state.rightLabel }}</div>
             </div>
-            <month-table
-              selection-mode="range"
-              :date="state.rightDate"
-              :default-value="state.defaultValue"
-              :min-date="state.minDate"
-              :max-date="state.maxDate"
-              :range-state="state.rangeState"
-              :disabled-date="state.disabledDate"
-              @changerange="handleChangeRange"
-              @pick="handleRangePick"
-            >
-            </month-table>
+            <div class="tiny-date-range-picker__table">
+              <month-table
+                selection-mode="range"
+                :date="state.rightDate"
+                :default-value="state.defaultValue"
+                :min-date="state.minDate"
+                :max-date="state.maxDate"
+                :range-state="state.rangeState"
+                :disabled-date="state.disabledDate"
+                :readonly="readonly"
+                @changerange="handleChangeRange"
+                @pick="handleRangePick"
+              >
+              </month-table>
+            </div>
           </div>
         </div>
       </div>
@@ -105,7 +110,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/month-range/vue'
 import { $prefix, setup, directive, $props, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import MonthTable from '@opentiny/vue-month-table'
 import { iconDoubleRight, iconDoubleLeft } from '@opentiny/vue-icon'
 
@@ -119,9 +124,35 @@ export default defineComponent({
   },
   props: {
     ...$props,
-    emitter: Object
+    emitter: Object,
+    modelValue: {
+      type: Array,
+      default: () => []
+    },
+    format: {
+      type: String
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    shortcuts: {
+      type: Array,
+      default: () => []
+    },
+    disabledDate: {
+      type: Function,
+      default: null
+    },
+    popperClass: {
+      type: String
+    },
+    unlinkPanels: {
+      type: Boolean,
+      default: false
+    }
   },
-  emits: ['dodestroy', 'pick'],
+  emits: ['dodestroy', 'pick', 'select-change', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

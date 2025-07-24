@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过属性 <code>min-crop-box-width</code> 、<code>min-crop-box-height</code> 设置裁剪框最小宽高。设置后，调整裁剪框宽高时，调整到最小值后将不能再调整。\n通过属性 <code>min-container-width</code> 、<code>min-container-height</code> 设置容器的最小宽度,最小高度。</p>\n',
+          '<p>通过属性 <code>min-crop-box-width</code> 、<code>min-crop-box-height</code> 设置裁剪框最小宽高。设置后，调整裁剪框宽高时，调整到最小值后将不能再调整。\n通过属性 <code>min-container-width</code> 、<code>min-container-height</code> 设置容器的最小宽度，最小高度。</p>\n',
         'en-US':
           '<p>Set the minimum width and height of the cropping frame through the <code>min-crop-box-width</code> and <code>min-crop-box-height</code> attributes. After this parameter is set, the width and height of the cropping box cannot be adjusted after the width and height are adjusted to the minimum value. \n Set the minimum width and height of the container through the <code>min-container-width</code> and <code>min-container-height</code> attributes. </p>\n'
       },
@@ -105,10 +105,25 @@ export default {
         'en-US': 'Drag Mode'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>drag-mode</code> 属性可以设置裁剪框的拖拽模式，有 <code>crop</code>、<code>move</code>、<code>none</code> 三种选项，默认为 <code>crop</code> 。</p>\n<div class="tip custom-block"><p class="custom-block-title">drag-mode 选项说明</p>\n<p><code>crop</code>：当裁剪框取消后，按住鼠标左键在图片区域拖拽，将产生一个新的裁剪框。\n<code>move</code>：当裁剪框取消后，按住鼠标左键将移动图片。\n<code>none</code>：当裁剪框取消后，不能裁剪、也不能移动图片。\n<code>movable</code> 控制图片是否可以移动，默认为 true。</p>\n</div>\n',
-        'en-US':
-          '<p>You can set the drag mode of the crop box through the <code>drag-mode</code> attribute. There are three options: <code>crop</code>, <code>move</code>, and <code>none</code>. The default value is <code>crop</code>. </p>\n<div class="tip custom-block"><p class="custom-block-title">drag-mode Option Description </p>\n<p><code>crop</code>: After the cropping box is canceled, hold down the left mouse button and drag it in the image area to generate a new cropping box. \n<code>move</code>: After the cropping box is canceled, hold down the left mouse button to move the image. \n<code>none</code>: After the crop box is canceled, the image cannot be cropped or moved. \n<code>movable</code> specifies whether an image can be moved. The default value is true. </p>\n</div>\n'
+        'zh-CN': `
+          通过 <code>drag-mode</code> 属性可以设置裁剪框的拖拽模式，有 <code>crop</code>、<code>move</code>、<code>none</code> 三种选项，默认为 <code>crop</code> 。
+          <div class="tip custom-block">
+            <p class="custom-block-title">drag-mode 选项说明</p>
+            <code>crop</code>：当裁剪框取消后，按住鼠标左键在图片区域拖拽，将产生一个新的裁剪框。<br>
+            <code>move</code>：当裁剪框取消后，按住鼠标左键将移动图片。<br>
+            <code>none</code>：当裁剪框取消后，不能裁剪、也不能移动图片。<br>
+          </div>
+          通过 <code>movable</code> 控制图片是否可以移动，默认为 true。</p>\n`,
+        'en-US': `
+          You can set the drag mode of the crop box through the <code>drag-mode</code> attribute. There are three options: <code>crop</code>, <code>move</code>, and <code>none</code>. The default value is <code>crop</code>.
+          <div class="tip custom-block">
+              <p class="custom-block-title">drag-mode Option Description </p>
+              <code>crop</code>: After the cropping box is canceled, hold down the left mouse button and drag it in the image area to generate a new cropping box.<br>
+              <code>move</code>: After the cropping box is canceled, hold down the left mouse button to move the image.<br>
+              <code>none</code>: After the crop box is canceled, the image cannot be cropped or moved. <br>
+          </div>
+          By <code>movable</code> specifies whether an image can be moved. The default value is true. </p>
+          `
       },
       codeFiles: ['drag-mode.vue']
     },
@@ -200,7 +215,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper 。 通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
+          '<p>通过调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper。通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
         'en-US':
           '<p>Invoke the <code>replace</code> method to replace the image src and rebuild the cropper. The <code>rotatable</code> attribute is used to control image rotation. The default value is true. </p>\n'
       },
@@ -261,12 +276,12 @@ export default {
     {
       demoId: 'crop-meth',
       name: {
-        'zh-CN': '裁剪框方法 事件',
-        'en-US': 'Crop box method event'
+        'zh-CN': '裁剪框的禁用/启用',
+        'en-US': 'Crop box disable/enable '
       },
       desc: {
         'zh-CN':
-          '<p>当一个 cropper 实例完全构建时，通过触发 <code>disable</code> 方法禁用裁剪框，当触发 <code>enable</code> 启用裁剪框。</p>\n',
+          '<p>当一个 cropper 实例完全构建时，通过触发 <code>disable</code> 方法禁用裁剪框，触发 <code>enable</code> 方法启用裁剪框。</p>\n',
         'en-US':
           '<p>When a cropper instance is completely built, the <code>disable</code> method is triggered to disable the cropping box. When the <code>enable</code> method is triggered to enable the cropping box.</p>\n'
       },
@@ -280,7 +295,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>说明当画布或剪切框开始发生变化时触发 <code>cropstart</code> 事件\n当画布或剪切框正在发生变化时触发 <code>cropmove</code> 事件\n当画布或剪切框发生变化结束时触发 <code>cropend</code> 事件\n当画布或裁剪框发生改变时触发 <code>crop</code> 事件\n通过触发 <code>getCanvasData</code> 获取画布 Canvas（图像包装器）位置和大小数据。</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p>说明当画布或剪切框开始发生变化时触发 <code>cropstart</code> 事件，当画布或剪切框正在发生变化时触发 <code>cropmove</code> 事件，当画布或剪切框发生变化结束时触发 <code>cropend</code> 事件，当画布或裁剪框发生改变时触发 <code>crop</code> 事件，通过触发 <code>getCanvasData</code> 获取画布 Canvas（图像包装器）位置和大小数据。</p>\n</div>\n',
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> Description: The <code>cropstart</code> event is triggered when the canvas or clipping box starts to change.\nThe <code>cropmove</code> event is triggered when the canvas or clipping box is changed.\nThe <code>cropen event is triggered when the canvas or clipping box ends. d</code>Event\nThe <code>crop</code> event is triggered when the canvas or crop box changes. \nThe <code>getCanvasData</code> event is triggered to obtain the position and size data of the canvas (image wrapper). </p>\n</div>\n'
       },

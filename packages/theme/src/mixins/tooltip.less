@@ -14,73 +14,7 @@
   background: @bgcolor;
   color: @color;
 
-  &[x-placement^='top'] .popper__arrow {
-    border-top-color: @border-color;
-
-    &::after {
-      border-top-color: @border-color;
-    }
-  }
-
-  &[x-placement^='bottom'] .popper__arrow {
-    border-bottom-color: @border-color;
-
-    &::after {
-      border-bottom-color: @border-color;
-    }
-  }
-
-  &[x-placement^='left'] .popper__arrow {
-    border-left-color: @border-color;
-
-    &::after {
-      border-left-color: @border-color;
-    }
-  }
-
-  &[x-placement^='right'] .popper__arrow {
-    border-right-color: @border-color;
-
-    &::after {
-      border-right-color: @border-color;
-    }
-  }
-}
-
-.tooltip-light (@color, @bgcolor, @border-color) {
-  background: @bgcolor;
-  color: @color;
-  border: 1px solid @border-color;
-
-  &[x-placement^='top'] .popper__arrow {
-    border-top-color: @border-color;
-
-    &::after {
-      border-top-color: @bgcolor;
-    }
-  }
-
-  &[x-placement^='bottom'] .popper__arrow {
-    border-bottom-color: @border-color;
-
-    &::after {
-      border-bottom-color: @bgcolor;
-    }
-  }
-
-  &[x-placement^='left'] .popper__arrow {
-    border-left-color: @border-color;
-
-    &::after {
-      border-left-color: @bgcolor;
-    }
-  }
-
-  &[x-placement^='right'] .popper__arrow {
-    border-right-color: @border-color;
-
-    &::after {
-      border-right-color: @bgcolor;
-    }
+  & .popper__arrow {
+    background-color: @bgcolor;
   }
 }

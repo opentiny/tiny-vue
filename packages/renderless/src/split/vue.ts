@@ -24,11 +24,11 @@ import {
   buttonRightBottomClick,
   computeOffset
 } from './index'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const api = ['state', 'handleMousedown', 'buttonMousedown', 'buttonLeftTopClick', 'buttonRightBottomClick']
 
-export const renderless = (props, hooks, { vm, nextTick, emit, constants }) => {
+export const renderless = (props, hooks, { vm, nextTick, emit, constants, designConfig }) => {
   const api = {}
   const { computed, reactive } = hooks
   const getUseOffset = useOffset({ nextTick, props, vm, constants, hooks })
@@ -51,6 +51,7 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants }) => {
       `${state.prefix}-pane ${props.scrollable ? 'tiny-split-scroll' : ''}`,
       { [`${state.prefix}-pane-moving`]: state.isMoving }
     ]),
+    triggerBarConWithLine: designConfig?.triggerBarConWithLine ?? true, // smb 风格的拖动块是线条
     ...getUseOffset.state
   })
 

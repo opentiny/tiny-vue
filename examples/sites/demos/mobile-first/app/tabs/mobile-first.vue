@@ -48,17 +48,17 @@
 </template>
 
 <script>
-import { Tabs, TabItem, Modal, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyModal, TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 import { IconSetting } from '@opentiny/vue-icon'
 import { h } from '@opentiny/vue-common'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
+    TinyTabs,
+    TinyTabItem,
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem,
     IconSetting: IconSetting()
   },
   data() {
@@ -66,20 +66,20 @@ export default {
   },
   methods: {
     edit(targetName, action) {
-      Modal.message(`edit事件 - ${targetName} - ${action}`)
+      TinyModal.message(`edit事件 - ${targetName} - ${action}`)
     },
     click(tab) {
-      Modal.message(`click事件 - ${tab.name}`)
+      TinyModal.message(`click事件 - ${tab.name}`)
     },
     close(name) {
-      Modal.message(`close事件 - ${name}`)
+      TinyModal.message(`close事件 - ${name}`)
     },
     add() {
-      Modal.message('add事件')
+      TinyModal.message('add事件')
     },
     itemClick(itemData) {
       const parts = itemData.split('-')
-      Modal.message('点击了' + parts[1] + '的操作' + parts[2])
+      TinyModal.message('点击了' + parts[1] + '的操作' + parts[2])
     },
     renderTitle() {
       return h('span', 'renderTitle')

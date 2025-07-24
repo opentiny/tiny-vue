@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <div>
-      <tiny-slider v-model="value" :marks="marks"></tiny-slider>
-    </div>
-  </div>
+  <tiny-slider v-model="value" :marks="marks"></tiny-slider>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Slider as TinySlider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue'
 
 const marks = ref({
   10: '10%',
@@ -18,3 +14,9 @@ const marks = ref({
 
 const value = ref(20)
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

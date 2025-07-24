@@ -10,23 +10,23 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Pager, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
       pager: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 15,
           total: 0,
           pageSizes: [5, 10, 15, 20],
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       fetchData: {
@@ -36,56 +36,56 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           city: '福州',
           employees: 800,
           createdDate: '2014-04-30 00:56:00'
         },
         {
           id: '2',
-          name: 'WWW科技YX公司',
+          name: 'WWW 科技 YX 公司',
           city: '深圳',
           employees: 300,
           createdDate: '2016-07-08 12:36:22'
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           city: '中山',
           employees: 1300,
           createdDate: '2014-02-14 14:14:14'
         },
         {
           id: '4',
-          name: 'TGB科技YX公司',
+          name: 'TGB 科技 YX 公司',
           city: '龙岩',
           employees: 360,
           createdDate: '2013-01-13 13:13:13'
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           city: '韶关',
           employees: 810,
           createdDate: '2012-12-12 12:12:12'
         },
         {
           id: '6',
-          name: 'WSX科技YX公司',
+          name: 'WSX 科技 YX 公司',
           city: '黄冈',
           employees: 800,
           createdDate: '2011-11-11 11:11:11'
         },
         {
           id: '7',
-          name: 'KBG物业YX公司',
+          name: 'KBG 物业 YX 公司',
           city: '赤壁',
           employees: 400,
           createdDate: '2016-04-30 23:56:00'
         },
         {
           id: '8',
-          name: '深圳市福德宝网络技术YX公司',
+          name: '深圳市福德宝网络技术 YX 公司',
           city: '深圳',
           employees: 540,
           createdDate: '2016-06-03 13:53:25'
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     sortChangeEvent({ order }) {
-      Modal.message({ message: `${order}`, status: 'info' })
+      TinyModal.message({ message: `${order || '取消排序'}`, status: 'info' })
     },
     getData({ page, filters }) {
       return new Promise((resolve) => {

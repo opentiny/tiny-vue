@@ -7,14 +7,14 @@
           <span>自定义头部右侧</span>
         </div>
       </template>
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
     </tiny-drawer>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Drawer as TinyDrawer, Button as TinyButton } from '@opentiny/vue'
+import { TinyDrawer, TinyButton } from '@opentiny/vue'
 
 const visible = ref(false)
 

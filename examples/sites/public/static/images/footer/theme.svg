@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 9</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-应用-1" transform="translate(-992.000000, -130.000000)">
+            <g id="编组-9" transform="translate(992.000000, 130.000000)">
+                <rect id="矩形备份" fill="#2F5BEA" x="0" y="0" width="40" height="40" rx="7.18993409"></rect>
+                <g id="编组备份" transform="translate(6.666667, 9.523810)" fill-rule="nonzero">
+                    <polygon id="矩形备份-2" fill="#DFE5FA" points="-2.17072369e-12 0 9.54694373 0 9.54694373 8.5861468 -2.17072369e-12 8.5861468"></polygon>
+                    <polygon id="矩形备份-4" fill="#A0B3F1" points="17.1387402 0 26.6666667 0 26.6666667 8.5593068 17.1387402 8.5593068"></polygon>
+                    <polygon id="路径" fill="#FFFFFF" points="23.8176711 8.55930828 23.8176711 20.952381 2.86596318 20.952381 2.86596318 8.55930828 9.54694373 8.5593068 9.54783769 15.1429542 17.1387402 15.1429542 17.1378462 8.5593068"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

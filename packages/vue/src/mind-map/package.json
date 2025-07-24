@@ -1,11 +1,15 @@
 {
   "name": "@opentiny/vue-mind-map",
-  "version": "3.17.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
   "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  },
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

@@ -11,7 +11,7 @@
  */
 import * as hooks from 'vue'
 
-import { camelize, capitalize, hyphenate } from '@opentiny/vue-renderless/common/string'
+import { camelize, capitalize, hyphenate } from '@opentiny/utils'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
 
 const Teleport = hooks.Teleport
@@ -381,6 +381,7 @@ export const directive = (directives) => {
   for (const name in directives) {
     const content = directives[name]
 
+    mapping(content, 'inserted', 'mounted')
     mapping(content, 'bind', 'beforeMount')
     mapping(content, 'update', 'updated')
     mapping(content, 'unbind', 'unmounted')

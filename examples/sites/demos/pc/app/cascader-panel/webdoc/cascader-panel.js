@@ -31,6 +31,18 @@ export default {
       codeFiles: ['custom-option-content.vue']
     },
     {
+      demoId: 'multiple',
+      name: {
+        'zh-CN': '多选',
+        'en-US': 'Multiple Choices'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>props.multiple = true</code> 来开启多选模式。</p>\n',
+        'en-US': '<p>Use <code>props.multiple = true</code> to enable the multi-selection mode. </p>\n'
+      },
+      codeFiles: ['multiple.vue']
+    },
+    {
       demoId: 'cascader-panel-props',
       name: {
         'zh-CN': 'Props 选项',

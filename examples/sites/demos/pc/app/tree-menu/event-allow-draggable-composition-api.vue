@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
+import { TinyTreeMenu, TinyModal } from '@opentiny/vue'
 
 const treeData = ref([
   {
@@ -177,10 +177,10 @@ function dragCallback() {
 }
 
 function dragStart() {
-  Modal.message('拖拽节点开始时触发的事件')
+  TinyModal.message('拖拽节点开始时触发的事件')
 }
 
 function dragEnd() {
-  Modal.message('拖拽结束时触发的事件')
+  TinyModal.message('拖拽结束时触发的事件')
 }
 </script>

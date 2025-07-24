@@ -14,11 +14,11 @@
         <tiny-grid-column :renderer="rendererCellOperate" width="100"></tiny-grid-column>
       </tiny-grid-column>
     </tiny-grid-column>
-    <tiny-grid-column :title="renderHeaderDescription" header-align="center">
+    <tiny-grid-column title="描述" header-align="center">
       <tiny-grid-column field="name" title="名称" show-tip sortable width="600"></tiny-grid-column>
       <tiny-grid-column
         field="area"
-        :title="renderHeaderArea"
+        title="分区"
         :editor="{ component: 'select', options }"
         sortable
         width="600"
@@ -27,7 +27,7 @@
     <tiny-grid-column :title="renderHeaderRelation" header-align="center">
       <tiny-grid-column
         field="address"
-        :title="renderHeaderAddress"
+        title="地区"
         :editor="{ component: 'input', autoselect: true }"
         sortable
         width="600"
@@ -44,7 +44,7 @@
     <tiny-grid-column title="右冻结分组" header-align="center" fixed="right">
       <tiny-grid-column
         field="address"
-        :title="renderHeaderAddress"
+        title="地区"
         :editor="{ component: 'input', autoselect: true }"
         sortable
         width="150"
@@ -62,7 +62,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 import {
   IconAdministrator,
   IconVersiontree,
@@ -74,8 +74,8 @@ import {
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
@@ -88,80 +88,80 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           area: '华东区',
           address: '福州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWWW科技YX公司',
+          name: 'WWWW 科技 YX 公司',
           area: '华南区',
           address: '深圳福田区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           area: '华南区',
           address: '中山市',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '4',
-          name: 'TGBYX公司',
+          name: 'TGBYX 公司',
           area: '华北区',
           address: '梅州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           area: '华南区',
           address: '韶关',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '6',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '7',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '8',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '9',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '10',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '11',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         }
       ],
       options: [
@@ -172,45 +172,12 @@ export default {
     }
   },
   methods: {
-    renderHeaderDescription(h) {
-      const IconAdministrator = this.IconAdministrator
-
-      return (
-        <span>
-          {' '}
-          <IconAdministrator />
-          Description
-        </span>
-      )
-    },
     renderHeaderRelation(h) {
       const IconVersiontree = this.IconVersiontree
 
       return (
         <span>
           <IconVersiontree />
-        </span>
-      )
-    },
-
-    renderHeaderArea(h) {
-      const IconMarkOn = this.IconMarkOn
-
-      return (
-        <span>
-          <IconMarkOn />
-          Description
-        </span>
-      )
-    },
-
-    renderHeaderAddress(h) {
-      const IconUser = this.IconUser
-
-      return (
-        <span>
-          <IconUser />
-          Description
         </span>
       )
     },

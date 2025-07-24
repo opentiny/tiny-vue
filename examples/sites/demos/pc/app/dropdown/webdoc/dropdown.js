@@ -28,6 +28,20 @@ export default {
       codeFiles: ['disabled.vue']
     },
     {
+      demoId: 'placement',
+      name: {
+        'zh-CN': '展开位置',
+        'en-US': 'Placement'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>placement</code> 属性设置为 <code>bottom-start</code> 设置右侧展开。默认值为左侧展开。\n',
+        'en-US':
+          '<p>Set the <code>placement</code> attribute to <code>bottom-start</code> to expand on the right side. The default value is left expansion. </p>\n'
+      },
+      codeFiles: ['placement.vue']
+    },
+    {
       demoId: 'size',
       name: {
         'zh-CN': '尺寸',
@@ -70,20 +84,6 @@ export default {
       codeFiles: ['show-icon.vue']
     },
     {
-      demoId: 'split-button',
-      name: {
-        'zh-CN': '按钮类型',
-        'en-US': 'Button type'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>split-button</code> 属性，设置下拉菜单显示为按钮类型。仅按钮类型时，支持 <code>type</code> 属性设置按钮状态。</p>\n',
-        'en-US':
-          '<p>Set the drop-down menu to display as a button type through the <code>split-button</code> attribute. When only button types are used, the <code>type</code> attribute setting button status is supported.</p>\n'
-      },
-      codeFiles: ['split-button.vue']
-    },
-    {
       demoId: 'trigger',
       name: {
         'zh-CN': '触发方式',
@@ -91,11 +91,24 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为: <code>click</code> / <code>hover</code> 。</p>\n',
+          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为：<code>click</code> / <code>hover</code> 。</p>\n',
         'en-US':
           '<p>By setting the <code>trigger</code> attribute to trigger a drop-down, the default is <code>hover</code>. The optional values are: <code>click</code> / <code>hover</code>.</p>\n'
       },
       codeFiles: ['trigger.vue']
+    },
+    {
+      demoId: 'visible',
+      name: {
+        'zh-CN': '手动控制显隐',
+        'en-US': 'Manual control of display and concealment'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>visible</code> 属性手动控制下拉菜单显隐，优先级高于trigger。</p>\n',
+        'en-US':
+          '<p>Manually control the visibility of the dropdown menu through the<code>visible</code>attribute, with priority over trigger.</p>\n'
+      },
+      codeFiles: ['visible.vue']
     },
     {
       demoId: 'tip',
@@ -231,6 +244,19 @@ export default {
           '<p><code>button-click</code>: When the button type is selected, listen for the left button click event.</p>\n<p><code>item-click</code>: Listens for menu item click events</p>\n<p><code>visible-change</code>: Listens for changes in the display and hiding of dropdown pop ups.</p>\n'
       },
       codeFiles: ['events.vue']
+    },
+    {
+      demoId: 'lazy-show-popper',
+      name: {
+        'zh-CN': '懒加载菜单和子项',
+        'en-US': 'Lazy Load Menus and Subitems'
+      },
+      desc: {
+        'zh-CN': '通过 <code>lazy-show-popper </code>属性，指定是否懒加载下拉菜单及内部的项',
+        'en-US':
+          'The <code>lazy-show-popper </code> property specifies whether to lazy load the drop-down menu and internal items.'
+      },
+      codeFiles: ['lazy-show-popper.vue']
     }
   ]
 }

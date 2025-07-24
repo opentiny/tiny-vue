@@ -1,58 +1,43 @@
-import type { IColorSelectPanelRef as Ref } from '@/types'
+import type { IColorSelectPanelHueProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import type { Color } from '../utils/color'
 import { draggable } from '../utils/use-drag'
-import { getThumbTop, resetCursor, updateThumb, updateCursor } from './index'
-import type Color from '../utils/color'
+import { initDom, initState, useEvent } from '.'
 
-export const api = ['state', 'cursor', 'wrapper', 'bar', 'thumb']
-export const renderless = (props, context, { emit, expose }) => {
-  const cursor: Ref<HTMLElement> = context.ref()
-  const wrapper: Ref<HTMLElement> = context.ref()
-  const thumb: Ref<HTMLElement> = context.ref()
-  const bar: Ref<HTMLElement> = context.ref()
-  const color: Color = props.color
-  const h = context.ref(color.get('h'))
+export const api = ['state', 'onSvReady', 'bar', 'thumb', 'wrapper']
 
-  const background: string = `hsl(${h.value}deg, 100%, 50%)`
-  const state = context.reactive({
-    background
-  })
-
-  const api = { state, cursor, wrapper, bar, thumb }
-  context.watch(
-    () => props,
-    () => {
-      h.value = color.get('h')
-      resetCursor(color.get('s'), color.get('v'), wrapper, cursor, thumb, color, h)
-    },
-    { deep: true }
-  )
-  context.watch(h, (newHue: string) => {
-    state.background = `hsl(${newHue}deg, 100%, 50%)`
-  })
-  context.onMounted(() => {
-    const update = {
-      thumb: updateThumb(bar, thumb, h, emit),
-      cursor: updateCursor(wrapper, cursor, emit)
+export const renderless = (
+  props: IColorSelectPanelHueProps<Color>,
+  hooks: ISharedRenderlessParamHooks,
+  utils: ISharedRenderlessParamUtils
+) => {
+  const { onMounted } = hooks
+  const { emit } = utils
+  const { thumb, bar, wrapper } = initDom(hooks)
+  const state = initState(props, hooks)
+  const { onSvReady, onDrag, update } = useEvent({ thumb, bar, wrapper }, state, props, utils)
+  const api = {
+    state,
+    onSvReady,
+    bar,
+    thumb,
+    wrapper
+  }
+  onMounted(() => {
+    if (!bar.value || !thumb.value) {
+      return
     }
-    const thumbTop = getThumbTop(wrapper.value, thumb.value, h.value)
-    thumb.value.style.top = `${thumbTop}px`
-    resetCursor(color.get('s'), color.get('v'), wrapper, cursor, thumb, color, h)
-    draggable(wrapper.value, {
-      drag(event) {
-        update.cursor(color, event as MouseEvent)
+    const dragConfig = {
+      drag: (event: MouseEvent | TouchEvent) => {
+        onDrag(event)
       },
-      start(event) {
-        update.cursor(color, event as MouseEvent)
+      end: (event: MouseEvent | TouchEvent) => {
+        onDrag(event)
       }
-    })
-    draggable(bar.value, {
-      drag(event) {
-        update.thumb(event as MouseEvent)
-      },
-      start(event) {
-        update.thumb(event as MouseEvent)
-      }
-    })
+    }
+    draggable(bar.value, dragConfig)
+    draggable(thumb.value, dragConfig)
+    emit('hueReady', update)
+    update()
   })
   return api
 }

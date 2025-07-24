@@ -10,12 +10,12 @@
  *
  */
 
-import browser from '../common/browser'
-import { isNull } from '../common/type'
-import debounce from '../common/deps/debounce'
-import { isEqual } from '../common/object'
-import { addResizeListener } from '../common/deps/resize-event'
-import { KEY_CODE, CASCADER } from '../common'
+import { isServer, browserInfo } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
+import { isEqual } from '@opentiny/utils'
+import { addResizeListener } from '@opentiny/utils'
+import { KEY_CODE, CASCADER } from '@opentiny/utils'
 import type {
   ICascaderState,
   ICascaderProps,
@@ -81,10 +81,12 @@ export const computePresentContent =
     }
   }
 
+/** 用户在修改值，不必触发change */
 export const watchValue =
   ({ api, state }: { api: ICascaderApi; state: ICascaderState }) =>
   (value) => {
     if (!isEqual(value, state.checkedValue as any)) {
+      state.userChangeValue = true
       state.checkedValue = value
       setTimeout(api.computePresentContent)
     }
@@ -97,7 +99,8 @@ export const watchCheckedValue =
     dispatch,
     api,
     emit,
-    state
+    state,
+    props
   }: {
     api: ICascaderApi
     emit: ICascadeRenderlessParamUtils['emit']
@@ -122,8 +125,18 @@ export const watchCheckedValue =
       ])
     })
 
-    emit('update:modelValue', value)
-    emit('change', value)
+    // 用户触发的modelValue变化时： props.changeCompat=true， 则emit， 否则忽略
+    if (state.userChangeValue) {
+      if (props.changeCompat) {
+        emit('update:modelValue', value)
+        emit('change', value)
+      }
+      state.userChangeValue = false
+    } else {
+      // 非用户触发modelValue, 表明是用户操作click, delete时的动作。
+      emit('update:modelValue', value)
+      emit('change', value)
+    }
 
     setTimeout(api.updateStyle)
   }
@@ -293,7 +306,7 @@ export const handleInput =
     const reference = vm.$refs.reference
     const key = 'init-flag'
     const value = 'true'
-    const isIE = browser.name === 'ie'
+    const isIE = browserInfo.name === 'ie'
 
     if (isIE && reference.getAttribute(key) !== value && !event.target.value) {
       reference.setAttribute(key, value)
@@ -356,17 +369,18 @@ export const focusFirstNode =
 export const computePresentText =
   ({ props, state }: { props: ICascaderProps; state: ICascaderState }) =>
   () => {
-    if (!isEmpty(state.checkedValue)) {
-      const node = state.panel.getNodeByValue(state.checkedValue)
+    if (!isServer) {
+      if (!isEmpty(state.checkedValue)) {
+        const node = state.panel.getNodeByValue(state.checkedValue)
 
-      if (node && (state.config.checkStrictly || node.isLeaf)) {
-        state.presentText = node.getText(props.showAllLevels, props.separator)
-        return
+        if (node && (state.config.checkStrictly || node.isLeaf)) {
+          state.presentText = node.getText(props.showAllLevels, props.separator)
+          return
+        }
       }
+      state.inputValue = null
+      state.presentText = null
     }
-
-    state.inputValue = null
-    state.presentText = null
   }
 
 export const computePresentTags =

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <p>场景1：配置式设置提示信息</p>
+    <p>场景 1：配置式设置提示信息</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：使用 tip 和 tip-position 属性设置提示信息</p>
+    <p>场景 2：使用 tip 和 tip-position 属性设置提示信息</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu popper-class="my-class">
@@ -24,13 +24,13 @@
 
 <script>
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown, DropdownMenu, DropdownItem, Notify } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   data() {
     return {
@@ -58,10 +58,10 @@ export default {
   },
   methods: {
     itemClick(data) {
-      Notify({
+      TinyNotify({
         type: 'info',
         title: 'itemData',
-        message: `配置式可以通过data.itemData获取配置数据：${JSON.stringify(data.itemData)}`,
+        message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`,
         position: 'top-right',
         duration: 2000
       })

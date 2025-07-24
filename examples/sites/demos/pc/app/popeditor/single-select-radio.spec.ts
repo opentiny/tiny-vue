@@ -10,7 +10,7 @@ test('PopEditor 树模式单选', async ({ page }) => {
   const tree = dialogBox.locator('.tiny-tree')
   const treeNode = tree.locator('label')
 
-  // 单选tree模式
+  // 单选 tree 模式
   await textBox.click()
   await expect(dialogBox).toBeVisible()
   await expect(tree).toBeVisible()

@@ -1,7 +1,6 @@
 <template>
   <div class="demo-drawer">
     <tiny-button type="primary" @click="showDrawer"> 点击打开抽屉 </tiny-button>
-    <p>{{ visible }}</p>
     <tiny-drawer
       title="事件示例"
       :show-footer="true"
@@ -11,7 +10,7 @@
       @close="onClose"
       @confirm="onConfirm"
     >
-      <div class="content">
+      <div>
         <span>内容区域</span>
       </div>
     </tiny-drawer>
@@ -19,12 +18,12 @@
 </template>
 
 <script>
-import { Drawer, Button, Modal } from '@opentiny/vue'
+import { TinyDrawer, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDrawer: Drawer,
-    TinyButton: Button
+    TinyDrawer,
+    TinyButton
   },
   data() {
     return {
@@ -36,20 +35,14 @@ export default {
       this.visible = true
     },
     onOpen() {
-      Modal.message({ message: '打开事件', status: 'info' })
+      TinyModal.message({ message: '打开事件', status: 'info' })
     },
     onClose() {
-      Modal.message({ message: '关闭事件', status: 'info' })
+      TinyModal.message({ message: '关闭事件', status: 'info' })
     },
     onConfirm() {
-      Modal.message({ message: '确定事件', status: 'info' })
+      TinyModal.message({ message: '确定事件', status: 'info' })
     }
   }
 }
 </script>
-
-<style scoped>
-.content {
-  padding: 20px 0;
-}
-</style>

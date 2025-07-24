@@ -10,8 +10,8 @@
  *
  */
 
-import { xss } from '../common/xss.js'
-import { isObject } from '../common/type'
+import { xss } from '@opentiny/utils'
+import { isObject } from '@opentiny/utils'
 
 export const filterNode = (props) => (value, data) => {
   const node = data[props.props.label || 'label'] || ''

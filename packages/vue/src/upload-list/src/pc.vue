@@ -174,7 +174,7 @@
                 @click="handleClick($event, file)"
                 :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
               >
-                <icon-attachment
+                <tiny-icon-document
                   v-if="!isFolder"
                   :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
                   class="tiny-svg-size"
@@ -209,7 +209,7 @@
               :title="t('ui.fileUpload.reUploadFile')"
               @click="$emit('reUpload', file)"
             >
-              <icon-refres class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refres>
+              <icon-refresh class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refresh>
             </span>
             <span
               v-if="!disabled && listOption.showDel"
@@ -227,6 +227,7 @@
             >
             <tiny-progress
               v-if="file.status === 'uploading' || file.status === 'downloading'"
+              status="success"
               :type="listType === 'picture-card' ? state.progressType : 'line'"
               :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
               :width="state.progressWidth"
@@ -284,7 +285,7 @@
                   :title="t('ui.fileUpload.deleteFile')"
                   @click="$emit('remove', file)"
                 >
-                  <icon-del class="tiny-svg-size" />
+                  <icon-del class="tiny-svg-size icon-delete" />
                 </span>
               </span>
             </tiny-tooltip>
@@ -319,7 +320,7 @@ import Progress from '@opentiny/vue-progress'
 import Tooltip from '@opentiny/vue-tooltip'
 import Button from '@opentiny/vue-button'
 import {
-  iconAttachment,
+  iconDocument,
   iconSuccessful,
   iconClose,
   iconView,
@@ -330,7 +331,7 @@ import {
   iconFileCloudupload,
   iconDownload,
   iconCueL,
-  iconRefres,
+  iconRefresh,
   iconOperationfaild,
   iconFullscreenLeft,
   iconRight,
@@ -358,7 +359,7 @@ export default defineComponent({
     TinyProgress: Progress,
     TinyTooltip: Tooltip,
     TinyButton: Button,
-    IconAttachment: iconAttachment(),
+    TinyIconDocument: iconDocument(),
     IconSuccessful: iconSuccessful(),
     IconClose: iconClose(),
     IconView: iconView(),
@@ -369,7 +370,7 @@ export default defineComponent({
     IconFileCloudupload: iconFileCloudupload(),
     IconDownload: iconDownload(),
     IconCueL: iconCueL(),
-    IconRefres: iconRefres(),
+    IconRefresh: iconRefresh(),
     IconOperationfaild: iconOperationfaild(),
     IconFullscreenLeft: iconFullscreenLeft(),
     IconRight: iconRight(),

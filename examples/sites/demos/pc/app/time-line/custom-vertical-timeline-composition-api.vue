@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 
 const active = ref(1)
 const data = ref([
@@ -33,10 +33,12 @@ function click(index) {
 .custom-left {
   padding-right: 16px;
   text-align: right;
+  line-height: 28px;
 }
 
 .custom-right {
   margin-left: 15px;
   margin-bottom: 50px;
+  line-height: 28px;
 }
 </style>

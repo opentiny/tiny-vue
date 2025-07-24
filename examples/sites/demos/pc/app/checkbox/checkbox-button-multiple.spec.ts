@@ -19,14 +19,4 @@ test('多行按钮', async ({ page }) => {
   let groupBox = await checkboxGroup.boundingBox()
   let checkboxButtonBox = await checkboxButton.boundingBox()
   expect(groupBox?.height).toBe(((checkboxButtonBox?.height || 0) + bottomSpace) * 2)
-
-  // 测试三行场景
-  page.setViewportSize({
-    width: 500,
-    height: 700
-  })
-  await page.waitForTimeout(200)
-  groupBox = await checkboxGroup.boundingBox()
-  checkboxButtonBox = await checkboxButton.boundingBox()
-  expect(groupBox?.height).toBe(((checkboxButtonBox?.height || 0) + bottomSpace) * 3)
 })

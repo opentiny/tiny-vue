@@ -3,28 +3,28 @@
 </template>
 
 <script>
-import { Steps, Modal } from '@opentiny/vue'
+import { TinySteps, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySteps: Steps
+    TinySteps
   },
   data() {
     return {
       active: 1,
       data: [
         {
-          name: '默认 Basic Info',
-          status: '',
-          description: '默认无状态'
+          name: '已完成',
+          status: 'done',
+          description: '已完成的描述'
         },
-        { name: '已完成 BOQ Info', status: 'done', description: 'done 已完成' },
-        { name: '进行中 BOQ Info', status: 'doing', description: 'doing 进行中' },
-        { name: '错误 BBQ Info', status: 'error', description: 'error 错误' },
+        { name: '当前', status: 'doing', description: '当前步骤的描述' },
+        { name: '错误/失败', status: 'error', description: '错误或失败步骤的描述' },
+        { name: '未进行' },
         {
-          name: '已禁用 Involved Parties',
+          name: '禁用',
           status: 'disabled',
-          description: 'disabled 已禁用'
+          description: '禁用的描述'
         }
       ]
     }
@@ -33,7 +33,7 @@ export default {
     advancedClick(index, node) {
       this.active = index
 
-      Modal.message({ message: `节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`, status: 'info' })
+      TinyModal.message({ message: `节点 index: ${index}; 节点信息：${JSON.stringify(node)}.`, status: 'info' })
     }
   }
 }

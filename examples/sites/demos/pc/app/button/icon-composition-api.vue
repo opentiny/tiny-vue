@@ -2,16 +2,16 @@
   <div>
     <tiny-layout>
       <tiny-row>
-        <tiny-button :icon="TinyIconSearch"> 图标按钮 </tiny-button>
         <tiny-button type="primary" :icon="TinyIconEdit"> 图标按钮 </tiny-button>
+        <tiny-button :icon="TinyIconSearch"> 图标按钮 </tiny-button>
         <tiny-button type="success" :icon="TinyIconYes"> 图标按钮 </tiny-button>
         <tiny-button type="info" :icon="TinyIconMail"> 图标按钮 </tiny-button>
         <tiny-button type="warning" :icon="TinyIconStarO"> 图标按钮 </tiny-button>
         <tiny-button type="danger" :icon="TinyIconDel"> 图标按钮 </tiny-button>
       </tiny-row>
       <tiny-row>
-        <tiny-button :icon="TinyIconSearch"> </tiny-button>
         <tiny-button type="primary" :icon="TinyIconEdit"> </tiny-button>
+        <tiny-button :icon="TinyIconSearch"> </tiny-button>
         <tiny-button type="success" :icon="TinyIconYes"> </tiny-button>
         <tiny-button type="info" :icon="TinyIconMail"></tiny-button>
         <tiny-button type="warning" :icon="TinyIconStarO"></tiny-button>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
 const TinyIconDel = iconDel()
@@ -40,6 +40,6 @@ const TinyIconSearch = iconSearch()
 .tiny-button {
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 8px;
+  margin-right: 24px;
 }
 </style>

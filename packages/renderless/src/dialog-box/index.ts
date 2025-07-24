@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '../common/deps/dom'
-import { emitEvent } from '../common/event'
-import { getDomNode } from '../common/deps/dom'
+import { on, off, addClass, removeClass } from '@opentiny/utils'
+import { emitEvent } from '@opentiny/utils'
+import { getDomNode } from '@opentiny/utils'
 import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '@/types'
 
 export const computedAnimationName =
@@ -54,6 +54,10 @@ export const computedStyle =
       if (state.isFull) {
         style = { left: '0px', top: '0px' }
       }
+    }
+
+    if (props.customStyle) {
+      style = Object.assign(style, props.customStyle)
     }
 
     return style
@@ -111,9 +115,9 @@ export const watchVisible =
         nextTick(() => state.key++)
       }
 
-      if (props.rightSlide) {
-        const dialogBoxDom = el.querySelector(constants.DIALOG_BOX_CLASS) || el
-        dialogBoxDom.style.left = ''
+      if (props.rightSlide && state.current !== 'default') {
+        const selector = `[data-tag=${constants.DIALOG_BOX_DATA_TAG}]`
+        props.rightSlide && (el.querySelector(selector).style.left = '')
       }
     }
   }
@@ -290,7 +294,7 @@ export const handleDrag =
     vm
   }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit' | 'vm'>) =>
   (event: MouseEvent): void => {
-    if (!props.draggable) {
+    if (!props.draggable || state.isFull) {
       return
     }
 
@@ -348,8 +352,8 @@ export const handleDrag =
     document.onmouseup = () => {
       document.onmousemove = demMousemove
       document.onmouseup = demMouseup
+      props.draggable && state.move && emit('drag-end', event)
       state.move = false
-      props.draggable && emit('drag-end', event)
     }
   }
 

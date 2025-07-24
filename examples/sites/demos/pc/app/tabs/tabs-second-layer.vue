@@ -14,12 +14,12 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem
+    TinyTabs,
+    TinyTabItem
   },
   data() {
     return {
@@ -99,7 +99,6 @@ export default {
 
 <style scoped>
 .item {
-  width: 14px;
   padding: 0 8px;
   text-align: center;
   font-weight: normal;

@@ -1,38 +1,37 @@
 <template>
   <div>
-    <tiny-button text="启用裁剪框" @click="enable"></tiny-button>
+    <tiny-button :text="title" @click="toggleEnable"></tiny-button>
     <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
-    <tiny-crop
-      ref="crop"
-      :cropvisible="visible"
-      @update:cropvisible="visible = $event"
-      :src="imgUrl"
-      @ready="ready"
-    ></tiny-crop>
+    <tiny-crop ref="cropRef" :cropvisible="visible" @update:cropvisible="visible = $event" :src="imgUrl"></tiny-crop>
   </div>
 </template>
 
 <script lang="jsx">
-import { Button, Crop, Modal } from '@opentiny/vue'
+import { TinyButton, TinyCrop } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
       imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`,
-      visible: false
+      visible: false,
+      title: '禁用裁剪框',
+      enabled: true
     }
   },
   methods: {
-    enable() {
-      this.$refs.crop.enable() // 启用裁剪框
-    },
-    ready() {
-      this.$refs.crop.disable() // 禁用裁剪框
-      Modal.message('触发 ready 事件')
+    toggleEnable() {
+      this.enabled = !this.enabled
+      if (this.enabled) {
+        this.$refs.cropRef.enable() // 启用裁剪框
+        this.title = '禁用裁剪框'
+      } else {
+        this.$refs.cropRef.disable()
+        this.title = '启用裁剪框'
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-milestone">
     <tiny-button @click="handleClick(!isSolid)" style="max-width: cancel">设置 solid 值为 {{ !isSolid }}</tiny-button>
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :solid="isSolid"></tiny-milestone>
   </div>
@@ -7,11 +7,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone, Button as TinyButton } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 const isSolid = ref(false)
 const statusMap = ref({
-  completed: 'var(--ti-common-color-line-active)',
+  completed: 'var(--tv-color-bg-disabled-control-active)',
   doing: '#7ED321',
   back: '#f5222d',
   end: '#faad14',
@@ -54,3 +54,9 @@ function handleClick(value) {
   isSolid.value = value
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

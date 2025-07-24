@@ -23,9 +23,9 @@
  *
  */
 
-import { isBoolean } from '@opentiny/vue-renderless/grid/static/'
+import { isBoolean, toNumber } from '@opentiny/vue-renderless/grid/static/'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import {
   h,
   emitter,
@@ -40,11 +40,11 @@ import {
 } from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 
 const { themes, viewConfig } = GlobalConfig
 const { SAAS: T_SAAS } = themes
-const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD } = viewConfig
+const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD, DEFAULT: V_DEFAULT, CUSTOM: V_CUSTOM } = viewConfig
 
 const propKeys = Object.keys(TinyGridTable.props)
 
@@ -149,6 +149,12 @@ export default defineComponent({
         pageSize: 10,
         currentPage: 1
       },
+      tablePageLoading: false,
+      realTimeTablePage: {
+        total: 0,
+        pageSize: 10,
+        currentPage: 1
+      },
       columnAnchorParams: {},
       columnAnchorKey: '',
       tasks: {},
@@ -175,9 +181,9 @@ export default defineComponent({
       return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
     },
     seqIndex() {
-      let { seqSerial, scrollLoad, pagerConfig, startIndex } = this
+      let { seqSerial, scrollLoad, pagerConfig: oldPage, startIndex, tablePageLoading, realTimeTablePage } = this
       let seqIndexValue = startIndex
-
+      const pagerConfig = tablePageLoading ? realTimeTablePage : oldPage
       if ((seqSerial || scrollLoad) && pagerConfig) {
         seqIndexValue = (pagerConfig.currentPage - 1) * pagerConfig.pageSize + startIndex
       }
@@ -192,6 +198,9 @@ export default defineComponent({
     },
     isViewGantt() {
       return this.viewType === V_GANTT
+    },
+    isViewCustom() {
+      return this.viewType === V_CUSTOM
     }
   },
   watch: {
@@ -363,6 +372,14 @@ export default defineComponent({
     const optimizOpt = { ...GlobalConfig.optimization, ...optimization }
     const props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
 
+    // 初始化 tooltip 配置
+    props.tooltipConfig = Object.assign(
+      {},
+      GlobalConfig.tooltip || {},
+      designConfig?.tooltip || {},
+      props.tooltipConfig || {}
+    )
+
     // 在用户没有配置stripe时读取design配置
     if (designConfig?.stripe !== undefined && !props.stripe) {
       // aurora规范默认带斑马条纹
@@ -421,17 +438,24 @@ export default defineComponent({
     })
   },
   methods: {
+    // 配置高度减去（表格锚点+工具栏+分页）计算得出表格高度
     updateParentHeight() {
       if (!this.tasks.updateParentHeight) {
         this.tasks.updateParentHeight = debounce(10, () => {
           const { $el, $refs } = this
-          const { tinyTable } = $refs
+          const { tinyTable, tinyGridColumnAnchor } = $refs
           const toolbarVm = this.getVm('toolbar')
 
           if (tinyTable) {
+            let columnAnchorHeight = 0
+            if (tinyGridColumnAnchor) {
+              const { height, marginTop, marginBottom } = getComputedStyle(tinyGridColumnAnchor)
+              columnAnchorHeight = toNumber(height) + toNumber(marginTop) + toNumber(marginBottom)
+            }
             tinyTable.parentHeight =
               $el.parentNode.clientHeight -
               (toolbarVm ? toolbarVm.$el.clientHeight : 0) -
+              columnAnchorHeight -
               ($refs.pager ? $refs.pager.$el.clientHeight : 0)
           }
         })
@@ -505,7 +529,8 @@ export default defineComponent({
     },
     // 监听某个元素是否出现在视口中
     addIntersectionObserver() {
-      if (this.intersectionOption && this.intersectionOption.disabled) return
+      if ((this.intersectionOption && this.intersectionOption.disabled) || typeof IntersectionObserver === 'undefined')
+        return
 
       this.intersectionObserver = new IntersectionObserver((entries) => {
         let entry = entries[0]

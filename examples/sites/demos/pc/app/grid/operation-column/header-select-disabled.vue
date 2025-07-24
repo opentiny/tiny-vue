@@ -1,6 +1,5 @@
 <template>
   <tiny-grid ref="mytable" :select-config="selectConfig" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -10,17 +9,17 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid,
+    TinyGridColumn
   },
   data() {
     return {
       selectConfig: {
-        // 设置为true或undefined，在空数据时Selection列表头复选框会自动禁用；设置为false则不自动禁用保持和旧版本兼容
+        // 设置为 true 或 undefined，在空数据时 Selection 列表头复选框会自动禁用；设置为 false 则不自动禁用保持和旧版本兼容
         headerAutoDisabled: true
       },
       tableData: []

@@ -10,49 +10,37 @@
 *
 */
 
-.component-css-vars-popeditor() {
-  // 弹出框标题底部边框色和输入框边框色
-  --ti-popeditor-border-color: var(--ti-common-color-border, #adb0b8);
-  // 输入框左内边距
-  --ti-popeditor-input-padding-left: var(--ti-common-space-2x, 8px);
+.inject-Popeditor-vars() {
+  // 默认字号大小
+  --tv-Popeditor-font-size: var(--tv-font-size-default);
   // 输入框右侧默认图标色
-  --ti-popeditor-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
+  --tv-Popeditor-icon-color: var(--tv-color-icon);
   // 输入框右侧禁用图标色
-  --ti-popeditor-icon-color-disabled: var(--ti-common-color-placeholder, #adb0b8);
+  --tv-Popeditor-icon-color-disabled: var(--tv-color-icon-disabled);
   // 输入框右侧默认图标悬浮色
-  --ti-popeditor-icon-color-hover: var(--ti-common-color-primary-hover, #7693f5);
+  --tv-Popeditor-icon-color-hover: var(--tv-color-icon-hover);
   // 输入框右侧默认图标字号
-  --ti-popeditor-icon-font-size: var(--ti-common-font-size-1, 14px);
+  --tv-Popeditor-icon-font-size: var(--tv-icon-size);
   // 输入框右侧默认图标高度
-  --ti-popeditor-icon-height: var(--ti-common-size-height-normal, 28px);
+  --tv-Popeditor-icon-height: var(--tv-size-height-md);
   // 输入框右侧默认图标行高
-  --ti-popeditor-icon-line-height: var(--ti-popeditor-icon-height);
+  --tv-Popeditor-icon-line-height: var(--tv-Popeditor-icon-height);
   // 弹出框头部标题选中文本色和边框色
-  --ti-popeditor-tabs-selected-text-color: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Popeditor-tabs-selected-text-color: var(--tv-color-text);
   // 弹出框头部标题高度
-  --ti-popeditor-tabs-li-height: var(--ti-common-size-10x, 40px);
+  --tv-Popeditor-tabs-li-height: 34px;
+  // 弹出框头部标题行高
+  --tv-Popeditor-tabs-li-line-height: var(--tv-line-height-number);
+  // 出框头部标题字体大小
+  --tv-Popeditor-tabs-font-size: var(--tv-font-size-lg);
   // 弹出框头部标题选中文本字重
-  --ti-popeditor-tabs-selected-font-weight: var(--ti-common-font-weight-bold, 700);
-  // 弹出框查询条件item底部外边距
-  --ti-popeditor-search-item-margin-bottom: var(--ti-common-space-3x, 12px);
-  // 弹出框查询条件页脚垂直外边距
-  --ti-popeditor-search-footer-margin-vertical: var(--ti-common-space-3x, 12px);
-  // 弹出框查询条件页脚水平外边距
-  --ti-popeditor-search-footer-margin-horizontal: auto;
-  // 弹出编辑头部标签页文本色(hide)
-  --ti-popeditor-tabs-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 弹出表格头部标签页item垂直内边距
-  --ti-popeditor-tabs-li-padding-vertical: var(--ti-common-space-0, 0px);
-  // 弹出表格头部标签页item水平内边距
-  --ti-popeditor-tabs-li-padding-horizontal: var(--ti-common-space-5x, 20px);
-  // 弹出框表格垂直内边距
-  --ti-popeditor-tabs-body-padding-vertical: var(--ti-common-space-0, 0px);
-  // 弹出框表格水平内边距
-  --ti-popeditor-tabs-body-padding-horizontal: var(--ti-common-space-base, 4px);
-  // 弹出表格内容顶部内边距
-  --ti-popeditor-tabs-body-item-padding-top: var(--ti-common-space-3x, 12px);
-  // 弹出表格内容水平内边距
-  --ti-popeditor-tabs-body-item-padding-horizontal: var(--ti-common-space-3x, 12px);
-  // 弹出表格内容底部内边距
-  --ti-popeditor-tabs-body-item-padding-bottom: var(--ti-common-space-0, 0px);
+  --tv-Popeditor-tabs-selected-font-weight: var(--tv-font-weight-bold);
+  // 弹出编辑头部标签页文本色
+  --tv-Popeditor-tabs-text-color: var(--tv-color-text);
+  // 弹出表格搜索项左侧标签文本默认宽度
+  --tv-Popeditor-search-item-width: 80px;
+  // 弹出表格搜索项右侧内间距
+  --tv-Popeditor-search-item-padding-right: var(--tv-space-sm, 4px);
+  // 弹出表格搜索项左侧内间距
+  --tv-Popeditor-search-item-padding-left: var(--tv-space-sm, 4px);
 }

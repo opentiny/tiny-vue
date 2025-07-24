@@ -1,17 +1,18 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" />
+    <br />
     <tiny-button @click="changeColor"> 切换 </tiny-button>
   </div>
 </template>
 
 <script>
-import { ColorPicker, Button } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker,
-    TinyButton: Button
+    TinyColorPicker,
+    TinyButton
   },
   data() {
     return {

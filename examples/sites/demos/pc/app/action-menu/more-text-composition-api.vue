@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 
 const options = ref([
   {
@@ -21,7 +21,7 @@ const options = ref([
   },
   {
     label: '网络设置',
-    children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+    children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
   }
 ])
 </script>

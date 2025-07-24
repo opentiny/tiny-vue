@@ -4,7 +4,8 @@ test('横向单链型步骤条', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('steps#line-horizontal')
 
-  const steps = page.locator('.pc-demo .tiny-steps-line')
+  const container = page.locator('#line-horizontal')
+  const steps = container.locator('.pc-demo .tiny-steps-line').first()
   const nodes = steps.locator('.tiny-steps-block')
 
   await expect(nodes.first()).toHaveClass(/done/)

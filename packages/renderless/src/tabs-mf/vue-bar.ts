@@ -1,4 +1,4 @@
-import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 import { wheelListener, getBoundRect, handleClickDropdownItem, key, emitAdd } from './index'
 import { getAddWheelListener } from './wheel'
 
@@ -37,13 +37,6 @@ export const renderless = (props, { onMounted, onBeforeUnmount, reactive, watch,
     () => state.moreList,
     () => {
       state.moreOptions = state.moreList.map((name) => tabs.state.items.find((item) => item.name === name))
-    }
-  )
-
-  watch(
-    () => tabs.state.navs,
-    () => {
-      api.wheelListener()
     }
   )
 

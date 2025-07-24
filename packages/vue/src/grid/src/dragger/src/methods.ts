@@ -2,7 +2,7 @@ import { createHandlerOnEnd, getSortColumns } from './rowDrop'
 export default {
   // 处理列拖拽
   columnDrop(headerEl) {
-    const { plugin, onBeforeMove, filter } = this.dropConfig
+    const { plugin, onBeforeMove, filter } = this.dropConfig || {}
     const columnDropContainer = headerEl.querySelector('.tiny-grid__header .tiny-grid-header__row')
 
     const columnDropOptions = {
@@ -31,7 +31,7 @@ export default {
           }
 
           return Modal.message({
-            message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
+            message: GlobalConfig.i18n('ui.grid.error.notAllowDragFixed'),
             status: 'error'
           })
         }
@@ -65,11 +65,16 @@ export default {
   },
   // 处理行拖拽
   rowDrop(bodyEl) {
-    const { plugin, onBeforeMove, filter, refresh = true, rowHandle } = this.dropConfig
+    const { plugin, onBeforeMove, filter, refresh = true, rowHandle, trigger } = this.dropConfig
     const rowDropContainer = bodyEl.querySelector('.tiny-grid__body tbody')
-
+    // 拖拽触发源，默认是行
+    let handle = trigger || '.tiny-grid-body__row'
+    // 配置了 rowHandle === 'index'则忽略trigger
+    if (rowHandle === 'index') {
+      handle = '.tiny-grid-body__row>td.col__index>.row__drop-handle'
+    }
     const rowDropOptions = {
-      handle: rowHandle === 'index' ? '.tiny-grid-body__row>td.col__index>.row__drop-handle' : '.tiny-grid-body__row',
+      handle,
       filter,
       onEnd: createHandlerOnEnd({ _vm: this, refresh }),
       onStart: (event) => {

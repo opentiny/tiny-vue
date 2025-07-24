@@ -4,9 +4,10 @@ test('点击事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tabs-events-click')
 
-  const items = page.getByRole('tab')
+  const container = page.locator('#tabs-events-click')
+  const items = container.getByRole('tab')
   const modal = page.locator('.tiny-modal')
 
   await items.nth(1).click()
-  await modal.waitFor({ state: 'attached', timeout: 100 })
+  await expect(modal).toHaveCount(1)
 })

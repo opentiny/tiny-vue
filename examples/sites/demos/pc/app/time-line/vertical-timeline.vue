@@ -2,22 +2,24 @@
   <div class="demo-timeline-vertical">
     <div class="demo-content">
       <p>竖向时间线 正向</p>
+      <br />
       <tiny-time-line :data="data" :active="active" @click="click" vertical></tiny-time-line>
     </div>
 
     <div class="demo-content">
       <p>竖向时间线 反向</p>
+      <br />
       <tiny-time-line :data="data" :active="active" @click="click" vertical reverse></tiny-time-line>
     </div>
   </div>
 </template>
 
 <script>
-import { TimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -43,6 +45,12 @@ export default {
 }
 
 .demo-content {
-  margin-right: 20px;
+  margin-right: 40px;
+}
+</style>
+
+<style>
+.demo-timeline-vertical .tiny-timeline-item__content {
+  line-height: 28px;
 }
 </style>

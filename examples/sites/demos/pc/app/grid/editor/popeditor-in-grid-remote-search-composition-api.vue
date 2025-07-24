@@ -1,10 +1,14 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+  <tiny-grid
+    :data="tableData"
+    show-overflow="tooltip"
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column
       field="id"
       title="名称（Popeditor）"
-      :editor="{ component: Popeditor, attrs: getPopEditorOp }"
+      :editor="{ component: TinyPopeditor, attrs: getPopEditorOp }"
       :format-config="{
         type: 'enum',
         async: true,
@@ -25,42 +29,42 @@
 
 <script setup lang="jsx">
 import { ref, onMounted } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Popeditor } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPopeditor } from '@opentiny/vue'
 
 const popeditOptions = ref([])
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    name: 'GFD 科技 YX 公司',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 800,
     createdDate: '2014-04-30 00:56:00'
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    name: 'WWW 科技 YX 公司',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 300,
     createdDate: '2016-07-08 12:36:22'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    name: 'RFV 有限责任公司',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 1300,
     createdDate: '2014-02-14 14:14:14'
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    name: 'TGB 科技 YX 公司',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 360,
     createdDate: '2013-01-13 13:13:13'
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    name: 'YHN 科技 YX 公司',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 810,
     createdDate: '2012-12-12 12:12:12'
   }
@@ -76,13 +80,13 @@ function getPopEditorOp() {
   return {
     valueField: 'id',
     textField: 'name',
-    remoteSearch: remoteSearch,
+    remoteSearch,
     gridOp: {
       columns: [
         {
           field: 'id',
           title: 'ID',
-          width: 40
+          width: 60
         },
         {
           field: 'name',
@@ -99,7 +103,7 @@ function getPopEditorOp() {
           width: 80
         }
       ],
-      data: popeditOptions.value
+      data: []
     }
   }
 }
@@ -110,31 +114,31 @@ function getOptions() {
       resolve([
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           city: '福州',
           province: '福建省'
         },
         {
           id: '2',
-          name: 'WWW科技YX公司',
+          name: 'WWW 科技 YX 公司',
           city: '深圳',
           province: '广东省'
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           city: '中山',
           province: '广东省'
         },
         {
           id: '4',
-          name: 'TGB科技YX公司',
+          name: 'TGB 科技 YX 公司',
           city: '龙岩',
           province: '福建省'
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           city: '韶关',
           province: '广东省'
         }
@@ -143,27 +147,10 @@ function getOptions() {
   })
 }
 
-function remoteSearch({ page }) {
-  const randomAlphabets = () => {
-    return Array.from({ length: 5 })
-      .map(() => String.fromCharCode(65 + Math.floor(26 * Math.random())))
-      .join('')
-  }
-
-  const { currentPage, pageSize } = page
-
-  const data = Array.from({ length: page.pageSize }).map((item, i) => {
-    return {
-      id: pageSize * (currentPage - 1) + i + 1,
-      name: randomAlphabets() + 'YX公司',
-      city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
-      employees: Math.ceil(Math.random() * 10000)
-    }
-  })
-
+function remoteSearch() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve({ data, total: 200 })
+      resolve({ data: popeditOptions.value, total: 200 })
     }, 500)
   })
 }

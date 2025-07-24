@@ -1,29 +1,29 @@
 <template>
-  <div>
+  <div class="demo-milestone">
     <tiny-button @click="handleClick(!isBefore)" style="max-width: unset"
-      >设置flag-before值为{{ !isBefore }}</tiny-button
+      >设置 flag-before 值为 {{ !isBefore }}</tiny-button
     >
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :flag-before="isBefore"></tiny-milestone>
   </div>
 </template>
 
 <script lang="jsx">
-import { Milestone, Button } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
-    TinyButton: Button
+    TinyMilestone,
+    TinyButton
   },
   data() {
     return {
       isBefore: false,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
-        doing: '#7ED321',
-        back: '#f5222d',
-        end: '#faad14',
-        cancel: '#d9d9d9'
+        completed: 'var(--tv-color-bg-disabled-control-active)', // 组件库基础变量
+        doing: '#9edb58',
+        back: '#c2c2c2',
+        end: '#edf7df',
+        cancel: '#f23030'
       },
       milestoneData: [
         {
@@ -57,7 +57,7 @@ export default {
           flags: [
             {
               status: 'back',
-              content: '欢迎使用vui',
+              content: '欢迎使用 vui',
               name: 'test7'
             },
             {
@@ -88,3 +88,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

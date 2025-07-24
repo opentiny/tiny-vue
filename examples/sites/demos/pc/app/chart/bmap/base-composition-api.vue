@@ -6,11 +6,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { BaiduMap as TinyBaiduMap } from '@opentiny/vue'
+import { TinyHuichartsBmap as TinyBaiduMap } from '@opentiny/vue-huicharts'
 
 const options = ref({
   key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
-  url: 'https://api.map.baidu.com/api', // 百度地图接口的url地址
+  url: 'https://api.map.baidu.com/api', // 百度地图接口的 url 地址
   bmap: {
     resizeEnable: true,
     center: [120.14322240845, 30.236064370321],

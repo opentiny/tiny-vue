@@ -10,7 +10,7 @@
  *
  */
 
-import { guid } from '../common/string'
+import { guid } from '@opentiny/utils'
 import type {
   IDropdownState,
   IDropdownApi,
@@ -36,14 +36,15 @@ import {
   initDomOperation,
   mounted,
   beforeDistory,
-  clickOutside
+  clickOutside,
+  toggleFocus
 } from './index'
 
 export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick', 'clickOutside']
 
 export const renderless = (
   props: IDropdownProps,
-  { reactive, watch, provide, onMounted, computed }: ISharedRenderlessParamHooks,
+  { reactive, watch, provide, onMounted, computed, onBeforeUnmount }: ISharedRenderlessParamHooks,
   { emit, parent, broadcast, vm, nextTick, mode, designConfig }: IDropdownRenderlessParamUtils
 ): IDropdownApi => {
   const api = {} as IDropdownApi
@@ -61,7 +62,8 @@ export const renderless = (
     designConfig,
     trigger: computed(() => {
       return props.trigger || designConfig?.props?.trigger || 'hover'
-    })
+    }),
+    visibleIsBoolean: computed(() => typeof props.visible === 'boolean')
   })
 
   provide('dropdownVm', vm)
@@ -70,12 +72,12 @@ export const renderless = (
     state,
     watchVisible: watchVisible({ broadcast, emit, nextTick }),
     watchFocusing: watchFocusing(parent),
-    show: show({ props, state }),
-    hide: hide({ api, props, state }),
-    mounted: mounted({ api, vm, state, broadcast }),
+    show: show({ props, state, emit }),
+    hide: hide({ api, props, state, emit }),
+    mounted: mounted({ api, vm, state, broadcast, props }),
     handleClick: handleClick({ api, props, state, emit }),
     handleTriggerKeyDown: handleTriggerKeyDown({ api, state }),
-    handleItemKeyDown: handleItemKeyDown({ api, props, state }),
+    handleItemKeyDown: handleItemKeyDown({ api, props, state, emit }),
     resetTabindex: resetTabindex(api),
     removeTabindex: removeTabindex(state),
     initAria: initAria({ state, props }),
@@ -84,14 +86,21 @@ export const renderless = (
     handleMainButtonClick: handleMainButtonClick({ api, emit }),
     triggerElmFocus: triggerElmFocus(state),
     initDomOperation: initDomOperation({ api, state, vm }),
-    beforeDistory: beforeDistory({ api, state }),
-    clickOutside: clickOutside({ state, props, api })
+    beforeDistory: beforeDistory({ vm, api, state }),
+    clickOutside: clickOutside({ props, api }),
+    toggleFocusOnTrue: toggleFocus({ state, value: true }),
+    toggleFocusOnFalse: toggleFocus({ state, value: false })
   })
 
-  watch(() => state.visible, api.watchVisible)
+  if (typeof props.visible === 'boolean') {
+    watch(() => props.visible, api.watchVisible)
+  } else {
+    watch(() => state.visible, api.watchVisible)
+  }
   watch(() => state.focusing, api.watchFocusing)
 
   onMounted(api.mounted)
+  onBeforeUnmount(api.beforeDistory)
 
   return api
 }

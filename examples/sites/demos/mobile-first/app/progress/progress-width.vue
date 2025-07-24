@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Progress } from '@opentiny/vue'
+import { TinyProgress } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProgress: Progress
+    TinyProgress
   },
   data() {
     return {

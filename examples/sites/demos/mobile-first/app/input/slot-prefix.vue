@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
     IconSearch: IconSearch(),
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {

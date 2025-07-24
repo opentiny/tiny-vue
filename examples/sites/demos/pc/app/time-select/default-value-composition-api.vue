@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TimeSelect as TinyTimeSelect } from '@opentiny/vue'
+import { TinyTimeSelect } from '@opentiny/vue'
 
 const value = ref('')
 const defaultValue = ref('10:00')

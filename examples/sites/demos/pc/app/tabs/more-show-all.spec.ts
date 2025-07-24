@@ -4,9 +4,9 @@ test('超长数据下拉展示全部，面板长宽可控', async ({ page }) => 
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#more-show-all')
 
-  const tabNav = page.locator('.tiny-tabs__nav.is-top.is-show-active-bar')
-  const showMoreBtn = page.locator('#more-show-all').getByRole('button')
-  const triggerBtn = page.locator('.tiny-tabs__more-container .tiny-dropdown__trigger.tiny-dropdown-trigger')
+  const container = page.locator('#more-show-all')
+  const showMoreBtn = container.getByRole('button')
+  const triggerBtn = container.locator('.tiny-tabs__more-container .tiny-dropdown__trigger.tiny-dropdown-trigger')
   const panel = page.locator('.tiny-tabs__more-dropdown')
 
   await showMoreBtn.hover()
@@ -47,7 +47,7 @@ test('超长数据下拉展示全部，面板长宽可控', async ({ page }) => 
     .filter({ hasText: /^Tab 1$/ })
     .nth(1)
     .click()
-  const tab1 = page.getByRole('tab', { name: 'Tab 1', exact: true })
+  const tab1 = container.getByRole('tab', { name: 'Tab 1', exact: true })
   await tab1.isVisible()
   await expect(tab1).toHaveClass(/is-active/)
 })

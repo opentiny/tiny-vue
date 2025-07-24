@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export type IconPosition = 'center' | 'top'
 
@@ -29,7 +29,9 @@ export const checkboxProps = {
     default: () => $constants
   },
   modelValue: {
-    type: [String, Number, Boolean]
+    type: [String, Number, Boolean],
+    // Tiny新增，因为类型有Boolean类型，所以默认值需要显示设置成 undefined 才可以保持逻辑正确
+    default: undefined
   },
   label: {
     type: [String, Number, Boolean],

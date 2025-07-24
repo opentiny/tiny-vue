@@ -1,6 +1,6 @@
-import debounce from '../common/deps/debounce'
-import { omitText as omit } from '../common/string'
-import { fastdom } from '../common/deps/fastdom'
+import { debounce } from '@opentiny/utils'
+import { omitText as omit } from '@opentiny/utils'
+import { fastdom } from '@opentiny/utils'
 
 export const compute =
   ({ api, markRaw, props, state }) =>
@@ -290,8 +290,11 @@ export const refresh =
   ({ graphWidth = 0, adjustX = 0 } = {}) => {
     api.removeListeners()
 
-    if (graphWidth && graphWidth !== state.temporary.graphWidth) {
-      state.temporary.graphWidth = graphWidth
+    // 修复浏览器缩放时出现抖动问题， 缩放模式下offsetWidth与真实宽度可能有差异(差异不超过1px)
+    const graphWidthAdapt = graphWidth - 1 >= 0 ? graphWidth - 1 : 0
+
+    if (graphWidth && graphWidthAdapt !== state.temporary.graphWidth) {
+      state.temporary.graphWidth = graphWidthAdapt
       state.temporary.adjustX = adjustX
     }
 

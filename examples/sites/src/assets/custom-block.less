@@ -1,8 +1,15 @@
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body li {
-  list-style: circle;
+.markdown-body.markdown-body ul,
+.markdown-body.markdown-body ol,
+.markdown-body.markdown-body li {
+  list-style: disc;
 }
+.markdown-body.markdown-body ul,
+.markdown-body.markdown-body ol {
+  margin-left: 18px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
 // 切换md中,这2个类的显示隐藏. used-config  used-tiny 类
 .md-config .markdown-body {
   .used-tiny {
@@ -31,6 +38,8 @@
   }
   p {
     font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 11px;
   }
   code {
     margin: 0 4px;
@@ -52,7 +61,7 @@
 }
 
 // 以下是提示块的样式
-.theme-light {
+body {
   .markdown-body {
     --color-tip-bg: #f3f5f7;
     --color-tip-fg: #24292f;
@@ -75,7 +84,7 @@
     --color-danger-title: #900;
   }
 }
-.theme-dark {
+.dark {
   .markdown-body {
     --color-tip-fg: #d3d5d6;
     --color-tip-bg: #24292f;
@@ -104,8 +113,9 @@
 .custom-block.danger {
   margin: 1rem 0;
   border-left: 0.5rem solid;
-  padding: 0.1rem 1.5rem;
+  padding: 1rem 1.5rem;
   overflow-x: auto;
+  border-radius: 8px;
 }
 .markdown-body {
   .custom-block.tip {

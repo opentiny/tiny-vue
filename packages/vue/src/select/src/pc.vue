@@ -25,8 +25,7 @@
       hoverExpand ? 'is-hover-expand' : '',
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
-      state.selectDisabled ? 'is-disabled' : '',
-      inputBoxType === 'underline' ? 'tiny-select__underline' : ''
+      state.isDisabled ? 'is-disabled' : ''
     ]"
     @mouseleave.self="
       () => {
@@ -34,19 +33,16 @@
         state.inputHovering = false
       }
     "
-    @mouseenter.self="
-      () => {
-        state.selectHover = true
-        state.inputHovering = true
-      }
-    "
+    @mouseenter.self="onMouseenterSelf"
     @click="toggleMenu"
     v-clickoutside="handleClose"
   >
+    <!-- tiny新增：title 简化处理 -->
     <div
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
+      :title="state.displayOnlyContent"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -69,18 +65,24 @@
         </tiny-filter-box>
         <div
           ref="tags"
-          :class="['tiny-select__tags', { 'is-showicon': slots.prefix, 'not-selected': !state.selected.length }]"
+          :class="[
+            'tiny-select__tags',
+            { 'is-showicon': slots.prefix, 'not-selected': !state.selected.length },
+            { 'is-show-tag': !state.isShowTagText }
+          ]"
           v-if="multiple && !state.isDisplayOnly && !shape"
           :style="state.tagsStyle"
         >
-          <span v-if="!state.selectDisabled">
+          <span v-if="!state.isShowTagText">
             <span v-if="collapseTags && state.selected.length">
               <!-- 显示第1个标签 + 数字 -->
               <tiny-tag
-                :closable="!state.selectDisabled"
+                :class="{ 'is-required': state.selected[0].required }"
+                :closable="isTagClosable(state.selected[0])"
                 :size="state.collapseTagSize"
                 :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
                 :key="state.key"
+                :disabled="state.selected[0].disabled || state.isDisabled"
                 :type="state.getTagType"
                 @close="deleteTag($event, state.selected[0])"
                 disable-transitions
@@ -114,6 +116,7 @@
                 :closable="false"
                 :size="state.collapseTagSize"
                 :type="state.getTagType"
+                :disabled="state.isDisabled"
                 disable-transitions
                 class="tiny-select__tags-number"
               >
@@ -128,6 +131,7 @@
                 :type="state.getTagType"
                 key="tags-all-text-tag"
                 data-tag="tags-all-text-tag"
+                :disabled="state.isDisabled"
                 :closable="true"
                 :size="state.collapseTagSize"
                 @close="toggleCheckAll(false)"
@@ -138,10 +142,11 @@
               <template v-else>
                 <tiny-tag
                   v-if="hoverExpand || clickExpand"
-                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden || state.isDisabled }]"
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
+                  :only-icon="!hoverExpand"
                   :closable="false"
                   :size="state.collapseTagSize"
                   @click="onClickCollapseTag($event)"
@@ -152,8 +157,12 @@
                 <tiny-tag
                   v-for="(item, index) in state.selected"
                   :key="getValueKey(item)"
-                  :class="{ 'not-visible': state.toHideIndex <= index && !state.isExpand }"
-                  :closable="!item.disabled && !item.required"
+                  :class="{
+                    'not-visible': state.toHideIndex <= index && !state.isExpand,
+                    'is-required': item.required
+                  }"
+                  :closable="isTagClosable(item)"
+                  :disabled="state.isDisabled || item.disabled"
                   :size="state.collapseTagSize"
                   :hit="item.state ? item.state.hitState : item.hitState"
                   :type="state.getTagType"
@@ -200,31 +209,13 @@
             </span>
           </span>
 
-          <span v-else class="tiny-select__tags-text is-disabled">
-            <tiny-tooltip
-              :effect="tooltipConfig.effect || 'light'"
-              :placement="tooltipConfig.placement || 'top'"
-              :popper-class="tooltipConfig.popperClass || ''"
-              :disabled="!showTips"
-            >
-              <span>
-                <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
-                  >;
-                </span>
+          <span v-else :class="['tiny-select__tags-text', 'is-display-only', { 'is-disabled': state.isDisabled }]">
+            <span>
+              <span v-for="item in state.selected" :key="item.value">
+                <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
+                >;
               </span>
-
-              <template #content>
-                <div :class="[state.showTips && 'tiny-select__show-tips', 'tiny-select__show-common']">
-                  <span v-if="slots.label">
-                    <span v-for="item in state.selected" :key="getValueKey(item)">
-                      <slot name="label" :item="item"></slot>
-                    </span>
-                  </span>
-                  <span v-else>{{ disabledTooltipContent || state.disabledTooltipContent }}</span>
-                </div>
-              </template>
-            </tiny-tooltip>
+            </span>
           </span>
           <!-- tiny 新增：searchable时, 这里不显示 state.query -->
           <input
@@ -269,16 +260,21 @@
           :id="id"
           :autocomplete="autocomplete"
           :size="state.selectSize"
+          :showTooltip="false"
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
           :display-only="state.isDisplayOnly"
           :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
+          :show-empty-value="showEmptyValue"
+          :inputBoxType="inputBoxType"
           :class="{
             'is-focus': state.visible,
             overflow: state.overflow,
-            'is-show-close': state.showClose
+            'is-show-close': state.showClose,
+            'show-copy': copyable,
+            'show-clear': clearable
           }"
           :tabindex="multiple && filterable ? '-1' : tabindex"
           @focus="handleFocus"
@@ -300,7 +296,7 @@
           <template #suffix>
             <slot name="suffix"></slot>
             <!-- tiny 新增：xdesign 规范 ：多选限制数量时，在后缀显示 "选中/最大限制项" 计数的提示文字  -->
-            <span v-if="showLimitText && multiple && multipleLimit" class="tiny-select__limit-txt">
+            <span v-if="showLimitText && multiple && multipleLimit && !state.showCopy" class="tiny-select__limit-txt">
               {{ state.selected.length }}/{{ multipleLimit }}
             </span>
             <!-- tiny 新增：xdesign 规范 ： 显示比例时，在后缀显示 "选中/全部项" 计数的提示文字  -->
@@ -316,7 +312,7 @@
 
             <icon-close
               v-if="state.showClose"
-              class="tiny-svg-size tiny-select__caret icon-close"
+              class="tiny-svg-size tiny-select__caret tiny-select__close"
               @click="handleClearClick"
               @mouseenter="state.inputHovering = true"
             ></icon-close>
@@ -338,10 +334,12 @@
                 { 'not-reverse': !state.getIcon.isDefault }
               ]"
               @click="handleDropdownClick"
-            ></component>
+            >
+            </component>
           </template>
         </tiny-input>
       </slot>
+
       <transition name="tiny-zoom-in-top" @before-enter="handleMenuEnter" @after-leave="doDestroy">
         <tiny-select-dropdown
           ref="popper"
@@ -359,7 +357,6 @@
           >
             <tiny-input
               ref="input"
-              type="text"
               v-model="state.query"
               :placeholder="placeholder"
               @input="debouncedQueryChange"
@@ -369,7 +366,7 @@
           </div>
           <div v-if="topCreate" class="tiny-select__top-create">
             <div @click="$emit('top-create-click', $event)">
-              <icon-plus></icon-plus>
+              <component :is="state.designConfig?.icons?.addIcon || 'icon-add-circle'"></component>
               <span>{{ topCreateText }}</span>
             </div>
           </div>
@@ -410,9 +407,10 @@
             @node-click="treeNodeClick"
             v-bind="treeOp"
           ></tiny-tree>
-          <!-- tiny 新增 可搜索的输入框 -->
+          <!-- tiny 新增 面板搜索 -->
           <tiny-input
             v-if="searchable"
+            input-box-type="underline"
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
@@ -435,7 +433,6 @@
               <tiny-recycle-scroller
                 ref="scrollbar"
                 style="height: 100%"
-                :key="state.magicKey"
                 :key-field="valueField"
                 :list-class="['tiny-select-dropdown__wrap']"
                 :item-class="['tiny-select-dropdown__item-view']"
@@ -465,8 +462,9 @@
               </tiny-recycle-scroller>
             </div>
           </template>
+
           <tiny-scrollbar
-            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType)"
+            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType) && !(state.isDisplayOnly && options)"
             ref="scrollbar"
             show
             tag="ul"
@@ -481,8 +479,8 @@
             <slot name="dropdown"></slot>
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
-              class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              class="tiny-option tiny-option_all tiny-select-dropdown__item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -507,7 +505,7 @@
                 !remote
               "
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'
@@ -547,21 +545,26 @@
             "
           >
             <!-- tiny 新增 showEmptyImage功能 -->
-            <div v-if="loadingText || slots.empty">
+            <div v-if="loadingText || slots.empty" class="tiny-select-dropdown__empty-wrap">
               <slot name="empty" v-if="slots.empty"></slot>
               <span v-else-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
               <p class="tiny-select-dropdown__empty" v-else>
                 {{ state.emptyText }}
               </p>
             </div>
-            <div v-else class="tiny-select-dropdown__loading">
-              <template v-if="!loading">
+            <div v-else class="tiny-select-dropdown__loading" :class="{ 'show-loading-icon': loading }">
+              <component
+                v-if="loading"
+                class="circular"
+                :is="
+                  (state.designConfig && state.designConfig.icons && state.designConfig.icons.loadingIcon) ||
+                  'icon-loading-shadow'
+                "
+              ></component>
+              <template v-else>
                 <span v-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
                 <span v-else class="tiny-select-dropdown__empty"> {{ state.emptyText }}</span>
               </template>
-              <svg v-else class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="24" fill="none" />
-              </svg>
             </div>
           </template>
           <!-- tiny 新增 footer插槽 -->
@@ -584,18 +587,19 @@ import TinyOption from '@opentiny/vue-option'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinySelectDropdown from '@opentiny/vue-select-dropdown'
 import TinyButton from '@opentiny/vue-button'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import {
-  IconClose,
-  IconHalfselect,
-  IconCheck,
-  IconCheckedSur,
-  IconCopy,
-  IconPlus,
-  IconDeltaDown,
-  IconSearch,
-  IconEllipsis,
-  IconChevronUp
+  iconClose,
+  iconHalfselect,
+  iconCheck,
+  iconCheckedSur,
+  iconCopy,
+  iconDownWard,
+  iconSearch,
+  iconEllipsis,
+  iconChevronUp,
+  iconAddCircle,
+  iconLoadingShadow
 } from '@opentiny/vue-icon'
 import Grid from '@opentiny/vue-grid'
 import Tree from '@opentiny/vue-tree'
@@ -648,22 +652,23 @@ export default defineComponent({
     TinyGrid: Grid,
     TinyTree: Tree,
     TinyButton,
-    IconClose: IconClose(),
+    IconClose: iconClose(),
     TinyScrollbar,
-    IconCopy: IconCopy(),
-    IconPlus: IconPlus(),
+    IconCopy: iconCopy(),
+    IconAddCircle: iconAddCircle(),
+    IconLoadingShadow: iconLoadingShadow(),
     TinySelectDropdown,
-    IconHalfselect: IconHalfselect(),
-    IconCheck: IconCheck(),
-    IconCheckedSur: IconCheckedSur(),
+    IconHalfselect: iconHalfselect(),
+    IconCheck: iconCheck(),
+    IconCheckedSur: iconCheckedSur(),
     TinyFilterBox: FilterBox,
     TinyTooltip,
     TinyRecycleScroller: RecycleScroller,
     // tiny 新增，
-    IconSearch: IconSearch(),
-    IconDeltaDown: IconDeltaDown(), // 默认下拉图标
-    IconEllipsis: IconEllipsis(),
-    IconChevronUp: IconChevronUp()
+    IconSearch: iconSearch(),
+    IconDownWard: iconDownWard(), // 默认下拉图标
+    IconEllipsis: iconEllipsis(),
+    IconChevronUp: iconChevronUp()
   },
   props: [
     ...props,
@@ -743,6 +748,8 @@ export default defineComponent({
     'initLabel',
     'blank',
     'tooltipConfig',
+    'showEmptyValue',
+    'stopPropagation',
     // 以下为 tiny 新增
     'searchable',
     'showEmptyImage',

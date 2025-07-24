@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-// 以下2个测试将覆盖2个demo：基本用法、数据源
+// 以下 2 个测试将覆盖 2 个 demo：基本用法、数据源
 test('基础用法、数据源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('fall-menu#data-resource')

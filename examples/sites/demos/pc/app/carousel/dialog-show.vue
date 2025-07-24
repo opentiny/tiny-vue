@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import { Carousel, CarouselItem, Button, DialogBox } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem, TinyButton, TinyDialogBox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCarousel: Carousel,
-    TinyCarouselItem: CarouselItem,
-    TinyDialogBox: DialogBox,
-    TinyButton: Button
+    TinyCarousel,
+    TinyCarouselItem,
+    TinyDialogBox,
+    TinyButton
   },
   data() {
     return {

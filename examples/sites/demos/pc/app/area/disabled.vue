@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { Area, Button } from '@opentiny/vue'
+import { TinyArea, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyArea: Area,
-    TinyButton: Button
+    TinyArea,
+    TinyButton
   },
   data() {
     return {

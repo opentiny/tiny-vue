@@ -18,12 +18,12 @@
 </template>
 
 <script lang="jsx">
-import { Tree, Button } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyButton: Button
+    TinyTree,
+    TinyButton
   },
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
       this.$refs.treeRef.setCurrentRadio()
     },
     checkChange(data, checked, indeterminate) {
-      console.log('checkChange事件：', { data, checked, indeterminate })
+      console.log('checkChange 事件：', { data, checked, indeterminate })
     }
   }
 }

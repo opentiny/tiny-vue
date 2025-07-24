@@ -56,7 +56,7 @@ export default {
     {
       demoId: 'url',
       name: {
-        'zh-CN': '基于Url的跳转',
+        'zh-CN': '基于 Url 的跳转',
         'en-US': 'URL-based redirection'
       },
       desc: {
@@ -70,7 +70,7 @@ export default {
     {
       demoId: 'route',
       name: {
-        'zh-CN': '基于Route的跳转',
+        'zh-CN': '基于 Route 的跳转',
         'en-US': 'Route-based redirection'
       },
       desc: {
@@ -82,7 +82,7 @@ export default {
     {
       demoId: 'more-link',
       name: {
-        'zh-CN': '显示 “更多” 链接',
+        'zh-CN': '显示“更多”链接',
         'en-US': 'Show More links'
       },
       desc: {
@@ -104,6 +104,18 @@ export default {
         'en-US': '<p>You can use <code>icon</code> to customize the new bulletin prefix icon. </p>\n'
       },
       codeFiles: ['icon.vue']
+    },
+    {
+      demoId: 'events',
+      name: {
+        'zh-CN': '事件',
+        'en-US': 'Fold panel click event'
+      },
+      desc: {
+        'zh-CN': '<p>当点击内容后会触发 <code>contentClick</code> 事件。</p>',
+        'en-US': '<p>When clicked, it will trigger <code>contentClick</code> . </p>'
+      },
+      codeFiles: ['events.vue']
     }
   ]
 }

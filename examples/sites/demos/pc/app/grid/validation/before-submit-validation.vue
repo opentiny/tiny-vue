@@ -5,6 +5,7 @@
       ref="basicGrid"
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
       :edit-rules="validRules"
+      show-overflow="tooltip"
     >
       <template #toolbar>
         <tiny-grid-toolbar :buttons="toolbarButtons" @button-click="toolbarButtonClickEvent"></tiny-grid-toolbar>
@@ -19,13 +20,13 @@
 </template>
 
 <script>
-import { Grid, GridColumn, GridToolbar, Modal as TinyModal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     const validRules = {
@@ -73,7 +74,7 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           userId: 421000103624183,
           area: '华东区',
           province: '福建省',
@@ -82,7 +83,7 @@ export default {
           telephone: '1234567890',
           address: '福州',
           ipaddress: '192.168.111.111',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 800,
           createdDate: '2014-04-30 00:56:00',
           boole: false,
@@ -91,7 +92,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWW科技YX公司',
+          name: 'WWW 科技 YX 公司',
           userId: 421000103624183,
           area: '华南区',
           province: '广东省',
@@ -100,7 +101,7 @@ export default {
           telephone: '1234567890',
           address: '深圳福田区',
           ipaddress: '192.168.111.1',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 300,
           createdDate: '2016-07-08 12:36:22',
           boole: true,
@@ -109,7 +110,7 @@ export default {
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           userId: 441047913162396,
           area: '华南区',
           province: '广东省',
@@ -118,7 +119,7 @@ export default {
           telephone: '1234567890',
           address: '中山市',
           ipaddress: '192.168.111.120',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 1300,
           createdDate: '2014-02-14 14:14:14',
           boole: false,
@@ -127,7 +128,7 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技YX公司',
+          name: 'TGB 科技 YX 公司',
           userId: 702973890055088,
           area: '华东区',
           province: '福建省',
@@ -136,7 +137,7 @@ export default {
           telephone: '1234567890',
           address: '龙岩',
           ipaddress: '192.168.11.111',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 360,
           createdDate: '2013-01-13 13:13:13',
           boole: true,
@@ -145,7 +146,7 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           userId: 702973890055088,
           area: '华南区',
           province: '广东省',
@@ -154,7 +155,7 @@ export default {
           telephone: '1234567890',
           address: '韶关',
           ipaddress: '192.168.101.111',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 810,
           createdDate: '2012-12-12 12:12:12',
           boole: true,

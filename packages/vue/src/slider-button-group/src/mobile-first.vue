@@ -1,7 +1,7 @@
 <template>
-  <div data-tag="tiny-slider-button-group">
+  <div data-tag="tiny-slider-button-group" ref="sliderButtonGroup">
     <component v-if="!pageTurn" :is="state.tag" class="inline-flex" role="sliderButtonGroup">
-      <div class="bg-color-bg-3 inline-flex h-auto rounded-md relative box-border">
+      <div class="bg-color-bg-3 inline-flex h-auto rounded-md relative box-border" ref="sliderButtonBox">
         <div
           :class="['absolute bg-color-bg-1 shadow-sm h-6 rounded', size === 'large' ? 'top-1' : 'top-0.5']"
           :style="{
@@ -40,7 +40,9 @@
             <slider-button :label="node[nameField]" v-bind="node"></slider-button>
           </slot>
           <slot v-else :index="index">
-            <slider-button v-bind="node"><component :is="node[iconField]"></component></slider-button>
+            <slider-button v-bind="node">
+              <component :is="node[iconField]"></component>
+            </slider-button>
           </slot>
         </template>
       </SlideBar>

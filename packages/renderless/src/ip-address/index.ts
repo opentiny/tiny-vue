@@ -10,7 +10,7 @@
  *
  */
 
-import { KEY_CODE, IPTHRESHOLD } from '../common'
+import { KEY_CODE, IPTHRESHOLD } from '@opentiny/utils'
 import type { IIpAddressProps, IIpAddressApi, IIpAddressRenderlessParamUtils, IIpAddressState } from '@/types'
 
 export const isIP6 = (str: string) => /^IPv6$/i.test(str)
@@ -403,15 +403,3 @@ export const keydown =
       return false
     }
   }
-
-export const getHeightOfSize = (size, isLineHeight = 'height') => {
-  const sizeMap = {
-    medium: '42px',
-    small: '36px',
-    mini: '24px'
-  }
-
-  const sizePX = sizeMap[size]
-
-  return sizePX ? isLineHeight + ':' + sizePX + ';' : ''
-}

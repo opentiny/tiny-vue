@@ -7,7 +7,7 @@ test('测试懒加载', async ({ page }) => {
   const preview = page.locator('.pc-demo-container')
   await expect(preview.locator('.demo-image__lazy div').locator('img')).toHaveCount(1)
 
-  // 滚动2次，触发下面2张加载
+  // 滚动 2 次，触发下面 2 张加载
   const imageBox = preview.locator('.demo-image__lazy')
   await imageBox.hover()
   await page.mouse.wheel(0, 300)

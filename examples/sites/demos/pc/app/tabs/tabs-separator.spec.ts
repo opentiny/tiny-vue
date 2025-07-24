@@ -4,7 +4,8 @@ test('分隔符', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tabs-separator')
 
-  const tabs1 = page.locator('.tiny-tabs')
+  const container = page.locator('#tabs-separator')
+  const tabs1 = container.locator('.tiny-tabs')
   const content1 = tabs1.locator('.tiny-tabs__item-separator')
 
   const { width, height } = await content1.first().boundingBox()

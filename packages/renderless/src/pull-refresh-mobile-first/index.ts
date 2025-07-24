@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off, getScrollTop, preventDefault } from '../common/deps/dom'
+import { on, off, getScrollTop, preventDefault } from '@opentiny/utils'
 
 export const onTouchstart =
   ({ state }) =>

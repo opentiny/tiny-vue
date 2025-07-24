@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -31,7 +32,7 @@ import {
   handleItemClick,
   observeCallback
 } from './index'
-import userPopper from '../common/deps/vue-popper'
+import { userPopper } from '@opentiny/vue-hooks'
 import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
 import type { IPopoverApi, IPopoverProps, IPopoverState, IPopoverRenderlessParams } from 'types/popover.type'
 

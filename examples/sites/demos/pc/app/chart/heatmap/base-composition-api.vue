@@ -6,16 +6,16 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartHeatmap as TinyChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap as TinyChartHeatmap } from '@opentiny/vue-huicharts'
 
 const options = ref({
-  // 图表类型(矩形热力图)
+  // 图表类型 (矩形热力图)
   type: 'RectangularHeatMapChart',
 
   // 矩形的颜色，默认值#F43146
   color: '#F43146',
 
-  // 矩形的大小，默认值8
+  // 矩形的大小，默认值 8
   rectangleSize: 8,
   yAxisName: '手机市场占比%',
   data: [

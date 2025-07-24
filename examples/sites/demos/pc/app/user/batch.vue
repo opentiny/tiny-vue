@@ -1,23 +1,31 @@
 <template>
-  <div>
+  <div class="demo-user-class">
     <tiny-user v-model="user1" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user2" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user3" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user4" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user5" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user6" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user7" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user8" :batch="true" :cache="false"></tiny-user>
+    <br />
     <tiny-user v-model="user9" :batch="true" :cache="false"></tiny-user>
   </div>
 </template>
 
 <script>
-import { User } from '@opentiny/vue'
+import { TinyUser } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyUser: User
+    TinyUser
   },
   data() {
     return {
@@ -34,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-user-class {
+  width: 280px;
+}
+</style>

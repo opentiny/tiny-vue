@@ -15,7 +15,8 @@
       'tiny-search',
       { mini },
       { collapse: state.collapse },
-      state.searchSize ? 'tiny-search--' + state.searchSize : ''
+      state.searchSize ? 'tiny-search--' + state.searchSize : '',
+      { 'is-disabled': disabled }
     ]"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
@@ -36,13 +37,14 @@
       </transition>
       <input
         ref="input"
-        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'disabled', 'clearable'])"
+        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'clearable'])"
         v-model="state.currentValue"
+        :disabled="disabled"
         :style="
           transparent
             ? {
                 border: 'transparent',
-                background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
+                background: 'inherit'
               }
             : {}
         "
@@ -58,7 +60,7 @@
         :tabindex="tabindex"
       />
       <transition name="tiny-transition-icon-scale-in">
-        <div class="tiny-search__input-btn" v-if="state.showClear && !state.collapse">
+        <div class="tiny-search__input-btn tiny-icon-close" v-if="state.showClear && !state.collapse && !disabled">
           <a @click="clear($event)">
             <icon-close @mousedown.prevent class="tiny-svg-size" />
           </a>
@@ -111,7 +113,8 @@ export default defineComponent({
     'clearable',
     'isEnterSearch',
     'typeValue',
-    'size'
+    'size',
+    'disabled'
   ],
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {

@@ -12,7 +12,8 @@ export default defineComponent({
     selected: Boolean,
     navItem: Object
   },
-  setup(props: any, context: any) {
+  components: { IconClose: IconClose() },
+  setup(props, context): any {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {

@@ -1,6 +1,6 @@
 export default {
   column: '2',
-  owner: '詹旖旎 30021340',
+  owner: '',
   demos: [
     {
       demoId: 'nest-grid-multi',
@@ -57,6 +57,20 @@ export default {
           '<p>Use the <code>auto-lookup</code>,<code>lookup-method</code> attributes, and <code>change</code> events to set the anti lookup echo function for data initialization.</p>\n<p>Tree selection scenarios require setting <code>popcollector</code> to <code>tree</code>,<code>multi</code> to <code>false</code>, and<code>defaultCheckedKeys</code>to set default selected data.</p>\n'
       },
       codeFiles: ['nest-tree-single.vue']
+    },
+    {
+      demoId: 'set-selection',
+      name: {
+        'zh-CN': '设置多选状态',
+        'en-US': 'Tree radio selection'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>auto-lookup</code>、<code>lookup-method</code> 属性和 <code>change</code> 事件设置初始化时数据的反查回显功能。</p>\n<p>树单选场景需要设置 <code>popselector</code> 为 <code>tree</code>，<code>multi</code> 为 <code>false</code >，<code>defaultCheckedKeys</code> 设置默认选中数据。</p>\n',
+        'en-US':
+          '<p>Use the <code>auto-lookup</code>,<code>lookup-method</code> attributes, and <code>change</code> events to set the anti lookup echo function for data initialization.</p>\n<p>Tree selection scenarios require setting <code>popcollector</code> to <code>tree</code>,<code>multi</code> to <code>false</code>, and<code>defaultCheckedKeys</code>to set default selected data.</p>\n'
+      },
+      codeFiles: ['set-selection.vue']
     }
   ]
 }

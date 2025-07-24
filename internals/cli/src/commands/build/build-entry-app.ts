@@ -54,42 +54,16 @@ export const install = (app, opts = {}) => {
  * mobile 包含素有mobile组件
  * mobile-first 包含所有多端组件
  */
-type RunTimeModeType = 'all' | 'pc' | 'mobile' | 'mobile-first' | 'simple'
-const runtimeModeList: Array<RunTimeModeType> = ['all', 'pc', 'mobile', 'mobile-first', 'simple']
+type RunTimeModeType = 'all' | 'pc' | 'mobile-first' | 'simple'
+const runtimeModeList: Array<RunTimeModeType> = ['all', 'pc', 'mobile-first', 'simple']
 
 // 简易模式下需要排除的组件列表，包括chart、业务组件、冷门组件等
 const notSimpleComponents = [
   'Amount',
   'Area',
   'AsyncFlowchart',
-  'AutonaviMap',
-  'BaiduMap',
-  'BaseSelect',
   'BulletinBoard',
   'CascaderMobile',
-  'Chart',
-  'ChartBar',
-  'ChartBoxplot',
-  'ChartCandle',
-  'ChartCore',
-  'ChartFunnel',
-  'ChartGauge',
-  'ChartGraph',
-  'ChartHeatmap',
-  'ChartHistogram',
-  'ChartLine',
-  'ChartLiquidfill',
-  'ChartMap',
-  'ChartPie',
-  'ChartProcess',
-  'ChartRadar',
-  'ChartRing',
-  'ChartSankey',
-  'ChartScatter',
-  'ChartSunburst',
-  'ChartTree',
-  'ChartWaterfall',
-  'ChartWordcloud',
   'Company',
   'Country',
   'Crop',
@@ -113,8 +87,8 @@ const notSimpleComponents = [
   'QueryBuilder',
   'RichText',
   'RichTextEditor',
+  'TimeLineNew',
   'River',
-  'SvgIcon',
   'TextPopup',
   'ToggleMenu',
   'User',
@@ -133,8 +107,8 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
     if (item.inEntry !== false) {
       const component = capitalizeKebabCase(item.name)
       if (
-        (mode !== 'simple' && !excludeComponents.includes(item.name)) ||
-        (mode === 'simple' && !notSimpleComponents.includes(item.name))
+        (mode !== 'simple' && !excludeComponents.includes(item.name) && !item.name.includes('Huicharts')) ||
+        (mode === 'simple' && !notSimpleComponents.includes(item.name) && !item.name.includes('Huicharts'))
       ) {
         componentsTemplate.push(`  ${component}`)
         includeTemplate.push(`import ${item.name} from '${item.importName}'`)
@@ -149,10 +123,14 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
       include: includeTemplate.join(endOfLine),
       components: componentsTemplate.join(',' + endOfLine),
       exportComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}${component} as Tiny${component.trim()}`)
+        .map((component) => {
+          return `${component}${joinStr}${component} as Tiny${component.trim()}`
+        })
         .join(joinStr),
       defaultComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}Tiny${component.trim()}: ${component}`)
+        .map((component) => {
+          return `${component}${joinStr}Tiny${component.trim()}: ${component}`
+        })
         .join(joinStr)
     }
   })

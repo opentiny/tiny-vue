@@ -33,12 +33,12 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem } from '@opentiny/vue'
+import { TinyCollapse, TinyCollapseItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapse,
+    TinyCollapseItem
   },
   data() {
     return {

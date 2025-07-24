@@ -14,13 +14,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Radio as TinyRadio, RadioButton as TinyRadioButton, RadioGroup as TinyRadioGroup, Modal } from '@opentiny/vue'
+import { TinyRadio, TinyRadioButton, TinyRadioGroup, TinyModal } from '@opentiny/vue'
 
 const value = ref('1')
 const radio = ref('1')
 
 function change(label) {
-  Modal.message({
+  TinyModal.message({
     message: 'change 事件，选中的 Radio label 值为：' + label,
     status: 'info'
   })

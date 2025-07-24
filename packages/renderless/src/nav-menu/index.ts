@@ -17,13 +17,14 @@ import type {
   menuItemType,
   whitchSubMenuType
 } from '@/types'
-import { omitText } from '../common/string'
-import { isEmptyObject, isObject } from '../common/type'
-import PopupManager from '../common/deps/popup-manager'
+import { omitText } from '@opentiny/utils'
+import { isEmptyObject, isObject } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 import { mapTree } from '../grid/static'
-import { transformTreeData } from '../common/array'
-import { on, off } from '../common/deps/dom'
-import { xss } from '../common/xss.js'
+import { transformTreeData } from '@opentiny/utils'
+import { on, off } from '@opentiny/utils'
+import { xss } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
 
 const { nextZIndex } = PopupManager
 
@@ -151,6 +152,9 @@ export const initData =
     state
   }: Pick<INavMenuRenderlessParams, 'fetchMenuData' | 'fields' | 'props' | 'state'>) =>
   () => {
+    if (props.defaultActive) {
+      state.defaultActiveId = props.defaultActive
+    }
     const { textField = 'title', urlField = 'url', key = 'id' } = fields || {}
     const { parentKey, data } = props
     const isFullUrl = (url: string): boolean => /^(https?:\/\/|\/\/)[\s\S]+$/.test(url)
@@ -214,13 +218,12 @@ export const mounted =
     on(window, 'resize', api.calcWidth)
 
     if (router) {
-      state.afterEach = () => {
-        api.setActiveMenu(api.getSelectedIndex(router.currentRoute.path))
+      state.afterEach = (to) => {
+        api.setActiveMenu(api.getSelectedIndex(to.path))
       }
 
       router.afterEach(state.afterEach)
     }
-
     props.data && props.data.length && route && api.setActiveMenu(api.getSelectedIndex(route.path))
   }
 
@@ -240,6 +243,7 @@ export const unMounted =
 export const getSelectedIndex =
   (state: INavMenuState) =>
   (path: string): number => {
+    if (!path) return
     let length = state.data.length
     let index = -1
 
@@ -436,12 +440,17 @@ export const clickMenu =
     if (index === undefined) {
       return
     }
+    if (state.defaultActiveId) {
+      state.defaultActiveId = item.id
+      state.selectedIndex = -1
+    }
     if (state.enterMenu) {
       state.subIndex = -1
       state.subItemSelectedIndex = -1
       api.setActiveMenu(index)
     }
     if (state.enterMoreMenu) {
+      state.selectedIndex = -1
       state.moreItemSelectedIndex = index
     } else {
       state.subItemSelectedIndex = index
@@ -460,6 +469,7 @@ export const clickMenu =
 export const skip =
   ({ api, router, fields }: Pick<INavMenuRenderlessParams, 'api' | 'router' | 'fields'>) =>
   (item: menuItemType, flag = false): string | null => {
+    if (!router) return
     if (item.isFullUrl) {
       const { urlField = 'url' } = fields || {}
       const router = item[urlField] || item.route
@@ -472,7 +482,7 @@ export const skip =
         : `/${item.route || ''}`.replace(/^\/+/, '/').replace('#/', '')
 
     if (address) {
-      return router.push(address)
+      return router?.push(address)
     } else {
       return ''
     }
@@ -481,21 +491,24 @@ export const skip =
 export const getPoint =
   ({ api, parent }: Pick<INavMenuRenderlessParams, 'api' | 'parent'>) =>
   (): number => {
-    const items = parent.$el.querySelectorAll('.menu>li') as NodeListOf<HTMLElement>
-    let index = 0
+    if (isServer) return 0
+    else {
+      const items = parent.$el.querySelectorAll('.menu>li') as NodeListOf<HTMLElement>
+      let index = 0
 
-    if (items) {
-      index = items.length
+      if (items) {
+        index = items.length
 
-      for (let i = 0; i < items.length; i++) {
-        if (api.isHide(items[i])) {
-          index = index - (items.length - i)
-          break
+        for (let i = 0; i < items.length; i++) {
+          if (api.isHide(items[i])) {
+            index = index - (items.length - i)
+            break
+          }
         }
       }
-    }
 
-    return index
+      return index
+    }
   }
 
 export const classify =
@@ -516,7 +529,7 @@ export const calcWidth =
     let menuWidth = el.offsetWidth
     let width = props.overflow === 'retract' ? 0 : menuWidth - toolbarWidth - logoWidth
 
-    width = width - 120 - (toolbarWidth ? 50 : 10) - (logoWidth ? 100 : 0)
+    width = width - 90 // 预留更多的位置
     state.width = width < 200 ? 0 : width
     state.popMenuTop = el.offsetHeight
   }
@@ -584,3 +597,66 @@ export const handleTitleMouseleave =
   (): void => {
     state.tooltipVisible = false
   }
+
+export const getMoreSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (): void => {
+    let isSelected = false
+    if (state?.more.length) {
+      state.more.forEach((item) => {
+        if (item?.id === state.defaultActiveId) {
+          isSelected = true
+        } else if (item?.children?.length) {
+          isSelected = getSelectedState(item.children, state.defaultActiveId)
+        }
+      })
+    }
+    return isSelected
+  }
+
+export const getTabSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, index): void => {
+    let isChildSelected = false
+    if (item?.id && item?.children?.length) {
+      isChildSelected = getSelectedState(item.children, state.defaultActiveId)
+    }
+    let isSelected = item?.id === state.defaultActiveId || isChildSelected || index === state.selectedIndex
+
+    return isSelected
+  }
+
+export const getLeftSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, index): void => {
+    let isLeftChildSelected = false
+    if (item?.id && item?.children?.length) {
+      isLeftChildSelected = getSelectedState(item.children, state.defaultActiveId)
+    }
+    let isSelected = item?.id === state.defaultActiveId || isLeftChildSelected || index === state.moreItemSelectedIndex
+    return isSelected
+  }
+
+export const getLastChildSelected =
+  ({ state }: Pick<INavMenuRenderlessParams, 'state'>) =>
+  (item, i, index): void => {
+    let isSelected =
+      item?.id === state.defaultActiveId || (i === state.subItemSelectedIndex && index === state.subIndex)
+    return isSelected
+  }
+
+const getSelectedState = (itemData, id) => {
+  let isSelected = false
+  itemData.forEach((data) => {
+    if (data?.id === id) {
+      isSelected = true
+    } else if (data?.children?.length) {
+      data?.children.forEach((dataChildren) => {
+        if (dataChildren?.id === id) {
+          isSelected = true
+        }
+      })
+    }
+  })
+  return isSelected
+}

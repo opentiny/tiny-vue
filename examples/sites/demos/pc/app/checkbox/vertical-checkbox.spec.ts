@@ -18,7 +18,7 @@ test('垂直布局', async ({ page }) => {
   const checkedLabelSZ = demo.getByRole('checkbox', { name: '深圳' }).filter({ hasText: '深圳' })
   await checkedLabelSZ.click()
   await expect(checkedLabelSZ).toHaveClass(/is-checked/)
-  const parentWrapper = demo.locator('div.tiny-checkbox-group.is-vertical')
+  const parentWrapper = page.getByLabel('checkbox-group').first()
   await expect(parentWrapper).toHaveCSS('display', 'inline-block')
   await expect(checkedLabelBJ).toHaveCSS('display', 'block')
   await expect(checkedLabelSH).toHaveCSS('display', 'block')

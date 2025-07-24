@@ -1,5 +1,4 @@
-import { isDate, nextYear, nextMonth } from '../common/deps/date-util'
-import { DATEPICKER } from '../common'
+import { DATEPICKER, formatDate, isDate1 as isDate, nextYear, nextMonth1 as nextMonth } from '@opentiny/utils'
 
 export const calcDefaultValue = (value) => {
   if (Array.isArray(value)) {
@@ -82,8 +81,11 @@ export const watchDefaultValue =
   }
 
 export const handleRangePick =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   (val, close = true) => {
+    if (props.readonly) {
+      return
+    }
     const maxDate = val.maxDate
     const minDate = val.minDate
 
@@ -110,11 +112,24 @@ export const handleRangePick =
     api.handleConfirm()
   }
 
-export const handleShortcutClick = (api) => (shortcutEvent) => {
+export const handleShortcutClick = (state, api, props) => (shortcutEvent) => {
   if (shortcutEvent.onClick) {
     const choose = {
       $emit: (type, [start, end]) => {
-        api.doPick(start, end)
+        // 面板直接使用快捷选项
+        if (props.shortcuts?.length) {
+          state.value = [start, end]
+          state.leftStartYear = Math.floor(start.getFullYear() / 10) * 10
+          state.rightStartYear = state.leftStartYear + DATEPICKER.PanelYearNum
+          state.leftDate = start
+          state.rightDate = end
+          api.handleRangePick({
+            minDate: isDate(start) ? start.getFullYear() : start,
+            maxDate: isDate(end) ? end.getFullYear() : end
+          })
+        } else {
+          api.doPick(start, end)
+        }
       }
     }
 
@@ -126,20 +141,41 @@ export const doPick = (emit) => (begin, end) => {
   emit('pick', [begin, end], false)
 }
 
-export const leftPrevYear = (state) => () => {
-  state.leftStartYear = state.leftStartYear - DATEPICKER.PanelYearNum * 2
+export const leftPrevYear = (state, api) => () => {
+  state.leftStartYear = state.leftStartYear - DATEPICKER.PanelYearNum
+  if (!state.unlinkPanels) {
+    api.rightPrevYear()
+  }
+}
+export const leftNextYear = (state) => () => {
+  state.leftStartYear = state.leftStartYear + DATEPICKER.PanelYearNum
 }
 
-export const rightNextYear = (state) => () => {
-  state.leftStartYear = state.leftStartYear + DATEPICKER.PanelYearNum * 2
+export const rightPrevYear = (state) => () => {
+  state.rightStartYear = state.rightStartYear - DATEPICKER.PanelYearNum
+}
+
+export const rightNextYear = (state, api) => () => {
+  state.rightStartYear = state.rightStartYear + DATEPICKER.PanelYearNum
+  if (!state.unlinkPanels) {
+    api.leftNextYear()
+  }
 }
 
 export const handleConfirm =
-  ({ api, emit, state }) =>
+  ({ api, emit, state, t }) =>
   (show = false) => {
     const { minDate, maxDate } = state
-
-    api.isValidValue([minDate, maxDate]) && emit('pick', [new Date(minDate, 0, 2), new Date(maxDate, 0, 2)], show)
+    const newMin = minDate ? new Date(minDate, 0, 2) : null
+    const newMax = maxDate ? new Date(maxDate, 0, 2) : null
+    if (api.isValidValue([newMin, newMax])) {
+      emit('pick', [newMin, newMax], show)
+      const defaultFormat = DATEPICKER.DateFormats.year
+      const start = formatDate(newMin, defaultFormat, t)
+      const end = formatDate(newMax, defaultFormat, t)
+      emit('update:modelValue', [start, end])
+      emit('select-change', [start, end])
+    }
   }
 
 export const isValidValue = (state) => (data) => {
@@ -159,3 +195,17 @@ export const resetView = (state) => () => {
   state.maxDate = state.value && isDate(state.value[0]) ? new Date(state.value[1]) : null
   state.minDate = state.value && isDate(state.value[0]) ? new Date(state.value[0]) : null
 }
+
+export const watchModelValue =
+  ({ state }) =>
+  (val) => {
+    if (val?.length === 2) {
+      const start = new Date(val[0], 0, 2)
+      const end = new Date(val[1], 0, 2)
+      state.value = [start, end]
+      state.minDate = start
+      state.maxDate = end
+      state.leftDate = start
+      state.rightDate = end
+    }
+  }

@@ -1,11 +1,12 @@
 <template>
-  <div class="tiny-calendar-view">
+  <div class="tiny-calendar-view" :style="{ 'height': typeof height === 'number' ? height + 'px' : height }">
     <div class="tiny-calendar-view__header">
-      <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      <div>
+        <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      </div>
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
-        shape="filter"
         type="month"
         :clearable="false"
         @change="currentDateChange"
@@ -57,8 +58,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                      ? 'is-selected'
-                      : '',
+                    ? 'is-selected'
+                    : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >
@@ -132,7 +133,7 @@
           <icon-chevron-right></icon-chevron-right>
         </div>
       </div>
-      <div v-if="state.mode === 'timeline'" class="tiny-calendar-view-week__timeline" :style="{ 'height': height }">
+      <div v-if="state.mode === 'timeline'" class="tiny-calendar-view-week__timeline">
         <div class="day-times">
           <ul>
             <li v-for="(item, i) in state.dayTimes" :key="item.time" :class="i % 2 === 1 && 'is-odd-num'">
@@ -185,7 +186,7 @@
           </ul>
         </div>
       </div>
-      <div v-if="state.mode === 'schedule'" class="tiny-calendar-view-week__schedule" :style="{ 'height': height }">
+      <div v-if="state.mode === 'schedule'" class="tiny-calendar-view-week__schedule">
         <ul>
           <li v-for="(date, index) in state.weekDates" :key="date.value" style="width: 14.28%">
             <slot

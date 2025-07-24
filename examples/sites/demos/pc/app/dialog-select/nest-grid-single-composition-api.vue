@@ -18,7 +18,7 @@
       @change="onDialogSelectChange"
       value-field="id"
       text-field="name"
-      :main-height="290"
+      :main-height="240"
     >
       <template #search>
         <div class="tiny-demo-search">
@@ -31,6 +31,7 @@
               placeholder="选择城市"
               :options="state.options"
               clearable
+              @change="onCitySearch"
             ></tiny-select>
           </div>
         </div>
@@ -41,32 +42,26 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import {
-  DialogSelect as TinyDialogSelect,
-  Button as TinyButton,
-  Search as TinySearch,
-  Select as TinySelect,
-  Modal
-} from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton, TinySearch, TinySelect } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
-  { id: '1', name: 'GFD科技有限公司', city: '福州', province: '福建' },
-  { id: '2', name: 'WWW科技有限公司', city: '深圳', province: '广东' },
-  { id: '3', name: 'RFV有限责任公司', city: '中山', province: '广东' },
-  { id: '4', name: 'TGB科技有限公司', city: '龙岩', province: '福建' },
-  { id: '5', name: 'YHN科技有限公司', city: '韶关', province: '广东' },
-  { id: '6', name: 'WSX科技有限公司', city: '黄冈', province: '湖北' },
-  { id: '7', name: 'KBG物业有限公司', city: '赤壁', province: '湖北' },
+  { id: '1', name: 'GFD 科技有限公司', city: '福州', province: '福建' },
+  { id: '2', name: 'WWW 科技有限公司', city: '深圳', province: '广东' },
+  { id: '3', name: 'RFV 有限责任公司', city: '中山', province: '广东' },
+  { id: '4', name: 'TGB 科技有限公司', city: '龙岩', province: '福建' },
+  { id: '5', name: 'YHN 科技有限公司', city: '韶关', province: '广东' },
+  { id: '6', name: 'WSX 科技有限公司', city: '黄冈', province: '湖北' },
+  { id: '7', name: 'KBG 物业有限公司', city: '赤壁', province: '湖北' },
   { id: '8', name: '深圳市福德宝网络技术有限公司', city: '深圳', province: '广东' },
-  { id: '9', name: 'KBG物业有限公司', city: '赤壁', province: '湖北' },
+  { id: '9', name: 'KBG 物业有限公司', city: '赤壁', province: '湖北' },
   { id: '10', name: '深圳市福德宝网络技术有限公司', city: '深圳', province: '广东' }
 ]
 
-// 接口1：根据一组数据id查询这组数据
+// 接口 1：根据一组数据 id 查询这组数据
 const queryRowsByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
-// 接口2：分页过滤查询
+// 接口 2：分页过滤查询
 const queryFilter = (pager, search) => {
   const { currentPage, pageSize } = pager
   const { name, city } = search
@@ -103,20 +98,23 @@ const state = reactive({
   },
   gridOp: {
     columns: [
-      { field: 'id', title: 'ID', width: 40 },
+      { field: 'id', title: 'ID', width: 50 },
       { field: 'name', title: '名称', showOverflow: 'tooltip' },
       { field: 'province', title: '省份', width: 80 },
       { field: 'city', title: '城市', width: 80 }
     ],
     data: [],
-    radioConfig: { checkRowKey: '1' }
+    radioConfig: { checkRowKey: '1' },
+    border: false, // 设置边框
+    size: 'small' // 设置表格尺寸
   },
   pagerOp: {
     currentPage: 1,
     pageSize: 5,
     pageSizes: [5, 10],
     total: 0,
-    layout: 'prev, pager, next'
+    layout: 'prev, pager, next',
+    size: 'mini'
   }
 })
 
@@ -136,6 +134,12 @@ const onSearch = (key, value) => {
   dialogSelect.value.queryGridData()
 }
 
+const onCitySearch = (value) => {
+  state.searchData.city = value
+  state.pagerOp.currentPage = 1
+  dialogSelect.value.queryGridData()
+}
+
 const remoteSearch = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -145,7 +149,7 @@ const remoteSearch = () => {
 
       state.gridOp.data = copy
       state.pagerOp.total = res.total
-      // promise返回执行下一步
+      // promise 返回执行下一步
       resolve()
     }, 300)
   })
@@ -163,22 +167,21 @@ const lookupMethod = (values) => {
 }
 
 const onDialogSelectChange = (values, texts, selectedDatas) => {
-  Modal.message({
-    message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-    status: 'info'
-  })
+  // 打印 change 回调数据，控制台查看
+  console.log({ values, texts, selectedDatas })
 }
 </script>
 
-<style scoped>
-.tiny-demo-dialog-select .tiny-demo-search {
-  display: flow-root;
-}
+<style scoped lang="less">
+.tiny-demo-search {
+  display: flex;
 
-.tiny-demo-dialog-select .tiny-demo-search-left,
-.tiny-demo-dialog-select .tiny-demo-search-right {
-  float: left;
-  width: 200px;
-  margin-right: 16px;
+  .tiny-demo-search-left {
+    flex: 1;
+  }
+  .tiny-demo-search-right {
+    width: 200px;
+    margin-left: 8px;
+  }
 }
 </style>

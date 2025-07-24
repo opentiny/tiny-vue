@@ -8,18 +8,18 @@
     :before-upload="beforeUpload"
   >
     <template #trigger>
-      <tiny-button type="primary">选取文件</tiny-button>
+      <tiny-button>选取文件</tiny-button>
     </template>
   </tiny-file-upload>
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     beforeUpload() {
-      Modal.message({ message: '查看请求头示例请打开浏览器开发者工具 network 的 upload 请求', status: 'info' })
+      TinyModal.message({ message: '查看请求头示例请打开浏览器开发者工具 network 的 upload 请求', status: 'info' })
 
       return true
     }

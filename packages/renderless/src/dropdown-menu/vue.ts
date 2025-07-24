@@ -49,22 +49,23 @@ export const renderless = (
   const { reactive, provide, onMounted, inject } = hooks
   const { nextTick, mode, vm, parent, dispatch, emit, designConfig } = instance
 
+  provide('dropdownMenuVm', vm)
+  provide('multiStage', props.multiStage)
+  const dropdownVm: IDropdownVm = inject('dropdownVm')
+
   const state: IDropdownMenuState = reactive({
     offset: 0,
     scroller: null,
     children: [],
     size: '',
     showPopper: false,
+    initShowPopper: !dropdownVm.lazyShowPopper, // 辅助变量,
     label: '',
     showContent: false,
     selected: false,
     selectedIndex: -1,
     canvasHeight: inject('change-size', null)
   })
-
-  provide('dropdownMenuVm', vm)
-  provide('multiStage', props.multiStage)
-  const dropdownVm: IDropdownVm = inject('dropdownVm')
 
   if (mode === 'mobile') {
     nextTick(() => {

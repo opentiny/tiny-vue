@@ -10,11 +10,11 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
-import { getDomNode } from '../common/deps/dom'
-import { getViewportWindow } from '../common/global'
+import { KEY_CODE } from '@opentiny/utils'
+import { on, off, addClass, hasClass, removeClass } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { getDomNode } from '@opentiny/utils'
+import { getViewportWindow } from '@opentiny/utils'
 
 import type {
   IModalProps,
@@ -37,8 +37,6 @@ import type {
 } from '@/types'
 
 const DragClass = 'is__drag'
-
-let timer: number
 
 const emitZoom = ({ params, parent, emit, event }: IModalEmitZoomParam): void => {
   let { $listeners, events = {} } = parent
@@ -140,6 +138,7 @@ export const beforeUnmouted =
     isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
     off(window, 'hashchange', api.handleHashChange)
+    off(window, 'resize', api.resetModalViewPosition)
     api.removeMsgQueue()
     api.hideScrollbar()
 
@@ -156,16 +155,16 @@ export const selfClickEvent =
     }
   }
 
-export const mouseEnterEvent = () => (): void => {
-  clearTimeout(timer)
+export const mouseEnterEvent = (state) => (): void => {
+  clearTimeout(state.timer)
 }
 
 export const mouseLeaveEvent =
-  ({ api, props }: Pick<IModalRenderlessParams, 'api' | 'props'>) =>
+  ({ api, props, state }: Pick<IModalRenderlessParams, 'api' | 'props' | 'state'>) =>
   (): void => {
     api.addMsgQueue()
 
-    timer = window.setTimeout(
+    state.timer = window.setTimeout(
       () => {
         api.close('close')
       },
@@ -269,7 +268,7 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        timer = window.setTimeout(
+        state.timer = window.setTimeout(
           () => {
             api.close(params.type)
           },
@@ -294,17 +293,19 @@ export const open =
             } else {
               modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
             }
-
             if (
               modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
               clientVisibleHeight
             ) {
               modalBoxElem.style.top = `${props.marginSize}px`
             }
+            on(window, 'resize', api.resetModalViewPosition)
           }
 
           if (props.fullscreen) {
             nextTick(api.maximize)
+          } else {
+            api.revert()
           }
         })
       }
@@ -370,12 +371,9 @@ export const close =
 
     if (state.visible) {
       state.contentVisible = false
-
       setTimeout(() => {
         state.visible = false
-
         let params = { type, $modal: parent }
-
         if (events.hide) {
           events.hide.call(parent, params)
         } else {
@@ -918,4 +916,12 @@ export const showScrollbar = (lockScrollClass) => () => {
 
 export const hideScrollbar = (lockScrollClass) => () => {
   removeClass(document.body, lockScrollClass)
+}
+
+export const resetModalViewPosition = (api: IModalApi) => () => {
+  const modalBoxElement = api.getBox()
+  const viewportWindow = getViewportWindow()
+  const clientVisibleWidth =
+    viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
+  modalBoxElement.style.left = `${clientVisibleWidth / 2 - modalBoxElement.offsetWidth / 2}px`
 }

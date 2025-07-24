@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { FloatingButton } from '@opentiny/vue'
+import { TinyFloatingButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFloatingButton: FloatingButton
+    TinyFloatingButton
   }
 }
 </script>

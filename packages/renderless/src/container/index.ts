@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,7 +11,7 @@
  *
  */
 
-import { isNumber } from '../common/type'
+import { isNumber } from '@opentiny/utils'
 
 export const computedShowHeader =
   ({ constants, props }) =>
@@ -128,7 +129,7 @@ export const computedLeftStyle =
 export const computedShowRight =
   ({ constants, props }) =>
   () => {
-    return props.pattern === constants.DEFAULT ? false : true
+    return props.pattern !== constants.DEFAULT
   }
 
 export const computedRightStyle =

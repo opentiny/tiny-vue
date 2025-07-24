@@ -26,6 +26,7 @@
         'is-disabled': node.disabled,
         'is-leaf': node.isLeaf,
         'is-root': node.level === 1,
+        'is-show-focus-bg': isShowFocusBg,
         'show-line': showLine,
         'show-checkbox': showCheckbox
       }"
@@ -44,7 +45,9 @@
       @drop.stop="handleDrop"
       ref="node"
     >
+      <!-- 当前节点的行： 缩进块+left(箭头图标+单多选钮+loading+prefix+label+suffix)+right(finish图标+operation+编辑按钮) -->
       <div
+        ref="content"
         :class="{
           'tiny-tree-node__content': true,
           'tiny-tree-node__content-number': showNumber
@@ -112,24 +115,22 @@
             :label="node.id"
             :disabled="!!node.disabled"
           ></tiny-radio>
-          <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
-          </svg>
+          <icon-loading v-if="node.loading" class="tiny-tree-node__loading" />
           <slot name="prefix" :node="node"></slot>
           <template v-if="action.type === 'edit' && action.node && action.node === node">
             <tiny-input
               v-model="action.label"
               ref="editInput"
-              autofocus
+              :autofocus="true"
               clearable
               @keyup.enter="saveEdit($event)"
               @blur="saveEdit($event)"
               @click.stop="($event) => $event.stopPropagation()"
             />
           </template>
-          <div v-else class="tiny-tree-node__content-box">
+          <template v-else>
             <node-content :node="node" :render-content="renderContent"></node-content>
-          </div>
+          </template>
           <slot name="suffix" :node="node"></slot>
         </div>
         <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
@@ -148,10 +149,10 @@
               ></icon-edit>
             </span>
             <span :title="t('ui.tree.delete')">
-              <icon-minus-square
+              <icon-del
                 v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
                 @click.stop="deleteNode($event, node)"
-              ></icon-minus-square>
+              ></icon-del>
             </span>
             <span :title="t('ui.tree.newNodeTitle')">
               <icon-plus-square
@@ -163,6 +164,7 @@
         </div>
       </div>
 
+      <!-- 子级树节点 -->
       <template v-if="node.childNodes.length">
         <collapse-transition>
           <div
@@ -181,10 +183,11 @@
               :style="{ width: state.computedIndent, left: `-${state.computedIndent}` }"
             ></span>
             <tree-node
-              v-for="child in node.childNodes"
+              v-for="child in state.renderedChildNodes"
               :action="action"
               :show-radio="showRadio"
               :theme="theme"
+              :is-show-focus-bg="isShowFocusBg"
               :current-radio="currentRadio"
               :render-content="renderContent"
               :expand-icon="state.expandIcon"
@@ -238,17 +241,19 @@ import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import {
   iconChevronRight,
-  iconLoading,
+  iconLoadingShadow,
   iconArrowBottom,
   iconEdit,
-  iconMinusSquare,
+  iconDel,
   iconPlusSquare,
-  iconFinish
+  iconFinish,
+  iconExpand,
+  iconPutAway
 } from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import Input from '@opentiny/vue-input'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 
 export default defineComponent({
   name: 'TreeNode',
@@ -260,7 +265,7 @@ export default defineComponent({
       parentTree: this
     }
   },
-  emits: ['update:modelValue', 'hook-updated', 'node-expand', 'radio-change', 'tree-node-expand', 'closeMenu'],
+  emits: ['update:modelValue', 'node-expand', 'radio-change', 'tree-node-expand', 'closeMenu'],
   props: {
     node: {
       default() {
@@ -310,7 +315,12 @@ export default defineComponent({
     nodeKey: String,
     theme: String,
     showCheckedMark: Boolean,
-    showLine: Boolean
+    showLine: Boolean,
+    // tiny 新增，是否显示树节点聚焦时的背景颜色
+    isShowFocusBg: {
+      type: Boolean,
+      default: true
+    }
   },
   components: {
     CollapseTransition,
@@ -318,12 +328,14 @@ export default defineComponent({
     TinyRadio: Radio,
     TinyInput: Input,
     IconChevronRight: iconChevronRight(),
-    IconLoading: iconLoading(),
+    IconLoading: iconLoadingShadow(),
     IconArrowBottom: iconArrowBottom(),
     IconEdit: iconEdit(),
-    IconMinusSquare: iconMinusSquare(),
+    IconDel: iconDel(),
     IconPlusSquare: iconPlusSquare(),
     IconFinish: iconFinish(),
+    IconExpand: iconExpand(),
+    IconPutAway: iconPutAway(),
     MenuContext: {
       props: {
         node: {

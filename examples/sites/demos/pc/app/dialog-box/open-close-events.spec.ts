@@ -7,7 +7,7 @@ test('弹出与关闭事件', async ({ page }) => {
   await page.getByRole('button', { name: '弹出与关闭事件' }).click()
   await expect(page.getByText('窗口弹出')).toBeVisible()
   await expect(page.getByText('窗口弹出动画完成')).toBeVisible()
-  await dialogBox.getByRole('button', { name: '确 定' }).click()
+  await dialogBox.getByRole('button', { name: '确定' }).click()
   await expect(page.getByText('窗口关闭')).toBeVisible()
   await expect(page.getByText('窗口关闭动画完成')).toBeVisible()
 })

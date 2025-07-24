@@ -31,7 +31,7 @@ import {
   hideScrollbar,
   toggleFullScreen
 } from './index'
-import usePopup from '../common/deps/vue-popup'
+import { usePopup } from '@opentiny/vue-hooks'
 import type {
   IDialogBoxApi,
   IDialogBoxProps,

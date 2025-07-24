@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -50,10 +50,11 @@ export default {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 420px;
 }
 .scroll-parent {
   height: 200px;
   overflow: auto;
+  padding-right: 40px;
 }
 </style>

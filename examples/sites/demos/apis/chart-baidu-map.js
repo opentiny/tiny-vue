@@ -1,309 +1,175 @@
 export default {
-    mode: ['pc'],
-    apis: [
+  mode: ['pc'],
+  apis: [
+    {
+      name: 'chart-baidu-map',
+      type: 'component',
+      options: [
         {
-            name: 'chart',
-            type: 'component',
-            props: [
-                {
-                    name: 'cancel-resize-check',
-                    type: 'boolean',
-                    defaultValue: 'false',
-                    desc: {
-                        'zh-CN': '是否禁用 resize 时的容器检测',
-                        'en-US': 'Whether to disable container detection during resize'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/question#question-base'
-                },
-                {
-                    name: 'change-delay',
-                    type: 'number',
-                    defaultValue: "'0'",
-                    desc: {
-                        'zh-CN': '属性修改触发图表重绘回调的延迟',
-                        'en-US': 'Delay for triggering chart redrawing callback after attribute modification'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/question#question-base'
-                },
-                {
-                    name: 'data',
-                    type: 'object',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '数据由指标和维度组成,“维度” 指的是数据的属性,“指标” 是量化衡量标准',
-                        'en-US':
-                            'Data consists of indicators and dimensions. Dimension refers to data attributes, and indicator refers to quantitative measurement standards.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart'
-                },
-                {
-                    name: 'events',
-                    type: 'object',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '事件绑定',
-                        'en-US': 'Event binding'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart-events'
-                },
-                {
-                    name: 'extend',
-                    typeAnchorName: 'chart#IChartProps',
-                    type: 'IChartProps',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': 'echarts 的配置项',
-                        'en-US': 'Configuration items of echarts'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart'
-                },
-                {
-                    name: 'height',
-                    type: 'string',
-                    defaultValue: "'400px'",
-                    desc: {
-                        'zh-CN': '设置图表容器的高度。',
-                        'en-US': 'Set the height of the chart container.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'init-options',
-                    type: 'object',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': 'init 附加参数',
-                        'en-US': 'Init Additional Parameters'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'judge-width',
-                    type: 'boolean',
-                    defaultValue: 'false',
-                    desc: {
-                        'zh-CN': '是否处理生成图表时的宽度问题',
-                        'en-US': 'Do you want to process the width issue when generating charts?'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart-events'
-                },
-                {
-                    name: 'legend-visible',
-                    type: 'boolean',
-                    defaultValue: 'true',
-                    desc: {
-                        'zh-CN': '是否显示图例',
-                        'en-US': 'Display legend'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'not-set-unchange',
-                    type: 'array',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '未发生变化时不参加 setOption 的属性',
-                        'en-US': 'The setOption attribute does not change.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: ''
-                },
-                {
-                    name: 'resize-delay',
-                    type: 'number',
-                    defaultValue: "'200'",
-                    desc: {
-                        'zh-CN': '窗口 resize 事件回调的延迟',
-                        'en-US': 'Delay of the window resize event callback'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'resizeable',
-                    type: 'boolean',
-                    defaultValue: 'true',
-                    desc: {
-                        'zh-CN': '是否处理窗口 resize 事件',
-                        'en-US': 'Whether to process the window resize event'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/question#question-base'
-                },
-                {
-                    name: 'set-option-opts',
-                    type: 'boolean | object',
-                    defaultValue: 'true',
-                    desc: {
-                        'zh-CN': 'echarts setOption 的第二个参数',
-                        'en-US': 'Echarts setOption second parameter'
-                    },
-                    mode: ['pc'],
-                    pcDemo: ''
-                },
-                {
-                    mode: []
-                },
-                {
-                    name: 'theme',
-                    type: 'object',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '自定义主题名称。;自定义主题对象。',
-                        'en-US': 'User-defined theme name. ;User-defined theme object.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart#base'
-                },
-                {
-                    name: 'theme-name',
-                    type: 'string',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '自定义主题名称,如果设置了 theme-name, 则 theme 无效',
-                        'en-US': 'User-defined theme name. If theme-name is set, the theme is invalid.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart#base'
-                },
-                {
-                    name: 'tooltip-visible',
-                    type: 'boolean',
-                    defaultValue: 'true',
-                    desc: {
-                        'zh-CN': '是否显示提示框',
-                        'en-US': 'Display dialog box'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'width',
-                    type: 'string',
-                    defaultValue: "'auto'",
-                    desc: {
-                        'zh-CN': '设置图表容器的宽度。',
-                        'en-US': 'Set the width of the chart container.'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/attributes-demo#props-demo10'
-                },
-                {
-                    name: 'width-change-delay',
-                    type: 'number',
-                    defaultValue: "'300'",
-                    desc: {
-                        'zh-CN': '容器宽度变化的延迟',
-                        'en-US': 'Container width change delay'
-                    },
-                    mode: ['pc'],
-                    pcDemo: 'chart/question#question-base'
-                },
-                {
-                    name: 'options',
-                    type: 'object',
-                    defaultValue: '',
-                    desc: {
-                        'zh-CN': '图表配置项(无法与settings混用)',
-                        'en-US': 'Chart Configuration item (cannot be used together with settings)'
-                    },
-                    mode: ['pc'],
-                    pcDemo: ''
-                }
-            ],
+          name: 'key',
+          type: 'string',
+          defaultValue: '无',
+          typeAnchorName: 'Key',
+          desc: {
+            'zh-CN': '百度地图秘钥',
+            'en-US': 'Baidu Map Key'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'url',
+          type: 'string',
+          defaultValue: '见详情',
+          typeAnchorName: 'Url',
+          desc: {
+            'zh-CN': '百度地图前缀地址',
+            'en-US': 'Baidu map prefix address'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'v',
+          type: 'string',
+          defaultValue: '1.4.3',
+          typeAnchorName: 'V',
+          desc: {
+            'zh-CN': '百度地图版本',
+            'en-US': 'Baidu Map Version'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'bmap',
+          type: 'object',
+          defaultValue: '见详情',
+          typeAnchorName: 'BMap',
+          desc: {
+            'zh-CN': '百度地图配置项',
+            'en-US': 'Baidu Map Configuration Item'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'series',
+          type: 'object',
+          defaultValue: '见详情',
+          typeAnchorName: 'Series',
+          desc: {
+            'zh-CN': '百度地图插件配置项',
+            'en-US': 'Baidu Map Plugin Configuration Item'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        }
+      ],
+      events: [
+        {
+          name: 'ready',
+          type: '()=>void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表渲染完成后触发，每次渲染都会触发一次',
+            'en-US': 'Triggered after the completion of chart rendering, it will be triggered once every rendering'
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        },
+        {
+          name: 'ready-once',
+          type: '()=>void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表渲染完成后触发，只会在首次渲染完成后触发',
+            'en-US':
+              'Triggered after the completion of chart rendering, it will only be triggered after the first rendering is completed'
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        }
+      ],
+      methods: [],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '组件默认插槽',
+            'en-US': 'Component Default Slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        }
+      ]
+    }
+  ],
 
-            events: [],
-            methods: [],
-            slots: []
+  types: [
+    {
+      name: 'BMap',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">格式示例：</p>
+<div data-v-md-line="3"><div class="v-md-pre-wrapper v-md-pre-wrapper-d extra-class"><pre class="v-md-hljs-d"><code>bmap: {
+        center: [<span class="hljs-number">118.775859</span>, <span class="hljs-number">31.985021</span>],
+        zoom: <span class="hljs-number">17</span>,
+        roam: <span class="hljs-literal">true</span>,
+        mapStyle: {}
+    }
+</code></pre>
+</div></div><p data-v-md-line="12">说明：通过配置<code>bmap</code>属性，修改百度地图的初始配置属性。<br><br>
+<code>center</code>：百度地图中心经纬度。<br><br>
+<code>zoom</code>：百度地图缩放级别。<br><br>
+<code>roam</code>：是否开启拖拽缩放，可选值为：<code>'scale'</code>, <code>'move'</code>, <code>'true'</code>，默认true关闭。<br><br>
+<code>mapStyle</code>：百度地图的自定义样式。<br><br>
+其他更多属性配置可见Echarts百度地图扩展的git网址：<a href="https://github.com/apache/echarts/tree/release/extension-src/bmap" target="_blank">https://github.com/apache/echarts/tree/release/extension-src/bmap</a>。</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Key',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">说明：通过配置<code>key</code>属性，修改百度地图api的密钥。<br><br>
+需要用户获取在百度地图开发者平台申请的密钥，申请网站：https://lbsyun.baidu.com/</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Series',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">格式示例：</p>
+<div data-v-md-line="3"><div class="v-md-pre-wrapper v-md-pre-wrapper-d extra-class"><pre class="v-md-hljs-d"><code>series: [{
+        type: <span class="hljs-string">'scatter'</span>,
+        coordinateSystem: <span class="hljs-string">'bmap'</span>,
+        data: [[<span class="hljs-number">118.775859</span>, <span class="hljs-number">31.985021</span>, <span class="hljs-number">1</span>]],
+        encode: {
+            value: <span class="hljs-number">30</span>
         }
-    ],
-    types: [
-        {
-            name: 'IChartProps',
-            type: 'interface',
-            code: `
-  interface IChartProps {
-    afterConfig: () => void 
-    afterSetOption: () => void 
-    afterSetOptionOnce: () => void 
-    animation: object
-    axisPointer: object | array
-    backgroundColor: object | string
-    beforeConfig: () => void 
-    brush: object | array
-    cancelResizeCheck: boolean
-    changeDelay: number // 默认值 0 
-    colorMode: string
-    colors: array 
-    data: object | array
-    dataEmpty: boolean
-    dataZoom: object | array
-    events: object 
-    extend: object
-    geo: object | array
-    graphic: object | array
-    grid: object | array
-    height: string // 默认值 '400px' 
-    initOptions: object
-    judgeWidth: boolean // 默认值 false 
-    legend: object | array
-    legendPosition: string 
-    legendVisible: boolean // 默认值 true 
-    loading: boolean
-    markArea: object 
-    markLine: object 
-    markPoint: object 
-    notSetUnchange: array
-    radar: object
-    resizeDelay: number // 默认值 200 
-    resizeable: boolean // 默认值 true 
-    series: object | array
-    setOptionOpts: boolean | object // 默认值 true 
-    settings: object
-    textStyle: object | array
-    theme: object
-    themeName: object | string
-    timeline: object | array
-    title: object | array
-    toolbox: object | array
-    tooltip: object
-    tooltipFormatter: () => void 
-    tooltipVisible: boolean // 默认值 true 
-    visualMap: object | array 
-    width: string // 默认值 'auto' 
-    widthChangeDelay: number // 默认值 300 
-    xAxis: object | array
-    yAxis: object | array
-  }`
-        },
-        {
-            name: 'IChartSettings',
-            type: 'interface',
-            code: `
-  interface IChartSettings {
-    type: string // 图表类型，可选值' bar '，' histogram '，' line ',' pie '，' ring '，' funnel '，' radar '，' waterfall '
-  }`
-        },
-        {
-            name: 'Options',
-            type: 'interface',
-            code: `
-            interface Options {
-                key: string // 百度地图密钥
-                url: string // 百度地图密钥 
-                v: string // 百度地图版本,默认值: 1.4.3
-                bmap: object // 百度地图配置项 默认不触发
-                series: object // 百度地图插件配置项
-            }`
-        }
-    ]
+    }]
+</code></pre>
+</div></div><p data-v-md-line="14">说明：通过配置<code>series</code>属性，修改百度地图的初始配置属性。<br><br>
+<code>center</code>：百度地图中心经纬度。<br><br>
+<code>zoom</code>：百度地图缩放级别。<br><br>
+<code>roam</code>：是否开启拖拽缩放，可以只设置 ‘scale’ 或者 ‘move’。默认关闭。<br><br>
+<code>mapStyle</code>：百度地图的自定义样式。<br><br>
+其他更多属性配置可见Echarts百度地图扩展的git网址：<a href="https://github.com/apache/echarts/tree/release/extension-src/bmap" target="_blank">https://github.com/apache/echarts/tree/release/extension-src/bmap</a>。</p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'V',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">说明：通过配置<code>v</code>属性，修改百度地图api的版本号，默认2.0。<br></p>
+</div></div></div></td></tr></div>`
+    },
+    {
+      name: 'Url',
+      type: 'interface',
+      code: `<div class="tiny-huicharts"><tr class="tiny-grid-body__expanded-row"><td class="tiny-grid-body__expanded-column" colspan="5"><div class="tiny-grid-body__expanded-cell"><div class="v-md-editor-preview main-editor api-table" style="tab-size: 2;"><div class="github-markdown-body"><p data-v-md-line="1">说明：通过配置<code>url</code>属性，修改百度地图api的前缀地址。<br></p>
+</div></div></div></td></tr></div>`
+    }
+  ]
 }

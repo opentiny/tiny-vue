@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tag as TinyTag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 
 const items = ref([
   { type: '', label: '标签一' },
@@ -29,3 +29,10 @@ const items = ref([
   { type: 'warning', label: '标签五' }
 ])
 </script>
+
+<style scoped>
+.tiny-tag-demo .tiny-tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+</style>

@@ -15,15 +15,15 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
       rules: {
         users: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: 'blur' }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'blur' }
         ],
         datepicker: { type: 'date' }
       }

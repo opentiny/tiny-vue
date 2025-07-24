@@ -51,7 +51,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>当 <code>label-position</code> 为 <code>left</code> 时， 通过 <code>label-align</code> 设置必填星号出现时标签文本是否对齐。</p>',
+          '<p>当 <code>label-position</code> 为 <code>left</code> 时，通过 <code>label-align</code> 设置必填星号出现时标签文本是否对齐。</p>',
         'en-US':
           '<p>When <code>label-position</code> is <code>left</code> , Set whether the label text is aligned when a mandatory asterisk appears by<code>label align</code>.</p>'
       },
@@ -127,9 +127,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>form</code> 组件上设置后，子组件 <code>form-item</code> 会继承父组件设置。单独在 <code>form-item</code> 组件上进行设置优先级高于在 <code>from</code> 上的设置。</p>',
+          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>form</code> 组件上设置后，子组件 <code>form-item</code> 会继承父组件设置。单独在 <code>form-item</code> 组件上进行设置优先级高于在 <code>form</code> 上的设置。</p>',
         'en-US':
-          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>form</code> component, the subcomponent <code>form-item</code> inherits the setting of the parent component. The setting on the <code>form-item</code> component takes precedence over the setting on the <code>From</code> component. </p>'
+          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>form</code> component, the subcomponent <code>form-item</code> inherits the setting of the parent component. The setting on the <code>form-item</code> component takes precedence over the setting on the <code>Form</code> component. </p>'
       },
       codeFiles: ['validation-position.vue']
     },
@@ -195,7 +195,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件（ <code>input</code> 、<code>select</code> 等）设置的 <code>size</code> 。</p>',
+          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的 size 优先级高于数据录入组件（ <code>input</code> 、<code>select</code> 等）设置的 <code>size</code> 。</p>',
         'en-US':
           '<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code> . If this parameter is not transferred, the verification result of the entire form is removed. </p>'
       },
@@ -263,28 +263,28 @@ export default {
       codeFiles: ['group-form.vue']
     },
     {
-      demoId: 'smb-required',
+      demoId: 'hide-required',
       name: {
         'zh-CN': '必填项红色星号',
         'en-US': 'Required items with a red asterisk'
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>hide-required-asterisk</code> 设置是否隐藏标签前的红色星号，默认为 <code>false</code> ，但SMB主题下，默认为 <code>true</code> 。</p>',
+          '<p>通过 <code>hide-required-asterisk</code> 设置是否隐藏标签前的红色星号，默认为 <code>false</code> 。</p>',
         'en-US':
-          'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>false</code> , but under the SMB theme, it defaults to <code>true</code> .'
+          'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>false</code>.'
       },
-      codeFiles: ['smb-required.vue']
+      codeFiles: ['hide-required.vue']
     },
     {
       demoId: 'popper-options',
       name: {
-        'zh-CN': '错误提示',
+        'zh-CN': '错误提示跟随页面',
         'en-US': 'Error tip options'
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>popper-options</code> 设置<code>tip</code>类型错误提示，例如：当表单父元素是滚动元素，切页面滚动后，提示会错位，将 <code>bubbling</code> 属性设置为 <code>true</code>可解决此问题。</p>',
+          '<p>通过 <code>popper-options</code> 设置<code>tip</code>类型错误提示，例如：当表单父元素是滚动元素，且页面滚动后，提示会错位，将 <code>bubbling</code> 属性设置为 <code>true</code>可解决此问题。</p>',
         'en-US':
           'Set the <code>tip</code> type error prompt through <code>popper-options</code>. For example, when the parent element of the form is a scrolling element and the page scrolls, the prompt will be misaligned. Change the <code>bubbling</code> attribute Set to <code>true</code> to resolve this issue.'
       },

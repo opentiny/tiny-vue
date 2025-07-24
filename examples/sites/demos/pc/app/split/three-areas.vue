@@ -4,26 +4,26 @@
       <template #left>
         <tiny-split v-model="split2" trigger-simple collapse-left-top three-areas>
           <template #left>
-            <div class="split-content">内容A区</div>
+            <div class="split-content">内容 A 区</div>
           </template>
           <template #right>
-            <div class="split-content">内容B区</div>
+            <div class="split-content">内容 B 区</div>
           </template>
         </tiny-split>
       </template>
       <template #right>
-        <div class="split-content">内容C区</div>
+        <div class="split-content">内容 C 区</div>
       </template>
     </tiny-split>
   </div>
 </template>
 
 <script>
-import { Split } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySplit: Split
+    TinySplit
   },
   data() {
     return {
@@ -37,7 +37,6 @@ export default {
 <style scoped>
 .split-nest {
   height: 300px;
-  border: 1px solid #d9d9d9;
 }
 
 .split-content {

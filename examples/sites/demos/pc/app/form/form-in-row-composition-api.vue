@@ -12,7 +12,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Numeric as TinyNumeric, Radio as TinyRadio } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyNumeric, TinyRadio } from '@opentiny/vue'
 
 const formData = reactive({
   quantity: 0,
@@ -21,7 +21,7 @@ const formData = reactive({
 </script>
 
 <style scoped>
-#form .tiny-input {
-  width: 300px;
+.tiny-form-item {
+  width: 400px;
 }
 </style>

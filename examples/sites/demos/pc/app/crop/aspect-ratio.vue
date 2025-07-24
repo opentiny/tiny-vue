@@ -7,7 +7,6 @@
       :src="imgUrl"
       :aspect-ratio="7 / 5"
       :center="true"
-      :preview="true"
       :quality="0.5"
       max-size="300KB"
       @setAspectRatio="setAspectRatio"
@@ -16,12 +15,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, Crop } from '@opentiny/vue'
+import { TinyButton, TinyCrop } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {
@@ -32,7 +31,7 @@ export default {
   methods: {
     setAspectRatio(aspectRatio) {
       Modal.message({
-        message: `宽高比数据: ${JSON.stringify(aspectRatio)}`,
+        message: `宽高比数据：${JSON.stringify(aspectRatio)}`,
         status: 'info'
       })
     }

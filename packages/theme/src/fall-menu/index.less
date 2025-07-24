@@ -17,15 +17,16 @@
 @fall-menu-prefix-cls: ~'@{css-prefix}fall-menu';
 
 .@{fall-menu-prefix-cls} {
-  .component-css-vars-fall-menu();
+  .inject-FallMenu-vars();
+  box-shadow: 0 1px 4px 0 #14000000;
 
   & &__wrap {
-    background: var(--ti-fall-menu-bg-color-normal);
+    background: var(--tv-FallMenu-bg-color-normal);
     padding: 0 24px;
   }
 
   & &__nav {
-    height: var(--ti-fall-menu-menu-height);
+    height: var(--tv-FallMenu-menu-height);
     margin: 0 auto;
     position: relative;
   }
@@ -35,16 +36,16 @@
 
     .icon-slot-left,
     .icon-slot-right {
-      color: var(--ti-fall-menu-slot-text-color);
+      color: var(--tv-FallMenu-slot-text-color);
       cursor: pointer;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: var(--ti-fall-menu-icon-font-size);
+      font-size: var(--tv-FallMenu-icon-font-size);
       line-height: 1;
 
       svg {
-        fill: #fff;
+        fill: var(--tv-FallMenu-box-svg-fill);
       }
     }
 
@@ -67,6 +68,11 @@
       .opacity(0);
     }
 
+    .active-show {
+      font-size: var(--tv-FallMenu-box-font-size-hover);
+      font-weight: var(--tv-FallMenu-box-font-weight-hover);
+    }
+
     ul {
       .clearfix();
     }
@@ -84,19 +90,20 @@
       display: block;
       width: auto;
       padding: 0 12px;
-      height: var(--ti-fall-menu-menu-height);
+      height: var(--tv-FallMenu-menu-height);
       text-align: center;
       text-decoration: none;
       font-weight: 400;
-      line-height: var(--ti-fall-menu-menu-height);
-      font-size: var(--ti-fall-menu-title-font-size);
-      color: var(--ti-fall-menu-slot-text-color);
+      line-height: var(--tv-FallMenu-menu-height);
+      font-size: var(--tv-FallMenu-title-font-size);
+      color: var(--tv-FallMenu-slot-text-color);
 
       &:hover,
       &.now {
-        color: var(--ti-fall-menu-slot-text-color);
-        background: var(--ti-fall-menu-bg-color-hover);
+        color: var(--tv-FallMenu-slot-text-color);
         text-decoration: none;
+        font-size: var(--tv-FallMenu-box-font-size-hover);
+        font-weight: var(--tv-FallMenu-box-font-weight-hover);
       }
 
       &.now:before {
@@ -116,20 +123,22 @@
   & &__box {
     position: absolute;
     left: 0px;
-    top: var(--ti-fall-menu-menu-height);
+    top: var(--tv-FallMenu-menu-height);
     width: 100%;
-    background: var(--ti-fall-menu-slot-bg-color);
+    background: var(--tv-FallMenu-slot-bg-color);
     overflow: hidden;
     transition: opacity 0.4s;
+    border-radius: var(--tv-FallMenu-box-border-radius);
     .opacity(0);
 
     .contbox {
       overflow: hidden;
+      padding: 32px;
     }
 
     .cont {
       min-width: 120px;
-      padding: 18px 20px;
+      padding: 0 16px;
     }
 
     .sublist {
@@ -138,28 +147,31 @@
         width: 100%;
 
         h3.mcate-item-hd {
-          font-size: var(--ti-fall-menu-box-font-size);
-          border-bottom: 0px solid #ccc;
-          color: var(--ti-fall-menu-box-title-text-color);
-          font-weight: normal;
+          font-size: var(--tv-FallMenu-box-font-size);
+          border-bottom: 0 solid #ccc;
+          color: var(--tv-FallMenu-box-title-text-color);
+          font-weight: 700;
           margin: 0;
+          line-height: 32px;
         }
 
         p.mcate-item-bd {
-          margin-top: 18px;
+          margin-top: 4px;
+          line-height: 32px;
 
           a {
-            margin: 8px 0px 0 0;
-            font-size: var(--ti-common-font-size-base);
-            color: var(--ti-fall-menu-box-text-color);
+            font-size: var(--tv-FallMenu-box-a-font-size);
+            color: var(--tv-FallMenu-box-text-color);
             text-decoration: none;
             display: block;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            margin-bottom: 4px;
 
             &:hover {
-              color: var(--ti-fall-menu-box-hover-text-color);
+              text-decoration: underline;
+              color: var(--tv-FallMenu-box-hover-text-color);
             }
           }
         }
@@ -168,10 +180,8 @@
 
     &.active,
     &:hover {
-      border-left: 1px solid #d9d9d9;
-      border-right: 1px solid #d9d9d9;
-      border-bottom: 1px solid #d9d9d9;
-      box-shadow: 1px 1px 5px 1px #d9d9d9;
+      box-shadow: 0 4px 16px 0 #14000000;
+      border-radius: 0 0 6px 6px;
       .opacity(1);
     }
   }

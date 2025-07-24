@@ -32,7 +32,7 @@ const durationMap = {
   error: 10000
 }
 
-const positionList = ['top-right', 'bottom-right']
+const positionList = ['top-right', 'bottom-right', 'top-left', 'bottom-left']
 
 const debounce = (fn, debounceDelay) => {
   let timer = null
@@ -46,6 +46,7 @@ const debounce = (fn, debounceDelay) => {
 
     await new Promise((resolve) => {
       timer = setTimeout(() => {
+        // eslint-disable-next-line prefer-rest-params
         instance = fn.apply(this, arguments)
         timer = null
 

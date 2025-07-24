@@ -1,12 +1,17 @@
 <template>
   <div>
-    <p>场景1：单选无需配置可复制</p>
+    <p>场景 1：单选无需配置可复制</p>
+    <br />
     <tiny-select v-model="value1" :options="options1"> </tiny-select>
-    <p>场景2：单选可搜索配置 allow-copy 可复制</p>
+    <br /><br />
+    <p>场景 2：单选可搜索配置 allow-copy 可复制</p>
+    <br />
     <tiny-select ref="selectRef" v-model="value1" :options="options1" filterable :filter-method="filter" allow-copy>
     </tiny-select>
+    <br /><br />
 
-    <p>场景3：单选远程搜索配置 allow-copy 可复制</p>
+    <p>场景 3：单选远程搜索配置 allow-copy 可复制</p>
+    <br />
     <tiny-select
       v-model="value2"
       filterable
@@ -19,31 +24,33 @@
     >
       <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
     <p class="font-style">粘贴至此处：</p>
+    <br />
     <tiny-input v-model="inputVal" type="text" class="custom"></tiny-input>
   </div>
 </template>
 
 <script>
-import { Select, Option, Input } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select,
-    TinyOption: Option,
-    TinyInput: Input
+    TinySelect,
+    TinyOption,
+    TinyInput
   },
   data() {
     return {
       options1: [
-        { value: '选项1', label: '北京' },
-        { value: '选项2', label: '上海' },
-        { value: '选项3', label: '天津' },
-        { value: '选项4', label: '重庆' },
-        { value: '选项5', label: '深圳' }
+        { value: '选项 1', label: '北京' },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
       ],
       options2: [],
-      value1: '选项1',
+      value1: '选项 1',
       value2: 'Alabama',
       inputVal: '',
       loading: false,
@@ -103,6 +110,7 @@ export default {
       'Wisconsin',
       'Wyoming'
     ]
+
     this.list = states.map((item) => {
       return { value: item, label: item }
     })

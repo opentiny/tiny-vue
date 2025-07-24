@@ -26,7 +26,9 @@
         v-model="state.showContent"
       >
       </tiny-tooltip>
-      <slot :selected-index="state.selectedIndex"></slot>
+      <template v-if="state.initShowPopper || state.showPopper">
+        <slot :selected-index="state.selectedIndex"></slot>
+      </template>
     </ul>
   </transition>
 </template>

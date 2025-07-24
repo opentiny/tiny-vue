@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { Slider } from '@opentiny/vue'
+import { TinySlider } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySlider: Slider
+    TinySlider
   },
   data() {
     return {
@@ -20,3 +20,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

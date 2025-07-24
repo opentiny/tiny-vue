@@ -20,10 +20,10 @@
       </template>
     </tiny-tooltip>
     <div data-tag="tiny-calendar-view-today" class="flex justify-around items-center mb-3">
-      <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
       <tiny-date-picker
         v-model="state.currentDate"
-        class="ml-5 shrink-0"
+        :class="[showBackToday ? 'ml-5' : '', 'shrink-0']"
         shape="filter"
         type="month"
         :clearable="false"
@@ -292,11 +292,11 @@
                 :key="idx"
                 class="py-1.5 h-auto border border-color-border-separator rounded mb-2 shadow-sm"
               >
-                <div class="px-1.5 mb-1.5 border-l-2 border-color-brand">{{ event.title }}</div>
+                <div class="px-1.5 mb-1.5 border-l-2 border-color-brand break-all">{{ event.title }}</div>
                 <div class="mb-1.5 px-2 text-color-text-placeholder">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
-                <p class="px-2 text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
+                <p class="px-2 text-xs text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
               </div>
             </slot>
             <div
@@ -376,7 +376,8 @@ export default defineComponent({
     'events',
     'height',
     'mark-color',
-    'multi-select'
+    'multi-select',
+    'showBackToday'
   ],
   setup(props, context) {
     return setup({

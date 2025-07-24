@@ -29,12 +29,12 @@ import type {
   setTotal,
   clickSizes,
   watchInternalCurrentPage,
-  watchPageSizes,
   watchCurrentPage,
   watchInternalPageCount,
-  watchPageSize,
   watchTotal,
-  watchShowSizes
+  watchShowSizes,
+  watchInternalPageSize,
+  getInternalPageSize
 } from '../src/pager'
 
 export type IPagerProps = ExtractPropTypes<typeof pagerProps>
@@ -52,10 +52,11 @@ export interface IPagerState {
   internalLayout: string[]
   totalText: string
   internalPageCount: number | null
-  showJumperSufix: boolean
+  showJumperSuffix: boolean
   align: 'left' | 'center' | 'right'
   totalI18n: 'total' | 'totals'
   totalFixedLeft: boolean
+  pageSizeText: string
 }
 
 export interface IPagerApi {
@@ -88,12 +89,12 @@ export interface IPagerApi {
   setTotal: ReturnType<typeof setTotal>
   clickSizes: ReturnType<typeof clickSizes>
   watchInternalCurrentPage: ReturnType<typeof watchInternalCurrentPage>
-  watchPageSizes: ReturnType<typeof watchPageSizes>
   watchCurrentPage: ReturnType<typeof watchCurrentPage>
   watchInternalPageCount: ReturnType<typeof watchInternalPageCount>
-  watchPageSize: ReturnType<typeof watchPageSize>
   watchTotal: ReturnType<typeof watchTotal>
   watchShowSizes: ReturnType<typeof watchShowSizes>
+  watchInternalPageSize: ReturnType<typeof watchInternalPageSize>
+  getInternalPageSize: ReturnType<typeof getInternalPageSize>
 }
 export type IPagerRenderlessParams = ISharedRenderlessFunctionParams<never> & {
   api: IPagerApi

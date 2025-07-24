@@ -58,7 +58,7 @@ export const translateItem =
       state.active = index === activeIndex
 
       if (length === 2 && !state.active) {
-        state.translate = vnode.type === TYPE_VERTICAL ? -parentHeight : -parentWidth
+        state.translate = vnode.type === TYPE_VERTICAL ? parentHeight : parentWidth
       } else {
         state.translate =
           vnode.type === TYPE_VERTICAL ? parentHeight * (index - activeIndex) : parentWidth * (index - activeIndex)

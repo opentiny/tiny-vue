@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { Card as TinyCard, CardGroup as TinyCardGroup } from '@opentiny/vue'
+import { TinyCard, TinyCardGroup } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const radioValue = ref('TinyVue')
@@ -63,17 +63,12 @@ const dataArr = ref([
   {
     title: 'TinyVue',
     content: '^15.0.01',
-    imageSrc: ''
+    imageSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`
   },
   {
     title: 'TinyNG',
     content: '^16.0.01',
-    imageSrc: ''
-  },
-  {
-    title: 'TinyEngine',
-    content: '^14.0.01',
-    imageSrc: ''
+    imageSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet2.jpg`
   }
 ])
 </script>
@@ -83,13 +78,17 @@ const dataArr = ref([
   width: 100%;
   background: #f5f5f5;
   padding: 16px;
+}
+.card-wrap :deep(.tiny-card-group) {
+  margin: 20px 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  height: 150px;
 }
 .my-card {
-  width: 80%;
   cursor: pointer;
   padding: 20px;
+  margin: 0 20px;
 }
 .content {
   display: flex;

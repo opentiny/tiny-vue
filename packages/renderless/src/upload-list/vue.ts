@@ -31,8 +31,9 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../file-upload'
-import { formatFileSize } from '../common/string'
+import { formatFileSize } from '@opentiny/utils'
 import { getApi } from '../file-upload/vue'
+import { isServer } from '@opentiny/utils'
 
 export const api = [
   't',
@@ -65,7 +66,7 @@ export const renderless = (
 ): IUploadListApi => {
   const api = { getApi } as IUploadListApi
   parent = inject('uploader').$children[0]
-  const constants = parent.$constants as IFileUploadConstants
+  const constants = !isServer ? (parent.$constants as IFileUploadConstants) : null
   const $service = initService({ props, service })
   const { current } = useBreakpoint()
 
@@ -73,12 +74,18 @@ export const renderless = (
     focusing: false,
     shows: false,
     currentBreakpoint: current,
-    progressType: designConfig?.state?.progressType || 'circle',
-    progressWidth: designConfig?.state?.progressWidth,
-    progressStrokeWidth: designConfig?.state?.progressStrokeWidth || 6,
-    tooltipDisabled: designConfig?.state?.tooltipDisabled !== false,
-    closeComponent: designConfig?.icons?.closeComponent || 'icon-close',
-    preViewComponent: designConfig?.icons?.preViewComponent,
+    progressType: designConfig?.state?.progressType || 'line',
+    progressWidth:
+      designConfig?.state && Object.hasOwnProperty.call(designConfig.state, 'progressWidth')
+        ? designConfig.state.progressWidth
+        : 68,
+    progressStrokeWidth: designConfig?.state?.progressStrokeWidth || 4,
+    tooltipDisabled: designConfig?.state?.tooltipDisabled ?? false,
+    closeComponent: designConfig?.icons?.closeComponent || 'icon-del',
+    preViewComponent:
+      designConfig?.icons && Object.hasOwnProperty.call(designConfig.icons, 'preViewComponent')
+        ? designConfig.icons.preViewComponent
+        : 'icon-fullscreen-left',
     failUploadFileCount: computed(() =>
       props.files.reduce((total, item) => (total += item.status === 'fail' ? 1 : 0), 0)
     ),

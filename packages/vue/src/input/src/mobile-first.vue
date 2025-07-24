@@ -42,9 +42,9 @@
       >
         <tiny-tooltip
           v-if="state.isDisplayOnly"
+          :disabled="!showTooltip"
           effect="light"
           :content="state.displayOnlyTooltip"
-          :display="type === 'password'"
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
           :popper-options="{ bubbling: true }"
@@ -85,7 +85,7 @@
               'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
-                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-secondary ' +
+                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled ' +
                 'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
               state.inputSizeMf === 'medium'
                 ? `h-8 leading-8 ${m('sm:text-sm')} placeholder:text-sm`
@@ -172,6 +172,17 @@
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
         <span class="pointer-events-auto text-xs flex justify-start items-center">
+          <icon-close
+            v-if="state.showClear"
+            :class="
+              m(
+                'hidden sm:block text-center transition-all duration-300 ease-in-out text-xs cursor-pointer',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
+            @mousedown.prevent
+            @click="clear"
+          ></icon-close>
           <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
             <slot name="suffix"></slot>
             <component
@@ -200,17 +211,6 @@
             @mousedown.prevent
             @click="clear"
           ></icon-error>
-          <icon-close
-            v-if="state.showClear"
-            :class="
-              m(
-                'hidden sm:block text-center transition-all duration-300 ease-in-out text-xs cursor-pointer',
-                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
-              )
-            "
-            @mousedown.prevent
-            @click="clear"
-          ></icon-close>
           <component
             v-if="showPassword"
             :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
@@ -275,14 +275,16 @@
     >
       <tiny-tooltip
         v-if="state.isDisplayOnly"
+        :disabled="!showTooltip"
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
+        pre
         :popper-class="state.tooltipConfig.popperClass || ''"
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="flex">
+        <div class="inline-flex">
           <span
             ref="textBox"
             class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
@@ -290,7 +292,7 @@
               state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
               hoverExpand && 'relative left-0 max-w-full leading-normal line-clamp-1',
               autosize
-                ? 'left-0 max-w-full absolute break-words  whitespace-pre-line leading-normal'
+                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-normal'
                 : 'left-0 max-w-full text-ellipsis overflow-hidden break-words whitespace-pre-wrap line-clamp-5'
             ]"
             @click="state.showDisplayOnlyBox = true"
@@ -300,7 +302,7 @@
               class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
               >{{ t('ui.input.more') }}></span
             >
-            {{ state.displayOnlyText }}
+            <span>{{ state.displayOnlyText }}</span>
           </span>
         </div>
       </tiny-tooltip>
@@ -313,7 +315,7 @@
         :close-on-click-modal="false"
         @update:visible="state.showDisplayOnlyBox = $event"
       >
-        <div>{{ state.displayOnlyText }}</div>
+        <pre class="font-[inherit]">{{ state.displayOnlyText }}</pre>
         <template #footer>
           <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
         </template>
@@ -322,7 +324,7 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-secondary sm:disabled:bg-color-bg-6"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
         :class="[
           readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 ',
           state.isDisplayOnly ? 'hidden' : '',
@@ -423,6 +425,7 @@ export default defineComponent({
     'displayOnlyContent',
     'showEmptyValue',
     'popupMore',
+    'showTooltip',
     'frontClearIcon',
     'hoverExpand'
   ],

@@ -17,7 +17,11 @@ interface TooltipDirectiveConfig {
   always?: boolean // 是否文字不超长，也触发提示, 默认为 false
   content?: string // 自定义提示内容,  支持字符串或 VNode | VNode[], 不支持嵌套的 html 标签
   effect?: 'dark' | 'light' // tooltip主题，默认为light
+  placement?: string
 }
+
+// 高度计算最多可以允许的误差，修复checkbox的tip提示一直显示的bug（scrollHeight：15，clientHeight：14）
+const MISTAKE_VALUE = 2
 
 /** v-auto-tip 绑定值。 支持 falsy值 或 TooltipDirectiveConfig 值， 当传入falsy值时，表示禁用tooltip */
 type BoundingValueType = undefined | false | TooltipDirectiveConfig
@@ -30,11 +34,15 @@ const tooltipContent = hooks.ref('')
 
 // 判断是否超出隐藏
 const isEllipsis = (currentTarget) =>
-  currentTarget?.textContent && currentTarget.scrollWidth > currentTarget.offsetWidth
+  currentTarget?.textContent &&
+  (currentTarget.scrollWidth > currentTarget.clientWidth ||
+    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE)
 
 const isAlwaysShowTip = (currentTarget) => Boolean(currentTarget?.boundingValue?.always)
 
 const isDarkTheme = (currentTarget) => Boolean(currentTarget?.boundingValue?.effect === 'dark')
+
+const getPlacement = (currentTarget) => currentTarget.boundingValue?.placement || 'top'
 
 const mouseenterHandler = (e) => {
   const currentTarget = e.currentTarget
@@ -52,7 +60,7 @@ const mouseenterHandler = (e) => {
         el: document.createElement('div'),
         propsData: {
           renderContent: () => h('span', { class: 'tiny-directive-tip__content' }, tooltipContent.value),
-          placement: 'top',
+          placement: getPlacement(currentTarget),
           effect: isDarkTheme(currentTarget) ? 'dark' : 'light'
         },
         component: Tooltip
@@ -64,6 +72,7 @@ const mouseenterHandler = (e) => {
 
     tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
     tooltip.state.referenceElm = currentTarget
+    tooltip.state.currentPlacement = getPlacement(currentTarget)
 
     if (popperElm) {
       popperElm.classList.replace(
@@ -73,6 +82,12 @@ const mouseenterHandler = (e) => {
     }
 
     tooltip.show()
+
+    // 鼠标离开时，调用tooltip.hide()时， 将内部的popperJS置为null了， 所以下面行必须在show之后，再设置内部的placement
+    if (tooltip.state.popperJS?._options) {
+      tooltip.state.popperJS._options.placement = getPlacement(currentTarget)
+    }
+
     tooltip.updatePopper()
   }
 }
@@ -106,6 +121,7 @@ const unbind = (el) => {
 v-auto-tip
 v-auto-tip="false"  
 v-auto-tip="{always:true, content:'123', effect:'dark'}"  
+v-auto-tip="{always:true, content:'123', effect:'dark',placement:'right'}"  
 
 2、动态切换  
 v-auto-tip="enabled? {always:true, content:'123', effect:'dark'} : false "  

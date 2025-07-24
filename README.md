@@ -167,6 +167,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Zcating"><img src="https://avatars.githubusercontent.com/u/13329558?v=4?s=100" width="100px;" alt="Zcating"/><br /><sub><b>Zcating</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zcating" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/trueLoving"><img src="https://avatars.githubusercontent.com/u/44056372?v=4?s=100" width="100px;" alt="Aoi Kaze"/><br /><sub><b>Aoi Kaze</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=trueLoving" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="http://simonhe.me"><img src="https://avatars.githubusercontent.com/u/57086651?v=4?s=100" width="100px;" alt="Simon He"/><br /><sub><b>Simon He</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Simon-He95" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://study.linlove.cn/"><img src="https://avatars.githubusercontent.com/u/44194929?v=4?s=100" width="100px;" alt="zhangpaopao"/><br /><sub><b>zhangpaopao</b></sub></a><br /><a href="#tool-zhangpaopao0609" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Nowitzki41"><img src="https://avatars.githubusercontent.com/u/22088253?v=4?s=100" width="100px;" alt="Nowitzki41"/><br /><sub><b>Nowitzki41</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Nowitzki41" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/dufu1991"><img src="https://avatars.githubusercontent.com/u/24769077?v=4?s=100" width="100px;" alt="dufu1991"/><br /><sub><b>dufu1991</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=dufu1991" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>

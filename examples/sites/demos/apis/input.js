@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'input',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '原生 autocomplete 属性',
             'en-US': 'Native autocomplete attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -26,9 +25,8 @@ export default {
             'zh-CN': '原生属性，页面加载时，自动获取焦点',
             'en-US': 'Native attribute. The focus is automatically obtained during page loading.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -41,9 +39,8 @@ export default {
             'en-US':
               'Adaptive content height. This parameter is valid only for <code>type="textarea"</code>. Objects can be transferred, for example, {minRows: 2, maxRows: 6}'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'resize',
-          mobileDemo: 'textarea-scalable',
           mfDemo: ''
         },
         {
@@ -55,9 +52,8 @@ export default {
             'en-US':
               'Whether to display the clear button. This attribute is not applicable to <code>type="textarea"</code>.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'clearable',
-          mobileDemo: 'clearable',
           mfDemo: ''
         },
         {
@@ -69,9 +65,8 @@ export default {
             'en-US':
               'Native attribute, which is used to set the width. This parameter is valid only when type is "textarea"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'rows',
-          mobileDemo: 'textarea-rows-cols',
           mfDemo: ''
         },
         {
@@ -83,14 +78,13 @@ export default {
             'en-US':
               'Whether to display the word count statistics. This parameter is valid only when type is "text" or type is "textarea"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'counter',
-          mobileDemo: 'counter',
           mfDemo: ''
         },
         {
           name: 'custom-class',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置自定义样式',
@@ -107,9 +101,8 @@ export default {
             'zh-CN': '是否禁用',
             'en-US': 'Disable'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'disabled',
           mfDemo: ''
         },
         {
@@ -129,7 +122,7 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置只读态时的文本内容区，如果没有则会使用 modelVale 的值作为只读文本',
+            'zh-CN': '设置只读态时的文本内容区，如果没有则会使用 modelValue 的值作为只读文本',
             'en-US':
               "Sets the text content area in the read-only state, if not, modelVale's value is used as the read-only text"
           },
@@ -151,7 +144,7 @@ export default {
         },
         {
           name: 'height',
-          type: 'Number',
+          type: 'number',
           defaultValue: '',
           desc: {
             'zh-CN': '设置文本域的最小高度',
@@ -174,17 +167,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'is-select',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否可下拉选择',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'type-select'
-        },
-        {
           name: 'label',
           type: 'string',
           defaultValue: '',
@@ -192,9 +174,8 @@ export default {
             'zh-CN': '等价于原生 input aria-label 属性',
             'en-US': 'Equiphorus input aria-label attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: '',
           mfDemo: ''
         },
         {
@@ -217,9 +198,8 @@ export default {
             'zh-CN': '原生属性，设置最大值',
             'en-US': 'Native attribute, set the maximum value'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -230,9 +210,8 @@ export default {
             'zh-CN': '原生属性，最大输入长度',
             'en-US': 'Native attribute, maximum input length'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'counter',
           mfDemo: ''
         },
         {
@@ -254,21 +233,9 @@ export default {
             'zh-CN': '原生属性，设置最小值',
             'en-US': 'Native attribute, which sets the minimum value'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
-        },
-        {
-          name: 'minlength',
-          type: 'Number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，最小输入长度',
-            'en-US': 'Native attribute, minimum input length'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'counter'
         },
         {
           name: 'modelValue / v-model',
@@ -289,9 +256,8 @@ export default {
             'zh-CN': '原生 input name 属性',
             'en-US': 'Native input name attribute'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: '',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -302,9 +268,8 @@ export default {
             'zh-CN': '输入框占位文本',
             'en-US': 'Enter the place-holder text in the text box'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'basic-usage',
           mfDemo: ''
         },
         {
@@ -315,9 +280,8 @@ export default {
             'zh-CN': '输入框头部图标',
             'en-US': 'Icon at the head of the input box'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'input-icon',
-          mobileDemo: 'prefix-suffix-icon',
           mfDemo: ''
         },
         {
@@ -328,9 +292,8 @@ export default {
             'zh-CN': '原生属性，是否只读',
             'en-US': 'Native attribute, read-only'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -353,21 +316,9 @@ export default {
             'zh-CN': '输入框行数，只对 type="textarea" 有效',
             'en-US': 'Number of lines in the input box. This parameter is valid only for type="textarea"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'rows',
-          mobileDemo: 'textarea-rows-cols',
           mfDemo: ''
-        },
-        {
-          name: 'select-menu',
-          type: 'Array',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '下拉选择的选项',
-            'en-US': 'options of select'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'type-select'
         },
         {
           name: 'show-password',
@@ -377,9 +328,8 @@ export default {
             'zh-CN': '是否显示切换密码图标',
             'en-US': 'Whether to display the switchover password icon'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'show-password',
-          mobileDemo: 'show-password',
           mfDemo: ''
         },
         {
@@ -391,9 +341,23 @@ export default {
             'en-US':
               'Whether to display the number of input words. This parameter is valid only when type is "text" or type is "textarea"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'show-word-limit',
-          mobileDemo: 'counter',
+          mfDemo: ''
+        },
+        {
+          name: 'show-tooltip',
+          type: 'boolean',
+          defaultValue: 'true',
+          meta: {
+            stable: '3.18.0'
+          },
+          desc: {
+            'zh-CN': '只读状态下，文本超出是否悬浮提示',
+            'en-US': 'In the read-only state, whether the text exceeds the floating prompt'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'size',
           mfDemo: ''
         },
         {
@@ -401,7 +365,7 @@ export default {
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
-            'zh-CN': '输入框尺寸，只在 type!="textarea" 时有效',
+            'zh-CN': '输入框尺寸，只在 type 为 "textarea" 时有效',
             'en-US': 'Size of the text box. This parameter is valid only when type!="textarea". '
           },
           mode: ['pc', 'mobile-first'],
@@ -416,9 +380,8 @@ export default {
             'zh-CN': '原生属性，设置输入字段的合法数字间隔',
             'en-US': 'Native attribute, which is used to set the valid digit interval of the input field.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'native',
-          mobileDemo: 'native-attributes',
           mfDemo: ''
         },
         {
@@ -429,9 +392,8 @@ export default {
             'zh-CN': '输入框尾部图标',
             'en-US': 'Input box end icon'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'input-icon',
-          mobileDemo: 'prefix-suffix-icon',
           mfDemo: ''
         },
         {
@@ -447,28 +409,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'tips',
-          type: 'String | Slot',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '提示信息',
-            'en-US': 'tips under input'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'slots'
-        },
-        {
-          name: 'title',
-          type: 'String | Slot',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义标题',
-            'en-US': 'custom title'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
-        {
           name: 'type',
           type: "'text' | 'textarea' | 'password' | InputHTMLAttributes.type",
           defaultValue: "'text'",
@@ -477,9 +417,8 @@ export default {
             'en-US':
               'Set the type attribute of the input box. The default value is "text". The options are "text", "textarea", and type values of other native inputs.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'type',
-          mobileDemo: 'type',
           mfDemo: ''
         },
         {
@@ -494,17 +433,6 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'v-model / modelValue',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '绑定值',
-            'en-US': 'input value'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
-        },
-        {
           name: 'validate-event',
           type: 'boolean',
           defaultValue: 'true',
@@ -512,26 +440,13 @@ export default {
             'zh-CN': '输入时是否触发表单的校验',
             'en-US': 'Trigger form verification upon input'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'validate-event',
-          mobileDemo: 'validate-event',
           mfDemo: ''
         },
         {
-          name: 'width',
-          type: 'Number | String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '宽度，取值为数字或元素 width 属性有效值，如果是数字则以 px 为单位',
-            'en-US':
-              'width, accepts a numerical value or a valid value for the width property, and if it is a number, it is measured in pixels.'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
-        {
           name: 'popup-more',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -542,6 +457,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'display-only-popup-more',
           mfDemo: 'display-only-popup-more'
+        },
+        {
+          name: 'input-box-type',
+          type: 'string',
+          defaultValue: 'normal',
+          desc: {
+            'zh-CN': '设置边框模式',
+            'en-US': 'Setting input box border type'
+          },
+          mode: ['pc'],
+          pcDemo: 'input-box-type',
+          mfDemo: ''
         }
       ],
       events: [
@@ -553,9 +480,8 @@ export default {
             'zh-CN': '在 Input 失去焦点时触发',
             'en-US': 'Trigger when Input loses focus'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'event',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -566,9 +492,8 @@ export default {
             'zh-CN': '在 Input 值改变时触发',
             'en-US': 'triggered when the input value changes.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'event',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -579,9 +504,8 @@ export default {
             'zh-CN': '在点击由 clearable 属性生成的清空按钮时触发',
             'en-US': 'Trigger when the clear button generated by the clearable property is clicked'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'event',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -592,9 +516,8 @@ export default {
             'zh-CN': '在 Input 获得焦点时触发',
             'en-US': 'Trigger when Input obtains focus'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'event',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -605,9 +528,8 @@ export default {
             'zh-CN': '输入值时触发事件',
             'en-US': 'An event is triggered when a value is entered.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'event',
-          mobileDemo: 'events',
           mfDemo: ''
         }
       ],
@@ -632,9 +554,8 @@ export default {
             'zh-CN': '使 input 失去焦点',
             'en-US': 'The input loses focus.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'methods',
-          mobileDemo: 'methods',
           mfDemo: ''
         },
         {
@@ -645,9 +566,8 @@ export default {
             'zh-CN': '使 input 获取焦点',
             'en-US': 'To enable the input to obtain the focus'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'methods',
-          mobileDemo: 'methods',
           mfDemo: ''
         },
         {
@@ -658,9 +578,8 @@ export default {
             'zh-CN': '选中 input 中的文字',
             'en-US': 'Select the text in input.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'methods',
-          mobileDemo: 'methods',
           mfDemo: ''
         }
       ],
@@ -673,9 +592,8 @@ export default {
             'zh-CN': '输入框后置内容，只对 type="text" 有效',
             'en-US': 'Content at the end of the text box. This field is valid only for type="text"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot',
-          mobileDemo: 'slots',
           mfDemo: ''
         },
         {
@@ -686,9 +604,8 @@ export default {
             'zh-CN': '输入框头部内容，只对 type="text" 有效',
             'en-US': 'Content in the header of the text box, which is valid only for type="text"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot',
-          mobileDemo: 'slots',
           mfDemo: ''
         },
         {
@@ -699,9 +616,8 @@ export default {
             'zh-CN': '输入框前置内容，只对 type="text" 有效',
             'en-US': 'Content before the text box, which is valid only for type="text"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot',
-          mobileDemo: 'slots',
           mfDemo: ''
         },
         {
@@ -712,28 +628,9 @@ export default {
             'zh-CN': '输入框尾部内容，只对 type="text" 有效',
             'en-US': 'The content at the end of the text box is valid only for type="text"'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot',
-          mobileDemo: 'slots',
           mfDemo: ''
-        },
-        {
-          name: 'tips',
-          desc: {
-            'zh-CN': '提示信息插槽',
-            'en-US': 'tips slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'slots'
-        },
-        {
-          name: 'title',
-          desc: {
-            'zh-CN': '标题插槽',
-            'en-US': 'title slot'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'slots'
         }
       ]
     }

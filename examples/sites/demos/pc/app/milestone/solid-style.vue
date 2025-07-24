@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div class="demo-milestone">
     <tiny-button @click="handleClick(!isSolid)" style="max-width: cancel">设置 solid 值为 {{ !isSolid }}</tiny-button>
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :solid="isSolid"></tiny-milestone>
   </div>
 </template>
 
 <script lang="jsx">
-import { Milestone, Button } from '@opentiny/vue'
+import { TinyMilestone, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone,
-    TinyButton: Button
+    TinyMilestone,
+    TinyButton
   },
   data() {
     return {
       isSolid: false,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
+        completed: 'var(--tv-color-bg-disabled-control-active)',
         doing: '#7ED321',
         back: '#f5222d',
         end: '#faad14',
@@ -64,3 +64,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

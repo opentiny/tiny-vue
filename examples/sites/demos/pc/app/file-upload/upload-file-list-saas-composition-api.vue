@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { FileUpload as TinyFileUpload } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue'
 
 const action = ref('http://localhost:3000/api/upload')
 const fileList = reactive([
@@ -52,7 +52,7 @@ const fileList = reactive([
     docId: 'M1T2A1N548572512085860353',
     path: 'edm/one/',
     docVersion: 'V1',
-    name: 'test5超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长.doc',
+    name: 'test5 超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长.doc',
     docSize: 17252 * 1024,
     size: 17252 * 1024,
     serverName: 'ShenZhen'

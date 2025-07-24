@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'search',
@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'big',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '大尺寸，配置为true时，搜索框高度将变高。',
@@ -17,19 +17,8 @@ export default {
           mfDemo: 'big-mode'
         },
         {
-          name: 'button-text',
-          type: 'String',
-          defaultValue: '搜索',
-          desc: {
-            'zh-CN': '<p>自定义搜索框按钮的文本内容，默认是‘搜索’</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'button-text'
-        },
-        {
           name: 'change-bg-color',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '可通过 change-bg-color 属性切换背景色(只针对移动端有效)。',
@@ -53,7 +42,7 @@ export default {
         },
         {
           name: 'default-value',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置搜索输入框内的默认搜索值',
@@ -61,6 +50,17 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置是否禁用【3.18.0新增】',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-prefix'
         },
         {
           name: 'is-enter-search',
@@ -105,14 +105,13 @@ export default {
             'zh-CN': '搜索输入框内的提示占位文本',
             'en-US': 'Search for prompt placeholder text in the input box'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'button-text',
           mfDemo: ''
         },
         {
           name: 'search-size',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '通过 size 属性定义输入框尺寸，可选项有 medium、small、mini，默认为 small',
@@ -130,14 +129,13 @@ export default {
             'zh-CN': '搜索类型的选项列表',
             'en-US': 'List of options for search types'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'search-types',
-          mobileDemo: 'default-value',
           mfDemo: ''
         },
         {
           name: 'show-button',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '可通过 show-button 属性对移动端设置按钮搜索。',
@@ -156,17 +154,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: 'size-medium'
-        },
-        {
-          name: 'themeType',
-          type: 'String',
-          defaultValue: 'primary',
-          desc: {
-            'zh-CN': '<p>配置主题色，primary:蓝 gray:灰</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'base'
         },
         {
           name: 'transparent',
@@ -203,17 +190,6 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
           mfDemo: ''
-        },
-        {
-          name: 'v-model/value',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置搜索输入框内的默认搜索值</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'default-value'
         }
       ],
       events: [
@@ -227,9 +203,8 @@ export default {
             'en-US':
               'The callback function triggered upon input completion; value is the search type, input is the current input value'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -240,9 +215,8 @@ export default {
             'zh-CN': '清空值触发的回调函数',
             'en-US': 'Callback function triggered by clearing values'
           },
-          mode: ['pc', 'mobile'],
-          pcDemo: 'events',
-          mobileDemo: 'clear'
+          mode: ['pc'],
+          pcDemo: 'events'
         },
         {
           name: 'input',
@@ -267,9 +241,8 @@ export default {
             'en-US':
               'The callback function triggered when clicking the search button in expansion mode; value is the search type, input is the current input value'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mobileDemo: 'events',
           mfDemo: ''
         },
         {
@@ -281,24 +254,13 @@ export default {
             'zh-CN': '切换类型时触发的回调函数； value 为搜索类型',
             'en-US': 'The callback function triggered when switching types; value is a search type'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mobileDemo: 'clear',
           mfDemo: ''
         }
       ],
       methods: [],
       slots: [
-        {
-          name: 'default',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>自定义搜索框右侧内容</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: ''
-        },
         {
           name: 'poplist',
           type: '',

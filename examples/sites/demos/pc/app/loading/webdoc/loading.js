@@ -71,7 +71,7 @@ export default {
         'en-US': 'Directive'
       },
       desc: {
-        'zh-CN': '<p>通过v-loading使用指令。</p>',
+        'zh-CN': '<p>通过 v-loading 使用指令。</p>',
         'en-US': '<p>Use instructions via v-loading</p>'
       },
       codeFiles: ['directive.vue']

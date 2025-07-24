@@ -2,16 +2,16 @@
   <div>
     <tiny-layout>
       <tiny-row>
-        <tiny-button :icon="IconSearch"> 图标按钮 </tiny-button>
         <tiny-button type="primary" :icon="IconEdit"> 图标按钮 </tiny-button>
+        <tiny-button :icon="IconSearch"> 图标按钮 </tiny-button>
         <tiny-button type="success" :icon="IconYes"> 图标按钮 </tiny-button>
         <tiny-button type="info" :icon="IconMail"> 图标按钮 </tiny-button>
         <tiny-button type="warning" :icon="IconStarO"> 图标按钮 </tiny-button>
         <tiny-button type="danger" :icon="IconDel"> 图标按钮 </tiny-button>
       </tiny-row>
       <tiny-row>
-        <tiny-button :icon="IconSearch"> </tiny-button>
         <tiny-button type="primary" :icon="IconEdit"> </tiny-button>
+        <tiny-button :icon="IconSearch"> </tiny-button>
         <tiny-button type="success" :icon="IconYes"> </tiny-button>
         <tiny-button type="info" :icon="IconMail"></tiny-button>
         <tiny-button type="warning" :icon="IconStarO"></tiny-button>
@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import { Button, Layout, Row } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
 import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyLayout: Layout,
-    TinyRow: Row
+    TinyButton,
+    TinyLayout,
+    TinyRow
   },
   data() {
     return {
@@ -51,6 +51,6 @@ export default {
 .tiny-button {
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 8px;
+  margin-right: 24px;
 }
 </style>

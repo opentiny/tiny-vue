@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import { Select } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select
+    TinySelect
   },
   created() {
     this.parents = [
@@ -119,7 +119,7 @@ export default {
         resolve(parents)
       })
     },
-    // init 表示是否是初始化（mounted里面执行为初始化）
+    // init 表示是否是初始化（mounted 里面执行为初始化）
     initQuery2(value, extraQueryParams, init) {
       const children = this.children.filter((child) => extraQueryParams.includes(child.parent))
 

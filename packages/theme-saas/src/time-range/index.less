@@ -27,7 +27,51 @@
     @apply text-xs;
   }
 
+  &__header-title {
+    @apply hidden;
+  }
+
   &__body {
     @apply border-r border-r-color-bg-3;
+  }
+
+  &__footer {
+    @apply border-t border-t-color-bg-3;
+    @apply py-3 px-4;
+    @apply h-14;
+    @apply leading-8;
+    @apply box-border;
+    @apply flex;
+    @apply justify-between;
+  }
+
+  &__btn {
+    @apply border-none;
+    @apply leading-7;
+    min-width: 72px;
+    @apply h-7;
+    @apply cursor-pointer;
+    @apply bg-transparent;
+    @apply outline-0;
+    @apply p-0;
+    @apply m-0;
+    @apply rounded;
+    @apply text-xs;
+
+    &.cancel {
+      @apply text-color-brand;
+      @apply text-left;
+      @apply rounded;
+    }
+
+    &.confirm {
+      @apply text-color-text-inverse;
+      @apply bg-color-brand;
+      @apply rounded;
+
+      &:hover {
+        @apply bg-color-brand-hover;
+      }
+    }
   }
 }

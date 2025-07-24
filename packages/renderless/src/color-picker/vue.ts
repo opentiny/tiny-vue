@@ -1,72 +1,69 @@
-import type { IColorSelectPanelRef as Ref } from '@/types'
-import Color from './utils/color'
-import { onConfirm, onCancel, onHueUpdate, onSVUpdate, onColorUpdate } from './index'
+import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import type { Ref } from 'vue'
+import { updateModelValue, toggleVisible, useEvent } from './index'
+import { Color } from './utils/color'
 
-export const api = [
-  'state',
-  'changeVisible',
-  'cursor',
-  'onColorUpdate',
-  'onHueUpdate',
-  'onSVUpdate',
-  'onConfirm',
-  'onCancel',
-  'onAlphaUpdate',
-  'alpha'
-]
+export const api = ['state', 'changeVisible', 'onConfirm', 'onCancel', 'onHueUpdate', 'onSVUpdate', 'onColorUpdate']
 
-export const renderless = (props, context, { emit }) => {
-  const { modelValue, visible, predefine, size, history } = context.toRefs(props)
-  const pre = context.ref(modelValue.value ?? 'transparent')
-  const triggerBg = context.ref(pre.value ?? 'transparent')
-  const tmpColor = new Color(triggerBg.value ?? 'transparent')
-  const hex = context.ref(modelValue.value ?? 'transparent')
-  const isShow = context.ref(visible?.value ?? false)
-  const changeVisible = (state: boolean) => {
-    isShow.value = state
-  }
-  const stack: Ref<string[]> = context.ref([...(history?.value ?? [])])
-  const predefineStack: Ref<string[]> = context.ref([...(predefine?.value ?? [])])
-  const state = context.reactive({
-    isShow,
-    hex,
-    triggerBg,
-    defaultValue: modelValue,
-    stack,
-    predefineStack,
-    size: size ?? ''
-  })
-  const api = {
-    state,
-    changeVisible,
-    onCancel: onCancel(tmpColor, triggerBg, isShow, pre, emit),
-    onConfirm: onConfirm(triggerBg, pre, hex, isShow, emit),
-    onHueUpdate: onHueUpdate(tmpColor, triggerBg),
-    onSVUpdate: onSVUpdate(tmpColor, triggerBg),
-    onColorUpdate: onColorUpdate(triggerBg)
-  }
-  context.watch(
+export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: ISharedRenderlessParamUtils) => {
+  const { modelValue, visible, predefine, size, history } = ctx.toRefs(props)
+  const isShow = ctx.ref(visible.value)
+  const hex = ctx.ref(modelValue.value ?? 'transparent')
+  const stack: Ref<string[]> = ctx.ref([...(history?.value ?? [])])
+  const predefineStack: Ref<string[]> = ctx.ref([...(predefine?.value ?? [])])
+  ctx.watch(
     predefine,
     (newPredefine: string[]) => {
       predefineStack.value = [...newPredefine]
     },
     { deep: true }
   )
-  context.watch(
+  ctx.watch(
     history,
     (newHistory: string[]) => {
       stack.value = [...newHistory]
     },
     { deep: true }
   )
-  context.watch(modelValue, (newValue) => {
-    pre.value = newValue
-    hex.value = newValue
-    state.hex = newValue
-    state.triggerBg = newValue
+  const state = ctx.reactive({
+    isShow,
+    hex,
+    triggerBg: ctx.ref(modelValue.value),
+    size,
+    stack,
+    predefineStack,
+    enablePredefineColor: ctx.computed(() => props.enablePredefineColor),
+    enableHistory: ctx.computed(() => props.enableHistory)
   })
-  context.watch(visible, (visible) => {
-    isShow.value = visible
+  const color = new Color({
+    value: props.modelValue,
+    format: props.format,
+    enableAlpha: props.alpha
   })
+  ctx.watch(
+    () => [props.alpha, props.format],
+    () => {
+      color.enableAlpha = props.alpha
+      color.format = props.format || color.format
+      color.onChange()
+      updateModelValue(color.value, emit)
+    }
+  )
+  ctx.watch(
+    () => props.modelValue,
+    () => {
+      color.fromString(props.modelValue)
+      const { r, g, b, a } = color.toRgba()
+      state.hex = `rgba(${r}, ${g}, ${b}, ${a})`
+    }
+  )
+  const changeVisible = toggleVisible(isShow)
+  const { onConfirm, onCancel } = useEvent(state, emit, changeVisible, color)
+  const api = {
+    state,
+    changeVisible,
+    onConfirm,
+    onCancel
+  }
   return api
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="left-panel">
-    <fall-menu :data="dataset">
+    <tiny-fall-menu :data="dataset">
       <template #level1="data">
         <a>{{ `${data.slotScope.title} level1 ` }}</a>
       </template>
@@ -10,16 +10,16 @@
       <template #level3="data">
         <a v-for="(level3, index) in data.slotScope" :href="level3.url" :key="index">{{ `${level3.title} level3 ` }}</a>
       </template>
-    </fall-menu>
+    </tiny-fall-menu>
   </div>
 </template>
 
 <script lang="jsx">
-import { FallMenu } from '@opentiny/vue'
+import { TinyFallMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    FallMenu
+    TinyFallMenu
   },
   data() {
     return {

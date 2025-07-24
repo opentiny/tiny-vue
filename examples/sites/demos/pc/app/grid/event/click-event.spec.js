@@ -14,7 +14,7 @@ test('点击事件', async ({ page }) => {
   await header.dblclick()
   await expect(page.locator('.tiny-modal__body').filter({ hasText: '表头双击名称' })).toBeVisible()
 
-  const cell = page.getByRole('cell', { name: 'GFD科技YX公司' })
+  const cell = page.getByRole('cell', { name: 'GFD 科技 YX 公司' })
 
   // 单元格单击
   await cell.click()

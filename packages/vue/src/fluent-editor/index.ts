@@ -1,4 +1,4 @@
-import FluentEditor from './src/pc.vue'
+import FluentEditor from './src/index'
 import { version } from './package.json'
 
 FluentEditor.model = {
@@ -19,5 +19,7 @@ if (process.env.BUILD_TARGET === 'runtime') {
     FluentEditor.install(window.Vue)
   }
 }
+
+export { defaultToolbar } from '@opentiny/vue-renderless/fluent-editor/options'
 
 export default FluentEditor

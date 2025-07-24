@@ -31,7 +31,7 @@
         ]"
         :style="{
           width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
-          height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null,
+          height: ['top', 'bottom', 'left', 'right'].includes(placement) || dragable ? state.computedHeight : null,
           zIndex
         }"
         v-show="state.visible"
@@ -88,7 +88,7 @@
             :class="['tiny-drawer__body', { 'flex flex-col': flex }, 'drawer-body']"
           >
             <slot>
-              <slot-wrapper :node="customSlots.default"></slot-wrapper>
+              <slot-wrapper :node="customSlots?.default"></slot-wrapper>
             </slot>
           </div>
 
@@ -98,18 +98,12 @@
               <slot-wrapper v-if="customSlots?.footer" :node="customSlots.footer"></slot-wrapper>
 
               <template v-else>
-                <tiny-button
-                  type="primary"
-                  :class="['tiny-drawer__confirm-btn', { reverse: state.btnOrderReversed }]"
-                  @click="handleClose('confirm')"
-                  >{{ t('ui.button.confirm') }}</tiny-button
-                >
-                <tiny-button
-                  plain
-                  :class="['tiny-drawer__cancel-btn', { reverse: state.btnOrderReversed }]"
-                  @click="handleClose('cancel')"
-                  >{{ t('ui.button.cancel') }}</tiny-button
-                >
+                <tiny-button plain class="tiny-drawer__cancel-btn" @click="handleClose('cancel')">{{
+                  t('ui.button.cancel')
+                }}</tiny-button>
+                <tiny-button type="primary" class="tiny-drawer__confirm-btn" @click="handleClose('confirm')">{{
+                  t('ui.button.confirm')
+                }}</tiny-button>
               </template>
             </slot>
           </div>
@@ -156,6 +150,7 @@ export default defineComponent({
     'customClass',
     'placement',
     'width',
+    'height',
     'mask',
     'dragable',
     'maskClosable',

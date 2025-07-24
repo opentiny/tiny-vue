@@ -11,12 +11,12 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox
+    TinyButton,
+    TinyDialogBox
   },
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     onResize(event) {
-      console.log('触发了resize事件', event)
+      console.log('触发了 resize 事件', event)
     }
   }
 }

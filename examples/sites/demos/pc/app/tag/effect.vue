@@ -18,11 +18,11 @@
 </template>
 
 <script lang="jsx">
-import { Tag } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTag: Tag
+    TinyTag
   },
   data() {
     return {
@@ -37,3 +37,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-tag-demo .tiny-tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+</style>

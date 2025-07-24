@@ -1,15 +1,16 @@
 import { test, expect } from '@playwright/test'
 
-test('card类型', async ({ page }) => {
+test('card 类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tab-style-card')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#tab-style-card')
+  const tabs = container.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')
   const firstItem = tabItems.first()
   const item5 = tabItems.nth(4)
   const content = tabs.getByRole('tabpanel')
-  const borderValue = '1px solid rgb(223, 225, 230)'
+  const borderValue = '1px solid rgb(240, 240, 240)'
 
   await expect(tabs).toHaveClass(/tiny-tabs--card/)
   await expect(tabItems).toHaveCount(5)

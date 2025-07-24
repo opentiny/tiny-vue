@@ -32,7 +32,7 @@ export default {
         },
         {
           name: 'size',
-          type: "'medium' | 'small' | 'mini'",
+          type: "'medium' | 'small'",
           defaultValue: "'medium'",
           desc: {
             'zh-CN': '尺寸',
@@ -70,6 +70,7 @@ export default {
     },
     {
       name: 'ITagGroupItemClick',
+      depTypes: ['ITagGroupDataItem'],
       type: 'type',
       code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
     }

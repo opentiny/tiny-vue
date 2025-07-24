@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-color-select-panel__alpha" ref="alphaWrapper">
+  <div class="tiny-color-select-panel__alpha" ref="alphaWrapper" @click="onClick">
     <div
       class="tiny-color-select-panel__alpha__slider"
       :style="{
@@ -11,7 +11,8 @@
       class="tiny-color-select-panel__alpha__thumb"
       :style="{
         top: 0,
-        left: 0
+        left: state.left + 'px',
+        transform: 'translateX(-50%)'
       }"
       ref="alphaThumb"
     ></div>
@@ -23,7 +24,7 @@ import { defineComponent, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/alpha-select/vue'
 
 export default defineComponent({
-  emits: ['alpha-update'],
+  emits: ['ready'],
   props: {
     color: {
       type: Object

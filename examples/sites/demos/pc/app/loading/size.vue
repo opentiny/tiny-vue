@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 export default {
   data() {
@@ -16,15 +16,15 @@ export default {
     }
   },
   mounted() {
-    this.loadingInstance = Loading.service({
+    this.loadingInstance = TinyLoading.service({
       target: document.getElementById('tiny-size-loading1'),
       size: 'small'
     })
-    this.loadingInstance = Loading.service({
+    this.loadingInstance = TinyLoading.service({
       target: document.getElementById('tiny-size-loading2'),
       size: 'medium'
     })
-    this.loadingInstance = Loading.service({
+    this.loadingInstance = TinyLoading.service({
       target: document.getElementById('tiny-size-loading3'),
       size: 'large'
     })

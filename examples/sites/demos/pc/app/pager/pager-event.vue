@@ -9,11 +9,21 @@
     <div class="title">每页条目数和当前页同时改变：</div>
     <tiny-pager :total="100" :current-page="10" mode="number" @current-change="fetchData" @size-change="fetchData">
     </tiny-pager>
+    <div class="title">改变current-page触发事件：</div>
+    <tiny-button @click="currentPage = 1">改变current-page</tiny-button>
+    <tiny-pager
+      :total="100"
+      :current-page="currentPage"
+      mode="number"
+      change-compat
+      @current-change="dataChangeTrigger"
+    >
+    </tiny-pager>
   </div>
 </template>
 
 <script>
-import { Pager, Modal } from '@opentiny/vue'
+import { TinyPager, TinyModal, TinyButton } from '@opentiny/vue'
 
 function debounce(fn, delay = 50) {
   let timer
@@ -29,39 +39,51 @@ function debounce(fn, delay = 50) {
 
 export default {
   components: {
-    TinyPager: Pager
+    TinyPager,
+    TinyButton
+  },
+  data() {
+    return {
+      currentPage: 10
+    }
   },
   methods: {
     handleCurrentChange(val) {
-      Modal.message({
-        message: `current-change 事件，当前页: ${val}`,
+      TinyModal.message({
+        message: `current-change 事件，当前页：${val}`,
         status: 'info'
       })
     },
     handleSizeChange(val) {
-      Modal.message({
-        message: `size-change 事件，每页条目数: ${val}`,
+      TinyModal.message({
+        message: `size-change 事件，每页条目数：${val}`,
         status: 'info'
       })
     },
     prevClick(val) {
-      Modal.message({
-        message: `prev-click 事件，当前页: ${val}`,
+      TinyModal.message({
+        message: `prev-click 事件，当前页：${val}`,
         status: 'info'
       })
     },
     nextClick(val) {
-      Modal.message({
-        message: `next-click 事件，当前页: ${val}`,
+      TinyModal.message({
+        message: `next-click 事件，当前页：${val}`,
         status: 'info'
       })
     },
     fetchData: debounce(() => {
-      Modal.message({
+      TinyModal.message({
         message: '模拟后台拉取数据',
         status: 'info'
       })
-    })
+    }),
+    dataChangeTrigger() {
+      TinyModal.message({
+        message: 'current-change 事件触发',
+        status: 'info'
+      })
+    }
   }
 }
 </script>
@@ -72,5 +94,8 @@ export default {
   margin-bottom: 4px;
   font-size: 16px;
   font-weight: bold;
+}
+.tiny-button {
+  margin-top: 12px;
 }
 </style>

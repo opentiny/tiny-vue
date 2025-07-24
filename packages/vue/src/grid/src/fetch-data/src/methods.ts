@@ -1,6 +1,7 @@
-import { getObj } from '@opentiny/vue-renderless/common/object'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { getObj } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
 import { error } from '../../tools'
+
 export default {
   /**
    * 初始化fetch-data配置项
@@ -11,8 +12,15 @@ export default {
 
     if (fetchData.api || dataset.source || dataset.value || dataset.api) {
       const { loading, fields, api, reloadConfig } = fetchData || dataset.source || dataset.api || {}
-      const isReloadFilter = reloadConfig && reloadConfig.filter
-      return { api, dataset, fields, loading, isReloadFilter }
+      let isReloadFilter = false
+      let isReloadScroll = false
+
+      if (reloadConfig) {
+        isReloadFilter = Boolean(reloadConfig.filter)
+        isReloadScroll = Boolean(reloadConfig.scroll)
+      }
+
+      return { api, dataset, fields, loading, isReloadFilter, isReloadScroll }
     }
   },
   handleFetch(code, sortArg) {

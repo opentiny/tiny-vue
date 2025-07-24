@@ -17,7 +17,7 @@ export default {
       'name': { 'zh-CN': '单选配置项', 'en-US': 'Disable a single option' },
       'desc': {
         'zh-CN':
-          '<p> <code>radio-config</code> 配置项,可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
+          '<p> <code>radio-config</code> 配置项，可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
         'en-US':
           '<p>Single choice mode. The attribute <code>checkMethod</code> of the <code>radio-config</code> configuration item is used to determine which data items are disabled. The method determines each data item. If the return value is <code>true</code> or <code>false</code>, the data item is enabled or disabled. </p>\n'
       },
@@ -56,18 +56,17 @@ export default {
       'name': { 'zh-CN': '翻页后保留选中状态', 'en-US': 'Manually select a line' },
       'desc': {
         'zh-CN':
-          '<p>通过配置<code>select-config</code>中的<code>reserve</code>为<code>true</code> 并设置<code>row-id</code>，开启翻页后保留选中状态功能。</p>\n',
+          '<p>通过设置 <code>select-config</code> 中的 <code>reserve</code> 为 <code>true</code> 并设置 <code>row-id</code>，开启翻页后保留选中状态功能。通过 <code>getAllSelection</code> 获取所有翻页选中数据。</p>\n',
         'en-US':
-          '<p> <code>setRadioRow(row)</code> is used to select a single line and set the selected status of a line. </p>\n'
+          '<p>By setting the <code>reserve</code> in <code>select-config</code> to <code>true</code> and setting <code>row-id</code>, you can enable the function of keeping the selected state after page turning. Get all flip selection data via <code>getAllSelection</code>.</p>\n'
       },
       'codeFiles': ['operation-column/grid-pager-reserve.vue']
     },
     {
       'demoId': 'operation-column-custom-operation-column',
-      'name': { 'zh-CN': '自定义操作列内容。', 'en-US': '' },
+      'name': { 'zh-CN': '自定义操作列内容', 'en-US': '' },
       'desc': {
-        'zh-CN':
-          '<p>通过插槽设置自定义操作列，即 <code>&lt;tiny-grid-column&gt;</code> 自定义操作列内容 <code>&lt;/tiny-grid-column&gt;</code> 。</p>\n',
+        'zh-CN': '<p>通过默认插槽设置自定义操作列。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['operation-column/custom-operation-column.vue']

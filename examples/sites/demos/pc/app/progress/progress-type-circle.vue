@@ -1,22 +1,22 @@
 <template>
   <div>
     <tiny-button @click="add">增加</tiny-button>
-    <tiny-progress type="circle" :percentage="percentage" status="exception" :width="150"></tiny-progress>
-    <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="300"> </tiny-progress>
+    <tiny-progress type="circle" :percentage="percentage" status="exception" :width="124"></tiny-progress>
+    <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="124"> </tiny-progress>
   </div>
 </template>
 
 <script lang="jsx">
-import { Progress, Button } from '@opentiny/vue'
+import { TinyProgress, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProgress: Progress,
-    TinyButton: Button
+    TinyProgress,
+    TinyButton
   },
   data() {
     return {
-      percentage: 10,
+      percentage: 50,
       customColors: [
         { color: '#f56c6c', percentage: 20 },
         { color: '#e6a23c', percentage: 40 },

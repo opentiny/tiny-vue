@@ -1,5 +1,5 @@
 import Modal from '@opentiny/vue-modal'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { $prefix } from '@opentiny/vue-common'
 import { version } from './package.json'
 

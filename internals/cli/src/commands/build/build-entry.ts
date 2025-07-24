@@ -19,7 +19,6 @@ const outputDir = 'packages/vue'
 const fileNames = {
   all: 'index.ts',
   pc: 'pc.ts',
-  mobile: 'mobile.ts',
   'mobile-first': 'mobile-first.ts'
 }
 
@@ -79,7 +78,7 @@ const createEntry = (mode) => {
   const PKGDeps = {}
 
   components.forEach((item) => {
-    if (item.inEntry !== false && !excludeComponents.includes(item.name)) {
+    if (item.inEntry !== false && !excludeComponents.includes(item.name) && !item.name.includes('Huicharts')) {
       const component = capitalizeKebabCase(item.name)
       PKGDeps[item.importName] = 'workspace:~'
       componentsTemplate.push(`  ${component}`)
@@ -100,10 +99,14 @@ const createEntry = (mode) => {
       include: includeTemplate.join(endOfLine),
       components: componentsTemplate.join(joinStr),
       exportComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}${component} as Tiny${component.trim()}`)
+        .map((component) => {
+          return `${component}${joinStr}${component} as Tiny${component.trim()}`
+        })
         .join(joinStr),
       defaultComponents: componentsTemplate
-        .map((component) => `${component}${joinStr}Tiny${component.trim()}: ${component}`)
+        .map((component) => {
+          return `${component}${joinStr}Tiny${component.trim()}: ${component}`
+        })
         .join(joinStr)
     }
   })
@@ -114,9 +117,7 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile-first'].forEach(createEntry)
 
-  logGreen(
-    `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`
-  )
+  logGreen(`npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile-first.ts]`)
 }

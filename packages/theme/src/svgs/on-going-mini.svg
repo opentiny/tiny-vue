@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="3.导航类-Navigation/步骤条-Steps/节点/横向单链型/垂直节点/mini-进行中" transform="translate(-14.000000, -4.000000)" fill="#0067D1">
-            <circle id="椭圆形" cx="18" cy="8" r="4"></circle>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<rect id="矩形备份" class="st0"/>
+<circle id="cloudx-action--state" class="st1" cx="8" cy="8" r="8"/>
 </svg>

@@ -22,9 +22,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 <code>month</code> / <code>timeline</code> / <code>schedule</code>。</p>\n',
+          '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 <code>month</code> / <code>timeline</code> / <code>schedule</code>。通过<code>show-back-today</code> 属性控制左侧按钮显示。</p>\n',
         'en-US':
-          '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are <code>month</code> / <code>timeline</code> / <code>schedule</code>. </p>\n'
+          '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are <code>month</code> / <code>timeline</code> / <code>schedule</code>. Control the display of the left button through the<code>show back today</code>attribute.</p>\n'
       },
       codeFiles: ['calendar-mode.vue']
     },

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>场景1：组件默认过滤</p>
+    <p>场景 1：组件默认过滤</p>
+    <br />
     <tiny-select v-model="value1" ref="selectRef" filterable no-match-text="No Match">
       <tiny-option
         v-for="item in options"
@@ -11,7 +12,9 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>场景2：自定义过滤</p>
+    <br /><br />
+    <p>场景 2：自定义过滤</p>
+    <br />
     <tiny-select
       v-model="value2"
       ref="customFilterRef"
@@ -34,14 +37,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
+import { TinySelect, TinyOption } from '@opentiny/vue'
 
 const options = ref([
-  { value: '选项1', label: '北京' },
-  { value: '选项2', label: '上海' },
-  { value: '选项3', label: '天津' },
-  { value: '选项4', label: '重庆' },
-  { value: '选项5', label: '深圳' }
+  { value: '选项 1', label: '北京' },
+  { value: '选项 2', label: '上海' },
+  { value: '选项 3', label: '天津' },
+  { value: '选项 4', label: '重庆' },
+  { value: '选项 5', label: '深圳' }
 ])
 const value1 = ref('')
 const value2 = ref('')

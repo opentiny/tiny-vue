@@ -5,17 +5,17 @@
 </template>
 
 <script lang="jsx">
-import { ChartLiquidfill } from '@opentiny/vue'
+import { TinyHuichartsLiquidfill } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyLiquidfill: ChartLiquidfill
+    TinyLiquidfill: TinyHuichartsLiquidfill
   },
   data() {
     return {
       options: {
         label: {
-          formatter: '{a}\n\n购房比: {c}',
+          formatter: '{a}\n\n购房比：{c}',
           fontSize: 40
         },
         legend: {

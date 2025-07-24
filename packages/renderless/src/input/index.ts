@@ -10,14 +10,9 @@
  *
  */
 
-import { omitText } from '../common/string'
-import type {
-  IInputApi,
-  IInputClassPrefixConstants,
-  IInputRenderlessParamUtils,
-  IInputRenderlessParams,
-  IInputState
-} from 'types/input.type'
+import { omitText } from '@opentiny/utils'
+import { isServer } from '@opentiny/utils'
+import type { IInputApi, IInputRenderlessParamUtils, IInputRenderlessParams, IInputState } from 'types/input.type'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -52,7 +47,6 @@ const STYLE = {
   BorderBottomWidth: 'border-bottom-width'
 }
 
-const isServer = typeof window === 'undefined'
 const isKorean = (text: string): boolean => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
 
 export const showBox = (state: IInputState) => (): void => {
@@ -276,7 +270,7 @@ export const resizeTextarea =
 
     const { autosize, type } = parent
 
-    if (type !== 'textarea') {
+    if (type !== 'textarea' || !vm.$refs.textarea) {
       return
     }
 
@@ -289,7 +283,7 @@ export const resizeTextarea =
       return
     }
 
-    if (!autosize) {
+    if (!autosize || state.isDisplayOnly) {
       state.textareaCalcStyle = {
         minHeight: api.calcTextareaHeight(vm.$refs.textarea).minHeight
       }
@@ -340,11 +334,9 @@ export const handleCompositionEnd =
   }
 
 export const calcIconOffset =
-  ({ CLASS_PREFIX, parent }: Pick<IInputRenderlessParams, 'parent'> & { CLASS_PREFIX: IInputClassPrefixConstants }) =>
+  ({ vm, parent }: Pick<IInputRenderlessParams, 'parent' | 'vm'>) =>
   (place: 'prefix' | 'suffix'): void => {
-    const elList = [].slice.call(
-      parent.$el.querySelectorAll(`.${CLASS_PREFIX.Input}${place}`) || []
-    ) as unknown as HTMLElement[]
+    const elList = vm.$refs[place] ? [vm.$refs[place]] : []
 
     if (!elList.length) {
       return
@@ -367,11 +359,11 @@ export const calcIconOffset =
     const pendant = pendantMap[place]
 
     if (parent.$slots[pendant]) {
-      const dom = parent.$el.querySelector(`.${CLASS_PREFIX.InputGroup}${pendant}`)
+      const dom = vm.$refs[pendant]
       let transform
 
       if (place === 'suffix') {
-        transform = `translateX(-${dom.offsetWidth}px)`
+        transform = `translateX(-${dom.offsetWidth}px) translateY(-50%)`
       } else if (place === 'prefix') {
         transform = `translate(${dom.offsetWidth}px, -50%)`
       }
@@ -462,7 +454,13 @@ export const handleEnterDisplayOnlyContent =
         const font = window.getComputedStyle(target).font
         const rect = target.getBoundingClientRect()
         const iconWidth = 16 + 15 // 减去图标的宽度加上右边距
-        isOverTextWhenMask = omitText(text, font, rect.width - iconWidth).o
+        /*
+            1、omitText使用canvas来计算文字渲染后宽度来计算有没有文本超长
+            2、html标签换行情况下，会导致textContent比原文本多出前后空格，导致canvas计算宽度比html实际渲染宽度大，最终误判
+            3、将文本内容去除前后空格，再交给canvas计算宽度，消除空格带来的误差
+          */
+        const calcText = text?.trim() || ''
+        isOverTextWhenMask = omitText(calcText, font, rect.width - iconWidth).o
       }
 
       if (isOverTextWhenMask) {
@@ -511,6 +509,10 @@ export const setInputDomValue =
 export const handleEnterTextarea =
   ({ api, state, props, nextTick }) =>
   () => {
+    // 如果正在拖拽中，则不触发展开
+    if (state.isDragging) {
+      return
+    }
     if (props.hoverExpand && !state.isDisplayOnly) {
       state.enteredTextarea = true
       nextTick(api.resizeTextarea)
@@ -520,6 +522,9 @@ export const handleEnterTextarea =
 export const handleLeaveTextarea =
   ({ api, state, props, nextTick, vm }) =>
   () => {
+    if (state.isDragging) {
+      return
+    }
     if (props.hoverExpand && !state.isDisplayOnly) {
       state.enteredTextarea = false
       nextTick(() => {
@@ -568,4 +573,20 @@ export const setShowMoreBtn =
         state.showMoreBtn = false
       }
     }, 100)
+  }
+
+// tiny新增，同步勿删
+export const handleTextareaMouseDown =
+  ({ state }) =>
+  () =>
+    (state.isDragging = true)
+
+// tiny新增，同步勿删
+export const handleTextareaMouseUp =
+  ({ state, api }) =>
+  (isOutside) => {
+    state.isDragging = false
+    if (isOutside) {
+      api.handleLeaveTextarea()
+    }
   }

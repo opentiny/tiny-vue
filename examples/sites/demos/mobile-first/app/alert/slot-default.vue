@@ -38,12 +38,12 @@
 </template>
 
 <script>
-import { Alert, Button } from '@opentiny/vue'
+import { TinyAlert, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinyButton: Button
+    TinyAlert,
+    TinyButton
   },
   data() {
     return {

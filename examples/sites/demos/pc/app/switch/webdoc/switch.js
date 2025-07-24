@@ -27,6 +27,18 @@ export default {
       codeFiles: ['mini-mode.vue']
     },
     {
+      demoId: 'loading',
+      name: {
+        'zh-CN': '加载中状态',
+        'en-US': 'Loading status'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>loading</code> 设置开关显示加载状态。</p>',
+        'en-US': '<p>Set the switch to display the loading status through<code>loading</code>.'
+      },
+      codeFiles: ['loading.vue']
+    },
+    {
       demoId: 'custom-open-close',
       name: {
         'zh-CN': '自定义开关显示',
@@ -78,6 +90,19 @@ export default {
         'en-US': '<p>Set the switch disable status through <code>disabled</code> . </p>'
       },
       codeFiles: ['dynamic-disable.vue']
+    },
+    {
+      demoId: 'custom-open-close-icon',
+      name: {
+        'zh-CN': '自定义开关图标',
+        'en-US': 'Custom switch icon'
+      },
+      desc: {
+        'zh-CN': '<p>通过具名插槽 <code>active-icon</code> 和 <code>inactive-icon</code> 自定义开关图标。</p>',
+        'en-US':
+          '<p>Customize switch icons through named slots<code>active icon</code>and<code>inactive icon</code> .</p>'
+      },
+      codeFiles: ['custom-open-close-icon.vue']
     },
     {
       demoId: 'event-change',

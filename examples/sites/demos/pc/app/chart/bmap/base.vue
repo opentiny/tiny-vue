@@ -5,17 +5,17 @@
 </template>
 
 <script lang="jsx">
-import { BaiduMap } from '@opentiny/vue'
+import { TinyHuichartsBmap } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyBaiduMap: BaiduMap
+    TinyBaiduMap: TinyHuichartsBmap
   },
   data() {
     return {
       options: {
         key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
-        url: 'https://api.map.baidu.com/api', // 百度地图接口的url地址
+        url: 'https://api.map.baidu.com/api', // 百度地图接口的 url 地址
         v: '1.4.3',
         bmap: {
           resizeEnable: true,

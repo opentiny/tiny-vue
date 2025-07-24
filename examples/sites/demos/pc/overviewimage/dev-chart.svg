@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>开发中图表组件</title>
+    <defs>
+        <linearGradient x1="44.0988019%" y1="82.2386168%" x2="128.792906%" y2="-32.1088266%" id="linearGradient-1">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="63.4956023%" x2="128.792906%" y2="15.6279277%" id="linearGradient-2">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-3">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="组件总览" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-Vue-组件总览2" transform="translate(-696.000000, -1434.000000)">
+            <g id="编组-17备份-2" transform="translate(598.000000, 1401.000000)">
+                <g id="开发中图表组件" transform="translate(98.000000, 33.000000)">
+                    <g id="编组"></g>
+                    <g id="编组-2" transform="translate(29.000000, 36.000000)">
+                        <path d="M7,0 L16.3490363,0 L16.3490363,0 L61,0 C63.209139,-4.05812251e-16 65,1.790861 65,4 L65,54 C65,56.209139 63.209139,58 61,58 L7,58 C4.790861,58 3,56.209139 3,54 L3,4 C3,1.790861 4.790861,4.05812251e-16 7,0 Z" id="矩形" fill="url(#linearGradient-1)" opacity="0.204287574"></path>
+                        <path d="M3,5 L49,5 C50.1045695,5 51,5.8954305 51,7 L51,20 C51,21.1045695 50.1045695,22 49,22 L0,22 L0,22 L0,8.69218242 L3,5 Z" id="矩形" fill="#5073E5"></path>
+                        <polygon id="矩形备份-32" fill="#3E5DC0" points="0 8.98530819 3 5 3 22 0 24.9853082"></polygon>
+                        <polygon id="矩形备份-33" fill="#243D8C" transform="translate(1.500000, 24.096418) scale(-1, 1) translate(-1.500000, -24.096418) " points="0 26.9957245 3 24.0301261 0 21.1971118"></polygon>
+                        <text id="开发中" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" fill="#FFFFFF">
+                            <tspan x="10.7588235" y="18">开发中</tspan>
+                        </text>
+                    </g>
+                    <g id="图表-饼图" transform="translate(44.000000, 63.000000)">
+                        <polygon id="路径" fill="url(#linearGradient-2)" opacity="0.303770519" points="2.71428571 2 0 2 0 25 38 25 38 22.5313943 2.71428571 22.5313943"></polygon>
+                        <path d="M18.375,1.25 C13.1982839,1.25 9,5.44828391 9,10.625 C9,15.8017161 13.1982839,20 18.375,20 C23.5517161,20 27.75,15.8017161 27.75,10.625 L18.375,10.625 L18.375,1.25 Z" id="路径" fill="url(#linearGradient-3)" opacity="0.604724702"></path>
+                        <path d="M20.25,0 L20.25,8.75 L29,8.75 C29,3.91683329 25.0809798,0 20.25,0 Z" id="路径" fill="url(#linearGradient-3)" opacity="0.604724702"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

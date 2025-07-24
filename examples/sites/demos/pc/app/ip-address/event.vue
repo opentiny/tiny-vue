@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { IpAddress, Modal } from '@opentiny/vue'
+import { TinyIpAddress, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyIpAddress: IpAddress
+    TinyIpAddress
   },
   data() {
     return {
@@ -26,19 +26,19 @@ export default {
   },
   methods: {
     handleBlur: () => {
-      Modal.message({ message: 'blur 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'blur 事件触发了', status: 'info' })
     },
     handleChange: () => {
-      Modal.message({ message: 'change 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'change 事件触发了', status: 'info' })
     },
     handleFocus: () => {
-      Modal.message({ message: 'focus 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'focus 事件触发了', status: 'info' })
     },
     handleInput: () => {
-      Modal.message({ message: 'input 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'input 事件触发了', status: 'info' })
     },
     handleSelect: () => {
-      Modal.message({ message: 'select 事件触发了', status: 'info' })
+      TinyModal.message({ message: 'select 事件触发了', status: 'info' })
     }
   }
 }

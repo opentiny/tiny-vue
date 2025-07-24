@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem } from '@opentiny/vue'
 </script>
 
 <style scoped>
@@ -21,7 +21,7 @@ import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem } from '@ope
 }
 
 .carousel-item-demo:nth-child(2n) {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {

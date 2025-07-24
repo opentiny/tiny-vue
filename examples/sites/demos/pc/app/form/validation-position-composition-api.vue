@@ -16,13 +16,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  DatePicker as TinyDatePicker,
-  Button as TinyButton
-} from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyDatePicker, TinyButton } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 
@@ -36,7 +30,7 @@ const createData = reactive({
 const rules = ref({
   users: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: 'blur' }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'blur' }
   ],
   datepicker: { type: 'date' }
 })

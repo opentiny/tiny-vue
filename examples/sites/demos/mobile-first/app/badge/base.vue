@@ -40,16 +40,16 @@
 </template>
 
 <script>
-import { Badge } from '@opentiny/vue'
-import { UserHead } from '@opentiny/vue'
-import { UserContact } from '@opentiny/vue'
+import { TinyBadge } from '@opentiny/vue'
+import { TinyUserHead } from '@opentiny/vue'
+import { TinyUserContact } from '@opentiny/vue'
 import { IconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyBadge: Badge,
-    TinyUserHead: UserHead,
-    TinyUserContact: UserContact
+    TinyBadge,
+    TinyUserHead,
+    TinyUserContact
   },
   data() {
     return {

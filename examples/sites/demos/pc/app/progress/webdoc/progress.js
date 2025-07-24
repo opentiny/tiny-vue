@@ -56,6 +56,18 @@ export default {
       codeFiles: ['progress-status.vue']
     },
     {
+      demoId: 'slot-icon-status',
+      name: {
+        'zh-CN': '图标状态插槽',
+        'en-US': 'Icon Status Slot'
+      },
+      desc: {
+        'zh-CN': '通过插槽自定义状态图标。',
+        'en-US': 'Customize the status icon through a slot.'
+      },
+      codeFiles: ['slot-icon-status.vue']
+    },
+    {
       demoId: 'custom-status',
       name: {
         'zh-CN': '自定义状态场景',
@@ -75,7 +87,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>type="circle"</code> 设置为圆环类型，<code>type="dashboard"</code> 则为C型圆环类型; <code>width</code> 设置环形进度条画布宽度，默认值为126px。',
+          '通过 <code>type="circle"</code> 设置为圆环类型，<code>type="dashboard"</code> 则为 C 型圆环类型; <code>width</code> 设置环形进度条画布宽度，默认值为 126px。',
         'en-US':
           'Set<code>type="circle"</code>to the circular type, and<code>type="dashboard"</code>to the C-shaped circular type< Code>width</code>Set the width of the circular progress bar canvas, with a default value of 126px.'
       },

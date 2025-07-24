@@ -8,6 +8,9 @@ export type IButtonGroupProps = ExtractPropTypes<typeof buttonGroupProps>
 export interface IButtonGroupItemClass {
   disabled?: boolean
   plain?: boolean
+  medium?: boolean
+  small?: boolean
+  mini?: boolean
 }
 
 // 可以通过textField和validField指定建值，因此属性都为可选

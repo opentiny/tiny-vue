@@ -9,7 +9,7 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit()"> 注册 </tiny-button>
-        <tiny-button type="primary" @click="changeRule"> 改变校验规则 </tiny-button>
+        <tiny-button @click="changeRule"> 改变校验规则 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 const createData = reactive({
@@ -37,7 +37,7 @@ const isValidate = ref(true)
 const rules = ref({
   username: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
   ],
   password: [
     { required: true, message: '必填', trigger: 'blur' },
@@ -55,7 +55,7 @@ function changeRule() {
   rules.value = {
     username: [
       { required: true, message: '必填', trigger: 'blur' },
-      { min: 2, max: 11, message: '长度必须不小于2', trigger: 'change' }
+      { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'change' }
     ]
   }
 }

@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartGauge } from '@opentiny/vue'
+import { TinyHuichartsGauge } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyGauge: ChartGauge
+    TinyGauge: TinyHuichartsGauge
   },
   data() {
     return {

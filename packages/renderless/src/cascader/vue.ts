@@ -44,9 +44,9 @@ import {
   handleMouseenter,
   handleMouseleave
 } from './index'
-import { removeResizeListener } from '../common/deps/resize-event'
-import userPopper from '../common/deps/vue-popper'
-import { DATEPICKER } from '../common'
+import { removeResizeListener } from '@opentiny/utils'
+import { userPopper } from '@opentiny/vue-hooks'
+import { DATEPICKER } from '@opentiny/utils'
 import type {
   ICascaderProps,
   ICascaderApi,
@@ -86,7 +86,8 @@ const initState = ({
   t,
   constants,
   vm,
-  inject
+  inject,
+  designConfig
 }: {
   reactive: ISharedRenderlessFunctionParams<null>['reactive']
   props: ICascaderProps
@@ -97,6 +98,7 @@ const initState = ({
   constants: ICascaderConstants
   vm: ICascadeRenderlessParamUtils['vm']
   inject: ISharedRenderlessFunctionParams<null>['inject']
+  designConfig: ISharedRenderlessFunctionParams<null>['designConfig']
 }) => {
   const state = reactive({
     showAutoWidth: inject('showAutoWidth', null),
@@ -130,7 +132,9 @@ const initState = ({
     collapseTagsLength: 0,
     isHidden: false,
     tooltipVisible: false,
-    tooltipContent: ''
+    tooltipContent: '',
+    tagTypeWhenMultiple: designConfig?.tagTypeWhenMultiple || '',
+    userChangeValue: false
   })
 
   return state as ICascaderState
@@ -185,7 +189,7 @@ const initApi = ({
     watchValue: watchValue({ api, state }),
     computePresentTags: computePresentTags({ api, props, state }),
     computePresentContent: computePresentContent({ api, state }),
-    watchCheckedValue: watchCheckedValue({ constants, dispatch, api, nextTick, emit, state }),
+    watchCheckedValue: watchCheckedValue({ constants, dispatch, api, nextTick, emit, state, props }),
     toggleDropDownVisible: toggleDropDownVisible({ emit, vm, state, updatePopper }),
     selfMounted: selfMounted({ api, parent, props, vm, state }),
     handleBeforeUpdate: handleBeforeUpdate({ props, api, state }),
@@ -214,7 +218,7 @@ const initWatch = ({
 }) => {
   watch(() => state.disabled, api.computePresentContent)
 
-  watch(() => props.modelValue, api.watchValue)
+  watch(() => props.modelValue, api.watchValue) // 用户在修改值，不必触发change
 
   watch(() => state.checkedValue, api.watchCheckedValue)
 
@@ -270,7 +274,7 @@ export const renderless = (
     watch,
     inject
   }: ISharedRenderlessFunctionParams<null>,
-  { t, emit, nextTick, constants, parent, slots, dispatch, vm }: ICascadeRenderlessParamUtils
+  { t, emit, nextTick, constants, parent, slots, dispatch, vm, designConfig }: ICascadeRenderlessParamUtils
 ) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
@@ -296,7 +300,18 @@ export const renderless = (
   } as any)
 
   const api: Partial<ICascaderApi> = {}
-  const state = initState({ reactive, props, computed, parent, api: api as ICascaderApi, t, constants, vm, inject })
+  const state = initState({
+    reactive,
+    props,
+    computed,
+    parent,
+    api: api as ICascaderApi,
+    t,
+    constants,
+    vm,
+    inject,
+    designConfig
+  })
 
   initApi({ api: api as ICascaderApi, state, constants, dispatch, emit, vm, props, updatePopper, nextTick, parent, t })
 

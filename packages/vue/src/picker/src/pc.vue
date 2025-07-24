@@ -1,5 +1,6 @@
 <template>
-  <div ref="reference" class="tiny-date-container">
+  <!-- TODO: 后续去掉 tiny-date-container -->
+  <div ref="reference" class="tiny-picker tiny-date-container">
     <tiny-filter-box
       v-if="shape === 'filter'"
       v-clickoutside.mousedown="handleClose"
@@ -67,7 +68,7 @@
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
       :class="[
         'tiny-date-editor--' + state.type,
-        state.pickerSize ? `tiny-range-editor--${state.pickerSize}` : '',
+        state.pickerSize ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}` : '',
         state.pickerDisabled ? 'is-disabled' : '',
         state.pickerVisible ? 'is-active' : '',
         state.isDisplayOnly ? 'is-display-only' : ''
@@ -122,7 +123,7 @@
           <component :is="state.showClose ? clearIcon : null" />
         </transition>
       </i>
-      <i class="tiny-input__icon tiny-range__icon tiny-input__suffix" v-if="!state.isDisplayOnly">
+      <i v-if="!state.isDisplayOnly" class="tiny-input__icon tiny-range__icon tiny-input__suffix">
         <component :is="state.triggerClass" />
       </i>
       <tiny-tooltip
@@ -137,17 +138,20 @@
       </tiny-tooltip>
     </div>
     <component
+      v-show="state.pickerVisible"
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
       :time-editable="timeEditable"
       :format-weeks="formatWeeks"
+      :now-click="nowClick"
       ref="picker"
-      :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
-    ></component>
+    >
+      <slot name="now"></slot>
+    </component>
   </div>
 </template>
 
@@ -155,7 +159,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/picker/vue'
 import { setup, directive, defineComponent } from '@opentiny/vue-common'
 import Input from '@opentiny/vue-input'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import DatePanel from '@opentiny/vue-date-panel'
 import DateRangePanel from '@opentiny/vue-date-range'
 import MonthRangePanel from '@opentiny/vue-month-range'

@@ -18,7 +18,7 @@
           @remove="handleRemove"
         >
           <template #trigger>
-            <tiny-button type="primary">选取文件</tiny-button>
+            <tiny-button>选取文件</tiny-button>
           </template>
           <template #tip>
             <div class="tiny-upload__tip">只能上传 jpg/png 文件</div>
@@ -31,14 +31,14 @@
 </template>
 
 <script>
-import { Form, FormItem, FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     const validatePass = (rule, value, callback) => {
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     uploadSuccess() {
-      // 模拟上传成功后，返回的数据信息,以此通过validatePass的校验
+      // 模拟上传成功后，返回的数据信息，以此通过 validatePass 的校验
       this.createData.files = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/book.jpg`
 
       // 上传成功后再进行表单验证
@@ -78,9 +78,9 @@ export default {
     formValidate() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('校验通过')
+          TinyModal.alert('校验通过')
         } else {
-          Modal.message({ message: '校验不通过', status: 'warning' })
+          TinyModal.message({ message: '校验不通过', status: 'warning' })
           return false
         }
       })

@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu
+    TinyActionMenu
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+          children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
         }
       ]
     }

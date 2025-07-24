@@ -1,12 +1,24 @@
-import { extend } from '../common/object'
-import { isNull } from '../common/type'
-import { xss } from '../common/xss'
+import { extend } from '@opentiny/utils'
+import { isNull } from '@opentiny/utils'
+import { xss } from '@opentiny/utils'
 import { set } from '../chart-core/deps/utils'
-import { on, off } from '../common/deps/dom'
-import PopupManager from '../common/deps/popup-manager'
+import { on, off } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
 
 export const init =
-  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm }) =>
+  ({
+    api,
+    emit,
+    props,
+    service,
+    state,
+    FluentEditor,
+    UploaderDfls,
+    defaultOptions,
+    vm,
+    useBreakpoint,
+    simpleToolbar
+  }) =>
   () => {
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
@@ -31,6 +43,13 @@ export const init =
     }
 
     api.setToolbarTips()
+
+    const { current } = useBreakpoint()
+    if (current.value === 'default') {
+      state.innerOptions.modules.toolbar = simpleToolbar
+    }
+
+    props.beforeEditorInit?.(FluentEditor)
 
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)
@@ -84,6 +103,10 @@ export const checkTableISEndElement = (element) => {
   }
 }
 
+const isSvg = (str) => {
+  return str.trim().startsWith('<svg')
+}
+
 const setIcons = ({ api, vm, iconOption, FluentEditor, keys = [] }) => {
   for (const key in iconOption) {
     if (Object.hasOwnProperty.call(iconOption, key)) {
@@ -92,8 +115,7 @@ const setIcons = ({ api, vm, iconOption, FluentEditor, keys = [] }) => {
       if (typeof option === 'object') {
         setIcons({ api, vm, iconOption: option, FluentEditor, keys: [...keys, key] })
       } else {
-        const iconElm = vm.$refs[option] && vm.$refs[option][0]
-        const outerHtml = api.getOuterHTML(iconElm)
+        const outerHtml = isSvg(option) ? option : api.getOuterHTML(vm.$refs[option]?.[0])
 
         if (option && outerHtml) {
           const k = keys.length ? [...keys, key].join('.') : key
@@ -174,18 +196,16 @@ export const handleCompositionend =
         state.quill.root.classList.add('ql-blank')
       }
     } else {
-      let data = state.quill.container.innerHTML,
-        range = state.quill.getSelection(true)
+      let data = state.quill.container.innerHTML
+      let range = state.quill.getSelection(true)
       const [mentionItem, offset] = state.quill.getLeaf(range.index)
 
-      if (mentionItem.statics.blotName === 'break' || (mentionItem.statics.blotName === 'text' && offset === 0)) {
-        state.quill.clipboard.dangerouslyPasteHTML(data)
-      }
       if (mentionItem.statics.blotName === 'break') {
+        state.quill.clipboard.dangerouslyPasteHTML(data)
         state.quill.setSelection(range.index + event.data.length)
       } else {
-        let pattern = /[\u4E00-\u9FA5\uf900-\ufa2d]/,
-          flag
+        let pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/
+        let flag
 
         if (pattern.test(event.data)) {
           flag = true
@@ -278,8 +298,8 @@ export const inputFileHandler =
       fileInput.setAttribute('accept', mimeTypes)
 
       if (
-        (UploaderDfls.enableMultiUpload['file'] && type === 'file') ||
-        (UploaderDfls.enableMultiUpload['image'] && type === 'image')
+        (UploaderDfls.enableMultiUpload.file && type === 'file') ||
+        (UploaderDfls.enableMultiUpload.image && type === 'image')
       ) {
         fileInput.setAttribute('multiple', '')
       }
@@ -323,12 +343,12 @@ export const uploaderDflsHandler =
 export const handleUploadFile =
   ({ api, UploaderDfls }) =>
   (range, files, hasRejectedFile) => {
-    const fileEnableMultiUpload = UploaderDfls.enableMultiUpload === true || UploaderDfls.enableMultiUpload['file']
+    const fileEnableMultiUpload = UploaderDfls.enableMultiUpload === true || UploaderDfls.enableMultiUpload.file
 
     api.fileOperationToSev({
       operation: 'upload',
       data: fileEnableMultiUpload ? { files } : { file: files[0] },
-      hasRejectedFile: hasRejectedFile,
+      hasRejectedFile,
       callback: (res) => {
         if (!res) {
           return
@@ -355,6 +375,8 @@ const getOption = (url, headers, method, fd, callbackOK, callbackKO, callback) =
       res = res.data
       let resData = {}
 
+      // 遗留代码
+      // eslint-disable-next-line no-unreachable-loop
       for (let key in res) {
         resData = res[key]
         break
@@ -384,6 +406,8 @@ const getOnloadOfFileOperToSev =
       let res = JSON.parse(xmlhr.responseText)
       let resData = {}
 
+      // 遗留代码，为什么这样写
+      // eslint-disable-next-line no-unreachable-loop
       for (let key in res) {
         resData = res[key]
         break
@@ -470,11 +494,11 @@ export const handleUploadImage =
   (range, { file, files }, hasRejectedImage) => {
     if (state.quill.options.uploadOption.imageUploadToServer) {
       const index = state.promisesData.length
-      const imageEnableMultiUpload = UploaderDfls.enableMultiUpload['image']
+      const imageEnableMultiUpload = UploaderDfls.enableMultiUpload.image
       const result = {
         file,
         data: { files: [file] },
-        hasRejectedImage: hasRejectedImage,
+        hasRejectedImage,
         callback: (res) => {
           if (!res) {
             return
@@ -506,7 +530,7 @@ export const handleUploadImage =
       }
 
       if (imageEnableMultiUpload) {
-        result['data'] = { files }
+        result.data = { files }
       }
 
       state.promisesData.push({
@@ -625,6 +649,7 @@ export const uploadImageToSev =
       if (xhr.status === 200) {
         let { res = JSON.parse(xhr.responseText), resData = {} } = {}
 
+        // eslint-disable-next-line no-unreachable-loop
         for (let key in res) {
           resData = res[key]
           break
@@ -843,7 +868,7 @@ export const handleDblclick =
       props.picPreview &&
       e &&
       e.type === 'dblclick' &&
-      [...e.target.classList].indexOf('blot-formatter__overlay') > -1 &&
+      [...e.target.classList].includes('blot-formatter__overlay') &&
       e.target.dataset.image
     ) {
       api.doPreview(e.target)

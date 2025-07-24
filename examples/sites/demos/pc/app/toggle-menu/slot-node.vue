@@ -1,17 +1,17 @@
 <template>
   <tiny-toggle-menu :data="datas" :show-filter="false" placeholder="输入框的占位符" wrap>
     <template #node="{ data }">
-      <div>{{ data.label + data.id }}</div>
+      <div>{{ data.label + ' ' + data.id }}</div>
     </template>
   </tiny-toggle-menu>
 </template>
 
 <script lang="jsx">
-import { ToggleMenu } from '@opentiny/vue'
+import { TinyToggleMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyToggleMenu: ToggleMenu
+    TinyToggleMenu
   },
   data() {
     return {

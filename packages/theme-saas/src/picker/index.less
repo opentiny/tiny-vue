@@ -23,37 +23,20 @@
     }
   }
 
+  .@{input-prefix-cls}__icon-container {
+    align-items: center;
+    display: flex;
+  }
+
   &.@{input-prefix-cls},
   &.@{input-prefix-cls}__inner {
     @apply w-full;
-  }
-
-  &--monthrange {
-    &.@{input-prefix-cls},
-    &.@{input-prefix-cls}__inner {
-      width: 300px;
-    }
   }
 
   &.show-auto-width {
     &.@{input-prefix-cls},
     &.@{input-prefix-cls}__inner {
       @apply w-full;
-    }
-  }
-
-  &--daterange,
-  &--timerange {
-    &.@{input-prefix-cls},
-    &.@{input-prefix-cls}__inner {
-      width: 350px;
-    }
-  }
-
-  &--datetimerange {
-    &.@{input-prefix-cls},
-    &.@{input-prefix-cls}__inner {
-      width: 400px;
     }
   }
 
@@ -108,6 +91,7 @@
       outline: none;
     }
 
+    @apply bg-color-bg-1;
     @apply appearance-none;
     @apply border-none;
     @apply outline-0;
@@ -163,11 +147,11 @@
 
     .@{range-prefix-cls}-separator {
       @apply leading-6;
-      @apply text-xs;
+      @apply text-sm;
     }
 
     .@{range-prefix-cls}-input {
-      @apply text-xs;
+      @apply text-sm;
     }
 
     .@{range-prefix-cls}__close-icon,
@@ -255,7 +239,7 @@
     @apply ~'-translate-y-2/4';
     @apply max-w-full;
     @apply truncate;
-    @apply text-xs;
+    @apply text-sm;
   }
 }
 

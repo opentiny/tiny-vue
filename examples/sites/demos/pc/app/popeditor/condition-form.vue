@@ -39,81 +39,91 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal, CheckboxGroup, Popeditor } from '@opentiny/vue'
+import {
+  TinyForm,
+  TinyFormItem,
+  TinyInput,
+  TinyDatePicker,
+  TinyButton,
+  TinyModal,
+  TinyCheckboxGroup,
+  TinyPopeditor
+} from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyDatePicker: DatePicker,
-    TinyButton: Button,
-    TinyCheckboxGroup: CheckboxGroup,
-    TinyPopeditor: Popeditor
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyDatePicker,
+    TinyButton,
+    TinyCheckboxGroup,
+    TinyPopeditor
   },
   data() {
     const dataset = [
       {
         id: '1',
-        name: 'GFD科技YX公司',
+        name: 'GFD 科技 YX 公司',
         city: '福州',
         province: '福建'
       },
       {
         id: '2',
-        name: 'WWW科技YX公司',
+        name: 'WWW 科技 YX 公司',
         city: '深圳',
         province: '广东'
       },
       {
         id: '3',
-        name: 'RFV有限责任公司',
+        name: 'RFV 有限责任公司',
         city: '中山',
         province: '广东'
       },
       {
         id: '4',
-        name: 'TGB科技YX公司',
+        name: 'TGB 科技 YX 公司',
         city: '龙岩',
         province: '福建'
       },
       {
         id: '5',
-        name: 'YHN科技YX公司',
+        name: 'YHN 科技 YX 公司',
         city: '韶关',
         province: '广东'
       },
       {
         id: '6',
-        name: 'WSX科技YX公司',
+        name: 'WSX 科技 YX 公司',
         city: '黄冈',
         province: '武汉'
       },
       {
         id: '7',
-        name: 'KBG物业YX公司',
+        name: 'KBG 物业 YX 公司',
         city: '赤壁',
         province: '武汉'
       },
       {
         id: '8',
-        name: '深圳市福德宝网络技术YX公司',
+        name: '深圳市福德宝网络技术 YX 公司',
         province: '广东',
         city: '深圳'
       },
       {
         id: '9',
-        name: 'KBG物业YX公司',
+        name: 'KBG 物业 YX 公司',
         city: '赤壁',
         province: '武汉'
       },
       {
         id: '10',
-        name: '深圳市福德宝网络技术YX公司',
+        name: '深圳市福德宝网络技术 YX 公司',
         province: '广东',
         city: '深圳'
       }
     ]
+
     return {
       options: [
         { label: '45', text: '很好' },
@@ -131,7 +141,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -160,7 +170,7 @@ export default {
         textarea: [{ required: true, message: '必填', trigger: 'change' }],
         users: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: 'change' }
+          { min: 2, max: 11, message: '长度必须不小于 2', trigger: 'change' }
         ],
         email: { type: 'email' }
       }
@@ -173,7 +183,7 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          TinyModal.alert('提交成功')
         }
       })
     }

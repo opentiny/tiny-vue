@@ -1,19 +1,32 @@
 <template>
-  <div data-tag="tiny-table-wrapper" class="scrollbar-size-0" :class="wrapperClass" :style="wrapperStyle">
+  <div
+    ref="warpperElem"
+    data-tag="tiny-table-wrapper"
+    class="scrollbar-size-0"
+    :class="wrapperClass"
+    :style="wrapperStyle"
+    @scroll="scrollEvent"
+  >
+    <template v-if="slotEmpty || renderEmpty">
+      <custom-empty />
+    </template>
     <exception
       tiny_mode="mobile-first"
       tiny_mode_root
-      v-if="exceptionVisible"
+      v-else-if="exceptionVisible"
       class="min-h-[theme(spacing.72)]"
       component-page
       type="nodata"
     ></exception>
-    <div data-tag="tiny-table" :class="[tableClass, cardClass]" ref="table">
+    <div v-else data-tag="tiny-table" :class="[tableClass, cardClass]" ref="table">
       <template v-if="listView">
         <list-view />
       </template>
       <template v-else-if="ganttView">
         <gantt-view />
+      </template>
+      <template v-else-if="customView">
+        <custom-view />
       </template>
       <template v-else>
         <table-row
@@ -41,9 +54,11 @@ import TableRow from './table-row.vue'
 import GlobalConfig from '../config'
 import ListView from './list-view.vue'
 import GanttView from './gantt-view.vue'
+import CustomView from './custom-view.vue'
+import CustomEmpty from './empty.vue'
 
 export default defineComponent({
-  components: { TableRow, Tooltip, Exception, ListView, GanttView },
+  components: { TableRow, Tooltip, Exception, ListView, GanttView, CustomView, CustomEmpty },
   provide() {
     return { $mftable: this }
   },
@@ -52,7 +67,8 @@ export default defineComponent({
     tableData: Array,
     cardConfig: Object,
     listConfig: Object,
-    ganttConfig: Object
+    ganttConfig: Object,
+    customConfig: Object
   },
   data() {
     return {
@@ -95,6 +111,13 @@ export default defineComponent({
 
       return viewType === GANTT
     },
+    customView() {
+      const { config } = this as any
+      const { viewType } = config?.tableVm?.$grid
+      const { CUSTOM } = GlobalConfig.viewConfig
+
+      return viewType === CUSTOM
+    },
     wrapperClass() {
       const { config } = this as any
       return mergeClass(
@@ -110,11 +133,11 @@ export default defineComponent({
       return cardView ? mergeClass(tableCls, 'grid gap-3') : tableCls
     },
     cardClass() {
-      const { listView, ganttView, cardConfig } = this as any
+      const { listView, ganttView, cardConfig, customView } = this as any
       let smallCls = 'grid-cols-[repeat(auto-fill,minmax(theme(spacing.64),1fr))]'
       let defaultCls = 'grid-cols-[repeat(auto-fill,minmax(theme(spacing.80),1fr))]'
 
-      return listView || ganttView ? '' : cardConfig?.cardSize === 'small' ? smallCls : defaultCls
+      return listView || ganttView || customView ? '' : cardConfig?.cardSize === 'small' ? smallCls : defaultCls
     },
     rowClass() {
       const { cardView, cardConfig } = this as any
@@ -133,16 +156,22 @@ export default defineComponent({
       const defaultView = config?.tableVm?.$grid?.viewType === GlobalConfig.viewConfig.DEFAULT
       const displayStyle = defaultView ? 'display:none;' : ''
       const heightStyle = wrapperHeight ? `height:${wrapperHeight}px;` : ''
+      const maxHeight = config?.tableVm?.$grid?.maxHeight
+      let maxHeightStyle
+      if (isScale(maxHeight)) {
+        maxHeightStyle = `max-height:${maxHeight};`
+      } else if (toNumber(maxHeight)) {
+        maxHeightStyle = `max-height:${toNumber(maxHeight)}px;`
+      } else {
+        maxHeightStyle = ''
+      }
 
-      return `${displayStyle}${heightStyle}`
+      return `${displayStyle}${heightStyle}${maxHeightStyle}`
     },
     exceptionVisible() {
-      const { config, tableData } = this as any
-      const { viewType } = config?.tableVm?.$grid
-      const { CARD, LIST, MF } = GlobalConfig.viewConfig
+      const { tableData } = this as any
       const isException = tableData.length === 0
-
-      return isException && (viewType === CARD || viewType === LIST || viewType === MF)
+      return isException
     }
   },
   watch: {
@@ -184,12 +213,13 @@ export default defineComponent({
   methods: {
     mapColumns() {
       const { config, typeColumns, firstFewPropertyColumn } = this as any
-      const { cardConfig = {}, listConfig = {}, ganttConfig = {} } = this as any
+      const { cardConfig = {}, listConfig = {}, ganttConfig = {}, customConfig = {} } = this as any
       const tableColumn: Array<Column> = config?.tableVm?.tableColumn
       const { primaryField, contentFields, selectable, renderLink, operable, few = 4 } = cardConfig as CardConfig
       const { renderList } = listConfig
       const { renderGantt } = ganttConfig
-      let fieldName: string = ''
+      const { renderCustom } = customConfig
+      let fieldName = ''
       let fieldNames: Array<string> = []
       let propCols: Array<Column> = firstFewPropertyColumn(tableColumn, few)
 
@@ -200,6 +230,8 @@ export default defineComponent({
       let slotLink: Function
       let slotList: Function
       let slotGantt: Function
+      let slotCustom: Function
+      let slotEmpty: Function
 
       if (primaryField) {
         fieldName = fnField(primaryField)
@@ -232,9 +264,12 @@ export default defineComponent({
       slotLink = config?.tableVm?.$grid?.slots?.link || renderLink
       slotList = config?.tableVm?.$grid?.slots?.list || renderList
       slotGantt = config?.tableVm?.$grid?.slots?.gantt || renderGantt
+      slotCustom = config?.tableVm?.$grid?.slots?.custom || renderCustom
+      slotEmpty = config?.tableVm?.$grid?.slots?.empty
+      const renderEmpty = config?.tableVm?.$grid?.renderEmpty
 
       Object.assign(this, { primaryColumn, contentColumns, operationColumn, selectionColumn })
-      Object.assign(this, { slotLink, slotList, slotGantt })
+      Object.assign(this, { slotLink, slotList, slotGantt, slotCustom, slotEmpty, renderEmpty })
     },
     typeColumns(columns: Array<Column>, types: Array<String>, field?: string) {
       const cols = types.map((type) => columns.find((column) => column.visible && column[field || 'property'] === type))
@@ -280,6 +315,10 @@ export default defineComponent({
       }
 
       emitEvent.call(this, 'card-click', [row, e])
+    },
+    scrollEvent(event) {
+      const { scrolLeft, scrollTop } = this.$refs.warpperElem
+      this.emitEvent('scroll', [{ type: 'body', $table: this.config?.tableVm, scrolLeft, scrollTop }, event])
     },
     cfg(row: Object): Datas {
       const { config, cardView, selectionColumn, slotLink, primaryColumn } = this as any

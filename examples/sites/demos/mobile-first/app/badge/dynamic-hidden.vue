@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import { Badge, Button } from '@opentiny/vue'
+import { TinyBadge, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBadge: Badge,
-    TinyButton: Button
+    TinyBadge,
+    TinyButton
   },
   data() {
     return {

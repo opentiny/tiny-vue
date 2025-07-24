@@ -28,6 +28,19 @@ export default {
       codeFiles: ['clearable.vue']
     },
     {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 <code>disabled</code> 属性设置输入框的禁用状态。</p>',
+        'en-US':
+          '<p>You can set the <code>clearable</code> attribute to display the clear icon button in the text box </p>'
+      },
+      codeFiles: ['disabled.vue']
+    },
+    {
       demoId: 'show-password',
       name: {
         'zh-CN': '密码框',
@@ -40,6 +53,19 @@ export default {
           '<p>When <code>type</code> is set to <code>password</code>, you can set the <code>show-password</code> attribute to display or hide the password switch button in the text box</p>\n'
       },
       codeFiles: ['show-password.vue']
+    },
+    {
+      demoId: 'show-tooltip',
+      name: {
+        'zh-CN': '只读态悬浮提示',
+        'en-US': 'Show Tooltip'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>show-tooltip</code> 配置当文本超长时，是否显示悬浮提示。</p>\n',
+        'en-US':
+          '<p>Use <code>show-tooltip</code> to configure whether to display a floating tip when the text is too long. </p>\n'
+      },
+      codeFiles: ['show-tooltip.vue']
     },
     {
       demoId: 'size',
@@ -201,7 +227,8 @@ export default {
         'en-US': 'Memory History Input'
       },
       desc: {
-        'zh-CN': '<p>参考以下例子，输入完成后，输入会被记住。</p>',
+        'zh-CN':
+          '<p>通过组件实例方法 <code> addMemory </code> 添加历史输入数据，输入完成后，输入会被记住。通过 <code> memory-space </code> 属性配置最多可以被记录的条数。</p>',
         'en-US': '<p>Refer to the following example. After the input is complete, the input will be remembered</p>'
       },
       codeFiles: ['method-addMemory.vue']
@@ -227,9 +254,15 @@ export default {
         'en-US': 'Native Attribute'
       },
       desc: {
-        'zh-CN': '<p>可设置 <code>name</code>  <code>disabled</code> <code>readonly</code>等原生属性。</p>\n',
+        'zh-CN': `
+        <p>可设置 <code>name</code>  <code>disabled</code> <code>readonly</code>等原生属性。</p>
+         <div class="tip custom-block">
+            <p class="custom-block-title"> 温馨提示： </p>
+            <p>原生属性是透传给 <code> input </code>原生标签的，功能和使用原生标签等同。</p>
+          </div>
+        `,
         'en-US':
-          '<p>You can set native attributes such as <code>name</code> <code>disabled</code> <code>readonly</code> . </p>\n'
+          '<p>You can set native attributes such as <code>name</code> <code>disabled</code> <code>readonly</code> . </p>'
       },
       codeFiles: ['native.vue']
     },
@@ -246,6 +279,18 @@ export default {
           'The <code>popup-more</code> attribute is added to enable the text field to exceed the display of more buttons. You can click more buttons to view details.'
       },
       codeFiles: ['display-only-popup-more.vue']
+    },
+    {
+      demoId: 'input-box-type',
+      name: {
+        'zh-CN': '边框模式',
+        'en-US': 'Box type'
+      },
+      desc: {
+        'zh-CN': '通过 <code>input-box-type</code>属性，设置边框模式，可取值为 <code>"normal" | "underline"</code> 。',
+        'en-US': 'Set the border mode through the input-box-type attribute. The value can be "normal"|"underline".'
+      },
+      codeFiles: ['input-box-type.vue']
     },
     {
       demoId: 'event',

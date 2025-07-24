@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div class="overview-layout ti-pt48">
-      <h1 class="ti-mb20 ti-f24 ti-fw-600">
+    <div class="overview-layout">
+      <h1 class="overview-title ti-mb20 ti-f24 ti-fw-600">
         {{ i18nByKey('overview') }}
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
-      <h1 class="ti-f14 ti-my20 ti-lh21">
-        {{ i18nByKey('overviewDesc') }}
+      <h1 class="overview-desc ti-f14 ti-my20 ti-lh21">
+        {{ i18nByKey(isPlus ? 'overviewDescPlus' : 'overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
         :placeholder="i18nByKey('searchComponents')"
         :modelValue="value"
-        class="ti-mb10 search-input"
-        :style="{ width: '100%', padding: '6px' }"
+        size="medium"
+        :style="{ width: '100%' }"
         @update:modelValue="searchHandler"
       >
         <template #suffix>
@@ -22,12 +22,13 @@
         </template>
       </tiny-input>
       <!-- 组件列表 -->
-      <div v-if="searchMenus?.length === 0" class="text-center py20">
-        <img class="ti-h150 ti-w200 ti-my-20" :src="noDataSvg" />
+      <div v-if="searchMenus?.length === 0" class="text-center py60">
+        <img class="ti-h150 ti-w200" :src="noDataSvg" />
+        <p class="no-data-text">{{ i18nByKey('noData') }}</p>
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">
         <div class="ti-rel ti-mt25">
-          <h2 class="ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ getWord(menu.label, menu.labelEn) }}</h2>
+          <h2 class="overview-groupname ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ getWord(menu.label, menu.labelEn) }}</h2>
           <span v-if="searchMenus?.length !== 0" class="cell-title">{{ menu.children.length }}</span>
         </div>
         <div class="ti-f-r ti-f-wrap ti-f-pos-between overview-card">
@@ -42,9 +43,11 @@
                 <img
                   class="ti-h125 ti-w125 inline-block"
                   :src="pubUrl(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
-                  :onerror="`this.src='${pubUrl(`@demos/overviewimage/dev.svg`)}'`"
+                  :onerror="`this.src='${pubUrl(
+                    `@demos/overviewimage/${cell.key.includes('chart') ? 'dev-chart' : 'dev'}.svg`
+                  )}'`"
                 />
-                <h2 class="ti-f16 overview-card-label">
+                <h2 class="overview-componentname ti-f16 overview-card-label">
                   {{ cell.name }}
                   <span v-if="isZhCn">{{ cell.nameCn }}</span>
                 </h2>
@@ -61,10 +64,10 @@
 </template>
 
 <script lang="js">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
-import TinyInput from '@opentiny/vue-input'
+import { TinyInput } from '@opentiny/vue'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
 import { getWord, i18nByKey, isZhCn, pubUrl } from '@/tools'
@@ -82,6 +85,8 @@ export default defineComponent({
       value: '',
       palceMenus: new Array(14)
     })
+
+    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {
@@ -104,7 +109,7 @@ export default defineComponent({
         .map((item) => {
           const label = item.label
           // 对表格特殊处理
-          if (isGrid && item.key === 'cmp_table_components') {
+          if (isGrid && item.key === 'cmp-table-components') {
             return { label, children: item.children }
           }
           const children = item.children.filter((child) => {
@@ -117,8 +122,8 @@ export default defineComponent({
       state.searchMenus = searchMenus
     }
     const lang = getWord('zh-CN', 'en-US')
-    const { defaultThemeKey } = useTheme()
-    const { all: allPathParam, theme = defaultThemeKey } = useRoute().params
+    const { defaultTheme } = useTheme()
+    const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const debounceSearch = debounce(searchResultFn, 300)
 
@@ -139,10 +144,14 @@ export default defineComponent({
       getTotalComponentsNum: () => {
         let total = 0
         cmpMenus.forEach((cmpCategory) => {
-          if (cmpCategory.key === 'cmp_frame_style') {
-            total += 2
-          } else if (cmpCategory.key === 'cmp_table_components') {
+          if (cmpCategory.key === 'cmp-frame-style') {
+            // 需要减去色彩、字体、图标
+            total += cmpCategory.children.length - 3
+          } else if (cmpCategory.key === 'cmp-table-components') {
             total += 1
+          } else if (cmpCategory.key === 'cmp-chart-components') {
+            // 需要减去图表说明的4个文档
+            total += cmpCategory.children.length - 4
           } else {
             total += cmpCategory.children.length
           }
@@ -150,20 +159,28 @@ export default defineComponent({
         return total
       }
     }
+
     onMounted(() => {
-      const common = new window.TDCommon(['#footer'], {})
+      const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl, isPlus }
   }
 })
 </script>
 
 <style lang="less">
 .overview-layout {
-  padding-left: 10%;
-  padding-right: 10%;
-  min-height: 100%;
+  padding: 48px 10% 10%;
+
+  .overview-title,
+  .overview-componentname {
+    color: var(--tv-color-text);
+  }
+  .overview-desc,
+  .overview-groupname {
+    color: var(--tv-color-text-secondary);
+  }
 }
 
 .cell-title {
@@ -197,6 +214,12 @@ export default defineComponent({
   }
 }
 
+.dark .component-card {
+  &:hover {
+    box-shadow: 1px 1px 6px 6px rgba(255, 255, 255, 0.08);
+  }
+}
+
 .overview-card {
   justify-content: flex-start;
   gap: 1%;
@@ -206,21 +229,19 @@ export default defineComponent({
   width: 24.25%;
 }
 
+.dark .overview-card-container {
+  background-color: var(--tv-color-bg-dark);
+}
+
 .overview-card-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.search-input {
-  .tiny-input__inner {
-    height: 46px;
-    font-size: 14px;
-    padding-left: 18px;
-  }
-  .tiny-input__suffix {
-    right: 20px;
-  }
+.no-data-text {
+  color: #595959;
+  margin-top: 20px;
 }
 
 @media (max-width: 1279px) {

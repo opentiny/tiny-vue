@@ -94,6 +94,7 @@ export interface IFormItemState {
   isErrorInline: boolean
   isErrorBlock: boolean
   tooltipType: string
+  isMultiple: boolean
 }
 
 export type IFormItemConstants = typeof $constants

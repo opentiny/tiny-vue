@@ -22,7 +22,7 @@
 <script setup>
 import { ref } from 'vue'
 import { h } from '@opentiny/vue-common'
-import { GridColumn, Grid as TinyGrid } from '@opentiny/vue'
+import { TinyGridColumn, TinyGrid } from '@opentiny/vue'
 
 const GridColumnWrapper = {
   name: 'MyGridColumn',
@@ -31,18 +31,18 @@ const GridColumnWrapper = {
     return () => {
       const config = { props, scopedSlots: { ...slots } }
 
-      return h(GridColumn, config)
+      return h(TinyGridColumn, config)
     }
   }
 }
 
 const tableData = ref([
   {
-    name: 'GFD科技有限公司',
+    name: 'GFD 科技有限公司',
     date: '2024-05-23',
     city: '深圳福田区',
     employees: '500',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 </script>

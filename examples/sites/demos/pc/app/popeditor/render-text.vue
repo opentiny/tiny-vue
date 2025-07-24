@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { Popeditor } from '@opentiny/vue'
+import { TinyPopeditor } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPopeditor: Popeditor
+    TinyPopeditor
   },
   data() {
     return {
@@ -27,7 +27,7 @@ export default {
           {
             field: 'id',
             title: 'ID',
-            width: 40
+            width: 50
           },
           {
             field: 'name',
@@ -58,8 +58,8 @@ export default {
   methods: {
     renderText() {
       return Promise.resolve([
-        { id: 25, name: 'XXXYX公司', city: '赤壁', employees: 5120 },
-        { id: 20, name: 'AAAYX公司', city: '赤壁', employees: 5120 }
+        { id: 25, name: 'XXXYX 公司', city: '赤壁', employees: 5120 },
+        { id: 20, name: 'AAAYX 公司', city: '赤壁', employees: 5120 }
       ])
     },
     remoteSearch({ page }) {
@@ -72,7 +72,7 @@ export default {
       const data = Array.from({ length: page.pageSize }).map((item, i) => {
         return {
           id: pageSize * (currentPage - 1) + i + 1,
-          name: randomAlphabets() + 'YX公司',
+          name: randomAlphabets() + 'YX 公司',
           city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
           employees: Math.ceil(Math.random() * 10000)
         }

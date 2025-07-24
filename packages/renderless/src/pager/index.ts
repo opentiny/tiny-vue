@@ -1,5 +1,5 @@
 import type { IPagerRenderlessParams } from '@/types'
-import { emitEvent } from '../common/event'
+import { emitEvent } from '@opentiny/utils'
 
 export const computedShowPager =
   ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
@@ -18,6 +18,7 @@ export const computedInternalLayout =
       props.mode === 'simple' && (layout = 'sizes, total, prev, current, next')
       props.mode === 'complete' && (layout = 'sizes, total, prev, pager, next, jumper')
       props.mode === 'fixed' && (layout = 'prev,pager,next')
+      props.mode === 'simplest' && (layout = 'total, prev, simplest-pager, next')
     } else if ((!props.mode && props.layout) || (props.mode && props.layout)) {
       layout = props.layout
     } else {
@@ -67,6 +68,38 @@ export const computedInternalPageCount =
     return null
   }
 
+export const computedSimplestPagerOption =
+  ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (): Array<{ value: number; label: string }> => {
+    const itemSizes = Math.max(1, Math.ceil(props.total / state.internalPageSize))
+    return Array.from({ length: itemSizes }).map((item, index) => ({
+      value: index + 1,
+      label: `${index + 1}/${itemSizes}`
+    }))
+  }
+
+export const computedSimplestPagerWidth =
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (): number => {
+    const baseWidth = 60
+    const num = String(state.internalCurrentPage).length + String(state.simplestPagerOption.length).length
+    // 输入框长度 = 基本宽度加数字长度
+    return baseWidth + num * 8
+  }
+
+export const computedPageSizeText =
+  ({ props, designConfig }: Pick<IPagerRenderlessParams, 'props' | 'designConfig'>) =>
+  (): string => {
+    if (props.pageSizeText) {
+      return props.pageSizeText
+    }
+    // 默认返回空字符串，不展示"条/页", 可以通过设置pageSizeText为null来显示。亦或者自定义
+    if (designConfig?.state && Object.hasOwnProperty.call(designConfig.state, 'pageSizeText')) {
+      return designConfig.state.pageSizeText
+    }
+    return ''
+  }
+
 export const handleJumperFocus =
   ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
   (e: Event): void => {
@@ -74,24 +107,18 @@ export const handleJumperFocus =
   }
 
 export const watchInternalCurrentPage =
-  ({ state, emit }: Pick<IPagerRenderlessParams, 'state' | 'emit'>) =>
+  ({ state, emit, props }: Pick<IPagerRenderlessParams, 'state' | 'emit' | 'props'>) =>
   (currentPage: number): void => {
     const value = String(currentPage)
 
     if (state.jumperValue !== value) {
       state.jumperValue = value
     }
-    emit('update:current-page', currentPage)
-    emit('current-change', currentPage)
-    state.lastEmittedPage = -1
-  }
-
-export const watchPageSizes =
-  ({ state, props }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
-  (newVal: number[]): void => {
-    if (Array.isArray(newVal)) {
-      state.internalPageSize = newVal.includes(props.pageSize) ? props.pageSize : newVal[0]
+    if (props.changeCompat) {
+      emit('update:current-page', currentPage)
+      emit('current-change', currentPage)
     }
+    state.lastEmittedPage = -1
   }
 
 export const watchCurrentPage =
@@ -115,10 +142,12 @@ export const watchInternalPageCount =
     state.userChangePageSize = false
   }
 
-export const watchPageSize =
-  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+export const watchInternalPageSize =
+  ({ props, emit }: Pick<IPagerRenderlessParams, 'props' | 'emit'>) =>
   (pageSize: number): void => {
-    state.internalPageSize = isNaN(pageSize) ? 10 : pageSize
+    if (props.changeCompat) {
+      emit('size-change', pageSize)
+    }
   }
 
 export const watchTotal =
@@ -156,7 +185,9 @@ export const handleSizeChange =
         state.userChangePageSize = true
         state.showSizes = false
         emit('update:pageSize', val)
-        emit('size-change', val)
+        if (!props.changeCompat) {
+          emit('size-change', val)
+        }
         emit('page-change', {
           currentPage: state.internalCurrentPage,
           pageSize: val,
@@ -443,12 +474,26 @@ export const getValidCurrentPage =
     return resetVal === undefined ? parseVal : resetVal
   }
 
+export const getInternalPageSize =
+  ({ props }: Pick<IPagerRenderlessParams, 'props'>) =>
+  (): number => {
+    const { pageSize, pageSizes } = props
+    let internalPageSize = isNaN(pageSize) ? 10 : Number(pageSize)
+    if (Array.isArray(pageSizes)) {
+      internalPageSize = pageSizes.includes(pageSize) ? pageSize : pageSizes[0]
+    }
+    return internalPageSize
+  }
+
 export const emitChange =
-  ({ state, nextTick, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state' | 'nextTick'>) =>
+  ({ state, nextTick, emit, props }: Pick<IPagerRenderlessParams, 'emit' | 'state' | 'nextTick' | 'props'>) =>
   (): void => {
     nextTick(() => {
       if (state.internalCurrentPage !== state.lastEmittedPage || state.userChangePageSize) {
-        emit('update:current-page', state.internalCurrentPage)
+        if (!props.changeCompat) {
+          emit('update:current-page', state.internalCurrentPage)
+          emit('current-change', state.internalCurrentPage)
+        }
         emit('page-change', {
           currentPage: state.internalCurrentPage,
           pageSize: state.internalPageSize,

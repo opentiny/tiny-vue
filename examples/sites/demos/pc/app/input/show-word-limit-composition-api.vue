@@ -1,13 +1,14 @@
 <template>
   <div class="demo-input">
     <tiny-input v-model="text" :maxlength="10" show-word-limit></tiny-input>
+    <br />
     <tiny-input type="textarea" v-model="textarea" :maxlength="20" show-word-limit></tiny-input>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const text = ref('')
 const textarea = ref('')

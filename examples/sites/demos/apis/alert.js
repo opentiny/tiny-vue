@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'alert',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '文字是否居中',
             'en-US': 'Whether the text is centered'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'center',
-          mobileDemo: 'center',
           mfDemo: ''
         },
         {
@@ -26,9 +25,8 @@ export default {
             'zh-CN': '警告是否可以关闭',
             'en-US': 'Set whether alarms can be disabled.'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-close',
-          mobileDemo: 'custom-close',
           mfDemo: ''
         },
         {
@@ -39,9 +37,8 @@ export default {
             'zh-CN': '关闭按钮自定义文本',
             'en-US': 'Customized text of the close button'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-close',
-          mobileDemo: 'custom-close',
           mfDemo: ''
         },
         {
@@ -64,9 +61,8 @@ export default {
             'zh-CN': '警告的提示内容',
             'en-US': 'Set the warning prompt content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'custom-close',
           mfDemo: ''
         },
         {
@@ -78,14 +74,13 @@ export default {
             'en-US':
               'The icon for the custom warning of the incoming icon component will be automatically used based on the type value by default'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'icon',
-          mobileDemo: 'icon',
           mfDemo: ''
         },
         {
           name: 'scrolling',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启描述文字在鼠标 hover 时滚动显示的动画。',
@@ -97,7 +92,7 @@ export default {
         },
         {
           name: 'show-foldable',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '展示带标题可折叠样式。',
@@ -119,8 +114,22 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'show-title',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示标题，在 size 为 large 时有效',
+            'en-US': 'Display title,valid when size is large'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'title',
+          meta: {
+            stable: '3.21.0'
+          }
+        },
+        {
           name: 'single-line',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '描述内容是否一行显示，超出显示...，默认值为 false。',
@@ -137,22 +146,9 @@ export default {
             'zh-CN': '警告的尺寸大小',
             'en-US': 'Set the size of the warning'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'size',
-          mobileDemo: 'size',
           mfDemo: ''
-        },
-        {
-          name: 'target',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '挂载容器的ref值，通过该属性可以让组件展示在对应容器的顶部',
-            'en-US':
-              'Mounted container reference, this property allows the component to be displayed at the top of the corresponding container.'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'target'
         },
         {
           name: 'title',
@@ -176,9 +172,8 @@ export default {
             'zh-CN': '警告的类型',
             'en-US': 'Set the alarm type'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
-          mobileDemo: 'size',
           mfDemo: ''
         }
       ],
@@ -191,9 +186,8 @@ export default {
             'zh-CN': '关闭 alert 时触发的事件',
             'en-US': 'Event triggered when the alert function is disabled'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-close',
-          mobileDemo: 'custom-close',
           mfDemo: ''
         },
         {
@@ -248,12 +242,11 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '组件默认插槽，当 size 设置为 large 后有效',
+            'zh-CN': '组件默认插槽，当 size 设置为 large 时有效，显示在 <code>description</code>下方 ',
             'en-US': 'The default slot for the component is valid when size is set to large'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
-          mobileDemo: 'slot-default',
           mfDemo: ''
         },
         {
@@ -261,7 +254,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '提示内容',
+            'zh-CN': '提示内容插槽',
             'en-US': 'Prompt Content'
           },
           mode: ['pc', 'mobile-first'],

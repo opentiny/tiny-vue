@@ -33,33 +33,33 @@
 
 <script>
 import {
-  Form,
-  FormItem,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Radio,
-  RadioGroup,
-  Switch,
-  TimePicker,
-  DatePicker,
-  Input
+  TinyForm,
+  TinyFormItem,
+  TinyButton,
+  TinyCheckbox,
+  TinyCheckboxGroup,
+  TinyRadio,
+  TinyRadioGroup,
+  TinySwitch,
+  TinyTimePicker,
+  TinyDatePicker,
+  TinyInput
 } from '@opentiny/vue'
 import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button,
-    TinyCheckbox: Checkbox,
-    TinyCheckboxGroup: CheckboxGroup,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinySwitch: Switch,
-    TinyTimePicker: TimePicker,
-    TinyDatePicker: DatePicker
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton,
+    TinyCheckbox,
+    TinyCheckboxGroup,
+    TinyRadio,
+    TinyRadioGroup,
+    TinySwitch,
+    TinyTimePicker,
+    TinyDatePicker
   },
   data() {
     return {

@@ -11,14 +11,17 @@
 */
 
 @import '../custom.less';
+@import './vars.less';
 
 @area-prefix-cls: ~'@{css-prefix}area';
 @select-prefix-cls: ~'@{css-prefix}select';
 
 .@{area-prefix-cls} {
   .@{select-prefix-cls} {
-    width: 270px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    .inject-Area-vars();
+
+    width: 220px;
+    margin-right: var(--tv-Area-select-margin-right);
+    margin-bottom: var(--tv-Area-select-margin-bottom);;
   }
 }

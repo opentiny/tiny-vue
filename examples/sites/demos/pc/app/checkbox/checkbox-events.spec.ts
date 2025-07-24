@@ -8,7 +8,7 @@ test('事件', async ({ page }) => {
   const checkbox = demo.locator('.tiny-checkbox-group > label')
 
   await checkbox.nth(1).click()
-  await expect(page.getByText('change 事件触发了，选中值为：复选框1,复选框2')).toBeVisible()
+  await expect(page.getByText('change 事件触发了，选中值为：复选框 1,复选框 2')).toBeVisible()
   await checkbox.nth(0).click()
-  await expect(page.getByText('change 事件触发了，选中值为：复选框2')).toBeVisible()
+  await expect(page.getByText('change 事件触发了，选中值为：复选框 2')).toBeVisible()
 })

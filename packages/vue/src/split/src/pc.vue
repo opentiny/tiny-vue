@@ -36,9 +36,16 @@
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
-            <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
-              <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
-            </div>
+            <template v-if="!state.triggerBarConWithLine">
+              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
+                <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
+              </div>
+            </template>
+            <template v-else>
+              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
+                <IconStretchUpright />
+              </div>
+            </template>
           </div>
         </slot>
         <div
@@ -104,9 +111,16 @@
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
-            <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
-              <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
-            </div>
+            <template v-if="!state.triggerBarConWithLine">
+              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
+                <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
+              </div>
+            </template>
+            <template v-else>
+              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
+                <IconStretchCrosswise />
+              </div>
+            </template>
           </div>
         </slot>
         <div
@@ -153,12 +167,14 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/split/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { IconLeftWard, IconRightward } from '@opentiny/vue-icon'
+import { IconLeftWard, IconRightward, IconStretchUpright, IconStretchCrosswise } from '@opentiny/vue-icon'
 
 export default defineComponent({
   components: {
     IconLeftWard: IconLeftWard(),
-    IconRightWard: IconRightward()
+    IconRightWard: IconRightward(),
+    IconStretchUpright: IconStretchUpright(), // 纵向
+    IconStretchCrosswise: IconStretchCrosswise() // 横向
   },
   emits: [
     'moving',

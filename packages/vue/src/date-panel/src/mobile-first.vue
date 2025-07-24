@@ -7,7 +7,7 @@
     >
       <div data-tag="tiny-picker-panel__body-wrapper" :class="gcls('picker-panel-body')">
         <slot name="sidebar" data-tag="tiny-picker-panel__sidebar" :class="gcls('sidebar')"></slot>
-        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts" :class="gcls('sidebar')">
+        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts?.length" :class="gcls('sidebar')">
           <button
             type="button"
             data-tag="tiny-picker-panel__shortcut"
@@ -21,7 +21,7 @@
         </div>
         <div
           data-tag="tiny-picker-panel__body"
-          :class="[gcls('picker-panel-body'), { 'ml-28': slots.sidebar || state.shortcuts }]"
+          :class="[gcls('picker-panel-body'), { 'ml-28': slots.sidebar || state.shortcuts?.length }]"
         >
           <div v-if="state.showTime" data-tag="tiny-date-picker__time-header" :class="gcls('time-header')">
             <span data-tag="tiny-date-picker__editor-wrap" :class="gcls('editor-wrap')">
@@ -69,7 +69,6 @@
             <button
               type="button"
               @click="cusPrevYear"
-              v-show="state.currentView === 'year'"
               :aria-label="t(`ui.datepicker.prevYear`)"
               data-tag="tiny-picker-panel__icon-btn tiny-date-picker__prev-btn tiny-icon-arrow-left"
               :class="[gcls('icon-btn'), 'float-left']"
@@ -86,14 +85,17 @@
             >
               <icon-chevron-left></icon-chevron-left>
             </button>
-            <!-- @click="showYearPicker" -->
-            <span role="button" data-tag="tiny-date-picker__header-label" :class="[gcls('header-label')]">{{
-              state.yearLabel
-            }}</span>
-            <!-- @click="showMonthPicker" -->
+            <span
+              role="button"
+              @click="showHeaderPicker('Year')"
+              data-tag="tiny-date-picker__header-label"
+              :class="[gcls('header-label')]"
+              >{{ state.yearLabel }}</span
+            >
             <span
               v-show="state.currentView === 'date'"
               role="button"
+              @click="showHeaderPicker('Month')"
               data-tag="tiny-date-picker__header-label"
               :class="[gcls('header-label'), { 'text-color-brand': state.currentView === 'month' }]"
               >{{ t(`ui.datepicker.month${state.month + 1}`) }}</span
@@ -101,7 +103,6 @@
             <button
               type="button"
               @click="cusNextYear"
-              v-show="state.currentView === 'year'"
               :aria-label="t(`ui.datepicker.nextYear`)"
               data-tag="tiny-picker-panel__icon-btn tiny-date-picker__next-btn tiny-icon-arrow-right"
               :class="[gcls('icon-btn'), 'float-right']"
@@ -205,16 +206,18 @@
       </div>
 
       <div data-tag="tiny-picker-panel__footer" :class="gcls('footer')" v-show="state.isShowFooter">
-        <tiny-button
-          size="mini"
-          type="text"
-          data-tag="tiny-picker-panel__link-btn"
-          :class="gcls('link-btn')"
-          @click="changeToNow"
-          v-show="!['dates', 'years'].includes(state.selectionMode)"
-        >
-          {{ t('ui.datepicker.now') }}
-        </tiny-button>
+        <slot>
+          <tiny-button
+            size="mini"
+            type="text"
+            data-tag="tiny-picker-panel__link-btn"
+            :class="gcls('link-btn')"
+            @click="changeToNow"
+            v-show="!['dates', 'years'].includes(state.selectionMode)"
+          >
+            {{ t('ui.datepicker.now') }}
+          </tiny-button>
+        </slot>
         <tiny-button
           type="primary"
           size="mini"
@@ -233,7 +236,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/date-panel/vue'
 import { setup, directive, props } from '@opentiny/vue-common'
 import { language } from '@opentiny/vue-locale'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import YearTable from '@opentiny/vue-year-table'
@@ -281,7 +284,10 @@ export default {
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    nowClick: {
+      type: Function
+    }
   },
   emits: ['pick', 'select-change', 'dodestroy'],
   setup(props, context) {

@@ -1,20 +1,20 @@
 <template>
   <div class="content">
     <tiny-file-upload ref="upload" :action="action">
-      <tiny-button size="small" type="primary"> 点击上传 </tiny-button>
+      <tiny-button size="small"> 点击上传 </tiny-button>
     </tiny-file-upload>
     <br />
-    <tiny-button @click="cancelUpload"> 取消上传 </tiny-button>
+    <tiny-button @click="cancelUpload" type="primary"> 取消上传 </tiny-button>
   </div>
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     cancelUpload() {
-      Modal.message({ message: '手动取消上传', status: 'info' })
+      TinyModal.message({ message: '手动取消上传', status: 'info' })
       this.$refs.upload.abort()
     }
   }

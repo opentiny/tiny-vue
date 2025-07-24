@@ -2,64 +2,22 @@
 <svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Currency 币种</title>
     <defs>
-        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#ECF3FB" offset="0%"></stop>
-            <stop stop-color="#FFFFFF" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
-            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
-            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
-            <stop stop-color="#F0F6FE" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
-            <stop stop-color="#D5E6F9" offset="0%"></stop>
-            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
-            <stop stop-color="#D5E6F9" offset="0%"></stop>
-            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
-            <stop stop-color="#CEE6FE" offset="0%"></stop>
-            <stop stop-color="#8AB5F2" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
-            <stop stop-color="#BFD6F9" offset="0%"></stop>
-            <stop stop-color="#F3F6FE" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
-            <stop stop-color="#CAD9F3" offset="0%"></stop>
-            <stop stop-color="#D5E3F7" offset="100%"></stop>
-        </linearGradient>
-        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
-            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
-        </filter>
-        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-9">
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-1">
             <stop stop-color="#5073E5" offset="0%"></stop>
             <stop stop-color="#5E7CE0" offset="100%"></stop>
         </linearGradient>
-        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-10">
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-2">
             <stop stop-color="#5073E5" offset="0%"></stop>
             <stop stop-color="#5E7CE0" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="组件总览" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="-TinyUI-Vue-组件总览2" transform="translate(-1088.000000, -609.000000)">
             <g id="编组-25备份-4" transform="translate(989.000000, 576.000000)">
                 <g id="Currency-币种" transform="translate(99.000000, 33.000000)">
-                    <g id="编组">
-                        <g transform="translate(9.000000, 1.000000)" id="多边形">
-                            <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
-                            <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
-                            <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
-                            <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
-                            <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
-                            <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
-                        </g>
-                        <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
-                    </g>
-                    <rect id="矩形" fill="url(#linearGradient-9)" opacity="0.204287574" x="31" y="32" width="46" height="46" rx="4"></rect>
-                    <rect id="矩形" fill="url(#linearGradient-10)" x="42" y="44" width="46" height="46" rx="4"></rect>
+                    <g id="编组"></g>
+                    <rect id="矩形" fill="url(#linearGradient-1)" opacity="0.204287574" x="31" y="32" width="46" height="46" rx="4"></rect>
+                    <rect id="矩形" fill="url(#linearGradient-2)" x="42" y="44" width="46" height="46" rx="4"></rect>
                     <g id="币种汇率" transform="translate(50.000000, 53.000003)" fill="#FFFFFF" fill-rule="nonzero">
                         <path d="M19,12.9999974 C19.5522847,12.9999974 20,12.5522824 20,11.9999979 C20,11.4477134 19.5522847,10.9999983 19,10.9999983 L16.51,10.9999983 L16.478,10.9659983 L19.678,7.76599968 C20.0578288,7.35334524 20.0446047,6.71455837 19.6480232,6.31797706 C19.2514418,5.92139574 18.6126546,5.90817167 18.2,6.28800031 L15,9.48999894 L11.8,6.29000031 C11.3873454,5.91017167 10.7485582,5.92339574 10.3519768,6.31997706 C9.95539528,6.71655837 9.9421712,7.35534524 10.322,7.76799968 L13.522,10.9679983 L13.49,10.9999983 L11,10.9999983 C10.4477153,10.9999983 10,11.4477134 10,11.9999979 C10,12.5522824 10.4477153,12.9999974 11,12.9999974 L14,12.9999974 L14,14.9999966 L11,14.9999966 C10.4477153,14.9999966 10,15.4477117 10,15.9999962 C10,16.5522807 10.4477153,16.9999957 11,16.9999957 L14,16.9999957 L14,20.999994 C14,21.5522786 14.4477153,21.9999936 15,21.9999936 C15.5522847,21.9999936 16,21.5522786 16,20.999994 L16,16.9999957 L19,16.9999957 C19.5522847,16.9999957 20,16.5522807 20,15.9999962 C20,15.4477117 19.5522847,14.9999966 19,14.9999966 L16,14.9999966 L16,12.9999974 L19,12.9999974 Z M30,17.0000004 C30,15.1379965 28.722,13.5879972 27,13.1419974 L27,9.30799902 C27.276,9.47999895 27.506,9.71799885 27.676,10.0000004 L29.86,10.0000004 C29.4937584,8.60017035 28.4000848,7.50726204 27,7.14199994 L27,7.00000043 C27,6.44771549 26.5522847,6.00000043 26,6.00000043 C25.4477153,6.00000043 25,6.44771549 25,7.00000043 L25,7.14199994 C23.278,7.58799975 22,9.13999909 22,11.0000004 C22,12.8599975 23.278,14.4119968 25,14.8579967 L25,18.691995 C24.7232213,18.5178991 24.4915749,18.28077 24.324,18.0000004 L22.14,18.0000004 C22.504,19.3999947 23.602,20.4939943 25,20.8599941 L25,21.0000004 C25,21.5522786 25.4477153,22.0000004 26,22.0000004 C26.5522847,22.0000004 27,21.5522786 27,21.0000004 L27,20.8599941 C28.7626275,20.4070769 29.996202,18.8198784 30,17.0000004 L30,17.0000004 Z M24.016,10.9999983 C24.016,10.2779986 24.422,9.67199886 25,9.32599901 L25,12.6759976 C24.3986089,12.3307381 24.024419,11.6933987 24.016,10.9999983 Z M27,18.675995 L27,15.3259965 C27.578,15.6719963 27.984,16.2779961 27.984,16.9999957 C27.984,17.7219954 27.578,18.3279952 27,18.675995 Z M5,21 C6.358,21 7.554,19.8099945 8.276,18 L6.19,18 C5.856,18.6219951 5.448,19 5,19 C4.348,19 3.774,18.2079952 3.41,17 L5,17 C5.55228475,17 6,16.5522807 6,16 C6,15.4477117 5.55228475,15 5,15 L3.04,15 C2.98661534,14.3343989 2.98661534,13.6655951 3.04,13 L5,13 C5.55228475,13 6,12.5522824 6,12 C6,11.4477134 5.55228475,11 5,11 L3.41,11 C3.776,9.79199881 4.348,9 5,9 C5.448,9 5.856,9.37999899 6.19,10 L8.276,10 C7.552,8.1899995 6.358,7 5,7 C3.408,7 2.042,8.6419993 1.4,11 L1,11 C0.44771525,11 0,11.4477134 0,12 C0,12.5522824 0.44771525,13 1,13 L1.058,13 C1.03,13.3299973 1,13.6579972 1,14 C1,14.3419969 1.03,14.6699967 1.058,15 L1,15 C0.44771525,15 0,15.4477117 0,16 C0,16.5522807 0.44771525,17 1,17 L1.4,17 C2.042,19.3599947 3.408,21 5,21 Z" id="形状"></path>
                         <path d="M15,2 C16.7302361,2.01140959 18.4369458,2.40190461 20,3.14400165 L20,5 L25.716,5 C23.0604593,1.8289649 19.1361056,-0.00210642006 15,0 C10.863195,-0.0026988145 6.9379896,1.82842814 4.282,5 L7.08,5 C9.26503828,3.06633845 12.0822191,1.99922494 15,2 Z" id="路径" stroke="#FFFFFF" stroke-width="0.5"></path>

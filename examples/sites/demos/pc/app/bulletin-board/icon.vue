@@ -1,14 +1,16 @@
 <template>
-  <tiny-bulletin-board :tab-title="tabTitle" :data="data" :icon="IconShare"></tiny-bulletin-board>
+  <div class="demo-bulletin-board">
+    <tiny-bulletin-board :tab-title="tabTitle" :data="data" :icon="IconShare"></tiny-bulletin-board>
+  </div>
 </template>
 
 <script lang="jsx">
-import { BulletinBoard } from '@opentiny/vue'
+import { TinyBulletinBoard } from '@opentiny/vue'
 import { IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyBulletinBoard: BulletinBoard
+    TinyBulletinBoard
   },
   data() {
     return {
@@ -99,3 +101,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-bulletin-board ::v-deep .tiny-svg {
+  fill: white;
+}
+</style>

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile|mobile-first'
+import template from 'virtual-template?pc|mobile-first'
 
 export const tagProps = {
   ...$props,
@@ -27,6 +27,7 @@ export const tagProps = {
   operable: Boolean,
   disabled: Boolean,
   selectable: Boolean,
+  onlyIcon: Boolean, // 仅图标模式
   customClass: {
     type: String,
     default: ''

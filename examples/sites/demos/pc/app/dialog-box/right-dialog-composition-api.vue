@@ -10,8 +10,8 @@
       </template>
       <span>半屏弹窗内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"> 确 定 </tiny-button>
         <tiny-button plain @click="boxVisibility = false"> 取消 </tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false"> 确定 </tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
@@ -19,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, DialogBox as TinyDialogBox } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 
 const boxVisibility = ref(false)

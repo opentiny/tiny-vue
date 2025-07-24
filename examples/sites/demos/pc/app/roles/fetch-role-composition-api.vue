@@ -4,19 +4,19 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Roles as TinyRoles, Modal } from '@opentiny/vue'
+import { TinyRoles, TinyModal } from '@opentiny/vue'
 
 const roleId = ref('')
 const env = ref({})
 const services = ref({
   fetchRole: handleFetchRole,
-  getEnvInfoSync: getEnvInfoSync,
-  getCustomized: getCustomized
+  getEnvInfoSync,
+  getCustomized
 })
 
 function handleFetchRole() {
   return new Promise((resolve, reject) => {
-    /* 此处自定义切换角色的请求逻辑，resolve 切换成功后重定向的url */
+    /* 此处自定义切换角色的请求逻辑，resolve 切换成功后重定向的 url */
     setTimeout(() => {
       resolve(window.location.href)
     }, 2000)
@@ -166,6 +166,6 @@ function changeRole(roleIdNumber) {
   /* 选中值发生变化时触发 */
   roleId.value = roleIdNumber
 
-  Modal.message(`当前选中的角色id是${roleIdNumber}`)
+  TinyModal.message(`当前选中的角色 id 是 ${roleIdNumber}`)
 }
 </script>

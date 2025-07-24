@@ -23,11 +23,9 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <!-- modeState.demoId === 'preview-in-dialog' 修复preview-in-dialog demo弹窗内容被遮罩层遮挡 -->
         <div
           :id="state.currDemo?.demoId"
           class="rel px20 minh200"
-          :style="{ transform: modeState.demoId === 'preview-in-dialog' ? '' : 'translateX(0)' }"
         >
           <config-provider :design="design">
             <component :is="state.comp"></component>

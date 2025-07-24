@@ -7,6 +7,7 @@ test('基本用法', async ({ page }) => {
   // 自定义节点
   await page.getByRole('textbox', { name: '请选择' }).nth(0).click()
   await expect(page.getByText('指南', { exact: true })).toHaveAttribute('title', '指南')
+  await page.getByRole('textbox', { name: '请选择' }).nth(0).click()
   await page.waitForTimeout(100)
 
   // 无数据

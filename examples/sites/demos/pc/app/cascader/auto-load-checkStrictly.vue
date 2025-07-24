@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { Cascader } from '@opentiny/vue'
+import { TinyCascader } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascader: Cascader
+    TinyCascader
   },
   data() {
     let id = 0
@@ -22,7 +22,7 @@ export default {
           setTimeout(() => {
             const nodes = Array.from({ length: level + 1 }).map(() => ({
               value: ++id,
-              label: `选项${id}`,
+              label: `选项 ${id}`,
               leaf: level >= 2
             }))
 

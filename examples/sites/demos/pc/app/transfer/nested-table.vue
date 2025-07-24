@@ -23,11 +23,11 @@
 </template>
 
 <script lang="jsx">
-import { Transfer, Table } from '@opentiny/vue'
+import { TinyTransfer, TinyTable } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer
   },
   data() {
     const getGridData = () => {
@@ -36,8 +36,8 @@ export default {
       for (let i = 1; i <= 20; i++) {
         data.push({
           id: i.toString(),
-          name: 'GFD科技YX公司' + i,
-          area: '华东区' + i,
+          name: 'GFD 科技 YX 公司 ' + i,
+          area: '华东区 ' + i,
           disabled: i % 4 === 0
         })
       }
@@ -47,7 +47,7 @@ export default {
 
     return {
       render: {
-        plugin: Table
+        plugin: TinyTable
       },
       value: ['5', '6', '14', '10', '9', '11', '12'],
       data: getGridData(),

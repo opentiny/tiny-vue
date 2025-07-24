@@ -53,7 +53,7 @@ describe('PC Mode', () => {
    */
   test('move start', async () => {
     const mousedown = vi.fn()
-    const wrapper = mount(() => <Split v-model={data.value} onMoveStart={mousedown}></Split>)
+    const wrapper = mount(() => <Split v-model={data.value} onMovestart={mousedown}></Split>)
     await wrapper.find('.tiny-split-trigger-con').trigger('mousedown')
     await nextTick()
     expect(mousedown).toHaveBeenCalled()

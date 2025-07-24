@@ -30,6 +30,17 @@ export default {
           '<p>Use <code>footer-method</code> and <code>footer-span-method</code> to set the total row or column logic of the table tail. <code>show-footer</code></p>\n must be configured'
       },
       'codeFiles': ['footer/footer-row-or-column-span.vue']
+    },
+    {
+      'demoId': 'update-footer',
+      'name': { 'zh-CN': '手动更新表尾数据', 'en-US': 'Manually Update Footer Data' },
+      'desc': {
+        'zh-CN':
+          '<p>默认情况下，只有当编辑失焦后才会更新表尾数据，通过 <code>updateFooter</code> 可以手动更新表尾数据。</p>\n',
+        'en-US':
+          '<p>By default, footer data is only updated when editing loses focus. You can manually update footer data using the <code>updateFooter</code> method.</p>\n'
+      },
+      'codeFiles': ['footer/update-footer.vue']
     }
   ],
   apis: [{ 'name': 'grid-footer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

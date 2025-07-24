@@ -1,23 +1,26 @@
 <template>
   <div>
-    <tiny-color-picker v-model="color" :history="history" />
+    <tiny-color-picker v-model="color" :history="history" :enable-history="enableHistory" />
+    <br />
     <tiny-button @click="addHistoryColor">Append history color</tiny-button>
     <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
+    <tiny-button @click="enableHistory = !enableHistory">Toggle History visibility</tiny-button>
   </div>
 </template>
 
 <script>
-import { ColorPicker, Button } from '@opentiny/vue'
+import { TinyColorPicker, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker,
-    TinyButton: Button
+    TinyColorPicker,
+    TinyButton
   },
   data() {
     return {
       color: '#66ccff',
-      history: []
+      history: [],
+      enableHistory: false
     }
   },
   methods: {

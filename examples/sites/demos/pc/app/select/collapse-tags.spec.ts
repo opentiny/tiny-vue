@@ -24,7 +24,7 @@ test('collapse-tags', async ({ page }) => {
   await expect(tag.filter({ hasText: '+ 1' })).toBeHidden()
   await expect(tag).toHaveCount(1)
 
-  // 再选中2个
+  // 再选中 2 个
   await option.filter({ hasText: '天津' }).locator('span').nth(1).click()
   await option.filter({ hasText: '深圳' }).locator('span').nth(1).click()
   await expect(tag.filter({ hasText: '+ 2' })).toBeVisible()

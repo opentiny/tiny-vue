@@ -18,7 +18,7 @@
     @click.stop="handleClick"
   >
     <tbody>
-      <tr>
+      <tr class="tiny-date-table__week">
         <th v-if="showWeekNumber">
           {{ t('ui.datepicker.week') }}
         </th>
@@ -62,7 +62,8 @@ export default defineComponent({
     'selectionMode',
     'showWeekNumber',
     'value',
-    'formatWeeks'
+    'formatWeeks',
+    'readonly'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

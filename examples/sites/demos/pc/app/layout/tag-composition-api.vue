@@ -2,20 +2,20 @@
   <tiny-layout class="tiny-layout-tag1">
     <tiny-row tag="span">
       <tiny-col :span="3">
-        <div class="col">span（行标签已改为span）</div>
+        <div class="col">span（行标签已改为 span）</div>
       </tiny-col>
       <tiny-col :span="3">
-        <div class="col">span（行标签已改为span）</div>
+        <div class="col">span（行标签已改为 span）</div>
       </tiny-col>
       <tiny-col :span="3">
-        <div class="col">span（行标签已改为span）</div>
+        <div class="col">span（行标签已改为 span）</div>
       </tiny-col>
     </tiny-row>
   </tiny-layout>
 </template>
 
 <script setup>
-import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
+import { TinyLayout, TinyRow, TinyCol } from '@opentiny/vue'
 </script>
 
 <style scoped>

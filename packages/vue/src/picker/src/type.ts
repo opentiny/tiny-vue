@@ -139,5 +139,8 @@ export const pickerProps = {
   changeCompat: {
     type: Boolean,
     default: false
+  },
+  nowClick: {
+    type: Function
   }
 }

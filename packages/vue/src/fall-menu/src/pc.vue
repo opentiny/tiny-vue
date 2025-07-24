@@ -14,7 +14,7 @@
     <div class="tiny-fall-menu__wrap">
       <div class="tiny-fall-menu__nav">
         <div class="tiny-fall-menu__subnav">
-          <div v-show="state.pager != 1" class="icon-slot-left" @click="arrowClick(-1)">
+          <div v-show="state.pager !== 1" class="icon-slot-left" @click="arrowClick(-1)">
             <slot name="left">
               <icon-chevron-left class="tiny-svg-size" />
             </slot>
@@ -24,14 +24,21 @@
               <li
                 v-for="(level1, index) in state.data"
                 :key="index"
+                @click="clickActive(index)"
                 @mouseover="mouseover(index)"
                 @mouseout="mouseout"
-                :class="{
-                  'fall-hide': index >= state.pagerData.index[state.pager - 1] && state.pager !== state.pagerData.size
-                }"
+                :class="[
+                  index >= state.pagerData.index[state.pager - 1] && state.pager !== state.pagerData.size
+                    ? 'fall-hide'
+                    : ''
+                ]"
               >
                 <slot name="level1" :slot-scope="level1">
-                  <a :href="level1.url" :class="{ now: index === state.activeNode }">{{ level1.title }} </a>
+                  <a
+                    :class="[index === state.active ? 'active-show' : '', index === state.activeNode ? 'now' : '']"
+                    :href="level1.url"
+                    >{{ level1.title }}
+                  </a>
                 </slot>
               </li>
             </ul>
@@ -71,7 +78,7 @@
                     </h3>
                     <p class="mcate-item-bd">
                       <slot name="level3" :slot-scope="level2.children">
-                        <a v-for="(level3, index) in level2.children" :href="level3.url" :key="index">{{
+                        <a v-for="(level3, index3) in level2.children" :href="level3.url" :key="index3">{{
                           level3.title
                         }}</a>
                       </slot>
@@ -95,7 +102,6 @@ import Col from '@opentiny/vue-col'
 import { iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  emits: ['hook-updated'],
   props: [...props, 'data'],
   components: {
     TinyRow: Row,

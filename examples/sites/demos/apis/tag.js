@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc', 'mobile', 'mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'tag',
@@ -39,14 +39,13 @@ export default {
             'en-US':
               'Control the text color and background color of the label. You can use the preset value in the IColor type or customize the value. If the customized value is a character string, you can only set the background color of the label. If it is an array, the first value sets the background color and the second sets the text color. [Note: The array type is supported in 3.15.0]'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'color3',
-          mobileDemo: 'different-color',
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'color-border',
           mfDemo: 'color3'
         },
         {
           name: 'custom-class',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '标签class',
@@ -92,30 +91,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'max-width',
-          type: 'string | number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '最大宽度',
-            'en-US': 'max width'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'max-width'
-        },
-        {
-          name: 'mini',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '小尺寸',
-            'en-US': 'mini'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'mini'
-        },
-        {
           name: 'operable',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否可操作',
@@ -126,7 +103,7 @@ export default {
         },
         {
           name: 'selectable',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '是否可选择',
@@ -145,30 +122,8 @@ export default {
             'en-US': 'Size'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
+          pcDemo: 'size',
           mfDemo: ''
-        },
-        {
-          name: 'text',
-          type: 'string',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '文字',
-            'en-US': 'Text'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'basic-usage'
-        },
-        {
-          name: 'theme',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '彩色标签，该属性的可选值为 pink、purple、cyan',
-            'en-US': 'Color label. The value can be pink, purple, or cyan.'
-          },
-          mode: ['mobile'],
-          mfDemo: 'different-color'
         },
         {
           name: 'type',
@@ -192,7 +147,19 @@ export default {
             'en-US': 'Configurable labels, custom label content [Added in 3.9.1]'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'content',
+          pcDemo: 'basic-usage',
+          mfDemo: ''
+        },
+        {
+          name: 'only-icon',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否为纯图标的模式【3.19新增】',
+            'en-US': 'Whether it is a pure icon mode [Added in 3.19]'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
           mfDemo: ''
         }
       ],
@@ -232,9 +199,8 @@ export default {
             'zh-CN': '标签内容',
             'en-US': 'Label Content'
           },
-          mode: ['pc', 'mobile', 'mobile-first'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
-          mobileDemo: 'slot-default',
           mfDemo: ''
         }
       ]
@@ -259,7 +225,7 @@ type IEffect = 'dark' | 'light' | 'plain'
       name: 'ISize',
       type: 'type',
       code: `
-type ISize = 'medium' | 'small' | 'mini' | ''
+type ISize = 'medium' | 'small' | ''
 `
     },
     {

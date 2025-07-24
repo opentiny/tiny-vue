@@ -18,15 +18,15 @@
 @upload-dragger-prefix-cls: ~'@{css-prefix}upload-dragger';
 
 .@{file-upload-prefix-cls} {
-  .component-css-vars-upload-dragger();
+  .inject-UploadDragger-vars();
 }
 
 .@{upload-dragger-prefix-cls} {
-  width: var(--ti-upload-dragger-width);
-  height: var(--ti-upload-dragger-height);
-  background-color: var(--ti-upload-dragger-bg-color);
-  border: 1px dashed var(--ti-upload-dragger-border-color);
-  border-radius: var(--ti-upload-dragger-border-radius);
+  width: var(--tv-UploadDragger-width);
+  height: var(--tv-UploadDragger-height);
+  background-color: var(--tv-UploadDragger-bg-color);
+  border: 1px dashed var(--tv-UploadDragger-border-color);
+  border-radius: var(--tv-UploadDragger-border-radius);
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
@@ -36,27 +36,27 @@
   align-items: center;
 
   &:hover {
-    border-color: var(--ti-upload-dragger-hover-text-color);
+    border-color: var(--tv-UploadDragger-hover-text-color);
   }
 
   &.is-dragover {
-    background-color: var(--ti-upload-dragger-dragover-bg-color, rgba(32, 159, 255, 0.06));
-    border: 2px dashed var(--ti-upload-dragger-hover-text-color);
+    background-color: var(--tv-UploadDragger-dragover-bg-color, rgba(32, 159, 255, 0.06));
+    border: 2px dashed var(--tv-UploadDragger-hover-text-color);
   }
 
   .icon-fileupload {
-    font-size: var(--ti-upload-dragger-icon-font-size);
-    fill: var(--ti-upload-dragger-icon-color);
+    font-size: var(--tv-UploadDragger-icon-font-size);
+    fill: var(--tv-UploadDragger-icon-color);
   }
 
   .@{upload-prefix-cls}__text {
-    color: var(--ti-upload-dragger-text-color);
-    font-size: var(--ti-upload-dragger-text-font-size);
+    color: var(--tv-UploadDragger-text-color);
+    font-size: var(--tv-UploadDragger-text-font-size);
     text-align: center;
     line-height: 1.5;
 
     em {
-      color: var(--ti-upload-dragger-hover-text-color);
+      color: var(--tv-UploadDragger-hover-text-color);
       font-style: normal;
     }
   }
@@ -66,7 +66,7 @@
   }
 
   & ~ .@{upload-prefix-cls}__files {
-    border-top: 1px solid var(--ti-upload-dragger-files-border-color);
+    border-top: 1px solid var(--tv-UploadDragger-files-border-color);
     margin-top: 7px;
     padding-top: 5px;
   }

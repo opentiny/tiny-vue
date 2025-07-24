@@ -4,7 +4,8 @@ test('迷你模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#mini-mode')
 
-  const search = page.locator('.tiny-search.mini')
+  const container = page.locator('#mini-mode')
+  const search = container.locator('.tiny-search.mini').first()
   const blank = page.getByRole('code').first()
   const line = search.locator('.tiny-search__line')
   const input = search.locator('.tiny-search__input')
@@ -12,8 +13,8 @@ test('迷你模式', async ({ page }) => {
 
   await expect(search).toHaveClass(/collapse/)
   await expect(input).not.toBeVisible()
-  await expect(line).toHaveCSS('width', '28px')
-  await expect(line).toHaveCSS('border-radius', '28px')
+  await expect(line).toHaveCSS('width', '32px')
+  await expect(line).toHaveCSS('border-radius', '32px')
 
   await icon.click()
   await expect(search).not.toHaveClass(/collapse/)
@@ -22,6 +23,6 @@ test('迷你模式', async ({ page }) => {
   await blank.click() // 点击空白处收回
   await expect(search).toHaveClass(/collapse/)
   await expect(input).not.toBeVisible()
-  await expect(line).toHaveCSS('width', '28px')
-  await expect(line).toHaveCSS('border-radius', '28px')
+  await expect(line).toHaveCSS('width', '32px')
+  await expect(line).toHaveCSS('border-radius', '32px')
 })

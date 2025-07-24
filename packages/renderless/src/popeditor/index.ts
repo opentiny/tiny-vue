@@ -10,13 +10,13 @@
  *
  */
 
-import { find } from '../common/array'
-import { typeOf, isNull } from '../common/type'
-import { getDataset } from '../common/dataset'
-import { isNullOrEmpty } from '../common/string'
-import { isEqual } from '../common/object'
+import { find } from '@opentiny/utils'
+import { typeOf, isNull } from '@opentiny/utils'
+import { getDataset } from '@opentiny/utils'
+import { isNullOrEmpty } from '@opentiny/utils'
+import { isEqual } from '@opentiny/utils'
 import { eachTree } from '../grid/static'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const computedGetTitle = ({ constants, props, t }) => props.title || t(constants.TITLE)
 
@@ -52,8 +52,9 @@ export const createSearchForm = (props) => (isRest) =>
   }, {})
 
 export const getColumns = ({ constants, props }) => {
-  const { columns } = props.gridOp
-
+  const { columns: preColumns } = props.gridOp
+  // 同步勿删，后续逻辑会修改columns，因此需要浅拷贝一下，否则会因此死循环
+  const columns = preColumns.slice(0)
   const selectionCol = find(
     columns,
     (col) => col.type === constants.COLUMNS_TYPE.selection || col.type === constants.COLUMNS_TYPE.radio
@@ -65,7 +66,6 @@ export const getColumns = ({ constants, props }) => {
     const indexCol = find(columns, (col) => col.type === constants.COLUMNS_TYPE.index)
 
     const index = indexCol ? 1 : 0
-
     columns.splice(index, 0, {
       type: props.multi ? constants.COLUMNS_TYPE.selection : constants.COLUMNS_TYPE.radio,
       width: columns.length ? constants.COLUMNS_TYPE.width : ''
@@ -377,7 +377,7 @@ export const initDisplay =
   }
 
 export const openDialog =
-  ({ api, props, state, emit }) =>
+  ({ api, props, state, emit, nextTick }) =>
   () => {
     if (state.disabled) {
       return
@@ -390,6 +390,10 @@ export const openDialog =
     state.showContent = true
     emit('popup')
     props.autoLookup && props.alwaysLoad && api.query()
+
+    nextTick(() => {
+      api.computedTreeMaxHeight()
+    })
   }
 
 const localFilter = ({ props, state }) => {
@@ -935,4 +939,16 @@ export const selectedBoxDrag =
       state.selectedDatas = datas
       state.selectedValues = values
     }
+  }
+
+export const computedTreeMaxHeight =
+  ({ vm, state }) =>
+  () => {
+    const dialogBoxEl = vm.$refs.popeditorDialogBox.$el
+    const searchInputBottom = 20
+    const searchInputHeight = dialogBoxEl.querySelector('.tiny-popeditor__filter-input')?.clientHeight || 0
+
+    state.treeWrapperMaxHeight = `${
+      dialogBoxEl.querySelector('.tiny-dialog-box__body').clientHeight - searchInputHeight - searchInputBottom
+    }px`
   }

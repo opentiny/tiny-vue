@@ -31,7 +31,7 @@ describe('PC Mode', () => {
   })
 
   test('custom border color', async () => {
-    const borderColor = 'red'
+    const borderColor = 'rgb(255, 0, 0)'
 
     const wrapper = mount(() => <Divider color={borderColor}></Divider>)
 

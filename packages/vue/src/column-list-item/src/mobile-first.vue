@@ -99,13 +99,14 @@
     />
     <div
       data-tag="tiny-column-list-item-operatebox"
+      :style="{ flexBasis: operateFlexBasis }"
       v-if="state.effectOptions.length || (slots.operate && slots.operate())"
       class="w-full sm:w-auto px-0 sm:pl-5 sm:pr-1 h-12 sm:h-auto flex flex-row sm:flex-col items-center justify-around sm:justify-center sm:items-start shadow-none sm:shadow-[-6px_0px_5px_-5px_#e8ebef] shrink-0 text-color-text-primary"
     >
       <slot name="operate">
         <div
           data-tag="tiny-column-list-item-operate"
-          class="cursor-pointer mb-0 sm:mb-2"
+          class="cursor-pointer mb-0 sm:mb-2 line-clamp-1"
           v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)"
           :key="item.text + index"
           :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
@@ -252,7 +253,9 @@ export default defineComponent({
     customClass: {
       type: String,
       default: ''
-    }
+    },
+    // Tiny新增用于自定义操作列宽度
+    operateFlexBasis: String
   },
   setup(props, context) {
     return setup({

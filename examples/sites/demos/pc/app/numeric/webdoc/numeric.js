@@ -35,8 +35,10 @@ export default {
         'en-US': 'Step'
       },
       desc: {
-        'zh-CN': '可通过<code>step</code>属性设置计数器的加减数值。',
-        'en-US': 'Set the addition and subtraction values of the counter through the<code>step</code>attribute.'
+        'zh-CN':
+          '可通过<code>step</code>属性设置计数器的加减数值及<code>mode</code>模式为<code>restore</code>、<code>strictly</code>的用法，<code>step-strictly</code>属性设置只能输入 step 的倍数',
+        'en-US':
+          'The addition and subtraction values of the counter can be set through the<code>step</code>attribute, and the<code>mode</code>can be used for<code>restore</code>and<code>strictly</code>modes. The<code>step strictly</code>attribute can only input multiples of step'
       },
       codeFiles: ['about-step.vue']
     },
@@ -101,9 +103,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '可通过<code>size</code> 属性设置计数器尺寸，可选值有<code>medium</code><code>small</code><code>mini</code>。',
+          '可通过 <code>size</code> 属性设置计数器尺寸，可选值有 <code>medium</code><code>small</code><code>mini</code>。',
         'en-US':
-          'You can set the counter size through the<code>size</code>attribute.The value can be <code>medium</code><code>small</code><code>mini</code>. '
+          'You can set the counter size through the<code>size</code>attribute,the value can be <code>medium</code><code>small</code><code>mini</code>. '
       },
       codeFiles: ['numeric-size.vue']
     },
@@ -155,7 +157,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '可通过<code>@change</code>设置监听数值改变事件。当<code>change-compat</code>为false时，仅当加减按钮及直接输入数值时会触发<code>change</code>事件。',
+          '可通过<code>@change</code>设置监听数值改变事件。当<code>change-compat</code>为 false 时，仅当加减按钮及直接输入数值时会触发<code>change</code>事件。',
         'en-US':
           'The <code>@change</code> event is triggered when the value of the text box is changed. When the<code>change compat</code>is false, the <code>change</code> event will be triggered when only the add and subtract buttons and directly entering numerical values are used.</p>\n'
       },
@@ -214,7 +216,7 @@ export default {
     {
       demoId: 'filter-mode-change',
       name: {
-        'zh-CN': '过滤器模式change事件',
+        'zh-CN': '过滤器模式 change 事件',
         'en-US': 'Filter Mode'
       },
       desc: {

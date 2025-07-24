@@ -11,27 +11,42 @@
         <tiny-grid-toolbar>
           <template #buttons>
             <div>
-              <tiny-input class="w-200" v-model="text" placeholder="请输入公司名称"></tiny-input>
-              <tiny-button class="ml-8" @click="search">搜索</tiny-button>
+              <tiny-button @click="$refs.basicGridRef.setAllSelection(true)">全选</tiny-button>
+              <tiny-button @click="$refs.basicGridRef.clearSelection()">取消全选</tiny-button>
+              <tiny-button @click="$refs.basicGridRef.revertData()">重置</tiny-button>
+            </div>
+          </template>
+        </tiny-grid-toolbar>
+        <tiny-grid-toolbar class="search-toolbar" setting full-screen>
+          <template #buttons>
+            <div>
+              <tiny-search class="w-200" v-model="text" placeholder="请输入公司名称" @search="search"></tiny-search>
+              <!-- <tiny-button class="ml-8" @click="search">搜索</tiny-button> -->
             </div>
           </template>
         </tiny-grid-toolbar>
       </template>
-      <tiny-grid-column type="selection" width="50"></tiny-grid-column>
-      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
       <tiny-grid-column
         field="name"
         show-overflow
         title="名称"
+        :show-icon="false"
         :editor="{ component: 'input', autoselect: true }"
       ></tiny-grid-column>
       <tiny-grid-column
         field="area"
         title="区域"
+        :show-icon="false"
         sortable
         :editor="{ component: 'select', options }"
       ></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址" :editor="{ component: 'input', attrs: {} }"></tiny-grid-column>
+      <tiny-grid-column
+        field="address"
+        title="地址"
+        :show-icon="false"
+        :editor="{ component: 'input', attrs: {} }"
+      ></tiny-grid-column>
       <tiny-grid-column field="introduction" show-overflow title="公司简介"></tiny-grid-column>
     </tiny-grid>
   </div>
@@ -39,22 +54,15 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Pager,
-  Input as TinyInput,
-  Button as TinyButton,
-  Grid as TinyGrid,
-  GridColumn as TinyGridColumn,
-  GridToolbar as TinyGridToolbar
-} from '@opentiny/vue'
+import { TinyPager, TinySearch, TinyButton, TinyGrid, TinyGridColumn, TinyGridToolbar } from '@opentiny/vue'
 
 const pagerConfig = ref({
-  component: Pager,
+  component: TinyPager,
   attrs: {
     currentPage: 1,
     pageSize: 10,
     total: 0,
-    layout: 'total, prev, pager, next, jumper, sizes'
+    layout: 'total, sizes, prev, pager, next, jumper'
   }
 })
 const options = ref([
@@ -70,73 +78,73 @@ const fetchData = ref({
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     area: '华东区',
     address: '福州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '2',
-    name: 'WWWW科技YX公司',
+    name: 'WWWW 科技 YX 公司',
     area: '华南区',
     address: '深圳福田区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     area: '华南区',
     address: '中山市',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '4',
-    name: 'TGBYX公司',
+    name: 'TGBYX 公司',
     area: '华北区',
     address: '梅州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     area: '华南区',
     address: '韶关',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '6',
-    name: '康康物业YX公司',
+    name: '康康物业 YX 公司',
     area: '华北区',
     address: '广州天河区',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '7',
-    name: '深圳市福德宝网络技术YX公司',
+    name: '深圳市福德宝网络技术 YX 公司',
     area: '华南区',
     address: '清远',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '8',
-    name: '西安门福德宝网络技术YX公司',
+    name: '西安门福德宝网络技术 YX 公司',
     area: '华东区',
     address: '厦门',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '9',
-    name: 'WWWW科技股份有限子公司',
+    name: 'WWWW 科技股份有限子公司',
     area: '华南区',
     address: '韶关',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
     id: '10',
-    name: 'WSX科技YX公司',
+    name: 'WSX 科技 YX 公司',
     area: '华南区',
     address: '广州',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 const basicGridRef = ref()
@@ -159,11 +167,25 @@ function search() {
 }
 </script>
 
-<style scoped>
-.w-200 {
-  width: 200px;
+<style scoped lang="less">
+.search-toolbar {
+  display: flex;
+  :deep(.tiny-grid-button__wrapper) {
+    flex: 1;
+    padding-right: 4px;
+  }
 }
-.ml-8 {
-  margin-left: 8px;
+:deep(.tiny-grid) {
+  &-header__column,
+  &-body__column {
+    &.col__selection,
+    &.col__radio {
+      padding: 0 8px 0 16px;
+      & + th,
+      + td {
+        padding-left: 0;
+      }
+    }
+  }
 }
 </style>

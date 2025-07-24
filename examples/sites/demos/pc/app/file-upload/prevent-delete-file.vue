@@ -1,18 +1,18 @@
 <template>
   <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :before-remove="beforeRemove">
     <template #trigger>
-      <tiny-button type="primary">选取文件</tiny-button>
+      <tiny-button>选取文件</tiny-button>
     </template>
   </tiny-file-upload>
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
   methods: {
     beforeRemove(file) {
       return new Promise((resolve, reject) => {
-        Modal.confirm(`确定移除 ${file.name}？`).then((res) => {
+        TinyModal.confirm(`确定移除 ${file.name}？`).then((res) => {
           res === 'confirm' ? resolve() : reject(new Error('取消移除'))
         })
       })

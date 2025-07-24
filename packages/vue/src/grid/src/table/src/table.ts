@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /**
  * MIT License
  *
@@ -24,10 +25,10 @@
  */
 import { h, hooks, $prefix, resolveTheme, defineComponent, useInstanceSlots, useRelation } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
-import { extend } from '@opentiny/vue-renderless/common/object'
-import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { extend } from '@opentiny/utils'
+import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners, isScale } from '@opentiny/vue-renderless/grid/utils'
+import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridHeader from '../../header'
 import GridFooter from '../../footer'
@@ -41,6 +42,7 @@ import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 import { useDrag, useRowGroup } from '../../composable'
+import { isServer } from '@opentiny/utils'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
@@ -98,15 +100,14 @@ function loadStatic(data, _vm) {
 function mergeTreeConfig(_vm) {
   if (_vm.treeConfig) {
     const { ordered } = _vm.treeConfig
-
-    if (isNull(ordered)) {
-      _vm.treeConfig.ordered = true
-    }
+    _vm.treeOrdered = isNull(ordered) ? true : Boolean(ordered)
   }
 }
 
 const renderEmptyPartFn = (opt) => {
-  const { _vm, tableData, $slots, renderEmpty } = opt
+  const { _vm, tableData } = opt
+  const { $grid = {}, renderEmpty } = _vm
+  const { slots } = $grid
   return () => {
     let emptyPartVnode = null
     let { computerTableBodyHeight } = _vm
@@ -115,8 +116,8 @@ const renderEmptyPartFn = (opt) => {
       let emptyVnodes
       let noEmptyClass = _vm.viewType === V_CARD || _vm.viewType === V_LIST
 
-      if ($slots.empty) {
-        emptyVnodes = $slots.empty.call(_vm, h)
+      if (slots.empty) {
+        emptyVnodes = slots.empty.call(_vm, h)
       } else if (renderEmpty) {
         emptyVnodes = [renderEmpty(h, _vm)]
       } else {
@@ -275,21 +276,13 @@ function getRenderer(opt) {
     visibleColumn
   } = opt
   const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const {
-    isCtxMenu,
-    isResizable,
-    renderEmpty,
-    scrollbarHeight,
-    selectToolbarStore,
-    tooltipContentOpts,
-    vaildTipOpts,
-    validOpts
-  } = _vm
+  const { isCtxMenu, isResizable, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } =
+    _vm
   const { selectToolbar, renderedToolbar } = $grid
 
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
-  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
+  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData })
   const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
@@ -318,10 +311,14 @@ const renderFooterBorder = (_vm) => {
 
 // 设置表格最外层元素类名
 function getTableAttrs(tableVm) {
-  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
-  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig = {} } = tableVm
+  const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
+  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup } = tableVm
   const { maxHeight, loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
-  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan, dropConfig = {} } = tableVm
+  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan } = tableVm
+
+  // 当用户传null值，解构得到的值为null，因此需要使用fallback值
+  const dropConfig = tableVm.dropConfig || {}
+  const mouseConfig = tableVm.mouseConfig || {}
 
   const map = {
     showHeader: 'show__head',
@@ -335,8 +332,9 @@ function getTableAttrs(tableVm) {
 
   const style = {}
 
-  if (maxHeight) {
-    style.maxHeight = isScale(maxHeight) ? maxHeight : toNumber(maxHeight) + 'px'
+  // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
+  if (isShapeTable && maxHeight) {
+    style.maxHeight = Number(maxHeight) ? maxHeight + 'px' : maxHeight
   }
 
   return {
@@ -550,7 +548,9 @@ const getTableData = () => {
     // 是否是标签式用法场景
     isTagUsageSence: false,
     // 收集列信息（列数量和列顺序）
-    columnCollectKey: ''
+    columnCollectKey: '',
+    // treeConfig.ordered的取值处理
+    treeOrdered: true
   }
   return tableData
 }
@@ -683,6 +683,8 @@ export default defineComponent({
     renderRowAfter: Function,
     // 所有列是否允许拖动列宽调整大小
     resizable: { type: Boolean, default: () => GlobalConfig.resizable },
+    // 可调整列宽的配置
+    resizableConfig: Object,
     // 给行附加 className
     rowClassName: [String, Function],
     // 行分组配置映射表
@@ -754,6 +756,8 @@ export default defineComponent({
     listConfig: Object,
     // 多端甘特配置
     ganttConfig: Object,
+    // 多端custom配置
+    customConfig: Object,
     // 数据预取配置
     prefetch: [Boolean, Array],
     // 相交配置
@@ -940,11 +944,11 @@ export default defineComponent({
     mergeScrollDirStore(scrollX, scrollXStore)
     mergeScrollDirStore(scrollY, scrollYStore)
 
-    // 初始化表格渲染数据
-    loadStatic(data, this)
-
     // 合并树表配置项
     mergeTreeConfig(this)
+
+    // 初始化表格渲染数据
+    loadStatic(data, this)
 
     bindEvent(this)
 
@@ -1008,7 +1012,7 @@ export default defineComponent({
     useRelation({
       relationKey: `${columnLevelKey}-${id.value}`,
       childrenKey: 'childColumns',
-      relationContainer: () => $table.$el.querySelector(`.${hiddenContainerClass}`),
+      relationContainer: () => (!isServer ? $table.$el.querySelector(`.${hiddenContainerClass}`) : null),
       onChange: () => {
         const collectKey = $table.computeCollectKey()
 
@@ -1055,8 +1059,6 @@ export default defineComponent({
       unbindEvent($table)
     })
 
-    useInstanceSlots()
-
     const tableListeners = getListeners(attrs, listeners)
 
     return { slots, tableListeners, tinyTheme, id, collectColumn, tableFullColumn, visibleColumn, tableColumn }
@@ -1086,16 +1088,18 @@ export default defineComponent({
       stripeSaas,
       borderSaas,
       isShapeTable,
+      resizableConfig,
       rowSpan
     } = this as any
-    let { borderVertical, cardConfig, listConfig, ganttConfig } = this
+    let { borderVertical, cardConfig, listConfig, ganttConfig, customConfig } = this
     let { leftList, rightList } = columnStore
-    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
+    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup, resizableConfig }
 
-    Object.assign(props, { cardConfig, listConfig, ganttConfig })
+    Object.assign(props, { cardConfig, listConfig, ganttConfig, customConfig })
     let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
+
     const renders = getRenderer(args)
     const { renderHeader, renderEmptyPart, renderFooter } = renders
     const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders

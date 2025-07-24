@@ -58,8 +58,8 @@ export default defineComponent({
       })
   },
   setup(props, { slots }) {
-    const { direction } = hooks.toRefs(props)
-    provideDesignConfig(props.design)
+    const { direction, design } = hooks.toRefs(props)
+    provideDesignConfig(design)
     const isRTL = hooks.computed(() => direction.value === 'rtl')
     const cssVar = hooks.computed(() => {
       return {

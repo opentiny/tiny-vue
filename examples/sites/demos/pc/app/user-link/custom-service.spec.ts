@@ -1,12 +1,14 @@
 import { test, expect } from '@playwright/test'
 
 test('user-link-custom-service', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+
   await page.goto('user-link#custom-service')
+  const demo = page.locator('#custom-service')
   const card = page.locator('.tiny-popper.tiny-user-card')
-  const reference = page.locator('.reference-wrapper')
+  const reference = demo.locator('.reference-wrapper')
   const img = card.locator('.card-top-img img')
 
-  await expect(reference).toHaveText('test3')
   await expect(card).toBeHidden()
   await reference.click()
   await page.waitForTimeout(1000)

@@ -14,17 +14,17 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem, Modal } from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdown,
+    TinyDropdownMenu,
+    TinyDropdownItem
   },
   methods: {
     visibleChange(status) {
-      Modal.message({
+      TinyModal.message({
         message: `下拉菜单显隐事件，当前为${status ? '显示' : '隐藏'}`,
         status: 'info'
       })

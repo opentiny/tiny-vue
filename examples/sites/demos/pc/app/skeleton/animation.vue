@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { Skeleton, SkeletonItem, Button } from '@opentiny/vue'
+import { TinySkeleton, TinySkeletonItem, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySkeleton: Skeleton,
-    TinySkeletonItem: SkeletonItem,
-    TinyButton: Button
+    TinySkeleton,
+    TinySkeletonItem,
+    TinyButton
   },
   data() {
     return {

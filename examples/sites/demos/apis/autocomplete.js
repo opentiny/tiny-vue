@@ -22,7 +22,7 @@ export default {
           defaultValue: '300',
           desc: {
             'zh-CN': '获取输入建议的去抖延时',
-            'en-US': 'Obtain the recommended input dejitter delay.'
+            'en-US': 'Obtain the recommended input debounce delay'
           },
           mode: ['pc'],
           pcDemo: 'debounce'
@@ -90,7 +90,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '等价于原生 input aria-label 属性',
-            'en-US': 'Equiphorus input aria-label attribute'
+            'en-US': 'Equals input aria-label attribute'
           },
           mode: ['pc'],
           pcDemo: ''
@@ -319,6 +319,7 @@ export default {
     {
       name: 'IAutocompleteFetchSuggestions',
       type: 'type',
+      depTypes: ['IAutocompleteSuggestionItem'],
       code: `type IAutocompleteFetchSuggestions = (queryString: string, callback: (suggestions: IAutocompleteSuggestionItem[]) => void) => void`
     }
   ]

@@ -1,5 +1,5 @@
-/* eslint-disable vue/no-mutating-props */
 /* eslint-disable vue/no-use-computed-property-like-method */
+/* eslint-disable vue/no-mutating-props */
 /**
  * MIT License
  *
@@ -27,13 +27,13 @@
 
 import Radio from '../../radio'
 import Button from '@opentiny/vue-button'
-import PopperJS from '@opentiny/vue-renderless/common/deps/popper'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { PopperJS } from '@opentiny/utils'
+import { PopupManager } from '@opentiny/utils'
+import { extend } from '@opentiny/utils'
 import { t } from '@opentiny/vue-locale'
 import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { debounce } from '@opentiny/utils'
 
 const renderInputArgs = ({ _vm, inputFilter }) => {
   let isAddbyProgram = false
@@ -289,20 +289,29 @@ export default defineComponent({
         }
       }
 
-      this.popperJS && this.popperJS.destroy() && (this.popperJS = null)
-      this.$nextTick(() => {
-        const { targetElemParentTr, id } = this.filterStore
-        const reference = targetElemParentTr && targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
-        const popper = this.$el
+      if (this.popperJS) {
+        this.popperJS.destroy()
+        this.popperJS = null
+      }
+      if (this.visible) {
+        /**  popper通过resizeObserver监听尺寸变化，resizeObserver的回调默认会在下一事件循环执行一次，从而update popper
+           此处获取的reference，在遇到长任务后，在下一事件循环时，可能已经被移除了，导致popper元素位置在左上角。
+           使用setTimeout延迟弹出时机，使得两次update中的reference都为选中态的过滤图标。
+       */
+        setTimeout(() => {
+          const { targetElemParentTr, id } = this.filterStore
+          const reference = targetElemParentTr && targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
+          const popper = this.$el
 
-        popper.style.zIndex = PopupManager.nextZIndex()
+          popper.style.zIndex = PopupManager.nextZIndex()
 
-        if (this.visible) {
           this.popperJS = new PopperJS(reference, popper, {
-            placement: 'bottom-end'
-          }).update()
-        }
-      })
+            placement: 'bottom-end',
+            gpuAcceleration: false
+          })
+          popper.style.display = 'block'
+        })
+      }
     }),
     // 基础清除选项
     renderBase() {
@@ -503,11 +512,10 @@ export default defineComponent({
               </li>
             </ul>
             <div class="tiny-grid__filter-option filter-option__btns filter-option__date-button">
-              <Button size="mini" onClick={this.filterDate}>
+              <Button type="primary" onClick={this.filterDate}>
                 {this.i18n('ui.base.confirm')}
               </Button>
               <Button
-                size="mini"
                 onClick={() => {
                   filterStore.visible = false
                 }}>
@@ -553,11 +561,10 @@ export default defineComponent({
             </ul>
             {filterStore.multi ? (
               <div class="tiny-grid__filter-option filter-option__btns">
-                <Button size="mini" onClick={this.filterEnum}>
+                <Button type="primary" onClick={this.filterEnum}>
                   {this.i18n('ui.base.confirm')}
                 </Button>
                 <Button
-                  size="mini"
                   onClick={() => {
                     filterStore.visible = false
                   }}>

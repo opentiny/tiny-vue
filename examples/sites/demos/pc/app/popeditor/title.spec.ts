@@ -24,13 +24,13 @@ test.describe('PopEditor 自定义标题和提交字段映射', () => {
     const textBox = preview.getByRole('textbox')
     const dialogBox = page.locator('.tiny-dialog-box')
     const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })
-    const seletItem = dialogBox.getByRole('row', { name: '1 GFD科技YX公司 福建 福州' }).locator('span')
+    const seletItem = dialogBox.getByRole('row', { name: '1 GFD 科技 YX 公司 福建 福州' }).locator('span')
 
     // 显示公司的字段映射
     await textBox.click()
     await expect(dialogBox).toBeVisible()
     await seletItem.nth(0).check()
     await confirmBtn.click()
-    await expect(textBox).toHaveValue('GFD科技YX公司')
+    await expect(textBox).toHaveValue('GFD 科技 YX 公司')
   })
 })

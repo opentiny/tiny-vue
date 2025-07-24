@@ -22,8 +22,8 @@ export const $constants = {
   ICON_MAP: {
     success: 'icon-success',
     error: 'icon-error',
-    info: 'icon-info-solid',
-    warning: 'icon-warning'
+    info: 'icon-help',
+    warning: 'icon-warning-triangle'
   }
 }
 

@@ -30,10 +30,10 @@ import {
   parseHeaderHeight,
   checkSelfSimulate
 } from './index'
-import { getScrollParent } from '../common/deps/dom'
-import { useTouch } from '../common/deps/useTouch'
-import { useEventListener } from '../common/deps/useEventListener'
-import emulate from '../common/deps/touch-emulator'
+import { getScrollParent } from '@opentiny/utils'
+import { useTouch } from '@opentiny/vue-hooks'
+import { useEventListener } from '@opentiny/vue-hooks'
+import { emulate } from '@opentiny/utils'
 
 emulate()
 export const api = ['state', 'constants', 'onTouchStart', 'onTouchEnd', 'getStatusText']

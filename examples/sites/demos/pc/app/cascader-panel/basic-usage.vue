@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { CascaderPanel } from '@opentiny/vue'
+import { TinyCascaderPanel } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascaderPanel: CascaderPanel
+    TinyCascaderPanel
   },
   data() {
     return {

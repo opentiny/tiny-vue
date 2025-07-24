@@ -10,7 +10,7 @@
  *
  */
 
-import { getNodeKey as getTreeNodeKey } from '../common/deps/tree-model/util'
+import { getNodeKey as getTreeNodeKey } from '@opentiny/utils'
 
 export const watchIndeterminate =
   ({ api, props }) =>
@@ -86,17 +86,24 @@ export const handleSelectChange =
 export const handleClick =
   ({ api, vm, props, state }) =>
   (e) => {
+    // tiny 新增： 点击子节点之间的空白时，不会收齐父节点
+    const contentElm = vm.$refs.content
+    if (contentElm && !contentElm.contains(e?.target)) {
+      return
+    }
+
     // tiny 新增： 去掉trigger参数，不影响点击的逻辑
     const store = state.tree.state.store
 
-    state.tree.clearCurrentStore(props.node)
     if (!state.tree.onlyCheckChildren) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
       !props.node.disabled &&
-        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+        state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     } else if (props.node.isLeaf && !props.node.disabled) {
+      state.tree.clearCurrentStore(props.node)
       store.setCurrentNode(props.node)
-      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode, e)
     }
 
     state.tree.currentNode = vm
@@ -157,7 +164,7 @@ export const handleContextMenu =
       const treeWidth = state.tree.$parent.$el.offsetWidth
 
       if (event.clientY > -10) {
-        state.menuposition.top = `${vm.$refs.node.offsetTop + vm.$refs.node.childNodes[0].offsetHeight / 2}px`
+        state.menuposition.top = `${vm.$refs.node.offsetTop + vm.$refs.content.offsetHeight / 2}px`
       }
 
       if (event.clientX > -10) {
@@ -360,8 +367,8 @@ export const computedExpandIcon =
 
     // tiny 新增的判断。 显示线时强制切换图标，仅smb定制了
     if (treeRoot.showLine) {
-      const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
-      const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
+      const expandIcon = designConfig?.icons?.expanded || 'icon-expand'
+      const collapseIcon = designConfig?.icons?.collapse || 'icon-put-away'
       return state.expanded ? expandIcon : collapseIcon
     }
 

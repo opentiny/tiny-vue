@@ -1,13 +1,15 @@
 <template>
-  <tiny-currency v-model="value" placeholder="请选择" set-default></tiny-currency>
+  <div class="demo-currency-class">
+    <tiny-currency v-model="value" placeholder="请选择" set-default></tiny-currency>
+  </div>
 </template>
 
 <script>
-import { Currency } from '@opentiny/vue'
+import { TinyCurrency } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCurrency: Currency
+    TinyCurrency
   },
   data() {
     return {
@@ -16,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-currency-class {
+  width: 280px;
+}
+</style>

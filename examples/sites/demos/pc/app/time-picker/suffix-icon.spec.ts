@@ -5,5 +5,8 @@ test('自定义后置图标', async ({ page }) => {
   await page.goto('time-picker#suffix-icon')
 
   const customIcon = page.locator('#suffix-icon svg path')
-  await expect(customIcon).toHaveAttribute('d', 'M19.1 13H4.9c-.5 0-.9-.4-.9-1s.4-1 .9-1h14.2c.5 0 .9.4.9 1s-.4 1-.9 1z')
+  await expect(customIcon).toHaveAttribute(
+    'd',
+    'M12.99 7.5c.28 0 .5.22.5.5s-.22.5-.5.5H3.01c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9.98z'
+  )
 })

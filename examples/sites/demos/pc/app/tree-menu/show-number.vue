@@ -1,5 +1,6 @@
 <template>
   <tiny-tree-menu
+    class="demo-tree-menu"
     :data="treeData"
     default-expand-all
     show-number
@@ -9,11 +10,11 @@
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
   data() {
     return {
@@ -132,8 +133,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

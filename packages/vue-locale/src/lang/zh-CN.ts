@@ -10,7 +10,7 @@
  *
  */
 export default {
-  'en-US': 'English',
+  'en-US': '英语',
   'zh-CN': '中文',
   'zh-TW': '中国台湾',
   hello: '你好 {name}',
@@ -125,8 +125,15 @@ export default {
       empty: '暂无'
     },
     crop: {
-      cropImage: '图片裁剪',
-      croppedImage: '裁剪后图像'
+      choose: '选择图片',
+      zoomOut: '缩小10%',
+      zoomIn: '放大10%',
+      rotate_45: '逆时针旋转45°',
+      rotate45: '顺时针旋转45°',
+      closeCropArea: '隐藏选区',
+      reset: '重置视图',
+      closeCrop: '退出裁剪',
+      cropImage: '选择区域'
     },
     datepicker: {
       clear: '清空',
@@ -184,6 +191,9 @@ export default {
       },
       timezone: '选择时区',
       year: '年',
+      hour: '时',
+      minute: '分',
+      second: '秒',
       to: '至',
       yearMonth: '{year}年{month}月',
       yearMonthDay: '{year}年{month}月{day}日'
@@ -217,7 +227,9 @@ export default {
       img: '图片',
       color: '颜色',
       table: '表格',
-      backgroundColor: '文字背景色'
+      backgroundColor: '文字背景色',
+      localResources: '本地资源',
+      resourceLink: '资源链接'
     },
     calendar: {
       showType: {
@@ -288,9 +300,10 @@ export default {
       calcHash: '文档正在计算加密中',
       uploadFile: '文件上传',
       downloadAll: '全部下载',
-      onlySupport: '仅支持{type}格式文件',
+      onlySupport: '支持{type}格式文件',
       fileNotLessThan: '单个文件不能小于',
       fileNotMoreThan: '单个文件不能超过',
+      fileSizeRange: '单个文件大小需在{moreThan}~{lessThan}之间',
       notSupport: '格式（.{format}）暂不支持',
       notSupportNoSuffix: '暂不支持无后缀文件',
       notSupportSpecialCharacters: '文件名包含特殊字符，请重命名后上传',
@@ -332,29 +345,22 @@ export default {
       deleteSelectRecord: '您确定要删除所选记录吗？',
       emptyText: '暂无数据',
       error: {
-        cellEditRender: '渲染器 cell-render 和 edit-render 不能同时使用',
-        delGetAllRecords: '方法 getAllRecords 已废弃，请使用 getRecordset',
-        delGetRecords: '方法 getRecords 已废弃，请使用 getData',
-        delLabel: '参数 label 已废弃，请使用 title',
-        delProp: '参数 prop 已废弃，请使用 field',
         delRevert: '方法 revert 已废弃，请使用 revertData',
         groupFixed: '如果使用分组表头，固定列必须在左右两侧',
         notDelete: 'Delete 方法不存在',
-        notMouse: '虚拟滚动不支持 mouse-config',
         notQuery: 'query 方法不存在',
         notResizable: '横向虚拟滚动不支持 resizable',
         notSave: 'save 方法不存在',
         reqModule: '缺少 {{name}} 模块',
         rowIdEmpty: '参数 row-id 不允许为空',
-        scrollOriginal: '虚拟滚动启用后只能导出源数据，请将设置 original=true',
         scrollYHeight: '启用虚拟滚动必须要设置 height 或 max-height',
         toolbarId: '工具栏需要设置唯一 id',
         treeFixedExpand: '树结构的固定列与展开行功能有冲突',
         treeInsert: '树结构不支持 insert 操作',
         treeRemove: '树结构不支持 remove 操作',
         unableInsert: '无法插入到指定位置',
-        dargSelf: '不允许自己给自己拖动',
-        dargFixed: '固定列不允许拖动',
+        notAllowDragSelf: '不允许自己给自己拖动',
+        notAllowDragFixed: '固定列不允许拖动',
         remoteMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteMethod',
         remoteSelectedMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteSelectedMethod',
         chainCallError: '列的默认插槽中存在语法错误，请检查。',
@@ -365,7 +371,6 @@ export default {
         clipboardWriteError: '剪切板写入错误'
       },
       filter: {
-        allFilter: '全部',
         allSelect: '(全选)',
         endDate: '结束日期',
         startDate: '开始日期',
@@ -439,6 +444,7 @@ export default {
         switchedit: '编辑',
         switchdel: '删除',
         switchconfirm: '确定',
+        switchdelconfirm: '删除确认',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',
@@ -516,6 +522,13 @@ export default {
       errorTypeTips: '上传文件类型不匹配',
       errorNumTips: '上传文件数量超出限制,已取消该操作',
       errorSizeTips: '上传文件大小超出限制',
+      confirmDeleteTips: '确定要删除该文件吗？',
+      delete: '删除',
+      waitUpload: '等待上传',
+      operation: '操作',
+      success: '上传成功',
+      listTip: '共{0}条数据：',
+      errorListTip: '其中{0}条出错，请修改后重试',
       limitUploadFileNumber: '上传文件数限制为',
       limitUploadFileType: '上传文件类型限制为',
       limitUploadFileSize: '上传文件大小不超过'
@@ -563,7 +576,7 @@ export default {
       placeholder: '请输入内容进行筛选'
     },
     treeMenu: {
-      placeholder: '请输入内容进行筛选'
+      placeholder: '输入关键字搜索'
     },
     transfer: {
       filterPlaceholder: '请输入搜索内容',
@@ -588,10 +601,7 @@ export default {
     usercard: {
       address: '地址',
       collapse: '收起',
-      department: '部门',
       email: '邮箱',
-      employeeId: '员工 ID',
-      'employee_id': '员工 ID',
       empno: '工号',
       expand: '展开',
       fax: '传真',
@@ -601,10 +611,8 @@ export default {
       other: '其他',
       phone: '固定电话',
       timezone: '时区',
-      title: '用户信息: {0}',
       travelcode: '出差联系信息',
-      viop: 'VIOP',
-      zipcode: '邮编'
+      viop: 'VIOP'
     },
     richText: {
       bold: '加粗',
@@ -663,6 +671,11 @@ export default {
       colorPicker: '背景颜色',
       placeholder: '在此处插入文本...',
       maxLength: '文本长度超过限制，支持的最大长度是 '
+    },
+    fluentEditor: {
+      undo: '撤销',
+      redo: '重做',
+      lineheight: '行高'
     },
     steps: {
       done: '已完成',
@@ -739,7 +752,8 @@ export default {
     selectedBox: {
       select: '已选（%s）',
       allSelect: '已全选（%s）',
-      clear: '清空'
+      clear: '清空',
+      noData: '暂无数据'
     },
     record: {
       record: '录音',
@@ -750,37 +764,42 @@ export default {
     },
     dialogSelect: {
       treeSearch: '请输入关键字并回车'
+    },
+    loadList: {
+      errorText: '出错了',
+      loadingText: '加载中...',
+      finishedText: '没有更多了'
     }
   },
   validation: {
     array: {
-      len: '%s 的长度必须为 %s',
-      min: '%s 长度不能小于 %s',
-      max: '%s 的长度不能大于 %s',
-      range: '%s 的长度必须介于 %s 和 %s 之间'
+      len: '长度必须为 %s',
+      min: '长度不能小于 %s',
+      max: '长度不能大于 %s',
+      range: '长度必须介于 %s 和 %s 之间'
     },
     date: {
-      format: '%s 日期 %s 对于格式 %s 无效',
-      invalid: '%s 日期 %s 无效',
+      format: '日期 %s 对于格式 %s 无效',
+      invalid: '日期 %s 无效',
       parse: '无法分析 %s 日期， %s 无效'
     },
     default: '%s 字段校验错误',
-    enum: '%s 必须是 %s 中的一个',
+    enum: '必须是 %s 中的一个',
     number: {
-      len: '%s 必须等于 %s',
-      min: '%s 不能小于 %s',
-      max: '%s 不能大于 %s',
-      range: '%s 必须介于 %s 和 %s 之间'
+      len: '必须等于 %s',
+      min: '不能小于 %s',
+      max: '不能大于 %s',
+      range: '必须介于 %s 和 %s 之间'
     },
     pattern: {
-      mismatch: '%s 值%s 与模式 %s 不匹配'
+      mismatch: '值%s 与模式 %s 不匹配'
     },
     required: '必填',
     string: {
-      len: '%s 必须是 %s 个字符',
-      min: '%s 必须至少为 %s 个字符',
-      max: '%s 不能大于 %s 个字符',
-      range: '%s 必须介于 %s 和 %s 个字符之间'
+      len: '必须是 %s 个字符',
+      min: '必须至少为 %s 个字符',
+      max: '不能大于 %s 个字符',
+      range: '必须介于 %s 和 %s 个字符之间'
     },
     types: {
       acceptFile: '只接受文件',
@@ -810,6 +829,6 @@ export default {
       url: '非法 URL 地址',
       version: '非法版本格式'
     },
-    whitespace: '%s 不能为空'
+    whitespace: '不能为空'
   }
 } as any

@@ -42,12 +42,12 @@
 </template>
 
 <script>
-import { ColumnListItem } from '@opentiny/vue'
+import { TinyColumnListItem } from '@opentiny/vue'
 import { IconAdministrator } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyColumnListItem: ColumnListItem,
+    TinyColumnListItem,
     IconAdministrator: IconAdministrator()
   },
   data() {

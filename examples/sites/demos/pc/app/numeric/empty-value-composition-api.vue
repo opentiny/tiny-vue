@@ -4,12 +4,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Numeric as TinyNumeric, Modal } from '@opentiny/vue'
+import { TinyNumeric, TinyModal } from '@opentiny/vue'
 
 const step = ref(2)
 const stepNum = ref(1)
 
 function onChange(val, oldVal) {
-  Modal.message({ message: `${val} ${oldVal}`, status: 'info' })
+  TinyModal.message({ message: `${val} ${oldVal}`, status: 'info' })
 }
 </script>

@@ -21,11 +21,11 @@
 </template>
 
 <script lang="jsx">
-import { Split } from '@opentiny/vue'
+import { TinySplit } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySplit: Split
+    TinySplit
   },
   data() {
     return {
@@ -39,11 +39,14 @@ export default {
 <style scoped>
 .split-nest {
   height: 200px;
-  border: 1px solid #d9d9d9;
 }
 
 .demo-split-pane {
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
 
 .demo-split-pane.no-padding {

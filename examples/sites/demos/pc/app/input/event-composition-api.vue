@@ -8,30 +8,30 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput, Modal } from '@opentiny/vue'
+import { TinyInput, TinyModal } from '@opentiny/vue'
 
 const inputChange = ref('')
 const focusBlur = ref('')
 const clearValue = ref('clear')
 
 function onChange() {
-  Modal.message({ message: 'change 事件触发了', status: 'info' })
+  TinyModal.message({ message: 'change 事件触发了', status: 'info' })
 }
 
 function onInput() {
-  Modal.message({ message: 'input 事件触发了', status: 'info' })
+  TinyModal.message({ message: 'input 事件触发了', status: 'info' })
 }
 
 function onBlur() {
-  Modal.message({ message: 'blur 事件触发了', status: 'info' })
+  TinyModal.message({ message: 'blur 事件触发了', status: 'info' })
 }
 
 function onFocus() {
-  Modal.message({ message: 'focus 事件触发了', status: 'info' })
+  TinyModal.message({ message: 'focus 事件触发了', status: 'info' })
 }
 
 function onClear() {
-  Modal.message({ message: 'clear 事件触发了', status: 'info' })
+  TinyModal.message({ message: 'clear 事件触发了', status: 'info' })
 }
 </script>
 

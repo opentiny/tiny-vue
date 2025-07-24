@@ -1,18 +1,18 @@
 <template>
   <tiny-file-upload ref="upload" :action="action">
     <template #trigger>
-      <tiny-button type="primary">我是触发源</tiny-button>
+      <tiny-button>我是触发源</tiny-button>
     </template>
   </tiny-file-upload>
 </template>
 
 <script>
-import { FileUpload, Button } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {

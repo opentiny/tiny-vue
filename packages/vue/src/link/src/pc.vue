@@ -16,8 +16,7 @@
       'tiny-link--additional',
       type ? `tiny-link--${type}` : '',
       state.disabled && 'is-disabled',
-      underline && !state.disabled && 'is-underline',
-      size === 'medium' ? `tiny-link--${size}` : 'tiny-link--base'
+      underline && !state.disabled && 'is-underline'
     ]"
     :href="state.disabled ? null : state.href"
     v-bind="a($attrs, ['^on[A-Z]'])"
@@ -49,7 +48,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import type { ILinkApi } from '@opentiny/vue-renderless/types/link.type'
 
 export default defineComponent({
-  props: [...props, 'disabled', 'href', 'icon', 'type', 'underline', 'value', 'size'],
+  props: [...props, 'disabled', 'href', 'icon', 'type', 'underline', 'value'],
   emits: ['click'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ILinkApi

@@ -86,7 +86,7 @@ export default {
       events: [
         {
           name: 'change',
-          type: '()=> void',
+          type: '() => void',
           desc: {
             'zh-CN': '二维码发生变化后的回调',
             'en-US': 'chang callback'

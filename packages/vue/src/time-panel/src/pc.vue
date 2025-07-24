@@ -15,24 +15,27 @@
       ref="popper"
       v-show="state.visible"
       :style="{ width: state.width + 'px' }"
-      :class="state.popperClass"
+      :class="[state.popperClass, { 'not-match-height': !state.items.length }]"
       class="tiny-picker-panel tiny-time-select tiny-popper"
     >
       <tiny-scrollbar noresize wrap-class="tiny-picker-panel__content">
-        <div
-          class="tiny-time-select__item"
-          v-for="item in state.items"
-          :class="{
-            selected: state.value === item.value,
-            disabled: item.disabled,
-            default: item.value === state.default
-          }"
-          :disabled="item.disabled"
-          :key="item.value"
-          @click="handleClick(item)"
-        >
-          {{ item.value }}
+        <div v-if="state.items.length">
+          <div
+            class="tiny-time-select__item"
+            v-for="item in state.items"
+            :class="{
+              selected: state.value === item.value,
+              disabled: item.disabled,
+              default: item.value === state.default
+            }"
+            :disabled="item.disabled"
+            :key="item.value"
+            @click="handleClick(item)"
+          >
+            {{ item.value }}
+          </div>
         </div>
+        <div v-else class="no-match">{{ $t('ui.select.noMatch') }}</div>
       </tiny-scrollbar>
     </div>
   </transition>

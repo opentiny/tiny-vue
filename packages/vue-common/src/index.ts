@@ -19,19 +19,20 @@ import {
   isVnode
 } from './adapter'
 import { t } from '@opentiny/vue-locale'
-import { stringifyCssClass } from './csscls'
-import { twMerge } from 'tailwind-merge'
+import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './csscls'
 import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './adapter'
 import { useBreakpoint } from './breakpoint'
 import { useDefer } from './usedefer'
+import { GRADIENT_ICONS_LIST, generateIcon } from './generateIcon'
 
-import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
-import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
+import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-hooks'
+import { useRelation as createUseRelation } from '@opentiny/vue-hooks'
 
 export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
 export const useRelation = createUseRelation({ ...hooks, isVue2 })
 
+export { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass }
 export { useBreakpoint, useDefer }
 
 export { version } from '../package.json'
@@ -134,8 +135,6 @@ export const $setup = ({ props, context, template, extend = {} }) => {
   return renderComponent({ view, props, context, extend })
 }
 
-export const mergeClass = /* @__PURE__ */ (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
-
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
 export const design = {
   configKey: Symbol('designConfigKey'),
@@ -160,31 +159,34 @@ interface DesignConfig {
 
 interface CustomDesignConfig {
   designConfig: null | DesignConfig
+  twMerge: (str: string) => string
 }
 
 // 允许自定义主题规范，适用于MetaERP项目
 export const customDesignConfig: CustomDesignConfig = {
-  designConfig: null
+  designConfig: null,
+  twMerge: () => ''
 }
+
+export const mergeClass = (...cssClasses) => customDesignConfig.twMerge(stringifyCssClass(cssClasses))
 
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
 
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
-  const globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
+  let globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
+  // globalDesignConfig 可能是响应式对象，比如 computed
+  globalDesignConfig = globalDesignConfig?.value || globalDesignConfig || {}
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
-  const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
   const utils = {
     $prefix,
     t,
     ...tools(context, resolveMode(props, context)),
     designConfig,
     globalDesignConfig,
-    useBreakpoint
-  }
-  if (specifyPc !== 'pc') {
-    utils.mergeClass = mergeClass
+    useBreakpoint,
+    mergeClass
   }
 
   utils.vm.theme = resolveTheme(props, context)
@@ -203,11 +205,10 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     a: filterAttrs,
     d: utils.defineInstanceProperties,
     dp: utils.defineParentInstanceProperties,
-    gcls: (key) => getElementCssClass(classes, key)
+    gcls: (key) => getElementCssClass(classes, key),
+    m: mergeClass
   }
-  if (specifyPc !== 'pc') {
-    attrs.m = mergeClass
-  }
+
   /**
    * 修复 render 函数下 this.slots 不会动态更新的问题（vue3 环境没有问题）
    * 解决方法：在 instance 下注入 slots、scopedSlots
@@ -254,7 +255,14 @@ export function svg({ name = 'Icon', component }) {
       defineComponent({
         name: $prefix + name,
         setup: (props, context) => {
-          const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
+          const {
+            fill,
+            width,
+            height,
+            'custom-class': customClass,
+            'first-color': firstColor,
+            'second-color': secondColor
+          } = context.attrs || {}
           const mergeProps = Object.assign({}, props, propData || null)
           const mode = resolveMode(mergeProps, context)
           const isMobileFirst = mode === 'mobile-first'
@@ -262,14 +270,19 @@ export function svg({ name = 'Icon', component }) {
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
 
-          const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
-          if (specifyPc !== 'pc' && isMobileFirst) {
+          if (isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
           const extend = Object.assign(
             {
-              style: { fill, width, height },
+              style: {
+                fill,
+                width,
+                height,
+                '--tiny-first-color': firstColor || '',
+                '--tiny-second-color': secondColor || ''
+              },
               class: className,
               isSvg: true
             },
@@ -279,6 +292,18 @@ export function svg({ name = 'Icon', component }) {
           // 解决本地运行会报大量警告的问题
           if (process.env.BUILD_TARGET) {
             extend.nativeOn = context.listeners
+          }
+
+          // 解决多个相同的渐变图标svg中有相同id时，在display：none，情况下导致的样式异常问题
+          if (GRADIENT_ICONS_LIST.includes(name)) {
+            const render = component.render
+            component.render = function (...args) {
+              // 指向正确的this对象，保证vue2运行正常
+              const newRender = render.bind(this)
+              const vnode = newRender(args)
+              generateIcon(vnode)
+              return vnode
+            }
           }
 
           return renderComponent({

@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '按 Esc 键可以关闭', escClosable: true })
+      TinyModal.alert({ message: '按 Esc 键可以关闭', escClosable: true })
     }
   }
 }

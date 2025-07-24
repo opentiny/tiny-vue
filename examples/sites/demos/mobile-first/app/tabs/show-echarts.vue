@@ -10,14 +10,15 @@
 </template>
 
 <script>
-import { Tabs, TabItem, ChartBar, ChartGauge } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyHuichartsBar, TinyHuichartsGauge } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyTabs: Tabs,
-    TinyTabItem: TabItem,
-    TinyBar: ChartBar,
-    TinyGauge: ChartGauge
+    TinyTabs,
+    TinyTabItem,
+    TinyBar: TinyHuichartsBar,
+    TinyGauge: TinyHuichartsGauge
   },
   data() {
     return {

@@ -1,36 +1,18 @@
-import Alert from './src/alert'
-import ActionMenu from './src/action-menu'
-import Popconfirm from './src/popconfirm'
-import Drawer from './src/drawer'
-import Dropdown from './src/dropdown'
-import DropdownItem from './src/dropdown-item'
-import Form from './src/form'
-import Grid from './src/grid'
-import Guide from './src/guide'
-import Pager from './src/pager'
-import Select from './src/select'
-import TreeNode from './src/tree-node'
-import UploadList from './src/upload-list'
-import BreadcrumbItem from './src/breadcrumb-item'
 import { version } from './package.json'
 
 export default {
-  name: 'smb',
-  version,
+  name: 'x-design', // 设计规范名称
+  version, // 设计规范版本号
   components: {
-    Alert,
-    ActionMenu,
-    Popconfirm,
-    Drawer,
-    Dropdown,
-    DropdownItem,
-    Form,
-    Grid,
-    Guide,
-    Pager,
-    Select,
-    TreeNode,
-    BreadcrumbItem,
-    UploadList
+    Form: {
+      props: {
+        hideRequiredAsterisk: true // 默认隐藏必填星号
+      }
+    },
+    Button: {
+      props: {
+        round: true // 默认圆角
+      }
+    }
   }
 }

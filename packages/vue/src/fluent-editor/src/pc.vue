@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/fluent-editor/vue'
-import '@opentiny/fluent-editor/dist/style.css'
 import '@opentiny/vue-theme/fluent-editor/index.less'
 import FluentEditor from '@opentiny/fluent-editor'
+import '@opentiny/fluent-editor/style.css'
 import {
   IconEditorAlignCenter,
   IconEditorAlignLeft,
@@ -50,14 +50,6 @@ import {
   IconFullscreen
 } from '@opentiny/vue-icon'
 import ImageViewer from '@opentiny/vue-image-viewer'
-
-const $constants = {
-  PIC_PREVIEW_OPTIONS: {
-    zIndex: Number.POSITIVE_INFINITY,
-    urlList: null
-  },
-  EDITOR_FULLSCREEN_OPTIONS: Number.POSITIVE_INFINITY
-}
 
 export default defineComponent({
   name: $prefix + 'FluentEditor',
@@ -96,59 +88,30 @@ export default defineComponent({
     IconFullscreen: IconFullscreen()
   },
   emits: ['ready', 'blur', 'focus', 'update:modelValue', 'change'],
-  props: {
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    content: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    fileUpload: Object,
-    globalOptions: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-    imageUpload: Object,
-    mentionObj: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-    modelValue: String,
-    options: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-    picPreview: [Object, Boolean],
-    dataType: {
-      type: Boolean,
-      default: true
-    },
-    dataUpgrade: {
-      type: Boolean,
-      default: true
-    },
-    zIndex: {
-      type: Number,
-      default: $constants.EDITOR_FULLSCREEN_OPTIONS
-    },
-    imagePasteFailCallback: {
-      type: Function,
-      default: () => {}
-    }
-  },
+  props: [
+    ...props,
+    '_constants',
+    'content',
+    'disabled',
+    'fileUpload',
+    'globalOptions',
+    'imageUpload',
+    'mentionObj',
+    'modelValue',
+    'options',
+    'picPreview',
+    'dataType',
+    'dataUpgrade',
+    'zIndex',
+    'imagePasteFailCallback',
+    'beforeEditorInit'
+  ],
   setup(props, context): any {
     return setup({
       props,
       context,
       renderless,
       api,
-      mono: true,
       extendOptions: {
         FluentEditor
       }

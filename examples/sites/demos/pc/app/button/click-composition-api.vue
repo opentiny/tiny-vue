@@ -3,9 +3,9 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Modal } from '@opentiny/vue'
+import { TinyButton, TinyModal } from '@opentiny/vue'
 
 function click() {
-  Modal.message({ message: 'click', status: 'info' })
+  TinyModal.message({ message: 'click', status: 'info' })
 }
 </script>

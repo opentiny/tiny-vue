@@ -5,21 +5,21 @@
       :cropvisible="visible"
       @update:cropvisible="visible = $event"
       :src="imgUrl"
-      :min-crop-box-width="100"
-      :min-crop-box-height="100"
-      :min-container-height="200"
-      :min-container-width="800"
+      :min-crop-box-width="200"
+      :min-crop-box-height="350"
+      :min-container-height="300"
+      :min-container-width="650"
     ></tiny-crop>
   </div>
 </template>
 
 <script lang="jsx">
-import { Button, Crop } from '@opentiny/vue'
+import { TinyButton, TinyCrop } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCrop: Crop,
-    TinyButton: Button
+    TinyCrop,
+    TinyButton
   },
   data() {
     return {

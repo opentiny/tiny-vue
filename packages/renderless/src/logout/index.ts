@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '../common'
+import { xss } from '@opentiny/utils'
 
 export const logout =
   ({ service, state, props }) =>

@@ -5,17 +5,17 @@
 </template>
 
 <script lang="jsx">
-import { AutonaviMap } from '@opentiny/vue'
+import { TinyHuichartsAmap } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyAutonaviMap: AutonaviMap
+    TinyAutonaviMap: TinyHuichartsAmap
   },
   data() {
     return {
       options: {
         key: '4b5f2cf2cba25200cc6b68c398468899',
-        url: 'https://webapi.amap.com/maps', // 高德地图接口的url地址
+        url: 'https://webapi.amap.com/maps', // 高德地图接口的 url 地址
         v: '1.4.3',
         amap: {
           resizeEnable: true,

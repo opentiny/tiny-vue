@@ -1,7 +1,9 @@
 <template>
   <div class="tiny-fullscreen-demo">
-    <label class="checkbox"> <input v-model="pageOnly" type="checkbox" name="button" /> pageOnly </label>
-    <label class="checkbox"> <input v-model="teleport" type="checkbox" name="button" /> teleport </label>
+    <div class="demo-fullscreen">
+      <label class="checkbox"> <input v-model="pageOnly" type="checkbox" name="button" /> pageOnly </label>
+      <label class="checkbox"> <input v-model="teleport" type="checkbox" name="button" /> teleport </label>
+    </div>
     <div
       class="tiny-fullscreen-wrapper"
       style="
@@ -24,7 +26,7 @@
 </template>
 
 <script lang="jsx">
-import { Fullscreen } from '@opentiny/vue'
+import { TinyFullscreen } from '@opentiny/vue'
 
 export default {
   name: 'ApiExample',
@@ -39,7 +41,7 @@ export default {
   },
   methods: {
     async toggle() {
-      await Fullscreen.toggle(this.$el.querySelector('.tiny-fullscreen-wrapper'), {
+      await TinyFullscreen.toggle(this.$el.querySelector('.tiny-fullscreen-wrapper'), {
         teleport: this.teleport,
         pageOnly: this.pageOnly,
         zIndex: 999,
@@ -48,7 +50,7 @@ export default {
         }
       })
 
-      this.fullscreen = Fullscreen.isFullscreen
+      this.fullscreen = TinyFullscreen.isFullscreen
     }
   }
 }
@@ -57,5 +59,8 @@ export default {
 <style scoped>
 img {
   width: 100%;
+}
+.demo-fullscreen {
+  margin-bottom: 8px;
 }
 </style>

@@ -1,31 +1,36 @@
 <template>
-  <tiny-file-upload ref="upload" :http-request="httpRequest" :file-list="fileList">
+  <tiny-file-upload ref="upload" :http-request="httpRequest" :file-list="fileList" @success="handleSuccess">
     <template #trigger>
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </template>
   </tiny-file-upload>
 </template>
 
 <script>
-import { FileUpload, Button, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyButton, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload,
-    TinyButton: Button
+    TinyFileUpload,
+    TinyButton
   },
   data() {
     return {
       fileList: [],
-      httpRequest: (files) => {
+      httpRequest: ({ onSuccess, file }) => {
         return new Promise((resolve) => {
           // 此处为用户自定义的上传服务请求
           setTimeout(() => {
-            Modal.message('上传成功')
-            this.fileList.push(files.file)
+            onSuccess('上传成功')
+            this.fileList.push(file)
           }, 500)
         })
       }
+    }
+  },
+  methods: {
+    handleSuccess(res) {
+      TinyModal.message(res)
     }
   }
 }

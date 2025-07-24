@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
+import { TinyAutocomplete } from '@opentiny/vue'
 
 const restaurants = ref([])
 const value = ref('Autocomplete 自动完成')
@@ -28,23 +28,23 @@ const createFilter = (queryString) => {
 const loadAll = () => {
   return [
     {
-      value: 'GFD科技有限公司',
+      value: 'GFD 科技有限公司',
       address: '福州'
     },
     {
-      value: 'WWWW科技有限公司',
+      value: 'WWWW 科技有限公司',
       address: '深圳福田区'
     },
     {
-      value: 'RFV有限责任公司',
+      value: 'RFV 有限责任公司',
       address: '中山市'
     },
     {
-      value: 'TGB有限公司',
+      value: 'TGB 有限公司',
       address: '梅州'
     },
     {
-      value: 'YHN科技有限公司',
+      value: 'YHN 科技有限公司',
       address: '韶关'
     },
     {

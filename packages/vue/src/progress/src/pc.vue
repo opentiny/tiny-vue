@@ -85,7 +85,10 @@
       <template v-if="!status">
         {{ state.content }}
       </template>
-      <component v-else :is="state.iconClass" class="tiny-svg-size" />
+
+      <slot v-else :name="status + 'Icon'">
+        <component :is="state.iconClass" class="tiny-svg-size" />
+      </slot>
     </div>
   </div>
 </template>

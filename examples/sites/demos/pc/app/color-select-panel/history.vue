@@ -3,6 +3,7 @@
     <tiny-button @click="changeVisible">Show Color select panel</tiny-button>
     <tiny-button @click="addHistoryColor">Append history color</tiny-button>
     <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
+    <tiny-button @click="enableHistory = !enableHistory">Toggle History visibility</tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel
         v-model="color"
@@ -10,6 +11,7 @@
         @confirm="onConfirm"
         @cancel="onCancel"
         :history="history"
+        :enable-history="enableHistory"
         alpha
       />
     </div>
@@ -17,18 +19,19 @@
 </template>
 
 <script>
-import { ColorSelectPanel, Button, Notify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorSelectPanel: ColorSelectPanel,
-    TinyButton: Button
+    TinyColorSelectPanel,
+    TinyButton
   },
   data() {
     return {
       color: '#66ccff',
       visible: false,
-      history: ['#66ccff']
+      history: [],
+      enableHistory: false
     }
   },
   methods: {
@@ -39,20 +42,9 @@ export default {
       this.visible = false
     },
     onConfirm(msg) {
-      Notify({
-        type: 'success',
-        position: 'top-right',
-        title: '用户点击了选择',
-        message: msg
-      })
       this.hidden()
     },
     onCancel() {
-      Notify({
-        type: 'error',
-        position: 'top-right',
-        title: '用户点击了取消'
-      })
       this.hidden()
     },
     randomHex() {

@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { FileUpload, Modal } from '@opentiny/vue'
+import { TinyFileUpload, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload
+    TinyFileUpload
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
               file.showDownloadBar = false
             }, 1000)
 
-            Modal.message({ message: '下载成功', status: 'success' })
+            TinyModal.message({ message: '下载成功', status: 'success' })
             return
           }
           file.downloadPercentage += 10
@@ -78,7 +78,7 @@ export default {
             clearInterval(timer)
             // file.showDownloadBar = false
             file.downloadStatus = 'exception'
-            Modal.message({ message: '下载失败', status: 'error' })
+            TinyModal.message({ message: '下载失败', status: 'error' })
             return
           }
           file.downloadPercentage += 10

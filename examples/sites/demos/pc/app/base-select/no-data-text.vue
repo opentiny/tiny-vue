@@ -1,14 +1,14 @@
 <template>
   <div>
-    <p>场景1：默认</p>
+    <p>场景 1：默认</p>
     <tiny-base-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
-    <p>场景2：自定义空数据文本</p>
+    <p>场景 2：自定义空数据文本</p>
     <tiny-base-select v-model="value" no-data-text="暂无数据">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
-    <p>场景3：显示空数据图片</p>
+    <p>场景 3：显示空数据图片</p>
     <tiny-base-select v-model="value" no-data-text="None" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-base-select>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { BaseSelect, Option } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option
+    TinyBaseSelect,
+    TinyOption
   },
   data() {
     return {
@@ -39,5 +39,6 @@ export default {
 p {
   font-size: 14px;
   line-height: 1.5;
+  padding: 16px 0;
 }
 </style>

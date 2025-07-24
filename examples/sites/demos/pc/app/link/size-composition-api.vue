@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { Link as TinyLink } from '@opentiny/vue'
+import { TinyLink } from '@opentiny/vue'
 import { iconEdit } from '@opentiny/vue-icon'
 
 const TinyIconEdit = iconEdit()
@@ -27,5 +27,8 @@ const TinyIconEdit = iconEdit()
 .tiny-custom-view,
 .tiny-custom-del {
   margin-left: 2px;
+}
+.tiny-link {
+  margin-right: 48px;
 }
 </style>

@@ -3,11 +3,11 @@
 </template>
 
 <script lang="jsx">
-import { BulletinBoard } from '@opentiny/vue'
+import { TinyBulletinBoard } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBulletinBoard: BulletinBoard
+    TinyBulletinBoard
   },
   data() {
     return {

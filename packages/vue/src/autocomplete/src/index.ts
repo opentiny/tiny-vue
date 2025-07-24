@@ -73,6 +73,10 @@ export const autoCompleteProps = {
   displayOnly: {
     type: Boolean,
     default: false
+  },
+  validateEvent: {
+    type: Boolean,
+    default: undefined
   }
 }
 

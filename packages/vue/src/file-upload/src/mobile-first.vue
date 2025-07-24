@@ -20,9 +20,6 @@ import {
   IconStartCircle,
   IconHelpQuery
 } from '@opentiny/vue-icon'
-import CryptoJS from 'crypto-js/core'
-import 'crypto-js/sha256.js'
-import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'
@@ -84,7 +81,8 @@ export default defineComponent({
     'lockScroll',
     'compact',
     'encryptConfig',
-    'imageBgColor'
+    'imageBgColor',
+    'promptTip'
   ],
   setup(props, context) {
     return setup({
@@ -92,7 +90,7 @@ export default defineComponent({
       context,
       renderless,
       api,
-      extendOptions: { Modal, CryptoJS, Streamsaver }
+      extendOptions: { Modal, Streamsaver }
     }) as unknown as IFileUploadApi
   },
   components: {
@@ -182,7 +180,8 @@ export default defineComponent({
       compact,
       encryptConfig,
       encryptDialogConfirm,
-      imageBgColor
+      imageBgColor,
+      promptTip
     } = this
 
     const listType = this.listType === 'saas' ? 'text' : this.listType
@@ -273,18 +272,11 @@ export default defineComponent({
                 <icon-help-query class="-mt-0.5 fill-color-none-hover" />
               </tiny-tooltip>
             </div>
-            <div
-              title={tipMsg}
-              class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">
-              {(slots.tip && slots.tip()) || tipMsg}
-            </div>
           </div>
         )
       } else if (listType === 'drag-single') {
         defaultTip = (
-          <div
-            title={tipMsg}
-            class="leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap">
+          <div title={tipMsg} class="leading-5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap">
             {(slots.tip && slots.tip()) || tipMsg}
           </div>
         )
@@ -394,7 +386,7 @@ export default defineComponent({
       if (listType === 'text') {
         operateContent = downloadAll ? (
           <div class="hidden sm:inline-block align-middle">
-            <tiny-button class="ml-2" onClick={() => downloadAll(uploadFiles)}>
+            <tiny-button onClick={() => downloadAll(uploadFiles)}>
               <div class="flex items-center">
                 <icon-download />
                 <span class="ml-2">{t('ui.fileUpload.downloadAll')}</span>
@@ -447,6 +439,14 @@ export default defineComponent({
       return childNodes
     }
 
+    const tipMessage =
+      (slots.tip && slots.tip()) ||
+      this.getTipMessage({
+        accept: isEdm ? accept : this.accept,
+        fileSize,
+        limit: this.limit
+      })
+
     const uploadData = {
       props: {
         type,
@@ -479,7 +479,10 @@ export default defineComponent({
         handleTriggerClick,
         mode,
         showTitle,
-        isHwh5
+        isHwh5,
+        tipMessage,
+        promptTip,
+        showFileList
       },
       ref: 'upload-inner'
     }
@@ -667,7 +670,7 @@ export default defineComponent({
       <div {...attrs} data-tag="tiny-file-upload" class={isDragSingle ? 'relative inline-block' : ''}>
         {getDefaultTitle({ listType, title, showTitle, displayOnly, mode })}
         {noticePC}
-        {isText ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
+        {isText && !displayOnly ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
         {noticeMF}
         {uploadList}
         {previewComponent}

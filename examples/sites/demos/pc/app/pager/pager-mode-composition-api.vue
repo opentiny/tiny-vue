@@ -6,6 +6,7 @@
       <tiny-radio-button label="simple"></tiny-radio-button>
       <tiny-radio-button label="complete"></tiny-radio-button>
       <tiny-radio-button label="fixed"></tiny-radio-button>
+      <tiny-radio-button label="simplest"></tiny-radio-button>
     </tiny-radio-group>
     <tiny-pager :mode="mode" :total="100"></tiny-pager>
   </div>
@@ -13,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Pager as TinyPager, RadioButton as TinyRadioButton, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
+import { TinyPager, TinyRadioButton, TinyRadioGroup } from '@opentiny/vue'
 
 const mode = ref('number')
 </script>

@@ -7,13 +7,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Checkbox as TinyCheckbox, Modal, Button as TinyButton } from '@opentiny/vue'
+import { TinyCheckbox, TinyModal, TinyButton } from '@opentiny/vue'
 
 const checked = ref('假文本')
 
 function getValue() {
-  Modal.message({
-    message: '当前状态对应的值为:' + checked.value,
+  TinyModal.message({
+    message: '当前状态对应的值为：' + checked.value,
     top: 200,
     status: 'info'
   })

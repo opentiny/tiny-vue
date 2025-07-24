@@ -412,7 +412,7 @@ export default defineComponent({
                     ? h(
                         'div',
                         {
-                          class: 'flex-auto flex mx-6 mt-4 mb-5 sm:my-6 leading-5 overflow-auto'
+                          class: 'flex-auto flex mx-6 mt-4 mb-5 sm:my-6 leading-5 overflow-auto break-normal'
                         },
                         [
                           status ? h('div', { class: 'hidden sm:block mr-8' }) : null,

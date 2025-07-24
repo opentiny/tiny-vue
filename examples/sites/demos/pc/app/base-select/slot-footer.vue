@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import { BaseSelect, Option, Button } from '@opentiny/vue'
+import { TinyBaseSelect, TinyOption, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyBaseSelect: BaseSelect,
-    TinyOption: Option
+    TinyButton,
+    TinyBaseSelect,
+    TinyOption
   },
   data() {
     return {
       options: [
-        { value: '选项1', label: '北京' },
-        { value: '选项2', label: '上海' },
-        { value: '选项3', label: '天津' },
-        { value: '选项4', label: '重庆' },
-        { value: '选项5', label: '深圳' }
+        { value: '选项 1', label: '北京' },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
       ],
       value: ''
     }

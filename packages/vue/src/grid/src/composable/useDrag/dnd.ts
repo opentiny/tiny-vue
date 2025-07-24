@@ -1,8 +1,8 @@
-import { on, off, preventDefault } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off, preventDefault } from '@opentiny/utils'
 
 export const initDrag = (dndProxyElement, dndElements, config = {}) => {
   if (dndElements instanceof NodeList) {
-    dndElements = [...dndElements]
+    dndElements = Array.from(dndElements)
   }
 
   // dragstart 事件处理

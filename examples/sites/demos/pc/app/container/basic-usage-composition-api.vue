@@ -3,23 +3,23 @@
     <div class="option-row">
       <span class="tip">选择版型：</span>
       <tiny-radio-group v-model="pattern">
-        <tiny-radio label="default">默认:default</tiny-radio>
-        <tiny-radio label="classic">经典:classic</tiny-radio>
-        <tiny-radio label="simple">简约:simple</tiny-radio>
-        <tiny-radio label="fashion">时尚:fashion</tiny-radio>
-        <tiny-radio label="legend">传奇:legend</tiny-radio>
+        <tiny-radio label="default">默认：default</tiny-radio>
+        <tiny-radio label="classic">经典：classic</tiny-radio>
+        <tiny-radio label="simple">简约：simple</tiny-radio>
+        <tiny-radio label="fashion">时尚：fashion</tiny-radio>
+        <tiny-radio label="legend">传奇：legend</tiny-radio>
       </tiny-radio-group>
     </div>
     <tiny-container :pattern="pattern">
-      <div>Main</div>
+      <div class="demo-center">Main</div>
       <template #header>
-        <div>Header</div>
+        <div class="demo-center">Header</div>
       </template>
       <template #aside>
-        <div>Aside</div>
+        <div class="demo-center">Aside</div>
       </template>
       <template #footer>
-        <div>Footer</div>
+        <div class="demo-center">Footer</div>
       </template>
     </tiny-container>
   </div>
@@ -27,7 +27,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Container as TinyContainer, Radio as TinyRadio, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
+import { TinyContainer, TinyRadio, TinyRadioGroup } from '@opentiny/vue'
 
 const pattern = ref('default')
 </script>
@@ -79,5 +79,12 @@ const pattern = ref('default')
   background-color: #e8ffed;
   border: 3px solid #ffffff;
   color: #84a18a;
+}
+.demo-center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

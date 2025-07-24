@@ -9,25 +9,25 @@
 </template>
 
 <script lang="jsx">
-import { Search } from '@opentiny/vue'
+import { TinySearch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search
+    TinySearch
   },
   data() {
     return {
       searchTypes1: [
         {
-          text: '插槽1',
+          text: '插槽 1',
           value: 1
         },
         {
-          text: '插槽2',
+          text: '插槽 2',
           value: 2
         },
         {
-          text: '插槽3',
+          text: '插槽 3',
           value: 3
         }
       ]

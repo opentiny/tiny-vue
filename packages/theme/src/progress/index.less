@@ -10,66 +10,110 @@
 *
 */
 
-@import '../mixins/progress.less';
 @import '../custom.less';
 @import './vars.less';
 
 @progress-prefix-cls: ~'@{css-prefix}progress';
 
 .@{progress-prefix-cls} {
-  .component-css-vars-progress();
+  .inject-Progress-vars();
 
   position: relative;
+  display: flex;
+  align-items: center;
   line-height: 1;
-  display: flex; // smb新增
-  align-items: center; // smb新增
+
+  /** 横向条自身默认场景 */
+  &-bar {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    &__outer {
+      position: relative;
+      height: 6px;
+      overflow: hidden;
+      vertical-align: middle;
+      background-color: var(--tv-Progress-outer-bg-color);
+    }
+
+    &__inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      line-height: 1;
+      text-align: right;
+      white-space: nowrap;
+      background-color: var(--tv-Progress-inner-bg-color);
+      transition: width 0.6s ease;
+
+      &::after {
+        content: '';
+        height: 100%;
+      }
+    }
+
+    &__innerText {
+      margin: 0 5px;
+      font-size: var(--tv-Progress-inner-font-size);
+      color: var(--tv-Progress-inner-text-color);
+    }
+
+    &,
+    &__inner::after,
+    &__innerText {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  /** 横向条状态场景 */
+  .progress-status(@color) {
+    .@{progress-prefix-cls}-bar__inner {
+      background-color: @color;
+    }
+
+    .@{progress-prefix-cls}__text svg {
+      fill: @color;
+    }
+  }
 
   &.is-success {
-    .progress-status(var(--ti-progress-success-bg-color));
+    .progress-status(var(--tv-Progress-bg-color-success));
   }
 
   &.is-warning {
-    .progress-status(var(--ti-progress-warning-bg-color));
+    .progress-status(var(--tv-Progress-bg-color-warning));
   }
 
   &.is-exception {
-    .progress-status(var(--ti-progress-exception-bg-color));
+    .progress-status(var(--tv-Progress-bg-color-exception));
   }
 
+  /** 右侧文字场景 */
   &__text {
-    font-size: var(--ti-progress-text-font-size);
-    color: var(--ti-progress-text-color);
     display: inline-block;
-    vertical-align: middle;
-    margin-left: var(--ti-progress-bar-text-margin-left); // smb新增
+    margin-left: var(--tv-Progress-right-text-margin-left);
+    font-size: 14px;
     line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: var(--tv-Progress-right-text-color);
 
     i {
-      vertical-align: middle;
       display: inline-block;
+      vertical-align: middle;
     }
   }
 
-  &--circle,
-  &--dashboard {
-    display: inline-block;
-
-    .@{progress-prefix-cls}__text {
-      top: 50%;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      margin: 0;
-      transform: translate(0, -50%);
-      left: 0;
-
-      i {
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
+  /** 内侧文字场景 */
+  &--text-inside &-bar {
+    margin-right: 0;
+    padding-right: 0;
   }
 
+  /** 隐藏文字场景 */
   &--without-text &__text {
     display: none;
   }
@@ -80,52 +124,24 @@
     display: block;
   }
 
-  &--text-inside &-bar {
-    padding-right: 0;
-    margin-right: 0;
-  }
+  /** 圆环类型场景 */
+  &--circle,
+  &--dashboard {
+    display: inline-block;
 
-  &-bar {
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-
-    &__outer {
-      height: 6px;
-      background-color: var(--ti-progress-bar-outer-bg-color);
-      overflow: hidden;
-      position: relative;
-      vertical-align: middle;
-    }
-
-    &__inner {
-      background-color: var(--ti-progress-bar-inner-bg-color);
-      text-align: right;
-      left: 0;
+    .@{progress-prefix-cls}__text {
       position: absolute;
-      top: 0;
-      height: 100%;
-      line-height: 1;
-      white-space: nowrap;
-      transition: width 0.6s ease;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      margin: 0;
+      width: 100%;
+      text-align: center;
 
-      &::after {
-        content: '';
-        height: 100%;
+      i {
+        display: inline-block;
+        vertical-align: middle;
       }
-    }
-
-    &__innerText {
-      color: var(--ti-progress-bar-inner-text-color);
-      font-size: var(--ti-progress-text-font-size);
-      margin: 0 5px;
-    }
-
-    &,
-    &__inner::after,
-    &__innerText {
-      display: inline-block;
-      vertical-align: middle;
     }
   }
 }

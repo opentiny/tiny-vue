@@ -13,23 +13,26 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Split as TinySplit, Modal } from '@opentiny/vue'
+import { TinySplit, TinyModal } from '@opentiny/vue'
 
 const split1 = ref(0.3)
 
 function moveend() {
-  Modal.message('拖拽结束')
+  TinyModal.message('拖拽结束')
 }
 </script>
 
 <style scoped>
 .demo-split {
   height: 200px;
-  border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 }
 
 .demo-split-pane {
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
 </style>

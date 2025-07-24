@@ -1,24 +1,13 @@
 export default {
-  mode: ['mobile', 'mobile-first'],
+  mode: ['mobile-first'],
   apis: [
     {
       name: 'Exception',
       type: 'component',
       props: [
         {
-          name: 'buttonText',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>按钮文字/p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'buttonText'
-        },
-        {
           name: 'component-page',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置组件级空态',
@@ -29,7 +18,7 @@ export default {
         },
         {
           name: 'exception-class',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置自定义类',
@@ -39,41 +28,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'exceptionClass',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>自定义缺省页类名</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'exceptionClass'
-        },
-        {
-          name: 'imageUrl',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>自定义图片</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'buttonText'
-        },
-        {
-          name: 'message',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>主图片文字，在图片下方</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'message'
-        },
-        {
           name: 'page-empty',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '设置页面级空态',
@@ -84,7 +40,7 @@ export default {
         },
         {
           name: 'sub-message',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置二级标题',
@@ -94,43 +50,19 @@ export default {
           mfDemo: 'sub-message'
         },
         {
-          name: 'subMessage',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>副文本内容,在描述文字的下方</p>',
-            'en-US': 'display different button'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'subMessage'
-        },
-        {
           name: 'type',
-          type: 'String',
+          type: 'string',
           defaultValue: 'nodata',
           desc: {
             'zh-CN':
               '<p>设置缺省页类型，默认为nodata,可选值有 weaknet || noperm || busy || build || weaknet || pcview</p>',
             'en-US': 'display different button'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'type',
+          mode: ['mobile-first'],
           mfDemo: 'page-empty'
         }
       ],
-      events: [
-        {
-          name: 'click',
-          type: 'Function()',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>点击按钮时触发，type 为 nodata 时启用</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'message'
-        }
-      ],
+      events: [],
       methods: [],
       slots: [
         {
@@ -141,8 +73,7 @@ export default {
             'zh-CN': '<p>设置内容</p>',
             'en-US': 'Click'
           },
-          mode: ['mobile', 'mobile-first'],
-          mobileDemo: 'mobileexception',
+          mode: ['mobile-first'],
           mfDemo: 'content-slot'
         },
         {
@@ -155,16 +86,6 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
-        },
-        {
-          name: 'footer',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置底部内容</p>',
-            'en-US': 'Click'
-          },
-          mode: ['mobile'],
-          mobileDemo: 'mobileexception'
         }
       ]
     }

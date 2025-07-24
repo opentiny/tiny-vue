@@ -50,9 +50,10 @@ import {
   computerBtnDisabled,
   computerLabel,
   computerEnableYearArrow,
-  watchPickerVisible
+  watchPickerVisible,
+  watchModelValue
 } from './index'
-import { nextMonth, extractDateFormat, extractTimeFormat } from '../common/deps/date-util'
+import { nextMonth1, extractDateFormat, extractTimeFormat } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -77,14 +78,15 @@ export const api = [
   'handleMinTimeClose',
   'handleDateChange',
   'handleMaxTimeClose',
-  'isValidValue'
+  'isValidValue',
+  'watchModelValue'
 ]
 
-const initState = ({ reactive, computed, api, constants, designConfig }) => {
+const initState = ({ reactive, computed, api, constants, designConfig, props }) => {
   const state = reactive({
     popperElm: null,
-    popperClass: '',
-    value: [],
+    popperClass: props.popperClass || '',
+    value: props.modelValue || [],
     defaultValue: null,
     defaultTime: null,
     minDate: '',
@@ -95,18 +97,18 @@ const initState = ({ reactive, computed, api, constants, designConfig }) => {
     minRangeDate: constants.startDate,
     maxRangeDate: constants.endDate,
     leftDate: new Date(),
-    rightDate: nextMonth(new Date()),
+    rightDate: nextMonth1(new Date()),
     rangeState: { endDate: null, selecting: false, row: null, column: null },
-    showTime: false,
-    format: '',
+    showTime: props.type === 'datetimerange' || false,
+    format: props.format || '',
     arrowControl: false,
-    unlinkPanels: false,
+    unlinkPanels: props.unlinkPanels || false,
     firstDayOfWeek: 7,
     minTimePickerVisible: false,
     maxTimePickerVisible: false,
-    shortcuts: '',
+    shortcuts: props.shortcuts || '',
     visible: '',
-    disabledDate: '',
+    disabledDate: props.disabledDate || null,
     cellClassName: '',
     dateUserInput: { min: null, max: null },
     timeUserInput: { min: null, max: null },
@@ -138,7 +140,8 @@ const initState = ({ reactive, computed, api, constants, designConfig }) => {
   return state
 }
 
-const initWatch = ({ watch, state, api }) => {
+const initWatch = ({ watch, state, api, props }) => {
+  watch(() => props.modelValue, api.watchModelValue, { immediate: true })
   watch(() => state.minDate, api.watchMinDate)
   watch(() => state.maxDate, api.watchMaxDate)
   watch(() => state.minTimePickerVisible, api.watchMinTimePickerVisible)
@@ -149,14 +152,14 @@ const initWatch = ({ watch, state, api }) => {
   watch(() => state.visible, api.watchPickerVisible)
 }
 
-const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
+const initApi = ({ api, state, t, vm, nextTick, emit, constants, props }) => {
   Object.assign(api, {
     t,
     state,
     computerLabel: computerLabel({ state, t }),
     resetView: resetView({ state }),
     watchMaxDate: watchMaxDate({ state, vm }),
-    handleChangeRange: handleChangeRange(state),
+    handleChangeRange: handleChangeRange(state, props),
     handleMaxTimeClose: handleMaxTimeClose(state),
     handleMinTimeClose: handleMinTimeClose(state),
     isValidValue: isValidValue({ state }),
@@ -187,12 +190,13 @@ const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
     watchDefault: watchDefault({ state }),
     handleClear: handleClear({ emit, state }),
     setTimeFormat: setTimeFormat({ nextTick, vm, state }),
-    handleConfirm: handleConfirm({ api, emit, state }),
-    handleRangePick: handleRangePick({ api, state, t }),
-    handleShortcutClick: handleShortcutClick(state, api),
+    handleConfirm: handleConfirm({ api, emit, state, props, t }),
+    handleRangePick: handleRangePick({ api, state, props, t }),
+    handleShortcutClick: handleShortcutClick(state, api, props),
     computerBtnDisabled: computerBtnDisabled({ state, api }),
     computerEnableYearArrow: computerEnableYearArrow(state),
-    watchPickerVisible: watchPickerVisible({ state, constants })
+    watchPickerVisible: watchPickerVisible({ state, constants }),
+    watchModelValue: watchModelValue({ state, api })
   })
 }
 
@@ -203,10 +207,10 @@ export const renderless = (
 ) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
-  const state = initState({ reactive, computed, api, constants, designConfig })
+  const state = initState({ reactive, computed, api, constants, designConfig, props })
 
-  initApi({ api, state, t, vm, nextTick, emit, constants })
-  initWatch({ watch, state, api })
+  initApi({ api, state, t, vm, nextTick, emit, constants, props })
+  initWatch({ watch, state, api, props })
 
   return api
 }

@@ -35,6 +35,10 @@ export interface IMilestoneIconStyle {
   boxShadow: string
 }
 
+export interface IMilestoneFlagStyle {
+  left: string
+}
+
 export interface IMilestoneGetMileContentParams {
   data: IMilestoneNode[]
   index: number
@@ -64,6 +68,8 @@ export interface IMilestoneApi {
   handleClick: ({ index, node }: IMilestoneHandleClickParams) => void
   getMileIcon: (node: IMilestoneNode) => IMilestoneIconStyle
   flagOperate: ({ event, over, text }: IMilestoneFlagOperateParams) => void
+  hexToRgb: (hex: string) => { r: number; g: number; b: number }
+  getFlagStyle: ({ index, idx }) => IMilestoneFlagStyle
 }
 
 export type IMilestoneRenderlessParamUtils = ISharedRenderlessParamUtils<IMilestoneConstants>

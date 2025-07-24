@@ -1,13 +1,20 @@
 import { expect, test } from '@playwright/test'
 
+test.use({
+  viewport: { width: 1920, height: 1080 }
+})
 test('[DatePicker] 测试对齐方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#align')
+  await page.locator('.settings-btn').first().click()
+  await page.locator('label').filter({ hasText: '单示例' }).click()
+  await page.waitForSelector('.demo-date-picker-wrap', { state: 'visible' })
 
   // 左对齐
   const leftDateInputDom = page.getByRole('textbox').nth(1)
   const leftDatePanelDom = page.locator('.tiny-picker-panel').nth(2)
   const leftClosePanel = page.getByText('左对齐：')
+  await page.waitForTimeout(200)
 
   await leftDateInputDom.click()
   await page.waitForTimeout(200)

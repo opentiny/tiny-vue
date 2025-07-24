@@ -19,20 +19,22 @@
       @mouseenter="handleMouseenter"
       @mouseleave="handleMouseleave"
     >
-      <slot :selected-index="state.selectedIndex">
-        <tiny-dropdown-item
-          v-for="(item, index) in options"
-          :item-data="item"
-          :label="item[textField]"
-          :key="index"
-          :icon="item.icon"
-          :disabled="item.disabled"
-          :divided="item.divided"
-          :tip="item.tip"
-          :tip-position="item.tipPosition"
-        >
-        </tiny-dropdown-item>
-      </slot>
+      <template v-if="state.initShowPopper || state.showPopper">
+        <slot :selected-index="state.selectedIndex">
+          <tiny-dropdown-item
+            v-for="(item, index) in options"
+            :item-data="item"
+            :label="item[textField]"
+            :key="index"
+            :icon="item.icon"
+            :disabled="item.disabled"
+            :divided="item.divided"
+            :tip="item.tip"
+            :tip-position="item.tipPosition"
+          >
+          </tiny-dropdown-item>
+        </slot>
+      </template>
     </ul>
   </transition>
 </template>

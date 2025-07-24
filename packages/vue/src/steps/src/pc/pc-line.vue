@@ -41,7 +41,8 @@
         node[statusField] === 'error' ? 'fault' : node[statusField],
         { 'active': index === active },
         { 'not-vertical': !vertical },
-        { 'flex-non': index === data.length - 1 && !vertical }
+        { 'flex-non': index === data.length - 1 && !vertical },
+        { 'block-mini': data.length > 3 }
       ]"
       @click="$emit('click', index, node, $event)"
     >
@@ -73,7 +74,7 @@
           </template>
         </div>
         <!-- title1 -->
-        <div v-if="!vertical" :title="node[nameField]" class="title">
+        <div v-if="!vertical" v-auto-tip="{ placement: 'bottom' }" class="title">
           {{ node[nameField] }}
         </div>
         <div
@@ -88,7 +89,7 @@
 
       <slot name="item" :slot-scope="node" :index="index">
         <!-- title2 -->
-        <div :title="node[nameField]" :class="['title-vertical', { 'not-vertical': !vertical }]">
+        <div v-auto-tip="{ placement: 'bottom' }" :class="['title-vertical', { 'not-vertical': !vertical }]">
           {{ node[nameField] }}
         </div>
         <!-- description -->
@@ -99,8 +100,12 @@
             node[statusField] === 'error' ? 'fault' : node[statusField],
             { 'not-vertical': !vertical }
           ]"
+          v-auto-tip="{ placement: 'bottom' }"
         >
           {{ node[descriptionField] }}
+        </div>
+        <div class="line-footer" v-if="slots.itemFooter">
+          <slot class="line-footer" name="itemFooter" :slot-scope="node" :index="index"></slot>
         </div>
       </slot>
     </div>
@@ -138,12 +143,14 @@
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { IconFinish, IconWarn } from '@opentiny/vue-icon'
+import { AutoTip } from '@opentiny/vue-directive'
 
 export default defineComponent({
   components: {
     IconFinish: IconFinish(),
     IconWarn: IconWarn()
   },
+  directives: { AutoTip }, // 新规范
   emits: ['click'],
   props: [...props, 'vertical', 'nameField', 'statusField', 'data', 'active', 'visibleNum', 'descriptionField', 'size'],
   setup(props: any, context: any) {

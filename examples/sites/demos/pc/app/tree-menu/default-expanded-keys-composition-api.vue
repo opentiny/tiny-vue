@@ -1,10 +1,15 @@
 <template>
-  <tiny-tree-menu :data="treeData" node-key="id" :default-expanded-keys="expandeArr"></tiny-tree-menu>
+  <tiny-tree-menu
+    class="demo-tree-menu"
+    :data="treeData"
+    node-key="id"
+    :default-expanded-keys="expandeArr"
+  ></tiny-tree-menu>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 const expandeArr = ref([30101])
 const treeData = ref([
@@ -112,8 +117,8 @@ const treeData = ref([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 </style>

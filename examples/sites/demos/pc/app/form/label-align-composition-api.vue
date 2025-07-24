@@ -1,7 +1,13 @@
 <template>
   <div class="demo-form">
     <div class="title">标签文字对齐： <tiny-switch v-model="isLabelAlign"></tiny-switch></div>
-    <tiny-form ref="ruleFormRef" :model="createData" label-position="left" :label-align="isLabelAlign">
+    <tiny-form
+      ref="ruleFormRef"
+      :model="createData"
+      label-position="left"
+      :label-align="isLabelAlign"
+      :hide-required-asterisk="false"
+    >
       <tiny-form-item label="用户名" prop="username" required>
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
@@ -17,7 +23,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinySwitch } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 

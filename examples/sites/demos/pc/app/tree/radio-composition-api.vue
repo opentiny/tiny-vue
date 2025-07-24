@@ -1,4 +1,3 @@
-<!-- eslint-disable unused-imports/no-unused-vars -->
 <template>
   <div>
     <div class="node-tip">在开发者控制台中查看它的打印信息：</div>
@@ -20,7 +19,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tree as TinyTree, Button as TinyButton } from '@opentiny/vue'
+import { TinyTree, TinyButton } from '@opentiny/vue'
 
 const treeRef = ref()
 const defaultRadioKey = ref(['1-1'])
@@ -77,7 +76,7 @@ function setCurrentRadio() {
 }
 
 function checkChange(data, checked, indeterminate) {
-  console.log('checkChange事件：', { data, checked, indeterminate })
+  console.log('checkChange 事件：', { data, checked, indeterminate })
 }
 </script>
 

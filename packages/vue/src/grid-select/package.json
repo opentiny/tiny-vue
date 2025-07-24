@@ -1,0 +1,24 @@
+{
+  "name": "@opentiny/vue-grid-select",
+  "type": "module",
+  "version": "3.22.0",
+  "description": "",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-base-select": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-grid": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  },
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
+}

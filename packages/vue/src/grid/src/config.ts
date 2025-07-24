@@ -31,13 +31,15 @@ import {
   iconSortTriangleAscending,
   iconFullscreen,
   iconSortTriangleDescending,
-  iconSortTriangle
+  iconSortTriangle,
+  iconError
 } from '@opentiny/vue-icon'
 import { $prefix } from '@opentiny/vue-common'
 
 const GlobalConfig = {
   validConfig: {
-    message: 'tooltip'
+    message: 'tooltip',
+    icon: iconError()
   },
   // 默认开启点击头部单元格触发排序
   sortConfig: { multipleColumnSort: false },
@@ -103,7 +105,7 @@ const GlobalConfig = {
   menu: {},
   tooltip: {
     trigger: 'hover',
-    theme: 'dark'
+    effect: 'light'
   },
   pager: {},
   toolbar: {
@@ -137,6 +139,7 @@ const GlobalConfig = {
     CARD: 'card',
     LIST: 'list',
     GANTT: 'gantt',
+    CUSTOM: 'custom',
     // 移动优先视图下展示类型
     MF_SHOW_LIST: 'list',
     MF_SHOW_CARD: 'card',
@@ -167,7 +170,7 @@ const GlobalConfig = {
   defaultColumnName: $prefix + 'GridColumn'
 }
 
-// list视图类型、gantt视图类型和card视图类型的配置一致
+// list视图类型、gantt视图类型、custom视图类型和card视图类型的配置一致
 function addListConfig() {
   const viewConfig = GlobalConfig.viewConfig
 
@@ -175,6 +178,7 @@ function addListConfig() {
     if (typeof viewConfig[key] === 'object') {
       viewConfig[key].list = viewConfig[key].card
       viewConfig[key].gantt = viewConfig[key].card
+      viewConfig[key].custom = viewConfig[key].card
     }
   }
 }

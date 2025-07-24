@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { TimeLine } from '@opentiny/vue'
+import { TinyTimeLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine
   },
   data() {
     return {
@@ -42,10 +42,12 @@ export default {
 .custom-left {
   padding-right: 16px;
   text-align: right;
+  line-height: 28px;
 }
 
 .custom-right {
   margin-left: 15px;
   margin-bottom: 50px;
+  line-height: 28px;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="demo-top mb10">
       <tiny-switch v-model="isAffix"></tiny-switch>
-      <span>{{ isAffix ? '固定模式' : '非固定模式' }}</span>
+      <span class="demo-anchor">{{ isAffix ? '固定模式' : '非固定模式' }}</span>
     </div>
     <tiny-anchor :links="links" :is-affix="isAffix"></tiny-anchor>
   </div>
@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Switch as TinySwitch } from '@opentiny/vue'
+import { TinyAnchor, TinySwitch } from '@opentiny/vue'
 
 const isAffix = ref(false)
 const links = ref([
@@ -56,5 +56,9 @@ const links = ref([
 .demo-top {
   display: flex;
   align-items: center;
+}
+.demo-anchor {
+  margin-left: 8px;
+  font-size: 14px;
 }
 </style>

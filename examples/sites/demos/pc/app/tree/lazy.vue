@@ -5,14 +5,14 @@
 </template>
 
 <script lang="jsx">
-import { Tree } from '@opentiny/vue'
+import { TinyTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree
+    TinyTree
   },
   methods: {
-    // node为点击的节点， resolve为回调函数，用于异步返回下层节点的数据
+    // node 为点击的节点，resolve 为回调函数，用于异步返回下层节点的数据
     load(node, resolve) {
       console.log('即将加载节点下级数据：', node)
 
@@ -41,7 +41,7 @@ export default {
       }
     },
     afterLoad(data) {
-      console.log('afterLoad属性触发：', data)
+      console.log('afterLoad 属性触发：', data)
     },
     loadedData(data) {
       console.log('load-data 事件触发：', data)

@@ -1,18 +1,25 @@
 <template>
   <div>
-    <p>场景1：节点可勾选 + 默认选中</p>
-    <tiny-tree-menu node-key="id" show-checkbox :data="treeData" :default-checked-keys="expandeArr"></tiny-tree-menu>
-    <p>场景2：节点可勾选 + 父子级不相关联</p>
-    <tiny-tree-menu :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
+    <p>场景 1：节点可勾选 + 默认选中</p>
+    <tiny-tree-menu
+      class="demo-tree-menu"
+      node-key="id"
+      show-checkbox
+      :data="treeData"
+      :default-checked-keys="expandeArr"
+    ></tiny-tree-menu>
+    <br /><br />
+    <p>场景 2：节点可勾选 + 父子级不相关联</p>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
   </div>
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TinyTreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu
   },
 
   data() {
@@ -178,8 +185,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

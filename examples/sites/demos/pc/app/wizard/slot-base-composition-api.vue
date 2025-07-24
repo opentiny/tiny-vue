@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Wizard as TinyWizard, Modal } from '@opentiny/vue'
+import { TinyWizard, TinyModal } from '@opentiny/vue'
 
 const dataSet = ref([
   {

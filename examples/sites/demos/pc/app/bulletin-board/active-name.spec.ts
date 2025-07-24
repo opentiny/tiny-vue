@@ -10,7 +10,7 @@ test('BulletinBoard 默认激活的选项卡', async ({ page }) => {
 
   // 激活第二项选项卡
   await expect(tabTitle.nth(1)).toHaveClass(/is-active/)
-  await expect(tabTitle.nth(1)).toHaveCSS('color', 'rgb(94, 124, 224)')
+  await expect(tabTitle.nth(1)).toHaveCSS('color', 'rgb(25, 25, 25)')
 
   await expect(tabContent.nth(1)).toHaveClass(/active-item/)
   await expect(tabContent.nth(1)).toBeVisible()

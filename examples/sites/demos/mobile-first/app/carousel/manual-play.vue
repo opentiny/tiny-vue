@@ -15,15 +15,15 @@
 </template>
 
 <script>
-import { Carousel, CarouselItem, Numeric, Button, ButtonGroup } from '@opentiny/vue'
+import { TinyCarousel, TinyCarouselItem, TinyNumeric, TinyButton, TinyButtonGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCarousel: Carousel,
-    TinyCarouselItem: CarouselItem,
-    TinyNumeric: Numeric,
-    TinyButton: Button,
-    TinyButtonGroup: ButtonGroup
+    TinyCarousel,
+    TinyCarouselItem,
+    TinyNumeric,
+    TinyButton,
+    TinyButtonGroup
   },
   data() {
     return {

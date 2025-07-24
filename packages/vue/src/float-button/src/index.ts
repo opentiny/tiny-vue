@@ -11,6 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
+import { isServer } from '@opentiny/utils'
 
 export const floatButtonProps = {
   ...$props,
@@ -94,8 +95,8 @@ export const floatButtonProps = {
   },
   // 设置需要监听其滚动事件的元素
   element: {
-    default: document.body,
-    type: HTMLElement
+    default: !isServer ? document.body : null,
+    type: !isServer ? HTMLElement : Object
   }
 }
 

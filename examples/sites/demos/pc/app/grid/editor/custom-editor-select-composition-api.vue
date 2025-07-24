@@ -1,13 +1,17 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" seq-seria :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      show-overflow="tooltip"
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column
         field="area"
         title="区域"
         :editor="{
-          component: Select,
+          component: TinySelect,
           attrs: { options, textField: 'name', valueField: 'id' }
         }"
         :format-config="{ data: options, label: 'name', value: 'id' }"
@@ -30,7 +34,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Select } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
 
 const options = ref([
   { name: '华中区', id: '1' },
@@ -42,7 +46,7 @@ const options = ref([
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     userId: 421000103624183,
     area: '1',
     province: '福建省',
@@ -51,7 +55,7 @@ const tableData = ref([
     telephone: '1234567890',
     address: '福州',
     ipaddress: '192.168.111.111',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 800,
     createdDate: '2014-04-30 00:56:00',
     boole: false,
@@ -60,7 +64,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     userId: 421000103624183,
     area: '2',
     province: '广东省',
@@ -69,7 +73,7 @@ const tableData = ref([
     telephone: '1234567890',
     address: '深圳福田区',
     ipaddress: '192.168.111.1',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 300,
     createdDate: '2016-07-08 12:36:22',
     boole: true,
@@ -78,7 +82,7 @@ const tableData = ref([
   },
   {
     id: '3',
-    name: 'RFV有限责任公司',
+    name: 'RFV 有限责任公司',
     userId: 441047913162396,
     area: '4',
     province: '广东省',
@@ -87,7 +91,7 @@ const tableData = ref([
     telephone: '1234567890',
     address: '中山市',
     ipaddress: '192.168.111.120',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 1300,
     createdDate: '2014-02-14 14:14:14',
     boole: false,
@@ -96,7 +100,7 @@ const tableData = ref([
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB 科技 YX 公司',
     userId: 702973890055088,
     area: '3',
     province: '福建省',
@@ -105,7 +109,7 @@ const tableData = ref([
     telephone: '1234567890',
     address: '龙岩',
     ipaddress: '192.168.11.111',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 360,
     createdDate: '2013-01-13 13:13:13',
     boole: true,
@@ -114,7 +118,7 @@ const tableData = ref([
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN 科技 YX 公司',
     userId: 702973890055088,
     area: '1',
     province: '广东省',
@@ -123,7 +127,7 @@ const tableData = ref([
     telephone: '1234567890',
     address: '韶关',
     ipaddress: '192.168.101.111',
-    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
+    introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。',
     employees: 810,
     createdDate: '2012-12-12 12:12:12',
     boole: true,

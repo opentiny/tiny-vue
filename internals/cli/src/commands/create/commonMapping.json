@@ -14,6 +14,11 @@
     "type": "module",
     "exclude": false
   },
+  "IconMulticolor": {
+    "path": "vue-icon-multicolor/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Common": {
     "path": "vue-common/src/index.ts",
     "type": "module",
@@ -24,11 +29,6 @@
     "type": "module",
     "exclude": false
   },
-  "DesignSmb": {
-    "path": "design/smb/index.ts",
-    "type": "module",
-    "exclude": false
-  },
   "DesignAurora": {
     "path": "design/aurora/index.ts",
     "type": "module",
@@ -36,6 +36,11 @@
   },
   "DesignSaas": {
     "path": "design/saas/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "DesignSmb": {
+    "path": "design/smb/index.ts",
     "type": "module",
     "exclude": false
   },

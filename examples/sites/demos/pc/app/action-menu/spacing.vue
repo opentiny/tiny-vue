@@ -1,17 +1,17 @@
 <template>
   <div>
-    <tiny-action-menu :options="options" spacing="10px"> </tiny-action-menu>
+    <tiny-action-menu :options="options" spacing="8px"> </tiny-action-menu>
     <br />
     <tiny-action-menu :options="options" :spacing="20"> </tiny-action-menu>
   </div>
 </template>
 
 <script>
-import { ActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyActionMenu: ActionMenu
+    TinyActionMenu
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
         },
         {
           label: '网络设置',
-          children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+          children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
         }
       ]
     }

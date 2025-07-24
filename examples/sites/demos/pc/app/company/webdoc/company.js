@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过 <code>max</code> 属性设置下拉框最大显示的数据条数。<code>clearable</code> 是否显示清除按钮，默认为 true 。</p>\n',
+          '<p>可通过 <code>max</code> 属性设置下拉框最大显示的数据条数。<code>clearable</code> 是否显示清除按钮，默认为 true。</p>\n',
         'en-US':
           '<p>You can set the maximum number of records displayed in the drop-down list box through the <code>max</code> attribute. <code>clearable</code>Indicates whether to display the Clear button. The default value is true. </p>\n'
       },

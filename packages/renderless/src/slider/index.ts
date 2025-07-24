@@ -10,10 +10,10 @@
  *
  */
 
-import { KEY_CODE } from '../common'
-import { emitEvent } from '../common/event'
-import { on, off, hasClass } from '../common/deps/dom'
-import { toNumber } from '../common/string'
+import { KEY_CODE } from '@opentiny/utils'
+import { emitEvent } from '@opentiny/utils'
+import { on, off, hasClass } from '@opentiny/utils'
+import { toNumber } from '@opentiny/utils'
 import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
 
 export const bindEvent = (api: ISliderApi) => () => {
@@ -641,7 +641,7 @@ export const updateSlotValue =
 
 export const handleSlotInput =
   ({ state, api }: Pick<ISliderRenderlessParams, 'api' | 'state'>) =>
-  (event: Event, isLeftInput: boolean = true): void => {
+  (event: Event, isLeftInput = true): void => {
     const inputValue = (event.target as HTMLInputElement).value
 
     api.changeActiveValue(state.isDouble ? isLeftInput : true)
@@ -651,9 +651,9 @@ export const handleSlotInput =
 
 export const inputOnChange =
   ({ api, emit, props, state }: Pick<ISliderRenderlessParams, 'api' | 'state' | 'props' | 'emit'>) =>
-  (event: Event) => {
+  (currentValue: string) => {
     if (!props.changeCompat) {
-      if (!/^\d+$/.test(event.target.value)) {
+      if (!/^\d+$/.test(currentValue)) {
         state.activeValue = state.leftBtnValue
         return
       }

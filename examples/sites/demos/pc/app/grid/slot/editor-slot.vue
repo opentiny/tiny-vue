@@ -24,21 +24,21 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Input, TimePicker, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyTimePicker, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyInput: Input,
-    TinyTimePicker: TimePicker
+    TinyGrid,
+    TinyGridColumn,
+    TinyInput,
+    TinyTimePicker
   },
   data() {
     return {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           area: '华东区',
           address: '福州',
           employees: 423,
@@ -46,7 +46,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWWW科技YX公司',
+          name: 'WWWW 科技 YX 公司',
           area: '华南区',
           address: '深圳福田区',
           employees: 363,
@@ -54,7 +54,7 @@ export default {
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           area: '华南区',
           address: '中山市',
           employees: 131,
@@ -62,7 +62,7 @@ export default {
         },
         {
           id: '4',
-          name: 'TGBYX公司',
+          name: 'TGBYX 公司',
           area: '华北区',
           address: '梅州',
           employees: 215,
@@ -70,7 +70,7 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           area: '华南区',
           address: '韶关',
           employees: 322,
@@ -78,7 +78,7 @@ export default {
         },
         {
           id: '6',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
           employees: 168,
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     change() {
-      Modal.message({ message: '下班时间编辑完成', status: 'info' })
+      TinyModal.message({ message: '下班时间编辑完成', status: 'info' })
     }
   }
 }

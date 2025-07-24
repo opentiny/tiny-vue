@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyForm: Form,
-    TinyFormItem: FormItem,
-    TinyInput: Input,
-    TinyButton: Button
+    TinyForm,
+    TinyFormItem,
+    TinyInput,
+    TinyButton
   },
   data() {
     return {
@@ -33,7 +33,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '必填' },
-          { min: 2, max: 11, message: '长度必须不小于2' }
+          { min: 2, max: 11, message: '长度必须不小于 2' }
         ],
         age: { required: true }
       }

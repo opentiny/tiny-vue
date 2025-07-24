@@ -446,7 +446,23 @@ export default {
           pcDemo: ''
         }
       ],
-      slots: [],
+      slots: [
+        {
+          name: 'now',
+          type: '',
+          meta: {
+            stable: '3.19.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '组件“此刻”位置插槽',
+            'en-US': 'Component "Now" button slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'now',
+          mfDemo: 'now'
+        }
+      ],
       format: [
         {
           name: 'a',

@@ -81,7 +81,7 @@ export const renderless = (
         return false
       }
     }),
-    labelWidth: computed(() => props.labelWidth || designConfig?.state?.labelWidth || '80px'),
+    labelWidth: computed(() => props.labelWidth || designConfig?.state?.labelWidth || '84px'),
     tooltipType: computed(() => designConfig?.state?.tooltipType || 'normal')
   })
 
@@ -116,7 +116,7 @@ export const renderless = (
 
   onBeforeUnmount(unbindDialogEvent)
 
-  watch(() => props.rules, api.watchRules)
+  watch(() => props.rules, api.watchRules, { deep: props.validateOnRuleChange === 'deep' })
 
   return api
 }

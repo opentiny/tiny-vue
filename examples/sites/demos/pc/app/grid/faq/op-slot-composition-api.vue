@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid } from '@opentiny/vue'
+import { TinyGrid } from '@opentiny/vue'
 
 const columns = ref([
   {
@@ -42,7 +42,7 @@ const columns = ref([
 const tableData = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD 科技 YX 公司',
     city: '福州',
     employees: 800,
     createdDate: '2014-04-30 00:56:00',
@@ -50,7 +50,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW 科技 YX 公司',
     city: '深圳',
     employees: 300,
     createdDate: '2016-07-08 12:36:22',

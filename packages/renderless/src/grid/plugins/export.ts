@@ -23,8 +23,8 @@
  *
  */
 
-import { xss } from '../../common/xss.js'
-import browser from '../../common/browser'
+import { xss } from '@opentiny/utils'
+import { browserInfo } from '@opentiny/utils'
 import { toTreeArray } from '../static'
 import { getCellValue, getFuncText } from '../utils'
 import { exportExcel } from './exportExcel'
@@ -71,7 +71,7 @@ const getCsvContent = ($table, opts, oColumns, oData) => {
   const tableEl = $table.$el
   const tab = opts.useTabs === false ? '' : '\t'
   const { columns, datas } = getCsvData(opts, oData, oColumns, tableEl)
-  let content = '\ufeff' // BOM字节序标记
+  let content = '\uFEFF' // BOM字节序标记
   const transfrom = (str) => {
     if (typeof str === 'string' && str.replace(/ /g, '').match(/[\s,"]/)) {
       str = '"' + str.replace(/"/g, '""') + '"'
@@ -120,7 +120,7 @@ const getCsvContent = ($table, opts, oColumns, oData) => {
 }
 
 const getCsvUrl = (opts, content) => {
-  if (window.Blob && window.URL && window.URL.createObjectURL && browser.name !== 'safari') {
+  if (window.Blob && window.URL && window.URL.createObjectURL && browserInfo.name !== 'safari') {
     return URL.createObjectURL(new Blob([content], { type: 'text/csv;charset=utf-8' }))
   }
 

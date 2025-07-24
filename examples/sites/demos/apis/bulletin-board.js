@@ -18,11 +18,12 @@ export default {
         },
         {
           name: 'data',
-          type: 'Array',
+          typeAnchorName: 'BulletinBoardData',
+          type: 'BulletinBoardData[]',
           defaultValue: '',
           desc: {
-            'zh-CN': 'tab-item 数据;tab-item 数据',
-            'en-US': 'tab-item data; tab-item data'
+            'zh-CN': 'tab-item 数据;',
+            'en-US': 'tab-item data;'
           },
           mode: ['pc'],
           pcDemo: 'base'
@@ -87,9 +88,38 @@ export default {
           pcDemo: 'title'
         }
       ],
-      events: [],
+      events: [
+        {
+          name: 'contentClick',
+          type: '(event: BulletinBoardData) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当公告牌内容被点击时触发的回调函数',
+            'en-US': 'The callback function triggered when the content of the bulletin board is clicked'
+          },
+          mode: ['pc'],
+          pcDemo: 'events',
+          meta: {
+            stable: '3.20.0'
+          }
+        }
+      ],
       methods: [],
       slots: []
+    }
+  ],
+  types: [
+    {
+      name: 'BulletinBoardData',
+      type: 'interface',
+      code: `
+            interface BulletinBoardData {
+              text: string // 显示文本
+              date: string // 日期
+              url: string // 需要跳转的地址
+              target: string // <a> 标签的一个属性，该属性指定在何处显示链接的资源
+              }
+            `
     }
   ]
 }

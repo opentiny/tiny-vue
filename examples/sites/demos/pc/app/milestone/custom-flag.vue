@@ -1,29 +1,28 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
-    <template #flag="data">
-      <span style="font-size: 12px">{{ data.slotScope.content }}</span>
-    </template>
-  </tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
+      <template #flag="data">
+        <span style="font-size: 12px">{{ data.slotScope.content }}</span>
+      </template>
+    </tiny-milestone>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Milestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyMilestone: Milestone
+    TinyMilestone
   },
   data() {
     return {
-      timeActive1: 1,
-      normalActive: 2,
-      advancedActive: 2,
       statusMap: {
-        completed: 'var(--ti-common-color-line-active)',
-        doing: '#7ED321',
-        back: '#f5222d',
+        completed: '#f0f7ff',
+        doing: '#e8faff',
+        back: '#edf7df',
         end: '#faad14',
-        cancel: '#d9d9d9'
+        cancel: '#f230301A'
       },
       milestoneData: [
         {
@@ -57,7 +56,7 @@ export default {
           flags: [
             {
               status: 'back',
-              content: '欢迎使用vui',
+              content: '欢迎使用 vui',
               name: 'test7'
             },
             {
@@ -83,3 +82,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

@@ -1,6 +1,5 @@
 import { docMenus, cmpMenus } from '@menu/menus.js'
-
-import { appData } from './tools'
+import { appData, $split } from './tools'
 
 /**
  * 聚合doc  / cmp 两个页面的所有菜单.
@@ -22,20 +21,25 @@ function genMenus() {
     {
       id: 'overview',
       label: appData.lang === 'zhCN' ? '组件总览' : 'overview',
-      type: 'overview'
+      type: 'overview',
+      key: 'overview'
     }
   ]
 
-  const docOptions = docMenus.map((menu) => ({
-    ...menu,
-    label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
-    children: menu.children.map((page) => ({
-      ...page,
-      id: page.key,
-      label: appData.lang === 'zhCN' ? page.title : page.titleEn,
-      type: 'docs'
-    }))
-  }))
+  // 使用指南只在DEV下生效
+  const docOptions = import.meta.env.DEV
+    ? docMenus.map((menu) => ({
+        ...menu,
+        label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
+        children: menu.children.map((page) => ({
+          ...page,
+          id: page.key,
+          label: appData.lang === 'zhCN' ? page.title : page.titleEn,
+          type: 'docs'
+        }))
+      }))
+    : []
+
   const cmpOptions = cmpMenus.map((menu) => ({
     ...menu,
     label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
@@ -46,11 +50,24 @@ function genMenus() {
       type: 'components'
     }))
   }))
+
   return [...standaloneOptions, ...docOptions, ...cmpOptions]
+}
+
+// 获取菜单的类别图标
+async function getMenuIcons() {
+  const modules = import.meta.glob('@/assets/images/leftMenu/*.svg', { eager: true })
+  const icons = {}
+  for (const path of Object.keys(modules)) {
+    const iconName = $split(path, '/', -1).replace('.svg', '')
+    icons[iconName] = modules[path]
+  }
+
+  return icons
 }
 
 const getAllComponents = () =>
   cmpMenus.reduce((acc, current) => {
     return acc.concat(current.children)
   }, [])
-export { genMenus, getAllComponents }
+export { genMenus, getAllComponents, getMenuIcons }

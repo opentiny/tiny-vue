@@ -1,8 +1,10 @@
 <template>
   <div>
+    <p>{{ enablePredefineColor }}</p>
     <tiny-button @click="changeVisible">Show Color select panel</tiny-button>
     <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
     <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
+    <tiny-button @click="enablePredefineColor = !enablePredefineColor">Toggle Predefine color visibility</tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel
         v-model="color"
@@ -10,6 +12,7 @@
         @confirm="onConfirm"
         @cancel="onCancel"
         :predefine="predefine"
+        :enable-predefine-color="enablePredefineColor"
         alpha
       />
     </div>
@@ -17,18 +20,19 @@
 </template>
 
 <script>
-import { ColorSelectPanel, Button, Notify } from '@opentiny/vue'
+import { TinyColorSelectPanel, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorSelectPanel: ColorSelectPanel,
-    TinyButton: Button
+    TinyColorSelectPanel,
+    TinyButton
   },
   data() {
     return {
       color: '#66ccff',
       visible: false,
-      predefine: new Array(8).fill(0).map(() => this.randomHex())
+      predefine: new Array(8).fill(0).map(() => this.randomHex()),
+      enablePredefineColor: false
     }
   },
   methods: {
@@ -39,20 +43,9 @@ export default {
       this.visible = false
     },
     onConfirm(msg) {
-      Notify({
-        type: 'success',
-        position: 'top-right',
-        title: '用户点击了选择',
-        message: msg
-      })
       this.hidden()
     },
     onCancel() {
-      Notify({
-        type: 'error',
-        position: 'top-right',
-        title: '用户点击了取消'
-      })
       this.hidden()
     },
     randomHex() {

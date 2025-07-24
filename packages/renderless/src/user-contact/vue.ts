@@ -10,21 +10,32 @@
  *
  */
 
-import { init } from '../common/deps/eSpaceCtrl'
+import { initEspace } from '@opentiny/utils'
 import { getUserHref, doUserAction, initEspaceLink, openEspace } from './index'
 import { testUID } from '../espace'
+import type {
+  IUserContactApi,
+  IUserContactProps,
+  IUserContactState,
+  ISharedRenderlessParamHooks,
+  IUserContactRenderlessParamUtils
+} from '@/types'
 
 export const api = ['show', 'getUserHref', 'doUserAction', 'initEspaceLink', 'openEspace', 'testUID']
 
-export const renderless = (props, { reactive, ref }, { service }) => {
-  const api = {}
+export const renderless = (
+  props: IUserContactProps,
+  { reactive, ref }: ISharedRenderlessParamHooks,
+  { service }: IUserContactRenderlessParamUtils
+): IUserContactApi => {
+  const api = {} as IUserContactApi
   const { setting = {} } = service || {}
   const { widgets = {} } = setting
 
   const eSpaceCtrlDisabled = widgets.ESpaceCtrl && !widgets.ESpaceCtrl.autoLink
-  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : init()
+  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : initEspace()
 
-  const state = reactive({
+  const state: IUserContactState = reactive({
     initialized: false
   })
 

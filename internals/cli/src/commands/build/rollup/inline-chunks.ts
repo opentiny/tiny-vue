@@ -27,7 +27,7 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
         if (!jsChunk.code) continue
 
         if (format === 'es') {
-          const reg = /^import(\s*.+\s*from)?\s+"[./]+(.+-[a-f0-9]{8}.+)".*$/gim
+          const reg = /^import(\s*.+\s*from)?\s+"[./]+(.+-[A-Za-z0-9_-]{8}\.[mc]?js)".*$/gim
           const matchArr = jsChunk.code.match(reg)
           if (matchArr) {
             const filePath = path.join(dir, jsName)
@@ -40,7 +40,7 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
         }
 
         if (format === 'cjs') {
-          const reg = /require\("[./]+(.+-[a-f0-9]{8}.+)".*$/gim
+          const reg = /require\("[./]+(.+-[A-Za-z0-9_-]{8}\.[mc]?js)".*$/gim
           const matchArr = jsChunk.code.match(reg)
           if (matchArr) {
             const filePath = path.join(dir, jsName)

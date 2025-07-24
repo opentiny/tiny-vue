@@ -7,7 +7,6 @@
       :src="imgUrl"
       :aspect-ratio="7 / 5"
       :center="true"
-      :preview="true"
       :quality="0.5"
       max-size="300KB"
       @setAspectRatio="setAspectRatio"
@@ -17,14 +16,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Button as TinyButton, Crop as TinyCrop } from '@opentiny/vue'
+import { TinyButton, TinyCrop } from '@opentiny/vue'
 
 const visible = ref(false)
 const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function setAspectRatio(aspectRatio) {
   Modal.message({
-    message: `宽高比数据: ${JSON.stringify(aspectRatio)}`,
+    message: `宽高比数据：${JSON.stringify(aspectRatio)}`,
     status: 'info'
   })
 }

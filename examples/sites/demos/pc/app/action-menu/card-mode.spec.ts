@@ -11,6 +11,5 @@ test('基本用法', async ({ page }) => {
 
   await expect(visibleItem).toHaveCount(4)
   await expect(moreItem).not.toHaveText(/更多/)
-  // 三点图标
-  await expect(moreItem.locator('circle')).toHaveCount(3)
+  await expect(moreItem.locator('.tiny-dropdown__suffix-inner  .tiny-svg')).toBeVisible()
 })

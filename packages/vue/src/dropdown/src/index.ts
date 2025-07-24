@@ -4,6 +4,11 @@ import template from 'virtual-template?pc|mobile-first'
 export const dropdownProps = {
   ...$props,
   modelValue: [String, Number],
+  // tiny新增
+  visible: {
+    type: [Boolean, undefined],
+    default: undefined
+  },
   type: String,
   trigger: String, // 默认主题为 'hover'
   size: {
@@ -69,7 +74,11 @@ export const dropdownProps = {
     type: Boolean,
     default: false
   },
-  suffixIcon: Object
+  suffixIcon: Object,
+  lazyShowPopper: {
+    type: Boolean,
+    default: false
+  }
 }
 export default defineComponent({
   name: $prefix + 'Dropdown',

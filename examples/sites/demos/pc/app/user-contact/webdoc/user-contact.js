@@ -24,7 +24,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>:data</code> 设置数据源, <code>imgUrl</code> 表示的是图片路径, <code>userName</code> 表示的是姓名, <code>userDescription</code> 表示的是用户描述。</p>\n',
+          '<p>通过 <code>:data</code> 设置数据源，<code>imgUrl</code> 表示的是图片路径，<code>userName</code> 表示的是姓名，<code>userDescription</code> 表示的是用户描述。</p>\n',
         'en-US':
           '<p>Set the data source through<code>: data</code>. <code>imgUrl</code> indicates the image path, and <code>userName</code> indicates the name. <code>userDescription</code> indicates the user description. </p>\n'
       },
@@ -38,7 +38,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过设置<code>show-img</code> 是否显示头像，<code>show-name</code> 是否显示名字,<code>show-number</code> 是否显示用户账号,默认值为<code>true</code>。</p>',
+          '<p>通过设置<code>show-img</code> 是否显示头像，<code>show-name</code> 是否显示名字，<code>show-number</code> 是否显示用户账号，默认值为<code>true</code>。</p>',
         'en-US':
           '<p>By setting<code>show img</code>to display avatars,<code>show name</code>to display names, and<code>show number</code>to display user accounts, the default value is<code>true</code>.</p> '
       },
@@ -59,7 +59,7 @@ export default {
     {
       demoId: 'contact-espace',
       name: {
-        'zh-CN': '连接eSpace',
+        'zh-CN': '连接 eSpace',
         'en-US': 'Connecting to the eSpace'
       },
       desc: {

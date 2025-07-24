@@ -10,8 +10,8 @@ test('菜单项间距', async ({ page }) => {
   const tenPXSpacing = actionMenu.first()
   const twentyPXSpacing = actionMenu.nth(1)
 
-  await expect(getDivider(tenPXSpacing)).toHaveCSS('margin-left', '10px')
-  await expect(getDivider(tenPXSpacing)).toHaveCSS('margin-right', '10px')
+  await expect(getDivider(tenPXSpacing)).toHaveCSS('margin-left', '8px')
+  await expect(getDivider(tenPXSpacing)).toHaveCSS('margin-right', '8px')
   await expect(getDivider(twentyPXSpacing)).toHaveCSS('margin-left', '20px')
   await expect(getDivider(twentyPXSpacing)).toHaveCSS('margin-right', '20px')
 })

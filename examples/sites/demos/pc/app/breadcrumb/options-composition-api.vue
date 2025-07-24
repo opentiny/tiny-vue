@@ -7,16 +7,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Breadcrumb as TinyBreadcrumb, Notify } from '@opentiny/vue'
+import { TinyBreadcrumb, TinyNotify } from '@opentiny/vue'
 
 const options = ref([
   {
     label: '首页',
-    to: { path: '/' }
+    to: { path: '#' }
   },
   {
     label: '产品',
-    to: { path: '/breadcrumb' }
+    to: { path: '#' }
   },
   {
     label: '软件',
@@ -26,11 +26,11 @@ const options = ref([
 const options1 = ref([
   {
     name: '首页',
-    to: { path: '/' }
+    to: { path: '' }
   },
   {
     name: '产品',
-    to: { path: '/breadcrumb' }
+    to: { path: '#' }
   },
   {
     name: '软件',
@@ -39,7 +39,7 @@ const options1 = ref([
 ])
 
 function itemClick(value) {
-  Notify({
+  TinyNotify({
     type: 'info',
     title: '触发选择面包屑事件',
     message: JSON.stringify(value),

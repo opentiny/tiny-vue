@@ -7,11 +7,19 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button
+    TinyButton
   }
 }
 </script>
+
+<style scoped>
+.tiny-button {
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 24px;
+}
+</style>

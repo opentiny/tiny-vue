@@ -96,8 +96,14 @@
         </div>
       </div>
     </tiny-floatbar>
-    <!-- 切换主题 -->
-    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme" :disabled="isSaasMode">
+    <!-- 切换主题 暂时先屏蔽，等后续其他主题验收完成再放出此功能 -->
+    <tiny-dropdown
+      v-if="false"
+      class="!fixed bottom20 right140"
+      :show-icon="false"
+      @item-click="changeTheme"
+      :disabled="isSaasMode"
+    >
       <span title="切换主题">
         <SvgTheme></SvgTheme>
       </span>
@@ -151,8 +157,6 @@ import {
 } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import Loading from '@opentiny/vue-loading'
-import designSmbConfig from '@opentiny/vue-design-smb'
-import designAuroraConfig from '@opentiny/vue-design-aurora'
 import designSaasConfig from '@opentiny/vue-design-saas'
 import { menuData, demoStr, demoVue, mds, demos } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
@@ -194,7 +198,7 @@ export default {
       currMd: hooks.computed(() => mds[`${modeState.pathName}.cn.md`]),
       demoLoading: false
     })
-    // hui chart 新增图表类型，新增图表的 api 和原有图表的api 区分开。 
+    // hui chart 新增图表类型，新增图表的 api 和原有图表的api 区分开。
     const huiNewChart = ['chart-process']
     const fn = {
       // 菜单搜索：忽略大小写
@@ -245,9 +249,11 @@ export default {
       await _switchDemo()
     }
     async function _switchDemo() {
+      if (!state.currDemo) {
+        return
+      }
       modeState.demoId = state.currDemo.demoId
       const path = `../../sites/demos/pc/app/${getPath(modeState.pathName)}/${state.currDemo?.codeFiles[0]}`
-
       // 查找源码  查找组件
       state.currDemoSrc = await demoStr[path]()
       const comp = await demoVue[path]()
@@ -259,8 +265,8 @@ export default {
     }
 
     const designConfigMap = {
-      'tiny-smb-theme': designSmbConfig,
-      'tiny-aurora-theme': designAuroraConfig
+      'tiny-smb-theme': {},
+      'tiny-aurora-theme': {}
     }
 
     const lastThemeKey = localStorage.getItem('tinyThemeToolkey')

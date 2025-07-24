@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartBar } from '@opentiny/vue'
+import { TinyHuichartsBar } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyBar: ChartBar
+    TinyBar: TinyHuichartsBar
   },
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
           data: '日期'
         },
         markLine: {
-          // markLine.top 表示顶部阈值线, markLine.bottom 表示底部阈值线
+          // markLine.top 表示顶部阈值线，markLine.bottom 表示底部阈值线
           top: 32
         },
         direction: 'horizontal' // 横向柱状图

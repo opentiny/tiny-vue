@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { ColorPicker, Notify } from '@opentiny/vue'
+import { TinyColorPicker, TinyNotify } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker
+    TinyColorPicker
   },
   methods: {
     onConfirm(hex) {
-      Notify({
+      TinyNotify({
         type: 'success',
         position: 'top-right',
         title: '用户点击了选择',
@@ -19,7 +19,7 @@ export default {
       })
     },
     onCacnel() {
-      Notify({
+      TinyNotify({
         type: 'warning',
         position: 'top-right',
         title: '用户选择了取消'

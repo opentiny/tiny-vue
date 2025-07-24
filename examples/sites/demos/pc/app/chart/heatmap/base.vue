@@ -5,22 +5,22 @@
 </template>
 
 <script lang="jsx">
-import { ChartHeatmap } from '@opentiny/vue'
+import { TinyHuichartsHeatmap } from '@opentiny/vue-huicharts'
 
 export default {
   components: {
-    TinyHeatmap: ChartHeatmap
+    TinyHeatmap: TinyHuichartsHeatmap
   },
   data() {
     return {
       options: {
-        // 图表类型(矩形热力图)
+        // 图表类型 (矩形热力图)
         type: 'RectangularHeatMapChart',
 
         // 矩形的颜色，默认值#F43146
         color: '#F43146',
 
-        // 矩形的大小，默认值8
+        // 矩形的大小，默认值 8
         rectangleSize: 8,
         yAxisName: '手机市场占比%',
         data: [

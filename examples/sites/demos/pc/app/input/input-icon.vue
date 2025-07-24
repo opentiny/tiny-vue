@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 import { IconCalendar } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {

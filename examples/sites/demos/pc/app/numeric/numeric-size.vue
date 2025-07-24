@@ -2,6 +2,8 @@
   <div>
     <tiny-numeric v-model="value" size="medium"></tiny-numeric>
     <br /><br />
+    <tiny-numeric v-model="value"></tiny-numeric>
+    <br /><br />
     <tiny-numeric v-model="value" size="small"></tiny-numeric>
     <br /><br />
     <tiny-numeric v-model="value" size="mini"></tiny-numeric>
@@ -9,11 +11,11 @@
 </template>
 
 <script lang="ts">
-import { Numeric } from '@opentiny/vue'
+import { TinyNumeric } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyNumeric: Numeric
+    TinyNumeric
   },
   data() {
     return {

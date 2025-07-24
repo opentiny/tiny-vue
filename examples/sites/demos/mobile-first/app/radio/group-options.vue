@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { RadioGroup, Modal } from '@opentiny/vue'
+import { TinyRadioGroup, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadioGroup: RadioGroup
+    TinyRadioGroup
   },
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message({ message: 'click' })
+      TinyModal.message({ message: 'click' })
     }
   }
 }

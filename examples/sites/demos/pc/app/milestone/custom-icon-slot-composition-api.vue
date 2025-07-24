@@ -1,14 +1,16 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
-    <template #icon="data">
-      <component :is="data.slotScope.icon" class="custom"> </component>
-    </template>
-  </tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
+      <template #icon="data">
+        <component :is="data.slotScope.icon" class="custom-milestone"> </component>
+      </template>
+    </tiny-milestone>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Milestone as TinyMilestone } from '@opentiny/vue'
+import { TinyMilestone } from '@opentiny/vue'
 import { iconShare, iconYes, iconDel, iconAscending, iconWriting } from '@opentiny/vue-icon'
 
 // 里程碑样式
@@ -22,38 +24,38 @@ const statusMap = ref({
 // 数据源
 const milestoneData = ref([
   {
-    name: '自定义数据1',
+    name: '自定义数据 1',
     time: '2018-9-7',
     status: 'completed',
     icon: iconShare()
   },
   {
-    name: '自定义数据2',
+    name: '自定义数据 2',
     time: '2018-9-8',
     status: 'completed',
     icon: iconYes()
   },
   {
-    name: '自定义数据3',
+    name: '自定义数据 3',
     time: '2018-9-10',
     status: 'doing',
     content: null,
     icon: iconDel()
   },
   {
-    name: '自定义数据4',
+    name: '自定义数据 4',
     time: '2018-9-9',
     status: 'cancel',
     icon: iconWriting()
   },
   {
-    name: '自定义数据5',
+    name: '自定义数据 5',
     time: '2018-9-11',
     status: 'back',
     icon: iconAscending()
   },
   {
-    name: '自定义数据6',
+    name: '自定义数据 6',
     time: '2018-9-9',
     status: 'end',
     icon: iconShare()
@@ -62,7 +64,7 @@ const milestoneData = ref([
 </script>
 
 <style>
-.custom {
+.custom-milestone {
   width: 16px;
   height: 16px;
   line-height: 16px;
@@ -75,5 +77,11 @@ const milestoneData = ref([
   color: #000;
   cursor: pointer;
   z-index: 15;
+}
+</style>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
 }
 </style>

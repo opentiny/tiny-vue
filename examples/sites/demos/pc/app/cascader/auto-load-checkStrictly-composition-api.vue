@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Cascader as TinyCascader } from '@opentiny/vue'
+import { TinyCascader } from '@opentiny/vue'
 
 let id = 0
 const value = ref('')
@@ -17,7 +17,7 @@ const propsAuto = ref({
     setTimeout(() => {
       const nodes = Array.from({ length: level + 1 }).map(() => ({
         value: ++id,
-        label: `选项${id}`,
+        label: `选项 ${id}`,
         leaf: level >= 2
       }))
 

@@ -15,7 +15,6 @@ import type {
   IInputState,
   ISharedRenderlessParamHooks,
   IInputRenderlessParamUtils,
-  IInputClassPrefixConstants,
   IInputEventNameConstants,
   IInputRenderlessParams
 } from '@/types'
@@ -52,10 +51,12 @@ import {
   handleEnterTextarea,
   handleLeaveTextarea,
   getDisplayOnlyText,
-  setShowMoreBtn
+  setShowMoreBtn,
+  handleTextareaMouseDown,
+  handleTextareaMouseUp
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
-import { on, off } from '../common/deps/dom'
+import { on, off } from '@opentiny/utils'
 
 export const api = [
   'blur',
@@ -90,7 +91,9 @@ export const api = [
   'hiddenPassword',
   'inputStyle',
   'handleEnterTextarea',
-  'handleLeaveTextarea'
+  'handleLeaveTextarea',
+  'handleTextareaMouseDown',
+  'handleTextareaMouseUp'
 ]
 
 const initState = ({
@@ -101,7 +104,8 @@ const initState = ({
   parent,
   constants,
   api,
-  vm
+  vm,
+  designConfig
 }: Pick<
   IInputRenderlessParams,
   'reactive' | 'computed' | 'mode' | 'props' | 'parent' | 'constants' | 'api' | 'vm'
@@ -127,7 +131,7 @@ const initState = ({
         !state.inputDisabled &&
         !props.readonly &&
         state.nativeInputValue &&
-        (state.focused || state.hovering)
+        (!designConfig?.options?.isCloseIconHide || state.focused || state.hovering)
     ),
     textareaHeight: vm.theme === 'saas' ? '28px' : '30px',
     upperLimit: computed(() => parent.$attrs.maxlength),
@@ -175,7 +179,8 @@ const initState = ({
     timer: null,
     hiddenPassword: computed(() => api.hiddenPassword()),
     displayedMaskValue: computed(() => api.getDisplayedMaskValue()),
-    displayOnlyText: computed(() => api.getDisplayOnlyText())
+    displayOnlyText: computed(() => api.getDisplayOnlyText()),
+    isDragging: false
   })
 
   return state as IInputState
@@ -189,15 +194,12 @@ const initApi = ({
   emit,
   vm,
   props,
-  CLASS_PREFIX,
   parent,
   nextTick
 }: Pick<
   IInputRenderlessParams,
   'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent' | 'vm' | 'nextTick'
-> & {
-  CLASS_PREFIX: IInputClassPrefixConstants
-}) => {
+>) => {
   Object.assign(api, {
     state,
     dispatch,
@@ -208,7 +210,7 @@ const initApi = ({
     setShowMoreBtn: setShowMoreBtn({ state, vm }),
     handleChange: handleChange(emit),
     watchFormSelect: watchFormSelect({ emit, props, state }),
-    calcIconOffset: calcIconOffset({ CLASS_PREFIX, parent }),
+    calcIconOffset: calcIconOffset({ vm, parent }),
     getSuffixVisible: getSuffixVisible({ parent, props, state }),
     calculateNodeStyling: calculateNodeStyling(),
     handleCompositionStart: handleCompositionStart(state),
@@ -217,7 +219,9 @@ const initApi = ({
     getDisplayOnlyText: getDisplayOnlyText({ parent, props, state }),
     handleEnterTextarea: handleEnterTextarea({ api, state, props, nextTick }),
     handleLeaveTextarea: handleLeaveTextarea({ api, state, props, nextTick, vm }),
-    inputStyle: inputStyle({ props })
+    inputStyle: inputStyle({ props }),
+    handleTextareaMouseDown: handleTextareaMouseDown({ state }),
+    handleTextareaMouseUp: handleTextareaMouseUp({ state, api })
   })
 }
 
@@ -375,18 +379,14 @@ const initWatch = ({
 export const renderless = (
   props: IInputProps,
   { computed, onMounted, onBeforeUnmount, onUpdated, reactive, toRefs, watch, inject }: ISharedRenderlessParamHooks,
-  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode }: IInputRenderlessParamUtils
+  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode, designConfig }: IInputRenderlessParamUtils
 ): IInputApi => {
   const api = {} as IInputApi
   const componentName = constants.COMPONENT_NAME.FormItem
   const eventName: IInputEventNameConstants = { change: 'form.change', blur: 'form.blur' }
-  const CLASS_PREFIX: IInputClassPrefixConstants = {
-    Input: constants.inputMode(mode),
-    InputGroup: constants.inputGroupMode(mode)
-  }
-  const state = initState({ reactive, computed, mode, props, parent, constants, api, vm })
+  const state = initState({ reactive, computed, mode, props, parent, constants, api, vm, designConfig })
 
-  initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent, vm, nextTick })
+  initApi({ api, state, dispatch, broadcast, emit, refs, props, parent, vm, nextTick })
 
   const storages = useStorageBox({ api, props, reactive, toRefs })
 
@@ -408,6 +408,10 @@ export const renderless = (
     if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
       api.setShowMoreBtn(true)
       on(window, 'resize', api.setShowMoreBtn)
+    }
+
+    if (vm.$attrs.autofocus) {
+      api.focus()
     }
   })
 

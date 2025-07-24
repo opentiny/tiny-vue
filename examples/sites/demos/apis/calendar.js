@@ -7,8 +7,8 @@ export default {
       props: [
         {
           name: 'events',
-          typeAnchorName: 'eventLists',
-          type: 'eventLists[]',
+          typeAnchorName: 'ICalendarEvent',
+          type: 'ICalendarEvent[]',
           defaultValue: '',
           desc: {
             'zh-CN': '事件列表',
@@ -90,15 +90,17 @@ export default {
   ],
   types: [
     {
-      name: 'eventLists',
+      name: 'ICalendarEvent',
       type: 'interface',
       code: `
-      interface eventLists [{
-        time: 1534297845236, // 指定需要展示事件的日期
-        title: '消息', // 指定事件标题
-        content: '这是一条消息', // 指定事件的具体内容
-        type: 'info' // 事件主题类型，包括 warning、error、info、success。
-      }]`
+type ICalendarEventType = 'info' | 'warning' | 'error' | 'info' | 'success'
+
+interface ICalendarEvent {
+    time: number, // 指定需要展示事件的日期的时间戳
+    title: string, // 指定事件标题
+    content: string, // 指定事件的具体内容
+    type: ICalendarEventType // 事件主题类型
+}`
     }
   ]
 }

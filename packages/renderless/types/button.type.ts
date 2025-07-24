@@ -7,6 +7,7 @@ export interface IButtonState {
   timer: number
   disabled: boolean
   plain: ComputedRef<boolean>
+  round: ComputedRef<boolean>
   formDisabled: ComputedRef<boolean>
   buttonDisabled: ComputedRef<boolean>
 }

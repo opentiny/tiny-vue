@@ -252,6 +252,7 @@ export default {
     {
       name: 'ICascaderPanelNodePropValue',
       type: 'type',
+      depTypes: ['ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelNodePropValue =
   | ICascaderPanelNodeValue
@@ -261,6 +262,7 @@ type ICascaderPanelNodePropValue =
     {
       name: 'ICascaderPanelData',
       type: 'type',
+      depTypes: ['ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelData = {
   value?: ICascaderPanelNodeValue
@@ -274,6 +276,7 @@ type ICascaderPanelData = {
     {
       name: 'ICascaderPanelConfig',
       type: 'interface',
+      depTypes: ['ICascaderPanelNode', 'ICascaderPanelData'],
       code: `
 interface ICascaderPanelConfig {
   emitPath: boolean
@@ -296,6 +299,7 @@ interface ICascaderPanelConfig {
     {
       name: 'ICascaderPanelNode',
       type: 'type',
+      depTypes: ['ICascaderPanelData', 'ICascaderPanelConfig', 'ICascaderPanelNodeValue'],
       code: `
 type ICascaderPanelNode = {
   parent: ICascaderPanelNode | null
@@ -320,6 +324,7 @@ type ICascaderPanelNode = {
     {
       name: 'ICascaderPanelLazyLoad',
       type: 'type',
+      depTypes: ['ICascaderPanelNode', 'ICascaderPanelData'],
       code: `
 type ICascaderPanelLazyLoad = (node: ICascaderPanelNode, resolve: (dataList: ICascaderPanelData[]) => void) => void
       `

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-modal",
-  "version": "3.17.0",
+  "version": "3.22.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -8,7 +8,7 @@
   "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
+    "vitest": "catalog:"
   },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
@@ -22,7 +22,6 @@
     "@opentiny/vue-checkbox-group": "workspace:~",
     "@opentiny/vue-popconfirm": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

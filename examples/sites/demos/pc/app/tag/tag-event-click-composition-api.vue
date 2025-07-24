@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tag as TinyTag, Modal } from '@opentiny/vue'
+import { TinyTag, TinyModal } from '@opentiny/vue'
 
 const tags = ref([
   { name: '标签一', type: '' },
@@ -19,6 +19,13 @@ const tags = ref([
 ])
 
 function handleClick() {
-  Modal.message('click 事件')
+  TinyModal.message('click 事件')
 }
 </script>
+
+<style scoped>
+.tiny-tag-demo .tiny-tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+</style>

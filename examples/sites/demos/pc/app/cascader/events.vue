@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import { Cascader, Modal } from '@opentiny/vue'
+import { TinyCascader, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCascader: Cascader
+    TinyCascader
   },
   data() {
     return {
@@ -223,27 +223,27 @@ export default {
   },
   methods: {
     visibleChange(val) {
-      Modal.message({
-        message: '当前触发了:visible-change 事件,当前状态为：' + val,
+      TinyModal.message({
+        message: '当前触发了:visible-change 事件，当前状态为：' + val,
         status: 'info'
       })
     },
     handleFocus() {
-      Modal.message({ message: '当前触发了:focus 事件', status: 'info' })
+      TinyModal.message({ message: '当前触发了:focus 事件', status: 'info' })
     },
     expandChange() {
-      Modal.message({
+      TinyModal.message({
         message: '当前触发了:expand-change 事件',
         status: 'info'
       })
     },
     handleblur() {
-      Modal.message({ message: '当前触发了:blur 事件', status: 'info' })
+      TinyModal.message({ message: '当前触发了:blur 事件', status: 'info' })
     },
     handleChange(value) {
       let checkVal = this.$refs.cascader.getCheckedNodes(true)
-      Modal.message({
-        message: 'change 事件，当前选中的值为:' + checkVal[0].label + '；传入的值为：' + value,
+      TinyModal.message({
+        message: 'change 事件，当前选中的值为：' + checkVal[0].label + '；传入的值为：' + value,
         status: 'info'
       })
     }

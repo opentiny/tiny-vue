@@ -2,14 +2,14 @@
   <tiny-action-menu :options="options">
     <template #item="{ data }">
       <tiny-icon-smile></tiny-icon-smile>
-      <span> {{ data.name }}</span>
+      <span style="vertical-align: middle; margin-left: 4px"> {{ data.name }}</span>
     </template>
   </tiny-action-menu>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 import { iconSmile } from '@opentiny/vue-icon'
 
 const options = ref([
@@ -27,7 +27,7 @@ const options = ref([
   },
   {
     name: '网络设置',
-    children: [{ name: '更改安全组' }, { name: '切换VPC', divided: true }]
+    children: [{ name: '更改安全组' }, { name: '切换 VPC', divided: true }]
   }
 ])
 

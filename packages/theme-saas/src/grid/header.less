@@ -70,6 +70,13 @@
       @apply block;
       @apply text-left;
     }
+    + .@{grid-prefix-cls}-cell-text {
+      @apply w-auto;
+    }
+  }
+
+  .@{grid-prefix-cls}-cell-text {
+    @apply w-full;
   }
 
   .@{grid-prefix-cls}-edit-icon {
@@ -78,6 +85,9 @@
     @apply text-sm;
     @apply fill-color-icon-disabled;
     @apply shrink-0;
+    + .@{grid-prefix-cls}-cell-text {
+      @apply w-auto;
+    }
   }
 
   .@{grid-prefix-cls}-thead-partition,

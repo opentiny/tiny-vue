@@ -9,11 +9,11 @@
 </template>
 
 <script lang="jsx">
-import { Transfer, Modal } from '@opentiny/vue'
+import { TinyTransfer, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer
   },
   data() {
     const generateData = () => {
@@ -37,19 +37,19 @@ export default {
   },
   methods: {
     change(value, move, keyArray) {
-      Modal.message({
+      TinyModal.message({
         message: 'change 事件，当前值：' + value + '，方向：' + move + '，移动的数据：' + keyArray,
         status: 'info'
       })
     },
     leftCheckChange(checked, statusChanged) {
-      Modal.message({
+      TinyModal.message({
         message: 'left-check-change 事件，被选中：' + checked + '，选中状态发生变化：' + statusChanged,
         status: 'info'
       })
     },
     rightCheckChange(checked, statusChanged) {
-      Modal.message({
+      TinyModal.message({
         message: 'right-check-change 事件，被选中：' + checked + '，选中状态发生变化：' + statusChanged,
         status: 'info'
       })

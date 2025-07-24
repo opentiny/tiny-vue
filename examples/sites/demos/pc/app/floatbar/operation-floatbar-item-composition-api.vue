@@ -17,7 +17,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Floatbar as TinyFloatbar, Button as TinyButton } from '@opentiny/vue'
+import { TinyFloatbar, TinyButton } from '@opentiny/vue'
 
 const lists = ref(['custom-A', 'custom-B', 'custom-C', 'custom-D'])
 
@@ -37,6 +37,6 @@ function removeAll() {
 <style scoped>
 .custom {
   position: static;
-  width: 200px;
+  width: 104px;
 }
 </style>

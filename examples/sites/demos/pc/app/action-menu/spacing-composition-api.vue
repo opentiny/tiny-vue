@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-action-menu :options="options" spacing="10px"> </tiny-action-menu>
+    <tiny-action-menu :options="options" spacing="8px"> </tiny-action-menu>
     <br />
     <tiny-action-menu :options="options" :spacing="20"> </tiny-action-menu>
   </div>
@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
+import { TinyActionMenu } from '@opentiny/vue'
 
 const options = ref([
   {
@@ -25,7 +25,7 @@ const options = ref([
   },
   {
     label: '网络设置',
-    children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
+    children: [{ label: '更改安全组' }, { label: '切换 VPC', divided: true }]
   }
 ])
 </script>

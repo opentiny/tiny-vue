@@ -1,0 +1,13 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<clipPath id="clip463_141034">
+			<rect id="color-icon-album-upload" width="24.000000" height="24.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip463_141034)">
+		<path id="路径" d="M18.99 2L4.99 2C3.34 2 2 3.34 1.99 5L1.99 13.86L5.87 9.98C7.06 8.85 8.93 8.85 10.11 9.98L12.99 12.86L13.87 11.98C15.05 10.81 16.94 10.81 18.12 11.98L21.99 15.86L21.99 5C21.99 3.34 20.65 2 18.99 2Z" fill="var(--aui-second-color,  rgba(0,103,209,0.7))" fill-opacity="0.5" fill-rule="evenodd"/>
+		<path id="路径" d="M21.99 15.85L18.12 11.97C16.94 10.81 15.05 10.81 13.87 11.97L12.99 12.86L21.15 21.07C21.69 20.52 22 19.77 21.99 19L21.99 15.85Z" fill="var(--aui-second-color,  rgba(0,103,209,0.7))" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<circle id="椭圆形" cx="17.000000" cy="7.000244" r="2.000000" fill="var(--aui-first-color,  rgba(0,103,209,1))" fill-opacity="1.000000"/>
+		<path id="路径" d="M10.12 9.97C8.93 8.84 7.06 8.84 5.88 9.97L2 13.86L2 19C2 20.65 3.34 21.99 5 22L19 22C19.81 22 20.59 21.66 21.16 21.08L10.12 9.97Z" fill="var(--aui-first-color,  rgba(0,103,209,1))" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

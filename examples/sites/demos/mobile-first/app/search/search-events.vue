@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import { Search, Modal } from '@opentiny/vue'
+import { TinySearch, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search
+    TinySearch
   },
   methods: {
     search(key, value) {
-      Modal.message(`${value}`)
+      TinyModal.message(`${value}`)
     }
   }
 }

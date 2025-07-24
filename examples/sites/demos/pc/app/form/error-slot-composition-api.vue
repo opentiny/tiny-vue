@@ -4,16 +4,19 @@
       <tiny-form-item label="姓名" prop="name">
         <tiny-input v-model="createData.name"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="年龄" prop="age">
-        <tiny-input v-model="createData.age"></tiny-input>
-        <template #error>
-          <span>错误提示内容插槽</span>
-        </template>
-      </tiny-form-item>
       <tiny-form-item label="昵称" prop="nickname" validate-type="text">
         <tiny-input v-model="createData.nickname"></tiny-input>
         <template #error="message">
           <span class="error-slot">{{ message }}</span>
+        </template>
+      </tiny-form-item>
+      <tiny-form-item label="年龄" prop="age">
+        <tiny-input v-model="createData.age"></tiny-input>
+        <template #error>
+          <div class="custom-error">
+            <tiny-icon-error></tiny-icon-error>
+            <span>错误提示内容插槽，提示文本很长很长，提示文本很长很长，提示文本很长很长，提示文本很长很长。</span>
+          </div>
         </template>
       </tiny-form-item>
       <tiny-form-item>
@@ -25,7 +28,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
+import { TinyForm, TinyFormItem, TinyInput, TinyButton } from '@opentiny/vue'
+import { iconError } from '@opentiny/vue-icon'
+
+const TinyIconError = iconError()
 
 const createData = ref({
   name: '',
@@ -36,12 +42,12 @@ const createData = ref({
 const rules = ref({
   name: [
     { required: true, message: '必填', trigger: 'blur' },
-    { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
+    { min: 2, max: 11, message: '长度必须不小于 2', trigger: ['change', 'blur'] }
   ],
   age: { required: true },
   nickname: [
     { required: true, message: '昵称必填' },
-    { min: 2, max: 11, message: '昵称长度必须不小于2切不大于11', trigger: ['change', 'blur'] }
+    { min: 2, max: 11, message: '昵称长度必须不小于 2 切不大于 11', trigger: ['change', 'blur'] }
   ]
 })
 
@@ -58,5 +64,18 @@ function validateField() {
 }
 .error-slot {
   color: #ffd0a6;
+}
+</style>
+
+<style lang="less">
+.custom-error {
+  display: flex;
+  .tiny-svg {
+    fill: var(--ti-tooltip-validate-icon-color);
+    margin-right: 8px;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
 }
 </style>

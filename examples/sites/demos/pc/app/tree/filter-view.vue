@@ -15,6 +15,13 @@
       </tiny-radio-group>
     </div>
     <div class="option-row">
+      <span> 搜索后是否高亮关键字：</span>
+      <tiny-radio-group v-model="highlightQuery">
+        <tiny-radio label="show"> 高亮 </tiny-radio>
+        <tiny-radio label="hide"> 默认不变 </tiny-radio>
+      </tiny-radio-group>
+    </div>
+    <div class="option-row">
       <span> 搜索值：</span>
       <tiny-input v-model="filterText" @input="inputChange"></tiny-input>
     </div>
@@ -23,6 +30,7 @@
       ref="treeRef"
       :data="data"
       :view-type="viewType"
+      :highlight-query="highlightQuery === 'show'"
       :filter-node-method="filterNodeMethod"
       :show-auxi="showAuxi === 'show'"
       default-expand-all
@@ -36,19 +44,20 @@
 </template>
 
 <script lang="jsx">
-import { Tree, RadioGroup, Radio, Input } from '@opentiny/vue'
+import { TinyTree, TinyRadioGroup, TinyRadio, TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree,
-    TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup,
-    TinyInput: Input
+    TinyTree,
+    TinyRadio,
+    TinyRadioGroup,
+    TinyInput
   },
   data() {
     return {
       viewType: 'tree',
       showAuxi: 'hide',
+      highlightQuery: 'hide',
       filterText: '',
       data: [
         {

@@ -49,7 +49,8 @@ const CascaderMenu = defineComponent({
       type: Array<ICascaderPanelNode>,
       required: true
     },
-    index: Number
+    index: Number,
+    onlyUsePanel: Boolean
   },
   inject: {
     panel: {
@@ -95,7 +96,7 @@ const CascaderMenu = defineComponent({
         class: 'tiny-cascader-menu',
         props: {
           tag: 'ul',
-          'wrap-class': 'tiny-cascader-menu__wrap',
+          'wrap-class': 'tiny-cascader-menu__wrap ' + (this.onlyUsePanel ? 'tiny-cascader-menu__wrap-expand' : ''),
           'view-class': {
             'tiny-cascader-menu__list': true,
             'is-empty': state.isEmpty

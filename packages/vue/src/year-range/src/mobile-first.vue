@@ -5,7 +5,7 @@
       class="w-[552px] text-color-text-primary text-xs shadow-md bg-color-bg-1 rounded leading-4 my-0.5 mx-0"
       :class="[
         {
-          'w-[664px]': slots.sidebar || state.shortcuts
+          'w-[664px]': slots.sidebar || state.shortcuts?.length
         },
         state.popperClass
       ]"
@@ -17,7 +17,7 @@
         ></slot>
         <div
           class="absolute top-0 bottom-0 w-28 border-r border-r-color-bg-3 box-border pt-5 bg-color-bg-1 overflow-auto"
-          v-if="state.shortcuts"
+          v-if="state.shortcuts?.length"
         >
           <button
             type="button"
@@ -32,7 +32,7 @@
         </div>
         <div
           class="after:content-[''] after:table after:clear-both min-w-[513px]"
-          :class="{ 'ml-28': slots.sidebar || state.shortcuts }"
+          :class="{ 'ml-28': slots.sidebar || state.shortcuts?.length }"
         >
           <div class="m-0 float-left w-1/2 border-r border-r-color-bg-3 relative py-0 px-4">
             <div class="relative text-center h-12 p-4">
@@ -95,7 +95,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/year-range/vue'
 import { setup, directive, props, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import YearTable from '@opentiny/vue-year-table'
 import { IconDoubleRight, IconDoubleLeft } from '@opentiny/vue-icon'
 
@@ -107,7 +107,7 @@ export default defineComponent({
     IconDoubleLeft: IconDoubleLeft()
   },
   props: [...props, 'emitter'],
-  emits: ['dodestroy', 'pick'],
+  emits: ['dodestroy', 'pick', 'select-change', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Modal } from '@opentiny/vue'
+import { TinyDialogSelect, TinyButton } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -35,15 +35,15 @@ const datas = [
   { id: 9, pid: 4, label: '三级 9', isLeaf: true, children: [] }
 ]
 
-// 接口1：根据pid查询直接子节点
+// 接口 1：根据 pid 查询直接子节点
 const queryChildrenByPid = (pid) => datas.filter((record) => record.pid === pid)
 
-// 接口2：根据搜索文本找到匹配节点的所有父级节点id
-// （支持通过节点id搜索只是为了简化示例代码，业务使用时不必支持，可把接口3实现为批量接口提高查询效率）
+// 接口 2：根据搜索文本找到匹配节点的所有父级节点 id
+// （支持通过节点 id 搜索只是为了简化示例代码，业务使用时不必支持，可把接口 3 实现为批量接口提高查询效率）
 const queryPidsBySearchFn = (search) => {
   const ids = []
 
-  // 递归记录节点id
+  // 递归记录节点 id
   const ff = (node, path) => {
     path.unshift(node.id)
 
@@ -73,8 +73,8 @@ const queryPidsBySearchFn = (search) => {
   return dedup(ids)
 }
 
-// 接口3：根据一组节点id找到匹配节点的所有父级节点id
-// （使用了接口2只是为了简化示例代码，实现为批量接口可提高查询效率）
+// 接口 3：根据一组节点 id 找到匹配节点的所有父级节点 id
+// （使用了接口 2 只是为了简化示例代码，实现为批量接口可提高查询效率）
 const queryPidsByIdsFn = (ids, pids = []) => {
   let allPids = [...pids]
 
@@ -85,7 +85,7 @@ const queryPidsByIdsFn = (ids, pids = []) => {
   return dedup(allPids)
 }
 
-// 接口4：根据一组节点id查询这组节点
+// 接口 4：根据一组节点 id 查询这组节点
 const queryNodesByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
 // 去重
@@ -97,8 +97,8 @@ const dedup = (ids, tmp = []) => {
 
 export default {
   components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button
+    TinyDialogSelect,
+    TinyButton
   },
   data() {
     return {
@@ -119,7 +119,8 @@ export default {
         load: this.remoteSearch,
         queryPidsBySearch: this.queryPidsBySearch,
         queryPidsByIds: this.queryPidsByIds,
-        defaultCheckedKeys: [4]
+        defaultCheckedKeys: [4],
+        showLine: true
       }
     }
   },
@@ -151,7 +152,7 @@ export default {
           const res = queryNodesByIds(values)
           // 序列化是为了模拟每次返回的都是新对象
           const copy = JSON.parse(JSON.stringify(res))
-          // 已选栏在插槽中使用字段_$title和_$auxi做定制显示，所以要在lookup接口内设置；如果使用其它字段，就不用设置
+          // 已选栏在插槽中使用字段_$title 和_$auxi 做定制显示，所以要在 lookup 接口内设置；如果使用其它字段，就不用设置
           copy.forEach((row) => {
             row._$title = row.label
             row._$auxi = '辅助文本'
@@ -161,10 +162,8 @@ export default {
       })
     },
     onDialogSelectChange(values, texts, selectedDatas) {
-      Modal.message({
-        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
-        status: 'info'
-      })
+      // 打印 change 回调数据，控制台查看
+      console.log({ values, texts, selectedDatas })
     }
   }
 }

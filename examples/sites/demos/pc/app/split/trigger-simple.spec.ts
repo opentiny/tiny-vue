@@ -13,8 +13,8 @@ test('简易模式', async ({ page }) => {
   await page.mouse.down()
   await page.mouse.move(100 + x, y)
   await page.mouse.up()
-  // 移动之后的宽度为:移动之前的宽度+50-分割线宽度的一半
+  // 移动之后的宽度为：移动之前的宽度 +50-分割线宽度的一半
   const afterMove = leftPanelWidth + 100 - triggerBtnWidth / 2
   const { width: afterWidth } = await leftPanel.boundingBox()
-  await expect(afterMove).toBeCloseTo(afterWidth, 1)
+  await expect(Math.ceil(afterMove)).toEqual(Math.ceil(afterWidth))
 })

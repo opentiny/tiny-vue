@@ -14,19 +14,24 @@ import template from 'virtual-template?pc'
 
 export const linkProps = {
   ...$props,
+  /** 文本链接类型：'primary' | 'success' | 'warning' | 'danger' | 'info' */
   type: {
     type: String,
     default: 'default'
   },
+  /** 显示内容 */
   value: String,
+  /** 是否下划线 */
   underline: {
     type: Boolean,
     default: true
   },
+  /** 原生 href 属性 */
   href: String,
+  /** 自定义图标 */
   icon: [Object, String],
-  disabled: Boolean,
-  size: String
+  /** 是否禁用状态 */
+  disabled: Boolean
 }
 
 export default defineComponent({

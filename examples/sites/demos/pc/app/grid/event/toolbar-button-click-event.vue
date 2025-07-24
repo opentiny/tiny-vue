@@ -30,13 +30,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyGridToolbar, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   data() {
     return {
@@ -65,45 +65,45 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD 科技 YX 公司',
           area: '华东区',
           address: '福州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWWW科技YX公司',
+          name: 'WWWW 科技 YX 公司',
           area: '华南区',
           address: '深圳福田区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           area: '华南区',
           address: '中山市',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '4',
-          name: 'TGBYX公司',
+          name: 'TGBYX 公司',
           area: '华北区',
           address: '梅州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN 科技 YX 公司',
           area: '华南区',
           address: '韶关',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '6',
-          name: '康康物业YX公司',
+          name: '康康物业 YX 公司',
           area: '华北区',
           address: '广州天河区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         }
       ]
     }
@@ -125,22 +125,22 @@ export default {
         }
         case 'delete': {
           if (data.length === 0) {
-            Modal.alert('请至少选中一条记录')
+            TinyModal.alert('请至少选中一条记录')
           }
           $grid.removeSelecteds()
           break
         }
         case 'getDelete': {
           const removeRecords = $grid.getRemoveRecords() // 获取删除的数据
-          Modal.alert('获取删除的数据' + JSON.stringify(removeRecords))
+          TinyModal.alert('获取删除的数据' + JSON.stringify(removeRecords))
           break
         }
         case 'save': {
           if (!updateData.length && !insertData.length && !removeData.length) {
-            Modal.alert('没有修改记录')
+            TinyModal.alert('没有修改记录')
           } else {
-            Modal.message({
-              message: '点击保存触发, 新增的数据',
+            TinyModal.message({
+              message: '点击保存触发，新增的数据',
               status: 'info'
             })
           }
@@ -151,7 +151,7 @@ export default {
         }
         case 'getRecordset': {
           const records = $grid.getRecordset()
-          Modal.alert('增删改记录集合：' + JSON.stringify(records))
+          TinyModal.alert('增删改记录集合：' + JSON.stringify(records))
           break
         }
       }

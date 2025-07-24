@@ -10,7 +10,7 @@ test.describe('Rate 自 定义未选中图标颜色', () => {
     await expect(icon.nth(4)).toHaveCSS('fill', 'rgb(255, 0, 0)')
 
     await icon.nth(4).hover()
-    await expect(icon.nth(4)).toHaveCSS('fill', 'rgb(255, 0, 0)')
+    await expect(icon.nth(4)).toHaveCSS('fill', 'rgb(255, 187, 51)')
 
     await icon.nth(4).click()
     await expect(icon.nth(4)).toHaveCSS('fill', 'rgb(255, 187, 51)')

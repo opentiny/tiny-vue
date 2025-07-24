@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import { Input } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyInput: Input
+    TinyInput
   },
   data() {
     return {
-      input: '文字过长时会显示点点点，并且鼠标悬浮出现tip'
+      input: '文字过长时会显示点点点，并且鼠标悬浮出现 tip'
     }
   }
 }

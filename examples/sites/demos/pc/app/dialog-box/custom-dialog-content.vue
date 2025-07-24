@@ -11,13 +11,13 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox, Alert } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox, TinyAlert } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyAlert: Alert
+    TinyButton,
+    TinyDialogBox,
+    TinyAlert
   },
   data() {
     return {

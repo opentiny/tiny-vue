@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { TinyButton } from '@opentiny/vue'
 import { IconUpload } from '@opentiny/vue-icon'
 
 export default {
   components: {
     IconUpload: IconUpload(),
-    TinyButton: Button
+    TinyButton
   },
   data() {
     return {

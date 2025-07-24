@@ -48,6 +48,10 @@ import {
   setActiveMenu,
   initService,
   handleTitleMouseenter,
+  getMoreSelected,
+  getTabSelected,
+  getLeftSelected,
+  getLastChildSelected,
   handleTitleMouseleave
 } from './index'
 
@@ -74,6 +78,10 @@ export const api = [
   'getRoute',
   'setActiveMenu',
   'handleTitleMouseenter',
+  'getMoreSelected',
+  'getLeftSelected',
+  'getLastChildSelected',
+  'getTabSelected',
   'handleTitleMouseleave'
 ]
 
@@ -84,6 +92,7 @@ const initState = ({ reactive, api, computed, vm }): INavMenuState =>
     width: -1,
     enterMenu: false,
     popMenuTop: 0,
+    defaultActiveId: null,
     subMenu: [],
     showMore: false,
     showPopmenu: false,
@@ -98,7 +107,6 @@ const initState = ({ reactive, api, computed, vm }): INavMenuState =>
     isShowSetting: false,
     tooltipVisible: false,
     tooltipContent: '',
-    marginLeft: 0,
     isSaaSTheme: vm.theme === 'saas',
     menuClass: '',
     isShowMore: computed(() => api.computedIsShowMore()),
@@ -141,6 +149,10 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
     hideSubMenu: hideSubMenu({ api, parent, state }),
     showSubMenu: showSubMenu({ api, nextTick, parent, state, vm }),
     handleTitleMouseenter: handleTitleMouseenter({ state, vm }),
+    getMoreSelected: getMoreSelected({ state }),
+    getLeftSelected: getLeftSelected({ state }),
+    getLastChildSelected: getLastChildSelected({ state }),
+    getTabSelected: getTabSelected({ state }),
     handleTitleMouseleave: handleTitleMouseleave({ state })
   })
 }

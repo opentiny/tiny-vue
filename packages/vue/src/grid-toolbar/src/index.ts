@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+import { isNumber } from '@opentiny/utils'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent, appProperties, $props } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'
@@ -89,6 +89,7 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
       ref: 'customWrapper'
     },
     [
+      // TODO: 此处应使用图标按钮，但saas主题图标按钮样式有问题。
       h('div', { class: 'tiny-grid-custom__setting-btn', on: settingsBtnOns }, [
         setting?.simple
           ? h('tiny-grid-custom-select', {
@@ -109,7 +110,8 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
             showModal: (modalVisible) => (settingStore.customVisible = modalVisible),
             saveSettings: _vm.handleSaveSettings,
             resetSettings: (settings) => _vm.$emit('reset-setting', settings),
-            cancelSettings: () => _vm.$emit('cancel-setting')
+            cancelSettings: () => _vm.$emit('cancel-setting'),
+            deleteTemplate: (template) => _vm.$emit('delete-template', template)
           },
           props: {
             customMode: _vm.customMode,
@@ -129,9 +131,9 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
             resetMethod: _vm.resetMethod,
             alwaysShowColumns: setting.alwaysShowColumns,
             columnsGroup: setting.columnsGroup,
-            hideSortColumn: setting.hideSortColumn,
             showHideAll: setting.showHideAll,
-            fixedSorting: setting.fixedSorting
+            fixedSorting: setting.fixedSorting,
+            setting
           },
           ref: 'custom'
         })
@@ -409,7 +411,22 @@ export default defineComponent({
     return h('div', propsArg, childrenArg)
   },
   methods: {
+    updateTemplateList() {
+      const custom = this.$refs.custom
+
+      if (custom && custom.$refs.switch) {
+        custom.$refs.switch.initStorage(false)
+      }
+    },
+    updateSelectedTemplate(val) {
+      const custom = this.$refs.custom
+
+      custom && custom.updateSelectedTemplate(val)
+    },
     settingBtnClick() {
+      if (this.setting?.simple) {
+        return
+      }
       return this.setting && this.setting.customSetting
         ? this.setting.settingBtnClickFn()
         : this.handleClickCustomEvent()
@@ -527,7 +544,6 @@ export default defineComponent({
         })
       }
     },
-    // NEXT 未用到
     updateColumn(fullColumn) {
       this.tableFullColumn = fullColumn
     },
@@ -648,8 +664,8 @@ export default defineComponent({
       // eslint-disable-next-line vue/valid-next-tick
       return this.$nextTick(() => this.$refs.custom && this.$refs.custom.saveSettings())
     },
-    applySettings({ columns, pageSize }) {
-      const sort = this.setting && !!this.setting.sortable
+    applySettings({ columns, pageSize, updatedSorting }) {
+      const sort = (this.setting && !!this.setting.sortable) || updatedSorting
 
       if (this.$grid) {
         if (columns && columns.length) {
@@ -668,7 +684,7 @@ export default defineComponent({
         }
       }
     },
-    handleSaveSettings(settingConfigs) {
+    handleSaveSettings(settingConfigs, visible, updatedSorting) {
       let { settingStore, setting, settingOpts } = this
       let customRef = this.$refs.custom
 
@@ -676,7 +692,7 @@ export default defineComponent({
 
       const { columns, pageSize, sortType } = settingConfigs
 
-      this.applySettings({ columns, pageSize })
+      this.applySettings({ columns, pageSize, updatedSorting })
 
       // 如果开启本地缓存则保存数据到 localstorage
       if (setting && settingOpts.storage === 'local') {

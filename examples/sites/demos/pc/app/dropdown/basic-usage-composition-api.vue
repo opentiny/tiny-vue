@@ -14,9 +14,5 @@
 </template>
 
 <script setup>
-import {
-  Dropdown as TinyDropdown,
-  DropdownMenu as TinyDropdownMenu,
-  DropdownItem as TinyDropdownItem
-} from '@opentiny/vue'
+import { TinyDropdown, TinyDropdownMenu, TinyDropdownItem } from '@opentiny/vue'
 </script>

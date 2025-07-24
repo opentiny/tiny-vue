@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { Modal, Popover } from '@opentiny/vue'
+import { TinyModal, TinyPopover } from '@opentiny/vue'
 import Flowchart from '@opentiny/vue-flowchart'
 import { hooks } from '@opentiny/vue-common'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
@@ -117,7 +117,7 @@ const HandlerList = {
     IconDown: iconChevronDown(),
     IconUp: iconChevronUp(),
     HandlerDropdown,
-    TinyPopover: Popover
+    TinyPopover
   },
   props: {
     params: Object
@@ -183,7 +183,7 @@ const chartData = {
     createNode('11', 2, '审批', '2018.08.02', [], 4, 3),
     createNode('12', 3, '运算调职兑现率', '', [], 4, 4),
     createNode('13', 1, '复核', '2018.08.02', [], 6, 2),
-    createNode('14', 4, '审批审批审批审批审批0123456789asdfghjkl', '2018.08.02', [], 6, 3)
+    createNode('14', 4, '审批审批审批审批审批 0123456789asdfghjkl', '2018.08.02', [], 6, 3)
   ],
   links: [
     createLink('1', '2', '0 r0.5 t1 c r1.5', 1),
@@ -237,13 +237,13 @@ export default {
       this.$refs.chart.refresh()
     },
     onClickNode(_afterNode, _e) {
-      Modal.message('click-node')
+      TinyModal.message('click-node')
     },
     onClickLink(_afterLink, _e) {
-      Modal.message('click-link')
+      TinyModal.message('click-link')
     },
     onClickBlank(_param, _e) {
-      Modal.message('click-blank')
+      TinyModal.message('click-blank')
     }
   }
 }

@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import { Flowchart, Modal } from '@opentiny/vue'
+import { TinyFlowchart, TinyModal } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
-const { createConfig, resizeMixin } = Flowchart
+const { createConfig, resizeMixin } = TinyFlowchart
 const nodeWrapperSize = 130
 
 const chartData = {
@@ -322,7 +322,7 @@ Object.assign(chartConfig, {
 export default {
   mixins: [resizeMixin({ refName: 'chart', nodeWrapperSize })],
   components: {
-    TinyFlowchart: Flowchart
+    TinyFlowchart
   },
   data() {
     return {
@@ -333,15 +333,15 @@ export default {
   methods: {
     onClickNode(afterNode, e) {
       // console.log(afterNode, e)
-      Modal.message('click-node')
+      TinyModal.message('click-node')
     },
     onClickLink(afterLink, e) {
       // console.log(afterLink, e)
-      Modal.message('click-link')
+      TinyModal.message('click-link')
     },
     onClickBlank(param, e) {
       // console.log(param, e)
-      Modal.message('click-blank')
+      TinyModal.message('click-blank')
     }
   }
 }

@@ -49,9 +49,27 @@
                         clearable
                       >
                         <tiny-option v-for="item in templateOptions" :key="item.id" :label="item.name" :value="item.id">
+                          <span
+                            style="
+                              float: left;
+                              width: 240px;
+                              overflow: hidden;
+                              text-overflow: ellipsis;
+                              white-space: nowrap;
+                            "
+                            :title="item.name"
+                            >{{ item.name }}</span
+                          >
+                          <span
+                            v-if="historyConfig.showDel"
+                            style="float: right; padding: 0 6px; color: #1890ff; cursor: pointer"
+                            @click="deleteTemplate(item, $event)"
+                            >{{ t('ui.grid.individuation.switchdel') }}</span
+                          >
                         </tiny-option>
                       </tiny-select>
                     </div>
+                    <!-- 勿同步，tiny侧search组件change事件需要按回车触发 -->
                     <tiny-search
                       v-if="search"
                       v-model="searchValue"
@@ -135,8 +153,8 @@
                           columns.length
                         }})
                       </p>
-                      <span v-if="!hideFixedColumn">{{ t('ui.grid.individuation.toolbar.freeze') }}</span>
-                      <span v-if="!hideSortColumn">{{ t('ui.grid.individuation.toolbar.sort') }}</span>
+                      <span v-if="!setting.hideFixedColumn">{{ t('ui.grid.individuation.toolbar.freeze') }}</span>
+                      <span v-if="!setting.hideSortColumn">{{ t('ui.grid.individuation.toolbar.sort') }}</span>
                       <span v-if="!isGroup" class="clear-all" @click="handelClearAll">{{
                         t('ui.grid.individuation.toolbar.clear')
                       }}</span>
@@ -177,7 +195,7 @@
                             </div>
                             <div class="sort-number" v-if="!isGroup">
                               <div
-                                v-if="column.numberSortVisible && !isGroup"
+                                v-if="column.numberSortVisible"
                                 class="sort-number-editor"
                                 v-clickoutside="clickEditorOutside"
                               >
@@ -204,7 +222,10 @@
                             >
                               <title-render :column="column"></title-render>
                             </p>
-                            <div v-if="!hideFixedColumn && (!isGroup || !column.children)" class="dropdown-column">
+                            <div
+                              v-if="!setting.hideFixedColumn && (!isGroup || !column.children)"
+                              class="dropdown-column"
+                            >
                               <tiny-dropdown :show-icon="false" @item-click="handleFixedItemClick" trigger="hover">
                                 <span :class="['left', 'right'].includes(column.fixed) && 'dropdown-btn'">
                                   <icon-left-frozen v-if="column.fixed === 'left'"></icon-left-frozen>
@@ -228,7 +249,7 @@
                               </tiny-dropdown>
                             </div>
                             <div
-                              v-if="!hideSortColumn"
+                              v-if="!setting.hideSortColumn"
                               class="dropdown-column"
                               :class="[!column.sortable && 'visibility-hidden']"
                             >
@@ -267,11 +288,11 @@
 
                           <ul v-if="column.children">
                             <li
-                              v-for="(column, index) in column.children"
-                              :key="column.property + index"
-                              :class="[column.fixed, getRowClassName(column)]"
-                              :data-row="column.property"
-                              v-show="column.visible"
+                              v-for="(columnLi, indexLi) in column.children"
+                              :key="columnLi.property + indexLi"
+                              :class="[columnLi.fixed, getRowClassName(columnLi)]"
+                              :data-row="columnLi.property"
+                              v-show="columnLi.visible"
                             >
                               <div class="column-container">
                                 <p
@@ -279,7 +300,7 @@
                                   @mouseenter="handleMouseenter"
                                   @mouseleave="handleMouseleave"
                                 >
-                                  <title-render :column="column"></title-render>
+                                  <title-render :column="columnLi"></title-render>
                                 </p>
                               </div>
                             </li>
@@ -311,10 +332,12 @@
           <tiny-custom-switch
             v-if="multipleHistory && activeName === 'base'"
             ref="switch"
+            :remote="setting.remote"
             :custom-mode="customMode"
-            :selected-template-val="selectedTemplateVal"
+            :selectedTemplateVal="selectedTemplateVal"
             :history-config="historyConfig"
             @init-storage="initStorage"
+            @set-selected="setSelectedTemplate"
           ></tiny-custom-switch>
           <tiny-button @click="handleReset">{{ t('ui.grid.individuation.resetBtn') }}</tiny-button>
           <tiny-button @click="cancelSettings">{{ t('ui.grid.individuation.cancelBtn') }}</tiny-button>
@@ -362,9 +385,9 @@ import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
 import CustomSwitch from './custom-switch.vue'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 import { isNull } from '@opentiny/vue-renderless/grid/static'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { Clickoutside } from '@opentiny/vue-directive'
 import { $props, isVue2, directive, useDefer, h, defineComponent } from '@opentiny/vue-common'
 import { GridConfig } from '@opentiny/vue-grid'
 import { mergeArray } from './multiple-history'
@@ -418,6 +441,7 @@ export default defineComponent({
       default: null
     }
   },
+  emits: ['delete-template', 'input', 'saveSettings', 'resetSettings', 'cancelSettings', 'showModal'],
   props: {
     ...$props,
     data: {
@@ -471,8 +495,7 @@ export default defineComponent({
     numberSorting: Boolean,
     multipleHistory: [Object, Boolean],
     resetMethod: Function,
-    hideSortColumn: Boolean,
-    hideFixedColumn: Boolean
+    setting: [Object, Boolean]
   },
   data() {
     return {
@@ -505,6 +528,7 @@ export default defineComponent({
       multipleHistoryId: null,
       saveDisabled: false,
       updatedSorting: false,
+      columnsSorted: false,
       opt: {},
       allCheckedKeys: []
     }
@@ -533,8 +557,6 @@ export default defineComponent({
           }
         }, 100)
         this.reset()
-      } else {
-        this.selectedTemplate = ''
       }
     },
     checkedColumns: {
@@ -542,19 +564,9 @@ export default defineComponent({
         this.columns.forEach((column) => {
           column.visible = !!~val.indexOf(column.property)
         })
+        this.columnsSorted = false
 
-        this.sortingOptions = []
-        let index = 1
-
-        this.columns.forEach((column) => {
-          if (column.visible) {
-            column.sortingIndex = index
-            this.sortingOptions.push(column.sortingIndex)
-            index++
-          } else {
-            column.sortingIndex = null
-          }
-        })
+        this.updateSortingIndex()
       },
       deep: !isVue2
     },
@@ -680,6 +692,9 @@ export default defineComponent({
         }
       }
     },
+    setSelectedTemplate(val) {
+      this.selectedTemplate = val
+    },
     initStorage(option) {
       this.templateOptions = option
     },
@@ -780,43 +795,33 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-              ? [this.opt.asc, this.opt.cancelSort]
-              : [this.opt.asc, this.opt.desc]
+            ? [this.opt.asc, this.opt.cancelSort]
+            : [this.opt.asc, this.opt.desc]
         column.fixedOption =
           column.fixed === 'left'
             ? [this.opt.right, this.opt.cancelFixed]
             : column.fixed === 'right'
-              ? [this.opt.left, this.opt.cancelFixed]
-              : [this.opt.left, this.opt.right]
+            ? [this.opt.left, this.opt.cancelFixed]
+            : [this.opt.left, this.opt.right]
       })
     },
     initSortingColumns(columns) {
       const leftCols = []
       const rightCols = []
       const visibleCols = []
-      const hiddenCols = []
 
       columns.forEach((col) => {
-        if (col.visible) {
-          if (col.fixed === 'left') {
-            leftCols.push(col)
-          } else if (col.fixed === 'right') {
-            rightCols.push(col)
-          } else {
-            visibleCols.push(col)
-          }
+        if (col.fixed === 'left') {
+          leftCols.push(col)
+        } else if (col.fixed === 'right') {
+          rightCols.push(col)
         } else {
-          hiddenCols.push(col)
+          visibleCols.push(col)
         }
       })
 
-      const result = [...leftCols, ...visibleCols, ...rightCols, ...hiddenCols]
-      this.sortingOptions = []
-
-      result.forEach((column, index) => {
-        column.sortingIndex = index + 1
-        column.visible && this.sortingOptions.push(column.sortingIndex)
-      })
+      const result = [...leftCols, ...visibleCols, ...rightCols]
+      this.updateSortingIndex()
 
       return result
     },
@@ -863,6 +868,24 @@ export default defineComponent({
 
       return checkedkeys
     },
+    deleteTemplate(item, $event) {
+      $event.stopPropagation()
+      Modal.confirm(t('ui.grid.individuation.switchdelcon'), t('ui.grid.individuation.switchdelconfirm')).then(
+        (res) => {
+          if (res === 'confirm') {
+            if (!this.setting.remote && item.id === this.selectedTemplate) {
+              this.selectedTemplate = ''
+              setTimeout(() => {
+                this.templateOptions = this.$refs.switch.options
+              })
+            }
+
+            this.$refs.switch.handleDelConfirm('yes', item)
+            this.$emit('delete-template', item)
+          }
+        }
+      )
+    },
     selectedTemplateChange() {
       let selected = this.templateOptions.find((opt) => opt.id === this.selectedTemplate)
 
@@ -883,6 +906,10 @@ export default defineComponent({
         }
       }
     },
+    updateSelectedTemplate(val) {
+      this.selectedTemplate = val
+      this.selectedTemplateChange()
+    },
     sortSelectChange(index) {
       const newIndex = index - 1
       const oldIndex = this.lastSelectIndex - 1
@@ -891,7 +918,7 @@ export default defineComponent({
     selectFocus(event, index) {
       this.lastSelectIndex = index
     },
-    // 莫同步AUI， search组件的input事件的第一个参数就是value.
+    // 勿同步，search组件input事件第一个参数就是val
     searchChange(val) {
       const getRenderedTitle = (col) => {
         let result = ''
@@ -941,8 +968,8 @@ export default defineComponent({
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-              ? [this.opt.asc, this.opt.cancelSort]
-              : [this.opt.asc, this.opt.desc]
+            ? [this.opt.asc, this.opt.cancelSort]
+            : [this.opt.asc, this.opt.desc]
       }
     },
     // TODO: 待完善具体类型  vm dropdown组件示例
@@ -967,8 +994,8 @@ export default defineComponent({
           })
           return
         }
-
         this.columns.splice(index, 1)
+        this.updatedSorting = true
         const leftIdx = this.columns.reduce(
           (result, col, index) => (col.fixed === 'left' && col.visible ? index : result),
           -1
@@ -980,7 +1007,7 @@ export default defineComponent({
           this.columns.splice(leftIdx >= 0 ? leftIdx + 1 : 0, 0, column)
           column.fixedOption = [this.opt.right, this.opt.cancelFixed]
         } else if (item.value === 'right') {
-          this.columns.splice(rightIdx >= 0 ? rightIdx : this.visibleColumns.length, 0, column)
+          this.columns.splice(rightIdx >= 0 ? rightIdx : this.columns.length, 0, column)
           column.fixedOption = [this.opt.left, this.opt.cancelFixed]
         } else {
           if (item.fixed === 'left' && leftIdx >= 0) {
@@ -1000,8 +1027,17 @@ export default defineComponent({
       return this.columns.filter((col) => col.visible && col.fixed).length >= this.maxFixedNum
     },
     updateSortingIndex() {
-      this.columns.forEach((col, index) => {
-        col.sortingIndex = index + 1
+      this.sortingOptions = []
+      let index = 1
+
+      this.columns.forEach((column) => {
+        if (column.visible) {
+          column.sortingIndex = index
+          this.sortingOptions.push(column.sortingIndex)
+          index++
+        } else {
+          column.sortingIndex = null
+        }
       })
     },
     handleDropdownMouseenter($event, index) {
@@ -1035,8 +1071,8 @@ export default defineComponent({
     },
     buildSettings() {
       const props = ['order', 'fixed', 'visible', 'sortable'].concat(this.keys)
-      !this.updatedSorting &&
-        (this.columns = [...this.groupedColumns[0].data].sort((a, b) => a?.sortingIndex - b?.sortingIndex))
+
+      !this.updatedSorting && !this.columnsGroup.length && (this.columns = [...this.groupedColumns[0].data])
 
       this.settings.columns = mapTree(this.columns, ({ property, ...rest }) => {
         const node = { property }
@@ -1053,7 +1089,15 @@ export default defineComponent({
     saveSettings(val) {
       const visible = typeof val === 'boolean' ? val : false
       this.buildSettings()
-      this.$emit('saveSettings', this.settings, visible)
+      this.$emit('saveSettings', this.settings, visible, this.updatedSorting)
+
+      if (this.multipleHistory && this.selectedTemplate) {
+        const selected = this.templateOptions.find((opt) => opt.id === this.selectedTemplate)
+
+        if (selected && JSON.stringify(selected.setting.custom.columns) !== JSON.stringify(this.settings.columns)) {
+          this.$refs.switch.handleSaveConfirm('overwrite', true)
+        }
+      }
 
       !visible && this.handleClose()
     },
@@ -1102,6 +1146,7 @@ export default defineComponent({
         this.resetMethod().then((sourceSettings) => {
           this.updatedSorting = true
           this.buildSettings()
+
           let { columns, sortType, pageSize } = sourceSettings || {}
 
           if (columns && columns.length && this.settings.columns && this.settings.columns.length) {
@@ -1143,15 +1188,17 @@ export default defineComponent({
     },
     handleFixed(type, from, to, oldIndex, newIndex) {
       if (from === to && oldIndex !== newIndex) {
-        const newCol = this.columns[newIndex]
-        const oldCol = this.columns[oldIndex]
+        !this.columnsSorted && this.columnsSorting()
+        const newCol = this.visibleColumns[newIndex]
+        const oldCol = this.visibleColumns[oldIndex]
+
         if (
           type === 'sort' &&
           position.includes(newCol.fixed) &&
           !position.includes(oldCol.fixed) &&
           this.fixedNumberIsMax()
         ) {
-          this.columns[oldIndex].sortingIndex = this.lastSelectIndex
+          this.visibleColumns[oldIndex].sortingIndex = this.lastSelectIndex
           Modal.message({
             message: t('ui.grid.individuation.maxFreezeNumMsg'),
             status: 'warning',
@@ -1169,11 +1216,26 @@ export default defineComponent({
           oldCol.fixed = undefined
           oldCol.fixedOption = [this.opt.left, this.opt.right]
         }
-        this.columns.splice(oldIndex, 1)
+        const curIndex = this.columns.findIndex((col) => col.property === oldCol.property)
+        this.columns.splice(curIndex, 1)
         this.columns.splice(newIndex, 0, oldCol)
+
         this.updateSortingIndex()
         this.updatedSorting = true
       }
+    },
+    columnsSorting() {
+      const visibleColumns = []
+      const hiddenColumns = []
+      this.columns.forEach((col) => {
+        if (col.visible) {
+          visibleColumns.push(col)
+        } else {
+          hiddenColumns.push(col)
+        }
+      })
+      this.columns = [...visibleColumns, ...hiddenColumns]
+      this.columnsSorted = true
     },
     initDragEvent() {
       const handleUpdate = (e) => {

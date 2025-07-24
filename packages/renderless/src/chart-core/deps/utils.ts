@@ -10,16 +10,16 @@
  *
  */
 
-import { extend, copyArray } from '../../common/object'
-import { isObject, typeOf as getType, isNull } from '../../common/type'
-import _debounce from '../../common/deps/debounce'
+import { extend, copyArray } from '@opentiny/utils'
+import { isObject, typeOf as getType, isNull } from '@opentiny/utils'
+import { debounce as _debounce } from '@opentiny/utils'
 import _numerify from './numerify'
-import { escapeHtml } from '../../common/string'
-import { xss } from '../../common'
+import { escapeHtml } from '@opentiny/utils'
+import { xss } from '@opentiny/utils'
 
-export { setObj as set, getObj as get, isEqual } from '../../common/object'
+export { setObj as set, getObj as get, isEqual } from '@opentiny/utils'
 
-export { typeOf as getType, isObject } from '../../common/type'
+export { typeOf as getType, isObject } from '@opentiny/utils'
 
 export const debounce = (callback, delay) => _debounce(delay, false, callback)
 

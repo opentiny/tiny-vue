@@ -23,11 +23,11 @@
  *
  */
 import { t } from '@opentiny/vue-locale'
-import Validator from '@opentiny/vue-renderless/common/validate'
+import { Validator } from '@opentiny/utils'
 import { getFuncText, emitEvent, getCell } from '@opentiny/vue-renderless/grid/utils'
 import { get, isFunction, isObject, isUndefined, find } from '@opentiny/vue-renderless/grid/static/'
 import { adjustParams, realValid } from './utils/beginValidate'
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '@opentiny/utils'
 
 class Rule {
   constructor(rule) {
@@ -60,8 +60,12 @@ const onRejected = (opt, _this) => {
       cb ? resolve() : reject(args)
     }
 
-    const funcPosAndFinish = (params, finish) => () => {
-      getCell(_this, params).then((activeCell) => {
+    const funcPosAndFinish = (params, finish) => async () => {
+      // 如果是虚拟滚动，则先滚动到对应单元格且渲染后再显示提示
+      if (_this.scrollXLoad) {
+        await _this.scrollToColumn(params.column, true)
+      }
+      return getCell(_this, params).then((activeCell) => {
         params.cell = activeCell
         _this.handleValidError(params)
         finish()
@@ -172,6 +176,7 @@ export default {
       }
 
       cb && cb(opt.status)
+      return opt.status
     }
     return Promise.all(rowValids).then(onFulfilled).catch(onRejected(opt, this))
   },

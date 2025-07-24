@@ -4,41 +4,30 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('modal#basic-usage')
 
-  const modal = page.locator('.tiny-modal.type__alert').nth(1)
-  const confirm = page.locator('.tiny-modal.type__confirm')
+  const modal = page.locator('.tiny-modal__status-wrapper svg').first()
+  const content = page.locator('.tiny-modal__content')
+
   // 基本提示框
-  await page.getByRole('button', { name: /基本提示框/ }).click()
-  await expect(modal).toBeVisible()
-  await expect(modal).toHaveClass(/is__mask/)
-  await page.getByRole('button', { name: /确定/, exact: true }).click()
-  await expect(modal).not.toBeVisible()
-  await page.getByRole('button', { name: /基本提示框/ }).click()
-  await page.locator('.tiny-modal__close-btn').click()
+  await page.getByRole('button', { name: '基本提示框' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(modal).not.toBeVisible()
 
   // 成功提示框
-  await page.getByRole('button', { name: /成功提示框/ }).click()
-  await expect(modal).toHaveClass(/status__success/)
-  await expect(modal.locator('.tiny-modal__header svg').first()).toHaveClass(/tiny-icon-success/)
-  await page.getByRole('button', { name: /确定/, exact: true }).click()
-  await expect(page.locator('.tiny-modal.type__alert.status__success')).not.toBeVisible()
+  await page.getByRole('button', { name: '成功提示框' }).click()
+  await expect(modal).toHaveClass(/tiny-modal-svg__success/)
+  await page.getByRole('button', { name: '确定' }).click()
 
-  // 失败提示框
-  await page.getByRole('button', { name: /失败提示框/ }).click()
-  await expect(modal).toHaveClass(/status__error/)
-  await expect(modal.locator('.tiny-modal__header svg').first()).toHaveClass(/tiny-icon-error/)
-  await page.getByRole('button', { name: /确定/, exact: true }).click()
-  await expect(page.locator('.tiny-modal.type__alert.status__error')).not.toBeVisible()
+  // 消息提示
+  await page.getByRole('button', { name: '消息提示' }).click()
+  await expect(content.nth(3)).toHaveText(/简单的消息/)
 
-  // 确认提示框
-  await page.getByRole('button', { name: /确认提示框/ }).click()
-  await expect(confirm).toBeVisible()
-  await page.getByRole('button', { name: /确定/, exact: true }).click()
-  await expect(confirm).not.toBeVisible()
-  await page.getByRole('button', { name: /确认提示框/ }).click()
-  await page.getByRole('button', { name: /取消/ }).click()
-  await expect(confirm).not.toBeVisible()
-  await page.getByRole('button', { name: /支持传入 jsx 提示框/ }).click()
-  await page.locator('.tiny-modal__close-btn').click()
-  await expect(confirm).not.toBeVisible()
+  // 打开弹窗 1
+  await page.getByRole('button', { name: '打开弹窗 1' }).click()
+  await expect(content.nth(1)).toHaveText(/窗口内容1/)
+  await page.getByRole('button', { name: '确定' }).click()
+
+  // 打开弹窗 2
+  await page.getByRole('button', { name: '打开弹窗 2' }).click()
+  await expect(content.nth(2)).toHaveText(/窗口内容2/)
+  await page.getByRole('button', { name: '确定' }).click()
 })

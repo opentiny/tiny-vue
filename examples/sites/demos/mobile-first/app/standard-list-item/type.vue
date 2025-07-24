@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import { StandardListItem, Modal } from '@opentiny/vue'
+import { TinyStandardListItem, TinyModal } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyStandardListItem: StandardListItem
+    TinyStandardListItem
   },
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     iconClick(item, index) {
-      Modal.message({
+      TinyModal.message({
         message: `当前点击的是第${index + 1}个图标`,
         status: 'info'
       })

@@ -11,12 +11,12 @@
 </template>
 
 <script lang="jsx">
-import { Transfer, Radio } from '@opentiny/vue'
+import { TinyTransfer, TinyRadio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer,
-    TinyRadio: Radio
+    TinyTransfer,
+    TinyRadio
   },
   data() {
     const generateData = () => {

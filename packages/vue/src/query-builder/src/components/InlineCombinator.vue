@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { defineComponent } from '@opentiny/vue-common'
-
 import { standardClassnames, TestID } from '../defaults'
 import ValueSelector from './ValueSelector.vue'
 

@@ -19,25 +19,21 @@
 @col-prefix-cls: ~'@{css-prefix}col';
 
 .@{dept-prefix-cls} {
-  .component-css-vars-dept();
+  .inject-Dept-vars();
 
   &__search {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 
-  &__text,
   &__label {
-    font-size: var(--ti-dept-label-font-size);
-    color: var(--ti-dept-label-text-color);
-    font-weight: var(--ti-dept-label-font-weight);
+    width: 80px;
+    font-size: var(--tv-Dept-label-font-size);
+    color: var(--tv-Dept-label-text-color);
+    font-weight: var(--tv-Dept-label-font-weight);
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  &__label {
-    text-align: right;
-
     &.is-selected {
       text-align: left;
       margin-bottom: 4px;
@@ -45,15 +41,15 @@
   }
 
   &__selected-info {
-    color: var(--ti-dept-selected-info-text-color);
-    font-size: var(--ti-dept-label-font-size);
-    background: var(--ti-dept-selected-info-bg-color);
+    color: var(--tv-Dept-selected-info-text-color);
+    font-size: var(--tv-Dept-label-font-size);
+    background: var(--tv-Dept-selected-info-bg-color);
     padding: 5px;
-    border-radius: var(--ti-dept-selected-info-border-radius);
+    border-radius: var(--tv-Dept-selected-info-border-radius);
   }
 
   &__item {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 
   &__search &__label,
@@ -75,6 +71,6 @@
 
   .@{input-prefix-cls}__icon {
     vertical-align: middle;
-    fill: var(--ti-dept-selected-info-text-color);
+    fill: var(--tv-Dept-selected-info-text-color);
   }
 }

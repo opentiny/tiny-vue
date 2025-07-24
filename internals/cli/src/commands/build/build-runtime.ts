@@ -38,6 +38,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       '@opentiny/vue-locale': 'TinyVueLocale',
       '@opentiny/vue-common': 'TinyVueCommon',
       '@opentiny/vue-icon': 'TinyVueIcon',
+      '@opentiny/vue-icon-multicolor': 'TinyVueIconMulticolor',
       'echarts': 'Echarts'
     }
   }
@@ -46,9 +47,9 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
 
-    const { mode } = tasks[0]
+    const { mode, libPath } = tasks[0]
 
-    const modeList = ['pc', 'mobile', 'mobile-first']
+    const modeList = ['pc', 'mobile-first']
 
     const entry = toEntry(tasks)
     const baseConfig = getBaseConfig({
@@ -56,7 +57,8 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       dtsInclude: [] as string[],
       dts: false,
       npmScope,
-      isRuntime: true
+      isRuntime: true,
+      design: libPath === 'tiny-vue-saas-common' ? 'saas' : null
     } as BaseConfig) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
@@ -73,7 +75,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           requireReturnsDefault: true,
           defaultIsModuleExports: true,
           // echarts模块本身是esmodules格式不需要经过commonjs转换
-          exclude: ['node_modules/echarts/**', 'node_modules/echarts', 'node_modules/crypto-js/**']
+          exclude: ['node_modules/echarts/**', 'node_modules/echarts']
         }),
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
@@ -118,6 +120,9 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           external: (source, importer, isResolved) => {
             if (isResolved || !importer) return false
 
+            if (libPath === 'tiny-vue-saas-common') {
+              return ['@vue/composition-api', 'vue'].includes(source)
+            }
             return Object.keys(getExternal()).includes(source)
           },
           output: {
@@ -161,6 +166,10 @@ function getEntryTasks() {
       libPath: 'tiny-vue-common'
     },
     {
+      path: 'vue-saas-common/src/index.ts',
+      libPath: 'tiny-vue-saas-common'
+    },
+    {
       path: 'vue-runtime/all.ts',
       libPath: 'tiny-vue-all'
     },
@@ -175,11 +184,6 @@ function getEntryTasks() {
       mode: 'pc'
     },
     {
-      path: 'vue-runtime/mobile.ts',
-      libPath: 'tiny-vue-mobile',
-      mode: 'mobile'
-    },
-    {
       path: 'vue-runtime/mobile-first.ts',
       libPath: 'tiny-vue-mobile-first',
       mode: 'mobile-first'
@@ -191,6 +195,18 @@ function getEntryTasks() {
     {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-icon-multicolor/index.ts',
+      libPath: 'tiny-vue-icon-multicolor'
+    },
+    {
+      path: 'vue-directive/index.ts',
+      libPath: 'tiny-vue-directive'
+    },
+    {
+      path: 'vue/src/huicharts/index.ts',
+      libPath: 'tiny-vue-huicharts'
     }
   ]
   return entry
@@ -223,7 +239,7 @@ export async function buildRuntime({
     const processor = await createProcessor(
       {
         '--output': path.join(outDir, 'tailwind.css'),
-        '--content': path.join(outDir, 'tiny-vue.mjs')
+        '--content': path.join(outDir, 'tiny-vue-all.mjs')
       },
       path.resolve(rootDir, 'theme-saas/tailwind.config.js')
     )

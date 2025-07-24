@@ -19,7 +19,7 @@ export default {
         },
         {
           name: 'columns',
-          typeAnchorName: 'grid#IColumnConfig',
+          linkTo: 'grid#IColumnConfig',
           type: 'IColumnConfig',
           defaultValue: '',
           desc: {
@@ -102,7 +102,7 @@ export default {
         },
         {
           name: 'left-columns',
-          typeAnchorName: 'grid#IColumnConfig',
+          linkTo: 'grid#IColumnConfig',
           type: 'IColumnConfig',
           defaultValue: '',
           desc: {
@@ -173,7 +173,7 @@ export default {
         },
         {
           name: 'right-columns',
-          typeAnchorName: 'grid#IColumnConfig',
+          linkTo: 'grid#IColumnConfig',
           type: 'IColumnConfig',
           defaultValue: '',
           desc: {
@@ -267,7 +267,7 @@ export default {
         },
         {
           name: 'tree-op',
-          typeAnchorName: 'tree#API',
+          linkTo: 'tree#API',
           type: 'Tree props',
           defaultValue: '',
           desc: {
@@ -440,7 +440,7 @@ interface IPagerOp {
     currentPage: number
     pageSize: number
     pageSizes: number[]
-    layout: string   // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
+    layout: string   // 分页组件布局默认值：'total, prev, pager, next, jumper'
   }
 }
       `

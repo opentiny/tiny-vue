@@ -10,25 +10,37 @@
  *
  */
 
-import { getRows, getCellStyle, handleYearTableClick, watchDate, markRange, handleMouseMove } from './index'
+import {
+  getRows,
+  handleYearTableClick,
+  watchDate,
+  markRange,
+  handleMouseMove,
+  getIsDisabled,
+  getIsCurrent,
+  getIsDefault
+} from './index'
 
-export const api = ['state', 'handleYearTableClick', 'getCellStyle', 'handleMouseMove']
+export const api = ['state', 'handleYearTableClick', 'handleMouseMove', 'getIsDisabled', 'getIsCurrent', 'getIsDefault']
 
 export const renderless = (props, { computed, reactive, watch }, { emit, vm }) => {
   const api = {}
   const state = reactive({
     tableRows: [[], [], []],
-    rows: computed(() => api.getRows())
+    rows: computed(() => api.getRows()),
+    currentYear: new Date().getFullYear()
   })
 
   Object.assign(api, {
     state,
-    getCellStyle: getCellStyle({ props, state }),
     handleYearTableClick: handleYearTableClick({ emit, props, state }),
     markRange: markRange({ props, state }),
     watchDate: watchDate({ api, props }),
     getRows: getRows({ props, state, vm }),
-    handleMouseMove: handleMouseMove({ api, emit, props, state })
+    handleMouseMove: handleMouseMove({ api, emit, props, state }),
+    getIsDisabled: getIsDisabled({ props }),
+    getIsCurrent: getIsCurrent({ props }),
+    getIsDefault: getIsDefault({ props })
   })
 
   watch(

@@ -8,14 +8,14 @@ test('引导框偏移量', async ({ page }) => {
   const guideBtn2 = page.getByRole('button', { name: '纵轴偏移 50px' })
   const guide = page.getByRole('dialog')
 
-  // 引导1 没有设置
+  // 引导 1 没有设置
   await guideBtn1.click()
   await expect(guide).toBeVisible()
 
   await page.waitForTimeout(500)
   const guideBox1 = await guide.boundingBox()
 
-  // 引导2  50px
+  // 引导 2  50px
   await page.getByRole('button', { name: 'Close Tour' }).click()
   await guideBtn2.click()
   await expect(guide).toBeVisible()

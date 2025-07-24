@@ -13,9 +13,11 @@ import type {
   select,
   highlight
 } from '../src/autocomplete'
-import type { ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessParamUtils, ISharedRenderlessFunctionParams } from './shared.type'
 
 export interface IAutoCompleteState {
+  showAutoWidth: boolean | null
+  popperElm: Element | null
   activated: boolean
   suggestions: unknown[]
   loading: boolean
@@ -23,8 +25,15 @@ export interface IAutoCompleteState {
   suggestionDisabled: boolean
   id: string
   suggestionVisible: ComputedRef<boolean>
+  validateEvent: boolean
 }
 export type IAutoCompleteProps = ExtractPropTypes<typeof autoCompleteProps>
+
+export type IAutoCompleteRenderlessParams = ISharedRenderlessFunctionParams<IAutoCompleteConstants> & {
+  state: IAutoCompleteState
+  props: IAutoCompleteProps
+  api: IAutoCompleteApi
+}
 export interface IAutoCompleteApi {
   state: IAutoCompleteState
   doDestroy: (forceDestroy?: boolean | undefined) => void

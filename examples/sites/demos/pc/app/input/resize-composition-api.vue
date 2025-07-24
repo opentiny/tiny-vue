@@ -5,14 +5,16 @@
     <tiny-input type="textarea" v-model="input" resize="both" placeholder="resize = both"></tiny-input>
     <tiny-input type="textarea" v-model="input" resize="horizontal" placeholder="resize = horizontal"></tiny-input>
     <tiny-input type="textarea" v-model="input" resize="vertical" placeholder="resize = vertical"></tiny-input>
-    <p>autosize</p>
-    <tiny-input
-      type="textarea"
-      v-model="textarea"
-      placeholder="autosize = { minRows: 2, maxRows: 3 }"
-      :autosize="{ minRows: 2, maxRows: 3 }"
-    ></tiny-input>
-    <tiny-input type="textarea" v-model="textarea" placeholder="autosize" autosize></tiny-input>
+    <div class="auto-size">
+      <p>autosize</p>
+      <tiny-input
+        type="textarea"
+        v-model="textarea"
+        placeholder="autosize = { minRows: 2, maxRows: 3 }"
+        :autosize="{ minRows: 2, maxRows: 3 }"
+      ></tiny-input>
+      <tiny-input type="textarea" v-model="textarea" placeholder="autosize" autosize></tiny-input>
+    </div>
     <p>hover-expand</p>
     <tiny-input
       class="expand"
@@ -35,7 +37,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { TinyInput } from '@opentiny/vue'
 
 const input = ref('')
 const textarea = ref('')
@@ -44,7 +46,7 @@ const hoverText = ref('')
 
 <style scoped>
 .demo-input .tiny-textarea {
-  width: 400px;
+  width: fit-content;
   margin: 5px;
 }
 

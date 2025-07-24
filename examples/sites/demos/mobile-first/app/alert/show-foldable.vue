@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { Alert, Link } from '@opentiny/vue'
+import { TinyAlert, TinyLink } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAlert: Alert,
-    TinyLink: Link
+    TinyAlert,
+    TinyLink
   },
   data() {
     return {

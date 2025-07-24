@@ -1,26 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>icon/16/添加</title>
-    <defs>
-        <filter x="-58.3%" y="-58.3%" width="216.7%" height="216.7%" filterUnits="objectBoundingBox" id="filter-1">
-            <feOffset dx="1" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.145098039   0 0 0 0 0.168627451   0 0 0 0 0.22745098  0 0 0 0.08 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-        </filter>
-    </defs>
-    <g id="icon/16/添加" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="编组-122" filter="url(#filter-1)" transform="translate(2.000000, 2.000000)" stroke="currentColor">
-            <g id="编组-15备份">
-                <circle id="椭圆形" cx="6" cy="6" r="6"></circle>
-                <g id="编组-50" transform="translate(2.500000, 2.500000)">
-                    <line x1="0" y1="3.5" x2="7" y2="3.5" id="路径-14"></line>
-                    <line x1="2.64762869e-15" y1="3.5" x2="7" y2="3.5" id="路径-14" transform="translate(3.500000, 3.500000) rotate(90.000000) translate(-3.500000, -3.500000) "></line>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<rect id="矩形" class="st0"/>
+<path id="形状" class="st1" d="M8,1.5C4.4,1.5,1.5,4.4,1.5,8s2.9,6.5,6.5,6.5s6.5-2.9,6.5-6.5S11.6,1.5,8,1.5z M8,13.5
+	C5,13.5,2.5,11,2.5,8S5,2.5,8,2.5S13.5,5,13.5,8S11,13.5,8,13.5z M12,8c0,0.3-0.2,0.5-0.5,0.5h-3v3C8.5,11.8,8.3,12,8,12
+	s-0.5-0.2-0.5-0.5v-3h-3C4.2,8.5,4,8.3,4,8s0.2-0.5,0.5-0.5h3v-3C7.5,4.2,7.7,4,8,4s0.5,0.2,0.5,0.5v3h3C11.8,7.5,12,7.7,12,8z"/>
 </svg>

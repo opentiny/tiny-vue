@@ -15,8 +15,10 @@ import type {
   IAutoCompleteState,
   IAutoCompleteApi,
   IAutoCompleteConstants,
+  IAutoCompleteRenderlessParams,
   IAutoCompleteRenderlessParamUtils
 } from '@/types'
+import { FORM_ITEM, FORM_EVENT } from '@opentiny/utils'
 
 export const getData =
   ({
@@ -60,17 +62,16 @@ export const handleChange =
     api,
     emit,
     state,
-    props
-  }: {
-    api: IAutoCompleteApi
-    emit: IAutoCompleteRenderlessParamUtils['emit']
-    state: IAutoCompleteState
-    props: IAutoCompleteProps
-  }) =>
+    props,
+    dispatch
+  }: Pick<IAutoCompleteRenderlessParams, 'api' | 'emit' | 'state' | 'props' | 'dispatch'>) =>
   (value) => {
     state.activated = true
     emit('update:modelValue', value)
     state.suggestionDisabled = false
+    if (state.validateEvent) {
+      dispatch(FORM_ITEM, FORM_EVENT.change, [value])
+    }
 
     if (!props.triggerOnFocus && !value) {
       state.suggestionDisabled = true
@@ -107,10 +108,13 @@ export const handleFocus =
   }
 
 export const handleBlur =
-  ({ emit, state }: { emit: IAutoCompleteRenderlessParamUtils['emit']; state: IAutoCompleteState }) =>
-  (event) => {
+  ({ emit, state, dispatch, props }: Pick<IAutoCompleteRenderlessParams, 'emit' | 'state' | 'dispatch' | 'props'>) =>
+  () => {
     state.suggestionDisabled = true
-    emit('blur', event)
+    emit('blur')
+    if (state.validateEvent) {
+      dispatch(FORM_ITEM, FORM_EVENT.blur, [props.modelValue])
+    }
   }
 
 export const handleClear =
@@ -161,7 +165,8 @@ export const select =
     emit,
     nextTick,
     props,
-    state
+    state,
+    dispatch
   }: {
     emit: IAutoCompleteRenderlessParamUtils['emit']
     nextTick: IAutoCompleteRenderlessParamUtils['nextTick']
@@ -169,9 +174,13 @@ export const select =
     state: IAutoCompleteState
   }) =>
   (item) => {
-    emit('update:modelValue', item[props.valueKey])
+    const value = item[props.valueKey]
+    emit('update:modelValue', value)
     emit('select', item)
 
+    if (state.validateEvent) {
+      dispatch(FORM_ITEM, FORM_EVENT.change, [value])
+    }
     nextTick(() => {
       state.activated = false
       state.suggestions = []
@@ -180,14 +189,7 @@ export const select =
   }
 
 export const highlight =
-  ({
-    constants,
-    vm,
-    state
-  }: {
-    constants: IAutoCompleteConstants
-    state: IAutoCompleteState
-  }) =>
+  ({ constants, vm, state }: { constants: IAutoCompleteConstants; state: IAutoCompleteState }) =>
   (index) => {
     if (!state.suggestionVisible || state.loading) {
       return
@@ -231,12 +233,7 @@ export const computedVisible = (state: IAutoCompleteState) => {
 }
 
 export const watchVisible =
-  ({
-    suggestionState,
-    vm
-  }: {
-    suggestionState: IAutoCompleteApi['suggestionState']
-  }) =>
+  ({ suggestionState, vm }: { suggestionState: IAutoCompleteApi['suggestionState'] }) =>
   (val) => {
     let $input = vm.$refs.input.getInput()
 

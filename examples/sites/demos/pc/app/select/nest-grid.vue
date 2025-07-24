@@ -1,6 +1,7 @@
 <template>
   <div class="demo-select">
-    <p>场景1：嵌套表格（单选）</p>
+    <p>场景 1：嵌套表格（单选）</p>
+    <br />
     <tiny-select
       v-model="value1"
       value-field="id"
@@ -8,7 +9,9 @@
       render-type="grid"
       :grid-op="gridOpSingle"
     ></tiny-select>
-    <p>场景2：嵌套表格（多选）</p>
+    <br /><br />
+    <p>场景 2：嵌套表格（多选）</p>
+    <br />
     <tiny-select
       v-model="value2"
       multiple
@@ -17,7 +20,9 @@
       render-type="grid"
       :grid-op="gridOpMulti"
     ></tiny-select>
-    <p>场景3：嵌套表格 + 可搜索 + 可清除</p>
+    <br /><br />
+    <p>场景 3：嵌套表格 + 可搜索 + 可清除</p>
+    <br />
     <tiny-select
       ref="select"
       v-model="value3"
@@ -33,11 +38,11 @@
 </template>
 
 <script>
-import { Select } from '@opentiny/vue'
+import { TinySelect } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySelect: Select
+    TinySelect
   },
   methods: {
     filter(value) {
@@ -57,7 +62,7 @@ export default {
       value3: '',
       gridOpSingle: {
         data: [
-          { id: '001', area: '华南区', province: '广东省', city: '深圳1' },
+          { id: '001', area: '华南区', province: '广东省', city: '深圳 1' },
           { id: '002', area: '华南区', province: '广东省', city: '深圳市' },
           { id: '003', area: '华南区', province: '广东省', city: '珠海市' },
           { id: '004', area: '华南区', province: '广东省', city: '佛山市' },
@@ -72,7 +77,7 @@ export default {
       },
       gridOpMulti: {
         data: [
-          { id: '001', area: '华南区', province: '广东省', city: '深圳1' },
+          { id: '001', area: '华南区', province: '广东省', city: '深圳 1' },
           { id: '002', area: '华南区', province: '广东省', city: '深圳市' },
           { id: '003', area: '华南区', province: '广东省', city: '珠海市' },
           { id: '004', area: '华南区', province: '广东省', city: '佛山市' },

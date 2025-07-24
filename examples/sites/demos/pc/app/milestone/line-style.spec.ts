@@ -19,7 +19,7 @@ test('线条颜色和间距', async ({ page }) => {
   await expect(nodeLines).toHaveCount(nodeCount)
   await expect(nodes).toHaveCount(nodeCount)
   for (let i = 0; i < nodeCount; i++) {
-    await expect(nodes.nth(i)).toHaveCSS('width', '88px')
+    await expect(nodes.nth(i)).toHaveCSS('width', '150px')
     await expect(nodeLines.nth(i)).toHaveCSS('background-color', lineColors[i])
   }
 })

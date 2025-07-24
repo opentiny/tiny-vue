@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import { Grid, GridColumn, Pager, GridToolbar } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyPager, TinyGridToolbar } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyGridToolbar: GridToolbar
+    TinyGrid,
+    TinyGridColumn,
+    TinyGridToolbar
   },
   methods: {
     resetMethod() {
@@ -59,13 +59,13 @@ export default {
     return {
       Sortable,
       pager: {
-        component: Pager,
+        component: TinyPager,
         attrs: {
           currentPage: 1,
           pageSize: 10,
           total: 0,
           pageSizes: [3, 5, 10, 20],
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       fetchData: {
@@ -74,38 +74,38 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技有限公司',
+          name: 'GFD 科技有限公司',
           area: '华东区',
           address: '福州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWWW科技有限公司',
+          name: 'WWWW 科技有限公司',
           area: '华南区',
           address: '深圳福田区',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '3',
-          name: 'RFV有限责任公司',
+          name: 'RFV 有限责任公司',
           area: '华南区',
           address: '中山市',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '4',
-          name: 'TGB有限公司',
+          name: 'TGB 有限公司',
           area: '华北区',
           address: '梅州',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技有限公司',
+          name: 'YHN 科技有限公司',
           area: '华南区',
           address: '韶关',
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          introduction: '公司技术和研发实力雄厚，是国家 863 项目的参与者，并被政府认定为“高新技术企业”。'
         }
       ]
     }

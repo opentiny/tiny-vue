@@ -11,7 +11,7 @@ test('测试行内表单', async ({ page }) => {
 
   // 测试单行情况
   await page.setViewportSize({
-    width: 1400,
+    width: 1600,
     height: 700
   })
   await page.waitForTimeout(200)

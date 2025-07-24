@@ -27,7 +27,7 @@ import {
   emitPick,
   emitDestroy
 } from './index'
-import { DATEPICKER } from '../common'
+import { DATEPICKER } from '@opentiny/utils'
 
 export const api = ['state', 'handleMenuEnter', 'handleClick', 'handleClear', 'emitDestroy']
 
@@ -47,6 +47,8 @@ const initState = ({ reactive, computed, api }) => {
     maxTime: '',
     width: 0,
     lastEmitValue: '',
+    isFilter: false,
+    filterVal: '',
     items: computed(() => api.computItems()),
     default: computed(() => state.defaultValue || state.defaultTime || ''),
     value: computed({
@@ -54,7 +56,7 @@ const initState = ({ reactive, computed, api }) => {
       set: (value) => {
         const valid = state.items.some((item) => item.value === value)
 
-        state.realValue = valid ? value : ''
+        state.realValue = state.lastEmitValue = valid ? value : ''
       }
     })
   })

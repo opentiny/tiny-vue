@@ -1,34 +1,34 @@
 <template>
   <div class="tiny-deom-size-loading">
     <div id="tiny-size-loading1"></div>
-    <div id="tiny-size-loading2"></div>
+    <div id="tiny-size-loading2" class="demo-loading"></div>
     <div id="tiny-size-loading3"></div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { TinyLoading } from '@opentiny/vue'
 
 const loadingInstance = ref(null)
 
 onMounted(() => {
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading1'),
     size: 'small'
   })
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading2'),
     size: 'medium'
   })
-  loadingInstance.value = Loading.service({
+  loadingInstance.value = TinyLoading.service({
     target: document.getElementById('tiny-size-loading3'),
     size: 'large'
   })
 })
 </script>
-<style>
 
+<style>
 .tiny-deom-size-loading {
   display: flex;
 }
@@ -36,5 +36,8 @@ onMounted(() => {
 .tiny-deom-size-loading > * {
   width: 100px;
   height: 100px;
+}
+.demo-loading {
+  margin: 0 8px;
 }
 </style>
