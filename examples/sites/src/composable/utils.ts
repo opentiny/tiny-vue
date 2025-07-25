@@ -3,10 +3,8 @@
  * 提供一些实用的辅助函数
  */
 
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export { $local, $session } from './storage'
 
-export const globalConversation = reactive({
-  id: ''
-})
+export const showTinyRobot = ref(true)

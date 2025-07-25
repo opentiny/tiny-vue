@@ -5,8 +5,9 @@ import zh from './zh.json'
 import en from './en.json'
 import esLA from './es.json'
 import ptBR from './pt.json'
+import { zhCN, enUS } from '@opentiny/tiny-vue-mcp'
 
-const messages = { enUS: { ...en }, zhCN: { ...zh }, esLA: { ...esLA }, ptBR: { ...ptBR } }
+const messages = { enUS: { ...en, ...enUS }, zhCN: { ...zh, ...zhCN }, esLA: { ...esLA }, ptBR: { ...ptBR } }
 
 const langMap = new Map([
   ['zhCN', 'zhCN'],

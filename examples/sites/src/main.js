@@ -33,6 +33,12 @@ import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
 import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
+import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
+import { t } from '@opentiny/vue-locale'
+import { registerMcpConfig } from '@opentiny/vue-common'
+
+// tiny-robot 对话框
+import '@opentiny/tiny-robot/dist/style.css'
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 
@@ -90,6 +96,8 @@ app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEM
 if (import.meta.env.VITE_TINY_THEME === 'saas') {
   import('./tailwind.css')
 }
+// 注册TinyVue组件mcp配置
+registerMcpConfig(getTinyVueMcpConfig({ t }), createMcpTools)
 
 app.use(router).use(i18n).use(createHead()) // 支持md修改title
 
