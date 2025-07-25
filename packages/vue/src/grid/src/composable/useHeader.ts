@@ -49,11 +49,9 @@ export const calcHeader = (collectColumn) => {
   return { leafColumns, headerTable, rowspanMap, maxLevel }
 }
 
-const subTable = []
-
 const calcSpan = (tableColumn, header, headerRowHeight) => {
   const indices = tableColumn.map((c) => header.leafColumns.indexOf(c))
-  subTable.length = 0
+  const subTable = []
 
   header.headerTable.forEach((cols, i) => {
     const countMap = new WeakMap()
