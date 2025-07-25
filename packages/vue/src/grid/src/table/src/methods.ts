@@ -826,7 +826,7 @@ const Methods = {
     this.treeConfig && this.handleDefaultTreeExpand()
 
     this.updateFooter()
-    this.$nextTick(() => setTimeout(this.recalculate))
+    this.$nextTick(this.recalculate)
   },
   // 动态列处理
   mergeCustomColumn(customColumns, sort, colWidth) {

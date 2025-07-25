@@ -46,22 +46,25 @@ export const calcTableWidth = ($table) => {
   let remainWidth = clientWidth
   let totalWidth = 0
 
+  // 存放宽度，避免多次修改column.renderWidth引起的重新render
+  const minArr = new Array(pxMinArr.length + scaleMinArr.length)
+
   // 最小宽
-  pxMinArr.forEach((column) => {
+  pxMinArr.forEach((column, index) => {
     const width = parseInt(column.minWidth)
 
     totalWidth += width
-    column.renderWidth = width
+    minArr[index + scaleMinArr.length] = width
   })
 
   // 最小百分比
   let meanWidth = remainWidth / 100
 
-  scaleMinArr.forEach((column) => {
+  scaleMinArr.forEach((column, index) => {
     const width = Math.floor(parseInt(column.minWidth) * meanWidth)
 
     totalWidth += width
-    column.renderWidth = width
+    minArr[index] = width
   })
 
   // 固定百分比
@@ -93,9 +96,9 @@ export const calcTableWidth = ($table) => {
 
   if (fit) {
     if (remainWidth > 0) {
-      scaleMinArr.concat(pxMinArr).forEach((column) => {
+      scaleMinArr.concat(pxMinArr).forEach((column, index) => {
         totalWidth += meanWidth
-        column.renderWidth += meanWidth
+        minArr[index] += meanWidth
       })
     }
   } else {
@@ -105,8 +108,7 @@ export const calcTableWidth = ($table) => {
   // 自适应修补一些列的宽度
   autoArr.forEach((column, index) => {
     let width = Math.max(meanWidth, minCellWidth)
-
-    column.renderWidth = width
+    let renderWidth = width
     totalWidth += width
 
     if (fit && index === autoArr.length - 1) {
@@ -114,10 +116,12 @@ export const calcTableWidth = ($table) => {
       let odiffer = clientWidth - totalWidth
 
       if (odiffer > 0) {
-        column.renderWidth += odiffer
+        renderWidth += odiffer
         totalWidth = clientWidth
       }
     }
+
+    column.renderWidth = renderWidth
   })
 
   const remainingSpace = bodyWidth - totalWidth
@@ -126,11 +130,15 @@ export const calcTableWidth = ($table) => {
     scaleMinArr
       .concat(pxMinArr)
       .slice(0, remainingSpace)
-      .forEach((column) => {
+      .forEach((column, index) => {
         totalWidth += 1
-        column.renderWidth += 1
+        minArr[index] += 1
       })
   }
+
+  scaleMinArr.concat(pxMinArr).forEach((column, index) => {
+    column.renderWidth = minArr[index]
+  })
 
   return { totalWidth, offsetWidth, offsetHeight }
 }
@@ -212,7 +220,6 @@ const setGroupHeaderLastOrFirst = ({ columnChart, leftList, rightList }) => {
 }
 
 export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollbarWidth, columnChart, isGroup }) => {
-  console.log('calcFixedStickyPosition')
   // 获取左侧和右侧冻结列
   const { leftList, rightList } = columnStore
   setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl, scrollbarWidth })
