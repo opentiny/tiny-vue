@@ -1,9 +1,8 @@
-import type { InjectionKey, Ref } from 'vue'
-import { inject, getCurrentInstance, unref } from 'vue'
+import { hooks as Vue } from '@opentiny/vue-common'
 import { computedEager } from '@vueuse/core'
 import { isServer } from '@opentiny/utils'
-import * as Vue from 'vue'
 
+const { inject, getCurrentInstance, unref } = Vue
 export interface TyIdInjectionContext {
   prefix: string | number
   current: number
@@ -11,12 +10,12 @@ export interface TyIdInjectionContext {
 interface useIdParams {
   nameSpace?: string
   length?: number
-  deterministicId?: Ref<string> | string
+  deterministicId?: Vue.Ref<string> | string
 }
 /**
  * 用于Vue provide/inject的注入键，共享ID生成器状态。
  */
-export const ID_INJECTION_KEY: InjectionKey<TyIdInjectionContext> = Symbol('tiny-vue-id-injection')
+export const ID_INJECTION_KEY: Vue.InjectionKey<TyIdInjectionContext> = Symbol('tiny-vue-id-injection')
 
 /**
  * 默认的ID注入上下文，当provide未提供时使用。

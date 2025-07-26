@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.9",
-    "@opentiny/utils": "workspace:~"
+    "@opentiny/utils": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@vueuse/core": "^12.7.0"
   },
   "devDependencies": {
     "typescript": "catalog:",
