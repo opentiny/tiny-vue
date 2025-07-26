@@ -50,7 +50,6 @@ function genMenus() {
       type: 'components'
     }))
   }))
-
   return [...standaloneOptions, ...docOptions, ...cmpOptions]
 }
 

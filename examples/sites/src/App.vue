@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, provide, ref } from 'vue'
 import { TinyConfigProvider, TinyModal } from '@opentiny/vue'
 import useTheme from './tools/useTheme'
@@ -23,9 +23,10 @@ import { IconAi } from '@opentiny/tiny-robot-svgs'
 import { showTinyRobot } from './composable/utils'
 import { createServer, createInMemoryTransport } from '@opentiny/next-sdk'
 
+import { createGlobalMcpTool } from './tools/globalMcpTool'
+
 const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
 const modalSHow = ref(false)
-
 const server = createServer(
   {
     name: 'comprehensive-config',
@@ -41,26 +42,7 @@ const server = createServer(
 
 server.use(createInMemoryTransport())
 
-// 长任务示例
-server.registerTool(
-  'long-task',
-  {
-    title: 'long-task',
-    description: '可以帮用户订机票'
-  },
-  async () => {
-    // 执行一个长任务
-    await new Promise((resolve) => setTimeout(resolve, 10000))
-    return {
-      content: [
-        {
-          type: 'text',
-          text: '执行一个长任务，执行完成'
-        }
-      ]
-    }
-  }
-)
+createGlobalMcpTool(server)
 
 onMounted(() => {
   server.connectTransport()
