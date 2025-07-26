@@ -460,13 +460,13 @@ export default {
         },
         {
           name: 'input',
-          type: 'Function(value)',
+          type: '(event: InputEvent) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '输入值时触发事件',
-            'en-US': ''
+            'en-US': 'Trigger event when input value is entered '
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         }
       ],

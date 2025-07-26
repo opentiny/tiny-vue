@@ -1,16 +1,30 @@
 <template>
+  <div class="qr-code-attr">
+    iconSize:
+    <tiny-numeric v-model="params.iconSize" :min="1" :max="params.size * 0.3" />
+    size: <tiny-numeric v-model="params.size" :min="1" :max="1e4" />
+  </div>
   <tiny-qr-code v-bind="params"></tiny-qr-code>
 </template>
 
 <script setup>
-import { TinyQrCode } from '@opentiny/vue'
+import { reactive } from 'vue'
+import { TinyNumeric, TinyQrCode } from '@opentiny/vue'
 
-const params = {
+const params = reactive({
   value: '测试二维码数据',
   icon: import.meta.env.VITE_APP_BUILD_BASE_URL
     ? `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
     : 'https://res.hc-cdn.com/tinyui-design-common/1.0.5.20230707170109/assets/tinyvue.svg',
   iconSize: 60,
   size: 250
-}
+})
 </script>
+
+<style scoped>
+.qr-code-attr {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+</style>

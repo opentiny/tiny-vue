@@ -200,6 +200,17 @@ export default {
           mfDemo: 'sub-field'
         },
         {
+          name: 'text-position',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': `节点文案位置。默认名称和时间分别展示在图标上下方；可选值：'right'，只有名称展示名称在右方`,
+            'en-US': `Node copy position. The default name and time are displayed above and below the icon, respectively; optional value: 'right', where only the name is displayed on the right side. `
+          },
+          mode: ['pc'],
+          pcDemo: 'text-position'
+        },
+        {
           name: 'time-field',
           type: 'string',
           defaultValue: "'time'",
@@ -249,6 +260,15 @@ export default {
       ],
       methods: [],
       slots: [
+        {
+          name: 'default',
+          desc: {
+            'zh-CN': '组件默认插槽。组件显示为插槽内容',
+            'en-US': 'Component default slot. The component displays as the slot content. '
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-default'
+        },
         {
           name: 'bottom',
           desc: {

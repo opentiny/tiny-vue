@@ -5,7 +5,11 @@
 // 同web-doc的菜单资源
 import { cmpMenus } from '../../sites/demos/pc/menus.js'
 
-export const demoStr = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false, as: 'raw' })
+export const demoStr = import.meta.glob('../../sites/demos/pc/app/**/*.vue', {
+  eager: false,
+  query: '?raw',
+  import: 'default'
+})
 export const demoVue = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false })
 
 // demos配置

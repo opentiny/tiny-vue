@@ -9,9 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent, type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
-import type { PropType } from 'vue'
 import type { IButtonGroupNode } from '@opentiny/vue-renderless/types/button-group.type'
 
 export const buttonGroupProps = {

@@ -9,14 +9,18 @@ describe('PC Mode', () => {
   /**
    * attrs
    */
-  test('visible', () => {
-    const visible = true
-    const wrapper = mount(() => (
-      <DialogBox v-model:visible={visible}>
-        <span>dialog-box内容</span>
-      </DialogBox>
-    ))
-    expect(wrapper.find('.tiny-dialog-box').exists()).toBe(true)
+  test('visible', async () => {
+    const wrapper = mount(DialogBox, {
+      props: {
+        visible: false
+      }
+    })
+
+    expect(wrapper.find('.tiny-dialog-box').isVisible()).toBeFalsy()
+
+    await wrapper.setProps({ visible: true })
+
+    expect(wrapper.find('.tiny-dialog-box').isVisible()).toBeTruthy()
   })
 
   test.todo('center 弹出框的头部与底部内容是否自动居中')

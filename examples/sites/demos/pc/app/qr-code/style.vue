@@ -1,26 +1,29 @@
 <template>
   <div class="qr-code-container">
-    <div>
-      <tiny-button @click="changeColor">改变颜色</tiny-button>
-    </div>
-    <br />
+    <div>改变颜色<tiny-color-picker v-model="color" /></div>
+
     <tiny-qr-code v-bind="params"></tiny-qr-code>
   </div>
 </template>
 
 <script>
-import { TinyQrCode, TinyButton } from '@opentiny/vue'
+import { TinyQrCode, TinyColorPicker } from '@opentiny/vue'
 
 export default {
   components: {
     TinyQrCode,
-    TinyButton
+    TinyColorPicker
   },
   data() {
     return {
-      params: {
+      color: '#1677ff'
+    }
+  },
+  computed: {
+    params() {
+      return {
         value: '测试二维码数据',
-        color: '#1677ff',
+        color: this.color,
         size: 250,
         style: { background: '#f5f5f5', padding: '24px' }
       }
