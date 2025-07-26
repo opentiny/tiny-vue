@@ -10,12 +10,19 @@
     <div
       class="tiny-color-select-panel__alpha__thumb"
       :style="{
-        top: 0,
+        top: '-2px',
         left: state.left + 'px',
         transform: 'translateX(-50%)'
       }"
       ref="alphaThumb"
-    ></div>
+    >
+      <div
+        class="tiny-color-select-panel__inner__hue-select-thumb-heart"
+        :style="{
+          background: color.value
+        }"
+      ></div>
+    </div>
   </div>
 </template>
 

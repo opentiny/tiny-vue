@@ -1,5 +1,5 @@
 import type { IColorSelectPanelProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
-import { initApi, initState, initWatch } from './index'
+import { initApi, initState, initWatch, parseCustomRGBA } from './index'
 
 export const api = [
   'state',
@@ -61,6 +61,11 @@ export const renderless = (
   hooks.onMounted(() => {
     if (props.modelValue) {
       state.input = state.currentColor
+      const result = parseCustomRGBA(state.currentColor, state.currentFormat) || [0, 0, 0, 0]
+      state.hexInput4 = Math.ceil(Number(result[0]))
+      state.hexInput5 = result[1]
+      state.hexInput6 = result[2]
+      state.hexInput7 = `${(Number(result[3]) || 1) * 100}%`
     }
   })
   return api

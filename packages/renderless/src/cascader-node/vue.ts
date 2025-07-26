@@ -45,6 +45,7 @@ export const renderless = (
     inActivePath: computed(() => api.isInPath(parent.state.activePath)),
     inCheckedPath: computed(() => api.comptCheckPath()),
     value: computed(() => props.node.getValueByOption()),
+    // 仅 mf 用到nodeLabel
     nodeLabel: computed(() => {
       return parent.state.renderLabelFn
         ? parent.state.renderLabelFn({ node: props.node, data: props.node.data })

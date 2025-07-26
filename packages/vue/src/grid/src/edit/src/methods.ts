@@ -279,7 +279,7 @@ export default {
    * 如果还额外传了field则还原指定单元格。
    */
   _revertData(rows, field) {
-    let { tableSourceData, tableSynchData } = this
+    let { tableSynchData } = this
 
     if (arguments.length && rows && !isArray(rows)) {
       rows = [rows]
@@ -291,7 +291,7 @@ export default {
 
     for (let i = 0; i < rows.length; i++) {
       let row = rows[i]
-      let oRow = find(tableSourceData, (item) => getRowid(this, row) === getRowid(this, item))
+      let oRow = this.getOriginRow(row)
 
       if (oRow && row) {
         if (field) {

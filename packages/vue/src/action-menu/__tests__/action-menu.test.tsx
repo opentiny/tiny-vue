@@ -6,7 +6,7 @@ describe('PC Mode', () => {
   const mount = mountPcMode
   const options = [
     {
-      label: '远程登陆'
+      label: '远程登录'
     },
     {
       label: '开机'

@@ -98,7 +98,7 @@ export const initService = ({ props, service }) => {
         subscribe({
           topic: 'tiny.ui.closeLoginDialog',
           callback() {
-            // 登陆后刷新页面
+            // 登录后刷新页面
             window.location.reload()
           }
         })

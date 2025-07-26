@@ -57,8 +57,8 @@ export default {
         },
         {
           name: 'cell-class-name',
-          typeAnchorName: 'IClassNameArgs',
-          type: 'string | (args: IClassNameArgs) => string',
+          typeAnchorName: 'ICellClassNameArgs',
+          type: 'string | (args: ICellClassNameArgs) => string',
           defaultValue: '',
           desc: {
             'zh-CN': '给单元格附加 className，也可以是函数',
@@ -2008,10 +2008,10 @@ export default {
         },
         {
           name: 'handleFetch',
-          type: '() => Promise',
+          type: '(code: "reload") => Promise<null>',
           defaultValue: '',
           desc: {
-            'zh-CN': '触发表格的 fetch-data ',
+            'zh-CN': '触发表格的 fetch-data，当 code="reload" 时会将分支重置为 1，且清除筛选、排序等条件',
             'en-US': 'Trigger the fetch-data of the table'
           },
           mode: ['pc', 'mobile-first'],
@@ -2949,8 +2949,14 @@ export default {
           name: 'default',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义显示内容模板，作用插槽参数说明：slots.default({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'zh-CN': `自定义显示内容模板，作用域插槽参数说明：<br/>
+            slots.default({ $table, column, row, level, data, rowIndex, $rowIndex, columnIndex, $columnIndex, seq }, h)，<br/>
+               $table：表格组件对象，column：当前列配置，row：当前行数据，<br/>
+               level：当前行在树表中的层级，data：表格数据，<br/>
+               rowIndex：所有行中(包含虚拟滚动等隐藏列)下标，$rowIndex:已渲染行中的下标，<br/>
+               columnIndex：所有列中(包含虚拟滚动等隐藏列)下标，$columnIndex:已渲染列中的下标，<br/>
+               seq：单元格所在行的序号，$seq:已弃用，<br/>
+               h：vue的渲染函数`,
             'en-US': 'Customized display content template'
           },
           mode: ['pc', 'mobile-first'],
@@ -2960,12 +2966,24 @@ export default {
           name: 'edit',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义可编辑组件模板，作用插槽参数说明：slots.edit({ $table, column, row },h)，$table：表格组件对象，column：当前列配置，row：当前行数据,h：vue的渲染函数',
+            'zh-CN': '自定义可编辑组件模板，作用域插槽参数同 <code>default</code> 插槽',
             'en-US': 'Customized Editable Component Template'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-slot#slot-editor-slot'
+        },
+        {
+          name: 'expand-trigger',
+          defaultValue: '',
+          meta: {
+            stable: '3.25.0'
+          },
+          desc: {
+            'zh-CN': '自定义展开行图标，作用域插槽参数同 <code>default</code> 插槽',
+            'en-US': 'Customized expand row icon'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-expand#expand-trigger-slot'
         },
         {
           name: 'filter',
@@ -2982,8 +3000,11 @@ export default {
           name: 'header',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义表头内容的模板，作用插槽参数说明：slots.header({ $table, column, columnIndex，$rowIndex},h)，$table：表格组件对象，column：当前列配置，columnIndex：当前列索引,$rowIndex:当前行索引,h：vue的渲染函数',
+            'zh-CN': `自定义表头内容的模板，作用插槽参数说明：<br/>
+            slots.header({ $table, column, columnIndex，$columnIndex，} ,h)，<br/>
+              $table：表格组件对象，column：当前列配置，<br/>
+              columnIndex：所有列中(包含虚拟滚动等隐藏列)下标，$columnIndex:已渲染列中的下标，<br/>
+              h：vue的渲染函数`,
             'en-US': 'Template of custom table header content'
           },
           mode: ['pc', 'mobile-first'],
@@ -3194,18 +3215,24 @@ interface IRow {
       depTypes: ['IValidRules'],
       code: `
 interface IColumnConfig {
-  type: 'index' | 'radio' | 'checkbox'
+  // 功能列的类型， 'index'行索引，'radio' 单选行， 'selection' 多选行
+  type: 'index' | 'radio' | 'selection'
+  // 列id
   id: string
-  prop: string
+  // 校验规则
   rules: IValidRules
+  // 是否必填
   required: boolean
   property: string
   title: string
-  label: string
+  // 列宽度
   width: string | number
+  // 自动分配宽度时的最小宽度
   minWidth: string | number
+  // 是否可以调整列宽
   resizable: boolean
-  fixed: boolean
+  // 是否左、右冻结
+  fixed: 'left' | 'right'
   align: 'left' | 'center' | 'right'
   headerAlign: 'left' | 'center' | 'right'
   footerAlign: 'left' | 'center' | 'right'
@@ -3475,6 +3502,8 @@ interface ITreeConfig {
   expandRowKeys?: string[]
   // 对于同一级的多个子节点，是否只能同时展开一个子节点
   accordion?: boolean
+  // 3.25.0版本新新增，当trigger为 'default' 时，点击按钮事件是否冒泡，默认为false
+  bubbling?: boolean
 }
       `
     },
@@ -3563,9 +3592,11 @@ interface IEditConfig {
   showStatus?: boolean
   // 自定义编辑规则，返回true可以编辑返回false则禁止编辑
   activeMethod?: ({row: IRow, column: IColumnConfig})=> boolean
-  // （3.19新增）当mode为'row'时，行编辑激活状态下默认会忽略activeMethod，配置为true使其生效
+  // （3.19.0新增）当mode为'row'时，行编辑激活状态下默认会忽略activeMethod，配置为true使其生效
   activeStrictly?: boolean
-}
+  //（3.25.0新增）自定义编辑态的退出逻辑。当返回true时，不会退出编辑态。
+  blurOutside?: ({ cell, event, $table }: { cell: HTMLElement, event: Event, $table: Component }) => boolean
+} 
       `
     },
     {
@@ -4133,6 +4164,8 @@ interface IFilterConfig {
     // 设置枚举数据的实际值属性字段， 默认'value'
     value: string 
   }[] | () => Promise
+  // 3.25.0新增，设置过滤面板根节点属性
+  attrs: { [props: string]: string }
 }
       `
     },
@@ -4153,6 +4186,33 @@ interface IFilterConfig {
         sortable?: Sortable 
       }
       `
+    },
+    {
+      name: 'ICellClassNameArgs',
+      type: 'type',
+      depTypes: ['IColumnConfig', 'IRow'],
+      code: `
+interface ICellClassNameArgs {
+  // 当前行在树表中的层级
+  level: number
+  // 当前行数据
+  row: IRow
+  // 表格数据
+  data: IRow[]
+  // 所有行中(包含虚拟滚动等隐藏列)下标
+  rowIndex: number
+  // 已渲染行中的下标
+  $rowIndex: number
+  // 表格列配置
+  column: IColumnConfig
+  // 所有列中(包含虚拟滚动等隐藏列)下标
+  columnIndex: number
+  // 已渲染列中的下标
+  $columnIndex: number
+  // 单元格所在行的序号
+  seq: number
+  $seq: string // 已弃用
+}`
     }
   ]
 }

@@ -324,12 +324,14 @@ export const Cell = {
   renderTreeIcon(h, params) {
     let { $table, level, row } = params
     let { treeConfig, treeExpandeds } = $table
-    let { children, indent, renderIcon, trigger } = treeConfig
+    let { children, indent, renderIcon, trigger, bubbling } = treeConfig
     let isActive = ~treeExpandeds.indexOf(row)
     let rowChildren = row[children]
     let listeners = {
       click: (event) => {
-        event.stopPropagation()
+        if (!bubbling) {
+          event.stopPropagation()
+        }
         $table.triggerTreeExpandEvent(event, params)
       }
     }
@@ -402,7 +404,7 @@ export const Cell = {
     const isTreeOrderedFalse = treeConfig && !treeOrdered
     let indexValue = startIndex + seq
     // tree-config为false的情况下，序号为1.1这种形式
-    if (isTreeOrderedFalse && level) {
+    if (isTreeOrderedFalse) {
       indexValue = row[temporaryIndex]
     }
 
@@ -652,7 +654,7 @@ export const Cell = {
   },
   // 展开行
   renderExpandCell(h, params) {
-    let { $table, row } = params
+    let { $table, row, column } = params
     let { expandConfig = {} } = $table
     let { showIcon = true, activeMethod: expandMethod } = expandConfig
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
@@ -660,6 +662,9 @@ export const Cell = {
     const expandActive = $table.expandeds.includes(params.row)
 
     if (!showIcon) return null
+
+    const expandTrigger = column.slots?.['expand-trigger']
+    const triggerContent = expandTrigger ? expandTrigger(params, h) : h('i', { class: 'tiny-grid__expand-icon' })
 
     const map = {
       expandActive: 'expand__active'
@@ -684,7 +689,7 @@ export const Cell = {
             }
           }
         },
-        [hideExpand && h('i', { class: 'tiny-grid__expand-icon' })]
+        [hideExpand && triggerContent]
       )
     ]
   },

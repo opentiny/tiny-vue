@@ -22,12 +22,6 @@
   @apply text-xs;
   @apply text-color-text-primary;
 
-  &.is__sortable {
-    .@{grid-cell-prefix-cls} {
-      @apply pr-5;
-    }
-  }
-
   // 在表格个性化场景，动态的设置冻结列，这里需要在非冻结列情况下消除之前设置的left和right样式，并提升权重覆盖style属性
   &:not(.fixed__column) {
     left: unset !important;
@@ -97,8 +91,8 @@
     @apply bottom-0;
     @apply top-0;
     @apply m-auto;
-    @apply w-8;
-    @apply h-9;
+    @apply w-4;
+    @apply h-4;
     @apply text-center;
     // 因为与AUI冻结实现方式不一样，此处不要同步  @apply ~'z-[1]'
     @apply select-none;
@@ -116,7 +110,7 @@
       }
       &:before {
         @apply w-px;
-        @apply h-3/5;
+        @apply h-full;
         @apply bg-color-border-separator;
       }
       &:after {
@@ -128,13 +122,6 @@
 
   .@{grid-prefix-cls}-resizable {
     @apply cursor-col-resize;
-    @apply h-4;
-
-    &.is__line {
-      &:before {
-        @apply h-full;
-      }
-    }
   }
 
   &.is__multilevel {

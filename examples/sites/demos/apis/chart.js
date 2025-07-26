@@ -53,7 +53,7 @@ export default {
         {
           name: 'extend',
           typeAnchorName: 'chart#IChartProps',
-          type: 'objcet',
+          type: 'object',
           defaultValue: '',
           desc: {
             'zh-CN': 'echarts 的配置项',

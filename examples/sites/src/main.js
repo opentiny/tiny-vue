@@ -2,9 +2,6 @@ import { createHead } from '@vueuse/head'
 import { createApp } from 'vue'
 import '@unocss/reset/eric-meyer.css'
 
-// tiny-robot 对话框
-import '@opentiny/tiny-robot/dist/style.css'
-
 // markdown文件内代码高亮
 import 'prismjs/themes/prism.css'
 import 'uno.css'
@@ -19,11 +16,11 @@ import './assets/custom-markdown.css'
 import './assets/custom-block.less'
 import './assets/md-preview.less'
 
-import { i18n, t } from './i18n/index'
+import { i18n } from './i18n/index'
 import { router } from './router'
 import App from './App.vue'
 import { appData } from './tools'
-import { ZH_CN_LANG, EN_US_LANG, LANG_PATH_MAP } from './const'
+import { ZH_CN_LANG, EN_US_LANG, LANG_PATH_MAP, ES_LA_LANG, PT_BR_LANG } from './const'
 import demoConfig from '@demos/config.js'
 
 import hljs from 'highlight.js/lib/core'
@@ -34,13 +31,8 @@ import tsPath from 'highlight.js/lib/languages/typescript'
 import docsearch from '@docsearch/js'
 import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
+import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
-
-import { registerMcpConfig } from '@opentiny/vue-common'
-import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
-
-// 注册TinyVue组件mcp配置
-registerMcpConfig(getTinyVueMcpConfig({ t }), createMcpTools)
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 
@@ -74,12 +66,19 @@ setTimeout(() => {
 
 const zhPath = LANG_PATH_MAP[ZH_CN_LANG]
 const enPath = LANG_PATH_MAP[EN_US_LANG]
+const esPath = LANG_PATH_MAP[ES_LA_LANG]
+const ptPath = LANG_PATH_MAP[PT_BR_LANG]
 const isZhCn = location.href.includes(`/${zhPath}`)
 const isEnUs = location.href.includes(`/${enPath}`)
-const notMatchLang = (isZhCn && appData.lang !== ZH_CN_LANG) || (isEnUs && appData.lang !== EN_US_LANG)
+const isEsLa = location.href.includes(`/${esPath}`)
+const isPtBr = location.href.includes(`/${ptPath}`)
+const notMatchLang =
+  (isZhCn && appData.lang !== ZH_CN_LANG) ||
+  (isEnUs && appData.lang !== EN_US_LANG) ||
+  (isEsLa && appData.lang !== ES_LA_LANG) ||
+  (isPtBr && appData.lang !== PT_BR_LANG)
 if (notMatchLang) {
-  // appData.lang = isEnUs ? EN_US_LANG : ZH_CN_LANG 官网先屏蔽英文内容
-  appData.lang = isEnUs ? ZH_CN_LANG : ZH_CN_LANG
+  appData.lang = getLocaleMode()
   i18n.global.locale = appData.lang
 }
 

@@ -336,8 +336,7 @@ const initWatch = ({
 
   watch(
     () => props.size,
-    () => nextTick(api.resizeTextarea),
-    { immediate: true }
+    () => nextTick(api.resizeTextarea)
   )
 
   watch(

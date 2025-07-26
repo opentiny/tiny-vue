@@ -96,7 +96,7 @@ export default defineComponent({
       expandKeys: []
     })
 
-    const lang = getWord('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR')
     const route = useRoute()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''

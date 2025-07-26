@@ -1,0 +1,12 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" fill="none">
+	<rect id="Payment slips" width="24" height="24" x="0" y="0" fill="rgb(255,255,255)" fill-opacity="0" />
+	<rect id="矩形 5" width="20" height="22" x="2" y="1" rx="3" stroke="rgb(0,0,0)" stroke-width="1.5" />
+	<path id="直线 13" d="M0 0L11 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-1,0,0,-1,18,18.5)" />
+	<path id="直线 14" d="M0 0L5 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-1,0,0,-1,18,13)" />
+	<path id="直线 15" d="M0 0L5 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-1,0,0,-1,18,7)" />
+	<path id="直线 9" d="M0 0L3.18199 0.353552" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(0.707107,0.707107,-0.707107,0.707107,6,4.99999)" />
+	<path id="直线 16" d="M0 0.267768L3.26777 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-0.707107,0.707107,-0.707107,-0.707107,10.3106,5.18934)" />
+	<path id="直线 10" d="M0 0L6 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(0,1,-1,0,8,8)" />
+	<path id="直线 11" d="M0 0L4 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-1,0,0,-1,10,8.5)" />
+	<path id="直线 12" d="M0 0L3 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-1,0,0,-1,9.5,11.5)" />
+</svg>

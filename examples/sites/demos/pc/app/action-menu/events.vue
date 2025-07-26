@@ -20,7 +20,7 @@ export default {
     return {
       options: [
         {
-          label: '远程登陆'
+          label: '远程登录'
         },
         {
           label: '开机'

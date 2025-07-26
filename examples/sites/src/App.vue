@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, provide, ref, watch } from 'vue'
+import { defineComponent, onMounted, provide, ref } from 'vue'
 import { ConfigProvider, Modal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import { appData } from './tools'
 import useTheme from './tools/useTheme'
-import { useNextClient } from '@opentiny/next-vue'
-import { globalConversation, $session } from './composable/utils'
 
 export default defineComponent({
   name: 'AppVue',
@@ -30,21 +28,6 @@ export default defineComponent({
   setup() {
     const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
     const modalSHow = ref(false)
-
-    const { sessionId } = useNextClient({
-      clientInfo: { name: 'tiny-vue-website', version: '1.0.0' },
-      proxyOptions: { url: 'https://agent.icjs.ink/sse', token: '', sessionId: $session.sessionId }
-    })
-
-    watch(
-      () => sessionId.value,
-      (newVal) => {
-        if (newVal) {
-          $session.sessionId = newVal
-          globalConversation.sessionId = newVal
-        }
-      }
-    )
 
     onMounted(() => {
       // 加载header

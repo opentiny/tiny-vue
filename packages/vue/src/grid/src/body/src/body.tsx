@@ -335,7 +335,7 @@ function renderFooterRows(_vm: any): any {
 function renderRows(_vm) {
   const { $parent: $table, tableColumn, rowPool } = _vm
   const { afterFullData, editConfig, editStore, expandConfig = {}, expandeds, hasVirtualRow } = $table
-  const { rowClassName, rowGroup, scrollYLoad, scrollYStore, selection, treeConfig, treeOrdered } = $table
+  const { rowClassName, rowGroup, scrollYLoad, scrollYStore, selection, treeConfig, treeOrdered, selectRow } = $table
   const expandMethod = expandConfig.activeMethod
   const startIndex = scrollYStore.startIndex
   const isOrdered = treeConfig ? !!treeOrdered : false
@@ -371,7 +371,7 @@ function renderRows(_vm) {
 
     let args = { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName }
 
-    Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used })
+    Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow })
 
     renderRow(args)
 
@@ -421,12 +421,12 @@ function renderRowExpanded(args) {
 
 function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
   typeof $table.renderRowAfter === 'function' &&
-    $table.renderRowAfter.call($table, { rows, row, data: _vm.tableData, rowIndex, renderColumn, id, used }, h)
+    $table.renderRowAfter({ rows, row, data: _vm.tableData, rowIndex, renderColumn, id, used }, h)
 }
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used } = args
 
   if (isSkipRowRender) {
     return
@@ -458,6 +458,7 @@ function renderRow(args) {
           [`row__level-${rowLevel}`]: treeConfig,
           'row__new': editStore.insertList.includes(row),
           'row__selected': selection.includes(row),
+          'row__radio': selectRow === row,
           'row__actived': rowActived
         },
         rowClassName
@@ -719,6 +720,13 @@ export default defineComponent({
       hooks.nextTick(() => (el.scrollTop = calcScrollTop($table, wrapperScrollTop)))
     })
 
+    const resetStickyWrapperScrollPos = () => {
+      const el = stickyWrapper.value
+      if (!el) return
+      el.scrollLeft = calcScrollLeft($table, wrapperScrollLeft.value)
+      el.scrollTop = calcScrollTop($table, wrapperScrollTop.value)
+    }
+
     useCellEvent({ table, $table })
     const { normalRows, footerRows } = useCellSpan(vm, props)
 
@@ -750,6 +758,21 @@ export default defineComponent({
 
     hooks.watch(body, (body) => body && resizeObserver.observe(body))
 
+    hooks.watch(tbody, (tbody) => {
+      if (tbody && $table.dropConfig) {
+        vm.rowSortable?.destroy()
+        vm.columnSortable?.destroy()
+        // 初始化行列拖拽
+        const { plugin, row = true, column = true, scheme } = $table.dropConfig
+
+        plugin && row && (vm.rowSortable = $table.rowDrop(body.value))
+
+        if (scheme !== 'v2') {
+          plugin && column && (vm.columnSortable = $table.columnDrop(body.value))
+        }
+      }
+    })
+
     hooks.watch(customFooter, (customFooter) => customFooter && resizeObserver.observe(customFooter))
 
     hooks.watchEffect(() => {
@@ -767,21 +790,6 @@ export default defineComponent({
       vm._throttleScrollHandler = throttle($table.optimizeOpts.scrollDelay, vm.handleScroll)
 
       body.value?.addEventListener('scroll', vm._throttleScrollHandler)
-
-      // 初始化行列拖拽
-      setTimeout(() => {
-        const { dropConfig } = $table
-
-        if (dropConfig) {
-          const { plugin, row = true, column = true, scheme } = dropConfig
-
-          plugin && row && (vm.rowSortable = $table.rowDrop(body.value))
-
-          if (scheme !== 'v2') {
-            plugin && column && (vm.columnSortable = $table.columnDrop(body.value))
-          }
-        }
-      }, 50)
     })
 
     hooks.onBeforeUnmount(() => {
@@ -789,8 +797,8 @@ export default defineComponent({
 
       body.value?.removeEventListener('scroll', vm._throttleScrollHandler)
       vm._throttleScrollHandler = null
-      rowSortable && rowSortable.destroy()
-      columnSortable && columnSortable.destroy()
+      rowSortable?.destroy()
+      columnSortable?.destroy()
       resizeObserver.disconnect()
     })
 
@@ -812,7 +820,8 @@ export default defineComponent({
       tbody,
       ySpace,
       normalRows,
-      footerRows
+      footerRows,
+      resetStickyWrapperScrollPos
     }
   },
   render() {
@@ -829,7 +838,7 @@ export default defineComponent({
         class={{
           'tiny-grid__body-wrapper body__wrapper': true,
           'is__scrollload': scrollLoad,
-          'no-data': isNoData
+          'no-data': isNoData && $table.isShapeTable
         }}
         style={{
           height: bodyWrapperHeight ? `${bodyWrapperHeight}px` : undefined,
@@ -868,7 +877,7 @@ export default defineComponent({
           isNoData ? (
             <div ref="emptyBlock" class="tiny-grid__empty-block">
               {$slots.empty
-                ? $slots.empty.call(_vm, { $table }, h)
+                ? $slots.empty({ $table }, h)
                 : $table.renderEmpty
                   ? [$table.renderEmpty(h, $table)]
                   : [

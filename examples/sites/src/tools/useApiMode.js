@@ -1,11 +1,12 @@
 import { reactive } from 'vue'
 import { $local } from './storage'
-import { appFn } from './appData'
+import { appFn, appData } from './appData'
 
 const _modeKey = 'tiny-vue-api-mode'
 const _demoModeKey = 'tiny-vue-demo-mode'
+
 const apiModeState = reactive({
-  localeMode: location.href.includes('en-US') ? 'enUS' : 'zhCN',
+  localeMode: appData.lang,
   apiMode: $local[_modeKey] || 'Composition', // 示例风格:  Options: 组合式; Composition: 选项式
   demoMode: $local[_demoModeKey] || 'default' // 示例展示： default:多示例， single:单示例
 })

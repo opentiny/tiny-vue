@@ -46,6 +46,7 @@
               "color-fill-8": "blue-600,5",
               "color-fill-9": "gray-600,100",
               "color-fill-10": "blue-600,10",
+              "color-fill-11": "coolgray-700,100",
               "color-fill-primary": "gray-900,100",
               "color-fill-secondary": "gray-400,100"
             }
@@ -68,7 +69,7 @@
             "title": "图标色 Icon Colors",
             "colors": {
               "color-icon-primary": "gray-900,100",
-              "color-icon-secondary": "gray-500,100",
+              "color-icon-secondary": "gray-600,100",
               "color-icon-tertiary": "gray-300,100",
               "color-icon-placeholder": "gray-300,100",
               "color-icon-disabled": "gray-300,100",
@@ -486,6 +487,7 @@
               "color-fill-8": "blue-600,5",
               "color-fill-9": "gray-600,100",
               "color-fill-10": "blue-600,10",
+              "color-fill-11": "coolgray-700,100",
               "color-fill-primary": "gray-900,100",
               "color-fill-secondary": "gray-400,100"
             }
@@ -508,7 +510,7 @@
             "title": "图标色 Icon Colors",
             "colors": {
               "color-icon-primary": "gray-900,100",
-              "color-icon-secondary": "gray-500,100",
+              "color-icon-secondary": "gray-600,100",
               "color-icon-tertiary": "gray-300,100",
               "color-icon-placeholder": "gray-300,100",
               "color-icon-disabled": "gray-300,100",
@@ -924,7 +926,16 @@
       "--tiny-borderRadius-DEFAULT": "0.250rem",
       "--tiny-borderRadius-md": "0.375rem",
       "--tiny-borderRadius-lg": "0.500rem",
-      "--tiny-borderRadius-full": "126.000rem"
+      "--tiny-borderRadius-full": "126.000rem",
+      "aliasToken": {
+        "--tiny-borderRadius-button": "--tiny-borderRadius-DEFAULT",
+        "--tiny-borderRadius-search": "--tiny-borderRadius-DEFAULT",
+        "--tiny-borderRadius-dropdown": "--tiny-borderRadius-DEFAULT",
+        "--tiny-borderRadius-form": "--tiny-borderRadius-DEFAULT",
+        "--tiny-borderRadius-card": "--tiny-borderRadius-lg",
+        "--tiny-borderRadius-carousel": "--tiny-borderRadius-DEFAULT",
+        "--tiny-borderRadius-tag": "--tiny-borderRadius-DEFAULT"
+      }
     },
     "space": {
       "--tiny-spacing-px": "0.0625rem",
@@ -972,7 +983,7 @@
     "boxShadow": {
       "--tiny-boxShadow-sm": "0px 1px 6px 0px rgba(0, 0, 0, 0.08)",
       "--tiny-boxShadow-DEFAULT": "0px 4px 12px 0px rgba(0, 0, 0, 0.08)",
-      "--tiny-boxShadow-md": "0 4px 12px 0px rgba(0, 0, 0, 0.16)",
+      "--tiny-boxShadow-md": "1px 4px 12px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-lg": "0px 8px 24px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-xl": "0px 16px 48px 0px rgba(0, 0, 0, 0.16)",
       "--tiny-boxShadow-2xl": "0px 24px 40px 0px rgba(0, 0, 0, 0.12)",

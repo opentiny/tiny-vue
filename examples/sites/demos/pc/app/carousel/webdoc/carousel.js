@@ -175,24 +175,6 @@ export default {
       codeFiles: ['carousel-events.vue']
     },
     {
-      demoId: 'swipeable',
-      name: {
-        'zh-CN': '触屏轮播',
-        'en-US': 'Touchscreen Carousel'
-      },
-      desc: {
-        'zh-CN': ` 
-          通过<code>swipeable</code> 属性，让多端模板支持触屏轮播。<br>
-          通过 <code>lite</code> 属性打开精简模式，不显示切换按钮和指示器。
-        `,
-        'en-US': `
-          The <code>swipeable</code> attribute is used to support touchscreen carousel.<br>
-          Enable the compact mode with the <code>lite</code> attribute. The toggle button and indicator are not displayed.
-        `
-      },
-      codeFiles: ['swipeable.vue']
-    },
-    {
       demoId: 'card-show',
       name: {
         'zh-CN': '轮播卡片',

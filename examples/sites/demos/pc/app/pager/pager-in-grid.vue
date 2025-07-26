@@ -27,7 +27,6 @@
       :current-page="custPager.currentPage"
       :page-size="custPager.pageSize"
       :total="custPager.total"
-      :page-sizes="[5, 10, 20, 50]"
       @current-change="currentChange"
       @size-change="sizeChange"
       layout="total, sizes, prev, pager, next, jumper"

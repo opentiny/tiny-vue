@@ -12,7 +12,7 @@ import { TinyActionMenu } from '@opentiny/vue'
 
 const options = ref([
   {
-    label: '远程登陆'
+    label: '远程登录'
   },
   {
     label: '开机'

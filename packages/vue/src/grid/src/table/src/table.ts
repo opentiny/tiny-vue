@@ -46,7 +46,7 @@ import methods from './methods'
 import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import MfTable from '../../mobile-first/index.vue'
-import { useDrag, useRowGroup } from '../../composable'
+import { useData, useDrag, useRowGroup } from '../../composable'
 import { isServer } from '@opentiny/utils'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
@@ -527,10 +527,6 @@ export default defineComponent({
       !this.isUpdateCustoms && this.mergeCustomColumn(value)
       this.isUpdateCustoms = false
     },
-    data() {
-      // data的监控处理：a、在vue2中，数组对象替换、数组长度改变和数组项属性改变；b、在vue3中，数组对象替换
-      this.handleDataChange()
-    },
     height() {
       this.$nextTick(this.recalculate)
     },
@@ -539,8 +535,6 @@ export default defineComponent({
       value && this.$nextTick(this.recalculate)
     },
     tableColumn() {
-      // 对所有列的列宽进行分类：百分比/px
-      this.analyColumnWidth()
       // 处理空数据时表头是否禁用
       this.handleSelectionHeader()
     },
@@ -618,9 +612,6 @@ export default defineComponent({
     loadStatic(data, this)
 
     bindEvent(this)
-
-    // vue3下额外监控数组长度改变，解决push无响应等问题
-    this.watchDataForVue3()
 
     // 设置表格实例
     this.$grid.connect({ name: 'table', vm: this })
@@ -735,6 +726,8 @@ export default defineComponent({
 
     useRowGroup({ props, visibleColumn, tableFullColumn, tableColumn, columnStore })
 
+    const { tiledLength } = useData(props)
+
     hooks.onMounted(() => {
       $table.addIntersectionObserver()
 
@@ -823,7 +816,8 @@ export default defineComponent({
       bodyWrapperMaxHeight,
       bodyTableWidth,
       scrollLoadScrollHeight,
-      columnStore
+      columnStore,
+      tiledLength
     }
   },
   render() {

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" fill="none">
+	<rect id="绩效" width="24" height="24" x="0" y="0" fill="rgb(255,255,255)" fill-opacity="0" />
+	<rect id="矩形 4" width="20" height="22" x="2" y="1" rx="3" stroke="rgb(0,0,0)" stroke-width="1.5" />
+	<path id="直线 3" d="M6 18L18 18" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" />
+	<path id="直线 4" d="M0 0L5 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(0,-1,1,0,18,11)" />
+	<path id="直线 8" d="M0 0.353555L3.88909 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(-0.707107,-0.707107,0.707107,-0.707107,11.25,13.75)" />
+	<path id="直线 5" d="M13 6L18 6" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" />
+	<path id="直线 7" d="M0 0.732229L4.26777 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(0.707107,-0.707107,0.707107,0.707107,5.48224,14.0178)" />
+	<path id="直线 6" d="M0 2.35366L8.18296 0" stroke="rgb(0,0,0)" stroke-linecap="round" stroke-width="1.5" transform="matrix(0.831793,-0.555087,0.555087,0.831793,10.1935,11.5422)" />
+</svg>

@@ -47,8 +47,9 @@ export default {
         'en-US': 'Icon Button'
       },
       desc: {
-        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。',
-        'en-US': 'Display icons and receive an icon component through the <code>icon</code> settings button'
+        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。<code>custom-style</code>属性设置按钮样式。',
+        'en-US':
+          'Display icons and receive an icon component through the <code>icon</code> settings button. The <code>custom-style</code> property sets the button style.'
       },
       codeFiles: ['icon.vue']
     },

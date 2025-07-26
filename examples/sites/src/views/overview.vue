@@ -121,7 +121,7 @@ export default defineComponent({
         .filter((item) => item.children.length > 0)
       state.searchMenus = searchMenus
     }
-    const lang = getWord('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR')
     const { defaultTheme } = useTheme()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''

@@ -15,6 +15,14 @@ const getStyleSettings = (i18nByKey) => {
     //     {
     //       value: 'enUS',
     //       text: i18nByKey('en-us')
+    //     },
+    //     {
+    //       value: 'esLA',
+    //       text: i18nByKey('es-la')
+    //     },
+    //     {
+    //       value: 'ptBR',
+    //       text: i18nByKey('pt-br')
     //     }
     //   ]
     // },

@@ -1,17 +1,6 @@
 <template>
   <div>
-    <tiny-grid
-      :data="tableData"
-      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-      height="420px"
-      :tiny_mcp_config="{
-        server,
-        business: {
-          id: 'company-information',
-          description: '公司人员信息表'
-        }
-      }"
-    >
+    <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }" height="420px">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="company" title="公司名称"></tiny-grid-column>
@@ -25,7 +14,6 @@
 <script setup>
 import { ref } from 'vue'
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
-import { useNextServer } from '@opentiny/next-vue'
 
 // 初始化表格数据
 const _table = [
@@ -48,8 +36,4 @@ const _table = [
 ]
 
 const tableData = ref(_table)
-
-const { server } = useNextServer({
-  serverInfo: { name: 'company-information', version: '1.0.0' }
-})
 </script>

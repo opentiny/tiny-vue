@@ -272,6 +272,8 @@ export const beforeUpload =
           if (accept) {
             const isExist = isAcceptType(acceptArray, f, constants, type)
             isExist ? fileRow.push(f) : remove({ api, file: f, autoRemove })
+          } else {
+            fileRow.push(f)
           }
           return type
         })

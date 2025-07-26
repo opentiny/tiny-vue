@@ -24,7 +24,7 @@ test('[DatePanel] 测试周次序号', async ({ page }) => {
   await page.locator('div:nth-child(2) > .tiny-date-range-picker__header > button:nth-child(2)').click()
   await expect(page.getByText('12w')).toBeVisible()
 
-  await page.getByText('13').nth(1).click()
-  await page.getByText('17').nth(2).click()
+  await page.locator('#custom-weeks').getByText('13').nth(1).click()
+  await page.locator('#custom-weeks').getByText('17').nth(2).click()
   await expect(page.locator('.value1')).toHaveText('[ "2025-02-13", "2025-02-17" ]')
 })

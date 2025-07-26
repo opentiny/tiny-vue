@@ -321,7 +321,7 @@
         );
       @apply bg-no-repeat;
       background-size: 1px 100%, 100% 1px;
-      background-position: 100% 0, 100% 99%;
+      background-position: 100% 0, 100% 100%;
     }
 
     &.is__row-span .@{grid-prefix-cls}-body__column {
@@ -330,7 +330,7 @@
 
     .@{grid-prefix-cls}-body__row:last-child {
       .@{grid-prefix-cls}-body__column {
-        background-position: 100% 0, 100% 97%;
+        background-position: 100% 0, 100% 100%;
       }
     }
 
@@ -559,7 +559,7 @@
     @apply text-left;
 
     &:not(.col__ellipsis) {
-      @apply ~'py-0.5' px-4;
+      @apply ~'py-0.5' px-2;
     }
 
     &.col__current {
@@ -682,14 +682,13 @@
 
   // 排序
   & &-sort-wrapper {
-    position: absolute;
-    right: 16px;
+    @apply pl-1;
 
     .@{grid-prefix-cls}-sort__btn {
       @apply ~'h-3.5';
       line-height: 14px;
       @apply block;
-      @apply text-xs;
+      @apply text-md;
       @apply fill-color-icon-secondary;
       transform: scale(0.8);
       @apply cursor-pointer;
@@ -708,7 +707,7 @@
     @apply left-0;
     @apply ~'w-0.5';
     @apply h-full;
-    @apply ~'z-[4]';
+    @apply ~'z-[21]';
 
     &:before {
       @apply content-[''];
@@ -870,6 +869,7 @@
     @apply flex-auto;
     @apply items-center;
     @apply justify-center;
+    @apply text-center;
     @apply sticky;
     @apply left-0;
   }
@@ -878,7 +878,6 @@
     @apply w-full;
     height: 100px;
     @apply m-0;
-    background: url(../images/grid-nodata.svg) no-repeat center center;
     @apply flex-shrink-0;
   }
 
@@ -1440,5 +1439,6 @@
     @apply left-0;
     @apply overflow-hidden;
     @apply h-full;
+    max-height: inherit;
   }
 }

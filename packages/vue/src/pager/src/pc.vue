@@ -123,7 +123,7 @@
           <div class="tiny-pager__selector-body">
             <ul class="tiny-pager__selector-poplist">
               <li
-                v-for="(sizeItem, sizeIndex) in pageSizes"
+                v-for="(sizeItem, sizeIndex) in state.internalPageSizes"
                 :key="sizeIndex"
                 :class="['list-item', sizeItem === state.internalPageSize ? 'is-selected select-pre' : '']"
                 :title="String(sizeItem)"

@@ -79,6 +79,11 @@ export const buttonProps = {
     type: Boolean,
     default: false
   },
+  /** 自定义样式 */
+  customStyle: {
+    type: Object,
+    default: () => ({})
+  },
   /** 是否幽灵按钮 */
   ghost: Boolean,
   /** 点击事件 */

@@ -8,13 +8,13 @@
     @scroll="scrollEvent"
   >
     <template v-if="exceptionVisible && (slotEmpty || renderEmpty)">
-      <custom-empty />
+      <custom-empty :class="isLoading ? 'invisible' : ''" />
     </template>
     <exception
       tiny_mode="mobile-first"
       tiny_mode_root
       v-else-if="exceptionVisible"
-      class="min-h-[theme(spacing.72)]"
+      :class="['min-h-[theme(spacing.72)]', isLoading ? 'invisible' : '']"
       component-page
       type="nodata"
     ></exception>
@@ -171,6 +171,10 @@ export default defineComponent({
       const { tableData } = this as any
       const isException = tableData.length === 0
       return isException
+    },
+    isLoading() {
+      const { config } = this as any
+      return config?.tableVm?.$grid?.loading || false
     }
   },
   watch: {

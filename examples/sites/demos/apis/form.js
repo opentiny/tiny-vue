@@ -153,6 +153,9 @@ export default {
           name: 'overflow-title',
           type: 'boolean',
           defaultValue: 'false',
+          meta: {
+            stable: '3.15.0'
+          },
           desc: {
             'zh-CN': '标签超长是否显示提示',
             'en-US': 'Does the label display a prompt if it is too long'

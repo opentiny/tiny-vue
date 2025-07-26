@@ -7,28 +7,15 @@ const Components = () => import('@/views/components-doc/index.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
 const Features = () => import('@/views/features.vue')
-const Comprehensive = () => import('@/views/comprehensive/index.vue')
-const Remoter = () => import('@/views/remoter/index.vue')
 
 const context = import.meta.env.VITE_CONTEXT
-
 let routes = [
   // 组件总览
   {
-    path: `${context}:all?/zh-CN/:theme/overview`,
+    path: `${context}:all?/${LANG_PATH_MAP[appData.lang] || 'zh-CN'}/:theme/overview`,
     component: Layout,
     name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
-  },
-  {
-    path: `${context}:all?/zh-CN/:theme/comprehensive`,
-    component: Comprehensive,
-    name: 'comprehensive'
-  },
-  {
-    path: `${context}:all?/zh-CN/:theme/remoter`,
-    component: Remoter,
-    name: 'remoter'
   },
   // 文档
   {
@@ -39,7 +26,7 @@ let routes = [
   },
   // 组件
   {
-    path: `${context}:all?/zh-CN/:theme/components/:cmpId`,
+    path: `${context}:all?/${LANG_PATH_MAP[appData.lang] || 'zh-CN'}/:theme/components/:cmpId`,
     component: Layout,
     name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
@@ -55,7 +42,7 @@ let routes = [
   {
     path: '/:pathMatch(.*)*',
     redirect: () => {
-      const langPath = LANG_PATH_MAP[ZH_CN_LANG]
+      const langPath = LANG_PATH_MAP[appData.lang] || LANG_PATH_MAP[ZH_CN_LANG]
       return { path: `${context}${langPath}/${DEFAULT_THEME}/overview` }
     }
   }

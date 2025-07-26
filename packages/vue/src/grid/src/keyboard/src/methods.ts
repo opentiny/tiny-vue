@@ -508,10 +508,13 @@ export default {
     this.editStore.indexs.rowNodes = rowNodes
   },
   _clearIndexChecked() {
-    let indexCheckeds = this.elemStore['main-body-list'].querySelectorAll('.col__index-checked')
-    let eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
+    const tbody = this.elemStore['main-body-list']
+    if (tbody) {
+      const indexCheckeds = tbody.querySelectorAll('.col__index-checked')
+      const eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
 
-    arrayEach(indexCheckeds, eachHandler)
+      arrayEach(indexCheckeds, eachHandler)
+    }
 
     Object.assign(this.editStore.indexs, { rowNodes: [] })
 

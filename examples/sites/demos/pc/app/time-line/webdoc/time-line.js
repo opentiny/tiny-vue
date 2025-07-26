@@ -186,6 +186,18 @@ export default {
         'en-US': '<p>Add description information for a single node through the <code>description</code> slot.</p>'
       },
       codeFiles: ['slot-description.vue']
+    },
+    {
+      demoId: 'slot-default',
+      name: {
+        'zh-CN': '默认插槽',
+        'en-US': 'Default Slot'
+      },
+      desc: {
+        'zh-CN': '组件默认插槽',
+        'en-US': 'Component Default Slot'
+      },
+      codeFiles: ['slot-default.vue']
     }
   ],
   features: [

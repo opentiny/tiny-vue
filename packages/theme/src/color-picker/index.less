@@ -7,21 +7,16 @@
   .inject-ColorPicker-vars();
 
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   border-radius: var(--tv-ColorPicker-border-radius-xs);
   border: 1px solid var(--tv-ColorPicker-border-color);
   box-sizing: content-box;
   padding: var(--tv-ColorPicker-padding-y) var(--tv-ColorPicker-padding-x);
   cursor: pointer;
 
-  &__inner {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--tv-ColorPicker-border-radius-xs);
+  &:hover {
+    border-color: #0067d1;
   }
 
   &--large {
@@ -42,5 +37,33 @@
   &--mini {
     width: var(--tv-ColorPicker-size-mini-width);
     height: var(--tv-ColorPicker-size-mini-height);
+  }
+
+  &__inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: none;
+    }
+  }
+
+  &--large &__inner {
+    border-radius: 4px;
+  }
+
+  &--small &__inner {
+    border-radius: 3px;
+  }
+
+  &--medium &__inner {
+    border-radius: 3px;
+  }
+
+  &--mini &__inner {
+    border-radius: 2px;
   }
 }

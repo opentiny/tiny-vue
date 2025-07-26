@@ -259,7 +259,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             }
           }
         }),
-      !isRuntime && replaceModuleNamePlugin(versionTarget)
+      !isRuntime && replaceModuleNamePlugin(() => versionTarget)
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],

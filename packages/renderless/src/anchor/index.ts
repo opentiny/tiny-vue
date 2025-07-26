@@ -122,7 +122,7 @@ export const handleScroll = (state: IAnchorRenderlessParams['state']) => () => {
   state.scrollTimer = window.setTimeout(() => {
     state.isScroll = false
     clearTimeout(state.scrollTimer)
-  }, 200)
+  }, 300)
 }
 
 // 设置滚动偏移量

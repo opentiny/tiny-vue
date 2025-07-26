@@ -123,7 +123,7 @@ const showPreview = inject('showPreview')
 const state = reactive({
   tabValue: 'tab0',
   cmpId: router.currentRoute.value.params.cmpId,
-  langKey: getWord('zh-CN', 'en-US'),
+  langKey: getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR'),
   copyTip: i18nByKey('copyCode'),
   copyIcon: 'i-ti-copy'
 })

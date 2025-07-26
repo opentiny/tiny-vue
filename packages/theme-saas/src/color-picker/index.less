@@ -1,0 +1,66 @@
+@import '../custom.less';
+
+@color-picker-prefix-cls: ~'@{css-prefix}color-picker';
+
+.@{color-picker-prefix-cls} {
+  @apply relative;
+  @apply w-5;
+  @apply h-5;
+  @apply rounded;
+  @apply box-content;
+  @apply cursor-pointer;
+  border: 1px solid #dfdfdf;
+  padding: 3px;
+
+  &:hover {
+    @apply border-color-border-focus;
+  }
+
+  &--large {
+    @apply w-8;
+    @apply h-8;
+  }
+
+  &--small {
+    @apply w-5;
+    @apply h-5;
+  }
+
+  &--medium {
+    @apply w-6;
+    @apply h-6;
+  }
+
+  &--mini {
+    @apply w-4;
+    @apply h-4;
+  }
+
+  &__inner {
+    @apply flex;
+    @apply w-full;
+    @apply h-full;
+    @apply items-center;
+    @apply justify-center;
+
+    svg {
+      @apply hidden;
+    }
+  }
+
+  &--large &__inner {
+    @apply rounded;
+  }
+
+  &--small &__inner {
+    border-radius: 3px;
+  }
+
+  &--medium &__inner {
+    border-radius: 3px;
+  }
+
+  &--mini &__inner {
+    @apply rounded-sm;
+  }
+}

@@ -1,20 +1,17 @@
 <template>
   <div class="content">
-    <tiny-pager align="left" :total="100"></tiny-pager>
-    <tiny-pager align="center" :total="100"></tiny-pager>
-    <tiny-pager align="right" :total="100"></tiny-pager>
+    <TinyRadioGroup v-model="state.align" type="button" :options="state.options"></TinyRadioGroup>
+    <TinyPager :align="state.align" :total="100"></TinyPager>
   </div>
 </template>
 
 <script setup>
-import { TinyPager } from '@opentiny/vue'
-</script>
+import { reactive } from 'vue'
 
-<style scoped>
-.content {
-  margin-bottom: 20px;
-}
-.tiny-radio-group {
-  margin-bottom: 10px;
-}
-</style>
+import { TinyPager, TinyRadioGroup } from '@opentiny/vue'
+
+const state = reactive({
+  align: 'left',
+  options: ['left', 'center', 'right'].map((item) => ({ label: item, text: item }))
+})
+</script>

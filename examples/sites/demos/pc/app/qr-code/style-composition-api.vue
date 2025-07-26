@@ -1,15 +1,12 @@
 <template>
   <div class="qr-code-container">
-    <div>
-      <tiny-button @click="changeColor">改变颜色</tiny-button>
-    </div>
-    <br />
+    <tiny-color-picker v-model="params.color" />
     <tiny-qr-code v-bind="params"></tiny-qr-code>
   </div>
 </template>
 
 <script setup>
-import { TinyQrCode, TinyButton } from '@opentiny/vue'
+import { TinyQrCode, TinyColorPicker } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const params = ref({
@@ -18,8 +15,4 @@ const params = ref({
   size: 250,
   style: { background: '#f5f5f5', padding: '24px' }
 })
-
-const changeColor = () => {
-  params.value.color = '#666'
-}
 </script>

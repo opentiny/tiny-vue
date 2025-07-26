@@ -71,7 +71,8 @@ export const iconGroups = {
     'IconUp',
     'IconUpdate',
     'IconUpO',
-    'IconUpWard'
+    'IconUpWard',
+    'IconTriangleUp'
   ],
   Downward: [
     'IconArrowBottom',
@@ -388,7 +389,11 @@ export const iconGroups = {
     'IconSmile',
     'IconStarActive',
     'IconStarDisable',
-    'IconStarO'
+    'IconStarO',
+    'IconBadgeHotCn',
+    'IconBadgeHotEn',
+    'IconBadgeNewCn',
+    'IconBadgeNewEn'
   ],
   Tool: [
     'IconConfig',

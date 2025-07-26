@@ -85,7 +85,7 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
-import { hooks, isVue2 } from '@opentiny/vue-common'
+import { hooks } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedDetails } from './utils/autoCellWidth'
 import { funcs, headerProps, handleAllColumnPromises } from './funcs'
@@ -230,6 +230,7 @@ const Methods = {
   refreshData(data) {
     const next = () => {
       this.tableData = []
+      this.cellStatus.clear()
       return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
@@ -256,7 +257,7 @@ const Methods = {
   // 处理表格数据（过滤，排序，虚拟滚动需要渲染数据的条数）
   handleTableData(force) {
     // 在表格列就绪后，才处理数据过滤排序、保留选中、表头选中、多选禁用、默认状态
-    if (force && this.tableFullColumn?.length > 0) {
+    if (force && (this.tableFullColumn?.length > 0 || this.viewType !== GlobalConfig.viewConfig.DEFAULT)) {
       // 对表格全量数据进行过滤排序得到后全量数据，计算分组表数据，生成图形数据
       this.updateAfterFullData()
       // selectConfig.reserve保留多选状态，使用后全量数据计算表头多选状态
@@ -269,7 +270,7 @@ const Methods = {
     const { renderSize, startIndex } = scrollYStore
     const graphed = _graphInfo?.graphed
     const tableNode = scrollYLoad ? graphed?.slice(startIndex, startIndex + renderSize) : graphed
-    const tableData = tableNode?.map((node) => node.payload)
+    const tableData = tableNode?.map((node) => node.payload) || []
 
     this.tableNode = tableNode
     this.tableData = tableData
@@ -325,25 +326,70 @@ const Methods = {
       resolve()
     })
   },
+  getOriginRow(row) {
+    const { backupMap } = this
+
+    return backupMap.has(row) ? backupMap.get(row) : null
+  },
+  setOriginRow(row, record) {
+    const { backupMap } = this
+
+    if (backupMap.has(row) && record) {
+      backupMap.set(row, record)
+    }
+  },
   reloadRow(row, record, field) {
-    let { tableData, tableSourceData } = this
-    let rowIndex = this.getRowIndex(row)
-    let originRow = tableSourceData[rowIndex]
-    let hasSrc = originRow && row
-    let hasSrcNoField = hasSrc && !field
+    const { tableData, treeConfig, treeOrdered } = this
+    const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
+    const rowKey = getRowkey(this)
+    const originRow = this.getOriginRow(row)
+    const hasSrc = originRow && row
+    const hasSrcNoField = hasSrc && !field
+
     if (hasSrc && field) {
       set(originRow, field, get(record || row, field))
     }
+
     if (hasSrcNoField && record) {
-      tableSourceData[rowIndex] = record
+      const backupRow = this.defineField({ ...record, [rowKey]: originRow[rowKey] })
+      let rowChildren, clonedRow
+
+      if (treeConfig) {
+        backupRow[childrenKey] = undefined
+        rowChildren = row[childrenKey]
+
+        if (!treeOrdered) {
+          backupRow[temporaryIndex] = originRow[temporaryIndex]
+        }
+      }
+
+      clonedRow = clone(backupRow, true)
+
+      if (treeConfig) {
+        backupRow[childrenKey] = originRow[childrenKey]
+      }
+
+      this.setOriginRow(row, backupRow)
       clear(row, undefined)
-      Object.assign(row, this.defineField({ ...record }))
+      Object.assign(row, clonedRow, treeConfig ? { [childrenKey]: rowChildren } : null)
       this.updateCache()
     }
+
     if (hasSrcNoField && !record) {
-      destructuring(originRow, clone(row, true))
+      let clonedRow
+
+      if (treeConfig) {
+        clonedRow = clone({ ...row, [childrenKey]: undefined }, true)
+        clonedRow[childrenKey] = originRow[childrenKey]
+      } else {
+        clonedRow = clone(row, true)
+      }
+
+      destructuring(originRow, clonedRow)
     }
+
     this.tableData = tableData.slice(0)
+
     return this.$nextTick()
   },
   // 从新加载列配置
@@ -407,15 +453,15 @@ const Methods = {
     }
   },
   // 更新列的 Map
-  cacheColumnMap() {
-    let { fullColumnMap, tableFullColumn: fullColumn } = this
-    let fullColumnIdData = {}
+  cacheColumnMap(options) {
+    const { fullColumnMap } = this
+    const fullColumnIdData = {}
     this.fullColumnIdData = fullColumnIdData
-    Map.prototype.clear.apply(fullColumnMap)
-    fullColumn.forEach((column, index) => {
-      let colCache = { colid: column.id, column, index }
-      fullColumnIdData[column.id] = colCache
-      fullColumnMap.set(column, colCache)
+    fullColumnMap.clear()
+
+    options.columnCaches.forEach((cache) => {
+      fullColumnIdData[cache.colid] = cache
+      fullColumnMap.set(cache.column, cache)
     })
   },
   // 通过tr的dom元素获取行数据等相关信息
@@ -958,7 +1004,9 @@ const Methods = {
     let scrollXLoad = scrollX && scrollX.gt && scrollX.gt < tableFullColumn.length
     let tableColumn = visibleColumn
 
+    // 对所有列的列宽进行分类：百分比/px
     Object.assign(columnStore, { leftList, centerList, rightList })
+    this.analyColumnWidth()
 
     showGroupFixedError({ isColspan, isGroup, leftStartIndex, rightEndIndex, visibleColumn })
 
@@ -1085,6 +1133,11 @@ const Methods = {
       isScrollY = containerScrollHeight + scrollbarSize > containerHeight
     }
 
+    // 虚拟滚动如果没有height的话，表格滚动到底部表头会发生偏移，将height设置为max-height可避免
+    if (!this.height) {
+      this.bodyWrapperHeight = containerScrollHeight > this.bodyWrapperMaxHeight ? this.bodyWrapperMaxHeight : null
+    }
+
     Object.assign(this, {
       overflowX: isScrollX,
       overflowY: isScrollY,
@@ -1131,6 +1184,22 @@ const Methods = {
 
       if (typeof editor.blurOutside === 'function') {
         return Boolean(editor.blurOutside({ cell: args.cell, event }))
+      }
+
+      if (typeof editConfig.blurOutside === 'function') {
+        const bodyEl = document.body
+        if (
+          getEventTargetNode(event, bodyEl, 'tiny-autocomplete-suggestion').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-select-dropdown').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-cascader__dropdown').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-cascader-menus').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-picker-panel').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-popper').flag ||
+          getEventTargetNode(event, bodyEl, 'tiny-dialog-box').flag
+        ) {
+          return true
+        }
+        return Boolean(editConfig.blurOutside({ cell: args.cell, event, $table: this }))
       }
 
       const blurClassConfig = editor.blurClass || editConfig.blurClass
@@ -1979,21 +2048,6 @@ const Methods = {
       this._isUpdateData = false
     }
   },
-  watchDataForVue3() {
-    if (isVue2) return
-
-    const stopWatch = hooks.watch(
-      [() => this.data, () => this.data && this.data.length],
-      ([newData, newLength], [oldData, oldLength]) => {
-        // vue3下额外监控数组长度改变，解决push无响应等问题
-        if (Array.isArray(this.data) && newData === oldData && newLength !== oldLength) {
-          this.handleDataChange()
-        }
-      }
-    )
-
-    hooks.onBeforeUnmount(() => stopWatch())
-  },
   getVm(name) {
     return this.$grid.getVm(name)
   },
@@ -2045,7 +2099,7 @@ const Methods = {
         fastdom.mutate(() => {
           this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
-
+          requestAnimationFrame(() => this.$refs.tableBody?.resetStickyWrapperScrollPos())
           scrollXLoad && this.triggerScrollXEvent()
           scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
         })

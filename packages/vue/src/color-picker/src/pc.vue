@@ -27,7 +27,7 @@
         :history="state.stack"
         :format="format"
         :style="{
-          'min-width': '420px'
+          'min-width': '330px'
         }"
         :enable-history="state.enableHistory"
         :enable-predefine-color="state.enablePredefineColor"

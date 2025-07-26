@@ -1,4 +1,4 @@
-import { iconChevronUp, iconChevronDown } from '@opentiny/vue-icon'
+import { IconTriangleDown, IconTriangleUp } from '@opentiny/vue-icon'
 
 export default {
   validConfig: {
@@ -11,7 +11,7 @@ export default {
   icons: {
     // saas不需要默认排序图标
     sortDefault: null,
-    sortAsc: iconChevronUp(),
-    sortDesc: iconChevronDown()
+    sortAsc: IconTriangleUp(),
+    sortDesc: IconTriangleDown()
   }
 }

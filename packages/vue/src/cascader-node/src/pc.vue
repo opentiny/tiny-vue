@@ -119,6 +119,7 @@ export default defineComponent({
 
       const vnode = render ? render({ node, data: node.data }) : null
 
+      // 可用 state.nodeLabel 简化
       return <span class="tiny-cascader-node__label">{vnode || node.label}</span>
     }
 
