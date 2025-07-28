@@ -5,6 +5,12 @@
 
 import { ref } from 'vue'
 
-export { $local, $session } from './storage'
+import { $local, $session } from './storage'
 
-export const showTinyRobot = ref(true)
+export { $local, $session }
+
+export const showTinyRobot = ref(false)
+
+// 如果环境变量和本地变量都未定义，则提示用户填写
+export const isEnvLLMDefined = Boolean(import.meta.env.VITE_LLM_API_KEY && import.meta.env.VITE_LLM_URL)
+export const isLocalLLMDefined = Boolean($local.llmUrl && $local.llmApiKey)

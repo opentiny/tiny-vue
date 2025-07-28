@@ -5,6 +5,7 @@ import type { StreamHandler } from '@opentiny/tiny-robot-kit'
 import { BaseModelProvider } from '@opentiny/tiny-robot-kit'
 import type { AIModelConfig } from '@opentiny/tiny-robot-kit'
 import { reactive } from 'vue'
+import { $local, isEnvLLMDefined } from './utils'
 
 // 创建nextClient
 const nextClient = createClient(
@@ -57,8 +58,8 @@ const onToolCallChain = (extra: any, handler: StreamHandler) => {
 
 const mcpHost = createMCPHost({
   llmOption: {
-    url: 'https://api.deepseek.com/v1',
-    apiKey: 'xxx',
+    url: isEnvLLMDefined ? import.meta.env.VITE_LLM_URL : $local.llmUrl || '',
+    apiKey: isEnvLLMDefined ? import.meta.env.VITE_LLM_API_KEY : $local.llmApiKey || '',
     dangerouslyAllowBrowser: true,
     model: 'deepseek-chat',
     llm: 'deepseek'
