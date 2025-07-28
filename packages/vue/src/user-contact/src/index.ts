@@ -10,7 +10,7 @@
  *
  */
 
-import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import { $props, $setup, $prefix, defineComponent, type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
 export const userContactProps = {
