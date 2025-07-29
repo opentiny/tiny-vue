@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
+import { reactive, computed, watch, onMounted, nextTick, ref, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
@@ -106,6 +106,7 @@ import ApiDocs from '../../components/api-docs.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import { appData } from '../../tools/appData'
+import { cmpAnchorDataCallback } from '../../tools/globalMcpTool'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -441,6 +442,11 @@ const handleAnchorClick = (e, data) => {
     scrollByHash(hash)
   }
 }
+
+cmpAnchorDataCallback.value = () => state.currJson.demos
+onUnmounted(() => {
+  cmpAnchorDataCallback.value = null
+})
 
 defineExpose({ loadPage })
 </script>

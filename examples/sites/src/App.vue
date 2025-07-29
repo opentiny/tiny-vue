@@ -10,7 +10,7 @@
     <div class="right-panel" :class="{ collapsed: !showTinyRobot }">
       <tiny-robot-chat />
     </div>
-    <IconAi @click="handleShowTinyRobot" class="style-settings-icon"></IconAi>
+    <IconAi v-show="!showTinyRobot" @click="handleShowTinyRobot" class="style-settings-icon"></IconAi>
     <tiny-dialog-box
       v-model:visible="boxVisibility"
       :close-on-click-modal="false"
@@ -136,7 +136,7 @@ const handleShowTinyRobot = () => {
     padding: 34px 0 0;
   }
 }
-.right-panel {
+.right-panel:not(.collapsed) {
   :deep(.tr-container) {
     z-index: 9999;
   }
