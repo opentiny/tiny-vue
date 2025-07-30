@@ -3,7 +3,7 @@
 
   <tr-container v-model:show="showTinyRobot" v-model:fullscreen="fullscreen">
     <tr-bubble-provider :message-renderers="messageRenderers">
-      <div v-if="showMessages.length === 0">
+      <div class="robot-top-msg" v-if="showMessages.length === 0">
         <tr-welcome title="智能助手" description="您好，我是Opentiny AI智能助手" :icon="welcomeIcon">
           <template #footer>
             <div class="welcome-footer"></div>
@@ -17,7 +17,8 @@
           @item-click="handlePromptItemClick"
         ></tr-prompts>
       </div>
-      <tr-bubble-list v-else :items="showMessages" :roles="roles" auto-scroll> </tr-bubble-list>
+      <tr-bubble-list v-else class="robot-top-msg markdown-body" :items="showMessages" :roles="roles" auto-scroll>
+      </tr-bubble-list>
     </tr-bubble-provider>
 
     <template #footer>
@@ -171,6 +172,11 @@ watch(() => messages.value[messages.value.length - 1]?.content, scrollToBottom)
   width: 300px;
   height: 600px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/** 聊天顶部要撑开空间 */
+.robot-top-msg {
+  flex: 1;
 }
 </style>
 

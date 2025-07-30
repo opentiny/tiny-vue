@@ -10,7 +10,7 @@
     <div class="right-panel" :class="{ collapsed: !showTinyRobot }">
       <tiny-robot-chat />
     </div>
-    <IconAi @click="handleShowTinyRobot" class="style-settings-icon"></IconAi>
+    <IconAi v-show="!showTinyRobot" @click="handleShowTinyRobot" class="style-settings-icon"></IconAi>
     <tiny-dialog-box
       v-model:visible="boxVisibility"
       :close-on-click-modal="false"
