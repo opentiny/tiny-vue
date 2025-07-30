@@ -2,6 +2,9 @@ import { genMenus } from '../menus'
 import { z } from 'zod'
 import { useRouter } from 'vue-router'
 
+// 组件页面的右上导航的数据回调函数
+export const cmpAnchorDataCallback = { value: null }
+
 export const createGlobalMcpTool = (server) => {
   const router = useRouter()
   server.registerResource(
@@ -26,11 +29,13 @@ export const createGlobalMcpTool = (server) => {
     'swtich-router',
     {
       title: 'router',
-      description: '可以帮用户跳转页面，比如：跳转到组件文档页面和API文档页面',
+      description: '可以帮用户跳转到文档页面，组件示例的总页面或组件API文档页面，或组件库的概览页面',
       inputSchema: {
         key: z.string().describe('跳转页面路径'),
-        type: z.enum(['components', 'docs', 'overview', 'features']).describe('跳转页面类型'),
-        isOpenApi: z.boolean().describe('是否打开API文档')
+        type: z
+          .enum(['components', 'docs', 'overview', 'features'])
+          .describe('跳转页面类型，比如：组件的页面，文档的页面，组件的概览页面'),
+        isOpenApi: z.boolean().describe('跳转到组件页面时，是否打开API文档')
       }
     },
     async ({ key, type, isOpenApi }) => {
@@ -47,6 +52,49 @@ export const createGlobalMcpTool = (server) => {
             text: `跳转页面成功: ${key}`
           }
         ]
+      }
+    }
+  )
+
+  server.registerTool(
+    'get-component-demos',
+    {
+      title: '查询全部示例的信息',
+      description:
+        '查询当前组件的全部示例信息，demos信息。返回值是一个数组，其中每一项的 demoId 属性是示例的键，通过键可以跳转到该示例。desc属性是示例的详细描述。',
+      inputSchema: {}
+    },
+    async () => {
+      // 通知组件页面返回右侧导航的数据
+      if (cmpAnchorDataCallback.value != null) {
+        const links = cmpAnchorDataCallback.value()
+
+        return {
+          content: [{ type: 'text', text: JSON.stringify(links) }]
+        }
+      } else {
+        return {
+          content: [{ type: 'text', text: '找不到示例' }]
+        }
+      }
+    }
+  )
+
+  server.registerTool(
+    'jump-to-demo',
+    {
+      title: '跳转到组件的示例demo',
+      description: '根据参数demoId, 跳转到指定的示例demo。',
+      inputSchema: {
+        demoId: z.string().describe('示例的id,唯一标识。')
+      }
+    },
+    async ({ demoId }) => {
+      // 通知组件页面返回右侧导航的数据
+      location.hash = '#' + demoId
+
+      return {
+        content: [{ type: 'text', text: '跳转示例成功' }]
       }
     }
   )

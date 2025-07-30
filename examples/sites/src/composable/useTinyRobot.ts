@@ -22,8 +22,13 @@ export const useTinyRobot = () => {
 
   const promptItems = [
     {
-      label: '智能操作网页',
-      description: '帮我选中最贵的手机商品',
+      label: '快速跳到文档',
+      description: '帮我切换到国际化指南',
+      icon: h('span', { style: { fontSize: '18px' } }, '🕹')
+    },
+    {
+      label: '快速跳到组件',
+      description: '帮我切换到 Select 组件',
       icon: h('span', { style: { fontSize: '18px' } }, '🕹')
     }
   ]
@@ -54,14 +59,24 @@ export const useTinyRobot = () => {
   const suggestionPillItems = [
     {
       id: '1',
-      text: '帮我选中最贵的手机商品',
-      icon: h('span', { style: { fontSize: '18px' } }, '🕹')
+      text: 'Select',
+      icon: h('span', { style: { fontSize: '18px' } }, '🧩')
+    },
+    {
+      id: '1',
+      text: '表格',
+      icon: h('span', { style: { fontSize: '18px' } }, '🧩')
+    },
+    {
+      id: '1',
+      text: '树组件',
+      icon: h('span', { style: { fontSize: '18px' } }, '🧩')
     }
   ]
 
   function handleSuggestionPillItemClick(item: SuggestionItem) {
     if (item.id === '1') {
-      let templateText = `请对 [目标组件] ,执行 [操作]`
+      let templateText = `帮我跳转到 [目标组件]`
       let currentInitialValue = { 目标组件: item.text, 操作: '' }
 
       if (senderRef.value) {
