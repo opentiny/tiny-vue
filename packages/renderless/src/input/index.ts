@@ -161,7 +161,11 @@ export const calcTextareaHeight =
         minHeight = props.height
       }
       if (!state.isDisplayOnly) {
-        height = Math.max(minHeight, height)
+        if (props.autosize) {
+          height = Math.max(minHeight, height)
+        } else {
+          height = Math.min(minHeight, height)
+        }
         textareaStyle.minHeight = `${Math.floor(minHeight)}px`
       } else {
         textareaStyle.minHeight = `0px`

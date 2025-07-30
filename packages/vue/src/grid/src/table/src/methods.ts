@@ -584,7 +584,7 @@ const Methods = {
     const value = get(row, field)
     const originalValue = get(originalRow, field)
     const column = this.getColumnByField(field)
-    const equals = column.equals || this.equals
+    const equals = column?.equals || this.equals
     let result
 
     // 如果存在列级或表格级自定义比较配置，就进行外部比较
@@ -826,7 +826,7 @@ const Methods = {
     this.treeConfig && this.handleDefaultTreeExpand()
 
     this.updateFooter()
-    this.$nextTick(() => setTimeout(this.recalculate))
+    this.$nextTick(this.recalculate)
   },
   // 动态列处理
   mergeCustomColumn(customColumns, sort, colWidth) {

@@ -1,6 +1,6 @@
 import { reactive, computed, watch } from 'vue'
 import { router } from '@/router.js'
-import { getAllComponents } from '@/menus.jsx'
+import { getAllComponents } from '@/menus'
 import demoConfig from '@demos/config.js'
 import { staticDemoPath } from '../views/components-doc/cmp-config'
 

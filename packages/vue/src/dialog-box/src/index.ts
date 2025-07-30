@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, $props, $setup, defineComponent, type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 export const $constants = {
@@ -131,6 +130,9 @@ export const dialogBoxProps = {
   customStyle: {
     type: Object,
     default: () => ({})
+  },
+  onClose: {
+    type: Function as PropType<() => void>
   }
 }
 

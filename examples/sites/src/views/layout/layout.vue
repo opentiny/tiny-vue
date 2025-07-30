@@ -59,7 +59,7 @@
 import { useRoute } from 'vue-router'
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
-import { genMenus, getMenuIcons } from '@/menus.jsx'
+import { genMenus, getMenuIcons } from '@/menus'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
