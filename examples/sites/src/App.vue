@@ -136,11 +136,6 @@ const handleShowTinyRobot = () => {
     padding: 34px 0 0;
   }
 }
-.right-panel {
-  :deep(.tr-container) {
-    z-index: 9999;
-  }
-}
 
 .style-settings-icon {
   position: fixed;
