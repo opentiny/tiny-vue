@@ -10,10 +10,8 @@
  *
  */
 export default {
-  'en-US': 'English',
-  'zh-CN': 'Chinese',
-  'en_US': 'English',
-  'zh_CN': 'Chinese',
+  'enUS': 'English',
+  'zhCN': 'Chinese',
   'zh-TW': 'China Taiwan',
   hello: 'Hello {name}',
   code: 'en-US',
