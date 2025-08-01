@@ -62,6 +62,10 @@
                 @jump-to-demo="jumpToDemo"
               ></api-docs>
             </tiny-tab-item>
+            <tiny-tab-item v-if="state.tokenList?.length" title="Token" name="token">
+              <!-- 主题变量 -->
+              <design-token :name="state.cmpId" :tokenList="state.tokenList" />
+            </tiny-tab-item>
             <tiny-tab-item v-if="appData.hasFloatRobot" title="MCP" name="MCP">
               <McpDocs :name="state.cmpId" />
             </tiny-tab-item>
@@ -72,6 +76,7 @@
 
         <!-- demo与api目录锚点 -->
         <aside-anchor
+          v-if="state.activeTab === 'demos' || state.activeTab === 'api'"
           :active-tab="state.activeTab"
           :current-json="state.currJson"
           :anchor-affix="state.anchorAffix"
@@ -103,9 +108,11 @@ import AsideAnchor from '../../components/anchor.vue'
 import ComponentHeader from '../../components/header.vue'
 import ComponentContributor from '../../components/contributor.vue'
 import ApiDocs from '../../components/api-docs.vue'
+import DesignToken from '../../components/design-token.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import { appData } from '../../tools/appData'
+import list from '@opentiny/vue-theme/token'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -124,6 +131,7 @@ const state = reactive({
   langKey: getWord('zh-CN', 'en-US'),
   cmpId: '',
   observer: null,
+  tokenList: [],
   currJson: { column: 1, demos: [], apis: [], types: {} },
   mdString: '',
   currDemoId: '',
@@ -189,7 +197,6 @@ const parseApiData = () => {
   if (!state.currJson.apis?.length) {
     return {}
   }
-
   const tableData = {}
   const apis = state.currJson.apis || []
   for (const apiGroup of apis) {
@@ -311,7 +318,7 @@ const loadPage = () => {
         document.querySelector('.tiny-tabs__header').style.display = 'none'
       }
     }
-
+    state.tokenList = list[state.cmpId] || []
     const { finishTask, waitTasks: allDemoMounted } = useTasksFinish(state.currJson.demos.length)
     finishMountTask = finishTask
 
