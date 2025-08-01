@@ -85,18 +85,29 @@ export default () => {
   // 读取文件
   const readFile = (fileDir) => {
     const varsPath = `${originRootPath}/${fileDir}/${originFilePath}`
-
-    const content = fs.readFileSync(varsPath, { encoding: 'utf-8' })
-
-    return parseVarsFile(content)
+    try {
+      const content = fs.readFileSync(varsPath, { encoding: 'utf-8' })
+      return parseVarsFile(content)
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.console.log(error)
+      return []
+    }
   }
 
   // 判断某目录下某文件是否存在
   const isFileExist = (fileDir) => {
     const path = `${originRootPath}/${fileDir}/${originFilePath}`
-    const exist = fs.existsSync(path)
-    if (exist) {
-      return readFile(fileDir)
+    try {
+      const exist = fs.existsSync(path)
+      if (exist) {
+        return readFile(fileDir)
+      }
+      return []
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.console.log(error)
+      return []
     }
   }
 
@@ -117,8 +128,11 @@ export default () => {
   // 读取目录
   const data = fs.readdirSync(originRootPath)
   data.forEach((fileDir) => {
-    tokenList[fileDir] = mkStat(fileDir)
+    const fileTokens = mkStat(fileDir)
+    if (fileTokens && fileTokens.length) {
+      tokenList[fileDir] = fileTokens
+    }
   })
 
-  writeFile(tokenList)
+  writeFile()
 }
