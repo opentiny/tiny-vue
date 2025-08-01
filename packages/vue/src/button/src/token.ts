@@ -48,7 +48,7 @@ export const classes = {
   'no-round': 'rounded',
   'is-round': 'rounded-full',
   'is-border': 'border-0.5 sm:border',
-  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-2 pr-2 py-1 leading-5.5',
+  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-2 pr-2 leading-5.5',
   'is-circle': 'sm:min-w-[theme(spacing.18)] sm:rounded-full sm:pl-2 sm:pr-2',
   'button-icon': '-mt-0.5 sm:text-base fill-current',
   'button-icon-default': 'text-color-icon-primary hover:text-color-icon-hover active:text-color-icon-active',
