@@ -1,14 +1,14 @@
 <template>
-  <div class="mcp-list">
-    <div class="mcp-title">
+  <div class="tiny-token-list">
+    <div class="tiny-token-title">
       <h2>{{ capName }} 主题变量</h2>
       <tiny-popover width="800" trigger="hover">
         <div>
-          <div class="token-demo">
+          <div class="tiny-token-demo">
             <async-highlight :code="content"></async-highlight>
           </div>
           <tiny-link
-            :icon="iconViewFlowchart"
+            :icon="TinyIconViewFlowchart"
             :underline="false"
             href="https://opentiny.design/opentiny-design/guide/theme"
             target="_blank"
@@ -17,7 +17,7 @@
         </div>
         <template #reference>
           <div class="tiny-design">
-            <tiny-button type="text" :icon="iconHelpCircle" text="如何定制"> </tiny-button>
+            <tiny-button type="text" :icon="TinyIconHelpCircle" text="如何定制"> </tiny-button>
           </div>
         </template>
       </tiny-popover>
@@ -33,8 +33,8 @@
 <script setup>
 import { TinyGrid, TinyGridColumn, TinyPopover, TinyButton, TinyLink } from '@opentiny/vue'
 import { camelize, capitalize } from '@vue/shared'
-import { onMounted, computed, ref } from 'vue'
-import { IconHelpCircle, IconViewFlowchart } from '@opentiny/vue-icon'
+import { computed, ref } from 'vue'
+import { iconHelpCircle, iconViewFlowchart } from '@opentiny/vue-icon'
 import AsyncHighlight from './async-highlight.vue'
 
 const props = defineProps({
@@ -42,8 +42,8 @@ const props = defineProps({
   tokenList: Array
 })
 
-const iconHelpCircle = IconHelpCircle()
-const iconViewFlowchart = IconViewFlowchart()
+const TinyIconHelpCircle = iconHelpCircle()
+const TinyIconViewFlowchart = iconViewFlowchart()
 const capName = computed(() => capitalize(camelize(props.name)))
 const theme = '`'
 const content = ref(
@@ -53,15 +53,13 @@ const content = ref(
     </tiny-config-provider>
   `
 )
-
-onMounted(() => {})
 </script>
 
 <style scoped lang="less">
-.mcp-list {
+.tiny-token-list {
   padding-bottom: 150px;
 }
-.mcp-title {
+.tiny-token-title {
   font-size: 16px;
   font-weight: bold;
   margin-top: 26px;
@@ -85,7 +83,7 @@ h2 {
   width: 270px;
   border: 1px solid #191919;
 }
-.token-demo {
+.tiny-token-demo {
   border: 1px solid #efeff4;
   margin-bottom: 12px;
 }
