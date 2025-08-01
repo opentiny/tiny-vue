@@ -8,34 +8,108 @@
   display: flex;
   flex-direction: column;
   position: absolute;
+  position: relative;
   min-width: 320px;
   z-index: 10;
+  margin-top: 8px;
   background: var(--tv-ColorSelectPanel-bg-color);
   gap: var(--tv-ColorSelectPanel-spacing);
   padding: var(--tv-ColorSelectPanel-padding-y) var(--tv-ColorSelectPanel-padding-x);
   box-shadow: var(--tv-ColorSelectPanel-box-shadow);
   border-radius: var(--tv-ColorSelectPanel-border-radius-md);
 
+  &__display {
+    position: absolute;
+    top: 170px;
+    right: 16px;
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+  }
+
+  &__no-alpha {
+    width: 85%;
+    height: 12px;
+    margin-top: 12px;
+  }
+
   &__tools {
     display: flex;
-    margin: 6px 0;
+    flex-direction: row;
+    gap: 8px;
+    line-height: 30px;
+    height: 30px;
+    margin-top: 16px;
 
-    .tiny-input {
-      flex: 1 0 0;
+    &-style {
+      flex: 1;
+    }
+
+    &-hex {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    &-hex1 {
+      flex: 1;
+    }
+
+    &-hex2 {
+      width: 52px;
+    }
+
+    &-hex3 {
+      flex: 1;
+    }
+
+    &-hex4 {
+      width: 31%;
+    }
+
+    &-hex5 {
+      width: 31%;
+    }
+
+    &-hex6 {
+      width: 31%;
+    }
+
+    &-hex7 {
+      width: 31%;
     }
 
     &-btns {
+      display: flex;
+      flex-direction: row-reverse;
       margin-left: 8px;
+      margin-top: 16px;
+
+      button {
+        margin-left: 12px;
+      }
+    }
+
+    .tiny-input .tiny-input__inner {
+      padding-left: 6px;
+      padding-right: 6px;
     }
 
     &__format-select {
       // tiny-select 没办法用fit-content, 暂时写死
-      width: 96px;
+      width: 60px;
+
+      .tiny-select .tiny-input .tiny-input__inner {
+        padding-left: 0;
+        padding-right: 0;
+        border-width: 0;
+      }
     }
   }
 
   &__inner {
     display: flex;
+    flex-direction: column;
     gap: 12px;
 
     &__color-select {
@@ -73,66 +147,94 @@
 
     &__hue-select {
       position: relative;
-      width: 8px;
-      border-radius: var(--tv-ColorSelectPanel-border-radius-lg);
-      background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+      width: 85%;
+      height: 12px;
+      border-radius: 12px;
+      background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
 
-      div {
+      &-thumb {
         position: absolute;
-        top: 0;
-        width: 100%;
-        height: 4px;
+        position: relative;
+        top: -2px;
+        width: 16px;
+        height: 16px;
         background: #fff;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-        border-radius: 1px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        border-radius: 16px;
+
+        &-heart {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
     }
   }
 
   &__alpha {
     position: relative;
-    min-width: 240px;
-    height: 8px;
-    border-radius: var(--tv-ColorSelectPanel-border-radius-lg);
-    margin-top: var(--tv-ColorSelectPanel-alpha-margin-top);
+    width: 85%;
+    height: 12px;
+    border-radius: 12px;
+    margin-top: 12px;
 
     &__slider {
       width: 100%;
       height: 100%;
-      border-radius: var(--tv-ColorSelectPanel-border-radius-lg);
+      border-radius: 12px;
     }
 
     &__thumb {
-      width: 4px;
-      height: 100%;
+      position: relative;
       position: absolute;
-      top: 0;
+      top: -2px;
+      width: 16px;
+      height: 16px;
       left: 0;
       background: #fff;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-      border-radius: 1px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+
+      &-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 
-  .tiny-collapse {
-    .tiny-collapse-item__content {
-      border: 0;
-      padding: 12px;
+  .@{color-select-panel-prefix-cls}__history,
+  .@{color-select-panel-prefix-cls}__predefine {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    gap: var(--tv-ColorSelectPanel-predefine-spacing);
+    padding-top: 16px;
 
-      .@{color-select-panel-prefix-cls}__history,
-      .@{color-select-panel-prefix-cls}__predefine {
-        display: flex;
-        flex-wrap: wrap;
-        height: auto;
-        gap: var(--tv-ColorSelectPanel-spacing);
-
-        &__color-block {
-          width: 20px;
-          height: 20px;
-          border-radius: var(--tv-ColorSelectPanel-border-radius-sm);
-          margin: 0 4px 4px 0;
-        }
-      }
+    &__color-block {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--tv-ColorSelectPanel-border-radius-sm);
     }
+  }
+
+  .@{color-select-panel-prefix-cls}__history {
+    border-bottom: 1px solid #808080;
+    padding-bottom: 16px;
+  }
+
+  .@{color-select-panel-prefix-cls}__predefine-title {
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    margin-top: 13px;
   }
 }

@@ -6,11 +6,12 @@ test('简化版筛选面板 - 单选/多选菜单', async ({ page }) => {
   await page.getByRole('cell', { name: '公司名称' }).getByRole('img').click()
 
   // 筛选面板搜索功能
-  await page.getByRole('textbox').nth(1).click()
-  await page.getByRole('textbox').nth(1).fill('a')
+  const filterInput = page.locator('.tiny-grid__filter-wrapper.filter__active input')
+  await filterInput.click()
+  await filterInput.fill('a')
   await expect(page.getByRole('listitem').filter({ hasText: '暂无数据' })).toBeVisible()
-  await page.getByRole('textbox').nth(1).click()
-  await page.getByRole('textbox').nth(1).fill('')
+  await filterInput.click()
+  await filterInput.fill('')
   await page.getByTitle('GFD 科技 YX 公司').click()
   await page.getByTitle('WWW 科技 YX 公司').click()
 

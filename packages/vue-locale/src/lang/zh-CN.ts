@@ -118,7 +118,7 @@ export default {
       value: '数值'
     },
     colorSelectPanel: {
-      confirm: '选择',
+      confirm: '确定',
       cancel: '取消',
       predefine: '预定义颜色',
       history: '历史记录',

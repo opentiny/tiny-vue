@@ -176,7 +176,6 @@ export default {
       }
 
       cb && cb(opt.status)
-      return opt.status
     }
     return Promise.all(rowValids).then(onFulfilled).catch(onRejected(opt, this))
   },

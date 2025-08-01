@@ -380,6 +380,7 @@ import IconText from './src/text'
 import IconTime from './src/time'
 import IconTotal from './src/total'
 import IconTriangleDown from './src/triangle-down'
+import IconTriangleUp from './src/triangle-up'
 import IconUndelete from './src/undelete'
 import IconUnderline from './src/underline'
 import IconUndo from './src/undo'
@@ -1455,6 +1456,8 @@ export {
   IconTotal as iconTotal,
   IconTriangleDown,
   IconTriangleDown as iconTriangleDown,
+  IconTriangleUp,
+  IconTriangleUp as iconTriangleUp,
   IconUndelete,
   IconUndelete as iconUndelete,
   IconUnderline,
@@ -2063,6 +2066,7 @@ export default {
   IconTime,
   IconTotal,
   IconTriangleDown,
+  IconTriangleUp,
   IconUndelete,
   IconUnderline,
   IconUndo,

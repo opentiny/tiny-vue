@@ -2,6 +2,13 @@
   <div class="tiny-color-select-panel" @click.stop v-if="state.showPicker" v-clickoutside="onClickOutside">
     <hue-select :color="state.color" @hue-ready="onHueReady" @sv-ready="onSvReady" />
     <alpha-select v-if="alpha" :color="state.color" @ready="onAlphaReady" />
+    <div class="tiny-color-select-panel__no-alpha" v-if="!alpha"></div>
+    <div
+      class="tiny-color-select-panel__display"
+      :style="{
+        background: state.color.value
+      }"
+    ></div>
     <div class="tiny-color-select-panel__tools">
       <div class="tiny-color-select-panel__tools__format-select" v-if="state.formats.length">
         <tiny-select v-model="state.currentFormat" size="small">
@@ -13,50 +20,54 @@
           />
         </tiny-select>
       </div>
-      <tiny-input v-model="state.input" size="small" />
-      <div class="tiny-color-select-panel__tools-btns">
-        <tiny-button size="small" @click="onCancel">
-          {{ t('ui.colorSelectPanel.cancel') }}
-        </tiny-button>
-        <tiny-button type="primary" size="small" @click="onConfirm">
-          {{ t('ui.colorSelectPanel.confirm') }}
-        </tiny-button>
+      <div class="tiny-color-select-panel__tools-style">
+        <div
+          class="tiny-color-select-panel__tools-hex"
+          v-if="state.currentFormat === 'hex' || state.currentFormat === 'css' || !state.currentFormat"
+        >
+          <tiny-input class="tiny-color-select-panel__tools-hex1" v-model="state.input" />
+        </div>
+        <div class="tiny-color-select-panel__tools-hex" v-else>
+          <tiny-input class="tiny-color-select-panel__tools-hex4" v-model="state.hexInput4" />
+          <tiny-input class="tiny-color-select-panel__tools-hex5" v-model="state.hexInput5" />
+          <tiny-input class="tiny-color-select-panel__tools-hex6" v-model="state.hexInput6" />
+          <tiny-input class="tiny-color-select-panel__tools-hex7" v-model="state.hexInput7" />
+        </div>
       </div>
     </div>
-    <tiny-collapse>
-      <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.enableHistory">
-        <div class="tiny-color-select-panel__history" v-if="state.stack.length">
-          <div
-            class="tiny-color-select-panel__history__color-block"
-            v-for="(color, key) in state.stack"
-            :key="key"
-            :style="{
-              background: color
-            }"
-            @click="() => onHistoryClick(color)"
-          ></div>
-        </div>
-        <div v-if="!state.stack.length">{{ t('ui.colorSelectPanel.empty') }}</div>
-      </tiny-collapse-item>
-      <tiny-collapse-item
-        :title="t('ui.colorSelectPanel.predefine')"
-        name="predefine"
-        v-if="state.enablePredefineColor"
-      >
-        <div class="tiny-color-select-panel__predefine" v-if="state.predefineStack.length">
-          <div
-            class="tiny-color-select-panel__predefine__color-block"
-            v-for="(color, key) in state.predefineStack"
-            :key="key"
-            :style="{
-              background: color
-            }"
-            @click="() => onPredefineColorClick(color)"
-          ></div>
-        </div>
-        <div v-if="!state.predefineStack.length">{{ t('ui.colorSelectPanel.empty') }}</div>
-      </tiny-collapse-item>
-    </tiny-collapse>
+    <div v-if="state.enableHistory">
+      <div class="tiny-color-select-panel__history" v-if="state.enableHistory && state.stack.length">
+        <div
+          class="tiny-color-select-panel__history__color-block"
+          v-for="(color, key) in state.stack"
+          :key="key"
+          :style="{
+            background: color
+          }"
+          @click="() => onHistoryClick(color)"
+        ></div>
+      </div>
+    </div>
+    <div v-if="state.enablePredefineColor" class="tiny-color-select-panel__predefine-title">
+      {{ t('ui.colorSelectPanel.predefine') }}
+    </div>
+    <div class="tiny-color-select-panel__predefine" v-if="state.enablePredefineColor && state.predefineStack.length">
+      <div
+        class="tiny-color-select-panel__predefine__color-block"
+        v-for="(color, key) in state.predefineStack"
+        :key="key"
+        :style="{
+          background: color
+        }"
+        @click="() => onPredefineColorClick(color)"
+      ></div>
+    </div>
+    <div class="tiny-color-select-panel__tools-btns">
+      <tiny-button size="small" type="primary" @click="onConfirm">
+        {{ t('ui.colorSelectPanel.confirm') }}
+      </tiny-button>
+      <tiny-button type="text" :text="t('ui.colorSelectPanel.cancel')" size="small" @click="onCancel"> </tiny-button>
+    </div>
   </div>
 </template>
 
@@ -69,8 +80,6 @@ import HueSelect from './components/hue-select.vue'
 import AlphaSelect from './components/alpha-select.vue'
 import '@opentiny/vue-theme/color-select-panel/index.less'
 import { Clickoutside } from '@opentiny/vue-directive'
-import Collapse from '@opentiny/vue-collapse'
-import CollapseItem from '@opentiny/vue-collapse-item'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
 
@@ -92,8 +101,6 @@ export default defineComponent({
     AlphaSelect,
     TinyButton: Button,
     TinyInput: Input,
-    TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem,
     TinySelect: Select,
     TinyOption: Option
   },

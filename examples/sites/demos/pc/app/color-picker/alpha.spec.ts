@@ -8,7 +8,7 @@ test('测试 Alpha', async ({ page }) => {
   await page.getByRole('button', { name: '取消' }).click()
   await page.getByText('用户选择了取消').click()
   await page.locator('.tiny-color-picker__inner').click()
-  await page.getByRole('button', { name: '选择' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   // default is hex
-  await page.getByText('#804040FF').click()
+  await page.getByText('#66CCFFFF').click()
 })

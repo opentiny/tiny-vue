@@ -43,9 +43,8 @@
     <tiny-popover
       width="180"
       placement="left-end"
-      trigger="manual"
+      trigger="click"
       :visible-arrow="false"
-      v-model="demoStyleVisible"
       popper-class="opt-menu style-settings-menu theme-settings-popover"
     >
       <div v-for="(item, index) in styleSettings" :key="index" class="style-settings-item">
@@ -60,11 +59,7 @@
       </div>
       <template #reference>
         <div>
-          <div
-            class="settings-btn style-settings-btn"
-            @click="demoStyleVisible = !demoStyleVisible"
-            @blur="demoStyleVisible = false"
-          >
+          <div class="settings-btn style-settings-btn">
             <style-settings-icon class="settings-icon style-settings-icon"></style-settings-icon>
           </div>
         </div>
@@ -121,7 +116,6 @@ export default defineComponent({
     const floatSettings = ref(null)
 
     const state = reactive({
-      demoStyleVisible: false,
       themeData: [],
       styleSettings: getStyleSettings(i18nByKey),
       settingsStyle: {

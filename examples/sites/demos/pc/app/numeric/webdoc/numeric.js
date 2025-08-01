@@ -166,6 +166,18 @@ export default {
       codeFiles: ['change-event.vue']
     },
     {
+      demoId: 'input-event',
+      name: {
+        'zh-CN': '输入事件',
+        'en-US': 'Input Event'
+      },
+      desc: {
+        'zh-CN': '<p>输入时触发<code>input</code>事件。<p>',
+        'en-US': '<p>Trigger the <code>input</code> event upon input. </p>'
+      },
+      codeFiles: ['input-event.vue']
+    },
+    {
       demoId: 'focus-event',
       name: {
         'zh-CN': '聚焦事件',

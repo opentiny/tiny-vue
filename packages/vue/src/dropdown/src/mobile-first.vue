@@ -123,8 +123,11 @@ export default defineComponent({
 
       const defaultIcon = (
         <span class="block text-[0]">
-          <icon-chevron-down class="sm:block hidden will-change-transform" />
-          <icon-arrow-bottom class="sm:hidden block will-change-transform" />
+          {state.current !== 'default' ? (
+            <icon-chevron-down class="sm:block hidden will-change-transform" />
+          ) : (
+            <icon-arrow-bottom class="sm:hidden block will-change-transform" />
+          )}
         </span>
       )
 
@@ -160,8 +163,8 @@ export default defineComponent({
             type === 'primary'
               ? '[&_svg]:fill-color-bg-1'
               : state.visible
-              ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
-              : '[&_svg]:fill-color-icon-placeholder'
+                ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
+                : '[&_svg]:fill-color-icon-placeholder'
           ]}
           reset-time={0}>
           {defaultSlot}
@@ -192,7 +195,7 @@ export default defineComponent({
     return (
       <div
         class={[
-          'relative inline-block [&>span:nth-of-type(1)]:text-color-brand-focus [&>span:nth-of-type(1)]:text-sm sm:[&>span:nth-of-type(1)]:text-xs',
+          'relative inline-block [&>span:nth-of-type(1)]:text-color-brand-focus [&>span:nth-of-type(1)]:text-sm sm:[&>span:nth-of-type(1)]:text-sm',
           disabled && '[&>span:nth-of-type(1)]:text-color-brand-focus',
           state.showSelfIcon && 'leading-4 h-4 [&_svg]:align-top [&_svg]:rotate-0'
         ]}

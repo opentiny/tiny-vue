@@ -96,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
+import { reactive, computed, watch, onMounted, nextTick, ref, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { TinyTabs, TinyTabItem } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
@@ -113,6 +113,7 @@ import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import { appData } from '../../tools/appData'
 import list from '@opentiny/vue-theme/token'
+import { cmpAnchorDataCallback } from '../../tools/globalMcpTool'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -128,7 +129,7 @@ const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
 const route = useRoute()
 const state = reactive({
-  langKey: getWord('zh-CN', 'en-US'),
+  langKey: getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR'),
   cmpId: '',
   observer: null,
   tokenList: [],
@@ -289,7 +290,7 @@ const demoMounted = () => {
 }
 
 const loadPage = () => {
-  const lang = getWord('cn', 'en')
+  const lang = getWord('cn', 'en', 'es', 'pt')
   state.cmpId = router.currentRoute.value.params.cmpId
 
   state.chartCode = getWebdocPath(state.cmpId) === 'chart'
@@ -448,6 +449,11 @@ const handleAnchorClick = (e, data) => {
     scrollByHash(hash)
   }
 }
+
+cmpAnchorDataCallback.value = () => state.currJson.demos
+onUnmounted(() => {
+  cmpAnchorDataCallback.value = null
+})
 
 defineExpose({ loadPage })
 </script>

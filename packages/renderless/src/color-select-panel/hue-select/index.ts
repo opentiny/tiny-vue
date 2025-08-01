@@ -18,8 +18,8 @@ export const initState = (
   { reactive, ref, computed }: ISharedRenderlessParamHooks
 ) => {
   const hueValue = computed(() => props.color.get('hue'))
-  const thumbTop = ref(0)
-  const state = reactive({ hueValue, thumbTop })
+  const thumbLeft = ref(0)
+  const state = reactive({ hueValue, thumbLeft })
   return state
 }
 
@@ -48,10 +48,10 @@ export const useEvent = (
     if (!bar.value) {
       return 0
     }
-    return (hue * (bar.value.offsetHeight - thumb.value.offsetHeight / 2)) / 360
+    return (hue * (bar.value.offsetWidth - thumb.value.offsetWidth / 2)) / 360
   }
   const update = () => {
-    state.thumbTop = getThumbTop()
+    state.thumbLeft = getThumbTop()
   }
   const onDrag = (event: MouseEvent | TouchEvent) => {
     if (!bar.value || !thumb.value) {
@@ -62,13 +62,12 @@ export const useEvent = (
       return
     }
     const rect = el?.getBoundingClientRect()
-    const { clientY } = getClientXY(event)
-    let top = clientY - rect.top
-
-    top = Math.min(top, rect.height - thumb.value.offsetHeight / 2)
-    top = Math.max(thumb.value.offsetHeight / 2, top)
-    const hue = Math.round(((top - thumb.value.offsetHeight / 2) / (rect.height - thumb.value.offsetHeight)) * 360)
-    state.thumbTop = top
+    const { clientX } = getClientXY(event)
+    let left = clientX - rect.left
+    left = Math.min(left, rect.width - thumb.value.offsetWidth / 2)
+    left = Math.max(thumb.value.offsetWidth / 2, left)
+    const hue = Math.round(((left - thumb.value.offsetWidth / 2) / (rect.width - thumb.value.offsetWidth)) * 360)
+    state.thumbLeft = left
     emit('hueUpdate', hue)
     props.color.set('hue', hue)
   }
