@@ -14,7 +14,7 @@
     </div>
 
     <!-- 使用 dynamic direction 值 -->
-    <tiny-space :size="[rowValue, columnValue]" wrap="true" :direction="direction">
+    <tiny-space :size="[rowValue, columnValue]" :wrap="true">
       <tiny-button style="margin: 0" v-for="n in 15" :key="n">按钮 {{ n }}</tiny-button>
     </tiny-space>
   </div>
