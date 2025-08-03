@@ -11,20 +11,24 @@ export type SpaceJustify = 'start' | 'center' | 'end' | 'space-around' | 'space-
 export type SpaceDirection = 'row' | 'column'
 
 /** Space 组件 props 接口定义 */
-export interface SpaceProps {
+export interface ISpaceProps {
   size?: SpaceSize
   align?: SpaceAlign
   justify?: SpaceJustify
   direction?: SpaceDirection
   wrap?: boolean
-  order?: any[]
+  order?: any[] // 可以拓展为具体对象结构
+  customClass?: string
+  customStyle?: string | Record<string, any>
 }
 
-export interface SpaceApi {
-  getGapStyle: () => Record<string, string>
-  getAlignStyle: () => Record<string, string>
-  getJustifyStyle: () => Record<string, string>
-  getWrapStyle: () => Record<string, string>
-  getDirectionStyle: () => Record<string, string>
-  getSpaceStyle: () => Record<string, string>
+/** renderless 返回的响应式数据结构 */
+export interface ISpaceApi {
+  state: {
+    direction: SpaceDirection
+    align: SpaceAlign
+    justify: SpaceJustify
+    wrap: boolean
+    gapStyle: Record<string, string> // 一般是 margin 样式，如 { gap: '12px' }
+  }
 }

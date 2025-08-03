@@ -1,39 +1,33 @@
 <template>
-  <div class="tiny-space" :style="api.getSpaceStyle()">
+  <div
+    data-tag="tiny-space"
+    :style="[
+      state.gapStyle,
+      {
+        display: 'flex',
+        flexDirection: direction || 'row',
+        alignItems: align || 'flex-start',
+        justifyContent: justify || 'flex-start',
+        flexWrap: wrap ? 'wrap' : 'nowrap',
+        ...customStyle
+      }
+    ]"
+    :class="customClass"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@opentiny/vue-common'
-import { renderless } from '@opentiny/vue-renderless/space/vue'
-import type { SpaceApi } from '@opentiny/vue-renderless/types/space.type'
+import { defineComponent, props, setup } from '@opentiny/vue-common'
+import { renderless, api } from '@opentiny/vue-renderless/space/vue'
+import type { ISpaceApi } from '@opentiny/vue-renderless/types/space.type'
 
 export default defineComponent({
   name: 'TinySpace',
-  props: {
-    size: [String, Number, Array],
-    align: String,
-    justify: String,
-    direction: {
-      type: String,
-      default: 'row'
-    },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
-    order: {
-      type: Array,
-      default: () => []
-    }
-  },
-  setup(props) {
-    const api: SpaceApi = renderless({ props })
-
-    return {
-      api
-    }
+  props: [...props, 'size', 'direction', 'align', 'justify', 'wrap', 'order', 'customClass', 'customStyle'],
+  setup(props, context) {
+    return setup({ props, context, renderless, api }) as unknown as ISpaceApi
   }
 })
 </script>

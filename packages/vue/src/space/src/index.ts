@@ -1,67 +1,63 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import type { PropType, SlotsType } from 'vue'
 import template from 'virtual-template?pc|mobile-first'
 
-// 定义常量
-const $constants = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large',
-  ALIGN_START: 'flex-start',
-  ALIGN_CENTER: 'center',
-  ALIGN_END: 'flex-end',
-  JUSTIFY_START: 'flex-start',
-  JUSTIFY_CENTER: 'center',
-  JUSTIFY_END: 'flex-end',
-  JUSTIFY_SPACE_BETWEEN: 'space-between',
-  JUSTIFY_SPACE_AROUND: 'space-around',
-  ROW: 'row',
-  COLUMN: 'column'
+export const spaceProps = {
+  ...$props,
+  /** 设置空间尺寸，可为字符串、数字或 [水平, 垂直] 数组 */
+  size: {
+    type: [String, Number, Array] as PropType<string | number | [string | number, string | number]>,
+    default: 'small'
+  },
+  /** 主轴方向，row 或 column */
+  direction: {
+    type: String as PropType<'row' | 'column'>,
+    default: 'row'
+  },
+  /** 对齐方式，start/center/end */
+  align: {
+    type: String as PropType<'start' | 'center' | 'end'>,
+    default: 'start'
+  },
+  /** 主轴上的排列方式 */
+  justify: {
+    type: String as PropType<'start' | 'center' | 'end' | 'space-between' | 'space-around'>,
+    default: 'start'
+  },
+  /** 是否自动换行 */
+  wrap: {
+    type: Boolean,
+    default: false
+  },
+  /** 是否显示边框 */
+  border: {
+    type: Boolean,
+    default: true
+  },
+  /** 自定义类名（仅 mobile-first 模板有效） */
+  customClass: {
+    type: String,
+    default: ''
+  },
+  /** 自定义样式 */
+  customStyle: {
+    type: Object as PropType<Record<string, any>>,
+    default: () => ({})
+  },
+  /** 提供内部使用的常量（保留扩展能力） */
+  _constants: {
+    type: Object,
+    default: () => ({})
+  }
 }
 
+// 组件定义
 export default defineComponent({
   name: $prefix + 'Space',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    size: {
-      type: [String, Number, Array],
-      default: $constants.SMALL
-    },
-    align: {
-      type: String,
-      default: $constants.ALIGN_START
-    },
-    justify: {
-      type: String,
-      default: $constants.JUSTIFY_START
-    },
-    direction: {
-      type: String,
-      default: $constants.ROW
-    },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
-    border: {
-      type: Boolean,
-      default: true
-    }
-  },
+  props: spaceProps,
+  slots: Object as SlotsType<{
+    default: {} // 默认插槽
+  }>,
   setup(props, context) {
     return $setup({ props, context, template })
   }

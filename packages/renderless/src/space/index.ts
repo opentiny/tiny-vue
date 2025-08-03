@@ -1,4 +1,4 @@
-import type { SpaceProps } from '@/types'
+import type { ISpaceProps } from '@/types'
 
 const sizeMap = {
   small: '8px',
@@ -13,7 +13,7 @@ const parseGap = (gap: string | number): string => {
   return '0px'
 }
 
-export const getGapStyle = (props: SpaceProps) => {
+export const getGapStyle = (props: ISpaceProps) => {
   const gapProp = props.size
 
   if (Array.isArray(gapProp)) {
@@ -27,28 +27,3 @@ export const getGapStyle = (props: SpaceProps) => {
     gap: parseGap(gapProp)
   }
 }
-
-export const getAlignStyle = (props: SpaceProps) => ({
-  alignItems: props.align || 'flex-start'
-})
-
-export const getJustifyStyle = (props: SpaceProps) => ({
-  justifyContent: props.justify || 'flex-start'
-})
-
-export const getWrapStyle = (props: SpaceProps) => ({
-  flexWrap: props.wrap ? 'wrap' : 'nowrap'
-})
-
-export const getDirectionStyle = (props: SpaceProps) => ({
-  flexDirection: props.direction || 'row'
-})
-
-export const getSpaceStyle = (props: SpaceProps) => ({
-  display: 'flex',
-  ...getDirectionStyle(props),
-  ...getGapStyle(props),
-  ...getAlignStyle(props),
-  ...getJustifyStyle(props),
-  ...getWrapStyle(props)
-})

@@ -1,28 +1,23 @@
-import type { SpaceApi } from '@/types'
-import { getGapStyle, getAlignStyle, getJustifyStyle, getWrapStyle, getDirectionStyle, getSpaceStyle } from './index'
+// @opentiny/vue-renderless/space/vue/index.ts
+import type { ISpaceProps } from '@/types'
+import { getGapStyle } from './index'
 
-export const api = [
-  'getGapStyle',
-  'getAlignStyle',
-  'getJustifyStyle',
-  'getWrapStyle',
-  'getDirectionStyle',
-  'getSpaceStyle'
-]
+export const api = ['state']
 
-export const renderless = ({ props }): SpaceApi => {
-  const partialApi = {
-    getGapStyle: () => getGapStyle(props),
-    getAlignStyle: () => getAlignStyle(props),
-    getJustifyStyle: () => getJustifyStyle(props),
-    getWrapStyle: () => getWrapStyle(props),
-    getDirectionStyle: () => getDirectionStyle(props)
-  }
+export const renderless = (props: ISpaceProps, hooks, { constants }) => {
+  const { watch, reactive } = hooks
 
-  const api: SpaceApi = {
-    ...partialApi,
-    getSpaceStyle: () => getSpaceStyle(props)
-  }
+  const state = reactive({
+    gapStyle: getGapStyle(props)
+  })
 
-  return api
+  watch(
+    () => props.size,
+    () => {
+      state.gapStyle = getGapStyle(props)
+    },
+    { immediate: true }
+  )
+
+  return { state }
 }

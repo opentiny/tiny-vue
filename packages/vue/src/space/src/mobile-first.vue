@@ -1,49 +1,31 @@
 <template>
-  <div :style="spaceStyle">
+  <div
+    data-tag="tiny-space"
+    :class="
+      m(
+        gcls('base'),
+        gcls(`direction-${direction || 'row'}`),
+        gcls(`align-${align || 'start'}`),
+        gcls(`justify-${justify || 'start'}`),
+        gcls(`wrap-${wrap ? 'true' : 'false'}`),
+      )
+    "
+    :style="state.gapStyle"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { renderless } from '@opentiny/vue-renderless/space/vue'
+import { defineComponent, setup, props } from '@opentiny/vue-common'
+import { renderless, api } from '@opentiny/vue-renderless/space/vue'
+import { classes } from './token'
 
 export default defineComponent({
   name: 'TinySpace',
-  props: {
-    size: {
-      type: [String, Number, Array],
-      default: 'small'
-    },
-    align: {
-      type: String,
-      default: 'stretch'
-    },
-    justify: {
-      type: String,
-      default: 'start'
-    },
-    direction: {
-      type: String,
-      default: 'column'
-    },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
-    order: {
-      type: Array,
-      default: () => []
-    }
-  },
-  setup(props) {
-    const api = renderless(props)
-
-    const spaceStyle = api.getSpaceStyle
-
-    return {
-      spaceStyle
-    }
+  props: [...props, 'size', 'direction', 'align', 'justify', 'wrap', 'order'],
+  setup(props, context) {
+    return setup({ props, context, renderless, api, classes })
   }
 })
 </script>
