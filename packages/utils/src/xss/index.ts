@@ -1,4 +1,6 @@
-import * as xss from 'xss'
+import xssImport from 'xss'
+
+const { FilterXSS, getDefaultWhiteList } = xssImport as any
 
 let xssOptions: any = {
   enableAttrs: true,
@@ -94,11 +96,11 @@ let xssOptions: any = {
   }
 }
 
-const defaultWhiteList = (xss.getDefaultWhiteList && xss.getDefaultWhiteList()) || {}
+const defaultWhiteList = (getDefaultWhiteList && getDefaultWhiteList()) || {}
 
 xssOptions.html.whiteList = Object.assign(defaultWhiteList, xssOptions.html.whiteList)
 
-let xssFilterHtml = new xss.FilterXSS(xssOptions.html)
+let xssFilterHtml = new FilterXSS(xssOptions.html)
 
 export const getXssOption = (): object => {
   return xssOptions
@@ -117,7 +119,7 @@ export const setXssOption = (option: any): void => {
     xssOptions.html.whiteList = whiteList
   }
 
-  xssFilterHtml = new xss.FilterXSS(xssOptions.html)
+  xssFilterHtml = new FilterXSS(xssOptions.html)
 }
 
 let filterHtml = (content: string): string => {

@@ -39,6 +39,7 @@
     "dev:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue3 dev:saas",
     "dev2": "pnpm build:entry && pnpm -C examples/vue2 dev",
     "dev2:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2 dev:saas",
+    "dev:nuxt": "pnpm build:entry && pnpm -C examples/nuxt dev",
     "// ---------- 启动官网文档 ----------": "",
     "site": "pnpm build:entry && pnpm -C examples/sites start",
     "site:open": "pnpm build:entry && pnpm -C examples/sites start:open",
@@ -89,7 +90,11 @@
     "// ---------- e2e自动化测试 ----------": "",
     "test:e2e": "pnpm test:e2e3",
     "test:e2e2": "pnpm -C examples/vue2 test:e2e --project=chromium",
-    "test:e2e3": "pnpm -C examples/vue3 test:e2e --project=chromium",
+    "test:e2e3": "CI=true pnpm -C examples/vue3 test:e2e --project=chromium",
+    "test:component": "pnpm -C examples/sites start & sleep 10 && CI=true pnpm -C examples/vue3 test:e2e --project=chromium -g",
+    "test:button": "pnpm -C examples/sites start & sleep 10 && pnpm -C examples/vue3 test:e2e --project=chromium -g \"app/button\" && pnpm -C examples/vue3 exec playwright show-report",
+    "test:alert": "pnpm -C examples/sites start & sleep 10 && CI=true pnpm -C examples/vue3 test:e2e --project=chromium -g \"app/alert\"",
+    "show-report": "pnpm -C examples/vue3 exec playwright show-report",
     "// ---------- playwright下载chromium、firefox等浏览器内核 ----------": "",
     "install:browser": "pnpm -C examples/vue3 install:browser",
     "// ---------- e2e测试代码生成器 ----------": "",
@@ -147,7 +152,7 @@
     "shx": "^0.3.4",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vue": "^3.4.38",
+    "vue": "^3.5.13",
     "vue-tsc": "^1.6.5"
   },
   "pnpm": {
@@ -156,10 +161,10 @@
       "tsup@7.2.0": "patches/tsup@7.2.0.patch"
     },
     "overrides": {
-      "@vue/compiler-sfc@3": "3.4.38",
-      "@vue/runtime-core@3": "3.4.38",
-      "@vue/runtime-dom@3": "3.4.38",
-      "@vue/shared@3": "3.4.38",
+      "@vue/compiler-sfc@3": "3.5.13",
+      "@vue/runtime-core@3": "3.5.13",
+      "@vue/runtime-dom@3": "3.5.13",
+      "@vue/shared@3": "3.5.13",
       "cropperjs": "1.6.2",
       "echarts": "5.4.1",
       "follow-redirects": "1.14.8",
@@ -175,10 +180,10 @@
       "vue-template-compiler@2.7": "2.7.10",
       "vue@2.6": "2.6.14",
       "vue@2.7": "2.7.10",
-      "vue@3": "3.4.38",
+      "vue@3": "3.5.13",
       "vue2": "npm:vue@2.6.14",
       "vue2.7": "npm:vue@2.7.10",
-      "vue3": "npm:vue@3.4.38"
+      "vue3": "npm:vue@3.5.13"
     },
     "packageExtensions": {
       "vue-template-compiler@2.6.14": {
@@ -198,7 +203,7 @@
       },
       "vite-plugin-dts": {
         "peerDependencies": {
-          "vue": "^3.4.38"
+          "vue": "^3.5.13"
         }
       },
       "vite-plugin-md": {

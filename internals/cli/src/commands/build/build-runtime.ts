@@ -82,9 +82,9 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         }),
         isVisualizer
           ? visualizer({
-              filename: `${tasks[0].libPath}.html`,
-              open: true
-            })
+            filename: `${tasks[0].libPath}.html`,
+            open: true
+          })
           : null,
         {
           name: 'vite-plugin-transfer-mode',
@@ -118,7 +118,10 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         rollupOptions: {
           external: (source, importer, isResolved) => {
             if (isResolved || !importer) return false
-
+            // 明确排除 ./pc.vue
+            if (source === './pc.vue') {
+              return false
+            }
             if (libPath === 'tiny-vue-saas-common') {
               return ['@vue/composition-api', 'vue'].includes(source)
             }

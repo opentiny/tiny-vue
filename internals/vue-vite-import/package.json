@@ -1,0 +1,18 @@
+{
+  "name": "@opentiny/vue-vite-import",
+  "version": "0.1.0",
+  "description": "Vite plugin for auto import components",
+  "author": "OpenTiny",
+  "license": "MIT",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "import"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ]
+}
