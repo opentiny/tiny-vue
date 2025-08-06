@@ -41,7 +41,7 @@ const GlobalConfig = {
     message: 'tooltip',
     icon: iconError()
   },
-  editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
+  editConfig: { trigger: 'click', mode: 'cell', showStatus: true, validateOnActive: true },
   // 默认开启点击头部单元格触发排序
   sortConfig: { multipleColumnSort: false },
   // 默认不开启隔行换色和行高亮，不暴露此配置

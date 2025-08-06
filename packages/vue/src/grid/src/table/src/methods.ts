@@ -1348,7 +1348,11 @@ const Methods = {
       .catch((e) => e)
       .then(() => {
         this.handleActived(params, event)
-          .then(() => this.triggerValidate('change'))
+          .then(() => {
+            if (this.editConfig?.validateOnActive) {
+              this.triggerValidate('change')
+            }
+          })
           .catch((e) => e)
       })
   },
