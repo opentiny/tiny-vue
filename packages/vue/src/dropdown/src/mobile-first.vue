@@ -195,7 +195,7 @@ export default defineComponent({
     return (
       <div
         class={[
-          'relative inline-block [&>span:nth-of-type(1)]:text-color-brand-focus [&>span:nth-of-type(1)]:text-sm sm:[&>span:nth-of-type(1)]:text-xs',
+          'relative inline-block [&>span:nth-of-type(1)]:text-color-brand-focus [&>span:nth-of-type(1)]:text-sm sm:[&>span:nth-of-type(1)]:text-sm',
           disabled && '[&>span:nth-of-type(1)]:text-color-brand-focus',
           state.showSelfIcon && 'leading-4 h-4 [&_svg]:align-top [&_svg]:rotate-0'
         ]}
