@@ -270,18 +270,16 @@ export default {
       codeFiles: ['tabs-events-edit.vue']
     },
     {
-      demoId: 'overflow-title',
+      demoId: 'header-only',
       name: {
-        'zh-CN': '超出显示 tooltip',
-        'en-US': 'Out of Display tooltip'
+        'zh-CN': '仅展示头部',
+        'en-US': 'Header only'
       },
       desc: {
-        'zh-CN':
-          '通过 <code>overflow-title</code> 设置标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>设置标题超出的长度。',
-        'en-US':
-          'Use <code>overflow-title</code> to set the title to hide and show when it exceeds a certain length (default 256px)... , move the cursor to the title to display the tooltip, and set <code>title-width</code> to the excess length of the title.'
+        'zh-CN': '通过 <code>header-only</code> 仅展示头部。',
+        'en-US': 'Use <code>>header-only</code> header only.'
       },
-      codeFiles: ['overflow-title.vue']
+      codeFiles: ['header-only.vue']
     }
   ],
   features: [

@@ -11,7 +11,7 @@
  -->
 <template>
   <div
-    v-if="!lazy || state.loaded || state.active"
+    v-if="!state.rootTabs.headerOnly && (!lazy || state.loaded || state.active)"
     v-show="state.active"
     :aria-hidden="!state.active"
     :id="`pane-${state.paneName}`"

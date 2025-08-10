@@ -52,7 +52,8 @@ export default defineComponent({
     'titleWidth',
     'moreShowAll',
     'panelMaxHeight',
-    'panelWidth'
+    'panelWidth',
+    'headerOnly'
   ],
   components: {
     TabNav,
@@ -78,7 +79,6 @@ export default defineComponent({
       handleTabDragEnd,
       editable,
       withAdd,
-      position,
       size,
       stretch,
       showMoreTabs,
@@ -89,8 +89,11 @@ export default defineComponent({
       overflowTitle,
       titleWidth,
       panelMaxHeight,
-      panelWidth
+      panelWidth,
+      headerOnly
     } = this
+
+    const position = headerOnly ? 'top' : this.position
 
     const newButton =
       editable || withAdd ? (
@@ -150,7 +153,7 @@ export default defineComponent({
       </div>
     )
 
-    const panels = <div class="tiny-tabs__content">{this.slots.default && this.slots.default()}</div>
+    const panels = headerOnly ? this.slots.default?.() : <div class="tiny-tabs__content">{this.slots.default?.()}</div>
 
     return (
       <div
