@@ -58,6 +58,8 @@ export const renderless = (props, { reactive, provide, onMounted, onBeforeUnmoun
 
   provide('disabled', props.disabled)
 
+  provide('displayed', props.displayed)
+
   onMounted(() => {
     api.getChangePosition(props.modelValue)
     api.watchVisible()

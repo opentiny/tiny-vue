@@ -44,6 +44,10 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    displayed: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
