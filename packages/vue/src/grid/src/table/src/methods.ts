@@ -2048,7 +2048,7 @@ const Methods = {
   },
   handleDataChange() {
     if (Array.isArray(this.data)) {
-      !this._isUpdateData && this.loadTableData(this.data, true)
+      !this._isUpdateData && this.loadTableData(this.data)
       this._isUpdateData = false
     }
   },

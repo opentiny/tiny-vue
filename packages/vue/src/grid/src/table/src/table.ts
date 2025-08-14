@@ -30,7 +30,8 @@ import {
   resolveTheme,
   defineComponent,
   useInstanceSlots,
-  useRelation
+  useRelation,
+  isVue2
 } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
@@ -539,7 +540,15 @@ export default defineComponent({
       this.handleSelectionHeader()
     },
     parentHeight() {
-      this.$nextTick(this.recalculate)
+      this.recalculate()
+    },
+    // 选项式监控在vue2可以检测到顶层数组splice项替换/$set项替换
+    // array.splice(index, 1, newItem)
+    // this.$set(array, index, newItem)
+    data(array1, array2) {
+      if (isVue2 && array1 === array2 && array1.length === array2.length) {
+        this.handleDataChange()
+      }
     }
   },
   created() {
