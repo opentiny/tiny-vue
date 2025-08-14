@@ -34,7 +34,7 @@ export default {
         if (~['small', 'mini'].indexOf(state.selectSize)) {
           size = state.selectSize
         } else if (~['medium', 'default'].indexOf(state.selectSize)) {
-          size = 'default'
+          size = 'small'
         }
 
         return size
