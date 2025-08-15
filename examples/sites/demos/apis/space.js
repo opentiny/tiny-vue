@@ -90,8 +90,8 @@ export default {
             'en-US': 'Used to insert child elements to be laid out'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'space-size',
-          mfDemo: 'space-size'
+          pcDemo: 'basic-usage',
+          mfDemo: 'basic-usage'
         }
       ]
     }

@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      demoId: 'basic-space',
+      demoId: 'basic-usage',
       name: {
         'zh-CN': '基本用法',
         'en-US': 'Basic Usage'
@@ -34,8 +34,8 @@ export default {
         'en-US': 'Direction'
       },
       desc: {
-        'zh-CN': '<p>通过 `direction` 属性设置排列方向，支持 horizontal 或 vertical。</p>',
-        'en-US': '<p>Use the `direction` prop to control layout direction: horizontal or vertical.</p>'
+        'zh-CN': '<p>通过 `direction` 属性设置排列方向，支持 row 或column。</p>',
+        'en-US': '<p>Use the `direction` prop to control layout direction: row or column.</p>'
       },
       codeFiles: ['space-direction.vue']
     },
