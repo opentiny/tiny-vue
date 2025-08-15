@@ -300,8 +300,8 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '当 header-only 为 true 时，页签内容不再渲染',
-            'en-US': 'When header-only is true, the tab content is no longer rendered'
+            'zh-CN': '当 header-only 为 true 时，页签内容不再渲染，并且 position 将被设置为固定值 top',
+            'en-US': 'When header-only is true, the tab content will no longer be rendered, and the position will be set to a fixed value of top'
           },
           mode: ['pc'],
           pcDemo: 'header-only',
