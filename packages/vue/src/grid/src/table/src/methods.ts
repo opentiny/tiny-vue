@@ -23,7 +23,7 @@
  *
  */
 import { getColumnList, assemColumn, repairFixed } from '@opentiny/vue-renderless/grid/utils'
-import { toDecimal } from '@opentiny/utils'
+import { toDecimal, getActualTarget } from '@opentiny/utils'
 import { addClass, removeClass } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
@@ -1213,7 +1213,7 @@ const Methods = {
           blurClass = blurClassConfig.slice(0)
         }
 
-        if (args?.cell.contains(event.target)) {
+        if (args?.cell.contains(getActualTarget(event))) {
           return true
         }
         if (editConfig.mode === 'row' && getEventTargetNode(event, $el, 'tiny-grid-body__column').flag) {
@@ -1625,7 +1625,7 @@ const Methods = {
         const { scrollHeight, bodyHeight } = this.scrollLoadStore
         const { currentPage, pageSize } = this.$grid.tablePage
         const max = scrollHeight - bodyHeight
-        let scrollTop = event.target.scrollTop
+        let scrollTop = getActualTarget(event).scrollTop
 
         if (scrollTop > max) {
           scrollTop = max
@@ -1649,7 +1649,7 @@ const Methods = {
     const { startIndex, renderSize, offsetSize, visibleIndex, visibleSize, rowHeight } = scrollYStore
 
     // 动态获取容器的scrollTop，这里有可能会造成卡顿，暂时没有好的方案
-    let { scrollTop } = event.target
+    let { scrollTop } = getActualTarget(event)
     let toVisibleIndex = Math.ceil(scrollTop / rowHeight)
     let preload = false
     if (visibleIndex === toVisibleIndex) {
@@ -1748,7 +1748,7 @@ const Methods = {
   updateScrollLoadBar(event) {
     const { $el, elemStore, scrollLoad, scrollLoadStore } = this
 
-    if (scrollLoad && $el.contains(event.target)) {
+    if (scrollLoad && $el.contains(getActualTarget(event))) {
       const wheelDelta = event.wheelDelta ? event.wheelDelta : -event.detail * 40
       const scrollElm = elemStore['main-body-ySpace']
       const { scrollHeight, bodyHeight } = scrollLoadStore

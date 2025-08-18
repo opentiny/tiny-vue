@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { addClass, removeClass } from '@opentiny/utils'
+import { addClass, removeClass, getActualTarget } from '@opentiny/utils'
 import { arrayEach, arrayIndexOf, findTree, find } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue, setCellValue, getCell, getRowNodes, getCellNodeIndex } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/utils'
@@ -667,12 +667,13 @@ export default {
     const { $grid, $refs, autoClearMouseChecked, autoClearKeyboardCopy } = this
     const { tableWrapper, tooltip, validTip } = $refs
     const equalOrContain = (elm, target) => elm && (elm === target || elm.contains(target))
+    const actualTarget = getActualTarget(event)
 
     if (
-      !equalOrContain($grid.$el, event.target) &&
-      !equalOrContain(tableWrapper, event.target) &&
-      !equalOrContain(tooltip && tooltip.state.popperElm, event.target) &&
-      !equalOrContain(validTip && validTip.state.popperElm, event.target)
+      !equalOrContain($grid.$el, actualTarget) &&
+      !equalOrContain(tableWrapper, actualTarget) &&
+      !equalOrContain(tooltip && tooltip.state.popperElm, actualTarget) &&
+      !equalOrContain(validTip && validTip.state.popperElm, actualTarget)
     ) {
       if (autoClearMouseChecked) {
         this.clearChecked()
