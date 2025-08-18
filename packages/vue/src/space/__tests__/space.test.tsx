@@ -14,10 +14,10 @@ describe('PC Mode', () => {
     ))
 
     // 1. 验证容器元素
-    expect(wrapper.find('.tiny-space').exists()).toBe(true)
+    expect(wrapper.find('[data-tag="tiny-space"]').exists()).toBe(true)
 
     // 2. 验证子元素
-    expect(wrapper.findAll('.tiny-space > *').length).toBe(2)
+    expect(wrapper.findAll('[data-tag="tiny-space"] > *').length).toBe(2)
 
     // 3. 验证文本内容
     expect(wrapper.text()).toContain('Item 1')
@@ -28,19 +28,19 @@ describe('PC Mode', () => {
 
   test('props direction', async () => {
     const wrapper = mount(() => (
-      <Space direction="vertical">
+      <Space direction="column">
         <span>Item 1</span>
         <span>Item 2</span>
       </Space>
     ))
 
-    // 检查垂直方向的样式 - 根据实际实现调整
-    expect(wrapper.attributes('style')).toContain('flex-direction: vertical')
+    // 检查垂直方向的样式
+    expect(wrapper.attributes('style')).toContain('flex-direction: column')
     wrapper.unmount()
   })
 
   test('props size', async () => {
-    // 测试数组格式 - 根据实际实现调整预期顺序
+    // 测试数组格式 - 根据实际实现，数组格式为 [horizontal, vertical]
     const wrapperArray = mount(() => <Space size={[10, 20]}></Space>)
     expect(wrapperArray.attributes('style')).toContain('gap: 20px 10px')
     wrapperArray.unmount()
