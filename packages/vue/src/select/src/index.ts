@@ -112,7 +112,10 @@ export default defineComponent({
     label: String,
     loading: Boolean,
     disabled: Boolean,
-    options: Array,
+    options: {
+      type: Array,
+      default: () => []
+    },
     dataset: Object,
     textField: {
       type: String,
