@@ -37,9 +37,6 @@ import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 import { t } from '@opentiny/vue-locale'
 import { registerMcpConfig } from '@opentiny/vue-common'
 
-// tiny-robot 对话框
-import '@opentiny/tiny-robot/dist/style.css'
-
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
 
 hljs.registerLanguage('javascript', javascript)
