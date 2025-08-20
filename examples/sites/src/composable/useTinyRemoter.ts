@@ -1,6 +1,62 @@
+import { WebMcpServer, WebMcpClient, createMessageChannelPairTransport, z } from '@opentiny/next-sdk'
 import { genMenus } from '../menus'
-import { z } from 'zod'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+
+export const AGENT_ROOT = 'https://agent.opentiny.design/api/v1/webmcp-trial/'
+export const SSEION_ID = '78b66563-95c0-4839-8007-e8af634dd658'
+
+// 调用 useTinyRemoter() 完毕后，下面三个变量变会有值。
+export const webMcpServer: { value: null | WebMcpServer } = { value: null }
+export const webMcpClient: { value: null | WebMcpClient } = { value: null }
+export const webMcpSessionId: { value: null | string } = ref('')
+
+export async function useTinyRemoter() {
+  const [serverTransport, clientTransport] = createMessageChannelPairTransport()
+
+  // 定义 MCP Server
+  const server = new WebMcpServer(
+    { name: 'base-config', version: '1.0.0' },
+    {
+      capabilities: {
+        prompts: { listChanged: true },
+        resources: { subscribe: true, listChanged: true },
+        tools: { listChanged: true },
+        completions: {},
+        logging: {}
+      }
+    }
+  )
+  webMcpServer.value = server
+  createGlobalMcpTool(server)
+
+  serverTransport.onerror = (error) => {
+    console.error(`ServerTransport error:`, error)
+  }
+  await server.connect(serverTransport)
+
+  // 定义 MCP Client
+  const client = new WebMcpClient(
+    { name: 'mcp-web-client', version: '1.0.0' },
+    { capabilities: { roots: { listChanged: true }, sampling: {}, elicitation: {} } }
+  )
+  webMcpClient.value = client
+
+  await client.connect(clientTransport)
+
+  // 不能传入固定的sessionId, 让它每次自动生成一个。
+  const { sessionId } = await client.connect({
+    url: AGENT_ROOT + 'mcp',
+    agent: true,
+    sessionId: SSEION_ID,
+    onError: (error: Error) => {
+      console.error('Connect proxy error:', error)
+    }
+  })
+  webMcpSessionId.value = sessionId
+
+  window.addEventListener('pagehide', client.onPagehide)
+}
 
 // 组件页面的右上导航的数据回调函数
 export const cmpAnchorDataCallback = { value: null }

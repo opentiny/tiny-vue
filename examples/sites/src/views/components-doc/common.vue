@@ -112,7 +112,7 @@ import DesignToken from '../../components/design-token.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import list from '@opentiny/vue-theme/token'
-import { cmpAnchorDataCallback } from '../../tools/globalMcpTool'
+import { cmpAnchorDataCallback } from '../../composable/useTinyRemoter'
 import { getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 import { camelize, capitalize } from '@vue/shared'
 
@@ -451,6 +451,7 @@ const handleAnchorClick = (e, data) => {
   }
 }
 
+// 页面加载时，创建一个返回 anchor data的函数。 这样工具调用时，可以拿到最新 anchor 信息
 cmpAnchorDataCallback.value = () => state.currJson.demos
 onUnmounted(() => {
   cmpAnchorDataCallback.value = null
