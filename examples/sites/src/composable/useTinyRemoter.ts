@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 export const AGENT_ROOT = 'https://agent.opentiny.design/api/v1/webmcp-trial/'
-export const SSEION_ID = '78b66563-95c0-4839-8007-e8af634dd658'
 
 // 调用 useTinyRemoter() 完毕后，下面三个变量变会有值。
 export const webMcpServer: { value: null | WebMcpServer } = { value: null }
@@ -48,7 +47,6 @@ export async function useTinyRemoter() {
   const { sessionId } = await client.connect({
     url: AGENT_ROOT + 'mcp',
     agent: true,
-    sessionId: SSEION_ID,
     onError: (error: Error) => {
       console.error('Connect proxy error:', error)
     }
