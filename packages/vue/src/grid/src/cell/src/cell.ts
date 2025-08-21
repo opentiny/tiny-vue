@@ -24,7 +24,7 @@
  */
 import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/utils'
-import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnConfig, getFuncText, formatText, getRowkey } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
@@ -1020,8 +1020,18 @@ export const Cell = {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
+    const rowKey = row[getRowkey($table)]
+
     return [
-      h('span', { class: 'tiny-grid__oper-col-wrapper', attrs: { 'data-tag': 'operation-cell-buttons' } }, groupBig)
+      h(
+        'span',
+        {
+          class: 'tiny-grid__oper-col-wrapper',
+          key: rowKey,
+          attrs: { 'data-tag': 'operation-cell-buttons' }
+        },
+        groupBig
+      )
     ]
   }
 }
