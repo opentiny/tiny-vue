@@ -710,7 +710,9 @@ export default defineComponent({
     const optimizeOpts = hooks.computed(() => extend(true, {}, GlobalConfig.optimization, props.optimization))
     const rowHeight = hooks.computed(
       () =>
-        optimizeOpts.value?.scrollY.rHeight || GlobalConfig.rowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
+        optimizeOpts.value?.scrollY?.rHeight ||
+        GlobalConfig.rowHeight[tinyTheme.value]?.[vSize.value || 'default'] ||
+        40
     )
     const headerRowHeight = hooks.computed(
       () => GlobalConfig.headerRowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
