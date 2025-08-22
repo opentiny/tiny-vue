@@ -182,6 +182,7 @@
     "@opentiny/vue-slider": "workspace:~",
     "@opentiny/vue-slider-button": "workspace:~",
     "@opentiny/vue-slider-button-group": "workspace:~",
+    "@opentiny/vue-space": "workspace:~",
     "@opentiny/vue-split": "workspace:~",
     "@opentiny/vue-standard-list-item": "workspace:~",
     "@opentiny/vue-statistic": "workspace:~",
