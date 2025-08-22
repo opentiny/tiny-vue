@@ -1,6 +1,6 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue-bar'
-import { props, setup, defineComponent, h } from '@opentiny/vue-common'
+import { $props, setup, defineComponent, h } from '@opentiny/vue-common'
 import { IconPopup, IconPlus, IconChevronLeft } from '@opentiny/vue-icon'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
@@ -9,7 +9,9 @@ import TabNav from './tab-nav.vue'
 import type { NavItem } from './type'
 
 export default defineComponent({
-  props: [...props],
+  props: {
+    ...$props
+  },
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, mono: true })
   },

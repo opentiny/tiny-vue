@@ -39,13 +39,22 @@ export const renderless = (props, hooks, { vm, emit, nextTick }) => {
   const state = reactive({
     items: [],
     navs: [],
-    currentItem: computed(() => state.items.find((item) => item.selected)),
+    currentItem: null,
+    currentItem1: computed(() => state.items.find((item) => item.selected)),
     key: computed(() => (state.currentItem ? state.currentItem.name : random())),
     separator: props.separator,
     swipeable: computed(() => api.computedSwipeable()),
     maxTabSwipeHeight: 0,
     itemOrderKey: '',
-    tabsId: ++uniqueId
+    tabsId: ++uniqueId,
+    initialIndex: computed(() => {
+      if (state.items.length > 0 && props.modelValue) {
+        return state.items.map((item) => item.name).indexOf(props.modelValue)
+      }
+      return 0
+    }),
+    panelVisible: false,
+    hiddenName: ''
   })
 
   const api = {}
