@@ -79,6 +79,7 @@ export default defineComponent({
       handleTabDragEnd,
       editable,
       withAdd,
+      position,
       size,
       stretch,
       showMoreTabs,
@@ -92,8 +93,6 @@ export default defineComponent({
       panelWidth,
       headerOnly
     } = this
-
-    const position = headerOnly ? 'top' : this.position
 
     const newButton =
       editable || withAdd ? (
@@ -164,7 +163,8 @@ export default defineComponent({
           'tiny-tabs--border-card': tabStyle === 'border-card',
           'tiny-tabs--button-card': tabStyle === 'button-card',
           'tiny-tabs--small': size === 'small',
-          'tiny-tabs--large': size === 'large'
+          'tiny-tabs--large': size === 'large',
+          'tiny-tabs--header-only': headerOnly
         }}>
         {position !== 'bottom' ? [header, panels] : [panels, header]}
       </div>

@@ -1317,6 +1317,35 @@
     }
   }
 
+  // 仅渲染头部
+  &&--header-only {
+
+    &:is(.@{tabs-prefix-cls}--left) {
+      width: 120px;
+    }
+
+    &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__header {
+      float: none;
+      margin-right: 0;
+      display: block;
+    }
+
+    &:is(.@{tabs-prefix-cls}--right) {
+      width: 120px;
+    }
+
+    &.@{tabs-prefix-cls}--right .@{tabs-prefix-cls}__header {
+      float: none;
+      margin-left: 0;
+      display: block;
+    }
+
+    &.@{tabs-prefix-cls}--bottom .@{tabs-prefix-cls}__header {
+      margin-top: 0;
+    }
+
+  }
+
   // 动效
   .slideInLeft-transition,
   .slideInRight-transition {
