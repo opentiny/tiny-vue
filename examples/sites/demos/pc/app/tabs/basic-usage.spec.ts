@@ -20,11 +20,11 @@ test('基本用法', async ({ page }) => {
     /tiny-tabs__item is-top/
   ])
   await expect(content).toHaveText(/表单组件/)
-  await expect(activeBar).toHaveCSS('width', '64px')
+  await expect(activeBar).toHaveCSS('width', '56px')
   await expect(activeBar).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
   await item1.click()
   await expect(item1).toHaveClass(/is-active/)
-  await expect(activeBar).toHaveCSS('width', '64px')
+  await expect(activeBar).toHaveCSS('width', '56px')
   await expect(activeBar).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
   await expect(item1).toHaveCSS('color', 'rgb(25, 25, 25)')
   await expect(content).toHaveText(/表单组件/)
