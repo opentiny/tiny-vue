@@ -83,7 +83,7 @@ export const clickOutside =
     const path = event?.composedPath && event.composedPath()
     if (path ? !path.includes(parent.$el) : !parent.$el.contains(event.target)) {
       state.show = false
-      if (props.mini && !state.currentValue) {
+      if (props.mini && !state.currentValue && !state.collapse) {
         state.collapse = true
         emit('collapse')
       }
