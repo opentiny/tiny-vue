@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-grid",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.25.1",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -12,6 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
+    "@opentiny/utils": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-dropdown": "workspace:~",
@@ -26,8 +27,7 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~",
-    "@opentiny/utils": "workspace:~"
+    "@opentiny/vue-tooltip": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
