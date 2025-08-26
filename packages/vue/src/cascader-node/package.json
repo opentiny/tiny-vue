@@ -12,6 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
