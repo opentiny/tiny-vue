@@ -30,6 +30,7 @@ export default {
 
           dispatch('TinyDropdown', 'selected-index', [dataStore.currentIndex])
 
+          emit('click', dataStore.itemData, event)
           dispatch('TinyDropdownMenu', 'menu-item-click', [
             dataStore.itemData,
             vm,
@@ -37,7 +38,6 @@ export default {
             dataStore.showContent,
             props.disabled
           ])
-          emit('click', dataStore.itemData, event)
 
           dispatch('TinyDropdown', 'is-disabled', [props.disabled])
         } else {
