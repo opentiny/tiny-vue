@@ -81,7 +81,7 @@ export default defineComponent({
           state.moreList.length
             ? h('div', { class: 'hidden sm:inline-block w-11 h-11 sm:h-10 text-sm cursor-pointer' }, [
                 h('span', { class: 'inline-flex w-full h-full flex-col justify-center items-center' }, [
-                  h(Dropdown, { on: { 'item-click': handleClickDropdownItem }, props: { showIcon: false } }, [
+                  h(Dropdown, { props: { showIcon: false } }, [
                     h('span', {}, [h(IconPopup(), { class: 'fill-color-icon-focus text-base' })]),
                     h(
                       DropdownMenu,
@@ -90,9 +90,11 @@ export default defineComponent({
                         props: { popperClass: 'max-h-[theme(spacing.80)] overflow-x-hidden overflow-y-auto' }
                       },
                       state.moreOptions.map((opt: NavItem) =>
-                        h(DropdownItem, { key: key(opt), props: { itemData: opt.name } }, [
-                          opt.slotTitle ? opt.slotTitle() : opt.title
-                        ])
+                        h(
+                          DropdownItem,
+                          { key: key(opt), on: { click: handleClickDropdownItem }, props: { itemData: opt } },
+                          [opt.slotTitle ? opt.slotTitle() : opt.title]
+                        )
                       )
                     )
                   ])
