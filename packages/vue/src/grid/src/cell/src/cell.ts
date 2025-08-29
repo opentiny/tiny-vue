@@ -277,7 +277,7 @@ export const Cell = {
     }
 
     if (typeof title === 'function') {
-      return [title(h, params)]
+      return [h('div', { class: 'tiny-grid-cell-text' }, [title(h, params)])]
     }
 
     if (type === 'card') {
