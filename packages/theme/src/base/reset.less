@@ -16,8 +16,9 @@
 
 // .tiny-icon-loading 类名的动画效果。 它出现在多个组件中，故抽取到一起。
 .@{css-prefix-iconfont}-loading {
+  --tv-motion-rotate-speed: 2s;
   line-height: 1;
-  animation: rotate-z 2s linear infinite;
+  animation: rotate-z var(--tv-motion-rotate-speed) linear infinite;
 }
 
 // @keyframes rotating {

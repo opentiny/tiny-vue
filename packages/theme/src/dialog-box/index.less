@@ -210,11 +210,13 @@
 }
 
 .v-modal-enter {
-  animation: fade-in 0.2s ease;
+  --tv-motion-fade-speed: 0.2s;
+  animation: fade-in var(--tv-motion-fade-speed) ease;
 }
 
 .v-modal-leave {
-  animation: fade-out 0.2s ease forwards;
+  --tv-motion-fade-speed: 0.2s;
+  animation: fade-out var(--tv-motion-fade-speed) ease forwards;
 }
 
 // @keyframes v-modal-in {
@@ -272,14 +274,15 @@
 // }
 
 .dialog-fade-enter-active {
-  animation: fade-in-up 0.3s;
+  animation: fade-in-up var(--tv-motion-fade-speed);
 }
 
 .dialog-fade-leave-active {
   .@{dialog-box-prefix-cls} {
-    animation: fade-out-up 3s;
+    --tv-motion-fade-speed: 3s;
+    animation: fade-out-up var(--tv-motion-fade-speed);
   }
-  animation: fade-out-up 0.3s;
+  animation: fade-out-up var(--tv-motion-fade-speed);
 }
 
 // @keyframes dialog-fade-in {
@@ -307,7 +310,7 @@
 // }
 
 .enlarge-enter-active {
-  animation: enlarge-in 350ms linear;
+  animation: enlarge-in var(--tv-motion-scale-speed) linear;
 }
 
 // @keyframes enlarge-in {

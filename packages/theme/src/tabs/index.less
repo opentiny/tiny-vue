@@ -35,7 +35,6 @@
     overflow: hidden;
   }
 
-
   /** 头部场景 */
   &__header {
     position: relative;
@@ -45,7 +44,6 @@
     align-items: center;
 
     .@{tabs-prefix-cls} {
-
       // 活跃块
       &__active-bar {
         position: absolute;
@@ -238,7 +236,6 @@
       }
 
       .@{tabs-prefix-cls}__icon-close {
-
         &,
         &:hover {
           background-color: transparent;
@@ -251,7 +248,6 @@
     }
 
     &.is-closable {
-
       // 修复自定义标签配置:with-close="true"样式错乱问题
       > div {
         display: inline-block;
@@ -274,7 +270,8 @@
       border-radius: 4px;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-      margin: var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-right) var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-left);
+      margin: var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-right)
+        var(--tv-Tabs-icon-close-margin-vertical) var(--tv-Tabs-icon-close-margin-left);
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -418,7 +415,8 @@
       font-size: var(--tv-Tabs-prev-next-btn-icon-size);
     }
 
-    .@{tabs-prefix-cls}__nav.is-show-active-bar .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
+    .@{tabs-prefix-cls}__nav.is-show-active-bar
+      .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
       margin-right: var(--tv-Tabs-small-item-margin-right);
     }
 
@@ -435,7 +433,6 @@
 
   // 一层tab页签: card类型
   &&--card {
-
     &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__nav,
     &.@{tabs-prefix-cls}--right .@{tabs-prefix-cls}__nav {
       width: 120px;
@@ -991,7 +988,6 @@
   &&--left,
   &&--right {
     .@{tabs-prefix-cls} {
-
       &__header,
       &__nav-wrap {
         height: 100%;
@@ -1105,7 +1101,6 @@
     }
 
     .@{tab-pane-prefix-cls} {
-
       .@{tabs-prefix-cls}__header,
       .@{tabs-prefix-cls}__nav-wrap {
         float: inherit;
@@ -1236,7 +1231,6 @@
 
         &.is-left,
         &.is-right {
-
           .@{tabs-prefix-cls}__nav-prev,
           .@{tabs-prefix-cls}__nav-next {
             display: none;
@@ -1325,29 +1319,25 @@
   }
 
   .slideInRight-enter {
-    -webkit-animation: slideInRight-enter 0.3s;
-    animation: tab-slide-right-in 0.3s;
+    animation: tab-slide-right-in var(--tv-motion-tab-speed);
   }
 
   .slideInRight-leave {
     position: absolute;
     left: 0;
     right: 0;
-    -webkit-animation: slideInRight-leave 0.3s;
-    animation: tab-slide-right-out 0.3s;
+    animation: tab-slide-right-out var(--tv-motion-tab-speed);
   }
 
   .slideInLeft-enter {
-    -webkit-animation: slideInLeft-enter 0.3s;
-    animation: tab-slide-left-in 0.3s;
+    animation: tab-slide-left-in var(--tv-motion-tab-speed);
   }
 
   .slideInLeft-leave {
     position: absolute;
     left: 0;
     right: 0;
-    -webkit-animation: slideInLeft-leave 0.3s;
-    animation: tab-slide-left-out 0.3s;
+    animation: tab-slide-left-out var(--tv-motion-tab-speed);
   }
 }
 //   @-webkit-keyframes slideInRight-enter {

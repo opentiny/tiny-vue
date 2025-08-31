@@ -51,13 +51,14 @@
     background: linear-gradient(to top, transparent, transparent);
 
     span {
+      --tv-motion-grid-loading-speed: 1.04s;
       display: inline-block;
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: linear-gradient(#000, #000);
       position: absolute;
-      animation: grid-loading 1.04s ease infinite;
+      animation: grid-loading var(--tv-motion-grid-loading-speed) ease infinite;
     }
 
     // @keyframes load {

@@ -50,13 +50,14 @@
     background-color: var(--tv-ChartCore-data-empty-bg-color);
 
     .circular {
+      --tv-motion-rotate-speed: 2s;
       width: 42px;
       height: 42px;
-      animation: rotate-spin 2s linear infinite;
+      animation: rotate-spin var(--tv-motion-rotate-speed) linear infinite;
     }
 
     .path {
-      animation: stroke-dash-loop 1.5s ease-in-out infinite;
+      animation: stroke-dash-loop var(--tv-motion-stroke-speed) ease-in-out infinite;
       stroke-dasharray: 90, 150;
       stroke-dashoffset: 0;
       stroke-width: 2;
