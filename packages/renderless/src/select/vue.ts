@@ -274,7 +274,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     })(),
     designConfig,
     currentSizeMap: computed(() => api.computedCurrentSizeMap()),
-    rootTooltipConfig: computed(() => ({
+    rootAutoTipConfig: computed(() => ({
       content: state.displayOnlyContent,
       always: !!state.displayOnlyContent,
       ...props.tooltipConfig
