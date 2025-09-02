@@ -83,7 +83,7 @@
             <div
               data-tag="tiny-amount-currency-mark"
               :class="
-                'pl-1 text-color-text-primary' +
+                'pl-1 text-color-text-primary break-normal' +
                 ' ' +
                 (disabled ? 'text-color-text-disabled' : '') +
                 ' ' +
