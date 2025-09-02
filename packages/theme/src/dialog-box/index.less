@@ -232,11 +232,13 @@
 // }
 
 .dialog-slideRight-enter-active {
-  animation: slide-right-in 0.5s ease-in forwards;
+  --tv-motion-slide-speed: 0.5s;
+  animation: slide-right-in var(--tv-motion-slide-speed) ease-in forwards;
 }
 
 .dialog-slideRight-leave-active {
-  animation: slide-right-out 0.5s ease-in forwards;
+  --tv-motion-slide-speed: 0.5s;
+  animation: slide-right-out var(--tv-motion-slide-speed) ease-in forwards;
 }
 
 // @keyframes slideRight {

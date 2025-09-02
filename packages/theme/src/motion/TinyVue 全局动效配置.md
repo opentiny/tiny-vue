@@ -21,8 +21,9 @@
 ```less
 :root {
   /* 蚂蚁线相关配置 */
-  --ants-shift: 8px;
-  --ants-speed: 0.8s;
+  --tv-motion-ants-shift: 8px;
+  --tv-motion-ants-speed: 0.8s;
+  ...
 }
 ```
 
@@ -30,8 +31,8 @@
 
 ```css
 .copyed-borders {
-  --ants-shift: 8px;
-  --ants-speed: 0.8s;
+  --tv-motion-ants-shift: 12px;
+  --tv-motion-ants-speed: 1.2s;
 }
 ```
 
@@ -91,11 +92,11 @@ motion/
 ```less
 .@{fade-prefix-cls} {
   &-enter-active {
-    animation: 0.3s fade-in both ease-out;
+    animation: var(--tv-motion-fade-speed) fade-in both ease-out;
   }
 
   &-leave-active {
-    animation: 0.3s fade-out both ease-in;
+    animation: var(--tv-motion-fade-speed) fade-out both ease-in;
   }
 }
 ```
@@ -105,17 +106,16 @@ motion/
 ### 3.2 示例：滑动 (slide.less)
 
 ```less
+/* ============ 左滑 ============ */
 @keyframes slide-left-in {
   0% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(var(--tv-motion-slide-offset-left));
   }
-
   50% {
-    opacity: 0.6;
-    transform: translateX(-50%);
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-left-mid));
   }
-
   100% {
     opacity: 1;
     transform: translateX(0%);
@@ -127,15 +127,13 @@ motion/
     opacity: 1;
     transform: translateX(0%);
   }
-
   50% {
-    opacity: 0.6;
-    transform: translateX(-50%);
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-left-mid));
   }
-
   100% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(var(--tv-motion-slide-offset-left));
   }
 }
 ```
@@ -144,11 +142,11 @@ motion/
 
 ```less
 .drawer-slide-left-enter-active {
-  animation: slide-left-in 0.3s linear;
+  animation: slide-left-in var(--tv-motion-slide-speed) linear;
 }
 
 .drawer-slide-left-leave-active {
-  animation: slide-left-out 0.3s linear;
+  animation: slide-left-out var(--tv-motion-slide-speed) linear;
 }
 ```
 
@@ -159,9 +157,8 @@ motion/
   0% {
     background-position: 0 0;
   }
-
   100% {
-    background-position: var(--ants-shift, 8px) 0;
+    background-position: var(--tv-motion-ants-shift, 8px) 0;
   }
 }
 
@@ -169,9 +166,8 @@ motion/
   0% {
     background-position: 0 0;
   }
-
   100% {
-    background-position: calc(-1 * var(--ants-shift, 8px)) 0;
+    background-position: calc(-1 * var(--tv-motion-ants-shift, 8px)) 0;
   }
 }
 ```
@@ -179,17 +175,22 @@ motion/
 组件调用示例：
 
 ```less
-.@{grid-prefix-cls}-copyed-borders {
-  --ants-shift: 13px;
-  --ants-speed: 0.8s;
+  .@{grid-prefix-cls}-copyed-borders {
+    --tv-motion-ants-shift: 13px;
 
-  .@{grid-prefix-cls}-border-top {
-    animation: ants-x var(--ants-speed) linear infinite;
+    .@{grid-prefix-cls}-border-top {
+      animation: ants-x var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-right {
+      animation: ants-y var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-bottom {
+      animation: ants-x-rev var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-left {
+      animation: ants-y-rev var(--tv-motion-ants-speed) linear infinite;
+    }
   }
-  .@{grid-prefix-cls}-border-bottom {
-    animation: ants-x-rev var(--ants-speed) linear infinite;
-  }
-}
 ```
 
 ------
@@ -207,7 +208,7 @@ motion/
 
 ```less
 .drawer-slide-left-enter-active {
-  animation: slide-left-in 0.3s linear;
+  animation: slide-left-in var(--tv-motion-slide-speed) linear;
 }
 ```
 

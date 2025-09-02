@@ -36,8 +36,10 @@ motion/
 
 ```less
 :root {
-  --ants-shift: 8px;
-  --ants-speed: 0.8s;
+  /* 蚂蚁线相关配置 */
+  --tv-motion-ants-shift: 8px;
+  --tv-motion-ants-speed: 0.8s;
+  ...
 }
 ```
 
@@ -73,26 +75,38 @@ motion/
 在对应 `motion/*.less` 文件中新增动效，示例：
 
 ```less
-@keyframes slide-up-in {
-  0%   { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+@keyframes fade-in-up {
+  0% {
+    transform: translate3d(0, -20p, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
 }
 ```
 
 ### Step 2. （可选）使用变量替代固定值
 
 ```less
-@keyframes ants-x {
-  0%   { background-position: 0 0; }
-  100% { background-position: var(--ants-shift) 0; }
+@keyframes fade-in-up {
+  0% {
+    transform: translate3d(0, calc(-1 * var(--tv-motion-fade-offset-y, 20px)), 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
 }
 ```
 
 ### Step 3. 在组件中绑定
 
 ```less
-.modal-slide-up-enter-active {
-  animation: slide-up-in 0.3s linear;
+.dialog-fade-enter-active {
+  animation: fade-in-up var(--tv-motion-fade-speed);
 }
 ```
 
@@ -121,9 +135,7 @@ motion/
 ## 7. 组件集成方式
 
 1. **全局引入**
-    所有动效在 `motion/*` 中维护，并在组件中通过 className 使用。
-2. **局部调用**
-    组件通过 `-enter-active` / `-leave-active` 调用。
+    所有动效在 `motion/*` 中维护，并在组件中通过className或者animation使用。
 3. **覆盖参数**
     用户可覆盖变量来自定义速度/时长。
 
