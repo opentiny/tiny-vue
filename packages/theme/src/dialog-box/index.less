@@ -219,61 +219,13 @@
   animation: fade-out var(--tv-motion-fade-speed) ease forwards;
 }
 
-// @keyframes v-modal-in {
-//   0% {
-//     opacity: 0;
-//   }
-// }
-
-// @keyframes v-modal-out {
-//   100% {
-//     opacity: 0;
-//   }
-// }
-
 .dialog-slideRight-enter-active {
-  --tv-motion-slide-speed: 0.5s;
   animation: slide-right-in var(--tv-motion-slide-speed) ease-in forwards;
 }
 
 .dialog-slideRight-leave-active {
-  --tv-motion-slide-speed: 0.5s;
   animation: slide-right-out var(--tv-motion-slide-speed) ease-in forwards;
 }
-
-// @keyframes slideRight {
-//   0% {
-//     opacity: 0;
-//     transform: translateX(100%);
-//   }
-
-//   50% {
-//     opacity: 0.6;
-//     transform: translateX(50%);
-//   }
-
-//   100% {
-//     opacity: 1;
-//     transform: translateX(0%);
-//   }
-// }
-
-// @keyframes slideRightout {
-//   0% {
-//     opacity: 1;
-//     transform: translateX(0%);
-//   }
-
-//   50% {
-//     opacity: 0.6;
-//     transform: translateX(50%);
-//   }
-
-//   100% {
-//     opacity: 0;
-//     transform: translateX(100%);
-//   }
-// }
 
 .dialog-fade-enter-active {
   animation: fade-in-up var(--tv-motion-fade-speed);
@@ -287,47 +239,9 @@
   animation: fade-out-up var(--tv-motion-fade-speed);
 }
 
-// @keyframes dialog-fade-in {
-//   0% {
-//     transform: translate3d(0, -20px, 0);
-//     opacity: 0;
-//   }
-
-//   100% {
-//     transform: translate3d(0, 0, 0);
-//     opacity: 1;
-//   }
-// }
-
-// @keyframes dialog-fade-out {
-//   0% {
-//     transform: translate3d(0, 0, 0);
-//     opacity: 1;
-//   }
-
-//   100% {
-//     transform: translate3d(0, -20px, 0);
-//     opacity: 0;
-//   }
-// }
-
 .enlarge-enter-active {
   animation: enlarge-in var(--tv-motion-scale-speed) linear;
 }
-
-// @keyframes enlarge-in {
-//   0% {
-//     transform: scale(0);
-//   }
-
-//   50% {
-//     transform: scale(0.5);
-//   }
-
-//   100% {
-//     transform: scale(1);
-//   }
-// }
 
 @media (max-width: 480px) {
   .@{dialog-box-prefix-cls} {
