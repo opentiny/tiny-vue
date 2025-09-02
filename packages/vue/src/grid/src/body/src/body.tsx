@@ -345,6 +345,8 @@ function renderRows(_vm) {
   const seqCount = { value: 0 }
   const $seq = ''
 
+  const lastVisibleIndex = rowPool.findLastIndex(({ used }) => Boolean(used))
+
   rowPool.forEach(({ id, item: { payload: row, level: rowLevel }, used }, $rowIndex) => {
     const rowActived = editConfig && actived.row === row
     const virtualRow = isVirtualRow(row)
@@ -369,7 +371,19 @@ function renderRows(_vm) {
 
     renderRowGroupData({ $table, _vm, id, row, rowGroup, rowid, rows, used, virtualRow })
 
-    let args = { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName }
+    let args = {
+      $rowIndex,
+      $seq,
+      $table,
+      _vm,
+      editStore,
+      id,
+      isSkipRowRender,
+      row,
+      rowActived,
+      rowClassName,
+      lastVisibleIndex
+    }
 
     Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow })
 
@@ -426,7 +440,7 @@ function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, lastVisibleIndex } = args
 
   if (isSkipRowRender) {
     return
@@ -459,7 +473,8 @@ function renderRow(args) {
           'row__new': editStore.insertList.includes(row),
           'row__selected': selection.includes(row),
           'row__radio': selectRow === row,
-          'row__actived': rowActived
+          'row__actived': rowActived,
+          'row__last-visible': lastVisibleIndex === $rowIndex
         },
         rowClassName
           ? isFunction(rowClassName)
