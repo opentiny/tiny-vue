@@ -1,27 +1,27 @@
 {
   "name": "@opentiny/vue-calendar-view",
-  "version": "3.25.0",
+  "type": "module",
+  "version": "3.26.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-date-picker": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-radio-button": "workspace:~",
+    "@opentiny/vue-radio-group": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-slider-button": "workspace:~",
+    "@opentiny/vue-slider-button-group": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~"
+  },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "catalog:"
-  },
-  "dependencies": {
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~",
-    "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-date-picker": "workspace:~",
-    "@opentiny/vue-radio-button": "workspace:~",
-    "@opentiny/vue-radio-group": "workspace:~",
-    "@opentiny/vue-slider-button": "workspace:~",
-    "@opentiny/vue-slider-button-group": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
-  },
-  "license": "MIT"
+  }
 }
