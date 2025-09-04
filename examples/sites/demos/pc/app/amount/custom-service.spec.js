@@ -10,7 +10,7 @@ test('自定义服务', async ({ page }) => {
     .filter({ hasText: /^币种MZNCNY$/ })
     .getByRole('textbox')
     .click()
-  await page.getByRole('listitem', { name: 'MZN' }).locator('div').click()
+  await page.getByRole('listitem').filter({ hasText: /MZN/ }).locator('div').click()
   await page.getByRole('tooltip', { name: '币种 MZN 金额 确定 重置' }).getByRole('textbox').nth(1).click()
   await page.getByRole('tooltip', { name: '币种 MZN 金额 确定 重置' }).getByRole('textbox').nth(1).fill('100')
   await page.getByRole('button', { name: '确定' }).click()
