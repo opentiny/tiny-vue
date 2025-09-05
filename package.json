@@ -165,6 +165,7 @@
       "@vue/runtime-dom@3": "3.4.38",
       "@vue/shared@3": "3.4.38",
       "cropperjs": "1.6.2",
+      "less": "4.3.0",
       "echarts": "5.4.1",
       "follow-redirects": "1.14.8",
       "regenerator-runtime": "0.13.9",
