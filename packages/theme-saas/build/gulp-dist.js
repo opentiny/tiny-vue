@@ -40,27 +40,30 @@ const note = fs.readFileSync('../src/index.less', { encoding: 'utf-8' }).match(/
 fs.writeFileSync('../src/index.less', `${note}\n\n${importStr}`)
 
 function compile() {
-  const tailwindcss = require('tailwindcss')
+  try {
+    const tailwindcss = require('tailwindcss')
 
-  const task = gulp
-    .src(lessFiles, { since: gulp.lastRun(compile) })
-    .pipe(svgInline(svgInlineOption))
-    .pipe(less())
-    .pipe(postcss([tailwindcss('../tailwind.config.js'), require('autoprefixer')]))
-    .pipe(
-      prefixer({
-        borwsers: ['last 1 version', '> 1%', 'not ie <= 8'],
-        cascade: true,
-        remove: true
-      })
-    )
-    .pipe(svgInline(svgInlineOption))
-    .pipe(cssmin())
-    .pipe(gulp.dest(dist))
+    const task = gulp
+      .src(lessFiles, { since: gulp.lastRun(compile) })
+      .pipe(svgInline(svgInlineOption))
+      .pipe(less())
+      .pipe(postcss([tailwindcss('../tailwind.config.js'), require('autoprefixer')]))
+      .pipe(
+        prefixer({
+          borwsers: ['last 1 version', '> 1%', 'not ie <= 8'],
+          cascade: true,
+          remove: true
+        })
+      )
+      .pipe(svgInline(svgInlineOption))
+      .pipe(cssmin())
+      .pipe(gulp.dest(dist))
 
-  if (syncToTinyVueProject) task.pipe(gulp.dest(devDist))
-
-  return task
+    if (syncToTinyVueProject) task.pipe(gulp.dest(devDist))
+    return task
+  } catch (e) {
+    console.error('111111~~~~', e)
+  }
 }
 
 gulp.task('compile', compile)
