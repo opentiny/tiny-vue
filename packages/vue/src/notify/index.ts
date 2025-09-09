@@ -175,7 +175,7 @@ Notify.close = function (id: string, userOnClose?: (instance: NotifyInstance) =>
 
   let removedPosition = instance.position
   let copys = instances.slice(index)
-  let verticalOffset = 16
+  let verticalOffset = instance.state.verticalOffset ? Number(instance.state.verticalOffset) : 16
 
   instances
     .filter((item) => item.state.position === removedPosition)
