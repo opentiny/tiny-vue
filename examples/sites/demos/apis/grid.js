@@ -160,6 +160,19 @@ export default {
           pcDemo: 'grid-faq#custom-column'
         },
         {
+          name: 'customs',
+          typeAnchorName: 'ICustomConfig',
+          type: 'ICustomConfig[]',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '表格的初始化个性配置，可以控制表格列是否隐藏，设置列宽。优先级高于grid-column上的配置。',
+            'en-US':
+              'Initialize the table personalized configuration to control whether the table columns are hidden and set the column width. It takes precedence over the configuration on grid-column.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-faq#custom-column'
+        },
+        {
           name: 'data',
           typeAnchorName: 'IRow',
           type: 'Row[]',
@@ -4212,6 +4225,19 @@ interface ICellClassNameArgs {
   // 单元格所在行的序号
   seq: number
   $seq: string // 已弃用
+}`
+    },
+    {
+      name: 'ICustomConfig',
+      type: 'type',
+      code: `
+interface ICustomConfig {
+  // 表格列字段
+  property: string
+  // 是否显示
+  visible?: boolean
+  // 列宽
+  width?: number | string
 }`
     }
   ]
