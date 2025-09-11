@@ -243,7 +243,13 @@
                     v-for="(item, i) in state.dayTimes"
                     :key="date.value + item.time"
                     class="relative h-5 p-0.5 list-none border-b border-color-bg-2"
-                    :class="[i % 2 === 0 ? 'border-dashed' : 'border-solid']"
+                    :class="{
+                      'border-dashed': i % 2 === 0,
+                      'border-solid': i % 2 !== 0,
+                      'overflow-hidden overflow-y-auto scrollbar-size-0':
+                        getEventByTime(date.value, item.time, state.dayTimes[i + 1] && state.dayTimes[i + 1].time)
+                          .length > 1
+                    }"
                   >
                     <div
                       v-for="(event, idx) of getEventByTime(
@@ -252,12 +258,12 @@
                         state.dayTimes[i + 1] && state.dayTimes[i + 1].time
                       )"
                       :key="idx"
-                      class="w-11/12 flex items-center px-1.5 absolute top-0 left-0 z-10 leading-normal rounded-sm"
+                      class="w-11/12 flex mb-0.5 items-center px-1.5 top-0 left-0 z-10 leading-normal rounded-sm"
                       :class="[gcls(`theme-${event.theme || blue}`)]"
                       :style="{
                         'height': event.height + 'px',
-                        'left': event.left + 'px',
-                        'width': `calc(92% - ${event.left}px)`
+
+                        'width': `92%`
                       }"
                     >
                       <span>{{ event.title }}</span>

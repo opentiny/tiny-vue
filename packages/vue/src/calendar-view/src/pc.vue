@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-calendar-view" :style="{ 'height': height ? `${parseInt(height)}px` : 'auto'}">
+  <div class="tiny-calendar-view" :style="{ 'height': height ? `${parseInt(height)}px` : 'auto' }">
     <div class="tiny-calendar-view__header">
       <div>
         <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
@@ -162,7 +162,12 @@
                   <li
                     v-for="(item, i) in state.dayTimes"
                     :key="date.value + item.time"
-                    :class="i % 2 === 0 && 'is-even-num'"
+                    :class="{
+                      'is-even-num': i % 2 === 0,
+                      'is-scroll-list':
+                        getEventByTime(date.value, item.time, state.dayTimes[i + 1] && state.dayTimes[i + 1].time)
+                          .length > 1
+                    }"
                   >
                     <div
                       v-for="(event, idx) of getEventByTime(
@@ -175,8 +180,7 @@
                       :class="[`theme-${event.theme || 'blue'}`]"
                       :style="{
                         'height': event.height + 'px',
-                        'left': event.left + 'px',
-                        'width': `calc(92% - ${event.left}px)`
+                        'width': `92%`
                       }"
                     >
                       <span>{{ event.title }}</span>
