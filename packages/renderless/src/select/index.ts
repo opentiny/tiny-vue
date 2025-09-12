@@ -1598,7 +1598,13 @@ export const watchOptions =
     }
 
     nextTick(() => {
-      if (parent.$el.querySelector('input') !== document.activeElement) {
+      if (
+        parent.$el.querySelector('input') !== document.activeElement && // filterable时， 从 input 框离开了
+        !(
+          document.activeElement?.classList.contains('tiny-input__inner') && // 并且当前不在下拉面板的searchable 的input中时，  才需要更新一下setSelect
+          document.activeElement.closest('.tiny-select-dropdown__search')
+        )
+      ) {
         api.setSelected()
       }
     })
