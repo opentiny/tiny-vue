@@ -12,7 +12,7 @@
 /* ============ 滚动动画 ============ */
 @keyframes scroll-left {
   0% {
-    transform: translateX(var(--tv-motion-scroll-offset-x, 300px));
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
   }
   100% {
     transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
@@ -24,7 +24,7 @@
     transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
   }
   100% {
-    transform: translateX(var(--tv-motion-scroll-offset-x, 300px));
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
   }
 }
 
@@ -49,7 +49,7 @@
 /* ============ 滚动适应动画 ============ */
 @keyframes scroll-left-adapt {
   0% {
-    transform: translateX(100%);
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
   }
   50% {
     transform: translateX(0);
@@ -67,7 +67,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
   }
 }
 
