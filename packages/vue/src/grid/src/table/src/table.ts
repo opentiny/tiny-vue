@@ -360,7 +360,8 @@ export default defineComponent({
         id: '',
         multi: false,
         options: [],
-        visible: false
+        visible: false,
+        searchValue: ''
       },
       // 所有列已禁用
       headerCheckDisabled: false,
