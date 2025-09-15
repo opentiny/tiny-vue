@@ -9,6 +9,15 @@ export const docMenus = []
 
 export const cmpMenus = [
   {
+    'label': '基础',
+    'labelEn': 'Basic',
+    'key': 'cmp-frame-style',
+    'children': [
+      { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+    ]
+  },
+  {
     label: '导航组件',
     labelEn: 'Navigation',
     key: 'cmp-navigation-components',
@@ -56,7 +65,6 @@ export const cmpMenus = [
       { name: 'DatePickerMobile', nameCn: '日期选择器', key: 'date-picker-mobile' },
       { name: 'DatePicker', nameCn: '日期选择器多端', key: 'date-picker' },
       { name: 'TimePickerMobile', nameCn: '时间选择器', key: 'time-picker-mobile' },
-      { name: 'Button', nameCn: '按钮', key: 'button' },
       { name: 'Checkbox', nameCn: '复选框', key: 'checkbox' },
       { name: 'FluentEditor', nameCn: '富文本', key: 'fluent-editor' },
       { name: 'Form', nameCn: '表单', key: 'form' },
@@ -78,7 +86,7 @@ export const cmpMenus = [
     ]
   },
   {
-    label: '数据组件',
+    label: '数据展示',
     labelEn: 'Data',
     key: 'cmp-data-components',
     children: [
@@ -96,7 +104,7 @@ export const cmpMenus = [
     'children': [{ 'nameCn': '基本用法', 'name': 'Grid', 'key': 'grid' }]
   },
   {
-    label: '提示组件',
+    label: '反馈',
     labelEn: 'Tooltip',
     key: 'cmp-tips-components',
     children: [
@@ -125,8 +133,7 @@ export const cmpMenus = [
       { name: 'Amount', nameCn: '金额', key: 'amount' },
       { name: 'currency', nameCn: '币种', key: 'currency' },
       { name: 'CalendarView', nameCn: '日历', key: 'calendar-view' },
-      { name: 'FloatingButton', nameCn: '悬浮按钮', key: 'floating-button' },
-      { name: 'Divider', nameCn: '分割线', key: 'divider' }
+      { name: 'FloatingButton', nameCn: '悬浮按钮', key: 'floating-button' }
     ]
   }
 ]

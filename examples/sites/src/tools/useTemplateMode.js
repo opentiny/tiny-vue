@@ -26,17 +26,16 @@ watch(
   }
 )
 
-const staticPath = computed(() => {
-  if (templateModeState.mode === 'mobile-first') {
-    return '@demos/mobile-first/app'
-  }
-  return staticDemoPath
-})
+const staticPath = computed(() => staticDemoPath)
 
 const optionsList = computed(() =>
   templateModeState.modeList.map((item) => {
     if (item === 'mobile-first') {
       return { value: item, text: '多端' }
+    }
+
+    if (item === 'pc') {
+      return { value: item, text: 'PC' }
     }
     return { value: item, text: item }
   })

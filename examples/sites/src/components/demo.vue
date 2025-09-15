@@ -293,7 +293,7 @@ onBeforeUnmount(() => {
     padding: 4px 8px;
     margin: 0 4px;
     font-size: 0.85em;
-    background-color: var(--tv-color-bg-header);
+    background-color: var(--tv-color-bg-header, #f5f7fa);
     border-radius: 3px;
   }
 
