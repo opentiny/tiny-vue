@@ -17,11 +17,11 @@ import { TinyConfigProvider, TinyModal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import { TinyRemoter } from '@opentiny/next-remoter'
 import '@opentiny/next-remoter/dist/style.css'
-import { useTinyRemoter, webMcpSessionId } from './composable/useTinyRemoter'
+import { webMcpSessionId } from './composable/useTinyRemoter'
 
 import useTheme from './tools/useTheme'
 
-useTinyRemoter()
+// useTinyRemoter()
 
 const modalSHow = ref(false)
 const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
