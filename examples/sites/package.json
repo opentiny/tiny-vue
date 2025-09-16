@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "version": "3.26.0",
+  "version": "3.26.4",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -27,10 +27,6 @@
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@docsearch/react": "npm:@docsearch/css",
-    "@opentiny/next-sdk": "^0.1.1",
-    "@opentiny/tiny-robot": "0.3.0-alpha.3",
-    "@opentiny/tiny-robot-kit": "0.3.0-alpha.3",
-    "@opentiny/tiny-robot-svgs": "0.3.0-alpha.3",
     "@opentiny/tiny-vue-mcp": "^0.0.3",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue": "workspace:~",
@@ -91,6 +87,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.6.0",
     "markdown-it-toc-done-right": "^4.2.0",
+    "postcss-nesting": "^13.0.1",
     "prettier": "^2.7.1",
     "rollup-plugin-visualizer": "^5.12.0",
     "stylelint": "^14.9.1",
