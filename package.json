@@ -64,7 +64,7 @@
     "build:hooks": "pnpm -C packages/vue-hooks build",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
     "build:virtual-template": "pnpm --filter @opentiny-internal/unplugin-virtual-template build",
-    "build:site": "pnpm i -g pnpm && pnpm build:vite-import && pnpm build:virtual-template && pnpm -C examples/sites build",
+    "build:site": "pnpm build:theme && pnpm -C examples/sites build",
     "release:aurora": "pnpm -C internals/cli release:aurora",
     "release:alpha": "pnpm -C internals/cli release:alpha",
     "release:e2eConfig": "pnpm -C internals/cli release:e2eConfig",
