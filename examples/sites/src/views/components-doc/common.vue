@@ -503,7 +503,7 @@ defineExpose({ loadPage })
       z-index: var(--docs-tabs-header-zindex);
       background-color: var(--docs-color-bg);
 
-      &::after {
+      &::before {
         content: '';
         position: absolute;
         bottom: 0;
