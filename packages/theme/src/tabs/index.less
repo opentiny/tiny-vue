@@ -116,7 +116,7 @@
       // 实际页签栏盒子
       &__nav:not(.is-stretch) {
         .@{tabs-prefix-cls}__item__title {
-          display: inline-block;
+          display: block;
           width: 100%;
           white-space: nowrap;
           overflow: hidden;
@@ -1319,7 +1319,6 @@
 
   // 仅渲染头部
   &&--header-only {
-
     &:is(.@{tabs-prefix-cls}--left) {
       width: 120px;
     }
@@ -1343,7 +1342,6 @@
     &.@{tabs-prefix-cls}--bottom .@{tabs-prefix-cls}__header {
       margin-top: 0;
     }
-
   }
 
   // 动效

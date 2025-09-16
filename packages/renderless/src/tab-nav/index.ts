@@ -429,14 +429,14 @@ export const watchCurrentName =
 export const handleTitleMouseenter =
   ({ state, vm, props }) =>
   (e, title) => {
-    const dom = e.target
-    // 以下逻辑与aui不同，tiny不能通过dom宽度判断是否超出隐藏
-    const el = title?.el
-
     // 如果用户配置了tooltipConfig属性，优先级最高
     if (props.tooltipConfig) {
       return
     }
+
+    const dom = e.target
+    // 以下逻辑与aui不同，tiny不能通过dom宽度判断是否超出隐藏
+    const el = title?.el
 
     if (dom && el && el.scrollWidth > el.offsetWidth) {
       const tooltip = vm.$refs.tooltip
