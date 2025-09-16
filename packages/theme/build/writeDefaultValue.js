@@ -5,7 +5,6 @@ const originFilePath = 'vars.less'
 const originRootPath = '../src/'
 
 export default () => {
-
   // 写入文件
   const writeFile = (filePath, data) => {
     fs.writeFileSync(filePath, data)
@@ -36,7 +35,7 @@ export default () => {
   const readFile = (fileDir) => {
     const varsPath = `${originRootPath}/${fileDir}/${originFilePath}`
 
-    const dataStr = fs.readFileSync(varsPath, {encoding: 'utf-8'})
+    const dataStr = fs.readFileSync(varsPath, { encoding: 'utf-8' })
 
     const newDataStr = dataStr.replace(/var\(([\w\-]+\s?\w*)\)/g, (oldVar, baseVar1, numLine) => {
       const baseVar = baseVar1.split(',')[0]
@@ -63,13 +62,13 @@ export default () => {
 
   // 判断是文件还是目录
   const mkStat = (fileDir) => {
-    if(fileDir === 'base') {
+    if (fileDir === 'base') {
       return
     }
     const statPath = `${originRootPath}/${fileDir}`
     const data = fs.statSync(statPath)
-      // 如果是目录
-      // 则判断是否存在某文件
+    // 如果是目录
+    // 则判断是否存在某文件
     if (data.isDirectory()) {
       isFileExist(fileDir)
     }
@@ -80,6 +79,4 @@ export default () => {
   data.forEach((fileDir) => {
     mkStat(fileDir)
   })
-
 }
-

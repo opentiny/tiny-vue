@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <float-settings v-if="!isThemeSaas"></float-settings>
+    <float-settings></float-settings>
   </div>
 </template>
 
@@ -101,8 +101,6 @@ export default defineComponent({
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
-
-    const isThemeSaas = import.meta.env.VITE_TINY_THEME === 'saas'
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -190,7 +188,6 @@ export default defineComponent({
       clickMenuLink,
       getWord,
       i18nByKey,
-      isThemeSaas,
       isShowFilter
     }
   }
@@ -332,11 +329,11 @@ export default defineComponent({
         text-overflow: ellipsis;
       }
 
-      .menu-type-icon {
+      svg.menu-type-icon {
         width: 12px;
         height: 12px;
         display: inline-block;
-        fill: var(--tv-color-icon-control);
+        fill: var(--tv-color-icon-control, #5f6774);
       }
     }
   }

@@ -38,6 +38,10 @@ const optionsList = computed(() =>
     if (item === 'mobile-first') {
       return { value: item, text: '多端' }
     }
+
+    if (item === 'pc') {
+      return { value: item, text: 'PC' }
+    }
     return { value: item, text: item }
   })
 )

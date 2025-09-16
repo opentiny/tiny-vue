@@ -359,10 +359,10 @@ html.dark .settings-btn {
 }
 .tiny-popover.tiny-popper.theme-settings-popover {
   border-radius: 12px;
-  background-color: var(--tv-color-bg);
+  background-color: var(--tv-color-bg, #fff);
 }
 html.dark .tiny-popover.tiny-popper.theme-settings-popover {
-  background-color: var(--tv-color-bg-dark);
+  background-color: var(--tv-color-bg-dark, #191919);
 }
 
 .theme-settings-menu {

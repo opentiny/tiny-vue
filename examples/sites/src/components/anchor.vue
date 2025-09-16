@@ -2,10 +2,11 @@
   <div v-if="links.length" class="cmp-page-anchor catalog">
     <tiny-anchor
       id="anchor"
+      :tiny_mode="theme === 'saas' ? 'pc' : 'mobile-first'"
       :offset-top="56"
       :links="links"
       :is-affix="props.anchorAffix"
-      type="dot"
+      :type="theme === 'saas' ? 'line' : 'dot'"
       container-id="#doc-layout-scroller"
       @link-click="handleAnchorClick"
     >
@@ -20,6 +21,8 @@ import { TinyAnchor } from '@opentiny/vue'
 const props = defineProps({ anchorAffix: {}, currentJson: {}, activeTab: {}, langKey: {}, apiTypes: {} })
 
 const emit = defineEmits(['link-click'])
+
+const theme = import.meta.env.VITE_TINY_THEME
 
 // 实例锚点
 const demoAnchorLinks = computed(() => {
@@ -71,6 +74,7 @@ const handleAnchorClick = (...args) => {
   :deep(.tiny-anchor__affix) {
     top: unset !important;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: calc(100vh - 300px);
   }
 

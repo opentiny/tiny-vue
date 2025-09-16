@@ -35,7 +35,7 @@ jobs:
       - name: Install deps
         run: pnpm i --no-frozen-lockfile
       - name: Build site
-        run: export NODE_OPTIONS="--max-old-space-size=8192" && pnpm -F @opentiny/vue-docs build
+        run: export NODE_OPTIONS="--max-old-space-size=8192" && pnpm build:site
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll

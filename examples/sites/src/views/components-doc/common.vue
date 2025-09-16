@@ -302,7 +302,6 @@ const loadPage = () => {
     state.mdString = mdString
     // plus隐藏头部集合
     const hideTabHeader = ['interfaces', 'types', 'classes'].includes(state.cmpId)
-
     if (demosJson && !hideTabHeader) {
       // 默认设置每个实例demo都不和视图相交
       demosJson.demos?.forEach((item) => {
