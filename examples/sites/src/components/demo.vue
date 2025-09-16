@@ -38,9 +38,6 @@
         </div>
         <component :is="getDescMd(demo)" class="demo-desc" />
 
-        <!-- <div v-if="isMobileFirst" class="pc-demo-container">
-          <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
-        </div> -->
         <div v-if="demoConfig.isMobile" class="pc-demo-container">
           <div class="mobile-view-btn">
             <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
