@@ -10,6 +10,14 @@ export const standaloneMenus = [
 const docMenusChildren = [
   { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
   { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
+  {
+    'title': '适配AUI',
+    'titleEn': 'Adapter AUI',
+    'key': 'aui-adapter',
+    showScene: {
+      theme: ['saas']
+    }
+  },
   { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
   { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
   {
@@ -40,7 +48,10 @@ const docMenusChildren = [
   {
     'title': '暗黑模式',
     'titleEn': 'theme-dark',
-    'key': 'theme-dark'
+    'key': 'theme-dark',
+    showScene: {
+      theme: ['default']
+    }
   },
   {
     'title': '智能化',
@@ -55,14 +66,6 @@ const docMenusChildren = [
     'key': 'help',
     showScene: {
       target: ['inner']
-    }
-  },
-  {
-    'title': '适配AUI',
-    'titleEn': 'Adapter AUI',
-    'key': 'aui-adapter',
-    showScene: {
-      theme: ['saas']
     }
   }
 ]
@@ -91,7 +94,14 @@ export const cmpMenus = [
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
       { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
-      { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
+      {
+        'nameCn': '容器布局',
+        'name': 'Container',
+        'key': 'container',
+        showScene: {
+          theme: ['default']
+        }
+      },
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
       // { 'nameCn': '多色图标', 'name': 'IconMulticolor', 'key': 'icon-multicolor' }, // 隐藏路由，目前只有saas使用
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },

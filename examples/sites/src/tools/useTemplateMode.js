@@ -26,7 +26,12 @@ watch(
   }
 )
 
-const staticPath = computed(() => staticDemoPath)
+const staticPath = computed(() => {
+  if (templateModeState.mode === 'mobile-first') {
+    return '@demos/mobile-first/app'
+  }
+  return staticDemoPath
+})
 
 const optionsList = computed(() =>
   templateModeState.modeList.map((item) => {

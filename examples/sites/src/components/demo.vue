@@ -38,10 +38,10 @@
         </div>
         <component :is="getDescMd(demo)" class="demo-desc" />
 
-        <div v-if="isMobileFirst" class="pc-demo-container">
+        <!-- <div v-if="isMobileFirst" class="pc-demo-container">
           <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
-        </div>
-        <div v-else-if="demoConfig.isMobile" class="pc-demo-container">
+        </div> -->
+        <div v-if="demoConfig.isMobile" class="pc-demo-container">
           <div class="mobile-view-btn">
             <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
           </div>
@@ -70,7 +70,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, shallowRef, onMounted, onBeforeUnmount, watch, nextTick, inject, h } from 'vue'
+import {
+  ref,
+  reactive,
+  computed,
+  shallowRef,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  nextTick,
+  inject,
+  h,
+  provide
+} from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, fetchDemosFile } from '@/tools'
 import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
@@ -256,6 +268,8 @@ const openPlayground = (demo, open = true) => {
 const openIframe = (demo) => {
   emit('get-iframe-demo', demo)
 }
+
+provide('TinyMode', templateModeState.mode)
 
 onMounted(() => {
   if (demoContainer.value) {

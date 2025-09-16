@@ -16,11 +16,11 @@ const { templateModeState } = useTemplateMode()
 
 const apiModeFn = {
   getDemoName: (name) => {
+    const isMobileFirst = templateModeState.mode === 'mobile-first'
+    const isOptions = apiModeState.apiMode === 'Options'
+    const resultName = isMobileFirst ? `mobile-first/${name}` : name
     // mobile-first模板暂时没有composition-api 格式的文件，需要特殊处理下
-    return name.replace(
-      /\.vue$/,
-      `${apiModeState.apiMode === 'Options' || templateModeState.mode === 'mobile-first' ? '' : '-composition-api'}.vue`
-    )
+    return resultName.replace(/\.vue$/, `${isOptions || isMobileFirst ? '' : '-composition-api'}.vue`)
   },
   changeLocaleMode: (name) => {
     appFn.toggleLang(name)

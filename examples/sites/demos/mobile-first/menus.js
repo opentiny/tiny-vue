@@ -30,9 +30,6 @@ export const cmpMenus = [
       { name: 'Steps ', nameCn: '步骤条', key: 'steps' },
       { name: 'Tabs ', nameCn: '标签页', key: 'tabs' },
       { name: 'Menu ', nameCn: '菜单', key: 'menu' },
-      { name: 'TimeLine ', nameCn: '时间线', key: 'time-line' },
-      //  测试时打开该行---------------
-      // { name: 'TimeLineNew ', nameCn: '时间线AUI', key: 'time-line-new' },
       { name: 'Dropdown ', nameCn: '下拉菜单', key: 'dropdown' },
       { name: 'Flowchart ', nameCn: '流程图', key: 'flowchart' }
     ]
@@ -94,7 +91,10 @@ export const cmpMenus = [
       { name: 'StandardListItem', nameCn: '标准列表项', key: 'standard-list-item' },
       { name: 'Progress', nameCn: '进度条', key: 'progress' },
       { name: 'PullRefresh', nameCn: '下拉刷新', key: 'pull-refresh' },
-      { name: 'Pager', nameCn: '分页', key: 'pager' }
+      { name: 'Pager', nameCn: '分页', key: 'pager' },
+      { name: 'TimeLine ', nameCn: '时间线', key: 'time-line' }
+      //  测试时打开该行---------------
+      // { name: 'TimeLineNew ', nameCn: '时间线AUI', key: 'time-line-new' },
     ]
   },
   {
