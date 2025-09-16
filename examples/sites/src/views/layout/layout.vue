@@ -329,11 +329,11 @@ export default defineComponent({
         text-overflow: ellipsis;
       }
 
-      .menu-type-icon {
+      svg.menu-type-icon {
         width: 12px;
         height: 12px;
         display: inline-block;
-        fill: var(--tv-color-icon-control);
+        fill: var(--tv-color-icon-control, #5f6774);
       }
     }
   }
