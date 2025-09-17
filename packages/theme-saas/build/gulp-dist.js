@@ -20,7 +20,7 @@ const svgInlineOption = {
   extensions: [/\.svg/gi]
 }
 const allLessFiles = [`${source}/**/*.less`]
-const lessFiles = [`${source}/**/index.less`, `${source}/index.less`]
+const lessFiles = [`${source}/**/index.less`, `${source}/index.less`, `${source}/dark-theme-index.less`]
 const jsFiles = [`${source}/**/*.js`, `${source}/index.js`, '../tailwind.config.js']
 const svgFiles = [`${source}/svgs/**`]
 const imageFiles = [`${source}/images/**`]
