@@ -35,9 +35,16 @@ import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
 import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 import { t } from '@opentiny/vue-locale'
-import { registerMcpConfig } from '@opentiny/vue-common'
+import { registerMcpConfig, customDesignConfig } from '@opentiny/vue-common'
+import { twMerge } from 'tailwind-merge'
 
 const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+const isSaas = import.meta.env.VITE_TINY_THEME === 'saas'
+
+// 适配层集成twMerge能力
+if (isSaas) {
+  customDesignConfig.twMerge = twMerge
+}
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)

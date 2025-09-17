@@ -27,7 +27,8 @@ function genMenus() {
   ]
 
   // 使用指南只在DEV下生效
-  const docOptions = import.meta.env.DEV
+  const isShowDoc = import.meta.env.DEV || import.meta.env.VITE_TINY_THEME === 'saas'
+  const docOptions = isShowDoc
     ? docMenus.map((menu) => ({
         ...menu,
         label: `${appData.lang === 'zhCN' ? menu.label : menu.labelEn}${getChildrenStr(menu)}`,
