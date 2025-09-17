@@ -461,6 +461,30 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'now',
           mfDemo: 'now'
+        },
+        {
+          name: 'footer',
+          type: 'scoped',
+          meta: { stable: '3.27.0' },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '底部区域作用域插槽。',
+            'en-US': 'Scoped slot for footer area.'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot'
+        },
+        {
+          name: 'confirm',
+          type: 'scoped',
+          meta: { stable: '3.27.0' },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '仅覆盖“确认”按钮区域',
+            'en-US': 'Customize only the "confirm" button area'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot'
         }
       ],
       format: [

@@ -152,7 +152,12 @@
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
     >
-      <slot name="now"></slot>
+      <template v-if="$slots.footer || $slots.now || $slots.confirm" #footer="scoped">
+        <slot name="footer" v-bind="scoped">
+          <slot name="now" v-bind="scoped"></slot>
+          <slot name="confirm" v-bind="scoped"></slot>
+        </slot>
+      </template>
     </component>
   </div>
 </template>

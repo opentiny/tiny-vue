@@ -272,6 +272,18 @@ export default {
         'en-US': '<p>The main events are focus, blur and change.</p>'
       },
       codeFiles: ['events.vue']
+    },
+    {
+      demoId: 'slot',
+      name: {
+        'zh-CN': '插槽',
+        'en-US': 'Slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过 `#footer` 作用域插槽自定义显示内容。</p>',
+        'en-US': '<p>Through the `#footer` scope slot to customize the display content.</p>'
+      },
+      codeFiles: ['slot.vue']
     }
   ],
   features: [
