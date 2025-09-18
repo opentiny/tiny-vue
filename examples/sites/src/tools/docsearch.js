@@ -1,5 +1,6 @@
+import { isSaas } from '../const'
+
 const OPEN_TINY_URL = 'https://opentiny.design'
-const isSaas = import.meta.env.VITE_TINY_THEME === 'saas'
 
 export const doSearchEverySite = () => {
   window.handleGlobalSearchData = (resolve) => {

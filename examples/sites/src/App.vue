@@ -14,6 +14,7 @@
 import { onMounted, provide, ref } from 'vue'
 import { TinyConfigProvider, TinyModal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
+import { isSaas } from './const'
 
 import useTheme from './tools/useTheme'
 
@@ -24,7 +25,7 @@ const tinyIconClose = iconClose()
 onMounted(() => {
   // 加载header
   const common = new window.TDCommon(['#header'], {
-    allowDarkTheme: true,
+    allowDarkTheme: !isSaas,
     searchConfig: {
       show: true
     },
