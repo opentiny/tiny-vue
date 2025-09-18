@@ -9,7 +9,7 @@ export const doSearchEverySite = () => {
       }
 
       if (isSaas) {
-        data.content = data.content.replaceAll('/tiny-vue/', '/tiny-vue-saas/')
+        data.content = data.content.replace('/tiny-vue/', '/tiny-vue-saas/')
       }
 
       resolve(data)
