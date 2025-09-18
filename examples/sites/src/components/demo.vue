@@ -184,7 +184,9 @@ const getDemoCodeFn = async (demo, forceUpdate?: boolean) => {
       const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
       let code = ''
 
-      const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
+      const path = isMobileFirst.value
+        ? `@demos/mobile-first/app/${demoName.replace('mobile-first/', '')}`
+        : `${staticDemoPath}/${demoName}`
       code = await fetchDemosFile(path)
         .then((code) => {
           return code

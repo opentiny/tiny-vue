@@ -61,10 +61,7 @@ if (!location.href.includes('tiny-vue-plus')) {
   })
 }
 
-if (envTarget !== 'open') {
-  // 支持本地开发和内网使用全局搜索
-  doSearchEverySite()
-}
+doSearchEverySite()
 
 // 实验后发现，先调用一次预热一下，后续再调用会有速度的提示，因此在main中预热一下。
 setTimeout(() => {
