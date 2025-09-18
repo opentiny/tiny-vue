@@ -1,6 +1,7 @@
+import { isSaas } from '../../const'
+
 // 批量导入vue组件示例文件, 进行vue组件示例的渲染
 const vueFiles = import.meta.glob(`@demos/app/**/*.vue`)
-const isSaas = import.meta.env.VITE_TINY_THEME === 'saas'
 const mobileFirstVueFiles = isSaas ? import.meta.glob(`../../../demos/mobile-first/app/**/*.vue`) : null
 // 所有demo组件实例
 const vueComponents = Object.create(null)

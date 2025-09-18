@@ -1,5 +1,6 @@
 import { docMenus, cmpMenus } from '@menu/menus.js'
 import { appData, $split } from './tools'
+import { isSaas } from './const'
 
 /**
  * 聚合doc  / cmp 两个页面的所有菜单.
@@ -27,7 +28,7 @@ function genMenus() {
   ]
 
   // 使用指南只在DEV下生效
-  const isShowDoc = import.meta.env.DEV || import.meta.env.VITE_TINY_THEME === 'saas'
+  const isShowDoc = import.meta.env.DEV || isSaas
   const docOptions = isShowDoc
     ? docMenus.map((menu) => ({
         ...menu,

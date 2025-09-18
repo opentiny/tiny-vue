@@ -28,9 +28,6 @@ export const delStaticPlugin = () => {
 
 // 修改@docsearch依赖，使其支持内外网官网
 export const viteDocsearchPlugin = (env) => {
-  if (env.VITE_BUILD_TARGET !== 'inner') {
-    return null
-  }
   return {
     name: 'vite-docsearch-plugin',
     enforce: 'pre',
