@@ -334,6 +334,19 @@ export default {
           pcDemo: 'filter-method'
         },
         {
+          name: 'optimization',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启大数据虚拟滚动功能。仅配置式（使用 options 属性）时支持',
+            'en-US':
+              'Whether to enable the big data virtual scrolling feature. Supported only when configured (using the options attribute)'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'optimization',
+          mfDemo: 'optimization'
+        },
+        {
           name: 'options',
           typeAnchorName: 'IOption',
           type: 'IOption[]',
