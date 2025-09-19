@@ -747,7 +747,8 @@ export default {
       noSchedule: '暂无日程',
       year: '年',
       month: '月',
-      dateFormat: 'yyyy 年 MM 月'
+      dateFormat: 'yyyy 年 MM 月 dd 日',
+      monthFormat: 'yyyy 年 MM 月'
     },
     selectedBox: {
       select: '已选（%s）',

@@ -7,10 +7,10 @@
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
-        type="month"
+        :type="state.dateType"
         :clearable="false"
         @change="currentDateChange"
-        :format="t('ui.calendarView.dateFormat')"
+        :format="day ? t('ui.calendarView.dateFormat') : t('ui.calendarView.monthFormat')"
       ></tiny-date-picker>
       <div class="tiny-calendar-view__tool">
         <slot name="tool"></slot>
@@ -285,6 +285,7 @@ export default defineComponent({
     'mode',
     'modes',
     'year',
+    'day',
     'month',
     'dayTimes',
     'events',
