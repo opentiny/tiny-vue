@@ -3,7 +3,7 @@
     <tiny-button key="1">First Button</tiny-button>
     <tiny-button key="2">Second Button</tiny-button>
     <tiny-button key="3">Third Button</tiny-button>
-    <tiny-button>Forth Button</tiny-button>
+    <tiny-button>Fourth Button</tiny-button>
   </tiny-space>
 </template>
 

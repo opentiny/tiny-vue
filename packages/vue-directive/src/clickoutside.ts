@@ -41,12 +41,12 @@ const createDocumentHandler = (el, binding, vnode) =>
     // composedPath() 会返回事件的完整路径，即使事件穿过了 Shadow DOM 的边界。
     // 这确保了即使 popperElm 在 Shadow DOM 外部（或组件本身在 Shadow DOM 内部），
     // 我们也能准确判断点击是否发生在组件或其 popper 内部。
-    const mousedownPath = (mousedown?.composedPath && mousedown.composedPath()) || [mousedown?.target]
-    const mouseupPath = (mouseup?.composedPath && mouseup.composedPath()) || [mouseup.target]
+    const mousedownPath = mousedown?.composedPath?.() || [mousedown?.target]
+    const mouseupPath = mouseup?.composedPath?.() || [mouseup?.target]
     const isClickInEl = mousedownPath.includes(el) || mouseupPath.includes(el)
     const isClickInPopper = popperElm && (mousedownPath.includes(popperElm) || mouseupPath.includes(popperElm))
 
-    if (!mousedown.target || !mouseup.target || isClickInEl || isClickInPopper) {
+    if (!mousedown?.target || !mouseup?.target || isClickInEl || isClickInPopper) {
       return
     }
 

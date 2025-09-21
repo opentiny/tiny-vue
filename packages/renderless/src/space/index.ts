@@ -1,4 +1,3 @@
-// import { isVNode } from 'vue'
 import type { ISpaceProps } from '@/types'
 
 const sizeMap = {

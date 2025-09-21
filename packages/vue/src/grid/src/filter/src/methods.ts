@@ -218,12 +218,7 @@ export default {
       this.getOptions(column).then((options) => {
         Object.assign(filterStore, {
           args: params,
-          layout: filter.layout, // 布局配置，用户可以自定义想要的筛选项
-          enumable: filter.enumable,
-          inputFilter: filter.inputFilter,
-          simpleFilter: filter.simpleFilter,
-          onResetInputFilter: filter.onResetInputFilter,
-          extends: filter.extends,
+          ...filter,
           defaultFilter: isBoolean(filter.defaultFilter) ? filter.defaultFilter : true,
           options: options.map(({ value, label }) => {
             return {

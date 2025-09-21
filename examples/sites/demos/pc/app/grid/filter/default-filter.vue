@@ -110,6 +110,9 @@ export default {
         }
       ],
       cityFilter: {
+        attrs: {
+          id: 'city-filter' // 给根节点设置id
+        },
         multi: true,
         enumable: true,
         defaultFilter: false,
@@ -117,6 +120,9 @@ export default {
         values: filteData
       },
       nameFilter: {
+        attrs: {
+          id: 'name-filter'
+        },
         multi: true,
         enumable: true,
         defaultFilter: false,

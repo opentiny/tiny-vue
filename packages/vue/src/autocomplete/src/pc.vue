@@ -80,6 +80,7 @@
               <li
                 v-for="(item, index) in state.suggestions"
                 :key="index"
+                :title="item[valueKey]"
                 class="tiny-autocomplete-suggestion__list-item"
                 :class="{
                   highlighted: state.highlightedIndex === index,

@@ -535,8 +535,6 @@ export default defineComponent({
       value && this.$nextTick(this.recalculate)
     },
     tableColumn() {
-      // 对所有列的列宽进行分类：百分比/px
-      this.analyColumnWidth()
       // 处理空数据时表头是否禁用
       this.handleSelectionHeader()
     },

@@ -111,6 +111,10 @@ const bind = (el, { value }: { value: BoundingValueType }) => {
 
 const unbind = (el) => {
   if (el.boundingValue?.listened) {
+    const tooltip = globalTooltip.value
+    if (tooltip && el === tooltip.state.referenceElm && tooltip.state.showPopper) {
+      tooltip.hide()
+    }
     el.removeEventListener('mouseenter', mouseenterHandler)
     el.removeEventListener('mouseleave', mouseleaveHandler)
   }

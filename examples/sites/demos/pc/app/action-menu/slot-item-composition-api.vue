@@ -14,7 +14,7 @@ import { iconSmile } from '@opentiny/vue-icon'
 
 const options = ref([
   {
-    name: '远程登陆'
+    name: '远程登录'
   },
   {
     name: '开机'

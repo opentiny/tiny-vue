@@ -388,7 +388,11 @@ export const iconGroups = {
     'IconSmile',
     'IconStarActive',
     'IconStarDisable',
-    'IconStarO'
+    'IconStarO',
+    'IconBadgeHotCn',
+    'IconBadgeHotEn',
+    'IconBadgeNewCn',
+    'IconBadgeNewEn'
   ],
   Tool: [
     'IconConfig',

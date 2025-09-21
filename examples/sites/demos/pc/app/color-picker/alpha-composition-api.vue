@@ -1,5 +1,5 @@
 <template>
-  <tiny-color-picker @confirm="onConfirm" @cancel="onCancel" alpha />
+  <tiny-color-picker @confirm="onConfirm" v-model="color" @cancel="onCancel" alpha />
 </template>
 
 <script setup>

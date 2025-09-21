@@ -1,10 +1,8 @@
 import { reactive, computed } from 'vue'
 import { useAutoStore } from './storage'
 import { useMediaQuery } from './useMediaQuery'
-import { ZH_CN_LANG, EN_US_LANG, LANG_KEY, LANG_PATH_MAP } from '../const'
+import { ZH_CN_LANG, LANG_KEY, LANG_PATH_MAP } from '../const'
 
-const zhPath = LANG_PATH_MAP[ZH_CN_LANG]
-const enPath = LANG_PATH_MAP[EN_US_LANG]
 const appData = reactive({
   lang: useAutoStore('local', LANG_KEY, ZH_CN_LANG),
   theme: useAutoStore('local', '_theme', 'light'),
@@ -16,9 +14,10 @@ const appFn = {
     if (name !== appData.lang) {
       let url = location.href
       url = location.href.replace(LANG_PATH_MAP[appData.lang], LANG_PATH_MAP[name])
-      // appData.lang = name 官网先屏蔽英文内容
+      // appData.lang = name // 官网先屏蔽切换语言，默认中文
       appData.lang = ZH_CN_LANG
-      location.replace(url)
+      history.replaceState({}, '', url)
+      location.reload()
     }
   },
   toggleTheme() {

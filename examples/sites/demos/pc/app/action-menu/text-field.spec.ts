@@ -8,6 +8,6 @@ test('映射字段', async ({ page }) => {
   const actionMenu = wrap.locator('.tiny-action-menu')
   const visibleItem = actionMenu.locator('.tiny-action-menu__item')
 
-  await expect(visibleItem.first()).toHaveText('远程登陆')
+  await expect(visibleItem.first()).toHaveText('远程登录')
   await expect(visibleItem.nth(1)).toHaveText('开机')
 })

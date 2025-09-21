@@ -38,6 +38,10 @@ import IconArrowUp from './src/arrow-up'
 import IconAscending from './src/ascending'
 import IconAssociation from './src/association'
 import IconAttachment from './src/attachment'
+import IconBadgeHotCn from './src/badge-hot-cn'
+import IconBadgeHotEn from './src/badge-hot-en'
+import IconBadgeNewCn from './src/badge-new-cn'
+import IconBadgeNewEn from './src/badge-new-en'
 import IconBarChart from './src/bar-chart'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
@@ -170,7 +174,9 @@ import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
 import IconFolder from './src/folder'
 import IconFolderClosed from './src/folder-closed'
+import IconFolderClosedSolid from './src/folder-closed-solid'
 import IconFolderOpened from './src/folder-opened'
+import IconFolderOpenedSolid from './src/folder-opened-solid'
 import IconFontColor from './src/font-color'
 import IconFontFamily from './src/font-family'
 import IconFontSize from './src/font-size'
@@ -761,6 +767,14 @@ export {
   IconAssociation as iconAssociation,
   IconAttachment,
   IconAttachment as iconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotCn as iconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeHotEn as iconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewCn as iconBadgeNewCn,
+  IconBadgeNewEn,
+  IconBadgeNewEn as iconBadgeNewEn,
   IconBarChart,
   IconBarChart as iconBarChart,
   IconBefilter,
@@ -1027,8 +1041,12 @@ export {
   IconFolder as iconFolder,
   IconFolderClosed,
   IconFolderClosed as iconFolderClosed,
+  IconFolderClosedSolid,
+  IconFolderClosedSolid as iconFolderClosedSolid,
   IconFolderOpened,
   IconFolderOpened as iconFolderOpened,
+  IconFolderOpenedSolid,
+  IconFolderOpenedSolid as iconFolderOpenedSolid,
   IconFontColor,
   IconFontColor as iconFontColor,
   IconFontFamily,
@@ -1703,6 +1721,10 @@ export default {
   IconAscending,
   IconAssociation,
   IconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewEn,
   IconBarChart,
   IconBefilter,
   IconBoat,
@@ -1835,7 +1857,9 @@ export default {
   IconFlag,
   IconFolder,
   IconFolderClosed,
+  IconFolderClosedSolid,
   IconFolderOpened,
+  IconFolderOpenedSolid,
   IconFontColor,
   IconFontFamily,
   IconFontSize,

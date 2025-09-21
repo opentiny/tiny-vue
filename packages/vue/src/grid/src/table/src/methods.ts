@@ -230,6 +230,7 @@ const Methods = {
   refreshData(data) {
     const next = () => {
       this.tableData = []
+      this.cellStatus.clear()
       return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
@@ -256,7 +257,7 @@ const Methods = {
   // 处理表格数据（过滤，排序，虚拟滚动需要渲染数据的条数）
   handleTableData(force) {
     // 在表格列就绪后，才处理数据过滤排序、保留选中、表头选中、多选禁用、默认状态
-    if (force && this.tableFullColumn?.length > 0) {
+    if (force && (this.tableFullColumn?.length > 0 || this.viewType !== GlobalConfig.viewConfig.DEFAULT)) {
       // 对表格全量数据进行过滤排序得到后全量数据，计算分组表数据，生成图形数据
       this.updateAfterFullData()
       // selectConfig.reserve保留多选状态，使用后全量数据计算表头多选状态
@@ -1003,7 +1004,9 @@ const Methods = {
     let scrollXLoad = scrollX && scrollX.gt && scrollX.gt < tableFullColumn.length
     let tableColumn = visibleColumn
 
+    // 对所有列的列宽进行分类：百分比/px
     Object.assign(columnStore, { leftList, centerList, rightList })
+    this.analyColumnWidth()
 
     showGroupFixedError({ isColspan, isGroup, leftStartIndex, rightEndIndex, visibleColumn })
 
@@ -2096,7 +2099,7 @@ const Methods = {
         fastdom.mutate(() => {
           this.restoreScollFlag = true
           this.scrollTo(lastScrollLeft, lastScrollTop)
-
+          requestAnimationFrame(() => this.$refs.tableBody?.resetStickyWrapperScrollPos())
           scrollXLoad && this.triggerScrollXEvent()
           scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
         })

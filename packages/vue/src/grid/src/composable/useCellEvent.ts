@@ -220,10 +220,17 @@ export const useCellEvent = ({ table, $table }) => {
           satisfy(({ type }) => type === 'selection', selectConfig.trigger) ||
           satisfy(({ treeNode }) => treeNode, treeConfig.trigger))
       ) {
-        // 捕获阶段单元格进入编辑态，常显态的点击事件会被vue移除从而不会执行
-        fastdom.mutate(() => {
-          $table.triggerCellClickEvent(e, params)
-        })
+        const { bubbling, trigger } = treeConfig
+        const isTreeNodeStopPropagation =
+          !bubbling &&
+          (!trigger || trigger === 'default') &&
+          $table.getEventTargetNode(e, hoverCell.value, 'tiny-grid-tree__node-btn').flag
+        if (!isTreeNodeStopPropagation) {
+          // 捕获阶段单元格进入编辑态，常显态的点击事件会被vue移除从而不会执行
+          fastdom.mutate(() => {
+            $table.triggerCellClickEvent(e, params)
+          })
+        }
       }
 
       if (source.part === 'footer' && tableListeners['footer-cell-click']) {
