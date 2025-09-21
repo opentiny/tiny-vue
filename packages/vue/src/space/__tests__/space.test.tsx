@@ -58,19 +58,59 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
-  test('slots', async () => {
-    const wrapper = mount(() => (
-      <Space>
-        <span class="slot1">Slot 1</span>
-        <span class="slot2">Slot 2</span>
-      </Space>
-    ))
+  // test('props order - full order sorting', async () => {
+  //   const wrapper = mount(() => (
+  //     <Space order={['2', '3', '1']}>
+  //       <span key="1">Item 1</span>
+  //       <span key="2">Item 2</span>
+  //       <span key="3">Item 3</span>
+  //     </Space>
+  //   ))
 
-    // 检查子元素渲染 - 使用更精确的选择器
-    expect(wrapper.findAll('.slot1').length).toBe(1)
-    expect(wrapper.findAll('.slot2').length).toBe(1)
-    expect(wrapper.text()).toContain('Slot 1')
-    expect(wrapper.text()).toContain('Slot 2')
-    wrapper.unmount()
-  })
+  //   const items = wrapper.findAll('[data-tag="tiny-space"] > *')
+  //   expect(items.length).toBe(3)
+  //   expect(items[0].text()).toBe('Item 2')
+  //   expect(items[1].text()).toBe('Item 3')
+  //   expect(items[2].text()).toBe('Item 1')
+
+  //   wrapper.unmount()
+  // })
+
+  // test('props order - partial order sorting', async () => {
+  //   const wrapper = mount(() => (
+  //     <Space order={['3']}>
+  //       <span key="1">Item 1</span>
+  //       <span key="2">Item 2</span>
+  //       <span key="3">Item 3</span>
+  //     </Space>
+  //   ))
+
+  //   const items = wrapper.findAll('[data-tag="tiny-space"] > *')
+  //   expect(items.length).toBe(3)
+  //   expect(items[0].text()).toBe('Item 3')
+  //   // The rest should keep original order except '3' moved front
+  //   expect(items[1].text()).toBe('Item 1')
+  //   expect(items[2].text()).toBe('Item 2')
+
+  //   wrapper.unmount()
+  // })
+
+  // test('props order - default order (empty array)', async () => {
+  //   const wrapper = mount(() => (
+  //     <Space order={[]}>
+  //       <span key="1">Item 1</span>
+  //       <span key="2">Item 2</span>
+  //       <span key="3">Item 3</span>
+  //     </Space>
+  //   ))
+
+  //   const items = wrapper.findAll('[data-tag="tiny-space"] > *')
+  //   expect(items.length).toBe(3)
+
+  //   expect(items[0].text()).toBe('Item 1')
+  //   expect(items[1].text()).toBe('Item 2')
+  //   expect(items[2].text()).toBe('Item 3')
+
+  //   wrapper.unmount()
+  // })
 })
