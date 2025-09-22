@@ -6,6 +6,18 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'day',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指定日期，配合 year、month 使用',
+            'en-US': 'Specify the date, used with year and month'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
+          mfDemo: 'basic-usage'
+        },
+        {
           name: 'day-times',
           type: 'Array',
           defaultValue: '',

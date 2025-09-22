@@ -776,7 +776,8 @@ export default defineComponent({
     'maxVisibleRows',
     'showAllTextTag',
     'allText',
-    'maxTagWidth'
+    'maxTagWidth',
+    'autoSelect'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

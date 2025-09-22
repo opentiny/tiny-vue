@@ -780,7 +780,8 @@ export default {
       noSchedule: 'Sem agendamento',
       year: '',
       month: '',
-      dateFormat: 'yyyy-MM'
+      dateFormat: 'yyyy-MM-dd',
+      monthFormat: 'yyyy-MM'
     },
     selectedBox: {
       select: 'Selecionado (%s)',

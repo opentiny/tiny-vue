@@ -22,10 +22,10 @@
         v-model="state.currentDate"
         :class="[showBackToday ? 'ml-5' : '', 'shrink-0']"
         shape="filter"
-        type="month"
+        :type="state.dateType"
         :clearable="false"
         @change="currentDateChange"
-        :format="t('ui.calendarView.dateFormat')"
+        :format="day ? t('ui.calendarView.dateFormat') : t('ui.calendarView.monthFormat')"
       ></tiny-date-picker>
       <div class="flex-1 mx-5" data-tag="tiny-calendar-view-tool">
         <slot name="tool"></slot>
@@ -382,6 +382,7 @@ export default defineComponent({
     'modes',
     'year',
     'month',
+    'day',
     'dayTimes',
     'events',
     'height',
