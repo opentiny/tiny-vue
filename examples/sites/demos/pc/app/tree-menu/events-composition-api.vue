@@ -7,6 +7,7 @@
     @current-change="currentChange"
     @node-expand="nodeExpand"
     @node-collapse="nodeCollapse"
+    @input-change="inputChange"
   ></tiny-tree-menu>
 </template>
 
@@ -183,6 +184,9 @@ const nodeExpand = (data) => {
 
 const nodeCollapse = (data) => {
   TinyModal.message({ message: `节点 - ${data.label}被关闭了`, status: 'info' })
+}
+const inputChange = (data) => {
+  TinyModal.message({ message: `输入框的内容是 ${data}`, status: 'info' })
 }
 
 const checkChange = (node, newVal) => {
