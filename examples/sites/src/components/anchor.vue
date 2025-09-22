@@ -1,17 +1,16 @@
 <template>
-  <div v-if="links.length" class="cmp-page-anchor catalog">
-    <tiny-anchor
-      id="anchor"
-      :tiny_mode="isSaas ? 'pc' : 'mobile-first'"
-      :offset-top="56"
-      :links="links"
-      :is-affix="props.anchorAffix"
-      :type="isSaas ? 'line' : 'dot'"
-      container-id="#doc-layout-scroller"
-      @link-click="handleAnchorClick"
-    >
-    </tiny-anchor>
-  </div>
+  <tiny-anchor
+    id="anchor"
+    v-if="links.length"
+    :tiny_mode="isSaas ? 'pc' : 'mobile-first'"
+    :offset-top="56"
+    :links="links"
+    :is-affix="props.anchorAffix"
+    :type="isSaas ? 'line' : 'dot'"
+    container-id="#doc-layout-scroller"
+    @link-click="handleAnchorClick"
+  >
+  </tiny-anchor>
 </template>
 
 <script setup lang="ts">
@@ -68,56 +67,4 @@ const handleAnchorClick = (...args) => {
 }
 </script>
 
-<style scoped lang="less">
-.cmp-page-anchor {
-  :deep(.tiny-anchor__affix) {
-    top: unset !important;
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: calc(100vh - 300px);
-  }
-
-  :deep(.tiny-anchor-link) {
-    font-size: 12px;
-
-    a {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-}
-
-.catalog {
-  flex: none;
-  width: 200px;
-  height: calc(100vh - 280px);
-  padding-top: 16px;
-  overflow: hidden;
-
-  .tiny-anchor__dot {
-    max-height: calc(100vh - 300px);
-    width: 200px;
-
-    :deep(.tiny-anchor) {
-      --ti-anchor-width: auto;
-      background-color: transparent;
-    }
-  }
-}
-
-.catalog:hover {
-  overflow-y: auto;
-}
-
-.catalog::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-
-.catalog::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #c1c1c1;
-}
-</style>
+<style scoped lang="less"></style>
