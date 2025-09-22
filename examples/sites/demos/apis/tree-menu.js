@@ -527,7 +527,6 @@ export default {
         },
         {
           name: 'input-change',
-          typeAnchorName: 'ITreeNodeVm',
           type: '(data:string) => void',
           defaultValue: '',
           desc: {
