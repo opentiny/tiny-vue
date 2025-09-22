@@ -83,6 +83,7 @@
           state.isDisplayOnly && gcls('is-display-only')
         )
       "
+      :style="state.breakLine ? { flexDirection: 'column', alignItems: 'start' } : {}"
       @click="handleFocus"
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
@@ -99,37 +100,73 @@
         <span v-if="label" data-tag="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <template v-if="!state.isDisplayOnly">
-        <input
-          autocomplete="off"
-          :placeholder="startPlaceholder"
-          :value="state.displayValue && state.displayValue[0]"
-          :title="state.displayValue && state.displayValue[0]"
-          :disabled="state.pickerDisabled"
-          v-bind="state.firstInputId"
-          :readonly="state.isMobileScreen || !editable || readonly"
-          :name="name && name[0]"
-          @input="handleStartInput"
-          @change="handleStartChange"
-          @focus="handleFocus"
-          tabindex="1"
-          data-tag="tiny-range-input"
-          :class="gcls('range-input')"
-        />
-        <slot name="range-separator">
-          <span
-            v-if="typeof rangeSeparator === 'string'"
-            data-tag="tiny-range-separator"
-            :class="
-              m(
-                gcls('range-separator'),
-                { 'text-center': type === 'datetimerange' },
-                { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
-              )
-            "
-            >{{ rangeSeparator }}</span
-          >
-          <component v-else :is="rangeSeparator" />
-        </slot>
+        <div v-if="state.breakLine" class="flex">
+          <input
+            autocomplete="off"
+            :placeholder="startPlaceholder"
+            :value="state.displayValue && state.displayValue[0]"
+            :title="state.displayValue && state.displayValue[0]"
+            :disabled="state.pickerDisabled"
+            v-bind="state.firstInputId"
+            :readonly="state.isMobileScreen || !editable || readonly"
+            :name="name && name[0]"
+            @input="handleStartInput"
+            @change="handleStartChange"
+            @focus="handleFocus"
+            tabindex="1"
+            data-tag="tiny-range-input"
+            :class="gcls('range-input')"
+            :style="{ width: state.type === 'daterange' ? '45%' : '75%' }"
+          />
+          <slot name="range-separator">
+            <span
+              v-if="typeof rangeSeparator === 'string'"
+              data-tag="tiny-range-separator"
+              :class="
+                m(
+                  gcls('range-separator'),
+                  { 'text-center': type === 'datetimerange' },
+                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                )
+              "
+              >{{ rangeSeparator }}</span
+            >
+            <component v-else :is="rangeSeparator" />
+          </slot>
+        </div>
+        <template v-else>
+          <input
+            autocomplete="off"
+            :placeholder="startPlaceholder"
+            :value="state.displayValue && state.displayValue[0]"
+            :title="state.displayValue && state.displayValue[0]"
+            :disabled="state.pickerDisabled"
+            v-bind="state.firstInputId"
+            :readonly="state.isMobileScreen || !editable || readonly"
+            :name="name && name[0]"
+            @input="handleStartInput"
+            @change="handleStartChange"
+            @focus="handleFocus"
+            tabindex="1"
+            data-tag="tiny-range-input"
+            :class="gcls('range-input')"
+          />
+          <slot name="range-separator">
+            <span
+              v-if="typeof rangeSeparator === 'string'"
+              data-tag="tiny-range-separator"
+              :class="
+                m(
+                  gcls('range-separator'),
+                  { 'text-center': type === 'datetimerange' },
+                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                )
+              "
+              >{{ rangeSeparator }}</span
+            >
+            <component v-else :is="rangeSeparator" />
+          </slot>
+        </template>
         <input
           autocomplete="off"
           :placeholder="endPlaceholder"
@@ -145,6 +182,7 @@
           tabindex="1"
           data-tag="tiny-range-input"
           :class="gcls('range-input')"
+          :style="{ width: state.breakLine ? '88%' : '38%' }"
         />
         <i
           @click="handleClickIcon"
@@ -160,6 +198,7 @@
           data-tag="tiny-input__icon tiny-range__icon tiny-input__suffix"
           v-if="!state.isDisplayOnly"
           :class="gcls('suffix')"
+          :style="{ top: state.breakLine ? '30%' : '50%' }"
         >
           <component
             :is="state.triggerClass"

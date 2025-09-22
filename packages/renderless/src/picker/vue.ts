@@ -170,6 +170,14 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
     ),
     showSeconds: computed(() =>
       (state.format || (props.pickerOptions && props.pickerOptions.format) || 'ss').includes('ss')
+    ),
+    innerWidth: 0,
+    breakLine: computed(
+      () =>
+        ((state.innerWidth < 230 && state.type === 'daterange') ||
+          (state.innerWidth < 335 && state.type === 'datetimerange')) &&
+        state.displayValue &&
+        state.displayValue[1]
     )
   })
 
@@ -320,6 +328,10 @@ export const renderless = (
 
   onMounted(() => {
     api.setInputPaddingLeft()
+    state.innerWidth = vm.$refs.reference.offsetWidth
+    window.addEventListener('resize', () => {
+      state.innerWidth = vm.$refs.reference.offsetWidth
+    })
   })
 
   parent.$on('handle-clear', (event) => {
@@ -329,7 +341,7 @@ export const renderless = (
 
   onBeforeUnmount(() => {
     api.destroyPopper('remove')
-
+    window.removeEventListener('resize')
     state.popperElm = null
     state.picker = null
   })
