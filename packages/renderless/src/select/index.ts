@@ -1611,6 +1611,20 @@ export const watchOptions =
 
     api.getOptionIndexArr()
   }
+export const watchOptionsWhenAutoSelect =
+  ({ nextTick, props, state, api }) =>
+  () => {
+    if (props.autoSelect && props.remote) {
+      nextTick(() => {
+        if (props.options?.length === 1 || state.options.length === 1) {
+          const { valueField } = props
+          const option = props.options?.length === 1 ? props.options[0] : state.options[0]
+          api.updateModelValue(props.multiple ? [option[props.valueField]] : option[props.valueField])
+          state.visible = false
+        }
+      })
+    }
+  }
 
 export const getOptionIndexArr =
   ({ props, state, api }) =>

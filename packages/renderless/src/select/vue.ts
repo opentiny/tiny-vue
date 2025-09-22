@@ -110,7 +110,8 @@ import {
   computedIsExpand,
   computedShowTagText,
   isTagClosable,
-  computedCurrentSizeMap
+  computedCurrentSizeMap,
+  watchOptionsWhenAutoSelect
 } from './index'
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
@@ -442,7 +443,8 @@ const initApi = ({
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
     computedShowTagText: computedShowTagText({ state }),
     isTagClosable: isTagClosable(),
-    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig })
+    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig }),
+    watchOptionsWhenAutoSelect: watchOptionsWhenAutoSelect({ state, props, nextTick, api })
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })
@@ -595,6 +597,10 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
 
 const addWatch = ({ watch, props, api, state, nextTick }) => {
   watch(() => [...state.options], api.watchOptions)
+
+  // tiny 新增： 支持autoSelect
+  watch(() => state.options, api.watchOptionsWhenAutoSelect)
+  props.options && watch(() => props.options, api.watchOptionsWhenAutoSelect)
 
   // tiny 新增renderType的2个判断
   if (props.renderType === 'grid' && !props.optimization) {

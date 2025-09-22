@@ -367,6 +367,10 @@ export default defineComponent({
     maxTagWidth: {
       type: [String, Number],
       default: null
+    },
+    autoSelect: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
