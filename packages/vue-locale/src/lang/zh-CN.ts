@@ -265,7 +265,7 @@ export default {
       noperm: '茫茫大海，找不到页面',
       weaknet: '网络不给力',
       pcview: '请到PC上查看文件',
-      nodata: '休息一下',
+      nodata: '暂无数据',
       create: '创建',
       provide: 'TINY 开发团队提供',
       nodatamf: '暂无数据',

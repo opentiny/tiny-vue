@@ -1,5 +1,5 @@
 export default {
-  mode: ['mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'Exception',
@@ -10,11 +10,12 @@ export default {
           type: 'boolean',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置组件级空态',
-            'en-US': 'Set component-level empty state'
+            'zh-CN': '设置组件级异常',
+            'en-US': 'Set component-level exception'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'component-empty'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'component-page',
+          pcDemo: 'component-page'
         },
         {
           name: 'exception-class',
@@ -24,19 +25,21 @@ export default {
             'zh-CN': '设置自定义类',
             'en-US': 'Setting Custom Classes'
           },
-          mode: ['mobile-first'],
-          mfDemo: ''
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'exception-class',
+          pcDemo: 'exception-class'
         },
         {
           name: 'page-empty',
           type: 'boolean',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置页面级空态',
-            'en-US': ''
+            'zh-CN': '设置页面级异常',
+            'en-US': 'Set page-level exception'
           },
-          mode: ['mobile-first'],
-          mfDemo: ''
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'page-empty',
+          pcDemo: 'page-empty'
         },
         {
           name: 'sub-message',
@@ -46,20 +49,22 @@ export default {
             'zh-CN': '设置二级标题',
             'en-US': 'Set Level-2 Title'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'sub-message'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'sub-message',
+          pcDemo: 'sub-message'
         },
         {
           name: 'type',
-          type: 'string',
+          typeAnchorName: 'IType',
+          type: 'IType',
           defaultValue: 'nodata',
           desc: {
-            'zh-CN':
-              '<p>设置缺省页类型，默认为nodata,可选值有 weaknet || noperm || busy || build || weaknet || pcview</p>',
-            'en-US': 'display different button'
+            'zh-CN': '<p>设置缺省页类型，默认为nodata</p>',
+            'en-US': '<p>Set exception type, The default value is nodata</p>'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'page-empty'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'page-empty',
+          pcDemo: 'page-empty'
         }
       ],
       events: [],
@@ -71,23 +76,34 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>设置内容</p>',
-            'en-US': 'Click'
+            'en-US': '<p>Set content</p>'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'content-slot'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'slot',
+          pcDemo: 'slot'
         },
         {
-          name: 'default',
+          name: 'icon',
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '默认插槽',
-            'en-US': 'Default Slot'
+            'zh-CN': '图标插槽',
+            'en-US': 'Icon Slot'
           },
-          mode: ['mobile-first'],
-          mfDemo: ''
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'slot',
+          pcDemo: 'slot'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IType',
+      type: 'type',
+      code: `
+type IType = 'noperm' | 'nodata' | 'weaknet' | 'noresult' | 'nonews' | 'pagenoperm' | 'pageweaknet' | 'pagenothing' | 'pageservererror'
+`
     }
   ]
 }
