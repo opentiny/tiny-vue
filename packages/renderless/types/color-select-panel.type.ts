@@ -1,5 +1,9 @@
 import type { ComputedRef, Ref } from 'vue'
 
+export interface LinearGradientState {
+  linearGradientBarBackground: string
+}
+
 export interface ColorOptions {
   enableAlpha: boolean
   format: string
