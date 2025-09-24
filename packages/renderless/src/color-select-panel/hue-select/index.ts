@@ -96,16 +96,14 @@ export const useEvent = (
     }
     const el = bar.value
     if (!el) {
-      return 0
+      return
     }
     const left = getLeft(el, event)
     const rect = el?.getBoundingClientRect()
     const hue = Math.round(((left - thumb.value.offsetWidth / 2) / (rect.width - thumb.value.offsetWidth)) * 360)
     state.thumbLeft = left
-    // ctx.activeColor.value.cursorLeft = state.thumbLeft
     emit('hueUpdate', hue)
     ctx.activeColor.value.color.set('hue', hue)
-    // props.color.set('hue', hue)
   }
   return { update, onDrag, onSvReady, getLeft, getThumbTop }
 }

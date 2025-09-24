@@ -2,7 +2,7 @@ import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@
 import { useContext } from '../utils/context'
 import { initState, useLinearGradient } from '.'
 
-export const api = ['context', 'onClickBar', 'linearGradientBar', 'onLinearBarReady', 'onThumbMouseDown', 'state']
+export const api = ['context', 'onClickBar', 'onThumbMouseDown', 'state']
 
 export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: ISharedRenderlessParamUtils) => {
   const { reactive } = hooks
