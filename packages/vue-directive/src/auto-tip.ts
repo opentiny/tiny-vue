@@ -55,9 +55,10 @@ const mouseenterHandler = (e) => {
   if (isAlwaysShowTip(currentTarget) || isEllipsis(currentTarget)) {
     // 全局只创建一个tooltip实例，保证性能
     if (!globalTooltip.value) {
-      tooltipContent.value = Object.hasOwn(currentTarget.boundingValue, 'content') // 如果传入content, 哪怕是空格，也使用传入content
-        ? currentTarget.boundingValue.content
-        : currentTarget.textContent
+      tooltipContent.value =
+        'content' in currentTarget.boundingValue // 如果传入content, 哪怕是空格，也使用传入content
+          ? currentTarget.boundingValue.content
+          : currentTarget.textContent
 
       globalTooltip.value = createComponent({
         el: document.createElement('div'),
