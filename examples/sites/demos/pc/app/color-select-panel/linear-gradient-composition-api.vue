@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 const color = ref('linear-gradient(120deg, hsla(334, 80%, 40%, 0.32) 0%,#F48FA2FF 96%)')
 const visible = ref(false)
+const history = ref(['linear-gradient(120deg, hsla(201, 80%, 40%, 0.32) 0%,#8FF2F4FF 96%)'])
 const changeVisible = () => {
   visible.value = !visible.value
 }
@@ -27,6 +28,8 @@ const hidden = () => {
         :visible="visible"
         @confirm="onConfirm"
         @cancel="hidden"
+        enable-history
+        :history="history"
       />
     </div>
   </div>

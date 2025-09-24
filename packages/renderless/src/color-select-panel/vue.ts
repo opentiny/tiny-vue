@@ -44,7 +44,7 @@ export const renderless = (
     onPredefineColorClick,
     onHistoryClick,
     onClickOutside
-  } = initApi(props, state, utils, hooks)
+  } = initApi(props, state, utils, hooks, ext)
 
   const api = {
     state,
