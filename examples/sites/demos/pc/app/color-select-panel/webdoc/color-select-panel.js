@@ -23,8 +23,8 @@ export default {
         'en-US': 'Linear Gradient'
       },
       desc: {
-        'zh-CN': '通过<code>visible</code>设置显示色彩选择面板。',
-        'en-US': 'Set the display color selection panel through<code>visible</code>.'
+        'zh-CN': '通过<code>color-mode</code>设置显示色彩选择的色彩模式。',
+        'en-US': 'Set the color mode for display color selection through<code>color mode</code>.'
       },
       codeFiles: ['linear-gradient.vue']
     },
