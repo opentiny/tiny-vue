@@ -6,7 +6,7 @@
     <div
       class="tiny-color-select-panel__display"
       :style="{
-        background: isLinearGradient ? state.color.value : state.linearGradient
+        background: state.isLinearGradient ? state.linearGradient : state.color.value
       }"
     ></div>
     <div class="tiny-color-select-panel__tools">
