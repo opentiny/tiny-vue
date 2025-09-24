@@ -296,7 +296,7 @@ export class Color implements IColor {
     } else {
       this._alpha = 100
     }
-    if (parent.length >= 3) {
+    if (parts.length >= 3) {
       const { h, s, v } = hsl2hsv({
         hue: parts[0],
         sat: parts[1],

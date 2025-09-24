@@ -6,13 +6,16 @@ import type {
 } from '@/types'
 import type { Color } from '../utils/color'
 import { getClientXY } from '../utils/getClientXY'
+import { useContext } from '../utils/context'
 
 type State = ReturnType<typeof initState>
 
-export const initState = ({ ref, reactive }: ISharedRenderlessParamHooks) => {
-  const background = ref('')
+export const initState = (hooks: ISharedRenderlessParamHooks) => {
+  const { ref, reactive } = hooks
+  const ctx = useContext(hooks)
+  const background = ref(ctx.activeColor.value.color.value)
   const left = ref(0)
-  const state = reactive({ background, left })
+  const state = reactive({ background, left, activeColor: ctx.activeColor })
   return state
 }
 
@@ -77,8 +80,10 @@ export const initWatch = (
   ctx: ColorPanelContext
 ) => {
   watch(
-    () => ctx.activeColor.value.color.get('alpha'),
-    () => update(),
+    () => ctx.activeColor.value.color,
+    () => {
+      update()
+    },
     { deep: true }
   )
   watch(

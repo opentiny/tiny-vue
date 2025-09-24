@@ -1,5 +1,12 @@
 <template>
-  <div class="tiny-color-select-panel__linear-gradient" ref="linearGradientBar" @click="onClickBar">
+  <div
+    class="tiny-color-select-panel__linear-gradient"
+    ref="linearGradientBar"
+    @click="onClickBar"
+    :style="{
+      background: context.linearGardientValue
+    }"
+  >
     <div
       class="tiny-color-select-panel__linear-gradient__thumb"
       v-for="(point, idx) of context.colorPoints"

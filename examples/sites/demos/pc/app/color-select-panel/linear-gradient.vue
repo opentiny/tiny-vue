@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      color: 'linear-gradient(120deg, #66ccffff 50%, #f48fa2 100%)',
+      color: 'linear-gradient(120deg, hsla(334, 80%, 40%, 0.32) 0%,#F48FA2FF 96%)',
       visible: false
     }
   },

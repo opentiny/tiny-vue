@@ -12,7 +12,7 @@ export const LINEAR_GRADIENT_BAR = 'linearGradientBar'
 export const THUMB = 'thumb'
 
 export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: ISharedRenderlessParamUtils) => {
-  const { reactive, ref, computed, watch, nextTick } = hooks
+  const { reactive, watch, nextTick } = hooks
   const { vm } = utils
 
   const context = useContext(hooks)

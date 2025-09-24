@@ -211,6 +211,7 @@ const sideCornerDegreeMap = {
 } as const
 const createColorPoints = (
   val: string,
+  props: IColorSelectPanelProps,
   hooks: ISharedRenderlessParamHooks,
   ext: ColorSelectPanelExtends,
   bar: Ref<HTMLElement | null>
@@ -228,23 +229,27 @@ const createColorPoints = (
   }
   const parseBehavior = {
     hex: (node: HexNode) => {
-      return new ColorPoint(new Color({ value: `#${node.value}`, format: 'hex', enableAlpha: false }), 0)
+      return new ColorPoint(new Color({ value: `#${node.value}`, format: 'hex', enableAlpha: props.alpha }), 0)
     },
     rgb: (node: RgbNode) => {
+      if (props.alpha) {
+        return parseBehavior.rgba({ ...node, type: 'rgba' })
+      }
       return new ColorPoint(new Color({ enableAlpha: false, format: 'rgb', value: `rgb(${node.value.join(',')})` }), 0)
     },
     rgba: (node: RgbaNode) => {
-      const color = new Color({ enableAlpha: false, format: 'rgb', value: `rgba(${node.value.join(',')})` })
-      color.set('alpha', Number.parseInt(node.value[3] ?? '1', 10))
+      const color = new Color({ enableAlpha: props.alpha, format: 'rgba', value: `rgba(${node.value.join(',')})` })
       return new ColorPoint(color, 0)
     },
     hsl: (node: HslNode) => {
-      const color = new Color({ enableAlpha: false, format: 'hsl', value: `hsl(${node.value.join(',')})` })
+      if (props.alpha) {
+        return parseBehavior.hsla({ ...node, type: 'hsla' })
+      }
+      const color = new Color({ enableAlpha: false, format: 'hsl', value: `hsl(${node.value.join(' ')})` })
       return new ColorPoint(color, 0)
     },
     hsla: (node: HslaNode) => {
-      const color = new Color({ enableAlpha: false, format: 'hsl', value: `hsla(${node.value.join(',')})` })
-      color.set('alpha', Number.parseInt(node.value[3] ?? '1', 10))
+      const color = new Color({ enableAlpha: props.alpha, format: 'hsl', value: `hsl(${node.value.join(' ')})` })
       return new ColorPoint(color, 0)
     },
     literal: (node: LiteralNode) => {
@@ -310,7 +315,7 @@ export const initState = (
   utils: ISharedRenderlessParamUtils,
   ext: ColorSelectPanelExtends
 ) => {
-  const { reactive, ref, computed, onMounted } = hooks
+  const { reactive, ref, computed } = hooks
   const stack = ref<string[]>([...(props.history ?? [])])
   const predefineStack = computed(() => props.predefine)
   const hue = ref()
@@ -333,13 +338,12 @@ export const initState = (
     bar,
     deg: ref(180)
   }
-  // console.log(ext.parse('linear-gradient(180deg, red calc(1px + 1px + calc(1px * 2)))'))
   if (isGrandient(props.modelValue)) {
     hooks.watchEffect(() => {
       if (!bar.value) {
         return
       }
-      const { colorPoints, angular } = createColorPoints(props.modelValue, hooks, ext, bar)
+      const { colorPoints, angular } = createColorPoints(props.modelValue, props, hooks, ext, bar)
       ctx.deg.value = angular
       ctx.colorPoints.value = colorPoints
       const lastPoint = colorPoints.at(-1)
