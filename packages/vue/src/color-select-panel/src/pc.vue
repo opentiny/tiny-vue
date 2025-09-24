@@ -26,6 +26,9 @@
           v-if="state.currentFormat === 'hex' || state.currentFormat === 'css' || !state.currentFormat"
         >
           <tiny-input class="tiny-color-select-panel__tools-hex1" v-model="state.input" />
+          <div class="tiny-color-select-panel__tools-deg" v-if="state.isLinearGradient">
+            <tiny-numeric v-model="state.ctx.deg" unit="deg" mouse-wheel />
+          </div>
         </div>
         <div class="tiny-color-select-panel__tools-hex" v-else>
           <tiny-input class="tiny-color-select-panel__tools-hex4" v-model="state.hexInput4" />
@@ -74,6 +77,7 @@
 <script>
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'
+import Numeric from '@opentiny/vue-numeric'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import HueSelect from './components/hue-select.vue'
@@ -104,7 +108,8 @@ export default defineComponent({
     TinyButton: Button,
     TinyInput: Input,
     TinySelect: Select,
-    TinyOption: Option
+    TinyOption: Option,
+    TinyNumeric: Numeric
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {

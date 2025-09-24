@@ -5,6 +5,7 @@ import { getClientXY } from '../utils/getClientXY'
 import { Color } from '../utils/color'
 import { draggable } from '../utils/use-drag'
 import { onMounted } from 'vue'
+import { isNullOrEmpty } from '@opentiny/utils'
 
 export const api = ['context', 'onClickBar', 'linearGradientBar', 'onLinearBarReady', 'onThumbMouseDown', 'state']
 
@@ -110,8 +111,11 @@ export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: 
     return `linear-gradient(${context.deg.value}deg, ${colors})`
   }
   watch(
-    context.colorPoints,
+    () => [context.colorPoints, context.deg],
     () => {
+      if (isNullOrEmpty(context.deg.value)) {
+        return
+      }
       context.linearGardientValue.value = toString()
       linearGradientBarBackground.value = toString().replace(`${context.deg.value}deg`, '90deg')
     },
