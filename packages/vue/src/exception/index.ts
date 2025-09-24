@@ -11,6 +11,7 @@
  */
 import Exception from './src/index'
 import { version } from './package.json'
+import '@opentiny/vue-theme/exception/index.less'
 
 /* istanbul ignore next */
 Exception.install = function (Vue) {
