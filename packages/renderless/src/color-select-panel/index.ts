@@ -291,19 +291,34 @@ export const initApi = (
   const onHistoryClick = (historyColor: string) => {
     if (state.ctx.colorMode === 'monochrome') {
       state.ctx.activeColor.color.fromString(historyColor)
+      return
     }
-    if (isGrandient(historyColor)) {
-      const colorPoints = createColorPoints(historyColor, props, hooks, ext, state.ctx.bar)
-      state.ctx.colorPoints = colorPoints.colorPoints
-      const lastPoint = colorPoints.colorPoints.at(-1)
-      if (lastPoint) {
-        state.ctx.activeColor = lastPoint
-      }
-      state.ctx.deg = colorPoints.angular
+    const colorString = isGrandient(historyColor)
+      ? historyColor
+      : `linear-gradient(90deg, #fff 0%, ${historyColor} 100%)`
+    const colorPoints = createColorPoints(colorString, props, hooks, ext, state.ctx.bar)
+    state.ctx.colorPoints = colorPoints.colorPoints
+    const lastPoint = colorPoints.colorPoints.at(-1)
+    if (lastPoint) {
+      state.ctx.activeColor = lastPoint
     }
+    state.ctx.deg = colorPoints.angular
   }
   const onPredefineColorClick = (predefineColor: string) => {
-    state.color.fromString(predefineColor)
+    if (state.ctx.colorMode === 'monochrome') {
+      state.color.fromString(predefineColor)
+      return
+    }
+    const colorString = isGrandient(predefineColor)
+      ? predefineColor
+      : `linear-gradient(180deg, #fff 0%, ${predefineColor} 100%)`
+    const colorPoints = createColorPoints(colorString, props, hooks, ext, state.ctx.bar)
+    state.ctx.colorPoints = colorPoints.colorPoints
+    const lastPoint = colorPoints.colorPoints.at(-1)
+    if (lastPoint) {
+      state.ctx.activeColor = lastPoint
+    }
+    state.ctx.deg = colorPoints.angular
   }
   return {
     open,

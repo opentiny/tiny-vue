@@ -6,15 +6,15 @@ import { Color } from '../utils/color'
 import { draggable } from '../utils/use-drag'
 import { onMounted } from 'vue'
 
-export const api = ['context', 'onClickBar', 'linearGradientBar', 'onLinearBarReady', 'onThumbMouseDown']
+export const api = ['context', 'onClickBar', 'linearGradientBar', 'onLinearBarReady', 'onThumbMouseDown', 'state']
 
 export const LINEAR_GRADIENT_BAR = 'linearGradientBar'
 export const THUMB = 'thumb'
 
 export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: ISharedRenderlessParamUtils) => {
-  const { reactive, watch, nextTick } = hooks
+  const { reactive, watch, nextTick, ref } = hooks
   const { vm } = utils
-
+  const linearGradientBarBackground = ref('')
   const context = useContext(hooks)
   const activePoint = context.activeColor
   const addPoint = (point: ColorPoint) => {
@@ -90,7 +90,9 @@ export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: 
     const rect = bar.getBoundingClientRect()
     return Number.parseInt(((points.cursorLeft / rect.width) * 100).toFixed(0))
   }
+  const state = reactive({ linearGradientBarBackground })
   const api = reactive({
+    state,
     context,
     onClickBar,
     onThumbMouseDown
@@ -111,6 +113,7 @@ export const renderless = (_: never, hooks: ISharedRenderlessParamHooks, utils: 
     context.colorPoints,
     () => {
       context.linearGardientValue.value = toString()
+      linearGradientBarBackground.value = toString().replace(`${context.deg.value}deg`, '90deg')
     },
     { deep: true, immediate: true }
   )

@@ -4,7 +4,7 @@
     ref="linearGradientBar"
     @click="onClickBar"
     :style="{
-      background: context.linearGardientValue
+      background: state.linearGradientBarBackground
     }"
   >
     <div
