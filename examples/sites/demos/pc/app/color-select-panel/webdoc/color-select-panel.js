@@ -17,6 +17,18 @@ export default {
       codeFiles: ['base.vue']
     },
     {
+      demoId: 'linear-gradient',
+      name: {
+        'zh-CN': '线性渐变',
+        'en-US': 'Linear Gradient'
+      },
+      desc: {
+        'zh-CN': '通过<code>visible</code>设置显示色彩选择面板。',
+        'en-US': 'Set the display color selection panel through<code>visible</code>.'
+      },
+      codeFiles: ['linear-gradient.vue']
+    },
+    {
       demoId: 'alpha',
       name: {
         'zh-CN': '透明度',

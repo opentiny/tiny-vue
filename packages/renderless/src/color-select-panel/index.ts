@@ -1,5 +1,28 @@
-import type { IColorSelectPanelProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import colors from './utils/color-map'
+import type {
+  AngularNode,
+  CalcNode,
+  ColorPanelContext,
+  ColorSelectPanelExtends,
+  ColorStop,
+  DirectionalNode,
+  EmNode,
+  HexNode,
+  HslaNode,
+  HslNode,
+  IColorSelectPanelProps,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils,
+  LiteralNode,
+  PercentNode,
+  PxNode,
+  RgbaNode,
+  RgbNode
+} from '@/types'
 import { Color } from './utils/color'
+import { createContext } from './utils/context'
+import { ColorPoint } from './utils/color-points'
+import type { Ref } from 'vue'
 
 type State = ReturnType<typeof initState>
 
@@ -27,8 +50,10 @@ export const triggerConfirm = (value: string | null, emit: ISharedRenderlessPara
 export const initApi = (
   props: IColorSelectPanelProps,
   state: State,
-  { emit, nextTick }: ISharedRenderlessParamUtils
+  utils: ISharedRenderlessParamUtils,
+  hooks: ISharedRenderlessParamHooks
 ) => {
+  const { emit, nextTick } = utils
   const setShowPicker = (value: boolean) => (state.showPicker = value)
   const resetColor = () => {
     nextTick(() => {
@@ -43,6 +68,12 @@ export const initApi = (
     })
   }
   const submitValue = () => {
+    if (state.ctx.colorMode === 'linear-gradient') {
+      updateModelValue(state.ctx.linearGardientValue, emit)
+      triggerConfirm(state.ctx.linearGardientValue, emit)
+      setShowPicker(false)
+      return
+    }
     const value = state.color.value
     updateModelValue(value, emit)
     triggerConfirm(value, emit)
@@ -158,7 +189,128 @@ export const parseCustomRGBA = (str, type) => {
   return result
 }
 
-export const initState = (props: IColorSelectPanelProps, { reactive, ref, computed }: ISharedRenderlessParamHooks) => {
+const isGrandient = (val: unknown) => {
+  if (typeof val !== 'string') {
+    return false
+  }
+  return val.trim().startsWith('linear-gradient')
+}
+const sideCornerDegreeMap = {
+  top: 0,
+  right: 90,
+  bottom: 180,
+  left: 270,
+  'top left': 315,
+  'left top': 315,
+  'top right': 45,
+  'right top': 45,
+  'bottom left': 225,
+  'left bottom': 225,
+  'bottom right': 135,
+  'right bottom': 135
+} as const
+const createColorPoints = (
+  val: string,
+  hooks: ISharedRenderlessParamHooks,
+  ext: ColorSelectPanelExtends,
+  bar: Ref<HTMLElement | null>
+) => {
+  if (!isGrandient(val)) {
+    return { colorPoints: [], angular: 180 }
+  }
+  const nodes = ext.parse(val)
+  let angular = 180
+  const parseAngular = (node: DirectionalNode | AngularNode) => {
+    if (node.type === 'angular') {
+      return Number.parseInt(node.value)
+    }
+    return sideCornerDegreeMap[node.value] || 180
+  }
+  const parseBehavior = {
+    hex: (node: HexNode) => {
+      return new ColorPoint(new Color({ value: `#${node.value}`, format: 'hex', enableAlpha: false }), 0)
+    },
+    rgb: (node: RgbNode) => {
+      return new ColorPoint(new Color({ enableAlpha: false, format: 'rgb', value: `rgb(${node.value.join(',')})` }), 0)
+    },
+    rgba: (node: RgbaNode) => {
+      const color = new Color({ enableAlpha: false, format: 'rgb', value: `rgba(${node.value.join(',')})` })
+      color.set('alpha', Number.parseInt(node.value[3] ?? '1', 10))
+      return new ColorPoint(color, 0)
+    },
+    hsl: (node: HslNode) => {
+      const color = new Color({ enableAlpha: false, format: 'hsl', value: `hsl(${node.value.join(',')})` })
+      return new ColorPoint(color, 0)
+    },
+    hsla: (node: HslaNode) => {
+      const color = new Color({ enableAlpha: false, format: 'hsl', value: `hsla(${node.value.join(',')})` })
+      color.set('alpha', Number.parseInt(node.value[3] ?? '1', 10))
+      return new ColorPoint(color, 0)
+    },
+    literal: (node: LiteralNode) => {
+      let value = colors[node.value] || '#00000000'
+      const color = new Color({ enableAlpha: true, format: 'hex', value })
+      return new ColorPoint(color, 0)
+    },
+    'var': (node: any) => {
+      hooks.warn('unsupported var ref.')
+      return parseBehavior.hex({ type: 'hex', value: '#000', length: node.length })
+    }
+  }
+  const unsupportedLengthUnit = ['em', 'calc']
+  const parseLength = (node: CalcNode | PercentNode | EmNode | PxNode | undefined) => {
+    if (!node || !bar.value) {
+      return 0
+    }
+    if (unsupportedLengthUnit.includes(node.type)) {
+      hooks.warn(`unsupported unit ${node.type}`)
+      return 0
+    }
+    const barRect = bar.value.getBoundingClientRect()
+    const { width } = barRect
+    const numberValue = Number.parseFloat(node.value)
+    if (node.type === '%') {
+      return Number.parseInt(`${(numberValue / 100) * width}`)
+    }
+    if (node.type === 'px') {
+      return Number.parseInt(`${numberValue / width}`)
+    }
+    return 0
+  }
+  const parseColotStop = (colorStop: ColorStop) => {
+    if (!(colorStop.type in parseBehavior)) {
+      hooks.warn(`unknown behavior ${colorStop}`)
+      throw new Error(`unknown behavior ${colorStop}`)
+    }
+    const colorPoint = parseBehavior[colorStop.type](colorStop)
+    const cursorLeft = parseLength(colorStop.length)
+    colorPoint.cursorLeft = cursorLeft
+    return colorPoint
+  }
+  const [node] = nodes
+  if (node.type !== 'linear-gradient') {
+    hooks.warn(`Only support linear-gradient yet.`)
+    return { colorPoints: [], angular: 180 }
+  }
+  if (!node) {
+    return { colorPoints: [], angular: 180 }
+  }
+  if (node.orientation) {
+    angular = parseAngular(node.orientation)
+  } else {
+    angular = 180
+  }
+  const colorPoints = node.colorStops.map((colorStop) => parseColotStop(colorStop))
+  return { colorPoints, angular }
+}
+
+export const initState = (
+  props: IColorSelectPanelProps,
+  hooks: ISharedRenderlessParamHooks,
+  utils: ISharedRenderlessParamUtils,
+  ext: ColorSelectPanelExtends
+) => {
+  const { reactive, ref, computed, onMounted } = hooks
   const stack = ref<string[]>([...(props.history ?? [])])
   const predefineStack = computed(() => props.predefine)
   const hue = ref()
@@ -172,6 +324,31 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
       value: props.modelValue
     })
   ) as Color
+  const bar = ref(null)
+  const ctx: ColorPanelContext = {
+    colorMode: computed(() => props.colorMode ?? 'monochrome'),
+    activeColor: ref(new ColorPoint(color, 0)),
+    colorPoints: ref([new ColorPoint(color, 0)]),
+    linearGardientValue: ref(''),
+    bar,
+    deg: ref(180)
+  }
+  // console.log(ext.parse('linear-gradient(180deg, red calc(1px + 1px + calc(1px * 2)))'))
+  if (isGrandient(props.modelValue)) {
+    hooks.watchEffect(() => {
+      if (!bar.value) {
+        return
+      }
+      const { colorPoints, angular } = createColorPoints(props.modelValue, hooks, ext, bar)
+      ctx.deg.value = angular
+      ctx.colorPoints.value = colorPoints
+      const lastPoint = colorPoints.at(-1)
+      if (lastPoint) {
+        ctx.activeColor.value = lastPoint
+      }
+    })
+  }
+  createContext(ctx, hooks)
   const input = ref<string>('')
   const hexInput1 = ref<number | string>()
   const hexInput2 = ref<number | string>()
@@ -210,7 +387,10 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
     enablePredefineColor: computed(() => props.enablePredefineColor),
     enableHistory: computed(() => props.enableHistory),
     currentFormat,
-    formats: props.format
+    formats: props.format,
+    ctx,
+    isLinearGradient: computed(() => ctx.colorMode.value === 'linear-gradient'),
+    linearGradient: computed(() => ctx.linearGardientValue.value)
   })
   return state
 }
@@ -254,14 +434,19 @@ export const initWatch = (
     }
   )
   watch(
-    () => state.currentColor,
+    () => [state.currentColor, state.linearGradient],
     () => {
-      state.input = state.currentColor
-      const result = parseCustomRGBA(state.currentColor, state.currentFormat)
-      state.hexInput4 = Math.ceil(Number(result[0]))
-      state.hexInput5 = result[1]
-      state.hexInput6 = result[2]
-      state.hexInput7 = `${(Number(result[3]) || 1) * 100}%`
+      if (state.isLinearGradient) {
+        state.input = state.linearGradient
+        return
+      } else {
+        state.input = state.currentColor
+        const result = parseCustomRGBA(state.currentColor, state.currentFormat)
+        state.hexInput4 = Math.ceil(Number(result[0]))
+        state.hexInput5 = result[1]
+        state.hexInput6 = result[2]
+        state.hexInput7 = `${(Number(result[3]) || 1) * 100}%`
+      }
       triggerColorUpdate(state.input, emit)
     },
     { flush: 'sync' }

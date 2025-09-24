@@ -6,7 +6,7 @@
     <div
       class="tiny-color-select-panel__display"
       :style="{
-        background: state.color.value
+        background: isLinearGradient ? state.color.value : state.linearGradient
       }"
     ></div>
     <div class="tiny-color-select-panel__tools">
@@ -82,6 +82,7 @@ import '@opentiny/vue-theme/color-select-panel/index.less'
 import { Clickoutside } from '@opentiny/vue-directive'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
+import { parse } from 'gradient-parser'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
@@ -94,7 +95,8 @@ export default defineComponent({
     'predefine',
     'format',
     'enableHistory',
-    'enablePredefineColor'
+    'enablePredefineColor',
+    'colorMode'
   ],
   components: {
     HueSelect,
@@ -106,7 +108,7 @@ export default defineComponent({
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, extendOptions: { parse } })
   }
 })
 </script>
