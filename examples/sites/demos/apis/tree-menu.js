@@ -534,7 +534,10 @@ export default {
             'en-US': 'Event triggered when a value is entered into the input box.'
           },
           mode: ['pc'],
-          pcDemo: 'events'
+          pcDemo: 'events',
+          meta: {
+            stable: '3.27.0'
+          }
         }
       ],
       methods: [
