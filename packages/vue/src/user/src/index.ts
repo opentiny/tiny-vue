@@ -159,6 +159,10 @@ export const userProps = {
   dropdownHeight: {
     type: String,
     default: '70%'
+  },
+  showEmptyValue: {
+    type: Boolean,
+    default: true
   }
 }
 
