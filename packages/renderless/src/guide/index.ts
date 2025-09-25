@@ -3,7 +3,7 @@ import { xss } from '@opentiny/utils'
 export const createShepherd =
   ({ state, props, Shepherd, offset, designConfig }) =>
   () => {
-    const tour = newTour(state, Shepherd, offset, designConfig)
+    const tour = newTour(state, Shepherd, offset, designConfig, props)
 
     state.tour = tour
 
@@ -83,9 +83,9 @@ const getItemCopy = (props, tour, result) => {
   return result
 }
 
-const newTour = (state, Shepherd, offset, designConfig) => {
+const newTour = (state, Shepherd, offset, designConfig, props) => {
   const tour = new Shepherd.Tour({
-    useModalOverlay: designConfig?.state?.isUseModalOverlay ?? false,
+    useModalOverlay: props.mask ?? designConfig?.state?.isUseModalOverlay,
     defaultStepOptions: {
       modalOverlayOpeningPadding: state.modalOverlayOpeningPadding,
       modalOverlayOpeningRadius: state.modalOverlayOpeningRadius,
