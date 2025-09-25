@@ -148,7 +148,10 @@ export default {
             'en-US': ''
           },
           mode: ['pc'],
-          pcDemo: 'mask'
+          pcDemo: 'mask',
+          meta: {
+            stable: '3.27.0'
+          }
         }
       ],
       events: [],
