@@ -1999,8 +1999,13 @@ export default {
           type: '() => IRow[]',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '获取当前表格的数据（完整的全量表体数据、处理条件之后的全量表体数据、当前渲染中的表体数据、当前渲染中的表尾数据）',
+            'zh-CN': `
+            获取当前表格的数据（完整的全量表体数据、处理条件之后的全量表体数据、当前渲染中的表体数据、当前渲染中的表尾数据） <br/>
+            footerData: 表尾数据。 <br/>
+            fullData: 表格全量数据。  <br/>
+            visibleData: 经过筛选处理后，表格可视数据。 <br/>
+            tableData: 经过虚拟滚动剪切处理和筛选处理，表格实际用于渲染的数据。<br/>
+            `,
             'en-US':
               'Get the data of the current table (complete full body data, full body data after processing conditions, currently rendered body data, currently rendered footer data)'
           },

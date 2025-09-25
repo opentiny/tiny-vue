@@ -75,16 +75,18 @@
         </div>
 
         <!-- demo与api目录锚点 -->
-        <aside-anchor
-          v-if="state.activeTab === 'demos' || state.activeTab === 'api'"
-          :active-tab="state.activeTab"
-          :current-json="state.currJson"
-          :anchor-affix="state.anchorAffix"
-          :api-types="state.currApiTypes"
-          :lang-key="state.langKey"
-          :key="anchorRefreshKey"
-          @link-click="handleAnchorClick"
-        ></aside-anchor>
+        <div class="cmp-page-anchor catalog">
+          <aside-anchor
+            v-if="state.activeTab === 'demos' || state.activeTab === 'api'"
+            :active-tab="state.activeTab"
+            :current-json="state.currJson"
+            :anchor-affix="state.anchorAffix"
+            :api-types="state.currApiTypes"
+            :lang-key="state.langKey"
+            :key="anchorRefreshKey"
+            @link-click="handleAnchorClick"
+          ></aside-anchor>
+        </div>
       </div>
 
       <div v-if="state.currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(state.currJson.owner)">
@@ -525,6 +527,57 @@ defineExpose({ loadPage })
       margin: 0;
       overflow: visible;
     }
+  }
+  .cmp-page-anchor {
+    :deep(.tiny-anchor__affix) {
+      top: unset !important;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100vh - 300px);
+    }
+
+    :deep(.tiny-anchor-link) {
+      font-size: 12px;
+
+      a {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .catalog {
+    flex: none;
+    width: 200px;
+    height: calc(100vh - 280px);
+    padding-top: 16px;
+    overflow: hidden;
+
+    .tiny-anchor__dot {
+      max-height: calc(100vh - 300px);
+      width: 200px;
+
+      :deep(.tiny-anchor) {
+        --ti-anchor-width: auto;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .catalog:hover {
+    overflow-y: auto;
+  }
+
+  .catalog::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+
+  .catalog::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #c1c1c1;
   }
 }
 

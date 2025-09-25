@@ -897,7 +897,7 @@ export default defineComponent({
             })
           : null,
         // 加载中
-        h(loadingComponent || GridLoading, { props: { visible: loading }, class: this.viewCls('gridLoading') }),
+        h(GridLoading, { props: { visible: loading, loadingComponent }, class: this.viewCls('gridLoading') }),
         // 筛选、快捷菜单、Tip提示、校验提示
         h(
           'div',

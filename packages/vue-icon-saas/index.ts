@@ -536,6 +536,8 @@ import IconTotalNumber from './src/total-number'
 import IconTotalWeight from './src/total-weight'
 import IconUnderReview from './src/under-review'
 import IconUnsubmitted from './src/unsubmitted'
+import IconUpAndDownArrowInner from './src/up-and-down-arrow-inner'
+import IconUpAndDownArrowOuter from './src/up-and-down-arrow-outer'
 import IconViewFlowchart from './src/view-flowchart'
 import IconWaitForDeliveryO from './src/wait-for-delivery-o'
 import IconWaitForDelivery from './src/wait-for-delivery'
@@ -636,6 +638,10 @@ export {
   IconUnderReview as iconUnderReview,
   IconUnsubmitted,
   IconUnsubmitted as iconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowInner as iconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
+  IconUpAndDownArrowOuter as iconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconViewFlowchart as iconViewFlowchart,
   IconWaitForDeliveryO,
@@ -1659,6 +1665,8 @@ export default {
   IconTotalWeight,
   IconUnderReview,
   IconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconWaitForDeliveryO,
   IconWaitForDelivery,

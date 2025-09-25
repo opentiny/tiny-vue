@@ -283,6 +283,14 @@ export const cmpMenus = [
       { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
       { 'nameCn': '对话框', 'name': 'DialogBox', 'key': 'dialog-box' },
       { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
+      {
+        'nameCn': '异常页',
+        'name': 'Exception',
+        'key': 'exception',
+        'meta': {
+          'stable': '3.27.0'
+        }
+      },
       { 'nameCn': '加载', 'name': 'Loading', 'key': 'loading' },
       { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
       { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },

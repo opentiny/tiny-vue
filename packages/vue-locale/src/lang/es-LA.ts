@@ -265,7 +265,7 @@ export default {
       noperm: 'No encontrar la página',
       weaknet: 'Bajo rendimiento de la red',
       pcview: 'Ver el archivo en la PC',
-      nodata: 'Descansa un poco',
+      nodata: 'No hay datos disponibles.',
       create: 'Crear',
       provide: 'Proporcionado por el equipo TINY DEV',
       nodatamf: 'No hay datos disponibles.',
