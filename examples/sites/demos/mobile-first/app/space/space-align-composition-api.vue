@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; flex-direction: column; justify-content: space-around">
+  <div id="space-align" style="display: flex; flex-direction: column; justify-content: space-around">
     <strong>当前 align: {{ alignValue }}</strong>
     <tiny-space direction="row" size="4" style="margin-bottom: 10px">
       <tiny-button style="margin: 0" v-for="val in alignOptions" :key="val" @click="setAlign(val)">
