@@ -43,6 +43,11 @@ const docMenusChildren = [
     'key': 'theme-dark'
   },
   {
+    'title': '全局动效配置',
+    'titleEn': 'motion-configuration',
+    'key': 'motion-configuration'
+  },
+  {
     'title': '智能化',
     'titleEn': 'mcp',
     'key': 'mcp'
