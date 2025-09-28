@@ -65,7 +65,7 @@ function renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, 
   const { normalRows } = _vm
   const { attrs = { rowspan: 1, colspan: 1, visible: true }, params = { $table, row, column } } =
     normalRows[rowid]?.[column.id] || {}
-  const { isMessageDefault, isMessageInline } = validOpts
+  const { isMessageDefault, isMessageInline, highlightError } = validOpts
   const { actived } = editStore
   const validated = validatedMap[column.id + '-' + row[rowId]]
   const validError = validStore.row === row && validStore.column === column
@@ -123,6 +123,7 @@ function renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, 
           'edit__visible': editor && editor.type === 'visible',
           'col__dirty': isDirty,
           'col__actived': columnActived,
+          'col__highlight-error': highlightError && validated,
           'col__valid-error': validError && validated,
           'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated,
           'col__treenode': column.treeNode

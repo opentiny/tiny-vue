@@ -267,6 +267,13 @@ export default {
 
     return this.$nextTick()
   },
+  clearValidateMap() {
+    if (this.validatedMap) {
+      for (let key in this.validatedMap) {
+        this.validatedMap[key] = false
+      }
+    }
+  },
   // 触发校验
   triggerValidate(type) {
     let { editConfig, editRules, editStore, validStore } = this

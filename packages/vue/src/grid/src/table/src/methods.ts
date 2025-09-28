@@ -199,22 +199,18 @@ const Methods = {
     const { fetchOption = {} } = this.$grid
     const { isReloadFilter, isReloadScroll = false } = fetchOption
 
-    let functionNames = [
-      'clearScroll',
-      'clearSort',
-      'clearCurrentRow',
-      'clearCurrentColumn',
-      'clearSelection',
-      'clearRowExpand',
-      'clearTreeExpand'
-    ]
+    this.clearSort()
+    this.clearCurrentRow()
+    this.clearCurrentColumn()
+    this.clearSelection()
+    this.clearRowExpand()
+    this.clearTreeExpand()
+    this.clearValidateMap()
 
     // 存在配置时，移除 clearScroll, 重载数据时不清除滚动位置
-    if (isReloadScroll) {
-      functionNames = functionNames.filter((i) => i !== 'clearScroll')
+    if (!isReloadScroll) {
+      this.clearScroll()
     }
-
-    run(functionNames, this)
     this.cellStatus.clear()
 
     if (typeof isReloadFilter === 'undefined' ? TINYGrid._filter : !isReloadFilter) {
@@ -222,7 +218,11 @@ const Methods = {
     }
 
     if (this.keyboardConfig || this.mouseConfig) {
-      run(['clearIndexChecked', 'clearHeaderChecked', 'clearChecked', 'clearSelected', 'clearCopyed'], this)
+      this.clearIndexChecked()
+      this.clearHeaderChecked()
+      this.clearChecked()
+      this.clearSelected()
+      this.clearCopyed()
     }
 
     return this.clearActived()
@@ -231,6 +231,7 @@ const Methods = {
     const next = () => {
       this.tableData = []
       this.cellStatus.clear()
+      this.clearValidateMap()
       return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)

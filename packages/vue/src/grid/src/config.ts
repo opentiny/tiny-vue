@@ -39,6 +39,7 @@ import { $prefix } from '@opentiny/vue-common'
 const GlobalConfig = {
   validConfig: {
     message: 'tooltip',
+    highlightError: false,
     icon: iconError()
   },
   editConfig: { trigger: 'click', mode: 'cell', showStatus: true, validateOnActive: true },

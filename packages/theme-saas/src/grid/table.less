@@ -897,16 +897,14 @@
     @apply text-center;
   }
 
+  // 校验不通过
   & &-body__column {
     &.col__selected {
       &:not(.col__checked) {
         box-shadow: inset 0px 0px 0px 2px theme('colors.color.brand.DEFAULT');
       }
     }
-  }
 
-  // 校验不通过
-  & &-body__column {
     &.col__actived,
     &.col__selected,
     &.col__dirty {
@@ -1048,6 +1046,24 @@
 
     .@{grid-prefix-cls}-body__column {
       @apply ~'py-0.5' px-2;
+      @apply relative;
+
+      &.col__highlight-error {
+        .@{grid-cell-prefix-cls}::after {
+          content: '';
+          position: absolute;
+          @apply border border-solid border-color-error;
+          @apply top-1;
+          @apply bottom-1;
+          @apply left-2;
+          @apply right-2;
+        }
+        &.col__actived {
+          .@{grid-cell-prefix-cls}::after {
+            display: none;
+          }
+        }
+      }
 
       &.col__actived {
         @apply ~'py-0.5' px-2;

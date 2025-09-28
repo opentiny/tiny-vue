@@ -3527,6 +3527,8 @@ interface ITreeConfig {
 interface IValidConfig {
   // 校验提示类型，'inline'(内置提示)；'tooltip'(tooltip文字提示)
   message?: 'inline' | 'tooltip'
+  // 是否高亮已经校验过错误的单元格 (3.27.0新增)
+  highlightError?: boolean
 }
       `
     },
