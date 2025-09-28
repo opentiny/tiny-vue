@@ -659,6 +659,10 @@ export default defineComponent({
     const bodyWrapperMinHeight = hooks.ref()
     // 外部设置的表体容器最大高度
     const bodyWrapperMaxHeight = hooks.ref()
+    // 表格滚动宽度
+    const containerScrollWidth = hooks.ref(0)
+    // 表格滚动高度
+    const containerScrollHeight = hooks.ref(0)
     // 表体表格元素宽度
     const bodyTableWidth = hooks.ref()
     // 滚动加载滚动高度
@@ -826,6 +830,8 @@ export default defineComponent({
       bodyWrapperHeight,
       bodyWrapperMinHeight,
       bodyWrapperMaxHeight,
+      containerScrollWidth,
+      containerScrollHeight,
       bodyTableWidth,
       scrollLoadScrollHeight,
       columnStore,

@@ -846,7 +846,6 @@ export default defineComponent({
     const { bodyWrapperHeight, bodyWrapperMinHeight, bodyWrapperMaxHeight } = $table
     const $slots = $grid.slots
     const _vm = this
-
     return (
       <div
         ref="body"
