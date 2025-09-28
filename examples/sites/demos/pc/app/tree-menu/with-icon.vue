@@ -6,6 +6,7 @@
 
 <script>
 import { TinyTreeMenu } from '@opentiny/vue'
+import { IconPlusCircle, IconPlusSquare, IconPreChecked, IconNode, IconNew } from '@opentiny/vue-icon'
 
 export default {
   components: {
