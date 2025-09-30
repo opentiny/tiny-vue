@@ -1,5 +1,5 @@
 <template>
-  <tiny-space :order="order" style="border: 1px dashed #ccc">
+  <tiny-space id="space-order" :order="order" style="border: 1px dashed #ccc">
     <tiny-button key="1">First Button</tiny-button>
     <tiny-button key="2">Second Button</tiny-button>
     <tiny-button key="3">Third Button</tiny-button>

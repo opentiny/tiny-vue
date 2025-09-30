@@ -1,10 +1,15 @@
 <template>
   <!-- 给 space 容器加 id，方便 e2e 定位 -->
-  <div>
+  <div id="space-basic-usage">
+    <!-- 方向按钮 -->
     <tiny-button type="primary" @click="setDirection('row')">行</tiny-button>
     <tiny-button type="success" @click="setDirection('column')">列</tiny-button>
 
-    <tiny-slider v-model="value" :min="0" :max="50" :step="2" style="width: 300px; margin-bottom: 20px" />
+    <!-- 间距按钮 -->
+    <div style="margin: 10px 0">
+      <tiny-button @click="value += 5">增加间距 +5</tiny-button>
+      <tiny-button @click="value -= 5">减少间距 -5</tiny-button>
+    </div>
 
     <!-- 在 tiny-space 上加一个 class，保证 E2E 稳定 -->
     <tiny-space class="tiny-space" :size="value" :direction="direction">
@@ -14,17 +19,16 @@
 </template>
 
 <script>
-import { TinyButton, TinySpace, TinySlider } from '@opentiny/vue'
+import { TinyButton, TinySpace } from '@opentiny/vue'
 
 export default {
   components: {
     TinySpace,
-    TinyButton,
-    TinySlider
+    TinyButton
   },
   data() {
     return {
-      value: 10, // slider 的值
+      value: 10, // 初始间距
       direction: 'column' // 初始方向为 column
     }
   },

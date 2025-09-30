@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="space-direction">
     <!-- 选择行或列的按钮 -->
     <tiny-button type="primary" @click="setDirection('row')">行</tiny-button>
     <tiny-button style="margin: 10px" type="success" @click="setDirection('column')">列</tiny-button>

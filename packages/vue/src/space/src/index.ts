@@ -39,6 +39,10 @@ export const spaceProps = {
     type: String,
     default: ''
   },
+  order: {
+    type: Array as PropType<string[]>,
+    default: () => []
+  },
   /** 自定义样式 */
   customStyle: {
     type: Object as PropType<Record<string, any>>,
