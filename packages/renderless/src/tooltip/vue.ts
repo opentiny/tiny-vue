@@ -29,7 +29,7 @@ import {
   handleDocumentClick
 } from './index'
 import { userPopper } from '@opentiny/vue-hooks'
-import { guid } from '@opentiny/utils'
+import { useId } from '@opentiny/vue-hooks'
 import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
 import type { ITooltipApi, ITooltipProps, ITooltipState } from 'types/tooltip.type'
 
@@ -58,7 +58,7 @@ const initState = ({ reactive, showPopper, popperElm, referenceElm, props, injec
     timeout: null,
     focusing: false,
     expectedState: undefined,
-    tooltipId: guid('tiny-tooltip-', 4),
+    tooltipId: useId({ nameSpace: 'tiny-tooltip', length: 4 }),
     tabindex: props.tabindex,
     xPlacement: 'bottom',
     showContent: inject('showContent', null),

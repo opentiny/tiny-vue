@@ -18,7 +18,7 @@ import type {
   ICollapseItemRenderlessParamUtils
 } from '@/types'
 import { handleFocus, handleEnterClick, handleHeaderClick, handleHeaderContainerClick } from './index'
-import { guid } from '@opentiny/utils'
+import { useId } from '@opentiny/vue-hooks'
 
 export const api = [
   'state',
@@ -39,7 +39,7 @@ export const renderless = (
   const eventName = _constants.EVENT_NAME.CollapseItemClick
 
   const state: ICollapseItemState = reactive({
-    id: guid(),
+    id: useId({}),
     isClick: false,
     focusing: false,
     contentHeight: 0,

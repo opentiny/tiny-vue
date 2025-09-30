@@ -243,6 +243,13 @@ export const fillChar = (string, length, append, chr = '0') => {
 
 export const random = () => {
   let MAX_UINT32_PLUS_ONE = 4294967296
+
+  if (!globalThis?.crypto) {
+    // 服务端使用 Math.random() 作为降级方案
+    return Math.random()
+  }
+
+  // 客户端使用更安全的 crypto API
   return globalThis.crypto.getRandomValues(new Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
 }
 

@@ -10,7 +10,7 @@
  *
  */
 
-import { guid } from '@opentiny/utils'
+import { useId } from '@opentiny/vue-hooks'
 import type {
   IDropdownState,
   IDropdownApi,
@@ -56,7 +56,7 @@ export const renderless = (
     menuItemsArray: [],
     triggerElm: null,
     dropdownElm: null,
-    listId: `dropdown-menu-${guid()}`,
+    listId: `dropdown-menu-${useId({})}`,
     showIcon: props.showIcon,
     showSelfIcon: props.showSelfIcon,
     designConfig,
