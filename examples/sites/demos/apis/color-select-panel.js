@@ -102,7 +102,8 @@ export default {
               'Determine the color mode of the color selection panel. If it is<code>linear-gradient</code>, it means it is a linear gradient If it is<code>monochrome</code>, it means monochrome selection'
           },
           mode: ['pc'],
-          pcDemo: 'linear-gradient'
+          pcDemo: 'linear-gradient',
+          meta: { stable: '3.27.0' }
         }
       ],
       events: [
