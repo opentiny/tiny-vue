@@ -227,6 +227,19 @@ export default {
       },
       apis: ['change'],
       demos: ['events']
+    },
+    {
+      id: 'color-mode',
+      name: '颜色模式',
+      support: {
+        value: true
+      },
+      description: '通过 color-mode 属性来定义是否启用线性渐变',
+      cloud: {
+        value: false
+      },
+      apis: ['color-mode'],
+      demos: ['color-mode']
     }
   ]
 }
