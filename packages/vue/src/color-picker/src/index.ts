@@ -35,7 +35,7 @@ export default defineComponent({
         if (val[val.length - 1] === 'a') {
           console.warn('If you want enable alpha, You should set `alpha` prop to true')
         }
-        return ['hsv', 'hsl', 'rgb', 'hex'].includes(val)
+        return ['hsv', 'hsl', 'rgb', 'hex'].includes(val[0])
       }
     },
     enableHistory: {
