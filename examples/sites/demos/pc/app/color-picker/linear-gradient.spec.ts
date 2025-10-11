@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('测试历史记录', async ({ page }) => {
+test('渐变', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('color-picker#color-mode')
   await page.locator('.tiny-color-picker > .tiny-color-picker__inner').click()
