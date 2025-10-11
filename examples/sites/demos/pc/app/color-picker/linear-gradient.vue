@@ -6,6 +6,7 @@
 
 <script>
 import { TinyColorPicker, TinyNotify } from '@opentiny/vue'
+import { ref } from 'vue'
 
 export default {
   components: {

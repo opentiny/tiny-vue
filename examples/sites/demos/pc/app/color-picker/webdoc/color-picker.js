@@ -130,8 +130,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过设置 <code>format</code> 属性，用于设置点击确定后颜色的格式。目前支持<code>hex</code>, <code>hsl</code>, <code>hsv</code>, <code>rgb</code>',
-        'en-US': ''
+          '通过设置 <code>color-mode</code> 属性切换颜色模式。支持 <code>monochrome</code>(单色) 和 <code>linear-gradient</code>(线性渐变) 两种模式。',
+        'en-US':
+          'Set the <code>color-mode</code> attribute to switch color modes. Supports <code>monochrome</code> and <code>linear-gradient</code> modes.'
       },
       codeFiles: ['linear-gradient.vue']
     }
