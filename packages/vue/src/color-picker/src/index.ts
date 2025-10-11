@@ -45,6 +45,13 @@ export default defineComponent({
     enablePredefineColor: {
       type: Boolean,
       default: false
+    },
+    colorMode: {
+      type: String,
+      default: 'monochrome',
+      validator(val: string) {
+        return ['monochrome', 'linear-gradient'].includes(val)
+      }
     }
   },
   setup(props, context) {

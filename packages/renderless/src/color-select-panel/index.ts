@@ -206,8 +206,7 @@ export const initApi = (
   hooks: ISharedRenderlessParamHooks,
   ext: ColorSelectPanelExtends
 ) => {
-  const { emit, nextTick, vm } = utils
-  const { ref } = hooks
+  const { emit, nextTick } = utils
   const setShowPicker = (value: boolean) => (state.showPicker = value)
   const resetColor = () => {
     nextTick(() => {
