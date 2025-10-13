@@ -50,6 +50,10 @@ export default defineComponent({
     height: {
       type: String,
       default: ''
+    },
+    mask: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

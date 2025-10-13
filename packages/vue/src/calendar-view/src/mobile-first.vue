@@ -1,17 +1,14 @@
 <template>
-  <div data-tag="tiny-calendar-view" class="w-full h-auto">
-    <tiny-tooltip
-      ref="tooltip"
-      v-model="state.eventTipVisible"
-      popper-class="absolute max-w-[theme(spacing.80)]"
-      :manual="true"
-      effect="light"
-      placement="right"
-    >
+  <div
+    data-tag="tiny-calendar-view"
+    class="w-full h-auto overflow-auto"
+    :style="{ 'height': height ? `${parseInt(height)}px` : 'auto' }"
+  >
+    <tiny-tooltip ref="tooltip" popper-class="absolute max-w-[theme(spacing.80)]" effect="light" placement="right">
       <template #content>
-        <div class="p-2">
+        <div class="p-2 max-h-[80vh] overflow-auto">
           <div class="px-1.5 mb-1.5 border-l-2 border-color-brand">{{ state.eventTipContent.title }}</div>
-          <div class="mb-1.5 px-2 text-color-text-placeholder">
+          <div v-if="showTipTime" class="mb-1.5 px-2 text-color-text-placeholder">
             {{ state.eventTipContent.startDay }} {{ state.eventTipContent.startTime }} ~
             {{ state.eventTipContent.endDay }} {{ state.eventTipContent.endTime }}
           </div>
@@ -25,10 +22,10 @@
         v-model="state.currentDate"
         :class="[showBackToday ? 'ml-5' : '', 'shrink-0']"
         shape="filter"
-        type="month"
+        :type="state.dateType"
         :clearable="false"
         @change="currentDateChange"
-        :format="t('ui.calendarView.dateFormat')"
+        :format="day ? t('ui.calendarView.dateFormat') : t('ui.calendarView.monthFormat')"
       ></tiny-date-picker>
       <div class="flex-1 mx-5" data-tag="tiny-calendar-view-tool">
         <slot name="tool"></slot>
@@ -166,7 +163,8 @@
             data-tag="tiny-calendar-view-weekitem"
             v-for="(date, index) in state.weekDates"
             :key="date.value"
-            class="leading-10"
+            class="leading-10 cursor-pointer"
+            @click="selectDay(date)"
           >
             <slot
               name="header"
@@ -177,7 +175,9 @@
             >
               <span
                 class="relative mr-2.5 text-base"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-primary']"
+                :class="[
+                  dateIsToday(date.value) || computedSelectDay(date) ? 'text-color-brand' : 'text-color-text-primary'
+                ]"
               >
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
@@ -188,7 +188,11 @@
               </span>
               <span
                 class="text-sm"
-                :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-placeholder']"
+                :class="[
+                  dateIsToday(date.value) || computedSelectDay(date)
+                    ? 'text-color-brand'
+                    : 'text-color-text-placeholder'
+                ]"
                 >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
               >
             </slot>
@@ -239,7 +243,13 @@
                     v-for="(item, i) in state.dayTimes"
                     :key="date.value + item.time"
                     class="relative h-5 p-0.5 list-none border-b border-color-bg-2"
-                    :class="[i % 2 === 0 ? 'border-dashed' : 'border-solid']"
+                    :class="{
+                      'border-dashed': i % 2 === 0,
+                      'border-solid': i % 2 !== 0,
+                      'overflow-hidden overflow-y-auto scrollbar-size-0':
+                        getEventByTime(date.value, item.time, state.dayTimes[i + 1] && state.dayTimes[i + 1].time)
+                          .length > 1
+                    }"
                   >
                     <div
                       v-for="(event, idx) of getEventByTime(
@@ -248,12 +258,12 @@
                         state.dayTimes[i + 1] && state.dayTimes[i + 1].time
                       )"
                       :key="idx"
-                      class="w-11/12 flex items-center px-1.5 absolute top-0 left-0 z-10 leading-normal rounded-sm"
+                      class="w-11/12 flex mb-0.5 items-center px-1.5 top-0 left-0 z-10 leading-normal rounded-sm"
                       :class="[gcls(`theme-${event.theme || blue}`)]"
                       :style="{
                         'height': event.height + 'px',
-                        'left': event.left + 'px',
-                        'width': `calc(92% - ${event.left}px)`
+
+                        'width': `92%`
                       }"
                     >
                       <span>{{ event.title }}</span>
@@ -293,7 +303,7 @@
                 class="py-1.5 h-auto border border-color-border-separator rounded mb-2 shadow-sm"
               >
                 <div class="px-1.5 mb-1.5 border-l-2 border-color-brand break-all">{{ event.title }}</div>
-                <div class="mb-1.5 px-2 text-color-text-placeholder">
+                <div v-if="showTipTime" class="mb-1.5 px-2 text-color-text-placeholder">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
                 <p class="px-2 text-xs text-color-icon-primary line-clamp-2">{{ event.content || '' }}</p>
@@ -372,12 +382,14 @@ export default defineComponent({
     'modes',
     'year',
     'month',
+    'day',
     'dayTimes',
     'events',
     'height',
     'mark-color',
     'multi-select',
-    'showBackToday'
+    'showBackToday',
+    'showTipTime'
   ],
   setup(props, context) {
     return setup({

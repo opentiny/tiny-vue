@@ -1,16 +1,16 @@
 <template>
-  <div class="tiny-calendar-view" :style="{ 'height': typeof height === 'number' ? height + 'px' : height }">
+  <div class="tiny-calendar-view" :style="{ 'height': height ? `${parseInt(height)}px` : 'auto' }">
     <div class="tiny-calendar-view__header">
       <div>
-        <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+        <tiny-button v-if="showBackToday" @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
       </div>
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
-        type="month"
+        :type="state.dateType"
         :clearable="false"
         @change="currentDateChange"
-        :format="t('ui.calendarView.dateFormat')"
+        :format="day ? t('ui.calendarView.dateFormat') : t('ui.calendarView.monthFormat')"
       ></tiny-date-picker>
       <div class="tiny-calendar-view__tool">
         <slot name="tool"></slot>
@@ -58,8 +58,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                    ? 'is-selected'
-                    : '',
+                      ? 'is-selected'
+                      : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >
@@ -107,7 +107,7 @@
           <icon-chevron-left></icon-chevron-left>
         </div>
         <ul class="header-main">
-          <li v-for="(date, index) in state.weekDates" :key="date.value">
+          <li v-for="(date, index) in state.weekDates" :key="date.value" @click="selectDay(date)">
             <slot
               name="header"
               :slot-scope="{
@@ -115,7 +115,7 @@
                 weekDay: t(`ui.calendarView.weekDays.${index}`)
               }"
             >
-              <span class="date" :class="dateIsToday(date.value) && 'is-today'">
+              <span class="date" :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]">
                 <span>{{ date.value.split('-')[2] }}</span>
                 <span
                   v-if="isShowMark(date.value)"
@@ -123,9 +123,11 @@
                   :class="[date.value.split('-')[2] > 9 ? 'is-two-digit' : '', markColor ? `mark-${markColor}` : '']"
                 ></span>
               </span>
-              <span class="week-day" :class="dateIsToday(date.value) && 'is-today'">{{
-                dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`)
-              }}</span>
+              <span
+                class="week-day"
+                :class="[dateIsToday(date.value) && 'is-today', { current: computedSelectDay(date) }]"
+                >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
+              >
             </slot>
           </li>
         </ul>
@@ -160,7 +162,12 @@
                   <li
                     v-for="(item, i) in state.dayTimes"
                     :key="date.value + item.time"
-                    :class="i % 2 === 0 && 'is-even-num'"
+                    :class="{
+                      'is-even-num': i % 2 === 0,
+                      'is-scroll-list':
+                        getEventByTime(date.value, item.time, state.dayTimes[i + 1] && state.dayTimes[i + 1].time)
+                          .length > 1
+                    }"
                   >
                     <div
                       v-for="(event, idx) of getEventByTime(
@@ -173,8 +180,7 @@
                       :class="[`theme-${event.theme || 'blue'}`]"
                       :style="{
                         'height': event.height + 'px',
-                        'left': event.left + 'px',
-                        'width': `calc(92% - ${event.left}px)`
+                        'width': `92%`
                       }"
                     >
                       <span>{{ event.title }}</span>
@@ -198,7 +204,7 @@
             >
               <div v-for="(event, idx) of state.curWeekEvents[date.value] || []" :key="idx" class="day-events">
                 <div class="title">{{ event.title }}</div>
-                <div class="date">
+                <div v-if="showTipTime" class="date">
                   {{ getEventShowTime('start', event, date.value) }} - {{ getEventShowTime('end', event, date.value) }}
                 </div>
                 <p class="content">{{ event.content || '' }}</p>
@@ -212,18 +218,11 @@
         </ul>
       </div>
     </div>
-    <tiny-tooltip
-      ref="tooltip"
-      v-model="state.eventTipVisible"
-      popper-class="tiny-calendar-view-tooltip"
-      :manual="true"
-      effect="light"
-      placement="right"
-    >
+    <tiny-tooltip ref="tooltip" popper-class="tiny-calendar-view-tooltip" effect="light" placement="right">
       <template #content>
         <div class="tooltip-main">
           <div class="title">{{ state.eventTipContent.title }}</div>
-          <div class="date">
+          <div v-if="showTipTime" class="date">
             {{ state.eventTipContent.startDay }} {{ state.eventTipContent.startTime }} ~
             {{ state.eventTipContent.endDay }} {{ state.eventTipContent.endTime }}
           </div>
@@ -286,12 +285,15 @@ export default defineComponent({
     'mode',
     'modes',
     'year',
+    'day',
     'month',
     'dayTimes',
     'events',
     'height',
     'markColor',
-    'multiSelect'
+    'multiSelect',
+    'showBackToday',
+    'showTipTime'
   ],
   setup(props, context) {
     return setup({

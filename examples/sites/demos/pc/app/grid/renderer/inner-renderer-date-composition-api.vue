@@ -7,19 +7,19 @@
       field="date3"
       title="日期3"
       format-text="date"
-      :format-config="{ valueFormat: 'dd/MM/yyyy' }"
+      :format-config="{ dateFormat: 'dd/MM/yyyy' }"
     ></tiny-grid-column>
     <tiny-grid-column
       field="date4"
       title="日期4"
       format-text="date"
-      :format-config="{ valueFormat: 'dd/MM/yyyy' }"
+      :format-config="{ dateFormat: 'dd/MM/yyyy' }"
     ></tiny-grid-column>
     <tiny-grid-column
       field="date5"
       title="日期5"
       format-text="date"
-      :format-config="{ valueFormat: 'MM/dd/yyyy' }"
+      :format-config="{ dateFormat: 'MM/dd/yyyy' }"
     ></tiny-grid-column>
   </tiny-grid>
 </template>
@@ -27,6 +27,7 @@
 <script setup>
 import { ref } from 'vue'
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
+
 const tableData = ref([
   {
     id: '1',

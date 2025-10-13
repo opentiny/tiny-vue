@@ -265,7 +265,7 @@ export default {
       noperm: 'No encontrar la página',
       weaknet: 'Bajo rendimiento de la red',
       pcview: 'Ver el archivo en la PC',
-      nodata: 'Descansa un poco',
+      nodata: 'No hay datos disponibles.',
       create: 'Crear',
       provide: 'Proporcionado por el equipo TINY DEV',
       nodatamf: 'No hay datos disponibles.',
@@ -283,9 +283,9 @@ export default {
       folder: 'No se puede cargar el archivo porque tiene más de cinco niveles de profundidad.',
       init: 'Error de servicio. Vuelva a intentarlo.',
       token: 'Antes de comenzar, realice la autenticación de EDM y obtenga el token.',
-      exceed: 'El tamaño del archivo supera el límite superior ({maxSize}).',
+      exceed: '{fileName} El tamaño del archivo supera el límite superior ({maxSize}).',
       largeFile: 'El archivo supera los 2 GB.',
-      fileSize: '	El tamaño del archivo es inferior al mínimo ({minSize} {sizeUnit}).',
+      fileSize: '{fileName} El tamaño del archivo es inferior al mínimo ({minSize} {sizeUnit}).',
       deleteTip: 'Presione la tecla Suprimir.',
       downloadFile: 'Descargar',
       previewFile: 'Vista previa',
@@ -780,7 +780,8 @@ export default {
       noSchedule: 'Sin programación',
       year: '',
       month: '',
-      dateFormat: 'yyyy-MM'
+      dateFormat: 'yyyy-MM-dd',
+      monthFormat: 'yyyy-MM'
     },
     selectedBox: {
       select: 'Seleccionados (%s)',

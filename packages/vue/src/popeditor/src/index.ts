@@ -183,6 +183,10 @@ export const popeditorProps = {
     type: Boolean,
     default: true
   },
+  lockScroll: {
+    type: Boolean,
+    default: true
+  },
   placement: {
     type: String,
     default: 'bottom-start'

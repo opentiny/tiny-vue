@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('PopUpload 最大上传文件数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -10,7 +15,6 @@ test('PopUpload 最大上传文件数', async ({ page }) => {
   const alert = uploadModal.locator('.tiny-alert')
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择批量文件' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
-  const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
   const path2 = path.resolve(__dirname, '测试.png')
   const path3 = path.resolve(__dirname, '测试.svg')

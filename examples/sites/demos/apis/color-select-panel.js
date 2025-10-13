@@ -90,6 +90,20 @@ export default {
           meta: {
             stable: '3.19.0'
           }
+        },
+        {
+          name: 'colorMode',
+          type: "'linear-gradient' | 'monochrome'",
+          defaultValue: 'monochrome',
+          desc: {
+            'zh-CN':
+              '决定色彩选择面板的颜色模式, 如果为 <code>linear-gradient</code> 则表示是线性渐变. 如果是 <code>monochrome</code> 则表示是单色选择',
+            'en-US':
+              'Determine the color mode of the color selection panel. If it is<code>linear-gradient</code>, it means it is a linear gradient If it is<code>monochrome</code>, it means monochrome selection'
+          },
+          mode: ['pc'],
+          pcDemo: 'linear-gradient',
+          meta: { stable: '3.27.0' }
         }
       ],
       events: [

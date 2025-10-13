@@ -217,6 +217,6 @@ export default {
 <style scoped lang="less">
 .no-data {
   text-align: center;
-  line-height: 240px;
+  line-height: 200px;
 }
 </style>

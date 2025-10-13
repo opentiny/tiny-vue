@@ -176,7 +176,6 @@ export default {
       }
 
       cb && cb(opt.status)
-      return opt.status
     }
     return Promise.all(rowValids).then(onFulfilled).catch(onRejected(opt, this))
   },
@@ -267,6 +266,13 @@ export default {
     this.clostValidTooltip(undefined)
 
     return this.$nextTick()
+  },
+  clearValidateMap() {
+    if (this.validatedMap) {
+      for (let key in this.validatedMap) {
+        this.validatedMap[key] = false
+      }
+    }
   },
   // 触发校验
   triggerValidate(type) {

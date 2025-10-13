@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -76,6 +78,86 @@ export default {
         'en-US': ''
       },
       codeFiles: ['before-editor-init.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'v-model',
+      name: '数据绑定',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置绑定值，默认数据保存格式为 Delta 数据格式。',
+      cloud: {
+        value: false
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 属性可设置编辑器为不可编辑状态。',
+      cloud: {
+        value: false
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'image-upload',
+      name: '图片上传',
+      support: {
+        value: true
+      },
+      description: '通过 image-upload 设置图片上传模块的配置项。',
+      cloud: {
+        value: false
+      },
+      apis: ['image-upload'],
+      demos: ['image-upload']
+    },
+    {
+      id: 'options',
+      name: '编辑器配置',
+      support: {
+        value: true
+      },
+      description: '通过 options 设置编辑器的配置项，支持的配置项和 Quill 的相同。',
+      cloud: {
+        value: false
+      },
+      apis: ['options'],
+      demos: ['options']
+    },
+    {
+      id: 'data-type',
+      name: '数据格式转换',
+      support: {
+        value: true
+      },
+      description: '通过 data-type 指定富文本数据保存的格式，支持 Delta 和 HTML 格式。',
+      cloud: {
+        value: false
+      },
+      apis: ['data-type', 'data-upgrade'],
+      demos: ['data-switch']
+    },
+    {
+      id: 'before-editor-init',
+      name: '初始化前的钩子',
+      support: {
+        value: true
+      },
+      description: '通过 before-editor-init 设置 FluentEditor 初始化前的钩子函数，用于注册自定义格式和模块。',
+      cloud: {
+        value: false
+      },
+      apis: ['before-editor-init'],
+      demos: ['before-editor-init']
     }
   ]
 }

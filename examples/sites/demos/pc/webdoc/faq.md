@@ -73,3 +73,54 @@ export default defineConfig({
   }
 </style>
 ```
+
+## 4、`webpack` 无法解析富文本组件相关依赖包
+
+`webpack`、`vue-cli` 默认不会解析转换 `node_modules` 中的依赖包，导致在工程中无法识别 `quill` 和 `@opentiny/fluent-editor` 包中的 `javascript` 高级语法。
+
+可以通过在 `vue.config.js` 文件中增加如下配置解决：
+
+```js
+module.exports = {
+  transpileDependencies: ['@opentiny/fluent-editor', 'quill']
+}
+```
+
+## 5、通过 `@opentiny/utils` 配置 `xss` 白名单（v3.21.0 开始支持）
+
+目前进行严格的过滤，建议使用 `JS-XSS` 进行处理。对不符合要求的代码片段做删除处理，若开发者在开发期间有其他 `HTML` 标签确认安全（富文本场景）的需求场景，由开发者手动配置 `xss` 白名单。
+
+使用 `@opentiny/utils` 中的 `setXssOption` 方法传入自定义的 `xss` 白名单，示例：
+
+```js
+import { xss } from '@opentiny/utils'
+
+const options = {
+  enableAttrs: true,
+  enableHtml: true,
+  enableUrl: true,
+
+  html: {
+    whiteList: {
+      a: ['class', 'style', 'contenteditable', 'data-id', 'data-title', 'data-size', 'href', 'data-last-modified'],
+      img: ['class', 'style', 'src']
+    }
+  }
+}
+
+xss.setXssOption(options)
+```
+
+## 6、多组件库混用场景中的命名冲突问题
+
+**问题描述：** 在同时使用多个组件库(如 TinyVue 和 ElementUI)时,由于各组件库都会在 Vue 实例上挂载全局方法(如 `$modal`、`$message` 等),容易造成命名冲突。
+
+**解决方案：** TinyVue 提供了自定义前缀的配置方式,可以通过设置 `$TinyModalApiPrefix` 来修改默认的方法名前缀,避免冲突。
+
+```js
+// vue3下解决方案
+app.config.globalProperties.$TinyModalApiPrefix = 'tiny_'
+
+// vue2下解决方案
+Vue.prototype.$TinyModalApiPrefix = 'tiny_'
+```

@@ -124,7 +124,9 @@ export const calcTextareaHeight =
     const { paddingSize, borderSize, boxSizing, contextStyle } = api.calculateNodeStyling(targetElement)
 
     hiddenTextarea.setAttribute('style', `${contextStyle};${HIDDEN_STYLE}`)
-    hiddenTextarea.value = targetElement.value || targetElement.placeholder || ''
+    // 多行placeholder只计算单行高度防止撑高scrollHeight
+    const safePlaceholder = targetElement.placeholder ? targetElement.placeholder.trim().split('\n')[0] : ''
+    hiddenTextarea.value = targetElement.value || safePlaceholder || ''
 
     let height = hiddenTextarea.scrollHeight
     const textareaStyle: {
@@ -153,17 +155,16 @@ export const calcTextareaHeight =
         minHeight = minHeight + paddingSize + borderSize
       }
 
-      if (props.size) {
+      if (props.size || minRows === 1) {
         minHeight = props.size === 'mini' ? minHeight * 0.67 : props.size === 'small' ? minHeight : minHeight * 1.17
       }
 
       if (props.height) {
         minHeight = props.height
       }
-
       if (!state.isDisplayOnly) {
         height = Math.max(minHeight, height)
-        textareaStyle.minHeight = `${minHeight}px`
+        textareaStyle.minHeight = `${Math.floor(minHeight)}px`
       } else {
         textareaStyle.minHeight = `0px`
       }

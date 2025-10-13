@@ -72,9 +72,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>type</code> 属性可以设置不同的主题样式，主要包括 primary、success、info、warning、danger、text。<p>',
+          '<p>通过 <code>type</code> 属性可以设置不同的主题样式，主要包括 primary、success、info、warning、danger、text。设置 <code>custom-style</code> 属性按钮样式<p>',
         'en-US':
-          '<p>You can use the <code>type</code> attribute to set different theme styles, including primary, success, info, warning, danger, and text.</p>'
+          '<p>You can use the <code>type</code> attribute to set different theme styles, including primary, success, info, warning, danger, and text. The <code>custom-style</code> property sets the button style.</p>'
       },
       codeFiles: ['type.vue']
     },

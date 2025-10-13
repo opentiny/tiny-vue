@@ -51,6 +51,10 @@ export default defineComponent({
       type: Boolean,
       default: undefined
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     error: String,
     for: String,
     inlineMessage: {
@@ -131,8 +135,8 @@ export default defineComponent({
       typeof this.appendToBody === 'boolean'
         ? this.appendToBody
         : typeof formAppendToBody === 'boolean'
-        ? formAppendToBody
-        : true
+          ? formAppendToBody
+          : true
     const validatePosition = this.validatePosition || state.formInstance?.validatePosition || 'top-end'
 
     const popperOptions = {
@@ -285,7 +289,8 @@ export default defineComponent({
               {
                 class: {
                   [`${classPrefix}form-item__label`]: true,
-                  'is-ellipsis': isMobile && ellipsis
+                  'is-ellipsis': isMobile && ellipsis,
+                  'is-disabled': state.disabled
                 },
                 style: state.labelStyle,
                 attrs: {

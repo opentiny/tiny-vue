@@ -241,7 +241,7 @@ export default {
             'en-US': "Whether the 'message' type pop-up window displays a close button"
           },
           mode: ['pc'],
-          pcDemo: 'message-closable'
+          pcDemo: 'message-close'
         },
         {
           name: 'min-height',

@@ -20,22 +20,33 @@ import { i18n } from './i18n/index'
 import { router } from './router'
 import App from './App.vue'
 import { appData } from './tools'
-import { ZH_CN_LANG, EN_US_LANG, LANG_PATH_MAP } from './const'
+import { ZH_CN_LANG, EN_US_LANG, LANG_PATH_MAP, ES_LA_LANG, PT_BR_LANG, isSaas } from './const'
 import demoConfig from '@demos/config.js'
 
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import html from 'highlight.js/lib/languages/xml'
+import tsPath from 'highlight.js/lib/languages/typescript'
 import docsearch from '@docsearch/js'
 import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
+import { getLocaleMode } from './tools/utils.js'
+import '@opentiny/vue-theme/dark-theme-index.css'
+import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
+import { t } from '@opentiny/vue-locale'
+import { registerMcpConfig, customDesignConfig } from '@opentiny/vue-common'
+import { twMerge } from 'tailwind-merge'
 
-const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+// 适配层集成twMerge能力
+if (isSaas) {
+  customDesignConfig.twMerge = twMerge
+}
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', html)
+hljs.registerLanguage('ts', tsPath)
 
 if (!location.href.includes('tiny-vue-plus')) {
   docsearch({
@@ -47,10 +58,7 @@ if (!location.href.includes('tiny-vue-plus')) {
   })
 }
 
-if (envTarget !== 'open') {
-  // 支持本地开发和内网使用全局搜索
-  doSearchEverySite()
-}
+doSearchEverySite()
 
 // 实验后发现，先调用一次预热一下，后续再调用会有速度的提示，因此在main中预热一下。
 setTimeout(() => {
@@ -62,12 +70,19 @@ setTimeout(() => {
 
 const zhPath = LANG_PATH_MAP[ZH_CN_LANG]
 const enPath = LANG_PATH_MAP[EN_US_LANG]
+const esPath = LANG_PATH_MAP[ES_LA_LANG]
+const ptPath = LANG_PATH_MAP[PT_BR_LANG]
 const isZhCn = location.href.includes(`/${zhPath}`)
 const isEnUs = location.href.includes(`/${enPath}`)
-const notMatchLang = (isZhCn && appData.lang !== ZH_CN_LANG) || (isEnUs && appData.lang !== EN_US_LANG)
+const isEsLa = location.href.includes(`/${esPath}`)
+const isPtBr = location.href.includes(`/${ptPath}`)
+const notMatchLang =
+  (isZhCn && appData.lang !== ZH_CN_LANG) ||
+  (isEnUs && appData.lang !== EN_US_LANG) ||
+  (isEsLa && appData.lang !== ES_LA_LANG) ||
+  (isPtBr && appData.lang !== PT_BR_LANG)
 if (notMatchLang) {
-  // appData.lang = isEnUs ? EN_US_LANG : ZH_CN_LANG 官网先屏蔽英文内容
-  appData.lang = isEnUs ? ZH_CN_LANG : ZH_CN_LANG
+  appData.lang = getLocaleMode()
   i18n.global.locale = appData.lang
 }
 
@@ -76,9 +91,11 @@ app.config.performance = true
 // 注入全局的saas主题变量
 app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEME }
 
-if (import.meta.env.VITE_TINY_THEME === 'saas') {
+if (isSaas) {
   import('./tailwind.css')
 }
+// 注册TinyVue组件mcp配置
+registerMcpConfig(getTinyVueMcpConfig({ t }), createMcpTools)
 
 app.use(router).use(i18n).use(createHead()) // 支持md修改title
 

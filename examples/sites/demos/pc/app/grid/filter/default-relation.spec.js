@@ -7,5 +7,5 @@ test('输入过滤的默认选项', async ({ page }) => {
   await page.getByRole('spinbutton').click()
   await page.getByRole('spinbutton').fill('800')
   await page.getByRole('button', { name: '确定' }).click()
-  await expect(page.locator('.tiny-grid-body__row')).toHaveCount(2)
+  await expect(page.locator('.tiny-grid-body__row:visible')).toHaveCount(2)
 })

@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -77,6 +79,18 @@ export default {
       codeFiles: ['slot-footer.vue']
     },
     {
+      demoId: 'slot-message',
+      name: {
+        'zh-CN': '消息插槽',
+        'en-US': 'Message slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>message</code> 插槽自定义消息内容。</p>',
+        'en-US': '<p>Customize the message content through the<code>message</code>slot.</p>'
+      },
+      codeFiles: ['slot-message.vue']
+    },
+    {
       demoId: 'width',
       name: {
         'zh-CN': '宽度',
@@ -113,6 +127,99 @@ export default {
           '<p>The<code>show</code>event is triggered when the bubble confirmation box is displayed, and the<code>hide</code>event is triggered when the confirmation box is hidden< When clicking the confirm button at the bottom, both the<code>hide</code>and<code>confirm</code>events will be triggered simultaneously.</p>'
       },
       codeFiles: ['event.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 title 设置标题内容，message 设置正文内容，通过 reference 插槽自定义触发显示的元素。',
+      cloud: {
+        value: true
+      },
+      apis: ['title', 'message', 'reference'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'trigger',
+      name: '触发方式',
+      support: {
+        value: true
+      },
+      description: '通过 trigger 设置触发显示气泡确认框的方式。',
+      cloud: {
+        value: true
+      },
+      apis: ['trigger'],
+      demos: ['trigger']
+    },
+    {
+      id: 'type',
+      name: '图标类型',
+      support: {
+        value: true
+      },
+      description: '通过 type 设置提示的图标类型，或者传入自定义图标。',
+      cloud: {
+        value: true
+      },
+      apis: ['type'],
+      demos: ['type']
+    },
+    {
+      id: 'placement',
+      name: '显示位置',
+      support: {
+        value: true
+      },
+      description: '通过 placement 设置提示框显示位置。',
+      cloud: {
+        value: true
+      },
+      apis: ['placement'],
+      demos: ['placement']
+    },
+    {
+      id: 'custom',
+      name: '自定义配置',
+      support: {
+        value: true
+      },
+      description: '支持自定义类名、宽度、取消按钮显示等配置。',
+      cloud: {
+        value: true
+      },
+      apis: ['custom-class', 'width', 'cancel-button'],
+      demos: ['custom-class', 'width', 'cancel-button']
+    },
+    {
+      id: 'slots',
+      name: '插槽',
+      support: {
+        value: true
+      },
+      description: '通过 footer 插槽自定义底部内容。',
+      cloud: {
+        value: true
+      },
+      apis: ['footer'],
+      demos: ['slot-footer']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 show、hide、confirm 等事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['show', 'hide', 'confirm'],
+      demos: ['event']
     }
   ]
 }

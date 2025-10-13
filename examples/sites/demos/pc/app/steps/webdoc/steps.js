@@ -1,6 +1,8 @@
 export default {
   column: '1',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'line-horizontal',
@@ -122,6 +124,18 @@ export default {
       codeFiles: ['custom-steps-item.vue']
     },
     {
+      demoId: 'slot-icon',
+      name: {
+        'zh-CN': '图标插槽',
+        'en-US': 'Icon slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过插槽 <code>icon</code> 自定义单链型节点图标。</p>\n',
+        'en-US': 'Customize a single chain node icon through the slot<code>icon</code>.'
+      },
+      codeFiles: ['slot-icon.vue']
+    },
+    {
       demoId: 'slot-item',
       name: {
         'zh-CN': 'item 插槽',
@@ -156,6 +170,61 @@ export default {
         'en-US': 'Trigger <code>click</code> event when clicking on a node.'
       },
       codeFiles: ['click.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'line',
+      name: '单链型',
+      support: {
+        value: true
+      },
+      description: '通过添加 line 用作横向单链型步骤条，visible-num 控制信息可见的节点数。',
+      cloud: {
+        value: true
+      },
+      apis: ['line', 'visible-num'],
+      demos: ['line-horizontal']
+    },
+    {
+      id: 'vertical',
+      name: '垂直布局',
+      support: {
+        value: true
+      },
+      description: '使用 line 与 vertical 设置为条形步骤条。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical'],
+      demos: ['line-vertical']
+    },
+    {
+      id: 'dot',
+      name: '点状型',
+      support: {
+        value: true
+      },
+      description: '使用 dot 与 vertical 设置为垂直点状形。',
+      cloud: {
+        value: true
+      },
+      apis: ['dot'],
+      demos: ['line-dot']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description:
+        '步骤条两种模式支持 size 设置尺寸：line 单链型模式支持 mini、small、medium、large 4 种尺寸，advanced 高级向导模式支持 medium、large 2 种尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
     }
   ]
 }

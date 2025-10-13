@@ -13,7 +13,15 @@
 import { hasOwn } from '../../type'
 import * as util from '../util'
 
-export default function ({ rule, checkValue, source, errors, options, type }) {
+interface RequiredType {
+  rule: any
+  checkValue?: any
+  source: any
+  errors: any
+  options: any
+  type?: any
+}
+export default function ({ rule, checkValue, source, errors, options, type }: RequiredType) {
   if (rule.required && (!hasOwn.call(source, rule.field) || util.isEmptyValue(checkValue, type || rule.type))) {
     errors.push(util.format(options.messages.required))
   }

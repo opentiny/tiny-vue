@@ -12,15 +12,15 @@
 
 .inject-UserCard-vars() {
   // 卡片边框色
-  --tv-UserCard-border-color: var(--tv-color-border);
+  --tv-UserCard-border-color: var(--tv-color-border, #c2c2c2);
   // 卡片圆角
-  --tv-UserCard-image-border-radius: var(--tv-border-radius-md);
+  --tv-UserCard-image-border-radius: var(--tv-border-radius-md, 6px);
   // 在线文本色
-  --tv-UserCard-state-online-text-color: var(--tv-color-success-text);
+  --tv-UserCard-state-online-text-color: var(--tv-color-success-text, #5cb300);
   // 忙碌文本色
-  --tv-UserCard-state-busy-text-color: var(--tv-color-error-text);
+  --tv-UserCard-state-busy-text-color: var(--tv-color-error-text, #f23030);
   // 离开文本色
-  --tv-UserCard-state-goaway-text-color: var(--tv-color-warn-text);
+  --tv-UserCard-state-goaway-text-color: var(--tv-color-warn-text, #ff8800);
   // 离线文本色
-  --tv-UserCard-state-offline-text-color: var(--tv-color-text-disabled);
+  --tv-UserCard-state-offline-text-color: var(--tv-color-text-disabled, #c2c2c2);
 }

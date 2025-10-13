@@ -13,6 +13,7 @@ import Vue from 'vue'
 import * as hooks from 'vue'
 import { emitter, bindFilter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
+import { __TINY__ } from '../__longque__'
 
 const Teleport = teleport(hooks)
 
@@ -26,17 +27,31 @@ export const renderComponent = ({
   view = null as any,
   component = null as any,
   props,
+  customDesignProps,
   context: { attrs, listeners: on, slots },
   extend = {}
 }) => {
   return () =>
     hooks.h(
       (view && view.value) || component,
-      Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend)
+      Object.assign(
+        {
+          props: { ...props, ...customDesignProps },
+          attrs,
+          [extend.isSvg ? 'nativeOn' : 'on']: on,
+          scopedSlots: { ...slots }
+        },
+        extend
+      )
     )
 }
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
+
+export const getCustomProps = () => {
+  const instance = hooks.getCurrentInstance()?.proxy
+  return instance?.$options?.propsData || {}
+}
 
 export const getComponentName = () => {
   // 此处组件最多为两层组件，所以对多获取到父级组件即可
@@ -169,8 +184,8 @@ const generateChildren = ($children) => {
   return children
 }
 
-const defineProperties = (vm, instance, filter) => {
-  for (let name in instance) {
+const originalDefineProperties = (vm, instance, filter) => {
+  for (const name in instance) {
     if (typeof filter === 'function' && filter(name)) continue
 
     Object.defineProperty(vm, name, {
@@ -183,6 +198,13 @@ const defineProperties = (vm, instance, filter) => {
 
   return vm
 }
+
+const harmonyDefineProperties = (vm, instance) => {
+  const propertyFilterFlags = __TINY__.SKIP_PREFIX_UNDERSCORE | __TINY__.SKIP_PREFIX_DOLLAR | __TINY__.SKIP_CONSTRUCTOR
+  __TINY__.createDelegate(instance, vm, propertyFilterFlags)
+}
+
+const defineProperties = __TINY__ ? harmonyDefineProperties : originalDefineProperties
 
 const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
 

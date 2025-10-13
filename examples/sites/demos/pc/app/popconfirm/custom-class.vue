@@ -30,7 +30,7 @@ export default {
   background-color: #ccc;
 }
 
-.tiny-popover.tiny-popper.custom-class .popper__arrow::after {
-  border-top-color: #ccc;
+.tiny-popover.tiny-popper.custom-class .popper__arrow {
+  background-color: #ccc;
 }
 </style>

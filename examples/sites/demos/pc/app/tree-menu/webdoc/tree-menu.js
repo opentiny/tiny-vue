@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -341,9 +343,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click：监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand：监听节点展开的事件。</p>\n<p>node-collapse：监听节点收起的事件。</p>\n<p>check-change：可勾选时，监听勾选节点变化的事件。</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click：监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand：监听节点展开的事件。</p>\n<p>node-collapse：监听节点收起的事件。</p>\n<p>check-change：可勾选时，监听勾选节点变化的事件。</p>\n<p>input-change：输入框输入值时触发的事件。</p></div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n<p>input-change：Event triggered when a value is entered into the input box.</p></div>\n'
       },
       codeFiles: ['events.vue']
     },
@@ -372,6 +374,60 @@ export default {
           'The <code>widthAdapt </code> attribute specifies whether to enable the component width to adapt to the parent container.'
       },
       codeFiles: ['width-adapt.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 data 属性设置静态数据，支持服务端数据加载。',
+      cloud: {
+        value: false
+      },
+      apis: ['data', 'get-menu-data-sync'],
+      demos: ['basic-usage', 'data-resource']
+    },
+    {
+      id: 'node',
+      name: '节点操作',
+      support: {
+        value: true
+      },
+      description: '支持设置当前节点、展开/收起节点、节点高亮等操作。',
+      cloud: {
+        value: false
+      },
+      apis: ['setCurrentKey', 'default-expanded-keys', 'default-expanded-keys-highlight'],
+      demos: ['current-node', 'default-expanded-keys', 'default-expanded-keys-highlight']
+    },
+    {
+      id: 'filter',
+      name: '节点过滤',
+      support: {
+        value: true
+      },
+      description: '通过 show-filter 显示搜索框，支持自定义过滤方法。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-filter', 'filter-node-method'],
+      demos: ['show-filter', 'filter-node-method']
+    },
+    {
+      id: 'custom',
+      name: '自定义',
+      support: {
+        value: true
+      },
+      description: '支持自定义图标、文字样式、节点内容等。',
+      cloud: {
+        value: false
+      },
+      apis: ['customIcon', 'ellipsis', 'slots'],
+      demos: ['custom-icon', 'text-ellipsis', 'tree-menu-slot']
     }
   ]
 }

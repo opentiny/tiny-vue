@@ -21,9 +21,10 @@
   width: 100%;
   height: auto;
   padding-top: var(--tv-CalendarView-padding);
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--tv-CalendarView-date-border-color);
   background-color: var(--tv-CalendarView-bg-color);
   overflow: auto;
+  border-bottom: none;
 
   &__header {
     display: flex;
@@ -49,7 +50,7 @@
       height: 32px;
 
       &:hover {
-        background-color: #ededed;
+        background-color: var(--tv-CalendarView-radio-icon-bg-hover);
       }
 
       svg {
@@ -124,7 +125,7 @@
     &__main {
       width: 100%;
       overflow: hidden;
-      border-top: 1px solid #ebebeb;
+      border-top: 1px solid var(--tv-CalendarView-date-border-color);
 
       .main-container {
         width: 100%;
@@ -135,7 +136,7 @@
           width: 100%;
           display: flex;
           justify-content: space-around;
-          border-bottom: 1px solid #ebebeb;
+          border-bottom: 1px solid var(--tv-CalendarView-date-border-color);
 
           > li {
             font-size: var(--tv-CalendarView-main-li-font-size);
@@ -143,7 +144,7 @@
             position: relative;
             height: 80px;
             overflow: hidden;
-            border-right: 1px solid #ebebeb;
+            border-right: 1px solid var(--tv-CalendarView-date-border-color);
             background-color: var(--tv-CalendarView-main-li-bg-color);
 
             &.is-selected {
@@ -182,6 +183,10 @@
               background-color: rgba(141, 149, 158, 0.3);
             }
           }
+        }
+
+        ul li:last-of-type {
+          border-right: none;
         }
 
         .day-selected {
@@ -355,6 +360,7 @@
 
       > li {
         line-height: 40px;
+        cursor: pointer;
 
         .date {
           position: relative;
@@ -363,6 +369,10 @@
           color: var(--tv-CalendarView-week-date-text-color);
 
           &.is-today {
+            color: var(--tv-CalendarView-week-date-today-text-color);
+          }
+
+          &.current {
             color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
@@ -413,7 +423,11 @@
           color: #8d959e;
 
           &.is-today {
-            color: #1890ff;
+            color: var(--tv-CalendarView-week-date-today-text-color);
+          }
+
+          &.current {
+            color: var(--tv-CalendarView-week-date-today-text-color);
           }
         }
       }
@@ -432,7 +446,8 @@
       margin-left: 21px;
 
       ul > li {
-        height: 20px;
+        height: var(--tv-CalendarView-events-list-height);
+        padding: var(--tv-CalendarView-events-list-padding);
         text-align: left;
         border-bottom-width: var(--tv-CalendarView-timeline-li-border-width);
         border-bottom-style: solid;
@@ -479,6 +494,16 @@
           &.is-even-num {
             border-bottom-style: dashed;
           }
+
+          &.is-scroll-list{
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            &.is-scroll-list::-webkit-scrollbar {
+              width: 0;
+              height: 0;
+            }
+          }
         }
 
         .events-item {
@@ -488,13 +513,13 @@
           display: flex;
           align-items: center;
           padding: 0 6px;
-          position: absolute;
           top: 0;
           left: 0;
           z-index: 10;
           line-height: 1.5;
           border-radius: 2px;
           color: var(--tv-CalendarView-events-item-text-color);
+          margin-bottom: 1px;
 
           &.theme-blue {
             border-left: 2px solid #1890ff;
@@ -625,12 +650,17 @@
   .inject-CalendarView-vars();
   position: absolute;
   max-width: 320px;
+
   .tooltip-main {
+    overflow: auto;
+    max-height: 80vh;
     padding: var(--tv-CalendarView-tooltip-title-font-size);
+
     .title {
       font-size: var(--tv-CalendarView-tooltip-title-font-size);
       font-weight: var(--tv-CalendarView-tooltip-title-font-weight);
     }
+
     .date {
       margin: 6px 0;
       color: var(--tv-CalendarView-tooltip-date-text-color);

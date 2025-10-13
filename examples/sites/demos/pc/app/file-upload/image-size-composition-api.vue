@@ -7,7 +7,7 @@
     :before-upload="beforeUpload"
   >
     <template #trigger>
-      <tiny-button>选取文件</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </template>
     <template #tip>
       <div class="tiny-upload__tip">只允许上传 image 类型文件</div>

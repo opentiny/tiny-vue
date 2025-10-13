@@ -362,6 +362,15 @@ export default defineComponent({
     showAllTextTag: {
       type: Boolean,
       default: false
+    },
+    // 配置多选时，Tag的最大宽度
+    maxTagWidth: {
+      type: [String, Number],
+      default: null
+    },
+    autoSelect: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

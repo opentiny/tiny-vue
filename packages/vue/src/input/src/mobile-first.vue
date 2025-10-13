@@ -48,6 +48,7 @@
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
           :popper-options="{ bubbling: true }"
+          pre
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span
@@ -83,7 +84,7 @@
           :class="
             m(
               'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
-                'sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator ' +
+                'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
                 'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled ' +
                 'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
@@ -149,7 +150,7 @@
       <span
         data-tag="tiny-input-prefix"
         ref="prefix"
-        class="left-2 transition-all duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
+        class="left-2 transition-all fill-color-icon-placeholder duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
         v-if="(slots.prefix || prefixIcon) && !state.isDisplayOnly"
       >
         <slot name="prefix"></slot>
@@ -171,7 +172,7 @@
         class="right-2 transition-all duration-300 ease-in-out pointer-events-none text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center z-[1]"
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
-        <span class="pointer-events-auto text-xs flex justify-start items-center">
+        <span class="pointer-events-auto text-xs fill-color-icon-placeholder flex justify-start items-center">
           <icon-close
             v-if="state.showClear"
             :class="
@@ -237,7 +238,7 @@
             v-if="state.isWordLimitVisible"
             class="h-full inline-flex items-center text-xs sm:text-sm text-color-text-placeholder"
           >
-            <span class="bg-color-bg-1 leading-none inline-block">{{
+            <span class="bg-color-bg-1 leading-none inline-block text-xs">{{
               state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
             }}</span>
           </span>
@@ -284,15 +285,15 @@
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="inline-flex">
+        <div class="inline-flex max-w-full">
           <span
             ref="textBox"
             class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
             :class="[
               state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
-              hoverExpand && 'relative left-0 max-w-full leading-normal line-clamp-1',
+              hoverExpand && 'relative left-0 max-w-full leading-5 line-clamp-1',
               autosize
-                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-normal'
+                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-5'
                 : 'left-0 max-w-full text-ellipsis overflow-hidden break-words whitespace-pre-wrap line-clamp-5'
             ]"
             @click="state.showDisplayOnlyBox = true"
@@ -301,8 +302,7 @@
               v-if="state.showMoreBtn"
               class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
               >{{ t('ui.input.more') }}></span
-            >
-            <span>{{ state.displayOnlyText }}</span>
+            >{{ state.displayOnlyText }}
           </span>
         </div>
       </tiny-tooltip>
@@ -324,13 +324,13 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
         :class="[
           readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 ',
           state.isDisplayOnly ? 'hidden' : '',
           state.inputSizeMf !== 'mini' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs',
           hoverExpand && 'min-w-40 absolute h-7 z-[2000] top-0 left-0',
-          hoverExpand && state.enteredTextarea ? 'py-2 leading-normal' : 'py-0 leading-[1.625rem]',
+          hoverExpand && state.enteredTextarea ? 'py-2 leading-normal' : 'py-0 leading-5.5',
           hoverExpand && !state.enteredTextarea && 'min-h-7 px-2 leading-7 overflow-hidden'
         ]"
         @compositionstart="handleCompositionStart"
@@ -354,7 +354,7 @@
     <span
       data-tag="tiny-input-limit"
       v-if="state.isWordLimitVisible && type === 'textarea'"
-      class="bg-color-bg-1 text-color-text-placeholder text-xs sm:text-sm absolute bottom-1 right-3"
+      class="text-color-text-placeholder text-xs leading-5 absolute bottom-0 right-3"
       >{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span
     >
     <slot></slot>

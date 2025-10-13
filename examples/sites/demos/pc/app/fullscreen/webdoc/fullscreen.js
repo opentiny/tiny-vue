@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'example-component',
@@ -37,6 +39,47 @@ export default {
         'en-US': 'For details, see the following example.'
       },
       codeFiles: ['before-change.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'component',
+      name: '组件式使用',
+      support: {
+        value: true
+      },
+      description: '支持组件式使用方式。',
+      cloud: {
+        value: false
+      },
+      apis: ['component'],
+      demos: ['example-component']
+    },
+    {
+      id: 'api',
+      name: '函数式使用',
+      support: {
+        value: true
+      },
+      description: '支持函数式使用方式。',
+      cloud: {
+        value: false
+      },
+      apis: ['api'],
+      demos: ['example-api']
+    },
+    {
+      id: 'before-change',
+      name: '拦截事件',
+      support: {
+        value: true
+      },
+      description: '支持在切换全屏前进行拦截。',
+      cloud: {
+        value: false
+      },
+      apis: ['before-change'],
+      demos: ['before-change']
     }
   ]
 }

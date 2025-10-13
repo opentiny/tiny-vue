@@ -22,8 +22,8 @@
  * SOFTWARE.
  *
  */
-import { set, assign, objectMap, get, each, isObject, isFunction } from '@opentiny/vue-renderless/grid/static/'
-import { getCellValue, setCellValue } from '@opentiny/vue-renderless/grid/utils'
+import { assign, objectMap, get, each, isObject, isFunction } from '@opentiny/vue-renderless/grid/static/'
+import { getCellValue, getRowid, setCellValue } from '@opentiny/vue-renderless/grid/utils'
 import { hooks } from '@opentiny/vue-common'
 
 function getAttrs({ name, attrs }, params) {
@@ -68,15 +68,18 @@ function getEvents(renderOpts, params, context) {
     [type](event) {
       let cellValue = native ? event.target.value : event
 
-      if (!renderOpts.isValidAlways && isSyncCell(renderOpts, params, context)) {
-        setCellValue(row, column, cellValue)
-      } else {
-        native || set(row, column.property, cellValue)
+      if (!isSyncCell(renderOpts, params, context)) {
         model.update = true
         model.value = cellValue
-        $table.updateStatus(params, cellValue, renderOpts)
       }
 
+      setCellValue(row, column, cellValue)
+
+      Promise.resolve().then(() => {
+        $table.updateStatus(params, cellValue, renderOpts)
+      })
+
+      // 对原生组件调用input和change回调
       if (native) {
         input && input.apply(null, [params].concat.apply(params, arguments))
         change && change.apply(null, [params].concat.apply(params, arguments))
@@ -195,7 +198,10 @@ function defaultFilterMethod({ option, row, column }) {
 }
 
 function renderSelectEdit(h, renderOpts, params, context) {
+  const { column, $table, row } = params
+  const editorKey = `editor-${getRowid($table, row)}-${column.id}`
   let props = {
+    ref: editorKey,
     class: 'tiny-grid-default-select',
     on: getEvents(renderOpts, params, context)
   }
@@ -221,8 +227,12 @@ function defaultEditRender(h, renderOpts, params, context) {
   let editorModel = component.model || {}
   let modelProps = typeof component === 'string' ? 'value' : editorModel.prop || 'modelValue'
 
+  const editorKey = `editor-${getRowid($table, row)}-${column.id}`
+
+  // 获取行的唯一标识作为key
   const key = row[$table.rowId]
   let options = {
+    ref: editorKey,
     key,
     class: isTag ? `tiny-grid-default-${component}` : '',
     attrs: {

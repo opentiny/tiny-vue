@@ -33,7 +33,7 @@ export const classes = {
   'type-danger-plain': `text-color-error border-color-error hover:text-color-error-hover hover:border-color-error-hover active:text-color-error-active active:border-color-error-active bg-color-bg-1 sm:cursor-pointer`,
   'type-text-plain': `text-color-brand hover:text-color-brand-hover active:text-color-brand-active`,
   'type-default-plain-disabled':
-    'text-color-text-disabled bg-color-bg-1 border-color-text-disabled hover:cursor-not-allowed',
+    'text-color-text-disabled bg-color-bg-1 border-color-border-disabled hover:cursor-not-allowed',
   'type-primary-plain-disabled':
     'text-color-brand-disabled bg-color-bg-1 border-color-brand-disabled hover:cursor-not-allowed',
   'type-success-plain-disabled':
@@ -48,12 +48,12 @@ export const classes = {
   'no-round': 'rounded',
   'is-round': 'rounded-full',
   'is-border': 'border-0.5 sm:border',
-  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-3 pr-3',
+  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-2 pr-2 leading-5.5',
   'is-circle': 'sm:min-w-[theme(spacing.18)] sm:rounded-full sm:pl-2 sm:pr-2',
   'button-icon': '-mt-0.5 sm:text-base fill-current',
   'button-icon-default': 'text-color-icon-primary hover:text-color-icon-hover active:text-color-icon-active',
   'button-icon-disabled': 'text-color-icon-disabled hover:cursor-not-allowed',
-  'loading-svg': 'animate-spin-2 mr-1 fill-current -left-0.5 -right-0.5 -top-0.5 -bottom-0.5',
+  'loading-svg': 'animate-spin mr-1 fill-current -left-0.5 -right-0.5 -top-0.5 -bottom-0.5',
   'button-link':
     'text-color-link hover:text-color-link-hover active:color-link-hover active:hover:text-color-link-hover sm:hover:text-color-link-hover',
   'button-banner': ' w-[calc(100%-theme(spacing.8))] mx-4'

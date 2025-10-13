@@ -1,3 +1,4 @@
 {
+  "files": [],
   "references": [ { "path": "./tsconfig.vue3.json" }]
 }

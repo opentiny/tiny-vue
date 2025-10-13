@@ -88,13 +88,12 @@ export default defineConfig({
 
 ```html
 <head>
-  <!-- 引入 vue 和 @opentiny/vue -->
+  <!-- 引入 vue 和 @opentiny/vue 其中 @opentiny/vue-huicharts 包在v3.22.0版本开始提供 -->
   <script type="importmap">
     {
       "imports": {
-        "vue": "https://registry.npmmirror.com/vue/3.5/files/dist/vue.runtime.esm-browser.js",
+        "vue": "https://registry.npmmirror.com/vue/3.5/files/dist/vue.esm-browser.js",
         "echarts": "https://registry.npmmirror.com/echarts/5.4.1/files/dist/echarts.esm.js",
-        // v3.22.0版本新增
         "@opentiny/vue-huicharts": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-huicharts.mjs",
         "@opentiny/vue": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-pc.mjs",
         "@opentiny/vue-icon": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.22/files/dist3/tiny-vue-icon.mjs",
@@ -112,18 +111,16 @@ export default defineConfig({
 
 ```html
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <tiny-button>TinyVue</tiny-button>
+    <tiny-alert description="TinyVue"></tiny-alert>
+  </div>
   <script type="module">
     import { createApp } from 'vue'
     // 引入 @opentiny/vue 组件
     import TinyVue from '@opentiny/vue'
 
-    createApp({
-      template: `
-        <tiny-button>TinyVue</tiny-button>
-        <tiny-alert description="TinyVue"></tiny-alert>
-      `
-    })
+    createApp()
       // 注册 @opentiny/vue 组件
       .use(TinyVue)
       .mount('#app')
@@ -131,7 +128,7 @@ export default defineConfig({
 </body>
 ```
 
-## 常见问题和解决方法：
+## 常见问题和解决方法
 
 问题一：`v-model cannot be used on a prop, because local prop bindings are not writable.`
 

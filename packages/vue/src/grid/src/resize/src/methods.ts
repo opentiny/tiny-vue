@@ -27,22 +27,16 @@ import GlobalConfig from '../../config'
 
 export default {
   bindResize() {
-    const resizeObserver = new Resize(() => {
-      this.updateParentHeight()
-      this.updateTableBodyHeight()
-      this.recalculate()
-    }, GlobalConfig.resizeInterval)
-
     const parentElem = this.getParentElem()
 
-    parentElem && resizeObserver.observe(parentElem)
-    this.$resize = resizeObserver
+    if ((parentElem as Element)?.nodeType === Node.ELEMENT_NODE) {
+      ;(this.$resize = new Resize(() => {
+        this.updateParentHeight()
+        this.recalculate()
+      }, GlobalConfig.resizeInterval)).observe(parentElem)
+    }
   },
   unbindResize() {
-    const $resize = this.$resize
-
-    if ($resize) {
-      $resize.disconnect()
-    }
+    this.$resize?.disconnect()
   }
 }

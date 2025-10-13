@@ -164,7 +164,7 @@ export default {
         },
         {
           name: 'popseletor',
-          type: 'string',
+          type: `'grid' | 'tree'`,
           defaultValue: `'grid'`,
           desc: {
             'zh-CN': '设置弹出面板中可显示的树或者表格组件',
@@ -345,6 +345,20 @@ export default {
           pcDemo: 'title'
         },
         {
+          name: 'lock-scroll',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '设置弹出面板的锁定滚动',
+            'en-US': 'Set the lock scroll of the pop-up panel.'
+          },
+          meta: {
+            stable: '3.24.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'condition-layout'
+        },
+        {
           name: 'trigger',
           type: "'default' | 'cell' | 'row'",
           defaultValue: "'default'",
@@ -444,6 +458,36 @@ export default {
       ],
       methods: [],
       slots: [
+        {
+          name: 'title-selection',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '已选择数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'title-history',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '历史数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'title-source',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '所有数据标题插槽',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
         {
           name: 'footer',
           defaultValue: '',

@@ -4,8 +4,11 @@ test('测试自定义事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('config-provider#base')
 
-  // 验证自定义方法
   const demo = page.locator('#base')
+  // 验证文字居中
+  await expect(demo.locator('.tiny-alert')).toHaveCSS('justify-content', 'center')
+
+  // 验证自定义方法
   await demo.locator('.tiny-config-provider .tiny-alert > .tiny-alert__close').click()
   await page.waitForTimeout(500)
   await expect(page.locator('.tiny-modal > .tiny-modal__box').nth(1)).toHaveText('触发自定方法')

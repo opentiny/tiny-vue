@@ -12,7 +12,7 @@ test('手动关闭通知', async ({ page }) => {
   await buttons.nth(1).click()
   await buttons.nth(2).click()
 
-  await expect(notifys).toHaveCount(5)
+  await expect(notifys).toHaveCount(3)
   await page.waitForTimeout(4100)
   await expect(notifys).toHaveCount(0)
 })

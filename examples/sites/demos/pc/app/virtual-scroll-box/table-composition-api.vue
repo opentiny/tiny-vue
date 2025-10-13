@@ -99,8 +99,8 @@ const colStyle = ({ viewRow, viewCol }) => {
   display: table-cell;
   font-size: 12px;
   background-color: var(--docs-color-bg);
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 1px 100%);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 1px 100%);
   background-position:
     0 0,
     0 1px;
@@ -111,8 +111,9 @@ const colStyle = ({ viewRow, viewCol }) => {
 }
 
 .vs-is-last-row > .vs-cell {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%);
   background-position:
     0 0,
     0 1px,
@@ -125,8 +126,9 @@ const colStyle = ({ viewRow, viewCol }) => {
 }
 
 .vs-is-last-col.vs-cell {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%);
   background-position:
     0 0,
     0 1px,
@@ -139,9 +141,9 @@ const colStyle = ({ viewRow, viewCol }) => {
 }
 
 .vs-is-last-row > .vs-is-last-col.vs-cell {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0 100%);
   background-position:
     0 0,
     0 1px,

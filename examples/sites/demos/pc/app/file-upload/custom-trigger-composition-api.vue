@@ -1,7 +1,7 @@
 <template>
   <tiny-file-upload ref="uploadRef" :action="action">
     <template #trigger>
-      <tiny-button>我是触发源</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </template>
   </tiny-file-upload>
 </template>

@@ -13,7 +13,7 @@ test('[DatePanel] 测试格式化', async ({ page }) => {
   await expect(page.locator('.value1')).toHaveText('[ "2025/01/28", "2025/02/12" ]')
 
   // monthRange
-  await page.locator('#format').getByText('三月').first().click()
-  await page.locator('#format').getByText('五月').nth(1).click()
+  await page.locator('#format').getByText('3 月').first().click()
+  await page.locator('#format').getByText('5 月').nth(1).click()
   await expect(page.locator('.value2')).toHaveText('[ "2024/03", "2025/05" ]')
 })

@@ -103,6 +103,9 @@ const tableData = ref([
   }
 ])
 const cityFilter = ref({
+  attrs: {
+    id: 'city-filter'
+  },
   multi: true,
   enumable: true,
   defaultFilter: false,
@@ -110,6 +113,9 @@ const cityFilter = ref({
   values: filteData
 })
 const nameFilter = ref({
+  attrs: {
+    id: 'name-filter'
+  },
   multi: true,
   enumable: true,
   defaultFilter: false,

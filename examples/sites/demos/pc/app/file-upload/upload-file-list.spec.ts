@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 test('文件列表', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
@@ -10,8 +15,6 @@ test('文件列表', async ({ page }) => {
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
   const { width, height } = await items.nth(0).boundingBox()
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await expect(width).toBeGreaterThanOrEqual(height)

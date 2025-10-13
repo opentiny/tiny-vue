@@ -14,8 +14,31 @@ import rules from '../rules/index'
 import { isEmptyValue } from '../util'
 import { hasOwn } from '../../type'
 
-export default function (rule, checkValue, cb, source, options) {
-  const errors = []
+/**
+ * 浮点数验证函数
+ *
+ * @description 验证字段是否为有效的浮点数，并检查其范围
+ * @param rule 验证规则对象，包含验证条件如required、type和范围限制
+ * @param checkValue 需要验证的值
+ * @param cb 回调函数，用于返回验证结果
+ * @param source 包含所有字段的源对象
+ * @param options 验证选项
+ */
+export default function float(
+  rule: {
+    required?: boolean
+    field: string
+    type?: string
+    min?: number
+    max?: number
+    [key: string]: any
+  },
+  checkValue: any,
+  cb: (errors?: any[]) => void,
+  source: Record<string, any>,
+  options?: Record<string, any>
+): void {
+  const errors: any[] = []
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))
 
   if (validate) {

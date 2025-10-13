@@ -164,9 +164,6 @@ export const handleConfirm =
     if (skipBeforeClose !== true && typeof props.beforeClose === 'function' && props.beforeClose('confirm') === false) {
       return
     }
-    if (props.autoReset) {
-      handleReset({ api, state, props })()
-    }
 
     if (props.popseletor === constants.TYPE_GRID) {
       props.multi ? api.getMultiSelectedData({ props, state }) : api.getRadioSelectedData()
@@ -192,6 +189,10 @@ export const handleConfirm =
         emit('update:modelValue', commitValue)
         emit('change', commitValue, state.treeSelectList)
       }
+    }
+
+    if (props.autoReset) {
+      handleReset({ api, state, props })()
     }
 
     state.open = false

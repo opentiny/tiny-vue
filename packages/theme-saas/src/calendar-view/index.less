@@ -5,6 +5,7 @@
 .@{calendar-view-prefix-cls} {
   @apply w-full;
   @apply h-auto;
+  @apply overflow-auto;
 
   &__header {
     @apply flex;
@@ -62,6 +63,7 @@
 
         >li{
           @apply leading-10;
+          @apply cursor-pointer;
 
           >span{
             @apply text-sm;
@@ -351,6 +353,7 @@
 
       >li{
         @apply leading-10;
+        @apply cursor-pointer;
 
         .date{
           @apply relative;
@@ -358,7 +361,11 @@
           @apply text-base;
           @apply text-color-text-primary;
 
-          &.is-today{
+          &.is-today {
+            @apply text-color-brand;
+          }
+
+          &.current {
             @apply text-color-brand;
           }
         }
@@ -407,7 +414,11 @@
         .week-day{
           @apply text-sm;
           @apply text-color-text-placeholder;
-          &.is-today{
+          &.is-today {
+            @apply text-color-brand;
+          }
+
+          &.current {
             @apply text-color-brand;
           }
         }
@@ -438,7 +449,7 @@
         @apply w-12;
 
         ul>li{
-          @apply h-5;
+          @apply h-6;
           @apply text-center;
           @apply border-b;
           @apply border-b-color-bg-1;
@@ -483,6 +494,12 @@
             &.is-even-num{
               @apply border-dashed;
             }
+
+            &.is-scroll-list{
+              @apply overflow-y-auto;
+              @apply overflow-x-hidden;
+              @apply scrollbar-size-0;
+            }
           }
 
           .events-item{
@@ -491,12 +508,12 @@
             @apply flex;
             @apply items-center;
             @apply ~'px-1.5';
-            @apply absolute;
             @apply top-0;
             @apply left-0;
             @apply z-10;
             @apply leading-normal;
             @apply rounded-sm;
+            @apply ~'mb-0.5';
 
             &.theme-blue {
               @apply text-color-brand;
@@ -630,6 +647,8 @@
   @apply ~'max-w-[theme(spacing.80)]';
 
   .tooltip-main{
+    @apply overflow-auto;
+    @apply ~'max-h-[80vh]';
     @apply p-2;
 
     .title{

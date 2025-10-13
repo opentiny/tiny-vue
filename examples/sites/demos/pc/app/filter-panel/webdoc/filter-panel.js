@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -81,6 +83,75 @@ export default {
           '<code>handle-clear</code>Listen to the clear button click event and execute the delete operation<code>visible-change</code>listens to the explicit and implicit events of the drop-down panel.'
       },
       codeFiles: ['event.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description:
+        '通过 label 设置标题，value 设置标题右侧内容，disabled 设置是否禁用；通过默认插槽自定义过滤面板内容。',
+      cloud: {
+        value: false
+      },
+      apis: ['label', 'value', 'disabled'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'popper',
+      name: '下拉面板配置',
+      support: {
+        value: true
+      },
+      description:
+        '通过 placement 控制下拉面板的位置，popper-class 设置类名，popper-append-to-body 设置弹下拉面板是否插入至 body 元素。',
+      cloud: {
+        value: false
+      },
+      apis: ['placement', 'popper-class', 'popper-append-to-body'],
+      demos: ['popper-class']
+    },
+    {
+      id: 'style',
+      name: '样式配置',
+      support: {
+        value: true
+      },
+      description: '通过 blank 控制过滤器背景是否透明，clearable 控制是否显示清空按钮，tip 添加标题右侧提示信息。',
+      cloud: {
+        value: false
+      },
+      apis: ['blank', 'clearable', 'tip'],
+      demos: ['tip']
+    },
+    {
+      id: 'manual-hide',
+      name: '手动隐藏',
+      support: {
+        value: true
+      },
+      description: '手动调用 hide 实例方法完成收起下拉面板功能。',
+      cloud: {
+        value: false
+      },
+      apis: ['hide'],
+      demos: ['manual-hide']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description: '支持 handle-clear 清空按钮点击事件和 visible-change 下拉面板显隐事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['handle-clear', 'visible-change'],
+      demos: ['event']
     }
   ]
 }

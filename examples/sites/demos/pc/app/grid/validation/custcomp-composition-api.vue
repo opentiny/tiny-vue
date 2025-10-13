@@ -14,7 +14,7 @@
       <tiny-grid-column field="telephone" title="telephone" :editor="{}">
         <template #edit="scope">
           <div>
-            <input class="grid-editor-input" v-model="scope.row.telephone" @input="slotOnInput($event, scope)" />
+            <input class="tiny-grid-default-input" v-model="scope.row.telephone" @input="slotOnInput($event, scope)" />
           </div>
         </template>
       </tiny-grid-column>
@@ -40,7 +40,7 @@ const CustomInput = {
     }
   },
   render() {
-    return <input value={this.modelValue} class="grid-editor-input" onChange={this.change} onInput={this.input} />
+    return <input value={this.modelValue} class="tiny-grid-default-input" onChange={this.change} onInput={this.input} />
   }
 }
 
@@ -171,10 +171,3 @@ function slotOnInput(e, scope) {
   scope.$table.updateStatus(scope, e.target.value)
 }
 </script>
-
-<style scoped>
-:deep(.tiny-grid) .col__edit .grid-editor-input {
-  width: 100%;
-  height: 100%;
-}
-</style>

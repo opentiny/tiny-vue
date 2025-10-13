@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -13,6 +15,18 @@ export default {
         'en-US': 'Set the display color selection panel through<code>visible</code>.'
       },
       codeFiles: ['base.vue']
+    },
+    {
+      demoId: 'linear-gradient',
+      name: {
+        'zh-CN': '线性渐变',
+        'en-US': 'Linear Gradient'
+      },
+      desc: {
+        'zh-CN': '通过<code>color-mode</code>设置显示色彩选择的色彩模式。',
+        'en-US': 'Set the color mode for display color selection through<code>color mode</code>.'
+      },
+      codeFiles: ['linear-gradient.vue']
     },
     {
       demoId: 'alpha',
@@ -93,6 +107,73 @@ export default {
         'en-US': ''
       },
       codeFiles: ['format.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 设置颜色值。',
+      cloud: {
+        value: false
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'show-alpha',
+      name: '透明度选择',
+      support: {
+        value: true
+      },
+      description: '通过 show-alpha 设置是否支持透明度选择。',
+      cloud: {
+        value: false
+      },
+      apis: ['show-alpha'],
+      demos: ['show-alpha']
+    },
+    {
+      id: 'color-format',
+      name: '颜色格式',
+      support: {
+        value: true
+      },
+      description: '通过 color-format 设置颜色格式，可选值为 hex、rgb、hsl。',
+      cloud: {
+        value: false
+      },
+      apis: ['color-format'],
+      demos: ['color-format']
+    },
+    {
+      id: 'predefine',
+      name: '预定义颜色',
+      support: {
+        value: true
+      },
+      description: '通过 predefine 设置预定义颜色。',
+      cloud: {
+        value: false
+      },
+      apis: ['predefine'],
+      demos: ['predefine']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当颜色值改变时会触发 change 事件。',
+      cloud: {
+        value: false
+      },
+      apis: ['change'],
+      demos: ['events']
     }
   ]
 }

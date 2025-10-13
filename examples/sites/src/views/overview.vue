@@ -86,7 +86,7 @@ export default defineComponent({
       palceMenus: new Array(14)
     })
 
-    const isPlus = computed(() => location.href.includes('tiny-vue-plus'))
+    const isPlus = computed(() => import.meta.env.VITE_APP_MODE === 'plus')
     function debounce(fn, delay) {
       let timeout = 0
       return (value) => {
@@ -121,7 +121,7 @@ export default defineComponent({
         .filter((item) => item.children.length > 0)
       state.searchMenus = searchMenus
     }
-    const lang = getWord('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR')
     const { defaultTheme } = useTheme()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
@@ -214,7 +214,7 @@ export default defineComponent({
   }
 }
 
-.dark .component-card {
+html.dark .component-card {
   &:hover {
     box-shadow: 1px 1px 6px 6px rgba(255, 255, 255, 0.08);
   }
@@ -229,7 +229,7 @@ export default defineComponent({
   width: 24.25%;
 }
 
-.dark .overview-card-container {
+html.dark .overview-card-container {
   background-color: var(--tv-color-bg-dark);
 }
 

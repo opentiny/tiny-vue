@@ -1,17 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
 import { LANG_PATH_MAP, ZH_CN_LANG, DEFAULT_THEME } from './const'
+import { appData } from './tools/appData.js'
 
 const Components = () => import('@/views/components-doc/index.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
+const Features = () => import('@/views/features.vue')
 
 const context = import.meta.env.VITE_CONTEXT
-
 let routes = [
   // 组件总览
   {
-    path: `${context}:all?/zh-CN/:theme/overview`,
+    path: `${context}:all?/${LANG_PATH_MAP[appData.lang] || 'zh-CN'}/:theme/overview`,
     component: Layout,
     name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
@@ -25,16 +26,23 @@ let routes = [
   },
   // 组件
   {
-    path: `${context}:all?/zh-CN/:theme/components/:cmpId`,
+    path: `${context}:all?/${LANG_PATH_MAP[appData.lang] || 'zh-CN'}/:theme/components/:cmpId`,
     component: Layout,
     name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
+  },
+  // 组件特性列表（不对外）
+  {
+    path: `${context}:all?/zh-CN/:theme/features`,
+    component: Layout,
+    name: 'features',
+    children: [{ name: 'Features', path: '', component: Features, meta: { title: '组件特性列表 | TinyVue' } }]
   },
   // 未匹配到目标地址时，进行路由重定向
   {
     path: '/:pathMatch(.*)*',
     redirect: () => {
-      const langPath = LANG_PATH_MAP[ZH_CN_LANG]
+      const langPath = LANG_PATH_MAP[appData.lang] || LANG_PATH_MAP[ZH_CN_LANG]
       return { path: `${context}${langPath}/${DEFAULT_THEME}/overview` }
     }
   }

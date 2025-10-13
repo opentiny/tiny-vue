@@ -1,6 +1,10 @@
 <template>
   <!-- 一个组件的文档:  描述md + demos + apis -->
-  <ComponentHeader :current-json="state.currJson" :md-string="state.mdString" class="flex-horizontal">
+  <ComponentHeader
+    :current-json="state.currJson"
+    :md-string="state.mdString"
+    class="flex-horizontal flex-horizontal--header"
+  >
     <template #header-right>
       <slot name="header-right" />
     </template>
@@ -58,20 +62,31 @@
                 @jump-to-demo="jumpToDemo"
               ></api-docs>
             </tiny-tab-item>
+            <tiny-tab-item v-if="state.tokenList?.length" title="Token" name="token">
+              <!-- 主题变量 -->
+              <design-token :name="state.cmpId" :tokenList="state.tokenList" />
+            </tiny-tab-item>
+            <tiny-tab-item v-if="mcpInfo.length > 0" title="MCP" name="MCP">
+              <McpDocs :data="mcpInfo" :name="capName" />
+            </tiny-tab-item>
           </tiny-tabs>
+
           <slot name="main-right" />
         </div>
 
         <!-- demo与api目录锚点 -->
-        <aside-anchor
-          :active-tab="state.activeTab"
-          :current-json="state.currJson"
-          :anchor-affix="state.anchorAffix"
-          :api-types="state.currApiTypes"
-          :lang-key="state.langKey"
-          :key="anchorRefreshKey"
-          @link-click="handleAnchorClick"
-        ></aside-anchor>
+        <div class="cmp-page-anchor catalog">
+          <aside-anchor
+            v-if="state.activeTab === 'demos' || state.activeTab === 'api'"
+            :active-tab="state.activeTab"
+            :current-json="state.currJson"
+            :anchor-affix="state.anchorAffix"
+            :api-types="state.currApiTypes"
+            :lang-key="state.langKey"
+            :key="anchorRefreshKey"
+            @link-click="handleAnchorClick"
+          ></aside-anchor>
+        </div>
       </div>
 
       <div v-if="state.currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(state.currJson.owner)">
@@ -90,12 +105,17 @@ import { debounce } from '@opentiny/utils'
 import { i18nByKey, getWord, $clone, useApiMode } from '@/tools'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
-import DemoBox from './components/demo.vue'
-import AsideAnchor from './components/anchor.vue'
-import ComponentHeader from './components/header.vue'
-import ComponentContributor from './components/contributor.vue'
-import ApiDocs from './components/api-docs.vue'
-import useTasksFinish from './composition/useTasksFinish'
+import DemoBox from '../../components/demo.vue'
+import AsideAnchor from '../../components/anchor.vue'
+import ComponentHeader from '../../components/header.vue'
+import ComponentContributor from '../../components/contributor.vue'
+import ApiDocs from '../../components/api-docs.vue'
+import DesignToken from '../../components/design-token.vue'
+import McpDocs from '../../components/mcp-docs.vue'
+import useTasksFinish from '../../composable/useTasksFinish'
+import list from '@opentiny/vue-theme/token'
+import { getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
+import { camelize, capitalize } from '@vue/shared'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -111,9 +131,10 @@ const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
 const anchorRefreshKey = ref(0)
 const route = useRoute()
 const state = reactive({
-  langKey: getWord('zh-CN', 'en-US'),
+  langKey: getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR'),
   cmpId: '',
   observer: null,
+  tokenList: [],
   currJson: { column: 1, demos: [], apis: [], types: {} },
   mdString: '',
   currDemoId: '',
@@ -162,8 +183,10 @@ watch(
 onMounted(() => {
   loadPage()
   // 加载公共尾部
-  const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
-  common.renderFooter()
+  nextTick(() => {
+    const common = new window.TDCommon(['#footer'], { allowDarkTheme: true })
+    common.renderFooter()
+  })
   setScrollListener()
 })
 
@@ -177,7 +200,6 @@ const parseApiData = () => {
   if (!state.currJson.apis?.length) {
     return {}
   }
-
   const tableData = {}
   const apis = state.currJson.apis || []
   for (const apiGroup of apis) {
@@ -270,7 +292,7 @@ const demoMounted = () => {
 }
 
 const loadPage = () => {
-  const lang = getWord('cn', 'en')
+  const lang = getWord('cn', 'en', 'es', 'pt')
   state.cmpId = router.currentRoute.value.params.cmpId
 
   state.chartCode = getWebdocPath(state.cmpId) === 'chart'
@@ -279,8 +301,9 @@ const loadPage = () => {
   props.loadData({ cmpId: state.cmpId, lang }).then(({ mdString, apisJson, demosJson }) => {
     // 1、加载顶部md
     state.mdString = mdString
-
-    if (demosJson) {
+    // plus隐藏头部集合
+    const hideTabHeader = ['interfaces', 'types', 'classes'].includes(state.cmpId)
+    if (demosJson && !hideTabHeader) {
       // 默认设置每个实例demo都不和视图相交
       demosJson.demos?.forEach((item) => {
         item.isIntersecting = false
@@ -292,8 +315,12 @@ const loadPage = () => {
       }
     } else {
       state.activeTab = 'api'
+      // 隐藏tab的头部
+      if (hideTabHeader) {
+        document.querySelector('.tiny-tabs__header').style.display = 'none'
+      }
     }
-
+    state.tokenList = list[state.cmpId] || []
     const { finishTask, waitTasks: allDemoMounted } = useTasksFinish(state.currJson.demos.length)
     finishMountTask = finishTask
 
@@ -424,6 +451,25 @@ const handleAnchorClick = (e, data) => {
   }
 }
 
+// MCP tab页签的数据
+const mcpTools = getTinyVueMcpConfig({ t: null })
+const capName = computed(() => capitalize(camelize(state.cmpId || '')))
+
+const mcpInfo = computed(() => {
+  const schema = mcpTools.components[capName.value]?.paramsSchema
+  if (schema) {
+    return Object.keys(schema).map((name) => {
+      const item = schema[name]
+      return {
+        name,
+        param: item._def?.innerType?._def?.typeName || '',
+        desc: item._def?.description || ''
+      }
+    })
+  }
+  return []
+})
+
 defineExpose({ loadPage })
 </script>
 
@@ -459,7 +505,7 @@ defineExpose({ loadPage })
       z-index: var(--docs-tabs-header-zindex);
       background-color: var(--docs-color-bg);
 
-      &::after {
+      &::before {
         content: '';
         position: absolute;
         bottom: 0;
@@ -481,6 +527,57 @@ defineExpose({ loadPage })
       margin: 0;
       overflow: visible;
     }
+  }
+  .cmp-page-anchor {
+    :deep(.tiny-anchor__affix) {
+      top: unset !important;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100vh - 300px);
+    }
+
+    :deep(.tiny-anchor-link) {
+      font-size: 12px;
+
+      a {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .catalog {
+    flex: none;
+    width: 200px;
+    height: calc(100vh - 280px);
+    padding-top: 16px;
+    overflow: hidden;
+
+    .tiny-anchor__dot {
+      max-height: calc(100vh - 300px);
+      width: 200px;
+
+      :deep(.tiny-anchor) {
+        --ti-anchor-width: auto;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .catalog:hover {
+    overflow-y: auto;
+  }
+
+  .catalog::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+
+  .catalog::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #c1c1c1;
   }
 }
 
@@ -513,6 +610,10 @@ defineExpose({ loadPage })
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 16px;
+}
+
+.flex-horizontal--header {
+  overflow: auto;
 }
 
 .cmp-container {

@@ -17,12 +17,14 @@ import Radio from '@opentiny/vue-radio'
 import { isEqual } from '@opentiny/utils'
 import { iconLoadingShadow, iconChevronRight, iconYes } from '@opentiny/vue-icon'
 import type { PropType } from '@opentiny/vue-common'
+import { AutoTip } from '@opentiny/vue-directive'
 import type { ICascaderNodeApi, ICascaderNodeRenderlessParams } from '@opentiny/vue-renderless/types/cascader-node.type'
 import type { ICascaderPanelNode } from '@opentiny/vue-renderless/types/cascader-panel.type'
 import '@opentiny/vue-theme/cascader-node/index.less'
 
 export default defineComponent({
   name: $prefix + 'CascaderNode',
+  directives: { AutoTip },
   components: {
     TinyCheckbox: Checkbox,
     TinyRadio: Radio,
@@ -119,7 +121,12 @@ export default defineComponent({
 
       const vnode = render ? render({ node, data: node.data }) : null
 
-      return <span class="tiny-cascader-node__label">{vnode || node.label}</span>
+      // 可用 state.nodeLabel 简化
+      return (
+        <span class="tiny-cascader-node__label" v-auto-tip>
+          {vnode || node.label}
+        </span>
+      )
     }
 
     const { state } = this

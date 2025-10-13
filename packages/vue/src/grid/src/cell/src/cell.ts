@@ -24,7 +24,7 @@
  */
 import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/utils'
-import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnConfig, getFuncText, formatText, getRowkey } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
@@ -60,12 +60,13 @@ function processRenderer({ h, params, renderer, value }) {
     }
 
     if (renderer.component) {
-      const { component, attrs } = renderer
+      const { component, attrs, events } = renderer
 
       result.flag = true
       result.vnodes = [
         h(hooks.toRaw(component), {
           class: 'grid-cell',
+          on: events,
           attrs: {
             value,
             modelValue: value,
@@ -276,7 +277,7 @@ export const Cell = {
     }
 
     if (typeof title === 'function') {
-      return [title(h, params)]
+      return [h('div', { class: 'tiny-grid-cell-text' }, [title(h, params)])]
     }
 
     if (type === 'card') {
@@ -323,12 +324,14 @@ export const Cell = {
   renderTreeIcon(h, params) {
     let { $table, level, row } = params
     let { treeConfig, treeExpandeds } = $table
-    let { children, indent, renderIcon, trigger } = treeConfig
+    let { children, indent, renderIcon, trigger, bubbling } = treeConfig
     let isActive = ~treeExpandeds.indexOf(row)
     let rowChildren = row[children]
     let listeners = {
       click: (event) => {
-        event.stopPropagation()
+        if (!bubbling) {
+          event.stopPropagation()
+        }
         $table.triggerTreeExpandEvent(event, params)
       }
     }
@@ -393,16 +396,16 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $table, column, row, seq, $seq, level } = params
+    const { $table, column, row, seq, level } = params
     // startIndex：序号列的起始值
-    const { startIndex, treeConfig, scrollYLoad, treeOrdered } = $table
+    const { startIndex, treeConfig, treeOrdered } = $table
     const { indexMethod, slots } = column
     const { temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
     let indexValue = startIndex + seq
     // tree-config为false的情况下，序号为1.1这种形式
-    if (isTreeOrderedFalse && level) {
-      indexValue = scrollYLoad ? row[temporaryIndex] : `${$seq}.${seq}`
+    if (isTreeOrderedFalse) {
+      indexValue = row[temporaryIndex]
     }
 
     if (slots && slots.default) {
@@ -651,7 +654,7 @@ export const Cell = {
   },
   // 展开行
   renderExpandCell(h, params) {
-    let { $table, row } = params
+    let { $table, row, column } = params
     let { expandConfig = {} } = $table
     let { showIcon = true, activeMethod: expandMethod } = expandConfig
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
@@ -659,6 +662,9 @@ export const Cell = {
     const expandActive = $table.expandeds.includes(params.row)
 
     if (!showIcon) return null
+
+    const expandTrigger = column.slots?.['expand-trigger']
+    const triggerContent = expandTrigger ? expandTrigger(params, h) : h('i', { class: 'tiny-grid__expand-icon' })
 
     const map = {
       expandActive: 'expand__active'
@@ -683,7 +689,7 @@ export const Cell = {
             }
           }
         },
-        [hideExpand && h('i', { class: 'tiny-grid__expand-icon' })]
+        [hideExpand && triggerContent]
       )
     ]
   },
@@ -1014,8 +1020,18 @@ export const Cell = {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
+    const rowKey = row[getRowkey($table)]
+
     return [
-      h('span', { class: 'tiny-grid__oper-col-wrapper', attrs: { 'data-tag': 'operation-cell-buttons' } }, groupBig)
+      h(
+        'span',
+        {
+          class: 'tiny-grid__oper-col-wrapper',
+          key: rowKey,
+          attrs: { 'data-tag': 'operation-cell-buttons' }
+        },
+        groupBig
+      )
     ]
   }
 }

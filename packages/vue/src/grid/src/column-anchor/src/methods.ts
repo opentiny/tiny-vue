@@ -91,7 +91,11 @@ export default {
       activeAnchor,
       action: (field, e) => this.anchorAction({ field, anchors, _vm: this, e })
     }
-    this.emitter.once('active-anchor', () => this.anchorAction({ field: activeAnchor.field, anchors, _vm: this }))
+
+    this._delayActivateAnchor = () => {
+      this._delayActivateAnchor = undefined
+      setTimeout(() => this.anchorAction({ field: activeAnchor.field, anchors, _vm: this }), activeAnchor.delay)
+    }
   },
   anchorAction({ field, anchors, _vm }) {
     const fromAnchor = anchors.find((anchor) => anchor.active)

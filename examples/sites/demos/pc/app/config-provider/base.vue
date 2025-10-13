@@ -60,6 +60,9 @@ export default {
             }
           },
           Alert: {
+            props: {
+              center: true
+            },
             icons: {
               warning: iconWarningTriangle()
             },

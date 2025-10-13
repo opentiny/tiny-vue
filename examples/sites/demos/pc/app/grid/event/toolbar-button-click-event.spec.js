@@ -15,5 +15,5 @@ test('工具栏点击事件', async ({ page }) => {
 
   await page.getByRole('button', { name: '删除', exact: true }).click()
 
-  await expect(page.locator('.tiny-grid-body__row')).toHaveCount(6)
+  await expect(page.locator('.tiny-grid-body__row:visible')).toHaveCount(6)
 })

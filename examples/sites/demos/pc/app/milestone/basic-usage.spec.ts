@@ -36,15 +36,15 @@ test('基本用法', async ({ page }) => {
       'box-shadow': 'none'
     },
     {
-      'color': 'rgba(242, 48, 48, 0.1)',
+      'color': 'rgba(242, 48, 48, 0.353)',
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(237, 247, 223)',
+      'color': 'rgb(147, 253, 166)',
       'box-shadow': 'none'
     },
     {
-      'color': 'rgb(250, 173, 20)',
+      'color': 'rgb(250, 173, 24)',
       'box-shadow': 'none'
     }
   ]

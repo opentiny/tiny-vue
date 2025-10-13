@@ -118,6 +118,17 @@ export default {
           pcDemo: 'arrow-position'
         },
         {
+          name: 'show-step',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启指引',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
           name: 'width',
           type: 'number',
           defaultValue: '510',
@@ -127,6 +138,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'size'
+        },
+        {
+          name: 'mask',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示遮罩层',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'mask',
+          meta: {
+            stable: '3.27.0'
+          }
         }
       ],
       events: [],

@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -38,9 +40,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
+          '通过 <code>large</code>，<code>medium</code>，<code>small</code>，<code>mini</code> 设置组件尺寸，<code>disabled</code> 设置是否禁用，默认值为 false。',
         'en-US':
-          'Set the component size through<code>media</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
+          'Set the component size through<code>large</code>,<code>medium</code>,<code>small</code>,<code>mini</code>, and whether to <code>disabled</code> it. The default value is false.'
       },
       codeFiles: ['size.vue']
     },
@@ -151,6 +153,116 @@ export default {
           '<div class="tip custom-block"> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />\n        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> \n        <code>success</code> Listen for file upload success events.</div>'
       },
       codeFiles: ['upload-events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description:
+        '通过 action 设置上传的服务接口，upload-name 设置上传的文件字段名，data 自定义上传时附带的额外参数。',
+      cloud: {
+        value: false
+      },
+      apis: ['action', 'upload-name', 'data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'headers',
+      name: '请求配置',
+      support: {
+        value: true
+      },
+      description: '通过 with-credentials 开启支持发送 cookie 凭证信息，headers 自定义上传请求头信息。',
+      cloud: {
+        value: false
+      },
+      apis: ['with-credentials', 'headers'],
+      demos: ['custom-request-headers']
+    },
+    {
+      id: 'size',
+      name: '尺寸和禁用',
+      support: {
+        value: true
+      },
+      description: '通过 large、medium、small、mini 设置组件尺寸，disabled 设置是否禁用。',
+      cloud: {
+        value: false
+      },
+      apis: ['large', 'medium', 'small', 'mini', 'disabled'],
+      demos: ['size']
+    },
+    {
+      id: 'custom-upload',
+      name: '自定义上传',
+      support: {
+        value: true
+      },
+      description: '通过 http-request 配置覆盖默认的上传行为，自定义上传的实现。',
+      cloud: {
+        value: false
+      },
+      apis: ['http-request'],
+      demos: ['http-request']
+    },
+    {
+      id: 'text',
+      name: '文本配置',
+      support: {
+        value: true
+      },
+      description:
+        '通过 dialog-title、cancel-button-text、submit-button-text、upload-button-text 设置弹框标题和按钮文本。',
+      cloud: {
+        value: false
+      },
+      apis: ['dialog-title', 'cancel-button-text', 'submit-button-text', 'upload-button-text'],
+      demos: ['fill-button-text']
+    },
+    {
+      id: 'limit',
+      name: '上传限制',
+      support: {
+        value: true
+      },
+      description: '通过 limit 设置最大上传的文件数量，multiple 设置是否可同时选择多个文件。',
+      cloud: {
+        value: false
+      },
+      apis: ['limit', 'multiple'],
+      demos: ['file-limit']
+    },
+    {
+      id: 'file-type',
+      name: '文件类型限制',
+      support: {
+        value: true
+      },
+      description:
+        '通过 max-upload-file-size 设置上传文件的大小，accept 设置可上传的文件类型，upload-file-type 指定校验的文件类型。',
+      cloud: {
+        value: false
+      },
+      apis: ['max-upload-file-size', 'accept', 'upload-file-type'],
+      demos: ['file-type']
+    },
+    {
+      id: 'events',
+      name: '事件',
+      support: {
+        value: true
+      },
+      description:
+        '支持 remove、error、exceed、progress、success 等事件，before-remove、before-upload 用于阻止删除和上传。',
+      cloud: {
+        value: false
+      },
+      apis: ['remove', 'error', 'exceed', 'progress', 'success', 'before-remove', 'before-upload'],
+      demos: ['upload-events', 'prevent-delete-file', 'before-upload']
     }
   ]
 }

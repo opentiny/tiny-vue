@@ -1,0 +1,237 @@
+@import '../custom.less';
+
+@color-select-panel-prefix-cls: ~'@{css-prefix}color-select-panel';
+
+.@{color-select-panel-prefix-cls} {
+  @apply flex;
+  @apply flex-col;
+  @apply absolute;
+  @apply relative;
+  @apply relative;
+  @apply bg-color-bg-1;
+  @apply gap-0;
+  @apply p-4;
+  @apply mt-2;
+  @apply rounded-md;
+  min-width: 320px;
+  z-index: 10;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
+
+  &__display {
+    @apply absolute;
+    top: 170px;
+    right: 16px;
+    @apply h-10;
+    @apply w-10;
+    @apply rounded;
+  }
+
+  &__no-alpha {
+    width: 85%;
+    @apply h-3;
+    @apply mt-3;
+  }
+
+  &__tools {
+    @apply flex;
+    @apply flex-row;
+    @apply gap-2;
+    line-height: 30px;
+    height: 30px;
+    @apply mt-4;
+
+    &-style {
+      @apply flex-1;
+    }
+
+    &-hex {
+      @apply flex;
+      @apply flex-row;
+      @apply gap-2;
+    }
+
+    &-hex1 {
+      @apply flex-1;
+    }
+
+    &-hex2 {
+      width: 52px;
+    }
+
+    &-hex3 {
+      @apply flex-1;
+    }
+
+    &-hex4 {
+      width: 31%;
+    }
+
+    &-hex5 {
+      width: 31%;
+    }
+
+    &-hex6 {
+      width: 31%;
+    }
+
+    &-hex7 {
+      width: 31%;
+    }
+
+    &-btns {
+      @apply flex;
+      @apply flex-row-reverse;
+      @apply ml-2;
+      @apply mt-4;
+
+      button {
+        @apply ml-3;
+      }
+    }
+
+    .tiny-input .tiny-input__inner {
+      @apply ~'pl-1.5';
+      @apply ~'pr-1.5';
+    }
+
+    &__format-select {
+      // tiny-select 没办法用fit-content, 暂时写死
+      width: 60px;
+
+      .tiny-select .tiny-input .tiny-input__inner {
+        @apply pl-0;
+        @apply pr-0;
+        @apply border-0;
+      }
+    }
+  }
+
+  &__inner {
+    @apply flex;
+    @apply flex-col;
+    @apply gap-3;
+
+    &__color-select {
+      min-width: 220px;
+      @apply flex-grow;
+      height: 142px;
+      @apply relative;
+
+      .white {
+        background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+      }
+
+      .black {
+        background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+      }
+
+      .white,
+      .black {
+        @apply absolute;
+        @apply inset-0;
+      }
+
+      .cursor {
+        @apply absolute;
+        @apply w-3;
+        @apply h-3;
+        @apply rounded-full;
+        border: 1px solid white;
+        background: rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 0 1px 1px #0000004d, 0 0 1px 2px #0006;
+      }
+    }
+
+    &__hue-select {
+      @apply relative;
+      width: 85%;
+      @apply h-3;
+      @apply rounded-2xl;
+      background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+
+      &-thumb {
+        @apply absolute;
+        @apply relative;
+        top: -2px;
+        @apply w-4;
+        @apply h-4;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        @apply rounded-3xl;
+
+        &-heart {
+          @apply absolute;
+          top: 50%;
+          left: 50%;
+          @apply w-3;
+          @apply h-3;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+
+  &__alpha {
+    @apply relative;
+    width: 85%;
+    @apply h-3;
+    @apply rounded-2xl;
+    @apply mt-3;
+
+    &__slider {
+      @apply w-full;
+      @apply h-full;
+      @apply rounded-2xl;
+    }
+
+    &__thumb {
+      @apply relative;
+      @apply absolute;
+      top: -2px;
+      @apply w-4;
+      @apply h-4;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      @apply rounded-3xl;
+
+      &-heart {
+        @apply absolute;
+        top: 50%;
+        left: 50%;
+        @apply w-3;
+        @apply h-3;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .@{color-select-panel-prefix-cls}__history,
+  .@{color-select-panel-prefix-cls}__predefine {
+    @apply flex;
+    @apply flex-wrap;
+    @apply h-auto;
+    @apply ~'gap-2.5';
+    padding-top: 16px;
+
+    &__color-block {
+      width: 28px;
+      height: 28px;
+      @apply rounded;
+    }
+  }
+
+  .@{color-select-panel-prefix-cls}__history {
+    border-bottom: 1px solid #808080;
+    padding-bottom: 16px;
+  }
+
+  .@{color-select-panel-prefix-cls}__predefine-title {
+    height: 22px;
+    line-height: 22px;
+    @apply text-sm;
+    margin-top: 13px;
+  }
+}

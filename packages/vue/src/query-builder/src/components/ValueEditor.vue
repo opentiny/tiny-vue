@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!show" class="hide"></div>
+  <div v-if="!show" style="display: none"></div>
   <span
     v-else-if="['text', 'select'].includes(type) && ['between', 'notBetween'].includes(operator)"
     :data-testid="testID"
@@ -66,9 +66,9 @@
       :events="{ change }"
     ></custom-input>
   </span>
-  <span v-else-if="type === 'custom' && allProps.fieldData.component">
-    <div v-if="['between', 'notBetween'].includes(operator)">
-      <div v-for="(key, i) in ['from', 'to']" :key="key">
+  <span v-else-if="type === 'custom' && allProps.fieldData.component" class="custom-rule-value-editor">
+    <div v-if="['between', 'notBetween'].includes(operator)" class="custom-rule-value-editor_multi">
+      <div v-for="(key, i) in ['from', 'to']" :key="key" class="custom-rule-value-editor_multi-item">
         <component
           :is="allProps.fieldData.component"
           v-bind="getProps(allProps.fieldData)"

@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -53,16 +55,16 @@ export default {
       codeFiles: ['separtor.vue']
     },
     {
-      demoId: 'value',
+      demoId: 'modelValue',
       name: {
         'zh-CN': '绑定值',
         'en-US': 'Bound Value'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
-        'en-US': '<p>You can set the binding value using <code>value</code> or <code>v-model</code>. </p>\n'
+        'zh-CN': '<p>通过 <code>modelValue</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
+        'en-US': '<p>You can set the binding value using <code>modelValue</code> or <code>v-model</code>. </p>\n'
       },
-      codeFiles: ['value.vue']
+      codeFiles: ['modelValue.vue']
     },
     {
       demoId: 'clear-value',
@@ -74,7 +76,7 @@ export default {
         'zh-CN': '详细用法参考如下示例',
         'en-US': 'For details, see the following example.'
       },
-      codeFiles: ['clear-value.vue']
+      codeFiles: ['clear-modelValue.vue']
     },
     {
       demoId: 'width',
@@ -87,6 +89,60 @@ export default {
         'en-US': '<p>You can set the width through <code>width</code>. </p>\n'
       },
       codeFiles: ['width.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 modelValue 或 v-model 设置绑定值，通过 placeholder 设置提示占位文本。',
+      cloud: {
+        value: false
+      },
+      apis: ['modelValue', 'v-model', 'placeholder'],
+      demos: ['basic-usage', 'modelValue', 'placeholder']
+    },
+    {
+      id: 'readonly',
+      name: '只读',
+      support: {
+        value: true
+      },
+      description: '通过 readonly 设置是否只读。',
+      cloud: {
+        value: false
+      },
+      apis: ['readonly'],
+      demos: ['readonly']
+    },
+    {
+      id: 'separator',
+      name: '分隔符',
+      support: {
+        value: true
+      },
+      description: '通过 separator 设置分隔符，在文本框中输入回车就是分隔符的位置。',
+      cloud: {
+        value: false
+      },
+      apis: ['separator'],
+      demos: ['separtor']
+    },
+    {
+      id: 'width',
+      name: '宽度',
+      support: {
+        value: true
+      },
+      description: '通过 width 设置宽度。',
+      cloud: {
+        value: false
+      },
+      apis: ['width'],
+      demos: ['width']
     }
   ]
 }

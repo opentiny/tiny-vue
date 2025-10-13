@@ -5,7 +5,7 @@ import fs from 'fs-extra'
 const onlyMobileFirstTemplateLists = ['popconfirm', 'card', 'card-group']
 
 // 递归遍历所有的组件，然后依次修改文件内容
-const findAllpage = (packagesPath) => {
+const findAllpage = (packagesPath, vue3version) => {
   if (
     packagesPath.includes('.png') ||
     packagesPath.includes('.gif') ||
@@ -21,7 +21,7 @@ const findAllpage = (packagesPath) => {
   if (fs.statSync(packagesPath).isDirectory()) {
     // 循环递归查找子文件夹
     fs.readdirSync(packagesPath).forEach((childPatch) => {
-      findAllpage(path.join(packagesPath, childPatch))
+      findAllpage(path.join(packagesPath, childPatch), vue3version)
     })
   } else {
     const content = fs.readFileSync(packagesPath).toString('UTF-8' as BufferEncoding)
@@ -42,6 +42,10 @@ const findAllpage = (packagesPath) => {
       .replace(/@aurora\/fluent-editor/g, '@opentiny/fluent-editor')
       .replace(/@aurora\/huicharts/g, '@opentiny/huicharts')
 
+    if (vue3version) {
+      result = result.replace(/@aurora\/vue/g, '@aurora/vue3')
+    }
+
     // 解决当AUI只有一个mobile-first模板而TinyVue有多个模板，导致Linkjs加载不到多端模板的问题
     if (
       packagesPath.endsWith('index.js') &&
@@ -54,7 +58,7 @@ const findAllpage = (packagesPath) => {
   }
 }
 
-export const releaseAurora = () => {
+export const releaseAurora = ({ vue3version }) => {
   const distLists = [
     'dist2/@aurora',
     'renderless/dist',
@@ -65,7 +69,12 @@ export const releaseAurora = () => {
     'vue-hooks/dist',
     'vue-hooks/package.json'
   ]
+
+  if (vue3version) {
+    distLists.push('dist3/@aurora')
+  }
+
   distLists.forEach((item) => {
-    findAllpage(pathFromPackages(item))
+    findAllpage(pathFromPackages(item), vue3version)
   })
 }

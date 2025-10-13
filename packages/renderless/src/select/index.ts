@@ -71,11 +71,11 @@ export const gridOnQueryChange =
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.selectGrid.$refs.tinyTable
-      const fullData = table.afterFullData
+      const fullData = table.getTableData().fullData
 
       vm.$refs.selectGrid.scrollTo(null, 0)
 
-      table.afterFullData = filterMethod(value, fullData) || []
+      table.loadTableData(filterMethod(value, fullData) || [])
 
       vm.$refs.selectGrid
         .handleTableData(!value)
@@ -875,7 +875,7 @@ export const handleOptionSelect =
 
     state.isSilentBlur = byClick
 
-    api.setSoftFocus()
+    if (!props.automaticDropdown) api.setSoftFocus()
 
     if (state.visible) {
       return
@@ -1598,12 +1598,32 @@ export const watchOptions =
     }
 
     nextTick(() => {
-      if (parent.$el.querySelector('input') !== document.activeElement) {
+      if (
+        parent.$el.querySelector('input') !== document.activeElement && // filterable时， 从 input 框离开了
+        !(
+          document.activeElement?.classList.contains('tiny-input__inner') && // 并且当前不在下拉面板的searchable 的input中时，  才需要更新一下setSelect
+          document.activeElement.closest('.tiny-select-dropdown__search')
+        )
+      ) {
         api.setSelected()
       }
     })
 
     api.getOptionIndexArr()
+  }
+export const watchOptionsWhenAutoSelect =
+  ({ nextTick, props, state, api }) =>
+  () => {
+    if (props.autoSelect && props.remote) {
+      nextTick(() => {
+        if (props.options?.length === 1 || state.options.length === 1) {
+          const { valueField } = props
+          const option = props.options?.length === 1 ? props.options[0] : state.options[0]
+          api.updateModelValue(props.multiple ? [option[props.valueField]] : option[props.valueField])
+          state.visible = false
+        }
+      })
+    }
   }
 
 export const getOptionIndexArr =

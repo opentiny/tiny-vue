@@ -12,7 +12,7 @@
         gcls(`size-${size || 'default'}`),
         gcls(
           `type-${type || 'default'}${icon ? '-icon' : state.plain ? '-plain' : ''}${
-            state.buttonDisabled ? '-disabled' : ''
+            state.buttonDisabled || loading ? '-disabled' : ''
           }`
         ),
         gcls(state.round ? 'is-round' : 'no-round'),
@@ -22,6 +22,7 @@
         customClass
       )
     "
+    :style="customStyle"
     :tabindex="tabindex"
     v-bind="a($attrs, ['class', 'style', 'id'], true)"
   >
@@ -62,7 +63,8 @@ export default defineComponent({
     'tabindex',
     'href',
     'customClass',
-    'banner'
+    'banner',
+    'customStyle'
   ],
   components: { IconLoading: iconLoading() },
   setup(props, context): any {

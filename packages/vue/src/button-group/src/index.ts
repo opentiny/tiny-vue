@@ -11,12 +11,16 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
-import type { PropType } from 'vue'
+import type { PropType } from '@opentiny/vue-common'
 import type { IButtonGroupNode } from '@opentiny/vue-renderless/types/button-group.type'
 
 export const buttonGroupProps = {
   ...$props,
-  size: String,
+  size: {
+    type: String,
+    default: '',
+    validator: (val: string) => ['medium', 'small', 'mini', ''].includes(val)
+  },
   data: {
     type: Array as PropType<IButtonGroupNode[]>,
     default: () => []

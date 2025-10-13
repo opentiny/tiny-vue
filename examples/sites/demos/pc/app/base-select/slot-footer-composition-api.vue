@@ -23,13 +23,14 @@ const options = ref([
 const value = ref('')
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .tiny-base-select {
   width: 280px;
 }
+
 .select-footer {
   text-align: center;
-  background-color: #cff3e8;
+  background-color: rgb(207, 243, 232, 0.3);
   padding: 8px;
 }
 </style>

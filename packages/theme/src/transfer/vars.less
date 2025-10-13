@@ -46,21 +46,21 @@
   // 按钮底部外边距
   --tv-Transfer-button-margin-bottom: 0;
   // 按钮背景色
-  --tv-Transfer-button-bg-color: var(--tv-color-bg-active-control);
+  --tv-Transfer-button-bg-color: var(--tv-color-bg-active-control, #1476ff);
   // 按钮左侧内边距
-  --tv-Transfer-button-padding-left: var(--tv-space-xs);
+  --tv-Transfer-button-padding-left: var(--tv-space-xs, 2px);
   // 按钮右侧内边距
-  --tv-Transfer-button-padding-right: var(--tv-space-xs);
+  --tv-Transfer-button-padding-right: var(--tv-space-xs, 2px);
   // 按钮顶部内边距
-  --tv-Transfer-button-padding-top: var(--tv-space-xs);
+  --tv-Transfer-button-padding-top: var(--tv-space-xs, 2px);
   // 按钮底部内边距
-  --tv-Transfer-button-padding-bottom: var(--tv-space-xs);
+  --tv-Transfer-button-padding-bottom: var(--tv-space-xs, 2px);
   // 按钮圆角
   --tv-Transfer-button-border-radius: var(--tv-border-radius-sm, 4px);
   // 按钮禁用时文本色
   --tv-Transfer-button-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 按钮禁用时边框色
-  --tv-Transfer-button-disabled-border-color: var(--tv-color-border, #c2c2c2);
+  --tv-Transfer-button-disabled-border-color: var(--tv-color-border-disabled, #dbdbdb);
   // 按钮禁用时背景色
   --tv-Transfer-button-disabled-bg-color: var(--tv-color-bg-disabled, #f0f0f0);
   // 按钮禁用时行高
@@ -83,6 +83,8 @@
   --tv-Transfer-panel-item-hover-text-color: var(--tv-color-text, #191919);
   // 面板悬浮时背景色
   --tv-Transfer-panel-item-hover-bg-color: var(--tv-color-bg, #f5f5f5);
+  // 面板选中时背景色
+  --tv-Transfer-panel-item-active-bg-color: var(--tv-color-bg-active-emphasize-light, #f0f7ff);
   // 面板搜索框高度
   --tv-Transfer-panel-filter-height: 32px;
   // 面板搜索框字体大小
@@ -106,7 +108,7 @@
   // 面板头部背景色
   --tv-Transfer-header-bg-color: var(--tv-color-bg-secondary, #fff);
   // 面板头部边框色
-  --tv-Transfer-header-border-color: #00000014; // 没有对应common变量值
+  --tv-Transfer-header-border-color: var(--tv-color-border-divider, #f0f0f0);
   // 面板头部文本色
   --tv-Transfer-header-text-color: var(--tv-color-text, #191919);
   // 面板头部span文本色
@@ -138,7 +140,7 @@
   // 面板内容区域为嵌套树样式时的底部内边距
   --tv-Transfer-panel-body-tree-padding-bottom: var(--tv-space-md, 8px);
   // 面板内容区域为嵌套树样式时搜索框过滤后的高度
-  --tv-Transfer-panel-body-tree-filter-height: calc(100% - 46px);
+  --tv-Transfer-panel-body-tree-filter-height: calc(100% - 50px);
   // 面板内容区域列表的左侧外边距
   --tv-Transfer-panel-body-list-margin-left: 0;
   // 面板内容区域列表的右侧外边距
@@ -241,4 +243,8 @@
   --tv-Transfer-button-height: 16px;
   // 穿梭箭头大小
   --tv-Transfer-svg-font-size: 10px;
+  // 穿梭箭头颜色
+  --tv-Transfer-svg-color: var(--tv-color-icon-inverse, #ffffff);
+  // 穿梭文字颜色
+  --tv-Transfer-text-color: var(--tv-color-text-inverse, #ffffff);
 }

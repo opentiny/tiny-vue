@@ -10,6 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 export const buttonProps = {
@@ -78,6 +79,11 @@ export const buttonProps = {
   banner: {
     type: Boolean,
     default: false
+  },
+  /** 自定义样式 */
+  customStyle: {
+    type: Object,
+    default: () => ({})
   },
   /** 是否幽灵按钮 */
   ghost: Boolean,

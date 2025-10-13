@@ -7,14 +7,14 @@
     :style="wrapperStyle"
     @scroll="scrollEvent"
   >
-    <template v-if="slotEmpty || renderEmpty">
-      <custom-empty />
+    <template v-if="exceptionVisible && (slotEmpty || renderEmpty)">
+      <custom-empty :class="isLoading ? 'invisible' : ''" />
     </template>
     <exception
       tiny_mode="mobile-first"
       tiny_mode_root
       v-else-if="exceptionVisible"
-      class="min-h-[theme(spacing.72)]"
+      :class="['min-h-[theme(spacing.72)]', isLoading ? 'invisible' : '']"
       component-page
       type="nodata"
     ></exception>
@@ -45,7 +45,7 @@
 <script lang="ts">
 import { emitEvent, isScale, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { toNumber } from '@opentiny/vue-renderless/grid/static'
-import { hooks, defineComponent, mergeClass, $props } from '@opentiny/vue-common'
+import { hooks, defineComponent, mergeClass } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import Exception from '@opentiny/vue-exception'
 import type { Column, CardConfig, Datas } from './type'
@@ -63,7 +63,6 @@ export default defineComponent({
     return { $mftable: this }
   },
   props: {
-    ...$props,
     tableData: Array,
     cardConfig: Object,
     listConfig: Object,
@@ -172,6 +171,10 @@ export default defineComponent({
       const { tableData } = this as any
       const isException = tableData.length === 0
       return isException
+    },
+    isLoading() {
+      const { config } = this as any
+      return config?.tableVm?.$grid?.loading || false
     }
   },
   watch: {

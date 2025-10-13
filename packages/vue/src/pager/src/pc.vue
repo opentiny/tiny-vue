@@ -115,7 +115,7 @@
                 <span class="sizes">{{ state.internalPageSize }}</span>
                 <span>{{ state.pageSizeText ?? t('ui.page.page') }}</span>
                 <div class="tiny-pager__page-size-btn">
-                  <triangle-down :class="['tiny-svg-size', state.showSizes ? 'tiny-svg-size__reverse-180' : '']" />
+                  <chevron-down :class="['tiny-svg-size', state.showSizes ? 'tiny-svg-size__reverse-180' : '']" />
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@
           <div class="tiny-pager__selector-body">
             <ul class="tiny-pager__selector-poplist">
               <li
-                v-for="(sizeItem, sizeIndex) in pageSizes"
+                v-for="(sizeItem, sizeIndex) in state.internalPageSizes"
                 :key="sizeIndex"
                 :class="['list-item', sizeItem === state.internalPageSize ? 'is-selected select-pre' : '']"
                 :title="String(sizeItem)"
@@ -177,7 +177,7 @@ import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/pager/vue'
-import { iconTriangleDown, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
+import { IconChevronDown, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 import type { IPagerApi } from '@opentiny/vue-renderless/types/pager.type'
 import '@opentiny/vue-theme/pager/index.less'
 
@@ -221,7 +221,7 @@ export default defineComponent({
     TinyBaseSelect,
     ChevronLeft: iconChevronLeft(),
     ChevronRight: iconChevronRight(),
-    TriangleDown: iconTriangleDown(),
+    ChevronDown: IconChevronDown(),
     Pager
   }
 })

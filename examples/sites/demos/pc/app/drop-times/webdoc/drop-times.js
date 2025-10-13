@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -39,6 +41,47 @@ export default {
         'en-US': '<p>The value can be medium, small, or mini</p>\n'
       },
       codeFiles: ['size.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'time-range',
+      name: '时间区间',
+      support: {
+        value: true
+      },
+      description: '通过 start 设置区间的起始时间，默认为 0，end 设置区间的结束时间，默认为 24 * 60。',
+      cloud: {
+        value: true
+      },
+      apis: ['start', 'end'],
+      demos: ['start-end-step']
+    },
+    {
+      id: 'step',
+      name: '步长设置',
+      support: {
+        value: true
+      },
+      description: '通过 step 设置间隔的步长，默认为 15。',
+      cloud: {
+        value: true
+      },
+      apis: ['step'],
+      demos: ['start-end-step']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '可设置为 medium、small、mini。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
     }
   ]
 }

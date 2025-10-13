@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -164,6 +166,60 @@ export default {
         'en-US': '<p>change, start, stop events.</p>'
       },
       codeFiles: ['slider-event.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '基础的滑块效果。',
+      cloud: {
+        value: true
+      },
+      apis: [],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'vertical',
+      name: '竖向模式',
+      support: {
+        value: true
+      },
+      description: '通过设置 vertical 属性来展示滑块竖向模式。',
+      cloud: {
+        value: true
+      },
+      apis: ['vertical'],
+      demos: ['vertical-mode']
+    },
+    {
+      id: 'marks',
+      name: '标记',
+      support: {
+        value: true
+      },
+      description: '使用 marks 属性，给滑杆的值添加标记。',
+      cloud: {
+        value: true
+      },
+      apis: ['marks'],
+      demos: ['marks']
+    },
+    {
+      id: 'range',
+      name: '范围选择',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 为数组设定初始范围选择。',
+      cloud: {
+        value: true
+      },
+      apis: ['v-model'],
+      demos: ['range-select']
     }
   ]
 }

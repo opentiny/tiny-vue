@@ -45,6 +45,7 @@
     <div
       data-tag="tiny-steps-block"
       v-for="(node, index) in data"
+      :style="itemStyle[node.status]"
       v-show="isVisibleHandler(index) === 'visible'"
       :key="index"
       :class="
@@ -74,7 +75,9 @@
                 'opacity-0': index === 0 && state.startIndex === 0
               },
               { 'sm:hidden sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
-              { 'border-color-brand': ['done', 'doing'].includes(node[statusField]) }
+              {
+                'border-color-brand': data[index - 1] && 'done' === data[index - 1][statusField]
+              }
             )
           "
         ></div>
@@ -141,7 +144,7 @@
                 'opacity-0': index === data.length - 1
               },
               { 'sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
-              { 'border-color-brand': node[statusField] === 'done' }
+              { 'border-color-brand': 'done' === node[statusField] }
             )
           "
         ></div>
@@ -191,7 +194,7 @@
             'border-t-0.5 sm:border-t  flex-auto',
             { 'sm:hidden sm:min-w-[theme(spacing.6)] sm:ml-4': !vertical },
             {
-              'border-color-brand': data[state.endIndex] && ['done', 'doing'].includes(data[state.endIndex].status)
+              'border-color-brand': data[state.endIndex] && 'done' === data[state.endIndex].status
             }
           ]"
         ></div>
@@ -232,7 +235,18 @@ export default defineComponent({
     IconFinish: IconFinish(),
     IconWarn: IconWarn()
   },
-  props: [...props, 'vertical', 'nameField', 'statusField', 'data', 'active', 'visibleNum', 'descriptionField', 'size'],
+  props: [
+    ...props,
+    'vertical',
+    'nameField',
+    'statusField',
+    'data',
+    'active',
+    'visibleNum',
+    'descriptionField',
+    'size',
+    'itemStyle'
+  ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes })
   }

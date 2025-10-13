@@ -13,7 +13,7 @@ export default {
     return {
       options: [
         {
-          name: '远程登陆'
+          name: '远程登录'
         },
         {
           name: '开机'

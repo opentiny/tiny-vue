@@ -1,9 +1,8 @@
 export default {
   column: '2',
   owner: '',
-  meta: {
-    experimental: '3.17.0'
-  },
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -137,6 +136,73 @@ export default {
           '<p>Set the native properties of the built-in Input in the dropdown component through the <code>name</code> / <code>placeholder</code> / <code>autocomplete</code> attribute settings.</p>\n'
       },
       codeFiles: ['native-properties.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '支持基本的树形选择功能，可通过 tree-op 设置数据源。',
+      cloud: {
+        value: true
+      },
+      apis: ['tree-op', 'v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'multiple',
+      name: '多选',
+      support: {
+        value: true
+      },
+      description: '支持多选功能，选中值以标签形式展示。',
+      cloud: {
+        value: true
+      },
+      apis: ['multiple'],
+      demos: ['multiple']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '支持 medium、small、mini 三种尺寸。',
+      cloud: {
+        value: true
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '支持禁用整个选择器。',
+      cloud: {
+        value: true
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'field-mapping',
+      name: '字段映射',
+      support: {
+        value: true
+      },
+      description: '支持自定义显示文本字段和绑定值字段。',
+      cloud: {
+        value: true
+      },
+      apis: ['text-field', 'value-field'],
+      demos: ['map-field']
     }
   ]
 }

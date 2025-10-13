@@ -127,7 +127,10 @@ export default defineComponent({
     'keepFocus',
     'changeCompat',
     'multiLineDrag',
-    'multipleLimit'
+    'multipleLimit',
+    'autoSelect',
+    'showEmptyValue',
+    'showTooltip'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { addClass, removeClass } from '@opentiny/utils'
+import { addClass, removeClass, getActualTarget } from '@opentiny/utils'
 import { arrayEach, arrayIndexOf, findTree, find } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue, setCellValue, getCell, getRowNodes, getCellNodeIndex } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/utils'
@@ -35,7 +35,7 @@ import {
   handleCellMousedownEvent
 } from './utils/triggerCellMousedownEvent'
 import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedownEvent'
-import { warn, Formatter } from '../../tools'
+import { warn } from '../../tools'
 
 const removeCellClass = (bodyRef, clazz) =>
   arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
@@ -59,30 +59,10 @@ const getModify = ({ offsetTop, offsetLeft, cWidth, cHeight }) => {
   }
 }
 
-const writeClipboardText = ({ $table, columns, rows }) => {
-  const { keyboardConfig = {}, isAsyncColumn } = $table
+const writeClipboardText = ({ $table, columns, rows, rowNodes }) => {
+  const { keyboardConfig = {} } = $table
   const { clipboard = {} } = keyboardConfig
   const { writeMethod, cellSplit = ',', rowSplit = ';' } = clipboard
-
-  const getCellValue = (column, row) => {
-    let cellValue = ''
-
-    if (isAsyncColumn) {
-      const format = column.format || {}
-
-      if (format.async === true && format.type === 'enum') {
-        cellValue = Formatter.enum.call(column, row[column.property])
-      } else if (format.async && typeof format.async.fetch === 'function') {
-        cellValue = row[$table.getAsyncColumnName(column.property)]
-      } else {
-        cellValue = row[column.property]
-      }
-    } else {
-      cellValue = row[column.property]
-    }
-
-    return cellValue || ''
-  }
 
   if (!clipboard) return
 
@@ -93,12 +73,11 @@ const writeClipboardText = ({ $table, columns, rows }) => {
   } else {
     const rowValues = []
 
-    rows.forEach((row) => {
+    rowNodes.forEach((row) => {
       const cellValues = []
 
-      columns.forEach((column) => {
-        const cellValue = getCellValue(column, row)
-        cellValues.push(cellValue)
+      row.forEach((col) => {
+        cellValues.push(col && col.innerText)
       })
 
       rowValues.push(cellValues.join(cellSplit))
@@ -231,7 +210,7 @@ export default {
     getCell(this, params).then((resCell) => {
       params.cell = resCell
 
-      this.handleSelected(params, event)
+      this.handleSelected(params, event, true)
       this.scrollToRow(params.row, params.column, false, {
         isLeftArrow,
         isRightArrow,
@@ -242,7 +221,7 @@ export default {
   // 表头按下事件
   triggerHeaderCellMousedownEvent(event, params) {
     let { $el, elemStore, mouseConfig = {}, tableData } = this
-    let headerList = elemStore['main-header-list'].children
+    let headerList = elemStore['main-body-headerList'].children
     let bodyList = elemStore['main-body-list'].children
     let cell = params.cell
     let column = params.column
@@ -298,11 +277,15 @@ export default {
   triggerCellMousedownEvent(event, params) {
     let { $el, editConfig, editStore, elemStore, mouseConfig = {}, visibleColumn } = this
     let { actived, checked } = editStore
+    let { excludes: excludeClo = [] } = mouseConfig
     let { button } = event
     let { cell, column, row } = params
     let isLeftBtn = button === 0
     let args
 
+    if (excludeClo.includes(column.type || column.property)) {
+      return
+    }
     if (
       editConfig &&
       (actived.row !== row || !(editConfig.mode === 'cell' && actived.column === column)) &&
@@ -317,12 +300,12 @@ export default {
 
       let isIndex = column.type === 'index'
       let startCellNode = getCellNodeIndex(cell)
-      let headerList = elemStore['main-header-list'].children
+      let headerList = elemStore['main-body-headerList'].children
       let bodyList = elemStore['main-body-list'].children
       let cellFirstElementChild = cell.parentNode.firstElementChild
       let cellLastElementChild = cell.parentNode.lastElementChild
       let colIndex = Array.from(cell.parentNode.children).indexOf(cell)
-      let headStart = headerList[0].children[colIndex]
+      let headStart = headerList?.[0].children[colIndex]
       args = { $el, _vm: this, bodyList, cell, cellFirstElementChild }
 
       Object.assign(args, { cellLastElementChild, headStart, headerList, isIndex, startCellNode })
@@ -354,7 +337,7 @@ export default {
     }
 
     let bodyElem = elemStore['main-body-list']
-    let headerElem = elemStore['main-header-list']
+    let headerElem = elemStore['main-body-headerList']
 
     if (bodyElem) {
       let elem = bodyElem.querySelector('.col__selected')
@@ -477,9 +460,9 @@ export default {
 
     let column = find(visibleColumn, (col) => col.type === 'index') || visibleColumn[0]
     let selectorColumnId = `.${column.id}`
-    let headerListElem = elemStore['main-header-list']
-    let headerList = headerListElem.children
-    let cell = headerListElem.querySelector(selectorColumnId)
+    let headerListElem = elemStore['main-body-headerList']
+    let headerList = headerListElem?.children
+    let cell = headerListElem?.querySelector(selectorColumnId)
     let bodyList = elemStore['main-body-list'].children
     let firstTrElem = bodyList[0]
     let firstCell = firstTrElem.querySelector(selectorColumnId)
@@ -492,7 +475,7 @@ export default {
     getCell(this, params).then((resCell) => {
       params.cell = resCell
 
-      this.handleSelected(params, event)
+      this.handleSelected(params, event, true)
 
       this.handleHeaderChecked(
         getRowNodes(
@@ -525,10 +508,13 @@ export default {
     this.editStore.indexs.rowNodes = rowNodes
   },
   _clearIndexChecked() {
-    let indexCheckeds = this.elemStore['main-body-list'].querySelectorAll('.col__index-checked')
-    let eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
+    const tbody = this.elemStore['main-body-list']
+    if (tbody) {
+      const indexCheckeds = tbody.querySelectorAll('.col__index-checked')
+      const eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
 
-    arrayEach(indexCheckeds, eachHandler)
+      arrayEach(indexCheckeds, eachHandler)
+    }
 
     Object.assign(this.editStore.indexs, { rowNodes: [] })
 
@@ -546,7 +532,7 @@ export default {
     this.editStore.titles.rowNodes = rowNodes
   },
   _clearHeaderChecked() {
-    let headerElem = this.elemStore['main-header-list']
+    let headerElem = this.elemStore['main-body-headerList']
 
     if (headerElem) {
       let eachHandler = (colNode) => removeClass(colNode, 'col__title-checked')
@@ -597,7 +583,7 @@ export default {
       columns = tableColumn.slice(columnIndex, columnIndex + firstRowsLength)
       rows = tableData.slice(rowIndex, rowIndex + rowNodes.length)
 
-      writeClipboardText({ $table: this, columns, rows })
+      writeClipboardText({ $table: this, columns, rows, rowNodes })
     }
 
     arrayEach(rowNodes, (rowNode, rowIndex) => {
@@ -662,7 +648,7 @@ export default {
 
     let cell = selected.args.cell
     let bodyList = elemStore['main-body-list'].children
-    let { rIndex, cIndex } = getCellIndex({ cell, elemStore, bodyList })
+    let { rIndex, cIndex } = getCellIndex({ cell, bodyList })
     let maxIndex = bodyList.length - 1
     let curIndex = rIndex + rows.length - 1
     let targetTrElem = bodyList[curIndex > maxIndex ? maxIndex : curIndex]
@@ -681,12 +667,13 @@ export default {
     const { $grid, $refs, autoClearMouseChecked, autoClearKeyboardCopy } = this
     const { tableWrapper, tooltip, validTip } = $refs
     const equalOrContain = (elm, target) => elm && (elm === target || elm.contains(target))
+    const actualTarget = getActualTarget(event)
 
     if (
-      !equalOrContain($grid.$el, event.target) &&
-      !equalOrContain(tableWrapper, event.target) &&
-      !equalOrContain(tooltip && tooltip.state.popperElm, event.target) &&
-      !equalOrContain(validTip && validTip.state.popperElm, event.target)
+      !equalOrContain($grid.$el, actualTarget) &&
+      !equalOrContain(tableWrapper, actualTarget) &&
+      !equalOrContain(tooltip && tooltip.state.popperElm, actualTarget) &&
+      !equalOrContain(validTip && validTip.state.popperElm, actualTarget)
     ) {
       if (autoClearMouseChecked) {
         this.clearChecked()

@@ -99,6 +99,7 @@
         @input="handleStartInput"
         @change="handleStartChange"
         @focus="handleFocus"
+        tabindex="1"
         class="tiny-range-input"
       />
       <slot name="range-separator">
@@ -116,6 +117,7 @@
         @input="handleEndInput"
         @change="handleEndChange"
         @focus="handleFocus"
+        tabindex="1"
         class="tiny-range-input"
       />
       <i @click="handleClickIcon" v-if="state.haveTrigger" class="tiny-input__icon tiny-range__close-icon">
@@ -150,7 +152,12 @@
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
     >
-      <slot name="now"></slot>
+      <template v-if="$slots.footer || $slots.now || $slots.confirm" #footer="scoped">
+        <slot name="footer" v-bind="scoped">
+          <slot name="now" v-bind="scoped"></slot>
+          <slot name="confirm" v-bind="scoped"></slot>
+        </slot>
+      </template>
     </component>
   </div>
 </template>

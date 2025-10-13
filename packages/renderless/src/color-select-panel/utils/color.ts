@@ -1,3 +1,5 @@
+import type { IColor } from '@/types'
+
 // int -> hex
 const INT_HEX_MAP = {
   10: 'A',
@@ -152,7 +154,7 @@ export interface ColorOptions {
   value?: string
 }
 
-export class Color {
+export class Color implements IColor {
   private _hue = 0
   private _sat = 100
   private _value = 100
@@ -288,12 +290,13 @@ export class Color {
       .map((val, idx) => {
         return idx > 2 ? Number.parseFloat(val) : Number.parseInt(val, 10)
       })
+
     if (parts.length === 4) {
       this._alpha = Number.parseFloat(String(parts[3])) * 100
     } else {
       this._alpha = 100
     }
-    if (parent.length >= 3) {
+    if (parts.length >= 3) {
       const { h, s, v } = hsl2hsv({
         hue: parts[0],
         sat: parts[1],

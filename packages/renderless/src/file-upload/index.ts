@@ -205,6 +205,15 @@ const onBeforeIsPromise = ({
   )
 }
 
+const isAcceptType = (acceptArray, file, constants, fileType) => {
+  return acceptArray.some((type) => {
+    if (type.toLowerCase() === constants.IMAGE_TYPE) {
+      return constants.FILE_TYPE.PICTURE.split('/').includes(fileType)
+    }
+    return new RegExp(`(${type.trim()})$`, 'i').test(file.name)
+  })
+}
+
 const getFileType = ({ file }: { file: IFileUploadFile }): string => {
   const { name, url } = file
   let fileType = ''
@@ -241,7 +250,7 @@ export const beforeUpload =
     t,
     state
   }: Pick<IFileUploadRenderlessParams, 'props' | 'api' | 'constants' | 't' | 'state'> & IFileUploadModalVm) =>
-  (file: IFileUploadFile, autoRemove: boolean, doUpload: Function) => {
+  (file: IFileUploadFile, autoRemove: boolean, doUpload: Function, isMergeUpload = false) => {
     if (state.isEdm && file.name.length > 255) {
       remove({ api, file, autoRemove })
       return Modal.message({
@@ -254,16 +263,31 @@ export const beforeUpload =
       let isValid = true
       const accept = state.isEdm ? state.accept : props.accept
       const types = constants.FILE_TYPE[state.triggerClickType.toUpperCase()]
-      const fileType = getFileType({ file })
-
-      if (accept) {
-        const isExist = accept.split(',').some((type) => {
-          if (type.toLowerCase() === constants.IMAGE_TYPE) {
-            return constants.FILE_TYPE.PICTURE.split('/').includes(fileType)
+      const acceptArray = accept ? accept.split(',') : []
+      let fileType = ''
+      if (isMergeUpload) {
+        const fileRow = []
+        fileType = file.raw.flatMap((f) => {
+          const type = getFileType({ file: f })
+          if (accept) {
+            const isExist = isAcceptType(acceptArray, f, constants, type)
+            isExist ? fileRow.push(f) : remove({ api, file: f, autoRemove })
+          } else {
+            fileRow.push(f)
           }
-          return new RegExp(`(${type.trim()})$`, 'i').test(file.name)
+          return type
         })
-        !isExist && (isValid = false)
+        if (!fileRow.length) {
+          isValid = false
+        }
+        file.raw = fileRow
+      } else {
+        fileType = getFileType({ file })
+
+        if (accept) {
+          const isExist = isAcceptType(acceptArray, file, constants, fileType)
+          !isExist && (isValid = false)
+        }
       }
 
       if (state.triggerClickType && types) {
@@ -381,7 +405,10 @@ export const properFileSize =
     if (state.isEdm || (Array.isArray(props.fileSize) && props.fileSize[1])) {
       if (!isNaN(Number(maxSize)) && file.size > maxSize * 1024 * 1024) {
         Modal.message({
-          message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024)) }),
+          message: t(constants.EDM.EXCEED, {
+            fileName: file.name,
+            maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024))
+          }),
           status: 'warning'
         })
 
@@ -402,7 +429,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), ' KB'), sizeUnit: '' })}`,
+        message: `${t(constants.EDM.SIZE, { fileName: file.name, minSize: api.formatFileSize(Number(userMin), 'KB'), sizeUnit: '' })}`,
         status: 'warning'
       })
 
@@ -609,7 +636,7 @@ export const handleStart =
         const handler = (file) =>
           vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
 
-        rawFiles.length && api.beforeUpload({ raw: rawFiles }, true, handler)
+        rawFiles.length && api.beforeUpload({ raw: rawFiles }, true, handler, true)
       } else {
         rawFiles.forEach((rawFile) => {
           const file = api.getFile(rawFile)

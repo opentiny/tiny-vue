@@ -30,7 +30,7 @@ export default class TinyThemeTool {
           .map((key) => `--${key}: ${theme.data[key]}; `)
           .join('')
 
-        cssContent = `:root{${cssContent}}`
+        cssContent = `:root, :host{${cssContent}}`
       }
       if (theme.css && typeof theme.css === 'string') {
         cssContent += theme.css

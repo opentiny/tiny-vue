@@ -1,11 +1,14 @@
+import Modal from '@opentiny/vue-modal'
+import GlobalConfig from '../../config'
 import { createHandlerOnEnd, getSortColumns } from './rowDrop'
 export default {
   // 处理列拖拽
   columnDrop(headerEl) {
     const { plugin, onBeforeMove, filter } = this.dropConfig || {}
-    const columnDropContainer = headerEl.querySelector('.tiny-grid__header .tiny-grid-header__row')
+    const columnDropContainer = headerEl.querySelector('.tiny-grid-header__row')
 
     const columnDropOptions = {
+      ...this.dropConfig,
       handle: '.tiny-grid-header__column:not(.col__fixed)',
       filter,
       onEnd: (event) => {
@@ -74,6 +77,7 @@ export default {
       handle = '.tiny-grid-body__row>td.col__index>.row__drop-handle'
     }
     const rowDropOptions = {
+      ...this.dropConfig,
       handle,
       filter,
       onEnd: createHandlerOnEnd({ _vm: this, refresh }),

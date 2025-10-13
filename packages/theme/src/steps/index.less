@@ -47,6 +47,28 @@
 
         > div {
           background-color: var(--tv-Steps-advance-node-done-bg-color);
+
+          &:first-child {
+            .@{steps-prefix-cls}-block {
+              &:before {
+                display: none;
+              }
+            }
+          }
+
+          &:last-child {
+            .@{steps-prefix-cls}-block {
+              border-right: solid 1px var(--tv-Steps-advance-border-color);
+
+              &:before {
+                background: inherit;
+              }
+
+              &:after {
+                display: none;
+              }
+            }
+          }
         }
       }
 
@@ -120,25 +142,39 @@
     .icon {
       width: 12px;
       height: 12px;
-      fill: var(--tv-Steps-done-icon-color);
+      fill: var(--tv-Steps-text-color);
     }
   }
 
   .@{steps-prefix-cls}-block {
     position: relative;
-    height: 32px;
-    display: flex;
-    overflow: hidden;
-    cursor: pointer;
-    color: var(--tv-Steps-text-color);
-    background-color: var(--tv-Steps-advance-node-done-bg-color);
+    border: solid 1px var(--tv-Steps-advance-border-color);
+    border-right: none;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: var(--tv-Steps-node-done-bg-color);
 
-    .right-arrow.hide {
-      display: none;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(100%);
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 9px solid var(--tv-Steps-advance-mark-bg-color);
+      z-index: 1;
     }
 
-    &:hover {
-      background-color: var(--tv-Steps-advance-node-bg-color-hover);
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 9px solid var(--tv-color-border);
     }
 
     &.active {
@@ -156,12 +192,24 @@
     .block-status-mixin(@bgcolor, @hoverBgColor, @activeBgColor) {
       background-color: @bgcolor;
 
+      &:after {
+        border-left: 9px solid @bgcolor;
+      }
+
       &:hover {
         background-color: @hoverBgColor;
+
+        &:after {
+          border-left: 9px solid @hoverBgColor;
+        }
       }
 
       &.active {
         background-color: @activeBgColor;
+
+        &:after {
+          border-left: 9px solid @activeBgColor;
+        }
 
         &:hover {
           background-color: @activeBgColor;
@@ -174,11 +222,11 @@
     }
 
     &.doing {
-      .block-status-mixin(var(--tv-Steps-advance-node-doing-bg-color), var(--tv-Steps-advance-node-doing-bg-color-hover), var(--tv-Steps-node-bg-color-active));
+      .block-status-mixin(var(--tv-Steps-advance-node-done-bg-color), var(--tv-Steps-advance-node-doing-bg-color-hover), var(--tv-Steps-node-bg-color-active));
     }
 
     &.fault {
-      .block-status-mixin(var(--tv-Steps-advance-node-error-bg-color), var(--tv-Steps-advance-node-error-bg-color-hover),var(--tv-Steps-advance-node-error-bg-color));
+      .block-status-mixin(var(--tv-Steps-advance-node-error-bg-color), var(--tv-Steps-advance-node-error-bg-color-hover), var(--tv-Steps-advance-node-error-bg-color));
       color: var(--tv-Steps-advance-error-icon-color);
 
       .@{steps-prefix-cls}-text-name {
@@ -187,36 +235,13 @@
     }
 
     &.disabled {
-      color: var(--tv-Steps-disabled-icon-color);
+      cursor: not-allowed;
+      color: var(--tv-Steps-advance-node-disable-icon-color);
       .block-status-mixin(var(--tv-Steps-advance-node-disable-bg-color), var(--tv-Steps-advance-node-disable-bg-color-hover), var(--tv-Steps-advance-node-disable-bg-color-active));
-    }
 
-    .arrow {
-      position: absolute;
-      height: 0;
-      width: 0;
-      box-sizing: border-box;
-      border-top-width: 16px;
-      border-bottom-width: 16px;
-      border-left-width: 6px;
-      border-right-width: 0;
-      border-style: solid;
-      border-color: #fff;
-    }
-
-    .left-arrow {
-      left: 0;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-    }
-
-    .left-arrow.hide {
-      display: none;
-    }
-
-    .right-arrow {
-      right: 0;
-      border-left-color: transparent;
+      .@{steps-prefix-cls}-icon {
+        border: 1px solid var(--tv-Steps-advance-node-disable-icon-color);
+      }
     }
   }
 
@@ -241,16 +266,16 @@
       height: 16px;
       margin-right: 8px;
       display: flex;
+      font-size: 12px;
       flex: none;
       align-items: center;
       justify-content: center;
       border-radius: 9999px;
-      border: 1px solid var(--tv-Steps-advance-node-disable-bg-color);
+      border: 1px solid var(--tv-Steps-node-done-border-color);
 
       &.done,
       &.doing {
         background-color: var(--tv-Steps-node-done-bg-color);
-        color: var(--tv-Steps-advance-text-color);
         border: 1px solid var(--tv-Steps-node-done-border-color);
       }
 
@@ -336,10 +361,14 @@
     .@{steps-prefix-cls}-block {
       height: 48px;
 
-      .arrow {
-        border-top-width: 24px;
-        border-bottom-width: 24px;
-        box-sizing: border-box;
+      &:after {
+        border-top-width: 23px;
+        border-bottom-width: 23px;
+      }
+
+      &:before {
+        border-top-width: 23px;
+        border-bottom-width: 23px;
       }
 
       .@{steps-prefix-cls}-content {
@@ -351,8 +380,8 @@
           margin-right: 12px;
 
           .icon {
-            width: var(--tv-Steps-node-circle-size);
-            height: var(--tv-Steps-node-circle-size);
+            width: var(--tv-Steps-node-circle-size-lg);
+            height: var(--tv-Steps-node-circle-size-lg);
           }
         }
       }
@@ -453,6 +482,7 @@
       .@{steps-prefix-cls}-main {
         display: flex;
         align-items: center;
+        height: var(--tv-Steps-node-circle-size-lg);
       }
     }
 
@@ -489,7 +519,6 @@
           z-index: 10;
           border: 1px solid var(--tv-Steps-node-border-color);
           border-radius: 50%;
-          background-color: var(--tv-Steps-node-icon-bg-color);
         }
       }
     }
@@ -514,7 +543,6 @@
       .@{steps-prefix-cls}-icon {
         font-size: 14px;
         border-radius: 9999px;
-        background-color: var(--tv-Steps-node-icon-bg-color);
         color: var(--tv-Steps-unselected-icon-color);
 
         &:hover {
@@ -624,10 +652,6 @@
         .left-line {
           border-top: 1px solid var(--tv-Steps-line-active-bg-color);
         }
-
-        .right-line {
-          border-color: var(--tv-Steps-line-doing-border-color);
-        }
       }
 
       &.done {
@@ -675,8 +699,9 @@
       .title {
         font-size: var(--tv-Steps-font-size);
         margin-left: var(--tv-Steps-text-margin-left);
-        line-height: 1.5;
         font-weight: 500;
+        padding-top: 2px;
+        line-height: 1.5;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -708,7 +733,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: var(--tv-Steps-line-vertical-title-margin-top) 20px 0;
+        padding: var(--tv-Steps-line-vertical-title-margin-top) 20px 0;
 
         &.not-vertical {
           display: none;
@@ -741,7 +766,7 @@
         }
 
         &.not-vertical {
-          margin-top: 10px;
+          margin-top: 8px;
         }
       }
 
@@ -798,7 +823,7 @@
       }
 
       &.large {
-        .block-size-mixin(32px, 16px, 18px, 16px, 32px, 12px);
+        .block-size-mixin(40px, 16px, 26px, 16px, 40px, 12px);
       }
     }
 
@@ -850,7 +875,6 @@
         flex: none;
         border-radius: 9999px;
         border: 1px solid var(--tv-Steps-line-bg-color);
-        background-color: var(--tv-Steps-node-icon-bg-color);
         font-weight: 500;
         position: absolute;
       }
@@ -875,7 +899,7 @@
         .label {
           font-weight: bold;
           background: var(--tv-Steps-node-bg-color-active);
-          color: var(--tv-Steps-advance-li-text-color);
+          color: var(--tv-Steps-line-doing-active-icon-color);
 
           &::after {
             border-left-color: var(--tv-Steps-node-bg-color-active);
@@ -892,7 +916,6 @@
         text-align: center;
         text-decoration: none;
         white-space: nowrap;
-        color: var(--tv-Steps-advance-text-color);
 
         &::after {
           content: '';
@@ -902,7 +925,7 @@
           transform: translateX(100%);
           border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
-          border-left: 9px solid var(--tv-Steps-border-left-color);
+          border-left: 9px solid var(--tv-Steps-advance-mark-bg-color);
           z-index: 1;
         }
 
@@ -913,7 +936,7 @@
           top: 0;
           border-top: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
           border-bottom: calc(var(--tv-Steps-advance-line-height) / 2) solid transparent;
-          border-left: 9px solid #d7d8da;
+          border-left: 9px solid var(--tv-color-border);
         }
 
         &:hover {
@@ -964,17 +987,17 @@
         svg {
           width: 100%;
           height: 100%;
-          fill: var(--tv-Steps-advance-text-color);
+          fill: var(--tv-Steps-done-icon-color);
         }
       }
 
       &.current .dot svg,
       &.current .dot svg:hover {
-        fill: var(--tv-Steps-advance-li-text-color);
+        fill: var(--tv-Steps-line-doing-active-icon-color);
       }
 
       &:hover .dot svg {
-        fill: var(--tv-Steps-advance-text-color);
+        fill: var(--tv-Steps-done-icon-color);
       }
     }
 
@@ -1004,27 +1027,36 @@
   .@{steps-prefix-cls} {
     &-block.fault {
       & > .block-left .left-dot {
-        border-color: #f23030;
+        border-color: var(--tv-Steps-error-icon-color);
       }
 
       & > .block-right .title-vertical {
-        color: #f23030;
-      }
-    }
-
-    &-block.disabled {
-      cursor: not-allowed;
-
-      & > .block-right {
-        .title-vertical,
-        .description {
-          color: #c2c2c2;
-        }
+        color: var(--tv-Steps-error-text-color);
       }
     }
 
     &-block {
       display: flex;
+
+      & > .block-left {
+        margin-top: 6.5px;
+        margin-right: 12px;
+
+        & .left-dot {
+          width: 10px;
+          height: 10px;
+          border: 1px solid var(--tv-Steps-dot-vertical-undo-dot-color);
+          border-radius: 50%;
+          box-sizing: border-box;
+        }
+
+        & .left-line {
+          margin: 4px auto 0;
+          height: calc(100% - 11.5px);
+          width: 1px;
+          background-color: var(--tv-Steps-dot-vertical-undo-dot-color);
+        }
+      }
 
       &.done,
       &.doing,
@@ -1034,8 +1066,7 @@
         }
       }
 
-      &.done,
-      &.doing {
+      &.done {
         & > .block-left > .left-line {
           background-color: var(--tv-Steps-dot-vertical-current-bg-color);
         }
@@ -1051,33 +1082,13 @@
         }
       }
 
-      & > .block-left {
-        margin-top: 6.5px;
-        margin-right: 12px;
-
-        & .left-dot {
-          width: 10px;
-          height: 10px;
-          border: 2px solid #c2c2c2;
-          border-radius: 50%;
-          box-sizing: border-box;
-        }
-
-        & .left-line {
-          margin: 4px auto 0px;
-          height: calc(100% - 11.5px);
-          width: 1px;
-          background-color: #dbdbdb;
-        }
-      }
-
       & > .block-right {
         font-size: 14px;
         line-height: 1.5;
         padding-bottom: 12px;
 
         .title-vertical {
-          color: #595959;
+          color: var(--tv-Steps-dot-title-undo-text-color);
         }
 
         .description {
@@ -1090,6 +1101,22 @@
       &:last-child {
         & > .block-left .left-line {
           display: none;
+        }
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+
+        & .left-dot {
+          background-color: var(--tv-Steps-disabled-icon-bg-color);
+          border-color: var(--tv-Steps-disabled-border-color);
+        }
+
+        & > .block-right {
+          .title-vertical,
+          .description {
+            color: var(--tv-Steps-disabled-text-color);
+          }
         }
       }
     }
@@ -1121,7 +1148,6 @@
     overflow: hidden;
     z-index: 15;
     color: var(--tv-Steps-unselected-icon-color);
-    background-color: var(--tv-Steps-node-icon-bg-color);
     cursor: pointer;
 
     &[class*=~'icon-'] {
@@ -1138,13 +1164,13 @@
       }
     }
     &.icon-success {
-      .timeline-icon-status-mixin( none, var(--tv-Steps-node-done-border-color),var(--tv-Steps-done-icon-color));
+      .timeline-icon-status-mixin(none, var(--tv-Steps-node-done-border-color), var(--tv-Steps-done-icon-color));
     }
     &.icon-warning {
       .timeline-icon-status-mixin(var(--tv-Steps-warning-icon-bg-color), var(--tv-Steps-warning-icon-bg-color), var(--tv-Steps-warning-icon-color));
     }
     &.icon-error {
-      .timeline-icon-status-mixin( none, var(--tv-Steps-error-border-color),var(--tv-Steps-error-icon-color));
+      .timeline-icon-status-mixin(none, var(--tv-Steps-error-border-color), var(--tv-Steps-error-icon-color));
     }
 
     .fixicon,
@@ -1210,11 +1236,11 @@
     .icon {
       font-size: var(--tv-Steps-font-size);
       border-color: var(--tv-Steps-advance-active-border-color);
-      color: var(--tv-Steps-advance-li-text-color);
+      color: var(--tv-Steps-line-doing-active-icon-color);
       background: var(--tv-Steps-node-bg-color-active);
 
       .fixicons {
-        fill: var(--tv-Steps-advance-li-text-color);
+        fill: var(--tv-Steps-line-doing-active-icon-color);
       }
     }
 
@@ -1339,6 +1365,7 @@
           display: flex;
           flex: 1 0 auto;
           align-items: center;
+          line-height: 18px;
 
           .name {
             display: -webkit-box;
@@ -1438,7 +1465,7 @@
       padding-bottom: calc(var(--tv-Steps-bottom-divider-margin-top) + var(--tv-Steps-bottom-divider-height));
 
       &.process-current {
-        &::after {
+        &:after {
           content: '';
           position: absolute;
           bottom: 0;
@@ -1451,7 +1478,7 @@
       }
 
       &:first-child {
-        &.process-current::after {
+        &.process-current:after {
           content: '';
           position: absolute;
           bottom: 0;

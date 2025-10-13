@@ -101,11 +101,14 @@ export function onScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, tableCo
       warn('ui.grid.error.notResizable')
     }
 
+    const renderSize = toNumber(scrollX.rSize || scrollXStore.renderSize)
+    const offsetSize = toNumber(scrollX.oSize || scrollXStore.offsetSize)
+
     Object.assign(scrollXStore, {
       startIndex: 0,
       visibleIndex: 0,
-      renderSize: toNumber(scrollX.rSize),
-      offsetSize: toNumber(scrollX.oSize)
+      renderSize,
+      offsetSize
     })
 
     tableColumn = visibleColumn.slice(scrollXStore.startIndex, scrollXStore.startIndex + scrollXStore.renderSize)

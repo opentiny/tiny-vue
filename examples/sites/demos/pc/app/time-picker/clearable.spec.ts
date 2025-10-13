@@ -7,7 +7,7 @@ test('清除按钮', async ({ page }) => {
   const timePickerDefaultClearIcon = page.getByRole('textbox', { name: '18:40:00' }).first()
   const timePickerHideClearIcon = page.getByRole('textbox', { name: '18:40:00' }).nth(1)
   const timePickerCustomClearIcon = page.getByRole('textbox', { name: '18:40:00' }).nth(2)
-  const closeIcon = page.locator('.tiny-date-editor--time svg.baseClearicon')
+  const closeIcon = page.locator('.tiny-date-editor--time svg.baseClearicon').first()
 
   // 默认显示清除按钮
   await timePickerDefaultClearIcon.hover()
@@ -23,6 +23,6 @@ test('清除按钮', async ({ page }) => {
 
   // 测试清除功能
   await timePickerDefaultClearIcon.hover()
-  await closeIcon.first().click()
+  await closeIcon.click()
   await expect(page.getByRole('textbox').nth(1)).toHaveValue('')
 })

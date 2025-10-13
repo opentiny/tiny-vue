@@ -87,6 +87,17 @@ export default {
           pcDemo: 'three-areas'
         },
         {
+          name: 'trigger-simple',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否启用简易模式',
+            'en-US': 'Whether to enable simplified mode.'
+          },
+          mode: ['pc'],
+          pcDemo: 'trigger-simple'
+        },
+        {
           name: 'border',
           type: 'boolean',
           defaultValue: 'true',

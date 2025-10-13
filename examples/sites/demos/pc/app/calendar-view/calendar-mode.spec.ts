@@ -9,6 +9,9 @@ test('显示模式', async ({ page }) => {
   const dmonthDom = page.locator('.tiny-calendar-view-month__main')
   const timelineDom = page.locator('.tiny-calendar-view-week__timeline')
   const scheduleDom = page.locator('.tiny-calendar-view-week__schedule')
+
+  const calendarHeader = page.locator('.tiny-calendar-view__header')
+  await expect(calendarHeader.locator('div').first()).not.toHaveClass('.tiny-button .tiny-button--default')
   // 验证按钮是否选中，验证时间组件页面是否正确
   await expect(monthBtn.locator('.tiny-svg')).toHaveClass(/fill-brand/)
   await expect(dmonthDom).toBeVisible()

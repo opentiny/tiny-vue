@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: true,
   demos: [
     {
       demoId: 'basic-usage',
@@ -173,24 +175,6 @@ export default {
       codeFiles: ['carousel-events.vue']
     },
     {
-      demoId: 'swipeable',
-      name: {
-        'zh-CN': '触屏轮播',
-        'en-US': 'Touchscreen Carousel'
-      },
-      desc: {
-        'zh-CN': ` 
-          通过<code>swipeable</code> 属性，让多端模板支持触屏轮播。<br>
-          通过 <code>lite</code> 属性打开精简模式，不显示切换按钮和指示器。
-        `,
-        'en-US': `
-          The <code>swipeable</code> attribute is used to support touchscreen carousel.<br>
-          Enable the compact mode with the <code>lite</code> attribute. The toggle button and indicator are not displayed.
-        `
-      },
-      codeFiles: ['swipeable.vue']
-    },
-    {
       demoId: 'card-show',
       name: {
         'zh-CN': '轮播卡片',
@@ -213,6 +197,73 @@ export default {
         'en-US': '<p>Embed a carousel scene in the pop-up window.</p>'
       },
       codeFiles: ['dialog-show.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本功能',
+      support: {
+        value: true
+      },
+      description: '通过 data 设置轮播图数据。',
+      cloud: {
+        value: true
+      },
+      apis: ['data'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'auto-play',
+      name: '自动播放',
+      support: {
+        value: true
+      },
+      description: '通过 auto-play 设置是否自动播放，interval 设置自动播放的时间间隔。',
+      cloud: {
+        value: true
+      },
+      apis: ['auto-play', 'interval'],
+      demos: ['auto-play']
+    },
+    {
+      id: 'indicator',
+      name: '指示器',
+      support: {
+        value: true
+      },
+      description: '通过 indicator 设置指示器的位置，可选值为 inside、outside、none。',
+      cloud: {
+        value: true
+      },
+      apis: ['indicator'],
+      demos: ['indicator']
+    },
+    {
+      id: 'arrow',
+      name: '切换箭头',
+      support: {
+        value: true
+      },
+      description: '通过 arrow 设置切换箭头的显示时机，可选值为 hover、always、never。',
+      cloud: {
+        value: true
+      },
+      apis: ['arrow'],
+      demos: ['arrow']
+    },
+    {
+      id: 'events',
+      name: '事件处理',
+      support: {
+        value: true
+      },
+      description: '当轮播图切换时会触发 change 事件。',
+      cloud: {
+        value: true
+      },
+      apis: ['change'],
+      demos: ['events']
     }
   ]
 }

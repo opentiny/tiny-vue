@@ -288,7 +288,14 @@ export const wheelListener = ({ vm, api, tabs, state }) =>
 
 export const getBoundRect = (vm) => () => vm.$el.getBoundingClientRect()
 
-export const handleClickDropdownItem = (tabs) => (name) => tabs.clickMore(name)
+export const handleClickDropdownItem = (tabs) => (navItem, event) => {
+  tabs.$emit('click', navItem, event)
+  tabs.clickMore(navItem.name)
+}
+
+export const scrollToLeft = (tabs) => () => {
+  tabs.scrollTo(tabs.state.navs[0].name)
+}
 
 export const key = (opt) => opt.name + '-' + random()
 

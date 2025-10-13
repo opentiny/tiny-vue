@@ -139,6 +139,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'swipeable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启滑动内容切换标签页',
+            'en-US': 'Do you want to enable the sliding content switching tab function'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'swipeable'
+        },
+        {
           name: 'stretch',
           type: 'boolean',
           defaultValue: 'false',
@@ -282,6 +293,18 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'overflow-title',
+          mfDemo: ''
+        },
+        {
+          name: 'header-only',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '当 header-only 为 true 时，页签内容不再渲染',
+            'en-US': 'When header-only is true, the tab content is no longer rendered'
+          },
+          mode: ['pc'],
+          pcDemo: 'header-only',
           mfDemo: ''
         }
       ],

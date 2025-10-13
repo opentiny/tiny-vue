@@ -3,9 +3,9 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'large-data-virtual-rolling',
-      'name': { 'zh-CN': '虚拟滚动', 'en-US': 'Virtual Scrolling' },
-      'desc': {
+      demoId: 'large-data-virtual-rolling',
+      name: { 'zh-CN': '虚拟滚动', 'en-US': 'Virtual Scrolling' },
+      desc: {
         'zh-CN': `
         <p>虚拟滚动配置步骤：1、表格属性设置 <code>height</code> 固定高度；2、表格属性设置 <code>optimization</code> 开启虚拟滚动。</p>
         <div class="tip custom-block">
@@ -23,76 +23,76 @@ export default {
       `,
         'en-US': ''
       },
-      'codeFiles': ['large-data/virtual-rolling.vue']
+      codeFiles: ['large-data/virtual-rolling.vue']
     },
     {
-      'demoId': 'large-data-grid-large-tree-data',
-      'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
-      'desc': {
+      demoId: 'large-data-grid-large-tree-data',
+      name: { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
+      desc: {
         'zh-CN': `
         <p>通过 <code>optimization</code> 属性配置树表虚拟滚动执行方式，具体参考类型：<code>IOptimizationConfig</code> 。</p> 
         `,
         'en-US': ''
       },
-      'codeFiles': ['large-data/grid-large-tree-data.vue']
+      codeFiles: ['large-data/grid-large-tree-data.vue']
     },
     {
-      'demoId': 'large-data-full-data-loading',
-      'name': { 'zh-CN': '全量加载', 'en-US': 'Full Load' },
-      'desc': {
+      demoId: 'large-data-full-data-loading',
+      name: { 'zh-CN': '全量加载', 'en-US': 'Full Load' },
+      desc: {
         'zh-CN':
           '<p>当表格数据过多时会有性能问题，用户可通过 <code>$refs</code> 获取表格对象，设置表格对象的 <code>loadData</code> 方法启用全量加载来优化性能。</p>\n',
         'en-US':
           '<p>Performance problems may occur when there is too much data in a table. You can use <code>$refs</code> to obtain table objects and set the <code>loadData</code> method of the table objects to enable full loading to optimize performance. </p>\n'
       },
-      'codeFiles': ['large-data/full-data-loading.vue']
+      codeFiles: ['large-data/full-data-loading.vue']
     },
     {
-      'demoId': 'large-data-load-column',
-      'name': { 'zh-CN': '生成 1000 列', 'en-US': 'Generate 1000 columns' },
-      'desc': {
+      demoId: 'large-data-load-column',
+      name: { 'zh-CN': '生成 1000 列', 'en-US': 'Generate 1000 columns' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>loadColumn(columns)</code> 方法可以加载列配置，对于需要重新加载列的场景下可能会用到。</p>\n',
         'en-US':
           '<p>You can use the <code>loadColumn(columns)</code> method to load column configurations. This method may be used in scenarios where columns need to be reloaded. </p>\n'
       },
-      'codeFiles': ['large-data/load-column.vue']
+      codeFiles: ['large-data/load-column.vue']
     },
     {
-      'demoId': 'large-data-scroll-to',
-      'name': { 'zh-CN': '滚动到指定位置', 'en-US': 'Scroll to the specified position' },
-      'desc': {
+      demoId: 'large-data-scroll-to',
+      name: { 'zh-CN': '滚动到指定位置', 'en-US': 'Scroll to the specified position' },
+      desc: {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列。</p>\n</div>\n',
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
       },
-      'codeFiles': ['large-data/scroll-to.vue']
+      codeFiles: ['large-data/scroll-to.vue']
     },
     {
-      'demoId': 'large-data-column-anchor',
-      'name': { 'zh-CN': '表格列锚点', 'en-US': 'table column anchor' },
-      'desc': {
+      demoId: 'large-data-column-anchor',
+      name: { 'zh-CN': '表格列锚点', 'en-US': 'table column anchor' },
+      desc: {
         'zh-CN':
           '<p>通过 <code>column-anchor</code> 设置表格列锚点，点击可快速滚动至对应列，表格初始化时，默认滚动到锚点第一项。</p>',
         'en-US':
           '<p>Set the table column anchor point through <code>column-anchor</code>. Click to quickly scroll to the corresponding column. When the table is initialized, it will scroll to the first item of the anchor point by default. </p>'
       },
-      'codeFiles': ['large-data/column-anchor.vue']
+      codeFiles: ['large-data/column-anchor.vue']
     },
     {
-      'demoId': 'column-anchor-clear-active',
-      'name': {
+      demoId: 'column-anchor-clear-active',
+      name: {
         'zh-CN': '再次加载数据时清除活跃列锚点',
         'en-US': 'Clear active column anchors when loading data again'
       },
-      'desc': {
+      desc: {
         'zh-CN': '<p>当使用 <code>fetch-data</code> 加载数据时，再次加载数据时会清除活跃列锚点。</p>',
         'en-US':
           '<p>When loading data using <code>fetch-data</code>, active column anchors are cleared when the data is loaded again.</p>'
       },
-      'codeFiles': ['large-data/column-anchor-clear-active.vue']
+      codeFiles: ['large-data/column-anchor-clear-active.vue']
     }
   ],
-  apis: [{ 'name': 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

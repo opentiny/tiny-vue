@@ -51,7 +51,7 @@ export const getStrTimezone = (value) => {
     value = minoffset * `${match[1]}1`
   }
 
-  if (isNumber(value) && value >= -12 && value <= 12) {
+  if (isNumber(value) && value >= -12 && value <= 14) {
     return value
   }
 

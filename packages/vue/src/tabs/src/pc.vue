@@ -52,7 +52,8 @@ export default defineComponent({
     'titleWidth',
     'moreShowAll',
     'panelMaxHeight',
-    'panelWidth'
+    'panelWidth',
+    'headerOnly'
   ],
   components: {
     TabNav,
@@ -89,7 +90,8 @@ export default defineComponent({
       overflowTitle,
       titleWidth,
       panelMaxHeight,
-      panelWidth
+      panelWidth,
+      headerOnly
     } = this
 
     const newButton =
@@ -150,7 +152,7 @@ export default defineComponent({
       </div>
     )
 
-    const panels = <div class="tiny-tabs__content">{this.slots.default && this.slots.default()}</div>
+    const panels = headerOnly ? this.slots.default?.() : <div class="tiny-tabs__content">{this.slots.default?.()}</div>
 
     return (
       <div
@@ -161,7 +163,8 @@ export default defineComponent({
           'tiny-tabs--border-card': tabStyle === 'border-card',
           'tiny-tabs--button-card': tabStyle === 'button-card',
           'tiny-tabs--small': size === 'small',
-          'tiny-tabs--large': size === 'large'
+          'tiny-tabs--large': size === 'large',
+          'tiny-tabs--header-only': headerOnly
         }}>
         {position !== 'bottom' ? [header, panels] : [panels, header]}
       </div>

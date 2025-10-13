@@ -2,6 +2,7 @@ import type { IColorSelectPanelAlphProps, ISharedRenderlessParamHooks, ISharedRe
 import type { Color } from '../utils/color'
 import { draggable } from '../utils/use-drag'
 import { initState, initWatch, useEvent } from '.'
+import { useContext } from '../utils/context'
 
 export const api = ['state', 'color', 'slider', 'alphaWrapper', 'alphaThumb', 'onClick']
 
@@ -15,8 +16,9 @@ export const renderless = (
   const slider = ref<HTMLElement>()
   const alphaWrapper = ref<HTMLElement>()
   const alphaThumb = ref<HTMLElement>()
+  const ctx = useContext(hooks)
   const state = initState(hooks)
-  const { update, onClick, onDrag } = useEvent(state, slider, alphaWrapper, alphaThumb, props)
+  const { update, onClick, onDrag } = useEvent(state, slider, alphaWrapper, alphaThumb, props, ctx)
   onMounted(() => {
     if (!slider.value || !alphaThumb.value) {
       return
@@ -36,7 +38,7 @@ export const renderless = (
     emit('ready', update)
   })
 
-  initWatch(props, update, hooks)
+  initWatch(props, update, hooks, ctx)
 
   const api = {
     state,

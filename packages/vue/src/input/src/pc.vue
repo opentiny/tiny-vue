@@ -45,7 +45,7 @@
   >
     <template v-if="type !== 'textarea'">
       <!-- 前置元素 -->
-      <div class="tiny-input-group__prepend" ref="prepend" v-if="slots.prepend">
+      <div class="tiny-input-group__prepend" ref="prepend" v-if="slots.prepend && !state.isDisplayOnly">
         <slot name="prepend"></slot>
       </div>
       <span class="tiny-input-display-only">
@@ -56,6 +56,7 @@
           :content="state.displayOnlyTooltip"
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
+          pre
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span class="tiny-input-display-only__content" v-if="type === 'password'">{{ state.hiddenPassword }}</span>
@@ -158,11 +159,11 @@
         </transition>
       </div>
       <!-- 后置元素 -->
-      <div class="tiny-input-group__append" ref="append" v-if="slots.append">
+      <div class="tiny-input-group__append" ref="append" v-if="slots.append && !state.isDisplayOnly">
         <slot name="append"></slot>
       </div>
       <!-- Panel弹窗（例如时间组件的非范围选择窗口） -->
-      <div class="tiny-input-group__panel" ref="panel" v-if="slots.panel">
+      <div class="tiny-input-group__panel" ref="panel" v-if="slots.panel && !state.isDisplayOnly">
         <slot name="panel"></slot>
       </div>
     </template>
@@ -181,8 +182,7 @@
           <span ref="textBox" class="tiny-textarea-display-only__content text-box">
             <span v-if="state.showMoreBtn" @click="state.showDisplayOnlyBox = true" class="more-btn"
               >{{ t('ui.input.more') }}></span
-            >
-            <span>{{ state.displayOnlyText }}</span>
+            >{{ state.displayOnlyText }}
           </span>
         </div>
       </tiny-tooltip>

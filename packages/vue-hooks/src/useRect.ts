@@ -1,5 +1,5 @@
-const isWindow = (val) => val === window
-const makeDOMRect = (width, height) => ({
+const isWindow = (val: any) => val === window
+const makeDOMRect = (width: number, height: number) => ({
   top: 0,
   left: 0,
   width,
@@ -8,7 +8,7 @@ const makeDOMRect = (width, height) => ({
   bottom: height
 })
 
-export const useRect = (unref) => (elOrRef) => {
+export const useRect = (unref: any) => (elOrRef: any) => {
   const el = unref(elOrRef)
 
   if (isWindow(el)) {

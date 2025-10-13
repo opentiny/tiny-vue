@@ -38,7 +38,7 @@ const getError = (action, option, xhr) => {
     errorText = `fail to post ${action} ${xhr.status}`
   }
 
-  const error = new Error(errorText)
+  const error: any = new Error(errorText)
 
   error.status = xhr.status
   error.method = 'post'
@@ -56,7 +56,7 @@ export const uploadAjax = (option) => {
   const action = xss.filterUrl(option.action)
 
   if (xhr.upload) {
-    xhr.upload.onprogress = (event) => {
+    xhr.upload.onprogress = (event: any) => {
       if (event.total > 0) {
         event.percent = (event.loaded / event.total) * 100
       }

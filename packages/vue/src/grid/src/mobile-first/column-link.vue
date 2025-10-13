@@ -38,6 +38,9 @@ export default defineComponent({
         vnode = h(
           'div',
           {
+            attrs: {
+              title: visibleButtons[0].name
+            },
             'class': `w-5 h-5 sm:w-4 sm:w-4 ${
               isDisabled(visibleButtons[0]) ? 'fill-color-icon-disabled' : 'fill-color-icon-secondary'
             } `
@@ -70,7 +73,7 @@ export default defineComponent({
                   DropdownItem,
                   {
                     class: { [disabledClass || '']: isDisabled(buttonConfig) },
-                    props: { itemData: buttonConfig.name, disabled: isDisabled(buttonConfig) }
+                    props: { itemData: buttonConfig.name, disabled: isDisabled(buttonConfig), icon: buttonConfig.icon }
                   },
                   buttonConfig.name
                 )

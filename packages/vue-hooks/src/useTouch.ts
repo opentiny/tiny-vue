@@ -1,14 +1,14 @@
 const TAP_OFFSET = 5
 
-const getDirection = (x, y) => {
+const getDirection = (x: number, y: number) => {
   if (x > y) return 'horizontal'
   if (y > x) return 'vertical'
   return ''
 }
 
-const touchEvent = (event) => event.touches[0]
+const touchEvent = (event: TouchEvent) => event.touches[0]
 
-export const useTouch = (ref) => () => {
+export const useTouch = (ref: any) => () => {
   const startX = ref(0)
   const startY = ref(0)
   const deltaX = ref(0)
@@ -30,14 +30,14 @@ export const useTouch = (ref) => () => {
     isTap.value = true
   }
 
-  const start = (event) => {
+  const start = (event: TouchEvent) => {
     reset()
     const touch = touchEvent(event)
     startX.value = touch.clientX
     startY.value = touch.clientY
   }
 
-  const move = (event) => {
+  const move = (event: TouchEvent) => {
     const touch = touchEvent(event)
     // safari back will set clientX to negative number
     deltaX.value = (touch.clientX < 0 ? 0 : touch.clientX) - startX.value

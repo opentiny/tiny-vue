@@ -361,6 +361,19 @@ export default {
           pcDemo: 'filter-method'
         },
         {
+          name: 'optimization',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启大数据虚拟滚动功能。仅配置式（使用 options 属性）时支持',
+            'en-US':
+              'Whether to enable the big data virtual scrolling feature. Supported only when configured (using the options attribute)'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'optimization',
+          mfDemo: 'optimization'
+        },
+        {
           name: 'options',
           typeAnchorName: 'IOption',
           type: 'IOption[]',
@@ -543,6 +556,20 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'tag-type',
           mfDemo: 'tag-type'
+        },
+        {
+          name: 'max-tag-width',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '多选时，设置最大标签宽度',
+            'en-US': 'When multiple selections are made, set the maximum label width.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          meta: {
+            stable: '3.22.0'
+          }
         },
         {
           name: 'text-field',
@@ -829,8 +856,19 @@ export default {
             'en-US': 'Pull down the bottom slot of the pop-up box'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'slot-footer',
+          pcDemo: 'slot-header-footer',
           mfDemo: 'slot-footer'
+        },
+        {
+          name: 'dropdown',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '下拉弹框顶部插槽',
+            'en-US': 'Pull down the pop-up box slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-header-footer'
         },
         {
           name: 'prefix',

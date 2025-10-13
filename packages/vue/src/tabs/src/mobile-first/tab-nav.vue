@@ -2,6 +2,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue-nav'
 import { $props, setup, defineComponent, h } from '@opentiny/vue-common'
 import TabNavItem from './tab-nav-item.vue'
+import tabSliderBar from './tab-slider-bar.vue'
 import type { NavItem } from './type'
 
 export default defineComponent({
@@ -27,14 +28,12 @@ export default defineComponent({
             })
           : null
       ),
-      h('div', {
-        class: m(
-          'absolute bg-color-brand transition-all duration-300 z-20 rounded-full bottom-px h-px py-px box-content',
-          {
-            'hidden': !state.currentNav
-          }
-        ),
-        style: { width: state.currentWidth + 'px', left: state.currentPosition + 'px' }
+      h(tabSliderBar, {
+        props: {
+          currentWidth: state.currentWidth,
+          currentPosition: state.currentPosition,
+          currentNav: state.currentNav
+        }
       })
     ])
   }

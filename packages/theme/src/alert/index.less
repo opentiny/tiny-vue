@@ -58,9 +58,14 @@
       margin-right: calc(var(--tv-Alert-close-icon-font-size) + var(--tv-Alert-close-icon-right) + 16px);
     }
 
-    .@{alert-prefix-cls}__opration {
-      // no need css
+    .@{alert-prefix-cls}__opration a{
+      color: var(--tv-Alert-opration-link-color);
+        &:hover {
+          color: var(--tv-Alert-opration-link-hover-color);
+          text-decoration: underline;
+        }
     }
+
   }
 
   /** close-icon 场景  */
@@ -96,6 +101,7 @@
     .@{alert-prefix-cls}__icon {
       font-size: var(--tv-Alert-icon-size-normal);
     }
+
     .@{alert-prefix-cls}__description {
       // 由于close-icon是abs， 需要给出安全边距防止重叠
       margin-right: calc(var(--tv-Alert-close-icon-font-size) + var(--tv-Alert-close-icon-right) + 16px);
@@ -113,18 +119,23 @@
       fill: e(@icon);
     }
   }
+
   &.@{alert-prefix-cls}--success {
     .color-theme-mixin(success);
   }
+
   &.@{alert-prefix-cls}--error {
     .color-theme-mixin(error);
   }
+
   &.@{alert-prefix-cls}--warning {
     .color-theme-mixin(warning);
   }
+
   &.@{alert-prefix-cls}--info {
     .color-theme-mixin(info);
   }
+
   &.@{alert-prefix-cls}--simple {
     .color-theme-mixin(simple);
   }

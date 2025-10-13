@@ -36,7 +36,7 @@ export default {
   display: inline-block;
   width: 60px;
   height: 40px;
-  background-color: gainsboro;
+  background-color: var(--tv-color-bg);
 }
 .demo-box {
   width: 400px;

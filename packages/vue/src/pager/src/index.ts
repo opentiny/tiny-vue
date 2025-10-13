@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { PropType } from '@opentiny/vue-common'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
@@ -34,8 +34,7 @@ export const pagerProps = {
     type: String
   },
   pageSizes: {
-    type: Array as PropType<number[]>,
-    default: () => [10, 20, 30, 40, 50, 100]
+    type: Array as PropType<number[]>
   },
   pagerCount: {
     type: Number,
@@ -59,11 +58,12 @@ export const pagerProps = {
   total: Number,
   size: {
     type: String,
-    default: ''
+    default: '',
+    validator: (value: string) => ['mini', ''].includes(value)
   },
   align: {
     type: String,
-    validator: (value) => ['left', 'center', 'right'].includes(value)
+    validator: (value: string) => ['left', 'center', 'right'].includes(value)
   },
   totalFixedLeft: {
     type: Boolean,

@@ -1689,6 +1689,19 @@
       "pc"
     ]
   },
+  "NumberAnimation": {
+    "path": "vue/src/number-animation/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "NumberAnimationPc": {
+    "path": "vue/src/number-animation/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Numeric": {
     "path": "vue/src/numeric/index.ts",
     "type": "component",
@@ -2237,6 +2250,7 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
   },
@@ -2245,11 +2259,22 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
   },
+  "SkeletonItemMobileFirst": {
+    "path": "vue/src/skeleton-item/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
   "SkeletonItemPc": {
     "path": "vue/src/skeleton-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SkeletonMobileFirst": {
+    "path": "vue/src/skeleton/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
@@ -2819,6 +2844,7 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
   },
@@ -2890,6 +2916,11 @@
   },
   "UserLinkPc": {
     "path": "vue/src/user-link/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "UserMobileFirst": {
+    "path": "vue/src/user/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },

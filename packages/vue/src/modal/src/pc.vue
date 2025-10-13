@@ -19,7 +19,7 @@ import {
   iconHelpSolid,
   iconSuccess,
   iconError,
-  iconInfoSolid,
+  iconHelp,
   iconLoadingShadow,
   iconWarning,
   iconClose,
@@ -122,7 +122,7 @@ export default defineComponent({
 
     const STATUS_MAPPING_COMPINENT = {
       QUESTION: iconHelpSolid(),
-      INFO: iconInfoSolid(),
+      INFO: iconHelp(),
       SUCCESS: iconSuccess(),
       WARNING: iconWarning(),
       ERROR: iconError(),
@@ -252,7 +252,7 @@ export default defineComponent({
                     class: 'tiny-modal__content'
                   },
                   defaultSlot
-                    ? defaultSlot.call(this, { $modal: this }, h)
+                    ? [defaultSlot.call(this, { $modal: this }, h)]
                     : [
                         h(
                           'div',
@@ -267,12 +267,14 @@ export default defineComponent({
                       {
                         class: 'tiny-modal__close-wrapper'
                       },
-                      h(iconClose(), {
-                        class: ['tiny-modal__close-btn'],
-                        on: {
-                          click: this.closeEvent
-                        }
-                      })
+                      [
+                        h(iconClose(), {
+                          class: ['tiny-modal__close-btn'],
+                          on: {
+                            click: this.closeEvent
+                          }
+                        })
+                      ]
                     )
                   : null
               ]
@@ -287,7 +289,7 @@ export default defineComponent({
                     }
                   },
                   footerSlot
-                    ? footerSlot.call(this, footerSlotParams, h)
+                    ? [footerSlot.call(this, footerSlotParams, h)]
                     : [
                         type === 'confirm'
                           ? h(

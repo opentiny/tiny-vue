@@ -38,6 +38,7 @@
   }
 
   // 复选框
+  &.@{option-prefix-cls}_all,
   .@{option-prefix-cls}__checkbox-wrap {
     .tiny-svg {
       fill: var(--tv-Option-icon-color-unchecked);
@@ -47,7 +48,25 @@
   &.selected .tiny-svg,
   .checked-sur.tiny-svg,
   .halfselect.tiny-svg {
-    fill: var(--tv-Option-icon-color-checked);
+    path:first-child {
+      fill: var(--tv-Option-icon-color-checked);
+    }
+  }
+
+  .check.tiny-svg {
+    path:first-child {
+      fill: transparent;
+    }
+
+    path:nth-child(2) {
+      fill: var(--tv-Option-icon-color-unchecked);
+    }
+
+    &:hover {
+      path:nth-child(2) {
+        fill: var(--tv-Option-icon-color-hover);
+      }
+    }
   }
 
   // 文本区域
@@ -96,14 +115,22 @@
     .tiny-svg {
       &.checked-sur,
       &.halfselect {
-        fill: var(--tv-Option-icon-color-checked-disabled);
+        path:first-child {
+          fill: var(--tv-Option-checked-disabled-bg-color);
+        }
+
+        path:last-child {
+          fill: var(--tv-Option-icon-color-checked-disabled-inverse);
+        }
       }
 
       &.check {
-        fill: var(--tv-Option-icon-color-unchecked-disabled); /* #bfbfbf */
+        path:first-child {
+          fill: var(--tv-Option-bg-color-disabled);
+        }
 
-        path:first-of-type {
-          fill: var(--tv-Option-icon-bg-color-disabled);
+        path:nth-child(2) {
+          fill: var(--tv-Option-icon-color-unchecked-disabled);
         }
       }
     }

@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   demos: [
     {
       demoId: 'basic-usage',
@@ -212,6 +214,60 @@ export default {
         'en-US': '<p>Listen to the <code>change</code> event triggering method. </p>\n'
       },
       codeFiles: ['rate-events.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'basic',
+      name: '基本用法',
+      support: {
+        value: true
+      },
+      description: '通过 v-model 绑定变量，变量值对应评分值。',
+      cloud: {
+        value: false
+      },
+      apis: ['v-model'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '通过 disabled 设置是否禁用评分组件。',
+      cloud: {
+        value: false
+      },
+      apis: ['disabled'],
+      demos: ['disabled']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '通过 size 设置评分组件的尺寸大小。',
+      cloud: {
+        value: false
+      },
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'max',
+      name: '最大值',
+      support: {
+        value: true
+      },
+      description: '通过 max 设置评分组件的最大值。',
+      cloud: {
+        value: false
+      },
+      apis: ['max'],
+      demos: ['max']
     }
   ]
 }

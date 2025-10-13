@@ -9,7 +9,7 @@
     :class="
       m(
         'h-fit flex items-center justify-between rounded text-color-text-primary text-sm sm:text-xs',
-        'min-h-[40px] sm:min-h-[32px] cursor-pointer group sm:hover:bg-color-bg-4 sm:active:bg-color-bg-3 pl-0 pr-3 sm:px-3 my-1 sm:m-1',
+        'min-h-[40px] sm:min-h-[32px] cursor-pointer group sm:hover:bg-color-bg-4 sm:active:bg-color-bg-3 pl-0 pr-3 sm:px-2 my-1 sm:m-1',
         {
           'text-color-brand bg-color-bg-1 sm:bg-color-fill-6': state.itemSelected && !disabled,
           'text-color-text-disabled cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg_path:first-of-type]:fill-color-bg-3':
@@ -26,9 +26,9 @@
       <component
         :is="`icon-${state.selectCls}`"
         :class="
-          m('fill-color-icon-secondary relative', {
+          m('fill-color-icon-secondary relative w-3.5 h-3.5', {
             'group-hover:fill-color-brand-hover': state.hover,
-            'fill-color-brand': state.itemSelected,
+            'fill-color-brand text-color-brand': state.itemSelected,
             'fill-color-brand-disabled': state.itemSelected && required
           })
         "
@@ -45,7 +45,7 @@
       v-if="!state.selectMultiple && state.itemSelected && !disabled && !state.groupDisabled"
       class="inline-block sm:hidden w-4 ml-4 shrink-0"
     >
-      <icon-finish custom-class="w-4 h-4 fill-color-brand"> </icon-finish
+      <icon-finish custom-class="w-3.5 h-3.5 fill-color-brand"> </icon-finish
     ></span>
   </div>
 </template>

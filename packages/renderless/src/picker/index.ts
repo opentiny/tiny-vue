@@ -64,9 +64,9 @@ export const watchMobileVisible =
   }
 
 export const watchPickerVisible =
-  ({ api, vm, dispatch, emit, props, state, nextTick }) =>
+  ({ api, vm, dispatch, emit, props, state, nextTick, isPCMode }) =>
   (value) => {
-    if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
+    if (props.readonly || state.pickerDisabled || (state.isMobileScreen && !isPCMode)) return
 
     if (value) {
       api.showPicker()
@@ -940,20 +940,27 @@ export const handleClose =
   }
 
 export const handleFocus =
-  ({ emit, vm, state, api }) =>
+  ({ emit, vm, state, api, props, isPCMode }) =>
   () => {
     const type = state.type
-    if (state.pickerDisabled) {
+    if (props.readonly || state.pickerDisabled) {
       return
     }
 
+    // 判断当前日期选择器类型是否在触发类型列表中
     if (DATEPICKER.TriggerTypes.includes(type)) {
-      if (state.isMobileScreen && state.isDateMobileComponent) {
-        api.dateMobileToggle(true)
-      } else if (state.isMobileScreen && state.isTimeMobileComponent) {
-        api.timeMobileToggle(true)
-      } else {
+      // 如果不是移动端屏幕或者强制使用PC端模式
+      if (!state.isMobileScreen || isPCMode) {
+        // 显示PC端的日期选择弹窗
         state.pickerVisible = true
+      } else if (state.isDateMobileComponent) {
+        // 如果是移动端日期相关组件(日期、日期时间、日期范围等)
+        // 调用移动端日期选择器的显示方法
+        api.dateMobileToggle(true)
+      } else if (state.isTimeMobileComponent) {
+        // 如果是移动端时间相关组件(时间、时间范围等)
+        // 调用移动端时间选择器的显示方法
+        api.timeMobileToggle(true)
       }
     }
 
@@ -1053,16 +1060,22 @@ export const showPicker =
 
 export const handlePick =
   ({ state, api }) =>
-  (date = '', visible = false) => {
+  (date = '', visible = false, chooseOne = false) => {
     if (!state.picker) return
 
-    state.userInput = null
-    state.pickerVisible = state.picker.state.visible = visible
+    if (chooseOne) {
+      const minDate = (date && date[0]) || ''
 
-    api.emitInput(date, visible)
+      state.userInput = [api.formatToString(minDate), null]
+    } else {
+      state.userInput = null
+      state.pickerVisible = state.picker.state.visible = visible
 
-    state.date = date
-    state.picker.resetView && state.picker.resetView()
+      api.emitInput(date, visible)
+
+      state.date = date
+      state.picker.resetView && state.picker.resetView()
+    }
   }
 
 export const handleSelectRange = (state) => (start, end, pos) => {

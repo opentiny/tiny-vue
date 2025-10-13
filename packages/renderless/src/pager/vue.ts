@@ -91,9 +91,10 @@ export const renderless = (
     showPager: computed(() => api.computedShowPager()),
     internalLayout: computed(() => api.computedInternalLayout()),
     totalText: computed(() => api.computedTotalText()),
+    internalPageSizes: computed(() => props.pageSizes || [10, 20, 30, 40, 50, 100]),
     internalPageCount: computed(() => api.computedInternalPageCount()),
     showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
-    align: props.align || designConfig?.state?.align || 'right',
+    align: computed(() => props.align || designConfig?.state?.align || 'right'),
     totalI18n: designConfig?.state?.totalI18n || 'totals',
     totalFixedLeft: computed(
       () => props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? props.mode !== 'simplest' ?? true
@@ -142,8 +143,8 @@ export const renderless = (
     watchInternalPageSize: watchInternalPageSize({ emit, props })
   })
 
-  state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
   state.internalPageSize = api.getInternalPageSize()
+  state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
 
   watch(() => state.internalCurrentPage, api.watchInternalCurrentPage)
   watch(() => state.internalPageSize, api.watchInternalPageSize)

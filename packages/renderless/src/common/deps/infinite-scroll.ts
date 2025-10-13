@@ -29,7 +29,8 @@ const computeScrollOptions = (el, instance) =>
   Object.entries(attrs).reduce((accumulator, [name, option]) => {
     const { type, default: defaultValue } = option
     const attrKey = `infinite-scroll-${name}`
-    const $attrValue = instance.$el.getAttribute(attrKey)
+    const $attrValue =
+      instance?.$el && typeof instance.$el.getAttribute === 'function' ? instance.$el.getAttribute(attrKey) : null
     const attrValue = el.getAttribute(attrKey)
     let value
 

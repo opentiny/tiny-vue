@@ -31,6 +31,7 @@
       <template #block="{ slotScoped: { node, index } }">
         <div
           data-tag="tiny-steps-block"
+          :style="itemStyle[node.status]"
           :class="
             m(
               gcls('steps-block'),
@@ -201,7 +202,8 @@ export default defineComponent({
     'noArrow',
     'flex',
     'size',
-    'contentCenter'
+    'contentCenter',
+    'itemStyle'
   ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes })

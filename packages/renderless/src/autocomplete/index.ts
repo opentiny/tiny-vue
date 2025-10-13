@@ -110,6 +110,10 @@ export const handleFocus =
 export const handleBlur =
   ({ emit, state, dispatch, props }: Pick<IAutoCompleteRenderlessParams, 'emit' | 'state' | 'dispatch' | 'props'>) =>
   () => {
+    // 如果没有激活状态，直接返回
+    if (!state.activated) {
+      return
+    }
     state.suggestionDisabled = true
     emit('blur')
     if (state.validateEvent) {

@@ -71,7 +71,8 @@ export const iconGroups = {
     'IconUp',
     'IconUpdate',
     'IconUpO',
-    'IconUpWard'
+    'IconUpWard',
+    'IconTriangleUp'
   ],
   Downward: [
     'IconArrowBottom',
@@ -291,6 +292,7 @@ export const iconGroups = {
     'IconTabletView',
     'IconUnlock',
     'IconUser',
+    'IconDelegatedProcessing',
     'IconVersiontree',
     'IconWebPlus',
     'IconJs',
@@ -387,7 +389,11 @@ export const iconGroups = {
     'IconSmile',
     'IconStarActive',
     'IconStarDisable',
-    'IconStarO'
+    'IconStarO',
+    'IconBadgeHotCn',
+    'IconBadgeHotEn',
+    'IconBadgeNewCn',
+    'IconBadgeNewEn'
   ],
   Tool: [
     'IconConfig',
@@ -443,6 +449,7 @@ export const iconGroups = {
     'IconNoPremission',
     'IconPagelink',
     'IconPushpin',
+    'IconPushpinSolid',
     'IconRenew',
     'IconRichTextNodeDelete',
     'IconSandwichCollapse',

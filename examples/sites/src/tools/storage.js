@@ -1,4 +1,5 @@
 import { ref, watch } from 'vue'
+import { getLocaleMode } from './utils'
 
 function parse(str) {
   if (str === null) return undefined
@@ -58,13 +59,14 @@ const typeMatcher = { session: $session, local: $local, api: null }
  * @returns 响应式ref
  */
 const useAutoStore = (type, key, defaultValue) => {
-  let refVar = ref(typeMatcher[type][key])
+  let refVar = ref(getLocaleMode())
+  typeMatcher[type][key] = refVar.value
+
   watch(refVar, (curr, prev) => {
     typeMatcher[type][key] = curr
   })
-
   refVar.value = refVar.value ?? defaultValue
-  
+
   return refVar
 }
 

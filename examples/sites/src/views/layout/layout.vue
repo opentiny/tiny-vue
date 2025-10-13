@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <float-settings v-if="!isThemeSaas"></float-settings>
+    <float-settings></float-settings>
   </div>
 </template>
 
@@ -59,12 +59,12 @@
 import { useRoute } from 'vue-router'
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
-import { genMenus, getMenuIcons } from '@/menus.jsx'
+import { genMenus, getMenuIcons } from '@/menus'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
-import FloatSettings from '@/views/components-doc/components/float-settings.vue'
-import VersionTip from '@/views/components-doc/components/version-tip.vue'
+import FloatSettings from '@/components/float-settings.vue'
+import VersionTip from '@/components/version-tip.vue'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -96,13 +96,11 @@ export default defineComponent({
       expandKeys: []
     })
 
-    const lang = getWord('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US', 'es-LA', 'pt-BR')
     const route = useRoute()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
-
-    const isThemeSaas = import.meta.env.VITE_TINY_THEME === 'saas'
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -190,7 +188,6 @@ export default defineComponent({
       clickMenuLink,
       getWord,
       i18nByKey,
-      isThemeSaas,
       isShowFilter
     }
   }
@@ -332,11 +329,11 @@ export default defineComponent({
         text-overflow: ellipsis;
       }
 
-      .menu-type-icon {
+      svg.menu-type-icon {
         width: 12px;
         height: 12px;
         display: inline-block;
-        fill: var(--tv-color-icon-control);
+        fill: var(--tv-color-icon-control, #5f6774);
       }
     }
   }
@@ -394,7 +391,7 @@ export default defineComponent({
   }
 }
 
-.dark #layoutSider {
+html.dark #layoutSider {
   border-right: 1px solid #1a1a1a; // 没有常用变量
 }
 

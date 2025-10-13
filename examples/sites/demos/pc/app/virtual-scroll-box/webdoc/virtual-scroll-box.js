@@ -1,6 +1,8 @@
 export default {
   column: '2',
   owner: '',
+  show: true,
+  cloud: false,
   meta: {
     stable: '3.19.0'
   },
@@ -38,6 +40,34 @@ export default {
         'en-US': 'Virtual tree scrolling is supported by nested tree control componentsn'
       },
       codeFiles: ['tree.vue']
+    }
+  ],
+  features: [
+    {
+      id: 'table',
+      name: '表格场景',
+      support: {
+        value: true
+      },
+      description: '支持行和列虚拟滚动，可变行高和列宽，固定行列，单元格合并等。',
+      cloud: {
+        value: false
+      },
+      apis: ['row-height', 'column-width', 'fixed', 'merge-cells'],
+      demos: ['table']
+    },
+    {
+      id: 'tree',
+      name: '树场景',
+      support: {
+        value: true
+      },
+      description: '支持嵌套树组件实现虚拟滚动。',
+      cloud: {
+        value: false
+      },
+      apis: ['tree-data', 'tree-props'],
+      demos: ['tree']
     }
   ]
 }

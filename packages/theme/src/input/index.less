@@ -44,6 +44,7 @@
 
     &.@{input-prefix-cls}__mask {
       color: #999;
+      padding-top: 10px;
     }
   }
 
@@ -303,8 +304,14 @@
         align-items: center;
 
         svg {
+          cursor: pointer;
           width: 16px;
           height: 16px;
+          fill: var(--tv-Input-icon-color);
+
+          &:hover {
+            fill: var(--tv-Input-icon-color-hover);
+          }
         }
       }
 
@@ -314,6 +321,7 @@
         white-space: nowrap;
         flex: 1;
         margin-right: 16px;
+        padding-top: 10px;
       }
     }
   }

@@ -12,7 +12,6 @@
   @apply overflow-hidden;
   @apply text-xs;
   @apply text-color-text-primary;
-  font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   @apply bg-color-bg-1;
 
   &.show__foot {
@@ -243,17 +242,7 @@
         );
       @apply bg-no-repeat;
       background-size: 1px 100%, 100% 1px;
-      background-position: 100% 0, 100% 99%;
-    }
-
-    &.is__row-span .@{grid-prefix-cls}-body__column {
       background-position: 100% 0, 100% 100%;
-    }
-
-    .@{grid-prefix-cls}-body__row:last-child {
-      .@{grid-prefix-cls}-body__column {
-        background-position: 100% 0, 100% 100%;
-      }
     }
 
     .@{grid-prefix-cls}__fixed-left-wrapper {
@@ -505,13 +494,15 @@
   }
 
   & &-cell {
-    line-height: normal;
+    line-height: 1.375rem;
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
 
     .@{grid-prefix-cls}-checkbox {
-      @apply align-bottom;
+      @apply flex;
+      @apply items-center;
+      @apply justify-center;
     }
 
     .@{grid-prefix-cls}__data-boole,
@@ -588,6 +579,7 @@
     @apply flex-col;
     @apply justify-center;
     @apply items-center;
+    @apply pl-1;
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       @apply top-1;
@@ -630,7 +622,7 @@
     @apply absolute;
     @apply top-0;
     @apply left-0;
-    @apply w-px;
+    @apply ~'w-0.5';
     @apply h-full;
     @apply ~'z-[4]';
 
@@ -638,7 +630,7 @@
       @apply content-[''];
       @apply block;
       @apply h-full;
-      @apply bg-color-bg-5;
+      @apply bg-color-brand;
     }
   }
 

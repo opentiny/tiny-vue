@@ -639,8 +639,15 @@ export const getRenderTz =
       return
     }
 
-    state.renderTzdata = value[state.lang]
+    // 规避因国际化lang中划线以及下划线匹配不到时区数据
+    const lang = state.lang.replace(/[-_]/g, '').toLowerCase()
+    Object.keys(value).forEach(key => {
+      if (key.replace(/[-_]/g, '').toLowerCase() === lang) {
+        value[lang] = value[key]
+      }
+    });
 
+    state.renderTzdata = value[lang]
     if (state.renderTzdata) {
       const { isServiceTimezone, to } = state.timezone
       const selectedTz = state.selectedTz || {}

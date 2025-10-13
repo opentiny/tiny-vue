@@ -47,8 +47,9 @@ export default {
         'en-US': 'Icon Button'
       },
       desc: {
-        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。',
-        'en-US': 'Display icons and receive an icon component through the <code>icon</code> settings button'
+        'zh-CN': '通过 <code>icon</code> 属性，设置按钮展示图标。<code>custom-style</code>属性设置按钮样式。',
+        'en-US':
+          'Display icons and receive an icon component through the <code>icon</code> settings button. The <code>custom-style</code> property sets the button style.'
       },
       codeFiles: ['icon.vue']
     },
@@ -142,6 +143,146 @@ export default {
         'en-US': '<p>When the button is clicked, the <code>click</code> event will be triggered. </p>'
       },
       codeFiles: ['click.vue']
+    }
+  ],
+  show: true,
+  cloud: true,
+  features: [
+    {
+      id: 'type',
+      name: '按钮类型',
+      support: {
+        value: true
+      },
+      description: '支持主要按钮、次要按钮、成功按钮、警告按钮、危险按钮、信息按钮、文字按钮7种类型。',
+      cloud: {
+        value: true,
+        remark: '规范只支持主要按钮、次要按钮、危险按钮、文本按钮4种，不支持成功按钮、警告按钮、信息按钮。'
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['type'],
+      demos: ['basic-usage']
+    },
+    {
+      id: 'round',
+      name: '圆角按钮',
+      support: {
+        value: true
+      },
+      description: '按钮两边都是半圆形。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['round'],
+      demos: ['round']
+    },
+    {
+      id: 'circle',
+      name: '圆形按钮',
+      support: {
+        value: true
+      },
+      description: '整个按钮是圆形，一般在里面放一个图标。',
+      cloud: {
+        value: false
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['circle'],
+      demos: ['circle']
+    },
+    {
+      id: 'ghost',
+      name: '幽灵按钮',
+      support: {
+        value: true
+      },
+      description: '幽灵按钮的背景色跟随背景变化。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': false,
+      apis: ['ghost'],
+      demos: ['ghost']
+    },
+    {
+      id: 'disabled',
+      name: '禁用状态',
+      support: {
+        value: true
+      },
+      description: '禁用状态下的按钮不可点击。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['disabled'],
+      demos: ['dynamic-disabled']
+    },
+    {
+      id: 'icon',
+      name: '图标按钮',
+      support: {
+        value: true
+      },
+      description: '给按钮加个小图标。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['icon'],
+      demos: ['icon']
+    },
+    {
+      id: 'loading',
+      name: '加载中状态',
+      support: {
+        value: true
+      },
+      description: '禁用状态和图标按钮的组合特性。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['loading'],
+      demos: ['loading']
+    },
+    {
+      id: 'size',
+      name: '尺寸',
+      support: {
+        value: true
+      },
+      description: '支持超大、大、常规(默认)、小、迷你5种尺寸。',
+      cloud: {
+        value: true
+      },
+      'e2e-test': true,
+      'unit-test': true,
+      apis: ['size'],
+      demos: ['size']
+    },
+    {
+      id: 'prevent-duplicate-click',
+      name: '防止重复点击',
+      support: {
+        value: true
+      },
+      description: '点击之后按钮变成禁用态，无法连续点击，可以设置点击之后按钮禁用的时长',
+      cloud: {
+        value: false
+      },
+      'e2e-test': true,
+      'unit-test': false,
+      apis: ['reset-time'],
+      demos: ['reset-time']
     }
   ]
 }

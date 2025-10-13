@@ -7,6 +7,8 @@
 @input-prefix-cls: ~'@{css-prefix}input';
 @select-prefix-cls: ~'@{css-prefix}select';
 @pager-prefix-cls: ~'@{css-prefix}pager';
+@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
+@cell-tooltip: ~'@{grid-prefix-cls}-cell__tooltip';
 
 // table
 .@{grid-prefix-cls} {
@@ -14,7 +16,6 @@
   @apply overflow-hidden;
   @apply text-xs;
   @apply text-color-text-primary;
-  font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   @apply bg-color-bg-1;
 
   &.show__foot {
@@ -79,10 +80,6 @@
       .@{grid-prefix-cls}-resizable {
         @apply h-4;
       }
-    }
-
-    .@{grid-prefix-cls}-cell {
-      @apply leading-none;
     }
   }
 
@@ -271,6 +268,27 @@
     }
   }
 
+  // tiny新增滚动条放置表格内
+  tbody tr.row__last-visible {
+    @apply relative;
+
+    &::after {
+      @apply content-[''];
+      @apply absolute;
+      @apply bottom-0;
+      @apply left-0;
+      @apply right-0;
+      @apply bottom-0;
+      @apply h-px;
+      @apply bg-color-border-separator;
+      @apply ~'z-[3]';
+    }
+  }
+
+  &:has(.@{grid-prefix-cls}__footer-wrapper) tbody tr.row__last-visible::after {
+    display: none;
+  }
+
   &&__border,
   &&__border-saas {
     // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
@@ -323,17 +341,7 @@
         );
       @apply bg-no-repeat;
       background-size: 1px 100%, 100% 1px;
-      background-position: 100% 0, 100% 99%;
-    }
-
-    &.is__row-span .@{grid-prefix-cls}-body__column {
       background-position: 100% 0, 100% 100%;
-    }
-
-    .@{grid-prefix-cls}-body__row:last-child {
-      .@{grid-prefix-cls}-body__column {
-        background-position: 100% 0, 100% 100%;
-      }
     }
 
     .@{grid-prefix-cls}__fixed-left-wrapper {
@@ -372,7 +380,7 @@
   }
 
   &&__group-saas {
-    .@{grid-prefix-cls}__header {
+    .@{grid-prefix-cls}__body thead {
       @apply relative;
 
       &::before {
@@ -418,7 +426,7 @@
   }
 
   &&__border-vertical {
-    .@{grid-prefix-cls}__body {
+    .@{grid-prefix-cls}__body tbody {
       @apply relative;
 
       &::before {
@@ -582,13 +590,15 @@
   }
 
   & &-cell {
-    line-height: normal;
+    line-height: 1.375rem;
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
 
     .@{grid-prefix-cls}-checkbox {
-      @apply align-bottom;
+      @apply flex;
+      @apply items-center;
+      @apply justify-center;
     }
 
     .@{grid-prefix-cls}__data-boole,
@@ -645,11 +655,13 @@
       @apply flex;
       @apply items-center;
       @apply justify-start;
+      line-height: 1.375rem;
     }
 
     &.col__center {
       .@{grid-cell-prefix-cls} {
         @apply justify-center;
+        line-height: 1.375rem;
       }
     }
 
@@ -662,6 +674,7 @@
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
+        line-height: 1.375rem;
         @apply pl-0;
       }
     }
@@ -669,8 +682,7 @@
 
   & &-body__x-space {
     @apply w-full;
-    @apply h-px;
-    @apply -mb-px;
+    @apply h-0;
   }
 
   & &-body__y-space {
@@ -680,15 +692,13 @@
 
   // 排序
   & &-sort-wrapper {
-    padding-left: 4px;
-    position: absolute;
-    right: 6px;
+    @apply pl-1;
 
     .@{grid-prefix-cls}-sort__btn {
-      @apply ~'h-3.5';
+      @apply h-4;
       line-height: 14px;
       @apply block;
-      @apply text-xs;
+      @apply text-md;
       @apply fill-color-icon-secondary;
       transform: scale(0.8);
       @apply cursor-pointer;
@@ -705,15 +715,15 @@
     @apply absolute;
     @apply top-0;
     @apply left-0;
-    @apply w-px;
+    @apply ~'w-0.5';
     @apply h-full;
-    @apply ~'z-[4]';
+    @apply ~'z-[21]';
 
     &:before {
       @apply content-[''];
       @apply block;
       @apply h-full;
-      @apply bg-color-bg-5;
+      @apply bg-color-brand;
     }
   }
 
@@ -861,63 +871,40 @@
   }
 
   & &__empty-block {
-    @apply hidden;
-    @apply opacity-0;
     @apply h-full;
     @apply ~"min-h-[theme('spacing.16')]";
     @apply py-16 px-0;
-    @apply justify-center;
-    @apply items-center;
-    @apply text-center;
-
-    &.is__visible {
-      @apply flex;
-      @apply flex-col;
-      @apply opacity-100;
-      &.is__center {
-        @apply opacity-0;
-      }
-    }
-  }
-
-  .empty-center-block {
-    @apply ~'z-[1]';
     @apply flex;
     @apply flex-col;
+    @apply flex-auto;
+    @apply items-center;
     @apply justify-center;
     @apply text-center;
-    @apply absolute;
-    @apply w-full;
-
-    .@{grid-prefix-cls}__empty-text {
-      @apply w-full;
-    }
+    @apply sticky;
+    @apply left-0;
   }
 
   & &__empty-img {
     @apply w-full;
     height: 100px;
     @apply m-0;
-    background: url(../images/grid-nodata.svg) no-repeat center center;
     @apply flex-shrink-0;
   }
 
   & &__empty-text {
     @apply block;
-    @apply mt-2;
-    @apply ~'w-1/2';
+    @apply w-full;
+    @apply text-center;
   }
 
+  // 校验不通过
   & &-body__column {
     &.col__selected {
       &:not(.col__checked) {
         box-shadow: inset 0px 0px 0px 2px theme('colors.color.brand.DEFAULT');
       }
     }
-  }
 
-  // 校验不通过
-  & &-body__column {
     &.col__actived,
     &.col__selected,
     &.col__dirty {
@@ -1012,14 +999,15 @@
   & &__body-wrapper {
     &.body__wrapper.is__scrollload {
       @apply overflow-y-hidden;
-      @apply static;
     }
   }
   & .is__scrollload &-body__y-space {
     @apply absolute;
     @apply right-0;
+    @apply bottom-0;
     @apply w-3;
     @apply overflow-y-scroll;
+    @apply z-20;
 
     .@{grid-prefix-cls}-body__y-scrollbar {
       @apply w-px;
@@ -1058,6 +1046,24 @@
 
     .@{grid-prefix-cls}-body__column {
       @apply ~'py-0.5' px-2;
+      @apply relative;
+
+      &.col__highlight-error {
+        .@{grid-cell-prefix-cls}::after {
+          content: '';
+          position: absolute;
+          @apply border border-solid border-color-error;
+          @apply top-1;
+          @apply bottom-1;
+          @apply left-2;
+          @apply right-2;
+        }
+        &.col__actived {
+          .@{grid-cell-prefix-cls}::after {
+            display: none;
+          }
+        }
+      }
 
       &.col__actived {
         @apply ~'py-0.5' px-2;
@@ -1136,10 +1142,14 @@
       }
     }
 
+    .@{css-prefix}cascader {
+      @apply w-full;
+    }
+
     .@{grid-prefix-cls}-editor {
       @apply w-full;
-      @apply h-7;
-      @apply leading-none;
+      @apply h-full;
+      @apply py-1;
       @apply text-color-text-primary;
 
       .@{input-prefix-cls} {
@@ -1374,5 +1384,91 @@
         }
       }
     }
+  }
+
+  .@{grid-prefix-cls}__body {
+    .tiny-grid-header__column {
+      @apply sticky;
+      /* --tiny-color-fill-8 真实对应 rgba(31, 85, 181, .05) */
+      background-color: var(--tiny-color-fill-8-solid, #f4f6fb);
+    }
+
+    .tiny-grid-header__column:last-child {
+      contain: layout;
+    }
+
+    .tiny-grid-header__column .tiny-grid-thead-partition,
+    .tiny-grid-header__column .tiny-grid-resizable {
+      transform: translateX(calc(50% - 1px));
+    }
+
+    .tiny-grid-custom-footer {
+      @apply w-full;
+      @apply sticky;
+      @apply bottom-0;
+    }
+
+    .tiny-grid-footer__column {
+      @apply sticky;
+      @apply bg-color-bg-1;
+    }
+
+    .@{header-suffix} {
+      @apply relative;
+      min-height: 16px;
+
+      .suffix-icon-1 {
+        @apply absolute;
+        @apply right-3;
+      }
+
+      .suffix-icon-0 {
+        @apply absolute;
+        @apply right-0;
+      }
+    }
+
+    .col__ellipsis {
+      &.is__editable.is__sortable.is__filter {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-7;
+        }
+      }
+
+      &.is__editable.is__sortable:not(.is__filter),
+      &.is__editable.is__filter:not(.is__sortable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply ~'pr-3.5';
+        }
+      }
+
+      &:not(.is__sortable):not(.is__filter) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-2;
+        }
+      }
+
+      &.is__sortable.is__filter:not(.is__editable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          padding-right: 26px;
+        }
+      }
+
+      &.is__sortable:not(.is__filter):not(.is__editable),
+      &.is__filter:not(.is__sortable):not(.is__editable) {
+        .@{header-suffix}.@{cell-tooltip} {
+          @apply pr-3;
+        }
+      }
+    }
+  }
+
+  .sticky-wrapper {
+    @apply sticky;
+    @apply top-0;
+    @apply left-0;
+    @apply overflow-hidden;
+    @apply h-full;
+    max-height: inherit;
   }
 }

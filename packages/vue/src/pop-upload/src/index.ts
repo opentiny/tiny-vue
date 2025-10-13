@@ -41,7 +41,13 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
-    size: String,
+    size: {
+      type: String,
+      default: '',
+      validator(val: string) {
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
+      }
+    },
     data: Object,
     uploadName: String,
     dialogTitle: {

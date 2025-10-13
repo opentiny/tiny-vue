@@ -57,6 +57,7 @@ import {
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 import { on, off } from '@opentiny/utils'
+import { debounce } from '@opentiny/utils'
 
 export const api = [
   'blur',
@@ -268,7 +269,7 @@ const mergeApi = ({
     }),
     handleFocus: handleFocus({ api, emit, state }),
     handleInput: handleInput({ api, emit, nextTick, state }),
-    resizeTextarea: resizeTextarea({ api, parent, vm, state, props }),
+    resizeTextarea: debounce(200, resizeTextarea({ api, parent, vm, state, props })),
     updateIconOffset: updateIconOffset(api),
     calcTextareaHeight: calcTextareaHeight({
       api,
@@ -336,8 +337,7 @@ const initWatch = ({
 
   watch(
     () => props.size,
-    () => nextTick(api.resizeTextarea),
-    { immediate: true }
+    () => nextTick(api.resizeTextarea)
   )
 
   watch(

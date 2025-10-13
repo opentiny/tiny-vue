@@ -3,18 +3,18 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'import-export-export-excel',
-      'name': { 'zh-CN': '表格导出功能', 'en-US': 'Basic Usage' },
-      'desc': {
+      demoId: 'import-export-export-excel',
+      name: { 'zh-CN': '表格导出功能', 'en-US': 'Basic Usage' },
+      desc: {
         'zh-CN': '<p>调用表格的 <code>exportCsv</code> 方法导出表格数据。</p>',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['import-export/export-excel.vue']
+      codeFiles: ['import-export/export-excel.vue']
     },
     {
-      'demoId': 'import-excel',
-      'name': { 'zh-CN': '表格导入功能', 'en-US': 'Import excel' },
-      'desc': {
+      demoId: 'import-excel',
+      name: { 'zh-CN': '表格导入功能', 'en-US': 'Import excel' },
+      desc: {
         'zh-CN': `<p>基于 XLSX 插件进行导入</p>
         <div class="tip custom-block">
           <p>本示例使用的 xlsx 版本为 0.18.2，导入的 excel 表格，表头字段需与表格 field 字段保持一致。</p>
@@ -25,8 +25,8 @@ export default {
         `,
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['import-export/import-excel.vue']
+      codeFiles: ['import-export/import-excel.vue']
     }
   ],
-  apis: [{ 'name': 'grid-import-export', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ name: 'grid-import-export', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

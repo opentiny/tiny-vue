@@ -11,6 +11,7 @@
  */
 
 import IconPromptExclamation from './src/prompt-exclamation'
+import IconAcceptance from './src/acceptance'
 import IconAdd from './src/add'
 import IconAdministrator from './src/administrator'
 import IconAgendaView from './src/agenda-view'
@@ -37,6 +38,10 @@ import IconArrowUp from './src/arrow-up'
 import IconAscending from './src/ascending'
 import IconAssociation from './src/association'
 import IconAttachment from './src/attachment'
+import IconBadgeHotCn from './src/badge-hot-cn'
+import IconBadgeHotEn from './src/badge-hot-en'
+import IconBadgeNewCn from './src/badge-new-cn'
+import IconBadgeNewEn from './src/badge-new-en'
 import IconBarChart from './src/bar-chart'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
@@ -90,6 +95,7 @@ import IconDeltaLeftO from './src/delta-left-o'
 import IconDeltaLeft from './src/delta-left'
 import IconDeltaRightO from './src/delta-right-o'
 import IconDeltaRight from './src/delta-right'
+import IconDelegatedProcessing from './src/delegated-processing'
 import IconDeltaUpO from './src/delta-up-o'
 import IconDeltaUp from './src/delta-up'
 import IconDerive from './src/derive'
@@ -168,7 +174,9 @@ import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
 import IconFolder from './src/folder'
 import IconFolderClosed from './src/folder-closed'
+import IconFolderClosedSolid from './src/folder-closed-solid'
 import IconFolderOpened from './src/folder-opened'
+import IconFolderOpenedSolid from './src/folder-opened-solid'
 import IconFontColor from './src/font-color'
 import IconFontFamily from './src/font-family'
 import IconFontSize from './src/font-size'
@@ -260,6 +268,7 @@ import IconPanelMini from './src/panel-mini'
 import IconPanelNormal from './src/panel-normal'
 import IconPauseCircle from './src/pause-circle'
 import IconPause from './src/pause'
+import IconPersonHistory from './src/person-history'
 import IconPicture from './src/picture'
 import IconPieChart from './src/pie-chart'
 import IconPlusCircle from './src/plus-circle'
@@ -269,6 +278,7 @@ import IconPopup from './src/popup'
 import IconPreChecked from './src/pre-checked'
 import IconPrintPreview from './src/print-preview'
 import IconPushpin from './src/pushpin'
+import IconPushpinSolid from './src/pushpin-solid'
 import IconRadio from './src/radio'
 import IconRadioselected from './src/radioselected'
 import IconReactjs from './src/reactjs'
@@ -370,6 +380,7 @@ import IconText from './src/text'
 import IconTime from './src/time'
 import IconTotal from './src/total'
 import IconTriangleDown from './src/triangle-down'
+import IconTriangleUp from './src/triangle-up'
 import IconUndelete from './src/undelete'
 import IconUnderline from './src/underline'
 import IconUndo from './src/undo'
@@ -455,6 +466,7 @@ import IconMaterial from './src/material'
 import IconMilestone from './src/milestone'
 import IconMinscreenRight from './src/minscreen-right'
 import IconNoData from './src/no-data'
+import IconGridNoData from './src/grid-no-data'
 import IconNoNews from './src/no-news'
 import IconNoPerm from './src/no-perm'
 import IconNoResult from './src/no-result'
@@ -507,7 +519,9 @@ import IconMaintainInspectionRecords from './src/maintain-inspection-records'
 import IconItemPlanningProperties from './src/item-planning-properties'
 import IconMsg from './src/msg'
 import IconOfd from './src/ofd'
+import IconPaymentSlips from './src/payment-slips'
 import IconPendingReview from './src/pending-review'
+import IconPerformance from './src/performance'
 import IconProcessPlanRequirements from './src/process-plan-requirements'
 import IconPurchasePlannedOrder from './src/purchase-planned-order'
 import IconRequirementsPlanning from './src/requirements-planning'
@@ -522,6 +536,8 @@ import IconTotalNumber from './src/total-number'
 import IconTotalWeight from './src/total-weight'
 import IconUnderReview from './src/under-review'
 import IconUnsubmitted from './src/unsubmitted'
+import IconUpAndDownArrowInner from './src/up-and-down-arrow-inner'
+import IconUpAndDownArrowOuter from './src/up-and-down-arrow-outer'
 import IconViewFlowchart from './src/view-flowchart'
 import IconWaitForDeliveryO from './src/wait-for-delivery-o'
 import IconWaitForDelivery from './src/wait-for-delivery'
@@ -536,6 +552,8 @@ import IconLightningLine from './src/lightning-line'
 export {
   IconActivation,
   IconActivation as iconActivation,
+  IconAcceptance,
+  IconAcceptance as iconAcceptance,
   IconGenerating,
   IconGenerating as iconGenerating,
   IconProcessing,
@@ -586,8 +604,12 @@ export {
   IconMsg as iconMsg,
   IconOfd,
   IconOfd as iconOfd,
+  IconPaymentSlips,
+  IconPaymentSlips as iconPaymentSlips,
   IconPendingReview,
   IconPendingReview as iconPendingReview,
+  IconPerformance,
+  IconPerformance as iconPerformance,
   IconProcessPlanRequirements,
   IconProcessPlanRequirements as iconProcessPlanRequirements,
   IconPurchasePlannedOrder,
@@ -616,6 +638,10 @@ export {
   IconUnderReview as iconUnderReview,
   IconUnsubmitted,
   IconUnsubmitted as iconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowInner as iconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
+  IconUpAndDownArrowOuter as iconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconViewFlowchart as iconViewFlowchart,
   IconWaitForDeliveryO,
@@ -748,6 +774,14 @@ export {
   IconAssociation as iconAssociation,
   IconAttachment,
   IconAttachment as iconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotCn as iconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeHotEn as iconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewCn as iconBadgeNewCn,
+  IconBadgeNewEn,
+  IconBadgeNewEn as iconBadgeNewEn,
   IconBarChart,
   IconBarChart as iconBarChart,
   IconBefilter,
@@ -854,6 +888,8 @@ export {
   IconDeltaRightO as iconDeltaRightO,
   IconDeltaRight,
   IconDeltaRight as iconDeltaRight,
+  IconDelegatedProcessing,
+  IconDelegatedProcessing as iconDelegatedProcessing,
   IconDeltaUpO,
   IconDeltaUpO as iconDeltaUpO,
   IconDeltaUp,
@@ -1012,8 +1048,12 @@ export {
   IconFolder as iconFolder,
   IconFolderClosed,
   IconFolderClosed as iconFolderClosed,
+  IconFolderClosedSolid,
+  IconFolderClosedSolid as iconFolderClosedSolid,
   IconFolderOpened,
   IconFolderOpened as iconFolderOpened,
+  IconFolderOpenedSolid,
+  IconFolderOpenedSolid as iconFolderOpenedSolid,
   IconFontColor,
   IconFontColor as iconFontColor,
   IconFontFamily,
@@ -1198,6 +1238,8 @@ export {
   IconPauseCircle as iconPauseCircle,
   IconPause,
   IconPause as iconPause,
+  IconPersonHistory,
+  IconPersonHistory as iconPersonHistory,
   IconPicture,
   IconPicture as iconPicture,
   IconPieChart,
@@ -1216,6 +1258,8 @@ export {
   IconPrintPreview as iconPrintPreview,
   IconPushpin,
   IconPushpin as iconPushpin,
+  IconPushpinSolid,
+  IconPushpinSolid as iconPushpinSolid,
   IconRadio,
   IconRadio as iconRadio,
   IconRadioselected,
@@ -1418,6 +1462,8 @@ export {
   IconTotal as iconTotal,
   IconTriangleDown,
   IconTriangleDown as iconTriangleDown,
+  IconTriangleUp,
+  IconTriangleUp as iconTriangleUp,
   IconUndelete,
   IconUndelete as iconUndelete,
   IconUnderline,
@@ -1520,6 +1566,8 @@ export {
   IconMinscreenRight as iconMinscreenRight,
   IconNoData,
   IconNoData as iconNoData,
+  IconGridNoData,
+  IconGridNoData as iconGridNoData,
   IconNoNews,
   IconNoNews as iconNoNews,
   IconNoPerm,
@@ -1574,6 +1622,7 @@ export {
 
 export default {
   IconActivation,
+  IconAcceptance,
   IconGenerating,
   IconProcessing,
   IconReportSubmission,
@@ -1599,7 +1648,9 @@ export default {
   IconItemPlanningProperties,
   IconMsg,
   IconOfd,
+  IconPaymentSlips,
   IconPendingReview,
+  IconPerformance,
   IconProcessPlanRequirements,
   IconPurchasePlannedOrder,
   IconRequirementsPlanning,
@@ -1614,6 +1665,8 @@ export default {
   IconTotalWeight,
   IconUnderReview,
   IconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconWaitForDeliveryO,
   IconWaitForDelivery,
@@ -1679,6 +1732,10 @@ export default {
   IconAscending,
   IconAssociation,
   IconAttachment,
+  IconBadgeHotCn,
+  IconBadgeHotEn,
+  IconBadgeNewCn,
+  IconBadgeNewEn,
   IconBarChart,
   IconBefilter,
   IconBoat,
@@ -1731,6 +1788,7 @@ export default {
   IconDeltaLeft,
   IconDeltaRightO,
   IconDeltaRight,
+  IconDelegatedProcessing,
   IconDeltaUpO,
   IconDeltaUp,
   IconDerive,
@@ -1810,7 +1868,9 @@ export default {
   IconFlag,
   IconFolder,
   IconFolderClosed,
+  IconFolderClosedSolid,
   IconFolderOpened,
+  IconFolderOpenedSolid,
   IconFontColor,
   IconFontFamily,
   IconFontSize,
@@ -1902,6 +1962,7 @@ export default {
   IconPanelNormal,
   IconPauseCircle,
   IconPause,
+  IconPersonHistory,
   IconPicture,
   IconPieChart,
   IconPlusCircle,
@@ -1911,6 +1972,7 @@ export default {
   IconPreChecked,
   IconPrintPreview,
   IconPushpin,
+  IconPushpinSolid,
   IconRadio,
   IconRadioselected,
   IconReactjs,
@@ -2012,6 +2074,7 @@ export default {
   IconTime,
   IconTotal,
   IconTriangleDown,
+  IconTriangleUp,
   IconUndelete,
   IconUnderline,
   IconUndo,
@@ -2063,6 +2126,7 @@ export default {
   IconMilestone,
   IconMinscreenRight,
   IconNoData,
+  IconGridNoData,
   IconNoNews,
   IconNoPerm,
   IconNoResult,

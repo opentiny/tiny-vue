@@ -14,8 +14,43 @@ import { hasOwn, isNull } from '../type'
 import { getNodeKey } from './util'
 import { Node } from './node'
 
+interface TreeStoreOptions {
+  data: any
+  key?: string
+  props?: Record<string, any>
+  load?: (node: Node, callback: (data: any) => void) => void
+  lazy?: boolean
+  checkStrictly?: boolean
+  defaultCheckedKeys?: any[]
+  defaultExpandedKeys?: any[]
+  autoExpandParent?: boolean
+  afterLoad?: (params: { data: any; init: boolean }) => void
+  filterNodeMethod?: (value: any, data: any, node: Node) => boolean
+  [key: string]: any
+}
+
+// 为Node类型声明安全类型
+type NodeType = any
+type FilterNodeMethodType = (value: any, data: any, node: NodeType) => boolean
+
 export class TreeStore {
-  constructor(options) {
+  currentNode: NodeType | null = null
+  currentNodeKey: any = null
+  nodesMap: Record<string, NodeType> = {}
+  root: NodeType
+  data: any
+  lazy = false
+  load?: (node: NodeType, callback: (data: any) => void) => void
+  afterLoad?: (params: { data: any; init: boolean }) => void
+  props: Record<string, any> = {}
+  filterNodeMethod?: FilterNodeMethodType
+  key = ''
+  defaultCheckedKeys: any[] = []
+  checkStrictly = false
+  defaultExpandedKeys: any[] = []
+  autoExpandParent = true
+
+  constructor(options: TreeStoreOptions) {
     this.currentNode = null
     this.currentNodeKey = null
 
@@ -40,7 +75,7 @@ export class TreeStore {
     }
   }
 
-  getMappingData(data) {
+  getMappingData(data: any) {
     const props = this.props || {}
     const mapping = {}
 
@@ -53,16 +88,18 @@ export class TreeStore {
     return { ...data, ...mapping }
   }
 
-  filter(value) {
+  filter(value: any) {
     const { lazy, filterNodeMethod, getMappingData } = this
 
-    const walkTree = (node) => {
+    const walkTree = (node: NodeType) => {
       const childNodes = node.root ? node.root.childNodes : node.childNodes
 
       childNodes.forEach((child) => {
         // 筛选时需要添加mapping字段，但是不能修改用户的数据
         const mappingData = getMappingData.call(this, child.data)
-        child.visible = filterNodeMethod.call(child, value, mappingData, child)
+        if (filterNodeMethod) {
+          child.visible = filterNodeMethod.call(child, value, mappingData, child)
+        }
 
         walkTree(child)
       })
@@ -81,14 +118,14 @@ export class TreeStore {
         return
       }
       if (node.visible && !node.isLeaf && !lazy) {
-        node.expand()
+        node.expand(null, this.autoExpandParent)
       }
     }
 
     walkTree(this)
   }
 
-  setData(newVal) {
+  setData(newVal: any) {
     if (newVal !== this.root.data) {
       this.root.setData(newVal)
       this._initDefaultCheckedNodes()
@@ -97,7 +134,7 @@ export class TreeStore {
     }
   }
 
-  getNode(data) {
+  getNode(data: any): NodeType | null {
     if (data instanceof Node) {
       return data
     }
@@ -107,17 +144,21 @@ export class TreeStore {
     return this.nodesMap[nodeKey] || null
   }
 
-  insertBefore(data, insertData) {
+  insertBefore(data: any, insertData: any) {
     const refNode = this.getNode(insertData)
-    refNode.parent.insertBefore({ data }, refNode)
+    if (refNode && refNode.parent) {
+      refNode.parent.insertBefore({ data }, refNode)
+    }
   }
 
-  insertAfter(data, insertData) {
+  insertAfter(data: any, insertData: any) {
     const refNode = this.getNode(insertData)
-    refNode.parent.insertAfter({ data }, refNode)
+    if (refNode && refNode.parent) {
+      refNode.parent.insertAfter({ data }, refNode)
+    }
   }
 
-  remove(data, isSaveChildNode, isNode) {
+  remove(data: any, isSaveChildNode?: boolean, isNode?: boolean) {
     const treeNode = isNode ? data : this.getNode(data)
 
     if (treeNode && treeNode.parent) {
@@ -135,7 +176,7 @@ export class TreeStore {
     }
   }
 
-  append(data, parentData, index) {
+  append(data: any, parentData?: any, index?: number) {
     const parentNode = parentData ? this.getNode(parentData) : this.root
 
     if (parentNode) {
@@ -144,7 +185,7 @@ export class TreeStore {
     }
   }
 
-  setDefaultCheckedKey(newValue) {
+  setDefaultCheckedKey(newValue: any[]) {
     if (newValue !== this.defaultCheckedKeys) {
       this.defaultCheckedKeys = newValue
       this._initDefaultCheckedNodes()
@@ -162,7 +203,7 @@ export class TreeStore {
     })
   }
 
-  _initDefaultCheckedNode(node) {
+  _initDefaultCheckedNode(node: NodeType) {
     const defaultCheckedKeys = this.defaultCheckedKeys || []
 
     ~defaultCheckedKeys.indexOf(node.key) && node.setChecked(true, !this.checkStrictly)
@@ -176,7 +217,7 @@ export class TreeStore {
     return this.getHalfCheckedNodes().map((node) => (node || {})[this.key])
   }
 
-  deregisterNode(node) {
+  deregisterNode(node: NodeType) {
     const key = this.key
     if (!key || !node || !node.data) {
       return
@@ -189,7 +230,7 @@ export class TreeStore {
     delete this.nodesMap[node.key]
   }
 
-  registerNode(node) {
+  registerNode(node: NodeType) {
     const key = this.key
     if (!key || !node || !node.data) {
       return
@@ -201,10 +242,10 @@ export class TreeStore {
     }
   }
 
-  getCheckedNodes(leafOnly = false, includeHalfChecked = false, isNode = false) {
-    const checkedNodes = []
+  getCheckedNodes(leafOnly = false, includeHalfChecked = false, isNode = false): any[] {
+    const checkedNodes: any[] = []
 
-    const walkTree = (node) => {
+    const walkTree = (node: NodeType) => {
       const childNodes = node.root ? node.root.childNodes : node.childNodes
 
       childNodes.forEach((child) => {
@@ -223,10 +264,10 @@ export class TreeStore {
     return checkedNodes
   }
 
-  getHalfCheckedNodes() {
-    const nodes = []
+  getHalfCheckedNodes(): any[] {
+    const nodes: any[] = []
 
-    const walkTree = (node) => {
+    const walkTree = (node: NodeType) => {
       const childNodes = node.root ? node.root.childNodes : node.childNodes
 
       childNodes.forEach((child) => {
@@ -243,8 +284,8 @@ export class TreeStore {
     return nodes
   }
 
-  _getAllNodes() {
-    const allNodes = []
+  _getAllNodes(): NodeType[] {
+    const allNodes: NodeType[] = []
     const nodesMap = this.nodesMap
 
     Object.keys(nodesMap).forEach((nodeKey) => {
@@ -254,7 +295,7 @@ export class TreeStore {
     return allNodes
   }
 
-  updateChildren(key, data) {
+  updateChildren(key: string, data: any[]) {
     const node = this.nodesMap[key]
     if (!node) {
       return
@@ -263,7 +304,7 @@ export class TreeStore {
     const childNodes = node.childNodes
 
     for (let i = childNodes.length - 1; i >= 0; i--) {
-      this.remove(childNodes[i].data)
+      this.remove(childNodes[i].data, false, false)
     }
 
     for (let i = 0, len = data.length; i < len; i++) {
@@ -272,7 +313,7 @@ export class TreeStore {
     }
   }
 
-  _setCheckedKeys(key, leafOnly = false, checkedKeys = {}) {
+  _setCheckedKeys(key: string, leafOnly = false, checkedKeys = {}) {
     const nodes = this._getAllNodes().sort((prevNode, nextNode) => nextNode.level - prevNode.level)
     const cache = Object.create(null)
     const keys = Object.keys(checkedKeys)
@@ -303,7 +344,7 @@ export class TreeStore {
         } else if (leafOnly) {
           node.setChecked(false, false)
 
-          const walkTree = (node) => {
+          const walkTree = (node: NodeType) => {
             const childNodes = node.childNodes
 
             childNodes.forEach((child) => {
@@ -321,7 +362,7 @@ export class TreeStore {
     }
   }
 
-  setDefaultExpandedKeys(keys) {
+  setDefaultExpandedKeys(keys: any[]) {
     keys = keys || []
     this.defaultExpandedKeys = keys
 
@@ -331,7 +372,7 @@ export class TreeStore {
     })
   }
 
-  setCheckedKeys(keys, leafOnly = false) {
+  setCheckedKeys(keys: any[], leafOnly = false) {
     this.defaultCheckedKeys = keys
     const checkedKeys = {}
 
@@ -342,7 +383,7 @@ export class TreeStore {
     this._setCheckedKeys(this.key, leafOnly, checkedKeys)
   }
 
-  setCheckedNodes(array, leafOnly = false) {
+  setCheckedNodes(array: any[], leafOnly = false) {
     const key = this.key
     const checkedKeys = {}
 
@@ -353,13 +394,13 @@ export class TreeStore {
     this._setCheckedKeys(key, leafOnly, checkedKeys)
   }
 
-  setChecked(data, checked, deep) {
+  setChecked(data: any, checked: boolean, deep: boolean) {
     const node = this.getNode(data)
 
     node && node.setChecked(!!checked, deep)
   }
 
-  setCurrentNode(currentNode) {
+  setCurrentNode(currentNode: NodeType) {
     const prevNode = this.currentNode
 
     if (prevNode) {
@@ -377,7 +418,7 @@ export class TreeStore {
     return this.currentNode
   }
 
-  setCurrentNodeKey(key) {
+  setCurrentNodeKey(key: any) {
     if (isNull(key)) {
       this.currentNode && (this.currentNode.isCurrent = false)
       this.currentNode = null
@@ -390,20 +431,20 @@ export class TreeStore {
     node && this.setCurrentNode(node)
   }
 
-  setUserCurrentNode(node) {
+  setUserCurrentNode(node: any) {
     const key = node[this.key]
     const currNode = this.nodesMap[key]
 
     this.setCurrentNode(currNode)
   }
 
-  getData(data) {
+  getData(data: any) {
     return (this.getNode(data) || {}).data
   }
 
   getAllData() {
     const children = this.props.children
-    const walkTree = (nodes) => {
+    const walkTree = (nodes: NodeType[]) => {
       return nodes.map((node) => {
         return { ...node.data, [children]: walkTree(node.childNodes) }
       })

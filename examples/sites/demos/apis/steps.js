@@ -31,7 +31,7 @@ export default {
         },
         {
           name: 'content-center',
-          type: 'string',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '使步骤条内容默认居中显示',
@@ -114,6 +114,21 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'node-width'
+        },
+        {
+          name: 'itemStyle',
+          type: 'Object',
+          defaultValue: '{}',
+          meta: {
+            stable: '3.26.0'
+          },
+          desc: {
+            'zh-CN':
+              '步骤条块的内联样式，数据类型为{ [statusName: string]: styleObject },，不同状态可根据key值差异化配置， key值为status字段的值，value值为对应节点的样式对象',
+            'en-US':
+              'Customize the inline style of step blocks, with data type {[statusName: string]: styleObject}. Different states can be configured differently based on key values, where the key value is the value of the status field and the value value is the style object of the corresponding node'
+          },
+          mode: ['mobile-first']
         },
         {
           name: 'line',
@@ -235,6 +250,21 @@ export default {
             'en-US': ''
           },
           mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
+          name: 'icon',
+          type: '',
+          defaultValue: '',
+          meta: {
+            stable: '3.27.0'
+          },
+          desc: {
+            'zh-CN': '单链型圆形节点插槽',
+            'en-US': 'Single chain circular node slot'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-icon',
           mfDemo: ''
         },
         {

@@ -2,7 +2,7 @@
   <div>
     <tiny-button @click="boxVisibility = true" title="弹出 Dialog">弹出 Dialog</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%">
-      <tiny-alert description="内容是 Alert 组件"></tiny-alert>
+      <b>自定义内容</b>
       <template #footer>
         <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyButton, TinyDialogBox, TinyAlert } from '@opentiny/vue'
+import { TinyButton, TinyDialogBox } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
 </script>

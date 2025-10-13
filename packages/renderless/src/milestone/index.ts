@@ -75,10 +75,10 @@ export const getMileIcon =
     if (statusColor) {
       return {
         'background-color': props.solid || status === constants.STATUS_MAP.DOING ? statusColor : '',
-        color: (props.solid 
-          && status !== constants.STATUS_MAP.COMPLETED 
-          || status === constants.STATUS_MAP.DOING)
-          ? '#FFFFFF' : statusColor,
+        color:
+          (props.solid && status !== constants.STATUS_MAP.COMPLETED) || status === constants.STATUS_MAP.DOING
+            ? '#fff'
+            : statusColor,
         'border-color': statusColor,
         boxShadow: 'unset'
       }

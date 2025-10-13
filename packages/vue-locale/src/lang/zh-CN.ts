@@ -10,8 +10,8 @@
  *
  */
 export default {
-  'en-US': '英语',
-  'zh-CN': '中文',
+  'enUS': '英语',
+  'zhCN': '中文',
   'zh-TW': '中国台湾',
   hello: '你好 {name}',
   code: 'zh-CN',
@@ -118,7 +118,7 @@ export default {
       value: '数值'
     },
     colorSelectPanel: {
-      confirm: '选择',
+      confirm: '确定',
       cancel: '取消',
       predefine: '预定义颜色',
       history: '历史记录',
@@ -265,7 +265,7 @@ export default {
       noperm: '茫茫大海，找不到页面',
       weaknet: '网络不给力',
       pcview: '请到PC上查看文件',
-      nodata: '休息一下',
+      nodata: '暂无数据',
       create: '创建',
       provide: 'TINY 开发团队提供',
       nodatamf: '暂无数据',
@@ -283,9 +283,9 @@ export default {
       folder: '文件所在文件夹层数已超过 5 层，将不会上传该文件',
       init: '服务报错，请重试',
       token: '请先进行 EDM 鉴权，获取 token',
-      exceed: '文件大小超过限制（{maxSize}）',
+      exceed: '{fileName} 文件大小超过限制（{maxSize}）',
       largeFile: '文件大小超出限制 2G ！！',
-      fileSize: '文件大小低于限制（{minSize}{sizeUnit}）',
+      fileSize: '{fileName} 文件大小低于限制（{minSize}{sizeUnit}）',
       deleteTip: '按 delete 键可删除',
       downloadFile: '下载文件',
       previewFile: '预览文件',
@@ -747,7 +747,8 @@ export default {
       noSchedule: '暂无日程',
       year: '年',
       month: '月',
-      dateFormat: 'yyyy 年 MM 月'
+      dateFormat: 'yyyy 年 MM 月 dd 日',
+      monthFormat: 'yyyy 年 MM 月'
     },
     selectedBox: {
       select: '已选（%s）',

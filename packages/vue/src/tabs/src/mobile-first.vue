@@ -49,7 +49,7 @@ export default defineComponent({
       vnodes = []
 
       state.items.forEach((item) => {
-        if (item !== state.currentItem) {
+        if (!state.currentItem || item.name !== state.currentItem.name) {
           return
         }
 

@@ -291,10 +291,14 @@
   }
 
   &__icon-operationfaild {
-    fill: #f23030;
+    fill: var(--tv-UploadList-item-fail-text-color);
     margin-right: 8px;
     margin-left: 4px;
     font-size: 16px;
+  }
+
+  &__text-desc {
+    line-height: 30px;
   }
 
   &__item-tooltip {
@@ -392,10 +396,10 @@
       &.is-fail {
         border-style: solid;
         border-color: var(--tv-UploadList-item-fail-text-color);
-        background-color: #fce3e1;
+        background-color: var(--tv-UploadList-item-fail-bg-color);
 
         .@{upload-list-prefix-cls}__item-actions:hover {
-          background-color: #fce3e1;
+          background-color: var(--tv-UploadList-item-fail-bg-color);
 
           & span .tiny-svg {
             fill: var(--tv-UploadList-svg-close-hover-icon-color);
@@ -468,6 +472,7 @@
 
       &:hover {
         opacity: 1;
+        background-color: var(--tv-UploadList-picture-card-item-bg-color-hover);
 
         span {
           display: inline-block;
@@ -516,11 +521,16 @@
       bottom: 16px;
       transform: translateX(-50%);
       font-size: 14px;
-      color: #1476ff;
+      color: var(--tv-UploadList-item-cancel-text-color);
       line-height: 22px;
       letter-spacing: 0;
       white-space: nowrap;
       cursor: pointer;
+
+      &:hover {
+        color: var(--tv-UploadList-item-cancel-text-color-hover);
+        text-decoration: underline;
+      }
     }
   }
 
@@ -635,9 +645,10 @@
       margin-right: 8px;
       border: 1px solid #dfdfdf;
       border-radius: 4px;
+      background-color: var(--tv-UploadList-bg-color);
 
       &:hover {
-        background-color: #f5f6f8;
+        background-color: var(--tv-UploadList-bg-color-hover);
 
         .operate-panel {
           visibility: visible;
@@ -744,7 +755,6 @@
       margin-right: 24px;
       font-size: 12px;
       line-height: 12px;
-      color: #191919;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

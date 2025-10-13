@@ -85,9 +85,15 @@ const onExpandNode = () => {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .demo-mind-map-event {
   width: 100%;
   height: 400px;
+
+  :deep(.map-container) {
+    .map-canvas {
+      background-color: var(--tv-color-bg);
+    }
+  }
 }
 </style>

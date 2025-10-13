@@ -63,12 +63,8 @@
             <div class="file-name">
               <div class="file-name-box">
                 <span :title="file.name">{{
-                  file.name
-                    .split('.')
-                    .filter((item, i, arr) => arr.length - 1 > i || arr.length === 1)
-                    .join('.')
+                  file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name
                 }}</span>
-                <span>.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
               </div>
               <div class="operate-panel">
                 <slot name="operate" :file="file">
@@ -301,11 +297,14 @@
       </li>
     </transition-group>
     <div v-if="reUploadable && state.failUploadFileCount && listType === 'text'" class="tiny-upload-list__text-title">
-      <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-        typeof reUploadTip === 'function'
-          ? reUploadTip(state.failUploadFileCount)
-          : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
-      }}
+      <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />
+      <span class="tiny-upload-list__text-desc">
+        {{
+          typeof reUploadTip === 'function'
+            ? reUploadTip(state.failUploadFileCount)
+            : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
+        }}
+      </span>
       <tiny-button type="text" @click="$emit('ReUploadTotal', files)">{{
         t('ui.fileUpload.reUploadFile')
       }}</tiny-button>
@@ -332,7 +331,7 @@ import {
   iconDownload,
   iconCueL,
   iconRefresh,
-  iconOperationfaild,
+  IconError,
   iconFullscreenLeft,
   iconRight,
   iconPause,
@@ -371,7 +370,7 @@ export default defineComponent({
     IconDownload: iconDownload(),
     IconCueL: iconCueL(),
     IconRefresh: iconRefresh(),
-    IconOperationfaild: iconOperationfaild(),
+    IconOperationfaild: IconError(),
     IconFullscreenLeft: iconFullscreenLeft(),
     IconRight: iconRight(),
     IconPause: iconPause(),

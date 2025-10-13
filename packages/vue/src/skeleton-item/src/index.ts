@@ -1,7 +1,7 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
 
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 export type VariantType = 'image' | 'circle' | 'square'
 export type SizeType = 'large' | 'medium' | 'small'

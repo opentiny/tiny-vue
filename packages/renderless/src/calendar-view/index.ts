@@ -57,18 +57,17 @@ export const handleMouseenter =
   ($event, val) => {
     const tooltip = vm.$refs.tooltip
     tooltip.state.referenceElm = $event.target
-    tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-    tooltip.doDestroy()
 
     state.eventTipContent = val
-    state.eventTipVisible = true
-    setTimeout(tooltip.updatePopper, 20)
+    setTimeout(tooltip.show(), 20)
   }
 
 export const handleMouseleave =
-  ({ state }) =>
+  ({ vm }) =>
   () => {
-    state.eventTipVisible = false
+    const tooltip = vm.$refs.tooltip
+    tooltip.setExpectedState(false)
+    tooltip.debounceClose()
   }
 
 export const isSelectedDate =
@@ -308,8 +307,20 @@ function splitEvent(props, event) {
   return result
 }
 
+export const computedSelectDay =
+  ({ state }) =>
+  (day) => {
+    if (!day || !day.value || day.disabled) return false
+
+    if (state.multiSelect) {
+      return state.selectedDates.includes(day.value)
+    } else {
+      return state.selectedDate === day.value
+    }
+  }
+
 export const selectDay =
-  ({ state, emit }) =>
+  ({ props, state, emit, api }) =>
   (day, i) => {
     if (!day || !day.value || day.disabled) return
 
@@ -324,9 +335,11 @@ export const selectDay =
         state.selectedDates.push(date)
       }
 
+      const dateEvent = dealEvents(props, api, state.selectedDates)
+
       emit('update:modelValue', state.selectedDates)
       emit('selected-date-change', state.selectedDates)
-      emit('date-click', date)
+      emit('date-click', state.selectedDates, dateEvent)
     } else {
       if (day.isNext) {
         const { year, month } = nextMonth(state.activeYear, state.activeMonth)
@@ -344,10 +357,23 @@ export const selectDay =
         day.value.toString().length > 2 ? day.value : `${state.activeYear}-${state.activeMonth}-${day.value}`
       state.showSelectedDateEvents = true
 
+      const dateEvent = dealEvents(props, api, [state.selectedDate])
+
       emit('update:modelValue', state.selectedDate)
-      emit('date-click', state.selectedDate)
+      emit('date-click', state.selectedDate, dateEvent[0])
     }
   }
+
+const dealEvents = (props, api, date) => {
+  return date.map((item) => {
+    let event = api.getEventByTime(item, props._constants.DAY_START_TIME, props._constants.DAY_END_TIME)
+    event.forEach((e) => {
+      delete e.dayArr
+      delete e.dayNumber
+    })
+    return event
+  })
+}
 
 export const getEventByMonth =
   ({ state }) =>
@@ -537,17 +563,24 @@ export const toToday =
   }
 
 export const currentDateChange =
-  ({ state, api }) =>
+  ({ state, api, nextTick }) =>
   (date) => {
     const currentDate = new Date(date)
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth() + 1
+    const day = currentDate.getDate()
 
     state.activeMonth = month
     state.activeYear = year
+
+    // 更新当前日期状态
+    state.currentDate = `${year}-${month}-${day}`
+
     if (state.mode !== 'month') {
-      api.getAllWednesdaysInMonth(currentDate)
-      api.getAllDatesOfCurrWeek(state.monthWednesdays[0])
+      // 对于非月份模式，直接使用传入的日期初始化周历
+      nextTick(() => {
+        api.initWeeklyCalendar(currentDate)
+      })
     }
   }
 

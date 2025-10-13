@@ -4,7 +4,7 @@
 }
 
 /* 以下为 github-markdown-css 包的预制颜色，根据暗色主题再修改 */
-.dark .markdown-body {
+html.dark .markdown-body {
   color-scheme: dark;
   --color-prettylights-syntax-comment: #8b949e;
   --color-prettylights-syntax-constant: #79c0ff;
@@ -97,24 +97,83 @@ body .markdown-body {
 }
 .markdown-body code {
   text-shadow: none !important;
+  font-size: 120%;
+  font-family: Consolas, 'Courier New', monospace !important;
 }
 
-.dark.dark .markdown-body {
+html.dark.dark .markdown-body {
   background-color: #000;
 }
 
-.dark.dark .markdown-body pre {
+html.dark.dark .markdown-body pre {
   background-color: #1a1a1a;
 }
 
-.dark.dark .markdown-body code {
+html.dark.dark .markdown-body code {
   color: var(--tv-color-text);
 }
 
-.dark.dark .markdown-body code .token.operator {
+html.dark.dark .markdown-body code .token.operator {
   background-color: transparent;
 }
 
-.dark.dark .markdown-body code .hljs-string {
-  color: #6f42c1;
+/* 指南中的代码块高亮  */
+html.dark.dark .markdown-body code {
+  &.language-bash {
+    color: #9ecbff;
+    .function {
+      color: #b392f0;
+    }
+  }
+
+  &.language-js,
+  &.language-javascript {
+    color: #e1e4e8;
+    .punctuation {
+      color: #e1e4e8;
+    }
+    .keyword {
+      color: #f97583;
+    }
+    .string {
+      color: #9ecbff;
+    }
+    .function {
+      color: #b392f0;
+    }
+    .literal-property,
+    .property {
+      color: #b392f0;
+    }
+    .operator {
+      color: #e1e4e8;
+    }
+    .constant {
+      color: #e1e4e8;
+    }
+  }
+
+  &.language-html {
+    color: #e1e4e8;
+    .tag {
+      color: #85e89d;
+    }
+    .punctuation {
+      color: #e1e4e8;
+    }
+    .attr-name {
+      color: #b392f0;
+    }
+    .attr-value {
+      color: #9ecbff;
+    }
+    .literal-property,
+    .string-property,
+    .property {
+      color: #b392f0;
+    }
+    .string {
+      color: #9ecbff;
+    }
+  }
 }

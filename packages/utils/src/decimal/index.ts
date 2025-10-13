@@ -17,12 +17,17 @@ export { roundFixed }
 
 const DECIMAL_SEPARATOR = '.'
 
-const asInteger = (number) => {
+/**
+ * 将数字转换为整数表示
+ * @param {string} number - 要转换的数字
+ * @returns {{ value: string | number, exp: number }} 返回值和指数
+ */
+const asInteger = (number: string): { value: string | number; exp: number } => {
   const tokens = number.split(DECIMAL_SEPARATOR)
   const integer = tokens[0]
   const fractional = tokens[1]
-  let value
-  let exp
+  let value: string | number
+  let exp: number
 
   if (fractional) {
     value = parseInt(number.split(DECIMAL_SEPARATOR).join(''), 10)
@@ -42,28 +47,31 @@ const asInteger = (number) => {
   return { value, exp }
 }
 
-const zero = (exp) => {
-  let result
+/**
+ * 生成指定数量的零
+ * @param {number} exp - 零的数量
+ * @returns {string} 返回零字符串
+ */
+const zero = (exp: number): string => {
+  let result: string
 
   if (exp <= 0) {
     result = ''
-  } else if (String.prototype.repeat) {
-    result = '0'.repeat(exp)
   } else {
-    result = ((times) => {
-      const zeros = []
-
-      for (let i = 0; i < times; i++) {
-        zeros.push(0)
-      }
-      return zeros.join('')
-    })(exp)
+    // String.prototype.repeat 总是定义的，所以移除了不必要的条件分支
+    result = '0'.repeat(exp)
   }
 
   return result
 }
 
-const negExp = (str, position) => {
+/**
+ * 处理负指数情况
+ * @param {string} str - 输入字符串
+ * @param {number} position - 位置
+ * @returns {string} 处理后的字符串
+ */
+const negExp = (str: string, position: number): string => {
   position = Math.abs(position)
 
   const offset = position - str.length
@@ -82,9 +90,46 @@ const negExp = (str, position) => {
   return head + sep + tail
 }
 
-const posExp = (str, exp) => String(str + zero(exp))
+/**
+ * 处理正指数情况
+ * @param {string} str - 输入字符串
+ * @param {number} exp - 指数
+ * @returns {string} 处理后的字符串
+ */
+const posExp = (str: string, exp: number): string => String(str + zero(exp))
 
-const format = (num, exp) => (exp >= 0 ? posExp : negExp)(String(num), exp)
+/**
+ * 格式化数字
+ * @param {string | number} num - 数字
+ * @param {number} exp - 指数
+ * @returns {string} 格式化后的字符串
+ */
+const format = (num: string | number, exp: number): string => (exp >= 0 ? posExp : negExp)(String(num), exp)
+
+/**
+ * Decimal 类的接口定义
+ */
+interface IDecimal {
+  internal: string
+  asInt: { value: string | number; exp: number }
+  add: (target: number | string | IDecimal) => IDecimal
+  sub: (target: number | string | IDecimal) => IDecimal
+  mul: (target: number | string | IDecimal) => IDecimal
+  div: (target: number | string | IDecimal) => IDecimal
+  toString: () => string
+  toNumber: () => number
+}
+
+/**
+ * Decimal 类的静态方法接口
+ */
+interface DecimalConstructor extends Function {
+  (num: number | string | IDecimal): IDecimal
+  add: (a: number | string | IDecimal, b: number | string | IDecimal) => IDecimal
+  sub: (a: number | string | IDecimal, b: number | string | IDecimal) => IDecimal
+  mul: (a: number | string | IDecimal, b: number | string | IDecimal) => IDecimal
+  div: (a: number | string | IDecimal, b: number | string | IDecimal) => IDecimal
+}
 
 /**
  * Decimal 类，解决 JS 的计算精度问题。
@@ -105,12 +150,12 @@ const format = (num, exp) => (exp >= 0 ? posExp : negExp)(String(num), exp)
  *     Decimal.div(0.3, 0.1).toNumber()           // 3
  *     new Decimal('0.3').div('0.1').toString()   // "3"
  *
- * @param {Number|String|} num 数字或字符串代表的数字
- * @returns {Number}
+ * @param {Number|String|IDecimal} num 数字或字符串代表的数字
+ * @returns {IDecimal} Decimal实例
  */
-export function Decimal(num) {
-  if (!this || this.constructor !== Decimal) {
-    return new Decimal(num)
+export function Decimal(this: IDecimal | null | undefined, num: number | string | IDecimal): IDecimal {
+  if (!this || !(this instanceof Decimal)) {
+    return new (Decimal as any)(num) as IDecimal
   }
 
   if (num instanceof Decimal) {
@@ -120,44 +165,47 @@ export function Decimal(num) {
   this.internal = String(num)
   this.asInt = asInteger(this.internal)
   this.add = (target) => {
-    const operands = [this, new Decimal(target)]
+    const operands = [this, new (Decimal as any)(target) as IDecimal]
     operands.sort((x, y) => x.asInt.exp - y.asInt.exp)
     const smallest = operands[0].asInt.exp
     const biggest = operands[1].asInt.exp
     const x = Number(format(operands[1].asInt.value, biggest - smallest))
     const y = Number(operands[0].asInt.value)
 
-    return new Decimal(format(String(x + y), smallest))
+    return new (Decimal as any)(format(String(x + y), smallest)) as IDecimal
   }
 
-  this.sub = (target) => new Decimal(this.add(target * -1))
+  this.sub = (target) => new (Decimal as any)(this.add((target as number) * -1)) as IDecimal
   this.mul = (target) => {
-    target = new Decimal(target)
+    target = new (Decimal as any)(target) as IDecimal
     const result = String(this.asInt.value * target.asInt.value)
     const exp = this.asInt.exp + target.asInt.exp
 
-    return new Decimal(format(result, exp))
+    return new (Decimal as any)(format(result, exp)) as IDecimal
   }
 
   this.div = (target) => {
-    target = new Decimal(target)
+    target = new (Decimal as any)(target) as IDecimal
 
     const smallest = Math.min(this.asInt.exp, target.asInt.exp)
     const absSmallest = 10 ** Math.abs(smallest)
-    const x = Decimal.mul(absSmallest, this)
-    const y = Decimal.mul(absSmallest, target)
+    const x = (Decimal as DecimalConstructor).mul(absSmallest, this)
+    const y = (Decimal as DecimalConstructor).mul(absSmallest, target)
 
-    return new Decimal(x / y)
+    return new (Decimal as any)(x.toNumber() / y.toNumber()) as IDecimal
   }
 
   this.toString = () => this.internal
   this.toNumber = () => Number(this.internal)
+
+  return this
 }
 
-Decimal.add = (a, b) => new Decimal(a).add(b)
-Decimal.mul = (a, b) => new Decimal(a).mul(b)
-Decimal.sub = (a, b) => new Decimal(a).sub(b)
-Decimal.div = (a, b) => new Decimal(a).div(b)
+// 将Decimal作为构造函数
+;(Decimal as DecimalConstructor).add = (a, b) => new (Decimal as any)(a).add(b) as IDecimal
+;(Decimal as DecimalConstructor).mul = (a, b) => new (Decimal as any)(a).mul(b) as IDecimal
+;(Decimal as DecimalConstructor).sub = (a, b) => new (Decimal as any)(a).sub(b) as IDecimal
+;(Decimal as DecimalConstructor).div = (a, b) => new (Decimal as any)(a).div(b) as IDecimal
 
 /**
  * 使用定点表示法表示给定数字的字符串，解决 JS 的计算精度问题。
@@ -175,24 +223,39 @@ Decimal.div = (a, b) => new Decimal(a).div(b)
  *     toFixed(-0.0001, 4)     // "-0.0001"
  *     toFixed(-0.0001, 5)     // "-0.00010"
  *
- * @param {Number} num 需精确计算的数字
- * @param {Number} [fraction=0] 浮点数的小数部分，默认0位
- * @returns {String}
+ * @param {number} num 需精确计算的数字
+ * @param {number} [fraction=0] 浮点数的小数部分，默认0位
+ * @returns {string} 格式化后的字符串
  */
-export const toFixed = (num, fraction = 0) => {
+export const toFixed = (num: number, fraction = 0): string => {
   const sign = num < 0 ? '-' : ''
 
   num = Math.abs(num)
 
   const npmPow = num.toString().length < (2 ** 53).toString().length - 1 ? 10 ** fraction : 10 ** (fraction - 1)
-  const result = new Decimal(Math.round(new Decimal(num).mul(npmPow))).div(npmPow).toString()
+  const result = new (Decimal as any)(Math.round(new (Decimal as any)(num).mul(npmPow))).div(npmPow).toString()
 
   const numResult = Number(result)
 
   return numResult ? sign + numResult.toFixed(fraction) : numResult.toFixed(fraction)
 }
 
-const formatInteger = (value, { secondaryGroupSize = 3, groupSize = 0, groupSeparator = ',' }) => {
+/**
+ * 格式化整数部分
+ * @param {string} value 要格式化的值
+ * @param {object} options 格式化选项
+ * @returns {string} 格式化后的字符串
+ */
+interface FormatIntegerOptions {
+  secondaryGroupSize?: number
+  groupSize?: number
+  groupSeparator?: string
+}
+
+const formatInteger = (
+  value: string,
+  { secondaryGroupSize = 3, groupSize = 0, groupSeparator = ',' }: FormatIntegerOptions
+): string => {
   const negative = /^-\d+/.test(value)
   let result = negative ? value.slice(1) : value
   const secSize = secondaryGroupSize || groupSize
@@ -208,8 +271,13 @@ const formatInteger = (value, { secondaryGroupSize = 3, groupSize = 0, groupSepa
   return `${negative ? '-' : ''}${result}`
 }
 
-const reverseString = (str) => {
-  const arr = []
+/**
+ * 反转字符串
+ * @param {string} str 要反转的字符串
+ * @returns {string} 反转后的字符串
+ */
+const reverseString = (str: string): string => {
+  const arr: string[] = []
 
   for (let i = 0; i < str.length; i++) {
     arr.push(str[i])
@@ -218,18 +286,55 @@ const reverseString = (str) => {
   return arr.reverse().join('')
 }
 
-const formatDecimal = (num, { fractionGroupSize = 0, fractionGroupSeparator = '\xA0' }) => {
+/**
+ * 格式化小数部分
+ * @param {string} num 要格式化的小数
+ * @param {object} options 格式化选项
+ * @returns {string} 格式化后的字符串
+ */
+interface FormatDecimalOptions {
+  fractionGroupSize?: number
+  fractionGroupSeparator?: string
+}
+
+const formatDecimal = (
+  num: string,
+  { fractionGroupSize = 0, fractionGroupSeparator = '\xA0' }: FormatDecimalOptions
+): string => {
   const RE = new RegExp(`\\B(?=(\\d{${fractionGroupSize}})+(?!\\d))`, 'g')
 
   return reverseString(reverseString(num).replace(RE, fractionGroupSeparator))
 }
 
-export const formatNumber = (value, format = {}) => {
+/**
+ * 格式化数字的接口
+ */
+interface FormatNumberOptions {
+  fraction?: number
+  rounding?: string
+  prefix?: string
+  decimalSeparator?: string
+  suffix?: string
+  zeroize?: boolean
+  secondaryGroupSize?: number
+  groupSize?: number
+  groupSeparator?: string
+  fractionGroupSize?: number
+  fractionGroupSeparator?: string
+}
+
+/**
+ * 格式化数字
+ * @param {number|string} value 要格式化的数值
+ * @param {FormatNumberOptions} format 格式化选项
+ * @returns {string} 格式化后的字符串
+ */
+export const formatNumber = (value: number | string, format: FormatNumberOptions = {}): string => {
   const { fraction, rounding, prefix = '', decimalSeparator = '.', suffix = '' } = format
   let reslut = getMiniDecimal(value)
 
   if (reslut.isNaN() || !reslut.toString()) {
-    return value
+    return value as string
   }
 
   reslut = roundFixed(reslut.toString(), fraction, rounding)
@@ -246,7 +351,13 @@ export const formatNumber = (value, format = {}) => {
   return `${prefix}${number}${suffix}`
 }
 
-export const recoverNumber = (number, format = {}) => {
+/**
+ * 恢复数字
+ * @param {number|string} number 要恢复的数字
+ * @param {object} format 格式选项
+ * @returns {number} 恢复后的数字
+ */
+export const recoverNumber = (number: number | string, format: FormatNumberOptions = {}): number => {
   const { prefix = '', suffix = '', decimalSeparator = '.' } = format
   let result = number
 

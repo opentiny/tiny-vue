@@ -26,8 +26,12 @@ export const getIsDefault =
 export const getIsDisabled =
   ({ props }) =>
   (year) => {
-    return props.selectionMode.startsWith('year') && typeof props.disabledDate === 'function'
-      ? props.disabledDate(new Date(year, 0, 1, 0))
+    const MONTHS = Array.from({length: 12}, (_, i) => i);
+
+    return typeof props.disabledDate === 'function'
+      ? MONTHS.every(month => 
+          props.disabledDate(new Date(year, month, 1))
+        )
       : false
   }
 

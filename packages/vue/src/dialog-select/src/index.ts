@@ -82,6 +82,10 @@ export default defineComponent({
     mainHeight: {
       type: Number,
       default: 290
+    },
+    lockScroll: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

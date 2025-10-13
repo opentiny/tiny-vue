@@ -10,52 +10,38 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, provide, ref } from 'vue'
-import { ConfigProvider, Modal } from '@opentiny/vue'
+<script setup lang="ts">
+import { onMounted, provide, ref } from 'vue'
+import { TinyConfigProvider, TinyModal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
-import { appData } from './tools'
+import { isSaas } from './const'
+
 import useTheme from './tools/useTheme'
 
-export default defineComponent({
-  name: 'AppVue',
-  props: [],
-  components: {
-    TinyConfigProvider: ConfigProvider,
-    TinyModal: Modal,
-    TinyIconClose: iconClose()
-  },
-  setup() {
-    const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
-    const modalSHow = ref(false)
-    onMounted(() => {
-      // 加载header
-      const common = new window.TDCommon(['#header'], {
-        allowDarkTheme: true,
-        searchConfig: {
-          show: true
-        },
-        menuCollapse: {
-          useCollapse: true, // 启用1024以下隐藏菜单
-          menuId: '#layoutSider'
-        }
-      })
-      common.renderHeader()
-    })
-    const { designConfig, currentThemeKey } = useTheme()
+const modalSHow = ref(false)
+const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
+const tinyIconClose = iconClose()
 
-    provide('showPreview', (url) => {
-      previewUrl.value = url
-      modalSHow.value = true
-    })
-    return {
-      appData,
-      designConfig,
-      currentThemeKey,
-      previewUrl,
-      modalSHow
+onMounted(() => {
+  // 加载header
+  const common = new window.TDCommon(['#header'], {
+    allowDarkTheme: !isSaas,
+    searchConfig: {
+      show: true
+    },
+    menuCollapse: {
+      useCollapse: true, // 启用1024以下隐藏菜单
+      menuId: '#layoutSider'
     }
-  }
+  })
+  common.renderHeader()
+})
+const { designConfig, currentThemeKey } = useTheme()
+
+// 多端的预览图
+provide('showPreview', (url) => {
+  previewUrl.value = url
+  modalSHow.value = true
 })
 </script>
 

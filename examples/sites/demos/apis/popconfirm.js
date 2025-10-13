@@ -162,10 +162,25 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '底部插槽',
-            'en-US': 'default slot'
+            'en-US': 'footer slot'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-footer',
+          mfDemo: ''
+        },
+        {
+          name: 'message',
+          type: '',
+          defaultValue: '',
+          meta: {
+            stable: '3.22.2'
+          },
+          desc: {
+            'zh-CN': '信息插槽',
+            'en-US': 'message slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-message',
           mfDemo: ''
         },
         {

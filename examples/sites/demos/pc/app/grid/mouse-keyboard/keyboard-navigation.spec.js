@@ -4,7 +4,10 @@ test('键盘导航测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   const demo = page.locator('#mouse-keyboard-keyboard-navigation')
   await page.goto('grid-mouse-keyboard#mouse-keyboard-keyboard-navigation')
-
+  await page.setViewportSize({
+    width: 1400,
+    height: 2500
+  })
   await page.getByText('GFD 科技 YX 公司').click()
   await page.waitForTimeout(300)
   await page.locator('body').press('ArrowDown')

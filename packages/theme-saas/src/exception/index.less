@@ -1,0 +1,77 @@
+@import '../custom.less';
+
+@exception-prefix-cls: ~'@{css-prefix}exception';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{exception-prefix-cls} {
+
+  @apply flex;
+  @apply justify-center;
+  @apply items-center;
+  @apply w-full;
+  @apply h-full;
+  @apply bg-transparent;
+  @apply text-center;
+
+  &__body {
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+    @apply justify-center;
+  }
+
+  &__image {
+    @apply mb-4;
+
+    .@{svg-prefix-cls} {
+      @apply w-52;
+      @apply h-40;
+    }
+  }
+
+  &__componentpage-image {
+    @apply mb-2;
+
+    .@{svg-prefix-cls} {
+      width: 120px;
+      height: 92px;
+    }
+  }
+
+  &__description {
+    @apply text-color-text-primary;
+    @apply text-sm;
+    @apply mb-2;
+  }
+
+  &__componentpage {
+    @apply text-xs;
+  }
+
+  &__submessage {
+    @apply text-color-icon-placeholder;
+    @apply text-xs;
+    @apply leading-7;
+    @apply mb-3;
+  }
+
+  &__footer {
+    @apply pt-2;
+  }
+
+  &__actions {
+    @apply mt-4;
+
+    .tiny-button {
+      @apply mx-2;
+    }
+  }
+
+  // 组件页面模式
+  &__component-page {
+    .tiny-exception__image svg {
+      @apply w-24;
+      @apply h-24;
+    }
+  }
+}

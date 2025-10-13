@@ -10,6 +10,6 @@ import { TinyAlert } from '@opentiny/vue'
 
 <style scoped>
 .customClass {
-  background-color: pink;
+  background-color: var(--tv-color-bg-disabled-control-active);
 }
 </style>

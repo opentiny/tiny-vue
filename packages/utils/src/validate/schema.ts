@@ -13,14 +13,26 @@
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
 import { hasOwn, isFunction } from '../type'
 
-function Schema(descriptor, translate) {
+// 添加Schema的接口定义
+interface SchemaType {
+  rules: Record<string, any> | null
+  _messages: Record<string, any>
+  define: (descriptor: Record<string, any>) => void
+  messages: (messages?: Record<string, any>) => Record<string, any>
+  getSeries: (options: any, source: any, source_: any) => Record<string, any>
+  mergeMessage: (options: any) => void
+  validate: (source_: any, o?: any, oc?: Function) => Promise<any>
+  getValidationMethod: (rule: any) => any
+  getType: (rule: any) => string
+}
+
+function Schema(descriptor: Record<string, any>, translate?: any) {
   Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)
   Schema.messages = Schema.getSystemMessage(translate)
   Schema.systemMessages = Schema.messages
-
-  this.rules = null
-  this._messages = Schema.systemMessages
-  this.define(descriptor)
+  ;(this as SchemaType).rules = null
+  ;(this as SchemaType)._messages = Schema.systemMessages
+  ;(this as SchemaType).define(descriptor)
 }
 
 /**
@@ -30,8 +42,8 @@ function Schema(descriptor, translate) {
  */
 const getCompleteFn = (validCallback) => (results) => {
   let idx
-  let errors = []
-  let fields = {}
+  let errors = [] as any
+  let fields = {} as any
 
   function addValid(eror) {
     if (Array.isArray(eror)) {
@@ -147,7 +159,7 @@ const setDataRuleOptions = ({ data, options }) => {
 const getValidateCallback =
   ({ failds, doIt }) =>
   (errs) => {
-    const finalErrors = []
+    const finalErrors = [] as any[]
 
     if (failds && failds.length) {
       finalErrors.push(...failds)
@@ -165,14 +177,14 @@ const getValidateCallback =
  */
 const asyncCallback =
   (options, rule, errorFields, doIt, data) =>
-  (e = []) => {
-    let failds = e
+  (e: any[] | string = []) => {
+    let failds = e as any
     const deep = isDeep(rule, data)
 
     failds = arrayed(failds)
 
     if (!options.suppressWarning && failds.length) {
-      Schema.warning('async-validator:', failds)
+      Schema.warning()
     }
 
     if (failds.length && rule.message) {
@@ -299,7 +311,7 @@ Schema.prototype = {
   validate(source_, o = {}, oc = () => undefined) {
     let source = source_
     let options = o
-    let validCallback = oc
+    let validCallback: Function = oc
     if (typeof options === 'function') {
       validCallback = options
       options = {}
@@ -358,7 +370,7 @@ Schema.prototype = {
     }
 
     if (ruleKeys.length === 1 && ruleKeys[0] === 'required') {
-      return Schema.validators.required
+      return Schema.validators?.required
     }
 
     return Schema.validators[this.getType(rule)] || false
@@ -385,14 +397,16 @@ Schema.register = (type, validator) => {
   Schema.validators[type] = validator
 }
 
-Schema.validators = {}
+Schema.validators = {} as Record<string, any>
 
 Schema.warning = warning
 
-Schema.messages = {}
+Schema.messages = {} as Record<string, any>
 
-Schema.systemMessages = {}
+Schema.systemMessages = {} as Record<string, any>
 
 Schema.getDefaultMessage = () => undefined
+
+Schema.getSystemMessage = () => undefined
 
 export default Schema

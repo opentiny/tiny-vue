@@ -4,7 +4,7 @@ import designSaasConfig from '@opentiny/vue-design-saas'
 import designSMBConfig from '@opentiny/vue-design-smb'
 import { router } from '@/router'
 import { appData } from './appData'
-import { CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, OLD_THEME, themeToolValuesMap } from '../const'
+import { CURRENT_THEME_KEY, DEFAULT_THEME, AURORA_THEME, OLD_THEME, themeToolValuesMap, isSaas } from '../const'
 import glaciers from '@/assets/images/glaciers.png'
 import glaciersIcon from '@/assets/images/glaciers-icon.png'
 
@@ -51,7 +51,7 @@ watch(
 )
 
 const designConfig = computed(() => {
-  if (import.meta.env.VITE_TINY_THEME === 'saas') {
+  if (isSaas) {
     return designSaasConfig
   }
   if (router.currentRoute.value.params.theme === 'smb-theme') {

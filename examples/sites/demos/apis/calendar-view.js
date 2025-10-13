@@ -6,6 +6,18 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'day',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指定日期，配合 year、month 使用',
+            'en-US': 'Specify the date, used with year and month'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
+          mfDemo: 'basic-usage'
+        },
+        {
           name: 'day-times',
           type: 'Array',
           defaultValue: '',
@@ -91,7 +103,7 @@ export default {
         },
         {
           name: 'month',
-          type: 'string',
+          type: 'number',
           defaultValue: '',
           desc: {
             'zh-CN': '日历当前显示月份',
@@ -150,6 +162,20 @@ export default {
           mfDemo: 'basic-usage'
         },
         {
+          name: 'show-tip-time',
+          type: 'Boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '显示日程tips时间',
+            'en-US': 'Show schedule tips time'
+          },
+          meta: {
+            stable: '3.23.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'v-model',
           type: 'String',
           defaultValue: '',
@@ -181,9 +207,10 @@ export default {
             'en-US': 'Should the upper left button be displayed, Default Display'
           },
           meta: {
-            stable: '3.22.0'
+            stable: '3.25.0'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'calendar-mode',
           mfDemo: 'calendar-mode'
         }
       ],
@@ -237,6 +264,19 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'multi-select',
           mfDemo: 'multi-select'
+        },
+        {
+          name: 'date-click',
+          desc: {
+            'zh-CN': '日期点击事件，回调参数为当前点击日期和日程事件',
+            'en-US': 'Date click event, The callback parameters are the current click date and schedule event'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'calendar-event',
+          mfDemo: 'calendar-event',
+          meta: {
+            stable: '3.23.0'
+          }
         },
         {
           name: 'week-change',

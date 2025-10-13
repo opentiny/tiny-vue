@@ -13,7 +13,7 @@
 import { merge, PopupManager, addClass } from '@opentiny/utils'
 
 // todo
-import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
+import type { ISharedRenderlessFunctionParams } from '../types/shared.type'
 import { isServer } from '@opentiny/utils'
 
 let idSeed = 1
@@ -53,7 +53,7 @@ const setWatchFn = ({
 
   watch(
     () => props.visible,
-    (val) => {
+    (val: boolean) => {
       if (val) {
         if (vm._opening) {
           return
@@ -116,7 +116,7 @@ const openFn =
           PopupManager.nextZIndex(),
           props.modalAppendToBody ? undefined : dom,
           props.modalClass,
-          props.modalFade
+          !props.noAnimation
         )
 
         if (props.lockScroll) {
@@ -182,10 +182,10 @@ const closeFn =
  */
 export const usePopup = (options: IPopupInputParams) => {
   const { api, nextTick, onBeforeUnmount, onMounted, props, reactive, toRefs, vm, watch } = options
-  const state = reactive<IPopupState>({
+  const state = reactive({
     opened: false,
     rendered: false
-  })
+  }) as IPopupState
 
   setWatchFn({ onMounted, onBeforeUnmount, watch, vm, api, props, state, nextTick })
 

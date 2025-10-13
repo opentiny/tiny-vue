@@ -1,8 +1,11 @@
 <template>
   <div class="demo-box">
     <tiny-button @click="displayOnly = !displayOnly">display-only/{{ displayOnly }}</tiny-button>
-    <br /><br />
+    <br />
+    <br />
     <p>边框为表单范围</p>
+    <br />
+    <br />
     <tiny-form class="custom-form" :inline="inline" label-position="top" :display-only="displayOnly">
       <tiny-form-item label="label 垂直布局">
         <div>

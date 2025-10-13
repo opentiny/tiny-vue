@@ -131,7 +131,7 @@ const initState = ({ reactive, computed, api, constants, designConfig, props }) 
     enableYearArrow: computed(() => api.computerEnableYearArrow()),
     // tiny 新增
     confirmButtonProps: {
-      plain: true,
+      plain: false,
       type: 'default',
       ...designConfig?.state?.confirmButtonProps
     }

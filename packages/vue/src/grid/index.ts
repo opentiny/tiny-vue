@@ -86,7 +86,7 @@ const getWrapFunc = (name) =>
   function (...args) {
     const tinyTable = this.$refs.tinyTable
     if (tinyTable) {
-      return this.$refs.tinyTable[name].apply(tinyTable, args)
+      return tinyTable[name]?.apply(tinyTable, args)
     }
   }
 
