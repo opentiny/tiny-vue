@@ -580,7 +580,7 @@ export default {
   },
   beforeUnmount() {
     this.integrateChart = null
-    if (this.integrateChart.uninstall) this.integrateChart.uninstall()
+    if (this.integrateChart && this.integrateChart.uninstall) this.integrateChart.uninstall()
     this.watchToPropsEchartOptions.forEach((unwatch) => {
       unwatch && unwatch()
     })
