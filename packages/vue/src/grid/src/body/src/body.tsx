@@ -723,6 +723,8 @@ export default defineComponent({
     const thead = hooks.ref()
     const tbody = hooks.ref()
     const ySpace = hooks.ref()
+    const alignXBar = hooks.ref()
+    const alignYBar = hooks.ref()
 
     hooks.watch(wrapperScrollLeft, (wrapperScrollLeft) => {
       const el = stickyWrapper.value
@@ -746,7 +748,7 @@ export default defineComponent({
     useCellEvent({ table, $table })
     const { normalRows, footerRows } = useCellSpan(vm, props)
 
-    hooks.watch([body, table, thead, tbody, ySpace], () => {
+    hooks.watch([body, table, thead, tbody, ySpace, alignXBar, alignYBar], () => {
       const { elemStore } = $table
 
       elemStore['main-body-wrapper'] = body.value
@@ -754,6 +756,8 @@ export default defineComponent({
       elemStore['main-body-headerList'] = thead.value
       elemStore['main-body-list'] = tbody.value
       elemStore['main-body-ySpace'] = ySpace.value
+      elemStore['main-body-alignXBar'] = alignXBar.value
+      elemStore['main-body-alignYBar'] = alignYBar.value
     })
 
     const bodyClientWidth = hooks.ref(0)
@@ -835,6 +839,8 @@ export default defineComponent({
       thead,
       tbody,
       ySpace,
+      alignXBar,
+      alignYBar,
       normalRows,
       footerRows,
       resetStickyWrapperScrollPos
@@ -861,6 +867,18 @@ export default defineComponent({
           maxHeight: bodyWrapperMaxHeight ? `${bodyWrapperMaxHeight}px` : undefined
         }}>
         {[
+          mouseConfig?.hover
+            ? [
+                <div
+                  ref="alignYBar"
+                  class="tiny-grid-body__hover-align-y-bar"
+                  style={{ height: `${containerScrollHeight}px` }}></div>,
+                <div
+                  ref="alignXBar"
+                  class="tiny-grid-body__hover-align-x-bar"
+                  style={{ width: `${containerScrollWidth}px` }}></div>
+              ]
+            : null,
           <div class="tiny-grid-body__x-space" style={{ width: `${containerScrollWidth}px` }} />,
           <div
             ref="ySpace"
