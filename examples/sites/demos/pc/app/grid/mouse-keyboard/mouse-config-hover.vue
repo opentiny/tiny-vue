@@ -19,7 +19,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
 
 export default {

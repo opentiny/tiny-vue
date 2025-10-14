@@ -3447,7 +3447,9 @@ interface IKeyboardConfig {
       code: `
 interface IMouseConfig {
   // 是否开启左键选中单元格功能（只对 editConfig.mode=cell 有效），默认为 false
-  selected: boolean 
+  selected: boolean
+  // 悬浮是否显示对齐辅助线(3.27.0新增)
+  hover: boolean
 }
       `
     },

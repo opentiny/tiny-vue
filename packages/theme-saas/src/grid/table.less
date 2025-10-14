@@ -270,16 +270,14 @@
 
   // tiny新增滚动条放置表格内
   tbody tr.row__last-visible {
-    @apply relative;
-
     &::after {
       @apply content-[''];
       @apply absolute;
-      @apply bottom-0;
       @apply left-0;
       @apply right-0;
-      @apply bottom-0;
       @apply h-px;
+      top: calc(var(--body-container-scroll-height) - 1px);
+      width: var(--body-container-scroll-width);
       @apply bg-color-border-separator;
       @apply ~'z-[3]';
     }

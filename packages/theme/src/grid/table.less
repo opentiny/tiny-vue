@@ -648,6 +648,70 @@
     }
   }
 
+  &__hover-align {
+    .@{grid-prefix-cls}-body__column:hover {
+      background-color: var(--tv-Grid-bg-color-selected);
+    }
+  }
+
+  // 行列对齐辅助线
+  & &-body__hover-align-y-bar {
+    --after-left-offset: 0;
+
+    display: none;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      height: 100%;
+      border-left: 1px dashed var(--tv-Grid-align-line-border-color);
+    }
+
+    &:after {
+      top: 0;
+      right: 0;
+      content: '';
+      position: absolute;
+      display: block;
+      height: 100%;
+      border-left: 1px dashed var(--tv-Grid-align-line-border-color);
+      left: var(--after-left-offset);
+    }
+  }
+
+  & &-body__hover-align-x-bar {
+    --after-top-offset: 0;
+
+    display: none;
+    z-index: 9;
+    position: absolute;
+    height: 0;
+    top: 0;
+    left: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      border-top: 1px dashed var(--tv-Grid-align-line-border-color);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      border-top: 1px dashed var(--tv-Grid-align-line-border-color);
+      top: var(--after-top-offset);
+    }
+  }
+
   // 树形节点缩进
   & &-tree__indent {
     display: inline-block;

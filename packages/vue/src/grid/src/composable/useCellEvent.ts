@@ -113,8 +113,8 @@ const isOperateMouse = ($table) => {
   )
 }
 
-const hideAlignLines = ($table) => {
-  if (!$table.mouseConfig?.hover) {
+const hideAlignLines = ($table, cell) => {
+  if (!$table.mouseConfig?.hover || cell) {
     return
   }
   const xBar = $table.elemStore['main-body-alignXBar']
@@ -135,13 +135,13 @@ const showAlignLines = ($table, cell) => {
   const yBar = $table.elemStore['main-body-alignYBar']
   if (xBar) {
     xBar.style.display = 'block'
-    xBar.style.top = cell.offsetTop + 'px'
+    xBar.style.top = cell.offsetTop - 1 + 'px'
     xBar.style.setProperty('--after-top-offset', cell.offsetHeight + 'px')
   }
   if (yBar) {
     yBar.style.display = 'block'
-    yBar.style.left = cell.offsetLeft + 'px'
-    yBar.style.setProperty('--after-left-offset', cell.offsetWidth - 1 + 'px')
+    yBar.style.left = cell.offsetLeft - 1 + 'px'
+    yBar.style.setProperty('--after-left-offset', cell.offsetWidth + 'px')
   }
 }
 
@@ -389,7 +389,7 @@ export const useCellEvent = ({ table, $table }) => {
         if (tableListeners['cell-mouseleave']) {
           emitEvent($table, 'cell-mouseleave', [params, e])
         }
-        hideAlignLines($table)
+        hideAlignLines($table, curCell)
       }
     }
 

@@ -862,6 +862,8 @@ export default defineComponent({
           'no-data': isNoData && $table.isShapeTable
         }}
         style={{
+          '--body-container-scroll-height': `${containerScrollHeight}px`,
+          '--body-container-scroll-width': `${containerScrollWidth}px`,
           height: bodyWrapperHeight ? `${bodyWrapperHeight}px` : undefined,
           minHeight: bodyWrapperMinHeight ? `${bodyWrapperMinHeight}px` : undefined,
           maxHeight: bodyWrapperMaxHeight ? `${bodyWrapperMaxHeight}px` : undefined
