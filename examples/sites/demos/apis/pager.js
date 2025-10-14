@@ -98,7 +98,7 @@ export default {
           defaultValue: "'total, prev, pager, next, jumper'",
           desc: {
             'zh-CN':
-              '组件布局，子组件名用英文逗号分隔，子组件类型有 sizes、 prev、 pager、 next、 jumper、 current、 total、 slot',
+              '组件布局，子组件名用英文逗号分隔，子组件类型有 sizes、 prev、 pager、simplest-pager、 next、 jumper、 current、 total、 slot',
             'en-US':
               'Component layout, with sub component names separated by commas; The optional values for this attribute are sizes, preview, pager, next, jumper, current, total, slot.'
           },
@@ -110,8 +110,8 @@ export default {
           type: "'number' | 'simple' | 'complete' | 'fixed' | 'simplest'",
           defaultValue: '',
           desc: {
-            'zh-CN': '设置分页组件显示模式，此属性优先级大于 layout, 3.19.0新增simplest',
-            'en-US': 'Set the display mode of pagination components, which takes priority over layout'
+            'zh-CN': '设置分页组件显示模式, 3.19.0新增simplest',
+            'en-US': 'Set the display mode of pagination components'
           },
           mode: ['pc'],
           pcDemo: 'pager-mode'
