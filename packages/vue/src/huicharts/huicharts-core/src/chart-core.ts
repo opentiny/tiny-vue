@@ -579,8 +579,8 @@ export default {
     this.afterSetOptionOnce && this.afterSetOptionOnce(this.integrateChart.echartsIns)
   },
   beforeUnmount() {
-    this.integrateChart = null
     if (this.integrateChart && this.integrateChart.uninstall) this.integrateChart.uninstall()
+    this.integrateChart = null
     this.watchToPropsEchartOptions.forEach((unwatch) => {
       unwatch && unwatch()
     })
