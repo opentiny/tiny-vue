@@ -727,6 +727,83 @@
     }
   }
 
+  &__hover-align {
+    .@{grid-prefix-cls}-body__column:hover {
+      @apply bg-color-fill-6;
+    }
+    .@{grid-prefix-cls}-body__row:hover {
+      @apply bg-color-fill-6;
+    }
+  }
+
+  // 行列对齐辅助线
+  & &-body__hover-align-y-bar {
+    --after-left-offset: 0;
+
+    display: none;
+    @apply ~'z-[9]';
+    @apply absolute;
+    @apply top-0;
+    @apply left-0;
+
+    &:before {
+      @apply absolute;
+      @apply content-[''];
+      @apply block;
+      @apply h-full;
+      border-left-width: 1px;
+      border-left-style: dashed;
+      @apply border-color-border-focus;
+    }
+
+    &:after {
+      @apply top-0;
+      @apply right-0;
+      @apply content-[''];
+      @apply absolute;
+      @apply block;
+      @apply h-full;
+      border-left-width: 1px;
+      border-left-style: dashed;
+      @apply border-color-border-focus;
+      left: var(--after-left-offset);
+    }
+  }
+
+  & &-body__hover-align-x-bar {
+    --after-top-offset: 0;
+
+    display: none;
+    @apply ~'z-[9]';
+    @apply absolute;
+    @apply h-0;
+    @apply top-0;
+    @apply left-0;
+
+    &:before {
+      @apply absolute;
+      @apply content-[''];
+      @apply block;
+      @apply w-full;
+      border-top-width: 1px;
+      border-top-style: dashed;
+      @apply border-color-border-focus;
+    }
+
+    &:after {
+      @apply top-0;
+      @apply right-0;
+      @apply content-[''];
+      @apply absolute;
+      @apply block;
+      @apply w-full;
+      border-top-width: 1px;
+      border-top-style: dashed;
+      @apply border-color-border-focus;
+      top: var(--after-top-offset);
+    }
+  }
+
   // 树形节点
   & &-tree__indent {
     @apply inline-block;

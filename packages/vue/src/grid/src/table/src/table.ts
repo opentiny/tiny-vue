@@ -874,6 +874,7 @@ export default defineComponent({
           'tiny-grid__group-saas': isThemeSaas && isGroup,
           'tiny-grid__border-vertical': borderVertical,
           'tiny-grid__checked': mouseConfig.checked,
+          'tiny-grid__hover-align': mouseConfig.hover,
           'mark-insert': editConfig && editConfig.markInsert,
           'edit__no-border': editConfig && editConfig.showBorder === false,
           'is__loading': loading,
