@@ -75,6 +75,10 @@ export const pickerProps = {
     type: Boolean,
     default: true
   },
+  popperOptions: {
+    type: Object,
+    default: () => ({})
+  },
   align: {
     type: String,
     default: 'left'
