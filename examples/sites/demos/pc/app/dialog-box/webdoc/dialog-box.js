@@ -298,7 +298,7 @@ export default {
       demoId: 'before-close',
       name: {
         'zh-CN': '关闭前拦截',
-        'en-US': 'bofore close blocking'
+        'en-US': 'before close blocking'
       },
       desc: {
         'zh-CN': `
