@@ -31,7 +31,7 @@ export default {
     return {
       radio: '禁用',
       radio1: '6',
-      radio2: '1',
+      radio2: '3',
       dataArr: [
         { lable: '3', value: '备选项 1' },
         { lable: '6', value: '备选项 2' },
