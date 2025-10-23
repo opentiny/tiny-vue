@@ -31,24 +31,24 @@ const box1Ref = ref()
 const box2Ref = ref()
 
 function beforeCloseProp(type) {
-  // 模拟异步校验，是否需要关闭
+  // 模拟异步校验，是否需要手动关闭
   setTimeout(() => {
     if (Math.random() > 0.5) {
-      box1Ref.value.hide(type)
+      box1Ref.value.hide(type) // 手动关闭，使用 box1.value = false 同样效果
     } else {
-      Modal.alert('已拦截关闭')
+      Modal.alert('随机值过小，校验失败')
     }
   }, 1000)
 
   return false // 拦截关闭
 }
 function onBeforeClose(event, hideFn) {
-  // 模拟异步校验，是否需要关闭
+  // 模拟异步校验，是否需要手动关闭
   setTimeout(() => {
     if (Math.random() > 0.5) {
-      hideFn()
+      hideFn() // 手动关闭，使用 box2.value = false 同样效果
     } else {
-      Modal.alert('已拦截关闭')
+      Modal.alert('随机值过小，校验失败')
     }
   }, 1000)
 
