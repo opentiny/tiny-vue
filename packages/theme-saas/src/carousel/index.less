@@ -23,8 +23,8 @@
       @apply outline-0;
       @apply p-0;
       @apply m-0;
-      @apply h-8;
-      @apply w-8;
+      @apply h-2;
+      @apply w-2;
       @apply cursor-pointer;
       @apply duration-300;
       @apply rounded-full;
@@ -83,29 +83,27 @@
 
   & &__indicators {
     @apply absolute;
-    @apply w-full;
     @apply list-none;
     @apply bottom-0;
     @apply ~'left-1/2';
     @apply ~'-translate-x-2/4';
-    @apply m-0;
+    @apply my-4;
     @apply py-0 px-1;
     @apply ~'z-[2]';
-    @apply h-12;
+    @apply h-2;
 
     .@{carousel-prefix-cls}__indicator {
       @apply inline-block;
-      @apply ~'h-4.5';
       @apply bg-transparent;
-      @apply ~'pt-1.5' px-0 pb-2;
-      @apply my-4 mx-1;
       @apply cursor-pointer;
+      @apply mr-3;
 
       .@{carousel-prefix-cls}__button {
         @apply block;
-        @apply w-10;
-        @apply h-1;
-        @apply bg-white bg-opacity-30;
+        @apply w-2;
+        @apply h-2;
+        @apply rounded;
+        background-color: #e6e6e6;
         @apply border-none;
         @apply outline-0;
         @apply p-0;
@@ -115,11 +113,13 @@
       }
 
       &:hover button {
-        @apply bg-white bg-opacity-70;
+        @apply bg-white bg-opacity-60;
+        background-color: #e6e6e6;
       }
 
       &.is-active button {
-        @apply bg-color-bg-1;
+        @apply w-3;
+        @apply bg-color-text-secondary;
       }
     }
 
@@ -128,7 +128,6 @@
       @apply static;
       @apply transform-none;
       @apply bg-transparent;
-      @apply mt-px;
 
       .@{carousel-prefix-cls}__button {
         @apply bg-color-border;
@@ -136,10 +135,13 @@
 
       .@{carousel-prefix-cls}__indicator {
         &:hover button {
+          @apply bg-white bg-opacity-60;
+          background-color: #e6e6e6;
         }
 
         &.is-active button {
-          @apply bg-color-text-primary;
+          @apply w-3;
+          @apply bg-color-text-secondary;
         }
       }
     }
@@ -163,7 +165,6 @@
     &.@{carousel-prefix-cls}__indicators-title {
       @apply left-auto;
       @apply right-3;
-      @apply bottom-1;
       @apply transform-none;
       @apply bg-transparent;
     }
@@ -183,7 +184,7 @@
       .@{carousel-prefix-cls}__indicator {
         @apply block;
         @apply h-auto;
-        @apply my-1 mx-0;
+        @apply mb-3 mx-0;
         @apply p-0;
 
         &:first-child {
@@ -192,11 +193,22 @@
 
         &:last-child {
           @apply pr-0;
+          @apply mb-0;
+        }
+
+        &:hover button {
+          @apply bg-white bg-opacity-60;
+          background-color: #e6e6e6;
+        }
+
+        &.is-active button {
+          @apply w-3;
+          @apply bg-color-text-secondary;
         }
 
         .@{carousel-prefix-cls}__button {
-          @apply h-10;
-          @apply w-1;
+          @apply h-2;
+          @apply rounded;
         }
       }
     }

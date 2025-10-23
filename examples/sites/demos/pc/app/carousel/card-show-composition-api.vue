@@ -172,6 +172,7 @@ const disableStatus = () => {
 /deep/ .tiny-button.tiny-button--text.tiny-button.is-only-icon {
   font-size: 16px;
   border: none;
+  height: auto;
   .tiny-svg {
     fill: #808080;
   }
