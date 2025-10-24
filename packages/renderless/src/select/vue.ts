@@ -242,6 +242,9 @@ const initState = ({
         : state.selected
     ),
     displayOnlyContent: computed(() => {
+      if (vm.$slots.reference) {
+        return ''
+      }
       if (props.multiple) {
         if (Array.isArray(state.selected)) {
           // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
