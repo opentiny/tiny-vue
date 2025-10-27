@@ -44,7 +44,7 @@ export const useRuleGroup = (props: RuleGroupProps) => {
     ruleGroupProp && 'combinator' in ruleGroupProp
       ? ruleGroupProp.combinator
       : !ruleGroupProp
-        ? combinatorProp ?? firstCombinator
+        ? (combinatorProp ?? firstCombinator)
         : firstCombinator
 
   if (!independentCombinators) {
@@ -109,7 +109,7 @@ export const useRuleGroup = (props: RuleGroupProps) => {
   }
 
   const addGroup = (_event?: any, context?: any) => {
-    if (!disabled) {
+    if (!disabled && path.length <= schema.groupLimit) {
       const newGroup = createRuleGroup()
       onGroupAdd(newGroup, path, context)
     }
@@ -135,7 +135,7 @@ export const useRuleGroup = (props: RuleGroupProps) => {
   const validationResult = validationMap[id ?? /* istanbul ignore next */ '']
   const validationClassName = getValidationClassNames(validationResult)
   const combinatorBasedClassName = useMemo(
-    () => (independentCombinators ? null : getOption(combinators, combinator)?.className ?? ''),
+    () => (independentCombinators ? null : (getOption(combinators, combinator)?.className ?? '')),
     [combinator, combinators, independentCombinators]
   )
 

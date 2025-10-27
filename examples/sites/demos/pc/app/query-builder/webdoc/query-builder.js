@@ -55,6 +55,20 @@ export default {
       codeFiles: ['max-height.vue']
     },
     {
+      demoId: 'handle',
+      name: {
+        'zh-CN': '显示与禁用设置',
+        'en-US': 'Display and Disable Settings'
+      },
+      desc: {
+        'zh-CN':
+          '添加 <code>addNewRule</code> 属性是否显示新增条件，添加 <code>addNewGroup</code> 属性是否显示新增子条件组，添加 <code>addNewRuleDisable</code> 属性是否禁用新增规则，添加 <code>addNewGroupDisable</code> 属性是否禁用新增分组，<code>groupLimit</code> 属性设置新增子条件组的最大数量。',
+        'en-US':
+          'Add <code>addNewRule</code> property to show new condition, add <code>addNewGroup</code> property to show new sub-condition group, add <code>addNewRuleDisable</code> property to disable new rule, add <code>addNewGroupDisable</code> property to disable new group, <code>groupLimit</code> property to set the maximum number of new sub-condition groups.'
+      },
+      codeFiles: ['handle.vue']
+    },
+    {
       demoId: 'sub-component-param',
       name: {
         'zh-CN': '子组件传参',

@@ -98,6 +98,26 @@
     fill: currentColor;
   }
 
+  .tiny-button.tiny-button--text {
+    &.is-icon {
+      color: #0067D1;
+      > svg {
+        fill: currentColor;
+      }
+      &:hover {
+        @apply text-color-icon-hover;
+      }
+    }
+  }
+
+  .tiny-button.tiny-button--text.is-disabled.is-icon {
+    > svg,
+    > span {
+      color: rgba(181, 187, 193, 50%);
+      fill: rgba(181, 187, 193, 50%);
+    }
+  }
+
   .tiny-button.query-builder-button {
     & > .btn-icon {
       font-size: 16px;
@@ -110,6 +130,7 @@
       @apply text-color-icon-tertiary;
     }
 
+    &:hover,
     &:hover > .btn-icon,
     &:hover > .btn-font {
       @apply text-color-icon-hover;
