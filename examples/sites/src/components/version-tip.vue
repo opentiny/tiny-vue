@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
+import { type PropType } from '@opentiny/vue-common'
 import { defineComponent, computed } from 'vue'
 import { Tag as TinyTag, Alert as TinyAlert, Tooltip as TinyTooltip } from '@opentiny/vue'
 import { getWord } from '@/tools'

@@ -45,6 +45,11 @@
       flex: 1;
     }
 
+    &-deg {
+      display: flex;
+      justify-content: end;
+    }
+
     &-hex {
       display: flex;
       flex-direction: row;
@@ -171,6 +176,33 @@
           border-radius: 50%;
           transform: translate(-50%, -50%);
         }
+      }
+    }
+  }
+
+  &__linear-gradient {
+    position: relative;
+    width: 85%;
+    height: 12px;
+    border-radius: 12px;
+
+    &__thumb {
+      position: absolute;
+      top: -2px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+
+      &-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }

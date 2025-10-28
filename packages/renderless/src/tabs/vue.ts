@@ -62,7 +62,8 @@ const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' |
     direction: '',
     expandPanesWidth: '',
     activeIndex: 1,
-    separator: props.separator
+    separator: props.separator,
+    headerOnly: props.headerOnly
   }) as ITabsState
 
 const initWatcher = ({

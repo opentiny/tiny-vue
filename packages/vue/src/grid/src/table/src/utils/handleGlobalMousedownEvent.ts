@@ -22,6 +22,8 @@
  * SOFTWARE.
  *
  */
+import { getActualTarget } from '@opentiny/utils'
+
 export function handleGlobalMousedownOnFilterWrapper({ $el, _vm, event, filterStore, filterWrapper }) {
   if (filterWrapper) {
     if (_vm.getEventTargetNode(event, $el, 'tiny-grid-filter-wrapper').flag) {
@@ -77,12 +79,13 @@ export function handleGlobalIsClear({ $el, _vm, actived, editConfig, event, isCl
 
 export function handleGlobalClearActived({ $el, _vm, event, isClear }) {
   const tableContent = _vm.$refs.tableBody?.$refs.table
+  const actualTarget = getActualTarget(event)
   // 如果点击了当前表格之外
   if (
     isClear ||
     !_vm.getEventTargetNode(event, $el).flag ||
-    (_vm.$refs.tableHeader && _vm.$refs.tableHeader.$el.contains(event.target)) ||
-    (tableContent && !tableContent.contains(event.target))
+    (_vm.$refs.tableHeader && _vm.$refs.tableHeader.$el.contains(actualTarget)) ||
+    (tableContent && !tableContent.contains(actualTarget))
   ) {
     setTimeout(() => _vm.clearActived(event))
   }

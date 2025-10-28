@@ -295,6 +295,22 @@ export default {
       codeFiles: ['open-close-events.vue']
     },
     {
+      demoId: 'before-close',
+      name: {
+        'zh-CN': '关闭前拦截',
+        'en-US': 'before close blocking'
+      },
+      desc: {
+        'zh-CN': `
+          可通过设置属性<code>before-close</code>,设置对话框关闭前时触发的拦截函数。
+          也可以通过绑定事件<code>before-close</code>,但它们的用法有细微差异，详见下面示例`,
+        'en-US': `
+          You can set the <code>before-close</code> property to define a function that triggers before the dialog box closes.
+          You can also bind the <code>before-close</code> event, but their usage differs slightly. See the example below.`
+      },
+      codeFiles: ['before-close.vue']
+    },
+    {
       demoId: 'transition-effect',
       name: {
         'zh-CN': '启用弹出动效',

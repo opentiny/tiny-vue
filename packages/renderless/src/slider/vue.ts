@@ -204,6 +204,13 @@ export const renderless = (
       api.setActiveButtonValue(value)
     }
   )
+  watch(
+    () => props.vertical,
+    () => {
+      api.setBarStyle()
+      api.setButtonStyle()
+    }
+  )
 
   watch(
     () => state.leftBtnValue,

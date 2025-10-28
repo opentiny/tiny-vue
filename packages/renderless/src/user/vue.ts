@@ -64,7 +64,7 @@ export const renderless = (
     suggestUser: suggestUser(api),
     cacheUser: cacheUser({ api, props, service: $service, state }),
     initUser: initUser({ api, props, state }),
-    getUsers: getUsers({ api, props, state }),
+    getUsers: getUsers({ api, props, state, emit }),
     setSelected: setSelected({ api, props, state }),
     searchMethod: searchMethod({ api, props, state, emit }),
     userChange: userChange({ api, emit, props, state, dispatch, constants }),

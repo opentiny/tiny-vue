@@ -7,43 +7,32 @@ export const renderless = (props, { reactive, inject, computed, onMounted, onBef
     navItems: computed(() => tabs.state.items),
     currentNav: computed(() => tabs.state.navs[state.currentIndex]),
     currentIndex: computed(() =>
-      tabs.state.navs.findIndex((item) => tabs.state.currentItem && tabs.state.currentItem.name === item.name)
+      tabs.state.navs.findIndex((item) => tabs.state.cacheCurrentItem && tabs.state.cacheCurrentItem.name === item.name)
     ),
     currentWidth: 0,
     currentPosition: 0
   })
 
-  let rafId, observer
+  let observer
 
   onMounted(() => {
     observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'attributes') {
-          if (rafId) {
-            cancelAnimationFrame(rafId)
-          }
-
-          rafId = requestAnimationFrame(() => {
-            const nav = state.currentNav
-
-            state.currentWidth = (nav && nav.$el.offsetWidth) || 0
-            state.currentPosition = (nav && nav.$el.offsetLeft) || 0
-          })
-        }
-      }
+      const nav = state.currentNav
+      state.currentWidth = (nav && nav.$el.offsetWidth) || 0
+      state.currentPosition = (nav && nav.$el.offsetLeft) || 0
     })
 
     observer.observe(vm.$el, { attributes: true, subtree: true })
   })
 
   onBeforeUnmount(() => {
-    if (rafId) {
-      cancelAnimationFrame(rafId)
-    }
-
     observer.disconnect()
     observer = null
   })
 
-  return { state }
+  Object.assign(api, {
+    state
+  })
+
+  return api
 }

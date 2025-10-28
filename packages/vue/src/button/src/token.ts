@@ -1,7 +1,7 @@
 export const classes = {
   'button':
     'inline-block text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms] active:transition-all active:scale-[0.95] active:ease-[cubic-bezier(0.33,0,0.67,1)]',
-  'button-base-width': 'sm:max-w-[theme(spacing.36)]',
+  // 'button-base-width': 'sm:max-w-[theme(spacing.36)]',
   'size-default': 'h-10 text-sm sm:h-7',
   'size-medium': 'h-10 text-sm sm:h-8',
   'size-small': 'h-8 text-sm sm:h-7',
@@ -48,7 +48,7 @@ export const classes = {
   'no-round': 'rounded',
   'is-round': 'rounded-full',
   'is-border': 'border-0.5 sm:border',
-  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-2 pr-2 leading-5',
+  'no-circle': 'sm:min-w-[theme(spacing.18)] pl-2 pr-2 leading-5.5',
   'is-circle': 'sm:min-w-[theme(spacing.18)] sm:rounded-full sm:pl-2 sm:pr-2',
   'button-icon': '-mt-0.5 sm:text-base fill-current',
   'button-icon-default': 'text-color-icon-primary hover:text-color-icon-hover active:text-color-icon-active',

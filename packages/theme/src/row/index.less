@@ -12,13 +12,13 @@
 
 @import '../mixins/common.less';
 @import '../custom.less';
-@import '../grid-system/index.less';
 
 @row-prefix-cls: ~'@{css-prefix}row';
 
 .@{row-prefix-cls} {
   width: 100%;
   .clearfix();
+  @import '../grid-system/index.less';
 
   &.row-flex {
     display: flex;

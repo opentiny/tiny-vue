@@ -1,5 +1,5 @@
 <template>
-  <tiny-calendar-view :events="eventslist" :year="2023" :month="5"></tiny-calendar-view>
+  <tiny-calendar-view :events="eventslist" :year="2023" :month="5" :day="15"></tiny-calendar-view>
 </template>
 
 <script setup lang="ts">

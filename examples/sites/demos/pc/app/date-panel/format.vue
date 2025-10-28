@@ -9,13 +9,23 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import { TinyDatePanel, TinyDateRange, TinyMonthRange } from '@opentiny/vue'
 
-const value = ref('2025/01/15')
-const value1 = ref(['2025/01/15', '2025/02/15'])
-const value2 = ref(['2024/03', '2025/02'])
+export default {
+  components: {
+    TinyDatePanel,
+    TinyDateRange,
+    TinyMonthRange
+  },
+  data() {
+    return {
+      value: '2025/01/15',
+      value1: ['2025/01/15', '2025/02/15'],
+      value2: ['2024/03', '2025/02']
+    }
+  }
+}
 </script>
 
 <style scoped lang="less">

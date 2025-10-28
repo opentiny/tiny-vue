@@ -307,16 +307,17 @@ function splitEvent(props, event) {
   return result
 }
 
-export const computedSelectDay = ({ state }) =>
-(day) => {
-  if (!day || !day.value || day.disabled) return false
+export const computedSelectDay =
+  ({ state }) =>
+  (day) => {
+    if (!day || !day.value || day.disabled) return false
 
-  if (state.multiSelect) { 
-    return state.selectedDates.includes(day.value)
-  } else{
-    return state.selectedDate === day.value
+    if (state.multiSelect) {
+      return state.selectedDates.includes(day.value)
+    } else {
+      return state.selectedDate === day.value
+    }
   }
-}
 
 export const selectDay =
   ({ props, state, emit, api }) =>
@@ -355,7 +356,7 @@ export const selectDay =
       state.selectedDate =
         day.value.toString().length > 2 ? day.value : `${state.activeYear}-${state.activeMonth}-${day.value}`
       state.showSelectedDateEvents = true
-      
+
       const dateEvent = dealEvents(props, api, [state.selectedDate])
 
       emit('update:modelValue', state.selectedDate)
@@ -364,15 +365,14 @@ export const selectDay =
   }
 
 const dealEvents = (props, api, date) => {
-  return date.map(item => {
+  return date.map((item) => {
     let event = api.getEventByTime(item, props._constants.DAY_START_TIME, props._constants.DAY_END_TIME)
-    event.forEach(e => {
-      delete e.dayArr;
-      delete e.dayNumber;
-    });
+    event.forEach((e) => {
+      delete e.dayArr
+      delete e.dayNumber
+    })
     return event
   })
-  
 }
 
 export const getEventByMonth =
@@ -563,17 +563,24 @@ export const toToday =
   }
 
 export const currentDateChange =
-  ({ state, api }) =>
+  ({ state, api, nextTick }) =>
   (date) => {
     const currentDate = new Date(date)
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth() + 1
+    const day = currentDate.getDate()
 
     state.activeMonth = month
     state.activeYear = year
+
+    // 更新当前日期状态
+    state.currentDate = `${year}-${month}-${day}`
+
     if (state.mode !== 'month') {
-      api.getAllWednesdaysInMonth(currentDate)
-      api.getAllDatesOfCurrWeek(state.monthWednesdays[0])
+      // 对于非月份模式，直接使用传入的日期初始化周历
+      nextTick(() => {
+        api.initWeeklyCalendar(currentDate)
+      })
     }
   }
 

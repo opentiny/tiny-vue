@@ -39,7 +39,8 @@ export const renderless = (props, hooks, { vm, emit, nextTick }) => {
   const state = reactive({
     items: [],
     navs: [],
-    currentItem: computed(() => state.items.find((item) => item.selected)),
+    currentItem: null,
+    cacheCurrentItem: computed(() => state.items.find((item) => item.selected)),
     key: computed(() => (state.currentItem ? state.currentItem.name : random())),
     separator: props.separator,
     swipeable: computed(() => api.computedSwipeable()),
@@ -93,6 +94,7 @@ export const renderless = (props, hooks, { vm, emit, nextTick }) => {
   onMounted(() => {
     // 在 vue2 类似 tabSwipe0 这些动态的 ref 只能在 nextTick 中拿到
     nextTick(() => api.observeTabSwipeSize())
+    state.currentItem = state.cacheCurrentItem
     props.activeName && api.scrollTo(props.activeName)
     props.modelValue && api.scrollTo(props.modelValue)
   })

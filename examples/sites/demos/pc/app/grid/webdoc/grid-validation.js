@@ -124,6 +124,15 @@ export default {
         'en-US': ''
       },
       codeFiles: ['validation/valid-config.vue']
+    },
+    {
+      demoId: 'highlight-error',
+      name: { 'zh-CN': '高亮所有检验错误', 'en-US': '' },
+      desc: {
+        'zh-CN': `<p> （该特性在试验阶段） 配置 <code>validConfig.highlightError</code> 为 <code>true</code> 高亮所有检验错误。</p>\n`,
+        'en-US': ''
+      },
+      codeFiles: ['validation/highlight-error.vue']
     }
   ],
   apis: [{ name: 'grid-validation', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

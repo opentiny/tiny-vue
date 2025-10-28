@@ -19,7 +19,8 @@ test('基本用法', async ({ page }) => {
 
   // 消息提示
   await page.getByRole('button', { name: '消息提示' }).click()
-  await expect(content.nth(3)).toHaveText(/简单的消息/)
+  const info = page.locator('div')
+  await expect(info.filter({ hasText: '简单的消息' }).nth(1)).toHaveText(/简单的/)
 
   // 打开弹窗 1
   await page.getByRole('button', { name: '打开弹窗 1' }).click()

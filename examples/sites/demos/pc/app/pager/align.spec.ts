@@ -7,7 +7,12 @@ test('对齐方式', async ({ page }) => {
   const demo = page.locator('#align')
   const pager = demo.locator('.tiny-pager')
 
-  await expect(pager.first()).toHaveCSS('text-align', 'left')
-  await expect(pager.nth(1)).toHaveCSS('text-align', 'center')
-  await expect(pager.nth(2)).toHaveCSS('text-align', 'right')
+  await expect(pager).toHaveCSS('text-align', 'left')
+
+  await page.click('text=center')
+  await expect(pager).toHaveCSS('text-align', 'center')
+  await page.click('text=right')
+  await expect(pager).toHaveCSS('text-align', 'right')
+  await page.click('text=left')
+  await expect(pager).toHaveCSS('text-align', 'left')
 })

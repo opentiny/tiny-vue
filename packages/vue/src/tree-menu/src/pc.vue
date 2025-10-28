@@ -31,6 +31,7 @@
       :placeholder="placeholder || t('ui.treeMenu.placeholder')"
       :prefix-icon="searchIcon"
       :clearable="state.clearable"
+      @input="inputChange"
     />
     <tiny-tree
       ref="tree"
@@ -114,6 +115,7 @@ export default defineComponent({
   emits: [
     'change',
     'current-change',
+    'input-change',
     'node-drag-start',
     'node-drag-enter',
     'node-drag-over',

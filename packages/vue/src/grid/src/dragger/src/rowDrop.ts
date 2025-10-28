@@ -25,7 +25,6 @@
 import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
-import { isVue2 } from '@opentiny/vue-common'
 
 export const createHandlerOnEnd = ({ _vm, refresh }) => {
   return (event) => {
@@ -79,8 +78,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
 
     // 如果变动了树层级，需要刷新数据
     _vm.$emit('row-drop-end', event, _vm, _vm.scrollYLoad ? tableTreeData : _vm.tableFullData)
-    // 因为vue2劫持了数组方法，所以在data通过splice改变数组时（数组长度不变）会触发更新，但是vue3是浅层响应，所以需要通过传递数据让表格更新
-    refresh && _vm.data && !isVue2 && _vm.refreshData(_vm.data)
+    refresh && _vm.data && _vm.refreshData(_vm.data)
   }
 }
 

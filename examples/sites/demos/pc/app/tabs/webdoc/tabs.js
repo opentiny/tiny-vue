@@ -282,6 +282,18 @@ export default {
           'Use <code>overflow-title</code> to set the title to hide and show when it exceeds a certain length (default 256px)... , move the cursor to the title to display the tooltip, and set <code>title-width</code> to the excess length of the title.'
       },
       codeFiles: ['overflow-title.vue']
+    },
+    {
+      demoId: 'header-only',
+      name: {
+        'zh-CN': '仅展示头部',
+        'en-US': 'Header only'
+      },
+      desc: {
+        'zh-CN': '通过 <code>header-only</code> 仅展示头部。',
+        'en-US': 'Use <code>>header-only</code> header only.'
+      },
+      codeFiles: ['header-only.vue']
     }
   ],
   features: [

@@ -71,7 +71,8 @@ export const iconGroups = {
     'IconUp',
     'IconUpdate',
     'IconUpO',
-    'IconUpWard'
+    'IconUpWard',
+    'IconTriangleUp'
   ],
   Downward: [
     'IconArrowBottom',

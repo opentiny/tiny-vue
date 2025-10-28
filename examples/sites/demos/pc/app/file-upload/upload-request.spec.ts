@@ -12,7 +12,7 @@ test.describe('设置上传请求', () => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('file-upload#upload-request')
 
-    const upload = page.getByRole('button', { name: '选取文件' })
+    const upload = page.getByRole('button', { name: '点击上传' })
     const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
     await fileChooser.setFiles(path1)
     page.on('requestfailed', (request) => {
@@ -25,7 +25,7 @@ test.describe('设置上传请求', () => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('file-upload#upload-request')
 
-    const upload = page.getByRole('button', { name: '选取文件' })
+    const upload = page.getByRole('button', { name: '点击上传' })
     const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
     await fileChooser.setFiles(path1)
     page.on('requestfailed', (request) => {

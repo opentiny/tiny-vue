@@ -15,187 +15,193 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import { TinyDatePanel, TinyDateRange, TinyMonthRange, TinyYearRange } from '@opentiny/vue'
 
-const value = ref('2025-01-15')
-const month = ref('2025-01')
-const year = ref('2025')
-const value1 = ref(['2025-01-15', '2025-02-15'])
-const value2 = ref(['2024-03', '2025-02'])
-const value3 = ref(['2024', '2028'])
-const shortcuts = [
-  {
-    text: '今天',
-    onClick(picker) {
-      const date = new Date()
-      picker.$emit('pick', date)
-    }
+export default {
+  components: {
+    TinyDatePanel,
+    TinyDateRange,
+    TinyMonthRange,
+    TinyYearRange
   },
-  {
-    text: '昨天',
-    onClick(picker) {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24)
-      picker.$emit('pick', date)
-    }
-  },
-  {
-    text: '一周前',
-    onClick(picker) {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-      picker.$emit('pick', date)
+  data() {
+    return {
+      value: '2025-01-15',
+      month: '2025-01',
+      year: '2025',
+      value1: ['2025-01-15', '2025-02-15'],
+      value2: ['2024-03', '2025-02'],
+      value3: ['2024', '2028'],
+      shortcuts: [
+        {
+          text: '今天',
+          onClick(picker) {
+            const date = new Date()
+            picker.$emit('pick', date)
+          }
+        },
+        {
+          text: '昨天',
+          onClick(picker) {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            picker.$emit('pick', date)
+          }
+        },
+        {
+          text: '一周前',
+          onClick(picker) {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', date)
+          }
+        }
+      ],
+      shortcutsMonth: [
+          {
+            text: '一个月前',
+            onClick(picker) {
+              const date = new Date()
+              date.setMonth(date.getMonth() - 1)
+              picker.$emit('pick', date)
+            }
+          },
+          {
+            text: '三个月前',
+            onClick(picker) {
+              const date = new Date()
+              date.setMonth(date.getMonth() - 3)
+              picker.$emit('pick', date)
+            }
+          },
+          {
+            text: '六个月前',
+            onClick(picker) {
+              const date = new Date()
+              date.setMonth(date.getMonth() - 6)
+              picker.$emit('pick', date)
+            }
+          }
+      ],
+      shortcutsYear: [
+        {
+          text: '一年前',
+          onClick(picker) {
+            const date = new Date()
+            date.setFullYear(date.getFullYear() - 1)
+            picker.$emit('pick', date)
+          }
+        },
+        {
+          text: '五年前',
+          onClick(picker) {
+            const date = new Date()
+            date.setFullYear(date.getFullYear() - 5)
+            picker.$emit('pick', date)
+          }
+        },
+        {
+          text: '十年前',
+          onClick(picker) {
+            const date = new Date()
+            date.setFullYear(date.getFullYear() - 10)
+            picker.$emit('pick', date)
+          }
+        }
+      ],
+      shortcuts1: [
+        {
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }
+      ],
+      shortcuts2: [
+        {
+          text: '本月',
+          onClick(picker) {
+            const date = new Date()
+            const tmp = new Date(date.getFullYear(), date.getMonth() + 1, 1, 0, 0, 0)
+            const start = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0)
+            const end = new Date(tmp.getTime() - 1)
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '今年至今',
+          onClick(picker) {
+            const date = new Date()
+            const start = new Date(date.getFullYear(), 0)
+            const end = new Date()
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '最近六个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setMonth(start.getMonth() - 6)
+            picker.$emit('pick', [start, end])
+          }
+        }
+      ],
+      shortcuts3: [
+        {
+          text: '本年',
+          onClick(picker) {
+            const date = new Date()
+            const tmp = new Date(date.getFullYear(), 0, 2)
+            const start = new Date(date.getFullYear(), 0, 2)
+            const end = new Date(tmp.getTime() - 1)
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '近五年',
+          onClick(picker) {
+            const date = new Date()
+            const start = new Date(date.getFullYear() - 5, 0, 2)
+            const end = date
+            picker.$emit('pick', [start, end])
+          }
+        },
+        {
+          text: '近十年',
+          onClick(picker) {
+            const date = new Date()
+            const start = new Date(date.getFullYear() - 10, 0, 2)
+            const end = new Date()
+            picker.$emit('pick', [start, end])
+          }
+        }
+      ]
     }
   }
-]
-
-const shortcutsMonth = [
-  {
-    text: '一个月前',
-    onClick(picker) {
-      const date = new Date()
-      date.setMonth(date.getMonth() - 1)
-      picker.$emit('pick', date)
-    }
-  },
-  {
-    text: '三个月前',
-    onClick(picker) {
-      const date = new Date()
-      date.setMonth(date.getMonth() - 3)
-      picker.$emit('pick', date)
-    }
-  },
-  {
-    text: '六个月前',
-    onClick(picker) {
-      const date = new Date()
-      date.setMonth(date.getMonth() - 6)
-      picker.$emit('pick', date)
-    }
-  }
-]
-
-const shortcutsYear = [
-  {
-    text: '一年前',
-    onClick(picker) {
-      const date = new Date()
-      date.setFullYear(date.getFullYear() - 1)
-      picker.$emit('pick', date)
-    }
-  },
-  {
-    text: '五年前',
-    onClick(picker) {
-      const date = new Date()
-      date.setFullYear(date.getFullYear() - 5)
-      picker.$emit('pick', date)
-    }
-  },
-  {
-    text: '十年前',
-    onClick(picker) {
-      const date = new Date()
-      date.setFullYear(date.getFullYear() - 10)
-      picker.$emit('pick', date)
-    }
-  }
-]
-
-const shortcuts1 = [
-  {
-    text: '最近一周',
-    onClick(picker) {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '最近一个月',
-    onClick(picker) {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '最近三个月',
-    onClick(picker) {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-      picker.$emit('pick', [start, end])
-    }
-  }
-]
-
-const shortcuts2 = [
-  {
-    text: '本月',
-    onClick(picker) {
-      const date = new Date()
-      const tmp = new Date(date.getFullYear(), date.getMonth() + 1, 1, 0, 0, 0)
-      const start = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0)
-      const end = new Date(tmp.getTime() - 1)
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '今年至今',
-    onClick(picker) {
-      const date = new Date()
-      const start = new Date(date.getFullYear(), 0)
-      const end = new Date()
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '最近六个月',
-    onClick(picker) {
-      const end = new Date()
-      const start = new Date()
-      start.setMonth(start.getMonth() - 6)
-      picker.$emit('pick', [start, end])
-    }
-  }
-]
-
-const shortcuts3 = [
-  {
-    text: '本年',
-    onClick(picker) {
-      const date = new Date()
-      const tmp = new Date(date.getFullYear(), 0, 2)
-      const start = new Date(date.getFullYear(), 0, 2)
-      const end = new Date(tmp.getTime() - 1)
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '近五年',
-    onClick(picker) {
-      const date = new Date()
-      const start = new Date(date.getFullYear() - 5, 0, 2)
-      const end = date
-      picker.$emit('pick', [start, end])
-    }
-  },
-  {
-    text: '近十年',
-    onClick(picker) {
-      const date = new Date()
-      const start = new Date(date.getFullYear() - 10, 0, 2)
-      const end = new Date()
-      picker.$emit('pick', [start, end])
-    }
-  }
-]
+}
 </script>
 
 <style scoped lang="less">

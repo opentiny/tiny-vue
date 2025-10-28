@@ -141,7 +141,7 @@ export const keyDownHandler =
       if (e.keyCode === 27 && state.isFullscreen) {
         state.isFullscreen = !state.isFullscreen
       }
-    } else {
+    } else if (e.type === 'click') {
       state.isFullscreen = !state.isFullscreen
     }
   }

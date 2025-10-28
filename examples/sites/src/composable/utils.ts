@@ -3,10 +3,6 @@
  * 提供一些实用的辅助函数
  */
 
-import { reactive } from 'vue'
+import { $local, $session } from './storage'
 
-export { $local, $session } from './storage'
-
-export const globalConversation = reactive({
-  id: ''
-})
+export { $local, $session }

@@ -14,7 +14,8 @@
     "test:e2e": "playwright test",
     "test:unit": "vitest",
     "install:browser": "playwright install",
-    "codegen": "playwright codegen localhost:3101"
+    "codegen": "playwright codegen localhost:3101",
+    "open:report": "playwright show-report"
   },
   "devDependencies": {
     "@opentiny-internal/playwright-config": "workspace:^1.0.1-beta.0",

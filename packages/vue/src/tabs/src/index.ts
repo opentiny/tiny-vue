@@ -69,7 +69,9 @@ export const tabsProps = {
   // tiny 新增
   moreShowAll: Boolean,
   panelMaxHeight: String,
-  panelWidth: String
+  panelWidth: String,
+  // 只渲染头部
+  headerOnly: Boolean
 }
 
 export default defineComponent({

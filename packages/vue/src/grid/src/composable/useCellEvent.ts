@@ -113,6 +113,38 @@ const isOperateMouse = ($table) => {
   )
 }
 
+const hideAlignLines = ($table, cell) => {
+  if (!$table.mouseConfig?.hover || cell) {
+    return
+  }
+  const xBar = $table.elemStore['main-body-alignXBar']
+  const yBar = $table.elemStore['main-body-alignYBar']
+  if (xBar) {
+    xBar.style.display = 'none'
+  }
+  if (yBar) {
+    yBar.style.display = 'none'
+  }
+}
+
+const showAlignLines = ($table, cell) => {
+  if (!$table.mouseConfig?.hover) {
+    return
+  }
+  const xBar = $table.elemStore['main-body-alignXBar']
+  const yBar = $table.elemStore['main-body-alignYBar']
+  if (xBar) {
+    xBar.style.display = 'block'
+    xBar.style.top = cell.offsetTop - 1 + 'px'
+    xBar.style.setProperty('--after-top-offset', cell.offsetHeight + 'px')
+  }
+  if (yBar) {
+    yBar.style.display = 'block'
+    yBar.style.left = cell.offsetLeft - 1 + 'px'
+    yBar.style.setProperty('--after-left-offset', cell.offsetWidth + 'px')
+  }
+}
+
 export const useCellEvent = ({ table, $table }) => {
   let isBound = false
   const hoverCell = hooks.shallowRef()
@@ -357,6 +389,7 @@ export const useCellEvent = ({ table, $table }) => {
         if (tableListeners['cell-mouseleave']) {
           emitEvent($table, 'cell-mouseleave', [params, e])
         }
+        hideAlignLines($table, curCell)
       }
     }
 
@@ -369,6 +402,7 @@ export const useCellEvent = ({ table, $table }) => {
         if (tableListeners['cell-mouseenter']) {
           emitEvent($table, 'cell-mouseenter', [params, e])
         }
+        showAlignLines($table, curCell)
       }
     }
   })

@@ -357,8 +357,7 @@ export default defineComponent({
     },
     // 筛选扩展项
     renderExtends() {
-      const { filterStore } = this
-
+      const { filterStore, condition } = this
       if (!filterStore.extends) {
         return null
       }
@@ -367,7 +366,7 @@ export default defineComponent({
         <ul class="tiny-grid__filter-panel filter-panel__clear">
           {filterStore.extends.map((item) => (
             <li
-              class="tiny-grid__filter-option"
+              class={['tiny-grid__filter-option', { active: condition.value === (item.value || item.label) }]}
               onClick={() => {
                 this.filterExtends(item)
               }}>

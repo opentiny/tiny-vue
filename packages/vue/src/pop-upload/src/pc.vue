@@ -81,7 +81,7 @@
             :headers="state.headers"
             :action="state.action"
             :auto-upload="false"
-            :re-uploadable="slots.uploadTip"
+            :re-uploadable="!!slots.uploadTip"
           >
             <template #trigger>
               <tiny-button>{{ state.multiple ? state.uploadsButtonText : state.uploadButtonText }}</tiny-button>

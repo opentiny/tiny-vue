@@ -52,6 +52,10 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
   ctx.watch(
     () => props.modelValue,
     () => {
+      if (props.colorMode === 'linear-gradient') {
+        state.hex = props.modelValue
+        return
+      }
       color.fromString(props.modelValue)
       const { r, g, b, a } = color.toRgba()
       state.hex = `rgba(${r}, ${g}, ${b}, ${a})`

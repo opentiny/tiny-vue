@@ -16,7 +16,6 @@
   @apply overflow-hidden;
   @apply text-xs;
   @apply text-color-text-primary;
-  font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   @apply bg-color-bg-1;
 
   &.show__foot {
@@ -269,6 +268,25 @@
     }
   }
 
+  // tiny新增滚动条放置表格内
+  tbody tr.row__last-visible {
+    &::after {
+      @apply content-[''];
+      @apply absolute;
+      @apply left-0;
+      @apply right-0;
+      @apply h-px;
+      top: calc(var(--body-container-scroll-height) - 1px);
+      width: var(--body-container-scroll-width);
+      @apply bg-color-border-separator;
+      @apply ~'z-[3]';
+    }
+  }
+
+  &:has(.@{grid-prefix-cls}__footer-wrapper) tbody tr.row__last-visible::after {
+    display: none;
+  }
+
   &&__border,
   &&__border-saas {
     // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
@@ -322,16 +340,6 @@
       @apply bg-no-repeat;
       background-size: 1px 100%, 100% 1px;
       background-position: 100% 0, 100% 100%;
-    }
-
-    &.is__row-span .@{grid-prefix-cls}-body__column {
-      background-position: 100% 0, 100% 100%;
-    }
-
-    .@{grid-prefix-cls}-body__row:last-child {
-      .@{grid-prefix-cls}-body__column {
-        background-position: 100% 0, 100% 100%;
-      }
     }
 
     .@{grid-prefix-cls}__fixed-left-wrapper {
@@ -685,10 +693,10 @@
     @apply pl-1;
 
     .@{grid-prefix-cls}-sort__btn {
-      @apply ~'h-3.5';
+      @apply h-4;
       line-height: 14px;
       @apply block;
-      @apply text-xs;
+      @apply text-md;
       @apply fill-color-icon-secondary;
       transform: scale(0.8);
       @apply cursor-pointer;
@@ -714,6 +722,83 @@
       @apply block;
       @apply h-full;
       @apply bg-color-brand;
+    }
+  }
+
+  &__hover-align {
+    .@{grid-prefix-cls}-body__column:hover {
+      @apply bg-color-fill-6;
+    }
+    .@{grid-prefix-cls}-body__row:hover {
+      @apply bg-color-fill-6;
+    }
+  }
+
+  // 行列对齐辅助线
+  & &-body__hover-align-y-bar {
+    --after-left-offset: 0;
+
+    display: none;
+    @apply ~'z-[9]';
+    @apply absolute;
+    @apply top-0;
+    @apply left-0;
+
+    &:before {
+      @apply absolute;
+      @apply content-[''];
+      @apply block;
+      @apply h-full;
+      border-left-width: 1px;
+      border-left-style: dashed;
+      @apply border-color-border-focus;
+    }
+
+    &:after {
+      @apply top-0;
+      @apply right-0;
+      @apply content-[''];
+      @apply absolute;
+      @apply block;
+      @apply h-full;
+      border-left-width: 1px;
+      border-left-style: dashed;
+      @apply border-color-border-focus;
+      left: var(--after-left-offset);
+    }
+  }
+
+  & &-body__hover-align-x-bar {
+    --after-top-offset: 0;
+
+    display: none;
+    @apply ~'z-[9]';
+    @apply absolute;
+    @apply h-0;
+    @apply top-0;
+    @apply left-0;
+
+    &:before {
+      @apply absolute;
+      @apply content-[''];
+      @apply block;
+      @apply w-full;
+      border-top-width: 1px;
+      border-top-style: dashed;
+      @apply border-color-border-focus;
+    }
+
+    &:after {
+      @apply top-0;
+      @apply right-0;
+      @apply content-[''];
+      @apply absolute;
+      @apply block;
+      @apply w-full;
+      border-top-width: 1px;
+      border-top-style: dashed;
+      @apply border-color-border-focus;
+      top: var(--after-top-offset);
     }
   }
 
@@ -887,16 +972,14 @@
     @apply text-center;
   }
 
+  // 校验不通过
   & &-body__column {
     &.col__selected {
       &:not(.col__checked) {
         box-shadow: inset 0px 0px 0px 2px theme('colors.color.brand.DEFAULT');
       }
     }
-  }
 
-  // 校验不通过
-  & &-body__column {
     &.col__actived,
     &.col__selected,
     &.col__dirty {
@@ -1038,6 +1121,24 @@
 
     .@{grid-prefix-cls}-body__column {
       @apply ~'py-0.5' px-2;
+      @apply relative;
+
+      &.col__highlight-error {
+        .@{grid-cell-prefix-cls}::after {
+          content: '';
+          position: absolute;
+          @apply border border-solid border-color-error;
+          @apply top-1;
+          @apply bottom-1;
+          @apply left-2;
+          @apply right-2;
+        }
+        &.col__actived {
+          .@{grid-cell-prefix-cls}::after {
+            display: none;
+          }
+        }
+      }
 
       &.col__actived {
         @apply ~'py-0.5' px-2;
@@ -1114,6 +1215,10 @@
       &:focus {
         @apply border border-solid border-color-border-focus;
       }
+    }
+
+    .@{css-prefix}cascader {
+      @apply w-full;
     }
 
     .@{grid-prefix-cls}-editor {

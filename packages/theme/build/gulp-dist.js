@@ -11,6 +11,7 @@ import fg from 'fast-glob'
 import fs from 'node:fs'
 import buildVarToObj from './buildVarToObj.js'
 import writeDefaultValue from './writeDefaultValue.js'
+import designToken from './design-token.js'
 
 buildVarToObj()
 writeDefaultValue()
@@ -81,6 +82,7 @@ function replaceImagesUrl(cb) {
   let file = fs.readFileSync(entryFile, 'utf8')
   file = file.replace(/url\(\.\.\/images\//g, 'url(images/')
   fs.writeFileSync(entryFile, file, 'utf8')
+  designToken()
   cb()
 }
 

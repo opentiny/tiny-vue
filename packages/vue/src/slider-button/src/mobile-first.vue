@@ -49,7 +49,8 @@
             ? state.type === 'icon'
               ? 'fill-color-icon-disabled cursor-not-allowed'
               : 'text-color-text-disabled cursor-not-allowed'
-            : ''
+            : '',
+          state.displayed ? 'max-w-none' : ''
         )
       "
       @keydown.stop
@@ -65,7 +66,7 @@ import { renderless, api } from '@opentiny/vue-renderless/slider-button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'label', 'events', 'text', 'disabled'],
+  props: [...props, 'label', 'events', 'text', 'disabled', 'displayed'],
   setup(props, context): any {
     return setup({ props, context, renderless, api })
   }

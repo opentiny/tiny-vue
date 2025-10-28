@@ -524,6 +524,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'events'
+        },
+        {
+          name: 'input-change',
+          type: '(data:string) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '输入框输入值时触发的事件',
+            'en-US': 'Event triggered when a value is entered into the input box.'
+          },
+          mode: ['pc'],
+          pcDemo: 'events',
+          meta: {
+            stable: '3.27.0'
+          }
         }
       ],
       methods: [

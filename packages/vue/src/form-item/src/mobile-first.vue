@@ -39,7 +39,7 @@
             state.labelPosition === 'top' && !state.hideRequiredAsterisk
               ? 'overflow-visible relative before:absolute before:-left-2.5'
               : '',
-            state.disabled ? 'text-color-icon-placeholder sm:text-color-text-secondary' : 'text-color-text-secondary',
+            state.disabled ? 'text-color-icon-placeholder sm:text-color-text-disabled' : 'text-color-text-secondary',
             state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
           )
         "
@@ -188,6 +188,10 @@ export default defineComponent({
     showMessage: {
       type: Boolean,
       default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     size: String,
     tipContent: String,

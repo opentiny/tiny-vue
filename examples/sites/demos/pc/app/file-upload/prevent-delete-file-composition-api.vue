@@ -1,7 +1,7 @@
 <template>
   <tiny-file-upload ref="uploadRef" :action="action" :file-list="fileList" :before-remove="beforeRemove">
     <template #trigger>
-      <tiny-button>选取文件</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </template>
   </tiny-file-upload>
 </template>

@@ -200,7 +200,7 @@ import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderPanel from '@opentiny/vue-cascader-panel'
 import FilterBox from '@opentiny/vue-filter-box'
 import Tooltip from '@opentiny/vue-tooltip'
-import { iconClose, IconTriangleDown, IconUpWard, iconYes } from '@opentiny/vue-icon'
+import { iconClose, IconChevronDown, IconUpWard, iconYes } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/cascader/index.less'
 
 export default defineComponent({
@@ -261,7 +261,7 @@ export default defineComponent({
     TinyFilterBox: FilterBox,
     TinyCascaderPanel: CascaderPanel,
     IconClose: iconClose(),
-    IconChevronDown: IconTriangleDown(),
+    IconChevronDown: IconChevronDown(),
     IconChevronUp: IconUpWard(),
     IconYes: iconYes(),
     TinyTooltip: Tooltip

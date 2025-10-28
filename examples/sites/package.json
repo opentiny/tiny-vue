@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.26.8",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -27,7 +27,7 @@
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@docsearch/react": "npm:@docsearch/css",
-    "@opentiny/tiny-vue-mcp": "^0.0.2",
+    "@opentiny/tiny-vue-mcp": "^0.0.3",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
@@ -59,10 +59,12 @@
     "marked": "^4.3.0",
     "prismjs": "^1.28.0",
     "sortablejs": "1.15.0",
+    "tailwind-merge": "^1.8.0",
     "tailwindcss": "^3.2.4",
     "vue": "^3.4.31",
     "vue-i18n": "~9.14.3",
-    "vue-router": "4.1.5"
+    "vue-router": "4.1.5",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
@@ -86,6 +88,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.6.0",
     "markdown-it-toc-done-right": "^4.2.0",
+    "postcss-nesting": "^13.0.1",
     "prettier": "^2.7.1",
     "rollup-plugin-visualizer": "^5.12.0",
     "stylelint": "^14.9.1",

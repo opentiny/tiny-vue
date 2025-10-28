@@ -1,17 +1,23 @@
 <template>
   <div class="content">
-    <tiny-pager align="left" :total="100"></tiny-pager>
-    <tiny-pager align="center" :total="100"></tiny-pager>
-    <tiny-pager align="right" :total="100"></tiny-pager>
+    <TinyRadioGroup v-model="align" type="button" :options="options"></TinyRadioGroup>
+    <tiny-pager :align="align" :total="100"></tiny-pager>
   </div>
 </template>
 
 <script>
-import { TinyPager } from '@opentiny/vue'
+import { TinyPager, TinyRadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPager
+    TinyPager,
+    TinyRadioGroup
+  },
+  data() {
+    return {
+      align: 'left',
+      options: ['left', 'center', 'right'].map((item) => ({ label: item, text: item }))
+    }
   }
 }
 </script>

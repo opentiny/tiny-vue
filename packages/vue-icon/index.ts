@@ -380,6 +380,7 @@ import IconText from './src/text'
 import IconTime from './src/time'
 import IconTotal from './src/total'
 import IconTriangleDown from './src/triangle-down'
+import IconTriangleUp from './src/triangle-up'
 import IconUndelete from './src/undelete'
 import IconUnderline from './src/underline'
 import IconUndo from './src/undo'
@@ -535,6 +536,8 @@ import IconTotalNumber from './src/total-number'
 import IconTotalWeight from './src/total-weight'
 import IconUnderReview from './src/under-review'
 import IconUnsubmitted from './src/unsubmitted'
+import IconUpAndDownArrowInner from './src/up-and-down-arrow-inner'
+import IconUpAndDownArrowOuter from './src/up-and-down-arrow-outer'
 import IconViewFlowchart from './src/view-flowchart'
 import IconWaitForDeliveryO from './src/wait-for-delivery-o'
 import IconWaitForDelivery from './src/wait-for-delivery'
@@ -635,6 +638,10 @@ export {
   IconUnderReview as iconUnderReview,
   IconUnsubmitted,
   IconUnsubmitted as iconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowInner as iconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
+  IconUpAndDownArrowOuter as iconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconViewFlowchart as iconViewFlowchart,
   IconWaitForDeliveryO,
@@ -1455,6 +1462,8 @@ export {
   IconTotal as iconTotal,
   IconTriangleDown,
   IconTriangleDown as iconTriangleDown,
+  IconTriangleUp,
+  IconTriangleUp as iconTriangleUp,
   IconUndelete,
   IconUndelete as iconUndelete,
   IconUnderline,
@@ -1656,6 +1665,8 @@ export default {
   IconTotalWeight,
   IconUnderReview,
   IconUnsubmitted,
+  IconUpAndDownArrowInner,
+  IconUpAndDownArrowOuter,
   IconViewFlowchart,
   IconWaitForDeliveryO,
   IconWaitForDelivery,
@@ -2063,6 +2074,7 @@ export default {
   IconTime,
   IconTotal,
   IconTriangleDown,
+  IconTriangleUp,
   IconUndelete,
   IconUnderline,
   IconUndo,

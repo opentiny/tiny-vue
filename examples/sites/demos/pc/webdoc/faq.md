@@ -110,3 +110,17 @@ const options = {
 
 xss.setXssOption(options)
 ```
+
+## 6、多组件库混用场景中的命名冲突问题
+
+**问题描述：** 在同时使用多个组件库(如 TinyVue 和 ElementUI)时,由于各组件库都会在 Vue 实例上挂载全局方法(如 `$modal`、`$message` 等),容易造成命名冲突。
+
+**解决方案：** TinyVue 提供了自定义前缀的配置方式,可以通过设置 `$TinyModalApiPrefix` 来修改默认的方法名前缀,避免冲突。
+
+```js
+// vue3下解决方案
+app.config.globalProperties.$TinyModalApiPrefix = 'tiny_'
+
+// vue2下解决方案
+Vue.prototype.$TinyModalApiPrefix = 'tiny_'
+```

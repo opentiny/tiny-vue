@@ -6,24 +6,12 @@ const noSaasComponents = [
   'ActionMenu',
   'ColorPicker',
   'ColorSelectPanel',
-  'ConfigProvider',
   'DatePickerMobileFirst',
-  'Divider',
-  'IndexBar',
-  'IndexBarAnchor',
-  'Label',
-  'Mask',
   'MindMap',
-  'MultiSelect',
-  'MultiSelectItem',
   'QrCode',
   'RichTextEditor',
   'TimelineItem',
-  'Toast',
-  'TopBox',
   'Watermark',
-  'Wheel',
-  'Skeleton',
   'Statistic'
 ]
 
@@ -44,8 +32,8 @@ const cmpMenus = pcCmpMenus.map((pcMenusitem) => {
   pcMenusitem.children = pcMenusitem.children.filter((item) => !noSaasComponents.includes(item.name))
 
   // 插入 queryBuild 的菜单。 pc 文档下线该组件，仅在saas文档展示
-  if (pcMenusitem.label === '表单组件') {
-    pcMenusitem.children.push({ 'nameCn': '查询生成器', 'name': 'QueryBuilder ', 'key': 'query-builder' })
+  if (pcMenusitem.label === '表单') {
+    pcMenusitem.children.push({ 'nameCn': '查询生成器', 'name': 'QueryBuilder ', 'key': 'query-builder', mode: ['pc'] })
   }
   return pcMenusitem
 })

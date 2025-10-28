@@ -102,6 +102,9 @@
             </div>
           </div>
         </div>
+        <div class="tiny-picker-panel__footer" v-if="$slots.footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
   </transition>

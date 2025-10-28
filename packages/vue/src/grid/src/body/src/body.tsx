@@ -65,7 +65,7 @@ function renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, 
   const { normalRows } = _vm
   const { attrs = { rowspan: 1, colspan: 1, visible: true }, params = { $table, row, column } } =
     normalRows[rowid]?.[column.id] || {}
-  const { isMessageDefault, isMessageInline } = validOpts
+  const { isMessageDefault, isMessageInline, highlightError } = validOpts
   const { actived } = editStore
   const validated = validatedMap[column.id + '-' + row[rowId]]
   const validError = validStore.row === row && validStore.column === column
@@ -123,6 +123,7 @@ function renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, 
           'edit__visible': editor && editor.type === 'visible',
           'col__dirty': isDirty,
           'col__actived': columnActived,
+          'col__highlight-error': highlightError && validated,
           'col__valid-error': validError && validated,
           'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated,
           'col__treenode': column.treeNode
@@ -345,6 +346,8 @@ function renderRows(_vm) {
   const seqCount = { value: 0 }
   const $seq = ''
 
+  const lastVisibleIndex = rowPool.findLastIndex(({ used }) => Boolean(used))
+
   rowPool.forEach(({ id, item: { payload: row, level: rowLevel }, used }, $rowIndex) => {
     const rowActived = editConfig && actived.row === row
     const virtualRow = isVirtualRow(row)
@@ -369,7 +372,19 @@ function renderRows(_vm) {
 
     renderRowGroupData({ $table, _vm, id, row, rowGroup, rowid, rows, used, virtualRow })
 
-    let args = { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName }
+    let args = {
+      $rowIndex,
+      $seq,
+      $table,
+      _vm,
+      editStore,
+      id,
+      isSkipRowRender,
+      row,
+      rowActived,
+      rowClassName,
+      lastVisibleIndex
+    }
 
     Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow })
 
@@ -426,7 +441,7 @@ function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, lastVisibleIndex } = args
 
   if (isSkipRowRender) {
     return
@@ -459,7 +474,8 @@ function renderRow(args) {
           'row__new': editStore.insertList.includes(row),
           'row__selected': selection.includes(row),
           'row__radio': selectRow === row,
-          'row__actived': rowActived
+          'row__actived': rowActived,
+          'row__last-visible': lastVisibleIndex === $rowIndex
         },
         rowClassName
           ? isFunction(rowClassName)
@@ -707,6 +723,8 @@ export default defineComponent({
     const thead = hooks.ref()
     const tbody = hooks.ref()
     const ySpace = hooks.ref()
+    const alignXBar = hooks.ref()
+    const alignYBar = hooks.ref()
 
     hooks.watch(wrapperScrollLeft, (wrapperScrollLeft) => {
       const el = stickyWrapper.value
@@ -730,7 +748,7 @@ export default defineComponent({
     useCellEvent({ table, $table })
     const { normalRows, footerRows } = useCellSpan(vm, props)
 
-    hooks.watch([body, table, thead, tbody, ySpace], () => {
+    hooks.watch([body, table, thead, tbody, ySpace, alignXBar, alignYBar], () => {
       const { elemStore } = $table
 
       elemStore['main-body-wrapper'] = body.value
@@ -738,6 +756,8 @@ export default defineComponent({
       elemStore['main-body-headerList'] = thead.value
       elemStore['main-body-list'] = tbody.value
       elemStore['main-body-ySpace'] = ySpace.value
+      elemStore['main-body-alignXBar'] = alignXBar.value
+      elemStore['main-body-alignYBar'] = alignYBar.value
     })
 
     const bodyClientWidth = hooks.ref(0)
@@ -819,6 +839,8 @@ export default defineComponent({
       thead,
       tbody,
       ySpace,
+      alignXBar,
+      alignYBar,
       normalRows,
       footerRows,
       resetStickyWrapperScrollPos
@@ -831,7 +853,6 @@ export default defineComponent({
     const { bodyWrapperHeight, bodyWrapperMinHeight, bodyWrapperMaxHeight } = $table
     const $slots = $grid.slots
     const _vm = this
-
     return (
       <div
         ref="body"
@@ -841,11 +862,25 @@ export default defineComponent({
           'no-data': isNoData && $table.isShapeTable
         }}
         style={{
+          '--body-container-scroll-height': `${containerScrollHeight}px`,
+          '--body-container-scroll-width': `${containerScrollWidth}px`,
           height: bodyWrapperHeight ? `${bodyWrapperHeight}px` : undefined,
           minHeight: bodyWrapperMinHeight ? `${bodyWrapperMinHeight}px` : undefined,
           maxHeight: bodyWrapperMaxHeight ? `${bodyWrapperMaxHeight}px` : undefined
         }}>
         {[
+          mouseConfig?.hover
+            ? [
+                <div
+                  ref="alignYBar"
+                  class="tiny-grid-body__hover-align-y-bar"
+                  style={{ height: `${containerScrollHeight}px` }}></div>,
+                <div
+                  ref="alignXBar"
+                  class="tiny-grid-body__hover-align-x-bar"
+                  style={{ width: `${containerScrollWidth}px` }}></div>
+              ]
+            : null,
           <div class="tiny-grid-body__x-space" style={{ width: `${containerScrollWidth}px` }} />,
           <div
             ref="ySpace"

@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-cascader-node",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.26.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -12,6 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-common": "workspace:~",

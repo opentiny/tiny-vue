@@ -110,7 +110,8 @@ import {
   computedIsExpand,
   computedShowTagText,
   isTagClosable,
-  computedCurrentSizeMap
+  computedCurrentSizeMap,
+  watchOptionsWhenAutoSelect
 } from './index'
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
@@ -182,7 +183,19 @@ export const api = [
   'isTagClosable'
 ]
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
+const initState = ({
+  reactive,
+  computed,
+  props,
+  api,
+  emitter,
+  parent,
+  constants,
+  isMobileFirstMode,
+  useBreakpoint,
+  vm,
+  designConfig
+}) => {
   const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
@@ -224,7 +237,9 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     selectedCopy: [],
     compareValue: null,
     selectedVal: computed(() =>
-      state.device === 'mb' && props.multiple && state.visible ? state.selectedCopy : state.selected
+      isMobileFirstMode && state.device === 'mb' && props.multiple && state.visible
+        ? state.selectedCopy
+        : state.selected
     ),
     displayOnlyContent: computed(() => {
       if (props.multiple) {
@@ -273,7 +288,12 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
       return true // tiny 默认为true
     })(),
     designConfig,
-    currentSizeMap: computed(() => api.computedCurrentSizeMap())
+    currentSizeMap: computed(() => api.computedCurrentSizeMap()),
+    rootAutoTipConfig: computed(() => ({
+      content: state.displayOnlyContent,
+      always: !!state.displayOnlyContent,
+      ...props.tooltipConfig
+    }))
   })
 
   return state
@@ -372,8 +392,8 @@ const initApi = ({
     getChildValue: getChildValue(),
     getOption: getOption({ props, state, api }),
     getSelectedOption: getSelectedOption({ props, state }),
-    emitChange: emitChange({ emit, props, state, constants }),
-    directEmitChange: directEmitChange({ emit, props, state, constants }),
+    emitChange: emitChange({ emit, props, state, constants, isMobileFirstMode }),
+    directEmitChange: directEmitChange({ emit, props, state, constants, isMobileFirstMode }),
     toggleMenu: toggleMenu({ vm, state, props, api, isMobileFirstMode }),
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
@@ -415,12 +435,12 @@ const initApi = ({
     computeMultipleLimit: computeMultipleLimit({ props, state }),
     watchInputHover: watchInputHover({ vm }),
     initQuery: initQuery({ props, state, constants, vm }),
-    updateModelValue: updateModelValue({ props, emit, state }),
+    updateModelValue: updateModelValue({ props, emit, state, isMobileFirstMode }),
     computedTagsStyle: computedTagsStyle({ props, parent, state, vm }),
-    computedReadonly: computedReadonly({ props, state }),
+    computedReadonly: computedReadonly({ props, state, isMobileFirstMode }),
     computedShowClose: computedShowClose({ props, state }),
     computedCollapseTagSize: computedCollapseTagSize(state),
-    computedShowNewOption: computedShowNewOption({ props, state }),
+    computedShowNewOption: computedShowNewOption({ props, state, isMobileFirstMode }),
     computedShowCopy: computedShowCopy({ props, state }),
     computedOptionsAllDisabled: computedOptionsAllDisabled(state),
     computedDisabledTooltipContent: computedDisabledTooltipContent({ props, state }),
@@ -437,7 +457,8 @@ const initApi = ({
     clearNoMatchValue: clearNoMatchValue({ props, emit }),
     computedShowTagText: computedShowTagText({ state }),
     isTagClosable: isTagClosable(),
-    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig })
+    computedCurrentSizeMap: computedCurrentSizeMap({ state, designConfig }),
+    watchOptionsWhenAutoSelect: watchOptionsWhenAutoSelect({ state, props, nextTick, api })
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })
@@ -591,6 +612,10 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
 const addWatch = ({ watch, props, api, state, nextTick }) => {
   watch(() => [...state.options], api.watchOptions)
 
+  // tiny 新增： 支持autoSelect
+  watch(() => state.options, api.watchOptionsWhenAutoSelect)
+  props.options && watch(() => props.options, api.watchOptionsWhenAutoSelect)
+
   // tiny 新增renderType的2个判断
   if (props.renderType === 'grid' && !props.optimization) {
     watch(() => state.gridData, api.setSelected, { immediate: true })
@@ -630,6 +655,7 @@ export const renderless = (
     emitter,
     parent,
     constants,
+    isMobileFirstMode,
     useBreakpoint,
     vm,
     designConfig

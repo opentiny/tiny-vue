@@ -7,6 +7,7 @@ import type {
 import type { Color } from '../utils/color'
 import { draggable } from '../utils/use-drag'
 import { initState, initWatch, useDrag, useUpdate } from './index'
+import { useContext } from '../utils/context'
 
 export const api = ['state', 'wrapper', 'cursor']
 export const renderless = (
@@ -14,14 +15,14 @@ export const renderless = (
   hooks: ISharedRenderlessParamHooks,
   utils: ISharedRenderlessParamUtils
 ) => {
+  const ctx = useContext(hooks)
   const state = initState(props, hooks)
   const { ref, onMounted } = hooks
   const { emit } = utils
   const wrapper: IColorSelectPanelRef<HTMLElement | undefined> = ref()
+  const update = useUpdate(state, props, wrapper, ctx)
 
-  const update = useUpdate(state, props, wrapper)
-
-  const onDrag = useDrag(state, wrapper, props, utils)
+  const onDrag = useDrag(state, wrapper, props, utils, ctx)
 
   initWatch(state, update, hooks)
 
