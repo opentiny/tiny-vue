@@ -184,6 +184,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Lingchen111"><img src="https://avatars.githubusercontent.com/u/123021749?v=4?s=100" width="100px;" alt="Lingchen111"/><br /><sub><b>Lingchen111</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Lingchen111" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://gausszhou.github.io/"><img src="https://avatars.githubusercontent.com/u/46297500?v=4?s=100" width="100px;" alt="Gauss Zhou"/><br /><sub><b>Gauss Zhou</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gausszhou" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/liangguanhui0117"><img src="https://avatars.githubusercontent.com/u/28801619?v=4?s=100" width="100px;" alt="LiangGuanhui"/><br /><sub><b>LiangGuanhui</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=liangguanhui0117" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
