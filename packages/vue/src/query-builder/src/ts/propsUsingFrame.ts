@@ -128,8 +128,8 @@ export interface Schema {
   showNewRule: boolean
   isGroupDisable: boolean
   isRuleDisable: boolean
-  groupLimit?: number
-  ruleLimit?: number
+  groupLimit: number
+  ruleLimit: number
   allowDelAll: boolean
   showLockButtons: boolean
   autoSelectField: boolean
