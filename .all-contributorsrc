@@ -717,6 +717,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gausszhou",
+      "name": "Gauss Zhou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46297500?v=4",
+      "profile": "https://gausszhou.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
