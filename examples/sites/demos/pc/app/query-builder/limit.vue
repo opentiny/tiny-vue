@@ -126,11 +126,8 @@ const operators = [
 
 const config = {
   operators,
-  showNewGroup: true,
-  showNewRule: true,
-  isGroupDisable: true,
-  isRuleDisable: false,
-  disabled: false,
+  groupLimit: 3,
+  ruleLimit: 7,
   showLockButtons: false,
   combinators: [
     {

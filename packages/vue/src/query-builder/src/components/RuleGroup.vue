@@ -68,7 +68,7 @@
           ></component>
 
           <component
-            v-if="rg.schema.addNewRule"
+            v-if="rg.schema.showNewRule"
             :is="controls.addRuleAction"
             :test-i-d="TestID.addRule"
             :label="rg.translations.addRule.label"
@@ -88,13 +88,17 @@
               type="text"
               :icon="IconPlus()"
               :text="$t('ui.queryBuilder.addItem')"
-              :disabled="rg.schema.addNewRuleDisable"
+              :disabled="
+                rg.disabled ||
+                rg.schema.isRuleDisable ||
+                (rg.schema.ruleLimit !== undefined && rg.ruleGroup.rules.length >= rg.schema.ruleLimit)
+              "
             >
             </tiny-button>
           </component>
 
           <component
-            v-if="rg.schema.addNewGroup"
+            v-if="rg.schema.showNewGroup"
             :is="controls.addGroupAction"
             :test-i-d="TestID.addGroup"
             :label="rg.translations.addGroup.label"
@@ -114,7 +118,11 @@
               type="text"
               :icon="IconPlus()"
               :text="$t('ui.queryBuilder.addGroup')"
-              :disabled="rg.schema.addNewGroupDisable"
+              :disabled="
+                rg.disabled ||
+                rg.schema.isGroupDisable ||
+                (rg.schema.groupLimit !== undefined && rg.path.length > rg.schema.groupLimit)
+              "
             >
             </tiny-button>
           </component>

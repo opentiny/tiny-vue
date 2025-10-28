@@ -12,7 +12,7 @@ export default {
         'zh-CN': `
         <div class="tip custom-block"> 
           <p class=\"custom-block-title\"> config 属性说明 </p>
-          <code>autoSelectField</code>：范围域是否会默认选择，勾选则默认为第一个选项；反之则默认为-----  \n <code>autoSelectOperator</code>：运算符是否会默认选择，勾选则默认选择第一个选项，反之则默认为-----  \n       <code>disabled</code>：禁用所有规则  \n       <code>parsenumbers</code>：数字会被转化为 Number 类型，而非 String 类型  \n       <code>showCloneButtons</code>：展示复制按钮，即整条规则可以被复制  \n       <code>showCombinatorsBetweenRules</code>：组合子数组统一修改，且不再展示在连线上，以下拉选择形式出现  \n       <code>showLockButtons</code>：展示锁定按钮，即整条规则可以被锁定  \n       <code>showNotToggle</code>：展示 not 条件切换框  \n       <code>displayOnlyField</code>：是否仅展示字段选择器  \n       </div>  \n       二、fields 数据配置  \n      <pre> <code>\n       fields 中的数据（只用于说明各字段含义，无业务特定性）  \n       {  \n name: 'isMusician', //name：格式化数据中的值（形参）  \n label: 'Is a musician', //label：范围域在规则生成器中对外展示名称  \n valueEditorType: 'checkbox', //placeholder：值域的默认缺省值  \n operators: [ //运算符自定义，name 为格式化数据中的值，label 为范围域对外展示的名称  \n   {  \n     name: '=',  \n     label: '='  \n   }  \n ],  \n bindProps: { // 通过 bindProps 参数可对某一类组件进行参数控制  \n   input:{  \n     clearable:true  \n   },  \n   select:{  \n     filterable:true  \n   }  \n },  \n defaultValue: false, //defaultOperator：运算符的默认缺省选择  \n validator: (r) => !!r.value //validator：校验规则（该功能点还在迭代开发中……）  \n inputType: 'number', //值域的数值类型  \n valueEditorType: 'radio' //值域编辑器的类型  \n defaultValue: false, //值域的默认值  \n values: [ //值域的可选域配置（下拉）  \n   {  \n      label: 'Percussion instruments',  \n      options: [  \n       {  \n            name: 'Clapstick',  \n            label: 'Clapstick'  \n       }  \n     ]  \n   }  \n ],  \n values: [ //值域的可选域配置（单选）  \n   {  \n      name: 'M',  \n      label: 'Male'  \n   },  \n   {  \n      name: 'F',  \n      label: 'Female'  \n   },  \n   {  \n      name: 'O',  \n      label: 'Other'  \n   }  \n ],  \n valueSources: ['field', 'value'], //值域类型可选择  \n comparator: 'groupNumber', //分组时的比较器  \n groupNumber: 'group1', //分组的组别  \n       },  \n       // 组合子数组配置，label 为展示字符，name 为数据值  \n       combinators: [  \n {  \n   name: 'and',  \n   label: '且'  \n },  \n {  \n   name: 'or',  \n   label: '或'  \n }  \n       ]  \n       </code></pre>  <br>`,
+          <code>autoSelectField</code>：范围域是否会默认选择，勾选则默认为第一个选项；反之则默认为-----  \n <code>autoSelectOperator</code>：运算符是否会默认选择，勾选则默认选择第一个选项，反之则默认为-----  \n       <code>disabled</code>：禁用所有规则  \n       <code>parseNumbers</code>：数字会被转化为 Number 类型，而非 String 类型  \n       <code>showCloneButtons</code>：展示复制按钮，即整条规则可以被复制  \n       <code>showCombinatorsBetweenRules</code>：组合子数组统一修改，且不再展示在连线上，以下拉选择形式出现  \n       <code>showLockButtons</code>：展示锁定按钮，即整条规则可以被锁定  \n       <code>showNotToggle</code>：展示 not 条件切换框  \n       <code>displayOnlyField</code>：是否仅展示字段选择器  \n       </div>  \n       二、fields 数据配置  \n      <pre> <code>\n       fields 中的数据（只用于说明各字段含义，无业务特定性）  \n       {  \n name: 'isMusician', //name：格式化数据中的值（形参）  \n label: 'Is a musician', //label：范围域在规则生成器中对外展示名称  \n valueEditorType: 'checkbox', //placeholder：值域的默认缺省值  \n operators: [ //运算符自定义，name 为格式化数据中的值，label 为范围域对外展示的名称  \n   {  \n     name: '=',  \n     label: '='  \n   }  \n ],  \n bindProps: { // 通过 bindProps 参数可对某一类组件进行参数控制  \n   input:{  \n     clearable:true  \n   },  \n   select:{  \n     filterable:true  \n   }  \n },  \n defaultValue: false, //defaultOperator：运算符的默认缺省选择  \n validator: (r) => !!r.value //validator：校验规则（该功能点还在迭代开发中……）  \n inputType: 'number', //值域的数值类型  \n valueEditorType: 'radio' //值域编辑器的类型  \n defaultValue: false, //值域的默认值  \n values: [ //值域的可选域配置（下拉）  \n   {  \n      label: 'Percussion instruments',  \n      options: [  \n       {  \n            name: 'Clapstick',  \n            label: 'Clapstick'  \n       }  \n     ]  \n   }  \n ],  \n values: [ //值域的可选域配置（单选）  \n   {  \n      name: 'M',  \n      label: 'Male'  \n   },  \n   {  \n      name: 'F',  \n      label: 'Female'  \n   },  \n   {  \n      name: 'O',  \n      label: 'Other'  \n   }  \n ],  \n valueSources: ['field', 'value'], //值域类型可选择  \n comparator: 'groupNumber', //分组时的比较器  \n groupNumber: 'group1', //分组的组别  \n       },  \n       // 组合子数组配置，label 为展示字符，name 为数据值  \n       combinators: [  \n {  \n   name: 'and',  \n   label: '且'  \n },  \n {  \n   name: 'or',  \n   label: '或'  \n }  \n       ]  \n       </code></pre>  <br>`,
         'en-US': ''
       },
       codeFiles: ['basic-usage.vue']
@@ -62,11 +62,25 @@ export default {
       },
       desc: {
         'zh-CN':
-          '添加 <code>addNewRule</code> 属性是否显示新增条件，添加 <code>addNewGroup</code> 属性是否显示新增子条件组，添加 <code>addNewRuleDisable</code> 属性是否禁用新增规则，添加 <code>addNewGroupDisable</code> 属性是否禁用新增分组，<code>groupLimit</code> 属性设置新增子条件组的最大数量。',
+          '添加 <code>disabled</code> 属性是否全部禁用，添加 <code>showNewRule</code> 属性是否显示新增条件，添加 <code>showNewGroup</code> 属性是否显示新增子条件组，添加 <code>isRuleDisable</code> 属性是否禁用新增条件，添加 <code>isGroupDisable</code> 属性是否禁用新增子条件组。',
         'en-US':
-          'Add <code>addNewRule</code> property to show new condition, add <code>addNewGroup</code> property to show new sub-condition group, add <code>addNewRuleDisable</code> property to disable new rule, add <code>addNewGroupDisable</code> property to disable new group, <code>groupLimit</code> property to set the maximum number of new sub-condition groups.'
+          'Add <code>disabled</code> property to disable all, add <code>showNewRule</code> property to show new condition, add <code>showNewGroup</code> property to show new sub-condition group, add <code>isRuleDisable</code> property to disable new rule, add <code>isGroupDisable</code> property to disable new group.'
       },
       codeFiles: ['handle.vue']
+    },
+    {
+      demoId: 'limit',
+      name: {
+        'zh-CN': '限制数量',
+        'en-US': 'Limit Settings'
+      },
+      desc: {
+        'zh-CN':
+          '添加 <code>ruleLimit</code> 属性设置新增条件的最大数量，<code>groupLimit</code> 属性设置新增子条件组的最大数量。',
+        'en-US':
+          'Add <code>ruleLimit</code> property to set the maximum number of new rules, <code>groupLimit</code> property to set the maximum number of new sub-condition groups.'
+      },
+      codeFiles: ['limit.vue']
     },
     {
       demoId: 'sub-component-param',

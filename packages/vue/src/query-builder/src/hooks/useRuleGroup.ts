@@ -102,16 +102,20 @@ export const useRuleGroup = (props: RuleGroupProps) => {
   }
 
   const addRule = (_event?: any, context?: any) => {
-    if (!disabled) {
-      const newRule = createRule()
-      onRuleAdd(newRule, path, context)
+    if (!disabled && schema.ruleLimit !== undefined) {
+      if (path.length <= schema.ruleLimit) {
+        const newRule = createRule()
+        onRuleAdd(newRule, path, context)
+      }
     }
   }
 
   const addGroup = (_event?: any, context?: any) => {
-    if (!disabled && path.length <= schema.groupLimit) {
-      const newGroup = createRuleGroup()
-      onGroupAdd(newGroup, path, context)
+    if (!disabled && schema.groupLimit !== undefined) {
+      if (path.length <= schema.groupLimit) {
+        const newGroup = createRuleGroup()
+        onGroupAdd(newGroup, path, context)
+      }
     }
   }
 
