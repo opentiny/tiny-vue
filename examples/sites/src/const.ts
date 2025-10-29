@@ -1,6 +1,7 @@
 import { tinyOldTheme, tinyAuroraTheme, tinyDarkTheme } from '@opentiny/vue-theme/theme-tool'
 
 export const isSaas = import.meta.env.VITE_TINY_THEME === 'saas'
+export const isTinyVueSaas = import.meta.env.VITE_CONTEXT === '/tiny-vue-saas/'
 
 // localStorage中保存语言的key
 export const LANG_KEY = '_lang'
