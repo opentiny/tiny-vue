@@ -83,6 +83,10 @@ export const dropdownProps = {
 export default defineComponent({
   name: $prefix + 'Dropdown',
   componentName: 'TinyDropdown',
+  model: {
+    prop: 'visible',
+    event: 'update:visible'
+  },
   props: dropdownProps,
   setup(props, context) {
     return $setup({ props, context, template })

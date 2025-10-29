@@ -22,6 +22,10 @@ import { iconDownWard } from '@opentiny/vue-icon'
 export default defineComponent({
   name: $prefix + 'Dropdown',
   componentName: 'TinyDropdown',
+  model: {
+    prop: 'visible',
+    event: 'update:visible'
+  },
   components: {
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
