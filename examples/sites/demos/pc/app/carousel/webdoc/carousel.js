@@ -97,7 +97,8 @@ export default {
         'zh-CN': '<p>通过配置 <code>type</code> 属性为<code>vertical</code>即可实现纵向轮播。</p>\n',
         'en-US': '<p>Set <code>type</code> to vertical to implement <code>vertical</code> rotation. </p>\n'
       },
-      codeFiles: ['up-down-carousel.vue']
+      codeFiles: ['up-down-carousel.vue'],
+      hideSaas: true
     },
     {
       demoId: 'show-title',
