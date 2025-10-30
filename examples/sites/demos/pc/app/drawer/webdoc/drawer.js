@@ -47,7 +47,8 @@ export default {
           '<p>通过 <code>tips-props</code> 属性可自定义标题帮助提示信息，具体属性配置参考 <a href="tooltip#tooltip">ToolTip 组件</a> 的 props 说明。</p>',
         'en-US': ''
       },
-      codeFiles: ['tips-props.vue']
+      codeFiles: ['tips-props.vue'],
+      hideSaas: true
     },
     {
       demoId: 'width',
