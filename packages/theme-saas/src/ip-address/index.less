@@ -5,7 +5,7 @@
 @ip-address-prefix-cls: ~'@{css-prefix}ip-address';
 
 .@{ip-address-prefix-cls} {
-  @apply w-72;
+  @apply w-80;
   @apply ~'max-w-[100%]';
   @apply outline-0;
   @apply inline-table;
@@ -21,7 +21,7 @@
     @apply rounded;
     @apply bg-color-bg-1;
     @apply text-xs;
-    @apply block;
+    @apply flex;
     @apply whitespace-nowrap;
     @apply bg-none;
     .user-select(auto);
@@ -64,7 +64,6 @@
     li {
       @apply float-left;
       @apply overflow-hidden;
-      @apply ~'w-1/4';
       @apply inline-flex;
       @apply items-center;
 
@@ -91,6 +90,8 @@
       }
 
       &:last-child {
+        @apply  mr-3;
+
         > svg {
           @apply hidden;
         }
@@ -110,6 +111,10 @@
           @apply py-0 px-2;
           @apply text-xs;
         }
+      }
+
+      &:first-child {
+        @apply ml-3;
       }
     }
     &.medium {
@@ -143,6 +148,10 @@
         @apply h-6;
         @apply leading-6;
       }
+    }
+
+    &__ipv6-delimiter {
+      @apply ml-1 mr-1;
     }
   }
 }
