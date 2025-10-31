@@ -17,7 +17,7 @@ export default {
     manualCloseClick() {
       const instance = TinyNotify({
         type: 'info',
-        title: '通知',
+        title: '通知1',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right',
         showClose: false
@@ -30,7 +30,7 @@ export default {
     closebyIdClick() {
       const instance = TinyNotify({
         type: 'info',
-        title: '通知',
+        title: '通知2',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right',
         showClose: false
@@ -41,15 +41,13 @@ export default {
       }, 4000)
     },
     closeAllClick() {
-      for (let i = 1; i <= 3; i++) {
-        TinyNotify({
-          type: 'info',
-          title: '通知' + i,
-          message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
-          position: 'top-right',
-          showClose: false
-        })
-      }
+      TinyNotify({
+        type: 'info',
+        title: '通知3',
+        message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
+        position: 'top-right',
+        showClose: false
+      })
 
       setTimeout(() => {
         TinyNotify.closeAll()
