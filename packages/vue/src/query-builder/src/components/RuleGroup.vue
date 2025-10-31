@@ -192,7 +192,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@opentiny/vue-common'
-import { TinyButton } from '@opentiny/vue'
+import TinyButton from '@opentiny/vue-button'
 import { IconNodeOpen, IconNode, IconDel, IconPlus } from '@opentiny/vue-icon'
 import { TestID } from '../defaults'
 import { useRuleGroup } from '../hooks'
