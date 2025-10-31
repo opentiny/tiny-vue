@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { TinyAnchor } from '@opentiny/vue'
-import { isSaas, isTinyVueSaas } from '../const'
+import { isSaas } from '../const'
 
 const props = defineProps({ anchorAffix: {}, currentJson: {}, activeTab: {}, langKey: {}, apiTypes: {} })
 
@@ -25,7 +25,7 @@ const emit = defineEmits(['link-click'])
 // 实例锚点
 const demoAnchorLinks = computed(() =>
   (props.currentJson?.demos || [])
-    .filter((demo) => (isTinyVueSaas ? !demo.hideSaas : true))
+    .filter((demo) => (isSaas ? !demo.hideSaas : true))
     .map((demo) => ({
       key: demo.demoId,
       title: demo.name[props.langKey],

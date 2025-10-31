@@ -114,7 +114,7 @@ import DesignToken from '../../components/design-token.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import list from '@opentiny/vue-theme/token'
-import { isTinyVueSaas } from '../../const'
+import { isSaas } from '../../const'
 import { getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 import { camelize, capitalize } from '@vue/shared'
 
@@ -237,7 +237,7 @@ const parseApiData = () => {
   }
 
   // 当环境变量为tiny-vue-saas时
-  if (isTinyVueSaas) {
+  if (isSaas) {
     for (const group of Object.keys(tableData)) {
       for (const apiType of Object.keys(tableData[group])) {
         tableData[group][apiType] = tableData[group][apiType].filter((item) => !item.hideSaas)
