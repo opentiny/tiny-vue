@@ -1,0 +1,422 @@
+@css-prefix: tvp-;
+@css-tiny-prefix: tiny-;
+@search-box-prefix-cls: ~'@{css-prefix}search-box';
+@search-box__dropdown-menu-cls: ~'@{css-prefix}search-box__dropdown-menu';
+@search-box__popover-cls: ~'@{css-prefix}search-box__popover';
+@popover-tiny-cls: ~'@{css-tiny-prefix}popover';
+@checkbox-tiny-cls: ~'@{css-tiny-prefix}checkbox';
+@dropdown-tiny-cls: ~'@{css-tiny-prefix}dropdown';
+@popper-tiny-cls: ~'@{css-tiny-prefix}popper';
+@select-tiny-cls: ~'@{css-tiny-prefix}select';
+@input-tiny-cls: ~'@{css-tiny-prefix}input';
+@svg-tiny-cls: ~'@{css-tiny-prefix}svg';
+@button-tiny-cls: ~'@{css-tiny-prefix}button';
+@form-tiny-cls: ~'@{css-tiny-prefix}form';
+
+.@{popper-tiny-cls}.@{search-box__dropdown-menu-cls},
+.@{search-box__popover-cls} {
+
+  width: 232px;
+  @apply overflow-auto;
+  
+
+  &::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  // x 和 y 滚动条交汇处
+  &::-webkit-scrollbar-corner {
+    @apply bg-transparent;
+  }
+
+  // 滚动条轨道
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  // 滚动滑块
+  &::-webkit-scrollbar-thumb {
+    @apply bg-color-text-disabled;
+    @apply rounded;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-color-text-disabled;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    @apply bg-color-text-disabled;
+  }
+
+  && .@{search-box-prefix-cls}__date-picker {
+    .baseClearicon {
+      @apply bg-color-bg-2;
+    }
+  }
+
+  // 覆写select样式
+  .@{form-tiny-cls}-item.is-error .@{search-box-prefix-cls}-select .@{select-tiny-cls}__tags-group {
+    @apply border-color-error;
+  }
+  .@{search-box-prefix-cls}-select {
+    .@{select-tiny-cls} {
+      .@{svg-tiny-cls} {
+        z-index: 1000;
+      }
+
+      &__tags-group {
+        @apply ~"min-h-[theme(spacing.7)]";
+        padding: 2px;
+        @apply w-full;
+        @apply border;
+        @apply border-color-border;
+        @apply rounded;
+      }
+      &__tags.is-show-tag {
+        @apply ~"max-w-[276px]";
+        @apply ~"w-[calc(100%-8px)]";
+        @apply ~"min-h-[30px]";
+        @apply pr-5;
+      }
+    }
+
+    .@{input-tiny-cls} {
+      &__suffix {
+        z-index: 1000;
+      }
+
+      &__inner {
+        @apply border-0;
+        @apply overflow-hidden;
+      }
+    }
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Safari */
+    @apply m-0;
+  }
+}
+
+.@{search-box__popover-cls}.@{popover-tiny-cls}[x-placement^='bottom'] {
+  @apply mt-0;
+}
+
+.@{search-box-prefix-cls} {
+
+  @apply flex;
+  @apply relative;
+  @apply flex-wrap;
+  @apply items-center;
+  @apply justify-start;
+  @apply border;
+  @apply border-color-border;
+  @apply rounded;
+  min-height: 28px;
+  @apply pl-8;
+  @apply bg-color-bg-1;
+
+  &__form {
+    @apply w-auto;
+    @apply flex-1;
+    min-width: 200px;
+
+    &-popover {
+      @apply absolute;
+    }
+  }
+
+  &:focus-within {
+    @apply border-color-brand;
+  }
+
+  & > &__prefix {
+    @apply absolute;
+    @apply top-1/2;
+    @apply ~'-translate-y-2/4';
+    @apply left-3;
+    @apply inline-block;
+    @apply text-base;
+    @apply text-color-text-placeholder;
+  }
+
+  &__text-highlight {
+    @apply text-color-brand;
+  }
+
+  &__placeholder {
+    @apply pr-2;
+  }
+
+  &__tag {
+    margin: 1px 0;
+    @apply mr-1;
+    // @apply mt-1;
+    // @apply mb-1;
+    
+    @apply max-w-full;
+
+    & > &-value {
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+    }
+
+    &:hover {
+      @apply cursor-pointer;
+      @apply text-color-text-primary;
+      @apply fill-color-text-primary;
+    }
+
+    &-editor {
+      span {
+        @apply border-b;
+        @apply border-dashed;
+        @apply border-color-border;
+        line-height: 1;
+      }
+    }
+  }
+
+  &__input {
+    .@{input-tiny-cls}-display-only {
+      width: calc(100% - 25px - 63px);
+    }
+
+    & .@{svg-tiny-cls} {
+      @apply ml-0;
+    }
+
+    &-close {
+      @apply mr-1;
+    }
+
+    &-separator {
+      @apply inline-block;
+      @apply mr-1;
+      height: 14px;
+      @apply w-px;
+      @apply bg-color-border;
+    }
+
+    &-help {
+      @apply mr-0;
+    }
+
+    & &-search {
+      @apply hidden;
+      margin-right: 2px;
+    }
+  }
+
+  &__input-wrapper {
+    @apply flex;
+    @apply items-center;
+    @apply w-full;
+  }
+
+  // 提高权重，防止被tinyvue样式覆盖
+  & &__dropdown:not(.is-disabled) .@{search-box-prefix-cls}__input:not(.is-disabled) {
+    .@{input-tiny-cls}__suffix .@{svg-tiny-cls} {
+      @apply text-base;
+      @apply mt-0;
+      @apply fill-color-icon-secondary;
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+    }
+
+    .@{input-tiny-cls}__suffix-inner {
+      @apply flex;
+      @apply items-center;
+    }
+  }
+
+  &__prop {
+    @apply whitespace-nowrap;
+    @apply align-middle;
+    @apply text-sm;
+
+    span {
+      @apply pl-2;
+    }
+  }
+
+  // 撑开输入框宽度
+  .@{dropdown-tiny-cls}__trigger {
+    @apply block;
+
+    &:focus-visible {
+      @apply outline-none;
+    }
+
+    .@{dropdown-tiny-cls}__title {
+      @apply w-full;
+    }
+  }
+
+  &__dropdown {
+    @apply block;
+    @apply flex-1;
+  }
+
+  &__loading-box {
+    min-height: 32px;
+  }
+
+  &__radio-wrap {
+   max-height: 240px;
+    @apply overflow-auto;
+  }
+
+  &__checkbox-wrap {
+    @apply ~"max-h-[186px]";
+    @apply overflow-auto;
+  }
+
+  &__checkbox {
+    @apply flex-col;
+  }
+
+  &__bottom-btn,
+  &__checkbox-btn {
+    @apply flex;
+    @apply border-t;
+    @apply border-color-border;
+    @apply my-1;
+    @apply pt-2;
+    @apply justify-end;
+
+    .@{button-tiny-cls} {
+      min-width: 72px;
+      @apply my-1;
+    }
+  }
+
+  &__checkbox-btn {
+    @apply mx-3;
+    @apply pb-1;
+  }
+
+  &__filter-type {
+    @apply inline-block;
+    @apply px-3;
+    @apply mt-3;
+    height: 18px;
+    line-height: 18px;
+    @apply font-medium;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply text-color-text-secondary;
+  }
+
+  &__potential-box {
+    @apply ~"min-h-[30px]";
+  }
+
+  &__filter-item {
+    @apply text-color-text-primary;
+  }
+
+  &__dropdown-item.@{dropdown-tiny-cls}-item {
+
+    .@{dropdown-tiny-cls}-item__content.@{dropdown-tiny-cls}-menu__item-content{
+      @apply whitespace-nowrap;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+    }
+
+    // 本地和线上优先级不同，修复复选框在dropdown中使用样式出现的问题
+    &.@{search-box-prefix-cls}__checkbox-item .@{checkbox-tiny-cls}__inner > .@{svg-tiny-cls} {
+      @apply mr-0;
+    }
+  }
+
+  &__dropdown-item-init {
+    @apply bg-color-bg-2;
+  }
+
+  // 空白处可以选中复选框
+  &__checkbox-item {
+    & &-label,
+    .@{checkbox-tiny-cls},
+    & .@{dropdown-tiny-cls}-item__label {
+      @apply w-full;
+    }
+
+    &-label .@{checkbox-tiny-cls}__label {
+      @apply w-full;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+    }
+
+    .@{dropdown-tiny-cls}-item__wrap {
+      @apply p-0;
+    }
+    .@{checkbox-tiny-cls} {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      @apply items-end;
+    }
+  }
+
+  &__dropdown {
+    &-title {
+      @apply my-2;
+      line-height: 18px;
+      @apply text-color-text-secondary;
+      @apply text-xs;
+    }
+
+    &-start,
+    &-end {
+      @apply my-2;
+      @apply text-sm;
+      @apply text-color-text-secondary;
+      @apply tracking-normal;
+      line-height: 1.5;
+    }
+  }
+
+  &__panel-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    @apply py-0;  
+    @apply overflow-hidden;
+    @apply text-color-text-secondary;
+  }
+
+  &__date-item.@{form-tiny-cls}-item,
+  &__number-item.@{form-tiny-cls}-item {
+    @apply pb-1;
+    @apply mb-0;
+
+    & > div {
+      @apply w-full;
+      @apply whitespace-nowrap;
+    }
+
+    .@{form-tiny-cls}-item__error {
+      @apply text-xs;
+    }
+  }
+
+  &__input input {
+    @apply border-0;
+  }
+
+  // 输入框中的input需要额外单独处理样式，仅此输入框生效
+  &__input-wrapper .@{search-box-prefix-cls}__dropdown .@{search-box-prefix-cls}__input {
+    .@{input-tiny-cls}__inner {
+      @apply pl-0;
+    }
+  }
+}
+

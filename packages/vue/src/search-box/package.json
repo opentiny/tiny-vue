@@ -1,0 +1,50 @@
+{
+  "name": "@opentiny/vue-search-box",
+  "version": "0.1.44",
+  "description": "",
+  "homepage": "https://github.com/opentiny/tiny-search-box#readme",
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-search-box/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentiny/tiny-search-box.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "keywords": [
+    "search",
+    "comprehensive search",
+    "opentiny"
+  ],
+  "dependencies": {
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-button-group": "workspace:~",
+    "@opentiny/vue-checkbox": "workspace:~",
+    "@opentiny/vue-checkbox-group": "workspace:~",
+    "@opentiny/vue-date-picker": "workspace:~",
+    "@opentiny/vue-dropdown": "workspace:~",
+    "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-dropdown-menu": "workspace:~",
+    "@opentiny/vue-form": "workspace:~",
+    "@opentiny/vue-form-item": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-loading": "workspace:~",
+    "@opentiny/vue-option": "workspace:~",
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-select": "workspace:~",
+    "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "catalog:"
+  }
+}

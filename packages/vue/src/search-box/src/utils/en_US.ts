@@ -1,0 +1,42 @@
+export default {
+  tvp: {
+    tvpSearchbox: {
+      defaultPlaceholder: 'Select attribute filtering or enter keywords',
+      addPlaceholder: 'Add filtering criteria',
+      tagPlaceholder: 'Please select tag key/value search, or enter "key=value" to search',
+      dynamicPlaceholder: 'Please select {newValue} to search',
+      attributeType: 'Attribute Type',
+      propertyValue: 'The value of {0}',
+      matched: 'Potential matching items',
+      allValues: 'All values',
+      allProperty: 'All Properties',
+      operator: 'Operator',
+      clearAll: 'Clear',
+      emptyValue: 'Empty value',
+      help: 'Click to view help',
+      switchText: 'Switch to default search terms',
+      tagKey: 'Key',
+      tagValue: 'Value',
+      minValueText: 'Minimum value',
+      maxValueText: 'Maximum value',
+      rangeMinErr: 'The input value must be between {0} and {1}',
+      rangeMaxErr: 'The maximum value must be greater than or equal to the minimum value, or empty',
+      rangeNumberTitle: 'Please enter at least one value',
+      rangeDateTitle: 'Please enter at least one date',
+      timeLengthTitle: 'The optional time span is within {value} days',
+      rangeBeginLabel: 'Start date',
+      rangeEndLabel: 'End date',
+      rulekeyword1: 'Keywords',
+      notBeNull: 'The value cannot be empty',
+      noData: 'There is currently no matching data available ..',
+      selectAll: 'Select All',
+      confirm: 'Confirm',
+      cancel: 'Cancel',
+      equal: 'Equal',
+      notEqual: 'Not equal',
+      contain: 'Contain',
+      notContain: 'Does not contain',
+      initUse: 'Search'
+    }
+  }
+}

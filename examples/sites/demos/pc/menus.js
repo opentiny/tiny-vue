@@ -92,6 +92,7 @@ export const cmpMenus = [
     'key': 'cmp-frame-style',
     'children': [
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
+      { 'nameCn': '搜索框', 'name': 'SearchBox', 'key': 'search-box' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
       { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       {

@@ -171,6 +171,7 @@
     "@opentiny/vue-scroll-text": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
     "@opentiny/vue-search": "workspace:~",
+    "@opentiny/vue-search-box": "workspace:~",
     "@opentiny/vue-select": "workspace:~",
     "@opentiny/vue-select-dropdown": "workspace:~",
     "@opentiny/vue-select-mobile": "workspace:~",
