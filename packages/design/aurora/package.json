@@ -1,11 +1,11 @@
 {
   "name": "@opentiny/vue-design-aurora",
-  "version": "3.26.0",
-  "main": "index.ts",
-  "sideEffects": false,
   "type": "module",
+  "version": "3.27.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "index.ts",
   "dependencies": {
     "@opentiny/vue-icon": "workspace:~"
-  },
-  "license": "MIT"
+  }
 }
