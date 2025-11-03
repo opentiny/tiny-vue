@@ -115,7 +115,14 @@ export const cmpMenus = [
           'stable': '3.19.0'
         }
       },
-      { 'nameCn': '间距', 'name': 'Space', 'key': 'space' }
+      {
+        'nameCn': '间距',
+        'name': 'Space',
+        'key': 'space',
+        'meta': {
+          'stable': '3.27.0'
+        }
+      }
     ]
   },
   {
