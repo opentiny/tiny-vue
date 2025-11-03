@@ -82,10 +82,7 @@ export const numericProps = {
     type: Boolean,
     default: true
   },
-  modelValue: {
-    type: [Number, String],
-    default: 0
-  },
+  modelValue: [Number, String],
   mouseWheel: Boolean,
   name: String,
   placeholder: String,

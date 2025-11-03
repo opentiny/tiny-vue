@@ -10,5 +10,5 @@ test('可清空特性', async ({ page }) => {
   await demo.getByRole('spinbutton').blur()
 
   const inputValue = await demo.locator('.tiny-numeric__input-inner').inputValue()
-  expect(inputValue).toEqual('0')
+  expect(inputValue).toEqual('')
 })
