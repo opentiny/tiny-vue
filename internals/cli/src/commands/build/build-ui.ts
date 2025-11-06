@@ -139,6 +139,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
   const isOnlyHasV3 = (key) => {
     const onlyHasV3Packages = [
       '@opentiny/vue-theme',
+      '@opentiny/vue-theme-saas',
       '@opentiny/vue-renderless',
       '@opentiny/vue-hooks',
       '@opentiny/utils'
