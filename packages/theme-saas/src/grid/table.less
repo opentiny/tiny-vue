@@ -268,25 +268,6 @@
     }
   }
 
-  // tiny新增滚动条放置表格内
-  tbody tr.row__last-visible {
-    &::after {
-      @apply content-[''];
-      @apply absolute;
-      @apply left-0;
-      @apply right-0;
-      @apply h-px;
-      top: calc(var(--body-container-scroll-height) - 1px);
-      width: var(--body-container-scroll-width);
-      @apply bg-color-border-separator;
-      @apply ~'z-[3]';
-    }
-  }
-
-  &:has(.@{grid-prefix-cls}__footer-wrapper) tbody tr.row__last-visible::after {
-    display: none;
-  }
-
   &&__border,
   &&__border-saas {
     // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
