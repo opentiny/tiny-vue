@@ -6,6 +6,8 @@
 
 <p align="center">An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.</p>
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/opentiny/tiny-vue)
+
 English | [简体中文](README.zh-CN.md)
 
 🌈 Features:
