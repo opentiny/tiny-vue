@@ -51,7 +51,12 @@
 
           <div class="tiny-timeline-item__description" ref="description">
             <slot name="description" :slot-scope="node">
-              {{ node.description }}
+              <span v-if="description !== undefined && description !== null">
+                {{ description }}
+              </span>
+              <span v-else-if="node.description !== undefined && node.description !== null">
+                {{ node.description }}
+              </span>
             </slot>
             <div v-show="nodeIndex === rootProps.active">
               <slot name="active-node-desc" :slot-scope="node"></slot>
@@ -168,7 +173,7 @@ import type { ITimelineItemApi } from '@opentiny/vue-renderless/types/timeline-i
 
 export default defineComponent({
   emits: ['click'],
-  props: [...props, 'node', 'space', 'lineWidth', 'shape', 'autoColorField', 'nodeIndex'],
+  props: [...props, 'node', 'space', 'lineWidth', 'shape', 'autoColorField', 'nodeIndex', 'description'],
   components: {
     IconWarn: iconWarn(),
     IconClose: iconClose(),

@@ -244,6 +244,17 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'vertical-timeline',
           mfDemo: ''
+        },
+        {
+          name: 'description',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '时间线描述',
+            'en-US': 'Timeline description'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: ''
         }
       ],
       events: [
