@@ -2,6 +2,4 @@
 export const svgsPath = '../../packages/theme/src/svgs'
 export const iconsPath = '../../packages/vue-icon'
 
-export const rewriteConfig = {
-  acceptance: 'activation'
-}
+export const rewriteConfig = {}

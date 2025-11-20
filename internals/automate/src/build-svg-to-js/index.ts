@@ -43,6 +43,7 @@ interface FileInfo {
 const camelize = (str) => str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 const isSaas = process.argv.includes('--icon-saas')
 const { svgsPath, iconsPath, rewriteConfig } = isSaas ? configSaas : config
+const themePackage = isSaas ? '@opentiny/vue-theme-saas' : '@opentiny/vue-theme'
 const iconsSrcPath = `${iconsPath}/src`
 
 // 生成前清理旧的图标产物，避免目录缺失导致写入失败
@@ -96,8 +97,8 @@ Object.values(svgsMap).forEach((item) => {
     fillList.push({ capName, svgName: item.svgName })
     const tmplStr = `
 import { svg } from '@opentiny/vue-common'
-import ${capName} from '@opentiny/vue-theme/svgs/${item.svgName}.svg'
-import ${capName}Filled from '@opentiny/vue-theme/svgs/${item.svgName + '-filled'}.svg'
+import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
+import ${capName}Filled from '${themePackage}/svgs/${item.svgName + '-filled'}.svg'
 
 export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
 `
@@ -109,7 +110,7 @@ export default () => svg({ name: 'Icon${capName}', component: ${capName}, filled
   uncheckedList.push({ capName, svgName: item.svgName })
   const tmplStr = `
 import { svg } from '@opentiny/vue-common'
-import ${capName} from '@opentiny/vue-theme/svgs/${item.svgName}.svg'
+import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 
 export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
 `

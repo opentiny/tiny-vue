@@ -450,6 +450,8 @@ export async function buildUi(
     tasks.push(...getAllIcons())
   }
 
+  // return true
+
   // 构建 @opentiny/vue
   if (names.some((name) => ['@opentiny/vue', '@opentiny/vue', 'vue'].includes(name))) {
     tasks.push(...getEntryTasks())

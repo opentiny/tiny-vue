@@ -461,19 +461,19 @@ const createModuleMapping = (componentName, isMobile = false) => {
 }
 
 const getAllIcons = () => {
-  const entries = fg.sync('vue-icon*/src/*', { cwd: pathFromWorkspaceRoot('packages'), onlyDirectories: true })
+  const entries = fg.sync('vue-icon*/src/*.ts', { cwd: pathFromWorkspaceRoot('packages') })
 
   return entries.map((item) => {
-    const name = path.basename(item)
+    const name = path.basename(item).replace('.ts', '')
 
     return {
-      path: item + '/index.ts',
-      libPath: item.replace('/src/', '/lib/'),
+      path: item,
+      libPath: item.replace('/src/', '/lib/').replace('.ts', ''),
       type: 'component',
       componentType: 'icon',
       name: kebabCase({ str: name }),
       global: capitalizeKebabCase(name),
-      importName: '@opentiny/vue-' + item
+      importName: '@opentiny/vue-' + item.replace('.ts', '')
     } as Module
   })
 }
