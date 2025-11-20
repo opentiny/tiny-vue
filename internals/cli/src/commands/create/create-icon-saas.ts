@@ -1,26 +1,28 @@
 /**
  * 根据 @opentiny/vue-icon 组件生成 @opentiny/vue-icon-saas 组件
  */
-import path from 'node:path'
-import fs from 'fs-extra'
-import { searchForWorkspaceRoot } from 'vite'
-import { filesFragmentReplace } from '../../shared/utils'
+// import path from 'node:path'
+// import fs from 'fs-extra'
+// import { searchForWorkspaceRoot } from 'vite'
+// import { filesFragmentReplace } from '../../shared/utils'
 
-const ROOT_PATH = searchForWorkspaceRoot(process.cwd())
-const packages = path.join(ROOT_PATH, 'packages')
-const iconDir = path.join(packages, 'vue-icon')
-const iconSaasDir = path.join(packages, 'vue-icon-saas')
+// const ROOT_PATH = searchForWorkspaceRoot(process.cwd())
+// const packages = path.join(ROOT_PATH, 'packages')
+// const iconDir = path.join(packages, 'vue-icon')
+// const iconSaasDir = path.join(packages, 'vue-icon-saas')
 
 export function createIconSaas() {
-  const targets = ['src', 'index.ts']
+  console.warn('saas 图标从theme-saas/svgs目录直接生成， 不需要这段逻辑了！')
 
-  targets.forEach((item) =>
-    fs.copySync(path.resolve(iconDir, item), path.resolve(iconSaasDir, item), { overwrite: true })
-  )
+  // const targets = ['src', 'index.ts']
 
-  filesFragmentReplace(
-    path.resolve(iconSaasDir, 'src'),
-    [/@opentiny\/vue-theme\/svgs\//g],
-    ['@opentiny/vue-theme-saas/svgs/']
-  )
+  // targets.forEach((item) =>
+  //   fs.copySync(path.resolve(iconDir, item), path.resolve(iconSaasDir, item), { overwrite: true })
+  // )
+
+  // filesFragmentReplace(
+  //   path.resolve(iconSaasDir, 'src'),
+  //   [/@opentiny\/vue-theme\/svgs\//g],
+  //   ['@opentiny/vue-theme-saas/svgs/']
+  // )
 }
