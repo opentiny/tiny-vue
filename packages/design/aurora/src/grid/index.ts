@@ -1,4 +1,4 @@
-import { iconChevronUp, iconChevronDown } from '@opentiny/vue-icon'
+import { IconTriangleUp, IconTriangleDown } from '@opentiny/vue-icon'
 
 export default {
   validConfig: {
@@ -11,8 +11,8 @@ export default {
   icons: {
     // aurora不需要默认排序图标
     sortDefault: null,
-    sortAsc: iconChevronUp(),
-    sortDesc: iconChevronDown()
+    sortAsc: IconTriangleUp(),
+    sortDesc: IconTriangleDown()
   },
   stripe: true
 }

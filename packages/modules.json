@@ -2328,6 +2328,25 @@
     "type": "template",
     "exclude": false
   },
+  "Space": {
+    "path": "vue/src/space/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "SpaceMobileFirst": {
+    "path": "vue/src/space/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SpacePc": {
+    "path": "vue/src/space/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Split": {
     "path": "vue/src/split/index.ts",
     "type": "component",

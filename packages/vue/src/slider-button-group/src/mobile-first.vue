@@ -75,7 +75,8 @@ export default defineComponent({
     'noArrow',
     'flex',
     'delay',
-    'disabled'
+    'disabled',
+    'displayed'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

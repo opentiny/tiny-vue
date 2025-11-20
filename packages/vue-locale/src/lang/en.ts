@@ -10,8 +10,8 @@
  *
  */
 export default {
-  'en-US': 'English',
-  'zh-CN': 'Chinese',
+  'enUS': 'English',
+  'zhCN': 'Chinese',
   'zh-TW': 'China Taiwan',
   hello: 'Hello {name}',
   code: 'en-US',
@@ -265,7 +265,7 @@ export default {
       noperm: 'Not find the page',
       weaknet: 'Poor network performance',
       pcview: 'View the file on the PC',
-      nodata: 'Get some rest',
+      nodata: 'No data available.',
       create: 'Create',
       provide: 'Provided by the TINY Team DEV',
       nodatamf: 'No data available.',
@@ -776,7 +776,8 @@ export default {
       noSchedule: 'No Schedule',
       year: '',
       month: '',
-      dateFormat: 'yyyy-MM'
+      dateFormat: 'yyyy-MM-dd',
+      monthFormat: 'yyyy-MM'
     },
     selectedBox: {
       select: 'Selected (%s)',

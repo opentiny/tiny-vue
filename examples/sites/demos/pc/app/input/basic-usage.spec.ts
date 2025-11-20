@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('基本示例', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('input#basic-usage')
-  const input = page.locator('.demo-input > .tiny-input > .tiny-input-display-only > input')
+  const input = page.locator('#basic-usage .demo-input > .tiny-input > .tiny-input-display-only > input')
 
   await expect(input).toBeVisible()
   await expect(input).toHaveAttribute('placeholder', 'Please input')

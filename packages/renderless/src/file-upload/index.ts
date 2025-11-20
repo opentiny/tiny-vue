@@ -393,13 +393,13 @@ export const properFileSize =
     if ([undefined, null].includes(file.size)) return true
 
     let maxSize = 0
-
+    state.singleMaxSize = props.edm.singleFileMaxSize || state.singleMaxSize || 200
     if (Array.isArray(props.fileSize) && props.fileSize[1]) {
       maxSize = state.isEdm
-        ? Math.min(state.singleMaxSize, props.fileSize[1] / 1024)
-        : Math.max(props.fileSize[0] / 1024, props.fileSize[1] / 1024)
+        ? Math.min(state.singleMaxSize, Number(props.fileSize[1]) / 1024)
+        : Math.max(Number(props.fileSize[0]) / 1024, Number(props.fileSize[1]) / 1024)
     } else {
-      maxSize = state.isEdm ? Math.min(state.singleMaxSize) : props.fileSize / 1024
+      maxSize = state.isEdm ? Math.min(state.singleMaxSize) : Number(props.fileSize) / 1024
     }
 
     if (state.isEdm || (Array.isArray(props.fileSize) && props.fileSize[1])) {

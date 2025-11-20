@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { $local } from './storage'
 import { appFn, appData } from './appData'
+import { useTemplateMode } from './useTemplateMode'
 
 const _modeKey = 'tiny-vue-api-mode'
 const _demoModeKey = 'tiny-vue-demo-mode'
@@ -11,9 +12,15 @@ const apiModeState = reactive({
   demoMode: $local[_demoModeKey] || 'default' // 示例展示： default:多示例， single:单示例
 })
 
+const { templateModeState } = useTemplateMode()
+
 const apiModeFn = {
   getDemoName: (name) => {
-    return name.replace(/\.vue$/, `${apiModeState.apiMode === 'Options' ? '' : '-composition-api'}.vue`)
+    const isMobileFirst = templateModeState.mode === 'mobile-first'
+    const isOptions = apiModeState.apiMode === 'Options'
+    const resultName = isMobileFirst ? `mobile-first/${name}` : name
+    // mobile-first模板暂时没有composition-api 格式的文件，需要特殊处理下
+    return resultName.replace(/\.vue$/, `${isOptions || isMobileFirst ? '' : '-composition-api'}.vue`)
   },
   changeLocaleMode: (name) => {
     appFn.toggleLang(name)

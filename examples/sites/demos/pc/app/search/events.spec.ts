@@ -9,7 +9,7 @@ test('事件是否正常触发', async ({ page }) => {
   const button = page.locator('.tiny-search__input-btn > a').first()
 
   await button.click()
-  await expect(modal).toHaveCount(1)
+  await expect(modal).toHaveCount(2)
   await input.first().fill('111')
   await button.click()
   await modal.getByText('111').isVisible()

@@ -4,7 +4,7 @@
       class="tiny-picker-panel tiny-date-range-picker tiny-popper"
       :class="[
         {
-          'has-sidebar': slots.sidebar || state.shortcuts?.length,
+          'has-sidebar': slots.sidebar || state.shortcuts?.length
         },
         state.popperClass
       ]"
@@ -94,6 +94,9 @@
               </year-table>
             </div>
           </div>
+        </div>
+        <div class="tiny-picker-panel__footer" v-if="$slots.footer">
+          <slot name="footer"></slot>
         </div>
       </div>
     </div>

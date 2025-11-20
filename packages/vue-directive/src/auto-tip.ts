@@ -33,10 +33,21 @@ const globalTooltip = {
 const tooltipContent = hooks.ref('')
 
 // 判断是否超出隐藏
-const isEllipsis = (currentTarget) =>
-  currentTarget?.textContent &&
-  (currentTarget.scrollWidth > currentTarget.clientWidth ||
-    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE)
+const isEllipsis = (currentTarget) => {
+  const content = getRealContent(currentTarget)
+  if (!content) return false
+
+  return (
+    currentTarget.scrollWidth > currentTarget.clientWidth ||
+    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE
+  )
+}
+
+// 查询显示内容
+const getRealContent = (currentTarget: HTMLElement) =>
+  'content' in currentTarget.boundingValue // 如果传入content, 哪怕是空格，也使用传入content
+    ? (currentTarget.boundingValue.content as string)
+    : currentTarget.textContent
 
 const isAlwaysShowTip = (currentTarget) => Boolean(currentTarget?.boundingValue?.always)
 
@@ -55,7 +66,8 @@ const mouseenterHandler = (e) => {
   if (isAlwaysShowTip(currentTarget) || isEllipsis(currentTarget)) {
     // 全局只创建一个tooltip实例，保证性能
     if (!globalTooltip.value) {
-      tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
+      tooltipContent.value = getRealContent(currentTarget)
+
       globalTooltip.value = createComponent({
         el: document.createElement('div'),
         propsData: {
@@ -70,7 +82,7 @@ const mouseenterHandler = (e) => {
     const tooltip = globalTooltip.value
     const popperElm = tooltip.state.popperElm
 
-    tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
+    tooltipContent.value = getRealContent(currentTarget)
     tooltip.state.referenceElm = currentTarget
     tooltip.state.currentPlacement = getPlacement(currentTarget)
 

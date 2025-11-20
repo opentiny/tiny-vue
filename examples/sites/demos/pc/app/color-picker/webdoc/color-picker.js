@@ -121,6 +121,20 @@ export default {
         'en-US': ''
       },
       codeFiles: ['format.vue']
+    },
+    {
+      demoId: 'color-mode',
+      name: {
+        'zh-CN': '颜色模式',
+        'en-US': 'color mode'
+      },
+      desc: {
+        'zh-CN':
+          '通过设置 <code>color-mode</code> 属性切换颜色模式。支持 <code>monochrome</code>(单色) 和 <code>linear-gradient</code>(线性渐变) 两种模式。',
+        'en-US':
+          'Set the <code>color-mode</code> attribute to switch color modes. Supports <code>monochrome</code> and <code>linear-gradient</code> modes.'
+      },
+      codeFiles: ['linear-gradient.vue']
     }
   ],
   features: [
@@ -214,6 +228,19 @@ export default {
       },
       apis: ['change'],
       demos: ['events']
+    },
+    {
+      id: 'color-mode',
+      name: '颜色模式',
+      support: {
+        value: true
+      },
+      description: '通过 color-mode 属性来定义是否启用线性渐变',
+      cloud: {
+        value: false
+      },
+      apis: ['color-mode'],
+      demos: ['color-mode']
     }
   ]
 }

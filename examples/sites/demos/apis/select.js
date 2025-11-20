@@ -361,6 +361,19 @@ export default {
           pcDemo: 'filter-method'
         },
         {
+          name: 'optimization',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否开启大数据虚拟滚动功能。仅配置式（使用 options 属性）时支持',
+            'en-US':
+              'Whether to enable the big data virtual scrolling feature. Supported only when configured (using the options attribute)'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'optimization',
+          mfDemo: 'optimization'
+        },
+        {
           name: 'options',
           typeAnchorName: 'IOption',
           type: 'IOption[]',
@@ -421,6 +434,19 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'popup-style-position',
           mfDemo: 'popup-style-position'
+        },
+        {
+          name: 'popper-options',
+          typeAnchorName: 'IPopperOption',
+          type: 'IPopperOption',
+          defaultValue: ' { }',
+          desc: {
+            'zh-CN': '弹出层参数',
+            'en-US': 'Advanced parameters; Refer to the description of IPopperOption'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
         },
         {
           name: 'remote',
@@ -1021,6 +1047,21 @@ interface ITreeOption {
       code: `
 type IPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
 `
+    },
+    {
+      name: 'IPopperOption',
+      type: 'interface',
+      code: `
+    interface IPopperOption {
+      bubbling: boolean // 是否监听元素所有上级有滚动元素的scroll事件，监听到则更新popper的位置。用于解决某些弹出层位置在页面滚动时，位置不正确的场景，默认false
+      followReferenceHide: boolean // 当触发源隐藏时，自动隐藏弹出层，默认true
+      removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
+      updateHiddenPopperOnScroll: boolean  // 滚动过程中是否更新隐藏的弹出层位置
+      boundariesElement: 'viewport' | 'body' | HTMLElement // 滚动过程中,弹出层的碰撞边界。 默认值为： 'viewport'
+      ignoreBoundaries: boolean  // 忽略边界判断，弹出的位置始终是设置的 placement 值
+      scrollParent:  HTMLElement  // 指定滚动的父节点，优化级最高。 默认为null
+    }
+          `
     }
   ]
 }

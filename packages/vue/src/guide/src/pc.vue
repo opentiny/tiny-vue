@@ -25,6 +25,7 @@ export default defineComponent({
     'arrow',
     'lightClass',
     'width',
+    'mask',
     'height'
   ],
   setup(props, context) {

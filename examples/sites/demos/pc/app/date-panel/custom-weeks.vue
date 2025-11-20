@@ -18,17 +18,27 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import { TinyDatePanel, TinyDateRange } from '@opentiny/vue'
 
-const value = ref('2025-01-15')
-const value1 = ref(['2025-01-15', '2025-02-15'])
-const eachWeekFirstDay = ref([])
-
-const formatWeeks = (customWeeks, weekFirstDays) => {
-  eachWeekFirstDay.value = weekFirstDays
-  return customWeeks + 'w'
+export default {
+  components: {
+    TinyDatePanel,
+    TinyDateRange
+  },
+  data() {
+    return {
+      value: '2025-01-15',
+      value1: ['2025-01-15', '2025-02-15'],
+      eachWeekFirstDay: []
+    }
+  },
+  methods: {
+    formatWeeks(customWeeks, weekFirstDays) {
+      this.eachWeekFirstDay = weekFirstDays
+      return customWeeks + 'w'
+    }
+  }
 }
 </script>
 

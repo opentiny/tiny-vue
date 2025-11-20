@@ -112,10 +112,18 @@ export default {
         'en-US': 'Search event'
       },
       desc: {
-        'zh-CN':
-          '<div class="tip custom-block">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />\n              通过 <code>change</code> 监听输入框失焦时搜索值改变事件，<code>input</code> 监听搜索值实时改变事件；<br />\n              通过 <code>select</code> 监听搜索类型选中事件。</div>',
-        'en-US':
-          '<div class="tip custom-block">Set a carriage return to trigger a search event by <code>is enter search</code> , and listen for search events by <code>search</code> <br />\n              By <code>change</code> listening for search value change events when the input box is out of focus, and <code>input</code> listening for real-time search value change events<br />\n              Listen for search type selection events through <code>select</code> .</div>'
+        'zh-CN': `
+        <div class="tip custom-block">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />\n              
+        通过 <code>change</code> 监听输入框失焦时搜索值改变事件，<code>input</code> 监听搜索值实时改变事件；<br />\n              
+        通过 <code>select</code> 监听搜索类型选中事件；<br />\n                
+        通过 <code>expand</code> 监听 mini 搜索框展开事件；<br />\n                
+        通过 <code>collapse</code> 监听 mini 搜索框收起事件。</div>`,
+        'en-US': `<div class="tip custom-block">
+        Set carriage return to trigger search event through<code>is-enter-search</code>, and<code>search</code>to listen for search events; <br />\n              
+        Monitor the search value change event when the input box loses focus through<code>change</code>, and monitor the real-time search value change event through<code>input</code>; <br />\n              
+        Monitor the search type selection event through<code>select</code>; <br />\n                
+        Monitor mini search box expansion events through<code>expand</code>; <br />\n                
+        Monitor the mini search box collapse event through<code>collapse</code>.</div>`
       },
       codeFiles: ['events.vue']
     }

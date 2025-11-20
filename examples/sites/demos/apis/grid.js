@@ -160,6 +160,19 @@ export default {
           pcDemo: 'grid-faq#custom-column'
         },
         {
+          name: 'customs',
+          typeAnchorName: 'ICustomConfig',
+          type: 'ICustomConfig[]',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '表格的初始化个性配置，可以控制表格列是否隐藏，设置列宽。优先级高于grid-column上的配置。',
+            'en-US':
+              'Initialize the table personalized configuration to control whether the table columns are hidden and set the column width. It takes precedence over the configuration on grid-column.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-faq#custom-column'
+        },
+        {
           name: 'data',
           typeAnchorName: 'IRow',
           type: 'Row[]',
@@ -1986,8 +1999,13 @@ export default {
           type: '() => IRow[]',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '获取当前表格的数据（完整的全量表体数据、处理条件之后的全量表体数据、当前渲染中的表体数据、当前渲染中的表尾数据）',
+            'zh-CN': `
+            获取当前表格的数据（完整的全量表体数据、处理条件之后的全量表体数据、当前渲染中的表体数据、当前渲染中的表尾数据） <br/>
+            footerData: 表尾数据。 <br/>
+            fullData: 表格全量数据。  <br/>
+            visibleData: 经过筛选处理后，表格可视数据。 <br/>
+            tableData: 经过虚拟滚动剪切处理和筛选处理，表格实际用于渲染的数据。<br/>
+            `,
             'en-US':
               'Get the data of the current table (complete full body data, full body data after processing conditions, currently rendered body data, currently rendered footer data)'
           },
@@ -3429,7 +3447,9 @@ interface IKeyboardConfig {
       code: `
 interface IMouseConfig {
   // 是否开启左键选中单元格功能（只对 editConfig.mode=cell 有效），默认为 false
-  selected: boolean 
+  selected: boolean
+  // 悬浮是否显示对齐辅助线(3.27.0新增)
+  hover: boolean
 }
       `
     },
@@ -3514,6 +3534,8 @@ interface ITreeConfig {
 interface IValidConfig {
   // 校验提示类型，'inline'(内置提示)；'tooltip'(tooltip文字提示)
   message?: 'inline' | 'tooltip'
+  // 是否高亮已经校验过错误的单元格 (3.27.0新增)
+  highlightError?: boolean
 }
       `
     },
@@ -4212,6 +4234,19 @@ interface ICellClassNameArgs {
   // 单元格所在行的序号
   seq: number
   $seq: string // 已弃用
+}`
+    },
+    {
+      name: 'ICustomConfig',
+      type: 'type',
+      code: `
+interface ICustomConfig {
+  // 表格列字段
+  property: string
+  // 是否显示
+  visible?: boolean
+  // 列宽
+  width?: number | string
 }`
     }
   ]

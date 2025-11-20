@@ -17,6 +17,18 @@ export default {
       codeFiles: ['base.vue']
     },
     {
+      demoId: 'linear-gradient',
+      name: {
+        'zh-CN': '线性渐变',
+        'en-US': 'Linear Gradient'
+      },
+      desc: {
+        'zh-CN': '通过<code>color-mode</code>设置显示色彩选择的色彩模式。',
+        'en-US': 'Set the color mode for display color selection through<code>color mode</code>.'
+      },
+      codeFiles: ['linear-gradient.vue']
+    },
+    {
       demoId: 'alpha',
       name: {
         'zh-CN': '透明度',

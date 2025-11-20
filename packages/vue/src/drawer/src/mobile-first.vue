@@ -32,7 +32,8 @@
       "
       :style="{
         width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
-        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null
+        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null,
+        transform: state.visible ? 'none' : null
       }"
     >
       <div

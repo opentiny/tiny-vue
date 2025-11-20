@@ -1,0 +1,14 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip4012_2517">
+			<rect id="Up and Down Arrow 2" width="24.000000" height="24.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip4012_2517)">
+		<path id="Stroke-1" d="M2.96 1.71C3.23 1.45 3.65 1.42 3.94 1.64L11.46 9.15C11.73 9.42 12.15 9.44 12.44 9.23L19.96 1.71C20.26 1.42 20.73 1.42 21.03 1.71C21.29 1.98 21.32 2.4 21.1 2.69L13.59 10.21C12.75 11.05 11.42 11.09 10.53 10.33L10.4 10.21L2.96 2.78C2.67 2.48 2.67 2.01 2.96 1.71Z" fill="#191919" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Stroke-1" d="M2.96 22.28C3.23 22.54 3.65 22.57 3.94 22.35L11.46 14.84C11.73 14.57 12.15 14.55 12.44 14.76L19.96 22.28C20.26 22.57 20.73 22.57 21.03 22.28C21.29 22.01 21.32 21.59 21.1 21.3L13.59 13.78C12.75 12.94 11.42 12.9 10.53 13.66L10.4 13.78L2.96 21.21C2.67 21.51 2.67 21.98 2.96 22.28Z" fill="#191919" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

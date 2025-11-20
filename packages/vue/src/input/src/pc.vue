@@ -56,6 +56,7 @@
           :content="state.displayOnlyTooltip"
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
+          pre
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span class="tiny-input-display-only__content" v-if="type === 'password'">{{ state.hiddenPassword }}</span>

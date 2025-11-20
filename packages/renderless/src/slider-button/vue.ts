@@ -9,6 +9,7 @@ export const renderless = (
 ) => {
   const state = reactive({
     disabled: inject('disabled', null) || props.disabled,
+    displayed: inject('displayed', null) || props.displayed,
     type: inject('sliderType', null),
     value: computed({
       get: () => api.getValue(),

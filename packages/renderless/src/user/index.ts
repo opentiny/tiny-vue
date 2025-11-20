@@ -114,7 +114,7 @@ const request = {
         cb({ error: e })
       })
   },
-  batchRequest(api) {
+  batchRequest(api, emit) {
     const me = this
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
@@ -140,6 +140,9 @@ const request = {
             })
           })
           errors.length && logger.warn(`user [${errors.join(',')}] not found`)
+          // 新增：通过赋值 modelValue时，如果校验失败，则触发error事件
+          emit('error', errors)
+
           this.clearRequest()
         }
       }
@@ -179,12 +182,12 @@ const request = {
       this.batch = batch
     }
   },
-  getusers({ param, api, batch, cb }) {
+  getusers({ param, api, batch, cb, emit }) {
     if (batch !== false) {
       this.setBatch(batch)
       clearTimeout(this.timmer)
       this.addRequest({ param, cb })
-      this.timmer = setTimeout(() => this.batchRequest(api), 100)
+      this.timmer = setTimeout(() => this.batchRequest(api, emit), 100)
     } else {
       this.singleRequest(param, api, cb)
     }
@@ -430,7 +433,7 @@ export const syncCacheIds =
   }
 
 export const getUsers =
-  ({ api, props, state }) =>
+  ({ api, props, state, emit }) =>
   (value) => {
     const { cache } = props
     const { valueField } = state
@@ -459,7 +462,7 @@ export const getUsers =
         }
       }
 
-      request.getusers({ param, api, batch: state.batch, cb })
+      request.getusers({ param, api, batch: state.batch, cb, emit })
     })
   }
 

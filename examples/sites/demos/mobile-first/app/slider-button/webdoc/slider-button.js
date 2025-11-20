@@ -10,7 +10,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 <code>Button</code>，变量值对应 <code>label</code> 属性的值。<br>\n          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>\n          <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。</p>',
+          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 <code>Button</code>，变量值对应 <code>label</code> 属性的值。<br>\n          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>\n          <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。<code>displayed</code>按钮内容是否全部展示。</p>',
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']

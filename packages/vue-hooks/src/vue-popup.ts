@@ -116,7 +116,7 @@ const openFn =
           PopupManager.nextZIndex(),
           props.modalAppendToBody ? undefined : dom,
           props.modalClass,
-          props.modalFade
+          !props.noAnimation
         )
 
         if (props.lockScroll) {

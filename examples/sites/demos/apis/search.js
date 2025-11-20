@@ -219,6 +219,34 @@ export default {
           pcDemo: 'events'
         },
         {
+          name: 'collapse',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': 'mini模式的搜索框收回时触发的回调函数',
+            'en-US': 'The callback function triggered when the search box in mini mode is retracted'
+          },
+          meta: {
+            stable: '3.26.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'events'
+        },
+        {
+          name: 'expand',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': 'mini模式的搜索框展开时触发的回调函数',
+            'en-US': 'The callback function triggered when the search box in mini mode expands'
+          },
+          meta: {
+            stable: '3.26.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'events'
+        },
+        {
           name: 'input',
           typeAnchorName: 'ITypeValue',
           type: '(input: string, value: ITypeValue) => void',

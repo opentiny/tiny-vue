@@ -343,9 +343,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click：监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand：监听节点展开的事件。</p>\n<p>node-collapse：监听节点收起的事件。</p>\n<p>check-change：可勾选时，监听勾选节点变化的事件。</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>node-click：监听节点被点击时的事件。</p>\n<p>current-change：监听当前选中节点发生变化的事件。</p>\n<p>node-expand：监听节点展开的事件。</p>\n<p>node-collapse：监听节点收起的事件。</p>\n<p>check-change：可勾选时，监听勾选节点变化的事件。</p>\n<p>input-change：输入框输入值时触发的事件。</p></div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n<p>input-change：Event triggered when a value is entered into the input box.</p></div>\n'
       },
       codeFiles: ['events.vue']
     },

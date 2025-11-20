@@ -98,6 +98,26 @@
     fill: currentColor;
   }
 
+  .tiny-button.tiny-button--text {
+    &.is-icon {
+      @apply text-color-brand;
+      > svg {
+        fill: currentColor;
+      }
+      &:hover {
+        @apply text-color-icon-hover;
+      }
+    }
+  }
+
+  .tiny-button.tiny-button--text.is-disabled.is-icon {
+    > svg,
+    > span {
+      @apply text-color-text-disabled;
+      @apply fill-color-text-disabled;
+    }
+  }
+
   .tiny-button.query-builder-button {
     & > .btn-icon {
       font-size: 16px;
@@ -117,10 +137,11 @@
     }
 
     &.is-disabled {
+      @apply text-color-text-disabled;
       & > .btn-font,
-      & > svg.btn-icon {
-        color: rgba(181, 187, 193, 50%);
-        fill: currentColor;
+      & > svg {
+        @apply text-color-text-disabled;
+        @apply fill-color-text-disabled;
       }
     }
   }

@@ -143,11 +143,12 @@
         cursor: pointer;
         border-radius: var(--tv-Guide-button-border-radius);
         border: 1px solid var(--tv-Guide-button-border-color);
-        width: var(--tv-Guide-button-width);
+        min-width: var(--tv-Guide-button-width);
         height: var(--tv-Guide-button-height);
         margin-left: 8px;
         text-align: center;
         transition: all 0.5s ease;
+        padding: 0 var(--tv-Guide-button-padding-horizontal);
         font-size: var(--tv-Guide-button-font-size);
 
         &:hover {
@@ -268,7 +269,7 @@
     opacity 0.3s 0ms;
 
   &.shepherd-modal-is-visible {
-    opacity: 0.5;
+    opacity: 0.2;
     transform: translateZ(0);
     transition:
       all 0.3s ease-out,

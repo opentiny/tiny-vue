@@ -54,7 +54,8 @@ export default {
         'zh-CN': '可通过<code>theme</code>属性设置自定义主题色常量。',
         'en-US': 'You can use the <code>theme</code> property to set a custom theme color constant.'
       },
-      codeFiles: ['theme.vue']
+      codeFiles: ['theme.vue'],
+      hideSaas: true // 当环境变量为tiny-vue-saas时隐藏该属性
     }
   ],
   features: [

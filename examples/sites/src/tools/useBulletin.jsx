@@ -22,15 +22,16 @@ export function useBulletin() {
     onMounted(() => {
       Modal.confirm({
         title: '公告',
-        message: (<div style="font-size:16px;line-height:1.5;">
-          <div>尊敬的 TinyVue 用户：</div>
-          <p style="text-indent: 2em;" v-html={lastBulletin.content}> 
-          </p>
-          <div style="text-align:right;margin-top:20px">TinyVue 团队</div>
-          <div style="text-align:right;">{ lastBulletin.time }</div>
-        </div>),
+        message: (
+          <div style="font-size:16px;line-height:1.5;">
+            <div>尊敬的 TinyVue 用户：</div>
+            <p style="text-indent: 2em;" v-html={lastBulletin.content}></p>
+            <div style="text-align:right;margin-top:20px">TinyVue 团队</div>
+            <div style="text-align:right;">{lastBulletin.time}</div>
+          </div>
+        ),
         status: null,
-        width:'760',
+        width: '760',
         confirmContent: '我知道了',
         cancelContent: '关闭'
       }).then((res) => {

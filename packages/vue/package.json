@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.27.0",
   "private": true,
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
@@ -182,6 +182,7 @@
     "@opentiny/vue-slider": "workspace:~",
     "@opentiny/vue-slider-button": "workspace:~",
     "@opentiny/vue-slider-button-group": "workspace:~",
+    "@opentiny/vue-space": "workspace:~",
     "@opentiny/vue-split": "workspace:~",
     "@opentiny/vue-standard-list-item": "workspace:~",
     "@opentiny/vue-statistic": "workspace:~",

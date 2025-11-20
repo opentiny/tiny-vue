@@ -84,6 +84,11 @@ export const watchFilterText =
 export const nodeDragStart = (emit) => (node, event) => {
   emit('node-drag-start', node, event)
 }
+export const inputChange =
+  ({ emit, state }) =>
+  () => {
+    emit('input-change', state.filterText)
+  }
 
 export const nodeDragEnter = (emit) => (dragNode, dropNode, event) => {
   emit('node-drag-enter', dragNode, dropNode, event)

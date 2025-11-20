@@ -138,6 +138,20 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'size'
+        },
+        {
+          name: 'mask',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否显示遮罩层',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'mask',
+          meta: {
+            stable: '3.27.0'
+          }
         }
       ],
       events: [],

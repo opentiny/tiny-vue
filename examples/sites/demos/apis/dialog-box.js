@@ -289,19 +289,31 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'transition-effect'
+        },
+        {
+          name: 'before-close',
+          type: '(type) => boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置弹窗关闭前的回调函数，如果函数返回 `false`,可以拦截关闭弹窗',
+            'en-US':
+              'set the callback function before closing the pop-up. If the function returns `false`, the pop-up will not be closed'
+          },
+          mode: ['pc'],
+          pcDemo: 'before-close'
         }
       ],
       events: [
         {
           name: 'before-close',
-          type: '(arg:() => void) => void',
+          type: '(event, hideFn) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': 'Dialog 关闭弹窗前，执行的事件',
-            'en-US': 'Event executed before a dialog window is closed.'
+            'zh-CN': 'Dialog 关闭弹窗前的事件，通过 event.preventDefault() 可以拦截关闭弹窗',
+            'en-US': 'Dialog event before closing the pop-up'
           },
           mode: ['pc'],
-          pcDemo: 'draggable'
+          pcDemo: 'before-close'
         },
         {
           name: 'close',

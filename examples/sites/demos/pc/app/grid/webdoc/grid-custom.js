@@ -14,6 +14,17 @@ export default {
       codeFiles: ['custom/column-width.vue']
     },
     {
+      demoId: 'custom-default-csutoms',
+      name: { 'zh-CN': '初始化个性配置', 'en-US': 'Initialize personal configuration' },
+      desc: {
+        'zh-CN':
+          '<p>在 <code>grid</code> 标签上配置 <code>customs</code> 可以设置表格的初始化个性配置，可以控制表格列的隐藏，列宽等。</p>\n',
+        'en-US':
+          '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStorage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
+      },
+      codeFiles: ['custom/default-customs.vue']
+    },
+    {
       demoId: 'custom-column-simple',
       name: { 'zh-CN': '简化版列设置', 'en-US': 'Manually Reset Columns' },
       desc: {

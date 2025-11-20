@@ -54,6 +54,7 @@ tgzs
 # theme 的汇总文件是自动生成的
 packages/theme/src/old-theme-index.less
 packages/theme/src/index.less
+packages/theme/src/token.js
 
 pnpm-lock.yaml
 gulp/bundle.json

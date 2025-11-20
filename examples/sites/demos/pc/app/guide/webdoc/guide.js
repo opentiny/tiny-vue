@@ -93,6 +93,18 @@ export default {
       codeFiles: ['size.vue']
     },
     {
+      demoId: 'mask',
+      name: {
+        'zh-CN': '弹窗的遮罩层',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN': '<p>通过添加 <code>mask</code> 来自定义是否显示遮罩层。默认值为 <code>false</code> </p>',
+        'en-US': ''
+      },
+      codeFiles: ['mask.vue']
+    },
+    {
       demoId: 'modal-overlay-opening',
       name: {
         'zh-CN': '模态叠加层开口',

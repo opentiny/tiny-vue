@@ -38,10 +38,7 @@
         </div>
         <component :is="getDescMd(demo)" class="demo-desc" />
 
-        <div v-if="isMobileFirst" class="pc-demo-container">
-          <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
-        </div>
-        <div v-else-if="demoConfig.isMobile" class="pc-demo-container">
+        <div v-if="demoConfig.isMobile" class="pc-demo-container">
           <div class="mobile-view-btn">
             <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
           </div>
@@ -70,7 +67,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, shallowRef, onMounted, onBeforeUnmount, watch, nextTick, inject, h } from 'vue'
+import {
+  ref,
+  reactive,
+  computed,
+  shallowRef,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  nextTick,
+  inject,
+  h,
+  provide
+} from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, fetchDemosFile } from '@/tools'
 import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
@@ -175,7 +184,9 @@ const getDemoCodeFn = async (demo, forceUpdate?: boolean) => {
       const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
       let code = ''
 
-      const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
+      const path = isMobileFirst.value
+        ? `@demos/mobile-first/app/${demoName.replace('mobile-first/', '')}`
+        : `${staticDemoPath}/${demoName}`
       code = await fetchDemosFile(path)
         .then((code) => {
           return code
@@ -257,6 +268,8 @@ const openIframe = (demo) => {
   emit('get-iframe-demo', demo)
 }
 
+provide('TinyMode', templateModeState.mode)
+
 onMounted(() => {
   if (demoContainer.value) {
     props.observer?.observe?.(demoContainer.value)
@@ -293,7 +306,7 @@ onBeforeUnmount(() => {
     padding: 4px 8px;
     margin: 0 4px;
     font-size: 0.85em;
-    background-color: var(--tv-color-bg-header);
+    background-color: var(--tv-color-bg-header, #f5f7fa);
     border-radius: 3px;
   }
 

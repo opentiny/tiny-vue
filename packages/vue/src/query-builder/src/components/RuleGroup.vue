@@ -68,6 +68,7 @@
           ></component>
 
           <component
+            v-if="rg.schema.showNewRule"
             :is="controls.addRuleAction"
             :test-i-d="TestID.addRule"
             :label="rg.translations.addRule.label"
@@ -83,10 +84,21 @@
             :rule-or-group="rg.ruleGroup"
             :schema="rg.schema"
           >
-            <IconPlus class="primary-svg"></IconPlus> {{ $t('ui.queryBuilder.addItem') }}
+            <tiny-button
+              type="text"
+              :icon="IconPlus()"
+              :text="$t('ui.queryBuilder.addItem')"
+              :disabled="
+                rg.disabled ||
+                rg.schema.isRuleDisable ||
+                (rg.schema.ruleLimit !== undefined && rg.ruleGroup.rules.length >= rg.schema.ruleLimit)
+              "
+            >
+            </tiny-button>
           </component>
 
           <component
+            v-if="rg.schema.showNewGroup"
             :is="controls.addGroupAction"
             :test-i-d="TestID.addGroup"
             :label="rg.translations.addGroup.label"
@@ -101,8 +113,19 @@
             :validation="rg.validationResult"
             :rule-or-group="rg.ruleGroup"
             :schema="rg.schema"
-            ><IconPlus class="primary-svg"></IconPlus> {{ $t('ui.queryBuilder.addGroup') }}</component
           >
+            <tiny-button
+              type="text"
+              :icon="IconPlus()"
+              :text="$t('ui.queryBuilder.addGroup')"
+              :disabled="
+                rg.disabled ||
+                rg.schema.isGroupDisable ||
+                (rg.schema.groupLimit !== undefined && rg.path.length > rg.schema.groupLimit)
+              "
+            >
+            </tiny-button>
+          </component>
 
           <component
             v-if="rg.path.length >= 1"
@@ -169,7 +192,8 @@
 
 <script lang="ts">
 import { defineComponent } from '@opentiny/vue-common'
-import { IconPlus, IconNodeOpen, IconNode, IconDel } from '@opentiny/vue-icon'
+import TinyButton from '@opentiny/vue-button'
+import { IconNodeOpen, IconNode, IconDel, IconPlus } from '@opentiny/vue-icon'
 import { TestID } from '../defaults'
 import { useRuleGroup } from '../hooks'
 import RuleGroupBodyComponents from './RuleGroupBodyComponents.vue'
@@ -213,8 +237,9 @@ const RuleGroupProps = [
 export default defineComponent({
   name: 'RuleGroup',
   components: {
+    TinyButton,
     RuleGroupBodyComponents,
-    IconPlus: IconPlus(),
+    IconPlus,
     IconDel: IconDel(),
     IconNodeOpen: IconNodeOpen(),
     IconNode: IconNode()
@@ -222,7 +247,8 @@ export default defineComponent({
   props: [...RuleGroupProps], // :RuleGroupProps
   setup() {
     return {
-      TestID
+      TestID,
+      IconPlus
     }
   },
   computed: {

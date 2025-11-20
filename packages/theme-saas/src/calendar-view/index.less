@@ -449,7 +449,7 @@
         @apply w-12;
 
         ul>li{
-          @apply h-5;
+          @apply h-6;
           @apply text-center;
           @apply border-b;
           @apply border-b-color-bg-1;
@@ -494,6 +494,12 @@
             &.is-even-num{
               @apply border-dashed;
             }
+
+            &.is-scroll-list{
+              @apply overflow-y-auto;
+              @apply overflow-x-hidden;
+              @apply scrollbar-size-0;
+            }
           }
 
           .events-item{
@@ -502,12 +508,12 @@
             @apply flex;
             @apply items-center;
             @apply ~'px-1.5';
-            @apply absolute;
             @apply top-0;
             @apply left-0;
             @apply z-10;
             @apply leading-normal;
             @apply rounded-sm;
+            @apply ~'mb-0.5';
 
             &.theme-blue {
               @apply text-color-brand;

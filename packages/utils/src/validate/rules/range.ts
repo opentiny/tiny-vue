@@ -50,7 +50,7 @@ export default function (rule, checkValue, source, errors, options) {
   }
 
   if (str) {
-    val = getLength(checkValue, 'string')
+    val = getLength(checkValue, rule.regular ?? 'string')
   }
 
   if (rule.type === 'number') {

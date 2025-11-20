@@ -17,6 +17,28 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'displayed',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '按钮内容是否全部展示，默认false',
+            'en-US': 'Set whether the button content is fully displayed, default is false'
+          },
+          mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
+          name: 'disabled',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置滑块项禁用态',
+            'en-US': ''
+          },
+          mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'label',
           type: 'Number / String',
           defaultValue: '',

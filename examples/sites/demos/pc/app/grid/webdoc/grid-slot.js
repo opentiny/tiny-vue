@@ -12,6 +12,15 @@ export default {
       codeFiles: ['slot/default-slot.vue']
     },
     {
+      demoId: 'slot-conf-slot',
+      name: { 'zh-CN': '配置式表格插槽', 'en-US': 'Config slot' },
+      desc: {
+        'zh-CN': `<p>通过 <code>column.slots</code> 添加表格列的插槽。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
+      codeFiles: ['slot/slot-conf.vue']
+    },
+    {
       demoId: 'slot-buttons-slot',
       name: { 'zh-CN': '工具栏插槽', 'en-US': 'Toolbar slot' },
       desc: {

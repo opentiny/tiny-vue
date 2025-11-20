@@ -1,13 +1,21 @@
-import type { IColorSelectPanelAlphProps, IColorSelectPanelRef, ISharedRenderlessParamHooks } from '@/types'
+import type {
+  ColorPanelContext,
+  IColorSelectPanelAlphProps,
+  IColorSelectPanelRef,
+  ISharedRenderlessParamHooks
+} from '@/types'
 import type { Color } from '../utils/color'
 import { getClientXY } from '../utils/getClientXY'
+import { useContext } from '../utils/context'
 
 type State = ReturnType<typeof initState>
 
-export const initState = ({ ref, reactive }: ISharedRenderlessParamHooks) => {
-  const background = ref('')
+export const initState = (hooks: ISharedRenderlessParamHooks) => {
+  const { ref, reactive } = hooks
+  const ctx = useContext(hooks)
+  const background = ref(ctx.activeColor.value.color.value)
   const left = ref(0)
-  const state = reactive({ background, left })
+  const state = reactive({ background, left, activeColor: ctx.activeColor })
   return state
 }
 
@@ -16,7 +24,8 @@ export const useEvent = (
   slider: IColorSelectPanelRef<HTMLElement | undefined>,
   alphaWrapper: IColorSelectPanelRef<HTMLElement | undefined>,
   alphaThumb: IColorSelectPanelRef<HTMLElement | undefined>,
-  props: IColorSelectPanelAlphProps<Color>
+  props: IColorSelectPanelAlphProps<Color>,
+  ctx: ColorPanelContext
 ) => {
   const onDrag = (event: MouseEvent | TouchEvent) => {
     if (!slider.value || !alphaThumb.value) {
@@ -31,7 +40,7 @@ export const useEvent = (
     const alpha = Math.round(
       ((left - alphaThumb.value.offsetWidth / 2) / (rect.width - alphaThumb.value.offsetWidth)) * 100
     )
-    props.color.set('alpha', alpha)
+    ctx.activeColor.value.color.set('alpha', alpha)
   }
   const onClick = (event: MouseEvent | TouchEvent) => {
     if (event.target !== alphaThumb.value) {
@@ -47,12 +56,12 @@ export const useEvent = (
     if (!el) {
       return 0
     }
-    const alpha = props.color.get('alpha')
+    const alpha = ctx.activeColor.value.color.get('alpha')
     return (alpha * (el.offsetWidth - thumb.offsetWidth / 2)) / 100
   }
   const getBackground = () => {
-    if (props.color && props.color.value) {
-      const { r, g, b } = props.color.toRgb()
+    if (ctx.activeColor && ctx.activeColor.value) {
+      const { r, g, b } = ctx.activeColor.value.color.toRgb()
       return `linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0) 0%, rgba(${r}, ${g}, ${b}, 1) 100%)`
     }
     return ''
@@ -67,15 +76,18 @@ export const useEvent = (
 export const initWatch = (
   props: IColorSelectPanelAlphProps<Color>,
   update: () => void,
-  { watch }: ISharedRenderlessParamHooks
+  { watch }: ISharedRenderlessParamHooks,
+  ctx: ColorPanelContext
 ) => {
   watch(
-    () => props.color.get('alpha'),
-    () => update(),
+    () => ctx.activeColor.value.color,
+    () => {
+      update()
+    },
     { deep: true }
   )
   watch(
-    () => props.color,
+    () => ctx.activeColor,
     () => update(),
     { deep: true }
   )
