@@ -59,30 +59,30 @@ export default {
         }
       ],
       shortcutsMonth: [
-          {
-            text: '一个月前',
-            onClick(picker) {
-              const date = new Date()
-              date.setMonth(date.getMonth() - 1)
-              picker.$emit('pick', date)
-            }
-          },
-          {
-            text: '三个月前',
-            onClick(picker) {
-              const date = new Date()
-              date.setMonth(date.getMonth() - 3)
-              picker.$emit('pick', date)
-            }
-          },
-          {
-            text: '六个月前',
-            onClick(picker) {
-              const date = new Date()
-              date.setMonth(date.getMonth() - 6)
-              picker.$emit('pick', date)
-            }
+        {
+          text: '一个月前',
+          onClick(picker) {
+            const date = new Date()
+            date.setMonth(date.getMonth() - 1)
+            picker.$emit('pick', date)
           }
+        },
+        {
+          text: '三个月前',
+          onClick(picker) {
+            const date = new Date()
+            date.setMonth(date.getMonth() - 3)
+            picker.$emit('pick', date)
+          }
+        },
+        {
+          text: '六个月前',
+          onClick(picker) {
+            const date = new Date()
+            date.setMonth(date.getMonth() - 6)
+            picker.$emit('pick', date)
+          }
+        }
       ],
       shortcutsYear: [
         {

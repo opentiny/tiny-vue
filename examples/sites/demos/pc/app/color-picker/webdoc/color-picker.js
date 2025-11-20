@@ -46,11 +46,11 @@ export default {
     {
       demoId: 'enable-alpha',
       name: {
-        'zh-CN': 'Alpha',
+        'zh-CN': '透明度',
         'en-US': 'Alpha'
       },
       desc: {
-        'zh-CN': '<code>Alpha</code>选择。',
+        'zh-CN': '<code>透明度</code>选择。',
         'en-US': '<code>Alpha</code>select.'
       },
       codeFiles: ['alpha.vue']

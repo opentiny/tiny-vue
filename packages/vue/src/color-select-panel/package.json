@@ -18,12 +18,12 @@
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-select": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "gradient-parser": "^1.1.1"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "@types/gradient-parser": "^1.1.0",
+    "gradient-parser": "^1.1.0",
     "vitest": "catalog:"
   }
 }

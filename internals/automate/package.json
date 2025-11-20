@@ -15,7 +15,12 @@
     "diff": "esno ./src/aui-diff.ts",
     "add-dep": "esno ./src/add-dependencies.ts",
     "auto-build-pub": "esno ./src/publish/index.ts",
-    "theme-swap": "esno ./src/theme-swap/index.ts"
+    "theme-swap": "esno ./src/theme-swap/index.ts",
+    "// ---------- svg文件，直接生成 vue-icon下的js ----------": "",
+    "build-svgs": "esno ./src/build-svg-to-js/index.ts --icon",
+    "build-svgs-saas": "esno ./src/build-svg-to-js/index.ts --icon-saas",
+    "// ---------- 拷贝设计师提供的图标到 svgs目录中 ----------": "",
+    "copy-svgs-raw": "esno ./src/copy-svgs-raw/index.ts"
   },
   "dependencies": {
     "esno": "^4.7.0",
@@ -32,7 +37,7 @@
     "chalk": "2.4.2",
     "commander": "^10.0.0",
     "lodash-es": "^4.17.21",
-    "sheetjs-style": "^0.15.8",
-    "semver": "^7.3.8"
+    "semver": "^7.3.8",
+    "sheetjs-style": "^0.15.8"
   }
 }

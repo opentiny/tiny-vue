@@ -51,6 +51,26 @@ export default {
       codeFiles: ['show-title.vue']
     },
     {
+      demoId: 'advance-icons',
+      name: {
+        'zh-CN': '标准图标合集',
+        'en-US': 'Icon Set'
+      },
+      desc: {
+        'zh-CN': `Saas业务梳理280多个标准图标，Saas业务的应用必须使用标准图标。它新增了三大功能：支持线性、面性图标切换，支持双色切换和托底效果。<br>
+                  通过<code>shape</code> 属性，设置图标的线性或面性图标，它支持<code>'line' | 'filled' </code>, 默认为线性图标 。\n<br>
+                  通过<code>firstColor, secondColor</code>属性，设置图标的主色和副色。\n<br>
+                  通过<code>underlay</code>属性，设置图标的托底效果。默认样式： { background:'#eef3fe', borderRadius:'4px',scale:0.8 } <br>
+                  `,
+        'en-US': `More than 280 standard icons are sorted out for SaaS services. SaaS service applications must use standard icons. It adds three new functions: linear and facial icon switching, dual-color switching and bottom-supporting effects.
+                  The <code>shape</code> property is used to set the linear or facial icon of the icon. It supports <code>'line' |'filled'</code>. The default value is linear. \n<br>
+                  Set the primary color and secondary color of the icon through the <code>firstColor, secondColor</code> attribute. \n<br>
+                  Set the bottoming effect of the icon through the <code>underlay</code> attribute. Default style: {background: '#dbdbdb', borderRadius: '4px', scale:0.6} <br>`
+      },
+      codeFiles: ['advance-usage.vue'],
+      hidePc: true // PC的图标未整理，该demo仅服务于saas标准图标
+    },
+    {
       demoId: 'list',
       name: {
         'zh-CN': '图标集合',

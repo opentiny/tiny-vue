@@ -43,6 +43,17 @@
   display: inline-block;
 }
 
+// 图标托底效果 --- 详见 svg()
+.tiny-svg-underlay {
+  background-color: var(--tiny-underlay-bg, '#dbdbdb');
+  border-radius: var(--tiny-underlay-br, '4px');
+}
+
+.tiny-svg-underlay > * {
+  transform-origin: center;
+  transform: scale(var(--tiny-underlay-scale, 0.6));
+}
+
 [class*=~'@{css-prefix}'] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
