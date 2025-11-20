@@ -1010,11 +1010,17 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "ExceptionMobileFirst": {
     "path": "vue/src/exception/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ExceptionPc": {
+    "path": "vue/src/exception/src/pc.vue",
     "type": "template",
     "exclude": false
   },
