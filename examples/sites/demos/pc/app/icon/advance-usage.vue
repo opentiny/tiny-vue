@@ -138,7 +138,7 @@ export default {
 .svgs-icon {
   cursor: pointer;
   transition: all 0.4s;
-  font-size: 24px;
+  font-size: 40px;
   fill: var(--tv-color-icon-control);
   color: var(--tv-color-icon-control);
 }

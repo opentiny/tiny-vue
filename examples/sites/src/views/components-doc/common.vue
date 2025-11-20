@@ -324,6 +324,12 @@ const loadPage = () => {
         demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
         column: demosJson.column || '1' // columns可能为空
       }
+      // saas 和 非saas 模式，展示的demos是不同的
+      if (isSaas) {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hideSaas)
+      } else {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hidePc)
+      }
     } else {
       state.activeTab = 'api'
       // 隐藏tab的头部
