@@ -43,6 +43,15 @@ interface FileInfo {
 const camelize = (str) => str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 const isSaas = process.argv.includes('--icon-saas')
 const { svgsPath, iconsPath, rewriteConfig } = isSaas ? configSaas : config
+const iconsSrcPath = `${iconsPath}/src`
+
+// 生成前清理旧的图标产物，避免目录缺失导致写入失败
+try {
+  fs.rmSync(iconsSrcPath, { recursive: true, force: true })
+} catch (error) {
+  console.warn(`[build-svg-to-js] 清理目录失败: ${iconsSrcPath}`, error)
+}
+fs.mkdirSync(iconsSrcPath, { recursive: true })
 
 // 1、统计svgs信息
 const svgsMap: Record<string, FileInfo> = {}
