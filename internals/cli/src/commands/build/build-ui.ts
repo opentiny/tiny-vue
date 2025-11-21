@@ -345,7 +345,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 子图标排除周边引用, 这里注意不要排除svg图标
-            if (/vue-icon(-saas|-multicolor)?\/.+\/index/.test(importer)) {
+            if (/vue-icon(-saas|-multicolor)?\/src\/.+.ts/.test(importer)) {
               return !/\.svg/.test(source)
             }
 
