@@ -78,15 +78,15 @@ export const defaultOnQueryChange =
     }
     setFilteredSelectCls(nextTick, state, props)
     api.getOptionIndexArr()
-
-    state.magicKey = state.magicKey > 0 ? -1 : 1
   }
 
 export const queryChange =
   ({ props, state, constants }) =>
   (value, isInput) => {
     if (props.optimization && isInput) {
-      const filterDatas = state.initDatas.filter((item) => new RegExp(escapeRegexpString(value), 'i').test(item.label))
+      const filterDatas = state.initDatas.filter((item) =>
+        new RegExp(escapeRegexpString(value), 'i').test(item[props.textField])
+      )
       state.datas = filterDatas
     } else {
       state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
@@ -95,7 +95,13 @@ export const queryChange =
 
 const setFilteredSelectCls = (nextTick, state, props) => {
   nextTick(() => {
-    if (props.multiple && props.showAlloption && props.filterable && state.query && !props.remote) {
+    if (
+      props.multiple &&
+      props.showAlloption &&
+      (props.filterable || props.searchable) &&
+      state.query &&
+      !props.remote
+    ) {
       const filterSelectedVal = state.options
         .filter((item) => item.state.visible && item.state.itemSelected)
         .map((opt) => opt.value)
@@ -141,7 +147,7 @@ export const handleQueryChange =
 
     state.hoverIndex = -1
 
-    if (props.multiple && props.filterable && !props.shape) {
+    if (props.multiple && (props.filterable || props.searchable) && !props.shape && !state.selectDisabled) {
       nextTick(() => {
         const length = vm.$refs.input.value.length * 15 + 20
         state.inputLength = state.collapseTags ? Math.min(50, length) : length
@@ -177,9 +183,9 @@ export const handleMenuEnter =
   }
 
 export const emitChange =
-  ({ emit, props, state, constants }) =>
+  ({ emit, props, state, constants, isMobileFirstMode }) =>
   (value, changed) => {
-    if (state.device === 'mb' && props.multiple && !changed) return
+    if (isMobileFirstMode && state.device === 'mb' && props.multiple && !changed) return
 
     if (!isEqual(props.modelValue, state.compareValue)) {
       emit('change', value)
@@ -225,17 +231,17 @@ export const getOption =
     if (props.optimization) {
       option = api.getSelectedOption(value)
       if (option) {
-        return { value: option.value, currentLabel: option.label || option.currentLabel }
+        return { value: option.value, currentLabel: option[props.textField] || option.currentLabel }
       }
 
-      option = state.datas.find((v) => getObj(v, props.valueKey) === value)
+      option = state.datas.find((v) => getObj(v, props.valueField) === value)
       if (option) {
-        return { value: option.value, currentLabel: option.label || option.currentLabel }
+        return { value: option[props.valueField], currentLabel: option[props.textField] || option.currentLabel }
       }
     }
     // tiny 新增 clearNoMatchValue的条件
     const label = !isObject && !isNull && !isUndefined && !props.clearNoMatchValue ? value : ''
-    let newOption = { value, currentLabel: label }
+    let newOption = { value, currentLabel: label, isFakeLabel: true }
 
     if (props.multiple) {
       newOption.hitState = false
@@ -249,9 +255,13 @@ export const getSelectedOption =
   (value) => {
     let option
     if (props.multiple) {
-      option = state.selected.find((v) => getObj(v, props.valueKey) === value)
+      option = state.selected.find((v) => getObj(v, props.valueField) === value && !v.isFakeLabel)
     } else {
-      if (!isEmptyObject(state.selected) && getObj(state.selected, props.valueKey) === value) {
+      if (
+        !isEmptyObject(state.selected) &&
+        getObj(state.selected, props.valueField) === value &&
+        !state.selected.isFakeLabel
+      ) {
         option = state.selected
       }
     }
@@ -310,7 +320,7 @@ export const setSelected =
       const option = getOptionOfSetSelected({ api, props })
       state.selected = option
       state.selectedLabel = option.state.currentLabel || option.currentLabel
-      props.filterable && !props.shape && (state.query = state.selectedLabel)
+      ;(props.filterable || props.searchable) && !props.shape && (state.query = state.selectedLabel)
     } else {
       const result = getResultOfSetSelected({ state, props, api })
       state.selectCls = result.length
@@ -366,6 +376,8 @@ export const toggleCheckAll =
         value = [...new Set([...state.modelValue, ...enabledValues])]
       } else {
         value = state.modelValue.filter((val) => !enabledValues.includes(val))
+        // 避免编译报错
+        value = Array.from(new Set([...state.modelValue, ...enabledValues]))
       }
     } else {
       if (state.selectCls === 'check') {
@@ -398,20 +410,33 @@ export const toggleCheckAll =
 export const handleFocus =
   ({ emit, props, state }) =>
   (event) => {
-    if (!state.softFocus) {
-      if (props.automaticDropdown || props.filterable) {
-        state.visible = true
-        state.softFocus = true
-      }
+    state.willFocusRun = true
+    state.willFocusTimer && clearTimeout(state.willFocusTimer)
 
-      emit('focus', event)
-    } else {
-      if (state.searchSingleCopy && state.selectedLabel) {
+    state.willFocusTimer = setTimeout(() => {
+      state.willFocusTimer = 0
+      if (!state.willFocusRun) return // 立即触发了blur,则不执行focus了
+
+      if (!state.softFocus) {
+        // tiny 新增 shape条件: 防止过滤器模式，且filterable时， 面板无法关闭的bug
+        if (props.shape === 'filter') {
+          return
+        }
+
+        if (props.automaticDropdown || props.filterable || props.searchable) {
+          state.visible = true
+          state.softFocus = true
+        }
+
         emit('focus', event)
-      }
+      } else {
+        if (state.searchSingleCopy && state.selectedLabel) {
+          emit('focus', event)
+        }
 
-      state.softFocus = false
-    }
+        state.softFocus = false
+      }
+    }, 10)
   }
 
 export const focus =
@@ -432,6 +457,7 @@ export const blur =
 export const handleBlur =
   ({ constants, dispatch, emit, state, designConfig }) =>
   (event) => {
+    state.willFocusRun = false
     clearTimeout(state.timer)
     state.timer = setTimeout(() => {
       if (state.isSilentBlur) {
@@ -534,7 +560,7 @@ export const resetInputState =
 export const resetInputHeight =
   ({ constants, nextTick, props, vm, state, api, designConfig }) =>
   () => {
-    if (state.collapseTags && !props.filterable) {
+    if (state.collapseTags && !(props.filterable || props.searchable)) {
       return
     }
 
@@ -554,8 +580,6 @@ export const resetInputHeight =
       if (!state.isDisplayOnly && (props.hoverExpand || props.clickExpand) && !props.disabled) {
         api.calcCollapseTags()
       }
-
-      const sizeInMap = designConfig?.state.initialInputHeight || state.initialInputHeight || 32
       const noSelected = state.selected.length === 0
       // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
       const spacingHeight = designConfig?.state?.spacingHeight ?? constants.SPACING_HEIGHT
@@ -566,11 +590,11 @@ export const resetInputHeight =
             const tagsClientHeight = tags.clientHeight
 
             fastdom.mutate(() => {
-              input.style.height = Math.max(tagsClientHeight + spacingHeight, sizeInMap) + 'px'
+              input.style.height = Math.max(tagsClientHeight + spacingHeight, state.currentSizeMap) + 'px'
             })
           })
         } else {
-          input.style.height = noSelected ? sizeInMap + 'px' : Math.max(0, sizeInMap) + 'px'
+          input.style.height = noSelected ? state.currentSizeMap + 'px' : Math.max(0, state.currentSizeMap) + 'px'
         }
       } else {
         input.style.height = 'auto'
@@ -648,8 +672,8 @@ export const handleOptionSelect =
         state.inputLength = 20
       }
 
-      if (props.filterable) {
-        vm.$refs.input.focus()
+      if (props.filterable || props.searchable) {
+        vm.$refs.input?.focus()
       }
 
       if (props.autoClose) {
@@ -673,7 +697,7 @@ export const handleOptionSelect =
 
     state.isSilentBlur = byClick
 
-    api.setSoftFocus()
+    if (!props.automaticDropdown) api.setSoftFocus()
 
     if (state.visible) {
       return
@@ -692,18 +716,23 @@ export const initValue =
   }
 
 export const setSoftFocus =
-  ({ vm, state }) =>
+  ({ vm, state, props }) =>
   () => {
-    state.softFocus = true
-
-    const input = vm.$refs.input || vm.$refs.reference
-
-    if (input) {
-      input.focus()
+    // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
+    // 如果有reference时， 它就没有Input这套机制了，没机会让softFocus为假了。
+    if (vm.$slots.reference) {
+      return
     }
 
-    // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
-    state.softFocus = false
+    state.softFocus = true
+    const input = vm.$refs.input || vm.$refs.reference
+
+    // tiny 新增： 解决获焦即弹出时，关闭不了下拉面板，所以增加了!props.automaticDropdown条件
+    if (!props.automaticDropdown) {
+      if (input) {
+        input.focus()
+      }
+    }
   }
 
 export const getValueIndex =
@@ -730,10 +759,15 @@ export const getValueIndex =
   }
 
 export const toggleMenu =
-  ({ vm, state, props, api }) =>
+  ({ vm, state, props, api, designConfig }) =>
   (e) => {
-    if (props.keepFocus && state.visible && props.filterable) {
+    if (props.keepFocus && state.visible && (props.filterable || props.searchable)) {
       return
+    }
+
+    if (state.isIOS) {
+      state.selectHover = true
+      state.inputHovering = true
     }
 
     const event = e || window.event
@@ -741,7 +775,8 @@ export const toggleMenu =
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
 
-    if (!props.displayOnly) {
+    const isStop = props.stopPropagation ?? designConfig?.props?.stopPropagation ?? false
+    if (!props.displayOnly && isStop) {
       event.stopPropagation()
     }
 
@@ -750,7 +785,7 @@ export const toggleMenu =
       state.softFocus = false
 
       if (state.visible) {
-        if (!(props.filterable && props.shape)) {
+        if (!((props.filterable || props.searchable) && props.shape)) {
           const dom = vm.$refs.input || vm.$refs.reference
           dom?.focus && dom.focus()
           api.setOptionHighlight()
@@ -763,6 +798,7 @@ export const selectOption =
   ({ api, state, props }) =>
   (e) => {
     if (!state.visible || props.hideDrop) {
+      state.softFocus = false
       api.toggleMenu(e)
     } else {
       let option = ''
@@ -828,7 +864,7 @@ export const onInputChange =
   ({ api, props, state, constants, nextTick }) =>
   () => {
     if (!props.delay) {
-      if (props.filterable && state.query !== state.selectedLabel) {
+      if ((props.filterable || props.searchable) && state.query !== state.selectedLabel) {
         const isChange = false
         const isInput = true
 
@@ -1057,7 +1093,7 @@ export const emptyText =
     }
 
     if (
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       state.query &&
       ((props.remote && state.emptyFlag) || !state.options.some((option) => option.visible && option.state.visible))
     ) {
@@ -1091,10 +1127,12 @@ export const watchValue =
         state.currentPlaceholder = state.cachedPlaceHolder
       }
 
-      if (props.filterable && !props.reserveKeyword) {
-        // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
-        // searchable时，不清空query, 这样才能保持搜索结果
-        !props.searchable && (state.query = '')
+      if ((props.filterable || props.searchable) && !props.reserveKeyword) {
+        // 还原AUI的做法
+        const isChange = false
+        const isInput = true
+        state.query = ''
+        api.handleQueryChange(state.query, isChange, isInput)
       }
     }
 
@@ -1103,7 +1141,7 @@ export const watchValue =
     !state.isClickChoose && api.initQuery({ init: true }).then(() => api.setSelected())
     state.isClickChoose = false
 
-    if (props.filterable && !props.multiple) {
+    if ((props.filterable || props.searchable) && !props.multiple) {
       state.inputLength = 20
     }
 
@@ -1160,22 +1198,33 @@ export const calcOverFlow =
 
 const postOperOfToVisible = ({ props, state, constants }) => {
   if (props.multiple) {
+    if (props.modelValue && props.modelValue.length && props.initLabel && !state.selected.length) {
+      state.selectedLabel = props.initLabel
+    }
     return
   }
 
   if (state.selected) {
-    if (props.filterable && props.allowCreate && state.createdSelected && state.createdLabel) {
-      state.selectedLabel = state.createdLabel
+    if (props.renderType === constants.TYPE.Grid || props.renderType === constants.TYPE.Tree) {
+      state.selectedLabel = state.selected.currentLabel
     } else {
-      state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
+      if ((props.filterable || props.searchable) && props.allowCreate && state.createdSelected && state.createdLabel) {
+        state.selectedLabel = state.createdLabel
+      } else {
+        state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
+      }
+
+      if (props.filterable || props.searchable) {
+        state.query = state.selectedLabel
+      }
     }
 
-    if (props.filterable) {
-      state.query = state.selectedLabel
-    }
-
-    if (props.filterable) {
+    if (props.filterable || props.searchable) {
       state.currentPlaceholder = state.cachedPlaceHolder
+    }
+
+    if (props.modelValue && props.initLabel && !state.selectedLabel) {
+      state.selectedLabel = props.initLabel
     }
   }
 }
@@ -1212,18 +1261,18 @@ export const toVisible =
 export const toHide =
   ({ constants, state, props, vm, api }) =>
   () => {
-    const { filterable, remote, remoteConfig, shape, multiple, valueField } = props
+    const { remote, remoteConfig, shape, renderType, multiple, valueField } = props
 
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown, constants.EVENT_NAME.updatePopper)
 
-    if (filterable) {
+    if (props.filterable || props.searchable) {
       state.query = remote || shape ? '' : state.selectedLabel
       const isChange = remote && remoteConfig.autoSearch && (state.firstAutoSearch || remoteConfig.clearData)
       state.firstAutoSearch = false
       api.handleQueryChange(state.query, isChange)
 
       if (multiple) {
-        vm.$refs.input.focus()
+        vm.$refs.input?.focus()
       } else {
         if (!remote) {
           state.selectEmitter.emit(constants.EVENT_NAME.queryChange, '')
@@ -1240,17 +1289,17 @@ export const toHide =
   }
 
 export const watchVisible =
-  ({ api, constants, emit, state, vm, props }) =>
+  ({ api, constants, emit, state, vm, props, isMobileFirstMode }) =>
   (value) => {
-    if ((props.filterable || props.remote) && !value) {
-      vm.$refs.reference.blur()
+    if ((props.filterable || props.searchable || props.remote) && !value) {
+      vm.$refs.reference?.blur()
     }
 
     if (api.onCopying()) {
       return
     }
 
-    if (value && props.multiple && state.device === 'mb') {
+    if (value && props.multiple && isMobileFirstMode && state.device === 'mb') {
       state.selectedCopy = state.selected.slice()
     }
 
@@ -1299,7 +1348,13 @@ export const watchOptions =
     }
 
     nextTick(() => {
-      if (parent.$el.querySelector('input') !== document.activeElement) {
+      if (
+        parent.$el.querySelector('input') !== document.activeElement && // filterable时， 从 input 框离开了
+        !(
+          document.activeElement?.classList.contains('tiny-input__inner') && // 并且当前不在下拉面板的searchable 的input中时，  才需要更新一下setSelect
+          document.activeElement.closest('.tiny-select-dropdown__search')
+        )
+      ) {
         api.setSelected()
       }
     })
@@ -1307,12 +1362,31 @@ export const watchOptions =
     api.getOptionIndexArr()
   }
 
+export const watchOptionsWhenAutoSelect =
+  ({ nextTick, props, state, api }) =>
+  () => {
+    if (props.autoSelect && props.remote) {
+      nextTick(() => {
+        if (props.options?.length === 1 || state.options.length === 1) {
+          const { valueField } = props
+          const option = props.options?.length === 1 ? props.options[0] : state.options[0]
+          api.updateModelValue(props.multiple ? [option[props.valueField]] : option[props.valueField])
+          state.visible = false
+        }
+      })
+    }
+  }
+
 export const getOptionIndexArr =
   ({ props, state, api }) =>
   () => {
     setTimeout(() => {
       state.optionIndexArr = api.queryVisibleOptions().map((item) => Number(item.getAttribute('data-index')))
-      if (props.defaultFirstOption && (props.filterable || props.remote) && state.filteredOptionsCount) {
+      if (
+        props.defaultFirstOption &&
+        (props.filterable || props.searchable || props.remote) &&
+        state.filteredOptionsCount
+      ) {
         if (props.optimization) {
           optmzApis.checkDefaultFirstOption({ state })
         } else {
@@ -1356,7 +1430,7 @@ export const handleCopyClick =
 
 export const debouncRquest = ({ api, state, props }) =>
   debounce(props.delay, () => {
-    if (props.filterable && state.query !== state.selectedLabel) {
+    if ((props.filterable || props.searchable) && state.query !== state.selectedLabel) {
       const isChange = false
       const isInput = true
 
@@ -1422,6 +1496,15 @@ export const onMouseenterNative =
 
     if (state.searchSingleCopy && state.selectedLabel) {
       state.softFocus = true
+    }
+  }
+
+export const onMouseenterSelf =
+  ({ state }) =>
+  () => {
+    if (!state.isIOS) {
+      state.selectHover = true
+      state.inputHovering = true
     }
   }
 
@@ -1568,7 +1651,7 @@ export const initQuery =
   ({ props, state, constants, vm }) =>
   ({ init } = {}) => {
     const isRemote =
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
 
@@ -1590,6 +1673,15 @@ export const initQuery =
     return Promise.resolve(selected)
   }
 
+export const computedCurrentSizeMap =
+  ({ state, designConfig }) =>
+  () => {
+    const defaultSizeMap = { default: 32, mini: 24, small: 28, medium: 40 }
+    const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
+
+    return sizeMap[state.selectSize || 'default']
+  }
+
 export const mounted =
   ({ api, parent, state, props, vm, designConfig }) =>
   () => {
@@ -1604,17 +1696,9 @@ export const mounted =
 
     state.completed = true
 
-    // tiny 新增：  sizeMap适配不同主题
-    const defaultSizeMap = { medium: 40, default: 32, small: 28, mini: 24 }
-    const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
-
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
       state.currentPlaceholder = ''
     }
-
-    state.initialInputHeight = state.isDisplayOnly
-      ? sizeMap[state.selectSize || 'default'] // tiny 新增 : default, aui只处理了另3种情况，不传入时，要固定为default
-      : inputClientRect.height || sizeMap[state.selectSize]
 
     addResizeListener(parentEl, api.handleResize)
 
@@ -1628,7 +1712,13 @@ export const mounted =
 
     state.inputWidth = inputClientRect.width
 
-    api.initQuery({ init: true }).then(() => api.setSelected())
+    api.initQuery({ init: true }).then(() => {
+      api.setSelected(true)
+
+      if (props.modelValue && props.initLabel) {
+        state.selectedLabel = props.initLabel
+      }
+    })
 
     if (props.dataset) {
       api.watchPropsOption()
@@ -1735,11 +1825,11 @@ export const computeMultipleLimit =
   }
 
 export const updateModelValue =
-  ({ props, emit, state }) =>
+  ({ props, emit, state, isMobileFirstMode }) =>
   (value, needUpdate) => {
     state.isClickChoose = true
 
-    if (state.device === 'mb' && props.multiple && !needUpdate) {
+    if (isMobileFirstMode && state.device === 'mb' && props.multiple && !needUpdate) {
       state.modelValue = value
     } else {
       emit('update:modelValue', value)
@@ -1792,13 +1882,20 @@ export const computedTagsStyle =
   }
 
 export const computedReadonly =
-  ({ props, state }) =>
-  () =>
-    state.device === 'mb' ||
-    props.readonly ||
-    !props.filterable ||
-    props.multiple ||
-    (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
+  ({ props, state, isMobileFirstMode }) =>
+  () => {
+    if (state.isIOS && props.filterable) {
+      return false
+    } else {
+      return (
+        (isMobileFirstMode && state.device === 'mb') ||
+        props.readonly ||
+        !(props.filterable || props.searchable) ||
+        props.multiple ||
+        (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
+      )
+    }
+  }
 
 export const computedShowClose =
   ({ props, state }) =>
@@ -1814,11 +1911,11 @@ export const computedShowClose =
 export const computedCollapseTagSize = (state) => () => state.selectSize
 
 export const computedShowNewOption =
-  ({ props, state }) =>
+  ({ props, state, isMobileFirstMode }) =>
   () => {
-    const query = state.device === 'mb' ? state.queryValue : state.query
+    const query = isMobileFirstMode && state.device === 'mb' ? state.queryValue : state.query
     return (
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       props.allowCreate &&
       query &&
       !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
@@ -1833,13 +1930,18 @@ export const computedShowCopy =
 export const computedOptionsAllDisabled = (state) => () =>
   state.options.filter((option) => option.visible).every((option) => option.disabled)
 
-export const computedDisabledTooltipContent = (state) => () =>
-  state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('；')
+export const computedDisabledTooltipContent =
+  ({ state }) =>
+  () => {
+    // tiny 新增： 仅displayOnly且传入options属性时， 不需要渲染option
+    // 禁用的tooltip内容 和 仅展示的显示内容，都应该是当前label值，共用即可！
+    return state.displayOnlyContent
+  }
 
 export const computedSelectDisabled =
-  ({ props, parent }) =>
+  ({ state }) =>
   () =>
-    props.disabled || (parent.form || {}).disabled || props.displayOnly || (parent.form || {}).displayOnly
+    state.isDisabled || state.isDisplayOnly
 
 export const computedIsExpand =
   ({ props, state }) =>
@@ -1943,7 +2045,7 @@ export const clearNoMatchValue =
 // 解决无界时，event.target 会变为 wujie_iframe的元素的bug
 export const handleDebouncedQueryChange = ({ state, api }) =>
   debounce(state.debounce, (value) => {
-    api.handleQueryChange(value)
+    api.handleQueryChange(value, false, true)
   })
 
 export const onClickCollapseTag =
