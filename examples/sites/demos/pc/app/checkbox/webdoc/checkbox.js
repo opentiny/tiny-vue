@@ -16,6 +16,19 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+    // 禁用复选框
+    {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>disabled</code> 字段设置当前复选框是否为禁用状态。</p>',
+        'en-US': '<p>Set whether the current checkbox is disabled through the <code>disabled</code> field.</p>'
+      },
+      codeFiles: ['checkbox-disabled.vue']
+    },
     {
       demoId: 'checkbox-group',
       name: {
