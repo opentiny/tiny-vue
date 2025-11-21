@@ -14,8 +14,7 @@ export default {
             'en-US': 'Whether to display the one click clear button, only applicable to radio selection'
           },
           mode: ['pc'],
-          pcDemo: 'clearable',
-          mfDemo: 'clearable'
+          pcDemo: 'basic-usage'
         },
         {
           name: 'filterable',
@@ -26,7 +25,7 @@ export default {
             'en-US': 'Is it searchable'
           },
           mode: ['pc'],
-          pcDemo: 'filter-method'
+          pcDemo: 'remote'
         },
         {
           name: 'filter-method',
@@ -37,7 +36,7 @@ export default {
             'en-US': 'Custom filtering method'
           },
           mode: ['pc'],
-          pcDemo: 'filter-method'
+          pcDemo: 'remote'
         },
         {
           name: 'grid-op',
@@ -71,7 +70,7 @@ export default {
             'en-US': 'Allow multiple options to be selected'
           },
           mode: ['pc'],
-          pcDemo: 'multiple'
+          pcDemo: 'remote'
         },
         {
           name: 'radio-config',
@@ -94,7 +93,7 @@ export default {
             'en-US': 'Is it a remote search'
           },
           mode: ['pc'],
-          pcDemo: 'remote-method'
+          pcDemo: 'remote'
         },
         {
           name: 'remote-method',
@@ -105,7 +104,7 @@ export default {
             'en-US': 'Remote search methods'
           },
           mode: ['pc'],
-          pcDemo: 'remote-method'
+          pcDemo: 'remote'
         },
         {
           name: 'reserve-keyword',
@@ -117,7 +116,7 @@ export default {
               'When selecting multiple searchable options, do you still keep the current search keywords after selecting one option'
           },
           mode: ['pc'],
-          pcDemo: 'remote-method'
+          pcDemo: 'remote'
         },
         {
           name: 'select-config',
