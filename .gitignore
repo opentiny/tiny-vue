@@ -14,8 +14,7 @@ test-results
 /packages/vue/mobile.ts
 /packages/vue/mobile-first.ts
 /packages/vue/app.ts
-/packages/vue-icon-saas/src
-/packages/vue-icon-saas/index.ts
+
 
 /packages/vue-runtime/pc.ts
 /packages/vue-runtime/mobile.ts
