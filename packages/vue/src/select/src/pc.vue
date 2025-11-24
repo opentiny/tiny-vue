@@ -419,7 +419,7 @@
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
-            @update:modelValue="handleQueryChange(state.query)"
+            @update:modelValue="handleQueryChange(state.query, false, true)"
           >
             <template #prefix>
               <!-- tiny 为适配smb，增加前置的放大镜 -->

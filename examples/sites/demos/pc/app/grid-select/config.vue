@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="config">
     <p>场景 1：单选</p>
     <br />
     <tiny-grid-select

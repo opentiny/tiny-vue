@@ -15,7 +15,7 @@ test('clearable', async ({ page }) => {
   await icon.click()
   await expect(input).toHaveValue('')
   // 验证选中
-  await icon.click()
+  await input.click()
   await dropdown.getByRole('listitem').filter({ hasText: '上海' }).click()
   await expect(input).toHaveValue('上海')
 })
