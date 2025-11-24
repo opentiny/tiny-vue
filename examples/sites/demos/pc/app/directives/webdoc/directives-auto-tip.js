@@ -42,7 +42,7 @@ export default {
           <li><code>content</code>属性，指定提示的内容，支持传入<code>string</code>，<code>VNode</code> 或<code>VNode 数组</code>。不传入值时，使用当前<code>Dom</code>元素的内容。  </li>  
           <li><code>effect</code> 属性，指定提示的效果，支持 <code>light</code> 和 <code>dark</code> ，默认是<code>light</code>亮色主题  </li>  
           <li><code>placement</code> 属性，指定提示的位置，默认值为<code>top</code> 。参见<code>tooltip</code> 组件的<code>placement</code> 属性。   </li>  
-          <li><code>popperClass</code> 属性，设置弹出层的class 。参见<code>tooltip</code> 组件的<code>popperClass</code> 属性。   </li>  
+          <li><code>popperClass</code> 属性，设置弹出层的class，该属性在3.28 版本引入 。参见<code>tooltip</code> 组件的<code>popperClass</code> 属性。 </li>  
         </ul>
         2、如果参数为 <code>false</code>，表示禁止自动提示。 <br>
         `,
