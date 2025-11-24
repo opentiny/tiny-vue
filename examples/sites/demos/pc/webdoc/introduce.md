@@ -64,4 +64,4 @@ React 组件的业务逻辑借助 React Hooks API，Vue 组件的业务逻辑借
 
 技术架构图：
 
-<img src="architecture.png" alt="image-9" style="max-width:1000px"/>
+<img src="./architecture.png" alt="image-9" style="max-width:690px"/>
