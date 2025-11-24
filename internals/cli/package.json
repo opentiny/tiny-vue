@@ -23,7 +23,6 @@
     "release:e2eConfig": "esno src/index.ts release:e2eConfig",
     "// ----------------------辅助脚本---------------------- ": "",
     "create:ui": "esno src/commands/create/create-ui.ts",
-    "create:icon-saas": "esno src/index.ts create:icon-saas",
     "clean:build": "esno src/commands/clean.ts",
     "create:mapping": "esno src/commands/create/create-mapping.ts",
     "build:chartTheme": "esno src/index.ts build:chartTheme"
