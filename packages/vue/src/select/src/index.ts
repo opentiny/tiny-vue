@@ -368,6 +368,7 @@ export default defineComponent({
       type: [String, Number],
       default: null
     },
+    // 专门为saas增加，只有一个项时，自动选中
     autoSelect: {
       type: Boolean,
       default: false

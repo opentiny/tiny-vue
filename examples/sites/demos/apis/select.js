@@ -16,7 +16,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'all-text',
-          mfDemo: 'all-text'
+          mfDemo: 'all-text',
+          hideSaas: true
         },
         {
           name: 'show-all-text-tag',
@@ -29,7 +30,8 @@ export default {
               'Specifies whether only the tag specified by all-text is displayed in the text box after the multi-select mode is specified. The default value is <code>false</code>. All options are displayed in the text box cyclically.'
           },
           mode: ['pc'],
-          pcDemo: 'all-text'
+          pcDemo: 'all-text',
+          hideSaas: true
         },
         {
           name: 'allow-copy',
@@ -93,7 +95,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'clear-no-match-value',
-          mfDemo: 'clear-no-match-value'
+          mfDemo: 'clear-no-match-value',
+          hideSaas: true
         },
         {
           name: 'clearable',
@@ -236,7 +239,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'input-box-type',
-          mfDemo: 'input-box-type'
+          mfDemo: 'input-box-type',
+          hideSaas: true
         },
         {
           name: 'is-drop-inherit-width',
@@ -285,7 +289,8 @@ export default {
               'Default maximum display lines for multiple lines, with automatic hiding option for exceeding lines'
           },
           mode: ['pc'],
-          pcDemo: 'collapse-tags'
+          pcDemo: 'collapse-tags',
+          hideSaas: true
         },
         {
           name: 'modelValue / v-model',
@@ -507,7 +512,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'searchable',
-          mfDemo: 'searchable'
+          mfDemo: 'searchable',
+          hideSaas: true
         },
         {
           name: 'show-alloption',
@@ -531,7 +537,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'no-data-text',
-          mfDemo: 'no-data-text'
+          mfDemo: 'no-data-text',
+          hideSaas: true
         },
         {
           name: 'size',
@@ -568,7 +575,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'tag-type',
-          mfDemo: 'tag-type'
+          mfDemo: 'tag-type',
+          hideSaas: true
         },
         {
           name: 'max-tag-width',
@@ -582,7 +590,8 @@ export default {
           pcDemo: '',
           meta: {
             stable: '3.22.0'
-          }
+          },
+          hideSaas: true
         },
         {
           name: 'text-field',
@@ -670,7 +679,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'collapse-tags',
-          mfDemo: 'collapse-tags'
+          mfDemo: 'collapse-tags',
+          hideSaas: true
         },
         {
           name: 'show-limit-text',
@@ -683,7 +693,8 @@ export default {
               'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
           },
           mode: ['pc'],
-          pcDemo: 'multiple'
+          pcDemo: 'multiple',
+          hideSaas: true
         },
         {
           name: 'init-label',
@@ -905,7 +916,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-reference',
-          mfDemo: 'slot-reference'
+          mfDemo: 'slot-reference',
+          hideSaas: true
         }
       ]
     },
