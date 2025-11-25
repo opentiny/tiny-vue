@@ -6,6 +6,9 @@
         <template #now>
           <div class="nowclass" @click="now">此刻（服务器时间）</div>
         </template>
+        <template #confirm="{ confirm }">
+          <tiny-button type="primary" @click="confirm">确定</tiny-button>
+        </template>
       </tiny-date-picker>
     </div>
 
@@ -17,11 +20,12 @@
 </template>
 
 <script>
-import { TinyDatePicker } from '@opentiny/vue'
+import { TinyDatePicker, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyDatePicker
+    TinyDatePicker,
+    TinyButton
   },
   data() {
     return {

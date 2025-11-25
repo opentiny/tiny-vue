@@ -7,6 +7,6 @@ test('节点配置带图标', async ({ page }) => {
   const treeMenu = page.locator('#with-icon .tiny-tree-menu')
   const treeMenuSvg = page.locator('.tree-node-name svg')
 
-  await expect(treeMenu.getByText('首页')).toBeVisible()
+  await expect(treeMenu.getByText('组件总览')).toBeVisible()
   await expect(treeMenuSvg.nth(0)).toBeVisible()
 })

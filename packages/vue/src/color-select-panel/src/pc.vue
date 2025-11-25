@@ -6,7 +6,7 @@
     <div
       class="tiny-color-select-panel__display"
       :style="{
-        background: state.color.value
+        background: state.isLinearGradient ? state.linearGradient : state.color.value
       }"
     ></div>
     <div class="tiny-color-select-panel__tools">
@@ -26,6 +26,9 @@
           v-if="state.currentFormat === 'hex' || state.currentFormat === 'css' || !state.currentFormat"
         >
           <tiny-input class="tiny-color-select-panel__tools-hex1" v-model="state.input" />
+          <div class="tiny-color-select-panel__tools-deg" v-if="state.isLinearGradient">
+            <tiny-numeric v-model="state.ctx.deg" unit="deg" mouse-wheel />
+          </div>
         </div>
         <div class="tiny-color-select-panel__tools-hex" v-else>
           <tiny-input class="tiny-color-select-panel__tools-hex4" v-model="state.hexInput4" />
@@ -74,6 +77,7 @@
 <script>
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'
+import Numeric from '@opentiny/vue-numeric'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import HueSelect from './components/hue-select.vue'
@@ -82,6 +86,7 @@ import '@opentiny/vue-theme/color-select-panel/index.less'
 import { Clickoutside } from '@opentiny/vue-directive'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
+import { parse } from 'gradient-parser'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
@@ -94,7 +99,8 @@ export default defineComponent({
     'predefine',
     'format',
     'enableHistory',
-    'enablePredefineColor'
+    'enablePredefineColor',
+    'colorMode'
   ],
   components: {
     HueSelect,
@@ -102,11 +108,12 @@ export default defineComponent({
     TinyButton: Button,
     TinyInput: Input,
     TinySelect: Select,
-    TinyOption: Option
+    TinyOption: Option,
+    TinyNumeric: Numeric
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, extendOptions: { parse } })
   }
 })
 </script>

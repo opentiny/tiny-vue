@@ -95,20 +95,6 @@
         }
       }
 
-      // 无分隔符场景最外层页签栏盒子
-      &__nav-wrap-not-separator {
-        &::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          height: 1px;
-          z-index: 1;
-          background-color: var(--tv-Tabs-border-color);
-        }
-      }
-
       // 左右滚动按钮
       &__nav-next,
       &__nav-prev {
@@ -131,7 +117,7 @@
       // 实际页签栏盒子
       &__nav:not(.is-stretch) {
         .@{tabs-prefix-cls}__item__title {
-          display: inline-block;
+          display: block;
           width: 100%;
           white-space: nowrap;
           overflow: hidden;
@@ -431,6 +417,22 @@
     }
   }
 
+  &:not(.@{tabs-prefix-cls}--button-card) {
+    // 无分隔符场景最外层页签栏盒子
+    .@{tabs-prefix-cls}__header:has(> .@{tabs-prefix-cls}__nav-wrap-not-separator) {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        z-index: 1;
+        background-color: var(--tv-Tabs-border-color);
+      }
+    }
+  }
+
   // 一层tab页签: card类型
   &&--card {
     &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__nav,
@@ -582,6 +584,10 @@
 
   // buttoncard类型
   &&--button-card {
+    .@{tabs-prefix-cls}__header::after {
+      display: none;
+    }
+
     .@{tabs-prefix-cls}__nav-wrap::after {
       background-color: transparent;
     }
@@ -1312,6 +1318,33 @@
     }
   }
 
+  // 仅渲染头部
+  &&--header-only {
+    &:is(.@{tabs-prefix-cls}--left) {
+      width: 120px;
+    }
+
+    &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__header {
+      float: none;
+      margin-right: 0;
+      display: block;
+    }
+
+    &:is(.@{tabs-prefix-cls}--right) {
+      width: 120px;
+    }
+
+    &.@{tabs-prefix-cls}--right .@{tabs-prefix-cls}__header {
+      float: none;
+      margin-left: 0;
+      display: block;
+    }
+
+    &.@{tabs-prefix-cls}--bottom .@{tabs-prefix-cls}__header {
+      margin-top: 0;
+    }
+  }
+
   // 动效
   .slideInLeft-transition,
   .slideInRight-transition {
@@ -1338,5 +1371,149 @@
     left: 0;
     right: 0;
     animation: tab-slide-left-out var(--tv-motion-tab-speed);
+  }
+
+  @-webkit-keyframes slideInRight-enter {
+    0% {
+      opacity: 0;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight-enter {
+    0% {
+      opacity: 0;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+
+  @-webkit-keyframes slideInRight-leave {
+    0% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInRight-leave {
+    0% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes slideInLeft-enter {
+    0% {
+      opacity: 0;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft-enter {
+    0% {
+      opacity: 0;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+
+  @-webkit-keyframes slideInLeft-leave {
+    0% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInLeft-leave {
+    0% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    100% {
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+      opacity: 0;
+    }
   }
 }

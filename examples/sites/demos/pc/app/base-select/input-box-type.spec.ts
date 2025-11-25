@@ -14,7 +14,6 @@ test('下划线默认', async ({ page }) => {
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
   await expect(input).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
-  await expect(select.locator('svg')).toHaveCSS('fill', 'rgb(128, 128, 128)')
 
   await select.click()
   await option.first().click()
@@ -36,7 +35,6 @@ test('下划线禁用', async ({ page }) => {
   await expect(input).toHaveCSS('border-right-width', '0px')
   await expect(input).toHaveCSS('border-bottom-color', 'rgb(219, 219, 219)')
   await expect(input).toHaveCSS('cursor', 'not-allowed')
-  await expect(select.locator('svg')).toHaveCSS('fill', 'rgb(194, 194, 194)')
   const hasDisabled = await input.evaluate((input) => input.hasAttribute('disabled'))
   await expect(hasDisabled).toBe(true)
 

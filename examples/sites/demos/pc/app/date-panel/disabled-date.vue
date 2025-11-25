@@ -15,27 +15,37 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import { TinyDatePanel, TinyDateRange, TinyMonthRange, TinyYearRange } from '@opentiny/vue'
 
-const value = ref('2025-01-15')
-const month = ref('2025-06')
-const year = ref('2025')
-const value1 = ref(['2025-01-15', '2025-02-15'])
-const value2 = ref(['2024-03', '2025-02'])
-const value3 = ref(['2024', '2028'])
-
-const disabledDate = (val) => {
-  return val.getFullYear() < 2025
-}
-
-const disabledDate1 = (val) => {
-  return (val.getFullYear() < 2025 && val.getMonth() < 1) || val.getFullYear() < 2024
-}
-
-const disabledDate2 = (val) => {
-  return val.getFullYear() < 2024
+export default {
+  components: {
+    TinyDatePanel,
+    TinyDateRange,
+    TinyMonthRange,
+    TinyYearRange
+  },
+  data() {
+    return {
+      value: '2025-01-15',
+      month: '2025-06',
+      year: '2025',
+      value1: ['2025-01-15', '2025-02-15'],
+      value2: ['2024-03', '2025-02'],
+      value3: ['2024', '2028']
+    }
+  },
+  methods: {
+    disabledDate(val) {
+      return val.getFullYear() < 2025
+    },
+    disabledDate1(val) {
+      return (val.getFullYear() < 2025 && val.getMonth() < 1) || val.getFullYear() < 2024
+    },
+    disabledDate2(val) {
+      return val.getFullYear() < 2024
+    }
+  }
 }
 </script>
 

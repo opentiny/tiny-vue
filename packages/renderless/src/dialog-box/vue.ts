@@ -48,6 +48,7 @@ export const api = [
   'afterEnter',
   'afterLeave',
   'handleClose',
+  'hide',
   'handleWrapperClick',
   'useMouseEventDown',
   'useMouseEventUp',

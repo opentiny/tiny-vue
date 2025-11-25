@@ -16,6 +16,7 @@
     placeholder="请选择"
     placement="bottom-end"
     :searchable="true"
+    :tooltip-config="{ always: false }"
     multiple
   >
     <template #reference>
@@ -98,6 +99,7 @@ export default {
 
               return column
             }
+            return null
           })
           .filter((i) => i)
 

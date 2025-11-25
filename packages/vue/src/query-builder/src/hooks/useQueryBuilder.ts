@@ -68,6 +68,12 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
     showCombinatorsBetweenRules = false,
     showNotToggle = false,
     showCloneButtons = false,
+    showNewGroup = true,
+    showNewRule = true,
+    isGroupDisable = false,
+    isRuleDisable = false,
+    groupLimit = Infinity,
+    ruleLimit = Infinity,
     allowDelAll = false,
     showLockButtons = false,
     showBranches = true,
@@ -225,7 +231,7 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
       }
 
       const ops = getOperatorsMain(field) ?? /* istanbul ignore next */ []
-      return ops.length ? getFirstOption(ops) ?? /* istanbul ignore next */ '' : /* istanbul ignore next */ ''
+      return ops.length ? (getFirstOption(ops) ?? /* istanbul ignore next */ '') : /* istanbul ignore next */ ''
     },
     [fieldMap, getDefaultOperator, getOperatorsMain]
   )
@@ -586,6 +592,12 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
       showCombinatorsBetweenRules,
       showNotToggle,
       showCloneButtons,
+      showNewGroup,
+      showNewRule,
+      isGroupDisable,
+      isRuleDisable,
+      groupLimit,
+      ruleLimit,
       allowDelAll,
       showLockButtons,
       autoSelectField,
@@ -624,6 +636,12 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
       listsAsArrays,
       parseNumbers,
       showCloneButtons,
+      showNewGroup,
+      showNewRule,
+      isGroupDisable,
+      isRuleDisable,
+      groupLimit,
+      ruleLimit,
       allowDelAll,
       showCombinatorsBetweenRules,
       showLockButtons,

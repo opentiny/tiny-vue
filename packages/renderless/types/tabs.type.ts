@@ -33,6 +33,7 @@ export interface ITabsState {
   activeIndex: number
   morePanes?: ITabsPaneVm[]
   separator?: boolean
+  headerOnly?: boolean
 }
 
 /**

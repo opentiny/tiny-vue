@@ -1,6 +1,6 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue-bar'
-import { props, setup, defineComponent, h } from '@opentiny/vue-common'
+import { $props, setup, defineComponent, h } from '@opentiny/vue-common'
 import { IconPopup, IconPlus, IconChevronLeft } from '@opentiny/vue-icon'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
@@ -9,7 +9,9 @@ import TabNav from './tab-nav.vue'
 import type { NavItem } from './type'
 
 export default defineComponent({
-  props: [...props],
+  props: {
+    ...$props
+  },
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, mono: true })
   },
@@ -81,7 +83,7 @@ export default defineComponent({
           state.moreList.length
             ? h('div', { class: 'hidden sm:inline-block w-11 h-11 sm:h-10 text-sm cursor-pointer' }, [
                 h('span', { class: 'inline-flex w-full h-full flex-col justify-center items-center' }, [
-                  h(Dropdown, { on: { 'item-click': handleClickDropdownItem }, props: { showIcon: false } }, [
+                  h(Dropdown, { props: { showIcon: false } }, [
                     h('span', {}, [h(IconPopup(), { class: 'fill-color-icon-focus text-base' })]),
                     h(
                       DropdownMenu,
@@ -90,9 +92,11 @@ export default defineComponent({
                         props: { popperClass: 'max-h-[theme(spacing.80)] overflow-x-hidden overflow-y-auto' }
                       },
                       state.moreOptions.map((opt: NavItem) =>
-                        h(DropdownItem, { key: key(opt), props: { itemData: opt.name } }, [
-                          opt.slotTitle ? opt.slotTitle() : opt.title
-                        ])
+                        h(
+                          DropdownItem,
+                          { key: key(opt), on: { click: handleClickDropdownItem }, props: { itemData: opt } },
+                          [opt.slotTitle ? opt.slotTitle() : opt.title]
+                        )
                       )
                     )
                   ])

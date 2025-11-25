@@ -29,18 +29,18 @@ export default {
       codeFiles: ['page-empty.vue']
     },
     {
-      demoId: 'component-empty',
+      demoId: 'component-page',
       name: {
         'zh-CN': '组件级空态',
         'en-US': 'Component-level empty state'
       },
       desc: {
         'zh-CN':
-          '<p>通过添加`component-empty`属性展示组件级空态，其中 type 类型有`noperm、 nodata、 weaknet、noresult、 nonews`<br> 对应场景：<br>`noperm` ：无访问权限<br>`nodata` ：暂无数据<br>`weaknet` ：网络不给力<br>`noresult`：无相关搜索结果<br>`nonews`：暂无最新消息<br></p>',
+          '<p>通过添加`component-page`属性展示组件级空态，其中 type 类型有`noperm、 nodata、 weaknet、noresult、 nonews`<br> 对应场景：<br>`noperm` ：无访问权限<br>`nodata` ：暂无数据<br>`weaknet` ：网络不给力<br>`noresult`：无相关搜索结果<br>`nonews`：暂无最新消息<br></p>',
         'en-US':
-          '<p>Add the `component-empty` attribute to display the component-level empty state. The type type can be `noperm, nodata, weaknet, noresult, or nonews`<br>The corresponding scenario is as follows: <br>`noperm`: No access<br>`nodata`: no data<br>`weaknet`: network is not powerful<br>`noresult`: no related search results<br>`nonews`: no latest news<br></p>'
+          '<p>Add the `component-page` attribute to display the component-level empty state. The type type can be `noperm, nodata, weaknet, noresult, or nonews`<br>The corresponding scenario is as follows: <br>`noperm`: No access<br>`nodata`: no data<br>`weaknet`: network is not powerful<br>`noresult`: no related search results<br>`nonews`: no latest news<br></p>'
       },
-      codeFiles: ['component-empty.vue']
+      codeFiles: ['component-page.vue']
     },
     {
       demoId: 'sub-message',

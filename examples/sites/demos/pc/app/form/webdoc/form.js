@@ -122,6 +122,18 @@ export default {
       codeFiles: ['custom-validation-rule.vue']
     },
     {
+      demoId: 'custom-validation-string-length',
+      name: {
+        'zh-CN': '自定义字符串长度',
+        'en-US': 'Custom String Length'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>rules</code> 的 <code>regular</code> 进行自定义字符串长度（3.28.0版本新增）</p>',
+        'en-US': '<p>Customize string length using the <code>regular</code> method of <code>rules</code>. </p>'
+      },
+      codeFiles: ['custom-validation-string-length.vue']
+    },
+    {
       demoId: 'validation-position',
       name: {
         'zh-CN': '校验提示位置',

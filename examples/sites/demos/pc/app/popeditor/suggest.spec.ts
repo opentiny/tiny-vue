@@ -10,5 +10,5 @@ test('PopEditor 联想查询', async ({ page }) => {
 
   await textBox.fill('科技')
   await page.waitForTimeout(500)
-  await expect(grid).toBeVisible()
+  await expect(grid.filter({ hasText: /GFD 科技 YX 公司/ })).toBeVisible()
 })

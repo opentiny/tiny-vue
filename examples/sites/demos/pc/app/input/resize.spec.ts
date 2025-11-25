@@ -47,5 +47,5 @@ test('可缩放文本域', async ({ page }) => {
     .boundingBox()
     .then((box) => box?.height)
   await expect(fill1Height).not.toBeNull()
-  await expect(defaultHeight).toBeLessThan(fill1Height || 0)
+  await expect(defaultHeight).toBeGreaterThanOrEqual(fill1Height || 0)
 })

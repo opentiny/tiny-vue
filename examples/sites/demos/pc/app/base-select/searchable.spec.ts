@@ -29,7 +29,7 @@ test('searchable-single', async ({ page }) => {
   })
   await option.filter({ hasText: '上海' }).click()
   await page.waitForTimeout(500)
-  await expect(input).toHaveValue('')
+  await expect(input).toHaveValue('上海')
 })
 
 test('searchable-multiple', async ({ page }) => {

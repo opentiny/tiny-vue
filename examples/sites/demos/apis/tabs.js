@@ -294,6 +294,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'overflow-title',
           mfDemo: ''
+        },
+        {
+          name: 'header-only',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '当 header-only 为 true 时，页签内容不再渲染',
+            'en-US': 'When header-only is true, the tab content is no longer rendered'
+          },
+          mode: ['pc'],
+          pcDemo: 'header-only',
+          mfDemo: ''
         }
       ],
       events: [

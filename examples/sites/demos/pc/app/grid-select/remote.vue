@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="remote">
     <p>场景 1：单选</p>
     <br />
     <tiny-grid-select
@@ -18,6 +18,7 @@
       multiple
       filterable
       remote
+      reserve-keyword
       :remote-method="remoteMethod"
     ></tiny-grid-select>
   </div>

@@ -12,12 +12,12 @@
 
 @import '../custom.less';
 @import './vars.less';
-@import '../grid-system/index.less';
 
 @nav-menu-prefix-cls: ~'@{css-prefix}nav-menu';
 
 .@{nav-menu-prefix-cls} {
   .inject-NavMenu-vars();
+  @import '../grid-system/index.less';
 
   background: var(--tv-NavMenu-bg-color);
   height: var(--tv-NavMenu-height);

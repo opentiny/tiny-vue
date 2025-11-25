@@ -54,25 +54,27 @@
             { 'not-vertical': !vertical }
           ]"
         ></div>
-        <div
-          :class="[
-            'tiny-steps-icon',
-            node[statusField] === 'error' ? 'fault' : node[statusField],
-            { 'active': index === active }
-          ]"
-        >
-          <template v-if="size !== 'mini'">
-            <template v-if="node[statusField] === 'done'">
-              <icon-finish :class="['icon icon-finish', { 'active': index === active }]"></icon-finish>
+        <slot name="icon" :node="node" :index="index">
+          <div
+            :class="[
+              'tiny-steps-icon',
+              node[statusField] === 'error' ? 'fault' : node[statusField],
+              { 'active': index === active }
+            ]"
+          >
+            <template v-if="size !== 'mini'">
+              <template v-if="node[statusField] === 'done'">
+                <icon-finish :class="['icon icon-finish', { 'active': index === active }]"></icon-finish>
+              </template>
+              <template v-else-if="node[statusField] === 'error'">
+                <icon-warn :class="['icon icon-warn', { 'active': index === active }]"></icon-warn>
+              </template>
+              <template v-else>
+                {{ index + 1 }}
+              </template>
             </template>
-            <template v-else-if="node[statusField] === 'error'">
-              <icon-warn :class="['icon icon-warn', { 'active': index === active }]"></icon-warn>
-            </template>
-            <template v-else>
-              {{ index + 1 }}
-            </template>
-          </template>
-        </div>
+          </div>
+        </slot>
         <!-- title1 -->
         <div v-if="!vertical" v-auto-tip="{ placement: 'bottom' }" class="title">
           {{ node[nameField] }}

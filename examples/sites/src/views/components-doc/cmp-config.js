@@ -1,6 +1,8 @@
+import { isSaas } from '../../const'
+
 // 批量导入vue组件示例文件, 进行vue组件示例的渲染
 const vueFiles = import.meta.glob(`@demos/app/**/*.vue`)
-
+const mobileFirstVueFiles = isSaas ? import.meta.glob(`../../../demos/mobile-first/app/**/*.vue`) : null
 // 所有demo组件实例
 const vueComponents = Object.create(null)
 for (const path in vueFiles) {
@@ -9,6 +11,17 @@ for (const path in vueFiles) {
     const cmpId = pathArr[4]
     const key = pathArr.slice(5).join('/')
     vueComponents[`${cmpId}/${key}`] = vueFiles[path]
+  }
+}
+
+if (mobileFirstVueFiles) {
+  for (const path in mobileFirstVueFiles) {
+    if (Object.prototype.hasOwnProperty.call(mobileFirstVueFiles, path)) {
+      const pathArr = path.split('/')
+      const cmpId = pathArr[6]
+      const key = pathArr.slice(7).join('/')
+      vueComponents[`mobile-first/${cmpId}/${key}`] = mobileFirstVueFiles[path]
+    }
   }
 }
 

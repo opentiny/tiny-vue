@@ -6,5 +6,5 @@ test('触发源插槽', async ({ page }) => {
 
   const upload = page.locator('.tiny-upload')
 
-  await expect(upload).toHaveText('我是触发源')
+  await expect(upload).toHaveText('点击上传')
 })

@@ -13,11 +13,12 @@
         <div
           class="tiny-color-select-panel__inner__hue-select-thumb-heart"
           :style="{
-            background: color.value
+            background: state.ctx.activeColor.color.value
           }"
         ></div>
       </div>
     </div>
+    <linear-gradient v-if="state.ctx.colorMode === 'linear-gradient'" />
   </div>
 </template>
 
@@ -25,6 +26,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/hue-select/vue'
 import { setup, defineComponent } from '@opentiny/vue-common'
 import SvSelect from './sv-select.vue'
+import linearGradient from './linear-gradient.vue'
 
 export default defineComponent({
   emits: ['hueUpdate', 'svReady', 'hueReady'],
@@ -36,7 +38,7 @@ export default defineComponent({
       type: Boolean
     }
   },
-  components: { SvSelect },
+  components: { SvSelect, LinearGradient: linearGradient },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

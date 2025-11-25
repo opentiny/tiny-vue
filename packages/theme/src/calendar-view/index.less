@@ -446,7 +446,8 @@
       margin-left: 21px;
 
       ul > li {
-        height: 20px;
+        height: var(--tv-CalendarView-events-list-height);
+        padding: var(--tv-CalendarView-events-list-padding);
         text-align: left;
         border-bottom-width: var(--tv-CalendarView-timeline-li-border-width);
         border-bottom-style: solid;
@@ -493,6 +494,16 @@
           &.is-even-num {
             border-bottom-style: dashed;
           }
+
+          &.is-scroll-list{
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            &.is-scroll-list::-webkit-scrollbar {
+              width: 0;
+              height: 0;
+            }
+          }
         }
 
         .events-item {
@@ -502,13 +513,13 @@
           display: flex;
           align-items: center;
           padding: 0 6px;
-          position: absolute;
           top: 0;
           left: 0;
           z-index: 10;
           line-height: 1.5;
           border-radius: 2px;
           color: var(--tv-CalendarView-events-item-text-color);
+          margin-bottom: 1px;
 
           &.theme-blue {
             border-left: 2px solid #1890ff;

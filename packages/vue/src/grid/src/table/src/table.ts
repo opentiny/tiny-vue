@@ -30,7 +30,8 @@ import {
   resolveTheme,
   defineComponent,
   useInstanceSlots,
-  useRelation
+  useRelation,
+  isVue2
 } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
@@ -359,7 +360,8 @@ export default defineComponent({
         id: '',
         multi: false,
         options: [],
-        visible: false
+        visible: false,
+        searchValue: ''
       },
       // 所有列已禁用
       headerCheckDisabled: false,
@@ -539,7 +541,15 @@ export default defineComponent({
       this.handleSelectionHeader()
     },
     parentHeight() {
-      this.$nextTick(this.recalculate)
+      this.recalculate()
+    },
+    // 选项式监控在vue2可以检测到顶层数组splice项替换/$set项替换
+    // array.splice(index, 1, newItem)
+    // this.$set(array, index, newItem)
+    data(array1, array2) {
+      if (isVue2 && array1 === array2 && array1.length === array2.length) {
+        this.handleDataChange()
+      }
     }
   },
   created() {
@@ -649,6 +659,10 @@ export default defineComponent({
     const bodyWrapperMinHeight = hooks.ref()
     // 外部设置的表体容器最大高度
     const bodyWrapperMaxHeight = hooks.ref()
+    // 表格滚动宽度
+    const containerScrollWidth = hooks.ref(0)
+    // 表格滚动高度
+    const containerScrollHeight = hooks.ref(0)
     // 表体表格元素宽度
     const bodyTableWidth = hooks.ref()
     // 滚动加载滚动高度
@@ -701,7 +715,9 @@ export default defineComponent({
     const optimizeOpts = hooks.computed(() => extend(true, {}, GlobalConfig.optimization, props.optimization))
     const rowHeight = hooks.computed(
       () =>
-        optimizeOpts.value?.scrollY.rHeight || GlobalConfig.rowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
+        optimizeOpts.value?.scrollY?.rHeight ||
+        GlobalConfig.rowHeight[tinyTheme.value]?.[vSize.value || 'default'] ||
+        40
     )
     const headerRowHeight = hooks.computed(
       () => GlobalConfig.headerRowHeight[tinyTheme.value]?.[vSize.value || 'default'] || 40
@@ -814,6 +830,8 @@ export default defineComponent({
       bodyWrapperHeight,
       bodyWrapperMinHeight,
       bodyWrapperMaxHeight,
+      containerScrollWidth,
+      containerScrollHeight,
       bodyTableWidth,
       scrollLoadScrollHeight,
       columnStore,
@@ -856,6 +874,7 @@ export default defineComponent({
           'tiny-grid__group-saas': isThemeSaas && isGroup,
           'tiny-grid__border-vertical': borderVertical,
           'tiny-grid__checked': mouseConfig.checked,
+          'tiny-grid__hover-align': mouseConfig.hover,
           'mark-insert': editConfig && editConfig.markInsert,
           'edit__no-border': editConfig && editConfig.showBorder === false,
           'is__loading': loading,
@@ -885,7 +904,7 @@ export default defineComponent({
             })
           : null,
         // 加载中
-        h(loadingComponent || GridLoading, { props: { visible: loading }, class: this.viewCls('gridLoading') }),
+        h(GridLoading, { props: { visible: loading, loadingComponent }, class: this.viewCls('gridLoading') }),
         // 筛选、快捷菜单、Tip提示、校验提示
         h(
           'div',

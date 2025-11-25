@@ -9,7 +9,7 @@ test('定义上传前限制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#before-upload-limit')
 
-  const upload = page.getByRole('button', { name: '选取文件' })
+  const upload = page.getByRole('button', { name: '点击上传' })
   const modal = page.locator('.tiny-modal').nth(1)
   const modalCancel = page.getByRole('button', { name: '取消' })
   const lists = page.locator('.tiny-upload-list__item')

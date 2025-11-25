@@ -167,7 +167,7 @@ const initState = ({
     chunkUploadUrl: '',
     largeFileInfo: {},
     headers: {},
-    accept: '',
+    accept: props.accept || '',
     edmToken: {},
     isSuccess: false,
     singleMaxSize: 200,

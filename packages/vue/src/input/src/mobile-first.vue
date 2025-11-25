@@ -48,6 +48,7 @@
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
           :popper-options="{ bubbling: true }"
+          pre
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span

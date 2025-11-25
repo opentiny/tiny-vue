@@ -219,19 +219,28 @@
           </div>
         </div>
       </div>
-      <div class="tiny-picker-panel__footer" v-if="state.showTime && !readonly">
-        <tiny-button type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
-          {{ t('ui.datepicker.clear') }}
-        </tiny-button>
-        <tiny-button
-          :plain="state.confirmButtonProps.plain"
-          :type="state.confirmButtonProps.type"
-          class="tiny-picker-panel__link-btn"
-          :disabled="state.btnDisabled"
-          @click="handleConfirm(false)"
-        >
-          {{ t('ui.datepicker.confirm') }}
-        </tiny-button>
+      <div
+        class="tiny-picker-panel__footer"
+        v-if="(state.showTime && !readonly) || $slots.footer || $slots.now || $slots.confirm"
+      >
+        <slot name="footer" :confirm="() => handleConfirm(false)" :clear="handleClear">
+          <slot name="clear" :clear="handleClear">
+            <tiny-button type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
+              {{ t('ui.datepicker.clear') }}
+            </tiny-button>
+          </slot>
+          <slot name="confirm" :confirm="() => handleConfirm(false)">
+            <tiny-button
+              :plain="state.confirmButtonProps.plain"
+              :type="state.confirmButtonProps.type"
+              class="tiny-picker-panel__link-btn"
+              :disabled="state.btnDisabled"
+              @click="handleConfirm(false)"
+            >
+              {{ t('ui.datepicker.confirm') }}
+            </tiny-button>
+          </slot>
+        </slot>
       </div>
     </div>
   </transition>

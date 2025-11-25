@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PC Mode > child element order 1`] = `"<div class="" style="gap: 8px; display: flex; flex-direction: row; align-items: start; justify-content: start; flex-wrap: nowrap;" border="true"><span class="item">A</span><span class="item">B</span><span class="item">C</span></div>"`;
+
+exports[`PC Mode > props align 1`] = `"<div class="" style="gap: 8px; display: flex; flex-direction: row; align-items: center; justify-content: start; flex-wrap: nowrap;" border="true"></div>"`;
+
+exports[`PC Mode > props direction 1`] = `"<div class="" style="gap: 8px; display: flex; flex-direction: column; align-items: start; justify-content: start; flex-wrap: nowrap;" border="true"><span>Item 1</span><span>Item 2</span></div>"`;
+
+exports[`PC Mode > props size 1`] = `"<div class="" style="gap: 20px 10px; display: flex; flex-direction: row; align-items: start; justify-content: start; flex-wrap: nowrap;" border="true"></div>"`;
+
+exports[`PC Mode > props wrap 1`] = `"<div class="" style="gap: 8px; display: flex; flex-direction: row; align-items: start; justify-content: start; flex-wrap: wrap;" border="true"></div>"`;
+
+exports[`PC Mode > slots 1`] = `"<div class="" style="gap: 8px; display: flex; flex-direction: row; align-items: start; justify-content: start; flex-wrap: nowrap;" border="true"><span class="slot1">Slot 1</span><span class="slot2">Slot 2</span></div>"`;

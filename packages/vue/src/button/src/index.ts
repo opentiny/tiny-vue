@@ -10,6 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 export const buttonProps = {

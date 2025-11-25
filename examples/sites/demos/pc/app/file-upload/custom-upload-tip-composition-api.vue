@@ -8,7 +8,7 @@
     :re-upload-tip="reUploadTip"
   >
     <template #trigger>
-      <tiny-button>选取文件</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </template>
     <template #tip>
       <div class="tiny-upload__tip">只能上传 jpg/png 文件，且不超过 500 kb</div>

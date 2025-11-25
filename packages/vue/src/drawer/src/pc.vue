@@ -32,7 +32,8 @@
         :style="{
           width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
           height: ['top', 'bottom', 'left', 'right'].includes(placement) || dragable ? state.computedHeight : null,
-          zIndex
+          zIndex,
+          transform: state.visible ? 'none' : null
         }"
         v-show="state.visible"
       >

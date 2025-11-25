@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-color-select-panel",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.27.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -14,6 +14,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-numeric": "workspace:~",
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-select": "workspace:~",
@@ -21,6 +22,8 @@
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
+    "@types/gradient-parser": "^1.1.0",
+    "gradient-parser": "^1.1.0",
     "vitest": "catalog:"
   }
 }

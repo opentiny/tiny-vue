@@ -10,8 +10,8 @@
  *
  */
 export default {
-  'en-US': '英语',
-  'zh-CN': '中文',
+  'enUS': '英语',
+  'zhCN': '中文',
   'zh-TW': '中国台湾',
   hello: '你好 {name}',
   code: 'zh-CN',
@@ -265,7 +265,7 @@ export default {
       noperm: '茫茫大海，找不到页面',
       weaknet: '网络不给力',
       pcview: '请到PC上查看文件',
-      nodata: '休息一下',
+      nodata: '暂无数据',
       create: '创建',
       provide: 'TINY 开发团队提供',
       nodatamf: '暂无数据',
@@ -747,7 +747,8 @@ export default {
       noSchedule: '暂无日程',
       year: '年',
       month: '月',
-      dateFormat: 'yyyy 年 MM 月'
+      dateFormat: 'yyyy 年 MM 月 dd 日',
+      monthFormat: 'yyyy 年 MM 月'
     },
     selectedBox: {
       select: '已选（%s）',

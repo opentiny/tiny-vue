@@ -18,6 +18,7 @@ interface TooltipDirectiveConfig {
   content?: string // 自定义提示内容,  支持字符串或 VNode | VNode[], 不支持嵌套的 html 标签
   effect?: 'dark' | 'light' // tooltip主题，默认为light
   placement?: string
+  popperClass?: string
 }
 
 // 高度计算最多可以允许的误差，修复checkbox的tip提示一直显示的bug（scrollHeight：15，clientHeight：14）
@@ -33,16 +34,33 @@ const globalTooltip = {
 const tooltipContent = hooks.ref('')
 
 // 判断是否超出隐藏
-const isEllipsis = (currentTarget) =>
-  currentTarget?.textContent &&
-  (currentTarget.scrollWidth > currentTarget.clientWidth ||
-    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE)
+const isEllipsis = (currentTarget) => {
+  const content = getRealContent(currentTarget)
+  if (!content) return false
+
+  return (
+    currentTarget.scrollWidth > currentTarget.clientWidth ||
+    currentTarget.scrollHeight - currentTarget.clientHeight > MISTAKE_VALUE
+  )
+}
+
+// 查询显示内容
+const getRealContent = (currentTarget: HTMLElement) =>
+  'content' in currentTarget.boundingValue // 如果传入content, 哪怕是空格，也使用传入content
+    ? (currentTarget.boundingValue.content as string)
+    : currentTarget.textContent
 
 const isAlwaysShowTip = (currentTarget) => Boolean(currentTarget?.boundingValue?.always)
 
 const isDarkTheme = (currentTarget) => Boolean(currentTarget?.boundingValue?.effect === 'dark')
 
 const getPlacement = (currentTarget) => currentTarget.boundingValue?.placement || 'top'
+
+let oldPopperClass: string[] = []
+const getPopperClass = (currentTarget) => {
+  const cls: string = currentTarget.boundingValue?.popperClass || ''
+  return cls.split(' ').filter((c) => c)
+}
 
 const mouseenterHandler = (e) => {
   const currentTarget = e.currentTarget
@@ -55,22 +73,26 @@ const mouseenterHandler = (e) => {
   if (isAlwaysShowTip(currentTarget) || isEllipsis(currentTarget)) {
     // 全局只创建一个tooltip实例，保证性能
     if (!globalTooltip.value) {
-      tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
+      tooltipContent.value = getRealContent(currentTarget)
+
       globalTooltip.value = createComponent({
         el: document.createElement('div'),
         propsData: {
           renderContent: () => h('span', { class: 'tiny-directive-tip__content' }, tooltipContent.value),
           placement: getPlacement(currentTarget),
-          effect: isDarkTheme(currentTarget) ? 'dark' : 'light'
+          effect: isDarkTheme(currentTarget) ? 'dark' : 'light',
+          popperClass: getPopperClass(currentTarget).join(' ')
         },
         component: Tooltip
       })
+
+      oldPopperClass = getPopperClass(currentTarget)
     }
 
     const tooltip = globalTooltip.value
     const popperElm = tooltip.state.popperElm
 
-    tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
+    tooltipContent.value = getRealContent(currentTarget)
     tooltip.state.referenceElm = currentTarget
     tooltip.state.currentPlacement = getPlacement(currentTarget)
 
@@ -79,6 +101,9 @@ const mouseenterHandler = (e) => {
         `is-${isDarkTheme(currentTarget) ? 'light' : 'dark'}`,
         `is-${isDarkTheme(currentTarget) ? 'dark' : 'light'}`
       )
+      popperElm.classList.remove(...oldPopperClass)
+      oldPopperClass = getPopperClass(currentTarget)
+      popperElm.classList.add(...oldPopperClass)
     }
 
     tooltip.show()

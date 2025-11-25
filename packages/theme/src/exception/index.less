@@ -1,0 +1,82 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@exception-prefix-cls: ~'@{css-prefix}exception';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{exception-prefix-cls} {
+  .inject-Exception-vars();
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  text-align: center;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    margin-bottom: 16px;
+
+    .@{svg-prefix-cls} {
+      width: 208px;
+      height: 160px;
+    }
+  }
+  
+  &__componentpage-image {
+    margin-bottom: 8px;
+
+    .@{svg-prefix-cls} {
+      width: 120px;
+      height: 92px;
+    }
+  }
+
+  &__description {
+    color: var(--tv-Exception-title-color);
+    font-size: var(--tv-Exception-title-font-size);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  &__componentpage {
+    font-size: var(--tv-Exception-sub-title-font-size);
+  }
+
+  &__submessage {
+    color: var(--tv-Exception-sub-title-color);
+    font-size: var(--tv-Exception-sub-title-font-size);
+    line-height: 30px;
+    margin-bottom: 12px;
+  }
+
+  &__footer {
+    padding-top: 8px;
+  }
+
+  &__actions {
+    margin-top: 16px;
+
+    .tiny-button {
+      margin: 0 8px;
+    }
+  }
+
+  // 组件页面模式
+  &__component-page {
+    .tiny-exception__image svg {
+      width: 96px;
+      height: 96px;
+    }
+  }
+}
+

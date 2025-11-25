@@ -185,9 +185,8 @@
   --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-light, #deecff);
 
   // 幽灵态和plain是平级的关系. 如果同时存在，优先级不能保证稳定。
-
-  // 幽灵时按钮背景色
-  --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
+  // 幽灵时按钮背景色(只影响 bg 和 text-color, 且bg全部为透明.)
+  --tv-Button-bg-color-ghost: transparent;
 
   // 默认时按钮幽灵文本色
   --tv-Button-text-color-ghost-default: var(--tv-color-text-secondary, #595959);
@@ -222,10 +221,7 @@
   //------------------------------------------------------------------------------ // level 2结束 ----------------
 
   // 默认时按钮激活的背景色
-  --tv-Button-bg-color-active-default: var(
-    --tv-color-bg-hover-secondary,
-    #ffffff
-  ); // 现规范，激活态时，只影响边框和背景
+  --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary, #ffffff); // 现规范，激活态时，只影响边框和背景
   // 默认时按钮激活的边框色
   --tv-Button-border-color-active-default: var(--tv-color-border-secondary-hover, #c2c2c2);
   // 默认时按钮激活的文本
@@ -315,10 +311,7 @@
   --tv-Button-border-color-ghost-active-info: var(--tv-color-act-info-border-active-1, #deecff); // level3 结束------
 
   // 禁用时按钮文本色
-  --tv-Button-text-color-disabled: var(
-    --tv-color-text-disabled,
-    #c2c2c2
-  ); //  目前规则下，disabled优先级最高，所以变量少
+  --tv-Button-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2); //  目前规则下，disabled优先级最高，所以变量少
   // 禁用时按钮背景色
   --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
   // 禁用时按钮边框色

@@ -1,7 +1,8 @@
 import tinyOldTheme from './old-theme-index.js'
 import tinyAuroraTheme from './aurora-theme-index.js'
+import tinyDarkTheme from './dark-theme-index.js'
 
-export { tinyOldTheme, tinyAuroraTheme }
+export { tinyOldTheme, tinyAuroraTheme, tinyDarkTheme }
 
 /**
  * 动态切换文档或影子根节点的样式类

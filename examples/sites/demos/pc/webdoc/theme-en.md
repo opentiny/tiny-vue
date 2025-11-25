@@ -1,7 +1,9 @@
 # Theme configuration
 
 <div class="tip custom-block">
-  This section of the document only supports theme customization after <code> @opentiny/vue@3.19.0 </code>. For historical theme configuration, see <a href='# Historical version of the theme configuration '> Archive information </a> at the bottom of the current document.
+  <div class="custom-block-content">
+    This section of the document only supports theme customization after <code> @opentiny/vue@3.19.0 </code>. For historical theme configuration, see <a href='# Historical version of the theme configuration '> Archive information </a> at the bottom of the current document.
+  </div>
 </div>
 
 537/5000
@@ -71,10 +73,10 @@ themeTool.changeTheme({
 ```
 
 <div class="info custom-block">
-In many historical projects, many developers will write component styles by <code>important</code> and <code>:deep()</code> to override certain component library styles. These styles are scattered throughout the components. When later versions of the component library are upgraded, the component structure or class name may be adjusted, resulting in an override failure. <br><br>
-
-You are advised to use <code>TinyThemeTool</code> to override component styles. In this way, modified CSS rules are centralized to facilitate subsequent maintenance. Users can also introduce 'CSS files' to override styles, but make sure that the styles in them take precedence over the component library.
-
+  <div class="custom-block-content">
+    In many historical projects, many developers will write component styles by <code>important</code> and <code>:deep()</code> to override certain component library styles. These styles are scattered throughout the components. When later versions of the component library are upgraded, the component structure or class name may be adjusted, resulting in an override failure. <br><br>
+    You are advised to use <code>TinyThemeTool</code> to override component styles. In this way, modified CSS rules are centralized to facilitate subsequent maintenance. Users can also introduce 'CSS files' to override styles, but make sure that the styles in them take precedence over the component library.
+    </div>
 </div>
 
 ## Micro Frontends scene

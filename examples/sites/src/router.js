@@ -57,7 +57,5 @@ router.afterEach((to, from) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  // tiny-robot 通过路由,确定浮动区，是否显示AI按钮
-  appData.hasFloatRobot = to.path.endsWith('components/grid')
 })
 export { router }

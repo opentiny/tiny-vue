@@ -124,7 +124,9 @@ export const calcTextareaHeight =
     const { paddingSize, borderSize, boxSizing, contextStyle } = api.calculateNodeStyling(targetElement)
 
     hiddenTextarea.setAttribute('style', `${contextStyle};${HIDDEN_STYLE}`)
-    hiddenTextarea.value = targetElement.value || targetElement.placeholder || ''
+    // 多行placeholder只计算单行高度防止撑高scrollHeight
+    const safePlaceholder = targetElement.placeholder ? targetElement.placeholder.trim().split('\n')[0] : ''
+    hiddenTextarea.value = targetElement.value || safePlaceholder || ''
 
     let height = hiddenTextarea.scrollHeight
     const textareaStyle: {

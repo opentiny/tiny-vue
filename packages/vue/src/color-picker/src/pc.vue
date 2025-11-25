@@ -29,6 +29,7 @@
         :style="{
           'min-width': '330px'
         }"
+        :color-mode="$props.colorMode"
         :enable-history="state.enableHistory"
         :enable-predefine-color="state.enablePredefineColor"
       />
@@ -55,7 +56,8 @@ export default defineComponent({
     'size',
     'format',
     'enableHistory',
-    'enablePredefineColor'
+    'enablePredefineColor',
+    'colorMode'
   ],
   components: {
     IconChevronDown: IconChevronDown(),

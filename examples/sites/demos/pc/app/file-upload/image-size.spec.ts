@@ -9,7 +9,7 @@ test('获取图片的原始尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#image-size')
 
-  const upload = page.getByRole('button', { name: '选取文件' })
+  const upload = page.getByRole('button', { name: '点击上传' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
   const modal = page.locator('.tiny-modal')
 

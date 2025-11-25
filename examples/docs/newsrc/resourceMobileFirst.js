@@ -1,6 +1,10 @@
 import { cmpMenus } from '../../sites/demos/mobile-first/menus.js'
 
-export const demoStr = import.meta.glob('../../sites/demos/mobile-first/app/**/*.vue', { eager: false, as: 'raw' })
+export const demoStr = import.meta.glob('../../sites/demos/mobile-first/app/**/*.vue', {
+  eager: false,
+  query: '?raw',
+  import: 'default'
+})
 export const demoVue = import.meta.glob('../../sites/demos/mobile-first/app/**/*.vue', { eager: false })
 
 // demos配置

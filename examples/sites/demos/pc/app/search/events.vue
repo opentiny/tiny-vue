@@ -15,6 +15,9 @@
     <p>类型选中事件</p>
     <br />
     <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
+    <p>mini模式展开和收起事件</p>
+    <br />
+    <tiny-search mini @collapse="handleCollapse" @expand="handleExpand"></tiny-search>
   </div>
 </template>
 
@@ -58,6 +61,12 @@ export default {
     },
     select(value) {
       TinyModal.message({ message: `${value.text}`, status: 'info' })
+    },
+    handleCollapse() {
+      TinyModal.message({ message: '收回', status: 'info' })
+    },
+    handleExpand() {
+      TinyModal.message({ message: '展开', status: 'info' })
     }
   }
 }

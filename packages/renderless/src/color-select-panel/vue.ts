@@ -1,4 +1,9 @@
-import type { IColorSelectPanelProps, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import type {
+  ColorSelectPanelExtends,
+  IColorSelectPanelProps,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '@/types'
 import { initApi, initState, initWatch, parseCustomRGBA } from './index'
 
 export const api = [
@@ -21,10 +26,10 @@ export const api = [
 export const renderless = (
   props: IColorSelectPanelProps,
   hooks: ISharedRenderlessParamHooks,
-  utils: ISharedRenderlessParamUtils
+  utils: ISharedRenderlessParamUtils,
+  ext: ColorSelectPanelExtends
 ) => {
-  const state = initState(props, hooks)
-
+  const state = initState(props, hooks, utils, ext)
   const {
     open,
     close,
@@ -39,7 +44,7 @@ export const renderless = (
     onPredefineColorClick,
     onHistoryClick,
     onClickOutside
-  } = initApi(props, state, utils)
+  } = initApi(props, state, utils, hooks, ext)
 
   const api = {
     state,

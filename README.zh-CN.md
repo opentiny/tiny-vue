@@ -6,6 +6,8 @@
 
 <p align="center">一套跨端、跨框架的企业级 UI 组件库，支持 Vue 2 和 Vue 3，支持 PC 端和移动端。</p>
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/opentiny/tiny-vue)
+
 [English](README.md) | 简体中文
 
 🌈 特性：

@@ -42,7 +42,7 @@
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
-      :title="state.displayOnlyContent"
+      v-auto-tip="state.rootAutoTipConfig"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -419,7 +419,7 @@
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
-            @update:modelValue="handleQueryChange(state.query)"
+            @update:modelValue="handleQueryChange(state.query, false, true)"
           >
             <template #prefix>
               <!-- tiny 为适配smb，增加前置的放大镜 -->
@@ -600,7 +600,7 @@ import TinyOption from '@opentiny/vue-option'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinySelectDropdown from '@opentiny/vue-select-dropdown'
 import TinyButton from '@opentiny/vue-button'
-import { Clickoutside } from '@opentiny/vue-directive'
+import { Clickoutside, AutoTip } from '@opentiny/vue-directive'
 import {
   iconClose,
   iconHalfselect,
@@ -649,6 +649,7 @@ export default defineComponent({
   ],
   directives: directive({
     Clickoutside,
+    AutoTip,
     popover: {
       bind(el, binding, vnode) {
         getReference(el, binding, vnode)
@@ -775,7 +776,8 @@ export default defineComponent({
     'maxVisibleRows',
     'showAllTextTag',
     'allText',
-    'maxTagWidth'
+    'maxTagWidth',
+    'autoSelect'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -23,7 +23,7 @@
  *
  */
 import { getColumnList, assemColumn, repairFixed } from '@opentiny/vue-renderless/grid/utils'
-import { toDecimal } from '@opentiny/utils'
+import { toDecimal, getActualTarget } from '@opentiny/utils'
 import { addClass, removeClass } from '@opentiny/utils'
 import { isNull } from '@opentiny/utils'
 import { debounce } from '@opentiny/utils'
@@ -199,22 +199,18 @@ const Methods = {
     const { fetchOption = {} } = this.$grid
     const { isReloadFilter, isReloadScroll = false } = fetchOption
 
-    let functionNames = [
-      'clearScroll',
-      'clearSort',
-      'clearCurrentRow',
-      'clearCurrentColumn',
-      'clearSelection',
-      'clearRowExpand',
-      'clearTreeExpand'
-    ]
+    this.clearSort()
+    this.clearCurrentRow()
+    this.clearCurrentColumn()
+    this.clearSelection()
+    this.clearRowExpand()
+    this.clearTreeExpand()
+    this.clearValidateMap()
 
     // 存在配置时，移除 clearScroll, 重载数据时不清除滚动位置
-    if (isReloadScroll) {
-      functionNames = functionNames.filter((i) => i !== 'clearScroll')
+    if (!isReloadScroll) {
+      this.clearScroll()
     }
-
-    run(functionNames, this)
     this.cellStatus.clear()
 
     if (typeof isReloadFilter === 'undefined' ? TINYGrid._filter : !isReloadFilter) {
@@ -222,7 +218,11 @@ const Methods = {
     }
 
     if (this.keyboardConfig || this.mouseConfig) {
-      run(['clearIndexChecked', 'clearHeaderChecked', 'clearChecked', 'clearSelected', 'clearCopyed'], this)
+      this.clearIndexChecked()
+      this.clearHeaderChecked()
+      this.clearChecked()
+      this.clearSelected()
+      this.clearCopyed()
     }
 
     return this.clearActived()
@@ -231,6 +231,7 @@ const Methods = {
     const next = () => {
       this.tableData = []
       this.cellStatus.clear()
+      this.clearValidateMap()
       return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
@@ -584,7 +585,7 @@ const Methods = {
     const value = get(row, field)
     const originalValue = get(originalRow, field)
     const column = this.getColumnByField(field)
-    const equals = column.equals || this.equals
+    const equals = column?.equals || this.equals
     let result
 
     // 如果存在列级或表格级自定义比较配置，就进行外部比较
@@ -826,7 +827,7 @@ const Methods = {
     this.treeConfig && this.handleDefaultTreeExpand()
 
     this.updateFooter()
-    this.$nextTick(() => setTimeout(this.recalculate))
+    this.$nextTick(this.recalculate)
   },
   // 动态列处理
   mergeCustomColumn(customColumns, sort, colWidth) {
@@ -1213,7 +1214,7 @@ const Methods = {
           blurClass = blurClassConfig.slice(0)
         }
 
-        if (args?.cell.contains(event.target)) {
+        if (args?.cell.contains(getActualTarget(event))) {
           return true
         }
         if (editConfig.mode === 'row' && getEventTargetNode(event, $el, 'tiny-grid-body__column').flag) {
@@ -1348,7 +1349,11 @@ const Methods = {
       .catch((e) => e)
       .then(() => {
         this.handleActived(params, event)
-          .then(() => this.triggerValidate('change'))
+          .then(() => {
+            if (this.editConfig?.validateOnActive) {
+              return this.triggerValidate('change')
+            }
+          })
           .catch((e) => e)
       })
   },
@@ -1621,7 +1626,7 @@ const Methods = {
         const { scrollHeight, bodyHeight } = this.scrollLoadStore
         const { currentPage, pageSize } = this.$grid.tablePage
         const max = scrollHeight - bodyHeight
-        let scrollTop = event.target.scrollTop
+        let scrollTop = getActualTarget(event).scrollTop
 
         if (scrollTop > max) {
           scrollTop = max
@@ -1645,7 +1650,7 @@ const Methods = {
     const { startIndex, renderSize, offsetSize, visibleIndex, visibleSize, rowHeight } = scrollYStore
 
     // 动态获取容器的scrollTop，这里有可能会造成卡顿，暂时没有好的方案
-    let { scrollTop } = event.target
+    let { scrollTop } = getActualTarget(event)
     let toVisibleIndex = Math.ceil(scrollTop / rowHeight)
     let preload = false
     if (visibleIndex === toVisibleIndex) {
@@ -1744,7 +1749,7 @@ const Methods = {
   updateScrollLoadBar(event) {
     const { $el, elemStore, scrollLoad, scrollLoadStore } = this
 
-    if (scrollLoad && $el.contains(event.target)) {
+    if (scrollLoad && $el.contains(getActualTarget(event))) {
       const wheelDelta = event.wheelDelta ? event.wheelDelta : -event.detail * 40
       const scrollElm = elemStore['main-body-ySpace']
       const { scrollHeight, bodyHeight } = scrollLoadStore
@@ -2044,7 +2049,7 @@ const Methods = {
   },
   handleDataChange() {
     if (Array.isArray(this.data)) {
-      !this._isUpdateData && this.loadTableData(this.data, true)
+      !this._isUpdateData && this.loadTableData(this.data)
       this._isUpdateData = false
     }
   },

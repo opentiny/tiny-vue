@@ -116,7 +116,7 @@ export default defineComponent({
     'size',
     'disabled'
   ],
-  emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
+  emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input', 'expand', 'collapse'],
   components: {
     IconChevronDown: iconChevronDown(),
     IconSearch: iconSearch(),

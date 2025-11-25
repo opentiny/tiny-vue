@@ -21,7 +21,7 @@ test('disabled', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#slot-prefix-suffix')
 
-  await page.locator('.tiny-button').last().click()
+  await page.getByRole('button', { name: '点击切换为“禁用状态”' }).click()
 
   const searchLocators = await page.locator('.tiny-search').all()
   for (const search of searchLocators) {

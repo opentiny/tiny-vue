@@ -124,11 +124,17 @@ const initState = ({ reactive, props, computed, api, images, modesIcon }) => {
     multiSelect: computed(() => props.multiSelect),
     cascaderVisible: false,
     eventTipContent: {},
-    activeYear: props.year,
+    activeYear: props.year || new Date().getFullYear(),
     displayMode: props.mode,
-    activeMonth: props.month,
-    currentDate: props.year + '-' + props.month,
-    cascaderCurrent: [props.year || new Date().getFullYear(), props.month || new Date().getMonth + 1],
+    activeMonth: props.month || new Date().getMonth() + 1,
+    dateType: computed(() => (!props.day ? 'month' : 'date')),
+    currentDate:
+      props.year && props.month && props.day
+        ? `${props.year}-${props.month}-${props.day}`
+        : props.year && props.month
+          ? `${props.year}-${props.month}`
+          : `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+    cascaderCurrent: [props.year || new Date().getFullYear(), props.month || new Date().getMonth() + 1],
     cascaderOptions: computed(() => api.computeCascaderOptions()),
     calendar: computed(() => api.computedCalendar('cur')),
     prevCalendar: computed(() => api.computedCalendar('prev')),
@@ -157,6 +163,10 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
     () => state.mode,
     (val) => {
       emit('mode-change', val)
+      // 切换到周视图时，主动跳转到currentDate对应的周
+      if (val !== 'month') {
+        api.getAllDatesOfCurrWeek(state.currentDate)
+      }
       if (val === 'schedule') {
         api.getCurWeekEvent()
       }
@@ -282,7 +292,7 @@ const initApi = ({ vm, api, state, t, props, emit, nextTick }) => {
     initWeeklyCalendar: initWeeklyCalendar({ api, state }),
     getDatesOfPreviousWeek: getDatesOfPreviousWeek({ api, state }),
     getDatesOfNextWeek: getDatesOfNextWeek({ api, state }),
-    currentDateChange: currentDateChange({ api, state }),
+    currentDateChange: currentDateChange({ api, state, nextTick }),
     newSchedule: newSchedule({ emit }),
     getPrevWeek: throttle(50, true, getPrevWeek({ api, state, emit })),
     getNextWeek: throttle(50, true, getNextWeek({ api, state, emit })),

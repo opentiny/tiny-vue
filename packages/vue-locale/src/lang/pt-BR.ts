@@ -265,7 +265,7 @@ export default {
       noperm: 'Não encontrar a página.',
       weaknet: 'Desempenho de rede ruim.',
       pcview: 'Exibir o arquivo no PC.',
-      nodata: 'Descanse um pouco.',
+      nodata: 'Não há dados disponíveis.',
       create: 'Criar',
       provide: 'Fornecido pela equipe TINY DEV.',
       nodatamf: 'Não há dados disponíveis.',
@@ -780,7 +780,8 @@ export default {
       noSchedule: 'Sem agendamento',
       year: '',
       month: '',
-      dateFormat: 'yyyy-MM'
+      dateFormat: 'yyyy-MM-dd',
+      monthFormat: 'yyyy-MM'
     },
     selectedBox: {
       select: 'Selecionado (%s)',

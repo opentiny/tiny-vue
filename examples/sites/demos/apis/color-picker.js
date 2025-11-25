@@ -10,7 +10,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否启用alpha选择',
+            'zh-CN': '是否支持透明度选择',
             'en-US': 'enable alpha select or not'
           },
           mode: ['pc'],
@@ -102,6 +102,22 @@ export default {
           pcDemo: 'format',
           meta: {
             stable: '3.19.0'
+          }
+        },
+        {
+          name: 'colorMode',
+          type: 'monochrome | linear-gradient',
+          defaultValue: 'monochrome',
+          desc: {
+            'zh-CN':
+              '设定颜色模式, 如果为linear-gradient则为线性渐变. 如果为线性渐变, modelValue必须为一个合法的线性渐变表达式',
+            'en-US':
+              'Set the color mode. If it is linear-gradient, it is a linear gradient. If it is a linear gradient, modelValue must be a valid linear gradient expression'
+          },
+          mode: ['pc'],
+          pcDemo: 'color-mode',
+          meta: {
+            stable: '3.27.0'
           }
         }
       ],

@@ -1,13 +1,14 @@
 import { reactive, computed, watch } from 'vue'
 import { router } from '@/router.js'
-import { getAllComponents } from '@/menus.jsx'
+import { getAllComponents } from '@/menus'
 import demoConfig from '@demos/config.js'
 import { staticDemoPath } from '../views/components-doc/cmp-config'
+import { isSaas } from '../const'
 
 const allMenus = getAllComponents()
 
 const templateModeState = reactive({
-  isSaas: import.meta.env.VITE_TINY_THEME === 'saas',
+  isSaas,
   modeList: [],
   mode: null
 })
@@ -37,6 +38,10 @@ const optionsList = computed(() =>
   templateModeState.modeList.map((item) => {
     if (item === 'mobile-first') {
       return { value: item, text: '多端' }
+    }
+
+    if (item === 'pc') {
+      return { value: item, text: 'PC' }
     }
     return { value: item, text: item }
   })

@@ -48,6 +48,7 @@
   --tv-Steps-advance-active-text-color: var(--tv-color-text, #191919);
   // 已完成节点文本色
   --tv-Steps-done-text-color: var(--tv-color-text, #191919);
+  // 已完成节点选中文本色
   --tv-Steps-done-text-color-black: var(--tv-color-text-inverse-black, #191919);
   // 已完成节点线条色
   --tv-Steps-line-active-bg-color: var(--tv-color-bg-active-primary, #191919);
@@ -187,8 +188,11 @@
   // 垂直点状形场景
   // 垂直点状形当前节点颜色
   --tv-Steps-dot-vertical-current-bg-color: var(--tv-color-border-active, #191919);
+  // 垂直点状形当前节点边框颜色
   --tv-Steps-dot-vertical-undo-border-color: var(--tv-color-border-disabled, #c2c2c2);
+  // 垂直点状形当前节点背景颜色
   --tv-Steps-dot-vertical-undo-dot-color: var(--tv-color-bg-4, #c2c2c2);
+  // 垂直点状形当前节点文字颜色
   --tv-Steps-dot-title-undo-text-color: var(--tv-color-text-secondary, #595959);
 
   /** timline场景 */
@@ -263,7 +267,7 @@
   // 竖式步骤条圆点背景色
   --tv-Steps-timeline-dot-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // 竖式步骤条线条右间距
-  --tv-Steps-timeline-vertical-line-margin-right: var(--tv-Steps-timeline-vertical-line-margin-left);
+  --tv-Steps-timeline-vertical-line-margin-right: var(--tv-Steps-timeline-vertical-line-margin-left, 16px);
   // mini尺寸节点内容字号
   --tv-Steps-mini-font-size-base: var(--tv-font-size-sm, 12px);
   // 条状进度条角标背景色

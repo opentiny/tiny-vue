@@ -6,6 +6,8 @@
 
 <p align="center">An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.</p>
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/opentiny/tiny-vue)
+
 English | [简体中文](README.zh-CN.md)
 
 🌈 Features:
@@ -182,6 +184,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/sakurajiajia"><img src="https://avatars.githubusercontent.com/u/37933037?v=4?s=100" width="100px;" alt="木斯佳"/><br /><sub><b>木斯佳</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=sakurajiajia" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/552847957"><img src="https://avatars.githubusercontent.com/u/8729901?v=4?s=100" width="100px;" alt="552847957"/><br /><sub><b>552847957</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=552847957" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Lingchen111"><img src="https://avatars.githubusercontent.com/u/123021749?v=4?s=100" width="100px;" alt="Lingchen111"/><br /><sub><b>Lingchen111</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Lingchen111" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://gausszhou.github.io/"><img src="https://avatars.githubusercontent.com/u/46297500?v=4?s=100" width="100px;" alt="Gauss Zhou"/><br /><sub><b>Gauss Zhou</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gausszhou" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/liangguanhui0117"><img src="https://avatars.githubusercontent.com/u/28801619?v=4?s=100" width="100px;" alt="LiangGuanhui"/><br /><sub><b>LiangGuanhui</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=liangguanhui0117" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

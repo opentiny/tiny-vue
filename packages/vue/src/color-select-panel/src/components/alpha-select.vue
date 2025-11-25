@@ -19,7 +19,7 @@
       <div
         class="tiny-color-select-panel__inner__hue-select-thumb-heart"
         :style="{
-          background: color.value
+          background: state.activeColor.color.value
         }"
       ></div>
     </div>

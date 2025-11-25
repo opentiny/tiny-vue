@@ -253,6 +253,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'icon',
+          type: '',
+          defaultValue: '',
+          meta: {
+            stable: '3.27.0'
+          },
+          desc: {
+            'zh-CN': '单链型圆形节点插槽',
+            'en-US': 'Single chain circular node slot'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-icon',
+          mfDemo: ''
+        },
+        {
           name: 'item',
           type: '',
           defaultValue: '',

@@ -72,7 +72,7 @@
             <div class="tiny-wizard__date" v-if="timeLineFlow" @click="showNode(item, index, $event)">
               <span>{{ item.date }}</span>
               <span class="tiny-wizard__date-wrapper">
-                <tiny-icon-triangle-down class="date-icon"></tiny-icon-triangle-down>
+                <tiny-icon-chevron-down class="date-icon"></tiny-icon-chevron-down>
               </span>
             </div>
             <div class="tiny-wizard__chart-line" :class="{ 'is-time-line': timeLineFlow }">
@@ -127,7 +127,7 @@ import { renderless, api } from '@opentiny/vue-renderless/wizard/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import UserContact from '@opentiny/vue-user-contact'
-import { iconTriangleDown, iconMarkOn, iconSuccessful, iconYes } from '@opentiny/vue-icon'
+import { IconChevronDown, iconMarkOn, iconSuccessful, iconYes } from '@opentiny/vue-icon'
 import type { IWizardApi } from '@opentiny/vue-renderless/types/wizard.type'
 
 export default defineComponent({
@@ -139,7 +139,7 @@ export default defineComponent({
     TinyIconSuccessful: iconSuccessful(),
     TinyIconYes: iconYes(),
     TinyIconMarkOn: iconMarkOn(),
-    TinyIconTriangleDown: iconTriangleDown()
+    TinyIconChevronDown: IconChevronDown()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IWizardApi

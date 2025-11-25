@@ -1,5 +1,7 @@
 <template>
-  <tiny-grid-select v-model="value" :grid-op="gridOpSingle" value-field="id" text-field="city"></tiny-grid-select>
+  <div id="basic-usage">
+    <tiny-grid-select v-model="value" :grid-op="gridOpSingle" value-field="id" text-field="city"></tiny-grid-select>
+  </div>
 </template>
 
 <script>

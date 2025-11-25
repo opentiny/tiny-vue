@@ -124,6 +124,18 @@ export default {
       codeFiles: ['custom-steps-item.vue']
     },
     {
+      demoId: 'slot-icon',
+      name: {
+        'zh-CN': '图标插槽',
+        'en-US': 'Icon slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过插槽 <code>icon</code> 自定义单链型节点图标。</p>\n',
+        'en-US': 'Customize a single chain node icon through the slot<code>icon</code>.'
+      },
+      codeFiles: ['slot-icon.vue']
+    },
+    {
       demoId: 'slot-item',
       name: {
         'zh-CN': 'item 插槽',

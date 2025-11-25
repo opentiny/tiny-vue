@@ -214,28 +214,32 @@
       <!-- 此刻/确认 -->
       <div
         class="tiny-picker-panel__footer"
-        v-if="state.isShowFooter"
+        v-if="state.isShowFooter || $slots.footer || $slots.now || $slots.confirm"
         :style="{ justifyContent: !['dates', 'years'].includes(state.selectionMode) ? 'space-between' : 'right' }"
       >
-        <slot>
-          <tiny-button
-            :size="state.buttonSize"
-            type="text"
-            class="tiny-picker-panel__link-btn"
-            @click="changeToNow"
-            v-show="!['dates', 'years'].includes(state.selectionMode)"
-          >
-            {{ t('ui.datepicker.now') }}
-          </tiny-button>
+        <slot name="footer" :confirm="confirm">
+          <slot name="now" :change-to-now="changeToNow">
+            <tiny-button
+              :size="state.buttonSize"
+              type="text"
+              class="tiny-picker-panel__link-btn"
+              @click="changeToNow"
+              v-show="!['dates', 'years'].includes(state.selectionMode)"
+            >
+              {{ t('ui.datepicker.now') }}
+            </tiny-button>
+          </slot>
+          <slot name="confirm">
+            <tiny-button
+              :type="state.buttonType"
+              :size="state.buttonSize"
+              class="tiny-picker-panel__link-btn"
+              @click="confirm"
+            >
+              {{ t('ui.datepicker.confirm') }}
+            </tiny-button>
+          </slot>
         </slot>
-        <tiny-button
-          :type="state.buttonType"
-          :size="state.buttonSize"
-          class="tiny-picker-panel__link-btn"
-          @click="confirm"
-        >
-          {{ t('ui.datepicker.confirm') }}
-        </tiny-button>
       </div>
     </div>
   </transition>
