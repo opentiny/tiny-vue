@@ -9,12 +9,6 @@ packages/**/runtime
 coverage/
 test-results
 
-/packages/vue/index.ts
-/packages/vue/pc.ts
-/packages/vue/mobile.ts
-/packages/vue/mobile-first.ts
-/packages/vue/app.ts
-
 
 /packages/vue-runtime/pc.ts
 /packages/vue-runtime/mobile.ts
