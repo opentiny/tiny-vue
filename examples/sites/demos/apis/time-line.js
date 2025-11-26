@@ -254,7 +254,10 @@ export default {
             'en-US': 'Timeline description'
           },
           mode: ['pc', 'mobile-first'],
-          mfDemo: ''
+          mfDemo: '',
+          meta: {
+            stable: '3.28.0'
+          }
         }
       ],
       events: [
