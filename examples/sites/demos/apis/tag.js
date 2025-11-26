@@ -175,6 +175,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
           mfDemo: ''
+        },
+        {
+          name: 'round',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否为圆角的模式',
+            'en-US': 'Whether it is a circular mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'round',
+          mfDemo: ''
         }
       ],
       events: [

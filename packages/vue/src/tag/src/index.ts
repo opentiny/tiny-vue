@@ -43,6 +43,10 @@ export const tagProps = {
     type: [String, Number],
     default: null
   },
+  round: {
+    type: Boolean,
+    default: false
+  },
   // mobile
   mini: {
     type: Boolean,

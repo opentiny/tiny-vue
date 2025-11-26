@@ -115,6 +115,30 @@ export default {
       codeFiles: ['delete.vue']
     },
     {
+      demoId: 'round',
+      name: {
+        'zh-CN': '圆角',
+        'en-US': 'Round'
+      },
+      desc: {
+        'zh-CN': '通过 <code>round</code> 设置圆角。',
+        'en-US': 'Set the round through <code>round</code> .'
+      },
+      codeFiles: ['round.vue'],
+      api: {
+        props: {
+          round: {
+            type: 'boolean',
+            defaultValue: 'false',
+            desc: {
+              'zh-CN': '是否为圆角的模式',
+              'en-US': 'Whether it is a round mode'
+            }
+          }
+        }
+      }
+    },
+    {
       demoId: 'slot-default',
       name: {
         'zh-CN': '默认插槽',

@@ -33,7 +33,8 @@ export default defineComponent({
     'value',
     'beforeDelete',
     'onlyIcon',
-    'maxWidth'
+    'maxWidth',
+    'round'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
@@ -53,7 +54,8 @@ export default defineComponent({
       state,
       value,
       onlyIcon,
-      maxWidth
+      maxWidth,
+      round
     } = this
 
     let styles = {}
@@ -65,7 +67,8 @@ export default defineComponent({
       effect ? `tiny-tag--${effect}` : '',
       hit && 'is-hit',
       disabled ? 'is-disabled' : '',
-      onlyIcon ? 'tiny-tag--only-icon' : ''
+      onlyIcon ? 'tiny-tag--only-icon' : '',
+      round ? 'tiny-tag--round' : ''
     ]
 
     if (color) {
@@ -80,6 +83,10 @@ export default defineComponent({
 
     if (maxWidth) {
       styles.maxWidth = maxWidth
+    }
+
+    if (round) {
+      styles.borderRadius = '9999px'
     }
 
     const tagElement =
