@@ -1,9 +1,13 @@
 <template>
-  <div ref="demoContainer" :id="demo.demoId" class="demo-container">
+  <div ref="demoContainer" :id="demo.demoId" :class="!isMobileFirst ? 'demo-container' : 'demo-mobile-first-container'">
     <div
       v-if="isIntersecting"
       class="ti-br-sm ti-wp100"
-      :class="currDemoId === demo.demoId ? 'b-a-success is-current' : ''"
+      :class="{
+        'b-a-success': currDemoId === demo.demoId,
+        'is-current': currDemoId === demo.demoId,
+        'is-mobile-first': isMobileFirst
+      }"
     >
       <div class="demo-content">
         <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
@@ -41,6 +45,37 @@
         <div v-if="demoConfig.isMobile" class="pc-demo-container">
           <div class="mobile-view-btn">
             <tiny-button @click="openIframe(demo)">{{ i18nByKey('yan-shi') }}</tiny-button>
+          </div>
+        </div>
+        <div v-else-if="isMobileFirst" class="mobile-first-demo-container">
+          <div class="right-side-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">{{ demo.name[state.langKey] }}</h3>
+              <div class="screen-switch-wrapper" v-if="!isSmallScreen">
+                <!-- 添加 Switch 控件 -->
+                <span class="switch-label">{{ screenFlag ? '小屏' : '大屏' }}</span>
+                <tiny-switch v-model="screenFlag" size="small"> </tiny-switch>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="panel-cmp-box">
+                <!-- 小屏幕 -->
+                <div v-if="screenFlag && !isSmallScreen" key="mobile-iframe-wrapper">
+                  <iframe
+                    ref="iframeRef"
+                    style="height: 300px; max-width: 639px"
+                    sandbox="allow-scripts allow-same-origin"
+                    :src="`/saas.html?component=${router.currentRoute.value.params.cmpId}&demo=${demo.codeFiles[0]}`"
+                    frameborder="0"
+                    importance="high"
+                    loading="lazy"
+                  >
+                  </iframe>
+                </div>
+                <!-- 大屏 -->
+                <component v-else :is="cmp" />
+              </div>
+            </div>
           </div>
         </div>
         <div v-else class="pc-demo-container">
@@ -82,14 +117,16 @@ import {
 } from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, fetchDemosFile } from '@/tools'
-import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
+import { Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton, Switch as TinySwitch } from '@opentiny/vue'
 import { AutoTip as vAutoTip } from '@opentiny/vue-directive'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from '../views/components-doc/cmp-config'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
 import { useApiMode, useTemplateMode } from '@/tools'
+import { useBreakpoint } from '@opentiny/vue-common'
 import useTheme from '@/tools/useTheme'
 import AsyncHighlight from './async-highlight.vue'
+import '../assets/right-panel.less'
 
 const props = defineProps({
   demo: {
@@ -109,9 +146,10 @@ const props = defineProps({
     default: false
   }
 })
-
 const emit = defineEmits(['mounted', 'get-iframe-demo'])
-
+const iframeRef = ref()
+const isSmallScreen = computed(() => useBreakpoint().current.value === 'default')
+let screenFlag = ref(false)
 const { apiModeState, apiModeFn } = useApiMode()
 
 defineOptions({
@@ -136,6 +174,14 @@ const state = reactive({
   copyTip: i18nByKey('copyCode'),
   copyIcon: 'i-ti-copy'
 })
+
+watch(
+  isSmallScreen,
+  (val) => {
+    if (val) screenFlag.value = true
+  },
+  { immediate: true }
+)
 
 watch(
   () => props.isIntersecting,
@@ -253,7 +299,7 @@ const openPlayground = (demo, open = true) => {
   const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[0]
   const openModeQuery = open ? '' : '&openMode=preview'
   // TODO: 目前mf只有Options写法，后续再放开compositon
-  const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
+  const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${props.demo.codeFiles[0]}&apiMode=${
     isMobileFirst.value ? 'Options' : apiModeState.apiMode
   }&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
 
@@ -294,6 +340,11 @@ onBeforeUnmount(() => {
 
 .is-current {
   padding: 20px 24px;
+}
+
+.is-mobile-first {
+  padding: 20px;
+  border: 1px solid #dcdfe6;
 }
 
 .demo-desc {
@@ -347,6 +398,23 @@ onBeforeUnmount(() => {
 @media screen and (max-width: 640px) {
   .pc-demo-container {
     overflow: auto;
+  }
+  .demo-mobile-first-container {
+    cursor: pointer;
+    width: 100%;
+    .is-mobile-first {
+      .demo-title {
+        width: 200px;
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .demo-options {
+        top: 0px;
+        right: 0px;
+      }
+    }
   }
 }
 
