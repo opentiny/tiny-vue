@@ -9,7 +9,7 @@ test.describe('下拉表格远程搜索', () => {
     const select = wrap.locator('.tiny-select').nth(0)
     const input = select.locator('.tiny-input__inner')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = dropdown.locator('.tiny-input__suffix .tiny-select__caret')
+    const suffixSvg = dropdown.locator('.tiny-base-select__caret')
 
     await expect(suffixSvg).toBeHidden()
     await expect(dropdown).toBeHidden()
@@ -45,7 +45,7 @@ test.describe('下拉表格远程搜索', () => {
     const select = wrap.locator('.tiny-select').nth(1)
     const input = select.locator('.tiny-input__inner')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+    const suffixSvg = select.locator('.tiny-base-select__caret')
 
     await expect(suffixSvg).toBeVisible()
     await expect(dropdown).toBeHidden()
@@ -72,13 +72,17 @@ test.describe('下拉表格远程搜索', () => {
     await page.goto('select#nest-grid-remote')
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(2)
-    const input = select.locator('.tiny-select__input')
+    const input = select.locator('.tiny-base-select__input').first()
     const dropdown = page.locator('body > .tiny-select-dropdown')
     const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret').first()
 
     // 下拉按钮不显示
     await expect(suffixSvg).toBeHidden()
     await expect(dropdown).toBeHidden()
+
+    // 先点击 select 打开下拉面板，确保输入框可见
+    await select.click()
+    await page.waitForTimeout(200)
 
     await input.fill(' ' + ' ')
     await input.press('Enter')
@@ -90,7 +94,7 @@ test.describe('下拉表格远程搜索', () => {
     await page.waitForTimeout(1000)
     await expect(dropdown.locator('.tiny-grid__body tbody')).not.toBeEmpty()
     await page.getByRole('row', { name: '省份 0 城市 0 区域 0' }).getByRole('cell').first().click()
-    const tags = page.locator('.tiny-select .tiny-tag')
+    const tags = page.locator('.tiny-base-select .tiny-tag')
     expect((await tags.all()).length).toEqual(1)
     await expect(tags.first()).toContainText(/市 0/)
     await page.getByRole('row', { name: '省份 1 城市 1 区域 1' }).getByRole('cell').first().click()
@@ -105,9 +109,9 @@ test.describe('下拉表格远程搜索', () => {
 
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(3)
-    const input = select.locator('.tiny-select__input')
+    const input = select.locator('.tiny-base-select__input')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret').first()
+    const suffixSvg = select.locator('.tiny-base-select__caret').first()
     const tag = select.locator('.tiny-tag')
 
     await expect(suffixSvg).toBeVisible()

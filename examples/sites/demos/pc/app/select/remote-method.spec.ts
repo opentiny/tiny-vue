@@ -28,7 +28,7 @@ test('远程搜索多选 + 保留搜索关键字', async ({ page }) => {
 
   const wrap = page.locator('#remote-method')
   const select = wrap.locator('.tiny-select').nth(1)
-  const input = select.locator('.tiny-select__input')
+  const input = select.locator('.tiny-base-select__input')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')

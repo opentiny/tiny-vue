@@ -250,8 +250,8 @@
             @input="debouncedQueryChange"
             :style="{
               'flex-grow': '1',
-              width: state.inputLength / (state.inputWidth - 32) + '%',
-              'max-width': state.inputWidth - 42 + 'px',
+              width: state.inputWidth > 0 ? state.inputLength / (state.inputWidth - 32) + '%' : 'auto',
+              'max-width': state.inputWidth > 0 ? state.inputWidth - 42 + 'px' : 'none',
               height: 'auto'
             }"
           />
@@ -538,6 +538,7 @@
                 <span v-else class="tiny-select-dropdown__empty"> {{ state.emptyText }}</span>
               </template>
               <component
+                v-else
                 class="circular"
                 :is="
                   (state.designConfig && state.designConfig.icons && state.designConfig.icons.loadingIcon) ||

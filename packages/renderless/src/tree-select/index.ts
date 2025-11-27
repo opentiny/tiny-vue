@@ -156,16 +156,21 @@ export const getChildValue = () => (childNodes, key) => {
 export const mounted =
   ({ api, state, props, vm }) =>
   () => {
-    if (!state.modelValue || state.modelValue.length === 0) return
+    if (!state.modelValue || (Array.isArray(state.modelValue) && state.modelValue.length === 0)) return
 
     if (props.multiple) {
       let initialNodes = []
       if (Array.isArray(state.modelValue)) {
         state.modelValue.forEach((value) => {
           const option = api.getPluginOption(value)
-          initialNodes = initialNodes.concat(option)
+          if (option && option.length > 0) {
+            initialNodes = initialNodes.concat(option)
+          }
         })
       }
+
+      // 如果没有找到任何节点（例如懒加载场景），直接返回
+      if (initialNodes.length === 0) return
 
       const selected = initialNodes.map((node) => {
         return {
@@ -179,7 +184,12 @@ export const mounted =
 
       state.defaultCheckedKeys = api.getCheckedData(selected)
     } else {
-      const data = api.getPluginOption(state.modelValue)[0]
+      const options = api.getPluginOption(state.modelValue)
+      const data = options && options.length > 0 ? options[0] : null
+
+      // 如果没有找到节点（例如懒加载场景），直接返回
+      if (!data) return
+
       vm.$refs.baseSelectRef.updateSelectedData({
         ...data,
         currentLabel: data[props.textField],
@@ -224,7 +234,9 @@ export const watchValue =
       if (Array.isArray(checkedKeys)) {
         checkedKeys.forEach((value) => {
           const option = api.getPluginOption(value)
-          initialNodes = initialNodes.concat(option)
+          if (option && option.length > 0) {
+            initialNodes = initialNodes.concat(option)
+          }
         })
       }
 

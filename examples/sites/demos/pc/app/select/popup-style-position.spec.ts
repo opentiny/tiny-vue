@@ -6,7 +6,7 @@ test('popup-style-position', async ({ page }) => {
 
   const wrap = page.locator('#popup-style-position')
   const select = wrap.locator('.tiny-select')
-  const dropdown = select.locator('.tiny-select__tags-group > .tiny-select-dropdown')
+  const dropdown = select.locator('.tiny-base-select__tags-group > .tiny-select-dropdown')
 
   await select.click()
   await expect(dropdown).toHaveCount(1)

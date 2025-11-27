@@ -36,9 +36,12 @@ test('多选一键复制所有标签', async ({ page }) => {
   await page.goto('select#copy-multi')
 
   const wrap = page.locator('#copy-multi')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = page
+    .locator('div')
+    .filter({ hasText: /^北京上海$/ })
+    .first()
   const copyValueInput = wrap.locator('.copy-value .tiny-input__inner')
-  const copyIcon = select.locator('.tiny-select__copy .tiny-svg')
+  const copyIcon = page.locator('.copy_svg__st0')
 
   await select.hover()
   await expect(copyIcon).toBeVisible()

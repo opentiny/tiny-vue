@@ -8,7 +8,7 @@ test('下拉表格大数据', async ({ page }) => {
   const select = wrap.locator('.tiny-select')
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const row = dropdown.getByRole('row')
 
   await expect(suffixSvg).toHaveCount(1)

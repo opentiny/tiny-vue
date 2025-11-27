@@ -8,7 +8,7 @@ test('嵌套表格（单选）', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const row = dropdown.getByRole('row')
 
   await expect(suffixSvg).toHaveCount(1)
@@ -31,7 +31,7 @@ test('嵌套表格（多选）', async ({ page }) => {
   const wrap = page.locator('#nest-grid')
   const select = wrap.locator('.tiny-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const row = dropdown.getByRole('row')
   const tag = select.locator('.tiny-tag')
   const currentRow = dropdown.locator('.row__selected')
@@ -71,7 +71,7 @@ test('嵌套表格 + 可搜索 + 可清除', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(2)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const row = dropdown.getByRole('row')
 
   await input.click()

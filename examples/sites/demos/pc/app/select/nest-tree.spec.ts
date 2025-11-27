@@ -8,7 +8,7 @@ test('下拉树单选', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const treeNode = dropdown.locator('.tiny-tree-node')
 
   await expect(suffixSvg).toHaveCount(1)
@@ -32,7 +32,7 @@ test('下拉树多选', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(1)
 
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+  const suffixSvg = select.locator('.tiny-base-select__caret')
   const treeNode = dropdown.locator('.tiny-tree-node')
   const checkedTreeNodes = dropdown.locator('.tiny-tree-node.is-checked')
   const tag = select.locator('.tiny-tag')

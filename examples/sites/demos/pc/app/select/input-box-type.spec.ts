@@ -60,7 +60,7 @@ test('下划线多选', async ({ page }) => {
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
   await expect(input).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
-  await expect(select.locator('.tiny-select__caret')).toHaveCSS('fill', 'rgb(128, 128, 128)')
+  await expect(select.locator('.tiny-base-select__caret')).toHaveCSS('fill', 'rgb(128, 128, 128)')
 
   await select.click()
   await expect(dropdown).toBeVisible()
@@ -68,5 +68,5 @@ test('下划线多选', async ({ page }) => {
   await expect(tag).toHaveCount(5)
 
   await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
-  await expect(select).toHaveClass(/tiny-select__multiple/)
+  await expect(select).toHaveClass(/tiny-base-select__multiple/)
 })

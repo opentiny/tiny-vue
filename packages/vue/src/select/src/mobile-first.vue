@@ -451,7 +451,10 @@
               <component
                 :is="`icon-${state.selectCls}`"
                 :class="
-                  m(['-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ', state.selectCls !== 'check' && 'fill-color-brand text-color-brand'])
+                  m([
+                    '-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ',
+                    state.selectCls !== 'check' && 'fill-color-brand text-color-brand'
+                  ])
                 "
               />
               <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">

@@ -68,19 +68,31 @@ export const syncGridSelection =
   }
 
 export const handleVisibleChange =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   (visible: boolean) => {
     // 面板打开时，同步表格选中状态
     if (visible && state.isMounted) {
       api.syncGridSelection()
+
+      // 如果启用了自动搜索且是远程搜索，触发初始查询
+      if (props.remote && props.remoteConfig?.autoSearch && state.firstAutoSearch !== false) {
+        // 触发远程搜索，使用空字符串作为初始查询
+        api.filter('')
+        state.firstAutoSearch = false
+      }
     }
   }
 
 export const buildSelectConfig =
   ({ props, state }) =>
   () => {
-    const checkRowKeys = state.gridCheckedData
     const selectConfig = props.selectConfig
+    const rawCheckRowKeys = state.gridCheckedData
+    const checkRowKeys = Array.isArray(rawCheckRowKeys)
+      ? rawCheckRowKeys
+      : rawCheckRowKeys && Array.isArray(rawCheckRowKeys.value)
+        ? rawCheckRowKeys.value
+        : []
 
     return Object.assign({}, selectConfig, { checkRowKeys })
   }
