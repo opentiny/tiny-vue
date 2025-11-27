@@ -45,7 +45,7 @@ jobs:
           VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-web-doc/${{ env.VERSION }}/
       - name: Copy files
         run: |
-          cp ./index.html ./404.html
+          cp ./examples/sites/dist/index.html ./examples/sites/dist/404.html
       # ===== 下载 obsutil =====
       - name: Install obsutil
         run: |
@@ -63,5 +63,5 @@ jobs:
                          -e=${{ env.HUAWEI_CLOUD_ENDPOINT }}
 
           # 把本地 dist/ 目录整站同步到桶根目录
-          mv dist ${{ env.VERSION }}
+          mv examples/sites/dist ${{ env.VERSION }}
           obsutil cp ${{ env.VERSION }} obs://${{ env.HUAWEI_CLOUD_BUCKET }}/tiny-vue-web-doc/ -r -f
