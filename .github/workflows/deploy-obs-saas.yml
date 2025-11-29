@@ -1,4 +1,4 @@
-name: Deploy to Huawei OBS
+name: Deploy to Huawei OBS SaaS
 
 on:
   push:
@@ -42,6 +42,8 @@ jobs:
           export NODE_OPTIONS="--max-old-space-size=8192"
           pnpm -F @opentiny/vue-docs build:saas
         env:
+          VITE_CONTEXT: /tiny-vue-saas/
+          VITE_PLAYGROUND_URL: /vue-saas-playground
           VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-saas/${{ env.VERSION }}/
       - name: Copy files
         run: |
