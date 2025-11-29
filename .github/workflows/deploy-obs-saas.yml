@@ -1,0 +1,67 @@
+name: Deploy to Huawei OBS
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - 'examples/sites/**'
+      - '!examples/sites/**/*.spec.ts'
+
+  workflow_dispatch:
+
+env:
+  # 在 GitHub 项目源码仓库 → 项目的 Settings → Secrets(Actions 里的 Repository secrets) 里提前建好以下变量
+  HUAWEI_CLOUD_AK: ${{ secrets.HUAWEI_CLOUD_AK }}
+  HUAWEI_CLOUD_SK: ${{ secrets.HUAWEI_CLOUD_SK }}
+  HUAWEI_CLOUD_ENDPOINT: ${{ secrets.HUAWEI_CLOUD_ENDPOINT }}
+  HUAWEI_CLOUD_BUCKET: ${{ secrets.HUAWEI_CLOUD_BUCKET }}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Install deps
+        run: pnpm i --no-frozen-lockfile
+      - name: Get version
+        run: |
+          echo "VERSION=$(node -p "require('./examples/sites/package.json').version")" >> $GITHUB_ENV
+      - name: Build site
+        run: |
+          export NODE_OPTIONS="--max-old-space-size=8192"
+          pnpm -F @opentiny/vue-docs build:saas
+        env:
+          VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-saas/${{ env.VERSION }}/
+      - name: Copy files
+        run: |
+          cp ./examples/sites/dist/index.html ./examples/sites/dist/404.html
+      # ===== 下载 obsutil =====
+      - name: Install obsutil
+        run: |
+          curl -o obsutil.tar.gz https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
+          tar -xzf obsutil.tar.gz
+          chmod +x obsutil_linux_amd64_*/obsutil
+          sudo mv obsutil_linux_amd64_*/obsutil /usr/local/bin/obsutil
+
+      # ===== 配置并上传 =====
+      - name: Upload to OBS
+        run: |
+          # 一次性配置 AK/SK/endpoint
+          obsutil config -i=${{ env.HUAWEI_CLOUD_AK }} \
+                         -k=${{ env.HUAWEI_CLOUD_SK }} \
+                         -e=${{ env.HUAWEI_CLOUD_ENDPOINT }}
+
+          # 把本地 dist/ 目录整站同步到桶根目录
+          mv examples/sites/dist ${{ env.VERSION }}
+          obsutil cp ${{ env.VERSION }} obs://${{ env.HUAWEI_CLOUD_BUCKET }}/tiny-vue-saas/ -r -f
