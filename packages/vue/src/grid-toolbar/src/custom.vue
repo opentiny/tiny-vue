@@ -338,11 +338,11 @@ export default defineComponent({
     getColumnConfigs(configs) {
       const getColNodes = (columns) => {
         return columns
-          .map(({ id, title, property, fixed, visible, order, sortable, level, children }) => {
+          .map(({ id, own, property, fixed, visible, order, sortable, level, children }) => {
             if (property) {
               const column = {
                 id,
-                title,
+                title: own.title,
                 property,
                 fixed,
                 visible,
