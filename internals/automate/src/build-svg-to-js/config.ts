@@ -2,4 +2,6 @@
 export const svgsPath = '../../packages/theme/src/svgs'
 export const iconsPath = '../../packages/vue-icon'
 
-export const rewriteConfig = {}
+export const rewriteConfig = {
+  'subscript': 'sub-script'
+}

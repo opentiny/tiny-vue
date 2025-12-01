@@ -1164,6 +1164,14 @@ export { IconWord, IconWord as iconWord }
 export { IconZip, IconZip as iconZip }
 
 // 重命名导出
+export const IconTotalNolume = () => ({
+  ...IconTotalVolume(),
+  name: 'IconTotalNolume',
+  deprecatedBy: 'IconTotalVolume'
+})
+export const iconTotalNolume = IconTotalNolume
+export const IconSubscript = () => ({ ...IconSubScript(), name: 'IconSubscript', deprecatedBy: 'IconSubScript' })
+export const iconSubscript = IconSubscript
 
 export default {
   IconAcceptance,
@@ -1745,5 +1753,7 @@ export default {
   IconWarning,
   IconWeaknet,
   IconWord,
-  IconZip
+  IconZip,
+  IconTotalNolume,
+  IconSubscript
 }
