@@ -40,7 +40,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     let prevTrElem =
       prevEl && prevEl.classList.contains('tiny-grid-body__row') ? prevEl : prevEl && prevEl.previousElementSibling
     // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据
-    const tableTreeData = _vm.data || _vm.tableData
+    const tableTreeData = _vm.rawData || _vm.tableData
     const selfRow = _vm.getRowNode(targetTrElem).item
     const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
     selfRow._isDraging = true
@@ -78,7 +78,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
 
     // 如果变动了树层级，需要刷新数据
     _vm.$emit('row-drop-end', event, _vm, _vm.scrollYLoad ? tableTreeData : _vm.tableFullData)
-    refresh && _vm.data && _vm.refreshData(_vm.data)
+    refresh && _vm.rawData && _vm.refreshData(_vm.rawData)
   }
 }
 

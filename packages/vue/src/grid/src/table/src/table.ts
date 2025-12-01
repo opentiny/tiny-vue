@@ -47,7 +47,7 @@ import methods from './methods'
 import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import MfTable from '../../mobile-first/index.vue'
-import { useData, useDrag, useRowGroup } from '../../composable'
+import { useData, useDrag, useRowGroup, useNormalData } from '../../composable'
 import { isServer } from '@opentiny/utils'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
@@ -95,7 +95,7 @@ function mergeScrollDirStore(scrollDir, scrollDirStore) {
 function loadStatic(data, _vm) {
   // 此段代码与 watch(data) 功能重复，只在配置了 data 属性后生效
   if (data && data.length > 0) {
-    _vm.loadTableData(data, true)
+    _vm.updateRawData(data)
     _vm.updateStyle()
   }
 }
@@ -546,9 +546,10 @@ export default defineComponent({
     // 选项式监控在vue2可以检测到顶层数组splice项替换/$set项替换
     // array.splice(index, 1, newItem)
     // this.$set(array, index, newItem)
+    // 在数组中的行对象上动态添加字段也会触发此选项式监听
     data(array1, array2) {
       if (isVue2 && array1 === array2 && array1.length === array2.length) {
-        this.handleDataChange()
+        this.updateRawData(this.data)
       }
     }
   },
@@ -707,6 +708,8 @@ export default defineComponent({
     // 模板引用
     const tableWrapper = hooks.ref()
 
+    const { rawData, rawDataVersion } = useNormalData({ props, visibleColumn })
+
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))
     const $table = hooks.getCurrentInstance().proxy
@@ -835,7 +838,9 @@ export default defineComponent({
       bodyTableWidth,
       scrollLoadScrollHeight,
       columnStore,
-      tiledLength
+      tiledLength,
+      rawDataVersion,
+      rawData
     }
   },
   render() {

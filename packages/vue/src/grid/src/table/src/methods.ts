@@ -46,7 +46,8 @@ import {
   destructuring,
   clear,
   sum,
-  find
+  find,
+  eachTree
 } from '@opentiny/vue-renderless/grid/static/'
 import {
   isPx,
@@ -59,9 +60,9 @@ import {
   getRowid,
   emitEvent,
   getRowkey,
-  dfsCopy,
   getRowUniqueId
 } from '@opentiny/vue-renderless/grid/utils'
+import { hooks, isVue2 } from '@opentiny/vue-common'
 import Cell from '../../cell'
 import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'
@@ -85,7 +86,6 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
-import { hooks } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedDetails } from './utils/autoCellWidth'
 import { funcs, headerProps, handleAllColumnPromises } from './funcs'
@@ -232,7 +232,7 @@ const Methods = {
       this.tableData = []
       this.cellStatus.clear()
       this.clearValidateMap()
-      return this.loadTableData(data || this.tableFullData)
+      return this.updateRawData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
   },
@@ -297,8 +297,6 @@ const Methods = {
     editStore.removeList = []
     // 设置全量数据，原始数据，行虚滚标记
     Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
-    // 设置数据查找缓存，对数据进行备份，深度克隆
-    this.updateCache(true, true)
 
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
@@ -318,25 +316,29 @@ const Methods = {
   },
   // 重新加载数据
   reloadData(datas) {
-    return this.clearAll().then(() => this.loadTableData(datas))
+    return this.clearAll().then(() => this.updateRawData(datas))
   },
   // 加载全量数据
   loadData(datas) {
     return new Promise((resolve) => {
-      this.loadTableData(datas)
+      this.updateRawData(datas)
       resolve()
     })
   },
+  updateRawData(datas) {
+    this.rawData = datas
+    this.rawDataVersion += 1
+  },
   getOriginRow(row) {
-    const { backupMap } = this
+    const { srcIdMap, idRawMap } = this.backupInfos
 
-    return backupMap.has(row) ? backupMap.get(row) : null
+    return srcIdMap.has(row) ? idRawMap.get(srcIdMap.get(row)) : null
   },
   setOriginRow(row, record) {
-    const { backupMap } = this
+    const { srcIdMap, idRawMap } = this.backupInfos
 
-    if (backupMap.has(row) && record) {
-      backupMap.set(row, record)
+    if (srcIdMap.has(row) && record) {
+      idRawMap.set(srcIdMap.get(row), record)
     }
   },
   reloadRow(row, record, field) {
@@ -405,29 +407,37 @@ const Methods = {
   },
   /** 设置数据查找缓存，对数据进行备份，深度克隆  */
   updateCache(backup = false, deepCopy = false) {
-    const { tableFullData, treeConfig, treeOrdered } = this
+    const { rawData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
+    const newArray = isArray(rawData) ? rawData.slice(0) : []
     const rowKey = getRowkey(this)
     const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
-    const backupMap = new WeakMap()
+    const fullDataRowIdData = (this.fullDataRowIdData = {})
+    const fullDataRowMap = this.fullDataRowMap
 
-    this.fullDataRowIdData = {}
-    this.fullDataRowMap.clear()
+    fullDataRowMap.clear()
 
-    const copyRow = (row, index, parent) => {
-      let rowId = getRowid(this, row)
+    /* 标记RID和非顺序树表行index */
+    eachTree(
+      newArray,
+      (row, index, _array, _path, parent) => {
+        let rowId = getRowid(this, row)
 
-      if (!rowId) {
-        rowId = getRowUniqueId()
-        set(row, rowKey, rowId)
-      }
+        if (!rowId) {
+          rowId = getRowUniqueId()
+          set(row, rowKey, rowId)
+        }
 
-      const rowCache = { row, rowid: rowId, index }
+        const rowCache = { row, rowid: rowId, index }
 
-      this.fullDataRowIdData[rowId] = rowCache
-      this.fullDataRowMap.set(hooks.toRaw(row), rowCache)
+        // 如果存在行主键重复，就进行提示
+        if (fullDataRowIdData[rowId]) {
+          warn('ui.grid.error.duplicateRowId', rowId)
+        }
 
-      if (backup) {
+        fullDataRowIdData[rowId] = rowCache
+        fullDataRowMap.set(this.getRaw(row), rowCache)
+
         if (isTreeOrderedFalse) {
           let parentIndex
 
@@ -437,21 +447,39 @@ const Methods = {
 
           set(row, temporaryIndex, (parentIndex ? `${parentIndex}.` : '') + (index + 1))
         }
+      },
+      treeConfig
+    )
 
-        const childrenField = treeConfig ? { [childrenKey]: undefined } : {}
-        const backupRow = deepCopy ? clone({ ...row, ...childrenField }, true) : { ...row, ...childrenField }
+    if (backup && (editConfig || saveSource)) {
+      /* 在空闲帧任务中备份数据 */
+      requestIdleCallback(() => {
+        const srcIdMap = new WeakMap()
+        const idRawMap = new Map()
 
-        backupMap.set(row, backupRow)
+        eachTree(
+          newArray,
+          (row) => {
+            const rowId = getRowid(this, row)
+            // 这里构造一个普通对象，用于后续整体复制。树表结构字段设置为null，避免子行被复制多次。
+            const copyRow = childrenKey ? { ...row, [childrenKey]: null } : { ...row }
 
-        return backupRow
-      }
+            srcIdMap.set(row, rowId)
+            idRawMap.set(rowId, copyRow)
+          },
+          treeConfig
+        )
+
+        this.backupInfos = {
+          srcIdMap,
+          idRawMap: (isVue2 && deepCopy) || !isVue2 ? structuredClone(idRawMap) : idRawMap
+        }
+      })
     }
-
-    const backupData = dfsCopy(tableFullData, copyRow, undefined, treeConfig, childrenKey)
-
-    if (backup) {
-      Object.assign(this, { tableSourceData: backupData, backupMap })
-    }
+  },
+  getRaw(object) {
+    const hooks_vue = hooks
+    return !isVue2 && hooks_vue.isProxy(object) ? hooks.toRaw(object) : object
   },
   // 更新列的 Map
   cacheColumnMap(options) {
@@ -480,9 +508,7 @@ const Methods = {
     return null
   },
   getColumnNode(cell) {
-    if (!cell) {
-      return null
-    }
+    if (!cell) return null
 
     const { fullColumnIdData, tableFullColumn } = this
     const dataColid = cell.dataset.colid
@@ -495,9 +521,9 @@ const Methods = {
     return null
   },
   getRowIndex(row) {
-    const rawRow = hooks.toRaw(row)
     const { fullDataRowMap } = this
-    return fullDataRowMap.has(rawRow) ? fullDataRowMap.get(rawRow).index : -1
+    row = this.getRaw(row)
+    return fullDataRowMap.has(row) ? fullDataRowMap.get(row).index : -1
   },
   getColumnIndex(column) {
     const { fullColumnMap } = this
@@ -508,9 +534,7 @@ const Methods = {
     return column?.type === 'index'
   },
   defineField(row, copy) {
-    if (!row || typeof row !== 'object') {
-      return row
-    }
+    if (!row || typeof row !== 'object') return row
 
     if (copy) {
       row = clone(row, true)
@@ -520,10 +544,15 @@ const Methods = {
 
     this.visibleColumn.forEach(({ property, editor }) => {
       const propNotExist = property && !has(row, property)
+      // 对于可编辑表格，如果编辑器对应数据行字段不存在，就修复这种字段为值 editor.defaultValue 或者 null
       const propDefaultValue = editor && !isUndefined(editor.defaultValue) ? editor.defaultValue : null
 
       if (propNotExist) {
-        set(row, property, propDefaultValue)
+        if (isVue2) {
+          this.$set(row, property, propDefaultValue)
+        } else {
+          set(row, property, propDefaultValue)
+        }
       }
     })
     // 如果行数据的唯一主键不存在，则生成
@@ -601,8 +630,8 @@ const Methods = {
     return result
   },
   hasRowChange(row, field) {
-    const { treeConfig, visibleColumn, backupMap, editConfig } = this
-    const insertChanged = editConfig?.insertChanged ?? false
+    const { treeConfig, visibleColumn, editConfig = {} } = this
+    const { insertChanged = false } = editConfig
     const argsLength = arguments.length
     let originRow
     // 新增的数据不需要检测
@@ -610,7 +639,7 @@ const Methods = {
       return insertChanged
     }
 
-    const cacheRow = backupMap.get(row)
+    const cacheRow = this.getOriginRow(row)
 
     if (cacheRow) {
       if (treeConfig) {
@@ -1777,7 +1806,7 @@ const Methods = {
     return this.$nextTick()
   },
   scrollToRow(row, column, isDelay, move) {
-    const hasRowCache = this.fullDataRowMap.has(hooks.toRaw(row))
+    const hasRowCache = this.fullDataRowMap.has(this.getRaw(row))
     const isDelayArg = isDelay || isBoolean(column)
 
     row && hasRowCache && rowToVisible(this, row)
