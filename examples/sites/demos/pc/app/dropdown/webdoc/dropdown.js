@@ -93,9 +93,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为：<code>click</code> / <code>hover</code> 。</p>\n',
+          '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为：<code>click</code> / <code>hover</code> / <code>contextmenu</code>（3.28.0 起支持）。</p>\n',
         'en-US':
-          '<p>By setting the <code>trigger</code> attribute to trigger a drop-down, the default is <code>hover</code>. The optional values are: <code>click</code> / <code>hover</code>.</p>\n'
+          '<p>Use the <code>trigger</code> attribute to set how the dropdown is triggered. Default is <code>hover</code>. Optional values: <code>click</code> / <code>hover</code> / <code>contextmenu</code> (supported since 3.28.0).</p>\n'
       },
       codeFiles: ['trigger.vue']
     },
@@ -108,7 +108,7 @@ export default {
       desc: {
         'zh-CN': '<p>通过 <code>visible</code> 属性手动控制下拉菜单显隐，优先级高于trigger。</p>\n',
         'en-US':
-          '<p>Manually control the visibility of the dropdown menu through the<code>visible</code>attribute, with priority over trigger.</p>\n'
+          '<p>Manually control the visibility of the dropdown menu through the <code>visible</code>attribute, with priority over trigger.</p>\n'
       },
       codeFiles: ['visible.vue']
     },
@@ -307,7 +307,7 @@ export default {
       support: {
         value: true
       },
-      description: '支持点击和悬停两种触发方式。',
+      description: '支持点击、悬停以及右键（contextmenu，3.28.0 起支持）触发方式。',
       cloud: {
         value: true
       },
