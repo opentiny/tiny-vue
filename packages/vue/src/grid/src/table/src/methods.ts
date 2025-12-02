@@ -472,7 +472,7 @@ const Methods = {
 
         this.backupInfos = {
           srcIdMap,
-          idRawMap: (isVue2 && deepCopy) || !isVue2 ? structuredClone(idRawMap) : idRawMap
+          idRawMap: (isVue2 && deepCopy) || !isVue2 ? this.cloneMapAndUnwrap(idRawMap) : idRawMap
         }
       })
     }
@@ -480,6 +480,57 @@ const Methods = {
   getRaw(object) {
     const hooks_vue = hooks
     return !isVue2 && hooks_vue.isProxy(object) ? hooks.toRaw(object) : object
+  },
+  /**
+   * 递归地将 Proxy 对象（如 Vue 3 的响应式对象）转换为普通对象。
+   * @param {any} data 待处理的数据
+   * @returns {any} 转换后的普通对象或原始数据
+   */
+  deepUnwrap(data) {
+    if (data === null || typeof data !== 'object') {
+      return data
+    }
+
+    // *** 特殊处理：Map 和 Set
+    if (data instanceof Map) {
+      // 递归调用 cloneMapAndUnwrap
+      return this.cloneMapAndUnwrap(data)
+    }
+    if (data instanceof Set) {
+      return new Set(Array.from(data).map(this.deepUnwrap))
+    }
+
+    // 2. 数组
+    if (Array.isArray(data)) {
+      // 遍历数组，递归解包每个元素
+      return data.map(this.deepUnwrap)
+    }
+
+    const result = {}
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        result[key] = this.deepUnwrap(data[key])
+      }
+    }
+    return result
+  },
+  /**
+   * 复制 Map，并递归地将 Map 的值中包含的 Proxy 转换为普通对象。
+   * @param {Map<any, any>} originalMap 原始 Map
+   * @returns {Map<any, any>} 复制并解包后的新 Map
+   */
+  cloneMapAndUnwrap(originalMap) {
+    if (!(originalMap instanceof Map)) {
+      return originalMap
+    }
+    const newMap = new Map()
+
+    for (const [key, value] of originalMap.entries()) {
+      const unwrappedValue = this.deepUnwrap(value)
+      newMap.set(key, unwrappedValue)
+    }
+
+    return newMap
   },
   // 更新列的 Map
   cacheColumnMap(options) {

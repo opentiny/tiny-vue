@@ -62,6 +62,18 @@ export default {
         'en-US': ''
       },
       codeFiles: ['data-source/defslot-protochain-fetch.vue']
+    },
+    {
+      demoId: 'undefined-field-defalut-value',
+      name: { 'zh-CN': '缺省数据的默认值', 'en-US': '' },
+      desc: {
+        'zh-CN': `
+        <p>在可编辑表格组件中，当编辑器检测到当前数据行缺少对应字段时，会自动创建该字段。字段的初始化值遵循以下规则：</p>
+        <p>1. 若配置了 <code>editor.defaultValue</code>，则使用该值作为初始值</p>
+        <p>2.若未配置 <code>editor.defaultValue</code>，则默认使用 <code>null</code>作为初始值</p>`,
+        'en-US': ''
+      },
+      codeFiles: ['data-source/undefined-field-defalut-value.vue']
     }
   ],
   apis: [{ name: 'grid-data-source', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
