@@ -175,6 +175,7 @@
     "@opentiny/vue-select-dropdown": "workspace:~",
     "@opentiny/vue-select-mobile": "workspace:~",
     "@opentiny/vue-select-view": "workspace:~",
+    "@opentiny/vue-select-wrapper": "workspace:~",
     "@opentiny/vue-selected-box": "workspace:~",
     "@opentiny/vue-signature": "workspace:~",
     "@opentiny/vue-skeleton": "workspace:~",

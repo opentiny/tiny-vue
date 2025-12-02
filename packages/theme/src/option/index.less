@@ -92,6 +92,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       vertical-align: top;
+      padding-top: 3px;
     }
   }
 
@@ -102,6 +103,10 @@
 
   &:not(.tiny-option_all):not(:has(.tiny-option__checkbox-wrap)).selected {
     color: var(--tv-Option-text-color-selected);
+  }
+
+  &__checkbox-wrap {
+    display: flex;
   }
 
   &.memorize-highlight {

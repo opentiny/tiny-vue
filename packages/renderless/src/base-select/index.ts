@@ -2007,7 +2007,7 @@ export const computedGetIcon =
     return props.dropdownIcon
       ? { icon: props.dropdownIcon }
       : {
-          icon: designConfig?.icons.dropdownIcon || 'icon-delta-down',
+          icon: designConfig?.icons.dropdownIcon || 'icon-down-ward',
           isDefault: true
         }
   }

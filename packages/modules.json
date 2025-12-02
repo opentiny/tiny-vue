@@ -2174,6 +2174,14 @@
       "pc"
     ]
   },
+  "SelectWrapper": {
+    "path": "vue/src/select-wrapper/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "SelectDropdown": {
     "path": "vue/src/select-dropdown/index.ts",
     "type": "component",
@@ -2208,6 +2216,11 @@
   },
   "SelectPc": {
     "path": "vue/src/select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SelectWrapperPc": {
+    "path": "vue/src/select-wrapper/src/pc.vue",
     "type": "template",
     "exclude": false
   },

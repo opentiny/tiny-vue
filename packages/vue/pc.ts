@@ -122,6 +122,7 @@ import ScrollText from '@opentiny/vue-scroll-text'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import Search from '@opentiny/vue-search'
 import Select from '@opentiny/vue-select'
+import SelectWrapper from '@opentiny/vue-select-wrapper'
 import SelectDropdown from '@opentiny/vue-select-dropdown'
 import SelectedBox from '@opentiny/vue-selected-box'
 import Skeleton from '@opentiny/vue-skeleton'
@@ -296,6 +297,7 @@ const components = [
   Scrollbar,
   Search,
   Select,
+  SelectWrapper,
   SelectDropdown,
   SelectedBox,
   Skeleton,
@@ -616,6 +618,8 @@ export {
   Search as TinySearch,
   Select,
   Select as TinySelect,
+  SelectWrapper,
+  SelectWrapper as TinySelectWrapper,
   SelectDropdown,
   SelectDropdown as TinySelectDropdown,
   SelectedBox,
@@ -961,6 +965,8 @@ export default {
   TinySearch: Search,
   Select,
   TinySelect: Select,
+  SelectWrapper,
+  TinySelectWrapper: SelectWrapper,
   SelectDropdown,
   TinySelectDropdown: SelectDropdown,
   SelectedBox,

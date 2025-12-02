@@ -22,7 +22,6 @@ export const api = [
   'selectChange',
   'getcheckedData',
   'getPluginOption',
-  'initQuery',
   'mounted',
   'syncGridSelection',
   'watchValue',
@@ -30,7 +29,7 @@ export const api = [
 ]
 
 export const renderless = (props, { reactive, computed, watch, onMounted, nextTick }, { vm, emit }) => {
-  const api = {}
+  const api: any = {}
 
   // 初始化 gridData，支持 { data: [], columns: [] } 格式
   const initGridData = () => {
@@ -54,7 +53,8 @@ export const renderless = (props, { reactive, computed, watch, onMounted, nextTi
     currentKey: props.multiple ? '' : props.modelValue,
     previousQuery: null,
     modelValue: props.multiple ? (Array.isArray(props.modelValue) ? [...props.modelValue] : []) : props.modelValue,
-    isMounted: false
+    isMounted: false,
+    firstAutoSearch: props.remoteConfig?.autoSearch || false
   })
 
   Object.assign(api, {
@@ -69,7 +69,7 @@ export const renderless = (props, { reactive, computed, watch, onMounted, nextTi
     radioChange: radioChange({ props, vm, emit, state }),
     selectChange: selectChange({ props, vm, emit, state, nextTick }),
     syncGridSelection: syncGridSelection({ props, vm, state, nextTick }),
-    handleVisibleChange: handleVisibleChange({ api, state }),
+    handleVisibleChange: handleVisibleChange({ api, state, props }),
     watchValue: watchValue({ api, props, vm, state })
   })
 
