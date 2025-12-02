@@ -5,6 +5,34 @@ import { getToolbarTips, defaultOptions } from './options'
 import registerTableModule from './table-module'
 import registerCustomClipboard from './clipboard'
 
+// 注册自定义 Size 格式以支持像素值
+const registerCustomSize = (Quill, sizeConfig) => {
+  if (!sizeConfig || !Array.isArray(sizeConfig)) {
+    return
+  }
+
+  // 检查是否包含像素值（如 '12px', '14px' 等）
+  const hasPixelValues = sizeConfig.some((item) => {
+    return item && typeof item === 'string' && item.includes('px')
+  })
+
+  if (!hasPixelValues) {
+    return
+  }
+
+  // 使用 StyleAttributor 来支持像素值
+  const SizeStyle = Quill.import('attributors/style/size')
+
+  // 过滤掉 false 值，设置白名单
+  const whitelist = sizeConfig.filter((item) => item !== false)
+
+  // 设置白名单，允许的 size 值
+  SizeStyle.whitelist = whitelist
+
+  // 使用 true 参数强制覆盖已注册的格式
+  Quill.register('formats/size', SizeStyle, true)
+}
+
 export const initContent =
   ({ state, props, nextTick }) =>
   () => {
@@ -33,6 +61,38 @@ export const initQuill =
   ({ api, emit, props, vm, service, state, Quill, ImageDrop, ImageUpload, FileUpload }) =>
   () => {
     state.innerOptions = extend(true, {}, defaultOptions, props.globalOptions, props.options)
+
+    // 检查并注册自定义 Size 格式（支持像素值）
+    const toolbarConfig = state.innerOptions.modules?.toolbar?.container || []
+
+    // 递归查找 size 配置
+    const findSizeConfig = (config) => {
+      if (!config) return null
+
+      if (Array.isArray(config)) {
+        for (let i = 0; i < config.length; i++) {
+          const result = findSizeConfig(config[i])
+          if (result) return result
+        }
+      } else if (typeof config === 'object' && config !== null) {
+        // 检查是否有 size 属性
+        if (config.size && Array.isArray(config.size)) {
+          return config.size
+        }
+        // 递归检查对象的值
+        for (const key in config) {
+          const result = findSizeConfig(config[key])
+          if (result) return result
+        }
+      }
+
+      return null
+    }
+
+    const sizeConfig = findSizeConfig(toolbarConfig)
+    if (sizeConfig) {
+      registerCustomSize(Quill, sizeConfig)
+    }
 
     if (document.caretRangeFromPoint) {
       if (props.imageDrop) {

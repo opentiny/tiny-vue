@@ -1,5 +1,5 @@
 import RichText from './src/pc.vue'
-import '@opentiny/vue-theme/rich-text/index.css'
+import '@opentiny/vue-theme/rich-text/index.less'
 
 RichText.model = {
   prop: 'modelValue',
