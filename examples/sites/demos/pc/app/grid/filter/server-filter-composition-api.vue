@@ -99,7 +99,7 @@ function filterChangeEvent({ filters }) {
   })
 }
 
-function getData({ page, sort, data, filters }) {
+function getData({ page, filters }) {
   return new Promise((resolve) => {
     setTimeout(() => {
       // 此处为用户自定义的服务端分页、排序、过滤服务
