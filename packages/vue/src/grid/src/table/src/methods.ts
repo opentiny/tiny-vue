@@ -750,7 +750,7 @@ const Methods = {
   },
   // 获取表格所有数据
   getData(rowIndex) {
-    const allRows = this.data || this.tableSynchData
+    const allRows = this.rawData || this.tableSynchData
 
     if (!arguments.length) {
       return allRows.slice(0)
@@ -2128,8 +2128,8 @@ const Methods = {
     return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   },
   handleDataChange() {
-    if (Array.isArray(this.data)) {
-      !this._isUpdateData && this.loadTableData(this.data)
+    if (Array.isArray(this.rawData)) {
+      !this._isUpdateData && this.loadTableData(this.rawData)
       this._isUpdateData = false
     }
   },

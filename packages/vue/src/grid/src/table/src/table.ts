@@ -566,6 +566,7 @@ export default defineComponent({
       fullColumnMap: new Map(),
       fullDataRowIdData: {},
       fullDataRowMap: new Map(),
+      backupInfos: { srcIdMap: new WeakMap(), idRawMap: new Map() },
       // 临时插入数据集
       temporaryRows: [],
       // 最后滚动位置
