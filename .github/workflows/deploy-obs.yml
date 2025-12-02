@@ -42,7 +42,7 @@ jobs:
           export NODE_OPTIONS="--max-old-space-size=8192"
           pnpm build:site
         env:
-          VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-web-doc/${{ env.VERSION }}/
+          VITE_APP_BUILD_BASE_URL: //res-static.opentiny.design/tiny-vue-web-doc/${{ env.VERSION }}/
           VITE_PLAYGROUND_URL: /vue-playground
       - name: Copy files
         run: |

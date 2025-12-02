@@ -44,7 +44,7 @@ jobs:
         env:
           VITE_CONTEXT: /tiny-vue-saas/
           VITE_PLAYGROUND_URL: /vue-saas-playground
-          VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-saas/${{ env.VERSION }}/
+          VITE_APP_BUILD_BASE_URL: //res-static.opentiny.design/tiny-vue-saas/${{ env.VERSION }}/
       - name: Copy files
         run: |
           cp ./examples/sites/dist/index.html ./examples/sites/dist/404.html
