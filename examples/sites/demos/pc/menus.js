@@ -347,8 +347,8 @@ export const cmpMenus = [
       { 'nameCn': '词云图', 'name': 'Wordcloud Chart', 'key': 'chart-wordcloud' },
       { 'nameCn': '旭日图', 'name': 'Sunburst Chart', 'key': 'chart-sunburst' },
       { 'nameCn': '拓扑图', 'name': 'Graph Chart', 'key': 'chart-graph' },
-      { 'nameCn': '百度地图', 'name': 'BaiduMap Chart', 'key': 'chart-baidu-map' },
-      { 'nameCn': '高德地图', 'name': 'Autonavi Chart', 'key': 'chart-autonavi-map' },
+      // { 'nameCn': '百度地图', 'name': 'BaiduMap Chart', 'key': 'chart-baidu-map' },
+      // { 'nameCn': '高德地图', 'name': 'Autonavi Chart', 'key': 'chart-autonavi-map' },
       { 'nameCn': '箱形图', 'name': 'Boxplot Chart', 'key': 'chart-boxplot' },
       { 'nameCn': '进度图', 'name': 'Process Chart', 'key': 'chart-process' }
     ]
