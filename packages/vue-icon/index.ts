@@ -460,7 +460,7 @@ import IconStreamSolid from './src/stream-solid'
 import IconStretchCrosswise from './src/stretch-crosswise'
 import IconStretchUpright from './src/stretch-upright'
 import IconStretch from './src/stretch'
-import IconSubScript from './src/sub-script'
+import IconSubscript from './src/subscript'
 import IconSubstituteMaterial from './src/substitute-material'
 import IconSuccess from './src/success'
 import IconSuccessful from './src/successful'
@@ -999,7 +999,7 @@ export { IconStreamSolid, IconStreamSolid as iconStreamSolid }
 export { IconStretchCrosswise, IconStretchCrosswise as iconStretchCrosswise }
 export { IconStretchUpright, IconStretchUpright as iconStretchUpright }
 export { IconStretch, IconStretch as iconStretch }
-export { IconSubScript, IconSubScript as iconSubScript }
+export { IconSubscript, IconSubscript as iconSubscript }
 export { IconSubstituteMaterial, IconSubstituteMaterial as iconSubstituteMaterial }
 export { IconSuccess, IconSuccess as iconSuccess }
 export { IconSuccessful, IconSuccessful as iconSuccessful }
@@ -1074,8 +1074,8 @@ export { IconZoomIn, IconZoomIn as iconZoomIn }
 export { IconZoomOut, IconZoomOut as iconZoomOut }
 
 // 重命名导出
-export const IconSubscript = () => ({ ...IconSubScript(), name: 'IconSubscript', deprecatedBy: 'IconSubScript' })
-export const iconSubscript = IconSubscript
+export const IconSubScript = () => ({ ...IconSubscript(), name: 'IconSubScript', deprecatedBy: 'IconSubscript' })
+export const iconSubScript = IconSubScript
 
 export default {
   IconEditorEraser,
@@ -1540,7 +1540,7 @@ export default {
   IconStretchCrosswise,
   IconStretchUpright,
   IconStretch,
-  IconSubScript,
+  IconSubscript,
   IconSubstituteMaterial,
   IconSuccess,
   IconSuccessful,
@@ -1613,5 +1613,5 @@ export default {
   IconZipType,
   IconZoomIn,
   IconZoomOut,
-  IconSubscript
+  IconSubScript
 }

@@ -233,7 +233,7 @@ import IconSplit from './src/split'
 import IconStarDisable from './src/star-disable'
 import IconStartCircle from './src/start-circle'
 import IconStatistics from './src/statistics'
-import IconSubScript from './src/sub-script'
+import IconSubscript from './src/subscript'
 import IconSubstituteMaterial from './src/substitute-material'
 import IconSuccessful from './src/successful'
 import IconSummit from './src/summit'
@@ -815,7 +815,7 @@ export { IconSplit, IconSplit as iconSplit }
 export { IconStarDisable, IconStarDisable as iconStarDisable }
 export { IconStartCircle, IconStartCircle as iconStartCircle }
 export { IconStatistics, IconStatistics as iconStatistics }
-export { IconSubScript, IconSubScript as iconSubScript }
+export { IconSubscript, IconSubscript as iconSubscript }
 export { IconSubstituteMaterial, IconSubstituteMaterial as iconSubstituteMaterial }
 export { IconSuccessful, IconSuccessful as iconSuccessful }
 export { IconSummit, IconSummit as iconSummit }
@@ -1170,8 +1170,8 @@ export const IconTotalNolume = () => ({
   deprecatedBy: 'IconTotalVolume'
 })
 export const iconTotalNolume = IconTotalNolume
-export const IconSubscript = () => ({ ...IconSubScript(), name: 'IconSubscript', deprecatedBy: 'IconSubScript' })
-export const iconSubscript = IconSubscript
+export const IconSubScript = () => ({ ...IconSubscript(), name: 'IconSubScript', deprecatedBy: 'IconSubscript' })
+export const iconSubScript = IconSubScript
 
 export default {
   IconAcceptance,
@@ -1409,7 +1409,7 @@ export default {
   IconStarDisable,
   IconStartCircle,
   IconStatistics,
-  IconSubScript,
+  IconSubscript,
   IconSubstituteMaterial,
   IconSuccessful,
   IconSummit,
@@ -1755,5 +1755,5 @@ export default {
   IconWord,
   IconZip,
   IconTotalNolume,
-  IconSubscript
+  IconSubScript
 }
