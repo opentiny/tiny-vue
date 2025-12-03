@@ -234,7 +234,7 @@ export const advanceIcons = [
   'IconStarDisable',
   'IconStartCircle',
   'IconStatistics',
-  'IconSubScript',
+  'IconSubscript',
   'IconSubstituteMaterial',
   'IconSuccessful',
   'IconSummit',

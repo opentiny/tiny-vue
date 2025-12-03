@@ -81,18 +81,28 @@ svgsFiles.forEach((filename) => {
 // 2、生成组件的js
 const fillList: { capName: string; svgName: string }[] = []
 const uncheckedList: { capName: string; svgName: string }[] = []
+
+// 2.1 写入重命名图标的js
 const rewriteList = Object.keys(rewriteConfig).map((wrongName) => {
   return {
     capName: camelize('-' + wrongName),
     svgName: wrongName,
-    rewriteName: camelize('-' + rewriteConfig[wrongName])
+    rewriteName: rewriteConfig[wrongName],
+    rewriteCapName: camelize('-' + rewriteConfig[wrongName])
   }
+})
+
+rewriteList.forEach((item) => {
+  const tmplStr = `import Icon${item.capName} from "./${item.rewriteName}";
+export default Icon${item.capName};
+  `
+  fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
 })
 
 Object.values(svgsMap).forEach((item) => {
   const capName = camelize('-' + item.svgName)
 
-  // 支持线&面的图标
+  // 2.2 支持线&面的图标js
   if (item.hasFill) {
     fillList.push({ capName, svgName: item.svgName })
     const tmplStr = `import { svg } from '@opentiny/vue-common'
@@ -105,7 +115,7 @@ export default () => svg({ name: 'Icon${capName}', component: ${capName}, filled
     fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
     return
   }
-  // 未梳理到的图标
+  // 2.3 未梳理到的图标js
   uncheckedList.push({ capName, svgName: item.svgName })
   const tmplStr = `import { svg } from '@opentiny/vue-common'
 import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
@@ -130,7 +140,7 @@ const tmplUnchecked = uncheckedList
 const tmplRewrite = rewriteList
   .map(
     (exp) =>
-      `export const Icon${exp.capName} = () => ({...Icon${exp.rewriteName}(), name:'Icon${exp.capName}', deprecatedBy: 'Icon${exp.rewriteName}' })
+      `export const Icon${exp.capName} = () => ({...Icon${exp.rewriteCapName}(), name:'Icon${exp.capName}', deprecatedBy: 'Icon${exp.rewriteCapName}' })
 export const icon${exp.capName} = Icon${exp.capName}`
   )
   .join('\n')
