@@ -2,7 +2,8 @@ name: Deploy to Huawei OBS
 
 on:
   push:
-    branches: [dev]
+    tags:
+      - 'v*'
     paths:
       - 'examples/sites/**'
       - '!examples/sites/**/*.spec.ts'
