@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 @grid-prefix-cls: ~'@{css-prefix}grid';
 @grid-body-prefix-cls: ~'@{css-prefix}grid-body';
@@ -56,6 +57,7 @@
   }
 
   .@{grid-prefix-cls}-copyed-borders {
+    --tv-motion-ants-shift: 13px;
     .@{grid-prefix-cls}-border-top,
     .@{grid-prefix-cls}-border-bottom {
       height: 3px;
@@ -67,14 +69,21 @@
     }
 
     & > span {
-      background: repeating-linear-gradient(
-        135deg,
-        transparent,
-        transparent 3px,
-        var(--tv-Grid-border-color-active) 3px,
-        var(--tv-Grid-border-color-active) 9px
-      );
-      animation: shine 1s infinite linear;
+      background: repeating-linear-gradient(135deg, transparent 0 3px, var(--tv-Grid-border-color-active) 3px 9px);
+      background-repeat: repeat;
+    }
+
+    .@{grid-prefix-cls}-border-top {
+      animation: ants-x var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-right {
+      animation: ants-y var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-bottom {
+      animation: ants-x-rev var(--tv-motion-ants-speed) linear infinite;
+    }
+    .@{grid-prefix-cls}-border-left {
+      animation: ants-y-rev var(--tv-motion-ants-speed) linear infinite;
     }
   }
 }
@@ -90,15 +99,5 @@
     .@{numeric-prefix-cls} {
       width: 100%;
     }
-  }
-}
-
-@keyframes shine {
-  0% {
-    background-position: -1px -1px;
-  }
-
-  100% {
-    background-position: -12px -12px;
   }
 }

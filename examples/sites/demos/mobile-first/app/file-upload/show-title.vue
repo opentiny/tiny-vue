@@ -3,12 +3,11 @@
 </template>
 
 <script>
-import { TinyFileUpload, TinyButton } from '@opentiny/vue'
+import { TinyFileUpload } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload,
-    TinyButton
+    TinyFileUpload
   },
   data() {
     return {

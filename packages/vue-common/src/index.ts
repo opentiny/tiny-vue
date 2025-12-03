@@ -313,26 +313,44 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 }
 
 // 这里需要使用函数声明语句，可以提升变量，保证saas-common可以正常运行
-export function svg({ name = 'Icon', component }) {
+export function svg({ name = 'Icon', component, filledComponent = null, deprecatedBy = '' }) {
+  if (deprecatedBy) {
+    console.warn(`${name} 图标已经重定向至 ${deprecatedBy} 图标,请避免使用${name} 图标！`)
+  }
   return (propData?) =>
     markRaw(
       defineComponent({
         name: $prefix + name,
+        props: {
+          /** 设置图标模式： line or filled */
+          shape: {
+            type: String,
+            default: 'line'
+          },
+          firstColor: {
+            type: String,
+            default: ''
+          },
+          secondColor: {
+            type: String,
+            default: ''
+          },
+          underlay: {
+            type: Object // { background:'red', borderRadius:'4px',scale:0.6 }
+          }
+        },
         setup: (props, context) => {
-          const {
-            fill,
-            width,
-            height,
-            'custom-class': customClass,
-            'first-color': firstColor,
-            'second-color': secondColor
-          } = context.attrs || {}
+          const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
           const mergeProps = Object.assign({}, props, propData || null)
           const mode = resolveMode(mergeProps, context)
           const isMobileFirst = mode === 'mobile-first'
           const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
+
+          if (props.underlay) {
+            className += ' tiny-svg-underlay' // 增加底托效果
+          }
 
           if (isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
@@ -344,8 +362,12 @@ export function svg({ name = 'Icon', component }) {
                 fill,
                 width,
                 height,
-                '--tiny-first-color': firstColor || '',
-                '--tiny-second-color': secondColor || ''
+                '--tiny-first-color': props.firstColor || '',
+                '--tiny-second-color': props.secondColor || '',
+
+                '--tiny-underlay-bg': props.underlay ? props.underlay.background : '#eef3fe',
+                '--tiny-underlay-br': props.underlay ? props.underlay.borderRadius : '4px',
+                '--tiny-underlay-scale': props.underlay ? props.underlay.scale : 0.8
               },
               class: className,
               isSvg: true
@@ -373,8 +395,10 @@ export function svg({ name = 'Icon', component }) {
             }
           }
 
+          const view = hooks.computed(() => (props.shape === 'line' ? component : filledComponent))
+
           return renderComponent({
-            component,
+            view,
             props: mergeProps,
             context,
             extend

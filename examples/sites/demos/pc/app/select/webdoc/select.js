@@ -28,7 +28,7 @@ export default {
         'zh-CN': `
             通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认选中值会以标签（Tag 组件）展示。<br>
             通过 <code>multiple-limit</code> 属性限制最多可选择的个数，默认为 0 不限制。<br>
-            通过 <code>show-limit-text</code> 属性限制最多可选择的个数，默认为 0 不限制。<br>
+            通过 <code>show-limit-text</code> 属性限制最多可选择的个数，默认为 flase 不限制，非saas属性<br>
             多选时，通过给 option 标签配置 <code>required</code> 或者在 options 配置项中添加 <code>required</code> 属性，来设置必选选项。<br>
             通过 <code>dropdown-icon</code> 属性可自定义下拉图标，<code>drop-style</code> 属性可自定义下拉选项样式。<br>
         `,
@@ -50,7 +50,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签，<code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code>，非saas属性 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签，<code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
         'en-US':
           '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags are displayed in a thumbnail. Set <code>show-proportion</code> to display the current number of selected items and the proportion of total items, with a default value of <code>false</code> . By setting <code>hover-expand</code> to <code>true</code> , the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
@@ -86,7 +86,8 @@ export default {
         'en-US':
           '<p>Set the label type through the <code>tag-type</code> attribute, which is the same as the type attribute of the Tag component. Optional values: success/info/warning/danger.</p>\n'
       },
-      codeFiles: ['tag-type.vue']
+      codeFiles: ['tag-type.vue'],
+      hideSaas: true
     },
     {
       demoId: 'size',
@@ -178,7 +179,8 @@ export default {
         'en-US':
           '<p>The search box is displayed through the <code>searchable</code> attribute setting drop-down panel, which is not displayed by default. </p>\n'
       },
-      codeFiles: ['searchable.vue']
+      codeFiles: ['searchable.vue'],
+      hideSaas: true
     },
     {
       demoId: 'allow-create',
@@ -232,7 +234,8 @@ export default {
         'en-US':
           'The <p>Set the input box type through the <code>input-box-type</code> attribute. Optional values: input / underline. </p>\n'
       },
-      codeFiles: ['input-box-type.vue']
+      codeFiles: ['input-box-type.vue'],
+      hideSaas: true
     },
     {
       demoId: 'show-alloption',
@@ -259,7 +262,8 @@ export default {
         'en-US':
           '<p>By setting the value of the v-model through the <code>clear-no-match-value</code>attribute, if a matching value cannot be found in the options, it will be automatically cleared and will not be cleared by default.</p>\n'
       },
-      codeFiles: ['clear-no-match-value.vue']
+      codeFiles: ['clear-no-match-value.vue'],
+      hideSaas: true
     },
     {
       demoId: 'optimization',
@@ -351,7 +355,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>no-data-text</code> 属性设置选项为空时显示的文本，<code>show-empty-image</code> 属性设置是否显示空数据图片，默认不显示。</p>\n',
+          '<p>通过 <code>no-data-text</code> 属性设置选项为空时显示的文本，<code>show-empty-image</code> 属性设置是否显示空数据图片，默认不显示，非saas属性。</p>\n',
         'en-US':
           '<p>By setting the<code>no-data-text</code> attribute to display text when the option is empty, and by setting the <code>show-empty-image</code> attribute to display empty data images, it is not displayed by default.</p>\n'
       },
@@ -616,7 +620,8 @@ export default {
         'zh-CN': '<p>通过 <code>reference</code> 插槽自定义触发源的 HTML 模板。</p>\n',
         'en-US': '<p>Customize the HTML template of the trigger source through the <code>reference</code> slot.</p>'
       },
-      codeFiles: ['slot-reference.vue']
+      codeFiles: ['slot-reference.vue'],
+      hideSaas: true
     },
     {
       demoId: 'slot-label',
@@ -647,7 +652,8 @@ export default {
           If <code>show-all-text-tag</code> is set to <code>true</code> and all is selected, only the tag specified by <code>all-text</code> is displayed in the text box. The default value is <code>false</code>.
         `
       },
-      codeFiles: ['all-text.vue']
+      codeFiles: ['all-text.vue'],
+      hideSaas: true
     },
     {
       demoId: 'events',

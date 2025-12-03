@@ -18,6 +18,7 @@ interface TooltipDirectiveConfig {
   content?: string // 自定义提示内容,  支持字符串或 VNode | VNode[], 不支持嵌套的 html 标签
   effect?: 'dark' | 'light' // tooltip主题，默认为light
   placement?: string
+  popperClass?: string
 }
 
 // 高度计算最多可以允许的误差，修复checkbox的tip提示一直显示的bug（scrollHeight：15，clientHeight：14）
@@ -55,6 +56,12 @@ const isDarkTheme = (currentTarget) => Boolean(currentTarget?.boundingValue?.eff
 
 const getPlacement = (currentTarget) => currentTarget.boundingValue?.placement || 'top'
 
+let oldPopperClass: string[] = []
+const getPopperClass = (currentTarget) => {
+  const cls: string = currentTarget.boundingValue?.popperClass || ''
+  return cls.split(' ').filter((c) => c)
+}
+
 const mouseenterHandler = (e) => {
   const currentTarget = e.currentTarget
 
@@ -73,10 +80,13 @@ const mouseenterHandler = (e) => {
         propsData: {
           renderContent: () => h('span', { class: 'tiny-directive-tip__content' }, tooltipContent.value),
           placement: getPlacement(currentTarget),
-          effect: isDarkTheme(currentTarget) ? 'dark' : 'light'
+          effect: isDarkTheme(currentTarget) ? 'dark' : 'light',
+          popperClass: getPopperClass(currentTarget).join(' ')
         },
         component: Tooltip
       })
+
+      oldPopperClass = getPopperClass(currentTarget)
     }
 
     const tooltip = globalTooltip.value
@@ -91,6 +101,9 @@ const mouseenterHandler = (e) => {
         `is-${isDarkTheme(currentTarget) ? 'light' : 'dark'}`,
         `is-${isDarkTheme(currentTarget) ? 'dark' : 'light'}`
       )
+      popperElm.classList.remove(...oldPopperClass)
+      oldPopperClass = getPopperClass(currentTarget)
+      popperElm.classList.add(...oldPopperClass)
     }
 
     tooltip.show()

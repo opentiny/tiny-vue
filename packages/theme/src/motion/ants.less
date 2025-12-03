@@ -1,0 +1,39 @@
+/* 横向蚂蚁线动画（正向） */
+@keyframes ants-x {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: var(--tv-motion-ants-shift, 8px) 0;
+  }
+}
+
+/* 横向蚂蚁线动画（反向） */
+@keyframes ants-x-rev {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: calc(-1 * var(--tv-motion-ants-shift, 8px)) 0;
+  }
+}
+
+/* 纵向蚂蚁线动画（正向） */
+@keyframes ants-y {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 var(--tv-motion-ants-shift, 8px);
+  }
+}
+
+/* 纵向蚂蚁线动画（反向） */
+@keyframes ants-y-rev {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 calc(-1 * var(--tv-motion-ants-shift, 8px));
+  }
+}

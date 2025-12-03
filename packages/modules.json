@@ -1010,11 +1010,17 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "ExceptionMobileFirst": {
     "path": "vue/src/exception/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ExceptionPc": {
+    "path": "vue/src/exception/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -2325,6 +2331,25 @@
   },
   "SliderPc": {
     "path": "vue/src/slider/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Space": {
+    "path": "vue/src/space/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "SpaceMobileFirst": {
+    "path": "vue/src/space/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SpacePc": {
+    "path": "vue/src/space/src/pc.vue",
     "type": "template",
     "exclude": false
   },

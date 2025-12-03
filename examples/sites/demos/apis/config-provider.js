@@ -51,7 +51,8 @@ export default {
             'en-US': 'Customized theme color, in {data:"tv-base-color-brand":"#595959",....} format.'
           },
           mode: ['pc'],
-          pcDemo: 'theme'
+          pcDemo: 'theme',
+          hideSaas: true // 当环境变量为tiny-vue-saas时隐藏该属性
         }
       ],
       events: [],

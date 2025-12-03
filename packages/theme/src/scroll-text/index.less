@@ -12,6 +12,7 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @scroll-text-prefix-cls: ~'@{css-prefix}scroll-text';
 
@@ -51,19 +52,19 @@
       justify-content: center;
 
       &.left {
-        animation-name: moveLeft;
+        animation-name: scroll-left;
       }
 
       &.right {
-        animation-name: moveRight;
+        animation-name: scroll-right;
       }
 
       &.up {
-        animation-name: moveUp;
+        animation-name: scroll-up;
       }
 
       &.down {
-        animation-name: moveDown;
+        animation-name: scroll-down;
       }
 
       &.singleUp {
@@ -98,81 +99,13 @@
 
       > div.left {
         min-width: 100%;
-        animation-name: moveLeftWidthAdapt;
+        animation-name: scroll-left-adapt;
       }
 
       > div.right {
         min-width: 100%;
-        animation-name: moveRightWidthAdapt;
+        animation-name: scroll-right-adapt;
       }
     }
-  }
-}
-
-@keyframes moveLeft {
-  0% {
-    transform: translateX(300px);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes moveRight {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(300px);
-  }
-}
-
-@keyframes moveUp {
-  0% {
-    transform: translateY(100%);
-  }
-
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes moveDown {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes moveLeftWidthAdapt {
-  0% {
-    transform: translateX(100%);
-  }
-
-  50% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes moveRightWidthAdapt {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  50% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(100%);
   }
 }

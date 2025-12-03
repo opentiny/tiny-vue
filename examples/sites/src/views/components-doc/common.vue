@@ -114,6 +114,7 @@ import DesignToken from '../../components/design-token.vue'
 import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import list from '@opentiny/vue-theme/token'
+import { isSaas } from '../../const'
 import { getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
 import { camelize, capitalize } from '@vue/shared'
 
@@ -207,7 +208,7 @@ const parseApiData = () => {
     for (const apiType of Object.keys(apiGroup)) {
       if (Array.isArray(apiGroup[apiType]) && apiGroup[apiType].length) {
         const apiArr = apiGroup[apiType].map((i) => {
-          const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, meta, versionTipOption } = i
+          const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, meta, versionTipOption, hideSaas } = i
           const item = {
             name,
             type,
@@ -217,7 +218,8 @@ const parseApiData = () => {
             meta,
             versionTipOption,
             typeAnchorName: '',
-            linkTo
+            linkTo,
+            hideSaas
           }
           if (typeAnchorName) {
             item.typeAnchorName = `${typeAnchorName?.includes('#') ? '' : '#'}${typeAnchorName}`
@@ -232,6 +234,15 @@ const parseApiData = () => {
     }
 
     tableData[apiGroup.name] = apiDisplay
+  }
+
+  // 当环境变量为tiny-vue-saas时
+  if (isSaas) {
+    for (const group of Object.keys(tableData)) {
+      for (const apiType of Object.keys(tableData[group])) {
+        tableData[group][apiType] = tableData[group][apiType].filter((item) => !item.hideSaas)
+      }
+    }
   }
   state.tableData = tableData
 }
@@ -312,6 +323,12 @@ const loadPage = () => {
         ...demosJson,
         demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
         column: demosJson.column || '1' // columns可能为空
+      }
+      // saas 和 非saas 模式，展示的demos是不同的
+      if (isSaas) {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hideSaas)
+      } else {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hidePc)
       }
     } else {
       state.activeTab = 'api'

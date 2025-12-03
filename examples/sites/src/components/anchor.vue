@@ -23,15 +23,16 @@ const props = defineProps({ anchorAffix: {}, currentJson: {}, activeTab: {}, lan
 const emit = defineEmits(['link-click'])
 
 // 实例锚点
-const demoAnchorLinks = computed(() => {
-  const links =
-    props.currentJson?.demos?.map((demo) => ({
+const demoAnchorLinks = computed(() =>
+  (props.currentJson?.demos || [])
+    .filter((demo) => (isSaas ? !demo.hideSaas : true)) // saas 模式， hideSaas的过滤掉
+    .filter((demo) => (!isSaas ? !demo.hidePc : true)) // 非saas模式， hidePc的过滤掉
+    .map((demo) => ({
       key: demo.demoId,
       title: demo.name[props.langKey],
       link: `#${demo.demoId}`
-    })) || []
-  return links
-})
+    }))
+)
 
 // 组件API锚点
 const apiAnchorLinks = computed(() => {

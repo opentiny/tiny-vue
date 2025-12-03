@@ -7,6 +7,12 @@
 .@{crop-prefix-cls} {
   @apply text-color-text-primary;
 
+  .iconButton:nth-child(2),
+  .iconButton:nth-child(7),
+  .iconButton:nth-child(10) {
+    display: none;
+  }
+
   .cropper-container {
     direction: ltr;
     font-size: 0;
@@ -533,6 +539,11 @@
   @apply justify-center;
   @apply items-center;
   @apply cursor-pointer;
+
+  &__split {
+    @apply w-px;
+    @apply ml-0;
+  }
 
   .iconButtonset {
     @apply fill-color-text-primary;

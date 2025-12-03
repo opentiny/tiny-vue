@@ -133,7 +133,9 @@ export const cmpMenus = [
       { name: 'Amount', nameCn: '金额', key: 'amount' },
       { name: 'currency', nameCn: '币种', key: 'currency' },
       { name: 'CalendarView', nameCn: '日历', key: 'calendar-view' },
-      { name: 'FloatingButton', nameCn: '悬浮按钮', key: 'floating-button' }
+      { name: 'FloatingButton', nameCn: '悬浮按钮', key: 'floating-button' },
+      { name: 'Divider', nameCn: '分割线', key: 'divider' },
+      { name: 'Space', nameCn: '间距', key: 'space' }
     ]
   }
 ]

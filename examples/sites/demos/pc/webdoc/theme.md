@@ -1,7 +1,9 @@
 # 主题配置
 
 <div class="warning custom-block">
-  本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 及其之后版本的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
+  <div class="custom-block-content">
+    本节文档仅支持 <code> @opentiny/vue@3.19.0 </code> 及其之后版本的主题定制，更早的历史版本的主题配置，请参阅当前文档底部的 <a href='#历史版本的主题配置'>历史版本的主题配置</a>
+  </div>
 </div>
 
 为了给开发者带来更好的用户体验，从 <code> @opentiny/vue@3.19.0 </code> 版本开始，组件库的整体风格切换为 `Opentiny Design` 新风格。
@@ -73,10 +75,10 @@ themeTool.changeTheme({
 ```
 
 <div class="tip custom-block">
-在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式，这些样式就会散落在各个组件里。在组件库后续版本升级时，可能会调整组件结构或类名，造成样式覆盖失效，不建议这样做。 <br><br>
-
-我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样 CSS 规则会集中在一起，方便后续维护。除此之外，用户也可以将自定义样式统一写在一个 `CSS文件` 中并引入项目，但要保证其中的样式优先级高于组件库的优先级。
-
+  <div class="custom-block-content">
+    在一些用户项目中，许多开发者会在编写组件和页面的样式时，通过<code>important</code> 和 <code>:deep()</code> 来覆盖某些组件库的样式，这些样式就会散落在各个组件里。在组件库后续版本升级时，可能会调整组件结构或类名，造成样式覆盖失效，不建议这样做。 <br><br>
+    我们建议用户使用 <code>TinyThemeTool</code> 的方法来覆盖组件样式，这样 CSS 规则会集中在一起，方便后续维护。除此之外，用户也可以将自定义样式统一写在一个 `CSS文件` 中并引入项目，但要保证其中的样式优先级高于组件库的优先级。
+  </div>
 </div>
 
 ## 微前端场景
@@ -116,8 +118,11 @@ const themeTool = new TinyThemeTool(tinyOldTheme)
 ```
 
 <div class="warning custom-block">
-  <p> 旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本。</p>
-  <p> 如果需要切换 <code>Aurora</code> 主题，可以从上面导出 <code>tinyAuroraTheme</code> 的主题。 </p>
+  <div class="custom-block-content">
+    <p> 旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈，也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本。</p>
+    <br>
+    <p> 如果需要切换 <code>Aurora</code> 主题，可以从上面导出 <code>tinyAuroraTheme</code> 的主题。 </p>
+  </div>
 </div>
 
 ## 历史版本的主题配置

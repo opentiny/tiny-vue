@@ -1,0 +1,10 @@
+@import '../custom.less';
+
+@space-prefix-cls: ~'@{css-prefix}space';
+
+.@{space-prefix-cls} {
+  // TODO: 需要和 button 组件的间距变量统一(button组件后续大版本变更,需要去除默认间距8px),变更后，再将此代码删除
+  && .tiny-button + .tiny-button {
+    @apply ml-0;
+  }
+}

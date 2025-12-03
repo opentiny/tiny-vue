@@ -1,0 +1,96 @@
+/* ===========================
+   滚动文字动画 (scroll-text.less)
+   来源: scroll-text
+   可配置变量:
+     --tv-motion-scroll-speed        动画时长
+     --tv-motion-scroll-offset-x     X轴初始位移
+     --tv-motion-scroll-offset-x-end X轴结束位移
+     --tv-motion-scroll-offset-y     Y轴初始位移
+     --tv-motion-scroll-offset-y-end Y轴结束位移
+=========================== */
+
+/* ============ 滚动动画 ============ */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
+  }
+  100% {
+    transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
+  }
+  100% {
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
+  }
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(var(--tv-motion-scroll-offset-y, 100%));
+  }
+  100% {
+    transform: translateY(var(--tv-motion-scroll-offset-y-end, -100%));
+  }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(var(--tv-motion-scroll-offset-y-end, -100%));
+  }
+  100% {
+    transform: translateY(var(--tv-motion-scroll-offset-y, 100%));
+  }
+}
+
+/* ============ 滚动适应动画 ============ */
+@keyframes scroll-left-adapt {
+  0% {
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
+  }
+}
+
+@keyframes scroll-right-adapt {
+  0% {
+    transform: translateX(var(--tv-motion-scroll-offset-x-end, -100%));
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--tv-motion-scroll-offset-x, 100%));
+  }
+}
+
+@keyframes scroll-up-adapt {
+  0% {
+    transform: translateY(var(--tv-motion-scroll-offset-y, 100%));
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--tv-motion-scroll-offset-y-end, -100%));
+  }
+}
+
+@keyframes scroll-down-adapt {
+  0% {
+    transform: translateY(var(--tv-motion-scroll-offset-y-end, -100%));
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--tv-motion-scroll-offset-y, 100%));
+  }
+}

@@ -23,7 +23,7 @@
       </tiny-input>
       <!-- 组件列表 -->
       <div v-if="searchMenus?.length === 0" class="text-center py60">
-        <img class="ti-h150 ti-w200" :src="noDataSvg" />
+        <img class="ti-h150 ti-w200 ti-mx-auto" :src="noDataSvg" />
         <p class="no-data-text">{{ i18nByKey('noData') }}</p>
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">

@@ -194,16 +194,15 @@ export const handleClose =
     if (typeof props.beforeClose === 'function' && props.beforeClose(type) === false) {
       return
     }
+    if (!emitEvent(emit, 'before-close', api.hide)) {
+      return
+    }
 
     const el = parent.$el
 
     if (props.rightSlide) {
       const dialogBoxDom = (el.querySelector(constants.DIALOG_BOX_CLASS) || el) as HTMLElement
       dialogBoxDom.style.left = ''
-    }
-
-    if (!emitEvent(emit, 'before-close', api.hide)) {
-      return
     }
 
     api.hide(type)

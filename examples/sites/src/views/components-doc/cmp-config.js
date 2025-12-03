@@ -3,6 +3,8 @@ import { isSaas } from '../../const'
 // 批量导入vue组件示例文件, 进行vue组件示例的渲染
 const vueFiles = import.meta.glob(`@demos/app/**/*.vue`)
 const mobileFirstVueFiles = isSaas ? import.meta.glob(`../../../demos/mobile-first/app/**/*.vue`) : null
+// 所有mobile-first示例组件
+const mobileFirstVueComponents = Object.create(null)
 // 所有demo组件实例
 const vueComponents = Object.create(null)
 for (const path in vueFiles) {
@@ -48,6 +50,20 @@ const getWebdocPath = (path) => {
   }
 }
 
+// 只需要mobile-fisrt的demo组件实例
+const getMobileFirstDemo = () => {
+  const path = import.meta.glob(`../../../demos/mobile-first/app/**/*.vue`, { eager: false })
+  for (const i in path) {
+    if (Object.prototype.hasOwnProperty.call(path, i)) {
+      const pathArr = i.split('/')
+      const cmpId = pathArr[6]
+      const key = pathArr.slice(7).join('/')
+      mobileFirstVueComponents[`mobile-first/${cmpId}/${key}`] = path[i]
+    }
+  }
+  return mobileFirstVueComponents
+}
+
 const staticDemoPath = '@demos/app'
 
-export { languageMap, vueComponents, getWebdocPath, staticDemoPath }
+export { languageMap, vueComponents, getWebdocPath, getMobileFirstDemo, staticDemoPath }

@@ -14,39 +14,50 @@
   </div>
 </template>
 
-<script setup lang="jsx">
-import { ref } from 'vue'
+<script>
 import { TinyTabs, TinyTabItem, TinyRadioGroup, TinyRadioButton } from '@opentiny/vue'
 
-const activeName4 = ref('navigation1')
-const position = ref('left')
-const tabs3 = ref([
-  {
-    name: 'navigation1',
-    title: 'Navigation 1',
-    content: 'Navigation 1'
+export default {
+  components: {
+    TinyTabs,
+    TinyTabItem,
+    TinyRadioGroup,
+    TinyRadioButton
   },
-  {
-    name: 'navigation2',
-    title: 'Navigation 2',
-    content: 'Navigation 2'
-  },
-  {
-    name: 'navigation3',
-    title: 'Navigation 3',
-    content: 'Navigation 3'
-  },
-  {
-    name: 'navigation4',
-    title: 'Navigation 4',
-    content: 'Navigation 4'
-  },
-  {
-    name: 'navigation5',
-    title: 'Navigation 5',
-    content: 'Navigation 5'
+  data() {
+    return {
+      activeName4: 'navigation1',
+      position: 'bottom',
+      tabs3: [
+        {
+          name: 'navigation1',
+          title: 'Navigation 1',
+          content: 'Navigation 1'
+        },
+        {
+          name: 'navigation2',
+          title: 'Navigation 2',
+          content: 'Navigation 2'
+        },
+        {
+          name: 'navigation3',
+          title: 'Navigation 3',
+          content: 'Navigation 3'
+        },
+        {
+          name: 'navigation4',
+          title: 'Navigation 4',
+          content: 'Navigation 4'
+        },
+        {
+          name: 'navigation5',
+          title: 'Navigation 5',
+          content: 'Navigation 5'
+        }
+      ]
+    }
   }
-])
+}
 </script>
 
 <style scoped>

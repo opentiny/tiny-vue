@@ -9,8 +9,8 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': '<p></p>',
-        'en-US': '<p></p>'
+        'zh-CN': '通过<code>type</code> 设置按钮类型， <code>plain</code> 设置是否为朴素按钮。',
+        'en-US': 'Use <code>type</code> to set the button type, <code>plain</code> to set whether it is a plain button.'
       },
       codeFiles: ['basic-usage.vue']
     },

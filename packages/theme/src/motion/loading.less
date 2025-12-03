@@ -1,0 +1,26 @@
+/* ===========================
+   加载动画 (loading.less)
+   来源: skeleton-item, grid-loading
+   可配置变量:
+     --tv-motion-skeleton-speed       骨架屏动画时长
+     --tv-motion-skeleton-background-offset  背景流动偏移
+     --tv-motion-grid-loading-speed   网格加载动画时长
+     --tv-motion-grid-loading-opacity 网格加载最终透明度
+=========================== */
+
+/* ============ 骨架屏动画 ============ */
+@keyframes skeleton-loading {
+  to {
+    background-position-x: var(--tv-motion-skeleton-background-offset, -20%);
+  }
+}
+
+/* ============ 网格加载动画 ============ */
+@keyframes grid-loading {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: var(--tv-motion-grid-loading-opacity, 0.1);
+  }
+}

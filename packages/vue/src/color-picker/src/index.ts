@@ -35,7 +35,7 @@ export default defineComponent({
         if (val[val.length - 1] === 'a') {
           console.warn('If you want enable alpha, You should set `alpha` prop to true')
         }
-        return ['hsv', 'hsl', 'rgb', 'hex'].includes(val)
+        return ['hsv', 'hsl', 'rgb', 'hex'].includes(val[0])
       }
     },
     enableHistory: {
@@ -45,6 +45,13 @@ export default defineComponent({
     enablePredefineColor: {
       type: Boolean,
       default: false
+    },
+    colorMode: {
+      type: String,
+      default: 'monochrome',
+      validator(val: string) {
+        return ['monochrome', 'linear-gradient'].includes(val)
+      }
     }
   },
   setup(props, context) {

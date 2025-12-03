@@ -52,6 +52,15 @@ export default {
         'en-US': '<p>Table property<code>mouse-config</code>Set the mouse configuration item. </p>'
       },
       codeFiles: ['mouse-keyboard/mouse-config.vue']
+    },
+    {
+      demoId: 'mouse-config-hover',
+      name: { 'zh-CN': '鼠标悬浮辅助线', 'en-US': 'Setting Mouse Configuration Items' },
+      desc: {
+        'zh-CN': `<p>表格属性 <code>mouse-config</code> 设置鼠标配置项。打开配置项 <code>mouseConfig.hover</code> 使单元格悬浮显示行列对齐辅助线</p>`,
+        'en-US': '<p>Table property<code>mouse-config</code>Set the mouse configuration item. </p>'
+      },
+      codeFiles: ['mouse-keyboard/mouse-config-hover.vue']
     }
   ],
   apis: [{ name: 'grid-mouse-keyboard', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

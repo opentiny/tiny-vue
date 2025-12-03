@@ -346,8 +346,6 @@ function renderRows(_vm) {
   const seqCount = { value: 0 }
   const $seq = ''
 
-  const lastVisibleIndex = rowPool.findLastIndex(({ used }) => Boolean(used))
-
   rowPool.forEach(({ id, item: { payload: row, level: rowLevel }, used }, $rowIndex) => {
     const rowActived = editConfig && actived.row === row
     const virtualRow = isVirtualRow(row)
@@ -382,8 +380,7 @@ function renderRows(_vm) {
       isSkipRowRender,
       row,
       rowActived,
-      rowClassName,
-      lastVisibleIndex
+      rowClassName
     }
 
     Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow })
@@ -441,7 +438,7 @@ function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, lastVisibleIndex } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used } = args
 
   if (isSkipRowRender) {
     return
@@ -474,8 +471,7 @@ function renderRow(args) {
           'row__new': editStore.insertList.includes(row),
           'row__selected': selection.includes(row),
           'row__radio': selectRow === row,
-          'row__actived': rowActived,
-          'row__last-visible': lastVisibleIndex === $rowIndex
+          'row__actived': rowActived
         },
         rowClassName
           ? isFunction(rowClassName)
@@ -723,6 +719,8 @@ export default defineComponent({
     const thead = hooks.ref()
     const tbody = hooks.ref()
     const ySpace = hooks.ref()
+    const alignXBar = hooks.ref()
+    const alignYBar = hooks.ref()
 
     hooks.watch(wrapperScrollLeft, (wrapperScrollLeft) => {
       const el = stickyWrapper.value
@@ -746,7 +744,7 @@ export default defineComponent({
     useCellEvent({ table, $table })
     const { normalRows, footerRows } = useCellSpan(vm, props)
 
-    hooks.watch([body, table, thead, tbody, ySpace], () => {
+    hooks.watch([body, table, thead, tbody, ySpace, alignXBar, alignYBar], () => {
       const { elemStore } = $table
 
       elemStore['main-body-wrapper'] = body.value
@@ -754,6 +752,8 @@ export default defineComponent({
       elemStore['main-body-headerList'] = thead.value
       elemStore['main-body-list'] = tbody.value
       elemStore['main-body-ySpace'] = ySpace.value
+      elemStore['main-body-alignXBar'] = alignXBar.value
+      elemStore['main-body-alignYBar'] = alignYBar.value
     })
 
     const bodyClientWidth = hooks.ref(0)
@@ -835,6 +835,8 @@ export default defineComponent({
       thead,
       tbody,
       ySpace,
+      alignXBar,
+      alignYBar,
       normalRows,
       footerRows,
       resetStickyWrapperScrollPos
@@ -861,6 +863,18 @@ export default defineComponent({
           maxHeight: bodyWrapperMaxHeight ? `${bodyWrapperMaxHeight}px` : undefined
         }}>
         {[
+          mouseConfig?.hover
+            ? [
+                <div
+                  ref="alignYBar"
+                  class="tiny-grid-body__hover-align-y-bar"
+                  style={{ height: `${containerScrollHeight}px` }}></div>,
+                <div
+                  ref="alignXBar"
+                  class="tiny-grid-body__hover-align-x-bar"
+                  style={{ width: `${containerScrollWidth}px` }}></div>
+              ]
+            : null,
           <div class="tiny-grid-body__x-space" style={{ width: `${containerScrollWidth}px` }} />,
           <div
             ref="ySpace"

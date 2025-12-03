@@ -16,7 +16,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'all-text',
-          mfDemo: 'all-text'
+          mfDemo: 'all-text',
+          hideSaas: true
         },
         {
           name: 'show-all-text-tag',
@@ -29,7 +30,8 @@ export default {
               'Specifies whether only the tag specified by all-text is displayed in the text box after the multi-select mode is specified. The default value is <code>false</code>. All options are displayed in the text box cyclically.'
           },
           mode: ['pc'],
-          pcDemo: 'all-text'
+          pcDemo: 'all-text',
+          hideSaas: true
         },
         {
           name: 'allow-copy',
@@ -93,7 +95,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'clear-no-match-value',
-          mfDemo: 'clear-no-match-value'
+          mfDemo: 'clear-no-match-value',
+          hideSaas: true
         },
         {
           name: 'clearable',
@@ -236,7 +239,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'input-box-type',
-          mfDemo: 'input-box-type'
+          mfDemo: 'input-box-type',
+          hideSaas: true
         },
         {
           name: 'is-drop-inherit-width',
@@ -285,7 +289,8 @@ export default {
               'Default maximum display lines for multiple lines, with automatic hiding option for exceeding lines'
           },
           mode: ['pc'],
-          pcDemo: 'collapse-tags'
+          pcDemo: 'collapse-tags',
+          hideSaas: true
         },
         {
           name: 'modelValue / v-model',
@@ -436,6 +441,19 @@ export default {
           mfDemo: 'popup-style-position'
         },
         {
+          name: 'popper-options',
+          typeAnchorName: 'IPopperOption',
+          type: 'IPopperOption',
+          defaultValue: ' { }',
+          desc: {
+            'zh-CN': '弹出层参数',
+            'en-US': 'Advanced parameters; Refer to the description of IPopperOption'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        },
+        {
           name: 'remote',
           type: 'boolean',
           defaultValue: 'false',
@@ -494,7 +512,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'searchable',
-          mfDemo: 'searchable'
+          mfDemo: 'searchable',
+          hideSaas: true
         },
         {
           name: 'show-alloption',
@@ -518,7 +537,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'no-data-text',
-          mfDemo: 'no-data-text'
+          mfDemo: 'no-data-text',
+          hideSaas: true
         },
         {
           name: 'size',
@@ -555,7 +575,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'tag-type',
-          mfDemo: 'tag-type'
+          mfDemo: 'tag-type',
+          hideSaas: true
         },
         {
           name: 'max-tag-width',
@@ -569,7 +590,8 @@ export default {
           pcDemo: '',
           meta: {
             stable: '3.22.0'
-          }
+          },
+          hideSaas: true
         },
         {
           name: 'text-field',
@@ -657,7 +679,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'collapse-tags',
-          mfDemo: 'collapse-tags'
+          mfDemo: 'collapse-tags',
+          hideSaas: true
         },
         {
           name: 'show-limit-text',
@@ -670,7 +693,8 @@ export default {
               'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
           },
           mode: ['pc'],
-          pcDemo: 'multiple'
+          pcDemo: 'multiple',
+          hideSaas: true
         },
         {
           name: 'init-label',
@@ -892,7 +916,8 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-reference',
-          mfDemo: 'slot-reference'
+          mfDemo: 'slot-reference',
+          hideSaas: true
         }
       ]
     },
@@ -1034,6 +1059,21 @@ interface ITreeOption {
       code: `
 type IPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
 `
+    },
+    {
+      name: 'IPopperOption',
+      type: 'interface',
+      code: `
+    interface IPopperOption {
+      bubbling: boolean // 是否监听元素所有上级有滚动元素的scroll事件，监听到则更新popper的位置。用于解决某些弹出层位置在页面滚动时，位置不正确的场景，默认false
+      followReferenceHide: boolean // 当触发源隐藏时，自动隐藏弹出层，默认true
+      removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
+      updateHiddenPopperOnScroll: boolean  // 滚动过程中是否更新隐藏的弹出层位置
+      boundariesElement: 'viewport' | 'body' | HTMLElement // 滚动过程中,弹出层的碰撞边界。 默认值为： 'viewport'
+      ignoreBoundaries: boolean  // 忽略边界判断，弹出的位置始终是设置的 placement 值
+      scrollParent:  HTMLElement  // 指定滚动的父节点，优化级最高。 默认为null
+    }
+          `
     }
   ]
 }

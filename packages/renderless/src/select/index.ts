@@ -250,9 +250,9 @@ export const handleMenuEnter =
   }
 
 export const emitChange =
-  ({ emit, props, state, constants }) =>
+  ({ emit, props, state, constants, isMobileFirstMode }) =>
   (value, changed) => {
-    if (state.device === 'mb' && props.multiple && !changed) return
+    if (isMobileFirstMode && state.device === 'mb' && props.multiple && !changed) return
 
     const seekItem = (val, arr, items, flag) => {
       if (constants.TYPE.Tree === flag) {
@@ -304,9 +304,9 @@ export const emitChange =
   }
 
 export const directEmitChange =
-  ({ emit, props, state }) =>
+  ({ emit, props, state, isMobileFirstMode }) =>
   (value, key) => {
-    if (state.device === 'mb' && props.multiple) return
+    if (isMobileFirstMode && state.device === 'mb' && props.multiple) return
 
     emit('change', value, key)
   }
@@ -1539,7 +1539,7 @@ export const toHide =
   }
 
 export const watchVisible =
-  ({ api, constants, emit, state, vm, props }) =>
+  ({ api, constants, emit, state, vm, props, isMobileFirstMode }) =>
   (value) => {
     if ((props.filterable || props.searchable || props.remote) && !value) {
       vm.$refs.reference?.blur()
@@ -1549,7 +1549,7 @@ export const watchVisible =
       return
     }
 
-    if (value && props.multiple && state.device === 'mb') {
+    if (value && props.multiple && isMobileFirstMode && state.device === 'mb') {
       state.selectedCopy = state.selected.slice()
     }
 
@@ -2245,11 +2245,11 @@ export const computeMultipleLimit =
   }
 
 export const updateModelValue =
-  ({ props, emit, state }) =>
+  ({ props, emit, state, isMobileFirstMode }) =>
   (value, needUpdate) => {
     state.isClickChoose = true
 
-    if (state.device === 'mb' && props.multiple && !needUpdate) {
+    if (isMobileFirstMode && state.device === 'mb' && props.multiple && !needUpdate) {
       state.modelValue = value
     } else {
       emit('update:modelValue', value)
@@ -2302,13 +2302,13 @@ export const computedTagsStyle =
   }
 
 export const computedReadonly =
-  ({ props, state }) =>
+  ({ props, state, isMobileFirstMode }) =>
   () => {
     if (state.isIOS && props.filterable) {
       return false
     } else {
       return (
-        state.device === 'mb' ||
+        (isMobileFirstMode && state.device === 'mb') ||
         props.readonly ||
         !(props.filterable || props.searchable) ||
         props.multiple ||
@@ -2331,9 +2331,9 @@ export const computedShowClose =
 export const computedCollapseTagSize = (state) => () => state.selectSize
 
 export const computedShowNewOption =
-  ({ props, state }) =>
+  ({ props, state, isMobileFirstMode }) =>
   () => {
-    const query = state.device === 'mb' ? state.queryValue : state.query
+    const query = isMobileFirstMode && state.device === 'mb' ? state.queryValue : state.query
     return (
       (props.filterable || props.searchable) &&
       props.allowCreate &&

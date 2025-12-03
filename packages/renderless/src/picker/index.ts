@@ -10,7 +10,7 @@
  *
  */
 
-import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '@opentiny/utils'
+import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone, paeseIso8601 } from '@opentiny/utils'
 import { isNumber, isDate } from '@opentiny/utils'
 import { userPopper } from '@opentiny/vue-hooks'
 import { DATEPICKER } from '@opentiny/utils'
@@ -172,6 +172,28 @@ export const parseAsFormatAndType =
     return parser(value, format, rangeSeparator)
   }
 
+const ignoreTimezone = (value) => {
+  let res = value
+
+  const ignoreTimezoneFn = (value) => {
+    let date = value
+    const iso8601 = paeseIso8601(value)
+    if (iso8601) {
+      const { year, month, day, hours, minutes, seconds } = iso8601
+      date = new Date(year, month, day, hours, minutes, seconds)
+    }
+    return date
+  }
+
+  if (Array.isArray(res)) {
+    res = res.map((item) => ignoreTimezoneFn(item))
+  } else {
+    res = ignoreTimezoneFn(res)
+  }
+
+  return res
+}
+
 export const parsedValue =
   ({ api, props, state, t }) =>
   () => {
@@ -191,18 +213,18 @@ export const parsedValue =
       return props.modelValue
     }
 
-    if (state.valueFormat) {
-      let date = props.modelValue
+    let value = ignoreTimezone(props.modelValue)
 
-      if (isServiceTimezone) {
-        if (Array.isArray(date)) {
-          date = [].concat(date).map((item) => {
-            return isDate(item) ? formatDate(item, state.valueFormat, t) : item
-          })
-        } else {
-          if (state.valueFormat !== DATEPICKER.TimesTamp) {
-            date = formatDate(date, state.valueFormat, t)
-          }
+    if (state.valueFormat) {
+      let date = value
+
+      if (Array.isArray(date)) {
+        date = [].concat(date).map((item) => {
+          return isDate(item) ? formatDate(item, state.valueFormat, t) : item
+        })
+      } else {
+        if (state.valueFormat !== DATEPICKER.TimesTamp && isDate(date)) {
+          date = formatDate(date, state.valueFormat, t)
         }
       }
       const result = api.parseAsFormatAndType(date, state.valueFormat, state.type, props.rangeSeparator)

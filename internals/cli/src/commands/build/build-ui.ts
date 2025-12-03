@@ -139,6 +139,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
   const isOnlyHasV3 = (key) => {
     const onlyHasV3Packages = [
       '@opentiny/vue-theme',
+      '@opentiny/vue-theme-saas',
       '@opentiny/vue-renderless',
       '@opentiny/vue-hooks',
       '@opentiny/utils'
@@ -344,7 +345,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 子图标排除周边引用, 这里注意不要排除svg图标
-            if (/vue-icon(-saas|-multicolor)?\/.+\/index/.test(importer)) {
+            if (/vue-icon(-saas|-multicolor)?\/src\/.+.ts/.test(importer)) {
               return !/\.svg/.test(source)
             }
 
@@ -448,6 +449,8 @@ export async function buildUi(
     tasks.push(...getByName({ name: kebabCase({ str: 'icon-multicolor' }), isSort: false }))
     tasks.push(...getAllIcons())
   }
+
+  // return true
 
   // 构建 @opentiny/vue
   if (names.some((name) => ['@opentiny/vue', '@opentiny/vue', 'vue'].includes(name))) {

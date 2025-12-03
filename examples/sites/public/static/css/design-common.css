@@ -767,6 +767,7 @@
   .tinyui-design-footer .footer-content .links .link-item div {
     width: 100%;
     text-align: left;
+    display: flex;
   }
   .tinyui-design-footer .footer-content .contact {
     width: 100%;

@@ -54,6 +54,14 @@ const docMenusChildren = [
     }
   },
   {
+    'title': '全局动效配置',
+    'titleEn': 'motion-configuration',
+    'key': 'motion-configuration',
+    showScene: {
+      theme: ['default']
+    }
+  },
+  {
     'title': '智能化',
     'titleEn': 'mcp',
     'key': 'mcp'
@@ -114,6 +122,14 @@ export const cmpMenus = [
         'meta': {
           'stable': '3.19.0'
         }
+      },
+      {
+        'nameCn': '间距',
+        'name': 'Space',
+        'key': 'space',
+        'meta': {
+          'stable': '3.27.0'
+        }
       }
     ]
   },
@@ -155,14 +171,7 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
-      // {
-      //   'nameCn': '下拉表格选择器',
-      //   'name': 'GridSelect',
-      //   'key': 'grid-select',
-      //   'meta': {
-      //     'experimental': '3.20.0'
-      //   }
-      // },
+
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
@@ -181,6 +190,14 @@ export const cmpMenus = [
         'nameCn': '树形选择器',
         'name': 'TreeSelect',
         'key': 'tree-select'
+      },
+      {
+        'nameCn': '下拉表格选择器',
+        'name': 'GridSelect',
+        'key': 'grid-select',
+        'meta': {
+          'experimental': '3.27.0'
+        }
       }
     ]
   },

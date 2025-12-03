@@ -12,6 +12,7 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @tabs-prefix-cls: ~'@{css-prefix}tabs';
 @tab-pane-prefix-cls: ~'@{css-prefix}tab-pane';
@@ -1351,29 +1352,25 @@
   }
 
   .slideInRight-enter {
-    -webkit-animation: slideInRight-enter 0.3s;
-    animation: slideInRight-enter 0.3s;
+    animation: tab-slide-right-in var(--tv-motion-tab-speed);
   }
 
   .slideInRight-leave {
     position: absolute;
     left: 0;
     right: 0;
-    -webkit-animation: slideInRight-leave 0.3s;
-    animation: slideInRight-leave 0.3s;
+    animation: tab-slide-right-out var(--tv-motion-tab-speed);
   }
 
   .slideInLeft-enter {
-    -webkit-animation: slideInLeft-enter 0.3s;
-    animation: slideInLeft-enter 0.3s;
+    animation: tab-slide-left-in var(--tv-motion-tab-speed);
   }
 
   .slideInLeft-leave {
     position: absolute;
     left: 0;
     right: 0;
-    -webkit-animation: slideInLeft-leave 0.3s;
-    animation: slideInLeft-leave 0.3s;
+    animation: tab-slide-left-out var(--tv-motion-tab-speed);
   }
 
   @-webkit-keyframes slideInRight-enter {

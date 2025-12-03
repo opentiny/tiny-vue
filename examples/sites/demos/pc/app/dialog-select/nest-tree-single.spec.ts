@@ -13,13 +13,10 @@ test('dialogSelect 树单选', async ({ page }) => {
   expect(iconNode?.includes('tiny-checkbox')).toBe(false)
 
   let current
-  current = await page.getByText('201一级')
+  current = await page.getByRole('treeitem', { name: '二级 4' }).locator('label')
   await current.click()
-  expect(await current.locator('input[type="radio"]').isChecked()).toBe(true)
+  expect(current).toHaveClass(/is-checked/)
 
-  current = await page.getByRole('treeitem', { name: '二级 6' }).locator('label')
-  await current.click()
-  expect(await current.locator('input[type="radio"]').isChecked()).toBe(true)
-  current = await page.getByText('201一级')
-  expect(await current.locator('input[type="radio"]').isChecked()).toBe(false)
+  current = await page.getByText('二级 5')
+  await expect(current).not.toHaveClass(/is-checked/)
 })

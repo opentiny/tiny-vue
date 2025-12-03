@@ -276,8 +276,8 @@ export default {
         },
         {
           name: 'loading',
-          type: 'object',
-          defaultValue: '',
+          type: 'boolean',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '图表加载状态',
             'en-US': 'Chart loading status'
@@ -287,8 +287,8 @@ export default {
         },
         {
           name: 'data-empty',
-          type: 'object',
-          defaultValue: '',
+          type: 'boolean',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '暂无数据状态',
             'en-US': 'No data status available at the moment'

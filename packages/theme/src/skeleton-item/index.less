@@ -1,5 +1,6 @@
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @skeleton-item-prefix-cls: ~'@{css-prefix}skeleton-item';
 
@@ -11,7 +12,7 @@
       background: var(--tv-SkeletonItem-linear-gradient);
       background-size: 200% 100%;
       background-position-x: 180%;
-      animation: 1.5s skeleton-loading ease-in-out infinite;
+      animation: var(--tv-motion-skeleton-speed) skeleton-loading ease-in-out infinite;
     }
   }
 
@@ -71,11 +72,5 @@
         height: var(--tv-SkeletonItem-image-large-size-height);
       }
     }
-  }
-}
-
-@keyframes skeleton-loading {
-  to {
-    background-position-x: -20%;
   }
 }

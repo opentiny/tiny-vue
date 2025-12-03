@@ -33,7 +33,7 @@ export const switchProps = {
   },
   showText: {
     type: Boolean || undefined,
-    default: undefined
+    default: false
   },
   types: {
     type: String

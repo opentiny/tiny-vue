@@ -1,0 +1,18 @@
+/* ===========================
+   光泽闪烁动画 (shine.less)
+   来源: grid-body
+   可配置变量:
+     --tv-motion-shine-speed        动画时长
+     --tv-motion-shine-offset-x     X轴背景位移
+     --tv-motion-shine-offset-y     Y轴背景位移
+=========================== */
+
+/* ============ 光泽闪烁效果 ============ */
+@keyframes shine {
+  0% {
+    background-position: var(--tv-motion-shine-offset-x, -1px) var(--tv-motion-shine-offset-y, -1px);
+  }
+  100% {
+    background-position: var(--tv-motion-shine-offset-x, -12px) var(--tv-motion-shine-offset-y, -12px);
+  }
+}

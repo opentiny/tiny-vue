@@ -1,0 +1,110 @@
+/* ===========================
+   箭头移动动画 (arrow.less)
+   来源: fall-menu carousel-arrow
+   可配置变量:
+     --tv-motion-arrow-offset     箭头最终位移(px)
+     --tv-motion-arrow-left-init  左侧初始位置(px)
+     --tv-motion-arrow-left-mid   左侧 pulse 中间位置(px)
+     --tv-motion-arrow-right-init 右侧初始位置(px)
+     --tv-motion-arrow-right-mid  右侧 pulse 中间位置(px)
+     --tv-motion-arrow-speed      箭头动画时长(s)
+=========================== */
+
+/* ============ Pulse 效果 ============ */
+@keyframes arrow-left-pulse {
+  0% {
+    left: var(--tv-motion-arrow-left-init, -17px);
+  }
+  50% {
+    left: var(--tv-motion-arrow-left-mid, -13px);
+  }
+  100% {
+    left: var(--tv-motion-arrow-left-init, -17px);
+  }
+}
+
+@keyframes arrow-right-pulse {
+  0% {
+    right: var(--tv-motion-arrow-right-init, -17px);
+  }
+  50% {
+    right: var(--tv-motion-arrow-right-mid, -13px);
+  }
+  100% {
+    right: var(--tv-motion-arrow-right-init, -17px);
+  }
+}
+
+/* ============ Carousel 效果 ============ */
+@keyframes arrow-right-carousel {
+  0% {
+    opacity: 0;
+    right: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: var(--tv-motion-arrow-offset, 16px);
+  }
+}
+
+@keyframes arrow-left-carousel {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: var(--tv-motion-arrow-offset, 16px);
+  }
+}
+
+/* ============ 普通 In/Out 效果 ============ */
+@keyframes arrow-left-in {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: var(--tv-motion-arrow-offset, 16px);
+  }
+}
+
+@keyframes arrow-right-in {
+  0% {
+    opacity: 0;
+    right: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: var(--tv-motion-arrow-offset, 16px);
+  }
+}
+
+@keyframes arrow-left-out {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: var(--tv-motion-arrow-offset, 16px);
+  }
+  100% {
+    opacity: 0;
+    left: 0;
+  }
+}
+
+@keyframes arrow-right-out {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: var(--tv-motion-arrow-offset, 16px);
+  }
+  100% {
+    opacity: 0;
+    right: 0;
+  }
+}

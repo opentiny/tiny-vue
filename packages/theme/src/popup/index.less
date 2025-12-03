@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 @fade-prefix-cls: ~'@{css-prefix}fade';
 @popup-prefix-cls: ~'@{css-prefix}popup';
@@ -18,11 +19,11 @@
 
 .@{fade-prefix-cls} {
   &-enter-active {
-    animation: 0.3s mobile-fade-in both ease-out;
+    animation: var(--tv-motion-fade-speed) fade-in both ease-out;
   }
 
   &-leave-active {
-    animation: 0.3s mobile-fade-out both ease-in;
+    animation: var(--tv-motion-fade-speed) fade-out both ease-in;
   }
 }
 
@@ -155,25 +156,5 @@
         bottom: 16px;
       }
     }
-  }
-}
-
-@keyframes mobile-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes mobile-fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
   }
 }

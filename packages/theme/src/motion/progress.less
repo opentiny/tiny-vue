@@ -1,0 +1,26 @@
+/* ===========================
+   进度条流动背景 (progress.less)
+   来源: progress
+   可配置变量:
+     --tv-motion-progress-background-shift   背景流动位移(px)
+     --tv-motion-progress-speed              动画时长(s)
+=========================== */
+
+/* ============ 动画 ============ */
+@keyframes progress-background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: var(--tv-motion-progress-background-shift, 32px) 0;
+  }
+}
+
+@-webkit-keyframes progress-background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: var(--tv-motion-progress-background-shift, 32px) 0;
+  }
+}

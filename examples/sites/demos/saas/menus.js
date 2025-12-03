@@ -6,13 +6,21 @@ const noSaasComponents = [
   'ActionMenu',
   'ColorPicker',
   'ColorSelectPanel',
+  'DatePanel',
   'DatePickerMobileFirst',
   'MindMap',
   'QrCode',
   'RichTextEditor',
   'TimelineItem',
   'Watermark',
-  'Statistic'
+  'Statistic',
+  'Space',
+  'BaseSelect',
+  'FluentEditor',
+  'TreeSelect',
+  'GridSelect',
+  'ConfigProvider',
+  'Skeleton'
 ]
 
 // mobile-first上所有分类，pc上都有，因此可以用pc端menu分类进行合并
