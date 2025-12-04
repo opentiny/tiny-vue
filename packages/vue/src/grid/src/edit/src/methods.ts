@@ -48,11 +48,22 @@ import {
   handleActivedTryActive
 } from './utils/handleActived'
 
-function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData }) {
+function operArrs({
+  _vm,
+  editStore,
+  newRecords,
+  newRecordsCopy,
+  nowData,
+  row,
+  tableFullData,
+  tableSourceData,
+  rawData
+}) {
   if (row === -1) {
     Array.prototype.push.apply(nowData, newRecords)
     Array.prototype.push.apply(tableFullData, newRecords)
     Array.prototype.push.apply(tableSourceData, newRecordsCopy)
+    Array.prototype.push.apply(rawData, newRecords)
   }
 
   if (row && row !== -1) {
@@ -67,12 +78,19 @@ function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, ta
     Array.prototype.splice.apply(nowData, [targetIndex, 0].concat(newRecords))
     Array.prototype.splice.apply(tableFullData, [insertIndex, 0].concat(newRecords))
     Array.prototype.splice.apply(tableSourceData, [insertIndex, 0].concat(newRecordsCopy))
+
+    let rawInsertIndex = rawData.indexOf(row)
+
+    if (rawInsertIndex > -1) {
+      Array.prototype.splice.apply(rawData, [rawInsertIndex, 0].concat(newRecords))
+    }
   }
 
   if (!row) {
     Array.prototype.unshift.apply(nowData, newRecords)
     Array.prototype.unshift.apply(tableFullData, newRecords)
     Array.prototype.unshift.apply(tableSourceData, newRecordsCopy)
+    Array.prototype.unshift.apply(rawData, newRecords)
   }
 
   Array.prototype.unshift.apply(editStore.insertList, newRecords)
@@ -129,7 +147,16 @@ export default {
   },
   // 根据位置从指定行添加数据
   _insertAt(records, row) {
-    let { afterFullData, editStore, isAsyncColumn, scrollYLoad, tableFullData, tableSourceData = [], treeConfig } = this
+    let {
+      afterFullData,
+      editStore,
+      isAsyncColumn,
+      scrollYLoad,
+      tableFullData,
+      tableSourceData = [],
+      treeConfig,
+      rawData
+    } = this
 
     if (treeConfig) {
       throw new Error(error('ui.grid.error.treeInsert'))
@@ -154,7 +181,17 @@ export default {
     let newRecords = records.map((record) => hooks.reactive(this.defineField({ ...record })))
     let newRecordsCopy = clone(newRecords, true)
 
-    operArrs({ _vm: this, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData })
+    operArrs({
+      _vm: this,
+      editStore,
+      newRecords,
+      newRecordsCopy,
+      nowData,
+      row,
+      tableFullData,
+      tableSourceData,
+      rawData
+    })
 
     this.updateCache()
     this.handleTableData(true)
@@ -236,7 +273,6 @@ export default {
     // 修改缓存
     this.updateCache()
     this.handleTableData(true)
-
     this.checkSelectionStatus()
     this.updateFooter()
     if (scrollYLoad) {

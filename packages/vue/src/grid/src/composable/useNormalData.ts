@@ -3,7 +3,7 @@ import { hooks } from '@opentiny/vue-common'
 export const useNormalData = ({ props, visibleColumn }) => {
   const $table = hooks.getCurrentInstance()?.proxy
   // 原始数据
-  const rawData = hooks.ref(null)
+  const rawData = hooks.ref([])
   // 原始数据版本
   const rawDataVersion = hooks.ref(0)
 
