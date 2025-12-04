@@ -69,7 +69,8 @@ export const switchProps = {
   loading: {
     type: Boolean,
     default: false
-  }
+  },
+  width: [Number, String]
 }
 
 export default defineComponent({

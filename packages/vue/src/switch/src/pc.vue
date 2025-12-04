@@ -14,6 +14,7 @@
     v-if="!state.isDisplayOnly"
     :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']"
     :tabindex="tabindex"
+    :style="state.switchStyle"
     @click="toggle"
     @keydown.space="toggle"
     @keydown.enter="toggle"
@@ -36,7 +37,7 @@
       <slot v-if="state.currentValue === falseValue && !loading" name="inactive-icon"></slot>
     </span>
   </span>
-  <span v-else>
+  <span v-else :style="state.displayOnlyStyle">
     <slot v-if="state.currentValue === trueValue" name="open">{{ t('yes') }}</slot>
     <slot v-if="state.currentValue === falseValue" name="close">{{ t('no') }}</slot></span
   >
@@ -62,7 +63,8 @@ export default defineComponent({
     'showText',
     'beforeChange',
     'displayOnly',
-    'loading'
+    'loading',
+    'width'
   ],
   components: { IconLoading: IconLoadingShadow() },
   setup(props, context) {

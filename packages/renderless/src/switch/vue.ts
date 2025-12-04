@@ -45,6 +45,25 @@ export const renderless = (
       } else {
         return props.showText
       }
+    }),
+    // 添加 switchStyle 计算属性
+    switchStyle: computed(() => {
+      if (props.width) {
+        return {
+          width: typeof props.width === 'number' ? `${props.width}px` : props.width
+        }
+      }
+      return {}
+    }),
+    // 添加 displayOnlyStyle 计算属性
+    displayOnlyStyle: computed(() => {
+      if (props.width) {
+        return {
+          width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+          display: 'inline-block'
+        }
+      }
+      return {}
     })
   })
 

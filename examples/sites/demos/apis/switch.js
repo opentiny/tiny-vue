@@ -112,6 +112,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'width',
+          type: 'number | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '定义开关的宽度',
+            'en-US': 'Define the width of the switch'
+          },
+          mode: ['pc'],
+          mfDemo: '',
+          pcDemo: 'width',
+          meta: {
+            stable: '3.28.0'
+          }
+        },
+        {
           name: 'types',
           type: 'string',
           defaultValue: '',
