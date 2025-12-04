@@ -245,6 +245,11 @@
             'max-width': state.inputWidth - 42 + 'px',
             height: 'auto'
           }"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          :aria-owns="state.ariaListId"
+          :aria-controls="state.ariaListId"
         />
       </div>
       <tiny-input
@@ -277,6 +282,11 @@
         @mouseenter="onMouseenterNative"
         @mouseleave="onMouseleaveNative"
         @compositionend.native="handleComposition"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-autocomplete="list"
+        :aria-owns="state.ariaListId"
+        :aria-controls="state.ariaListId"
       >
         <template #prefix v-if="slots.prefix">
           <slot name="prefix"></slot>
@@ -340,6 +350,8 @@
           :popper-options="popperOptions"
           :class="m('duration-300')"
           :height="dropdownHeight"
+          role="listbox"
+          :id="state.ariaListId"
         >
           <div
             v-if="shape && filterable"
@@ -451,7 +463,10 @@
               <component
                 :is="`icon-${state.selectCls}`"
                 :class="
-                  m(['-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ', state.selectCls !== 'check' && 'fill-color-brand text-color-brand'])
+                  m([
+                    '-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ',
+                    state.selectCls !== 'check' && 'fill-color-brand text-color-brand'
+                  ])
                 "
               />
               <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">

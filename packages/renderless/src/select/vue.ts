@@ -296,7 +296,8 @@ const initState = ({
       content: state.displayOnlyContent,
       always: !!state.displayOnlyContent,
       ...props.tooltipConfig
-    }))
+    })),
+    ariaListId: 'tiny-select-' + crypto.randomUUID().slice(-8)
   })
 
   return state

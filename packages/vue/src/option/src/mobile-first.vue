@@ -21,6 +21,9 @@
       )
     "
     data-tag="tiny-option"
+    role="option"
+    :aria-label="state.currentLabel"
+    :aria-selected="state.itemSelected"
   >
     <span v-if="state.selectMultiple" class="w-4 mr-2">
       <component

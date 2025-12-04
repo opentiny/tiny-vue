@@ -294,6 +294,11 @@
           @mouseenter="onMouseenterNative"
           @mouseleave="onMouseleaveNative"
           @compositionend.native="handleComposition"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          :aria-owns="state.ariaListId"
+          :aria-controls="state.ariaListId"
         >
           <template #prefix v-if="slots.prefix">
             <slot name="prefix"></slot>
@@ -354,6 +359,8 @@
           v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
           :style="dropStyle"
           :popper-options="popperOptions"
+          role="listbox"
+          :id="state.ariaListId"
         >
           <div
             v-if="shape && filterable"
