@@ -1,0 +1,49 @@
+<template>
+  <div>
+    <p>场景 1：默认下拉弹框宽度由内容撑开：</p>
+    <tiny-base-select v-model="value">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-base-select>
+    <p>场景 2：下拉弹框宽度与输入框一致：</p>
+    <tiny-base-select v-model="value" is-drop-inherit-width>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-base-select>
+  </div>
+</template>
+
+<script>
+import { TinyBaseSelect, TinyOption } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyBaseSelect,
+    TinyOption
+  },
+  data() {
+    return {
+      options: [
+        {
+          value: '选项 1',
+          label: '北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京'
+        },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
+      ],
+      value: ''
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+[data-tag='tiny-base-select'] {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
+</style>

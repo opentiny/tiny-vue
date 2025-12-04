@@ -1,16 +1,24 @@
 <template>
-  <div id="basic-usage">
+  <div id="config">
     <p>场景 1：单选</p>
-    <tiny-grid-select v-model="value" :grid-op="gridOpSingle" value-field="id" text-field="city"></tiny-grid-select>
     <br />
-    <br />
-    <p>场景 2：多选</p>
     <tiny-grid-select
-      v-model="value2"
-      multiple
-      :grid-op="gridOpMulti"
+      v-model="valueSingle"
       value-field="id"
       text-field="city"
+      :grid-op="gridOpSingle"
+      :radio-config="radioConfig"
+    ></tiny-grid-select>
+    <br /><br />
+    <p>场景 2：多选</p>
+    <br />
+    <tiny-grid-select
+      v-model="valueMulti"
+      multiple
+      value-field="id"
+      text-field="city"
+      :grid-op="gridOpMulti"
+      :select-config="selectConfig"
     ></tiny-grid-select>
   </div>
 </template>
@@ -24,8 +32,8 @@ export default {
   },
   data() {
     return {
-      value: '',
-      value2: [],
+      valueSingle: '',
+      valueMulti: [],
       gridOpSingle: {
         data: [
           { id: '001', area: '华南区', province: '广东省', city: '广州市' },
@@ -55,6 +63,18 @@ export default {
           { field: 'province', title: '省份', width: 60 },
           { field: 'city', title: '城市', width: 60 }
         ]
+      },
+      radioConfig: {
+        trigger: 'row',
+        checkMethod({ rowIndex }) {
+          return rowIndex % 2 === 1
+        }
+      },
+      selectConfig: {
+        trigger: 'row',
+        checkMethod({ rowIndex }) {
+          return rowIndex % 2 === 0
+        }
       }
     }
   }
@@ -62,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-.tiny-grid-select {
+#config {
   width: 280px;
 }
 </style>

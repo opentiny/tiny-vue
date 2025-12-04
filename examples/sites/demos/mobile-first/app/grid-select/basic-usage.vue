@@ -1,10 +1,12 @@
 <template>
   <div id="basic-usage">
     <p>场景 1：单选</p>
+    <br />
     <tiny-grid-select v-model="value" :grid-op="gridOpSingle" value-field="id" text-field="city"></tiny-grid-select>
     <br />
     <br />
     <p>场景 2：多选</p>
+    <br />
     <tiny-grid-select
       v-model="value2"
       multiple
@@ -50,7 +52,7 @@ export default {
           { id: '005', area: '华南区', province: '广东省', city: '中山市' }
         ],
         columns: [
-          { type: 'selection', title: '' },
+          { type: 'checkbox', title: '' },
           { field: 'area', title: '区域', width: 90 },
           { field: 'province', title: '省份', width: 60 },
           { field: 'city', title: '城市', width: 60 }
@@ -62,7 +64,7 @@ export default {
 </script>
 
 <style scoped>
-.tiny-grid-select {
+#basic-usage {
   width: 280px;
 }
 </style>

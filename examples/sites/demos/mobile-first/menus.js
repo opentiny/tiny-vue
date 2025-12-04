@@ -73,6 +73,19 @@ export const cmpMenus = [
       { name: 'Select', nameCn: '选择器', key: 'select' },
       { name: 'SelectMobile', nameCn: '面板选择器', key: 'select-mobile' },
       { name: 'SelectView', nameCn: '页面选择器', key: 'select-view' },
+      {
+        'name': 'BaseSelect',
+        'nameCn': '基础选择器',
+        'key': 'base-select'
+      },
+      {
+        name: 'GridSelect',
+        nameCn: '下拉表格选择器',
+        key: 'grid-select',
+        meta: {
+          experimental: '3.27.0'
+        }
+      },
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'SliderButton', nameCn: '滑动按钮组', key: 'slider-button' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },
