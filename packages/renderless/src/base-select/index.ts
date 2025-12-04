@@ -277,6 +277,11 @@ const getOptionOfSetSelected = ({ api, props }) => {
     option.state = {}
   }
 
+  // 如果 option 有 currentLabel 但没有设置到 state 中，则复制过去
+  if (option.currentLabel !== undefined && option.state.currentLabel === undefined) {
+    option.state.currentLabel = option.currentLabel
+  }
+
   if (option.created) {
     option.createdLabel = option.state.currentLabel
     option.createdSelected = true
@@ -285,7 +290,7 @@ const getOptionOfSetSelected = ({ api, props }) => {
   }
 
   // tiny 新增
-  if (!option.state.currentLabel) {
+  if (!option.state.currentLabel && !option.currentLabel) {
     api.clearNoMatchValue('')
   }
 
@@ -301,7 +306,8 @@ const getResultOfSetSelected = ({ state, api, props }) => {
     state.modelValue.forEach((value) => {
       // tiny 新增
       const option = api.getOption(value)
-      if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.label)) {
+      const hasLabel = option?.label || option?.currentLabel || (option?.state && option.state.currentLabel)
+      if (!props.clearNoMatchValue || (props.clearNoMatchValue && hasLabel)) {
         result.push(option)
         newModelValue.push(value)
       }
@@ -321,6 +327,10 @@ export const setSelected =
       state.selected = option
       state.selectedLabel = option.state.currentLabel || option.currentLabel
       ;(props.filterable || props.searchable) && !props.shape && (state.query = state.selectedLabel)
+      // 使用 panel 插槽且有选中值时，不显示 placeholder
+      if (vm.$slots.panel && state.selectedLabel && (props.filterable || props.searchable)) {
+        state.currentPlaceholder = ''
+      }
     } else {
       const result = getResultOfSetSelected({ state, props, api })
       state.selectCls = result.length
@@ -333,6 +343,11 @@ export const setSelected =
         state.selected = result
       }
       state.selected.length && (state.selectedLabel = '')
+
+      // 使用 panel 插槽且有选中值时，不显示 placeholder
+      if (vm.$slots.panel && result.length > 0 && (props.filterable || props.searchable)) {
+        state.currentPlaceholder = ''
+      }
 
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
@@ -1121,7 +1136,10 @@ export const watchValue =
     if (props.multiple) {
       api.resetInputHeight()
 
-      if ((value && value.length > 0) || (vm.$refs.input && state.query !== '')) {
+      // 使用 panel 插槽且有选中值时，不显示 placeholder
+      if (vm.$slots.panel && value && value.length > 0) {
+        state.currentPlaceholder = ''
+      } else if ((value && value.length > 0) || (vm.$refs.input && state.query !== '')) {
         state.currentPlaceholder = ''
       } else {
         state.currentPlaceholder = state.cachedPlaceHolder
@@ -1196,7 +1214,7 @@ export const calcOverFlow =
     }
   }
 
-const postOperOfToVisible = ({ props, state, constants }) => {
+const postOperOfToVisible = ({ props, state, constants, vm }) => {
   if (props.multiple) {
     if (props.modelValue && props.modelValue.length && props.initLabel && !state.selected.length) {
       state.selectedLabel = props.initLabel
@@ -1219,8 +1237,13 @@ const postOperOfToVisible = ({ props, state, constants }) => {
       }
     }
 
+    // 使用 panel 插槽且有选中值时，不显示 placeholder
     if (props.filterable || props.searchable) {
-      state.currentPlaceholder = state.cachedPlaceHolder
+      if (vm.$slots.panel && state.selectedLabel) {
+        state.currentPlaceholder = ''
+      } else {
+        state.currentPlaceholder = state.cachedPlaceHolder
+      }
     }
 
     if (props.modelValue && props.initLabel && !state.selectedLabel) {
@@ -1255,7 +1278,7 @@ export const toVisible =
       }
     })
 
-    postOperOfToVisible({ props, state, constants })
+    postOperOfToVisible({ props, state, constants, vm })
   }
 
 export const toHide =

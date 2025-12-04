@@ -1,0 +1,415 @@
+@import '../custom.less';
+
+@base-select-prefix-cls: ~'@{css-prefix}base-select';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{base-select-prefix-cls} {
+  @apply inline-block;
+  @apply relative;
+  @apply w-full;
+  @apply outline-0;
+
+  &&__multiple:not(&__collapse-tags):not(&__filterable) &__tags > span {
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply flex;
+      @apply flex-wrap;
+      @apply justify-start;
+      @apply content-start;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      @apply w-full;
+      @apply flex;
+      @apply flex-wrap;
+      @apply justify-start;
+      @apply content-start;
+    }
+  }
+
+  &&__collapse-tags {
+    .@{base-select-prefix-cls}__tags {
+      & > span {
+        @apply flex;
+        @apply w-full;
+
+        & > span {
+          @apply flex;
+        }
+
+        & > span:not(:only-child):first-child {
+          max-width: 70%;
+        }
+      }
+    }
+
+    &.@{base-select-prefix-cls}__filterable {
+      .@{base-select-prefix-cls}__tags {
+        & > span {
+          @apply w-auto;
+          max-width: 76%;
+
+          & > span:first-child {
+            @apply flex-1;
+
+            // 兼容ie10-ie11
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+              @apply basis-auto;
+            }
+          }
+
+          & > span:only-child,
+          & > span:not(:only-child):first-child {
+            @apply ~"max-w-[100%]";
+          }
+
+          & > span:not(:only-child):not(:first-child) {
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+              // 兼容ie10-ie11
+              @apply shrink-0;
+              @apply basis-auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &&__filterable {
+    .@{base-select-prefix-cls}__tags {
+      .@{base-select-prefix-cls}__input {
+        @apply cursor-text;
+      }
+    }
+  }
+
+  &__tags {
+    @apply absolute;
+    @apply leading-normal;
+    @apply whitespace-normal;
+    @apply pl-3;
+    @apply pr-2;
+    @apply ~'z-[1]';
+    @apply ~"top-1/2";
+    @apply ~"-translate-y-2/4";
+    @apply flex;
+    @apply items-center;
+    @apply flex-wrap;
+    @apply cursor-pointer;
+
+    & > span {
+      @apply contents;
+
+      > span {
+        @apply ~'text-[0]';
+      }
+    }
+
+    .not-visible {
+      @apply invisible;
+    }
+
+    /* 搜索框 */
+    .@{base-select-prefix-cls}__input {
+      @apply cursor-pointer;
+      @apply border-none;
+      @apply outline-0;
+      @apply p-0;
+      @apply ml-2;
+      @apply text-color-text-primary;
+      @apply text-xs;
+      @apply h-7;
+      @apply appearance-none;
+      @apply bg-transparent;
+    }
+
+    &.is-showicon {
+      @apply pl-6;
+    }
+
+    .@{tag-prefix-cls} {
+      @apply whitespace-nowrap;
+      @apply box-border;
+      @apply border-transparent;
+      @apply ~"my-0.5" mr-1 ml-0;
+      @apply text-ellipsis;
+      @apply overflow-hidden;
+      @apply inline-flex;
+      @apply justify-start;
+      @apply items-center;
+      @apply ~"max-w-[theme('spacing.40')]";
+    }
+
+    .@{base-select-prefix-cls}__tags-text {
+      @apply inline-block;
+      @apply w-full;
+      @apply whitespace-nowrap;
+      @apply text-ellipsis;
+      @apply overflow-hidden;
+      @apply align-bottom;
+
+      & + .@{tag-prefix-cls}__close {
+        @apply shrink-0;
+      }
+
+      &.is-disabled {
+        @apply ~"max-h-[theme(spacing.6)]";
+        @apply inline-flex;
+
+        > span {
+          @apply ~"my-0.5" mr-1 ml-0;
+          @apply inline-block;
+          @apply w-full;
+          @apply whitespace-nowrap;
+          @apply text-ellipsis;
+          @apply overflow-hidden;
+        }
+      }
+    }
+
+    // 收起按钮
+    .@{base-select-prefix-cls}__collapse-text {
+      @apply inline-flex;
+      @apply items-center;
+      @apply ml-1;
+      @apply text-xs;
+      @apply text-color-text-secondary;
+    }
+  }
+
+  & {
+    .@{tag-prefix-cls} {
+      height: var(--tv-BaseSelect-tag-height-default, calc(32px - 8px));
+
+      // 小屏 640px 以下，tag 高度为 28px
+      @media (max-width: 640px) {
+        height: 28px;
+      }
+    }
+  }
+
+  &&--medium {
+    .@{input-prefix-cls} .@{input-prefix-cls}__suffix-inner {
+      @apply h-8;
+    }
+
+    .@{tag-prefix-cls} {
+      @apply h-8;
+
+      // 小屏 640px 以下，medium size 的 tag 高度为 28px
+      @media (max-width: 640px) {
+        height: 28px;
+      }
+    }
+  }
+
+  &&--small {
+    .@{input-prefix-cls} .@{input-prefix-cls}__suffix-inner {
+      @apply h-7;
+    }
+
+    .@{tag-prefix-cls} {
+      @apply h-5;
+    }
+  }
+
+  &&--mini {
+    .@{input-prefix-cls} .@{input-prefix-cls}__suffix-inner {
+      @apply h-6;
+    }
+
+    .@{tag-prefix-cls} {
+      @apply h-4;
+    }
+  }
+
+  &.is-hover-expand,
+  &.is-click-expand {
+    @apply align-top;
+
+    .@{base-select-prefix-cls}__tags-group {
+      @apply absolute;
+      @apply top-0;
+      @apply left-0;
+      @apply right-0;
+    }
+
+    &.is-hover {
+      .is-expand {
+        @apply ~"z-[2]";
+      }
+    }
+
+    .@{base-select-prefix-cls}__tags {
+      @apply h-8;
+      @apply overflow-hidden;
+
+      // 小屏 640px 以下，hover-expand 模式下 tag 高度为 28px
+      @media (max-width: 640px) {
+        .@{tag-prefix-cls} {
+          height: 28px;
+        }
+      }
+
+      &-collapse {
+        @apply visible;
+        @apply static;
+      }
+
+      .is-hidden {
+        @apply invisible;
+        @apply absolute;
+      }
+
+      > span > span {
+        @apply w-full;
+        @apply flex;
+        @apply flex-wrap;
+      }
+
+      .hidden {
+        @apply invisible;
+      }
+    }
+
+    &.is-hover,
+    &.collapse-tag-clicked {
+      .@{base-select-prefix-cls}__tags {
+        @apply h-auto;
+        @apply ~"max-h-[none]";
+        @apply overflow-y-auto;
+
+        &-collapse {
+          @apply invisible;
+          @apply absolute;
+
+          &.is-hidden {
+            @apply m-0;
+          }
+        }
+
+        &.not-selected {
+          @apply overflow-y-hidden;
+        }
+      }
+    }
+
+    & .is-expand {
+      @apply absolute;
+      @apply w-full;
+    }
+
+    &.@{base-select-prefix-cls}--small {
+      .@{base-select-prefix-cls}__tags {
+        @apply ~"pt-0.5";
+      }
+    }
+
+    &.@{base-select-prefix-cls}--mini {
+      .@{base-select-prefix-cls}__tags {
+        @apply ~"pt-0.5";
+      }
+    }
+  }
+
+  &.is-hover-expand.is-disabled {
+    .@{base-select-prefix-cls}__tags {
+      @apply h-auto;
+    }
+  }
+
+  &.is-click-expand .@{base-select-prefix-cls}__tags-collapse {
+    @apply visible;
+    @apply static;
+
+    &.is-hidden {
+      @apply invisible;
+      @apply absolute;
+    }
+  }
+
+  &.is-disabled {
+    @apply cursor-not-allowed;
+
+    .@{input-prefix-cls} {
+      &__inner {
+        @apply pr-3;
+      }
+    }
+
+    .@{base-select-prefix-cls}__tags {
+      @apply pr-4;
+      @apply cursor-not-allowed;
+    }
+  }
+
+  &-tip &-tipcontent {
+    max-width: 300px;
+  }
+
+  & .@{input-prefix-cls} {
+    @apply block;
+
+    .@{input-prefix-cls}__inner[readonly] {
+      @apply cursor-pointer;
+    }
+
+    .@{base-select-prefix-cls}__caret {
+      @apply fill-color-icon-secondary;
+      @apply text-base;
+      @apply transition-transform duration-300;
+      transform: rotateZ(180deg);
+      @apply cursor-pointer;
+
+      &:hover {
+        @apply fill-color-icon-hover;
+      }
+
+      &.is-reverse {
+        transform: rotateZ(0);
+      }
+    }
+
+    .@{base-select-prefix-cls}__limit-txt,
+    .@{base-select-prefix-cls}__proportion-txt {
+      @apply text-color-text-secondary;
+      @apply text-xs;
+      @apply my-0 mx-1;
+    }
+
+    .@{base-select-prefix-cls}__copy {
+      @apply cursor-pointer;
+      @apply mr-1;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      @apply h-auto;
+
+      &-inner {
+        @apply ~'text-[0]';
+        height: var(--tv-BaseSelect-input-height, 28px);
+      }
+    }
+
+    & .@{input-prefix-cls}__suffix-inner {
+      @apply overflow-hidden;
+    }
+
+    &.is-disabled {
+      .@{base-select-prefix-cls}__caret {
+        @apply fill-color-icon-disabled;
+        @apply cursor-not-allowed;
+      }
+
+      .@{input-prefix-cls}__inner {
+        @apply cursor-not-allowed;
+      }
+    }
+
+    &.is-focus .@{input-prefix-cls}__inner {
+      @apply border-color-border-focus;
+    }
+  }
+}

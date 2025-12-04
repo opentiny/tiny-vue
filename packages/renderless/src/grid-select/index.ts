@@ -56,9 +56,12 @@ export const syncGridSelection =
             vm.$refs.gridRef.clearRadioRow()
             if (rowToSelect) {
               vm.$refs.gridRef.setRadioRow(rowToSelect)
+              // 确保 state.currentKey 与选中行同步，这样 buildRadioConfig 才能正确返回 checkRowKey
+              state.currentKey = rowToSelect[props.valueField]
             }
           } else {
             vm.$refs.gridRef.clearRadioRow()
+            state.currentKey = ''
           }
         }
       } catch (e) {
@@ -534,6 +537,8 @@ export const radioChange =
 
       state.selected = row
       state.currentKey = row[props.valueField]
+      // 更新 state.modelValue，确保与 props.modelValue 同步
+      state.modelValue = row[props.valueField]
 
       vm.$refs.baseSelectRef.hidePanel()
 

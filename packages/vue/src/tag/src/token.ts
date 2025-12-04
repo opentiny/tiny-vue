@@ -45,7 +45,7 @@ export const classes = {
 
   'fill-light-success': 'fill-color-success-subtle hover:fill-color-success',
   'fill-light-alerting': 'fill-color-alert-subtle hover:fill-color-alert',
-  'fill-light-warning': 'fill-color-warning-subtle hover:fill-color-warning',
+  'fill-light-warning': 'fill-color-warning hover:fill-color-warning',
   'fill-light-error': 'fill-color-error-subtle hover:fill-color-error',
   'fill-light-default': 'fill-color-info-primary-subtle hover:fill-color-info-primary',
   'fill-light-info': 'fill-color-icon-secondary hover:fill-color-icon-secondary',

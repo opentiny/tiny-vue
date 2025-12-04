@@ -124,7 +124,7 @@ export const renderless = (props, { reactive, computed, watch, onMounted, nextTi
         api.filter(state.previousQuery || '')
       }
     },
-    { deep: true }
+    { deep: true, immediate: false }
   )
 
   // 监听面板打开，同步表格选中状态（通过事件处理）

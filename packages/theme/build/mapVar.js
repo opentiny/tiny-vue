@@ -520,4 +520,101 @@ export const mapVar = {
   "--tv-color-bg-scrollbar-thumb-hover": "var(--tv-base-color-common-6)", // #dbdbdb 滑块hover背景色
   "--tv-color-bg-scrollbar-thumb-active": "var(--tv-base-color-common-6)", // #dbdbdb 滑块active背景色
   "--tv-color-bg-scrollbar-track": "var(--tv-base-color-common-1)", // #fff 轨道背景色
+
+  /** 10. 动画变量 **/
+  /* ---------- 蚂蚁线 (ants.less) ---------- */
+  "--tv-motion-ants-shift": "8px", /* 单次偏移距离 */
+  "--tv-motion-ants-speed": "0.8s", /* 动画时长 */
+
+  /* ---------- 箭头移动 (arrow.less) ---------- */
+  "--tv-motion-arrow-offset": "16px", /* 箭头最终位移 */
+  "--tv-motion-arrow-left-init": "-17px", /* 左侧初始位置 */
+  "--tv-motion-arrow-left-mid": "-13px", /* 左侧 pulse 中间位置 */
+  "--tv-motion-arrow-right-init": "-17px", /* 右侧初始位置 */
+  "--tv-motion-arrow-right-mid": "-13px", /* 右侧 pulse 中间位置 */
+  "--tv-motion-arrow-speed": "0.3s", /* 箭头动画时长 */
+
+  /* ---------- 缩放弹入 (bounce.less) ---------- */
+  "--tv-motion-bounce-scale-min": "0", /* 初始缩小比例 */
+  "--tv-motion-bounce-scale-mid": "1.2", /* 弹入/弹出中间比例 */
+  "--tv-motion-bounce-scale-max": "1", /* 最终展开比例 */
+  "--tv-motion-bounce-speed": "0.3s", /* 动画时长 */
+
+  /* ---------- 淡入淡出 (fade.less) ---------- */
+  "--tv-motion-fade-offset-x": "20px", /* X轴位移 */
+  "--tv-motion-fade-offset-y": "20px", /* Y轴位移 */
+  "--tv-motion-fade-speed": "0.3s", /* 动画时长 */
+
+  /* ---------- 加载动画 (loading.less) ---------- */
+  /* 骨架屏 */
+  "--tv-motion-skeleton-speed": "1.5s", /* 骨架屏动画时长 */
+  "--tv-motion-skeleton-background-offset": "-20%", /* 背景流动偏移 */
+  /* 网格加载 */
+  "--tv-motion-grid-loading-speed": "1.04s", /* 网格加载动画时长 */
+  "--tv-motion-grid-loading-opacity": "0.1", /* 网格加载最终透明度 */
+
+  /* ---------- 进度条背景 (progress.less) ---------- */
+  "--tv-motion-progress-background-shift": "32px", /* 背景流动位移 */
+  "--tv-motion-progress-speed": "1s", /* 动画时长 */
+
+  /* ---------- 通用旋转 (rotate.less) ---------- */
+  "--tv-motion-rotate-speed": "2s", /* 旋转动画时长 */
+  "--tv-motion-rotate-degrees": "360deg", /* 旋转角度 */
+
+  /* ---------- 滚动文字 (scroll.less) ---------- */
+  "--tv-motion-scroll-speed": "3s", /* 动画时长 */
+  "--tv-motion-scroll-offset-x": "100%", /* X轴初始位移 */
+  "--tv-motion-scroll-offset-x-end": "-100%", /* X轴结束位移 */
+  "--tv-motion-scroll-offset-y": "100%", /* Y轴初始位移 */
+  "--tv-motion-scroll-offset-y-end": "-100%", /* Y轴结束位移 */
+
+  /* ---------- 光泽闪烁 (shine.less) ---------- */
+  "--tv-motion-shine-speed": "1s", /* 动画时长 */
+  "--tv-motion-shine-offset-x": "-12px", /* X轴背景位移 */
+  "--tv-motion-shine-offset-y": "-12px", /* Y轴背景位移 */
+
+  /* ---------- 滑动方向 (slide.less) ---------- */
+  "--tv-motion-slide-speed": "0.3s", /* 动画时长 */
+  "--tv-motion-slide-opacity-mid": "0.6", /* 中间透明度 */
+  /* X轴偏移 */
+  "--tv-motion-slide-offset-left": "-100%", /* 左侧初始位移 */
+  "--tv-motion-slide-offset-left-mid": "-50%", /* 左侧中间位移 */
+  "--tv-motion-slide-offset-right": "100%", /* 右侧初始位移 */
+  "--tv-motion-slide-offset-right-mid": "50%", /* 右侧中间位移 */
+  /* Y轴偏移 */
+  "--tv-motion-slide-offset-top": "-100%", /* 顶部初始位移 */
+  "--tv-motion-slide-offset-top-mid": "-50%", /* 顶部中间位移 */
+  "--tv-motion-slide-offset-bottom": "100%", /* 底部初始位移 */
+  "--tv-motion-slide-offset-bottom-mid": "50%", /* 底部中间位移 */
+
+  /* ---------- 描边循环 (stroke.less) ---------- */
+  "--tv-motion-stroke-speed": "1.5s", /* 动画时长 */
+  "--tv-motion-stroke-dasharray-0": "1, 200", /* 初始 dasharray */
+  "--tv-motion-stroke-dasharray-50": "90, 150", /* 中间 dasharray */
+  "--tv-motion-stroke-dasharray-100": "90, 150", /* 结束 dasharray */
+  "--tv-motion-stroke-offset-0": "0", /* 初始 dashoffset */
+  "--tv-motion-stroke-offset-50": "-40px", /* 中间 dashoffset */
+  "--tv-motion-stroke-offset-100": "-120px", /* 结束 dashoffset */
+  "--tv-motion-stroke-offset-reverse-50": "40px", /* 反向中间 dashoffset */
+  "--tv-motion-stroke-offset-reverse-100": "120px", /* 反向结束 dashoffset */
+
+  /* ---------- Tab切换 (tab.less) ---------- */
+  "--tv-motion-tab-speed": "0.3s", /* 动画时长 */
+  "--tv-motion-tab-opacity-start": "0", /* 初始透明度 */
+  "--tv-motion-tab-opacity-end": "1", /* 结束透明度 */
+  "--tv-motion-tab-offset-x-start": "100%", /* X轴初始位移 */
+  "--tv-motion-tab-offset-x-end": "0", /* X轴结束位移 */
+  "--tv-motion-tab-offset-x-start-left": "-100%", /* 左侧初始位移 */
+  "--tv-motion-tab-offset-y-start": "100%", /* Y轴初始位移 */
+  "--tv-motion-tab-offset-y-start-down": "-100%", /* 下方初始位移 */
+  "--tv-motion-tab-offset-y-end": "0", /* Y轴结束位移 */
+
+  /* ---------- 弹出缩放 (zoom.less) ---------- */
+  "--tv-motion-scale-speed": "0.3s", /* 动画时长 */
+  "--tv-motion-scale-start": "0", /* 初始缩放 */
+  "--tv-motion-scale-mid": "0.5", /* 中间缩放 */
+  "--tv-motion-scale-end": "1", /* 结束缩放 */
+  "--tv-motion-scale-opacity-start": "0", /* 初始透明度 */
+  "--tv-motion-scale-opacity-mid": "0.5", /* 中间透明度 */
+  "--tv-motion-scale-opacity-end": "1", /* 结束透明度 */
 }

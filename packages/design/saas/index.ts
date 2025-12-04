@@ -30,6 +30,7 @@ import Popeditor from './src/popeditor'
 import DialogSelect from './src/dialog-select'
 import DatePanel from './src/date-panel'
 import Cascader from './src/cascader'
+import BaseSelect from './src/base-select'
 import { version } from './package.json'
 
 export default {
@@ -67,6 +68,7 @@ export default {
     DialogBox,
     DatePanel,
     DialogSelect,
-    Cascader
+    Cascader,
+    BaseSelect
   }
 }

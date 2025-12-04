@@ -26,6 +26,8 @@ import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 import ColumnListGroup from '@opentiny/vue-column-list-group'
 import ColumnListItem from '@opentiny/vue-column-list-item'
+import Grid from '@opentiny/vue-grid'
+import GridSelect from '@opentiny/vue-grid-select'
 import Currency from '@opentiny/vue-currency'
 import DatePanel from '@opentiny/vue-date-panel'
 import DateRange from '@opentiny/vue-date-range'
@@ -135,6 +137,8 @@ const components = [
   CollapseItem,
   ColumnListGroup,
   ColumnListItem,
+  Grid,
+  GridSelect,
   Currency,
   DatePanel,
   DateRange,
@@ -294,6 +298,10 @@ export {
   ColumnListGroup as TinyColumnListGroup,
   ColumnListItem,
   ColumnListItem as TinyColumnListItem,
+  Grid,
+  Grid as TinyGrid,
+  GridSelect,
+  GridSelect as TinyGridSelect,
   Currency,
   Currency as TinyCurrency,
   DatePanel,
