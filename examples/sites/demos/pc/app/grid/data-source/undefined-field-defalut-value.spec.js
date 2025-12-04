@@ -23,5 +23,5 @@ test('缺省数据默认值', async ({ page }) => {
   await firstRow.locator('td').nth(1).click()
   await firstRow.locator('.tiny-input__inner').click()
   await firstRow.locator('.tiny-input__inner').fill('1')
-  await expect(firstRow.locator('.tiny-input__inner')).toHaveText('1')
+  await expect(firstRow.locator('.tiny-input__inner')).toHaveValue('1')
 })
