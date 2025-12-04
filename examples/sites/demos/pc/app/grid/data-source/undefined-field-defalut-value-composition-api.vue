@@ -1,25 +1,28 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="editConfig">
-    <tiny-grid-column field="field1" title="所属区域" :editor="{}">
-      <template #edit="{ row }">
-        <tiny-input v-model="row.field1" />
-      </template>
-    </tiny-grid-column>
-    <tiny-grid-column field="field2" title="地址" :editor="{ defaultValue: '' }">
-      <template #edit="{ row }">
-        <tiny-input v-model="row.field2" />
-      </template>
-    </tiny-grid-column>
-    <tiny-grid-column field="field3" title="邮编" :editor="{ defaultValue: '' }">
-      <template #edit="{ row }">
-        <tiny-input v-model="row.field3" />
-      </template>
-    </tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-button @click="addRow">新增行</tiny-button>
+    <tiny-grid ref="gridRef" :data="tableData" :edit-config="editConfig">
+      <tiny-grid-column field="field1" title="所属区域" :editor="{}">
+        <template #edit="{ row }">
+          <tiny-input v-model="row.field1" />
+        </template>
+      </tiny-grid-column>
+      <tiny-grid-column field="field2" title="地址" :editor="{ defaultValue: '' }">
+        <template #edit="{ row }">
+          <tiny-input v-model="row.field2" />
+        </template>
+      </tiny-grid-column>
+      <tiny-grid-column field="field3" title="邮编" :editor="{ defaultValue: '' }">
+        <template #edit="{ row }">
+          <tiny-input v-model="row.field3" />
+        </template>
+      </tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
 <script setup>
-import { TinyGrid, TinyGridColumn, TinyInput } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const tableData = ref([
@@ -36,4 +39,10 @@ const editConfig = ref({
   mode: 'cell',
   autofocus: 'input'
 })
+
+const gridRef = ref(null)
+
+const addRow = () => {
+  gridRef.value.insert({})
+}
 </script>

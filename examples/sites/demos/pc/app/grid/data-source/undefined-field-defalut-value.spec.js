@@ -17,4 +17,11 @@ test('缺省数据默认值', async ({ page }) => {
   await firstRow.locator('.tiny-input__inner').fill('2')
   await firstRow.locator('td').nth(1).click()
   await expect(firstRow.locator('td').nth(2)).toHaveClass(/col__valid-success/)
+
+  // 新增行
+  await demo.locator('.tiny-button').click()
+  await firstRow.locator('td').nth(1).click()
+  await firstRow.locator('.tiny-input__inner').click()
+  await firstRow.locator('.tiny-input__inner').fill('1')
+  await expect(firstRow.locator('.tiny-input__inner')).toHaveText('1')
 })
