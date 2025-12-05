@@ -239,7 +239,7 @@ const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
   versionChange(latestVersion)
 }
 
-// 核心函数：设置面板尺寸（区分布局和大小屏模式）
+// 设置面板尺寸（区分布局和大小屏模式）
 const setPanelSize = (isSmall) => {
   // 添加判断：仅在mobile-first模式下执行
   if (!isMobileFirst) return
@@ -371,7 +371,7 @@ const share = () => {
 
 onMounted(() => {
   setTinyDesign()
-
+  // 初始加载，有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
     const demoFile = Object.values(store.state.files).find(
       (file) =>
@@ -535,12 +535,11 @@ onMounted(() => {
   box-shadow: 0 0 8px rgba(64, 158, 255, 0.5);
 }
 
-/* 确保拖拽和调整尺寸时平滑过渡 */
 .vue-repl .left,
 .vue-repl .right,
 .vue-repl .top,
 .vue-repl .bottom {
-  transition: all 0.3s ease !important;
+  transition: all 0.3s ease;
 }
 
 .screen-btn {
