@@ -326,7 +326,7 @@ const Methods = {
     })
   },
   updateRawData(datas) {
-    this.rawData = datas
+    this.rawData = [...datas]
     this.rawDataVersion += 1
   },
   getOriginRow(row) {
