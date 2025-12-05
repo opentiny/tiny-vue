@@ -660,6 +660,9 @@ interface ITreeNodeData {
   "number"?: number | string
   // 自定义每个节点的图标
   "customIcon": Component 
+  // 节点是否可以点击
+  "disabled"?: string
+ 
 }        
 `
     },
@@ -668,10 +671,10 @@ interface ITreeNodeData {
       type: 'interface',
       code: `
 interface IProps {
-  "label"?: string
-  "children"?: string
-  "disabled": string
-  "isLeaf": string
+  "label": string
+  "children": string
+  "disabled"?: string
+  "isLeaf"?: string
 }        
 `
     },
