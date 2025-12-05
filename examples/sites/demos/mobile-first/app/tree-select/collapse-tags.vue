@@ -1,15 +1,18 @@
 <template>
   <div>
     <p>场景 1：collapse-tags 折叠</p>
+    <br />
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple collapse-tags></tiny-tree-select>
     <br />
     <br />
     <p>场景 2：hover-expand 折叠</p>
+    <br />
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple hover-expand></tiny-tree-select>
     <br />
     <br />
     <p>场景 3：click-expand 折叠</p>
-    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple click-expand :max-visible-rows="1"></tiny-tree-select>
+    <br />
+    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple click-expand></tiny-tree-select>
   </div>
 </template>
 
@@ -67,12 +70,8 @@ export default {
 </script>
 
 <style scoped>
-.tiny-tree-select {
+[data-tag='tiny-base-select'],
+[data-tag='tiny-tree-select'] {
   width: 280px;
-}
-
-p {
-  font-size: 14px;
-  line-height: 2.5;
 }
 </style>

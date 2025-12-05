@@ -1,15 +1,19 @@
 <template>
   <div>
-    <p>场景 1：collapse-tags 折叠</p>
-    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple collapse-tags></tiny-tree-select>
+    <p>medium</p>
+    <tiny-tree-select v-model="value" size="medium" multiple :tree-op="treeOp"></tiny-tree-select>
     <br />
     <br />
-    <p>场景 2：hover-expand 折叠</p>
-    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple hover-expand></tiny-tree-select>
+    <p>默认</p>
+    <tiny-tree-select v-model="value" multiple :tree-op="treeOp"></tiny-tree-select>
     <br />
     <br />
-    <p>场景 3：click-expand 折叠</p>
-    <tiny-tree-select v-model="value" :tree-op="treeOp" multiple click-expand :max-visible-rows="1"></tiny-tree-select>
+    <p>small</p>
+    <tiny-tree-select v-model="value" size="small" multiple :tree-op="treeOp"> </tiny-tree-select>
+    <br />
+    <br />
+    <p>mini</p>
+    <tiny-tree-select v-model="value" size="mini" multiple :tree-op="treeOp"> </tiny-tree-select>
   </div>
 </template>
 
@@ -55,7 +59,7 @@ export default {
               },
               {
                 value: 6,
-                label: 'OpenTiny 是一套企业级 Web 前端开发解决方案，提供跨端、跨框架、跨版本的 TinyVue 组件库'
+                label: '二级 2-2'
               }
             ]
           }
@@ -67,12 +71,8 @@ export default {
 </script>
 
 <style scoped>
-.tiny-tree-select {
+[data-tag='tiny-base-select'],
+[data-tag='tiny-tree-select'] {
   width: 280px;
-}
-
-p {
-  font-size: 14px;
-  line-height: 2.5;
 }
 </style>

@@ -1,15 +1,30 @@
 <template>
   <tiny-base-select
     ref="baseSelectRef"
-    class="tiny-tree-select"
+    data-tag="tiny-tree-select"
     v-model="state.modelValue"
     :clearable="clearable"
     :filterable="filterable"
     :filter-method="filter"
     :multiple="multiple"
+    :text-field="textField"
+    :value-field="valueField"
+    :size="size"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :readonly="readonly"
+    :popper-class="popperClass"
+    :popper-append-to-body="popperAppendToBody"
+    :placement="placement"
+    :drop-style="dropStyle"
     :hover-expand="hoverExpand"
     :click-expand="clickExpand"
     :collapse-tags="collapseTags"
+    :copyable="copyable"
+    :text-split="textSplit"
+    :show-tips="showTips"
+    :searchable="searchable"
+    :multiple-limit="multipleLimit"
     :dropdown-icon="dropdownIcon"
     :tag-type="tagType"
     :input-box-type="inputBoxType"
@@ -24,7 +39,7 @@
         :current-node-key="!multiple ? state.currentKey : ''"
         :data="state.treeData"
         :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
-        :default-expand-all="true"
+        :default-expand-all="treeOp.defaultExpandAll !== undefined ? treeOp.defaultExpandAll : true"
         :expand-on-click-node="false"
         :filter-node-method="filterMethod"
         :icon-trigger-click-node="false"
@@ -40,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import { $prefix, defineComponent, setup } from '@opentiny/vue-common'
+import { props, $prefix, defineComponent, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-select/vue'
 import Tree from '@opentiny/vue-tree'
 import BaseSelect from '@opentiny/vue-base-select'
@@ -52,6 +67,7 @@ export default defineComponent({
     TinyBaseSelect: BaseSelect
   },
   props: {
+    ...props,
     clearable: Boolean,
     filterable: Boolean,
     filterMethod: Function,
@@ -68,6 +84,45 @@ export default defineComponent({
     valueField: {
       type: String,
       default: 'value'
+    },
+    // 基础 props
+    size: String,
+    disabled: Boolean,
+    placeholder: String,
+    readonly: Boolean,
+    // 弹框相关
+    popperClass: String,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    },
+    placement: {
+      type: String,
+      default: 'bottom-start'
+    },
+    dropStyle: {
+      type: Object,
+      default: () => ({})
+    },
+    // 标签相关
+    collapseTags: Boolean,
+    copyable: Boolean,
+    textSplit: {
+      type: String,
+      default: ','
+    },
+    hoverExpand: Boolean,
+    clickExpand: Boolean,
+    showTips: {
+      type: Boolean,
+      default: true
+    },
+    // 搜索和过滤
+    searchable: Boolean,
+    // 多选相关
+    multipleLimit: {
+      type: Number,
+      default: 0
     },
     // 下拉图标
     dropdownIcon: {
@@ -95,11 +150,7 @@ export default defineComponent({
     autocomplete: {
       type: String,
       default: 'off'
-    },
-    // 标签相关
-    hoverExpand: Boolean,
-    clickExpand: Boolean,
-    collapseTags: Boolean
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

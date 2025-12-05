@@ -4,7 +4,13 @@
     data-tag="tiny-base-select"
     class="inline-block relative w-full outline-0 group [&_[data-tag=tiny-tag]]:max-w-[144px]"
     v-popover:popover
-    :class="[hoverExpand ? 'align-top' : '', $parent.$attrs.class]"
+    :class="[
+      hoverExpand ? 'align-top is-hover-expand' : '',
+      clickExpand ? 'is-click-expand' : '',
+      (state.inputHovering || state.visible) && !clickExpand ? 'is-hover' : '',
+      state.showCollapseTag ? 'collapse-tag-clicked' : '',
+      $parent.$attrs.class
+    ]"
     @mouseleave.self="
       () => {
         state.selectHover = false
@@ -55,10 +61,18 @@
             gcls('select-tags'),
             { 'pl-9 sm:pl-9': slots.prefix },
             { 'overflow-y-hidden': (state.inputHovering || state.visible) && !state.selected.length },
-            { 'h-6 overflow-hidden': hoverExpand },
+            { 'h-6 overflow-hidden': hoverExpand || clickExpand },
             { 'pr-6': state.selectDisabled },
-            { 'overflow-y-auto max-h-28 h-auto': hoverExpand && (state.inputHovering || state.visible) },
-            { 'overflow-x-hidden': !(hoverExpand && (state.inputHovering || state.visible)) }
+            {
+              'overflow-y-auto max-h-28 h-auto':
+                (hoverExpand && (state.inputHovering || state.visible)) || (clickExpand && state.showCollapseTag)
+            },
+            {
+              'overflow-x-hidden': !(
+                (hoverExpand && (state.inputHovering || state.visible)) ||
+                (clickExpand && state.showCollapseTag)
+              )
+            }
           )
         "
         v-if="multiple && !state.isDisplayOnly && !shape"
@@ -143,12 +157,13 @@
             <!-- 当非 showAllTextTag 时，原来的模式渲染 -->
             <template v-else>
               <tiny-tag
-                v-if="hoverExpand"
+                v-if="(hoverExpand || (clickExpand && !state.showCollapseTag)) && state.selected.length > 1"
                 :class="
                   m(
                     gcls('tag-info'),
-                    { 'visible static': hoverExpand },
-                    { 'invisible absolute': hoverExpand && (state.inputHovering || state.visible || state.isHidden) }
+                    { 'visible static': hoverExpand || (clickExpand && !state.showCollapseTag) },
+                    { 'invisible absolute': hoverExpand && (state.inputHovering || state.visible || state.isHidden) },
+                    { 'is-hidden': (clickExpand && state.isHidden) || state.isDisabled }
                   )
                 "
                 :type="state.getTagType"
@@ -157,8 +172,11 @@
                 :closable="false"
                 :size="state.collapseTagSize"
                 :maxWidth="maxTagWidth"
-                >+ {{ state.collapseTagsLength }}</tiny-tag
+                @click="onClickCollapseTag($event)"
               >
+                <template v-if="hoverExpand">+ {{ state.collapseTagsLength }}</template>
+                <icon-ellipsis v-else></icon-ellipsis>
+              </tiny-tag>
               <tiny-tag
                 v-for="(item, index) in state.selected"
                 :key="getValueKey(item)"
@@ -196,6 +214,16 @@
                   </template>
                 </tiny-tooltip>
               </tiny-tag>
+
+              <!-- 收起按钮 -->
+              <span
+                v-if="clickExpand && state.showCollapseTag"
+                class="text-xs text-color-brand cursor-pointer flex items-center"
+                @click="onClickCollapseTag($event)"
+              >
+                {{ t('ui.select.collapse') }}
+                <icon-chevron-up></icon-chevron-up>
+              </span>
             </template>
           </span>
         </span>
@@ -728,7 +756,9 @@ export default defineComponent({
     'tagType',
     'clearNoMatchValue',
     'showAllTextTag',
-    'hoverExpand'
+    'hoverExpand',
+    'clickExpand',
+    'maxVisibleRows'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
