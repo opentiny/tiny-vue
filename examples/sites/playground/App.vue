@@ -214,6 +214,8 @@ function changeLayout(layout) {
 function changeReserve(isReserve) {
   insertStyleDom(state.selectVersion)
   localStorage.setItem(LAYOUT_REVERSE, isReserve)
+  // 切换反转时，根据当前大小屏状态重新设置尺寸
+  setPanelSize(isSmallScreen.value)
 }
 
 function getDemoName(name, apiMode) {
@@ -287,15 +289,24 @@ const setPanelSize = (isSmall) => {
       )
 
       if (panels.length >= 2) {
-        const panelA = panels[0] // 编辑器
-        const panelB = panels[1] // 预览
+        const panelA = panels[0]
+        const panelB = panels[1]
 
         if (isSmall) {
-          // 小屏：预览占30%（编辑器70%，预览30%）
-          panelA.style.width = '70%'
-          panelB.style.width = '30%'
-          panelA.style.flexBasis = '70%'
-          panelB.style.flexBasis = '30%'
+          // 小屏模式
+          if (state.layoutReverse) {
+            // 反转布局：左侧预览30%，右侧编辑器70%
+            panelA.style.width = '30%'
+            panelB.style.width = '70%'
+            panelA.style.flexBasis = '30%'
+            panelB.style.flexBasis = '70%'
+          } else {
+            // 默认布局：左侧编辑器70%，右侧预览30%
+            panelA.style.width = '70%'
+            panelB.style.width = '30%'
+            panelA.style.flexBasis = '70%'
+            panelB.style.flexBasis = '30%'
+          }
         } else {
           // 大屏：恢复默认平分
           panelA.style.width = '50%'
@@ -317,7 +328,7 @@ const restorePanelSize = () => {
   // 添加判断：仅在mobile-first模式下执行
   if (!isMobileFirst) return
 
-  setTimeout(() => {
+  nextTick(() => {
     const saved = localStorage.getItem(SIZE_KEY)
     if (saved === 'small') {
       isSmallScreen.value = true // 恢复状态
@@ -325,29 +336,24 @@ const restorePanelSize = () => {
     } else {
       isSmallScreen.value = false // 默认大屏
     }
-  }, 300)
+  })
 }
 
 // 大小屏按钮点击事件
 const maxClick = () => {
-  // 大屏：恢复默认
   isSmallScreen.value = false
   setPanelSize(false)
 }
 
 const minClick = () => {
-  // 小屏：应用特殊布局
   isSmallScreen.value = true
   setPanelSize(true)
 }
 
-// 监听布局变化，自动恢复尺寸
-watch(
-  () => state.layout,
-  () => {
-    restorePanelSize()
-  }
-)
+// 监听布局变化和反转变化，自动恢复尺寸
+watch([() => state.layout, () => state.layoutReverse], () => {
+  restorePanelSize()
+})
 
 // 分享功能
 const share = () => {
@@ -439,7 +445,7 @@ onMounted(() => {
         </tiny-select>
       </span>
       <Share @click="share" title="分享" class="share" />
-      <a style="display: flex" href="https://github.com/opentiny/tiny-vue " target="_blank">
+      <a style="display: flex" href="https://github.com/opentiny/tiny-vue   " target="_blank">
         <GitHub class="github" />
       </a>
     </div>
