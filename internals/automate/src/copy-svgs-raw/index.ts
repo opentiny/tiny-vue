@@ -17,17 +17,17 @@ const svgsFiles = await fg(['**/*.svg'], { dot: true, cwd: rawPath })
 const linedSvgs = svgsFiles.filter((filename) => !filename.endsWith('Filled.svg'))
 const filledSvgs = svgsFiles.filter((filename) => filename.endsWith('Filled.svg'))
 
-validName()
-validNewIcon()
-await validOldIcon()
-copyRaws()
+// validName()
+// validNewIcon()
+// await validOldIcon()
+// copyRaws()
 
-// console.log(
-//   linedSvgs
-//     .map((n) => n.replace('.svg', ''))
-//     .map((n) => `"${n}"`)
-//     .join(',')
-// )
+console.log(
+  linedSvgs
+    .map((n) => n.replace('.svg', ''))
+    .map((n) => `"${n}"`)
+    .join(',')
+)
 
 // 1、校验文件名是否成对：  IconAdd.svg----> IconAddFilled.svg
 function validName() {
