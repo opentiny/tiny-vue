@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "version": "3.27.0",
+  "version": "3.27.1",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -28,7 +28,7 @@
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@docsearch/react": "npm:@docsearch/css",
-    "@opentiny/tiny-vue-mcp": "^0.0.3",
+    "@opentiny/tiny-vue-mcp": "^0.0.4",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
