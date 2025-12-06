@@ -12,7 +12,7 @@
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   CLASS: {
@@ -326,9 +326,9 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    InputBoxType: {
+    inputBoxType: {
       type: String,
-      default: 'input',
+      default: 'normal',
       validator: (value: string) => ['input', 'underline'].includes(value)
     },
     tagType: {

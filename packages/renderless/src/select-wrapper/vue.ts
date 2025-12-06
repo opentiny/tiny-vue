@@ -25,11 +25,11 @@ export const renderless = (props, { reactive, computed, useAttrs }, { constants,
         : ['tiny-select']
 
     const { class: _omitClass, ...restAttrs } = attrs
-
     return {
       ...props,
       ...restAttrs,
-      class: classArray
+      class: Array.from(new Set(classArray)),
+      dataTag: 'tiny-select'
     }
   })
 

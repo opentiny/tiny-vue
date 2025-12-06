@@ -1249,6 +1249,9 @@ const postOperOfToVisible = ({ props, state, constants, vm }) => {
     if (props.modelValue && props.initLabel && !state.selectedLabel) {
       state.selectedLabel = props.initLabel
     }
+  } else if (props.modelValue && props.initLabel) {
+    // 如果 state.selected 不存在，但有 modelValue 和 initLabel，则使用 initLabel
+    state.selectedLabel = props.initLabel
   }
 }
 

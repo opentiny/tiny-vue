@@ -94,13 +94,15 @@
                   ? 'h-6 leading-6 text-xs placeholder:text-xs'
                   : 'h-7 leading-7',
               slots.prepend || slots.append ? 'align-middle table-cell' : 'inline-block',
-              slots.prepend && slots.append
-                ? 'rounded-none'
-                : slots.prepend
-                  ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
-                  : slots.append
-                    ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
-                    : 'rounded',
+              inputBoxType === 'underline'
+                ? 'rounded-none border-t-0 border-l-0 border-r-0 border-b sm:border-b'
+                : slots.prepend && slots.append
+                  ? 'rounded-none'
+                  : slots.prepend
+                    ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
+                    : slots.append
+                      ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
+                      : 'rounded',
               readonly ? ' text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
               (slots.prefix || prefixIcon) && (slots.suffix || suffixIcon || clearable || showPassword)
                 ? 'px-6 sm:px-6'
@@ -427,7 +429,8 @@ export default defineComponent({
     'popupMore',
     'showTooltip',
     'frontClearIcon',
-    'hoverExpand'
+    'hoverExpand',
+    'inputBoxType'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

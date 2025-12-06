@@ -37,8 +37,8 @@
         ref="gridRef"
         auto-resize
         :row-id="valueField"
-        :select-config="state.selectConfig"
-        :radio-config="state.radioConfig"
+        :select-config="buildSelectConfig()"
+        :radio-config="buildRadioConfig()"
         :highlight-current-row="true"
         :columns="gridOp?.columns || []"
         :data="Array.isArray(state.gridData) ? state.gridData : state.gridData?.data || state.gridData || []"

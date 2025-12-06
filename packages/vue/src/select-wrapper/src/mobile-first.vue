@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/select-wrapper/vue'
-import { $props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
+import { props, $prefix, defineComponent, setup } from '@opentiny/vue-common'
 import TinyBaseSelect from '@opentiny/vue-base-select'
 import TinyTreeSelect from '@opentiny/vue-tree-select'
 import TinyGridSelect from '@opentiny/vue-grid-select'
@@ -34,7 +34,7 @@ export default defineComponent({
     TinyGridSelect
   },
   props: {
-    ...$props,
+    ...props,
     _constants: {
       type: Object,
       default: () => $constants

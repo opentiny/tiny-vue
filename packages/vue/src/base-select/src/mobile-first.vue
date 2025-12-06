@@ -302,6 +302,8 @@
         :display-only-content="state.displayOnlyContent"
         :unselectable="state.readonly ? 'on' : 'off'"
         :validate-event="false"
+        :show-empty-value="showEmptyValue"
+        :input-box-type="inputBoxType"
         :tabindex="multiple && filterable ? '-1' : tabindex"
         @focus="handleFocus"
         @blur="handleBlur"
@@ -758,7 +760,10 @@ export default defineComponent({
     'showAllTextTag',
     'hoverExpand',
     'clickExpand',
-    'maxVisibleRows'
+    'maxVisibleRows',
+    'initLabel',
+    'inputBoxType',
+    'showEmptyValue'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
