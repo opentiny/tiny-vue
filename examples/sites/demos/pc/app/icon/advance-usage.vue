@@ -50,6 +50,7 @@
         <span class="svgs-text" :title="name">{{ name }}</span>
       </div>
     </div>
+    <hr />
     <div class="svgs-wrapper">
       <div
         v-for="name in batch3Icons"
@@ -86,7 +87,7 @@ import {
   TinyColorPicker,
   TinySwitch
 } from '@opentiny/vue'
-import { advanceIcons } from './advance-icons.js'
+import { advanceIcons, batch3Icons } from './advance-icons.js'
 
 export default {
   components: {

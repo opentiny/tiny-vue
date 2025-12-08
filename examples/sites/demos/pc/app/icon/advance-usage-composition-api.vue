@@ -50,6 +50,7 @@
         <span class="svgs-text" :title="name">{{ name }}</span>
       </div>
     </div>
+    <hr />
     <div class="svgs-wrapper">
       <div
         v-for="name in batch3Icons"
