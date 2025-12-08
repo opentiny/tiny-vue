@@ -56,7 +56,7 @@ const timezone2 = '-00:00,+00:00,+01:00,+02:00,+03:00,+03:30,+04:00,+04:30,+05:0
 const timezone3 = '+06:30,+07:00,+08:00,+09:00,+10:00,+10:30,+11:00,+11:30,+12:00,+12:45,+13:00,+14:00'
 const timezones: string[] = [...timezone1.split(','), ...timezone2.split(','), ...timezone3.split(',')]
 
-export const paeseIso8601 = (str: string) => {
+export const parseIso8601 = (str: string) => {
   const m = iso8601Reg.exec(str)
   if (m && m.length === 25) {
     const year = Number(m[1])

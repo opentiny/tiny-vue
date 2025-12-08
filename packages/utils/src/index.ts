@@ -19,7 +19,7 @@ export {
   getWeekOfFirstDay,
   getLocalTimezone,
   getStrTimezone,
-  paeseIso8601
+  parseIso8601
 } from './date'
 
 // 与 date.ts 合并一下, 有几个重名变量，待整理, 如果功能一致就合并
