@@ -682,7 +682,7 @@ const Methods = {
   },
   hasRowChange(row, field) {
     const { treeConfig, visibleColumn, editConfig = {} } = this
-    const { insertChanged = false } = editConfig
+    const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     let originRow
     // 新增的数据不需要检测
