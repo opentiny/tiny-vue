@@ -91,8 +91,7 @@ export default defineConfig((config) => {
       rollupOptions: {
         input: {
           index: path.resolve(__dirname, './index.html'),
-          playground: path.resolve(__dirname, './playground.html'),
-          saas: path.resolve(__dirname, './saas.html')
+          playground: path.resolve(__dirname, './playground.html')
         }
       }
     },
