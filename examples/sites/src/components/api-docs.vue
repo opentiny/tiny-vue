@@ -36,7 +36,7 @@
                         v-for="(k, i) in row.depTypes"
                         :key="i"
                         :code="props.currentJson.types[k]?.code"
-                        types="ts"
+                        type="ts"
                       ></async-highlight>
                     </div>
                   </template>
