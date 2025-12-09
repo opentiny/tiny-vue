@@ -42,7 +42,7 @@ export const getRowid = ($table, row) => {
 }
 
 // 获取所有的列，排除分组
-export const getColumnList = (columns, options = {}, level = 0) => {
+export const getColumnList = ($table, columns, options = {}, level = 0) => {
   const result = []
 
   columns.forEach((column, index) => {
@@ -62,10 +62,16 @@ export const getColumnList = (columns, options = {}, level = 0) => {
     if (level === 0 && !options.isGroup && hasChildren) {
       options.isGroup = true
     }
+    const isLeaf = !hasChildren
+    options.columnCaches.push({
+      colid: column.id,
+      column,
+      index,
+      isLeaf,
+      columnIndex: isLeaf ? $table.markColumnIndex++ : null
+    })
 
-    options.columnCaches.push({ colid: column.id, column, index })
-
-    result.push.apply(result, hasChildren ? getColumnList(column.children, options, level + 1) : [column])
+    result.push.apply(result, hasChildren ? getColumnList($table, column.children, options, level + 1) : [column])
   })
 
   return result

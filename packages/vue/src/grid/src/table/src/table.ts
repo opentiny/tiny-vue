@@ -807,6 +807,7 @@ export default defineComponent({
 
     const tableListeners = getListeners(attrs, listeners)
 
+    const markColumnIndex = hooks.ref(0)
     return {
       slots,
       tableListeners,
@@ -841,7 +842,8 @@ export default defineComponent({
       columnStore,
       tiledLength,
       rawDataVersion,
-      rawData
+      rawData,
+      markColumnIndex
     }
   },
   render() {
