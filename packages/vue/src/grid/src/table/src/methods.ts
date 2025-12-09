@@ -577,9 +577,8 @@ const Methods = {
     return fullDataRowMap.has(row) ? fullDataRowMap.get(row).index : -1
   },
   getColumnIndex(column) {
-    const { fullColumnMap } = this
-
-    return fullColumnMap.has(column) ? fullColumnMap.get(column).index : -1
+    const fullColumn = this.getTableColumn()?.fullColumn
+    return fullColumn ? fullColumn.indexOf(column) : -1
   },
   hasIndexColumn(column) {
     return column?.type === 'index'
