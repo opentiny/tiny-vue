@@ -403,6 +403,13 @@ export function svg({ name = 'Icon', component, filledComponent = null, deprecat
             context,
             extend
           })
+        },
+        mounted() {
+          // 如果属性没有主副色，则遍历svg的所有内部元素，移除 fill 属性。
+          // 注意：移除后不能还原，所以：  如果用户使用时不传入主副色，后来修改主副色有值，也无法再把fill还原回来的。
+          if (this.firstColor === '' && this.secondColor === '') {
+            this.$el?.querySelectorAll('*').forEach((path) => path.removeAttribute('fill'))
+          }
         }
       })
     )
