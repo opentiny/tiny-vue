@@ -346,6 +346,7 @@ export default defineComponent({
         copyed: { columns: [], cut: false, rows: [] },
         indexs: { columns: [] },
         insertList: [],
+        insertMap: new Map(),
         removeList: [],
         // 选中源
         selected: { column: null, row: null },
@@ -567,8 +568,6 @@ export default defineComponent({
       fullDataRowIdData: {},
       fullDataRowMap: new Map(),
       backupInfos: { srcIdMap: new WeakMap(), idRawMap: new Map() },
-      // 临时插入数据集
-      temporaryRows: [],
       // 最后滚动位置
       lastScrollLeft: 0,
       lastScrollTop: 0,

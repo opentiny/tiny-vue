@@ -294,6 +294,7 @@ const Methods = {
     const scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
     editStore.insertList = []
+    editStore.insertMap = new Map()
     editStore.removeList = []
     // 设置全量数据，原始数据，行虚滚标记
     Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
@@ -326,7 +327,7 @@ const Methods = {
     })
   },
   updateRawData(datas) {
-    this.rawData = [...datas]
+    this.rawData = datas
     this.rawDataVersion += 1
   },
   getOriginRow(row) {
@@ -617,7 +618,7 @@ const Methods = {
   isTemporaryRow(row) {
     const rowid = getRowid(this, row)
 
-    return find(this.temporaryRows, (r) => rowid === getRowid(this, r))
+    return this.editStore.insertMap.has(rowid)
   },
   createData(records, copy) {
     const isArr = isArray(records)
@@ -659,7 +660,7 @@ const Methods = {
     return this.$nextTick()
   },
   hasRowInsert(row) {
-    return this.editStore.insertList.includes(row)
+    return this.isTemporaryRow(row)
   },
   compareRow(row, originalRow, field) {
     const value = get(row, field)
