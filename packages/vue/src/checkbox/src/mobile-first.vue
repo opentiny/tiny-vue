@@ -37,7 +37,7 @@
               state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4',
               state.isDisabled
                 ? '[&_path:nth-of-type(2)]:fill-color-icon-disabled [&_path:nth-of-type(1)]:fill-color-bg-3 cursor-not-allowed'
-                : '[&_path:nth-of-type(1)]:fill-color-icon-inverse [&_path:nth-of-type(2)]:fill-color-none-hover'
+                : '[&_path:nth-of-type(2)]:fill-color-none-hover'
             )
           "
         />

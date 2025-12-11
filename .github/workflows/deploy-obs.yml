@@ -9,6 +9,11 @@ on:
       - '!examples/sites/**/*.spec.ts'
 
   workflow_dispatch:
+    inputs:
+      version:
+        description: 输入您将要发布的版本号（默认使用 examples/sites/package.json 中的版本号），例如：`3.x.x`。
+        required: false
+        type: string
 
 env:
   # 在 GitHub 项目源码仓库 → 项目的 Settings → Secrets(Actions 里的 Repository secrets) 里提前建好以下变量
@@ -26,6 +31,8 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.value }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,18 +43,44 @@ jobs:
       - name: Install deps
         run: pnpm i --no-frozen-lockfile
       - name: Get version
+        id: ver
         run: |
-          echo "VERSION=$(node -p "require('./examples/sites/package.json').version")" >> $GITHUB_ENV
+          # 优先用手动输入的版本号
+          if [ -n "${{ inputs.version }}" ]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION="$(node -p "require('./examples/sites/package.json').version")"
+          fi
+          echo "Home version: $VERSION"
+          echo "value=$VERSION" >> $GITHUB_OUTPUT
       - name: Build site
         run: |
           export NODE_OPTIONS="--max-old-space-size=8192"
           pnpm build:site
         env:
-          VITE_APP_BUILD_BASE_URL: //opentiny-assets.obs.cn-north-4.myhuaweicloud.com/tiny-vue-web-doc/${{ env.VERSION }}/
+          VITE_APP_BUILD_BASE_URL: //res-static.opentiny.design/tiny-vue-web-doc/${{ steps.ver.outputs.value }}/
           VITE_PLAYGROUND_URL: /vue-playground
       - name: Copy files
         run: |
           cp ./examples/sites/dist/index.html ./examples/sites/dist/404.html
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-artifact
+          path: ./examples/sites/dist/
+  # Deploy job
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-artifact
+          path: ./examples/sites/dist/
+      - name: Show version
+        run: |
+          echo "Deploying version: ${{ needs.build.outputs.version }}"
       # ===== 下载 obsutil =====
       - name: Install obsutil
         run: |
@@ -65,5 +98,6 @@ jobs:
                          -e=${{ env.HUAWEI_CLOUD_ENDPOINT }}
 
           # 把本地 dist/ 目录整站同步到桶根目录
-          mv examples/sites/dist ${{ env.VERSION }}
-          obsutil cp ${{ env.VERSION }} obs://${{ env.HUAWEI_CLOUD_BUCKET }}/tiny-vue-web-doc/ -r -f
+          echo "needs.build.outputs.version: ${{ needs.build.outputs.version }}"
+          mv examples/sites/dist ${{ needs.build.outputs.version }}
+          obsutil cp ${{ needs.build.outputs.version }} obs://${{ env.HUAWEI_CLOUD_BUCKET }}/tiny-vue-web-doc/ -r -f

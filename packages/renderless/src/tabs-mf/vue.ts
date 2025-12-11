@@ -57,7 +57,7 @@ export const renderless = (props, hooks, { vm, emit, nextTick }) => {
     addItem: addItem(state),
     addNav: addNav(state),
     scrollTo: scrollTo({ vm, state }),
-    removeItem: removeItem({ props, state, emit }),
+    removeItem: removeItem({ props, state, emit, api }),
     changeCurrentName: changeCurrentName({ state, emit }),
     clickMore: clickMore(api),
     beforeCarouselSwipe: beforeCarouselSwipe({ api, state, vm }),

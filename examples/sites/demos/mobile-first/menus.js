@@ -86,6 +86,7 @@ export const cmpMenus = [
           experimental: '3.27.0'
         }
       },
+      { name: 'TreeSelect', nameCn: '树形选择器', key: 'tree-select' },
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'SliderButton', nameCn: '滑动按钮组', key: 'slider-button' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },

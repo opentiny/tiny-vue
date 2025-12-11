@@ -55,7 +55,7 @@ export const show =
         () => {
           state.visible = true
         },
-        state.trigger === 'click' ? 0 : props.showTimeout
+        state.trigger === 'click' || state.trigger === 'contextmenu' ? 0 : props.showTimeout
       )
     }
   }
@@ -82,7 +82,7 @@ export const hide =
         () => {
           state.visible = false
         },
-        state.trigger === 'click' ? 0 : props.hideTimeout
+        state.trigger === 'click' || state.trigger === 'contextmenu' ? 0 : props.hideTimeout
       )
     }
   }
@@ -127,7 +127,7 @@ export const handleItemKeyDown =
   ({ api, props, state, emit }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state' | 'emit'>) =>
   (event: KeyboardEvent) => {
     const keyCode = event.keyCode
-    const target = event.target
+    const target = event.target as HTMLElement
     const currentIndex = state.menuItemsArray.indexOf(target)
     const max = state.menuItemsArray.length - 1
 
@@ -215,7 +215,15 @@ export const initEvent =
       return
     }
 
-    if (state.trigger === 'hover') {
+    /** ---------------------------
+     *  新增：右键触发 contextmenu
+     * --------------------------- */
+    if (state.trigger === 'contextmenu') {
+      on(state.triggerElm, 'contextmenu', (e: MouseEvent) => {
+        e.preventDefault()
+        api.handleClick()
+      })
+    } else if (state.trigger === 'hover') {
       on(state.triggerElm, 'mouseenter', api.show)
       on(state.triggerElm, 'mouseleave', api.hide)
       on(state.dropdownElm, 'mouseenter', api.show)
@@ -302,6 +310,7 @@ export const beforeDistory =
       off(state.triggerElm, 'mouseenter', api.show)
       off(state.triggerElm, 'mouseleave', api.hide)
       off(state.triggerElm, 'click', api.handleClick)
+      off(state.triggerElm, 'contextmenu', api.handleClick) /** 右键清理 */
       state.triggerElm = null
     }
 

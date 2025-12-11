@@ -10,7 +10,7 @@
  *
  */
 
-import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone, paeseIso8601 } from '@opentiny/utils'
+import { toDate1, getDateWithNewTimezone, getStrTimezone, getLocalTimezone, parseIso8601 } from '@opentiny/utils'
 import { isNumber, isDate } from '@opentiny/utils'
 import { userPopper } from '@opentiny/vue-hooks'
 import { DATEPICKER } from '@opentiny/utils'
@@ -177,7 +177,7 @@ const ignoreTimezone = (value) => {
 
   const ignoreTimezoneFn = (value) => {
     let date = value
-    const iso8601 = paeseIso8601(value)
+    const iso8601 = parseIso8601(value)
     if (iso8601) {
       const { year, month, day, hours, minutes, seconds } = iso8601
       date = new Date(year, month, day, hours, minutes, seconds)

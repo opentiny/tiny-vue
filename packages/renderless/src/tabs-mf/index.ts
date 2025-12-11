@@ -133,10 +133,12 @@ export const clickMore = (api) => (name) => {
 }
 
 export const removeItem =
-  ({ props, state, emit }) =>
+  ({ props, state, emit, api }) =>
   (name, silent = false) => {
     const itemIndex = state.items.findIndex((item) => item.name === name)
     const navIndex = state.navs.findIndex((item) => item.name === name)
+    const isCurrent = state.currentItem && state.currentItem.name === name
+    const nextNav = state.navs[navIndex - 1] || state.navs[navIndex + 1]
 
     if (!~itemIndex) return
 
@@ -147,6 +149,12 @@ export const removeItem =
 
       state.navs.splice(navIndex, 1)
       state.navs = [...state.navs]
+
+      if (isCurrent) {
+        const nextName = nextNav ? nextNav.name : state.items[0]?.name || ''
+        api.changeCurrentName(nextName)
+        state.currentItem = state.items.find((item) => item.name === nextName) || null
+      }
 
       if (!silent) {
         // Emits the close event

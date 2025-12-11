@@ -1,9 +1,11 @@
 <template>
   <p>场景 1：单选</p>
+  <br />
   <tiny-grid-select v-model="value" :grid-op="gridOpSingle" value-field="id" text-field="city"></tiny-grid-select>
   <br />
   <br />
   <p>场景 2：多选</p>
+  <br />
   <tiny-grid-select
     v-model="value2"
     multiple

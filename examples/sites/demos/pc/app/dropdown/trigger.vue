@@ -25,6 +25,19 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
+
+    <p>场景 3：设置右键触发下拉</p>
+    <tiny-dropdown trigger="contextmenu">
+      <template #dropdown>
+        <tiny-dropdown-menu>
+          <tiny-dropdown-item :icon="tinyIconPlus">黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconPlusCircle">狮子头</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconPlusSquare">螺蛳粉</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconCheckedLinear">双皮奶</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconCheckedSur">蚵仔煎</tiny-dropdown-item>
+        </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
   </div>
 </template>
 

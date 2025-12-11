@@ -195,7 +195,7 @@ export default {
         },
         {
           name: 'trigger',
-          type: "'hover' | 'click'",
+          type: "'hover' | 'click' | 'contextmenu'",
           defaultValue: "'hover'",
           desc: {
             'zh-CN': '触发下拉的方式',
@@ -203,8 +203,12 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'trigger',
-          mfDemo: ''
+          mfDemo: '',
+          meta: {
+            stable: '3.28.0'
+          }
         },
+
         {
           name: 'type',
           typeAnchorName: 'IButtonType',

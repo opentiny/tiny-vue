@@ -800,7 +800,7 @@ export const formatFileSize = (size, baseUnit = '') => {
     unitIndex--
   }
 
-  return parseFloat(toDecimal(size, 2, true)) + ' ' + unitArr[unitIndex]
+  return parseFloat(toDecimal(size, 2, true)) + unitArr[unitIndex]
 }
 
 /**

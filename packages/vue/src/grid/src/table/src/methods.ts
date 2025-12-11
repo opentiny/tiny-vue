@@ -294,6 +294,7 @@ const Methods = {
     const scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
     editStore.insertList = []
+    editStore.insertMap = new Map()
     editStore.removeList = []
     // 设置全量数据，原始数据，行虚滚标记
     Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
@@ -326,7 +327,7 @@ const Methods = {
     })
   },
   updateRawData(datas) {
-    this.rawData = [...datas]
+    this.rawData = datas
     this.rawDataVersion += 1
   },
   getOriginRow(row) {
@@ -579,7 +580,7 @@ const Methods = {
   getColumnIndex(column) {
     const { fullColumnMap } = this
 
-    return fullColumnMap.has(column) ? fullColumnMap.get(column).index : -1
+    return fullColumnMap.has(column) ? fullColumnMap.get(column).columnIndex : -1
   },
   hasIndexColumn(column) {
     return column?.type === 'index'
@@ -617,7 +618,7 @@ const Methods = {
   isTemporaryRow(row) {
     const rowid = getRowid(this, row)
 
-    return find(this.temporaryRows, (r) => rowid === getRowid(this, r))
+    return this.editStore.insertMap.has(rowid)
   },
   createData(records, copy) {
     const isArr = isArray(records)
@@ -659,7 +660,7 @@ const Methods = {
     return this.$nextTick()
   },
   hasRowInsert(row) {
-    return this.editStore.insertList.includes(row)
+    return this.isTemporaryRow(row)
   },
   compareRow(row, originalRow, field) {
     const value = get(row, field)
@@ -682,7 +683,7 @@ const Methods = {
   },
   hasRowChange(row, field) {
     const { treeConfig, visibleColumn, editConfig = {} } = this
-    const { insertChanged = false } = editConfig
+    const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     let originRow
     // 新增的数据不需要检测
@@ -1001,7 +1002,8 @@ const Methods = {
 
     // 获取叶子列数组
     const options = { columnCaches: [] }
-    const fullColumn = getColumnList(value, options)
+    this.markColumnIndex = 0
+    const fullColumn = getColumnList(this, value, options)
 
     if (options.isGroup && options.hasFixed) {
       value.forEach((root) => repairFixed(root))
