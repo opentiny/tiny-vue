@@ -8,7 +8,7 @@
             <stop stop-color="#2E94FF" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="iconpro_purchase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="iconpro_purchase" stroke="none"  fill-rule="evenodd">
         <rect id="矩形备份-16" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="6"></rect>
         <rect id="矩形" fill="#D8D8D8" fill-rule="nonzero" opacity="0" x="8" y="8"></rect>
         <path

@@ -32,7 +32,7 @@
             <feColorMatrix values="0 0 0 0 0.145098039   0 0 0 0 0.168627451   0 0 0 0 0.22745098  0 0 0 0.08 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
     </defs>
-    <g id="icon/16/拉伸" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="icon/16/拉伸" stroke="none"  fill-rule="evenodd">
         <polygon id="Fill-1" points="0 16 16 16 16 0 0 0"></polygon>
         <g id="编组" filter="url(#filter-1)" transform="translate(4.634300, 4.625000)">
             <g id="Stroke-2">

@@ -19,7 +19,7 @@
                 type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
     </defs>
-    <g id="iconpro_pic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="iconpro_pic" stroke="none"  fill-rule="evenodd">
         <rect id="矩形备份-48" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="6"></rect>
         <g id="编组-20" transform="translate(9.000000, 9.000000)">
             <g id="编组-15" fill="#FFFFFF" fill-rule="nonzero">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="文件上传" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="文件上传" stroke="none" stroke-width="1"  fill-rule="evenodd">
         <g id="【pc-多端】文件上传列表视图" transform="translate(-520.000000, -254.000000)">
-            <g id="编组-10" transform="translate(80.000000, 238.000000)">   
+            <g id="编组-10" transform="translate(80.000000, 238.000000)">
                 <g id="拖拽文件" transform="translate(440.000000, 16.000000)">
                     <rect id="矩形" x="0" y="0" width="80" height="80"></rect>
                     <g id="编组-15" transform="translate(37.854799, 37.012326) rotate(180.000000) translate(-37.854799, -37.012326) translate(4.198294, 12.089876)">

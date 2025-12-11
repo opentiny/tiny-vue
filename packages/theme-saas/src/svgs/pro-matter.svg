@@ -20,7 +20,7 @@
             </feMerge>
         </filter>
     </defs>
-    <g id="iconpro_matter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="iconpro_matter" stroke="none"  fill-rule="evenodd">
         <g id="编组-7备份" fill="url(#linearGradient-1)">
             <rect id="矩形备份-47" x="0" y="0" width="40" height="40" rx="6"></rect>
         </g>

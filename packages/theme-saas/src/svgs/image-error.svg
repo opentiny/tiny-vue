@@ -4,7 +4,7 @@
     <defs>
         <rect id="path-1" x="0" y="0" width="20" height="20"></rect>
     </defs>
-    <g id="图片" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图片" stroke="none" stroke-width="1"   fill-rule="evenodd">
         <g transform="translate(-106.000000, -2198.000000)" id="编组-3">
             <g transform="translate(52.000000, 2157.000000)">
                 <g id="编组-2" transform="translate(36.000000, 41.000000)">
