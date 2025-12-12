@@ -2784,7 +2784,7 @@ export default {
               "Set the rendering type for table columns; takes precedence over the column's type attribute; cell rendering configuration item, takes precedence over formatText attribute"
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'grid-renderer#renderer-custom-renderer'
+          pcDemo: 'grid-editor#editor-custom-editor-select'
         },
         {
           name: 'required',
