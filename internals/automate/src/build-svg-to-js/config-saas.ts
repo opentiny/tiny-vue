@@ -5,5 +5,5 @@ export const iconsPath = '../../packages/vue-icon-saas'
 export const rewriteConfig = {
   'total-nolume': 'total-volume',
   'sub-script': 'subscript',
-  'write-productio-plan': 'write-production-plan' //
+  'write-productio-plan': 'write-production-plan'
 }
