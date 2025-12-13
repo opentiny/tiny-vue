@@ -296,8 +296,8 @@ const Methods = {
     editStore.insertList = []
     editStore.insertMap = new Map()
     editStore.removeList = []
-    // 设置全量数据，原始数据，行虚滚标记
-    Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
+    // 设置全量数据，行虚滚标记
+    Object.assign(this, { tableFullData, scrollYLoad })
 
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
@@ -751,7 +751,7 @@ const Methods = {
   },
   // 获取表格所有数据
   getData(rowIndex) {
-    const allRows = this.rawData || this.tableSynchData
+    const allRows = this.rawData || []
 
     if (!arguments.length) {
       return allRows.slice(0)
