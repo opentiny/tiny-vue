@@ -186,7 +186,10 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'round',
-          mfDemo: ''
+          mfDemo: '',
+          meta: {
+            stable: '3.28.0'
+          }
         }
       ],
       events: [
