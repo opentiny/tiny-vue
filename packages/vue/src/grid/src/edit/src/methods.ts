@@ -281,7 +281,7 @@ export default {
       return this.$nextTick()
     }
 
-    return this.reloadData(rawData)
+    return this.reloadData(rawData || [])
   },
 
   /**
