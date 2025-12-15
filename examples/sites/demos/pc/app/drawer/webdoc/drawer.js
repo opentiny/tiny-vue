@@ -17,6 +17,18 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'close-on-press-escape',
+      name: {
+        'zh-CN': '按下 ESC 关闭抽屉',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN': '<p>添加 <code>close-on-press-escape</code> 属性可以控制是否可以通过 ESC 关闭抽屉。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['close-on-press-escape.vue']
+    },
+    {
       demoId: 'use-through-method',
       name: { 'zh-CN': '通过方法调用', 'en-US': 'Use through method' },
       desc: {

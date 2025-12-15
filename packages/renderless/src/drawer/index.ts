@@ -80,6 +80,36 @@ export const handleClose =
     }
   }
 
+/* ================= Esc 关闭（受控） ================= */
+export const keydown =
+  ({ api, state, props }: Pick<IDrawerRenderlessParams, 'api' | 'state' | 'props'>) =>
+  (event: KeyboardEvent) => {
+    if (!state.visible) {
+      return
+    }
+
+    if (!props.closeOnPressEscape) {
+      return
+    }
+
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      api.handleClose('esc', true)
+    }
+  }
+
+export const addKeydownEvent =
+  ({ api }: { api: IDrawerApi }) =>
+  () => {
+    document.addEventListener('keydown', api.keydown)
+  }
+
+export const removeKeydownEvent =
+  ({ api }: { api: IDrawerApi }) =>
+  () => {
+    document.removeEventListener('keydown', api.keydown)
+  }
+/* ================================================== */
+
 export const mousedown =
   ({ state, vm }: { vm: ISharedRenderlessParamUtils<IDrawerCT>['vm']; state: IDrawerState }) =>
   (event) => {

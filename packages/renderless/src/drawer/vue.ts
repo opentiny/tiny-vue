@@ -12,7 +12,10 @@ import {
   handleClose,
   computedWidth,
   computedHeight,
-  open
+  open,
+  keydown,
+  addKeydownEvent,
+  removeKeydownEvent
 } from './index'
 import type {
   IDrawerProps,
@@ -50,8 +53,11 @@ export const renderless = (
     mousedown: mousedown({ state, vm }),
     mousemove: mousemove({ state, props, emit }),
     mouseup: mouseup({ state }),
-    addDragEvent: addDragEvent({ api: api as IDrawerApi, vm }),
-    removeDragEvent: removeDragEvent({ api: api as IDrawerApi, vm }),
+    keydown: keydown({ api, state, props }),
+    addKeydownEvent: addKeydownEvent({ api }),
+    removeKeydownEvent: removeKeydownEvent({ api }),
+    addDragEvent: addDragEvent({ api, vm }),
+    removeDragEvent: removeDragEvent({ api, vm }),
     watchVisible: watchVisible({ state, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
@@ -61,6 +67,7 @@ export const renderless = (
 
   onMounted(() => {
     props.dragable && api.addDragEvent()
+    api.addKeydownEvent()
     if (props.lockScroll && props.visible) {
       api.showScrollbar()
     }
@@ -68,6 +75,7 @@ export const renderless = (
 
   onBeforeUnmount(() => {
     props.dragable && api.removeDragEvent()
+    api.removeKeydownEvent()
     props.lockScroll && api.hideScrollbar()
   })
 

@@ -207,6 +207,20 @@ export default {
           mode: ['pc'],
           pcDemo: 'tips-props',
           hideSaas: true
+        },
+        {
+          name: 'close-on-press-escape',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': 'ESC 键关闭抽屉',
+            'en-US': 'ESC key to close drawer'
+          },
+          mode: ['pc'],
+          pcDemo: 'closeOnPressEscape',
+          meta: {
+            stable: '3.28.0'
+          }
         }
       ],
       events: [

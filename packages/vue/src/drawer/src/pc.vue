@@ -161,7 +161,8 @@ export default defineComponent({
     'zIndex',
     'beforeClose',
     'tipsProps',
-    'customSlots'
+    'customSlots',
+    'closeOnPressEscape'
   ],
   emits: ['update:visible', 'open', 'close', 'confirm', 'drag'],
   setup(props, context) {
