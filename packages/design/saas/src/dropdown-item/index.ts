@@ -1,4 +1,4 @@
-import { iconChevronLeft } from '@opentiny/vue-icon'
+import { iconChevronLeft } from '@opentiny/vue-icon-saas'
 
 export default {
   icons: {

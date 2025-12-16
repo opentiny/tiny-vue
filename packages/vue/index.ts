@@ -138,10 +138,10 @@ import ScrollText from '@opentiny/vue-scroll-text'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import Search from '@opentiny/vue-search'
 import Select from '@opentiny/vue-select'
-import SelectWrapper from '@opentiny/vue-select-wrapper'
 import SelectDropdown from '@opentiny/vue-select-dropdown'
 import SelectMobile from '@opentiny/vue-select-mobile'
 import SelectView from '@opentiny/vue-select-view'
+import SelectWrapper from '@opentiny/vue-select-wrapper'
 import SelectedBox from '@opentiny/vue-selected-box'
 import Signature from '@opentiny/vue-signature'
 import Skeleton from '@opentiny/vue-skeleton'
@@ -339,10 +339,10 @@ const components = [
   Scrollbar,
   Search,
   Select,
-  SelectWrapper,
   SelectDropdown,
   SelectMobile,
   SelectView,
+  SelectWrapper,
   SelectedBox,
   Signature,
   Skeleton,
@@ -699,14 +699,14 @@ export {
   Search as TinySearch,
   Select,
   Select as TinySelect,
-  SelectWrapper,
-  SelectWrapper as TinySelectWrapper,
   SelectDropdown,
   SelectDropdown as TinySelectDropdown,
   SelectMobile,
   SelectMobile as TinySelectMobile,
   SelectView,
   SelectView as TinySelectView,
+  SelectWrapper,
+  SelectWrapper as TinySelectWrapper,
   SelectedBox,
   SelectedBox as TinySelectedBox,
   Signature,
@@ -1098,14 +1098,14 @@ export default {
   TinySearch: Search,
   Select,
   TinySelect: Select,
-  SelectWrapper,
-  TinySelectWrapper: SelectWrapper,
   SelectDropdown,
   TinySelectDropdown: SelectDropdown,
   SelectMobile,
   TinySelectMobile: SelectMobile,
   SelectView,
   TinySelectView: SelectView,
+  SelectWrapper,
+  TinySelectWrapper: SelectWrapper,
   SelectedBox,
   TinySelectedBox: SelectedBox,
   Signature,

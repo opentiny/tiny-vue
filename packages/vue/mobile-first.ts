@@ -26,8 +26,6 @@ import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 import ColumnListGroup from '@opentiny/vue-column-list-group'
 import ColumnListItem from '@opentiny/vue-column-list-item'
-import Grid from '@opentiny/vue-grid'
-import GridSelect from '@opentiny/vue-grid-select'
 import Currency from '@opentiny/vue-currency'
 import DatePanel from '@opentiny/vue-date-panel'
 import DateRange from '@opentiny/vue-date-range'
@@ -47,6 +45,7 @@ import Flowchart from '@opentiny/vue-flowchart'
 import FluentEditor from '@opentiny/vue-fluent-editor'
 import Form from '@opentiny/vue-form'
 import FormItem from '@opentiny/vue-form-item'
+import GridSelect from '@opentiny/vue-grid-select'
 import Image from '@opentiny/vue-image'
 import ImageViewer from '@opentiny/vue-image-viewer'
 import Input from '@opentiny/vue-input'
@@ -98,6 +97,7 @@ import TimePanel from '@opentiny/vue-time-panel'
 import TimePickerMobile from '@opentiny/vue-time-picker-mobile'
 import TimeSpinner from '@opentiny/vue-time-spinner'
 import Tooltip from '@opentiny/vue-tooltip'
+import TreeSelect from '@opentiny/vue-tree-select'
 import Upload from '@opentiny/vue-upload'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import UploadList from '@opentiny/vue-upload-list'
@@ -137,8 +137,6 @@ const components = [
   CollapseItem,
   ColumnListGroup,
   ColumnListItem,
-  Grid,
-  GridSelect,
   Currency,
   DatePanel,
   DateRange,
@@ -158,6 +156,7 @@ const components = [
   FluentEditor,
   Form,
   FormItem,
+  GridSelect,
   Image,
   ImageViewer,
   Input,
@@ -209,6 +208,7 @@ const components = [
   TimePickerMobile,
   TimeSpinner,
   Tooltip,
+  TreeSelect,
   Upload,
   UploadDragger,
   UploadList,
@@ -298,10 +298,6 @@ export {
   ColumnListGroup as TinyColumnListGroup,
   ColumnListItem,
   ColumnListItem as TinyColumnListItem,
-  Grid,
-  Grid as TinyGrid,
-  GridSelect,
-  GridSelect as TinyGridSelect,
   Currency,
   Currency as TinyCurrency,
   DatePanel,
@@ -340,6 +336,8 @@ export {
   Form as TinyForm,
   FormItem,
   FormItem as TinyFormItem,
+  GridSelect,
+  GridSelect as TinyGridSelect,
   Image,
   Image as TinyImage,
   ImageViewer,
@@ -442,6 +440,8 @@ export {
   TimeSpinner as TinyTimeSpinner,
   Tooltip,
   Tooltip as TinyTooltip,
+  TreeSelect,
+  TreeSelect as TinyTreeSelect,
   Upload,
   Upload as TinyUpload,
   UploadDragger,
@@ -555,6 +555,8 @@ export default {
   TinyForm: Form,
   FormItem,
   TinyFormItem: FormItem,
+  GridSelect,
+  TinyGridSelect: GridSelect,
   Image,
   TinyImage: Image,
   ImageViewer,
@@ -657,6 +659,8 @@ export default {
   TinyTimeSpinner: TimeSpinner,
   Tooltip,
   TinyTooltip: Tooltip,
+  TreeSelect,
+  TinyTreeSelect: TreeSelect,
   Upload,
   TinyUpload: Upload,
   UploadDragger,

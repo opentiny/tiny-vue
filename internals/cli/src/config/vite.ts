@@ -19,7 +19,6 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
     // 主模块映射
     // vite 4 不支持 exports 语法自动拼接 index 文件 https://github.com/vitejs/vite/issues/7267
     '@opentiny/vue-icon-saas$': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
-    '@opentiny/vue-icon-saas': pathFromWorkspaceRoot('packages/vue-icon-saas/src'),
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),

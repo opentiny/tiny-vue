@@ -1,4 +1,4 @@
-import { iconChevronDown, iconPlus } from '@opentiny/vue-icon'
+import { iconChevronDown, iconPlus } from '@opentiny/vue-icon-saas'
 import loadingIcon from './icon-loading.svg'
 
 export default {
