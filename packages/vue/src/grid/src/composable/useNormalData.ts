@@ -1,7 +1,7 @@
 import { hooks } from '@opentiny/vue-common'
 
 export const useNormalData = ({ props, tableFullColumn }) => {
-  const $table: any = hooks.getCurrentInstance()?.proxy
+  const $table = hooks.getCurrentInstance()?.proxy
   // 原始数据
   const rawData = hooks.ref([])
   // 原始数据版本
@@ -23,6 +23,8 @@ export const useNormalData = ({ props, tableFullColumn }) => {
       }
     }
 
+    // 在显示隐藏或者拖动可编辑列时，不触发editorColumns响应性更新
+    // 在初始化时和在增加可编辑列时触发editorColumns响应性更新
     const keyString = columnKeys.sort().join()
 
     if (editorColumnKey.value !== keyString) {
@@ -39,7 +41,8 @@ export const useNormalData = ({ props, tableFullColumn }) => {
       const _data = [..._insertData, ..._rawData]
 
       if (Array.isArray(_data)) {
-        _data.forEach((row) => $table.defineField(row, false, _editorColumns))
+        // 在增加可编辑列时，同步修改原始备份，保证字段存在
+        _data.forEach((row) => $table.defineField(row, false, _editorColumns, true))
       }
     }
   })
@@ -53,15 +56,17 @@ export const useNormalData = ({ props, tableFullColumn }) => {
 
       if (Array.isArray(_data)) {
         _data.forEach((row) => $table.defineField(row, false, _editorColumns))
-        rawDataVersion.value += 1
       }
     }
+
+    // 触发表格数据刷新
+    rawDataVersion.value += 1
   })
 
   hooks.watch(rawDataVersion, () => {
     // 设置数据查找缓存，对数据进行备份，深度克隆
     $table.updateCache(true, props.saveSource === 'deep')
-    // 处理数据改变
+    // 处理表格数据刷新
     $table.handleDataChange()
   })
 
