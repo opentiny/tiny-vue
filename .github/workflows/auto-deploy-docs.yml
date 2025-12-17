@@ -1,4 +1,3 @@
-# .github/workflows/notify-main.yml
 name: Notify Main Project
 
 on:
