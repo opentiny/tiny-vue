@@ -53,6 +53,7 @@ jobs:
         version: 9
 
     - name: Run main repo build
+      id: build
       working-directory: ./docs
       run: |
         pnpm i
@@ -63,7 +64,7 @@ jobs:
       if: always()
       run: |
         # 检查构建是否成功
-        if [ ${{ job.status }} == 'success' ]; then
+        if [ ${{ steps.build.outcome }} == 'success' ]; then
           echo "✅ 主仓库构建成功"
         else
           echo "❌ 主仓库构建失败"
