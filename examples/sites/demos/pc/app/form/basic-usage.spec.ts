@@ -25,9 +25,9 @@ test('测试基本表单', async ({ page }) => {
   await expect(datePicker).toHaveValue(/15/)
 
   // 時間选择器
-  const timePicker = demo.getByRole('textbox').nth(1)
+  const timePicker = demo.getByRole('combobox').nth(0)
   await timePicker.click()
-  await page.getByRole('listitem').filter({ hasText: '00:30' }).click()
+  await page.getByRole('option').filter({ hasText: '00:30' }).click()
   await expect(timePicker).toHaveValue('00:30')
 
   // 提交按钮

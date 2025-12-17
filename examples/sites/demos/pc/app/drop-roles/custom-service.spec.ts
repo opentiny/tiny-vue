@@ -5,7 +5,7 @@ test('自定义服务', async ({ page }) => {
   await page.goto('drop-roles#custom-service')
 
   const input = page.locator('.tiny-select input')
-  const listItems = page.getByRole('listitem')
+  const listItems = page.getByRole('option')
   const url = await page.evaluate(() => window.location.href)
   const notify1 = page.locator('.tiny-notify').filter({
     hasText: `切换后的角色是：001，根据角色发送请求的 URL 如下：${url}`

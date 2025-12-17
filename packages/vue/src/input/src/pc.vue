@@ -11,7 +11,7 @@
  -->
 <template>
   <div
-    v-bind="a($attrs, ['class'])"
+    v-bind="a($attrs, ['class', 'role', 'aria-haspopup', 'aria-autocomplete', 'aria-owns', 'aria-controls'])"
     :class="[
       $attrs.class,
       type === 'textarea' ? 'tiny-textarea' : 'tiny-input',

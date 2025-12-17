@@ -12,5 +12,5 @@ test('custom-reference', async ({ page }) => {
 
   await expect(option).toHaveCount(0)
   await reference.click()
-  await page.getByRole('listitem').filter({ hasText: /北京/ }).locator('span').click()
+  await page.getByRole('option').filter({ hasText: /北京/ }).locator('span').click()
 })

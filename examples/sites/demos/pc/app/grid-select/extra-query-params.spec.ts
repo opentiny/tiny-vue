@@ -5,22 +5,17 @@ test('grid-select 初始化查询传参', async ({ page }) => {
   await page.goto('grid-select#extra-query-params')
   await page.waitForTimeout(1000)
 
+  const demo = page.locator('#extra-query-params')
   // 选中指南
-  await page
-    .locator('div')
-    .filter({ hasText: /^指南$/ })
-    .click()
+  await page.getByLabel('示例', { exact: true }).getByText('指南').click()
   await page.getByRole('row', { name: '指南' }).locator('path').nth(2).click()
   await page.getByRole('row', { name: '组件' }).locator('path').first().click()
-  await page.getByRole('textbox').nth(3).click()
+  await page.getByLabel('示例', { exact: true }).getByText('组件').click()
   await page.waitForTimeout(400)
 
   // 选中框架风格
-  await page.getByRole('row', { name: '框架风格' }).locator('div').first().click()
-  await expect(
-    page
-      .locator('div')
-      .filter({ hasText: /^框架风格$/ })
-      .nth(2)
-  ).toBeVisible()
+  await page.locator('#extra-query-params').getByRole('textbox').nth(2).click()
+  await page.getByRole('row', { name: '框架风格' }).locator('path').first().click()
+  await page.locator('#extra-query-params').getByRole('textbox').nth(2).click()
+  await expect(page.getByLabel('示例', { exact: true }).getByText('框架风格')).toBeVisible()
 })

@@ -16,12 +16,12 @@ test('点击选中', async ({ page }) => {
   await input.dispatchEvent('keyup', { KeyboardEvent })
 
   await expect(input).toHaveValue('测试 allow-create')
-  await dropdown.getByRole('listitem').filter({ hasText: '测试 allow-create' }).click()
+  await dropdown.getByText('测试 allow-create').click()
   await expect(input).toHaveValue('测试 allow-create')
 
   await input.click()
   await expect(input).toHaveValue('')
-  await expect(dropdown.getByRole('listitem').filter({ hasText: '测试 allow-create' })).toHaveClass(/selected/)
+  await expect(dropdown.getByRole('option').filter({ hasText: '测试 allow-create' })).toHaveClass(/selected/)
 })
 
 test('enter 选中', async ({ page }) => {
@@ -46,5 +46,5 @@ test('enter 选中', async ({ page }) => {
   await input.click()
 
   await expect(input).toHaveValue('')
-  await expect(dropdown.getByRole('listitem').filter({ hasText: 'ab' })).toHaveClass(/selected/)
+  await expect(dropdown.getByRole('option').filter({ hasText: 'ab' })).toHaveClass(/selected/)
 })
