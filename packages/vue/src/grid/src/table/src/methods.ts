@@ -896,9 +896,9 @@ const Methods = {
     return this.scrollLoad ? this.scrollLoad.pageSize || 10 : this._graphInfo?.graphed.length || 0
   },
   getRowById(rowid) {
-    let { fullDataRowIdData } = this
-    let rowCache = fullDataRowIdData[rowid]
-    return rowCache ? rowCache.row : null
+    let { fullDataRowIdData, editStore } = this
+    let rowCache = fullDataRowIdData[rowid]?.row || editStore?.insertMap?.get(rowid)
+    return rowCache || null
   },
   // 获取处理后的表格数据
   getTableData() {
