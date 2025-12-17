@@ -1,0 +1,17 @@
+# .github/workflows/notify-main.yml
+name: Notify Main Project
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger main repo workflow
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/opentiny/docs/dispatches \
+          -d '{"event_type":"submodule-updated"}'
