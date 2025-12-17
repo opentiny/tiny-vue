@@ -1,4 +1,4 @@
-name: Verify Main Repository Build
+name: Auto Build Main Module Docs
 
 on:
   pull_request:
