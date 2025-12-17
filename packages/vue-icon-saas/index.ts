@@ -1433,6 +1433,12 @@ export const IconTotalNolume = () => ({
 export const iconTotalNolume = IconTotalNolume
 export const IconSubScript = () => ({ ...IconSubscript(), name: 'IconSubScript', deprecatedBy: 'IconSubscript' })
 export const iconSubScript = IconSubScript
+export const IconWriteProductioPlan = () => ({
+  ...IconWriteProductionPlan(),
+  name: 'IconWriteProductioPlan',
+  deprecatedBy: 'IconWriteProductionPlan'
+})
+export const iconWriteProductioPlan = IconWriteProductioPlan
 
 export default {
   IconAbnormalCheckIn,
@@ -2139,5 +2145,6 @@ export default {
   IconWord,
   IconZip,
   IconTotalNolume,
-  IconSubScript
+  IconSubScript,
+  IconWriteProductioPlan
 }
