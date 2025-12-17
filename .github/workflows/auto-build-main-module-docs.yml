@@ -14,10 +14,14 @@ jobs:
       pull-requests: write
     
     steps:
+    - uses: webfactory/ssh-agent@v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY }}
     - name: Checkout submodule repo
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        token: ${{ secrets.PAT_TOKEN }}
 
     - name: Checkout main repository
       run: |
