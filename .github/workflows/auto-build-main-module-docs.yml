@@ -14,9 +14,12 @@ jobs:
       pull-requests: write
     
     steps:
-      - uses: webfactory/ssh-agent@v0.8.0
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
+          log-public-key: true  # 可选，显示公钥指纹
+
       - name: Checkout submodule repo
         uses: actions/checkout@v4
         with:
