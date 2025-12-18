@@ -11,7 +11,7 @@
 
 <script setup>
 import { watch, computed, ref } from 'vue'
-import { TinyButtonGroup, TinyNotify } from '@opentiny/vue'
+import { TinyButtonGroup } from '@opentiny/vue'
 import { fetchDemosFile, useTemplateMode } from '@/tools'
 import ComponentDocs from './common.vue'
 import { getWebdocPath } from './cmp-config'
@@ -21,20 +21,9 @@ const { templateModeState, staticPath, optionsList } = useTemplateMode()
 const cmpRef = ref()
 watch(
   () => templateModeState.mode,
-  (newMode) => {
+  () => {
     if (cmpRef.value) {
       cmpRef.value.loadPage()
-    }
-
-    // 当切换到 mobile-first 模式时显示提示
-    if (newMode === 'mobile-first') {
-      TinyNotify({
-        type: 'info',
-        title: '温馨提示',
-        message: '打开演练场支持查看大小屏多端效果',
-        duration: 3000, // 3秒后自动关闭
-        position: 'bottom-right'
-      })
     }
   }
 )

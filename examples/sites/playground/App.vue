@@ -1,23 +1,24 @@
 <script setup lang="jsx">
-import maxScreen from './assets/big.png'
-import minScreen from './assets/small.png'
-import { onMounted, reactive, nextTick, ref, watch } from 'vue'
+import { onMounted, reactive, nextTick, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
 import Editor from '@vue/repl/codemirror-editor'
-import { TinyButtonGroup, TinyButton, TinySelect, TinyOption, TinySwitch, Notify } from '@opentiny/vue'
+import { TinyButton, TinySelect, TinyOption, Notify, TinyTooltip } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components-doc/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
+import Set from './icons/Set.vue'
+import Layout from './icons/Layout.vue'
+import Reverse from './icons/Reverse.vue'
+import Vertical from './icons/Vertical.vue'
 
 const VERSION = 'tiny-vue-version-3.27'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
-const SIZE_KEY = 'repl-panel-size' // 存储小屏状态
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
@@ -25,16 +26,15 @@ const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview'
-const replRef = ref()
-const isSmallScreen = ref(false) // 添加响应式变量记录当前状态
-
 const versions = ['3.27', '3.26', '3.25']
+const manualShow = ref(false)
+
 const getVersion = () => {
   if (isPreview) {
     return versions[0]
   }
   if (versions.includes(localStorage.getItem(VERSION))) {
-    localStorage.getItem(VERSION)
+    return localStorage.getItem(VERSION)
   }
   return versions[0]
 }
@@ -151,6 +151,40 @@ const designThemeMap = {
   old: 'tinyOldTheme'
 }
 
+// 定义选项数据
+const layoutItems = [
+  {
+    id: 1,
+    text: '水平布局',
+    iconPath: 'Layout'
+  },
+  {
+    id: 2,
+    text: '垂直布局',
+    iconPath: 'Vertical'
+  },
+  {
+    id: 3,
+    text: '布局反转',
+    iconPath: 'Reverse'
+  }
+]
+
+// 选中状态管理
+const selectedIndex = ref(0)
+
+// 选择 item 函数
+const selectItem = (index) => {
+  selectedIndex.value = index
+  if (index === 0) {
+    changeLayout('horizon')
+  } else if (index === 1) {
+    changeLayout('vertical')
+  } else {
+    changeReserve()
+  }
+}
+
 function setTinyDesign() {
   let importCode = ''
   let useCode = ''
@@ -211,11 +245,10 @@ function changeLayout(layout) {
   state.layout = layout
 }
 
-function changeReserve(isReserve) {
+function changeReserve() {
+  state.layoutReverse = !state.layoutReverse
+  localStorage.setItem(LAYOUT_REVERSE, state.layoutReverse)
   insertStyleDom(state.selectVersion)
-  localStorage.setItem(LAYOUT_REVERSE, isReserve)
-  // 切换反转时，根据当前大小屏状态重新设置尺寸
-  setPanelSize(isSmallScreen.value)
 }
 
 function getDemoName(name, apiMode) {
@@ -238,122 +271,6 @@ const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
   store.addFile(new File(fileName, code, false))
   versionChange(latestVersion)
 }
-
-// 设置面板尺寸（区分布局和大小屏模式）
-const setPanelSize = (isSmall) => {
-  // 添加判断：仅在mobile-first模式下执行
-  if (!isMobileFirst) return
-
-  nextTick(() => {
-    const replEl = replRef.value?.$el
-    if (!replEl) return
-
-    const isVertical = state.layout === 'vertical'
-
-    if (isVertical) {
-      // 垂直布局：控制内部left和right宽度都为30%
-      const splitPane = replEl.querySelector('.split-pane') || replEl
-      if (!splitPane || splitPane.children.length < 2) return
-
-      const panels = Array.from(splitPane.children).filter(
-        (child) => child.nodeType === 1 && !child.classList.contains('dragger')
-      )
-
-      if (panels.length >= 2) {
-        const panelA = panels[0] // 编辑器
-        const panelB = panels[1] // 预览
-
-        if (isSmall) {
-          // 小屏：left和right都占30%
-          panelA.style.width = '30%'
-          panelB.style.width = '30%'
-          panelA.style.flexBasis = '30%'
-          panelB.style.flexBasis = '30%'
-        } else {
-          // 大屏：恢复默认平分
-          panelA.style.width = '100%'
-          panelB.style.width = '100%'
-          panelA.style.flexBasis = '100%'
-          panelB.style.flexBasis = '100%'
-        }
-        panelA.style.flexGrow = '0'
-        panelB.style.flexGrow = '0'
-      }
-    } else {
-      // 水平布局：控制内部面板比例
-      const splitPane = replEl.querySelector('.split-pane') || replEl
-      if (!splitPane || splitPane.children.length < 2) return
-
-      const panels = Array.from(splitPane.children).filter(
-        (child) => child.nodeType === 1 && !child.classList.contains('dragger')
-      )
-
-      if (panels.length >= 2) {
-        const panelA = panels[0]
-        const panelB = panels[1]
-
-        if (isSmall) {
-          // 小屏模式
-          if (state.layoutReverse) {
-            // 反转布局：左侧预览30%，右侧编辑器70%
-            panelA.style.width = '30%'
-            panelB.style.width = '70%'
-            panelA.style.flexBasis = '30%'
-            panelB.style.flexBasis = '70%'
-          } else {
-            // 默认布局：左侧编辑器70%，右侧预览30%
-            panelA.style.width = '70%'
-            panelB.style.width = '30%'
-            panelA.style.flexBasis = '70%'
-            panelB.style.flexBasis = '30%'
-          }
-        } else {
-          // 大屏：恢复默认平分
-          panelA.style.width = '50%'
-          panelB.style.width = '50%'
-          panelA.style.flexBasis = '50%'
-          panelB.style.flexBasis = '50%'
-        }
-        panelA.style.flexGrow = '0'
-        panelB.style.flexGrow = '0'
-      }
-    }
-
-    localStorage.setItem(SIZE_KEY, isSmall ? 'small' : 'large')
-  })
-}
-
-// 恢复保存的尺寸
-const restorePanelSize = () => {
-  // 添加判断：仅在mobile-first模式下执行
-  if (!isMobileFirst) return
-
-  nextTick(() => {
-    const saved = localStorage.getItem(SIZE_KEY)
-    if (saved === 'small') {
-      isSmallScreen.value = true // 恢复状态
-      setPanelSize(true)
-    } else {
-      isSmallScreen.value = false // 默认大屏
-    }
-  })
-}
-
-// 大小屏按钮点击事件
-const maxClick = () => {
-  isSmallScreen.value = false
-  setPanelSize(false)
-}
-
-const minClick = () => {
-  isSmallScreen.value = true
-  setPanelSize(true)
-}
-
-// 监听布局变化和反转变化，自动恢复尺寸
-watch([() => state.layout, () => state.layoutReverse], () => {
-  restorePanelSize()
-})
 
 // 分享功能
 const share = () => {
@@ -393,9 +310,6 @@ onMounted(() => {
       loadFileCode({ cmpId, fileName, apiMode, mode })
     }
   }
-
-  // 初始化时恢复尺寸
-  restorePanelSize()
 })
 </script>
 
@@ -406,46 +320,57 @@ onMounted(() => {
       <span class="mobile-hide">OpenTiny Vue 演练场</span>
     </div>
     <div>
-      <!-- 添加判断：仅在mobile-first模式下显示 -->
-      <span v-if="isMobileFirst" class="ml20 mobile-hide">
-        <span class="screen-title">大小屏:</span>
-        <img
-          :src="maxScreen"
-          :class="{ active: !isSmallScreen }"
-          class="screen-btn"
-          @click="maxClick"
-          title="大屏（恢复默认）"
-        />
-        <img
-          :src="minScreen"
-          :class="{ active: isSmallScreen }"
-          class="screen-btn"
-          @click="minClick"
-          title="小屏（水平：预览30% | 垂直：left/right各30%）"
-        />
-      </span>
-      <span class="ml20 mobile-hide">
-        布局方向:
-        <tiny-button-group :data="state.layoutOptions" v-model="state.layout" @change="changeLayout" />
-      </span>
-      <span class="ml20 mobile-hide">
-        布局反转:
-        <tiny-switch v-model="state.layoutReverse" mini @change="changeReserve" />
-      </span>
-      <span class="ml20">
-        <span class="mobile-hide">OpenTiny Vue 版本: </span>
+      <div class="select-opt">
         <tiny-select
           v-model="state.selectVersion"
-          style="width: 150px"
+          style="width: 200px"
           :disabled="isPreview"
           @change="selectVersion"
           @click="showNotify"
+          size="medium"
         >
-          <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value" />
+          <tiny-option
+            v-for="item in state.versions"
+            :key="item.value"
+            :label="`版本：${item.value}`"
+            :value="item.value"
+          />
         </tiny-select>
-      </span>
-      <Share @click="share" title="分享" class="share" />
-      <a style="display: flex" href="https://github.com/opentiny/tiny-vue   " target="_blank">
+      </div>
+      <tiny-tooltip v-model="manualShow" placement="top" effect="light" manual>
+        <template #content>
+          <div class="tip-ctn">
+            <p class="tip-ctn-title">设置布局</p>
+            <div class="tip-container">
+              <div
+                v-for="(item, index) in layoutItems"
+                :key="item.id"
+                class="tip-element"
+                :class="{ active: selectedIndex === index }"
+                @click="selectItem(index)"
+              >
+                <span class="tip-element-text">{{ item.text }}</span>
+                <span>
+                  <Layout class="tip-element-icon" v-if="item.iconPath === 'Layout'" />
+                </span>
+                <span>
+                  <Vertical class="tip-element-icon" v-if="item.iconPath === 'Vertical'" />
+                </span>
+                <span>
+                  <Reverse class="tip-element-icon" v-if="item.iconPath === 'Reverse'" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="icon-wrapper">
+          <Set title="设置" class="icon-ref" :class="{ active: manualShow }" @click="manualShow = !manualShow" />
+        </div>
+      </tiny-tooltip>
+      <div class="icon-wrapper">
+        <Share @click="share" title="分享" class="icon-ref" />
+      </div>
+      <a style="display: flex" href="https://github.com/opentiny/tiny-vue" target="_blank">
         <GitHub class="github" />
       </a>
     </div>
@@ -461,7 +386,7 @@ onMounted(() => {
   />
 </template>
 
-<style>
+<style lang="less" scoped>
 * {
   box-sizing: border-box;
 }
@@ -510,15 +435,63 @@ onMounted(() => {
   transition: width 0.3s ease; /* 添加宽度过渡 */
 }
 
-.github,
-.share {
-  width: 20px;
-  margin-right: 10px;
+.github {
+  width: 32px;
+  height: 32px;
+  margin: 0 15px;
   cursor: pointer;
 }
 
 .share {
-  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.tip-ctn {
+  background: #fff;
+  padding: 8px 10px;
+
+  &-title {
+    margin: 0 0 10px 0;
+  }
+}
+
+.split-line {
+  width: 1px;
+  height: 12px;
+  background-color: #dbdbdb;
+  margin: 0 15px;
+}
+
+.select-opt {
+  margin-right: 15px;
+  .tiny-select .tiny-input .tiny-input__inner {
+    height: 32px;
+  }
+}
+
+.icon-wrapper {
+  padding: 9px;
+  margin: 0 6px;
+
+  &:hover {
+    background-color: #f5f5f5;
+    border-radius: 50%;
+  }
+
+  &:active {
+    background-color: #f5f5f5;
+    border-radius: 50%;
+  }
+}
+
+.icon-ref {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  display: block;
 }
 
 /* 添加高亮样式 */
@@ -535,22 +508,73 @@ onMounted(() => {
   box-shadow: 0 0 8px rgba(64, 158, 255, 0.5);
 }
 
-.vue-repl .left,
-.vue-repl .right,
-.vue-repl .top,
-.vue-repl .bottom {
-  transition: all 0.3s ease;
-}
-
-.screen-btn {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
 .screen-title {
   display: inline-block;
   vertical-align: top;
   margin-right: 4px;
+}
+
+.tip-container {
+  display: flex;
+  flex-direction: row;
+  padding: 4px 2px;
+  gap: 20px;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tip-element {
+  width: 112px;
+  height: 40px;
+  background-color: #fafafa;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tip-element:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.tip-element.active {
+  border: 1px solid #191919;
+  background-color: #f5f5f5;
+}
+
+.tip-element-text {
+  color: #191919;
+  font-size: 12px;
+  font-weight: 400;
+  margin-right: 8px;
+  letter-spacing: 0.2px;
+}
+
+.tip-element-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 6px;
+  transition: all 0.3s ease;
+}
+
+.tip-element.active .tip-element-icon {
+  transform: scale(1.1);
+}
+
+.tip-element:active {
+  transform: scale(0.98);
+}
+
+.tip-element.active:active {
+  transform: scale(0.98);
 }
 </style>

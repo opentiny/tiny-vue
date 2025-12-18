@@ -9,6 +9,14 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
+  <div class="docs-content-tips" v-if="templateModeState.mode === 'mobile-first'">
+    <div>
+      <tiny-alert
+        description="温馨提示：多端打开演练场，移动左右面板的分隔线，可查看大小屏多端效果"
+        center
+      ></tiny-alert>
+    </div>
+  </div>
   <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
@@ -100,9 +108,9 @@
 <script setup lang="ts">
 import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyAlert } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
-import { i18nByKey, getWord, $clone, useApiMode } from '@/tools'
+import { i18nByKey, getWord, $clone, useApiMode, useTemplateMode } from '@/tools'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
 import DemoBox from '../../components/demo.vue'
@@ -125,7 +133,7 @@ const emit = defineEmits(['single-demo-change', 'load-page'])
 defineOptions({
   name: 'CmpPageVue'
 })
-
+const { templateModeState } = useTemplateMode()
 const scrollRef = ref()
 const { apiModeState } = useApiMode()
 const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
@@ -491,6 +499,9 @@ defineExpose({ loadPage })
 </script>
 
 <style lang="less" scoped>
+.docs-content-tips {
+  width: 100%;
+}
 .docs-content {
   flex: 1;
   overflow: hidden auto;
