@@ -14,12 +14,6 @@ jobs:
       pull-requests: write
     
     steps:
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
-          log-public-key: true  # 可选，显示公钥指纹
-
       - name: Checkout submodule repo
         uses: actions/checkout@v4
         with:
@@ -29,6 +23,8 @@ jobs:
       - name: Checkout main repository
         run: |
           # 克隆主仓库
+          echo $${{ secrets.PAT_TOKEN }}
+          echo ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
           git clone https://github.com/opentiny/docs.git docs
           cd docs
           
