@@ -23,7 +23,7 @@ jobs:
       - name: Checkout main repository
         run: |
           # 克隆主仓库
-          echo $${{ secrets.PAT_TOKEN }}
+          echo ${{ secrets.PAT_TOKEN }}
           echo ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
           git clone https://github.com/opentiny/docs.git docs
           cd docs
