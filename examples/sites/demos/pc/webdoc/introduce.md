@@ -1,10 +1,10 @@
-# OpenTiny Design of Vue
+# TinyVue
 
-是基于 OpenTiny Design 设计体系的 Vue UI 组件库，一套跨端、跨框架的企业级 UI 组件库，支持 Vue 2 和 Vue 3，支持 PC 端和移动端。
+TinyVue 是一个跨端、跨框架的企业级 UI 组件库，基于 OpenTiny Design 设计体系，支持 Vue 2 和 Vue 3，支持 PC 端和移动端。
 
 🌈 特性：
 
-- 📦 包含 110 多个简洁、易用、功能强大的组件
+- 📦 包含 130 多个简洁、易用、功能强大的组件
 - 🖖 一套代码同时支持 Vue 2 和 Vue 3
 - 🖥️ 一套代码同时支持 PC 端和移动端
 - 🌍 支持国际化
@@ -38,17 +38,14 @@ OpenTiny 采用组件与框架分离的设计理念（Renderless 架构），将
 
 历经 9 年时间打磨，服务于公司内外部1500多个业务，稳定、可靠、安全。
 
-PC 端包含 80 多个组件，移动端包含 30 多个组件，Table、Tree、Select 等高频组件均内置虚拟滚动，在大数据场景下保持丝滑体验。
+PC 端包含 130 多个组件，移动端包含 30 多个组件，Table、Tree、Select 等高频组件均内置虚拟滚动，在大数据场景下保持丝滑体验。
 
 除了业界组件库都有的组件，我们也提供了一些 OpenTiny 独有的特色组件：
 
-Split 面板分隔器
-
-IpAddress IP 地址输入框
-
-Calendar 日历
-
-Crop 图片裁切
+- Split 面板分隔器
+- IpAddress IP 地址输入框
+- CalendarView 日历
+- Crop 图片裁切
 
 欢迎大家体验和使用！
 
@@ -64,4 +61,4 @@ React 组件的业务逻辑借助 React Hooks API，Vue 组件的业务逻辑借
 
 技术架构图：
 
-<img src="./architecture.png" alt="image-9" style="max-width:690px"/>
+<img src="./architecture.png" alt="TinyVue architecture diagram" />
