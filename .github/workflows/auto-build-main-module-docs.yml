@@ -14,12 +14,6 @@ jobs:
       pull-requests: write
     
     steps:
-      - name: Checkout submodule repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PAT_TOKEN }}
-
       - name: Checkout main repository
         run: |
           # 克隆主仓库
