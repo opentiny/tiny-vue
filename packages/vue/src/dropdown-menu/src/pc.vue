@@ -18,6 +18,7 @@
       v-show="state.showPopper"
       @mouseenter="handleMouseenter"
       @mouseleave="handleMouseleave"
+      role="menu"
     >
       <template v-if="state.initShowPopper || state.showPopper">
         <slot :selected-index="state.selectedIndex">
