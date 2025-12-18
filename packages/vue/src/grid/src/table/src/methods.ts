@@ -408,8 +408,8 @@ const Methods = {
   },
   /** 设置数据查找缓存，对数据进行备份，深度克隆  */
   updateCache(backup = false, deepCopy = false) {
-    const { rawData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
-    const newArray = isArray(rawData) ? rawData.slice(0) : []
+    const { tableFullData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
+    const newArray = isArray(tableFullData) ? tableFullData.slice(0) : []
     const rowKey = getRowkey(this)
     const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
