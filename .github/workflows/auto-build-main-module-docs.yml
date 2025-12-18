@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: webfactory/ssh-agent@v0.8.0
       with:
-        ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+        ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
     - name: Checkout submodule repo
       uses: actions/checkout@v4
       with:
