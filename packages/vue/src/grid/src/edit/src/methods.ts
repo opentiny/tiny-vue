@@ -252,14 +252,14 @@ export default {
    * 如果还额外传了field则还原指定单元格。
    */
   _revertData(rows, field) {
-    let { tableSynchData } = this
+    let { rawData } = this
 
     if (arguments.length && rows && !isArray(rows)) {
       rows = [rows]
     }
 
     if (!arguments.length) {
-      rows = tableSynchData || []
+      rows = rawData || []
     }
 
     for (let i = 0; i < rows.length; i++) {
@@ -281,7 +281,7 @@ export default {
       return this.$nextTick()
     }
 
-    return this.reloadData(tableSynchData)
+    return this.reloadData(rawData || [])
   },
 
   /**

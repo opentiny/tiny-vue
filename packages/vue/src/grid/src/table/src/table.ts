@@ -708,7 +708,7 @@ export default defineComponent({
     // 模板引用
     const tableWrapper = hooks.ref()
 
-    const { rawData, rawDataVersion } = useNormalData({ props, visibleColumn })
+    const { rawData, rawDataVersion } = useNormalData({ props, tableFullColumn })
 
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))

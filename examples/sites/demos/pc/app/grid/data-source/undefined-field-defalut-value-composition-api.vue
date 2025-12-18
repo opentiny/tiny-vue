@@ -2,6 +2,9 @@
   <div>
     <tiny-button @click="addRow">新增行</tiny-button>
     <tiny-grid ref="gridRef" :data="tableData" :edit-config="editConfig">
+      <template #toolbar>
+        <tiny-grid-toolbar id="undefined-field-defalut-value" :setting="{ storage: 'local' }"></tiny-grid-toolbar>
+      </template>
       <tiny-grid-column field="field1" title="所属区域" :editor="{}">
         <template #edit="{ row }">
           <tiny-input v-model="row.field1" />
@@ -22,7 +25,7 @@
 </template>
 
 <script setup>
-import { TinyGrid, TinyGridColumn, TinyInput, TinyButton } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyButton, TinyGridToolbar } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const tableData = ref([

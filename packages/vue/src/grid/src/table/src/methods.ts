@@ -296,8 +296,8 @@ const Methods = {
     editStore.insertList = []
     editStore.insertMap = new Map()
     editStore.removeList = []
-    // 设置全量数据，原始数据，行虚滚标记
-    Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
+    // 设置全量数据，行虚滚标记
+    Object.assign(this, { tableFullData, scrollYLoad })
 
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
@@ -585,7 +585,7 @@ const Methods = {
   hasIndexColumn(column) {
     return column?.type === 'index'
   },
-  defineField(row, copy) {
+  defineField(row, copy, editorColumns, cache) {
     if (!row || typeof row !== 'object') return row
 
     if (copy) {
@@ -593,13 +593,25 @@ const Methods = {
     }
 
     const rowKey = getRowkey(this)
+    const columns = editorColumns || this.visibleColumn
 
-    this.visibleColumn.forEach(({ property, editor }) => {
+    columns.forEach((column) => {
+      const { property, editor } = column
       const propNotExist = property && !has(row, property)
+
       // 对于可编辑表格，如果编辑器对应数据行字段不存在，就修复这种字段为值 editor.defaultValue 或者 null
       const propDefaultValue = editor && !isUndefined(editor.defaultValue) ? editor.defaultValue : null
 
       if (propNotExist) {
+        // 在增加可编辑列时，同步修改原始备份，保证字段存在
+        if (cache) {
+          const originRow = this.getOriginRow(row)
+
+          if (originRow) {
+            originRow[property] = propDefaultValue
+          }
+        }
+
         if (isVue2) {
           this.$set(row, property, propDefaultValue)
         } else {
@@ -607,6 +619,7 @@ const Methods = {
         }
       }
     })
+
     // 如果行数据的唯一主键不存在，则生成
     const rowId = get(row, rowKey)
     if (isNull(rowId) || rowId === '') {
@@ -751,7 +764,7 @@ const Methods = {
   },
   // 获取表格所有数据
   getData(rowIndex) {
-    const allRows = this.rawData || this.tableSynchData
+    const allRows = this.rawData || []
 
     if (!arguments.length) {
       return allRows.slice(0)
@@ -883,9 +896,9 @@ const Methods = {
     return this.scrollLoad ? this.scrollLoad.pageSize || 10 : this._graphInfo?.graphed.length || 0
   },
   getRowById(rowid) {
-    let { fullDataRowIdData } = this
-    let rowCache = fullDataRowIdData[rowid]
-    return rowCache ? rowCache.row : null
+    let { fullDataRowIdData, editStore } = this
+    let rowCache = fullDataRowIdData[rowid]?.row || editStore?.insertMap?.get(rowid)
+    return rowCache || null
   },
   // 获取处理后的表格数据
   getTableData() {

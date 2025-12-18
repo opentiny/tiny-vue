@@ -10,6 +10,18 @@
     @apply h-full;
     @apply overflow-hidden;
     box-shadow: 0 0 0 theme('borderWidth.DEFAULT') theme('colors.color.border.separator.DEFAULT');
+
+    // 无边框模式
+    &.no-border {
+      @apply border-0;
+      box-shadow: none;
+    }
+
+    // split嵌套使用内部不需要圆角和边框
+    & & {
+      @apply rounded-none;
+      @apply border-0;
+    }
   }
 
   &-pane {
