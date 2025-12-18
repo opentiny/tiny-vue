@@ -1,7 +1,7 @@
 name: Auto Build Main Module Docs
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [dev]
   push:
     branches: [dev]
@@ -14,11 +14,18 @@ jobs:
       pull-requests: write
     
     steps:
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
+      - name: Checkout submodule repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN }}
+
       - name: Checkout main repository
         run: |
           # 克隆主仓库
-          echo ${{ secrets.PAT_TOKEN }}
-          echo ${{ secrets.SUBMODULE_SSH_KEY_PRIVATE }}
           git clone https://github.com/opentiny/docs.git docs
           cd docs
           
