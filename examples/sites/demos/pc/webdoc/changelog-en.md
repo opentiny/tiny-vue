@@ -1,6 +1,6 @@
 # Changelog
 
-The Tiny Vue team uses a monthly release strategy under normal circumstances.
+The Tiny Vue team1 uses a monthly release strategy under normal circumstances.
 
 On this page, you can only see the log records of the latest three iterations of our changelog. If you want to see the full record, you can view: [Release](https://github.com/opentiny/tiny-vue/releases)
 
