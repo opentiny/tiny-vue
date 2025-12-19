@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { TinySelect, TinyOption, TinyModal } from '@opentiny/vue'
+import { TinySelectWrapper as TinySelect, TinyOption, TinyModal } from '@opentiny/vue'
 
 export default {
   components: {

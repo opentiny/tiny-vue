@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('配置式配置映射字段', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#map-field')
+  await page.goto('select-wrapper#map-field')
   const wrap = page.locator('#map-field')
   const select = wrap.locator('.tiny-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
@@ -22,7 +22,7 @@ test('配置式配置映射字段', async ({ page }) => {
 
 test('嵌套表格配置映射字段', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#map-field')
+  await page.goto('select-wrapper#map-field')
   const wrap = page.locator('#map-field')
   const select = wrap.locator('.tiny-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')

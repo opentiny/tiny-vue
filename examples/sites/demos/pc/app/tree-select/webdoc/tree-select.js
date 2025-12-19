@@ -69,6 +69,20 @@ export default {
       codeFiles: ['disabled.vue']
     },
     {
+      demoId: 'lazy',
+      name: {
+        'zh-CN': '懒加载',
+        'en-US': 'Lazy loading'
+      },
+      desc: {
+        'zh-CN':
+          '通过 <code>lazy</code> 属性，启用懒加载模式。<br>通过 <code>load</code> 函数属性，触发加载，初始会执行一次。<br>通过 <code>after-load</code> 函数属性，监听下级节点加载完毕的事件。',
+        'en-US':
+          'Enable lazy loading mode with the <code>lazy</code> property. <br>load is triggered by the <code>load</code> function property, which is initially executed once. <br>afterLoad </code> function properties are used to listen for events when a subordinate node has finished loading.'
+      },
+      codeFiles: ['lazy.vue']
+    },
+    {
       demoId: 'map-field',
       name: {
         'zh-CN': '映射字段',

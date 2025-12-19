@@ -3,13 +3,13 @@ import { expect, test } from '@playwright/test'
 test.describe('下拉表格远程搜索', () => {
   test('单选,下拉表格远程搜索基础用法', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('select#nest-grid-remote')
+    await page.goto('select-wrapper#nest-grid-remote')
 
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(0)
     const input = select.locator('.tiny-input__inner')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = dropdown.locator('.tiny-input__suffix .tiny-select__caret')
+    const suffixSvg = dropdown.locator('.tiny-input__suffix .tiny-base-select__caret')
 
     await expect(suffixSvg).toBeHidden()
     await expect(dropdown).toBeHidden()
@@ -24,8 +24,8 @@ test.describe('下拉表格远程搜索', () => {
     await page.waitForTimeout(200)
     await expect(dropdown.locator('.tiny-grid__body tbody')).not.toBeEmpty()
 
-    const row1 = page.getByRole('row', { name: '省份 1 城市 1 区域 1' })
-    const row2 = page.getByRole('row', { name: '省份 2 城市 2 区域 2' })
+    const row1 = page.getByRole('row', { name: '省份 1 城市 1 区域' })
+    const row2 = page.getByRole('row', { name: '省份 2 城市 2 区域' })
     await expect(row2).not.toBeVisible()
     await row1.getByRole('cell').first().click()
     await expect(row1).toHaveClass(/row__current/)
@@ -39,13 +39,13 @@ test.describe('下拉表格远程搜索', () => {
 
   test('单选,下拉表格远程搜索 + 自动搜索 + 显示按钮', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('select#nest-grid-remote')
+    await page.goto('select-wrapper#nest-grid-remote')
 
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(1)
     const input = select.locator('.tiny-input__inner')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+    const suffixSvg = select.locator('.tiny-input__suffix .tiny-base-select__caret')
 
     await expect(suffixSvg).toBeVisible()
     await expect(dropdown).toBeHidden()
@@ -69,12 +69,12 @@ test.describe('下拉表格远程搜索', () => {
 
   test('多选,下拉表格远程搜索基础用法', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('select#nest-grid-remote')
+    await page.goto('select-wrapper#nest-grid-remote')
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(2)
-    const input = select.locator('.tiny-select__input')
+    const input = select.locator('.tiny-base-select__input')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret').first()
+    const suffixSvg = select.locator('.tiny-input__suffix .tiny-base-select__caret').first()
 
     // 下拉按钮不显示
     await expect(suffixSvg).toBeHidden()
@@ -101,13 +101,13 @@ test.describe('下拉表格远程搜索', () => {
 
   test('多选,下拉表格远程搜索 + 自动搜索 + 显示按钮', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('select#nest-grid-remote')
+    await page.goto('select-wrapper#nest-grid-remote')
 
     const wrap = page.locator('#nest-grid-remote')
     const select = wrap.locator('.tiny-select').nth(3)
-    const input = select.locator('.tiny-select__input')
+    const input = select.locator('.tiny-base-select__input')
     const dropdown = page.locator('body > .tiny-select-dropdown')
-    const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret').first()
+    const suffixSvg = select.locator('.tiny-input__suffix .tiny-base-select__caret').first()
     const tag = select.locator('.tiny-tag')
 
     await expect(suffixSvg).toBeVisible()

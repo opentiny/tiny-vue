@@ -375,7 +375,7 @@
           :is-drop-inherit-width="isDropInheritWidth"
           :placement="placement"
           :append-to-body="popperAppendToBody"
-          v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
+          v-show="!onCopying() && !hideDrop && state.visible && (slots.panel || state.emptyText !== false)"
           :style="dropStyle"
           :popper-options="popperOptions"
           :class="m('duration-300')"

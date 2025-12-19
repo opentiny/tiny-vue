@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('show-alloption', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#show-alloption')
+  await page.goto('select-wrapper#show-alloption')
 
   const wrap = page.locator('#show-alloption')
   const select = wrap.locator('.tiny-select')

@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test'
 
 test('popup-style-position', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#popup-style-position')
+  await page.goto('select-wrapper#popup-style-position')
 
   const wrap = page.locator('#popup-style-position')
   const select = wrap.locator('.tiny-select')
-  const dropdown = select.locator('.tiny-select__tags-group > .tiny-select-dropdown')
+  const dropdown = page.locator('.tiny-select-dropdown')
 
   await select.click()
   await expect(dropdown).toHaveCount(1)

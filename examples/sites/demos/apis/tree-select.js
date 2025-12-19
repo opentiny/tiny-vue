@@ -264,6 +264,44 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'map-field'
+        },
+        {
+          name: 'lazy',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否懒加载子节点，配合 load 属性使用',
+            'en-US': 'Whether to lazily load child nodes and use them in conjunction with the load attribute'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'lazy',
+          mfDemo: 'lazy'
+        },
+        {
+          name: 'load',
+          type: '(node, resolve) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '加载子树数据的方法。点击节点后，组件开始调用load方法，只有在load函数内调用resolve(data)，才表示返回下级的数据成功。',
+            'en-US':
+              'Method of loading subtree data. After the node is clicked, the component starts to call the load method. Only when resolve(data) is called in the load function, the data at the lower level is successfully returned.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'lazy',
+          mfDemo: 'lazy'
+        },
+        {
+          name: 'after-load',
+          type: 'Function',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '节点懒加载完成后的回调函数',
+            'en-US': 'Callback function after node lazy loading is completed'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'lazy',
+          mfDemo: 'lazy'
         }
       ]
     }
@@ -281,6 +319,9 @@ interface ITreeNode {
 
 interface ITreeOption {
   data: ITreeNode[] // 树数据，用法同 Tree
+  lazy?: boolean // 是否懒加载子节点
+  load?: (node: ITreeNodeVm, resolve: IResolveType) => void // 加载子树数据的方法
+  afterLoad?: (data: any) => void // 节点懒加载完成后的回调函数
 }
 `
     },

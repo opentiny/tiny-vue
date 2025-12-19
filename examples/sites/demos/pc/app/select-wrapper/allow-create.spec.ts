@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('点击选中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.waitForTimeout(300)
-  await page.goto('select#allow-create')
+  await page.goto('select-wrapper#allow-create')
 
   const wrap = page.locator('#allow-create')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -16,18 +16,18 @@ test('点击选中', async ({ page }) => {
   await input.dispatchEvent('keyup', { KeyboardEvent })
 
   await expect(input).toHaveValue('测试 allow-create')
-  await dropdown.getByRole('listitem').filter({ hasText: '测试 allow-create' }).click()
+  await dropdown.locator('.tiny-option').filter({ hasText: '测试 allow-create' }).click()
   await expect(input).toHaveValue('测试 allow-create')
 
   await input.click()
   await expect(input).toHaveValue('')
-  await expect(dropdown.getByRole('listitem').filter({ hasText: '测试 allow-create' })).toHaveClass(/selected/)
+  await expect(dropdown.locator('.tiny-option').filter({ hasText: '测试 allow-create' })).toHaveClass(/selected/)
 })
 
 test('enter 选中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.waitForTimeout(300)
-  await page.goto('select#allow-create')
+  await page.goto('select-wrapper#allow-create')
 
   const wrap = page.locator('#allow-create')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -46,5 +46,5 @@ test('enter 选中', async ({ page }) => {
   await input.click()
 
   await expect(input).toHaveValue('')
-  await expect(dropdown.getByRole('listitem').filter({ hasText: 'ab' })).toHaveClass(/selected/)
+  await expect(dropdown.locator('.tiny-option').filter({ hasText: 'ab' })).toHaveClass(/selected/)
 })
