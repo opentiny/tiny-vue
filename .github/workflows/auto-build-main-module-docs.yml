@@ -4,11 +4,11 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'examples/docs/**'
+      - 'examples/sites/demos/pc/webdoc/**'
   push:
-    branches: [dev]
-    paths:
-      - 'examples/docs/**'
+      branches: [dev]
+      paths:
+      - 'examples/sites/demos/pc/webdoc/**'
 
 jobs:
   verify-main-build:
