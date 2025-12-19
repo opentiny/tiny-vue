@@ -3,8 +3,12 @@ name: Auto Build Main Module Docs
 on:
   pull_request:
     branches: [dev]
+    paths:
+      - 'examples/docs/**'
   push:
     branches: [dev]
+    paths:
+      - 'examples/docs/**'
 
 jobs:
   verify-main-build:
