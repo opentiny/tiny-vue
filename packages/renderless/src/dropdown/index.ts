@@ -179,7 +179,7 @@ export const initAria =
   ({ state, props }: Pick<IDropdownRenderlessParams, 'state' | 'props'>) =>
   () => {
     state.dropdownElm?.setAttribute('id', state.listId)
-    state.triggerElm?.setAttribute('aria-haspopup', 'list')
+    state.triggerElm?.setAttribute('aria-haspopup', 'menu')
     state.triggerElm?.setAttribute('aria-controls', state.listId)
 
     if (!props.splitButton || !props.singleButton) {

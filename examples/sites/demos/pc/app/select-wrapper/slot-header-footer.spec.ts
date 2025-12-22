@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('底部插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#slot-header-footer')
+  await page.goto('select-wrapper#slot-header-footer')
 
   const wrap = page.locator('#slot-header-footer')
   const select = wrap.locator('.tiny-select')

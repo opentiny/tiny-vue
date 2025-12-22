@@ -3,6 +3,8 @@ name: Auto Deploy Docs
 on:
   push:
     branches: [dev]
+    paths:
+      - 'examples/sites/demos/pc/webdoc/**'
 
 jobs:
   notify:

@@ -152,7 +152,7 @@ export default defineComponent({
             class={`tiny-dropdown__caret-button ${triggerClass}`}
             disabled={disabled}
             reset-time={0}>
-            <ButtonIconDown class={visibleClass}></ButtonIconDown>
+            <ButtonIconDown class={visibleClass} aria-label="down"></ButtonIconDown>
           </tiny-button>
         </tiny-button-group>
       )
@@ -169,7 +169,9 @@ export default defineComponent({
 
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
       const suffixInner = showIcon ? (
-        <span class={'tiny-dropdown__suffix-inner ' + visibleClass}>{suffixSlot || <IconDown></IconDown>}</span>
+        <span class={'tiny-dropdown__suffix-inner ' + visibleClass}>
+          {suffixSlot || <IconDown aria-label="down"></IconDown>}
+        </span>
       ) : (
         ''
       )
@@ -194,7 +196,8 @@ export default defineComponent({
           class={`tiny-dropdown__border ${state.visible ? 'is-expand' : ''}${
             showIcon ? ' is-show-icon ' : ''
           } ${triggerClass}`}
-          reset-time={0}>
+          reset-time={0}
+          aria-label="down">
           {prefixInner}
           {defaultTriggerElm}
           {suffixInner}
@@ -202,7 +205,8 @@ export default defineComponent({
       ) : (
         <span
           ref="trigger"
-          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}>
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${disabled ? ' is-disabled' : ''} ${triggerClass}`}
+          aria-label="down">
           {prefixInner}
           {defaultTriggerElm}
           {suffixInner}

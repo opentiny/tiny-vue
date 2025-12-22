@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { TinySelect, TinyOption } from '@opentiny/vue'
+import { TinySelectWrapper as TinySelect, TinyOption } from '@opentiny/vue'
 import { iconLocation } from '@opentiny/vue-icon'
 
 export default {

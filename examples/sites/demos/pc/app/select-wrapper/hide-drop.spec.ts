@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('hidedrop', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#hide-drop')
+  await page.goto('select-wrapper#hide-drop')
   const wrap = page.locator('#hide-drop')
   const select = wrap.locator('.tiny-select')
   const dropdown = page.locator('body > .tiny-select-dropdown')

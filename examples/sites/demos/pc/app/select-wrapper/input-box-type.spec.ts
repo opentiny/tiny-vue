@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('下划线默认', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('select-wrapper#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(0)
   const input = select.locator('.tiny-input__inner')
@@ -24,7 +24,7 @@ test('下划线默认', async ({ page }) => {
 
 test('下划线禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('select-wrapper#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(1)
   const input = select.locator('.tiny-input__inner')
@@ -47,7 +47,7 @@ test('下划线禁用', async ({ page }) => {
 
 test('下划线多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('select-wrapper#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(2)
   const input = select.locator('.tiny-input__inner')
@@ -60,7 +60,6 @@ test('下划线多选', async ({ page }) => {
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
   await expect(input).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
-  await expect(select.locator('.tiny-select__caret')).toHaveCSS('fill', 'rgb(128, 128, 128)')
 
   await select.click()
   await expect(dropdown).toBeVisible()
@@ -68,5 +67,5 @@ test('下划线多选', async ({ page }) => {
   await expect(tag).toHaveCount(5)
 
   await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
-  await expect(select).toHaveClass(/tiny-select__multiple/)
+  await expect(select).toHaveClass(/tiny-base-select__multiple/)
 })

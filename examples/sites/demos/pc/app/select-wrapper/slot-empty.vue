@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { TinySelect, TinyButton } from '@opentiny/vue'
+import { TinySelectWrapper as TinySelect, TinyButton } from '@opentiny/vue'
 
 export default {
   components: {

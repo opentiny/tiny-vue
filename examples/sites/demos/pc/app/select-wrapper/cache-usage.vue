@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { TinySelect } from '@opentiny/vue'
+import { TinySelectWrapper as TinySelect } from '@opentiny/vue'
 
 export default {
   components: {

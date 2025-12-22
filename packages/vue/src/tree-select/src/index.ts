@@ -100,7 +100,14 @@ export default defineComponent({
     autocomplete: {
       type: String,
       default: 'off'
-    }
+    },
+    // 懒加载相关
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    load: Function,
+    afterLoad: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认空数据文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#no-data-text')
+  await page.goto('select-wrapper#no-data-text')
 
   const wrap = page.locator('#no-data-text')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -15,7 +15,7 @@ test('默认空数据文本', async ({ page }) => {
 
 test('自定义空数据文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#no-data-text')
+  await page.goto('select-wrapper#no-data-text')
 
   const wrap = page.locator('#no-data-text')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -28,7 +28,7 @@ test('自定义空数据文本', async ({ page }) => {
 
 test('显示空数据图片', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#no-data-text')
+  await page.goto('select-wrapper#no-data-text')
   const wrap = page.locator('#no-data-text')
   const select = wrap.locator('.tiny-select').nth(2)
   const input = select.locator('.tiny-input__inner')

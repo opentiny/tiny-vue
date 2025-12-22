@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('选项插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#slot-default')
+  await page.goto('select-wrapper#slot-default')
 
   const wrap = page.locator('#slot-default')
   const select = wrap.locator('.tiny-select').nth(0)

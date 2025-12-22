@@ -65,14 +65,20 @@ export const showTip =
   }
 
 export const defaultOnQueryChange =
-  ({ props, state, constants, api, nextTick }) =>
+  ({ props, state, constants, api, nextTick, vm }) =>
   (value, isInput) => {
-    if (props.remote && (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')) {
-      state.hoverIndex = -1
-      props.remoteMethod && props.remoteMethod(value, props.extraQueryParams)
-    } else if (typeof props.filterMethod === 'function') {
+    // 如果 filterMethod 存在，优先调用它（用于 grid-select 等组件，它们的 filterMethod 内部会处理 remote 搜索）
+    if (typeof props.filterMethod === 'function') {
       props.filterMethod(value)
       state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
+      // 如果同时存在 remoteMethod 且没有使用 panel 插槽，也调用 remoteMethod（兼容其他场景）
+      if (props.remote && typeof props.remoteMethod === 'function' && !vm.$slots?.panel) {
+        state.hoverIndex = -1
+        props.remoteMethod(value, props.extraQueryParams)
+      }
+    } else if (props.remote && (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')) {
+      state.hoverIndex = -1
+      props.remoteMethod && props.remoteMethod(value, props.extraQueryParams)
     } else {
       api.queryChange(value, isInput)
     }

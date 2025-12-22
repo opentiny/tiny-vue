@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('单选无需配置可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('select-wrapper#copy-single')
 
   const wrap = page.locator('#copy-single')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -26,7 +26,7 @@ test('单选无需配置可复制', async ({ page }) => {
 
 test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('select-wrapper#copy-single')
 
   const wrap = page.locator('#copy-single')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -53,7 +53,7 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
 
 test('单选远程搜索配置 allow-copy 可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('select-wrapper#copy-single')
 
   const wrap = page.locator('#copy-single')
   const select = wrap.locator('.tiny-select').nth(2)

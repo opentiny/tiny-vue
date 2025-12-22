@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#size')
+  await page.goto('select-wrapper#size')
 
   const wrap = page.locator('#size')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -15,7 +15,7 @@ test('默认尺寸', async ({ page }) => {
 
 test('medium 尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#size')
+  await page.goto('select-wrapper#size')
 
   const wrap = page.locator('#size')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -30,7 +30,7 @@ test('medium 尺寸', async ({ page }) => {
 
 test('small 尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#size')
+  await page.goto('select-wrapper#size')
 
   const wrap = page.locator('#size')
   const select = wrap.locator('.tiny-select').nth(2)
@@ -46,7 +46,7 @@ test('small 尺寸', async ({ page }) => {
 
 test('mini 尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#size')
+  await page.goto('select-wrapper#size')
 
   const wrap = page.locator('#size')
   const select = wrap.locator('.tiny-select').nth(3)

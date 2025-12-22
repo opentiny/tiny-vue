@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { TinySelect, TinyOption } from '@opentiny/vue'
+import { TinySelectWrapper as TinySelect, TinyOption } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
 export default {

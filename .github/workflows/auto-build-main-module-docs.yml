@@ -3,8 +3,12 @@ name: Auto Build Main Module Docs
 on:
   pull_request:
     branches: [dev]
+    paths:
+      - 'examples/sites/demos/pc/webdoc/**'
   push:
-    branches: [dev]
+      branches: [dev]
+      paths:
+      - 'examples/sites/demos/pc/webdoc/**'
 
 jobs:
   verify-main-build:

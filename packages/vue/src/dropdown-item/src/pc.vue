@@ -30,6 +30,7 @@
     @mousedown.stop
     :aria-disabled="disabled"
     :tabindex="disabled ? null : -1"
+    role="menuitem"
   >
     <div class="tiny-dropdown-item__wrap">
       <span
