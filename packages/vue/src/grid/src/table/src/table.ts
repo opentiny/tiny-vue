@@ -567,7 +567,6 @@ export default defineComponent({
       fullColumnMap: new Map(),
       fullDataRowIdData: {},
       fullDataRowMap: new Map(),
-      backupInfos: { srcIdMap: new WeakMap(), idRawMap: new Map() },
       // 最后滚动位置
       lastScrollLeft: 0,
       lastScrollTop: 0,
@@ -786,6 +785,7 @@ export default defineComponent({
       unbindEvent($table)
 
       $table._tileInfo = $table._graphInfo = null
+      $table.rowidCacheMap = null
     })
 
     hooks.onActivated(() => {
@@ -807,6 +807,8 @@ export default defineComponent({
     const tableListeners = getListeners(attrs, listeners)
 
     const markColumnIndex = hooks.ref(0)
+
+    const rowidCacheMap = new Map()
     return {
       slots,
       tableListeners,
@@ -842,7 +844,8 @@ export default defineComponent({
       tiledLength,
       rawDataVersion,
       rawData,
-      markColumnIndex
+      markColumnIndex,
+      rowidCacheMap
     }
   },
   render() {
