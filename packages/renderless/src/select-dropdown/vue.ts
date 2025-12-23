@@ -100,6 +100,8 @@ const initWatch = ({ watch, selectVm, state, nextTick, props }) => {
     (val) => {
       nextTick(() => {
         state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
+
+        // 由于select的父容器可能有动画，所以延迟再计算一次最小宽度
         if (props.isDropInheritWidth) {
           setTimeout(() => {
             state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
