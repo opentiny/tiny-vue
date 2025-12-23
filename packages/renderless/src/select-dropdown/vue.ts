@@ -94,12 +94,17 @@ const initApi = ({ api, popper, state, selectEmitter, constants, selectVm, paren
   })
 }
 
-const initWatch = ({ watch, selectVm, state, nextTick }) => {
+const initWatch = ({ watch, selectVm, state, nextTick, props }) => {
   watch(
     () => (!isServer ? selectVm.state.inputWidth : undefined),
     (val) => {
       nextTick(() => {
         state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
+        if (props.isDropInheritWidth) {
+          setTimeout(() => {
+            state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
+          }, 210)
+        }
       })
     },
     { immediate: true }
@@ -161,10 +166,10 @@ export const renderless = (
     watch
   })
 
-  const state = initState({ reactive, computed, popper, props, selectVm })
+  const state = initState({ reactive, computed, popper, selectVm })
 
   initApi({ api, popper, state, selectEmitter, constants, selectVm, parent, nextTick, props, isMobileFirstMode })
-  initWatch({ watch, selectVm, state, nextTick, api })
+  initWatch({ watch, selectVm, state, nextTick, props })
 
   onBeforeUnmount(() => {
     popper.destroyPopper('remove')
