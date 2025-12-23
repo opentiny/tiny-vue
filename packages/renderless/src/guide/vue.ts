@@ -39,6 +39,8 @@ export const renderless = (
     (newVal) => {
       if (newVal) {
         api.createShepherd()
+      } else {
+        state?.tour?.hide()
       }
     }
   )
