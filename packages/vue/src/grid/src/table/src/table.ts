@@ -775,6 +775,8 @@ export default defineComponent({
       }
     }
 
+    const resolveMap = {}
+
     hooks.watch(
       () => [horizonScroll.value?.isLeft, horizonScroll.value?.isRight],
       ([newIsLeft, newIsRight]) => {
@@ -893,7 +895,8 @@ export default defineComponent({
       rawData,
       markColumnIndex,
       rowidCacheMap,
-      horizonScroll
+      horizonScroll,
+      resolveMap
     }
   },
   render() {

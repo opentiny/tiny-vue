@@ -309,6 +309,12 @@ const Methods = {
           return this.attemptRestoreScroll({ lastScrollLeft, lastScrollTop })
         }
       })
+      .then(() => {
+        if (this.resolveMap.loadDataResolve) {
+          this.resolveMap.loadDataResolve()
+          this.resolveMap.loadDataResolve = null
+        }
+      })
   },
   // 重新加载数据
   reloadData(datas) {
@@ -318,7 +324,7 @@ const Methods = {
   loadData(datas) {
     return new Promise((resolve) => {
       this.updateRawData(datas)
-      resolve()
+      this.resolveMap.loadDataResolve = resolve
     })
   },
   updateRawData(datas) {
