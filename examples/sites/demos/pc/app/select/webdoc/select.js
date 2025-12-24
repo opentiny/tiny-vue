@@ -28,14 +28,14 @@ export default {
         'zh-CN': `
             通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认选中值会以标签（Tag 组件）展示。<br>
             通过 <code>multiple-limit</code> 属性限制最多可选择的个数，默认为 0 不限制。<br>
-            通过 <code>show-limit-text</code> 属性限制最多可选择的个数，默认为 flase 不限制，非saas属性<br>
+            设置 <code>show-limit-text</code> 可展示选中条数和限制总条数的占比，默认为 false 不展示，非saas属性。<br>
             多选时，通过给 option 标签配置 <code>required</code> 或者在 options 配置项中添加 <code>required</code> 属性，来设置必选选项。<br>
             通过 <code>dropdown-icon</code> 属性可自定义下拉图标，<code>drop-style</code> 属性可自定义下拉选项样式。<br>
         `,
         'en-US': `
             Use the <code>multiple</code> attribute to enable the multi-selection function. In this case, the value of <code>v-model</code> is an array of selected values. By default, the selected value is displayed as a tag (Tag component).<br>
-            The <code>multiple-limit</code> attribute is used to limit the maximum number of users that can be selected. The default value is 0.
-            The <code>show-limit-text</code> attribute is used to limit the maximum number of users that can be selected. The default value is 0, which is not limited.<br>
+            The <code>multiple-limit</code> attribute is used to limit the maximum number of options available. The default value is 0.
+            Set <code>show-limit-text</code> to display the proportion of the number of selected items and the maximum number of options available. The default value is false.
             When multiple options are selected, you can set <code>required</code> for the option tag or add the <code>required</code> attribute to the options configuration item to set mandatory options.<br>
             You can use the <code>dropdown-icon</code> attribute to customize the drop-down icon, and the <code>drop-style</code> attribute to customize the style of the drop-down options.<br>
         `
