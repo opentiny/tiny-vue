@@ -28,7 +28,7 @@
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@docsearch/react": "npm:@docsearch/css",
-    "@opentiny/tiny-vue-mcp": "^0.0.3",
+    "@opentiny/tiny-vue-mcp": "^0.0.5",
     "@opentiny/utils": "workspace:~",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
