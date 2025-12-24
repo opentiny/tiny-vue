@@ -251,10 +251,12 @@ export const mounted =
   ({
     vm,
     state,
-    suggestionState
+    suggestionState,
+    props
   }: {
     state: IAutoCompleteState
     suggestionState: IAutoCompleteApi['suggestionState']
+    props: IAutoCompleteProps
   }) =>
   () => {
     const input = vm.$refs.input
@@ -263,8 +265,13 @@ export const mounted =
     suggestionState.popperElm = state.popperElm = vm.$refs.popper
     suggestionState.referenceElm = $input
 
+    // 补充无障碍信息，便于辅助/AI读取
     $input.setAttribute('role', 'textbox')
     $input.setAttribute('aria-autocomplete', 'list')
-    $input.setAttribute('aria-controls', 'id')
+    $input.setAttribute('aria-controls', state.id)
+    $input.setAttribute('aria-owns', state.id)
     $input.setAttribute('aria-activedescendant', `${state.id}-item-${state.highlightedIndex}`)
+    if (props.label || props.placeholder) {
+      $input.setAttribute('aria-label', String(props.label || props.placeholder))
+    }
   }
