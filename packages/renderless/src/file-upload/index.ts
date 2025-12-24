@@ -2789,7 +2789,7 @@ export const getTipMessage =
     }
 
     if (fileSize && acceptTip.length !== 0) {
-      acceptTip += `${t(constants.COMMA)} `
+      acceptTip += `${t(constants.COMMA)}`
     }
 
     let fileSizeTip = ''
@@ -2811,6 +2811,5 @@ export const getTipMessage =
     if ((fileSize || acceptTip.length !== 0) && limit) {
       limitTip = `${t(constants.COMMA)} ` + limitTip
     }
-
     return acceptTip + fileSizeTip + limitTip
   }
