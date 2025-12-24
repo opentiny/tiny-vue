@@ -24,6 +24,8 @@
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
+    :aria-labelledby="text || label ? `${name || 'radio'}-${label}-label` : null"
+    :aria-label="text || label ? null : text || label"
     tabindex="-1"
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
     v-bind="a($attrs, ['class', 'style'], true)"
@@ -50,7 +52,11 @@
         @click.stop
       />
     </span>
-    <span class="tiny-radio__label" @keydown.stop>
+    <span 
+      :id="`${name || 'radio'}-${label}-label`"
+      class="tiny-radio__label" 
+      @keydown.stop
+    >
       <slot>{{ text || label }}</slot>
     </span>
   </label>
