@@ -160,6 +160,10 @@ export default defineComponent({
         h(
           'div',
           {
+            role: 'dialog',
+            'aria-modal': 'true',
+            'aria-labelledby': 'modal_unique_0',
+            'aria-describedby': 'modal_unique_1',
             class: 'tiny-modal__box',
             style: state.boxStyle,
             ref: 'modalBox',
@@ -187,6 +191,7 @@ export default defineComponent({
                           [
                             typeof status === 'string'
                               ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                                  'aria-label': `${constants.STATUS_MAPPING_CLASSS[status.toUpperCase()] || 'default'}-circle`,
                                   class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
                                 })
                               : h(status, {
@@ -199,13 +204,15 @@ export default defineComponent({
                       ? h(
                           'span',
                           {
-                            class: 'tiny-modal__title'
+                            class: 'tiny-modal__title',
+                            id: 'modal_unique_0'
                           },
                           title || t('ui.alert.title')
                         )
                       : null,
                     resize
                       ? h(zoomLocat ? iconMinscreenRight() : iconFullscreenRight(), {
+                          'aria-label': 'Zoom',
                           class: ['tiny-modal__zoom-btn', 'trigger__btn'],
                           on: {
                             click: this.toggleZoomEvent
@@ -214,6 +221,7 @@ export default defineComponent({
                       : null,
                     showClose
                       ? h(iconClose(), {
+                          'aria-label': 'Close',
                           class: ['tiny-modal__close-btn', 'trigger__btn'],
                           on: {
                             click: this.closeEvent
@@ -238,6 +246,7 @@ export default defineComponent({
                       [
                         typeof status === 'string'
                           ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                              'aria-label': `${constants.STATUS_MAPPING_CLASSS[status.toUpperCase()] || 'default'}-message-circle`,
                               class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
                             })
                           : h(status, {
@@ -249,7 +258,8 @@ export default defineComponent({
                 h(
                   'div',
                   {
-                    class: 'tiny-modal__content'
+                    class: 'tiny-modal__content',
+                    id: 'modal_unique_1'
                   },
                   defaultSlot
                     ? [defaultSlot.call(this, { $modal: this }, h)]
@@ -269,6 +279,7 @@ export default defineComponent({
                       },
                       [
                         h(iconClose(), {
+                          'aria-label': 'Close',
                           class: ['tiny-modal__close-btn'],
                           on: {
                             click: this.closeEvent

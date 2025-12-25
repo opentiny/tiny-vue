@@ -2,11 +2,11 @@
   <div>
     <h2>函数式调用</h2>
     <div class="content">
-      <tiny-button @click="btnClick">自定义弹窗底部</tiny-button>
+      <tiny-button @click="btnClick">函数式自定义弹窗底部</tiny-button>
     </div>
     <h2>标签式调用</h2>
     <div class="content">
-      <tiny-button @click="openModal">自定义弹窗底部</tiny-button>
+      <tiny-button @click="openModal">标签式自定义弹窗底部</tiny-button>
       <tiny-modal
         v-model="show"
         type="confirm"
@@ -20,7 +20,7 @@
     </div>
     <h2>#foot 插槽</h2>
     <div class="content">
-      <tiny-button @click="openModal_1">自定义弹窗底部</tiny-button>
+      <tiny-button @click="openModal_1">插槽自定义弹窗底部</tiny-button>
       <tiny-modal
         v-model="show1"
         type="confirm"
