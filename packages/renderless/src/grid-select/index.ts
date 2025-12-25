@@ -112,21 +112,17 @@ export const buildRadioConfig =
 
 export const filter =
   ({ props, state, vm }) =>
-  (value) => {
+  async (value) => {
     const { multiple, valueField, filterMethod, remote, remoteMethod } = props
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.gridRef.$refs.tinyTable
       // 从原始数据源获取完整数据，而不是从可能已过滤的 table 中获取
-      const fullData = state.gridData || props.gridOp?.data || table.getTableData().fullData
-      const filteredData = filterMethod(value, fullData) || []
+      const fullData = table.getTableData().fullData
 
       vm.$refs.gridRef.scrollTo(null, 0)
 
-      // 同时更新 table 和 grid 的数据
-      table.loadTableData(filteredData)
-      vm.$refs.gridRef.$refs.tinyTable.lastScrollTop = 0
-      vm.$refs.gridRef.loadData(filteredData)
+      await table.loadData(filterMethod(value, fullData) || [])
 
       vm.$refs.gridRef.handleTableData(!value)
 

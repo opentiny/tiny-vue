@@ -66,7 +66,7 @@ export const showTip =
 
 export const gridOnQueryChange =
   ({ props, vm, constants, state }) =>
-  (value) => {
+  async (value) => {
     const { multiple, valueField, filterMethod, remote, remoteMethod } = props
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
@@ -75,7 +75,7 @@ export const gridOnQueryChange =
 
       vm.$refs.selectGrid.scrollTo(null, 0)
 
-      table.loadTableData(filterMethod(value, fullData) || [])
+      await table.loadData(filterMethod(value, fullData) || [])
 
       vm.$refs.selectGrid
         .handleTableData(!value)
