@@ -50,7 +50,7 @@ export default {
             }
           ],
           destroy: () => {
-            showStep.value = false
+            this.showStep = false
           }
         }
       ]
