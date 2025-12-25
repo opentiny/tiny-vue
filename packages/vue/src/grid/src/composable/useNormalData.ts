@@ -64,7 +64,16 @@ export const useNormalData = ({ props, tableFullColumn }) => {
   })
 
   hooks.watch(rawDataVersion, () => {
-    // 设置数据查找缓存，对数据进行备份，深度克隆
+    const { optimizeOpts } = $table
+    const { scrollY } = optimizeOpts
+    const _rawData = rawData.value || []
+    const tableFullData = Array.isArray(_rawData) ? _rawData.slice(0) : []
+
+    // 设置全量数据，行虚滚标记
+    $table.tableFullData = tableFullData
+    $table.scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
+
+    // 设置数据映射和查找缓存
     $table.updateCache(true, props.saveSource === 'deep')
     // 处理表格数据刷新
     $table.handleDataChange()

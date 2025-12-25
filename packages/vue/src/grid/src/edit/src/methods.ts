@@ -139,6 +139,7 @@ export default {
       newRecords
     })
 
+    this.updateCache()
     this.handleTableData(true)
     this.checkSelectionStatus()
     this.updateFooter()
@@ -212,6 +213,7 @@ export default {
     })
 
     // 修改缓存
+    this.updateCache()
     this.handleTableData(true)
     this.checkSelectionStatus()
     this.updateFooter()

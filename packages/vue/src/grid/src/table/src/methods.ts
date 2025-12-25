@@ -288,16 +288,11 @@ const Methods = {
   },
   // 全量加载表格数据
   loadTableData(datas, notRefresh) {
-    const { editStore, height, maxHeight, lastScrollLeft, lastScrollTop, optimizeOpts } = this
-    const { scrollY } = optimizeOpts
-    const tableFullData = isArray(datas) ? datas.slice(0) : []
-    const scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
+    const { editStore, height, maxHeight, lastScrollLeft, lastScrollTop, scrollYLoad } = this
 
     editStore.insertList = []
     editStore.insertMap = new Map()
     editStore.removeList = []
-    // 设置全量数据，行虚滚标记
-    Object.assign(this, { tableFullData, scrollYLoad })
 
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
@@ -331,15 +326,13 @@ const Methods = {
     this.rawDataVersion += 1
   },
   getOriginRow(row) {
-    const { srcIdMap, idRawMap } = this.backupInfos
-
-    return srcIdMap.has(row) ? idRawMap.get(srcIdMap.get(row)) : null
+    const rowid = getRowid(this, row)
+    return rowid ? this.rowidCacheMap.get(rowid) : null
   },
   setOriginRow(row, record) {
-    const { srcIdMap, idRawMap } = this.backupInfos
-
-    if (srcIdMap.has(row) && record) {
-      idRawMap.set(srcIdMap.get(row), record)
+    const rowid = getRowid(this, row)
+    if (rowid && record) {
+      this.rowidCacheMap.set(rowid, record)
     }
   },
   reloadRow(row, record, field) {
@@ -408,8 +401,7 @@ const Methods = {
   },
   /** 设置数据查找缓存，对数据进行备份，深度克隆  */
   updateCache(backup = false, deepCopy = false) {
-    const { rawData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
-    const newArray = isArray(rawData) ? rawData.slice(0) : []
+    const { tableFullData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
     const rowKey = getRowkey(this)
     const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
@@ -420,7 +412,7 @@ const Methods = {
 
     /* 标记RID和非顺序树表行index */
     eachTree(
-      newArray,
+      tableFullData,
       (row, index, _array, _path, parent) => {
         let rowId = getRowid(this, row)
 
@@ -452,29 +444,21 @@ const Methods = {
       treeConfig
     )
 
+    // 可编辑表格默认开启备份，非可编辑表格在开启saveSource时也可备份
     if (backup && (editConfig || saveSource)) {
       /* 在空闲帧任务中备份数据 */
       requestIdleCallback(() => {
-        const srcIdMap = new WeakMap()
-        const idRawMap = new Map()
+        const rowidCacheMap = new Map()
+        // 默认浅层复制，在设置saveSource为deep时开启深层复制
+        const callback = (row) =>
+          rowidCacheMap.set(
+            getRowid(this, row),
+            clone(childrenKey ? { ...row, [childrenKey]: null } : { ...row }, deepCopy)
+          )
 
-        eachTree(
-          newArray,
-          (row) => {
-            const rowId = getRowid(this, row)
-            // 这里构造一个普通对象，用于后续整体复制。树表结构字段设置为null，避免子行被复制多次。
-            const copyRow = childrenKey ? { ...row, [childrenKey]: null } : { ...row }
+        eachTree(tableFullData, callback, treeConfig)
 
-            srcIdMap.set(row, rowId)
-            idRawMap.set(rowId, copyRow)
-          },
-          treeConfig
-        )
-
-        this.backupInfos = {
-          srcIdMap,
-          idRawMap: (isVue2 && deepCopy) || !isVue2 ? this.cloneMapAndUnwrap(idRawMap) : idRawMap
-        }
+        this.rowidCacheMap = rowidCacheMap
       })
     }
   },

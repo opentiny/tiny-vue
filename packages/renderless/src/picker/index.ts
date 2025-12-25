@@ -1405,7 +1405,7 @@ export const emitDbTime =
           hasDate = true
           let currentDate = getDateWithNewTimezone(item, getLocalTimezone(), from)
 
-          if (state.valueFormat) {
+          if (state.valueFormat && state.valueFormat !== DATEPICKER.TimesTamp) {
             currentDate = formatDate(currentDate, state.valueFormat, t)
           }
 
