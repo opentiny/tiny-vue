@@ -74,7 +74,7 @@
           ref="input"
           :name="name"
           data-tag="tiny-input-inner"
-          v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id'])"
+          v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'aria-required', 'aria-invalid'])"
           :class="['tiny-input__inner', mask && state.inputDisabled && !state.maskValueVisible && 'tiny-input__mask']"
           :tabindex="tabindex"
           :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
@@ -89,7 +89,7 @@
           @focus="handleFocus"
           @input="handleInput"
           @change="handleChange"
-          :aria-label="label"
+          :aria-label="label || $attrs.placeholder"
           @keyup="$emit('keyup', $event)"
           @keydown="$emit('keydown', $event)"
           @paste="$emit('paste', $event)"
@@ -116,6 +116,9 @@
               <icon-close
                 v-if="frontClearIcon && state.showClear"
                 class="tiny-svg-size tiny-input__icon tiny-input__clear"
+                role="button"
+                aria-label="清除"
+                tabindex="0"
                 @mousedown.prevent
                 @click="clear"
               ></icon-close>
@@ -127,6 +130,9 @@
               <icon-close
                 v-if="!frontClearIcon && state.showClear"
                 class="tiny-svg-size tiny-input__icon tiny-input__clear"
+                role="button"
+                aria-label="清除"
+                tabindex="0"
                 @mousedown.prevent
                 @click="clear"
               ></icon-close>
@@ -134,15 +140,27 @@
                 v-if="showPassword"
                 :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
                 class="tiny-svg-size tiny-input__icon"
+                role="button"
+                :aria-label="state.passwordVisible ? 'hide password' : 'show password'"
+                tabindex="0"
                 @click.native="handlePasswordVisible"
               ></component>
               <component
                 v-if="mask && state.inputDisabled"
                 :is="state.maskValueVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
                 class="tiny-svg-size tiny-input__icon"
+                role="button"
+                :aria-label="state.maskValueVisible ? 'hide content' : 'show content'"
+                tabindex="0"
                 @click.native="state.maskValueVisible = !state.maskValueVisible"
               ></component>
-              <span v-if="state.isWordLimitVisible" class="tiny-input__count">
+              <span 
+                v-if="state.isWordLimitVisible" 
+                :id="`${$attrs.id || name || 'input'}-word-limit`"
+                class="tiny-input__count"
+                role="status"
+                aria-live="polite"
+              >
                 <span class="tiny-input__count-inner"
                   ><span class="tiny-input__count-text-length">
                     {{ state.showWordLimit ? `${state.textLength}` : '' }}
@@ -200,7 +218,7 @@
       </tiny-dialog-box>
       <textarea
         ref="textarea"
-        v-bind="a($attrs, ['type', 'class', 'style', 'id'])"
+        v-bind="a($attrs, ['type', 'class', 'style', 'id', 'aria-required', 'aria-invalid'])"
         :tabindex="tabindex"
         class="tiny-textarea__inner"
         :class="hoverExpand && !state.enteredTextarea && 'tiny-textarea__fix-height'"
@@ -221,14 +239,20 @@
         @mousedown="handleTextareaMouseDown()"
         @mouseup="handleTextareaMouseUp()"
         v-clickoutside.mouseup="() => handleTextareaMouseUp(true)"
-        :aria-label="label"
+        :aria-label="label || $attrs.placeholder"
         @keyup="$emit('keyup', $event)"
         @keydown="$emit('keydown', $event)"
         @paste="$emit('paste', $event)"
       >
       </textarea>
     </span>
-    <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-input__count">
+    <span 
+      v-if="state.isWordLimitVisible && type === 'textarea'" 
+      :id="`${$attrs.id || name || 'textarea'}-word-limit`"
+      class="tiny-input__count"
+      role="status"
+      aria-live="polite"
+    >
       <span class="tiny-input__count-inner"
         ><span class="tiny-input__count-text-length">
           {{ state.showWordLimit ? `${state.textLength}` : '' }}
