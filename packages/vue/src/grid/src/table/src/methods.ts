@@ -310,8 +310,8 @@ const Methods = {
         }
       })
       .then(() => {
-        if (this.resolveMap.loadDataResolve) {
-          this.resolveMap.loadDataResolve()
+        if (this.resolveMap.loadDataResolve?.data === datas) {
+          this.resolveMap.loadDataResolve.resolveQueue.forEach((resolve) => resolve())
           this.resolveMap.loadDataResolve = null
         }
       })
@@ -324,7 +324,15 @@ const Methods = {
   loadData(datas) {
     return new Promise((resolve) => {
       this.updateRawData(datas)
-      this.resolveMap.loadDataResolve = resolve
+      if (this.resolveMap.loadDataResolve) {
+        this.resolveMap.loadDataResolve.data = datas
+        this.resolveMap.loadDataResolve.resolveQueue.push(resolve)
+      } else {
+        this.resolveMap.loadDataResolve = {
+          data: datas,
+          resolveQueue: [resolve]
+        }
+      }
     })
   },
   updateRawData(datas) {
