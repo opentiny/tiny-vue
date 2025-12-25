@@ -117,11 +117,16 @@ export const filter =
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.gridRef.$refs.tinyTable
-      const fullData = table.getTableData().fullData
+      // 从原始数据源获取完整数据，而不是从可能已过滤的 table 中获取
+      const fullData = state.gridData || props.gridOp?.data || table.getTableData().fullData
+      const filteredData = filterMethod(value, fullData) || []
 
       vm.$refs.gridRef.scrollTo(null, 0)
 
-      table.loadTableData(filterMethod(value, fullData) || [])
+      // 同时更新 table 和 grid 的数据
+      table.loadTableData(filteredData)
+      vm.$refs.gridRef.$refs.tinyTable.lastScrollTop = 0
+      vm.$refs.gridRef.loadData(filteredData)
 
       vm.$refs.gridRef.handleTableData(!value)
 

@@ -265,8 +265,8 @@ export default defineComponent({
     },
     inputBoxType: {
       type: String,
-      default: 'input',
-      validator: (value: string) => ['input', 'underline'].includes(value)
+      default: 'normal',
+      validator: (value: string) => ['normal', 'underline'].includes(value)
     },
     tagType: String,
     clearNoMatchValue: {

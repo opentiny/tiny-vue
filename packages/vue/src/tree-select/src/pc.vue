@@ -85,8 +85,8 @@ export default defineComponent({
     // 输入框类型
     inputBoxType: {
       type: String,
-      default: 'input',
-      validator: (value: string) => ['input', 'underline'].includes(value)
+      default: 'normal',
+      validator: (value: string) => ['normal', 'underline'].includes(value)
     },
     // 多行默认最大显示行数
     maxVisibleRows: {
