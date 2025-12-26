@@ -105,22 +105,28 @@ const initState = ({
     form: computed(() => api.computedForm() as IFormInstance),
     fieldValue: computed(() => api.computedFieldValue()),
     isRequired: computed(() => api.computedIsRequired()),
-    formInline: computed(() => state.formInstance.inline),
-    formSize: computed(() => state.formInstance.size),
+    formInline: computed(() => state.formInstance?.inline),
+    formSize: computed(() => state.formInstance?.size),
     formItemSize: computed(() => props.size || state.formSize),
-    isDisplayOnly: computed(() => state.formInstance.displayOnly),
-    labelPosition: computed(() => state.formInstance.labelPosition),
-    hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
-    labelSuffix: computed(() => state.formInstance.labelSuffix),
-    labelWidth: computed(() => state.formInstance.labelWidth),
-    showMessage: computed(() => state.formInstance.showMessage),
+    isDisplayOnly: computed(() => state.formInstance?.displayOnly ?? false),
+    labelPosition: computed(() => state.formInstance?.labelPosition ?? 'right'),
+    hideRequiredAsterisk: computed(() => state.formInstance?.state?.hideRequiredAsterisk ?? false),
+    labelSuffix: computed(() => state.formInstance?.labelSuffix ?? ''),
+    labelWidth: computed(() => state.formInstance?.labelWidth ?? ''),
+    showMessage: computed(() => state.formInstance?.showMessage ?? true),
     sizeClass: computed(() => state.formItemSize),
     getValidateType: computed(() => api.computedGetValidateType()),
     validateIcon: computed(() => api.computedValidateIcon()),
     isErrorInline: computed(() => api.computedIsErrorInline()),
     isErrorBlock: computed(() => api.computedIsErrorBlock()),
-    disabled: computed(() => state.formInstance.disabled || props.disabled),
-    tooltipType: computed(() => state.formInstance.state.tooltipType),
+    /**
+     * TODO: There is a potential issue here. Need to confirm whether to keep this logic.
+     * There does not have disabled prop in form-item, but disabled is used here, I think it is a mistake.
+     * If not, need to add disabled prop in form-item component.
+     */
+    // @ts-expect-error Need to confirm whether to keep this logic
+    disabled: computed(() => state.formInstance?.disabled || props.disabled),
+    tooltipType: computed(() => state.formInstance?.state.tooltipType ?? 'normal'),
     // 标记表单项下是否有多个子节点
     isMultiple: false
   })
@@ -171,7 +177,7 @@ const initWatch = ({ watch, api, props, state }) => {
 
   watch(() => props.validateStatus, api.watchValidateStatus)
 
-  watch(() => state.formInstance.displayOnly, api.clearDisplayedValue)
+  watch(() => state.formInstance?.displayOnly, api.clearDisplayedValue)
 }
 
 export const renderless = (

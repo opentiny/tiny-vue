@@ -47,7 +47,7 @@ export const watchValidateStatus =
 export const computedGetValidateType =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): string =>
-    props.validateType || (state.formInstance ? state.formInstance.validateType : '')
+    props.validateType || (state.formInstance ? state.formInstance?.validateType : '')
 
 export const computedValidateIcon =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
@@ -80,11 +80,11 @@ export const computedLabelStyle =
   (): IFormItemLabelStyle => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state.labelWidth
 
     if (labelWidth) {
       result.width = labelWidth
@@ -98,12 +98,12 @@ export const computedValueStyle =
   (): { width: string } => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       result.width = '100%'
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state.labelWidth
 
     if (labelWidth) {
       if (labelWidth === 'auto') {
@@ -122,7 +122,7 @@ export const computedContentStyle =
     const result: StyleValue = {}
     const label = props.label
 
-    if (state.form.labelPosition === POSITION.Top || state.form.inline) {
+    if (state.form?.labelPosition === POSITION.Top || state.form?.inline) {
       return result
     }
 
@@ -130,13 +130,13 @@ export const computedContentStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
 
     if (labelWidth === 'auto') {
       if (props.labelWidth === 'auto') {
         result.marginLeft = state.computedLabelWidth
-      } else if (state.form.state.labelWidth === 'auto') {
-        result.marginLeft = state.formInstance.state.autoLabelWidth
+      } else if (state.form?.state?.labelWidth === 'auto') {
+        result.marginLeft = state.formInstance?.state?.autoLabelWidth
       }
     } else {
       result.marginLeft = labelWidth
@@ -231,7 +231,7 @@ export const getPropByPath = (obj: object, path: string, strict?: boolean) => {
 export const computedFieldValue =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   () => {
-    const model = state.form.model
+    const model = state.form?.model
 
     if (!model || !props.prop) {
       return
@@ -345,7 +345,7 @@ export const resetField =
     state.validateState = ''
     state.validateMessage = ''
 
-    let model = state.form.model || {}
+    let model = state.form?.model || {}
     let value = state.fieldValue
     let path = props.prop || ''
 
@@ -379,7 +379,7 @@ export const resetField =
 export const getRules =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemRule[] => {
-    let formRules = state.form.rules || {}
+    let formRules = state.form?.rules || {}
     const selfRules = props.rules as IFormItemRule[]
     const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
@@ -533,17 +533,17 @@ export const handleMouseenter =
     }
 
     if (res.o || overHeight) {
-      state.form.showTooltip(dom, state.displayedValue)
+      state.form.showTooltip?.(dom, state.displayedValue)
     }
   }
 
 export const handleLabelMouseenter =
   ({ props, state, slots }) =>
   (e) => {
-    if (!state.form.overflowTitle || !state.form || slots.label) return
+    if (!state.form?.overflowTitle || !state.form || slots.label) return
     const label = e.target
     if (label && label.scrollWidth > label.offsetWidth) {
-      state.form.showTooltip(label, props.label + state.form.labelSuffix)
+      state.form.showTooltip?.(label, props.label + state.form.labelSuffix)
     }
   }
 
@@ -554,7 +554,7 @@ export const handleMouseleave = (state: IFormItemRenderlessParams['state']) => (
 export const getDisplayedValue =
   ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
   (param: IFormItemDisplayedValueParam): void => {
-    if (!state.formInstance.displayOnly) return
+    if (!state.formInstance?.displayOnly) return
     state.typeName = param.type
     state.isBasicComp = true
     state.displayedValue = param.val
