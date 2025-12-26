@@ -30,7 +30,8 @@
               "color-bg-5": "blue-50,50",
               "color-bg-6": "gray-50,50",
               "color-bg-7": "gray-900,30",
-              "color-bg-8": "gray-900,15"
+              "color-bg-8": "gray-900,15",
+              "color-bg-9": "blue-50,100"
             }
           },
           {
@@ -471,7 +472,8 @@
               "color-bg-5": "blue-50,50",
               "color-bg-6": "gray-50,50",
               "color-bg-7": "gray-900,30",
-              "color-bg-8": "gray-900,15"
+              "color-bg-8": "gray-900,15",
+              "color-bg-9": "coolgray-900,100"
             }
           },
           {
