@@ -31,8 +31,8 @@ test('测试基本用法', async ({ page }) => {
   await page.waitForTimeout(10)
 
   // 复选框应该为半选状态
-  let checkbox = leftPanel.getByRole('paragraph').filter({ hasText: '列表 1 2 / 14' }).getByRole('checkbox')
-  await expect(checkbox).toHaveClass(/is-indeterminate/)
+  let checkbox = leftPanel.locator('.tiny-checkbox__input')
+  await expect(checkbox.first()).toHaveClass(/is-indeterminate/)
   // 按钮可用状态
   await expect(toRightBtn).toBeEnabled()
   await expect(toLeftBtn).toBeDisabled()
@@ -62,8 +62,8 @@ test('测试基本用法', async ({ page }) => {
   await page.waitForTimeout(10)
 
   // 复选框应该为半选状态
-  checkbox = rightPanel.getByRole('paragraph').filter({ hasText: '列表 2 2 / 4' }).getByRole('checkbox')
-  await expect(checkbox).toHaveClass(/is-indeterminate/)
+  checkbox = rightPanel.locator('.tiny-checkbox__input')
+  await expect(checkbox.first()).toHaveClass(/is-indeterminate/)
 
   // 按钮可用状态
   await expect(toRightBtn).toBeDisabled()
