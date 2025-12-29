@@ -52,7 +52,7 @@ export const renderless = (
       const limit = props.minCollapsedNum < props.max ? props.minCollapsedNum : props.max
       return (props.modelValue || []).slice(0, limit)
     }),
-    collpasedTagList: computed(() => {
+    collapsedTagList: computed(() => {
       const limit = props.minCollapsedNum < props.max ? props.minCollapsedNum : props.max
       return (props.modelValue || []).slice(limit)
     }),

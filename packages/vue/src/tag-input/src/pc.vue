@@ -22,12 +22,12 @@
         @dragend="handleDrop(index, $event)"
         >{{ tag }}</tiny-tag
       >
-      <tiny-tooltip v-if="state.collpasedTagList.length" placement="top">
-        <tiny-tag :size="size" :type="tagType" :effect="tagEffect">+{{ state.collpasedTagList.length }}</tiny-tag>
+      <tiny-tooltip v-if="state.collapsedTagList.length" placement="top">
+        <tiny-tag :size="size" :type="tagType" :effect="tagEffect">+{{ state.collapsedTagList.length }}</tiny-tag>
         <template #content>
           <div class="tiny-tag-input-collapsed-tags">
             <tiny-tag
-              v-for="(tag, index) in state.collpasedTagList"
+              v-for="(tag, index) in state.collapsedTagList"
               :key="index"
               :size="size"
               :type="tagType"

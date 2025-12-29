@@ -53,10 +53,6 @@ export const tagInputProps = {
     type: Boolean,
     default: false
   },
-  drageable: {
-    type: Boolean,
-    default: false
-  },
   separator: {
     type: String,
     default: undefined

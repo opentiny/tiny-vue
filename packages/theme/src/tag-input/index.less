@@ -41,18 +41,20 @@
       cursor: not-allowed;
     }
   }
-}
-.@{tag-input-prefix-cls}-inner {
-  border: none;
-  outline: none;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 var(--tv-TagInput-padding);
-  font-size: 14px;
-  width: auto;
+
+  .@{tag-input-prefix-cls}-inner {
+    border: none;
+    outline: none;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 var(--tv-TagInput-padding);
+    font-size: 14px;
+    width: auto;
+  }
 }
 
 .tiny-tag-input-collapsed-tags {
+  .inject-TagInput-vars();
   display: flex;
   gap: var(--tv-TagInput-collapsed-item-gap);
 }

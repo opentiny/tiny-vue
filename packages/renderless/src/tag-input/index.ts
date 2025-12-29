@@ -1,3 +1,5 @@
+import type { ITagRenderlessParams } from './tag-input'
+
 export const addTag =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>
   () => {
@@ -6,39 +8,44 @@ export const addTag =
       return
     }
 
-    const tags = props.modelValue || []
+    if (props.modelValue.length >= props.max) {
+      state.currentValue = ''
+      return
+    }
+
+    const tags = [...(props.modelValue ?? [])]
     let newTags = [value]
     if (props.separator !== undefined) {
       newTags = value.split(props.separator).filter((val) => val)
     }
 
     tags.push(...newTags)
-    emit('updated:modelValue', tags)
+    emit('update:modelValue', tags)
     state.currentValue = ''
   }
 
 export const removeTag =
   ({ emit, props }: Pick<ITagRenderlessParams, 'emit' | 'props'>) =>
   (index: number) => {
-    const tags = props.modelValue || []
+    const tags = [...(props.modelValue ?? [])]
     tags.splice(index, 1)
-    emit('updated:modelValue', tags)
+    emit('update:modelValue', tags)
   }
 
 export const handleBackspace =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>
   () => {
     if (state.currentValue === '') {
-      const tags = props.modelValue || []
+      const tags = [...(props.modelValue ?? [])]
       tags.pop()
-      emit('onUpdated:modelValue', tags)
+      emit('update:modelValue', tags)
     }
   }
 
 export const handleClear =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>
   () => {
-    emit('updated:modelValue', props.modelValue.splice(0, props.modelValue.length))
+    emit('update:modelValue', [])
     state.currentValue = ''
   }
 
@@ -94,11 +101,11 @@ export const handleDrop =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (index: number, event: DragEvent) => {
     event.preventDefault()
-    const newTags = props.modelValue || []
+    const newTags = [...(props.modelValue ?? [])]
     const draggingTag = newTags[state.draggingIndex]
     newTags.splice(state.draggingIndex, 1)
     newTags.splice(state.dragTargetIndex, 0, draggingTag)
     state.draggingIndex = null
     state.dragTargetIndex = null
-    emit('updated:modelValue', newTags)
+    emit('update:modelValue', newTags)
   }
