@@ -49,7 +49,7 @@ export default {
           defaultValue: "'light'",
           desc: {
             'zh-CN': '主题',
-            'en-US': 'Subject'
+            'en-US': 'Theme Color'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'effect',

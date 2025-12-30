@@ -15,7 +15,7 @@ import { version } from './package.json'
 
 /* istanbul ignore next */
 TagInput.install = function (Vue) {
-  Vue.component(Tag.name, Tag)
+  Vue.component(TagInput.name, TagInput)
 }
 
 TagInput.version = version

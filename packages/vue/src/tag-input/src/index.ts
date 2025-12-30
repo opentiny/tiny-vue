@@ -10,7 +10,7 @@
  *
  */
 import { $props, $setup, defineComponent, $prefix } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile-first'
+import template from 'virtual-template?pc'
 
 export const tagInputProps = {
   ...$props,

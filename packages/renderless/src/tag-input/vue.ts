@@ -1,4 +1,4 @@
-import type { ISharedRenderlessParamHooks } from '@/types'
+import type { ITagInputApi, ITagInputState, ISharedRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 import {
   addTag,
   removeTag,
@@ -34,9 +34,10 @@ export const renderless = (
   props,
   { reactive, computed, ref }: ISharedRenderlessParamHooks,
   { emit, parent }: ISharedRenderlessParamUtils<never>
-): ITagApi => {
-  const state: ITagState = reactive({
+): ITagInputApi => {
+  const state: ITagInputState = reactive({
     currentValue: '',
+    tagList: props.modelValue || [],
     disabled: computed(() => props.disabled),
     closeable: computed(() => !props.readonly && !props.disabled),
     showClearIcon: computed(() => {
@@ -50,24 +51,21 @@ export const renderless = (
     }),
     showTagList: computed(() => {
       const limit = props.minCollapsedNum < props.max ? props.minCollapsedNum : props.max
-      return (props.modelValue || []).slice(0, limit)
+      return (state.tagList || []).slice(0, limit)
     }),
     collapsedTagList: computed(() => {
-      const limit = props.minCollapsedNum < props.max ? props.minCollapsedNum : props.max
-      return (props.modelValue || []).slice(limit)
+      return props.minCollapsedNum < props.max ? (state.tagList || []).slice(props.minCollapsedNum) : []
     }),
     isHovering: false,
     isFocused: false,
-    wrapperRef: ref('input-tag'),
     draggingIndex: null,
-    draggingTag: null,
     dragTargetIndex: null
   })
 
-  const api: ITagApi = {
+  const api: ITagInputApi = {
     state,
     addTag: addTag({ emit, props, state }),
-    removeTag: removeTag({ emit, props }),
+    removeTag: removeTag({ emit, props, state }),
     handleBackspace: handleBackspace({ emit, props, state }),
     handleClear: handleClear({ emit, props, state }),
     handleMouseLeave: handleMouseLeave({ state }),
