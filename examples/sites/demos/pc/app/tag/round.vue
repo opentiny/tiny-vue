@@ -8,20 +8,19 @@
     <tiny-tag type="danger" :round="true">危险标签</tiny-tag>
 
     <tiny-tag type="info" :round="true" :only-icon="true">
-      <template #default>
-        <icon-heartempty />
-      </template>
+      <tiny-icon-heartempty />
     </tiny-tag>
   </div>
 </template>
 
 <script>
-import { Tag, Icon } from '@opentiny/vue'
+import { TinyTag } from '@opentiny/vue'
+import { IconHeartempty } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTag: Tag,
-    IconHeartempty: Icon.IconHeartempty
+    TinyTag,
+    TinyIconHeartempty: IconHeartempty()
   }
 }
 </script>
