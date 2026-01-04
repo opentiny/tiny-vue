@@ -15,7 +15,7 @@ import Layout from './icons/Layout.vue'
 import Reverse from './icons/Reverse.vue'
 import Vertical from './icons/Vertical.vue'
 
-const VERSION = 'tiny-vue-version-3.27'
+const VERSION = 'tiny-vue-version-3.28'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
@@ -26,7 +26,7 @@ const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview'
-const versions = ['3.27', '3.26', '3.25']
+const versions = ['3.28', '3.27', '3.26']
 const manualShow = ref(false)
 
 const getVersion = () => {
@@ -90,8 +90,9 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] =
-      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[
+      `@opentiny/vue-design-${tinyTheme}`
+    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
@@ -275,7 +276,9 @@ const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
 // 分享功能
 const share = () => {
   const hash = store.serialize()
-  const shareUrl = `${location.origin}${import.meta.env.VITE_PLAYGROUND_URL}?mode=${tinyMode}&theme=${tinyTheme}#${state.selectVersion}|${hash}`
+  const shareUrl = `${location.origin}${import.meta.env.VITE_PLAYGROUND_URL}?mode=${tinyMode}&theme=${tinyTheme}#${
+    state.selectVersion
+  }|${hash}`
 
   navigator.clipboard.writeText(shareUrl)
   Notify({
