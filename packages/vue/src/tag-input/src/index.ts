@@ -26,7 +26,7 @@ export const tagInputProps = {
   tagType: {
     type: String,
     default: '',
-    validator: (value: string) => ['info', 'success', 'warning', 'danger', 'primary'].includes(value)
+    validator: (value: string) => ['', 'info', 'success', 'warning', 'danger', 'primary'].includes(value)
   },
   tagEffect: {
     type: String,
