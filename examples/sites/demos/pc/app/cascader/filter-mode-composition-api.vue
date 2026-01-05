@@ -168,5 +168,6 @@ const options = ref([
   }
 ])
 
-const value = 'anzhuangcli'
+// 使用 ref 创建响应式引用，这样才能用于 v-model 双向绑定
+const value = ref('anzhuangcli')
 </script>
