@@ -162,8 +162,8 @@ export default defineComponent({
           {
             role: 'dialog',
             'aria-modal': 'true',
-            'aria-labelledby': 'modal_unique_0',
-            'aria-describedby': 'modal_unique_1',
+            'aria-labelledby': state.titleId,
+            'aria-describedby': state.contentId,
             class: 'tiny-modal__box',
             style: state.boxStyle,
             ref: 'modalBox',
@@ -205,7 +205,7 @@ export default defineComponent({
                           'span',
                           {
                             class: 'tiny-modal__title',
-                            id: 'modal_unique_0'
+                            id: state.titleId
                           },
                           title || t('ui.alert.title')
                         )
@@ -259,7 +259,7 @@ export default defineComponent({
                   'div',
                   {
                     class: 'tiny-modal__content',
-                    id: 'modal_unique_1'
+                    id: state.contentId
                   },
                   defaultSlot
                     ? [defaultSlot.call(this, { $modal: this }, h)]

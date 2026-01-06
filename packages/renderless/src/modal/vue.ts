@@ -44,6 +44,7 @@ import {
   hideScrollbar,
   watchVisible
 } from './index'
+import { nanoid } from '@opentiny/utils'
 import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 
 export const api = [
@@ -78,6 +79,8 @@ export const renderless = (
   const api = {} as IModalApi
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
   const state = reactive({
+    titleId: 'tiny-modal-title-' + nanoid.api.nanoid(8),
+    contentId: 'tiny-modal-content-' + nanoid.api.nanoid(8),
     emitter: emitter(),
     visible: false,
     contentVisible: false,
