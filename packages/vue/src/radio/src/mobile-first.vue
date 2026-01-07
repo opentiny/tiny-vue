@@ -17,6 +17,8 @@
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
+    :aria-labelledby="text || label ? `${name || 'radio'}-${label}-label` : null"
+    :aria-label="text || label ? null : text || label"
     tabindex="-1"
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
@@ -104,6 +106,7 @@
     <span
       data-tag="tiny-radio-label"
       ref="label"
+      :id="`${name || 'radio'}-${label}-label`"
       :class="
         m(
           gcls('radio-text-common'),

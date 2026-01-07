@@ -77,7 +77,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过 <code>show-header</code>属性，设置是否显示头部。默认值为：<code>true</code><br>
+          通过<code>show-header</code>属性，设置是否显示头部。默认值为：<code>true</code>。<br>
+          通过<code>header-dragable</code>属性，设置是否可以通过标题拖动弹窗。默认值为：<code>true</code>。<br>
           通过<code>title</code>属性，设置窗口的标题。<br>
         `,
         'en-US': `
@@ -95,17 +96,17 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>show-footer</code>属性设置是否显示底部。默认值为：<code>false</code> <br>
-          通过<code>confirm-content</code>属性，修改确认按钮文字；<code>cancel-content</code>属性，修改取消按钮文字。<br>
-          通过<code>confirm-btn-props</code>属性，修改确认按钮的属性；<code>cancel-btn-props</code>属性，修改取消按钮的属性。<br>
-          通过<code>footerDragable</code>属性，让底部也支持拖动（默认只有标题栏可拖动）。默认值为：<code>false</code><br>
+          通过<code>show-footer</code>属性，设置是否显示底部。默认值为：<code>false</code>。<br>
+          通过<code>footer-dragable</code>属性，让底部也支持拖动（默认只有标题栏可拖动）。默认值为：<code>false</code>。<br>
+          通过<code>confirm-content</code>属性，修改确认按钮文字；通过<code>cancel-content</code>属性，修改取消按钮文字。<br>
+          通过<code>confirm-btn-props</code>属性，修改确认按钮的属性；通过<code>cancel-btn-props</code>属性，修改取消按钮的属性。<br>
           通过<code>#footer</code>插槽，完全自定义底部内容。<br>
         `,
         'en-US': ` 
           Use the <code>show-footer</code> property to set whether the bottom is displayed. The default value is <code>false</code> <br>
           Modify the confirmation button text by using the <code>confirm-content</code> property; The <code> cancer-content </code> property modifies the cancel button text. <br>
           The <code>confirm-btn-props</code> property is used to modify the properties of the confirm button. <code> cancer-btn-props </code> property to modify the properties of the cancel button. <br>
-          Use the <code>footerDragable</code> property to make the bottom also dragable (by default, only the title bar can be dragged). The default value is <code>false</code><br>
+          Use the <code>footer-dragable</code> property to make the bottom also dragable (by default, only the title bar can be dragged). The default value is <code>false</code><br>
           Completely customize the bottom content via the <code>#footer</code> slot. <br>
         `
       },

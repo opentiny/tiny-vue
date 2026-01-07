@@ -309,6 +309,12 @@ const Methods = {
           return this.attemptRestoreScroll({ lastScrollLeft, lastScrollTop })
         }
       })
+      .then(() => {
+        if (this.resolveMap.loadDataResolve?.data === datas) {
+          this.resolveMap.loadDataResolve.resolveQueue.forEach((resolve) => resolve())
+          this.resolveMap.loadDataResolve = null
+        }
+      })
   },
   // 重新加载数据
   reloadData(datas) {
@@ -318,7 +324,15 @@ const Methods = {
   loadData(datas) {
     return new Promise((resolve) => {
       this.updateRawData(datas)
-      resolve()
+      if (this.resolveMap.loadDataResolve) {
+        this.resolveMap.loadDataResolve.data = datas
+        this.resolveMap.loadDataResolve.resolveQueue.push(resolve)
+      } else {
+        this.resolveMap.loadDataResolve = {
+          data: datas,
+          resolveQueue: [resolve]
+        }
+      }
     })
   },
   updateRawData(datas) {

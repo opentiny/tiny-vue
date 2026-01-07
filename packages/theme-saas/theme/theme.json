@@ -30,7 +30,8 @@
               "color-bg-5": "blue-50,50",
               "color-bg-6": "gray-50,50",
               "color-bg-7": "gray-900,30",
-              "color-bg-8": "gray-900,15"
+              "color-bg-8": "gray-900,15",
+              "color-bg-9": "blue-50,100"
             }
           },
           {
@@ -471,7 +472,8 @@
               "color-bg-5": "blue-50,50",
               "color-bg-6": "gray-50,50",
               "color-bg-7": "gray-900,30",
-              "color-bg-8": "gray-900,15"
+              "color-bg-8": "gray-900,15",
+              "color-bg-9": "coolgray-50,100"
             }
           },
           {
@@ -726,7 +728,7 @@
             "900": "#F5F6F8"
           },
           "coolgray": {
-            "50": "#191919",
+            "50": "#161E26",
             "100": "#2A2A2A",
             "200": "#393939",
             "300": "#595959",

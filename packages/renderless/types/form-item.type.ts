@@ -71,12 +71,12 @@ export interface IFormItemState {
   isBasicComp: boolean
   showTooltip: boolean
   typeName: string
-  formInstance: IFormInstance
+  formInstance: IFormInstance | undefined
   labelFor: string
   labelStyle: IFormItemLabelStyle
   valueStyle: StyleValue
   contentStyle: StyleValue
-  form: IFormInstance
+  form: IFormInstance | undefined
   fieldValue: any
   isRequired: boolean
   formInline: boolean | undefined

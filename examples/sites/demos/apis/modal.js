@@ -115,13 +115,27 @@ export default {
         {
           name: 'footer-dragable',
           type: 'boolean',
-          defaultValue: 'true',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '控制底部可拖拽',
             'en-US': 'Control bottom dragable'
           },
           mode: ['pc'],
           pcDemo: 'modal-footer'
+        },
+        {
+          name: 'header-dragable',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '控制标题可拖拽',
+            'en-US': 'Control header dragable'
+          },
+          mode: ['pc'],
+          pcDemo: 'modal-header',
+          meta: {
+            stable: '3.28.0'
+          }
         },
         {
           name: 'fullscreen',

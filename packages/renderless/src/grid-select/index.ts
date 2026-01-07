@@ -41,7 +41,7 @@ export const syncGridSelection =
         if (props.multiple) {
           // 多选模式
           if (Array.isArray(state.modelValue) && state.modelValue.length > 0) {
-            const rowsToSelect = fullData.filter((row: any) => state.modelValue.indexOf(row[props.valueField]) !== -1)
+            const rowsToSelect = fullData.filter((row: any) => state.modelValue.includes(row[props.valueField]))
             vm.$refs.gridRef.clearSelection()
             if (rowsToSelect.length > 0) {
               vm.$refs.gridRef.setSelection(rowsToSelect, true)
@@ -112,16 +112,17 @@ export const buildRadioConfig =
 
 export const filter =
   ({ props, state, vm }) =>
-  (value) => {
+  async (value) => {
     const { multiple, valueField, filterMethod, remote, remoteMethod } = props
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.gridRef.$refs.tinyTable
+      // 从原始数据源获取完整数据，而不是从可能已过滤的 table 中获取
       const fullData = table.getTableData().fullData
 
       vm.$refs.gridRef.scrollTo(null, 0)
 
-      table.loadTableData(filterMethod(value, fullData) || [])
+      await table.loadData(filterMethod(value, fullData) || [])
 
       vm.$refs.gridRef.handleTableData(!value)
 
@@ -134,7 +135,7 @@ export const filter =
           const selectedIds = Array.isArray(state.selected) ? state.selected.map((sel: any) => sel[valueField]) : []
           vm.$refs.gridRef.clearSelection()
           // 设置表格中已选中的行
-          const selectedRows = data.filter((row: any) => selectedIds.indexOf(row[valueField]) !== -1)
+          const selectedRows = data.filter((row: any) => selectedIds.includes(row[valueField]))
           if (selectedRows.length > 0) {
             vm.$refs.gridRef.setSelection(selectedRows, true)
           }
@@ -622,7 +623,7 @@ export const selectChange =
             const tableData = vm.$refs.gridRef.getTableData()
             const fullData = tableData?.fullData || []
             // 获取当前表格中应该选中的行
-            const rowsToSelect = fullData.filter((row: any) => currentValue.indexOf(row[valueField]) !== -1)
+            const rowsToSelect = fullData.filter((row: any) => currentValue.includes(row[valueField]))
             // 清除所有选中，然后重新设置
             vm.$refs.gridRef.clearSelection()
             if (rowsToSelect.length > 0) {

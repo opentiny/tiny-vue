@@ -7,7 +7,15 @@
     <h2>标签式调用</h2>
     <div class="content">
       <tiny-button @click="openModal">自定义弹窗标题</tiny-button>
-      <tiny-modal v-model="show" title="自定义弹窗标题" message="窗口内容" show-header show-footer> </tiny-modal>
+      <tiny-modal
+        v-model="show"
+        title="自定义弹窗标题"
+        message="窗口内容"
+        show-header
+        show-footer
+        :header-dragable="false"
+      >
+      </tiny-modal>
     </div>
   </div>
 </template>
@@ -27,7 +35,13 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '窗口内容', title: '自定义弹窗标题', showHeader: true, showFooter: true })
+      Modal.alert({
+        message: '窗口内容',
+        title: '自定义弹窗标题',
+        showHeader: true,
+        showFooter: true,
+        headerDragable: false
+      })
     },
     openModal() {
       this.show = true

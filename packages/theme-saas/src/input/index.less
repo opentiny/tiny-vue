@@ -12,6 +12,11 @@
   @apply inline-table;
   @apply w-full;
 
+  /* 解决 ms-edge浏览器下，出现一个多余的eye*/
+  &__inner[type='password']::-ms-reveal {
+    display: none;
+  }
+
   &::-webkit-scrollbar {
     @apply ~'z-[11]';
     @apply ~'w-1.5';

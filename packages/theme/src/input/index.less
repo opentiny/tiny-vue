@@ -27,6 +27,11 @@
   display: inline-table;
   width: 100%;
 
+  /* 解决 ms-edge浏览器下，出现一个多余的eye*/
+  &__inner[type='password']::-ms-reveal {
+    display: none;
+  }
+
   &.is-exceed &__suffix &__count {
     color: var(--tv-Input-exceed-text-color);
 

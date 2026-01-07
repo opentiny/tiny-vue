@@ -104,7 +104,7 @@
           <template #right>
             <div v-if="multi" :style="`height:${mainHeight}px`" class="tiny-dialog-select__body-box">
               <tiny-selected-box
-                v-if="showSelectedBox"
+                v-if="multi && showSelectedBox"
                 ref="selectedBox"
                 :select="state.selectedDatas"
                 v-bind="selectedBoxOp"

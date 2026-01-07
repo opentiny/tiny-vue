@@ -17,6 +17,10 @@
     "
     :id="id"
     tabindex="-1"
+    role="checkbox"
+    :aria-checked="indeterminate ? 'mixed' : state.isChecked"
+    :aria-disabled="state.isDisabled || state.isDisplayOnly"
+    :aria-label="text || label"
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
     <span

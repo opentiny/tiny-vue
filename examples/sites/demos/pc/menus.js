@@ -175,6 +175,7 @@ export const cmpMenus = [
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
+      { 'nameCn': '标签输入框', 'name': 'TagInput', 'key': 'tag-input', 'meta': { 'experimental': '3.29.0' } },
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
       { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },

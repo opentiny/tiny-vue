@@ -329,7 +329,7 @@ export default defineComponent({
     inputBoxType: {
       type: String,
       default: 'normal',
-      validator: (value: string) => ['input', 'underline'].includes(value)
+      validator: (value: string) => ['normal', 'underline'].includes(value)
     },
     tagType: {
       type: String,

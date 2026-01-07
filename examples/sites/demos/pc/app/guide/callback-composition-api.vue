@@ -131,6 +131,7 @@ const domData = ref([
     ],
     destroy: () => {
       label.value = 'destroy'
+      showStep.value = false
     },
     complete: () => {
       label.value = 'complete'

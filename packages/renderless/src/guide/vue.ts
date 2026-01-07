@@ -34,7 +34,16 @@ export const renderless = (
     beforeUnmount: beforeUnmount(state)
   }
 
-  watch(() => props.showStep, api.createShepherd)
+  watch(
+    () => props.showStep,
+    (newVal) => {
+      if (newVal) {
+        api.createShepherd()
+      } else {
+        state?.tour?.hide()
+      }
+    }
+  )
 
   onMounted(api.mounted)
   onBeforeUnmount(api.beforeUnmount)

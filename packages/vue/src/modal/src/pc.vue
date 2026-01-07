@@ -66,6 +66,7 @@ export default defineComponent({
     'cancelContent',
     'confirmBtnProps',
     'cancelBtnProps',
+    'headerDragable',
     'footerDragable',
     'tiny_theme',
     'slots',
@@ -174,7 +175,7 @@ export default defineComponent({
                   {
                     class: ['tiny-modal__header', status && state.theme === 'saas' ? 'tiny-modal__header-icon' : ''],
                     on: {
-                      mousedown: this.mousedownEvent
+                      mousedown: this.headerDragable ? this.mousedownEvent : () => {}
                     }
                   },
                   [

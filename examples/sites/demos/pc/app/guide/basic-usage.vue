@@ -48,7 +48,10 @@ export default {
               text: '下一步',
               action: 'next'
             }
-          ]
+          ],
+          destroy: () => {
+            this.showStep = false
+          }
         }
       ]
     }

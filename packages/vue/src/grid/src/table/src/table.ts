@@ -411,9 +411,7 @@ export default defineComponent({
       // 在编辑模式下 单元格在失去焦点验证的状态
       validatedMap: {},
       // 表格父容器的高度
-      parentHeight: 0,
-      // 水平滚动条的状态
-      horizonScroll: { fixed: false, threshold: 2, max: 0, isLeft: true, isRight: false }
+      parentHeight: 0
     }
   },
   computed: {
@@ -688,6 +686,8 @@ export default defineComponent({
       scaleMinList: []
     })
 
+    const horizonScroll = hooks.ref({ fixed: false, threshold: 2, max: 0, isLeft: true, isRight: false })
+
     // body组件参数
     const bodyProps = hooks.computed(() => ({
       collectColumn: collectColumn.value,
@@ -746,6 +746,44 @@ export default defineComponent({
 
     const { tiledLength } = useData(props)
 
+    // 监听 horizonScroll.isLeft 和 isRight 的变化，直接操作 DOM 更新 class，避免触发重渲染
+    // 注意：tiny-grid-fixed__left 和 tiny-grid-fixed__right 通过 watch 直接操作 DOM 更新，避免触发重渲染
+    const updateFixedClasses = (isLeft, isRight) => {
+      if (!$table.$el) return
+
+      const el = $table.$el as HTMLElement
+      const hasLeftClass = el.classList.contains('tiny-grid-fixed__left')
+      const hasRightClass = el.classList.contains('tiny-grid-fixed__right')
+      const shouldHaveLeft = !isLeft
+      const shouldHaveRight = !isRight
+
+      // 只在状态真正变化时更新 DOM
+      if (hasLeftClass !== shouldHaveLeft) {
+        if (shouldHaveLeft) {
+          el.classList.add('tiny-grid-fixed__left')
+        } else {
+          el.classList.remove('tiny-grid-fixed__left')
+        }
+      }
+
+      if (hasRightClass !== shouldHaveRight) {
+        if (shouldHaveRight) {
+          el.classList.add('tiny-grid-fixed__right')
+        } else {
+          el.classList.remove('tiny-grid-fixed__right')
+        }
+      }
+    }
+
+    const resolveMap = {}
+
+    hooks.watch(
+      () => [horizonScroll.value?.isLeft, horizonScroll.value?.isRight],
+      ([newIsLeft, newIsRight]) => {
+        hooks.nextTick(() => updateFixedClasses(newIsLeft, newIsRight))
+      }
+    )
+
     hooks.onMounted(() => {
       $table.addIntersectionObserver()
 
@@ -756,7 +794,18 @@ export default defineComponent({
 
       hooks.nextTick(() => {
         $table.afterMounted = true
-
+        // 初始化时设置一次 class
+        setTimeout(() => {
+          if ($table.$el && $table.horizonScroll) {
+            const el = $table.$el as HTMLElement
+            if (!horizonScroll.value?.isLeft) {
+              el.classList.add('tiny-grid-fixed__left')
+            }
+            if (!horizonScroll.value?.isRight) {
+              el.classList.add('tiny-grid-fixed__right')
+            }
+          }
+        })
         if (props.autoResize && TINYGrid._resize) {
           $table.bindResize()
         }
@@ -847,6 +896,8 @@ export default defineComponent({
       rawData,
       markColumnIndex,
       rowidCacheMap,
+      horizonScroll,
+      resolveMap,
       columnSlotsWeakMap
     }
   },
@@ -894,9 +945,7 @@ export default defineComponent({
           'column__highlight': highlightHoverColumn,
           'is__row-span': (rowSpan && rowSpan.length > 0) || typeof spanMethod === 'function',
           'row__drop-handle--index': dropConfig.rowHandle === 'index',
-          'fixed__sticky': horizonScroll.fixed,
-          'tiny-grid-fixed__left': !horizonScroll.isLeft,
-          'tiny-grid-fixed__right': !horizonScroll.isRight
+          'fixed__sticky': horizonScroll.fixed
         }
       },
       [
