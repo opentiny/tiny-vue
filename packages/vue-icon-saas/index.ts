@@ -10,6 +10,7 @@ import IconAIExternalKnowledgeAnswer from './src/a-i-external-knowledge-answer'
 import IconAIFindRecords from './src/a-i-find-records'
 import IconAIFollowUp from './src/a-i-follow-up'
 import IconAIGCPainting from './src/a-i-g-c-painting'
+import IconAIGeneral from './src/a-i-general'
 import IconAIITServiceQA from './src/a-i-i-t-service-q-a'
 import IconAIImageBasedTextRecognition from './src/a-i-image-based-text-recognition'
 import IconAIInformation from './src/a-i-information'
@@ -205,7 +206,6 @@ import IconFreezeRight from './src/freeze-right'
 import IconFrownO from './src/frown-o'
 import IconFullscreen from './src/fullscreen'
 import IconFullscreenLeft from './src/fullscreen-left'
-import IconGeneralAi from './src/general-ai'
 import IconGeneralPage from './src/general-page'
 import IconGeneralPageIndigo from './src/general-page-indigo'
 import IconGenerating from './src/generating'
@@ -813,6 +813,7 @@ export { IconAIExternalKnowledgeAnswer, IconAIExternalKnowledgeAnswer as iconAIE
 export { IconAIFindRecords, IconAIFindRecords as iconAIFindRecords }
 export { IconAIFollowUp, IconAIFollowUp as iconAIFollowUp }
 export { IconAIGCPainting, IconAIGCPainting as iconAIGCPainting }
+export { IconAIGeneral, IconAIGeneral as iconAIGeneral }
 export { IconAIITServiceQA, IconAIITServiceQA as iconAIITServiceQA }
 export { IconAIImageBasedTextRecognition, IconAIImageBasedTextRecognition as iconAIImageBasedTextRecognition }
 export { IconAIInformation, IconAIInformation as iconAIInformation }
@@ -1011,7 +1012,6 @@ export { IconFreezeRight, IconFreezeRight as iconFreezeRight }
 export { IconFrownO, IconFrownO as iconFrownO }
 export { IconFullscreen, IconFullscreen as iconFullscreen }
 export { IconFullscreenLeft, IconFullscreenLeft as iconFullscreenLeft }
-export { IconGeneralAi, IconGeneralAi as iconGeneralAi }
 export { IconGeneralPage, IconGeneralPage as iconGeneralPage }
 export { IconGeneralPageIndigo, IconGeneralPageIndigo as iconGeneralPageIndigo }
 export { IconGenerating, IconGenerating as iconGenerating }
@@ -1649,6 +1649,7 @@ export default {
   IconAIFindRecords,
   IconAIFollowUp,
   IconAIGCPainting,
+  IconAIGeneral,
   IconAIITServiceQA,
   IconAIImageBasedTextRecognition,
   IconAIInformation,
@@ -1844,7 +1845,6 @@ export default {
   IconFrownO,
   IconFullscreen,
   IconFullscreenLeft,
-  IconGeneralAi,
   IconGeneralPage,
   IconGeneralPageIndigo,
   IconGenerating,
