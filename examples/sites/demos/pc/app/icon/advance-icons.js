@@ -307,7 +307,7 @@ export const batch3Icons = [
   'IconEquipment',
   'IconExchangerate',
   'IconFastCode',
-  'IconGeneralAi',
+  'IconAIGeneral',
   'IconGeneralPageIndigo',
   'IconIndicatorArtifactConfiguration',
   'IconInspectionPlan',
