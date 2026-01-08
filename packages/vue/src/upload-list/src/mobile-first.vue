@@ -95,9 +95,15 @@
                       @click="reUpload(file)"
                       >{{ t('ui.uploadList.reUpload') }}</span
                     >
-                    <span v-if="!displayOnly" class="cursor-pointer" @click.stop="remove({ file })">{{
-                      t('ui.uploadList.delete')
-                    }}</span>
+                    <span
+                      v-if="!displayOnly"
+                      class="cursor-pointer"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
+                      @click.stop="remove({ file })"
+                      >{{ t('ui.uploadList.delete') }}</span
+                    >
                   </slot>
                 </div>
               </div>
@@ -130,6 +136,9 @@
                 <icon-error
                   v-if="!displayOnly && ~['uploading', 'fail'].indexOf(file.status)"
                   class="fill-color-none-hover"
+                  role="button"
+                  tabindex="0"
+                  :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                   @click.stop="remove({ file })"
                 ></icon-error>
               </div>
@@ -227,9 +236,14 @@
                 </div>
                 <div class="mt-3 mb-2">{{ file.name }}</div>
                 <div>
-                  <span class="text-color-brand cursor-pointer" @click.stop="remove({ file })">{{
-                    t('ui.uploadList.delete')
-                  }}</span>
+                  <span
+                    class="text-color-brand cursor-pointer"
+                    role="button"
+                    tabindex="0"
+                    :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
+                    @click.stop="remove({ file })"
+                    >{{ t('ui.uploadList.delete') }}</span
+                  >
                 </div>
               </div>
             </slot>
@@ -267,6 +281,9 @@
                 { 'sm:hidden -top-1.5': !~['video', 'audio'].indexOf(file.type) },
                 listType === 'picture-single' ? '-right-1.5' : '-right-1.5'
               ]"
+              role="button"
+              tabindex="0"
+              :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
               @click.stop="remove({ file })"
             ></icon-error>
             <div
@@ -348,6 +365,9 @@
                     <icon-del
                       v-if="!displayOnly && listType !== 'picture-single'"
                       class="w-6 h-6 fill-color-icon-inverse"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                       @click.stop="remove({ file })"
                     />
                   </span>
@@ -368,6 +388,9 @@
                       <icon-del
                         v-if="!displayOnly"
                         class="w-6 h-6 fill-color-icon-inverse"
+                        role="button"
+                        tabindex="0"
+                        :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                         @click.stop="remove({ file })"
                       />
                     </slot>
@@ -456,6 +479,11 @@
             data-tag="tiny-upload-list-panel"
             v-if="!displayOnly"
             class="h-12 flex items-center justify-center cursor-pointer"
+            role="button"
+            tabindex="0"
+            :aria-label="
+              state.currentFile ? t('ui.uploadList.delete') + ' ' + state.currentFile.name : t('ui.uploadList.delete')
+            "
             @click.stop="
               () => {
                 state.showPanel = false

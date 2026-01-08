@@ -18,6 +18,8 @@
       state.searchSize ? 'tiny-search--' + state.searchSize : '',
       { 'is-disabled': disabled }
     ]"
+    role="search"
+    :aria-label="placeholder || 'search'"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
   >
@@ -26,7 +28,15 @@
         <slot name="prefix"></slot>
       </div>
       <transition name="tiny-transition-search-line-fade" mode="out-in">
-        <div v-show="!state.collapse && state.types.length" class="tiny-search__present" @click="showSelector">
+        <div
+          v-show="!state.collapse && state.types.length"
+          class="tiny-search__present"
+          role="button"
+          tabindex="0"
+          aria-haspopup="listbox"
+          :aria-expanded="state.show"
+          @click="showSelector"
+        >
           <slot name="text" :slot-scope="state.searchValue">
             <span class="tiny-search__text">{{ state.searchValue.text }}</span>
           </slot>
@@ -37,6 +47,10 @@
       </transition>
       <input
         ref="input"
+        role="searchbox"
+        :aria-label="placeholder || 'search'"
+        :aria-expanded="state.show"
+        :aria-controls="state.show ? `tiny-search__selector-${state.instanceId}` : undefined"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'clearable'])"
         v-model="state.currentValue"
         :disabled="disabled"
@@ -51,6 +65,7 @@
         :placeholder="placeholder"
         type="text"
         class="tiny-search__input"
+        aria-haspopup="listbox"
         @keyup.enter="searchEnterKey($event)"
         @change="handleChange"
         @input="handleInput"
@@ -61,26 +76,37 @@
       />
       <transition name="tiny-transition-icon-scale-in">
         <div class="tiny-search__input-btn tiny-icon-close" v-if="state.showClear && !state.collapse && !disabled">
-          <a @click="clear($event)">
+          <a role="button" tabindex="0" aria-label="clear search" @click="clear($event)" @keydown.enter="clear($event)">
             <icon-close @mousedown.prevent class="tiny-svg-size" />
           </a>
         </div>
       </transition>
       <slot v-if="slots.suffix" name="suffix"></slot>
       <div v-else-if="!slots.prefix && !slots.suffix" class="tiny-search__input-btn">
-        <a @click="searchClick($event)">
+        <a role="button" tabindex="0" aria-label="submit search" @click="searchClick($event)">
           <icon-search :style="{ fill: state.collapse && transparent ? '#fff' : '' }" class="tiny-svg-size" />
         </a>
       </div>
     </div>
     <transition name="tiny-transition-zoom-in-top" mode="out-in">
-      <div v-show="state.show && state.types.length" ref="selector" class="tiny-search__selector">
+      <div
+        v-show="state.show && state.types.length"
+        ref="selector"
+        :id="`tiny-search__selector-${state.instanceId}`"
+        class="tiny-search__selector"
+        role="listbox"
+      >
         <div class="tiny-search__selector-body">
           <ul class="tiny-search__poplist">
             <li
               v-for="(item, index) in state.types"
               :key="index"
               class="tiny-search__poplist-item"
+              role="option"
+              :aria-label="item.text || item.label"
+              :aria-selected="item === state.searchValue"
+              :id="`tiny-search__option-${state.instanceId}-${index}`"
+              tabindex="-1"
               @click="changeKey(item)"
             >
               <slot name="poplist" :slot-scope="item">

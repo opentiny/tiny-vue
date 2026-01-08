@@ -12,6 +12,10 @@
 <template>
   <span
     v-if="!state.isDisplayOnly"
+    role="switch"
+    :aria-checked="state.currentValue === trueValue"
+    :aria-disabled="disabled"
+    :aria-label="state.showText ? (state.currentValue === trueValue ? 'on' : 'off') : undefined"
     :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']"
     :tabindex="tabindex"
     :style="state.switchStyle"
