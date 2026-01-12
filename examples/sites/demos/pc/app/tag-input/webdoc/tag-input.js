@@ -23,7 +23,7 @@ export default {
       demoId: 'disabled-readonly',
       name: {
         'zh-CN': '禁用与只读',
-        'en-US': 'basic usage'
+        'en-US': 'disabled and readonly'
       },
       desc: {
         'zh-CN': `你可以设置TagInput被禁用或者只读。<br>`,
@@ -35,7 +35,7 @@ export default {
       demoId: 'max-tag',
       name: {
         'zh-CN': '最大标签数',
-        'en-US': 'basic usage'
+        'en-US': 'maximum tags'
       },
       desc: {
         'zh-CN': `您可以设置添加标签的数量限制。<br>`,
@@ -47,7 +47,7 @@ export default {
       demoId: 'collapsed-tag',
       name: {
         'zh-CN': '折叠标签',
-        'en-US': 'basic usage'
+        'en-US': 'collapsed tags'
       },
       desc: {
         'zh-CN': `通过设置minCollapsedTags属性，可以控制折叠标签的数量，超过部分将以+N的形式显示。<br>`,
@@ -59,7 +59,7 @@ export default {
       demoId: 'clearable-tag',
       name: {
         'zh-CN': '可清空标签',
-        'en-US': 'basic usage'
+        'en-US': 'clearable tags'
       },
       desc: {
         'zh-CN': `通过设置clearable属性，可以控制标签是否可清空。<br>`,
@@ -71,7 +71,7 @@ export default {
       demoId: 'separator-tag',
       name: {
         'zh-CN': '分隔符输入标签',
-        'en-US': 'basic usage'
+        'en-US': 'separator tag'
       },
       desc: {
         'zh-CN': `可以通过设置分隔符separator来实现批量输入。<br>`,
@@ -83,7 +83,7 @@ export default {
       demoId: 'prefix-suffix',
       name: {
         'zh-CN': '自定义前后缀',
-        'en-US': 'basic usage'
+        'en-US': 'custom prefix and suffix'
       },
       desc: {
         'zh-CN': `可以通过设置prefix和suffix属性来自定义前后缀。<br>`,
@@ -95,7 +95,7 @@ export default {
       demoId: 'draggable-tag',
       name: {
         'zh-CN': '可拖拽标签',
-        'en-US': 'basic usage'
+        'en-US': 'draggable tags'
       },
       desc: {
         'zh-CN': `可以通过设置drag属性来实现标签的拖拽功能。<br>`,
