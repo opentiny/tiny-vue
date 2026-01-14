@@ -417,7 +417,7 @@
     }
   }
 
-  &:not(.@{tabs-prefix-cls}--button-card) {
+  &:not(.@{tabs-prefix-cls}--button-card):not(.@{tabs-prefix-cls}--card) {
     // 无分隔符场景最外层页签栏盒子
     .@{tabs-prefix-cls}__header:has(> .@{tabs-prefix-cls}__nav-wrap-not-separator) {
       &::after {
@@ -483,6 +483,7 @@
     }
 
     & > .@{tabs-prefix-cls}__header {
+      border-bottom: 1px solid var(--tv-Tabs-border-color);
 
       .@{tabs-prefix-cls}__item {
         border-bottom: 1px solid transparent;
