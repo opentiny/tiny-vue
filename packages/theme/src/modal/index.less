@@ -35,21 +35,30 @@
 
     &.active {
       display: block;
+      opacity: 1;
+    }
+
+    &.leave {
+      opacity: 0;
     }
 
     // status图标色  弹窗和消息的颜色一致，共用以下颜色
     &.status__success .@{modal-prefix-cls}__status-wrapper svg {
       fill: var(--tv-Modal-status-icon-color-success);
     }
+
     &.status__warning .@{modal-prefix-cls}__status-wrapper svg {
       fill: var(--tv-Modal-status-icon-color-warning);
     }
+
     &.status__error .@{modal-prefix-cls}__status-wrapper svg {
       fill: var(--tv-Modal-status-icon-color-error);
     }
+
     &.status__info .@{modal-prefix-cls}__status-wrapper svg {
       fill: var(--tv-Modal-status-icon-color-info);
     }
+
     &.status__question .@{modal-prefix-cls}__status-wrapper svg {
       fill: var(--tv-Modal-status-icon-color-question);
     }
@@ -71,8 +80,7 @@
         .@{modal-prefix-cls}__header {
           display: flex;
           align-items: center;
-          padding: var(--tv-Modal-box-header-padding-top) var(--tv-Modal-box-header-padding-x)
-            var(--tv-Modal-box-header-padding-bottom) var(--tv-Modal-box-header-padding-x);
+          padding: var(--tv-Modal-box-header-padding-top) var(--tv-Modal-box-header-padding-x) var(--tv-Modal-box-header-padding-bottom) var(--tv-Modal-box-header-padding-x);
 
           .@{modal-prefix-cls}__status-wrapper {
             display: flex;
@@ -84,11 +92,13 @@
               fill: var(--tv-Modal-loading-status-icon-color);
             }
           }
+
           .@{modal-prefix-cls}__title {
             color: var(--tv-Modal-box-title-text-color);
             font-size: var(--tv-Modal-box-title-font-size);
             font-weight: var(--tv-Modal-box-title-font-weight);
           }
+
           .@{modal-prefix-cls}__zoom-btn,
           .@{modal-prefix-cls}__close-btn {
             position: absolute;
@@ -101,9 +111,11 @@
               fill: var(--tv-Modal-box-close-icon-color-hover);
             }
           }
+
           .@{modal-prefix-cls}__close-btn {
             right: var(--tv-Modal-box-close-icon-right);
           }
+
           .@{modal-prefix-cls}__zoom-btn {
             right: var(--tv-Modal-box-zoom-icon-right);
           }
@@ -129,8 +141,7 @@
 
         .@{modal-prefix-cls}__footer {
           text-align: right;
-          padding: var(--tv-Modal-box-footer-padding-top) var(--tv-Modal-box-footer-padding-x)
-            var(--tv-Modal-box-footer-padding-bottom) var(--tv-Modal-box-footer-padding-x);
+          padding: var(--tv-Modal-box-footer-padding-top) var(--tv-Modal-box-footer-padding-x) var(--tv-Modal-box-footer-padding-bottom) var(--tv-Modal-box-footer-padding-x);
         }
       }
 
@@ -229,6 +240,7 @@
         }
       }
     }
+
     // 最大化时,resize display=none
     &.is__maximize .@{modal-prefix-cls}__resize {
       display: none;
@@ -250,6 +262,7 @@
     &:not(.lock__view) {
       pointer-events: none;
     }
+
     // 遮罩层
     &.is__mask {
       background-color: var(--tv-Modal-mask-bg-color);
@@ -300,6 +313,7 @@
               fill: var(--tv-Modal-loading-status-icon-color);
             }
           }
+
           .@{modal-prefix-cls}__content {
             width: 100%;
             max-width: 800px;
@@ -311,6 +325,7 @@
               font-weight: var(--tv-Modal-msg-box-font-weight);
             }
           }
+
           .@{modal-prefix-cls}__close-wrapper {
             svg {
               margin-left: var(--tv-Modal-msg-box-close-icon-margin-left);
@@ -328,6 +343,7 @@
     }
 
     // 消息动画
-    transition: top 0.4s; // 修改最外层的top值形成的动画
+    transition: top 0.4s,
+    opacity 0.4s; // 修改最外层的top值形成的动画
   }
 }
