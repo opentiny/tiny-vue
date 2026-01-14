@@ -197,6 +197,7 @@
     "@opentiny/vue-tabs": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
     "@opentiny/vue-tag-group": "workspace:~",
+    "@opentiny/vue-tag-input": "workspace:~",
     "@opentiny/vue-text-popup": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-time-line": "workspace:~",
