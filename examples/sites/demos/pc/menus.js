@@ -311,6 +311,7 @@ export const cmpMenus = [
       },
       { 'nameCn': '加载', 'name': 'Loading', 'key': 'loading' },
       { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
+      { 'nameCn': '消息提示', 'name': 'Message', 'key': 'message' },
       { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },
       { 'nameCn': '气泡确认框', 'name': 'PopConfirm', 'key': 'popconfirm' },
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
