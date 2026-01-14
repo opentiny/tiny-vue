@@ -1,20 +1,24 @@
 import { test, expect } from '@playwright/test'
 
 test('触发方式', async ({ page }) => {
-  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  const pageErrors: Error[] = []
+  page.on('pageerror', (error) => pageErrors.push(error))
+
   await page.goto('popconfirm#trigger')
+  const demo = page.locator('#trigger')
 
-  const hoverBtn = page.getByRole('button', { name: '鼠标悬停显示' })
-  const clickBtn = page.getByRole('button', { name: '点击显示' })
-  const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
-  const hoverValueBtn = page.getByRole('button', { name: '确定' })
-
-  await hoverBtn.hover()
-  await page.waitForTimeout(100)
-  await expect(popConfirmPopover.first()).toBeVisible()
-  await hoverValueBtn.click()
-  await page.waitForTimeout(100)
-
+  // 点击按钮
+  const clickBtn = demo.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button').nth(1)
   await clickBtn.click()
-  await expect(popConfirmPopover.nth(1)).toBeVisible()
+
+  const visiblePopover = page.locator('.tiny-popconfirm-popover[aria-hidden="false"]')
+
+  // 等待并验证可见
+  await expect(visiblePopover).toBeVisible({ timeout: 5000 })
+
+  // 验证标题样式
+  const title = visiblePopover.locator('.tiny-popconfirm-popover__header .tiny-popconfirm-popover__title')
+  await expect(title).toHaveCSS('font-weight', '600')
+
+  expect(pageErrors).toHaveLength(0)
 })

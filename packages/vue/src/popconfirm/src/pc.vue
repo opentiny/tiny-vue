@@ -3,6 +3,8 @@
     <div>
       <tiny-popover
         ref="popover"
+        :aria-hidden="!state.showPopover"
+        role="tooltip"
         v-model="state.showPopover"
         :placement="placement"
         trigger="manual"
