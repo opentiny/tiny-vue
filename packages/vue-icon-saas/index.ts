@@ -67,6 +67,7 @@ import IconBatchFill from './src/batch-fill'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
 import IconButtonBar from './src/button-bar'
+import IconButton from './src/button'
 import IconCalculator from './src/calculator'
 import IconCalendar from './src/calendar'
 import IconCalendarView from './src/calendar-view'
@@ -872,6 +873,7 @@ export { IconBatchFill, IconBatchFill as iconBatchFill }
 export { IconBefilter, IconBefilter as iconBefilter }
 export { IconBoat, IconBoat as iconBoat }
 export { IconButtonBar, IconButtonBar as iconButtonBar }
+export { IconButton, IconButton as iconButton }
 export { IconCalculator, IconCalculator as iconCalculator }
 export { IconCalendar, IconCalendar as iconCalendar }
 export { IconCalendarView, IconCalendarView as iconCalendarView }
@@ -1710,6 +1712,7 @@ export default {
   IconBefilter,
   IconBoat,
   IconButtonBar,
+  IconButton,
   IconCalculator,
   IconCalendar,
   IconCalendarView,

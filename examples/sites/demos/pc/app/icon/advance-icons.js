@@ -454,6 +454,7 @@ export const batch4Icons = [
   'IconApprovalFlow',
   'IconAvatar',
   'IconBadge',
+  'IconButton',
   'IconButtonBar',
   'IconCalendarView',
   'IconCardGroup',
