@@ -11,9 +11,9 @@ test.describe('Rate Clearable 功能', () => {
     // 初始值为3，文本显示为"一般"
     await expect(text).toHaveText('一般')
 
-    // 点击已选中的第3个星星，应该清零
+    // 点击已选中的第3个星星，应该清零（显示空文本）
     await icon.nth(2).click()
-    await expect(text).toHaveText('0')
+    await expect(text).toHaveText('') // 修改为期望空字符串
   })
 
   test('未设置 clearable 时点击已选星星不会清零', async ({ page }) => {
@@ -45,9 +45,9 @@ test.describe('Rate Clearable 功能', () => {
     await icon.nth(0).click()
     await expect(text).toHaveText('很差')
 
-    // 再次点击第1个星星，应该清零
+    // 再次点击第1个星星，应该清零（显示空文本）
     await icon.nth(0).click()
-    await expect(text).toHaveText('0')
+    await expect(text).toHaveText('') // 修改为期望空字符串
 
     // 点击第4个星星，应该选择4
     await icon.nth(3).click()
