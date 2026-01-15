@@ -4,7 +4,7 @@
       <tiny-popover
         ref="popover"
         :aria-hidden="!state.showPopover"
-        role="tooltip"
+        role="dialog"
         v-model="state.showPopover"
         :placement="placement"
         trigger="manual"
