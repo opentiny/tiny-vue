@@ -282,6 +282,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'not-selected-class',
           mfDemo: ''
+        },
+        {
+          name: 'clearable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否可清空',
+            'en-US': 'Whether to clear'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'clearable',
+          mfDemo: ''
         }
       ],
       events: [

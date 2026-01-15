@@ -79,7 +79,8 @@ export default defineComponent({
     'textOnBottom',
     'space',
     'size',
-    'scoreTemplate'
+    'scoreTemplate',
+    'clearable'
   ],
   components: {
     IconStarActive: iconStarActive(),
