@@ -444,6 +444,7 @@ function renderRow(args) {
     return
   }
 
+  // 同步勿删
   let key = id
   if (row._isDraging) {
     // 防止数据多次刷新导致key回归rowid
