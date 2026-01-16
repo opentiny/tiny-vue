@@ -57,7 +57,7 @@ export default {
         'en-US': 'Icon Set'
       },
       desc: {
-        'zh-CN': `Saas业务梳理280多个标准图标，Saas业务的应用必须使用标准图标。它新增了三大功能：支持线性、面性图标切换，支持双色切换和托底效果。<br>
+        'zh-CN': `Saas业务梳理 600 多个标准图标，Saas业务的应用必须使用标准图标。它新增了三大功能：支持线性、面性图标切换，支持双色切换和托底效果。<br>
                   通过<code>shape</code> 属性，设置图标的线性或面性图标，它支持<code>'line' | 'filled' </code>, 默认为线性图标 。\n<br>
                   通过<code>firstColor, secondColor</code>属性，设置图标的主色和副色。\n<br>
                   通过<code>underlay</code>属性，设置图标的托底效果。默认样式： { background:'#eef3fe', borderRadius:'4px',scale:0.8 } <br>

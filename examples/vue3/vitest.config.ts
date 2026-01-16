@@ -54,6 +54,8 @@ export default defineConfig((config) => {
       },
       include: ['../../packages/vue/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       exclude: ['../../packages/vue/src/**/{node_modules,dist}/**'],
+      // 如果没有找到测试用例，不报错
+      passWithNoTests: true,
       alias: {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),

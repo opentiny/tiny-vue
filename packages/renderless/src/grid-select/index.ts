@@ -41,7 +41,7 @@ export const syncGridSelection =
         if (props.multiple) {
           // 多选模式
           if (Array.isArray(state.modelValue) && state.modelValue.length > 0) {
-            const rowsToSelect = fullData.filter((row: any) => state.modelValue.indexOf(row[props.valueField]) !== -1)
+            const rowsToSelect = fullData.filter((row: any) => state.modelValue.includes(row[props.valueField]))
             vm.$refs.gridRef.clearSelection()
             if (rowsToSelect.length > 0) {
               vm.$refs.gridRef.setSelection(rowsToSelect, true)
@@ -135,7 +135,7 @@ export const filter =
           const selectedIds = Array.isArray(state.selected) ? state.selected.map((sel: any) => sel[valueField]) : []
           vm.$refs.gridRef.clearSelection()
           // 设置表格中已选中的行
-          const selectedRows = data.filter((row: any) => selectedIds.indexOf(row[valueField]) !== -1)
+          const selectedRows = data.filter((row: any) => selectedIds.includes(row[valueField]))
           if (selectedRows.length > 0) {
             vm.$refs.gridRef.setSelection(selectedRows, true)
           }
@@ -623,7 +623,7 @@ export const selectChange =
             const tableData = vm.$refs.gridRef.getTableData()
             const fullData = tableData?.fullData || []
             // 获取当前表格中应该选中的行
-            const rowsToSelect = fullData.filter((row: any) => currentValue.indexOf(row[valueField]) !== -1)
+            const rowsToSelect = fullData.filter((row: any) => currentValue.includes(row[valueField]))
             // 清除所有选中，然后重新设置
             vm.$refs.gridRef.clearSelection()
             if (rowsToSelect.length > 0) {
