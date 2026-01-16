@@ -37,7 +37,7 @@ export const statisticProps = {
   },
   useAnimation: {
     type: Boolean,
-    default: true 
+    default: false 
   }
 }
 
