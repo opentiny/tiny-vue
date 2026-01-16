@@ -66,8 +66,8 @@ export default defineComponent({
     if (showClose) {
       closeVNode = (
         <div class="tiny-notify__close-zone">
-          <span class="tiny-notify__icon-close" role="button" aria-label="Close notification">
-            <closeIcon class="tiny-svg-size" onClick={close}></closeIcon>
+          <span class="tiny-notify__icon-close" aria-label="Close notification">
+            <closeIcon class="tiny-svg-size" aria-hidden="true" onClick={close}></closeIcon>
           </span>
         </div>
       )
