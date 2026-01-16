@@ -1,14 +1,14 @@
 <!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+-->
 <script lang="tsx">
 import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/notify/vue'
@@ -55,7 +55,7 @@ export default defineComponent({
     // Type Icon
     if (showIcon && statusIcon) {
       iconVNode = (
-        <div class="tiny-notify__icon-zone">
+        <div class="tiny-notify__icon-zone" aria-hidden="true">
           <span class="tiny-notify__icon-status">
             <statusIcon class="tiny-svg-size"></statusIcon>
           </span>
@@ -66,7 +66,7 @@ export default defineComponent({
     if (showClose) {
       closeVNode = (
         <div class="tiny-notify__close-zone">
-          <span class="tiny-notify__icon-close">
+          <span class="tiny-notify__icon-close" role="button" aria-label="Close notification">
             <closeIcon class="tiny-svg-size" onClick={close}></closeIcon>
           </span>
         </div>
@@ -74,13 +74,13 @@ export default defineComponent({
     }
     // Msg Title
     if (title && typeof title === 'string') {
-      notifyTitle = h('div', { class: 'tiny-notify__title' }, title)
+      notifyTitle = h('div', { class: 'tiny-notify__title', id: state.titleId }, title)
     } else if (typeof title === 'function') {
       notifyTitle = title(h, { vm: this, titleClass: 'tiny-notify__title' })
     }
     // Msg Content
     if (typeof message === 'string') {
-      notifyContent = h('span', { class: 'tiny-notify__content' }, message)
+      notifyContent = h('span', { class: 'tiny-notify__content', id: state.contentId }, message)
     } else if (typeof message === 'function') {
       notifyContent = message(h, {
         vm: this,
@@ -89,7 +89,7 @@ export default defineComponent({
     }
     // Main Msg Area
     let msgVNode = (
-      <div class="tiny-notify__message-zone">
+      <div class="tiny-notify__message-zone" role="region" aria-label="Notification content">
         {notifyTitle ? <div class="tiny-notify__title-wrapper">{notifyTitle}</div> : null}
         <div class="tiny-notify__content-wrapper">{notifyContent}</div>
       </div>
@@ -105,6 +105,10 @@ export default defineComponent({
           state.position,
           state.customClass
         ]}
+        role="alert"
+        aria-hidden={!state.visible}
+        aria-labelledby={state.titleId}
+        aria-describedby={state.contentId}
         style={state.positionStyle}
         v-show="state.visible"
         onMouseenter={clearTimer}
