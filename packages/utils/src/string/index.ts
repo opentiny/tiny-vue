@@ -783,24 +783,31 @@ export const toFileSize = (value, unit, currUnit) => {
 export const formatFileSize = (size, baseUnit = '') => {
   if ([undefined, null].includes(size)) {
     return ''
-  } else if (!isNumber(size) || size <= 0) {
+  }
+
+  // 先尝试将字符串数字转换为数字
+  const numSize = isNumber(size) ? size : typeof size === 'string' ? parseFloat(size) : NaN
+
+  // 判断转换后的值是否是合法数字
+  if (!isNumber(numSize) || numSize <= 0) {
     return size + baseUnit
   }
 
   const unitArr = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
   let unitIndex = Math.max(unitArr.indexOf((baseUnit + '').toLocaleUpperCase()), 0)
+  let convertedSize = numSize
 
-  while (size >= 1024 && unitIndex < unitArr.length - 1) {
-    size = size / 1024.0
+  while (convertedSize >= 1024 && unitIndex < unitArr.length - 1) {
+    convertedSize = convertedSize / 1024
     unitIndex++
   }
 
-  while (size < 1 && unitIndex > 0) {
-    size = size * 1024
+  while (convertedSize < 1 && unitIndex > 0) {
+    convertedSize = convertedSize * 1024
     unitIndex--
   }
 
-  return parseFloat(toDecimal(size, 2, true)) + unitArr[unitIndex]
+  return parseFloat(toDecimal(convertedSize, 2, true)) + unitArr[unitIndex]
 }
 
 /**
