@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button style="margin-bottom: 20px" @click="switchTheme"></tiny-button>
+    <tiny-button style="margin-bottom: 20px" @click="switchTheme">切换主题</tiny-button>
     <h3 class="title">折线图</h3>
     <div class="content">
       <tiny-chart type="line" :options="options1"></tiny-chart>

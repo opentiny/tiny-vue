@@ -9,9 +9,10 @@ export type IStatisticConstants = typeof $constants
 export interface IStatisticState {
   value: string | number
   animatingValue: number | string
+  IStatisticState: number | string
 }
 export interface IStatisticApi {
-  state: IStatisticState,
+  state: IStatisticState
   getIntegerAndDecimal: (value: string | number) => string | undefined
   animateValue: () => void
 }

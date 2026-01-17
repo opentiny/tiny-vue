@@ -137,7 +137,7 @@ const footerHtml = `<div class="tinyui-design-footer">
   </div>
   <div class="copyright">
   <p>Copyright © Huawei Technologies Co., Ltd. 2023. All rights reserved.</p>
-  <p>粤 ICP 备 2022156931 号 -1</p>
+  <p>粤ICP备2022156931号-1</p>
   </div>
 </div>`
 
