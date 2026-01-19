@@ -58,7 +58,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>可通过 `duration` 属性设置自动关闭的延迟时间，只对 type=message 有效。<p>',
+        'zh-CN':
+          '<p>可通过 `duration` 属性设置自动关闭的延迟时间，只对 type=message 有效，如果设置为0则窗口不会自动关闭。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['duration.vue']
