@@ -396,6 +396,13 @@ export const mousemove =
       const carousel = vm.$refs.carousel
       if (!carousel) return
 
+      //增加节流 - 我觉得可能引发一些问题，后续可以多看这个逻辑
+      if (!throttle(100, true, () => {
+        return true
+      })) {
+        return
+      }
+
       state.deltaPos.X = event.clientX - state.startPos.X
       state.deltaPos.Y = event.clientY - state.startPos.Y
       state.offsetPos.X = Math.abs(state.deltaPos.X)
