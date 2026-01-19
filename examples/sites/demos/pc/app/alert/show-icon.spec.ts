@@ -5,5 +5,5 @@ test('测试 Alert 不显示图标', async ({ page }) => {
   await page.goto('alert#show-icon')
 
   const noIconAlert = page.locator('.tiny-alert').nth(1)
-  await expect(noIconAlert.locator('.tiny-alert__icon')).toHaveCount(1)
+  await expect(noIconAlert.locator('.tiny-alert__icon')).toHaveCount(0)
 })

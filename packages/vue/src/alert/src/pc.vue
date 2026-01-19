@@ -14,10 +14,13 @@
     <div
       v-if="state.show"
       :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }, customClass]"
+      role="alert"
+      :aria-labelledby="size === 'large' && showTitle ? state.titleId : undefined"
+      :aria-describedby="state.contentId"
     >
-      <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
+      <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" aria-hidden="true" />
       <div class="tiny-alert__content" :class="{ 'close-hidden': !closable }">
-        <div v-if="size === 'large' && showTitle" class="tiny-alert__title">
+        <div v-if="size === 'large' && showTitle" class="tiny-alert__title" :id="state.titleId">
           <slot name="title"> {{ state.getTitle }}</slot>
         </div>
         <div
@@ -27,6 +30,7 @@
               'is-hide': size === 'large' && !description && !slots.description
             }
           ]"
+          :id="state.contentId"
         >
           <slot name="description">
             {{ description }}
@@ -40,9 +44,14 @@
         v-if="!closeText && closable"
         @click="handleClose"
         class="tiny-svg-size tiny-alert__icon tiny-alert__close"
+        aria-label="Close alert"
       ></icon-close>
-      <span class="is-custom" v-else-if="!closeText && !closable"><slot name="close"></slot></span>
-      <span v-else-if="closeText && closable" @click="handleClose" class="is-custom">{{ closeText }}</span>
+      <span class="is-custom" v-else-if="!closeText && !closable">
+        <slot name="close"></slot>
+      </span>
+      <span v-else-if="closeText && closable" @click="handleClose" class="is-custom" aria-label="Close">
+        {{ closeText }}
+      </span>
     </div>
   </transition>
 </template>
