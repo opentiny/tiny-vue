@@ -348,7 +348,12 @@ export default defineComponent({
                 <span class="ml-2">{t('ui.fileUpload.uploadFile')}</span>
               </div>
             </tiny-button>
-            <icon-plus-circle custom-class="sm:hidden w-5 h-5 absolute top-0.5 right-5" />
+            <icon-plus-circle
+              role="button"
+              tabindex="0"
+              aria-label={t('ui.fileUpload.uploadFile')}
+              custom-class="sm:hidden w-5 h-5 absolute top-0.5 right-5"
+            />
           </div>
         )
       } else if (listType === 'drag-single') {
@@ -359,7 +364,13 @@ export default defineComponent({
         listType === 'picture-single' && uploadFiles.length && (defaultClass += ' hidden')
 
         defaultContent = (
-          <div class={defaultClass}>
+          <div
+            class={defaultClass}
+            role="button"
+            tabindex="0"
+            aria-label={t('ui.fileUpload.uploadFile')}
+            onKeydown={(event) => event.key === 'Enter' && handleTriggerClick()}
+          >
             <div class="absolute w-full top-1/2 left-0 -translate-y-1/2 z-[1] text-center">
               {defaultList[type || 'picture']}
             </div>
@@ -667,7 +678,13 @@ export default defineComponent({
     const attrs = a($attrs, ['^on[A-Z]'])
 
     return (
-      <div {...attrs} data-tag="tiny-file-upload" class={isDragSingle ? 'relative inline-block' : ''}>
+      <div
+        {...attrs}
+        data-tag="tiny-file-upload"
+        role="group"
+        aria-label={title}
+        class={isDragSingle ? 'relative inline-block' : ''}
+      >
         {getDefaultTitle({ listType, title, showTitle, displayOnly, mode })}
         {noticePC}
         {isText && !displayOnly ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}

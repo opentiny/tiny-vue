@@ -62,6 +62,8 @@
           <span
             class="tiny-numeric__decrease"
             role="button"
+            aria-label="decrease"
+            :aria-disabled="state.minDisabled"
             v-if="state.controls && !unit"
             v-repeat-click="decrease"
             :class="{ 'is-disabled': state.minDisabled }"
@@ -72,6 +74,8 @@
           <span
             class="tiny-numeric__increase"
             role="button"
+            aria-label="increase"
+            :aria-disabled="state.maxDisabled"
             v-if="state.controls && !unit"
             v-repeat-click="increase"
             :class="{ 'is-disabled': state.maxDisabled }"
@@ -103,6 +107,11 @@
               </span>
               <input
                 :tabindex="tabindex"
+                role="spinbutton"
+                :aria-valuemin="min"
+                :aria-valuemax="max"
+                :aria-valuenow="state.currentValue"
+                :aria-disabled="state.inputDisabled"
                 :class="[
                   'tiny-numeric__input-inner',
                   { 'tiny-numeric__show-left': !state.controls && (showLeft || shape === 'filter') }
@@ -130,6 +139,8 @@
       <span
         class="tiny-numeric__decrease"
         role="button"
+        aria-label="decrease"
+        :aria-disabled="state.minDisabled"
         v-if="controls && !unit"
         v-repeat-click="decrease"
         :class="{ 'is-disabled': state.minDisabled }"
@@ -140,6 +151,8 @@
       <span
         class="tiny-numeric__increase"
         role="button"
+        aria-label="increase"
+        :aria-disabled="state.maxDisabled"
         v-if="controls && !unit"
         v-repeat-click="increase"
         :class="{ 'is-disabled': state.maxDisabled }"
@@ -171,6 +184,11 @@
           </span>
           <input
             :tabindex="tabindex"
+            role="spinbutton"
+            :aria-valuemin="min"
+            :aria-valuemax="max"
+            :aria-valuenow="state.currentValue"
+            :aria-disabled="state.inputDisabled"
             :class="['tiny-numeric__input-inner', { 'tiny-numeric__show-left': !controls && showLeft }]"
             ref="input"
             :value="state.displayValue"

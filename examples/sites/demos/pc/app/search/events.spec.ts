@@ -5,7 +5,7 @@ test('事件是否正常触发', async ({ page }) => {
   await page.goto('search#events')
 
   const modal = page.locator('.tiny-modal')
-  const input = page.locator('.tiny-search').getByRole('textbox')
+  const input = page.getByRole('searchbox', { name: 'search' })
   const button = page.locator('.tiny-search__input-btn > a').first()
 
   await button.click()

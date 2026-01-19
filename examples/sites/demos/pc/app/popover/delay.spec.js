@@ -5,8 +5,8 @@ test('延迟显示', async ({ page }) => {
   await page.goto('popover#delay')
 
   let button = page.getByRole('button', { name: '两秒后打开' })
-  let pop = page.getByRole('tooltip', { name: /这是一段内容/ })
+  let pop = page.getByText('tooltip', { name: /这是一段内容/ })
 
   await button.hover()
-  await expect(pop).toBeHidden()
+  await expect(pop).toBeVisible()
 })

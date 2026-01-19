@@ -12,9 +12,14 @@
       )
     "
     data-tag="tiny-switch"
+    role="switch"
+    :aria-checked="state.currentValue === trueValue"
+    :aria-disabled="state.disabled || types === 'loading'"
+    :aria-label="types === 'word' ? undefined : state.currentValue === trueValue ? 'on' : 'off'"
     :tabindex="tabindex"
     @click="toggle"
     @keydown.space="toggle"
+    @keydown.enter="toggle"
   >
     <span
       data-tag="tiny-switch-handle"

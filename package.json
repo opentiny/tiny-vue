@@ -127,6 +127,7 @@
     "@volar-plugins/prettier": "^2.0.0",
     "@volar-plugins/prettyhtml": "^2.0.0",
     "@vue/tsconfig": "^0.4.0",
+    "autoprefixer": "^10.4.12",
     "commitlint": "^18.4.3",
     "depcheck": "1.4.3",
     "eslint": "^8.31.0",

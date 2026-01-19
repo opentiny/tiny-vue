@@ -146,7 +146,8 @@ export default defineComponent({
             is__mask: mask,
             is__maximize: zoomLocat,
             is__visible: contentVisible,
-            active: visible
+            active: visible,
+            leave: !contentVisible
           }
         ],
         style: {
