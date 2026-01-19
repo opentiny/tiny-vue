@@ -702,11 +702,6 @@ import IconWeaknet from './src/weaknet'
 import IconWord from './src/word'
 import IconZip from './src/zip'
 
-// 重命名导出
-import IconTotalNolume from './src/total-nolume'
-import IconSubScript from './src/sub-script'
-import IconWriteProductioPlan from './src/write-productio-plan'
-
 // 双图标
 export { IconAbnormalCheckIn, IconAbnormalCheckIn as iconAbnormalCheckIn }
 export { IconAcceptance, IconAcceptance as iconAcceptance }
@@ -1428,11 +1423,21 @@ export { IconWarning, IconWarning as iconWarning }
 export { IconWeaknet, IconWeaknet as iconWeaknet }
 export { IconWord, IconWord as iconWord }
 export { IconZip, IconZip as iconZip }
-export { IconTotalNolume }
+
+// 重命名导出
+export const IconTotalNolume = () => ({
+  ...IconTotalVolume(),
+  name: 'IconTotalNolume',
+  deprecatedBy: 'IconTotalVolume'
+})
 export const iconTotalNolume = IconTotalNolume
-export { IconSubScript }
+export const IconSubScript = () => ({ ...IconSubscript(), name: 'IconSubScript', deprecatedBy: 'IconSubscript' })
 export const iconSubScript = IconSubScript
-export { IconWriteProductioPlan }
+export const IconWriteProductioPlan = () => ({
+  ...IconWriteProductionPlan(),
+  name: 'IconWriteProductioPlan',
+  deprecatedBy: 'IconWriteProductionPlan'
+})
 export const iconWriteProductioPlan = IconWriteProductioPlan
 
 export default {
