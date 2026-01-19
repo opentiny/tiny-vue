@@ -140,7 +140,8 @@ const tmplUnchecked = uncheckedList
 const tmplRewrite = rewriteList
   .map(
     (exp) =>
-      `export const Icon${exp.capName} = () => ({...Icon${exp.rewriteCapName}(), name:'Icon${exp.capName}', deprecatedBy: 'Icon${exp.rewriteCapName}' })
+      `import Icon${exp.capName} from './src/${exp.svgName}'
+export { Icon${exp.capName} }
 export const icon${exp.capName} = Icon${exp.capName}`
   )
   .join('\n')
