@@ -11,7 +11,7 @@
  -->
 <template>
   <div
-      :class="{ 'tiny-carousel--card': type === 'card', 'tiny-carousel--draggable': draggable }"
+    :class="{ 'tiny-carousel--card': type === 'card', 'tiny-carousel--draggable': draggable }"
     class="tiny-carousel"
     ref="carousel"
     @mouseenter.stop="handleMouseEnter"

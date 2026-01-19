@@ -368,27 +368,26 @@ export const computedHasIndicators =
     }
 
 
-//鼠标拖动切换走马灯
+//鼠标拖动切换走马灯 
 export const mousedown =
   ({ props, state, api }) =>
     (event) => {
       if (state.items.length <= 1 || ~state.noTouchNode.indexOf(event.target.nodeName)) return
-      //少于两个和在按钮上面时不干活
-      if (!props.draggable) return;
 
+      if (!props.draggable) {
+        return
+      }
       resetTouchStatus(state)
       api.pauseTimer()
-      //取消自动播放等等
+      state.itemsTranslate = state.items.map((item) => item.state.translate)
 
       state.moving = true
-      state.itemsTranslate = state.items.map((item) => item.state.translate)
-      //记录初始位置
+      state.touchTime = Date.now()
       state.startPos.X = event.clientX
       state.startPos.Y = event.clientY
-      state.touchTime = Date.now()
     }
 
-
+// 鼠标拖拽移动
 export const mousemove =
   ({ props, state, vm }) =>
     (event) => {
@@ -416,7 +415,7 @@ export const mousemove =
 
       state.moveDisable =
         !props.loop &&
-        ((state.activeIndex === 0 && state.delta > 0) &&
+        ((state.activeIndex === 0 && state.delta > 0) ||
           (state.activeIndex === state.items.length - 1 && state.delta < 0))
 
       if (state.moveDisable) return
@@ -429,6 +428,7 @@ export const mousemove =
       }
     }
 
+// 鼠标拖拽结束
 export const mouseup =
   ({ state, api }) =>
     (event) => {
@@ -453,6 +453,7 @@ export const mouseup =
       api.startTimer()
     }
 
+// 鼠标离开窗口
 export const mouseleave =
   ({ state, api }) =>
     (event) => {
