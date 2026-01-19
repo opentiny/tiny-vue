@@ -27,7 +27,11 @@ import {
   simulateTouch,
   computedHasButtons,
   computedHasIndicators,
-  canActive
+  canActive,
+  mousedown,
+  mousemove,
+  mouseup,
+  mouseleave
 } from './index'
 import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 
@@ -130,7 +134,12 @@ const initApi = ({ vm, api, state, props, emit, mode }) => {
     simulateTouch: simulateTouch({ props, vm }),
     computedHasButtons: computedHasButtons({ props, state, mode }),
     computedHasIndicators: computedHasIndicators({ props, state, mode }),
-    canActive: canActive(props)
+    canActive: canActive(props),
+    mousedown: mousedown({ props, state, api }),        // 新增
+    mousemove: mousemove({ props, state, vm }),        // 新增
+    mouseup: mouseup({ state, api }),          // 新增
+    mouseleave: mouseleave({ state, api }),     // 新增
+    //拖动相关的事件
   })
 }
 
