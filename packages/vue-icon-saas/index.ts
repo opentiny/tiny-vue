@@ -10,6 +10,7 @@ import IconAIExternalKnowledgeAnswer from './src/a-i-external-knowledge-answer'
 import IconAIFindRecords from './src/a-i-find-records'
 import IconAIFollowUp from './src/a-i-follow-up'
 import IconAIGCPainting from './src/a-i-g-c-painting'
+import IconAIGeneral from './src/a-i-general'
 import IconAIITServiceQA from './src/a-i-i-t-service-q-a'
 import IconAIImageBasedTextRecognition from './src/a-i-image-based-text-recognition'
 import IconAIInformation from './src/a-i-information'
@@ -66,6 +67,7 @@ import IconBatchFill from './src/batch-fill'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
 import IconButtonBar from './src/button-bar'
+import IconButton from './src/button'
 import IconCalculator from './src/calculator'
 import IconCalendar from './src/calendar'
 import IconCalendarView from './src/calendar-view'
@@ -128,6 +130,7 @@ import IconDescending from './src/descending'
 import IconDetailedList from './src/detailed-list'
 import IconDetailsPage from './src/details-page'
 import IconDetailsTemplatePage from './src/details-template-page'
+import IconDialogBox from './src/dialog-box'
 import IconDialog from './src/dialog'
 import IconDialogSelect from './src/dialog-select'
 import IconDigitalassistant from './src/digitalassistant'
@@ -205,7 +208,6 @@ import IconFreezeRight from './src/freeze-right'
 import IconFrownO from './src/frown-o'
 import IconFullscreen from './src/fullscreen'
 import IconFullscreenLeft from './src/fullscreen-left'
-import IconGeneralAi from './src/general-ai'
 import IconGeneralPage from './src/general-page'
 import IconGeneralPageIndigo from './src/general-page-indigo'
 import IconGenerating from './src/generating'
@@ -357,6 +359,7 @@ import IconProjectProperty from './src/project-property'
 import IconProjectStructureTree from './src/project-structure-tree'
 import IconProjectTemplate from './src/project-template'
 import IconPromotion from './src/promotion'
+import IconPromptBox from './src/prompt-box'
 import IconPublicHome from './src/public-home'
 import IconPublicNotice from './src/public-notice'
 import IconPublish from './src/publish'
@@ -813,6 +816,7 @@ export { IconAIExternalKnowledgeAnswer, IconAIExternalKnowledgeAnswer as iconAIE
 export { IconAIFindRecords, IconAIFindRecords as iconAIFindRecords }
 export { IconAIFollowUp, IconAIFollowUp as iconAIFollowUp }
 export { IconAIGCPainting, IconAIGCPainting as iconAIGCPainting }
+export { IconAIGeneral, IconAIGeneral as iconAIGeneral }
 export { IconAIITServiceQA, IconAIITServiceQA as iconAIITServiceQA }
 export { IconAIImageBasedTextRecognition, IconAIImageBasedTextRecognition as iconAIImageBasedTextRecognition }
 export { IconAIInformation, IconAIInformation as iconAIInformation }
@@ -869,6 +873,7 @@ export { IconBatchFill, IconBatchFill as iconBatchFill }
 export { IconBefilter, IconBefilter as iconBefilter }
 export { IconBoat, IconBoat as iconBoat }
 export { IconButtonBar, IconButtonBar as iconButtonBar }
+export { IconButton, IconButton as iconButton }
 export { IconCalculator, IconCalculator as iconCalculator }
 export { IconCalendar, IconCalendar as iconCalendar }
 export { IconCalendarView, IconCalendarView as iconCalendarView }
@@ -934,6 +939,7 @@ export { IconDescending, IconDescending as iconDescending }
 export { IconDetailedList, IconDetailedList as iconDetailedList }
 export { IconDetailsPage, IconDetailsPage as iconDetailsPage }
 export { IconDetailsTemplatePage, IconDetailsTemplatePage as iconDetailsTemplatePage }
+export { IconDialogBox, IconDialogBox as iconDialogBox }
 export { IconDialog, IconDialog as iconDialog }
 export { IconDialogSelect, IconDialogSelect as iconDialogSelect }
 export { IconDigitalassistant, IconDigitalassistant as iconDigitalassistant }
@@ -1011,7 +1017,6 @@ export { IconFreezeRight, IconFreezeRight as iconFreezeRight }
 export { IconFrownO, IconFrownO as iconFrownO }
 export { IconFullscreen, IconFullscreen as iconFullscreen }
 export { IconFullscreenLeft, IconFullscreenLeft as iconFullscreenLeft }
-export { IconGeneralAi, IconGeneralAi as iconGeneralAi }
 export { IconGeneralPage, IconGeneralPage as iconGeneralPage }
 export { IconGeneralPageIndigo, IconGeneralPageIndigo as iconGeneralPageIndigo }
 export { IconGenerating, IconGenerating as iconGenerating }
@@ -1172,6 +1177,7 @@ export { IconProjectProperty, IconProjectProperty as iconProjectProperty }
 export { IconProjectStructureTree, IconProjectStructureTree as iconProjectStructureTree }
 export { IconProjectTemplate, IconProjectTemplate as iconProjectTemplate }
 export { IconPromotion, IconPromotion as iconPromotion }
+export { IconPromptBox, IconPromptBox as iconPromptBox }
 export { IconPublicHome, IconPublicHome as iconPublicHome }
 export { IconPublicNotice, IconPublicNotice as iconPublicNotice }
 export { IconPublish, IconPublish as iconPublish }
@@ -1649,6 +1655,7 @@ export default {
   IconAIFindRecords,
   IconAIFollowUp,
   IconAIGCPainting,
+  IconAIGeneral,
   IconAIITServiceQA,
   IconAIImageBasedTextRecognition,
   IconAIInformation,
@@ -1705,6 +1712,7 @@ export default {
   IconBefilter,
   IconBoat,
   IconButtonBar,
+  IconButton,
   IconCalculator,
   IconCalendar,
   IconCalendarView,
@@ -1767,6 +1775,7 @@ export default {
   IconDetailedList,
   IconDetailsPage,
   IconDetailsTemplatePage,
+  IconDialogBox,
   IconDialog,
   IconDialogSelect,
   IconDigitalassistant,
@@ -1844,7 +1853,6 @@ export default {
   IconFrownO,
   IconFullscreen,
   IconFullscreenLeft,
-  IconGeneralAi,
   IconGeneralPage,
   IconGeneralPageIndigo,
   IconGenerating,
@@ -1996,6 +2004,7 @@ export default {
   IconProjectStructureTree,
   IconProjectTemplate,
   IconPromotion,
+  IconPromptBox,
   IconPublicHome,
   IconPublicNotice,
   IconPublish,

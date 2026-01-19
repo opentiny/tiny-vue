@@ -40,10 +40,14 @@
           data-tag="tiny-dialog-box"
           :data-dialog-box-draggable="draggable"
           :key="state.key"
+          role="dialog"
+          :aria-modal="true"
+          :aria-labelledby="state.titleId"
+          :aria-describedby="state.contentId"
         >
           <div v-if="showHeader" ref="header" class="tiny-dialog-box__header" @mousedown="handleDrag">
             <slot name="title">
-              <span class="tiny-dialog-box__title">{{ title }}</span>
+              <span class="tiny-dialog-box__title" role="heading" :id="state.titleId">{{ title }}</span>
             </slot>
             <div class="tiny-dialog-box__btn-tools">
               <button
@@ -75,7 +79,7 @@
               </button>
             </div>
           </div>
-          <div class="tiny-dialog-box__body">
+          <div class="tiny-dialog-box__body" :id="state.contentId">
             <slot></slot>
           </div>
           <div v-if="slots.footer" ref="footer" class="tiny-dialog-box__footer">

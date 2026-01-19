@@ -4,6 +4,7 @@
     <transition name="drawer-fade">
       <div
         ref="mask"
+        aria-hidden="true"
         v-if="mask && state.visible"
         class="tiny-drawer__mask show-bg-color"
         :style="{ zIndex }"
@@ -16,6 +17,8 @@
       <div
         data-tag="tiny-drawer-main"
         ref="drawerBox"
+        aria-modal="true"
+        role="dialog"
         :class="[
           'tiny-drawer__main',
           {
@@ -78,7 +81,7 @@
               aria-label="Close"
               @click="handleClose('close')"
             >
-              <icon-close class="tiny-svg-size tiny-drawer__close" />
+              <icon-close role="img" aria-label="close" class="tiny-svg-size tiny-drawer__close" />
             </button>
           </div>
 

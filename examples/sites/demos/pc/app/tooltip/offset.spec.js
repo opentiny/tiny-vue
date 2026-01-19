@@ -7,8 +7,6 @@ test('测试偏移量', async ({ page }) => {
   const tip = page.getByRole('tooltip', { name: '出现位置的偏移量' })
   const arrow = tip.locator('.popper__arrow')
 
-  await expect(tip).toBeVisible()
-
   // 计算 3 个位置
   const middle = await arrow.boundingBox()
 

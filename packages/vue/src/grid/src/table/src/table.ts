@@ -858,6 +858,7 @@ export default defineComponent({
     const markColumnIndex = hooks.ref(0)
 
     const rowidCacheMap = new Map()
+    const columnSlotsWeakMap = new WeakMap()
     return {
       slots,
       tableListeners,
@@ -896,7 +897,8 @@ export default defineComponent({
       markColumnIndex,
       rowidCacheMap,
       horizonScroll,
-      resolveMap
+      resolveMap,
+      columnSlotsWeakMap
     }
   },
   render() {

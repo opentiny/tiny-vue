@@ -26,6 +26,18 @@ export const statisticProps = {
   groupSeparator: {
     type: String,
     default: ','
+  },
+  duration: {
+    type: Number,
+    default: 2000 
+  },
+  startValue: {
+    type: Number,
+    default: 0
+  },
+  useAnimation: {
+    type: Boolean,
+    default: false 
   }
 }
 

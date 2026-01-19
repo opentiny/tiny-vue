@@ -49,7 +49,7 @@
         <span
           :class="
             m(
-              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px leading-normal',
+              `max-h-[theme(spacing.${labelLine * 5})] line-clamp-${labelLine} inline-block relative top-px leading-normal`,
               (state.isRequired || required) && !state.hideRequiredAsterisk
                 ? `before:content-['*'] before:text-color-error before:relative before:mr-1`
                 : '',
@@ -173,6 +173,10 @@ export default defineComponent({
       default: ''
     },
     label: String,
+    labelLine: {
+      type: Number,
+      default: 2
+    },
     labelWidth: String,
     manual: Boolean,
     popperOptions: {

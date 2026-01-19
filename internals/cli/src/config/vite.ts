@@ -18,6 +18,8 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
   const map = {
     // 主模块映射
     // vite 4 不支持 exports 语法自动拼接 index 文件 https://github.com/vitejs/vite/issues/7267
+    // 注意：更具体的路径匹配需要放在前面，以确保优先匹配
+    '@opentiny/vue-icon-saas/src': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
     '@opentiny/vue-icon-saas$': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
@@ -78,7 +80,8 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'echarts',
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
-    ].filter((item) => !!item)
+    ].filter((item) => !!item),
+    exclude: ['@opentiny/vue-search-box-saas']
   }
 }
 

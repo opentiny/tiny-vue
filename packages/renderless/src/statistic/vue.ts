@@ -1,21 +1,36 @@
-import { getIntegerAndDecimal } from './index'
+import { getIntegerAndDecimal, animateValue } from './index'
 import type { IStatisticApi, IStatisticState } from '@/types'
 
-export const api = ['state', 'getIntegerAndDecimal']
+export const api = ['state', 'getIntegerAndDecimal', 'animateValue']
 
 export const renderless = (props, hooks): IStatisticApi => {
-  const api: IStatisticApi = {
-    getIntegerAndDecimal: getIntegerAndDecimal({ props })
-  }
-  const { reactive, computed } = hooks
-
+  const { reactive, computed, watch } = hooks
   const state: IStatisticState = reactive({
-    value: computed(() => api.getIntegerAndDecimal(props))
+    value: computed(() => api.getIntegerAndDecimal(props)),
+    animatingValue: props.value,
+    displayValue: computed(() => {
+      if (props.useAnimation) {
+        const tempProps = { ...props, value: state.animatingValue }
+        return getIntegerAndDecimal({ props: tempProps })()
+      }
+      return state.value
+    })
   })
-
-  Object.assign(api, {
-    state
-  })
+  const api: IStatisticApi = {
+    state,
+    getIntegerAndDecimal: getIntegerAndDecimal({ props }),
+    animateValue: animateValue({ props, state })
+  }
+  watch(
+    () => props.value,
+    (newVal) => {
+      if (props.useAnimation) {
+        state.animatingValue = props.startValue
+        api.animateValue()
+      }
+    },
+    { immediate: true }
+  )
 
   return api
 }

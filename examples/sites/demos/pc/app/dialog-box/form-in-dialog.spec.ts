@@ -4,7 +4,7 @@ test('弹窗表单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dialog-box#form-in-dialog')
   const demo = page.locator('#form-in-dialog')
-  const dialogBox = page.locator('.tiny-dialog-box')
+  const dialogBox = demo.locator('.tiny-dialog-box')
   await page.getByRole('button', { name: '弹出表单' }).click()
   await expect(dialogBox.locator('.tiny-form')).toBeVisible()
   await demo.getByRole('textbox').first().click()
@@ -17,6 +17,5 @@ test('弹窗表单', async ({ page }) => {
 
   // 验证下拉选择校验提示不会异常
   await demo.locator('.tiny-select__tags-group').click()
-  await page.waitForTimeout(200)
   await expect(page.locator('.tiny-form__valid.tiny-tooltip')).not.toBeVisible()
 })

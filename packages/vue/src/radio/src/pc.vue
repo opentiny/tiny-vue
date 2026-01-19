@@ -52,11 +52,7 @@
         @click.stop
       />
     </span>
-    <span 
-      :id="`${name || 'radio'}-${label}-label`"
-      class="tiny-radio__label" 
-      @keydown.stop
-    >
+    <span :id="`${name || 'radio'}-${label}-label`" class="tiny-radio__label" @keydown.stop>
       <slot>{{ text || label }}</slot>
     </span>
   </label>

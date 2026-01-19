@@ -29,6 +29,7 @@
         <tiny-input v-model="underlay.scale" clearable autofocus size="small" style="width: 120px"></tiny-input>
       </tiny-form-item>
     </tiny-form>
+    <h3>第一批次图标</h3>
     <div class="svgs-wrapper">
       <div
         v-for="name in advanceIcons"
@@ -51,6 +52,7 @@
       </div>
     </div>
     <hr />
+    <h3>第二批次图标</h3>
     <div class="svgs-wrapper">
       <div
         v-for="name in batch3Icons"
@@ -73,6 +75,7 @@
       </div>
     </div>
     <hr />
+    <h3>第三批次图标</h3>
     <div class="svgs-wrapper">
       <div
         v-for="name in batch4Icons"

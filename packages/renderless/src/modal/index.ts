@@ -380,7 +380,7 @@ export const close =
           emit('update:modelValue', false)
           emit('hide', params)
         }
-      }, 200)
+      }, 400)
     }
   }
 
