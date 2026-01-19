@@ -293,7 +293,10 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'clearable',
-          mfDemo: ''
+          mfDemo: '',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [
