@@ -405,6 +405,9 @@ import IconYes from './src/yes'
 import IconZipType from './src/zip-type'
 import IconZoomIn from './src/zoom-in'
 import IconZoomOut from './src/zoom-out'
+import IconTotalNolume from './src/total-nolume'
+import IconSubScript from './src/sub-script'
+import IconWriteProductioPlan from './src/write-productio-plan'
 import IconAddCircle from './src/add-circle'
 import IconAddPicture from './src/add-picture'
 import IconAdd from './src/add'
@@ -1125,6 +1128,9 @@ export { IconYes, IconYes as iconYes }
 export { IconZipType, IconZipType as iconZipType }
 export { IconZoomIn, IconZoomIn as iconZoomIn }
 export { IconZoomOut, IconZoomOut as iconZoomOut }
+export { IconTotalNolume, IconTotalNolume as iconTotalNolume }
+export { IconSubScript, IconSubScript as iconSubScript }
+export { IconWriteProductioPlan, IconWriteProductioPlan as iconWriteProductioPlan }
 
 // 非双图标
 export { IconAddCircle, IconAddCircle as iconAddCircle }
@@ -1423,22 +1429,6 @@ export { IconWarning, IconWarning as iconWarning }
 export { IconWeaknet, IconWeaknet as iconWeaknet }
 export { IconWord, IconWord as iconWord }
 export { IconZip, IconZip as iconZip }
-
-// 重命名导出
-export const IconTotalNolume = () => ({
-  ...IconTotalVolume(),
-  name: 'IconTotalNolume',
-  deprecatedBy: 'IconTotalVolume'
-})
-export const iconTotalNolume = IconTotalNolume
-export const IconSubScript = () => ({ ...IconSubscript(), name: 'IconSubScript', deprecatedBy: 'IconSubscript' })
-export const iconSubScript = IconSubScript
-export const IconWriteProductioPlan = () => ({
-  ...IconWriteProductionPlan(),
-  name: 'IconWriteProductioPlan',
-  deprecatedBy: 'IconWriteProductionPlan'
-})
-export const iconWriteProductioPlan = IconWriteProductioPlan
 
 export default {
   IconAbnormalCheckIn,
@@ -1848,6 +1838,9 @@ export default {
   IconZipType,
   IconZoomIn,
   IconZoomOut,
+  IconTotalNolume,
+  IconSubScript,
+  IconWriteProductioPlan,
   IconAddCircle,
   IconAddPicture,
   IconAdd,
@@ -2143,8 +2136,5 @@ export default {
   IconWarning,
   IconWeaknet,
   IconWord,
-  IconZip,
-  IconTotalNolume,
-  IconSubScript,
-  IconWriteProductioPlan
+  IconZip
 }
