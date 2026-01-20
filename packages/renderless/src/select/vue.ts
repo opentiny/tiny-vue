@@ -111,14 +111,12 @@ import {
   computedShowTagText,
   isTagClosable,
   computedCurrentSizeMap,
-  watchOptionsWhenAutoSelect,
-  generateUUID
+  watchOptionsWhenAutoSelect,  
 } from './index'
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
 import { useUserAgent } from '@opentiny/vue-hooks'
-import { isServer } from '@opentiny/utils'
-
+import { isServer,generateUUID } from '@opentiny/utils'
 export const api = [
   'state',
   'nodeCollapse',

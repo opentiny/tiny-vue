@@ -2,6 +2,7 @@ import xss from './xss'
 import logger from './logger'
 import ResizeObserver from './resize-observer'
 import * as nanoid from './nanoid/index'
+export { generateUUID } from './uuid'
 
 export { xss, logger, ResizeObserver }
 
@@ -22,7 +23,7 @@ export {
   parseIso8601
 } from './date'
 
-// 与 date.ts 合并一下, 有几个重名变量，待整理, 如果功能一致就合并
+// 与 date.ts 合并一下，有几个重名变量，待整理，如果功能一致就合并
 export {
   getI18nSettings,
   isDate as isDate1,
@@ -133,7 +134,7 @@ export { getDataset } from './dataset'
 
 export { indexOf, find, remove, sort, push, unique, toObject, transformPidToChildren, transformTreeData } from './array'
 
-// 原来common的index.ts 的定义  都是全局变量， 像 DATEPICKER等， 应该移到各自使用的组件内部中去，  待移除
+// 原来 common 的 index.ts 的定义  都是全局变量，像 DATEPICKER 等，应该移到各自使用的组件内部中去，待移除
 export {
   KEY_CODE,
   POSITION,
@@ -148,7 +149,7 @@ export {
   CASCADER
 } from './common'
 
-// 待移除 ，写到各自组件内部中去
+// 待移除，写到各自组件内部中去
 export { FORM_ITEM, FORM_EVENT } from './form'
 
 export { Validator } from './validate'
@@ -159,12 +160,12 @@ export { noop, callInterceptor } from './function'
 
 export { fastdom, fastdomAsync, fastdomSandbox } from './fastdom'
 
-// 待移除。  移到fullscreen组件 内部去， 或起个更好的名字
+// 待移除。移到 fullscreen 组件 内部去，或起个更好的名字
 export { FullscreenApi, sf } from './fullscreen'
 
 export { NODE_KEY, getNodeKey, markNodeData, getChildState, Node, TreeStore } from './tree-model'
 
-// 待移除， 移到loading中去， 或起个更好的名字
+// 待移除，移到 loading 中去，或起个更好的名字
 export { afterLeave } from './after-leave'
 
 export { debounce } from './debounce'
@@ -203,19 +204,19 @@ export { PopupManager } from './popup-manager'
 
 export { addResizeListener, removeResizeListener } from './resize-event'
 
-// 这些为什么不移到dom中去呢
+// 这些为什么不移到 dom 中去呢
 export { calcScrollWidth } from './scroll-width'
 
 export { scrollIntoView } from './scroll-into-view'
 
-// 待改造成hooks
+// 待改造成 hooks
 export { getDirection, touchStart, touchMove, resetTouchStatus } from './touch'
 
 export { emulate } from './touch-emulator'
 
 export { uploadAjax } from './upload-ajax'
 
-// 以下兼容metaErp的变量
+// 以下兼容 metaErp 的变量
 export const log = { logger }
 
 export { nanoid }
