@@ -111,7 +111,8 @@ import {
   computedShowTagText,
   isTagClosable,
   computedCurrentSizeMap,
-  watchOptionsWhenAutoSelect
+  watchOptionsWhenAutoSelect,
+  generateUUID
 } from './index'
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
@@ -247,7 +248,7 @@ const initState = ({
       }
       if (props.multiple) {
         if (Array.isArray(state.selected)) {
-          // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
+          // 如果已经 displayOnly 且传入了 options，从这里找 label, 否则从 state.selected（displayOnly 时不渲染 options)
           if (state.isDisplayOnly && props.options && props.options.length > 0) {
             return state.selected
               .map((item) => {
@@ -264,7 +265,7 @@ const initState = ({
       } else {
         // 单选
         if (state.selected) {
-          // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
+          // 如果已经 displayOnly 且传入了 options，从这里找 label, 否则从 state.selected（displayOnly 时不渲染 options)
           if (state.isDisplayOnly && props.options && props.options.length > 0) {
             const find = props.options.find((opt) => opt[props.valueField] === state.selected.value)
             return find ? find[props.textField] : ''
@@ -288,7 +289,7 @@ const initState = ({
       if (designConfig?.state && 'autoHideDownIcon' in designConfig.state) {
         return designConfig.state.autoHideDownIcon
       }
-      return true // tiny 默认为true
+      return true // tiny 默认为 true
     })(),
     designConfig,
     currentSizeMap: computed(() => api.computedCurrentSizeMap()),
@@ -298,7 +299,7 @@ const initState = ({
       popperClass: 'tiny-select__popper-maxh-50',
       ...props.tooltipConfig
     })),
-    ariaListId: 'tiny-select-' + crypto.randomUUID().slice(-8)
+    ariaListId: 'tiny-select-' + generateUUID(),
   })
   return state
 }
@@ -363,7 +364,7 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     showCollapseTag: false,
     exceedMaxVisibleRow: false, // 是否超出默认最大显示行数
     toHideIndex: Infinity, // 第一个超出被隐藏的索引
-    willFocusRun: false, // 进入focus时，延时等一下看是否触发blur,触发则不进入focus
+    willFocusRun: false, // 进入 focus 时，延时等一下看是否触发 blur，触发则不进入 focus
     willFocusTimer: 0
   }
 }
@@ -616,11 +617,11 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
 const addWatch = ({ watch, props, api, state, nextTick }) => {
   watch(() => [...state.options], api.watchOptions)
 
-  // tiny 新增： 支持autoSelect
+  // tiny 新增：支持 autoSelect
   watch(() => state.options, api.watchOptionsWhenAutoSelect)
   props.options && watch(() => props.options, api.watchOptionsWhenAutoSelect)
 
-  // tiny 新增renderType的2个判断
+  // tiny 新增 renderType 的 2 个判断
   if (props.renderType === 'grid' && !props.optimization) {
     watch(() => state.gridData, api.setSelected, { immediate: true })
   }
