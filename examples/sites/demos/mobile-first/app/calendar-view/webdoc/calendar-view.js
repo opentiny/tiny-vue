@@ -71,7 +71,7 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>通过dayTimes属性配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。</p>\n',
+        'zh-CN': '<p>通过 dayTimes 属性配置时间线模式下所展示的时间范围，默认为 [8,18]，可配范围 [0,23]。</p>\n',
         'en-US': '<p></p>\n'
       },
       codeFiles: ['calendar-timeline-range.vue']
@@ -96,7 +96,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过showMark回调函数来标记某些日期，markColor属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor可选颜色同 theme</p>\n',
+          '<p>通过 showMark 回调函数来标记某些日期，markColor 属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor 可选颜色同 theme</p>\n',
         'en-US': '<p></p>\n'
       },
       codeFiles: ['calendar-day-mark.vue']
@@ -133,8 +133,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色blue、green、red、yellow、purple、cyan、grey</p>\n',
-        'en-US': '<p></p>\n'
+          '<p>自定义日期单元格背景色。</p>\n<p>目前支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey 和使用十六进制、rgb、rgba 的是自定义颜色</p>\n',
+        'en-US':
+          '<p>Customize the background color of date cells.</p>\n<p>Currently supports both preset colors (options include blue, green, red, yellow, purple, cyan, and grey) and custom colors defined using hexadecimal, RGB, or RGBA values.</p>'
       },
       codeFiles: ['custom-day-bg-color.vue']
     },

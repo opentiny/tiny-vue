@@ -24,6 +24,8 @@ import {
   isSelectedDate,
   isStartOrEndDay,
   getDayBgColor,
+  getDayBgStyle,
+  getDayBgClass,
   isShowNewSchedule,
   genDayTimes,
   isShowMark,
@@ -62,6 +64,8 @@ export const api = [
   'isSelectedDate',
   'isStartOrEndDay',
   'getDayBgColor',
+  'getDayBgStyle',
+  'getDayBgClass',
   'isShowNewSchedule',
   'isShowMark',
   'handleCascaderChange',
@@ -163,7 +167,7 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
     () => state.mode,
     (val) => {
       emit('mode-change', val)
-      // 切换到周视图时，主动跳转到currentDate对应的周
+      // 切换到周视图时，主动跳转到 currentDate 对应的周
       if (val !== 'month') {
         api.getAllDatesOfCurrWeek(state.currentDate)
       }
@@ -303,6 +307,8 @@ const initApi = ({ vm, api, state, t, props, emit, nextTick }) => {
     isSelectedDate: isSelectedDate({ state }),
     isStartOrEndDay: isStartOrEndDay({ state }),
     getDayBgColor: getDayBgColor({ props }),
+    getDayBgStyle: getDayBgStyle({ props }),
+    getDayBgClass: getDayBgClass({ props }),
     isShowNewSchedule: isShowNewSchedule({ props }),
     genDayTimes: genDayTimes({ props }),
     isShowMark: isShowMark({ props }),

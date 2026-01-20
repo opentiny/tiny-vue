@@ -66,25 +66,20 @@
             :key="index"
             class="w-full flex justify-around border-b border-color-bg-2"
           >
-            <li
-              data-tag="tiny-calendar-view-calendaritem"
-              v-for="(day, i) of item"
-              :key="i"
-              @click="selectDay(day)"
-              :style="{ 'width': '14.2857%' }"
-              class="py-0.5 relative h-20 overflow-hidden border-r border-color-bg-2"
-              :class="
-                m(
-                  i === 0 || i === 6 ? 'bg-color-bg-6' : 'bg-color-bg-1',
-                  day.isLast || day.isNext || day.disabled
-                    ? ''
-                    : isSelectedDate(day)
-                      ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
-                      : 'hover:bg-color-brand-hover-subtler',
-                  gcls('bg-' + getDayBgColor(day))
-                )
-              "
-            >
+            <li data-tag="tiny-calendar-view-calendaritem" v-for="(day, i) of item" :key="i" @click="selectDay(day)"
+              :style="{
+                'width': '14.2857%',
+                ...getDayBgStyle(day)
+              }" class="py-0.5 relative h-20 overflow-hidden border-r border-color-bg-2" :class="m(
+                i === 0 || i === 6 ? 'bg-color-bg-6' : '',
+                day.isLast || day.isNext || day.disabled
+                  ? ''
+                  : isSelectedDate(day)
+                    ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
+                    : 'hover:bg-color-brand-hover-subtler',
+                gcls(getDayBgClass(day))
+              )
+                ">
               <div
                 data-tag="tiny-calendar-view-multiselect"
                 v-if="multiSelect && isSelectedDate(day)"

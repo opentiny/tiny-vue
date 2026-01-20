@@ -43,7 +43,7 @@ export default {
           type: 'Array',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。',
+            'zh-CN': '配置时间线模式下所展示的时间范围，默认为 [8,18]，可配范围 [0,23]。',
             'en-US':
               'Time range displayed in timeline mode. The default value range is [8, 18]. The value range is [0, 23].'
           },
@@ -203,7 +203,7 @@ export default {
           type: 'Function',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置日期背景色',
+            'zh-CN': '设置日期背景色，使用函数返回颜色值时，返回十六进制、rgb、rgba 是自定义颜色，使用颜色名则是预设颜色',
             'en-US': 'Set Date Background Color'
           },
           mode: ['mobile-first'],
@@ -280,7 +280,7 @@ export default {
           type: 'String',
           defaultValue: '',
           desc: {
-            'zh-CN': '文本信息分隔符，默认值为 ”; “ ',
+            'zh-CN': '文本信息分隔符，默认值为”; “ ',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -561,7 +561,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '时间线插槽，有timeline1-timeline7 7个插槽',
+            'zh-CN': '时间线插槽，有 timeline1-timeline7 7 个插槽',
             'en-US': 'Timeline slots, with 7 slots timeline1-timeline7'
           },
           mode: ['mobile-first'],
@@ -583,7 +583,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '日程插槽，有weekday1-weekday7 7个插槽',
+            'zh-CN': '日程插槽，有 weekday1-weekday7 7 个插槽',
             'en-US': 'Schedule slots, with 7 slots weekday1-weekday7'
           },
           mode: ['mobile-first'],

@@ -38,18 +38,16 @@
       <div class="tiny-calendar-view-month__main">
         <div class="main-container">
           <ul v-for="(item, index) of state.calendar" :key="index">
-            <li
-              v-for="(day, i) of item"
-              :key="i"
-              @click="selectDay(day)"
-              :style="{ 'width': '14.2857%' }"
-              :class="[
-                i === 0 || i === 6 ? 'is-weekends' : '',
-                day.isLast || day.isNext || day.disabled ? '' : isSelectedDate(day) ? 'is-selected' : 'not-selected',
-                'bg-' + getDayBgColor(day)
-              ]"
-            >
-              <div v-if="multiSelect && isSelectedDate(day)" class="day-selected">
+            <li v-for="(day, i) of item" :key="i" @click="selectDay(day)" :style="{
+              'width': '14.2857%',
+              ...getDayBgStyle(day)
+            }" :class="[
+              i === 0 || i === 6 ? 'is-weekends' : '',
+              day.isLast || day.isNext || day.disabled ? '' : isSelectedDate(day) ? 'is-selected' : 'not-selected',
+              getDayBgClass(day)
+            ]">
+              <!-- 这里完成了预制颜色的处理 -->
+            <div v-if="multiSelect && isSelectedDate(day)" class="day-selected">
                 <icon-checked-sur></icon-checked-sur>
               </div>
               <div
