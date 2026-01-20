@@ -1,3 +1,4 @@
-import IconSubScript from './subscript'
+import { svg } from '@opentiny/vue-common'
+import Subscript from '@opentiny/vue-theme/svgs/subscript.svg'
 
-export default IconSubScript
+export default () => svg({ name: 'IconSubscript', component: Subscript, filledComponent: Subscript })()

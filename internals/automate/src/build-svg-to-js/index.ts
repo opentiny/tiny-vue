@@ -36,8 +36,11 @@ import * as config from './config'
 import * as configSaas from './config-saas'
 
 interface FileInfo {
+  /** 图标名字,  eg.sub-script */
   svgName: string
   hasFill: boolean
+  /** 重指向过来的时候的错误名字， eg. sub-script */
+  wrongName?: string
 }
 const camelize = (str) => str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 const isSaas = process.argv.includes('--icon-saas')
@@ -82,29 +85,32 @@ svgsFiles.forEach((filename) => {
 const fillList: { capName: string; svgName: string }[] = []
 const uncheckedList: { capName: string; svgName: string }[] = []
 
-// 2.1 写入重命名图标的js
-const rewriteList = Object.keys(rewriteConfig).map((wrongName) => {
-  return {
-    capName: camelize('-' + wrongName),
-    svgName: wrongName,
-    rewriteName: rewriteConfig[wrongName],
-    rewriteCapName: camelize('-' + rewriteConfig[wrongName])
+// 2.1 写入重命名图标的js。 约束：必须生成它的子包js, 还必须不能使用相对引用：import xx from './yy' 这种，编译有问题
+// 方案：重命名图标直接推入 svgsMap中去， 在 2.2 遍历中，当成正常图标去处理。
+// eg.  sub-script【错】 ----> subscript【对】，在 svgsMap中存在： { subscript :{hasFill: false, svgName:'subscript'}}
+//      在svgsMap中，添加一个 { 'sub-script' :{hasFill: false, svgName:'subscript'}} 键值即可
+Object.keys(rewriteConfig).forEach((wrongName) => {
+  if (svgsMap[wrongName]) {
+    console.error(`重定向名字出错，${wrongName}是正确的名字`)
+    return
   }
+
+  svgsMap[wrongName] = { ...svgsMap[rewriteConfig[wrongName]] } // fake 欺骗
+  svgsMap[wrongName].wrongName = wrongName
 })
 
-rewriteList.forEach((item) => {
-  const tmplStr = `import Icon${item.capName} from "./${item.rewriteName}";
-export default Icon${item.capName};
-  `
-  fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
-})
-
+// 2.2 把所有图标遍历， 分为线面图标fillList 和传统的图标 uncheckedList。
+// 如果有wrongName的情况， 只是在写文件的瞬间写到wrongName.js上即可。
 Object.values(svgsMap).forEach((item) => {
   const capName = camelize('-' + item.svgName)
 
   // 2.2 支持线&面的图标js
   if (item.hasFill) {
-    fillList.push({ capName, svgName: item.svgName })
+    fillList.push(
+      item.wrongName
+        ? { capName: camelize('-' + item.wrongName), svgName: item.wrongName }
+        : { capName, svgName: item.svgName }
+    )
     const tmplStr = `import { svg } from '@opentiny/vue-common'
 import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 import ${capName}Filled from '${themePackage}/svgs/${item.svgName + '-filled'}.svg'
@@ -112,17 +118,21 @@ import ${capName}Filled from '${themePackage}/svgs/${item.svgName + '-filled'}.s
 export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
 `
 
-    fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
+    fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
     return
   }
   // 2.3 未梳理到的图标js
-  uncheckedList.push({ capName, svgName: item.svgName })
+  uncheckedList.push(
+    item.wrongName
+      ? { capName: camelize('-' + item.wrongName), svgName: item.wrongName }
+      : { capName, svgName: item.svgName }
+  )
   const tmplStr = `import { svg } from '@opentiny/vue-common'
 import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 
 export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
 `
-  fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
+  fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
 })
 
 // 3、生成总的导出 index.js
@@ -137,16 +147,8 @@ const tmplFill = fillList
 const tmplUnchecked = uncheckedList
   .map((exp) => `export { Icon${exp.capName}, Icon${exp.capName} as icon${exp.capName} }`)
   .join('\n')
-const tmplRewrite = rewriteList
-  .map(
-    (exp) =>
-      `import Icon${exp.capName} from './src/${exp.svgName}'
-export { Icon${exp.capName} }
-export const icon${exp.capName} = Icon${exp.capName}`
-  )
-  .join('\n')
 
-const tmplBottom = [...fillList, ...uncheckedList, ...rewriteList].map((exp) => `  Icon${exp.capName},`).join('\n')
+const tmplBottom = [...fillList, ...uncheckedList].map((exp) => `  Icon${exp.capName},`).join('\n')
 
 const tmplStr = `
 ${tmplFillImport}
@@ -158,8 +160,7 @@ ${tmplFill}
 // 非双图标
 ${tmplUnchecked}
 
-// 重命名导出
-${tmplRewrite}
+
 
 export default {
 ${tmplBottom}

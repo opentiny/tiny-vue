@@ -533,8 +533,6 @@ import IconYes from './src/yes'
 import IconZipType from './src/zip-type'
 import IconZoomIn from './src/zoom-in'
 import IconZoomOut from './src/zoom-out'
-
-// 重命名导出
 import IconSubScript from './src/sub-script'
 
 // 双图标
@@ -1075,8 +1073,7 @@ export { IconYes, IconYes as iconYes }
 export { IconZipType, IconZipType as iconZipType }
 export { IconZoomIn, IconZoomIn as iconZoomIn }
 export { IconZoomOut, IconZoomOut as iconZoomOut }
-export { IconSubScript }
-export const iconSubScript = IconSubScript
+export { IconSubScript, IconSubScript as iconSubScript }
 
 export default {
   IconEditorEraser,
