@@ -163,7 +163,7 @@ export default {
         'en-US': 'Draggable'
       },
       desc: {
-        'zh-CN': '<p>通过配置 Collapse 内置的 draggable 插槽实现拖拽<p>',
+        'zh-CN': '<p>通过配置 Collapse 内置的 draggable 属性实现拖拽<p>',
         'en-US': '<p>Drag and drop is implemented by configuring the built-in draggable slot of Collapse.</p>'
       },
       codeFiles: ['draggable.vue']

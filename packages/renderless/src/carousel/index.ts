@@ -390,18 +390,13 @@ export const mousedown =
 // 鼠标拖拽移动
 export const mousemove =
   ({ props, state, vm }) =>
-    (event) => {
+    throttle(100, true, (event) => {
       if (!state.moving || state.items.length <= 1 || ~state.noTouchNode.indexOf(event.target.nodeName)) return
 
       const carousel = vm.$refs.carousel
       if (!carousel) return
 
       //增加节流 - 我觉得可能引发一些问题，后续可以多看这个逻辑
-      if (!throttle(100, true, () => {
-        return true
-      })) {
-        return
-      }
 
       state.deltaPos.X = event.clientX - state.startPos.X
       state.deltaPos.Y = event.clientY - state.startPos.Y
@@ -433,7 +428,7 @@ export const mousemove =
       if (itemsLen > 2) {
         state.items[prevIndex].setDelta(state.delta)
       }
-    }
+    })
 
 // 鼠标拖拽结束
 export const mouseup =
