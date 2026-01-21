@@ -3,7 +3,7 @@ import { change, draw } from '.'
 export const api = ['state']
 
 export const renderless = (props, { reactive, watch, onMounted }, { vm, emit }, { QRCode }) => {
-  const api = {}
+  const api: any = {}
   const state = reactive({
     sizeStr: '',
     iconSizeStr: '',
@@ -25,7 +25,9 @@ export const renderless = (props, { reactive, watch, onMounted }, { vm, emit }, 
     () => {
       api.draw()
       api.change()
-    }
+    },
+    { deep: true }
+    // 添加深度监听，防止响应式失效
   )
 
   return api

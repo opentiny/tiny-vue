@@ -295,11 +295,11 @@ const initState = ({
     rootAutoTipConfig: computed(() => ({
       content: state.displayOnlyContent,
       always: !!state.displayOnlyContent,
+      popperClass: 'tiny-select__popper-maxh-50',
       ...props.tooltipConfig
     })),
     ariaListId: 'tiny-select-' + crypto.randomUUID().slice(-8)
   })
-
   return state
 }
 

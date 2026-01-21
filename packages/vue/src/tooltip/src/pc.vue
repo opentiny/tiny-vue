@@ -192,6 +192,7 @@ export default defineComponent({
                         style={`max-width:${this.state.tipsMaxWidth}px`}
                         role="tooltip"
                         aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
+                        aria-live="polite"
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
                         {addWrapper ? (

@@ -33,6 +33,11 @@ import {
   emitInput
 } from './index'
 
+// 生成唯一 ID 的自定义方法
+const generateUniqueId = (): string => {
+  return `search-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`
+}
+
 export const api = [
   'state',
   'handleChange',
@@ -94,7 +99,8 @@ export const renderless = (
     ...formatSearchTypes.state,
     showClear: computed(() => props.clearable && (state.focus || state.hovering) && state.currentValue),
     formItemSize: computed(() => (parent.formItem || {}).formItemSize),
-    searchSize: computed(() => props.size || state.formItemSize)
+    searchSize: computed(() => props.size || state.formItemSize),
+    instanceId: generateUniqueId() // 生成唯一 ID，用于避免多个组件实例时 id 重复
   })
 
   const api = {

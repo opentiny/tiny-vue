@@ -24,6 +24,8 @@
         "
         v-if="controls"
         role="button"
+        :aria-disabled="state.minDisabled || state.inputDisabled"
+        aria-label="decrease"
         v-repeat-click="decrease"
         @keydown.enter="decrease"
       >
@@ -51,6 +53,8 @@
         "
         v-if="controls"
         role="button"
+        :aria-disabled="state.maxDisabled || state.inputDisabled"
+        aria-label="increase"
         v-repeat-click="increase"
         @keydown.enter="increase"
       >
@@ -74,6 +78,11 @@
       >
         <input
           :tabindex="tabindex"
+          role="spinbutton"
+          :aria-valuemin="min"
+          :aria-valuemax="max"
+          :aria-valuenow="state.currentValue"
+          :aria-disabled="state.inputDisabled"
           :class="
             m(
               gcls('numeric_input_inner'),

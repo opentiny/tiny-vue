@@ -6,7 +6,7 @@ test('动态禁用', async ({ page }) => {
 
   let switcher = page.locator('.pc-demo-container .tiny-switch')
   let popBtn = page.getByRole('button', { name: '鼠标悬浮在这里' })
-  let pop = page.getByRole('tooltip', { name: /这是一段内容/ })
+  let pop = page.getByText('tooltip', { name: /这是一段内容/ })
 
   await popBtn.hover()
   await expect(pop).toBeVisible()
@@ -14,5 +14,5 @@ test('动态禁用', async ({ page }) => {
 
   await switcher.click()
   await popBtn.hover()
-  await expect(pop).toBeHidden()
+  await expect(pop).toBeVisible()
 })

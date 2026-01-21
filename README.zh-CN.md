@@ -158,6 +158,7 @@ pnpm dev2
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/James-9696"><img src="https://avatars.githubusercontent.com/u/72028410?v=4?s=100" width="100px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=James-9696" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ourcx"><img src="https://avatars.githubusercontent.com/u/173872687?v=4&size=100" width="100px;" alt="ourcx"/><br /><sub><b>ourcx</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ourcx/" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

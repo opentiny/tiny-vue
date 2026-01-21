@@ -36,10 +36,11 @@ const updatePool = (array, context) => {
   expires.forEach((item) => {
     const view = context.idViewMap.get(item.id)
 
-    view.used = false
-
-    context.idViewMap.delete(item.id)
-    context.unusedViews.push(view)
+    if (view) {
+      view.used = false
+      context.idViewMap.delete(item.id)
+      context.unusedViews.push(view)
+    }
   })
 
   array.forEach((item, i) => {

@@ -86,9 +86,15 @@
                     @click="reUpload(file)"
                     >{{ t('ui.uploadList.reUpload') }}</span
                   >
-                  <span v-if="!displayOnly" class="operate-btn" @click.stop="remove({ file })">{{
-                    t('ui.uploadList.delete')
-                  }}</span>
+                  <span
+                    v-if="!displayOnly"
+                    class="operate-btn"
+                    role="button"
+                    tabindex="0"
+                    :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
+                    @click.stop="remove({ file })"
+                    >{{ t('ui.uploadList.delete') }}</span
+                  >
                 </slot>
               </div>
             </div>
@@ -209,7 +215,10 @@
             </span>
             <span
               v-if="!disabled && listOption.showDel"
+              role="button"
+              tabindex="0"
               :title="t('ui.fileUpload.deleteFile')"
+              :aria-label="t('ui.fileUpload.deleteFile') + ' ' + file.name"
               @click="$emit('remove', file)"
             >
               <component
@@ -234,6 +243,9 @@
             <div
               v-if="file.status === 'uploading' && listType === 'picture-card' && state.progressWidth"
               class="tiny-upload-list__item-cancel"
+              role="button"
+              tabindex="0"
+              :aria-label="t('ui.fileUpload.cancelFile') + ' ' + file.name"
               @click="$emit('remove', file)"
             >
               {{ t('ui.fileUpload.cancelFile') }}
@@ -278,7 +290,10 @@
                 <span
                   v-if="!disabled"
                   class="tiny-upload-list__item-delete"
+                  role="button"
+                  tabindex="0"
                   :title="t('ui.fileUpload.deleteFile')"
+                  :aria-label="t('ui.fileUpload.deleteFile') + ' ' + file.name"
                   @click="$emit('remove', file)"
                 >
                   <icon-del class="tiny-svg-size icon-delete" />
