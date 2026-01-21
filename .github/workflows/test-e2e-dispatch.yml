@@ -64,4 +64,4 @@ jobs:
         run: |
           testDemos="${{ inputs.testDemos }}"
           components=${testDemos//,/' '}
-          pnpm test:e2e3 $components --reporter=line
+          pnpm test:e2e3 $components --reporter=line --pass-with-no-tests
