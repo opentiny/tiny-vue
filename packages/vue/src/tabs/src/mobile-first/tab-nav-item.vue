@@ -38,7 +38,7 @@ export default defineComponent({
         ],
         on: {
           click: handleNavItemClick,
-          // 无障碍：支持键盘 Enter 和 Space 键激活
+          // 无障碍：支持键盘 Enter 键激活
           keydown: (e: KeyboardEvent) => {
             if (e.key === 'Enter') {
               e.preventDefault()
