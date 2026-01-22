@@ -198,10 +198,10 @@ function getColumnRuleTypeOperation({ _vm, renMaps, type }) {
 
 function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeNode, renMaps, type }) {
   return {
-    match: () => !~['index', 'radio', 'selection', 'expand', 'operation'].indexOf(type),
+    match: () => !['index', 'radio', 'selection', 'expand', 'operation'].includes(type),
     action: () => {
       let { sortable, remoteSort } = colProps
-      const isSortable = $table.sortable && (type ? false : sortable)
+      const isSortable = $table.sortable && sortable
       const isSortColumn = isSortable || remoteSort
 
       if (editor) {
@@ -396,8 +396,8 @@ export const Cell = {
         customExpandIcon
           ? customExpandIcon(h, { active: isActive, ...params })
           : h(iconArrowBottom(), {
-              class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
-            })
+            class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
+          })
       ]
     }
     const map = {
@@ -769,47 +769,47 @@ export const Cell = {
         isColGroup
           ? []
           : [
-              column.order === 'desc' || !icon.sortDefault
-                ? h(icon.sortAsc, {
-                    class: [
-                      'tiny-grid-sort__btn',
-                      {
-                        'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
-                      }
-                    ],
-                    on: {
-                      click(event) {
-                        $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '')
-                      }
-                    }
-                  })
-                : '',
-              column.order === 'asc' || !icon.sortDefault
-                ? h(icon.sortDesc, {
-                    class: [
-                      'tiny-grid-sort__btn',
-                      {
-                        'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
-                      }
-                    ],
-                    on: {
-                      click(event) {
-                        $table.triggerSortEvent(event, column, 'desc')
-                      }
-                    }
-                  })
-                : '',
-              !column.order && icon.sortDefault
-                ? h(icon.sortDefault, {
-                    class: ['tiny-grid-sort__btn'],
-                    on: {
-                      click(event) {
-                        $table.triggerSortEvent(event, column, 'asc')
-                      }
-                    }
-                  })
-                : ''
-            ]
+            column.order === 'desc' || !icon.sortDefault
+              ? h(icon.sortAsc, {
+                class: [
+                  'tiny-grid-sort__btn',
+                  {
+                    'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
+                  }
+                ],
+                on: {
+                  click(event) {
+                    $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '')
+                  }
+                }
+              })
+              : '',
+            column.order === 'asc' || !icon.sortDefault
+              ? h(icon.sortDesc, {
+                class: [
+                  'tiny-grid-sort__btn',
+                  {
+                    'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
+                  }
+                ],
+                on: {
+                  click(event) {
+                    $table.triggerSortEvent(event, column, 'desc')
+                  }
+                }
+              })
+              : '',
+            !column.order && icon.sortDefault
+              ? h(icon.sortDefault, {
+                class: ['tiny-grid-sort__btn'],
+                on: {
+                  click(event) {
+                    $table.triggerSortEvent(event, column, 'asc')
+                  }
+                }
+              })
+              : ''
+          ]
       )
     ]
   },
