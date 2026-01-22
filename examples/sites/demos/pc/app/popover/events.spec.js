@@ -5,7 +5,7 @@ test('事件', async ({ page }) => {
   await page.goto('popover#events')
 
   let button = page.getByRole('button', { name: '悬浮我触发' })
-  let pop = page.getByRole('tooltip', { name: /这是一段内容/ })
+  let pop = page.getByText('tooltip', { name: /这是一段内容/ })
   let notify1 = page.locator('.tiny-notify__content').filter({ hasText: /显示时触发/ })
   let notify2 = page.locator('.tiny-notify__content').filter({ hasText: /隐藏时触发/ })
 

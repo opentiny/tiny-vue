@@ -46,6 +46,51 @@ export const viteDocsearchPlugin = (env) => {
   }
 }
 
+// 修复 @opentiny/vue-icon-saas/src 目录导入错误
+// 根据 package.json 的 exports 配置，"./*": "./src/*" 会将 @opentiny/vue-icon-saas/src 解析为目录
+// 这个插件拦截该导入并重定向到 index.ts
+export const fixIconSaasSrcPlugin = () => {
+  // 计算 workspace root：从 examples/sites 目录向上两级到项目根目录
+  // 使用 import.meta.url 获取当前文件路径（ES 模块方式）
+  const currentFileUrl = import.meta.url
+  const currentDir = path.dirname(new URL(currentFileUrl).pathname)
+  // 处理 Windows 路径（去掉开头的 /）
+  const normalizedDir = process.platform === 'win32' ? currentDir.replace(/^\//, '') : currentDir
+  const workspaceRoot = path.resolve(normalizedDir, '../..')
+  const iconSaasSrcPath = path.resolve(workspaceRoot, 'packages/vue-icon-saas/src')
+  const iconSaasIndexPath = path.resolve(workspaceRoot, 'packages/vue-icon-saas/index.ts')
+
+  return {
+    name: 'fix-icon-saas-src-plugin',
+    enforce: 'pre',
+    resolveId(id) {
+      // 拦截对 @opentiny/vue-icon-saas/src 的导入（模块路径）
+      if (id === '@opentiny/vue-icon-saas/src') {
+        return iconSaasIndexPath
+      }
+      // 拦截文件系统路径中的 vue-icon-saas/src 目录访问
+      const normalizedId = id.replace(/\\/g, '/')
+      const normalizedSrcPath = iconSaasSrcPath.replace(/\\/g, '/')
+      // 精确匹配目录路径（不包含文件扩展名）
+      if (normalizedId === normalizedSrcPath) {
+        return iconSaasIndexPath
+      }
+      return null
+    },
+    load(id) {
+      // 如果请求的是 vue-icon-saas/src 目录，返回 index.ts 的内容
+      const normalizedId = id.replace(/\\/g, '/')
+      const normalizedSrcPath = iconSaasSrcPath.replace(/\\/g, '/')
+      if (normalizedId === normalizedSrcPath) {
+        if (fs.existsSync(iconSaasIndexPath)) {
+          return fs.readFileSync(iconSaasIndexPath, 'utf-8')
+        }
+      }
+      return null
+    }
+  }
+}
+
 // 针对不同主题对配置进行响应修改
 const themeModifyMap = {
   saas(viteConfig) {

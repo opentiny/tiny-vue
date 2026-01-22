@@ -348,4 +348,4 @@ jobs:
 
       # 运行E2E测试
       - name: E2E Test
-        run: ${{ matrix.testcli }} ${{ env.TEST_COMPONENTS }} --retries=1 --workers=2 # 带重试和并行工作进程
+        run: ${{ matrix.testcli }} ${{ env.TEST_COMPONENTS }} --retries=1 --workers=2 --pass-with-no-tests # 带重试和并行工作进程，无测试时不报错

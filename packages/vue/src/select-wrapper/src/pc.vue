@@ -1,10 +1,10 @@
 <template>
   <component ref="childComponent" :is="resolvedComponent" v-bind="mergedProps" v-on="listeners">
-    <template v-slot:default="slotProps">
+    <template #default="slotProps">
       <slot v-if="hasScopedDefault" v-bind="slotProps"></slot>
       <slot v-else></slot>
     </template>
-    <template v-for="slotName in slotNames" v-slot:[slotName]="slotProps">
+    <template v-for="slotName in slotNames" #[slotName]="slotProps">
       <slot :name="slotName" v-bind="slotProps"></slot>
     </template>
   </component>

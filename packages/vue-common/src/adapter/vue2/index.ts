@@ -368,6 +368,8 @@ export const isVue2 = true
 
 export const isVue3 = false
 
+export type VNode = any
+
 export type {
   PropType,
   ExtractPropTypes,

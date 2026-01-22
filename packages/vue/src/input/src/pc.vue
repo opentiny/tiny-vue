@@ -154,8 +154,8 @@
                 tabindex="0"
                 @click.native="state.maskValueVisible = !state.maskValueVisible"
               ></component>
-              <span 
-                v-if="state.isWordLimitVisible" 
+              <span
+                v-if="state.isWordLimitVisible"
                 :id="`${$attrs.id || name || 'input'}-word-limit`"
                 class="tiny-input__count"
                 role="status"
@@ -246,8 +246,8 @@
       >
       </textarea>
     </span>
-    <span 
-      v-if="state.isWordLimitVisible && type === 'textarea'" 
+    <span
+      v-if="state.isWordLimitVisible && type === 'textarea'"
       :id="`${$attrs.id || name || 'textarea'}-word-limit`"
       class="tiny-input__count"
       role="status"

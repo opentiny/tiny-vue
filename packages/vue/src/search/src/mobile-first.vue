@@ -2,6 +2,8 @@
   <div
     :class="m(gcls('search-default'))"
     data-tag="tiny-search"
+    role="search"
+    :aria-label="placeholder || 'search'"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
   >
@@ -30,6 +32,10 @@
               gcls({ 'pc-search-present-unbig': size === 'small' && !big })
             )
           "
+          role="button"
+          tabindex="0"
+          aria-haspopup="listbox"
+          :aria-expanded="state.show"
           @click="showSelector"
         >
           <slot name="text" :slot-scope="state.searchValue">
@@ -70,6 +76,11 @@
         :placeholder="placeholder"
         type="text"
         data-tag="tiny-search__input"
+        role="searchbox"
+        :aria-label="placeholder || 'search input'"
+        :aria-expanded="state.show"
+        :aria-controls="state.show ? `tiny-search__selector-${state.instanceId}` : undefined"
+        aria-haspopup="listbox"
         @keyup.enter="searchEnterKey"
         @input="handleInput"
         @change="handleChange"
@@ -91,7 +102,13 @@
           "
           v-if="state.showClear && !state.collapse"
         >
-          <a :class="m(gcls('pc-search-input-btn-transtion-a'))" @click="clear">
+          <a
+            :class="m(gcls('pc-search-input-btn-transtion-a'))"
+            role="button"
+            tabindex="0"
+            aria-label="clear search"
+            @click="clear"
+          >
             <icon-close
               @mousedown.prevent
               data-tag="tiny-svg-size"
@@ -111,7 +128,13 @@
           )
         "
       >
-        <a :class="m(gcls('pc-search-input-btn-a'))" @click="searchClick">
+        <a
+          :class="m(gcls('pc-search-input-btn-a'))"
+          role="button"
+          tabindex="0"
+          aria-label="submit search"
+          @click="searchClick"
+        >
           <icon-search
             :class="
               m(
@@ -129,7 +152,9 @@
         v-show="state.show && state.types.length"
         ref="selector"
         data-tag="tiny-search__selector"
+        :id="`tiny-search__selector-${state.instanceId}`"
         :class="m(gcls('search-selector'))"
+        role="listbox"
       >
         <div data-tag="tiny-search__selector-body" :class="m(gcls('search-selector-body'))">
           <ul data-tag="tiny-search__poplist">
@@ -137,6 +162,11 @@
               v-for="(item, index) in state.types"
               :key="index"
               data-tag="tiny-search__poplist-item"
+              role="option"
+              :aria-label="item.text || item.label"
+              :aria-selected="item === state.searchValue"
+              :id="`tiny-search__option-${state.instanceId}-${index}`"
+              tabindex="-1"
               :class="
                 m(
                   gcls('search-selector-poplist-item'),

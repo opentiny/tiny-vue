@@ -383,7 +383,7 @@ function renderRows(_vm) {
       rowClassName
     }
 
-    Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow })
+    Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow, scrollYLoad })
 
     renderRow(args)
 
@@ -438,12 +438,13 @@ function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, scrollYLoad } = args
 
   if (isSkipRowRender) {
     return
   }
 
+  // 同步勿删
   let key = id
   if (row._isDraging) {
     // 防止数据多次刷新导致key回归rowid
@@ -457,33 +458,35 @@ function renderRow(args) {
 
   const { columnPool } = _vm
 
-  rows.push(
-    <tr
-      key={key}
-      data-rowid={rowid}
-      data-rowindex={$rowIndex}
-      data-rowlevel={rowLevel}
-      style={{ display: used ? undefined : 'none' }}
-      class={[
-        'tiny-grid-body__row',
-        {
-          [`row__level-${rowLevel}`]: treeConfig,
-          'row__new': editStore.insertList.includes(row),
-          'row__selected': selection.includes(row),
-          'row__radio': selectRow === row,
-          'row__actived': rowActived
-        },
-        rowClassName
-          ? isFunction(rowClassName)
-            ? rowClassName({ $table, $seq, seq, fixedType: undefined, rowLevel, row, rowIndex, $rowIndex })
-            : rowClassName
-          : ''
-      ]}>
-      {columnPool.map(({ id, item: column, used }, $columnIndex) =>
-        renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, used })
-      )}
-    </tr>
-  )
+  if (used || scrollYLoad) {
+    rows.push(
+      <tr
+        key={key}
+        data-rowid={rowid}
+        data-rowindex={$rowIndex}
+        data-rowlevel={rowLevel}
+        style={{ display: used ? undefined : 'none' }}
+        class={[
+          'tiny-grid-body__row',
+          {
+            [`row__level-${rowLevel}`]: treeConfig,
+            'row__new': editStore.insertList.includes(row),
+            'row__selected': selection.includes(row),
+            'row__radio': selectRow === row,
+            'row__actived': rowActived
+          },
+          rowClassName
+            ? isFunction(rowClassName)
+              ? rowClassName({ $table, $seq, seq, fixedType: undefined, rowLevel, row, rowIndex, $rowIndex })
+              : rowClassName
+            : ''
+        ]}>
+        {columnPool.map(({ id, item: column, used }, $columnIndex) =>
+          renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, used })
+        )}
+      </tr>
+    )
+  }
 }
 
 function renderRowGroupTds({ $table, closeable, render, renderGroupCell, row, tds, title, _vm }) {

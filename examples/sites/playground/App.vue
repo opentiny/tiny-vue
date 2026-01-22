@@ -90,12 +90,13 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
-    imports[
-      `@opentiny/vue-design-${tinyTheme}`
-    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[`@opentiny/vue-design-${tinyTheme}`] =
+      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
+    // 添加 @opentiny/vue-icon-saas 的映射，因为某些代码会直接导入这个包
+    imports['@opentiny/vue-icon-saas'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
     imports['@opentiny/vue-common'] = `${getRuntime(version)}tiny-vue-saas-common.mjs`
     imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-all.mjs`
   }
@@ -256,7 +257,7 @@ function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
 }
 
-const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
+const getDemoCode = async ({ cmpId, fileName, apiMode, mode: _mode }) => {
   const demoName = getDemoName(`${getWebdocPath(cmpId)}/${fileName}`, apiMode)
   const path = tinyMode === 'mobile-first' ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
   const code = await fetchDemosFile(path)

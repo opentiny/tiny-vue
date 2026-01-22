@@ -27,6 +27,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/exception/vue'
 import { setup, defineComponent, $props } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
+import '@opentiny/vue-theme/exception/index.less'
 
 import {
   iconNoData,

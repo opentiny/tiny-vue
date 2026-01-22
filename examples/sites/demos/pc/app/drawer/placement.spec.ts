@@ -6,19 +6,19 @@ test('抽屉方向', async ({ page }) => {
   const demo = page.locator('#placement')
   const drawer = demo.locator('.tiny-drawer__main')
 
-  await page.getByRole('button', { name: 'left' }).click()
+  await demo.getByRole('button', { name: 'left' }).click()
   await expect(drawer).toHaveCSS('left', '0px')
-  await page.locator('.tiny-drawer__mask').click()
+  await page.locator('.tiny-drawer__headerbtn').click()
 
-  await page.getByRole('button', { name: 'right' }).click()
+  await demo.getByRole('button', { name: 'right' }).click()
   await expect(drawer).toHaveCSS('right', '0px')
-  await page.locator('.tiny-drawer__mask').click()
+  await page.locator('.tiny-drawer__headerbtn').click()
 
-  await page.getByRole('button', { name: 'top' }).click()
+  await demo.getByRole('button', { name: 'top' }).click()
   await expect(drawer).toHaveCSS('top', '0px')
-  await page.locator('.tiny-drawer__mask').click()
+  await page.locator('.tiny-drawer__headerbtn').click()
 
-  await page.getByRole('button', { name: 'bottom' }).click()
+  await demo.getByRole('button', { name: 'bottom' }).click()
   await expect(drawer).toHaveCSS('bottom', '0px')
-  await page.locator('.tiny-drawer__mask').click()
+  await page.locator('.tiny-drawer__headerbtn').click()
 })

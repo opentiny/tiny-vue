@@ -24,7 +24,13 @@
         :current-node-key="!multiple ? state.currentKey : ''"
         :data="state.treeData"
         :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
-        :default-expand-all="treeOp.defaultExpandAll !== undefined ? treeOp.defaultExpandAll : ((lazy !== undefined ? lazy : treeOp.lazy) ? false : true)"
+        :default-expand-all="
+          treeOp.defaultExpandAll !== undefined
+            ? treeOp.defaultExpandAll
+            : (lazy !== undefined ? lazy : treeOp.lazy)
+              ? false
+              : true
+        "
         :expand-on-click-node="false"
         :filter-node-method="filterMethod"
         :icon-trigger-click-node="false"
