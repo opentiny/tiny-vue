@@ -237,6 +237,18 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'closed',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭抽屉动画结束时的事件',
+            'en-US': 'Event emitted when drawer closing animation ends'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'events',
+          mfDemo: ''
+        },
+        {
           name: 'confirm',
           type: '() => void',
           defaultValue: '',
@@ -371,6 +383,7 @@ interface IDrawerConfigs extends IDrawerProps {
   events: {
     // 监听事件
     close: () => void
+    closed: () => void
     confirm: () => void
     show: (instance: Component) => void
   },

@@ -13,7 +13,7 @@
     </transition>
 
     <!-- main -->
-    <transition :name="`drawer-slide-${placement}`">
+    <transition :name="`drawer-slide-${placement}`" @after-leave="closed">
       <div
         data-tag="tiny-drawer-main"
         ref="drawerBox"
@@ -167,7 +167,7 @@ export default defineComponent({
     'customSlots',
     'closeOnPressEscape'
   ],
-  emits: ['update:visible', 'open', 'close', 'confirm', 'drag'],
+  emits: ['update:visible', 'open', 'close', 'closed', 'confirm', 'drag'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

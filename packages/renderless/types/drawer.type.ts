@@ -3,6 +3,7 @@ import type { drawerProps, $constants } from '@/drawer/src'
 import type {
   open,
   close,
+  closed,
   watchVisible,
   confirm,
   mousedown,
@@ -32,6 +33,7 @@ export interface IDrawerApi {
   open: ReturnType<typeof open>
   confirm: ReturnType<typeof confirm>
   close: ReturnType<typeof close>
+  closed: ReturnType<typeof closed>
   mousemove: ReturnType<typeof mousemove>
   mouseup: ReturnType<typeof mouseup>
   mousedown: ReturnType<typeof mousedown>

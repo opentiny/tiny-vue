@@ -37,6 +37,14 @@ export const close =
     api.handleClose('close', typeof force === 'boolean' ? force : false)
   }
 
+export const closed =
+  ({ state, emit }: Pick<IDrawerRenderlessParams, 'state' | 'emit'>) =>
+  () => {
+    if (!state.visible) {
+      emit('closed')
+    }
+  }
+
 export const watchVisible =
   ({ state, api }: Pick<IDrawerRenderlessParams, 'state' | 'api'>) =>
   (value: boolean) => {

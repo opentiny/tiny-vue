@@ -227,6 +227,7 @@ export default {
         'zh-CN': `
           <p><code>open</code>：当抽屉打开时触发；</p>
           <p><code>confirm</code>：当抽屉底部确定按钮点击时触发，该按钮仅当设置 <code>show-footer</code> 属性为 true 时可见；</p>
+          <p><code>closed</code>：当抽屉关闭动画结束时触发；</p>
           <p><code>close</code>：当抽屉关闭时触发。关闭抽屉的途径有：</p>
             <ul>
               <li>点击右上角关闭按钮；</li>
@@ -416,11 +417,11 @@ export default {
       support: {
         value: true
       },
-      description: '支持 open、confirm、close 等事件。',
+      description: '支持 open、confirm、close、closed 等事件。',
       cloud: {
         value: true
       },
-      apis: ['open', 'confirm', 'close'],
+      apis: ['open', 'confirm', 'close', 'closed'],
       demos: ['events']
     }
   ]
