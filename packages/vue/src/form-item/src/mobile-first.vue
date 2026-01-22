@@ -3,7 +3,6 @@
     data-tag="tiny-form-item"
     role="group"
     :aria-labelledby="state.labelId"
-    :aria-invalid="state.validateState === 'error' ? 'true' : 'false'"
     :class="
       m(
         `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-border-separator sm:border-none`,

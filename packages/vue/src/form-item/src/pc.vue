@@ -186,9 +186,14 @@ export default defineComponent({
 
           Object.assign(item.props, {
             size: state.formItemSize,
-            mini: state.formItemSize === 'mini' || Boolean(item.props.mini),
-            ...ariaAttrs // 将 ARIA 属性传递给子组件
+            mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
           })
+
+          // 将 ARIA 属性添加到 attrs 而不是 props，因为表单组件使用 inheritAttrs: false 并从 $attrs 读取 ARIA 属性
+          if (!item.attrs) {
+            item.attrs = {}
+          }
+          Object.assign(item.attrs, ariaAttrs)
 
           if (type && type.name && type.name.toLowerCase().endsWith('button')) {
             return item
