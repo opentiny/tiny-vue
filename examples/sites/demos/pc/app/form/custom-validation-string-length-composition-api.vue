@@ -14,36 +14,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { reactive, ref } from 'vue'
+
 import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput } from '@opentiny/vue'
 
-export default {
-  components: {
-    TinyForm,
-    TinyFormItem,
-    TinyInput
-  },
-  data() {
-    return {
-      state: {
-        value0: '',
-        value1: '',
-        value2: ''
-      },
-      rules: {
-        value1: [{ max: 3 }],
-        value2: [
-          {
-            max: 4,
-            regular(val) {
-              return val.length
-            }
-          }
-        ]
-      }
-    }
-  }
-}
+const state = reactive({
+  value0: '',
+  value1: '',
+  value2: ''
+})
+
+const rules = ref({
+  value1: [{ max: 3 }],
+  value2: [{ max: 4, regular: (val) => val.length }]
+})
 </script>
 
 <style scoped>

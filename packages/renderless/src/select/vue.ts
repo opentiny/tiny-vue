@@ -116,7 +116,7 @@ import {
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
 import { useUserAgent } from '@opentiny/vue-hooks'
-import { isServer } from '@opentiny/utils'
+import { isServer, nanoid } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -298,7 +298,7 @@ const initState = ({
       popperClass: 'tiny-select__popper-maxh-50',
       ...props.tooltipConfig
     })),
-    ariaListId: 'tiny-select-' + crypto.randomUUID().slice(-8)
+    ariaListId: 'tiny-select-' + nanoid.api.nanoid(8)
   })
   return state
 }
