@@ -198,7 +198,8 @@ export default defineComponent({
       popperJS: null,
       showAdvance: false,
       showAdvItems: false,
-      listPopper: null
+      listPopper: null,
+      originalParent: null // 记录原始父节点
     }
   },
   render() {
@@ -213,7 +214,7 @@ export default defineComponent({
       renderExtends,
       renderBase,
       renderSimple
-    } = this as any
+    } = this
     const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
     const layoutMap = {
       input: renderInput,
@@ -305,14 +306,46 @@ export default defineComponent({
           const reference = targetElemParentTr && targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
           const popper = this.$el
 
+          // 记录原始父节点
+          if (!this.originalParent) {
+            this.originalParent = popper.parentNode
+          }
+
+          // 将 popper 移动到滚动容器内
+          const scrollContainer = this.findScrollContainer(reference)
+          if (scrollContainer && scrollContainer !== document.body && scrollContainer !== popper.parentNode) {
+            scrollContainer.appendChild(popper)
+          }
+
           popper.style.zIndex = PopupManager.nextZIndex()
 
           this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end',
-            gpuAcceleration: false
+            gpuAcceleration: false,
+            modifiers: {
+              preventOverflow: {
+                boundariesElement: 'scrollParent', // 修改为 scrollParent
+                padding: 8
+              },
+              hide: {
+                enabled: true
+              },
+              // flip 配置
+              flip: {
+                boundariesElement: 'scrollParent'
+              },
+              computeStyle: {
+                gpuAcceleration: false
+              }
+            }
           })
           popper.style.display = 'block'
+          this.bindScroll()
         })
+      } else {
+        // 恢复原始父节点
+        this.restoreOriginalParent()
+        this.unbindScroll()
       }
     }),
     // 基础清除选项
@@ -714,10 +747,18 @@ export default defineComponent({
       this.condition.value = this.filterStore.options.filter((item) => item.checked).map((check) => check.value)
       this.confirmFilter('enum')
     },
+    // 恢复原始父节点
+    restoreOriginalParent() {
+      if (this.originalParent && this.$el.parentNode !== this.originalParent) {
+        this.originalParent.appendChild(this.$el)
+      }
+    },
     close() {
       let { filterStore } = this
-
       filterStore.visible = false
+      // 恢复原始父节点
+      this.restoreOriginalParent()
+      this.unbindScroll()
     },
     correctRelations() {
       if (this.filterStore && typeof this.filterStore.inputFilter === 'object') {
@@ -734,9 +775,104 @@ export default defineComponent({
   },
   setup() {
     const instance = hooks.getCurrentInstance().proxy
+    let scrollContainer = null
+    let visibilityCheckTimer = null
+
+    // 查找滚动容器
+    const findScrollContainer = (element) => {
+      if (!element) return window
+
+      let parent = element.parentElement
+      while (parent) {
+        const style = window.getComputedStyle(parent)
+        if (
+          style.overflowY === 'auto' ||
+          style.overflowY === 'scroll' ||
+          style.overflow === 'auto' ||
+          style.overflow === 'scroll'
+        ) {
+          return parent
+        }
+        parent = parent.parentElement
+      }
+      return window
+    }
+
+    // 检查元素是否在可视区域内
+    const isElementInViewport = (element) => {
+      if (!element) return false
+
+      const rect = element.getBoundingClientRect()
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight
+      const windowWidth = window.innerWidth || document.documentElement.clientWidth
+
+      const buffer = 50
+      return (
+        rect.top >= -buffer &&
+        rect.left >= -buffer &&
+        rect.bottom <= windowHeight + buffer &&
+        rect.right <= windowWidth + buffer
+      )
+    }
+
+    // 滚动处理器
+    const handleScroll = () => {
+      if (!instance.filterStore?.visible) return
+
+      const { targetElemParentTr, id } = instance.filterStore
+      if (!targetElemParentTr) return
+
+      const reference = targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
+      if (!reference) return
+
+      // 如果按钮不在视口内，关闭面板
+      if (!isElementInViewport(reference)) {
+        instance.close()
+      }
+    }
+
+    const debouncedHandleScroll = debounce(16, handleScroll)
+
+    // 绑定滚动监听
+    const bindScroll = () => {
+      if (instance.filterStore?.targetElemParentTr) {
+        const reference = instance.filterStore.targetElemParentTr.querySelector(
+          `svg.tiny-grid-filter__btn.${instance.filterStore.id}`
+        )
+        if (reference) {
+          scrollContainer = findScrollContainer(reference)
+          scrollContainer.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+          window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+        }
+      }
+    }
+
+    // 解绑滚动监听
+    const unbindScroll = () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', debouncedHandleScroll)
+        window.removeEventListener('scroll', debouncedHandleScroll)
+        scrollContainer = null
+      }
+    }
 
     hooks.onBeforeUnmount(() => {
       instance.popperJS && instance.popperJS.destroy() && (instance.popperJS = null)
+      unbindScroll()
+      if (visibilityCheckTimer) {
+        clearTimeout(visibilityCheckTimer)
+      }
+      // 组件销毁时恢复原始父节点
+      instance.restoreOriginalParent()
     })
+
+    // 暴露方法给实例
+    instance.findScrollContainer = findScrollContainer
+    instance.isElementInViewport = isElementInViewport
+    instance.handleScroll = handleScroll
+    instance.bindScroll = bindScroll
+    instance.unbindScroll = unbindScroll
+
+    return {}
   }
 })

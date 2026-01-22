@@ -56,11 +56,20 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
   font-size: var(--tv-Grid-font-size);
   z-index: 4000;
+  transform: none;
 
   &.filter__active {
     display: block;
   }
 
+  /* 隐藏动画状态 */
+  &.filter__hiding {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+
+  /* 面板内容区域 */
   .@{grid-prefix-cls}__filter-body {
     padding: 10px;
     list-style-type: none;
