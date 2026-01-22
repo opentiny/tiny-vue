@@ -12,7 +12,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数。图标函数执行后生成一个有效的 <code> Vue </code> 图标组件，可以在模板中使用。<br>
+          从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数，图标函数执行后生成一个有效的 <code> Vue </code> 图标组件，可以在模板中使用。在组件内应该保存图标组件的变量用于绑定，要避免在模板上直接绑定图标函数的执行。<br>
           通过修改图标的 <code>font-size</code> 的样式，指定图标的大小，通过修改<code>fill</code> 的样式指定图标的颜色。
           <div class="tip custom-block">
             <p class="custom block title"> 常见的图标使用方式 </p>
@@ -20,6 +20,7 @@ export default {
             1、在模板中通过标签式引入。比如 <code> &lt;tiny-shared /&gt; </code> <br>
             2、在模板中通过<code> &lt;component&gt; </code> 组件引入。比如 <code> &lt;component :is="tinyShared" /&gt; </code> <br>
             3、在组件属性中传入。比如 <code> &lt;tiny-button :icon="tinyShared" &gt; </code> <br>
+            4、避免模板绑定图标函数的执行。不建议 <code> &lt;component :is="IconShared()" /&gt; </code> 
           </div>
         `,
         'en-US': `
