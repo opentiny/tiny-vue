@@ -24,7 +24,7 @@ export default {
           </div>
         `,
         'en-US': `
-          Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library. The execution of the icon function generates a valid <code> Vue </code> icon component that can be used in the template. <br>
+          Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library. The execution of the icon function generates a valid <code> Vue </code> icon component that can be used in the template.Save the icon component variables for binding within the component. Avoid directly binding the icon function execution on the template. <br>
           Specify the size of the icon by modifying the <code>font-size</code> style, and specify the color of the icon by modifying <code>fill</code>.
           <div class="tip custom-block">
             <p class="custom block title"> Common icon usage </p>
@@ -32,6 +32,7 @@ export default {
             1. Import labels in the template. For example, <code> &lt; tiny-shared /&gt;  </code> <br>
             2, in the template by <code> &lt; component&gt;  The </code> component is introduced. For example, <code> &lt; component :is="tinyShared" /&gt;  </code> <br>
             3. Pass in component properties. For example, <code> &lt; tiny-button :icon="tinyShared" &gt;  </code> <br>
+            4. Avoid executing template-bound icon functions.Not recommended <code> &lt;component :is="IconShared()" /&gt; </code> 
           </div>
           `
       },
