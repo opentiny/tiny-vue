@@ -47,7 +47,8 @@ export const watchValidateStatus =
 export const computedGetValidateType =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): string =>
-    props.validateType || (state.formInstance ? state.formInstance?.validateType : '')
+    // 优先使用 form-item 的 validateType，其次是 form 的 validateType，默认值为 'tip'（tooltip 方式显示验证错误）
+    props.validateType || (state.formInstance ? state.formInstance?.validateType : '') || 'tip'
 
 export const computedValidateIcon =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
