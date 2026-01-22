@@ -271,6 +271,7 @@ export default defineComponent({
             },
             keydown(e) {
               if (withClose && (e.key === 'Delete' || e.key === 'Backspace')) {
+                e.preventDefault()
                 onTabRemove(pane, e)
               }
             }

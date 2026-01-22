@@ -5,7 +5,8 @@ test('超长数据下拉展示全部，面板长宽可控', async ({ page }) => 
   await page.goto('tabs#more-show-all')
 
   const container = page.locator('#more-show-all')
-  const showMoreBtn = container.getByRole('button')
+  // 使用更具体的选择器避免与滚动按钮冲突
+  const showMoreBtn = container.getByRole('button', { name: 'down' })
   const triggerBtn = container.locator('.tiny-tabs__more-container .tiny-dropdown__trigger.tiny-dropdown-trigger')
   const panel = page.locator('.tiny-tabs__more-dropdown')
 
