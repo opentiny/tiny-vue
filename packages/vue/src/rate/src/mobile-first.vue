@@ -1,5 +1,18 @@
 <template>
-  <div data-tag="tiny-rate" :class="m(gcls('rate'))" tabindex="0" @keydown="handelKey">
+  <div
+    data-tag="tiny-rate"
+    :class="m(gcls('rate'))"
+    role="slider"
+    :aria-label="`评分，当前 ${state.currentValue} 星，满分 ${max} 星`"
+    :aria-valuenow="state.currentValue"
+    :aria-valuemin="0"
+    :aria-valuemax="max"
+    :aria-valuetext="`${state.currentValue} 星${state.text ? '，' + state.text : ''}`"
+    :aria-readonly="disabled ? 'true' : 'false'"
+    :aria-disabled="disabled ? 'true' : 'false'"
+    tabindex="0"
+    @keydown="handelKey"
+  >
     <span
       data-tag="tiny-rate-content"
       v-for="item in max"
@@ -13,6 +26,7 @@
           gcls({ 'type-big': type === 'large' })
         )
       "
+      aria-hidden="true"
       @mousemove="setCurrentValue({ item, event: $event })"
       @mouseleave="resetCurrentValue"
       @click="selectValue(item)"
