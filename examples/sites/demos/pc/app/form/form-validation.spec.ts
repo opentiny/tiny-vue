@@ -9,7 +9,6 @@ test('测试表单校验规则', async ({ page }) => {
 
   // 直接提交，查看是否出现检验提示
   await form.getByRole('button', { name: '提交' }).click()
-  // 验证错误以 tooltip 方式显示（tooltip 元素有 role="tooltip"，内部错误消息有 role="alert"）
   await expect(page.getByRole('tooltip', { name: '必填' }).first()).toBeVisible()
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).toBeVisible()
   await expect(page.getByRole('tooltip', { name: '必填' }).nth(1)).toBeVisible()
@@ -25,7 +24,6 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   const demo = page.locator('#form-validation')
   const form = demo.locator('.tiny-form')
   const formItem = form.locator('.tiny-form-item')
-  // 验证错误以 tooltip 方式显示（tooltip 元素有 role="tooltip"，内部错误消息有 role="alert"）
   const requiredTip = page.getByRole('tooltip', { name: '必填' })
 
   // 对长度有要求的检验

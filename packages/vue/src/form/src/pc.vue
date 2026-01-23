@@ -21,7 +21,6 @@
       { 'is-display-only': state.isDisplayOnly }
     ]"
     role="form"
-    novalidate
     @submit.prevent
   >
     <slot></slot>

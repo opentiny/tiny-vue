@@ -381,12 +381,7 @@ export default defineComponent({
                 } else {
                   tooltipContent = [
                     validateIconNode,
-                    <span
-                      class={`${classPrefix}form-item__validate-message`}
-                      id={state.errorId}
-                      role="alert"
-                      aria-live="assertive"
-                      aria-atomic="true">
+                    <span class={`${classPrefix}form-item__validate-message`} id={state.errorId}>
                       {state.validateMessage}
                     </span>
                   ]

@@ -17,7 +17,6 @@ test('PopEditor 表单中使用并开启表单校验', async ({ page }) => {
     .filter({ hasText: /^文本$/ })
     .getByRole('img')
     .click()
-  // 验证错误以 tooltip 方式显示（tooltip 元素有 role="tooltip"，内部错误消息有 role="alert"）
   const tooltip = page.getByRole('tooltip', { name: '必填' })
   await expect(tooltip).toBeVisible()
 })
