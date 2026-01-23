@@ -191,8 +191,7 @@ const getDataOrSeries = (args) => {
       }
     })
   }
-
-  return levelFlag ? { series } : { data: getLimitData(innerData) }
+  return levelFlag ? { series, data: getLimitData(innerData) } : { data: getLimitData(innerData) }
 }
 
 const getLegend = (args) => {
@@ -217,7 +216,6 @@ const getLegend = (args) => {
   if (legend.length) {
     show = legend.length < legendLimit
   }
-
   if (level && level.length) {
     return {
       show,
