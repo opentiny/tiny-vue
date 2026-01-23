@@ -798,23 +798,6 @@ export default defineComponent({
       return window
     }
 
-    // 检查元素是否在可视区域内
-    const isElementInViewport = (element) => {
-      if (!element) return false
-
-      const rect = element.getBoundingClientRect()
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight
-      const windowWidth = window.innerWidth || document.documentElement.clientWidth
-
-      const buffer = 50
-      return (
-        rect.top >= -buffer &&
-        rect.left >= -buffer &&
-        rect.bottom <= windowHeight + buffer &&
-        rect.right <= windowWidth + buffer
-      )
-    }
-
     // 滚动处理器
     const handleScroll = () => {
       if (!instance.filterStore?.visible) return
@@ -824,11 +807,7 @@ export default defineComponent({
 
       const reference = targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
       if (!reference) return
-
-      // 如果按钮不在视口内，关闭面板
-      if (!isElementInViewport(reference)) {
-        instance.close()
-      }
+      void reference
     }
 
     const debouncedHandleScroll = debounce(16, handleScroll)
@@ -868,7 +847,6 @@ export default defineComponent({
 
     // 暴露方法给实例
     instance.findScrollContainer = findScrollContainer
-    instance.isElementInViewport = isElementInViewport
     instance.handleScroll = handleScroll
     instance.bindScroll = bindScroll
     instance.unbindScroll = unbindScroll
