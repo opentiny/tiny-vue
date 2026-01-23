@@ -37,6 +37,11 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       :validate-event="false"
+      role="combobox"
+      aria-haspopup="dialog"
+      aria-autocomplete="none"
+      :aria-owns="state.ariaPanelId"
+      :aria-controls="state.ariaPanelId"
     >
       <template v-if="label" #prefix>
         <tiny-tooltip
@@ -58,9 +63,10 @@
               @mouseleave="state.showClose = false"
               v-if="state.haveTrigger"
               class="baseClearicon"
+              aria-label="clear"
             />
           </transition>
-          <component :is="state.triggerClass" @click="handleFocus" class="tiny-svg-size" />
+          <component :is="state.triggerClass" @click="handleFocus" class="tiny-svg-size" aria-label="calendar" />
         </i>
       </template>
     </tiny-input>
@@ -101,6 +107,11 @@
         @focus="handleFocus"
         tabindex="1"
         class="tiny-range-input"
+        role="combobox"
+        aria-haspopup="dialog"
+        aria-autocomplete="none"
+        :aria-owns="state.ariaPanelId"
+        :aria-controls="state.ariaPanelId"
       />
       <slot name="range-separator">
         <span v-if="typeof rangeSeparator === 'string'" class="tiny-range-separator">{{ rangeSeparator }}</span>
@@ -151,6 +162,10 @@
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
+      role="dialog"
+      aria-modal="false"
+      aria-lable="picker-panel"
+      :id="state.ariaPanelId"
     >
       <template v-if="$slots.footer || $slots.now || $slots.confirm" #footer="scoped">
         <slot name="footer" v-bind="scoped">
