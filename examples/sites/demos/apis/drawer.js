@@ -246,7 +246,10 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
-          mfDemo: ''
+          mfDemo: '',
+          meta: {
+            stable: '3.28.0'
+          }
         },
         {
           name: 'confirm',
