@@ -13,7 +13,7 @@ import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { delStaticPlugin, viteDocsearchPlugin, modifyViteConfig, fixIconSaasSrcPlugin } from './vite.extend.ts'
+import { delStaticPlugin, viteDocsearchPlugin, modifyViteConfig, fixIconSrcPlugins } from './vite.extend.ts'
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
@@ -35,7 +35,7 @@ export default defineConfig((config) => {
     envDir: './env',
     base: env.VITE_APP_BUILD_BASE_URL || '/tiny-vue/',
     plugins: [
-      fixIconSaasSrcPlugin(),
+      ...fixIconSrcPlugins(),
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue({
         include: [/\.vue$/, /\.md$/]

@@ -171,7 +171,6 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
-
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
@@ -181,6 +180,7 @@ export const cmpMenus = [
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
+      { 'nameCn': '综合搜索', 'name': 'SearchBox', 'key': 'search-box' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },

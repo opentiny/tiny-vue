@@ -46,6 +46,11 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
     map['@opentiny/vue-icon'] = pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/src`)
   }
 
+  // 在 SaaS 模式下，将 @opentiny/vue-search-box 映射到 @opentiny/vue-search-box-saas
+  if (theme === 'saas') {
+    map['@opentiny/vue-search-box'] = '@opentiny/vue-search-box-saas'
+  }
+
   return map
 }
 
@@ -81,7 +86,7 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
     ].filter((item) => !!item),
-    exclude: ['@opentiny/vue-search-box-saas']
+    exclude: ['@opentiny/vue-search-box', '@opentiny/vue-search-box-saas']
   }
 }
 

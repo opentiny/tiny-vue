@@ -12,7 +12,7 @@ export default {
         'zh-CN': ' 通过 items 配置搜索数据项。 ',
         'en-US': ' Configure search data items through  items . '
       },
-      codeFiles: ['basic-usage.vue', 'data-source.ts']
+      codeFiles: ['basic-usage.vue']
     },
     {
       demoId: 'append-to-body',
@@ -36,7 +36,7 @@ export default {
         'zh-CN': ' 通过 panel-max-height 配置下拉面板最大高度。 ',
         'en-US': ' Set  panel-max-height  to configure the maximum height of the drop-down list box. '
       },
-      codeFiles: ['panel-max-height.vue', 'data-source.ts']
+      codeFiles: ['panel-max-height.vue']
     },
     {
       demoId: 'split-input-value',
@@ -48,7 +48,7 @@ export default {
         'zh-CN': ` 通过 split-input-value='|' 将输入值按字符 | 分成多个关键字，一次性输入生成多个标签，默认 , 分隔。 `,
         'en-US': ` Use  split-input-value='|'  to split the input value into multiple keywords by  | . Multiple tags are generated for one input. By default,  ,  is used to separate multiple keywords. `
       },
-      codeFiles: ['split-input-value.vue', 'data-source.ts']
+      codeFiles: ['split-input-value.vue']
     },
     {
       demoId: 'default-field',
@@ -60,7 +60,7 @@ export default {
         'zh-CN': ' 通过  default-field  配置按照可用地区进行搜索。 ',
         'en-US': ' Set  default-field  to search by available region. '
       },
-      codeFiles: ['default-field.vue', 'data-source.ts']
+      codeFiles: ['default-field.vue']
     },
     {
       demoId: 'v-model',
@@ -72,7 +72,7 @@ export default {
         'zh-CN': ' 通过 model-value 配置默认选中标签项。 ',
         'en-US': ' Use  model-value  to configure the default selected label item. '
       },
-      codeFiles: ['v-model.vue', 'data-source.ts']
+      codeFiles: ['v-model.vue']
     },
     {
       demoId: 'empty-placeholder',
@@ -84,7 +84,7 @@ export default {
         'zh-CN': ' 通过 empty-placeholder 配置筛选项为空时占位文本。 ',
         'en-US': ' Use  empty-placeholder  to configure the placeholder text when the filter item is empty. '
       },
-      codeFiles: ['empty-placeholder.vue', 'data-source.ts']
+      codeFiles: ['empty-placeholder.vue']
     },
     {
       demoId: 'id-map-key',
@@ -110,7 +110,7 @@ export default {
         'zh-CN': ' 通过 potential-options 配置潜在匹配项。 ',
         'en-US': ' Use  potential-options  to configure potential matches. '
       },
-      codeFiles: ['potential-match.vue', 'data-source.ts']
+      codeFiles: ['potential-match.vue']
     },
     {
       demoId: 'group-key',
@@ -135,7 +135,7 @@ export default {
         'en-US':
           ' Use  show-help  to show or hide the help icon, and use the  help  event callback to customize the pop-up window content. '
       },
-      codeFiles: ['help.vue', 'data-source.ts']
+      codeFiles: ['help.vue']
     },
     {
       demoId: 'editable',
@@ -160,7 +160,7 @@ export default {
         'en-US':
           ' Set the placeholder text through   item.placeholder  ,   item.editAttrDisabled   This attribute type cannot be switched in the editing state. '
       },
-      codeFiles: ['item-placeholder.vue', 'data-source.ts']
+      codeFiles: ['item-placeholder.vue']
     },
     {
       demoId: 'auto-match',
@@ -174,7 +174,7 @@ export default {
         'en-US':
           ' Built-in auto-matching function. No Data Prompt for Hiding Panels via  :show-no-data-tip="false" . Use  search  to listen to search events and  change  to listen to search value change events. '
       },
-      codeFiles: ['auto-match.vue', 'data-source.ts']
+      codeFiles: ['auto-match.vue']
     },
     {
       demoId: 'merge-tag',

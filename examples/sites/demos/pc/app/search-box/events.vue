@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TinySearchBox from '@opentiny/vue-search-box-saas'
+import TinySearchBox from '@opentiny/vue-search-box'
 
 export default {
   components: {

@@ -27,46 +27,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import TinySearchBox from '@opentiny/vue-search-box'
 
-export default {
-  components: {
-    TinySearchBox
-  },
-  data() {
-    return {
-      tags: [
-        {
-          label: '选择人员',
-          field: 'autocomplete',
-          type: 'custom',
-          replace: true,
-          slotName: 'autocomplete',
-          value: '5656'
-        }
-      ],
-      items: [
-        {
-          label: '选择人员',
-          field: 'autocomplete',
-          type: 'custom',
-          replace: true, // 支持单选
-          slotName: 'autocomplete' // 定义此属性类型对应的插槽名，并在以下的模板层使用
-        },
-        {
-          label: '其他自定义',
-          field: 'other',
-          type: 'custom',
-          slotName: 'other' // 定义此属性类型对应的插槽名
-        }
-      ]
-    }
-  },
-  methods: {
-    onChange(newFilters, oldFilters) {
-      console.log('changeEvent:', newFilters, oldFilters)
-    }
+const tags = ref([
+  {
+    label: '选择人员',
+    field: 'autocomplete',
+    type: 'custom',
+    replace: true,
+    slotName: 'autocomplete',
+    value: '5656'
   }
+])
+const items = ref([
+  {
+    label: '选择人员',
+    field: 'autocomplete',
+    type: 'custom',
+    replace: true, // 支持单选
+    slotName: 'autocomplete' // 定义此属性类型对应的插槽名，并在以下的模板层使用
+  },
+  {
+    label: '其他自定义',
+    field: 'other',
+    type: 'custom',
+    slotName: 'other' // 定义此属性类型对应的插槽名
+  }
+])
+
+function onChange(newFilters, oldFilters) {
+  console.log('changeEvent:', newFilters, oldFilters)
 }
 </script>
