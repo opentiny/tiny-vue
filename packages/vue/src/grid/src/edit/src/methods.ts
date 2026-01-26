@@ -124,9 +124,12 @@ export default {
 
     const isColumnFormat = isAsyncColumn && visibleColumn.some((column) => column.format?.async?.fetch)
 
+    const defaultRowId = '_RID'
     let newRecords = records.map((record) => {
       // 增加新增标识
       isColumnFormat && (record[GlobalConfig.constant.insertedField] = true)
+      // 兼容历史版本，将已有行直接copy后直接insert, 由于默认id重复导致显示异常，需要将表格默认rowId删除
+      delete record[defaultRowId]
       // 增加编辑字段和主键字段
       return hooks.reactive(this.defineField(Object.assign({}, record)))
     })

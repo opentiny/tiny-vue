@@ -85,7 +85,12 @@ export const selectValue =
       return
     }
 
-    if (props.allowHalf && state.pointerAtLeftHalf) {
+    // 实现 clearable 功能
+    // 当 clearable 为 true 且点击的值与当前值相同时，将值设置为 0
+    if (props.clearable && props.modelValue === value) {
+      value = 0
+    } else if (props.allowHalf && state.pointerAtLeftHalf) {
+      // 保持原有的 allowHalf 逻辑
       value = state.currentValue
     }
 

@@ -23,13 +23,29 @@ export default defineComponent({
     return h(
       'div',
       {
-        attrs: { 'data-tag': 'tiny-tab-nav-item' },
+        attrs: {
+          'data-tag': 'tiny-tab-nav-item',
+          role: 'tab', // 无障碍：标识为标签
+          'aria-selected': selected ? 'true' : 'false', // 无障碍：标识选中状态
+          'aria-controls': `pane-${navItem.name}`, // 无障碍：关联对应的 tabpanel
+          id: `tab-${navItem.name}`, // 无障碍：唯一 ID，供 tabpanel 引用
+          tabindex: selected ? 0 : -1 // 无障碍：焦点管理，只有选中的 tab 可获得焦点
+        },
         class: [
           'w-max h-11 sm:h-10 inline-flex flex-col justify-center group',
           'first:ml-3 last:mr-3 hover:cursor-pointer sm:first:pl-0 sm:last:pr-0 sm:first:ml-0 sm:last:mr-0',
           state.separator ? 'mx-3.5 [&:last-of-type>div>span:last-of-type]:hidden [&:not(:last-of-type)]:mr-px' : 'mx-3'
         ],
-        on: { click: handleNavItemClick }
+        on: {
+          click: handleNavItemClick,
+          // 无障碍：支持键盘 Enter 键激活
+          keydown: (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
+              handleNavItemClick(e)
+            }
+          }
+        }
       },
       [
         h(

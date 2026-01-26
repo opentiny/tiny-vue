@@ -24,6 +24,7 @@
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
     <span
+      v-if="!state.isDisplayOnly"
       data-tag="tiny-radio-content"
       :class="
         m(

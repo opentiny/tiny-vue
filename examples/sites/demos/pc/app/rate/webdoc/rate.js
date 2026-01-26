@@ -204,6 +204,18 @@ export default {
       codeFiles: ['threshold-value.vue']
     },
     {
+      demoId: 'clearable',
+      name: {
+        'zh-CN': '可清空',
+        'en-US': 'Clearable'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 <code>clearable</code> 设置是否支持清空。</p>\n',
+        'en-US': '<p>You can use <code>clearable</code> to set whether to support clearing. </p>\n'
+      },
+      codeFiles: ['clearable.vue']
+    },
+    {
       demoId: 'rate-events',
       name: {
         'zh-CN': '事件',

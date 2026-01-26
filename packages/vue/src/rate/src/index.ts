@@ -115,6 +115,10 @@ export const rateProps = {
   voidIconClass: {
     type: String,
     default: 'icon-star-active'
+  },
+  clearable: {
+    type: Boolean,
+    default: false
   }
 }
 

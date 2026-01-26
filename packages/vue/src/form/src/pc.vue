@@ -20,6 +20,7 @@
       { 'asterisk-form': labelPosition === 'top' && !state.hideRequiredAsterisk },
       { 'is-display-only': state.isDisplayOnly }
     ]"
+    role="form"
     @submit.prevent
   >
     <slot></slot>

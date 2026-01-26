@@ -98,14 +98,17 @@ export default defineComponent({
       editable || withAdd ? (
         <span
           class="tiny-tabs__new-tab"
-          onClick={handleTabAdd}
+          role="button"
+          aria-label="添加新标签页"
           tabindex="0"
+          onClick={handleTabAdd}
           onKeydown={(ev) => {
-            if (ev.keyCode === 13) {
+            if (ev.key === 'Enter') {
+              ev.preventDefault()
               handleTabAdd()
             }
           }}>
-          <icon-plus />
+          <icon-plus aria-hidden="true" />
         </span>
       ) : null
 
