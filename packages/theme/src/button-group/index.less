@@ -200,3 +200,23 @@
     }
   }
 }
+.@{button-group-prefix-cls}--merged {
+  // 第一个按钮：左圆角
+  .@{group-item-prefix-cls} li:first-child > button {
+    border-top-left-radius: var(--tv-ButtonGroup-border-radius);
+    border-bottom-left-radius: var(--tv-ButtonGroup-border-radius);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  // 最后一个按钮：右圆角
+  .@{group-item-prefix-cls} li:last-child > button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: var(--tv-ButtonGroup-border-radius);
+    border-bottom-right-radius: var(--tv-ButtonGroup-border-radius);
+  }
+  // 中间按钮：直角
+  .@{group-item-prefix-cls} li > button {
+    border-radius: 0;
+  }
+}
