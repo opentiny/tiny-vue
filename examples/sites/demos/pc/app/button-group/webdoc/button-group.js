@@ -149,6 +149,20 @@ export default {
         'en-US': '<p>The <code>change</code> event is triggered when the selected button is changed. </p>'
       },
       codeFiles: ['change-event.vue']
+    },
+    {
+      demoId: 'display-mode',
+      name: {
+        'zh-CN': '按钮组显示模式',
+        'en-US': 'Button Group Display Mode'
+      },
+      desc: {
+        'zh-CN':
+        '<p>通过 <code>display-mode</code> 属性设置按钮组显示模式，可选值有 <code>default</code>（默认）和 <code>merged</code>（选块合并）。</p>',
+        'en-US':
+        '<p>Set the display mode of the button group through the <code>display-mode</code> attribute. The optional values are: <code>default</code> (default) and <code>merged</code> (merged).</p>'
+      },
+      codeFiles: ['display-mode.vue']
     }
   ],
   features: [
