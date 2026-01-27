@@ -129,7 +129,11 @@ export default defineComponent({
       default: false
     },
     isMultipleHistory: Boolean,
-    selectToolbar: [Boolean, Object]
+    selectToolbar: [Boolean, Object],
+    filterPopperOptions: {
+      type: Object,
+      default: () => ({ gpuAcceleration: false, boundariesPadding: 0 })
+    }
   },
   data() {
     return {
