@@ -68,6 +68,7 @@ const observer = new MutationObserver(() => {
   } else {
     try {
       const iframeDocument = iframeRef.value.contentDocument || iframeRef.value.contentWindow.document
+      iframeDocument.documentElement.classList.remove('dark')
       const linkElement = iframeDocument.getElementById('theme-style-link')
       if (linkElement) {
         linkElement.remove()
