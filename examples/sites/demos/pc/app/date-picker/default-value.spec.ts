@@ -7,20 +7,20 @@ test('[DatePicker] 测试选择器打开时默认时间设置', async ({ page })
   await page.locator('label').filter({ hasText: '单示例' }).click()
 
   // default-value: 打开日期面板，默认显示的日期
-  await page.getByRole('textbox').nth(1).click()
+  await page.getByRole('combobox').nth(0).click()
   await expect(page.getByRole('button', { name: '2000 年' })).toBeVisible()
   await expect(page.getByRole('button', { name: '11 月' })).toBeVisible()
 
   // default-time: 日期时间 (范围)，选择日期之后默认显示的时间 (范围)
-  const dateInputDefaultTime = page.getByRole('textbox').nth(2)
+  const dateInputDefaultTime = page.getByRole('combobox').nth(1)
   await dateInputDefaultTime.fill('2023-05-20 09:00:00')
   await dateInputDefaultTime.press('Enter')
 
-  await page.getByRole('textbox', { name: '2023-05-20 09:00:00' }).click()
+  await page.getByRole('combobox', { name: '2023-05-20 09:00:00' }).click()
   await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   await expect(page.getByRole('textbox', { name: '选择时间' })).toHaveValue('09:00:00')
 
-  await page.getByRole('textbox').nth(3).click()
+  await page.getByRole('combobox').nth(2).click()
   await page.getByRole('cell', { name: '10' }).getByText('10').last().click()
   await page.getByRole('cell', { name: '10' }).getByText('10').nth(1).click()
   await expect(page.getByRole('textbox', { name: '开始时间' })).toHaveValue('09:00:00')

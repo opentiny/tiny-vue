@@ -6,9 +6,9 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
 
   const demo = page.locator('#clear')
 
-  const datePickerDefaultClearIcon = demo.getByRole('textbox').nth(0)
-  const datePickerHideClearIcon = demo.getByRole('textbox').nth(1)
-  const datePickerCustomClearIcon = demo.getByRole('textbox').nth(2)
+  const datePickerDefaultClearIcon = demo.getByRole('combobox').nth(0)
+  const datePickerHideClearIcon = demo.getByRole('combobox').nth(1)
+  const datePickerCustomClearIcon = demo.getByRole('combobox').nth(2)
   const clearIcon = demo.locator('.tiny-date-editor .tiny-input__icon-container .baseClearicon')
 
   // 默认显示清除按钮
