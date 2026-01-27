@@ -248,7 +248,7 @@ export default {
           pcDemo: 'events',
           mfDemo: '',
           meta: {
-            stable: '3.28.0'
+            stable: '3.29.0'
           }
         },
         {
