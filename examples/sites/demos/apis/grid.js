@@ -36,8 +36,9 @@ export default {
           type: 'IPopperOption',
           defaultValue: '{}',
           desc: {
-            'zh-CN': '弹出层参数',
-            'en-US': 'Advanced parameters; Refer to the description of IPopperOption'
+            'zh-CN': '过滤面板弹出层配置项；具体参考 IPopperOption 的描述',
+            'en-US':
+              'Configuration item for the filter panel pop-up layer; refer to the description of IPopperOption for details'
           },
           meta: {
             stable: '3.29.0'
