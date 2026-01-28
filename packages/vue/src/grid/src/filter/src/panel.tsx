@@ -198,8 +198,7 @@ export default defineComponent({
       popperJS: null,
       showAdvance: false,
       showAdvItems: false,
-      listPopper: null,
-      popperConfigs: {}
+      listPopper: null
     }
   },
   render() {
@@ -215,8 +214,6 @@ export default defineComponent({
       renderBase,
       renderSimple
     } = this as any
-
-    this.popperConfigs = $grid?.filterPopperOptions || {}
 
     const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
     const layoutMap = {
@@ -314,7 +311,7 @@ export default defineComponent({
           this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end',
             gpuAcceleration: false,
-            ...this.popperConfigs
+            ...(this.$grid?.filterPopperOptions || {})
           })
           popper.style.display = 'block'
         })
