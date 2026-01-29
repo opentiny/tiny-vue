@@ -132,7 +132,7 @@ export default defineComponent({
     selectToolbar: [Boolean, Object],
     filterPopperOptions: {
       type: Object,
-      default: () => ({ gpuAcceleration: false, boundariesPadding: 0 })
+      default: () => ({})
     }
   },
   data() {
