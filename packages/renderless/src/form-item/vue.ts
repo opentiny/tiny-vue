@@ -56,6 +56,7 @@ import type {
 export const api = [
   'state',
   'validate',
+  'validateOrigin',
   'clearValidate',
   'resetField',
   'getRules',
@@ -144,6 +145,9 @@ const initState = ({
 }
 
 const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots }) => {
+  // 创建原始的 validate 函数（不经过防抖处理）
+  const validateOriginFunc = validate({ api, props, state, t })
+
   Object.assign(api, {
     state,
     dispatch,
@@ -172,7 +176,8 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     onFieldBlur: onFieldBlur(api),
     onFieldChange: onFieldChange({ api, state }),
     addValidateEvents: addValidateEvents({ api, vm, props, state }),
-    validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props }),
+    validateOrigin: validateOriginFunc,
+    validate: wrapValidate({ validateFunc: validateOriginFunc, props }),
     getDisplayedValue: getDisplayedValue({ state }),
     clearDisplayedValue: clearDisplayedValue({ state }),
     handleLabelMouseenter: handleLabelMouseenter({ props, state, slots }),

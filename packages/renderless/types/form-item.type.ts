@@ -144,6 +144,7 @@ export interface IFormItemApi {
   onFieldChange: ReturnType<typeof onFieldChange>
   addValidateEvents: ReturnType<typeof addValidateEvents>
   validate: ReturnType<typeof validate>
+  validateOrigin: ReturnType<typeof validate> // 原始的 validate 函数，不经过防抖处理
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
   clearDisplayedValue: ReturnType<typeof clearDisplayedValue>
   handleMouseenter: ReturnType<typeof handleMouseenter>

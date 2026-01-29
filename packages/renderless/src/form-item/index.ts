@@ -416,10 +416,12 @@ export const getFilteredRule =
       .map((rule) => merge({}, rule))
   }
 
+// blur 事件触发时，直接调用原始的 validate 函数，不应用防抖
 export const onFieldBlur = (api: IFormItemRenderlessParams['api']) => (): void => {
-  api.validate('blur')
+  api.validateOrigin('blur')
 }
 
+// change 事件触发时，调用可能被防抖包装的 validate 函数
 export const onFieldChange =
   ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
   (): void => {
