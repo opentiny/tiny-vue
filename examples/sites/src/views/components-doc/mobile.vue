@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import { router } from '@/router.js'
 import { fetchDemosFile } from '@/tools'
 import ComponentDocs from './common.vue'
@@ -61,7 +61,7 @@ const pageInit = (demo) => {
   iframeUrl.value = `${mobilePreview}?component=${cmpId}&demo=${demo.codeFiles[0]}`
 }
 
-const observer = new MutationObserver(() => {
+let observer = new MutationObserver(() => {
   const isDarkMode = document.documentElement.classList.contains('dark')
   if (isDarkMode) {
     onIframeLoad()
@@ -102,6 +102,11 @@ const onIframeLoad = () => {
     console.error('无法访问 iframe:', error)
   }
 }
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  observer = null
+})
 </script>
 
 <style scoped lang="less">
