@@ -152,6 +152,20 @@ export default {
           meta: {
             stable: '3.27.0'
           }
+        },
+        {
+          name: 'show-close',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示关闭按钮',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'show-close',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [],

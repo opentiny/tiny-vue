@@ -128,6 +128,18 @@ export default {
         'en-US': ''
       },
       codeFiles: ['callback.vue']
+    },
+    {
+      demoId: 'show-close',
+      name: {
+        'zh-CN': '关闭按钮',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN': '<p>通过添加 <code>showClose</code> 来自定义是否显示关闭按钮。默认值为 <code>false</code> </p>',
+        'en-US': ''
+      },
+      codeFiles: ['show-close.vue']
     }
   ],
   features: [

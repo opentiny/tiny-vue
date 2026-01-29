@@ -20,7 +20,8 @@ export const renderless = (
     modalOverlayOpeningPadding: props.modalOverlayOpeningPadding,
     modalOverlayOpeningRadius: props.modalOverlayOpeningRadius,
     arrow: props.arrow,
-    lightClass: props.lightClass
+    lightClass: props.lightClass,
+    showClose: props.showClose
   })
 
   let baseApi = {
