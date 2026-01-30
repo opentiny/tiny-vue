@@ -1,6 +1,6 @@
 export const classes = {
   'radio-default': 'radio inline-flex items-center leading-4 cursor-pointer sm:flex-row py-px sm:py-0 h-fit',
-  'radio-label-common': 'relative text-center w-7 h-7 mr-2 sm:mr-0',
+  'radio-label-common': 'relative text-center w-7 h-7 mr-2 sm:mr-0 shrink-0',
   'radio-label-size-common': 'sm:w-4 sm:h-4',
   'radio-label-size-medium': 'sm:w-6 sm:h-6',
   'radio-label-circle': 'inline-flex p-3 sm:p-0',
@@ -27,7 +27,7 @@ export const classes = {
   'mobile-icon-radio-disabled':
     '[&_path:nth-of-type(2)]:fill-color-icon-disabled [&_path:nth-of-type(1)]:fill-color-bg-3 cursor-not-allowed',
   'radio-input': 'absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0',
-  'radio-text-common': 'sm:h-4 text-color-text-primary align-middle text-sm',
+  'radio-text-common': 'sm:h-4 text-color-text-primary align-middle text-sm truncate',
   'radio-text-size-common': 'sm:text-xs',
   'radio-text-size-medium': 'sm:text-sm',
   'radio-hover': 'sm:[&_path:nth-of-type(1)]:hover:fill-color-brand-hover',
