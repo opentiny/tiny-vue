@@ -3,9 +3,9 @@
     <div class="value">{{ value }}</div>
     <tiny-date-panel v-model="value"></tiny-date-panel>
     <div class="month">{{ month }}</div>
-    <tiny-date-panel v-model="value" type="month"></tiny-date-panel>
+    <tiny-date-panel v-model="month" type="month"></tiny-date-panel>
     <div class="year">{{ year }}</div>
-    <tiny-date-panel v-model="value" type="year"></tiny-date-panel>
+    <tiny-date-panel v-model="year" type="year"></tiny-date-panel>
     <div class="value1">{{ value1 }}</div>
     <tiny-date-range type="daterange" v-model="value1"></tiny-date-range>
     <div class="value2">{{ value2 }}</div>
