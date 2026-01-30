@@ -126,7 +126,7 @@ const bind = (el, { value }: { value: BoundingValueType }) => {
   // 如果是知己使用指令v-auto-tip，什么都不传也需要添加省略提示功能
   let resultValue = value === undefined ? {} : value
 
-  // fix vue2:  在jsx中，直接使用 v-auto-tip 在dom上， 渲染 directives:[{name:'auto-tip',  value: true}]，
+  // fix vue2:  在jsx中，在dom上直接使用 v-auto-tip，渲染 directives:[{name:'auto-tip',  value: true}]，
   // 此时 resultValue=true, 会bug
   // (vue3中同样写法， 渲染后 value = undefined, 不会bug)
   if (typeof resultValue === 'boolean' && resultValue) {
