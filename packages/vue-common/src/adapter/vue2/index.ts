@@ -354,9 +354,10 @@ export const isEmptyVnode = (vnode) => !vnode || !vnode.tag
 export const h = hooks.h
 
 export const createComponentFn = (design) => {
-  return ({ component, propsData, el }) => {
+  // parent入参: 仅支持Vue2,所以只在这里增加了， vue3-common没该参数。 目的是支持Vue2中的 Vue.extend 使用时不丢失父元素
+  return ({ component, propsData, el, parent }) => {
     const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
-    return new (Vue.extend(comp))({ propsData, el }).$mount()
+    return new (Vue.extend(comp))({ propsData, el, parent }).$mount()
   }
 }
 
