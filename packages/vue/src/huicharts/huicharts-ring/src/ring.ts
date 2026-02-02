@@ -260,7 +260,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
   const ichartLabel = getLabel({ label, labelLine, percentShow, dataType, digit })
 
   // 图例配置
-  const ichartLegend = getLegend({ legendVisible, dimension, innerRows, legendLimit, level, limitShowNum })
+  const ichartLegend = getLegend({ legendVisible, dimension, innerRows, legendLimit, level, limitShowNum, innerData })
 
   // 图表数据(必填)
   const dataOrSeries = getDataOrSeries({ innerData, isRing, radius, level, limitShowNum, t })
