@@ -1,4 +1,14 @@
-export const dataSource = [
+<template>
+  <div class="demo">
+    <tiny-search-box v-model="tags" :items="dataSource" />
+  </div>
+</template>
+<script setup>
+import { ref } from 'vue'
+import TinySearchBox from '@opentiny/vue-search-box'
+
+const tags = ref([])
+const dataSource = ref([
   {
     label: '名称',
     field: 'testName',
@@ -24,7 +34,8 @@ export const dataSource = [
   {
     // 该种单选情况没有可选项。
     label: '名称1',
-    field: 'testName1'
+    field: 'testName1',
+    regexp: /^[a-zA-Z0-9]+$/
   },
   {
     label: '可用地区',
@@ -254,4 +265,5 @@ export const dataSource = [
       }
     ]
   }
-]
+])
+</script>

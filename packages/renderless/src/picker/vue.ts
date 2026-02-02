@@ -70,7 +70,7 @@ import {
   formatInputValue
 } from './index'
 import { dateMobileToggle, timeMobileToggle, dateToTimeArray, timeArrayToDate, timeMobileConfirm } from './mb'
-import { DATEPICKER } from '@opentiny/utils'
+import { DATEPICKER, nanoid } from '@opentiny/utils'
 import type {
   IPickerProps,
   IPickerApi,
@@ -178,7 +178,8 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
           (state.innerWidth < 335 && state.type === 'datetimerange')) &&
         state.displayValue &&
         state.displayValue[1]
-    )
+    ),
+    ariaPanelId: 'panel-' + nanoid.api.nanoid(8)
   })
 
   return state

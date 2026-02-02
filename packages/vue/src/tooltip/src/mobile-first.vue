@@ -132,6 +132,7 @@ export default defineComponent({
           get: () => {
             if (!_cacheVm.value) {
               _cacheVm.value = createComponent({
+                parent: this,
                 el: document.createElement('div'),
                 component: {
                   render: () => {

@@ -468,6 +468,7 @@ export const batch4Icons = [
   'IconDetailsTemplatePage',
   'IconDialogBox',
   'IconDialogSelect',
+  'IconFavorites',
   'IconFilterView',
   'IconFloating',
   'IconFlowchart',

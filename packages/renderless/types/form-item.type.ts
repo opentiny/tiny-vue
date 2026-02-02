@@ -95,6 +95,12 @@ export interface IFormItemState {
   isErrorBlock: boolean
   tooltipType: string
   isMultiple: boolean
+  // 无障碍支持：唯一 ID 用于 ARIA 属性关联
+  errorId: string
+  labelId: string
+  // 兼容属性
+  disabled?: boolean
+  inlineMessage?: boolean | string
 }
 
 export type IFormItemConstants = typeof $constants
@@ -138,6 +144,7 @@ export interface IFormItemApi {
   onFieldChange: ReturnType<typeof onFieldChange>
   addValidateEvents: ReturnType<typeof addValidateEvents>
   validate: ReturnType<typeof validate>
+  validateOrigin: ReturnType<typeof validate> // 原始的 validate 函数，不经过防抖处理
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
   clearDisplayedValue: ReturnType<typeof clearDisplayedValue>
   handleMouseenter: ReturnType<typeof handleMouseenter>

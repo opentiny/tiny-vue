@@ -100,6 +100,7 @@ const createImportMap = (version) => {
     imports['@opentiny/vue-common'] = `${getRuntime(version)}tiny-vue-saas-common.mjs`
     imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-all.mjs`
   }
+  imports['@opentiny/vue-search-box'] = '/playground/shims/vue-search-box.mjs'
   return { imports }
 }
 

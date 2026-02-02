@@ -12,6 +12,7 @@
       :value="state.displayValue.toString()"
       :drop-down-visible="state.pickerVisible"
       :blank="blank"
+      :size="state.pickerSize"
     ></tiny-filter-box>
     <tiny-input
       :tabindex="tabindex"

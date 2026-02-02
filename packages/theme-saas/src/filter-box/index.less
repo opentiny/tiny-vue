@@ -16,6 +16,13 @@
   @apply items-center;
   @apply text-xs;
 
+  &.@{filter-box-prefix-cls}--medium {
+    @apply h-8;
+    @apply leading-8;
+    @apply px-2;
+    @apply text-sm;
+  }
+
   &:hover {
     @apply bg-color-info-primary-subtler;
   }
@@ -39,7 +46,6 @@
 
   .title {
     height: inherit;
-    @apply text-xs;
     @apply ~'leading-[inherit]';
 
     label {
@@ -78,7 +84,6 @@
     @apply overflow-hidden;
     @apply text-ellipsis;
     @apply whitespace-nowrap;
-    @apply text-xs;
     @apply ~'leading-[inherit]';
     @apply text-color-text-primary;
 

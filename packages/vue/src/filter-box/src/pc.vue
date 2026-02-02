@@ -1,5 +1,8 @@
 <template>
-  <div :class="['tiny-filter-box', disabled && 'disabled', blank && 'is-blank']" @click="handeClick">
+  <div
+    :class="['tiny-filter-box', disabled && 'disabled', blank && 'is-blank', size ? 'tiny-filter-box--' + size : '']"
+    @click="handeClick"
+  >
     <p :class="['title', dropDownVisible && 'active']">
       <label>{{ label }}</label>
       <tiny-tooltip v-if="tip" effect="light" :content="tip" placement="top">
@@ -57,6 +60,10 @@ export default defineComponent({
     blank: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

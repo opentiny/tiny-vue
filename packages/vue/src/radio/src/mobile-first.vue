@@ -119,6 +119,7 @@
         )
       "
       @keydown.stop
+      v-auto-tip
     >
       <slot>{{ text || label }}</slot>
     </span>
@@ -130,10 +131,12 @@ import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconRadio, iconRadioselected, iconMobileRadio, iconMobileRadioSelected } from '@opentiny/vue-icon'
 import { classes } from './token'
+import { AutoTip } from '@opentiny/vue-directive'
 import type { IRadioApi } from '@opentiny/vue-renderless/types/radio.type'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
+  directives: { AutoTip },
   props: [
     ...props,
     'modelValue',

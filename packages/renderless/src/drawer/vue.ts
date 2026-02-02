@@ -1,5 +1,6 @@
 import {
   close,
+  closed,
   watchVisible,
   confirm,
   mousedown,
@@ -25,7 +26,7 @@ import type {
   ISharedRenderlessParamHooks
 } from '@/types'
 
-export const api = ['state', 'close', 'confirm', 'handleClose', 'open']
+export const api = ['state', 'close', 'closed', 'confirm', 'handleClose', 'open']
 
 export const renderless = (
   props: IDrawerProps,
@@ -49,6 +50,7 @@ export const renderless = (
     open: open({ state, emit, vm }),
     confirm: confirm({ api }),
     close: close({ api }),
+    closed: closed({ state, emit }),
     handleClose: handleClose({ emit, props, state }),
     mousedown: mousedown({ state, vm }),
     mousemove: mousemove({ state, props, emit }),

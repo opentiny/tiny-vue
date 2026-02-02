@@ -1,4 +1,15 @@
-export const data = [
+<template>
+  <div class="demo">
+    <tiny-search-box v-model="tags" :items="items" />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import TinySearchBox from '@opentiny/vue-search-box'
+
+const tags = ref([])
+const items = ref([
   {
     label: '1级学科',
     field: 'subjects',
@@ -242,4 +253,5 @@ export const data = [
     min: new Date(2020, 5, 5, 10, 5, 5),
     max: undefined
   }
-]
+])
+</script>

@@ -211,7 +211,7 @@ export const handleClear =
     // tiny 新增下面行
     state.rangeState.endDate = null
 
-    emit('pick', [])
+    emit('pick', null)
   }
 
 export const handleChangeRange = (state, props) => (val) => {

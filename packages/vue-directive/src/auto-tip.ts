@@ -124,7 +124,14 @@ const mouseleaveHandler = () => {
 // 指令绑定，只有第一次value有值时，才添加事件，之后并不移除事件
 const bind = (el, { value }: { value: BoundingValueType }) => {
   // 如果是知己使用指令v-auto-tip，什么都不传也需要添加省略提示功能
-  const resultValue = value === undefined ? {} : value
+  let resultValue = value === undefined ? {} : value
+
+  // fix vue2:  在jsx中，在dom上直接使用 v-auto-tip，渲染 directives:[{name:'auto-tip',  value: true}]，
+  // 此时 resultValue=true, 会bug
+  // (vue3中同样写法， 渲染后 value = undefined, 不会bug)
+  if (typeof resultValue === 'boolean' && resultValue) {
+    resultValue = {}
+  }
 
   el.boundingValue = resultValue
   if (resultValue && !el.boundingValue?.listened) {

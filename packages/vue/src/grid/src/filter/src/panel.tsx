@@ -214,6 +214,7 @@ export default defineComponent({
       renderBase,
       renderSimple
     } = this as any
+
     const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
     const layoutMap = {
       input: renderInput,
@@ -309,7 +310,8 @@ export default defineComponent({
 
           this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end',
-            gpuAcceleration: false
+            gpuAcceleration: false,
+            ...(this.$grid?.filterPopperOptions || {})
           })
           popper.style.display = 'block'
         })

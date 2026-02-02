@@ -29,8 +29,8 @@ test('基本用法', async ({ page }) => {
   await expect(item1).toHaveCSS('color', 'rgb(25, 25, 25)')
   await expect(content).toHaveText(/表单组件/)
 
-  // 禁用
-  await item2.click()
+  // 禁用 - 使用 force: true 因为元素有 aria-disabled="true"
+  await item2.click({ force: true })
   await expect(item1).toHaveClass(/is-active/)
   await expect(content).toHaveText(/表单组件/)
 })

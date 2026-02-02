@@ -43,6 +43,7 @@ import {
   handleMouseenter,
   handleMouseleave
 } from './index'
+import { nanoid } from '@opentiny/utils'
 import type {
   IFormItemApi,
   IFormItemProps,
@@ -55,6 +56,7 @@ import type {
 export const api = [
   'state',
   'validate',
+  'validateOrigin',
   'clearValidate',
   'resetField',
   'getRules',
@@ -79,6 +81,11 @@ const initState = ({
   inject,
   props
 }: Pick<IFormItemRenderlessParams, 'reactive' | 'computed' | 'api' | 'mode' | 'inject' | 'props'>) => {
+  // 使用 nanoid 生成唯一的 ID（8位字符），用于无障碍属性关联
+  const uniqueId = nanoid.api.nanoid(8)
+  const errorId = `tiny-form-item-error-${uniqueId}`
+  const labelId = `tiny-form-item-label-${uniqueId}`
+
   const state: IFormItemState = reactive({
     mode,
     validateState: '',
@@ -98,6 +105,9 @@ const initState = ({
     showTooltip: false,
     typeName: '',
     formInstance: inject('form') as IFormInstance,
+    // 无障碍支持：为错误信息和标签生成唯一 ID
+    errorId,
+    labelId,
     labelFor: computed(() => props.for || props.prop || ''),
     labelStyle: computed(() => api.computedLabelStyle()),
     valueStyle: computed(() => api.computedValueStyle()),
@@ -135,6 +145,9 @@ const initState = ({
 }
 
 const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots }) => {
+  // 创建原始的 validate 函数（不经过防抖处理）
+  const validateOriginFunc = validate({ api, props, state, t })
+
   Object.assign(api, {
     state,
     dispatch,
@@ -163,7 +176,8 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     onFieldBlur: onFieldBlur(api),
     onFieldChange: onFieldChange({ api, state }),
     addValidateEvents: addValidateEvents({ api, vm, props, state }),
-    validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props }),
+    validateOrigin: validateOriginFunc,
+    validate: wrapValidate({ validateFunc: validateOriginFunc, props }),
     getDisplayedValue: getDisplayedValue({ state }),
     clearDisplayedValue: clearDisplayedValue({ state }),
     handleLabelMouseenter: handleLabelMouseenter({ props, state, slots }),

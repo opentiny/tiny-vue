@@ -18,6 +18,7 @@ export default {
               <li>values 设置在显示枚举选项功能 (enumable) 下制定静态数据源。</li>
               <li>label 设置枚举数据的显示值属性字段，默认'label'。</li>
               <li>value 设置枚举数据的实际值属性字段，默认'value'。</li>
+              <li>filter-popper-options 设置过滤面板弹出层配置项</li>
             </ul>
           </p>
         </div>

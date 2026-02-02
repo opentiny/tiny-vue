@@ -187,6 +187,7 @@ import IconExpressSearch from './src/express-search'
 import IconEyeclose from './src/eyeclose'
 import IconEyeopen from './src/eyeopen'
 import IconFastCode from './src/fast-code'
+import IconFavorites from './src/favorites'
 import IconFemale from './src/female'
 import IconFileCloudupload from './src/file-cloudupload'
 import IconFileExcel from './src/file-excel'
@@ -999,6 +1000,7 @@ export { IconExpressSearch, IconExpressSearch as iconExpressSearch }
 export { IconEyeclose, IconEyeclose as iconEyeclose }
 export { IconEyeopen, IconEyeopen as iconEyeopen }
 export { IconFastCode, IconFastCode as iconFastCode }
+export { IconFavorites, IconFavorites as iconFavorites }
 export { IconFemale, IconFemale as iconFemale }
 export { IconFileCloudupload, IconFileCloudupload as iconFileCloudupload }
 export { IconFileExcel, IconFileExcel as iconFileExcel }
@@ -1822,6 +1824,7 @@ export default {
   IconEyeclose,
   IconEyeopen,
   IconFastCode,
+  IconFavorites,
   IconFemale,
   IconFileCloudupload,
   IconFileExcel,

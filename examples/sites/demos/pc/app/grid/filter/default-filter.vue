@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :data="tableData" @toolbar-button-click="toolbarButtonClickEvent">
+  <tiny-grid :data="tableData" :filter-popper-options="popperConfigs" @toolbar-button-click="toolbarButtonClickEvent">
     <template #toolbar>
       <tiny-grid-toolbar :buttons="toolbarButtons"> </tiny-grid-toolbar>
     </template>
@@ -37,6 +37,9 @@ export default {
   },
   data() {
     return {
+      popperConfigs: {
+        bubbling: true
+      },
       toolbarButtons: [
         {
           code: 'clearFilter',

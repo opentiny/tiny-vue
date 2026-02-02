@@ -29,6 +29,12 @@
   align-items: center;
   font-size: var(--tv-FilterBox-btn-font-size);
 
+  &.@{filter-box-prefix-cls}--medium {
+    height: var(--tv-FilterBox-btn-height-medium);
+    line-height: var(--tv-FilterBox-btn-height-medium);
+    font-size: var(--tv-FilterBox-btn-font-size-medium);
+  }
+
   &.disabled {
     cursor: not-allowed;
 
@@ -50,7 +56,6 @@
   .title {
     height: inherit;
     line-height: var(--tv-FilterBox-btn-title-line-height);
-    font-size: var(--tv-FilterBox-btn-font-size);
     margin-right: 0;
 
     label {
@@ -92,7 +97,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: var(--tv-FilterBox-btn-font-size);
     color: var(--tv-color-text);
 
     &.placeholder {

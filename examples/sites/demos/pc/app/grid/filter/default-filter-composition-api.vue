@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :data="tableData" @toolbar-button-click="toolbarButtonClickEvent">
+  <tiny-grid :data="tableData" :filter-popper-options="popperConfigs" @toolbar-button-click="toolbarButtonClickEvent">
     <template #toolbar>
       <tiny-grid-toolbar :buttons="toolbarButtons"> </tiny-grid-toolbar>
     </template>
@@ -29,6 +29,10 @@ const filteData = [
   { label: '龙岩', value: '龙岩' },
   { label: '韶关', value: '韶关' }
 ]
+
+const popperConfigs = {
+  bubbling: true
+}
 
 const toolbarButtons = ref([
   {

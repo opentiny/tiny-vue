@@ -171,10 +171,29 @@ export default defineComponent({
           if (!item.dynamicProps.includes('size')) {
             item.dynamicProps.push('size')
           }
+
+          // 添加无障碍属性：required 状态和错误描述关联
+          const ariaAttrs = {}
+          if (state.isRequired || required) {
+            ariaAttrs['aria-required'] = 'true'
+          }
+          if (isShowError && state.errorId) {
+            ariaAttrs['aria-describedby'] = state.errorId
+            ariaAttrs['aria-invalid'] = 'true'
+          } else {
+            ariaAttrs['aria-invalid'] = 'false'
+          }
+
           Object.assign(item.props, {
             size: state.formItemSize,
             mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
           })
+
+          // 将 ARIA 属性添加到 attrs 而不是 props，因为表单组件使用 inheritAttrs: false 并从 $attrs 读取 ARIA 属性
+          if (!item.attrs) {
+            item.attrs = {}
+          }
+          Object.assign(item.attrs, ariaAttrs)
 
           if (type && type.name && type.name.toLowerCase().endsWith('button')) {
             return item
@@ -264,11 +283,15 @@ export default defineComponent({
                 [`${classPrefix}form-item__error--block`]: isErrorBlock
               },
               attrs: {
+                id: state.errorId, // 为错误信息添加唯一 ID，用于 aria-describedby 关联
+                role: 'alert', // 使用 alert 角色，屏幕阅读器会立即读出错误
+                'aria-live': 'assertive', // 确保错误信息能被立即通知
+                'aria-atomic': 'true', // 确保完整读出错误信息
                 title: [state.validateMessage]
               }
             },
             [
-              validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null,
+              validateIcon ? h(validateIcon, { class: 'validate-icon', attrs: { 'aria-hidden': 'true' } }) : null,
               <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
             ]
           )
@@ -358,7 +381,9 @@ export default defineComponent({
                 } else {
                   tooltipContent = [
                     validateIconNode,
-                    <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
+                    <span class={`${classPrefix}form-item__validate-message`} id={state.errorId}>
+                      {state.validateMessage}
+                    </span>
                   ]
                 }
 
