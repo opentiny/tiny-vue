@@ -52,6 +52,7 @@
         "
         :drop-down-visible="state.visible"
         :blank="blank"
+        :size="state.selectSize"
       >
       </tiny-filter-box>
       <div

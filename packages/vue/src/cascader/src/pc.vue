@@ -38,6 +38,7 @@
       :value="state.multiple ? state.presentTags.map((item) => item.text).join('; ') : state.inputValue"
       :drop-down-visible="state.dropDownVisible"
       :blank="blank"
+      :size="state.realSize"
     ></tiny-filter-box>
     <div class="tiny-cascader-content">
       <tiny-input
