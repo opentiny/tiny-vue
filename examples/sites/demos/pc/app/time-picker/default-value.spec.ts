@@ -24,7 +24,7 @@ test('选择器打开时默认时间设置', async ({ page }) => {
   const endMinute = page.getByRole('listitem').filter({ hasText: '50' }).nth(2)
   const endSecond = page.getByRole('listitem').filter({ hasText: '00' }).nth(5)
 
-  await page.getByRole('textbox').nth(2).click()
+  await page.locator('#default-value .tiny-input__inner').nth(2).click()
   await expect(startHour).toHaveClass(/active/)
   await expect(startMinute).toHaveClass(/active/)
   await expect(startSecond).toHaveClass(/active/)
