@@ -338,7 +338,7 @@ export default {
     let { actived } = editStore
     let isActiveCell = handleActivedCheckCell({ actived, column, editConfig, row })
 
-    if (editor && cell && isActiveCell) {
+    if (editor && cell && isActiveCell && editConfig) {
       // 判断是否禁用编辑
       let type = 'edit-disabled'
       let canActive = await handleActivedCanActive({ editConfig, params })
