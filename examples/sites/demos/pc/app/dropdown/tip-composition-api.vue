@@ -6,12 +6,14 @@
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景 2：使用 tip 和 tip-position 属性设置提示信息</p>
+    <p>场景 2：使用 tip、tip-position 和 tip-effect 属性设置提示信息</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu popper-class="my-class">
           <tiny-dropdown-item label="老友粉" tip="老友粉"></tiny-dropdown-item>
           <tiny-dropdown-item tip="黄金糕" tip-position="top">黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item tip="深色主题提示" tip-position="right" tip-effect="dark">深色主题</tiny-dropdown-item>
+          <tiny-dropdown-item tip="浅色主题提示" tip-position="left" tip-effect="light">浅色主题</tiny-dropdown-item>
           <tiny-dropdown-item>狮子头</tiny-dropdown-item>
           <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
           <tiny-dropdown-item disabled>双皮奶</tiny-dropdown-item>
@@ -36,7 +38,8 @@ const options = ref([
     label: '狮子头',
     divided: true,
     tip: '很好',
-    tipPosition: 'left'
+    tipPosition: 'left',
+    tipEffect: 'light'
   },
   {
     label: '黄金糕',

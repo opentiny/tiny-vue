@@ -498,7 +498,40 @@ export default {
             'en-US': 'Sets the level-2 drop-down menu flag.'
           },
           mode: ['mobile-first']
-        }
+        },
+        {
+          name: 'tip',
+          type: 'string | Function',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '提示信息内容，支持字符串或函数。函数接收参数 { itemData, vm }',
+            'en-US': 'Tooltip content, supports string or function. Function receives parameters { itemData, vm }'
+          },
+          mode: ['pc'],
+          pcDemo: 'tip'
+        },
+        {
+          name: 'tip-position',
+          type: 'string',
+          defaultValue: "'right'",
+          desc: {
+            'zh-CN': '提示信息的位置，可选值：top / right / bottom / left',
+            'en-US': 'Position of tooltip, optional values: top / right / bottom / left'
+          },
+          mode: ['pc'],
+          pcDemo: 'tip'
+        },
+        {
+          name: 'tip-effect',
+          type: 'string',
+          defaultValue: "'light'",
+          desc: {
+            'zh-CN': '提示信息的主题，可选值：light（浅色）/ dark（深色）',
+            'en-US': 'Theme of tooltip, optional values: light / dark'
+          },
+          mode: ['pc'],
+          pcDemo: 'tip'
+        },
       ],
       events: [],
       methods: [],
@@ -555,6 +588,11 @@ interface IItemData {
   label?: string
   disabled?: boolean
   divided?: boolean
+  tip?: string | ((params: { itemData: IItemData, vm: any }) => string)
+  tipPosition?: 'top' | 'right' | 'bottom' | 'left'
+  tipEffect?: 'light' | 'dark'
+  children?: IItemData[]
+  icon?: Component
 }
 `
     },

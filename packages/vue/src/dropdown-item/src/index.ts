@@ -85,7 +85,7 @@ export const dropdownItemProps = {
     type: String,
     default: 'right'
   },
-  effect: {
+  tipEffect: {
     type: String,
     default: 'light'
   }
