@@ -346,12 +346,13 @@ function renderRows(_vm) {
   const seqCount = { value: 0 }
   const $seq = ''
 
-  rowPool.forEach(({ id, item: { payload: row, level: rowLevel }, used }, $rowIndex) => {
+  rowPool.forEach(({ id, item: { payload: row, level: rowLevel }, used }) => {
     const rowActived = editConfig && actived.row === row
     const virtualRow = isVirtualRow(row)
     const isSkipRowRender = (hideMethod && hideMethod(row, rowLevel)) || virtualRow
     const rowid = getRowid($table, row)
     const rowIndex = $table.getRowIndex(row)
+    const $rowIndex = row[GlobalConfig.$rowIndex]
 
     if (!isSkipRowRender) {
       seqCount.value = seqCount.value + 1

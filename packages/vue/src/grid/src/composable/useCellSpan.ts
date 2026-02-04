@@ -1,6 +1,7 @@
 import { hooks } from '@opentiny/vue-common'
 import { isVirtualRow } from '../table/src/strategy'
 import { getRowid } from '@opentiny/vue-renderless/grid/utils'
+import GlobalConfig from '../config'
 
 export const useCellSpan = (bodyVm, bodyProps) => {
   const $table = bodyVm.$parent
@@ -30,9 +31,9 @@ export const useCellSpan = (bodyVm, bodyProps) => {
       const normalState = {}
       const normalTable = []
 
-      for (let $rowIndex = 0; $rowIndex < tableData.length; $rowIndex++) {
-        const row = tableData[$rowIndex]
-        const rowLevel = tableNode[$rowIndex].level
+      for (let index = 0; index < tableData.length; index++) {
+        const row = tableData[index]
+        const rowLevel = tableNode[index].level
         const rowIndex = $table.getRowIndex(row)
         let virtualRow = false
 
@@ -46,7 +47,7 @@ export const useCellSpan = (bodyVm, bodyProps) => {
           seqCount.value = seqCount.value + 1
         }
 
-        let seq = isOrdered ? seqCount.value : $rowIndex + 1
+        let seq = isOrdered ? seqCount.value : index + 1
 
         if (scrollYLoad) {
           seq += startIndex
@@ -61,7 +62,16 @@ export const useCellSpan = (bodyVm, bodyProps) => {
           }
         }
 
-        const params = { $table, data: tableData, row, $rowIndex, rowIndex, level: rowLevel, $seq: '', seq }
+        const params = {
+          $table,
+          data: tableData,
+          row,
+          $rowIndex: row[GlobalConfig.$rowIndex],
+          rowIndex,
+          level: rowLevel,
+          $seq: '',
+          seq
+        }
 
         stateNormalCell(normalState, normalTable, params, $table)
       }

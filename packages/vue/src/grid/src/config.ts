@@ -63,6 +63,7 @@ const GlobalConfig = {
   defaultTreeIndent: 16,
   defaultTreeSpacing: 30,
   rowId: '_RID', // 行数据的唯一主键字段名
+  $rowIndex: Symbol('$rowIndex'), // 虚拟滚动处理后的行索引
   version: 0, // 版本号，对于某些带数据缓存的功能有用到，上升版本号可以用于重置数据
   optimization: {
     animat: true,
