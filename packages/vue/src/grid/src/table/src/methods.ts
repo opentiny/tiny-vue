@@ -1511,7 +1511,7 @@ const Methods = {
   // 点击排序事件
   triggerSortEvent(event, column, order) {
     let property = column.property
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+    let isColumnSortable = column.sortable || column.remoteSort
     if (this.sortable && isColumnSortable) {
       let evntParams = { $table: this, column, order, property }
 
@@ -1531,7 +1531,7 @@ const Methods = {
     let { remoteSort, tableFullColumn, visibleColumn } = this
     let column = find(visibleColumn, (item) => item.property === field)
     let isRemote = isBoolean(column.remoteSort) ? column.remoteSort : remoteSort
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+    let isColumnSortable = column.sortable || column.remoteSort
 
     if (this.sortable && isColumnSortable) {
       if (column.order !== order) {

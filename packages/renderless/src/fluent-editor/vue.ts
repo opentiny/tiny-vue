@@ -35,7 +35,8 @@ import {
   handleCompositionstart,
   handleCompositionend,
   removeHandleComposition,
-  checkTableISEndElement
+  checkTableISEndElement,
+  alignHandler
 } from './index'
 import { defaultOption, iconOption, iconOptionMobileFirst, simpleToolbar } from './options'
 
@@ -104,6 +105,7 @@ const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, Upl
     undoHandler: undoHandler({ state }),
     redoHandler: redoHandler({ state }),
     lineheightHandler: lineheightHandler({ state, FluentEditor }),
+    alignHandler: alignHandler({ state, FluentEditor }),
     inputFileHandler: inputFileHandler({ state, UploaderDfls }),
     insertFileToEditor: insertFileToEditor({ state, FluentEditor, Delta }),
     insertImageToEditor: insertImageToEditor({ state, FluentEditor, Delta }),

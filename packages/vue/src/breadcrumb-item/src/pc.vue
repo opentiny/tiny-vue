@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <span :class="['tiny-breadcrumb__item', state.size ? 'tiny-breadcrumb__item--' + state.size : '']">
+  <span :class="['tiny-breadcrumb__item', state.size ? 'tiny-breadcrumb__item--' + state.size : '']" role="listitem">
     <span :class="['tiny-breadcrumb__inner', to ? 'is-link' : '']" ref="link" role="link" @click="linkClick">
       <slot>
         <span>{{ label }}</span>
@@ -20,8 +20,9 @@
       v-if="breadcrumb.separatorIcon"
       :is="breadcrumb.separatorIcon"
       class="tiny-svg-size tiny-breadcrumb__separator-cls"
+      aria-hidden="true"
     />
-    <span v-else class="tiny-breadcrumb__separator">{{ state.separator }}</span>
+    <span v-else class="tiny-breadcrumb__separator" aria-hidden="true">{{ state.separator }}</span>
   </span>
 </template>
 

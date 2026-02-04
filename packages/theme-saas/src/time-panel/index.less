@@ -15,6 +15,18 @@
   @apply box-content;
   .user-select(none);
 
+  // 左侧对齐,用于避免左侧超出视口
+  &.is-align-left {
+    @apply left-0;
+    right: auto;
+  }
+
+  // 右侧对齐,用于避免右侧超出视口
+  &.is-align-right {
+    @apply right-0;
+    left: auto;
+  }
+
   &__content {
     font-size: 0;
     @apply relative;

@@ -666,6 +666,106 @@ export const uploadImageToSev =
     xhr.send(fd)
   }
 
+export const alignHandler =
+  ({ state, FluentEditor }) =>
+  (value) => {
+    const range = state.quill.getSelection(true)
+    
+    if (!range) {
+      return
+    }
+    
+    const betterTableModule = state.quill.getModule('better-table')
+    
+    // 尝试通过 DOM 查找表格
+    {
+      const editorElement = state.quill.root
+      const selection = window.getSelection()
+      
+      if (selection && selection.rangeCount > 0) {
+        const domRange = selection.getRangeAt(0)
+        let container = domRange.commonAncestorContainer
+        
+        // 如果 container 是文本节点，获取其父元素
+        if (container.nodeType === Node.TEXT_NODE) {
+          container = container.parentElement
+        }
+        
+        // 向上查找表格元素
+        while (container && container !== editorElement) {
+          if (container.tagName === 'TABLE') {
+            // 找到表格，获取所有单元格
+            const cells = container.querySelectorAll('td, th')
+            if (cells.length > 1) {
+              // 将 DOM 元素转换为 Blot，并对所有单元格应用对齐
+              Array.from(cells).forEach((cellElement) => {
+                const cellBlot = state.quill.scroll.find(cellElement)
+                if (cellBlot) {
+                  // 获取单元格内的所有行（table-cell-line）
+                  const lines = []
+                  const findLines = (blot) => {
+                    if (blot && blot.statics && blot.statics.blotName === 'table-cell-line') {
+                      lines.push(blot)
+                    }
+                    if (blot && blot.children && blot.children.length > 0) {
+                      blot.children.forEach((child) => findLines(child))
+                    }
+                  }
+                  findLines(cellBlot)
+                  
+                  // 对每个行应用对齐格式
+                  lines.forEach((line) => {
+                    try {
+                      const lineIndex = state.quill.getIndex(line)
+                      if (lineIndex !== null && lineIndex >= 0) {
+                        const lineLength = line.length()
+                        if (lineLength > 0) {
+                          state.quill.formatText(lineIndex, lineLength, 'align', value, FluentEditor.sources.USER)
+                        }
+                      }
+                    } catch (e) {
+                      try {
+                        if (line.format) {
+                          line.format('align', value)
+                        }
+                      } catch (err) {
+                        // 忽略错误
+                      }
+                    }
+                  })
+                }
+              })
+              
+              // 清除表格选择状态，避免 better-table 模块报错
+              if (betterTableModule && betterTableModule.table) {
+                try {
+                  // 尝试清除选择状态
+                  if (betterTableModule.table.clearSelection) {
+                    betterTableModule.table.clearSelection()
+                  } else if (betterTableModule.hideTableTools) {
+                    betterTableModule.hideTableTools()
+                  }
+                } catch (e) {
+                  // 忽略错误
+                }
+              }
+              
+              return
+            }
+          }
+          container = container.parentElement
+        }
+      }
+      
+      // 如果还是找不到，使用默认行为
+      state.quill.format('align', value, FluentEditor.sources.USER)
+      return
+    }
+    
+    // 默认行为：使用 Quill 的标准对齐处理
+    state.quill.format('align', value, FluentEditor.sources.USER)
+  }
+
 export const handlers =
   ({ api }) =>
   () => {
@@ -675,7 +775,8 @@ export const handlers =
       lineheight: api.lineheightHandler,
       file: api.fileHandler,
       image: api.imageHandler,
-      inputFile: api.inputFileHandler
+      inputFile: api.inputFileHandler,
+      align: api.alignHandler
     }
   }
 

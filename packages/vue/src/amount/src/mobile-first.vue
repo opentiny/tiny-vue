@@ -56,6 +56,7 @@
           @click="toggleVisible"
           :show-close="clearable"
           :blank="blank"
+          :size="size"
         >
         </tiny-filter-box>
         <tiny-input

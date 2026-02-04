@@ -26,7 +26,8 @@ export default defineComponent({
     'lightClass',
     'width',
     'mask',
-    'height'
+    'height',
+    'showClose'
   ],
   setup(props, context) {
     return setup({
