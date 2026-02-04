@@ -73,6 +73,7 @@ import Select from '@opentiny/vue-select'
 import SelectDropdown from '@opentiny/vue-select-dropdown'
 import SelectMobile from '@opentiny/vue-select-mobile'
 import SelectView from '@opentiny/vue-select-view'
+import SelectWrapper from '@opentiny/vue-select-wrapper'
 import SelectedBox from '@opentiny/vue-selected-box'
 import Signature from '@opentiny/vue-signature'
 import Skeleton from '@opentiny/vue-skeleton'
@@ -184,6 +185,7 @@ const components = [
   SelectDropdown,
   SelectMobile,
   SelectView,
+  SelectWrapper,
   SelectedBox,
   Signature,
   Skeleton,
@@ -239,7 +241,7 @@ export const install = (app, opts = {}) => {
   })
 }
 
-export const version = '3.27.0'
+export const version = '3.29.0'
 
 export {
   ActionSheet,
@@ -392,6 +394,8 @@ export {
   SelectMobile as TinySelectMobile,
   SelectView,
   SelectView as TinySelectView,
+  SelectWrapper,
+  SelectWrapper as TinySelectWrapper,
   SelectedBox,
   SelectedBox as TinySelectedBox,
   Signature,
@@ -611,6 +615,8 @@ export default {
   TinySelectMobile: SelectMobile,
   SelectView,
   TinySelectView: SelectView,
+  SelectWrapper,
+  TinySelectWrapper: SelectWrapper,
   SelectedBox,
   TinySelectedBox: SelectedBox,
   Signature,

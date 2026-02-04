@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-column-list-group",
-  "version": "3.28.0",
+  "version": "3.29.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",

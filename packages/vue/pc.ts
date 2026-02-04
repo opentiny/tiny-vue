@@ -139,6 +139,7 @@ import Table from '@opentiny/vue-table'
 import Tabs from '@opentiny/vue-tabs'
 import Tag from '@opentiny/vue-tag'
 import TagGroup from '@opentiny/vue-tag-group'
+import TagInput from '@opentiny/vue-tag-input'
 import TextPopup from '@opentiny/vue-text-popup'
 import Time from '@opentiny/vue-time'
 import TimeLine from '@opentiny/vue-time-line'
@@ -314,6 +315,7 @@ const components = [
   Tabs,
   Tag,
   TagGroup,
+  TagInput,
   TextPopup,
   Time,
   TimeLine,
@@ -367,7 +369,7 @@ export const install = (app, opts = {}) => {
   })
 }
 
-export const version = '3.27.0'
+export const version = '3.29.0'
 
 export {
   ActionMenu,
@@ -652,6 +654,8 @@ export {
   Tag as TinyTag,
   TagGroup,
   TagGroup as TinyTagGroup,
+  TagInput,
+  TagInput as TinyTagInput,
   TextPopup,
   TextPopup as TinyTextPopup,
   Time,
@@ -999,6 +1003,8 @@ export default {
   TinyTag: Tag,
   TagGroup,
   TinyTagGroup: TagGroup,
+  TagInput,
+  TinyTagInput: TagInput,
   TextPopup,
   TinyTextPopup: TextPopup,
   Time,
