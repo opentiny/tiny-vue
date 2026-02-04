@@ -33,6 +33,11 @@ export const getHiddenTags =
     Array.from(tags).forEach((el, index) => {
       const item = props.data[index] as ITagGroupDataItem
       const element = el as HTMLElement
+
+      // 更多 这个元素是abs定位，高度是0, 它不应该参与计算
+      if (element.offsetHeight === 0) {
+        return
+      }
       if (element.offsetTop >= element.offsetHeight && item) {
         state.hiddenTags.push({ ...item })
       }
