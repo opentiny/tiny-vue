@@ -62,8 +62,9 @@ jobs:
         run: pnpm build:ui
 
       - name: Run Release alpha
+        shell: bash
         run: |
-          # 根据工作流输入决定是否自动升级 patch 版本号
+          # 根据工作流输入决定是否自动升级 patch 版本号（使用 bash 语法）
           if [ "${{ inputs.updateVersion }}" = "true" ]; then
             pnpm release:alpha -u   # 自动升级 patch 版本
           else
