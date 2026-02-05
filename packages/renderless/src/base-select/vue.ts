@@ -483,7 +483,7 @@ const addApi = ({
     debouncRquest: debouncRquest({ api, state, props }),
     defaultOnQueryChange: defaultOnQueryChange({ props, state, constants, api, nextTick, vm }),
     queryChange: queryChange({ props, state, constants, api, nextTick, vm }),
-    mounted: mounted({ api, parent, state, props, vm, designConfig }),
+    mounted: mounted({ api, parent, state, props, vm, designConfig, nextTick }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ props, state }),
     handleDropdownClick: handleDropdownClick({ props, vm, state, emit }),

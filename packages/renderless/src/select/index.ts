@@ -2102,13 +2102,11 @@ export const computedCurrentSizeMap =
   }
 
 export const mounted =
-  ({ api, parent, state, props, vm, designConfig }) =>
+  ({ api, parent, state, props, vm, designConfig, nextTick }) =>
   () => {
     state.defaultCheckedKeys = props.multiple ? state.gridCheckedData : props.treeOp.defaultCheckedKeys || []
     const parentEl = parent.$el
     const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
-
-    const inputClientRect = (inputEl && inputEl.getBoundingClientRect()) || {}
 
     if (inputEl === document.activeElement) {
       document.activeElement.blur()
@@ -2126,11 +2124,17 @@ export const mounted =
       addResizeListener(vm.$refs.tags, api.resetInputHeight)
     }
 
+    // 延迟获取 inputWidth，避免在 DOM 未完全渲染时触发强制重排
+    // 使用 offsetWidth 替代 getBoundingClientRect().width，性能更好（只需宽度，无需坐标计算）
+    nextTick(() => {
+      if (inputEl) {
+        state.inputWidth = inputEl.offsetWidth || 0
+      }
+    })
+
     if (props.remote && props.multiple) {
       api.resetInputHeight()
     }
-
-    state.inputWidth = inputClientRect.width
 
     api.initQuery({ init: true }).then(() => {
       api.setSelected(true)
