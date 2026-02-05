@@ -67,7 +67,9 @@ const releaseSiteAlpha = (updateVersion) => {
   const PKG_PATH = pathFromExamples('sites/package.json')
   const PKGContent = fs.readJSONSync(PKG_PATH)
 
-  PKGContent.name = PKGContent.name.replace('@opentiny', '@opentinyvue')
+  PKGContent.name = PKGContent.name
+    .replace('@opentiny', '@opentinyvue')
+    .replace(/@opentinyvue\/vue-search-box/, '@opentiny/vue-search-box')
   if (updateVersion) {
     PKGContent.version = getPatchVersion(PKGContent.name, PKGContent.version)
   }
