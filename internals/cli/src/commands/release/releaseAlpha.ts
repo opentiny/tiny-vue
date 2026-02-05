@@ -69,7 +69,7 @@ const releaseSiteAlpha = (updateVersion) => {
 
   PKGContent.name = PKGContent.name
     .replace('@opentiny', '@opentinyvue')
-    .replace(/@opentinyvue\/vue-search-box/, '@opentiny/vue-search-box')
+    .replace(/@opentinyvue\/vue-search-box/g, '@opentiny/vue-search-box')
   if (updateVersion) {
     PKGContent.version = getPatchVersion(PKGContent.name, PKGContent.version)
   }
