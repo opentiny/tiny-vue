@@ -15,7 +15,7 @@ import Layout from './icons/Layout.vue'
 import Reverse from './icons/Reverse.vue'
 import Vertical from './icons/Vertical.vue'
 
-const VERSION = 'tiny-vue-version-3.28'
+const VERSION = 'tiny-vue-version-3.29'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
@@ -26,7 +26,7 @@ const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview'
-const versions = ['3.28', '3.27', '3.26']
+const versions = ['3.29', '3.28', '3.27']
 const manualShow = ref(false)
 
 const getVersion = () => {
