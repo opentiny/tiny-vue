@@ -39,6 +39,19 @@ export default defineComponent({
           return ['hsv', 'hsl', 'rgb', 'hex'].includes(formatValue)
         })
       }
+    },
+    colorMode: String,
+    appendToBody: {
+      type: Boolean,
+      default: true
+    },
+    popperOptions: {
+      type: Object,
+      default: () => ({})
+    },
+    placement: {
+      type: String,
+      default: 'bottom'
     }
   },
   setup(props, context) {

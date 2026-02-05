@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="reference"
     :class="[
       {
         'tiny-color-picker': true
@@ -32,6 +33,8 @@
         :color-mode="$props.colorMode"
         :enable-history="state.enableHistory"
         :enable-predefine-color="state.enablePredefineColor"
+        :append-to-body="$props.popperAppendToBody"
+        :popper-options="$props.popperOptions"
       />
     </Transition>
   </div>
@@ -57,7 +60,9 @@ export default defineComponent({
     'format',
     'enableHistory',
     'enablePredefineColor',
-    'colorMode'
+    'colorMode',
+    'popperAppendToBody',
+    'popperOptions'
   ],
   components: {
     IconChevronDown: IconChevronDown(),

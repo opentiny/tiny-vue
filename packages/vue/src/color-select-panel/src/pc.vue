@@ -1,5 +1,11 @@
 <template>
-  <div class="tiny-color-select-panel" @click.stop v-if="state.showPicker" v-clickoutside="onClickOutside">
+  <div
+    ref="popper"
+    class="tiny-color-select-panel tiny-popper"
+    @click.stop
+    v-show="state.showPicker"
+    v-clickoutside="onClickOutside"
+  >
     <hue-select :color="state.color" @hue-ready="onHueReady" @sv-ready="onSvReady" />
     <alpha-select v-if="alpha" :color="state.color" @ready="onAlphaReady" />
     <div class="tiny-color-select-panel__no-alpha" v-if="!alpha"></div>
@@ -100,7 +106,9 @@ export default defineComponent({
     'format',
     'enableHistory',
     'enablePredefineColor',
-    'colorMode'
+    'colorMode',
+    'appendToBody',
+    'popperOptions'
   ],
   components: {
     HueSelect,

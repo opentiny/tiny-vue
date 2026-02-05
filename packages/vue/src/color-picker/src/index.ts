@@ -52,6 +52,14 @@ export default defineComponent({
       validator(val: string) {
         return ['monochrome', 'linear-gradient'].includes(val)
       }
+    },
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    },
+    popperOptions: {
+      type: Object,
+      default: () => ({ placement: 'bottom-start' })
     }
   },
   setup(props, context) {

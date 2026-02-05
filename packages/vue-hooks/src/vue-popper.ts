@@ -132,6 +132,7 @@ export const userPopper = (options: IPopperInputParams) => {
     state.currentPlacement = state.currentPlacement || props.placement
 
     if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(state.currentPlacement)) {
+      console.log('[vue-popper] check placement failed:', state.currentPlacement)
       return
     }
 
@@ -141,8 +142,14 @@ export const userPopper = (options: IPopperInputParams) => {
     let reference = getReference({ state, props, vm, slots })
 
     if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
+      console.log('[vue-popper] check failed:', { popper, reference, nodeType: reference?.nodeType })
       return
     }
+
+    console.log('[vue-popper] createPopper props:', {
+      appendToBody: props.appendToBody,
+      popperAppendToBody: props.popperAppendToBody
+    })
 
     if (props.visibleArrow) {
       appendArrow(popper)
@@ -181,6 +188,11 @@ export const userPopper = (options: IPopperInputParams) => {
    * popperElmOrTrue===true的场景仅在select组件动态更新面版时，不更新zIndex
    */
   const updatePopper = (popperElmOrTrue?: HTMLElement | boolean) => {
+    console.log('[vue-popper] updatePopper called', {
+      popperElmOrTrue,
+      hasPopperJS: !!state.popperJS,
+      statePopperElm: state.popperElm
+    })
     if (popperElmOrTrue && popperElmOrTrue !== true) {
       state.popperElm = popperElmOrTrue
     }
@@ -197,6 +209,7 @@ export const userPopper = (options: IPopperInputParams) => {
         followHide(state.popperJS)
       }
     } else {
+      console.log('[vue-popper] calling createPopper from updatePopper')
       createPopper(popperElmOrTrue && popperElmOrTrue !== true ? popperElmOrTrue : undefined)
     }
   }

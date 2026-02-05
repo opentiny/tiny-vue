@@ -5,7 +5,7 @@ import { Color } from './utils/color'
 
 export const api = ['state', 'changeVisible', 'onConfirm', 'onCancel', 'onHueUpdate', 'onSVUpdate', 'onColorUpdate']
 
-export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: ISharedRenderlessParamUtils) => {
+export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit, vm }: ISharedRenderlessParamUtils) => {
   const { modelValue, visible, predefine, size, history } = ctx.toRefs(props)
   const isShow = ctx.ref(visible.value)
   const hex = ctx.ref(modelValue.value ?? 'transparent')
@@ -61,6 +61,11 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
       state.hex = `rgba(${r}, ${g}, ${b}, ${a})`
     }
   )
+
+  // 提供pickerVm给子组件color-select-panel使用（provide在ctx中）
+  console.log('[color-picker] providing pickerVm:', vm)
+  ctx.provide('pickerVm', vm)
+
   const changeVisible = toggleVisible(isShow)
   const { onConfirm, onCancel } = useEvent(state, emit, changeVisible, color)
   const api = {
