@@ -23,8 +23,28 @@ export const init =
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
     UploaderDfls.imagePasteFailCallback = props.imagePasteFailCallback
+    // 先给默认 toolbar 注入 handlers；但用户可能会在 props.options.modules.toolbar 里传数组覆盖默认对象
     defaultOptions.modules.toolbar.handlers = api.handlers()
     state.innerOptions = extend(true, {}, defaultOptions, props.globalOptions, props.options)
+
+    // 兼容：当用户传入 toolbar 数组时，Quill 仍需要 { container, handlers } 才能触发自定义 handler（如 alignHandler）
+    const toolbarOpt = state.innerOptions?.modules?.toolbar
+    const defaultHandlers = api.handlers()
+    
+    if (Array.isArray(toolbarOpt)) {
+      // 用户传数组时，使用默认 handlers（数组形式不支持自定义 handlers）
+      state.innerOptions.modules.toolbar = {
+        container: toolbarOpt,
+        handlers: defaultHandlers
+      }
+    } else if (toolbarOpt && typeof toolbarOpt === 'object') {
+      // 用户传对象时，合并默认 handlers 和用户自定义的 handlers
+      const userHandlers = toolbarOpt.handlers || {}
+      state.innerOptions.modules.toolbar.handlers = {
+        ...defaultHandlers,
+        ...userHandlers
+      }
+    }
 
     if (props.imageUpload) {
       state.innerOptions.imageUpload = props.imageUpload
@@ -676,93 +696,61 @@ export const alignHandler =
     }
     
     const betterTableModule = state.quill.getModule('better-table')
-    
-    // 尝试通过 DOM 查找表格
-    {
-      const editorElement = state.quill.root
-      const selection = window.getSelection()
-      
-      if (selection && selection.rangeCount > 0) {
-        const domRange = selection.getRangeAt(0)
-        let container = domRange.commonAncestorContainer
-        
-        // 如果 container 是文本节点，获取其父元素
-        if (container.nodeType === Node.TEXT_NODE) {
-          container = container.parentElement
+
+    // 1) 表格批量选中：直接走 better-table 的 tableSelection.selectedTds
+    const selectedTds = betterTableModule?.tableSelection?.selectedTds
+    if (Array.isArray(selectedTds) && selectedTds.length > 0) {
+      const selectedCells = selectedTds.map((tdBlot) => tdBlot?.domNode).filter(Boolean)
+
+      selectedCells.forEach((cellElement) => {
+        const cellBlot = state.quill.scroll.find(cellElement)
+        if (!cellBlot) return
+
+        const lines = []
+        const findLines = (blot) => {
+          if (blot?.statics?.blotName === 'table-cell-line') {
+            lines.push(blot)
+          }
+          if (blot?.children?.length) {
+            blot.children.forEach((child) => findLines(child))
+          }
         }
-        
-        // 向上查找表格元素
-        while (container && container !== editorElement) {
-          if (container.tagName === 'TABLE') {
-            // 找到表格，获取所有单元格
-            const cells = container.querySelectorAll('td, th')
-            if (cells.length > 1) {
-              // 将 DOM 元素转换为 Blot，并对所有单元格应用对齐
-              Array.from(cells).forEach((cellElement) => {
-                const cellBlot = state.quill.scroll.find(cellElement)
-                if (cellBlot) {
-                  // 获取单元格内的所有行（table-cell-line）
-                  const lines = []
-                  const findLines = (blot) => {
-                    if (blot && blot.statics && blot.statics.blotName === 'table-cell-line') {
-                      lines.push(blot)
-                    }
-                    if (blot && blot.children && blot.children.length > 0) {
-                      blot.children.forEach((child) => findLines(child))
-                    }
-                  }
-                  findLines(cellBlot)
-                  
-                  // 对每个行应用对齐格式
-                  lines.forEach((line) => {
-                    try {
-                      const lineIndex = state.quill.getIndex(line)
-                      if (lineIndex !== null && lineIndex >= 0) {
-                        const lineLength = line.length()
-                        if (lineLength > 0) {
-                          state.quill.formatText(lineIndex, lineLength, 'align', value, FluentEditor.sources.USER)
-                        }
-                      }
-                    } catch (e) {
-                      try {
-                        if (line.format) {
-                          line.format('align', value)
-                        }
-                      } catch (err) {
-                        // 忽略错误
-                      }
-                    }
-                  })
-                }
-              })
-              
-              // 清除表格选择状态，避免 better-table 模块报错
-              if (betterTableModule && betterTableModule.table) {
-                try {
-                  // 尝试清除选择状态
-                  if (betterTableModule.table.clearSelection) {
-                    betterTableModule.table.clearSelection()
-                  } else if (betterTableModule.hideTableTools) {
-                    betterTableModule.hideTableTools()
-                  }
-                } catch (e) {
-                  // 忽略错误
-                }
+        findLines(cellBlot)
+
+        lines.forEach((line) => {
+          // 这里保留最小 try/catch：避免异常 blot 导致整个对齐中断
+          try {
+            const lineIndex = state.quill.getIndex(line)
+            if (lineIndex !== null && lineIndex >= 0) {
+              const lineLength = line.length()
+              if (lineLength > 0) {
+                state.quill.formatLine(lineIndex, lineLength, 'align', value, FluentEditor.sources.USER)
               }
-              
-              return
+            }
+          } catch (e) {
+            try {
+              line?.format?.('align', value)
+            } catch (err) {
+              // 忽略错误
             }
           }
-          container = container.parentElement
-        }
-      }
-      
-      // 如果还是找不到，使用默认行为
-      state.quill.format('align', value, FluentEditor.sources.USER)
+        })
+      })
+
+      // 清除表格选择状态，避免后续模块状态异常
+      betterTableModule?.tableSelection?.clearSelection?.()
       return
     }
-    
-    // 默认行为：使用 Quill 的标准对齐处理
+
+    // 2) 表格单元格内：无需 DOM selection，直接判断当前是否在 table-cell-line
+    const [line] = state.quill.getLine(range.index)
+    if (line?.statics?.blotName === 'table-cell-line') {
+      // 对当前行应用块级对齐
+      state.quill.formatLine(range.index, 1, 'align', value, FluentEditor.sources.USER)
+      return
+    }
+
+    // 3) 默认行为：非表格场景交给 Quill
     state.quill.format('align', value, FluentEditor.sources.USER)
   }
 
