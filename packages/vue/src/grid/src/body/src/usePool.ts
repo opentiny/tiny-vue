@@ -83,15 +83,21 @@ function addTableDataRowIndex(rowPool) {
     if (!used) {
       return
     }
-    row[tempChildren] = []
     if (level === 0) {
       treeTableData.push(row)
       row[$rowIndex] = treeTableData.length - 1
-    } else {
-      let parent = parentNode?.payload
-      parent?.[tempChildren]?.push(row)
-      row[$rowIndex] = parent?.[tempChildren].length - 1
+      return
     }
+    const parent = parentNode?.payload
+    if (!parent) {
+      return
+    }
+    if (!parent[tempChildren]) {
+      parent[tempChildren] = []
+    }
+
+    parent[tempChildren].push(row)
+    row[$rowIndex] = parent[tempChildren].length - 1
   })
 
   rowPool.forEach((rowPoolItem) => {
