@@ -211,7 +211,10 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'draggable',
-          mfDemo: 'draggable'
+          mfDemo: 'draggable',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [
