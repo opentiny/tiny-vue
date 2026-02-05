@@ -121,7 +121,10 @@ export default {
             'en-US': 'Button group display mode, optional values are "default" and "merged", the default is "default". When set to "merged", the buttons in the button group will be merged to form an overall appearance.'
           },
           mode: ['pc','mobile-first'],
-          pcDemo: 'display-mode'
+          pcDemo: 'display-mode',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [
