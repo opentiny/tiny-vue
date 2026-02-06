@@ -113,7 +113,7 @@ import {
   computedCurrentSizeMap,
   watchOptionsWhenAutoSelect
 } from './index'
-import { debounce } from '@opentiny/utils'
+import { debounce, nanoid } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
 import { useUserAgent } from '@opentiny/vue-hooks'
 import { isServer } from '@opentiny/utils'
@@ -297,7 +297,7 @@ const initState = ({
       always: !!state.displayOnlyContent,
       ...props.tooltipConfig
     })),
-    ariaListId: 'tiny-select-' + crypto.randomUUID().slice(-8)
+    ariaListId: 'tiny-select-' + nanoid.api.nanoid(8)
   })
 
   return state
