@@ -311,6 +311,7 @@ export default defineComponent({
           this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end',
             gpuAcceleration: false,
+            bubbling: true,
             ...(this.$grid?.filterPopperOptions || {})
           })
           popper.style.display = 'block'
