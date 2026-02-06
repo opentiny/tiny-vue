@@ -85,7 +85,17 @@ export default defineComponent({
     const tagElement =
       value || (slots.default && slots.default()) ? (
         <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
-          {value ? <span>{value}</span> : slots.default && slots.default()}
+          {value ? (
+            <span style={maxWidth ? { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'} : {}}>
+              {value}
+            </span>
+          ) : (
+            slots.default && (
+              <span style={maxWidth ? { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } : {}}>
+                {slots.default()}
+              </span>
+            )
+          )}
           {closable && <icon-close class="tiny-svg-size tiny-tag__close" onClick={handleClose}></icon-close>}
         </span>
       ) : (
