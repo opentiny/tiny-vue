@@ -24,6 +24,7 @@
     :style="widthAdapt ? { width: '100%' } : {}"
   >
     <div
+      v-if="menuCollapsible"
       class="tiny-tree-menu__toggle-button"
       @click.stop="collapseChange"
       :aria-pressed="state.isCollapsed"
