@@ -474,7 +474,12 @@ export default {
       show: '显示侧边栏'
     },
     navMenu: {
-      moreText: '更多'
+      moreText: '更多',
+      navigation: '导航',
+      mainMenu: '主菜单',
+      subMenu: '子菜单',
+      expand: '展开菜单',
+      collapse: '收起菜单'
     },
     logout: {
       in: '登录',

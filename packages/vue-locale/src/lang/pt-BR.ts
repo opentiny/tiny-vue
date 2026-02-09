@@ -483,7 +483,12 @@ export default {
       show: 'Mostrar barra lateral'
     },
     navMenu: {
-      moreText: 'Mais'
+      moreText: 'Mais',
+      navigation: 'Navegação',
+      mainMenu: 'Menu principal',
+      subMenu: 'Submenu',
+      expand: 'Expandir menu',
+      collapse: 'Recolher menu'
     },
     logout: {
       in: 'Login',

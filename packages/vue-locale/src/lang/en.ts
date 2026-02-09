@@ -479,7 +479,12 @@ export default {
       show: 'Show Sidebar'
     },
     navMenu: {
-      moreText: 'More'
+      moreText: 'More',
+      navigation: 'Navigation',
+      mainMenu: 'Main menu',
+      subMenu: 'Sub menu',
+      expand: 'Expand menu',
+      collapse: 'Collapse menu'
     },
     logout: {
       in: 'Login',
