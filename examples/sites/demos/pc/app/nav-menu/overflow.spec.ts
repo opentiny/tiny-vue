@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('显示策略', async ({ page }) => {
+test('超出显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('nav-menu#overflow')
   const preview = page.locator('#overflow')

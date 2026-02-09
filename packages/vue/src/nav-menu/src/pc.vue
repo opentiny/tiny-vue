@@ -31,7 +31,7 @@
         role="menubar"
         :aria-label="t('ui.navMenu.mainMenu')"
       >
-        <li v-for="(item, index) in state.data" :key="index + (item.title || '')" role="none">
+        <li v-for="(item, index) in state.data" :key="index + (item.title || '')" role="listitem">
           <component
             :is="getTag(item)"
             :to="getRoute(item)"
@@ -87,7 +87,7 @@
                 active: index === state.subActiveIndex,
                 selected: getLeftSelected(item, index)
               }"
-              role="none"
+              role="listitem"
             >
               <component
                 :is="getTag(item)"
@@ -143,7 +143,7 @@
                     'only-secondary-title': !group.title && !state.subMenu[i].children,
                     'third-title': item.children && item.children.length
                   }"
-                  role="none"
+                  role="listitem"
                 >
                   <component
                     :is="getTag(item)"
@@ -162,7 +162,7 @@
                       v-for="(subItem, j) in item.children"
                       :key="j + (subItem.title || '')"
                       class="sub-item"
-                      role="none"
+                      role="listitem"
                     >
                       <component
                         :is="getTag(subItem)"
