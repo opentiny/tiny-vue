@@ -86,7 +86,7 @@
       <template #default="{ node, data }">
         <div class="tree-node" role="treeitem">
           <div class="tree-menus-link tiny-tree-node__label">
-            <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0" role="treeitem">
+            <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0">
               <span class="tree-node-name">
                 <component v-if="!data.customIcon && suffixIcon" :is="suffixIcon" aria-hidden="true"></component>
                 <component v-if="data.customIcon" :is="data.customIcon" aria-hidden="true"></component>
