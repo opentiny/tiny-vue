@@ -1,0 +1,35 @@
+/* stylelint-disable function-no-unknown */
+@import '../mixins/common.less';
+@import '../mixins/button-group.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-group-prefix-cls: ~'@{css-prefix}button-group';
+@group-item-prefix-cls: ~'@{css-prefix}group-item';
+@button-group-popover-prefix-cls: ~'@{css-prefix}group-item__more-popover';
+
+.@{button-group-prefix-cls} {
+  .inject-ButtonGroup-vars();
+
+  @media (max-width: 820px) {
+    .@{group-item-prefix-cls} {
+      & li {
+        button {
+          &.disabled,
+          &[disabled] {
+            color: var(--tv-ButtonGroup-item-btn-adapt-disabled-text-color);
+          }
+        }
+      }
+
+      &__sup-icon {
+        background-color: #ffebd1;
+        border-radius: 0 6px;
+        fill: #c25700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
