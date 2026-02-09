@@ -22,12 +22,16 @@
     v-bind="a($attrs, ['^on[A-Z]'])"
     rel="noopener noreferrer"
     @click="handleClick"
+    :aria-disabled="state.disabled"
+    :tabindex="state.disabled ? -1 : undefined"
+    :aria-label="$attrs['aria-label'] || value"
   >
     <component
       :is="icon"
       v-if="icon"
       class="tiny-svg-size tiny-link-svg"
       :class="{ 'tiny-link-svg-only': !(slots.default || value) }"
+      aria-hidden="true"
     />
 
     <span v-if="value" class="tiny-link__inner">
