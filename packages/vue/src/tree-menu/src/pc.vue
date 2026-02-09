@@ -84,7 +84,7 @@
       @current-change="currentChange"
     >
       <template #default="{ node, data }">
-        <div class="tree-node" role="treeitem">
+        <div class="tree-node">
           <div class="tree-menus-link tiny-tree-node__label">
             <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0">
               <span class="tree-node-name">
