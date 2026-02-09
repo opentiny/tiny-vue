@@ -1,0 +1,21 @@
+/* stylelint-disable function-no-unknown */
+@import '../custom.less';
+@import './vars.less';
+
+@button-prefix-cls: ~'@{css-prefix}button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{button-prefix-cls} {
+  .inject-Button-vars();
+  @media (max-width: 820px) {
+    &.is-icon {
+      display: inline-flex;
+      align-items: center;
+
+      .tiny-svg {
+        margin-right: var(--tv-Button-margin-right-isicon-svg);
+        fill: var(--tv-Button-icon-inverse-tint);
+      }
+    }
+  }
+}
