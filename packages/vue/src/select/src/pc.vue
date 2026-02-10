@@ -42,7 +42,7 @@
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
-      v-auto-tip="state.rootAutoTipConfig"
+      :title="state.rootAutoTipConfig.content"
     >
       <slot name="reference">
         <tiny-filter-box

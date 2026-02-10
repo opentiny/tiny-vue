@@ -10,7 +10,7 @@ test('多选复制单个标签', async ({ page }) => {
 
   await expect(tag).toContainText('北京')
   await page.waitForTimeout(200)
-  const tagBox = await tag.locator('span').boundingBox()
+  const tagBox = await tag.locator('span').first().boundingBox()
   const x = tagBox.x + tagBox.width
   const y = tagBox.y + tagBox.height - 5
 
