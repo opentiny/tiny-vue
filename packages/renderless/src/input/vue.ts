@@ -269,7 +269,7 @@ const mergeApi = ({
     }),
     handleFocus: handleFocus({ api, emit, state }),
     handleInput: handleInput({ api, emit, nextTick, state }),
-    resizeTextarea: debounce(200, resizeTextarea({ api, parent, vm, state, props })),
+    resizeTextarea: debounce(200, true, resizeTextarea({ api, parent, vm, state, props })),
     updateIconOffset: updateIconOffset(api),
     calcTextareaHeight: calcTextareaHeight({
       api,
