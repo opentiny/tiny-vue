@@ -12,6 +12,8 @@ TinyVue 是一个跨端、跨框架的企业级 UI 组件库，基于 OpenTiny D
 - 📊 组件内部支持配置式开发，可支持低代码平台可视化组件配置
 - 💡 采用模板、样式、逻辑分离的跨端、跨框架架构，保障灵活性和可移植性
 
+组件 API / Demo 文档：[https://opentiny.design/tiny-vue](https://opentiny.design/tiny-vue)
+
 ## 🛠️ 核心亮点
 
 ### 1、一套代码同时支持 Vue 2 / Vue 3
