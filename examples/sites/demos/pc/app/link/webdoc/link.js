@@ -84,6 +84,20 @@ export default {
           '<p>Use the <code>href</code> attribute to specify the URL to be redirected to. This attribute can be used together with the native attribute <code>target</code>. </p>'
       },
       codeFiles: ['config-href.vue']
+    },
+    {
+      demoId: 'target',
+      name: {
+        'zh-CN': '打开方式',
+        'en-US': 'Open mode'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>target</code> 配置链接打开方式，可选值有 <code>_self</code>、<code>_blank</code>、<code>_parent</code>、<code>_top</code>。</p>',
+        'en-US':
+          '<p>Use the <code>target</code> attribute to configure the link opening mode. The optional values are <code>_self</code>, <code>_blank</code>, <code>_parent</code>, <code>_top</code>. </p>'
+      },
+      codeFiles: ['target.vue']
     }
   ],
   hiddenDemo: {
