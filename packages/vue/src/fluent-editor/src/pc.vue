@@ -1,5 +1,9 @@
 <template>
-  <div class="tiny-editor-wrapper" :class="{ 'fullscreen': state.isFullscreen }" :style="{ 'z-index': state.zIndex }">
+  <div
+    class="tiny-editor-wrapper"
+    :class="{ 'fullscreen': state.isFullscreen }"
+    :style="state.isFullscreen ? { 'z-index': state.zIndex } : null"
+  >
     <div ref="editor" id="editor" class="tiny-editor" @dblclick="handleDblclick"></div>
     <tiny-image-viewer v-if="state.showPreview" v-bind="state.previewOptions"></tiny-image-viewer>
     <div class="toolbar-icon" ref="editor-toolbar-icon">
