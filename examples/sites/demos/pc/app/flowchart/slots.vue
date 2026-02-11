@@ -45,11 +45,11 @@
 </template>
 
 <script>
-import { TinyModal, TinyPopover, Flowchart } from '@opentiny/vue'
+import { TinyModal, TinyPopover, TinyFlowchart } from '@opentiny/vue'
 import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 import { hooks } from '@opentiny/vue-common'
 
-const { createNode, createLink, createItem, createConfig } = Flowchart
+const { createNode, createLink, createItem, createConfig } = TinyFlowchart
 
 const IconDown = iconChevronDown()
 const IconUp = iconChevronUp()
@@ -106,7 +106,7 @@ chartConfig.listWidth = 150
 
 export default {
   components: {
-    TinyFlowchart: Flowchart,
+    TinyFlowchart,
     TinyPopover,
     IconDown,
     IconUp

@@ -49,7 +49,7 @@ import { TinyModal, TinyPopover, TinyFlowchart } from '@opentiny/vue'
 import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 import { hooks } from '@opentiny/vue-common'
 
-const { createNode, createLink, createConfig } = TinyFlowchart
+const { createNode, createLink, createItem, createConfig } = TinyFlowchart
 
 const IconDown = iconChevronDown()
 const IconUp = iconChevronUp()
