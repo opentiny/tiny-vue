@@ -80,7 +80,7 @@ export default {
             'en-US': 'Link open mode'
           },
           mode: ['pc'],
-          pcDemo: 'open-mode'
+          pcDemo: 'target'
         }
       ],
       events: [
