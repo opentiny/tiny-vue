@@ -10,7 +10,8 @@ test('多选复制单个标签', async ({ page }) => {
 
   await expect(tag).toContainText('北京')
   await page.waitForTimeout(200)
-  const tagBox = await tag.locator('span').boundingBox()
+  // 用 getByText 精确定位文本，.first() 避免多个 span 含相同文本导致 strict mode 冲突
+  const tagBox = await tag.getByText('北京').first().boundingBox()
   const x = tagBox.x + tagBox.width
   const y = tagBox.y + tagBox.height - 5
 
