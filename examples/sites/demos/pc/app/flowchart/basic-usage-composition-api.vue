@@ -13,10 +13,10 @@
 </template>
 
 <script setup>
-import { TinyModal, Flowchart } from '@opentiny/vue'
+import { TinyModal, TinyFlowchart } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
-const { createNode, createLink, createConfig } = Flowchart
+const { createNode, createLink, createConfig } = TinyFlowchart
 
 const chartData = {
   nodes: [

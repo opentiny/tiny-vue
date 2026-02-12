@@ -4,8 +4,7 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('flowchart#basic-usage')
 
-  const preview = page.locator('.pc-demo-container')
-  await expect(preview).toBeVisible()
+  const preview = page.locator('#basic-usage')
   const flowchart = preview.locator('.tiny-flow-chart')
   const nodes = flowchart.locator('.tiny-flow-chart__node-icon-wrapper')
   await expect(flowchart).toBeVisible()
