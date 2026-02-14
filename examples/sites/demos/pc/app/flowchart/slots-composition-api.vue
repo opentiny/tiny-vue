@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-demo">
+  <div class="tiny-demo" ref="container">
     <tiny-flowchart
       ref="chart"
       :data="chartDataRaw"
@@ -8,101 +8,122 @@
       @click-link="onClickLink"
       @click-blank="onClickBlank"
     >
-      <!-- content 插槽：下拉形式展示，收起时显示紧凑视图，点击展开显示表单列表 -->
-      <template #content="params">
-        <tiny-popover
-          placement="bottom-start"
-          trigger="manual"
-          width="220"
-          popper-class="flowchart-content-popover"
-          :visible-arrow="false"
-          :model-value="params.dropdowns[params.node.name]"
-          @update:model-value="params.dropdowns[params.node.name] = $event"
-        >
-          <template #default>
-            <div class="flowchart-content-slot">
-              <div v-for="(item, i) in params.node.info.items" :key="item.key || i" class="content-item">
-                <span class="item-name">{{ item.name }}</span>
-                <span class="item-role">{{ item.role }}</span>
-                <span class="item-status">{{ item.status }}</span>
-              </div>
-            </div>
-          </template>
-          <template #reference>
-            <div
-              class="flowchart-content-trigger"
-              :style="{ borderColor: params.config.listBorderColor }"
-              @click.stop="params.dropdowns[params.node.name] = !params.dropdowns[params.node.name]"
-            >
-              <span class="trigger-text">处理人({{ params.node.info.items.length }})</span>
-              <component :is="params.dropdowns[params.node.name] ? IconUp : IconDown" class="trigger-icon" />
-            </div>
-          </template>
-        </tiny-popover>
-      </template>
     </tiny-flowchart>
   </div>
 </template>
 
 <script setup>
-import { TinyModal, TinyPopover, TinyFlowchart } from '@opentiny/vue'
-import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { TinyModal, TinyFlowchart } from '@opentiny/vue'
 import { hooks } from '@opentiny/vue-common'
 
-const { createNode, createLink, createItem, createConfig } = TinyFlowchart
+const { createNode, createLink, createConfig } = TinyFlowchart
 
-const IconDown = iconChevronDown()
-const IconUp = iconChevronUp()
+// template refs
+const chart = ref(null)
+const container = ref(null)
+const nodeWrapperSize = 32
 
-const handlers = [
-  createItem('WX100001', '张三', '转审人', '已转审', '很好', '2018-08-20 12:00', ''),
-  createItem('WX100002', '李四', '主管', '已转审', '非常好', '2018-08-20 12:00', ''),
-  createItem('WX100003', '王五', '主管', '处理中', '', '', '')
-]
+let ro = null
+
+onMounted(() => {
+  const parent = (container.value && container.value.parentNode) || container.value
+  if (!parent) return
+
+  const applySize = () => {
+    const w = parent.offsetWidth || 0
+    // ensure chart cols accommodate max col in data
+    const maxCol = Math.max(...chartData.nodes.map((n) => Number(n.info.col) || 0))
+    chartConfig.cols = Math.max(chartConfig.cols || 0, Math.ceil(maxCol) + 1)
+    chartConfig.width = w
+
+    // call refresh on component instance if available
+    if (chart.value && typeof chart.value.refresh === 'function') {
+      chart.value.refresh({ graphWidth: w, adjustX: -nodeWrapperSize / 2 })
+    }
+  }
+
+  // initial
+  applySize()
+
+  ro = new ResizeObserver(() => {
+    applySize()
+  })
+
+  ro.observe(parent)
+})
+
+onBeforeUnmount(() => {
+  if (ro) {
+    ro.disconnect()
+    ro = null
+  }
+})
 
 const chartData = {
   nodes: [
-    createNode('1', 1, '基础信息', '2018.08.02', [], 1, 0),
-    createNode('2', 1, '调职补偿', '2018.08.02', handlers, 0, 2),
-    createNode('3', 1, '汇总调职补偿', '', [], 1, 4),
-    createNode('4', 3, '启动精算', '', [], 4, 5),
-    createNode('5', 3, '复核精算', '', [], 4, 6),
-    createNode('6', 3, '审核精算', '', [], 4, 7),
-    createNode('7', 1, '调职补偿', '2018.08.02', [], 2, 1),
-    createNode('8', 1, '复核', '2018.08.02', [], 2, 2),
-    createNode('9', 2, '审批', '2018.08.02', [], 2, 3),
-    createNode('10', 1, '复核', '2018.08.02', [], 4, 2),
-    createNode('11', 2, '审批', '2018.08.02', [], 4, 3),
-    createNode('12', 3, '运算调职兑现率', '', [], 4, 4),
-    createNode('13', 1, '复核', '2018.08.02', [], 6, 2),
-    createNode('14', 4, '审批审批审批审批审批 0123456789asdfghjkl', '2018.08.02', [], 6, 3)
+    createNode('1', 1, '设计立项', '', [], 1, 1),
+    createNode('2', 4, '设计任务书', '', [], 1, 2),
+    createNode('3', 4, '设计策划', '', [], 1, 3),
+    createNode('4', 4, '设计交底', '', [], 1, 4),
+    createNode('5', 0, '定制评审要素', '', [], 1, 5),
+    createNode('6', 0, '概念成果上传', '', [], 1, 6),
+    createNode('7', 0, '概念成果确认', '', [], 1, 7),
+    createNode('8', 0, '方案成果上传', '', [], 1, 8),
+    createNode('9', 0, '会签要点', '', [], 0, 8.5),
+    createNode('10', 0, '方案成果确认', '', [], 1, 9),
+    createNode('11', 0, '设计成果上传', '', [], 1, 10),
+    createNode('12', 0, '会签要点', '', [], 0, 10.5),
+    createNode('13', 0, '设计成果确认', '', [], 1, 11),
+    createNode('14', 1, '施工图成果上传', '', [], 1, 12),
+    createNode('15', 1, '会签要点', '', [], 0, 12.5),
+    createNode('16', 1, '施工图成果确认', '', [], 1, 13),
+    createNode('17', 0, '业务策略', '', [], 1, 14),
+    createNode('18', 0, '招标图纸提供', '', [], 1, 15),
+    createNode('19', 0, '施工图纸下发', '', [], 1, 16),
+    createNode('20', 0, '深化图纸下发', '', [], 0, 16.5),
+    createNode('21', 0, '专业线巡检', '', [], 1, 17),
+    createNode('22', 0, '复盘总结', '', [], 1, 18),
+    createNode('23', 0, '竣工图归档', '', [], 1, 19)
   ],
   links: [
-    createLink('1', '2', '0 r0.5 t1 c r1.5', 1),
-    createLink('2', '3', '0 r1.5 c b1 r0.5', 3),
-    createLink('3', '4', '0 r0.5 c b3 r0.5', 3),
-    createLink('4', '5', '', 3),
-    createLink('5', '6', '', 3),
-    createLink('1', '7', 'r0.5 b1 c r0.5', 1),
+    createLink('1', '2', '', 1),
+    createLink('2', '3', '', 1),
+    createLink('3', '4', '', 1),
+    createLink('4', '5', '', 1),
+    createLink('5', '6', '', 1),
+    createLink('6', '7', '', 1),
     createLink('7', '8', '', 1),
-    createLink('8', '9', '', 1),
-    createLink('9', '3', '0 r0.5 c t1', 3),
+    createLink('8', '9', '0 t1 c r0.5', 1, 'dash'),
+    createLink('8', '10', '', 1),
+    createLink('9', '10', '0.5 r0.5 c b1', 1, 'dash'),
     createLink('10', '11', '', 1),
-    createLink('11', '12', '', 3),
-    createLink('12', '4', '0 r0.5', 3),
+    createLink('11', '12', '0 t1 c r0.5', 1, 'dash'),
+    createLink('11', '13', '', 1),
+    createLink('12', '13', '0.5 r0.5 c b1', 1, 'dash'),
     createLink('13', '14', '', 1),
-    createLink('14', '4', '0 r1.5 c t2', 3, 'dash')
+    createLink('14', '15', '0 t1 c r0.5', 1, 'dash'),
+    createLink('14', '16', '', 1),
+    createLink('15', '16', '0.5 r0.5 c b1', 1, 'dash'),
+    createLink('16', '17', '', 1),
+    createLink('17', '18', '', 1),
+    createLink('18', '19', '', 1),
+    createLink('19', '20', '0 t1 c r0.5', 1, 'dash'),
+    createLink('19', '21', '', 1),
+    createLink('20', '21', '0.5 r0.5 c b1', 1, 'dash'),
+    createLink('21', '22', '', 1),
+    createLink('22', '23', '', 1)
   ]
 }
 
 const chartConfig = createConfig()
 
-chartConfig.headUrl = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
-
-chartConfig.checkItemStatus = (item) => ~['已转审', '已同意'].indexOf(item.status)
-chartConfig.adjustPos = (afterNode) => afterNode.raw.name === '2' && (afterNode.y += 1)
 // content 插槽需更大展示空间，默认 listWidth 62px 过小会导致文字挤压重叠
-chartConfig.listWidth = 150
+chartConfig.listWidth = 120
+// label 显示优化：更宽的 label 避免换行重叠，
+chartConfig.labelWidth = 140
+chartConfig.anchor = 'center'
+chartConfig.labelHeight = 80
 
 const chartDataRaw = hooks.markRaw(chartData)
 const chartConfigRaw = hooks.markRaw(chartConfig)
@@ -121,62 +142,36 @@ function onClickBlank(_param, _e) {
 </script>
 
 <style scoped>
-/* 覆盖 content 插槽容器的固定高度(默认 24px)，否则下拉触发区会被挤压 */
-:deep(.tiny-flow-chart__node-item) {
-  min-height: 24px !important;
+:deep(.tiny-flow-chart__node-icon-wrapper .tiny-flow-chart__node-icon.complete) {
+  background: #5cb300 !important;
+}
+:deep(.tiny-flow-chart__node-icon-wrapper .tiny-flow-chart__node-icon.complete svg) {
+  fill: #fff !important;
+}
+
+:deep(.tiny-flow-chart__node-icon-wrapper .tiny-flow-chart__node-icon.fail) {
+  background: #fd7d75 !important;
+  border-color: #fd7d75 !important;
+}
+:deep(.tiny-flow-chart__node-icon-wrapper .tiny-flow-chart__node-icon.fail svg) {
+  fill: #fd7d75 !important;
+}
+:deep(.tiny-flow-chart__node-label) {
+  /* allow label container to expand vertically so long labels won't be clipped */
   height: auto !important;
+  max-width: 60px !important; /* matches chartConfig.labelWidth */
+  min-height: 80px !important; /* matches chartConfig.labelHeight */
 }
 
-/* 下拉触发区：收起时显示的紧凑视图 */
-.flowchart-content-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  height: 100%;
-  min-height: 22px;
-  padding: 0 4px;
-  border: 1px solid #d9d9d9;
-  border-radius: 3px;
-  font-size: 12px;
-  cursor: pointer;
+:deep(.label-item.label-title) {
+  display: block;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  text-overflow: clip !important;
 }
-.flowchart-content-trigger .trigger-text {
-  white-space: nowrap;
-}
-.flowchart-content-trigger .trigger-icon {
-  flex-shrink: 0;
-}
-
-/* content 插槽：下拉展开后的表单列表 */
-.flowchart-content-slot {
-  padding: 4px 8px;
-  font-size: 12px;
-}
-.flowchart-content-slot .content-item {
-  display: flex;
-  gap: 8px;
-  padding: 4px 0;
-  border-bottom: 1px dashed #e8e8e8;
-}
-.flowchart-content-slot .content-item:last-child {
-  border-bottom: none;
-}
-.flowchart-content-slot .item-name {
-  min-width: 40px;
-}
-.flowchart-content-slot .item-role {
-  min-width: 50px;
-  color: #666;
-}
-.flowchart-content-slot .item-status {
-  color: #1890ff;
-}
-
-/* 下拉弹层样式 */
-:deep(.flowchart-content-popover.tiny-popper) {
-  margin-top: 2px;
-  padding: 0;
+:deep(.tiny-flow-chart .tiny-flow-chart__node-icon-wrapper .tiny-flow-chart__node-label) {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 </style>
