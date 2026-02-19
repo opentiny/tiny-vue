@@ -52,6 +52,13 @@ export default defineComponent({
       validator(val: string) {
         return ['monochrome', 'linear-gradient'].includes(val)
       }
+    },
+    placement:{
+      type: String,
+      default: 'bottom',
+      validator(val: string) {
+        return ['top', 'bottom'].includes(val)
+      }
     }
   },
   setup(props, context) {
