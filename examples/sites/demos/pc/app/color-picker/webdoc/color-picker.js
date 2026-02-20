@@ -241,6 +241,19 @@ export default {
       },
       apis: ['color-mode'],
       demos: ['color-mode']
+    },
+    {
+      id: 'placement',
+      name: '显示位置',
+      support: {
+        value: true
+      },
+      description: '通过 placement 属性来定义颜色选择器的显示位置',
+      cloud: {
+        value: false
+      },
+      apis: ['placement'],
+      demos: ['placement']
     }
   ]
 }
