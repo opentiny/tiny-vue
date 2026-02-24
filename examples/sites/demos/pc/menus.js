@@ -62,9 +62,9 @@ const docMenusChildren = [
     }
   },
   {
-    'title': '智能化',
-    'titleEn': 'mcp',
-    'key': 'mcp'
+    'title': 'Skills 使用指南',
+    'titleEn': 'Skills Guide',
+    'key': 'skills'
   },
   { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
   { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },

@@ -33,9 +33,7 @@ import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
 import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
-import { createMcpTools, getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
-import { t } from '@opentiny/vue-locale'
-import { registerMcpConfig, customDesignConfig } from '@opentiny/vue-common'
+import { customDesignConfig } from '@opentiny/vue-common'
 import { twMerge } from 'tailwind-merge'
 
 // 适配层集成twMerge能力
@@ -94,8 +92,6 @@ app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEM
 if (isSaas) {
   import('./tailwind.css')
 }
-// 注册TinyVue组件mcp配置
-registerMcpConfig(getTinyVueMcpConfig({ t }), createMcpTools)
 
 app.use(router).use(i18n).use(createHead()) // 支持md修改title
 
