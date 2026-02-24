@@ -9,8 +9,10 @@
   .inject-Button-vars();
   @media (max-width: 820px) {
     &.is-icon {
-      .@{svg-prefix-cls} {
-        fill: var(--tv-Button-icon-adapt-inverse-tint);
+      &:not(.@{button-prefix-cls}--default) {
+        .@{svg-prefix-cls} {
+          fill: var(--tv-Button-icon-adapt-inverse-tint);
+        }
       }
     }
   }
