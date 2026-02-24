@@ -302,25 +302,28 @@
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="inline-flex max-w-full">
+        <div class="relative inline-block max-w-full">
           <span
             ref="textBox"
-            class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
+            class="text-box block max-w-full min-w-0 break-words text-sm leading-5 text-color-text-primary"
             :class="[
               state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
-              hoverExpand && 'relative left-0 max-w-full leading-5 line-clamp-1',
-              autosize
-                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-5'
-                : 'left-0 max-w-full text-ellipsis overflow-hidden break-words whitespace-pre-wrap line-clamp-5'
+              hoverExpand
+                ? 'line-clamp-1'
+                : state.showMoreBtn
+                  ? 'line-clamp-5 whitespace-pre-wrap pr-10'
+                  : 'line-clamp-5 whitespace-pre-wrap',
+              autosize && 'whitespace-pre-line'
             ]"
             @click="state.showDisplayOnlyBox = true"
+            >{{ state.displayOnlyText }}</span
           >
-            <span
-              v-if="state.showMoreBtn"
-              class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
-              >{{ t('ui.input.more') }}></span
-            >{{ state.displayOnlyText }}
-          </span>
+          <span
+            v-if="state.showMoreBtn"
+            class="absolute bottom-0 right-0 text-color-brand text-sm leading-5 cursor-pointer"
+            @click="state.showDisplayOnlyBox = true"
+            >{{ t('ui.input.more') }}></span
+          >
         </div>
       </tiny-tooltip>
       <tiny-dialog-box
