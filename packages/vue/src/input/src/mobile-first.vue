@@ -335,7 +335,7 @@
         :close-on-click-modal="false"
         @update:visible="state.showDisplayOnlyBox = $event"
       >
-        <pre class="font-[inherit] whitespace-pre-wrap">{{ state.displayOnlyText }}</pre>
+        <pre class="font-[inherit] whitespace-pre-wrap break-words">{{ state.displayOnlyText }}</pre>
         <template #footer>
           <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
         </template>
