@@ -336,7 +336,17 @@ function renderFooterRows(_vm: any): any {
 function renderRows(_vm) {
   const { $parent: $table, tableColumn, rowPool } = _vm
   const { afterFullData, editConfig, editStore, expandConfig = {}, expandeds, hasVirtualRow } = $table
-  const { rowClassName, rowGroup, scrollYLoad, scrollYStore, selection, treeConfig, treeOrdered, selectRow } = $table
+  const {
+    rowClassName,
+    rowGroup,
+    scrollYLoad,
+    scrollYStore,
+    scrollXLoad,
+    selection,
+    treeConfig,
+    treeOrdered,
+    selectRow
+  } = $table
   const expandMethod = expandConfig.activeMethod
   const startIndex = scrollYStore.startIndex
   const isOrdered = treeConfig ? !!treeOrdered : false
@@ -384,7 +394,19 @@ function renderRows(_vm) {
       rowClassName
     }
 
-    Object.assign(args, { rowIndex, rowLevel, rowid, rows, selection, seq, treeConfig, used, selectRow, scrollYLoad })
+    Object.assign(args, {
+      rowIndex,
+      rowLevel,
+      rowid,
+      rows,
+      selection,
+      seq,
+      treeConfig,
+      used,
+      selectRow,
+      scrollYLoad,
+      scrollXLoad
+    })
 
     renderRow(args)
 
@@ -439,7 +461,8 @@ function renderRowAfter({ $table, _vm, row, rowIndex, rows, id, used }) {
 
 function renderRow(args) {
   const { $rowIndex, $seq, $table, _vm, editStore, id, isSkipRowRender, row, rowActived, rowClassName } = args
-  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, scrollYLoad } = args
+  const { rowIndex, rowLevel, rowid, rows, selection, selectRow, seq, treeConfig, used, scrollYLoad, scrollXLoad } =
+    args
 
   if (isSkipRowRender) {
     return
@@ -483,7 +506,7 @@ function renderRow(args) {
             : ''
         ]}>
         {columnPool.map(({ id, item: column, used }, $columnIndex) =>
-          renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, used })
+          used || scrollXLoad ? renderColumn({ $columnIndex, $table, _vm, column, id, row, rowid, seq, used }) : null
         )}
       </tr>
     )

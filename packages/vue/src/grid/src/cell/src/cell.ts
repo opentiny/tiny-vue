@@ -24,7 +24,7 @@
  */
 import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/utils'
-import { getColumnConfig, getFuncText, formatText, getRowkey } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnConfig, getFuncText, formatText, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
@@ -963,17 +963,26 @@ export const Cell = {
   renderOperationCell(h, params) {
     const { column, $table, row } = params
     const { operationConfig = {}, slots } = column
+    const rowId = getRowid($table, row)
+    let operationCell
 
+    if ($table.operationMap.has(rowId)) {
+      return $table.operationMap.get(rowId)
+    }
     // 如果是用户自定义的插槽，怎么走用户插槽逻辑
     if (slots && slots.default) {
-      return slots.default(params, h)
+      operationCell = slots.default(params, h)
+      $table.operationMap.set(rowId, operationCell)
+      return operationCell
     }
 
     const { buttons = [], render, max = 3, disabledClass = '' } = operationConfig
     const viewClass = $table.viewCls('operButton')
 
     if (render) {
-      return render({ h, buttons, params })
+      operationCell = render({ h, buttons, params })
+      $table.operationMap.set(rowId, operationCell)
+      return operationCell
     }
 
     const renderBase = (buttonConfig, flag, classes, attrs) => {
@@ -1057,19 +1066,19 @@ export const Cell = {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
-    const rowKey = row[getRowkey($table)]
-
-    return [
+    operationCell = [
       h(
         'span',
         {
           class: 'tiny-grid__oper-col-wrapper',
-          key: rowKey,
+          key: getRowid($table, row),
           attrs: { 'data-tag': 'operation-cell-buttons' }
         },
         groupBig
       )
     ]
+    $table.operationMap.set(rowId, operationCell)
+    return operationCell
   }
 }
 

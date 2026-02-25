@@ -59,6 +59,7 @@ export const useNormalData = ({ props, tableFullColumn }) => {
       }
     }
 
+    $table.operationMap.clear()
     // 触发表格数据刷新
     rawDataVersion.value += 1
   })

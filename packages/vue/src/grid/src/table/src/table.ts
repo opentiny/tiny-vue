@@ -859,6 +859,8 @@ export default defineComponent({
 
     const rowidCacheMap = new Map()
     const columnSlotsWeakMap = new WeakMap()
+    // 操作列缓存
+    const operationMap = new Map()
     return {
       slots,
       tableListeners,
@@ -898,7 +900,8 @@ export default defineComponent({
       rowidCacheMap,
       horizonScroll,
       resolveMap,
-      columnSlotsWeakMap
+      columnSlotsWeakMap,
+      operationMap
     }
   },
   render() {
