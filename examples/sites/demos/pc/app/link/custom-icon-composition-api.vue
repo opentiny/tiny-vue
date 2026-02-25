@@ -31,6 +31,6 @@ const TinyIconFilletExternalLink = iconFilletExternalLink()
 
 <style scoped>
 .tiny-link {
-  margin-right: 48px;
+  margin-right: 8px;
 }
 </style>

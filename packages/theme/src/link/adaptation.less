@@ -1,0 +1,21 @@
+@import '../mixins/link.less';
+@import '../custom.less';
+@import './vars.less';
+
+@link-prefix-cls: ~'@{css-prefix}link';
+@link-svg-prefix-cls: ~'@{link-prefix-cls}-svg';
+@svg-cls: ~'@{css-prefix}svg';
+
+@media (max-width: 820px) {
+  .@{link-prefix-cls} {
+    .inject-Link-vars();
+
+    display: inline-flex;
+    white-space: nowrap;
+    line-height: 20px;
+
+    &&--success {
+      color: #398500;
+    }
+  }
+}
