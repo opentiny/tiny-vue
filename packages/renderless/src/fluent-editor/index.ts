@@ -30,7 +30,7 @@ export const init =
     // 兼容：当用户传入 toolbar 数组时，Quill 仍需要 { container, handlers } 才能触发自定义 handler（如 alignHandler）
     const toolbarOpt = state.innerOptions?.modules?.toolbar
     const defaultHandlers = api.handlers()
-    
+
     if (Array.isArray(toolbarOpt)) {
       // 用户传数组时，使用默认 handlers（数组形式不支持自定义 handlers）
       state.innerOptions.modules.toolbar = {
@@ -281,8 +281,13 @@ export const lineheightHandler =
   }
 
 export const fileHandler =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   () => {
+    // 禁用状态下不允许上传文件
+    if (props.disabled) {
+      return
+    }
+
     const option = state.quill.options.uploadOption
     const accept = option && option.fileAccept
 
@@ -290,8 +295,13 @@ export const fileHandler =
   }
 
 export const imageHandler =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   () => {
+    // 禁用状态下不允许上传图片
+    if (props.disabled) {
+      return
+    }
+
     const option = state.quill.options.uploadOption
     const accept = option && option.imageAccept
 
@@ -337,8 +347,13 @@ export const inputFileHandler =
   }
 
 export const uploaderDflsHandler =
-  ({ api, modules }) =>
+  ({ api, modules, props }) =>
   (range, files, fileFlags, rejectFlags) => {
+    // 禁用状态下不允许上传文件或图片
+    if (props.disabled) {
+      return
+    }
+
     const fileArr = []
     const imgArr = []
 
@@ -690,11 +705,11 @@ export const alignHandler =
   ({ state, FluentEditor }) =>
   (value) => {
     const range = state.quill.getSelection(true)
-    
+
     if (!range) {
       return
     }
-    
+
     const betterTableModule = state.quill.getModule('better-table')
 
     // 1) 表格批量选中：直接走 better-table 的 tableSelection.selectedTds
