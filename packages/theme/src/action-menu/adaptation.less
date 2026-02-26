@@ -1,0 +1,21 @@
+@import '../custom.less';
+@import './vars.less';
+
+@action-menu-prefix-cls: ~'@{css-prefix}action-menu';
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
+
+@media (max-width: 820px) {
+  .tiny-dropdown-menu {
+    min-width: 0;
+  }
+
+  .@{dropdown-item-prefix-cls} {
+    .inject-ActionMenu-vars();
+    // 展开项悬浮激活态
+    &:not(.is-disabled).has-children:hover {
+      color: var(--tv-ActionMenu-item-adapt-font-color-hover);
+      background-color: var(--tv-ActionMenu-item-adapt-bg-color-hover);
+    }
+  }
+}
