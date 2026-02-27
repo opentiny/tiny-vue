@@ -4201,25 +4201,108 @@ interface IEditorConfig {
     {
       name: 'IFilterConfig',
       type: 'type',
+      depTypes: ['IRow', 'IColumnConfig'],
       code: `
 interface IFilterConfig {
-  // 设置在显示枚举选项功能是否为多选, 仅在 enumable:true 下有效
-  multi: boolean
+  // 设置在显示枚举选项功能是否为多选，仅在 enumable:true 下有效，默认 true
+  multi?: boolean
   // 设置在过滤面板中显示枚举选项
-  enumable: boolean
-  // 设置在过滤面板中显示默认的筛选条件
-  defaultFilter: boolean
-  // 设置在过滤面板中显示输入筛选的项
-  inputFilter: boolean
-  // 设置在显示枚举选项功能(enumable)下制定静态数据源，也可以是函数返回一个Promise对象
-  values: {
-    // 设置枚举数据的显示值属性字段， 默认'label'
-    label: string
-    // 设置枚举数据的实际值属性字段， 默认'value'
-    value: string 
-  }[] | () => Promise
-  // 3.25.0新增，设置过滤面板根节点属性
-  attrs: { [props: string]: string }
+  enumable?: boolean
+  // 设置在过滤面板中显示空/非空筛选条件
+  defaultFilter?: boolean
+  // 设置在过滤面板中显示输入筛选，true 使用默认 input，或传入 IInputFilterConfig 配置
+  inputFilter?: boolean | IInputFilterConfig
+  // 设置枚举选项的静态数据源，也可为函数 (params) => Promise<Array<{label,value,checked?}>>
+  values?: Array<{ [key: string]: any }> | (params: { property: string; filter: IFilterConfig }) => Promise<Array<{ [key: string]: any }>>
+  // 设置枚举数据的显示值属性字段，默认 'label'
+  label?: string
+  // 设置枚举数据的实际值属性字段，默认 'value'
+  value?: string
+  // 设置筛选项的显示顺序和组合，默认为 'input,enum,default,extends,base'
+  // 可选项：input | enum | default | extends | base | simple（简化版与其它互斥）
+  layout?: string
+  // 初始筛选条件
+  condition?: IFilterCondition
+  // 扩展快捷筛选项，点击后直接应用对应 method 筛选
+  extends?: IExtendsFilterItem[]
+  // 自定义筛选方法，用于 filter 插槽或 extends 扩展项
+  method?: (params: { row: IRow; column: IColumnConfig; property: string }) => boolean
+  // 简化版筛选配置，layout 需包含 'simple'
+  simpleFilter?: ISimpleFilterConfig
+  // 3.25.0 新增，设置过滤面板根节点属性
+  attrs?: Record<string, string>
+  // 数据源配置，用于异步获取枚举选项
+  dataset?: any
+}
+
+// 输入筛选配置
+interface IInputFilterConfig {
+  // 输入组件，默认 'input'，可传入 TinyDatePicker、TinyNumeric 等
+  component?: string | object
+  // 传递给输入组件的属性
+  attrs?: Record<string, any>
+  // 筛选关系选项，内置：equals|unequal|greaterThan|lessThan|equalToGreaterThan|equalToLessThan|contains|startwith|endwith|exclude
+  relations?: IRelationFilterItem[]
+  // 默认选中的 relation 值
+  relation?: string
+  // 重置输入时的回调
+  onResetInputFilter?: (ref: any) => void
+}
+
+// 关系选项项
+interface IRelationFilterItem {
+  label: string
+  value: string
+  // 自定义筛选方法，(params) => boolean，不传则使用内置 relation 逻辑
+  method?: (params: { value: any; input: any; row?: IRow; column?: IColumnConfig }) => boolean
+}
+
+// 扩展筛选项
+interface IExtendsFilterItem {
+  label: string
+  value?: string
+  // 本地筛选时必填；服务端筛选可不填
+  method?: (params: { value: any; row: IRow; column: IColumnConfig }) => boolean
+}
+
+// 筛选条件
+interface IFilterCondition {
+  input?: string | number
+  relation?: string
+  empty?: boolean | null
+  type?: 'input' | 'enum' | 'empty' | 'extend' | 'date' | 'custom' | null
+  value?: any[]
+  dateList?: [string, string]
+}
+
+// 简化版筛选配置
+interface ISimpleFilterConfig {
+  // 是否为日期时间模式，true 时渲染日期范围选择器
+  isDatetime?: boolean
+  // 是否显示全选按钮，多选模式下有效；搜索模式下与 searchable 互斥显示
+  selectAll?: boolean
+  // 日期时间配置，isDatetime 为 true 时必填
+  datetimeConfig?: IDatetimeFilterConfig
+  // 搜索配置，isDatetime 为 false 时可配置，用于在枚举列表中增加搜索框
+  searchConfig?: ISearchFilterConfig
+}
+
+// 简化版-日期时间配置
+interface IDatetimeFilterConfig {
+  component: object
+  format?: string
+  valueFormat?: string
+  type?: 'date' | 'datetime' | 'daterange'
+  min?: Date
+  max?: Date
+  startDate?: string
+  endDate?: string
+}
+
+// 简化版-搜索配置
+interface ISearchFilterConfig {
+  component?: object
+  searchValue?: string
 }
       `
     },

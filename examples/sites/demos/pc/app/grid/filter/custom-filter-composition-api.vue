@@ -3,28 +3,23 @@
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :filter="customFilter">
       <template #filter="data">
-        <input v-model="customFilterData.input" />
-        <button @click="data.context.commitFilter(customFilter)">confirm</button>
-        <button
-          @click="
-            () => {
-              customFilterData.input = ''
-              data.context.clearFilter()
-            }
-          "
-        >
-          clear
-        </button>
-        <button
-          @click="
-            () => {
-              customFilterData.input = ''
-              data.context.resetFilter()
-            }
-          "
-        >
-          reset
-        </button>
+        <ul class="tiny-grid__filter-panel custom-filter-panel">
+          <li class="filter-option__input">
+            <tiny-input
+              v-model="customFilterData.input"
+              placeholder="输入名称关键词筛选"
+              clearable
+              size="small"
+            />
+          </li>
+          <li class="tiny-grid__filter-option filter-option__btns">
+            <tiny-button type="primary" size="small" @click="data.context.commitFilter(customFilter)">
+              确定
+            </tiny-button>
+            <tiny-button size="small" @click="handleReset(data.context)">重置</tiny-button>
+            <tiny-button size="small" @click="handleClear(data.context)">清除全部</tiny-button>
+          </li>
+        </ul>
       </template>
     </tiny-grid-column>
     <tiny-grid-column field="area" title="区域"></tiny-grid-column>
@@ -35,7 +30,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyGrid, TinyGridColumn } from '@opentiny/vue'
+import { TinyGrid, TinyGridColumn, TinyInput, TinyButton } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -89,4 +84,32 @@ const customFilter = ref({ method: customFilterMethod })
 function customFilterMethod({ row }) {
   return row.name.includes(customFilterData.value.input)
 }
+
+function handleReset(context) {
+  customFilterData.value.input = ''
+  context.resetFilter()
+}
+
+function handleClear(context) {
+  customFilterData.value.input = ''
+  context.clearFilter()
+}
 </script>
+
+<style scoped>
+.custom-filter-panel {
+  padding: 12px 16px;
+  min-width: 260px;
+}
+.custom-filter-panel .filter-option__input {
+  margin-bottom: 12px;
+}
+.custom-filter-panel .filter-option__input :deep(.tiny-input) {
+  width: 100%;
+}
+.custom-filter-panel .filter-option__btns {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+</style>

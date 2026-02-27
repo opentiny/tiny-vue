@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test'
 test('过滤高级设置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-filter#filter-default-filter')
+  await page.setViewportSize({ width: 1920, height: 1980 })
   await page
     .getByRole('cell', { name: '公司名称鼠标移入可以动态提示 tooltip，公司名称鼠标移入可以动态提示 tooltip' })
     .getByRole('img')
