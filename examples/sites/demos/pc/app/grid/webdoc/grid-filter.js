@@ -100,6 +100,17 @@ export default {
       codeFiles: ['filter/simple-default-value-filter.vue']
     },
     {
+      demoId: 'filter-input-custom-component',
+      name: { 'zh-CN': '自定义输入组件', 'en-US': 'Custom Input Component' },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>inputFilter.component</code> 传入自定义组件，实现非标准输入（如范围输入：左最小值、右最大值）。自定义组件需支持 <code>modelValue</code> + <code>update:modelValue</code>，或配置 <code>model</code> 指定字段名。配合 <code>relations[].method</code> 实现自定义筛选逻辑。</p>',
+        'en-US':
+          '<p>Pass custom component via <code>inputFilter.component</code> for non-standard input (e.g. range: min + max). Component must support <code>modelValue</code> + <code>update:modelValue</code>, or configure <code>model</code>. Use <code>relations[].method</code> for custom filter logic.</p>'
+      },
+      codeFiles: ['filter/input-filter-custom-component.vue']
+    },
+    {
       demoId: 'filter-advanced-filter',
       name: { 'zh-CN': '高级筛选', 'en-US': 'Advanced Filter' },
       desc: {
