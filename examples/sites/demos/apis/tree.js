@@ -23,7 +23,7 @@ export default {
           desc: {
             'zh-CN': '禁止添加的节点 key 值列表，也可通过 setAddDisabledKeys 方法设置',
             'en-US':
-              'List of key values of nodes that cannot be added. You can also use the setAddDisabledKeys method to set the key values.'
+              'List of key values of nodes that cannot be added. You can also use the setAddDisabledKeys method to set the key values'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -45,7 +45,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '判断节点能否被拖拽',
-            'en-US': 'Whether a node can be dragged.'
+            'en-US': 'Whether a node can be dragged'
           },
           mode: ['pc'],
           pcDemo: 'drag'
@@ -58,7 +58,7 @@ export default {
             'zh-CN':
               "拖拽时判定目标节点能否被放置。type 参数有三种情况：'prev'、'inner' 和 'next'，分别表示放置在目标节点前、插入至目标节点和放置在目标节点后",
             'en-US':
-              "Whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
+              "Whether the target node can be placed during dragging. The type parameter has three situations: 'prev', 'inner', and 'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
           },
           mode: ['pc'],
           pcDemo: 'drag'
@@ -137,7 +137,7 @@ export default {
           desc: {
             'zh-CN': '默认展开节点的keys。当属性变化时，会自动收起全部并重新展开指定的数据项。 ',
             'en-US':
-              'The keys of the node are expanded by default.When the property changes, it automatically collapses all and reexpands the specified data item.'
+              'The keys of the node are expanded by default. When the property changes, it automatically collapses all and reexpands the specified data item'
           },
           mode: ['pc'],
           pcDemo: 'expand-control'
@@ -149,7 +149,7 @@ export default {
           desc: {
             'zh-CN': '禁止删除的节点 key 值列表，也可通过 setDeleteDisabledKeys 方法设置',
             'en-US':
-              'Indicates the list of key values of nodes that cannot be deleted. You can also use the setDeleteDisabledKeys method to set the key values.'
+              'Indicates the list of key values of nodes that cannot be deleted. You can also use the setDeleteDisabledKeys method to set the key values'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -161,7 +161,7 @@ export default {
           desc: {
             'zh-CN': '删除节点的装置钩子函数，若返回 false 或者返回 Promise 且被 reject，则停止删除。 ',
             'en-US':
-              'Device hook function for deleting a node. If false is returned or Promise is returned and rejected, the deletion is stopped.'
+              'Device hook function for deleting a node. If false is returned or Promise is returned and rejected, the deletion is stopped'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -184,7 +184,7 @@ export default {
           desc: {
             'zh-CN': '禁止编辑的节点 key 值列表，也可通过 setEditDisabledKeys 方法设置',
             'en-US':
-              'List of key values of nodes that cannot be edited. You can also use the setEditDisabledKeys method to set the key values.'
+              'List of key values of nodes that cannot be edited. You can also use the setEditDisabledKeys method to set the key values'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -284,7 +284,7 @@ export default {
           defaultValue: '18',
           desc: {
             'zh-CN': '相邻级节点间的水平缩进，单位为像素',
-            'en-US': 'horizontal indentation between adjacent nodes, in pixels.'
+            'en-US': 'horizontal indentation between adjacent nodes, in pixels'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
@@ -308,7 +308,7 @@ export default {
             'zh-CN':
               '加载子树数据的方法。点击节点后，组件开始调用load方法，只有在load函数内调用resolve(data)，才表示返回下级的数据成功。',
             'en-US':
-              'Method of loading subtree data. After the node is clicked, the component starts to call the load method. Only when resolve(data) is called in the load function, the data at the lower level is successfully returned.'
+              'Method of loading subtree data. After the node is clicked, the component starts to call the load method. Only when resolve(data) is called in the load function, the data at the lower level is successfully returned'
           },
           mode: ['pc'],
           pcDemo: 'lazy'
@@ -387,7 +387,7 @@ export default {
           desc: {
             'zh-CN': '在严格模式时，是否显示勾选父节点时，自动勾选子节点的功能区域',
             'en-US':
-              'In strict mode, when the parent node is displayed, the function area of the child node is automatically selected.'
+              'In strict mode, when the parent node is displayed, the function area of the child node is automatically selected'
           },
           mode: ['pc'],
           pcDemo: 'other'
@@ -453,7 +453,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '指示收缩的图标色',
-            'en-US': 'Icon indicating shrink  color'
+            'en-US': 'Icon indicating shrink color'
           },
           mode: ['pc'],
           pcDemo: 'icons'
@@ -488,7 +488,7 @@ export default {
           desc: {
             'zh-CN': '用于编辑模式下参数配置,指示新增节点的 id ,是否显示 id 重复的警告等',
             'en-US':
-              'Used for parameter configuration in editing mode, indicating the ID of a new node and whether to display a warning indicating duplicate IDs.'
+              'Used for parameter configuration in editing mode, indicating the ID of a new node and whether to display a warning indicating duplicate IDs'
           },
           mode: ['pc'],
           pcDemo: 'edit'
@@ -499,7 +499,7 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。',
-            'en-US': 'Indicates whether to highlight the search text in the matched node.'
+            'en-US': 'Indicates whether to highlight the search text in the matched node'
           },
           mode: ['pc'],
           pcDemo: 'filter-view'
@@ -512,7 +512,7 @@ export default {
             'zh-CN':
               '通过设置 <code> showCheckedMark </code> 属性为true,且非多选模式时，可以在选中行的最右边显示 <code> √ </code> 号。',
             'en-US':
-              'By setting the <code> showCheckedMark </code> property to true, you can display the <code> √ </code> number on the far right when a line is selected.'
+              'By setting the <code> showCheckedMark </code> property to true, you can display the <code> √ </code> number on the far right when a line is selected'
           },
           mode: ['pc'],
           pcDemo: ''
@@ -564,7 +564,7 @@ export default {
             'zh-CN':
               '平铺模式下，勾选或取消勾选节点的事件，需要设置show-checkbox为true才生效。<br>参数说明：{ plainNode: 被点击的节点数据, value: 复选框是否选中，取值true或false }',
             'en-US':
-              'In tile mode, select or deselect node events to take effect only when show-checkbox is set to true. <br> Parameter description: {plainNode: indicates the node data to be clicked. value: indicates whether the check box is selected. The value can be true or false.'
+              'In tile mode, select or deselect node events to take effect only when show-checkbox is set to true. <br> Parameter description: {plainNode: indicates the node data to be clicked. value: indicates whether the check box is selected. The value can be true or false}'
           },
           mode: ['pc'],
           pcDemo: ''
@@ -874,7 +874,7 @@ export default {
           desc: {
             'zh-CN': '返回目前被选中的节点的 key 所组成的数组。当参数：leafOnly 为true时，只返回被选中的叶子节点。',
             'en-US':
-              'Returns an array of keys for the currently selected node. If the parameter: leafOnly is true, only the selected leaf nodes are returned.'
+              'Returns an array of keys for the currently selected node. If the parameter: leafOnly is true, only the selected leaf nodes are returned'
           },
           mode: ['pc'],
           pcDemo: 'check-op'
@@ -929,7 +929,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '返回目前半选中的节点所组成的数组',
-            'en-US': 'Returns an array of currently half-selected nodes.'
+            'en-US': 'Returns an array of currently half-selected nodes'
           },
           mode: ['pc'],
           pcDemo: 'check-op'
@@ -984,7 +984,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '在一个节点的前面增加一个节点',
-            'en-US': 'Add a node before a tree node.'
+            'en-US': 'Add a node before a tree node'
           },
           mode: ['pc'],
           pcDemo: 'node-op'
@@ -1007,7 +1007,7 @@ export default {
           desc: {
             'zh-CN': '删除节点。当参数：isSaveChildNode为true时，当前节点的子元素上移至删除节点的父节点中去。',
             'en-US':
-              'Delete a node. When isSaveChildNode is true, the child elements of the current node are moved up to the parent node of the deleted node.'
+              'Delete a node. When isSaveChildNode is true, the child elements of the current node are moved up to the parent node of the deleted node'
           },
           mode: ['pc'],
           pcDemo: 'node-op'
@@ -1040,7 +1040,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '设置禁止添加的节点 key 值列表',
-            'en-US': 'Sets the list of key values of nodes that cannot be added.'
+            'en-US': 'Sets the list of key values of nodes that cannot be added'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -1129,7 +1129,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '设置禁止删除的节点 key 值列表',
-            'en-US': 'Sets the list of key values of nodes that cannot be delete.'
+            'en-US': 'Sets the list of key values of nodes that cannot be delete'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -1140,7 +1140,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '设置禁止编辑的节点 key 值列表',
-            'en-US': 'Sets the list of key values of nodes that cannot be edit.'
+            'en-US': 'Sets the list of key values of nodes that cannot be edit'
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
@@ -1224,7 +1224,7 @@ export default {
           desc: {
             'zh-CN': '在严格模式显示自动勾选子节点的功能时，自定义开关右侧的内容',
             'en-US':
-              'When the function of automatically selecting subnodes is displayed in strict mode, the content on the right of the customized switch is displayed.'
+              'When the function of automatically selecting subnodes is displayed in strict mode, the content on the right of the customized switch is displayed'
           },
           mode: ['pc'],
           pcDemo: 'other'
