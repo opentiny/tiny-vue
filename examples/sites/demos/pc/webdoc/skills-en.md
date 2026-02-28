@@ -1,10 +1,10 @@
 # TinyVue Agent Skills Usage Guide
 
-TinyVue Agent Skills is a set of skill tools for AI coding assistants, enabling them to deeply understand TinyVue component library usage, APIs, and best practices, helping you develop applications more efficiently with TinyVue.
+TinyVue Agent Skills is a comprehensive toolkit designed for AI coding assistants. It enables these assistants to gain deep understanding of TinyVue component library usage, APIs, and best practices, thereby helping developers build applications more efficiently with TinyVue.
 
 ## What is TinyVue Skills?
 
-`tiny-vue-skill` is an official Agent Skill provided by OpenTiny, containing TinyVue component documentation, examples, and usage specifications. Once installed, your AI coding assistant (such as Cursor, GitHub Copilot, Claude Code, etc.) will be able to:
+The `tiny-vue-skill` is an official Agent Skill developed by OpenTiny that contains comprehensive TinyVue component documentation, practical examples, and detailed usage specifications. Once installed, your AI coding assistant (including Cursor, GitHub Copilot, Claude Code, and others) will be capable of:
 
 - Accurately understand the APIs and properties of each TinyVue component
 - Provide code examples that conform to TinyVue standards
@@ -13,9 +13,9 @@ TinyVue Agent Skills is a set of skill tools for AI coding assistants, enabling 
 
 ## Installation Methods
 
-### Method 1: Install via Claude Code Plugin Marketplace (Claude Code is recommended)
+### Method 1: Install via Claude Code Plugin Marketplace (Recommended for Claude Code Users)
 
-For Claude Code users, with support for one-click updates:
+This method is ideal for Claude Code users and provides convenient one-click update functionality:
 
 ```bash
 # Add marketplace and install plugin after launching Claude Code
@@ -30,11 +30,11 @@ claude plugin marketplace add https://github.com/opentiny/agent-skills
 claude plugin install tiny-vue-skill@opentiny-skills
 ```
 
-> Advantage of marketplace installation: You can easily update skills using the `claude plugin update` command.
+> **Marketplace Advantage**: Skills can be easily updated using the `claude plugin update` command.
 
-### Method 2: Install via the `skills` Tool (Recommended)
+### Method 2: Install via the `skills` Tool (Most Versatile Approach)
 
-Suitable for various AI coding tools, using npm for automatic installation:
+This method works with various AI coding tools and leverages npm for automated installation:
 
 ```bash
 # List all available skills
@@ -47,7 +47,7 @@ npx skills add opentiny/agent-skills -g --skill tiny-vue-skill --agent cursor
 npx skills add opentiny/agent-skills --skill tiny-vue-skill --agent cursor
 ```
 
-The `--agent` parameter for other AI tools:
+**`--agent` Parameter Mapping for Different AI Tools:**
 
 | AI Tool        | `--agent` Parameter |
 | -------------- | ------------------- |
@@ -57,15 +57,15 @@ The `--agent` parameter for other AI tools:
 | Windsurf       | `windsurf`          |
 | Gemini CLI     | `gemini-cli`        |
 
-### Method 3: Manual Clone and Copy
+### Method 3: Manual Installation via Git Clone
 
-1. Clone the repository locally:
+**Step 1:** Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/opentiny/agent-skills.git
 ```
 
-1. Copy the `skills/tiny-vue-skill` folder to the Skills directory of your tool:
+**Step 2:** Copy the `skills/tiny-vue-skill` folder to your tool's Skills directory:
 
 | AI Tool        | Project-level Path  | Global Path                   |
 | -------------- | ------------------- | ----------------------------- |
@@ -74,34 +74,34 @@ git clone https://github.com/opentiny/agent-skills.git
 | GitHub Copilot | `.github/skills/`   | `~/.copilot/skills/`          |
 | Windsurf       | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
 
-## Enabling Skills in Cursor
+## Enabling Skills in Cursor IDE
 
-Press `Ctrl + ,` to open settings, search for `useagentskills`, find the experimental feature **Use Agent Skills**, and check the box to enable it.
+To enable Skills in Cursor IDE, press `Ctrl + ,` to open Settings, search for `useagentskills`, locate the experimental feature labeled **Use Agent Skills**, and enable it by checking the corresponding box.
 
 ## Usage Examples
 
-After installing and enabling Skills, you can directly describe your requirements to the AI assistant, and it will automatically reference TinyVue documentation to generate standard code implementations:
+Once you've installed and enabled the Skills, you can simply describe your requirements to the AI assistant. It will automatically reference TinyVue documentation to generate standardized code implementations:
 
-**Example 1: Create a Data Grid**
+**Example 1: Building a Data Grid Component**
 
-> Create a new Vue project, use TinyVue's Grid component to build a Chinese provincial information query table with columns for number, province name, population, area, and GDP. Support sorting, freeze the province name column on the left, and add a filter input at the top of the table.
+> "Create a new Vue project and implement TinyVue's Grid component to build a Chinese provincial information query table. Include columns for serial number, province name, population, area, and GDP. Enable sorting functionality, freeze the province name column on the left side, and add a filter input field at the top of the table."
 
-**Example 2: Enable Dark Mode**
+**Example 2: Implementing Dark Mode Support**
 
-> Add dark mode switching capability to the current TinyVue project.
+> "Add dark mode switching capability to the current TinyVue project, allowing users to toggle between light and dark themes seamlessly."
 
-**Example 3: Use Form Components**
+**Example 3: Creating a Registration Form**
 
-> Use TinyVue's Form component to create a user registration form with name, email, and password fields, and add form validation.
+> "Implement a user registration form using TinyVue's Form component with name, email, and password fields. Include comprehensive form validation to ensure data integrity and improve user experience."
 
 ## Keeping Skills Up to Date
 
-TinyVue component library is continuously updated. It is recommended to update Skills regularly to get the latest component documentation:
+Since the TinyVue component library is continuously evolving, we strongly recommend regular Skills updates to ensure you have access to the latest component documentation and features:
 
-- **Claude Code users**: Run the `claude plugin update` command
-- **`skills` tool users**: Re-run the installation command to overwrite and update
-- **Manual installation users**: Re-pull the repository and copy the latest `tiny-vue-skill` folder
+- **Claude Code Users**: Execute the `claude plugin update` command
+- **Skills Tool Users**: Re-execute the installation command to overwrite and update existing installations
+- **Manual Installation Users**: Pull the latest changes from the repository and copy the updated `tiny-vue-skill` folder
 
 ## Related Resources
 
-- [opentiny/agent-skills GitHub Repository](https://github.com/opentiny/agent-skills)
+- **GitHub Repository**: [opentiny/agent-skills](https://github.com/opentiny/agent-skills)

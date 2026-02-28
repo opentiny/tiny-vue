@@ -118,7 +118,7 @@ public-hoist-pattern[]=@opentiny/*
 
 ## `vite` 工程多组件引入按需加载和打包配置方法
 
-通过配置 `@opentiny/vue-vite-import` 插件可以按需只打包 pc 或者移动的组件，减少组件库打包后的体积。
+通过配置 `@opentiny/vue-vite-import` 插件可以按需打包 pc 或者移动的组件，减少组件库打包后的体积。
 
 执行以下命令安装 `TinyVue` 按需加载和打包的 `vite` 插件
 

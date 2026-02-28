@@ -6,20 +6,19 @@
   </div>
 </div>
 
-537/5000
-A set of global CSS variables is defined in the TinyVue component library to unify theme styles, such as fonts, colors, spacing, and rounding values, and component-level CSS variables are also defined within each component. Starting with the <code> @opentiny/vue@3.19.0 </code> version, the overall style of the component library is changed to a new 'Opentiny Design' style, which is more suitable for enterprise-class and background management applications. If you want to use the OLD theme style, you can choose to continue using the historical version, or refer to the current document's <a href='#OLD theme configuration '>OLD theme configuration </a>.
+A comprehensive set of global CSS variables is defined in the TinyVue component library to unify theme styles, including fonts, colors, spacing, and rounding values. Additionally, component-level CSS variables are defined within each individual component. Starting from version <code>@opentiny/vue@3.19.0</code>, the component library's overall style has been updated to the new 'Opentiny Design' style, which is specifically tailored for enterprise-class applications and backend management systems. If you prefer to use the legacy theme style, you can continue using the historical version or refer to the <a href='#old-theme-configuration'>OLD Theme Configuration</a> section in this document.
 
-- The global 'CSS variable' is located in the 'base' directory of the theme package: [base/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/vars.less)
+- Global CSS variables are located in the 'base' directory of the theme package: [base/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/base/vars.less)
 
-- Component-level 'CSS variables' in the theme root of each component, Such as [the button/vars. Less] (<https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less>)
+- Component-level CSS variables are defined in the theme root directory of each component, such as [button/vars.less](https://github.com/opentiny/tiny-vue/blob/dev/packages/theme/src/button/vars.less)
 
-By reading the above source code, you can see which styles of component libraries can be customized.
+By examining the source code above, you can identify which component library styles can be customized.
 
-## Custom theme
+## Custom Theme
 
-In a user's project, if you need to customize the theme style, or override the style of some components, you can configure the theme of the user project using the 'TinyThemeTool' class provided by the component library. We will also provide more topics for you to choose from in the future.
+In your project, if you need to customize the theme style or override specific component styles, you can configure the project theme using the 'TinyThemeTool' class provided by the component library. We will continue to provide additional theme options for you to choose from in the future.
 
-'ThemeData' is a custom theme data format that allows users to pass in overwritten global CSS variables via the 'data' property and valid css rule blocks via the 'CSS' property.
+'ThemeData' is a custom theme data format that allows users to pass overridden global CSS variables through the 'data' property and valid CSS rule blocks through the 'css' property.
 
 ```ts
 interface ThemeData {
@@ -79,9 +78,9 @@ themeTool.changeTheme({
     </div>
 </div>
 
-## Micro Frontends scene
+## Micro Frontends Scenario
 
-By default, the 'themeTool.changeTheme' method will mount a custom style to the current 'document'. However, in microfront end frameworks, there is often a mechanism for style isolation, such as an unbounded microfront that encloses a 'Web Component' to mount child applications. If you customize the theme in this scenario, you must mount the style to the 'ShadowRoot' of the subapplication.
+By default, the 'themeTool.changeTheme' method mounts custom styles to the current 'document'. However, in micro frontend frameworks, there is typically a style isolation mechanism in place. For instance, an unbounded micro frontend may encapsulate child applications within a 'Web Component'. When customizing themes in such scenarios, you must mount the styles to the 'ShadowRoot' of the sub-application.
 
 ```ts
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
@@ -103,60 +102,60 @@ themeTool.changeTheme(
 )
 ```
 
-## OLD 主题配置
+## OLD Theme Configuration
 
-We do not recommend that users continue to use the old theme, but for historical projects, we provide a set of 'CSS variables' of the old theme that users need to adapt in the project.
+We do not recommend that users continue using the old theme. However, for legacy projects, we provide a set of old theme 'CSS variables' that users need to adapt in their projects.
 
 ```ts
 import TinyThemeTool, { OldTheme } from '@opentiny/vue-theme/theme-tool'
 
 const themeTool = new TinyThemeTool(OldTheme)
 
-// themeTool.changeTheme(OldTheme)  // 效果同上
+// themeTool.changeTheme(OldTheme)  // Same effect as above
 ```
 
 <div class="warning custom-block">
-   旧主题不能 100% 还原历史版本的所有细节，如果用户升级后有较大的影响，可以跟我们反馈。也可以回退使用<code> @opentiny/vue@3.18.0 </code> 版本，我们将继续维护一段时间。
+  The old theme cannot 100% replicate all details of historical versions. If users experience significant impacts after upgrading, they can provide feedback to us. Alternatively, you can roll back to version <code>@opentiny/vue@3.18.0</code>, which we will continue to maintain for some time.
 </div>
 
-## Historical version of the theme configuration
+## Historical Version Theme Configuration
 
 <div class="danger custom-block">
-  本节文档仅支持 <code> @opentiny/vue@3.18.0 </code> 版本之前的主题定制
+  This section of the documentation only supports theme customization for versions prior to <code>@opentiny/vue@3.18.0</code>
 </div>
 
-The `TinyVue` multi-topic uses `css` variables and defines a series of global/component style variables that you can adjust according to your requirements.
+The `TinyVue` component library utilizes `css` variables and defines a series of global/component style variables that you can adjust according to your specific requirements.
 
-Variables involved in the topic. To view the variables, perform the following steps:
+To view the theme-related variables, follow these steps:
 
 Source code: [basic-var.less](https://github.com/opentiny/tiny-vue-theme/blob/main/src/base/basic-var.less)
 
-Design website: [Administrative side specification design variable] (<https://rnd-think.huawei.com/think-home/designAnnotation>)
+Design documentation: [Administrative interface specification design variables](https://rnd-think.huawei.com/think-home/designAnnotation)
 
-Basic style variable `npm` Repository path: `@opentiny/vue-theme/theme`
+Basic style variable `npm` repository path: `@opentiny/vue-theme/theme`
 
-### Using predefined themes and dynamically switching themes
+### Using Predefined Themes and Dynamic Theme Switching
 
-Currently, the official offers 4 sets of themes:
+The official distribution currently offers 4 theme sets:
 
--Default Theme
--Infinity Theme `tinyInfinityTheme`
--Aurora Theme `tinyAuroraTheme`
--XDesign Theme `tinySmbTheme`
+- Default Theme
+- Infinity Theme `tinyInfinityTheme`
+- Aurora Theme `tinyAuroraTheme`
+- XDesign Theme `tinySmbTheme`
 
-#### Using predefined themes through alias [Currently only supported: Eurora theme and XDesign theme]
+#### Using Predefined Themes Through Alias [Currently supporting: Aurora theme and XDesign theme]
 
-vue.config.js define
+**vue.config.js configuration:**
 
 ```js
 chainWebpack: (config) => {
   // XDesign Theme
   config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
-  // Aurora Theme : The aurora theme is to replace all the 'smb' characters in the above SMB themes with 'aurora'
+  // Aurora Theme: Replace all 'smb' characters in the above SMB theme with 'aurora'
 }
 ```
 
-vite.config.js define
+**vite.config.js configuration:**
 
 ```js
 resolve: {
@@ -170,33 +169,34 @@ resolve: {
 }
 ```
 
-#### The specific usage of theme initialization and dynamic theme switching is shown below, and the following code is added to the main.ts file
+#### Theme Initialization and Dynamic Switching Implementation
+
+Add the following code to your main.ts file:
 
 ```js
-import TinyThemeTool from ' @opentiny/vue-theme/theme-tool.js'
+import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
 
-// Infinite theme
+// Import Infinity theme
 import { tinyInfinityTheme } from '@opentiny/vue-theme/theme'
 
-// Initialize the infinite theme.
+// Initialize the infinity theme
 const theme = new TinyThemeTool(tinyInfinityTheme, 'tinyStyleSheetId')
 
-// Customize the theme data format.
+// Custom theme data format
 const tinyTestTheme = {
-  id: 'tiny-test-theme', // Unique ID of a topic. Each topic must be unique.
-  name: 'testTheme', // English name of the theme
-  cnName: 'Test Topic', // Chinese name of the topic
-  data: { 'ti-base-color': '#f2f2f3' } // Subject data
+  id: 'tiny-test-theme', // Unique theme identifier - each theme must have a unique ID
+  name: 'testTheme', // English theme name
+  cnName: 'Test Theme', // Chinese theme name
+  data: { 'ti-base-color': '#f2f2f3' } // Theme data
 }
 
 // Dynamic theme switching
-
 theme.changeTheme(tinyTestTheme)
 ```
 
-### Advanced Usage of Theme Customization
+### Advanced Theme Customization Techniques
 
-Add a custom `css` variable under the global scope.
+Define custom CSS variables at the global scope:
 
 ```css
 :root {
@@ -204,7 +204,7 @@ Add a custom `css` variable under the global scope.
 }
 ```
 
-For performance reasons, it is more recommended that you add custom `css` variables under the class name rather than under the global :root.
+For better performance, it's recommended to define custom CSS variables under specific class names rather than at the global :root level:
 
 ```css
 .tiny-test-class {
@@ -212,83 +212,86 @@ For performance reasons, it is more recommended that you add custom `css` variab
 }
 ```
 
-If you only want to customize a specific component, simply add inline styles for certain components separately.
+To customize a specific component, you can apply inline styles directly:
 
-```js
+```html
 <tiny-button style="--ti-base-color-white: #fefefe">Button</tiny-button>
 ```
 
-If you want to control the `css` variable through `js`, you can do this:
+To control CSS variables through JavaScript:
 
 ```js
 const el = document.documentElement
 
-// Obtain the CSS variable.
+// Retrieve CSS variable value
 getComputedStyle(el).getPropertyValue('--ti-base-color-white')
 
-// Set the CSS variable.
+// Set CSS variable value
 el.style.setProperty('--ti-base-color-white', '#fefefe')
 ```
 
-### Theme variables are standardized and replaced with old and new variable names
+### Standardizing Theme Variables: Old vs New Variable Names
 
-Background: Because the `tiny-vue` needs to connect to the theme-based configuration system, the `tiny-vue` component library is later than the `3.5. 0` version, and the name of the customized variable is changed.
+**Background**: As `tiny-vue` integrates with theme-based configuration systems, component library versions later than `3.5.0` have undergone variable name changes to standardize the naming convention.
 
-For example, `--ti-base-color-selected-font-color` has been changed to `--ti-base-color-selected-text-color` . `--ti-alert-radius` has been changed to `--ti-alert-border-radius`.
+For example:
 
-If the old `css` variable is used to adjust the style in a project, the upgrade to the new version `tiny-vue` may not take effect. Therefore, the following method of replacing variable names in batches is provided to solve the problem of replacing old and new variables. The procedure is as follows:
+- `--ti-base-color-selected-font-color` has been renamed to `--ti-base-color-selected-text-color`
+- `--ti-alert-radius` has been renamed to `--ti-alert-border-radius`
 
-Replace all the old variable names in the `src` directory in the project as an example: Replace the old and new variable names.
+When upgrading projects that use old CSS variables for styling, the new `tiny-vue` version may not recognize these variables. To address this, we provide a batch variable name replacement method. The process is as follows:
 
-Step 1: Click to download the mapping table `newVars.json` and the replacement script `replaceVar.js`.
+**Step 1**: Download the mapping table `newVars.json` and replacement script `replaceVar.js`.
 
-<script setup>
-  import { pubUrl } from '@/tools'
-</script>
+[Download newVars.json](newVars.json) and [Download replaceVar.js](replaceVar.js)
 
-<a :href="pubUrl('@demos/resource/newVars.json')" target="_blank" download="newVars.json">newVars.json files</a> and <a :href="pubUrl('@demos/resource/replaceVar.js')" target="_blank" download="replaceVar.js">replaceVar.js files</a>
+**Step 2**: Place both `newVars.json` and `replaceVar.js` in your project's root directory (at the same level as the src directory).
 
-Step 2: Place `newVars.json` and `replaceVar.js` in the root directory of the project, which is at the same level as the src directory.
+**Step 3**: Execute the following command in your project's root directory:
 
-<img :src="pubUrl('@demos/resource/theme-demo.png')" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); width: 30vw" ><br><br>
-
-Step 3: Run the following command in the root directory of the project:
-
-`node replaceVar.js`
-
-Special cases: If manual replacement is required, how to check which variables need to be manually replaced?
-
-Background of manual replacement: In the mapping table `newVars.json`, `key` is the old variable and `value` is the new variable. If an old variable similar to `--ti-button-padding` is used, it is called `special variable`. Because the variable is split into two or more new variables, the corresponding `value` is an array. In this case, the script cannot automatically replace the variable. You need to manually replace the variable. How to replace the variable?
-
-Step 1 Uncomment line 20 in the replaceVar.js file and repeat step 3. You can know where variables need to be manually replaced (the special variable table is attached at the end).
-
-```js
-// console.log ('The file path to be manually replaced is',statPath,'The variable to be manually replaced is',key)
+```bash
+node replaceVar.js
 ```
 
-Step 2: Find and modify the variables based on the printed file path and variables. The following are examples to cover all cases that need to be manually replaced:
+**Handling Special Cases**: Manual replacement may be required for certain variables.
 
-`General case`:
+**Manual Replacement Background**: In the `newVars.json` mapping table, each `key` represents an old variable name and its corresponding `value` represents the new variable name. Some old variables like `--ti-button-padding` are classified as "special variables" because they are split into two or more new variables, making their `value` an array. In such cases, the script cannot perform automatic replacement, requiring manual intervention.
 
-Example 1: The special variable table shows that the old variable similar to `--ti-button-padding` is split into `2` new variables, `--ti-button-padding-vertical`and`--ti-button-padding-horizontal`, literally. Padding for `vertical` and `horizontal`, respectively
+**Manual Replacement Process**:
 
-If the original project style is `padding: var(--ti-button-padding);`, manually replace it with `padding: var(--ti-button-padding-vertical) var(--ti-button-padding-horizontal);`.
+1. Uncomment line 20 in the replaceVar.js file and re-run step 3. This will identify which variables require manual replacement (refer to the special variables table at the end of this document).
 
-Example 2: The old variable similar to `--ti-pager-primary-color` is split into `3`new variables, `--ti-pager-primary-bg-color`, `--ti-pager-primary-text-color`, and `--ti-pager-primary-border-color`. Literally `Background Color`, `Text Color`, and `Border Color`
+```js
+console.log('Files requiring manual replacement:', statPath, 'Variables to replace:', key)
+```
 
-If the original format is `--ti-pager-primary-color:red;`, manually replace it with `--ti-pager-primary-bg-color: red; --ti-pager-primary-text-color: red; --ti-pager-primary-border-color: red;`.
+2. Based on the output file paths and variables, locate and modify the variables accordingly. The following examples cover all scenarios requiring manual replacement:
 
-`Special circumstances`:
+**General Cases**:
 
-Example 3: Query the special variable table. It is similar to a variable that contains the `border` field. If the new variable to be split contains `border-weight (border thickness), border-style (border style), and border-color (border color)`, For example, `--tv-Tabs-item-active-border`is split into`--tv-Tabs-item-active-border-weight，--tv-Tabs-item-active-border-style, --tv-Tabs-item-active-border-color`;
+**Example 1**: The special variables table shows that the old variable `--ti-button-padding` is split into 2 new variables: `--ti-button-padding-vertical` and `--ti-button-padding-horizontal`, representing vertical and horizontal padding respectively.
 
-If the original style is `--tv-Tabs-item-active-border: 1px solid red;`, manually replace it with `--tv-Tabs-item-active-border-weight: 1px; --tv-Tabs-item-active-border-style: solid; --tv-Tabs-item-active-border-color: red;`.
+Original style: `padding: var(--ti-button-padding);`
+Manual replacement: `padding: var(--ti-button-padding-vertical) var(--ti-button-padding-horizontal);`
 
-Example 4: If the variable split from `--ti-radio-button-checked-hover-color` contains the `box-shadow` field, you need to write the `box-shadow` style separately.
+**Example 2**: The old variable `--ti-pager-primary-color` is split into 3 new variables: `--ti-pager-primary-bg-color`, `--ti-pager-primary-text-color`, and `--ti-pager-primary-border-color`, representing background color, text color, and border color respectively.
 
-If the original format is `--ti-radio-button-checked-hover-color: red`, manually replace it with `--ti-radio-button-checked-hover-bg-color: red; --ti-radio-button-checked-hover-border-color: red; --ti-radio-button-checked-hover-box-shadow: -1px 0 0 0 red` . (The value of box-shadow is the same as that of normal writing and can be customized.)
+Original format: `--ti-pager-primary-color: red;`
+Manual replacement: `--ti-pager-primary-bg-color: red; --ti-pager-primary-text-color: red; --ti-pager-primary-border-color: red;`
 
-The mapping table of special variables is attached. There are 48 special variables in the newVars.json file, as shown in the following figure.
+**Special Circumstances**:
+
+**Example 3**: Variables containing the `border` field require special handling. When split, they contain `border-weight` (border thickness), `border-style` (border style), and `border-color` (border color). For instance, `--tv-Tabs-item-active-border` splits into `--tv-Tabs-item-active-border-weight`, `--tv-Tabs-item-active-border-style`, and `--tv-Tabs-item-active-border-color`.
+
+Original style: `--tv-Tabs-item-active-border: 1px solid red;`
+Manual replacement: `--tv-Tabs-item-active-border-weight: 1px; --tv-Tabs-item-active-border-style: solid; --tv-Tabs-item-active-border-color: red;`
+
+**Example 4**: When a variable split from `--ti-radio-button-checked-hover-color` contains the `box-shadow` field, the `box-shadow` style must be written separately.
+
+Original format: `--ti-radio-button-checked-hover-color: red`
+Manual replacement: `--ti-radio-button-checked-hover-bg-color: red; --ti-radio-button-checked-hover-border-color: red; --ti-radio-button-checked-hover-box-shadow: -1px 0 0 0 red;` (The box-shadow value follows standard CSS syntax and can be customized.)
+
+The complete mapping table of special variables is provided below. The newVars.json file contains 48 special variables as shown in the following structure.
 
 ```json
 {

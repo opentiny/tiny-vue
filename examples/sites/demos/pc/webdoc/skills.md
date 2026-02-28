@@ -65,7 +65,7 @@ npx skills add opentiny/agent-skills --skill tiny-vue-skill --agent cursor
 git clone https://github.com/opentiny/agent-skills.git
 ```
 
-1. 将 `skills/tiny-vue-skill` 文件夹复制到对应工具的 Skills 目录：
+2. 将 `skills/tiny-vue-skill` 文件夹复制到对应工具的 Skills 目录：
 
 | AI 工具        | 项目内路径          | 全局路径                      |
 | -------------- | ------------------- | ----------------------------- |
