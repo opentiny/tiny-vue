@@ -11,7 +11,7 @@ export default {
           defaultValue: 'IconClose',
           desc: {
             'zh-CN': '关闭图标组件对象',
-            'en-US': 'Close icon component object'
+            'en-US': 'Custom close icon component'
           },
           mode: ['pc'],
           pcDemo: 'closeIcon'
@@ -22,7 +22,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '自定义样式类',
-            'en-US': 'Custom style class'
+            'en-US': 'Custom CSS class name'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
@@ -33,7 +33,7 @@ export default {
           defaultValue: '0',
           desc: {
             'zh-CN': '启用防抖',
-            'en-US': 'Enable image stabilization'
+            'en-US': 'Enable debounce delay'
           },
           mode: ['pc'],
           pcDemo: 'debounceDelay'
@@ -46,7 +46,7 @@ export default {
             'zh-CN':
               '通知自动关闭时间，单位毫秒数。 默认情况， <code>success  info </code> 延时5秒 <code> warning  error </code> 延时10秒自动关闭 ',
             'en-US':
-              'Automatic notification shutdown time, in milliseconds. By default, <code>success info </code> Delay is 5 seconds. <code> warning error </code> Delay is 10 seconds'
+              'Auto close delay in milliseconds. By default, <code>success info</code> closes after 5 seconds, <code>warning error</code> closes after 10 seconds'
           },
           mode: ['pc'],
           pcDemo: 'duration'
@@ -58,7 +58,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '通知消息文本，可用 jsx 定制',
-            'en-US': 'Notification message text, which can be customized using JSX.'
+            'en-US': 'Notification message content. Supports JSX customization'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
@@ -69,7 +69,7 @@ export default {
           defaultValue: "'bottom-right'",
           desc: {
             'zh-CN': '通知显示位置',
-            'en-US': 'Notification display position.'
+            'en-US': 'Position where notification appears'
           },
           mode: ['pc'],
           pcDemo: 'position'
@@ -80,7 +80,7 @@ export default {
           defaultValue: 'true',
           desc: {
             'zh-CN': '是否显示关闭按钮',
-            'en-US': 'Whether to display the close button'
+            'en-US': 'Whether to show close button'
           },
           mode: ['pc'],
           pcDemo: 'showClose'
@@ -91,7 +91,7 @@ export default {
           defaultValue: 'true',
           desc: {
             'zh-CN': '是否显示类型图标',
-            'en-US': 'Display Type Icon'
+            'en-US': 'Whether to show type icon'
           },
           mode: ['pc'],
           pcDemo: 'showIcon'
@@ -102,7 +102,7 @@ export default {
           defaultValue: 'IconInfoSolid',
           desc: {
             'zh-CN': '类型图标组件对象',
-            'en-US': 'Type icon component object'
+            'en-US': 'Custom status icon component'
           },
           mode: ['pc'],
           pcDemo: 'statusIcon'
@@ -114,7 +114,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '通知消息标题，可用 jsx 定制',
-            'en-US': 'Notification message title, which can be customized by JSX.'
+            'en-US': 'Notification title Supports JSX customization'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
@@ -125,7 +125,7 @@ export default {
           defaultValue: "'info'",
           desc: {
             'zh-CN': '通知消息类型',
-            'en-US': 'Notification message type'
+            'en-US': 'Type of notification message'
           },
           mode: ['pc'],
           pcDemo: 'type'
@@ -149,7 +149,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '关闭前回调方法，返回 false 可阻止关闭',
-            'en-US': 'Callback method before closing. If false is returned, closing is prevented.'
+            'en-US': 'Before close callback Returning false prevents closing'
           },
           mode: ['pc'],
           pcDemo: 'notify-events'
@@ -160,7 +160,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '关闭 notify 时触发的事件',
-            'en-US': 'Event triggered when the notify function is disabled'
+            'en-US': 'Triggered when notification is closed'
           },
           mode: ['pc'],
           pcDemo: 'notify-events'
