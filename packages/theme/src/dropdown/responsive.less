@@ -1,0 +1,36 @@
+/* stylelint-disable function-no-unknown */
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@button-prefix-cls: ~'@{css-prefix}button';
+
+@media (max-width: 1280px) {
+  .@{dropdown-prefix-cls} {
+    .inject-Dropdown-vars();
+
+    /* 纯图标按钮 */
+    &__trigger:not(.tiny-button) {
+      &:not(:has(.@{dropdown-prefix-cls}__title)) > .@{dropdown-prefix-cls}__suffix-inner {
+        .tiny-svg {
+          font-size: var(--tv-Dropdown-icon-size-only-svg);
+
+          &:hover {
+            fill: #1476ff;
+          }
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    &-item {
+      &[class*='tiny-'] {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
