@@ -28,6 +28,10 @@ export const actionMenuProps = {
     type: String,
     default: 'label'
   },
+  placement: {
+    type: String,
+    default: 'bottom-end'
+  },
   popperClass: {
     type: String,
     default: ''
