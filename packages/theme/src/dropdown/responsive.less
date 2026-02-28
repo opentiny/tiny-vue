@@ -10,6 +10,10 @@
   .@{dropdown-prefix-cls} {
     .inject-Dropdown-vars();
 
+    &-menu {
+      min-width: 0;
+    }
+
     /* 纯图标按钮 */
     &__trigger:not(.tiny-button) {
       &:not(:has(.@{dropdown-prefix-cls}__title)) > .@{dropdown-prefix-cls}__suffix-inner {
@@ -17,7 +21,7 @@
           font-size: var(--tv-Dropdown-icon-size-only-svg);
 
           &:hover {
-            fill: #1476ff;
+            fill: var(--tv-Dropdown-adapt-icon-color);
           }
         }
 
@@ -28,8 +32,16 @@
     }
 
     &-item {
+      .inject-Dropdown-vars();
+
       &[class*='tiny-'] {
         margin-bottom: 0;
+      }
+
+      // 展开项悬浮激活态
+      &:not(.is-disabled).has-children:hover {
+        color: var(--tv-Dropdown-adapt-font-color-hover);
+        background-color: var(--tv-Dropdown-adapt-bg-color-hover);
       }
     }
   }
