@@ -107,6 +107,7 @@ export default defineComponent({
   props: [
     ...props,
     'visible',
+    'appendToBody',
     'title',
     'showHeader',
     'showFooter',

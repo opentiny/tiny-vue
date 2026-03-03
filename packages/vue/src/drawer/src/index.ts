@@ -19,6 +19,10 @@ export const drawerProps = {
     type: Object,
     default: () => $constants
   },
+  appendToBody: {
+    type: Boolean,
+    default: () => false
+  },
   visible: {
     type: Boolean,
     default: false

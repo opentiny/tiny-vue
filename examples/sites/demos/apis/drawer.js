@@ -6,6 +6,18 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'append-to-body',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': 'drawer 本身是否插入到 body 上，嵌套的 drawer 必须指定该属性并赋值为 true',
+            'en-US':
+              'Whether the drawer itself is inserted into the body. This attribute must be specified and set to true for nested drawer'
+          },
+          mode: ['pc'],
+          mfDemo: ''
+        },
+        {
           name: 'before-close',
           type: '(type) => boolean',
           defaultValue: '',
