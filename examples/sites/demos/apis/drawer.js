@@ -10,12 +10,15 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': 'drawer 本身是否插入到 body 上，嵌套的 drawer 必须指定该属性并赋值为 true',
-            'en-US':
-              'Whether the drawer itself is inserted into the body. This attribute must be specified and set to true for nested drawer'
+            'zh-CN': 'drawer 本身是否插入到 body 上',
+            'en-US': 'Whether the drawer itself is inserted into the body'
           },
-          mode: ['pc'],
-          mfDemo: ''
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: '',
+          meta: {
+            stable: '3.30.0'
+          }
         },
         {
           name: 'before-close',

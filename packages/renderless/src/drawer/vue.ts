@@ -60,7 +60,7 @@ export const renderless = (
     removeKeydownEvent: removeKeydownEvent({ api }),
     addDragEvent: addDragEvent({ api, vm }),
     removeDragEvent: removeDragEvent({ api, vm }),
-    watchVisible: watchVisible({ state, props, parent, api }),
+    watchVisible: watchVisible({ props, parent, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
     computedWidth: computedWidth({ state, designConfig, props, constants }),
