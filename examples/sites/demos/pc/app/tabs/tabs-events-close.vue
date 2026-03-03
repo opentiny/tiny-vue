@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" :before-close="beforeClose" @close="close">
+  <tiny-tabs v-model="activeName" :with-close="true" :before-close="beforeClose" @close="close">
     <tiny-tab-item
       :key="item.name"
       v-for="item in tabs"
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -55,6 +55,12 @@ export default {
   },
   methods: {
     beforeClose(name) {
+      Notify({
+        type: 'info',
+        title: 'beforeClose 事件',
+        message: '当前设置的beforeClose事件只能关闭标签页“其他组件”，点击其他标签页的关闭按钮将无法关闭。',
+        position: 'top-right'
+      })
       // 只能关闭标签页“其他组件”
       return name === 'fifth'
     },
