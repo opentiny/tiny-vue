@@ -1,0 +1,16 @@
+@import '../custom.less';
+@import './vars.less';
+
+@option-prefix-cls: ~'@{css-prefix}option';
+
+@media (max-width: 1280px) {
+  .@{option-prefix-cls} {
+    .inject-Option-vars();
+
+    &.selected {
+      &.is-disabled {
+        background-color: var(--tv-Option-adapt-bg-color-disabled-control-active);
+      }
+    }
+  }
+}
