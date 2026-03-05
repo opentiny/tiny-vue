@@ -966,13 +966,26 @@ export const Cell = {
     const rowId = getRowid($table, row)
     let operationCell
 
-    if ($table.operationMap.has(rowId)) {
-      return $table.operationMap.get(rowId)
+    const cached = $table.operationMap.get(rowId)
+    if (cached) {
+      const { cell: cachedCell, row: cachedRow } = cached
+      const { visibleColumn = [] } = $table
+      const rowUnchanged = visibleColumn.every(
+        (col) => !col.property || $table.compareRow(row, cachedRow, col.property)
+      )
+      if (rowUnchanged) {
+        return cachedCell
+      }
     }
+    const setOperationCache = (cell) => {
+      const rowSnapshot = { ...row }
+      $table.operationMap.set(rowId, { cell, row: rowSnapshot })
+    }
+
     // 如果是用户自定义的插槽，怎么走用户插槽逻辑
     if (slots && slots.default) {
       operationCell = slots.default(params, h)
-      $table.operationMap.set(rowId, operationCell)
+      setOperationCache(operationCell)
       return operationCell
     }
 
@@ -981,7 +994,7 @@ export const Cell = {
 
     if (render) {
       operationCell = render({ h, buttons, params })
-      $table.operationMap.set(rowId, operationCell)
+      setOperationCache(operationCell)
       return operationCell
     }
 
@@ -1077,7 +1090,7 @@ export const Cell = {
         groupBig
       )
     ]
-    $table.operationMap.set(rowId, operationCell)
+    setOperationCache(operationCell)
     return operationCell
   }
 }
