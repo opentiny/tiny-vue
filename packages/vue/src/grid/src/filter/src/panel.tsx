@@ -226,7 +226,11 @@ export default defineComponent({
     }
 
     // 支持用户自定义筛选项的个数和显示顺序和位置
-    const quickFilter = layout.split(',').map((item) => layoutMap[item] && layoutMap[item].call(this))
+    const quickFilter = layout
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .map((item) => layoutMap[item] && layoutMap[item].call(this))
 
     const map = {
       filterActive: 'filter__active'
