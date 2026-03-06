@@ -86,12 +86,10 @@ export default defineComponent({
       value || (slots.default && slots.default()) ? (
         <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
           {value ? (
-            <span style={maxWidth ? { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'} : {}}>
-              {value}
-            </span>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{value}</span>
           ) : (
             slots.default && (
-              <span style={maxWidth ? { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } : {}}>
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {slots.default()}
               </span>
             )
