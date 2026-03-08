@@ -74,19 +74,3 @@ export default defineComponent({
 })
 </script>
  
-<style scoped>
-.tiny-color-picker__dropdown {
-  position: absolute;
-}
-.tiny-color-picker__dropdown--bottom {
-  top: 100%;
-  left: 0;
-  margin-top: 8px;
-}
- 
-.tiny-color-picker__dropdown--top {
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 8px;
-}
-</style>
