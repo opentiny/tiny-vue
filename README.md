@@ -20,6 +20,39 @@ English | [简体中文](README.zh-CN.md)
 - 📊 Components support configuration development, can support low-code platform.
 - 💡 Use a cross-end and cross-framework architecture, flexible and portable.
 
+## Build with AI
+
+`tiny-vue-skill` is a set of skill tools designed for AI coding assistants, enabling them to deeply understand the usage, APIs, and best practices of the TinyVue component library, thereby helping you develop applications with TinyVue more efficiently.
+
+You can install `tiny-vue-skill` globally using the following command:
+
+```bash
+npx skills add opentiny/agent-skills -g --skill tiny-vue-skill --agent cursor
+```
+
+![tiny-vue-skill](tiny-vue-skill.png)
+
+The `--agent` parameters corresponding to some other AI tools:
+
+| Agent          | `--agent`        |
+| -------------- | ---------------- |
+| Amp            | `amp`            |
+| Antigravity    | `antigravity`    |
+| Claude Code    | `claude-code`    |
+| Clawdbot       | `clawdbot`       |
+| Codex          | `codex`          |
+| Cursor         | `cursor`         |
+| Droid          | `droid`          |
+| Gemini CLI     | `gemini-cli`     |
+| GitHub Copilot | `github-copilot` |
+| Goose          | `goose`          |
+| Kilo Code      | `kilo`           |
+| Kiro CLI       | `kiro-cli`       |
+| OpenCode       | `opencode`       |
+| Roo Code       | `roo`            |
+| Trae           | `trae`           |
+| Windsurf       | `windsurf`       |
+
 ## 🛠️ Usage
 
 ### 1. Installation
