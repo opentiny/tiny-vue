@@ -1,0 +1,36 @@
+@import '../custom.less';
+@import './vars.less';
+
+@steps-prefix-cls: ~'@{css-prefix}steps';
+@steps-line-prefix-cls: ~'@{css-prefix}steps-line';
+@steps-standard-prefix-cls: ~'@{css-prefix}steps-standard';
+
+@media screen and (max-width: 1280px) {
+  .@{steps-line-prefix-cls} {
+    .inject-Steps-vars();
+
+    &.vertical {
+      .description {
+        line-height: var(--tv-Steps-adapt-node-desc-line-height);
+        margin-top: var(--tv-Steps-adapt-node-desc-space-top);
+      }
+    }
+
+    &.medium {
+      .@{steps-prefix-cls}-block {
+        .title-vertical {
+          padding-top: var(--tv-Steps-adapt-node-desc-space-top);
+        }
+      }
+    }
+  }
+
+  .@{steps-standard-prefix-cls} {
+    .inject-Steps-vars();
+    & .@{steps-prefix-cls}-advanced {
+      .count {
+        box-shadow: 0 0 0 1px var(--tv-Steps-adapt-border-color);
+      }
+    }
+  }
+}
