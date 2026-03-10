@@ -1,0 +1,60 @@
+@import '../custom.less';
+@import './vars.less';
+
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+@media screen and (max-width: 1280px) {
+  .@{dialog-box-prefix-cls} {
+    .inject-DialogBox-vars();
+
+    margin: 0 var(--tv-DialogBox-adapt-space-part);
+
+    & &__header {
+      padding: var(--tv-DialogBox-adapt-space-unit);
+
+      .@{dialog-box-prefix-cls}__title {
+        font-size: var(--tv-DialogBox-adapt-font-size-xl);
+      }
+    }
+
+    & &__body {
+      font-size: var(--tv-DialogBox-adapt-font-size-sm);
+      padding-left: var(--tv-DialogBox-adapt-space-unit);
+      padding-right: var(--tv-DialogBox-adapt-space-unit);
+    }
+
+    & &__footer {
+      padding: var(--tv-DialogBox-adapt-space-part) var(--tv-DialogBox-adapt-space-unit) var(--tv-DialogBox-adapt-space-unit);
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .@{dialog-box-prefix-cls} {
+
+    left: 50% !important;
+    top: 15vh !important;
+    transform: translateX(-55%) !important;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 640px) {
+  .@{dialog-box-prefix-cls} {
+
+    width: 400px !important;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 500px) {
+  .@{dialog-box-prefix-cls} {
+
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .@{dialog-box-prefix-cls} {
+
+    width: 260px !important;
+  }
+}
