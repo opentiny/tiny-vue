@@ -1,0 +1,65 @@
+@import '../custom.less';
+@import './vars.less';
+
+@modal-prefix-cls: ~'@{css-prefix}modal';
+
+// 定义尺寸变量
+@modal-adapt-space: var(--tv-Modal-adapt-space-unit);
+@modal-adapt-space-part: var(--tv-Modal-adapt-space-part);
+
+.modal-responsive(@header-padding; @body-padding; @box-margin; @box-width: 400px) {
+  .@{modal-prefix-cls} {
+    .inject-Modal-vars();
+
+    &__wrapper {
+      &.type__alert,
+      &.type__confirm {
+        .@{modal-prefix-cls}__box {
+          top: 100px;
+          transform: translateX(-5%);
+          margin: @box-margin;
+          width: @box-width;
+
+          .@{modal-prefix-cls}__header {
+            padding: @header-padding;
+
+            .@{modal-prefix-cls}__title {
+              font-size: var(--tv-Modal-adapt-font-size-xl);
+            }
+          }
+
+          .@{modal-prefix-cls}__body {
+            padding: @body-padding;
+
+            .@{modal-prefix-cls}__content {
+              .@{modal-prefix-cls}__text {
+                font-size: var(--tv-Modal-adapt-font-size-sm);
+              }
+            }
+          }
+
+          .@{modal-prefix-cls}__footer {
+            padding: @modal-adapt-space-part @modal-adapt-space @modal-adapt-space;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1280px) {
+  .modal-responsive(
+    @header-padding: @modal-adapt-space @modal-adapt-space @modal-adapt-space-part;
+    @body-padding: 0 @modal-adapt-space;
+    @box-margin: 0 @modal-adapt-space-part;
+  );
+}
+
+@media screen and (max-width: 600px) {
+  .modal-responsive(
+    @header-padding: @modal-adapt-space-part @modal-adapt-space-part;
+    @body-padding: 0 @modal-adapt-space-part;
+    @box-margin: 0 @modal-adapt-space-part 50px;
+    @box-width: 320px;
+  );
+}
