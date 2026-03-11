@@ -131,7 +131,7 @@ export default {
           mode: ['pc'],
           pcDemo: 'placement',
           meta: {
-            stable: '3.27.0'
+            stable: '3.30.0'
           }
         }
       ],
