@@ -40,7 +40,15 @@
 @media screen and (max-width: 600px) {
   .@{drawer-prefix-cls} {
     .@{drawer-prefix-cls}__main {
-      width: 320px !important;
+      width: 100% !important;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .@{drawer-prefix-cls} {
+    .@{drawer-prefix-cls}__main {
+      margin-left: calc(var(--tv-Drawer-adapt-space-unit) * 2);
     }
   }
 }
