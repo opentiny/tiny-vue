@@ -17,14 +17,23 @@
         button {
           &.disabled,
           &[disabled] {
-            color: var(--tv-ButtonGroup-item-btn-adapt-disabled-text-color);
+            color: var(--tv-ButtonGroup-responsive-item-btn-disabled-text-color);
           }
         }
       }
 
+      &__sup {
+        .tiny-svg {
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
       &__sup-icon {
-        background-color: var(--tv-ButtonGroup-item-adapt-icon-bg-color);
-        border-radius: 0 var(--tv-ButtonGroup-item-adapt-sup-icon-radius);
+        background-color: var(--tv-ButtonGroup-responsive-item-icon-bg-color);
+        border-radius: 0 var(--tv-ButtonGroup-responsive-item-sup-icon-radius);
         fill: #c25700;
         display: flex;
         align-items: center;

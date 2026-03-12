@@ -9,14 +9,14 @@
   .@{button-prefix-cls} {
     .inject-Button-vars();
 
-    border-radius: var(--tv-Button-adapt-radius);
-    height: var(--tv-Button-adapt-height);
-    font-size: var(--tv-Button-adapt-font-size);
+    border-radius: var(--tv-Button-responsive-radius);
+    height: var(--tv-Button-responsive-height);
+    font-size: var(--tv-Button-responsive-font-size);
 
     &.is-icon {
       &:not(.@{button-prefix-cls}--default) {
         .@{svg-prefix-cls} {
-          fill: var(--tv-Button-icon-adapt-inverse-tint);
+          fill: var(--tv-Button-responsive-icon-inverse-tint);
         }
       }
     }
