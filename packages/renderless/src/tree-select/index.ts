@@ -16,7 +16,7 @@ const updateSingleSelected = ({ props, vm, data }) => {
 
   if (!baseState) return
 
-  const currentLabel = data?.[props.textField] || ''
+  const currentLabel = data?.[props.textField] ?? ''
 
   baseState.selectedLabel = currentLabel
 
