@@ -4,8 +4,8 @@
 @modal-prefix-cls: ~'@{css-prefix}modal';
 
 // 定义尺寸变量
-@modal-adapt-space: var(--tv-Modal-adapt-space-unit);
-@modal-adapt-space-part: var(--tv-Modal-adapt-space-part);
+@modal-responsive-space: var(--tv-Modal-responsive-space-unit);
+@modal-responsive-space-part: var(--tv-Modal-responsive-space-part);
 
 .modal-responsive(@header-padding; @body-padding; @box-margin; @box-width: 400px) {
   .@{modal-prefix-cls} {
@@ -24,7 +24,7 @@
             padding: @header-padding;
 
             .@{modal-prefix-cls}__title {
-              font-size: var(--tv-Modal-adapt-font-size-xl);
+              font-size: var(--tv-Modal-responsive-font-size-xl);
             }
           }
 
@@ -33,13 +33,13 @@
 
             .@{modal-prefix-cls}__content {
               .@{modal-prefix-cls}__text {
-                font-size: var(--tv-Modal-adapt-font-size-sm);
+                font-size: var(--tv-Modal-responsive-font-size-sm);
               }
             }
           }
 
           .@{modal-prefix-cls}__footer {
-            padding: @modal-adapt-space-part @modal-adapt-space @modal-adapt-space;
+            padding: @modal-responsive-space-part @modal-responsive-space @modal-responsive-space;
           }
         }
       }
@@ -49,17 +49,17 @@
 
 @media (min-width: 600px) and (max-width: 1280px) {
   .modal-responsive(
-    @header-padding: @modal-adapt-space @modal-adapt-space @modal-adapt-space-part;
-    @body-padding: 0 @modal-adapt-space;
-    @box-margin: 0 @modal-adapt-space-part;
+    @header-padding: @modal-responsive-space @modal-responsive-space @modal-responsive-space-part;
+    @body-padding: 0 @modal-responsive-space;
+    @box-margin: 0 @modal-responsive-space-part;
   );
 }
 
 @media screen and (max-width: 600px) {
   .modal-responsive(
-    @header-padding: @modal-adapt-space-part @modal-adapt-space-part;
-    @body-padding: 0 @modal-adapt-space-part;
-    @box-margin: 0 @modal-adapt-space-part 50px;
+    @header-padding: @modal-responsive-space-part @modal-responsive-space-part;
+    @body-padding: 0 @modal-responsive-space-part;
+    @box-margin: 0 @modal-responsive-space-part 50px;
     @box-width: 320px;
   );
 }
