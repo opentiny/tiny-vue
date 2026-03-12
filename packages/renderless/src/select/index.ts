@@ -1575,6 +1575,13 @@ export const watchVisible =
           vm.$refs.scrollbar.handleScroll()
         }
       }
+
+      // mf模板的弹出后，要清除当前focus的元素，避免苹果系统出现光标
+      if (value && state.device === 'mb' && state.breakpoint === 'default') {
+        if (document.activeElement) {
+          document.activeElement.blur()
+        }
+      }
     }, props.updateDelay)
 
     if (!value && props.shape === 'filter') {
