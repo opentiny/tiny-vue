@@ -10,16 +10,16 @@
     .inject-CascaderNode-vars();
 
     & > .@{radio-prefix-cls} {
-      margin-right: var(--tv-CascaderNode-adapt-radio-margin-right);
+      margin-right: var(--tv-CascaderNode-responsive-radio-margin-right);
     }
 
     &.is-active {
       & > .@{cascader-node-prefix-cls}__label {
-        color: var(--tv-CascaderNode-adapt-selectable-text-color);
+        color: var(--tv-CascaderNode-responsive-selectable-text-color);
 
         svg {
-          fill: var(--tv-CascaderNode-adapt-selectable-icon-color);
-          stroke: var(--tv-CascaderNode-adapt-selectable-icon-color);
+          fill: var(--tv-CascaderNode-responsive-selectable-icon-color);
+          stroke: var(--tv-CascaderNode-responsive-selectable-icon-color);
         }
       }
     }
@@ -27,8 +27,8 @@
     &.in-active-path {
       & > .@{cascader-node-prefix-cls}__label {
         svg {
-          fill: var(--tv-CascaderNode-adapt-selectable-icon-color);
-          stroke: var(--tv-CascaderNode-adapt-selectable-icon-color);
+          fill: var(--tv-CascaderNode-responsive-selectable-icon-color);
+          stroke: var(--tv-CascaderNode-responsive-selectable-icon-color);
         }
       }
     }
