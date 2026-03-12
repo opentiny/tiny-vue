@@ -1,6 +1,7 @@
 <template>
   <div
     ref="select"
+    data-tag="tiny-select"
     class="inline-block relative w-full outline-0 group [&_[data-tag=tiny-tag]]:max-w-[144px]"
     v-popover:popover
     :class="[hoverExpand ? 'align-top' : '', $parent.$attrs.class]"

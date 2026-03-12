@@ -29,6 +29,13 @@ export const mounted =
     })
 
     selectEmitter.on(constants.EVENT_NAME.destroyPopper, destroyPopper)
+
+    // mf模板的弹出后，要清除当前focus的元素，避免苹果系统出现光标
+    if (selectVm.state.device === 'mb' && selectVm.state.breakpoint === 'default') {
+      if (document.activeElement) {
+        document.activeElement.blur()
+      }
+    }
   }
 
 export const closeModal =
