@@ -1,5 +1,30 @@
 import { find } from '@opentiny/utils'
 
+const getSingleSelectedData = ({ props, data }) => ({
+  ...data,
+  currentLabel: data[props.textField],
+  value: data[props.valueField],
+  state: {
+    currentLabel: data[props.textField]
+  }
+})
+
+const updateSingleSelected = ({ props, vm, data }) => {
+  vm.$refs.baseSelectRef.updateSelectedData(data)
+
+  const baseState = vm.$refs.baseSelectRef.state
+
+  if (!baseState) return
+
+  const currentLabel = data?.[props.textField] || ''
+
+  baseState.selectedLabel = currentLabel
+
+  if (props.filterable || props.searchable) {
+    baseState.query = currentLabel
+  }
+}
+
 /**
  * 树节点过滤事件
  */
@@ -16,13 +41,10 @@ export const nodeClick =
   ({ props, vm, emit }) =>
   (data) => {
     if (!props.multiple) {
-      vm.$refs.baseSelectRef.updateSelectedData({
-        ...data,
-        currentLabel: data[props.textField],
-        value: data[props.valueField],
-        state: {
-          currentLabel: data[props.textField]
-        }
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
       })
 
       emit('change', data[props.valueField])
@@ -190,13 +212,10 @@ export const mounted =
       // 如果没有找到节点（例如懒加载场景），直接返回
       if (!data) return
 
-      vm.$refs.baseSelectRef.updateSelectedData({
-        ...data,
-        currentLabel: data[props.textField],
-        value: data[props.valueField],
-        state: {
-          currentLabel: data[props.textField]
-        }
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
       })
 
       state.currentKey = data[props.valueField]
@@ -210,18 +229,22 @@ export const watchValue =
     if (!props.multiple) {
       if (newValue === oldValue || newValue === state.currentKey) return
 
+      if (newValue === null || newValue === undefined || newValue === '') {
+        updateSingleSelected({ props, vm, data: {} })
+        state.currentKey = ''
+
+        return
+      }
+
       const options = api.getPluginOption(newValue)
       const data = options && options.length > 0 ? options[0] : null
 
       if (!data) return
 
-      vm.$refs.baseSelectRef.updateSelectedData({
-        ...data,
-        currentLabel: data[props.textField],
-        value: data[props.valueField],
-        state: {
-          currentLabel: data[props.textField]
-        }
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
       })
 
       state.currentKey = data[props.valueField]
