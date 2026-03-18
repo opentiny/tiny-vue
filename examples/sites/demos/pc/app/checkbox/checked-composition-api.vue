@@ -9,7 +9,6 @@
 <script setup>
 import { ref } from 'vue'
 import { TinyCheckbox, TinyCheckboxGroup } from '@opentiny/vue'
-import '../../../../../../packages/theme/src/adaptation-index.less'
 
 const checkedData = ref(['复选框 1'])
 </script>
