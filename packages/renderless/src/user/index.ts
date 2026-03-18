@@ -391,7 +391,7 @@ export const syncCacheIds =
   (ids, queryIds, cacheData) => {
     const { cacheFields, cacheKey } = props
     const { valueField } = state
-    const cacheUsers = toJson(window.localStorage.getItem(cacheKey)) || {}
+    const cacheUsers = toJson(window.sessionStorage.getItem(cacheKey)) || {}
     const caseCacheUsers = getLowerCaseObj(cacheUsers)
 
     ids.forEach((id) => {
@@ -405,7 +405,7 @@ export const syncCacheIds =
             : state.textField
 
         if (textField !== '' && !cacheUser.a) {
-          window.localStorage.removeItem(cacheKey)
+          window.sessionStorage.removeItem(cacheKey)
           queryIds.push(id)
         }
 
@@ -469,7 +469,7 @@ export const getUsers =
 export const updateCache =
   ({ props, state }) =>
   () => {
-    const users = toJson(window.localStorage.getItem(props.cacheKey)) || {}
+    const users = toJson(window.sessionStorage.getItem(props.cacheKey)) || {}
     const currDate = toDateStr(new Date(), 'yyyyMMdd')
 
     if (currDate !== users.t) {
@@ -494,7 +494,7 @@ export const updateCache =
 export const saveCache =
   ({ props }) =>
   (cache) => {
-    window.localStorage.setItem(props.cacheKey, toJsonStr(cache))
+    window.sessionStorage.setItem(props.cacheKey, toJsonStr(cache))
   }
 
 export const cacheUser =
@@ -502,7 +502,7 @@ export const cacheUser =
   (users) => {
     const { cacheKey } = props
     const { valueField } = state
-    const cacheUser = toJson(window.localStorage.getItem(cacheKey)) || {}
+    const cacheUser = toJson(window.sessionStorage.getItem(cacheKey)) || {}
     const cacheFields = service.userCache
     let user
 
