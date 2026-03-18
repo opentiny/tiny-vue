@@ -8,7 +8,7 @@
 
 @media (max-width: 1280px) {
   .@{dropdown-prefix-cls} {
-    .inject-Dropdown-vars();
+    .inject-Dropdown-responsive-vars();
 
     &-menu {
       min-width: 0;
@@ -18,7 +18,7 @@
     &__trigger:not(.tiny-button) {
       &:not(:has(.@{dropdown-prefix-cls}__title)) > .@{dropdown-prefix-cls}__suffix-inner {
         .tiny-svg {
-          font-size: var(--tv-Dropdown-icon-size-only-svg);
+          font-size: var(--tv-Dropdown-responsive-icon-size-only-svg);
 
           &:hover {
             fill: var(--tv-Dropdown-responsive-icon-color);
