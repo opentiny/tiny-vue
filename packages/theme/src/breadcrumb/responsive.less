@@ -1,13 +1,9 @@
-@import '../mixins/common.less';
 @import '../custom.less';
-@import './vars.less';
 
 @breadcrumb-prefix-cls: ~'@{css-prefix}breadcrumb';
 
 @media screen and (max-width: 1280px) {
   .@{breadcrumb-prefix-cls} {
-    .inject-Breadcrumb-vars();
-
     & &__separator {
       margin: 0;
     }
