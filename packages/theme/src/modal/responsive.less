@@ -16,7 +16,8 @@
       &.type__confirm {
         .@{modal-prefix-cls}__box {
           top: 100px;
-          transform: translateX(-5%);
+          left: 50% !important;
+          transform: translateX(-55%);
           margin: @box-margin;
           width: @box-width;
 
@@ -55,7 +56,7 @@
   );
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 599px) {
   .modal-responsive(
     @header-padding: @modal-responsive-space-part @modal-responsive-space-part;
     @body-padding: 0 @modal-responsive-space-part;
