@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import Lightning from '@opentiny/vue-theme-saas/svgs/lightning.svg'
 
-export default () => svg({ name: 'IconLightning', component: Lightning, filledComponent: Lightning })()
+const iconFn = () => svg({ name: 'IconLightning', component: Lightning, filledComponent: Lightning })()
+
+iconFn.__flag = { 'svgName': 'lightning', 'hasFill': false }
+export default iconFn

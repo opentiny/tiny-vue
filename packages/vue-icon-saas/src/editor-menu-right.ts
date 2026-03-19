@@ -2,5 +2,7 @@ import { svg } from '@opentiny/vue-common'
 import EditorMenuRight from '@opentiny/vue-theme-saas/svgs/editor-menu-right.svg'
 import EditorMenuRightFilled from '@opentiny/vue-theme-saas/svgs/editor-menu-right-filled.svg'
 
-export default () =>
+const iconFn = () =>
   svg({ name: 'IconEditorMenuRight', component: EditorMenuRight, filledComponent: EditorMenuRightFilled })()
+iconFn.__flag = { 'svgName': 'editor-menu-right', 'hasFill': true }
+export default iconFn

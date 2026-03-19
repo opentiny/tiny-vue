@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import SplitLeft from '@opentiny/vue-theme-saas/svgs/split-left.svg'
 
-export default () => svg({ name: 'IconSplitLeft', component: SplitLeft, filledComponent: SplitLeft })()
+const iconFn = () => svg({ name: 'IconSplitLeft', component: SplitLeft, filledComponent: SplitLeft })()
+
+iconFn.__flag = { 'svgName': 'split-left', 'hasFill': false }
+export default iconFn

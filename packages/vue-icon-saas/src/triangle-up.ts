@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import TriangleUp from '@opentiny/vue-theme-saas/svgs/triangle-up.svg'
 
-export default () => svg({ name: 'IconTriangleUp', component: TriangleUp, filledComponent: TriangleUp })()
+const iconFn = () => svg({ name: 'IconTriangleUp', component: TriangleUp, filledComponent: TriangleUp })()
+
+iconFn.__flag = { 'svgName': 'triangle-up', 'hasFill': false }
+export default iconFn

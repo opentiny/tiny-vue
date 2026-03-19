@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import CheckedTrue from '@opentiny/vue-theme-saas/svgs/checked-true.svg'
 
-export default () => svg({ name: 'IconCheckedTrue', component: CheckedTrue, filledComponent: CheckedTrue })()
+const iconFn = () => svg({ name: 'IconCheckedTrue', component: CheckedTrue, filledComponent: CheckedTrue })()
+
+iconFn.__flag = { 'svgName': 'checked-true', 'hasFill': false }
+export default iconFn
