@@ -108,7 +108,8 @@ export default defineComponent({
     'dataUpgrade',
     'zIndex',
     'imagePasteFailCallback',
-    'beforeEditorInit'
+    'beforeEditorInit',
+    'beforeLinkOpen'
   ],
   setup(props, context): any {
     return setup({
