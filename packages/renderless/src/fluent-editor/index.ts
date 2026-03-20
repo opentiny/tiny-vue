@@ -658,7 +658,7 @@ export const insertImageToEditor =
 export const uploadImageToSev =
   ({ state }) =>
   (event) => {
-    const { file, hasRejectedImage, callback } = event
+    const { file, fileName, hasRejectedImage, callback } = event
     const { files } = event.data
 
     if (hasRejectedImage) {
@@ -681,7 +681,7 @@ export const uploadImageToSev =
 
     let { fd = new FormData(), xhr = new XMLHttpRequest() } = {}
 
-    fd.append(name, file, file.name)
+    fd.append(name, file, fileName || file.name || 'file')
 
     options.csrf && fd.append(options.csrf.token, options.csrf.hash)
 
