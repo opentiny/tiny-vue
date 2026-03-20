@@ -719,6 +719,7 @@ const Methods = {
       if (argsLength > 1) {
         if (!this.getColumnByField(field)) {
           warn('ui.grid.error.fieldNotExist', field)
+          return false
         }
         return !this.compareRow(row, originRow, field)
       }
