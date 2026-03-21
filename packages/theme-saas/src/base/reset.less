@@ -1,6 +1,7 @@
-﻿@import '../custom.less';
+@import '../custom.less';
 
-[class*=~'@{css-prefix}'] {
+// 以下 class 仅含 tiny- 前缀用于布局/锁定，不应作为 reset 作用域根节点，否则会令后代 ul/li 被 m-0/p-0 浸入业务内容
+[class*=~'@{css-prefix}']:not(.@{css-prefix}modal-lockscroll):not(.@{css-prefix}loading__parent-relative):not(.@{css-prefix}loading__parent-hidden) {
   font-family: 'HarmonyOSHans', 'Segoe UI', Arial, 'Microsoft YaHei', -apple-system, BlinkMacSystemFont,
     'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Roboto', 'Noto Sans', sans-serif, 'HMOSColorEmojiCompat',
     'HMOSColorEmojiFlags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
