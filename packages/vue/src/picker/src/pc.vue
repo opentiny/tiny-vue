@@ -88,12 +88,13 @@
       v-else
     >
       <tiny-tooltip
+        v-if="label && shape === 'filter'"
         effect="light"
         :content="state.labelTooltip"
         placement="top"
         @mouseenter.native="handleEnterPickerlabel"
       >
-        <span v-if="label" class="tiny-input__label" ref="label"> {{ label }} </span>
+        <span class="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <input
         autocomplete="off"

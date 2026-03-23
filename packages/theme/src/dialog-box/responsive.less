@@ -1,0 +1,46 @@
+@import '../custom.less';
+@import './vars.less';
+
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+@media screen and (max-width: 1280px) {
+  .@{dialog-box-prefix-cls} {
+    .inject-DialogBox-responsive-vars();
+
+    margin: 0 var(--tv-DialogBox-responsive-space-part);
+
+    & &__header {
+      padding: var(--tv-DialogBox-responsive-space-unit) var(--tv-DialogBox-responsive-space-unit) var(--tv-DialogBox-responsive-space-part);
+
+      .@{dialog-box-prefix-cls}__title {
+        font-size: var(--tv-DialogBox-responsive-font-size-xl);
+      }
+    }
+
+    & &__body {
+      font-size: var(--tv-DialogBox-responsive-font-size-sm);
+      padding-left: var(--tv-DialogBox-responsive-space-unit);
+      padding-right: var(--tv-DialogBox-responsive-space-unit);
+    }
+
+    & &__footer {
+      padding: var(--tv-DialogBox-responsive-space-part) var(--tv-DialogBox-responsive-space-unit) var(--tv-DialogBox-responsive-space-unit);
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .@{dialog-box-prefix-cls} {
+    width: 400px !important;
+    left: 50% !important;
+    top: 100px !important;
+    transform: translateX(-55%) !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .@{dialog-box-prefix-cls} {
+
+    width: 320px !important;
+  }
+}

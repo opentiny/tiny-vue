@@ -167,7 +167,7 @@ export { NODE_KEY, getNodeKey, markNodeData, getChildState, Node, TreeStore } fr
 // 待移除， 移到loading中去， 或起个更好的名字
 export { afterLeave } from './after-leave'
 
-export { debounce } from './debounce'
+export { debounce, debounceBoth } from './debounce'
 export { throttle } from './throttle'
 
 export {

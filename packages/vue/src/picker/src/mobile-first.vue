@@ -38,14 +38,16 @@
       :validate-event="false"
       :custom-class="'sm:border ' + gcls(state.type)"
     >
-      <template v-if="label" #prefix>
+      <template v-if="label && shape === 'filter'" #prefix>
         <tiny-tooltip
           effect="light"
           :content="state.labelTooltip"
           placement="top"
           @mouseenter.native="handleEnterPickerlabel"
         >
-          <span data-tag="tiny-input__label" :class="gcls('input-label')" ref="label"> {{ label }} </span>
+          <span data-tag="tiny-input__label" :class="gcls('input-label')" ref="label">
+            {{ label }}
+          </span>
         </tiny-tooltip>
       </template>
       <template #suffix>
@@ -93,12 +95,13 @@
       v-else
     >
       <tiny-tooltip
+        v-if="label && shape === 'filter'"
         effect="light"
         :content="state.labelTooltip"
         placement="top"
         @mouseenter.native="handleEnterPickerlabel"
       >
-        <span v-if="label" data-tag="tiny-input__label" ref="label"> {{ label }} </span>
+        <span data-tag="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <template v-if="!state.isDisplayOnly">
         <div v-if="state.breakLine" class="flex">
@@ -127,7 +130,9 @@
                 m(
                   gcls('range-separator'),
                   { 'text-center': type === 'datetimerange' },
-                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                  {
+                    'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled
+                  }
                 )
               "
               >{{ rangeSeparator }}</span
@@ -160,7 +165,9 @@
                 m(
                   gcls('range-separator'),
                   { 'text-center': type === 'datetimerange' },
-                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                  {
+                    'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled
+                  }
                 )
               "
               >{{ rangeSeparator }}</span

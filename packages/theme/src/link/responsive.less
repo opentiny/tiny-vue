@@ -1,0 +1,16 @@
+@import '../mixins/link.less';
+@import '../custom.less';
+@import './vars.less';
+
+@link-prefix-cls: ~'@{css-prefix}link';
+@link-svg-prefix-cls: ~'@{link-prefix-cls}-svg';
+@svg-cls: ~'@{css-prefix}svg';
+
+@media (max-width: 1280px) {
+  .@{link-prefix-cls} {
+
+    display: inline-flex;
+    white-space: nowrap;
+    line-height: 20px;
+  }
+}

@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import Underline from '@opentiny/vue-theme-saas/svgs/underline.svg'
 
-export default () => svg({ name: 'IconUnderline', component: Underline, filledComponent: Underline })()
+const iconFn = () => svg({ name: 'IconUnderline', component: Underline, filledComponent: Underline })()
+
+iconFn.__flag = { 'svgName': 'underline', 'hasFill': false }
+export default iconFn

@@ -1,0 +1,14 @@
+@import '../custom.less';
+@import './vars.less';
+
+@search-prefix-cls: ~'@{css-prefix}search';
+
+@media screen and (max-width: 1280px) {
+  .@{search-prefix-cls} {
+    .inject-Search-responsive-vars();
+
+    .@{search-prefix-cls}__input {
+      padding-right: var(--tv-Search-responsive-selector-space);
+    }
+  }
+}

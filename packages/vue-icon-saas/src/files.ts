@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import Files from '@opentiny/vue-theme-saas/svgs/files.svg'
 
-export default () => svg({ name: 'IconFiles', component: Files, filledComponent: Files })()
+const iconFn = () => svg({ name: 'IconFiles', component: Files, filledComponent: Files })()
+
+iconFn.__flag = { 'svgName': 'files', 'hasFill': false }
+export default iconFn

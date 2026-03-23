@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import DoneMini from '@opentiny/vue-theme-saas/svgs/done-mini.svg'
 
-export default () => svg({ name: 'IconDoneMini', component: DoneMini, filledComponent: DoneMini })()
+const iconFn = () => svg({ name: 'IconDoneMini', component: DoneMini, filledComponent: DoneMini })()
+
+iconFn.__flag = { 'svgName': 'done-mini', 'hasFill': false }
+export default iconFn

@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import LeftWard from '@opentiny/vue-theme-saas/svgs/left-ward.svg'
 
-export default () => svg({ name: 'IconLeftWard', component: LeftWard, filledComponent: LeftWard })()
+const iconFn = () => svg({ name: 'IconLeftWard', component: LeftWard, filledComponent: LeftWard })()
+
+iconFn.__flag = { 'svgName': 'left-ward', 'hasFill': false }
+export default iconFn

@@ -124,7 +124,7 @@ export const handleScroll =
 export const selectDateScroll =
   ({ state, props }) =>
   (type, value) => {
-    if (Object.keys(props.endDate).length !== 0) {
+    if (props.endDate instanceof Date) {
       // 选择时间范围开始时间滚动逻辑
       const endHours = props.endDate.getHours()
       const endMinutes = props.endDate.getMinutes()
@@ -136,7 +136,7 @@ export const selectDateScroll =
       } else {
         value = state.hours === endHours && state.minutes === endMinutes && value > endSeconds ? state.seconds : value
       }
-    } else if (Object.keys(props.startDate).length !== 0) {
+    } else if (props.startDate instanceof Date) {
       // 选择时间范围结束时间滚动逻辑
       const startHours = props.startDate.getHours()
       const startMinutes = props.startDate.getMinutes()

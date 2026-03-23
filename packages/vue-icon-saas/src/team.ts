@@ -2,4 +2,6 @@ import { svg } from '@opentiny/vue-common'
 import Team from '@opentiny/vue-theme-saas/svgs/team.svg'
 import TeamFilled from '@opentiny/vue-theme-saas/svgs/team-filled.svg'
 
-export default () => svg({ name: 'IconTeam', component: Team, filledComponent: TeamFilled })()
+const iconFn = () => svg({ name: 'IconTeam', component: Team, filledComponent: TeamFilled })()
+iconFn.__flag = { 'svgName': 'team', 'hasFill': true }
+export default iconFn

@@ -1,0 +1,24 @@
+@import '../custom.less';
+@import './vars.less';
+
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+@media screen and (max-width: 1280px) {
+  .@{popover-prefix-cls}.@{popper-prefix-cls} {
+    .inject-Popover-responsive-vars();
+
+    &.@{popper-prefix-cls} {
+      padding: var(--tv-Popover-responsive-space-unit);
+      font-size: var(--tv-Popover-responsive-content-font-size);
+
+      & .@{popover-prefix-cls}__title {
+        font-size: var(--tv-Popover-responsive-title-font-size);
+      }
+
+      svg {
+        font-size: var(--tv-Popover-responsive-icon-font-size);
+      }
+    }
+  }
+}

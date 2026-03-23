@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import Exclamation from '@opentiny/vue-theme-saas/svgs/exclamation.svg'
 
-export default () => svg({ name: 'IconExclamation', component: Exclamation, filledComponent: Exclamation })()
+const iconFn = () => svg({ name: 'IconExclamation', component: Exclamation, filledComponent: Exclamation })()
+
+iconFn.__flag = { 'svgName': 'exclamation', 'hasFill': false }
+export default iconFn

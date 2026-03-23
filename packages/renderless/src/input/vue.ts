@@ -57,7 +57,7 @@ import {
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 import { on, off } from '@opentiny/utils'
-import { debounce } from '@opentiny/utils'
+import { debounceBoth } from '@opentiny/utils'
 
 export const api = [
   'blur',
@@ -269,7 +269,7 @@ const mergeApi = ({
     }),
     handleFocus: handleFocus({ api, emit, state }),
     handleInput: handleInput({ api, emit, nextTick, state }),
-    resizeTextarea: debounce(200, true, resizeTextarea({ api, parent, vm, state, props })),
+    resizeTextarea: debounceBoth(200, resizeTextarea({ api, parent, vm, state, props })), // 抖动的首尾都要执行一次
     updateIconOffset: updateIconOffset(api),
     calcTextareaHeight: calcTextareaHeight({
       api,

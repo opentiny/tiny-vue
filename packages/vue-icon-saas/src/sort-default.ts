@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import SortDefault from '@opentiny/vue-theme-saas/svgs/sort-default.svg'
 
-export default () => svg({ name: 'IconSortDefault', component: SortDefault, filledComponent: SortDefault })()
+const iconFn = () => svg({ name: 'IconSortDefault', component: SortDefault, filledComponent: SortDefault })()
+
+iconFn.__flag = { 'svgName': 'sort-default', 'hasFill': false }
+export default iconFn

@@ -376,7 +376,8 @@ export default {
         groupColumnFixedError: 'Cada grupo debe tener el mismo tipo.',
         missingValueFormat:
           'El renderizador no puede formatear la cadena de caracteres de fecha. Se requiere el formato de fecha de origen para valueFormat.',
-        clipboardWriteError: 'Error al escribir en el portapapeles.'
+        clipboardWriteError: 'Error al escribir en el portapapeles.',
+        fieldNotExist: 'La columna no existe.'
       },
       filter: {
         allSelect: 'Todos',

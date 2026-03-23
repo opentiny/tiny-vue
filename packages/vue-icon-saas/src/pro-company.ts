@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import ProCompany from '@opentiny/vue-theme-saas/svgs/pro-company.svg'
 
-export default () => svg({ name: 'IconProCompany', component: ProCompany, filledComponent: ProCompany })()
+const iconFn = () => svg({ name: 'IconProCompany', component: ProCompany, filledComponent: ProCompany })()
+
+iconFn.__flag = { 'svgName': 'pro-company', 'hasFill': false }
+export default iconFn

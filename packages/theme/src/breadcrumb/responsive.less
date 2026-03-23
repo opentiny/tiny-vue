@@ -1,0 +1,11 @@
+@import '../custom.less';
+
+@breadcrumb-prefix-cls: ~'@{css-prefix}breadcrumb';
+
+@media screen and (max-width: 1280px) {
+  .@{breadcrumb-prefix-cls} {
+    & &__separator {
+      margin: 0;
+    }
+  }
+}
