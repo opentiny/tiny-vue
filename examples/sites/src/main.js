@@ -34,7 +34,6 @@ import { doSearchEverySite } from './tools/docsearch'
 import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
 import { customDesignConfig } from '@opentiny/vue-common'
-import '@opentiny/vue-theme/responsive-index.less'
 import { twMerge } from 'tailwind-merge'
 
 // 适配层集成twMerge能力
