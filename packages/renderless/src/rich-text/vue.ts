@@ -2,6 +2,8 @@ import {
   initContent,
   initQuill,
   setToolbarTips,
+  setTooltipI18n,
+  adjustTooltipPosition,
   setPlaceholder,
   getFileUploadUrl,
   selectionChange,
@@ -19,6 +21,8 @@ export const api = [
   'initContent',
   'initQuill',
   'setToolbarTips',
+  'setTooltipI18n',
+  'adjustTooltipPosition',
   'setPlaceholder',
   'selectionChange',
   'textChange',
@@ -33,7 +37,10 @@ const initState = ({ reactive, props, computed, api }) => {
     content: props.modelValue || props.content,
     maxLength: computed(() => api.maxLength()),
     pasteCanceled: false,
-    isDisplayOnly: computed(() => api.isDisplayOnly())
+    isDisplayOnly: computed(() => api.isDisplayOnly()),
+    tooltipI18nHandler: null,
+    tooltipResizeHandler: null,
+    tooltipObserver: null
   })
 
   return state
@@ -48,12 +55,14 @@ const initApi = (args) => {
     initContent: initContent({ state, props, nextTick }),
     initQuill: initQuill({ service, emit, props, api, state, vm, ImageDrop, FileUpload, ImageUpload, Quill }),
     setToolbarTips: setToolbarTips({ t, vm }),
+    setTooltipI18n: setTooltipI18n({ t, vm }),
+    adjustTooltipPosition: adjustTooltipPosition({ vm }),
     setPlaceholder: setPlaceholder({ state, props }),
     getFileUploadUrl: getFileUploadUrl({ service }),
     selectionChange: selectionChange({ emit, state }),
     textChange: textChange({ emit, vm, state, Modal, t }),
     mounted: mounted({ api, props, state, i18n, watch }),
-    beforeUnmount: beforeUnmount({ api, state }),
+    beforeUnmount: beforeUnmount({ api, state, vm }),
     maxLength: maxLength({ props, constants }),
     handlePaste: handlePaste({ state }),
     isDisplayOnly: isDisplayOnly({ state, props, parent, nextTick }),

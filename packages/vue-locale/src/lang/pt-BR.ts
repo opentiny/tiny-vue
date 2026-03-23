@@ -685,7 +685,14 @@ export default {
       deleteTable: 'Excluir tabela',
       colorPicker: 'Cor de fundo',
       placeholder: 'Inserir texto aqui...',
-      maxLength: 'O comprimento do texto excede o limite, o comprimento máximo config é '
+      maxLength: 'O comprimento do texto excede o limite, o comprimento máximo config é ',
+      visitUrl: 'Visitar URL',
+      edit: 'Editar',
+      remove: 'Remover',
+      save: 'Salvar',
+      enterLink: 'Digite o endereço do link',
+      enterFormula: 'Digite a fórmula',
+      enterVideo: 'Digite o endereço do vídeo'
     },
     fluentEditor: {
       undo: 'Desfazer',

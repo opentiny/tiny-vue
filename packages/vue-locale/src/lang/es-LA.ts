@@ -685,7 +685,14 @@ export default {
       deleteTable: 'Eliminar tabla',
       colorPicker: 'Color de fondo',
       placeholder: 'Insertar texto aquí...',
-      maxLength: 'La longitud del texto supera el límite, la configuración de longitud máxima es '
+      maxLength: 'La longitud del texto supera el límite, la configuración de longitud máxima es ',
+      visitUrl: 'Visitar URL',
+      edit: 'Editar',
+      remove: 'Eliminar',
+      save: 'Guardar',
+      enterLink: 'Ingresar enlace',
+      enterFormula: 'Ingresar fórmula',
+      enterVideo: 'Ingresar video'
     },
     fluentEditor: {
       undo: 'Deshacer',

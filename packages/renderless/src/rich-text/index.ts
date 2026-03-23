@@ -147,6 +147,27 @@ export const initQuill =
     emit('ready', state.quill)
 
     api.setToolbarTips()
+    api.setTooltipI18n()
+    state.tooltipI18nHandler = () =>
+      setTimeout(() => {
+        api.setTooltipI18n()
+        api.adjustTooltipPosition()
+      })
+    state.tooltipResizeHandler = () => api.adjustTooltipPosition()
+    vm.$el.addEventListener('click', state.tooltipI18nHandler)
+    vm.$el.addEventListener('keyup', state.tooltipI18nHandler)
+    window.addEventListener('resize', state.tooltipResizeHandler)
+    if (typeof MutationObserver !== 'undefined') {
+      state.tooltipObserver = new MutationObserver(() => {
+        requestAnimationFrame(() => api.adjustTooltipPosition())
+      })
+      state.tooltipObserver.observe(vm.$el, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class', 'data-mode']
+      })
+    }
   }
 
 export const handleClick =
@@ -190,6 +211,80 @@ export const setToolbarTips =
 
       Array.prototype.slice.call(tip).forEach((ite) => {
         ite.innerHTML = getOuterHTML(iconEl)
+      })
+    }
+  }
+
+export const setTooltipI18n =
+  ({ t, vm }) =>
+  () => {
+    const richTextEl = vm.$el
+    const tips = richTextEl.querySelectorAll('.ql-container .ql-tooltip')
+    const getPlaceholderByMode = (mode) => {
+      if (mode === 'video') return t('ui.richText.enterVideo')
+      if (mode === 'formula') return t('ui.richText.enterFormula')
+      return t('ui.richText.enterLink')
+    }
+
+    if (tips.length) {
+      Array.prototype.slice.call(tips).forEach((tip) => {
+        const mode = tip.getAttribute('data-mode') || 'link'
+        const input = tip.querySelector("input[type='text']")
+
+        tip.setAttribute('data-visit-url-text', `${t('ui.richText.visitUrl')}:`)
+        tip.setAttribute('data-edit-text', t('ui.richText.edit'))
+        tip.setAttribute('data-remove-text', t('ui.richText.remove'))
+        tip.setAttribute('data-save-text', t('ui.richText.save'))
+        tip.setAttribute('data-enter-link-text', `${t('ui.richText.enterLink')}:`)
+        tip.setAttribute('data-enter-formula-text', `${t('ui.richText.enterFormula')}:`)
+        tip.setAttribute('data-enter-video-text', `${t('ui.richText.enterVideo')}:`)
+
+        if (input) {
+          input.setAttribute('placeholder', getPlaceholderByMode(mode))
+        }
+      })
+    }
+  }
+
+export const adjustTooltipPosition =
+  ({ vm }) =>
+  () => {
+    const container = vm.$el.querySelector('.ql-container')
+    const tips = vm.$el.querySelectorAll('.ql-container .ql-tooltip')
+    const minGap = 8
+
+    if (!container) {
+      return
+    }
+
+    const containerRect = container.getBoundingClientRect()
+
+    if (tips.length) {
+      Array.prototype.slice.call(tips).forEach((tip) => {
+        if (!tip.classList.contains('ql-editing')) {
+          return
+        }
+
+        const offsetParent = tip.offsetParent || tip.parentElement
+
+        if (!offsetParent) {
+          return
+        }
+
+        const parentRect = offsetParent.getBoundingClientRect()
+        const currentLeft = parseFloat(tip.style.left || '0')
+        const safeCurrentLeft = Number.isFinite(currentLeft) ? currentLeft : 0
+        const minLeft = containerRect.left - parentRect.left + minGap
+        const maxLeft = containerRect.right - parentRect.left - tip.offsetWidth - minGap
+
+        // 当 tooltip 比容器更宽时，至少保持左侧可见
+        if (maxLeft <= minLeft) {
+          tip.style.left = `${minLeft}px`
+          return
+        }
+
+        const clampedLeft = Math.min(Math.max(safeCurrentLeft, minLeft), maxLeft)
+        tip.style.left = `${clampedLeft}px`
       })
     }
   }
@@ -317,16 +412,25 @@ export const mounted =
     }
 
     if (i18n) {
-      watch(() => i18n.locale, api.setToolbarTips)
+      watch(() => i18n.locale, () => {
+        api.setToolbarTips()
+        api.setTooltipI18n()
+        api.adjustTooltipPosition()
+      })
     }
   }
 
 export const beforeUnmount =
-  ({ api, state }) =>
+  ({ api, state, vm }) =>
   () => {
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
     state.quill.root.removeEventListener('click', api.handleClick)
+    state.tooltipI18nHandler && vm.$el.removeEventListener('click', state.tooltipI18nHandler)
+    state.tooltipI18nHandler && vm.$el.removeEventListener('keyup', state.tooltipI18nHandler)
+    state.tooltipResizeHandler && window.removeEventListener('resize', state.tooltipResizeHandler)
+    state.tooltipObserver && state.tooltipObserver.disconnect()
+    state.tooltipObserver = null
     state.quill = null
     delete state.quill
   }

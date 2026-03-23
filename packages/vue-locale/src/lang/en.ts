@@ -681,7 +681,14 @@ export default {
       deleteTable: 'Delete Table',
       colorPicker: 'Background Color',
       placeholder: 'Insert text here...',
-      maxLength: 'Text Length exceeds the Limit, max Length config is '
+      maxLength: 'Text Length exceeds the Limit, max Length config is ',
+      visitUrl: 'Visit URL',
+      edit: 'Edit',
+      remove: 'Remove',
+      save: 'Save',
+      enterLink: 'Enter link',
+      enterFormula: 'Enter formula',
+      enterVideo: 'Enter video'
     },
     fluentEditor: {
       undo: 'Undo',
