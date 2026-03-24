@@ -51,7 +51,8 @@ gulp.task('compile', () => {
       `${source}/index.less`,
       `${source}/old-theme-index.less`, // 编译旧主题
       `${source}/aurora-theme-index.less`, // 编译aurora主题
-      `${source}/dark-theme-index.less` // 编译dark主题
+      `${source}/dark-theme-index.less`, // 编译dark主题
+      `${source}/responsive-index.less`
     ])
     .pipe(svgInline(svgInlineOption))
     .pipe(less())

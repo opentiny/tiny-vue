@@ -33,6 +33,7 @@ import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
 import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
+import '@opentiny/vue-theme/responsive-index.less'
 import { customDesignConfig } from '@opentiny/vue-common'
 import { twMerge } from 'tailwind-merge'
 
