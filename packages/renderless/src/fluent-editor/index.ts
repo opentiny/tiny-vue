@@ -571,7 +571,20 @@ export const handleUploadImage =
       state.promisesData.push({
         imageEnableMultiUpload
       })
-      state.promises.push(api.uploadImageToSev(result))
+
+      // 立即将 File 读成 Blob，避免来自 input 的 File 在异步链路中被释放导致请求体为空
+      const toRead = imageEnableMultiUpload ? files : [file]
+      const readFileToBlob = (f) =>
+        f.arrayBuffer().then((ab) => new Blob([ab], { type: f.type }))
+
+      const uploadPromise = Promise.all(toRead.map(readFileToBlob)).then((blobs) => {
+        result.file = blobs[0]
+        result.fileName = file.name
+        result.data.files = blobs
+        api.uploadImageToSev(result)
+      })
+
+      state.promises.push(uploadPromise)
     } else {
       const promises = files.map((fileItem) => {
         return new Promise((resolve) => {
@@ -645,7 +658,7 @@ export const insertImageToEditor =
 export const uploadImageToSev =
   ({ state }) =>
   (event) => {
-    const { file, hasRejectedImage, callback } = event
+    const { file, fileName, hasRejectedImage, callback } = event
     const { files } = event.data
 
     if (hasRejectedImage) {
@@ -668,7 +681,7 @@ export const uploadImageToSev =
 
     let { fd = new FormData(), xhr = new XMLHttpRequest() } = {}
 
-    fd.append(name, file, file.name)
+    fd.append(name, file, fileName || file.name || 'file')
 
     options.csrf && fd.append(options.csrf.token, options.csrf.hash)
 

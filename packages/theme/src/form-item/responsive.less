@@ -1,0 +1,19 @@
+@import '../custom.less';
+@import '../mixins/common.less';
+@import './vars.less';
+
+@form-prefix-cls: ~'@{css-prefix}form';
+@form-item-prefix-cls: ~'@{css-prefix}form-item';
+
+@media screen and (max-width: 1280px) {
+
+  .@{form-prefix-cls} {
+    .inject-FormItem-responsive-vars();
+
+    &--label-top {
+      .@{form-item-prefix-cls}__label {
+        padding: 0 0 var(--tv-FormItem-responsive-padding-bottom) !important;
+      }
+    }
+  }
+}

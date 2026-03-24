@@ -368,7 +368,8 @@ export default {
         classComponentError: '类组件渲染出错。',
         groupColumnFixedError: '同一个分组内不能设置不同的固定类型。',
         missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。',
-        clipboardWriteError: '剪切板写入错误'
+        clipboardWriteError: '剪切板写入错误',
+        fieldNotExist: '列不存在'
       },
       filter: {
         allSelect: '(全选)',

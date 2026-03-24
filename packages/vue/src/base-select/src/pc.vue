@@ -44,7 +44,7 @@
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-base-select__tags-group', { 'is-expand': state.isExpand }]"
-      :title="state.rootAutoTipConfig"
+      :title="state.rootAutoTipConfig.content"
     >
       <slot name="reference">
         <tiny-filter-box

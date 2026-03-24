@@ -372,7 +372,8 @@ export default {
         groupColumnFixedError: 'Each group must have the same type.',
         missingValueFormat:
           'The renderer cannot format the date character string. The valueFormat source date format is required.',
-        clipboardWriteError: 'Clipboard write error.'
+        clipboardWriteError: 'Clipboard write error.',
+        fieldNotExist: 'Column does not exist.'
       },
       filter: {
         allSelect: 'All',

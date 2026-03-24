@@ -88,7 +88,7 @@ const uncheckedList: { capName: string; svgName: string }[] = []
 // 2.1 写入重命名图标的js。 约束：必须生成它的子包js, 还必须不能使用相对引用：import xx from './yy' 这种，编译有问题
 // 方案：重命名图标直接推入 svgsMap中去， 在 2.2 遍历中，当成正常图标去处理。
 // eg.  sub-script【错】 ----> subscript【对】，在 svgsMap中存在： { subscript :{hasFill: false, svgName:'subscript'}}
-//      在svgsMap中，添加一个 { 'sub-script' :{hasFill: false, svgName:'subscript'}} 键值即可
+//      在svgsMap中，添加一个 { 'sub-script' :{hasFill: false, svgName:'subscript', wrongName='sub-script' }} 键值即可
 Object.keys(rewriteConfig).forEach((wrongName) => {
   if (svgsMap[wrongName]) {
     console.error(`重定向名字出错，${wrongName}是正确的名字`)
@@ -115,7 +115,9 @@ Object.values(svgsMap).forEach((item) => {
 import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 import ${capName}Filled from '${themePackage}/svgs/${item.svgName + '-filled'}.svg'
 
-export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
+const iconFn = () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
+iconFn.__flag = ${JSON.stringify(item)}
+export default iconFn
 `
 
     fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
@@ -130,7 +132,10 @@ export default () => svg({ name: 'Icon${capName}', component: ${capName}, filled
   const tmplStr = `import { svg } from '@opentiny/vue-common'
 import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 
-export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
+const iconFn = () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
+
+iconFn.__flag = ${JSON.stringify(item)}
+export default iconFn
 `
   fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
 })

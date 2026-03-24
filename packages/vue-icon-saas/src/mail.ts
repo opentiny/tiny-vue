@@ -1,4 +1,7 @@
 import { svg } from '@opentiny/vue-common'
 import Mail from '@opentiny/vue-theme-saas/svgs/mail.svg'
 
-export default () => svg({ name: 'IconMail', component: Mail, filledComponent: Mail })()
+const iconFn = () => svg({ name: 'IconMail', component: Mail, filledComponent: Mail })()
+
+iconFn.__flag = { 'svgName': 'mail', 'hasFill': false }
+export default iconFn

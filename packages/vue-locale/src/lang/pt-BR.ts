@@ -376,7 +376,8 @@ export default {
         groupColumnFixedError: 'Cada grupo deve ter o mesmo tipo.',
         missingValueFormat:
           'O renderizador não pode formatar a string de data. É necessário o formato da data de origem em valueFormat.',
-        clipboardWriteError: 'Erro ao gravar na área de transferência.'
+        clipboardWriteError: 'Erro ao gravar na área de transferência.',
+        fieldNotExist: 'A coluna não existe.'
       },
       filter: {
         allSelect: 'Todos',

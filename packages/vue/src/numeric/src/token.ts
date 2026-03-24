@@ -17,7 +17,7 @@ export const classes = {
   'numeric_input': 'w-full block leading-3',
   'numeric_input-medium-unit': 'sm:px-3 px-2 sm:w-full',
   'numeric_input-medium-num': 'sm:px-8 px-9 sm:w-full',
-  'numeric_input-default-unit': 'px-2 sm:w-full',
+  'numeric_input-default-unit': 'px-3 sm:w-full',
   'numeric_input-default-num': 'px-8 sm:px-9 sm:w-full',
 
   'numeric_input-active':

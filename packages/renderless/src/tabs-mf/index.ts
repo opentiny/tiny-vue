@@ -49,7 +49,9 @@ export const canLeave = (props) => (newTab, oldTab) => {
 export const changeCurrentName =
   ({ emit, state }) =>
   (name) => {
-    state.items.forEach((item) => (item.selected = item.name === name))
+    state.items.forEach((item) => {
+      item.selected = item.name === name
+    })
 
     emit('update:activeName', name)
     emit('update:modelValue', name)
@@ -152,7 +154,14 @@ export const removeItem =
 
       if (isCurrent) {
         const nextName = nextNav ? nextNav.name : state.items[0]?.name || ''
-        api.changeCurrentName(nextName)
+        if (silent) {
+          // 弹窗关闭等 teardown 场景：仅同步内部状态，不触发 modelValue/activeName，避免关闭弹窗时误触发父组件 v-model 变更
+          state.items.forEach((item) => {
+            item.selected = item.name === nextName
+          })
+        } else {
+          api.changeCurrentName(nextName)
+        }
         state.currentItem = state.items.find((item) => item.name === nextName) || null
       }
 
