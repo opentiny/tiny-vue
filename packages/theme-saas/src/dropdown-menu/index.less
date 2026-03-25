@@ -1,12 +1,16 @@
 @import '../custom.less';
 
 @dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
 
-.@{dropdown-menu-prefix-cls} {
+.@{dropdown-menu-prefix-cls}:not(.@{dropdown-item-prefix-cls}--child) {
   @apply absolute;
   @apply top-0;
   @apply left-0;
   @apply z-10;
+}
+
+.@{dropdown-menu-prefix-cls} {
   @apply py-1 px-0;
   @apply my-1 mx-0;
   @apply bg-color-bg-1;
@@ -52,7 +56,7 @@
     @apply border-b-0;
   }
 
-    &.@{css-prefix}popper[x-placement^='bottom'] {
+  &.@{css-prefix}popper[x-placement^='bottom'] {
     @apply mt-1;
   }
 
