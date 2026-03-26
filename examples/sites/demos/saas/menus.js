@@ -18,6 +18,7 @@ const noSaasComponents = [
   'BaseSelect',
   'FluentEditor',
   'TreeSelect',
+  'TreeMenu',
   'GridSelect',
   'TimeSelect',
   'Milestone',
