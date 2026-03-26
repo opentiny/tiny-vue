@@ -852,8 +852,8 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '选项默认插槽',
-            'en-US': 'Option default slot'
+            'zh-CN': '选项默认插槽。接收 <code>item</code> 的参数',
+            'en-US': 'Option default slot. Receives <code>item</code> as a parameter'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
@@ -893,6 +893,18 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-header-footer'
+        },
+        {
+          name: 'label',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '多选模式时，标签的自定义插槽。接收 <code>item</code> 的参数',
+            'en-US': 'Custom label slot for multiple choice mode. Receives <code>item</code> as a parameter'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-label',
+          mfDemo: 'slot-label'
         },
         {
           name: 'prefix',
