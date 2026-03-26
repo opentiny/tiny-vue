@@ -9,7 +9,7 @@
     :class="
       m(
         'h-fit flex items-center justify-between rounded text-color-text-primary text-sm sm:text-xs',
-        'min-h-[40px] sm:min-h-[32px] cursor-pointer group sm:hover:bg-color-bg-4 sm:active:bg-color-bg-3 pl-0 pr-3 sm:px-2 my-1 sm:m-1',
+        'min-h-[40px] sm:min-h-[32px] cursor-pointer group/option sm:hover:bg-color-bg-4 sm:active:bg-color-bg-3 pl-0 pr-3 sm:px-2 my-1 sm:m-1',
         {
           'text-color-brand bg-color-bg-1 sm:bg-color-fill-6': state.itemSelected && !disabled,
           'text-color-text-disabled cursor-not-allowed [&_svg]:fill-color-icon-disabled [&_svg_path:first-of-type]:fill-color-bg-3':
@@ -30,7 +30,7 @@
         :is="`icon-${state.selectCls}`"
         :class="
           m('fill-color-icon-secondary relative w-3.5 h-3.5', {
-            'group-hover:fill-color-brand-hover': state.hover,
+            'group-hover/option:fill-color-brand-hover': state.hover,
             'fill-color-brand text-color-brand': state.itemSelected,
             'fill-color-brand-disabled': state.itemSelected && required
           })

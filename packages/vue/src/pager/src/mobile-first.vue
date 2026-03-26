@@ -31,7 +31,7 @@
         v-else-if="item.trim() === 'sizes'"
         :key="'sizes' + index"
         data-tag="tiny-pager-popover"
-        class="hidden sm:inline-block align-middle text-xs h-7 text-xs text-color-text-primary relative -top-px"
+        class="hidden sm:inline-block align-middle text-xs h-7 text-color-text-primary relative -top-px"
       >
         <popover
           ref="sizesList"
@@ -99,19 +99,19 @@
         v-else-if="item.trim() === 'prev'"
         :key="'prev' + index"
         type="button"
-        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        class="group/pager min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
         :disabled="disabled || internalCurrentPage <= 1"
         @click="prev"
       >
         <span
           v-if="prevText"
-          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+          class="group-disabled/pager:text-color-text-disabled group-disabled/pager:cursor-not-allowed group-hover/pager:text-color-icon-hover"
         >
           {{ prevText }}
         </span>
         <tiny-icon-chevron-left
           v-else
-          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+          class="align-sub group-disabled/pager:fill-color-icon-disabled group-disabled/pager:cursor-not-allowed group-hover/pager:fill-color-icon-active"
         />
       </button>
 
@@ -133,19 +133,19 @@
         v-else-if="item.trim() === 'next'"
         :key="'next' + index"
         type="button"
-        class="group min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
+        class="group/pager min-w-[theme(spacing.7)] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 rounded-sm outline-0 ml-0 sm:ml-2 align-bottom cursor-pointer hover:border-color-icon-primary disabled:cursor-default"
         :disabled="disabled || internalCurrentPage === internalPageCount || internalPageCount === 0"
         @click="next"
       >
         <span
           v-if="nextText"
-          class="group-disabled:text-color-text-disabled group-disabled:cursor-not-allowed group-hover:text-color-icon-hover"
+          class="group-disabled/pager:text-color-text-disabled group-disabled/pager:cursor-not-allowed group-hover/pager:text-color-icon-hover"
         >
           {{ nextText }}
         </span>
         <tiny-icon-chevron-right
           v-else
-          class="align-sub group-disabled:fill-color-icon-disabled group-disabled:cursor-not-allowed group-hover:fill-color-icon-active"
+          class="align-sub group-disabled/pager:fill-color-icon-disabled group-disabled/pager:cursor-not-allowed group-hover/pager:fill-color-icon-active"
         />
       </button>
 
