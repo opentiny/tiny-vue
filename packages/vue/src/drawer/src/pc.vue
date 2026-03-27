@@ -19,6 +19,7 @@
         ref="drawerBox"
         aria-modal="true"
         role="dialog"
+        v-if="destroyOnClose ? state.visible : true"
         :class="[
           'tiny-drawer__main',
           {
@@ -158,6 +159,7 @@ export default defineComponent({
     'height',
     'mask',
     'dragable',
+    'destroyOnClose',
     'maskClosable',
     'lockScroll',
     'flex',

@@ -46,7 +46,13 @@ export const closed =
   }
 
 export const watchVisible =
-  ({ props, parent, api }: Pick<IDrawerRenderlessParams, 'props' | 'parent' | 'api'>) =>
+  ({
+    state,
+    props,
+    parent,
+    api,
+    nextTick
+  }: Pick<IDrawerRenderlessParams, 'state' | 'props' | 'parent' | 'api' | 'nextTick'>) =>
   (value: boolean) => {
     // tiny优化抽屉显隐逻辑
     value ? api.open() : api.close()
@@ -54,6 +60,10 @@ export const watchVisible =
       const el = parent.$el
       if (props.appendToBody) {
         document.body.appendChild(el)
+      }
+    } else {
+      if (props.destroyOnClose) {
+        nextTick(() => state.key++)
       }
     }
   }

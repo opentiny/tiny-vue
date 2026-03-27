@@ -28,6 +28,10 @@ export const drawerProps = {
     default: false
   },
   customClass: [String, Object, Array],
+  destroyOnClose: {
+    type: Boolean,
+    default: () => false
+  },
   placement: {
     type: String,
     default: 'right'
