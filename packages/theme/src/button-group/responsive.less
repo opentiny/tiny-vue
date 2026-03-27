@@ -41,4 +41,16 @@
       }
     }
   }
+
+  @media (min-width: 320px) and (max-width: 599px) {
+    &&.tiny-button-group--mini li button,
+    &&.tiny-button-group--small li button,
+    &&.tiny-button-group--medium li button,
+    &&.tiny-button-group li button {
+      font-size: var(--tv-ButtonGroup-responsive-mini-font-size);
+      padding: 0 var(--tv-ButtonGroup-responsive-mini-padding-x);
+      height: var(--tv-ButtonGroup-responsive-mini-size);
+      border-radius: var(--tv-ButtonGroup-responsive-mini-border-radius);
+    }
+  }
 }

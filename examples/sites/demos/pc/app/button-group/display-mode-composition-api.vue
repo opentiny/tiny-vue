@@ -10,22 +10,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { TinyButtonGroup } from '@opentiny/vue'
 
-export default {
-  components: {
-    TinyButtonGroup
-  },
-  data() {
-    return {
-      checkedVal: 'Button1',
-      groupData: [
-        { text: 'Button1', value: 'Button1' },
-        { text: 'Button2', value: 'Button2' },
-        { text: 'Button3', value: 'Button3' }
-      ]
-    }
-  }
-}
+const checkedVal = ref('Button1')
+const groupData = ref([
+  { text: 'Button1', value: 'Button1' },
+  { text: 'Button2', value: 'Button2' },
+  { text: 'Button3', value: 'Button3' }
+])
 </script>

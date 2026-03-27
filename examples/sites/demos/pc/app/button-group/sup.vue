@@ -115,6 +115,7 @@ export default {
 }
 
 .tiny-button-group :deep(.sup-slot) {
+  display: flex;
   line-height: 1;
   padding: 0 4px;
   border-top-left-radius: 4px;
