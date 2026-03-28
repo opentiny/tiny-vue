@@ -15,7 +15,7 @@
 
 ## 关键目录结构
 
-```
+```text
 tiny-vue/
 ├── packages/
 │   ├── vue/              # Vue 组件视图层（.vue 文件）
@@ -38,10 +38,10 @@ tiny-vue/
 
 ## 环境要求
 
-| 工具   | 版本要求  |
-|--------|-----------|
-| Node   | `>= 18`   |
-| pnpm   | `>= 9.5`（必须，禁止使用 npm 或 yarn） |
+| 工具 | 版本要求                                 |
+|------|------------------------------------------|
+| Node | `>= 18`                                  |
+| pnpm | `>= 9.5`（必须，禁止使用 npm 或 yarn）   |
 
 ## 核心命令
 
@@ -125,7 +125,7 @@ TinyVue 使用 **Renderless 无渲染架构**。修改或新增组件时，必�
 
 严格遵循 [Conventional Commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范：
 
-```
+```text
 <type>(<scope>): <description>
 ```
 
@@ -152,7 +152,7 @@ TinyVue 使用 **Renderless 无渲染架构**。修改或新增组件时，必�
 
 **示例：**
 
-```
+```text
 feat(vue/button): 新增 loading 动画插槽支持
 fix(vue-renderless/select): 修复过滤后重复选中问题
 docs(alert): 补充无障碍使用说明
@@ -182,7 +182,7 @@ test(button): 新增 E2E 测试用例
 
 在 PR 标题中添加 `[componentName1, componentName2]` 可手动触发对应组件的 E2E 测试：
 
-```
+```text
 fix(vue-renderless/select): [select, cascader] 修复级联过滤问题
 ```
 
@@ -199,8 +199,8 @@ PR 提交前，请确认以下各项：
 
 ## 参考文档
 
-- 官方文档：https://opentiny.design/tiny-vue
+- 官方文档：[https://opentiny.design/tiny-vue](https://opentiny.design/tiny-vue)
 - 贡献指南：[CONTRIBUTING.md](./CONTRIBUTING.md)
 - 贡献指南（中文）：[CONTRIBUTING.zh-CN.md](./CONTRIBUTING.zh-CN.md)
-- GitHub Issues：https://github.com/opentiny/tiny-vue/issues
-- GitHub Discussions：https://github.com/opentiny/tiny-vue/discussions
+- GitHub Issues：[https://github.com/opentiny/tiny-vue/issues](https://github.com/opentiny/tiny-vue/issues)
+- GitHub Discussions：[https://github.com/opentiny/tiny-vue/discussions](https://github.com/opentiny/tiny-vue/discussions)
