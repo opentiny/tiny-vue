@@ -36,7 +36,8 @@ import {
   handleCompositionend,
   removeHandleComposition,
   checkTableISEndElement,
-  alignHandler
+  alignHandler,
+  handleLinkClick
 } from './index'
 import { defaultOption, iconOption, iconOptionMobileFirst, simpleToolbar } from './options'
 
@@ -51,6 +52,7 @@ const initState = ({ api, reactive, computed, props }) => {
     innerContent: '',
     fileUploadUrl: (props.fileUpload && props.fileUpload.url) || '',
     quill: null,
+    linkClickHandler: null,
     fileInput: null,
     previewOptions: computed(() => api.computePreviewOptions()),
     previewImgUrl: '',
@@ -160,7 +162,8 @@ const mergeApi = (args) => {
     handleComposition: handleComposition({ state, api }),
     handleCompositionstart: handleCompositionstart({ state }),
     handleCompositionend: handleCompositionend({ state }),
-    removeHandleComposition: removeHandleComposition({ state, api })
+    removeHandleComposition: removeHandleComposition({ state, api }),
+    handleLinkClick: handleLinkClick({ props, state })
   })
 }
 

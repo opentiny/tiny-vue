@@ -5,6 +5,18 @@ import { set } from '../chart-core/deps/utils'
 import { on, off } from '@opentiny/utils'
 import { PopupManager } from '@opentiny/utils'
 
+const isSafeLinkUrl = (url) => /^(https?:|mailto:|tel:|\/|#)/i.test((url || '').trim())
+
+const openLink = (url, target = '_blank') => {
+  if (target === '_blank') {
+    const popup = window.open(url, '_blank', 'noopener,noreferrer')
+    popup && (popup.opener = null)
+    return
+  }
+
+  window.location.assign(url)
+}
+
 export const init =
   ({
     api,
@@ -74,6 +86,8 @@ export const init =
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)
     state.quill = Object.freeze(quill)
+    state.linkClickHandler = api.handleLinkClick
+    on(state.quill.root, 'click', state.linkClickHandler)
 
     setTimeout(api.setToolbarTitle)
 
@@ -925,8 +939,51 @@ export const beforeUnmount =
     api.removeHandleComposition()
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
+    off(state.quill.root, 'click', state.linkClickHandler)
+    state.linkClickHandler = null
     state.quill = null
     delete state.quill
+  }
+
+export const handleLinkClick =
+  ({ props, state }) =>
+  (event) => {
+    const anchor = event?.target?.closest && event.target.closest('a[href]')
+
+    if (!anchor) {
+      return
+    }
+
+    const rawHref = anchor.getAttribute('href') || ''
+    const href = xss.filterUrl(rawHref)
+
+    event.preventDefault()
+
+    if (!href || !isSafeLinkUrl(href)) {
+      return
+    }
+
+    const payload = {
+      url: href,
+      rawUrl: rawHref,
+      target: anchor.getAttribute('target') || '_blank',
+      rel: anchor.getAttribute('rel') || '',
+      event,
+      quill: state.quill
+    }
+    const beforeLinkOpen = props.beforeLinkOpen
+
+    if (typeof beforeLinkOpen !== 'function') {
+      openLink(payload.url, payload.target)
+      return
+    }
+
+    const open = (allow) => allow !== false && openLink(payload.url, payload.target)
+
+    try {
+      const result = beforeLinkOpen(payload)
+      result && typeof result.then === 'function' ? result.then(open).catch(() => {}) : open(result)
+    } catch (_) {}
   }
 
 export const computePreviewOptions =
