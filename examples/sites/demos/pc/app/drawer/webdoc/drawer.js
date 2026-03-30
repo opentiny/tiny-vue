@@ -136,11 +136,11 @@ export default {
       demoId: 'destroy-on-close',
       name: {
         'zh-CN': '关闭时销毁主体元素',
-        'en-US': ''
+        'en-US': 'Destroy on Close'
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>destroy-on-close</code>属性设置<code>true</code>在关闭抽屉时销毁<code>Dialog-box</code>抽屉内的所有元素，默认值为<code>false</code>。</p>',
+          '<p>可通过<code>destroy-on-close</code>属性设置<code>true</code>在关闭抽屉时销毁<code>drawer</code>抽屉内的所有元素，默认值为<code>false</code>。</p>',
         'en-US':
           '<p>By setting the<code>:destroy-on-close</code>attribute to<code>true</code>, all elements in the<code>drawer</code>drawer are destroyed when the pop-up window is closed, with the default value being<code>false</code>.</p>'
       },

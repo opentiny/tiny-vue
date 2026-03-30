@@ -47,8 +47,8 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '关闭时销毁对话框内的元素，而非隐藏',
-            'en-US': 'Destroy elements inside the dialog when closing, instead of hiding them'
+            'zh-CN': '关闭时销毁抽屉内的元素，而非隐藏',
+            'en-US': 'Destroy elements inside the drawer when closing, instead of hiding them'
           },
           mode: ['pc'],
           pcDemo: 'destroy-on-close',
