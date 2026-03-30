@@ -177,9 +177,8 @@ export const showDecimalIcon =
   }
 
 export const getIconStyle =
-  ({ api, props, state }) =>
+  ({ props, state }) =>
   (item) => {
-    const isHalf = api.showDecimalIcon(item)
     const voidColor = props.disabled ? props.disabledVoidColor : props.voidColor
 
     if (props.radio) {
@@ -188,9 +187,8 @@ export const getIconStyle =
         'font-size': props.size || '18px'
       }
     }
-
     return {
-      fill: isHalf ? 'transparent' : item <= state.currentValue ? state.activeColor : voidColor,
+      fill: item <= state.currentValue ? state.activeColor : voidColor,
       'font-size': props.size || '18px'
     }
   }
