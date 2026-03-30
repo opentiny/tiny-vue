@@ -42,7 +42,7 @@ export const api = [
 export const renderless = (
   props: IAnchorProps,
   { onMounted, onUnmounted, onUpdated, reactive, watch }: ISharedRenderlessParamHooks,
-  { vm, emit, nextTick }: ISharedRenderlessParamUtils<never>
+  { vm, emit, nextTick, framework }: ISharedRenderlessParamUtils<never>
 ): IAnchorApi => {
   const api = {} as IAnchorApi
   const state: IAnchorState = reactive({
@@ -63,7 +63,7 @@ export const renderless = (
     updated: updated({ api }),
     unmounted: unmounted({ state, api }),
     getContainer: getContainer({ props }),
-    linkClick: linkClick({ state, vm, emit, props, api }),
+    linkClick: linkClick({ state, vm, emit, props, api, framework }),
     onItersectionObserver: onItersectionObserver({ state, props, api, vm, emit }),
     setScrollContainer: setScrollContainer({ state, api }),
     getCurrentAnchor: getCurrentAnchor({ vm, state, emit }),

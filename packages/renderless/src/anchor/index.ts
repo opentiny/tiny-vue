@@ -223,12 +223,23 @@ export const onItersectionObserver =
   }
 
 export const linkClick =
-  ({ state, vm, emit, props, api }: Pick<IAnchorRenderlessParams, 'state' | 'vm' | 'emit' | 'props' | 'api'>) =>
+  ({
+    state,
+    vm,
+    emit,
+    props,
+    api,
+    framework
+  }: Pick<IAnchorRenderlessParams, 'state' | 'vm' | 'emit' | 'props' | 'api' | 'framework'>) =>
   (e: Event, item: IAnchorLinkItem) => {
     state.isScroll = true
     const { link, title } = item
     const emitLink = { link, title }
     emit('linkClick', e, emitLink)
+
+    if (framework === 'vue2' || framework === 'vue2.7') {
+      emit('link-click', e, emitLink)
+    }
 
     const isChangeHash = setCurrentHash({ state })
     const { scrollContainer } = state

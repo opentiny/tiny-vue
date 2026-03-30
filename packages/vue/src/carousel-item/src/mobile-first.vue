@@ -9,7 +9,7 @@
         state.carouselParent.type === 'card' ? 'w-1/2 transition-transform duration-300 ease-in-out' : '',
         state.hover ? 'opacity-10' : '',
         state.animate && !state.moving ? 'transition-transform duration-300 ease-in-out' : '',
-        state.inStage && state.carouselParent.type === 'card' ? 'cursor-pointer z-[1] group' : '',
+        state.inStage && state.carouselParent.type === 'card' ? 'cursor-pointer z-[1] group/carousel-item' : '',
         state.active ? 'z-[2]' : ''
       ])
     "
@@ -20,7 +20,7 @@
       data-tag="tiny-carousel-item-card"
       v-if="state.carouselParent.type === 'card'"
       v-show="!state.active"
-      class="absolute h-full top-0 left-0 w-full opacity-20 duration-200 group-hover:opacity-10"
+      class="absolute h-full top-0 left-0 w-full opacity-20 duration-200 group-hover/carousel-item:opacity-10"
       :class="{ 'opacity-10': state.inStage && state.carouselParent.type === 'card' && state.hover }"
     ></div>
     <slot></slot>

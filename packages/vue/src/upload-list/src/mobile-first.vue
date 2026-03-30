@@ -74,7 +74,7 @@
                 </div>
                 <div
                   data-tag="tiny-upload-list-operate"
-                  class="hidden sm:block sm:invisible sm:group-hover:visible min-w-fit text-color-brand-hover text-xs"
+                  class="hidden sm:block sm:invisible sm:group-hover/upload-list:visible min-w-fit text-color-brand-hover text-xs"
                 >
                   <slot name="operate" :file="file">
                     <span
@@ -261,7 +261,7 @@
     >
       <div
         :class="[
-          'group relative',
+          'group/upload-list relative',
           { 'hidden': listType === 'picture-single' && index },
           listType === 'picture-single'
             ? `w-24 h-24 sm:w-[calc(${scale}*theme(spacing.20))] sm:h-20`
@@ -290,7 +290,7 @@
               :style="{ background: imageBgColor }"
               class="relative w-full h-full after:absolute after:w-full after:h-full after:left-0 after:top-0 after:rounded after:bg-color-bg-7"
               :class="[
-                !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover:block' : '',
+                !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover/upload-list:block' : '',
                 { 'mb-7': listType === 'picture-card' && showName },
                 ~['video', 'audio'].indexOf(file.type) ? 'after:opacity-0' : 'after:opacity-50'
               ]"
@@ -352,11 +352,11 @@
                   </div>
                 </div>
                 <div v-else-if="~['fail'].indexOf(file.status)">
-                  <span class="block sm:group-hover:hidden">
+                  <span class="block sm:group-hover/upload-list:hidden">
                     <icon-cue-l class="w-6 h-6 fill-color-icon-inverse" />
                     <div class="mt-1 text-color-text-inverse text-xs">{{ t('ui.uploadList.uploadFailed') }}</div>
                   </span>
-                  <span class="hidden sm:group-hover:block">
+                  <span class="hidden sm:group-hover/upload-list:block">
                     <icon-refres
                       v-if="isEdm ? true : handleReUpload"
                       class="w-6 h-6 mr-2 fill-color-icon-inverse"
@@ -373,7 +373,7 @@
                   </span>
                 </div>
                 <div v-else>
-                  <div :class="['hidden', { 'sm:group-hover:block': !~['video', 'audio'].indexOf(file.type) }]">
+                  <div :class="['hidden', { 'sm:group-hover/upload-list:block': !~['video', 'audio'].indexOf(file.type) }]">
                     <slot name="operate" :file="file">
                       <icon-eyeopen
                         v-if="handlePreview"
@@ -397,7 +397,7 @@
                   </div>
                   <div
                     v-if="file.type === 'video'"
-                    class="inline-block w-8 h-8 text-center rounded-full group-hover:bg-color-bg-7"
+                    class="inline-block w-8 h-8 text-center rounded-full group-hover/upload-list:bg-color-bg-7"
                     :class="!file.isPlay ? 'bg-color-bg-7' : 'bg-opacity-0'"
                   >
                     <icon-right
@@ -407,7 +407,7 @@
                     />
                     <icon-pause
                       v-show="file.isPlay"
-                      class="w-6 h-6 hidden group-hover:inline-block mt-1 fill-color-icon-inverse"
+                      class="w-6 h-6 hidden group-hover/upload-list:inline-block mt-1 fill-color-icon-inverse"
                       @click="pause({ file, index, type: 'video' })"
                     />
                   </div>

@@ -1656,9 +1656,11 @@
     color: #444;
     padding: 5px 12px;
     @apply whitespace-nowrap;
+    max-width: calc(100vw - 16px);
+    @apply box-border;
 
     &::before {
-      content: 'Visit URL:';
+      content: attr(data-visit-url-text);
       line-height: 26px;
       @apply mr-2;
     }
@@ -1682,13 +1684,13 @@
 
     a.ql-action::after {
       border-right: 1px solid #ccc;
-      content: 'Edit';
+      content: attr(data-edit-text);
       @apply ml-4;
       @apply pr-2;
     }
 
     a.ql-remove::before {
-      content: 'Remove';
+      content: attr(data-remove-text);
       @apply ml-2;
     }
 
@@ -1708,21 +1710,21 @@
 
       a.ql-action::after {
         @apply border-r-0;
-        content: 'Save';
+        content: attr(data-save-text);
         @apply pr-0;
       }
     }
 
     &[data-mode='link']::before {
-      content: 'Enter link:';
+      content: attr(data-enter-link-text);
     }
 
     &[data-mode='formula']::before {
-      content: 'Enter formula:';
+      content: attr(data-enter-formula-text);
     }
 
     &[data-mode='video']::before {
-      content: 'Enter video:';
+      content: attr(data-enter-video-text);
     }
   }
 

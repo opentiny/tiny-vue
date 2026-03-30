@@ -32,7 +32,7 @@ export default defineComponent({
           tabindex: selected ? 0 : -1 // 无障碍：焦点管理，只有选中的 tab 可获得焦点
         },
         class: [
-          'w-max h-11 sm:h-10 inline-flex flex-col justify-center group',
+          'w-max h-11 sm:h-10 inline-flex flex-col justify-center group/tabs',
           'first:ml-3 last:mr-3 hover:cursor-pointer sm:first:pl-0 sm:last:pr-0 sm:first:ml-0 sm:last:mr-0',
           state.separator ? 'mx-3.5 [&:last-of-type>div>span:last-of-type]:hidden [&:not(:last-of-type)]:mr-px' : 'mx-3'
         ],
@@ -52,7 +52,7 @@ export default defineComponent({
           'span',
           {
             class: [
-              'text-base sm:text-sm leading-6 sm:leading-5.5 group-hover:text-color-brand',
+              'text-base sm:text-sm leading-6 sm:leading-5.5 group-hover/tabs:text-color-brand',
               state.tabSize === 'large' ? 'min-w-[theme(spacing.8)]' : 'min-w-[theme(spacing.7)]',
               selected ? 'text-color-brand font-bold' : 'text-color-text-primary'
             ],
