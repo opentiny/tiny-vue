@@ -8,12 +8,7 @@
 
     <tiny-button @click="boxVisibility = true" type="primary">点击打开抽屉</tiny-button>
 
-    <tiny-drawer
-      title="标题"
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-      :destroy-on-close="value"
-    >
+    <tiny-drawer title="标题" v-model:visible="boxVisibility" :destroy-on-close="value">
       <div>内容区域</div>
     </tiny-drawer>
   </div>
