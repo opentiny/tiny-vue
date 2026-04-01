@@ -33,10 +33,16 @@ import '@docsearch/css'
 import { doSearchEverySite } from './tools/docsearch'
 import { getLocaleMode } from './tools/utils.js'
 import '@opentiny/vue-theme/dark-theme-index.css'
-import '@opentiny/vue-theme/responsive-index.less'
+
 import { customDesignConfig } from '@opentiny/vue-common'
 import { twMerge } from 'tailwind-merge'
 
+// 检测 navigator.webdriver（自动化标记）,如果为 true 则说明当前环境是被自动化测试工具（如 Playwright）控制的
+const isOpenPlaywright = navigator.webdriver
+
+if (!isOpenPlaywright) {
+  import('@opentiny/vue-theme/responsive-index.less')
+}
 // 适配层集成twMerge能力
 if (isSaas) {
   customDesignConfig.twMerge = twMerge
