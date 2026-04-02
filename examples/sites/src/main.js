@@ -41,7 +41,7 @@ import { twMerge } from 'tailwind-merge'
 const isOpenPlaywright = navigator.webdriver
 
 if (!isOpenPlaywright) {
-  import('@opentiny/vue-theme/responsive-index.less')
+  import('@opentiny/vue-theme/responsive-index.css')
 }
 // 适配层集成twMerge能力
 if (isSaas) {
