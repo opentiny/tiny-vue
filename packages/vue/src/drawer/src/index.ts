@@ -10,7 +10,7 @@ export const $constants = {
     return (scrollLockClasses[mode] || '') as string
   },
   DEFAULT_WIDTH: '500px',
-  DEFAULT_HEIGHT: '100vh'
+  DEFAULT_HEIGHT: '500px'
 }
 
 export const drawerProps = {
