@@ -296,8 +296,12 @@
 
             > span,
             > a {
+              display: block;
+              width: 100px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               color: var(--tv-NavMenu-popmenu-text-color-normal);
-              white-space: normal;
               word-break: break-all;
               text-decoration: none;
               font-size: var(--tv-NavMenu-popmenu-text-font-size);
