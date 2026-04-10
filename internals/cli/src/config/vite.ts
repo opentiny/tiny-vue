@@ -28,7 +28,7 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
       `packages/theme${ns(design || theme)}/src/base/dark-theme.less`
     ),
     '@opentiny/vue-theme/responsive-index.css': pathFromWorkspaceRoot(
-      `packages/theme${ns(design || theme)}/src/base/responsive-index.less`
+      `packages/theme${ns(design || theme)}/src/responsive-index.less`
     ),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
