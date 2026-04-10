@@ -270,7 +270,7 @@ export default defineComponent({
           <TinyIconSuccessful class="thumb-success-icon" />,
           <span
             class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}
-            onclick={() => {
+            onClick={() => {
               handleFileClick(file)
             }}>
             {file.name}
