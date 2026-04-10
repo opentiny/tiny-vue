@@ -198,6 +198,19 @@ const originalDefineProperties = (vm, instance, filter) => {
 const harmonyDefineProperties = (vm, instance) => {
   const propertyFilterFlags = __TINY__.SKIP_PREFIX_UNDERSCORE | __TINY__.SKIP_PREFIX_DOLLAR | __TINY__.SKIP_CONSTRUCTOR
   __TINY__.createDelegate(instance, vm, propertyFilterFlags)
+
+  // 对于provider 场景，会存在属性响应式的问题，这里对常见属性做兼容处理，后续龙雀API修复后可以删除
+  const targetKeys = ['size', 'disabled', 'displayOnly']
+  for (const name in instance) {
+    if (targetKeys.includes(name)) {
+      Object.defineProperty(vm, name, {
+        configurable: true,
+        enumerable: true,
+        get: () => instance[name],
+        set: (value) => (instance[name] = value)
+      })
+    }
+  }
 }
 
 const defineProperties = __TINY__ ? harmonyDefineProperties : originalDefineProperties
