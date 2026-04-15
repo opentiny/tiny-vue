@@ -269,7 +269,10 @@ export default defineComponent({
         return [
           <TinyIconSuccessful class="thumb-success-icon" />,
           <span
-            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>
+            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}
+            onClick={() => {
+              handleFileClick(file)
+            }}>
             {file.name}
           </span>,
           getThumIcon(file)
@@ -314,12 +317,7 @@ export default defineComponent({
                                   h(
                                     'div',
                                     {
-                                      class: 'thumb-item',
-                                      on: {
-                                        click: () => {
-                                          handleFileClick(item)
-                                        }
-                                      }
+                                      class: 'thumb-item'
                                     },
                                     [getThumbList(item)]
                                   )
