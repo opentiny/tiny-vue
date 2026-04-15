@@ -11,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Trigger main repo workflow
-      env:
-        PAT: ${{ secrets.PAT_TOKEN }}
       run: |
         curl -X POST \
-          -H "Authorization: token $PAT" \
+          -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
           https://api.github.com/repos/opentiny/docs/dispatches \
           -d '{"event_type":"submodule-updated"}'
