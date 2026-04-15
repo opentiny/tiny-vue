@@ -20,12 +20,17 @@
     "build-svgs": "esno ./src/build-svg-to-js/index.ts --icon",
     "build-svgs-saas": "esno ./src/build-svg-to-js/index.ts --icon-saas",
     "// ---------- 拷贝设计师提供的图标到 svgs目录中 ----------": "",
-    "copy-svgs-raw": "esno ./src/copy-svgs-raw/index.ts"
+    "copy-svgs-raw": "esno ./src/copy-svgs-raw/index.ts",
+    "// ------------  转换apis数据为mds数据 ------------": "",
+    "convert-apis-to-mds": "esno ./src/convert-apis-to-mds/index.ts"
   },
   "dependencies": {
     "esno": "^4.7.0",
     "fast-glob": "^3.2.12",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "esprima": "^4.0.1",
+    "escodegen": "^2.0.0",
+    "estraverse": "^5.3.0"
   },
   "devDependencies": {
     "@babel/generator": "^7.18.13",
