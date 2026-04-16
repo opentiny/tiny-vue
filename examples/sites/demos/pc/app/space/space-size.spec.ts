@@ -25,10 +25,9 @@ test('Space size 动态调整（按钮版）', async ({ page }) => {
   const colSlider = page.locator('.tiny-slider').first()
   await colSlider.click()
 
-  // 等待样式更新
-  await page.waitForTimeout(100) // 或等待特定状态
+  await page.waitForTimeout(100)
 
-  // 验证列间距增加（大于 10px 或大于 0）
+  // 验证列间距增加（大于 10px）
   const afterColGap = await getGap()
   const colGapValue = parseInt(afterColGap.columnGap)
   expect(colGapValue).toBeGreaterThan(10)
@@ -39,7 +38,7 @@ test('Space size 动态调整（按钮版）', async ({ page }) => {
 
   await page.waitForTimeout(100)
 
-  // 验证行间距增加
+  // 验证列间距增加（大于 10px）
   const afterRowGap = await getGap()
   const rowGapValue = parseInt(afterRowGap.rowGap)
   expect(rowGapValue).toBeGreaterThan(10)
