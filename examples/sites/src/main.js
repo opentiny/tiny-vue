@@ -43,7 +43,7 @@ const isOpenPlaywright = navigator.webdriver
 if (!isOpenPlaywright) {
   // 确保 Vite 能静态分析到文件
   const modules = import.meta.glob('@opentiny/vue-theme/responsive-index.css')
-  modules['@opentiny/vue-theme/responsive-index.css']?.()
+  Object.values(modules).forEach((loadModule) => loadModule())
 }
 // 适配层集成twMerge能力
 if (isSaas) {
