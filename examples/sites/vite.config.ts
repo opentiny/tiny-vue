@@ -35,7 +35,7 @@ export default defineConfig((config) => {
     envDir: './env',
     base: env.VITE_APP_BUILD_BASE_URL || '/tiny-vue/',
     plugins: [
-      ...fixIconSrcPlugins(),
+      ...(config.mode.includes('inner') ? [] : fixIconSrcPlugins()),
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue({
         include: [/\.vue$/, /\.md$/]
