@@ -141,7 +141,7 @@
           {{ state.validateMessage }}
         </div>
       </slot>
-      <slot v-if="state.validateState !== 'error' && showMessage && state.showMessage" name="prompt"> </slot>
+      <slot v-if="showMessage && state.showMessage" name="prompt"> </slot>
     </div>
   </div>
 </template>

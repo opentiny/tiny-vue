@@ -3,7 +3,7 @@
     <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="96px" show-message>
       <tiny-form-item label="必填项" prop="users" required>
         <template #prompt>
-          <div class="relative sm:absolute text-xs leading-normal text-color-alert" title="强提示插槽">强提示插槽</div>
+          <div class="text-xs leading-normal text-color-alert" title="强提示插槽">强提示插槽</div>
         </template>
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
