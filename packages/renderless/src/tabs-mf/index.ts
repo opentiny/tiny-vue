@@ -6,7 +6,7 @@ import { fastdom } from '@opentiny/utils'
 export const setActive =
   ({ state, api }) =>
   (name) => {
-    const current = state.currentItem ? state.currentItem.name : ''
+    const current = state.cacheCurrentItem ? state.cacheCurrentItem.name : ''
 
     if (current && current !== name) {
       api.canLeave(name, current).then((result) => {
