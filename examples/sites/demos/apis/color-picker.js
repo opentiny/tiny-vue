@@ -119,6 +119,20 @@ export default {
           meta: {
             stable: '3.27.0'
           }
+        },
+        {
+          name: 'placement',
+          type: 'top | bottom',
+          defaultValue: 'bottom',
+          desc: {
+            'zh-CN': '定义颜色选择器的弹出位置',
+            'en-US': 'Define the pop-up position of the color selector'
+          },
+          mode: ['pc'],
+          pcDemo: 'placement',
+          meta: {
+            stable: '3.30.0'
+          }
         }
       ],
       events: [

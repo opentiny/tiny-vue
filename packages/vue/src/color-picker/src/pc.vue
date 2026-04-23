@@ -1,50 +1,53 @@
 <template>
   <div
     :class="[
-      {
-        'tiny-color-picker': true
-      },
+      { 'tiny-color-picker': true },
       state.size ? 'tiny-color-picker--' + state.size : ''
     ]"
     @click="() => changeVisible(!state.isShow)"
   >
     <div
       class="tiny-color-picker__inner"
-      :style="{
-        background: state.hex ?? ''
-      }"
+      :style="{ background: state.hex ?? '' }"
     >
       <IconChevronDown />
     </div>
-    <Transition name="tiny-zoom-in-top">
-      <color-select
-        @confirm="onConfirm"
-        @cancel="onCancel"
-        v-model="state.hex"
-        :visible="state.isShow"
-        :alpha="alpha"
-        :predefine="state.predefineStack"
-        :history="state.stack"
-        :format="format"
-        :style="{
-          'min-width': '330px'
-        }"
-        :color-mode="$props.colorMode"
-        :enable-history="state.enableHistory"
-        :enable-predefine-color="state.enablePredefineColor"
-      />
+    
+    <!-- 根据 placement 设置弹出位置 -->
+    <Transition :name="transitionName">
+      <div
+        class="tiny-color-picker__dropdown"
+        :class="`tiny-color-picker__dropdown--${placement}`"
+        v-show="state.isShow"
+      >
+        <color-select
+          @confirm="onConfirm"
+          @cancel="onCancel"
+          v-model="state.hex"
+          :visible="state.isShow"
+          :alpha="alpha"
+          :predefine="state.predefineStack"
+          :history="state.stack"
+          :format="format"
+          :style="{ 'min-width': '330px' }"
+          :color-mode="$props.colorMode"
+          :enable-history="state.enableHistory"
+          :enable-predefine-color="state.enablePredefineColor"
+        />
+      </div>
     </Transition>
   </div>
 </template>
-
+ 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/color-picker/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { IconChevronDown } from '@opentiny/vue-icon'
 import colorSelect from '@opentiny/vue-color-select-panel'
 import '@opentiny/vue-theme/color-picker/index.less'
-
+ 
 export default defineComponent({
+  name: 'TinyColorPicker',
   emits: ['update:modelValue', 'confirm', 'cancel'],
   props: [
     ...props,
@@ -57,14 +60,17 @@ export default defineComponent({
     'format',
     'enableHistory',
     'enablePredefineColor',
-    'colorMode'
+    'colorMode',
+    'placement'
   ],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    const state = setup({ props, context, renderless, api })
+    return { ...state }
   }
 })
 </script>
+ 

@@ -63,11 +63,17 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
   )
   const changeVisible = toggleVisible(isShow)
   const { onConfirm, onCancel } = useEvent(state, emit, changeVisible, color)
+
+   // 根据 placement 决定动画方向
+    const transitionName = () => {
+      return props.placement === 'top' ? 'tiny-zoom-in-bottom' : 'tiny-zoom-in-top'
+    }
   const api = {
     state,
     changeVisible,
     onConfirm,
-    onCancel
+    onCancel,
+    transitionName
   }
   return api
 }
