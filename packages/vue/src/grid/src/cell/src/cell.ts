@@ -963,23 +963,60 @@ export const Cell = {
   renderOperationCell(h, params) {
     const { column, $table, row } = params
     const { operationConfig = {}, slots } = column
+    const { buttons = [], render, max = 3, disabledClass = '', useCache = true } = operationConfig
     const rowId = getRowid($table, row)
     let operationCell
+    const getButtonStatus = (state) =>
+      (typeof state === 'boolean' && state) || (typeof state === 'function' && state(row))
+    const getOperationSnapshot = () => ({
+      max,
+      disabledClass,
+      buttonStates: buttons.map((buttonConfig) => ({
+        buttonConfig,
+        hidden: getButtonStatus(buttonConfig.hidden),
+        disabled: getButtonStatus(buttonConfig.disabled)
+      }))
+    })
+    const isOperationConfigUnchanged = (cachedOperation) => {
+      const operationSnapshot = getOperationSnapshot()
 
+      if (
+        !cachedOperation ||
+        cachedOperation.max !== operationSnapshot.max ||
+        cachedOperation.disabledClass !== operationSnapshot.disabledClass ||
+        cachedOperation.buttonStates.length !== operationSnapshot.buttonStates.length
+      ) {
+        return false
+      }
+
+      return operationSnapshot.buttonStates.every((buttonState, index) => {
+        const cachedButtonState = cachedOperation.buttonStates[index]
+
+        return (
+          cachedButtonState &&
+          cachedButtonState.buttonConfig === buttonState.buttonConfig &&
+          cachedButtonState.hidden === buttonState.hidden &&
+          cachedButtonState.disabled === buttonState.disabled
+        )
+      })
+    }
+
+    // 加入缓存，解决表格多次渲染导致操作列也重复渲染的卡顿问题。后续优化表格多次渲染后，需要移除缓存逻辑
     const cached = $table.operationMap.get(rowId)
-    if (cached) {
-      const { cell: cachedCell, row: cachedRow } = cached
+    if (cached && useCache) {
+      const { cell: cachedCell, row: cachedRow, operation: cachedOperation } = cached
       const { visibleColumn = [] } = $table
       const rowUnchanged = visibleColumn.every(
         (col) => !col.property || $table.compareRow(row, cachedRow, col.property)
       )
-      if (rowUnchanged) {
+      if (rowUnchanged && isOperationConfigUnchanged(cachedOperation)) {
         return cachedCell
       }
     }
     const setOperationCache = (cell) => {
       const rowSnapshot = { ...row }
-      $table.operationMap.set(rowId, { cell, row: rowSnapshot })
+      const operationSnapshot = getOperationSnapshot()
+      $table.operationMap.set(rowId, { cell, row: rowSnapshot, operation: operationSnapshot })
     }
 
     // 如果是用户自定义的插槽，怎么走用户插槽逻辑
@@ -989,7 +1026,6 @@ export const Cell = {
       return operationCell
     }
 
-    const { buttons = [], render, max = 3, disabledClass = '' } = operationConfig
     const viewClass = $table.viewCls('operButton')
 
     if (render) {
@@ -1027,13 +1063,11 @@ export const Cell = {
     }
 
     const isDisabled = (buttonConfig) => {
-      const { disabled = false } = buttonConfig
-      return (typeof disabled === 'boolean' && disabled) || (typeof disabled === 'function' && disabled(row))
+      return getButtonStatus(buttonConfig.disabled)
     }
 
     const isHidden = (buttonConfig) => {
-      const { hidden = false } = buttonConfig
-      return (typeof hidden === 'boolean' && hidden) || (typeof hidden === 'function' && hidden(row))
+      return getButtonStatus(buttonConfig.hidden)
     }
 
     const handleItemClick = (itemData) => {
