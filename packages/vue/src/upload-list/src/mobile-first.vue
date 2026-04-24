@@ -14,7 +14,7 @@
         <div
           data-tag="tiny-upload-list-item"
           ref="uploadListLi"
-          class="group relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
+          class="group/upload-list relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{
             'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid),
             'mb-2': index !== state.files.length - 1,
