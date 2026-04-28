@@ -52,7 +52,7 @@ export const watchVisible =
     value ? api.open() : api.close()
     if (value) {
       const el = parent.$el
-      if (props.appendToBody) {
+      if (props.appendToBody && el && el.parentNode !== document.body) {
         document.body.appendChild(el)
       }
     }
