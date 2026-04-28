@@ -219,7 +219,7 @@
           v-if="filterable && !state.selectDisabled"
           v-model="state.query"
           type="text"
-          class="hidden sm:inline-block border-none outline-0 p-0 ml-px text-color-text-primary text-xs h-7 appearance-none bg-transparent"
+          class="hidden sm:inline-block border-none outline-none p-0 ml-px text-color-text-primary text-xs h-7 appearance-none bg-transparent"
           :class="[
             state.selectSize === 'mini' ? 'h-6' : '',
             state.selectSize === 'small' ? 'h-9' : '',
