@@ -51,6 +51,18 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'size',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '控制折叠面板的尺寸，可选值为 "" | "medium"',
+            'en-US': 'adjust the size of the fold panel. Available options: "" | "medium"'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: '',
+          pcDemo: 'size.vue'
         }
       ],
       events: [
