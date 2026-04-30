@@ -53,7 +53,8 @@ import {
   getDisplayOnlyText,
   setShowMoreBtn,
   handleTextareaMouseDown,
-  handleTextareaMouseUp
+  handleTextareaMouseUp,
+  checkPlaceholderOverflow
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 import { on, off } from '@opentiny/utils'
@@ -181,7 +182,14 @@ const initState = ({
     hiddenPassword: computed(() => api.hiddenPassword()),
     displayedMaskValue: computed(() => api.getDisplayedMaskValue()),
     displayOnlyText: computed(() => api.getDisplayOnlyText()),
-    isDragging: false
+    isDragging: false,
+    placeholderOverflow: false,
+    placeholderTooltipContent: '',
+    // 新增：placeholder tooltip 是否应该显示
+    placeholderTooltipVisible: computed(() => {
+      // 条件：placeholder 必须超长 && 输入框必须为空（没有输入值）
+      return state.placeholderOverflow && !state.nativeInputValue
+    })
   })
 
   return state as IInputState
@@ -222,7 +230,8 @@ const initApi = ({
     handleLeaveTextarea: handleLeaveTextarea({ api, state, props, nextTick, vm }),
     inputStyle: inputStyle({ props }),
     handleTextareaMouseDown: handleTextareaMouseDown({ state }),
-    handleTextareaMouseUp: handleTextareaMouseUp({ state, api })
+    handleTextareaMouseUp: handleTextareaMouseUp({ state, api }),
+    checkPlaceholderOverflow: checkPlaceholderOverflow({ vm, state })
   })
 }
 
@@ -296,9 +305,10 @@ const initWatch = ({
   props,
   nextTick,
   emit,
+  parent,
   componentName,
   eventName
-}: Pick<IInputRenderlessParams, 'watch' | 'state' | 'api' | 'props' | 'nextTick' | 'emit'> & {
+}: Pick<IInputRenderlessParams, 'watch' | 'state' | 'api' | 'props' | 'nextTick' | 'emit' | 'parent'> & {
   componentName: string
   eventName: IInputEventNameConstants
 }) => {
@@ -374,6 +384,12 @@ const initWatch = ({
     (value) => api.watchFormSelect(value),
     { immediate: true }
   )
+
+  // size 变化时重新检测
+  watch(
+    () => props.size,
+    () => nextTick(api.checkPlaceholderOverflow)
+  )
 }
 
 export const renderless = (
@@ -413,6 +429,8 @@ export const renderless = (
     if (vm.$attrs.autofocus) {
       api.focus()
     }
+
+    nextTick(api.checkPlaceholderOverflow)
   })
 
   onBeforeUnmount(() => {
@@ -423,6 +441,7 @@ export const renderless = (
 
   onUpdated(() => {
     nextTick(api.updateIconOffset)
+    nextTick(api.checkPlaceholderOverflow) // 组件更新时自动检测
   })
 
   return api

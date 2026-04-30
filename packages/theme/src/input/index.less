@@ -131,6 +131,9 @@
     box-sizing: border-box;
     appearance: none;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     .placeholder(@color: var(--tv-Input-placeholder-text-color));
 
     &:hover,

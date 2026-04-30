@@ -47,6 +47,54 @@ const STYLE = {
   BorderBottomWidth: 'border-bottom-width'
 }
 
+/**
+ * 检测 placeholder 是否超长，用于显示 Tooltip
+ * 仅在非 textarea 类型时生效
+ */
+export const checkPlaceholderOverflow =
+  ({ vm, state }: Pick<IInputRenderlessParams, 'vm' | 'state'>) =>
+  (): void => {
+    const input = vm.$refs.input as HTMLInputElement | undefined
+    if (!input) {
+      state.placeholderOverflow = false
+      return
+    }
+
+    const placeholder = input.placeholder
+    if (!placeholder) {
+      state.placeholderOverflow = false
+      return
+    }
+
+    // 创建临时测量元素
+    const measureEl = document.createElement('span')
+    measureEl.style.cssText = `
+      position: absolute;
+      visibility: hidden;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: -9999;
+    `
+    document.body.appendChild(measureEl)
+
+    const inputStyle = window.getComputedStyle(input)
+    measureEl.style.fontFamily = inputStyle.fontFamily
+    measureEl.style.fontSize = inputStyle.fontSize
+    measureEl.style.fontWeight = inputStyle.fontWeight
+    measureEl.style.letterSpacing = inputStyle.letterSpacing
+    measureEl.textContent = placeholder
+
+    // 可用宽度 = 总宽度 - 左右 padding
+    const paddingLeft = parseFloat(inputStyle.paddingLeft) || 0
+    const paddingRight = parseFloat(inputStyle.paddingRight) || 0
+    const availableWidth = input.clientWidth - paddingLeft - paddingRight
+
+    state.placeholderOverflow = measureEl.scrollWidth > availableWidth
+    state.placeholderTooltipContent = placeholder
+
+    document.body.removeChild(measureEl)
+  }
+
 const isKorean = (text: string): boolean => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
 
 export const showBox = (state: IInputState) => (): void => {

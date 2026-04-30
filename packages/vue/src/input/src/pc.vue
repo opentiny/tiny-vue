@@ -69,31 +69,41 @@
           </span>
           <span class="tiny-input-display-only__content" v-else>{{ state.displayOnlyText }}</span>
         </tiny-tooltip>
-        <input
-          v-if="type !== 'textarea'"
-          ref="input"
-          :name="name"
-          data-tag="tiny-input-inner"
-          v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'aria-required', 'aria-invalid'])"
-          :class="['tiny-input__inner', mask && state.inputDisabled && !state.maskValueVisible && 'tiny-input__mask']"
-          :tabindex="tabindex"
-          :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
-          :disabled="state.inputDisabled"
-          :readonly="readonly"
-          :unselectable="readonly ? 'on' : 'off'"
-          :autocomplete="autocomplete"
-          @compositionend="handleCompositionEnd"
-          @compositionupdate="handleCompositionUpdate"
-          @compositionstart="handleCompositionStart"
-          @blur="handleBlur"
-          @focus="handleFocus"
-          @input="handleInput"
-          @change="handleChange"
-          :aria-label="label || $attrs.placeholder"
-          @keyup="$emit('keyup', $event)"
-          @keydown="$emit('keydown', $event)"
-          @paste="$emit('paste', $event)"
-        />
+        <!-- ====== 新增：placeholder tooltip 包裹层 ====== -->
+        <tiny-tooltip
+          v-if="!state.isDisplayOnly"
+          :content="state.placeholderTooltipContent"
+          :disabled="!state.placeholderTooltipVisible"
+          effect="light"
+          placement="top"
+        >
+          <input
+            v-if="type !== 'textarea'"
+            ref="input"
+            :name="name"
+            data-tag="tiny-input-inner"
+            v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'aria-required', 'aria-invalid'])"
+            :class="['tiny-input__inner', mask && state.inputDisabled && !state.maskValueVisible && 'tiny-input__mask']"
+            :tabindex="tabindex"
+            :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
+            :disabled="state.inputDisabled"
+            :readonly="readonly"
+            :unselectable="readonly ? 'on' : 'off'"
+            :autocomplete="autocomplete"
+            @compositionend="handleCompositionEnd"
+            @compositionupdate="handleCompositionUpdate"
+            @compositionstart="handleCompositionStart"
+            @blur="handleBlur"
+            @focus="handleFocus"
+            @input="handleInput"
+            @change="handleChange"
+            :aria-label="label || $attrs.placeholder"
+            @mouseenter="checkPlaceholderOverflow"
+            @keyup="$emit('keyup', $event)"
+            @keydown="$emit('keydown', $event)"
+            @paste="$emit('paste', $event)"
+          />
+        </tiny-tooltip>
       </span>
       <tiny-tall-storage
         v-if="isMemoryStorage"
