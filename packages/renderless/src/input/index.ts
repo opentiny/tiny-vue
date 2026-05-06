@@ -48,8 +48,7 @@ const STYLE = {
 }
 
 /**
- * 检测 placeholder 是否超长，用于显示 Tooltip
- * 仅在非 textarea 类型时生效
+ * 仅在非 textarea 类型时生效，检测 placeholder 是否超长，用于显示 Tooltip
  */
 export const checkPlaceholderOverflow =
   ({ vm, state }: Pick<IInputRenderlessParams, 'vm' | 'state'>) =>

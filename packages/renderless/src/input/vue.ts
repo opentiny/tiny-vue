@@ -187,7 +187,7 @@ const initState = ({
     placeholderTooltipContent: '',
     // 新增：placeholder tooltip 是否应该显示
     placeholderTooltipVisible: computed(() => {
-      // 条件：placeholder 必须超长 && 输入框必须为空（没有输入值）
+      // placeholder 必须超长 && 输入框必须为空
       return state.placeholderOverflow && !state.nativeInputValue
     })
   })
