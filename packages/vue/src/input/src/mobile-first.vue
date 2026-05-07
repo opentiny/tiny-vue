@@ -86,7 +86,7 @@
               'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
-                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled ' +
+                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-secondary sm:disabled:text-color-text-secondary ' +
                 'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
               state.inputSizeMf === 'medium'
                 ? `h-8 leading-8 ${m('sm:text-sm')} placeholder:text-sm`
