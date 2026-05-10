@@ -520,11 +520,12 @@ export const computedConfig =
     const { selectConfig = {}, radioConfig = {} } = gridOp || {}
     const { selectedValues } = state
     let config = {}
+    const checkRowKeys = selectedValues.length ? selectedValues : selectConfig.checkRowKeys
 
     if (popseletor === 'grid') {
       // 单选和多选同时使用computedConfig来获取配置，因此需要加type区分，否则单选和多选返回的是一模一样的配置
       if (multi && type === 'select') {
-        config = Object.assign(config, selectConfig, { checkRowKeys: selectedValues })
+        config = Object.assign(config, selectConfig, { checkRowKeys: state.selectedChanged ? [] : checkRowKeys })
       }
       if (!multi && type === 'radio') {
         config = Object.assign(config, radioConfig, { checkRowKey: selectedValues[0] })
