@@ -83,7 +83,7 @@
             ? state.isDisplayOnly
               ? 'pl-0'
               : 'pl-2 sm:pl-0'
-            : 'pt-2',
+            : 'pt-3',
           state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
