@@ -62,7 +62,10 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           mfDemo: '',
-          pcDemo: 'size.vue'
+          pcDemo: 'size.vue',
+          meta: {
+            stable: '3.31.0'
+          }
         }
       ],
       events: [
