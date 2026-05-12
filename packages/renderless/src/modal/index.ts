@@ -311,7 +311,7 @@ export const handleEvent =
       api.doEmitAndClose(type, event, options)
     })
 
-    if (shouldClose) {
+    if (shouldClose && !state.beforeCloseDoneCalled) {
       api.doEmitAndClose(type, event, options)
     } else {
       // beforeClose 返回 false，清理标记
@@ -486,7 +486,7 @@ export const close =
       api.doClose(type)
     })
 
-    if (shouldClose) {
+    if (shouldClose && !state.beforeCloseDoneCalled) {
       api.doClose(type)
     } else {
       state.isClosing = false
