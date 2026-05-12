@@ -10,12 +10,16 @@ export default {
           type: 'Function',
           defaultValue: '',
           desc: {
-            'zh-CN': '可以配置一个拦截弹窗关闭的方法。如果方法返回 false 值，则拦截弹窗关闭；否则不拦截',
+            'zh-CN': '设置关闭前的回调函数（仅点击关闭按钮或遮罩区域时被调用），如果回调函数返回 false 则阻止窗口关闭',
             'en-US':
-              'Configure a method to intercept modal closing. If the method returns false, the modal closing is intercepted; otherwise it is not intercepted'
+              'Set the callback function before closing (only called when clicking the close button or mask area). If the callback function returns false, the modal will not be closed'
           },
-          mode: ['mobile-first'],
-          mfDemo: ''
+          mode: ['pc', 'mobile-first'],
+          mfDemo: '',
+          pcDemo: 'before-close',
+          meta: {
+            stable: '3.31.0'
+          }
         },
         {
           name: 'cancel-btn-props',

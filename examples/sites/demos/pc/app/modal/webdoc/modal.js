@@ -68,7 +68,20 @@ export default {
       },
       codeFiles: ['status.vue']
     },
-
+    {
+      demoId: 'before-close',
+      name: {
+        'zh-CN': '关闭前的回调',
+        'en-US': 'Callback before closing'
+      },
+      desc: {
+        'zh-CN':
+          '通过<code>before-close</code>属性设置关闭前的回调函数（仅点击关闭按钮或遮罩区域时被调用），函数入参有<code>type</code>弹窗类型、<code>instance</code>弹窗实例、<code>done</code>回调函数。',
+        'en-US':
+          'Use the <code>before-close</code> property to set the callback function before closing (only called when clicking the close button or the mask area of the dialog), the function parameters include <code>type</code> pop-up type, <code>instance</code> pop-up instance, and <code>done</code> callback function.'
+      },
+      codeFiles: ['before-close.vue']
+    },
     {
       demoId: 'modal-header',
       name: {

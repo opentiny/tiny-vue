@@ -42,7 +42,10 @@ import {
   handleHashChange,
   showScrollbar,
   hideScrollbar,
-  watchVisible
+  watchVisible,
+  doClose,
+  doEmitAndClose,
+  runBeforeClose
 } from './index'
 import { nanoid } from '@opentiny/utils'
 import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
@@ -67,7 +70,10 @@ export const api = [
   'open',
   'beforeUnmouted',
   'resetDragStyle',
-  'resetModalViewPosition'
+  'resetModalViewPosition',
+  'doClose',
+  'doEmitAndClose',
+  'runBeforeClose'
 ]
 
 export const renderless = (
@@ -93,7 +99,11 @@ export const renderless = (
     options: [],
     theme: props.tiny_theme,
     boxStyle: computed(() => api.computedBoxStyle()),
-    timer: 0
+    timer: 0,
+    // 新增状态标记
+    isClosing: false,
+    isClosingAnimation: false,
+    beforeCloseDoneCalled: false
   })
 
   Object.assign(api, {
@@ -110,14 +120,14 @@ export const renderless = (
     mouseEnterEvent: mouseEnterEvent(state),
     mouseLeaveEvent: mouseLeaveEvent({ api, props, state }),
     updateZindex: updateZindex({ state, props }),
-    handleEvent: handleEvent({ api, emit, parent, props, isMobileFirstMode }),
+    handleEvent: handleEvent({ api, state }),
     closeEvent: closeEvent(api),
     confirmEvent: confirmEvent({ api, state }),
     cancelEvent: cancelEvent(api),
     open: open({ api, emit, nextTick, parent, props, state, isMobileFirstMode }),
     addMsgQueue: addMsgQueue({ api, parent }),
     removeMsgQueue: removeMsgQueue({ api, parent }),
-    close: close({ emit, parent, props, state }),
+    close: close({ api, state }),
     handleGlobalKeydownEvent: handleGlobalKeydownEvent(api),
     handleHashChange: handleHashChange(api),
     maximize: maximize({ api, nextTick, props, state, isMobileFirstMode }),
@@ -130,7 +140,10 @@ export const renderless = (
     computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode }),
     watchVisible: watchVisible({ api, props }),
     hideScrollbar: hideScrollbar(lockScrollClass),
-    showScrollbar: showScrollbar(lockScrollClass)
+    showScrollbar: showScrollbar(lockScrollClass),
+    doClose: doClose({ emit, parent, props, state }),
+    doEmitAndClose: doEmitAndClose({ api, emit, parent, props, state, isMobileFirstMode }),
+    runBeforeClose: runBeforeClose({ api, props, state })
   })
 
   watch(() => props.modelValue, api.watchValue)

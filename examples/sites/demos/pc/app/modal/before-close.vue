@@ -1,9 +1,41 @@
 <template>
   <div>
+    <h2>函数式调用：</h2>
+    <div class="content">
+      <tiny-button @click="messageClick"> 函数式弹窗1 </tiny-button>
+    </div>
+
+    <h2>标签式调用</h2>
+    <div class="content">
+      <!-- 1：所有关闭操作都触发 beforeClose -->
+      <tiny-modal
+        v-model="mainVisible"
+        :width="600"
+        :height="300"
+        :before-close="handleBeforeClose"
+        title="Num.1标签式弹窗"
+        message="NO.1标签式内容"
+        show-footer
+      >
+      </tiny-modal>
+
+      <!-- 2：关闭前确认弹窗 -->
+      <tiny-modal
+        v-model="confirmVisible"
+        title="Num.2弹窗关闭前确认"
+        message="NO.2---确定要关闭NO.1窗口吗？未保存的内容将丢失。"
+        @confirm="onConfirmClose"
+        @cancel="onCancelClose"
+        show-footer
+      >
+      </tiny-modal>
+      <tiny-button @click="mainVisible = true"> 标签式弹窗</tiny-button>
+    </div>
+
     <h2>标签式 + 函数调用</h2>
     <div class="content">
       <tiny-modal
-        v-model="mainVisible"
+        v-model="mainVisible2"
         :width="600"
         :height="300"
         :before-close="handleBeforeClose1"
@@ -12,7 +44,7 @@
         show-footer
       >
       </tiny-modal>
-      <tiny-button @click="mainVisible = true"> 标签式 + 函数式弹窗</tiny-button>
+      <tiny-button @click="mainVisible2 = true"> 标签式 + 函数式弹窗</tiny-button>
     </div>
 
     <h2>点击确认按钮 + 拦截弹窗</h2>
@@ -48,6 +80,7 @@ export default {
     return {
       mainVisible: false,
       mainVisible1: false,
+      mainVisible2: false,
       confirmVisible: false,
       pendingDone: null
     }
@@ -69,6 +102,28 @@ export default {
     onCancelClose() {
       this.confirmVisible = false
       this.pendingDone = null // 不调用 done()，原弹窗保持打开
+    },
+
+    // 函数式调用：
+    messageClick() {
+      Modal.confirm({
+        message: 'Num.1函数式弹窗内容',
+        title: '函数式弹窗Num.1',
+        status: 'warning',
+        width: '600',
+        height: '300',
+        beforeClose: (type, instance, done) => {
+          Modal.confirm({
+            title: '关闭前确认Num.2',
+            message: '确认弹窗关闭Num.1？',
+            events: {
+              confirm: () => done && done(), // 确认 -> 关闭所有弹窗
+              cancel: () => {} // 取消 -> 保留原弹窗
+            }
+          })
+          return false
+        }
+      })
     },
 
     handleBeforeClose1(type, instance, done) {
