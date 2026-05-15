@@ -409,6 +409,22 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'string-mode',
           mfDemo: ''
+        },
+        {
+          name: 'parse-input',
+          type: '(value:string)=>string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义输入值解析函数，优先级较高。当输入字符以及粘贴时，会调用该函数进行解析。',
+            'en-US':
+              'custom input value parsing function with high priority.This function is called for parsing when input characters are entered or pasted'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'parse-input',
+          mfDemo: '',
+          meta: {
+            stable: '3.31.0'
+          }
         }
       ],
       events: [

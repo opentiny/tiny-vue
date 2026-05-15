@@ -313,7 +313,7 @@ export const setCurrentValue =
     }
   }
 
-/** 处理输入字符： input / compositionend 事件均进入该函数 */
+/** 处理输入字符： input / compositionend , paste 事件均进入该函数 */
 export const handleInput =
   ({ state, api, emit, props }: Pick<INumericRenderlessParams, 'state' | 'api' | 'emit' | 'props'>) =>
   (event: InputEvent): void => {
@@ -322,32 +322,36 @@ export const handleInput =
       return
     }
 
-    // 此时为输入了1个有效的: 数字\英文\中文
-    const { fraction } = state.format
-    const emitError = () => {
-      if (state.pasting) {
-        emit('paste-error', event.target.value)
-      }
-    }
+    // 此时为输入了1个有效的: 数字\英文\中文, 或者paste进来
     let value = event.target.value.replace(/^-+/, '-')
 
-    if (value !== '-' && api.getDecimal(value).isNaN()) {
-      emitError()
-
-      if (!(value === '' && props.allowEmpty)) {
-        value = state.lastInput
-      }
+    if (props.parseInput) {
+      value = props.parseInput(value)
     } else {
-      value = value
-        .split('.')
-        .map((a, i) => {
-          if (i && a.length > fraction) {
-            emitError()
-          }
+      const { fraction } = state.format
+      const emitError = () => {
+        if (state.pasting) {
+          emit('paste-error', event.target.value)
+        }
+      }
+      if (value !== '-' && api.getDecimal(value).isNaN()) {
+        emitError()
 
-          return i && state.strictInput && typeof fraction === 'number' ? a.substr(0, fraction) : a
-        })
-        .join('.')
+        if (!(value === '' && props.allowEmpty)) {
+          value = state.lastInput
+        }
+      } else {
+        value = value
+          .split('.')
+          .map((a, i) => {
+            if (i && a.length > fraction) {
+              emitError()
+            }
+
+            return i && state.strictInput && typeof fraction === 'number' ? a.substr(0, fraction) : a
+          })
+          .join('.')
+      }
     }
 
     event.target.value = isNull(value) ? '' : value
