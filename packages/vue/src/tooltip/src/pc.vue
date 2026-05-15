@@ -133,7 +133,12 @@ export default defineComponent({
       let attrContent: any
 
       if (vm.renderContent) {
-        attrContent = vm.renderContent(h, vm.content)
+        try {
+          attrContent = vm.renderContent(h, vm.content)
+        } catch (e) {
+          console.warn('[TINY Error] renderContent catch error:', e)
+          attrContent = vm.content || null
+        }
       } else if (vm.pre) {
         attrContent = vm.content ? h('pre', vm.content) : null
       } else {

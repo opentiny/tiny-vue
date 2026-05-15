@@ -115,7 +115,12 @@ export default defineComponent({
       let attrContent
 
       if (vm.renderContent) {
-        attrContent = vm.renderContent(h, vm.content)
+        try {
+          attrContent = vm.renderContent(h, vm.content)
+        } catch (e) {
+          console.warn('[TINY Error] renderContent catch error:', e)
+          attrContent = vm.content || null
+        }
       } else if (vm.pre) {
         attrContent = vm.content ? h('pre', { class: 'tiny-tooltip-text-pre whitespace-pre-wrap' }, vm.content) : null
       } else {
