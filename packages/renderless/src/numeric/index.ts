@@ -327,31 +327,30 @@ export const handleInput =
 
     if (props.parseInput) {
       value = props.parseInput(value)
+    }
+    const { fraction } = state.format
+    const emitError = () => {
+      if (state.pasting) {
+        emit('paste-error', event.target.value)
+      }
+    }
+    if (value !== '-' && api.getDecimal(value).isNaN()) {
+      emitError()
+
+      if (!(value === '' && props.allowEmpty)) {
+        value = state.lastInput
+      }
     } else {
-      const { fraction } = state.format
-      const emitError = () => {
-        if (state.pasting) {
-          emit('paste-error', event.target.value)
-        }
-      }
-      if (value !== '-' && api.getDecimal(value).isNaN()) {
-        emitError()
+      value = value
+        .split('.')
+        .map((a, i) => {
+          if (i && a.length > fraction) {
+            emitError()
+          }
 
-        if (!(value === '' && props.allowEmpty)) {
-          value = state.lastInput
-        }
-      } else {
-        value = value
-          .split('.')
-          .map((a, i) => {
-            if (i && a.length > fraction) {
-              emitError()
-            }
-
-            return i && state.strictInput && typeof fraction === 'number' ? a.substr(0, fraction) : a
-          })
-          .join('.')
-      }
+          return i && state.strictInput && typeof fraction === 'number' ? a.substr(0, fraction) : a
+        })
+        .join('.')
     }
 
     event.target.value = isNull(value) ? '' : value
