@@ -185,7 +185,7 @@ export default defineComponent({
           }
 
           Object.assign(item.props, {
-            size: state.formItemSize,
+            size: state.formItemSize || item.props.size,
             mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
           })
 
