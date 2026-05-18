@@ -291,7 +291,7 @@ export const redoHandler =
 export const lineheightHandler =
   ({ state, FluentEditor }) =>
   (value) => {
-    state.quill.format('lineheight', value, FluentEditor.sources.USER)
+    state.quill.format('line-height', value, FluentEditor.sources.USER)
   }
 
 export const fileHandler =
