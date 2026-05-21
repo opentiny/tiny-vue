@@ -2179,8 +2179,14 @@ const Methods = {
 
     return columnIds.join(',')
   },
-  // 获取所有多选数据状态
+  /** 获取所有多选数据状态, Tiny 规范后的名字 */
   getAllSelection() {
+    return this.selection
+  },
+  /** 获取所有多选数据状态的历史名字，仅用于兼容老代码。
+   * @deprecated
+   * */
+  getStateSelection() {
     return this.selection
   },
   // 尝试恢复滚动位置，规范了最大滚动位置的取值
