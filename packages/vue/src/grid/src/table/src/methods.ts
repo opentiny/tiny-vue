@@ -1184,6 +1184,8 @@ const Methods = {
     if (!_tableVisible) {
       return
     }
+    // 先更新 bodyWrapperMaxHeight，minHeight/height,确保之后用新值
+    this.updateStyle()
 
     if (!bodyWrapper) {
       return this.computeScrollLoad()
