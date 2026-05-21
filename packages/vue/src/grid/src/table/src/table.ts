@@ -531,6 +531,12 @@ export default defineComponent({
     height() {
       this.$nextTick(this.recalculate)
     },
+    maxHeight() {
+      this.$nextTick(this.recalculate)
+    },
+    minHeight() {
+      this.$nextTick(this.recalculate)
+    },
     syncResize(value) {
       // 是否自动根据状态属性去更新响应式表格宽高
       value && this.$nextTick(this.recalculate)
