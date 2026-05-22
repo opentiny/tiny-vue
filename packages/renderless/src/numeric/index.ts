@@ -313,7 +313,7 @@ export const setCurrentValue =
     }
   }
 
-/** 处理输入字符： input / compositionend 事件均进入该函数 */
+/** 处理输入字符： input / compositionend , paste 事件均进入该函数 */
 export const handleInput =
   ({ state, api, emit, props }: Pick<INumericRenderlessParams, 'state' | 'api' | 'emit' | 'props'>) =>
   (event: InputEvent): void => {
@@ -322,15 +322,18 @@ export const handleInput =
       return
     }
 
-    // 此时为输入了1个有效的: 数字\英文\中文
+    // 此时为输入了1个有效的: 数字\英文\中文, 或者paste进来
+    let value = event.target.value.replace(/^-+/, '-')
+
+    if (props.parseInput) {
+      value = props.parseInput(value)
+    }
     const { fraction } = state.format
     const emitError = () => {
       if (state.pasting) {
         emit('paste-error', event.target.value)
       }
     }
-    let value = event.target.value.replace(/^-+/, '-')
-
     if (value !== '-' && api.getDecimal(value).isNaN()) {
       emitError()
 

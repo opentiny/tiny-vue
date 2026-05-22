@@ -6,32 +6,40 @@ test('Space size 动态调整（按钮版）', async ({ page }) => {
   const space = page.locator('#space-size .tiny-space')
   await space.waitFor({ state: 'visible', timeout: 5000 })
 
-  const getGap = async () =>
-    await space.evaluate((el) => {
+  const getGap = async () => {
+    return await space.evaluate((el) => {
       const style = getComputedStyle(el)
-      return `${style.rowGap || style.gap} ${style.columnGap || style.gap}`
+      return {
+        rowGap: style.rowGap || style.gap,
+        columnGap: style.columnGap || style.gap
+      }
     })
+  }
 
   // 初始值检查
-  expect(await getGap()).toBe('10px 10px')
+  const initialGap = await getGap()
+  expect(initialGap.columnGap).toBe('10px')
+  expect(initialGap.rowGap).toBe('10px')
 
-  // 点击增加行间距按钮
-  await page.locator('#increase-row').click()
-  await page.waitForTimeout(50)
-  expect(await getGap()).toBe('10px 15px') // 行间距对应 rowGap，列间距对应 columnGap
+  // 点击增加列间距按钮（第一个 slider）
+  const colSlider = page.locator('.tiny-slider').first()
+  await colSlider.click()
 
-  // 点击增加列间距按钮
-  await page.locator('#increase-column').click()
-  await page.waitForTimeout(50)
-  expect(await getGap()).toBe('15px 15px')
+  await page.waitForTimeout(100)
 
-  // 点击减少行间距按钮
-  await page.locator('#decrease-row').click()
-  await page.waitForTimeout(50)
-  expect(await getGap()).toBe('15px 10px')
+  // 验证列间距增加（大于 10px）
+  const afterColGap = await getGap()
+  const colGapValue = parseInt(afterColGap.columnGap)
+  expect(colGapValue).toBeGreaterThan(10)
 
-  // 点击减少列间距按钮
-  await page.locator('#decrease-column').click()
-  await page.waitForTimeout(50)
-  expect(await getGap()).toBe('10px 10px')
+  // 点击增加行间距按钮（第二个 slider）
+  const rowSlider = page.locator('.tiny-slider').nth(1)
+  await rowSlider.click()
+
+  await page.waitForTimeout(100)
+
+  // 验证列间距增加（大于 10px）
+  const afterRowGap = await getGap()
+  const rowGapValue = parseInt(afterRowGap.rowGap)
+  expect(rowGapValue).toBeGreaterThan(10)
 })

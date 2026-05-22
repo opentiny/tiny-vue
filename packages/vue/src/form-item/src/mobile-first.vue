@@ -83,7 +83,7 @@
             ? state.isDisplayOnly
               ? 'pl-0'
               : 'pl-2 sm:pl-0'
-            : 'pt-2',
+            : 'pt-3',
           state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
@@ -109,8 +109,8 @@
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          '[&_[class^=tiny-autocomplete]]:w-full',
-          '[&_[class^=tiny-cascader]]:w-full',
+          '[&_.tiny-autocomplete]:w-full',
+          '[&_.tiny-cascader]:w-full',
           state.isDisplayOnly
             ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''
@@ -141,7 +141,7 @@
           {{ state.validateMessage }}
         </div>
       </slot>
-      <slot v-if="state.validateState !== 'error' && showMessage && state.showMessage" name="prompt"> </slot>
+      <slot v-if="showMessage && state.showMessage" name="prompt"> </slot>
     </div>
   </div>
 </template>

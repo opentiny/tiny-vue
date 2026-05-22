@@ -70,6 +70,23 @@ export default {
       codeFiles: ['dynamic-disabled.vue']
     },
     {
+      demoId: 'parse-input',
+      name: {
+        'zh-CN': '自定义输入值解析',
+        'en-US': 'Custom Input Value Parsing'
+      },
+      desc: {
+        'zh-CN': '自定义输入值解析函数，优先级较高。当输入字符以及粘贴时，会调用该函数进行解析。',
+        'en-US':
+          'Custom input value parsing function with high priority. This function is called for parsing when input characters are entered or pasted'
+      },
+      codeFiles: ['parse-input.vue'],
+      meta: {
+        stable: '3.31.0'
+      }
+    },
+
+    {
       demoId: 'allow-empty',
       name: {
         'zh-CN': '可清空',

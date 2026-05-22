@@ -157,6 +157,9 @@ export const numericProps = {
   changeCompat: {
     type: Boolean,
     default: false
+  },
+  parseInput: {
+    type: Function
   }
 }
 

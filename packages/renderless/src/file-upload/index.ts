@@ -2807,8 +2807,7 @@ export const getTipMessage =
     }
 
     let limitTip = limit ? t(constants.NUMBER_LIMIT, { number: limit }) : ''
-
-    if ((fileSize || acceptTip.length !== 0) && limit) {
+    if ((fileSize || acceptTip.length !== 0) && limit && fileSize?.length === 2 && Array.isArray(fileSize)) {
       limitTip = `${t(constants.COMMA)} ` + limitTip
     }
     return acceptTip + fileSizeTip + limitTip

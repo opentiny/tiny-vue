@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-
-npx --no-install commitlint --edit
+# 兼容node25
+pnpm exec commitlint --edit

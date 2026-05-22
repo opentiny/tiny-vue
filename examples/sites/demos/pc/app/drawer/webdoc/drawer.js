@@ -17,6 +17,20 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'drawer-to-body',
+      name: {
+        'zh-CN': '挂载节点',
+        'en-US': 'Mount node'
+      },
+      desc: {
+        'zh-CN':
+          '<code>append-to-body</code> 属性可以将抽屉挂载到 body 元素上。默认值为 <code>false</code>，即挂载在当前组件内。',
+        'en-US':
+          'The <code>append-to-body</code> attribute can mount the drawer to the body element. The default value is <code>false</code>, meaning it is mounted within the current component.'
+      },
+      codeFiles: ['drawer-to-body.vue']
+    },
+    {
       demoId: 'close-on-press-escape',
       name: {
         'zh-CN': '按下 ESC 关闭抽屉',

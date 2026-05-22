@@ -47,7 +47,7 @@
           v-model.trim="state.inputValue"
           type="text"
           data-tag="tiny-cascader__search-input"
-          class="flex-1 h-6 text-color-text-primary text-xs border-none outline-0 box-border"
+          class="flex-1 h-6 text-color-text-primary text-xs border-none outline-none box-border"
           :placeholder="state.presentTags.length ? '' : placeholder"
           @focus="handleFocus"
           @blur="handleBlur"

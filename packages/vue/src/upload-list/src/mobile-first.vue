@@ -14,7 +14,7 @@
         <div
           data-tag="tiny-upload-list-item"
           ref="uploadListLi"
-          class="group relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
+          class="group/upload-list relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{
             'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid),
             'mb-2': index !== state.files.length - 1,
@@ -290,7 +290,9 @@
               :style="{ background: imageBgColor }"
               class="relative w-full h-full after:absolute after:w-full after:h-full after:left-0 after:top-0 after:rounded after:bg-color-bg-7"
               :class="[
-                !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover/upload-list:block' : '',
+                !~['uploading', 'fail'].indexOf(file.status)
+                  ? 'after:hidden sm:after:group-hover/upload-list:block'
+                  : '',
                 { 'mb-7': listType === 'picture-card' && showName },
                 ~['video', 'audio'].indexOf(file.type) ? 'after:opacity-0' : 'after:opacity-50'
               ]"
@@ -373,7 +375,9 @@
                   </span>
                 </div>
                 <div v-else>
-                  <div :class="['hidden', { 'sm:group-hover/upload-list:block': !~['video', 'audio'].indexOf(file.type) }]">
+                  <div
+                    :class="['hidden', { 'sm:group-hover/upload-list:block': !~['video', 'audio'].indexOf(file.type) }]"
+                  >
                     <slot name="operate" :file="file">
                       <icon-eyeopen
                         v-if="handlePreview"

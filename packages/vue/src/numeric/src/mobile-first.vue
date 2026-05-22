@@ -177,7 +177,8 @@ export default defineComponent({
     'hideUnit',
     'unitCenter',
     'displayOnly',
-    'changeCompat'
+    'changeCompat',
+    'parseInput'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus'],
   setup(props, context): any {

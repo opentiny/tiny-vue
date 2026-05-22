@@ -14,7 +14,7 @@ export default {
             'en-US': 'Whether the drawer itself is inserted into the body'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: '',
+          pcDemo: 'drawer-to-body',
           mfDemo: '',
           meta: {
             stable: '3.30.0'

@@ -161,7 +161,7 @@
             ref="jumperInput"
             type="tel"
             :disabled="disabled"
-            class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-0 box-border mr-0 focus:border-color-border-focus"
+            class="w-8 h-7 text-center align-top rounded-sm inline-block border border-solid border-color-border hover:text-color-icon-primary hover:border-color-icon-primary text-color-text-primary text-xs transition-[border] duration-300 outline-none box-border mr-0 focus:border-color-border-focus"
             :value="jumperValue"
             @focus="handleJumperFocus"
             @input="handleJumperInput"

@@ -1,39 +1,29 @@
 <template>
-  <div id="space-size">
-    <!-- 显示当前间距 -->
+  <div>
+    <!-- 选择行或列的按钮 -->
+    <div style="margin-bottom: 20px">
+      <strong>当前 间距: [{{ rowValue }}, {{ columnValue }}]</strong>
+    </div>
     <div>
-      <strong>当前间距: [{{ rowValue }}, {{ columnValue }}]</strong>
+      <tiny-button type="primary">列</tiny-button>
+      <tiny-slider v-model="rowValue" :min="0" :max="50" :step="2" style="width: 300px; margin-bottom: 20px" />
+    </div>
+    <div>
+      <tiny-button type="success">行</tiny-button>
+      <tiny-slider v-model="columnValue" :min="0" :max="50" :step="2" style="width: 300px; margin-bottom: 20px" />
     </div>
 
-    <!-- 行间距操作按钮 -->
-    <div>
-      <tiny-button id="increase-row" @click="rowValue += 5">增加行间距 +5</tiny-button>
-      <tiny-button id="decrease-row" @click="rowValue -= 5">减少行间距 -5</tiny-button>
-    </div>
-
-    <!-- 列间距操作按钮 -->
-    <div>
-      <tiny-button id="increase-column" @click="columnValue += 5">增加列间距 +5</tiny-button>
-      <tiny-button id="decrease-column" @click="columnValue -= 5">减少列间距 -5</tiny-button>
-    </div>
-
-    <!-- tiny-space 容器 -->
+    <!-- 使用 dynamic direction 值 -->
     <tiny-space class="tiny-space" :size="[rowValue, columnValue]" :wrap="true">
-      <tiny-button v-for="n in 15" :key="n">按钮 {{ n }}</tiny-button>
+      <tiny-button v-for="n in 15" :key="n" style="width: 100px">按钮 {{ n }}</tiny-button>
     </tiny-space>
   </div>
 </template>
 
-<script>
-import { TinyButton, TinySpace } from '@opentiny/vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { TinyButton, TinySpace, TinySlider } from '@opentiny/vue'
 
-export default {
-  components: { TinyButton, TinySpace },
-  data() {
-    return {
-      rowValue: 10,
-      columnValue: 10
-    }
-  }
-}
+const rowValue = ref(10)
+const columnValue = ref(10)
 </script>
