@@ -31,7 +31,7 @@ export const api = ['state', 'close', 'closed', 'confirm', 'handleClose', 'open'
 export const renderless = (
   props: IDrawerProps,
   { reactive, watch, onMounted, onBeforeUnmount, computed }: ISharedRenderlessParamHooks,
-  { emit, vm, mode, parent, nextTick, constants, designConfig }: IDrawerRenderlessParamUtils
+  { emit, vm, mode, parent, constants, designConfig }: IDrawerRenderlessParamUtils
 ) => {
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
@@ -60,7 +60,7 @@ export const renderless = (
     removeKeydownEvent: removeKeydownEvent({ api }),
     addDragEvent: addDragEvent({ api, vm }),
     removeDragEvent: removeDragEvent({ api, vm }),
-    watchVisible: watchVisible({ state, props, parent, api, nextTick }),
+    watchVisible: watchVisible({ props, parent, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
     computedWidth: computedWidth({ state, designConfig, props, constants }),

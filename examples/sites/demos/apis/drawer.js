@@ -54,7 +54,7 @@ export default {
           pcDemo: 'destroy-on-close',
           mfDemo: '',
           meta: {
-            stable: '3.30.0'
+            stable: '3.31.0'
           }
         },
         {
