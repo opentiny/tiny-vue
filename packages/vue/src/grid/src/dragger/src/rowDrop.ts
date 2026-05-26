@@ -76,6 +76,10 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
       _vm.tableFullData = [].concat(tableTreeData)
     }
 
+    if (_vm.tableFullColumn) {
+      _vm.tableFullColumn.forEach((col) => col && (col.order = null))
+    }
+
     // 如果变动了树层级，需要刷新数据
     _vm.$emit('row-drop-end', event, _vm, _vm.scrollYLoad ? tableTreeData : _vm.tableFullData)
     refresh && _vm.rawData && _vm.refreshData(_vm.rawData)
