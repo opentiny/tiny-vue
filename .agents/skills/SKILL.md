@@ -22,16 +22,16 @@ description: tinyvue组件库开发规范
 
 ## 组件库的架构
 
-| 模块名称        | 代码目录                                                                      | 参考规范                | 说明                                 |
-| --------------- | ----------------------------------------------------------------------------- | ----------------------- | ------------------------------------ |
-| 模板层          | `packages/vue`                                                                | `./vue.skill.md`        | 每个组件的模板，必须在相应的组件目录 |
-| 无渲染逻辑层    | `packages/renderless`                                                         | `./renderless.skill.md` | 每个组件的逻辑，必须在相应的组件目录 |
-| 样式层          | `packages/theme`                                                              | `./theme.skill.md`      | 每个组件的样式，必须在相应的组件目录 |
-| 适配Vue2/Vue3层 | `packages/vue-common`                                                         | -                       | 禁止修改适配层的代码                 |
-| 图标库          | `packages/vue-icon`                                                           | `./icon.skill.md`       | 图标库                               |
-| 国际化层        | `packages/vue-locale`                                                         | `./locale.skill.md`     | 组件的国际化                         |
-| 公用hooks       | `packages/vue-hooks`                                                          | `./hooks.skill.md`      | 跨组件可以复用的hooks函数            |
-| 公用指令        | `packages/vue-directive`                                                      | `./directive.skill.md`  | 跨组件可以复用的指令                 |
-| utils           | `packages/utils`                                                              | `./utils.skill.md`      | 公用函数                             |
-| 组件测试        | `examples\sites\demos\pc\app\**\*.spec.ts` 或 `packages\vue\src\**\__tests__` | `./test.skill.md`       | e2e测试和单元测试                    |
-| 文档开发        | `examples\sites\demos\pc\app\**`                                              | `./docs.skill.md`       | 每一个组件的api和demo的开发          |
+| 模块名称        | 代码目录                                                                      | 参考规范                   | 说明                                 |
+| --------------- | ----------------------------------------------------------------------------- | -------------------------- | ------------------------------------ |
+| 模板层          | `packages/vue`                                                                | `./vue.skill.md`           | 每个组件的模板，必须在相应的组件目录 |
+| 无渲染逻辑层    | `packages/renderless`                                                         | `./renderless.skill.md`    | 每个组件的逻辑，必须在相应的组件目录 |
+| 样式层          | `packages/theme`                                                              | `./theme.skill.md`         | 每个组件的样式，必须在相应的组件目录 |
+| 适配Vue2/Vue3层 | `packages/vue-common`                                                         | `./vue-common.skill.md`    | 非必要不修改适配层代码               |
+| 图标库          | `packages/vue-icon`                                                           | `./icon.skill.md`          | 图标库                               |
+| 国际化层        | `packages/vue-locale`                                                         | `./i18n-workflow.skill.md` | 组件的国际化                         |
+| 公用hooks       | `packages/vue-hooks`                                                          | `./vue-hooks.skill.md`     | 跨组件可以复用的hooks函数            |
+| 公用指令        | `packages/vue-directive`                                                      | `./vue-directive.skill.md` | 跨组件可以复用的指令                 |
+| utils           | `packages/utils`                                                              | `./utils.skill.md`         | 公用函数                             |
+| 组件测试        | `examples\sites\demos\pc\app\**\*.spec.ts` 或 `packages\vue\src\**\__tests__` | `./testing-guide.skill.md` | e2e测试和单元测试                    |
+| 文档开发        | `examples\sites\demos\pc\app\**`                                              | `./vue.skill.md`           | 每一个组件的 api 和 demo 的开发      |
