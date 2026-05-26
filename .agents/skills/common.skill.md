@@ -172,13 +172,13 @@ export const renderless = (props, { computed, reactive, watch }, utils) => { ...
 
 ## 与其它规范的关系
 
-| 模块       | 规范文件                                           |
-| ---------- | -------------------------------------------------- |
-| 模板层     | [vue.skill.md](./vue.skill.md)                     |
-| 逻辑层     | [renderless.skill.md](./renderless.skill.md)       |
-| 工具函数   | [utils.skill.md](./utils.skill.md)                 |
-| 组合式逻辑 | [vue-hooks.skill.md](./vue-hooks.skill.md)         |
-| 指令       | [vue-directive.skill.md](./vue-directive.skill.md) |
+| 模块       | 规范文件                                     |
+| ---------- | -------------------------------------------- |
+| 模板层     | [vue.skill.md](./vue.skill.md)               |
+| 逻辑层     | [renderless.skill.md](./renderless.skill.md) |
+| 工具函数   | [utils.skill.md](./utils.skill.md)           |
+| 组合式逻辑 | [hooks.skill.md](./hooks.skill.md)           |
+| 指令       | [directive.skill.md](./directive.skill.md)   |
 
 ## 参考资源
 
