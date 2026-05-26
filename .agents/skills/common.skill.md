@@ -121,18 +121,14 @@ export default defineComponent({
 
 ### 7. 设计规范 designConfig
 
+适配层负责注入与合并 `designConfig`，详细约定见 [design.skill.md](./design.skill.md)。
+
 ```typescript
-import { provideDesignConfig, design } from '@opentiny/vue-common'
+import { provideDesignConfig } from '@opentiny/vue-common'
 
 provideDesignConfig({
   components: {
-    Button: {
-      props: {
-        /* 默认值 */
-      },
-      api: [],
-      renderless: fn
-    }
+    Button: { props: { round: true }, api: [], renderless: fn }
   }
 })
 ```
@@ -176,6 +172,8 @@ export const renderless = (props, { computed, reactive, watch }, utils) => { ...
 | ---------- | -------------------------------------------- |
 | 模板层     | [vue.skill.md](./vue.skill.md)               |
 | 逻辑层     | [renderless.skill.md](./renderless.skill.md) |
+| 样式       | [theme.skill.md](./theme.skill.md)           |
+| 设计规范   | [design.skill.md](./design.skill.md)         |
 | 工具函数   | [utils.skill.md](./utils.skill.md)           |
 | 组合式逻辑 | [hooks.skill.md](./hooks.skill.md)           |
 | 指令       | [directive.skill.md](./directive.skill.md)   |

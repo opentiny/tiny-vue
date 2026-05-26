@@ -240,7 +240,7 @@ TypeScript 类型安全的开发规范
 
 - 优先使用 TypeScript
 - 禁止使用 `any`，需要类型逃逸时加注释说明
-- 类型定义放在 `packages/vue-common/src/types/` 或组件目录下
+- 类型定义放在 `packages/renderless/types/` 或组件目录下
 
 ### 开发规范
 
