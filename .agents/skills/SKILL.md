@@ -33,5 +33,5 @@ description: tinyvue组件库开发规范
 | 公用hooks       | `packages/vue-hooks`                                                          | `./hooks.skill.md`         | 跨组件可以复用的hooks函数            |
 | 公用指令        | `packages/vue-directive`                                                      | `./directive.skill.md`     | 跨组件可以复用的指令                 |
 | utils           | `packages/utils`                                                              | `./utils.skill.md`         | 公用函数                             |
-| 组件测试        | `examples\sites\demos\pc\app\**\*.spec.ts` 或 `packages\vue\src\**\__tests__` | `./testing-guide.skill.md` | e2e测试和单元测试                    |
-| 文档开发        | `examples\sites\demos\pc\app\**`                                              | `./vue.skill.md`           | 每一个组件的 api 和 demo 的开发      |
+| 组件测试        | `examples/sites/demos/pc/app/**/*.spec.ts` 或 `packages/vue/src/**/__tests__` | `./testing-guide.skill.md` | e2e测试和单元测试                    |
+| 文档开发        | `examples/sites/demos/pc/app/**`                                              | `./vue.skill.md`           | 每一个组件的 api 和 demo 的开发      |

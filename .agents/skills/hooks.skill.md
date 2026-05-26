@@ -126,7 +126,7 @@ api.useRelation({
 
 ### 5. userPopper / usePopup
 
-Popper、Dialog、Select 等浮层在 renderless `vue.ts` 中按**形态 B**调用，将 `popper` / `usePopups` 传入 `initState` 或 `initApi`，勿 `Object.assign` 到整个 `api`。
+Popper、Dialog、Select 等浮层在 renderless `vue.ts` 中按**形态 B**调用，将 `popper` / `usePopup` 传入 `initState` 或 `initApi`，勿 `Object.assign` 到整个 `api`。
 
 内部依赖 `@opentiny/utils` 的 `PopupManager`、`PopperJS`、`on`/`off` 等，勿在 renderless 重复实现定位逻辑。
 
