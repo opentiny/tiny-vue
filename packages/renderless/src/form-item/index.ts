@@ -278,20 +278,22 @@ export const unregisterField =
     state.fieldRegistered = false
   }
 
-export const updateTooltip = ({ vm, state }: Pick<IFormItemRenderlessParams, 'vm' | 'state'>) => {
-  const tooltip = vm.$refs.tooltip
-  if (tooltip) {
-    const content = vm.$refs.content
-    tooltip.state.referenceElm = state.isMultiple ? content : content?.children[0]
-    state.tooltip = tooltip
+export const updateTooltip =
+  ({ vm, state }: Pick<IFormItemRenderlessParams, 'vm' | 'state'>) =>
+  (): void => {
+    const tooltip = vm.$refs.tooltip
+    if (tooltip) {
+      const content = vm.$refs.content
+      tooltip.state.referenceElm = state.isMultiple ? content : content?.children[0]
+      state.tooltip = tooltip
+    }
   }
-}
 
 export const mounted =
-  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
   (): void => {
     // 初始化tooltip信息
-    updateTooltip({ vm, state })
+    api.updateTooltip()
 
     api.registerField()
   }
@@ -336,6 +338,7 @@ export const validate =
       api.clearValidate()
 
       const handlerError = () => {
+        api.updateTooltip()
         state.validateState = !errors ? VALIDATE_STATE.Success : VALIDATE_STATE.Error
 
         if (errors && props.error) {
@@ -490,9 +493,7 @@ export const updateTip =
     if (state.getValidateType !== 'tip' && !state.canShowTip) {
       return
     }
-
     const tooltip = vm.$refs.tooltip
-    updateTooltip({ vm, state })
 
     if (!tooltip) {
       return

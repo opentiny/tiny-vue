@@ -6,6 +6,7 @@ import type { IFormInstance } from './form.type'
 import type {
   watchError,
   updateTip,
+  updateTooltip,
   watchValidateStatus,
   computedLabelStyle,
   computedValueStyle,
@@ -124,6 +125,7 @@ export interface IFormItemApi {
   broadcast: ISharedRenderlessParamUtils['broadcast']
   watchError: ReturnType<typeof watchError>
   updateTip: ReturnType<typeof updateTip>
+  updateTooltip: ReturnType<typeof updateTooltip>
   watchValidateStatus: ReturnType<typeof watchValidateStatus>
   computedLabelStyle: ReturnType<typeof computedLabelStyle>
   computedValueStyle: ReturnType<typeof computedValueStyle>
