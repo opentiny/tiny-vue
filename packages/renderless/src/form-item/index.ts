@@ -246,37 +246,61 @@ export const computedFieldValue =
     return getPropByPath(model, path, true).v
   }
 
-export const mounted =
+export const registerField =
   ({ api, vm, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'props' | 'state'>) =>
   (): void => {
+    if (!props.prop || state.fieldRegistered) {
+      return
+    }
+
+    api.dispatch('Form', 'form:addField', vm)
+
+    let initialValue = state.fieldValue
+
+    if (Array.isArray(initialValue)) {
+      initialValue = ([] as any).concat(initialValue)
+    }
+
+    state.initialValue = initialValue
+    api.addValidateEvents()
+    state.fieldRegistered = true
+  }
+
+export const unregisterField =
+  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  (): void => {
+    if (!state.fieldRegistered) {
+      return
+    }
+
+    api.dispatch('Form', 'form:removeField', vm)
+    api.removeValidateEvents()
+    state.fieldRegistered = false
+  }
+
+export const updateTooltip = ({ vm, state }: Pick<IFormItemRenderlessParams, 'vm' | 'state'>) => {
+  const tooltip = vm.$refs.tooltip
+  if (tooltip) {
+    const content = vm.$refs.content
+    tooltip.state.referenceElm = state.isMultiple ? content : content?.children[0]
+    state.tooltip = tooltip
+  }
+}
+
+export const mounted =
+  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  (): void => {
     // 初始化tooltip信息
-    const tooltip = vm.$refs.tooltip
-    if (tooltip) {
-      const content = vm.$refs.content
-      tooltip.state.referenceElm = state.isMultiple ? content : content?.children[0]
-      state.tooltip = tooltip
-    }
+    updateTooltip({ vm, state })
 
-    if (props.prop) {
-      api.dispatch('Form', 'form:addField', vm)
-
-      let initialValue = state.fieldValue
-
-      if (Array.isArray(initialValue)) {
-        initialValue = ([] as any).concat(initialValue)
-      }
-
-      state.initialValue = initialValue
-      api.addValidateEvents()
-    }
+    api.registerField()
   }
 
 export const unmounted =
-  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
   (): void => {
     state.canShowTip = false
-    api.dispatch('Form', 'form:removeField', vm)
-    api.removeValidateEvents()
+    api.unregisterField()
   }
 
 export const validate =
@@ -468,6 +492,7 @@ export const updateTip =
     }
 
     const tooltip = vm.$refs.tooltip
+    updateTooltip({ vm, state })
 
     if (!tooltip) {
       return

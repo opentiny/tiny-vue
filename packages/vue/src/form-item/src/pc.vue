@@ -140,7 +140,7 @@ export default defineComponent({
     const validatePosition = this.validatePosition || state.formInstance?.validatePosition || 'top-end'
 
     const popperOptions = {
-      ...state.formInstance.popperOptions,
+      ...state.formInstance?.popperOptions,
       ...this.popperOptions,
       forceAbsolute: !appendToBody,
       onUpdate: (options) => {

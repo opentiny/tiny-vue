@@ -23,6 +23,8 @@ import {
   removeValidateEvents,
   mounted,
   unmounted,
+  registerField,
+  unregisterField,
   watchError,
   watchValidateStatus,
   computedLabelStyle,
@@ -138,7 +140,8 @@ const initState = ({
     disabled: computed(() => state.formInstance?.disabled || props.disabled),
     tooltipType: computed(() => state.formInstance?.state.tooltipType ?? 'normal'),
     // 标记表单项下是否有多个子节点
-    isMultiple: false
+    isMultiple: false,
+    fieldRegistered: false
   })
 
   return state
@@ -168,8 +171,10 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     getRules: getRules({ props, state }),
     updateComputedLabelWidth: updateComputedLabelWidth(state),
     removeValidateEvents: removeValidateEvents(vm),
-    unmounted: unmounted({ api, vm, state }),
-    mounted: mounted({ api, vm, props, state }),
+    registerField: registerField({ api, vm, props, state }),
+    unregisterField: unregisterField({ api, vm, state }),
+    unmounted: unmounted({ api, state }),
+    mounted: mounted({ api, vm, state }),
     computedIsRequired: computedIsRequired({ api, state }),
     resetField: resetField({ api, nextTick, props, state }),
     getFilteredRule: getFilteredRule(api),
@@ -186,12 +191,25 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
   })
 }
 
-const initWatch = ({ watch, api, props, state }) => {
+const initWatch = ({ watch, api, props, state, nextTick }) => {
   watch(() => props.error, api.watchError, { immediate: true })
 
   watch(() => props.validateStatus, api.watchValidateStatus)
 
   watch(() => state.formInstance?.displayOnly, api.clearDisplayedValue)
+
+  watch(
+    () => props.prop,
+    (newProp, oldProp) => {
+      if (oldProp) {
+        api.unregisterField()
+      }
+
+      if (newProp) {
+        nextTick(() => api.registerField())
+      }
+    }
+  )
 }
 
 export const renderless = (
@@ -205,7 +223,7 @@ export const renderless = (
   provide('formItem', vm)
 
   initApi({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots })
-  initWatch({ watch, api, props, state })
+  initWatch({ watch, api, props, state, nextTick })
 
   onMounted(api.mounted)
   vm.$on('displayed-value-changed', (param) => {
