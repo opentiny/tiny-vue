@@ -205,6 +205,7 @@ const initWatch = ({ watch, api, props, state, nextTick }) => {
     (newProp, oldProp) => {
       if (oldProp) {
         api.unregisterField()
+        api.clearValidate()
       }
 
       if (newProp) {
