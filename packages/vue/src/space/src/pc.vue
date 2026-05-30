@@ -10,12 +10,10 @@ export default defineComponent({
     return setup({ props, context, renderless, api }) as unknown as ISpaceApi
   },
   render() {
-    const hFunc = (this as any).$createElement || h
-
     // 如果 renderless 层有 orderedChildren，就用它，否则 fallback 到默认 slot
     const children = this.orderedChildren?.length ? this.orderedChildren : this.$slots.default?.() || []
 
-    return hFunc(
+    return h(
       'div',
       {
         class: this.customClass,
