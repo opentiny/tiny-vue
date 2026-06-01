@@ -386,7 +386,6 @@ export default defineComponent({
       slots: $slots,
       tableCustoms,
       tableData,
-      tableListeners,
       tableLoading,
       tableProps,
       toolbar,
@@ -414,7 +413,9 @@ export default defineComponent({
       props.stripe = designConfig?.stripe
     }
 
-    const tableOns = Object.assign(listeners, tableListeners)
+    // 每次 render 重新解析事件监听
+    const currentTableListeners = getListeners(this.$attrs)
+    const tableOns = Object.assign(listeners, currentTableListeners)
     const { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
     // fetchApi状态下初始化 loading、remoteSort、remoteFilter
