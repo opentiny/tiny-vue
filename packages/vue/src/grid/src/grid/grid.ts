@@ -415,7 +415,7 @@ export default defineComponent({
 
     // 每次 render 重新解析事件监听
     const currentTableListeners = getListeners(this.$attrs)
-    const tableOns = Object.assign(listeners, currentTableListeners)
+    const tableOns = Object.assign({}, listeners, currentTableListeners)
     const { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
     // fetchApi状态下初始化 loading、remoteSort、remoteFilter
