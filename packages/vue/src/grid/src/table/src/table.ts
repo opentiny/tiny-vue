@@ -37,7 +37,7 @@ import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
 import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
+import { getRowkey, GlobalEvent, hasChildrenList, getListeners, resolveTableListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
@@ -905,6 +905,9 @@ export default defineComponent({
     }
   },
   render() {
+    // 同步用户挂在 TinyGrid / Table 上的 @xxx，供 emitEvent、useCellEvent 等逻辑使用
+    this.tableListeners = resolveTableListeners(this)
+
     const { $grid, bodyProps, border, borderSaas, borderVertical } = this
     const { ctxMenuStore, dropConfig, editConfig, editRules, filterStore } = this
     const { hasFilter, hasTip, height, highlightCell, highlightHoverColumn, highlightHoverRow } = this

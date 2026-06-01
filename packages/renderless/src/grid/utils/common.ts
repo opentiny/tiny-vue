@@ -24,6 +24,7 @@
  */
 
 import { isNull, find, isFunction } from '@opentiny/utils'
+import { isVue2 } from '@opentiny/vue-common'
 import { get, set } from '../static'
 
 export const gridSize = ['medium', 'small', 'mini']
@@ -185,7 +186,7 @@ export const setCellValue = (row, column, value) => {
 export const hasChildrenList = (item) => item && item.children && item.children.length > 0
 
 export const emitEvent = (vm, type, args) => {
-  if (vm.tableListeners[type]) {
+  if (resolveTableListeners(vm)[type]) {
     const params = [].concat(args)
     vm.$emit(type, ...params)
   }
@@ -221,19 +222,29 @@ export const getListeners = ($attrs, $listeners) => {
   const regEventPrefix = /^on[A-Z]/
   const listeners = {}
 
-  if ($listeners) {
-    return $listeners
+  if ($attrs) {
+    Object.keys($attrs).forEach((name) => {
+      const event = $attrs[name]
+
+      if (regEventPrefix.test(name) && typeof event === 'function') {
+        listeners[name.slice(2).replace(regHyphenate, '-$1').toLowerCase()] = event
+      }
+    })
   }
 
-  Object.keys($attrs).forEach((name) => {
-    const event = $attrs[name]
+  // Vue 3 事件在 attrs 中且会随父组件更新；Vue 2 事件在 $listeners 中
+  if (Object.keys(listeners).length) {
+    return listeners
+  }
 
-    if (regEventPrefix.test(name) && typeof event === 'function') {
-      listeners[name.slice(2).replace(regHyphenate, '-$1').toLowerCase()] = event
-    }
-  })
+  return $listeners || listeners
+}
 
-  return listeners
+/** 解析 Table 上应生效的事件：用户监听在 TinyGrid 上时从 $grid.$attrs 读取 */
+export const resolveTableListeners = (vm) => {
+  const gridListeners = vm.$grid ? getListeners(vm.$grid.$attrs, isVue2 ? vm.$grid.$listeners : undefined) : {}
+
+  return Object.assign({}, gridListeners, getListeners(vm.$attrs, isVue2 ? vm.$listeners : undefined))
 }
 
 /** DFS深度优先遍历树形结构，并生成备份 */

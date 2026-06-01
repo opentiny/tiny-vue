@@ -36,7 +36,8 @@ import {
   resolveMode,
   resolveTheme,
   hooks,
-  useBreakpoint
+  useBreakpoint,
+  isVue2
 } from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
@@ -370,7 +371,7 @@ export default defineComponent({
   render() {
     const {
       fetchOption,
-      listeners,
+      listeners: eventsListeners,
       loading,
       optimizOpt,
       editConfigOpt,
@@ -414,8 +415,8 @@ export default defineComponent({
     }
 
     // 每次 render 重新解析事件监听
-    const currentTableListeners = getListeners(this.$attrs)
-    const tableOns = Object.assign({}, listeners, currentTableListeners)
+    const currentTableListeners = getListeners(this.$attrs, isVue2 ? this.$listeners : undefined)
+    const tableOns = Object.assign({}, eventsListeners, currentTableListeners)
     const { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
     // fetchApi状态下初始化 loading、remoteSort、remoteFilter
