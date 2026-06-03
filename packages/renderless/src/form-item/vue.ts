@@ -27,6 +27,8 @@ import {
   unregisterField,
   watchError,
   watchValidateStatus,
+  watchRequired,
+  watchRules,
   computedLabelStyle,
   computedValueStyle,
   computedContentStyle,
@@ -160,6 +162,8 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     updateTip: updateTip({ api, vm, state }),
     updateTooltip: updateTooltip({ vm, state }),
     watchValidateStatus: watchValidateStatus(state),
+    watchRequired: watchRequired({ api }),
+    watchRules: watchRules({ api }),
     computedLabelStyle: computedLabelStyle({ props, state }),
     computedValueStyle: computedValueStyle({ props, state }),
     computedContentStyle: computedContentStyle({ props, state }),
@@ -213,6 +217,10 @@ const initWatch = ({ watch, api, props, state, nextTick }) => {
       }
     }
   )
+
+  watch(() => props.required, api.watchRequired)
+
+  watch(() => props.rules, api.watchRules, { deep: true })
 }
 
 export const renderless = (

@@ -246,6 +246,29 @@ export const computedFieldValue =
     return getPropByPath(model, path, true).v
   }
 
+export const watchRequired =
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
+  (newValue: boolean, oldValue: boolean): void => {
+    // required 从无到有，或从有到无，需要重新注册验证事件
+    if (newValue !== oldValue) {
+      api.removeValidateEvents()
+      api.addValidateEvents()
+    }
+  }
+
+export const watchRules =
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
+  (newValue: IFormItemRule[], oldValue: IFormItemRule[]): void => {
+    // rules 从无到有，或从有到无，需要重新注册验证事件
+    const hadRules = oldValue?.length > 0
+    const hasRules = newValue?.length > 0
+
+    if (hadRules !== hasRules) {
+      api.removeValidateEvents()
+      api.addValidateEvents()
+    }
+  }
+
 export const registerField =
   ({ api, vm, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'props' | 'state'>) =>
   (): void => {
