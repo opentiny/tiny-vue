@@ -305,6 +305,42 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(() => props.pickerOptions, api.updateOptions, { deep: true })
 
   watch(() => props.label, api.setInputPaddingLeft)
+
+  // 同步缺失的 props 到 picker.state
+  watch(
+    () => props.defaultTime,
+    (value) => state.picker && (state.picker.state.defaultTime = value)
+  )
+
+  watch(
+    () => props.popperClass,
+    (value) => state.picker && (state.picker.state.popperClass = value)
+  )
+
+  watch(
+    () => props.popperAppendToBody,
+    (value) => state.picker && (state.picker.state.popperAppendToBody = value)
+  )
+
+  watch(
+    () => props.showTimezone,
+    (value) => state.picker && (state.picker.state.showTimezone = value || state.timezone.isServiceTimezone)
+  )
+
+  watch(
+    () => props.timeFormat,
+    (value) => state.picker && (state.picker.state.timefmt = value || '')
+  )
+
+  watch(
+    () => props.defaultTimezone,
+    (value) => state.picker && (state.picker.state.defaultTimezone = value)
+  )
+
+  watch(
+    () => props.unlinkPanels,
+    (value) => state.picker && (state.picker.state.unlinkPanels = value)
+  )
 }
 
 export const renderless = (

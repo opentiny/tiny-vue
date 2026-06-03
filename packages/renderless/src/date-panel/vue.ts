@@ -212,6 +212,27 @@ const initWatch = ({ watch, state, api, nextTick, props }) => {
   )
 
   watch(() => state.visible, api.watchVisible)
+
+  // 同步缺失的 props 到 state
+  watch(
+    () => props.popperClass,
+    (value) => (state.popperClass = value || '')
+  )
+
+  watch(
+    () => props.shortcuts,
+    (value) => (state.shortcuts = value || [])
+  )
+
+  watch(
+    () => props.disabledDate,
+    (value) => (state.disabledDate = value || null)
+  )
+
+  watch(
+    () => props.firstDayOfWeek,
+    (value) => (state.firstDayOfWeek = value || 7)
+  )
 }
 
 const initApi = ({ api, state, t, emit, nextTick, vm, watch, props }) => {

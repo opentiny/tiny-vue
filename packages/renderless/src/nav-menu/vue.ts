@@ -174,6 +174,16 @@ export const renderless = (
 
   watch(() => state.data, api.watchWidth)
 
+  // 同步 defaultActive 变化
+  watch(
+    () => props.defaultActive,
+    (value) => {
+      if (value) {
+        state.defaultActiveId = value
+      }
+    }
+  )
+
   onMounted(api.mounted)
   onUnmounted(api.unMounted)
 

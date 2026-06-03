@@ -150,6 +150,32 @@ const initWatch = ({ watch, state, api, props }) => {
   watch(() => state.defaultValue, api.watchDefault)
   watch(() => state.showTime, api.setTimeFormat)
   watch(() => state.visible, api.watchPickerVisible)
+
+  // 同步缺失的 props 到 state
+  watch(
+    () => props.popperClass,
+    (value) => (state.popperClass = value || '')
+  )
+
+  watch(
+    () => props.shortcuts,
+    (value) => (state.shortcuts = value || '')
+  )
+
+  watch(
+    () => props.disabledDate,
+    (value) => (state.disabledDate = value || null)
+  )
+
+  watch(
+    () => props.unlinkPanels,
+    (value) => (state.unlinkPanels = value || false)
+  )
+
+  watch(
+    () => props.format,
+    (value) => (state.format = value || '')
+  )
 }
 
 const initApi = ({ api, state, t, vm, nextTick, emit, constants, props }) => {

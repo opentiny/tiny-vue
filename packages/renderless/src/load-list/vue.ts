@@ -63,9 +63,11 @@ export const renderless = (
 
   api.useEventListener('scroll', api.check, { target: toRef(state, 'scroller'), passive: true })
 
-  onUpdated(() => {
-    state.loading = props.loading
-  })
+  // 同步 loading 状态
+  watch(
+    () => props.loading,
+    (value) => (state.loading = value)
+  )
 
   onMounted(() => {
     state.scrollParent = getScrollParent(vm.$el)

@@ -568,6 +568,16 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
     { immediate: true, deep: true }
   )
 
+  // 同步 initLabel 到 selectedLabel
+  watch(
+    () => props.initLabel,
+    (value) => {
+      if (value) {
+        state.selectedLabel = value
+      }
+    }
+  )
+
   watch(() => state.modelValue, api.watchValue)
 
   watch(
