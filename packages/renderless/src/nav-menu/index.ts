@@ -434,36 +434,57 @@ export const hidePopmenu = (api: INavMenuApi) => (item: menuItemType) => {
   }
 }
 
+const updateMenuSelectedState = (
+  state: INavMenuState,
+  api: INavMenuApi,
+  item: menuItemType,
+  index: number,
+  parentIndex: number
+): void => {
+  if (state.defaultActiveId) {
+    state.defaultActiveId = item.id
+    state.selectedIndex = -1
+  }
+  if (state.enterMenu) {
+    state.subIndex = -1
+    state.subItemSelectedIndex = -1
+    api.setActiveMenu(index)
+  }
+  if (state.enterMoreMenu) {
+    state.selectedIndex = -1
+    state.moreItemSelectedIndex = index
+  } else {
+    state.subItemSelectedIndex = index
+    state.subIndex = parentIndex
+  }
+}
+
 export const clickMenu =
   ({ api, props, state }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'state'>) =>
   (item: menuItemType, index: number, parentIndex: number): void => {
     if (index === undefined) {
       return
     }
-    if (state.defaultActiveId) {
-      state.defaultActiveId = item.id
-      state.selectedIndex = -1
-    }
-    if (state.enterMenu) {
-      state.subIndex = -1
-      state.subItemSelectedIndex = -1
-      api.setActiveMenu(index)
-    }
-    if (state.enterMoreMenu) {
-      state.selectedIndex = -1
-      state.moreItemSelectedIndex = index
-    } else {
-      state.subItemSelectedIndex = index
-      state.subIndex = parentIndex
-    }
     if (item.url || item.route) {
+      const canSkip = props.beforeSkip ? props.beforeSkip(item) : true
+
+      if (!canSkip) {
+        api.hideSubMenu()
+        return
+      }
+
+      updateMenuSelectedState(state, api, item, index, parentIndex)
+
       if (props.beforeSkip) {
-        props.beforeSkip(item) && api.skip(item, true)
+        api.skip(item, true)
       } else {
         api.skip(item, false)
       }
       api.hidePopmenu(item)
+      return
     }
+
+    updateMenuSelectedState(state, api, item, index, parentIndex)
   }
 
 export const skip =
