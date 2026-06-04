@@ -237,4 +237,17 @@ describe('PC Mode', () => {
     const iconTotalSvg = wrapper.find('.slot-logo')
     expect(iconTotalSvg.exists()).toBeTruthy()
   })
+
+  test('should not hide menu with max-width 0px on mount', async () => {
+    const wrapper = mount(() => <NavMenu data={navMenuMockData}></NavMenu>)
+    await wrapper.vm.$nextTick()
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    const menu = wrapper.find('.menu')
+    expect(menu.exists()).toBeTruthy()
+    expect(menu.isVisible()).toBeTruthy()
+
+    const maxWidth = menu.element.style.maxWidth
+    expect(maxWidth).not.toBe('0px')
+  })
 })

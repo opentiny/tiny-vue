@@ -142,7 +142,7 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
     getPoint: getPoint({ api, parent }),
     clickMenu: clickMenu({ api, props, state }),
     unMounted: unMounted({ api, state, router }),
-    mounted: mounted({ api, props, router, route, state }),
+    mounted: mounted({ api, nextTick, props, router, route, state }),
     classify: classify({ api, props, state }),
     watchWidth: watchWidth({ api, nextTick }),
     willHideSubMenu: willHideSubMenu({ api, state }),
