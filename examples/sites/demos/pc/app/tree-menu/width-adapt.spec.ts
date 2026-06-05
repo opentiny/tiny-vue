@@ -9,5 +9,6 @@ test('宽度自适应', async ({ page }) => {
 
   const wrap = page.locator('#width-adapt')
   const treeMenu = wrap.locator('.tiny-tree-menu')
-  await expect(treeMenu).toHaveAttribute('style', 'width: 100%;')
+  await expect(treeMenu).toHaveClass(/is-width-adapt/)
+  await expect(treeMenu).not.toHaveAttribute('style', /width/)
 })

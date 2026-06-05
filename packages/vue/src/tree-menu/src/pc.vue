@@ -18,10 +18,10 @@
     :class="{
       'is-collapsed': state.isCollapsed,
       'is-expand': state.isExpand,
+      'is-width-adapt': widthAdapt,
       'tiny-tree-menu__show-filter': showFilter,
       'tiny-tree-menu__show-expand': showExpand
     }"
-    :style="widthAdapt ? { width: '100%' } : {}"
   >
     <div v-if="menuCollapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
       <icon-arrow></icon-arrow>
