@@ -120,18 +120,21 @@ export const updated =
     }
   }
 
-export const mounted = ({ api, parent }: Pick<ITabNavRenderlessParams, 'api' | 'parent'>) => {
-  const el = parent.$refs.nav.$el
+export const mounted = ({ api, parent, nextTick }: Pick<ITabNavRenderlessParams, 'api' | 'parent' | 'nextTick'>) => {
+  // 等待 DOM 更新完成后再初始化，确保 nav 等 refs 已就绪，避免 scroll/sortable 等逻辑访问不到 DOM
+  nextTick(() => {
+    const el = parent.$refs.nav.$el
 
-  /* istanbul ignore next */
-  addResizeListener(el, api.updated)
-  on(document, 'visibilitychange', api.visibilityChangeHandler)
-  on(window, 'blur', api.windowBlurHandler)
-  on(window, 'focus', api.windowFocusHandler)
+    /* istanbul ignore next */
+    addResizeListener(el, api.updated)
+    on(document, 'visibilitychange', api.visibilityChangeHandler)
+    on(window, 'blur', api.windowBlurHandler)
+    on(window, 'focus', api.windowFocusHandler)
 
-  api.scrollToActiveTab()
-  api.scrollIntoView()
-  api.sortableEvent()
+    api.scrollToActiveTab()
+    api.scrollIntoView()
+    api.sortableEvent()
+  })
 }
 
 export const beforeUnmount = ({ api, parent }: Pick<ITabNavRenderlessParams, 'api' | 'parent'>) => {
