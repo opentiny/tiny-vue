@@ -68,7 +68,7 @@ export const renderless = (
   // 同步 data 变化到 state
   watch(
     () => props.data,
-    (value) => (state.datas = value)
+    () => api.timelineflowData()
   )
 
   onMounted(api.timelineflowData)
