@@ -281,7 +281,7 @@ export const registerField =
     let initialValue = state.fieldValue
 
     if (Array.isArray(initialValue)) {
-      initialValue = ([] as any).concat(initialValue)
+      initialValue = initialValue.slice()
     }
 
     state.initialValue = initialValue
