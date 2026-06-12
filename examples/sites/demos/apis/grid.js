@@ -2969,9 +2969,9 @@ export default {
           type: 'IOperationConfig',
           defaultValue: '',
           desc: {
-            'zh-CN': '属性指定为 <code>operation</code> 时有效，通过 <code>operationConfig</code> 配置操作列',
+            'zh-CN': '当 <code>type="operation"</code> 时有效，通过 <code>operationConfig</code> 配置操作列',
             'en-US':
-              'Effective when the attribute is specified as <code>operation</code>. Configures the operation column through <code>operationConfig</code>'
+              'Effective when <code>type="operation"</code> is specified. Configures the operation column through <code>operationConfig</code>'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-operation-column#operation-column',
