@@ -90,6 +90,16 @@ export default {
         'en-US': ''
       },
       codeFiles: ['operation-column/header-select-disabled.vue']
+    },
+    {
+      demoId: 'operation-column',
+      name: { 'zh-CN': '操作列的按钮配置', 'en-US': '' },
+      desc: {
+        'zh-CN': '通过type="operation"设置列为操作列，通过operationConfig配置操作列的按钮',
+        'en-US':
+          'Through type="operation" to set the column as the operation column, and through operationConfig to configure the buttons of the operation column'
+      },
+      codeFiles: ['operation-column/operation-column.vue']
     }
   ],
   apis: [{ name: 'grid-operation-column', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

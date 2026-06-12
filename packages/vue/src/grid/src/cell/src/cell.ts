@@ -50,42 +50,6 @@ const insertedField = GLOBAL_CONFIG.constant.insertedField
 const getCellRender = (isTreeNode, treeCellRender, treeRender, context) =>
   context[isTreeNode ? treeCellRender : treeRender]
 
-// 为列插槽创建独立渲染组件，隔离依赖收集，并通过 WeakMap 进行缓存
-function getColumnSlotRender({ h, slots, columnSlotsWeakMap }) {
-  const slot = slots && slots.default
-
-  if (!slot) {
-    return null
-  }
-
-  let renderFn = columnSlotsWeakMap.get(slot)
-
-  if (!renderFn) {
-    const vueHooks = hooks as any
-    const wrapperOptions: any = {
-      name: 'TinyGridColumnSlotWrapper',
-      props: {
-        params: {
-          type: Object,
-          default: () => ({})
-        }
-      },
-      render() {
-        return slot(this.params, h)
-      }
-    }
-
-    // 在 vue3 下使用 markRaw 标记为原始对象，避免不必要的响应式包装
-    const SlotWrapper = vueHooks.markRaw ? vueHooks.markRaw(wrapperOptions) : wrapperOptions
-
-    renderFn = (params) => h(SlotWrapper, { props: { params } })
-
-    columnSlotsWeakMap.set(slot, renderFn)
-  }
-
-  return renderFn
-}
-
 function processRenderer({ h, params, renderer, value }) {
   let result = { flag: false, vnodes: null }
 
@@ -326,7 +290,6 @@ export const Cell = {
     let { $table, row, column } = params
     let { slots, renderer } = column
     const format = column.format || {}
-    const columnSlotsWeakMap = $table.columnSlotsWeakMap || ($table.columnSlotsWeakMap = new WeakMap())
 
     if (slots && slots.default) {
       return slots.default(params, h)
@@ -433,7 +396,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $table, column, row, seq, level } = params
+    const { $table, column, row, seq } = params
     // startIndex：序号列的起始值
     const { startIndex, treeConfig, treeOrdered } = $table
     const { indexMethod, slots } = column
@@ -1071,8 +1034,8 @@ export const Cell = {
     }
 
     const handleItemClick = (itemData) => {
-      // 兼容不同itemData数据类型
-      const realName = itemData?.name || itemData
+      // 兼容不同itemData数据类型,  第一段是兼容tiny的事件， 第二段是兼容 aurora design 的事件
+      const realName = itemData?.itemData?.name || itemData?.name || itemData
       const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === realName)
       buttonConfig.click(window.event || {}, { buttonConfig, ...params })
     }

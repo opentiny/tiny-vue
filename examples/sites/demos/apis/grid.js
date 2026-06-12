@@ -2954,7 +2954,7 @@ export default {
         },
         {
           name: 'type',
-          type: "'index' | 'selection' | 'radio' | 'expand'",
+          type: "'index' | 'selection' | 'radio' | 'expand' | 'operation'",
           defaultValue: '',
           desc: {
             'zh-CN': '设置内置列的类型',
@@ -2962,6 +2962,20 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-serial-column#serial-column-default-serial-column'
+        },
+        {
+          name: 'operation-config',
+          typeAnchorName: 'IOperationConfig',
+          type: 'IOperationConfig',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '属性指定为 <code>operation</code> 时有效，通过 <code>operationConfig</code> 配置操作列',
+            'en-US':
+              'Effective when the attribute is specified as <code>operation</code>. Configures the operation column through <code>operationConfig</code>'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-operation-column#operation-column',
+          mfDemo: 'operation-column'
         },
         {
           name: 'width',
@@ -2974,7 +2988,7 @@ export default {
               'Set the column width. The value can be pixel, percentage, or auto. If the value is auto, the column width automatically adapts.; column width; The optional value of this property is integer/px/%'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'grid-size#size-fixed-column-width'
+          pcDemo: 'operation-column'
         }
       ],
       events: [],
@@ -4362,6 +4376,21 @@ interface ICustomConfig {
   visible?: boolean
   // 列宽
   width?: number | string
+}`
+    },
+    {
+      name: 'IOperationConfig',
+      type: 'type',
+      code: `
+interface IOperationConfig {
+  // 操作列的按钮配置
+  buttons: Array<{name:string, icon:Icon, click:()=>void, hidden:(row)=> boolean, class?:string, disabled?:boolean| (row)=> boolean}>
+  // 最多显示按钮数，默认值为3
+  max?: number
+  // 自定义操作列渲染函数， 优先级高
+  render?: ({h, buttons, params}) => VNode
+  // 禁用时需要添加的class
+  disabledClass?:string
 }`
     }
   ]
