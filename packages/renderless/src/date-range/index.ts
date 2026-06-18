@@ -586,7 +586,7 @@ export const resetView =
   ({ state }) =>
   () => {
     state.minDate = state.value && toDate1(state.value[0]) ? new Date(state.value[0]) : null
-    state.maxDate = state.value && toDate1(state.value[0]) ? new Date(state.value[1]) : null
+    state.maxDate = state.value && toDate1(state.value[1]) ? new Date(state.value[1]) : null
   }
 
 export const setTimeFormat =

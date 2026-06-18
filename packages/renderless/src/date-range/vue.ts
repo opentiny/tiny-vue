@@ -79,6 +79,7 @@ export const api = [
   'handleDateChange',
   'handleMaxTimeClose',
   'isValidValue',
+  'resetView',
   'watchModelValue'
 ]
 

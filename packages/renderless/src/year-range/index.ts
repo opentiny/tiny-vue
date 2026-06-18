@@ -192,8 +192,8 @@ export const isValidValue = (state) => (data) => {
 }
 
 export const resetView = (state) => () => {
-  state.maxDate = state.value && isDate(state.value[0]) ? new Date(state.value[1]) : null
   state.minDate = state.value && isDate(state.value[0]) ? new Date(state.value[0]) : null
+  state.maxDate = state.value && isDate(state.value[1]) ? new Date(state.value[1]) : null
 }
 
 export const watchModelValue =

@@ -26,6 +26,7 @@ export const api = [
   'handleChangeRange',
   'leftPrevYear',
   'leftNextYear',
+  'resetView',
   'watchModelValue'
 ]
 
