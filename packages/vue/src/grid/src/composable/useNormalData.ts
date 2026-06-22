@@ -19,7 +19,7 @@ export const useNormalData = ({ props, tableFullColumn }) => {
 
       if (column.property && column.editor) {
         columns.push(column)
-        columnKeys.push(column.propety)
+        columnKeys.push(column.property)
       }
     }
 
