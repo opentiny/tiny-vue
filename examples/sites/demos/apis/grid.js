@@ -4212,6 +4212,8 @@ interface IFilterConfig {
   defaultFilter?: boolean
   // 设置在过滤面板中显示输入筛选，true 使用默认 input，或传入 IInputFilterConfig 配置
   inputFilter?: boolean | IInputFilterConfig
+  // 重置输入时的回调
+  onResetInputFilter?: (ref: any) => void
   // 设置枚举选项的静态数据源，也可为函数 (params) => Promise<Array<{label,value,checked?}>>
   values?: Array<{ [key: string]: any }> | (params: { property: string; filter: IFilterConfig }) => Promise<Array<{ [key: string]: any }>>
   // 设置枚举数据的显示值属性字段，默认 'label'
@@ -4245,8 +4247,6 @@ interface IInputFilterConfig {
   relations?: IRelationFilterItem[]
   // 默认选中的 relation 值
   relation?: string
-  // 重置输入时的回调
-  onResetInputFilter?: (ref: any) => void
 }
 
 // 关系选项项
