@@ -147,7 +147,7 @@
               <!-- 当非 showAllTextTag 时，原来的模式渲染 -->
               <template v-else>
                 <tiny-tag
-                  v-if="hoverExpand || (clickExpand && !state.showCollapseTag)"
+                  v-if="hoverExpand || clickExpand"
                   :class="[
                     'tiny-base-select__tags-collapse',
                     'cursor-pointer',
