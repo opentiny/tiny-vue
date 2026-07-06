@@ -15,6 +15,10 @@ import { xss } from '@opentiny/utils'
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
   async () => {
+    if (props.lazy) {
+      return
+    }
+
     if (props.data) {
       state.data = props.data
       return
