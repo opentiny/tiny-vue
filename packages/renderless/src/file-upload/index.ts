@@ -206,9 +206,18 @@ const onBeforeIsPromise = ({
 }
 
 const isAcceptType = (acceptArray, file, constants, fileType) => {
+  // MIME 通配符（image/*、video/*、audio/*）需按扩展名白名单校验，
+  // 否则 type 里的 * 会被当作正则量词，导致 video/*、audio/* 无法匹配到对应文件
+  const mimeWildcardMap = {
+    [constants.IMAGE_TYPE]: constants.FILE_TYPE.PICTURE,
+    'video/*': constants.FILE_TYPE.VIDEO,
+    'audio/*': constants.FILE_TYPE.AUDIO
+  }
+
   return acceptArray.some((type) => {
-    if (type.toLowerCase() === constants.IMAGE_TYPE) {
-      return constants.FILE_TYPE.PICTURE.split('/').includes(fileType)
+    const whitelist = mimeWildcardMap[type.trim().toLowerCase()]
+    if (whitelist) {
+      return whitelist.split('/').includes(fileType)
     }
     return new RegExp(`(${type.trim()})$`, 'i').test(file.name)
   })
