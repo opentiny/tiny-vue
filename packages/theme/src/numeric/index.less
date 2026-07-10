@@ -103,7 +103,7 @@
   &__decrease,
   &__increase {
     position: absolute;
-    z-index: 1;
+    // z-index: 1; // 注释掉以防止层级冲突，会导致按钮遮挡其他元素
     top: 1px;
     width: var(--tv-Numeric-input-icon-width);
     height: calc(100% - 2px);
