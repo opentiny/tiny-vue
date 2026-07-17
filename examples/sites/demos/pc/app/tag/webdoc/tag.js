@@ -138,6 +138,18 @@ export default {
         'en-US': 'Listen for click events through <code>click</code> .'
       },
       codeFiles: ['tag-event-click.vue']
+    },
+    {
+      demoId: 'rounded',
+      name: {
+        'zh-CN': '圆角标签',
+        'en-US': 'Set rounded corner label'
+      },
+      desc: {
+        'zh-CN': '通过使用 <code>round</code> 属性设置圆角标签。',
+        'en-US': 'Set the rounded corners by using the <code>round</code> property.'
+      },
+      codeFiles: ['rounded.vue']
     }
   ],
   features: [

@@ -73,6 +73,10 @@
     .size-mixin(-medium);
   }
 
+  &.is-round {
+    border-radius: 9999px;
+  }
+
   /** 颜色场景 */
   .color-type-effect-mixin(@type) {
     @light-c: %('var(--tv-Tag-text-color-light%a)', @type);

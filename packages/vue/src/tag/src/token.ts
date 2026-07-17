@@ -60,6 +60,8 @@ export const classes = {
     'h-9 sm:h-7 text-color-text-disabled bg-color-bg-4 border-transparent cursor-not-allowed hover:text-color-text-disabled hover:bg-color-bg-4',
   'tag-operable': 'h-7 sm:h-6 cursor-pointer',
 
+  'is-round': 'rounded-full',
+
   'medium': 'h-7 px-3',
   'small': 'h-6 px-2',
   'mini': 'h-5 px-1'

@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-tag-demo">
-    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @click="handleClick">
+    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" :type="tag.type" @click="handleClick">
       {{ tag.name }}
     </tiny-tag>
   </div>
@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { TinyTag, TinyModal } from '@opentiny/vue'
+import { TinyTag, Modal } from '@opentiny/vue'
 
 const tags = ref([
   { name: '标签一', type: '' },
@@ -19,7 +19,7 @@ const tags = ref([
 ])
 
 function handleClick() {
-  TinyModal.message('click 事件')
+  Modal.message('click 事件')
 }
 </script>
 
