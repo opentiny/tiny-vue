@@ -261,7 +261,7 @@ type ISize = 'medium' | 'small' | ''
       name: 'IType',
       type: 'type',
       code: `
-type IType = 'success' | 'info' | 'warning' | 'danger'
+type IType = 'success' | 'info' | 'warning' | 'danger' | 'alerting' | 'error'
 `
     }
   ]

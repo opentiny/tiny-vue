@@ -32,9 +32,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger)</code> 。',
+          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger / alerting / error)</code> 。',
         'en-US':
-          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger)</code> .'
+          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger/alerting/error)</code> .'
       },
       codeFiles: ['effect.vue']
     },

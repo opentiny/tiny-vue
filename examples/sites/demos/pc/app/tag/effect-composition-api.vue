@@ -26,7 +26,9 @@ const items = ref([
   { type: 'success', label: '标签二' },
   { type: 'info', label: '标签三' },
   { type: 'danger', label: '标签四' },
-  { type: 'warning', label: '标签五' }
+  { type: 'warning', label: '标签五' },
+  { type: 'alerting', label: '标签六' },
+  { type: 'error', label: '标签七' }
 ])
 </script>
 

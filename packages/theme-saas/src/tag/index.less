@@ -64,7 +64,6 @@
   &&--success {
     .tag-variant(
       theme('colors.color.success.DEFAULT'),
-      
       theme('colors.transparent'),
       theme('colors.color.success.subtler'),
       theme('colors.color.success.DEFAULT'),
@@ -84,7 +83,19 @@
     );
   }
 
-  &&--danger {
+  &&--alerting {
+    .tag-variant(
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.transparent'),
+      theme('colors.color.alert.subtler'),
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.alert.subtler')
+    );
+  }
+
+  &&--danger,
+  &&--error {
     .tag-variant(
       theme('colors.color.error.DEFAULT'),
       theme('colors.transparent'),
@@ -140,7 +151,17 @@
     );
   }
 
-  &--dark&--danger {
+  &--dark&--alerting {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--danger,
+  &--dark&--error {
     .tag-dark-variant(
       theme('colors.color.text.inverse'),
       theme('colors.color.error.DEFAULT'),
@@ -204,7 +225,19 @@
     );
   }
 
-  &--plain&--danger {
+  &--plain&--alerting {
+    .tag-variant(
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.alert.subtle'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.alert.DEFAULT'),
+      theme('colors.color.alert.subtler')
+    );
+  }
+
+  &--plain&--danger,
+  &--plain&--error {
     .tag-variant(
       theme('colors.color.error.DEFAULT'),
       theme('colors.color.error.subtle'),
