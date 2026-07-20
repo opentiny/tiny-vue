@@ -18,13 +18,14 @@ export default {
     {
       demoId: 'size',
       name: {
-        'zh-CN': '大尺寸',
-        'en-US': 'Large size'
+        'zh-CN': '尺寸',
+        'en-US': 'Size'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>size</code> 属性设置不同的尺寸，可选值：nomal、large，默认值：nomal 。</p>',
+        'zh-CN':
+          '<p>通过 <code>size</code> 设置不同的尺寸模式，可选值： <code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code>。</p>',
         'en-US':
-          '<p>Use the <code>size</code> attribute to set different sizes. The options are nomal and large. The default value is nomal.</p>'
+          '<p>Set different size modes through<code>size</code>, with optional values:< code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code>.</p>'
       },
       codeFiles: ['size.vue']
     },

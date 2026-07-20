@@ -5,12 +5,16 @@
       v-if="state.show"
       :class="
         m(
-          'min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal text-color-text-primary',
+          { 'min-h-min': size !== 'large' },
+          'flex py-2 px-4 my-2 rounded-form box-border font-light sm:font-normal text-color-text-primary border border-transparent',
+          `tiny-alert--${size || 'normal'}`,
           { 'bg-color-info-primary-subtler': type === 'info' || !type },
           { 'bg-color-error-subtler': type === 'error' },
           { 'bg-color-warning-subtler': type === 'warning' },
           { 'bg-color-success-subtler': type === 'success' },
           { 'text-center': center },
+          [size === 'small' ? 'sm:py-0.5' : size === 'medium' ? 'sm:py-1' : size === 'large' ? 'sm:py-6' : 'sm:py-3'],
+          { 'h-[76px]': size === 'large' },
           customClass
         )
       "
@@ -18,7 +22,8 @@
       <component
         v-if="showIcon"
         :is="state.getIcon"
-        custom-class="h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current"
+        :data-tag="'tiny-alert-' + type + '-icon'"
+        custom-class="h-4.5 w-4.5 mt-0.5 sm:mt-0 sm:h-6 sm:w-5 sm:h-5 fill-current"
         :class="[
           { 'text-color-info-primary': type === 'info' || !type },
           { 'text-color-error': type === 'error' },
@@ -29,12 +34,12 @@
       <div
         data-tag="tiny-alert-foldable"
         v-if="showFoldable"
-        class="flex-1 leading-6 text-sm overflow-hidden"
+        class="flex-1 leading-5.5 text-sm overflow-hidden"
         :class="showIcon ? 'mx-2' : 'mr-2'"
       >
         <div
           data-tag="tiny-alert-large"
-          v-if="size === 'large' && showTitle"
+          v-if="size === 'large'"
           @click="handleHeaderClick"
           class="inline-flex cursor-pointer font-medium"
         >
@@ -91,10 +96,10 @@
       <div
         data-tag="tiny-alert-notfoldable"
         v-else
-        class="flex-1 leading-6 text-sm overflow-hidden"
+        class="flex-1 leading-5.5 text-sm overflow-hidden cursor-pointer"
         :class="[showIcon ? 'ml-2' : '', closable ? 'mr-2' : '']"
       >
-        <div data-tag="tiny-alert-large" v-if="size === 'large' && showTitle" class="font-medium">
+        <div data-tag="tiny-alert-title" v-if="size === 'large'" class="font-medium">
           <slot name="title">{{ state.getTitle }} </slot>
         </div>
         <div
@@ -114,11 +119,12 @@
             <slot name="description">{{ description }}</slot>
           </div>
         </div>
-        <div v-if="size === 'large' && slots.default" class="pt-2">
+        <div data-tag="tiny-alert-opration" v-if="size === 'large' && slots.default" class="pt-2">
           <slot></slot>
         </div>
       </div>
       <icon-close
+        data-tag="tiny-alert-close-icon"
         v-if="!closeText && closable"
         @click="handleClose"
         class="h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70"
@@ -127,7 +133,7 @@
         v-else-if="closeText && closable"
         data-tag="tiny-alert-close-text"
         @click="handleClose"
-        class="leading-6 text-sm cursor-pointer"
+        class="leading-5.5 text-sm cursor-pointer"
         >{{ closeText }}</span
       >
     </div>
@@ -152,7 +158,6 @@ export default defineComponent({
     'closable',
     'center',
     'showIcon',
-    'showTitle',
     'closeText',
     'singleLine',
     'scrolling',

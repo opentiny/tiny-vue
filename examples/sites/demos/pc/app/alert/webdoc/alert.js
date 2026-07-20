@@ -26,22 +26,22 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过 <code>size</code> 设置不同的尺寸模式，可选值： <code>normal</code> 、<code>large</code> 。<br>
+          通过 <code>size</code> 设置不同的尺寸模式，可选值： <code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code> 。<br>
           <div class="tip custom-block">
             <p class="custom-block-title"> 尺寸模式区别 </p>
             <ul>
-              <li> normal 模式下，不会显示标题和交互操作的区域，相当于简单模式。</li> 
-              <li> large 模式下，显示全部元素，相当于完整模式。</li> 
+              <li> <code>small</code> 、<code>medium</code> 、<code>normal</code> 模式下，不会显示标题和交互操作的区域，相当于简单模式。</li> 
+              <li> <code>large</code> 模式下，显示全部元素，相当于完整模式。</li> 
             </ul>
           </div>
         `,
         'en-US': `
-          Use <code>size</code> to set different size modes, optional values: <code>normal</code>, <code>large</code>. <br>
+          Use <code>size</code> to set different size modes, optional values: <code>small</code>, <code>medium</code>, <code>normal</code>, <code>large</code>. <br>
           <div class="tip custom-block">
           <p class="custom-block-title"> Size pattern difference </p>
           <ul>
-            <li> normal mode, the header and interactive areas are not displayed, which is equivalent to simple mode. </li>
-            <li> large mode, all elements are displayed, equivalent to the full mode. </li>
+            <li> <code>small</code> 、<code>medium</code> 、<code>normal</code> mode, the header and interactive areas are not displayed, which is equivalent to simple mode. </li>
+            <li> <code>large</code> mode, all elements are displayed, equivalent to the full mode. </li>
           </ul>
           </div>
         `

@@ -7,7 +7,7 @@
 .@{alert-prefix-cls} {
   @apply relative;
   @apply border border-solid;
-  @apply rounded;
+  @apply rounded-form;
 
   &&--normal {
     @apply py-3 px-4;
@@ -25,6 +25,26 @@
         @apply pr-0;
         @apply max-w-full;
       }
+    }
+  }
+
+  &&--small {
+    @apply ~'py-0.5';
+
+    .@{alert-prefix-cls}__close {
+      @apply top-1;
+      @apply transform-none;
+      @apply mt-px;
+    }
+  }
+
+  &&--medium {
+    @apply py-1;
+
+    .@{alert-prefix-cls}__close {
+      @apply ~'top-1.5';
+      @apply transform-none;
+      @apply mt-px;
     }
   }
 
@@ -68,19 +88,19 @@
   }
 
   &&--success {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.success.DEFAULT'); theme('colors.color.success.DEFAULT'); theme('colors.color.success.subtler'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.transparent'); theme('colors.color.success.DEFAULT'); theme('colors.color.success.DEFAULT'); theme('colors.color.success.subtler'); theme('colors.color.text.primary'));
   }
 
   &&--info {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.subtler'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.transparent'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.subtler'); theme('colors.color.text.primary'));
   }
 
   &&--warning {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.warning.DEFAULT'); theme('colors.color.warning.DEFAULT'); theme('colors.color.warning.subtler'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.transparent'); theme('colors.color.warning.DEFAULT'); theme('colors.color.warning.DEFAULT'); theme('colors.color.warning.subtler'); theme('colors.color.text.primary'));
   }
 
   &&--error {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.error.DEFAULT'); theme('colors.color.error.DEFAULT'); theme('colors.color.error.subtler'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.transparent'); theme('colors.color.error.DEFAULT'); theme('colors.color.error.DEFAULT'); theme('colors.color.error.subtler'); theme('colors.color.text.primary'));
   }
 
   &__icon {

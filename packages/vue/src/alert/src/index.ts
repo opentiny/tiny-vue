@@ -42,7 +42,8 @@ export const alertProps = {
   },
   size: {
     type: String,
-    default: 'normal'
+    default: 'normal',
+    validator: (val: string) => ['small', 'medium', 'normal', 'large'].includes(val)
   },
   description: {
     type: String,

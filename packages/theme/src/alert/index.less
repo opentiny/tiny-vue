@@ -93,6 +93,32 @@
     font-size: var(--tv-Alert-close-text-font-size);
   }
 
+  /** Small 场景 */
+  &.@{alert-prefix-cls}--small {
+    padding-top: var(--tv-Alert-space-xs);
+    padding-bottom: var(--tv-Alert-space-xs);
+    margin: var(--tv-Alert-margin-y-normal) var(--tv-Alert-margin-x-normal);
+
+    .@{alert-prefix-cls}__close {
+      top: var(--tv-Alert-space-sm);
+      transform: none;
+      margin-top: calc(var(--tv-Alert-space-sm) / 4);
+    }
+  }
+
+  /** Medium 场景 */
+  &.@{alert-prefix-cls}--medium {
+    padding-top: var(--tv-Alert-space-sm);
+    padding-bottom: var(--tv-Alert-space-sm);
+    margin: var(--tv-Alert-margin-y-normal) var(--tv-Alert-margin-x-normal);
+
+    .@{alert-prefix-cls}__close {
+      top: calc(var(--tv-Alert-space-sm) + var(--tv-Alert-space-xs));
+      transform: none;
+      margin-top: calc(var(--tv-Alert-space-sm) / 4);
+    }
+  }
+
   /** Normal 场景 */
   &.@{alert-prefix-cls}--normal {
     padding: var(--tv-Alert-padding-y-normal) var(--tv-Alert-padding-x-normal);
