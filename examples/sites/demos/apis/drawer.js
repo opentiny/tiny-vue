@@ -10,7 +10,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': 'drawer 本身是否插入到 body 上',
+            'zh-CN': 'drawer 本身是否插入到 body',
             'en-US': 'Whether the drawer itself is inserted into the body'
           },
           mode: ['pc', 'mobile-first'],

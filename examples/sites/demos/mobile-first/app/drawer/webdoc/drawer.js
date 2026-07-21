@@ -29,6 +29,18 @@ export default {
       codeFiles: ['placement.vue']
     },
     {
+      demoId: 'to-body',
+      name: {
+        'zh-CN': '渲染在 body 中',
+        'en-US': 'Rendering in body'
+      },
+      desc: {
+        'zh-CN': '<p>添加 <code>append-to-body</code> 属性设置是否插入至<code>body</code></p>',
+        'en-US': 'Add<code>append to body</code>attribute to set whether to insert into<code>body</code>'
+      },
+      codeFiles: ['to-body.vue']
+    },
+    {
       demoId: 'width',
       name: {
         'zh-CN': '抽屉宽度',
