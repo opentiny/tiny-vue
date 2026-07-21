@@ -2,6 +2,14 @@ import { debounce } from '@opentiny/utils'
 import { addClass, removeClass } from '@opentiny/utils'
 import type { IDrawerState, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils, IDrawerRenderlessParams } from '@/types'
 
+export const watchToggle =
+  ({ emit }: Pick<IDrawerRenderlessParams, 'emit'>) =>
+  (bool) => {
+    setTimeout(() => {
+      emit('update:visible', bool)
+    }, 200)
+  }
+
 export const computedWidth =
   ({
     state,
@@ -46,10 +54,15 @@ export const closed =
   }
 
 export const watchVisible =
-  ({ props, parent, api }: Pick<IDrawerRenderlessParams, 'state' | 'props' | 'parent' | 'api' | 'nextTick'>) =>
+  ({ state, props, parent, api }: Pick<IDrawerRenderlessParams, 'state' | 'props' | 'parent' | 'api'>) =>
   (value: boolean) => {
     // tiny优化抽屉显隐逻辑
     value ? api.open() : api.close()
+
+    setTimeout(() => {
+      state.toggle = value
+    }, 0)
+
     if (value) {
       const el = parent.$el
       if (props.appendToBody && el && el.parentNode !== document.body) {
@@ -84,6 +97,8 @@ export const handleClose =
     if (isMaskNotClosable || isBlockClose) {
       return
     }
+
+    state.toggle = false
 
     if (state.visible) {
       state.visible = false

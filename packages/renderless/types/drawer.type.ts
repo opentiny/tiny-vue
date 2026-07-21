@@ -19,11 +19,13 @@ import type {
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IDrawerState {
+  toggle: boolean
   visible: boolean
   width: number
   height: number
   dragEvent: { x: number; y: number; isDrag: boolean; offsetWidth: number; offsetHeight: number }
   computedWidth: string
+  computedHeight: string
 }
 
 export type IDrawerProps = ExtractPropTypes<typeof drawerProps>

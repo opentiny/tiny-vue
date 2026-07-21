@@ -16,7 +16,8 @@ import {
   open,
   keydown,
   addKeydownEvent,
-  removeKeydownEvent
+  removeKeydownEvent,
+  watchToggle
 } from './index'
 import type {
   IDrawerProps,
@@ -37,6 +38,7 @@ export const renderless = (
 
   const api = {} as IDrawerApi
   const state: IDrawerState = reactive({
+    toggle: false,
     visible: false,
     width: 0,
     height: 0,
@@ -60,11 +62,12 @@ export const renderless = (
     removeKeydownEvent: removeKeydownEvent({ api }),
     addDragEvent: addDragEvent({ api, vm }),
     removeDragEvent: removeDragEvent({ api, vm }),
-    watchVisible: watchVisible({ props, parent, api }),
+    watchVisible: watchVisible({ state, props, parent, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
     computedWidth: computedWidth({ state, designConfig, props, constants }),
-    computedHeight: computedHeight({ state, designConfig, props, constants })
+    computedHeight: computedHeight({ state, designConfig, props, constants }),
+    watchToggle: watchToggle({ emit })
   })
 
   onMounted(() => {
@@ -94,6 +97,7 @@ export const renderless = (
     () => props.width,
     () => (state.width = 0)
   )
+  watch(() => state.toggle, api.watchToggle)
 
   return api
 }
