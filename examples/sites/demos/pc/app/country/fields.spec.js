@@ -5,7 +5,7 @@ test('自定义数据字段', async ({ page }) => {
   await page.goto('country#fields')
 
   const select = page.locator('.tiny-select')
-  const item = page.getByRole('listitem').filter({ hasText: '中国' })
+  const item = page.getByRole('option').filter({ hasText: '中国' })
 
   await select.click()
   await item.click()

@@ -198,6 +198,19 @@ const originalDefineProperties = (vm, instance, filter) => {
 const harmonyDefineProperties = (vm, instance) => {
   const propertyFilterFlags = __TINY__.SKIP_PREFIX_UNDERSCORE | __TINY__.SKIP_PREFIX_DOLLAR | __TINY__.SKIP_CONSTRUCTOR
   __TINY__.createDelegate(instance, vm, propertyFilterFlags)
+
+  // 对于provider 场景，会存在属性响应式的问题，这里对常见属性做兼容处理，后续龙雀API修复后可以删除
+  const targetKeys = ['size', 'disabled', 'displayOnly']
+  for (const name in instance) {
+    if (targetKeys.includes(name)) {
+      Object.defineProperty(vm, name, {
+        configurable: true,
+        enumerable: true,
+        get: () => instance[name],
+        set: (value) => (instance[name] = value)
+      })
+    }
+  }
 }
 
 const defineProperties = __TINY__ ? harmonyDefineProperties : originalDefineProperties
@@ -354,9 +367,10 @@ export const isEmptyVnode = (vnode) => !vnode || !vnode.tag
 export const h = hooks.h
 
 export const createComponentFn = (design) => {
-  return ({ component, propsData, el }) => {
+  // parent入参: 仅支持Vue2,所以只在这里增加了， vue3-common没该参数。 目的是支持Vue2中的 Vue.extend 使用时不丢失父元素
+  return ({ component, propsData, el, parent }) => {
     const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
-    return new (Vue.extend(comp))({ propsData, el }).$mount()
+    return new (Vue.extend(comp))({ propsData, el, parent }).$mount()
   }
 }
 
@@ -367,6 +381,8 @@ export default hooks
 export const isVue2 = true
 
 export const isVue3 = false
+
+export type VNode = any
 
 export type {
   PropType,

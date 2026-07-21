@@ -18,7 +18,7 @@
   >
     <input
       ref="radio"
-      class="opacity-0 outline-0 absolute -z-10"
+      class="opacity-0 outline-none absolute -z-10"
       :value="label"
       type="radio"
       v-model="state.value"

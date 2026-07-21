@@ -1,0 +1,96 @@
+name: Deploy to Huawei OBS SaaS
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - 'examples/sites/**'
+      - '!examples/sites/**/*.spec.ts'
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 输入您将要发布的版本号（默认使用 examples/sites/package.json 中的版本号），例如：`3.x.x`。
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.value }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Install deps
+        run: pnpm i --no-frozen-lockfile
+      - name: Get version
+        id: ver
+        run: |
+          # 优先用手动输入的版本号
+          if [ -n "${{ inputs.version }}" ]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION="$(node -p "require('./examples/sites/package.json').version")"
+          fi
+          echo "Home version: $VERSION"
+          echo "value=$VERSION" >> $GITHUB_OUTPUT
+      - name: Build site
+        run: |
+          export NODE_OPTIONS="--max-old-space-size=8192"
+          pnpm -F @opentiny/vue-docs build:saas
+        env:
+          VITE_CONTEXT: /tiny-vue-saas/
+          VITE_PLAYGROUND_URL: /vue-saas-playground
+          VITE_APP_BUILD_BASE_URL: //res-static.opentiny.design/tiny-vue-saas/${{ steps.ver.outputs.value }}/
+      - name: Copy files
+        run: |
+          cp ./examples/sites/dist/index.html ./examples/sites/dist/404.html
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-artifact
+          path: ./examples/sites/dist/
+  # Deploy job
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-artifact
+          path: ./examples/sites/dist/
+      - name: Show version
+        run: |
+          echo "Deploying version: ${{ needs.build.outputs.version }}"
+      # ===== 下载 obsutil =====
+      - name: Install obsutil
+        run: |
+          curl -o obsutil.tar.gz https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
+          tar -xzf obsutil.tar.gz
+          chmod +x obsutil_linux_amd64_*/obsutil
+          sudo mv obsutil_linux_amd64_*/obsutil /usr/local/bin/obsutil
+
+      # ===== 配置并上传 =====
+      - name: Upload to OBS
+        run: |
+          # 一次性配置 AK/SK/endpoint
+          obsutil config -i=${{ secrets.HUAWEI_CLOUD_AK }} \
+                         -k=${{ secrets.HUAWEI_CLOUD_SK }} \
+                         -e=${{ secrets.HUAWEI_CLOUD_ENDPOINT }}
+
+          # 把本地 dist/ 目录整站同步到桶根目录
+          echo "needs.build.outputs.version: ${{ needs.build.outputs.version }}"
+          mv examples/sites/dist ${{ needs.build.outputs.version }}
+          obsutil cp ${{ needs.build.outputs.version }} obs://${{ secrets.HUAWEI_CLOUD_BUCKET }}/tiny-vue-saas/ -r -f

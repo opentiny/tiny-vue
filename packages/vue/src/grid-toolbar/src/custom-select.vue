@@ -89,9 +89,9 @@ export default {
     getColumnConfigs(configs) {
       const getColNodes = (columns) =>
         columns
-          .map(({ id, title, property, fixed, visible, order, sortable, level, children }) => {
+          .map(({ id, own, property, fixed, visible, order, sortable, level, children }) => {
             if (property) {
-              const column = { id, title, property, fixed, visible, order, sortable, level, children }
+              const column = { id, title: own.title, property, fixed, visible, order, sortable, level, children }
 
               column.disabled = Boolean(this.setting?.customDisable?.(column))
 

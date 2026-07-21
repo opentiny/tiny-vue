@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <div class="tiny-nav-menu" ref="navMenu">
+  <div class="tiny-nav-menu" ref="navMenu" role="navigation" :aria-label="t('ui.navMenu.navigation')">
     <div
       class="more-button"
       :class="{ mobile: slots['mobile-menu'] }"
@@ -18,17 +18,26 @@
       @mouseenter="showSubMenu(state.data[0].children, { more: true })"
       @mouseleave="willHideSubMenu"
     >
-      <component :is="state.showMore ? 'IconSandwichExpand' : 'IconSandwichCollapse'"></component>
+      <component :is="state.showMore ? 'IconSandwichExpand' : 'IconSandwichCollapse'" aria-hidden="true"></component>
     </div>
     <div v-if="slots.logo" class="slot-logo">
       <slot name="logo"></slot>
     </div>
     <div class="menu-container">
-      <ul v-if="state.data && state.data.length" :style="state.isSaaSTheme ? {} : state.menuStyle" class="menu">
-        <li v-for="(item, index) in state.data" :key="index + (item.title || '')">
+      <ul
+        v-if="state.data && state.data.length"
+        :style="state.isSaaSTheme ? {} : state.menuStyle"
+        class="menu"
+        role="menubar"
+        :aria-label="t('ui.navMenu.mainMenu')"
+      >
+        <li v-for="(item, index) in state.data" :key="index + (item.title || '')" role="listitem">
           <component
             :is="getTag(item)"
             :to="getRoute(item)"
+            role="menuitem"
+            :aria-haspopup="item.children ? 'true' : undefined"
+            :aria-expanded="item.children ? state.showPopmenu && state.subIndex === index : undefined"
             :class="{
               active: index === state.activeIndex,
               selected: getTabSelected(item, index)
@@ -64,6 +73,8 @@
         :class="[state.popClass, { slide: state.showPopmenu }, { 'show-left-menu': state.showMore }]"
         :style="state.popStyle"
         class="popmenu tiny-min-scrollbar"
+        role="menu"
+        :aria-label="t('ui.navMenu.subMenu')"
         @mouseenter="stopHideSubMenu"
         @mouseleave="willHideSubMenu"
       >
@@ -76,10 +87,13 @@
                 active: index === state.subActiveIndex,
                 selected: getLeftSelected(item, index)
               }"
+              role="listitem"
             >
               <component
                 :is="getTag(item)"
                 :to="getRoute(item)"
+                role="menuitem"
+                :aria-haspopup="item.children ? 'true' : undefined"
                 :class="{ showicon: item.children }"
                 @mouseenter="setSubMenu(item.children, index)"
                 @mouseleave="leaveMoreMune"
@@ -87,12 +101,12 @@
               >
                 {{ item.title }}
               </component>
-              <icon-chevron-right v-if="item.children" class="more-icon"></icon-chevron-right>
+              <icon-chevron-right v-if="item.children" class="more-icon" aria-hidden="true"></icon-chevron-right>
             </li>
           </ul>
         </div>
         <div v-if="state.subMenus && state.subMenus.length" :class="{ 'full-width': !state.showMore }" class="sub-menu">
-          <ul class="sub-menu-ul">
+          <ul class="sub-menu-ul" role="menu">
             <li
               v-for="(group, index) in state.subMenus"
               :key="index + (group.title || '')"
@@ -106,10 +120,12 @@
                 <li
                   class="tiny-nav-menu__sub-menu-title"
                   :class="!!group.title ? '' : 'tiny-nav-menu__sub-menu-title-blank'"
+                  role="none"
                 >
                   <component
                     :is="getTag(group)"
                     :to="getRoute(group)"
+                    role="menuitem"
                     @click="clickMenu(group, -1, index)"
                     @mouseenter="handleTitleMouseenter($event)"
                     @mouseleave="handleTitleMouseleave"
@@ -117,7 +133,7 @@
                   >
                     {{ group.title }}
                   </component>
-                  <icon-chevron-right v-if="group.url" class="go-to-icon"></icon-chevron-right>
+                  <icon-chevron-right v-if="group.url" class="go-to-icon" aria-hidden="true"></icon-chevron-right>
                 </li>
                 <li
                   v-for="(item, i) in group.children"
@@ -127,10 +143,12 @@
                     'only-secondary-title': !group.title && !state.subMenu[i].children,
                     'third-title': item.children && item.children.length
                   }"
+                  role="listitem"
                 >
                   <component
                     :is="getTag(item)"
                     :to="getRoute(item)"
+                    role="menuitem"
                     @click="clickMenu(item, i, index)"
                     :class="{
                       selected: getLastChildSelected(item, i, index)
@@ -139,9 +157,19 @@
                     {{ item.title }}
                   </component>
 
-                  <ul v-if="item.children && item.children.length">
-                    <li v-for="(subItem, j) in item.children" :key="j + (subItem.title || '')" class="sub-item">
-                      <component :is="getTag(subItem)" :to="getRoute(subItem)" @click="clickMenu(subItem)">
+                  <ul v-if="item.children && item.children.length" role="menu">
+                    <li
+                      v-for="(subItem, j) in item.children"
+                      :key="j + (subItem.title || '')"
+                      class="sub-item"
+                      role="listitem"
+                    >
+                      <component
+                        :is="getTag(subItem)"
+                        :to="getRoute(subItem)"
+                        role="menuitem"
+                        @click="clickMenu(subItem)"
+                      >
                         {{ subItem.title }}
                       </component>
                     </li>

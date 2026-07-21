@@ -376,7 +376,8 @@ export default {
         groupColumnFixedError: 'Cada grupo deve ter o mesmo tipo.',
         missingValueFormat:
           'O renderizador não pode formatar a string de data. É necessário o formato da data de origem em valueFormat.',
-        clipboardWriteError: 'Erro ao gravar na área de transferência.'
+        clipboardWriteError: 'Erro ao gravar na área de transferência.',
+        fieldNotExist: 'A coluna não existe.'
       },
       filter: {
         allSelect: 'Todos',
@@ -483,7 +484,12 @@ export default {
       show: 'Mostrar barra lateral'
     },
     navMenu: {
-      moreText: 'Mais'
+      moreText: 'Mais',
+      navigation: 'Navegação',
+      mainMenu: 'Menu principal',
+      subMenu: 'Submenu',
+      expand: 'Expandir menu',
+      collapse: 'Recolher menu'
     },
     logout: {
       in: 'Login',
@@ -679,7 +685,14 @@ export default {
       deleteTable: 'Excluir tabela',
       colorPicker: 'Cor de fundo',
       placeholder: 'Inserir texto aqui...',
-      maxLength: 'O comprimento do texto excede o limite, o comprimento máximo config é '
+      maxLength: 'O comprimento do texto excede o limite, o comprimento máximo config é ',
+      visitUrl: 'Visitar URL',
+      edit: 'Editar',
+      remove: 'Remover',
+      save: 'Salvar',
+      enterLink: 'Digite o endereço do link',
+      enterFormula: 'Digite a fórmula',
+      enterVideo: 'Digite o endereço do vídeo'
     },
     fluentEditor: {
       undo: 'Desfazer',

@@ -1,0 +1,13 @@
+@import '../custom.less';
+@import './vars.less';
+
+@numeric-prefix-cls: ~'@{css-prefix}numeric';
+
+@media screen and (max-width: 1280px) {
+  .@{numeric-prefix-cls} {
+    .inject-Numeric-responsive-vars();
+
+    width: auto;
+    min-width: var(--tv-Numeric-responsive-input-width);
+  }
+}

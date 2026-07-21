@@ -19,6 +19,8 @@
 import { ref } from 'vue'
 import { TinyCascader } from '@opentiny/vue'
 
+const value = ref('anzhuangcli')
+
 const options = ref([
   {
     value: 'zhinan',
@@ -167,6 +169,4 @@ const options = ref([
     ]
   }
 ])
-
-const value = 'anzhuangcli'
 </script>

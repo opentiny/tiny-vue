@@ -598,9 +598,9 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN':
-              '是否展示多选框开启多选限制选择数量时，选中条数和限制总条数的占比的文字提示。 该属性的优先级大于<code>show-proportion</code> 属性，同时设置只',
+              '是否展示多选框开启多选限制选择数量时，选中条数和限制总条数的占比的文字提示。 该属性的优先级大于<code>show-proportion</code> 属性。',
             'en-US':
-              'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
+              'Display the proportion of the number of selected items and the maximum number of options available in the multiple-choice box. This attribute has a higher priority than the <code>show-proportion</code> attribute.'
           },
           mode: ['pc'],
           pcDemo: 'multiple'

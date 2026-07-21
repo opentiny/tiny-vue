@@ -42,7 +42,7 @@
             <component :is="state.suffixIcon"></component>
           </template>
           <template #dropdown>
-            <tiny-dropdown-menu :text-field="textField" :popper-class="popperClass">
+            <tiny-dropdown-menu :text-field="textField" :placement="placement" :popper-class="popperClass">
               <tiny-dropdown-item
                 v-for="(item, index) in state.moreOptions"
                 :key="index"
@@ -97,6 +97,10 @@ export default defineComponent({
     textField: {
       type: String,
       default: 'label'
+    },
+    placement: {
+      type: String,
+      default: 'bottom-end'
     },
     popperClass: {
       type: String,

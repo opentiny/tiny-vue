@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 .@{css-prefix}transition-carousel-arrow-left-enter,
 .@{css-prefix}transition-carousel-arrow-left-enter-from,
@@ -20,11 +21,11 @@
 }
 
 .@{css-prefix}transition-carousel-arrow-left-enter-active {
-  animation: animation-left 0.3s;
+  animation: arrow-left-carousel var(--tv-motion-arrow-speed);
 }
 
 .@{css-prefix}transition-carousel-arrow-left-leave-active {
-  animation: animation-left 0.3s reverse;
+  animation: arrow-left-carousel var(--tv-motion-arrow-speed) reverse;
 }
 
 .@{css-prefix}transition-carousel-arrow-right-enter,
@@ -35,35 +36,9 @@
 }
 
 .@{css-prefix}transition-carousel-arrow-right-enter-active {
-  animation: animation-right 0.3s;
+  animation: arrow-right-carousel var(--tv-motion-arrow-speed);
 }
 
 .@{css-prefix}transition-carousel-arrow-right-leave-active {
-  animation: animation-right 0.3s reverse;
-}
-
-@keyframes animation-right {
-  0% {
-    opacity: 0;
-    right: 0;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(-50%);
-    right: 16px;
-  }
-}
-
-@keyframes animation-left {
-  0% {
-    opacity: 0;
-    left: 0;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(-50%);
-    left: 16px;
-  }
+  animation: arrow-right-carousel var(--tv-motion-arrow-speed) reverse;
 }

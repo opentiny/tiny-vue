@@ -151,6 +151,18 @@ export default {
         'en-US': '<p>Set custom content by binding the `value` property</p>'
       },
       codeFiles: ['content.vue']
+    },
+    {
+      demoId: 'rounded',
+      name: {
+        'zh-CN': '设置圆角按钮',
+        'en-US': 'Set rounded corner button'
+      },
+      desc: {
+        'zh-CN': '<p>通过设置<code>round</code>属性设置圆角按钮</p>',
+        'en-US': '<p>Set the round button by setting the<code>round</code>attribute</p>'
+      },
+      codeFiles: ['rounded.vue']
     }
   ]
 }

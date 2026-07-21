@@ -25,7 +25,8 @@ export default defineComponent({
     'effect',
     'customClass',
     'value',
-    'maxWidth'
+    'maxWidth',
+    'round'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, classes }) as unknown as ITagApi
@@ -44,7 +45,8 @@ export default defineComponent({
       gcls,
       state,
       value,
-      maxWidth
+      maxWidth,
+      round
     } = this
     const size = selectable ? 'medium' : this.size || 'small'
     const type = selectable ? 'info' : state.type || 'info'
@@ -53,7 +55,7 @@ export default defineComponent({
     const operable = selectable ? false : this.operable
 
     const classes = m(
-      'text-xs inline-flex items-center rounded box-border border-0.5 sm:border mr-1 align-bottom',
+      'text-xs inline-flex items-center box-border border-0.5 sm:border mr-2',
       effect === 'plain' || hit ? gcls(`${type}-border`) : 'border-transparent',
       gcls(`${effect}-${type}`),
       gcls(size),
@@ -61,6 +63,7 @@ export default defineComponent({
       selectable ? (state.selected ? gcls('selectable-selected') : gcls('selectable-unselect')) : '',
       selectable && disabled ? gcls('tag-disabled') : '',
       operable ? gcls('tag-operable') : '',
+      round ? gcls('is-round') : 'rounded-tag',
       customClass
     )
 

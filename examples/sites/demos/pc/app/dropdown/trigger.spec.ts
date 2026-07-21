@@ -9,6 +9,7 @@ test('触发方式', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const hoverTrigger = dropDown.first()
   const clickTrigger = dropDown.nth(1)
+  const contextTrigger = dropDown.nth(2)
 
   // hover
   await page.waitForTimeout(2000)
@@ -20,4 +21,16 @@ test('触发方式', async ({ page }) => {
   await expect(dropDownMenu.nth(1)).not.toBeVisible()
   await clickTrigger.click()
   await expect(dropDownMenu.nth(1)).toBeVisible()
+
+  // contextmenu
+  await page.waitForTimeout(2000)
+  await contextTrigger.hover()
+  await expect(dropDownMenu.nth(2)).not.toBeVisible()
+
+  // 右键触发
+  await contextTrigger.click({
+    button: 'right'
+  })
+
+  await expect(dropDownMenu.nth(2)).toBeVisible()
 })

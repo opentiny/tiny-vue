@@ -40,9 +40,45 @@ export const watchVisible =
         state.oldValue = state.value
         vm.$refs.spinner.emitSelectRange('hours')
         api.adjustSpinners()
+        api.adjustPosition()
       })
     } else {
       state.needInitAdjust = true
+    }
+  }
+
+export const adjustPosition =
+  ({ vm, state }) =>
+  () => {
+    const panel = vm.$el
+    if (!panel) return
+
+    // 获取父容器(date-picker 的输入框)的位置
+    // time-panel 是绝对定位,相对于最近的定位祖先元素
+    const parentElement = panel.parentElement
+    if (!parentElement) return
+
+    const parentRect = parentElement.getBoundingClientRect()
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+
+    // 获取面板宽度(用于计算是否会超出)
+    const panelWidth = panel.offsetWidth || 240 // 默认宽度
+
+    // 基于父容器位置判断:如果从父容器左侧开始放置面板会超出右边界
+    const wouldOverflowRight = parentRect.left + panelWidth > viewportWidth
+    // 基于父容器位置判断:如果从父容器右侧开始放置面板会超出左边界
+    const wouldOverflowLeft = parentRect.right - panelWidth < 0
+
+    // 根据预测的超出情况调整定位
+    if (wouldOverflowRight && !wouldOverflowLeft) {
+      // 右侧会超出,使用右对齐
+      state.alignDirection = 'right'
+    } else if (wouldOverflowLeft && !wouldOverflowRight) {
+      // 左侧会超出,使用左对齐
+      state.alignDirection = 'left'
+    } else {
+      // 不超出,使用默认定位
+      state.alignDirection = ''
     }
   }
 

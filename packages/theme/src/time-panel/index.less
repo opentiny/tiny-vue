@@ -32,6 +32,18 @@
   padding: var(--tv-TimePanel-padding);
   .user-select(none);
 
+  // 右侧对齐,用于避免右侧超出视口
+  &.is-align-right {
+    left: auto;
+    right: 0;
+  }
+
+  // 左侧对齐,用于避免左侧超出视口
+  &.is-align-left {
+    left: 0;
+    right: auto;
+  }
+
   &__header {
     display: block;
   }

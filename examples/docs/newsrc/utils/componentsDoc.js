@@ -1,12 +1,15 @@
 export const apis = import.meta.glob('../../../sites/demos/apis/*.js', { eager: false })
 
 export const getPath = (path) => {
-  if (path.startsWith('grid-')) {
+  if (path === 'grid-select') {
+    return 'grid-select'
+  } else if (path.startsWith('grid-')) {
     return 'grid'
   } else if (path.startsWith('chart-')) {
     return 'chart'
+  } else {
+    return path
   }
-  return path
 }
 
 export const getApisConfig = async (component, mode) => {

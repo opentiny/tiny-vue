@@ -88,8 +88,10 @@ public-hoist-pattern[]=@opentiny/*
 ## 多组件引入
 
 <div class="tip custom-block">
-<p>温馨提示：带有 Tiny 前缀的组件导出自 3.17.0 开始支持。若使用之前版本，需使用别名。</p>
-<p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+  <div class="custom-block-content">
+    <p>温馨提示：带有 Tiny 前缀的组件导出自 3.17.0 开始支持。若使用之前版本，需使用别名。</p>
+    <p>例如：<code>import { Button as TinyButton } from '@opentiny/vue'</code></p>
+  </div>
 </div>
 
 多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `TinyButton` 和 `TinyAlert` 组件为例）：
@@ -116,7 +118,7 @@ public-hoist-pattern[]=@opentiny/*
 
 ## `vite` 工程多组件引入按需加载和打包配置方法
 
-通过配置 `@opentiny/vue-vite-import` 插件可以按需只打包 pc 或者移动的组件，减少组件库打包后的体积。
+通过配置 `@opentiny/vue-vite-import` 插件可以按需打包 pc 或者移动的组件，减少组件库打包后的体积。
 
 执行以下命令安装 `TinyVue` 按需加载和打包的 `vite` 插件
 

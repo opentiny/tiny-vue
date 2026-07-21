@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <div class="tiny-collapse" role="tablist" aria-multiselectable="true">
+  <div class="tiny-collapse" :class="{ 'is-medium': size === 'medium' }" role="tablist" aria-multiselectable="true">
     <slot></slot>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { renderless, api } from '@opentiny/vue-renderless/collapse/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'accordion', 'modelValue', 'beforeClose'],
+  props: [...props, 'accordion', 'modelValue', 'beforeClose', 'size'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

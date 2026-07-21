@@ -121,7 +121,7 @@ const initApi = ({
     close: close(state),
     open: open(api),
     handleBlur: handleBlur({ emit, state, dispatch, props }),
-    mounted: mounted({ vm, state, suggestionState }),
+    mounted: mounted({ vm, state, suggestionState, props }),
     highlight: highlight({ constants, vm, state }),
     handleClear: handleClear({ emit, state }),
     select: select({ emit, nextTick, props, state, dispatch }),

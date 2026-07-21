@@ -29,9 +29,56 @@
         <tiny-input v-model="underlay.scale" clearable autofocus size="small" style="width: 120px"></tiny-input>
       </tiny-form-item>
     </tiny-form>
+    <h3>第一批次图标</h3>
     <div class="svgs-wrapper">
       <div
         v-for="name in advanceIcons"
+        :key="name"
+        :class="{
+          'svg-visible': searchName === '' || name.toLowerCase().includes(searchName.toLowerCase()),
+          'svgs-item': true
+        }"
+        @click="click(name)"
+      >
+        <component
+          :is="Svgs[name] && Svgs[name]()"
+          class="svgs-icon"
+          :first-color="firstColor"
+          :second-color="secondColor"
+          :shape="shape"
+          :underlay="isUnderlay ? underlay : null"
+        ></component>
+        <span class="svgs-text" :title="name">{{ name }}</span>
+      </div>
+    </div>
+    <hr />
+    <h3>第二批次图标</h3>
+    <div class="svgs-wrapper">
+      <div
+        v-for="name in batch3Icons"
+        :key="name"
+        :class="{
+          'svg-visible': searchName === '' || name.toLowerCase().includes(searchName.toLowerCase()),
+          'svgs-item': true
+        }"
+        @click="click(name)"
+      >
+        <component
+          :is="Svgs[name] && Svgs[name]()"
+          class="svgs-icon"
+          :first-color="firstColor"
+          :second-color="secondColor"
+          :shape="shape"
+          :underlay="isUnderlay ? underlay : null"
+        ></component>
+        <span class="svgs-text" :title="name">{{ name }}</span>
+      </div>
+    </div>
+    <hr />
+    <h3>第三批次图标</h3>
+    <div class="svgs-wrapper">
+      <div
+        v-for="name in batch4Icons"
         :key="name"
         :class="{
           'svg-visible': searchName === '' || name.toLowerCase().includes(searchName.toLowerCase()),
@@ -56,7 +103,7 @@
 <script setup lang="js">
 import Svgs from '@opentiny/vue-icon'
 import { TinyForm, TinyFormItem, TinyModal, TinyInput, TinyRadioGroup, TinyRadio, TinySwitch } from '@opentiny/vue'
-import { advanceIcons } from './advance-icons.js'
+import { advanceIcons, batch3Icons, batch4Icons } from './advance-icons.js'
 import { getCurrentInstance, ref, watch } from 'vue'
 
 const searchName = ref('')
@@ -113,7 +160,7 @@ function click(name) {
 .svgs-icon {
   cursor: pointer;
   transition: all 0.4s;
-  font-size: 24px;
+  font-size: 40px;
   fill: var(--tv-color-icon-control);
   color: var(--tv-color-icon-control);
 }

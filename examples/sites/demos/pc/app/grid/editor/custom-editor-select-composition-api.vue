@@ -12,7 +12,8 @@
         title="区域"
         :editor="{
           component: TinySelect,
-          attrs: { options, textField: 'name', valueField: 'id' }
+          attrs: { options, textField: 'name', valueField: 'id' },
+          event: { change: hangeChange }
         }"
         :format-config="{ data: options, label: 'name', value: 'id' }"
         format-text="enum"
@@ -35,6 +36,10 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { TinyGrid, TinyGridColumn, TinySelect } from '@opentiny/vue'
+
+function hangeChange(value) {
+  console.log('handleChnage', value)
+}
 
 const options = ref([
   { name: '华中区', id: '1' },

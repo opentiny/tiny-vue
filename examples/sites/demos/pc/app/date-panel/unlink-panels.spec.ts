@@ -7,15 +7,19 @@ test('[DatePanel] 测试范围选择取消面板联动', async ({ page }) => {
   await page.locator('label').filter({ hasText: '单示例' }).click()
 
   // dateRange
-  await page.locator('.tiny-picker-panel__icon-btn').first().click()
-  await page.locator('div').filter({ hasText: /^10$/ }).first().click()
-  await page.getByText('19').nth(1).click()
-  await expect(page.locator('.value-link')).toHaveText('[ "2024-01-10", "2024-02-19" ]')
+  await page.locator('#unlink-panels').getByText('10', { exact: true }).first().click()
+  await page.locator('#unlink-panels').getByText('19').nth(1).click()
+  await expect(page.locator('.value-link')).toHaveText(`[
+  "2025-01-10",
+  "2025-02-19"
+]`)
 
-  await page.locator('div:nth-child(2) > .tiny-date-range-picker__header > button:nth-child(3)').click()
-  await page.getByText('14').nth(2).click()
-  await page.getByText('19', { exact: true }).nth(3).click()
-  await expect(page.locator('.value-unlink')).toHaveText('[ "2024-01-14", "2025-02-19" ]')
+  await page.locator('#unlink-panels').getByText('14').nth(2).click()
+  await page.locator('#unlink-panels').getByText('19', { exact: true }).nth(3).click()
+  await expect(page.locator('.value-unlink')).toHaveText(`[
+  "2025-01-14",
+  "2025-02-19"
+]`)
 
   // monthRange
   await page

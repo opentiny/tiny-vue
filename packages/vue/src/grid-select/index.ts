@@ -9,8 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import GridSelect from './src/pc.vue'
+import GridSelect from './src/index'
 import { version } from './package.json'
+
+GridSelect.model = {
+  prop: 'modelValue',
+  event: 'update:modelValue'
+}
 
 /* istanbul ignore next */
 GridSelect.install = function (Vue) {

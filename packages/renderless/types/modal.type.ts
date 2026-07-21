@@ -22,6 +22,8 @@ export interface IModalState {
   prevEvent: null | Event
   options: any[]
   theme: string | undefined
+  titleId: string
+  contentId: string
 }
 
 export type IModalProps = ExtractPropTypes<typeof modalProps>

@@ -39,6 +39,7 @@ export const api = [
   'leftPrevYear',
   'leftNextYear',
   'isValidValue',
+  'resetView',
   'watchModelValue'
 ]
 

@@ -98,6 +98,12 @@ export const renderless = (
     }
   )
 
+  // 同步 data 变化
+  watch(
+    () => props.data,
+    () => api.initData()
+  )
+
   onMounted(api.initData)
 
   return api

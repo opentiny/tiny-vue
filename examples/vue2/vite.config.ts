@@ -54,7 +54,7 @@ export default defineConfig((config) => {
             customName: (name: string) => {
               return name === 'default'
                 ? `@opentiny/vue-${lib}$`
-                : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}/index.ts`
+                : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}.ts`
             }
           }))
         ],

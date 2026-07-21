@@ -35,6 +35,7 @@ const eachTreeItem = ({ parent, obj, iterate, context, path, node, parseChildren
     if (item && parseChildren) {
       paths.push(parseChildren)
       eachTreeItem({
+        parent: item,
         item,
         obj: item[parseChildren],
         context,

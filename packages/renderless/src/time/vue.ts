@@ -21,12 +21,21 @@ import {
   handleChange,
   setSelectionRange,
   displayValue,
-  handleConfirm
+  handleConfirm,
+  adjustPosition
 } from './index'
 import { compuAmPmMode } from '../time-range'
 import { isDate1 as isDate } from '@opentiny/utils'
 
-export const api = ['state', 'handleChange', 'setSelectionRange', 'handleCancel', 'handleConfirm', 'adjustSpinners']
+export const api = [
+  'state',
+  'handleChange',
+  'setSelectionRange',
+  'handleCancel',
+  'handleConfirm',
+  'adjustSpinners',
+  'adjustPosition'
+]
 
 const initState = ({ reactive, props, computed, api }) => {
   const state = reactive({
@@ -43,6 +52,7 @@ const initState = ({ reactive, props, computed, api }) => {
     visible: false,
     showTimePickerButton: false,
     needInitAdjust: true,
+    alignDirection: '', // 对齐方向: 'left', 'right', 或 '' (默认)
     displayValue: computed(() => api.displayValue()),
     showSeconds: computed(() => (state.format || '').includes('ss')),
     useArrow: computed(() => state.arrowControl || props.timeArrowControl || false),
@@ -67,6 +77,7 @@ export const renderless = (
     state,
     compuAmPmMode: compuAmPmMode(state),
     adjustSpinners: adjustSpinners(vm),
+    adjustPosition: adjustPosition({ vm, state }),
     handleCancel: handleCancel({ state, emit }),
     setSelectionRange: setSelectionRange({ state, emit }),
     watchVisible: watchVisible({ nextTick, vm, state, api }),

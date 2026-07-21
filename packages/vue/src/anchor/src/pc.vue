@@ -39,11 +39,11 @@ export default defineComponent({
           ))
         : null
 
-    const renderMask = <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
+    const renderMask = <div class={`${anchorClass}-link-mask`} ref="maskRef" aria-hidden="true"></div>
 
     const renderOrbit = (
-      <div class={`${anchorClass}-orbit`}>
-        <div class={`${anchorClass}-orbit-skid`} ref="skidRef"></div>
+      <div class={`${anchorClass}-orbit`} aria-hidden="true">
+        <div class={`${anchorClass}-orbit-skid`} ref="skidRef" aria-hidden="true"></div>
       </div>
     )
 
@@ -51,7 +51,7 @@ export default defineComponent({
       <div
         class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`, `tiny-anchor__${type}`]}
         ref="anchorWrapRef">
-        <div class={anchorClass} ref="anchorRef">
+        <div class={anchorClass} ref="anchorRef" role="navigation" aria-label="Anchor">
           {type === 'line' && renderMask}
           {type === 'line' && renderOrbit}
           {links && renderLinks(links)}

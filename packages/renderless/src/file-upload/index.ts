@@ -206,9 +206,18 @@ const onBeforeIsPromise = ({
 }
 
 const isAcceptType = (acceptArray, file, constants, fileType) => {
+  // MIME 通配符（image/*、video/*、audio/*）需按扩展名白名单校验，
+  // 否则 type 里的 * 会被当作正则量词，导致 video/*、audio/* 无法匹配到对应文件
+  const mimeWildcardMap = {
+    [constants.IMAGE_TYPE]: constants.FILE_TYPE.PICTURE,
+    'video/*': constants.FILE_TYPE.VIDEO,
+    'audio/*': constants.FILE_TYPE.AUDIO
+  }
+
   return acceptArray.some((type) => {
-    if (type.toLowerCase() === constants.IMAGE_TYPE) {
-      return constants.FILE_TYPE.PICTURE.split('/').includes(fileType)
+    const whitelist = mimeWildcardMap[type.trim().toLowerCase()]
+    if (whitelist) {
+      return whitelist.split('/').includes(fileType)
     }
     return new RegExp(`(${type.trim()})$`, 'i').test(file.name)
   })
@@ -393,13 +402,35 @@ export const properFileSize =
     if ([undefined, null].includes(file.size)) return true
 
     let maxSize = 0
-    state.singleMaxSize = props.edm.singleFileMaxSize || state.singleMaxSize || 200
-    if (Array.isArray(props.fileSize) && props.fileSize[1]) {
-      maxSize = state.isEdm
-        ? Math.min(state.singleMaxSize, Number(props.fileSize[1]) / 1024)
-        : Math.max(Number(props.fileSize[0]) / 1024, Number(props.fileSize[1]) / 1024)
+    // 优先级：result.config.singleFileMaxSize > props.edm.config.singleFileMaxSize > props.fileSize > props.edm.singleFileMaxSize > state.singleMaxSize(默认200KB)
+    // 注意：singleFileMaxSize 的单位是 KB，需要转换为 MB 进行比较
+    const edmConfigSingleFileMaxSize =
+      state.edmToken?.config?.singleFileMaxSize || props.edm?.config?.singleFileMaxSize
+        ? (state.edmToken?.config?.singleFileMaxSize || props.edm?.config?.singleFileMaxSize) / 1024 // 转换为 MB
+        : null
+
+    if (state.isEdm) {
+      // EDM 模式下，优先级：edm.config.singleFileMaxSize > props.fileSize > state.singleMaxSize
+      if (edmConfigSingleFileMaxSize !== null) {
+        // 优先使用 edm.config.singleFileMaxSize
+        maxSize = edmConfigSingleFileMaxSize
+      } else if (Array.isArray(props.fileSize) && props.fileSize[1]) {
+        // 如果有 props.fileSize 数组，使用最大值（上限），单位从 KB 转为 MB
+        maxSize = Number(props.fileSize[1]) / 1024
+      } else if (props.fileSize) {
+        // 如果有 props.fileSize，使用它，单位从 KB 转为 MB
+        maxSize = Number(props.fileSize) / 1024
+      } else {
+        // 最后才使用 state.singleMaxSize（默认值 200KB），单位从 KB 转为 MB
+        maxSize = state.singleMaxSize / 1024
+      }
     } else {
-      maxSize = state.isEdm ? Math.min(state.singleMaxSize) : Number(props.fileSize) / 1024
+      // 非 EDM 模式，使用 props.fileSize
+      if (Array.isArray(props.fileSize) && props.fileSize[1]) {
+        maxSize = Math.max(Number(props.fileSize[0]) / 1024, Number(props.fileSize[1]) / 1024)
+      } else {
+        maxSize = Number(props.fileSize) / 1024
+      }
     }
 
     if (state.isEdm || (Array.isArray(props.fileSize) && props.fileSize[1])) {
@@ -2767,7 +2798,7 @@ export const getTipMessage =
     }
 
     if (fileSize && acceptTip.length !== 0) {
-      acceptTip += `${t(constants.COMMA)} `
+      acceptTip += `${t(constants.COMMA)}`
     }
 
     let fileSizeTip = ''
@@ -2785,10 +2816,8 @@ export const getTipMessage =
     }
 
     let limitTip = limit ? t(constants.NUMBER_LIMIT, { number: limit }) : ''
-
-    if ((fileSize || acceptTip.length !== 0) && limit) {
+    if ((fileSize || acceptTip.length !== 0) && limit && fileSize?.length === 2 && Array.isArray(fileSize)) {
       limitTip = `${t(constants.COMMA)} ` + limitTip
     }
-
     return acceptTip + fileSizeTip + limitTip
   }

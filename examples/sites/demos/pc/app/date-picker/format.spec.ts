@@ -5,13 +5,13 @@ test('[DatePicker] 测试日期格式化', async ({ page }) => {
   await page.goto('date-picker#format')
 
   // format: 日期输入框中显示的格式
-  await page.getByRole('textbox', { name: '2023 年 05 月 24 日' }).first().click()
+  await page.getByRole('combobox', { name: '2023 年 05 月 24 日' }).first().click()
   await page.getByRole('cell', { name: '20' }).getByText('20').last().click()
-  await expect(page.getByRole('textbox', { name: '2023 年 05 月 20 日' }).first()).toBeVisible()
+  await expect(page.getByRole('combobox', { name: '2023 年 05 月 20 日' }).first()).toBeVisible()
 
   // time-format: 时间输入框中显示的格式
   await page.locator('.tiny-date-editor input').nth(1).click()
-  await page.getByRole('cell', { name: '24' }).locator('span').click();
+  await page.getByRole('cell', { name: '24' }).locator('span').click()
   await page.getByRole('button', { name: '确定' }).click()
   await expect(page.locator('.tiny-date-editor input').nth(1)).toHaveValue('2023 年 05 月 24 日 08 时 00 分 00 秒')
 

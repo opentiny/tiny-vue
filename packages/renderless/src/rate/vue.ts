@@ -144,7 +144,7 @@ export const renderless = (
     computedActiveColor: computedActiveColor(props),
     computedActiveClass: computedActiveClass(props),
     showDecimalIcon: showDecimalIcon({ props, state }),
-    getIconStyle: getIconStyle({ api, props, state }),
+    getIconStyle: getIconStyle({ props, state }),
     ...changeValue.api
   })
 

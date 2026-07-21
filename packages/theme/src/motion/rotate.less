@@ -1,0 +1,30 @@
+/* ===========================
+   通用旋转 + 进度加载动画 (rotate.less)
+   来源: chart-core, tree
+   可配置变量:
+     --tv-motion-rotate-speed        旋转动画时长
+     --tv-motion-rotate-degrees      旋转的角度
+=========================== */
+
+/* ============ 旋转动画 ============ */
+@keyframes rotate-spin {
+  // chart-core:loading-rotate, tree:loading-rotate
+  100% {
+    transform: rotate(var(--tv-motion-rotate-degrees, 360deg));
+  }
+}
+
+@keyframes rotate-z {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(var(--tv-motion-rotate-degrees, 360deg));
+  }
+}
+
+@keyframes rotate-reverse {
+  100% {
+    transform: rotate(var(--tv-motion-rotate-degrees, -360deg));
+  }
+}

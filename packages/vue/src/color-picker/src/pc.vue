@@ -8,15 +8,17 @@
     ]"
     @click="() => changeVisible(!state.isShow)"
   >
-    <div
-      class="tiny-color-picker__inner"
-      :style="{
-        background: state.hex ?? ''
-      }"
-    >
-      <IconChevronDown />
-    </div>
-    <Transition name="tiny-zoom-in-top">
+    <tiny-popover v-model="state.isShow" trigger="manual" popper-class="tiny-color-picker__popper">
+      <template #reference>
+        <div
+          class="tiny-color-picker__inner"
+          :style="{
+            background: state.hex ?? ''
+          }"
+        >
+          <IconChevronDown />
+        </div>
+      </template>
       <color-select
         @confirm="onConfirm"
         @cancel="onCancel"
@@ -27,13 +29,16 @@
         :history="state.stack"
         :format="format"
         :style="{
-          'min-width': '330px'
+          'width': '330px'
         }"
         :color-mode="$props.colorMode"
         :enable-history="state.enableHistory"
         :enable-predefine-color="state.enablePredefineColor"
       />
-    </Transition>
+      <!-- <Transition name="tiny-zoom-in-top">
+        
+      </Transition> -->
+    </tiny-popover>
   </div>
 </template>
 
@@ -42,6 +47,7 @@ import { renderless, api } from '@opentiny/vue-renderless/color-picker/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { IconChevronDown } from '@opentiny/vue-icon'
 import colorSelect from '@opentiny/vue-color-select-panel'
+import TinyPopover from '@opentiny/vue-popover'
 import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
@@ -60,6 +66,7 @@ export default defineComponent({
     'colorMode'
   ],
   components: {
+    TinyPopover,
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect
   },

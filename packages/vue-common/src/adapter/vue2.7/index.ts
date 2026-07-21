@@ -379,5 +379,6 @@ export type {
   DefineComponent,
   ComponentPublicInstance,
   SetupContext,
-  ComputedRef
+  ComputedRef,
+  VNode
 } from 'vue'

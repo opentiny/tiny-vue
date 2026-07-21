@@ -1,0 +1,66 @@
+@import '../custom.less';
+@import './vars.less';
+
+@modal-prefix-cls: ~'@{css-prefix}modal';
+
+// 定义尺寸变量
+@modal-responsive-space: var(--tv-Modal-responsive-space-unit);
+@modal-responsive-space-part: var(--tv-Modal-responsive-space-part);
+
+.modal-responsive(@header-padding; @body-padding; @box-margin; @box-width: 400px) {
+  .@{modal-prefix-cls} {
+    .inject-Modal-responsive-vars();
+
+    &__wrapper {
+      &.type__alert,
+      &.type__confirm {
+        .@{modal-prefix-cls}__box {
+          top: 100px;
+          left: 50% !important;
+          transform: translateX(-55%);
+          margin: @box-margin;
+          width: @box-width;
+
+          .@{modal-prefix-cls}__header {
+            padding: @header-padding;
+
+            .@{modal-prefix-cls}__title {
+              font-size: var(--tv-Modal-responsive-font-size-xl);
+            }
+          }
+
+          .@{modal-prefix-cls}__body {
+            padding: @body-padding;
+
+            .@{modal-prefix-cls}__content {
+              .@{modal-prefix-cls}__text {
+                font-size: var(--tv-Modal-responsive-font-size-sm);
+              }
+            }
+          }
+
+          .@{modal-prefix-cls}__footer {
+            padding: @modal-responsive-space-part @modal-responsive-space @modal-responsive-space;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1280px) {
+  .modal-responsive(
+    @header-padding: @modal-responsive-space @modal-responsive-space @modal-responsive-space-part;
+    @body-padding: 0 @modal-responsive-space;
+    @box-margin: 0 @modal-responsive-space-part;
+  );
+}
+
+@media screen and (max-width: 599px) {
+  .modal-responsive(
+    @header-padding: @modal-responsive-space-part @modal-responsive-space-part;
+    @body-padding: 0 @modal-responsive-space-part;
+    @box-margin: 0 @modal-responsive-space-part 50px;
+    @box-width: 320px;
+  );
+}

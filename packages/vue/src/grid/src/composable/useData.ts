@@ -153,7 +153,7 @@ export const useData = (props) => {
 
   hooks.watch([() => props.data, () => getTiledLength(props)], ([_, length]) => {
     tiledLength.value = length
-    $table?.handleDataChange()
+    $table.updateRawData(props.data)
   })
 
   return { tiledLength }

@@ -1,0 +1,55 @@
+@import '../custom.less';
+@import './vars.less';
+
+@steps-prefix-cls: ~'@{css-prefix}steps';
+@steps-line-prefix-cls: ~'@{css-prefix}steps-line';
+@steps-standard-prefix-cls: ~'@{css-prefix}steps-standard';
+@steps-block-prefix-cls: ~'@{css-prefix}steps-block';
+@steps-right-prefix-cls: ~'@{css-prefix}steps-right';
+
+@media screen and (max-width: 1280px) {
+  .@{steps-line-prefix-cls} {
+    .inject-Steps-responsive-vars();
+
+    &.vertical {
+      .description {
+        line-height: var(--tv-Steps-responsive-node-desc-line-height);
+        margin-top: var(--tv-Steps-responsive-node-desc-space-top);
+      }
+    }
+
+    &.medium {
+      .@{steps-prefix-cls}-block {
+        .title-vertical {
+          padding-top: var(--tv-Steps-responsive-node-desc-space-top);
+        }
+      }
+    }
+  }
+
+  .@{steps-standard-prefix-cls} {
+    .inject-Steps-vars();
+    & .@{steps-prefix-cls}-advanced {
+      .count {
+        box-shadow: 0 0 0 1px var(--tv-Steps-responsive-border-color);
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 600px) {
+  .@{steps-line-prefix-cls} {
+    .inject-Steps-vars();
+
+    .@{steps-block-prefix-cls},
+    .@{steps-right-prefix-cls},
+    .@{steps-block-prefix-cls}.done,
+    .@{steps-block-prefix-cls}.doing {
+      .@{steps-prefix-cls}-main {
+        .line {
+          border-top: 0;
+        }
+      }
+    }
+  }
+}

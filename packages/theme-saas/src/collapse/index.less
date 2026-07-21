@@ -1,5 +1,15 @@
 @import '../custom.less';
 
 @collapse-prefix-cls: ~'@{css-prefix}collapse';
+@collapse-item-prefix-cls: ~'@{css-prefix}collapse-item';
 
+.@{collapse-prefix-cls}.is-medium {
+  .@{collapse-item-prefix-cls} {
+    &__header {
+      height: 42px;
+      @apply leading-6;
+      @apply text-base;
+    }
+  }
+}
 /* 动画类已移出 */

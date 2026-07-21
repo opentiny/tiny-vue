@@ -1,0 +1,56 @@
+/* stylelint-disable function-no-unknown */
+@import '../mixins/common.less';
+@import '../mixins/button-group.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-group-prefix-cls: ~'@{css-prefix}button-group';
+@group-item-prefix-cls: ~'@{css-prefix}group-item';
+@button-group-popover-prefix-cls: ~'@{css-prefix}group-item__more-popover';
+
+.@{button-group-prefix-cls} {
+  .inject-ButtonGroup-responsive-vars();
+
+  @media (max-width: 1280px) {
+    .@{group-item-prefix-cls} {
+      & li {
+        button {
+          &.disabled,
+          &[disabled] {
+            color: var(--tv-ButtonGroup-responsive-item-btn-disabled-text-color);
+          }
+        }
+      }
+
+      &__sup {
+        .tiny-svg {
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      &__sup-icon {
+        background-color: var(--tv-ButtonGroup-responsive-item-icon-bg-color);
+        border-radius: 0 var(--tv-ButtonGroup-responsive-item-sup-icon-radius);
+        fill: #c25700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 599px) {
+    &&.tiny-button-group--mini li button,
+    &&.tiny-button-group--small li button,
+    &&.tiny-button-group--medium li button,
+    &&.tiny-button-group li button {
+      font-size: var(--tv-ButtonGroup-responsive-mini-font-size);
+      padding: 0 var(--tv-ButtonGroup-responsive-mini-padding-x);
+      height: var(--tv-ButtonGroup-responsive-mini-size);
+      border-radius: var(--tv-ButtonGroup-responsive-mini-border-radius);
+    }
+  }
+}

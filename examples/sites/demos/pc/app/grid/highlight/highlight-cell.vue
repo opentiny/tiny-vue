@@ -45,7 +45,7 @@ export default {
     return {
       toolbarButtons: [
         {
-          code: ' clearSelected',
+          code: 'clearSelected',
           name: '手动清除单元格选中状态'
         }
       ],

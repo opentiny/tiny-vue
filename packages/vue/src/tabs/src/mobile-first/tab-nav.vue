@@ -19,23 +19,34 @@ export default defineComponent({
   render() {
     const { state, customClass, m } = this
 
-    return h('div', { attrs: { 'data-tag': 'tiny-tab-nav' }, class: m('relative', customClass) }, [
-      ...state.navItems.map((item: NavItem) =>
-        typeof item.visible === 'undefined' || item.visible
-          ? h(TabNavItem, {
-              key: item.name,
-              props: { title: item.title, name: item.name, selected: item.selected, navItem: item }
-            })
-          : null
-      ),
-      h(tabSliderBar, {
-        props: {
-          currentWidth: state.currentWidth,
-          currentPosition: state.currentPosition,
-          currentNav: state.currentNav
-        }
-      })
-    ])
+    return h(
+      'div',
+      {
+        attrs: {
+          'data-tag': 'tiny-tab-nav',
+          role: 'tablist', // 无障碍：标识为标签列表容器
+          'aria-label': '标签页列表' // 无障碍：为 tablist 提供标签
+        },
+        class: m('relative', customClass)
+      },
+      [
+        ...state.navItems.map((item: NavItem) =>
+          typeof item.visible === 'undefined' || item.visible
+            ? h(TabNavItem, {
+                key: item.name,
+                props: { title: item.title, name: item.name, selected: item.selected, navItem: item }
+              })
+            : null
+        ),
+        h(tabSliderBar, {
+          props: {
+            currentWidth: state.currentWidth,
+            currentPosition: state.currentPosition,
+            currentNav: state.currentNav
+          }
+        })
+      ]
+    )
   }
 })
 </script>

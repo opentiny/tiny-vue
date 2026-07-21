@@ -1,0 +1,36 @@
+/* ===========================
+   缩放弹入动画 (bounce.less)
+   统一命名: bounce-in / bounce-out
+   来源: transition-icon
+   可配置变量:
+     --tv-motion-bounce-scale-mid   弹入/弹出过程中的放大比例
+     --tv-motion-bounce-scale-min   初始/结束时缩小比例
+     --tv-motion-bounce-scale-max   完整展开比例
+     --tv-motion-bounce-speed       动画时长
+=========================== */
+
+/* ============ 弹入 ============ */
+@keyframes bounce-in {
+  0% {
+    transform: scale(var(--tv-motion-bounce-scale-min, 0));
+  }
+  50% {
+    transform: scale(var(--tv-motion-bounce-scale-mid, 1.2));
+  }
+  100% {
+    transform: scale(var(--tv-motion-bounce-scale-max, 1));
+  }
+}
+
+/* ============ 弹出 ============ */
+@keyframes bounce-out {
+  0% {
+    transform: scale(var(--tv-motion-bounce-scale-max, 1));
+  }
+  50% {
+    transform: scale(var(--tv-motion-bounce-scale-mid, 1.2));
+  }
+  100% {
+    transform: scale(var(--tv-motion-bounce-scale-min, 0));
+  }
+}

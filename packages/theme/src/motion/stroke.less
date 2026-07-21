@@ -1,0 +1,46 @@
+/* ===========================
+   描边循环动画 (stroke.less)
+   来源: chart-core, tree
+   可配置变量:
+     --tv-motion-stroke-speed        动画时长
+     --tv-motion-stroke-dasharray-0  初始 dasharray
+     --tv-motion-stroke-dasharray-50 中间 dasharray
+     --tv-motion-stroke-dasharray-100 结束 dasharray
+     --tv-motion-stroke-offset-0     初始 dashoffset
+     --tv-motion-stroke-offset-50    中间 dashoffset
+     --tv-motion-stroke-offset-100   结束 dashoffset
+     --tv-motion-stroke-offset-reverse-50 中间反向 dashoffset
+     --tv-motion-stroke-offset-reverse-100 结束反向 dashoffset
+=========================== */
+
+/* ============ 正向循环 ============ */
+@keyframes stroke-dash-loop {
+  0% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-0, 1, 200);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-0, 0);
+  }
+  50% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-50, 90, 150);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-50, -40px);
+  }
+  100% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-100, 90, 150);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-100, -120px);
+  }
+}
+
+/* ============ 反向循环 ============ */
+@keyframes stroke-dash-reverse {
+  0% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-0, 1, 200);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-0, 0);
+  }
+  50% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-50, 90, 150);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-reverse-50, 40px);
+  }
+  100% {
+    stroke-dasharray: var(--tv-motion-stroke-dasharray-100, 90, 150);
+    stroke-dashoffset: var(--tv-motion-stroke-offset-reverse-100, 120px);
+  }
+}

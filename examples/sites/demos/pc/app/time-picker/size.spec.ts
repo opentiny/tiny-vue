@@ -5,7 +5,8 @@ test('尺寸', async ({ page }) => {
   await page.goto('time-picker#size')
 
   // 默认尺寸
-  const timePicker = page.getByRole('textbox', { name: '18:40:00' })
+  const demo = page.locator('#size')
+  const timePicker = demo.locator('.tiny-input__inner').first()
   const timePickerRange = page.locator('div:nth-child(2) > .tiny-date-editor')
   await expect(timePicker).toHaveCSS('height', '32px')
   await expect(timePickerRange).toHaveCSS('height', '32px')

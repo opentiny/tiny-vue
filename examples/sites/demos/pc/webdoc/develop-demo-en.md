@@ -2,11 +2,11 @@
 
 # Development Example
 
-This article is based on[Vite](https://cn.vitejs.dev/) Project example to show how to use`TinyVue`components.
+This article is based on [Vite](https://cn.vitejs.dev/) Project example to show how to use `TinyVue` components.
 
 ## Building the Vite project
 
-Create a`Vite`Works:
+Create a `Vite` project:
 
 ```bash
 yarn create vite
@@ -14,7 +14,7 @@ yarn create vite
 npm init vite@latest
 ```
 
-Created`Vite`Go to the project directory and run the following commands to download and start the project:
+After creating the `Vite` project, go to the project directory and run the following commands to download and start the project:
 
 ```bash
 yarn
@@ -26,13 +26,13 @@ yarn dev
 npm run dev
 ```
 
-After the browser is started, if the following interface is displayed, it indicates that`Vite`The project is started successfully.
+After the browser is started, if the following interface is displayed, it indicates that the `Vite` project is started successfully.
 
 <img src="@demos/resource/vite-vue.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14)" ><br><br>
 
-## Install and use`TinyVue`Components
+## Install and use `TinyVue` Components
 
-Run the following command to install the`Vue 3.0`version of`TinyVue`Component library:
+Run the following command to install the `Vue 3.0` version of `TinyVue` component library:
 
 ```bash
 yarn add @opentiny/vue@3
@@ -40,7 +40,7 @@ yarn add @opentiny/vue@3
 npm install @opentiny/vue@3
 ```
 
-Then modify the`vite.config.js`, add the following code highlighted section:
+Then modify the `vite.config.js`, and add the following code:
 
 ```js {8-10}
 //vite.config.js
@@ -56,9 +56,9 @@ export default defineConfig({
 })
 ```
 
-When the installation is complete, press`Ctrl + C`Interrupt the current service, and then perform`yarn dev #npm run dev`Restart the service.
+When the installation is complete, press `Ctrl + C` to interrupt the current service, and then run `yarn dev` or `npm run dev` to restart the service.
 
-Next, modify the`App.vue`file, add the section highlighted by the following code (in the`Button`Component as an example):
+Next, modify the `App.vue` file, and add the following code (using the `Button` component as an example):
 
 ```js {5,11}
 <script setup>
@@ -86,9 +86,9 @@ import { Button as TinyButton } from '@opentiny/vue'
 </style>
 ```
 
-in the above writing`<script setup>`is in the single file component`SFC`Combinations used in the medium`API`Compiler syntax. For details, see.[Vue official website](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) .
+In the above code, `<script setup>` is a compiler syntax sugar used in single file components `SFC` with Composition `API`. For details, see [Vue official website](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup).
 
-If you are not familiar with the above syntax, you can also use the standard`SFC`Format:
+If you are not familiar with the above syntax, you can also use the standard `SFC` format:
 
 ```js
 <template>
@@ -106,7 +106,7 @@ export default {
 </script>
 ```
 
-Alternatively, a single component can be used.`TinyVue`Components:
+Alternatively, you can use single component import for `TinyVue` components:
 
 ```js
 <template>
@@ -124,6 +124,6 @@ export default {
 </script>
 ```
 
-The green button shown below should appear on the browser interface, indicating that`TinyVue`The component has been introduced and takes effect.
+The green button shown below should appear on the browser interface, indicating that the `TinyVue` component has been introduced and takes effect.
 
 <img src="@demos/resource/tiny-vue.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14)" ><br><br>

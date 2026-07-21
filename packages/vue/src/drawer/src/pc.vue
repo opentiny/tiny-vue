@@ -4,6 +4,7 @@
     <transition name="drawer-fade">
       <div
         ref="mask"
+        aria-hidden="true"
         v-if="mask && state.visible"
         class="tiny-drawer__mask show-bg-color"
         :style="{ zIndex }"
@@ -12,10 +13,13 @@
     </transition>
 
     <!-- main -->
-    <transition :name="`drawer-slide-${placement}`">
+    <transition :name="`drawer-slide-${placement}`" @after-leave="closed">
       <div
         data-tag="tiny-drawer-main"
         ref="drawerBox"
+        aria-modal="true"
+        role="dialog"
+        v-if="destroyOnClose ? state.visible : true"
         :class="[
           'tiny-drawer__main',
           {
@@ -78,7 +82,7 @@
               aria-label="Close"
               @click="handleClose('close')"
             >
-              <icon-close class="tiny-svg-size tiny-drawer__close" />
+              <icon-close role="img" aria-label="close" class="tiny-svg-size tiny-drawer__close" />
             </button>
           </div>
 
@@ -145,6 +149,7 @@ export default defineComponent({
   props: [
     ...props,
     'visible',
+    'appendToBody',
     'title',
     'showHeader',
     'showFooter',
@@ -154,6 +159,7 @@ export default defineComponent({
     'height',
     'mask',
     'dragable',
+    'destroyOnClose',
     'maskClosable',
     'lockScroll',
     'flex',
@@ -161,9 +167,10 @@ export default defineComponent({
     'zIndex',
     'beforeClose',
     'tipsProps',
-    'customSlots'
+    'customSlots',
+    'closeOnPressEscape'
   ],
-  emits: ['update:visible', 'open', 'close', 'confirm', 'drag'],
+  emits: ['update:visible', 'open', 'close', 'closed', 'confirm', 'drag'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

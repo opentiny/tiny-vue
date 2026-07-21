@@ -69,6 +69,10 @@ export const fluentEditorProps = {
   beforeEditorInit: {
     type: Function,
     default: () => {}
+  },
+  beforeLinkOpen: {
+    type: Function,
+    default: null
   }
 }
 

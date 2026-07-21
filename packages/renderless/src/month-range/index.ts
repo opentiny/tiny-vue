@@ -189,7 +189,7 @@ export const handleConfirm =
       emit('update:modelValue', [start, end])
       emit('select-change', [start, end])
     }
-    
+
     if (state.minDate && !state.maxDate) {
       emit('pick', [state.minDate, state.maxDate], visible, true)
     }
@@ -207,7 +207,7 @@ export const isValidValue = (state) => (value) =>
 
 export const resetView = (state) => () => {
   state.minDate = state.value && isDate(state.value[0]) ? new Date(state.value[0]) : null
-  state.maxDate = state.value && isDate(state.value[0]) ? new Date(state.value[1]) : null
+  state.maxDate = state.value && isDate(state.value[1]) ? new Date(state.value[1]) : null
 }
 
 export const watchModelValue =

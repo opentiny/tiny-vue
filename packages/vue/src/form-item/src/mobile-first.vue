@@ -1,6 +1,8 @@
 <template>
   <div
     data-tag="tiny-form-item"
+    role="group"
+    :aria-labelledby="state.labelId"
     :class="
       m(
         `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-border-separator sm:border-none`,
@@ -24,6 +26,7 @@
       <label
         data-tag="tiny-item-label"
         v-if="slots.label || label"
+        :id="state.labelId"
         :class="
           m(
             'py-3 sm:py-0 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5 shrink-0',
@@ -45,11 +48,12 @@
         "
         :style="state.labelStyle"
         :for="state.labelFor"
+        :aria-required="state.isRequired || required ? 'true' : undefined"
       >
         <span
           :class="
             m(
-              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px leading-normal',
+              `max-h-[theme(spacing.${labelLine * 5})] line-clamp-${labelLine} inline-block relative top-px leading-normal`,
               (state.isRequired || required) && !state.hideRequiredAsterisk
                 ? `before:content-['*'] before:text-color-error before:relative before:mr-1`
                 : '',
@@ -79,7 +83,7 @@
             ? state.isDisplayOnly
               ? 'pl-0'
               : 'pl-2 sm:pl-0'
-            : 'pt-2',
+            : 'pt-3',
           state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
@@ -100,11 +104,13 @@
       <div
         data-tag="tiny-form-item-show"
         v-show="!(state.isDisplayOnly && state.isBasicComp)"
+        :aria-describedby="state.validateState === 'error' ? state.errorId : undefined"
+        :aria-invalid="state.validateState === 'error' ? 'true' : 'false'"
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          '[&_[class^=tiny-autocomplete]]:w-full',
-          '[&_[class^=tiny-cascader]]:w-full',
+          '[&_.tiny-autocomplete]:w-full',
+          '[&_.tiny-cascader]:w-full',
           state.isDisplayOnly
             ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''
@@ -118,6 +124,10 @@
         name="error"
       >
         <div
+          :id="state.errorId"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
           :class="
             m(
               'sm:absolute left-0 bottom-1 sm:-bottom-4 text-color-error text-xs leading-4 line-clamp-3 sm:line-clamp-1 break-all',
@@ -131,7 +141,7 @@
           {{ state.validateMessage }}
         </div>
       </slot>
-      <slot v-if="state.validateState !== 'error' && showMessage && state.showMessage" name="prompt"> </slot>
+      <slot v-if="showMessage && state.showMessage" name="prompt"> </slot>
     </div>
   </div>
 </template>
@@ -173,6 +183,10 @@ export default defineComponent({
       default: ''
     },
     label: String,
+    labelLine: {
+      type: Number,
+      default: 2
+    },
     labelWidth: String,
     manual: Boolean,
     popperOptions: {

@@ -211,7 +211,7 @@ export const handleClear =
     // tiny 新增下面行
     state.rangeState.endDate = null
 
-    emit('pick', [])
+    emit('pick', null)
   }
 
 export const handleChangeRange = (state, props) => (val) => {
@@ -586,7 +586,7 @@ export const resetView =
   ({ state }) =>
   () => {
     state.minDate = state.value && toDate1(state.value[0]) ? new Date(state.value[0]) : null
-    state.maxDate = state.value && toDate1(state.value[0]) ? new Date(state.value[1]) : null
+    state.maxDate = state.value && toDate1(state.value[1]) ? new Date(state.value[1]) : null
   }
 
 export const setTimeFormat =

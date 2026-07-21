@@ -11,6 +11,8 @@ export interface IAlertState {
   contentDefaultHeight: number
   contentMaxHeight: number
   scrollStatus: boolean
+  titleId: string
+  contentId: string
 }
 
 export type IAlertProps = ExtractPropTypes<typeof alertProps>

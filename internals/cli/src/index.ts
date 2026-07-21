@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import { Command, Option } from 'commander'
-import { createIconSaas } from './commands/create/index.js'
 import { buildUi, buildEntry, buildRuntime, chartTheme } from './commands/build'
 import { releaseAurora } from './commands/release/releaseAurora'
 import { releaseAlpha } from './commands/release/releaseAlpha'
@@ -25,8 +24,6 @@ program
   .description('定制E2E测试配置的origin源')
   .addOption(new Option('-o --origin <origin>', 'origin源地址'))
   .action(releaseE2EConfig)
-
-program.command('create:icon-saas').description('同步生成 icon-saas').action(createIconSaas)
 
 program.command('build:entry').description('生成组件库入口').action(buildEntry)
 

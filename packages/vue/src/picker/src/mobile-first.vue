@@ -1,5 +1,9 @@
 <template>
-  <div ref="reference" data-tag="tiny-date-container" :class="state.isDisplayOnly ? 'inline' : ''">
+  <div
+    ref="reference"
+    data-tag="tiny-date-container"
+    :class="state.isDisplayOnly ? 'inline' : ''"
+  >
     <tiny-filter-box
       v-if="shape === 'filter'"
       v-clickoutside.mousedown="handleClose"
@@ -12,12 +16,19 @@
       :value="state.displayValue.toString()"
       :drop-down-visible="state.pickerVisible"
       :blank="blank"
+      :size="state.pickerSize"
     ></tiny-filter-box>
     <tiny-input
       :tabindex="tabindex"
       v-else-if="!state.ranged"
       data-tag="tiny-date-editor"
-      :readonly="state.isMobileScreen || !editable || readonly || state.type === 'dates' || state.type === 'week'"
+      :readonly="
+        state.isMobileScreen ||
+        !editable ||
+        readonly ||
+        state.type === 'dates' ||
+        state.type === 'week'
+      "
       :disabled="state.pickerDisabled"
       :size="state.pickerSize"
       :name="name"
@@ -37,14 +48,16 @@
       :validate-event="false"
       :custom-class="'sm:border ' + gcls(state.type)"
     >
-      <template v-if="label" #prefix>
+      <template v-if="label && shape === 'filter'" #prefix>
         <tiny-tooltip
           effect="light"
           :content="state.labelTooltip"
           placement="top"
           @mouseenter.native="handleEnterPickerlabel"
         >
-          <span data-tag="tiny-input__label" :class="gcls('input-label')" ref="label"> {{ label }} </span>
+          <span data-tag="tiny-input__label" :class="gcls('input-label')" ref="label">
+            {{ label }}
+          </span>
         </tiny-tooltip>
       </template>
       <template #suffix>
@@ -92,12 +105,13 @@
       v-else
     >
       <tiny-tooltip
+        v-if="label && shape === 'filter'"
         effect="light"
         :content="state.labelTooltip"
         placement="top"
         @mouseenter.native="handleEnterPickerlabel"
       >
-        <span v-if="label" data-tag="tiny-input__label" ref="label"> {{ label }} </span>
+        <span data-tag="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <template v-if="!state.isDisplayOnly">
         <div v-if="state.breakLine" class="flex">
@@ -126,7 +140,10 @@
                 m(
                   gcls('range-separator'),
                   { 'text-center': type === 'datetimerange' },
-                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                  {
+                    'text-color-icon-placeholder':
+                      !state.isDisplayOnly && state.pickerDisabled,
+                  }
                 )
               "
               >{{ rangeSeparator }}</span
@@ -159,7 +176,10 @@
                 m(
                   gcls('range-separator'),
                   { 'text-center': type === 'datetimerange' },
-                  { 'text-color-icon-placeholder': !state.isDisplayOnly && state.pickerDisabled }
+                  {
+                    'text-color-icon-placeholder':
+                      !state.isDisplayOnly && state.pickerDisabled,
+                  }
                 )
               "
               >{{ rangeSeparator }}</span
@@ -191,7 +211,10 @@
           :class="gcls('close-icon')"
         >
           <transition name="tiny-transition-icon-scale-in">
-            <component :is="state.showClose ? clearIcon : null" custom-class="fill-color-text-placeholder" />
+            <component
+              :is="state.showClose ? clearIcon : null"
+              custom-class="fill-color-text-placeholder"
+            />
           </transition>
         </i>
         <i
@@ -219,7 +242,9 @@
         placement="top"
         @mouseenter.native="handleEnterDisplayOnlyContent"
       >
-        <span>{{ state.displayValue && state.displayValue.join(` ${t('ui.datepicker.to')} `) }}</span>
+        <span>{{
+          state.displayValue && state.displayValue.join(` ${t("ui.datepicker.to")} `)
+        }}</span>
       </tiny-tooltip>
     </div>
     <!-- 大屏面板 -->

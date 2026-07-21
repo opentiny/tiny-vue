@@ -13,6 +13,7 @@ export interface ISearchState {
   showClear: boolean
   formItemSize: string
   searchSize: string
+  instanceId: string
 }
 
 export type ISearchProps = ExtractPropTypes<typeof searchProps>

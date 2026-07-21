@@ -67,6 +67,25 @@ const mdContent = computed(() =>
     width: 200px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .docs-header {
+    .docs-title-wrap {
+      min-width: 100px;
+    }
+    .pd-space {
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .docs-header {
+    .docs-header-spacer {
+      display: none;
+    }
+  }
+}
 </style>
 
 <style lang="less">

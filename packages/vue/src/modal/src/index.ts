@@ -96,6 +96,7 @@ export const modalProps = {
   customClass: String, // mf 属性
   confirmBtnProps: { type: Object, default: () => ({}) },
   cancelBtnProps: { type: Object, default: () => ({}) },
+  headerDragable: { type: Boolean, default: true },
   footerDragable: Boolean,
   tiny_theme: String,
   slots: Object

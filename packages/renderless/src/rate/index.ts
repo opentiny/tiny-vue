@@ -85,7 +85,12 @@ export const selectValue =
       return
     }
 
-    if (props.allowHalf && state.pointerAtLeftHalf) {
+    // 实现 clearable 功能
+    // 当 clearable 为 true 且点击的值与当前值相同时，将值设置为 0
+    if (props.clearable && props.modelValue === value) {
+      value = 0
+    } else if (props.allowHalf && state.pointerAtLeftHalf) {
+      // 保持原有的 allowHalf 逻辑
       value = state.currentValue
     }
 
@@ -172,9 +177,8 @@ export const showDecimalIcon =
   }
 
 export const getIconStyle =
-  ({ api, props, state }) =>
+  ({ props, state }) =>
   (item) => {
-    const isHalf = api.showDecimalIcon(item)
     const voidColor = props.disabled ? props.disabledVoidColor : props.voidColor
 
     if (props.radio) {
@@ -183,9 +187,8 @@ export const getIconStyle =
         'font-size': props.size || '18px'
       }
     }
-
     return {
-      fill: isHalf ? 'transparent' : item <= state.currentValue ? state.activeColor : voidColor,
+      fill: item <= state.currentValue ? state.activeColor : voidColor,
       'font-size': props.size || '18px'
     }
   }

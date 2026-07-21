@@ -35,7 +35,9 @@ import {
   handleCompositionstart,
   handleCompositionend,
   removeHandleComposition,
-  checkTableISEndElement
+  checkTableISEndElement,
+  alignHandler,
+  handleLinkClick
 } from './index'
 import { defaultOption, iconOption, iconOptionMobileFirst, simpleToolbar } from './options'
 
@@ -50,6 +52,7 @@ const initState = ({ api, reactive, computed, props }) => {
     innerContent: '',
     fileUploadUrl: (props.fileUpload && props.fileUpload.url) || '',
     quill: null,
+    linkClickHandler: null,
     fileInput: null,
     previewOptions: computed(() => api.computePreviewOptions()),
     previewImgUrl: '',
@@ -104,13 +107,19 @@ const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, Upl
     undoHandler: undoHandler({ state }),
     redoHandler: redoHandler({ state }),
     lineheightHandler: lineheightHandler({ state, FluentEditor }),
+    alignHandler: alignHandler({ state, FluentEditor }),
     inputFileHandler: inputFileHandler({ state, UploaderDfls }),
     insertFileToEditor: insertFileToEditor({ state, FluentEditor, Delta }),
     insertImageToEditor: insertImageToEditor({ state, FluentEditor, Delta }),
     uploadImageToSev: uploadImageToSev({ state }),
     doPreview: doPreview({ props, state, nextTick }),
     stringToJson: stringToJson({ props }),
-    setToolbarTips: setToolbarTips({ api, vm, FluentEditor, iconOption: mode === 'mobile-first' ? iconOptionMobileFirst : iconOption }),
+    setToolbarTips: setToolbarTips({
+      api,
+      vm,
+      FluentEditor,
+      iconOption: mode === 'mobile-first' ? iconOptionMobileFirst : iconOption
+    }),
     getOuterHTML: getOuterHTML(),
     setToolbarTitle: setToolbarTitle({ state, t })
   })
@@ -121,11 +130,23 @@ const mergeApi = (args) => {
   let { constants, FluentEditor, UploaderDfls, Delta, defaultOptions } = args
 
   Object.assign(api, {
-    init: init({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }),
+    init: init({
+      api,
+      emit,
+      props,
+      service,
+      state,
+      FluentEditor,
+      UploaderDfls,
+      defaultOptions,
+      vm,
+      useBreakpoint,
+      simpleToolbar
+    }),
     initContent: initContent({ state, props, api, nextTick }),
-    fileHandler: fileHandler({ api, state }),
-    imageHandler: imageHandler({ api, state }),
-    uploaderDflsHandler: uploaderDflsHandler({ api, modules: defaultOptions.modules }),
+    fileHandler: fileHandler({ api, state, props }),
+    imageHandler: imageHandler({ api, state, props }),
+    uploaderDflsHandler: uploaderDflsHandler({ api, modules: defaultOptions.modules, props }),
     handleUploadFile: handleUploadFile({ api, UploaderDfls }),
     handleUploadImage: handleUploadImage({ state, api, FluentEditor, Delta, UploaderDfls }),
     handlers: handlers({ api }),
@@ -141,7 +162,8 @@ const mergeApi = (args) => {
     handleComposition: handleComposition({ state, api }),
     handleCompositionstart: handleCompositionstart({ state }),
     handleCompositionend: handleCompositionend({ state }),
-    removeHandleComposition: removeHandleComposition({ state, api })
+    removeHandleComposition: removeHandleComposition({ state, api }),
+    handleLinkClick: handleLinkClick({ props, state })
   })
 }
 
@@ -184,7 +206,7 @@ export const renderless = (
 ) => {
   const api = {}
   const { DEFAULTS: UploaderDfls } = FluentEditor.imports['modules/uploader']
-  const Delta = FluentEditor.imports['delta']
+  const Delta = FluentEditor.imports.delta
   const state = initState({ reactive, computed, api, props })
   const defaultOptions = defaultOption({ FluentEditor, state, mentionObj: props.mentionObj })
 

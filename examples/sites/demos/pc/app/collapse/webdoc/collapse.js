@@ -47,6 +47,19 @@ export default {
       codeFiles: ['disable.vue']
     },
     {
+      demoId: 'size',
+      name: {
+        'zh-CN': '面板大小',
+        'en-US': 'Custom Panel Size'
+      },
+      desc: {
+        'zh-CN': '通过 <code>size</code> 属性可以指定折叠面板的尺寸，可选值为 "" | "medium"。',
+        'en-US':
+          'by <code>size</code> prop can be used to specify the size of the collapse panel. The optional values are "" | "medium".'
+      },
+      codeFiles: ['size.vue']
+    },
+    {
       demoId: 'title',
       name: {
         'zh-CN': '面板标题',

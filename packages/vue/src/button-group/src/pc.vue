@@ -12,7 +12,7 @@
 <template>
   <div
     class="tiny-button-group"
-    :class="[size ? 'tiny-button-group--' + size : '', border ? '' : 'tiny-button-group--borderless']"
+    :class="[size ? 'tiny-button-group--' + size : '', border ? '' : 'tiny-button-group--borderless', displayMode === 'merged' ? 'tiny-button-group--merged' : '']"
   >
     <slot>
       <template v-if="data.length > 0">
@@ -134,7 +134,8 @@ export default defineComponent({
     'textField',
     'showMore',
     'showEdit',
-    'border'
+    'border',
+    'displayMode'
   ],
   components: {
     TinyPopover: Popover,

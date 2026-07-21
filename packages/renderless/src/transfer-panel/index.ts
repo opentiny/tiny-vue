@@ -67,7 +67,7 @@ export const getFilterData =
         if (typeof props.filterMethod === 'function') {
           return props.filterMethod(state.query, item)
         } else {
-          const label = item[state.labelProp] || item[state.keyProp].toString()
+          const label = item[state.labelProp] || item[state.keyProp]?.toString() || ''
 
           return label.toLowerCase().includes(state.query.toLowerCase())
         }

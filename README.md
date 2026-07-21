@@ -20,6 +20,39 @@ English | [简体中文](README.zh-CN.md)
 - 📊 Components support configuration development, can support low-code platform.
 - 💡 Use a cross-end and cross-framework architecture, flexible and portable.
 
+## Build with AI
+
+`tiny-vue-skill` is a set of skill tools designed for AI coding assistants, enabling them to deeply understand the usage, APIs, and best practices of the TinyVue component library, thereby helping you develop applications with TinyVue more efficiently.
+
+You can install `tiny-vue-skill` globally using the following command:
+
+```bash
+npx skills add opentiny/agent-skills -g --skill tiny-vue-skill --agent cursor
+```
+
+![tiny-vue-skill](tiny-vue-skill.png)
+
+The `--agent` parameters corresponding to some other AI tools:
+
+| Agent          | `--agent`        |
+| -------------- | ---------------- |
+| Amp            | `amp`            |
+| Antigravity    | `antigravity`    |
+| Claude Code    | `claude-code`    |
+| Clawdbot       | `clawdbot`       |
+| Codex          | `codex`          |
+| Cursor         | `cursor`         |
+| Droid          | `droid`          |
+| Gemini CLI     | `gemini-cli`     |
+| GitHub Copilot | `github-copilot` |
+| Goose          | `goose`          |
+| Kilo Code      | `kilo`           |
+| Kiro CLI       | `kiro-cli`       |
+| OpenCode       | `opencode`       |
+| Roo Code       | `roo`            |
+| Trae           | `trae`           |
+| Windsurf       | `windsurf`       |
+
 ## 🛠️ Usage
 
 ### 1. Installation
@@ -188,6 +221,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/liangguanhui0117"><img src="https://avatars.githubusercontent.com/u/28801619?v=4?s=100" width="100px;" alt="LiangGuanhui"/><br /><sub><b>LiangGuanhui</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=liangguanhui0117" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ourcx"><img src="https://avatars.githubusercontent.com/u/173872687?v=4&size=100" width="100px;" alt="ourcx"/><br /><sub><b>ourcx</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ourcx/" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

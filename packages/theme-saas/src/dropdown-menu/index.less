@@ -1,12 +1,16 @@
 @import '../custom.less';
 
-@dropdown-prefix-cls: ~'@{css-prefix}dropdown-menu';
+@dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
 
-.@{dropdown-prefix-cls} {
+.@{dropdown-menu-prefix-cls}:not(.@{dropdown-item-prefix-cls}--child) {
   @apply absolute;
   @apply top-0;
   @apply left-0;
   @apply z-10;
+}
+
+.@{dropdown-menu-prefix-cls} {
   @apply py-1 px-0;
   @apply my-1 mx-0;
   @apply bg-color-bg-1;
@@ -115,57 +119,57 @@
   }
 }
 
-.@{dropdown-prefix-cls}--medium {
+.@{dropdown-menu-prefix-cls}--medium {
   @apply ~'py-1.5' px-0;
 
-  .@{dropdown-prefix-cls}__item {
+  .@{dropdown-menu-prefix-cls}__item {
     @apply leading-8;
     @apply py-0 px-3;
     @apply text-sm;
 
-    &.@{dropdown-prefix-cls}__item--divided {
+    &.@{dropdown-menu-prefix-cls}__item--divided {
       @apply ~'mt-1.5';
     }
 
-    &.@{dropdown-prefix-cls}__item--divided:before {
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
       @apply ~'h-1.5';
       @apply my-0 -mx-3;
     }
   }
 }
 
-.@{dropdown-prefix-cls}--small {
+.@{dropdown-menu-prefix-cls}--small {
   @apply ~'py-1.5' px-0;
 
-  .@{dropdown-prefix-cls}__item {
+  .@{dropdown-menu-prefix-cls}__item {
     @apply leading-6;
     @apply py-0 px-4;
     @apply text-xs;
 
-    &.@{dropdown-prefix-cls}__item--divided {
+    &.@{dropdown-menu-prefix-cls}__item--divided {
       @apply mt-1;
     }
 
-    &.@{dropdown-prefix-cls}__item--divided:before {
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
       @apply h-1;
       @apply my-0 -mx-4;
     }
   }
 }
 
-.@{dropdown-prefix-cls}--mini {
+.@{dropdown-menu-prefix-cls}--mini {
   @apply py-1 px-0;
 
-  .@{dropdown-prefix-cls}__item {
+  .@{dropdown-menu-prefix-cls}__item {
     @apply leading-6;
     @apply py-0 ~'px-2.5';
     @apply text-xs;
 
-    &.@{dropdown-prefix-cls}__item--divided {
+    &.@{dropdown-menu-prefix-cls}__item--divided {
       @apply mt-1;
     }
 
-    &.@{dropdown-prefix-cls}__item--divided:before {
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
       @apply h-px;
       @apply my-0 ~'-mx-2.5';
     }

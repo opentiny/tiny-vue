@@ -47,6 +47,19 @@ export default {
       codeFiles: ['tip.vue']
     },
     {
+      demoId: 'size',
+      name: {
+        'zh-CN': '尺寸',
+        'en-US': 'Size'
+      },
+      desc: {
+        'zh-CN': '通过 <code>size</code> 设置过滤器面板的尺寸。支持 <code>medium</code> 中等尺寸，不设置则为默认尺寸。',
+        'en-US':
+          'Set the size of the filter panel through <code>size</code>. Supports <code>medium</code> size. If not set, the default size is used.'
+      },
+      codeFiles: ['size.vue']
+    },
+    {
       demoId: 'manual-hide',
       name: {
         'zh-CN': '手动隐藏',

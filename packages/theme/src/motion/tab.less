@@ -1,0 +1,114 @@
+/* ===========================
+   Tab切换动画 (tab.less)
+   来源: tabs
+   可配置变量:
+     --tv-motion-tab-speed        动画时长
+     --tv-motion-tab-opacity-start 初始透明度
+     --tv-motion-tab-opacity-end   结束透明度
+     --tv-motion-tab-offset-x-start X轴初始位移
+     --tv-motion-tab-offset-x-end   X轴结束位移
+     --tv-motion-tab-offset-x-start-left 左向 X轴初始位移
+     --tv-motion-tab-offset-y-start Y轴初始位移
+     --tv-motion-tab-offset-y-start-down 下向 Y轴初始位移
+     --tv-motion-tab-offset-y-end   Y轴结束位移
+=========================== */
+
+/* ============ 水平向右 ============ */
+@keyframes tab-slide-right-in {
+  0% {
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+    transform-origin: 0 0;
+    transform: translateX(var(--tv-motion-tab-offset-x-start, 100%));
+  }
+  100% {
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+    transform: translateX(var(--tv-motion-tab-offset-x-end, 0));
+  }
+}
+
+@keyframes tab-slide-right-out {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(var(--tv-motion-tab-offset-x-end, 0));
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+  }
+  100% {
+    transform: translateX(var(--tv-motion-tab-offset-x-start, 100%));
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+  }
+}
+
+/* ============ 水平向左 ============ */
+@keyframes tab-slide-left-in {
+  0% {
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+    transform-origin: 0 0;
+    transform: translateX(var(--tv-motion-tab-offset-x-start-left, -100%));
+  }
+  100% {
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+    transform: translateX(var(--tv-motion-tab-offset-x-end, 0));
+  }
+}
+
+@keyframes tab-slide-left-out {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(var(--tv-motion-tab-offset-x-end, 0));
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+  }
+  100% {
+    transform: translateX(var(--tv-motion-tab-offset-x-start-left, -100%));
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+  }
+}
+
+/* ============ 垂直向上 ============ */
+@keyframes tab-slide-up-in {
+  0% {
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+    transform-origin: 0 0;
+    transform: translateY(var(--tv-motion-tab-offset-y-start, 100%));
+  }
+  100% {
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+    transform: translateY(var(--tv-motion-tab-offset-y-end, 0));
+  }
+}
+
+@keyframes tab-slide-up-out {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(var(--tv-motion-tab-offset-y-end, 0));
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+  }
+  100% {
+    transform: translateY(var(--tv-motion-tab-offset-y-start, 100%));
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+  }
+}
+
+/* ============ 垂直向下 ============ */
+@keyframes tab-slide-down-in {
+  0% {
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+    transform-origin: 0 0;
+    transform: translateY(var(--tv-motion-tab-offset-y-start-down, -100%));
+  }
+  100% {
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+    transform: translateY(var(--tv-motion-tab-offset-y-end, 0));
+  }
+}
+
+@keyframes tab-slide-down-out {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(var(--tv-motion-tab-offset-y-end, 0));
+    opacity: var(--tv-motion-tab-opacity-end, 1);
+  }
+  100% {
+    transform: translateY(var(--tv-motion-tab-offset-y-start-down, -100%));
+    opacity: var(--tv-motion-tab-opacity-start, 0);
+  }
+}

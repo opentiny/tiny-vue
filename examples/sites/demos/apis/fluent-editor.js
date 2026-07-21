@@ -19,6 +19,22 @@ export default {
           pcDemo: 'before-editor-init'
         },
         {
+          name: 'before-link-open',
+          typeAnchorName: 'IBeforeLinkOpen',
+          type: 'IBeforeLinkOpen',
+          defaultValue: '',
+          meta: {
+            stable: '3.30.0'
+          },
+          desc: {
+            'zh-CN':
+              '点击富文本中的超链接前触发。返回 false（或 Promise resolve false）可拦截跳转；返回 true/undefined 继续跳转。',
+            'en-US': ''
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: ''
+        },
+        {
           name: 'data-type',
           type: 'boolean',
           defaultValue: 'true',
@@ -103,6 +119,20 @@ export default {
     }
   ],
   types: [
+    {
+      name: 'IBeforeLinkOpen',
+      type: 'type',
+      code: `
+type IBeforeLinkOpen = (payload: {
+  url: string // 过滤后的安全链接
+  rawUrl: string // 原始 href
+  target: string // 超链接 target，默认 _blank
+  rel: string // 超链接 rel
+  event: MouseEvent // 点击事件对象
+  quill: any // 当前编辑器实例
+}) => boolean | void | Promise<boolean | void>
+      `
+    },
     {
       name: 'IImageUploadOptions',
       type: 'interface',

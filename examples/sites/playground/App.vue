@@ -1,17 +1,21 @@
 <script setup lang="jsx">
-import { onMounted, reactive, nextTick } from 'vue'
+import { onMounted, reactive, nextTick, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
 import Editor from '@vue/repl/codemirror-editor'
-import { TinyButtonGroup, TinyButton, TinySelect, TinyOption, TinySwitch, Notify } from '@opentiny/vue'
+import { TinyButton, TinySelect, TinyOption, Notify, TinyTooltip } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components-doc/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
+import Set from './icons/Set.vue'
+import Layout from './icons/Layout.vue'
+import Reverse from './icons/Reverse.vue'
+import Vertical from './icons/Vertical.vue'
 
-const VERSION = 'tiny-vue-version-3.27'
+const VERSION = 'tiny-vue-version-3.30'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
@@ -21,15 +25,16 @@ const tinyMode = searchObj.get('mode')
 const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
-const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
+const isPreview = searchObj.get('openMode') === 'preview'
+const versions = ['3.30', '3.29', '3.28']
+const manualShow = ref(false)
 
-const versions = ['3.27', '3.26', '3.25']
 const getVersion = () => {
   if (isPreview) {
     return versions[0]
   }
   if (versions.includes(localStorage.getItem(VERSION))) {
-    localStorage.getItem(VERSION)
+    return localStorage.getItem(VERSION)
   }
   return versions[0]
 }
@@ -52,7 +57,7 @@ const showNotify = () => {
       message: () => (
         <div>
           <div>演练场仅保留最新的三个版本可选。</div>
-          <div style="text-align: right;margin-top: 12px;">
+          <div style="text-align: right; margin-top: 12px;">
             <TinyButton onClick={muteNotify} type={'primary'}>
               不再提示
             </TinyButton>
@@ -85,17 +90,19 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] =
-      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[
+      `@opentiny/vue-design-${tinyTheme}`
+    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
+    // 添加 @opentiny/vue-icon-saas 的映射，因为某些代码会直接导入这个包
+    imports['@opentiny/vue-icon-saas'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
     imports['@opentiny/vue-common'] = `${getRuntime(version)}tiny-vue-saas-common.mjs`
     imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-all.mjs`
   }
-  return {
-    imports
-  }
+  imports['@opentiny/vue-search-box'] = '/playground/shims/vue-search-box.mjs'
+  return { imports }
 }
 
 const getTinyTheme = (version) => {
@@ -103,9 +110,8 @@ const getTinyTheme = (version) => {
     return `${getRuntime(version)}tailwind.css`
   }
   let theme = tinyTheme
-  if (!['aurora', 'saas'].includes(theme)) {
-    theme = 'default'
-  }
+  if (!['aurora', 'saas'].includes(theme)) theme = 'default'
+
   const tinyThemeMap = {
     default: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
     aurora: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
@@ -114,7 +120,7 @@ const getTinyTheme = (version) => {
   return tinyThemeMap[theme]
 }
 
-// 如果hash有效，它格式为： 3.8.4|eNqIVV9p.............
+// 如果hash有效，它格式为： 3.8.4|eNqIVV9p............."
 const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
@@ -149,13 +155,45 @@ const designThemeMap = {
   old: 'tinyOldTheme'
 }
 
+// 定义选项数据
+const layoutItems = [
+  {
+    id: 1,
+    text: '水平布局',
+    iconPath: 'Layout'
+  },
+  {
+    id: 2,
+    text: '垂直布局',
+    iconPath: 'Vertical'
+  },
+  {
+    id: 3,
+    text: '布局反转',
+    iconPath: 'Reverse'
+  }
+]
+
+// 选中状态管理
+const selectedIndex = ref(0)
+
+// 选择 item 函数
+const selectItem = (index) => {
+  selectedIndex.value = index
+  if (index === 0) {
+    changeLayout('horizon')
+  } else if (index === 1) {
+    changeLayout('vertical')
+  } else {
+    changeReserve()
+  }
+}
+
 function setTinyDesign() {
   let importCode = ''
   let useCode = ''
 
-  if (isMobileFirst) {
-    useCode += 'app.provide("TinyMode", "mobile-first");\n'
-  }
+  if (isMobileFirst) useCode += 'app.provide("TinyMode", "mobile-first");\n'
 
   if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
@@ -170,10 +208,7 @@ function setTinyDesign() {
     useCode += `const theme = new TinyThemeTool(${designTheme});\n`
   }
 
-  state.previewOptions.customCode = {
-    importCode,
-    useCode
-  }
+  state.previewOptions.customCode = { importCode, useCode }
 }
 
 function selectVersion(version) {
@@ -189,13 +224,15 @@ function versionChange(version) {
 
 function insertStyleDom(version) {
   nextTick(() => {
-    if (!document.querySelector('iframe')) return
+    const iframe = document.querySelector('iframe')
+    if (!iframe) return
 
-    const iframeWin = document.querySelector('iframe').contentWindow
+    const iframeWin = iframe.contentWindow
     const link = iframeWin.document.createElement('link')
     link.id = 'tiny-theme'
     link.rel = 'stylesheet'
     link.href = getTinyTheme(version)
+
     iframeWin.addEventListener('DOMContentLoaded', () => {
       iframeWin.document.head.append(link)
 
@@ -209,29 +246,25 @@ function insertStyleDom(version) {
 
 function changeLayout(layout) {
   localStorage.setItem(LAYOUT, layout)
+  state.layout = layout
 }
 
-function changeReserve(isReserve) {
+function changeReserve() {
+  state.layoutReverse = !state.layoutReverse
+  localStorage.setItem(LAYOUT_REVERSE, state.layoutReverse)
   insertStyleDom(state.selectVersion)
-  localStorage.setItem(LAYOUT_REVERSE, isReserve)
 }
 
 function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
+const getDemoCode = async ({ cmpId, fileName, apiMode, mode: _mode }) => {
   const demoName = getDemoName(`${getWebdocPath(cmpId)}/${fileName}`, apiMode)
   const path = tinyMode === 'mobile-first' ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
   const code = await fetchDemosFile(path)
-    .then((code) => {
-      return code
-    })
-    .catch(() => {
-      return `${demoName}示例资源不存在，请检查文件名是否正确？`
-    })
-
+    .then((code) => code)
+    .catch(() => `${demoName}示例资源不存在，请检查文件名是否正确？`)
   return code
 }
 
@@ -243,21 +276,37 @@ const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
   versionChange(latestVersion)
 }
 
+// 分享功能
+const share = () => {
+  const hash = store.serialize()
+  const shareUrl = `${location.origin}${import.meta.env.VITE_PLAYGROUND_URL}?mode=${tinyMode}&theme=${tinyTheme}#${
+    state.selectVersion
+  }|${hash}`
+
+  navigator.clipboard.writeText(shareUrl)
+  Notify({
+    type: 'success',
+    title: '分享',
+    message: '当前URL已被复制到剪贴板.',
+    duration: 2000
+  })
+}
+
 onMounted(() => {
   setTinyDesign()
-  // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
+  // 初始加载，有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
     const demoFile = Object.values(store.state.files).find(
       (file) =>
         file.filename.startsWith('src/') &&
         file.filename.endsWith('.vue') &&
-        file.filename !== 'src/App.vue' &&
-        file.filename !== 'src/PlaygroundMain.vue'
+        !['src/App.vue', 'src/PlaygroundMain.vue'].includes(file.filename)
     )
-
-    store.state.mainFile = demoFile.filename
-    store.state.activeFile = demoFile
-    versionChange(shareData[0])
+    if (demoFile) {
+      store.state.mainFile = demoFile.filename
+      store.state.activeFile = demoFile
+      versionChange(shareData[0])
+    }
   } else {
     const fileName = searchObj.get('fileName')
     const cmpId = searchObj.get('cmpId')
@@ -268,72 +317,82 @@ onMounted(() => {
     }
   }
 })
-// 分享功能
-function share() {
-  const hash = store.serialize()
-  const shareUrl =
-    location.origin +
-    `${import.meta.env.VITE_PLAYGROUND_URL}?mode=${tinyMode}&theme=${tinyTheme}#` +
-    state.selectVersion +
-    '|' +
-    hash
-
-  navigator.clipboard.writeText(shareUrl)
-  Notify({
-    type: 'success',
-    title: '分享',
-    message: '当前URL已被复制到剪贴板.',
-    duration: 2000
-  })
-}
 </script>
 
 <template>
   <div class="header">
-    <div class="title"><img class="logo" :src="logoUrl" /> <span class="mobile-hide">OpenTiny Vue 演练场</span></div>
+    <div class="title">
+      <img class="logo" :src="logoUrl" />
+      <span class="mobile-hide">OpenTiny Vue 演练场</span>
+    </div>
     <div>
-      <span class="ml20 mobile-hide">
-        布局方向:
-        <tiny-button-group
-          :data="state.layoutOptions"
-          v-model="state.layout"
-          @change="changeLayout"
-        ></tiny-button-group>
-      </span>
-      <span class="ml20 mobile-hide">
-        布局反转:
-        <tiny-switch v-model="state.layoutReverse" mini @change="changeReserve"></tiny-switch>
-      </span>
-      <span class="ml20">
-        <span class="mobile-hide">OpenTiny Vue 版本: </span>
+      <div class="select-opt">
         <tiny-select
           v-model="state.selectVersion"
-          style="width: 150px"
+          style="width: 200px"
           :disabled="isPreview"
           @change="selectVersion"
           @click="showNotify"
+          size="medium"
         >
-          <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
-          </tiny-option>
+          <tiny-option
+            v-for="item in state.versions"
+            :key="item.value"
+            :label="`版本：${item.value}`"
+            :value="item.value"
+          />
         </tiny-select>
-      </span>
-      <Share @click="share" title="分享" class="share" />
+      </div>
+      <tiny-tooltip v-model="manualShow" placement="top" effect="light" manual>
+        <template #content>
+          <div class="tip-ctn">
+            <p class="tip-ctn-title">设置布局</p>
+            <div class="tip-container">
+              <div
+                v-for="(item, index) in layoutItems"
+                :key="item.id"
+                class="tip-element"
+                :class="{ active: selectedIndex === index }"
+                @click="selectItem(index)"
+              >
+                <span class="tip-element-text">{{ item.text }}</span>
+                <span>
+                  <Layout class="tip-element-icon" v-if="item.iconPath === 'Layout'" />
+                </span>
+                <span>
+                  <Vertical class="tip-element-icon" v-if="item.iconPath === 'Vertical'" />
+                </span>
+                <span>
+                  <Reverse class="tip-element-icon" v-if="item.iconPath === 'Reverse'" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="icon-wrapper">
+          <Set title="设置" class="icon-ref" :class="{ active: manualShow }" @click="manualShow = !manualShow" />
+        </div>
+      </tiny-tooltip>
+      <div class="icon-wrapper">
+        <Share @click="share" title="分享" class="icon-ref" />
+      </div>
       <a style="display: flex" href="https://github.com/opentiny/tiny-vue" target="_blank">
         <GitHub class="github" />
       </a>
     </div>
   </div>
   <Repl
+    ref="replRef"
     :editor="Editor"
     :store="store"
     :preview-options="state.previewOptions"
     :clear-console="false"
     :layout="state.layout"
     :layout-reverse="state.layoutReverse"
-  ></Repl>
+  />
 </template>
 
-<style>
+<style lang="less" scoped>
 * {
   box-sizing: border-box;
 }
@@ -377,18 +436,151 @@ function share() {
 }
 
 .vue-repl {
-  /* 16px 是body默认margin*/
+  /* 16px 是body默认margin */
   height: calc(100vh - 36px - 16px) !important;
+  transition: width 0.3s ease; /* 添加宽度过渡 */
 }
 
-.github,
-.share {
-  width: 20px;
-  margin-right: 10px;
+.github {
+  width: 32px;
+  height: 32px;
+  margin: 0 15px;
   cursor: pointer;
 }
 
 .share {
-  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.tip-ctn {
+  background: #fff;
+  padding: 8px 10px;
+
+  &-title {
+    margin: 0 0 10px 0;
+  }
+}
+
+.split-line {
+  width: 1px;
+  height: 12px;
+  background-color: #dbdbdb;
+  margin: 0 15px;
+}
+
+.select-opt {
+  margin-right: 15px;
+  .tiny-select .tiny-input .tiny-input__inner {
+    height: 32px;
+  }
+}
+
+.icon-wrapper {
+  padding: 9px;
+  margin: 0 6px;
+
+  &:hover {
+    background-color: #f5f5f5;
+    border-radius: 50%;
+  }
+
+  &:active {
+    background-color: #f5f5f5;
+    border-radius: 50%;
+  }
+}
+
+.icon-ref {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  display: block;
+}
+
+/* 添加高亮样式 */
+.header img {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin: 0 2px;
+}
+
+.header img.active {
+  border-color: #1476ff;
+  background-color: rgba(64, 158, 255, 0.1);
+  box-shadow: 0 0 8px rgba(64, 158, 255, 0.5);
+}
+
+.screen-title {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 4px;
+}
+
+.tip-container {
+  display: flex;
+  flex-direction: row;
+  padding: 4px 2px;
+  gap: 20px;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tip-element {
+  width: 112px;
+  height: 40px;
+  background-color: #fafafa;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tip-element:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.tip-element.active {
+  border: 1px solid #191919;
+  background-color: #f5f5f5;
+}
+
+.tip-element-text {
+  color: #191919;
+  font-size: 12px;
+  font-weight: 400;
+  margin-right: 8px;
+  letter-spacing: 0.2px;
+}
+
+.tip-element-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 6px;
+  transition: all 0.3s ease;
+}
+
+.tip-element.active .tip-element-icon {
+  transform: scale(1.1);
+}
+
+.tip-element:active {
+  transform: scale(0.98);
+}
+
+.tip-element.active:active {
+  transform: scale(0.98);
 }
 </style>

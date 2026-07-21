@@ -376,7 +376,8 @@ export default {
         groupColumnFixedError: 'Cada grupo debe tener el mismo tipo.',
         missingValueFormat:
           'El renderizador no puede formatear la cadena de caracteres de fecha. Se requiere el formato de fecha de origen para valueFormat.',
-        clipboardWriteError: 'Error al escribir en el portapapeles.'
+        clipboardWriteError: 'Error al escribir en el portapapeles.',
+        fieldNotExist: 'La columna no existe.'
       },
       filter: {
         allSelect: 'Todos',
@@ -483,7 +484,12 @@ export default {
       show: 'Mostrar barra lateral'
     },
     navMenu: {
-      moreText: 'Más'
+      moreText: 'Más',
+      navigation: 'Navegación',
+      mainMenu: 'Menú principal',
+      subMenu: 'Submenú',
+      expand: 'Expandir menú',
+      collapse: 'Colapsar menú'
     },
     logout: {
       in: 'Sesión iniciada',
@@ -679,7 +685,14 @@ export default {
       deleteTable: 'Eliminar tabla',
       colorPicker: 'Color de fondo',
       placeholder: 'Insertar texto aquí...',
-      maxLength: 'La longitud del texto supera el límite, la configuración de longitud máxima es '
+      maxLength: 'La longitud del texto supera el límite, la configuración de longitud máxima es ',
+      visitUrl: 'Visitar URL',
+      edit: 'Editar',
+      remove: 'Eliminar',
+      save: 'Guardar',
+      enterLink: 'Ingresar enlace',
+      enterFormula: 'Ingresar fórmula',
+      enterVideo: 'Ingresar video'
     },
     fluentEditor: {
       undo: 'Deshacer',

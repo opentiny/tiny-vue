@@ -70,6 +70,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'target',
+          type: "'_self' | '_blank' | '_parent' | '_top'",
+          defaultValue: '_self',
+          desc: {
+            'zh-CN': '链接打开方式',
+            'en-US': 'Link open mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'target'
         }
       ],
       events: [

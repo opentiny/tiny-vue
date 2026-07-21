@@ -6,7 +6,7 @@ import { fastdom } from '@opentiny/utils'
 export const setActive =
   ({ state, api }) =>
   (name) => {
-    const current = state.currentItem ? state.currentItem.name : ''
+    const current = state.cacheCurrentItem ? state.cacheCurrentItem.name : ''
 
     if (current && current !== name) {
       api.canLeave(name, current).then((result) => {
@@ -49,7 +49,9 @@ export const canLeave = (props) => (newTab, oldTab) => {
 export const changeCurrentName =
   ({ emit, state }) =>
   (name) => {
-    state.items.forEach((item) => (item.selected = item.name === name))
+    state.items.forEach((item) => {
+      item.selected = item.name === name
+    })
 
     emit('update:activeName', name)
     emit('update:modelValue', name)
@@ -133,10 +135,12 @@ export const clickMore = (api) => (name) => {
 }
 
 export const removeItem =
-  ({ props, state, emit }) =>
+  ({ props, state, emit, api }) =>
   (name, silent = false) => {
     const itemIndex = state.items.findIndex((item) => item.name === name)
     const navIndex = state.navs.findIndex((item) => item.name === name)
+    const isCurrent = state.currentItem && state.currentItem.name === name
+    const nextNav = state.navs[navIndex - 1] || state.navs[navIndex + 1]
 
     if (!~itemIndex) return
 
@@ -147,6 +151,19 @@ export const removeItem =
 
       state.navs.splice(navIndex, 1)
       state.navs = [...state.navs]
+
+      if (isCurrent) {
+        const nextName = nextNav ? nextNav.name : state.items[0]?.name || ''
+        if (silent) {
+          // 弹窗关闭等 teardown 场景：仅同步内部状态，不触发 modelValue/activeName，避免关闭弹窗时误触发父组件 v-model 变更
+          state.items.forEach((item) => {
+            item.selected = item.name === nextName
+          })
+        } else {
+          api.changeCurrentName(nextName)
+        }
+        state.currentItem = state.items.find((item) => item.name === nextName) || null
+      }
 
       if (!silent) {
         // Emits the close event

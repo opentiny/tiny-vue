@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import '../motion/index.less';
 
 @grid-loading-prefix-cls: ~'@{css-prefix}grid-loading';
 @loading-prefix-cls: ~'@{css-prefix}loading';
@@ -56,17 +57,7 @@
       border-radius: 50%;
       background: linear-gradient(#000, #000);
       position: absolute;
-      animation: load 1.04s ease infinite;
-    }
-
-    @keyframes load {
-      0% {
-        opacity: 10;
-      }
-
-      100% {
-        opacity: 0.1;
-      }
+      animation: grid-loading var(--tv-motion-grid-loading-speed) ease infinite;
     }
 
     span:nth-child(1) {

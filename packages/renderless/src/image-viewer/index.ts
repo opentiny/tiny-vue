@@ -867,6 +867,9 @@ export const selectOption =
 
 export const filterImageUrl = () => (imageUrl) => {
   const isBase64 = /^data:image\/(png|jpg|jpeg|gif);base64,([a-zA-Z0-9+/]+={0,2})/
-
-  return isBase64.test(imageUrl) ? imageUrl : xss.filterUrl(imageUrl)
+  const isUrlEncodedSvg = /^data:image\/svg\+xml,/
+  if (isBase64.test(imageUrl) || isUrlEncodedSvg.test(imageUrl)) {
+    return imageUrl
+  }
+  return xss.filterUrl(imageUrl)
 }

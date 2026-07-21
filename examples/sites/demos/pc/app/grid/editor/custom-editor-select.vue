@@ -12,7 +12,8 @@
         title="区域"
         :editor="{
           component: TinySelect,
-          attrs: { options, textField: 'name', valueField: 'id' }
+          attrs: { options, textField: 'name', valueField: 'id' },
+          event: { change: hangeChange }
         }"
         :format-config="{ data: options, label: 'name', value: 'id' }"
         format-text="enum"
@@ -146,6 +147,9 @@ export default {
   methods: {
     renderName(h, { row }) {
       return <span style="color:goldenrod">{row.name}</span>
+    },
+    hangeChange(value) {
+      console.log('handleChnage', value)
     }
   }
 }

@@ -10,7 +10,7 @@ test('多选时取远端数据与当前已选数据的并集', async ({ page }) 
   const tag = select.locator('.tiny-tag')
 
   await expect(tag).toHaveCount(2)
-  await select.locator('.tiny-input__suffix').click()
+  await select.click()
   await option.filter({ hasText: '全部' }).click()
   await expect(tag).toHaveCount(7)
   await option.filter({ hasText: '全部' }).click()

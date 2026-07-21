@@ -12,21 +12,12 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 // .tiny-icon-loading 类名的动画效果。 它出现在多个组件中，故抽取到一起。
 .@{css-prefix-iconfont}-loading {
   line-height: 1;
-  animation: rotating 2s linear infinite;
-}
-
-@keyframes rotating {
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
-  }
+  animation: rotate-z var(--tv-motion-rotate-speed) linear infinite;
 }
 
 // 高亮节点

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="jsx">
-import { TinyTag, TinyModal } from '@opentiny/vue'
+import { TinyTag, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     handleClick() {
-      TinyModal.message('click 事件')
+      Modal.message('click 事件')
     }
   }
 }

@@ -1,0 +1,20 @@
+@import '../custom.less';
+@import './vars.less';
+
+@alert-prefix-cls: ~'@{css-prefix}alert';
+
+@media screen and (max-width: 1280px) {
+  .@{alert-prefix-cls} {
+    .inject-Alert-responsive-vars();
+
+    .@{alert-prefix-cls}__content {
+      .@{alert-prefix-cls}__title {
+        font-size: var(--tv-Alert-title-responsive-font-size);
+      }
+
+      .@{alert-prefix-cls}__description {
+        color: var(--tv-Alert-title-responsive-text-color);
+      }
+    }
+  }
+}

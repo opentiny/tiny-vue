@@ -183,8 +183,10 @@ export const handleDocumentClick =
     const $el = vm.$refs.root
     let target = event.target as HTMLElement
 
-    // 解决组件在webcomponents中触发document的click事件，但是e.target始终是webcomponents自定义标签，从而引起的判断失效的bug
-    if (target?.shadowRoot && popperElm) {
+    // 点击在webcomponents上时，document监听事件的e.target始终是webcomponents自身，所以要判断处理：
+    // 1. 包含关系：popover使用在乾坤等场景时， popover包含在自定义组件内时， 需要替换target为 真实的 webComponent的内部dom, 再进行判断
+    // 2. 平级关系：比如页面上有popover 和一个平级关系的自定义dom元素，此时不需要替换target
+    if (target?.shadowRoot && target.shadowRoot.contains($el) && popperElm) {
       target = state.webCompEventTarget as HTMLElement
     }
 

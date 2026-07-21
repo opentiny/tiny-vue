@@ -139,9 +139,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey</p>\n',
+          '<p>自定义日期单元格背景色。</p>\n<p>目前支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey 和使用十六进制、rgb、rgba 的是自定义颜色</p>\n',
         'en-US':
-          '<p>Customize the background color of the date cell. </p>\n<p>Currently, only preset colors are supported. The options are blue, green, red, yellow, purple, cyan, and grey.</p>'
+          '<p>Customize the background color of date cells.</p>\n<p>Currently supports both preset colors (options include blue, green, red, yellow, purple, cyan, and grey) and custom colors defined using hexadecimal, RGB, or RGBA values.</p>'
       },
       codeFiles: ['custom-day-bg-color.vue']
     },
@@ -178,7 +178,7 @@ export default {
           '<p>mode-change：模式切换事件</p>',
         'en-US':
           '<p>Calendar throws the following events:</p>\n' +
-          '<p>date-click：日期点击事件: Date click event</p>\n' +
+          '<p>date-click：日期点击事件：Date click event</p>\n' +
           '<p>new-schedule: Add a schedule button click event</p>\n' +
           '<p>selected-date-change: selected date change event</p>\n' +
           '<p>prev-week-click: button click event of the last week</p>\n' +
@@ -346,7 +346,7 @@ export default {
         value: true
       },
       description:
-        '自定义日期单元格背景色，目前只支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey。',
+        '自定义日期单元格背景色，目前支持预置的颜色，可选颜色 blue、green、red、yellow、purple、cyan、grey 和使用十六进制、rgb、rgba 的是自定义颜色。',
       cloud: {
         value: false
       },

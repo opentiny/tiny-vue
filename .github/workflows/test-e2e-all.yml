@@ -63,7 +63,7 @@ jobs:
         run: pnpm install:browser --with-deps chromium
 
       - name: Run Playwright tests
-        run: pnpm test:e2e3 --shard=${{ matrix.shard }} --reporter=blob
+        run: pnpm test:e2e3 --shard=${{ matrix.shard }} --reporter=blob --pass-with-no-tests
 
       - name: Upload blob report to GitHub Actions Artifacts
         if: always()

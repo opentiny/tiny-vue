@@ -1,5 +1,6 @@
 import {
   close,
+  closed,
   watchVisible,
   confirm,
   mousedown,
@@ -12,7 +13,10 @@ import {
   handleClose,
   computedWidth,
   computedHeight,
-  open
+  open,
+  keydown,
+  addKeydownEvent,
+  removeKeydownEvent
 } from './index'
 import type {
   IDrawerProps,
@@ -22,12 +26,12 @@ import type {
   ISharedRenderlessParamHooks
 } from '@/types'
 
-export const api = ['state', 'close', 'confirm', 'handleClose', 'open']
+export const api = ['state', 'close', 'closed', 'confirm', 'handleClose', 'open']
 
 export const renderless = (
   props: IDrawerProps,
   { reactive, watch, onMounted, onBeforeUnmount, computed }: ISharedRenderlessParamHooks,
-  { emit, vm, mode, constants, designConfig }: IDrawerRenderlessParamUtils
+  { emit, vm, mode, parent, constants, designConfig }: IDrawerRenderlessParamUtils
 ) => {
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
@@ -46,13 +50,17 @@ export const renderless = (
     open: open({ state, emit, vm }),
     confirm: confirm({ api }),
     close: close({ api }),
+    closed: closed({ state, emit }),
     handleClose: handleClose({ emit, props, state }),
     mousedown: mousedown({ state, vm }),
     mousemove: mousemove({ state, props, emit }),
     mouseup: mouseup({ state }),
-    addDragEvent: addDragEvent({ api: api as IDrawerApi, vm }),
-    removeDragEvent: removeDragEvent({ api: api as IDrawerApi, vm }),
-    watchVisible: watchVisible({ state, api }),
+    keydown: keydown({ api, state, props }),
+    addKeydownEvent: addKeydownEvent({ api }),
+    removeKeydownEvent: removeKeydownEvent({ api }),
+    addDragEvent: addDragEvent({ api, vm }),
+    removeDragEvent: removeDragEvent({ api, vm }),
+    watchVisible: watchVisible({ props, parent, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
     computedWidth: computedWidth({ state, designConfig, props, constants }),
@@ -60,7 +68,12 @@ export const renderless = (
   })
 
   onMounted(() => {
+    const el = parent.$el
+    if (props.appendToBody && el && el.parentNode !== document.body) {
+      document.body.appendChild(el)
+    }
     props.dragable && api.addDragEvent()
+    api.addKeydownEvent()
     if (props.lockScroll && props.visible) {
       api.showScrollbar()
     }
@@ -68,7 +81,12 @@ export const renderless = (
 
   onBeforeUnmount(() => {
     props.dragable && api.removeDragEvent()
+    api.removeKeydownEvent()
     props.lockScroll && api.hideScrollbar()
+    const el = parent.$el
+    if (props.appendToBody && el && el.parentNode) {
+      el.parentNode.removeChild(el)
+    }
   })
 
   watch(() => props.visible, api.watchVisible, { immediate: true })

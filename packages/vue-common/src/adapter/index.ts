@@ -9,7 +9,8 @@ export type {
   ComponentPublicInstance,
   SetupContext,
   ComputedRef,
-  App
+  App,
+  VNode
 } from 'virtual:common/adapter/vue'
 
 export default vue

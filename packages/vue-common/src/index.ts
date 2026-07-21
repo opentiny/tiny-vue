@@ -469,7 +469,8 @@ export type {
   ComponentPublicInstance,
   SetupContext,
   ComputedRef,
-  App
+  App,
+  VNode
 } from './adapter'
 
 export {

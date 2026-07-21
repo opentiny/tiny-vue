@@ -45,7 +45,7 @@ export const classes = {
 
   'fill-light-success': 'fill-color-success-subtle hover:fill-color-success',
   'fill-light-alerting': 'fill-color-alert-subtle hover:fill-color-alert',
-  'fill-light-warning': 'fill-color-warning-subtle hover:fill-color-warning',
+  'fill-light-warning': 'fill-color-warning hover:fill-color-warning',
   'fill-light-error': 'fill-color-error-subtle hover:fill-color-error',
   'fill-light-default': 'fill-color-info-primary-subtle hover:fill-color-info-primary',
   'fill-light-info': 'fill-color-icon-secondary hover:fill-color-icon-secondary',
@@ -59,6 +59,8 @@ export const classes = {
   'tag-disabled':
     'h-9 sm:h-7 text-color-text-disabled bg-color-bg-4 border-transparent cursor-not-allowed hover:text-color-text-disabled hover:bg-color-bg-4',
   'tag-operable': 'h-7 sm:h-6 cursor-pointer',
+
+  'is-round': 'rounded-full',
 
   'medium': 'h-7 px-3',
   'small': 'h-6 px-2',

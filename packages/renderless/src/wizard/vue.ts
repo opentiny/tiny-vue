@@ -40,7 +40,7 @@ export const api = [
 
 export const renderless = (
   props: IWizardProps,
-  { onMounted, reactive }: ISharedRenderlessParamHooks,
+  { onMounted, reactive, watch }: ISharedRenderlessParamHooks,
   { emit, constants, designConfig }: IWizardRenderlessParamUtils
 ): IWizardApi => {
   const state: IWizardState = reactive({
@@ -64,6 +64,12 @@ export const renderless = (
   } as IWizardApi
 
   api.timelineflowData = timelineflowData({ state, props, api })
+
+  // 同步 data 变化到 state
+  watch(
+    () => props.data,
+    () => api.timelineflowData()
+  )
 
   onMounted(api.timelineflowData)
 

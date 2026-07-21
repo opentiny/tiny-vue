@@ -27,6 +27,7 @@
             :value="value"
             :drop-down-visible="state.visible"
             :blank="blank"
+            :size="size"
           ></tiny-filter-box>
         </div>
       </template>
@@ -75,6 +76,10 @@ export default defineComponent({
     blank: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

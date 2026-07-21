@@ -14,7 +14,7 @@
         <div
           data-tag="tiny-upload-list-item"
           ref="uploadListLi"
-          class="group relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
+          class="group/upload-list relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{
             'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid),
             'mb-2': index !== state.files.length - 1,
@@ -74,7 +74,7 @@
                 </div>
                 <div
                   data-tag="tiny-upload-list-operate"
-                  class="hidden sm:block sm:invisible sm:group-hover:visible min-w-fit text-color-brand-hover text-xs"
+                  class="hidden sm:block sm:invisible sm:group-hover/upload-list:visible min-w-fit text-color-brand-hover text-xs"
                 >
                   <slot name="operate" :file="file">
                     <span
@@ -95,9 +95,15 @@
                       @click="reUpload(file)"
                       >{{ t('ui.uploadList.reUpload') }}</span
                     >
-                    <span v-if="!displayOnly" class="cursor-pointer" @click.stop="remove({ file })">{{
-                      t('ui.uploadList.delete')
-                    }}</span>
+                    <span
+                      v-if="!displayOnly"
+                      class="cursor-pointer"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
+                      @click.stop="remove({ file })"
+                      >{{ t('ui.uploadList.delete') }}</span
+                    >
                   </slot>
                 </div>
               </div>
@@ -130,6 +136,9 @@
                 <icon-error
                   v-if="!displayOnly && ~['uploading', 'fail'].indexOf(file.status)"
                   class="fill-color-none-hover"
+                  role="button"
+                  tabindex="0"
+                  :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                   @click.stop="remove({ file })"
                 ></icon-error>
               </div>
@@ -227,9 +236,14 @@
                 </div>
                 <div class="mt-3 mb-2">{{ file.name }}</div>
                 <div>
-                  <span class="text-color-brand cursor-pointer" @click.stop="remove({ file })">{{
-                    t('ui.uploadList.delete')
-                  }}</span>
+                  <span
+                    class="text-color-brand cursor-pointer"
+                    role="button"
+                    tabindex="0"
+                    :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
+                    @click.stop="remove({ file })"
+                    >{{ t('ui.uploadList.delete') }}</span
+                  >
                 </div>
               </div>
             </slot>
@@ -247,7 +261,7 @@
     >
       <div
         :class="[
-          'group relative',
+          'group/upload-list relative',
           { 'hidden': listType === 'picture-single' && index },
           listType === 'picture-single'
             ? `w-24 h-24 sm:w-[calc(${scale}*theme(spacing.20))] sm:h-20`
@@ -267,13 +281,18 @@
                 { 'sm:hidden -top-1.5': !~['video', 'audio'].indexOf(file.type) },
                 listType === 'picture-single' ? '-right-1.5' : '-right-1.5'
               ]"
+              role="button"
+              tabindex="0"
+              :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
               @click.stop="remove({ file })"
             ></icon-error>
             <div
               :style="{ background: imageBgColor }"
               class="relative w-full h-full after:absolute after:w-full after:h-full after:left-0 after:top-0 after:rounded after:bg-color-bg-7"
               :class="[
-                !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover:block' : '',
+                !~['uploading', 'fail'].indexOf(file.status)
+                  ? 'after:hidden sm:after:group-hover/upload-list:block'
+                  : '',
                 { 'mb-7': listType === 'picture-card' && showName },
                 ~['video', 'audio'].indexOf(file.type) ? 'after:opacity-0' : 'after:opacity-50'
               ]"
@@ -335,11 +354,11 @@
                   </div>
                 </div>
                 <div v-else-if="~['fail'].indexOf(file.status)">
-                  <span class="block sm:group-hover:hidden">
+                  <span class="block sm:group-hover/upload-list:hidden">
                     <icon-cue-l class="w-6 h-6 fill-color-icon-inverse" />
                     <div class="mt-1 text-color-text-inverse text-xs">{{ t('ui.uploadList.uploadFailed') }}</div>
                   </span>
-                  <span class="hidden sm:group-hover:block">
+                  <span class="hidden sm:group-hover/upload-list:block">
                     <icon-refres
                       v-if="isEdm ? true : handleReUpload"
                       class="w-6 h-6 mr-2 fill-color-icon-inverse"
@@ -348,12 +367,17 @@
                     <icon-del
                       v-if="!displayOnly && listType !== 'picture-single'"
                       class="w-6 h-6 fill-color-icon-inverse"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                       @click.stop="remove({ file })"
                     />
                   </span>
                 </div>
                 <div v-else>
-                  <div :class="['hidden', { 'sm:group-hover:block': !~['video', 'audio'].indexOf(file.type) }]">
+                  <div
+                    :class="['hidden', { 'sm:group-hover/upload-list:block': !~['video', 'audio'].indexOf(file.type) }]"
+                  >
                     <slot name="operate" :file="file">
                       <icon-eyeopen
                         v-if="handlePreview"
@@ -368,13 +392,16 @@
                       <icon-del
                         v-if="!displayOnly"
                         class="w-6 h-6 fill-color-icon-inverse"
+                        role="button"
+                        tabindex="0"
+                        :aria-label="t('ui.uploadList.delete') + ' ' + file.name"
                         @click.stop="remove({ file })"
                       />
                     </slot>
                   </div>
                   <div
                     v-if="file.type === 'video'"
-                    class="inline-block w-8 h-8 text-center rounded-full group-hover:bg-color-bg-7"
+                    class="inline-block w-8 h-8 text-center rounded-full group-hover/upload-list:bg-color-bg-7"
                     :class="!file.isPlay ? 'bg-color-bg-7' : 'bg-opacity-0'"
                   >
                     <icon-right
@@ -384,7 +411,7 @@
                     />
                     <icon-pause
                       v-show="file.isPlay"
-                      class="w-6 h-6 hidden group-hover:inline-block mt-1 fill-color-icon-inverse"
+                      class="w-6 h-6 hidden group-hover/upload-list:inline-block mt-1 fill-color-icon-inverse"
                       @click="pause({ file, index, type: 'video' })"
                     />
                   </div>
@@ -456,6 +483,11 @@
             data-tag="tiny-upload-list-panel"
             v-if="!displayOnly"
             class="h-12 flex items-center justify-center cursor-pointer"
+            role="button"
+            tabindex="0"
+            :aria-label="
+              state.currentFile ? t('ui.uploadList.delete') + ' ' + state.currentFile.name : t('ui.uploadList.delete')
+            "
             @click.stop="
               () => {
                 state.showPanel = false

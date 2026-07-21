@@ -110,6 +110,21 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'text-value-field',
           mfDemo: ''
+        },
+        // displayMode
+        {
+          name: 'display-mode',
+          type: "'default' | 'merged'",
+          defaultValue: "'default'",
+          desc: {
+            'zh-CN': '按钮组显示模式，可选值为"default"和"merged"，默认为"default"。当设置为"merged"时，按钮组内的按钮将合并显示，形成一个整体的外观。',
+            'en-US': 'Button group display mode, optional values are "default" and "merged", the default is "default". When set to "merged", the buttons in the button group will be merged to form an overall appearance.'
+          },
+          mode: ['pc','mobile-first'],
+          pcDemo: 'display-mode',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [

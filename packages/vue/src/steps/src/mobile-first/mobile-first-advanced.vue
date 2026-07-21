@@ -56,7 +56,7 @@
                     size === 'large' ? 'w-6 h-6 mr-3' : 'w-4 h-4 mr-2',
                     node[statusField] === 'done' ? 'bg-color-brand' : 'bg-color-border',
                     {
-                      ' bg-color-brand group-hover:text-color-brand group-hover:bg-color-bg-1 ':
+                      ' bg-color-brand group-hover/steps:text-color-brand group-hover/steps:bg-color-bg-1 ':
                         node[statusField] === 'doing'
                     },
                     {
@@ -112,7 +112,7 @@
                       {
                         'text-color-text-secondary': index !== active && ['done', 'doing'].includes(node[statusField])
                       },
-                      { 'group-hover:text-white': index !== active && ['doing'].includes(node[statusField]) }
+                      { 'group-hover/steps:text-white': index !== active && ['doing'].includes(node[statusField]) }
                     )
                   "
                   @mouseenter="handleMouseenter($event, 'bottom')"

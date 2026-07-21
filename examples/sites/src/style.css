@@ -114,3 +114,8 @@ html.dark {
     padding: 0 11px;
   }
 }
+
+/* TinyVue暂时隐藏opentiny.design的公共头部 */
+#header > .opentiny-design-header .nav-center {
+  display: none !important;
+}

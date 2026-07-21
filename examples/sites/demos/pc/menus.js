@@ -54,9 +54,17 @@ const docMenusChildren = [
     }
   },
   {
-    'title': '智能化',
-    'titleEn': 'mcp',
-    'key': 'mcp'
+    'title': '全局动效配置',
+    'titleEn': 'motion-configuration',
+    'key': 'motion-configuration',
+    showScene: {
+      theme: ['default']
+    }
+  },
+  {
+    'title': 'Skills 使用指南',
+    'titleEn': 'Skills Guide',
+    'key': 'skills'
   },
   { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
   { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
@@ -163,24 +171,26 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '富文本', 'name': 'FluentEditor', 'key': 'fluent-editor' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
-      // {
-      //   'nameCn': '下拉表格选择器',
-      //   'name': 'GridSelect',
-      //   'key': 'grid-select',
-      //   'meta': {
-      //     'experimental': '3.20.0'
-      //   }
-      // },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
+      { 'nameCn': '标签输入框', 'name': 'TagInput', 'key': 'tag-input', 'meta': { 'experimental': '3.29.0' } },
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
       { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
+      { 'nameCn': '综合搜索', 'name': 'SearchBox', 'key': 'search-box' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
+      {
+        'nameCn': '滑动按钮组',
+        'name': 'SliderButton',
+        'key': 'slider-button',
+        'meta': {
+          'stable': '3.31.0'
+        }
+      },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
@@ -189,6 +199,14 @@ export const cmpMenus = [
         'nameCn': '树形选择器',
         'name': 'TreeSelect',
         'key': 'tree-select'
+      },
+      {
+        'nameCn': '下拉表格选择器',
+        'name': 'GridSelect',
+        'key': 'grid-select',
+        'meta': {
+          'experimental': '3.27.0'
+        }
       }
     ]
   },
@@ -301,6 +319,7 @@ export const cmpMenus = [
       },
       { 'nameCn': '加载', 'name': 'Loading', 'key': 'loading' },
       { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
+      { 'nameCn': '消息提示', 'name': 'Message', 'key': 'message' },
       { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },
       { 'nameCn': '气泡确认框', 'name': 'PopConfirm', 'key': 'popconfirm' },
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
@@ -338,8 +357,8 @@ export const cmpMenus = [
       { 'nameCn': '词云图', 'name': 'Wordcloud Chart', 'key': 'chart-wordcloud' },
       { 'nameCn': '旭日图', 'name': 'Sunburst Chart', 'key': 'chart-sunburst' },
       { 'nameCn': '拓扑图', 'name': 'Graph Chart', 'key': 'chart-graph' },
-      { 'nameCn': '百度地图', 'name': 'BaiduMap Chart', 'key': 'chart-baidu-map' },
-      { 'nameCn': '高德地图', 'name': 'Autonavi Chart', 'key': 'chart-autonavi-map' },
+      // { 'nameCn': '百度地图', 'name': 'BaiduMap Chart', 'key': 'chart-baidu-map' },
+      // { 'nameCn': '高德地图', 'name': 'Autonavi Chart', 'key': 'chart-autonavi-map' },
       { 'nameCn': '箱形图', 'name': 'Boxplot Chart', 'key': 'chart-boxplot' },
       { 'nameCn': '进度图', 'name': 'Process Chart', 'key': 'chart-process' }
     ]

@@ -19,6 +19,10 @@ export default defineComponent({
     },
     filename: {
       type: String
+    },
+    type: {
+      type: String,
+      default: ''
     }
   },
   setup(props) {
@@ -32,6 +36,8 @@ export default defineComponent({
           // highlight和其他同步任务叠加容易形成长任务，改成异步消除长任务。
           if (props.filename && props.filename.endsWith('.vue')) {
             highlightCode.value = hljs.highlight(props.code, { language: 'html' }).value
+          } else if (props.type === 'chart') {
+            highlightCode.value = props.code
           } else {
             highlightCode.value = hljs.highlightAuto(props.code).value
           }

@@ -75,10 +75,11 @@ export const computedBoxStyle =
     return { width, height }
   }
 
+// ========== watchValue 直接调用 doClose，不再触发 beforeClose ==========
 export const watchValue =
   (api: IModalApi) =>
   (visible: boolean): void =>
-    visible ? api.open() : api.close('hide')
+    visible ? api.open() : api.doClose('hide')
 
 export const watchVisible =
   ({ api, props }) =>
@@ -164,12 +165,12 @@ export const mouseLeaveEvent =
   (): void => {
     api.addMsgQueue()
 
-    state.timer = window.setTimeout(
-      () => {
+    const duration = parseFloat(props.duration as string)
+    if (duration > 0) {
+      state.timer = window.setTimeout(() => {
         api.close('close')
-      },
-      parseFloat(props.duration as string)
-    )
+      }, duration)
+    }
   }
 
 export const updateZindex =
@@ -178,24 +179,52 @@ export const updateZindex =
     state.modalZindex = props.zIndex || PopupManager.nextZIndex()
   }
 
-export const handleEvent =
+// 新增：执行实际关闭逻辑（动画 + emit hide）此方法不触发 beforeClose，用于程序内部直接关闭
+export const doClose =
+  ({ emit, parent, props, state }: Pick<IModalRenderlessParams, 'emit' | 'parent' | 'props' | 'state'>) =>
+  (type: string): void => {
+    // 如果已经在关闭动画中，直接返回，防止重复触发
+    if (state.isClosingAnimation) {
+      return
+    }
+    state.isClosingAnimation = true
+
+    let { events = {} } = parent
+    state.emitter.emit('boxclose', props.isFormReset)
+
+    if (state.visible) {
+      state.contentVisible = false
+      setTimeout(() => {
+        state.visible = false
+        let params = { type, $modal: parent }
+        if (events.hide) {
+          events.hide.call(parent, params)
+        } else {
+          emit('update:modelValue', false)
+          emit('hide', params)
+        }
+        // 关闭动画完成后清理所有标记
+        state.isClosingAnimation = false
+        state.isClosing = false
+        state.beforeCloseDoneCalled = false
+      }, 150)
+    } else {
+      // 如果已经不可见，直接清理标记
+      state.isClosingAnimation = false
+      state.isClosing = false
+      state.beforeCloseDoneCalled = false
+    }
+  }
+
+// 先执行 doClose 开始关闭动画，然后异步执行 events 回调
+export const doEmitAndClose =
   ({
     api,
     emit,
     parent,
-    props,
     isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'props' | 'isMobileFirstMode'>) =>
-  (type: string, event: Event, options?: any[]) => {
-    // close,confirm,cancel
-    if (
-      ~['close', 'confirm', 'cancel'].indexOf(type) &&
-      typeof props.beforeClose === 'function' &&
-      props.beforeClose(type) === false
-    ) {
-      return
-    }
-
+  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'isMobileFirstMode'>) =>
+  (type: string, event?: Event, options?: any[]): void => {
     const { events = {} } = parent
 
     const params: IModalEmitParam = {
@@ -207,9 +236,87 @@ export const handleEvent =
       params.options = options
     }
 
+    // 先 emit Vue 事件
     emit(type, params, event)
-    events[type] && events[type].call(parent, params)
-    api.close(type)
+
+    // 立即开始关闭动画
+    api.doClose(type)
+
+    setTimeout(() => {
+      events[type] && events[type].call(parent, params)
+    }, 0)
+  }
+
+// 新增：统一的 beforeClose 处理逻辑
+export const runBeforeClose =
+  ({ api, props, state }: Pick<IModalRenderlessParams, 'api' | 'props' | 'state'>) =>
+  async (type: string, onConfirm: () => void): Promise<boolean> => {
+    // confirm 和 cancel 不触发 beforeClose，直接允许关闭
+    if (type === 'confirm' || type === 'cancel') {
+      return true
+    }
+
+    if (typeof props.beforeClose !== 'function') {
+      return true
+    }
+
+    // 如果 done() 已经被调用过，说明关闭流程已确认，直接执行
+    if (state.beforeCloseDoneCalled) {
+      return true
+    }
+
+    const done = () => {
+      state.beforeCloseDoneCalled = true
+      onConfirm()
+    }
+
+    const result = props.beforeClose(type, api.getBox ? api.getBox() : null, done)
+
+    // 处理 Promise 返回值
+    if (result && typeof result.then === 'function') {
+      try {
+        const shouldClose = await result
+        return shouldClose !== false
+      } catch (e) {
+        return false
+      }
+    }
+
+    // 处理同步返回值
+    if (result === false) {
+      return false
+    }
+
+    return true
+  }
+
+// 修改后的 handleEvent —— 按钮触发（close/confirm/cancel）
+export const handleEvent =
+  ({ api, state }: Pick<IModalRenderlessParams, 'api' | 'state'>) =>
+  async (type: string, event: Event, options?: any[]) => {
+    // confirm 和 cancel 直接关闭，不触发 beforeClose
+    if (type === 'confirm' || type === 'cancel') {
+      api.doEmitAndClose(type, event, options)
+      return
+    }
+
+    // close 触发 beforeClose
+    if (state.isClosing) {
+      return
+    }
+
+    state.isClosing = true
+
+    const shouldClose = await api.runBeforeClose(type, () => {
+      api.doEmitAndClose(type, event, options)
+    })
+
+    if (shouldClose && !state.beforeCloseDoneCalled) {
+      api.doEmitAndClose(type, event, options)
+    } else {
+      // beforeClose 返回 false，清理标记
+      state.isClosing = false
+    }
   }
 
 export const closeEvent =
@@ -268,12 +375,12 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        state.timer = window.setTimeout(
-          () => {
+        const duration = parseFloat(props.duration as string)
+        if (duration > 0) {
+          state.timer = window.setTimeout(() => {
             api.close(params.type)
-          },
-          parseFloat(props.duration as string)
-        )
+          }, duration)
+        }
       } else {
         nextTick(() => {
           if (!isMobileFirstMode) {
@@ -353,34 +460,36 @@ export const updateStyle =
     })
   }
 
+// 修改后的 close —— 非按钮触发（esc/mask/hide/timer）
 export const close =
-  ({ emit, parent, props, state }: Pick<IModalRenderlessParams, 'emit' | 'parent' | 'props' | 'state'>) =>
-  (type: string): void => {
-    // esc,hide,mask,show,...
-    if (
-      !~['close', 'confirm', 'cancel'].indexOf(type) &&
-      typeof props.beforeClose === 'function' &&
-      props.beforeClose(type) === false
-    ) {
+  ({ api, state }: Pick<IModalRenderlessParams, 'api' | 'state'>) =>
+  async (type: string): Promise<void> => {
+    // 如果 done() 已经被调用过，直接执行关闭，不再触发 beforeClose
+    if (state.beforeCloseDoneCalled) {
+      api.doClose(type)
       return
     }
 
-    let { events = {} } = parent
+    // 如果正在关闭动画中，直接返回
+    if (state.isClosingAnimation) {
+      return
+    }
 
-    state.emitter.emit('boxclose', props.isFormReset)
+    // 如果正在关闭流程中，阻止重复触发
+    if (state.isClosing) {
+      return
+    }
 
-    if (state.visible) {
-      state.contentVisible = false
-      setTimeout(() => {
-        state.visible = false
-        let params = { type, $modal: parent }
-        if (events.hide) {
-          events.hide.call(parent, params)
-        } else {
-          emit('update:modelValue', false)
-          emit('hide', params)
-        }
-      }, 200)
+    state.isClosing = true
+
+    const shouldClose = await api.runBeforeClose(type, () => {
+      api.doClose(type)
+    })
+
+    if (shouldClose && !state.beforeCloseDoneCalled) {
+      api.doClose(type)
+    } else {
+      state.isClosing = false
     }
   }
 
@@ -388,7 +497,7 @@ export const handleGlobalKeydownEvent =
   (api: IModalApi) =>
   (event: KeyboardEvent): void => {
     if (event.keyCode === KEY_CODE.Escape) {
-      api.close('esc')
+      api.doClose('esc')
     }
   }
 
@@ -914,11 +1023,11 @@ export const showScrollbar = (lockScrollClass) => () => {
   addClass(document.body, lockScrollClass)
 }
 
-export const hideScrollbar = (lockScrollClass) => () => {
+export const hideScrollbar = (lockScrollClass) => (): void => {
   removeClass(document.body, lockScrollClass)
 }
 
-export const resetModalViewPosition = (api: IModalApi) => () => {
+export const resetModalViewPosition = (api: IModalApi) => (): void => {
   const modalBoxElement = api.getBox()
   const viewportWindow = getViewportWindow()
   const clientVisibleWidth =

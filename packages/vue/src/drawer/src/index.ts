@@ -19,11 +19,19 @@ export const drawerProps = {
     type: Object,
     default: () => $constants
   },
+  appendToBody: {
+    type: Boolean,
+    default: () => false
+  },
   visible: {
     type: Boolean,
     default: false
   },
   customClass: [String, Object, Array],
+  destroyOnClose: {
+    type: Boolean,
+    default: () => false
+  },
   placement: {
     type: String,
     default: 'right'

@@ -12,6 +12,7 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @tree-prefix-cls: ~'@{css-prefix}tree';
 @tree-node-prefix-cls: ~'@{css-prefix}tree-node';
@@ -474,28 +475,5 @@
       0.3s height ease-in-out,
       0.3s padding-top ease-in-out,
       0.3s padding-bottom ease-in-out;
-  }
-}
-
-@keyframes loading-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loading-dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -40px;
-  }
-
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -120px;
   }
 }

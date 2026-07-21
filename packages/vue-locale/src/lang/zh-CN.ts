@@ -368,7 +368,8 @@ export default {
         classComponentError: '类组件渲染出错。',
         groupColumnFixedError: '同一个分组内不能设置不同的固定类型。',
         missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。',
-        clipboardWriteError: '剪切板写入错误'
+        clipboardWriteError: '剪切板写入错误',
+        fieldNotExist: '列不存在'
       },
       filter: {
         allSelect: '(全选)',
@@ -474,7 +475,12 @@ export default {
       show: '显示侧边栏'
     },
     navMenu: {
-      moreText: '更多'
+      moreText: '更多',
+      navigation: '导航',
+      mainMenu: '主菜单',
+      subMenu: '子菜单',
+      expand: '展开菜单',
+      collapse: '收起菜单'
     },
     logout: {
       in: '登录',
@@ -670,7 +676,14 @@ export default {
       deleteTable: '删除表格',
       colorPicker: '背景颜色',
       placeholder: '在此处插入文本...',
-      maxLength: '文本长度超过限制，支持的最大长度是 '
+      maxLength: '文本长度超过限制，支持的最大长度是 ',
+      visitUrl: '访问链接',
+      edit: '编辑',
+      remove: '移除',
+      save: '保存',
+      enterLink: '输入链接地址',
+      enterFormula: '输入公式',
+      enterVideo: '输入视频地址'
     },
     fluentEditor: {
       undo: '撤销',

@@ -1,4 +1,4 @@
-import { iconArrowBottom } from '@opentiny/vue-icon'
+import { iconArrowBottom } from '@opentiny/vue-icon-saas'
 
 export default {
   icons: {

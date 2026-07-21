@@ -1,0 +1,16 @@
+@import '../custom.less';
+@import './vars.less';
+
+@base-select-prefix-cls: ~'@{css-prefix}base-select';
+
+@media (max-width: 1280px) {
+  .@{base-select-prefix-cls} {
+    .inject-BaseSelect-responsive-vars();
+
+    &__tags {
+      &.is-showicon {
+        padding-left: var(--tv-BaseSelect-responsive-icon-left-space);
+      }
+    }
+  }
+}

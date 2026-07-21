@@ -44,6 +44,11 @@ export const buttonGroupProps = {
   border: {
     type: Boolean,
     default: true
+  },
+  displayMode: {
+    type: String as PropType<'default' | 'merged'>,
+    default: 'default',
+    validator: (val: string) => ['default', 'merged'].includes(val)
   }
 }
 

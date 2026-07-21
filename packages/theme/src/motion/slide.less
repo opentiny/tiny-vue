@@ -1,0 +1,133 @@
+/* ===========================
+   抽屉/对话框滑动方向动画 (slide.less)
+   来源: dialog-box, drawer
+   可配置变量:
+     --tv-motion-slide-speed       动画时长
+     --tv-motion-slide-opacity-mid 中间透明度
+     --tv-motion-slide-offset-x    X轴位移 (%)
+     --tv-motion-slide-offset-y    Y轴位移 (%)
+=========================== */
+
+/* ============ 左滑 ============ */
+@keyframes slide-left-in {
+  0% {
+    opacity: 0;
+    transform: translateX(var(--tv-motion-slide-offset-left));
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-left-mid));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-left-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-left-mid));
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(var(--tv-motion-slide-offset-left));
+  }
+}
+
+/* ============ 右滑 ============ */
+@keyframes slide-right-in {
+  0% {
+    opacity: 0;
+    transform: translateX(var(--tv-motion-slide-offset-right));
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-right-mid));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-right-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateX(var(--tv-motion-slide-offset-right-mid));
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(var(--tv-motion-slide-offset-right));
+  }
+}
+
+/* ============ 上滑 ============ */
+@keyframes slide-top-in {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--tv-motion-slide-offset-top));
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateY(var(--tv-motion-slide-offset-top-mid));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-top-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateY(var(--tv-motion-slide-offset-top-mid));
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(var(--tv-motion-slide-offset-top));
+  }
+}
+
+/* ============ 下滑 ============ */
+@keyframes slide-bottom-in {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--tv-motion-slide-offset-bottom));
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateY(var(--tv-motion-slide-offset-bottom-mid));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-bottom-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: var(--tv-motion-slide-opacity-mid);
+    transform: translateY(var(--tv-motion-slide-offset-bottom-mid));
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(var(--tv-motion-slide-offset-bottom));
+  }
+}

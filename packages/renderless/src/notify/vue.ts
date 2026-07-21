@@ -23,6 +23,8 @@ import {
   getZindex
 } from './index'
 
+import { nanoid } from '@opentiny/utils'
+
 export const api = [
   'state',
   'clearTimer',
@@ -50,7 +52,9 @@ export const renderless = (props, { computed, onBeforeUnmount, onMounted, reacti
     dangerouslyUseHTMLString: false,
     positionStyle: computed(() => api.getOffsetStyle(state)),
     verticalProperty: computed(() => api.getPositionSide(state)),
-    customClass: computed(() => props.customClass)
+    customClass: computed(() => props.customClass),
+    titleId: `tiny-notify-title-${nanoid.api.nanoid(8)}`,
+    contentId: `tiny-notify-content-${nanoid.api.nanoid(8)}`
   })
 
   Object.assign(api, {

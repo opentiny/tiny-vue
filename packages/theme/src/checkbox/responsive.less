@@ -1,0 +1,16 @@
+@import '../mixins/common.less';
+@import '../mixins/checkbox.less';
+@import '../custom.less';
+@import './vars.less';
+
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+@media screen and (max-width: 1280px) {
+  .@{checkbox-prefix-cls} {
+    .inject-Checkbox-vars();
+
+    &__label {
+      white-space: pre-wrap;
+    }
+  }
+}

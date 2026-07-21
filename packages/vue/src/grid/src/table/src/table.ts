@@ -37,7 +37,7 @@ import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
 import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
+import { getRowkey, GlobalEvent, hasChildrenList, getListeners, resolveTableListeners } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
@@ -47,7 +47,7 @@ import methods from './methods'
 import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import MfTable from '../../mobile-first/index.vue'
-import { useData, useDrag, useRowGroup } from '../../composable'
+import { useData, useDrag, useRowGroup, useNormalData } from '../../composable'
 import { isServer } from '@opentiny/utils'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
@@ -95,7 +95,7 @@ function mergeScrollDirStore(scrollDir, scrollDirStore) {
 function loadStatic(data, _vm) {
   // 此段代码与 watch(data) 功能重复，只在配置了 data 属性后生效
   if (data && data.length > 0) {
-    _vm.loadTableData(data, true)
+    _vm.updateRawData(data)
     _vm.updateStyle()
   }
 }
@@ -346,6 +346,7 @@ export default defineComponent({
         copyed: { columns: [], cut: false, rows: [] },
         indexs: { columns: [] },
         insertList: [],
+        insertMap: new Map(),
         removeList: [],
         // 选中源
         selected: { column: null, row: null },
@@ -410,9 +411,7 @@ export default defineComponent({
       // 在编辑模式下 单元格在失去焦点验证的状态
       validatedMap: {},
       // 表格父容器的高度
-      parentHeight: 0,
-      // 水平滚动条的状态
-      horizonScroll: { fixed: false, threshold: 2, max: 0, isLeft: true, isRight: false }
+      parentHeight: 0
     }
   },
   computed: {
@@ -532,6 +531,12 @@ export default defineComponent({
     height() {
       this.$nextTick(this.recalculate)
     },
+    maxHeight() {
+      this.$nextTick(this.recalculate)
+    },
+    minHeight() {
+      this.$nextTick(this.recalculate)
+    },
     syncResize(value) {
       // 是否自动根据状态属性去更新响应式表格宽高
       value && this.$nextTick(this.recalculate)
@@ -546,9 +551,10 @@ export default defineComponent({
     // 选项式监控在vue2可以检测到顶层数组splice项替换/$set项替换
     // array.splice(index, 1, newItem)
     // this.$set(array, index, newItem)
+    // 在数组中的行对象上动态添加字段也会触发此选项式监听
     data(array1, array2) {
       if (isVue2 && array1 === array2 && array1.length === array2.length) {
-        this.handleDataChange()
+        this.updateRawData(this.data)
       }
     }
   },
@@ -565,8 +571,6 @@ export default defineComponent({
       fullColumnMap: new Map(),
       fullDataRowIdData: {},
       fullDataRowMap: new Map(),
-      // 临时插入数据集
-      temporaryRows: [],
       // 最后滚动位置
       lastScrollLeft: 0,
       lastScrollTop: 0,
@@ -688,6 +692,8 @@ export default defineComponent({
       scaleMinList: []
     })
 
+    const horizonScroll = hooks.ref({ fixed: false, threshold: 2, max: 0, isLeft: true, isRight: false })
+
     // body组件参数
     const bodyProps = hooks.computed(() => ({
       collectColumn: collectColumn.value,
@@ -706,6 +712,8 @@ export default defineComponent({
     }))
     // 模板引用
     const tableWrapper = hooks.ref()
+
+    const { rawData, rawDataVersion } = useNormalData({ props, tableFullColumn })
 
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))
@@ -744,6 +752,44 @@ export default defineComponent({
 
     const { tiledLength } = useData(props)
 
+    // 监听 horizonScroll.isLeft 和 isRight 的变化，直接操作 DOM 更新 class，避免触发重渲染
+    // 注意：tiny-grid-fixed__left 和 tiny-grid-fixed__right 通过 watch 直接操作 DOM 更新，避免触发重渲染
+    const updateFixedClasses = (isLeft, isRight) => {
+      if (!$table.$el) return
+
+      const el = $table.$el as HTMLElement
+      const hasLeftClass = el.classList.contains('tiny-grid-fixed__left')
+      const hasRightClass = el.classList.contains('tiny-grid-fixed__right')
+      const shouldHaveLeft = !isLeft
+      const shouldHaveRight = !isRight
+
+      // 只在状态真正变化时更新 DOM
+      if (hasLeftClass !== shouldHaveLeft) {
+        if (shouldHaveLeft) {
+          el.classList.add('tiny-grid-fixed__left')
+        } else {
+          el.classList.remove('tiny-grid-fixed__left')
+        }
+      }
+
+      if (hasRightClass !== shouldHaveRight) {
+        if (shouldHaveRight) {
+          el.classList.add('tiny-grid-fixed__right')
+        } else {
+          el.classList.remove('tiny-grid-fixed__right')
+        }
+      }
+    }
+
+    const resolveMap = {}
+
+    hooks.watch(
+      () => [horizonScroll.value?.isLeft, horizonScroll.value?.isRight],
+      ([newIsLeft, newIsRight]) => {
+        hooks.nextTick(() => updateFixedClasses(newIsLeft, newIsRight))
+      }
+    )
+
     hooks.onMounted(() => {
       $table.addIntersectionObserver()
 
@@ -754,7 +800,18 @@ export default defineComponent({
 
       hooks.nextTick(() => {
         $table.afterMounted = true
-
+        // 初始化时设置一次 class
+        setTimeout(() => {
+          if ($table.$el && $table.horizonScroll) {
+            const el = $table.$el as HTMLElement
+            if (!horizonScroll.value?.isLeft) {
+              el.classList.add('tiny-grid-fixed__left')
+            }
+            if (!horizonScroll.value?.isRight) {
+              el.classList.add('tiny-grid-fixed__right')
+            }
+          }
+        })
         if (props.autoResize && TINYGrid._resize) {
           $table.bindResize()
         }
@@ -783,6 +840,7 @@ export default defineComponent({
       unbindEvent($table)
 
       $table._tileInfo = $table._graphInfo = null
+      $table.rowidCacheMap = null
     })
 
     hooks.onActivated(() => {
@@ -803,6 +861,12 @@ export default defineComponent({
 
     const tableListeners = getListeners(attrs, listeners)
 
+    const markColumnIndex = hooks.ref(0)
+
+    const rowidCacheMap = new Map()
+    const columnSlotsWeakMap = new WeakMap()
+    // 操作列缓存
+    const operationMap = new Map()
     return {
       slots,
       tableListeners,
@@ -835,10 +899,21 @@ export default defineComponent({
       bodyTableWidth,
       scrollLoadScrollHeight,
       columnStore,
-      tiledLength
+      tiledLength,
+      rawDataVersion,
+      rawData,
+      markColumnIndex,
+      rowidCacheMap,
+      horizonScroll,
+      resolveMap,
+      columnSlotsWeakMap,
+      operationMap
     }
   },
   render() {
+    // 同步用户挂在 TinyGrid / Table 上的 @xxx，供 emitEvent、useCellEvent 等逻辑使用
+    this.tableListeners = resolveTableListeners(this)
+
     const { $grid, bodyProps, border, borderSaas, borderVertical } = this
     const { ctxMenuStore, dropConfig, editConfig, editRules, filterStore } = this
     const { hasFilter, hasTip, height, highlightCell, highlightHoverColumn, highlightHoverRow } = this
@@ -882,9 +957,7 @@ export default defineComponent({
           'column__highlight': highlightHoverColumn,
           'is__row-span': (rowSpan && rowSpan.length > 0) || typeof spanMethod === 'function',
           'row__drop-handle--index': dropConfig.rowHandle === 'index',
-          'fixed__sticky': horizonScroll.fixed,
-          'tiny-grid-fixed__left': !horizonScroll.isLeft,
-          'tiny-grid-fixed__right': !horizonScroll.isRight
+          'fixed__sticky': horizonScroll.fixed
         }
       },
       [

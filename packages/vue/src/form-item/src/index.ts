@@ -27,6 +27,10 @@ export const formItemProps = {
   },
   messageType: String,
   label: String,
+  labelLine: {
+    type: Number,
+    default: 2
+  },
   labelWidth: String,
   manual: Boolean,
   popperOptions: {

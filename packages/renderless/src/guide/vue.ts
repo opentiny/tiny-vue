@@ -20,7 +20,8 @@ export const renderless = (
     modalOverlayOpeningPadding: props.modalOverlayOpeningPadding,
     modalOverlayOpeningRadius: props.modalOverlayOpeningRadius,
     arrow: props.arrow,
-    lightClass: props.lightClass
+    lightClass: props.lightClass,
+    showClose: props.showClose
   })
 
   let baseApi = {
@@ -34,7 +35,16 @@ export const renderless = (
     beforeUnmount: beforeUnmount(state)
   }
 
-  watch(() => props.showStep, api.createShepherd)
+  watch(
+    () => props.showStep,
+    (newVal) => {
+      if (newVal) {
+        api.createShepherd()
+      } else {
+        state?.tour?.hide()
+      }
+    }
+  )
 
   onMounted(api.mounted)
   onBeforeUnmount(api.beforeUnmount)

@@ -1,0 +1,40 @@
+@import '../custom.less';
+@import './vars.less';
+
+@cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+@media screen and (max-width: 1280px) {
+  .@{cascader-node-prefix-cls} {
+    .inject-CascaderNode-vars();
+
+    & > .@{radio-prefix-cls} {
+      margin-right: var(--tv-CascaderNode-responsive-radio-margin-right);
+    }
+
+    &.is-active {
+      & > .@{cascader-node-prefix-cls}__label {
+        color: var(--tv-CascaderNode-responsive-selectable-text-color);
+
+        svg {
+          fill: var(--tv-CascaderNode-responsive-selectable-icon-color);
+          stroke: var(--tv-CascaderNode-responsive-selectable-icon-color);
+        }
+      }
+    }
+
+    &.in-active-path {
+      & > .@{cascader-node-prefix-cls}__label {
+        svg {
+          fill: var(--tv-CascaderNode-responsive-selectable-icon-color);
+          stroke: var(--tv-CascaderNode-responsive-selectable-icon-color);
+        }
+      }
+    }
+
+    & > .@{checkbox-prefix-cls} {
+      margin-right: 0;
+    }
+  }
+}

@@ -3,36 +3,22 @@ import { test, expect } from '@playwright/test'
 test('箭头偏移', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popover#offset')
+  const demo = page.locator('#offset')
+  await demo
+    .locator('div')
+    .filter({ hasText: /^箭头偏移：0%箭头偏移示例$/ })
+    .getByRole('textbox')
+    .fill('50')
+  await expect(demo.getByRole('textbox').first()).toHaveValue('50')
+  const slider = await demo.locator('.tiny-slider__range').first()
+  await expect(slider).toHaveCSS('background-color', 'rgb(20, 118, 255)')
 
-  const preview = page.locator('.pc-demo-container')
-  const input1 = preview.locator('.tiny-slider__input input').nth(0)
-  const input2 = preview.locator('.tiny-slider__input input').nth(1)
-  const arrow = page.getByText('箭头偏移的内容').locator('.popper__arrow')
-  const panel = page.getByText('面板偏移的内容')
-
-  // 箭头偏移
-  await expect(arrow).toBeVisible()
-  let middle = await arrow.boundingBox()
-  await input1.fill('8')
-  await page.waitForTimeout(1000)
-  let left = await arrow.boundingBox()
-  await input1.fill('100')
-  await page.waitForTimeout(1000)
-  let right = await arrow.boundingBox()
-
-  expect(left.x < middle.x)
-  expect(middle.x < right.x)
-
-  // 面板偏移
-  await expect(panel).toBeVisible()
-  middle = await panel.boundingBox()
-  await input2.fill('-100')
-  await page.waitForTimeout(1000)
-  left = await panel.boundingBox()
-  await input2.fill('100')
-  await page.waitForTimeout(1000)
-  right = await panel.boundingBox()
-
-  expect(left.x < middle.x)
-  expect(middle.x < right.x)
+  await demo
+    .locator('div')
+    .filter({ hasText: /^面板偏移：0%面板偏移示例$/ })
+    .getByRole('textbox')
+    .fill('40')
+  await expect(demo.getByRole('textbox').nth(1)).toHaveValue('40')
+  const slider2 = page.locator('.popper__arrow').nth(1)
+  await expect(slider2).toHaveCSS('left', '100px')
 })

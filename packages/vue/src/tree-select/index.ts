@@ -9,8 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TreeSelect from './src/pc.vue'
+import TreeSelect from './src/index'
 import { version } from './package.json'
+
+TreeSelect.model = {
+  prop: 'modelValue',
+  event: 'update:modelValue'
+}
 
 /* istanbul ignore next */
 TreeSelect.install = function (Vue) {

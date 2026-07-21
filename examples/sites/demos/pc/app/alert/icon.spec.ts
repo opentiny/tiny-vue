@@ -1,14 +1,25 @@
 import { test, expect } from '@playwright/test'
 
-test('测试 Alert 自定义图标', async ({ page }) => {
+test('测试所有 Alert 自定义图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('alert#icon')
 
-  // 自定义图标和默认图标不同
-  const iconCustomAlert = page.locator('.tiny-alert').nth(0)
+  const expectedPaths = [
+    'M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.14 7-7-3.14-7-7-7Z',
+    'M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.14 7-7-3.14-7-7-7Z',
+    'M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.14 7-7-3.14-7-7-7Z',
+    'M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.14 7-7-3.14-7-7-7Z'
+  ]
 
-  await expect(iconCustomAlert.locator('.tiny-alert__icon:nth-child(1) path')).toHaveAttribute(
-    'd',
-    /M13 3v1h-2V3h2zm-1.+1h2v-2h-2c-1\.4 0-2\.8-\.5-4-1\.3z/
-  )
+  // 获取页面上所有的 Alert 组件
+  const alerts = page.locator('.tiny-alert')
+
+  // 计算 Alert 组件的数量
+  const count = await alerts.count()
+
+  for (let i = 0; i < count; i++) {
+    const alert = alerts.nth(i)
+    const iconPath = alert.locator('.tiny-alert__icon path')
+    await expect(iconPath).toHaveAttribute('d', expectedPaths[i])
+  }
 })

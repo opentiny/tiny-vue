@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-fluent-editor",
-  "version": "3.27.0",
+  "version": "3.30.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -12,7 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/fluent-editor": "^3.24.0",
+    "@opentiny/fluent-editor": "~3.25.8",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-image-viewer": "workspace:~",

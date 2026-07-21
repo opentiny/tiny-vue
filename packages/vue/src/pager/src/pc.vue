@@ -78,6 +78,7 @@
         v-model="state.internalCurrentPage"
         :disabled="disabled"
         :options="state.simplestPagerOption"
+        class="tiny-pager__simplest-pager"
         popper-class="tiny-pager__simplest-pager-popover"
         :optimization="state.simplestPagerOption.length > 30"
         @change="handleCurrentChange"

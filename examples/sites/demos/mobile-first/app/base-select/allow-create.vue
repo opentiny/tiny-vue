@@ -1,0 +1,51 @@
+<template>
+  <div>
+    <div>场景 1：allow-create + filterable，点击创建条目</div>
+    <br />
+    <tiny-base-select v-model="value" allow-create filterable>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-base-select>
+    <br />
+    <br />
+    <div>场景 2：allow-create + filterable + default-first-option，Enter 键创建条目</div>
+    <br />
+    <tiny-base-select v-model="value" allow-create filterable default-first-option>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-base-select>
+  </div>
+</template>
+
+<script>
+import { TinyBaseSelect, TinyOption, TinyInput, TinyButton, TinyDialogBox, TinyModal } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyBaseSelect,
+    TinyOption,
+    TinyInput,
+    TinyButton,
+    TinyDialogBox
+  },
+  data() {
+    return {
+      options: [
+        { value: '选项 1', label: '北京' },
+        { value: '选项 2', label: '上海' },
+        { value: '选项 3', label: '天津' },
+        { value: '选项 4', label: '重庆' },
+        { value: '选项 5', label: '深圳' }
+      ],
+      value: '',
+      boxVisibility: false,
+      optionLabel: '',
+      optionValue: ''
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+[data-tag='tiny-base-select'] {
+  width: 280px;
+}
+</style>

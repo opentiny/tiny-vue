@@ -5,7 +5,7 @@ test('基本用法', async ({ page }) => {
   await page.goto('modal#basic-usage')
 
   const modal = page.locator('.tiny-modal__status-wrapper svg').first()
-  const content = page.locator('.tiny-modal__content')
+  const content = page.locator('.tiny-modal.type__alert.is__visible')
 
   // 基本提示框
   await page.getByRole('button', { name: '基本提示框' }).click()
@@ -24,11 +24,11 @@ test('基本用法', async ({ page }) => {
 
   // 打开弹窗 1
   await page.getByRole('button', { name: '打开弹窗 1' }).click()
-  await expect(content.nth(1)).toHaveText(/窗口内容1/)
+  await expect(content).toHaveText(/窗口内容1/)
   await page.getByRole('button', { name: '确定' }).click()
 
   // 打开弹窗 2
   await page.getByRole('button', { name: '打开弹窗 2' }).click()
-  await expect(content.nth(2)).toHaveText(/窗口内容2/)
+  await expect(content).toHaveText(/窗口内容2/)
   await page.getByRole('button', { name: '确定' }).click()
 })

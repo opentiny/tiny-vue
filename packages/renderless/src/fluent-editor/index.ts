@@ -5,6 +5,18 @@ import { set } from '../chart-core/deps/utils'
 import { on, off } from '@opentiny/utils'
 import { PopupManager } from '@opentiny/utils'
 
+const isSafeLinkUrl = (url) => /^(https?:|mailto:|tel:|\/|#)/i.test((url || '').trim())
+
+const openLink = (url, target = '_blank') => {
+  if (target === '_blank') {
+    const popup = window.open(url, '_blank', 'noopener,noreferrer')
+    popup && (popup.opener = null)
+    return
+  }
+
+  window.location.assign(url)
+}
+
 export const init =
   ({
     api,
@@ -23,8 +35,28 @@ export const init =
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
     UploaderDfls.imagePasteFailCallback = props.imagePasteFailCallback
+    // 先给默认 toolbar 注入 handlers；但用户可能会在 props.options.modules.toolbar 里传数组覆盖默认对象
     defaultOptions.modules.toolbar.handlers = api.handlers()
     state.innerOptions = extend(true, {}, defaultOptions, props.globalOptions, props.options)
+
+    // 兼容：当用户传入 toolbar 数组时，Quill 仍需要 { container, handlers } 才能触发自定义 handler（如 alignHandler）
+    const toolbarOpt = state.innerOptions?.modules?.toolbar
+    const defaultHandlers = api.handlers()
+
+    if (Array.isArray(toolbarOpt)) {
+      // 用户传数组时，使用默认 handlers（数组形式不支持自定义 handlers）
+      state.innerOptions.modules.toolbar = {
+        container: toolbarOpt,
+        handlers: defaultHandlers
+      }
+    } else if (toolbarOpt && typeof toolbarOpt === 'object') {
+      // 用户传对象时，合并默认 handlers 和用户自定义的 handlers
+      const userHandlers = toolbarOpt.handlers || {}
+      state.innerOptions.modules.toolbar.handlers = {
+        ...defaultHandlers,
+        ...userHandlers
+      }
+    }
 
     if (props.imageUpload) {
       state.innerOptions.imageUpload = props.imageUpload
@@ -54,6 +86,8 @@ export const init =
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)
     state.quill = Object.freeze(quill)
+    state.linkClickHandler = api.handleLinkClick
+    on(state.quill.root, 'click', state.linkClickHandler)
 
     setTimeout(api.setToolbarTitle)
 
@@ -257,12 +291,17 @@ export const redoHandler =
 export const lineheightHandler =
   ({ state, FluentEditor }) =>
   (value) => {
-    state.quill.format('lineheight', value, FluentEditor.sources.USER)
+    state.quill.format('line-height', value, FluentEditor.sources.USER)
   }
 
 export const fileHandler =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   () => {
+    // 禁用状态下不允许上传文件
+    if (props.disabled) {
+      return
+    }
+
     const option = state.quill.options.uploadOption
     const accept = option && option.fileAccept
 
@@ -270,8 +309,13 @@ export const fileHandler =
   }
 
 export const imageHandler =
-  ({ api, state }) =>
+  ({ api, state, props }) =>
   () => {
+    // 禁用状态下不允许上传图片
+    if (props.disabled) {
+      return
+    }
+
     const option = state.quill.options.uploadOption
     const accept = option && option.imageAccept
 
@@ -317,8 +361,13 @@ export const inputFileHandler =
   }
 
 export const uploaderDflsHandler =
-  ({ api, modules }) =>
+  ({ api, modules, props }) =>
   (range, files, fileFlags, rejectFlags) => {
+    // 禁用状态下不允许上传文件或图片
+    if (props.disabled) {
+      return
+    }
+
     const fileArr = []
     const imgArr = []
 
@@ -536,7 +585,20 @@ export const handleUploadImage =
       state.promisesData.push({
         imageEnableMultiUpload
       })
-      state.promises.push(api.uploadImageToSev(result))
+
+      // 立即将 File 读成 Blob，避免来自 input 的 File 在异步链路中被释放导致请求体为空
+      const toRead = imageEnableMultiUpload ? files : [file]
+      const readFileToBlob = (f) =>
+        f.arrayBuffer().then((ab) => new Blob([ab], { type: f.type }))
+
+      const uploadPromise = Promise.all(toRead.map(readFileToBlob)).then((blobs) => {
+        result.file = blobs[0]
+        result.fileName = file.name
+        result.data.files = blobs
+        api.uploadImageToSev(result)
+      })
+
+      state.promises.push(uploadPromise)
     } else {
       const promises = files.map((fileItem) => {
         return new Promise((resolve) => {
@@ -610,7 +672,7 @@ export const insertImageToEditor =
 export const uploadImageToSev =
   ({ state }) =>
   (event) => {
-    const { file, hasRejectedImage, callback } = event
+    const { file, fileName, hasRejectedImage, callback } = event
     const { files } = event.data
 
     if (hasRejectedImage) {
@@ -633,7 +695,7 @@ export const uploadImageToSev =
 
     let { fd = new FormData(), xhr = new XMLHttpRequest() } = {}
 
-    fd.append(name, file, file.name)
+    fd.append(name, file, fileName || file.name || 'file')
 
     options.csrf && fd.append(options.csrf.token, options.csrf.hash)
 
@@ -666,6 +728,74 @@ export const uploadImageToSev =
     xhr.send(fd)
   }
 
+export const alignHandler =
+  ({ state, FluentEditor }) =>
+  (value) => {
+    const range = state.quill.getSelection(true)
+
+    if (!range) {
+      return
+    }
+
+    const betterTableModule = state.quill.getModule('better-table')
+
+    // 1) 表格批量选中：直接走 better-table 的 tableSelection.selectedTds
+    const selectedTds = betterTableModule?.tableSelection?.selectedTds
+    if (Array.isArray(selectedTds) && selectedTds.length > 0) {
+      const selectedCells = selectedTds.map((tdBlot) => tdBlot?.domNode).filter(Boolean)
+
+      selectedCells.forEach((cellElement) => {
+        const cellBlot = state.quill.scroll.find(cellElement)
+        if (!cellBlot) return
+
+        const lines = []
+        const findLines = (blot) => {
+          if (blot?.statics?.blotName === 'table-cell-line') {
+            lines.push(blot)
+          }
+          if (blot?.children?.length) {
+            blot.children.forEach((child) => findLines(child))
+          }
+        }
+        findLines(cellBlot)
+
+        lines.forEach((line) => {
+          // 这里保留最小 try/catch：避免异常 blot 导致整个对齐中断
+          try {
+            const lineIndex = state.quill.getIndex(line)
+            if (lineIndex !== null && lineIndex >= 0) {
+              const lineLength = line.length()
+              if (lineLength > 0) {
+                state.quill.formatLine(lineIndex, lineLength, 'align', value, FluentEditor.sources.USER)
+              }
+            }
+          } catch (e) {
+            try {
+              line?.format?.('align', value)
+            } catch (err) {
+              // 忽略错误
+            }
+          }
+        })
+      })
+
+      // 清除表格选择状态，避免后续模块状态异常
+      betterTableModule?.tableSelection?.clearSelection?.()
+      return
+    }
+
+    // 2) 表格单元格内：无需 DOM selection，直接判断当前是否在 table-cell-line
+    const [line] = state.quill.getLine(range.index)
+    if (line?.statics?.blotName === 'table-cell-line') {
+      // 对当前行应用块级对齐
+      state.quill.formatLine(range.index, 1, 'align', value, FluentEditor.sources.USER)
+      return
+    }
+
+    // 3) 默认行为：非表格场景交给 Quill
+    state.quill.format('align', value, FluentEditor.sources.USER)
+  }
+
 export const handlers =
   ({ api }) =>
   () => {
@@ -675,7 +805,8 @@ export const handlers =
       lineheight: api.lineheightHandler,
       file: api.fileHandler,
       image: api.imageHandler,
-      inputFile: api.inputFileHandler
+      inputFile: api.inputFileHandler,
+      align: api.alignHandler
     }
   }
 
@@ -808,8 +939,51 @@ export const beforeUnmount =
     api.removeHandleComposition()
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
+    off(state.quill.root, 'click', state.linkClickHandler)
+    state.linkClickHandler = null
     state.quill = null
     delete state.quill
+  }
+
+export const handleLinkClick =
+  ({ props, state }) =>
+  (event) => {
+    const anchor = event?.target?.closest && event.target.closest('a[href]')
+
+    if (!anchor) {
+      return
+    }
+
+    const rawHref = anchor.getAttribute('href') || ''
+    const href = xss.filterUrl(rawHref)
+
+    event.preventDefault()
+
+    if (!href || !isSafeLinkUrl(href)) {
+      return
+    }
+
+    const payload = {
+      url: href,
+      rawUrl: rawHref,
+      target: anchor.getAttribute('target') || '_blank',
+      rel: anchor.getAttribute('rel') || '',
+      event,
+      quill: state.quill
+    }
+    const beforeLinkOpen = props.beforeLinkOpen
+
+    if (typeof beforeLinkOpen !== 'function') {
+      openLink(payload.url, payload.target)
+      return
+    }
+
+    const open = (allow) => allow !== false && openLink(payload.url, payload.target)
+
+    try {
+      const result = beforeLinkOpen(payload)
+      result && typeof result.then === 'function' ? result.then(open).catch(() => {}) : open(result)
+    } catch (_) {}
   }
 
 export const computePreviewOptions =

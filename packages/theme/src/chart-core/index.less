@@ -12,6 +12,7 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../motion/index.less';
 
 @chart-prefix-cls: ~'@{css-prefix}chart';
 
@@ -51,11 +52,11 @@
     .circular {
       width: 42px;
       height: 42px;
-      animation: loading-rotate 2s linear infinite;
+      animation: rotate-spin var(--tv-motion-rotate-speed) linear infinite;
     }
 
     .path {
-      animation: loading-dash 1.5s ease-in-out infinite;
+      animation: stroke-dash-loop var(--tv-motion-stroke-speed) ease-in-out infinite;
       stroke-dasharray: 90, 150;
       stroke-dashoffset: 0;
       stroke-width: 2;
@@ -66,28 +67,5 @@
 
   &-mask-status {
     filter: blur(1px);
-  }
-}
-
-@keyframes loading-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loading-dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -40px;
-  }
-
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -120px;
   }
 }

@@ -46,7 +46,8 @@ import {
   destructuring,
   clear,
   sum,
-  find
+  find,
+  eachTree
 } from '@opentiny/vue-renderless/grid/static/'
 import {
   isPx,
@@ -59,9 +60,9 @@ import {
   getRowid,
   emitEvent,
   getRowkey,
-  dfsCopy,
   getRowUniqueId
 } from '@opentiny/vue-renderless/grid/utils'
+import { hooks, isVue2 } from '@opentiny/vue-common'
 import Cell from '../../cell'
 import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'
@@ -85,7 +86,6 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
-import { hooks } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedDetails } from './utils/autoCellWidth'
 import { funcs, headerProps, handleAllColumnPromises } from './funcs'
@@ -232,7 +232,7 @@ const Methods = {
       this.tableData = []
       this.cellStatus.clear()
       this.clearValidateMap()
-      return this.loadTableData(data || this.tableFullData)
+      return this.updateRawData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
   },
@@ -288,17 +288,11 @@ const Methods = {
   },
   // 全量加载表格数据
   loadTableData(datas, notRefresh) {
-    const { editStore, height, maxHeight, lastScrollLeft, lastScrollTop, optimizeOpts } = this
-    const { scrollY } = optimizeOpts
-    const tableFullData = isArray(datas) ? datas.slice(0) : []
-    const scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
+    const { editStore, height, maxHeight, lastScrollLeft, lastScrollTop, scrollYLoad } = this
 
     editStore.insertList = []
+    editStore.insertMap = new Map()
     editStore.removeList = []
-    // 设置全量数据，原始数据，行虚滚标记
-    Object.assign(this, { tableFullData, tableSynchData: datas, scrollYLoad })
-    // 设置数据查找缓存，对数据进行备份，深度克隆
-    this.updateCache(true, true)
 
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
@@ -315,28 +309,44 @@ const Methods = {
           return this.attemptRestoreScroll({ lastScrollLeft, lastScrollTop })
         }
       })
+      .then(() => {
+        if (this.resolveMap.loadDataResolve?.data === datas) {
+          this.resolveMap.loadDataResolve.resolveQueue.forEach((resolve) => resolve())
+          this.resolveMap.loadDataResolve = null
+        }
+      })
   },
   // 重新加载数据
   reloadData(datas) {
-    return this.clearAll().then(() => this.loadTableData(datas))
+    return this.clearAll().then(() => this.updateRawData(datas))
   },
   // 加载全量数据
   loadData(datas) {
     return new Promise((resolve) => {
-      this.loadTableData(datas)
-      resolve()
+      this.updateRawData(datas)
+      if (this.resolveMap.loadDataResolve) {
+        this.resolveMap.loadDataResolve.data = datas
+        this.resolveMap.loadDataResolve.resolveQueue.push(resolve)
+      } else {
+        this.resolveMap.loadDataResolve = {
+          data: datas,
+          resolveQueue: [resolve]
+        }
+      }
     })
   },
+  updateRawData(datas) {
+    this.rawData = datas
+    this.rawDataVersion += 1
+  },
   getOriginRow(row) {
-    const { backupMap } = this
-
-    return backupMap.has(row) ? backupMap.get(row) : null
+    const rowid = getRowid(this, row)
+    return rowid ? this.rowidCacheMap.get(rowid) : null
   },
   setOriginRow(row, record) {
-    const { backupMap } = this
-
-    if (backupMap.has(row) && record) {
-      backupMap.set(row, record)
+    const rowid = getRowid(this, row)
+    if (rowid && record) {
+      this.rowidCacheMap.set(rowid, record)
     }
   },
   reloadRow(row, record, field) {
@@ -405,29 +415,36 @@ const Methods = {
   },
   /** 设置数据查找缓存，对数据进行备份，深度克隆  */
   updateCache(backup = false, deepCopy = false) {
-    const { tableFullData, treeConfig, treeOrdered } = this
+    const { tableFullData, treeConfig, treeOrdered, editConfig, saveSource = false } = this
     const rowKey = getRowkey(this)
     const { children: childrenKey, temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !treeOrdered
-    const backupMap = new WeakMap()
+    const fullDataRowIdData = (this.fullDataRowIdData = {})
+    const fullDataRowMap = this.fullDataRowMap
 
-    this.fullDataRowIdData = {}
-    this.fullDataRowMap.clear()
+    fullDataRowMap.clear()
 
-    const copyRow = (row, index, parent) => {
-      let rowId = getRowid(this, row)
+    /* 标记RID和非顺序树表行index */
+    eachTree(
+      tableFullData,
+      (row, index, _array, _path, parent) => {
+        let rowId = getRowid(this, row)
 
-      if (!rowId) {
-        rowId = getRowUniqueId()
-        set(row, rowKey, rowId)
-      }
+        if (!rowId) {
+          rowId = getRowUniqueId()
+          set(row, rowKey, rowId)
+        }
 
-      const rowCache = { row, rowid: rowId, index }
+        const rowCache = { row, rowid: rowId, index }
 
-      this.fullDataRowIdData[rowId] = rowCache
-      this.fullDataRowMap.set(hooks.toRaw(row), rowCache)
+        // 如果存在行主键重复，就进行提示
+        if (fullDataRowIdData[rowId]) {
+          warn('ui.grid.error.duplicateRowId', rowId)
+        }
 
-      if (backup) {
+        fullDataRowIdData[rowId] = rowCache
+        fullDataRowMap.set(this.getRaw(row), rowCache)
+
         if (isTreeOrderedFalse) {
           let parentIndex
 
@@ -437,21 +454,82 @@ const Methods = {
 
           set(row, temporaryIndex, (parentIndex ? `${parentIndex}.` : '') + (index + 1))
         }
+      },
+      treeConfig
+    )
 
-        const childrenField = treeConfig ? { [childrenKey]: undefined } : {}
-        const backupRow = deepCopy ? clone({ ...row, ...childrenField }, true) : { ...row, ...childrenField }
+    // 可编辑表格默认开启备份，非可编辑表格在开启saveSource时也可备份
+    if (backup && (editConfig || saveSource)) {
+      /* 在空闲帧任务中备份数据 */
+      requestIdleCallback(() => {
+        const rowidCacheMap = new Map()
+        // 默认浅层复制，在设置saveSource为deep时开启深层复制
+        const callback = (row) =>
+          rowidCacheMap.set(
+            getRowid(this, row),
+            clone(childrenKey ? { ...row, [childrenKey]: null } : { ...row }, deepCopy)
+          )
 
-        backupMap.set(row, backupRow)
+        eachTree(tableFullData, callback, treeConfig)
 
-        return backupRow
+        this.rowidCacheMap = rowidCacheMap
+      })
+    }
+  },
+  getRaw(object) {
+    const hooks_vue = hooks
+    return !isVue2 && hooks_vue.isProxy(object) ? hooks.toRaw(object) : object
+  },
+  /**
+   * 递归地将 Proxy 对象（如 Vue 3 的响应式对象）转换为普通对象。
+   * @param {any} data 待处理的数据
+   * @returns {any} 转换后的普通对象或原始数据
+   */
+  deepUnwrap(data) {
+    if (data === null || typeof data !== 'object') {
+      return data
+    }
+
+    // *** 特殊处理：Map 和 Set
+    if (data instanceof Map) {
+      // 递归调用 cloneMapAndUnwrap
+      return this.cloneMapAndUnwrap(data)
+    }
+    if (data instanceof Set) {
+      return new Set(Array.from(data).map(this.deepUnwrap))
+    }
+
+    // 2. 数组
+    if (Array.isArray(data)) {
+      // 遍历数组，递归解包每个元素
+      return data.map(this.deepUnwrap)
+    }
+
+    const result = {}
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        result[key] = this.deepUnwrap(data[key])
       }
     }
-
-    const backupData = dfsCopy(tableFullData, copyRow, undefined, treeConfig, childrenKey)
-
-    if (backup) {
-      Object.assign(this, { tableSourceData: backupData, backupMap })
+    return result
+  },
+  /**
+   * 复制 Map，并递归地将 Map 的值中包含的 Proxy 转换为普通对象。
+   * @param {Map<any, any>} originalMap 原始 Map
+   * @returns {Map<any, any>} 复制并解包后的新 Map
+   */
+  cloneMapAndUnwrap(originalMap) {
+    if (!(originalMap instanceof Map)) {
+      return originalMap
     }
+    const newMap = new Map()
+
+    for (const [key, value] of originalMap.entries()) {
+      const unwrappedValue = this.deepUnwrap(value)
+      newMap.set(key, unwrappedValue)
+    }
+
+    return newMap
   },
   // 更新列的 Map
   cacheColumnMap(options) {
@@ -480,9 +558,7 @@ const Methods = {
     return null
   },
   getColumnNode(cell) {
-    if (!cell) {
-      return null
-    }
+    if (!cell) return null
 
     const { fullColumnIdData, tableFullColumn } = this
     const dataColid = cell.dataset.colid
@@ -495,37 +571,53 @@ const Methods = {
     return null
   },
   getRowIndex(row) {
-    const rawRow = hooks.toRaw(row)
     const { fullDataRowMap } = this
-    return fullDataRowMap.has(rawRow) ? fullDataRowMap.get(rawRow).index : -1
+    row = this.getRaw(row)
+    return fullDataRowMap.has(row) ? fullDataRowMap.get(row).index : -1
   },
   getColumnIndex(column) {
     const { fullColumnMap } = this
 
-    return fullColumnMap.has(column) ? fullColumnMap.get(column).index : -1
+    return fullColumnMap.has(column) ? fullColumnMap.get(column).columnIndex : -1
   },
   hasIndexColumn(column) {
     return column?.type === 'index'
   },
-  defineField(row, copy) {
-    if (!row || typeof row !== 'object') {
-      return row
-    }
+  defineField(row, copy, editorColumns, cache) {
+    if (!row || typeof row !== 'object') return row
 
     if (copy) {
       row = clone(row, true)
     }
 
     const rowKey = getRowkey(this)
+    const columns = editorColumns || this.visibleColumn
 
-    this.visibleColumn.forEach(({ property, editor }) => {
+    columns.forEach((column) => {
+      const { property, editor } = column
       const propNotExist = property && !has(row, property)
+
+      // 对于可编辑表格，如果编辑器对应数据行字段不存在，就修复这种字段为值 editor.defaultValue 或者 null
       const propDefaultValue = editor && !isUndefined(editor.defaultValue) ? editor.defaultValue : null
 
       if (propNotExist) {
-        set(row, property, propDefaultValue)
+        // 在增加可编辑列时，同步修改原始备份，保证字段存在
+        if (cache) {
+          const originRow = this.getOriginRow(row)
+
+          if (originRow) {
+            originRow[property] = propDefaultValue
+          }
+        }
+
+        if (isVue2) {
+          this.$set(row, property, propDefaultValue)
+        } else {
+          set(row, property, propDefaultValue)
+        }
       }
     })
+
     // 如果行数据的唯一主键不存在，则生成
     const rowId = get(row, rowKey)
     if (isNull(rowId) || rowId === '') {
@@ -537,7 +629,7 @@ const Methods = {
   isTemporaryRow(row) {
     const rowid = getRowid(this, row)
 
-    return find(this.temporaryRows, (r) => rowid === getRowid(this, r))
+    return this.editStore.insertMap.has(rowid)
   },
   createData(records, copy) {
     const isArr = isArray(records)
@@ -579,7 +671,7 @@ const Methods = {
     return this.$nextTick()
   },
   hasRowInsert(row) {
-    return this.editStore.insertList.includes(row)
+    return this.isTemporaryRow(row)
   },
   compareRow(row, originalRow, field) {
     const value = get(row, field)
@@ -601,7 +693,7 @@ const Methods = {
     return result
   },
   hasRowChange(row, field) {
-    const { treeConfig, visibleColumn, backupMap, editConfig } = this
+    const { treeConfig, visibleColumn, editConfig = {} } = this
     const insertChanged = editConfig?.insertChanged ?? false
     const argsLength = arguments.length
     let originRow
@@ -610,7 +702,7 @@ const Methods = {
       return insertChanged
     }
 
-    const cacheRow = backupMap.get(row)
+    const cacheRow = this.getOriginRow(row)
 
     if (cacheRow) {
       if (treeConfig) {
@@ -625,6 +717,10 @@ const Methods = {
 
     if (originRow) {
       if (argsLength > 1) {
+        if (!this.getColumnByField(field)) {
+          warn('ui.grid.error.fieldNotExist', field)
+          return false
+        }
         return !this.compareRow(row, originRow, field)
       }
 
@@ -670,7 +766,7 @@ const Methods = {
   },
   // 获取表格所有数据
   getData(rowIndex) {
-    const allRows = this.data || this.tableSynchData
+    const allRows = this.rawData || []
 
     if (!arguments.length) {
       return allRows.slice(0)
@@ -802,9 +898,9 @@ const Methods = {
     return this.scrollLoad ? this.scrollLoad.pageSize || 10 : this._graphInfo?.graphed.length || 0
   },
   getRowById(rowid) {
-    let { fullDataRowIdData } = this
-    let rowCache = fullDataRowIdData[rowid]
-    return rowCache ? rowCache.row : null
+    let { fullDataRowIdData, editStore } = this
+    let rowCache = fullDataRowIdData[rowid]?.row || editStore?.insertMap?.get(rowid)
+    return rowCache || null
   },
   // 获取处理后的表格数据
   getTableData() {
@@ -921,7 +1017,8 @@ const Methods = {
 
     // 获取叶子列数组
     const options = { columnCaches: [] }
-    const fullColumn = getColumnList(value, options)
+    this.markColumnIndex = 0
+    const fullColumn = getColumnList(this, value, options)
 
     if (options.isGroup && options.hasFixed) {
       value.forEach((root) => repairFixed(root))
@@ -1087,6 +1184,8 @@ const Methods = {
     if (!_tableVisible) {
       return
     }
+    // 先更新 bodyWrapperMaxHeight，minHeight/height,确保之后用新值
+    this.updateStyle()
 
     if (!bodyWrapper) {
       return this.computeScrollLoad()
@@ -1418,7 +1517,7 @@ const Methods = {
   // 点击排序事件
   triggerSortEvent(event, column, order) {
     let property = column.property
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+    let isColumnSortable = column.sortable || column.remoteSort
     if (this.sortable && isColumnSortable) {
       let evntParams = { $table: this, column, order, property }
 
@@ -1438,7 +1537,7 @@ const Methods = {
     let { remoteSort, tableFullColumn, visibleColumn } = this
     let column = find(visibleColumn, (item) => item.property === field)
     let isRemote = isBoolean(column.remoteSort) ? column.remoteSort : remoteSort
-    let isColumnSortable = column.type ? false : column.sortable || column.remoteSort
+    let isColumnSortable = column.sortable || column.remoteSort
 
     if (this.sortable && isColumnSortable) {
       if (column.order !== order) {
@@ -1777,7 +1876,7 @@ const Methods = {
     return this.$nextTick()
   },
   scrollToRow(row, column, isDelay, move) {
-    const hasRowCache = this.fullDataRowMap.has(hooks.toRaw(row))
+    const hasRowCache = this.fullDataRowMap.has(this.getRaw(row))
     const isDelayArg = isDelay || isBoolean(column)
 
     row && hasRowCache && rowToVisible(this, row)
@@ -2048,8 +2147,8 @@ const Methods = {
     return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   },
   handleDataChange() {
-    if (Array.isArray(this.data)) {
-      !this._isUpdateData && this.loadTableData(this.data)
+    if (Array.isArray(this.rawData)) {
+      !this._isUpdateData && this.loadTableData(this.rawData)
       this._isUpdateData = false
     }
   },
@@ -2082,8 +2181,14 @@ const Methods = {
 
     return columnIds.join(',')
   },
-  // 获取所有多选数据状态
+  /** 获取所有多选数据状态, Tiny 规范后的名字 */
   getAllSelection() {
+    return this.selection
+  },
+  /** 获取所有多选数据状态的历史名字，仅用于兼容老代码。
+   * @deprecated
+   * */
+  getStateSelection() {
     return this.selection
   },
   // 尝试恢复滚动位置，规范了最大滚动位置的取值

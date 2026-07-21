@@ -13,8 +13,9 @@
 
 <script setup>
 import { TinyUserHead } from '@opentiny/vue'
+import { ref } from 'vue'
 
-const labelText = 'Ai'
+const labelText = ref('Ai')
 </script>
 
 <style lang="less" scoped>

@@ -20,8 +20,9 @@
         :style="{ width: width === 'auto' ? width : width + 'px', height: height === 'auto' ? height : height + 'px' }"
         role="tooltip"
         :id="state.tooltipId"
+        :aria-hidden="!state.showPopper"
       >
-        <div class="tiny-popover__title" v-if="title" v-text="title"></div>
+        <div class="tiny-popover__title" v-if="title" v-text="title" role="heading"></div>
         <slot>{{ content }}</slot>
       </div>
     </transition>

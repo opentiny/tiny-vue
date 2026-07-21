@@ -21,7 +21,7 @@ export const calcHeader = (collectColumn) => {
 
         traverseTree(item.children, level + 1, item)
       })
-    } else {
+    } else if (parent) {
       leafColumns.push(parent)
     }
   }

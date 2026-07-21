@@ -10,6 +10,7 @@ export default {
         'zh-CN': '基本用法',
         'en-US': 'Basic Usage'
       },
+      hideSaas: true,
       desc: {
         'zh-CN': '通过 <code>links</code> 设置导航数据， <code>type</code> 设置类型。',
         'en-US': 'Set navigation data through <code>links</code> , and <code>type</code> to set the type.'

@@ -214,6 +214,7 @@ export default defineComponent({
       renderBase,
       renderSimple
     } = this as any
+
     const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
     const layoutMap = {
       input: renderInput,
@@ -225,7 +226,11 @@ export default defineComponent({
     }
 
     // 支持用户自定义筛选项的个数和显示顺序和位置
-    const quickFilter = layout.split(',').map((item) => layoutMap[item] && layoutMap[item].call(this))
+    const quickFilter = layout
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .map((item) => layoutMap[item] && layoutMap[item].call(this))
 
     const map = {
       filterActive: 'filter__active'
@@ -309,7 +314,9 @@ export default defineComponent({
 
           this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end',
-            gpuAcceleration: false
+            gpuAcceleration: false,
+            bubbling: true,
+            ...(this.$grid?.filterPopperOptions || {})
           })
           popper.style.display = 'block'
         })

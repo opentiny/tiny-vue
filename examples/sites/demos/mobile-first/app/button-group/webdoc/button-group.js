@@ -52,6 +52,19 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['enumeration.vue']
+    },
+    {
+      demoId: 'display-mode',
+      name: {
+        'zh-CN': '按钮组显示模式',
+        'en-US': 'button mode'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>display-mode</code> 属性设置按钮组显示模式，可选值有 <code>default</code>（默认）和 <code>merged</code>（选块合并）。</p>',
+        'en-US': '<p>button mode</p>'
+      },
+      codeFiles: ['display-mode.vue']
     }
   ]
 }

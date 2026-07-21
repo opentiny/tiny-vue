@@ -37,11 +37,25 @@ export const close =
     api.handleClose('close', typeof force === 'boolean' ? force : false)
   }
 
+export const closed =
+  ({ state, emit }: Pick<IDrawerRenderlessParams, 'state' | 'emit'>) =>
+  () => {
+    if (!state.visible) {
+      emit('closed')
+    }
+  }
+
 export const watchVisible =
-  ({ state, api }: Pick<IDrawerRenderlessParams, 'state' | 'api'>) =>
+  ({ props, parent, api }: Pick<IDrawerRenderlessParams, 'state' | 'props' | 'parent' | 'api' | 'nextTick'>) =>
   (value: boolean) => {
     // tiny优化抽屉显隐逻辑
     value ? api.open() : api.close()
+    if (value) {
+      const el = parent.$el
+      if (props.appendToBody && el && el.parentNode !== document.body) {
+        document.body.appendChild(el)
+      }
+    }
   }
 
 export const open =
@@ -79,6 +93,36 @@ export const handleClose =
       }, 200)
     }
   }
+
+/* ================= Esc 关闭（受控） ================= */
+export const keydown =
+  ({ api, state, props }: Pick<IDrawerRenderlessParams, 'api' | 'state' | 'props'>) =>
+  (event: KeyboardEvent) => {
+    if (!state.visible) {
+      return
+    }
+
+    if (!props.closeOnPressEscape) {
+      return
+    }
+
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      api.handleClose('esc', true)
+    }
+  }
+
+export const addKeydownEvent =
+  ({ api }: { api: IDrawerApi }) =>
+  () => {
+    document.addEventListener('keydown', api.keydown)
+  }
+
+export const removeKeydownEvent =
+  ({ api }: { api: IDrawerApi }) =>
+  () => {
+    document.removeEventListener('keydown', api.keydown)
+  }
+/* ================================================== */
 
 export const mousedown =
   ({ state, vm }: { vm: ISharedRenderlessParamUtils<IDrawerCT>['vm']; state: IDrawerState }) =>

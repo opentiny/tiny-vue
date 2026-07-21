@@ -32,6 +32,10 @@ export const collapseProps = {
   modelValue: {
     type: [Array, String, Number],
     default: () => []
+  },
+  size: {
+    type: String,
+    default: ''
   }
 }
 

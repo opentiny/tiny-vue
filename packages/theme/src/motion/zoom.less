@@ -1,0 +1,68 @@
+/* ===========================
+   弹出缩放动画 (zoom.less)
+   来源: dialog-box
+   可配置变量:
+     --tv-motion-scale-speed        动画时长
+     --tv-motion-scale-start        初始缩放
+     --tv-motion-scale-mid          中间缩放
+     --tv-motion-scale-end          结束缩放
+     --tv-motion-scale-opacity-start 初始透明度
+     --tv-motion-scale-opacity-mid   中间透明度
+     --tv-motion-scale-opacity-end   结束透明度
+=========================== */
+
+/* ============ 弹出缩放 ============ */
+@keyframes enlarge-in {
+  0% {
+    transform: scale(var(--tv-motion-scale-start, 0));
+  }
+  50% {
+    transform: scale(var(--tv-motion-scale-mid, 0.5));
+  }
+  100% {
+    transform: scale(var(--tv-motion-scale-end, 1));
+  }
+}
+
+@keyframes enlarge-in-fade {
+  0% {
+    transform: scale(var(--tv-motion-scale-start, 0));
+    opacity: var(--tv-motion-scale-opacity-start, 0);
+  }
+  50% {
+    transform: scale(var(--tv-motion-scale-mid, 0.5));
+    opacity: var(--tv-motion-scale-opacity-mid, 0.5);
+  }
+  100% {
+    transform: scale(var(--tv-motion-scale-end, 1));
+    opacity: var(--tv-motion-scale-opacity-end, 1);
+  }
+}
+
+/* ============ 收缩缩放 ============ */
+@keyframes shrink-out {
+  0% {
+    transform: scale(var(--tv-motion-scale-end, 1));
+  }
+  50% {
+    transform: scale(var(--tv-motion-scale-mid, 0.5));
+  }
+  100% {
+    transform: scale(var(--tv-motion-scale-start, 0));
+  }
+}
+
+@keyframes shrink-out-fade {
+  0% {
+    transform: scale(var(--tv-motion-scale-end, 1));
+    opacity: var(--tv-motion-scale-opacity-end, 1);
+  }
+  50% {
+    transform: scale(var(--tv-motion-scale-mid, 0.5));
+    opacity: var(--tv-motion-scale-opacity-mid, 0.5);
+  }
+  100% {
+    transform: scale(var(--tv-motion-scale-start, 0));
+    opacity: var(--tv-motion-scale-opacity-start, 0);
+  }
+}

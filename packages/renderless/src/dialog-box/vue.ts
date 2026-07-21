@@ -31,6 +31,7 @@ import {
   hideScrollbar,
   toggleFullScreen
 } from './index'
+import { nanoid } from '@opentiny/utils'
 import { usePopup } from '@opentiny/vue-hooks'
 import type {
   IDialogBoxApi,
@@ -83,7 +84,9 @@ const initState = ({
     style: computed(() => api.computedStyle()),
     animationName: computed(() => api.computedAnimationName()),
     current,
-    dragStyle: null
+    dragStyle: null,
+    titleId: `tiny-dialog-box-title-${nanoid.api.nanoid(8)}`,
+    contentId: `tiny-dialog-box-content-${nanoid.api.nanoid(8)}`
   })
 
   return state

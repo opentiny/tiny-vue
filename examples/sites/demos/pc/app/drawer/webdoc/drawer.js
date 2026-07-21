@@ -17,6 +17,32 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'drawer-to-body',
+      name: {
+        'zh-CN': '挂载节点',
+        'en-US': 'Mount node'
+      },
+      desc: {
+        'zh-CN':
+          '<code>append-to-body</code> 属性可以将抽屉挂载到 body 元素上。默认值为 <code>false</code>，即挂载在当前组件内。',
+        'en-US':
+          'The <code>append-to-body</code> attribute can mount the drawer to the body element. The default value is <code>false</code>, meaning it is mounted within the current component.'
+      },
+      codeFiles: ['drawer-to-body.vue']
+    },
+    {
+      demoId: 'close-on-press-escape',
+      name: {
+        'zh-CN': '按下 ESC 关闭抽屉',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN': '<p>添加 <code>close-on-press-escape</code> 属性可以控制是否可以通过 ESC 关闭抽屉。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['close-on-press-escape.vue']
+    },
+    {
       demoId: 'use-through-method',
       name: { 'zh-CN': '通过方法调用', 'en-US': 'Use through method' },
       desc: {
@@ -121,6 +147,20 @@ export default {
       codeFiles: ['mask-closable.vue']
     },
     {
+      demoId: 'destroy-on-close',
+      name: {
+        'zh-CN': '关闭时销毁主体元素',
+        'en-US': 'Destroy on Close'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过<code>destroy-on-close</code>属性设置<code>true</code>在关闭抽屉时销毁<code>drawer</code>抽屉内的所有元素，默认值为<code>false</code>。</p>',
+        'en-US':
+          '<p>By setting the<code>:destroy-on-close</code>attribute to<code>true</code>, all elements in the<code>drawer</code>drawer are destroyed when the pop-up window is closed, with the default value being<code>false</code>.</p>'
+      },
+      codeFiles: ['destroy-on-close.vue']
+    },
+    {
       demoId: 'show-close',
       name: {
         'zh-CN': '关闭图标显示',
@@ -215,6 +255,7 @@ export default {
         'zh-CN': `
           <p><code>open</code>：当抽屉打开时触发；</p>
           <p><code>confirm</code>：当抽屉底部确定按钮点击时触发，该按钮仅当设置 <code>show-footer</code> 属性为 true 时可见；</p>
+          <p><code>closed</code>：当抽屉关闭动画结束时触发；</p>
           <p><code>close</code>：当抽屉关闭时触发。关闭抽屉的途径有：</p>
             <ul>
               <li>点击右上角关闭按钮；</li>
@@ -404,11 +445,11 @@ export default {
       support: {
         value: true
       },
-      description: '支持 open、confirm、close 等事件。',
+      description: '支持 open、confirm、close、closed 等事件。',
       cloud: {
         value: true
       },
-      apis: ['open', 'confirm', 'close'],
+      apis: ['open', 'confirm', 'close', 'closed'],
       demos: ['events']
     }
   ]

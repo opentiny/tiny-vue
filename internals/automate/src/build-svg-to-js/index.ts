@@ -36,13 +36,25 @@ import * as config from './config'
 import * as configSaas from './config-saas'
 
 interface FileInfo {
+  /** 图标名字,  eg.sub-script */
   svgName: string
   hasFill: boolean
-  rewriteName: string // hasFill：true时， 不应该有rewriteName
+  /** 重指向过来的时候的错误名字， eg. sub-script */
+  wrongName?: string
 }
 const camelize = (str) => str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 const isSaas = process.argv.includes('--icon-saas')
 const { svgsPath, iconsPath, rewriteConfig } = isSaas ? configSaas : config
+const themePackage = isSaas ? '@opentiny/vue-theme-saas' : '@opentiny/vue-theme'
+const iconsSrcPath = `${iconsPath}/src`
+
+// 生成前清理旧的图标产物，避免目录缺失导致写入失败
+try {
+  fs.rmSync(iconsSrcPath, { recursive: true, force: true })
+} catch (error) {
+  console.warn(`[build-svg-to-js] 清理目录失败: ${iconsSrcPath}`, error)
+}
+fs.mkdirSync(iconsSrcPath, { recursive: true })
 
 // 1、统计svgs信息
 const svgsMap: Record<string, FileInfo> = {}
@@ -54,10 +66,10 @@ svgsFiles.forEach((filename) => {
 
   if (filename.endsWith('-filled.svg')) {
     svgName = filename.replace('-filled.svg', '')
-    item = { svgName, hasFill: true, rewriteName: rewriteConfig[svgName] }
+    item = { svgName, hasFill: true }
   } else if (filename.endsWith('.svg')) {
     svgName = filename.replace('.svg', '')
-    item = { svgName, hasFill: false, rewriteName: rewriteConfig[svgName] }
+    item = { svgName, hasFill: false }
   } else {
     return
   }
@@ -70,41 +82,62 @@ svgsFiles.forEach((filename) => {
 })
 
 // 2、生成组件的js
-const rewriteList: { capName: string; svgName: string; rewriteName: string }[] = []
 const fillList: { capName: string; svgName: string }[] = []
 const uncheckedList: { capName: string; svgName: string }[] = []
 
+// 2.1 写入重命名图标的js。 约束：必须生成它的子包js, 还必须不能使用相对引用：import xx from './yy' 这种，编译有问题
+// 方案：重命名图标直接推入 svgsMap中去， 在 2.2 遍历中，当成正常图标去处理。
+// eg.  sub-script【错】 ----> subscript【对】，在 svgsMap中存在： { subscript :{hasFill: false, svgName:'subscript'}}
+//      在svgsMap中，添加一个 { 'sub-script' :{hasFill: false, svgName:'subscript', wrongName='sub-script' }} 键值即可
+Object.keys(rewriteConfig).forEach((wrongName) => {
+  if (svgsMap[wrongName]) {
+    console.error(`重定向名字出错，${wrongName}是正确的名字`)
+    return
+  }
+
+  svgsMap[wrongName] = { ...svgsMap[rewriteConfig[wrongName]] } // fake 欺骗
+  svgsMap[wrongName].wrongName = wrongName
+})
+
+// 2.2 把所有图标遍历， 分为线面图标fillList 和传统的图标 uncheckedList。
+// 如果有wrongName的情况， 只是在写文件的瞬间写到wrongName.js上即可。
 Object.values(svgsMap).forEach((item) => {
   const capName = camelize('-' + item.svgName)
 
-  // 重命名的图标
-  if (item.rewriteName) {
-    rewriteList.push({ capName, svgName: item.svgName, rewriteName: camelize('-' + item.rewriteName) })
-    return
-  }
-  // 支持线&面的图标
+  // 2.2 支持线&面的图标js
   if (item.hasFill) {
-    fillList.push({ capName, svgName: item.svgName })
-    const tmplStr = `
-import { svg } from '@opentiny/vue-common'
-import ${capName} from '@opentiny/vue-theme/svgs/${item.svgName}.svg'
-import ${capName}Filled from '@opentiny/vue-theme/svgs/${item.svgName + '-filled'}.svg'
+    fillList.push(
+      item.wrongName
+        ? { capName: camelize('-' + item.wrongName), svgName: item.wrongName }
+        : { capName, svgName: item.svgName }
+    )
+    const tmplStr = `import { svg } from '@opentiny/vue-common'
+import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
+import ${capName}Filled from '${themePackage}/svgs/${item.svgName + '-filled'}.svg'
 
-export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
+const iconFn = () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName}Filled })()
+iconFn.__flag = ${JSON.stringify(item)}
+export default iconFn
 `
 
-    fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
+    fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
     return
   }
-  // 未梳理到的图标
-  uncheckedList.push({ capName, svgName: item.svgName })
-  const tmplStr = `
-import { svg } from '@opentiny/vue-common'
-import ${capName} from '@opentiny/vue-theme/svgs/${item.svgName}.svg'
+  // 2.3 未梳理到的图标js
+  uncheckedList.push(
+    item.wrongName
+      ? { capName: camelize('-' + item.wrongName), svgName: item.wrongName }
+      : { capName, svgName: item.svgName }
+  )
+  const tmplStr = `import { svg } from '@opentiny/vue-common'
+import ${capName} from '${themePackage}/svgs/${item.svgName}.svg'
 
-export default () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
+const iconFn = () => svg({ name: 'Icon${capName}', component: ${capName}, filledComponent: ${capName} })()
+
+iconFn.__flag = ${JSON.stringify(item)}
+export default iconFn
 `
-  fs.writeFileSync(`${iconsPath}/src/${item.svgName}.ts`, tmplStr, 'utf-8')
+  fs.writeFileSync(`${iconsPath}/src/${item.wrongName || item.svgName}.ts`, tmplStr, 'utf-8')
 })
 
 // 3、生成总的导出 index.js
@@ -119,15 +152,8 @@ const tmplFill = fillList
 const tmplUnchecked = uncheckedList
   .map((exp) => `export { Icon${exp.capName}, Icon${exp.capName} as icon${exp.capName} }`)
   .join('\n')
-const tmplRewrite = rewriteList
-  .map(
-    (exp) =>
-      `export const Icon${exp.capName} = () => ({...Icon${exp.rewriteName}(), name:'Icon${exp.capName}', deprecatedBy: 'Icon${exp.rewriteName}' })
-export const icon${exp.capName} = Icon${exp.capName}`
-  )
-  .join('\n')
 
-const tmplBottom = [...fillList, ...uncheckedList, ...rewriteList].map((exp) => `  Icon${exp.capName},`).join('\n')
+const tmplBottom = [...fillList, ...uncheckedList].map((exp) => `  Icon${exp.capName},`).join('\n')
 
 const tmplStr = `
 ${tmplFillImport}
@@ -139,8 +165,7 @@ ${tmplFill}
 // 非双图标
 ${tmplUnchecked}
 
-// 重命名导出
-${tmplRewrite}
+
 
 export default {
 ${tmplBottom}
@@ -149,20 +174,6 @@ ${tmplBottom}
 fs.writeFileSync(`${iconsPath}/index.ts`, tmplStr, 'utf-8')
 
 // 4、打印日志
-
-// 即是 hasFill, 但配置了 rewriteName, 请从config.ts中移除相应的rewrite。
-// 因为要求设计师那边已经去重过了，
-const err1 = Object.values(svgsMap)
-  .filter((item) => item.hasFill && item.rewriteName)
-  .map((item) => item.svgName)
-
-if (err1.length) {
-  console.error(`
-********即是 hasFill, 但配置了 rewriteName, 请从config.ts中移除相应的rewrite**********
-${err1.join(',')}
-************************************************************************************
-`)
-}
 
 // 非 hasFill, 且未配置 rewriteName, 大概是未梳理到的历史图标,tiny图标
 const err2 = uncheckedList.map((item) => item.svgName)

@@ -29,14 +29,14 @@
                     <async-highlight
                       v-if="row.code"
                       :code="row.code.trim()"
-                      :types="props.chartCode ? 'html' : 'ts'"
+                      :type="props.chartCode ? 'chart' : ''"
                     ></async-highlight>
                     <div v-if="row.depTypes">
                       <async-highlight
                         v-for="(k, i) in row.depTypes"
                         :key="i"
                         :code="props.currentJson.types[k]?.code"
-                        types="ts"
+                        type="ts"
                       ></async-highlight>
                     </div>
                   </template>

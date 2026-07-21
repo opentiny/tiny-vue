@@ -7,12 +7,15 @@ export type IStatisticProps = ExtractPropTypes<typeof statisticProps>
 export type IStatisticConstants = typeof $constants
 
 export interface IStatisticState {
-  getIntegerAndDecimal: number | string
+  value: string | number
+  animatingValue: number | string
+  IStatisticState: number | string
 }
 export interface IStatisticApi {
+  state: IStatisticState
   getIntegerAndDecimal: (value: string | number) => string | undefined
+  animateValue: () => void
 }
-
 export type IStatisticPcRenderlessParams = ISharedRenderlessFunctionParams<never> & {
   state: IStatisticState
   props: IStatisticProps

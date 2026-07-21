@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'grid-select',
@@ -13,9 +13,8 @@ export default {
             'zh-CN': '是否启用一键清除的功能',
             'en-US': 'Whether to display the one click clear button, only applicable to radio selection'
           },
-          mode: ['pc'],
-          pcDemo: 'clearable',
-          mfDemo: 'clearable'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage'
         },
         {
           name: 'filterable',
@@ -25,8 +24,8 @@ export default {
             'zh-CN': '是否可搜索',
             'en-US': 'Is it searchable'
           },
-          mode: ['pc'],
-          pcDemo: 'filter-method'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'filter-method',
@@ -36,8 +35,8 @@ export default {
             'zh-CN': '自定义过滤方法',
             'en-US': 'Custom filtering method'
           },
-          mode: ['pc'],
-          pcDemo: 'filter-method'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'grid-op',
@@ -48,7 +47,7 @@ export default {
             'zh-CN': '下拉表格时，内置表格组件的配置，用法同 Grid 组件。',
             'en-US': ''
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage'
         },
         {
@@ -70,8 +69,8 @@ export default {
             'zh-CN': '是否允许选择多个选项',
             'en-US': 'Allow multiple options to be selected'
           },
-          mode: ['pc'],
-          pcDemo: 'multiple'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'radio-config',
@@ -82,7 +81,7 @@ export default {
             'zh-CN': '单选配置项',
             'en-US': 'Radio config'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'config'
         },
         {
@@ -93,8 +92,8 @@ export default {
             'zh-CN': '是否为远程搜索',
             'en-US': 'Is it a remote search'
           },
-          mode: ['pc'],
-          pcDemo: 'remote-method'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'remote-method',
@@ -104,8 +103,8 @@ export default {
             'zh-CN': '远程搜索的方法',
             'en-US': 'Remote search methods'
           },
-          mode: ['pc'],
-          pcDemo: 'remote-method'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'reserve-keyword',
@@ -116,8 +115,8 @@ export default {
             'en-US':
               'When selecting multiple searchable options, do you still keep the current search keywords after selecting one option'
           },
-          mode: ['pc'],
-          pcDemo: 'remote-method'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'remote'
         },
         {
           name: 'select-config',
@@ -128,7 +127,7 @@ export default {
             'zh-CN': '多选配置项',
             'en-US': 'Select config'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'config'
         },
         {
@@ -139,7 +138,7 @@ export default {
             'zh-CN': '显示值字段',
             'en-US': 'Show Value Fields'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage'
         },
         {
@@ -150,7 +149,7 @@ export default {
             'zh-CN': '绑定值字段',
             'en-US': 'Bind Value Field'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage'
         }
       ]

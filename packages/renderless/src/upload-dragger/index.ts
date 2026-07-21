@@ -25,7 +25,10 @@ export const onDrop =
 
     const accept = state.uploader.accept
     let files = event.dataTransfer.files
-    const isDirectory = event.dataTransfer.items && event.dataTransfer.items[0].webkitGetAsEntry().isDirectory
+
+    // webkitGetAsEntry() 只支持本地文件，文件夹。 比如从邮箱拖入的场景，它一定返回null
+    const isDirectory =
+      (event.dataTransfer.items && event.dataTransfer.items[0].webkitGetAsEntry()?.isDirectory) || false
 
     state.uploadFiles = []
     state.dragover = false
@@ -100,10 +103,10 @@ async function readFiles(directory, state) {
 
     // 如果条目是文件，则将文件的信息添加到数组中
     if (entry.isFile) {
-      await new Promise((resolve) => {
+      await new Promise<void>((resolve) => {
         entry.file((file) => {
           state.uploadFiles.push(file)
-          resolve(void 0)
+          resolve()
         })
       })
     }

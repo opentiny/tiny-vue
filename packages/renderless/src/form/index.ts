@@ -90,8 +90,10 @@ export const created =
     })
     /* istanbul ignore next */
     parent.$on('form:removeField', (field) => {
-      if (field.prop) {
-        state.fields.splice(state.fields.indexOf(field), 1)
+      const index = state.fields.indexOf(field)
+
+      if (index > -1) {
+        state.fields.splice(index, 1)
       }
     })
   }

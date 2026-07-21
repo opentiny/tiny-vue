@@ -18,13 +18,17 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
   const map = {
     // 主模块映射
     // vite 4 不支持 exports 语法自动拼接 index 文件 https://github.com/vitejs/vite/issues/7267
+    // 注意：更具体的路径匹配需要放在前面，以确保优先匹配
+    '@opentiny/vue-icon-saas/src': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
     '@opentiny/vue-icon-saas$': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
-    '@opentiny/vue-icon-saas': pathFromWorkspaceRoot('packages/vue-icon-saas/src'),
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-icon-multicolor$': pathFromWorkspaceRoot(`packages/vue-icon-multicolor${ns(theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
     '@opentiny/vue-theme/dark-theme-index.css': pathFromWorkspaceRoot(
       `packages/theme${ns(design || theme)}/src/base/dark-theme.less`
+    ),
+    '@opentiny/vue-theme/responsive-index.css': pathFromWorkspaceRoot(
+      `packages/theme${ns(design || theme)}/src/responsive-index.less`
     ),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
@@ -43,6 +47,11 @@ const getAlias = (vueVersion: string | number, theme = '', design?: string) => {
 
   if (!design && vueVersion === 3) {
     map['@opentiny/vue-icon'] = pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/src`)
+  }
+
+  // 在 SaaS 模式下，将 @opentiny/vue-search-box 映射到 @opentiny/vue-search-box-saas
+  if (theme === 'saas') {
+    map['@opentiny/vue-search-box'] = '@opentiny/vue-search-box-saas'
   }
 
   return map
@@ -79,7 +88,8 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'echarts',
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
-    ].filter((item) => !!item)
+    ].filter((item) => !!item),
+    exclude: ['@opentiny/vue-search-box', '@opentiny/vue-search-box-saas']
   }
 }
 

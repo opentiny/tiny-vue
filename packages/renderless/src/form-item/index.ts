@@ -47,7 +47,7 @@ export const watchValidateStatus =
 export const computedGetValidateType =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): string =>
-    props.validateType || (state.formInstance ? state.formInstance.validateType : '')
+    props.validateType || (state.formInstance ? state.formInstance?.validateType : '')
 
 export const computedValidateIcon =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
@@ -80,11 +80,11 @@ export const computedLabelStyle =
   (): IFormItemLabelStyle => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state.labelWidth
 
     if (labelWidth) {
       result.width = labelWidth
@@ -98,12 +98,12 @@ export const computedValueStyle =
   (): { width: string } => {
     const result = { width: '' }
 
-    if (state.form.labelPosition === POSITION.Top) {
+    if (state.form?.labelPosition === POSITION.Top) {
       result.width = '100%'
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state.labelWidth
 
     if (labelWidth) {
       if (labelWidth === 'auto') {
@@ -122,7 +122,7 @@ export const computedContentStyle =
     const result: StyleValue = {}
     const label = props.label
 
-    if (state.form.labelPosition === POSITION.Top || state.form.inline) {
+    if (state.form?.labelPosition === POSITION.Top || state.form?.inline) {
       return result
     }
 
@@ -130,13 +130,13 @@ export const computedContentStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.state.labelWidth
+    const labelWidth = props.labelWidth || state.form?.state?.labelWidth
 
     if (labelWidth === 'auto') {
       if (props.labelWidth === 'auto') {
         result.marginLeft = state.computedLabelWidth
-      } else if (state.form.state.labelWidth === 'auto') {
-        result.marginLeft = state.formInstance.state.autoLabelWidth
+      } else if (state.form?.state?.labelWidth === 'auto') {
+        result.marginLeft = state.formInstance?.state?.autoLabelWidth
       }
     } else {
       result.marginLeft = labelWidth
@@ -231,7 +231,7 @@ export const getPropByPath = (obj: object, path: string, strict?: boolean) => {
 export const computedFieldValue =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   () => {
-    const model = state.form.model
+    const model = state.form?.model
 
     if (!model || !props.prop) {
       return
@@ -246,37 +246,86 @@ export const computedFieldValue =
     return getPropByPath(model, path, true).v
   }
 
-export const mounted =
+export const watchRequired =
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
+  (newValue: boolean, oldValue: boolean): void => {
+    // required 从无到有，或从有到无，需要重新注册验证事件
+    if (newValue !== oldValue) {
+      api.removeValidateEvents()
+      api.addValidateEvents()
+    }
+  }
+
+export const watchRules =
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
+  (newValue: IFormItemRule[], oldValue: IFormItemRule[]): void => {
+    // rules 从无到有，或从有到无，需要重新注册验证事件
+    const hadRules = oldValue?.length > 0
+    const hasRules = newValue?.length > 0
+
+    if (hadRules !== hasRules) {
+      api.removeValidateEvents()
+      api.addValidateEvents()
+    }
+  }
+
+export const registerField =
   ({ api, vm, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'props' | 'state'>) =>
   (): void => {
-    // 初始化tooltip信息
+    if (!props.prop || state.fieldRegistered) {
+      return
+    }
+
+    api.dispatch('Form', 'form:addField', vm)
+
+    let initialValue = state.fieldValue
+
+    if (Array.isArray(initialValue)) {
+      initialValue = initialValue.slice()
+    }
+
+    state.initialValue = initialValue
+    api.addValidateEvents()
+    state.fieldRegistered = true
+  }
+
+export const unregisterField =
+  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  (): void => {
+    if (!state.fieldRegistered) {
+      return
+    }
+
+    api.dispatch('Form', 'form:removeField', vm)
+    api.removeValidateEvents()
+    state.fieldRegistered = false
+  }
+
+export const updateTooltip =
+  ({ vm, state }: Pick<IFormItemRenderlessParams, 'vm' | 'state'>) =>
+  (): void => {
     const tooltip = vm.$refs.tooltip
     if (tooltip) {
       const content = vm.$refs.content
       tooltip.state.referenceElm = state.isMultiple ? content : content?.children[0]
       state.tooltip = tooltip
     }
+  }
 
-    if (props.prop) {
-      api.dispatch('Form', 'form:addField', vm)
+export const mounted =
+  ({ api }: Pick<IFormItemRenderlessParams, 'api'>) =>
+  (): void => {
+    // 初始化tooltip信息
+    api.updateTooltip()
 
-      let initialValue = state.fieldValue
-
-      if (Array.isArray(initialValue)) {
-        initialValue = ([] as any).concat(initialValue)
-      }
-
-      state.initialValue = initialValue
-      api.addValidateEvents()
-    }
+    api.registerField()
   }
 
 export const unmounted =
-  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
+  ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
   (): void => {
     state.canShowTip = false
-    api.dispatch('Form', 'form:removeField', vm)
-    api.removeValidateEvents()
+    api.unregisterField()
   }
 
 export const validate =
@@ -312,6 +361,7 @@ export const validate =
       api.clearValidate()
 
       const handlerError = () => {
+        api.updateTooltip()
         state.validateState = !errors ? VALIDATE_STATE.Success : VALIDATE_STATE.Error
 
         if (errors && props.error) {
@@ -345,7 +395,7 @@ export const resetField =
     state.validateState = ''
     state.validateMessage = ''
 
-    let model = state.form.model || {}
+    let model = state.form?.model || {}
     let value = state.fieldValue
     let path = props.prop || ''
 
@@ -379,7 +429,7 @@ export const resetField =
 export const getRules =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemRule[] => {
-    let formRules = state.form.rules || {}
+    let formRules = state.form?.rules || {}
     const selfRules = props.rules as IFormItemRule[]
     const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
@@ -416,10 +466,12 @@ export const getFilteredRule =
       .map((rule) => merge({}, rule))
   }
 
+// blur 事件触发时，直接调用原始的 validate 函数，不应用防抖
 export const onFieldBlur = (api: IFormItemRenderlessParams['api']) => (): void => {
-  api.validate('blur')
+  api.validateOrigin('blur')
 }
 
+// change 事件触发时，调用可能被防抖包装的 validate 函数
 export const onFieldChange =
   ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
   (): void => {
@@ -464,7 +516,6 @@ export const updateTip =
     if (state.getValidateType !== 'tip' && !state.canShowTip) {
       return
     }
-
     const tooltip = vm.$refs.tooltip
 
     if (!tooltip) {
@@ -533,17 +584,17 @@ export const handleMouseenter =
     }
 
     if (res.o || overHeight) {
-      state.form.showTooltip(dom, state.displayedValue)
+      state.form.showTooltip?.(dom, state.displayedValue)
     }
   }
 
 export const handleLabelMouseenter =
   ({ props, state, slots }) =>
   (e) => {
-    if (!state.form.overflowTitle || !state.form || slots.label) return
+    if (!state.form?.overflowTitle || !state.form || slots.label) return
     const label = e.target
     if (label && label.scrollWidth > label.offsetWidth) {
-      state.form.showTooltip(label, props.label + state.form.labelSuffix)
+      state.form.showTooltip?.(label, props.label + state.form.labelSuffix)
     }
   }
 
@@ -554,7 +605,7 @@ export const handleMouseleave = (state: IFormItemRenderlessParams['state']) => (
 export const getDisplayedValue =
   ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
   (param: IFormItemDisplayedValueParam): void => {
-    if (!state.formInstance.displayOnly) return
+    if (!state.formInstance?.displayOnly) return
     state.typeName = param.type
     state.isBasicComp = true
     state.displayedValue = param.val

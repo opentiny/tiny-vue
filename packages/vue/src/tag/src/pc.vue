@@ -33,7 +33,8 @@ export default defineComponent({
     'value',
     'beforeDelete',
     'onlyIcon',
-    'maxWidth'
+    'maxWidth',
+    'round'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
@@ -53,7 +54,8 @@ export default defineComponent({
       state,
       value,
       onlyIcon,
-      maxWidth
+      maxWidth,
+      round
     } = this
 
     let styles = {}
@@ -65,7 +67,8 @@ export default defineComponent({
       effect ? `tiny-tag--${effect}` : '',
       hit && 'is-hit',
       disabled ? 'is-disabled' : '',
-      onlyIcon ? 'tiny-tag--only-icon' : ''
+      onlyIcon ? 'tiny-tag--only-icon' : '',
+      round && 'is-round'
     ]
 
     if (color) {
@@ -85,7 +88,15 @@ export default defineComponent({
     const tagElement =
       value || (slots.default && slots.default()) ? (
         <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
-          {value ? <span>{value}</span> : slots.default && slots.default()}
+          {value ? (
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{value}</span>
+          ) : (
+            slots.default && (
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {slots.default()}
+              </span>
+            )
+          )}
           {closable && <icon-close class="tiny-svg-size tiny-tag__close" onClick={handleClose}></icon-close>}
         </span>
       ) : (

@@ -32,9 +32,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger)</code> 。',
+          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger / alerting / error)</code> 。',
         'en-US':
-          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger)</code> .'
+          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger/alerting/error)</code> .'
       },
       codeFiles: ['effect.vue']
     },
@@ -138,6 +138,18 @@ export default {
         'en-US': 'Listen for click events through <code>click</code> .'
       },
       codeFiles: ['tag-event-click.vue']
+    },
+    {
+      demoId: 'rounded',
+      name: {
+        'zh-CN': '圆角标签',
+        'en-US': 'Set rounded corner label'
+      },
+      desc: {
+        'zh-CN': '通过使用 <code>round</code> 属性设置圆角标签。',
+        'en-US': 'Set the rounded corners by using the <code>round</code> property.'
+      },
+      codeFiles: ['rounded.vue']
     }
   ],
   features: [

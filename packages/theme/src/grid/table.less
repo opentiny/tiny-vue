@@ -304,6 +304,10 @@
       border-bottom: 1px solid var(--tv-Grid-border-color-divider);
     }
 
+    table.@{grid-prefix-cls}__body {
+      border-top: 1px solid var(--tv-Grid-border-color-divider);
+    }
+
     .@{grid-prefix-cls}__header {
       border: 0;
       border-spacing: 0;
@@ -1308,6 +1312,11 @@
     .tiny-grid-header__column .tiny-grid-thead-partition,
     .tiny-grid-header__column .tiny-grid-resizable {
       transform: translateX(calc(50% - 1px));
+    }
+
+    .tiny-grid-header__column:last-child .tiny-grid-resizable {
+      transform: translateX(0);
+      width: 7px;
     }
 
     .tiny-grid-custom-footer {

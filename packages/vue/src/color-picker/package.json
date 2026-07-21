@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-color-picker",
-  "version": "3.27.0",
+  "version": "3.30.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -9,6 +9,7 @@
     "@opentiny/vue-color-select-panel": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-popover": "workspace:^",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },

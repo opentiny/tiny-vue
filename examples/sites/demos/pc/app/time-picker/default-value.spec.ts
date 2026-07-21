@@ -9,7 +9,7 @@ test('选择器打开时默认时间设置', async ({ page }) => {
   const minute = page.getByRole('listitem').filter({ hasText: '40' }).first()
   const second = page.getByRole('listitem').filter({ hasText: '00' }).nth(2)
 
-  await page.locator('#default-value input[type="text"]').nth(0).click()
+  await page.locator('#default-value input').nth(0).click()
   await expect(hour).toHaveClass(/active/)
   await expect(minute).toHaveClass(/active/)
   await expect(second).toHaveClass(/active/)
@@ -24,7 +24,7 @@ test('选择器打开时默认时间设置', async ({ page }) => {
   const endMinute = page.getByRole('listitem').filter({ hasText: '50' }).nth(2)
   const endSecond = page.getByRole('listitem').filter({ hasText: '00' }).nth(5)
 
-  await page.getByRole('textbox').nth(2).click()
+  await page.locator('#default-value input').nth(1).click()
   await expect(startHour).toHaveClass(/active/)
   await expect(startMinute).toHaveClass(/active/)
   await expect(startSecond).toHaveClass(/active/)

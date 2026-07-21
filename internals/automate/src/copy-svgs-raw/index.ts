@@ -82,9 +82,9 @@ function copyRaws() {
       `${rawPath}/${filename}`,
       (content) => {
         return content
-          .replaceAll('#191919', 'var(--tiny-first-color, #191919)')
-          .replaceAll('#AEAEAE', 'var(--tiny-second-color, #aeaeAE)')
-          .replaceAll('#aeaeae', 'var(--tiny-second-color, #aeaeAE)')
+          .replaceAll('#191919', 'var(--tiny-first-color)')
+          .replaceAll('#AEAEAE', 'var(--tiny-second-color)')
+          .replaceAll('#aeaeae', 'var(--tiny-second-color)')
       },
       `${svgsPath}/${name}`
     )

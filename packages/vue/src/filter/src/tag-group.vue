@@ -30,10 +30,10 @@
         :class="['h-9 mt-3 float-left relative']"
         :style="{ width: state.tagWidth }"
       >
-        <IconSubScript
+        <IconSubscript
           v-if="state.selected.indexOf(item.value) !== -1 && multiple"
           class="absolute right-3 w-4 h-4 fill-color-icon-focus"
-        ></IconSubScript>
+        ></IconSubscript>
         <span
           :class="[
             'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
@@ -53,11 +53,11 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/filter/tag-group'
 import { setup, $props, defineComponent } from '@opentiny/vue-common'
-import { IconSubScript } from '@opentiny/vue-icon'
+import { iconSubscript } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['click', 'update:modelValue'],
-  components: { IconSubScript: IconSubScript() },
+  components: { IconSubscript: iconSubscript() },
   model: {
     prop: 'modelValue',
     event: 'update:modelValue'

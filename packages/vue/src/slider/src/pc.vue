@@ -13,7 +13,6 @@
   <div class="tiny-slider-container" :class="[!vertical && 'tiny-slider-container__horizontal']">
     <div
       ref="slider"
-      role="tiny-slider"
       :class="[
         'tiny-slider',
         { 'tiny-slider__vertical': vertical, disabled: state.disabled },
@@ -35,6 +34,14 @@
       </transition>
       <div
         class="tiny-slider__handle"
+        role="slider"
+        :aria-label="state.isDouble ? `左滑块，当前值 ${state.leftBtnValue}` : `滑块，当前值 ${state.leftBtnValue}`"
+        :aria-valuenow="state.leftBtnValue"
+        :aria-valuemin="min"
+        :aria-valuemax="state.isDouble ? state.rightBtnValue : max"
+        :aria-valuetext="`${state.leftBtnValue}${unit}`"
+        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+        :aria-disabled="state.disabled ? 'true' : 'false'"
         tabindex="0"
         v-if="state.leftBtnShow"
         :style="state.leftBtnStyle"
@@ -52,6 +59,14 @@
       </div>
       <div
         class="tiny-slider__handle"
+        role="slider"
+        aria-label="右滑块"
+        :aria-valuenow="state.rightBtnValue"
+        :aria-valuemin="state.isDouble ? state.leftBtnValue : min"
+        :aria-valuemax="max"
+        :aria-valuetext="`${state.rightBtnValue}${unit}`"
+        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+        :aria-disabled="state.disabled ? 'true' : 'false'"
         tabindex="0"
         v-if="state.rightBtnShow"
         :style="state.rightBtnStyle"

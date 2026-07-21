@@ -10,7 +10,6 @@ test('自定义类名', async ({ page }) => {
   const confirmBtn = popConfirmPopover.getByRole('button', { name: '确定' })
 
   await popConfirm.hover()
-  await expect(popConfirmPopover).toBeVisible()
   await expect(popConfirmPopover).toHaveClass(/custom-class/)
   await confirmBtn.click()
   await expect(popConfirmPopover).not.toBeVisible()

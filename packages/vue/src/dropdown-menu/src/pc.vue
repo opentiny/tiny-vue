@@ -18,6 +18,7 @@
       v-show="state.showPopper"
       @mouseenter="handleMouseenter"
       @mouseleave="handleMouseleave"
+      role="menu"
     >
       <template v-if="state.initShowPopper || state.showPopper">
         <slot :selected-index="state.selectedIndex">
@@ -31,6 +32,7 @@
             :divided="item.divided"
             :tip="item.tip"
             :tip-position="item.tipPosition"
+            :tip-effect="item.tipEffect"
           >
           </tiny-dropdown-item>
         </slot>

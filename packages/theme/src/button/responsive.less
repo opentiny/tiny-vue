@@ -1,0 +1,24 @@
+/* stylelint-disable function-no-unknown */
+@import '../custom.less';
+@import './vars.less';
+
+@button-prefix-cls: ~'@{css-prefix}button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+@media (max-width: 1280px) {
+  .@{button-prefix-cls} {
+    .inject-Button-responsive-vars();
+
+    border-radius: var(--tv-Button-responsive-radius);
+    height: var(--tv-Button-responsive-height);
+    font-size: var(--tv-Button-responsive-font-size);
+
+    &.is-icon {
+      &:not(.@{button-prefix-cls}--default) {
+        .@{svg-prefix-cls} {
+          fill: var(--tv-Button-responsive-icon-inverse-tint);
+        }
+      }
+    }
+  }
+}

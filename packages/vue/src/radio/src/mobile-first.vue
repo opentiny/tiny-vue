@@ -17,11 +17,14 @@
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
+    :aria-labelledby="text || label ? `${name || 'radio'}-${label}-label` : null"
+    :aria-label="text || label ? null : text || label"
     tabindex="-1"
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
     <span
+      v-if="!state.isDisplayOnly"
       data-tag="tiny-radio-content"
       :class="
         m(
@@ -104,6 +107,7 @@
     <span
       data-tag="tiny-radio-label"
       ref="label"
+      :id="`${name || 'radio'}-${label}-label`"
       :class="
         m(
           gcls('radio-text-common'),
@@ -115,6 +119,7 @@
         )
       "
       @keydown.stop
+      v-auto-tip
     >
       <slot>{{ text || label }}</slot>
     </span>
@@ -126,10 +131,12 @@ import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconRadio, iconRadioselected, iconMobileRadio, iconMobileRadioSelected } from '@opentiny/vue-icon'
 import { classes } from './token'
+import { AutoTip } from '@opentiny/vue-directive'
 import type { IRadioApi } from '@opentiny/vue-renderless/types/radio.type'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
+  directives: { AutoTip },
   props: [
     ...props,
     'modelValue',

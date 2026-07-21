@@ -15,12 +15,22 @@ export const api = ['state', 'check', 'filter', 'nodeClick']
 export const renderless = (props, { reactive, computed, watch, onMounted }, { vm, emit }) => {
   const api = {}
 
+  const resolveTreeData = () => {
+    if (Array.isArray(props.treeOp)) {
+      return props.treeOp
+    }
+    if (props.treeOp && Array.isArray(props.treeOp.data)) {
+      return props.treeOp.data
+    }
+    return []
+  }
+
   const state = reactive({
     childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
     currentKey: props.modelValue,
     defaultCheckedKeys: [],
     remoteData: [],
-    treeData: props.treeOp.data,
+    treeData: resolveTreeData(),
     modelValue: []
   })
 
@@ -38,8 +48,12 @@ export const renderless = (props, { reactive, computed, watch, onMounted }, { vm
   })
 
   watch(
-    () => props.treeOp.data,
-    (data) => data && (state.treeData = data),
+    () => (Array.isArray(props.treeOp) ? props.treeOp : props.treeOp?.data),
+    (data) => {
+      if (Array.isArray(data)) {
+        state.treeData = data
+      }
+    },
     { immediate: true, deep: true }
   )
 

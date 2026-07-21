@@ -11,7 +11,7 @@
         <!-- 移动端展示内容 -->
         <div class="phone-container">
           <div class="mobile-iframe-container">
-            <iframe ref="iframeRef" width="100%" height="100%" :src="iframeUrl" frameborder="0"></iframe>
+            <iframe id="iframeDom" ref="iframeRef" width="100%" height="100%" :src="iframeUrl" frameborder="0"></iframe>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import { router } from '@/router.js'
 import { fetchDemosFile } from '@/tools'
 import ComponentDocs from './common.vue'
@@ -60,6 +60,53 @@ const pageInit = (demo) => {
   const { cmpId } = router.currentRoute.value.params
   iframeUrl.value = `${mobilePreview}?component=${cmpId}&demo=${demo.codeFiles[0]}`
 }
+
+let observer = new MutationObserver(() => {
+  const isDarkMode = document.documentElement.classList.contains('dark')
+  if (isDarkMode) {
+    onIframeLoad()
+  } else {
+    try {
+      const iframeDocument = iframeRef.value.contentDocument || iframeRef.value.contentWindow.document
+      iframeDocument.documentElement.classList.remove('dark')
+      const linkElement = iframeDocument.getElementById('theme-style-link')
+      if (linkElement) {
+        linkElement.remove()
+      }
+    } catch (error) {
+      console.error('无法访问 iframe:', error)
+    }
+  }
+})
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class']
+})
+
+const onIframeLoad = () => {
+  try {
+    const iframeDocument = iframeRef.value.contentDocument || iframeRef.value.contentWindow.document
+    const htmlElement = iframeDocument.documentElement
+
+    // 添加 dark 类
+    htmlElement.classList.add('dark')
+
+    const link = iframeDocument.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = '/public/static/css/mobile-dark-theme.css'
+    link.id = 'theme-style-link'
+
+    iframeDocument.head.appendChild(link)
+  } catch (error) {
+    console.error('无法访问 iframe:', error)
+  }
+}
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  observer = null
+})
 </script>
 
 <style scoped lang="less">

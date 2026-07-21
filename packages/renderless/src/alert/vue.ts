@@ -27,6 +27,7 @@ import {
   watchAutoHide,
   handlerTargetNode
 } from './index'
+import { nanoid } from '@opentiny/utils'
 
 export const api = ['handleClose', 'state', 'handleHeaderClick']
 
@@ -41,7 +42,9 @@ const initState = ({ api, computed, constants, reactive }): IAlertState => {
     getIcon: computed(() => api.computedGetIcon()),
     getTitle: computed(() => api.computedGetTitle()),
     alertClass: computed(() => api.computedClass()),
-    alertStyle: computed(() => api.computedStyle())
+    alertStyle: computed(() => api.computedStyle()),
+    titleId: `tiny-alert-title-${nanoid.api.nanoid(8)}`,
+    contentId: `tiny-alert-description-${nanoid.api.nanoid(8)}`
   })
 }
 

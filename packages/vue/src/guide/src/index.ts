@@ -54,6 +54,10 @@ export default defineComponent({
     mask: {
       type: Boolean,
       default: false
+    },
+    showClose: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

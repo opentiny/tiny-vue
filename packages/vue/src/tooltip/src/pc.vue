@@ -133,7 +133,12 @@ export default defineComponent({
       let attrContent: any
 
       if (vm.renderContent) {
-        attrContent = vm.renderContent(h, vm.content)
+        try {
+          attrContent = vm.renderContent(h, vm.content)
+        } catch (e) {
+          console.warn('[TINY Error] renderContent catch error:', e)
+          attrContent = vm.content || null
+        }
       } else if (vm.pre) {
         attrContent = vm.content ? h('pre', vm.content) : null
       } else {
@@ -150,6 +155,7 @@ export default defineComponent({
           get: () => {
             if (!_cacheVm.value) {
               _cacheVm.value = createComponent({
+                parent: this,
                 el: document.createElement('div'),
                 propsData: null,
                 component: {
@@ -192,6 +198,7 @@ export default defineComponent({
                         style={`max-width:${this.state.tipsMaxWidth}px`}
                         role="tooltip"
                         aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
+                        aria-live="polite"
                         onMouseenter={() => mouseenter()}
                         onMouseleave={() => mouseleave()}>
                         {addWrapper ? (

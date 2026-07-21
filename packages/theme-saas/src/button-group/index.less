@@ -57,9 +57,10 @@
           @apply absolute;
           @apply h-4;
           @apply w-px;
-          @apply top-2;
+          @apply top-1/2;
           left: -0.5px;
           @apply bg-color-border;
+          transform: translateY(-50%);
         }
       }
 
@@ -260,6 +261,27 @@
       @apply rounded-tl-none;
       @apply rounded-bl-none;
       @apply border-r-color-border-disabled;
+    }
+  }
+
+  &&--medium {
+    ul li button {
+      height: 42px;
+      line-height: 42px;
+    }
+  }
+
+  &&--small {
+    ul li button {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+
+  &&--mini {
+    ul li button {
+      @apply h-6;
+      @apply leading-6;
     }
   }
 }

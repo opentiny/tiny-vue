@@ -13,6 +13,7 @@
       :value="state.displayValue.toString()"
       :drop-down-visible="state.pickerVisible"
       :blank="blank"
+      :size="state.pickerSize"
     ></tiny-filter-box>
     <tiny-input
       :tabindex="tabindex"
@@ -37,6 +38,11 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       :validate-event="false"
+      role="combobox"
+      aria-haspopup="dialog"
+      aria-autocomplete="none"
+      :aria-owns="state.ariaPanelId"
+      :aria-controls="state.ariaPanelId"
     >
       <template v-if="label" #prefix>
         <tiny-tooltip
@@ -58,9 +64,15 @@
               @mouseleave="state.showClose = false"
               v-if="state.haveTrigger"
               class="baseClearicon"
+              aria-label="clear"
             />
           </transition>
-          <component :is="state.triggerClass" @click="handleFocus" class="tiny-svg-size" />
+          <component
+            :is="state.triggerClass"
+            @click="handleFocus"
+            class="tiny-svg-size"
+            aria-label="calendar"
+          />
         </i>
       </template>
     </tiny-input>
@@ -68,10 +80,12 @@
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
       :class="[
         'tiny-date-editor--' + state.type,
-        state.pickerSize ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}` : '',
+        state.pickerSize
+          ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}`
+          : '',
         state.pickerDisabled ? 'is-disabled' : '',
         state.pickerVisible ? 'is-active' : '',
-        state.isDisplayOnly ? 'is-display-only' : ''
+        state.isDisplayOnly ? 'is-display-only' : '',
       ]"
       @click="handleFocus"
       @mouseenter="handleMouseEnter"
@@ -81,12 +95,13 @@
       v-else
     >
       <tiny-tooltip
+        v-if="label && shape === 'filter'"
         effect="light"
         :content="state.labelTooltip"
         placement="top"
         @mouseenter.native="handleEnterPickerlabel"
       >
-        <span v-if="label" class="tiny-input__label" ref="label"> {{ label }} </span>
+        <span class="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <input
         autocomplete="off"
@@ -101,9 +116,16 @@
         @focus="handleFocus"
         tabindex="1"
         class="tiny-range-input"
+        role="combobox"
+        aria-haspopup="dialog"
+        aria-autocomplete="none"
+        :aria-owns="state.ariaPanelId"
+        :aria-controls="state.ariaPanelId"
       />
       <slot name="range-separator">
-        <span v-if="typeof rangeSeparator === 'string'" class="tiny-range-separator">{{ rangeSeparator }}</span>
+        <span v-if="typeof rangeSeparator === 'string'" class="tiny-range-separator">{{
+          rangeSeparator
+        }}</span>
         <component v-else :is="rangeSeparator" />
       </slot>
       <input
@@ -120,12 +142,19 @@
         tabindex="1"
         class="tiny-range-input"
       />
-      <i @click="handleClickIcon" v-if="state.haveTrigger" class="tiny-input__icon tiny-range__close-icon">
+      <i
+        @click="handleClickIcon"
+        v-if="state.haveTrigger"
+        class="tiny-input__icon tiny-range__close-icon"
+      >
         <transition name="tiny-transition-icon-scale-in">
           <component :is="state.showClose ? clearIcon : null" />
         </transition>
       </i>
-      <i v-if="!state.isDisplayOnly" class="tiny-input__icon tiny-range__icon tiny-input__suffix">
+      <i
+        v-if="!state.isDisplayOnly"
+        class="tiny-input__icon tiny-range__icon tiny-input__suffix"
+      >
         <component :is="state.triggerClass" />
       </i>
       <tiny-tooltip
@@ -136,7 +165,9 @@
         placement="top"
         @mouseenter.native="handleEnterDisplayOnlyContent"
       >
-        <span>{{ state.displayValue && state.displayValue.join(` ${t('ui.datepicker.to')} `) }}</span>
+        <span>{{
+          state.displayValue && state.displayValue.join(` ${t("ui.datepicker.to")} `)
+        }}</span>
       </tiny-tooltip>
     </div>
     <component
@@ -151,6 +182,10 @@
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
+      role="dialog"
+      aria-modal="false"
+      aria-lable="picker-panel"
+      :id="state.ariaPanelId"
     >
       <template v-if="$slots.footer || $slots.now || $slots.confirm" #footer="scoped">
         <slot name="footer" v-bind="scoped">

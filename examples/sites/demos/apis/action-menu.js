@@ -105,6 +105,21 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'text-field'
+        },
+        {
+          name: 'placement',
+          typeAnchorName: 'IPlacement',
+          type: 'IPlacement',
+          defaultValue: "'bottom-end'",
+          desc: {
+            'zh-CN': '二级下拉面板的显示位置',
+            'en-US': 'The position of the secondary drop-down panel'
+          },
+          mode: ['pc'],
+          pcDemo: '',
+          meta: {
+            stable: '3.30.0'
+          }
         }
       ],
       events: [
@@ -186,6 +201,13 @@ interface IItemClickParams {
     $el: HTMLElement
   }       
 }
+`
+    },
+    {
+      name: 'IPlacement',
+      type: 'interface',
+      code: `
+type IPlacement = 'bottom-start' |  'bottom-end'
 `
     }
   ]

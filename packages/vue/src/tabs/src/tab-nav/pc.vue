@@ -68,12 +68,36 @@ export default defineComponent({
     let { panes } = this
 
     const spans = [
-      <span class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']} onClick={scrollPrev}>
-        <IconChevronLeft />
+      <span
+        class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']}
+        role="button"
+        aria-label="向左滚动标签页"
+        aria-disabled={!state.scrollable.prev ? 'true' : 'false'}
+        tabindex={state.scrollable.prev ? 0 : -1}
+        onClick={scrollPrev}
+        onKeydown={(e) => {
+          if (e.key === 'Enter' && state.scrollable.prev) {
+            e.preventDefault()
+            scrollPrev()
+          }
+        }}>
+        <IconChevronLeft aria-hidden="true" />
       </span>,
       !showMoreTabs ? (
-        <span class={['tiny-tabs__nav-next', state.scrollable.next ? '' : 'is-disabled']} onClick={scrollNext}>
-          <IconChevronRight />
+        <span
+          class={['tiny-tabs__nav-next', state.scrollable.next ? '' : 'is-disabled']}
+          role="button"
+          aria-label="向右滚动标签页"
+          aria-disabled={!state.scrollable.next ? 'true' : 'false'}
+          tabindex={state.scrollable.next ? 0 : -1}
+          onClick={scrollNext}
+          onKeydown={(e) => {
+            if (e.key === 'Enter' && state.scrollable.next) {
+              e.preventDefault()
+              scrollNext()
+            }
+          }}>
+          <IconChevronRight aria-hidden="true" />
         </span>
       ) : null
     ]
@@ -150,12 +174,21 @@ export default defineComponent({
       pane.state.index = `${index}`
 
       const btnClose = withClose ? (
-        <span class="tiny-tabs__icon-close">
-          <IconClose
-            onClick={(e) => {
+        <span
+          class="tiny-tabs__icon-close"
+          role="button"
+          aria-label={`关闭 ${pane.title || '标签页'}`}
+          tabindex="0"
+          onClick={(e) => {
+            onTabRemove(pane, e)
+          }}
+          onKeydown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
               onTabRemove(pane, e)
-            }}
-          />
+            }
+          }}>
+          <IconClose aria-hidden="true" />
         </span>
       ) : null
 
@@ -218,6 +251,7 @@ export default defineComponent({
           attrs: {
             id: `tab-${tabName}`,
             'aria-controls': `pane-${tabName}`,
+            'aria-disabled': pane.disabled ? 'true' : 'false', // 无障碍：标识禁用状态
             'data-index': index + 1,
             role: 'tab',
             'aria-selected': pane.state.active,
@@ -236,7 +270,8 @@ export default defineComponent({
               onTabClick(pane, tabName, e)
             },
             keydown(e) {
-              if (withClose && (e.keyCode === 46 || e.keyCode === 8)) {
+              if (withClose && (e.key === 'Delete' || e.key === 'Backspace')) {
+                e.preventDefault()
                 onTabRemove(pane, e)
               }
             }
@@ -275,6 +310,7 @@ export default defineComponent({
             ref="nav"
             style={state.navStyle}
             role="tablist"
+            aria-label="标签页列表" // 无障碍：为 tablist 提供标签，帮助屏幕阅读器识别
             on-keydown={changeTab}>
             {!tabStyle ? <TabBar ref="tabBar" tabs={panes} /> : null}
             {tabs}

@@ -1,5 +1,5 @@
 export default {
-  mode: ['mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'slider-button',
@@ -13,7 +13,10 @@ export default {
             'zh-CN': '设置滑块项禁用态',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          meta: {
+            stable: '3.31.0'
+          },
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         },
         {
@@ -24,16 +27,8 @@ export default {
             'zh-CN': '按钮内容是否全部展示，默认false',
             'en-US': 'Set whether the button content is fully displayed, default is false'
           },
-          mode: ['mobile-first'],
-          mfDemo: ''
-        },
-        {
-          name: 'disabled',
-          type: 'Boolean',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '设置滑块项禁用态',
-            'en-US': ''
+          meta: {
+            stable: '3.31.0'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -46,7 +41,10 @@ export default {
             'zh-CN': '设置 Button 的内容',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          meta: {
+            stable: '3.31.0'
+          },
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         },
         {
@@ -57,7 +55,10 @@ export default {
             'zh-CN': '设置 Button 的内容',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          meta: {
+            stable: '3.31.0'
+          },
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         }
       ],
@@ -72,7 +73,10 @@ export default {
             'zh-CN': '组件默认插槽',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          meta: {
+            stable: '3.31.0'
+          },
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         }
       ]

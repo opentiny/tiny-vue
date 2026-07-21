@@ -20,7 +20,7 @@ export const classes = {
   'pc-search-input-background-transparent': ' border-transparent',
   'pc-search-input-background-transparent-collapse': 'bg-color-bg-1',
   'pc-search-input-default':
-    'pl-2 table-cell relative align-middle right-0 text-color-text-primary border-0 outline-0 bg-transparent placeholder:text-color-none focus:placeholder:text-color-text-placeholder',
+    'pl-2 table-cell relative align-middle right-0 text-color-text-primary border-0 outline-none bg-transparent placeholder:text-color-none focus:placeholder:text-color-text-placeholder',
   'pc-search-input-collapse': 'w-7 float-right p-0',
   'pc-search-input-uncollapse': 'w-full',
   'pc-search-input-collapse-big': 'pl-3',

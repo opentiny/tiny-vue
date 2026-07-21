@@ -1,7 +1,8 @@
 <template>
   <div
     ref="select"
-    class="inline-block relative w-full outline-0 group [&_[data-tag=tiny-tag]]:max-w-[144px]"
+    data-tag="tiny-select"
+    class="inline-block relative w-full outline-0 group/select [&_[data-tag=tiny-tag]]:max-w-[144px]"
     v-popover:popover
     :class="[hoverExpand ? 'align-top' : '', $parent.$attrs.class]"
     @mouseleave.self="
@@ -47,6 +48,7 @@
         "
         :drop-down-visible="state.visible"
         :blank="blank"
+        :size="state.selectSize"
       >
       </tiny-filter-box>
       <div
@@ -192,7 +194,7 @@
             :disabled="!showTips || state.device === 'mb'"
             :popper-class="tooltipConfig.popperClass || ''"
           >
-            <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-disabled">
+            <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-secondary">
               <span v-for="item in state.selected" :key="item.value">
                 <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
                 >;
@@ -217,7 +219,7 @@
           v-if="filterable && !state.selectDisabled"
           v-model="state.query"
           type="text"
-          class="hidden sm:inline-block border-none outline-0 p-0 ml-px text-color-text-primary text-xs h-7 appearance-none bg-transparent"
+          class="hidden sm:inline-block border-none outline-none p-0 ml-px text-color-text-primary text-xs h-7 appearance-none bg-transparent"
           :class="[
             state.selectSize === 'mini' ? 'h-6' : '',
             state.selectSize === 'small' ? 'h-9' : '',
@@ -245,6 +247,11 @@
             'max-width': state.inputWidth - 42 + 'px',
             height: 'auto'
           }"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          :aria-owns="state.ariaListId"
+          :aria-controls="state.ariaListId"
         />
       </div>
       <tiny-input
@@ -277,6 +284,11 @@
         @mouseenter="onMouseenterNative"
         @mouseleave="onMouseleaveNative"
         @compositionend.native="handleComposition"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-autocomplete="list"
+        :aria-owns="state.ariaListId"
+        :aria-controls="state.ariaListId"
       >
         <template #prefix v-if="slots.prefix">
           <slot name="prefix"></slot>
@@ -284,7 +296,7 @@
         <template #suffix>
           <slot name="suffix"></slot>
           <span v-if="state.showCopy" class="h-4 cursor-pointer relative z-[1]" @click.stop="handleCopyClick">
-            <icon-copy :class="[gcls('caret'), 'align-top group-hover:fill-color-brand']"></icon-copy>
+            <icon-copy :class="[gcls('caret'), 'align-top group-hover/select:fill-color-brand']"></icon-copy>
           </span>
           <span v-if="showProportion && state.selected.length > 0 && state.options.length > 1">
             {{ state.selected.length + '/' + state.options.length }}
@@ -340,6 +352,8 @@
           :popper-options="popperOptions"
           :class="m('duration-300')"
           :height="dropdownHeight"
+          role="listbox"
+          :id="state.ariaListId"
         >
           <div
             v-if="shape && filterable"
@@ -451,7 +465,10 @@
               <component
                 :is="`icon-${state.selectCls}`"
                 :class="
-                  m(['-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ', state.selectCls !== 'check' && 'fill-color-brand text-color-brand'])
+                  m([
+                    '-mt-0.5 mr-2 fill-color-icon-secondary w-3.5 h-3.5 ',
+                    state.selectCls !== 'check' && 'fill-color-brand text-color-brand'
+                  ])
                 "
               />
               <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">

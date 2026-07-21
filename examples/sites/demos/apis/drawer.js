@@ -6,6 +6,21 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'append-to-body',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': 'drawer 本身是否插入到 body 上',
+            'en-US': 'Whether the drawer itself is inserted into the body'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'drawer-to-body',
+          mfDemo: '',
+          meta: {
+            stable: '3.30.0'
+          }
+        },
+        {
           name: 'before-close',
           type: '(type) => boolean',
           defaultValue: '',
@@ -26,6 +41,21 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'destroy-on-close',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '关闭时销毁抽屉内的元素，而非隐藏',
+            'en-US': 'Destroy elements inside the drawer when closing, instead of hiding them'
+          },
+          mode: ['pc'],
+          pcDemo: 'destroy-on-close',
+          mfDemo: '',
+          meta: {
+            stable: '3.31.0'
+          }
         },
         {
           name: 'dragable',
@@ -207,6 +237,20 @@ export default {
           mode: ['pc'],
           pcDemo: 'tips-props',
           hideSaas: true
+        },
+        {
+          name: 'close-on-press-escape',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': 'ESC 键关闭抽屉',
+            'en-US': 'ESC key to close drawer'
+          },
+          mode: ['pc'],
+          pcDemo: 'closeOnPressEscape',
+          meta: {
+            stable: '3.28.0'
+          }
         }
       ],
       events: [
@@ -221,6 +265,21 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'events',
           mfDemo: ''
+        },
+        {
+          name: 'closed',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭抽屉动画结束时的事件',
+            'en-US': 'Event emitted when drawer closing animation ends'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'events',
+          mfDemo: '',
+          meta: {
+            stable: '3.29.0'
+          }
         },
         {
           name: 'confirm',
@@ -357,6 +416,7 @@ interface IDrawerConfigs extends IDrawerProps {
   events: {
     // 监听事件
     close: () => void
+    closed: () => void
     confirm: () => void
     show: (instance: Component) => void
   },

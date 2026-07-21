@@ -51,13 +51,30 @@ export default defineComponent({
         ? h(
             'div',
             {
+              attrs: {
+                role: 'button', // 无障碍：标识为按钮
+                'aria-label': '向左滚动标签页', // 无障碍：提供按钮标签
+                tabindex: '0' // 无障碍：支持键盘访问
+              },
               class:
                 'hidden sm:inline-flex w-6 h-11 sm:h-10 text-sm cursor-pointer items-center justify-center absolute left-0 top-0 z-10 bg-color-bg-1',
-              on: { click: scrollToLeft }
+              on: {
+                click: scrollToLeft,
+                // 无障碍：支持键盘操作
+                keydown: (e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    scrollToLeft(e)
+                  }
+                }
+              }
             },
             [
               h(IconChevronLeft(), {
-                class: 'fill-color-icon-primary hover:fill-color-icon-focus'
+                class: 'fill-color-icon-primary hover:fill-color-icon-focus',
+                attrs: {
+                  'aria-hidden': 'true'
+                }
               })
             ]
           )
@@ -107,13 +124,30 @@ export default defineComponent({
             ? h(
                 'div',
                 {
-                  attrs: { 'data-tag': 'tiny-tab-add' },
+                  attrs: {
+                    'data-tag': 'tiny-tab-add',
+                    role: 'button', // 无障碍：标识为按钮
+                    'aria-label': '添加新标签页', // 无障碍：为按钮提供标签
+                    tabindex: '0' // 无障碍：支持键盘访问
+                  },
                   class: 'hidden sm:inline-block w-11 h-11 sm:h-10 text-sm cursor-pointer',
-                  on: { click: emitAdd }
+                  on: {
+                    click: emitAdd,
+                    // 无障碍：支持键盘 Enter 和 Space 键
+                    keydown: (e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        emitAdd(e)
+                      }
+                    }
+                  }
                 },
                 [
                   h('span', { class: 'inline-flex w-full h-full flex-col justify-center items-center' }, [
-                    h(IconPlus(), { class: 'fill-color-icon-primary hover:fill-color-icon-focus' })
+                    h(IconPlus(), {
+                      class: 'fill-color-icon-primary hover:fill-color-icon-focus',
+                      attrs: { 'aria-hidden': 'true' }
+                    })
                   ])
                 ]
               )

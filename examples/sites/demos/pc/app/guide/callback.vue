@@ -137,6 +137,7 @@ export default {
           ],
           destroy: () => {
             this.label = 'destroy'
+            this.showStep = false
           },
           complete: () => {
             this.label = 'complete'

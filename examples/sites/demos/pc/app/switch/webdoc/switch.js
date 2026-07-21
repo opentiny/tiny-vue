@@ -29,6 +29,18 @@ export default {
       codeFiles: ['mini-mode.vue']
     },
     {
+      demoId: 'width',
+      name: {
+        'zh-CN': '自定义宽度',
+        'en-US': 'Custom width'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>width</code> 设置开关的宽度。</p>',
+        'en-US': '<p>Set the width of the switch through <code>width</code> .</p>'
+      },
+      codeFiles: ['width.vue']
+    },
+    {
       demoId: 'loading',
       name: {
         'zh-CN': '加载中状态',

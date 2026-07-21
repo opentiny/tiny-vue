@@ -42,7 +42,7 @@
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
-      v-auto-tip="state.rootAutoTipConfig"
+      :title="state.rootAutoTipConfig.content"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -61,6 +61,7 @@
           "
           :drop-down-visible="state.visible"
           :blank="blank"
+          :size="state.selectSize"
         >
         </tiny-filter-box>
         <div
@@ -294,6 +295,11 @@
           @mouseenter="onMouseenterNative"
           @mouseleave="onMouseleaveNative"
           @compositionend.native="handleComposition"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          :aria-owns="state.ariaListId"
+          :aria-controls="state.ariaListId"
         >
           <template #prefix v-if="slots.prefix">
             <slot name="prefix"></slot>
@@ -354,6 +360,8 @@
           v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
           :style="dropStyle"
           :popper-options="popperOptions"
+          role="listbox"
+          :id="state.ariaListId"
         >
           <div
             v-if="shape && filterable"
@@ -419,7 +427,7 @@
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
-            @update:modelValue="handleQueryChange(state.query)"
+            @update:modelValue="handleQueryChange(state.query, false, true)"
           >
             <template #prefix>
               <!-- tiny 为适配smb，增加前置的放大镜 -->

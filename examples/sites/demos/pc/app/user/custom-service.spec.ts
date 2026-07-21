@@ -16,6 +16,6 @@ test('user-custom-service', async ({ page }) => {
   await input.press('Enter')
   await page.waitForTimeout(2000)
   await expect((await options.all()).length).toEqual(4)
-  await page.getByRole('listitem', { name: 'test2' }).click()
+  await page.getByRole('option', { name: 'test2' }).click()
   await expect(input).toHaveValue('test2')
 })

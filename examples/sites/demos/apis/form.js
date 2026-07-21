@@ -581,6 +581,17 @@ export default {
           pcDemo: 'slot-label'
         },
         {
+          name: 'label-line',
+          defaultValue: 2,
+          type: 'number',
+          desc: {
+            'zh-CN': '标签文本显示的行数',
+            'en-US': 'The number of lines displayed in the label text'
+          },
+          mode: ['mobile-first'],
+          pcDemo: 'slot-label'
+        },
+        {
           name: 'error',
           defaultValue: '',
           desc: {

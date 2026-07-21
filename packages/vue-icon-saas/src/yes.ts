@@ -1,0 +1,7 @@
+import { svg } from '@opentiny/vue-common'
+import Yes from '@opentiny/vue-theme-saas/svgs/yes.svg'
+import YesFilled from '@opentiny/vue-theme-saas/svgs/yes-filled.svg'
+
+const iconFn = () => svg({ name: 'IconYes', component: Yes, filledComponent: YesFilled })()
+iconFn.__flag = { 'svgName': 'yes', 'hasFill': true }
+export default iconFn

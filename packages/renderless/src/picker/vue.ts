@@ -70,7 +70,7 @@ import {
   formatInputValue
 } from './index'
 import { dateMobileToggle, timeMobileToggle, dateToTimeArray, timeArrayToDate, timeMobileConfirm } from './mb'
-import { DATEPICKER } from '@opentiny/utils'
+import { DATEPICKER, nanoid } from '@opentiny/utils'
 import type {
   IPickerProps,
   IPickerApi,
@@ -178,7 +178,8 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
           (state.innerWidth < 335 && state.type === 'datetimerange')) &&
         state.displayValue &&
         state.displayValue[1]
-    )
+    ),
+    ariaPanelId: 'panel-' + nanoid.api.nanoid(8)
   })
 
   return state
@@ -304,6 +305,42 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(() => props.pickerOptions, api.updateOptions, { deep: true })
 
   watch(() => props.label, api.setInputPaddingLeft)
+
+  // 同步缺失的 props 到 picker.state
+  watch(
+    () => props.defaultTime,
+    (value) => state.picker && (state.picker.state.defaultTime = value)
+  )
+
+  watch(
+    () => props.popperClass,
+    (value) => state.picker && (state.picker.state.popperClass = value)
+  )
+
+  watch(
+    () => props.popperAppendToBody,
+    (value) => state.picker && (state.picker.state.popperAppendToBody = value)
+  )
+
+  watch(
+    () => props.showTimezone,
+    (value) => state.picker && (state.picker.state.showTimezone = value || state.timezone.isServiceTimezone)
+  )
+
+  watch(
+    () => props.timeFormat,
+    (value) => state.picker && (state.picker.state.timefmt = value || '')
+  )
+
+  watch(
+    () => props.defaultTimezone,
+    (value) => state.picker && (state.picker.state.defaultTimezone = value)
+  )
+
+  watch(
+    () => props.unlinkPanels,
+    (value) => state.picker && (state.picker.state.unlinkPanels = value)
+  )
 }
 
 export const renderless = (

@@ -63,7 +63,7 @@
             <IconSearch custom-class="h-4 w-4" class="mr-1 fill-color-icon-disabled"></IconSearch>
             <input
               v-model="state.search.input"
-              class="h-5 flex-auto text-xs bg-transparent outline-0"
+              class="h-5 flex-auto text-xs bg-transparent outline-none"
               :placeholder="t('ui.select.pleaseSearch')"
               @input="searchMethod"
             />

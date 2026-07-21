@@ -44,6 +44,7 @@ export const renderless = (
     focusing: false,
     contentHeight: 0,
     contentWrapStyle: { height: 'auto', display: 'block' },
+    size: parent.collapse.size,
     isActive: computed(() => parent.collapse.state.activeNames.includes(props.name)),
     arrowIcon: props.expandIcon || designConfig?.icons?.arrowIcon || 'IconChevronRight'
   })

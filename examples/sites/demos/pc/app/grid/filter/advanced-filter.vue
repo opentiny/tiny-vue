@@ -103,7 +103,7 @@ export default {
         layout: 'input,enum,default,extends,base',
         inputFilter: {
           component: TinyNumeric,
-          attrs: { format: 'yyyy/MM/dd hh:mm:ss' },
+          attrs: { min: 0, max: 10000 },
           relations: [
             {
               label: '小于',

@@ -66,6 +66,7 @@ export default defineComponent({
     'cancelContent',
     'confirmBtnProps',
     'cancelBtnProps',
+    'headerDragable',
     'footerDragable',
     'tiny_theme',
     'slots',
@@ -145,7 +146,8 @@ export default defineComponent({
             is__mask: mask,
             is__maximize: zoomLocat,
             is__visible: contentVisible,
-            active: visible
+            active: visible,
+            leave: !contentVisible
           }
         ],
         style: {
@@ -160,6 +162,10 @@ export default defineComponent({
         h(
           'div',
           {
+            role: 'dialog',
+            'aria-modal': 'true',
+            'aria-labelledby': state.titleId,
+            'aria-describedby': state.contentId,
             class: 'tiny-modal__box',
             style: state.boxStyle,
             ref: 'modalBox',
@@ -174,7 +180,7 @@ export default defineComponent({
                   {
                     class: ['tiny-modal__header', status && state.theme === 'saas' ? 'tiny-modal__header-icon' : ''],
                     on: {
-                      mousedown: this.mousedownEvent
+                      mousedown: this.headerDragable ? this.mousedownEvent : () => {}
                     }
                   },
                   [
@@ -187,6 +193,7 @@ export default defineComponent({
                           [
                             typeof status === 'string'
                               ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                                  'aria-label': `${constants.STATUS_MAPPING_CLASSS[status.toUpperCase()] || 'default'}-circle`,
                                   class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
                                 })
                               : h(status, {
@@ -199,13 +206,15 @@ export default defineComponent({
                       ? h(
                           'span',
                           {
-                            class: 'tiny-modal__title'
+                            class: 'tiny-modal__title',
+                            id: state.titleId
                           },
                           title || t('ui.alert.title')
                         )
                       : null,
                     resize
                       ? h(zoomLocat ? iconMinscreenRight() : iconFullscreenRight(), {
+                          'aria-label': 'Zoom',
                           class: ['tiny-modal__zoom-btn', 'trigger__btn'],
                           on: {
                             click: this.toggleZoomEvent
@@ -214,6 +223,7 @@ export default defineComponent({
                       : null,
                     showClose
                       ? h(iconClose(), {
+                          'aria-label': 'Close',
                           class: ['tiny-modal__close-btn', 'trigger__btn'],
                           on: {
                             click: this.closeEvent
@@ -238,6 +248,7 @@ export default defineComponent({
                       [
                         typeof status === 'string'
                           ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                              'aria-label': `${constants.STATUS_MAPPING_CLASSS[status.toUpperCase()] || 'default'}-message-circle`,
                               class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
                             })
                           : h(status, {
@@ -249,7 +260,8 @@ export default defineComponent({
                 h(
                   'div',
                   {
-                    class: 'tiny-modal__content'
+                    class: 'tiny-modal__content',
+                    id: state.contentId
                   },
                   defaultSlot
                     ? [defaultSlot.call(this, { $modal: this }, h)]
@@ -269,6 +281,7 @@ export default defineComponent({
                       },
                       [
                         h(iconClose(), {
+                          'aria-label': 'Close',
                           class: ['tiny-modal__close-btn'],
                           on: {
                             click: this.closeEvent

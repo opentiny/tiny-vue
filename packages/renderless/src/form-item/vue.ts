@@ -23,8 +23,12 @@ import {
   removeValidateEvents,
   mounted,
   unmounted,
+  registerField,
+  unregisterField,
   watchError,
   watchValidateStatus,
+  watchRequired,
+  watchRules,
   computedLabelStyle,
   computedValueStyle,
   computedContentStyle,
@@ -36,6 +40,7 @@ import {
   computedIsErrorInline,
   computedIsErrorBlock,
   updateTip,
+  updateTooltip,
   wrapValidate,
   getDisplayedValue,
   clearDisplayedValue,
@@ -43,6 +48,7 @@ import {
   handleMouseenter,
   handleMouseleave
 } from './index'
+import { nanoid } from '@opentiny/utils'
 import type {
   IFormItemApi,
   IFormItemProps,
@@ -55,6 +61,7 @@ import type {
 export const api = [
   'state',
   'validate',
+  'validateOrigin',
   'clearValidate',
   'resetField',
   'getRules',
@@ -79,6 +86,11 @@ const initState = ({
   inject,
   props
 }: Pick<IFormItemRenderlessParams, 'reactive' | 'computed' | 'api' | 'mode' | 'inject' | 'props'>) => {
+  // 使用 nanoid 生成唯一的 ID（8位字符），用于无障碍属性关联
+  const uniqueId = nanoid.api.nanoid(8)
+  const errorId = `tiny-form-item-error-${uniqueId}`
+  const labelId = `tiny-form-item-label-${uniqueId}`
+
   const state: IFormItemState = reactive({
     mode,
     validateState: '',
@@ -98,6 +110,9 @@ const initState = ({
     showTooltip: false,
     typeName: '',
     formInstance: inject('form') as IFormInstance,
+    // 无障碍支持：为错误信息和标签生成唯一 ID
+    errorId,
+    labelId,
     labelFor: computed(() => props.for || props.prop || ''),
     labelStyle: computed(() => api.computedLabelStyle()),
     valueStyle: computed(() => api.computedValueStyle()),
@@ -105,37 +120,50 @@ const initState = ({
     form: computed(() => api.computedForm() as IFormInstance),
     fieldValue: computed(() => api.computedFieldValue()),
     isRequired: computed(() => api.computedIsRequired()),
-    formInline: computed(() => state.formInstance.inline),
-    formSize: computed(() => state.formInstance.size),
+    formInline: computed(() => state.formInstance?.inline),
+    formSize: computed(() => state.formInstance?.size),
     formItemSize: computed(() => props.size || state.formSize),
-    isDisplayOnly: computed(() => state.formInstance.displayOnly),
-    labelPosition: computed(() => state.formInstance.labelPosition),
-    hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
-    labelSuffix: computed(() => state.formInstance.labelSuffix),
-    labelWidth: computed(() => state.formInstance.labelWidth),
-    showMessage: computed(() => state.formInstance.showMessage),
+    isDisplayOnly: computed(() => state.formInstance?.displayOnly ?? false),
+    labelPosition: computed(() => state.formInstance?.labelPosition ?? 'right'),
+    hideRequiredAsterisk: computed(() => state.formInstance?.state?.hideRequiredAsterisk ?? false),
+    labelSuffix: computed(() => state.formInstance?.labelSuffix ?? ''),
+    labelWidth: computed(() => state.formInstance?.labelWidth ?? ''),
+    showMessage: computed(() => state.formInstance?.showMessage ?? true),
     sizeClass: computed(() => state.formItemSize),
     getValidateType: computed(() => api.computedGetValidateType()),
     validateIcon: computed(() => api.computedValidateIcon()),
     isErrorInline: computed(() => api.computedIsErrorInline()),
     isErrorBlock: computed(() => api.computedIsErrorBlock()),
-    disabled: computed(() => state.formInstance.disabled || props.disabled),
-    tooltipType: computed(() => state.formInstance.state.tooltipType),
+    /**
+     * TODO: There is a potential issue here. Need to confirm whether to keep this logic.
+     * There does not have disabled prop in form-item, but disabled is used here, I think it is a mistake.
+     * If not, need to add disabled prop in form-item component.
+     */
+    // @ts-expect-error Need to confirm whether to keep this logic
+    disabled: computed(() => state.formInstance?.disabled || props.disabled),
+    tooltipType: computed(() => state.formInstance?.state.tooltipType ?? 'normal'),
     // 标记表单项下是否有多个子节点
-    isMultiple: false
+    isMultiple: false,
+    fieldRegistered: false
   })
 
   return state
 }
 
 const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots }) => {
+  // 创建原始的 validate 函数（不经过防抖处理）
+  const validateOriginFunc = validate({ api, props, state, t })
+
   Object.assign(api, {
     state,
     dispatch,
     broadcast,
     watchError: watchError(state),
-    updateTip: updateTip({ vm, state }),
+    updateTip: updateTip({ api, vm, state }),
+    updateTooltip: updateTooltip({ vm, state }),
     watchValidateStatus: watchValidateStatus(state),
+    watchRequired: watchRequired({ api }),
+    watchRules: watchRules({ api }),
     computedLabelStyle: computedLabelStyle({ props, state }),
     computedValueStyle: computedValueStyle({ props, state }),
     computedContentStyle: computedContentStyle({ props, state }),
@@ -149,15 +177,18 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
     getRules: getRules({ props, state }),
     updateComputedLabelWidth: updateComputedLabelWidth(state),
     removeValidateEvents: removeValidateEvents(vm),
-    unmounted: unmounted({ api, vm, state }),
-    mounted: mounted({ api, vm, props, state }),
+    registerField: registerField({ api, vm, props, state }),
+    unregisterField: unregisterField({ api, vm, state }),
+    unmounted: unmounted({ api, state }),
+    mounted: mounted({ api }),
     computedIsRequired: computedIsRequired({ api, state }),
     resetField: resetField({ api, nextTick, props, state }),
     getFilteredRule: getFilteredRule(api),
     onFieldBlur: onFieldBlur(api),
     onFieldChange: onFieldChange({ api, state }),
     addValidateEvents: addValidateEvents({ api, vm, props, state }),
-    validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props }),
+    validateOrigin: validateOriginFunc,
+    validate: wrapValidate({ validateFunc: validateOriginFunc, props }),
     getDisplayedValue: getDisplayedValue({ state }),
     clearDisplayedValue: clearDisplayedValue({ state }),
     handleLabelMouseenter: handleLabelMouseenter({ props, state, slots }),
@@ -166,12 +197,30 @@ const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nex
   })
 }
 
-const initWatch = ({ watch, api, props, state }) => {
+const initWatch = ({ watch, api, props, state, nextTick }) => {
   watch(() => props.error, api.watchError, { immediate: true })
 
   watch(() => props.validateStatus, api.watchValidateStatus)
 
-  watch(() => state.formInstance.displayOnly, api.clearDisplayedValue)
+  watch(() => state.formInstance?.displayOnly, api.clearDisplayedValue)
+
+  watch(
+    () => props.prop,
+    (newProp, oldProp) => {
+      if (oldProp) {
+        api.unregisterField()
+        api.clearValidate()
+      }
+
+      if (newProp) {
+        nextTick(() => api.registerField())
+      }
+    }
+  )
+
+  watch(() => props.required, api.watchRequired)
+
+  watch(() => props.rules, api.watchRules, { deep: true })
 }
 
 export const renderless = (
@@ -185,7 +234,7 @@ export const renderless = (
   provide('formItem', vm)
 
   initApi({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots })
-  initWatch({ watch, api, props, state })
+  initWatch({ watch, api, props, state, nextTick })
 
   onMounted(api.mounted)
   vm.$on('displayed-value-changed', (param) => {

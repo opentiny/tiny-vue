@@ -1,8 +1,9 @@
 @import '../custom.less';
 
-@dropdown-prefix-cls: ~'@{css-prefix}dropdown-item';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
+@dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
 
-.@{dropdown-prefix-cls} {
+.@{dropdown-item-prefix-cls} {
   @apply list-none;
   @apply leading-7;
   @apply py-0;
@@ -13,6 +14,7 @@
   @apply text-color-text-primary;
   @apply cursor-pointer;
   @apply outline-0;
+  @apply relative;
 
   &:focus,
   &:not(.is-disabled):hover {
@@ -28,13 +30,55 @@
     @apply cursor-not-allowed;
     @apply text-color-text-disabled;
   }
+
+  .@{dropdown-item-prefix-cls}__wrap {
+    @apply flex items-center;
+    @apply h-full;
+    @apply w-full;
+
+    // 展开（右侧子菜单）容器：与默认主题一致，默认展开到父项左侧
+    .@{dropdown-item-prefix-cls}--child {
+      @apply absolute;
+      @apply right-full;
+      @apply top-0;
+      @apply hidden;
+    }
+
+    .@{dropdown-item-prefix-cls}__expand {
+      @apply flex;
+      @apply items-center;
+    }
+
+    .@{dropdown-item-prefix-cls}__content {
+      @apply flex;
+      @apply items-center;
+      @apply w-full;
+
+      .@{dropdown-item-prefix-cls}__label {
+        @apply min-w-0;
+        @apply shrink-0;
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+        @apply whitespace-nowrap;
+        @apply transform-gpu;
+      }
+    }
+  }
+
+  &:not(.is-disabled):hover > .@{dropdown-item-prefix-cls}__wrap > .@{dropdown-item-prefix-cls}--child {
+    @apply block;
+  }
+
+  &:not(.is-disabled).has-children:hover {
+    @apply bg-transparent;
+  }
 }
 
-.@{dropdown-prefix-cls}:not(:last-of-type) {
+.@{dropdown-item-prefix-cls}:not(:last-of-type) {
   @apply !mb-1;
 }
 
-.@{dropdown-prefix-cls}--divided {
+.@{dropdown-item-prefix-cls}--divided {
   @apply relative;
   @apply ~'mt-1.5';
 
@@ -49,7 +93,31 @@
   }
 }
 
-.@{dropdown-prefix-cls}--check-status {
+.@{dropdown-item-prefix-cls}--check-status {
   @apply bg-color-fill-6;
   @apply text-color-brand;
+}
+
+.@{dropdown-menu-prefix-cls}[x-placement='bottom-start'],
+.@{dropdown-menu-prefix-cls}[x-placement='top-start'],
+.@{dropdown-menu-prefix-cls}[data-popper-placement^='bottom-start'],
+.@{dropdown-menu-prefix-cls}[data-popper-placement^='top-start'] {
+  .@{dropdown-item-prefix-cls}__wrap {
+    @apply flex-row-reverse;
+
+    .@{dropdown-item-prefix-cls}__expand {
+      .tiny-svg {
+        transform: scaleX(-1);
+      }
+    }
+
+    .@{dropdown-item-prefix-cls}__content {
+      @apply flex-row;
+    }
+
+    .@{dropdown-item-prefix-cls}--child {
+      right: unset;
+      left: 100%;
+    }
+  }
 }

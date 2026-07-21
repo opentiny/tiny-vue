@@ -92,7 +92,7 @@ export default {
   width: 380px;
 }
 .group-form-title {
-  margin-bottom: 24px;
+  margin-top: 24px;
   font-size: 16px;
   color: #191919;
   font-weight: bold;
@@ -101,7 +101,7 @@ export default {
   padding-top: 8px;
 }
 .second-title {
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .address {
   position: relative;

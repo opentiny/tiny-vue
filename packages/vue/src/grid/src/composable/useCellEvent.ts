@@ -11,7 +11,7 @@ const getEventSource = (e, $table) => {
   if (tableEl.dataset?.tableid !== String($table.id)) return
 
   let cellEl = target.closest('.tiny-grid-header__column')
-  let rowEl, part, rowType, row, column
+  let rowEl, part, rowType, row, column, rowid
 
   if (cellEl) {
     rowEl = cellEl.parentNode
@@ -27,12 +27,19 @@ const getEventSource = (e, $table) => {
   if (!part || !cellEl || !rowEl) return
 
   column = $table.getColumnNode(cellEl)?.item
+  rowid = rowEl.dataset?.rowid
 
-  if (rowEl.dataset?.rowid?.startsWith('row_g_')) {
+  if (rowid?.startsWith('row_g_')) {
     rowType = 'virtual'
   } else if (part === 'body') {
     rowType = 'normal'
-    row = $table.getRowNode(rowEl)?.item
+
+    if ($table.editStore.insertMap.has(rowid)) {
+      // 新增行不进缓存，需要单独查找
+      row = $table.editStore.insertMap.get(rowid)
+    } else {
+      row = $table.getRowNode(rowEl)?.item
+    }
   }
 
   return { part, rowType, row, column, cell: cellEl, tr: rowEl }

@@ -22,7 +22,7 @@ export default {
           type: 'Array',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。',
+            'zh-CN': '配置时间线模式下所展示的时间范围，默认为 [8,18]，可配范围 [0,23]。',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
@@ -130,7 +130,7 @@ export default {
           type: '() => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置日期背景色',
+            'zh-CN': '设置日期背景色，使用函数返回颜色值时，返回十六进制、rgb、rgba 是自定义颜色，使用颜色名则是预设颜色',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
@@ -166,7 +166,7 @@ export default {
           type: 'Boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '显示日程tips时间',
+            'zh-CN': '显示日程 tips 时间',
             'en-US': 'Show schedule tips time'
           },
           meta: {
@@ -314,7 +314,7 @@ export default {
         {
           name: 'timeline',
           desc: {
-            'zh-CN': '时间线插槽，有timeline1-timeline7 7个插槽',
+            'zh-CN': '时间线插槽，有 timeline1-timeline7 7 个插槽',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
@@ -334,7 +334,7 @@ export default {
         {
           name: 'weekday',
           desc: {
-            'zh-CN': '日程插槽，有weekday1-weekday7 7个插槽',
+            'zh-CN': '日程插槽，有 weekday1-weekday7 7 个插槽',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],

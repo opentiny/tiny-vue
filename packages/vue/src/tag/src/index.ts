@@ -19,6 +19,7 @@ export const tagProps = {
   type: String,
   theme: String,
   size: String,
+  round: Boolean,
   color: {
     type: [String, Array],
     default: ''

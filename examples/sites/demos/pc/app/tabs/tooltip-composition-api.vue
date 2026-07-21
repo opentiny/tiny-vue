@@ -18,7 +18,7 @@ import { TinyTabs, TinyTabItem, TinySwitch } from '@opentiny/vue'
 
 const activeName4 = ref('navigation1')
 const tooltipConfig = ref({ effect: 'light', placement: 'left', visible: 'auto' })
-const value = true
+const value = ref(true)
 const tabs3 = ref([
   {
     name: 'navigation1',

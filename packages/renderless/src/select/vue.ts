@@ -116,7 +116,7 @@ import {
 import { debounce } from '@opentiny/utils'
 import { isNumber } from '@opentiny/utils'
 import { useUserAgent } from '@opentiny/vue-hooks'
-import { isServer } from '@opentiny/utils'
+import { isServer, nanoid } from '@opentiny/utils'
 
 export const api = [
   'state',
@@ -295,10 +295,11 @@ const initState = ({
     rootAutoTipConfig: computed(() => ({
       content: state.displayOnlyContent,
       always: !!state.displayOnlyContent,
+      popperClass: 'tiny-select__popper-maxh-50',
       ...props.tooltipConfig
-    }))
+    })),
+    ariaListId: 'tiny-select-' + nanoid.api.nanoid(8)
   })
-
   return state
 }
 
@@ -517,7 +518,7 @@ const addApi = ({
     debouncRquest: debouncRquest({ api, state, props }),
     defaultOnQueryChange: defaultOnQueryChange({ props, state, constants, api, nextTick, vm }),
     queryChange: queryChange({ props, state, constants, api, nextTick, vm }),
-    mounted: mounted({ api, parent, state, props, vm, designConfig }),
+    mounted: mounted({ api, parent, state, props, vm, designConfig, nextTick }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ props, state }),
     handleDropdownClick: handleDropdownClick({ props, vm, state, emit }),
@@ -565,6 +566,16 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
       }
     },
     { immediate: true, deep: true }
+  )
+
+  // 同步 initLabel 到 selectedLabel
+  watch(
+    () => props.initLabel,
+    (value) => {
+      if (value) {
+        state.selectedLabel = value
+      }
+    }
   )
 
   watch(() => state.modelValue, api.watchValue)

@@ -17,6 +17,21 @@ export default {
           pcDemo: 'delete'
         },
         {
+          name: 'round',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '是否设置圆角标签',
+            'en-US': 'Whether to set the rounded corner label'
+          },
+          mode: ['pc', 'mobile-first'],
+          meta: {
+            stable: '3.31.0'
+          },
+          pcDemo: 'rounded',
+          mfDemo: 'rounded'
+        },
+        {
           name: 'closable',
           type: 'boolean',
           defaultValue: 'false',
@@ -246,7 +261,7 @@ type ISize = 'medium' | 'small' | ''
       name: 'IType',
       type: 'type',
       code: `
-type IType = 'success' | 'info' | 'warning' | 'danger'
+type IType = 'success' | 'info' | 'warning' | 'danger' | 'alerting' | 'error'
 `
     }
   ]

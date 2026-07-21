@@ -46,6 +46,70 @@ export const viteDocsearchPlugin = (env) => {
   }
 }
 
+// 修复 @opentiny/vue-icon 和 @opentiny/vue-icon-saas 的解析问题
+// 确保图标包指向 index.ts 而不是 src 目录
+// 根据 package.json 的 exports 配置，"./*": "./src/*" 会将某些导入解析为目录
+// 这个插件拦截该导入并重定向到 index.ts
+const createFixIconSrcPlugin = (packageName, packagePath, pluginName) => {
+  const currentFileUrl = import.meta.url
+  const currentDir = path.dirname(new URL(currentFileUrl).pathname)
+  const normalizedDir = process.platform === 'win32' ? currentDir.replace(/^\//, '') : currentDir
+  const workspaceRoot = path.resolve(normalizedDir, '../..')
+  const iconSrcPath = path.resolve(workspaceRoot, packagePath, 'src')
+  const iconIndexPath = path.resolve(workspaceRoot, packagePath, 'index.ts')
+
+  return {
+    name: pluginName,
+    enforce: 'pre',
+    resolveId(id) {
+      // 拦截对包名的导入（不带子路径），确保指向 index.ts
+      if (id === packageName) {
+        return iconIndexPath
+      }
+      // 拦截对 @opentiny/vue-icon-saas/src 的导入（模块路径）
+      if (id === `${packageName}/src`) {
+        return iconIndexPath
+      }
+      // 拦截文件系统路径中的图标包/src 目录访问
+      const normalizedId = id.replace(/\\/g, '/')
+      const normalizedSrcPath = iconSrcPath.replace(/\\/g, '/')
+      if (normalizedId === normalizedSrcPath) {
+        return iconIndexPath
+      }
+      return null
+    },
+    load(id) {
+      // 如果请求的是图标包/src 目录，返回 index.ts 的内容
+      const normalizedId = id.replace(/\\/g, '/')
+      const normalizedSrcPath = iconSrcPath.replace(/\\/g, '/')
+      if (normalizedId === normalizedSrcPath) {
+        if (fs.existsSync(iconIndexPath)) {
+          return fs.readFileSync(iconIndexPath, 'utf-8')
+        }
+      }
+      return null
+    }
+  }
+}
+
+// 修复 @opentiny/vue-icon 和 @opentiny/vue-icon-saas 的解析问题
+// 返回包含两个插件的数组，方便在 vite.config.ts 中使用
+export const fixIconSrcPlugins = () => {
+  return [
+    createFixIconSrcPlugin('@opentiny/vue-icon', 'packages/vue-icon', 'fix-icon-src-plugin'),
+    createFixIconSrcPlugin('@opentiny/vue-icon-saas', 'packages/vue-icon-saas', 'fix-icon-saas-src-plugin')
+  ]
+}
+
+// 保持向后兼容，单独导出（如果需要单独使用）
+export const fixIconSrcPlugin = () => {
+  return createFixIconSrcPlugin('@opentiny/vue-icon', 'packages/vue-icon', 'fix-icon-src-plugin')
+}
+
+export const fixIconSaasSrcPlugin = () => {
+  return createFixIconSrcPlugin('@opentiny/vue-icon-saas', 'packages/vue-icon-saas', 'fix-icon-saas-src-plugin')
+}
+
 // 针对不同主题对配置进行响应修改
 const themeModifyMap = {
   saas(viteConfig) {
@@ -66,6 +130,7 @@ const themeModifyMap = {
     if (!viteConfig.resolve.alias['@opentiny/vue-theme']) {
       viteConfig.resolve.alias['@opentiny/vue-theme'] = '@opentiny/vue-theme-saas'
       viteConfig.resolve.alias['@opentiny/vue-icon'] = '@opentiny/vue-icon-saas'
+      viteConfig.resolve.alias['@opentiny/vue-search-box'] = '@opentiny/vue-search-box-saas'
     }
     return viteConfig
   }

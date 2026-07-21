@@ -18,6 +18,7 @@ interface TooltipDirectiveConfig {
   content?: string // 自定义提示内容,  支持字符串或 VNode | VNode[], 不支持嵌套的 html 标签
   effect?: 'dark' | 'light' // tooltip主题，默认为light
   placement?: string
+  popperClass?: string
 }
 
 // 高度计算最多可以允许的误差，修复checkbox的tip提示一直显示的bug（scrollHeight：15，clientHeight：14）
@@ -55,6 +56,12 @@ const isDarkTheme = (currentTarget) => Boolean(currentTarget?.boundingValue?.eff
 
 const getPlacement = (currentTarget) => currentTarget.boundingValue?.placement || 'top'
 
+let oldPopperClass: string[] = []
+const getPopperClass = (currentTarget) => {
+  const cls: string = currentTarget.boundingValue?.popperClass || ''
+  return cls.split(' ').filter((c) => c)
+}
+
 const mouseenterHandler = (e) => {
   const currentTarget = e.currentTarget
 
@@ -73,10 +80,13 @@ const mouseenterHandler = (e) => {
         propsData: {
           renderContent: () => h('span', { class: 'tiny-directive-tip__content' }, tooltipContent.value),
           placement: getPlacement(currentTarget),
-          effect: isDarkTheme(currentTarget) ? 'dark' : 'light'
+          effect: isDarkTheme(currentTarget) ? 'dark' : 'light',
+          popperClass: getPopperClass(currentTarget).join(' ')
         },
         component: Tooltip
       })
+
+      oldPopperClass = getPopperClass(currentTarget)
     }
 
     const tooltip = globalTooltip.value
@@ -91,6 +101,9 @@ const mouseenterHandler = (e) => {
         `is-${isDarkTheme(currentTarget) ? 'light' : 'dark'}`,
         `is-${isDarkTheme(currentTarget) ? 'dark' : 'light'}`
       )
+      popperElm.classList.remove(...oldPopperClass)
+      oldPopperClass = getPopperClass(currentTarget)
+      popperElm.classList.add(...oldPopperClass)
     }
 
     tooltip.show()
@@ -111,7 +124,14 @@ const mouseleaveHandler = () => {
 // 指令绑定，只有第一次value有值时，才添加事件，之后并不移除事件
 const bind = (el, { value }: { value: BoundingValueType }) => {
   // 如果是知己使用指令v-auto-tip，什么都不传也需要添加省略提示功能
-  const resultValue = value === undefined ? {} : value
+  let resultValue = value === undefined ? {} : value
+
+  // fix vue2:  在jsx中，在dom上直接使用 v-auto-tip，渲染 directives:[{name:'auto-tip',  value: true}]，
+  // 此时 resultValue=true, 会bug
+  // (vue3中同样写法， 渲染后 value = undefined, 不会bug)
+  if (typeof resultValue === 'boolean' && resultValue) {
+    resultValue = {}
+  }
 
   el.boundingValue = resultValue
   if (resultValue && !el.boundingValue?.listened) {

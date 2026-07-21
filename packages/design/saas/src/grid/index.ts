@@ -1,4 +1,4 @@
-import { IconTriangleDown, IconTriangleUp } from '@opentiny/vue-icon'
+import { IconTriangleDown, IconTriangleUp } from '@opentiny/vue-icon-saas'
 
 export default {
   validConfig: {

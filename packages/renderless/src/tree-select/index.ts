@@ -1,5 +1,30 @@
 import { find } from '@opentiny/utils'
 
+const getSingleSelectedData = ({ props, data }) => ({
+  ...data,
+  currentLabel: data[props.textField],
+  value: data[props.valueField],
+  state: {
+    currentLabel: data[props.textField]
+  }
+})
+
+const updateSingleSelected = ({ props, vm, data }) => {
+  vm.$refs.baseSelectRef.updateSelectedData(data)
+
+  const baseState = vm.$refs.baseSelectRef.state
+
+  if (!baseState) return
+
+  const currentLabel = data?.[props.textField] ?? ''
+
+  baseState.selectedLabel = currentLabel
+
+  if (props.filterable || props.searchable) {
+    baseState.query = currentLabel
+  }
+}
+
 /**
  * 树节点过滤事件
  */
@@ -16,13 +41,10 @@ export const nodeClick =
   ({ props, vm, emit }) =>
   (data) => {
     if (!props.multiple) {
-      vm.$refs.baseSelectRef.updateSelectedData({
-        ...data,
-        currentLabel: data[props.textField],
-        value: data[props.valueField],
-        state: {
-          currentLabel: data[props.textField]
-        }
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
       })
 
       emit('change', data[props.valueField])
@@ -156,16 +178,21 @@ export const getChildValue = () => (childNodes, key) => {
 export const mounted =
   ({ api, state, props, vm }) =>
   () => {
-    if (!state.modelValue || state.modelValue.length === 0) return
+    if (!state.modelValue || (Array.isArray(state.modelValue) && state.modelValue.length === 0)) return
 
     if (props.multiple) {
       let initialNodes = []
       if (Array.isArray(state.modelValue)) {
         state.modelValue.forEach((value) => {
           const option = api.getPluginOption(value)
-          initialNodes = initialNodes.concat(option)
+          if (option && option.length > 0) {
+            initialNodes = initialNodes.concat(option)
+          }
         })
       }
+
+      // 如果没有找到任何节点（例如懒加载场景），直接返回
+      if (initialNodes.length === 0) return
 
       const selected = initialNodes.map((node) => {
         return {
@@ -179,14 +206,16 @@ export const mounted =
 
       state.defaultCheckedKeys = api.getCheckedData(selected)
     } else {
-      const data = api.getPluginOption(state.modelValue)[0]
-      vm.$refs.baseSelectRef.updateSelectedData({
-        ...data,
-        currentLabel: data[props.textField],
-        value: data[props.valueField],
-        state: {
-          currentLabel: data[props.textField]
-        }
+      const options = api.getPluginOption(state.modelValue)
+      const data = options && options.length > 0 ? options[0] : null
+
+      // 如果没有找到节点（例如懒加载场景），直接返回
+      if (!data) return
+
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
       })
 
       state.currentKey = data[props.valueField]
@@ -196,6 +225,34 @@ export const mounted =
 export const watchValue =
   ({ api, props, vm, state }) =>
   (newValue, oldValue) => {
+    // 单选模式处理
+    if (!props.multiple) {
+      if (newValue === oldValue || newValue === state.currentKey) return
+
+      if (newValue === null || newValue === undefined || newValue === '') {
+        updateSingleSelected({ props, vm, data: {} })
+        state.currentKey = ''
+
+        return
+      }
+
+      const options = api.getPluginOption(newValue)
+      const data = options && options.length > 0 ? options[0] : null
+
+      if (!data) return
+
+      updateSingleSelected({
+        props,
+        vm,
+        data: getSingleSelectedData({ props, data })
+      })
+
+      state.currentKey = data[props.valueField]
+
+      return
+    }
+
+    // 多选模式处理
     if (props.multiple) {
       // 取新旧值的差集，用来判断是否是删除标签的操作，如果差值只有一个值，说明是删除操作
       // 如果是删除操作，且不是父子严格模式，则需要将父节点的值也删除（严格模式下父子节点勾选相互独立，不会相互影响）
@@ -224,7 +281,9 @@ export const watchValue =
       if (Array.isArray(checkedKeys)) {
         checkedKeys.forEach((value) => {
           const option = api.getPluginOption(value)
-          initialNodes = initialNodes.concat(option)
+          if (option && option.length > 0) {
+            initialNodes = initialNodes.concat(option)
+          }
         })
       }
 

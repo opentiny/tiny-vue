@@ -23,7 +23,6 @@
     "release:e2eConfig": "esno src/index.ts release:e2eConfig",
     "// ----------------------辅助脚本---------------------- ": "",
     "create:ui": "esno src/commands/create/create-ui.ts",
-    "create:icon-saas": "esno src/index.ts create:icon-saas",
     "clean:build": "esno src/commands/clean.ts",
     "create:mapping": "esno src/commands/create/create-mapping.ts",
     "build:chartTheme": "esno src/index.ts build:chartTheme"
@@ -35,7 +34,7 @@
     "fast-glob": "^3.2.12",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-visualizer": "^5.12.0",
-    "vite-plugin-dts": "~3.0.0",
+    "vite-plugin-dts": "~4.3.0",
     "vite-plugin-svgr": "^3.2.0",
     "vite-svg-loader": "^3.6.0"
   },

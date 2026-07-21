@@ -7,7 +7,6 @@
     </div>
     <div
       ref="slider"
-      role="tiny-slider"
       class="relative w-full h-1 flex-1 my-4 mx-0 bg-color-none-disabled"
       :class="[state.disabled ? 'cursor-default' : 'cursor-pointe']"
       @touchstart="bindMouseDown"
@@ -15,14 +14,21 @@
     >
       <div
         data-tag="tiny-slider-range"
-        role="tiny-slider__range"
         class="absolute rounded left-0 h-1"
         :class="[state.disabled ? 'bg-color-none' : 'bg-color-brand']"
         :style="state.barStyle"
+        aria-hidden="true"
       ></div>
       <div
         data-tag="tiny-slider-handle"
-        role="tiny-slider__handle"
+        role="slider"
+        :aria-label="state.isDouble ? `左滑块，当前值 ${state.leftBtnValue}` : `滑块，当前值 ${state.leftBtnValue}`"
+        :aria-valuenow="state.leftBtnValue"
+        :aria-valuemin="min"
+        :aria-valuemax="state.isDouble ? state.rightBtnValue : max"
+        :aria-valuetext="`${state.leftBtnValue}${unit}`"
+        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+        :aria-disabled="state.disabled ? 'true' : 'false'"
         tabindex="0"
         v-if="state.leftBtnShow"
         class="absolute w-6 h-6 sm:w-5 sm:h-5 box-border shadow-xsm rounded-full bg-color-bg-1 -translate-x-2.5 -translate-y-1/2 left-0 top-0.5"
@@ -41,7 +47,14 @@
       ></div>
       <div
         data-tag="tiny-slider-handle"
-        role="tiny-slider__handle"
+        role="slider"
+        aria-label="右滑块"
+        :aria-valuenow="state.rightBtnValue"
+        :aria-valuemin="state.isDouble ? state.leftBtnValue : min"
+        :aria-valuemax="max"
+        :aria-valuetext="`${state.rightBtnValue}${unit}`"
+        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+        :aria-disabled="state.disabled ? 'true' : 'false'"
         tabindex="0"
         v-if="state.rightBtnShow"
         class="absolute w-6 h-6 sm:w-5 sm:h-5 box-border shadow-xsm rounded-full bg-color-bg-1 -translate-x-2.5 -translate-y-1/2 left-0 top-0.5"

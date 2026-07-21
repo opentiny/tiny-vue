@@ -15,7 +15,7 @@ import { MsgQueue } from '@opentiny/vue-renderless/modal'
 import TINYModal from './src/index'
 import Popconfirm from '@opentiny/vue-popconfirm'
 import { version } from './package.json'
-import type { ComponentPublicInstance } from '@opentiny/vue-common'
+import type { ComponentPublicInstance, VNode } from '@opentiny/vue-common'
 
 // 定义Modal选项接口
 interface ModalOptions {
@@ -26,7 +26,7 @@ interface ModalOptions {
     show?: (params: any) => void
   }
   componentType?: 'alert' | 'confirm' | 'message' | 'popconfirm'
-  message?: string
+  message?: string | (() => VNode)
   title?: string
   showFooter?: boolean
   type?: string

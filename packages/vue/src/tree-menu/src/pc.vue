@@ -13,13 +13,15 @@
 <template>
   <div
     class="tiny-tree-menu"
+    role="navigation"
+    aria-label="Tree Menu"
     :class="{
       'is-collapsed': state.isCollapsed,
       'is-expand': state.isExpand,
+      'is-width-adapt': widthAdapt,
       'tiny-tree-menu__show-filter': showFilter,
       'tiny-tree-menu__show-expand': showExpand
     }"
-    :style="widthAdapt ? { width: '100%' } : {}"
   >
     <div v-if="menuCollapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
       <icon-arrow></icon-arrow>
@@ -29,12 +31,15 @@
       v-model="state.filterText"
       :class="(state.isExpand || state.isCollapsed) && 'is-hidden'"
       :placeholder="placeholder || t('ui.treeMenu.placeholder')"
+      :aria-label="placeholder || t('ui.treeMenu.placeholder')"
       :prefix-icon="searchIcon"
       :clearable="state.clearable"
       @input="inputChange"
     />
     <tiny-tree
       ref="tree"
+      role="tree"
+      tabindex="0"
       :class="{
         'tiny-tree-menu__wrap': !ellipsis ? wrap : false,
         'tiny-tree-menu__overflow': ellipsis,
@@ -83,8 +88,8 @@
           <div class="tree-menus-link tiny-tree-node__label">
             <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0">
               <span class="tree-node-name">
-                <component v-if="!data.customIcon && suffixIcon" :is="suffixIcon"></component>
-                <component v-if="data.customIcon" :is="data.customIcon"></component>
+                <component v-if="!data.customIcon && suffixIcon" :is="suffixIcon" aria-hidden="true"></component>
+                <component v-if="data.customIcon" :is="data.customIcon" aria-hidden="true"></component>
                 <slot :node="node" :data="data" :label="data.label">{{ data.label || node.label }} </slot>
               </span>
             </a>

@@ -83,31 +83,33 @@
           v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
           :class="
             m(
-              'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
+              'w-full border-0 sm:border px-0 sm:px-2 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
-                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled ' +
-                'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
+                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-secondary sm:disabled:text-color-text-secondary ' +
+                'sm:disabled:bg-color-bg-6 py-0 outline-none transition-colors duration-200 ease-in-out ',
               state.inputSizeMf === 'medium'
                 ? `h-8 leading-8 ${m('sm:text-sm')} placeholder:text-sm`
                 : state.inputSizeMf === 'mini'
                   ? 'h-6 leading-6 text-xs placeholder:text-xs'
                   : 'h-7 leading-7',
               slots.prepend || slots.append ? 'align-middle table-cell' : 'inline-block',
-              slots.prepend && slots.append
-                ? 'rounded-none'
-                : slots.prepend
-                  ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
-                  : slots.append
-                    ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
-                    : 'rounded',
+              inputBoxType === 'underline'
+                ? 'rounded-none border-t-0 border-l-0 border-r-0 border-b sm:border-b'
+                : slots.prepend && slots.append
+                  ? 'rounded-none'
+                  : slots.prepend
+                    ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
+                    : slots.append
+                      ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
+                      : 'rounded',
               readonly ? ' text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
               (slots.prefix || prefixIcon) && (slots.suffix || suffixIcon || clearable || showPassword)
                 ? 'px-6 sm:px-6'
                 : slots.prefix || prefixIcon
                   ? 'pl-6 sm:pl-6 pr-0 sm:pr-3'
                   : slots.suffix || suffixIcon || clearable || showPassword
-                    ? 'pl-0 sm:pl-3 pr-6 sm:pr-6'
+                    ? 'pl-0 sm:pl-2 pr-6 sm:pr-6'
                     : '',
               mask && state.inputDisabled
                 ? !state.maskValueVisible
@@ -133,7 +135,7 @@
           @focus="handleFocus"
           @blur="handleBlur"
           @change="handleChange"
-          :aria-label="label"
+          :aria-label="label || $attrs.placeholder"
           @keyup="$emit('keyup', $event)"
           @keydown="$emit('keydown', $event)"
           @paste="$emit('paste', $event)"
@@ -181,6 +183,9 @@
                 state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
               )
             "
+            role="button"
+            aria-label="clear"
+            tabindex="0"
             @mousedown.prevent
             @click="clear"
           ></icon-close>
@@ -209,6 +214,9 @@
                 state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
               )
             "
+            role="button"
+            aria-label="clear"
+            tabindex="0"
             @mousedown.prevent
             @click="clear"
           ></icon-error>
@@ -221,6 +229,9 @@
                 state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
               )
             "
+            role="button"
+            :aria-label="state.passwordVisible ? 'hide password' : 'show password'"
+            tabindex="0"
             @click.native="handlePasswordVisible"
           ></component>
           <component
@@ -232,11 +243,17 @@
                 state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
               )
             "
+            role="button"
+            :aria-label="state.maskValueVisible ? 'hide content' : 'show content'"
+            tabindex="0"
             @click.native="state.maskValueVisible = !state.maskValueVisible"
           ></component>
           <span
             v-if="state.isWordLimitVisible"
+            :id="`${$attrs.id || name || 'input'}-word-limit`"
             class="h-full inline-flex items-center text-xs sm:text-sm text-color-text-placeholder"
+            role="status"
+            aria-live="polite"
           >
             <span class="bg-color-bg-1 leading-none inline-block text-xs">{{
               state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
@@ -285,25 +302,28 @@
         :popper-options="{ bubbling: true }"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <div class="inline-flex max-w-full">
+        <div class="relative inline-flex max-w-full">
           <span
             ref="textBox"
-            class="text-box max-w-full break-words line-clamp-5 text-sm text-color-text-primary before:content-[''] before:float-right before:h-full before:-mb-4"
+            class="text-box block max-w-full min-w-0 break-words text-sm leading-5 text-color-text-primary"
             :class="[
               state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
-              hoverExpand && 'relative left-0 max-w-full leading-5 line-clamp-1',
-              autosize
-                ? 'left-0 max-w-full break-words  whitespace-pre-line leading-5'
-                : 'left-0 max-w-full text-ellipsis overflow-hidden break-words whitespace-pre-wrap line-clamp-5'
+              hoverExpand
+                ? 'line-clamp-1'
+                : state.showMoreBtn
+                  ? 'line-clamp-5 whitespace-pre-wrap pr-10'
+                  : 'line-clamp-5 whitespace-pre-wrap',
+              autosize && 'whitespace-pre-line'
             ]"
             @click="state.showDisplayOnlyBox = true"
+            >{{ state.displayOnlyText }}</span
           >
-            <span
-              v-if="state.showMoreBtn"
-              class="float-right relative top-px clear-both text-color-brand text-sm leading-3 cursor-pointer"
-              >{{ t('ui.input.more') }}></span
-            >{{ state.displayOnlyText }}
-          </span>
+          <span
+            v-if="state.showMoreBtn"
+            class="absolute bottom-0 right-0 text-color-brand text-sm leading-5 cursor-pointer"
+            @click="state.showDisplayOnlyBox = true"
+            >{{ t('ui.input.more') }}></span
+          >
         </div>
       </tiny-tooltip>
       <tiny-dialog-box
@@ -315,7 +335,7 @@
         :close-on-click-modal="false"
         @update:visible="state.showDisplayOnlyBox = $event"
       >
-        <pre class="font-[inherit]">{{ state.displayOnlyText }}</pre>
+        <pre class="font-[inherit] whitespace-pre-wrap break-words">{{ state.displayOnlyText }}</pre>
         <template #footer>
           <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
         </template>
@@ -324,9 +344,9 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-none rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
         :class="[
-          readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 ',
+          readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-2 py-2 ',
           state.isDisplayOnly ? 'hidden' : '',
           state.inputSizeMf !== 'mini' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs',
           hoverExpand && 'min-w-40 absolute h-7 z-[2000] top-0 left-0',
@@ -347,14 +367,17 @@
         @change="handleChange"
         @mouseenter="handleEnterTextarea($event)"
         @mouseleave="handleLeaveTextarea($event)"
-        :aria-label="label"
+        :aria-label="label || $attrs.placeholder"
       >
       </textarea>
     </span>
     <span
       data-tag="tiny-input-limit"
       v-if="state.isWordLimitVisible && type === 'textarea'"
+      :id="`${$attrs.id || name || 'textarea'}-word-limit`"
       class="text-color-text-placeholder text-xs leading-5 absolute bottom-0 right-3"
+      role="status"
+      aria-live="polite"
       >{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span
     >
     <slot></slot>
@@ -427,7 +450,8 @@ export default defineComponent({
     'popupMore',
     'showTooltip',
     'frontClearIcon',
-    'hoverExpand'
+    'hoverExpand',
+    'inputBoxType'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

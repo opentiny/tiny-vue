@@ -1,70 +1,110 @@
 <template>
-  <div class="tiny-demo">
-    <tiny-radio v-model="value" label="alert" text="alert"></tiny-radio>
-    <tiny-radio v-model="value" label="confirm" text="confirm"></tiny-radio>
-    <tiny-radio v-model="value" label="message" text="message"></tiny-radio>
-    <div style="height: 16px"></div>
-    <tiny-button @click="handleClick">点击打开 Modal 弹窗</tiny-button>
+  <div>
+    <h2>标签式 + 函数调用</h2>
+    <div class="content">
+      <tiny-modal
+        v-model="mainVisible"
+        :width="600"
+        :height="300"
+        :before-close="handleBeforeClose1"
+        title="Num.1标签式加函数弹窗"
+        message="NO.1标签式加函数内容"
+        show-footer
+      >
+      </tiny-modal>
+      <tiny-button @click="mainVisible = true"> 标签式 + 函数式弹窗</tiny-button>
+    </div>
+
+    <h2>点击确认按钮 + 拦截弹窗</h2>
+    <div class="content">
+      <tiny-modal
+        v-model="mainVisible1"
+        :width="600"
+        :height="300"
+        :before-close="handleBeforeClose1"
+        title="Num.1确认按钮加拦截弹窗"
+        message="点击确认按钮，出现拦截弹窗"
+        show-footer
+      >
+        <template #footer>
+          <tiny-button type="primary" @click="onCancelClose1">取消</tiny-button>
+          <tiny-button style="margin-left: 12px" @click="onConfirmClose1">确定</tiny-button>
+        </template>
+      </tiny-modal>
+      <tiny-button @click="mainVisible1 = true"> 其他</tiny-button>
+    </div>
   </div>
 </template>
 
 <script lang="jsx">
-import { TinyRadio, TinyModal, TinyButton } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio,
-    TinyButton
+    TinyButton: Button,
+    TinyModal: Modal
   },
   data() {
     return {
-      value: 'alert'
+      mainVisible: false,
+      mainVisible1: false,
+      confirmVisible: false,
+      pendingDone: null
     }
   },
   methods: {
-    beforeClose(type) {
-      if (this.value === 'alert') {
-        /* alert 弹窗有这些关闭类型 close,confirm,esc,mask
-           这里允许 confirm 关闭 */
-        return !~['close', 'esc', 'mask'].indexOf(type)
-      }
-
-      if (this.value === 'confirm') {
-        /* confirm 弹窗有这些关闭类型 close,confirm,cancel,esc,mask
-           这里允许 confirm 或 cancel 关闭 */
-        return !~['close', 'esc', 'mask'].indexOf(type)
-      }
-
-      if (this.value === 'message') {
-        /* message 弹窗只有一种关闭类型 show
-           这里允许 show 关闭 */
-        return type === 'show'
-      }
+    handleBeforeClose(type, instance, done) {
+      this.confirmVisible = true
+      this.pendingDone = done
+      return false // 阻止原弹窗立即关闭
     },
-    handleClick() {
-      let method
 
-      switch (this.value) {
-        case 'message':
-          method = TinyModal.message
-          break
-        case 'confirm':
-          method = TinyModal.confirm
-          break
-        case 'alert':
-          method = TinyModal.alert
-          break
-      }
+    onConfirmClose() {
+      this.confirmVisible = false
+      this.pendingDone && this.pendingDone() // 调用 done() 关闭原弹窗
+      this.pendingDone = null
+    },
 
-      method({
-        status: 'info',
-        title: '普通提示框',
-        escClosable: true,
-        maskClosable: true,
-        beforeClose: this.beforeClose,
-        message: (h) => [<div>文本信息，文本信息，文本信息</div>]
+    // 点击取消/关闭 -> 只关闭确认弹窗，保留原弹窗
+    onCancelClose() {
+      this.confirmVisible = false
+      this.pendingDone = null // 不调用 done()，原弹窗保持打开
+    },
+
+    handleBeforeClose1(type, instance, done) {
+      Modal.confirm({
+        title: '关闭前确认Num.2',
+        message: '确认弹窗关闭Num.1？',
+        events: {
+          confirm: () => done && done(), // 确认 -> 关闭所有弹窗
+          cancel: () => {} // 取消 -> 保留原弹窗
+        }
       })
+      return false // 阻止原弹窗立即关闭
+    },
+
+    // 其他
+    onConfirmClose1() {
+      // 手动调用 beforeClose，传入关闭回调
+      this.handleBeforeClose1('confirm', null, () => {
+        this.mainVisible1 = false
+      })
+    },
+
+    onCancelClose1() {
+      this.mainVisible1 = false
     }
   }
 }
 </script>
+
+<style scoped>
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0 12px;
+}
+.content {
+  margin: 8px;
+}
+</style>

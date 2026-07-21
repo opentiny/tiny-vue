@@ -14,6 +14,8 @@
     class="tiny-button"
     @click="handleClick"
     :disabled="state.buttonDisabled || loading"
+    :aria-disabled="state.buttonDisabled || loading"
+    :aria-busy="loading"
     :autofocus="autofocus"
     :type="nativeType"
     :class="[
@@ -34,7 +36,7 @@
     :tabindex="tabindex"
     v-bind="a($attrs, ['class', 'style', 'title', 'id'], true)"
   >
-    <icon-loading v-if="loading" class="tiny-icon-loading tiny-svg-size" />
+    <icon-loading v-if="loading" class="tiny-icon-loading tiny-svg-size" aria-hidden="true" />
     <component v-if="icon && !loading" :is="icon" :class="{ 'is-text': text || slots.default }" />
     <slot>
       <span>{{ text }}</span>

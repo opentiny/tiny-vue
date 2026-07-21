@@ -6,6 +6,7 @@ import type { IFormInstance } from './form.type'
 import type {
   watchError,
   updateTip,
+  updateTooltip,
   watchValidateStatus,
   computedLabelStyle,
   computedValueStyle,
@@ -22,6 +23,8 @@ import type {
   removeValidateEvents,
   unmounted,
   mounted,
+  registerField,
+  unregisterField,
   computedIsRequired,
   resetField,
   getFilteredRule,
@@ -71,12 +74,12 @@ export interface IFormItemState {
   isBasicComp: boolean
   showTooltip: boolean
   typeName: string
-  formInstance: IFormInstance
+  formInstance: IFormInstance | undefined
   labelFor: string
   labelStyle: IFormItemLabelStyle
   valueStyle: StyleValue
   contentStyle: StyleValue
-  form: IFormInstance
+  form: IFormInstance | undefined
   fieldValue: any
   isRequired: boolean
   formInline: boolean | undefined
@@ -95,6 +98,13 @@ export interface IFormItemState {
   isErrorBlock: boolean
   tooltipType: string
   isMultiple: boolean
+  fieldRegistered: boolean
+  // 无障碍支持：唯一 ID 用于 ARIA 属性关联
+  errorId: string
+  labelId: string
+  // 兼容属性
+  disabled?: boolean
+  inlineMessage?: boolean | string
 }
 
 export type IFormItemConstants = typeof $constants
@@ -115,6 +125,7 @@ export interface IFormItemApi {
   broadcast: ISharedRenderlessParamUtils['broadcast']
   watchError: ReturnType<typeof watchError>
   updateTip: ReturnType<typeof updateTip>
+  updateTooltip: ReturnType<typeof updateTooltip>
   watchValidateStatus: ReturnType<typeof watchValidateStatus>
   computedLabelStyle: ReturnType<typeof computedLabelStyle>
   computedValueStyle: ReturnType<typeof computedValueStyle>
@@ -131,6 +142,8 @@ export interface IFormItemApi {
   removeValidateEvents: ReturnType<typeof removeValidateEvents>
   unmounted: ReturnType<typeof unmounted>
   mounted: ReturnType<typeof mounted>
+  registerField: ReturnType<typeof registerField>
+  unregisterField: ReturnType<typeof unregisterField>
   computedIsRequired: ReturnType<typeof computedIsRequired>
   resetField: ReturnType<typeof resetField>
   getFilteredRule: ReturnType<typeof getFilteredRule>
@@ -138,6 +151,7 @@ export interface IFormItemApi {
   onFieldChange: ReturnType<typeof onFieldChange>
   addValidateEvents: ReturnType<typeof addValidateEvents>
   validate: ReturnType<typeof validate>
+  validateOrigin: ReturnType<typeof validate> // 原始的 validate 函数，不经过防抖处理
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
   clearDisplayedValue: ReturnType<typeof clearDisplayedValue>
   handleMouseenter: ReturnType<typeof handleMouseenter>

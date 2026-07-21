@@ -1,0 +1,219 @@
+<template>
+  <div class="demo-suffix-icon">
+    <div class="demo-box">
+      <div class="demo-title">默认显示前缀搜索图标</div>
+      <tiny-search-box v-model="tags1" :items="items" :show-help="false" />
+    </div>
+    <div class="demo-box">
+      <div class="demo-title">隐藏前缀搜索图标</div>
+      <tiny-search-box v-model="tags2" :items="items" :show-prefix-icon="false" :show-help="false" />
+    </div>
+    <div class="demo-box">
+      <div class="demo-title">使用自定义后缀图标插槽</div>
+      <tiny-search-box v-model="tags3" :items="items" :show-prefix-icon="false" :show-help="false">
+        <template #suffix-icon>
+          <icon-del class="custom-suffix-icon" @click.stop="handleSuffixIconClick" />
+        </template>
+      </tiny-search-box>
+    </div>
+  </div>
+</template>
+
+<script>
+import TinySearchBox from '@opentiny/vue-search-box'
+import { IconDel } from '@opentiny/vue-icon'
+
+export default {
+  components: {
+    TinySearchBox,
+    IconDel: IconDel()
+  },
+  data() {
+    return {
+      items: [
+        {
+          label: '名称',
+          field: 'testName',
+          replace: true,
+          options: [
+            { label: 'ecs-1' },
+            { label: 'obs-2' },
+            { label: 'vpc-1' },
+            { label: 'evs-2' },
+            { label: 'tms-1' }
+          ]
+        },
+        {
+          label: '名称1',
+          field: 'testName1'
+        },
+        {
+          label: '可用地区',
+          field: 'testRegion',
+          type: 'checkbox',
+          options: [
+            { label: '华南区', id: '2-1' },
+            { label: '华北区', id: '2-2' },
+            { label: '西北区', id: '2-3' },
+            { label: '西南区', id: '2-4' }
+          ]
+        },
+        {
+          label: '可用地区1',
+          field: 'testRegion1',
+          type: 'checkbox',
+          options: [
+            { label: '华南区1', id: '2-11' },
+            { label: '华北区1', id: '2-21' },
+            { label: '西北区1', id: '2-31' }
+          ]
+        },
+        {
+          label: '状态',
+          type: 'checkbox',
+          field: 'status',
+          options: [
+            { label: '运行中' },
+            { label: '已关机' },
+            { label: '已注销' }
+          ]
+        },
+        {
+          label: '产品规格',
+          field: 'product',
+          options: [
+            { label: '1vCPUs' },
+            { label: '2vCPUs' },
+            { label: '3vCPUs' },
+            { label: '2vGPUs' },
+            { label: '3vGPUs' },
+            { label: '4vGPUs' },
+            { label: '5vGPUs' },
+            { label: '6vGPUs' },
+            { label: '7vGPUs' },
+            { label: '8vGPUs' }
+          ]
+        },
+        {
+          label: '个人IP地址',
+          field: 'ip',
+          replace: true,
+          options: [
+            { label: '192.168.0.1' },
+            { label: '192.168.0.2' },
+            { label: '192.168.0.3' },
+            { label: '192.168.0.4' }
+          ]
+        },
+        {
+          label: '实例ID',
+          field: 'id',
+          options: [
+            { label: 'huaweiyun-ID', allValues: false },
+            { label: 'yunlingtuandui-ID' },
+            { label: 'tiny-vue-plus-search-box-ID' }
+          ]
+        },
+        {
+          label: '大小',
+          field: 'size',
+          type: 'numRange',
+          unit: 'GB',
+          start: -1,
+          min: -1,
+          max: 20
+        },
+        {
+          label: '日期',
+          field: 'date',
+          type: 'dateRange',
+          format: 'yyyy/MM/dd',
+          start: new Date(),
+          end: undefined,
+          min: new Date(),
+          max: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30)
+        },
+        {
+          label: '时间日期',
+          field: 'datetime',
+          type: 'datetimeRange',
+          format: 'yyyy/MM/dd HH:mm:ss',
+          start: new Date(2024, 3, 10, 10, 23, 45),
+          end: new Date(2024, 5, 25, 10, 25, 46),
+          min: new Date(2024, 3, 5, 10, 5, 5),
+          max: undefined
+        },
+        {
+          label: '标签',
+          field: 'testTag',
+          type: 'map',
+          searchKeys: ['label', 'id'],
+          options: [
+            {
+              label: 'aaa',
+              id: 'id-1',
+              allValues: false,
+              options: [
+                { label: '空值', id: 'aaa-ddd' },
+                { label: '所有值', id: 'aaa-eee' },
+                { label: '123', id: 'aaa-fff' }
+              ]
+            },
+            {
+              label: 'bbb',
+              id: 'id-2',
+              options: [
+                { label: 'hhh', id: 'bbb-hhh' },
+                { label: 'iii', id: 'bbb-iii' },
+                { label: 'jjj', id: 'bbb-jjj' }
+              ]
+            },
+            {
+              label: 'ccc',
+              id: 'id-3',
+              options: [
+                { label: 'kkk', id: 'ccc-kkk' },
+                { label: 'lll', id: 'ccc-lll' },
+                { label: 'mmm', id: 'ccc-mmm' }
+              ]
+            }
+          ]
+        }
+      ],
+      tags1: [],
+      tags2: [],
+      tags3: []
+    }
+  },
+  methods: {
+    handleSuffixIconClick() {
+      console.log('后缀图标被点击了')
+    }
+  }
+}
+</script>
+
+<style scoped>
+.demo-suffix-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.demo-title {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.custom-suffix-icon {
+  cursor: pointer;
+  color: var(--vp-c-text-2);
+  transition: color 0.2s;
+}
+
+.custom-suffix-icon:hover {
+  color: var(--vp-c-brand);
+}
+</style>

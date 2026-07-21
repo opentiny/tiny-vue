@@ -173,7 +173,7 @@ export default defineComponent({
     const getTriggerContent = (t: any, disabled: boolean) => {
       return (
         <div class="trigger-btn">
-          <tiny-button disabled={disabled} onClick={handleTriggerClick}>
+          <tiny-button disabled={disabled} aria-label={t('ui.fileUpload.uploadFile')} onClick={handleTriggerClick}>
             <TinyIconPlus />
             <span>{t('ui.fileUpload.uploadFile')}</span>
           </tiny-button>
@@ -225,17 +225,36 @@ export default defineComponent({
 
     const getThumIcon = (file) => [
       showDownload && (
-        <span class="thumb-icon" title={t('ui.fileUpload.downloadFile')} onClick={() => execDownload(file)}>
+        <span
+          class="thumb-icon"
+          role="button"
+          tabindex="0"
+          aria-label={t('ui.fileUpload.downloadFile')}
+          title={t('ui.fileUpload.downloadFile')}
+          onClick={() => execDownload(file)}>
           <TinyIconDownload class="download-icon" />
         </span>
       ),
       isEdm && !isFolder && showUpdate && (
-        <span class="thumb-icon" title={t('ui.fileUpload.updateFile')} onClick={() => updateFile(file)}>
+        <span
+          class="thumb-icon"
+          role="button"
+          tabindex="0"
+          aria-label={t('ui.fileUpload.updateFile')}
+          title={t('ui.fileUpload.updateFile')}
+          onClick={() => updateFile(file)}>
           <TinyIconFileCloudupload class="refres-icon" />
         </span>
       ),
       showDel && (
-        <span class="thumb-icon" title={t('ui.fileUpload.deleteFile')} onClick={() => handleRemove(file)}>
+        <span
+          class="thumb-icon"
+          role="button"
+          tabindex="0"
+          aria-label={t('ui.fileUpload.deleteFile')}
+          title={t('ui.fileUpload.deleteFile')}
+          onClick={() => handleRemove(file)}
+          onKeydown={(event) => handleEnter(event, () => handleRemove(file))}>
           <TinyIconClose class="close-icon" />
         </span>
       )
@@ -250,7 +269,10 @@ export default defineComponent({
         return [
           <TinyIconSuccessful class="thumb-success-icon" />,
           <span
-            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>
+            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}
+            onClick={() => {
+              handleFileClick(file)
+            }}>
             {file.name}
           </span>,
           getThumIcon(file)
@@ -295,12 +317,7 @@ export default defineComponent({
                                   h(
                                     'div',
                                     {
-                                      class: 'thumb-item',
-                                      on: {
-                                        click: () => {
-                                          handleFileClick(item)
-                                        }
-                                      }
+                                      class: 'thumb-item'
                                     },
                                     [getThumbList(item)]
                                   )
@@ -508,7 +525,7 @@ export default defineComponent({
     const attrs = a($attrs, ['^on[A-Z]'])
 
     return (
-      <div class="tiny-file-upload" {...attrs}>
+      <div class="tiny-file-upload" role="group" aria-label={title} {...attrs}>
         {isSaasType ? getDefaultTitle(title, this.showTitle) : ''}
         {notice}
         {isPictureCard ? uploadList : ''}

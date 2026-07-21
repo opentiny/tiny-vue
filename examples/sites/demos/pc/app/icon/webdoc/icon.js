@@ -12,7 +12,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数。图标函数执行后生成一个有效的 <code> Vue </code> 图标组件，可以在模板中使用。<br>
+          从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数，图标函数执行后生成一个有效的 <code> Vue </code> 图标组件，可以在模板中使用。在组件内应该保存图标组件的变量用于绑定，要避免在模板上直接绑定图标函数的执行。<br>
           通过修改图标的 <code>font-size</code> 的样式，指定图标的大小，通过修改<code>fill</code> 的样式指定图标的颜色。
           <div class="tip custom-block">
             <p class="custom block title"> 常见的图标使用方式 </p>
@@ -20,10 +20,11 @@ export default {
             1、在模板中通过标签式引入。比如 <code> &lt;tiny-shared /&gt; </code> <br>
             2、在模板中通过<code> &lt;component&gt; </code> 组件引入。比如 <code> &lt;component :is="tinyShared" /&gt; </code> <br>
             3、在组件属性中传入。比如 <code> &lt;tiny-button :icon="tinyShared" &gt; </code> <br>
+            4、避免模板绑定图标函数的执行。不建议 <code> &lt;component :is="IconShared()" /&gt; </code> 
           </div>
         `,
         'en-US': `
-          Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library. The execution of the icon function generates a valid <code> Vue </code> icon component that can be used in the template. <br>
+          Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library. The execution of the icon function generates a valid <code> Vue </code> icon component that can be used in the template.Save the icon component variables for binding within the component. Avoid directly binding the icon function execution on the template. <br>
           Specify the size of the icon by modifying the <code>font-size</code> style, and specify the color of the icon by modifying <code>fill</code>.
           <div class="tip custom-block">
             <p class="custom block title"> Common icon usage </p>
@@ -31,6 +32,7 @@ export default {
             1. Import labels in the template. For example, <code> &lt; tiny-shared /&gt;  </code> <br>
             2, in the template by <code> &lt; component&gt;  The </code> component is introduced. For example, <code> &lt; component :is="tinyShared" /&gt;  </code> <br>
             3. Pass in component properties. For example, <code> &lt; tiny-button :icon="tinyShared" &gt;  </code> <br>
+            4. Avoid executing template-bound icon functions.Not recommended <code> &lt;component :is="IconShared()" /&gt; </code> 
           </div>
           `
       },
@@ -57,7 +59,7 @@ export default {
         'en-US': 'Icon Set'
       },
       desc: {
-        'zh-CN': `Saas业务梳理280多个标准图标，Saas业务的应用必须使用标准图标。它新增了三大功能：支持线性、面性图标切换，支持双色切换和托底效果。<br>
+        'zh-CN': `Saas业务梳理 600 多个标准图标，Saas业务的应用必须使用标准图标。它新增了三大功能：支持线性、面性图标切换，支持双色切换和托底效果。<br>
                   通过<code>shape</code> 属性，设置图标的线性或面性图标，它支持<code>'line' | 'filled' </code>, 默认为线性图标 。\n<br>
                   通过<code>firstColor, secondColor</code>属性，设置图标的主色和副色。\n<br>
                   通过<code>underlay</code>属性，设置图标的托底效果。默认样式： { background:'#eef3fe', borderRadius:'4px',scale:0.8 } <br>

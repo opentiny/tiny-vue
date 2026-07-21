@@ -17,7 +17,7 @@ export const classes = {
   'numeric_input': 'w-full block leading-3',
   'numeric_input-medium-unit': 'sm:px-3 px-2 sm:w-full',
   'numeric_input-medium-num': 'sm:px-8 px-9 sm:w-full',
-  'numeric_input-default-unit': 'px-2 sm:w-full',
+  'numeric_input-default-unit': 'px-3 sm:w-full',
   'numeric_input-default-num': 'px-8 sm:px-9 sm:w-full',
 
   'numeric_input-active':
@@ -25,7 +25,7 @@ export const classes = {
   'numeric_input-disabled':
     'bg-inherit sm:bg-color-bg-6 sm:[&_input]:bg-transparent cursor-not-allowed sm:border border-0.5 border-solid rounded border-color-border-separator text-color-text-disabled sm:text-color-text-secondary',
 
-  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-sm inline-block overflow-hidden outline-0 bg-color-bg-1',
+  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-sm inline-block overflow-hidden outline-none bg-color-bg-1',
   'numeric-text-center': 'text-center',
   'numeric-text-left': 'text-left',
   'numeric_input_inner_size': 'leading-7 text-sm',

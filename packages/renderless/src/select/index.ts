@@ -66,7 +66,7 @@ export const showTip =
 
 export const gridOnQueryChange =
   ({ props, vm, constants, state }) =>
-  (value) => {
+  async (value) => {
     const { multiple, valueField, filterMethod, remote, remoteMethod } = props
 
     if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
@@ -75,7 +75,7 @@ export const gridOnQueryChange =
 
       vm.$refs.selectGrid.scrollTo(null, 0)
 
-      table.loadTableData(filterMethod(value, fullData) || [])
+      await table.loadData(filterMethod(value, fullData) || [])
 
       vm.$refs.selectGrid
         .handleTableData(!value)
@@ -1575,6 +1575,13 @@ export const watchVisible =
           vm.$refs.scrollbar.handleScroll()
         }
       }
+
+      // mf模板的弹出后，要清除当前focus的元素，避免苹果系统出现光标
+      if (value && state.device === 'mb' && state.breakpoint === 'default') {
+        if (document.activeElement) {
+          document.activeElement.blur()
+        }
+      }
     }, props.updateDelay)
 
     if (!value && props.shape === 'filter') {
@@ -2102,13 +2109,11 @@ export const computedCurrentSizeMap =
   }
 
 export const mounted =
-  ({ api, parent, state, props, vm, designConfig }) =>
+  ({ api, parent, state, props, vm, designConfig, nextTick }) =>
   () => {
     state.defaultCheckedKeys = props.multiple ? state.gridCheckedData : props.treeOp.defaultCheckedKeys || []
     const parentEl = parent.$el
     const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
-
-    const inputClientRect = (inputEl && inputEl.getBoundingClientRect()) || {}
 
     if (inputEl === document.activeElement) {
       document.activeElement.blur()
@@ -2126,11 +2131,17 @@ export const mounted =
       addResizeListener(vm.$refs.tags, api.resetInputHeight)
     }
 
+    // 延迟获取 inputWidth，避免在 DOM 未完全渲染时触发强制重排
+    // 使用 offsetWidth 替代 getBoundingClientRect().width，性能更好（只需宽度，无需坐标计算）
+    nextTick(() => {
+      if (inputEl) {
+        state.inputWidth = inputEl.offsetWidth || 0
+      }
+    })
+
     if (props.remote && props.multiple) {
       api.resetInputHeight()
     }
-
-    state.inputWidth = inputClientRect.width
 
     api.initQuery({ init: true }).then(() => {
       api.setSelected(true)

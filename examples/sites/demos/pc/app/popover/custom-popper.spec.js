@@ -5,10 +5,10 @@ test('延迟隐藏', async ({ page }) => {
   await page.goto('popover#custom-popper')
 
   const button1 = page.getByRole('button', { name: '左侧位置弹出' })
-  const pop1 = page.getByRole('tooltip', { name: '我是一段内容' })
+  const pop1 = page.getByText('tooltip', { name: '我是一段内容' })
 
   const button2 = page.getByRole('button', { name: '没有弹窗小箭头' })
-  const pop2 = page.getByRole('tooltip', { name: '我是一段内容' })
+  const pop2 = page.getByText('tooltip', { name: '我是一段内容' })
 
   const button3 = page.getByRole('button', { name: '覆盖字体样式' })
   const pop3 = page.locator('.custom-popover-demo-cls')

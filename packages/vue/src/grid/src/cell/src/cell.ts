@@ -24,7 +24,7 @@
  */
 import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/utils'
-import { getColumnConfig, getFuncText, formatText, getRowkey } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnConfig, getFuncText, formatText, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
@@ -162,10 +162,10 @@ function getColumnRuleTypeOperation({ _vm, renMaps, type }) {
 
 function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeNode, renMaps, type }) {
   return {
-    match: () => !~['index', 'radio', 'selection', 'expand', 'operation'].indexOf(type),
+    match: () => !['index', 'radio', 'selection', 'expand', 'operation'].includes(type),
     action: () => {
       let { sortable, remoteSort } = colProps
-      const isSortable = $table.sortable && (type ? false : sortable)
+      const isSortable = $table.sortable && sortable
       const isSortColumn = isSortable || remoteSort
 
       if (editor) {
@@ -396,7 +396,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $table, column, row, seq, level } = params
+    const { $table, column, row, seq } = params
     // startIndex：序号列的起始值
     const { startIndex, treeConfig, treeOrdered } = $table
     const { indexMethod, slots } = column
@@ -926,17 +926,75 @@ export const Cell = {
   renderOperationCell(h, params) {
     const { column, $table, row } = params
     const { operationConfig = {}, slots } = column
+    const { buttons = [], render, max = 3, disabledClass = '', useCache = true } = operationConfig
+    const rowId = getRowid($table, row)
+    let operationCell
+    const getButtonStatus = (state) =>
+      (typeof state === 'boolean' && state) || (typeof state === 'function' && state(row))
+    const getOperationSnapshot = () => ({
+      max,
+      disabledClass,
+      buttonStates: buttons.map((buttonConfig) => ({
+        buttonConfig,
+        hidden: getButtonStatus(buttonConfig.hidden),
+        disabled: getButtonStatus(buttonConfig.disabled)
+      }))
+    })
+    const isOperationConfigUnchanged = (cachedOperation) => {
+      const operationSnapshot = getOperationSnapshot()
+
+      if (
+        !cachedOperation ||
+        cachedOperation.max !== operationSnapshot.max ||
+        cachedOperation.disabledClass !== operationSnapshot.disabledClass ||
+        cachedOperation.buttonStates.length !== operationSnapshot.buttonStates.length
+      ) {
+        return false
+      }
+
+      return operationSnapshot.buttonStates.every((buttonState, index) => {
+        const cachedButtonState = cachedOperation.buttonStates[index]
+
+        return (
+          cachedButtonState &&
+          cachedButtonState.buttonConfig === buttonState.buttonConfig &&
+          cachedButtonState.hidden === buttonState.hidden &&
+          cachedButtonState.disabled === buttonState.disabled
+        )
+      })
+    }
+
+    // 加入缓存，解决表格多次渲染导致操作列也重复渲染的卡顿问题。后续优化表格多次渲染后，需要移除缓存逻辑
+    const cached = $table.operationMap.get(rowId)
+    if (cached && useCache) {
+      const { cell: cachedCell, row: cachedRow, operation: cachedOperation } = cached
+      const { visibleColumn = [] } = $table
+      const rowUnchanged = visibleColumn.every(
+        (col) => !col.property || $table.compareRow(row, cachedRow, col.property)
+      )
+      if (rowUnchanged && isOperationConfigUnchanged(cachedOperation)) {
+        return cachedCell
+      }
+    }
+    const setOperationCache = (cell) => {
+      const rowSnapshot = { ...row }
+      const operationSnapshot = getOperationSnapshot()
+      $table.operationMap.set(rowId, { cell, row: rowSnapshot, operation: operationSnapshot })
+    }
 
     // 如果是用户自定义的插槽，怎么走用户插槽逻辑
     if (slots && slots.default) {
-      return slots.default(params, h)
+      operationCell = slots.default(params, h)
+      setOperationCache(operationCell)
+      return operationCell
     }
 
-    const { buttons = [], render, max = 3, disabledClass = '' } = operationConfig
     const viewClass = $table.viewCls('operButton')
 
     if (render) {
-      return render({ h, buttons, params })
+      operationCell = render({ h, buttons, params })
+      setOperationCache(operationCell)
+      return operationCell
     }
 
     const renderBase = (buttonConfig, flag, classes, attrs) => {
@@ -968,18 +1026,16 @@ export const Cell = {
     }
 
     const isDisabled = (buttonConfig) => {
-      const { disabled = false } = buttonConfig
-      return (typeof disabled === 'boolean' && disabled) || (typeof disabled === 'function' && disabled(row))
+      return getButtonStatus(buttonConfig.disabled)
     }
 
     const isHidden = (buttonConfig) => {
-      const { hidden = false } = buttonConfig
-      return (typeof hidden === 'boolean' && hidden) || (typeof hidden === 'function' && hidden(row))
+      return getButtonStatus(buttonConfig.hidden)
     }
 
     const handleItemClick = (itemData) => {
-      // 兼容不同itemData数据类型
-      const realName = itemData?.name || itemData
+      // 兼容不同itemData数据类型,  第一段是兼容tiny的事件， 第二段是兼容 aurora design 的事件
+      const realName = itemData?.itemData?.name || itemData?.name || itemData
       const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === realName)
       buttonConfig.click(window.event || {}, { buttonConfig, ...params })
     }
@@ -1020,19 +1076,19 @@ export const Cell = {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
-    const rowKey = row[getRowkey($table)]
-
-    return [
+    operationCell = [
       h(
         'span',
         {
           class: 'tiny-grid__oper-col-wrapper',
-          key: rowKey,
+          key: getRowid($table, row),
           attrs: { 'data-tag': 'operation-cell-buttons' }
         },
         groupBig
       )
     ]
+    setOperationCache(operationCell)
+    return operationCell
   }
 }
 

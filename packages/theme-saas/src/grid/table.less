@@ -1251,7 +1251,7 @@
   // 表格与分页上下间距
   .@{pager-prefix-cls},
   & + .@{pager-prefix-cls} {
-    @apply py-2;
+    @apply pt-2 pb-0;
   }
 
   & &__header {
@@ -1446,7 +1446,7 @@
     .tiny-grid-header__column {
       @apply sticky;
       /* --tiny-color-fill-8 真实对应 rgba(31, 85, 181, .05) */
-      background-color: var(--tiny-color-fill-8-solid, #f4f6fb);
+      background-color: var(--tiny-color-fill-8, #f4f6fb);
     }
 
     .tiny-grid-header__column:last-child {
@@ -1456,6 +1456,11 @@
     .tiny-grid-header__column .tiny-grid-thead-partition,
     .tiny-grid-header__column .tiny-grid-resizable {
       transform: translateX(calc(50% - 1px));
+    }
+
+    .tiny-grid-header__column:last-child .tiny-grid-resizable {
+      transform: translateX(0);
+      width: 7px;
     }
 
     .tiny-grid-custom-footer {

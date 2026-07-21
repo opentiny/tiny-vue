@@ -24,6 +24,8 @@
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
+    :aria-labelledby="text || label ? `${name || 'radio'}-${label}-label` : null"
+    :aria-label="text || label ? null : text || label"
     tabindex="-1"
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
     v-bind="a($attrs, ['class', 'style'], true)"
@@ -50,7 +52,7 @@
         @click.stop
       />
     </span>
-    <span class="tiny-radio__label" @keydown.stop>
+    <span :id="`${name || 'radio'}-${label}-label`" class="tiny-radio__label" @keydown.stop v-auto-tip>
       <slot>{{ text || label }}</slot>
     </span>
   </label>
@@ -60,10 +62,12 @@
 import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import type { IRadioApi } from '@opentiny/vue-renderless/types/radio.type'
+import { AutoTip } from '@opentiny/vue-directive'
 import '@opentiny/vue-theme/radio/index.less'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
+  directives: { AutoTip },
   props: [
     ...props,
     'modelValue',

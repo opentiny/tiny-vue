@@ -120,7 +120,7 @@ export const renderless = (
 
   Object.assign(api, { updated: updated({ api, vm, state }), changeTab: changeTab(api) })
   onUpdated(() => api.updated())
-  onMounted(() => api.mounted({ api, parent }))
+  onMounted(() => api.mounted({ api, parent, nextTick }))
   onBeforeUnmount(() => api.beforeUnmount({ api, parent }))
 
   return api

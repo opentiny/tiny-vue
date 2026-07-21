@@ -9,6 +9,14 @@
       <slot name="header-right" />
     </template>
   </ComponentHeader>
+  <div class="docs-content-tips" v-if="templateModeState.mode === 'mobile-first'">
+    <div>
+      <tiny-alert
+        description="温馨提示：多端打开演练场，移动左右面板的分隔线，可查看大小屏多端效果"
+        center
+      ></tiny-alert>
+    </div>
+  </div>
   <div class="docs-content" id="doc-layout-scroller" ref="scrollRef" @scroll="onDocLayoutScroll">
     <div class="ti-rel cmp-container">
       <div class="flex-horizontal docs-content-main">
@@ -66,9 +74,6 @@
               <!-- 主题变量 -->
               <design-token :name="state.cmpId" :tokenList="state.tokenList" />
             </tiny-tab-item>
-            <tiny-tab-item v-if="mcpInfo.length > 0" title="MCP" name="MCP">
-              <McpDocs :data="mcpInfo" :name="capName" />
-            </tiny-tab-item>
           </tiny-tabs>
 
           <slot name="main-right" />
@@ -100,9 +105,9 @@
 <script setup lang="ts">
 import { reactive, computed, watch, onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { TinyTabs, TinyTabItem } from '@opentiny/vue'
+import { TinyTabs, TinyTabItem, TinyAlert } from '@opentiny/vue'
 import { debounce } from '@opentiny/utils'
-import { i18nByKey, getWord, $clone, useApiMode } from '@/tools'
+import { i18nByKey, getWord, $clone, useApiMode, useTemplateMode } from '@/tools'
 import { router } from '@/router.js'
 import { getWebdocPath } from './cmp-config'
 import DemoBox from '../../components/demo.vue'
@@ -111,12 +116,9 @@ import ComponentHeader from '../../components/header.vue'
 import ComponentContributor from '../../components/contributor.vue'
 import ApiDocs from '../../components/api-docs.vue'
 import DesignToken from '../../components/design-token.vue'
-import McpDocs from '../../components/mcp-docs.vue'
 import useTasksFinish from '../../composable/useTasksFinish'
 import list from '@opentiny/vue-theme/token'
 import { isSaas } from '../../const'
-import { getTinyVueMcpConfig } from '@opentiny/tiny-vue-mcp'
-import { camelize, capitalize } from '@vue/shared'
 
 const props = defineProps({ loadData: {}, appMode: {}, demoKey: {} })
 
@@ -125,7 +127,7 @@ const emit = defineEmits(['single-demo-change', 'load-page'])
 defineOptions({
   name: 'CmpPageVue'
 })
-
+const { templateModeState } = useTemplateMode()
 const scrollRef = ref()
 const { apiModeState } = useApiMode()
 const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
@@ -324,6 +326,12 @@ const loadPage = () => {
         demos: $clone(demosJson.demos || []), // 克隆一下,避免保存上次的isOpen
         column: demosJson.column || '1' // columns可能为空
       }
+      // saas 和 非saas 模式，展示的demos是不同的
+      if (isSaas) {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hideSaas)
+      } else {
+        state.currJson.demos = state.currJson.demos.filter((d) => !d.hidePc)
+      }
     } else {
       state.activeTab = 'api'
       // 隐藏tab的头部
@@ -462,29 +470,13 @@ const handleAnchorClick = (e, data) => {
   }
 }
 
-// MCP tab页签的数据
-const mcpTools = getTinyVueMcpConfig({ t: null })
-const capName = computed(() => capitalize(camelize(state.cmpId || '')))
-
-const mcpInfo = computed(() => {
-  const schema = mcpTools.components[capName.value]?.paramsSchema
-  if (schema) {
-    return Object.keys(schema).map((name) => {
-      const item = schema[name]
-      return {
-        name,
-        param: item._def?.innerType?._def?.typeName || '',
-        desc: item._def?.description || ''
-      }
-    })
-  }
-  return []
-})
-
 defineExpose({ loadPage })
 </script>
 
 <style lang="less" scoped>
+.docs-content-tips {
+  width: 100%;
+}
 .docs-content {
   flex: 1;
   overflow: hidden auto;

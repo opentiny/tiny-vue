@@ -41,7 +41,10 @@ const domData = ref([
         text: '完成',
         action: 'complete'
       }
-    ]
+    ],
+    destroy: () => {
+      showStep.value = false
+    }
   }
 ])
 

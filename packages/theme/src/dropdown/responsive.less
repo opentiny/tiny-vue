@@ -1,0 +1,48 @@
+/* stylelint-disable function-no-unknown */
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@button-prefix-cls: ~'@{css-prefix}button';
+
+@media (max-width: 1280px) {
+  .@{dropdown-prefix-cls} {
+    .inject-Dropdown-responsive-vars();
+
+    &-menu {
+      min-width: 0;
+    }
+
+    /* 纯图标按钮 */
+    &__trigger:not(.tiny-button) {
+      &:not(:has(.@{dropdown-prefix-cls}__title)) > .@{dropdown-prefix-cls}__suffix-inner {
+        .tiny-svg {
+          font-size: var(--tv-Dropdown-responsive-icon-size-only-svg);
+
+          &:hover {
+            fill: var(--tv-Dropdown-responsive-icon-color);
+          }
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    &-item {
+      .inject-Dropdown-vars();
+
+      &[class*='tiny-'] {
+        margin-bottom: 0;
+      }
+
+      // 展开项悬浮激活态
+      &:not(.is-disabled).has-children:hover {
+        color: var(--tv-Dropdown-responsive-font-color-hover);
+        background-color: var(--tv-Dropdown-responsive-bg-color-hover);
+      }
+    }
+  }
+}

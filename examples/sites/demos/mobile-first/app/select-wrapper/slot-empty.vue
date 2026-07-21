@@ -1,0 +1,44 @@
+<template>
+  <tiny-select v-model="value">
+    <template #empty>
+      <div class="custom-empty">
+        <p>APIG 网关异常</p>
+        <tiny-button size="small">重新加载</tiny-button>
+      </div>
+    </template>
+  </tiny-select>
+</template>
+
+<script>
+import { TinySelectWrapper as TinySelect, TinyButton } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinySelect,
+    TinyButton
+  },
+  data() {
+    return {
+      value: ''
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+
+.custom-empty {
+  text-align: center;
+
+  p {
+    color: var(--tv-color-text-secondary);
+  }
+
+  .tiny-button {
+    margin-top: 8px;
+  }
+}
+</style>

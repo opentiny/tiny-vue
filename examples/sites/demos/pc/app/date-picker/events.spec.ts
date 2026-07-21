@@ -19,7 +19,7 @@ test('[DatePicker] 测试事件', async ({ page }) => {
   await page
     .locator('div')
     .filter({ hasText: /^blur:$/ })
-    .getByRole('textbox')
+    .getByRole('combobox')
     .click()
   await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   const blurEventMessageDom = page.locator('div').filter({ hasText: '触发 blur 事件' }).nth(1)
@@ -33,7 +33,7 @@ test('[DatePicker] 测试事件', async ({ page }) => {
   await page
     .locator('div')
     .filter({ hasText: /^change:$/ })
-    .getByRole('textbox')
+    .getByRole('combobox')
     .click()
   await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   const changeEventMessageDom = page.locator('div').filter({ hasText: '触发 change 事件，组件绑定值为：' }).nth(1)

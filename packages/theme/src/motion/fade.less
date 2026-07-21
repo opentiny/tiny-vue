@@ -1,0 +1,139 @@
+/* ===========================
+   淡入淡出动画 (fade.less)
+   来源: dialog-box, popup, drawer, image, timepicker
+   可配置变量:
+     --tv-motion-fade-offset-x       X轴位移(px)
+     --tv-motion-fade-offset-y       Y轴位移(px)
+     --tv-motion-fade-speed          动画时长(s)
+=========================== */
+
+/* ============ 纯淡入淡出 ============ */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ============ 各方向位移 + 淡入淡出 ============ */
+@keyframes fade-in-up {
+  0% {
+    transform: translate3d(0, calc(-1 * var(--tv-motion-fade-offset-y, 20px)), 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-up {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, calc(-1 * var(--tv-motion-fade-offset-y, 20px)), 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    transform: translate3d(0, var(--tv-motion-fade-offset-y, 20px), 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-down {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, var(--tv-motion-fade-offset-y, 20px), 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    transform: translate3d(calc(-1 * var(--tv-motion-fade-offset-x, 20px)), 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(calc(-1 * var(--tv-motion-fade-offset-x, 20px)), 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    transform: translate3d(var(--tv-motion-fade-offset-x, 20px), 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-right {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--tv-motion-fade-offset-x, 20px), 0, 0);
+    opacity: 0;
+  }
+}
+
+/* ============ Timepicker 动画 ============ */
+@keyframes fade-in-timepicker {
+  0% {
+    transform: translateY(-200px);
+    z-index: -999;
+  }
+  100% {
+    transform: translateY(0);
+    z-index: 0;
+  }
+}
+
+@keyframes fade-up-timepicker {
+  0% {
+    transform: translateY(200px);
+    z-index: -999;
+  }
+  100% {
+    transform: translateY(0);
+    z-index: 0;
+  }
+}

@@ -2,30 +2,14 @@
   <div>
     <p>场景 1：collapse-tags 折叠</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple collapse-tags></tiny-tree-select>
+    <br />
+    <br />
     <p>场景 2：hover-expand 折叠</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple hover-expand></tiny-tree-select>
     <br />
     <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <p>场景 3：click-expand 折叠</p>
     <tiny-tree-select v-model="value" :tree-op="treeOp" multiple click-expand :max-visible-rows="1"></tiny-tree-select>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
   </div>
 </template>
 

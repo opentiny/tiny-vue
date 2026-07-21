@@ -7,6 +7,6 @@ test('列筛选规则', async ({ page }) => {
   await page.locator('.tiny-grid__filter-wrapper.filter__active input').click()
   await page.locator('.tiny-grid__filter-wrapper.filter__active input').press('CapsLock')
   await page.locator('.tiny-grid__filter-wrapper.filter__active input').fill('WWW')
-  await page.getByRole('button', { name: 'confirm' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(page.getByRole('cell', { name: 'WWW 科技 YX 公司' })).toBeVisible()
 })

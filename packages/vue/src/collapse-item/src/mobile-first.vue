@@ -16,18 +16,22 @@
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
         @keyup.space.enter.stop="handleEnterClick"
-        :class="
+        :class="[
           disabled
             ? 'text-color-text-disabled'
-            : 'text-color-text-primary sm:[&:has(.peer:hover)_[role=title]]:text-color-brand'
-        "
+            : 'text-color-text-primary sm:[&:has(.peer:hover)_[role=title]]:text-color-brand',
+          state.size === 'medium' ? 'text-base sm:h-[42px]' : 'text-sm sm:h-10'
+        ]"
         @focus="handleFocus"
         @blur="state.focusing = false"
       >
         <div
           data-tag="tiny-collapse-item-title"
           class="whitespace-nowrap overflow-hidden overflow-ellipsis inline-block peer"
-          :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer sm:hover:text-color-brand']"
+          :class="[
+            disabled ? 'cursor-not-allowed' : 'cursor-pointer sm:hover:text-color-brand',
+            state.size === 'medium' ? 'leading-6' : 'leading-5.5'
+          ]"
           role="title"
           @click="handleHeaderClick"
         >

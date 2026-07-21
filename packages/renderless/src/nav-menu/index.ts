@@ -53,8 +53,10 @@ export const computedSubMenus = (state: INavMenuState) => (): menuItemType[] => 
 export const computedMenuStyle =
   ({ props, state }: Pick<INavMenuRenderlessParams, 'props' | 'state'>) =>
   (): Object => {
-    let result = {
-      maxWidth: `${state.width}px`
+    const result: Record<string, string> = {}
+
+    if (state.width >= 0) {
+      result.maxWidth = `${state.width}px`
     }
 
     if (props.overflow === 'retract') {
@@ -207,13 +209,18 @@ export const initData =
 export const mounted =
   ({
     api,
+    nextTick,
     props,
     router,
     route,
     state
-  }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'router' | 'route' | 'state'>) =>
+  }: Pick<INavMenuRenderlessParams, 'api' | 'nextTick' | 'props' | 'router' | 'route' | 'state'>) =>
   (): void => {
-    api.calcWidth()
+    nextTick(() => {
+      requestAnimationFrame(() => {
+        api.calcWidth()
+      })
+    })
 
     on(window, 'resize', api.calcWidth)
 
@@ -434,36 +441,57 @@ export const hidePopmenu = (api: INavMenuApi) => (item: menuItemType) => {
   }
 }
 
+const updateMenuSelectedState = (
+  state: INavMenuState,
+  api: INavMenuApi,
+  item: menuItemType,
+  index: number,
+  parentIndex: number
+): void => {
+  if (state.defaultActiveId) {
+    state.defaultActiveId = item.id
+    state.selectedIndex = -1
+  }
+  if (state.enterMenu) {
+    state.subIndex = -1
+    state.subItemSelectedIndex = -1
+    api.setActiveMenu(index)
+  }
+  if (state.enterMoreMenu) {
+    state.selectedIndex = -1
+    state.moreItemSelectedIndex = index
+  } else {
+    state.subItemSelectedIndex = index
+    state.subIndex = parentIndex
+  }
+}
+
 export const clickMenu =
   ({ api, props, state }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'state'>) =>
   (item: menuItemType, index: number, parentIndex: number): void => {
     if (index === undefined) {
       return
     }
-    if (state.defaultActiveId) {
-      state.defaultActiveId = item.id
-      state.selectedIndex = -1
-    }
-    if (state.enterMenu) {
-      state.subIndex = -1
-      state.subItemSelectedIndex = -1
-      api.setActiveMenu(index)
-    }
-    if (state.enterMoreMenu) {
-      state.selectedIndex = -1
-      state.moreItemSelectedIndex = index
-    } else {
-      state.subItemSelectedIndex = index
-      state.subIndex = parentIndex
-    }
     if (item.url || item.route) {
+      const canSkip = props.beforeSkip ? props.beforeSkip(item) : true
+
+      if (!canSkip) {
+        api.hideSubMenu()
+        return
+      }
+
+      updateMenuSelectedState(state, api, item, index, parentIndex)
+
       if (props.beforeSkip) {
-        props.beforeSkip(item) && api.skip(item, true)
+        api.skip(item, true)
       } else {
         api.skip(item, false)
       }
       api.hidePopmenu(item)
+      return
     }
+
+    updateMenuSelectedState(state, api, item, index, parentIndex)
   }
 
 export const skip =
@@ -523,10 +551,21 @@ export const classify =
 export const calcWidth =
   ({ parent, props, state }: Pick<INavMenuRenderlessParams, 'parent' | 'props' | 'state'>) =>
   (): void => {
-    let el = parent.$el
-    let logoWidth = parent.$slots.logo ? el.querySelector('.slot-logo').offsetWidth : 0
-    let toolbarWidth = parent.$slots.toolbar ? el.querySelector('.slot-toolbar').offsetWidth : 0
-    let menuWidth = el.offsetWidth
+    const el = parent.$el
+
+    if (!el) {
+      return
+    }
+
+    const menuWidth = el.offsetWidth
+
+    // DOM 未就绪时不更新 width，避免误设为 0 导致菜单隐藏
+    if (!menuWidth && props.overflow !== 'retract') {
+      return
+    }
+
+    const logoWidth = parent.$slots.logo ? el.querySelector('.slot-logo')?.offsetWidth || 0 : 0
+    const toolbarWidth = parent.$slots.toolbar ? el.querySelector('.slot-toolbar')?.offsetWidth || 0 : 0
     let width = props.overflow === 'retract' ? 0 : menuWidth - toolbarWidth - logoWidth
 
     width = width - 90 // 预留更多的位置

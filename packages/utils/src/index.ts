@@ -18,7 +18,8 @@ export {
   toDateStr,
   getWeekOfFirstDay,
   getLocalTimezone,
-  getStrTimezone
+  getStrTimezone,
+  parseIso8601
 } from './date'
 
 // 与 date.ts 合并一下, 有几个重名变量，待整理, 如果功能一致就合并
@@ -166,7 +167,7 @@ export { NODE_KEY, getNodeKey, markNodeData, getChildState, Node, TreeStore } fr
 // 待移除， 移到loading中去， 或起个更好的名字
 export { afterLeave } from './after-leave'
 
-export { debounce } from './debounce'
+export { debounce, debounceBoth } from './debounce'
 export { throttle } from './throttle'
 
 export {

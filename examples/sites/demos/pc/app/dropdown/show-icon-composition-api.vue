@@ -64,7 +64,7 @@ p {
       .tiny-svg {
         fill: var(--tv-color-icon-control);
         &:hover {
-          fill: var(--tv-color-icon-control);
+          fill: var(--tv-color-info-icon);
         }
       }
     }

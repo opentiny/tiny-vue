@@ -28,7 +28,7 @@
             <input
               v-model="state.search.input"
               @keydown.enter="searchMethod"
-              class="h-5 flex-auto text-xs bg-transparent outline-0"
+              class="h-5 flex-auto text-xs bg-transparent outline-none"
               :placeholder="placeholder || t('ui.select.pleaseSearch')"
             />
           </div>

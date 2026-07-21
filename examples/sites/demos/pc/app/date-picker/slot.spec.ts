@@ -7,23 +7,23 @@ test('[DatePicker] 测试尺寸设置', async ({ page }) => {
   let btn = page.getByRole('button', { name: '自定义按钮' })
   let nowBtn = page.getByRole('button', { name: '自定义此刻' })
 
-  await page.locator('#slot').getByRole('textbox', { name: '请选择日期', exact: true }).click()
+  await page.locator('#slot').getByRole('combobox', { name: '请选择日期', exact: true }).click()
   await page.waitForTimeout(200)
   await expect(btn).toBeVisible()
 
-  await page.getByRole('textbox', { name: '请选择日期时间' }).click()
+  await page.getByRole('combobox', { name: '请选择日期时间' }).click()
   await page.waitForTimeout(200)
   await expect(nowBtn).toBeVisible()
 
-  await page.locator('#slot').getByRole('textbox', { name: '请选择周' }).click()
+  await page.locator('#slot').getByRole('combobox', { name: '请选择周' }).click()
   await page.waitForTimeout(200)
   await expect(btn.first()).toBeVisible()
 
-  await page.locator('#slot').getByRole('textbox', { name: '请选择月份' }).click()
+  await page.locator('#slot').getByRole('combobox', { name: '请选择月份' }).click()
   await page.waitForTimeout(200)
   await expect(btn.first()).toBeVisible()
 
-  await page.locator('#slot').getByRole('textbox', { name: '请选择年份' }).click()
+  await page.locator('#slot').getByRole('combobox', { name: '请选择年份' }).click()
   await page.waitForTimeout(200)
   await expect(btn.first()).toBeVisible()
 

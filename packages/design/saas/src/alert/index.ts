@@ -1,4 +1,4 @@
-import { iconWarning } from '@opentiny/vue-icon'
+import { iconWarning } from '@opentiny/vue-icon-saas'
 
 export default {
   icons: {

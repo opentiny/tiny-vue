@@ -26,16 +26,7 @@ import { debounce } from '@opentiny/utils'
 import { hooks } from '@opentiny/vue-common'
 import { addClass } from '@opentiny/utils'
 import { browserInfo } from '@opentiny/utils'
-import {
-  isArray,
-  destructuring,
-  set,
-  get,
-  remove,
-  filterTree,
-  find,
-  clone
-} from '@opentiny/vue-renderless/grid/static/'
+import { isArray, destructuring, set, get, remove, filterTree, find } from '@opentiny/vue-renderless/grid/static/'
 import { getCell, getCellValue, setCellValue, emitEvent, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { error, warn } from '../../tools'
@@ -48,35 +39,27 @@ import {
   handleActivedTryActive
 } from './utils/handleActived'
 
-function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData }) {
+function operArrs({ _vm, editStore, newRecords, row, tableFullData }) {
   if (row === -1) {
-    Array.prototype.push.apply(nowData, newRecords)
     Array.prototype.push.apply(tableFullData, newRecords)
-    Array.prototype.push.apply(tableSourceData, newRecordsCopy)
   }
 
   if (row && row !== -1) {
-    let targetIndex = nowData.indexOf(row)
+    let insertIndex = tableFullData.indexOf(row)
 
-    if (targetIndex === -1) {
+    if (insertIndex === -1) {
       throw new Error(error('ui.grid.error.unableInsert'))
     }
 
-    let insertIndex = tableFullData.indexOf(row)
-
-    Array.prototype.splice.apply(nowData, [targetIndex, 0].concat(newRecords))
     Array.prototype.splice.apply(tableFullData, [insertIndex, 0].concat(newRecords))
-    Array.prototype.splice.apply(tableSourceData, [insertIndex, 0].concat(newRecordsCopy))
   }
 
   if (!row) {
-    Array.prototype.unshift.apply(nowData, newRecords)
     Array.prototype.unshift.apply(tableFullData, newRecords)
-    Array.prototype.unshift.apply(tableSourceData, newRecordsCopy)
   }
 
   Array.prototype.unshift.apply(editStore.insertList, newRecords)
-  Array.prototype.push.apply(_vm.temporaryRows, newRecordsCopy)
+  newRecords.forEach((row) => editStore.insertMap.set(getRowid(_vm, row), row))
 }
 
 export function removeFromTableSourceData({ _vm, rows, tableSourceData }) {
@@ -129,32 +112,35 @@ export default {
   },
   // 根据位置从指定行添加数据
   _insertAt(records, row) {
-    let { afterFullData, editStore, isAsyncColumn, scrollYLoad, tableFullData, tableSourceData = [], treeConfig } = this
+    let { editStore, isAsyncColumn, scrollYLoad, tableFullData, treeConfig, visibleColumn } = this
 
     if (treeConfig) {
       throw new Error(error('ui.grid.error.treeInsert'))
-    }
-
-    // 增加新增标识
-    if (isAsyncColumn) {
-      const columnSet = this.getColumns()
-
-      columnSet.forEach((column) => {
-        if (column.format && column.format.async && column.format.async.fetch) {
-          records[GlobalConfig.constant.insertedField] = true
-        }
-      })
     }
 
     if (!isArray(records)) {
       records = [records]
     }
 
-    let nowData = afterFullData
-    let newRecords = records.map((record) => hooks.reactive(this.defineField({ ...record })))
-    let newRecordsCopy = clone(newRecords, true)
+    const isColumnFormat = isAsyncColumn && visibleColumn.some((column) => column.format?.async?.fetch)
 
-    operArrs({ _vm: this, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData })
+    const defaultRowId = '_RID'
+    let newRecords = records.map((record) => {
+      // 增加新增标识
+      isColumnFormat && (record[GlobalConfig.constant.insertedField] = true)
+      // 兼容历史版本，将已有行直接copy后直接insert, 由于默认id重复导致显示异常，需要将表格默认rowId删除
+      delete record?.[defaultRowId]
+      // 增加编辑字段和主键字段
+      return hooks.reactive(this.defineField(Object.assign({}, record)))
+    })
+
+    operArrs({
+      _vm: this,
+      editStore,
+      row,
+      tableFullData,
+      newRecords
+    })
 
     this.updateCache()
     this.handleTableData(true)
@@ -179,9 +165,9 @@ export default {
    * 如果传 rows 则删除多行
    */
   _remove(rows) {
-    let { afterFullData, scrollYLoad, selectConfig = {} } = this
-    let { selection, tableFullData, treeConfig, tableSourceData = [] } = this
-    let { insertList, removeList } = this.editStore
+    let { afterFullData, selectConfig = {} } = this
+    let { selection, tableFullData, treeConfig } = this
+    let { insertList, insertMap, removeList } = this.editStore
     let { checkField } = selectConfig
     let nowData = afterFullData
     let rest = []
@@ -203,7 +189,7 @@ export default {
     // 如果不是新增，则保存记录
     for (let i = 0; i < rows.length; i++) {
       let row = rows[i]
-      if (this.hasRowInsert(row)) continue
+      if (this.isTemporaryRow(row)) continue
       removeList.push(row)
     }
 
@@ -222,26 +208,18 @@ export default {
       remove(nowData, (row) => inArr(row, rows))
     }
 
-    // 从备份中移除新增数据
-    remove(
-      tableSourceData,
-      (row) =>
-        find(insertList, (r) => getRowid(this, r) === getRowid(this, row)) &&
-        find(rows, (r) => getRowid(this, r) === getRowid(this, row))
-    )
-
     // 从新增中移除已删除的数据
-    remove(insertList, (row) => inArr(row, rows))
+    remove(insertList, (row) => {
+      const exist = inArr(row, rows)
+      exist && insertMap.delete(getRowid(this, row))
+      return exist
+    })
 
     // 修改缓存
     this.updateCache()
     this.handleTableData(true)
-
     this.checkSelectionStatus()
     this.updateFooter()
-    if (scrollYLoad) {
-      this.updateScrollYSpace()
-    }
 
     let res = {
       row: rows && rows.length ? rows[rows.length - 1] : null,
@@ -279,14 +257,14 @@ export default {
    * 如果还额外传了field则还原指定单元格。
    */
   _revertData(rows, field) {
-    let { tableSynchData } = this
+    let { rawData } = this
 
     if (arguments.length && rows && !isArray(rows)) {
       rows = [rows]
     }
 
     if (!arguments.length) {
-      rows = tableSynchData || []
+      rows = rawData || []
     }
 
     for (let i = 0; i < rows.length; i++) {
@@ -308,7 +286,7 @@ export default {
       return this.$nextTick()
     }
 
-    return this.reloadData(tableSynchData)
+    return this.reloadData(rawData || [])
   },
 
   /**
@@ -360,7 +338,7 @@ export default {
     let { actived } = editStore
     let isActiveCell = handleActivedCheckCell({ actived, column, editConfig, row })
 
-    if (editor && cell && isActiveCell) {
+    if (editor && cell && isActiveCell && editConfig) {
       // 判断是否禁用编辑
       let type = 'edit-disabled'
       let canActive = await handleActivedCanActive({ editConfig, params })

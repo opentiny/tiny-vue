@@ -17,7 +17,15 @@ export default {
           pcDemo: 'tip'
         },
         {
-          mode: []
+          name: 'clearable',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否显示清空按钮',
+            'en-US': 'Whether to display the clear button'
+          },
+          mode: ['pc'],
+          pcDemo: 'tip'
         },
         {
           name: 'disabled',
@@ -75,6 +83,18 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'popper-class'
+        },
+        {
+          name: 'size',
+          type: "'medium'",
+          defaultValue: '',
+          desc: {
+            'zh-CN': '过滤器面板的尺寸，可选值：medium（中等尺寸），不设置则为默认尺寸',
+            'en-US': 'Size of the filter panel. Optional value: medium. If not set, the default size is used'
+          },
+          stable: '3.29.0',
+          mode: ['pc'],
+          pcDemo: 'size'
         },
         {
           name: 'tip',

@@ -217,7 +217,24 @@ describe('PC Mode', () => {
     'overflow 设置一级菜单无法在当前菜单容器里显示完全时的处理策略。可选项有 auto / retract / fixed / hidden。默认为 auto'
   )
 
-  test.todo('before-skip 点击菜单跳转前的钩子函数，返回 false 将无法跳转')
+  test('before-skip 返回 false 时不更新激活状态', async () => {
+    const menuData = [
+      { title: '首页', url: '/overview', id: '1' },
+      { title: '其他', url: 'crop', id: '2' }
+    ]
+    const beforeSkip = () => false
+    const wrapper = mount(() => <NavMenu data={menuData} beforeSkip={beforeSkip}></NavMenu>)
+    const navMenu = wrapper.findComponent({ name: 'TinyNavMenu' })
+
+    navMenu.vm.setActiveMenu(0)
+    expect(navMenu.vm.state.selectedIndex).toBe(0)
+
+    navMenu.vm.clickMenu(navMenu.vm.state.data[1], 1)
+
+    expect(navMenu.vm.state.selectedIndex).toBe(0)
+    expect(navMenu.vm.state.subItemSelectedIndex).toBe(-1)
+    expect(navMenu.vm.state.moreItemSelectedIndex).toBe(-1)
+  })
 
   test.todo('fetch-menu-data 自定义菜单数据加载服务，返回一个Promise对象')
 
@@ -236,5 +253,18 @@ describe('PC Mode', () => {
     ))
     const iconTotalSvg = wrapper.find('.slot-logo')
     expect(iconTotalSvg.exists()).toBeTruthy()
+  })
+
+  test('should not hide menu with max-width 0px on mount', async () => {
+    const wrapper = mount(() => <NavMenu data={navMenuMockData}></NavMenu>)
+    await wrapper.vm.$nextTick()
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    const menu = wrapper.find('.menu')
+    expect(menu.exists()).toBeTruthy()
+    expect(menu.isVisible()).toBeTruthy()
+
+    const maxWidth = menu.element.style.maxWidth
+    expect(maxWidth).not.toBe('0px')
   })
 })
