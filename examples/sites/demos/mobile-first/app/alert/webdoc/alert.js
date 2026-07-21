@@ -25,7 +25,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>size</code> 设置不同的尺寸模式，可选值： <code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code>。</p>',
         'en-US':
-          '<p>Set different size modes through<code>size</code>, with optional values:< code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code>.</p>'
+          '<p>Set different size modes through<code>size</code>, with optional values:<code>small</code> 、<code>medium</code> 、<code>normal</code> 、<code>large</code>.</p>'
       },
       codeFiles: ['size.vue']
     },

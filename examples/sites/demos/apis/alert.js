@@ -119,7 +119,7 @@ export default {
             'zh-CN': '是否显示标题，在 size 为 large 时有效',
             'en-US': 'Whether to show title Only valid when size is large'
           },
-          mode: ['pc', 'mobile-first'],
+          mode: ['pc'],
           pcDemo: 'title',
           meta: {
             stable: '3.21.0'
