@@ -183,6 +183,14 @@ export const cmpMenus = [
       { 'nameCn': '综合搜索', 'name': 'SearchBox', 'key': 'search-box' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
+      {
+        'nameCn': '滑动按钮组',
+        'name': 'SliderButton',
+        'key': 'slider-button',
+        'meta': {
+          'stable': '3.31.0'
+        }
+      },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },

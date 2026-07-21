@@ -2,6 +2,7 @@
 
 @dialog-select-prefix-cls: ~'@{css-prefix}dialog-select';
 @dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+@tree-prefix-cls: ~'@{css-prefix}tree';
 
 .@{dialog-select-prefix-cls} {
   .@{dialog-box-prefix-cls}__body {
@@ -84,5 +85,9 @@
     .tiny-dialog-select__body-tree {
       @apply mr-0;
     }
+  }
+  
+  .@{tree-prefix-cls} {
+    @apply px-2 pt-1 pb-px;
   }
 }

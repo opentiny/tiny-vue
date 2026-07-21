@@ -160,7 +160,7 @@
     @apply absolute;
     @apply leading-normal;
     @apply whitespace-normal;
-    @apply pl-3;
+    @apply pl-2;
     @apply pr-2;
     @apply ~'z-[1]';
     @apply ~"top-1/2";
@@ -181,9 +181,12 @@
       @apply inline-flex;
       @apply justify-start;
       @apply items-center;
+      @apply border-transparent;
+      @apply text-color-text-primary;
+      @apply bg-color-bg-2;
 
       .@{tag-prefix-cls}__close {
-        @apply fill-color-text-secondary;
+        @apply fill-color-none;
       }
     }
 
@@ -236,6 +239,14 @@
       }
     }
 
+    &.@{select-prefix-cls}--medium .@{select-prefix-cls}__tags {
+      @apply h-7;
+    }
+
+    &.@{select-prefix-cls}--mini .@{select-prefix-cls}__tags {
+      @apply h-5;
+    }
+
     &.is-hover .@{select-prefix-cls}__tags {
       @apply h-auto;
       @apply ~"max-h-[theme(spacing.28)]";
@@ -276,7 +287,7 @@
   &.is-disabled {
     .@{input-prefix-cls} {
       &__inner {
-        @apply pr-3;
+        @apply pr-2;
       }
 
       &__suffix {
@@ -285,7 +296,7 @@
     }
 
     .@{select-prefix-cls}__tags {
-      @apply pr-4;
+      @apply pr-3;
     }
   }
 
@@ -310,7 +321,7 @@
         @apply whitespace-nowrap;
         @apply text-ellipsis;
         @apply overflow-hidden;
-        @apply text-color-text-disabled;
+        @apply text-color-text-secondary;
       }
     }
   }
@@ -321,28 +332,28 @@
 
   & .@{input-prefix-cls} {
     .@{input-prefix-cls}__inner {
-      @apply pl-3;
-      @apply pr-9;
+      @apply pl-2;
+      @apply pr-8;
     }
 
     .@{input-prefix-cls}__suffix {
-      @apply right-3;
+      @apply right-2;
     }
 
     &.@{input-prefix-cls}-prefix {
       .@{input-prefix-cls}__inner {
-        @apply pl-9;
+        @apply pl-8;
       }
     }
 
     &.is-show-close {
       .@{input-prefix-cls}__inner {
-        @apply pr-12;
+        @apply pr-11;
       }
 
       .tiny-select__close {
-        @apply mr-2;
-        @apply fill-color-text-secondary;
+        @apply mr-1;
+        @apply fill-color-text-placeholder;
 
         &:hover {
           @apply fill-color-icon-primary;
@@ -376,7 +387,7 @@
       @apply text-center;
       transform: rotateZ(180deg);
       @apply rounded-full;
-      @apply fill-color-icon-secondary;
+      @apply fill-color-icon-placeholder;
       transition: fill 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
       &:hover {
@@ -414,7 +425,7 @@
 
   & .@{input-prefix-cls}.show-copy .@{input-prefix-cls}__inner,
   & .@{input-prefix-cls}.show-clear .@{input-prefix-cls}__inner {
-    @apply pr-12;
+    @apply pr-11;
   }
 
   & .@{input-prefix-cls}.show-copy.show-clear .@{input-prefix-cls}__inner {

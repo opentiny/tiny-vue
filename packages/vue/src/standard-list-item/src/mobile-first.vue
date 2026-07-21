@@ -50,7 +50,7 @@
               >{{ data.title || '' }}</span
             >
           </slot>
-          <span class="text-color-text-placeholder shrink-0">{{ data.subTitle || '' }}</span>
+          <span class="text-color-text-secondary shrink-0">{{ data.subTitle || '' }}</span>
           <slot name="tag">
             <tiny-tag-group
               v-if="tag"

@@ -128,7 +128,7 @@ export default {
         'en-US': 'Custom String Length'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>rules</code> 的 <code>regular</code> 进行自定义字符串长度（3.28.0版本新增）</p>',
+        'zh-CN': '<p>通过 <code>rules</code> 的 <code>regular</code> 进行自定义字符串长度</p>',
         'en-US': '<p>Customize string length using the <code>regular</code> method of <code>rules</code>. </p>'
       },
       codeFiles: ['custom-validation-string-length.vue']

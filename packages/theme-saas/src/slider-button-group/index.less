@@ -1,0 +1,131 @@
+@import '../custom.less';
+
+@slider-button-group-prefix-cls: ~'@{css-prefix}slider-button-group';
+@slider-button-bar-prefix-cls: ~'@{css-prefix}slider-button-bar';
+
+.@{slider-button-group-prefix-cls}-inline-flex {
+  @apply inline-flex;
+}
+.@{slider-button-group-prefix-cls}-flex {
+  @apply flex;
+}
+.@{slider-button-group-prefix-cls}-box {
+  @apply bg-color-bg-3;
+  @apply inline-flex;
+  @apply h-auto;
+  @apply rounded-md;
+  @apply relative;
+  @apply box-border;
+  .@{slider-button-group-prefix-cls}-background {
+    @apply absolute;
+    @apply bg-color-bg-1;
+    @apply shadow-sm;
+    @apply h-6;
+    @apply rounded;
+    &.@{slider-button-group-prefix-cls}-size-large {
+      @apply top-1;
+    }
+    &.@{slider-button-group-prefix-cls}-size-normal {
+      @apply ~'top-0.5';
+    }
+  }
+}
+.@{slider-button-bar-prefix-cls} {
+  @apply items-center;
+  @apply w-full;
+  @apply flex;
+}
+.@{slider-button-bar-prefix-cls}-box {
+  @apply hidden;
+  @apply flex-none;
+  @apply h-12;
+  @apply items-center;
+  @apply select-none;
+  @apply cursor-pointer;
+  @apply bg-color-bg-1;
+}
+.@{slider-button-bar-prefix-cls}-box-flex {
+  @apply flex;
+}
+.@{slider-button-bar-prefix-cls}-left-box {
+  @apply w-7;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply h-full;
+  @apply pr-2;
+}
+.@{slider-button-bar-prefix-cls}-left-icon {
+  @apply h-5;
+  @apply w-5;
+}
+.@{slider-button-bar-prefix-cls}-left-icon-primary {
+  @apply fill-color-icon-primary;
+  @apply w-5;
+}
+.@{slider-button-bar-prefix-cls}-left-text-disabled {
+  @apply fill-color-text-disabled;
+}
+.@{slider-button-bar-prefix-cls}-slidemain {
+  @apply inline-flex;
+  @apply rounded;
+  @apply relative;
+  @apply items-center;
+  @apply scrollbar-size-0;
+  @apply box-border;
+  @apply flex-auto;
+  @apply overflow-auto;
+  @apply h-7;
+}
+.@{slider-button-bar-prefix-cls}-slidemain-large {
+  @apply h-auto;
+}
+.@{slider-button-bar-prefix-cls}-slidemain-medium {
+  @apply h-8;
+}
+.@{slider-button-bar-prefix-cls}-slidemain-box {
+  @apply absolute;
+  @apply bg-color-bg-1;
+  @apply shadow;
+  @apply h-6;
+  @apply rounded;
+  @apply ~'top-0.5';
+}
+.@{slider-button-bar-prefix-cls}-slidemain-box-top {
+  @apply top-1;
+}
+.@{slider-button-bar-prefix-cls}-slidemain-flex {
+  @apply flex;
+  @apply bg-color-bg-2;
+  @apply rounded-md;
+}
+.@{slider-button-bar-prefix-cls}-right {
+  @apply hidden;
+  @apply flex-none;
+  @apply h-12;
+  @apply cursor-pointer;
+  @apply items-center;
+  @apply select-none;
+  @apply bg-color-bg-1;
+}
+.@{slider-button-bar-prefix-cls}-right-flex {
+  @apply flex;
+}
+.@{slider-button-bar-prefix-cls}-right-slot-box {
+  @apply w-7;
+  @apply h-full;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply pl-2;
+}
+.@{slider-button-bar-prefix-cls}-right-slot-icon {
+  @apply h-5;
+  @apply w-5;
+}
+.@{slider-button-bar-prefix-cls}-right-slot-icon-primary {
+  @apply fill-color-icon-primary;
+}
+.@{slider-button-bar-prefix-cls}-right-slot-text-disabled {
+  @apply fill-color-text-disabled;
+}

@@ -194,7 +194,7 @@
             :disabled="!showTips || state.device === 'mb'"
             :popper-class="tooltipConfig.popperClass || ''"
           >
-            <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-disabled">
+            <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-secondary">
               <span v-for="item in state.selected" :key="item.value">
                 <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
                 >;

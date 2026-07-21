@@ -444,6 +444,7 @@ import IconSortTriangleAscending from './src/sort-triangle-ascending'
 import IconSortTriangleDescending from './src/sort-triangle-descending'
 import IconSortTriangle from './src/sort-triangle'
 import IconSort from './src/sort'
+import IconSortDesc from './src/sort-desc'
 import IconSplitLeft from './src/split-left'
 import IconSplitRight from './src/split-right'
 import IconSplit from './src/split'
@@ -984,6 +985,7 @@ export { IconSortTriangleAscending, IconSortTriangleAscending as iconSortTriangl
 export { IconSortTriangleDescending, IconSortTriangleDescending as iconSortTriangleDescending }
 export { IconSortTriangle, IconSortTriangle as iconSortTriangle }
 export { IconSort, IconSort as iconSort }
+export { IconSortDesc, IconSortDesc as iconSortDesc }
 export { IconSplitLeft, IconSplitLeft as iconSplitLeft }
 export { IconSplitRight, IconSplitRight as iconSplitRight }
 export { IconSplit, IconSplit as iconSplit }
@@ -1522,6 +1524,7 @@ export default {
   IconSortTriangleDescending,
   IconSortTriangle,
   IconSort,
+  IconSortDesc,
   IconSplitLeft,
   IconSplitRight,
   IconSplit,

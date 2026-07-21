@@ -83,7 +83,7 @@
           v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
           :class="
             m(
-              'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
+              'w-full border-0 sm:border px-0 sm:px-2 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
                 'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-secondary sm:disabled:text-color-text-secondary ' +
@@ -109,7 +109,7 @@
                 : slots.prefix || prefixIcon
                   ? 'pl-6 sm:pl-6 pr-0 sm:pr-3'
                   : slots.suffix || suffixIcon || clearable || showPassword
-                    ? 'pl-0 sm:pl-3 pr-6 sm:pr-6'
+                    ? 'pl-0 sm:pl-2 pr-6 sm:pr-6'
                     : '',
               mask && state.inputDisabled
                 ? !state.maskValueVisible
@@ -346,7 +346,7 @@
         :tabindex="tabindex"
         class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-none rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-disabled sm:disabled:bg-color-bg-6"
         :class="[
-          readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 ',
+          readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-2 py-2 ',
           state.isDisplayOnly ? 'hidden' : '',
           state.inputSizeMf !== 'mini' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs',
           hoverExpand && 'min-w-40 absolute h-7 z-[2000] top-0 left-0',
