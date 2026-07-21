@@ -33,8 +33,7 @@
       "
       :style="{
         width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
-        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null,
-        transform: state.visible ? 'none' : null
+        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null
       }"
     >
       <div
@@ -83,7 +82,16 @@
           </slot>
         </div>
         <!-- body -->
-        <div data-tag="drawer-body" ref="body" :class="['flex-auto overflow-auto', { 'flex flex-col': flex }]">
+        <div
+          data-tag="drawer-body"
+          ref="body"
+          :class="[
+            'flex-auto overflow-auto',
+            { 'flex flex-col': flex },
+            placement === 'left' && draggable && 'mr-6',
+            placement === 'right' && draggable && 'ml-6'
+          ]"
+        >
           <slot></slot>
         </div>
         <!-- footer -->

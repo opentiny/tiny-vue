@@ -4,7 +4,7 @@ import type { IDrawerState, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils, 
 
 export const watchToggle =
   ({ emit }: Pick<IDrawerRenderlessParams, 'emit'>) =>
-  (bool) => {
+  (bool: boolean) => {
     setTimeout(() => {
       emit('update:visible', bool)
     }, 200)
