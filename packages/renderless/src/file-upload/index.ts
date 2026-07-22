@@ -204,22 +204,41 @@ const onBeforeIsPromise = ({
     }
   )
 }
+// 根据MDN的accept解释， 它支持三种格式： 后缀名，MIME类型，MIME类型通配符, 多个格式以逗号分隔。
+// 后缀名： .doc,.docx
+// MIME类型： image/png, image/jpeg
+// MIME类型通配符： image/*,video/*
 
+/** 判断是否符合accept类型
+ * @param acceptArray 已经，分隔之后的accept类型数组
+ * @param file 我们定义的文件对象, {name, size,type=undefined ,uid, raw: {name,size,type=有效的MIME类型,}}
+ * @param constants 常量
+ * @param fileType 文件后缀名，比如  docx, pptx
+ * @returns 是否符合accept类型
+ *
+ * @description  根据file.raw.type和file.name, 判断是否符合accept类型，最为准确！
+ */
 const isAcceptType = (acceptArray, file, constants, fileType) => {
-  // MIME 通配符（image/*、video/*、audio/*）需按扩展名白名单校验，
-  // 否则 type 里的 * 会被当作正则量词，导致 video/*、audio/* 无法匹配到对应文件
-  const mimeWildcardMap = {
-    [constants.IMAGE_TYPE]: constants.FILE_TYPE.PICTURE,
-    'video/*': constants.FILE_TYPE.VIDEO,
-    'audio/*': constants.FILE_TYPE.AUDIO
-  }
+  const mimeType = ((file.raw && file.raw.type) || file.type || '').toLowerCase()
 
+  // 任意符合，即符合条件
   return acceptArray.some((type) => {
-    const whitelist = mimeWildcardMap[type.trim().toLowerCase()]
-    if (whitelist) {
-      return whitelist.split('/').includes(fileType)
+    const validType = type.trim().toLowerCase()
+    if (!validType) {
+      return false
     }
-    return new RegExp(`(${type.trim()})$`, 'i').test(file.name)
+
+    // 后缀名：.doc, .docx
+    if (validType.startsWith('.')) {
+      return fileType === validType.slice(1)
+    }
+
+    // MIME 类型 / 通配符：image/png、image/*、video/*、audio/*
+    if (validType.includes('/')) {
+      return new RegExp(`^${validType.replace(/\*/g, '.*')}$`, 'i').test(mimeType)
+    }
+
+    return false
   })
 }
 

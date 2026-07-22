@@ -10,8 +10,10 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '限制文件类型（thumbnail-mode 模式下此参数无效）',
-            'en-US': 'Restrict the types of files. This parameter is invalid in thumbnail-mode mode'
+            'zh-CN':
+              '限制文件类型（thumbnail-mode 模式下此参数无效）,支持<code> 后缀名，MIME类型，MIME类型通配符</code>, 多个格式以逗号分隔，比如： .pdf,image/* ',
+            'en-US':
+              'Restrict the types of files. This parameter is invalid in thumbnail-mode mode, support <code>suffix, MIME type, MIME type wildcard</code>, separated by commas, like: .pdf,image/*'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'accept-file-image',
