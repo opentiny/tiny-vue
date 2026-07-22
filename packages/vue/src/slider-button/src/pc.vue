@@ -19,34 +19,34 @@
       :disabled="state.disabled"
     />
     <span
-      class="tiny-slider-button-text"
+      class="tiny-slider-button__text"
       :class="[
         state.value !== (label || text)
-          ? !state.disabled && 'tiny-slider-button-text-secondary'
-          : !state.disabled && 'tiny-slider-button-text-selected',
-        state.type === 'icon' ? 'tiny-slider-button-text-type-icon' : 'tiny-slider-button-text-normal',
+          ? !state.disabled && 'tiny-slider-button__text--secondary'
+          : !state.disabled && 'tiny-slider-button__text--selected',
+        state.type === 'icon' ? 'tiny-slider-button__text--type-icon' : 'tiny-slider-button__text--normal',
         state.size === 'large'
           ? state.type === 'icon'
-            ? 'tiny-slider-button-text-large-icon'
-            : 'tiny-slider-button-text-large-normal-icon'
-          : state.type !== 'icon' && 'tiny-slider-button-text-normal-large-normal-icon',
+            ? 'tiny-slider-button__text--large-icon'
+            : 'tiny-slider-button__text--large-normal-icon'
+          : state.type !== 'icon' && 'tiny-slider-button__text--normal-large-normal-icon',
         state.size === 'medium'
           ? state.type === 'icon'
-            ? 'tiny-slider-button-text-medium-icon'
+            ? 'tiny-slider-button__text--medium-icon'
             : 'text-sm h-7 leading-7'
           : '',
         state.type === 'icon' && state.value === (label || text)
-          ? 'tiny-slider-button-text-icon-fill-brand'
-          : 'tiny-slider-button-text-fill-brand',
+          ? 'tiny-slider-button__text--icon-fill-brand'
+          : 'tiny-slider-button__text--fill-brand',
         state.value === (label || text) && state.disabled
           ? state.type === 'icon'
-            ? 'tiny-slider-button-text-icon-fill-brand-disabled'
-            : 'tiny-slider-button-text-fill-brand-disabled'
+            ? 'tiny-slider-button__text--icon-fill-brand-disabled'
+            : 'tiny-slider-button__text--fill-brand-disabled'
           : '',
         state.value !== (label || text) && state.disabled
           ? state.type === 'icon'
-            ? 'tiny-slider-button-text-normal-icon-fill-brand-disabled'
-            : 'tiny-slider-button-text-normal-fill-brand-disabled'
+            ? 'tiny-slider-button__text--normal-icon-fill-brand-disabled'
+            : 'tiny-slider-button__text--normal-fill-brand-disabled'
           : ''
       ]"
       @keydown.stop
