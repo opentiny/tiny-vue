@@ -2,9 +2,10 @@
   <label
     class="tiny-slider-button"
     ref="sliderButton"
-    :class="[flex ? 'button-flex' : '', state.size === 'large' ? 'size-large' : '']"
+    :class="[flex ? 'tiny-slider-button--flex' : '', state.size === 'large' ? 'tiny-slider-button--large' : '']"
     role="radio"
     :aria-checked="state.value === (label || text)"
+    :aria-disabled="state.disabled"
     :tabindex="state.tabIndex"
   >
     <input
@@ -15,13 +16,14 @@
       @change="handleChange"
       tabindex="-1"
       ref="sliderInput"
+      :disabled="state.disabled"
     />
     <span
       class="tiny-slider-button-text"
       :class="[
         state.value !== (label || text)
           ? !state.disabled && 'tiny-slider-button-text-secondary'
-          : !state.disabled && 'tiny-slider-button-text-icon-unselected-disabled',
+          : !state.disabled && 'tiny-slider-button-text-selected',
         state.type === 'icon' ? 'tiny-slider-button-text-type-icon' : 'tiny-slider-button-text-normal',
         state.size === 'large'
           ? state.type === 'icon'
@@ -62,7 +64,7 @@ import '@opentiny/vue-theme/slider-button/index.less'
 
 export default defineComponent({
   props: [...props, 'label', 'events', 'text', 'disabled', 'flex'],
-  setup(props, context): any {
+  setup(props, context) {
     return setup({ props, context, renderless, api })
   }
 })

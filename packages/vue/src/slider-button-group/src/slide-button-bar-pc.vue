@@ -88,6 +88,7 @@ import { renderless, api } from '@opentiny/vue-renderless/slider-button-group/sl
 import { IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
+  name: 'TinySliderButtonBar',
   emits: ['click'],
   components: {
     IconChevronRight: IconChevronRight(),
@@ -119,7 +120,7 @@ export default defineComponent({
       default: 0
     }
   },
-  setup(props: any, context: any) {
+  setup(props, context) {
     return setup({ props, context, renderless, api })
   }
 })

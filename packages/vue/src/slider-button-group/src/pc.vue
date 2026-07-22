@@ -77,7 +77,7 @@ export default defineComponent({
     'delay',
     'disabled'
   ],
-  setup(props, context): any {
+  setup(props, context) {
     return setup({ props, context, renderless, api })
   }
 })

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { TinySliderButtonGroup, Button } from '@opentiny/vue'
+import { TinySliderButtonGroup, Button, Modal } from '@opentiny/vue'
 import { IconCardMode } from '@opentiny/vue-icon'
 
 export default {
@@ -88,7 +88,7 @@ export default {
     advancedClick(label) {
       this.advancedActive1 = label
 
-      tiny.message(`节点label: ${label}`)
+      Modal.message(`节点label: ${label}`)
     },
     changeButtonSize() {
       this.buttonSize = 'large'

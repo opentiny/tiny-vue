@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-between items-center w-[50%]">
     <tiny-slider-button-group v-model="radio1" type="icon">
-      <tiny-slider-button label="1"><icon-card /></tiny-slider-button>
-      <tiny-slider-button label="2"><icon-menu-left /></tiny-slider-button>
-      <tiny-slider-button label="3"><icon-menu-left /></tiny-slider-button>
+      <tiny-slider-button label="1"><icon-card-mode /></tiny-slider-button>
+      <tiny-slider-button label="2"><icon-editor-menu-left /></tiny-slider-button>
+      <tiny-slider-button label="3"><icon-editor-menu-left /></tiny-slider-button>
       <tiny-slider-button label="4"><icon-derive /></tiny-slider-button>
     </tiny-slider-button-group>
     <br />
@@ -18,12 +18,16 @@
 
 <script setup>
 import { TinySliderButton, TinySliderButtonGroup } from '@opentiny/vue'
-import { IconCardMode, IconEditorMenuLeft, IconDerive } from '@opentiny/vue-icon'
+import {
+  IconCardMode as IconCardModeIcon,
+  IconEditorMenuLeft as IconEditorMenuLeftIcon,
+  IconDerive as IconDeriveIcon
+} from '@opentiny/vue-icon'
 import { ref } from 'vue'
 
-const iconCard = IconCardMode()
-const iconMenuLeft = IconEditorMenuLeft()
-const iconDerive = IconDerive()
+const IconCardMode = IconCardModeIcon()
+const IconEditorMenuLeft = IconEditorMenuLeftIcon()
+const IconDerive = IconDeriveIcon()
 
 const radio1 = ref('1')
 const radio2 = ref('1')

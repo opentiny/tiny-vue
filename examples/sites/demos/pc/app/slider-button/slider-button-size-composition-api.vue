@@ -26,7 +26,7 @@
         <tiny-slider-button label="3"><icon-menu /></tiny-slider-button>
         <tiny-slider-button label="4"><icon-derive /></tiny-slider-button>
       </tiny-slider-button-group>
-      <tiny-slider-button-group v-model="radio2" size="medium">
+      <tiny-slider-button-group v-model="radio22" size="medium">
         <tiny-slider-button label="1">选项</tiny-slider-button>
         <tiny-slider-button label="2">选项</tiny-slider-button>
         <tiny-slider-button label="3">选项</tiny-slider-button>
@@ -67,6 +67,7 @@ const radio1 = ref('1')
 const radio2 = ref('1')
 const radio3 = ref('1')
 const radio11 = ref('1')
+const radio22 = ref('1')
 const radio33 = ref('1')
 </script>
 

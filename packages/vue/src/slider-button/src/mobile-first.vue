@@ -5,6 +5,7 @@
     :class="['inline-flex relative outline-0 cursor-pointer items-center', state.size === 'large' ? 'm-1' : 'm-0.5']"
     role="radio"
     :aria-checked="state.value === (label || text)"
+    :aria-disabled="state.disabled"
     :tabindex="state.tabIndex"
   >
     <input
@@ -15,6 +16,7 @@
       @change="handleChange"
       tabindex="-1"
       ref="sliderInput"
+      :disabled="state.disabled"
     />
     <span
       data-tag="tiny-slider-button-text"
@@ -67,7 +69,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   props: [...props, 'label', 'events', 'text', 'disabled', 'displayed'],
-  setup(props, context): any {
+  setup(props, context) {
     return setup({ props, context, renderless, api })
   }
 })
