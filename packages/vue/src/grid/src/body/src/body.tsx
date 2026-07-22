@@ -828,6 +828,15 @@ export default defineComponent({
       }
     })
 
+    // 客户端宽度变化时（窗口缩放、容器尺寸变化或纵向滚动条出现/消失导致 body clientWidth 改变），
+    // 重新计算横向虚拟滚动切片，确保 sticky-wrapper 内表格内容始终填满视口，避免滚动到右侧出现空白。
+    // 父级容器尺寸变化已由 resize 插件触发 recalculate 处理，此处补齐 body 自身宽度变化未重算切片的场景。
+    hooks.watch(bodyClientWidth, (newWidth, oldWidth) => {
+      if ($table.scrollXLoad && newWidth > 0 && newWidth !== oldWidth) {
+        $table.computeScrollLoad()
+      }
+    })
+
     hooks.onMounted(() => {
       // 节流滚动降低滚动事件处理次数
       vm._throttleScrollHandler = throttle($table.optimizeOpts.scrollDelay, vm.handleScroll)

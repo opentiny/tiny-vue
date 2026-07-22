@@ -69,6 +69,8 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
     const clientWidth = tableBodyElem.clientWidth
     let width = 0
     let visibleXSize = 0
+    // 按最窄列累加估算“足以填满视口”所需的列数，用于保证 renderSize 不小于视口宽度
+    let fillSize = 0
     const len = visibleColumn.length
     const colsWidth = visibleColumn?.map((i) => i.renderWidth).sort((a, b) => a - b) || []
     for (let i = 0; i < len; i++) {
@@ -76,6 +78,7 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
       // 当虚拟滚动可见列宽度大于表格宽度或者循环结束，保存可见列大小
       if (width > clientWidth || i === len - 1) {
         visibleXSize = i + 1
+        fillSize = i + 1
         break
       }
     }
@@ -88,9 +91,12 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
       scrollXStore.offsetSize = visibleXSize
     }
 
-    if (!scrollX.rSize) {
-      scrollXStore.renderSize = visibleXSize + 2
-    }
+    // 横向虚拟滚动下，sticky-wrapper 内表格宽度等于渲染列宽之和(bodyTableWidth)。
+    // 若渲染列宽之和小于视口宽度，表格无法填满视口，滚动到右侧时会出现空白区域。
+    // renderSize 需同时满足两点：不小于填满视口所需列数(fillSize + 2)，且不小于
+    // visibleSize + 2（保证切片范围覆盖滚动索引逻辑所需列数，避免 startIndex 越界）。
+    const fillRenderSize = Math.max(fillSize + 2, visibleXSize + 2)
+    scrollXStore.renderSize = scrollX.rSize ? Math.max(toNumber(scrollX.rSize), fillRenderSize) : fillRenderSize
 
     // 处理x轴虚拟滚动渲染数据
     _vm.updateScrollXData()
