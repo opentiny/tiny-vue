@@ -233,9 +233,14 @@ const isAcceptType = (acceptArray, file, constants, fileType) => {
       return fileType === validType.slice(1)
     }
 
-    // MIME 类型 / 通配符：image/png、image/*、video/*、audio/*
+    // MIME 类型通配符：image/*, video/*, audio/*
+    if (validType.endsWith('/*')) {
+      return mimeType.split('/')[0] === validType.slice(0, -2)
+    }
+
+    // MIME 类型：image/png、image/svg+xml
     if (validType.includes('/')) {
-      return new RegExp(`^${validType.replace(/\*/g, '.*')}$`, 'i').test(mimeType)
+      return mimeType === validType
     }
 
     return false

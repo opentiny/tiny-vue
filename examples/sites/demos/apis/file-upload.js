@@ -11,9 +11,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              '限制文件类型（thumbnail-mode 模式下此参数无效）,支持<code> 后缀名，MIME类型，MIME类型通配符</code>, 多个格式以逗号分隔，比如： .pdf,image/* ',
+              '限制文件类型（thumbnail-mode 模式下此参数无效）,支持<code> 后缀名（.pdf），MIME类型（image/png），MIME类型通配符（image/*）</code>, 多个格式以逗号分隔',
             'en-US':
-              'Restrict the types of files. This parameter is invalid in thumbnail-mode mode, support <code>suffix, MIME type, MIME type wildcard</code>, separated by commas, like: .pdf,image/*'
+              'Restrict the types of files. This parameter is invalid in thumbnail-mode mode, support <code>suffix (.pdf), MIME type (image/png), MIME type wildcard (image/*)</code>, separated by commas'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'accept-file-image',
