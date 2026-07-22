@@ -1,25 +1,49 @@
 .inject-SliderButtonGroup-vars() {
   // 组背景色
-  --tv-Slider-Button-Group-color-bg: var(--tv-color-bg);
+  --tv-Slider-Button-Group-color-bg: var(--tv-color-bg, #f5f5f5);
 
   // 滑块 / 箭头区域背景色
-  --tv-Slider-Button-Group-color-bg-active: var(--tv-color-bg-secondary);
+  --tv-Slider-Button-Group-color-bg-active: var(--tv-color-bg-secondary, #ffffff);
 
   // 翻页内容区背景色
-  --tv-Slider-Button-Group-color-bg-slide: var(--tv-color-bg-header);
+  --tv-Slider-Button-Group-color-bg-slide: var(--tv-color-bg-header, #f5f5f5);
 
   // 滑块阴影
-  --tv-Slider-Button-Group-box-shadow: var(--tv-shadow-1-down);
+  --tv-Slider-Button-Group-box-shadow: var(--tv-shadow-1-down, 0 1px 4px 0 rgba(0, 0, 0, 0.08));
 
   // 翻页滑块阴影
-  --tv-Slider-Button-Group-slide-box-shadow: var(--tv-shadow-3-down);
+  --tv-Slider-Button-Group-slide-box-shadow: var(--tv-shadow-3-down, 0 4px 16px 0 rgba(0, 0, 0, 0.08));
 
   // 箭头图标色
-  --tv-Slider-Button-Group-icon-color: var(--tv-color-icon-control);
+  --tv-Slider-Button-Group-icon-color: var(--tv-color-icon-control, #191919);
 
   // 箭头禁用图标色
-  --tv-Slider-Button-Group-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Slider-Button-Group-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
 
-  // 默认圆角
-  --tv-Slider-Button-Group-borderRadius-DEFAULT: var(--tv-border-radius-md);
+  // 默认圆角（组容器 / 滑块）
+  --tv-Slider-Button-Group-borderRadius-DEFAULT: var(--tv-border-radius-md, 6px);
+
+  // size-normal / slidemain-box 顶部偏移 / 右侧箭头区内边距
+  --tv-Slider-Button-Group-spacing-0_5: var(--tv-space-xs, 2px);
+
+  // size-large / slidemain-box-top 顶部偏移
+  --tv-Slider-Button-Group-spacing-1: var(--tv-space-sm, 4px);
+
+  // 左侧箭头区右边距
+  --tv-Slider-Button-Group-spacing-2: var(--tv-space-md, 8px);
+
+  // 左右箭头图标尺寸
+  --tv-Slider-Button-Group-spacing-5: var(--tv-font-size-xxl, 20px);
+
+  // 滑块高度
+  --tv-Slider-Button-Group-spacing-6: var(--tv-size-height-xs, 24px);
+
+  // 左右箭头区宽度 / slidemain 默认高度
+  --tv-Slider-Button-Group-spacing-7: var(--tv-size-height-sm, 28px);
+
+  // slidemain medium 高度
+  --tv-Slider-Button-Group-spacing-8: var(--tv-size-height-md, 32px);
+
+  // 左右翻页箭头区域高度
+  --tv-Slider-Button-Group-spacing-12: var(--tv-size-height-xl, 48px);
 }

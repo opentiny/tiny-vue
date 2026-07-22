@@ -1,19 +1,64 @@
 .inject-SliderButton-vars() {
   // 次要文本色
-  --tv-Slider-Button-color-text-secondary: var(--tv-color-text-secondary);
+  --tv-Slider-Button-color-text-secondary: var(--tv-color-text-secondary, #595959);
 
   // 品牌色 / 选中色
-  --tv-Slider-Button-color-brand: var(--tv-color-text-active);
+  --tv-Slider-Button-color-brand: var(--tv-color-text-active, #1476ff);
 
   // 未选中图标填充色
-  --tv-Slider-Button-color-none-hover: var(--tv-color-icon);
+  --tv-Slider-Button-color-none-hover: var(--tv-color-icon, #808080);
 
   // 选中禁用品牌色
-  --tv-Slider-Button-color-brand-disabled: var(--tv-color-bg-disabled-control-active);
+  --tv-Slider-Button-color-brand-disabled: var(--tv-color-bg-disabled-control-active, #b3d6ff);
 
   // 未选中禁用图标色
-  --tv-Slider-Button-color-icon-disabled: var(--tv-color-icon-disabled);
+  --tv-Slider-Button-color-icon-disabled: var(--tv-color-icon-disabled, #c2c2c2);
 
   // 未选中禁用文本色
-  --tv-Slider-Button-color-text-disabled: var(--tv-color-text-disabled);
+  --tv-Slider-Button-color-text-disabled: var(--tv-color-text-disabled, #c2c2c2);
+
+  // large 外边距 / type-icon、medium-icon 内边距
+  --tv-Slider-Button-spacing-1: var(--tv-space-sm, 4px);
+
+  // large-icon 内边距 / normal-large 水平内边距
+  --tv-Slider-Button-spacing-2: var(--tv-space-md, 8px);
+
+  // large-normal-icon 水平内边距
+  --tv-Slider-Button-spacing-4: var(--tv-space-xl, 16px);
+
+  // medium-icon 内图标尺寸
+  --tv-Slider-Button-spacing-4_5: var(--tv-font-size-xl, 18px);
+
+  // type-icon 宽高与 svg 尺寸 / normal-large 高度
+  --tv-Slider-Button-spacing-6: var(--tv-size-height-xs, 24px);
+
+  // medium-icon 宽高 / medium 高度
+  --tv-Slider-Button-spacing-7: var(--tv-size-height-sm, 28px);
+
+  // large-icon 宽高 / large-normal 高度 / normal-large 最小宽度
+  --tv-Slider-Button-spacing-10: var(--tv-size-height-lg, 40px);
+
+  // large-normal-icon 最小宽度
+  --tv-Slider-Button-spacing-12: var(--tv-size-height-xl, 48px);
+
+  // normal-large-normal-icon 最大宽度
+  --tv-Slider-Button-spacing-28: calc(var(--tv-space-base, 4px) * 28);
+
+  // large-normal-icon 最大宽度
+  --tv-Slider-Button-spacing-32: calc(var(--tv-space-base, 4px) * 32);
+
+  // large-normal-icon、medium 字号
+  --tv-Slider-Button-fontSize-sm: var(--tv-font-size-default, 14px);
+
+  // normal-large-normal-icon 字号
+  --tv-Slider-Button-fontSize-xs: var(--tv-font-size-sm, 12px);
+
+  // large-normal-icon 行高
+  --tv-Slider-Button-lineHeight-10: var(--tv-size-height-lg, 40px);
+
+  // normal-large-normal-icon 行高
+  --tv-Slider-Button-lineHeight-6: var(--tv-size-height-xs, 24px);
+
+  // medium 行高
+  --tv-Slider-Button-lineHeight-7: var(--tv-size-height-sm, 28px);
 }
