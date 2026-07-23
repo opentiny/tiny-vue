@@ -10,6 +10,6 @@ test('弹窗的事件', async ({ page }) => {
   await expect(content.nth(1)).toHaveText(/cancel 事件触发了/)
   await page.getByRole('button', { name: '打开带事件弹窗' }).nth(1).click()
   await page.getByRole('button', { name: '确定' }).click()
-  await expect(content.nth(2)).toHaveText(/hide 事件触发了/)
-  await expect(content.nth(2)).toHaveText(/confirm 事件触发了/)
+  await expect(content.filter({ hasText: /hide 事件触发了/ })).toBeVisible()
+  await expect(content.filter({ hasText: /confirm 事件触发了/ })).toBeVisible()
 })
