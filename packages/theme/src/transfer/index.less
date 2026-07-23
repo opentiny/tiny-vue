@@ -394,6 +394,18 @@
       height: var(--tv-Transfer-table-dyn-height, 400px);
       overflow-y: auto;
 
+      thead {
+        border-bottom: none;
+      }
+
+      thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--tv-Table-thead-bg-color);
+        border-bottom: 1px solid var(--tv-Table-border-color);
+      }
+
       table {
         width: 100%;
       }

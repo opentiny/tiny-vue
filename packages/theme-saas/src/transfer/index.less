@@ -392,6 +392,15 @@
       height: var(--tv-Transfer-table-dyn-height, 432px); // 从组件动态传入的高度值
       @apply overflow-y-auto;
 
+      thead {
+        border-bottom: none;
+      }
+
+      thead th {
+        @apply sticky top-0 bg-color-bg-2 border-b border-b-color-border;
+        z-index: 2;
+      }
+
       table {
         @apply w-full;
       }
