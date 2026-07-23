@@ -11,7 +11,8 @@ test('dialogSelect 设置多选状态', async ({ page }) => {
   const trs = await page.locator('.tiny-grid table tbody tr').all()
   for (let i = 0; i < trs.length; i++) {
     const classes = await trs[i].getAttribute('class')
-    if (i === 1) {
+    // 第1行，2行都选被中
+    if (i === 0 || i === 1) {
       expect(classes?.includes('row__selected')).toBeTruthy()
     } else {
       expect(classes?.includes('row__selected')).toBeFalsy()
