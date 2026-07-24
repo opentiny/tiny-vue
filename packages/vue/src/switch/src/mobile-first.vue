@@ -1,5 +1,6 @@
 <template>
   <span
+    v-if="!state.isDisplayOnly"
     :class="
       m(
         gcls('switch-default'),
@@ -134,6 +135,10 @@
         </slot>
       </div> </span
   ></span>
+  <span v-else :style="state.displayOnlyStyle">
+    <slot v-if="state.currentValue === trueValue" name="open">{{ t('yes') }}</slot>
+    <slot v-if="state.currentValue === falseValue" name="close">{{ t('no') }}</slot>
+  </span>
 </template>
 
 <script lang="ts">
@@ -143,7 +148,7 @@ import { classes } from './token'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'size', 'tabindex', 'types'],
+  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'size', 'tabindex', 'types', 'displayOnly'],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }

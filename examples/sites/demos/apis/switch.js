@@ -147,6 +147,21 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'display-only',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置开关为只读状态',
+            'en-US': 'Set the switch to read-only status'
+          },
+          meta: {
+            stable: '3.31.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'display-only',
+          mfDemo: 'display-only'
         }
       ],
       events: [

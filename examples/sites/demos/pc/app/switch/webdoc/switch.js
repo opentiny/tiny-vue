@@ -129,6 +129,20 @@ export default {
         'en-US': '<p>When the switch value changes, the <code>change</code> event will be triggered.</p>'
       },
       codeFiles: ['event-change.vue']
+    },
+    {
+      demoId: 'display-only',
+      name: {
+        'zh-CN': '只读状态',
+        'en-US': 'Display only'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>display-only</code> 设置开关为只读状态。当设置 <code>display-only</code> 为 <code>true</code> 时，开关为只读状态，无法进行交互操作。</p>',
+        'en-US':
+          '<p><code>display-only</code> property indicates that the switch is in read-only mode, with a default value of <code>false</code>. When set to <code>true</code>, the switch is in read-only mode and cannot be interacted with.</p>'
+      },
+      codeFiles: ['display-only.vue']
     }
   ],
   features: [
