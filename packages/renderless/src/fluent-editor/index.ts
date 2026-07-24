@@ -87,7 +87,7 @@ export const init =
     quill.emitter.on('file-change', api.fileOperationToSev)
     state.quill = Object.freeze(quill)
     state.linkClickHandler = api.handleLinkClick
-    on(state.quill.root, 'click', state.linkClickHandler)
+    on(state.quill.container, 'click', state.linkClickHandler, true)
 
     setTimeout(api.setToolbarTitle)
 
@@ -588,8 +588,7 @@ export const handleUploadImage =
 
       // 立即将 File 读成 Blob，避免来自 input 的 File 在异步链路中被释放导致请求体为空
       const toRead = imageEnableMultiUpload ? files : [file]
-      const readFileToBlob = (f) =>
-        f.arrayBuffer().then((ab) => new Blob([ab], { type: f.type }))
+      const readFileToBlob = (f) => f.arrayBuffer().then((ab) => new Blob([ab], { type: f.type }))
 
       const uploadPromise = Promise.all(toRead.map(readFileToBlob)).then((blobs) => {
         result.file = blobs[0]
@@ -939,7 +938,7 @@ export const beforeUnmount =
     api.removeHandleComposition()
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
-    off(state.quill.root, 'click', state.linkClickHandler)
+    off(state.quill.container, 'click', state.linkClickHandler, true)
     state.linkClickHandler = null
     state.quill = null
     delete state.quill
@@ -948,13 +947,29 @@ export const beforeUnmount =
 export const handleLinkClick =
   ({ props, state }) =>
   (event) => {
-    const anchor = event?.target?.closest && event.target.closest('a[href]')
+    let rawHref = ''
+    let target = '_blank'
+    let rel = ''
 
-    if (!anchor) {
-      return
+    // 1. 拦截 tooltip 中 .ql-preview 的点击（Quill 自身会直接调用 window.open）
+    const previewAnchor = event.target?.closest?.('a.ql-preview')
+    if (previewAnchor) {
+      const tooltip = previewAnchor.closest('.ql-tooltip')
+      const textbox = tooltip?.querySelector('input[type="text"]')
+      rawHref = textbox?.value || ''
+      target = previewAnchor.getAttribute('target') || '_blank'
+      rel = previewAnchor.getAttribute('rel') || ''
+      // 捕获阶段调用 stopPropagation，阻止 Quill 在 .ql-preview 上的 handler 执行
+      event.stopPropagation()
+    } else {
+      // 2. 拦截编辑器内常规超链接点击
+      const anchor = event?.target?.closest && event.target.closest('a[href]')
+      if (!anchor) return
+      rawHref = anchor.getAttribute('href') || ''
+      target = anchor.getAttribute('target') || '_blank'
+      rel = anchor.getAttribute('rel') || ''
     }
 
-    const rawHref = anchor.getAttribute('href') || ''
     const href = xss.filterUrl(rawHref)
 
     event.preventDefault()
@@ -966,8 +981,8 @@ export const handleLinkClick =
     const payload = {
       url: href,
       rawUrl: rawHref,
-      target: anchor.getAttribute('target') || '_blank',
-      rel: anchor.getAttribute('rel') || '',
+      target,
+      rel,
       event,
       quill: state.quill
     }

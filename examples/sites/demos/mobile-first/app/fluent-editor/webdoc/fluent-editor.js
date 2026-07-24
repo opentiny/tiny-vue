@@ -46,7 +46,8 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '通过 <code>options</code> 设置编辑器的配置项，支持的配置项和 Quill 的相同，可参考 <a href="https://quilljs.com/docs/configuration#options" target="_blank">Quill</a> 文档。',
+        'zh-CN':
+          '通过 <code>options</code> 设置编辑器的配置项，支持的配置项和 Quill 的相同，可参考 <a href="https://quilljs.com/docs/configuration#options" target="_blank">Quill</a> 文档。',
         'en-US': ''
       },
       codeFiles: ['options.vue']
@@ -64,5 +65,18 @@ export default {
       },
       codeFiles: ['data-switch.vue']
     },
+    {
+      demoId: 'before-link-open',
+      name: {
+        'zh-CN': '超链接跳转拦截',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>before-link-open</code> 拦截富文本中超链接的跳转。该属性接收一个回调函数，返回 <code>false</code>（或 Promise resolve false）可拦截跳转，返回 <code>true</code> 继续跳转。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['before-link-open.vue']
+    }
   ]
 }

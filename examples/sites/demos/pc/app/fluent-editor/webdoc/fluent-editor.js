@@ -78,6 +78,19 @@ export default {
         'en-US': ''
       },
       codeFiles: ['before-editor-init.vue']
+    },
+    {
+      demoId: 'before-link-open',
+      name: {
+        'zh-CN': '超链接跳转拦截',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>before-link-open</code> 拦截富文本中超链接的跳转。该属性接收一个回调函数，点击链接时会传入 <code>url</code>、<code>rawUrl</code>、<code>target</code> 等参数。返回 <code>false</code>（或 Promise resolve false）可拦截跳转，返回 <code>true</code> 或 <code>undefined</code> 继续跳转。<br>本示例使用 <code>TinyModal.confirm</code> 弹出确认框，点击「确定」打开链接，点击「取消」拦截跳转。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['before-link-open.vue']
     }
   ],
   features: [
@@ -158,6 +171,19 @@ export default {
       },
       apis: ['before-editor-init'],
       demos: ['before-editor-init']
+    },
+    {
+      id: 'before-link-open',
+      name: '超链接跳转拦截',
+      support: {
+        value: true
+      },
+      description: '通过 before-link-open 拦截富文本中超链接的跳转，支持同步和异步（Promise）拦截。',
+      cloud: {
+        value: false
+      },
+      apis: ['before-link-open'],
+      demos: ['before-link-open']
     }
   ]
 }

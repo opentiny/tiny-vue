@@ -32,7 +32,7 @@ export default {
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: ''
+          pcDemo: 'before-link-open'
         },
         {
           name: 'data-type',
