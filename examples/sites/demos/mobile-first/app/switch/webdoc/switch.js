@@ -108,9 +108,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>`<code>display-only</code>属性表示开关为只读状态，默认值为 <code>false</code>。当设置 <code>display-only</code> 为 <code>true</code> 时，开关为只读状态，无法进行交互操作。<p>',
+          '<p>`<code>display-only</code>属性表示开关为只读状态，默认值为 <code>false</code>。当设置 <code>display-only</code> 为 <code>true</code> 时，开关为只读状态，无法进行交互操作。</p>',
         'en-US':
-          '<p><code>display-only</code> property indicates that the switch is in read-only mode, with a default value of <code>false</code>. When set to <code>true</code>, the switch is in read-only mode and cannot be interacted with.<p>'
+          '<p><code>display-only</code> property indicates that the switch is in read-only mode, with a default value of <code>false</code>. When set to <code>true</code>, the switch is in read-only mode and cannot be interacted with.</p>'
       },
       codeFiles: ['display-only.vue']
     }
