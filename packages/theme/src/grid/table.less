@@ -515,6 +515,20 @@
   & &-body__column,
   & &-footer__column {
     .DefaultColumnHeight();
+
+    // 文字居中
+    &.col__center {
+      .@{grid-cell-prefix-cls} {
+        justify-content: center;
+      }
+    }
+
+    // 文字居右
+    &.col__right {
+      .@{grid-cell-prefix-cls} {
+        justify-content: right;
+      }
+    }
   }
 
   // 单元格内部div
@@ -578,7 +592,8 @@
     }
   }
 
-  & &-header__column:not(.col__selection) {
+  & &-header__column:not(.col__selection),
+  & &-body__column:not(.col__selection) {
     .@{grid-cell-prefix-cls} {
       display: flex;
       align-items: center;
