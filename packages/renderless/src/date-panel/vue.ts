@@ -152,7 +152,7 @@ const initWatch = ({ watch, state, api, nextTick, props }) => {
         newVal = toDate1(val - localOffset)
       }
       if (newVal) {
-        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate() + 1)
+        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getDate())
         state.date = newDate
         state.value = newDate
       }
