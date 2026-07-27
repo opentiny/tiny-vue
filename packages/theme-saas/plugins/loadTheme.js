@@ -142,16 +142,20 @@ function loadLayout(designToken) {
 function getToken(name, token) {
   let tokenList = {}
   tokenList[name] = setToken(name, defaultTheme[name])
-  for (let key in token) {
-    /* 
+  if (name === 'borderRadius') {
+    setCssVar(name, token, tokenList)
+  } else {
+    for (let key in token) {
+      /* 
       用于编译主题定制配置的spacing、borderRadius等，key值为 --tiny-borderRadius-none 、 --tiny-spacing-0_5 、 --tiny-boxShadow-DEFAULT等， 
       格式为  --tiny-类型-属性值
       string为 key的后缀部分， none 、 0.5 、 DEFAULT 等
       最终编译为 spacing[0.5] = `var(--tiny-spacing-0_5, 0.125rem)`
-    */
+      */
 
-    let string = key.replace(/--tiny-[a-zA-Z]+-/, '').replace('_', '.')
-    tokenList[name][string] = `var(${key}, ${token[key]})`
+      let string = key.replace(/--tiny-[a-zA-Z]+-/, '').replace('_', '.')
+      tokenList[name][string] = `var(${key}, ${token[key]})`
+    }
   }
   return tokenList[name]
 }
@@ -168,4 +172,30 @@ function setToken(name, token) {
   return obj
 }
 
-module.exports = { loadColor, loadLayout }
+function setCssVar(nameItem, tokenItem, tokenItemList) {
+  for (let key in tokenItem) {
+    if (key === 'aliasToken') {
+      setCssVar(nameItem, tokenItem[key], tokenItemList)
+    } else {
+      let string = key.replace(/--tiny-[a-zA-Z]+-/, '').replace('_', '.')
+      tokenItemList[nameItem][string] = `var(${key})`
+    }
+  }
+}
+
+function loadCssVar(tokenList) {
+  let tokenObj = {}
+  for (let key in tokenList) {
+    if (key === 'aliasToken') {
+      for (let aliasKey in tokenList[key]) {
+        tokenObj[aliasKey] = `var(${tokenList[key][aliasKey]})`
+      }
+    } else {
+      tokenObj[key] = tokenList[key]
+    }
+  }
+
+  return tokenObj
+}
+
+module.exports = { loadColor, loadLayout, loadCssVar }

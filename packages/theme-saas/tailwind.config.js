@@ -4,11 +4,13 @@ const plugin = require('tailwindcss/plugin')
 
 const designToken = require('./theme/theme.json')
 
-const { loadColor, loadLayout } = require('./plugins/loadTheme.js')
+const { loadColor, loadLayout, loadCssVar } = require('./plugins/loadTheme.js')
 
 const customColors = loadColor(designToken)
 
 const layoutToken = loadLayout(designToken)
+
+const borderRadiusToken = loadCssVar(designToken.baseLayout.radius)
 
 module.exports = {
   content: ['./src/**/*.{css,less}'],
@@ -63,7 +65,7 @@ module.exports = {
   },
   plugins: [
     lineClamp,
-    plugin(function ({ addUtilities, matchUtilities, theme }) {
+    plugin(function ({ addUtilities, matchUtilities, theme, addBase }) {
       addUtilities({
         '.scrollbar-size-0::-webkit-scrollbar': {
           'width': 0,
@@ -112,6 +114,11 @@ module.exports = {
         },
         { values: theme('boxShadow') }
       )
+      addBase({
+        html: {
+          ...borderRadiusToken
+        }
+      })
     })
   ],
   corePlugins: {

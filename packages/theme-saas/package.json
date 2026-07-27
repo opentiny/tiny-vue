@@ -36,7 +36,7 @@
     "clean": "rimraf dist",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "dev:theme": "gulp dev --gulpfile build/gulp-dist.js",
-    "build": "npm run clean && npm run build:theme && node build/replace-img.js",
+    "build": "npm run clean  && node build/build-token.js  && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
     "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
     "format": "prettier --write src/**/*.less",
