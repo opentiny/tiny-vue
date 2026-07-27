@@ -126,9 +126,9 @@ function formatNumber(params) {
 
   let leadingCount = (params.format.split('.')[0].split(',')[0].match(/0/g) || []).length
 
-  if (params.abbr && !params.abbrForce && Number(number) >= 1000 && params.abbr !== options.abbrLabel.tr) {
+  if (params.abbr && !params.abbrForce && Number(number) >= 1000 && params.abbr.trim() !== options.abbrLabel.tr) {
     number = String(Number(number) / 1000)
-    params.abbr = options.abbrLabel.mi
+    params.abbr = (params.abbr.startsWith(' ') ? ' ' : '') + options.abbrLabel.mi
   }
 
   if (~number.indexOf('-')) {
