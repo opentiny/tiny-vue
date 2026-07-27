@@ -405,12 +405,12 @@ export const mounted =
     innerInput.setAttribute(constants.VALUENOW, state.currentValue)
     innerInput.setAttribute(constants.DISABLED, state.inputDisabled)
 
-    state.onPase = () => {
+    state.onPaste = () => {
       state.pasting = true
       setTimeout(() => (state.pasting = false))
     }
 
-    on(innerInput, 'paste', state.onPase)
+    on(innerInput, 'paste', state.onPaste)
   }
 
 export const unmounted =
@@ -418,7 +418,7 @@ export const unmounted =
   (): void => {
     const innerInput = parent.$el.querySelector('input')
 
-    off(innerInput, 'paste', state.onPase)
+    off(innerInput, 'paste', state.onPaste)
   }
 
 export const updated =

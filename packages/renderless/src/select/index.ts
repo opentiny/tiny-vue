@@ -457,7 +457,6 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api, init }) => {
   const label = data[props.textField]
 
   obj.currentLabel = label
-  state.selectedLabel = init && !label && props.initLabel ? props.initLabel : label
   state.selectedLabel = label
   state.selected = obj
   state.currentKey = data[props.valueField]
