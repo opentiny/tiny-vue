@@ -287,7 +287,8 @@ const calcCurrentValue = ({
   } else if (currentValue >= props.max) {
     currentValue = props.max
   } else {
-    const step = props.step > 0 ? props.step : 1
+    const step =
+      props.numPages > 1 ? Math.ceil((props.max - props.min) / props.numPages) : props.step > 0 ? props.step : 1
     // step的精度
     let stepPrecision = 0
     if (step - parseInt(step) > 0) {
