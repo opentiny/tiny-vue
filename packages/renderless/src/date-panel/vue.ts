@@ -145,14 +145,13 @@ const initWatch = ({ watch, state, api, nextTick, props }) => {
   watch(
     () => props.modelValue,
     (value) => {
-      let newVal
       const val = toDate1(value)
       if (val) {
-        const localOffset = val.getTimezoneOffset() * 60000
-        newVal = toDate1(val - localOffset)
-      }
-      if (newVal) {
-        const newDate = modifyDate(newVal, newVal.getFullYear(), newVal.getMonth(), newVal.getUTCDate() + 1)
+        const isString = typeof value === 'string'
+        const year = isString ? val.getUTCFullYear() : val.getFullYear()
+        const month = isString ? val.getUTCMonth() : val.getMonth()
+        const day = isString ? val.getUTCDate() : val.getDate()
+        const newDate = modifyDate(val, year, month, day)
         state.date = newDate
         state.value = newDate
       }
