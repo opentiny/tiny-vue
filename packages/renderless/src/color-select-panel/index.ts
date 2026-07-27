@@ -272,6 +272,11 @@ export const initApi = (
     resetColor()
     emit('cancel')
   }
+  // 文本框失焦时将输入同步到颜色对象，反向驱动滑块和颜色显示器更新
+  const onInputBlur = () => {
+    if (!state.input || state.isLinearGradient) return
+    state.color.fromString(state.input)
+  }
   const onHueReady = (update) => {
     state.hue = { update }
   }
@@ -332,7 +337,8 @@ export const initApi = (
     onAlphaReady,
     onPredefineColorClick,
     onHistoryClick,
-    onClickOutside
+    onClickOutside,
+    onInputBlur
   }
 }
 

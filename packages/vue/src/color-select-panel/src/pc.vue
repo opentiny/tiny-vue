@@ -25,7 +25,12 @@
           class="tiny-color-select-panel__tools-hex"
           v-if="state.currentFormat === 'hex' || state.currentFormat === 'css' || !state.currentFormat"
         >
-          <tiny-input class="tiny-color-select-panel__tools-hex1" v-model="state.input" />
+          <tiny-input
+            class="tiny-color-select-panel__tools-hex1"
+            v-model="state.input"
+            @blur="onInputBlur"
+            @keyup.enter="$event.target.blur()"
+          />
           <div class="tiny-color-select-panel__tools-deg" v-if="state.isLinearGradient">
             <tiny-numeric v-model="state.ctx.deg" unit="deg" mouse-wheel />
           </div>

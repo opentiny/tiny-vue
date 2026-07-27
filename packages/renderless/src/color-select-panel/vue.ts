@@ -20,7 +20,8 @@ export const api = [
   'onAlphaReady',
   'onPredefineColorClick',
   'onHistoryClick',
-  'onClickOutside'
+  'onClickOutside',
+  'onInputBlur'
 ]
 
 export const renderless = (
@@ -43,7 +44,8 @@ export const renderless = (
     onAlphaReady,
     onPredefineColorClick,
     onHistoryClick,
-    onClickOutside
+    onClickOutside,
+    onInputBlur
   } = initApi(props, state, utils, hooks, ext)
 
   const api = {
@@ -60,7 +62,8 @@ export const renderless = (
     onAlphaReady,
     onPredefineColorClick,
     onHistoryClick,
-    onClickOutside
+    onClickOutside,
+    onInputBlur
   }
   initWatch(state, props, hooks, utils)
   hooks.onMounted(() => {
