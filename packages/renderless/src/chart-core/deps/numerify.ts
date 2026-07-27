@@ -123,9 +123,9 @@ function formatNumber(params) {
 
   let leadingCount = (params.format.split('.')[0].split(',')[0].match(/0/g) || []).length
 
-  if (params.abbr && !params.abbrForce && Number(number) >= 1000 && params.abbr !== ABBR.trillion) {
+  if (params.abbr && !params.abbrForce && Number(number) >= 1000 && params.abbr !== options.abbrLabel.tr) {
     number = String(Number(number) / 1000)
-    params.abbr = ABBR.million
+    params.abbr = options.abbrLabel.mi
   }
 
   if (number.includes('-')) {

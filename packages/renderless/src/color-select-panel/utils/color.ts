@@ -284,7 +284,7 @@ export class Color implements IColor {
   }
   onHsl(value: string) {
     const parts = value
-      .replace(/hsla|hsl\(|\)gm/, '')
+      .replace(/hsla|hsl|\(|\)/gm, '')
       .split(/\s|,/g)
       .filter((val) => val)
       .map((val, idx) => {

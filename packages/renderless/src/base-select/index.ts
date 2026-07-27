@@ -1130,10 +1130,10 @@ export const emptyText =
 
 const remoteEmptyText = function (props, state) {
   if (props.multiple) {
-    return state.selected.length > 0 || state.remoteData.length >= 0
+    return state.selected.length > 0 || state.remoteData.length > 0
   }
 
-  return state.selected[props.valueField] || state.remoteData.length >= 0
+  return state.selected[props.valueField] || state.remoteData.length > 0
 }
 
 export const watchValue =
