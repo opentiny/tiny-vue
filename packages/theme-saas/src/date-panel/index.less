@@ -20,7 +20,7 @@
   @apply text-xs;
   @apply shadow-md;
   @apply bg-color-bg-1;
-  @apply rounded;
+  @apply rounded-dropdown;
   @apply leading-4;
   @apply ~'my-0.5' mx-0;
 
@@ -55,7 +55,7 @@
     @apply py-3 px-4;
     @apply bg-color-bg-1;
     @apply overflow-hidden;
-    @apply rounded-b;
+    @apply rounded-b-form;
 
     .@{button-prefix-cls} {
       min-width: 72px;
@@ -80,7 +80,7 @@
     @apply block;
     width: 100px;
     @apply my-0 mx-auto;
-    @apply rounded;
+    @apply rounded-form;
     @apply border-0;
     @apply bg-transparent;
     @apply leading-8;
@@ -145,7 +145,7 @@
 
   &__link-btn {
     @apply align-middle;
-    @apply rounded;
+    @apply rounded-form;
   }
 
   [slot='sidebar'],
@@ -178,7 +178,7 @@
         @apply leading-8;
         @apply my-0 mx-2;
         @apply py-0 px-2;
-        @apply rounded;
+        @apply rounded-form;
         @apply whitespace-nowrap;
         @apply overflow-hidden;
         @apply text-ellipsis;

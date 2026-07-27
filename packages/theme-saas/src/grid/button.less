@@ -61,7 +61,7 @@
     @apply ~'max-w-[theme(spacing.36)]';
     @apply h-7;
     @apply border border-solid border-color-border;
-    @apply rounded-sm;
+    @apply rounded-button;
     @apply whitespace-nowrap;
     @apply text-ellipsis;
     @apply overflow-hidden;
@@ -201,6 +201,10 @@
   &__wrapper {
     .@{input-prefix-cls} {
       @apply w-72;
+    }
+
+    .@{input-prefix-cls}__inner{
+      @apply rounded-search;
     }
 
     .@{input-prefix-cls},
