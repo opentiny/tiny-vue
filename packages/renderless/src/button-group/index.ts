@@ -33,9 +33,11 @@ export const moreNodeClick =
   (node: IButtonGroupNode): void => {
     if (!state.disabled) {
       const index = state.moreData.indexOf(node)
+      const selectedIndex = state.buttonData.findIndex((btn) => btn[props.valueField] === state.value)
+      const targetIndex = selectedIndex !== -1 ? selectedIndex : state.buttonData.length - 1
 
-      state.moreData.splice(index, 1, state.buttonData[state.buttonData.length - 1])
-      state.buttonData.splice(state.buttonData.length - 1, 1, node)
+      state.moreData.splice(index, 1, state.buttonData[targetIndex])
+      state.buttonData.splice(targetIndex, 1, node)
       state.value = node[props.valueField]
       emit('update:modelValue', state.value)
     }
