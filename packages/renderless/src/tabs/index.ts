@@ -121,7 +121,7 @@ export const calcMorePanes =
 
     const el = parent.$el
     const tabs = el.querySelectorAll('.tiny-tabs__item')
-    const tabNavRefs = refs.nav.$refs
+    const navScrollEl = refs.nav.$refs.navScroll as HTMLElement
 
     // 此处不同步aui。新规范适配
     if (props.moreShowAll) {
@@ -129,29 +129,40 @@ export const calcMorePanes =
       return
     }
 
-    if (tabs && tabs.length) {
-      let tabsAllWidth = 0
+    if (!tabs || !tabs.length) {
+      return
+    }
 
-      if (state.currentIndex === -1) {
-        state.currentIndex = state.panes.findIndex((item) => item.state.paneName === state.currentName)
-      }
-      const currentIndex = state.currentIndex < 0 ? 0 : state.currentIndex
-      const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
+    if (state.currentIndex === -1) {
+      state.currentIndex = state.panes.findIndex((item) => item.state.paneName === state.currentName)
+    }
 
-      for (let i = 0; i < tabs.length; i++) {
-        const tabItem = tabs[i] as HTMLElement
-        // 遮住元素一半则隐藏
-        tabsAllWidth = tabItem.offsetLeft + tabItem.offsetWidth / 2
-        if (tabsAllWidth > tabsHeaderWidth && currentIndex >= 0) {
-          if (currentIndex >= i + 1) {
-            state.showPanesCount = currentIndex
-          } else {
-            state.showPanesCount = i
-          }
-          break
-        }
+    const navScrollRect = navScrollEl.getBoundingClientRect()
+    const navScrollLeft = navScrollRect.left
+    const navScrollRight = navScrollRect.right
+
+    // nav 元素上有 CSS transition: transform 0.3s，
+    // 导致 scrollToActiveTab 改变 navOffset 后 getBoundingClientRect 返回过渡前的坐标。
+    // 解决方案：用 tab 相对于 nav 的位置差（不受 transition 影响）+ navOffset 推算最终位置。
+    const navEl = refs.nav.$refs.nav as HTMLElement
+    const navRect = navEl.getBoundingClientRect()
+    const stateNavOffset = ((refs.nav?.state as Record<string, unknown>)?.navOffset as number) || 0
+
+    for (let i = 0; i < tabs.length; i++) {
+      const tabRect = tabs[i].getBoundingClientRect()
+      // tabOffsetInNav 不受 CSS transition 影响，因为 tab 和 nav 共享同一个 transform 坐标系
+      const tabOffsetInNav = tabRect.left - navRect.left
+      // 计算 navOffset 完全生效后的最终视口中心位置
+      const finalCenter = navScrollLeft + tabOffsetInNav + tabRect.width / 2 - stateNavOffset
+      // 遮住元素一半则隐藏
+      if (finalCenter > navScrollRight) {
+        state.showPanesCount = i
+        return
       }
     }
+
+    // 所有 tab 都在可视范围内，无需下拉菜单
+    state.showPanesCount = tabs.length
   }
 
 export const calcExpandPanes =

@@ -38,6 +38,7 @@ export const api = [
   'state',
   'handleTabAdd',
   'calcPaneInstances',
+  'calcMorePanes',
   'handleTabRemove',
   'handleTabClick',
   'handleTabDragStart',
@@ -83,6 +84,11 @@ const initWatcher = ({
     () => {
       nextTick(() => {
         refs.nav.scrollToActiveTab()
+        // scrollToActiveTab → updated 调整 navOffset 可能触发多轮 DOM 更新，
+        // 用 rAF 确保所有布局计算完成后再读取 getBoundingClientRect，消除滞后
+        requestAnimationFrame(() => {
+          api.calcMorePanes()
+        })
       })
     },
     { deep: true }
@@ -137,12 +143,21 @@ export const renderless = (
     api.calcPaneInstances()
     api.calcMorePanes()
     api.calcExpandPanes()
+    // TabNav 在 render 中通过 $nextTick 异步 $forceUpdate，
+    // 用 rAF 确保所有级联 DOM 更新完成后再重算
+    requestAnimationFrame(() => {
+      api.calcMorePanes()
+    })
   })
 
   onUpdated(() => {
     api.calcPaneInstances()
     api.calcMorePanes()
     api.calcExpandPanes()
+    // 同上
+    requestAnimationFrame(() => {
+      api.calcMorePanes()
+    })
   })
 
   onUnmounted(() => {

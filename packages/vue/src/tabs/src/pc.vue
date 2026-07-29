@@ -145,7 +145,13 @@ export default defineComponent({
     const TabNavComponent = h(TabNav, { ...navData })
 
     this.$nextTick(() => {
-      this.$refs.nav && this.$refs.nav.$forceUpdate()
+      if (this.$refs.nav) {
+        this.$refs.nav.$forceUpdate()
+        // 用 rAF 确保级联 DOM 更新完成后再重算溢出
+        requestAnimationFrame(() => {
+          this.calcMorePanes()
+        })
+      }
     })
 
     const header = (
