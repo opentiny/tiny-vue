@@ -4,6 +4,93 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 
 在此页面上，您只能看到我们的 更新日志 最新三个迭代的日志记录，如您要查看完整记录可以查看：[Release](https://github.com/opentiny/tiny-vue/releases)
 
+## v3.31.0/v2.31.0
+
+`2026/07/29`
+
+## What's Changed
+
+### Exciting New Features 🎉
+
+- feat(modal): [modal] added the before-close attribute by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4204
+- feat(drawer): add destroyOnClose to drawer by @Yujing613 in https://github.com/opentiny/tiny-vue/pull/4153
+- feat: the image component supports URL encoding SVG by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4241
+- feat(tag): [tag] add round attribute by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4247
+- feat(flowchart): example and documentation for adding Flowchart component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4240
+- feat: add SliderButton component by @zzcr in https://github.com/opentiny/tiny-vue/pull/4250
+- feat(alert): [alert] add small and medium sizes by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4248
+- feat(slider-button): add slieder-button e2e by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4254
+- feat(switch): [switch] add display-only attribute by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4259
+
+### Bug Fixes 🐛
+
+- fix(common): solve the problem of reactive property loss in the provide scenario caused by the Longque API in the HarmonyOS environment by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4175
+- fix(dropdown): the style after clicking the unified button by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4174
+- fix(pager): adjust the spacing issue by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4170
+- fix: solve the problem of not finding the package during packaging by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4179
+- fix(sites): conditionally apply icon source plugins based on config mode by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4181
+- fix(file-upload): solve the problem of multiple commas appearing in the prompt for uploading files by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4188
+- fix(form-item): solve the overlap between strong prompts and verification prompt content by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4190
+- fix(tabs-mf): beforeLeave trigger twice by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4191
+- fix(grid): optimize operation cache by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4192
+- fix: standardize the disabled color for multi-input fields by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4199
+- fix(reset.css): restore [class*=~'@{css-prefix}'] in reset.css by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4203
+- fix: fix form-item-inline's padding-top eq 12px by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4202
+- fix(file-upload): Uploading the component name "group" causes it to become invalid. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4193
+- fix(form-item): fix the issue of the width of the tiny-cascader, which is affected by the multi-end form-item by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4194
+- fix(color-picker): auto flip by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/4187
+- fix(space): [space] modify the Space Components by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4184
+- fix(drawer): [drawer] modify the bugs in the drawer component and provide additional property testing examples by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4195
+- fix: add size prop for collapse by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4197
+- fix(input): remove input mf outline, which is black border by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4196
+- fix(numeric): add parse-input prop by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4205
+- fix(tooltip): more secure execution of the renderContent function by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4207
+- fix: development harness documentation for components by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4213
+- fix(form): tooltip and prop support dynamic change by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4221
+- fix(grid): grid event add dynamic support by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4224
+- fix: enhance components prop dynamic change by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4225
+- fix(uploader): fix webkitGetAsEntry() return null cause error by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4226
+- fix(vue-renderless/tab-nav): delay initial mounted to nextTick by @KevinAndrewDong in https://github.com/opentiny/tiny-vue/pull/4220
+- fix: add getStateSelection api for old code by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4214
+- fix: the table height remains unchanged when modifying maxheight by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4216
+- fix(grid): update attribute spelling errors by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4236
+- fix: 修复属性拼写错误 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4235
+- fix(space): remove reference to fix Vue 3 console warning by @kagol in https://github.com/opentiny/tiny-vue/pull/4222
+- feat(date-picker): solve the problem of panel data not being cleared during half-select by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4234
+- fix(nav-menu): fix the issue where before-skip returns false, but the component still updates its active state by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4227
+- fix: fix the issue where the menu cannot be collapsed due to the simultaneous activation of the attributes "menu-collapsible" and "width-adapt" by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4229
+- fix(nav-menu): [nav-menu] fix the occasional issue of menu hiding when refreshing the page by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4228
+- fix(form-item): solve the problem that the size attribute of the button in the form component does not take effect by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4206
+- fix(vue-renderless/dialog-select):[dialog-select] 修复首次打开多选勾选不同步 by @Malusnow in https://github.com/opentiny/tiny-vue/pull/4201
+- fix: base-select 在清除时，hover-expand 面板不隐藏收起按钮 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4243
+- fix(grid): modify saas theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4246
+- fix: modify the problem of lazy load root node not triggering in tree-menu component vue3 by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4242
+- fix(vue-renderless/file-upload): accept 支持 video/_、audio/_ 通配符 (fixes #4237) by @xuxiao1797 in https://github.com/opentiny/tiny-vue/pull/4239
+- fix(vue-renderless/fluent-editor): Fix lineheight formatting to use '… by @cfljue in https://github.com/opentiny/tiny-vue/pull/4212
+- fix(nav-menu): modify the misalignment issue of dropdown content by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4171
+- fix(drawer): add drag and drop icon(mobile-first) by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4249
+- fix(numeric): 移除 numeric 增减按钮 z-index，解决表格内层级冲突问题 by @Yujing613 in https://github.com/opentiny/tiny-vue/pull/4244
+- fix(file-upload): 增强 accept 属性的适配算法 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4253
+- fix: fix e2e errors of dialog-select and modal by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4256
+- fix(transfer):The table header of the Transfer component does not support fixing. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4257
+- fix: rewrite the path of e2e test's fold by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4260
+- fix: sync theme-saas's tailwind classname of rounded-\* by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4264
+- fix(date-picker,date-panel):fix the issue where the selected date is offset by one day in multi-time zone scenarios. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4266
+
+### Other Changes
+
+- fix: supplement development document specifications by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4218
+- fix: 添加 grid column 组件的 type="operation" 和 operationConfig 的文档, 删除无用缓存代码 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4231
+- fix(grid): solve the error issue of clearSelected method by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4217
+
+## New Contributors
+
+- @Malusnow made their first contribution in https://github.com/opentiny/tiny-vue/pull/4201
+- @xuxiao1797 made their first contribution in https://github.com/opentiny/tiny-vue/pull/4239
+- @cfljue made their first contribution in https://github.com/opentiny/tiny-vue/pull/4212
+
+**Full Changelog**: https://github.com/opentiny/tiny-vue/compare/v3.30.0...v3.31.0
+
 ## v3.30.0/v2.30.0
 
 `2026/04/02`
