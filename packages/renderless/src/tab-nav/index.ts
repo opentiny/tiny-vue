@@ -229,6 +229,11 @@ export const scrollPrev =
     const newOffset = currentOffset > containerSize ? currentOffset - containerSize : 0
 
     state.navOffset = newOffset
+
+    // 箭头滚动后通知父级 Tabs 重新计算溢出，用 rAF 等待级联 DOM 更新落定
+    requestAnimationFrame(() => {
+      ;(state.rootTabs as Record<string, unknown>)?.calcMorePanes?.()
+    })
   }
 
 export const scrollNext =
@@ -246,6 +251,11 @@ export const scrollNext =
       navSize - currentOffset > containerSize * 2 ? currentOffset + containerSize : navSize - containerSize
 
     state.navOffset = newOffset
+
+    // 箭头滚动后通知父级 Tabs 重新计算溢出，用 rAF 等待级联 DOM 更新落定
+    requestAnimationFrame(() => {
+      ;(state.rootTabs as Record<string, unknown>)?.calcMorePanes?.()
+    })
   }
 
 /* istanbul ignore next */
