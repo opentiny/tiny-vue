@@ -45,7 +45,8 @@
   transform: scale(var(--tiny-underlay-scale, 0.6));
 }
 
-[class*=~'@{css-prefix}'] {
+[class*=' @{css-prefix}'],
+[class^='@{css-prefix}'] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: var(--tv-font-family);
