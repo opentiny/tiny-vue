@@ -15,7 +15,7 @@ import Layout from './icons/Layout.vue'
 import Reverse from './icons/Reverse.vue'
 import Vertical from './icons/Vertical.vue'
 
-const VERSION = 'tiny-vue-version-3.30'
+const VERSION = 'tiny-vue-version-3.31'
 const NOTIFY_KEY = 'tiny-vue-playground-notify'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
@@ -26,7 +26,7 @@ const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview'
-const versions = ['3.30', '3.29', '3.28']
+const versions = ['3.31', '3.30', '3.29']
 const manualShow = ref(false)
 
 const getVersion = () => {
@@ -90,9 +90,8 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'saas', 'smb'].includes(tinyTheme)) {
-    imports[
-      `@opentiny/vue-design-${tinyTheme}`
-    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[`@opentiny/vue-design-${tinyTheme}`] =
+      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
@@ -403,12 +402,15 @@ onMounted(() => {
     display: none;
   }
 }
+
 #header {
   display: none;
 }
+
 #app {
   padding-top: 0;
 }
+
 .header {
   height: 46px;
   display: flex;
@@ -438,7 +440,8 @@ onMounted(() => {
 .vue-repl {
   /* 16px 是body默认margin */
   height: calc(100vh - 36px - 16px) !important;
-  transition: width 0.3s ease; /* 添加宽度过渡 */
+  transition: width 0.3s ease;
+  /* 添加宽度过渡 */
 }
 
 .github {
@@ -473,6 +476,7 @@ onMounted(() => {
 
 .select-opt {
   margin-right: 15px;
+
   .tiny-select .tiny-input .tiny-input__inner {
     height: 32px;
   }
