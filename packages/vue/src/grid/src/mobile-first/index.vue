@@ -45,7 +45,7 @@
 <script lang="ts">
 import { emitEvent, isScale, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { toNumber } from '@opentiny/vue-renderless/grid/static'
-import { hooks, defineComponent, mergeClass } from '@opentiny/vue-common'
+import { defineComponent, mergeClass } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import Exception from '@opentiny/vue-exception'
 import type { Column, CardConfig, Datas } from './type'
@@ -87,7 +87,7 @@ export default defineComponent({
   computed: {
     config() {
       const { $parent: vm, cardConfig, listConfig } = this as any
-      return { tableVm: hooks.markRaw(vm), cardConfig, listConfig }
+      return { tableVm: vm, cardConfig, listConfig }
     },
     cardView() {
       const { config } = this as any
