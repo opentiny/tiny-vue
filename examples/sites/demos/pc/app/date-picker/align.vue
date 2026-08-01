@@ -39,6 +39,7 @@ export default {
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 360px;
+  /* 输入框收窄到 240px，比面板默认宽度 360px 窄，宽度差让 left/center/right 对齐效果清晰可见 */
+  width: 240px;
 }
 </style>
