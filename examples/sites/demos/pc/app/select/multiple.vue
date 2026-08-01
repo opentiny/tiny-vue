@@ -43,7 +43,7 @@
     <div>场景 5：自定义图标 + 自定义样式</div>
     <br />
     <tiny-select
-      v-model="value4"
+      v-model="value6"
       multiple
       :options="options1"
       :dropdown-icon="iconPopup"
@@ -133,6 +133,7 @@ export default {
       value3: ['选项 1', '选项 2'],
       value4: [],
       value5: ['选项 1', '选项 2', '选项 3', '选项 4', '选项 5', '选项 6', '选项 7'],
+      value6: [],
       iconPopup: iconPopup()
     }
   }

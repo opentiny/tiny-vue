@@ -41,7 +41,7 @@
     <div>场景 5：自定义图标 + 自定义样式</div>
     <br />
     <tiny-base-select
-      v-model="value4"
+      v-model="value5"
       multiple
       :dropdown-icon="iconPopup"
       :drop-style="{ width: '200px', 'min-width': '200px' }"
@@ -85,6 +85,7 @@ export default {
       value2: ['选项 1', '选项 2'],
       value3: ['选项 1', '选项 2'],
       value4: [],
+      value5: [],
       iconPopup: iconPopup()
     }
   }
