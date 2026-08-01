@@ -17,7 +17,9 @@ test('测试更多按钮', async ({ page }) => {
   await expect(buttonGroup.locator('button').nth(2)).toHaveText('Button3')
   await demo.getByRole('button').nth(3).click()
   await page.locator('.tiny-popper').getByText('Button5').click()
-  await expect(buttonGroup.locator('button').nth(2)).toHaveText('Button5')
+  // 点击折叠按钮与当前选中按钮（Button1）交换，Button5 落在选中按钮的位置（nth 0）且处于选中态
+  await expect(buttonGroup.locator('button').nth(0)).toHaveText('Button5')
+  await expect(buttonGroup.locator('li').nth(0)).toHaveClass('active')
 
   // 判断图标是否正确
   const moreButton = buttonGroup.getByRole('button').nth(3)
