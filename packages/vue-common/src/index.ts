@@ -353,7 +353,12 @@ export function svg({ name = 'Icon', component, filledComponent = null, deprecat
           }
 
           if (isMobileFirst) {
-            className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
+            className = mergeClass(
+              props.underlay ? 'tiny-svg-underlay' : '',
+              'h-4 w-4 inline-block',
+              customClass || '',
+              mergeProps.class || ''
+            )
           }
 
           const extend = Object.assign(
