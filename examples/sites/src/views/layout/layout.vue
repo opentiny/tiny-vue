@@ -201,8 +201,11 @@ export default defineComponent({
   --layout-content-main-min-width: 200px;
   --layout-content-main-max-width: 1000px;
 }
+
 @media screen and (max-width: 640px) {
-  --layout-content-main-min-width: 600px;
+  .content-layout {
+    --layout-content-main-min-width: 600px;
+  }
 }
 
 .tiny-tooltip.tiny-tooltip__popper.is-light.docs-tooltip {
@@ -222,6 +225,7 @@ export default defineComponent({
   &:hover {
     cursor: pointer;
   }
+
   .lang-btn {
     font-weight: 600;
     font-size: 26px;
@@ -302,15 +306,18 @@ export default defineComponent({
   .tiny-tree-node__content {
     position: relative;
   }
+
   .absolute-tag {
     position: absolute;
     right: 8px;
     top: 13px;
   }
+
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
     overflow-y: auto;
   }
+
   .tree-node-name {
     line-height: 1.5;
 
@@ -337,10 +344,12 @@ export default defineComponent({
       }
     }
   }
+
   & > .tiny-input .tiny-input__inner {
     height: var(--layout-tree-menu-input-height);
     font-size: 14px;
   }
+
   .tiny-tree-node__content {
     margin-top: 8px;
   }
@@ -372,6 +381,7 @@ export default defineComponent({
     padding-left: 30px;
     background: #fff;
     overflow: hidden;
+
     .api-mode {
       color: rgba(60, 60, 60, 0.33);
 
@@ -383,6 +393,7 @@ export default defineComponent({
     .api-switch {
       margin: 0 5px;
     }
+
     & > .tiny-svg {
       font-size: 18px;
       margin-left: 8px;
@@ -419,10 +430,12 @@ html.dark #layoutSider {
     display: none;
     position: fixed;
     height: 100%;
+
     .tiny-tree-menu__toggle-button {
       display: none;
     }
   }
+
   #layoutSider.showMenu {
     display: block !important;
     z-index: var(--docs-layout-sider-zindex);
