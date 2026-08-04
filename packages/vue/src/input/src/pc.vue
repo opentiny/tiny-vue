@@ -143,6 +143,7 @@
                 role="button"
                 :aria-label="state.passwordVisible ? 'hide password' : 'show password'"
                 tabindex="0"
+                @mousedown.prevent
                 @click.native="handlePasswordVisible"
               ></component>
               <component
@@ -152,6 +153,7 @@
                 role="button"
                 :aria-label="state.maskValueVisible ? 'hide content' : 'show content'"
                 tabindex="0"
+                @mousedown.prevent
                 @click.native="state.maskValueVisible = !state.maskValueVisible"
               ></component>
               <span
