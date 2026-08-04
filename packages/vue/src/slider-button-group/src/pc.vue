@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-slider-button-group">
+  <div class="tiny-slider-button-group" ref="sliderButtonGroup">
     <component v-if="!pageTurn" :is="state.tag" class="tiny-slider-button-group-inline-flex" role="sliderButtonGroup">
       <div class="tiny-slider-button-group-box">
         <div
