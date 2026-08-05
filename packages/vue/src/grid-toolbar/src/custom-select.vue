@@ -26,7 +26,7 @@
       v-for="item in columns"
       :key="item.property"
       :disabled="item.disabled"
-      :label="item.title"
+      :label="getFuncText(item.own.title)"
       :value="item.property"
     >
     </tiny-option>
@@ -63,35 +63,55 @@ export default {
   },
   data() {
     return {
-      columns: [],
       multivalue: []
     }
   },
-  created() {
-    this.columns = this.getColumnConfigs(this.data)
+  computed: {
+    columns() {
+      return this.getColumnConfigs(this.data)
+    }
   },
   watch: {
     data: {
+      immediate: true,
       handler(val) {
-        this.columns = this.getColumnConfigs(val)
-        this.multivalue = this.columns.filter((item) => item.visible).map((item) => item.property)
+        const columns = this.getColumnConfigs(val)
+        this.multivalue = columns.filter((item) => item.visible).map((item) => item.property)
       }
     }
   },
   methods: {
+    getFuncText(text) {
+      return typeof text === 'function' ? text() : text
+    },
     columnChange(values) {
       this.columns.forEach((column) => {
         column.visible = values.includes(column.property)
       })
 
-      this.$emit('saveSettings', { columns: this.columns })
+      // emit 时只传标准字段，不含 own 引用，避免序列化大对象
+      const standardColumns = this.columns.map(
+        ({ id, own, property, fixed, visible, order, sortable, level, children }) => ({
+          id,
+          title: getFuncText(own.title),
+          property,
+          fixed,
+          visible,
+          order,
+          sortable,
+          level,
+          children
+        })
+      )
+      this.$emit('saveSettings', { columns: standardColumns })
     },
     getColumnConfigs(configs) {
       const getColNodes = (columns) =>
         columns
           .map(({ id, own, property, fixed, visible, order, sortable, level, children }) => {
             if (property) {
-              const column = { id, title: own.title, property, fixed, visible, order, sortable, level, children }
+              // 保存 own 引用而非 title 字符串快照，模板渲染时通过 item.own.title 实时读取，支持国际化切换
+              const column = { id, own, property, fixed, visible, order, sortable, level, children }
 
               column.disabled = Boolean(this.setting?.customDisable?.(column))
 
@@ -103,12 +123,13 @@ export default {
           })
           .filter((i) => i)
 
-      if (configs.length && this.$grid) {
+      if (configs && configs.length && this.$grid) {
         const { collectColumn } = this.$grid.getTableColumn()
         const columns = getColNodes(collectColumn)
 
         return columns
       }
+      return []
     }
   }
 }

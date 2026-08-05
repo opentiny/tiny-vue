@@ -1,7 +1,10 @@
 <template>
   <div class="hp100vh f-c">
     <div class="m10 pb10 b-b">
-      <div style="float: right">
+      <div style="float: right; display: flex; align-items: center; gap: 12px">
+        <tiny-button size="small" @click="toggleLocale">
+          {{ currentLang === 'zhCN' ? 'EN' : '中文' }}
+        </tiny-button>
         组件库模式： <tiny-button-group :data="state.groupData" v-model="modeState.mode"></tiny-button-group>
       </div>
       <div class="f-r f-box-center">
@@ -26,11 +29,12 @@
 
 <script>
 import './style.css'
-import { ButtonGroup, Link } from '@opentiny/vue'
+import { ButtonGroup, Link, Button } from '@opentiny/vue'
 import { iconEditorMenuRight, iconEditorMenuLeft } from '@opentiny/vue-icon'
 import TinyPc from './pc.vue'
 import TinyMobileFirst from './mobile-first.vue'
 import { hooks } from '@opentiny/vue-common'
+import { getCurrentInstance } from 'vue'
 import { useModeCtx } from './uses'
 
 export default {
@@ -38,6 +42,7 @@ export default {
     TinyPc,
     TinyMobileFirst,
     TinyButtonGroup: ButtonGroup,
+    TinyButton: Button,
     TinyLink: Link,
     IconEditorMenuRight: iconEditorMenuRight(),
     IconEditorMenuLeft: iconEditorMenuLeft()
@@ -76,10 +81,23 @@ export default {
 
     // 解析url, 生成modeState
     modeFn.loadPage()
+
+    // 全局语言切换（按照官方文档推荐写法）
+    const ctx = getCurrentInstance()?.ctx
+    const currentLang = hooks.ref(ctx?.$i18n?.locale || 'zhCN')
+    const toggleLocale = () => {
+      if (ctx?.$i18n) {
+        currentLang.value = currentLang.value === 'zhCN' ? 'enUS' : 'zhCN'
+        ctx.$i18n.locale = currentLang.value
+      }
+    }
+
     return {
       state,
       modeState,
-      toggleFixedMenu
+      toggleFixedMenu,
+      currentLang,
+      toggleLocale
     }
   }
 }

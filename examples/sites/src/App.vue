@@ -11,16 +11,29 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, onUnmounted, provide, ref } from 'vue'
 import { TinyConfigProvider, TinyModal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import { isSaas } from './const'
+import { i18n } from './i18n/index.js'
+import { useRouter } from 'vue-router'
 
 import useTheme from './tools/useTheme'
 
 const modalSHow = ref(false)
 const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
 const tinyIconClose = iconClose()
+
+if (isSaas) {
+  import('@opentiny/vue-theme-saas/index.less')
+}
+
+const router = useRouter()
+
+const handleLangToggle = (e) => {
+  const { name } = e.detail
+  i18n.global.locale = name
+}
 
 onMounted(() => {
   // 加载header
@@ -35,6 +48,12 @@ onMounted(() => {
     }
   })
   common.renderHeader()
+  
+  window.addEventListener('tiny-toggle-lang', handleLangToggle)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('tiny-toggle-lang', handleLangToggle)
 })
 const { designConfig, currentThemeKey } = useTheme()
 

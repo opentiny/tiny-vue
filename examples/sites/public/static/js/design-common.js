@@ -27,7 +27,8 @@ const headerHtml = `
       <span class="header-detail-name">TinyVue</span>
 
       <div class="nav-menus nav-menus-left"></div>
-      <button id="switchTheme" style="margin-left:150px">切换主题</button>
+      <button id="switchLang" style="margin-left:150px; cursor: pointer; background: transparent; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; color: var(--tv-color-text)">中 / EN</button>
+      <button id="switchTheme" style="margin-left:10px">切换主题</button>
     </div>
   </div>
 </div>`
@@ -151,6 +152,12 @@ class DesignCommon {
 
     document.getElementById('switchTheme').addEventListener('click', () => {
       document.querySelector('html').classList.toggle('dark')
+    })
+    document.getElementById('switchLang').addEventListener('click', () => {
+      if (window.appFn && window.appData) {
+        const targetLang = window.appData.lang === 'zhCN' ? 'enUS' : 'zhCN'
+        window.appFn.toggleLang(targetLang)
+      }
     })
   }
   renderFooter() {
