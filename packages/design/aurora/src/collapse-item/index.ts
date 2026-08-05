@@ -1,8 +1,8 @@
-import { iconWarning } from '@opentiny/vue-icon'
+import { iconArrowBottom } from '@opentiny/vue-icon'
 
 export default {
   icons: {
-    warning: iconWarning()
+    warning: iconArrowBottom()
   },
   renderless: (props, hooks, { emit }, api) => {
     const state = api.state
