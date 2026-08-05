@@ -32,7 +32,7 @@ import {
 
 export const api = ['state', 'handleChange']
 
-const initState = ({ reactive, computed, api }) => {
+const initState = ({ reactive, computed, api, form }) => {
   const state = reactive({
     focus: false,
     selfModel: false,
@@ -44,6 +44,7 @@ const initState = ({ reactive, computed, api }) => {
     size: computed(() => api.computedSize()),
     store: computed(() => api.computedStore()),
     isChecked: computed(() => api.computedIsChecked()),
+    formDisabled: computed(() => (form || {}).disabled),
     isDisabled: computed(() => api.computedIsDisabled()),
     activeStyle: computed(() => api.computedActiveStyle()),
     checkboxGroup: computed(() => api.computedCheckboxGroup()),
@@ -55,7 +56,7 @@ const initState = ({ reactive, computed, api }) => {
   return state
 }
 
-const initApi = ({ api, state, props, formItemSize, parent, constants, emit, nextTick, dispatch }) => {
+const initApi = ({ api, state, props, formItemSize, parent, constants, emit, nextTick, dispatch, form }) => {
   Object.assign(api, {
     state,
     addToStore: addToStore({ state, props }),
@@ -77,14 +78,15 @@ const initApi = ({ api, state, props, formItemSize, parent, constants, emit, nex
 
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive },
+  { computed, onMounted, onBeforeUnmount, reactive, inject },
   { parent, emit, dispatch, constants, nextTick }
 ) => {
   const api = {}
+  const form = inject('form', null)
   const formItemSize = computed(() => api.computedFormItemSize())
-  const state = initState({ reactive, computed, api })
+  const state = initState({ reactive, computed, api, form })
 
-  initApi({ api, state, props, formItemSize, parent, constants, emit, nextTick, dispatch })
+  initApi({ api, state, props, formItemSize, parent, constants, emit, nextTick, dispatch, form })
 
   onBeforeUnmount(() => {
     toggleEvent({ parent, props, type: 'remove' })

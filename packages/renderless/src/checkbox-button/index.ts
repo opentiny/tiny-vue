@@ -73,10 +73,12 @@ export const computedCheckboxGroup =
     return false
   }
 
+// tiny新增： 增加监听form的disabled
 export const computedIsDisabled =
   ({ state, props }) =>
   () =>
-    state.checkboxGroup ? state.checkboxGroup.disabled || props.disabled || state.isLimitDisabled : props.disabled
+    (state.checkboxGroup ? state.checkboxGroup.disabled || props.disabled || state.isLimitDisabled : props.disabled) ||
+    state.formDisabled
 
 export const computedActiveStyle = (state) => () => ({
   backgroundColor: state.checkboxGroup.fill || '',
