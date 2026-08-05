@@ -22,6 +22,12 @@
           <tiny-checkbox label="复选框2" name="name2"></tiny-checkbox>
         </tiny-checkbox-group>
       </tiny-form-item>
+      <tiny-form-item label="Checkbox按钮组">
+        <tiny-checkbox-group v-model="createData.groupCheckedButton">
+          <tiny-checkbox-button label="复选框按钮1" name="name1"></tiny-checkbox-button>
+          <tiny-checkbox-button label="复选框按钮2" name="name2"></tiny-checkbox-button>
+        </tiny-checkbox-group>
+      </tiny-form-item>
       <tiny-form-item label="IpAddress">
         <tiny-ip-address v-model="createData.ipAddress"></tiny-ip-address>
       </tiny-form-item>
@@ -88,6 +94,7 @@ import {
   TinyFormItem,
   TinySwitch,
   TinyCheckbox,
+  TinyCheckboxButton,
   TinyNumeric,
   TinyRadio,
   TinyDatePicker,
@@ -119,6 +126,7 @@ const createData = reactive({
   input: '',
   autocomplete: '',
   groupChecked: ['复选框 1'],
+  groupCheckedButton: ['复选框按钮1'],
   ipAddress: '192.168.0.1',
   popEditor: '',
   select: '',
