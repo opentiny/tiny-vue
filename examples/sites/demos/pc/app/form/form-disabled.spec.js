@@ -33,7 +33,6 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(14).locator('input')).toBeDisabled()
   await expect(formItem.nth(15).locator('textarea')).toBeDisabled()
   await expect(formItem.nth(16).locator('input')).toBeDisabled()
-  await expect(formItem.nth(16).locator('input')).toBeDisabled()
   await expect(formItem.nth(17).locator('input').first()).toBeDisabled()
   await expect(formItem.nth(18).locator('input').first()).toBeDisabled()
   // 尝试拖到滑块，应是无法拖动状态
@@ -60,7 +59,6 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(13).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(14).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(15).locator('textarea')).not.toBeDisabled()
-  await expect(formItem.nth(16).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(16).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(17).locator('input').first()).not.toBeDisabled()
   await expect(formItem.nth(18).locator('input').first()).not.toBeDisabled()
