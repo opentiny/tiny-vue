@@ -7,6 +7,9 @@ test('树表高亮键盘操作', async ({ page }) => {
   await demo.getByRole('row', { name: '1 GFD 科技 YX 公司 华东区 800' }).getByRole('img').click()
   await demo.getByRole('row', { name: '3 WWWW 科技 YX 公司 华南区 500' }).getByRole('img').click()
   await demo.getByText('GFD 科技 YX 公司').click()
-  await page.keyboard.press('ArrowDown')
+  await page.waitForTimeout(300)
+  await page.locator('body').press('ArrowDown')
+  await page.waitForTimeout(300)
   await expect(demo.locator('.tiny-grid-body__row').nth(1)).toHaveClass(/row__current/)
 })
+

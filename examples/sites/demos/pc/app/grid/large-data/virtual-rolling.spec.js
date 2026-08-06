@@ -10,15 +10,23 @@ test('虚拟滚动', async ({ page }) => {
   })
   await page.waitForTimeout(1000)
   const bodyWrapper = demo.locator('.tiny-grid__body-wrapper')
-  await bodyWrapper.hover()
+  const box = await bodyWrapper.boundingBox()
+  if (box) {
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2)
+  }
   await bodyWrapper.click()
   // 先滚动 1000px
   await page.mouse.wheel(0, 1000)
+  await page.waitForTimeout(300)
   await expect(demo.getByRole('cell', { name: '24' })).toBeVisible()
   await page.waitForTimeout(500)
-  await bodyWrapper.hover()
+  if (box) {
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2)
+  }
   await bodyWrapper.click()
   // 先滚动 4000px
   await page.mouse.wheel(0, 5000)
+  await page.waitForTimeout(300)
   await expect(demo.getByRole('cell', { name: '124' })).toBeVisible()
 })
+
