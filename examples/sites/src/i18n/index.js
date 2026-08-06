@@ -8,6 +8,15 @@ import ptBR from './pt.json'
 
 const messages = { enUS: { ...en }, zhCN: { ...zh }, esLA: { ...esLA }, ptBR: { ...ptBR } }
 
+messages.zhCN.ui = {
+  grid: { demo: { companyName: '公司名称', employees: '员工数', address: '地址', introduction: '介绍' } }
+}
+messages.enUS.ui = {
+  grid: {
+    demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+  }
+}
+
 const langMap = new Map([
   ['zhCN', 'zhCN'],
   ['enUS', 'enUS'],

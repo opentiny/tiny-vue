@@ -16,6 +16,19 @@ app.config.globalProperties.isMobileMode = mode === 'mobile'
 // 注入全局的saas主题变量
 app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEME }
 
-app.use(initI18n({ createI18n, i18n: {} } as any))
+const demoMessages = {
+  zhCN: {
+    ui: { grid: { demo: { companyName: '公司名称', employees: '员工数', address: '地址', introduction: '介绍' } } }
+  },
+  enUS: {
+    ui: {
+      grid: {
+        demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+      }
+    }
+  }
+}
+
+app.use(initI18n({ createI18n, i18n: {}, messages: demoMessages } as any))
 app.use(Loading)
 app.mount('#app')

@@ -12,14 +12,10 @@
         ></tiny-grid-toolbar>
       </template>
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" :title="$t('ui.grid.individuation.toolbar.set')" disabled></tiny-grid-column>
-      <tiny-grid-column field="employees" :title="$t('ui.grid.individuation.toolbar.sort')"></tiny-grid-column>
-      <tiny-grid-column field="address" :title="$t('ui.grid.individuation.toolbar.freeze')"></tiny-grid-column>
-      <tiny-grid-column
-        field="introduction"
-        :title="$t('ui.grid.individuation.toolbar.search')"
-        show-overflow
-      ></tiny-grid-column>
+      <tiny-grid-column field="name" :title="$t('ui.grid.demo.companyName')" disabled></tiny-grid-column>
+      <tiny-grid-column field="employees" :title="$t('ui.grid.demo.employees')"></tiny-grid-column>
+      <tiny-grid-column field="address" :title="$t('ui.grid.demo.address')"></tiny-grid-column>
+      <tiny-grid-column field="introduction" :title="$t('ui.grid.demo.introduction')" show-overflow></tiny-grid-column>
     </tiny-grid>
   </div>
 </template>
