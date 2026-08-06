@@ -89,12 +89,19 @@ export default {
         column.visible = values.includes(column.property)
       })
 
-      const emitColumns = this.columns.map((col) => {
+      const mapEmitCol = (col) => {
         const emitCol = { ...col }
         emitCol.title = this.getFuncText(col.own?.title)
         delete emitCol.own
+
+        if (Array.isArray(emitCol.children)) {
+          emitCol.children = emitCol.children.map(mapEmitCol)
+        }
+
         return emitCol
-      })
+      }
+
+      const emitColumns = this.columns.map(mapEmitCol)
       this.$emit('saveSettings', { columns: emitColumns })
     },
     getColumnConfigs(configs) {
