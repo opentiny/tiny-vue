@@ -16,6 +16,16 @@ messages.enUS.ui = {
     demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
   }
 }
+messages.esLA.ui = {
+  grid: {
+    demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+  }
+}
+messages.ptBR.ui = {
+  grid: {
+    demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+  }
+}
 
 const langMap = new Map([
   ['zhCN', 'zhCN'],

@@ -26,9 +26,23 @@ const demoMessages = {
         demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
       }
     }
+  },
+  esLA: {
+    ui: {
+      grid: {
+        demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+      }
+    }
+  },
+  ptBR: {
+    ui: {
+      grid: {
+        demo: { companyName: 'Company Name', employees: 'Employees', address: 'Address', introduction: 'Introduction' }
+      }
+    }
   }
 }
 
-app.use(initI18n({ createI18n, i18n: {}, messages: demoMessages } as any))
+app.use(initI18n({ createI18n, i18n: {}, messages: demoMessages }))
 app.use(Loading)
 app.mount('#app')
