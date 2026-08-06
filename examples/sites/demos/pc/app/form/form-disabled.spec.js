@@ -22,7 +22,7 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(2).locator('input').first()).toBeDisabled()
   await expect(formItem.nth(3).locator('input').nth(1)).toBeDisabled()
   await expect(formItem.nth(3).locator('input').first()).toBeDisabled()
-  await expect(formItem.nth(5).locator('.tiny-checkbox-button')).toHaveClass(/is-disabled/) // 校验checkbox-button
+  await expect(formItem.nth(5).locator('.tiny-checkbox-button').first()).toHaveClass(/is-disabled/) // 校验checkbox-button
   await expect(formItem.nth(7).locator('button').first()).toHaveClass(/disabled/)
   await expect(formItem.nth(8).locator('input')).toBeDisabled()
   await expect(formItem.nth(9).locator('input')).toBeDisabled()
@@ -50,7 +50,7 @@ test('测试表单禁用', async ({ page }) => {
   await expect(formItem.nth(2).locator('input').first()).not.toBeDisabled()
   await expect(formItem.nth(3).locator('input').nth(1)).not.toBeDisabled()
   await expect(formItem.nth(3).locator('input').first()).not.toBeDisabled()
-  await expect(formItem.nth(5).locator('.tiny-checkbox-button')).not.toHaveClass(/is-disabled/)
+  await expect(formItem.nth(5).locator('.tiny-checkbox-button').first()).not.toHaveClass(/is-disabled/)
   await expect(formItem.nth(7).locator('button').first()).not.toHaveClass(/disabled/)
   await expect(formItem.nth(8).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(9).locator('input')).not.toBeDisabled()
