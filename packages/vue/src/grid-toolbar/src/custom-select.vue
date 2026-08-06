@@ -89,29 +89,24 @@ export default {
         column.visible = values.includes(column.property)
       })
 
-      // emit 时只传标准字段，不含 own 引用，避免序列化大对象
-      const standardColumns = this.columns.map(
-        ({ id, own, property, fixed, visible, order, sortable, level, children }) => ({
-          id,
-          title: getFuncText(own.title),
-          property,
-          fixed,
-          visible,
-          order,
-          sortable,
-          level,
-          children
-        })
-      )
-      this.$emit('saveSettings', { columns: standardColumns })
+      const emitColumns = this.columns.map((col) => {
+        const emitCol = { ...col }
+        emitCol.title = this.getFuncText(col.own?.title)
+        delete emitCol.own
+        return emitCol
+      })
+      this.$emit('saveSettings', { columns: emitColumns })
     },
     getColumnConfigs(configs) {
       const getColNodes = (columns) =>
         columns
-          .map(({ id, own, property, fixed, visible, order, sortable, level, children }) => {
+          .map((col) => {
+            const { property, children, own } = col
             if (property) {
-              // 保存 own 引用而非 title 字符串快照，模板渲染时通过 item.own.title 实时读取，支持国际化切换
-              const column = { id, own, property, fixed, visible, order, sortable, level, children }
+              const column = { ...col }
+
+              // 模板渲染时需要通过 item.own.title 实时读取来支持国际化切换响应
+              column.own = own
 
               column.disabled = Boolean(this.setting?.customDisable?.(column))
 
