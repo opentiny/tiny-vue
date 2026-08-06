@@ -14,7 +14,7 @@ test('测试表单禁用', async ({ page }) => {
   // 设置视口宽高，否则滑动不在视口中则无法拖动
   await page.setViewportSize({
     width: 1400,
-    height: 1500
+    height: 1700
   })
 
   await switchBtn.click()
