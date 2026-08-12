@@ -57,7 +57,7 @@
         ></component>
       </slot>
     </div>
-    <div data-tag="tiny-column-list-item-column1" class="block text-left sm:flex flex-auto flex-wrap">
+    <div data-tag="tiny-column-list-item-column1" class="block text-left sm:flex flex-auto flex-wrap min-w-0">
       <div
         v-if="slots.column1 && slots.column1()"
         class="min-w-[theme(spacing.40)] overflow-hidden sm:ml-0 pr-0 sm:pr-5"
