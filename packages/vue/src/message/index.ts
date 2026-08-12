@@ -5,7 +5,7 @@ import { version } from './package.json'
 import type { ComponentPublicInstance } from '@opentiny/vue-common'
 
 // 定义 Message 组件类型
-interface MessageComponent extends ComponentPublicInstance {
+interface MessageComponent extends ComponentPublicInstance<typeof Modal> {
   name: string
   version: string
   install: (Vue: any) => void
