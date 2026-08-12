@@ -1,5 +1,9 @@
 <template>
+  <div v-if="noStyle">
+    <slot></slot>
+  </div>
   <div
+    v-else
     data-tag="tiny-form-item"
     role="group"
     :aria-labelledby="state.labelId"
@@ -189,6 +193,7 @@ export default defineComponent({
     },
     labelWidth: String,
     manual: Boolean,
+    noStyle: Boolean,
     popperOptions: {
       type: Object,
       default: () => ({})

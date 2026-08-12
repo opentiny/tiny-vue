@@ -33,6 +33,7 @@ export const formItemProps = {
   },
   labelWidth: String,
   manual: Boolean,
+  noStyle: Boolean,
   popperOptions: {
     type: Object,
     default: () => ({})
