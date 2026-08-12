@@ -39,13 +39,17 @@ describe('PC Mode', () => {
 })
 
 describe('Mobile-first Mode', () => {
-  test('should remove built-in layout when no-style is true', () => {
+  test('should remove built-in layout while preserving validation when no-style is true', async () => {
+    const model = { name: '' }
+    const rules = { name: [{ required: true, message: 'Name is required' }] }
     const wrapper = mountMobilefirstMode({
-      components: { TinyForm: Form, TinyFormItem: FormItem },
+      components: { TinyForm: Form, TinyFormItem: FormItem, TinyInput: Input },
+      data: () => ({ model, rules }),
       template: `
-        <tiny-form>
-          <tiny-form-item no-style>
+        <tiny-form :model="model" :rules="rules">
+          <tiny-form-item prop="name" no-style>
             <span data-testid="content">Content</span>
+            <tiny-input v-model="model.name"></tiny-input>
           </tiny-form-item>
         </tiny-form>
       `
@@ -54,5 +58,15 @@ describe('Mobile-first Mode', () => {
     expect(wrapper.find('[data-tag="tiny-form-item"]').exists()).toBe(false)
     expect(wrapper.find('[data-tag="tiny-form-item-inline"]').exists()).toBe(false)
     expect(wrapper.find('[data-testid="content"]').text()).toBe('Content')
+    expect(wrapper.findComponent(Input).exists()).toBe(true)
+
+    const formWrapper = wrapper.findComponent(Form)
+    const form = formWrapper.componentVM || formWrapper.vm
+    const valid = await form
+      .validate()
+      .then(() => true)
+      .catch(() => false)
+
+    expect(valid).toBe(false)
   })
 })
