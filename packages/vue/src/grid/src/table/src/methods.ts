@@ -934,6 +934,16 @@ const Methods = {
     let isGroupOrNonSort = isGroup || !sort
     let matches
 
+    // 清理自定义列配置中不应直接合并的内部字段，确保 fixed 走 setter 重建 FixedDetails 实例
+    let cleanCustomCol = (col) => {
+      if (!col) return col
+      const { _fixed, _fixedDetails, ...rest } = col
+      if (_fixed !== undefined && rest.fixed === undefined) {
+        rest.fixed = _fixed
+      }
+      return rest
+    }
+
     this.isUpdateCustoms = true
 
     // 不排序时直接合并属性
@@ -941,7 +951,7 @@ const Methods = {
       fullColumn.forEach((column) => {
         mergeWidth(column)
         matches = getCustomCol(column)
-        matches && Object.assign(column, matches.item)
+        matches && Object.assign(column, cleanCustomCol(matches.item))
       })
     }
     // 排序处理非嵌套列的情况
@@ -952,7 +962,7 @@ const Methods = {
         let targetCol = find(fullColumn, (item) => customCol.property && item.property === customCol.property)
 
         if (targetCol) {
-          Object.assign(targetCol, customCol)
+          Object.assign(targetCol, cleanCustomCol(customCol))
           customMap[customCol.property] = targetCol
           orderColumn.push(targetCol)
         }

@@ -162,12 +162,18 @@ const handleRowGroupFold = (row, _vm) => {
 }
 
 // 获取列的固定样式（参数为column和$table）
-const getFixedStyle = ({ fixedDetails }, { overflowX }) => (fixedDetails && overflowX ? fixedDetails.getStyle() : {})
+// 有固定列时始终应用 sticky 定位，避免 overflowX 翻转时列错位
+const getFixedStyle = ({ fixedDetails }, { overflowX, horizonScroll }) =>
+  fixedDetails && (overflowX || horizonScroll?.fixed) ? fixedDetails.getStyle?.() || {} : {}
 
 // 获取列的固定类（参数为column和$table）
-const getFixedClass = ({ fixedDetails }, { overflowX }) => ({
-  'fixed__column': fixedDetails && overflowX,
-  ...(fixedDetails && overflowX ? fixedDetails.getClass() : {})
-})
+// fixed__column 始终应用（sticky 定位），阴影类仅在有滚动条时应用（避免无滚动条时误显阴影）
+const getFixedClass = ({ fixedDetails }, { overflowX, horizonScroll }) => {
+  const showFixed = fixedDetails && (overflowX || horizonScroll?.fixed)
+  return {
+    'fixed__column': showFixed,
+    ...(showFixed && overflowX ? fixedDetails.getClass?.() || {} : {})
+  }
+}
 
 export { sliceVisibleColumn, buildRowGroupFullData, handleRowGroupFold, isVirtualRow, getFixedStyle, getFixedClass }
