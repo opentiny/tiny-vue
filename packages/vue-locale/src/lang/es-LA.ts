@@ -640,6 +640,7 @@ export default {
       size: 'Tamaño de fuente',
       listOrdered: 'No. Lista',
       listBullet: 'Lista de proyectos',
+      listCheck: 'Lista de verificación',
       header1: 'H1',
       header2: 'H2',
       align: 'Modo de alineación',

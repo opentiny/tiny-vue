@@ -1090,6 +1090,7 @@ const getToolbarTitle = (t) => {
     { selector: '.ql-header[value="2"]', title: t('ui.richText.header2') },
     { selector: '.ql-list[value="ordered"]', title: t('ui.richText.listOrdered') },
     { selector: '.ql-list[value="bullet"]', title: t('ui.richText.listBullet') },
+    { selector: '.ql-list[value="check"]', title: t('ui.richText.listCheck') },
     { selector: '.ql-script[value="sub"]', title: t('ui.richText.subScript') },
     { selector: '.ql-script[value="super"]', title: t('ui.richText.superScript') },
     { selector: '.ql-indent[value="-1"]', title: t('ui.richText.indent1') },
@@ -1097,10 +1098,16 @@ const getToolbarTitle = (t) => {
     { selector: '.ql-direction[value="rtl"]', title: t('ui.richText.directionRTL') },
     { selector: '.ql-color', title: t('ui.richText.color') },
     { selector: '.ql-background', title: t('ui.richText.background') },
-    { selector: '.ql-align', title: t('ui.richText.align') },
-    { selector: '.ql-align .ql-picker-item', title: t('ui.richText.alignPicker1') },
+    { selector: '.ql-align.ql-picker', title: t('ui.richText.align') },
+    { selector: '.ql-align[value=""]', title: t('ui.richText.alignPicker1') },
+    { selector: 'button.ql-align:not([value])', title: t('ui.richText.alignPicker1') },
+    { selector: '.ql-align[value="center"]', title: t('ui.richText.alignPicker2') },
+    { selector: '.ql-align[value="right"]', title: t('ui.richText.alignPicker3') },
+    { selector: '.ql-align[value="justify"]', title: t('ui.richText.alignPicker4') },
+    { selector: '.ql-align .ql-picker-item:not([data-value])', title: t('ui.richText.alignPicker1') },
     { selector: '.ql-align .ql-picker-item[data-value="center"]', title: t('ui.richText.alignPicker2') },
     { selector: '.ql-align .ql-picker-item[data-value="right"]', title: t('ui.richText.alignPicker3') },
+    { selector: '.ql-align .ql-picker-item[data-value="justify"]', title: t('ui.richText.alignPicker4') },
     { selector: '.ql-link', title: t('ui.richText.link') },
     { selector: '.ql-image', title: t('ui.richText.image') },
     { selector: '.ql-video', title: t('ui.richText.video') },
@@ -1116,8 +1123,10 @@ export const setToolbarTitle =
     const tips = getToolbarTitle(t)
     const container = state.quill.container.parentNode
     for (let i = 0, l = tips.length; i < l; i++) {
-      const targetDom = container.querySelector(`.ql-formats ${tips[i].selector}`)
-      targetDom && targetDom.setAttribute('title', tips[i].title)
+      const targetDoms = container.querySelectorAll(`.ql-formats ${tips[i].selector}`)
+      for (let j = 0; j < targetDoms.length; j++) {
+        targetDoms[j].setAttribute('title', tips[i].title)
+      }
     }
   }
 

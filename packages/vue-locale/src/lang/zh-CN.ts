@@ -631,6 +631,7 @@ export default {
       size: '字体大小',
       listOrdered: '编号列表',
       listBullet: '项目列表',
+      listCheck: '可勾选',
       header1: 'h1',
       header2: 'h2',
       align: '对齐方式',

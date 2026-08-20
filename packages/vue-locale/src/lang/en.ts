@@ -636,6 +636,7 @@ export default {
       size: 'Font Size',
       listOrdered: 'No. List',
       listBullet: 'Project List',
+      listCheck: 'Checklist',
       header1: 'H1',
       header2: 'H2',
       align: 'Alignment Mode',
