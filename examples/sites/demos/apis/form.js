@@ -433,6 +433,9 @@ export default {
           name: 'no-style',
           type: 'boolean',
           defaultValue: 'false',
+          meta: {
+            stable: '3.32.0'
+          },
           desc: {
             'zh-CN': '是否移除表单项的内置布局样式，仅渲染默认插槽内容',
             'en-US': 'Whether to remove the built-in layout and render only the default slot content'
