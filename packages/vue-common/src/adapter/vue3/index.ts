@@ -88,7 +88,19 @@ const setInstanceEmitter = (instance) => {
 
 const emitEvent = (vm) => {
   const broadcast = (vm, componentName, eventName, params) => {
-    const children = (vm.subTree && vm.subTree.children) || vm.children
+    const subTree = vm.subTree
+
+    if (subTree) {
+      const subTreeName = subTree.type && subTree.type.componentName
+
+      if (subTreeName === componentName && subTree.component) {
+        subTree.component.emit(eventName, params)
+        subTree.component.$emitter && subTree.component.$emitter.emit(eventName, params)
+        return
+      }
+    }
+
+    const children = (subTree && subTree.children) || vm.children
 
     Array.isArray(children) &&
       children.forEach((child) => {
@@ -99,7 +111,7 @@ const emitEvent = (vm) => {
           component.emit(eventName, params)
           component.$emitter && component.$emitter.emit(eventName, params)
         } else {
-          broadcast(child, componentName, eventName, params)
+          broadcast(child.component ?? child, componentName, eventName, params)
         }
       })
   }
