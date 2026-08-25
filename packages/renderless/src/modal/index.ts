@@ -1002,6 +1002,81 @@ export const dragEvent =
       }, 50)
     }
   }
+/** 多端与pc端的布局方式不一致，所以多端的拖动代码专门写一份 */
+export const mfDragEvent =
+  ({ api, emit, parent, props }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'props'>) =>
+  (event: MouseEvent): void => {
+    event.preventDefault()
+
+    const modalBoxElement = api.getBox() as HTMLElement
+    const modalRootElement = modalBoxElement.offsetParent as HTMLElement
+    const modalBoxRect = modalBoxElement.getBoundingClientRect()
+    const modalRootRect = modalRootElement?.getBoundingClientRect() || { left: 0, top: 0 }
+    const startLeft = modalBoxRect.left
+    const startTop = modalBoxRect.top
+    const startWidth = modalBoxRect.width
+    const startHeight = modalBoxRect.height
+    const startRight = startLeft + startWidth
+    const startBottom = startTop + startHeight
+    const minWidth = parseFloat(String(props.minWidth)) || 0
+    const minHeight = parseFloat(String(props.minHeight)) || 0
+    const marginSize = parseFloat(String(props.marginSize)) || 0
+    const viewportWidth = document.documentElement.clientWidth || window.innerWidth
+    const viewportHeight = document.documentElement.clientHeight || window.innerHeight
+    const type = (event.target as HTMLElement)?.dataset.type
+    const startX = event.clientX
+    const startY = event.clientY
+    const demMousemove = document.onmousemove
+    const demMouseup = document.onmouseup
+
+    modalBoxElement.style.top = `${startTop - modalRootRect.top}px`
+    modalBoxElement.style.left = `${startLeft - modalRootRect.left}px`
+    modalBoxElement.style.right = 'auto'
+    modalBoxElement.style.bottom = 'auto'
+    modalBoxElement.style.transform = 'none'
+    modalBoxElement.style.width = `${startWidth}px`
+    modalBoxElement.style.height = `${startHeight}px`
+
+    document.onmousemove = (moveEvent: MouseEvent) => {
+      const deltaX = moveEvent.clientX - startX
+      const deltaY = moveEvent.clientY - startY
+      let left = startLeft
+      let top = startTop
+      let width = startWidth
+      let height = startHeight
+
+      if (type === 'wl' || type === 'swst' || type === 'swlb') {
+        left = Math.max(marginSize, Math.min(startLeft + deltaX, startRight - minWidth))
+        width = startRight - left
+      } else if (type === 'wr' || type === 'sest' || type === 'selb') {
+        width = Math.max(minWidth, Math.min(startWidth + deltaX, viewportWidth - startLeft - marginSize))
+      }
+
+      if (type === 'st' || type === 'swst' || type === 'sest') {
+        top = Math.max(marginSize, Math.min(startTop + deltaY, startBottom - minHeight))
+        height = startBottom - top
+      } else if (type === 'sb' || type === 'swlb' || type === 'selb') {
+        height = Math.max(minHeight, Math.min(startHeight + deltaY, viewportHeight - startTop - marginSize))
+      }
+
+      modalBoxElement.style.left = `${left - modalRootRect.left}px`
+      modalBoxElement.style.top = `${top - modalRootRect.top}px`
+      modalBoxElement.style.width = `${width}px`
+      modalBoxElement.style.height = `${height}px`
+
+      emit('custom-mousemove', moveEvent)
+      if (parent.$listeners.zoom) {
+        emit('zoom', { type: 'resize', $modal: parent }, moveEvent)
+      } else if (parent.events?.zoom) {
+        parent.events.zoom.call(parent, { type: 'resize', $modal: parent }, moveEvent)
+      }
+    }
+
+    document.onmouseup = () => {
+      document.onmousemove = demMousemove
+      document.onmouseup = demMouseup
+    }
+  }
 
 export const resetFormTip = (parent: IModalRenderlessParamUtils['parent'], isFormReset = true) => {
   const formList = findFormComponent(parent)

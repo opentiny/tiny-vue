@@ -12,6 +12,7 @@
 
 import {
   dragEvent,
+  mfDragEvent,
   handleEvent,
   mousedownEvent,
   toggleZoomEvent,
@@ -53,6 +54,7 @@ import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderl
 export const api = [
   'state',
   'dragEvent',
+  'mfDragEvent',
   'mousedownEvent',
   'toggleZoomEvent',
   'revert',
@@ -135,6 +137,7 @@ export const renderless = (
     toggleZoomEvent: toggleZoomEvent({ api, emit, parent, state, isMobileFirstMode }),
     mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit, isMobileFirstMode }),
     dragEvent: dragEvent({ api, emit, parent, props, state }),
+    mfDragEvent: mfDragEvent({ api, emit, parent, props }),
     resetDragStyle: resetDragStyle(api),
     resetModalViewPosition: resetModalViewPosition(api),
     computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode }),

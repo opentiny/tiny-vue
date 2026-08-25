@@ -64,6 +64,7 @@ export interface IModalApi {
   toggleZoomEvent: (event: PointerEvent) => void
   mousedownEvent: (event: MouseEvent) => void
   dragEvent: (event: MouseEvent) => void
+  mfDragEvent: (event: MouseEvent) => void
   resetDragStyle: () => void
   resetModalViewPosition: () => void
 }

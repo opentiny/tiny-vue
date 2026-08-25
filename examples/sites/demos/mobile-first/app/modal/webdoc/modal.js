@@ -40,6 +40,26 @@ export default {
       codeFiles: ['fullscreen.vue']
     },
     {
+      demoId: 'modal-resize',
+      name: {
+        'zh-CN': '弹窗调整大小',
+        'en-US': 'Size control'
+      },
+      desc: {
+        'zh-CN': `
+          通过<code>resize</code>属性，设置是否允许拖动边框调整窗口大小，并且右上角显示切换最大化的按钮。<br>
+          当 <code>resize</code>属性设置为<code>true</code>后，通过 <code>min-height</code>属性设置拖拽后窗口的最小高度，默认值为 200.<br>
+          <code>min-width</code>属性设置拖拽后窗口的最小宽度，默认值为 340。<br>
+        `,
+        'en-US': `
+          With the <code>resize</code> property, set whether to allow dragging the border to resize the window, and the upper right corner shows a button to maximize the switch. <br>
+          When the <code>resize</code> property is set to <code>true</code>, use the <code>min-height</code> property to set the minimum height of the drag-and-drop window. The default is 200.<br>
+          The <code>min-width</code> property sets the minimum width of the drag-and-drop window. The default value is 340. <br>
+        `
+      },
+      codeFiles: ['resize.vue']
+    },
+    {
       demoId: 'esc-closable',
       name: {
         'zh-CN': '按 Esc 键关闭弹出框',

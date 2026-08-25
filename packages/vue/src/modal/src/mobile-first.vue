@@ -4,6 +4,7 @@ import { renderless, api } from '@opentiny/vue-renderless/modal/vue'
 import Button from '@opentiny/vue-button'
 import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxGroup from '@opentiny/vue-checkbox-group'
+import type { IModalApi } from '@opentiny/vue-renderless/types/modal.type'
 import {
   iconHelpSolid,
   iconSuccess,
@@ -105,7 +106,13 @@ export default defineComponent({
     return { dialog: this }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { isMobileFirstMode: true } })
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      extendOptions: { isMobileFirstMode: true }
+    }) as unknown as IModalApi
   },
   render() {
     let {
@@ -317,7 +324,7 @@ export default defineComponent({
                 class: [
                   'flex flex-col w-full max-h-full rounded-lg sm:rounded  overflow-hidden',
                   { 'shadow-xl bg-color-bg-1': type !== 'message' },
-                  { 'h-full': zoomLocat }
+                  { 'h-full': !isMsg }
                 ]
               },
               [
@@ -470,13 +477,30 @@ export default defineComponent({
                   !isMsg && resize
                     ? h(
                         'span',
+                        {
+                          attrs: { 'data-tag': 'tiny-modal__resize' }
+                        },
+                        // 左，右，左上，右上，上，左下，右下，下 的8个方位的拖动dom,  统一增加 absolute, z-index:100,  宽度或高度为8px的拖动条
                         ['wl', 'wr', 'swst', 'sest', 'st', 'swlb', 'selb', 'sb'].map((type) => {
                           return h('span', {
+                            class: [
+                              `${type}-resize`,
+                              {
+                                'absolute z-[100] top-0 -left-[3px] w-2 h-full cursor-w-resize': type === 'wl',
+                                'absolute z-[100] top-0 -right-[3px] w-2 h-full cursor-w-resize': type === 'wr',
+                                'absolute z-[101] -top-2 -left-2 w-2.5 h-2.5 cursor-se-resize': type === 'swst',
+                                'absolute z-[101] -top-2 -right-2 w-2.5 h-2.5 cursor-sw-resize': type === 'sest',
+                                'absolute z-[100] -top-[3px] left-0 w-full h-2 cursor-s-resize': type === 'st',
+                                'absolute z-[101] -bottom-2 -left-2 w-2.5 h-2.5 cursor-sw-resize': type === 'swlb',
+                                'absolute z-[101] -bottom-2 -right-2 w-2.5 h-2.5 cursor-se-resize': type === 'selb',
+                                'absolute z-[100] -bottom-[3px] left-0 w-full h-2 cursor-s-resize': type === 'sb'
+                              }
+                            ],
                             attrs: {
                               'data-type': type
                             },
                             on: {
-                              mousedown: this.dragEvent
+                              mousedown: this.mfDragEvent
                             }
                           })
                         })
