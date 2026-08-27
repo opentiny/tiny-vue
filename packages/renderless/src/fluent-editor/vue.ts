@@ -37,7 +37,9 @@ import {
   removeHandleComposition,
   checkTableISEndElement,
   alignHandler,
-  handleLinkClick
+  handleLinkClick,
+  bindTableToolsScroll,
+  unbindTableToolsScroll
 } from './index'
 import { defaultOption, iconOption, iconOptionMobileFirst, simpleToolbar } from './options'
 
@@ -54,6 +56,9 @@ const initState = ({ api, reactive, computed, props }) => {
     quill: null,
     linkClickHandler: null,
     fileInput: null,
+    tableToolsScrollHandler: null,
+    tableToolsScrollRaf: null,
+    tableToolsScrollTargets: null,
     previewOptions: computed(() => api.computePreviewOptions()),
     previewImgUrl: '',
     showPreview: false,
@@ -121,7 +126,9 @@ const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, Upl
       iconOption: mode === 'mobile-first' ? iconOptionMobileFirst : iconOption
     }),
     getOuterHTML: getOuterHTML(),
-    setToolbarTitle: setToolbarTitle({ state, t })
+    setToolbarTitle: setToolbarTitle({ state, t }),
+    bindTableToolsScroll: bindTableToolsScroll({ state, api }),
+    unbindTableToolsScroll: unbindTableToolsScroll({ state })
   })
 }
 

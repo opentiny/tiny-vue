@@ -126,6 +126,7 @@ export const init =
     }
 
     api.handleComposition()
+    api.bindTableToolsScroll()
     emit('ready', state.quill)
   }
 
@@ -936,6 +937,7 @@ export const beforeUnmount =
     fullscreenButton && (fullscreenButton.onclick = null)
     api.removeFullscreenchange()
     api.removeHandleComposition()
+    api.unbindTableToolsScroll()
     state.quill.off('selection-change', api.selectionChange)
     state.quill.off('text-change', api.textChange)
     off(state.quill.container, 'click', state.linkClickHandler, true)
@@ -1099,11 +1101,11 @@ const getToolbarTitle = (t) => {
     { selector: '.ql-color', title: t('ui.richText.color') },
     { selector: '.ql-background', title: t('ui.richText.background') },
     { selector: '.ql-align.ql-picker', title: t('ui.richText.align') },
-    { selector: '.ql-align[value=""]', title: t('ui.richText.alignPicker1') },
+    { selector: 'button.ql-align[value=""]', title: t('ui.richText.alignPicker1') },
     { selector: 'button.ql-align:not([value])', title: t('ui.richText.alignPicker1') },
-    { selector: '.ql-align[value="center"]', title: t('ui.richText.alignPicker2') },
-    { selector: '.ql-align[value="right"]', title: t('ui.richText.alignPicker3') },
-    { selector: '.ql-align[value="justify"]', title: t('ui.richText.alignPicker4') },
+    { selector: 'button.ql-align[value="center"]', title: t('ui.richText.alignPicker2') },
+    { selector: 'button.ql-align[value="right"]', title: t('ui.richText.alignPicker3') },
+    { selector: 'button.ql-align[value="justify"]', title: t('ui.richText.alignPicker4') },
     { selector: '.ql-align .ql-picker-item:not([data-value])', title: t('ui.richText.alignPicker1') },
     { selector: '.ql-align .ql-picker-item[data-value="center"]', title: t('ui.richText.alignPicker2') },
     { selector: '.ql-align .ql-picker-item[data-value="right"]', title: t('ui.richText.alignPicker3') },
@@ -1128,6 +1130,113 @@ export const setToolbarTitle =
         targetDoms[j].setAttribute('title', tips[i].title)
       }
     }
+  }
+
+const TABLE_CONTROL_TOP_OFFSET = 25 // 与 @opentiny/fluent-editor TableColumnTool.initColTool 的 top 偏移一致
+const TABLE_SCROLL_BAR_PANEL_HEIGHT = 32 // 与 fluent-editor SCROLL_BAR_PANEL_HEIGHT 一致
+
+const syncTableScrollBarPosition = ({ parent, containerRect, table, tableScrollBar }) => {
+  const scrollBar = tableScrollBar?.domNode
+  if (!scrollBar) {
+    return
+  }
+
+  const tableRect = table.getBoundingClientRect()
+  const parentScrollTop = parent.scrollTop || 0
+  const containerHeight = parent.clientHeight || containerRect.height
+  const tableVisualTop = tableRect.top - containerRect.top
+  const tableVisualBottom = tableRect.bottom - containerRect.top
+
+  if (tableVisualBottom <= 0 || tableVisualTop >= containerHeight) {
+    scrollBar.style.display = 'none'
+    return
+  }
+
+  const barPos = tableVisualBottom + parentScrollTop - 1
+  const pinPos = parentScrollTop + containerHeight - TABLE_SCROLL_BAR_PANEL_HEIGHT
+
+  scrollBar.style.display = 'block'
+  scrollBar.style.marginTop = '0px'
+  scrollBar.style.top = `${Math.min(pinPos, barPos)}px`
+}
+
+export const syncTableControlPanelPosition = (quill) => {
+  const parent = quill?.root?.parentNode
+  if (!parent) {
+    return
+  }
+
+  const betterTable = quill.getModule?.('better-table')
+  if (!betterTable) {
+    return
+  }
+
+  const columnTool = betterTable.columnTool
+  const table = columnTool?.table || betterTable.tableScrollBar?.table
+  const containerRect = parent.getBoundingClientRect()
+
+  if (table?.parentNode && columnTool?.domNode) {
+    const tableViewRect = table.parentNode.getBoundingClientRect()
+    columnTool.domNode.style.marginTop = '0px'
+    columnTool.domNode.style.top = `${tableViewRect.top - containerRect.top + parent.scrollTop - TABLE_CONTROL_TOP_OFFSET}px`
+  }
+
+  if (table) {
+    syncTableScrollBarPosition({ parent, containerRect, table, tableScrollBar: betterTable.tableScrollBar })
+  }
+
+  if (betterTable.tableSelection?.selectedTds?.length) {
+    betterTable.tableSelection.refreshHelpLinesPosition?.()
+  }
+}
+
+export const bindTableToolsScroll =
+  ({ state, api }) =>
+  () => {
+    const root = state.quill?.root
+    if (!root) {
+      return
+    }
+
+    api.unbindTableToolsScroll()
+
+    state.tableToolsScrollHandler = () => {
+      const betterTable = state.quill?.getModule?.('better-table')
+      if (!betterTable?.columnTool && !betterTable?.tableScrollBar) {
+        return
+      }
+      if (state.tableToolsScrollRaf) {
+        cancelAnimationFrame(state.tableToolsScrollRaf)
+      }
+      state.tableToolsScrollRaf = requestAnimationFrame(() => {
+        state.tableToolsScrollRaf = null
+        syncTableControlPanelPosition(state.quill)
+      })
+    }
+
+    const parent = root.parentNode
+    state.tableToolsScrollTargets = parent ? [root, parent] : [root]
+    state.tableToolsScrollTargets.forEach((target) => {
+      on(target, 'scroll', state.tableToolsScrollHandler)
+    })
+  }
+
+export const unbindTableToolsScroll =
+  ({ state }) =>
+  () => {
+    if (state.tableToolsScrollRaf) {
+      cancelAnimationFrame(state.tableToolsScrollRaf)
+      state.tableToolsScrollRaf = null
+    }
+
+    if (state.tableToolsScrollHandler && state.tableToolsScrollTargets) {
+      state.tableToolsScrollTargets.forEach((target) => {
+        off(target, 'scroll', state.tableToolsScrollHandler)
+      })
+    }
+
+    state.tableToolsScrollHandler = null
+    state.tableToolsScrollTargets = null
   }
 
 export const computeZIndex =
