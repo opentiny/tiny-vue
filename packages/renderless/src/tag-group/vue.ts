@@ -39,7 +39,7 @@ export const renderless = (
   watch(
     () => props.data.length,
     () => {
-      api.getHiddenTags()
+      api.debouncedGetHiddenTags?.()
     }
   )
 
