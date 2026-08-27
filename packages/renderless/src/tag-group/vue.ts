@@ -16,8 +16,6 @@ export const renderless = (
   { onMounted, onBeforeUnmount, reactive, watch }: ISharedRenderlessParamHooks,
   { vm, emit }: ITagGroupRenderlessParamUtils
 ): ITagGroupApi => {
-  const delay = 100
-
   const state = reactive<ITagGroupState>({
     showMore: false,
     hiddenTags: []
@@ -30,9 +28,11 @@ export const renderless = (
   }
 
   onMounted(() => {
-    api.getHiddenTags()
+    const delay = 100
     api.debouncedGetHiddenTags = debounce(delay, api.getHiddenTags)
-    addResizeListener(vm.$refs.tagGroup, debounce(delay, api.debouncedGetHiddenTags))
+    api.debouncedGetHiddenTags()
+
+    addResizeListener(vm.$refs.tagGroup, api.debouncedGetHiddenTags)
   })
 
   // Tiny 新增，当标签组的数量发生变化也需要动态计算tip框中的tag标签数量
