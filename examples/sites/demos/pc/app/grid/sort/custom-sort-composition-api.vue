@@ -1,12 +1,28 @@
 <template>
-  <tiny-grid :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称" sortable :sort-method="sortNameMethod"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数" sortable></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期" sortable></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市" sortable></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <div>表格列自定义排序</div>
+    <br />
+    <tiny-grid :data="tableData">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称" sortable :sort-method="sortNameMethod"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数" sortable></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期" sortable></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市" sortable></tiny-grid-column>
+    </tiny-grid>
+    <br />
+    <br />
+    <div>表格自定义排序</div>
+    <br />
+    <tiny-grid :data="tableData" :sort-method="tableSort">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称" sortable></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数" sortable></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期" sortable></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市" sortable></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -77,5 +93,12 @@ function sortNameMethod(a, b) {
   let v2 = (b.name || '').toLowerCase()
 
   return v1 < v2 ? -1 : v1 > v2 ? 1 : 0
+}
+
+function tableSort({ column, order, property, data, $table }) {
+  console.log({ column, order, property, data, $table })
+
+  // 返回任意算法排序后的结果
+  return []
 }
 </script>
