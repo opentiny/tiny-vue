@@ -69,7 +69,9 @@
                   class="flex-1 sm:mr-6 text-xs sm:text-sm leading-5.5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
-                    file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name
+                    file.name.length > maxNameLength && maxNameLength
+                      ? file.name.substring(0, maxNameLength) + '...'
+                      : file.name
                   }}</span>
                 </div>
                 <div

@@ -308,6 +308,9 @@
     margin-right: 40px;
     padding-left: 4px;
     transition: color 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     .@{svg-prefix-cls} {
       font-size: var(--tv-UploadList-item-name-icon-font-size);
@@ -581,6 +584,7 @@
   &--picture &__item-name {
     display: block;
     line-height: 56px;
+    overflow: visible;
 
     .@{svg-prefix-cls} {
       font-size: var(--tv-UploadList-item-name-icon-font-size);

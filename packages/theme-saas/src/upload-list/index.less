@@ -252,6 +252,9 @@
     @apply mr-10;
     @apply pl-2;
     @apply transition-colors duration-300;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
 
     .@{svg-prefix-cls} {
       @apply text-sm;
@@ -305,6 +308,13 @@
 
       &-title:not(.is-fail) {
         @apply text-color-text-primary;
+      }
+
+      &-title {
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+        @apply whitespace-nowrap;
+        width: 148px;
       }
     }
 
@@ -474,6 +484,7 @@
   &--picture &__item-name {
     @apply block;
     @apply ~'leading-[3.5rem]';
+    @apply overflow-visible;
 
     .@{svg-prefix-cls} {
       @apply text-sm;
