@@ -708,12 +708,15 @@ export default defineComponent({
 
     watch(internalPageCount, (pageCount) => {
       const oldCurPage = state.internalCurrentPage
+      const validCurrentPage = getValidCurrentPage(Number(props.currentPage))
 
       if (pageCount && pageCount > 0 && oldCurPage === 0) {
         state.internalCurrentPage = 1
       } else if (pageCount && oldCurPage > pageCount) {
         state.internalCurrentPage = pageCount === 0 ? 1 : pageCount
         state.userChangePageSize && emitChange()
+      } else if (oldCurPage < validCurrentPage) {
+        state.internalCurrentPage = validCurrentPage
       }
 
       state.userChangePageSize = false

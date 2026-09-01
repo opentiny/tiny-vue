@@ -128,15 +128,19 @@ export const watchCurrentPage =
   }
 
 export const watchInternalPageCount =
-  ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
+  ({ state, api, props }: Pick<IPagerRenderlessParams, 'api' | 'state' | 'props'>) =>
   (pageCount: number | null): void => {
     const oldCurPage = state.internalCurrentPage
+    const validCurrentPage = api.getValidCurrentPage(props.currentPage)
 
     if (pageCount && pageCount > 0 && oldCurPage === 0) {
       state.internalCurrentPage = 1
     } else if (oldCurPage > Number(pageCount)) {
       state.internalCurrentPage = pageCount || 1
       state.userChangePageSize && api.emitChange()
+    } else if (oldCurPage < validCurrentPage) {
+      // total 从 0 等非法值变为有效后，恢复此前被裁剪的 current-page
+      state.internalCurrentPage = validCurrentPage
     }
 
     state.userChangePageSize = false
