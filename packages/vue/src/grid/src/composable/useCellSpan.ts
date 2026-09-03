@@ -13,7 +13,8 @@ export const useCellSpan = (bodyVm, bodyProps) => {
       () => $table.visibleColumn,
       () => bodyProps.tableData,
       () => $table.isColumnWidthAssigned,
-      () => $table.columnStore.resizeList
+      () => $table.columnStore.resizeList,
+      () => $table.expandeds.map((r) => getRowid($table, r)).join()
     ],
     ([visibleColumn, tableData, isColumnWidthAssigned]) => {
       if (!Array.isArray(tableData) || !isColumnWidthAssigned) {
@@ -75,6 +76,8 @@ export const useCellSpan = (bodyVm, bodyProps) => {
 
         stateNormalCell(normalState, normalTable, params, $table)
       }
+
+      splitRowspanAtExpand(normalTable, $table)
 
       if (leftList.length > 0) {
         adjustColspan(normalTable, leftList.length - 1, true)
@@ -184,6 +187,7 @@ const doSpan = ({ attrs, params, rowSpan, spanMethod }) => {
 
   attrs.rowspan = rowspan
   attrs.colspan = colspan
+  attrs._dataRowspan = rowspan
   attrs.visible = rowspan > 0 && colspan > 0
 }
 
@@ -214,6 +218,63 @@ const rowSpanMethod = (rowSpan, { row, $rowIndex, column, data }) => {
       }
     }
   }
+}
+
+export const splitRowspanAtExpand = (normalTable, $table) => {
+  const expandeds = $table.expandeds
+  if (!expandeds?.length || !normalTable.length) return
+  if (typeof $table.spanMethod === 'function') return
+
+  const expandedSet = new Set(expandeds)
+  const colCount = normalTable[0].length
+  const rowAt = (r) => normalTable[r][0].params.row
+
+  for (let c = 0; c < colCount; c++) {
+    let coverUntil = -1
+    for (let r = 0; r < normalTable.length; r++) {
+      const { attrs, params } = normalTable[r][c]
+      if (r <= coverUntil) {
+        attrs.rowspan = 0
+        attrs.colspan = 0
+        attrs.visible = false
+        continue
+      }
+
+      let intended = attrs._dataRowspan
+      if (!(intended > 0)) {
+        intended = remainingEqualSpan(normalTable, r, params.column, $table)
+        if (!(intended > 0)) continue
+      }
+
+      let span = 1
+      while (span < intended && r + span < normalTable.length) {
+        if (expandedSet.has(rowAt(r + span - 1))) break
+        span++
+      }
+
+      attrs.rowspan = span
+      if (!(attrs.colspan > 0)) attrs.colspan = 1
+      attrs.visible = true
+      coverUntil = r + span - 1
+    }
+  }
+}
+
+const remainingEqualSpan = (normalTable, start, column, $table) => {
+  const { rowSpan, spanMethod } = $table
+  if (spanMethod || !rowSpan?.length || !column?.property) return 1
+
+  const fields = rowSpan.map((item) => item.field)
+  if (!fields.includes(column.property)) return 1
+
+  const cellVal = normalTable[start][0].params.row?.[column.property]
+  if (!cellVal) return 1
+
+  let count = 1
+  while (start + count < normalTable.length && normalTable[start + count][0].params.row[column.property] === cellVal) {
+    count++
+  }
+  return count
 }
 
 const adjustColspan = (table, pos, isLeft) => {

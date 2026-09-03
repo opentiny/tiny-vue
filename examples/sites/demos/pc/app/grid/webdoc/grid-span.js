@@ -23,6 +23,20 @@ export default {
       codeFiles: ['span/row-span.vue']
     },
     {
+      demoId: 'span-row-span-with-expand',
+      name: {
+        'zh-CN': '行合并与展开行',
+        'en-US': 'Row Span with Expand'
+      },
+      desc: {
+        'zh-CN':
+          '<p>同时配置 <code>row-span</code> 与列 <code>type=&quot;expand&quot;</code>。展开行占满整行宽度；合并在展开处断开，避免与展开内容重叠。</p>\n',
+        'en-US':
+          '<p>Use <code>row-span</code> with column <code>type=&quot;expand&quot;</code>. The expand row is full width; merges split at the expand so content does not overlap. </p>\n'
+      },
+      codeFiles: ['span/row-span-with-expand.vue']
+    },
+    {
       demoId: 'span-column-span',
       name: { 'zh-CN': '列合并', 'en-US': 'Column Merge' },
       desc: {
