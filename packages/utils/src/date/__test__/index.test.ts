@@ -34,6 +34,13 @@ describe('日期工具函数测试', () => {
       const date2 = toDate('03/18/2024', 'MM/dd/yyyy')
       expect(date1?.getTime()).toBe(date2?.getTime())
     })
+
+    it('should parse ISO datetime with T separator and no timezone', () => {
+      const date = toDate('2024-03-20T22:38:41.800')
+      expect(date).toBeInstanceOf(Date)
+      expect(format(date as Date, 'yyyy-MM-dd hh:mm:ss')).toBe('2024-03-20 22:38:41')
+      expect(toDateStr('2024-03-20T22:38:41.800', 'yyyy-MM-dd hh:mm:ss')).toBe('2024-03-20 22:38:41')
+    })
   })
 
   describe('format', () => {
