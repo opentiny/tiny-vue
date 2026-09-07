@@ -2920,7 +2920,7 @@ export default {
             'zh-CN':
               '自定义当前列的排序方法，通过函数返回 <code>-1 | 0 | 1</code> 来对数据排序，同 <code>Array.sort</code> 用法一致。',
             'en-US':
-              'Customize the sorting method for the current column by returning a <code>`-1 | 0 | 1`</code> from a function to sort the data – similar to <code>Array.sort</code> has the same usage'
+              'Customize the sorting method for the current column by returning a <code>-1 | 0 | 1</code> from a function to sort the data – similar to <code>Array.sort</code> has the same usage'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-sort#sort-custom-sort'
