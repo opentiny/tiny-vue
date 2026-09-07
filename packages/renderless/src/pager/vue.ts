@@ -137,7 +137,7 @@ export const renderless = (
     watchInternalCurrentPage: watchInternalCurrentPage({ state, emit, props }),
     getInternalPageSize: getInternalPageSize({ state, props }),
     watchCurrentPage: watchCurrentPage({ state, api }),
-    watchInternalPageCount: watchInternalPageCount({ state, api }),
+    watchInternalPageCount: watchInternalPageCount({ state, api, props }),
     watchTotal: watchTotal({ state }),
     watchShowSizes: watchShowSizes({ nextTick, vm }),
     watchInternalPageSize: watchInternalPageSize({ emit, props })
