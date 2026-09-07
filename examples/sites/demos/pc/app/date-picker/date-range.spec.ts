@@ -113,12 +113,12 @@ test('同一天结束时间早于开始时间时不改写开始时间 #4185', as
   await day.click()
   await day.click()
 
-  const startTime = panel.getByPlaceholder('开始时间')
-  const endTime = panel.getByPlaceholder('结束时间')
+  const startTime = panel.getByRole('textbox', { name: '开始时间' })
+  const endTime = panel.getByRole('textbox', { name: '结束时间' })
   await startTime.fill('10:00:00')
-  await startTime.press('Enter')
+  await startTime.blur()
   await endTime.fill('05:00:00')
-  await endTime.press('Enter')
+  await endTime.blur()
 
   await expect(startTime).toHaveValue('10:00:00')
   await expect(endTime).toHaveValue('10:00:00')
