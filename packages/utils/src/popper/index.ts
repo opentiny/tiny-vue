@@ -343,7 +343,7 @@ interface arrowOffsets {
 }
 /** update时的data变量 */
 export interface UpdateData {
-  instance: Popper
+  instance: PopperJS
   styles: {}
   placement: string
   _originalPlacement: string
