@@ -34,7 +34,6 @@ import { iconEditorMenuRight, iconEditorMenuLeft } from '@opentiny/vue-icon'
 import TinyPc from './pc.vue'
 import TinyMobileFirst from './mobile-first.vue'
 import { hooks } from '@opentiny/vue-common'
-import { getCurrentInstance } from 'vue'
 import { useModeCtx } from './uses'
 
 export default {
@@ -82,13 +81,12 @@ export default {
     // 解析url, 生成modeState
     modeFn.loadPage()
 
-    // 全局语言切换（按照官方文档推荐写法）
-    const ctx = getCurrentInstance()?.ctx
-    const currentLang = hooks.ref(ctx?.$i18n?.locale || 'zhCN')
+    const proxy = hooks.getCurrentInstance()?.proxy
+    const currentLang = hooks.ref(proxy?.$i18n?.locale || 'zhCN')
     const toggleLocale = () => {
-      if (ctx?.$i18n) {
+      if (proxy?.$i18n) {
         currentLang.value = currentLang.value === 'zhCN' ? 'enUS' : 'zhCN'
-        ctx.$i18n.locale = currentLang.value
+        proxy.$i18n.locale = currentLang.value
       }
     }
 
