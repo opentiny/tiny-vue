@@ -974,13 +974,17 @@ export default {
         {
           name: 'sort-method',
           typeAnchorName: 'IRow',
-          type: '(row1: IRow, row2: IRow)=> boolean',
+          type: '({column,order,property,data,$table})=> any[]',
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '自定义所有列的排序方法，当触发排序时会调用该函数返回排序后的结果；自定义排序方法，类似原生的sort排序',
-            'en-US':
-              'Custom sorting method for all columns; called when sorting is triggered to return sorted results; similar to native sort method'
+            'zh-CN': `表格的自定义排序方法，当触发排序时会调用该函数返回排序后的结果；
+               其中 column,order,property 是触发排序的当前列的信息， data是所有数据行， $table是表格的内部对象;
+               注意：该属性的优先级最高，如果指定当前函数，则列上的自定义函数及默认排序规则都会忽略
+            `,
+            'en-US': `Custom sorting method for all columns; called when sorting is triggered to return sorted results; 
+              column,order,property contain information about the current column used for sorting; data represents all data rows; and $table is the internal object of the table
+              Note: This attribute has the highest priority; if the current function is specified, both the custom function on the column and the default sorting rule will be ignored.
+            `
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-sort#sort-custom-sort',
@@ -2910,11 +2914,13 @@ export default {
         {
           name: 'sort-method',
           typeAnchorName: 'IRow',
-          type: '(row1: IRow, row2: IRow)=> boolean',
+          type: '(row1: IRow, row2: IRow)=> number',
           defaultValue: '',
           desc: {
-            'zh-CN': '自定义所有列的排序方法，当触发排序时会调用该函数',
-            'en-US': 'Custom sorting method for all columns; called when sorting is triggered'
+            'zh-CN':
+              '自定义当前列的排序方法，通过函数返回 <code>-1 | 0 | 1</code> 来对数据排序，同 <code>Array.sort</code> 用法一致。',
+            'en-US':
+              'Customize the sorting method for the current column by returning a <code>-1 | 0 | 1</code> from a function to sort the data – similar to <code>Array.sort</code> has the same usage'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-sort#sort-custom-sort'
