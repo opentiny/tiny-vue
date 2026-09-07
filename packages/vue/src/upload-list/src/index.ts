@@ -50,7 +50,7 @@ export const uploadListProps = {
   },
   maxNameLength: {
     type: Number,
-    default: 20
+    default: 0
   },
   scale: {
     type: [Number, String],

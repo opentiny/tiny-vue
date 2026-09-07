@@ -229,7 +229,7 @@ export const fileUploadProps = {
   },
   maxNameLength: {
     type: Number,
-    default: 20
+    default: 0
   },
   scale: {
     type: [Number, String],

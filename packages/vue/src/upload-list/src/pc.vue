@@ -63,7 +63,9 @@
             <div class="file-name">
               <div class="file-name-box">
                 <span :title="file.name">{{
-                  file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name
+                  file.name.length > maxNameLength && maxNameLength
+                    ? file.name.substring(0, maxNameLength) + '...'
+                    : file.name
                 }}</span>
               </div>
               <div class="operate-panel">
@@ -180,7 +182,11 @@
                   v-if="!isFolder"
                   :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
                   class="tiny-svg-size"
-                />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
+                />{{
+                  file.name.length > maxNameLength && maxNameLength
+                    ? file.name.substring(0, maxNameLength) + '...'
+                    : file.name
+                }}
               </a>
             </tiny-tooltip>
             <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
@@ -307,7 +313,11 @@
           :class="['tiny-upload-list__li-title', file.status === 'fail' && 'is-fail']"
           :title="isFolderTitle ? (file.path || '') + file.name : file.name"
         >
-          {{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
+          {{
+            file.name.length > maxNameLength && maxNameLength
+              ? file.name.substring(0, maxNameLength) + '...'
+              : file.name
+          }}
         </div>
       </li>
     </transition-group>
