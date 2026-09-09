@@ -5,7 +5,7 @@
       v-if="state.show"
       :class="
         m(
-          'min-h-minflex py-2 px-4 my-2 rounded-form box-border font-light sm:font-normal text-color-text-primary border border-transparent',
+          'min-h-min flex py-2 px-4 my-2 rounded-form box-border font-light sm:font-normal text-color-text-primary border border-transparent',
           `tiny-alert--${size || 'normal'}`,
           { 'bg-color-info-primary-subtler': type === 'info' || !type },
           { 'bg-color-error-subtler': type === 'error' },
