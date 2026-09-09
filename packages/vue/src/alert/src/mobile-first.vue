@@ -5,8 +5,7 @@
       v-if="state.show"
       :class="
         m(
-          { 'min-h-min': size !== 'large' },
-          'flex py-2 px-4 my-2 rounded-form box-border font-light sm:font-normal text-color-text-primary border border-transparent',
+          'min-h-minflex py-2 px-4 my-2 rounded-form box-border font-light sm:font-normal text-color-text-primary border border-transparent',
           `tiny-alert--${size || 'normal'}`,
           { 'bg-color-info-primary-subtler': type === 'info' || !type },
           { 'bg-color-error-subtler': type === 'error' },
@@ -14,7 +13,6 @@
           { 'bg-color-success-subtler': type === 'success' },
           { 'text-center': center },
           [size === 'small' ? 'sm:py-0.5' : size === 'medium' ? 'sm:py-1' : size === 'large' ? 'sm:py-6' : 'sm:py-3'],
-          { 'h-[76px]': size === 'large' },
           customClass
         )
       "
