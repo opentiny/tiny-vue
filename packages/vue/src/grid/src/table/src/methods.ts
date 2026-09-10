@@ -460,8 +460,13 @@ const Methods = {
 
     // 可编辑表格默认开启备份，非可编辑表格在开启saveSource时也可备份
     if (backup && (editConfig || saveSource)) {
-      /* 在空闲帧任务中备份数据 */
-      requestIdleCallback(() => {
+      /* 在空闲帧任务中备份数据；Safari 等环境可能无 requestIdleCallback */
+      const scheduleIdle: (cb: () => void) => unknown =
+        typeof requestIdleCallback === 'function'
+          ? (cb) => requestIdleCallback(cb)
+          : (cb) => setTimeout(cb, 1)
+
+      scheduleIdle(() => {
         const rowidCacheMap = new Map()
         // 默认浅层复制，在设置saveSource为deep时开启深层复制
         const callback = (row) =>
