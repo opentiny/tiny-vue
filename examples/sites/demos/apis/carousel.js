@@ -22,7 +22,7 @@ export default {
           type: 'String',
           defaultValue: '',
           desc: {
-            'zh-CN': '宽高比，默认为16:2。',
+            'zh-CN': '宽高比，默认为 16:2。',
             'en-US': 'Aspect ratio. The default value is 16:2.'
           },
           mode: ['mobile-first'],
@@ -199,6 +199,22 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'swipeable',
           mfDemo: ''
+        },
+        //draggable
+        {
+          name: 'draggable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否允许拖拽切换幻灯片',
+            'en-US': 'Whether to allow dragging to switch slides'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'draggable',
+          mfDemo: 'draggable',
+          meta: {
+            stable: '3.29.0'
+          }
         }
       ],
       events: [

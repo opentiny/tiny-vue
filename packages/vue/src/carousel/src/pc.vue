@@ -11,10 +11,15 @@
  -->
 <template>
   <div
-    :class="{ 'tiny-carousel--card': type === 'card' }"
+    :class="{ 'tiny-carousel--card': type === 'card', 'tiny-carousel--draggable': draggable }"
     class="tiny-carousel"
+    ref="carousel"
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
+    @mousedown="mousedown"
+    @mousemove="mousemove"
+    @mouseup="mouseup"
+    @mouseleave="mouseleave"
   >
     <div :style="{ height }" class="tiny-carousel__container">
       <transition
@@ -108,7 +113,8 @@ export default defineComponent({
     'disabled',
     'swipeable',
     'lite',
-    'beforeSwipe'
+    'beforeSwipe',
+    'draggable'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
