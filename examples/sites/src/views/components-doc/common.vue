@@ -381,7 +381,17 @@ const loadPage = () => {
   })
 }
 
-const onDocLayoutScroll = debounce(100, false, () => {
+const closeBodyPoppersOnScroll = () => {
+  // Body-mounted poppers (select/datepicker/…) stay fixed while #doc-layout-scroller moves,
+  // so they can cover .docs-header. Closing on scroll matches expected docs UX and avoids
+  // raising header z-index above PopupManager (which would break dialog/DocSearch/notify).
+  // Dispatch on an Element (not document): touch-emulator calls Element.matches via closest().
+  const target = document.body
+  target.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+  target.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+}
+
+const updateAnchorAffixOnScroll = debounce(100, false, () => {
   const docLayout = scrollRef.value
   const { scrollTop, scrollHeight, clientHeight: layoutHeight } = docLayout
   const headerHeight = document.querySelector('.docs-header')?.clientHeight || 0
@@ -390,6 +400,11 @@ const onDocLayoutScroll = debounce(100, false, () => {
   const remainHeight = scrollHeight - scrollTop - layoutHeight // doc-layout-scroller视口下隐藏的部分高度
   state.anchorAffix = layoutHeight - headerHeight - (footerHeight - remainHeight) > anchorHeight
 })
+
+const onDocLayoutScroll = () => {
+  closeBodyPoppersOnScroll()
+  updateAnchorAffixOnScroll()
+}
 
 const setScrollListener = () => {
   nextTick(() => {
