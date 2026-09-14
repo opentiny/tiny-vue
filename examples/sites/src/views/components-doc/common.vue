@@ -386,6 +386,10 @@ const closeBodyPoppersOnScroll = () => {
   // so they can cover .docs-header. Closing on scroll matches expected docs UX and avoids
   // raising header z-index above PopupManager (which would break dialog/DocSearch/notify).
   // Dispatch on an Element (not document): touch-emulator calls Element.matches via closest().
+  // E2E clicks/hover will scrollIntoView the demo scroller; do not synthesize outside-click there.
+  if (isRunningTest) {
+    return
+  }
   const target = document.body
   target.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
   target.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))

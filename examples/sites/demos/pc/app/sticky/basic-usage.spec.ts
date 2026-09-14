@@ -5,7 +5,10 @@ test('基本用法', async ({ page }) => {
   await page.goto('sticky#basic-usage')
 
   const demo = page.locator('#basic-usage')
+  const scroller = page.locator('#doc-layout-scroller')
 
-  await demo.locator('i').first().scrollIntoViewIfNeeded()
+  await scroller.evaluate((el) => {
+    el.scrollTop = 400
+  })
   await expect(demo.locator('.tiny-sticky--fixed')).toHaveCSS('top', '0px')
 })

@@ -13,7 +13,7 @@ test('触发方式', async ({ page }) => {
 
   // hover
   await page.waitForTimeout(2000)
-  await hoverTrigger.hover()
+  await hoverTrigger.hover({ force: true })
   await expect(dropDownMenu.first()).toBeVisible()
   // click
   await page.waitForTimeout(2000)
