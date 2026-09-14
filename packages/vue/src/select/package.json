@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-select",
   "type": "module",
-  "version": "3.31.0",
+  "version": "3.32.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,

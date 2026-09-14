@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/utils",
   "type": "module",
-  "version": "3.31.0",
+  "version": "3.32.0",
   "description": "nanoid console xss",
   "author": "",
   "license": "ISC",
