@@ -42,6 +42,16 @@ yarn-error.log*
 *.log
 *.stackdump
 
+# 本地 AI Agent 工作目录（不提交远程）
+.cursor/
+.agents/
+.claude/
+.codex/
+.windsurf/
+.gemini/
+.continue/
+.aider*
+
 tgzs
 *.tgz
 
