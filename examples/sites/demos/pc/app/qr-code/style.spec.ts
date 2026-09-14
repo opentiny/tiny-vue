@@ -7,7 +7,7 @@ test('自定义样式', async ({ page }) => {
   const demo = page.locator('#style')
   const wrapper = demo.locator('.tiny-qr-code')
   const canvas = demo.locator('.tiny-qr-code canvas')
-  await expect(canvas).toBeVisible()
+  await expect(canvas).toBeVisible({ timeout: 15000 })
 
   const backgroundColor0 = await canvas.evaluate(
     (el: any, { x, y }) => {

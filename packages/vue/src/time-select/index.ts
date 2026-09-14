@@ -20,7 +20,7 @@ const TimeSelect = extend(true, { props: { componentName: { type: String, defaul
     ...$props,
     type: {
       type: String,
-      default: 'time'
+      default: 'time-select'
     }
   },
   name: $prefix + 'TimeSelect'

@@ -34,7 +34,7 @@ test('multiple-limit', async ({ page }) => {
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')
 
-  await select.click()
+  await select.locator('.tiny-input__suffix').first().click()
   await option.nth(0).click()
   await option.nth(1).click()
   await option.nth(2).click()

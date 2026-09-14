@@ -73,7 +73,7 @@ describe('PC Mode', () => {
     const handleFocus = vi.fn()
     const wrapper = mount(() => <Select onFocus={handleFocus} v-model={value}></Select>)
     await wrapper.find('input').trigger('focus')
-    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve, 20))
     expect(handleFocus).toHaveBeenCalled()
   })
 

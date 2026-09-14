@@ -9,7 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@vue/test-utils": "^2.2.7",
+    "@vue/test-utils": "2.4.6",
     "vue": "^3.3.9"
   }
 }

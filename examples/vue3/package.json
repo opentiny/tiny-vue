@@ -40,7 +40,7 @@
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vitest/ui": "catalog:",
     "@vue/runtime-core": "3.2.31",
-    "@vue/test-utils": "^2.2.7",
+    "@vue/test-utils": "2.4.6",
     "jsdom": "^21.0.0",
     "onigasm": "^2.2.5",
     "postcss": "^8.4.16",

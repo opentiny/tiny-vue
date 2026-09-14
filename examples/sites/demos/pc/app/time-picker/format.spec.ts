@@ -32,7 +32,9 @@ test('时间格式化', async ({ page }) => {
   // value-format: 选中值的格式
   await demo.locator('.tiny-input__inner').nth(4).click()
   await page.waitForTimeout(100)
-  await page.getByText('19').nth(11).click()
+  const timePanel = page.locator('.tiny-time-panel').last()
+  await expect(timePanel).toBeVisible()
+  await timePanel.locator('.tiny-time-spinner__item', { hasText: /^19$/ }).first().click()
   await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(100)
 

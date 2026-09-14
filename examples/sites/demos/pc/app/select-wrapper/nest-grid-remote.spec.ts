@@ -112,7 +112,7 @@ test.describe('下拉表格远程搜索', () => {
 
     await expect(suffixSvg).toBeVisible()
     await expect(dropdown).toBeHidden()
-    await select.click()
+    await suffixSvg.click()
     await expect(dropdown).toBeVisible()
     await expect(dropdown.locator('.tiny-grid__body tbody')).not.toBeEmpty()
 
