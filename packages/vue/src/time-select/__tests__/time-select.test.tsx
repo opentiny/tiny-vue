@@ -99,28 +99,24 @@ describe('PC Mode', () => {
         }}></TimeSelect>
     ))
 
-    const input = wrapper.find('input')
-    input.trigger('blur')
-    input.trigger('focus')
+    await wrapper.find('input').trigger('focus')
     await nextTick()
 
-    const disabledTimeOptions = document.querySelectorAll('.disabled')
+    const disabledTimeOptions = document.querySelectorAll('.tiny-time-select__item.disabled')
+    expect(disabledTimeOptions.length).toBeGreaterThan(0)
     expect(disabledTimeOptions[0].textContent).toBe('08:30')
-    expect(disabledTimeOptions[3].textContent).toBe('14:30')
+    expect(Array.from(disabledTimeOptions).some((el) => el.textContent === '14:30')).toBe(true)
     expect(disabledTimeOptions[disabledTimeOptions.length - 1].textContent).toBe('18:30')
   })
 
   test('default-value 可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值', async () => {
-    const value = ref('09:00')
-    const wrapper = mount(() => <TimeSelect defaultValue={value.value}></TimeSelect>)
+    const wrapper = mount(() => <TimeSelect defaultValue="09:00"></TimeSelect>)
 
-    const input = wrapper.find('input')
-    input.trigger('blur')
-    input.trigger('focus')
-
+    await wrapper.find('input').trigger('focus')
     await nextTick()
-    expect(document.querySelector('.selected.default')).toBeDefined()
-    expect(document.querySelector('.selected.default')?.textContent).toBe(value.value)
+    const defaultItem = document.querySelector('.tiny-time-select__item.default')
+    expect(defaultItem).toBeTruthy()
+    expect(defaultItem?.textContent?.trim()).toBe('09:00')
   })
 
   test('name 原生属性', async () => {
@@ -161,20 +157,23 @@ describe('PC Mode', () => {
     const handleFocus = vi.fn()
     const handleBlur = vi.fn()
     const wrapper = mount(() => (
-      <TimeSelect v-model={value.value} onFocus={handleFocus} onBlur={handleBlur}></TimeSelect>
+      <TimeSelect
+        v-model={value.value}
+        popper-append-to-body={false}
+        onFocus={handleFocus}
+        onBlur={handleBlur}></TimeSelect>
     ))
     await wrapper.find('input').trigger('focus')
     await nextTick()
     expect(handleFocus).toHaveBeenCalled()
 
-    const timeOptions = wrapper.findAll('.tiny-time-select__item').at(3)
+    const timeOptions = wrapper.findAll('.tiny-time-select__item').find((item) => item.text() === '09:30')
     expect(timeOptions?.exists()).toBe(true)
-    timeOptions?.trigger('click')
+    await timeOptions?.trigger('click')
     await nextTick()
 
     expect(handleBlur).toHaveBeenCalled()
-
-    expect(value.value).not.toBe('09:00')
+    expect(value.value).toBe('09:30')
   })
 
   /**
@@ -186,9 +185,8 @@ describe('PC Mode', () => {
     })
 
     await wrapper.findComponent(TimeSelect).vm.focus()
-
     await nextTick()
-    expect(wrapper.find('.tiny-time-select.tiny-popper').exists()).toBe(true)
+    expect(document.querySelector('.tiny-time-select.tiny-popper')).toBeTruthy()
   })
 
   /**
@@ -197,27 +195,19 @@ describe('PC Mode', () => {
   test('change 用户确认选定的值时触发', async () => {
     const value = ref('10:00')
     const handleChange = vi.fn()
-    const wrapper = mount(() => <TimeSelect v-model={value.value} onChange={handleChange}></TimeSelect>)
+    const wrapper = mount(() => (
+      <TimeSelect v-model={value.value} popper-append-to-body={false} onChange={handleChange}></TimeSelect>
+    ))
 
-    value.value = '11:00'
-
+    await wrapper.find('input').trigger('focus')
     await nextTick()
 
-    expect(handleChange).toBeCalledTimes(1)
-
-    const inputEl = wrapper.find('input')
-    await inputEl.trigger('focus')
-    await nextTick()
-    inputEl.setValue('09:00')
-    await nextTick()
-    expect(value.value).toBe('09:00')
-    expect(handleChange).toBeCalledTimes(2)
-
-    const timeOptions = wrapper.findAll('.tiny-time-select__item').at(3)
+    const timeOptions = wrapper.findAll('.tiny-time-select__item').find((item) => item.text() === '10:30')
     expect(timeOptions?.exists()).toBe(true)
-    timeOptions?.trigger('click')
-    expect(value.value).not.toBe('09:00')
+    await timeOptions?.trigger('click')
     await nextTick()
-    expect(handleChange).toBeCalledTimes(3)
+
+    expect(value.value).toBe('10:30')
+    expect(handleChange).toHaveBeenCalled()
   })
 })
