@@ -198,6 +198,21 @@ export default {
         'en-US': '<p>Embed a carousel scene in the pop-up window.</p>'
       },
       codeFiles: ['dialog-show.vue']
+    },
+    {
+      demoId: 'draggable',
+      name: {
+        'zh-CN': '拖拽',
+        'en-US': 'Draggable'
+      },
+      desc: {
+        'zh-CN': '<p>通过配置 <code>draggable</code> 属性为<code>true</code>后，走马灯的幻灯片内容将支持拖拽。</p>\n',
+        'en-US': '<p>After <code>draggable</code> is set to <code>true</code>, the slide content of the walk-through is supported for dragging. </p>\n'
+      },
+      codeFiles: ['draggable.vue'],
+      meta: {
+            stable: '3.29.0'
+      }
     }
   ],
   features: [

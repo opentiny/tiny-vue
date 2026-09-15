@@ -27,7 +27,11 @@ import {
   simulateTouch,
   computedHasButtons,
   computedHasIndicators,
-  canActive
+  canActive,
+  mousedown,
+  mousemove,
+  mouseup,
+  mouseleave
 } from './index'
 import { addResizeListener, removeResizeListener } from '@opentiny/utils'
 
@@ -58,7 +62,11 @@ export const api = [
   'throttledIndicatorHover',
   'touchstart',
   'touchmove',
-  'touchend'
+  'touchend',
+  'mousedown',
+  'mousemove',
+  'mouseup',
+  'mouseleave'
 ]
 
 const initState = ({ reactive, computed, api }) => {
@@ -130,7 +138,12 @@ const initApi = ({ vm, api, state, props, emit, mode }) => {
     simulateTouch: simulateTouch({ props, vm }),
     computedHasButtons: computedHasButtons({ props, state, mode }),
     computedHasIndicators: computedHasIndicators({ props, state, mode }),
-    canActive: canActive(props)
+    canActive: canActive(props),
+    mousedown: mousedown({ props, state, api }), 
+    mousemove: mousemove({ props, state, vm }),
+    mouseup: mouseup({ props,state, api }),
+    mouseleave: mouseleave({ props,state, api }),
+    //拖动相关的事件
   })
 }
 
@@ -163,11 +176,13 @@ export const renderless = (
   provide('CarouselVm', vm)
   initWatch({ watch, props, api, state })
 
+
   onMounted(() => {
     api.startTimer()
     api.onComplete(state.items.length)
     api.simulateTouch()
   })
+
 
   // 监听子组件 CarouselItem 提交的 complete 事件
   parent.$on('updateItems', api.updateItems)

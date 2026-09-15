@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>配置 `accordion` 属性为 true 后，折叠面板将展示手风琴效果。配置 `v-model` 设置当前激活的面板(如果是手风琴模式，绑定值类型需要为 string ，否则为 array )；`change` 事件，在当前激活面板改变时触发，参数为当前的 value 值；配置 `name` 属性作为每个 collapse-item 的唯一标志符<p>',
+          '<p>配置 `accordion` 属性为 true 后，折叠面板将展示手风琴效果。配置 `v-model` 设置当前激活的面板 (如果是手风琴模式，绑定值类型需要为 string，否则为 array )；`change` 事件，在当前激活面板改变时触发，参数为当前的 value 值；配置 `name` 属性作为每个 collapse-item 的唯一标志符<p>',
         'en-US':
           '<p>If the `accordion` attribute is set to true, the collapse panel displays the accordion effect. Configure `v-model` Sets the currently active panel. (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.) `change` event, which is triggered when the current active panel changes. The parameter is the current value. Configure the `name` attribute as the unique identifier for each collapse-item</p>'
       },
@@ -88,7 +88,7 @@ export default {
         'en-US': 'Prevent Collapse Panel Close Event'
       },
       desc: {
-        'zh-CN': '<p>:before-close 折叠面板关闭前事件,方法里面 return true/false，表示是否可以关闭<p>',
+        'zh-CN': '<p>:before-close 折叠面板关闭前事件，方法里面 return true/false，表示是否可以关闭<p>',
         'en-US':
           '<p>:before-close: indicates the event before the folding panel is closed. In the method, return true or false indicates whether the folding panel can be closed.</p>'
       },
@@ -154,6 +154,19 @@ export default {
         'en-US': '<p>Icons are implemented by configuring the built-in icon slot of Collapse.</p>'
       },
       codeFiles: ['slot-icon.vue']
+    },
+    //draggable
+    {
+      demoId: 'draggable',
+      name: {
+        'zh-CN': '可拖拽',
+        'en-US': 'Draggable'
+      },
+      desc: {
+        'zh-CN': '<p>通过配置 Collapse 内置的 draggable 属性实现拖拽<p>',
+        'en-US': '<p>Drag and drop is implemented by configuring the built-in draggable slot of Collapse.</p>'
+      },
+      codeFiles: ['draggable.vue']
     }
   ]
 }
