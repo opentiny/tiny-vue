@@ -25,7 +25,9 @@ const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
 const tinyIconClose = iconClose()
 
 if (isSaas) {
-  import('@opentiny/vue-theme-saas/index.less')
+  // pages 构建 isSaas=false，但仍会静态解析字面量 import；发布包只有 css、无 less。
+  const saasThemeEntry = 'index.less'
+  import(`@opentiny/vue-theme-saas/${saasThemeEntry}`)
 }
 
 const router = useRouter()
